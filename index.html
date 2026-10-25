@@ -110,6 +110,15 @@
             </div>
         </div>
 
+        <div class="card" style="margin-bottom:12px; padding:12px;">
+            <button class="btn" onclick="AIGen.toggle()">✨ Crear lección con IA</button>
+            <div id="aiGenPanel" style="display:none; margin-top:10px;">
+                <input type="text" id="aiTopic" class="input-field" placeholder="Tema (ej: en el mercado, pedir comida, números)">
+                <button class="btn" id="aiGenBtn" style="margin-top:8px;" onclick="AIGen.generate()">Generar</button>
+                <div id="aiPreview" style="margin-top:10px;"></div>
+            </div>
+        </div>
+
         <div id="courseContainer"></div>
     </main>
 
@@ -458,7 +467,7 @@
                 const rawDue = await this.getDueItems();
                 // Map to dictionary vocab
                 this.activeQueue = [];
-                CourseData.levels.forEach(l => l.units.forEach(u => u.vocab.forEach(v => {
+                getLevels().forEach(l => l.units.forEach(u => u.vocab.forEach(v => {
                     const match = rawDue.find(d => d.key === v.id);
                     if (match) this.activeQueue.push({ vocab: v, srs: match.val });
                 })));
@@ -511,6 +520,7 @@
             selectedOption: null,
             userOrder: [],
 
+            startUnitById(id) { for (const l of getLevels()) { const u = l.units.find(x => x.id === id); if (u) return this.startUnit(u); } },
             startUnit(unit) {
                 this.currentUnit = unit;
                 this.stepIndex = 0;
@@ -582,7 +592,7 @@
                 chip.className = 'word-chip';
                 chip.innerText = word;
                 chip.onclick = () => {
-                    this.userOrder = this.userOrder.filter(w => w !== word);
+                    const k = this.userOrder.lastIndexOf(word); if (k > -1) this.userOrder.splice(k, 1);
                     chip.remove();
                     el.style.display = 'inline-block';
                 };
@@ -595,8 +605,9 @@
             },
             checkTranslate() {
                 const ex = this.currentUnit.exercises[this.stepIndex];
-                const input = document.getElementById('textAnswer').value.trim().toLowerCase();
-                this.showFeedback(input === ex.answer.toLowerCase(), ex.explanation);
+                const norm = s => s.toLowerCase().replace(/[.,!?¿¡]/g, '').replace(/\s+/g, ' ').trim();
+                const input = norm(document.getElementById('textAnswer').value);
+                this.showFeedback(input === norm(ex.answer), ex.explanation);
             },
             checkOrder() {
                 const ex = this.currentUnit.exercises[this.stepIndex];
@@ -628,6 +639,7 @@
             },
             async finishUnit() {
                 await App.markUnitCompleted(this.currentUnit.id);
+                for (const v of this.currentUnit.vocab) { if (!(await DB.get('srs', v.id))) await SRSEngine.recordAttempt(v.id, 4); }
                 document.getElementById('exerciseArea').innerHTML = `
                     <div style="text-align:center; margin-top:40px;">
                         <h2>🎉 Unidad Completada</h2>
@@ -636,6 +648,171 @@
                     </div>
                 `;
                 document.getElementById('lessonProgressFill').style.width = '100%';
+            }
+        };
+
+        /* 5b. LECCIONES GENERADAS CON IA */
+        const CustomLessons = { units: [] };
+        function getLevels() {
+            const extra = CustomLessons.units.length ? [{ id: 'IA', title: '✨ Mis lecciones (IA)', units: CustomLessons.units }] : [];
+            return [...CourseData.levels, ...extra];
+        }
+
+        const AIGen = {
+            draft: null,
+            url: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent',
+            schema: {
+                type: 'OBJECT',
+                required: ['title', 'desc', 'grammar', 'vocab', 'exercises'],
+                properties: {
+                    title: { type: 'STRING' }, desc: { type: 'STRING' }, grammar: { type: 'STRING' },
+                    vocab: { type: 'ARRAY', items: { type: 'OBJECT', required: ['idn', 'esp', 'ex', 'exEsp'],
+                        properties: { idn: { type: 'STRING' }, esp: { type: 'STRING' }, ex: { type: 'STRING' }, exEsp: { type: 'STRING' } } } },
+                    exercises: { type: 'ARRAY', items: { type: 'OBJECT', required: ['type', 'prompt', 'explanation', 'vocabIndex'],
+                        properties: {
+                            type: { type: 'STRING', enum: ['mc', 'translate_es_id', 'order'] },
+                            prompt: { type: 'STRING' }, explanation: { type: 'STRING' }, vocabIndex: { type: 'INTEGER' },
+                            options: { type: 'ARRAY', items: { type: 'STRING' } }, answerIndex: { type: 'INTEGER' },
+                            answerText: { type: 'STRING' },
+                            words: { type: 'ARRAY', items: { type: 'STRING' } },
+                            correctOrder: { type: 'ARRAY', items: { type: 'STRING' } }
+                        } } }
+                }
+            },
+            toggle() {
+                const p = document.getElementById('aiGenPanel');
+                p.style.display = p.style.display === 'none' ? 'block' : 'none';
+            },
+            clean(s, strict) {
+                s = String(s == null ? '' : s).replace(/[<>`]/g, '').trim();
+                return strict ? s.replace(/['"’]/g, '') : s;
+            },
+            async buildPrompt(topic) {
+                const known = [];
+                getLevels().forEach(l => l.units.forEach(u => u.vocab.forEach(v => known.push(v))));
+                const srs = await DB.getAll('srs');
+                const weak = srs.filter(i => i.val && i.val.efactor < 2.3)
+                    .map(i => known.find(v => v.id === i.key)).filter(Boolean).slice(0, 10).map(v => v.idn);
+                const lvl = CourseData.levels.filter(l => l.units.some(u => App.completedUnits.includes(u.id))).map(l => l.id).pop() || 'A1';
+                return `Eres un profesor de indonesio estándar (bahasa baku) para hispanohablantes. Crea UNA unidad sobre el tema: "${topic}".
+Nivel del alumno: ${lvl} (unidades completadas: ${App.completedUnits.length}).
+Palabras que el alumno ya conoce (no las uses como vocabulario nuevo, pero sí puedes usarlas en frases): ${known.slice(-200).map(v => v.idn).join(', ') || 'ninguna'}.
+${weak.length ? 'Palabras débiles que conviene reforzar en ejemplos y ejercicios: ' + weak.join(', ') + '.' : ''}
+Requisitos:
+- 5 palabras o frases nuevas (vocab), cada una con ejemplo en indonesio y su traducción al español.
+- "grammar": explicación breve en español (2 o 3 frases) de un punto gramatical relacionado.
+- 8 ejercicios: 3 de tipo mc (4 opciones, answerIndex empieza en 0), 3 translate_es_id (answerText con UNA respuesta canónica corta), 2 order (4 a 6 palabras; "words" y "correctOrder" con las mismas palabras).
+- "vocabIndex" es la posición (desde 0) de la palabra del vocab que practica el ejercicio.
+- Prompts y explicaciones en español; respuestas en indonesio. No uses comillas ni apóstrofes dentro del texto en indonesio.
+- No inventes palabras ni reglas; si dudas, elige algo más simple.`;
+            },
+            async generate() {
+                const topic = this.clean(document.getElementById('aiTopic').value, true);
+                if (!topic) return alert('Escribe un tema para la lección.');
+                if (!App.apiKey) return alert('Primero guarda tu clave de Gemini en la pestaña de IA.');
+                if (!navigator.onLine) return alert('Necesitas internet para generar una lección.');
+                const btn = document.getElementById('aiGenBtn');
+                const prev = document.getElementById('aiPreview');
+                btn.disabled = true;
+                prev.innerText = 'Generando...';
+                try {
+                    const res = await fetch(this.url, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json', 'x-goog-api-key': App.apiKey },
+                        body: JSON.stringify({
+                            contents: [{ parts: [{ text: await this.buildPrompt(topic) }] }],
+                            generationConfig: { responseMimeType: 'application/json', responseSchema: this.schema, temperature: 0.7 }
+                        })
+                    });
+                    const data = await res.json();
+                    if (!res.ok) throw new Error((data.error && data.error.message) || res.status);
+                    const parts = data.candidates && data.candidates[0] && data.candidates[0].content.parts;
+                    if (!parts) throw new Error('respuesta vacía');
+                    this.draft = this.validate(JSON.parse(parts.map(p => p.text || '').join('')));
+                    this.renderPreview();
+                } catch (e) {
+                    this.draft = null;
+                    prev.innerText = 'No se pudo generar: ' + e.message;
+                } finally {
+                    btn.disabled = false;
+                }
+            },
+            validate(d) {
+                const c = (s, strict) => this.clean(s, strict);
+                const vocab = (d.vocab || []).map(v => ({ idn: c(v.idn, true), esp: c(v.esp), ex: c(v.ex), exEsp: c(v.exEsp) }));
+                if (vocab.length < 3 || vocab.some(v => !v.idn || !v.esp || !v.ex || !v.exEsp)) throw new Error('vocabulario incompleto');
+                const id = 'ai_' + Date.now().toString(36);
+                vocab.forEach((v, i) => v.id = `${id}_v${i}`);
+                const exercises = [];
+                for (const e of d.exercises || []) {
+                    const vi = e.vocabIndex;
+                    if (!Number.isInteger(vi) || vi < 0 || vi >= vocab.length) continue;
+                    const base = { vocabId: vocab[vi].id, type: e.type, prompt: c(e.prompt), explanation: c(e.explanation) };
+                    if (!base.prompt) continue;
+                    if (e.type === 'mc') {
+                        const options = (e.options || []).map(o => c(o, true));
+                        const uniq = new Set(options.map(o => o.toLowerCase())).size === options.length;
+                        if (options.length < 3 || options.length > 4 || options.some(o => !o) || !uniq) continue;
+                        if (!Number.isInteger(e.answerIndex) || e.answerIndex < 0 || e.answerIndex >= options.length) continue;
+                        exercises.push({ ...base, options, answer: e.answerIndex });
+                    } else if (e.type === 'translate_es_id') {
+                        const answer = c(e.answerText, true);
+                        if (answer) exercises.push({ ...base, answer });
+                    } else if (e.type === 'order') {
+                        const words = (e.words || []).map(w => c(w, true));
+                        const order = (e.correctOrder || []).map(w => c(w, true));
+                        if (words.length < 2 || words.length > 8 || words.some(w => !w)) continue;
+                        if ([...words].sort().join('|') !== [...order].sort().join('|')) continue;
+                        exercises.push({ ...base, words, correctOrder: order });
+                    }
+                }
+                if (exercises.length < 4) throw new Error('la IA devolvió pocos ejercicios válidos, intenta de nuevo');
+                const known = new Set();
+                getLevels().forEach(l => l.units.forEach(u => u.vocab.forEach(v => known.add(v.idn.toLowerCase()))));
+                return {
+                    id, custom: true, title: c(d.title) || 'Lección IA', desc: c(d.desc), grammar: c(d.grammar), vocab, exercises,
+                    skipped: (d.exercises || []).length - exercises.length,
+                    repeated: vocab.filter(v => known.has(v.idn.toLowerCase())).map(v => v.idn)
+                };
+            },
+            renderPreview() {
+                const d = this.draft;
+                document.getElementById('aiPreview').innerHTML = `
+                    <h3>${d.title}</h3>
+                    <p style="font-size:0.85rem; color:var(--text-muted);">${d.desc}</p>
+                    <div style="background:var(--bg-card); padding:8px; border-radius:6px; font-size:0.8rem; margin:8px 0;">💡 ${d.grammar}</div>
+                    <ul style="font-size:0.85rem; padding-left:18px;">
+                        ${d.vocab.map(v => `<li><strong>${v.idn}</strong> — ${v.esp}<br><small>${v.ex} (${v.exEsp})</small></li>`).join('')}
+                    </ul>
+                    <p style="font-size:0.8rem; margin-top:6px;">${d.exercises.length} ejercicios${d.skipped ? ` (${d.skipped} descartados por formato inválido)` : ''}${d.repeated.length ? ` · Ya conocías: ${d.repeated.join(', ')}` : ''}</p>
+                    <div style="display:flex; gap:8px; margin-top:8px;">
+                        <button class="btn" onclick="AIGen.save()">Guardar</button>
+                        <button class="btn btn-outline" onclick="AIGen.generate()">Regenerar</button>
+                        <button class="btn btn-outline" onclick="AIGen.discard()">Descartar</button>
+                    </div>`;
+            },
+            async save() {
+                const u = this.draft;
+                if (!u) return;
+                delete u.skipped; delete u.repeated;
+                CustomLessons.units.push(u);
+                await DB.set('settings', 'customUnits', CustomLessons.units);
+                this.discard();
+                document.getElementById('aiTopic').value = '';
+                App.renderCourseRoute();
+                App.renderDict();
+                alert('Lección guardada. Ya está disponible sin internet.');
+            },
+            discard() {
+                this.draft = null;
+                document.getElementById('aiPreview').innerText = '';
+            },
+            async remove(id) {
+                if (!confirm('¿Eliminar esta lección generada?')) return;
+                CustomLessons.units = CustomLessons.units.filter(u => u.id !== id);
+                await DB.set('settings', 'customUnits', CustomLessons.units);
+                App.renderCourseRoute();
+                App.renderDict();
             }
         };
 
@@ -652,6 +829,8 @@
                 this.xp = (await DB.get('settings', 'userXp')) || 0;
                 this.completedUnits = (await DB.get('settings', 'completedUnits')) || [];
                 this.apiKey = (await DB.get('settings', 'geminiApiKey')) || '';
+                CustomLessons.units = (await DB.get('settings', 'customUnits')) || [];
+                if (navigator.storage && navigator.storage.persist) navigator.storage.persist();
 
                 if (this.apiKey) document.getElementById('apiKeyInput').value = this.apiKey;
 
@@ -699,7 +878,7 @@
                 const container = document.getElementById('courseContainer');
                 container.innerHTML = '';
 
-                CourseData.levels.forEach(lvl => {
+                getLevels().forEach(lvl => {
                     const levelEl = document.createElement('div');
                     levelEl.innerHTML = `<h2 style="margin: 16px 0 8px 0;">${lvl.title}</h2>`;
 
@@ -709,14 +888,14 @@
                         card.className = `unit-card ${isDone ? 'completed' : ''}`;
                         card.innerHTML = `
                             <div style="display:flex; justify-content:space-between; align-items:center;">
-                                <div class="unit-title">${unit.title} ${isDone ? '✓' : ''}</div>
+                                <div class="unit-title">${unit.title} ${isDone ? '✓' : ''}${unit.custom ? ' ✨' : ''}</div>
                                 <button class="btn btn-sm btn-outline" onclick="AudioEngine.speak('${unit.vocab[0]?.idn || ''}')">🔊 Pronunciación</button>
                             </div>
                             <p style="font-size:0.85rem; color:var(--text-muted);">${unit.desc}</p>
                             <div style="background:var(--bg-card); padding:8px; border-radius:6px; font-size:0.8rem;">
                                 💡 <strong>Gramática:</strong> ${unit.grammar}
                             </div>
-                            <button class="btn" style="margin-top:8px;" onclick='LessonEngine.startUnit(${JSON.stringify(unit).replace(/'/g, "&#39;")})'>
+                            ${unit.custom ? `<button class="btn btn-outline btn-sm" style="margin-top:8px; margin-right:8px;" onclick="AIGen.remove('${unit.id}')">Eliminar</button>` : ''}<button class="btn" style="margin-top:8px;" onclick="LessonEngine.startUnitById('${unit.id}')">
                                 ${isDone ? 'Repasar Lección' : 'Iniciar Lección'}
                             </button>
                         `;
@@ -735,7 +914,7 @@
             renderDict() {
                 const container = document.getElementById('dictContainer');
                 let html = '';
-                CourseData.levels.forEach(lvl => {
+                getLevels().forEach(lvl => {
                     lvl.units.forEach(u => {
                         u.vocab.forEach(v => {
                             html += `
@@ -806,9 +985,9 @@
                 box.scrollTop = box.scrollHeight;
 
                 try {
-                    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${this.apiKey}`, {
+                    const res = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent', {
                         method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
+                        headers: { 'Content-Type': 'application/json', 'x-goog-api-key': this.apiKey },
                         body: JSON.stringify({
                             contents: [{ parts: [{ text: `Tutor conciso de indonesio en español: ${text}` }] }]
                         })
@@ -827,6 +1006,7 @@
             async exportProgress() {
                 const data = {
                     version: 3,
+                    customUnits: CustomLessons.units,
                     xp: this.xp,
                     completedUnits: this.completedUnits,
                     srs: await DB.getAll('srs'),
@@ -850,6 +1030,10 @@
                         if (confirm("¿Deseas restaurar esta copia de seguridad? Se reemplazará el progreso actual.")) {
                             this.xp = parsed.xp;
                             this.completedUnits = parsed.completedUnits || [];
+                            if (Array.isArray(parsed.customUnits)) {
+                                CustomLessons.units = parsed.customUnits.filter(u => u && u.id && Array.isArray(u.vocab) && Array.isArray(u.exercises));
+                                await DB.set('settings', 'customUnits', CustomLessons.units);
+                            }
                             await DB.set('settings', 'userXp', this.xp);
                             await DB.set('settings', 'completedUnits', this.completedUnits);
                             

@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Bahasa Studio 3.0</title>
+    <meta name="description" content="Curso de indonesio PWA para hispanohablantes sin costo ni penalizaciones.">
+    <meta name="theme-color" content="#1a365d">
+    <link rel="manifest" href="./manifest.json">
+    <style>
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-card: #334155;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #0284c7;
+            --accent-hover: #0369a1;
+            --success: #16a34a;
+            --error: #dc2626;
+            --warning: #d97706;
+            --border: #475569;
+            --font: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .light-mode {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #ffffff;
+            --bg-card: #e2e8f0;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --accent: #0284c7;
+            --accent-hover: #0369a1;
+            --success: #16a34a;
+            --error: #dc2626;
+            --border: #cbd5e1;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; -webkit-tap-highlight-color: transparent; }
+        body { font-family: var(--font); background-color: var(--bg-primary); color: var(--text-main); line-height: 1.5; padding-bottom: 70px; }
+
+        header { background: var(--bg-secondary); padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+        .logo { font-size: 1.1rem; font-weight: 700; color: #38bdf8; display: flex; align-items: center; gap: 8px; }
+        .nav-bottom { position: fixed; bottom: 0; left: 0; right: 0; background: var(--bg-secondary); display: flex; justify-content: space-around; border-top: 1px solid var(--border); z-index: 100; height: 60px; }
+        .nav-btn { background: none; border: none; color: var(--text-muted); display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 0.75rem; width: 100%; cursor: pointer; }
+        .nav-btn.active { color: #38bdf8; font-weight: bold; }
+        .nav-btn svg { width: 22px; height: 22px; fill: currentColor; margin-bottom: 2px; }
+
+        .app-view { display: none; padding: 16px; max-width: 600px; margin: 0 auto; }
+        .app-view.active { display: block; }
+        
+        .card { background: var(--bg-secondary); border-radius: 12px; padding: 16px; margin-bottom: 16px; border: 1px solid var(--border); }
+        .btn { background: var(--accent); color: white; border: none; padding: 12px 20px; border-radius: 8px; font-weight: 600; font-size: 1rem; cursor: pointer; width: 100%; text-align: center; min-height: 48px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+        .btn:active { background: var(--accent-hover); transform: scale(0.98); }
+        .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text-main); }
+        .btn-sm { padding: 6px 12px; font-size: 0.85rem; min-height: 36px; width: auto; }
+
+        .unit-card { background: var(--bg-secondary); border: 2px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 12px; display: flex; flex-direction: column; gap: 8px; }
+        .unit-card.completed { border-color: var(--success); }
+        .unit-title { font-size: 1.05rem; font-weight: bold; color: #38bdf8; }
+        .progress-bar { background: var(--bg-card); height: 8px; border-radius: 4px; overflow: hidden; width: 100%; }
+        .progress-fill { background: var(--success); height: 100%; width: 0%; transition: width 0.3s; }
+
+        .quiz-container { display: flex; flex-direction: column; min-height: 70vh; justify-content: space-between; }
+        .option-grid { display: flex; flex-direction: column; gap: 10px; margin: 20px 0; }
+        .option-btn { background: var(--bg-card); border: 2px solid var(--border); padding: 14px; border-radius: 8px; color: var(--text-main); text-align: left; font-size: 1rem; cursor: pointer; }
+        .option-btn.selected { border-color: var(--accent); background: #0284c722; }
+        
+        .word-bank { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0; min-height: 50px; background: var(--bg-card); padding: 8px; border-radius: 8px; }
+        .word-chip { background: var(--bg-secondary); border: 1px solid var(--border); padding: 8px 12px; border-radius: 6px; cursor: pointer; font-weight: 500; }
+        
+        .feedback-box { padding: 12px; border-radius: 8px; margin-top: 12px; font-weight: 500; }
+        .feedback-box.correct { background: #16a34a33; border: 1px solid var(--success); color: #4ade80; }
+        .feedback-box.wrong { background: #dc262633; border: 1px solid var(--error); color: #f87171; }
+
+        .chat-box { display: flex; flex-direction: column; gap: 12px; height: 55vh; overflow-y: auto; padding: 12px; background: var(--bg-card); border-radius: 8px; margin-bottom: 12px; }
+        .msg { max-width: 85%; padding: 10px 14px; border-radius: 12px; font-size: 0.95rem; white-space: pre-line; word-break: break-word; }
+        .msg.user { background: var(--accent); align-self: flex-end; color: white; border-bottom-right-radius: 2px; }
+        .msg.ai { background: var(--bg-secondary); border: 1px solid var(--border); align-self: flex-start; border-bottom-left-radius: 2px; }
+        .input-field { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-main); padding: 12px; border-radius: 8px; width: 100%; font-size: 1rem; }
+
+        .badge { background: #0ea5e922; color: #38bdf8; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; border: 1px solid #0ea5e944; }
+        .offline-tag { background: var(--warning); color: black; font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; font-weight: bold; }
+        .flashcard { background: var(--bg-secondary); border: 2px solid var(--border); min-height: 180px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; border-radius: 12px; padding: 16px; margin: 16px 0; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <span>🇮🇩</span> Bahasa Studio 3.0
+        </div>
+        <div>
+            <button class="btn btn-outline btn-sm" onclick="App.toggleTheme()">🌓</button>
+            <span id="offlineStatus" class="offline-tag" style="display:none;">OFFLINE</span>
+        </div>
+    </header>
+
+    <!-- CURSO / RUTA -->
+    <main id="view-route" class="app-view active">
+        <div class="card" style="margin-bottom: 12px; padding: 12px;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+                <div>
+                    <h3 style="margin:0;">Progreso General</h3>
+                    <p style="font-size:0.85rem; color: var(--text-muted);">Estatus: Nivel A1 Activo</p>
+                </div>
+                <div>
+                    <span id="totalExpBadge" class="badge" style="font-size: 0.9rem;">0 XP</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="courseContainer"></div>
+    </main>
+
+    <!-- REPASO SRS INTERACTIVO -->
+    <main id="view-srs" class="app-view">
+        <h2>Repaso Espaciado (SM-2)</h2>
+        <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 12px;">Práctica diaria adaptativa sin conexión.</p>
+        
+        <div id="srsDashboard" class="card">
+            <h3>Palabras Pendientes</h3>
+            <p id="srsCountText" style="font-size: 1.8rem; font-weight: bold; margin: 8px 0; color:#38bdf8;">0</p>
+            <button class="btn" id="startSrsBtn" onclick="SRSEngine.startSession()">Comenzar Repaso</button>
+        </div>
+
+        <div id="srsPracticeArea" style="display:none;">
+            <div class="flashcard">
+                <h2 id="srsPromptText" style="font-size:1.8rem;">...</h2>
+                <p id="srsContextText" style="color:var(--text-muted); margin-top:8px; font-size:0.9rem; display:none;"></p>
+                <button id="srsRevealBtn" class="btn btn-outline btn-sm" style="margin-top:16px;" onclick="SRSEngine.revealAnswer()">Mostrar Respuesta</button>
+            </div>
+            
+            <div id="srsAnswerArea" style="display:none;">
+                <p style="text-align:center; font-size:1.2rem; margin-bottom:12px; color:#4ade80;" id="srsAnswerText"></p>
+                <p style="font-size:0.8rem; text-align:center; color:var(--text-muted); margin-bottom:8px;">¿Qué tan bien lo recordabas?</p>
+                <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:8px;">
+                    <button class="btn" style="background:var(--error);" onclick="SRSEngine.submitGrade(1)">Difícil</button>
+                    <button class="btn" style="background:var(--warning);" onclick="SRSEngine.submitGrade(3)">Bien</button>
+                    <button class="btn" style="background:var(--success);" onclick="SRSEngine.submitGrade(5)">Fácil</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" style="margin-top:16px;">
+            <h3>Métricas de Retención</h3>
+            <div style="display:flex; justify-content:space-between; margin-top: 8px;">
+                <span>Total Registradas:</span>
+                <strong id="statTotalVocab">0</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-top: 4px;">
+                <span>Consolidadas:</span>
+                <strong id="statMastered">0</strong>
+            </div>
+        </div>
+    </main>
+
+    <!-- TUTOR INTEGRADO / LOCAL -->
+    <main id="view-ai" class="app-view">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <h2>Tutor de Gramática</h2>
+            <span class="badge" style="background:#16a34a22; color:#4ade80;">Local / Opcional</span>
+        </div>
+        
+        <div class="card" style="padding: 12px;">
+            <details>
+                <summary style="font-size:0.85rem; cursor:pointer; font-weight:bold;">Configuración Gemini API (Opcional)</summary>
+                <p style="font-size: 0.75rem; margin: 8px 0; color: var(--text-muted);">Si agregas tu clave propia de Google AI Studio, las respuestas serán generadas por IA. Si no, se utilizará el motor de gramática local empaquetado.</p>
+                <div style="display:flex; gap: 8px;">
+                    <input type="password" id="apiKeyInput" class="input-field" placeholder="AIzaSy..." style="padding: 6px 10px; font-size:0.85rem;">
+                    <button class="btn btn-sm" onclick="App.saveApiKey()">Guardar</button>
+                </div>
+            </details>
+        </div>
+
+        <div class="chat-box" id="chatBox">
+            <div class="msg ai">Selamat datang! Soy tu asistente de indonesio. Puedes hacerme preguntas gramaticales como "¿Cómo funciona tidak y bukan?" o pedirme ejercicios.</div>
+        </div>
+
+        <div style="display:flex; gap: 8px;">
+            <input type="text" id="chatInput" class="input-field" placeholder="Escribe tu consulta..." onkeydown="if(event.key==='Enter') App.sendAiMessage()">
+            <button class="btn btn-sm" onclick="App.sendAiMessage()">Enviar</button>
+        </div>
+    </main>
+
+    <!-- DICCIONARIO -->
+    <main id="view-dict" class="app-view">
+        <h2>Diccionario General</h2>
+        <input type="text" id="dictSearch" class="input-field" placeholder="Buscar indonesio o español..." oninput="App.filterDict()" style="margin: 12px 0;">
+        <div id="dictContainer"></div>
+    </main>
+
+    <!-- AJUSTES Y RESPALDO -->
+    <main id="view-settings" class="app-view">
+        <h2>Ajustes y Datos</h2>
+        
+        <div class="card">
+            <h3>Copia de Seguridad</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin: 8px 0;">Exporta o restaura tu progreso en un archivo JSON validado.</p>
+            <div style="display:flex; gap: 8px; margin-top: 8px;">
+                <button class="btn btn-outline" onclick="App.exportProgress()">Exportar JSON</button>
+                <button class="btn btn-outline" onclick="document.getElementById('importFile').click()">Importar JSON</button>
+                <input type="file" id="importFile" style="display:none;" accept=".json" onchange="App.importProgress(event)">
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Sintetizador de Voz (TTS)</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px;">Comprueba si el paquete de voz en indonesio está instalado en tu dispositivo.</p>
+            <button class="btn btn-outline" onclick="AudioEngine.testVoice()">Probar Voz (id-ID)</button>
+        </div>
+
+        <div class="card">
+            <h3>Restablecimiento</h3>
+            <button class="btn" style="background:var(--error);" onclick="App.resetAllData()">Borrar Datos de Usuario</button>
+        </div>
+    </main>
+
+    <!-- INTERFAZ DE LECCIÓN -->
+    <main id="view-lesson" class="app-view">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 12px;">
+            <button class="btn btn-outline btn-sm" onclick="LessonEngine.exit()">✕ Salir</button>
+            <div class="progress-bar" style="width: 60%;">
+                <div id="lessonProgressFill" class="progress-fill"></div>
+            </div>
+            <span id="lessonStepCount" style="font-size:0.85rem; font-weight:bold;">1/1</span>
+        </div>
+
+        <div id="exerciseArea" class="quiz-container"></div>
+    </main>
+
+    <!-- NAVEGACIÓN INFERIOR -->
+    <nav class="nav-bottom">
+        <button class="nav-btn active" onclick="App.switchView('route', this)">
+            <svg viewBox="0 0 24 24"><path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/></svg>
+            Curso
+        </button>
+        <button class="nav-btn" onclick="App.switchView('srs', this)">
+            <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
+            Repaso
+        </button>
+        <button class="nav-btn" onclick="App.switchView('ai', this)">
+            <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM9 11H7V9h2v2zm4 0h-2V9h2v2zm4 0h-2V9h2v2z"/></svg>
+            Tutor
+        </button>
+        <button class="nav-btn" onclick="App.switchView('dict', this)">
+            <svg viewBox="0 0 24 24"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2z"/></svg>
+            Diccionario
+        </button>
+        <button class="nav-btn" onclick="App.switchView('settings', this)">
+            <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+            Ajustes
+        </button>
+    </nav>
+
+    <script>
+        /* 1. MOTOR BASE DE DATOS (IndexedDB) */
+        const DB = {
+            dbName: 'BahasaStudio3DB',
+            version: 1,
+            db: null,
+            init() {
+                return new Promise((resolve, reject) => {
+                    const req = indexedDB.open(this.dbName, this.version);
+                    req.onupgradeneeded = (e) => {
+                        const db = e.target.result;
+                        if (!db.objectStoreNames.contains('progress')) db.createObjectStore('progress', { keyPath: 'id' });
+                        if (!db.objectStoreNames.contains('srs')) db.createObjectStore('srs', { keyPath: 'wordId' });
+                        if (!db.objectStoreNames.contains('settings')) db.createObjectStore('settings', { keyPath: 'key' });
+                    };
+                    req.onsuccess = (e) => { this.db = e.target.result; resolve(); };
+                    req.onerror = (e) => reject(e);
+                });
+            },
+            async get(store, key) {
+                return new Promise((resolve) => {
+                    const tx = this.db.transaction(store, 'readonly');
+                    const req = tx.objectStore(store).get(key);
+                    req.onsuccess = () => resolve(req.result ? req.result.val : null);
+                    req.onerror = () => resolve(null);
+                });
+            },
+            async set(store, key, val) {
+                return new Promise((resolve) => {
+                    const tx = this.db.transaction(store, 'readwrite');
+                    tx.objectStore(store).put({ id: key, wordId: key, key: key, val: val });
+                    tx.oncomplete = () => resolve();
+                });
+            },
+            async getAll(store) {
+                return new Promise((resolve) => {
+                    const tx = this.db.transaction(store, 'readonly');
+                    const req = tx.objectStore(store).getAll();
+                    req.onsuccess = () => resolve(req.result || []);
+                });
+            }
+        };
+
+        /* 2. CURRICULO COMPLETO A1 CON ESTRUCTURA A2-B2 */
+        const CourseData = {
+            levels: [
+                {
+                    id: 'A1',
+                    title: 'A1 — Principiante',
+                    units: [
+                        {
+                            id: 'a1_u1',
+                            title: 'Unidad 1: Pronombres y Saludos',
+                            desc: 'Estructura básica de oraciones y formas de tratamiento.',
+                            grammar: 'En indonesio los verbos no sufren conjugación de tiempo ni persona. Sujeto + Verbo + Objeto.',
+                            vocab: [
+                                { id: 'v1', idn: 'Saya', esp: 'Yo (formal)', ex: 'Saya makan nasi.', exEsp: 'Yo como arroz.' },
+                                { id: 'v2', idn: 'Kamu', esp: 'Tú', ex: 'Kamu minum air.', exEsp: 'Tú bebes agua.' },
+                                { id: 'v3', idn: 'Dia', esp: 'Él / Ella', ex: 'Dia tidur.', exEsp: 'Él/Ella duerme.' },
+                                { id: 'v4', idn: 'Selamat pagi', esp: 'Buenos días', ex: 'Selamat pagi, teman!', exEsp: '¡Buenos días, amigo!' }
+                            ],
+                            exercises: [
+                                { vocabId: 'v1', type: 'mc', prompt: '¿Cómo se traduce "Yo" en registro educado?', options: ['Kamu', 'Saya', 'Dia', 'Mereka'], answer: 1, explanation: '"Saya" es la forma estándar y respetuosa.' },
+                                { vocabId: 'v2', type: 'translate_es_id', prompt: 'Traduce al indonesio: "Tú"', answer: 'Kamu', explanation: '"Kamu" se usa en contextos informales para la segunda persona.' },
+                                { vocabId: 'v1', type: 'order', prompt: 'Ordena: "Yo como arroz"', words: ['nasi', 'Saya', 'makan'], correctOrder: ['Saya', 'makan', 'nasi'], explanation: 'Sujeto (Saya) + Verbo (makan) + Objeto (nasi).' }
+                            ]
+                        },
+                        {
+                            id: 'a1_u2',
+                            title: 'Unidad 2: Negación con Tidak y Bukan',
+                            desc: 'Diferenciación estricta entre negación verbal y nominal.',
+                            grammar: 'Usa "tidak" para negar verbos y adjetivos. Usa "bukan" exclusivamente para sustantivos.',
+                            vocab: [
+                                { id: 'v5', idn: 'Tidak', esp: 'No (para verbos/adjetivos)', ex: 'Saya tidak makan.', exEsp: 'Yo no como.' },
+                                { id: 'v6', idn: 'Bukan', esp: 'No es / No (para sustantivos)', ex: 'Ini bukan air.', exEsp: 'Esto no es agua.' }
+                            ],
+                            exercises: [
+                                { vocabId: 'v5', type: 'mc', prompt: 'Completa: "Saya ___ tidur" (Yo no duermo)', options: ['bukan', 'tidak', 'apa', 'ada'], answer: 1, explanation: '"Tidur" es verbo, requiere "tidak".' },
+                                { vocabId: 'v6', type: 'mc', prompt: 'Completa: "Ini ___ nasi" (Esto no es arroz)', options: ['tidak', 'bukan', 'jangan', 'belum'], answer: 1, explanation: '"Nasi" es sustantivo, requiere "bukan".' }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    id: 'A2',
+                    title: 'A2 — Básico Avanzado',
+                    units: [
+                        {
+                            id: 'a2_u1',
+                            title: 'Unidad 1: Prefijo meN- y Rutinas',
+                            desc: 'Formación de verbos transitivos activos.',
+                            grammar: 'El prefijo meN- asimila la consonante inicial de la raíz (baca -> membaca).',
+                            vocab: [{ id: 'v7', idn: 'Membaca', esp: 'Leer', ex: 'Saya membaca buku.', exEsp: 'Yo leo un libro.' }],
+                            exercises: [
+                                { vocabId: 'v7', type: 'mc', prompt: '¿Cuál es la forma activa de "baca"?', options: ['Membaca', 'Berbaca', 'Terbaca', 'Dibaca'], answer: 0, explanation: 'La raíz con "b" toma el prefijo "mem-".' }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    id: 'B1',
+                    title: 'B1 — Intermedio',
+                    units: [
+                        {
+                            id: 'b1_u1',
+                            title: 'Unidad 1: Voz Pasiva (di-)',
+                            desc: 'Estructuras pasivas formales.',
+                            grammar: 'El prefijo di- reemplaza al prefijo activo meN- para enfocar la acción en el objeto.',
+                            vocab: [{ id: 'v8', idn: 'Dimakan', esp: 'Comido por', ex: 'Nasi dimakan saya.', exEsp: 'El arroz es comido por mí.' }],
+                            exercises: [
+                                { vocabId: 'v8', type: 'mc', prompt: '¿Qué función cumple el prefijo "di-"?', options: ['Imperativo', 'Voz Pasiva', 'Lugar', 'Negación'], answer: 1, explanation: 'Marca la voz pasiva del verbo.' }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    id: 'B2',
+                    title: 'B2 — Intermedio Alto',
+                    units: [
+                        {
+                            id: 'b2_u1',
+                            title: 'Unidad 1: Sufijos Causativos (-kan)',
+                            desc: 'Matices causativos y beneficio a terceros.',
+                            grammar: 'El sufijo -kan indica hacer que alguien realice una acción o ejecutarla para otro.',
+                            vocab: [{ id: 'v9', idn: 'Mendengarkan', esp: 'Escuchar atentamente', ex: 'Saya mendengarkan musik.', exEsp: 'Escucho música.' }],
+                            exercises: [
+                                { vocabId: 'v9', type: 'mc', prompt: 'El sufijo -kan en un verbo suele indicar:', options: ['Causatividad', 'Pasado', 'Plural', 'Duda'], answer: 0, explanation: 'Aporta sentido causativo a la acción raíz.' }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        };
+
+        /* 3. AUDIO Y AUDIO FALLBACK */
+        const AudioEngine = {
+            synth: window.speechSynthesis,
+            idVoice: null,
+            init() {
+                if (!this.synth) return;
+                const update = () => {
+                    const voices = this.synth.getVoices();
+                    this.idVoice = voices.find(v => v.lang.includes('id') || v.lang.includes('ID'));
+                };
+                update();
+                if (this.synth.onvoiceschanged !== undefined) this.synth.onvoiceschanged = update;
+            },
+            speak(text) {
+                if (!this.synth) return;
+                this.synth.cancel();
+                const utter = new SpeechSynthesisUtterance(text);
+                utter.lang = 'id-ID';
+                if (this.idVoice) utter.voice = this.idVoice;
+                utter.rate = 0.85;
+                this.synth.speak(utter);
+            },
+            testVoice() {
+                if (this.idVoice) {
+                    this.speak("Halo! Bahasa Indonesia.");
+                } else {
+                    alert("No se detectó un paquete de voz nativo en indonesio (id-ID) en tu sistema. Se usará el emulador genérico del navegador.");
+                }
+            }
+        };
+
+        /* 4. MOTOR REPASO ESPACIADO SM-2 REAL */
+        const SRSEngine = {
+            activeQueue: [],
+            currentIndex: 0,
+
+            async recordAttempt(wordId, quality) {
+                if (!wordId) return;
+                let item = await DB.get('srs', wordId) || {
+                    wordId: wordId,
+                    interval: 1,
+                    repetition: 0,
+                    efactor: 2.5,
+                    nextReview: Date.now()
+                };
+
+                if (quality >= 3) {
+                    if (item.repetition === 0) item.interval = 1;
+                    else if (item.repetition === 1) item.interval = 6;
+                    else item.interval = Math.round(item.interval * item.efactor);
+                    item.repetition += 1;
+                } else {
+                    item.repetition = 0;
+                    item.interval = 1;
+                }
+
+                item.efactor = item.efactor + (0.1 - (5 - quality) * (0.08 + (5 - quality) * 0.02));
+                if (item.efactor < 1.3) item.efactor = 1.3;
+                item.nextReview = Date.now() + (item.interval * 86400000);
+
+                await DB.set('srs', wordId, item);
+            },
+            async getDueItems() {
+                const all = await DB.getAll('srs');
+                const now = Date.now();
+                return all.filter(i => i.val && i.val.nextReview <= now);
+            },
+            async startSession() {
+                const rawDue = await this.getDueItems();
+                // Map to dictionary vocab
+                this.activeQueue = [];
+                CourseData.levels.forEach(l => l.units.forEach(u => u.vocab.forEach(v => {
+                    const match = rawDue.find(d => d.key === v.id);
+                    if (match) this.activeQueue.push({ vocab: v, srs: match.val });
+                })));
+
+                if (this.activeQueue.length === 0) {
+                    alert("No hay elementos programados para repaso hoy.");
+                    return;
+                }
+
+                this.currentIndex = 0;
+                document.getElementById('srsDashboard').style.display = 'none';
+                document.getElementById('srsPracticeArea').style.display = 'block';
+                this.renderCard();
+            },
+            renderCard() {
+                const current = this.activeQueue[this.currentIndex];
+                document.getElementById('srsPromptText').innerText = current.vocab.idn;
+                document.getElementById('srsContextText').innerText = current.vocab.ex;
+                document.getElementById('srsContextText').style.display = 'block';
+                document.getElementById('srsAnswerArea').style.display = 'none';
+                document.getElementById('srsRevealBtn').style.display = 'inline-flex';
+                AudioEngine.speak(current.vocab.idn);
+            },
+            revealAnswer() {
+                const current = this.activeQueue[this.currentIndex];
+                document.getElementById('srsAnswerText').innerText = `${current.vocab.esp} (${current.vocab.exEsp})`;
+                document.getElementById('srsAnswerArea').style.display = 'block';
+                document.getElementById('srsRevealBtn').style.display = 'none';
+            },
+            async submitGrade(grade) {
+                const current = this.activeQueue[this.currentIndex];
+                await this.recordAttempt(current.vocab.id, grade);
+                this.currentIndex++;
+                
+                if (this.currentIndex < this.activeQueue.length) {
+                    this.renderCard();
+                } else {
+                    alert("¡Sesión de repaso completada!");
+                    document.getElementById('srsDashboard').style.display = 'block';
+                    document.getElementById('srsPracticeArea').style.display = 'none';
+                    App.updateSrsView();
+                }
+            }
+        };
+
+        /* 5. MOTOR DE LECCIONES INTERACTIVAS */
+        const LessonEngine = {
+            currentUnit: null,
+            stepIndex: 0,
+            selectedOption: null,
+            userOrder: [],
+
+            startUnit(unit) {
+                this.currentUnit = unit;
+                this.stepIndex = 0;
+                App.switchView('lesson');
+                this.renderStep();
+            },
+            exit() { App.switchView('route'); },
+            renderStep() {
+                const container = document.getElementById('exerciseArea');
+                const total = this.currentUnit.exercises.length;
+                const ex = this.currentUnit.exercises[this.stepIndex];
+
+                document.getElementById('lessonStepCount').innerText = `${this.stepIndex + 1}/${total}`;
+                document.getElementById('lessonProgressFill').style.width = `${((this.stepIndex) / total) * 100}%`;
+
+                this.selectedOption = null;
+                this.userOrder = [];
+
+                if (ex.type === 'mc') {
+                    container.innerHTML = `
+                        <div>
+                            <h3>${ex.prompt}</h3>
+                            <div class="option-grid">
+                                ${ex.options.map((opt, i) => `
+                                    <button class="option-btn" onclick="LessonEngine.selectMc(${i}, this)">${opt}</button>
+                                `).join('')}
+                            </div>
+                        </div>
+                        <div id="actionArea">
+                            <button class="btn" onclick="LessonEngine.checkMc()">Comprobar</button>
+                        </div>
+                    `;
+                } else if (ex.type === 'translate_es_id') {
+                    container.innerHTML = `
+                        <div>
+                            <h3>${ex.prompt}</h3>
+                            <input type="text" id="textAnswer" class="input-field" placeholder="Escribe en indonesio..." style="margin-top:20px;">
+                        </div>
+                        <div id="actionArea">
+                            <button class="btn" onclick="LessonEngine.checkTranslate()">Comprobar</button>
+                        </div>
+                    `;
+                } else if (ex.type === 'order') {
+                    const shuffled = [...ex.words].sort(() => Math.random() - 0.5);
+                    container.innerHTML = `
+                        <div>
+                            <h3>${ex.prompt}</h3>
+                            <div id="selectedBank" class="word-bank"></div>
+                            <div id="availableBank" class="word-bank">
+                                ${shuffled.map(w => `<span class="word-chip" onclick="LessonEngine.pickWord('${w}', this)">${w}</span>`).join('')}
+                            </div>
+                        </div>
+                        <div id="actionArea">
+                            <button class="btn" onclick="LessonEngine.checkOrder()">Comprobar</button>
+                        </div>
+                    `;
+                }
+            },
+            selectMc(idx, btn) {
+                document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+                btn.classList.add('selected');
+                this.selectedOption = idx;
+            },
+            pickWord(word, el) {
+                this.userOrder.push(word);
+                el.style.display = 'none';
+                const bank = document.getElementById('selectedBank');
+                const chip = document.createElement('span');
+                chip.className = 'word-chip';
+                chip.innerText = word;
+                chip.onclick = () => {
+                    this.userOrder = this.userOrder.filter(w => w !== word);
+                    chip.remove();
+                    el.style.display = 'inline-block';
+                };
+                bank.appendChild(chip);
+            },
+            checkMc() {
+                const ex = this.currentUnit.exercises[this.stepIndex];
+                if (this.selectedOption === null) return;
+                this.showFeedback(this.selectedOption === ex.answer, ex.explanation);
+            },
+            checkTranslate() {
+                const ex = this.currentUnit.exercises[this.stepIndex];
+                const input = document.getElementById('textAnswer').value.trim().toLowerCase();
+                this.showFeedback(input === ex.answer.toLowerCase(), ex.explanation);
+            },
+            checkOrder() {
+                const ex = this.currentUnit.exercises[this.stepIndex];
+                const isCorrect = JSON.stringify(this.userOrder) === JSON.stringify(ex.correctOrder);
+                this.showFeedback(isCorrect, ex.explanation);
+            },
+            showFeedback(isCorrect, explanation) {
+                const ex = this.currentUnit.exercises[this.stepIndex];
+                if (ex.vocabId) {
+                    SRSEngine.recordAttempt(ex.vocabId, isCorrect ? 4 : 1);
+                }
+                const area = document.getElementById('actionArea');
+                area.innerHTML = `
+                    <div class="feedback-box ${isCorrect ? 'correct' : 'wrong'}">
+                        ${isCorrect ? '¡Correcto!' : 'Incorrecto'}<br>
+                        <small>${explanation}</small>
+                    </div>
+                    <button class="btn" style="margin-top:12px;" onclick="LessonEngine.nextStep(${isCorrect})">Continuar</button>
+                `;
+                if (isCorrect) App.addXp(10);
+            },
+            nextStep() {
+                this.stepIndex++;
+                if (this.stepIndex < this.currentUnit.exercises.length) {
+                    this.renderStep();
+                } else {
+                    this.finishUnit();
+                }
+            },
+            async finishUnit() {
+                await App.markUnitCompleted(this.currentUnit.id);
+                document.getElementById('exerciseArea').innerHTML = `
+                    <div style="text-align:center; margin-top:40px;">
+                        <h2>🎉 Unidad Completada</h2>
+                        <p style="margin:16px 0; color:var(--text-muted);">Progreso y repetición espaciada guardados.</p>
+                        <button class="btn" onclick="LessonEngine.exit()">Volver al Curso</button>
+                    </div>
+                `;
+                document.getElementById('lessonProgressFill').style.width = '100%';
+            }
+        };
+
+        /* 6. CONTROLADOR PRINCIPAL Y TUTOR SECUNDARIO */
+        const App = {
+            xp: 0,
+            completedUnits: [],
+            apiKey: '',
+
+            async init() {
+                await DB.init();
+                AudioEngine.init();
+
+                this.xp = (await DB.get('settings', 'userXp')) || 0;
+                this.completedUnits = (await DB.get('settings', 'completedUnits')) || [];
+                this.apiKey = (await DB.get('settings', 'geminiApiKey')) || '';
+
+                if (this.apiKey) document.getElementById('apiKeyInput').value = this.apiKey;
+
+                this.updateUI();
+                this.renderCourseRoute();
+                this.renderDict();
+
+                window.addEventListener('online', () => this.checkNetwork());
+                window.addEventListener('offline', () => this.checkNetwork());
+                this.checkNetwork();
+
+                // SW Registration
+                if ('serviceWorker' in navigator) {
+                    navigator.serviceWorker.register('./service-worker.js').catch(err => console.log('SW Registration error:', err));
+                }
+            },
+            checkNetwork() {
+                document.getElementById('offlineStatus').style.display = navigator.onLine ? 'none' : 'inline-block';
+            },
+            toggleTheme() { document.body.classList.toggle('light-mode'); },
+            switchView(viewId, btn) {
+                document.querySelectorAll('.app-view').forEach(el => el.classList.remove('active'));
+                document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('active'));
+                document.getElementById(`view-${viewId}`).classList.add('active');
+                if (btn) btn.classList.add('active');
+                if (viewId === 'srs') this.updateSrsView();
+            },
+            addXp(amount) {
+                this.xp += amount;
+                DB.set('settings', 'userXp', this.xp);
+                this.updateUI();
+            },
+            async markUnitCompleted(unitId) {
+                if (!this.completedUnits.includes(unitId)) {
+                    this.completedUnits.push(unitId);
+                    await DB.set('settings', 'completedUnits', this.completedUnits);
+                    this.addXp(50);
+                    this.renderCourseRoute();
+                }
+            },
+            updateUI() {
+                document.getElementById('totalExpBadge').innerText = `${this.xp} XP`;
+            },
+            renderCourseRoute() {
+                const container = document.getElementById('courseContainer');
+                container.innerHTML = '';
+
+                CourseData.levels.forEach(lvl => {
+                    const levelEl = document.createElement('div');
+                    levelEl.innerHTML = `<h2 style="margin: 16px 0 8px 0;">${lvl.title}</h2>`;
+
+                    lvl.units.forEach(unit => {
+                        const isDone = this.completedUnits.includes(unit.id);
+                        const card = document.createElement('div');
+                        card.className = `unit-card ${isDone ? 'completed' : ''}`;
+                        card.innerHTML = `
+                            <div style="display:flex; justify-content:space-between; align-items:center;">
+                                <div class="unit-title">${unit.title} ${isDone ? '✓' : ''}</div>
+                                <button class="btn btn-sm btn-outline" onclick="AudioEngine.speak('${unit.vocab[0]?.idn || ''}')">🔊 Pronunciación</button>
+                            </div>
+                            <p style="font-size:0.85rem; color:var(--text-muted);">${unit.desc}</p>
+                            <div style="background:var(--bg-card); padding:8px; border-radius:6px; font-size:0.8rem;">
+                                💡 <strong>Gramática:</strong> ${unit.grammar}
+                            </div>
+                            <button class="btn" style="margin-top:8px;" onclick='LessonEngine.startUnit(${JSON.stringify(unit).replace(/'/g, "&#39;")})'>
+                                ${isDone ? 'Repasar Lección' : 'Iniciar Lección'}
+                            </button>
+                        `;
+                        levelEl.appendChild(card);
+                    });
+                    container.appendChild(levelEl);
+                });
+            },
+            async updateSrsView() {
+                const due = await SRSEngine.getDueItems();
+                document.getElementById('srsCountText').innerText = due.length;
+                const allSrs = await DB.getAll('srs');
+                document.getElementById('statTotalVocab').innerText = allSrs.length;
+                document.getElementById('statMastered').innerText = allSrs.filter(i => i.val && i.val.repetition > 3).length;
+            },
+            renderDict() {
+                const container = document.getElementById('dictContainer');
+                let html = '';
+                CourseData.levels.forEach(lvl => {
+                    lvl.units.forEach(u => {
+                        u.vocab.forEach(v => {
+                            html += `
+                                <div class="card" style="margin-bottom:8px; padding:12px;">
+                                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                                        <strong>${v.idn}</strong>
+                                        <button class="btn btn-outline btn-sm" onclick="AudioEngine.speak('${v.idn}')">🔊</button>
+                                    </div>
+                                    <p style="color:var(--accent); font-size:0.9rem;">${v.esp}</p>
+                                    <p style="font-size:0.8rem; color:var(--text-muted); margin-top:4px;">Ejemplo: ${v.ex} (${v.exEsp})</p>
+                                </div>
+                            `;
+                        });
+                    });
+                });
+                container.innerHTML = html;
+            },
+            filterDict() {
+                const q = document.getElementById('dictSearch').value.toLowerCase();
+                document.querySelectorAll('#dictContainer .card').forEach(card => {
+                    card.style.display = card.innerText.toLowerCase().includes(q) ? 'block' : 'none';
+                });
+            },
+            saveApiKey() {
+                const key = document.getElementById('apiKeyInput').value.trim();
+                this.apiKey = key;
+                DB.set('settings', 'geminiApiKey', key);
+                alert("API Key actualizada.");
+            },
+            escapeHtml(str) {
+                return str.replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' })[m]);
+            },
+            async sendAiMessage() {
+                const input = document.getElementById('chatInput');
+                const text = input.value.trim();
+                if (!text) return;
+
+                const box = document.getElementById('chatBox');
+                const userDiv = document.createElement('div');
+                userDiv.className = 'msg user';
+                userDiv.innerText = text;
+                box.appendChild(userDiv);
+                input.value = '';
+                box.scrollTop = box.scrollHeight;
+
+                const aiDiv = document.createElement('div');
+                aiDiv.className = 'msg ai';
+
+                // Si no hay API Key o estamos offline, usar fallback gramatical local
+                if (!this.apiKey || !navigator.onLine) {
+                    let responseText = "Modo Tutor Local: ";
+                    const lower = text.toLowerCase();
+                    if (lower.includes('tidak') || lower.includes('bukan')) {
+                        responseText += "Usa 'tidak' para verbos/adjetivos (tidak makan) y 'bukan' para sustantivos (bukan air).";
+                    } else if (lower.includes('pagi')) {
+                        responseText += "'Selamat pagi' significa buenos días por la mañana.";
+                    } else {
+                        responseText += "Consulta la sección Diccionario o ingresa tu clave API en ajustes para consultas avanzadas con IA.";
+                    }
+                    aiDiv.innerText = responseText;
+                    box.appendChild(aiDiv);
+                    box.scrollTop = box.scrollHeight;
+                    return;
+                }
+
+                aiDiv.innerText = "Pensando...";
+                box.appendChild(aiDiv);
+                box.scrollTop = box.scrollHeight;
+
+                try {
+                    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${this.apiKey}`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            contents: [{ parts: [{ text: `Tutor conciso de indonesio en español: ${text}` }] }]
+                        })
+                    });
+                    const data = await res.json();
+                    if (data.candidates && data.candidates[0].content.parts[0].text) {
+                        aiDiv.innerText = data.candidates[0].content.parts[0].text;
+                    } else {
+                        aiDiv.innerText = "No se obtuvo respuesta de la API.";
+                    }
+                } catch (e) {
+                    aiDiv.innerText = "Error de conexión con la API.";
+                }
+                box.scrollTop = box.scrollHeight;
+            },
+            async exportProgress() {
+                const data = {
+                    version: 3,
+                    xp: this.xp,
+                    completedUnits: this.completedUnits,
+                    srs: await DB.getAll('srs'),
+                    exportedAt: new Date().toISOString()
+                };
+                const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+                const a = document.createElement('a');
+                a.href = URL.createObjectURL(blob);
+                a.download = `bahasa_studio_backup.json`;
+                a.click();
+            },
+            importProgress(e) {
+                const file = e.target.files[0];
+                if (!file) return;
+                const reader = new FileReader();
+                reader.onload = async (evt) => {
+                    try {
+                        const parsed = JSON.parse(evt.target.result);
+                        if (!parsed.version || parsed.xp === undefined) throw new Error();
+                        
+                        if (confirm("¿Deseas restaurar esta copia de seguridad? Se reemplazará el progreso actual.")) {
+                            this.xp = parsed.xp;
+                            this.completedUnits = parsed.completedUnits || [];
+                            await DB.set('settings', 'userXp', this.xp);
+                            await DB.set('settings', 'completedUnits', this.completedUnits);
+                            
+                            if (Array.isArray(parsed.srs)) {
+                                for (let item of parsed.srs) {
+                                    if (item.key && item.val) await DB.set('srs', item.key, item.val);
+                                }
+                            }
+                            alert("Progreso restaurado con éxito.");
+                            location.reload();
+                        }
+                    } catch (err) {
+                        alert("Error: El archivo de respaldo no tiene un formato válido.");
+                    }
+                };
+                reader.readAsText(file);
+            },
+            async resetAllData() {
+                if (confirm("¿Confirmas que deseas borrar todos los datos guardados en este dispositivo?")) {
+                    indexedDB.deleteDatabase('BahasaStudio3DB');
+                    location.reload();
+                }
+            }
+        };
+
+        window.addEventListener('DOMContentLoaded', () => App.init());
+    </script>
+</body>
+</html>

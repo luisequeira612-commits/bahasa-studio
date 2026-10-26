@@ -392,21 +392,29 @@
                         {
                             id: 'a1_u4',
                             title: 'Unidad 4: Números y edad',
-                            desc: 'Contar del uno al diez y preguntar la edad.',
+                            desc: 'Aprender números básicos y preguntar la edad.',
                             grammar: 'Para preguntar la edad puedes decir “Berapa umur kamu?” (¿Cuántos años tienes?). “Saya berumur ... tahun” significa “Tengo ... años”.',
                             vocab: [
                                 { id: 'v15', idn: 'Satu', esp: 'Uno', ex: 'Satu buku.', exEsp: 'Un libro.' },
                                 { id: 'v16', idn: 'Dua', esp: 'Dos', ex: 'Dua teman.', exEsp: 'Dos amigos.' },
                                 { id: 'v17', idn: 'Tiga', esp: 'Tres', ex: 'Tiga apel.', exEsp: 'Tres manzanas.' },
                                 { id: 'v18', idn: 'Berapa', esp: 'Cuánto / cuántos', ex: 'Berapa umur kamu?', exEsp: '¿Cuántos años tienes?' },
-                                { id: 'v19', idn: 'Tahun', esp: 'Año', ex: 'Saya berumur dua puluh tahun.', exEsp: 'Tengo veinte años.' }
+                                { id: 'v19', idn: 'Tahun', esp: 'Año', ex: 'Saya berumur dua puluh tahun.', exEsp: 'Tengo veinte años.' },
+                                { id: 'v40', idn: 'Empat', esp: 'Cuatro', ex: 'Empat buku.', exEsp: 'Cuatro libros.' },
+                                { id: 'v41', idn: 'Lima', esp: 'Cinco', ex: 'Lima teman.', exEsp: 'Cinco amigos.' },
+                                { id: 'v42', idn: 'Sepuluh', esp: 'Diez', ex: 'Sepuluh tahun.', exEsp: 'Diez años.' },
+                                { id: 'v43', idn: 'Umur', esp: 'Edad', ex: 'Berapa umur kamu?', exEsp: '¿Cuántos años tienes?' }
                             ],
                             exercises: [
                                 { vocabId: 'v15', type: 'mc', prompt: '¿Cómo se dice “uno”?', options: ['Dua', 'Tiga', 'Satu', 'Empat'], answer: 2, explanation: '“Satu” significa uno.' },
                                 { vocabId: 'v16', type: 'translate_es_id', prompt: 'Traduce: “Dos”', answer: 'Dua', explanation: '“Dua” es el número dos.' },
                                 { vocabId: 'v17', type: 'mc', prompt: '¿Qué número es “tiga”?', options: ['Tres', 'Cinco', 'Dos', 'Uno'], answer: 0, explanation: '“Tiga” significa tres.' },
                                 { vocabId: 'v18', type: 'order', prompt: 'Ordena la pregunta: “¿Cuántos años tienes?”', words: ['kamu', 'umur', 'Berapa'], correctOrder: ['Berapa', 'umur', 'kamu'], explanation: 'La pregunta habitual es “Berapa umur kamu?”.' },
-                                { vocabId: 'v19', type: 'translate_es_id', prompt: 'Traduce: “Año”', answer: 'Tahun', explanation: '“Tahun” significa año.' }
+                                { vocabId: 'v19', type: 'translate_es_id', prompt: 'Traduce: “Año”', answer: 'Tahun', explanation: '“Tahun” significa año.' },
+                                { vocabId: 'v40', type: 'mc', prompt: '¿Cómo se dice “cuatro”?', options: ['Lima', 'Empat', 'Sepuluh', 'Tiga'], answer: 1, explanation: '“Empat” significa cuatro.' },
+                                { vocabId: 'v41', type: 'translate_es_id', prompt: 'Traduce: “Cinco”', answer: 'Lima', explanation: '“Lima” significa cinco.' },
+                                { vocabId: 'v42', type: 'mc', prompt: '¿Qué número es “sepuluh”?', options: ['Siete', 'Diez', 'Seis', 'Cuatro'], answer: 1, explanation: '“Sepuluh” significa diez.' },
+                                { vocabId: 'v43', type: 'translate_es_id', prompt: 'Traduce: “Edad”', answer: 'Umur', explanation: '“Umur” significa edad.' }
                             ]
                         },
                         {
@@ -472,21 +480,23 @@
                         {
                             id: 'a1_u8',
                             title: 'Unidad 8: Días y rutina diaria',
-                            desc: 'Hablar de actividades cotidianas y algunos días de la semana.',
+                            desc: 'Hablar de actividades cotidianas y expresar cuándo ocurren.',
                             grammar: 'Los adverbios de tiempo suelen colocarse al inicio o al final de la oración. “Setiap hari” significa “todos los días”.',
                             vocab: [
                                 { id: 'v35', idn: 'Hari', esp: 'Día', ex: 'Hari ini panas.', exEsp: 'Hoy hace calor.' },
                                 { id: 'v36', idn: 'Hari ini', esp: 'Hoy / este día', ex: 'Hari ini saya belajar.', exEsp: 'Hoy estudio.' },
                                 { id: 'v37', idn: 'Belajar', esp: 'Estudiar / aprender', ex: 'Saya belajar bahasa Indonesia.', exEsp: 'Estudio indonesio.' },
                                 { id: 'v38', idn: 'Bekerja', esp: 'Trabajar', ex: 'Ayah bekerja.', exEsp: 'Mi padre trabaja.' },
-                                { id: 'v39', idn: 'Tidur', esp: 'Dormir', ex: 'Saya tidur malam.', exEsp: 'Duermo por la noche.' }
+                                { id: 'v39', idn: 'Tidur', esp: 'Dormir', ex: 'Saya tidur malam.', exEsp: 'Duermo por la noche.' },
+                                { id: 'v44', idn: 'Setiap hari', esp: 'Todos los días', ex: 'Saya belajar setiap hari.', exEsp: 'Estudio todos los días.' }
                             ],
                             exercises: [
                                 { vocabId: 'v35', type: 'mc', prompt: '¿Qué significa “hari”?', options: ['Noche', 'Día', 'Semana', 'Año'], answer: 1, explanation: '“Hari” significa día.' },
                                 { vocabId: 'v36', type: 'translate_es_id', prompt: 'Traduce: “Hoy”', answer: 'Hari ini', explanation: '“Hari ini” significa hoy.' },
                                 { vocabId: 'v37', type: 'mc', prompt: '“Belajar” significa...', options: ['Comer', 'Estudiar/aprender', 'Vivir', 'Beber'], answer: 1, explanation: '“Belajar” significa estudiar o aprender.' },
                                 { vocabId: 'v38', type: 'order', prompt: 'Ordena: “Mi padre trabaja”', words: ['bekerja', 'Ayah'], correctOrder: ['Ayah', 'bekerja'], explanation: '“Ayah bekerja” significa “Mi padre trabaja”.' },
-                                { vocabId: 'v39', type: 'translate_es_id', prompt: 'Traduce: “Dormir”', answer: 'Tidur', explanation: '“Tidur” significa dormir.' }
+                                { vocabId: 'v39', type: 'translate_es_id', prompt: 'Traduce: “Dormir”', answer: 'Tidur', explanation: '“Tidur” significa dormir.' },
+                                { vocabId: 'v44', type: 'translate_es_id', prompt: 'Traduce: “Todos los días”', answer: 'Setiap hari', explanation: '“Setiap hari” significa todos los días.' }
                             ]
                         }
                     ]

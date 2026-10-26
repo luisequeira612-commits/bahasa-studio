@@ -616,83 +616,97 @@
                                 { id: 'v43', idn: 'Umur', esp: 'Edad', ex: 'Berapa umur kamu?', exEsp: '¿Cuántos años tienes?' }
                             ],
                             exercises: [
-                                {
-                                    "vocabId": "v15",
-                                    "type": "mc",
-                                    "prompt": "¿Cómo se dice uno?",
-                                    "options": [
-                                        "Dua",
-                                        "Satu",
-                                        "Tiga",
-                                        "Empat"
-                                    ],
-                                    "answer": 1,
-                                    "explanation": "Satu significa uno."
-                                },
-                                {
-                                    "vocabId": "v16",
-                                    "type": "translate_es_id",
-                                    "prompt": "Traduce: dos",
-                                    "answer": "Dua",
-                                    "explanation": "Dua significa dos."
-                                },
-                                {
-                                    "vocabId": "v17",
-                                    "type": "mc",
-                                    "prompt": "¿Qué número significa tiga?",
-                                    "options": [
-                                        "Uno",
-                                        "Dos",
-                                        "Tres",
-                                        "Cinco"
-                                    ],
-                                    "answer": 2,
-                                    "explanation": "Tiga significa tres."
-                                },
-                                {
-                                    "vocabId": "v18",
-                                    "type": "order",
-                                    "prompt": "Ordena la pregunta: ¿Cuántos años tienes?",
-                                    "words": [
-                                        "umur",
-                                        "kamu",
-                                        "Berapa"
-                                    ],
-                                    "correctOrder": [
-                                        "Berapa",
-                                        "umur",
-                                        "kamu"
-                                    ],
-                                    "explanation": "Berapa umur kamu pregunta la edad."
-                                },
-                                {
-                                    "vocabId": "v19",
-                                    "type": "translate_es_id",
-                                    "prompt": "Traduce: año",
-                                    "answer": "Tahun",
-                                    "explanation": "Tahun significa año."
-                                },
-                                {
-                                    "vocabId": "v40",
-                                    "type": "mc",
-                                    "prompt": "¿Cómo se dice cuatro?",
-                                    "options": [
-                                        "Empat",
-                                        "Lima",
-                                        "Sepuluh",
-                                        "Dua"
-                                    ],
-                                    "answer": 0,
-                                    "explanation": "Empat significa cuatro."
-                                },
-                                {
-                                    "vocabId": "v41",
-                                    "type": "translate_es_id",
-                                    "prompt": "Traduce: cinco",
-                                    "answer": "Lima",
-                                    "explanation": "Lima significa cinco."
-                                },
-                                { vocabId: 'v20', type: 'write', prompt: "Escribe una frase con un número o una edad que hayas aprendido.", hint: "Escribe una oración completa y revisa el orden de las palabras.", modelAnswer: "Umur saya dua puluh tahun.", explanation: "Este ejemplo significa «Tengo veinte años». Usa un número que conozcas de la unidad." }
+                                
+                                          {
+                                                    "vocabId": "v15",
+                                                    "type": "mc",
+                                                    "prompt": "¿Cómo se dice uno?",
+                                                    "options": [
+                                                              "Dua",
+                                                              "Satu",
+                                                              "Tiga",
+                                                              "Empat"
+                                                    ],
+                                                    "answer": 1,
+                                                    "explanation": "Satu significa uno."
+                                          },
+                                          {
+                                                    "vocabId": "v16",
+                                                    "type": "translate_es_id",
+                                                    "prompt": "Traduce: dos",
+                                                    "answer": "Dua",
+                                                    "explanation": "Dua significa dos."
+                                          },
+                                          {
+                                                    "vocabId": "v18",
+                                                    "type": "order",
+                                                    "prompt": "Ordena la pregunta: ¿Cuántos años tienes?",
+                                                    "words": [
+                                                              "umur",
+                                                              "kamu",
+                                                              "Berapa"
+                                                    ],
+                                                    "correctOrder": [
+                                                              "Berapa",
+                                                              "umur",
+                                                              "kamu"
+                                                    ],
+                                                    "explanation": "Berapa umur kamu pregunta la edad."
+                                          },
+                                          {
+                                                    "vocabId": "v42",
+                                                    "type": "listen",
+                                                    "prompt": "Escribe lo que escuchas",
+                                                    "answer": "Sepuluh tahun",
+                                                    "explanation": "Sepuluh tahun significa diez años."
+                                          },
+                                          {
+                                                    "vocabId": "v43",
+                                                    "type": "mc",
+                                                    "prompt": "¿Qué palabra significa edad?",
+                                                    "options": [
+                                                              "Tahun",
+                                                              "Umur",
+                                                              "Bulan",
+                                                              "Hari"
+                                                    ],
+                                                    "answer": 1,
+                                                    "explanation": "Umur significa edad."
+                                          },
+                                          {
+                                                    "vocabId": "v17",
+                                                    "type": "translate_es_id",
+                                                    "prompt": "Traduce: tres manzanas",
+                                                    "answer": "Tiga apel",
+                                                    "explanation": "Tiga apel significa tres manzanas."
+                                          },
+                                          {
+                                                    "vocabId": "v19",
+                                                    "type": "order",
+                                                    "prompt": "Ordena: Tengo cinco años",
+                                                    "words": [
+                                                              "tahun",
+                                                              "Saya",
+                                                              "berumur",
+                                                              "lima"
+                                                    ],
+                                                    "correctOrder": [
+                                                              "Saya",
+                                                              "berumur",
+                                                              "lima",
+                                                              "tahun"
+                                                    ],
+                                                    "explanation": "Saya berumur lima tahun expresa la edad."
+                                          },
+                                          {
+                                                    "vocabId": "v15",
+                                                    "type": "write",
+                                                    "prompt": "Escribe una frase con un número o una edad que hayas aprendido.",
+                                                    "hint": "Escribe una oración completa y revisa el orden de las palabras.",
+                                                    "modelAnswer": "Umur saya dua puluh tahun.",
+                                                    "explanation": "Este ejemplo significa «Tengo veinte años». Usa un número que conozcas de la unidad."
+                                          }
+                                
                             ]
                         },
                         {

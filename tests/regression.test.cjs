@@ -152,3 +152,27 @@ test('A1 examples and explanations stay consistent with the taught material', ()
   assert.ok(unit7.exercises.some(exercise => exercise.prompt === 'Ordena: ¿Dónde está la escuela?'));
   assert.ok(unit7.exercises.some(exercise => exercise.prompt === 'Traduce: ¿Dónde está la escuela?' && exercise.answer === 'Di mana sekolah'));
 });
+
+
+test('A2-B2 starter lessons keep grammar explanations aligned with their examples', () => {
+  const start = html.indexOf('const CourseData =');
+  const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
+  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
+  const a2 = course.levels.find(level => level.id === 'A2').units[0];
+  const b1 = course.levels.find(level => level.id === 'B1').units[0];
+  const b2 = course.levels.find(level => level.id === 'B2').units[0];
+
+  assert.match(a2.title, /meN-/);
+  assert.match(a2.grammar, /baca.*membaca/);
+  assert.match(a2.grammar, /solo ese patrón inicial/);
+
+  assert.equal(b1.vocab[0].ex, 'Nasi dimakan oleh mereka.');
+  assert.equal(b1.vocab[0].exEsp, 'El arroz es comido por ellos.');
+  assert.match(b1.grammar, /oleh mereka/);
+
+  assert.equal(b2.vocab[0].idn, 'Membangunkan');
+  assert.equal(b2.vocab[0].ex, 'Saya membangunkan anak.');
+  assert.match(b2.grammar, /sentido causativo/);
+  assert.match(b2.exercises[0].prompt, /membangunkan anak/);
+  assert.equal(b2.exercises[0].answer, 0);
+});

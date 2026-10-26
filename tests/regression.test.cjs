@@ -18,9 +18,9 @@ test('inline application JavaScript and service worker parse', () => {
 });
 
 test('PWA version is consistent across HTML, manifest and cache', () => {
-  assert.match(html, /Bahasa Studio 3\.6/);
-  assert.equal(manifest.name, 'Bahasa Studio 3.6');
-  assert.match(serviceWorker, /bahasa-studio-v3\.6/);
+  assert.match(html, /Bahasa Studio 3\.6\.1/);
+  assert.equal(manifest.name, 'Bahasa Studio 3.6.1');
+  assert.match(serviceWorker, /bahasa-studio-v3\.6\.1/);
   assert.doesNotMatch(html + serviceWorker + JSON.stringify(manifest), /3\.5\.1/);
 });
 
@@ -175,4 +175,40 @@ test('A2-B2 starter lessons keep grammar explanations aligned with their example
   assert.match(b2.grammar, /sentido causativo/);
   assert.match(b2.exercises[0].prompt, /membangunkan anak/);
   assert.equal(b2.exercises[0].answer, 0);
+});
+
+
+test('v3.6.1 audit fixes remain in place without changing backup or database versions', () => {
+  assert.match(html, /attempts === 0 && i\.val\.lastReviewed === null && i\.val\.interval === 0 && i\.val\.repetition === 0/);
+  assert.doesNotMatch(html, /Escucha y escribe: «Dia tidur»/);
+  assert.match(html, /Tolong, saya mau air significa/);
+  assert.match(html, /Di” significa “en”/);
+  assert.doesNotMatch(html, /baik/);
+  assert.doesNotMatch(html, /maximum-scale|user-scalable/);
+  assert.match(html, /version: 1/);
+  assert.match(html, /parsed\.version !== 3/);
+  assert.match(html, /tx\.onabort = \(\) => reject\(tx\.error/);
+});
+
+test('unit and vocabulary IDs are unique and every authored exercise has a valid answer structure', () => {
+  const start = html.indexOf('const CourseData =');
+  const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
+  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
+  const unitIds = [];
+  const vocabIds = [];
+  for (const level of course.levels) for (const unit of level.units) {
+    unitIds.push(unit.id);
+    for (const word of unit.vocab || []) vocabIds.push(word.id);
+    const ids = new Set((unit.vocab || []).map(word => word.id));
+    for (const ex of unit.exercises || []) {
+      assert.ok(ids.has(ex.vocabId), unit.id + ' has an exercise linked to unknown vocab');
+      if (ex.type === 'mc') assert.ok(Number.isInteger(ex.answer) && ex.answer >= 0 && ex.answer < ex.options.length);
+      else if (ex.type === 'translate_es_id' || ex.type === 'listen') assert.equal(typeof ex.answer, 'string');
+      else if (ex.type === 'order') assert.deepEqual([...ex.words].sort(), [...ex.correctOrder].sort());
+      else if (ex.type === 'write') assert.ok(ex.modelAnswer && ex.prompt);
+      else assert.fail(unit.id + ' has unsupported exercise type ' + ex.type);
+    }
+  }
+  assert.equal(new Set(unitIds).size, unitIds.length, 'unit IDs must be globally unique');
+  assert.equal(new Set(vocabIds).size, vocabIds.length, 'vocabulary IDs must be globally unique');
 });

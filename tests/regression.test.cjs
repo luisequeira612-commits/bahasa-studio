@@ -60,3 +60,62 @@ test('imported lesson content is escaped before rendering into HTML', () => {
   assert.match(html, /App\.escapeHtml\(v\.idn\)/);
   assert.match(html, /this\.dataset\.word/);
 });
+
+test('published HTML has no stray text or source after its closing tag', () => {
+  const closing = html.toLowerCase().lastIndexOf('</html>');
+  assert.ok(closing >= 0, 'expected a closing HTML tag');
+  assert.equal(html.slice(closing + '</html>'.length).trim(), '');
+});
+
+test('all authored A1 units have linked vocabulary and structurally valid exercises', () => {
+  const start = html.indexOf('const CourseData =');
+  const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
+  assert.ok(start >= 0 && end > start, 'CourseData block must exist');
+  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
+  const a1 = course.levels.find(level => level.id === 'A1');
+  assert.ok(a1 && a1.units.length >= 8, 'A1 should contain its eight authored units');
+
+  for (const unit of a1.units) {
+    assert.ok(unit.vocab.length >= 5, unit.id + ' should teach at least five vocabulary items');
+    assert.ok(unit.exercises.length >= 6, unit.id + ' should have authored practice');
+    const ids = new Set(unit.vocab.map(word => word.id));
+    assert.equal(ids.size, unit.vocab.length, unit.id + ' has duplicate vocabulary IDs');
+    for (const exercise of unit.exercises) {
+      assert.ok(ids.has(exercise.vocabId), unit.id + ' has an exercise linked to unknown vocabulary');
+      assert.ok(['mc', 'translate_es_id', 'listen', 'order', 'write'].includes(exercise.type),
+        unit.id + ' has an unsupported exercise type');
+      if (exercise.type === 'mc') {
+        assert.ok(Array.isArray(exercise.options) && exercise.options.length >= 2);
+        assert.ok(Number.isInteger(exercise.answer) && exercise.answer >= 0 && exercise.answer < exercise.options.length);
+      }
+      if (exercise.type === 'order') {
+        assert.deepEqual([...exercise.words].sort(), [...exercise.correctOrder].sort());
+      }
+      if (exercise.type === 'translate_es_id' || exercise.type === 'listen') {
+        assert.equal(typeof exercise.answer, 'string');
+        assert.ok(exercise.answer.length > 0);
+      }
+      if (exercise.type === 'write') {
+        assert.equal(typeof exercise.prompt, 'string');
+        assert.ok(exercise.prompt.length > 0);
+        assert.equal(typeof exercise.modelAnswer, 'string');
+        assert.ok(exercise.modelAnswer.length > 0);
+      }
+    }
+  }
+});
+
+
+test('A1 units provide 22 varied exercises including productive writing', () => {
+  const start = html.indexOf('const CourseData =');
+  const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
+  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
+  const a1 = course.levels.find(level => level.id === 'A1');
+  for (const unit of a1.units) {
+    const generated = unit.vocab.length + Math.ceil(unit.vocab.length / 2);
+    assert.equal(unit.exercises.length + generated, 22, unit.id + ' should produce exactly 22 exercises');
+    assert.ok(unit.exercises.some(exercise => exercise.type === 'write'), unit.id + ' should include productive writing');
+  }
+  assert.match(html, /checkWriting\(\)/);
+  assert.match(html, /rateWriting\(isCorrect\)/);
+});

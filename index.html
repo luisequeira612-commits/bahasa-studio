@@ -418,7 +418,7 @@
                                 { vocabId: 'v46', type: 'order', prompt: 'Ordena: «Yo como»', words: ['makan', 'Saya'], correctOrder: ['Saya', 'makan'], explanation: 'El orden básico es sujeto + verbo: Saya makan.' },
                                 { vocabId: 'v47', type: 'translate_es_id', prompt: 'Traduce: «beber»', answer: 'Minum', explanation: 'Minum significa «beber».' },
                                 { vocabId: 'v46', type: 'mc', prompt: 'Completa: «Dia ___» (Él / ella come)', options: ['makan', 'minum', 'kamu'], answer: 0, explanation: 'Makan significa «comer» y no cambia con dia.' },
-                                { vocabId: 'v45', type: 'order', prompt: 'Ordena la expresión: «Gracias»', words: ['kasih', 'Terima'], correctOrder: ['Terima', 'kasih'], explanation: 'Terima kasih es una expresión fija que significa «gracias».' }
+                                { vocabId: 'v1', type: 'write', prompt: "Escribe una frase propia con «saya» y un verbo de la unidad.", hint: "Por ejemplo, habla de algo que tú haces; no copies literalmente un ejercicio anterior.", modelAnswer: "Saya makan.", explanation: "Saya significa «yo» y makan significa «comer». Puedes crear otras frases correctas con el vocabulario aprendido." }
                             ]
                         },
                         {
@@ -446,7 +446,7 @@
                                 { vocabId: 'v52', type: 'order', prompt: 'Ordena: «Esto es un libro»', words: ['buku', 'Ini'], correctOrder: ['Ini', 'buku'], explanation: 'En esta frase básica, ini va antes del sustantivo: Ini buku.' },
                                 { vocabId: 'v53', type: 'translate_es_id', prompt: 'Traduce: «amigo / amiga»', answer: 'Teman', explanation: 'Teman significa amigo o amiga.' },
                                 { vocabId: 'v5', type: 'order', prompt: 'Ordena: «Yo no como»', words: ['makan', 'tidak', 'Saya'], correctOrder: ['Saya', 'tidak', 'makan'], explanation: 'Tidak se coloca antes de la acción: Saya tidak makan.' },
-                                { vocabId: 'v6', type: 'mc', prompt: 'Elige la frase que significa «Esto no es arroz»', options: ['Ini bukan nasi', 'Ini tidak nasi', 'Bukan ini tidur'], answer: 0, explanation: 'Bukan niega la identificación con nasi: Ini bukan nasi.' }
+                                { vocabId: 'v48', type: 'write', prompt: "Escribe una frase propia con «air».", hint: "Intenta decir qué haces con el agua usando palabras de esta unidad.", modelAnswer: "Saya minum air.", explanation: "Air significa «agua». La frase de ejemplo significa «Yo bebo agua»." }
                             ]
                         }
                         ,
@@ -596,24 +596,7 @@
                                     "answer": "Saya dari Peru",
                                     "explanation": "Saya dari Peru indica el país de origen."
                                 },
-                                {
-                                    "vocabId": "v13",
-                                    "type": "order",
-                                    "prompt": "Ordena: Vivo en Managua",
-                                    "words": [
-                                        "di",
-                                        "Saya",
-                                        "Managua",
-                                        "tinggal"
-                                    ],
-                                    "correctOrder": [
-                                        "Saya",
-                                        "tinggal",
-                                        "di",
-                                        "Managua"
-                                    ],
-                                    "explanation": "Saya tinggal di Managua significa Vivo en Managua."
-                                }
+                                { vocabId: 'v10', type: 'write', prompt: "Preséntate en indonesio escribiendo tu nombre.", hint: "Usa la estructura Nama saya ...", modelAnswer: "Nama saya Ana.", explanation: "Nama saya significa «mi nombre». Sustituye Ana por tu propio nombre." }
                             ]
                         },
                         {
@@ -633,155 +616,97 @@
                                 { id: 'v43', idn: 'Umur', esp: 'Edad', ex: 'Berapa umur kamu?', exEsp: '¿Cuántos años tienes?' }
                             ],
                             exercises: [
-                                {
-                                    "vocabId": "v15",
-                                    "type": "mc",
-                                    "prompt": "¿Cómo se dice uno?",
-                                    "options": [
-                                        "Dua",
-                                        "Satu",
-                                        "Tiga",
-                                        "Empat"
-                                    ],
-                                    "answer": 1,
-                                    "explanation": "Satu significa uno."
-                                },
-                                {
-                                    "vocabId": "v16",
-                                    "type": "translate_es_id",
-                                    "prompt": "Traduce: dos",
-                                    "answer": "Dua",
-                                    "explanation": "Dua significa dos."
-                                },
-                                {
-                                    "vocabId": "v17",
-                                    "type": "mc",
-                                    "prompt": "¿Qué número significa tiga?",
-                                    "options": [
-                                        "Uno",
-                                        "Dos",
-                                        "Tres",
-                                        "Cinco"
-                                    ],
-                                    "answer": 2,
-                                    "explanation": "Tiga significa tres."
-                                },
-                                {
-                                    "vocabId": "v18",
-                                    "type": "order",
-                                    "prompt": "Ordena la pregunta: ¿Cuántos años tienes?",
-                                    "words": [
-                                        "umur",
-                                        "kamu",
-                                        "Berapa"
-                                    ],
-                                    "correctOrder": [
-                                        "Berapa",
-                                        "umur",
-                                        "kamu"
-                                    ],
-                                    "explanation": "Berapa umur kamu pregunta la edad."
-                                },
-                                {
-                                    "vocabId": "v19",
-                                    "type": "translate_es_id",
-                                    "prompt": "Traduce: año",
-                                    "answer": "Tahun",
-                                    "explanation": "Tahun significa año."
-                                },
-                                {
-                                    "vocabId": "v40",
-                                    "type": "mc",
-                                    "prompt": "¿Cómo se dice cuatro?",
-                                    "options": [
-                                        "Empat",
-                                        "Lima",
-                                        "Sepuluh",
-                                        "Dua"
-                                    ],
-                                    "answer": 0,
-                                    "explanation": "Empat significa cuatro."
-                                },
-                                {
-                                    "vocabId": "v41",
-                                    "type": "translate_es_id",
-                                    "prompt": "Traduce: cinco",
-                                    "answer": "Lima",
-                                    "explanation": "Lima significa cinco."
-                                },
-                                {
-                                    "vocabId": "v42",
-                                    "type": "listen",
-                                    "prompt": "Escribe lo que escuchas",
-                                    "answer": "Sepuluh tahun",
-                                    "explanation": "Sepuluh tahun significa diez años."
-                                },
-                                {
-                                    "vocabId": "v43",
-                                    "type": "mc",
-                                    "prompt": "¿Qué palabra significa edad?",
-                                    "options": [
-                                        "Tahun",
-                                        "Umur",
-                                        "Bulan",
-                                        "Hari"
-                                    ],
-                                    "answer": 1,
-                                    "explanation": "Umur significa edad."
-                                },
-                                {
-                                    "vocabId": "v15",
-                                    "type": "listen",
-                                    "prompt": "Escribe lo que escuchas",
-                                    "answer": "Satu buku",
-                                    "explanation": "Satu buku significa un libro."
-                                },
-                                {
-                                    "vocabId": "v40",
-                                    "type": "order",
-                                    "prompt": "Ordena: Cuatro libros",
-                                    "words": [
-                                        "buku",
-                                        "Empat"
-                                    ],
-                                    "correctOrder": [
-                                        "Empat",
-                                        "buku"
-                                    ],
-                                    "explanation": "Empat buku significa cuatro libros."
-                                },
-                                {
-                                    "vocabId": "v17",
-                                    "type": "translate_es_id",
-                                    "prompt": "Traduce: tres manzanas",
-                                    "answer": "Tiga apel",
-                                    "explanation": "Tiga apel significa tres manzanas."
-                                },
-                                {
-                                    "vocabId": "v18",
-                                    "type": "listen",
-                                    "prompt": "Escribe lo que escuchas",
-                                    "answer": "Berapa umur kamu",
-                                    "explanation": "Berapa umur kamu pregunta cuántos años tienes."
-                                },
-                                {
-                                    "vocabId": "v19",
-                                    "type": "order",
-                                    "prompt": "Ordena: Tengo cinco años",
-                                    "words": [
-                                        "tahun",
-                                        "Saya",
-                                        "berumur",
-                                        "lima"
-                                    ],
-                                    "correctOrder": [
-                                        "Saya",
-                                        "berumur",
-                                        "lima",
-                                        "tahun"
-                                    ],
-                                    "explanation": "Saya berumur lima tahun expresa la edad."
-                                }
+                                
+                                          {
+                                                    "vocabId": "v15",
+                                                    "type": "mc",
+                                                    "prompt": "¿Cómo se dice uno?",
+                                                    "options": [
+                                                              "Dua",
+                                                              "Satu",
+                                                              "Tiga",
+                                                              "Empat"
+                                                    ],
+                                                    "answer": 1,
+                                                    "explanation": "Satu significa uno."
+                                          },
+                                          {
+                                                    "vocabId": "v16",
+                                                    "type": "translate_es_id",
+                                                    "prompt": "Traduce: dos",
+                                                    "answer": "Dua",
+                                                    "explanation": "Dua significa dos."
+                                          },
+                                          {
+                                                    "vocabId": "v18",
+                                                    "type": "order",
+                                                    "prompt": "Ordena la pregunta: ¿Cuántos años tienes?",
+                                                    "words": [
+                                                              "umur",
+                                                              "kamu",
+                                                              "Berapa"
+                                                    ],
+                                                    "correctOrder": [
+                                                              "Berapa",
+                                                              "umur",
+                                                              "kamu"
+                                                    ],
+                                                    "explanation": "Berapa umur kamu pregunta la edad."
+                                          },
+                                          {
+                                                    "vocabId": "v42",
+                                                    "type": "listen",
+                                                    "prompt": "Escribe lo que escuchas",
+                                                    "answer": "Sepuluh tahun",
+                                                    "explanation": "Sepuluh tahun significa diez años."
+                                          },
+                                          {
+                                                    "vocabId": "v43",
+                                                    "type": "mc",
+                                                    "prompt": "¿Qué palabra significa edad?",
+                                                    "options": [
+                                                              "Tahun",
+                                                              "Umur",
+                                                              "Bulan",
+                                                              "Hari"
+                                                    ],
+                                                    "answer": 1,
+                                                    "explanation": "Umur significa edad."
+                                          },
+                                          {
+                                                    "vocabId": "v17",
+                                                    "type": "translate_es_id",
+                                                    "prompt": "Traduce: tres manzanas",
+                                                    "answer": "Tiga apel",
+                                                    "explanation": "Tiga apel significa tres manzanas."
+                                          },
+                                          {
+                                                    "vocabId": "v19",
+                                                    "type": "order",
+                                                    "prompt": "Ordena: Tengo cinco años",
+                                                    "words": [
+                                                              "tahun",
+                                                              "Saya",
+                                                              "berumur",
+                                                              "lima"
+                                                    ],
+                                                    "correctOrder": [
+                                                              "Saya",
+                                                              "berumur",
+                                                              "lima",
+                                                              "tahun"
+                                                    ],
+                                                    "explanation": "Saya berumur lima tahun expresa la edad."
+                                          },
+                                          {
+                                                    "vocabId": "v15",
+                                                    "type": "write",
+                                                    "prompt": "Escribe una frase con un número o una edad que hayas aprendido.",
+                                                    "hint": "Escribe una oración completa y revisa el orden de las palabras.",
+                                                    "modelAnswer": "Umur saya lima tahun.",
+                                                    "explanation": "Este ejemplo significa «Tengo veinte años». Usa un número que conozcas de la unidad."
+                                          }
+                                
                             ]
                         },
                         {
@@ -930,19 +855,7 @@
                                     "answer": "Ayah saya bekerja",
                                     "explanation": "Ayah significa padre y bekerja significa trabaja."
                                 },
-                                {
-                                    "vocabId": "v23",
-                                    "type": "mc",
-                                    "prompt": "¿Qué significa anak en Dia punya dua anak?",
-                                    "options": [
-                                        "Hijo o hija",
-                                        "Amigo",
-                                        "Madre",
-                                        "Familia"
-                                    ],
-                                    "answer": 0,
-                                    "explanation": "Anak significa niño o hijo según el contexto."
-                                }
+                                { vocabId: 'v20', type: 'write', prompt: "Escribe una frase sobre una persona de tu familia.", hint: "Usa una palabra de familia que hayas aprendido.", modelAnswer: "Ini ibu saya.", explanation: "Ini ibu saya significa «Esta es mi madre». Puedes cambiar ibu por otra palabra de familia." }
                             ]
                         },
                         {
@@ -1093,13 +1006,7 @@
                                     "answer": "Air",
                                     "explanation": "Air significa agua."
                                 },
-                                {
-                                    "vocabId": "v28",
-                                    "type": "listen",
-                                    "prompt": "Escribe lo que escuchas",
-                                    "answer": "Saya makan nasi",
-                                    "explanation": "Escucha la frase y escribe las palabras en orden."
-                                }
+                                { vocabId: 'v25', type: 'write', prompt: "Escribe qué comida o bebida te gustaría mencionar.", hint: "Combina saya makan o saya minum con vocabulario de comida.", modelAnswer: "Saya makan nasi.", explanation: "La frase significa «Yo como arroz cocido». Hay otras respuestas posibles." }
                             ]
                         },
                         {
@@ -1248,13 +1155,7 @@
                                     "answer": "Di mana toilet",
                                     "explanation": "Di mana significa dónde."
                                 },
-                                {
-                                    "vocabId": "v34",
-                                    "type": "listen",
-                                    "prompt": "Escribe lo que escuchas",
-                                    "answer": "Saya di sini",
-                                    "explanation": "Saya di sini significa Estoy aquí."
-                                }
+                                { vocabId: 'v30', type: 'write', prompt: "Escribe una frase que indique dónde está algo.", hint: "Intenta usar di y una palabra de lugar de la unidad.", modelAnswer: "Saya di rumah.", explanation: "La frase significa «Estoy en casa». Adapta la frase al vocabulario que conozcas." }
                             ]
                         },
                         {
@@ -1399,26 +1300,7 @@
                                     ],
                                     "explanation": "Saya belajar setiap hari expresa una rutina."
                                 },
-                                {
-                                    "vocabId": "v35",
-                                    "type": "translate_es_id",
-                                    "prompt": "Traduce: día",
-                                    "answer": "Hari",
-                                    "explanation": "Hari significa día."
-                                },
-                                {
-                                    "vocabId": "v44",
-                                    "type": "mc",
-                                    "prompt": "¿Qué significa setiap hari?",
-                                    "options": [
-                                        "Todos los días",
-                                        "Hoy",
-                                        "Por la noche",
-                                        "Un año"
-                                    ],
-                                    "answer": 0,
-                                    "explanation": "Setiap hari significa todos los días."
-                                }
+                                { vocabId: 'v35', type: 'write', prompt: "Escribe una frase breve sobre tu rutina diaria.", hint: "Usa un día o una acción cotidiana que hayas aprendido.", modelAnswer: "Saya makan pagi.", explanation: "Puedes escribir una frase sencilla sobre una acción cotidiana; revisa el vocabulario de la unidad." }
                             ]
                         }
                     ]
@@ -1721,6 +1603,17 @@
                         <div id="actionArea"><button class="btn" onclick="LessonEngine.checkTranslate()">Comprobar</button></div>
                     `;
                     AudioEngine.speak(ex.answer);
+                } else if (ex.type === 'write') {
+                    container.innerHTML = `
+                        <div>
+                            <h3>${App.escapeHtml(ex.prompt)}</h3>
+                            <p style="margin-top:10px;color:var(--text-secondary);">${App.escapeHtml(ex.hint || 'Escribe tu propia frase en indonesio.')}</p>
+                            <textarea id="textAnswer" class="input-field" rows="3" placeholder="Escribe tu frase en indonesio..." style="margin-top:16px;"></textarea>
+                        </div>
+                        <div id="actionArea">
+                            <button class="btn" onclick="LessonEngine.checkWriting()">Comparar con el ejemplo</button>
+                        </div>
+                    `;
                 } else if (ex.type === 'order') {
                     const shuffled = [...ex.words].sort(() => Math.random() - 0.5);
                     container.innerHTML = `
@@ -1766,6 +1659,35 @@
                 const norm = s => s.toLowerCase().replace(/[.,!?¿¡]/g, '').replace(/\s+/g, ' ').trim();
                 const input = norm(document.getElementById('textAnswer').value);
                 this.showFeedback(input === norm(ex.answer), ex.explanation);
+            },
+            checkWriting() {
+                const ex = this.queue[this.stepIndex];
+                const input = (document.getElementById('textAnswer').value || '').trim();
+                if (!input) {
+                    document.getElementById('actionArea').innerHTML = '<p class="feedback-box wrong">Escribe una frase antes de continuar.</p><button class="btn" style="margin-top:12px;" onclick="LessonEngine.renderStep()">Volver a escribir</button>';
+                    return;
+                }
+                const area = document.getElementById('actionArea');
+                area.innerHTML = `
+                    <div class="feedback-box">
+                        <strong>Tu frase:</strong> ${App.escapeHtml(input)}<br>
+                        <strong>Ejemplo posible:</strong> ${App.escapeHtml(ex.modelAnswer)}<br>
+                        <small>${App.escapeHtml(ex.explanation || 'Compara el orden de las palabras y el vocabulario. Puede haber otras respuestas correctas.')}</small>
+                    </div>
+                    <p style="margin-top:12px;">¿Tu frase expresa la idea y usaste el vocabulario de la unidad?</p>
+                    <button class="btn" style="margin-top:8px;" onclick="LessonEngine.rateWriting(true)">Sí, lo conseguí</button>
+                    <button class="btn btn-outline" style="margin-top:8px;" onclick="LessonEngine.rateWriting(false)">Necesito practicarlo</button>
+                `;
+            },
+            rateWriting(isCorrect) {
+                const ex = this.queue[this.stepIndex];
+                if (!isCorrect && !ex._r) this.retry.push({ ...ex, _r: true });
+                if (ex.vocabId) SRSEngine.recordAttempt(ex.vocabId, isCorrect ? 3 : 1);
+                if (isCorrect) App.addXp(10);
+                document.getElementById('actionArea').innerHTML = `
+                    <div class="feedback-box ${isCorrect ? 'correct' : 'wrong'}">${isCorrect ? '¡Buen trabajo!' : 'La repetiremos para afianzarla.'}</div>
+                    <button class="btn" style="margin-top:12px;" onclick="LessonEngine.nextStep(${isCorrect})">Continuar</button>
+                `;
             },
             checkOrder() {
                 const ex = this.queue[this.stepIndex];

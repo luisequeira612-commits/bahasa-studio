@@ -368,6 +368,137 @@
                                 { vocabId: 'v6', type: 'mc', prompt: 'Completa: "Ini ___ nasi" (Esto no es arroz)', options: ['tidak', 'bukan', 'jangan', 'belum'], answer: 1, explanation: '"Nasi" es sustantivo, requiere "bukan".' }
                             ]
                         }
+                        ,
+                        {
+                            id: 'a1_u3',
+                            title: 'Unidad 3: Presentarse y decir de dónde eres',
+                            desc: 'Saludar, decir tu nombre y preguntar el origen de otra persona.',
+                            grammar: 'Usa “Nama saya ...” para decir tu nombre y “Saya dari ...” para indicar de dónde eres. “Siapa nama kamu?” significa “¿Cómo te llamas?”.',
+                            vocab: [
+                                { id: 'v10', idn: 'Nama', esp: 'Nombre', ex: 'Nama saya Ana.', exEsp: 'Me llamo Ana.' },
+                                { id: 'v11', idn: 'Siapa', esp: 'Quién', ex: 'Siapa nama kamu?', exEsp: '¿Cómo te llamas?' },
+                                { id: 'v12', idn: 'Dari', esp: 'De / desde', ex: 'Saya dari Argentina.', exEsp: 'Soy de Argentina.' },
+                                { id: 'v13', idn: 'Tinggal', esp: 'Vivir / residir', ex: 'Saya tinggal di Managua.', exEsp: 'Vivo en Managua.' },
+                                { id: 'v14', idn: 'Senang bertemu denganmu', esp: 'Encantado/a de conocerte', ex: 'Senang bertemu denganmu!', exEsp: '¡Encantado/a de conocerte!' }
+                            ],
+                            exercises: [
+                                { vocabId: 'v10', type: 'mc', prompt: '¿Qué significa “nama”?', options: ['País', 'Nombre', 'Amigo', 'Casa'], answer: 1, explanation: '“Nama” significa “nombre”.' },
+                                { vocabId: 'v11', type: 'translate_es_id', prompt: 'Traduce: “¿Quién?”', answer: 'Siapa', explanation: '“Siapa” se usa para preguntar por una persona.' },
+                                { vocabId: 'v12', type: 'order', prompt: 'Ordena: “Soy de Argentina”', words: ['Argentina', 'dari', 'Saya'], correctOrder: ['Saya', 'dari', 'Argentina'], explanation: 'La estructura básica es “Saya dari + lugar”.' },
+                                { vocabId: 'v13', type: 'mc', prompt: 'Completa: “Saya ___ di Managua” (Vivo en Managua)', options: ['tinggal', 'siapa', 'nama', 'pagi'], answer: 0, explanation: '“Tinggal” significa vivir o residir.' },
+                                { vocabId: 'v14', type: 'translate_es_id', prompt: 'Traduce: “Encantado/a de conocerte”', answer: 'Senang bertemu denganmu', explanation: 'Es una expresión amistosa para conocer a alguien.' }
+                            ]
+                        },
+                        {
+                            id: 'a1_u4',
+                            title: 'Unidad 4: Números y edad',
+                            desc: 'Aprender números básicos y preguntar la edad.',
+                            grammar: 'Para preguntar la edad puedes decir “Berapa umur kamu?” (¿Cuántos años tienes?). “Saya berumur ... tahun” significa “Tengo ... años”.',
+                            vocab: [
+                                { id: 'v15', idn: 'Satu', esp: 'Uno', ex: 'Satu buku.', exEsp: 'Un libro.' },
+                                { id: 'v16', idn: 'Dua', esp: 'Dos', ex: 'Dua teman.', exEsp: 'Dos amigos.' },
+                                { id: 'v17', idn: 'Tiga', esp: 'Tres', ex: 'Tiga apel.', exEsp: 'Tres manzanas.' },
+                                { id: 'v18', idn: 'Berapa', esp: 'Cuánto / cuántos', ex: 'Berapa umur kamu?', exEsp: '¿Cuántos años tienes?' },
+                                { id: 'v19', idn: 'Tahun', esp: 'Año', ex: 'Saya berumur dua puluh tahun.', exEsp: 'Tengo veinte años.' },
+                                { id: 'v40', idn: 'Empat', esp: 'Cuatro', ex: 'Empat buku.', exEsp: 'Cuatro libros.' },
+                                { id: 'v41', idn: 'Lima', esp: 'Cinco', ex: 'Lima teman.', exEsp: 'Cinco amigos.' },
+                                { id: 'v42', idn: 'Sepuluh', esp: 'Diez', ex: 'Sepuluh tahun.', exEsp: 'Diez años.' },
+                                { id: 'v43', idn: 'Umur', esp: 'Edad', ex: 'Berapa umur kamu?', exEsp: '¿Cuántos años tienes?' }
+                            ],
+                            exercises: [
+                                { vocabId: 'v15', type: 'mc', prompt: '¿Cómo se dice “uno”?', options: ['Dua', 'Tiga', 'Satu', 'Empat'], answer: 2, explanation: '“Satu” significa uno.' },
+                                { vocabId: 'v16', type: 'translate_es_id', prompt: 'Traduce: “Dos”', answer: 'Dua', explanation: '“Dua” es el número dos.' },
+                                { vocabId: 'v17', type: 'mc', prompt: '¿Qué número es “tiga”?', options: ['Tres', 'Cinco', 'Dos', 'Uno'], answer: 0, explanation: '“Tiga” significa tres.' },
+                                { vocabId: 'v18', type: 'order', prompt: 'Ordena la pregunta: “¿Cuántos años tienes?”', words: ['kamu', 'umur', 'Berapa'], correctOrder: ['Berapa', 'umur', 'kamu'], explanation: 'La pregunta habitual es “Berapa umur kamu?”.' },
+                                { vocabId: 'v19', type: 'translate_es_id', prompt: 'Traduce: “Año”', answer: 'Tahun', explanation: '“Tahun” significa año.' },
+                                { vocabId: 'v40', type: 'mc', prompt: '¿Cómo se dice “cuatro”?', options: ['Lima', 'Empat', 'Sepuluh', 'Tiga'], answer: 1, explanation: '“Empat” significa cuatro.' },
+                                { vocabId: 'v41', type: 'translate_es_id', prompt: 'Traduce: “Cinco”', answer: 'Lima', explanation: '“Lima” significa cinco.' },
+                                { vocabId: 'v42', type: 'mc', prompt: '¿Qué número es “sepuluh”?', options: ['Siete', 'Diez', 'Seis', 'Cuatro'], answer: 1, explanation: '“Sepuluh” significa diez.' },
+                                { vocabId: 'v43', type: 'translate_es_id', prompt: 'Traduce: “Edad”', answer: 'Umur', explanation: '“Umur” significa edad.' }
+                            ]
+                        },
+                        {
+                            id: 'a1_u5',
+                            title: 'Unidad 5: Familia y personas',
+                            desc: 'Hablar de la familia y describir quién es alguien.',
+                            grammar: '“Ini” significa “este/esta” y puede introducir a una persona u objeto. “Saya punya ...” significa “Tengo ...”.',
+                            vocab: [
+                                { id: 'v20', idn: 'Keluarga', esp: 'Familia', ex: 'Ini keluarga saya.', exEsp: 'Esta es mi familia.' },
+                                { id: 'v21', idn: 'Ibu', esp: 'Madre', ex: 'Ibu saya baik.', exEsp: 'Mi madre es amable.' },
+                                { id: 'v22', idn: 'Ayah', esp: 'Padre', ex: 'Ayah saya bekerja.', exEsp: 'Mi padre trabaja.' },
+                                { id: 'v23', idn: 'Anak', esp: 'Niño/a; hijo/a', ex: 'Dia punya dua anak.', exEsp: 'Él/ella tiene dos hijos.' },
+                                { id: 'v24', idn: 'Teman', esp: 'Amigo/a', ex: 'Dia teman saya.', exEsp: 'Él/ella es mi amigo/a.' }
+                            ],
+                            exercises: [
+                                { vocabId: 'v20', type: 'mc', prompt: '¿Qué significa “keluarga”?', options: ['Escuela', 'Familia', 'Comida', 'Trabajo'], answer: 1, explanation: '“Keluarga” significa familia.' },
+                                { vocabId: 'v21', type: 'translate_es_id', prompt: 'Traduce: “Madre”', answer: 'Ibu', explanation: '“Ibu” significa madre y también puede ser una forma respetuosa de dirigirse a una mujer adulta.' },
+                                { vocabId: 'v22', type: 'mc', prompt: '“Ayah” significa...', options: ['Padre', 'Hermano', 'Amigo', 'Hijo'], answer: 0, explanation: '“Ayah” significa padre.' },
+                                { vocabId: 'v23', type: 'order', prompt: 'Ordena: “Esta es mi familia”', words: ['saya', 'keluarga', 'Ini'], correctOrder: ['Ini', 'keluarga', 'saya'], explanation: '“Ini keluarga saya” significa “Esta es mi familia”.' },
+                                { vocabId: 'v24', type: 'translate_es_id', prompt: 'Traduce: “Amigo/a”', answer: 'Teman', explanation: '“Teman” es amigo o amiga.' }
+                            ]
+                        },
+                        {
+                            id: 'a1_u6',
+                            title: 'Unidad 6: Comida y bebida',
+                            desc: 'Nombrar alimentos, pedir algo sencillo y expresar gustos.',
+                            grammar: '“Saya mau ...” significa “Quiero ...”. “Saya suka ...” significa “Me gusta ...”. Para pedir de forma cortés, “Tolong” equivale a “por favor”.',
+                            vocab: [
+                                { id: 'v25', idn: 'Makan', esp: 'Comer / comida (según contexto)', ex: 'Saya makan nasi.', exEsp: 'Como arroz.' },
+                                { id: 'v26', idn: 'Minum', esp: 'Beber', ex: 'Saya minum air.', exEsp: 'Bebo agua.' },
+                                { id: 'v27', idn: 'Air', esp: 'Agua', ex: 'Saya mau air.', exEsp: 'Quiero agua.' },
+                                { id: 'v28', idn: 'Nasi', esp: 'Arroz cocido', ex: 'Saya makan nasi.', exEsp: 'Como arroz.' },
+                                { id: 'v29', idn: 'Tolong', esp: 'Por favor / ayudar', ex: 'Tolong, satu kopi.', exEsp: 'Por favor, un café.' }
+                            ],
+                            exercises: [
+                                { vocabId: 'v25', type: 'mc', prompt: '¿Qué significa “makan”?', options: ['Dormir', 'Comer', 'Beber', 'Leer'], answer: 1, explanation: '“Makan” significa comer.' },
+                                { vocabId: 'v26', type: 'translate_es_id', prompt: 'Traduce: “Beber”', answer: 'Minum', explanation: '“Minum” significa beber.' },
+                                { vocabId: 'v27', type: 'mc', prompt: 'Completa: “Saya minum ___” (Bebo agua)', options: ['buku', 'air', 'teman', 'tidur'], answer: 1, explanation: '“Air” significa agua.' },
+                                { vocabId: 'v28', type: 'order', prompt: 'Ordena: “Como arroz”', words: ['nasi', 'makan', 'Saya'], correctOrder: ['Saya', 'makan', 'nasi'], explanation: 'Sujeto + verbo + objeto: “Saya makan nasi”.' },
+                                { vocabId: 'v29', type: 'translate_es_id', prompt: 'Traduce: “Por favor”', answer: 'Tolong', explanation: '“Tolong” se usa para pedir ayuda o formular una petición.' }
+                            ]
+                        },
+                        {
+                            id: 'a1_u7',
+                            title: 'Unidad 7: Lugares y ubicación',
+                            desc: 'Decir dónde estás, preguntar por lugares y usar “di”.',
+                            grammar: 'La preposición “di” indica ubicación y va delante del lugar: “Saya di rumah” (Estoy en casa). No la confundas con el prefijo pasivo “di-”, que se escribe unido al verbo.',
+                            vocab: [
+                                { id: 'v30', idn: 'Rumah', esp: 'Casa', ex: 'Saya di rumah.', exEsp: 'Estoy en casa.' },
+                                { id: 'v31', idn: 'Sekolah', esp: 'Escuela', ex: 'Dia di sekolah.', exEsp: 'Él/ella está en la escuela.' },
+                                { id: 'v32', idn: 'Di mana', esp: 'Dónde', ex: 'Di mana toilet?', exEsp: '¿Dónde está el baño?' },
+                                { id: 'v33', idn: 'Kota', esp: 'Ciudad', ex: 'Saya tinggal di kota.', exEsp: 'Vivo en la ciudad.' },
+                                { id: 'v34', idn: 'Di sini', esp: 'Aquí', ex: 'Saya di sini.', exEsp: 'Estoy aquí.' }
+                            ],
+                            exercises: [
+                                { vocabId: 'v30', type: 'mc', prompt: '¿Qué significa “rumah”?', options: ['Ciudad', 'Casa', 'Escuela', 'Mercado'], answer: 1, explanation: '“Rumah” significa casa.' },
+                                { vocabId: 'v31', type: 'translate_es_id', prompt: 'Traduce: “Escuela”', answer: 'Sekolah', explanation: '“Sekolah” significa escuela.' },
+                                { vocabId: 'v32', type: 'order', prompt: 'Ordena: “¿Dónde está el baño?”', words: ['toilet', 'mana', 'Di'], correctOrder: ['Di', 'mana', 'toilet'], explanation: '“Di mana ...?” significa “¿Dónde ...?”.' },
+                                { vocabId: 'v33', type: 'mc', prompt: 'Completa: “Saya tinggal di ___” (Vivo en la ciudad)', options: ['kota', 'air', 'ibu', 'makan'], answer: 0, explanation: '“Kota” significa ciudad.' },
+                                { vocabId: 'v34', type: 'translate_es_id', prompt: 'Traduce: “Aquí”', answer: 'Di sini', explanation: '“Di sini” significa aquí.' }
+                            ]
+                        },
+                        {
+                            id: 'a1_u8',
+                            title: 'Unidad 8: Días y rutina diaria',
+                            desc: 'Hablar de actividades cotidianas y expresar cuándo ocurren.',
+                            grammar: 'Los adverbios de tiempo suelen colocarse al inicio o al final de la oración. “Setiap hari” significa “todos los días”.',
+                            vocab: [
+                                { id: 'v35', idn: 'Hari', esp: 'Día', ex: 'Hari ini panas.', exEsp: 'Hoy hace calor.' },
+                                { id: 'v36', idn: 'Hari ini', esp: 'Hoy / este día', ex: 'Hari ini saya belajar.', exEsp: 'Hoy estudio.' },
+                                { id: 'v37', idn: 'Belajar', esp: 'Estudiar / aprender', ex: 'Saya belajar bahasa Indonesia.', exEsp: 'Estudio indonesio.' },
+                                { id: 'v38', idn: 'Bekerja', esp: 'Trabajar', ex: 'Ayah bekerja.', exEsp: 'Mi padre trabaja.' },
+                                { id: 'v39', idn: 'Tidur', esp: 'Dormir', ex: 'Saya tidur malam.', exEsp: 'Duermo por la noche.' },
+                                { id: 'v44', idn: 'Setiap hari', esp: 'Todos los días', ex: 'Saya belajar setiap hari.', exEsp: 'Estudio todos los días.' }
+                            ],
+                            exercises: [
+                                { vocabId: 'v35', type: 'mc', prompt: '¿Qué significa “hari”?', options: ['Noche', 'Día', 'Semana', 'Año'], answer: 1, explanation: '“Hari” significa día.' },
+                                { vocabId: 'v36', type: 'translate_es_id', prompt: 'Traduce: “Hoy”', answer: 'Hari ini', explanation: '“Hari ini” significa hoy.' },
+                                { vocabId: 'v37', type: 'mc', prompt: '“Belajar” significa...', options: ['Comer', 'Estudiar/aprender', 'Vivir', 'Beber'], answer: 1, explanation: '“Belajar” significa estudiar o aprender.' },
+                                { vocabId: 'v38', type: 'order', prompt: 'Ordena: “Mi padre trabaja”', words: ['bekerja', 'Ayah'], correctOrder: ['Ayah', 'bekerja'], explanation: '“Ayah bekerja” significa “Mi padre trabaja”.' },
+                                { vocabId: 'v39', type: 'translate_es_id', prompt: 'Traduce: “Dormir”', answer: 'Tidur', explanation: '“Tidur” significa dormir.' },
+                                { vocabId: 'v44', type: 'translate_es_id', prompt: 'Traduce: “Todos los días”', answer: 'Setiap hari', explanation: '“Setiap hari” significa todos los días.' }
+                            ]
+                        }
                     ]
                 },
                 {

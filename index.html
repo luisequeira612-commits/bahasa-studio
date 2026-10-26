@@ -1012,16 +1012,16 @@
                                     "words": [
                                         "air",
                                         "mau",
-                                        "Tolong",
-                                        "saya"
+                                        "tolong",
+                                        "Saya"
                                     ],
                                     "correctOrder": [
-                                        "Tolong",
-                                        "saya",
+                                        "Saya",
                                         "mau",
-                                        "air"
+                                        "air",
+                                        "tolong"
                                     ],
-                                    "explanation": "Tolong air es una petición breve de agua."
+                                    "explanation": "Saya mau air, tolong significa «Quiero agua, por favor»."
                                 },
                                 {
                                     "vocabId": "v25",
@@ -1267,13 +1267,15 @@
                                     "prompt": "Ordena: Mi padre trabaja",
                                     "words": [
                                         "bekerja",
+                                        "saya",
                                         "Ayah"
                                     ],
                                     "correctOrder": [
                                         "Ayah",
+                                        "saya",
                                         "bekerja"
                                     ],
-                                    "explanation": "Ayah bekerja significa Mi padre trabaja."
+                                    "explanation": "Ayah saya bekerja significa «Mi padre trabaja»."
                                 },
                                 {
                                     "vocabId": "v39",
@@ -1481,20 +1483,6 @@
                 });
             },
 
-            async ensureA1Vocabulary() {
-                const vocab = this.getA1Vocabulary();
-                const now = Date.now();
-                for (const word of vocab) {
-                    const existing = await DB.get('srs', word.id);
-                    if (!existing) {
-                        await DB.set('srs', word.id, {
-                            wordId: word.id, interval: 0, repetition: 0, efactor: 2.5,
-                            nextReview: now, attempts: 0, correct: 0, incorrect: 0, lastReviewed: null
-                        });
-                    }
-                }
-            },
-
             async recordAttempt(wordId, quality) {
                 if (!wordId) return;
                 const item = await DB.get('srs', wordId) || {
@@ -1523,7 +1511,6 @@
             },
 
             async getDueItems() {
-                await this.ensureA1Vocabulary();
                 const vocabIds = new Set(this.getA1Vocabulary().map(v => v.id));
                 const all = await DB.getAll('srs');
                 const now = Date.now();
@@ -2035,7 +2022,6 @@ Requisitos:
 
             async init() {
                 await DB.init();
-                await SRSEngine.ensureA1Vocabulary();
                 AudioEngine.init();
 
                 this.xp = (await DB.get('settings', 'userXp')) || 0;

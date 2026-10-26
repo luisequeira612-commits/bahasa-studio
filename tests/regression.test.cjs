@@ -124,7 +124,7 @@ test('A1 units provide 22 varied exercises including productive writing', () => 
 test('A1 examples and explanations stay consistent with the taught material', () => {
   const start = html.indexOf('const CourseData =');
   const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
-  const course = vm.runInNewContext(html.slice(start, end) + '\\nCourseData');
+  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
   const a1 = course.levels.find(level => level.id === 'A1');
   const unit4 = a1.units.find(unit => unit.id === 'a1_u4');
   const three = unit4.vocab.find(word => word.id === 'v17');

@@ -1,8 +1,8 @@
-const CACHE_NAME = 'bahasa-studio-v3.5';
+const CACHE_NAME = 'bahasa-studio-v3.5.1';
 const ASSETS = ['./', './index.html', './manifest.json'];
 
 self.addEventListener('install', (e) => {
-    e.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS)));
+    e.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS.map((u) => new Request(u, { cache: 'reload' })))));
     self.skipWaiting();
 });
 
@@ -23,7 +23,7 @@ self.addEventListener('fetch', (e) => {
     e.respondWith(
         caches.open(CACHE_NAME).then(async (cache) => {
             const cached = await cache.match(req);
-            const network = fetch(req).then((res) => {
+            const network = fetch(req, { cache: 'no-cache' }).then((res) => {
                 if (res && res.ok) cache.put(req, res.clone());
                 return res;
             }).catch(() => null);

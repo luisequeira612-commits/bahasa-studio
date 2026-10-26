@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Bahasa Studio 3.5</title>
+    <title>Bahasa Studio 3.5.1</title>
     <meta name="description" content="Curso de indonesio PWA para hispanohablantes sin costo ni penalizaciones.">
     <meta name="theme-color" content="#e8384f">
     <link rel="manifest" href="./manifest.json">
@@ -120,7 +120,7 @@
 
     <header>
         <div class="logo">
-            <span>🇮🇩</span> Bahasa Studio <span style="font-size:0.72rem; font-weight:700; opacity:.8; margin-left:4px;">v3.5</span>
+            <span>🇮🇩</span> Bahasa Studio <span style="font-size:0.72rem; font-weight:700; opacity:.8; margin-left:4px;">v3.5.1</span>
         </div>
         <div class="header-status">
             <span id="connectionStatus" class="connection-indicator online" title="Estado de conexión">Online</span>
@@ -1489,10 +1489,19 @@
                     wordId: wordId, interval: 0, repetition: 0, efactor: 2.5,
                     nextReview: Date.now(), attempts: 0, correct: 0, incorrect: 0, lastReviewed: null
                 };
+                const prev = item.lastReviewed;
+                const now = Date.now();
                 item.attempts = (item.attempts || 0) + 1;
                 item.correct = (item.correct || 0) + (quality >= 3 ? 1 : 0);
+
+                if (quality >= 3 && prev !== null && prev !== undefined &&
+                    now - prev >= 0 && now - prev < 12 * 60 * 60 * 1000) {
+                    await DB.set('srs', wordId, item);
+                    return;
+                }
+
                 item.incorrect = (item.incorrect || 0) + (quality < 3 ? 1 : 0);
-                item.lastReviewed = Date.now();
+                item.lastReviewed = now;
 
                 if (quality >= 3) {
                     if (item.repetition === 0) item.interval = 1;
@@ -1511,10 +1520,14 @@
             },
 
             async getDueItems() {
-                const vocabIds = new Set(this.getA1Vocabulary().map(v => v.id));
+                const vocabIds = new Set(getLevels().flatMap(level =>
+                    level.units.flatMap(unit => unit.vocab || []).map(v => v.id)
+                ));
                 const all = await DB.getAll('srs');
                 const now = Date.now();
-                return all.filter(i => i.val && vocabIds.has(i.key) && i.val.nextReview <= now)
+                return all.filter(i => i.val && vocabIds.has(i.key) &&
+                    i.val.nextReview <= now &&
+                    !(i.val.attempts === 0 && i.val.lastReviewed === null))
                     .sort((a, b) => {
                         const overdue = (a.val.nextReview || 0) - (b.val.nextReview || 0);
                         if (overdue !== 0) return overdue;
@@ -1524,7 +1537,9 @@
 
             async startSession() {
                 const rawDue = await this.getDueItems();
-                const vocabById = new Map(this.getA1Vocabulary().map(v => [v.id, v]));
+                const vocabById = new Map(getLevels().flatMap(level =>
+                    level.units.flatMap(unit => unit.vocab || [])
+                ).map(v => [v.id, v]));
                 this.activeQueue = rawDue.map(item => ({ vocab: vocabById.get(item.key), srs: item.val }))
                     .filter(item => item.vocab).slice(0, this.maxSessionItems);
 

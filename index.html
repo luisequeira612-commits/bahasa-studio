@@ -414,9 +414,9 @@
                                     "prompt": "¿Qué palabra significa nombre?",
                                     "options": [
                                         "Nama",
-                                        "Dari",
-                                        "Tinggal",
-                                        "Siapa"
+                                        "Umur",
+                                        "Alamat",
+                                        "Usia"
                                     ],
                                     "answer": 0,
                                     "explanation": "Nama significa nombre."
@@ -450,9 +450,9 @@
                                     "prompt": "Completa: Saya ___ di Managua (Vivo en Managua)",
                                     "options": [
                                         "tinggal",
-                                        "nama",
-                                        "siapa",
-                                        "senang"
+                                        "makan",
+                                        "minum",
+                                        "tidur"
                                     ],
                                     "answer": 0,
                                     "explanation": "Tinggal significa vivir o residir."
@@ -668,8 +668,8 @@
                                     "options": [
                                         "Tahun",
                                         "Umur",
-                                        "Satu",
-                                        "Tiga"
+                                        "Bulan",
+                                        "Hari"
                                     ],
                                     "answer": 1,
                                     "explanation": "Umur significa edad."
@@ -929,9 +929,9 @@
                                     "prompt": "Completa: Saya minum ___ (Bebo agua)",
                                     "options": [
                                         "air",
-                                        "nasi",
-                                        "makan",
-                                        "tidur"
+                                        "susu",
+                                        "teh",
+                                        "kopi"
                                     ],
                                     "answer": 0,
                                     "explanation": "Air significa agua."
@@ -1102,9 +1102,9 @@
                                     "prompt": "Completa: Saya tinggal di ___ (Vivo en la ciudad)",
                                     "options": [
                                         "kota",
-                                        "air",
-                                        "ibu",
-                                        "makan"
+                                        "desa",
+                                        "kampung",
+                                        "jalan"
                                     ],
                                     "answer": 0,
                                     "explanation": "Kota significa ciudad."
@@ -1130,8 +1130,8 @@
                                     "options": [
                                         "sekolah",
                                         "rumah",
-                                        "kota",
-                                        "sini"
+                                        "pasar",
+                                        "kantor"
                                     ],
                                     "answer": 0,
                                     "explanation": "Dia di sekolah significa Él o ella está en la escuela."
@@ -1290,9 +1290,9 @@
                                     "prompt": "Completa: ___ saya belajar (Hoy estudio)",
                                     "options": [
                                         "Hari ini",
-                                        "Setiap hari",
-                                        "Tahun",
-                                        "Tidur"
+                                        "Hari Senin",
+                                        "Hari Minggu",
+                                        "Hari libur"
                                     ],
                                     "answer": 0,
                                     "explanation": "Hari ini se usa para hablar de hoy."
@@ -1856,6 +1856,7 @@ Requisitos:
 - 8 palabras o frases nuevas (vocab), muy básicas y útiles, cada una con ejemplo corto en indonesio (2 a 5 palabras) y su traducción al español.
 - "grammar": explicación breve en español (2 o 3 frases) de un punto gramatical relacionado.
 - 14 ejercicios: 4 mc (4 opciones, answerIndex desde 0), 3 translate_es_id (answerText con UNA respuesta canónica corta), 4 listen (el alumno escucha answerText en indonesio y lo escribe; el prompt dice "Escribe lo que escuchas"), 3 order (4 a 6 palabras; "words" y "correctOrder" con las mismas palabras).
+- En cada mc, las cuatro opciones deben pertenecer a la misma categoría semántica y gramatical (por ejemplo, cuatro alimentos, cuatro verbos o cuatro expresiones de tiempo). Usa distractores plausibles, del mismo nivel y claramente incorrectos; no mezcles comida con pronombres, verbos con lugares ni palabras con frases. La respuesta correcta debe aparecer una sola vez.
 - Cada palabra debe aparecer en al menos 2 ejercicios, en contextos distintos.
 - "vocabIndex" es la posición (desde 0) de la palabra del vocab que practica el ejercicio.
 - Prompts y explicaciones en español; respuestas en indonesio. No uses comillas ni apóstrofes dentro del texto en indonesio.

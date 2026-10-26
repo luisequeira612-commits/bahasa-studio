@@ -81,7 +81,9 @@
 
         .badge { background: #0ea5e922; color: var(--accent); padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; border: 1px solid #0ea5e944; }
         .offline-tag { background: var(--warning); color: black; font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; font-weight: bold; }
-        .header-status { display:flex; align-items:center; gap:8px; flex-wrap:wrap; justify-content:flex-end; font-size:0.7rem; color:var(--text-muted); }
+        header { flex-wrap:wrap; gap:8px; }
+        .header-status { display:flex; align-items:center; gap:4px; flex-wrap:wrap; justify-content:flex-end; font-size:0.68rem; color:var(--text-muted); }
+        .local-lessons-indicator { max-width:120px; overflow:hidden; text-overflow:ellipsis; }
         .connection-indicator, .local-lessons-indicator { white-space:nowrap; border:1px solid var(--border); border-radius:999px; padding:3px 7px; }
         .connection-indicator.online::before { content:'● '; color:var(--success); }
         .connection-indicator.offline::before { content:'● '; color:var(--warning); }
@@ -542,18 +544,18 @@
                                 {
                                     "vocabId": "v13",
                                     "type": "order",
-                                    "prompt": "Ordena: Vivo en la ciudad",
+                                    "prompt": "Ordena: Vivo en Managua",
                                     "words": [
                                         "di",
                                         "Saya",
-                                        "kota",
+                                        "Managua",
                                         "tinggal"
                                     ],
                                     "correctOrder": [
                                         "Saya",
                                         "tinggal",
                                         "di",
-                                        "kota"
+                                        "Managua"
                                     ],
                                     "explanation": "Saya tinggal di kota significa Vivo en la ciudad."
                                 }
@@ -994,13 +996,17 @@
                                 {
                                     "vocabId": "v29",
                                     "type": "order",
-                                    "prompt": "Ordena una petición breve: Por favor, agua",
+                                    "prompt": "Ordena una petición: Por favor, quiero agua",
                                     "words": [
                                         "air",
-                                        "Tolong"
+                                        "mau",
+                                        "Tolong",
+                                        "saya"
                                     ],
                                     "correctOrder": [
                                         "Tolong",
+                                        "saya",
+                                        "mau",
                                         "air"
                                     ],
                                     "explanation": "Tolong air es una petición breve de agua."

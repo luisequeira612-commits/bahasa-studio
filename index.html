@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Bahasa Studio 3.3</title>
+    <title>Bahasa Studio 3.4</title>
     <meta name="description" content="Curso de indonesio PWA para hispanohablantes sin costo ni penalizaciones.">
     <meta name="theme-color" content="#e8384f">
     <link rel="manifest" href="./manifest.json">
@@ -81,6 +81,15 @@
 
         .badge { background: #0ea5e922; color: var(--accent); padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; border: 1px solid #0ea5e944; }
         .offline-tag { background: var(--warning); color: black; font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; font-weight: bold; }
+        .header-status { display:flex; align-items:center; gap:8px; flex-wrap:wrap; justify-content:flex-end; font-size:0.7rem; color:var(--text-muted); }
+        .connection-indicator, .local-lessons-indicator { white-space:nowrap; border:1px solid var(--border); border-radius:999px; padding:3px 7px; }
+        .connection-indicator.online::before { content:'● '; color:var(--success); }
+        .connection-indicator.offline::before { content:'● '; color:var(--warning); }
+        .unit-card > summary { list-style:none; cursor:pointer; display:flex; align-items:center; justify-content:space-between; gap:10px; }
+        .unit-card > summary::-webkit-details-marker { display:none; }
+        .unit-card > summary::after { content:'＋'; color:var(--accent); font-weight:800; }
+        .unit-card[open] > summary::after { content:'−'; }
+        .unit-body { display:flex; flex-direction:column; gap:8px; margin-top:10px; }
         .flashcard { background: var(--bg-secondary); border: 2px solid var(--border); min-height: 180px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; border-radius: 12px; padding: 16px; margin: 16px 0; }
     
         /* ---- Tema rojo y blanco ---- */
@@ -109,11 +118,12 @@
 
     <header>
         <div class="logo">
-            <span>🇮🇩</span> Bahasa Studio <span style="font-size:0.72rem; font-weight:700; opacity:.8; margin-left:4px;">v3.3</span>
+            <span>🇮🇩</span> Bahasa Studio <span style="font-size:0.72rem; font-weight:700; opacity:.8; margin-left:4px;">v3.4</span>
         </div>
-        <div>
+        <div class="header-status">
+            <span id="connectionStatus" class="connection-indicator online" title="Estado de conexión">Online</span>
+            <span id="localLessonsStatus" class="local-lessons-indicator" title="Lecciones generadas guardadas en este dispositivo">0 guardadas</span>
             <button class="btn btn-outline btn-sm" onclick="App.toggleTheme()">🌓</button>
-            <span id="offlineStatus" class="offline-tag" style="display:none;">OFFLINE</span>
         </div>
     </header>
 
@@ -129,11 +139,25 @@
                     <span id="totalExpBadge" class="badge" style="font-size: 0.9rem;">0 XP</span>
                 </div>
             </div>
+            <div style="margin-top:10px;">
+                <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:5px;">
+                    <span>Avance de A1</span><strong id="courseProgressText">0% · 0/8 unidades</strong>
+                </div>
+                <div class="progress-bar" role="progressbar" aria-label="Progreso del nivel A1" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                    <div id="courseProgressFill" class="progress-fill" style="width:0%;"></div>
+                </div>
+            </div>
         </div>
 
         <div class="card" style="margin-bottom:12px; padding:12px;">
             <div id="nextTopicLine" style="font-size:0.9rem; margin-bottom:8px;"></div>
-            <button class="btn" onclick="AIGen.next(1)">✨ Generar siguiente lección</button>
+            <label for="syllabusSelector" style="display:block; font-size:0.85rem; margin:8px 0 4px;">Empezar desde un tema del temario</label>
+            <select id="syllabusSelector" class="input-field" aria-label="Elegir tema inicial"></select>
+            <div style="display:flex; gap:8px; margin-top:8px;">
+                <button class="btn btn-outline" onclick="AIGen.skipTopic()">Saltar tema</button>
+                <button class="btn btn-outline" onclick="AIGen.chooseTopic()">Usar tema elegido</button>
+            </div>
+            <button class="btn" style="margin-top:8px;" onclick="AIGen.next(1)">✨ Generar siguiente lección</button>
             <button class="btn btn-outline" style="margin-top:8px;" onclick="AIGen.next(5)">Preparar 5 lecciones seguidas</button>
             <div id="batchStatus" style="font-size:0.8rem; color:var(--text-muted); margin-top:6px;"></div>
             <button class="btn btn-outline btn-sm" style="margin-top:8px;" onclick="AIGen.toggle()">Elegir tema propio</button>
@@ -382,11 +406,157 @@
                                 { id: 'v14', idn: 'Senang bertemu denganmu', esp: 'Encantado/a de conocerte', ex: 'Senang bertemu denganmu!', exEsp: '¡Encantado/a de conocerte!' }
                             ],
                             exercises: [
-                                { vocabId: 'v10', type: 'mc', prompt: '¿Qué significa “nama”?', options: ['País', 'Nombre', 'Amigo', 'Casa'], answer: 1, explanation: '“Nama” significa “nombre”.' },
-                                { vocabId: 'v11', type: 'translate_es_id', prompt: 'Traduce: “¿Quién?”', answer: 'Siapa', explanation: '“Siapa” se usa para preguntar por una persona.' },
-                                { vocabId: 'v12', type: 'order', prompt: 'Ordena: “Soy de Argentina”', words: ['Argentina', 'dari', 'Saya'], correctOrder: ['Saya', 'dari', 'Argentina'], explanation: 'La estructura básica es “Saya dari + lugar”.' },
-                                { vocabId: 'v13', type: 'mc', prompt: 'Completa: “Saya ___ di Managua” (Vivo en Managua)', options: ['tinggal', 'siapa', 'nama', 'pagi'], answer: 0, explanation: '“Tinggal” significa vivir o residir.' },
-                                { vocabId: 'v14', type: 'translate_es_id', prompt: 'Traduce: “Encantado/a de conocerte”', answer: 'Senang bertemu denganmu', explanation: 'Es una expresión amistosa para conocer a alguien.' }
+                                {
+                                    "vocabId": "v10",
+                                    "type": "mc",
+                                    "prompt": "¿Qué palabra significa nombre?",
+                                    "options": [
+                                        "Nama",
+                                        "Dari",
+                                        "Tinggal",
+                                        "Siapa"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Nama significa nombre."
+                                },
+                                {
+                                    "vocabId": "v11",
+                                    "type": "translate_es_id",
+                                    "prompt": "Traduce al indonesio: quién",
+                                    "answer": "Siapa",
+                                    "explanation": "Siapa sirve para preguntar por una persona."
+                                },
+                                {
+                                    "vocabId": "v12",
+                                    "type": "order",
+                                    "prompt": "Ordena la frase: Soy de Perú",
+                                    "words": [
+                                        "Peru",
+                                        "Saya",
+                                        "dari"
+                                    ],
+                                    "correctOrder": [
+                                        "Saya",
+                                        "dari",
+                                        "Peru"
+                                    ],
+                                    "explanation": "Para decir el origen se usa Saya dari y el lugar."
+                                },
+                                {
+                                    "vocabId": "v13",
+                                    "type": "mc",
+                                    "prompt": "Completa: Saya ___ di Managua (Vivo en Managua)",
+                                    "options": [
+                                        "tinggal",
+                                        "nama",
+                                        "siapa",
+                                        "senang"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Tinggal significa vivir o residir."
+                                },
+                                {
+                                    "vocabId": "v14",
+                                    "type": "translate_es_id",
+                                    "prompt": "Traduce: Encantado de conocerte",
+                                    "answer": "Senang bertemu denganmu",
+                                    "explanation": "Es una expresión amistosa para conocer a alguien."
+                                },
+                                {
+                                    "vocabId": "v10",
+                                    "type": "listen",
+                                    "prompt": "Escribe lo que escuchas",
+                                    "answer": "Nama saya Ana",
+                                    "explanation": "Nama saya Ana significa Me llamo Ana."
+                                },
+                                {
+                                    "vocabId": "v11",
+                                    "type": "listen",
+                                    "prompt": "Escribe lo que escuchas",
+                                    "answer": "Siapa nama kamu",
+                                    "explanation": "Esta pregunta significa Cómo te llamas."
+                                },
+                                {
+                                    "vocabId": "v12",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa dari en la frase Saya dari Peru?",
+                                    "options": [
+                                        "De",
+                                        "Quién",
+                                        "Vivir",
+                                        "Nombre"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Dari indica origen en esta frase."
+                                },
+                                {
+                                    "vocabId": "v13",
+                                    "type": "translate_es_id",
+                                    "prompt": "Traduce: Vivo en Managua",
+                                    "answer": "Saya tinggal di Managua",
+                                    "explanation": "Saya tinggal di indica dónde vive una persona."
+                                },
+                                {
+                                    "vocabId": "v14",
+                                    "type": "listen",
+                                    "prompt": "Escribe lo que escuchas",
+                                    "answer": "Senang bertemu denganmu",
+                                    "explanation": "Escucha la expresión completa y escríbela."
+                                },
+                                {
+                                    "vocabId": "v10",
+                                    "type": "order",
+                                    "prompt": "Ordena: Mi nombre es Ana",
+                                    "words": [
+                                        "Ana",
+                                        "saya",
+                                        "Nama"
+                                    ],
+                                    "correctOrder": [
+                                        "Nama",
+                                        "saya",
+                                        "Ana"
+                                    ],
+                                    "explanation": "Nama saya Ana es una forma básica de presentarse."
+                                },
+                                {
+                                    "vocabId": "v11",
+                                    "type": "mc",
+                                    "prompt": "Elige la pregunta para saber el nombre de alguien",
+                                    "options": [
+                                        "Siapa nama kamu",
+                                        "Saya dari Peru",
+                                        "Saya tinggal di kota",
+                                        "Nama saya Ana"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Siapa nama kamu pregunta el nombre."
+                                },
+                                {
+                                    "vocabId": "v12",
+                                    "type": "listen",
+                                    "prompt": "Escribe lo que escuchas",
+                                    "answer": "Saya dari Peru",
+                                    "explanation": "Saya dari Peru indica el país de origen."
+                                },
+                                {
+                                    "vocabId": "v13",
+                                    "type": "order",
+                                    "prompt": "Ordena: Vivo en la ciudad",
+                                    "words": [
+                                        "di",
+                                        "Saya",
+                                        "kota",
+                                        "tinggal"
+                                    ],
+                                    "correctOrder": [
+                                        "Saya",
+                                        "tinggal",
+                                        "di",
+                                        "kota"
+                                    ],
+                                    "explanation": "Saya tinggal di kota significa Vivo en la ciudad."
+                                }
                             ]
                         },
                         {
@@ -406,15 +576,155 @@
                                 { id: 'v43', idn: 'Umur', esp: 'Edad', ex: 'Berapa umur kamu?', exEsp: '¿Cuántos años tienes?' }
                             ],
                             exercises: [
-                                { vocabId: 'v15', type: 'mc', prompt: '¿Cómo se dice “uno”?', options: ['Dua', 'Tiga', 'Satu', 'Empat'], answer: 2, explanation: '“Satu” significa uno.' },
-                                { vocabId: 'v16', type: 'translate_es_id', prompt: 'Traduce: “Dos”', answer: 'Dua', explanation: '“Dua” es el número dos.' },
-                                { vocabId: 'v17', type: 'mc', prompt: '¿Qué número es “tiga”?', options: ['Tres', 'Cinco', 'Dos', 'Uno'], answer: 0, explanation: '“Tiga” significa tres.' },
-                                { vocabId: 'v18', type: 'order', prompt: 'Ordena la pregunta: “¿Cuántos años tienes?”', words: ['kamu', 'umur', 'Berapa'], correctOrder: ['Berapa', 'umur', 'kamu'], explanation: 'La pregunta habitual es “Berapa umur kamu?”.' },
-                                { vocabId: 'v19', type: 'translate_es_id', prompt: 'Traduce: “Año”', answer: 'Tahun', explanation: '“Tahun” significa año.' },
-                                { vocabId: 'v40', type: 'mc', prompt: '¿Cómo se dice “cuatro”?', options: ['Lima', 'Empat', 'Sepuluh', 'Tiga'], answer: 1, explanation: '“Empat” significa cuatro.' },
-                                { vocabId: 'v41', type: 'translate_es_id', prompt: 'Traduce: “Cinco”', answer: 'Lima', explanation: '“Lima” significa cinco.' },
-                                { vocabId: 'v42', type: 'mc', prompt: '¿Qué número es “sepuluh”?', options: ['Siete', 'Diez', 'Seis', 'Cuatro'], answer: 1, explanation: '“Sepuluh” significa diez.' },
-                                { vocabId: 'v43', type: 'translate_es_id', prompt: 'Traduce: “Edad”', answer: 'Umur', explanation: '“Umur” significa edad.' }
+                                {
+                                    "vocabId": "v15",
+                                    "type": "mc",
+                                    "prompt": "¿Cómo se dice uno?",
+                                    "options": [
+                                        "Dua",
+                                        "Satu",
+                                        "Tiga",
+                                        "Empat"
+                                    ],
+                                    "answer": 1,
+                                    "explanation": "Satu significa uno."
+                                },
+                                {
+                                    "vocabId": "v16",
+                                    "type": "translate_es_id",
+                                    "prompt": "Traduce: dos",
+                                    "answer": "Dua",
+                                    "explanation": "Dua significa dos."
+                                },
+                                {
+                                    "vocabId": "v17",
+                                    "type": "mc",
+                                    "prompt": "¿Qué número significa tiga?",
+                                    "options": [
+                                        "Uno",
+                                        "Dos",
+                                        "Tres",
+                                        "Cinco"
+                                    ],
+                                    "answer": 2,
+                                    "explanation": "Tiga significa tres."
+                                },
+                                {
+                                    "vocabId": "v18",
+                                    "type": "order",
+                                    "prompt": "Ordena la pregunta: ¿Cuántos años tienes?",
+                                    "words": [
+                                        "umur",
+                                        "kamu",
+                                        "Berapa"
+                                    ],
+                                    "correctOrder": [
+                                        "Berapa",
+                                        "umur",
+                                        "kamu"
+                                    ],
+                                    "explanation": "Berapa umur kamu pregunta la edad."
+                                },
+                                {
+                                    "vocabId": "v19",
+                                    "type": "translate_es_id",
+                                    "prompt": "Traduce: año",
+                                    "answer": "Tahun",
+                                    "explanation": "Tahun significa año."
+                                },
+                                {
+                                    "vocabId": "v40",
+                                    "type": "mc",
+                                    "prompt": "¿Cómo se dice cuatro?",
+                                    "options": [
+                                        "Empat",
+                                        "Lima",
+                                        "Sepuluh",
+                                        "Dua"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Empat significa cuatro."
+                                },
+                                {
+                                    "vocabId": "v41",
+                                    "type": "translate_es_id",
+                                    "prompt": "Traduce: cinco",
+                                    "answer": "Lima",
+                                    "explanation": "Lima significa cinco."
+                                },
+                                {
+                                    "vocabId": "v42",
+                                    "type": "listen",
+                                    "prompt": "Escribe lo que escuchas",
+                                    "answer": "Sepuluh tahun",
+                                    "explanation": "Sepuluh tahun significa diez años."
+                                },
+                                {
+                                    "vocabId": "v43",
+                                    "type": "mc",
+                                    "prompt": "¿Qué palabra significa edad?",
+                                    "options": [
+                                        "Tahun",
+                                        "Umur",
+                                        "Satu",
+                                        "Tiga"
+                                    ],
+                                    "answer": 1,
+                                    "explanation": "Umur significa edad."
+                                },
+                                {
+                                    "vocabId": "v15",
+                                    "type": "listen",
+                                    "prompt": "Escribe lo que escuchas",
+                                    "answer": "Satu buku",
+                                    "explanation": "Satu buku significa un libro."
+                                },
+                                {
+                                    "vocabId": "v16",
+                                    "type": "order",
+                                    "prompt": "Ordena: Dos amigos",
+                                    "words": [
+                                        "teman",
+                                        "Dua"
+                                    ],
+                                    "correctOrder": [
+                                        "Dua",
+                                        "teman"
+                                    ],
+                                    "explanation": "Dua teman significa dos amigos."
+                                },
+                                {
+                                    "vocabId": "v17",
+                                    "type": "translate_es_id",
+                                    "prompt": "Traduce: tres manzanas",
+                                    "answer": "Tiga apel",
+                                    "explanation": "Tiga apel significa tres manzanas."
+                                },
+                                {
+                                    "vocabId": "v18",
+                                    "type": "listen",
+                                    "prompt": "Escribe lo que escuchas",
+                                    "answer": "Berapa umur kamu",
+                                    "explanation": "Berapa umur kamu pregunta cuántos años tienes."
+                                },
+                                {
+                                    "vocabId": "v19",
+                                    "type": "order",
+                                    "prompt": "Ordena: Tengo cinco años",
+                                    "words": [
+                                        "tahun",
+                                        "Saya",
+                                        "berumur",
+                                        "lima"
+                                    ],
+                                    "correctOrder": [
+                                        "Saya",
+                                        "berumur",
+                                        "lima",
+                                        "tahun"
+                                    ],
+                                    "explanation": "Saya berumur lima tahun expresa la edad."
+                                }
                             ]
                         },
                         {
@@ -430,11 +740,152 @@
                                 { id: 'v24', idn: 'Teman', esp: 'Amigo/a', ex: 'Dia teman saya.', exEsp: 'Él/ella es mi amigo/a.' }
                             ],
                             exercises: [
-                                { vocabId: 'v20', type: 'mc', prompt: '¿Qué significa “keluarga”?', options: ['Escuela', 'Familia', 'Comida', 'Trabajo'], answer: 1, explanation: '“Keluarga” significa familia.' },
-                                { vocabId: 'v21', type: 'translate_es_id', prompt: 'Traduce: “Madre”', answer: 'Ibu', explanation: '“Ibu” significa madre y también puede ser una forma respetuosa de dirigirse a una mujer adulta.' },
-                                { vocabId: 'v22', type: 'mc', prompt: '“Ayah” significa...', options: ['Padre', 'Hermano', 'Amigo', 'Hijo'], answer: 0, explanation: '“Ayah” significa padre.' },
-                                { vocabId: 'v23', type: 'order', prompt: 'Ordena: “Esta es mi familia”', words: ['saya', 'keluarga', 'Ini'], correctOrder: ['Ini', 'keluarga', 'saya'], explanation: '“Ini keluarga saya” significa “Esta es mi familia”.' },
-                                { vocabId: 'v24', type: 'translate_es_id', prompt: 'Traduce: “Amigo/a”', answer: 'Teman', explanation: '“Teman” es amigo o amiga.' }
+                                {
+                                    "vocabId": "v20",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa keluarga?",
+                                    "options": [
+                                        "Familia",
+                                        "Amigo",
+                                        "Padre",
+                                        "Madre"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Keluarga significa familia."
+                                },
+                                {
+                                    "vocabId": "v21",
+                                    "type": "translate_es_id",
+                                    "prompt": "Traduce: madre",
+                                    "answer": "Ibu",
+                                    "explanation": "Ibu significa madre."
+                                },
+                                {
+                                    "vocabId": "v22",
+                                    "type": "mc",
+                                    "prompt": "¿Qué palabra significa padre?",
+                                    "options": [
+                                        "Anak",
+                                        "Ayah",
+                                        "Teman",
+                                        "Ibu"
+                                    ],
+                                    "answer": 1,
+                                    "explanation": "Ayah significa padre."
+                                },
+                                {
+                                    "vocabId": "v23",
+                                    "type": "order",
+                                    "prompt": "Ordena: Esta es mi familia",
+                                    "words": [
+                                        "saya",
+                                        "Ini",
+                                        "keluarga"
+                                    ],
+                                    "correctOrder": [
+                                        "Ini",
+                                        "keluarga",
+                                        "saya"
+                                    ],
+                                    "explanation": "Ini keluarga saya significa Esta es mi familia."
+                                },
+                                {
+                                    "vocabId": "v24",
+                                    "type": "translate_es_id",
+                                    "prompt": "Traduce: amigo o amiga",
+                                    "answer": "Teman",
+                                    "explanation": "Teman significa amigo o amiga."
+                                },
+                                {
+                                    "vocabId": "v20",
+                                    "type": "listen",
+                                    "prompt": "Escribe lo que escuchas",
+                                    "answer": "Ini keluarga saya",
+                                    "explanation": "La frase presenta a la familia."
+                                },
+                                {
+                                    "vocabId": "v21",
+                                    "type": "mc",
+                                    "prompt": "Completa: ___ saya baik (Mi madre es amable)",
+                                    "options": [
+                                        "Ibu",
+                                        "Ayah",
+                                        "Teman",
+                                        "Anak"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Ibu saya significa mi madre."
+                                },
+                                {
+                                    "vocabId": "v22",
+                                    "type": "listen",
+                                    "prompt": "Escribe lo que escuchas",
+                                    "answer": "Ayah saya bekerja",
+                                    "explanation": "Ayah saya bekerja significa Mi padre trabaja."
+                                },
+                                {
+                                    "vocabId": "v23",
+                                    "type": "translate_es_id",
+                                    "prompt": "Traduce: Él tiene dos hijos",
+                                    "answer": "Dia punya dua anak",
+                                    "explanation": "Anak puede significar niño o hijo según el contexto."
+                                },
+                                {
+                                    "vocabId": "v24",
+                                    "type": "order",
+                                    "prompt": "Ordena: Él es mi amigo",
+                                    "words": [
+                                        "saya",
+                                        "Dia",
+                                        "teman"
+                                    ],
+                                    "correctOrder": [
+                                        "Dia",
+                                        "teman",
+                                        "saya"
+                                    ],
+                                    "explanation": "Dia teman saya significa Él o ella es mi amigo."
+                                },
+                                {
+                                    "vocabId": "v20",
+                                    "type": "mc",
+                                    "prompt": "Elige la frase que presenta a una familia",
+                                    "options": [
+                                        "Ini keluarga saya",
+                                        "Ayah saya bekerja",
+                                        "Teman saya di sini",
+                                        "Ibu saya baik"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Ini keluarga saya presenta a la familia."
+                                },
+                                {
+                                    "vocabId": "v21",
+                                    "type": "listen",
+                                    "prompt": "Escribe lo que escuchas",
+                                    "answer": "Ibu saya baik",
+                                    "explanation": "La frase describe a la madre."
+                                },
+                                {
+                                    "vocabId": "v22",
+                                    "type": "translate_es_id",
+                                    "prompt": "Traduce: Mi padre trabaja",
+                                    "answer": "Ayah saya bekerja",
+                                    "explanation": "Ayah significa padre y bekerja significa trabaja."
+                                },
+                                {
+                                    "vocabId": "v23",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa anak en Dia punya dua anak?",
+                                    "options": [
+                                        "Hijo o hija",
+                                        "Amigo",
+                                        "Madre",
+                                        "Familia"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Anak significa niño o hijo según el contexto."
+                                }
                             ]
                         },
                         {
@@ -450,11 +901,144 @@
                                 { id: 'v29', idn: 'Tolong', esp: 'Por favor / ayudar', ex: 'Tolong, satu kopi.', exEsp: 'Por favor, un café.' }
                             ],
                             exercises: [
-                                { vocabId: 'v25', type: 'mc', prompt: '¿Qué significa “makan”?', options: ['Dormir', 'Comer', 'Beber', 'Leer'], answer: 1, explanation: '“Makan” significa comer.' },
-                                { vocabId: 'v26', type: 'translate_es_id', prompt: 'Traduce: “Beber”', answer: 'Minum', explanation: '“Minum” significa beber.' },
-                                { vocabId: 'v27', type: 'mc', prompt: 'Completa: “Saya minum ___” (Bebo agua)', options: ['buku', 'air', 'teman', 'tidur'], answer: 1, explanation: '“Air” significa agua.' },
-                                { vocabId: 'v28', type: 'order', prompt: 'Ordena: “Como arroz”', words: ['nasi', 'makan', 'Saya'], correctOrder: ['Saya', 'makan', 'nasi'], explanation: 'Sujeto + verbo + objeto: “Saya makan nasi”.' },
-                                { vocabId: 'v29', type: 'translate_es_id', prompt: 'Traduce: “Por favor”', answer: 'Tolong', explanation: '“Tolong” se usa para pedir ayuda o formular una petición.' }
+                                {
+                                    "vocabId": "v25",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa makan?",
+                                    "options": [
+                                        "Beber",
+                                        "Comer",
+                                        "Dormir",
+                                        "Vivir"
+                                    ],
+                                    "answer": 1,
+                                    "explanation": "Makan significa comer."
+                                },
+                                {
+                                    "vocabId": "v26",
+                                    "type": "translate_es_id",
+                                    "prompt": "Traduce: beber",
+                                    "answer": "Minum",
+                                    "explanation": "Minum significa beber."
+                                },
+                                {
+                                    "vocabId": "v27",
+                                    "type": "mc",
+                                    "prompt": "Completa: Saya minum ___ (Bebo agua)",
+                                    "options": [
+                                        "air",
+                                        "nasi",
+                                        "makan",
+                                        "tidur"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Air significa agua."
+                                },
+                                {
+                                    "vocabId": "v28",
+                                    "type": "order",
+                                    "prompt": "Ordena: Como arroz",
+                                    "words": [
+                                        "nasi",
+                                        "Saya",
+                                        "makan"
+                                    ],
+                                    "correctOrder": [
+                                        "Saya",
+                                        "makan",
+                                        "nasi"
+                                    ],
+                                    "explanation": "Saya makan nasi significa Como arroz."
+                                },
+                                {
+                                    "vocabId": "v29",
+                                    "type": "translate_es_id",
+                                    "prompt": "Traduce: por favor, para pedir algo",
+                                    "answer": "Tolong",
+                                    "explanation": "Tolong se usa al pedir ayuda o formular una petición."
+                                },
+                                {
+                                    "vocabId": "v25",
+                                    "type": "listen",
+                                    "prompt": "Escribe lo que escuchas",
+                                    "answer": "Saya makan nasi",
+                                    "explanation": "La frase significa Como arroz."
+                                },
+                                {
+                                    "vocabId": "v26",
+                                    "type": "mc",
+                                    "prompt": "¿Qué verbo se usa para beber agua?",
+                                    "options": [
+                                        "Minum",
+                                        "Makan",
+                                        "Tinggal",
+                                        "Tidur"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Minum es el verbo beber."
+                                },
+                                {
+                                    "vocabId": "v27",
+                                    "type": "listen",
+                                    "prompt": "Escribe lo que escuchas",
+                                    "answer": "Saya mau air",
+                                    "explanation": "Saya mau air significa Quiero agua."
+                                },
+                                {
+                                    "vocabId": "v28",
+                                    "type": "translate_es_id",
+                                    "prompt": "Traduce: arroz cocido",
+                                    "answer": "Nasi",
+                                    "explanation": "Nasi se refiere al arroz cocido."
+                                },
+                                {
+                                    "vocabId": "v29",
+                                    "type": "order",
+                                    "prompt": "Ordena una petición breve: Por favor, agua",
+                                    "words": [
+                                        "air",
+                                        "Tolong"
+                                    ],
+                                    "correctOrder": [
+                                        "Tolong",
+                                        "air"
+                                    ],
+                                    "explanation": "Tolong air es una petición breve de agua."
+                                },
+                                {
+                                    "vocabId": "v25",
+                                    "type": "mc",
+                                    "prompt": "Completa: Saya ___ nasi (Como arroz)",
+                                    "options": [
+                                        "makan",
+                                        "minum",
+                                        "rumah",
+                                        "ibu"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Makan va con la acción de comer."
+                                },
+                                {
+                                    "vocabId": "v26",
+                                    "type": "listen",
+                                    "prompt": "Escribe lo que escuchas",
+                                    "answer": "Saya minum air",
+                                    "explanation": "La frase significa Bebo agua."
+                                },
+                                {
+                                    "vocabId": "v27",
+                                    "type": "translate_es_id",
+                                    "prompt": "Traduce: agua",
+                                    "answer": "Air",
+                                    "explanation": "Air significa agua."
+                                },
+                                {
+                                    "vocabId": "v28",
+                                    "type": "listen",
+                                    "prompt": "Escribe lo que escuchas",
+                                    "answer": "Saya makan nasi",
+                                    "explanation": "Escucha la frase y escribe las palabras en orden."
+                                }
                             ]
                         },
                         {
@@ -470,11 +1054,146 @@
                                 { id: 'v34', idn: 'Di sini', esp: 'Aquí', ex: 'Saya di sini.', exEsp: 'Estoy aquí.' }
                             ],
                             exercises: [
-                                { vocabId: 'v30', type: 'mc', prompt: '¿Qué significa “rumah”?', options: ['Ciudad', 'Casa', 'Escuela', 'Mercado'], answer: 1, explanation: '“Rumah” significa casa.' },
-                                { vocabId: 'v31', type: 'translate_es_id', prompt: 'Traduce: “Escuela”', answer: 'Sekolah', explanation: '“Sekolah” significa escuela.' },
-                                { vocabId: 'v32', type: 'order', prompt: 'Ordena: “¿Dónde está el baño?”', words: ['toilet', 'mana', 'Di'], correctOrder: ['Di', 'mana', 'toilet'], explanation: '“Di mana ...?” significa “¿Dónde ...?”.' },
-                                { vocabId: 'v33', type: 'mc', prompt: 'Completa: “Saya tinggal di ___” (Vivo en la ciudad)', options: ['kota', 'air', 'ibu', 'makan'], answer: 0, explanation: '“Kota” significa ciudad.' },
-                                { vocabId: 'v34', type: 'translate_es_id', prompt: 'Traduce: “Aquí”', answer: 'Di sini', explanation: '“Di sini” significa aquí.' }
+                                {
+                                    "vocabId": "v30",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa rumah?",
+                                    "options": [
+                                        "Casa",
+                                        "Ciudad",
+                                        "Escuela",
+                                        "Mercado"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Rumah significa casa."
+                                },
+                                {
+                                    "vocabId": "v31",
+                                    "type": "translate_es_id",
+                                    "prompt": "Traduce: escuela",
+                                    "answer": "Sekolah",
+                                    "explanation": "Sekolah significa escuela."
+                                },
+                                {
+                                    "vocabId": "v32",
+                                    "type": "order",
+                                    "prompt": "Ordena: ¿Dónde está el baño?",
+                                    "words": [
+                                        "toilet",
+                                        "Di",
+                                        "mana"
+                                    ],
+                                    "correctOrder": [
+                                        "Di",
+                                        "mana",
+                                        "toilet"
+                                    ],
+                                    "explanation": "Di mana pregunta dónde está algo."
+                                },
+                                {
+                                    "vocabId": "v33",
+                                    "type": "mc",
+                                    "prompt": "Completa: Saya tinggal di ___ (Vivo en la ciudad)",
+                                    "options": [
+                                        "kota",
+                                        "air",
+                                        "ibu",
+                                        "makan"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Kota significa ciudad."
+                                },
+                                {
+                                    "vocabId": "v34",
+                                    "type": "translate_es_id",
+                                    "prompt": "Traduce: aquí",
+                                    "answer": "Di sini",
+                                    "explanation": "Di sini significa aquí."
+                                },
+                                {
+                                    "vocabId": "v30",
+                                    "type": "listen",
+                                    "prompt": "Escribe lo que escuchas",
+                                    "answer": "Saya di rumah",
+                                    "explanation": "Saya di rumah significa Estoy en casa."
+                                },
+                                {
+                                    "vocabId": "v31",
+                                    "type": "mc",
+                                    "prompt": "Completa: Dia di ___ (Él está en la escuela)",
+                                    "options": [
+                                        "sekolah",
+                                        "rumah",
+                                        "kota",
+                                        "sini"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Dia di sekolah significa Él o ella está en la escuela."
+                                },
+                                {
+                                    "vocabId": "v32",
+                                    "type": "listen",
+                                    "prompt": "Escribe lo que escuchas",
+                                    "answer": "Di mana toilet",
+                                    "explanation": "La frase pregunta dónde está el baño."
+                                },
+                                {
+                                    "vocabId": "v33",
+                                    "type": "translate_es_id",
+                                    "prompt": "Traduce: Vivo en la ciudad",
+                                    "answer": "Saya tinggal di kota",
+                                    "explanation": "Kota significa ciudad."
+                                },
+                                {
+                                    "vocabId": "v34",
+                                    "type": "order",
+                                    "prompt": "Ordena: Estoy aquí",
+                                    "words": [
+                                        "sini",
+                                        "di",
+                                        "Saya"
+                                    ],
+                                    "correctOrder": [
+                                        "Saya",
+                                        "di",
+                                        "sini"
+                                    ],
+                                    "explanation": "Saya di sini significa Estoy aquí."
+                                },
+                                {
+                                    "vocabId": "v30",
+                                    "type": "mc",
+                                    "prompt": "Elige la frase que significa Estoy en casa",
+                                    "options": [
+                                        "Saya di rumah",
+                                        "Saya di sekolah",
+                                        "Saya di sini",
+                                        "Saya tinggal di kota"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Rumah significa casa."
+                                },
+                                {
+                                    "vocabId": "v31",
+                                    "type": "listen",
+                                    "prompt": "Escribe lo que escuchas",
+                                    "answer": "Dia di sekolah",
+                                    "explanation": "Dia di sekolah indica que alguien está en la escuela."
+                                },
+                                {
+                                    "vocabId": "v32",
+                                    "type": "translate_es_id",
+                                    "prompt": "Traduce: ¿Dónde está el baño?",
+                                    "answer": "Di mana toilet",
+                                    "explanation": "Di mana significa dónde."
+                                },
+                                {
+                                    "vocabId": "v34",
+                                    "type": "listen",
+                                    "prompt": "Escribe lo que escuchas",
+                                    "answer": "Saya di sini",
+                                    "explanation": "Saya di sini significa Estoy aquí."
+                                }
                             ]
                         },
                         {
@@ -491,12 +1210,152 @@
                                 { id: 'v44', idn: 'Setiap hari', esp: 'Todos los días', ex: 'Saya belajar setiap hari.', exEsp: 'Estudio todos los días.' }
                             ],
                             exercises: [
-                                { vocabId: 'v35', type: 'mc', prompt: '¿Qué significa “hari”?', options: ['Noche', 'Día', 'Semana', 'Año'], answer: 1, explanation: '“Hari” significa día.' },
-                                { vocabId: 'v36', type: 'translate_es_id', prompt: 'Traduce: “Hoy”', answer: 'Hari ini', explanation: '“Hari ini” significa hoy.' },
-                                { vocabId: 'v37', type: 'mc', prompt: '“Belajar” significa...', options: ['Comer', 'Estudiar/aprender', 'Vivir', 'Beber'], answer: 1, explanation: '“Belajar” significa estudiar o aprender.' },
-                                { vocabId: 'v38', type: 'order', prompt: 'Ordena: “Mi padre trabaja”', words: ['bekerja', 'Ayah'], correctOrder: ['Ayah', 'bekerja'], explanation: '“Ayah bekerja” significa “Mi padre trabaja”.' },
-                                { vocabId: 'v39', type: 'translate_es_id', prompt: 'Traduce: “Dormir”', answer: 'Tidur', explanation: '“Tidur” significa dormir.' },
-                                { vocabId: 'v44', type: 'translate_es_id', prompt: 'Traduce: “Todos los días”', answer: 'Setiap hari', explanation: '“Setiap hari” significa todos los días.' }
+                                {
+                                    "vocabId": "v35",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa hari?",
+                                    "options": [
+                                        "Día",
+                                        "Noche",
+                                        "Año",
+                                        "Semana"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Hari significa día."
+                                },
+                                {
+                                    "vocabId": "v36",
+                                    "type": "translate_es_id",
+                                    "prompt": "Traduce: hoy",
+                                    "answer": "Hari ini",
+                                    "explanation": "Hari ini significa hoy."
+                                },
+                                {
+                                    "vocabId": "v37",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa belajar?",
+                                    "options": [
+                                        "Estudiar o aprender",
+                                        "Comer",
+                                        "Dormir",
+                                        "Beber"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Belajar significa estudiar o aprender."
+                                },
+                                {
+                                    "vocabId": "v38",
+                                    "type": "order",
+                                    "prompt": "Ordena: Mi padre trabaja",
+                                    "words": [
+                                        "bekerja",
+                                        "Ayah"
+                                    ],
+                                    "correctOrder": [
+                                        "Ayah",
+                                        "bekerja"
+                                    ],
+                                    "explanation": "Ayah bekerja significa Mi padre trabaja."
+                                },
+                                {
+                                    "vocabId": "v39",
+                                    "type": "translate_es_id",
+                                    "prompt": "Traduce: dormir",
+                                    "answer": "Tidur",
+                                    "explanation": "Tidur significa dormir."
+                                },
+                                {
+                                    "vocabId": "v44",
+                                    "type": "listen",
+                                    "prompt": "Escribe lo que escuchas",
+                                    "answer": "Saya belajar setiap hari",
+                                    "explanation": "La frase significa Estudio todos los días."
+                                },
+                                {
+                                    "vocabId": "v35",
+                                    "type": "listen",
+                                    "prompt": "Escribe lo que escuchas",
+                                    "answer": "Hari ini panas",
+                                    "explanation": "Hari ini panas significa Hoy hace calor."
+                                },
+                                {
+                                    "vocabId": "v36",
+                                    "type": "mc",
+                                    "prompt": "Completa: ___ saya belajar (Hoy estudio)",
+                                    "options": [
+                                        "Hari ini",
+                                        "Setiap hari",
+                                        "Tahun",
+                                        "Tidur"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Hari ini se usa para hablar de hoy."
+                                },
+                                {
+                                    "vocabId": "v37",
+                                    "type": "listen",
+                                    "prompt": "Escribe lo que escuchas",
+                                    "answer": "Saya belajar bahasa Indonesia",
+                                    "explanation": "La frase significa Estudio indonesio."
+                                },
+                                {
+                                    "vocabId": "v38",
+                                    "type": "translate_es_id",
+                                    "prompt": "Traduce: trabaja",
+                                    "answer": "Bekerja",
+                                    "explanation": "Bekerja significa trabajar."
+                                },
+                                {
+                                    "vocabId": "v39",
+                                    "type": "mc",
+                                    "prompt": "¿Qué verbo significa dormir?",
+                                    "options": [
+                                        "Tidur",
+                                        "Belajar",
+                                        "Bekerja",
+                                        "Makan"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Tidur significa dormir."
+                                },
+                                {
+                                    "vocabId": "v44",
+                                    "type": "order",
+                                    "prompt": "Ordena: Estudio todos los días",
+                                    "words": [
+                                        "hari",
+                                        "Saya",
+                                        "setiap",
+                                        "belajar"
+                                    ],
+                                    "correctOrder": [
+                                        "Saya",
+                                        "belajar",
+                                        "setiap",
+                                        "hari"
+                                    ],
+                                    "explanation": "Saya belajar setiap hari expresa una rutina."
+                                },
+                                {
+                                    "vocabId": "v35",
+                                    "type": "translate_es_id",
+                                    "prompt": "Traduce: día",
+                                    "answer": "Hari",
+                                    "explanation": "Hari significa día."
+                                },
+                                {
+                                    "vocabId": "v44",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa setiap hari?",
+                                    "options": [
+                                        "Todos los días",
+                                        "Hoy",
+                                        "Por la noche",
+                                        "Un año"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Setiap hari significa todos los días."
+                                }
                             ]
                         }
                     ]
@@ -918,6 +1777,34 @@
                 if (!el) return;
                 const t = SYLLABUS[CustomLessons.pos];
                 el.innerHTML = t ? `<strong>Siguiente tema:</strong> ${t.split('|')[0]}` : 'Temario completado 🎉 Elige un tema propio para seguir.';
+                const selector = document.getElementById('syllabusSelector');
+                if (selector) {
+                    const selected = selector.value;
+                    if (selector.options.length !== SYLLABUS.length) {
+                        selector.innerHTML = SYLLABUS.map((topic, index) => `<option value="${index}">${index + 1}. ${topic.split('|')[0]}</option>`).join('');
+                    }
+                    selector.value = String(Math.min(CustomLessons.pos, SYLLABUS.length - 1));
+                    if (selected && Number(selected) === CustomLessons.pos) selector.value = selected;
+                }
+            },
+            async skipTopic() {
+                if (CustomLessons.pos >= SYLLABUS.length) {
+                    document.getElementById('batchStatus').innerText = 'El temario ya está completo.';
+                    return;
+                }
+                CustomLessons.pos = Math.min(CustomLessons.pos + 1, SYLLABUS.length);
+                await DB.set('settings', 'syllabusPos', CustomLessons.pos);
+                this.showNext();
+                document.getElementById('batchStatus').innerText = 'Tema saltado. La posición se guardó en este dispositivo.';
+            },
+            async chooseTopic() {
+                const selector = document.getElementById('syllabusSelector');
+                const selected = Number(selector && selector.value);
+                if (!Number.isInteger(selected) || selected < 0 || selected >= SYLLABUS.length) return;
+                CustomLessons.pos = selected;
+                await DB.set('settings', 'syllabusPos', CustomLessons.pos);
+                this.showNext();
+                document.getElementById('batchStatus').innerText = 'Tema inicial actualizado y guardado.';
             },
             async next(n) {
                 if (!App.apiKey) return alert('Primero guarda tu clave de Gemini en la pestaña Tutor.');
@@ -1059,6 +1946,7 @@ Requisitos:
                 delete u.skipped; delete u.repeated;
                 CustomLessons.units.push(u);
                 await DB.set('settings', 'customUnits', CustomLessons.units);
+                App.updateStorageStatus();
                 this.discard();
                 document.getElementById('aiTopic').value = '';
                 App.renderCourseRoute();
@@ -1073,6 +1961,7 @@ Requisitos:
                 if (!confirm('¿Eliminar esta lección generada?')) return;
                 CustomLessons.units = CustomLessons.units.filter(u => u.id !== id);
                 await DB.set('settings', 'customUnits', CustomLessons.units);
+                App.updateStorageStatus();
                 App.renderCourseRoute();
                 App.renderDict();
             }
@@ -1113,7 +2002,21 @@ Requisitos:
                 }
             },
             checkNetwork() {
-                document.getElementById('offlineStatus').style.display = navigator.onLine ? 'none' : 'inline-block';
+                const status = document.getElementById('connectionStatus');
+                if (status) {
+                    status.classList.toggle('online', navigator.onLine);
+                    status.classList.toggle('offline', !navigator.onLine);
+                    status.textContent = navigator.onLine ? 'Online' : 'Sin conexión';
+                    status.title = navigator.onLine ? 'El dispositivo tiene conexión' : 'El dispositivo no tiene conexión';
+                }
+                this.updateStorageStatus();
+            },
+            updateStorageStatus() {
+                const local = document.getElementById('localLessonsStatus');
+                if (!local) return;
+                const count = CustomLessons.units.length;
+                local.textContent = `${count} ${count === 1 ? 'lección guardada' : 'lecciones guardadas'}`;
+                local.title = 'Lecciones generadas guardadas en este dispositivo; no indica el estado de la conexión.';
             },
             toggleTheme() { document.body.classList.toggle('dark-mode'); try { localStorage.setItem('bs_dark', document.body.classList.contains('dark-mode') ? '1' : '0'); } catch (e) {} },
             switchView(viewId, btn) {
@@ -1138,37 +2041,55 @@ Requisitos:
             },
             updateUI() {
                 document.getElementById('totalExpBadge').innerText = `${this.xp} XP`;
+                const a1 = CourseData.levels.find(level => level.id === 'A1');
+                const total = a1 ? a1.units.length : 0;
+                const completed = a1 ? a1.units.filter(unit => this.completedUnits.includes(unit.id)).length : 0;
+                const percent = total ? Math.round(completed / total * 100) : 0;
+                const fill = document.getElementById('courseProgressFill');
+                const label = document.getElementById('courseProgressText');
+                const bar = fill && fill.parentElement;
+                if (fill) fill.style.width = percent + '%';
+                if (label) label.textContent = `${percent}% · ${completed}/${total} unidades`;
+                if (bar) bar.setAttribute('aria-valuenow', String(percent));
             },
             renderCourseRoute() {
                 const container = document.getElementById('courseContainer');
                 container.innerHTML = '';
+                const a1 = CourseData.levels.find(level => level.id === 'A1');
+                const nextA1Unit = a1 ? a1.units.find(unit => !this.completedUnits.includes(unit.id)) : null;
 
                 getLevels().forEach(lvl => {
                     const levelEl = document.createElement('div');
                     const isAdvanced = ['A2', 'B1', 'B2'].includes(lvl.id);
                     if (isAdvanced) {
-                        levelEl.innerHTML = `<details style="margin:16px 0; padding:12px; border:1px solid var(--border-color, #ddd); border-radius:12px;"><summary style="cursor:pointer; font-weight:700;">${lvl.title} — En desarrollo</summary><p style="margin-top:10px; color:var(--text-muted); font-size:0.9rem;">Este nivel todavía no está completo. Estamos desarrollando el contenido y los ejercicios; por ahora, te recomendamos completar A1.</p></details>`;
+                        levelEl.innerHTML = `<details style="margin:16px 0; padding:12px; border:1px solid var(--border); border-radius:12px;"><summary style="cursor:pointer; font-weight:700;">${lvl.title} — En desarrollo</summary><p style="margin-top:10px; color:var(--text-muted); font-size:0.9rem;">Este nivel todavía no está completo. Estamos desarrollando el contenido y los ejercicios; por ahora, te recomendamos completar A1.</p></details>`;
                         container.appendChild(levelEl);
                         return;
                     }
-                    levelEl.innerHTML = `<h2 style="margin: 16px 0 8px 0;">${lvl.title}</h2>`;
+                    levelEl.innerHTML = `<h2 style="margin:16px 0 8px 0;">${lvl.title}</h2>`;
 
                     lvl.units.forEach(unit => {
                         const isDone = this.completedUnits.includes(unit.id);
-                        const card = document.createElement('div');
+                        const isNext = lvl.id === 'A1' && nextA1Unit && unit.id === nextA1Unit.id;
+                        const card = document.createElement('details');
                         card.className = `unit-card ${isDone ? 'completed' : ''}`;
+                        if (isNext) card.open = true;
                         card.innerHTML = `
-                            <div style="display:flex; justify-content:space-between; align-items:center;">
-                                <div class="unit-title">${unit.title} ${isDone ? '✓' : ''}${unit.custom ? ' ✨' : ''}</div>
-                                <button class="btn btn-sm btn-outline" onclick="AudioEngine.speak('${unit.vocab[0]?.idn || ''}')">🔊 Pronunciación</button>
+                            <summary>
+                                <span class="unit-title">${unit.title} ${isDone ? '✓' : ''}${unit.custom ? ' ✨' : ''}</span>
+                                <span class="badge">${isDone ? 'Completada' : isNext ? 'Siguiente' : 'Pendiente'}</span>
+                            </summary>
+                            <div class="unit-body">
+                                <p style="font-size:0.85rem; color:var(--text-muted);">${unit.desc}</p>
+                                <div style="background:var(--bg-card); padding:8px; border-radius:10px; font-size:0.85rem;">
+                                    💡 <strong>Gramática:</strong> ${unit.grammar}
+                                </div>
+                                <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                                    <button class="btn btn-outline btn-sm" onclick="AudioEngine.speak('${unit.vocab[0]?.idn || ''}')">🔊 Pronunciación</button>
+                                    ${unit.custom ? `<button class="btn btn-outline btn-sm" onclick="AIGen.remove('${unit.id}')">Eliminar</button>` : ''}
+                                </div>
+                                <button class="btn" onclick="LessonEngine.startUnitById('${unit.id}')">${isDone ? 'Repasar Lección' : 'Iniciar Lección'}</button>
                             </div>
-                            <p style="font-size:0.85rem; color:var(--text-muted);">${unit.desc}</p>
-                            <div style="background:var(--bg-card); padding:8px; border-radius:6px; font-size:0.8rem;">
-                                💡 <strong>Gramática:</strong> ${unit.grammar}
-                            </div>
-                            ${unit.custom ? `<button class="btn btn-outline btn-sm" style="margin-top:8px; margin-right:8px;" onclick="AIGen.remove('${unit.id}')">Eliminar</button>` : ''}<button class="btn" style="margin-top:8px;" onclick="LessonEngine.startUnitById('${unit.id}')">
-                                ${isDone ? 'Repasar Lección' : 'Iniciar Lección'}
-                            </button>
                         `;
                         levelEl.appendChild(card);
                     });

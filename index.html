@@ -607,7 +607,7 @@
                             vocab: [
                                 { id: 'v15', idn: 'Satu', esp: 'Uno', ex: 'Satu buku.', exEsp: 'Un libro.' },
                                 { id: 'v16', idn: 'Dua', esp: 'Dos', ex: 'Dua teman.', exEsp: 'Dos amigos.' },
-                                { id: 'v17', idn: 'Tiga', esp: 'Tres', ex: 'Tiga apel.', exEsp: 'Tres manzanas.' },
+                                { id: 'v17', idn: 'Tiga', esp: 'Tres', ex: 'Tiga tahun.', exEsp: 'Tres años.' },
                                 { id: 'v18', idn: 'Berapa', esp: 'Cuánto / cuántos', ex: 'Berapa umur kamu?', exEsp: '¿Cuántos años tienes?' },
                                 { id: 'v19', idn: 'Tahun', esp: 'Año', ex: 'Saya berumur dua puluh tahun.', exEsp: 'Tengo veinte años.' },
                                 { id: 'v40', idn: 'Empat', esp: 'Cuatro', ex: 'Empat buku.', exEsp: 'Cuatro libros.' },
@@ -676,9 +676,9 @@
                                           {
                                                     "vocabId": "v17",
                                                     "type": "translate_es_id",
-                                                    "prompt": "Traduce: tres manzanas",
-                                                    "answer": "Tiga apel",
-                                                    "explanation": "Tiga apel significa tres manzanas."
+                                                    "prompt": "Traduce: tres años",
+                                                    "answer": "Tiga tahun",
+                                                    "explanation": "Tiga tahun significa tres años."
                                           },
                                           {
                                                     "vocabId": "v19",
@@ -704,7 +704,7 @@
                                                     "prompt": "Escribe una frase con un número o una edad que hayas aprendido.",
                                                     "hint": "Escribe una oración completa y revisa el orden de las palabras.",
                                                     "modelAnswer": "Umur saya lima tahun.",
-                                                    "explanation": "Este ejemplo significa «Tengo veinte años». Usa un número que conozcas de la unidad."
+                                                    "explanation": "Este ejemplo significa «Tengo cinco años». Usa un número que conozcas de la unidad."
                                           }
                                 
                             ]
@@ -862,13 +862,13 @@
                             id: 'a1_u6',
                             title: 'Unidad 6: Comida y bebida',
                             desc: 'Nombrar alimentos, pedir algo sencillo y expresar gustos.',
-                            grammar: '“Saya mau ...” significa “Quiero ...”. “Saya suka ...” significa “Me gusta ...”. Para pedir de forma cortés, “Tolong” equivale a “por favor”.',
+                            grammar: '“Saya mau ...” significa “Quiero ...”. Para hacer una petición cortés, puedes añadir “Tolong” (“por favor”).',
                             vocab: [
                                 { id: 'v25', idn: 'Makan', esp: 'Comer / comida (según contexto)', ex: 'Saya makan nasi.', exEsp: 'Como arroz.' },
                                 { id: 'v26', idn: 'Minum', esp: 'Beber', ex: 'Saya minum air.', exEsp: 'Bebo agua.' },
                                 { id: 'v27', idn: 'Air', esp: 'Agua', ex: 'Saya mau air.', exEsp: 'Quiero agua.' },
                                 { id: 'v28', idn: 'Nasi', esp: 'Arroz cocido', ex: 'Saya makan nasi.', exEsp: 'Como arroz.' },
-                                { id: 'v29', idn: 'Tolong', esp: 'Por favor / ayudar', ex: 'Tolong, satu kopi.', exEsp: 'Por favor, un café.' }
+                                { id: 'v29', idn: 'Tolong', esp: 'Por favor / ayudar', ex: 'Tolong, saya mau air.', exEsp: 'Quiero agua, por favor.' }
                             ],
                             exercises: [
                                 {
@@ -897,9 +897,9 @@
                                     "prompt": "Completa: Saya minum ___ (Bebo agua)",
                                     "options": [
                                         "air",
-                                        "susu",
-                                        "teh",
-                                        "kopi"
+                                        "nasi",
+                                        "tidur",
+                                        "rumah"
                                     ],
                                     "answer": 0,
                                     "explanation": "Air significa agua."
@@ -1164,7 +1164,7 @@
                             desc: 'Hablar de actividades cotidianas y expresar cuándo ocurren.',
                             grammar: 'Los adverbios de tiempo suelen colocarse al inicio o al final de la oración. “Setiap hari” significa “todos los días”.',
                             vocab: [
-                                { id: 'v35', idn: 'Hari', esp: 'Día', ex: 'Hari ini panas.', exEsp: 'Hoy hace calor.' },
+                                { id: 'v35', idn: 'Hari', esp: 'Día', ex: 'Hari ini saya belajar.', exEsp: 'Hoy estudio.' },
                                 { id: 'v36', idn: 'Hari ini', esp: 'Hoy / este día', ex: 'Hari ini saya belajar.', exEsp: 'Hoy estudio.' },
                                 { id: 'v37', idn: 'Belajar', esp: 'Estudiar / aprender', ex: 'Saya belajar bahasa Indonesia.', exEsp: 'Estudio indonesio.' },
                                 { id: 'v38', idn: 'Bekerja', esp: 'Trabajar', ex: 'Ayah bekerja.', exEsp: 'Mi padre trabaja.' },
@@ -1178,9 +1178,9 @@
                                     "prompt": "¿Qué significa hari?",
                                     "options": [
                                         "Día",
-                                        "Noche",
-                                        "Año",
-                                        "Semana"
+                                        "Agua",
+                                        "Dormir",
+                                        "Escuela"
                                     ],
                                     "answer": 0,
                                     "explanation": "Hari significa día."
@@ -1240,7 +1240,7 @@
                                     "type": "listen",
                                     "prompt": "Escribe lo que escuchas",
                                     "answer": "Hari ini panas",
-                                    "explanation": "Hari ini panas significa Hoy hace calor."
+                                    "explanation": "Hari ini saya belajar significa Hoy estudio."
                                 },
                                 {
                                     "vocabId": "v36",

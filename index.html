@@ -607,7 +607,7 @@
                             vocab: [
                                 { id: 'v15', idn: 'Satu', esp: 'Uno', ex: 'Satu buku.', exEsp: 'Un libro.' },
                                 { id: 'v16', idn: 'Dua', esp: 'Dos', ex: 'Dua teman.', exEsp: 'Dos amigos.' },
-                                { id: 'v17', idn: 'Tiga', esp: 'Tres', ex: 'Tiga apel.', exEsp: 'Tres manzanas.' },
+                                { id: 'v17', idn: 'Tiga', esp: 'Tres', ex: 'Tiga tahun.', exEsp: 'Tres años.' },
                                 { id: 'v18', idn: 'Berapa', esp: 'Cuánto / cuántos', ex: 'Berapa umur kamu?', exEsp: '¿Cuántos años tienes?' },
                                 { id: 'v19', idn: 'Tahun', esp: 'Año', ex: 'Saya berumur dua puluh tahun.', exEsp: 'Tengo veinte años.' },
                                 { id: 'v40', idn: 'Empat', esp: 'Cuatro', ex: 'Empat buku.', exEsp: 'Cuatro libros.' },
@@ -676,9 +676,9 @@
                                           {
                                                     "vocabId": "v17",
                                                     "type": "translate_es_id",
-                                                    "prompt": "Traduce: tres manzanas",
-                                                    "answer": "Tiga apel",
-                                                    "explanation": "Tiga apel significa tres manzanas."
+                                                    "prompt": "Traduce: tres años",
+                                                    "answer": "Tiga tahun",
+                                                    "explanation": "Tiga tahun significa tres años."
                                           },
                                           {
                                                     "vocabId": "v19",
@@ -704,7 +704,7 @@
                                                     "prompt": "Escribe una frase con un número o una edad que hayas aprendido.",
                                                     "hint": "Escribe una oración completa y revisa el orden de las palabras.",
                                                     "modelAnswer": "Umur saya lima tahun.",
-                                                    "explanation": "Este ejemplo significa «Tengo veinte años». Usa un número que conozcas de la unidad."
+                                                    "explanation": "Este ejemplo significa «Tengo cinco años». Usa un número que conozcas de la unidad."
                                           }
                                 
                             ]
@@ -713,12 +713,12 @@
                             id: 'a1_u5',
                             title: 'Unidad 5: Familia y personas',
                             desc: 'Hablar de la familia y describir quién es alguien.',
-                            grammar: '“Ini” significa “este/esta” y puede introducir a una persona u objeto. “Saya punya ...” significa “Tengo ...”.',
+                            grammar: '“Ini” significa “esto/este/esta” y puede introducir a una persona u objeto. “Ini keluarga saya” significa “Esta es mi familia”.',
                             vocab: [
                                 { id: 'v20', idn: 'Keluarga', esp: 'Familia', ex: 'Ini keluarga saya.', exEsp: 'Esta es mi familia.' },
-                                { id: 'v21', idn: 'Ibu', esp: 'Madre', ex: 'Ibu saya baik.', exEsp: 'Mi madre es amable.' },
-                                { id: 'v22', idn: 'Ayah', esp: 'Padre', ex: 'Ayah saya bekerja.', exEsp: 'Mi padre trabaja.' },
-                                { id: 'v23', idn: 'Anak', esp: 'Niño/a; hijo/a', ex: 'Dia punya dua anak.', exEsp: 'Él/ella tiene dos hijos.' },
+                                { id: 'v21', idn: 'Ibu', esp: 'Madre', ex: 'Ini ibu saya.', exEsp: 'Esta es mi madre.' },
+                                { id: 'v22', idn: 'Ayah', esp: 'Padre', ex: 'Ini ayah saya.', exEsp: 'Este es mi padre.' },
+                                { id: 'v23', idn: 'Anak', esp: 'Niño/a; hijo/a', ex: 'Dia anak saya.', exEsp: 'Él/ella es mi hijo/a.' },
                                 { id: 'v24', idn: 'Teman', esp: 'Amigo/a', ex: 'Dia teman saya.', exEsp: 'Él/ella es mi amigo/a.' }
                             ],
                             exercises: [
@@ -802,15 +802,15 @@
                                     "vocabId": "v22",
                                     "type": "listen",
                                     "prompt": "Escribe lo que escuchas",
-                                    "answer": "Ayah saya bekerja",
-                                    "explanation": "Ayah saya bekerja significa Mi padre trabaja."
+                                    "answer": "Ini ayah saya",
+                                    "explanation": "Ini ayah saya significa Este es mi padre."
                                 },
                                 {
                                     "vocabId": "v23",
                                     "type": "translate_es_id",
-                                    "prompt": "Traduce: Él tiene dos hijos",
-                                    "answer": "Dia punya dua anak",
-                                    "explanation": "Anak puede significar niño o hijo según el contexto."
+                                    "prompt": "Traduce: Él es mi hijo",
+                                    "answer": "Dia anak saya",
+                                    "explanation": "Dia anak saya significa Él es mi hijo."
                                 },
                                 {
                                     "vocabId": "v24",
@@ -851,9 +851,9 @@
                                 {
                                     "vocabId": "v22",
                                     "type": "translate_es_id",
-                                    "prompt": "Traduce: Mi padre trabaja",
-                                    "answer": "Ayah saya bekerja",
-                                    "explanation": "Ayah significa padre y bekerja significa trabaja."
+                                    "prompt": "Traduce: Este es mi padre",
+                                    "answer": "Ini ayah saya",
+                                    "explanation": "Ini ayah saya significa Este es mi padre."
                                 },
                                 { vocabId: 'v20', type: 'write', prompt: "Escribe una frase sobre una persona de tu familia.", hint: "Usa una palabra de familia que hayas aprendido.", modelAnswer: "Ini ibu saya.", explanation: "Ini ibu saya significa «Esta es mi madre». Puedes cambiar ibu por otra palabra de familia." }
                             ]
@@ -862,13 +862,13 @@
                             id: 'a1_u6',
                             title: 'Unidad 6: Comida y bebida',
                             desc: 'Nombrar alimentos, pedir algo sencillo y expresar gustos.',
-                            grammar: '“Saya mau ...” significa “Quiero ...”. “Saya suka ...” significa “Me gusta ...”. Para pedir de forma cortés, “Tolong” equivale a “por favor”.',
+                            grammar: '“Saya mau ...” significa “Quiero ...”. Para hacer una petición cortés, puedes añadir “Tolong” (“por favor”).',
                             vocab: [
                                 { id: 'v25', idn: 'Makan', esp: 'Comer / comida (según contexto)', ex: 'Saya makan nasi.', exEsp: 'Como arroz.' },
                                 { id: 'v26', idn: 'Minum', esp: 'Beber', ex: 'Saya minum air.', exEsp: 'Bebo agua.' },
                                 { id: 'v27', idn: 'Air', esp: 'Agua', ex: 'Saya mau air.', exEsp: 'Quiero agua.' },
                                 { id: 'v28', idn: 'Nasi', esp: 'Arroz cocido', ex: 'Saya makan nasi.', exEsp: 'Como arroz.' },
-                                { id: 'v29', idn: 'Tolong', esp: 'Por favor / ayudar', ex: 'Tolong, satu kopi.', exEsp: 'Por favor, un café.' }
+                                { id: 'v29', idn: 'Tolong', esp: 'Por favor / ayudar', ex: 'Tolong, saya mau air.', exEsp: 'Quiero agua, por favor.' }
                             ],
                             exercises: [
                                 {
@@ -897,9 +897,9 @@
                                     "prompt": "Completa: Saya minum ___ (Bebo agua)",
                                     "options": [
                                         "air",
-                                        "susu",
-                                        "teh",
-                                        "kopi"
+                                        "nasi",
+                                        "tidur",
+                                        "rumah"
                                     ],
                                     "answer": 0,
                                     "explanation": "Air significa agua."
@@ -1017,7 +1017,7 @@
                             vocab: [
                                 { id: 'v30', idn: 'Rumah', esp: 'Casa', ex: 'Saya di rumah.', exEsp: 'Estoy en casa.' },
                                 { id: 'v31', idn: 'Sekolah', esp: 'Escuela', ex: 'Dia di sekolah.', exEsp: 'Él/ella está en la escuela.' },
-                                { id: 'v32', idn: 'Di mana', esp: 'Dónde', ex: 'Di mana toilet?', exEsp: '¿Dónde está el baño?' },
+                                { id: 'v32', idn: 'Di mana', esp: 'Dónde', ex: 'Di mana sekolah?', exEsp: '¿Dónde está la escuela?' },
                                 { id: 'v33', idn: 'Kota', esp: 'Ciudad', ex: 'Saya tinggal di kota.', exEsp: 'Vivo en la ciudad.' },
                                 { id: 'v34', idn: 'Di sini', esp: 'Aquí', ex: 'Saya di sini.', exEsp: 'Estoy aquí.' }
                             ],
@@ -1045,18 +1045,18 @@
                                 {
                                     "vocabId": "v32",
                                     "type": "order",
-                                    "prompt": "Ordena: ¿Dónde está el baño?",
+                                    "prompt": "Ordena: ¿Dónde está la escuela?",
                                     "words": [
-                                        "toilet",
+                                        "sekolah",
                                         "Di",
                                         "mana"
                                     ],
                                     "correctOrder": [
                                         "Di",
                                         "mana",
-                                        "toilet"
+                                        "sekolah"
                                     ],
-                                    "explanation": "Di mana pregunta dónde está algo."
+                                    "explanation": "Di mana sekolah pregunta dónde está la escuela."
                                 },
                                 {
                                     "vocabId": "v33",
@@ -1064,9 +1064,9 @@
                                     "prompt": "Completa: Saya tinggal di ___ (Vivo en la ciudad)",
                                     "options": [
                                         "kota",
-                                        "desa",
-                                        "kampung",
-                                        "jalan"
+                                        "rumah",
+                                        "sekolah",
+                                        "sini"
                                     ],
                                     "answer": 0,
                                     "explanation": "Kota significa ciudad."
@@ -1092,8 +1092,8 @@
                                     "options": [
                                         "sekolah",
                                         "rumah",
-                                        "pasar",
-                                        "kantor"
+                                        "kota",
+                                        "sini"
                                     ],
                                     "answer": 0,
                                     "explanation": "Dia di sekolah significa Él o ella está en la escuela."
@@ -1102,8 +1102,8 @@
                                     "vocabId": "v32",
                                     "type": "listen",
                                     "prompt": "Escribe lo que escuchas",
-                                    "answer": "Di mana toilet",
-                                    "explanation": "La frase pregunta dónde está el baño."
+                                    "answer": "Di mana sekolah",
+                                    "explanation": "Di mana sekolah pregunta dónde está la escuela."
                                 },
                                 {
                                     "vocabId": "v33",
@@ -1151,9 +1151,9 @@
                                 {
                                     "vocabId": "v32",
                                     "type": "translate_es_id",
-                                    "prompt": "Traduce: ¿Dónde está el baño?",
-                                    "answer": "Di mana toilet",
-                                    "explanation": "Di mana significa dónde."
+                                    "prompt": "Traduce: ¿Dónde está la escuela?",
+                                    "answer": "Di mana sekolah",
+                                    "explanation": "Di mana sekolah pregunta dónde está la escuela."
                                 },
                                 { vocabId: 'v30', type: 'write', prompt: "Escribe una frase que indique dónde está algo.", hint: "Intenta usar di y una palabra de lugar de la unidad.", modelAnswer: "Saya di rumah.", explanation: "La frase significa «Estoy en casa». Adapta la frase al vocabulario que conozcas." }
                             ]
@@ -1164,7 +1164,7 @@
                             desc: 'Hablar de actividades cotidianas y expresar cuándo ocurren.',
                             grammar: 'Los adverbios de tiempo suelen colocarse al inicio o al final de la oración. “Setiap hari” significa “todos los días”.',
                             vocab: [
-                                { id: 'v35', idn: 'Hari', esp: 'Día', ex: 'Hari ini panas.', exEsp: 'Hoy hace calor.' },
+                                { id: 'v35', idn: 'Hari', esp: 'Día', ex: 'Hari ini saya belajar.', exEsp: 'Hoy estudio.' },
                                 { id: 'v36', idn: 'Hari ini', esp: 'Hoy / este día', ex: 'Hari ini saya belajar.', exEsp: 'Hoy estudio.' },
                                 { id: 'v37', idn: 'Belajar', esp: 'Estudiar / aprender', ex: 'Saya belajar bahasa Indonesia.', exEsp: 'Estudio indonesio.' },
                                 { id: 'v38', idn: 'Bekerja', esp: 'Trabajar', ex: 'Ayah bekerja.', exEsp: 'Mi padre trabaja.' },
@@ -1178,9 +1178,9 @@
                                     "prompt": "¿Qué significa hari?",
                                     "options": [
                                         "Día",
-                                        "Noche",
-                                        "Año",
-                                        "Semana"
+                                        "Agua",
+                                        "Dormir",
+                                        "Escuela"
                                     ],
                                     "answer": 0,
                                     "explanation": "Hari significa día."
@@ -1239,8 +1239,8 @@
                                     "vocabId": "v35",
                                     "type": "listen",
                                     "prompt": "Escribe lo que escuchas",
-                                    "answer": "Hari ini panas",
-                                    "explanation": "Hari ini panas significa Hoy hace calor."
+                                    "answer": "Hari ini saya belajar",
+                                    "explanation": "Hari ini saya belajar significa Hoy estudio."
                                 },
                                 {
                                     "vocabId": "v36",
@@ -1313,7 +1313,7 @@
                             id: 'a2_u1',
                             title: 'Unidad 1: Formar verbos con meN-',
                             desc: 'Una primera forma verbal activa: baca se convierte en membaca (leer).',
-                            grammar: 'El prefijo meN- tiene varias formas según el sonido inicial de la raíz. En este ejemplo, baca (leer) forma membaca; esta unidad presenta solo ese patrón inicial.',
+                            grammar: 'El prefijo meN- tiene varias formas según el sonido inicial de la raíz. En este ejemplo, baca (leer) forma membaca; esta unidad presenta solo ese patrón inicial.'
                             vocab: [{ id: 'v7', idn: 'Membaca', esp: 'Leer', ex: 'Saya membaca buku.', exEsp: 'Yo leo un libro.' }],
                             exercises: [
                                 { vocabId: 'v7', type: 'mc', prompt: '¿Cuál es la forma activa de "baca"?', options: ['Membaca', 'Berbaca', 'Terbaca', 'Dibaca'], answer: 0, explanation: 'La raíz con "b" toma el prefijo "mem-".' }
@@ -1348,7 +1348,7 @@
                             grammar: 'En verbos como membangunkan, -kan aporta un sentido causativo: hacer que otra persona despierte. El sentido concreto de -kan depende del verbo y del contexto.',
                             vocab: [{ id: 'v9', idn: 'Membangunkan', esp: 'Despertar a alguien', ex: 'Saya membangunkan anak.', exEsp: 'Despierto al niño.' }],
                             exercises: [
-                                { vocabId: 'v9', type: 'mc', prompt: 'En «membangunkan anak», ¿qué aporta -kan?', options: ['La idea de hacer que alguien despierte', 'Pasado', 'Plural', 'Duda'], answer: 0, explanation: 'Bangun significa despertarse/levantarse; membangunkan significa despertar a otra persona.' }
+                                { vocabId: 'v9', type: 'mc', prompt: 'En «membangunkan anak», ¿qué aporta -kan?', options: ['La idea de hacer que alguien despierte', 'Pasado', 'Plural', 'Duda'], answer: 0, explanation: 'Bangun significa despertarse/levantarse; membangunkan significa despertar a otra persona.'
                             ]
                         }
                     ]

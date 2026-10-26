@@ -119,3 +119,36 @@ test('A1 units provide 22 varied exercises including productive writing', () => 
   assert.match(html, /checkWriting\(\)/);
   assert.match(html, /rateWriting\(isCorrect\)/);
 });
+
+
+test('A1 examples and explanations stay consistent with the taught material', () => {
+  const start = html.indexOf('const CourseData =');
+  const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
+  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
+  const a1 = course.levels.find(level => level.id === 'A1');
+  const unit4 = a1.units.find(unit => unit.id === 'a1_u4');
+  const three = unit4.vocab.find(word => word.id === 'v17');
+  const ageWriting = unit4.exercises.find(exercise => exercise.type === 'write');
+  const unit6 = a1.units.find(unit => unit.id === 'a1_u6');
+  const unit8 = a1.units.find(unit => unit.id === 'a1_u8');
+  const day = unit8.vocab.find(word => word.id === 'v35');
+
+  assert.equal(three.ex, 'Tiga tahun.');
+  assert.equal(three.exEsp, 'Tres años.');
+  assert.ok(unit4.exercises.some(exercise => exercise.prompt === 'Traduce: tres años' && exercise.answer === 'Tiga tahun'));
+  assert.match(ageWriting.explanation, /Tengo cinco años/);
+  assert.doesNotMatch(unit6.grammar, /Saya suka/);
+  assert.ok(unit6.vocab.some(word => word.idn === 'Air'));
+  assert.equal(day.ex, 'Hari ini saya belajar.');
+  assert.equal(day.exEsp, 'Hoy estudio.');
+
+  const unit5 = a1.units.find(unit => unit.id === 'a1_u5');
+  assert.doesNotMatch(unit5.grammar, /Saya punya/);
+  assert.ok(unit5.vocab.every(word => !/bekerja|baik|punya/.test(word.ex)));
+  assert.ok(unit5.exercises.every(exercise => !/bekerja|punya dua anak/.test(exercise.answer || '')));
+
+  const unit7 = a1.units.find(unit => unit.id === 'a1_u7');
+  assert.equal(unit7.vocab.find(word => word.idn === 'Di mana').ex, 'Di mana sekolah?');
+  assert.ok(unit7.exercises.some(exercise => exercise.prompt === 'Ordena: ¿Dónde está la escuela?'));
+  assert.ok(unit7.exercises.some(exercise => exercise.prompt === 'Traduce: ¿Dónde está la escuela?' && exercise.answer === 'Di mana sekolah'));
+});

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Bahasa Studio 3.0</title>
+    <title>Bahasa Studio 3.3</title>
     <meta name="description" content="Curso de indonesio PWA para hispanohablantes sin costo ni penalizaciones.">
     <meta name="theme-color" content="#e8384f">
     <link rel="manifest" href="./manifest.json">
@@ -109,7 +109,7 @@
 
     <header>
         <div class="logo">
-            <span>🇮🇩</span> Bahasa Studio 3.0
+            <span>🇮🇩</span> Bahasa Studio <span style="font-size:0.72rem; font-weight:700; opacity:.8; margin-left:4px;">v3.3</span>
         </div>
         <div>
             <button class="btn btn-outline btn-sm" onclick="App.toggleTheme()">🌓</button>
@@ -487,7 +487,7 @@
                                 { id: 'v36', idn: 'Hari ini', esp: 'Hoy / este día', ex: 'Hari ini saya belajar.', exEsp: 'Hoy estudio.' },
                                 { id: 'v37', idn: 'Belajar', esp: 'Estudiar / aprender', ex: 'Saya belajar bahasa Indonesia.', exEsp: 'Estudio indonesio.' },
                                 { id: 'v38', idn: 'Bekerja', esp: 'Trabajar', ex: 'Ayah bekerja.', exEsp: 'Mi padre trabaja.' },
-                                { id: 'v39', idn: 'Tidur', esp: 'Dormir', ex: 'Saya tidur malam.', exEsp: 'Duermo por la noche.' },
+                                { id: 'v39', idn: 'Tidur', esp: 'Dormir', ex: 'Saya tidur di malam hari.', exEsp: 'Duermo por la noche.' },
                                 { id: 'v44', idn: 'Setiap hari', esp: 'Todos los días', ex: 'Saya belajar setiap hari.', exEsp: 'Estudio todos los días.' }
                             ],
                             exercises: [
@@ -566,7 +566,10 @@
                 if (this.synth.onvoiceschanged !== undefined) this.synth.onvoiceschanged = update;
             },
             speak(text) {
-                if (!this.synth) return;
+                if (!this.synth) {
+                    alert('Este navegador no admite síntesis de voz. Prueba con otro navegador o dispositivo para escuchar el indonesio.');
+                    return;
+                }
                 this.synth.cancel();
                 const utter = new SpeechSynthesisUtterance(text);
                 utter.lang = 'id-ID';
@@ -678,7 +681,20 @@
 
             startUnitById(id) { for (const l of getLevels()) { const u = l.units.find(x => x.id === id); if (u) return this.startUnit(u); } },
             startUnit(unit) {
-                this.queue = [...unit.exercises]; this.retry = []; this.intro = true;
+                const reinforcement = unit.vocab.flatMap((v, index) => {
+                    const distractors = unit.vocab.filter(other => other.id !== v.id).map(other => other.esp)
+                        .filter((meaning, i, all) => meaning !== v.esp && all.indexOf(meaning) === i).slice(0, 3);
+                    const options = [v.esp, ...distractors].sort(() => Math.random() - 0.5);
+                    const practice = index % 2 === 0
+                        ? { vocabId: v.id, type: 'mc', prompt: `¿Qué significa “${v.idn}”?`, options, answer: options.indexOf(v.esp), explanation: `“${v.idn}” significa “${v.esp}”.` }
+                        : { vocabId: v.id, type: 'translate_es_id', prompt: `Traduce al indonesio: “${v.esp}”`, answer: v.idn, explanation: `“${v.idn}” significa “${v.esp}”.` };
+                    const listening = index % 2 === 0
+                        ? [{ vocabId: v.id, type: 'listen', prompt: `Escucha y escribe la palabra en indonesio que oyes (significa “${v.esp}”).`, answer: v.idn, explanation: `La palabra es “${v.idn}” (“${v.esp}”).` }]
+                        : [];
+                    return [practice, ...listening];
+                });
+                this.queue = [...unit.exercises, ...reinforcement];
+                this.retry = []; this.intro = true;
                 this.currentUnit = unit;
                 this.stepIndex = 0;
                 App.switchView('lesson');
@@ -1129,6 +1145,12 @@ Requisitos:
 
                 getLevels().forEach(lvl => {
                     const levelEl = document.createElement('div');
+                    const isAdvanced = ['A2', 'B1', 'B2'].includes(lvl.id);
+                    if (isAdvanced) {
+                        levelEl.innerHTML = `<details style="margin:16px 0; padding:12px; border:1px solid var(--border-color, #ddd); border-radius:12px;"><summary style="cursor:pointer; font-weight:700;">${lvl.title} — En desarrollo</summary><p style="margin-top:10px; color:var(--text-muted); font-size:0.9rem;">Este nivel todavía no está completo. Estamos desarrollando el contenido y los ejercicios; por ahora, te recomendamos completar A1.</p></details>`;
+                        container.appendChild(levelEl);
+                        return;
+                    }
                     levelEl.innerHTML = `<h2 style="margin: 16px 0 8px 0;">${lvl.title}</h2>`;
 
                     lvl.units.forEach(unit => {

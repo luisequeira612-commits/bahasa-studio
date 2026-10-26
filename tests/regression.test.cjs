@@ -141,4 +141,14 @@ test('A1 examples and explanations stay consistent with the taught material', ()
   assert.ok(unit6.vocab.some(word => word.idn === 'Air'));
   assert.equal(day.ex, 'Hari ini saya belajar.');
   assert.equal(day.exEsp, 'Hoy estudio.');
+
+  const unit5 = a1.units.find(unit => unit.id === 'a1_u5');
+  assert.doesNotMatch(unit5.grammar, /Saya punya/);
+  assert.ok(unit5.vocab.every(word => !/bekerja|baik|punya/.test(word.ex)));
+  assert.ok(unit5.exercises.every(exercise => !/bekerja|punya dua anak/.test(exercise.answer || '')));
+
+  const unit7 = a1.units.find(unit => unit.id === 'a1_u7');
+  assert.equal(unit7.vocab.find(word => word.idn === 'Di mana').ex, 'Di mana sekolah?');
+  assert.ok(unit7.exercises.some(exercise => exercise.prompt === 'Ordena: ¿Dónde está la escuela?'));
+  assert.ok(unit7.exercises.some(exercise => exercise.prompt === 'Traduce: ¿Dónde está la escuela?' && exercise.answer === 'Di mana sekolah'));
 });

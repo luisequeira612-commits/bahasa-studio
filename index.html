@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, ">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bahasa Studio 3.6.1</title>
     <meta name="description" content="Curso de indonesio PWA para hispanohablantes sin costo ni penalizaciones.">
     <meta name="theme-color" content="#e8384f">
@@ -1356,7 +1356,7 @@
                 if (!this.synth) return;
                 const update = () => {
                     const voices = this.synth.getVoices();
-                    this.idVoice = voices.find(v => v.lang.toLowerCase().startsWith('id') || v.lang.includes('ID'));
+                    this.idVoice = voices.find(v => v.lang.toLowerCase().startsWith('id'));
                 };
                 update();
                 if (this.synth.onvoiceschanged !== undefined) this.synth.onvoiceschanged = update;

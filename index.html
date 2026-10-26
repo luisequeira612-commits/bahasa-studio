@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Bahasa Studio 3.0</title>
     <meta name="description" content="Curso de indonesio PWA para hispanohablantes sin costo ni penalizaciones.">
-    <meta name="theme-color" content="#1a365d">
+    <meta name="theme-color" content="#e8384f">
     <link rel="manifest" href="./manifest.json">
     <style>
         :root {
@@ -40,10 +40,10 @@
         body { font-family: var(--font); background-color: var(--bg-primary); color: var(--text-main); line-height: 1.5; padding-bottom: 70px; }
 
         header { background: var(--bg-secondary); padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
-        .logo { font-size: 1.1rem; font-weight: 700; color: #38bdf8; display: flex; align-items: center; gap: 8px; }
+        .logo { font-size: 1.1rem; font-weight: 700; color: var(--accent); display: flex; align-items: center; gap: 8px; }
         .nav-bottom { position: fixed; bottom: 0; left: 0; right: 0; background: var(--bg-secondary); display: flex; justify-content: space-around; border-top: 1px solid var(--border); z-index: 100; height: 60px; }
         .nav-btn { background: none; border: none; color: var(--text-muted); display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 0.75rem; width: 100%; cursor: pointer; }
-        .nav-btn.active { color: #38bdf8; font-weight: bold; }
+        .nav-btn.active { color: var(--accent); font-weight: bold; }
         .nav-btn svg { width: 22px; height: 22px; fill: currentColor; margin-bottom: 2px; }
 
         .app-view { display: none; padding: 16px; max-width: 600px; margin: 0 auto; }
@@ -57,7 +57,7 @@
 
         .unit-card { background: var(--bg-secondary); border: 2px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 12px; display: flex; flex-direction: column; gap: 8px; }
         .unit-card.completed { border-color: var(--success); }
-        .unit-title { font-size: 1.05rem; font-weight: bold; color: #38bdf8; }
+        .unit-title { font-size: 1.05rem; font-weight: bold; color: var(--accent); }
         .progress-bar { background: var(--bg-card); height: 8px; border-radius: 4px; overflow: hidden; width: 100%; }
         .progress-fill { background: var(--success); height: 100%; width: 0%; transition: width 0.3s; }
 
@@ -70,7 +70,7 @@
         .word-chip { background: var(--bg-secondary); border: 1px solid var(--border); padding: 8px 12px; border-radius: 6px; cursor: pointer; font-weight: 500; }
         
         .feedback-box { padding: 12px; border-radius: 8px; margin-top: 12px; font-weight: 500; }
-        .feedback-box.correct { background: #16a34a33; border: 1px solid var(--success); color: #4ade80; }
+        .feedback-box.correct { background: #16a34a33; border: 1px solid var(--success); color: var(--success); }
         .feedback-box.wrong { background: #dc262633; border: 1px solid var(--error); color: #f87171; }
 
         .chat-box { display: flex; flex-direction: column; gap: 12px; height: 55vh; overflow-y: auto; padding: 12px; background: var(--bg-card); border-radius: 8px; margin-bottom: 12px; }
@@ -79,9 +79,30 @@
         .msg.ai { background: var(--bg-secondary); border: 1px solid var(--border); align-self: flex-start; border-bottom-left-radius: 2px; }
         .input-field { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-main); padding: 12px; border-radius: 8px; width: 100%; font-size: 1rem; }
 
-        .badge { background: #0ea5e922; color: #38bdf8; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; border: 1px solid #0ea5e944; }
+        .badge { background: #0ea5e922; color: var(--accent); padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; border: 1px solid #0ea5e944; }
         .offline-tag { background: var(--warning); color: black; font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; font-weight: bold; }
         .flashcard { background: var(--bg-secondary); border: 2px solid var(--border); min-height: 180px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; border-radius: 12px; padding: 16px; margin: 16px 0; }
+    
+        /* ---- Tema rojo y blanco ---- */
+        :root, .light-mode { --bg-primary:#ffffff; --bg-secondary:#ffffff; --bg-card:#fff1f2; --text-main:#3b2427; --text-muted:#8c7174; --accent:#e8384f; --accent-hover:#c92a40; --success:#2e9e4f; --error:#b3261e; --border:#f1d6d9; --font: ui-rounded, 'Nunito', 'Segoe UI', system-ui, sans-serif; }
+        .dark-mode { --bg-primary:#1d1214; --bg-secondary:#2a1a1d; --bg-card:#3a2428; --text-main:#fcefef; --text-muted:#c7a8ab; --border:#55353a; --accent:#ff5a6e; --accent-hover:#e8384f; --success:#58c26f; --error:#ff8a8a; }
+        .logo { font-weight: 800; }
+        .card, .unit-card { border: 2px solid var(--border); border-radius: 18px; }
+        .unit-card.completed { border-color: var(--success); background: color-mix(in srgb, var(--success) 7%, var(--bg-secondary)); }
+        .btn { border-radius: 16px; border-bottom: 4px solid var(--accent-hover); font-weight: 800; }
+        .btn:active { transform: translateY(2px); border-bottom-width: 2px; background: var(--accent); }
+        .btn-outline { background: var(--bg-secondary); color: var(--accent); border: 2px solid var(--border); border-bottom-width: 4px; }
+        .option-btn { border-radius: 14px; border-bottom-width: 4px; font-weight: 700; }
+        .option-btn.selected { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, var(--bg-secondary)); }
+        .word-chip { border-radius: 12px; border-bottom-width: 3px; font-weight: 700; }
+        .progress-bar { height: 14px; border-radius: 8px; }
+        .progress-fill { background: var(--accent); border-radius: 8px; }
+        .feedback-box { border-radius: 14px; }
+        .feedback-box.correct { background: color-mix(in srgb, var(--success) 15%, var(--bg-secondary)); color: var(--success); }
+        .feedback-box.wrong { background: color-mix(in srgb, var(--error) 12%, var(--bg-secondary)); color: var(--error); border-color: var(--error); }
+        .badge { background: color-mix(in srgb, var(--accent) 12%, transparent); border-color: var(--accent); }
+        .input-field { border: 2px solid var(--border); border-radius: 14px; }
+        .msg { border-radius: 16px; }
     </style>
 </head>
 <body>
@@ -111,7 +132,11 @@
         </div>
 
         <div class="card" style="margin-bottom:12px; padding:12px;">
-            <button class="btn" onclick="AIGen.toggle()">✨ Crear lección con IA</button>
+            <div id="nextTopicLine" style="font-size:0.9rem; margin-bottom:8px;"></div>
+            <button class="btn" onclick="AIGen.next(1)">✨ Generar siguiente lección</button>
+            <button class="btn btn-outline" style="margin-top:8px;" onclick="AIGen.next(5)">Preparar 5 lecciones seguidas</button>
+            <div id="batchStatus" style="font-size:0.8rem; color:var(--text-muted); margin-top:6px;"></div>
+            <button class="btn btn-outline btn-sm" style="margin-top:8px;" onclick="AIGen.toggle()">Elegir tema propio</button>
             <div id="aiGenPanel" style="display:none; margin-top:10px;">
                 <input type="text" id="aiTopic" class="input-field" placeholder="Tema (ej: en el mercado, pedir comida, números)">
                 <button class="btn" id="aiGenBtn" style="margin-top:8px;" onclick="AIGen.generate()">Generar</button>
@@ -129,7 +154,7 @@
         
         <div id="srsDashboard" class="card">
             <h3>Palabras Pendientes</h3>
-            <p id="srsCountText" style="font-size: 1.8rem; font-weight: bold; margin: 8px 0; color:#38bdf8;">0</p>
+            <p id="srsCountText" style="font-size: 1.8rem; font-weight: bold; margin: 8px 0; color:var(--accent);">0</p>
             <button class="btn" id="startSrsBtn" onclick="SRSEngine.startSession()">Comenzar Repaso</button>
         </div>
 
@@ -141,7 +166,7 @@
             </div>
             
             <div id="srsAnswerArea" style="display:none;">
-                <p style="text-align:center; font-size:1.2rem; margin-bottom:12px; color:#4ade80;" id="srsAnswerText"></p>
+                <p style="text-align:center; font-size:1.2rem; margin-bottom:12px; color:var(--success);" id="srsAnswerText"></p>
                 <p style="font-size:0.8rem; text-align:center; color:var(--text-muted); margin-bottom:8px;">¿Qué tan bien lo recordabas?</p>
                 <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:8px;">
                     <button class="btn" style="background:var(--error);" onclick="SRSEngine.submitGrade(1)">Difícil</button>
@@ -168,7 +193,7 @@
     <main id="view-ai" class="app-view">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
             <h2>Tutor de Gramática</h2>
-            <span class="badge" style="background:#16a34a22; color:#4ade80;">Local / Opcional</span>
+            <span class="badge" style="background:#16a34a22; color:var(--success);">Local / Opcional</span>
         </div>
         
         <div class="card" style="padding: 12px;">
@@ -522,16 +547,29 @@
 
             startUnitById(id) { for (const l of getLevels()) { const u = l.units.find(x => x.id === id); if (u) return this.startUnit(u); } },
             startUnit(unit) {
+                this.queue = [...unit.exercises]; this.retry = []; this.intro = true;
                 this.currentUnit = unit;
                 this.stepIndex = 0;
                 App.switchView('lesson');
                 this.renderStep();
             },
             exit() { App.switchView('route'); },
+            renderIntro() {
+                const u = this.currentUnit;
+                document.getElementById('lessonStepCount').innerText = '0/' + this.queue.length;
+                document.getElementById('lessonProgressFill').style.width = '0%';
+                document.getElementById('exerciseArea').innerHTML = `<div><h3>${u.title}</h3>
+                    <div style="background:var(--bg-card); padding:10px; border-radius:12px; font-size:0.85rem; margin:10px 0;">💡 ${u.grammar}</div>
+                    ${u.vocab.map(v => `<div class="card" style="padding:10px; margin-bottom:8px; display:flex; justify-content:space-between; align-items:center;">
+                        <div><strong>${v.idn}</strong> — ${v.esp}<br><small style="color:var(--text-muted);">${v.ex} (${v.exEsp})</small></div>
+                        <button class="btn btn-outline btn-sm" onclick="AudioEngine.speak('${v.idn}')">🔊</button></div>`).join('')}</div>
+                    <div id="actionArea"><button class="btn" onclick="LessonEngine.renderStep()">Comenzar</button></div>`;
+            },
             renderStep() {
+                if (this.intro) { this.intro = false; return this.renderIntro(); }
                 const container = document.getElementById('exerciseArea');
-                const total = this.currentUnit.exercises.length;
-                const ex = this.currentUnit.exercises[this.stepIndex];
+                const total = this.queue.length;
+                const ex = this.queue[this.stepIndex];
 
                 document.getElementById('lessonStepCount').innerText = `${this.stepIndex + 1}/${total}`;
                 document.getElementById('lessonProgressFill').style.width = `${((this.stepIndex) / total) * 100}%`;
@@ -563,6 +601,16 @@
                             <button class="btn" onclick="LessonEngine.checkTranslate()">Comprobar</button>
                         </div>
                     `;
+                } else if (ex.type === 'listen') {
+                    container.innerHTML = `
+                        <div>
+                            <h3>${ex.prompt}</h3>
+                            <button class="btn btn-outline" style="margin-top:12px;" onclick="AudioEngine.speak('${ex.answer}')">🔊 Escuchar de nuevo</button>
+                            <input type="text" id="textAnswer" class="input-field" placeholder="Escribe lo que escuchas..." style="margin-top:20px;">
+                        </div>
+                        <div id="actionArea"><button class="btn" onclick="LessonEngine.checkTranslate()">Comprobar</button></div>
+                    `;
+                    AudioEngine.speak(ex.answer);
                 } else if (ex.type === 'order') {
                     const shuffled = [...ex.words].sort(() => Math.random() - 0.5);
                     container.innerHTML = `
@@ -599,23 +647,24 @@
                 bank.appendChild(chip);
             },
             checkMc() {
-                const ex = this.currentUnit.exercises[this.stepIndex];
+                const ex = this.queue[this.stepIndex];
                 if (this.selectedOption === null) return;
                 this.showFeedback(this.selectedOption === ex.answer, ex.explanation);
             },
             checkTranslate() {
-                const ex = this.currentUnit.exercises[this.stepIndex];
+                const ex = this.queue[this.stepIndex];
                 const norm = s => s.toLowerCase().replace(/[.,!?¿¡]/g, '').replace(/\s+/g, ' ').trim();
                 const input = norm(document.getElementById('textAnswer').value);
                 this.showFeedback(input === norm(ex.answer), ex.explanation);
             },
             checkOrder() {
-                const ex = this.currentUnit.exercises[this.stepIndex];
+                const ex = this.queue[this.stepIndex];
                 const isCorrect = JSON.stringify(this.userOrder) === JSON.stringify(ex.correctOrder);
                 this.showFeedback(isCorrect, ex.explanation);
             },
             showFeedback(isCorrect, explanation) {
-                const ex = this.currentUnit.exercises[this.stepIndex];
+                const ex = this.queue[this.stepIndex];
+                if (!isCorrect && !ex._r) this.retry.push({ ...ex, _r: true });
                 if (ex.vocabId) {
                     SRSEngine.recordAttempt(ex.vocabId, isCorrect ? 4 : 1);
                 }
@@ -630,8 +679,9 @@
                 if (isCorrect) App.addXp(10);
             },
             nextStep() {
+                if (this.stepIndex + 1 >= this.queue.length && this.retry.length) { this.queue.push(...this.retry); this.retry = []; }
                 this.stepIndex++;
-                if (this.stepIndex < this.currentUnit.exercises.length) {
+                if (this.stepIndex < this.queue.length) {
                     this.renderStep();
                 } else {
                     this.finishUnit();
@@ -652,11 +702,29 @@
         };
 
         /* 5b. LECCIONES GENERADAS CON IA */
-        const CustomLessons = { units: [] };
+        const CustomLessons = { units: [], pos: 0 };
         function getLevels() {
             const extra = CustomLessons.units.length ? [{ id: 'IA', title: '✨ Mis lecciones (IA)', units: CustomLessons.units }] : [];
-            return [...CourseData.levels, ...extra];
+            return [...extra, ...CourseData.levels];
         }
+
+        const SYLLABUS = [
+            'Saludos y despedidas|selamat + momento del día', 'Presentarse: nombre y origen|saya + nama / dari', 'Pronombres personales|saya, kamu, dia, kami, kita, mereka',
+            'Números del 0 al 10|contar', 'Números del 11 al 100|belas, puluh, ratus', 'Preguntar el nombre|siapa, apa', 'Esto y eso|ini, itu, ada',
+            'Cortesía básica|terima kasih, maaf, tolong, silakan', 'Negación|tidak y bukan', 'La familia|posesión: orden sustantivo + dueño, -nya',
+            'Comida y bebida|makan, minum, mau', 'En el restaurante|minta, mau, berapa', 'Precios y dinero|berapa, harga, ribu, juta', 'Colores|el adjetivo va después del sustantivo',
+            'Adjetivos comunes|besar, kecil, sangat, agak', 'La casa y los objetos|di, ada', 'Lugares de la ciudad|di, ke, dari', 'Direcciones|kiri, kanan, lurus, dekat, jauh',
+            'Transporte|naik, turun, pergi, pulang', 'Hoy, ayer y mañana|hari ini, kemarin, besok', 'Días de la semana y meses|nombres de días y meses', 'La hora|jam, pukul, setengah',
+            'Rutina diaria|verbos sin conjugar', 'Trabajo y profesiones|bekerja, guru, dokter', 'Verbos de acción comunes|makan, tidur, baca, tulis', 'Preguntas|apa, siapa, di mana, kapan, mengapa, bagaimana',
+            'Querer y poder|mau, bisa, boleh, harus', 'Gustos|suka, tidak suka', 'Cantidades|banyak, sedikit, semua, beberapa', 'Plurales y reduplicación|buku-buku, orang-orang',
+            'Prefijo meN-: leer y escribir|membaca, menulis', 'Prefijo ber-|bekerja, berjalan, berbicara', 'Pasado y futuro|sudah, belum, akan, sedang', 'Comparaciones|lebih, daripada, paling',
+            'En el mercado|tawar, murah, mahal', 'Salud|sakit, obat, dokter', 'El clima|hujan, panas, dingin', 'El cuerpo|kepala, tangan, kaki', 'La ropa|baju, celana, sepatu',
+            'Pasatiempos|main, olahraga, musik', 'Viajes y alojamiento|hotel, kamar, pesan', 'Pedir ayuda|bisa tolong, bagaimana cara', 'Conjunciones|dan, atau, tetapi, karena, jadi',
+            'Frecuencia|selalu, sering, kadang-kadang, jarang', 'Sufijo -kan|membuka / membukakan', 'Sufijo -i|mengunjungi', 'Voz pasiva con di-|dibaca, ditulis', 'Imperativos|jangan, ayo, silakan',
+            'Teléfono y mensajes|halo, pesan, hubungi', 'Cultura y festividades|Lebaran, Nyepi, Bali', 'Sustantivos derivados|pe-, -an', 'Cláusulas con yang|buku yang saya baca',
+            'Opiniones|menurut, saya pikir, setuju', 'Noticias y medios|berita, pemerintah', 'Educación|sekolah, universitas, belajar', 'Medio ambiente|alam, sampah, lingkungan',
+            'Condicionales|kalau, jika, seandainya', 'Narrar el pasado|ketika, setelah, sebelum, kemudian', 'Emociones|senang, sedih, kesal', 'Registro formal e informal|Anda, gue / lu, bahasa gaul'
+        ];
 
         const AIGen = {
             draft: null,
@@ -670,7 +738,7 @@
                         properties: { idn: { type: 'STRING' }, esp: { type: 'STRING' }, ex: { type: 'STRING' }, exEsp: { type: 'STRING' } } } },
                     exercises: { type: 'ARRAY', items: { type: 'OBJECT', required: ['type', 'prompt', 'explanation', 'vocabIndex'],
                         properties: {
-                            type: { type: 'STRING', enum: ['mc', 'translate_es_id', 'order'] },
+                            type: { type: 'STRING', enum: ['mc', 'translate_es_id', 'listen', 'order'] },
                             prompt: { type: 'STRING' }, explanation: { type: 'STRING' }, vocabIndex: { type: 'INTEGER' },
                             options: { type: 'ARRAY', items: { type: 'STRING' } }, answerIndex: { type: 'INTEGER' },
                             answerText: { type: 'STRING' },
@@ -682,6 +750,52 @@
             toggle() {
                 const p = document.getElementById('aiGenPanel');
                 p.style.display = p.style.display === 'none' ? 'block' : 'none';
+            },
+            async fetchUnit(topic) {
+                const res = await fetch(this.url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'x-goog-api-key': App.apiKey },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: await this.buildPrompt(topic) }] }],
+                        generationConfig: { responseMimeType: 'application/json', responseSchema: this.schema, temperature: 0.7 }
+                    })
+                });
+                const data = await res.json();
+                if (!res.ok) throw new Error((data.error && data.error.message) || res.status);
+                const parts = data.candidates && data.candidates[0] && data.candidates[0].content.parts;
+                if (!parts) throw new Error('respuesta vacía');
+                return this.validate(JSON.parse(parts.map(p => p.text || '').join('')));
+            },
+            showNext() {
+                const el = document.getElementById('nextTopicLine');
+                if (!el) return;
+                const t = SYLLABUS[CustomLessons.pos];
+                el.innerHTML = t ? `<strong>Siguiente tema:</strong> ${t.split('|')[0]}` : 'Temario completado 🎉 Elige un tema propio para seguir.';
+            },
+            async next(n) {
+                if (!App.apiKey) return alert('Primero guarda tu clave de Gemini en la pestaña Tutor.');
+                if (!navigator.onLine) return alert('Necesitas internet para generar lecciones.');
+                const st = document.getElementById('batchStatus');
+                for (let i = 0; i < n; i++) {
+                    const t = SYLLABUS[CustomLessons.pos];
+                    if (!t) { st.innerText = 'Temario completado.'; return; }
+                    const [name, gram] = t.split('|');
+                    st.innerText = `Generando ${i + 1}/${n}: ${name}...`;
+                    try {
+                        const u = await this.fetchUnit(`${name} — gramática: ${gram}`);
+                        u.title = `${CustomLessons.pos + 1}. ${name}`;
+                        this.draft = u;
+                        await this.save(true);
+                        CustomLessons.pos++;
+                        await DB.set('settings', 'syllabusPos', CustomLessons.pos);
+                        this.showNext();
+                        if (i < n - 1) await new Promise(r => setTimeout(r, 4000));
+                    } catch (e) {
+                        st.innerText = 'Se detuvo: ' + e.message + '. Vuelve a intentarlo.';
+                        return;
+                    }
+                }
+                st.innerText = 'Listo. Las lecciones ya funcionan sin internet.';
             },
             clean(s, strict) {
                 s = String(s == null ? '' : s).replace(/[<>`]/g, '').trim();
@@ -695,13 +809,14 @@
                     .map(i => known.find(v => v.id === i.key)).filter(Boolean).slice(0, 10).map(v => v.idn);
                 const lvl = CourseData.levels.filter(l => l.units.some(u => App.completedUnits.includes(u.id))).map(l => l.id).pop() || 'A1';
                 return `Eres un profesor de indonesio estándar (bahasa baku) para hispanohablantes. Crea UNA unidad sobre el tema: "${topic}".
-Nivel del alumno: ${lvl} (unidades completadas: ${App.completedUnits.length}).
+Nivel del alumno: ${lvl}, empezó de cero absoluto (unidades completadas: ${App.completedUnits.length}). Sé gradual y no asumas conocimientos previos.
 Palabras que el alumno ya conoce (no las uses como vocabulario nuevo, pero sí puedes usarlas en frases): ${known.slice(-200).map(v => v.idn).join(', ') || 'ninguna'}.
 ${weak.length ? 'Palabras débiles que conviene reforzar en ejemplos y ejercicios: ' + weak.join(', ') + '.' : ''}
 Requisitos:
-- 5 palabras o frases nuevas (vocab), cada una con ejemplo en indonesio y su traducción al español.
+- 8 palabras o frases nuevas (vocab), muy básicas y útiles, cada una con ejemplo corto en indonesio (2 a 5 palabras) y su traducción al español.
 - "grammar": explicación breve en español (2 o 3 frases) de un punto gramatical relacionado.
-- 8 ejercicios: 3 de tipo mc (4 opciones, answerIndex empieza en 0), 3 translate_es_id (answerText con UNA respuesta canónica corta), 2 order (4 a 6 palabras; "words" y "correctOrder" con las mismas palabras).
+- 14 ejercicios: 4 mc (4 opciones, answerIndex desde 0), 3 translate_es_id (answerText con UNA respuesta canónica corta), 4 listen (el alumno escucha answerText en indonesio y lo escribe; el prompt dice "Escribe lo que escuchas"), 3 order (4 a 6 palabras; "words" y "correctOrder" con las mismas palabras).
+- Cada palabra debe aparecer en al menos 2 ejercicios, en contextos distintos.
 - "vocabIndex" es la posición (desde 0) de la palabra del vocab que practica el ejercicio.
 - Prompts y explicaciones en español; respuestas en indonesio. No uses comillas ni apóstrofes dentro del texto en indonesio.
 - No inventes palabras ni reglas; si dudas, elige algo más simple.`;
@@ -755,7 +870,7 @@ Requisitos:
                         if (options.length < 3 || options.length > 4 || options.some(o => !o) || !uniq) continue;
                         if (!Number.isInteger(e.answerIndex) || e.answerIndex < 0 || e.answerIndex >= options.length) continue;
                         exercises.push({ ...base, options, answer: e.answerIndex });
-                    } else if (e.type === 'translate_es_id') {
+                    } else if (e.type === 'translate_es_id' || e.type === 'listen') {
                         const answer = c(e.answerText, true);
                         if (answer) exercises.push({ ...base, answer });
                     } else if (e.type === 'order') {
@@ -766,7 +881,7 @@ Requisitos:
                         exercises.push({ ...base, words, correctOrder: order });
                     }
                 }
-                if (exercises.length < 4) throw new Error('la IA devolvió pocos ejercicios válidos, intenta de nuevo');
+                if (exercises.length < 8) throw new Error('la IA devolvió pocos ejercicios válidos, intenta de nuevo');
                 const known = new Set();
                 getLevels().forEach(l => l.units.forEach(u => u.vocab.forEach(v => known.add(v.idn.toLowerCase()))));
                 return {
@@ -791,7 +906,7 @@ Requisitos:
                         <button class="btn btn-outline" onclick="AIGen.discard()">Descartar</button>
                     </div>`;
             },
-            async save() {
+            async save(quiet) {
                 const u = this.draft;
                 if (!u) return;
                 delete u.skipped; delete u.repeated;
@@ -801,7 +916,7 @@ Requisitos:
                 document.getElementById('aiTopic').value = '';
                 App.renderCourseRoute();
                 App.renderDict();
-                alert('Lección guardada. Ya está disponible sin internet.');
+                if (!quiet) alert('Lección guardada. Ya está disponible sin internet.');
             },
             discard() {
                 this.draft = null;
@@ -830,6 +945,9 @@ Requisitos:
                 this.completedUnits = (await DB.get('settings', 'completedUnits')) || [];
                 this.apiKey = (await DB.get('settings', 'geminiApiKey')) || '';
                 CustomLessons.units = (await DB.get('settings', 'customUnits')) || [];
+                CustomLessons.pos = (await DB.get('settings', 'syllabusPos')) || 0;
+                AIGen.showNext();
+                try { if (localStorage.getItem('bs_dark') === '1') document.body.classList.add('dark-mode'); } catch (e) {}
                 if (navigator.storage && navigator.storage.persist) navigator.storage.persist();
 
                 if (this.apiKey) document.getElementById('apiKeyInput').value = this.apiKey;
@@ -850,7 +968,7 @@ Requisitos:
             checkNetwork() {
                 document.getElementById('offlineStatus').style.display = navigator.onLine ? 'none' : 'inline-block';
             },
-            toggleTheme() { document.body.classList.toggle('light-mode'); },
+            toggleTheme() { document.body.classList.toggle('dark-mode'); try { localStorage.setItem('bs_dark', document.body.classList.contains('dark-mode') ? '1' : '0'); } catch (e) {} },
             switchView(viewId, btn) {
                 document.querySelectorAll('.app-view').forEach(el => el.classList.remove('active'));
                 document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('active'));
@@ -1007,6 +1125,7 @@ Requisitos:
                 const data = {
                     version: 3,
                     customUnits: CustomLessons.units,
+                    syllabusPos: CustomLessons.pos,
                     xp: this.xp,
                     completedUnits: this.completedUnits,
                     srs: await DB.getAll('srs'),
@@ -1034,6 +1153,8 @@ Requisitos:
                                 CustomLessons.units = parsed.customUnits.filter(u => u && u.id && Array.isArray(u.vocab) && Array.isArray(u.exercises));
                                 await DB.set('settings', 'customUnits', CustomLessons.units);
                             }
+                            CustomLessons.pos = parsed.syllabusPos || 0;
+                            await DB.set('settings', 'syllabusPos', CustomLessons.pos);
                             await DB.set('settings', 'userXp', this.xp);
                             await DB.set('settings', 'completedUnits', this.completedUnits);
                             

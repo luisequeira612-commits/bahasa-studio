@@ -4,15 +4,15 @@
   "description": "Aprende indonesio sin anuncios, sin vidas y 100% offline.",
   "icons": [
     {
-      "src": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='100' fill='%23176b5b'/><text x='50%' y='55%' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='240' font-weight='bold' fill='white'>🇮🇩</text></svg>",
+      "src": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='100' fill='%23e8384f'/><text x='50%' y='55%' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='240' font-weight='bold' fill='white'>🇮🇩</text></svg>",
       "type": "image/svg+xml",
       "sizes": "512x512",
       "purpose": "any maskable"
     }
   ],
   "start_url": "./index.html",
-  "background_color": "#176b5b",
-  "theme_color": "#176b5b",
+  "background_color": "#e8384f",
+  "theme_color": "#e8384f",
   "display": "standalone",
   "orientation": "portrait",
   "lang": "es"

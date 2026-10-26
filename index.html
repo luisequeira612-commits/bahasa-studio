@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Bahasa Studio 3.5.1</title>
+    <title>Bahasa Studio 3.6</title>
     <meta name="description" content="Curso de indonesio PWA para hispanohablantes sin costo ni penalizaciones.">
     <meta name="theme-color" content="#e8384f">
     <link rel="manifest" href="./manifest.json">
@@ -120,7 +120,7 @@
 
     <header>
         <div class="logo">
-            <span>🇮🇩</span> Bahasa Studio <span style="font-size:0.72rem; font-weight:700; opacity:.8; margin-left:4px;">v3.5.1</span>
+            <span>🇮🇩</span> Bahasa Studio <span style="font-size:0.72rem; font-weight:700; opacity:.8; margin-left:4px;">v3.6</span>
         </div>
         <div class="header-status">
             <span id="connectionStatus" class="connection-indicator online" title="Estado de conexión">Online</span>
@@ -360,10 +360,28 @@
                 });
             },
             async getAll(store) {
-                return new Promise((resolve) => {
+                return new Promise((resolve, reject) => {
                     const tx = this.db.transaction(store, 'readonly');
                     const req = tx.objectStore(store).getAll();
                     req.onsuccess = () => resolve(req.result || []);
+                    req.onerror = () => reject(req.error || new Error('No se pudieron leer los datos.'));
+                });
+            },
+            async replaceBackupData(data) {
+                return new Promise((resolve, reject) => {
+                    const tx = this.db.transaction(['srs', 'settings'], 'readwrite');
+                    const srsStore = tx.objectStore('srs');
+                    const settingsStore = tx.objectStore('settings');
+                    srsStore.clear();
+                    for (const item of data.srs) srsStore.put({ id: item.key, wordId: item.key, key: item.key, val: item.val });
+                    const putSetting = (key, val) => settingsStore.put({ id: key, wordId: key, key, val });
+                    putSetting('userXp', data.xp);
+                    putSetting('completedUnits', data.completedUnits);
+                    putSetting('customUnits', data.customUnits);
+                    putSetting('syllabusPos', data.syllabusPos);
+                    tx.oncomplete = () => resolve();
+                    tx.onerror = () => reject(tx.error || new Error('No se pudo restaurar la copia.'));
+                    tx.onabort = () => reject(tx.error || new Error('Se canceló la restauración.'));
                 });
             }
         };
@@ -377,33 +395,58 @@
                     units: [
                         {
                             id: 'a1_u1',
-                            title: 'Unidad 1: Pronombres y Saludos',
-                            desc: 'Estructura básica de oraciones y formas de tratamiento.',
-                            grammar: 'En indonesio los verbos no sufren conjugación de tiempo ni persona. Sujeto + Verbo + Objeto.',
+                            title: 'Unidad 1: Primeras palabras, saludos y pronombres',
+                            desc: 'Empieza desde cero: saludar, agradecer, reconocer quién habla y usar dos verbos cotidianos.',
+                            grammar: 'Los pronombres básicos son saya (yo), kamu (tú) y dia (él/ella). Los verbos no cambian según la persona: saya makan y dia makan usan makan de la misma manera.',
                             vocab: [
-                                { id: 'v1', idn: 'Saya', esp: 'Yo (formal)', ex: 'Saya makan nasi.', exEsp: 'Yo como arroz.' },
-                                { id: 'v2', idn: 'Kamu', esp: 'Tú', ex: 'Kamu minum air.', exEsp: 'Tú bebes agua.' },
-                                { id: 'v3', idn: 'Dia', esp: 'Él / Ella', ex: 'Dia tidur.', exEsp: 'Él/Ella duerme.' },
-                                { id: 'v4', idn: 'Selamat pagi', esp: 'Buenos días', ex: 'Selamat pagi, teman!', exEsp: '¡Buenos días, amigo!' }
+                                { id: 'v1', idn: 'Saya', esp: 'Yo', ex: 'Saya makan.', exEsp: 'Yo como.' },
+                                { id: 'v2', idn: 'Kamu', esp: 'Tú', ex: 'Kamu minum.', exEsp: 'Tú bebes.' },
+                                { id: 'v3', idn: 'Dia', esp: 'Él / ella', ex: 'Dia makan.', exEsp: 'Él / ella come.' },
+                                { id: 'v4', idn: 'Selamat pagi', esp: 'Buenos días', ex: 'Selamat pagi!', exEsp: '¡Buenos días!' },
+                                { id: 'v60', idn: 'Halo', esp: 'Hola', ex: 'Halo, Ana!', exEsp: '¡Hola, Ana!' },
+                                { id: 'v45', idn: 'Terima kasih', esp: 'Gracias', ex: 'Terima kasih, Ana.', exEsp: 'Gracias, Ana.' },
+                                { id: 'v46', idn: 'Makan', esp: 'Comer', ex: 'Saya makan.', exEsp: 'Yo como.' },
+                                { id: 'v47', idn: 'Minum', esp: 'Beber', ex: 'Dia minum.', exEsp: 'Él / ella bebe.' }
                             ],
                             exercises: [
-                                { vocabId: 'v1', type: 'mc', prompt: '¿Cómo se traduce "Yo" en registro educado?', options: ['Kamu', 'Saya', 'Dia', 'Mereka'], answer: 1, explanation: '"Saya" es la forma estándar y respetuosa.' },
-                                { vocabId: 'v2', type: 'translate_es_id', prompt: 'Traduce al indonesio: "Tú"', answer: 'Kamu', explanation: '"Kamu" se usa en contextos informales para la segunda persona.' },
-                                { vocabId: 'v1', type: 'order', prompt: 'Ordena: "Yo como arroz"', words: ['nasi', 'Saya', 'makan'], correctOrder: ['Saya', 'makan', 'nasi'], explanation: 'Sujeto (Saya) + Verbo (makan) + Objeto (nasi).' }
+                                { vocabId: 'v1', type: 'mc', prompt: '¿Qué palabra significa «yo»?', options: ['Kamu', 'Saya', 'Dia'], answer: 1, explanation: 'Saya significa «yo» y es una forma estándar y respetuosa.' },
+                                { vocabId: 'v2', type: 'translate_es_id', prompt: 'Traduce al indonesio: «tú»', answer: 'Kamu', explanation: 'Kamu significa «tú» en contextos informales.' },
+                                { vocabId: 'v3', type: 'mc', prompt: '¿Qué significa «dia»?', options: ['Yo', 'Tú', 'Él / ella'], answer: 2, explanation: 'Dia puede significar él o ella; el pronombre no indica género.' },
+                                { vocabId: 'v4', type: 'listen', prompt: 'Escucha y escribe el saludo de la mañana', answer: 'Selamat pagi', explanation: 'Selamat pagi significa «buenos días».' },
+                                { vocabId: 'v60', type: 'translate_es_id', prompt: 'Traduce: «hola»', answer: 'Halo', explanation: 'Halo es un saludo común.' },
+                                { vocabId: 'v45', type: 'mc', prompt: 'Alguien te ayuda. ¿Qué dices para dar las gracias?', options: ['Halo', 'Terima kasih', 'Selamat pagi'], answer: 1, explanation: 'Terima kasih significa «gracias».' },
+                                { vocabId: 'v46', type: 'order', prompt: 'Ordena: «Yo como»', words: ['makan', 'Saya'], correctOrder: ['Saya', 'makan'], explanation: 'El orden básico es sujeto + verbo: Saya makan.' },
+                                { vocabId: 'v47', type: 'translate_es_id', prompt: 'Traduce: «beber»', answer: 'Minum', explanation: 'Minum significa «beber».' },
+                                { vocabId: 'v46', type: 'mc', prompt: 'Completa: «Dia ___» (Él / ella come)', options: ['makan', 'minum', 'kamu'], answer: 0, explanation: 'Makan significa «comer» y no cambia con dia.' },
+                                { vocabId: 'v45', type: 'order', prompt: 'Ordena la expresión: «Gracias»', words: ['kasih', 'Terima'], correctOrder: ['Terima', 'kasih'], explanation: 'Terima kasih es una expresión fija que significa «gracias».' }
                             ]
                         },
                         {
                             id: 'a1_u2',
-                            title: 'Unidad 2: Negación con Tidak y Bukan',
-                            desc: 'Diferenciación estricta entre negación verbal y nominal.',
-                            grammar: 'Usa "tidak" para negar verbos y adjetivos. Usa "bukan" exclusivamente para sustantivos.',
+                            title: 'Unidad 2: Decir no y construir frases básicas',
+                            desc: 'Aprende la diferencia entre tidak y bukan con palabras cotidianas; no necesitas conocerlas de antemano.',
+                            grammar: 'Usa tidak para negar una acción o una cualidad: Saya tidak makan (no como). Usa bukan para negar una identificación con un sustantivo: Ini bukan air (esto no es agua).',
                             vocab: [
-                                { id: 'v5', idn: 'Tidak', esp: 'No (para verbos/adjetivos)', ex: 'Saya tidak makan.', exEsp: 'Yo no como.' },
-                                { id: 'v6', idn: 'Bukan', esp: 'No es / No (para sustantivos)', ex: 'Ini bukan air.', exEsp: 'Esto no es agua.' }
+                                { id: 'v5', idn: 'Tidak', esp: 'No (niega acciones o cualidades)', ex: 'Saya tidak tidur.', exEsp: 'Yo no duermo.' },
+                                { id: 'v6', idn: 'Bukan', esp: 'No es / no (niega una identificación)', ex: 'Ini bukan air.', exEsp: 'Esto no es agua.' },
+                                { id: 'v48', idn: 'Air', esp: 'Agua', ex: 'Saya minum air.', exEsp: 'Yo bebo agua.' },
+                                { id: 'v49', idn: 'Nasi', esp: 'Arroz cocido', ex: 'Saya makan nasi.', exEsp: 'Yo como arroz.' },
+                                { id: 'v50', idn: 'Tidur', esp: 'Dormir', ex: 'Dia tidur.', exEsp: 'Él / ella duerme.' },
+                                { id: 'v51', idn: 'Ini', esp: 'Esto / este / esta', ex: 'Ini nasi.', exEsp: 'Esto es arroz.' },
+                                { id: 'v52', idn: 'Buku', esp: 'Libro', ex: 'Ini buku.', exEsp: 'Esto es un libro.' },
+                                { id: 'v53', idn: 'Teman', esp: 'Amigo / amiga', ex: 'Dia teman saya.', exEsp: 'Él / ella es mi amigo/a.' }
                             ],
                             exercises: [
-                                { vocabId: 'v5', type: 'mc', prompt: 'Completa: "Saya ___ tidur" (Yo no duermo)', options: ['bukan', 'tidak', 'apa', 'ada'], answer: 1, explanation: '"Tidur" es verbo, requiere "tidak".' },
-                                { vocabId: 'v6', type: 'mc', prompt: 'Completa: "Ini ___ nasi" (Esto no es arroz)', options: ['tidak', 'bukan', 'jangan', 'belum'], answer: 1, explanation: '"Nasi" es sustantivo, requiere "bukan".' }
+                                { vocabId: 'v5', type: 'mc', prompt: 'Completa: «Saya ___ makan» (Yo no como)', options: ['bukan', 'tidak', 'ini'], answer: 1, explanation: 'Makan es una acción; se niega con tidak.' },
+                                { vocabId: 'v6', type: 'mc', prompt: 'Completa: «Ini ___ air» (Esto no es agua)', options: ['tidak', 'bukan', 'tidur'], answer: 1, explanation: 'Air es un sustantivo; para negar la identificación se usa bukan.' },
+                                { vocabId: 'v48', type: 'translate_es_id', prompt: 'Traduce: «agua»', answer: 'Air', explanation: 'Air significa «agua».' },
+                                { vocabId: 'v49', type: 'mc', prompt: '¿Qué significa «nasi»?', options: ['Agua', 'Arroz cocido', 'Libro'], answer: 1, explanation: 'Nasi es arroz cocido, un alimento básico en Indonesia.' },
+                                { vocabId: 'v50', type: 'listen', prompt: 'Escucha y escribe: «Dia tidur»', answer: 'Dia tidur', explanation: 'Dia tidur significa «él / ella duerme».' },
+                                { vocabId: 'v51', type: 'translate_es_id', prompt: 'Traduce: «esto»', answer: 'Ini', explanation: 'Ini señala algo cercano: esto, este o esta.' },
+                                { vocabId: 'v52', type: 'order', prompt: 'Ordena: «Esto es un libro»', words: ['buku', 'Ini'], correctOrder: ['Ini', 'buku'], explanation: 'En esta frase básica, ini va antes del sustantivo: Ini buku.' },
+                                { vocabId: 'v53', type: 'translate_es_id', prompt: 'Traduce: «amigo / amiga»', answer: 'Teman', explanation: 'Teman significa amigo o amiga.' },
+                                { vocabId: 'v5', type: 'order', prompt: 'Ordena: «Yo no como»', words: ['makan', 'tidak', 'Saya'], correctOrder: ['Saya', 'tidak', 'makan'], explanation: 'Tidak se coloca antes de la acción: Saya tidak makan.' },
+                                { vocabId: 'v6', type: 'mc', prompt: 'Elige la frase que significa «Esto no es arroz»', options: ['Ini bukan nasi', 'Ini tidak nasi', 'Bukan ini tidur'], answer: 0, explanation: 'Bukan niega la identificación con nasi: Ini bukan nasi.' }
                             ]
                         }
                         ,
@@ -1625,11 +1668,11 @@
                 const u = this.currentUnit;
                 document.getElementById('lessonStepCount').innerText = '0/' + this.queue.length;
                 document.getElementById('lessonProgressFill').style.width = '0%';
-                document.getElementById('exerciseArea').innerHTML = `<div><h3>${u.title}</h3>
-                    <div style="background:var(--bg-card); padding:10px; border-radius:12px; font-size:0.85rem; margin:10px 0;">💡 ${u.grammar}</div>
+                document.getElementById('exerciseArea').innerHTML = `<div><h3>${App.escapeHtml(u.title)}</h3>
+                    <div style="background:var(--bg-card); padding:10px; border-radius:12px; font-size:0.85rem; margin:10px 0;">💡 ${App.escapeHtml(u.grammar)}</div>
                     ${u.vocab.map(v => `<div class="card" style="padding:10px; margin-bottom:8px; display:flex; justify-content:space-between; align-items:center;">
-                        <div><strong>${v.idn}</strong> — ${v.esp}<br><small style="color:var(--text-muted);">${v.ex} (${v.exEsp})</small></div>
-                        <button class="btn btn-outline btn-sm" onclick="AudioEngine.speak('${v.idn}')">🔊</button></div>`).join('')}</div>
+                        <div><strong>${App.escapeHtml(v.idn)}</strong> — ${App.escapeHtml(v.esp)}<br><small style="color:var(--text-muted);">${App.escapeHtml(v.ex)} (${App.escapeHtml(v.exEsp)})</small></div>
+                        <button class="btn btn-outline btn-sm" data-word="${App.escapeHtml(v.idn)}" onclick="AudioEngine.speak(this.dataset.word)">🔊</button></div>`).join('')}</div>
                     <div id="actionArea"><button class="btn" onclick="LessonEngine.renderStep()">Comenzar</button></div>`;
             },
             renderStep() {
@@ -1647,10 +1690,10 @@
                 if (ex.type === 'mc') {
                     container.innerHTML = `
                         <div>
-                            <h3>${ex.prompt}</h3>
+                            <h3>${App.escapeHtml(ex.prompt)}</h3>
                             <div class="option-grid">
                                 ${ex.options.map((opt, i) => `
-                                    <button class="option-btn" onclick="LessonEngine.selectMc(${i}, this)">${opt}</button>
+                                    <button class="option-btn" onclick="LessonEngine.selectMc(${i}, this)">${App.escapeHtml(opt)}</button>
                                 `).join('')}
                             </div>
                         </div>
@@ -1661,7 +1704,7 @@
                 } else if (ex.type === 'translate_es_id') {
                     container.innerHTML = `
                         <div>
-                            <h3>${ex.prompt}</h3>
+                            <h3>${App.escapeHtml(ex.prompt)}</h3>
                             <input type="text" id="textAnswer" class="input-field" placeholder="Escribe en indonesio..." style="margin-top:20px;">
                         </div>
                         <div id="actionArea">
@@ -1671,8 +1714,8 @@
                 } else if (ex.type === 'listen') {
                     container.innerHTML = `
                         <div>
-                            <h3>${ex.prompt}</h3>
-                            <button class="btn btn-outline" style="margin-top:12px;" onclick="AudioEngine.speak('${ex.answer}')">🔊 Escuchar de nuevo</button>
+                            <h3>${App.escapeHtml(ex.prompt)}</h3>
+                            <button class="btn btn-outline" style="margin-top:12px;" data-answer="${App.escapeHtml(ex.answer)}" onclick="AudioEngine.speak(this.dataset.answer)">🔊 Escuchar de nuevo</button>
                             <input type="text" id="textAnswer" class="input-field" placeholder="Escribe lo que escuchas..." style="margin-top:20px;">
                         </div>
                         <div id="actionArea"><button class="btn" onclick="LessonEngine.checkTranslate()">Comprobar</button></div>
@@ -1682,10 +1725,10 @@
                     const shuffled = [...ex.words].sort(() => Math.random() - 0.5);
                     container.innerHTML = `
                         <div>
-                            <h3>${ex.prompt}</h3>
+                            <h3>${App.escapeHtml(ex.prompt)}</h3>
                             <div id="selectedBank" class="word-bank"></div>
                             <div id="availableBank" class="word-bank">
-                                ${shuffled.map(w => `<span class="word-chip" onclick="LessonEngine.pickWord('${w}', this)">${w}</span>`).join('')}
+                                ${shuffled.map(w => `<span class="word-chip" data-word="${App.escapeHtml(w)}" onclick="LessonEngine.pickWord(this.dataset.word, this)">${App.escapeHtml(w)}</span>`).join('')}
                             </div>
                         </div>
                         <div id="actionArea">
@@ -1739,7 +1782,7 @@
                 area.innerHTML = `
                     <div class="feedback-box ${isCorrect ? 'correct' : 'wrong'}">
                         ${isCorrect ? '¡Correcto!' : 'Incorrecto'}<br>
-                        <small>${explanation}</small>
+                        <small>${App.escapeHtml(explanation)}</small>
                     </div>
                     <button class="btn" style="margin-top:12px;" onclick="LessonEngine.nextStep(${isCorrect})">Continuar</button>
                 `;
@@ -1989,11 +2032,11 @@ Requisitos:
             renderPreview() {
                 const d = this.draft;
                 document.getElementById('aiPreview').innerHTML = `
-                    <h3>${d.title}</h3>
-                    <p style="font-size:0.85rem; color:var(--text-muted);">${d.desc}</p>
-                    <div style="background:var(--bg-card); padding:8px; border-radius:6px; font-size:0.8rem; margin:8px 0;">💡 ${d.grammar}</div>
+                    <h3>${App.escapeHtml(d.title)}</h3>
+                    <p style="font-size:0.85rem; color:var(--text-muted);">${App.escapeHtml(d.desc)}</p>
+                    <div style="background:var(--bg-card); padding:8px; border-radius:6px; font-size:0.8rem; margin:8px 0;">💡 ${App.escapeHtml(d.grammar)}</div>
                     <ul style="font-size:0.85rem; padding-left:18px;">
-                        ${d.vocab.map(v => `<li><strong>${v.idn}</strong> — ${v.esp}<br><small>${v.ex} (${v.exEsp})</small></li>`).join('')}
+                        ${d.vocab.map(v => `<li><strong>${App.escapeHtml(v.idn)}</strong> — ${App.escapeHtml(v.esp)}<br><small>${App.escapeHtml(v.ex)} (${App.escapeHtml(v.exEsp)})</small></li>`).join('')}
                     </ul>
                     <p style="font-size:0.8rem; margin-top:6px;">${d.exercises.length} ejercicios${d.skipped ? ` (${d.skipped} descartados por formato inválido)` : ''}${d.repeated.length ? ` · Ya conocías: ${d.repeated.join(', ')}` : ''}</p>
                     <div style="display:flex; gap:8px; margin-top:8px;">
@@ -2128,7 +2171,7 @@ Requisitos:
                         container.appendChild(levelEl);
                         return;
                     }
-                    levelEl.innerHTML = `<h2 style="margin:16px 0 8px 0;">${lvl.title}</h2>`;
+                    levelEl.innerHTML = `<h2 style="margin:16px 0 8px 0;">${App.escapeHtml(lvl.title)}</h2>`;
 
                     lvl.units.forEach(unit => {
                         const isDone = this.completedUnits.includes(unit.id);
@@ -2138,19 +2181,19 @@ Requisitos:
                         if (isNext) card.open = true;
                         card.innerHTML = `
                             <summary>
-                                <span class="unit-title">${unit.title} ${isDone ? '✓' : ''}${unit.custom ? ' ✨' : ''}</span>
+                                <span class="unit-title">${App.escapeHtml(unit.title)} ${isDone ? '✓' : ''}${unit.custom ? ' ✨' : ''}</span>
                                 <span class="badge">${isDone ? 'Completada' : isNext ? 'Siguiente' : 'Pendiente'}</span>
                             </summary>
                             <div class="unit-body">
-                                <p style="font-size:0.85rem; color:var(--text-muted);">${unit.desc}</p>
+                                <p style="font-size:0.85rem; color:var(--text-muted);">${App.escapeHtml(unit.desc)}</p>
                                 <div style="background:var(--bg-card); padding:8px; border-radius:10px; font-size:0.85rem;">
-                                    💡 <strong>Gramática:</strong> ${unit.grammar}
+                                    💡 <strong>Gramática:</strong> ${App.escapeHtml(unit.grammar)}
                                 </div>
                                 <div style="display:flex; gap:8px; flex-wrap:wrap;">
-                                    <button class="btn btn-outline btn-sm" onclick="AudioEngine.speak('${unit.vocab[0]?.idn || ''}')">🔊 Pronunciación</button>
-                                    ${unit.custom ? `<button class="btn btn-outline btn-sm" onclick="AIGen.remove('${unit.id}')">Eliminar</button>` : ''}
+                                    <button class="btn btn-outline btn-sm" data-word="${App.escapeHtml(unit.vocab[0]?.idn || '')}" onclick="AudioEngine.speak(this.dataset.word)">🔊 Pronunciación</button>
+                                    ${unit.custom ? `<button class="btn btn-outline btn-sm" data-unit-id="${App.escapeHtml(unit.id)}" onclick="AIGen.remove(this.dataset.unitId)">Eliminar</button>` : ''}
                                 </div>
-                                <button class="btn" onclick="LessonEngine.startUnitById('${unit.id}')">${isDone ? 'Repasar Lección' : 'Iniciar Lección'}</button>
+                                <button class="btn" data-unit-id="${App.escapeHtml(unit.id)}" onclick="LessonEngine.startUnitById(this.dataset.unitId)">${isDone ? 'Repasar Lección' : 'Iniciar Lección'}</button>
                             </div>
                         `;
                         levelEl.appendChild(card);
@@ -2161,11 +2204,12 @@ Requisitos:
             async updateSrsView() {
                 const due = await SRSEngine.getDueItems();
                 document.getElementById('srsCountText').innerText = due.length;
-                const a1Ids = new Set(SRSEngine.getA1Vocabulary().map(v => v.id));
-                const allSrs = (await DB.getAll('srs')).filter(i => i.val && a1Ids.has(i.key));
+                const allVocab = getLevels().flatMap(level => level.units.flatMap(unit => unit.vocab || []));
+                const allIds = new Set(allVocab.filter(v => v && v.id).map(v => v.id));
+                const allSrs = (await DB.getAll('srs')).filter(i => i.val && allIds.has(i.key));
                 const attempts = allSrs.reduce((sum, i) => sum + (i.val.attempts || 0), 0);
                 const correct = allSrs.reduce((sum, i) => sum + (i.val.correct || 0), 0);
-                document.getElementById('statTotalVocab').innerText = a1Ids.size;
+                document.getElementById('statTotalVocab').innerText = allIds.size;
                 document.getElementById('statMastered').innerText = allSrs.filter(i => i.val.repetition > 3).length;
                 document.getElementById('statAttempts').innerText = attempts;
                 document.getElementById('statAccuracy').innerText = attempts ? Math.round(correct / attempts * 100) + '%' : '—';
@@ -2180,11 +2224,11 @@ Requisitos:
                             html += `
                                 <div class="card" style="margin-bottom:8px; padding:12px;">
                                     <div style="display:flex; justify-content:space-between; align-items:center;">
-                                        <strong>${v.idn}</strong>
-                                        <button class="btn btn-outline btn-sm" onclick="AudioEngine.speak('${v.idn}')">🔊</button>
+                                        <strong>${App.escapeHtml(v.idn)}</strong>
+                                        <button class="btn btn-outline btn-sm" data-word="${App.escapeHtml(v.idn)}" onclick="AudioEngine.speak(this.dataset.word)">🔊</button>
                                     </div>
-                                    <p style="color:var(--accent); font-size:0.9rem;">${v.esp}</p>
-                                    <p style="font-size:0.8rem; color:var(--text-muted); margin-top:4px;">Ejemplo: ${v.ex} (${v.exEsp})</p>
+                                    <p style="color:var(--accent); font-size:0.9rem;">${App.escapeHtml(v.esp)}</p>
+                                    <p style="font-size:0.8rem; color:var(--text-muted); margin-top:4px;">Ejemplo: ${App.escapeHtml(v.ex)} (${App.escapeHtml(v.exEsp)})</p>
                                 </div>
                             `;
                         });
@@ -2205,7 +2249,7 @@ Requisitos:
                 alert("API Key actualizada.");
             },
             escapeHtml(str) {
-                return str.replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' })[m]);
+                return String(str == null ? '' : str).replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' })[m]);
             },
             async sendAiMessage() {
                 const input = document.getElementById('chatInput');
@@ -2279,39 +2323,191 @@ Requisitos:
                 a.download = `bahasa_studio_backup.json`;
                 a.click();
             },
+            validateBackup(parsed) {
+                const fail = () => { throw new Error('Formato de copia no válido.'); };
+                const isObject = value => value && typeof value === 'object' && !Array.isArray(value);
+                const validText = (value, max = 500) => typeof value === 'string' && value.length > 0 && value.length <= max;
+                if (!isObject(parsed) || parsed.version !== 3 || !Number.isSafeInteger(parsed.xp) || parsed.xp < 0 || parsed.xp > 1000000000) fail();
+                const completedUnits = parsed.completedUnits === undefined ? [] : parsed.completedUnits;
+                if (!Array.isArray(completedUnits) || completedUnits.length > 200 || completedUnits.some(id => !validText(id, 100))) fail();
+                const customRaw = parsed.customUnits === undefined ? [] : parsed.customUnits;
+                if (!Array.isArray(customRaw) || customRaw.length > 100) fail();
+                const seenUnitIds = new Set(), seenVocabIds = new Set();
+                const customUnits = customRaw.map(unit => {
+                    if (!isObject(unit) || !validText(unit.id, 100) || !/^ai_[a-z0-9_-]{1,80}$/i.test(unit.id) ||
+                        seenUnitIds.has(unit.id) || !validText(unit.title, 160) ||
+                        typeof unit.desc !== 'string' || unit.desc.length > 1000 ||
+                        typeof unit.grammar !== 'string' || unit.grammar.length > 2000 ||
+                        !Array.isArray(unit.vocab) || unit.vocab.length < 3 || unit.vocab.length > 40 ||
+                        !Array.isArray(unit.exercises) || unit.exercises.length < 1 || unit.exercises.length > 100) fail();
+                    seenUnitIds.add(unit.id);
+                    const vocab = unit.vocab.map(word => {
+                        if (!word || typeof word !== 'object' || Array.isArray(word) ||
+                            typeof word.id !== 'string' || !word.id.startsWith(unit.id + '_v') ||
+                            seenVocabIds.has(word.id) || !validText(word.idn, 120) ||
+                            !validText(word.esp, 250) || !validText(word.ex, 300) || !validText(word.exEsp, 300)) fail();
+                        seenVocabIds.add(word.id);
+                        return { id: word.id, idn: word.idn, esp: word.esp, ex: word.ex, exEsp: word.exEsp };
+                    });
+                    const vocabIds = new Set(vocab.map(word => word.id));
+                    const exercises = unit.exercises.map(ex => {
+                        if (!isObject(ex) || !vocabIds.has(ex.vocabId) ||
+                            !['mc', 'translate_es_id', 'listen', 'order'].includes(ex.type) ||
+                            !validText(ex.prompt, 500) || typeof ex.explanation !== 'string' || ex.explanation.length > 1000) fail();
+                        const base = { vocabId: ex.vocabId, type: ex.type, prompt: ex.prompt, explanation: ex.explanation };
+                        if (ex.type === 'mc') {
+                            if (!Array.isArray(ex.options) || ex.options.length < 2 || ex.options.length > 4 ||
+                                ex.options.some(option => !validText(option, 200)) ||
+                                !Number.isInteger(ex.answer) || ex.answer < 0 || ex.answer >= ex.options.length) fail();
+                            return { ...base, options: ex.options.slice(), answer: ex.answer };
+                        }
+                        if (ex.type === 'translate_es_id' || ex.type === 'listen') {
+                            if (!validText(ex.answer, 300)) fail();
+                            return { ...base, answer: ex.answer };
+                        }
+                        if (!Array.isArray(ex.words) || !Array.isArray(ex.correctOrder) ||
+                            ex.words.length < 2 || ex.words.length > 8 || ex.words.some(word => !validText(word, 100)) ||
+                            ex.correctOrder.length !== ex.words.length || ex.correctOrder.some(word => !validText(word, 100)) ||
+                            JSON.stringify([...ex.words].sort()) !== JSON.stringify([...ex.correctOrder].sort())) fail();
+                        return { ...base, words: ex.words.slice(), correctOrder: ex.correctOrder.slice() };
+                    });
+                    return { id: unit.id, custom: true, title: unit.title, desc: unit.desc, grammar: unit.grammar, vocab, exercises };
+                });
+                const knownIds = new Set([
+                    ...CourseData.levels.flatMap(level => level.units.flatMap(unit => unit.vocab || []).map(word => word.id)),
+                    ...customUnits.flatMap(unit => unit.vocab.map(word => word.id))
+                ]);
+                const rawSrs = parsed.srs === undefined ? [] : parsed.srs;
+                if (!Array.isArray(rawSrs) || rawSrs.length > 10000) fail();
+                const seenSrs = new Set(), srs = [];
+                for (const item of rawSrs) {
+                    if (!isObject(item) || typeof item.key !== 'string' || !item.key || !isObject(item.val)) fail();
+                    if (!knownIds.has(item.key) || seenSrs.has(item.key)) continue;
+                    seenSrs.add(item.key);
+                    const value = item.val;
+                    const num = (key, fallback, min = 0, max = 1000000000) =>
+                        Number.isFinite(value[key]) && value[key] >= min && value[key] <= max ? value[key] : fallback;
+                    const count = key => Number.isSafeInteger(value[key]) && value[key] >= 0 && value[key] <= 10000000 ? value[key] : 0;
+                    const lastReviewed = value.lastReviewed === null || value.lastReviewed === undefined ? null :
+                        (Number.isFinite(value.lastReviewed) && value.lastReviewed >= 0 ? value.lastReviewed : null);
+                    srs.push({ key: item.key, val: {
+                        interval: num('interval', 0, 0, 1000000), repetition: count('repetition'),
+                        efactor: num('efactor', 2.5, 1.3, 5), nextReview: num('nextReview', Date.now()),
+                        attempts: count('attempts'), correct: count('correct'), incorrect: count('incorrect'), lastReviewed
+                    }});
+                }
+                const syllabusPos = Number.isSafeInteger(parsed.syllabusPos) && parsed.syllabusPos >= 0 && parsed.syllabusPos <= SYLLABUS.length ? parsed.syllabusPos : 0;
+                return { version: 3, xp: parsed.xp, completedUnits, customUnits, syllabusPos, srs };
+            },
             importProgress(e) {
                 const file = e.target.files[0];
                 if (!file) return;
                 const reader = new FileReader();
                 reader.onload = async (evt) => {
                     try {
-                        const parsed = JSON.parse(evt.target.result);
-                        if (!parsed.version || parsed.xp === undefined) throw new Error();
-                        
-                        if (confirm("¿Deseas restaurar esta copia de seguridad? Se reemplazará el progreso actual.")) {
-                            this.xp = parsed.xp;
-                            this.completedUnits = parsed.completedUnits || [];
-                            if (Array.isArray(parsed.customUnits)) {
-                                CustomLessons.units = parsed.customUnits.filter(u => u && u.id && Array.isArray(u.vocab) && Array.isArray(u.exercises));
-                                await DB.set('settings', 'customUnits', CustomLessons.units);
-                            }
-                            CustomLessons.pos = parsed.syllabusPos || 0;
-                            await DB.set('settings', 'syllabusPos', CustomLessons.pos);
-                            await DB.set('settings', 'userXp', this.xp);
-                            await DB.set('settings', 'completedUnits', this.completedUnits);
-                            
-                            if (Array.isArray(parsed.srs)) {
-                                for (let item of parsed.srs) {
-                                    if (item.key && item.val) await DB.set('srs', item.key, item.val);
-                                }
-                            }
-                            alert("Progreso restaurado con éxito.");
-                            location.reload();
-                        }
+                        if (file.size > 5 * 1024 * 1024) throw new Error('La copia supera el límite de 5 MB.');
+                        const backup = this.validateBackup(JSON.parse(evt.target.result));
+                        if (!confirm('¿Deseas restaurar esta copia de seguridad? Se reemplazará el progreso actual.')) return;
+                        await DB.replaceBackupData(backup);
+                        this.xp = backup.xp;
+                        this.completedUnits = backup.completedUnits;
+                        CustomLessons.units = backup.customUnits;
+                        CustomLessons.pos = backup.syllabusPos;
+                        alert('Progreso restaurado con éxito.');
+                        location.reload();
                     } catch (err) {
-                        alert("Error: El archivo de respaldo no tiene un formato válido.");
+                        alert('Error: la copia no es válida o no se pudo restaurar. ' + (err && err.message ? err.message : ''));
+                    } finally {
+                        e.target.value = '';
                     }
                 };
+                reader.onerror = () => { alert('No se pudo leer el archivo de respaldo.'); e.target.value = ''; };
+                reader.readAsText(file);
+            },
+            async resetAllData() {
+                if (confirm("¿Confirmas que deseas borrar todos los datos guardados en este dispositivo?")) {
+                    indexedDB.deleteDatabase('BahasaStudio3DB');
+                    location.reload();
+                }
+            }
+        };
+
+        window.addEventListener('DOMContentLoaded', () => App.init());
+    </script>
+</body>
+</html>, 'i').test(word.id) ||
+                            seenVocabIds.has(word.id) || !validText(word.idn, 120) || !validText(word.esp, 250) ||
+                            !validText(word.ex, 300) || !validText(word.exEsp, 300)) fail();
+                        seenVocabIds.add(word.id);
+                        return { id: word.id, idn: word.idn, esp: word.esp, ex: word.ex, exEsp: word.exEsp };
+                    });
+                    const vocabIds = new Set(vocab.map(word => word.id));
+                    const exercises = unit.exercises.map(ex => {
+                        if (!isObject(ex) || !vocabIds.has(ex.vocabId) || !['mc', 'translate_es_id', 'listen', 'order'].includes(ex.type) ||
+                            !validText(ex.prompt, 500) || typeof ex.explanation !== 'string' || ex.explanation.length > 1000) fail();
+                        const base = { vocabId: ex.vocabId, type: ex.type, prompt: ex.prompt, explanation: ex.explanation };
+                        if (ex.type === 'mc') {
+                            if (!Array.isArray(ex.options) || ex.options.length < 2 || ex.options.length > 4 ||
+                                ex.options.some(option => !validText(option, 200)) ||
+                                !Number.isInteger(ex.answer) || ex.answer < 0 || ex.answer >= ex.options.length) fail();
+                            return { ...base, options: ex.options.slice(), answer: ex.answer };
+                        }
+                        if (ex.type === 'translate_es_id' || ex.type === 'listen') {
+                            if (!validText(ex.answer, 300)) fail();
+                            return { ...base, answer: ex.answer };
+                        }
+                        if (!Array.isArray(ex.words) || !Array.isArray(ex.correctOrder) || ex.words.length < 2 || ex.words.length > 8 ||
+                            ex.words.some(word => !validText(word, 100)) || ex.correctOrder.length !== ex.words.length ||
+                            ex.correctOrder.some(word => !validText(word, 100)) ||
+                            JSON.stringify([...ex.words].sort()) !== JSON.stringify([...ex.correctOrder].sort())) fail();
+                        return { ...base, words: ex.words.slice(), correctOrder: ex.correctOrder.slice() };
+                    });
+                    return { id: unit.id, custom: true, title: unit.title, desc: unit.desc, grammar: unit.grammar, vocab, exercises };
+                });
+                const knownIds = new Set([
+                    ...CourseData.levels.flatMap(level => level.units.flatMap(unit => unit.vocab || []).map(word => word.id)),
+                    ...customUnits.flatMap(unit => unit.vocab.map(word => word.id))
+                ]);
+                const rawSrs = parsed.srs === undefined ? [] : parsed.srs;
+                if (!Array.isArray(rawSrs) || rawSrs.length > 10000) fail();
+                const seenSrs = new Set(), srs = [];
+                for (const item of rawSrs) {
+                    if (!isObject(item) || typeof item.key !== 'string' || !item.key || !isObject(item.val)) fail();
+                    if (!knownIds.has(item.key) || seenSrs.has(item.key)) continue;
+                    seenSrs.add(item.key);
+                    const value = item.val;
+                    const num = (key, fallback, min = 0, max = 1000000000) => Number.isFinite(value[key]) && value[key] >= min && value[key] <= max ? value[key] : fallback;
+                    const count = key => Number.isSafeInteger(value[key]) && value[key] >= 0 && value[key] <= 10000000 ? value[key] : 0;
+                    const lastReviewed = value.lastReviewed === null || value.lastReviewed === undefined ? null :
+                        (Number.isFinite(value.lastReviewed) && value.lastReviewed >= 0 ? value.lastReviewed : null);
+                    srs.push({ key: item.key, val: { interval: num('interval', 0, 0, 1000000), repetition: count('repetition'),
+                        efactor: num('efactor', 2.5, 1.3, 5), nextReview: num('nextReview', Date.now()),
+                        attempts: count('attempts'), correct: count('correct'), incorrect: count('incorrect'), lastReviewed }});
+                }
+                const syllabusPos = Number.isSafeInteger(parsed.syllabusPos) && parsed.syllabusPos >= 0 && parsed.syllabusPos <= SYLLABUS.length ? parsed.syllabusPos : 0;
+                return { version: 3, xp: parsed.xp, completedUnits, customUnits, syllabusPos, srs };
+            },
+            importProgress(e) {
+                const file = e.target.files[0];
+                if (!file) return;
+                const reader = new FileReader();
+                reader.onload = async (evt) => {
+                    try {
+                        if (file.size > 5 * 1024 * 1024) throw new Error('La copia supera el límite de 5 MB.');
+                        const backup = this.validateBackup(JSON.parse(evt.target.result));
+                        if (!confirm('¿Deseas restaurar esta copia de seguridad? Se reemplazará el progreso actual.')) return;
+                        await DB.replaceBackupData(backup);
+                        this.xp = backup.xp;
+                        this.completedUnits = backup.completedUnits;
+                        CustomLessons.units = backup.customUnits;
+                        CustomLessons.pos = backup.syllabusPos;
+                        alert('Progreso restaurado con éxito.');
+                        location.reload();
+                    } catch (err) {
+                        alert('Error: la copia no es válida o no se pudo restaurar. ' + (err && err.message ? err.message : ''));
+                    } finally { e.target.value = ''; }
+                };
+                reader.onerror = () => { alert('No se pudo leer el archivo de respaldo.'); e.target.value = ''; };
                 reader.readAsText(file);
             },
             async resetAllData() {

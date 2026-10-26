@@ -71,7 +71,7 @@ test('all authored A1 units have linked vocabulary and structurally valid exerci
   const start = html.indexOf('const CourseData =');
   const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
   assert.ok(start >= 0 && end > start, 'CourseData block must exist');
-  const course = vm.runInNewContext(html.slice(start, end) + '\\nCourseData');
+  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
   const a1 = course.levels.find(level => level.id === 'A1');
   assert.ok(a1 && a1.units.length >= 8, 'A1 should contain its eight authored units');
 

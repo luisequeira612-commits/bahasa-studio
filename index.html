@@ -1721,6 +1721,17 @@
                         <div id="actionArea"><button class="btn" onclick="LessonEngine.checkTranslate()">Comprobar</button></div>
                     `;
                     AudioEngine.speak(ex.answer);
+                } else if (ex.type === 'write') {
+                    container.innerHTML = `
+                        <div>
+                            <h3>${App.escapeHtml(ex.prompt)}</h3>
+                            <p style="margin-top:10px;color:var(--text-secondary);">${App.escapeHtml(ex.hint || 'Escribe tu propia frase en indonesio.')}</p>
+                            <textarea id="textAnswer" class="input-field" rows="3" placeholder="Escribe tu frase en indonesio..." style="margin-top:16px;"></textarea>
+                        </div>
+                        <div id="actionArea">
+                            <button class="btn" onclick="LessonEngine.checkWriting()">Comparar con el ejemplo</button>
+                        </div>
+                    `;
                 } else if (ex.type === 'order') {
                     const shuffled = [...ex.words].sort(() => Math.random() - 0.5);
                     container.innerHTML = `
@@ -1766,6 +1777,35 @@
                 const norm = s => s.toLowerCase().replace(/[.,!?¿¡]/g, '').replace(/\s+/g, ' ').trim();
                 const input = norm(document.getElementById('textAnswer').value);
                 this.showFeedback(input === norm(ex.answer), ex.explanation);
+            },
+            checkWriting() {
+                const ex = this.queue[this.stepIndex];
+                const input = (document.getElementById('textAnswer').value || '').trim();
+                if (!input) {
+                    document.getElementById('actionArea').innerHTML = '<p class="feedback-box wrong">Escribe una frase antes de continuar.</p><button class="btn" style="margin-top:12px;" onclick="LessonEngine.renderStep()">Volver a escribir</button>';
+                    return;
+                }
+                const area = document.getElementById('actionArea');
+                area.innerHTML = `
+                    <div class="feedback-box">
+                        <strong>Tu frase:</strong> ${App.escapeHtml(input)}<br>
+                        <strong>Ejemplo posible:</strong> ${App.escapeHtml(ex.modelAnswer)}<br>
+                        <small>${App.escapeHtml(ex.explanation || 'Compara el orden de las palabras y el vocabulario. Puede haber otras respuestas correctas.')}</small>
+                    </div>
+                    <p style="margin-top:12px;">¿Tu frase expresa la idea y usaste el vocabulario de la unidad?</p>
+                    <button class="btn" style="margin-top:8px;" onclick="LessonEngine.rateWriting(true)">Sí, lo conseguí</button>
+                    <button class="btn btn-outline" style="margin-top:8px;" onclick="LessonEngine.rateWriting(false)">Necesito practicarlo</button>
+                `;
+            },
+            rateWriting(isCorrect) {
+                const ex = this.queue[this.stepIndex];
+                if (!isCorrect && !ex._r) this.retry.push({ ...ex, _r: true });
+                if (ex.vocabId) SRSEngine.recordAttempt(ex.vocabId, isCorrect ? 3 : 1);
+                if (isCorrect) App.addXp(10);
+                document.getElementById('actionArea').innerHTML = `
+                    <div class="feedback-box ${isCorrect ? 'correct' : 'wrong'}">${isCorrect ? '¡Buen trabajo!' : 'La repetiremos para afianzarla.'}</div>
+                    <button class="btn" style="margin-top:12px;" onclick="LessonEngine.nextStep(${isCorrect})">Continuar</button>
+                `;
             },
             checkOrder() {
                 const ex = this.queue[this.stepIndex];

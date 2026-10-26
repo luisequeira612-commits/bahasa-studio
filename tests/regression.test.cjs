@@ -131,7 +131,7 @@ test('A2-B2 starter lessons keep grammar explanations aligned with their example
 
   assert.match(a2.title, /meN-/);
   assert.match(a2.grammar, /baca.*membaca/);
-  assert.match(a2.desc, /solo ese patrón inicial/);
+  assert.match(a2.grammar, /solo ese patrón inicial/);
 
   assert.equal(b1.vocab[0].ex, 'Nasi dimakan oleh mereka.');
   assert.equal(b1.vocab[0].exEsp, 'El arroz es comido por ellos.');

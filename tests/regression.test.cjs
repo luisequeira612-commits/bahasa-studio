@@ -95,7 +95,27 @@ test('all authored A1 units have linked vocabulary and structurally valid exerci
         assert.equal(typeof exercise.answer, 'string');
         assert.ok(exercise.answer.length > 0);
       }
+      if (exercise.type === 'write') {
+        assert.equal(typeof exercise.prompt, 'string');
+        assert.ok(exercise.prompt.length > 0);
+        assert.equal(typeof exercise.modelAnswer, 'string');
+        assert.ok(exercise.modelAnswer.length > 0);
+      }
     }
   }
 });
 
+
+test('A1 units provide 22 varied exercises including productive writing', () => {
+  const start = html.indexOf('const CourseData =');
+  const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
+  const course = vm.runInNewContext(html.slice(start, end) + '\\nCourseData');
+  const a1 = course.levels.find(level => level.id === 'A1');
+  for (const unit of a1.units) {
+    const generated = unit.vocab.length + Math.ceil(unit.vocab.length / 2);
+    assert.equal(unit.exercises.length + generated, 22, unit.id + ' should produce exactly 22 exercises');
+    assert.ok(unit.exercises.some(exercise => exercise.type === 'write'), unit.id + ' should include productive writing');
+  }
+  assert.match(html, /checkWriting\(\)/);
+  assert.match(html, /rateWriting\(isCorrect\)/);
+});

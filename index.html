@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Bahasa Studio 3.4</title>
+    <title>Bahasa Studio 3.5</title>
     <meta name="description" content="Curso de indonesio PWA para hispanohablantes sin costo ni penalizaciones.">
     <meta name="theme-color" content="#e8384f">
     <link rel="manifest" href="./manifest.json">
@@ -120,7 +120,7 @@
 
     <header>
         <div class="logo">
-            <span>🇮🇩</span> Bahasa Studio <span style="font-size:0.72rem; font-weight:700; opacity:.8; margin-left:4px;">v3.4</span>
+            <span>🇮🇩</span> Bahasa Studio <span style="font-size:0.72rem; font-weight:700; opacity:.8; margin-left:4px;">v3.5</span>
         </div>
         <div class="header-status">
             <span id="connectionStatus" class="connection-indicator online" title="Estado de conexión">Online</span>
@@ -176,12 +176,12 @@
     <!-- REPASO SRS INTERACTIVO -->
     <main id="view-srs" class="app-view">
         <h2>Repaso Espaciado (SM-2)</h2>
-        <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 12px;">Práctica diaria adaptativa sin conexión.</p>
+        <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 12px;">Repaso adaptativo de A1, con prioridad para lo más atrasado y lo que más cuesta. Funciona sin conexión.</p>
         
         <div id="srsDashboard" class="card">
             <h3>Palabras Pendientes</h3>
             <p id="srsCountText" style="font-size: 1.8rem; font-weight: bold; margin: 8px 0; color:var(--accent);">0</p>
-            <button class="btn" id="startSrsBtn" onclick="SRSEngine.startSession()">Comenzar Repaso</button>
+            <button class="btn" id="startSrsBtn" onclick="SRSEngine.startSession()">Repasar ahora (hasta 15)</button>
         </div>
 
         <div id="srsPracticeArea" style="display:none;">
@@ -211,6 +211,18 @@
             <div style="display:flex; justify-content:space-between; margin-top: 4px;">
                 <span>Consolidadas:</span>
                 <strong id="statMastered">0</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-top: 4px;">
+                <span>Intentos registrados:</span>
+                <strong id="statAttempts">0</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-top: 4px;">
+                <span>Precisión:</span>
+                <strong id="statAccuracy">—</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-top: 4px;">
+                <span>Reforzar:</span>
+                <strong id="statNeedsPractice">0</strong>
             </div>
         </div>
     </main>
@@ -1451,25 +1463,53 @@
             }
         };
 
-        /* 4. MOTOR REPASO ESPACIADO SM-2 REAL */
+        /* 4. MOTOR DE REPASO ESPACIADO SM-2 */
         const SRSEngine = {
             activeQueue: [],
             currentIndex: 0,
+            sessionStats: { correct: 0, incorrect: 0 },
+            maxSessionItems: 15,
+
+            getA1Vocabulary() {
+                const a1 = CourseData.levels.find(level => level.id === 'A1');
+                if (!a1) return [];
+                const seen = new Set();
+                return a1.units.flatMap(unit => unit.vocab || []).filter(v => {
+                    if (!v || !v.id || seen.has(v.id)) return false;
+                    seen.add(v.id);
+                    return true;
+                });
+            },
+
+            async ensureA1Vocabulary() {
+                const vocab = this.getA1Vocabulary();
+                const now = Date.now();
+                for (const word of vocab) {
+                    const existing = await DB.get('srs', word.id);
+                    if (!existing) {
+                        await DB.set('srs', word.id, {
+                            wordId: word.id, interval: 0, repetition: 0, efactor: 2.5,
+                            nextReview: now, attempts: 0, correct: 0, incorrect: 0, lastReviewed: null
+                        });
+                    }
+                }
+            },
 
             async recordAttempt(wordId, quality) {
                 if (!wordId) return;
-                let item = await DB.get('srs', wordId) || {
-                    wordId: wordId,
-                    interval: 1,
-                    repetition: 0,
-                    efactor: 2.5,
-                    nextReview: Date.now()
+                const item = await DB.get('srs', wordId) || {
+                    wordId: wordId, interval: 0, repetition: 0, efactor: 2.5,
+                    nextReview: Date.now(), attempts: 0, correct: 0, incorrect: 0, lastReviewed: null
                 };
+                item.attempts = (item.attempts || 0) + 1;
+                item.correct = (item.correct || 0) + (quality >= 3 ? 1 : 0);
+                item.incorrect = (item.incorrect || 0) + (quality < 3 ? 1 : 0);
+                item.lastReviewed = Date.now();
 
                 if (quality >= 3) {
                     if (item.repetition === 0) item.interval = 1;
                     else if (item.repetition === 1) item.interval = 6;
-                    else item.interval = Math.round(item.interval * item.efactor);
+                    else item.interval = Math.max(1, Math.round(item.interval * item.efactor));
                     item.repetition += 1;
                 } else {
                     item.repetition = 0;
@@ -1479,33 +1519,40 @@
                 item.efactor = item.efactor + (0.1 - (5 - quality) * (0.08 + (5 - quality) * 0.02));
                 if (item.efactor < 1.3) item.efactor = 1.3;
                 item.nextReview = Date.now() + (item.interval * 86400000);
-
                 await DB.set('srs', wordId, item);
             },
+
             async getDueItems() {
+                await this.ensureA1Vocabulary();
+                const vocabIds = new Set(this.getA1Vocabulary().map(v => v.id));
                 const all = await DB.getAll('srs');
                 const now = Date.now();
-                return all.filter(i => i.val && i.val.nextReview <= now);
+                return all.filter(i => i.val && vocabIds.has(i.key) && i.val.nextReview <= now)
+                    .sort((a, b) => {
+                        const overdue = (a.val.nextReview || 0) - (b.val.nextReview || 0);
+                        if (overdue !== 0) return overdue;
+                        return (b.val.incorrect || 0) - (a.val.incorrect || 0);
+                    });
             },
+
             async startSession() {
                 const rawDue = await this.getDueItems();
-                // Map to dictionary vocab
-                this.activeQueue = [];
-                getLevels().forEach(l => l.units.forEach(u => u.vocab.forEach(v => {
-                    const match = rawDue.find(d => d.key === v.id);
-                    if (match) this.activeQueue.push({ vocab: v, srs: match.val });
-                })));
+                const vocabById = new Map(this.getA1Vocabulary().map(v => [v.id, v]));
+                this.activeQueue = rawDue.map(item => ({ vocab: vocabById.get(item.key), srs: item.val }))
+                    .filter(item => item.vocab).slice(0, this.maxSessionItems);
 
                 if (this.activeQueue.length === 0) {
-                    alert("No hay elementos programados para repaso hoy.");
+                    alert("¡Todo al día! No hay palabras pendientes para repasar. Vuelve después de estudiar una lección.");
                     return;
                 }
 
                 this.currentIndex = 0;
+                this.sessionStats = { correct: 0, incorrect: 0 };
                 document.getElementById('srsDashboard').style.display = 'none';
                 document.getElementById('srsPracticeArea').style.display = 'block';
                 this.renderCard();
             },
+
             renderCard() {
                 const current = this.activeQueue[this.currentIndex];
                 document.getElementById('srsPromptText').innerText = current.vocab.idn;
@@ -1515,24 +1562,30 @@
                 document.getElementById('srsRevealBtn').style.display = 'inline-flex';
                 AudioEngine.speak(current.vocab.idn);
             },
+
             revealAnswer() {
                 const current = this.activeQueue[this.currentIndex];
-                document.getElementById('srsAnswerText').innerText = `${current.vocab.esp} (${current.vocab.exEsp})`;
+                document.getElementById('srsAnswerText').innerText = current.vocab.esp + ' (' + current.vocab.exEsp + ')';
                 document.getElementById('srsAnswerArea').style.display = 'block';
                 document.getElementById('srsRevealBtn').style.display = 'none';
             },
+
             async submitGrade(grade) {
                 const current = this.activeQueue[this.currentIndex];
                 await this.recordAttempt(current.vocab.id, grade);
+                if (grade >= 3) this.sessionStats.correct++;
+                else this.sessionStats.incorrect++;
                 this.currentIndex++;
-                
+
                 if (this.currentIndex < this.activeQueue.length) {
                     this.renderCard();
                 } else {
-                    alert("¡Sesión de repaso completada!");
+                    alert('¡Repaso completado!\nCorrectas: ' + this.sessionStats.correct +
+                        '\nPara reforzar: ' + this.sessionStats.incorrect +
+                        '\nRevisadas: ' + this.activeQueue.length);
                     document.getElementById('srsDashboard').style.display = 'block';
                     document.getElementById('srsPracticeArea').style.display = 'none';
-                    App.updateSrsView();
+                    await App.updateSrsView();
                 }
             }
         };
@@ -1982,6 +2035,7 @@ Requisitos:
 
             async init() {
                 await DB.init();
+                await SRSEngine.ensureA1Vocabulary();
                 AudioEngine.init();
 
                 this.xp = (await DB.get('settings', 'userXp')) || 0;
@@ -2106,9 +2160,15 @@ Requisitos:
             async updateSrsView() {
                 const due = await SRSEngine.getDueItems();
                 document.getElementById('srsCountText').innerText = due.length;
-                const allSrs = await DB.getAll('srs');
-                document.getElementById('statTotalVocab').innerText = allSrs.length;
-                document.getElementById('statMastered').innerText = allSrs.filter(i => i.val && i.val.repetition > 3).length;
+                const a1Ids = new Set(SRSEngine.getA1Vocabulary().map(v => v.id));
+                const allSrs = (await DB.getAll('srs')).filter(i => i.val && a1Ids.has(i.key));
+                const attempts = allSrs.reduce((sum, i) => sum + (i.val.attempts || 0), 0);
+                const correct = allSrs.reduce((sum, i) => sum + (i.val.correct || 0), 0);
+                document.getElementById('statTotalVocab').innerText = a1Ids.size;
+                document.getElementById('statMastered').innerText = allSrs.filter(i => i.val.repetition > 3).length;
+                document.getElementById('statAttempts').innerText = attempts;
+                document.getElementById('statAccuracy').innerText = attempts ? Math.round(correct / attempts * 100) + '%' : '—';
+                document.getElementById('statNeedsPractice').innerText = allSrs.filter(i => (i.val.incorrect || 0) > 0 && i.val.repetition < 4).length;
             },
             renderDict() {
                 const container = document.getElementById('dictContainer');

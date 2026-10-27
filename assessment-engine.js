@@ -62,16 +62,24 @@ function scoreAssessment(level, answers, { manualScores = {} } = {}) {
         status = 'unanswered';
       }
     } else {
-      reviewItems.push(item.id);
+      const hasResponse = typeof submitted === 'string' && submitted.trim().length > 0;
+      if (hasResponse) {
+        reviewItems.push(item.id);
+      } else {
+        status = 'unanswered';
+      }
+
       if (Object.prototype.hasOwnProperty.call(manualScores, item.id)) {
         const score = manualScores[item.id];
         if (!Number.isFinite(score) || score < 0 || score > item.points) {
           throw new RangeError('Manual score for ' + item.id + ' must be between 0 and ' + item.points);
         }
-        points = score;
-        status = 'reviewed';
-      } else {
-        status = hasResponse ? 'needs-review' : 'unanswered';
+        if (hasResponse) {
+          points = score;
+          status = 'reviewed';
+        }
+      } else if (hasResponse) {
+        status = 'needs-review';
       }
     }
 

@@ -498,3 +498,46 @@ test('SRS attempt persistence mirrors the updated state to every duplicate word 
   assert.equal(writes[1].val.wordId, 'v48');
   assert.ok(writes.every(write => write.val.attempts === 4 && write.val.interval === 6));
 });
+
+
+test('invalid backup import leaves existing progress untouched and never starts restoration', async () => {
+  const validatorBody = extractMethodBody(html, 'validateBackup(parsed) {');
+  const courseStart = html.indexOf('const CourseData =');
+  const courseEnd = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', courseStart);
+  const course = vm.runInNewContext(html.slice(courseStart, courseEnd) + '\\nCourseData');
+  const validateBackup = vm.runInNewContext(
+    '({ validateBackup(parsed) {' + validatorBody + '\\n} }).validateBackup',
+    { CourseData: course, SYLLABUS: [] }
+  );
+  const importBody = extractMethodBody(html, 'importProgress(e) {');
+  const readers = [];
+  class FakeFileReader {
+    constructor() { readers.push(this); }
+    readAsText(file) { this.file = file; }
+  }
+  const importProgress = vm.runInNewContext(
+    '({ importProgress(e) {' + importBody + '\\n} }).importProgress',
+    {
+      FileReader: FakeFileReader,
+      confirm: () => { throw new Error('confirmation must not run for invalid backup'); },
+      alert: () => {},
+      location: { reload: () => { throw new Error('page must not reload for invalid backup'); } }
+    }
+  );
+
+  let restoreCalls = 0;
+  const app = {
+    xp: 42,
+    completedUnits: ['a1_u1'],
+    validateBackup,
+    DB: { replaceBackupData: async () => { restoreCalls++; } }
+  };
+  const target = { files: [{ size: 100 }], value: 'selected-file' };
+  importProgress.call(app, { target });
+  await readers[0].onload({ target: { result: JSON.stringify({ version: 2, xp: 5 }) } });
+
+  assert.equal(restoreCalls, 0);
+  assert.equal(app.xp, 42);
+  assert.deepEqual(app.completedUnits, ['a1_u1']);
+  assert.equal(target.value, '');
+});

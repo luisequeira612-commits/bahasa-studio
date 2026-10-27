@@ -556,7 +556,7 @@ test('A1 units 9–11 cover numbers, prices, and time with linked exercises', ()
   assert.ok(courseStart >= 0 && courseEnd > courseStart, 'CourseData block must exist');
   const course = vm.runInNewContext('(() => {\n' + html.slice(courseStart, courseEnd) + '\nreturn CourseData;\n})()');
   const a1 = course.levels.find(level => level.id === 'A1');
-  assert.equal(a1.units.length, 11);
+  assert.equal(a1.units.length, 14)
 
   const added = ['a1_u9', 'a1_u10', 'a1_u11'].map(id => {
     const unit = a1.units.find(candidate => candidate.id === id);
@@ -595,4 +595,33 @@ test('A1 units 9–11 cover numbers, prices, and time with linked exercises', ()
 test('A2–B2 course sections remain hidden until every A1 unit is completed', () => {
   assert.match(html, /const a1Complete = a1 && a1\.units\.length > 0 && a1\.units\.every\(unit => this\.completedUnits\.includes\(unit\.id\)\)/);
   assert.match(html, /if \(!a1Complete\) return;/);
+});
+
+
+test('A1 units 12–14 add routine, weather, and transport without duplicate vocabulary', () => {
+  const courseStart = html.indexOf('const CourseData =');
+  const courseEnd = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', courseStart);
+  const course = vm.runInNewContext('(() => {\n' + html.slice(courseStart, courseEnd) + '\nreturn CourseData;\n})()');
+  const a1 = course.levels.find(level => level.id === 'A1');
+  const added = ['a1_u12', 'a1_u13', 'a1_u14'].map(id => {
+    const unit = a1.units.find(candidate => candidate.id === id);
+    assert.ok(unit, 'missing unit ' + id);
+    assert.ok(unit.exercises.length >= 14 && unit.exercises.length <= 22);
+    const ids = unit.vocab.map(word => word.id);
+    assert.equal(new Set(ids).size, ids.length);
+    const vocabIds = new Set(ids);
+    for (const exercise of unit.exercises) {
+      assert.ok(vocabIds.has(exercise.vocabId), id + ' exercise references unknown vocabulary');
+      assert.ok(['mc', 'translate_es_id', 'listen', 'order', 'write'].includes(exercise.type));
+      if (exercise.type === 'mc') assert.ok(Number.isInteger(exercise.answer) && exercise.answer >= 0 && exercise.answer < exercise.options.length);
+      if (exercise.type === 'order') assert.deepEqual([...exercise.words].sort(), [...exercise.correctOrder].sort());
+    }
+    assert.ok(unit.exercises.some(ex => ex.type === 'write'));
+    return unit;
+  });
+  const previousTerms = new Set(a1.units.filter(unit => !['a1_u12','a1_u13','a1_u14'].includes(unit.id))
+    .flatMap(unit => unit.vocab).map(word => word.idn.trim().toLocaleLowerCase()));
+  const terms = added.flatMap(unit => unit.vocab).map(word => word.idn.trim().toLocaleLowerCase());
+  assert.equal(new Set(terms).size, terms.length, 'new units should not duplicate each other');
+  for (const term of terms) assert.ok(!previousTerms.has(term), term + ' duplicates vocabulary already in the course');
 });

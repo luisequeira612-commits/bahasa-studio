@@ -143,7 +143,7 @@
             </div>
             <div style="margin-top:10px;">
                 <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:5px;">
-                    <span>Avance de A1</span><strong id="courseProgressText">0% · 0/11 unidades</strong>
+                    <span>Avance de A1</span><strong id="courseProgressText">0% · 0/14 unidades</strong>
                 </div>
                 <div class="progress-bar" role="progressbar" aria-label="Progreso del nivel A1" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
                     <div id="courseProgressFill" class="progress-fill" style="width:0%;"></div>
@@ -1466,6 +1466,651 @@
                                 { vocabId: 'v151', type: 'write', prompt: 'Escribe una frase para decir que son las siete en punto.', hint: 'Usa jam, tujuh y tepat.', modelAnswer: 'Jam tujuh tepat.', explanation: 'La frase significa las siete en punto.' },
                                 { vocabId: 'v155', type: 'write', prompt: 'Escribe una frase sencilla con nanti.', hint: 'Puedes hablar de estudiar más tarde.', modelAnswer: 'Saya belajar nanti.', explanation: 'Nanti significa más tarde; otras frases correctas también valen.' }
                             ]
+                        },
+                        {
+                            "id": "a1_u12",
+                            "title": "Unidad 12: Rutina diaria",
+                            "desc": "Describir acciones cotidianas sencillas en secuencia.",
+                            "grammar": "Para describir una rutina, coloca normalmente el sujeto antes del verbo: Saya bangun (me levanto). El indonesio no necesita conjugar el verbo según la persona. Usa las expresiones en frases breves y en el contexto de cada día.",
+                            "vocab": [
+                                {
+                                    "id": "v247",
+                                    "idn": "Bangun",
+                                    "esp": "Levantarse",
+                                    "ex": "Saya bangun pagi.",
+                                    "exEsp": "Me levanto por la mañana."
+                                },
+                                {
+                                    "id": "v248",
+                                    "idn": "Mandi",
+                                    "esp": "Bañarse / ducharse",
+                                    "ex": "Saya mandi.",
+                                    "exEsp": "Me baño."
+                                },
+                                {
+                                    "id": "v249",
+                                    "idn": "Sarapan",
+                                    "esp": "Desayunar",
+                                    "ex": "Saya sarapan.",
+                                    "exEsp": "Desayuno."
+                                },
+                                {
+                                    "id": "v250",
+                                    "idn": "Berangkat",
+                                    "esp": "Salir / partir",
+                                    "ex": "Saya berangkat.",
+                                    "exEsp": "Salgo."
+                                },
+                                {
+                                    "id": "v251",
+                                    "idn": "Pulang",
+                                    "esp": "Volver a casa",
+                                    "ex": "Saya pulang.",
+                                    "exEsp": "Vuelvo a casa."
+                                },
+                                {
+                                    "id": "v252",
+                                    "idn": "Istirahat",
+                                    "esp": "Descansar",
+                                    "ex": "Saya istirahat.",
+                                    "exEsp": "Descanso."
+                                },
+                                {
+                                    "id": "v253",
+                                    "idn": "Memasak",
+                                    "esp": "Cocinar",
+                                    "ex": "Saya memasak.",
+                                    "exEsp": "Cocino."
+                                },
+                                {
+                                    "id": "v254",
+                                    "idn": "Mencuci",
+                                    "esp": "Lavar",
+                                    "ex": "Saya mencuci.",
+                                    "exEsp": "Lavo."
+                                }
+                            ],
+                            "exercises": [
+                                {
+                                    "vocabId": "v247",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa «Bangun»?",
+                                    "options": [
+                                        "Levantarse",
+                                        "Bañarse / ducharse",
+                                        "Desayunar"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Bangun significa «Levantarse»."
+                                },
+                                {
+                                    "vocabId": "v248",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa «Mandi»?",
+                                    "options": [
+                                        "Bañarse / ducharse",
+                                        "Desayunar",
+                                        "Salir / partir"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Mandi significa «Bañarse / ducharse»."
+                                },
+                                {
+                                    "vocabId": "v249",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa «Sarapan»?",
+                                    "options": [
+                                        "Desayunar",
+                                        "Salir / partir",
+                                        "Volver a casa"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Sarapan significa «Desayunar»."
+                                },
+                                {
+                                    "vocabId": "v250",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa «Berangkat»?",
+                                    "options": [
+                                        "Salir / partir",
+                                        "Volver a casa",
+                                        "Descansar"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Berangkat significa «Salir / partir»."
+                                },
+                                {
+                                    "vocabId": "v251",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa «Pulang»?",
+                                    "options": [
+                                        "Volver a casa",
+                                        "Descansar",
+                                        "Cocinar"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Pulang significa «Volver a casa»."
+                                },
+                                {
+                                    "vocabId": "v252",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa «Istirahat»?",
+                                    "options": [
+                                        "Descansar",
+                                        "Cocinar",
+                                        "Lavar"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Istirahat significa «Descansar»."
+                                },
+                                {
+                                    "vocabId": "v253",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa «Memasak»?",
+                                    "options": [
+                                        "Cocinar",
+                                        "Lavar",
+                                        "Levantarse"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Memasak significa «Cocinar»."
+                                },
+                                {
+                                    "vocabId": "v254",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa «Mencuci»?",
+                                    "options": [
+                                        "Lavar",
+                                        "Levantarse",
+                                        "Bañarse / ducharse"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Mencuci significa «Lavar»."
+                                },
+                                {
+                                    "vocabId": "v250",
+                                    "type": "translate_es_id",
+                                    "prompt": "Traduce al indonesio: Salir / partir",
+                                    "answer": "Berangkat",
+                                    "explanation": "Berangkat significa «Salir / partir»."
+                                },
+                                {
+                                    "vocabId": "v251",
+                                    "type": "translate_es_id",
+                                    "prompt": "Traduce al indonesio: Volver a casa",
+                                    "answer": "Pulang",
+                                    "explanation": "Pulang significa «Volver a casa»."
+                                },
+                                {
+                                    "vocabId": "v252",
+                                    "type": "translate_es_id",
+                                    "prompt": "Traduce al indonesio: Descansar",
+                                    "answer": "Istirahat",
+                                    "explanation": "Istirahat significa «Descansar»."
+                                },
+                                {
+                                    "vocabId": "v247",
+                                    "type": "order",
+                                    "prompt": "Ordena la frase en indonesio: Me levanto por la mañana.",
+                                    "words": [
+                                        "pagi",
+                                        "bangun",
+                                        "Saya"
+                                    ],
+                                    "correctOrder": [
+                                        "Saya",
+                                        "bangun",
+                                        "pagi"
+                                    ],
+                                    "explanation": "La frase es «Saya bangun pagi»."
+                                },
+                                {
+                                    "vocabId": "v251",
+                                    "type": "write",
+                                    "prompt": "Escribe una frase sencilla con «Pulang».",
+                                    "hint": "Usa el ejemplo de vocabulario como modelo y cambia lo que puedas con palabras ya aprendidas.",
+                                    "modelAnswer": "Saya pulang.",
+                                    "explanation": "Ejemplo: Saya pulang. — Vuelvo a casa."
+                                },
+                                {
+                                    "vocabId": "v254",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa «Mencuci»?",
+                                    "options": ["Lavar", "Mañana", "Casa"],
+                                    "answer": 0,
+                                    "explanation": "Mencuci significa «Lavar»."
+                                }
+                            ]
+                        },
+                        {
+                            "id": "a1_u13",
+                            "title": "Unidad 13: El tiempo y el clima",
+                            "desc": "Reconocer palabras frecuentes para describir el tiempo atmosférico.",
+                            "grammar": "Las palabras del clima suelen funcionar como descripciones breves: Cuaca panas (hace calor / tiempo caluroso), Hari ini hujan (hoy llueve). El contexto ayuda a elegir una traducción natural; no hace falta añadir un verbo equivalente a «ser» en cada frase.",
+                            "vocab": [
+                                {
+                                    "id": "v255",
+                                    "idn": "Cuaca",
+                                    "esp": "Tiempo atmosférico",
+                                    "ex": "Cuaca panas.",
+                                    "exEsp": "Hace calor."
+                                },
+                                {
+                                    "id": "v256",
+                                    "idn": "Panas",
+                                    "esp": "Caliente / hace calor",
+                                    "ex": "Cuaca panas.",
+                                    "exEsp": "Hace calor."
+                                },
+                                {
+                                    "id": "v257",
+                                    "idn": "Dingin",
+                                    "esp": "Frío",
+                                    "ex": "Air dingin.",
+                                    "exEsp": "Agua fría."
+                                },
+                                {
+                                    "id": "v258",
+                                    "idn": "Hujan",
+                                    "esp": "Lluvia / llover",
+                                    "ex": "Hari ini hujan.",
+                                    "exEsp": "Hoy llueve."
+                                },
+                                {
+                                    "id": "v259",
+                                    "idn": "Cerah",
+                                    "esp": "Despejado / soleado",
+                                    "ex": "Cuaca cerah.",
+                                    "exEsp": "Hace buen tiempo."
+                                },
+                                {
+                                    "id": "v260",
+                                    "idn": "Mendung",
+                                    "esp": "Nublado",
+                                    "ex": "Cuaca mendung.",
+                                    "exEsp": "Está nublado."
+                                },
+                                {
+                                    "id": "v261",
+                                    "idn": "Angin",
+                                    "esp": "Viento",
+                                    "ex": "Angin kuat.",
+                                    "exEsp": "Viento fuerte."
+                                },
+                                {
+                                    "id": "v262",
+                                    "idn": "Payung",
+                                    "esp": "Paraguas",
+                                    "ex": "Saya punya payung.",
+                                    "exEsp": "Tengo un paraguas."
+                                }
+                            ],
+                            "exercises": [
+                                {
+                                    "vocabId": "v255",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa «Cuaca»?",
+                                    "options": [
+                                        "Tiempo atmosférico",
+                                        "Caliente / hace calor",
+                                        "Frío"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Cuaca significa «Tiempo atmosférico»."
+                                },
+                                {
+                                    "vocabId": "v256",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa «Panas»?",
+                                    "options": [
+                                        "Caliente / hace calor",
+                                        "Frío",
+                                        "Lluvia / llover"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Panas significa «Caliente / hace calor»."
+                                },
+                                {
+                                    "vocabId": "v257",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa «Dingin»?",
+                                    "options": [
+                                        "Frío",
+                                        "Lluvia / llover",
+                                        "Despejado / soleado"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Dingin significa «Frío»."
+                                },
+                                {
+                                    "vocabId": "v258",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa «Hujan»?",
+                                    "options": [
+                                        "Lluvia / llover",
+                                        "Despejado / soleado",
+                                        "Nublado"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Hujan significa «Lluvia / llover»."
+                                },
+                                {
+                                    "vocabId": "v259",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa «Cerah»?",
+                                    "options": [
+                                        "Despejado / soleado",
+                                        "Nublado",
+                                        "Viento"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Cerah significa «Despejado / soleado»."
+                                },
+                                {
+                                    "vocabId": "v260",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa «Mendung»?",
+                                    "options": [
+                                        "Nublado",
+                                        "Viento",
+                                        "Paraguas"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Mendung significa «Nublado»."
+                                },
+                                {
+                                    "vocabId": "v261",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa «Angin»?",
+                                    "options": [
+                                        "Viento",
+                                        "Paraguas",
+                                        "Tiempo atmosférico"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Angin significa «Viento»."
+                                },
+                                {
+                                    "vocabId": "v262",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa «Payung»?",
+                                    "options": [
+                                        "Paraguas",
+                                        "Tiempo atmosférico",
+                                        "Caliente / hace calor"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Payung significa «Paraguas»."
+                                },
+                                {
+                                    "vocabId": "v258",
+                                    "type": "translate_es_id",
+                                    "prompt": "Traduce al indonesio: Lluvia / llover",
+                                    "answer": "Hujan",
+                                    "explanation": "Hujan significa «Lluvia / llover»."
+                                },
+                                {
+                                    "vocabId": "v259",
+                                    "type": "translate_es_id",
+                                    "prompt": "Traduce al indonesio: Despejado / soleado",
+                                    "answer": "Cerah",
+                                    "explanation": "Cerah significa «Despejado / soleado»."
+                                },
+                                {
+                                    "vocabId": "v260",
+                                    "type": "translate_es_id",
+                                    "prompt": "Traduce al indonesio: Nublado",
+                                    "answer": "Mendung",
+                                    "explanation": "Mendung significa «Nublado»."
+                                },
+                                {
+                                    "vocabId": "v258",
+                                    "type": "order",
+                                    "prompt": "Ordena la frase en indonesio: Hoy llueve.",
+                                    "words": [
+                                        "hujan",
+                                        "ini",
+                                        "Hari"
+                                    ],
+                                    "correctOrder": [
+                                        "Hari",
+                                        "ini",
+                                        "hujan"
+                                    ],
+                                    "explanation": "La frase es «Hari ini hujan»."
+                                },
+                                {
+                                    "vocabId": "v258",
+                                    "type": "write",
+                                    "prompt": "Escribe una frase sencilla con «Hujan».",
+                                    "hint": "Usa el ejemplo de vocabulario como modelo y cambia lo que puedas con palabras ya aprendidas.",
+                                    "modelAnswer": "Hari ini hujan.",
+                                    "explanation": "Ejemplo: Hari ini hujan. — Hoy llueve."
+                                },
+                                {
+                                    "vocabId": "v262",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa «Payung»?",
+                                    "options": ["Paraguas", "Mañana", "Casa"],
+                                    "answer": 0,
+                                    "explanation": "Payung significa «Paraguas»."
+                                }
+                            ]
+                        },
+                        {
+                            "id": "a1_u14",
+                            "title": "Unidad 14: Transporte y desplazamientos",
+                            "desc": "Nombrar medios de transporte y lugares básicos para viajar.",
+                            "grammar": "Naik se usa con muchos medios de transporte para expresar que uno los toma o viaja en ellos: naik bus (ir en autobús). Turun puede indicar bajarse. Para A1, memoriza estas combinaciones frecuentes como expresiones completas.",
+                            "vocab": [
+                                {
+                                    "id": "v263",
+                                    "idn": "Bus",
+                                    "esp": "Autobús",
+                                    "ex": "Saya naik bus.",
+                                    "exEsp": "Voy en autobús."
+                                },
+                                {
+                                    "id": "v264",
+                                    "idn": "Kereta",
+                                    "esp": "Tren",
+                                    "ex": "Saya naik kereta.",
+                                    "exEsp": "Voy en tren."
+                                },
+                                {
+                                    "id": "v265",
+                                    "idn": "Taksi",
+                                    "esp": "Taxi",
+                                    "ex": "Saya naik taksi.",
+                                    "exEsp": "Voy en taxi."
+                                },
+                                {
+                                    "id": "v266",
+                                    "idn": "Stasiun",
+                                    "esp": "Estación de tren",
+                                    "ex": "Stasiun di sini.",
+                                    "exEsp": "La estación está aquí."
+                                },
+                                {
+                                    "id": "v267",
+                                    "idn": "Terminal",
+                                    "esp": "Terminal de transporte",
+                                    "ex": "Terminal di sini.",
+                                    "exEsp": "El terminal está aquí."
+                                },
+                                {
+                                    "id": "v268",
+                                    "idn": "Sepeda",
+                                    "esp": "Bicicleta",
+                                    "ex": "Saya naik sepeda.",
+                                    "exEsp": "Voy en bicicleta."
+                                },
+                                {
+                                    "id": "v269",
+                                    "idn": "Naik",
+                                    "esp": "Subir / tomar transporte",
+                                    "ex": "Saya naik bus.",
+                                    "exEsp": "Tomo el autobús."
+                                },
+                                {
+                                    "id": "v270",
+                                    "idn": "Turun",
+                                    "esp": "Bajar / apearse",
+                                    "ex": "Saya turun.",
+                                    "exEsp": "Me bajo."
+                                }
+                            ],
+                            "exercises": [
+                                {
+                                    "vocabId": "v263",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa «Bus»?",
+                                    "options": [
+                                        "Autobús",
+                                        "Tren",
+                                        "Taxi"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Bus significa «Autobús»."
+                                },
+                                {
+                                    "vocabId": "v264",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa «Kereta»?",
+                                    "options": [
+                                        "Tren",
+                                        "Taxi",
+                                        "Estación de tren"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Kereta significa «Tren»."
+                                },
+                                {
+                                    "vocabId": "v265",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa «Taksi»?",
+                                    "options": [
+                                        "Taxi",
+                                        "Estación de tren",
+                                        "Terminal de transporte"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Taksi significa «Taxi»."
+                                },
+                                {
+                                    "vocabId": "v266",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa «Stasiun»?",
+                                    "options": [
+                                        "Estación de tren",
+                                        "Terminal de transporte",
+                                        "Bicicleta"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Stasiun significa «Estación de tren»."
+                                },
+                                {
+                                    "vocabId": "v267",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa «Terminal»?",
+                                    "options": [
+                                        "Terminal de transporte",
+                                        "Bicicleta",
+                                        "Subir / tomar transporte"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Terminal significa «Terminal de transporte»."
+                                },
+                                {
+                                    "vocabId": "v268",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa «Sepeda»?",
+                                    "options": [
+                                        "Bicicleta",
+                                        "Subir / tomar transporte",
+                                        "Bajar / apearse"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Sepeda significa «Bicicleta»."
+                                },
+                                {
+                                    "vocabId": "v269",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa «Naik»?",
+                                    "options": [
+                                        "Subir / tomar transporte",
+                                        "Bajar / apearse",
+                                        "Autobús"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Naik significa «Subir / tomar transporte»."
+                                },
+                                {
+                                    "vocabId": "v270",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa «Turun»?",
+                                    "options": [
+                                        "Bajar / apearse",
+                                        "Autobús",
+                                        "Tren"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Turun significa «Bajar / apearse»."
+                                },
+                                {
+                                    "vocabId": "v266",
+                                    "type": "translate_es_id",
+                                    "prompt": "Traduce al indonesio: Estación de tren",
+                                    "answer": "Stasiun",
+                                    "explanation": "Stasiun significa «Estación de tren»."
+                                },
+                                {
+                                    "vocabId": "v267",
+                                    "type": "translate_es_id",
+                                    "prompt": "Traduce al indonesio: Terminal de transporte",
+                                    "answer": "Terminal",
+                                    "explanation": "Terminal significa «Terminal de transporte»."
+                                },
+                                {
+                                    "vocabId": "v268",
+                                    "type": "translate_es_id",
+                                    "prompt": "Traduce al indonesio: Bicicleta",
+                                    "answer": "Sepeda",
+                                    "explanation": "Sepeda significa «Bicicleta»."
+                                },
+                                {
+                                    "vocabId": "v263",
+                                    "type": "order",
+                                    "prompt": "Ordena la frase en indonesio: Voy en autobús.",
+                                    "words": [
+                                        "bus",
+                                        "naik",
+                                        "Saya"
+                                    ],
+                                    "correctOrder": [
+                                        "Saya",
+                                        "naik",
+                                        "bus"
+                                    ],
+                                    "explanation": "La frase es «Saya naik bus»."
+                                },
+                                {
+                                    "vocabId": "v264",
+                                    "type": "write",
+                                    "prompt": "Escribe una frase sencilla con «Kereta».",
+                                    "hint": "Usa el ejemplo de vocabulario como modelo y cambia lo que puedas con palabras ya aprendidas.",
+                                    "modelAnswer": "Saya naik kereta.",
+                                    "explanation": "Ejemplo: Saya naik kereta. — Voy en tren."
+                                },
+                                {
+                                                                    "vocabId": "v270",
+                                                                    "type": "mc",
+                                                                    "prompt": "¿Qué significa «Turun»?",
+                                                                    "options": ["Bajar / apearse", "Autobús", "Tren"],
+                                                                    "answer": 0,
+                                                                    "explanation": "Turun significa «Bajar / apearse»."
+                                                                }
+                            ]
                         }
                     ]
                 },
@@ -1920,7 +2565,7 @@
                             grammar: 'En verbos como membangunkan, -kan aporta un sentido causativo: hacer que otra persona despierte. El sentido concreto de -kan depende del verbo y del contexto.',
                             vocab: [{ id: 'v9', idn: 'Membangunkan', esp: 'Despertar a alguien', ex: 'Saya membangunkan anak.', exEsp: 'Despierto al niño.' }],
                             exercises: [
-                                { vocabId: 'v9', type: 'mc', prompt: 'En «membangunkan anak», ¿qué aporta -kan?', options: ['La idea de hacer que alguien despierte', 'Pasado', 'Plural', 'Duda'], answer: 0, explanation: 'Bangun significa despertarse/levantarse; membangunkan significa despertar a otra persona.' }
+                                { vocabId: 'v9', type: 'mc', prompt: 'En «membangunkan anak», ¿qué aporta -kan?', options: ['La idea de hacer que alguien despierte', 'Pasado', 'Plural', 'Duda'], answer: 0, explanation: 'Bangun significa despertarse/levantarse; membangunkan significa despertar a otra persona.' },
                             ]
                         },
                         {

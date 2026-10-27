@@ -266,13 +266,15 @@ test('version 3 backup normalization supplies safe defaults for absent legacy SR
   const end = html.indexOf('importProgress(e)', start);
   assert.ok(start >= 0 && end > start, 'backup validation and import methods must exist');
   const validator = html.slice(start, end);
-  assert.match(validator, /Number\\.isSafeInteger\\(parsed\\.xp\\)/);
-  assert.match(validator, /parsed\\.completedUnits === undefined \\? \\[\\] : parsed\\.completedUnits/);
-  assert.match(validator, /parsed\\.customUnits === undefined \\? \\[\\] : parsed\\.customUnits/);
-  assert.match(validator, /parsed\\.srs === undefined \\? \\[\\] : parsed\\.srs/);
-  assert.match(validator, /attempts: count\\('attempts'\\), correct: count\\('correct'\\), incorrect: count\\('incorrect'\\)/);
-  assert.match(validator, /value\\.lastReviewed === null \\|\\| value\\.lastReviewed === undefined/);
-  assert.match(validator, /interval: num\\('interval', 0/);
-  assert.match(validator, /efactor: num\\('efactor', 2\\.5/);
-  assert.match(validator, /return \\{ version: 3, xp: parsed\\.xp, completedUnits, customUnits, syllabusPos, srs \\}/);
+  for (const expected of [
+    'Number.isSafeInteger(parsed.xp)',
+    'parsed.completedUnits === undefined ? [] : parsed.completedUnits',
+    'parsed.customUnits === undefined ? [] : parsed.customUnits',
+    "parsed.srs === undefined ? [] : parsed.srs",
+    "attempts: count('attempts'), correct: count('correct'), incorrect: count('incorrect')",
+    'value.lastReviewed === null || value.lastReviewed === undefined',
+    "interval: num('interval', 0",
+    "efactor: num('efactor', 2.5",
+    'return { version: 3, xp: parsed.xp, completedUnits, customUnits, syllabusPos, srs }'
+  ]) assert.ok(validator.includes(expected), 'missing backup normalization: ' + expected);
 });

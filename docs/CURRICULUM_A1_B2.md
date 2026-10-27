@@ -2,7 +2,7 @@
 
 ## A1: criterios de finalización
 
-A1 mantiene ocho unidades y cubre saludo y pronombres, frases/preguntas/negación, presentación y origen, números/edad, familia, comida/compras, ubicación y tiempo/rutina. La unidad 8 también funciona como integración de contenidos. La versión actual incorpora más vocabulario y práctica, pero la calidad final debe evaluarse por la capacidad de producir frases nuevas y resolver situaciones cotidianas, no solo por el número de ejercicios.
+A1 tiene actualmente once unidades. Las unidades 1–8 cubren saludo y pronombres, frases/preguntas/negación, presentación y origen, números/edad, familia, comida, ubicación y tiempo/rutina. Las unidades 9–11 amplían los números del 11 al 100, dinero y precios, y la hora y las partes del día. La unidad 8 conserva su función integradora; se añadirán repasos acumulativos al continuar la expansión. La versión actual incorpora más vocabulario y práctica, pero la calidad final debe evaluarse por la capacidad de producir frases nuevas y resolver situaciones cotidianas, no solo por el número de ejercicios.
 
 Objetivos de salida:
 - Presentarse y preguntar por datos personales.
@@ -10,6 +10,10 @@ Objetivos de salida:
 - Hablar de familia, preferencias, comida, precios, ubicación y rutinas.
 - Comprender y producir diálogos breves con vocabulario conocido.
 - Distinguir la preposición separada di (di rumah) del prefijo unido en una pasiva (dibaca), sin exigir todavía el dominio de todos los afijos.
+
+## Expansión de A1 por tandas
+
+La ampliación se realiza en PR pequeñas para revisar contenido y evitar duplicados. La primera tanda añade las unidades 9–11 (números del 11 al 100, dinero y precios, hora y partes del día), con 14–22 ejercicios por unidad y reutilización de IDs existentes para vocabulario ya enseñado. Esta tanda no declara A1 terminado: quedan por auditar la cobertura completa del temario guiado, la progresión de vocabulario, los repasos acumulativos y la comprensión/producción oral. A2–B2 permanecen ocultos en la vista del curso hasta completar todas las unidades A1.
 
 ## Progresión de afijos
 

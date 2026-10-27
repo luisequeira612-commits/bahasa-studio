@@ -212,10 +212,17 @@ test('unit and vocabulary IDs are unique and every authored exercise has a valid
   const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
   const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
   const unitIds = [];
-  const vocabIds = [];
+  const vocabById = new Map();
   for (const level of course.levels) for (const unit of level.units) {
     unitIds.push(unit.id);
-    for (const word of unit.vocab || []) vocabIds.push(word.id);
+    for (const word of unit.vocab || []) {
+      const normalized = word.idn.trim().toLocaleLowerCase();
+      if (vocabById.has(word.id)) {
+        assert.equal(vocabById.get(word.id), normalized, word.id + ' must always identify the same vocabulary item');
+      } else {
+        vocabById.set(word.id, normalized);
+      }
+    }
     const ids = new Set((unit.vocab || []).map(word => word.id));
     for (const ex of unit.exercises || []) {
       assert.ok(ids.has(ex.vocabId), unit.id + ' has an exercise linked to unknown vocab');
@@ -227,7 +234,7 @@ test('unit and vocabulary IDs are unique and every authored exercise has a valid
     }
   }
   assert.equal(new Set(unitIds).size, unitIds.length, 'unit IDs must be globally unique');
-  assert.equal(new Set(vocabIds).size, vocabIds.length, 'vocabulary IDs must be globally unique');
+  assert.ok(vocabById.size > 0, 'vocabulary ID registry should not be empty');
 });
 
 
@@ -339,7 +346,7 @@ test('backup validator executes against valid and invalid version 3 payloads', (
   const methodSource = html.slice(methodStart, methodEnd).trim().replace(/,$/, '');
   const courseStart = html.indexOf('const CourseData =');
   const courseEnd = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', courseStart);
-  const course = vm.runInNewContext(html.slice(courseStart, courseEnd) + '\nCourseData');
+  const course = vm.runInNewContext('(() => {\n' + html.slice(courseStart, courseEnd) + '\nreturn CourseData;\n})()');
   const validateBackup = vm.runInNewContext(
     '({' + methodSource + '\n}).validateBackup',
     { CourseData: course, SYLLABUS: [] }
@@ -540,4 +547,52 @@ test('invalid backup import leaves existing progress untouched and never starts 
   assert.equal(app.xp, 42);
   assert.deepEqual(app.completedUnits, ['a1_u1']);
   assert.equal(target.value, '');
+});
+
+
+test('A1 units 9–11 cover numbers, prices, and time with linked exercises', () => {
+  const courseStart = html.indexOf('const CourseData =');
+  const courseEnd = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', courseStart);
+  assert.ok(courseStart >= 0 && courseEnd > courseStart, 'CourseData block must exist');
+  const course = vm.runInNewContext('(() => {\n' + html.slice(courseStart, courseEnd) + '\nreturn CourseData;\n})()');
+  const a1 = course.levels.find(level => level.id === 'A1');
+  assert.equal(a1.units.length, 11);
+
+  const added = ['a1_u9', 'a1_u10', 'a1_u11'].map(id => {
+    const unit = a1.units.find(candidate => candidate.id === id);
+    assert.ok(unit, 'missing unit ' + id);
+    assert.ok(unit.exercises.length >= 14 && unit.exercises.length <= 22,
+      id + ' should contain 14–22 exercises');
+    const ids = unit.vocab.map(word => word.id);
+    assert.equal(new Set(ids).size, ids.length, id + ' has duplicate vocabulary IDs');
+    const vocabIds = new Set(ids);
+    for (const exercise of unit.exercises) {
+      assert.ok(vocabIds.has(exercise.vocabId), id + ' has an exercise linked to unknown vocabulary');
+      assert.ok(['mc', 'translate_es_id', 'listen', 'order', 'write'].includes(exercise.type),
+        id + ' has an unsupported exercise type');
+      if (exercise.type === 'mc') {
+        assert.ok(Array.isArray(exercise.options) && exercise.options.length >= 2);
+        assert.ok(Number.isInteger(exercise.answer) && exercise.answer >= 0 && exercise.answer < exercise.options.length);
+      }
+      if (exercise.type === 'order') {
+        assert.deepEqual([...exercise.words].sort(), [...exercise.correctOrder].sort());
+      }
+    }
+    return unit;
+  });
+
+  const oldWords = new Set(a1.units.filter(unit => !['a1_u9', 'a1_u10', 'a1_u11'].includes(unit.id))
+    .flatMap(unit => unit.vocab).map(word => word.idn.trim().toLocaleLowerCase()));
+  const newVocab = added.flatMap(unit => unit.vocab).filter(word => /^v(12[4-9]|1[3-5]\d|158)$/.test(word.id));
+  const newIds = newVocab.map(word => word.id);
+  assert.equal(new Set(newIds).size, newIds.length, 'new vocabulary IDs must be unique');
+  for (const word of newVocab) {
+    assert.ok(!oldWords.has(word.idn.trim().toLocaleLowerCase()),
+      word.idn + ' duplicates existing vocabulary under a new ID');
+  }
+});
+
+test('A2–B2 course sections remain hidden until every A1 unit is completed', () => {
+  assert.match(html, /const a1Complete = a1 && a1\.units\.length > 0 && a1\.units\.every\(unit => this\.completedUnits\.includes\(unit\.id\)\)/);
+  assert.match(html, /if \(!a1Complete\) return;/);
 });

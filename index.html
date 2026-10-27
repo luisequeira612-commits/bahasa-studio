@@ -1352,7 +1352,7 @@
                             id: 'a1_u9',
                             title: 'Unidad 9: Números del 11 al 100',
                             desc: 'Contar más allá de diez y reconocer números frecuentes en cantidades sencillas.',
-                            grammar: 'Del 11 al 19 se usan formas como sebelas, dua belas, tiga belas y empat belas. Para las decenas se combina el número con puluh: dua puluh = 20, tiga puluh = 30, empat puluh = 40, lima puluh = 50, enam puluh = 60, tujuh puluh = 70, delapan puluh = 80 y sembilan puluh = 90. Seratus significa 100.',
+                            grammar: 'Del 11 al 19 se usan formas como sebelas, dua belas, tiga belas y empat belas. Para las decenas se combina el número con puluh: dua puluh = 20, tiga puluh = 30, empat puluh = 40, lima puluh = 50, enam puluh = 60, tujuh puluh = 70, delapan puluh = 80 y sembilan puluh = 90. Para formar números compuestos del 21 al 99, coloca la unidad después de la decena: dua puluh satu = 21 y empat puluh tujuh = 47. Seratus significa 100.',
                             vocab: [
                                 { id: 'v124', idn: 'Sebelas', esp: 'Once', ex: 'Sebelas teman.', exEsp: 'Once amigos.' },
                                 { id: 'v125', idn: 'Dua belas', esp: 'Doce', ex: 'Dua belas buku.', exEsp: 'Doce libros.' },
@@ -1366,7 +1366,16 @@
                                 { id: 'v133', idn: 'Dua puluh', esp: 'Veinte', ex: 'Dua puluh buku.', exEsp: 'Veinte libros.' },
                                 { id: 'v134', idn: 'Tiga puluh', esp: 'Treinta', ex: 'Tiga puluh tahun.', exEsp: 'Treinta años.' },
                                 { id: 'v135', idn: 'Seratus', esp: 'Cien', ex: 'Seratus buku.', exEsp: 'Cien libros.' },
-                                { id: 'v158', idn: 'Puluh', esp: 'Decenas; elemento para formar 20, 30, etc.', ex: 'Dua puluh.', exEsp: 'Veinte.' }
+                                { id: 'v158', idn: 'Puluh', esp: 'Decenas; elemento para formar 20, 30, etc.', ex: 'Dua puluh.', exEsp: 'Veinte.' },
+                                { id: 'v271', idn: 'Dua puluh satu', esp: 'Veintiuno', ex: 'Dua puluh satu buku.', exEsp: 'Veintiún libros.' },
+                                { id: 'v272', idn: 'Dua puluh lima', esp: 'Veinticinco', ex: 'Dua puluh lima teman.', exEsp: 'Veinticinco amigos.' },
+                                { id: 'v273', idn: 'Tiga puluh dua', esp: 'Treinta y dos', ex: 'Tiga puluh dua buku.', exEsp: 'Treinta y dos libros.' },
+                                { id: 'v274', idn: 'Empat puluh tujuh', esp: 'Cuarenta y siete', ex: 'Empat puluh tujuh teman.', exEsp: 'Cuarenta y siete amigos.' },
+                                { id: 'v275', idn: 'Lima puluh delapan', esp: 'Cincuenta y ocho', ex: 'Lima puluh delapan buku.', exEsp: 'Cincuenta y ocho libros.' },
+                                { id: 'v276', idn: 'Enam puluh empat', esp: 'Sesenta y cuatro', ex: 'Enam puluh empat teman.', exEsp: 'Sesenta y cuatro amigos.' },
+                                { id: 'v277', idn: 'Tujuh puluh enam', esp: 'Setenta y seis', ex: 'Tujuh puluh enam buku.', exEsp: 'Setenta y seis libros.' },
+                                { id: 'v278', idn: 'Delapan puluh sembilan', esp: 'Ochenta y nueve', ex: 'Delapan puluh sembilan teman.', exEsp: 'Ochenta y nueve amigos.' },
+                                { id: 'v279', idn: 'Sembilan puluh sembilan', esp: 'Noventa y nueve', ex: 'Sembilan puluh sembilan buku.', exEsp: 'Noventa y nueve libros.' }
                             ],
                             exercises: [
                                 { vocabId: 'v124', type: 'mc', prompt: '¿Qué número significa sebelas?', options: ['11', '12', '20'], answer: 0, explanation: 'Sebelas significa once.' },
@@ -1386,7 +1395,11 @@
                                 { vocabId: 'v158', type: 'mc', prompt: '¿Cómo se dice cuarenta?', options: ['Empat puluh', 'Empat belas', 'Empat tahun'], answer: 0, explanation: 'Empat puluh significa cuarenta; puluh forma decenas.' },
                                 { vocabId: 'v158', type: 'translate_es_id', prompt: 'Traduce: setenta', answer: 'Tujuh puluh', explanation: 'Tujuh puluh significa setenta.' },
                                 { vocabId: 'v158', type: 'mc', prompt: 'Sembilan puluh significa…', options: ['19', '90', '100'], answer: 1, explanation: 'Sembilan puluh significa noventa.' },
-                                { vocabId: 'v135', type: 'write', prompt: 'Escribe en indonesio un número entre 11 y 100 que hayas aprendido.', hint: 'Puedes elegir doce, veinte, cuarenta, setenta o cien.', modelAnswer: 'Dua puluh.', explanation: 'Hay varias respuestas correctas; revisa que la forma del número sea correcta.' }
+                                { vocabId: 'v135', type: 'write', prompt: 'Escribe en indonesio un número entre 11 y 100 que hayas aprendido.', hint: 'Puedes elegir doce, veinte, cuarenta, setenta o cien.', modelAnswer: 'Dua puluh.', explanation: 'Hay varias respuestas correctas; revisa que la forma del número sea correcta.' },
+                                { vocabId: 'v271', type: 'mc', prompt: 'Dua puluh satu equivale a…', options: ['21', '12', '31'], answer: 0, explanation: 'Dua puluh satu significa veintiuno: dos decenas y uno.' },
+                                { vocabId: 'v272', type: 'translate_es_id', prompt: 'Traduce al indonesio: veinticinco', answer: 'Dua puluh lima', explanation: 'Para formar veinticinco se dice dua puluh lima.' },
+                                { vocabId: 'v274', type: 'order', prompt: 'Ordena para decir “cuarenta y siete”', words: ['tujuh', 'Empat', 'puluh'], correctOrder: ['Empat', 'puluh', 'tujuh'], explanation: 'En los números compuestos, la unidad va después de la decena: empat puluh tujuh.' },
+                                { vocabId: 'v278', type: 'mc', prompt: 'Delapan puluh sembilan equivale a…', options: ['19', '80', '89'], answer: 2, explanation: 'Delapan puluh sembilan significa ochenta y nueve.' }
                             ]
                         },
                         {
@@ -1424,7 +1437,10 @@
                                 { vocabId: 'v115', type: 'listen', prompt: 'Escucha y escribe la pregunta por el precio', answer: 'Berapa harganya?', explanation: 'Berapa harganya? significa ¿Cuánto cuesta?' },
                                 { vocabId: 'v113', type: 'write', prompt: 'Escribe una pregunta para saber el precio de algo.', hint: 'Usa la expresión Berapa harganya?', modelAnswer: 'Berapa harganya?', explanation: 'Esta pregunta sirve para preguntar cuánto cuesta algo.' },
                                 { vocabId: 'v140', type: 'order', prompt: 'Ordena: Es barato', words: ['murah', 'Harganya'], correctOrder: ['Harganya', 'murah'], explanation: 'Harganya murah significa es barato.' },
-                                { vocabId: 'v142', type: 'write', prompt: 'Escribe una frase breve sobre comprar algo.', hint: 'Puedes usar Saya beli teh.', modelAnswer: 'Saya beli teh.', explanation: 'Usa beli para decir comprar; también son válidas otras frases correctas.' }
+                                { vocabId: 'v142', type: 'write', prompt: 'Escribe una frase breve sobre comprar algo.', hint: 'Puedes usar Saya beli teh.', modelAnswer: 'Saya beli teh.', explanation: 'Usa beli para decir comprar; también son válidas otras frases correctas.' },
+                                { vocabId: 'v115', type: 'write', prompt: 'Escribe un diálogo completo: pide té, pregunta el precio, recibe la respuesta y paga en efectivo.', hint: 'Usa Berapa harganya?, un precio con ribu/rupiah, Saya bayar tunai y Terima kasih.', modelAnswer: 'Cliente: Saya mau teh, tolong. Cliente: Berapa harganya? Vendedor: Dua puluh satu ribu rupiah. Cliente: Saya bayar tunai. Vendedor: Terima kasih.', explanation: 'El diálogo combina el pedido, la pregunta por el precio, una respuesta con número compuesto y el pago.' },
+                                { vocabId: 'v144', type: 'write', prompt: 'Completa un diálogo de compra con precio, pago de diez mil rupias y devolución del cambio.', hint: 'Incluye lima ribu rupiah, Saya bayar sepuluh ribu rupiah e Ini kembaliannya.', modelAnswer: 'Vendedor: Harganya lima ribu rupiah. Cliente: Saya bayar sepuluh ribu rupiah. Vendedor: Ini kembaliannya, lima ribu rupiah. Cliente: Terima kasih.', explanation: 'El precio es cinco mil y el pago diez mil, por lo que corresponde devolver el cambio.' },
+                                { vocabId: 'v113', type: 'write', prompt: 'Escribe otro diálogo breve para comprar té. Incluye una pregunta por el precio y una respuesta de treinta y dos mil rupias.', hint: 'Puedes usar Saya mau teh, tolong; Berapa harganya?; Tiga puluh dua ribu rupiah; Saya beli teh.', modelAnswer: 'Cliente: Saya mau teh, tolong. Cliente: Berapa harganya? Vendedor: Tiga puluh dua ribu rupiah. Cliente: Saya beli teh. Vendedor: Terima kasih.', explanation: 'Practica un segundo precio y las expresiones de compra ya presentadas.' }
                             ]
                         },
                         {
@@ -3070,7 +3086,10 @@
 
             startUnitById(id) { for (const l of getLevels()) { const u = l.units.find(x => x.id === id); if (u) return this.startUnit(u); } },
             startUnit(unit) {
-                const reinforcement = unit.vocab.flatMap((v, index) => {
+                // Keep the authored lesson exercises, and auto-reinforce only vocabulary
+                // that does not already have an exercise in this unit.
+                const practicedVocabIds = new Set(unit.exercises.map(ex => ex.vocabId));
+                const reinforcement = unit.vocab.filter(v => !practicedVocabIds.has(v.id)).flatMap((v, index) => {
                     const distractors = unit.vocab.filter(other => other.id !== v.id).map(other => other.esp)
                         .filter((meaning, i, all) => meaning !== v.esp && all.indexOf(meaning) === i).slice(0, 3);
                     const options = [v.esp, ...distractors].sort(() => Math.random() - 0.5);

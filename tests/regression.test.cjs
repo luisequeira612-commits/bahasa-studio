@@ -639,3 +639,66 @@ test('A1 time-of-day examples use complete natural expressions', () => {
   assert.ok(examples.some(word => word.ex === 'Saya bekerja pada sore hari.'));
   assert.ok(examples.some(word => word.ex === 'Saya tidur pada malam hari.'));
 });
+
+
+test('A1 unit 9 practices compound numbers from 21 to 99 without duplicate vocabulary', () => {
+  const start = html.indexOf('const CourseData =');
+  const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
+  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
+  const a1 = course.levels.find(level => level.id === 'A1');
+  const unit9 = a1.units.find(unit => unit.id === 'a1_u9');
+  const unit10 = a1.units.find(unit => unit.id === 'a1_u10');
+  const expected = ['Dua puluh satu', 'Dua puluh lima', 'Tiga puluh dua', 'Empat puluh tujuh', 'Lima puluh delapan', 'Enam puluh empat', 'Tujuh puluh enam', 'Delapan puluh sembilan', 'Sembilan puluh sembilan'];
+  const newWords = unit9.vocab.filter(word => /^v27[1-9]$/.test(word.id));
+  assert.deepEqual(Array.from(newWords, word => word.idn), expected);
+  assert.equal(new Set(newWords.map(word => word.id)).size, 9);
+  const oldTerms = new Set(a1.units.filter(unit => unit.id !== 'a1_u9')
+    .flatMap(unit => unit.vocab).map(word => word.idn.trim().toLocaleLowerCase()));
+  for (const word of newWords) {
+    assert.ok(!oldTerms.has(word.idn.trim().toLocaleLowerCase()), word.idn + ' duplicates existing vocabulary');
+  }
+  assert.ok(unit9.exercises.length >= 14 && unit9.exercises.length <= 22);
+  assert.ok(unit9.exercises.some(ex => ex.answer === 'Dua puluh lima'));
+  assert.ok(unit9.exercises.some(ex => ex.correctOrder && ex.correctOrder.join(' ') === 'Empat puluh tujuh'));
+  assert.ok(unit9.exercises.some(ex => ex.options && ex.options.includes('89')));
+  assert.ok(unit10.exercises.length >= 14 && unit10.exercises.length <= 22);
+});
+
+test('A1 unit 10 includes complete guided purchase, price, payment, and change dialogues', () => {
+  const start = html.indexOf('const CourseData =');
+  const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
+  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
+  const a1 = course.levels.find(level => level.id === 'A1');
+  const unit10 = a1.units.find(unit => unit.id === 'a1_u10');
+  const answers = unit10.exercises.filter(ex => ex.type === 'write').map(ex => ex.modelAnswer || '').join('\n');
+  assert.match(answers, /Berapa harganya\?/);
+  assert.match(answers, /Dua puluh satu ribu rupiah/);
+  assert.match(answers, /Saya bayar sepuluh ribu rupiah/);
+  assert.match(answers, /Ini kembaliannya/);
+  assert.match(answers, /Tiga puluh dua ribu rupiah/);
+});
+
+
+test('A1 compound-number grammar explains the tens-plus-unit rule and change includes its amount', () => {
+  const start = html.indexOf('const CourseData =');
+  const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
+  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
+  const a1 = course.levels.find(level => level.id === 'A1');
+  const unit9 = a1.units.find(unit => unit.id === 'a1_u9');
+  const unit10 = a1.units.find(unit => unit.id === 'a1_u10');
+  assert.match(unit9.grammar, /unidad después de la decena/i);
+  assert.match(unit9.grammar, /dua puluh satu = 21/i);
+  const answers = unit10.exercises.filter(ex => ex.type === 'write').map(ex => ex.modelAnswer || '').join('\n');
+  assert.match(answers, /Ini kembaliannya, lima ribu rupiah/);
+});
+
+
+test('lesson start avoids duplicating automatic drills for vocabulary already covered by authored exercises', () => {
+  const start = html.indexOf('startUnit(unit) {');
+  const end = html.indexOf('\n            exit() {', start);
+  assert.ok(start >= 0 && end > start, 'startUnit method must exist');
+  const method = html.slice(start, end);
+  assert.match(method, /const practicedVocabIds = new Set\(unit\.exercises\.map\(ex => ex\.vocabId\)\)/);
+  assert.match(method, /unit\.vocab\.filter\(v => !practicedVocabIds\.has\(v\.id\)\)\.flatMap/);
+  assert.match(method, /this\.queue = \[\.\.\.unit\.exercises, \.\.\.reinforcement\]/);
+});

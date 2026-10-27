@@ -186,3 +186,76 @@ test('real Chromium preserves progress on reload and safely imports valid/invali
     await new Promise(resolve => server.close(resolve));
   }
 });
+
+
+test('audio engine sends Indonesian speech utterances to the browser voice API', async () => {
+  const { server, url } = await startServer();
+  const context = await browser.newContext({ serviceWorkers: 'block' });
+  const page = await context.newPage();
+
+  await page.addInitScript(() => {
+    window.__spokenUtterances = [];
+    Object.defineProperty(window, 'speechSynthesis', {
+      configurable: true,
+      value: {
+        cancel() {},
+        getVoices() { return [{ lang: 'id-ID', name: 'Mock Indonesian' }]; },
+        speak(utterance) {
+          window.__spokenUtterances.push({
+            text: utterance.text,
+            lang: utterance.lang,
+            rate: utterance.rate,
+            voice: utterance.voice ? utterance.voice.name : null
+          });
+        },
+        onvoiceschanged: null
+      }
+    });
+    window.SpeechSynthesisUtterance = function (text) { this.text = text; };
+  });
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof AudioEngine !== 'undefined');
+    await page.evaluate(() => {
+      AudioEngine.init();
+      AudioEngine.speak('Selamat pagi');
+    });
+    const utterances = await page.evaluate(() => window.__spokenUtterances);
+    assert.equal(utterances.length, 1);
+    assert.equal(utterances[0].text, 'Selamat pagi');
+    assert.equal(utterances[0].lang, 'id-ID');
+    assert.equal(utterances[0].rate, 0.85);
+    assert.equal(utterances[0].voice, 'Mock Indonesian');
+  } finally {
+    await context.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});
+
+test('service worker serves the app after the network is disconnected', async () => {
+  const { server, url } = await startServer();
+  const context = await browser.newContext();
+  const page = await context.newPage();
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => 'serviceWorker' in navigator);
+    await page.evaluate(async () => {
+      await navigator.serviceWorker.ready;
+    });
+    await page.waitForFunction(() => Boolean(navigator.serviceWorker.controller), { timeout: 10000 });
+    await page.reload({ waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined');
+
+    await context.setOffline(true);
+    await page.reload({ waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined');
+    assert.match(await page.title(), /Bahasa Studio 3\.7\.1/);
+    assert.equal(await page.locator('body').isVisible(), true);
+  } finally {
+    await context.setOffline(false);
+    await context.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});

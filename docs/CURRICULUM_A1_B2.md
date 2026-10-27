@@ -11,7 +11,11 @@ Objetivos de salida:
 - Comprender y producir diálogos breves con vocabulario conocido.
 - Distinguir la preposición separada di (di rumah) del prefijo unido en una pasiva (dibaca), sin exigir todavía el dominio de todos los afijos.
 
-## Expansión de A1 por tandas\n\nLa ampliación se realiza en PR pequeñas para revisar contenido y evitar duplicados. La primera tanda añade las unidades 9–11 (números del 11 al 100, dinero y precios, hora y partes del día), con 14–22 ejercicios por unidad y reutilización de IDs existentes para vocabulario ya enseñado. Esta tanda no declara A1 terminado: quedan por auditar la cobertura completa del temario guiado, la progresión de vocabulario, los repasos acumulativos y la comprensión/producción oral. A2–B2 permanecen ocultos en la vista del curso hasta completar todas las unidades A1.\n\n## Progresión de afijos
+## Expansión de A1 por tandas
+
+La ampliación se realiza en PR pequeñas para revisar contenido y evitar duplicados. La primera tanda añade las unidades 9–11 (números del 11 al 100, dinero y precios, hora y partes del día), con 14–22 ejercicios por unidad y reutilización de IDs existentes para vocabulario ya enseñado. Esta tanda no declara A1 terminado: quedan por auditar la cobertura completa del temario guiado, la progresión de vocabulario, los repasos acumulativos y la comprensión/producción oral. A2–B2 permanecen ocultos en la vista del curso hasta completar todas las unidades A1.
+
+## Progresión de afijos
 
 El MCER describe capacidades comunicativas y no prescribe una lista oficial de afijos indonesios por nivel. Esta distribución es una decisión pedagógica, no una equivalencia oficial.
 

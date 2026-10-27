@@ -504,9 +504,9 @@ test('invalid backup import leaves existing progress untouched and never starts 
   const validatorBody = extractMethodBody(html, 'validateBackup(parsed) {');
   const courseStart = html.indexOf('const CourseData =');
   const courseEnd = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', courseStart);
-  const course = vm.runInNewContext(html.slice(courseStart, courseEnd) + '\\nCourseData');
+  const course = vm.runInNewContext(html.slice(courseStart, courseEnd) + '\nCourseData');
   const validateBackup = vm.runInNewContext(
-    '({ validateBackup(parsed) {' + validatorBody + '\\n} }).validateBackup',
+    '({ validateBackup(parsed) {' + validatorBody + '\n} }).validateBackup',
     { CourseData: course, SYLLABUS: [] }
   );
   const importBody = extractMethodBody(html, 'importProgress(e) {');
@@ -516,7 +516,7 @@ test('invalid backup import leaves existing progress untouched and never starts 
     readAsText(file) { this.file = file; }
   }
   const importProgress = vm.runInNewContext(
-    '({ importProgress(e) {' + importBody + '\\n} }).importProgress',
+    '({ importProgress(e) {' + importBody + '\n} }).importProgress',
     {
       FileReader: FakeFileReader,
       confirm: () => { throw new Error('confirmation must not run for invalid backup'); },

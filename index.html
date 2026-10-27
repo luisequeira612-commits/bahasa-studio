@@ -143,7 +143,7 @@
             </div>
             <div style="margin-top:10px;">
                 <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:5px;">
-                    <span>Avance de A1</span><strong id="courseProgressText">0% · 0/8 unidades</strong>
+                    <span>Avance de A1</span><strong id="courseProgressText">0% · 0/11 unidades</strong>
                 </div>
                 <div class="progress-bar" role="progressbar" aria-label="Progreso del nivel A1" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
                     <div id="courseProgressFill" class="progress-fill" style="width:0%;"></div>
@@ -1345,6 +1345,122 @@
                                 {"vocabId":"v122","type":"translate_es_id","prompt":"Traduce: mañana","answer":"Besok","explanation":"Besok significa mañana."},
                                 {"vocabId":"v123","type":"write","prompt":"Escribe dos frases sobre tu rutina.","hint":"Intenta construir una frase nueva con el vocabulario de la unidad.","modelAnswer":"Hari ini saya belajar. Saya minum air setiap hari.","explanation":"Usa hari ini, besok o setiap hari."},
                                 { vocabId: 'v123', type: 'write', prompt: 'Tarea integradora: preséntate, pide una bebida, pregunta el precio y describe tu rutina.', hint: 'Combina presentación, cortesía, una pregunta y una expresión temporal.', modelAnswer: 'Nama saya Ana. Saya dari Nikaragua. Saya mau teh, tolong. Berapa harganya? Saya belajar setiap hari.', explanation: 'La respuesta modelo combina varios objetivos A1; puedes usar tus propios datos y otras frases correctas.' }
+                            ]
+                        }
+                        ,
+                        {
+                            id: 'a1_u9',
+                            title: 'Unidad 9: Números del 11 al 100',
+                            desc: 'Contar más allá de diez y reconocer números frecuentes en cantidades sencillas.',
+                            grammar: 'Del 11 al 19 se usa -ce-? No: las formas estándar son sebelas y luego dos belas, tiga belas, empat belas... Para las decenas se usa puluh: dua puluh = 20, tiga puluh = 30. Seratus significa 100.',
+                            vocab: [
+                                { id: 'v124', idn: 'Sebelas', esp: 'Once', ex: 'Sebelas teman.', exEsp: 'Once amigos.' },
+                                { id: 'v125', idn: 'Dua belas', esp: 'Doce', ex: 'Dua belas buku.', exEsp: 'Doce libros.' },
+                                { id: 'v126', idn: 'Tiga belas', esp: 'Trece', ex: 'Tiga belas tahun.', exEsp: 'Trece años.' },
+                                { id: 'v127', idn: 'Empat belas', esp: 'Catorce', ex: 'Empat belas teman.', exEsp: 'Catorce amigos.' },
+                                { id: 'v128', idn: 'Lima belas', esp: 'Quince', ex: 'Lima belas buku.', exEsp: 'Quince libros.' },
+                                { id: 'v129', idn: 'Enam belas', esp: 'Dieciséis', ex: 'Enam belas tahun.', exEsp: 'Dieciséis años.' },
+                                { id: 'v130', idn: 'Tujuh belas', esp: 'Diecisiete', ex: 'Tujuh belas buku.', exEsp: 'Diecisiete libros.' },
+                                { id: 'v131', idn: 'Delapan belas', esp: 'Dieciocho', ex: 'Delapan belas teman.', exEsp: 'Dieciocho amigos.' },
+                                { id: 'v132', idn: 'Sembilan belas', esp: 'Diecinueve', ex: 'Sembilan belas tahun.', exEsp: 'Diecinueve años.' },
+                                { id: 'v133', idn: 'Dua puluh', esp: 'Veinte', ex: 'Dua puluh buku.', exEsp: 'Veinte libros.' },
+                                { id: 'v134', idn: 'Tiga puluh', esp: 'Treinta', ex: 'Tiga puluh tahun.', exEsp: 'Treinta años.' },
+                                { id: 'v135', idn: 'Seratus', esp: 'Cien', ex: 'Seratus buku.', exEsp: 'Cien libros.' }
+                            ],
+                            exercises: [
+                                { vocabId: 'v124', type: 'mc', prompt: '¿Qué número significa sebelas?', options: ['11', '12', '20'], answer: 0, explanation: 'Sebelas significa once.' },
+                                { vocabId: 'v125', type: 'translate_es_id', prompt: 'Traduce al indonesio: doce', answer: 'Dua belas', explanation: 'Dua belas significa doce.' },
+                                { vocabId: 'v126', type: 'listen', prompt: 'Escucha y escribe el número', answer: 'Tiga belas', explanation: 'Tiga belas significa trece.' },
+                                { vocabId: 'v127', type: 'mc', prompt: '¿Qué significa empat belas?', options: ['Cuatro', 'Catorce', 'Cuarenta'], answer: 1, explanation: 'Empat belas significa catorce.' },
+                                { vocabId: 'v128', type: 'translate_es_id', prompt: 'Traduce: quince', answer: 'Lima belas', explanation: 'Lima belas significa quince.' },
+                                { vocabId: 'v129', type: 'order', prompt: 'Ordena las palabras para formar “dieciséis libros”', words: ['buku', 'Enam', 'belas'], correctOrder: ['Enam', 'belas', 'buku'], explanation: 'El número va antes del sustantivo: Enam belas buku.' },
+                                { vocabId: 'v130', type: 'mc', prompt: 'Tujuh belas equivale a…', options: ['7', '17', '70'], answer: 1, explanation: 'Tujuh belas significa diecisiete.' },
+                                { vocabId: 'v131', type: 'translate_es_id', prompt: 'Traduce: dieciocho', answer: 'Delapan belas', explanation: 'Delapan belas significa dieciocho.' },
+                                { vocabId: 'v132', type: 'listen', prompt: 'Escribe el número que escuchas', answer: 'Sembilan belas', explanation: 'Sembilan belas significa diecinueve.' },
+                                { vocabId: 'v133', type: 'mc', prompt: '¿Qué número significa dua puluh?', options: ['12', '20', '30'], answer: 1, explanation: 'Dua puluh significa veinte.' },
+                                { vocabId: 'v134', type: 'translate_es_id', prompt: 'Traduce: treinta', answer: 'Tiga puluh', explanation: 'Tiga puluh significa treinta.' },
+                                { vocabId: 'v135', type: 'mc', prompt: 'Seratus significa…', options: ['100', '13', '30'], answer: 0, explanation: 'Seratus significa cien.' },
+                                { vocabId: 'v124', type: 'order', prompt: 'Ordena para decir “once amigos”', words: ['teman', 'Sebelas'], correctOrder: ['Sebelas', 'teman'], explanation: 'En una cantidad simple, el número precede al sustantivo.' },
+                                { vocabId: 'v133', type: 'listen', prompt: 'Escucha y escribe “veinte”', answer: 'Dua puluh', explanation: 'Dua puluh significa veinte.' },
+                                { vocabId: 'v135', type: 'write', prompt: 'Escribe en indonesio un número entre 11 y 100 que hayas aprendido.', hint: 'Puedes elegir doce, veinte, treinta o cien.', modelAnswer: 'Dua puluh.', explanation: 'Hay varias respuestas correctas; revisa que la forma del número sea correcta.' }
+                            ]
+                        },
+                        {
+                            id: 'a1_u10',
+                            title: 'Unidad 10: Dinero y precios',
+                            desc: 'Preguntar cuánto cuesta algo, reconocer precios en rupias y usar expresiones básicas de compra.',
+                            grammar: 'Para preguntar el precio, usa “Berapa harganya?” (¿Cuánto cuesta?). La moneda de Indonesia es la rupia (rupiah). Ribu significa mil; en precios cotidianos se omite a menudo la palabra rupiah cuando el contexto es claro.',
+                            vocab: [
+                                { id: 'v136', idn: 'Uang', esp: 'Dinero', ex: 'Saya membawa uang.', exEsp: 'Llevo dinero.' },
+                                { id: 'v137', idn: 'Harga', esp: 'Precio', ex: 'Harga buku.', exEsp: 'El precio del libro.' },
+                                { id: 'v138', idn: 'Rupiah', esp: 'Rupia indonesia', ex: 'Seribu rupiah.', exEsp: 'Mil rupias.' },
+                                { id: 'v139', idn: 'Ribu', esp: 'Mil (en cantidades)', ex: 'Lima ribu rupiah.', exEsp: 'Cinco mil rupias.' },
+                                { id: 'v140', idn: 'Murah', esp: 'Barato/a', ex: 'Harganya murah.', exEsp: 'Es barato.' },
+                                { id: 'v141', idn: 'Mahal', esp: 'Caro/a', ex: 'Harganya mahal.', exEsp: 'Es caro.' },
+                                { id: 'v142', idn: 'Beli', esp: 'Comprar', ex: 'Saya beli buku.', exEsp: 'Compro un libro.' },
+                                { id: 'v143', idn: 'Bayar', esp: 'Pagar', ex: 'Saya bayar.', exEsp: 'Pago.' },
+                                { id: 'v144', idn: 'Kembalian', esp: 'Cambio (dinero que devuelven)', ex: 'Ini kembaliannya.', exEsp: 'Aquí tiene su cambio.' },
+                                { id: 'v145', idn: 'Tunai', esp: 'En efectivo', ex: 'Saya bayar tunai.', exEsp: 'Pago en efectivo.' },
+                                { id: 'v18', idn: 'Berapa', esp: 'Cuánto / cuántos', ex: 'Berapa harganya?', exEsp: '¿Cuánto cuesta?' },
+                                { id: 'v115', idn: 'Berapa harganya?', esp: '¿Cuánto cuesta?', ex: 'Berapa harganya?', exEsp: '¿Cuánto cuesta?' },
+                                { id: 'v113', idn: 'Teh', esp: 'Té', ex: 'Saya beli teh.', exEsp: 'Compro té.' }
+                            ],
+                            exercises: [
+                                { vocabId: 'v136', type: 'mc', prompt: '¿Qué significa uang?', options: ['Dinero', 'Precio', 'Cambio'], answer: 0, explanation: 'Uang significa dinero.' },
+                                { vocabId: 'v137', type: 'translate_es_id', prompt: 'Traduce: precio', answer: 'Harga', explanation: 'Harga significa precio.' },
+                                { vocabId: 'v138', type: 'listen', prompt: 'Escribe la palabra para la moneda de Indonesia', answer: 'Rupiah', explanation: 'Rupiah es la moneda de Indonesia.' },
+                                { vocabId: 'v139', type: 'mc', prompt: 'Lima ribu rupiah significa…', options: ['Cinco rupias', 'Cinco mil rupias', 'Cincuenta rupias'], answer: 1, explanation: 'Ribu significa mil.' },
+                                { vocabId: 'v140', type: 'translate_es_id', prompt: 'Traduce: barato/a', answer: 'Murah', explanation: 'Murah significa barato o barata.' },
+                                { vocabId: 'v141', type: 'mc', prompt: '¿Qué palabra significa caro/a?', options: ['Murah', 'Mahal', 'Tunai'], answer: 1, explanation: 'Mahal significa caro o cara.' },
+                                { vocabId: 'v142', type: 'order', prompt: 'Ordena: Compro té', words: ['teh', 'beli', 'Saya'], correctOrder: ['Saya', 'beli', 'teh'], explanation: 'Saya beli teh significa compro té.' },
+                                { vocabId: 'v143', type: 'translate_es_id', prompt: 'Traduce: pagar', answer: 'Bayar', explanation: 'Bayar significa pagar.' },
+                                { vocabId: 'v144', type: 'mc', prompt: 'Kembalian es…', options: ['El precio', 'El cambio que devuelven', 'Dinero en efectivo'], answer: 1, explanation: 'Kembalian es el cambio que devuelve el vendedor.' },
+                                { vocabId: 'v145', type: 'translate_es_id', prompt: 'Traduce: en efectivo', answer: 'Tunai', explanation: 'Tunai significa en efectivo.' },
+                                { vocabId: 'v18', type: 'mc', prompt: '¿Qué significa berapa?', options: ['Cuánto', 'Caro', 'Dinero'], answer: 0, explanation: 'Berapa se usa para preguntar cantidades o precios.' },
+                                { vocabId: 'v115', type: 'listen', prompt: 'Escucha y escribe la pregunta por el precio', answer: 'Berapa harganya?', explanation: 'Berapa harganya? significa ¿Cuánto cuesta?' },
+                                { vocabId: 'v113', type: 'write', prompt: 'Escribe una pregunta para saber el precio de algo.', hint: 'Usa la expresión Berapa harganya?', modelAnswer: 'Berapa harganya?', explanation: 'Esta pregunta sirve para preguntar cuánto cuesta algo.' },
+                                { vocabId: 'v140', type: 'order', prompt: 'Ordena: Es barato', words: ['murah', 'Harganya'], correctOrder: ['Harganya', 'murah'], explanation: 'Harganya murah significa es barato.' },
+                                { vocabId: 'v142', type: 'write', prompt: 'Escribe una frase breve sobre comprar algo.', hint: 'Puedes usar Saya beli teh.', modelAnswer: 'Saya beli teh.', explanation: 'Usa beli para decir comprar; también son válidas otras frases correctas.' }
+                            ]
+                        },
+                        {
+                            id: 'a1_u11',
+                            title: 'Unidad 11: La hora y partes del día',
+                            desc: 'Nombrar los momentos del día y preguntar o decir la hora con expresiones sencillas.',
+                            grammar: 'Pagi es la mañana, siang el mediodía o primeras horas de la tarde, sore la tarde y malam la noche. Para decir la hora se usan jam o pukul. “Setengah delapan” significa las siete y media (media hora antes de las ocho), no las ocho y media.',
+                            vocab: [
+                                { id: 'v146', idn: 'Pagi', esp: 'Mañana (parte del día)', ex: 'Pagi ini saya belajar.', exEsp: 'Esta mañana estudio.' },
+                                { id: 'v147', idn: 'Siang', esp: 'Mediodía / primeras horas de la tarde', ex: 'Saya belajar siang.', exEsp: 'Estudio al mediodía.' },
+                                { id: 'v148', idn: 'Sore', esp: 'Tarde (final de la tarde)', ex: 'Saya bekerja sore.', exEsp: 'Trabajo por la tarde.' },
+                                { id: 'v149', idn: 'Malam', esp: 'Noche', ex: 'Saya tidur malam.', exEsp: 'Duermo por la noche.' },
+                                { id: 'v150', idn: 'Jam', esp: 'Hora / reloj', ex: 'Jam tujuh.', exEsp: 'Las siete.' },
+                                { id: 'v151', idn: 'Pukul', esp: 'A las (indica la hora)', ex: 'Pukul tujuh.', exEsp: 'A las siete.' },
+                                { id: 'v152', idn: 'Menit', esp: 'Minuto', ex: 'Lima menit.', exEsp: 'Cinco minutos.' },
+                                { id: 'v153', idn: 'Setengah', esp: 'Media / mitad', ex: 'Setengah delapan.', exEsp: 'Las siete y media.' },
+                                { id: 'v154', idn: 'Sekarang', esp: 'Ahora', ex: 'Sekarang pukul tujuh.', exEsp: 'Ahora son las siete.' },
+                                { id: 'v155', idn: 'Nanti', esp: 'Más tarde', ex: 'Saya belajar nanti.', exEsp: 'Estudio más tarde.' },
+                                { id: 'v156', idn: 'Tepat', esp: 'En punto / exacto', ex: 'Jam tujuh tepat.', exEsp: 'Las siete en punto.' },
+                                { id: 'v157', idn: 'Lewat', esp: 'Pasadas / después de', ex: 'Jam tujuh lewat lima menit.', exEsp: 'Las siete y cinco.' },
+                                { id: 'v35', idn: 'Hari', esp: 'Día', ex: 'Hari ini saya belajar.', exEsp: 'Hoy estudio.' },
+                                { id: 'v36', idn: 'Hari ini', esp: 'Hoy / este día', ex: 'Hari ini saya belajar.', exEsp: 'Hoy estudio.' },
+                                { id: 'v122', idn: 'Besok', esp: 'Mañana', ex: 'Besok saya bekerja.', exEsp: 'Mañana trabajo.' }
+                            ],
+                            exercises: [
+                                { vocabId: 'v146', type: 'mc', prompt: '¿Qué parte del día significa pagi?', options: ['Mañana', 'Noche', 'Mediodía'], answer: 0, explanation: 'Pagi es la mañana.' },
+                                { vocabId: 'v147', type: 'translate_es_id', prompt: 'Traduce: mediodía / primeras horas de la tarde', answer: 'Siang', explanation: 'Siang suele referirse al mediodía y primeras horas de la tarde.' },
+                                { vocabId: 'v148', type: 'mc', prompt: '¿Qué palabra significa tarde, al final de la tarde?', options: ['Sore', 'Pagi', 'Malam'], answer: 0, explanation: 'Sore es el final de la tarde.' },
+                                { vocabId: 'v149', type: 'translate_es_id', prompt: 'Traduce: noche', answer: 'Malam', explanation: 'Malam significa noche.' },
+                                { vocabId: 'v150', type: 'mc', prompt: 'En la expresión jam tujuh, jam significa…', options: ['Hora', 'Minuto', 'Mañana'], answer: 0, explanation: 'Jam se usa para expresar la hora y también significa reloj.' },
+                                { vocabId: 'v151', type: 'translate_es_id', prompt: 'Traduce: a las (para indicar una hora)', answer: 'Pukul', explanation: 'Pukul se usa para indicar una hora concreta.' },
+                                { vocabId: 'v152', type: 'listen', prompt: 'Escribe la palabra que significa minuto', answer: 'Menit', explanation: 'Menit significa minuto.' },
+                                { vocabId: 'v153', type: 'mc', prompt: '¿Qué hora significa setengah delapan?', options: ['7:30', '8:30', '7:00'], answer: 0, explanation: 'Setengah delapan significa siete y media.' },
+                                { vocabId: 'v154', type: 'translate_es_id', prompt: 'Traduce: ahora', answer: 'Sekarang', explanation: 'Sekarang significa ahora.' },
+                                { vocabId: 'v155', type: 'mc', prompt: 'Nanti significa…', options: ['Ayer', 'Más tarde', 'Ahora'], answer: 1, explanation: 'Nanti significa más tarde.' },
+                                { vocabId: 'v156', type: 'order', prompt: 'Ordena: Las siete en punto', words: ['tepat', 'tujuh', 'Jam'], correctOrder: ['Jam', 'tujuh', 'tepat'], explanation: 'Jam tujuh tepat significa las siete en punto.' },
+                                { vocabId: 'v157', type: 'translate_es_id', prompt: 'Traduce: las siete y cinco', answer: 'Jam tujuh lewat lima menit', explanation: 'Lewat indica los minutos que pasan de la hora.' },
+                                { vocabId: 'v146', type: 'listen', prompt: 'Escribe la expresión “esta mañana”', answer: 'Pagi ini', explanation: 'Pagi ini significa esta mañana.' },
+                                { vocabId: 'v151', type: 'write', prompt: 'Escribe una frase para decir que son las siete en punto.', hint: 'Usa jam, tujuh y tepat.', modelAnswer: 'Jam tujuh tepat.', explanation: 'La frase significa las siete en punto.' },
+                                { vocabId: 'v155', type: 'write', prompt: 'Escribe una frase sencilla con nanti.', hint: 'Puedes hablar de estudiar más tarde.', modelAnswer: 'Saya belajar nanti.', explanation: 'Nanti significa más tarde; otras frases correctas también valen.' }
                             ]
                         }
                     ]
@@ -2880,6 +2996,8 @@ Requisitos:
                     const levelEl = document.createElement('div');
                     const isAdvanced = ['A2', 'B1', 'B2'].includes(lvl.id);
                     if (isAdvanced) {
+                        const a1Complete = a1 && a1.units.length > 0 && a1.units.every(unit => this.completedUnits.includes(unit.id));
+                        if (!a1Complete) return;
                         levelEl.innerHTML = `<details style="margin:16px 0; padding:12px; border:1px solid var(--border); border-radius:12px;"><summary style="cursor:pointer; font-weight:700;">${lvl.title} — En desarrollo</summary><p style="margin-top:10px; color:var(--text-muted); font-size:0.9rem;">Este nivel todavía no está completo. Estamos desarrollando el contenido y los ejercicios; por ahora, te recomendamos completar A1.</p></details>`;
                         container.appendChild(levelEl);
                         return;

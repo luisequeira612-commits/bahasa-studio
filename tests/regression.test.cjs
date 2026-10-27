@@ -472,16 +472,16 @@ test('SRS attempt persistence mirrors the updated state to every duplicate word 
   const bodyStart = methodSource.indexOf('{') + 1;
   const bodyEnd = methodSource.lastIndexOf('\\n            },');
   const methodBody = methodSource.slice(bodyStart, bodyEnd);
+  const writes = [];
   const saveAttemptForDuplicateWords = vm.runInNewContext(
-    '({ async saveAttemptForDuplicateWords(wordId, item) {' + methodBody + '\\n} }).saveAttemptForDuplicateWords'
+    '({ async saveAttemptForDuplicateWords(wordId, item) {' + methodBody + '\\n} }).saveAttemptForDuplicateWords',
+    { DB: { set: async (store, key, val) => writes.push({ store, key, val }) } }
   );
 
-  const writes = [];
   const engine = {
     getDuplicateWordIds: async wordId => wordId === 'v27' ? ['v27', 'v48'] : [wordId],
     saveAttemptForDuplicateWords,
   };
-  const DB = { set: async (store, key, val) => writes.push({ store, key, val }) };
   await engine.saveAttemptForDuplicateWords.call(
     { ...engine, DB },
     'v27',

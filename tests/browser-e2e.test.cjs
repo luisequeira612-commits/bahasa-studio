@@ -112,6 +112,53 @@ test('real Chromium preserves progress on reload and safely imports valid/invali
     assert.equal(await page.evaluate(() => DB.get('srs', 'v49')), null,
       'successful restore should replace old SRS records rather than leave stale entries');
 
+    const beforeAbort = await page.evaluate(async () => ({
+      xp: await DB.get('settings', 'userXp'),
+      completed: await DB.get('settings', 'completedUnits'),
+      srs: await DB.get('srs', 'v27')
+    }));
+    const abortResult = await page.evaluate(async () => {
+      const database = DB.db;
+      const realTransaction = database.transaction.bind(database);
+      database.transaction = function (...args) {
+        const tx = realTransaction(...args);
+        if (Array.isArray(args[0]) && args[0].includes('srs') && args[0].includes('settings')) {
+          const objectStore = tx.objectStore.bind(tx);
+          tx.objectStore = function (name) {
+            const store = objectStore(name);
+            if (name === 'settings') queueMicrotask(() => {
+              try { tx.abort(); } catch (_) {}
+            });
+            return store;
+          };
+        }
+        return tx;
+      };
+      try {
+        await DB.replaceBackupData({
+          version: 3, xp: 88, completedUnits: ['a1_u3'], customUnits: [],
+          syllabusPos: 0,
+          srs: [{ key: 'v27', val: {
+            attempts: 12, correct: 11, incorrect: 1, interval: 10, repetition: 3,
+            efactor: 2.5, nextReview: Date.now() + 86400000, lastReviewed: Date.now()
+          }}]
+        });
+        return { rejected: false };
+      } catch (error) {
+        return { rejected: true, message: String(error && error.message || error) };
+      } finally {
+        database.transaction = realTransaction;
+      }
+    });
+    assert.equal(abortResult.rejected, true, 'real IndexedDB transaction abort must reject restoration');
+    const afterAbort = await page.evaluate(async () => ({
+      xp: await DB.get('settings', 'userXp'),
+      completed: await DB.get('settings', 'completedUnits'),
+      srs: await DB.get('srs', 'v27')
+    }));
+    assert.deepEqual(afterAbort, beforeAbort,
+      'real IndexedDB abort must roll back both settings and SRS changes');
+
     const previousState = await page.evaluate(async () => ({
       xp: await DB.get('settings', 'userXp'),
       completed: await DB.get('settings', 'completedUnits'),

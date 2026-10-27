@@ -350,7 +350,7 @@ test('backup validator executes against valid and invalid version 3 payloads', (
   const course = vm.runInNewContext('(() => {\n' + html.slice(courseStart, courseEnd) + '\nreturn CourseData;\n})()');
   const validateBackup = vm.runInNewContext(
     '({' + methodSource + '\n}).validateBackup',
-    { CourseData: course, SYLLABUS: [] }
+    { CourseData: course, SYLLABUS: [], LEGACY_SRS_ID_ALIASES: {} }
   );
 
   const normalized = validateBackup({
@@ -464,6 +464,7 @@ test('SRS due queue returns one due item per Indonesian headword and excludes pl
     { id: 'other', idn: 'Buku', esp: 'libro' }
   ];
   const records = [
+    { key: 'legacy-a', val: { nextReview: 5, attempts: 1, lastReviewed: 1, interval: 1, repetition: 1, incorrect: 0 } },
     { key: 'dup-a', val: { nextReview: 10, attempts: 2, lastReviewed: 1, interval: 1, repetition: 1, incorrect: 1 } },
     { key: 'dup-b', val: { nextReview: 20, attempts: 3, lastReviewed: 2, interval: 1, repetition: 1, incorrect: 2 } },
     { key: 'other', val: { nextReview: 10, attempts: 0, lastReviewed: null, interval: 0, repetition: 0 } },
@@ -474,6 +475,7 @@ test('SRS due queue returns one due item per Indonesian headword and excludes pl
     '({ async getDueItems() {' + methodBody + '\n} }).getDueItems',
     {
       getLearningLevels: () => [{ units: [{ vocab }] }],
+      LEGACY_SRS_ID_ALIASES: { 'legacy-a': 'dup-a' },
       DB: { getAll: async () => records },
       Date: { now: () => 100 }
     }
@@ -557,7 +559,7 @@ test('A1 units 9–11 cover numbers, prices, and time with linked exercises', ()
   assert.ok(courseStart >= 0 && courseEnd > courseStart, 'CourseData block must exist');
   const course = vm.runInNewContext('(() => {\n' + html.slice(courseStart, courseEnd) + '\nreturn CourseData;\n})()');
   const a1 = course.levels.find(level => level.id === 'A1');
-  assert.equal(a1.units.length, 14)
+  assert.equal(a1.units.length, 17)
 
   const added = ['a1_u9', 'a1_u10', 'a1_u11'].map(id => {
     const unit = a1.units.find(candidate => candidate.id === id);
@@ -702,4 +704,148 @@ test('lesson start avoids duplicating automatic drills for vocabulary already co
   assert.match(method, /const practicedVocabIds = new Set\(unit\.exercises\.map\(ex => ex\.vocabId\)\)/);
   assert.match(method, /unit\.vocab\.filter\(v => !practicedVocabIds\.has\(v\.id\)\)\.flatMap/);
   assert.match(method, /this\.queue = \[\.\.\.unit\.exercises, \.\.\.reinforcement\]/);
+});
+
+
+test('A1 units 15–17 add actions, preferences, and basic questions without duplicate vocabulary', () => {
+  const courseStart = html.indexOf('const CourseData =');
+  const courseEnd = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', courseStart);
+  const course = vm.runInNewContext('(() => {\n' + html.slice(courseStart, courseEnd) + '\nreturn CourseData;\n})()');
+  const a1 = course.levels.find(level => level.id === 'A1');
+  const added = [15, 16, 17].map(n => {
+    const unit = a1.units.find(unit => unit.id === 'a1_u' + n);
+    assert.ok(unit, 'missing unit a1_u' + n);
+    assert.ok(unit.exercises.length >= 14 && unit.exercises.length <= 22);
+    assert.ok(unit.exercises.some(ex => ex.type === 'write'));
+    const ids = unit.vocab.map(word => word.id);
+    assert.equal(new Set(ids).size, ids.length);
+    const vocabIds = new Set(ids);
+    for (const exercise of unit.exercises) {
+      assert.ok(vocabIds.has(exercise.vocabId), unit.id + ' exercise references unknown vocabulary');
+      assert.ok(['mc', 'translate_es_id', 'listen', 'order', 'write'].includes(exercise.type));
+      if (exercise.type === 'mc') assert.ok(Number.isInteger(exercise.answer) && exercise.answer >= 0 && exercise.answer < exercise.options.length);
+      if (exercise.type === 'order') assert.deepEqual([...exercise.words].sort(), [...exercise.correctOrder].sort());
+    }
+    return unit;
+  });
+  const priorTerms = new Map();
+  for (const word of a1.units.filter(unit => !added.includes(unit)).flatMap(unit => unit.vocab)) {
+    const term = word.idn.trim().toLocaleLowerCase();
+    if (!priorTerms.has(term)) priorTerms.set(term, new Set());
+    priorTerms.get(term).add(word.id);
+  }
+  const addedTermIds = new Map();
+  for (const word of added.flatMap(unit => unit.vocab)) {
+    const term = word.idn.trim().toLocaleLowerCase();
+    if (addedTermIds.has(term)) {
+      assert.equal(word.id, addedTermIds.get(term), term + ' must reuse the same vocabulary ID');
+    } else {
+      addedTermIds.set(term, word.id);
+    }
+    if (priorTerms.has(term)) {
+      assert.ok(priorTerms.get(term).has(word.id), term + ' must reuse its existing vocabulary ID');
+    }
+  }
+  assert.ok(added[0].vocab.some(word => word.idn === 'Pergi'));
+  assert.ok(added[1].vocab.some(word => word.idn === 'Bisa') && added[1].vocab.some(word => word.idn === 'Suka'));
+  assert.ok(added[2].vocab.some(word => word.idn === 'Ada') && added[2].vocab.some(word => word.idn === 'Kapan'));
+});
+
+
+test('canonical vocabulary IDs remain stable across all A1 units', () => {
+  const courseStart = html.indexOf('const CourseData =');
+  const courseEnd = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', courseStart);
+  const course = vm.runInNewContext(html.slice(courseStart, courseEnd) + '\nCourseData');
+  const a1 = course.levels.find(level => level.id === 'A1');
+  const canonicalByTerm = new Map();
+  for (const unit of a1.units) for (const word of unit.vocab || []) {
+    const term = word.idn.trim().toLocaleLowerCase();
+    if (canonicalByTerm.has(term)) {
+      assert.equal(word.id, canonicalByTerm.get(term),
+        unit.id + ': ' + word.idn + ' must reuse canonical ID ' + canonicalByTerm.get(term));
+    } else canonicalByTerm.set(term, word.id);
+  }
+});
+
+test('legacy SRS records remain linked to canonical IDs after duplicate cards are removed', async () => {
+  const methodBody = extractMethodBody(html, 'async getDuplicateWordIds(wordId) {');
+  const getDuplicateWordIds = vm.runInNewContext(
+    '({ async getDuplicateWordIds(wordId) {' + methodBody + '\n} }).getDuplicateWordIds',
+    {
+      getLearningLevels: () => [{ units: [{ vocab: [{ id: 'v53', idn: 'Teman' }, { id: 'v46', idn: 'Makan' }] }] }],
+      LEGACY_SRS_ID_ALIASES: { v24: 'v53', v25: 'v46' }
+    }
+  );
+  assert.deepEqual(Array.from(await getDuplicateWordIds.call({}, 'v53')), ['v53', 'v24']);
+  assert.deepEqual(Array.from(await getDuplicateWordIds.call({}, 'v46')), ['v46', 'v25']);
+  for (const pair of ['v24: \'v53\'', 'v25: \'v46\'', 'v26: \'v47\'', 'v27: \'v48\'',
+    'v28: \'v49\'', 'v33: \'v101\'', 'v39: \'v50\'', 'v109: \'v21\'',
+    'v110: \'v22\'', 'v117: \'v30\'', 'v118: \'v31\'', 'v121: \'v36\'', 'v123: \'v44\'']) {
+    assert.ok(html.includes(pair), 'missing legacy SRS alias ' + pair);
+  }
+  assert.match(html, /version: 1/);
+  assert.match(html, /return \{ version: 3, xp: parsed\.xp/);
+  const statsStart = html.indexOf('async updateSrsView() {');
+  const statsEnd = html.indexOf('renderDict()', statsStart);
+  const statsView = html.slice(statsStart, statsEnd);
+  assert.match(statsView, /Object\.keys\(LEGACY_SRS_ID_ALIASES\)/);
+  assert.match(statsView, /vocabById\.set\(legacyId, canonicalWord\)/,
+    'legacy SRS states must remain visible in aggregate statistics');
+  const backupIdsStart = html.indexOf('const knownIds = new Set([');
+  const backupIdsEnd = html.indexOf(']);', backupIdsStart);
+  assert.match(html.slice(backupIdsStart, backupIdsEnd), /Object\.keys\(LEGACY_SRS_ID_ALIASES\)/,
+    'older backups must be allowed to restore historical SRS IDs');
+});
+
+test('A1 units 12–14 avoid duplicate prompts and do not reveal the terminal translation', () => {
+  const courseStart = html.indexOf('const CourseData =');
+  const courseEnd = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', courseStart);
+  const course = vm.runInNewContext(html.slice(courseStart, courseEnd) + '\nCourseData');
+  const a1 = course.levels.find(level => level.id === 'A1');
+  for (const id of ['a1_u12', 'a1_u13', 'a1_u14']) {
+    const unit = a1.units.find(candidate => candidate.id === id);
+    assert.equal(new Set(unit.exercises.map(ex => ex.prompt)).size, unit.exercises.length, id + ' must not repeat prompts');
+  }
+  const terminal = a1.units.find(unit => unit.id === 'a1_u14').exercises.find(ex => ex.vocabId === 'v267' && ex.type === 'translate_es_id');
+  assert.equal(terminal.prompt, 'Traduce al indonesio: Me bajo en la terminal.');
+  assert.equal(terminal.answer, 'Saya turun di terminal.');
+});
+
+test('A1 units 15–17 avoid ambiguous Ingin gloses, punctuation errors, and regional slang', () => {
+  const courseStart = html.indexOf('const CourseData =');
+  const courseEnd = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', courseStart);
+  const course = vm.runInNewContext(html.slice(courseStart, courseEnd) + '\nCourseData');
+  const a1 = course.levels.find(level => level.id === 'A1');
+  const u15 = a1.units.find(unit => unit.id === 'a1_u15');
+  const u16 = a1.units.find(unit => unit.id === 'a1_u16');
+  const u17 = a1.units.find(unit => unit.id === 'a1_u17');
+  assert.equal(u15.vocab.find(word => word.idn === 'Ambil').esp, 'Tomar / agarrar');
+  assert.ok(!JSON.stringify(u15).includes('coger'));
+  const ingin = u16.exercises.find(ex => ex.vocabId === 'v290' && ex.type === 'mc');
+  assert.equal(ingin.prompt, '¿Qué significa «Saya ingin kopi»?');
+  assert.equal(ingin.options[ingin.answer], 'Quiero café');
+  assert.match(ingin.explanation, /mau también puede expresar querer/);
+  const text = JSON.stringify([u15, u16, u17]);
+  assert.doesNotMatch(text, /Saya (?:pergi|suka teh|bisa pergi|punya kopi)\.\s*significa/);
+});
+
+
+test('A1 examples teach the time marker and avoid untaught vocabulary in required prompts', () => {
+  const courseStart = html.indexOf('const CourseData =');
+  const courseEnd = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', courseStart);
+  const course = vm.runInNewContext(html.slice(courseStart, courseEnd) + '\nCourseData');
+  const a1 = course.levels.find(level => level.id === 'A1');
+  const u5 = a1.units.find(unit => unit.id === 'a1_u5');
+  const u11 = a1.units.find(unit => unit.id === 'a1_u11');
+  const u12 = a1.units.find(unit => unit.id === 'a1_u12');
+  const u13 = a1.units.find(unit => unit.id === 'a1_u13');
+  assert.match(u11.grammar, /pada \+ momento \+ hari/);
+  assert.match(u12.desc, /frases breves/);
+  assert.doesNotMatch(u12.desc, /en secuencia/);
+  assert.equal(u13.vocab.find(word => word.idn === 'Angin').ex, 'Angin.');
+  assert.equal(u13.vocab.find(word => word.idn === 'Payung').ex, 'Ini payung saya.');
+  assert.doesNotMatch(JSON.stringify(u5), /\bpunya\b/i, 'unit 5 must not require possession grammar taught in unit 17');
+  assert.doesNotMatch(JSON.stringify(u13), /\bkuat\b|\bpunya\b/i);
+  const assessment = fs.readFileSync(path.join(__dirname, '..', 'assessment-engine.js'), 'utf8');
+  assert.doesNotMatch(assessment, /kembaliannya/i, 'the assessment must not require an untaught change-related word');
 });

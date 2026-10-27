@@ -748,9 +748,7 @@
                                 { id: 'v21', idn: 'Ibu', esp: 'Madre', ex: 'Ini ibu saya.', exEsp: 'Esta es mi madre.' },
                                 { id: 'v22', idn: 'Ayah', esp: 'Padre', ex: 'Ini ayah saya.', exEsp: 'Este es mi padre.' },
                                 { id: 'v23', idn: 'Anak', esp: 'Niño/a; hijo/a', ex: 'Dia anak saya.', exEsp: 'Él/ella es mi hijo/a.' },
-                                { id: 'v24', idn: 'Teman', esp: 'Amigo/a', ex: 'Dia teman saya.', exEsp: 'Él/ella es mi amigo/a.' },
-                                {"id":"v109","idn":"Ibu","esp":"Madre / señora","ex":"Ibu saya di rumah.","exEsp":"Mi madre está en casa."},
-                                {"id":"v110","idn":"Ayah","esp":"Padre","ex":"Ayah saya di rumah.","exEsp":"Mi padre está en casa."},
+                                { id: 'v53', idn: 'Teman', esp: 'Amigo/a', ex: 'Dia teman saya.', exEsp: 'Él/ella es mi amigo/a.' },
                                 {"id":"v111","idn":"Adik","esp":"Hermano/a menor","ex":"Adik saya di sini.","exEsp":"Mi hermano o hermana menor está aquí."}
                             ],
                             exercises: [
@@ -804,7 +802,7 @@
                                     "explanation": "Ini keluarga saya significa Esta es mi familia."
                                 },
                                 {
-                                    "vocabId": "v24",
+                                    "vocabId": "v53",
                                     "type": "translate_es_id",
                                     "prompt": "Traduce: amigo o amiga",
                                     "answer": "Teman",
@@ -845,7 +843,7 @@
                                     "explanation": "Dia anak saya significa Él es mi hijo."
                                 },
                                 {
-                                    "vocabId": "v24",
+                                    "vocabId": "v53",
                                     "type": "order",
                                     "prompt": "Ordena: Él es mi amigo",
                                     "words": [
@@ -888,9 +886,9 @@
                                     "explanation": "Ini ayah saya significa Este es mi padre."
                                 },
                                 { vocabId: 'v20', type: 'write', prompt: "Escribe una frase sobre una persona de tu familia.", hint: "Usa una palabra de familia que hayas aprendido.", modelAnswer: "Ini ibu saya.", explanation: "Ini ibu saya significa «Esta es mi madre». Puedes cambiar ibu por otra palabra de familia." },
-                                {"vocabId":"v109","type":"mc","prompt":"¿Qué significa ibu?","options":["Madre / señora","Padre","Hermano menor"],"answer":0,"explanation":"Ibu significa madre y también es un tratamiento respetuoso."},
-                                {"vocabId":"v110","type":"translate_es_id","prompt":"Traduce: padre","answer":"Ayah","explanation":"Ayah significa padre."},
-                                {"vocabId":"v111","type":"write","prompt":"Escribe una frase sobre tu familia.","hint":"Intenta construir una frase nueva con el vocabulario de la unidad.","modelAnswer":"Ini ibu saya.","explanation":"Puedes usar ibu, ayah, adik o punya."}
+                                {"vocabId":"v21","type":"mc","prompt":"¿Qué significa ibu?","options":["Madre / señora","Padre","Hermano menor"],"answer":0,"explanation":"Ibu significa madre y también es un tratamiento respetuoso."},
+                                {"vocabId":"v22","type":"translate_es_id","prompt":"Traduce: padre","answer":"Ayah","explanation":"Ayah significa padre."},
+                                {"vocabId":"v111","type":"write","prompt":"Escribe una frase sobre tu familia.","hint":"Intenta construir una frase nueva con el vocabulario de la unidad.","modelAnswer":"Ini ibu saya.","explanation":"Puedes usar ibu, ayah o adik."}
                             ]
                         },
                         {
@@ -899,10 +897,10 @@
                             desc: 'Nombrar alimentos, pedir agua y usar expresiones de cortesía.',
                             grammar: '“Saya mau ...” significa “Quiero ...”. Para hacer una petición cortés, puedes añadir “Tolong” (“por favor”).',
                             vocab: [
-                                { id: 'v25', idn: 'Makan', esp: 'Comer', ex: 'Saya makan nasi.', exEsp: 'Como arroz.' },
-                                { id: 'v26', idn: 'Minum', esp: 'Beber', ex: 'Saya minum air.', exEsp: 'Bebo agua.' },
-                                { id: 'v27', idn: 'Air', esp: 'Agua', ex: 'Saya mau air.', exEsp: 'Quiero agua.' },
-                                { id: 'v28', idn: 'Nasi', esp: 'Arroz cocido', ex: 'Saya makan nasi.', exEsp: 'Como arroz.' },
+                                { id: 'v46', idn: 'Makan', esp: 'Comer', ex: 'Saya makan nasi.', exEsp: 'Como arroz.' },
+                                { id: 'v47', idn: 'Minum', esp: 'Beber', ex: 'Saya minum air.', exEsp: 'Bebo agua.' },
+                                { id: 'v48', idn: 'Air', esp: 'Agua', ex: 'Saya mau air.', exEsp: 'Quiero agua.' },
+                                { id: 'v49', idn: 'Nasi', esp: 'Arroz cocido', ex: 'Saya makan nasi.', exEsp: 'Como arroz.' },
                                 { id: 'v29', idn: 'Tolong', esp: 'Por favor / ayudar', ex: 'Tolong, saya mau air.', exEsp: 'Quiero agua, por favor.' },
                                 {"id":"v113","idn":"Teh","esp":"Té","ex":"Saya mau teh.","exEsp":"Quiero té."},
                                 {"id":"v114","idn":"Kopi","esp":"Café","ex":"Dia minum kopi.","exEsp":"Él/ella bebe café."},
@@ -910,7 +908,7 @@
                             ],
                             exercises: [
                                 {
-                                    "vocabId": "v25",
+                                    "vocabId": "v46",
                                     "type": "mc",
                                     "prompt": "¿Qué significa makan?",
                                     "options": [
@@ -923,14 +921,14 @@
                                     "explanation": "Makan significa comer."
                                 },
                                 {
-                                    "vocabId": "v26",
+                                    "vocabId": "v47",
                                     "type": "translate_es_id",
                                     "prompt": "Traduce: beber",
                                     "answer": "Minum",
                                     "explanation": "Minum significa beber."
                                 },
                                 {
-                                    "vocabId": "v27",
+                                    "vocabId": "v48",
                                     "type": "mc",
                                     "prompt": "Completa: Saya minum ___ (Bebo agua)",
                                     "options": [
@@ -943,7 +941,7 @@
                                     "explanation": "Air significa agua."
                                 },
                                 {
-                                    "vocabId": "v28",
+                                    "vocabId": "v49",
                                     "type": "order",
                                     "prompt": "Ordena: Como arroz",
                                     "words": [
@@ -966,14 +964,14 @@
                                     "explanation": "Tolong se usa al pedir ayuda o formular una petición."
                                 },
                                 {
-                                    "vocabId": "v25",
+                                    "vocabId": "v46",
                                     "type": "listen",
                                     "prompt": "Escribe lo que escuchas",
                                     "answer": "Saya makan nasi",
                                     "explanation": "La frase significa Como arroz."
                                 },
                                 {
-                                    "vocabId": "v26",
+                                    "vocabId": "v47",
                                     "type": "mc",
                                     "prompt": "¿Qué verbo se usa para beber agua?",
                                     "options": [
@@ -986,14 +984,14 @@
                                     "explanation": "Minum es el verbo beber."
                                 },
                                 {
-                                    "vocabId": "v27",
+                                    "vocabId": "v48",
                                     "type": "listen",
                                     "prompt": "Escribe lo que escuchas",
                                     "answer": "Saya mau air",
                                     "explanation": "Saya mau air significa Quiero agua."
                                 },
                                 {
-                                    "vocabId": "v28",
+                                    "vocabId": "v49",
                                     "type": "translate_es_id",
                                     "prompt": "Traduce: arroz cocido",
                                     "answer": "Nasi",
@@ -1008,7 +1006,7 @@
                                     "explanation": "Tolong, saya mau air significa «Quiero agua, por favor»."
                                 },
                                 {
-                                    "vocabId": "v25",
+                                    "vocabId": "v46",
                                     "type": "mc",
                                     "prompt": "Completa: Saya ___ nasi (Como arroz)",
                                     "options": [
@@ -1021,20 +1019,20 @@
                                     "explanation": "Makan va con la acción de comer."
                                 },
                                 {
-                                    "vocabId": "v26",
+                                    "vocabId": "v47",
                                     "type": "listen",
                                     "prompt": "Escribe lo que escuchas",
                                     "answer": "Saya minum air",
                                     "explanation": "La frase significa Bebo agua."
                                 },
                                 {
-                                    "vocabId": "v27",
+                                    "vocabId": "v48",
                                     "type": "translate_es_id",
                                     "prompt": "Traduce: agua",
                                     "answer": "Air",
                                     "explanation": "Air significa agua."
                                 },
-                                { vocabId: 'v25', type: 'write', prompt: "Escribe qué comida o bebida te gustaría mencionar.", hint: "Combina saya makan o saya minum con vocabulario de comida.", modelAnswer: "Saya makan nasi.", explanation: "La frase significa «Yo como arroz cocido». Hay otras respuestas posibles." },
+                                { vocabId: 'v46', type: 'write', prompt: "Escribe qué comida o bebida te gustaría mencionar.", hint: "Combina saya makan o saya minum con vocabulario de comida.", modelAnswer: "Saya makan nasi.", explanation: "La frase significa «Yo como arroz cocido». Hay otras respuestas posibles." },
                                 {"vocabId":"v113","type":"mc","prompt":"¿Qué significa teh?","options":["Té","Café","Agua"],"answer":0,"explanation":"Teh significa té."},
                                 {"vocabId":"v114","type":"translate_es_id","prompt":"Traduce: café","answer":"Kopi","explanation":"Kopi significa café."},
                                 {"vocabId":"v115","type":"listen","prompt":"Escucha y escribe la pregunta","answer":"Berapa harganya","explanation":"Berapa harganya? significa «¿Cuánto cuesta?»"}
@@ -1049,10 +1047,8 @@
                                 { id: 'v30', idn: 'Rumah', esp: 'Casa', ex: 'Saya di rumah.', exEsp: 'Estoy en casa.' },
                                 { id: 'v31', idn: 'Sekolah', esp: 'Escuela', ex: 'Dia di sekolah.', exEsp: 'Él/ella está en la escuela.' },
                                 { id: 'v32', idn: 'Di mana', esp: 'Dónde', ex: 'Di mana sekolah?', exEsp: '¿Dónde está la escuela?' },
-                                { id: 'v33', idn: 'Kota', esp: 'Ciudad', ex: 'Saya tinggal di kota.', exEsp: 'Vivo en la ciudad.' },
+                                { id: 'v101', idn: 'Kota', esp: 'Ciudad', ex: 'Saya tinggal di kota.', exEsp: 'Vivo en la ciudad.' },
                                 { id: 'v34', idn: 'Di sini', esp: 'Aquí', ex: 'Saya di sini.', exEsp: 'Estoy aquí.' },
-                                {"id":"v117","idn":"Rumah","esp":"Casa","ex":"Rumah saya dekat.","exEsp":"Mi casa está cerca."},
-                                {"id":"v118","idn":"Sekolah","esp":"Escuela","ex":"Sekolah itu besar.","exEsp":"Esa escuela es grande."},
                                 {"id":"v119","idn":"Dekat","esp":"Cerca","ex":"Pasar dekat rumah.","exEsp":"El mercado está cerca de casa."}
                             ],
                             exercises: [
@@ -1093,7 +1089,7 @@
                                     "explanation": "Di mana sekolah pregunta dónde está la escuela."
                                 },
                                 {
-                                    "vocabId": "v33",
+                                    "vocabId": "v101",
                                     "type": "mc",
                                     "prompt": "Completa: Saya tinggal di ___ (Vivo en la ciudad)",
                                     "options": [
@@ -1140,7 +1136,7 @@
                                     "explanation": "Di mana sekolah pregunta dónde está la escuela."
                                 },
                                 {
-                                    "vocabId": "v33",
+                                    "vocabId": "v101",
                                     "type": "translate_es_id",
                                     "prompt": "Traduce: Vivo en la ciudad",
                                     "answer": "Saya tinggal di kota",
@@ -1190,8 +1186,8 @@
                                     "explanation": "Di mana sekolah pregunta dónde está la escuela."
                                 },
                                 { vocabId: 'v30', type: 'write', prompt: "Escribe una frase que indique dónde está algo.", hint: "Intenta usar di y una palabra de lugar de la unidad.", modelAnswer: "Saya di rumah.", explanation: "La frase significa «Estoy en casa». Adapta la frase al vocabulario que conozcas." },
-                                {"vocabId":"v117","type":"mc","prompt":"¿Qué significa rumah?","options":["Casa","Escuela","Estación"],"answer":0,"explanation":"Rumah significa casa."},
-                                {"vocabId":"v118","type":"translate_es_id","prompt":"Traduce: escuela","answer":"Sekolah","explanation":"Sekolah significa escuela."},
+                                {"vocabId":"v30","type":"mc","prompt":"¿Qué significa rumah?","options":["Casa","Escuela","Estación"],"answer":0,"explanation":"Rumah significa casa."},
+                                {"vocabId":"v31","type":"translate_es_id","prompt":"Traduce: escuela","answer":"Sekolah","explanation":"Sekolah significa escuela."},
                                 {"vocabId":"v119","type":"write","prompt":"Describe dónde está un lugar.","hint":"Intenta construir una frase nueva con el vocabulario de la unidad.","modelAnswer":"Sekolah dekat rumah saya.","explanation":"Usa dekat (cerca) o jauh (lejos)."}
                             ]
                         },
@@ -1205,11 +1201,10 @@
                                 { id: 'v36', idn: 'Hari ini', esp: 'Hoy / este día', ex: 'Hari ini saya belajar.', exEsp: 'Hoy estudio.' },
                                 { id: 'v37', idn: 'Belajar', esp: 'Estudiar / aprender', ex: 'Saya belajar bahasa Indonesia.', exEsp: 'Estudio indonesio.' },
                                 { id: 'v38', idn: 'Bekerja', esp: 'Trabajar', ex: 'Ayah saya bekerja.', exEsp: 'Mi padre trabaja.' },
-                                { id: 'v39', idn: 'Tidur', esp: 'Dormir', ex: 'Saya tidur di malam hari.', exEsp: 'Duermo por la noche.' },
+                                { id: 'v50', idn: 'Tidur', esp: 'Dormir', ex: 'Saya tidur di malam hari.', exEsp: 'Duermo por la noche.' },
                                 { id: 'v44', idn: 'Setiap hari', esp: 'Todos los días', ex: 'Saya belajar setiap hari.', exEsp: 'Estudio todos los días.' },
-                                {"id":"v121","idn":"Hari ini","esp":"Hoy","ex":"Hari ini saya belajar.","exEsp":"Hoy estudio."},
                                 {"id":"v122","idn":"Besok","esp":"Mañana","ex":"Besok saya bekerja.","exEsp":"Mañana trabajo."},
-                                {"id":"v123","idn":"Setiap hari","esp":"Todos los días","ex":"Saya minum air setiap hari.","exEsp":"Bebo agua todos los días."}
+
                             ],
                             exercises: [
                                 {
@@ -1262,7 +1257,7 @@
                                     "explanation": "Ayah saya bekerja significa «Mi padre trabaja»."
                                 },
                                 {
-                                    "vocabId": "v39",
+                                    "vocabId": "v50",
                                     "type": "translate_es_id",
                                     "prompt": "Traduce: dormir",
                                     "answer": "Tidur",
@@ -1310,7 +1305,7 @@
                                     "explanation": "Bekerja significa trabajar."
                                 },
                                 {
-                                    "vocabId": "v39",
+                                    "vocabId": "v50",
                                     "type": "mc",
                                     "prompt": "¿Qué verbo significa dormir?",
                                     "options": [
@@ -1341,10 +1336,10 @@
                                     "explanation": "Saya belajar setiap hari expresa una rutina."
                                 },
                                 { vocabId: 'v35', type: 'write', prompt: "Escribe una frase breve sobre tu rutina diaria.", hint: "Usa un día o una acción cotidiana que hayas aprendido.", modelAnswer: "Saya makan pagi.", explanation: "Saya makan pagi significa «Desayuno»; makan es comer y pagi es mañana." },
-                                {"vocabId":"v121","type":"mc","prompt":"¿Qué significa hari ini?","options":["Hoy","Mañana","Ayer"],"answer":0,"explanation":"Hari ini significa hoy."},
+                                {"vocabId":"v36","type":"mc","prompt":"¿Qué significa hari ini?","options":["Hoy","Mañana","Ayer"],"answer":0,"explanation":"Hari ini significa hoy."},
                                 {"vocabId":"v122","type":"translate_es_id","prompt":"Traduce: mañana","answer":"Besok","explanation":"Besok significa mañana."},
-                                {"vocabId":"v123","type":"write","prompt":"Escribe dos frases sobre tu rutina.","hint":"Intenta construir una frase nueva con el vocabulario de la unidad.","modelAnswer":"Hari ini saya belajar. Saya minum air setiap hari.","explanation":"Usa hari ini, besok o setiap hari."},
-                                { vocabId: 'v123', type: 'write', prompt: 'Tarea integradora: preséntate, pide una bebida, pregunta el precio y describe tu rutina.', hint: 'Combina presentación, cortesía, una pregunta y una expresión temporal.', modelAnswer: 'Nama saya Ana. Saya dari Nikaragua. Saya mau teh, tolong. Berapa harganya? Saya belajar setiap hari.', explanation: 'La respuesta modelo combina varios objetivos A1; puedes usar tus propios datos y otras frases correctas.' }
+                                {"vocabId":"v44","type":"write","prompt":"Escribe dos frases sobre tu rutina.","hint":"Intenta construir una frase nueva con el vocabulario de la unidad.","modelAnswer":"Hari ini saya belajar. Saya minum air setiap hari.","explanation":"Usa hari ini, besok o setiap hari."},
+                                { vocabId: 'v44', type: 'write', prompt: 'Tarea integradora: preséntate, pide una bebida, pregunta el precio y describe tu rutina.', hint: 'Combina presentación, cortesía, una pregunta y una expresión temporal.', modelAnswer: 'Nama saya Ana. Saya dari Nikaragua. Saya mau teh, tolong. Berapa harganya? Saya belajar setiap hari.', explanation: 'La respuesta modelo combina varios objetivos A1; puedes usar tus propios datos y otras frases correctas.' }
                             ]
                         }
                         ,
@@ -1447,7 +1442,7 @@
                             id: 'a1_u11',
                             title: 'Unidad 11: La hora y partes del día',
                             desc: 'Nombrar los momentos del día y preguntar o decir la hora con expresiones sencillas.',
-                            grammar: 'Pagi es la mañana, siang el mediodía o primeras horas de la tarde, sore la tarde y malam la noche. Para decir la hora se usan jam o pukul. “Setengah delapan” significa las siete y media (media hora antes de las ocho), no las ocho y media.',
+                            grammar: 'Pagi es la mañana, siang el mediodía o primeras horas de la tarde, sore la tarde y malam la noche. Para expresar una actividad en un momento del día puedes usar pada + momento + hari: Saya belajar pada siang hari (estudio al mediodía). Para decir la hora se usan jam o pukul. “Setengah delapan” significa las siete y media (media hora antes de las ocho), no las ocho y media.',
                             vocab: [
                                 { id: 'v146', idn: 'Pagi', esp: 'Mañana (parte del día)', ex: 'Pagi ini saya belajar.', exEsp: 'Esta mañana estudio.' },
                                 { id: 'v147', idn: 'Siang', esp: 'Mediodía / primeras horas de la tarde', ex: 'Saya belajar pada siang hari.', exEsp: 'Estudio al mediodía.' },
@@ -1486,7 +1481,7 @@
                         {
                             "id": "a1_u12",
                             "title": "Unidad 12: Rutina diaria",
-                            "desc": "Describir acciones cotidianas sencillas en secuencia.",
+                            "desc": "Describir acciones cotidianas sencillas con frases breves.",
                             "grammar": "Para describir una rutina, coloca normalmente el sujeto antes del verbo: Saya bangun (me levanto). El indonesio no necesita conjugar el verbo según la persona. Usa las expresiones en frases breves y en el contexto de cada día.",
                             "vocab": [
                                 {
@@ -1542,8 +1537,15 @@
                                     "id": "v254",
                                     "idn": "Mencuci",
                                     "esp": "Lavar",
-                                    "ex": "Saya mencuci.",
-                                    "exEsp": "Lavo."
+                                    "ex": "Saya mencuci baju.",
+                                    "exEsp": "Lavo la ropa."
+                                },
+                                {
+                                    "id": "v304",
+                                    "idn": "Baju",
+                                    "esp": "Ropa / prenda de vestir",
+                                    "ex": "Saya mencuci baju.",
+                                    "exEsp": "Lavo la ropa."
                                 }
                             ],
                             "exercises": [
@@ -1691,10 +1693,10 @@
                                 {
                                     "vocabId": "v254",
                                     "type": "mc",
-                                    "prompt": "¿Qué significa «Mencuci»?",
-                                    "options": ["Lavar", "Mañana", "Casa"],
+                                    "prompt": "¿Qué frase significa «Lavo la ropa»?",
+                                    "options": ["Saya mencuci baju.", "Saya bangun.", "Saya mandi."],
                                     "answer": 0,
-                                    "explanation": "Mencuci significa «Lavar»."
+                                    "explanation": "Saya mencuci baju significa «Lavo la ropa»; baju significa ropa o prenda de vestir."
                                 }
                             ]
                         },
@@ -1750,15 +1752,15 @@
                                     "id": "v261",
                                     "idn": "Angin",
                                     "esp": "Viento",
-                                    "ex": "Angin kuat.",
-                                    "exEsp": "Viento fuerte."
+                                    "ex": "Angin.",
+                                    "exEsp": "Viento."
                                 },
                                 {
                                     "id": "v262",
                                     "idn": "Payung",
                                     "esp": "Paraguas",
-                                    "ex": "Saya punya payung.",
-                                    "exEsp": "Tengo un paraguas."
+                                    "ex": "Ini payung saya.",
+                                    "exEsp": "Este es mi paraguas."
                                 }
                             ],
                             "exercises": [
@@ -1906,10 +1908,10 @@
                                 {
                                     "vocabId": "v262",
                                     "type": "mc",
-                                    "prompt": "¿Qué significa «Payung»?",
-                                    "options": ["Paraguas", "Mañana", "Casa"],
+                                    "prompt": "¿Qué objeto puedes usar cuando llueve?",
+                                    "options": ["Payung", "Buku", "Bola"],
                                     "answer": 0,
-                                    "explanation": "Payung significa «Paraguas»."
+                                    "explanation": "Payung significa «paraguas», un objeto que se usa cuando llueve."
                                 }
                             ]
                         },
@@ -2083,9 +2085,9 @@
                                 {
                                     "vocabId": "v267",
                                     "type": "translate_es_id",
-                                    "prompt": "Traduce al indonesio: Terminal de transporte",
-                                    "answer": "Terminal",
-                                    "explanation": "Terminal significa «Terminal de transporte»."
+                                    "prompt": "Traduce al indonesio: Me bajo en la terminal.",
+                                    "answer": "Saya turun di terminal.",
+                                    "explanation": "Saya turun di terminal significa «Me bajo en la terminal»."
                                 },
                                 {
                                     "vocabId": "v268",
@@ -2121,11 +2123,678 @@
                                 {
                                                                     "vocabId": "v270",
                                                                     "type": "mc",
-                                                                    "prompt": "¿Qué significa «Turun»?",
-                                                                    "options": ["Bajar / apearse", "Autobús", "Tren"],
+                                                                    "prompt": "¿Qué significa «Saya turun»?",
+                                                                    "options": ["Me bajo / desciendo", "Subo al autobús", "Me siento"],
                                                                     "answer": 0,
-                                                                    "explanation": "Turun significa «Bajar / apearse»."
+                                                                    "explanation": "Saya turun significa «Me bajo» o «desciendo» según el contexto."
                                                                 }
+                            ]
+                        },
+                        {
+                            "id": "a1_u15",
+                            "title": "Unidad 15: Acciones cotidianas",
+                            "desc": "Reconocer y usar verbos frecuentes para describir acciones sencillas.",
+                            "grammar": "En A1, aprende cada verbo frecuente como una expresión completa, sin estudiar todavía las reglas generales de los prefijos. Puedes combinarlo con sujetos conocidos: Saya pergi (voy), Dia datang (viene), Saya duduk di sini (me siento aquí).",
+                            "vocab": [
+                                {
+                                    "id": "v280",
+                                    "idn": "Pergi",
+                                    "esp": "Ir",
+                                    "ex": "Saya pergi.",
+                                    "exEsp": "Voy."
+                                },
+                                {
+                                    "id": "v281",
+                                    "idn": "Datang",
+                                    "esp": "Venir",
+                                    "ex": "Saya datang hari ini.",
+                                    "exEsp": "Vengo hoy."
+                                },
+                                {
+                                    "id": "v282",
+                                    "idn": "Duduk",
+                                    "esp": "Sentarse",
+                                    "ex": "Saya duduk di sini.",
+                                    "exEsp": "Me siento aquí."
+                                },
+                                {
+                                    "id": "v283",
+                                    "idn": "Lari",
+                                    "esp": "Correr",
+                                    "ex": "Saya lari.",
+                                    "exEsp": "Corro."
+                                },
+                                {
+                                    "id": "v284",
+                                    "idn": "Main",
+                                    "esp": "Jugar",
+                                    "ex": "Saya main bola.",
+                                    "exEsp": "Juego a la pelota."
+                                },
+                                {
+                                    "id": "v285",
+                                    "idn": "Ambil",
+                                    "esp": "Tomar / agarrar",
+                                    "ex": "Saya ambil teh.",
+                                    "exEsp": "Tomo té."
+                                },
+                                {
+                                    "id": "v286",
+                                    "idn": "Bola",
+                                    "esp": "Pelota",
+                                    "ex": "Saya main bola.",
+                                    "exEsp": "Juego a la pelota."
+                                },
+                                {
+                                    "id": "v287",
+                                    "idn": "Pintu",
+                                    "esp": "Puerta",
+                                    "ex": "Pintu di sini.",
+                                    "exEsp": "La puerta está aquí."
+                                }
+                            ],
+                            "exercises": [
+                                {
+                                    "vocabId": "v280",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa «Pergi»?",
+                                    "options": [
+                                        "Ir",
+                                        "Venir",
+                                        "Sentarse"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Pergi significa «Ir»."
+                                },
+                                {
+                                    "vocabId": "v281",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa «Datang»?",
+                                    "options": [
+                                        "Venir",
+                                        "Sentarse",
+                                        "Correr"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Datang significa «Venir»."
+                                },
+                                {
+                                    "vocabId": "v282",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa «Duduk»?",
+                                    "options": [
+                                        "Sentarse",
+                                        "Correr",
+                                        "Jugar"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Duduk significa «Sentarse»."
+                                },
+                                {
+                                    "vocabId": "v283",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa «Lari»?",
+                                    "options": [
+                                        "Correr",
+                                        "Jugar",
+                                        "Tomar / agarrar"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Lari significa «Correr»."
+                                },
+                                {
+                                    "vocabId": "v284",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa «Main»?",
+                                    "options": [
+                                        "Jugar",
+                                        "Tomar / agarrar",
+                                        "Pelota"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Main significa «Jugar»."
+                                },
+                                {
+                                    "vocabId": "v285",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa «Ambil»?",
+                                    "options": [
+                                        "Tomar / agarrar",
+                                        "Pelota",
+                                        "Puerta"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Ambil significa «Tomar / agarrar»."
+                                },
+                                {
+                                    "vocabId": "v286",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa «Bola»?",
+                                    "options": [
+                                        "Pelota",
+                                        "Puerta",
+                                        "Ir"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Bola significa «Pelota»."
+                                },
+                                {
+                                    "vocabId": "v287",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa «Pintu»?",
+                                    "options": [
+                                        "Puerta",
+                                        "Ir",
+                                        "Venir"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Pintu significa «Puerta»."
+                                },
+                                {
+                                    "vocabId": "v280",
+                                    "type": "translate_es_id",
+                                    "prompt": "Traduce al indonesio: Ir",
+                                    "answer": "Pergi",
+                                    "explanation": "Pergi significa «Ir»."
+                                },
+                                {
+                                    "vocabId": "v281",
+                                    "type": "translate_es_id",
+                                    "prompt": "Traduce al indonesio: Venir",
+                                    "answer": "Datang",
+                                    "explanation": "Datang significa «Venir»."
+                                },
+                                {
+                                    "vocabId": "v284",
+                                    "type": "translate_es_id",
+                                    "prompt": "Traduce al indonesio: Jugar",
+                                    "answer": "Main",
+                                    "explanation": "Main significa «Jugar»."
+                                },
+                                {
+                                    "vocabId": "v280",
+                                    "type": "order",
+                                    "prompt": "Ordena la frase en indonesio.",
+                                    "words": [
+                                        "pergi",
+                                        "Saya"
+                                    ],
+                                    "correctOrder": [
+                                        "Saya",
+                                        "pergi"
+                                    ],
+                                    "explanation": "Saya pergi significa «Voy»."
+                                },
+                                {
+                                    "vocabId": "v284",
+                                    "type": "order",
+                                    "prompt": "Ordena la frase en indonesio.",
+                                    "words": [
+                                        "bola",
+                                        "main",
+                                        "Saya"
+                                    ],
+                                    "correctOrder": [
+                                        "Saya",
+                                        "main",
+                                        "bola"
+                                    ],
+                                    "explanation": "Saya main bola. significa «Juego a la pelota»."
+                                },
+                                {
+                                    "vocabId": "v281",
+                                    "type": "write",
+                                    "prompt": "Escribe una frase breve con un verbo de esta unidad.",
+                                    "hint": "Usa Saya y un verbo que ya hayas practicado.",
+                                    "modelAnswer": "Saya pergi.",
+                                    "explanation": "Ejemplo: Saya pergi. — Voy."
+                                }
+                            ]
+                        },
+                        {
+                            "id": "a1_u16",
+                            "title": "Unidad 16: Querer, poder y preferencias",
+                            "desc": "Expresar deseos, capacidad y gustos con frases breves.",
+                            "grammar": "Mau ya aparece en expresiones de petición anteriores: Saya mau teh (quiero té). Bisa expresa capacidad o posibilidad; suka expresa gusto. Ingin también expresa querer. Aprende estas combinaciones como bloques, sin inferir que todos los verbos siguen una única regla.",
+                            "vocab": [
+                                {
+                                    "id": "v288",
+                                    "idn": "Bisa",
+                                    "esp": "Poder / saber hacer",
+                                    "ex": "Saya bisa pergi.",
+                                    "exEsp": "Puedo ir."
+                                },
+                                {
+                                    "id": "v289",
+                                    "idn": "Suka",
+                                    "esp": "Gustar",
+                                    "ex": "Saya suka teh.",
+                                    "exEsp": "Me gusta el té."
+                                },
+                                {
+                                    "id": "v290",
+                                    "idn": "Ingin",
+                                    "esp": "Querer / desear",
+                                    "ex": "Saya ingin kopi.",
+                                    "exEsp": "Quiero café."
+                                },
+                                {
+                                    "id": "v291",
+                                    "idn": "Boleh",
+                                    "esp": "Poder / tener permiso",
+                                    "ex": "Boleh?",
+                                    "exEsp": "¿Se puede?"
+                                },
+                                {
+                                    "id": "v292",
+                                    "idn": "Sangat",
+                                    "esp": "Muy",
+                                    "ex": "Saya sangat suka teh.",
+                                    "exEsp": "Me gusta mucho el té."
+                                },
+                                {
+                                    "id": "v293",
+                                    "idn": "Sedikit",
+                                    "esp": "Un poco",
+                                    "ex": "Saya mau sedikit teh.",
+                                    "exEsp": "Quiero un poco de té."
+                                },
+                                {
+                                    "id": "v294",
+                                    "idn": "Senang",
+                                    "esp": "Contento / alegrarse",
+                                    "ex": "Saya senang.",
+                                    "exEsp": "Estoy contento."
+                                },
+                                {
+                                    "id": "v295",
+                                    "idn": "Bersama",
+                                    "esp": "Con / junto con",
+                                    "ex": "Saya belajar bersama ibu.",
+                                    "exEsp": "Estudio con mamá."
+                                }
+                            ],
+                            "exercises": [
+                                {
+                                    "vocabId": "v288",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa «Bisa»?",
+                                    "options": [
+                                        "Poder / saber hacer",
+                                        "Gustar",
+                                        "Querer / desear"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Bisa significa «Poder / saber hacer»."
+                                },
+                                {
+                                    "vocabId": "v289",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa «Suka»?",
+                                    "options": [
+                                        "Gustar",
+                                        "Querer / desear",
+                                        "Poder / tener permiso"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Suka significa «Gustar»."
+                                },
+                                {
+                                    "vocabId": "v290",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa «Saya ingin kopi»?",
+                                    "options": [
+                                        "Quiero café",
+                                        "Puedo ir",
+                                        "Me gusta el té"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Saya ingin kopi significa «Quiero café»; aunque mau también puede expresar querer, aquí se evalúa la frase completa."
+                                },
+                                {
+                                    "vocabId": "v291",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa «Boleh»?",
+                                    "options": [
+                                        "Poder / tener permiso",
+                                        "Muy",
+                                        "Un poco"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Boleh significa «Poder / tener permiso»."
+                                },
+                                {
+                                    "vocabId": "v292",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa «Sangat»?",
+                                    "options": [
+                                        "Muy",
+                                        "Un poco",
+                                        "Contento / alegrarse"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Sangat significa «Muy»."
+                                },
+                                {
+                                    "vocabId": "v293",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa «Sedikit»?",
+                                    "options": [
+                                        "Un poco",
+                                        "Contento / alegrarse",
+                                        "Con / junto con"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Sedikit significa «Un poco»."
+                                },
+                                {
+                                    "vocabId": "v294",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa «Senang»?",
+                                    "options": [
+                                        "Contento / alegrarse",
+                                        "Con / junto con",
+                                        "Poder / saber hacer"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Senang significa «Contento / alegrarse»."
+                                },
+                                {
+                                    "vocabId": "v295",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa «Bersama»?",
+                                    "options": [
+                                        "Con / junto con",
+                                        "Poder / saber hacer",
+                                        "Gustar"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Bersama significa «Con / junto con»."
+                                },
+                                {
+                                    "vocabId": "v288",
+                                    "type": "translate_es_id",
+                                    "prompt": "Traduce al indonesio: Poder / saber hacer",
+                                    "answer": "Bisa",
+                                    "explanation": "Bisa significa «Poder / saber hacer»."
+                                },
+                                {
+                                    "vocabId": "v289",
+                                    "type": "translate_es_id",
+                                    "prompt": "Traduce al indonesio: Gustar",
+                                    "answer": "Suka",
+                                    "explanation": "Suka significa «Gustar»."
+                                },
+                                {
+                                    "vocabId": "v290",
+                                    "type": "translate_es_id",
+                                    "prompt": "Traduce al indonesio: Querer / desear",
+                                    "answer": "Ingin",
+                                    "explanation": "Ingin significa «Querer / desear»."
+                                },
+                                {
+                                    "vocabId": "v289",
+                                    "type": "order",
+                                    "prompt": "Ordena la frase en indonesio.",
+                                    "words": [
+                                        "teh",
+                                        "suka",
+                                        "Saya"
+                                    ],
+                                    "correctOrder": [
+                                        "Saya",
+                                        "suka",
+                                        "teh"
+                                    ],
+                                    "explanation": "Saya suka teh significa «Me gusta el té»."
+                                },
+                                {
+                                    "vocabId": "v288",
+                                    "type": "order",
+                                    "prompt": "Ordena la frase en indonesio.",
+                                    "words": [
+                                        "pergi",
+                                        "bisa",
+                                        "Saya"
+                                    ],
+                                    "correctOrder": [
+                                        "Saya",
+                                        "bisa",
+                                        "pergi"
+                                    ],
+                                    "explanation": "Saya bisa pergi significa «Puedo ir»."
+                                },
+                                {
+                                    "vocabId": "v290",
+                                    "type": "write",
+                                    "prompt": "Escribe una frase para expresar algo que quieres o que te gusta.",
+                                    "hint": "Puedes usar ingin, suka o mau con comida ya conocida.",
+                                    "modelAnswer": "Saya ingin kopi.",
+                                    "explanation": "Ejemplo: Saya ingin kopi. — Quiero café."
+                                }
+                            ]
+                        },
+                        {
+                            "id": "a1_u17",
+                            "title": "Unidad 17: Tener, haber y preguntas básicas",
+                            "desc": "Preguntar por personas, cosas, tiempo y circunstancias; expresar existencia y posesión.",
+                            "grammar": "Ada expresa que algo existe o está presente; tidak ada significa que no hay. Punya expresa posesión. Apa, siapa, kapan, kenapa y bagaimana sirven para preguntar qué, quién, cuándo, por qué y cómo. Combina estas palabras con vocabulario ya estudiado.",
+                            "vocab": [
+                                {
+                                    "id": "v296",
+                                    "idn": "Ada",
+                                    "esp": "Haber / existir / estar presente",
+                                    "ex": "Ada bus di sini?",
+                                    "exEsp": "¿Hay un autobús aquí?"
+                                },
+                                {
+                                    "id": "v297",
+                                    "idn": "Punya",
+                                    "esp": "Tener / poseer",
+                                    "ex": "Saya punya kopi.",
+                                    "exEsp": "Tengo café."
+                                },
+                                {
+                                    "id": "v298",
+                                    "idn": "Apa",
+                                    "esp": "Qué",
+                                    "ex": "Apa ini?",
+                                    "exEsp": "¿Qué es esto?"
+                                },
+                                {
+                                    "id": "v11",
+                                    "idn": "Siapa",
+                                    "esp": "Quién",
+                                    "ex": "Siapa nama kamu?",
+                                    "exEsp": "¿Cómo te llamas?"
+                                },
+                                {
+                                    "id": "v300",
+                                    "idn": "Kapan",
+                                    "esp": "Cuándo",
+                                    "ex": "Kapan kamu datang?",
+                                    "exEsp": "¿Cuándo vienes?"
+                                },
+                                {
+                                    "id": "v301",
+                                    "idn": "Kenapa",
+                                    "esp": "Por qué",
+                                    "ex": "Kenapa kamu di sini?",
+                                    "exEsp": "¿Por qué estás aquí?"
+                                },
+                                {
+                                    "id": "v302",
+                                    "idn": "Bagaimana",
+                                    "esp": "Cómo",
+                                    "ex": "Bagaimana cuaca hari ini?",
+                                    "exEsp": "¿Cómo está el tiempo hoy?"
+                                },
+                                {
+                                    "id": "v303",
+                                    "idn": "Tidak ada",
+                                    "esp": "No hay",
+                                    "ex": "Tidak ada bus.",
+                                    "exEsp": "No hay autobús."
+                                }
+                            ],
+                            "exercises": [
+                                {
+                                    "vocabId": "v296",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa «Ada»?",
+                                    "options": [
+                                        "Haber / existir / estar presente",
+                                        "Tener / poseer",
+                                        "Qué"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Ada significa «Haber / existir / estar presente»."
+                                },
+                                {
+                                    "vocabId": "v297",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa «Punya»?",
+                                    "options": [
+                                        "Tener / poseer",
+                                        "Qué",
+                                        "Quién"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Punya significa «Tener / poseer»."
+                                },
+                                {
+                                    "vocabId": "v298",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa «Apa»?",
+                                    "options": [
+                                        "Qué",
+                                        "Quién",
+                                        "Cuándo"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Apa significa «Qué»."
+                                },
+                                {
+                                    "vocabId": "v11",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa «Siapa»?",
+                                    "options": [
+                                        "Quién",
+                                        "Cuándo",
+                                        "Por qué"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Siapa significa «Quién»."
+                                },
+                                {
+                                    "vocabId": "v300",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa «Kapan»?",
+                                    "options": [
+                                        "Cuándo",
+                                        "Por qué",
+                                        "Cómo"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Kapan significa «Cuándo»."
+                                },
+                                {
+                                    "vocabId": "v301",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa «Kenapa»?",
+                                    "options": [
+                                        "Por qué",
+                                        "Cómo",
+                                        "No hay"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Kenapa significa «Por qué»."
+                                },
+                                {
+                                    "vocabId": "v302",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa «Bagaimana»?",
+                                    "options": [
+                                        "Cómo",
+                                        "No hay",
+                                        "Haber / existir / estar presente"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Bagaimana significa «Cómo»."
+                                },
+                                {
+                                    "vocabId": "v303",
+                                    "type": "mc",
+                                    "prompt": "¿Qué significa «Tidak ada»?",
+                                    "options": [
+                                        "No hay",
+                                        "Haber / existir / estar presente",
+                                        "Tener / poseer"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Tidak ada significa «No hay»."
+                                },
+                                {
+                                    "vocabId": "v296",
+                                    "type": "translate_es_id",
+                                    "prompt": "Traduce al indonesio: Haber / existir / estar presente",
+                                    "answer": "Ada",
+                                    "explanation": "Ada significa «Haber / existir / estar presente»."
+                                },
+                                {
+                                    "vocabId": "v297",
+                                    "type": "translate_es_id",
+                                    "prompt": "Traduce al indonesio: Tener / poseer",
+                                    "answer": "Punya",
+                                    "explanation": "Punya significa «Tener / poseer»."
+                                },
+                                {
+                                    "vocabId": "v300",
+                                    "type": "translate_es_id",
+                                    "prompt": "Traduce al indonesio: Cuándo",
+                                    "answer": "Kapan",
+                                    "explanation": "Kapan significa «Cuándo»."
+                                },
+                                {
+                                    "vocabId": "v297",
+                                    "type": "order",
+                                    "prompt": "Ordena la frase en indonesio.",
+                                    "words": [
+                                        "kopi",
+                                        "punya",
+                                        "Saya"
+                                    ],
+                                    "correctOrder": [
+                                        "Saya",
+                                        "punya",
+                                        "kopi"
+                                    ],
+                                    "explanation": "Saya punya kopi significa «Tengo café»."
+                                },
+                                {
+                                    "vocabId": "v300",
+                                    "type": "order",
+                                    "prompt": "Ordena la frase en indonesio.",
+                                    "words": [
+                                        "kamu",
+                                        "datang",
+                                        "Kapan"
+                                    ],
+                                    "correctOrder": [
+                                        "Kapan",
+                                        "kamu",
+                                        "datang"
+                                    ],
+                                    "explanation": "Kapan kamu datang? significa «¿Cuándo vienes?»."
+                                },
+                                {
+                                    "vocabId": "v296",
+                                    "type": "write",
+                                    "prompt": "Escribe una pregunta sencilla con una palabra interrogativa de esta unidad.",
+                                    "hint": "Puedes preguntar por un nombre, la hora o el tiempo.",
+                                    "modelAnswer": "Kapan kamu datang?",
+                                    "explanation": "Ejemplo: Kapan kamu datang? — ¿Cuándo vienes?"
+                                }
                             ]
                         }
                     ]
@@ -2895,6 +3564,15 @@
             }
         };
 
+        // Legacy vocabulary IDs retained in SRS/backup records after curriculum deduplication.
+        // This compatibility map does not change the IndexedDB schema or backup format.
+        const LEGACY_SRS_ID_ALIASES = Object.freeze({
+            v24: 'v53', v25: 'v46', v26: 'v47', v27: 'v48', v28: 'v49',
+            v33: 'v101', v39: 'v50',
+            v109: 'v21', v110: 'v22', v117: 'v30', v118: 'v31',
+            v121: 'v36', v123: 'v44'
+        });
+
         /* 4. MOTOR DE REPASO ESPACIADO SM-2 */
         // Merge persisted SRS snapshots for duplicate headwords. Mirrored snapshots
         // are counted once; distinct legacy states contribute their counters, while the
@@ -2979,9 +3657,13 @@
                 const allWords = getLearningLevels().flatMap(level => level.units.flatMap(unit => unit.vocab || []));
                 const sourceWord = allWords.find(word => word.id === wordId);
                 const key = String(sourceWord && sourceWord.idn || '').trim().toLocaleLowerCase();
-                return key
-                    ? [...new Set(allWords.filter(word => String(word.idn || '').trim().toLocaleLowerCase() === key).map(word => word.id))]
+                const matchingIds = key
+                    ? allWords.filter(word => String(word.idn || '').trim().toLocaleLowerCase() === key).map(word => word.id)
                     : [wordId];
+                const legacyIds = Object.entries(LEGACY_SRS_ID_ALIASES)
+                    .filter(([, canonicalId]) => canonicalId === wordId)
+                    .map(([legacyId]) => legacyId);
+                return [...new Set([...matchingIds, ...legacyIds])];
             },
 
             async getMergedSrsItem(wordId) {
@@ -2998,10 +3680,14 @@
 
             async getDueItems() {
                 const allWords = getLearningLevels().flatMap(level => level.units.flatMap(unit => unit.vocab || []));
-                const vocabIds = new Set(allWords.map(v => v.id));
+                const vocabIds = new Set([...allWords.map(v => v.id), ...Object.keys(LEGACY_SRS_ID_ALIASES)]);
                 const all = await DB.getAll('srs');
                 const now = Date.now();
                 const byId = new Map(allWords.map(word => [word.id, word]));
+                for (const [legacyId, canonicalId] of Object.entries(LEGACY_SRS_ID_ALIASES)) {
+                    const canonicalWord = allWords.find(word => word.id === canonicalId);
+                    if (canonicalWord) byId.set(legacyId, canonicalWord);
+                }
                 const due = all.filter(i => i.val && vocabIds.has(i.key) &&
                     i.val.nextReview <= now &&
                     !(i.val.attempts === 0 && i.val.lastReviewed === null && i.val.interval === 0 && i.val.repetition === 0))
@@ -3017,7 +3703,10 @@
                     if (!key || seenWords.has(key)) return false;
                     seenWords.add(key);
                     return true;
-                });
+                }).map(item => ({
+                    ...item,
+                    key: LEGACY_SRS_ID_ALIASES[item.key] || item.key
+                }));
             },
 
             async startSession() {
@@ -3706,7 +4395,11 @@ Requisitos:
                 const allVocab = getLearningLevels().flatMap(level => level.units.flatMap(unit => unit.vocab || []));
                 const vocabById = new Map(allVocab.filter(v => v && v.id).map(v => [v.id, v]));
                 const uniqueVocab = getUniqueLearningVocabulary();
-                const allIds = new Set(allVocab.filter(v => v && v.id).map(v => v.id));
+                const allIds = new Set([...allVocab.filter(v => v && v.id).map(v => v.id), ...Object.keys(LEGACY_SRS_ID_ALIASES)]);
+                for (const [legacyId, canonicalId] of Object.entries(LEGACY_SRS_ID_ALIASES)) {
+                    const canonicalWord = vocabById.get(canonicalId);
+                    if (canonicalWord) vocabById.set(legacyId, canonicalWord);
+                }
                 const srsByWord = new Map();
                 for (const item of await DB.getAll('srs')) {
                     if (!item.val || !allIds.has(item.key)) continue;
@@ -3893,7 +4586,8 @@ Requisitos:
                 });
                 const knownIds = new Set([
                     ...CourseData.levels.flatMap(level => level.units.flatMap(unit => unit.vocab || []).map(word => word.id)),
-                    ...customUnits.flatMap(unit => unit.vocab.map(word => word.id))
+                    ...customUnits.flatMap(unit => unit.vocab.map(word => word.id)),
+                    ...Object.keys(LEGACY_SRS_ID_ALIASES)
                 ]);
                 const rawSrs = parsed.srs === undefined ? [] : parsed.srs;
                 if (!Array.isArray(rawSrs) || rawSrs.length > 10000) fail();

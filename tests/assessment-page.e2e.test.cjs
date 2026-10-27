@@ -66,3 +66,26 @@ test('assessment page renders questions, scores closed answers and flags open re
     await new Promise(resolve => server.close(resolve));
   }
 });
+
+
+test('assessment page remains available offline after service-worker installation', async () => {
+  const { server, url } = await startServer();
+  const context = await browser.newContext();
+  const page = await context.newPage();
+  try {
+    await page.goto(url);
+    await page.evaluate(async () => {
+      await navigator.serviceWorker.register('/service-worker.js');
+      await navigator.serviceWorker.ready;
+    });
+    await page.reload();
+    await page.waitForFunction(() => Boolean(navigator.serviceWorker.controller));
+    await context.setOffline(true);
+    await page.goto(new URL('assessment.html', url).href, { waitUntil: 'domcontentloaded' });
+    await page.getByRole('button', { name: 'Comenzar evaluación' }).waitFor({ timeout: 5000 });
+  } finally {
+    await context.setOffline(false);
+    await context.close();
+    server.close();
+  }
+});

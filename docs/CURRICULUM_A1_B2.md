@@ -2,7 +2,7 @@
 
 ## A1: criterios de finalización
 
-A1 tiene actualmente catorce unidades. Las unidades 1–8 cubren saludo y pronombres, frases/preguntas/negación, presentación y origen, números/edad, familia, comida, ubicación y tiempo/rutina. Las unidades 9–11 amplían los números del 11 al 100, dinero y precios, y la hora y las partes del día. Las unidades 12–14 incorporan rutina diaria, clima y transporte. La unidad 8 conserva su función integradora; se añadirán repasos acumulativos al continuar la expansión. La versión actual incorpora más vocabulario y práctica, pero la calidad final debe evaluarse por la capacidad de producir frases nuevas y resolver situaciones cotidianas, no solo por el número de ejercicios.
+A1 tiene actualmente diecisiete unidades en la rama de expansión. Las unidades 1–8 cubren saludo y pronombres, frases/preguntas/negación, presentación y origen, números/edad, familia, comida, ubicación y tiempo/rutina. Las unidades 9–11 amplían los números del 11 al 100, dinero y precios, y la hora y las partes del día. Las unidades 12–14 incorporan rutina diaria, clima y transporte. Las unidades 15–17 añaden verbos de acción frecuentes, deseos/capacidad/preferencias y preguntas básicas con ada/punya. La unidad 8 conserva su función integradora; se añadirán repasos acumulativos al continuar la expansión. La versión actual incorpora más vocabulario y práctica, pero la calidad final debe evaluarse por la capacidad de producir frases nuevas y resolver situaciones cotidianas, no solo por el número de ejercicios.
 
 Objetivos de salida:
 - Presentarse y preguntar por datos personales.
@@ -13,7 +13,7 @@ Objetivos de salida:
 
 ## Expansión de A1 por tandas
 
-La ampliación se realiza en PR pequeñas para revisar contenido y evitar duplicados. La primera tanda añade las unidades 9–11 (números del 11 al 100, dinero y precios, hora y partes del día). La segunda tanda añade las unidades 12–14 (rutina diaria, clima y transporte). Ambas usan 14–22 ejercicios por unidad y evitan asignar IDs nuevos a vocabulario ya enseñado. Esta tanda no declara A1 terminado: quedan por auditar la cobertura completa del temario guiado, la progresión de vocabulario, los repasos acumulativos y la comprensión/producción oral. A2–B2 permanecen ocultos en la vista del curso hasta completar todas las unidades A1.
+La ampliación se realiza en PR pequeñas para revisar contenido y evitar duplicados. La primera tanda añade las unidades 9–11 (números del 11 al 100, dinero y precios, hora y partes del día). La segunda tanda añade las unidades 12–14 (rutina diaria, clima y transporte). La tercera tanda añade las unidades 15–17 (acciones cotidianas, querer/poder/gustar y tener/haber con preguntas básicas). Las tandas usan 14–22 ejercicios por unidad y evitan asignar IDs nuevos a vocabulario ya enseñado. La incorporación de U15–17 no declara A1 terminado: quedan por auditar la cobertura completa del temario guiado, la progresión de vocabulario, los repasos acumulativos y la comprensión/producción oral. A2–B2 permanecen ocultos en la vista del curso hasta completar todas las unidades A1.
 
 ## Progresión de afijos
 
@@ -48,3 +48,10 @@ Cada unidad debe incluir vocabulario contextualizado, explicación gramatical br
 Los afijos indonesios son polisémicos y las formas derivadas pueden ser lexicalizadas. Antes de ampliar los ejercicios evaluados, validar ejemplos y traducciones con una referencia fiable o una revisión lingüística competente. No inferir que un afijo tiene un solo significado.
 
 No cambiar IndexedDB schema v1 ni backup format v3 para una ampliación curricular. Tras cada cambio, comprobar persistencia de progreso, SRS, importación/exportación y CI.
+
+
+## Evaluación piloto A1 y compatibilidad
+
+La página independiente `assessment.html` solo ofrece A1 mientras la evaluación siga siendo parcial y A1 no se haya validado. El banco A1 actual tiene 19 ítems y 24 puntos: cubre algunas áreas seleccionadas, incluidas edad (U4), familia (U5), rutina (U12) y las unidades U15–U17, pero **no debe describirse como una evaluación exhaustiva de las 17 unidades**. Las posiciones de respuesta correcta se equilibran mediante una prueba automatizada. Las tareas abiertas necesitan tutor o evaluador competente en indonesio; no son una autocorrección fiable para principiantes.
+
+Los vocabularios repetidos usan el ID canónico de la primera enseñanza. Para no perder progreso SRS de instalaciones o copias de seguridad anteriores, se conserva un mapa de alias de IDs históricos a IDs canónicos. No se cambia el esquema IndexedDB (v1) ni el formato de copia de seguridad (v3). La página de evaluación y su motor se incluyen en la precarga del service worker de la versión 3.7.1 para permitir su primera apertura sin conexión.

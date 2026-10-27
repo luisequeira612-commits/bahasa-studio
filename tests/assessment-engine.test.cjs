@@ -33,10 +33,11 @@ test('choice scoring is level-scoped and reports skill breakdowns', () => {
   const answers = {
     'a1-negation-01': 1,
     'a1-vocab-01': 1,
+    'a1-location-01': 0,
     'a1-write-01': 'Nama saya Ana.'
   };
   const result = scoreAssessment('A1', answers);
-  assert.equal(result.earned, 2);
+  assert.equal(result.earned, 3);
   assert.equal(result.possible, 18);
   assert.equal(result.skills.grammar.percent, 100);
   assert.equal(result.skills.vocabulary.percent, 100);

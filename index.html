@@ -3086,7 +3086,10 @@
 
             startUnitById(id) { for (const l of getLevels()) { const u = l.units.find(x => x.id === id); if (u) return this.startUnit(u); } },
             startUnit(unit) {
-                const reinforcement = unit.vocab.flatMap((v, index) => {
+                // Keep the authored lesson exercises, and auto-reinforce only vocabulary
+                // that does not already have an exercise in this unit.
+                const practicedVocabIds = new Set(unit.exercises.map(ex => ex.vocabId));
+                const reinforcement = unit.vocab.filter(v => !practicedVocabIds.has(v.id)).flatMap((v, index) => {
                     const distractors = unit.vocab.filter(other => other.id !== v.id).map(other => other.esp)
                         .filter((meaning, i, all) => meaning !== v.esp && all.indexOf(meaning) === i).slice(0, 3);
                     const options = [v.esp, ...distractors].sort(() => Math.random() - 0.5);

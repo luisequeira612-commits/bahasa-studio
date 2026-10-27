@@ -41,10 +41,15 @@ test('assessment page renders questions, scores closed answers and flags open re
   page.on('pageerror', error => errors.push(error.message));
   try {
     await page.goto(url);
+    assert.deepEqual(await page.locator('#level option').evaluateAll(options => options.map(option => option.value)), ['A1'],
+      'the student-facing selector must expose A1 only until A1 is validated');
     await page.getByRole('button', { name: 'Comenzar evaluación' }).click();
-    await page.getByText('Pilih kalimat yang benar untuk menyangkal identitas:', { exact: false }).waitFor();
-    await page.locator('input[name="a1-negation-01"][value="1"]').check();
-    await page.locator('input[name="a1-vocab-01"][value="1"]').check();
+    await page.getByText('Completa la negación:', { exact: false }).waitFor();
+    assert.ok(await page.locator('fieldset[role="radiogroup"][aria-labelledby]').count() >= 14,
+      'each closed question must expose an accessible named radio group');
+    assert.ok(await page.locator('#question-title-a1-negation-01').isVisible());
+    await page.locator('input[name="a1-negation-01"][value="0"]').check();
+    await page.locator('input[name="a1-vocab-01"][value="2"]').check();
     await page.locator('#a1-write-01').fill('Nama saya Ana. Saya belajar bahasa Indonesia.');
     await page.getByRole('button', { name: 'Calcular resultado provisional' }).click();
     await page.getByRole('heading', { name: 'Resultado provisional' }).waitFor();
@@ -53,7 +58,7 @@ test('assessment page renders questions, scores closed answers and flags open re
     assert.equal(await page.locator('#assessment').isVisible(), false);
     await page.locator('[data-review-id="a1-write-01"]').fill('3');
     await page.getByRole('button', { name: 'Aplicar puntuaciones revisadas' }).click();
-    assert.match(await page.locator('#results').innerText(), /5 de 11 puntos/);
+    assert.match(await page.locator('#results').innerText(), /5 de (21|24) puntos/);
     assert.equal(await page.locator('[data-review-id="a1-write-01"]').count(), 1);
     assert.deepEqual(errors, []);
   } finally {

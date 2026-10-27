@@ -18,9 +18,10 @@ test('inline application JavaScript and service worker parse', () => {
 });
 
 test('PWA version is consistent across HTML, manifest and cache', () => {
-  assert.match(html, /Bahasa Studio 3\.7\.0/);
-  assert.equal(manifest.name, 'Bahasa Studio 3.7.0');
-  assert.match(serviceWorker, /bahasa-studio-v3\.7\.0/);
+  assert.match(html, /Bahasa Studio 3\.7\.1/);
+  assert.equal(manifest.name, 'Bahasa Studio 3.7.1');
+  assert.match(serviceWorker, /bahasa-studio-v3\.7\.1/);
+  assert.match(serviceWorker, /\['\.\/', '\.\/index\.html', '\.\/manifest\.json', '\.\/assessment\.html', '\.\/assessment-engine\.js'\]/);
   assert.doesNotMatch(html + serviceWorker + JSON.stringify(manifest), /3\.5\.1/);
 });
 
@@ -178,7 +179,7 @@ test('A2-B2 starter lessons keep grammar explanations aligned with their example
 });
 
 
-test('v3.7.0 audit fixes remain in place without changing backup or database versions', () => {
+test('v3.7.1 audit fixes remain in place without changing backup or database versions', () => {
   assert.match(html, /attempts === 0 && i\.val\.lastReviewed === null && i\.val\.interval === 0 && i\.val\.repetition === 0/);
   assert.doesNotMatch(html, /Escucha y escribe: «Dia tidur»/);
   assert.match(html, /Tolong, saya mau air significa/);

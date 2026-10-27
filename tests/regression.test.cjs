@@ -554,7 +554,7 @@ test('A1 units 9–11 cover numbers, prices, and time with linked exercises', ()
   const courseStart = html.indexOf('const CourseData =');
   const courseEnd = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', courseStart);
   assert.ok(courseStart >= 0 && courseEnd > courseStart, 'CourseData block must exist');
-  const course = vm.runInNewContext(html.slice(courseStart, courseEnd) + '\\nCourseData');
+  const course = vm.runInNewContext('(() => {\n' + html.slice(courseStart, courseEnd) + '\nreturn CourseData;\n})()');
   const a1 = course.levels.find(level => level.id === 'A1');
   assert.equal(a1.units.length, 11);
 

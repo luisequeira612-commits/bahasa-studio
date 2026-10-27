@@ -353,7 +353,7 @@
                 });
             },
             async set(store, key, val) {
-                return new Promise((resolve) => {
+                return new Promise((resolve, reject) => {
                     const tx = this.db.transaction(store, 'readwrite');
                     tx.objectStore(store).put({ id: key, wordId: key, key: key, val: val });
                     tx.oncomplete = () => resolve();
@@ -833,7 +833,7 @@
                                 {
                                     "vocabId": "v20",
                                     "type": "mc",
-                                    "prompt": "Elige la frase que presenta a una familia",
+                                    "prompt": "Elige la frase que significa «Esta es mi familia»",
                                     "options": [
                                         "Ini keluarga saya",
                                         "Ayah saya bekerja",
@@ -1682,7 +1682,7 @@
             rateWriting(isCorrect) {
                 const ex = this.queue[this.stepIndex];
                 if (!isCorrect && !ex._r) this.retry.push({ ...ex, _r: true });
-                if (ex.vocabId) SRSEngine.recordAttempt(ex.vocabId, isCorrect ? 3 : 1);
+                if (ex.vocabId) SRSEngine.recordAttempt(ex.vocabId, isCorrect ? 3 : 1).catch(err => console.error('No se pudo registrar el intento SRS:', err));
                 if (isCorrect) App.addXp(10);
                 document.getElementById('actionArea').innerHTML = `
                     <div class="feedback-box ${isCorrect ? 'correct' : 'wrong'}">${isCorrect ? '¡Buen trabajo!' : 'La repetiremos para afianzarla.'}</div>
@@ -1698,7 +1698,7 @@
                 const ex = this.queue[this.stepIndex];
                 if (!isCorrect && !ex._r) this.retry.push({ ...ex, _r: true });
                 if (ex.vocabId) {
-                    SRSEngine.recordAttempt(ex.vocabId, isCorrect ? 4 : 1);
+                    SRSEngine.recordAttempt(ex.vocabId, isCorrect ? 4 : 1).catch(err => console.error('No se pudo registrar el intento SRS:', err));
                 }
                 const area = document.getElementById('actionArea');
                 area.innerHTML = `
@@ -2067,7 +2067,7 @@ Requisitos:
             },
             addXp(amount) {
                 this.xp += amount;
-                DB.set('settings', 'userXp', this.xp);
+                DB.set('settings', 'userXp', this.xp).catch(err => console.error('No se pudo guardar la experiencia:', err));
                 this.updateUI();
             },
             async markUnitCompleted(unitId) {
@@ -2185,7 +2185,7 @@ Requisitos:
             saveApiKey() {
                 const key = document.getElementById('apiKeyInput').value.trim();
                 this.apiKey = key;
-                DB.set('settings', 'geminiApiKey', key);
+                DB.set('settings', 'geminiApiKey', key).catch(err => console.error('No se pudo guardar la clave de API:', err));
                 alert("API Key actualizada.");
             },
             escapeHtml(str) {

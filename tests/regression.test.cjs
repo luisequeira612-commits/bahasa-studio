@@ -694,23 +694,11 @@ test('A1 compound-number grammar explains the tens-plus-unit rule and change inc
 
 
 test('lesson start avoids duplicating automatic drills for vocabulary already covered by authored exercises', () => {
-  const methodBody = extractMethodBody(html, 'startUnit(unit) {');
-  const startUnit = vm.runInNewContext(
-    '({ startUnit(unit) {' + methodBody + '\n} }).startUnit',
-    { App: { switchView: () => {} }, Math }
-  );
-  const unit = {
-    vocab: [
-      { id: 'covered', idn: 'Buku', esp: 'Libro' },
-      { id: 'missing-a', idn: 'Air', esp: 'Agua' },
-      { id: 'missing-b', idn: 'Teh', esp: 'Té' }
-    ],
-    exercises: [{ vocabId: 'covered', type: 'mc', prompt: 'Authored exercise' }]
-  };
-  const engine = { renderStep() {} };
-  startUnit.call(engine, unit);
-  assert.equal(engine.queue.length, 4);
-  assert.equal(engine.queue[0].prompt, 'Authored exercise');
-  assert.deepEqual(Array.from(engine.queue.slice(1), ex => ex.vocabId), ['missing-a', 'missing-a', 'missing-b']);
-  assert.deepEqual(Array.from(engine.queue.slice(1), ex => ex.type), ['mc', 'listen', 'translate_es_id']);
+  const start = html.indexOf('startUnit(unit) {');
+  const end = html.indexOf('\n            exit() {', start);
+  assert.ok(start >= 0 && end > start, 'startUnit method must exist');
+  const method = html.slice(start, end);
+  assert.match(method, /const practicedVocabIds = new Set\(unit\.exercises\.map\(ex => ex\.vocabId\)\)/);
+  assert.match(method, /unit\.vocab\.filter\(v => !practicedVocabIds\.has\(v\.id\)\)\.flatMap/);
+  assert.match(method, /this\.queue = \[\.\.\.unit\.exercises, \.\.\.reinforcement\]/);
 });

@@ -278,3 +278,88 @@ test('version 3 backup normalization supplies safe defaults for absent legacy SR
     'return { version: 3, xp: parsed.xp, completedUnits, customUnits, syllabusPos, srs }'
   ]) assert.ok(validator.includes(expected), 'missing backup normalization: ' + expected);
 });
+
+// Functional tests: execute the production method bodies with controlled dependencies,
+// rather than only asserting that expected source strings exist.
+test('SRS recordAttempt updates real attempt state for correct and incorrect answers', async () => {
+  const methodStart = html.indexOf('async recordAttempt(wordId, quality) {');
+  const methodEnd = html.indexOf('\n            async getDuplicateWordIds(wordId)', methodStart);
+  assert.ok(methodStart >= 0 && methodEnd > methodStart, 'production recordAttempt method must exist');
+  const methodSource = html.slice(methodStart, methodEnd);
+  const bodyMatch = methodSource.match(/^async recordAttempt\(wordId, quality\) \{([\s\S]*)\n\s{12}\},?$/);
+  assert.ok(bodyMatch, 'could extract production recordAttempt method body');
+  const recordAttempt = vm.runInNewContext(
+    '({ async recordAttempt(wordId, quality) {' + bodyMatch[1] + '\n} }).recordAttempt',
+    { Date: { now: () => 1000000 } }
+  );
+
+  const saved = [];
+  const successfulEngine = {
+    getMergedSrsItem: async () => ({
+      wordId: 'v1', interval: 0, repetition: 0, efactor: 2.5,
+      nextReview: 0, attempts: 2, correct: 1, incorrect: 1, lastReviewed: null
+    }),
+    saveAttemptForDuplicateWords: async (wordId, item) => saved.push({ wordId, item }),
+    recordAttempt
+  };
+  await successfulEngine.recordAttempt('v1', 5);
+  assert.equal(saved.length, 1);
+  assert.equal(saved[0].wordId, 'v1');
+  assert.equal(saved[0].item.attempts, 3);
+  assert.equal(saved[0].item.correct, 2);
+  assert.equal(saved[0].item.incorrect, 1);
+  assert.equal(saved[0].item.repetition, 1);
+  assert.equal(saved[0].item.interval, 1);
+  assert.equal(saved[0].item.lastReviewed, 1000000);
+
+  const incorrectSaved = [];
+  const incorrectEngine = {
+    getMergedSrsItem: async () => ({
+      wordId: 'v1', interval: 6, repetition: 3, efactor: 2.5,
+      nextReview: 0, attempts: 4, correct: 3, incorrect: 1, lastReviewed: null
+    }),
+    saveAttemptForDuplicateWords: async (wordId, item) => incorrectSaved.push({ wordId, item }),
+    recordAttempt
+  };
+  await incorrectEngine.recordAttempt('v1', 1);
+  assert.equal(incorrectSaved.length, 1);
+  assert.equal(incorrectSaved[0].item.attempts, 5);
+  assert.equal(incorrectSaved[0].item.correct, 3);
+  assert.equal(incorrectSaved[0].item.incorrect, 2);
+  assert.equal(incorrectSaved[0].item.repetition, 0);
+  assert.equal(incorrectSaved[0].item.interval, 1);
+});
+
+test('backup validator executes against valid and invalid version 3 payloads', () => {
+  const methodStart = html.indexOf('            validateBackup(parsed) {');
+  const methodEnd = html.indexOf('\n            importProgress(e)', methodStart);
+  assert.ok(methodStart >= 0 && methodEnd > methodStart, 'production backup validator must exist');
+  const methodSource = html.slice(methodStart, methodEnd).trim().replace(/,$/, '');
+  const courseStart = html.indexOf('const CourseData =');
+  const courseEnd = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', courseStart);
+  const course = vm.runInNewContext(html.slice(courseStart, courseEnd) + '\nCourseData');
+  const validateBackup = vm.runInNewContext(
+    '({' + methodSource + '\n}).validateBackup',
+    { CourseData: course, SYLLABUS: [] }
+  );
+
+  const normalized = validateBackup({
+    version: 3, xp: 12, completedUnits: [], customUnits: [], syllabusPos: 0,
+    srs: [{
+      key: 'v1',
+      val: { attempts: 2, correct: 1, incorrect: 1, lastReviewed: null }
+    }]
+  });
+  assert.equal(normalized.version, 3);
+  assert.equal(normalized.xp, 12);
+  assert.equal(normalized.srs.length, 1);
+  assert.equal(normalized.srs[0].key, 'v1');
+  assert.equal(normalized.srs[0].val.attempts, 2);
+  assert.equal(normalized.srs[0].val.interval, 0);
+  assert.equal(normalized.srs[0].val.efactor, 2.5);
+  assert.equal(normalized.srs[0].val.repetition, 0);
+
+  assert.throws(() => validateBackup({
+    version: 2, xp: 12, completedUnits: [], customUnits: [], srs: []
+  }), /Formato de copia no válido/);
+});

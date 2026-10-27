@@ -408,7 +408,7 @@ test('backup restoration writes SRS and settings in one readwrite transaction an
     }
   };
   await replaceBackupData.call({ db }, data);
-  assert.deepEqual(transactions[0].names, ['srs', 'settings']);
+  assert.deepEqual(Array.from(transactions[0].names), ['srs', 'settings']);
   assert.equal(transactions[0].mode, 'readwrite');
   assert.ok(writes.some(write => write.store === 'srs' && write.type === 'clear'));
   assert.ok(writes.some(write => write.store === 'srs' && write.type === 'put' && write.value.wordId === 'v1'));

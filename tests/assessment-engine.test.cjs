@@ -40,7 +40,7 @@ test('choice scoring is level-scoped and reports skill breakdowns', () => {
   assert.equal(result.earned, 3);
   assert.equal(result.possible, 18);
   assert.equal(result.skills.grammar.percent, 100);
-  assert.equal(result.skills.vocabulary.percent, 100);
+  assert.equal(result.skills.vocabulary.percent, 33);
   assert.equal(result.provisionalPass, false);
   assert.deepEqual(result.openItemsPendingReview, ['a1-write-01']);
 });

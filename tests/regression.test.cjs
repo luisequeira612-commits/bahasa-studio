@@ -373,7 +373,7 @@ test('backup restoration writes SRS and settings in one readwrite transaction an
   assert.ok(methodStart >= 0 && methodEnd > methodStart, 'production backup restore method must exist');
   const methodSource = html.slice(methodStart, methodEnd);
   const bodyStart = methodSource.indexOf('{') + 1;
-  const bodyEnd = methodSource.lastIndexOf('\n            },');
+  const bodyEnd = methodSource.lastIndexOf('\n            }');
   assert.ok(bodyStart > 0 && bodyEnd > bodyStart, 'could extract production backup restore method body');
   const methodBody = methodSource.slice(bodyStart, bodyEnd);
   const replaceBackupData = vm.runInNewContext(

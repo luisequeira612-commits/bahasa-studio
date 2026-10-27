@@ -1413,7 +1413,7 @@
 
                 if (quality >= 3 && prev !== null && prev !== undefined &&
                     now - prev >= 0 && now - prev < 12 * 60 * 60 * 1000) {
-                    await DB.set('srs', wordId, item);
+                    await this.saveAttemptForDuplicateWords(wordId, item);
                     return;
                 }
 
@@ -1433,7 +1433,19 @@
                 item.efactor = item.efactor + (0.1 - (5 - quality) * (0.08 + (5 - quality) * 0.02));
                 if (item.efactor < 1.3) item.efactor = 1.3;
                 item.nextReview = Date.now() + (item.interval * 86400000);
-                await DB.set('srs', wordId, item);
+                await this.saveAttemptForDuplicateWords(wordId, item);
+            },
+
+            async saveAttemptForDuplicateWords(wordId, item) {
+                const allWords = getLearningLevels().flatMap(level => level.units.flatMap(unit => unit.vocab || []));
+                const sourceWord = allWords.find(word => word.id === wordId);
+                const key = String(sourceWord && sourceWord.idn || '').trim().toLocaleLowerCase();
+                const matchingIds = key
+                    ? allWords.filter(word => String(word.idn || '').trim().toLocaleLowerCase() === key).map(word => word.id)
+                    : [wordId];
+                await Promise.all([...new Set(matchingIds)].map(id =>
+                    DB.set('srs', id, { ...item, wordId: id })
+                ));
             },
 
             async getDueItems() {
@@ -2142,22 +2154,27 @@ Requisitos:
                 const vocabById = new Map(allVocab.filter(v => v && v.id).map(v => [v.id, v]));
                 const uniqueVocab = getUniqueLearningVocabulary();
                 const allIds = new Set(allVocab.filter(v => v && v.id).map(v => v.id));
-                const seenSrsWords = new Set();
-                const allSrs = (await DB.getAll('srs')).filter(i => {
-                    if (!i.val || !allIds.has(i.key)) return false;
-                    const word = vocabById.get(i.key);
+                const srsByWord = new Map();
+                for (const item of await DB.getAll('srs')) {
+                    if (!item.val || !allIds.has(item.key)) continue;
+                    const word = vocabById.get(item.key);
                     const key = String(word && word.idn || '').trim().toLocaleLowerCase();
-                    if (!key || seenSrsWords.has(key)) return false;
-                    seenSrsWords.add(key);
-                    return true;
-                });
-                const attempts = allSrs.reduce((sum, i) => sum + (i.val.attempts || 0), 0);
-                const correct = allSrs.reduce((sum, i) => sum + (i.val.correct || 0), 0);
+                    if (!key) continue;
+                    if (!srsByWord.has(key)) srsByWord.set(key, { attempts: 0, correct: 0, incorrect: 0, repetition: 0 });
+                    const aggregate = srsByWord.get(key);
+                    aggregate.attempts += item.val.attempts || 0;
+                    aggregate.correct += item.val.correct || 0;
+                    aggregate.incorrect += item.val.incorrect || 0;
+                    aggregate.repetition = Math.max(aggregate.repetition, item.val.repetition || 0);
+                }
+                const allSrs = [...srsByWord.values()];
+                const attempts = allSrs.reduce((sum, item) => sum + item.attempts, 0);
+                const correct = allSrs.reduce((sum, item) => sum + item.correct, 0);
                 document.getElementById('statTotalVocab').innerText = uniqueVocab.length;
-                document.getElementById('statMastered').innerText = allSrs.filter(i => i.val.repetition > 3).length;
+                document.getElementById('statMastered').innerText = allSrs.filter(item => item.repetition > 3).length;
                 document.getElementById('statAttempts').innerText = attempts;
                 document.getElementById('statAccuracy').innerText = attempts ? Math.round(correct / attempts * 100) + '%' : '—';
-                document.getElementById('statNeedsPractice').innerText = allSrs.filter(i => (i.val.incorrect || 0) > 0 && i.val.repetition < 4).length;
+                document.getElementById('statNeedsPractice').innerText = allSrs.filter(item => item.incorrect > 0 && item.repetition < 4).length;
             },
             renderDict() {
                 const container = document.getElementById('dictContainer');

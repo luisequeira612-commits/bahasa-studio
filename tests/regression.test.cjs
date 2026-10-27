@@ -286,10 +286,12 @@ test('SRS recordAttempt updates real attempt state for correct and incorrect ans
   const methodEnd = html.indexOf('\n            async getDuplicateWordIds(wordId)', methodStart);
   assert.ok(methodStart >= 0 && methodEnd > methodStart, 'production recordAttempt method must exist');
   const methodSource = html.slice(methodStart, methodEnd);
-  const bodyMatch = methodSource.match(/^async recordAttempt\(wordId, quality\) \{([\s\S]*)\n\s{12}\},?$/);
-  assert.ok(bodyMatch, 'could extract production recordAttempt method body');
+  const bodyStart = methodSource.indexOf('{') + 1;
+  const bodyEnd = methodSource.lastIndexOf('\n            },');
+  assert.ok(bodyStart > 0 && bodyEnd > bodyStart, 'could extract production recordAttempt method body');
+  const methodBody = methodSource.slice(bodyStart, bodyEnd);
   const recordAttempt = vm.runInNewContext(
-    '({ async recordAttempt(wordId, quality) {' + bodyMatch[1] + '\n} }).recordAttempt',
+    '({ async recordAttempt(wordId, quality) {' + methodBody + '\n} }).recordAttempt',
     { Date: { now: () => 1000000 } }
   );
 

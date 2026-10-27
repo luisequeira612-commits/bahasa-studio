@@ -365,3 +365,66 @@ test('backup validator executes against valid and invalid version 3 payloads', (
     version: 2, xp: 12, completedUnits: [], customUnits: [], srs: []
   }), /Formato de copia no válido/);
 });
+
+
+test('backup restoration writes SRS and settings in one readwrite transaction and rejects aborts', async () => {
+  const methodStart = html.indexOf('async replaceBackupData(data) {');
+  const methodEnd = html.indexOf('\n        };', methodStart);
+  assert.ok(methodStart >= 0 && methodEnd > methodStart, 'production backup restore method must exist');
+  const methodSource = html.slice(methodStart, methodEnd);
+  const bodyStart = methodSource.indexOf('{') + 1;
+  const bodyEnd = methodSource.lastIndexOf('\n            },');
+  assert.ok(bodyStart > 0 && bodyEnd > bodyStart, 'could extract production backup restore method body');
+  const methodBody = methodSource.slice(bodyStart, bodyEnd);
+  const replaceBackupData = vm.runInNewContext(
+    '({ async replaceBackupData(data) {' + methodBody + '\n} }).replaceBackupData'
+  );
+
+  const data = {
+    srs: [{ key: 'v1', val: { attempts: 2 } }],
+    xp: 8, completedUnits: ['a1_u1'], customUnits: [], syllabusPos: 0
+  };
+  const writes = [];
+  const transactions = [];
+  const stores = {
+    srs: {
+      clear: () => writes.push({ store: 'srs', type: 'clear' }),
+      put: value => writes.push({ store: 'srs', type: 'put', value })
+    },
+    settings: {
+      put: value => writes.push({ store: 'settings', type: 'put', value })
+    }
+  };
+  const db = {
+    transaction(names, mode) {
+      const tx = {
+        names, mode, error: null,
+        objectStore: name => stores[name],
+        oncomplete: null, onerror: null, onabort: null
+      };
+      transactions.push(tx);
+      queueMicrotask(() => tx.oncomplete && tx.oncomplete());
+      return tx;
+    }
+  };
+  await replaceBackupData.call({ db }, data);
+  assert.deepEqual(transactions[0].names, ['srs', 'settings']);
+  assert.equal(transactions[0].mode, 'readwrite');
+  assert.ok(writes.some(write => write.store === 'srs' && write.type === 'clear'));
+  assert.ok(writes.some(write => write.store === 'srs' && write.type === 'put' && write.value.wordId === 'v1'));
+  assert.ok(writes.some(write => write.store === 'settings' && write.type === 'put' && write.value.key === 'userXp' && write.value.val === 8));
+  assert.ok(writes.some(write => write.store === 'settings' && write.type === 'put' && write.value.key === 'completedUnits'));
+
+  const abortDb = {
+    transaction() {
+      const tx = {
+        error: new Error('simulated transaction abort'),
+        objectStore: name => stores[name],
+        oncomplete: null, onerror: null, onabort: null
+      };
+      queueMicrotask(() => tx.onabort && tx.onabort());
+      return tx;
+    }
+  };
+  await assert.rejects(replaceBackupData.call({ db: abortDb }, data), /simulated transaction abort/);
+});

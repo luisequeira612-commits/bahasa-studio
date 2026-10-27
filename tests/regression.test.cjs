@@ -650,7 +650,7 @@ test('A1 unit 9 practices compound numbers from 21 to 99 without duplicate vocab
   const unit10 = a1.units.find(unit => unit.id === 'a1_u10');
   const expected = ['Dua puluh satu', 'Dua puluh lima', 'Tiga puluh dua', 'Empat puluh tujuh', 'Lima puluh delapan', 'Enam puluh empat', 'Tujuh puluh enam', 'Delapan puluh sembilan', 'Sembilan puluh sembilan'];
   const newWords = unit9.vocab.filter(word => /^v27[1-9]$/.test(word.id));
-  assert.deepEqual(newWords.map(word => word.idn), expected);
+  assert.deepEqual(Array.from(newWords, word => word.idn), expected);
   assert.equal(new Set(newWords.map(word => word.id)).size, 9);
   const oldTerms = new Set(a1.units.filter(unit => unit.id !== 'a1_u9')
     .flatMap(unit => unit.vocab).map(word => word.idn.trim().toLocaleLowerCase()));

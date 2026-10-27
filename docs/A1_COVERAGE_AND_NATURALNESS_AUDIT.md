@@ -24,7 +24,7 @@ A1 dispone de 14 unidades con práctica variada y una base útil para presentaci
 | Clima | U13 cubre calor, frío, lluvia, despejado, nublado, viento y paraguas | Falta preguntar y responder cómo está el tiempo y relacionarlo con una decisión cotidiana, usando solo vocabulario ya presentado. |
 | Transporte | U14 cubre medios de transporte, estación, terminal, `naik` y `turun` | Añadir un diálogo breve de trayecto: destino, medio, lugar de salida/llegada y dónde bajarse. |
 | Comprensión auditiva y producción oral | Hay ejercicios etiquetados como escucha y tareas de escritura | Verificar en navegador que las actividades de escucha realmente ofrecen audio reproducible y añadir una evaluación oral guiada; el tipo de ejercicio por sí solo no prueba que el audio funcione. |
-| Repaso acumulativo | La ruta tiene 14 unidades y una unidad integradora temprana | Añadir repasos espaciados entre bloques (U1–4, U5–8, U9–11, U12–14) y una prueba final que mezcle todos los objetivos sin introducir vocabulario desconocido. |
+| Repaso acumulativo | La evaluación piloto A1 ya incluye ítems de números, precios, hora, clima, transporte, ubicación, familia, negación, comprensión e interacción; sigue siendo una prueba corta y no validada | Añadir repasos de práctica espaciados entre bloques (U1–4, U5–8, U9–11, U12–14) y ampliar la prueba final con comprensión auditiva real y una microtarea productiva revisable. |
 
 ## Revisión de naturalidad y correcciones aplicadas
 

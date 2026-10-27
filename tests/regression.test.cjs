@@ -625,3 +625,17 @@ test('A1 units 12–14 add routine, weather, and transport without duplicate voc
   assert.equal(new Set(terms).size, terms.length, 'new units should not duplicate each other');
   for (const term of terms) assert.ok(!previousTerms.has(term), term + ' duplicates vocabulary already in the course');
 });
+
+
+test('A1 time-of-day examples use complete natural expressions', () => {
+  const start = html.indexOf('const CourseData =');
+  const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
+  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
+  const a1 = course.levels.find(level => level.id === 'A1');
+  const unit11 = a1.units.find(unit => unit.id === 'a1_u11');
+  assert.ok(unit11, 'Unit 11 should exist');
+  const examples = unit11.vocab;
+  assert.ok(examples.some(word => word.ex === 'Saya belajar pada siang hari.'));
+  assert.ok(examples.some(word => word.ex === 'Saya bekerja pada sore hari.'));
+  assert.ok(examples.some(word => word.ex === 'Saya tidur pada malam hari.'));
+});

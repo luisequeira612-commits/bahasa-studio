@@ -195,7 +195,12 @@ test('v3.6.1 audit fixes remain in place without changing backup or database ver
   assert.ok(html.includes("return getLevels().filter(level => !['A2', 'B1', 'B2'].includes(level.id))"));
   assert.ok(html.includes("function getUniqueLearningVocabulary()"));
   assert.ok(html.includes("String(word && word.idn || '').trim().toLocaleLowerCase()"));
+  assert.ok(html.includes("async getDuplicateWordIds(wordId)"));
+  assert.ok(html.includes("async getMergedSrsItem(wordId)"));
+  assert.ok(html.includes("const unique = new Map()"));
+  assert.ok(html.includes("if (!unique.has(signature)) unique.set(signature, item)"));
   assert.ok(html.includes("async saveAttemptForDuplicateWords(wordId, item)"));
+  assert.ok(html.includes("if (aggregate.seenStates.has(signature)) continue"));
   assert.ok(html.includes("aggregate.attempts += item.val.attempts || 0"));
   assert.ok(html.includes("aggregate.correct += item.val.correct || 0"));
   assert.ok(html.includes("aggregate.incorrect += item.val.incorrect || 0"));

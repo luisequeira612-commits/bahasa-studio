@@ -24,7 +24,7 @@ A1 dispone de 14 unidades con práctica variada y una base útil para presentaci
 | Clima | U13 cubre calor, frío, lluvia, despejado, nublado, viento y paraguas | Falta preguntar y responder cómo está el tiempo y relacionarlo con una decisión cotidiana, usando solo vocabulario ya presentado. |
 | Transporte | U14 cubre medios de transporte, estación, terminal, `naik` y `turun` | Añadir un diálogo breve de trayecto: destino, medio, lugar de salida/llegada y dónde bajarse. |
 | Comprensión auditiva y producción oral | Hay ejercicios etiquetados como escucha y tareas de escritura | Verificar en navegador que las actividades de escucha realmente ofrecen audio reproducible y añadir una evaluación oral guiada; el tipo de ejercicio por sí solo no prueba que el audio funcione. |
-| Repaso acumulativo | La evaluación piloto A1 ya incluye ítems de números, precios, hora, clima, transporte, ubicación, familia, negación, comprensión e interacción; sigue siendo una prueba corta y no validada | Añadir repasos de práctica espaciados entre bloques (U1–4, U5–8, U9–11, U12–14) y ampliar la prueba final con comprensión auditiva real y una microtarea productiva revisable. |
+| Repaso acumulativo | La evaluación piloto A1 contiene ahora 16 ítems y 21 puntos, incluidos contenidos explícitos de edad (U4), familia (U5) y rutina (U12), además de números, precios, hora, clima, transporte, ubicación, negación, comprensión e interacción. Sigue siendo una prueba corta, parcial y no validada; no demuestra por sí sola cobertura de todas las unidades | Añadir repasos de práctica espaciados entre bloques (U1–4, U5–8, U9–11, U12–14) y ampliar la prueba final con comprensión auditiva real y una microtarea productiva revisable. |
 
 ## Revisión de naturalidad y correcciones aplicadas
 
@@ -41,7 +41,7 @@ Estas notas son observaciones pedagógicas, no certificación de naturalidad por
 
 1. Completar los repasos acumulativos y una evaluación final equilibrada de reconocimiento, traducción, orden, escritura y comprensión auditiva real.
 2. Auditar todas las respuestas esperadas para detectar vocabulario no enseñado, traducciones demasiado rígidas y frases modelo poco naturales.
-3. Verificar que la evaluación permite respuestas alternativas válidas cuando corresponde y que la escritura libre no se marca automáticamente como correcta sin revisión.
+3. Verificar que la evaluación permite respuestas alternativas válidas cuando corresponde, distribuye de forma equilibrada las posiciones de las respuestas correctas y que la escritura libre no se marca automáticamente como correcta sin revisión. La parte abierta requiere tutor o evaluador competente: no debe presentarse como autocorrección fiable para un principiante.
 4. Ejecutar regresión, pruebas de navegador y evaluación; confirmar persistencia SRS y compatibilidad de backup.
 5. Mantener A2–B2 ocultos hasta cumplir estos criterios y realizar una revisión lingüística competente.
 

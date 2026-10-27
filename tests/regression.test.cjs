@@ -188,7 +188,7 @@ test('v3.6.1 audit fixes remain in place without changing backup or database ver
   assert.match(html, /version: 1/);
   assert.match(html, /parsed\.version !== 3/);
   assert.match(html, /tx\.onabort = \(\) => reject\(tx\.error/);
-  assert.match(html, /return new Promise\(\(resolve, reject\) => \{\\n                    const tx = this\.db\.transaction\(store, 'readwrite'\)/);
+  assert.match(html, /async set\(store, key, val\) \{\s+return new Promise\(\(resolve, reject\) => \{/);
   assert.match(html, /Elige la frase que significa «Esta es mi familia»/);
 });
 

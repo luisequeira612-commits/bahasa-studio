@@ -190,6 +190,15 @@ test('v3.6.1 audit fixes remain in place without changing backup or database ver
   assert.match(html, /tx\.onabort = \(\) => reject\(tx\.error/);
   assert.match(html, /async set\(store, key, val\) \{\s+return new Promise\(\(resolve, reject\) => \{/);
   assert.match(html, /Elige la frase que significa «Esta es mi familia»/);
+  assert.match(html, /v\\.lang\\.toLowerCase\\(\\)\\.startsWith\\('id'\\)/);
+  assert.match(html, /function getLearningLevels\\(\\) \\{\\s+return getLevels\\(\\)\\.filter\\(level => !\\['A2', 'B1', 'B2'\\]\\.includes\\(level\\.id\\)\\)/);
+  assert.match(html, /function getUniqueLearningVocabulary\\(\\)/);
+  assert.match(html, /String\\(word && word\\.idn \\|\\| ''\\)\\.trim\\(\\)\\.toLocaleLowerCase\\(\\)/);
+  assert.match(html, /async saveAttemptForDuplicateWords\\(wordId, item\\)/);
+  assert.match(html, /aggregate\\.attempts \\+= item\\.val\\.attempts \\|\\| 0/);
+  assert.match(html, /aggregate\\.correct \\+= item\\.val\\.correct \\|\\| 0/);
+  assert.match(html, /aggregate\\.incorrect \\+= item\\.val\\.incorrect \\|\\| 0/);
+  assert.match(html, /aggregate\\.repetition = Math\\.max\\(aggregate\\.repetition, item\\.val\\.repetition \\|\\| 0\\)/);
 });
 
 test('unit and vocabulary IDs are unique and every authored exercise has a valid answer structure', () => {

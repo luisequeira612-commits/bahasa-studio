@@ -436,7 +436,7 @@ test('SRS due queue returns one due item per Indonesian headword and excludes pl
   assert.ok(methodStart >= 0 && methodEnd > methodStart, 'production due queue method must exist');
   const methodSource = html.slice(methodStart, methodEnd);
   const bodyStart = methodSource.indexOf('{') + 1;
-  const bodyEnd = methodSource.lastIndexOf('\\n            },');
+  const bodyEnd = methodSource.lastIndexOf('},');
   assert.ok(bodyStart > 0 && bodyEnd > bodyStart, 'could extract production due queue method body');
   const methodBody = methodSource.slice(bodyStart, bodyEnd);
 
@@ -453,7 +453,7 @@ test('SRS due queue returns one due item per Indonesian headword and excludes pl
     { key: 'future', val: { nextReview: 999999, attempts: 1 } }
   ];
   const getDueItems = vm.runInNewContext(
-    '({ async getDueItems() {' + methodBody + '\\n} }).getDueItems',
+    '({ async getDueItems() {' + methodBody + '\n} }).getDueItems',
     {
       getLearningLevels: () => [{ units: [{ vocab }] }],
       DB: { getAll: async () => records },
@@ -470,11 +470,11 @@ test('SRS attempt persistence mirrors the updated state to every duplicate word 
   assert.ok(methodStart >= 0 && methodEnd > methodStart, 'production duplicate save method must exist');
   const methodSource = html.slice(methodStart, methodEnd);
   const bodyStart = methodSource.indexOf('{') + 1;
-  const bodyEnd = methodSource.lastIndexOf('\\n            },');
+  const bodyEnd = methodSource.lastIndexOf('},');
   const methodBody = methodSource.slice(bodyStart, bodyEnd);
   const writes = [];
   const saveAttemptForDuplicateWords = vm.runInNewContext(
-    '({ async saveAttemptForDuplicateWords(wordId, item) {' + methodBody + '\\n} }).saveAttemptForDuplicateWords',
+    '({ async saveAttemptForDuplicateWords(wordId, item) {' + methodBody + '\n} }).saveAttemptForDuplicateWords',
     { DB: { set: async (store, key, val) => writes.push({ store, key, val }) } }
   );
 
@@ -483,7 +483,7 @@ test('SRS attempt persistence mirrors the updated state to every duplicate word 
     saveAttemptForDuplicateWords,
   };
   await engine.saveAttemptForDuplicateWords.call(
-    { ...engine, DB },
+    engine,
     'v27',
     { wordId: 'v27', attempts: 4, correct: 3, incorrect: 1, interval: 6 }
   );

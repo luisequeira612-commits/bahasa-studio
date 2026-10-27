@@ -1,0 +1,9 @@
+{
+  "name": "bahasa-studio-regression",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Regression and browser end-to-end tests for Bahasa Studio",
+  "devDependencies": {
+    "playwright": "^1.55.0"
+  }
+}

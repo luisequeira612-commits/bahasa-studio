@@ -229,3 +229,50 @@ test('unit and vocabulary IDs are unique and every authored exercise has a valid
   assert.equal(new Set(unitIds).size, unitIds.length, 'unit IDs must be globally unique');
   assert.equal(new Set(vocabIds).size, vocabIds.length, 'vocabulary IDs must be globally unique');
 });
+
+
+test('SRS merge behavior deduplicates mirrored snapshots and preserves distinct counters', () => {
+  const start = html.indexOf('function mergeSrsRecords(records, wordId)');
+  const end = html.indexOf('const SRSEngine =', start);
+  assert.ok(start >= 0 && end > start, 'production SRS merge helper must exist');
+  const helperSource = html.slice(start, end);
+  const mergeSrsRecords = vm.runInNewContext(helperSource + '\\nmergeSrsRecords');
+
+  const mirrored = {
+    attempts: 4, correct: 3, incorrect: 1, lastReviewed: 100,
+    interval: 1, repetition: 1, efactor: 2.5, nextReview: 200
+  };
+  const deduplicated = mergeSrsRecords([{ ...mirrored }, { ...mirrored }], 'word-a');
+  assert.equal(deduplicated.attempts, 4, 'mirrored attempts must not be counted twice');
+  assert.equal(deduplicated.correct, 3);
+  assert.equal(deduplicated.incorrect, 1);
+  assert.equal(deduplicated.wordId, 'word-a');
+
+  const combined = mergeSrsRecords([
+    { attempts: 2, correct: 1, incorrect: 1, lastReviewed: 100, interval: 1, repetition: 0, efactor: 2.5, nextReview: 200 },
+    { attempts: 3, correct: 2, incorrect: 1, lastReviewed: 300, interval: 6, repetition: 2, efactor: 2.6, nextReview: 400 }
+  ], 'word-b');
+  assert.equal(combined.attempts, 5, 'distinct legacy counters should be combined');
+  assert.equal(combined.correct, 3);
+  assert.equal(combined.incorrect, 2);
+  assert.equal(combined.lastReviewed, 300, 'latest review should supply scheduling state');
+  assert.equal(combined.interval, 6);
+  assert.equal(combined.nextReview, 400);
+  assert.equal(mergeSrsRecords([], 'word-c'), null);
+});
+
+test('version 3 backup normalization supplies safe defaults for absent legacy SRS fields', () => {
+  const start = html.indexOf('validateBackup(parsed)');
+  const end = html.indexOf('importProgress(e)', start);
+  assert.ok(start >= 0 && end > start, 'backup validation and import methods must exist');
+  const validator = html.slice(start, end);
+  assert.match(validator, /Number\\.isSafeInteger\\(parsed\\.xp\\)/);
+  assert.match(validator, /parsed\\.completedUnits === undefined \\? \\[\\] : parsed\\.completedUnits/);
+  assert.match(validator, /parsed\\.customUnits === undefined \\? \\[\\] : parsed\\.customUnits/);
+  assert.match(validator, /parsed\\.srs === undefined \\? \\[\\] : parsed\\.srs/);
+  assert.match(validator, /attempts: count\\('attempts'\\), correct: count\\('correct'\\), incorrect: count\\('incorrect'\\)/);
+  assert.match(validator, /value\\.lastReviewed === null \\|\\| value\\.lastReviewed === undefined/);
+  assert.match(validator, /interval: num\\('interval', 0/);
+  assert.match(validator, /efactor: num\\('efactor', 2\\.5/);
+  assert.match(validator, /return \\{ version: 3, xp: parsed\\.xp, completedUnits, customUnits, syllabusPos, srs \\}/);
+});

@@ -71,7 +71,7 @@ function scoreAssessment(level, answers, { manualScores = {} } = {}) {
         points = score;
         status = 'reviewed';
       } else {
-        status = 'needs-review';
+        status = hasResponse ? 'needs-review' : 'unanswered';
       }
     }
 

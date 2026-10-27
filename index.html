@@ -604,7 +604,7 @@
                                 { vocabId: 'v10', type: 'write', prompt: "Preséntate en indonesio escribiendo tu nombre.", hint: "Usa la estructura Nama saya ...", modelAnswer: "Nama saya Ana.", explanation: "Nama saya significa «mi nombre». Sustituye Ana por tu propio nombre." },
                                 {"vocabId":"v101","type":"mc","prompt":"¿Qué significa kota?","options":["Ciudad","País","Dirección"],"answer":0,"explanation":"Kota significa ciudad."},
                                 {"vocabId":"v102","type":"translate_es_id","prompt":"Traduce: país","answer":"Negara","explanation":"Negara significa país."},
-                                {"vocabId":"v103","type":"write","prompt":"Escribe una frase sobre dónde vives.","hint":"Intenta construir una frase nueva con el vocabulario de la unidad.","modelAnswer":"Saya belajar bahasa Indonesia.","explanation":"Usa Saya tinggal di... para decir dónde vives."}
+                                {"vocabId":"v103","type":"write","prompt":"Escribe una frase sobre dónde vives.","hint":"Intenta construir una frase nueva con el vocabulario de la unidad.","modelAnswer":"Saya tinggal di Managua.","explanation":"Usa Saya tinggal di... para decir dónde vives."}
                             ]
                         },
                         {
@@ -875,7 +875,7 @@
                                 { vocabId: 'v20', type: 'write', prompt: "Escribe una frase sobre una persona de tu familia.", hint: "Usa una palabra de familia que hayas aprendido.", modelAnswer: "Ini ibu saya.", explanation: "Ini ibu saya significa «Esta es mi madre». Puedes cambiar ibu por otra palabra de familia." },
                                 {"vocabId":"v109","type":"mc","prompt":"¿Qué significa ibu?","options":["Madre / señora","Padre","Hermano menor"],"answer":0,"explanation":"Ibu significa madre y también es un tratamiento respetuoso."},
                                 {"vocabId":"v110","type":"translate_es_id","prompt":"Traduce: padre","answer":"Ayah","explanation":"Ayah significa padre."},
-                                {"vocabId":"v111","type":"write","prompt":"Escribe una frase sobre tu familia.","hint":"Intenta construir una frase nueva con el vocabulario de la unidad.","modelAnswer":"Saya belajar bahasa Indonesia.","explanation":"Puedes usar ibu, ayah, adik o punya."}
+                                {"vocabId":"v111","type":"write","prompt":"Escribe una frase sobre tu familia.","hint":"Intenta construir una frase nueva con el vocabulario de la unidad.","modelAnswer":"Ini ibu saya.","explanation":"Puedes usar ibu, ayah, adik o punya."}
                             ]
                         },
                         {
@@ -1177,7 +1177,7 @@
                                 { vocabId: 'v30', type: 'write', prompt: "Escribe una frase que indique dónde está algo.", hint: "Intenta usar di y una palabra de lugar de la unidad.", modelAnswer: "Saya di rumah.", explanation: "La frase significa «Estoy en casa». Adapta la frase al vocabulario que conozcas." },
                                 {"vocabId":"v117","type":"mc","prompt":"¿Qué significa rumah?","options":["Casa","Escuela","Estación"],"answer":0,"explanation":"Rumah significa casa."},
                                 {"vocabId":"v118","type":"translate_es_id","prompt":"Traduce: escuela","answer":"Sekolah","explanation":"Sekolah significa escuela."},
-                                {"vocabId":"v119","type":"write","prompt":"Describe dónde está un lugar.","hint":"Intenta construir una frase nueva con el vocabulario de la unidad.","modelAnswer":"Saya belajar bahasa Indonesia.","explanation":"Usa dekat (cerca) o jauh (lejos)."}
+                                {"vocabId":"v119","type":"write","prompt":"Describe dónde está un lugar.","hint":"Intenta construir una frase nueva con el vocabulario de la unidad.","modelAnswer":"Sekolah dekat rumah saya.","explanation":"Usa dekat (cerca) o jauh (lejos)."}
                             ]
                         },
                         {
@@ -1328,7 +1328,8 @@
                                 { vocabId: 'v35', type: 'write', prompt: "Escribe una frase breve sobre tu rutina diaria.", hint: "Usa un día o una acción cotidiana que hayas aprendido.", modelAnswer: "Saya makan pagi.", explanation: "Saya makan pagi significa «Desayuno»; makan es comer y pagi es mañana." },
                                 {"vocabId":"v121","type":"mc","prompt":"¿Qué significa hari ini?","options":["Hoy","Mañana","Ayer"],"answer":0,"explanation":"Hari ini significa hoy."},
                                 {"vocabId":"v122","type":"translate_es_id","prompt":"Traduce: mañana","answer":"Besok","explanation":"Besok significa mañana."},
-                                {"vocabId":"v123","type":"write","prompt":"Escribe dos frases sobre tu rutina.","hint":"Intenta construir una frase nueva con el vocabulario de la unidad.","modelAnswer":"Saya belajar bahasa Indonesia.","explanation":"Usa hari ini, besok o setiap hari."}
+                                {"vocabId":"v123","type":"write","prompt":"Escribe dos frases sobre tu rutina.","hint":"Intenta construir una frase nueva con el vocabulario de la unidad.","modelAnswer":"Hari ini saya belajar. Saya minum air setiap hari.","explanation":"Usa hari ini, besok o setiap hari."},
+                                { vocabId: 'v123', type: 'write', prompt: 'Tarea integradora: preséntate, pide una bebida, pregunta el precio y describe tu rutina.', hint: 'Combina presentación, cortesía, una pregunta y una expresión temporal.', modelAnswer: 'Nama saya Ana. Saya dari Nikaragua. Saya mau teh, tolong. Berapa harganya? Saya belajar setiap hari.', explanation: 'La respuesta modelo combina varios objetivos A1; puedes usar tus propios datos y otras frases correctas.' }
                             ]
                         }
                     ]
@@ -1387,11 +1388,7 @@
                                                       "vocabId": "v201",
                                                       "type": "mc",
                                                       "prompt": "¿Qué significa membaca?",
-                                                      "options": [
-                                                                "Membaca",
-                                                                "Menulis",
-                                                                "Mencari"
-                                                      ],
+                                                      "options":["Leer","Escribir","Buscar"],
                                                       "answer": 0,
                                                       "explanation": "Membaca significa leer; meN- forma verbos en patrones frecuentes."
                                             },
@@ -1459,11 +1456,7 @@
                                                       "vocabId": "v205",
                                                       "type": "mc",
                                                       "prompt": "¿Qué función tiene di- en dibaca?",
-                                                      "options": [
-                                                                "Dibaca",
-                                                                "Ditulis",
-                                                                "Dibeli"
-                                                      ],
+                                                      "options":["Voz pasiva","Lugar","Negación"],
                                                       "answer": 0,
                                                       "explanation": "En dibaca, di- marca la voz pasiva; no es la preposición di."
                                             },
@@ -1547,11 +1540,7 @@
                                                       "vocabId": "v211",
                                                       "type": "mc",
                                                       "prompt": "¿Cuál es la forma pasiva de leer en este ejemplo?",
-                                                      "options": [
-                                                                "Membaca",
-                                                                "Dibaca",
-                                                                "Penulis"
-                                                      ],
+                                                      "options":["Dibaca","Membaca","Penulis"],
                                                       "answer": 0,
                                                       "explanation": "Buku dibaca oleh Ana pone el libro en primer plano."
                                             },
@@ -1619,11 +1608,7 @@
                                                       "vocabId": "v215",
                                                       "type": "mc",
                                                       "prompt": "¿Qué debes hacer al comparar -kan e -i?",
-                                                      "options": [
-                                                                "Mengirimkan",
-                                                                "Mengirimi",
-                                                                "Mengisi"
-                                                      ],
+                                                      "options":["Comparar el verbo y la frase completa","Tratar los sufijos como tiempos verbales","Suponer que son intercambiables"],
                                                       "answer": 0,
                                                       "explanation": "Comparar el verbo y la frase completa; no asumir una traducción fija."
                                             },
@@ -1691,11 +1676,7 @@
                                                       "vocabId": "v219",
                                                       "type": "mc",
                                                       "prompt": "¿Qué puede indicar -nya en bukunya?",
-                                                      "options": [
-                                                                "Makanan",
-                                                                "Minuman",
-                                                                "Bukunya"
-                                                      ],
+                                                      "options":["Posesión o referencia contextual","Solo pasado","Solo plural"],
                                                       "answer": 0,
                                                       "explanation": "Puede indicar posesión o referencia contextual; la frase determina la lectura."
                                             },
@@ -1763,11 +1744,7 @@
                                                       "vocabId": "v223",
                                                       "type": "mc",
                                                       "prompt": "¿Qué expresa terbuka en Pintu itu terbuka?",
-                                                      "options": [
-                                                                "Terbuka",
-                                                                "Tertutup",
-                                                                "Pekerja"
-                                                      ],
+                                                      "options":["Estado de estar abierto","Pasado","Negación"],
                                                       "answer": 0,
                                                       "explanation": "Describe el estado de la puerta: está abierta."
                                             },
@@ -1851,11 +1828,7 @@
                                                       "vocabId": "v231",
                                                       "type": "mc",
                                                       "prompt": "¿Qué se debe comparar para elegir -kan o -i?",
-                                                      "options": [
-                                                                "Mengirimkan",
-                                                                "Mengirimi",
-                                                                "Mengisi"
-                                                      ],
+                                                      "options":["La estructura de participantes y el sentido del verbo","Solo el tiempo verbal","Solo el sujeto gramatical"],
                                                       "answer": 0,
                                                       "explanation": "La estructura argumental y el sentido del verbo en la frase completa."
                                             },
@@ -1923,11 +1896,7 @@
                                                       "vocabId": "v235",
                                                       "type": "mc",
                                                       "prompt": "¿ke-an siempre tiene una traducción única?",
-                                                      "options": [
-                                                                "Kesehatan",
-                                                                "Kesulitan",
-                                                                "Kedinginan"
-                                                      ],
+                                                      "options":["No; depende de la palabra y el contexto","Sí; siempre indica pasado","Sí; siempre indica plural"],
                                                       "answer": 0,
                                                       "explanation": "No. El significado depende de la palabra derivada y del contexto."
                                             },
@@ -1995,11 +1964,7 @@
                                                       "vocabId": "v239",
                                                       "type": "mc",
                                                       "prompt": "¿Qué estrategia ayuda a entender una nominalización?",
-                                                      "options": [
-                                                                "Penelitian",
-                                                                "Pekerjaan",
-                                                                "Perjalanan"
-                                                      ],
+                                                      "options":["Examinar la palabra, su familia y el contexto","Traducir el prefijo de forma literal","Ignorar el resto de la oración"],
                                                       "answer": 0,
                                                       "explanation": "Examinar la palabra, su familia y el contexto."
                                             },
@@ -2067,11 +2032,7 @@
                                                       "vocabId": "v243",
                                                       "type": "mc",
                                                       "prompt": "¿La reduplicación siempre significa plural?",
-                                                      "options": [
-                                                                "Anak-anak",
-                                                                "Buku-buku",
-                                                                "Rumah sakit"
-                                                      ],
+                                                      "options":["No; también puede expresar distribución o formar palabras lexicalizadas","Sí; siempre indica plural","No; solo marca el pasado"],
                                                       "answer": 0,
                                                       "explanation": "No; puede expresar varios sentidos o formar palabras lexicalizadas según el caso."
                                             },

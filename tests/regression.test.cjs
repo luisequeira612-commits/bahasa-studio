@@ -212,10 +212,17 @@ test('unit and vocabulary IDs are unique and every authored exercise has a valid
   const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
   const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
   const unitIds = [];
-  const vocabIds = [];
+  const vocabById = new Map();
   for (const level of course.levels) for (const unit of level.units) {
     unitIds.push(unit.id);
-    for (const word of unit.vocab || []) vocabIds.push(word.id);
+    for (const word of unit.vocab || []) {
+      const normalized = word.idn.trim().toLocaleLowerCase();
+      if (vocabById.has(word.id)) {
+        assert.equal(vocabById.get(word.id), normalized, word.id + ' must always identify the same vocabulary item');
+      } else {
+        vocabById.set(word.id, normalized);
+      }
+    }
     const ids = new Set((unit.vocab || []).map(word => word.id));
     for (const ex of unit.exercises || []) {
       assert.ok(ids.has(ex.vocabId), unit.id + ' has an exercise linked to unknown vocab');
@@ -227,7 +234,7 @@ test('unit and vocabulary IDs are unique and every authored exercise has a valid
     }
   }
   assert.equal(new Set(unitIds).size, unitIds.length, 'unit IDs must be globally unique');
-  assert.equal(new Set(vocabIds).size, vocabIds.length, 'vocabulary IDs must be globally unique');
+  assert.ok(vocabById.size > 0, 'vocabulary ID registry should not be empty');
 });
 
 

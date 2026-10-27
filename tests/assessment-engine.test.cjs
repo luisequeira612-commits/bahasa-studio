@@ -2,12 +2,14 @@
 
 const test = require('node:test');
 const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
 const { LEVELS, ITEM_BANK, getAssessment, scoreAssessment } = require('../assessment-engine.js');
 
 test('each level has a small assessment with an open production task', () => {
   for (const level of Object.keys(LEVELS)) {
     const items = getAssessment(level);
-    assert.ok(items.length >= 3, level + ' should have starter items');
+    assert.ok(items.length >= 6, level + ' should have a broader starter bank');
     assert.ok(items.some(item => item.type === 'open' && item.skill === 'production'));
     assert.ok(items.every(item => item.level === level));
   }
@@ -17,16 +19,15 @@ test('choice scoring is level-scoped and reports skill breakdowns', () => {
   const answers = {
     'a1-negation-01': 1,
     'a1-vocab-01': 1,
-    'a1-write-01': ''
+    'a1-write-01': 'Nama saya Ana.'
   };
   const result = scoreAssessment('A1', answers);
   assert.equal(result.earned, 2);
-  assert.equal(result.possible, 6);
+  assert.equal(result.possible, 11);
   assert.equal(result.skills.grammar.percent, 100);
   assert.equal(result.skills.vocabulary.percent, 100);
   assert.equal(result.provisionalPass, false);
-  assert.equal(result.items.find(item => item.id === 'a1-write-01').status, 'unanswered');
-  assert.deepEqual(result.openItemsPendingReview, []);
+  assert.deepEqual(result.openItemsPendingReview, ['a1-write-01']);
 });
 
 test('open responses never receive automatic credit from string matching', () => {
@@ -44,8 +45,9 @@ test('human-reviewed open responses contribute rubric points and clear review re
   const result = scoreAssessment('B1', {
     'b1-kan-i-01': 0,
     'b1-voice-01': 1,
-    'b1-write-01': 'A short response'
-  }, { manualScores: { 'b1-write-01': 4 } });
+    'b1-write-01': 'A short response',
+    'b1-write-02': 'Another short response'
+  }, { manualScores: { 'b1-write-01': 4, 'b1-write-02': 4 } });
   assert.equal(result.items.find(item => item.id === 'b1-write-01').points, 4);
   assert.equal(result.openItemsPendingReview.length, 0);
   assert.equal(result.skills.production.percent, 80);
@@ -70,8 +72,18 @@ test('assessment definitions and scoring do not mutate SRS or persistent storage
   assert.equal(Object.keys(LEVELS).join(','), 'A1,A2,B1,B2');
 });
 
-test('unanswered open responses remain unanswered and outside the review queue', () => {
+test('main app navigation exposes the independent assessment page', () => {
+  const app = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+  assert.ok(app.includes("App.switchView('assessment', this)"));
+  assert.ok(app.includes('id="view-assessment"'));
+  assert.ok(app.includes('href="./assessment.html"'));
+});
+
+test('blank open responses remain unanswered and outside the manual-review queue', () => {
   const result = scoreAssessment('A1', { 'a1-write-01': '   ' });
   assert.equal(result.items.find(item => item.id === 'a1-write-01').status, 'unanswered');
   assert.deepEqual(result.openItemsPendingReview, []);
+  assert.throws(() => scoreAssessment('A1', { 'a1-write-01': '   ' }, {
+    manualScores: { 'a1-write-01': 5 }
+  }), RangeError);
 });

@@ -25,6 +25,19 @@ const ITEM_BANK = Object.freeze([
   { id: 'b2-register-01', level: 'B2', skill: 'register', type: 'choice', prompt: 'For a formal report, which opening is generally more suitable?', options: ['Gue mau cerita nih…', 'Laporan ini membahas…', 'Pokoknya begini…'], answer: 1, points: 1, explanation: 'Laporan ini membahas… is a more neutral/formal report opening.' },
   { id: 'b2-nominal-01', level: 'B2', skill: 'nominalization', type: 'choice', prompt: 'In “Kebersihan lingkungan perlu dijaga”, kebersihan refers most closely to…', options: ['cleanliness', 'to clean (imperative)', 'cleaned by someone'], answer: 0, points: 1, explanation: 'Kebersihan is a noun meaning cleanliness; affix meanings remain context-sensitive.' },
   { id: 'b2-write-01', level: 'B2', skill: 'production', type: 'open', prompt: 'Write a short, organized informational text for a specified audience. Use a suitable register and explain two meaningful language choices.', rubric: ['task-completion', 'cohesion', 'register', 'grammar-and-lexis'], points: 5 }
+,
+  { id: 'a1-comprehension-01', level: 'A1', skill: 'comprehension', type: 'choice', prompt: 'Baca: “Saya tinggal di Managua.” Where does the speaker live?', options: ['In Managua', 'In Jakarta', 'At school'], answer: 0, points: 1, explanation: 'Tinggal di means to live in a place.' },
+  { id: 'a1-interaction-01', level: 'A1', skill: 'interaction', type: 'choice', prompt: 'Which is a polite way to ask for tea?', options: ['Saya mau teh, tolong.', 'Teh kamu siapa?', 'Belum teh rumah.'], answer: 0, points: 1, explanation: 'Saya mau …, tolong is a common polite request.' },
+  { id: 'a1-write-02', level: 'A1', skill: 'production', type: 'open', prompt: 'Write a short message greeting someone and asking how they are.', rubric: ['task-completion', 'intelligibility', 'greeting-appropriacy', 'basic-grammar'], points: 3 },
+  { id: 'a2-context-01', level: 'A2', skill: 'context', type: 'choice', prompt: 'Choose the most natural response to “Terima kasih banyak.”', options: ['Sama-sama.', 'Selamat tidur, harga.', 'Saya dari buku.'], answer: 0, points: 1, explanation: 'Sama-sama is a natural response to thanks.' },
+  { id: 'a2-men-01', level: 'A2', skill: 'meN', type: 'choice', prompt: 'Complete the sentence: “Setiap pagi, Rina ___ surat kabar.” (read)', options: ['membaca', 'dibaca', 'bacaan'], answer: 0, points: 1, explanation: 'Membaca is the active verb form used with Rina as the subject.' },
+  { id: 'a2-write-02', level: 'A2', skill: 'production', type: 'open', prompt: 'Write two or three connected sentences about something you do every day and where you do it.', rubric: ['task-completion', 'cohesion', 'target-pattern', 'relevant-vocabulary'], points: 4 },
+  { id: 'b1-reading-01', level: 'B1', skill: 'reading', type: 'choice', prompt: 'Baca: “Karena hujan deras, pertandingan ditunda sampai besok.” Why was the match postponed?', options: ['Because of heavy rain', 'Because the players arrived early', 'Because it was already tomorrow'], answer: 0, points: 1, explanation: 'Karena hujan deras gives the reason: heavy rain.' },
+  { id: 'b1-derivation-01', level: 'B1', skill: 'derivation', type: 'choice', prompt: 'In “Pemerintah melakukan pembangunan jalan”, pembangunan most closely means…', options: ['the act/process of building', 'to build! (command)', 'already built by someone'], answer: 0, points: 1, explanation: 'Pembangunan is a noun referring to development or construction.' },
+  { id: 'b1-write-02', level: 'B1', skill: 'production', type: 'open', prompt: 'Explain a small problem you solved. Use connected sentences and make the sequence of actions clear.', rubric: ['task-completion', 'cohesion', 'grammar-in-context', 'lexical-appropriacy'], points: 5 },
+  { id: 'b2-reference-01', level: 'B2', skill: 'reference', type: 'choice', prompt: 'In “Rapat itu berlangsung dua jam. Kegiatan tersebut membahas anggaran”, what does kegiatan tersebut refer to?', options: ['The meeting mentioned earlier', 'The budget itself', 'Two hours in general'], answer: 0, points: 1, explanation: 'Tersebut refers back to the previously mentioned meeting/activity.' },
+  { id: 'b2-kan-i-01', level: 'B2', skill: 'kanI', type: 'choice', prompt: 'Which sentence uses -i naturally to describe repeated action directed at a place?', options: ['Petugas mengunjungi beberapa desa.', 'Petugas desa mengunjungi.', 'Desa mengunjungi petugas beberapa.'], answer: 0, points: 1, explanation: 'Mengunjungi is a natural verb meaning to visit a place; affix choice depends on the verb and context.' },
+  { id: 'b2-write-02', level: 'B2', skill: 'production', type: 'open', prompt: 'Write a short formal recommendation, give two reasons, and use clear references to the proposal you discuss.', rubric: ['task-completion', 'cohesion', 'register', 'grammar-and-lexis'], points: 5 }
 ]);
 
 function getAssessment(level, { excludeIds = [], limit = Infinity } = {}) {
@@ -63,12 +76,11 @@ function scoreAssessment(level, answers, { manualScores = {} } = {}) {
       }
     } else {
       const hasResponse = typeof submitted === 'string' && submitted.trim().length > 0;
-      if (hasResponse) {
-        reviewItems.push(item.id);
-      } else {
+      if (!hasResponse) {
         status = 'unanswered';
+      } else {
+        reviewItems.push(item.id);
       }
-
       if (Object.prototype.hasOwnProperty.call(manualScores, item.id)) {
         const score = manualScores[item.id];
         if (!Number.isFinite(score) || score < 0 || score > item.points) {

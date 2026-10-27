@@ -49,6 +49,31 @@
  }
  start.addEventListener('click',begin);
  levelSelect.addEventListener('change',()=>{form.hidden=true;results.hidden=true;start.textContent='Comenzar evaluación';});
+ function renderResults(answers, manualScores){
+   const result=BahasaAssessment.scoreAssessment(levelSelect.value,answers,{manualScores});
+   const skills=Object.entries(result.skills).map(([name,score])=>'<div class="skill"><span>'+escapeText(name)+'</span><strong>'+score.percent+'%</strong></div>').join('');
+   const openItems=activeItems.filter(item=>item.type==='open'&&String(answers[item.id]||'').trim());
+   const reviewPanel=openItems.length?'<section class="card"><h2>Revisión humana de producción</h2><p class="muted">Esta sección está pensada para una persona competente en indonesio. Lee cada respuesta y asigna una puntuación según la rúbrica; no es una autocorrección automática. Las puntuaciones solo viven en esta página.</p>'+openItems.map(item=>'<div class="card"><h2>'+escapeText(item.prompt)+'</h2><p><strong>Respuesta del estudiante</strong></p><p style="white-space:pre-wrap">'+escapeText(answers[item.id])+'</p><p class="muted">Criterios: '+item.rubric.map(escapeText).join(', ')+'</p><label for="review-'+escapeText(item.id)+'">Puntos (0–'+item.points+')</label><input id="review-'+escapeText(item.id)+'" data-review-id="'+escapeText(item.id)+'" type="number" min="0" max="'+item.points+'" step="1" value="'+(Object.prototype.hasOwnProperty.call(manualScores,item.id)?manualScores[item.id]:'')+'" style="width:100%;font:inherit;padding:.7rem;border:1px solid var(--border);border-radius:10px" /></div>').join('')+'<button class="btn" type="button" id="applyReview">Aplicar puntuaciones revisadas</button><p class="muted">Asigna un valor a cada respuesta que hayas revisado. Deja el campo vacío si todavía necesita revisión.</p></section>':'';
+   const answeredOpen=openItems.length;
+   results.innerHTML='<h2>Resultado provisional</h2><p><strong>'+result.earned+' de '+result.possible+' puntos ('+result.percent+'%)</strong> de puntuación provisional.</p><p class="status">'+(result.openItemsPendingReview.length?'No hay decisión de dominio todavía: '+result.openItemsPendingReview.length+' tarea(s) abierta(s) requieren revisión humana.':'Las respuestas abiertas enviadas ya tienen puntuación revisada; el resultado sigue siendo experimental.')+'</p><h2>Desglose por habilidad</h2>'+skills+'<p class="muted">Umbrales orientativos sin validar: '+result.thresholds.overallPercent+'% global y '+result.thresholds.perSkillPercent+'% por habilidad. No equivalen a un nivel oficial MCER. '+answeredOpen+' tarea(s) abierta(s) contestada(s).</p>'+reviewPanel+'<button class="btn secondary" type="button" id="tryAgain">Volver a intentar</button>';
+   results.hidden=false; form.hidden=true; results.scrollIntoView({behavior:'smooth',block:'start'});
+   const apply=document.getElementById('applyReview');
+   if(apply) apply.addEventListener('click',()=>{
+     const nextScores={...manualScores};
+     let invalid=false;
+     for(const field of results.querySelectorAll('[data-review-id]')){
+       const id=field.dataset.reviewId;
+       if(field.value.trim()===''){delete nextScores[id];continue;}
+       const value=Number(field.value);
+       const item=activeItems.find(entry=>entry.id===id);
+       if(!Number.isInteger(value)||value<0||value>item.points){field.setCustomValidity('Introduce un número entero entre 0 y '+item.points+'.');field.reportValidity();invalid=true;break;}
+       field.setCustomValidity('');
+       nextScores[id]=value;
+     }
+     if(!invalid) renderResults(answers,nextScores);
+   });
+   document.getElementById('tryAgain').addEventListener('click',begin);
+ }
  form.addEventListener('submit',event=>{
    event.preventDefault();
    const answers={};
@@ -60,12 +85,7 @@
        answers[item.id]=form.elements[item.id].value.trim();
      }
    }
-   const result=BahasaAssessment.scoreAssessment(levelSelect.value,answers);
-   const skills=Object.entries(result.skills).map(([name,score])=>'<div class="skill"><span>'+escapeText(name)+'</span><strong>'+score.percent+'%</strong></div>').join('');
-   const answeredOpen=activeItems.filter(item=>item.type==='open'&&answers[item.id]).length;
-   results.innerHTML='<h2>Resultado provisional</h2><p><strong>'+result.percent+'%</strong> de puntuación automática en los ítems cerrados y de producción pendiente.</p><p class="status">'+(result.openItemsPendingReview.length?'No hay decisión de dominio todavía: '+result.openItemsPendingReview.length+' tarea(s) abierta(s) requieren revisión humana.':'Evaluación calculada con tareas revisadas.')+'</p><h2>Desglose por habilidad</h2>'+skills+'<p class="muted">Umbrales orientativos sin validar: '+result.thresholds.overallPercent+'% global y '+result.thresholds.perSkillPercent+'% por habilidad. No equivalen a un nivel oficial MCER. '+answeredOpen+' tarea(s) abierta(s) contestada(s).</p><button class="btn" type="button" id="tryAgain">Volver a intentar</button>';
-   results.hidden=false; form.hidden=true; results.scrollIntoView({behavior:'smooth',block:'start'});
-   document.getElementById('tryAgain').addEventListener('click',begin);
+   renderResults(answers,{});
  });
 })();
 </script>

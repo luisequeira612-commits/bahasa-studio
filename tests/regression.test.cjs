@@ -346,7 +346,7 @@ test('backup validator executes against valid and invalid version 3 payloads', (
   const methodSource = html.slice(methodStart, methodEnd).trim().replace(/,$/, '');
   const courseStart = html.indexOf('const CourseData =');
   const courseEnd = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', courseStart);
-  const course = vm.runInNewContext(html.slice(courseStart, courseEnd) + '; CourseData');
+  const course = vm.runInNewContext('(() => {\n' + html.slice(courseStart, courseEnd) + '\nreturn CourseData;\n})()');
   const validateBackup = vm.runInNewContext(
     '({' + methodSource + '\n}).validateBackup',
     { CourseData: course, SYLLABUS: [] }

@@ -117,16 +117,14 @@ test('real Chromium preserves progress on reload and safely imports valid/invali
       completed: await DB.get('settings', 'completedUnits'),
       srs: await DB.get('srs', 'v27')
     }));
-    const invalidDialog = page.waitForEvent('dialog');
+    const dialogCountBeforeInvalidImport = dialogs.length;
     await page.locator('#importFile').setInputFiles({
       name: 'invalid-backup.json',
       mimeType: 'application/json',
       buffer: Buffer.from(JSON.stringify({ version: 2, xp: 1 }))
     });
-    const dialog = await invalidDialog;
-    assert.match(dialog.message(), /Error/i);
-    await dialog.accept();
     await page.waitForFunction(() => document.querySelector('#importFile').value === '');
+    assert.match(dialogs.slice(dialogCountBeforeInvalidImport).map(item => item.message).join(' '), /Error/i);
     const afterInvalid = await page.evaluate(async () => ({
       xp: await DB.get('settings', 'userXp'),
       completed: await DB.get('settings', 'completedUnits'),

@@ -696,7 +696,7 @@ test('A1 compound-number grammar explains the tens-plus-unit rule and change inc
 test('lesson start avoids duplicating automatic drills for vocabulary already covered by authored exercises', () => {
   const methodBody = extractMethodBody(html, 'startUnit(unit) {');
   const startUnit = vm.runInNewContext(
-    '({ startUnit(unit) {' + methodBody + '\\n} }).startUnit',
+    '({ startUnit(unit) {' + methodBody + '\n} }).startUnit',
     { App: { switchView: () => {} }, Math }
   );
   const unit = {

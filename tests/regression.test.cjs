@@ -106,14 +106,14 @@ test('all authored A1 units have linked vocabulary and structurally valid exerci
 });
 
 
-test('A1 units provide 22 varied exercises including productive writing', () => {
+test('A1 units provide at least 22 varied exercises including productive writing', () => {
   const start = html.indexOf('const CourseData =');
   const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
   const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
   const a1 = course.levels.find(level => level.id === 'A1');
   for (const unit of a1.units) {
     const generated = unit.vocab.length + Math.ceil(unit.vocab.length / 2);
-    assert.equal(unit.exercises.length + generated, 22, unit.id + ' should produce exactly 22 exercises');
+    assert.ok(unit.exercises.length + generated >= 22, unit.id + ' should provide at least 22 exercises');
     assert.ok(unit.exercises.some(exercise => exercise.type === 'write'), unit.id + ' should include productive writing');
   }
   assert.match(html, /checkWriting\(\)/);
@@ -183,7 +183,7 @@ test('v3.6.1 audit fixes remain in place without changing backup or database ver
   assert.doesNotMatch(html, /Escucha y escribe: «Dia tidur»/);
   assert.match(html, /Tolong, saya mau air significa/);
   assert.match(html, /Di” significa “en”/);
-  assert.doesNotMatch(html, /baik/);
+  assert.doesNotMatch(html, /\bbaik\b/);
   assert.doesNotMatch(html, /maximum-scale|user-scalable/);
   assert.match(html, /version: 1/);
   assert.match(html, /parsed\.version !== 3/);

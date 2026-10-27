@@ -462,7 +462,10 @@
                                 { id: 'v11', idn: 'Siapa', esp: 'Quién', ex: 'Siapa nama kamu?', exEsp: '¿Cómo te llamas?' },
                                 { id: 'v12', idn: 'Dari', esp: 'De / desde', ex: 'Saya dari Peru.', exEsp: 'Soy de Perú.' },
                                 { id: 'v13', idn: 'Tinggal', esp: 'Vivir / residir', ex: 'Saya tinggal di Managua.', exEsp: 'Vivo en Managua.' },
-                                { id: 'v14', idn: 'Senang bertemu denganmu', esp: 'Encantado/a de conocerte', ex: 'Senang bertemu denganmu!', exEsp: '¡Encantado/a de conocerte!' }
+                                { id: 'v14', idn: 'Senang bertemu denganmu', esp: 'Encantado/a de conocerte', ex: 'Senang bertemu denganmu!', exEsp: '¡Encantado/a de conocerte!' },
+                                {"id":"v101","idn":"Kota","esp":"Ciudad","ex":"Saya tinggal di kota ini.","exEsp":"Vivo en esta ciudad."},
+                                {"id":"v102","idn":"Negara","esp":"País","ex":"Indonesia adalah negara besar.","exEsp":"Indonesia es un país grande."},
+                                {"id":"v103","idn":"Alamat","esp":"Dirección","ex":"Apa alamatmu?","exEsp":"¿Cuál es tu dirección?"}
                             ],
                             exercises: [
                                 {
@@ -598,7 +601,10 @@
                                     "answer": "Saya dari Peru",
                                     "explanation": "Saya dari Peru indica el país de origen."
                                 },
-                                { vocabId: 'v10', type: 'write', prompt: "Preséntate en indonesio escribiendo tu nombre.", hint: "Usa la estructura Nama saya ...", modelAnswer: "Nama saya Ana.", explanation: "Nama saya significa «mi nombre». Sustituye Ana por tu propio nombre." }
+                                { vocabId: 'v10', type: 'write', prompt: "Preséntate en indonesio escribiendo tu nombre.", hint: "Usa la estructura Nama saya ...", modelAnswer: "Nama saya Ana.", explanation: "Nama saya significa «mi nombre». Sustituye Ana por tu propio nombre." },
+                                {"vocabId":"v101","type":"mc","prompt":"¿Qué significa kota?","options":["Ciudad","País","Dirección"],"answer":0,"explanation":"Kota significa ciudad."},
+                                {"vocabId":"v102","type":"translate_es_id","prompt":"Traduce: país","answer":"Negara","explanation":"Negara significa país."},
+                                {"vocabId":"v103","type":"write","prompt":"Escribe una frase sobre dónde vives.","hint":"Intenta construir una frase nueva con el vocabulario de la unidad.","modelAnswer":"Saya tinggal di Managua.","explanation":"Usa Saya tinggal di... para decir dónde vives."}
                             ]
                         },
                         {
@@ -615,7 +621,10 @@
                                 { id: 'v40', idn: 'Empat', esp: 'Cuatro', ex: 'Empat buku.', exEsp: 'Cuatro libros.' },
                                 { id: 'v41', idn: 'Lima', esp: 'Cinco', ex: 'Lima teman.', exEsp: 'Cinco amigos.' },
                                 { id: 'v42', idn: 'Sepuluh', esp: 'Diez', ex: 'Sepuluh tahun.', exEsp: 'Diez años.' },
-                                { id: 'v43', idn: 'Umur', esp: 'Edad', ex: 'Berapa umur kamu?', exEsp: '¿Cuántos años tienes?' }
+                                { id: 'v43', idn: 'Umur', esp: 'Edad', ex: 'Berapa umur kamu?', exEsp: '¿Cuántos años tienes?' },
+                                {"id":"v105","idn":"Enam","esp":"Seis","ex":"Enam buku.","exEsp":"Seis libros."},
+                                {"id":"v106","idn":"Tujuh","esp":"Siete","ex":"Tujuh hari.","exEsp":"Siete días."},
+                                {"id":"v107","idn":"Delapan","esp":"Ocho","ex":"Delapan orang.","exEsp":"Ocho personas."}
                             ],
                             exercises: [
                                 
@@ -708,7 +717,10 @@
                                                     "modelAnswer": "Saya berumur lima tahun.",
                                                     "explanation": "Este ejemplo significa «Tengo cinco años». Usa un número que conozcas de la unidad."
                                           }
-                                
+                                ,
+                                {"vocabId":"v105","type":"mc","prompt":"¿Cómo se dice seis?","options":["Enam","Tujuh","Delapan"],"answer":0,"explanation":"Enam significa seis."},
+                                {"vocabId":"v106","type":"translate_es_id","prompt":"Traduce: siete","answer":"Tujuh","explanation":"Tujuh significa siete."},
+                                {"vocabId":"v107","type":"listen","prompt":"Escucha y escribe el número","answer":"Delapan","explanation":"Delapan significa ocho."}
                             ]
                         },
                         {
@@ -721,7 +733,10 @@
                                 { id: 'v21', idn: 'Ibu', esp: 'Madre', ex: 'Ini ibu saya.', exEsp: 'Esta es mi madre.' },
                                 { id: 'v22', idn: 'Ayah', esp: 'Padre', ex: 'Ini ayah saya.', exEsp: 'Este es mi padre.' },
                                 { id: 'v23', idn: 'Anak', esp: 'Niño/a; hijo/a', ex: 'Dia anak saya.', exEsp: 'Él/ella es mi hijo/a.' },
-                                { id: 'v24', idn: 'Teman', esp: 'Amigo/a', ex: 'Dia teman saya.', exEsp: 'Él/ella es mi amigo/a.' }
+                                { id: 'v24', idn: 'Teman', esp: 'Amigo/a', ex: 'Dia teman saya.', exEsp: 'Él/ella es mi amigo/a.' },
+                                {"id":"v109","idn":"Ibu","esp":"Madre / señora","ex":"Ibu saya di rumah.","exEsp":"Mi madre está en casa."},
+                                {"id":"v110","idn":"Ayah","esp":"Padre","ex":"Ayah saya di rumah.","exEsp":"Mi padre está en casa."},
+                                {"id":"v111","idn":"Adik","esp":"Hermano/a menor","ex":"Adik saya di sini.","exEsp":"Mi hermano o hermana menor está aquí."}
                             ],
                             exercises: [
                                 {
@@ -857,7 +872,10 @@
                                     "answer": "Ini ayah saya",
                                     "explanation": "Ini ayah saya significa Este es mi padre."
                                 },
-                                { vocabId: 'v20', type: 'write', prompt: "Escribe una frase sobre una persona de tu familia.", hint: "Usa una palabra de familia que hayas aprendido.", modelAnswer: "Ini ibu saya.", explanation: "Ini ibu saya significa «Esta es mi madre». Puedes cambiar ibu por otra palabra de familia." }
+                                { vocabId: 'v20', type: 'write', prompt: "Escribe una frase sobre una persona de tu familia.", hint: "Usa una palabra de familia que hayas aprendido.", modelAnswer: "Ini ibu saya.", explanation: "Ini ibu saya significa «Esta es mi madre». Puedes cambiar ibu por otra palabra de familia." },
+                                {"vocabId":"v109","type":"mc","prompt":"¿Qué significa ibu?","options":["Madre / señora","Padre","Hermano menor"],"answer":0,"explanation":"Ibu significa madre y también es un tratamiento respetuoso."},
+                                {"vocabId":"v110","type":"translate_es_id","prompt":"Traduce: padre","answer":"Ayah","explanation":"Ayah significa padre."},
+                                {"vocabId":"v111","type":"write","prompt":"Escribe una frase sobre tu familia.","hint":"Intenta construir una frase nueva con el vocabulario de la unidad.","modelAnswer":"Ini ibu saya.","explanation":"Puedes usar ibu, ayah, adik o punya."}
                             ]
                         },
                         {
@@ -870,7 +888,10 @@
                                 { id: 'v26', idn: 'Minum', esp: 'Beber', ex: 'Saya minum air.', exEsp: 'Bebo agua.' },
                                 { id: 'v27', idn: 'Air', esp: 'Agua', ex: 'Saya mau air.', exEsp: 'Quiero agua.' },
                                 { id: 'v28', idn: 'Nasi', esp: 'Arroz cocido', ex: 'Saya makan nasi.', exEsp: 'Como arroz.' },
-                                { id: 'v29', idn: 'Tolong', esp: 'Por favor / ayudar', ex: 'Tolong, saya mau air.', exEsp: 'Quiero agua, por favor.' }
+                                { id: 'v29', idn: 'Tolong', esp: 'Por favor / ayudar', ex: 'Tolong, saya mau air.', exEsp: 'Quiero agua, por favor.' },
+                                {"id":"v113","idn":"Teh","esp":"Té","ex":"Saya mau teh.","exEsp":"Quiero té."},
+                                {"id":"v114","idn":"Kopi","esp":"Café","ex":"Dia minum kopi.","exEsp":"Él/ella bebe café."},
+                                {"id":"v115","idn":"Berapa harganya?","esp":"¿Cuánto cuesta?","ex":"Berapa harganya?","exEsp":"¿Cuánto cuesta?"}
                             ],
                             exercises: [
                                 {
@@ -998,7 +1019,10 @@
                                     "answer": "Air",
                                     "explanation": "Air significa agua."
                                 },
-                                { vocabId: 'v25', type: 'write', prompt: "Escribe qué comida o bebida te gustaría mencionar.", hint: "Combina saya makan o saya minum con vocabulario de comida.", modelAnswer: "Saya makan nasi.", explanation: "La frase significa «Yo como arroz cocido». Hay otras respuestas posibles." }
+                                { vocabId: 'v25', type: 'write', prompt: "Escribe qué comida o bebida te gustaría mencionar.", hint: "Combina saya makan o saya minum con vocabulario de comida.", modelAnswer: "Saya makan nasi.", explanation: "La frase significa «Yo como arroz cocido». Hay otras respuestas posibles." },
+                                {"vocabId":"v113","type":"mc","prompt":"¿Qué significa teh?","options":["Té","Café","Agua"],"answer":0,"explanation":"Teh significa té."},
+                                {"vocabId":"v114","type":"translate_es_id","prompt":"Traduce: café","answer":"Kopi","explanation":"Kopi significa café."},
+                                {"vocabId":"v115","type":"listen","prompt":"Escucha y escribe la pregunta","answer":"Berapa harganya","explanation":"Berapa harganya? significa «¿Cuánto cuesta?»"}
                             ]
                         },
                         {
@@ -1011,7 +1035,10 @@
                                 { id: 'v31', idn: 'Sekolah', esp: 'Escuela', ex: 'Dia di sekolah.', exEsp: 'Él/ella está en la escuela.' },
                                 { id: 'v32', idn: 'Di mana', esp: 'Dónde', ex: 'Di mana sekolah?', exEsp: '¿Dónde está la escuela?' },
                                 { id: 'v33', idn: 'Kota', esp: 'Ciudad', ex: 'Saya tinggal di kota.', exEsp: 'Vivo en la ciudad.' },
-                                { id: 'v34', idn: 'Di sini', esp: 'Aquí', ex: 'Saya di sini.', exEsp: 'Estoy aquí.' }
+                                { id: 'v34', idn: 'Di sini', esp: 'Aquí', ex: 'Saya di sini.', exEsp: 'Estoy aquí.' },
+                                {"id":"v117","idn":"Rumah","esp":"Casa","ex":"Rumah saya dekat.","exEsp":"Mi casa está cerca."},
+                                {"id":"v118","idn":"Sekolah","esp":"Escuela","ex":"Sekolah itu besar.","exEsp":"Esa escuela es grande."},
+                                {"id":"v119","idn":"Dekat","esp":"Cerca","ex":"Pasar dekat rumah.","exEsp":"El mercado está cerca de casa."}
                             ],
                             exercises: [
                                 {
@@ -1147,12 +1174,15 @@
                                     "answer": "Di mana sekolah",
                                     "explanation": "Di mana sekolah pregunta dónde está la escuela."
                                 },
-                                { vocabId: 'v30', type: 'write', prompt: "Escribe una frase que indique dónde está algo.", hint: "Intenta usar di y una palabra de lugar de la unidad.", modelAnswer: "Saya di rumah.", explanation: "La frase significa «Estoy en casa». Adapta la frase al vocabulario que conozcas." }
+                                { vocabId: 'v30', type: 'write', prompt: "Escribe una frase que indique dónde está algo.", hint: "Intenta usar di y una palabra de lugar de la unidad.", modelAnswer: "Saya di rumah.", explanation: "La frase significa «Estoy en casa». Adapta la frase al vocabulario que conozcas." },
+                                {"vocabId":"v117","type":"mc","prompt":"¿Qué significa rumah?","options":["Casa","Escuela","Estación"],"answer":0,"explanation":"Rumah significa casa."},
+                                {"vocabId":"v118","type":"translate_es_id","prompt":"Traduce: escuela","answer":"Sekolah","explanation":"Sekolah significa escuela."},
+                                {"vocabId":"v119","type":"write","prompt":"Describe dónde está un lugar.","hint":"Intenta construir una frase nueva con el vocabulario de la unidad.","modelAnswer":"Sekolah dekat rumah saya.","explanation":"Usa dekat (cerca) o jauh (lejos)."}
                             ]
                         },
                         {
                             id: 'a1_u8',
-                            title: 'Unidad 8: Tiempo y rutina diaria',
+                            title: 'Unidad 8: Tiempo, rutina e integración',
                             desc: 'Hablar de actividades cotidianas y expresar cuándo ocurren.',
                             grammar: 'Los adverbios de tiempo suelen colocarse al inicio o al final de la oración. “Setiap hari” significa “todos los días”.',
                             vocab: [
@@ -1161,7 +1191,10 @@
                                 { id: 'v37', idn: 'Belajar', esp: 'Estudiar / aprender', ex: 'Saya belajar bahasa Indonesia.', exEsp: 'Estudio indonesio.' },
                                 { id: 'v38', idn: 'Bekerja', esp: 'Trabajar', ex: 'Ayah saya bekerja.', exEsp: 'Mi padre trabaja.' },
                                 { id: 'v39', idn: 'Tidur', esp: 'Dormir', ex: 'Saya tidur di malam hari.', exEsp: 'Duermo por la noche.' },
-                                { id: 'v44', idn: 'Setiap hari', esp: 'Todos los días', ex: 'Saya belajar setiap hari.', exEsp: 'Estudio todos los días.' }
+                                { id: 'v44', idn: 'Setiap hari', esp: 'Todos los días', ex: 'Saya belajar setiap hari.', exEsp: 'Estudio todos los días.' },
+                                {"id":"v121","idn":"Hari ini","esp":"Hoy","ex":"Hari ini saya belajar.","exEsp":"Hoy estudio."},
+                                {"id":"v122","idn":"Besok","esp":"Mañana","ex":"Besok saya bekerja.","exEsp":"Mañana trabajo."},
+                                {"id":"v123","idn":"Setiap hari","esp":"Todos los días","ex":"Saya minum air setiap hari.","exEsp":"Bebo agua todos los días."}
                             ],
                             exercises: [
                                 {
@@ -1292,7 +1325,11 @@
                                     ],
                                     "explanation": "Saya belajar setiap hari expresa una rutina."
                                 },
-                                { vocabId: 'v35', type: 'write', prompt: "Escribe una frase breve sobre tu rutina diaria.", hint: "Usa un día o una acción cotidiana que hayas aprendido.", modelAnswer: "Saya makan pagi.", explanation: "Saya makan pagi significa «Desayuno»; makan es comer y pagi es mañana." }
+                                { vocabId: 'v35', type: 'write', prompt: "Escribe una frase breve sobre tu rutina diaria.", hint: "Usa un día o una acción cotidiana que hayas aprendido.", modelAnswer: "Saya makan pagi.", explanation: "Saya makan pagi significa «Desayuno»; makan es comer y pagi es mañana." },
+                                {"vocabId":"v121","type":"mc","prompt":"¿Qué significa hari ini?","options":["Hoy","Mañana","Ayer"],"answer":0,"explanation":"Hari ini significa hoy."},
+                                {"vocabId":"v122","type":"translate_es_id","prompt":"Traduce: mañana","answer":"Besok","explanation":"Besok significa mañana."},
+                                {"vocabId":"v123","type":"write","prompt":"Escribe dos frases sobre tu rutina.","hint":"Intenta construir una frase nueva con el vocabulario de la unidad.","modelAnswer":"Hari ini saya belajar. Saya minum air setiap hari.","explanation":"Usa hari ini, besok o setiap hari."},
+                                { vocabId: 'v123', type: 'write', prompt: 'Tarea integradora: preséntate, pide una bebida, pregunta el precio y describe tu rutina.', hint: 'Combina presentación, cortesía, una pregunta y una expresión temporal.', modelAnswer: 'Nama saya Ana. Saya dari Nikaragua. Saya mau teh, tolong. Berapa harganya? Saya belajar setiap hari.', explanation: 'La respuesta modelo combina varios objetivos A1; puedes usar tus propios datos y otras frases correctas.' }
                             ]
                         }
                     ]
@@ -1310,6 +1347,142 @@
                             exercises: [
                                 { vocabId: 'v7', type: 'mc', prompt: '¿Cuál es la forma activa de "baca"?', options: ['Membaca', 'Berbaca', 'Terbaca', 'Dibaca'], answer: 0, explanation: 'La raíz con "b" toma el prefijo "mem-".' }
                             ]
+                        },
+                        {
+                                  "id": "a2_u2",
+                                  "title": "Unidad 2: Variantes frecuentes de meN-",
+                                  "desc": "Reconocer patrones comunes de formación verbal sin asumir que todas las raíces se comportan igual.",
+                                  "grammar": "El prefijo verbal meN- presenta variantes según el sonido inicial de la raíz. Empieza con pares frecuentes como baca → membaca y tulis → menulis. Aprende cada forma dentro de una frase; existen excepciones y cambios que deben estudiarse gradualmente.",
+                                  "vocab": [
+                                            {
+                                                      "id": "v201",
+                                                      "idn": "Membaca",
+                                                      "esp": "Leer",
+                                                      "ex": "Saya membaca buku.",
+                                                      "exEsp": "Leo un libro."
+                                            },
+                                            {
+                                                      "id": "v202",
+                                                      "idn": "Menulis",
+                                                      "esp": "Escribir",
+                                                      "ex": "Dia menulis pesan.",
+                                                      "exEsp": "Él/ella escribe un mensaje."
+                                            },
+                                            {
+                                                      "id": "v203",
+                                                      "idn": "Mencari",
+                                                      "esp": "Buscar",
+                                                      "ex": "Saya mencari alamat.",
+                                                      "exEsp": "Busco la dirección."
+                                            },
+                                            {
+                                                      "id": "v204",
+                                                      "idn": "Membeli",
+                                                      "esp": "Comprar",
+                                                      "ex": "Kami membeli nasi.",
+                                                      "exEsp": "Compramos arroz."
+                                            }
+                                  ],
+                                  "exercises": [
+                                            {
+                                                      "vocabId": "v201",
+                                                      "type": "mc",
+                                                      "prompt": "¿Qué significa membaca?",
+                                                      "options":["Leer","Escribir","Buscar"],
+                                                      "answer": 0,
+                                                      "explanation": "Membaca significa leer; meN- forma verbos en patrones frecuentes."
+                                            },
+                                            {
+                                                      "vocabId": "v202",
+                                                      "type": "translate_es_id",
+                                                      "prompt": "Traduce: escribir",
+                                                      "answer": "Menulis",
+                                                      "explanation": "Menulis significa «Escribir»."
+                                            },
+                                            {
+                                                      "vocabId": "v203",
+                                                      "type": "listen",
+                                                      "prompt": "Escucha y escribe la expresión",
+                                                      "answer": "Mencari",
+                                                      "explanation": "La forma Mencari aparece en esta unidad."
+                                            },
+                                            {
+                                                      "vocabId": "v204",
+                                                      "type": "write",
+                                                      "prompt": "Escribe una frase propia usando Membeli.",
+                                                      "hint": "Usa el contexto y la explicación gramatical; no memorices solo una traducción.",
+                                                      "modelAnswer": "Kami membeli nasi.",
+                                                      "explanation": "Ejemplo orientativo: Kami membeli nasi. — Compramos arroz."
+                                            }
+                                  ]
+                        },
+                        {
+                                  "id": "a2_u3",
+                                  "title": "Unidad 3: Pasiva sencilla con di-",
+                                  "desc": "Comprender quién recibe una acción en frases breves y transparentes.",
+                                  "grammar": "El prefijo unido di- puede marcar una construcción pasiva: Buku dibaca oleh Ana (El libro es leído por Ana). No confundas el prefijo unido, como dibaca, con la preposición separada di rumah (en casa).",
+                                  "vocab": [
+                                            {
+                                                      "id": "v205",
+                                                      "idn": "Dibaca",
+                                                      "esp": "Es leído",
+                                                      "ex": "Buku dibaca oleh Ana.",
+                                                      "exEsp": "El libro es leído por Ana."
+                                            },
+                                            {
+                                                      "id": "v206",
+                                                      "idn": "Ditulis",
+                                                      "esp": "Es escrito",
+                                                      "ex": "Pesan ditulis oleh Budi.",
+                                                      "exEsp": "El mensaje es escrito por Budi."
+                                            },
+                                            {
+                                                      "id": "v207",
+                                                      "idn": "Dibeli",
+                                                      "esp": "Es comprado",
+                                                      "ex": "Nasi dibeli di pasar.",
+                                                      "exEsp": "El arroz se compra en el mercado."
+                                            },
+                                            {
+                                                      "id": "v208",
+                                                      "idn": "Oleh",
+                                                      "esp": "Por (agente pasivo)",
+                                                      "ex": "Buku dibaca oleh Ana.",
+                                                      "exEsp": "El libro es leído por Ana."
+                                            }
+                                  ],
+                                  "exercises": [
+                                            {
+                                                      "vocabId": "v205",
+                                                      "type": "mc",
+                                                      "prompt": "¿Qué función tiene di- en dibaca?",
+                                                      "options":["Voz pasiva","Lugar","Negación"],
+                                                      "answer": 0,
+                                                      "explanation": "En dibaca, di- marca la voz pasiva; no es la preposición di."
+                                            },
+                                            {
+                                                      "vocabId": "v206",
+                                                      "type": "translate_es_id",
+                                                      "prompt": "Traduce: es escrito",
+                                                      "answer": "Ditulis",
+                                                      "explanation": "Ditulis significa «Es escrito»."
+                                            },
+                                            {
+                                                      "vocabId": "v207",
+                                                      "type": "listen",
+                                                      "prompt": "Escucha y escribe la expresión",
+                                                      "answer": "Dibeli",
+                                                      "explanation": "La forma Dibeli aparece en esta unidad."
+                                            },
+                                            {
+                                                      "vocabId": "v208",
+                                                      "type": "write",
+                                                      "prompt": "Escribe una frase propia usando Oleh.",
+                                                      "hint": "Usa el contexto y la explicación gramatical; no memorices solo una traducción.",
+                                                      "modelAnswer": "Buku dibaca oleh Ana.",
+                                                      "explanation": "Ejemplo orientativo: Buku dibaca oleh Ana. — El libro es leído por Ana."
+                                            }
+                                  ]
                         }
                     ]
                 },
@@ -1326,6 +1499,278 @@
                             exercises: [
                                 { vocabId: 'v8', type: 'mc', prompt: '¿Qué función cumple el prefijo "di-"?', options: ['Imperativo', 'Voz Pasiva', 'Lugar', 'Negación'], answer: 1, explanation: 'Marca la voz pasiva del verbo.' }
                             ]
+                        },
+                        {
+                                  "id": "b1_u2",
+                                  "title": "Unidad 2: Contrastar meN- y di-",
+                                  "desc": "Elegir entre una frase activa y una pasiva según qué información se quiere destacar.",
+                                  "grammar": "En la activa, el sujeto suele realizar la acción: Ana membaca buku. En la pasiva, aquello que recibe la acción ocupa el primer plano: Buku dibaca oleh Ana. El agente puede omitirse cuando no es importante.",
+                                  "vocab": [
+                                            {
+                                                      "id": "v211",
+                                                      "idn": "Membaca",
+                                                      "esp": "Leer (activa)",
+                                                      "ex": "Ana membaca buku.",
+                                                      "exEsp": "Ana lee un libro."
+                                            },
+                                            {
+                                                      "id": "v212",
+                                                      "idn": "Dibaca",
+                                                      "esp": "Es leído",
+                                                      "ex": "Buku dibaca oleh Ana.",
+                                                      "exEsp": "El libro es leído por Ana."
+                                            },
+                                            {
+                                                      "id": "v213",
+                                                      "idn": "Penulis",
+                                                      "esp": "Escritor/a",
+                                                      "ex": "Penulis itu membaca buku.",
+                                                      "exEsp": "Ese escritor lee un libro."
+                                            },
+                                            {
+                                                      "id": "v214",
+                                                      "idn": "Oleh",
+                                                      "esp": "Por (agente)",
+                                                      "ex": "Buku dibaca oleh Ana.",
+                                                      "exEsp": "El libro es leído por Ana."
+                                            }
+                                  ],
+                                  "exercises": [
+                                            {
+                                                      "vocabId": "v211",
+                                                      "type": "mc",
+                                                      "prompt": "¿Cuál es la forma pasiva de leer en este ejemplo?",
+                                                      "options":["Dibaca","Membaca","Penulis"],
+                                                      "answer": 0,
+                                                      "explanation": "Buku dibaca oleh Ana pone el libro en primer plano."
+                                            },
+                                            {
+                                                      "vocabId": "v212",
+                                                      "type": "translate_es_id",
+                                                      "prompt": "Traduce: es leído",
+                                                      "answer": "Dibaca",
+                                                      "explanation": "Dibaca significa «Es leído»."
+                                            },
+                                            {
+                                                      "vocabId": "v213",
+                                                      "type": "listen",
+                                                      "prompt": "Escucha y escribe la expresión",
+                                                      "answer": "Penulis",
+                                                      "explanation": "La forma Penulis aparece en esta unidad."
+                                            },
+                                            {
+                                                      "vocabId": "v214",
+                                                      "type": "write",
+                                                      "prompt": "Escribe una frase propia usando Oleh.",
+                                                      "hint": "Usa el contexto y la explicación gramatical; no memorices solo una traducción.",
+                                                      "modelAnswer": "Buku dibaca oleh Ana.",
+                                                      "explanation": "Ejemplo orientativo: Buku dibaca oleh Ana. — El libro es leído por Ana."
+                                            }
+                                  ]
+                        },
+                        {
+                                  "id": "b1_u3",
+                                  "title": "Unidad 3: Distinguir -kan e -i en contexto",
+                                  "desc": "Comparar formas derivadas en ejemplos cuidadosamente seleccionados y evitar traducciones automáticas.",
+                                  "grammar": "-kan e -i pueden cambiar la relación entre la acción y sus participantes, pero no tienen una traducción única. Aprende pares vinculados a verbos concretos y revisa el significado completo de la frase.",
+                                  "vocab": [
+                                            {
+                                                      "id": "v215",
+                                                      "idn": "Mengirimkan",
+                                                      "esp": "Enviar / hacer llegar",
+                                                      "ex": "Saya mengirimkan surat kepada Ibu.",
+                                                      "exEsp": "Le envío una carta a mamá."
+                                            },
+                                            {
+                                                      "id": "v216",
+                                                      "idn": "Mengirimi",
+                                                      "esp": "Enviar a alguien",
+                                                      "ex": "Saya mengirimi Ibu surat.",
+                                                      "exEsp": "Le envío una carta a mamá."
+                                            },
+                                            {
+                                                      "id": "v217",
+                                                      "idn": "Mengisi",
+                                                      "esp": "Llenar",
+                                                      "ex": "Dia mengisi botol.",
+                                                      "exEsp": "Él/ella llena la botella."
+                                            },
+                                            {
+                                                      "id": "v218",
+                                                      "idn": "Memperbaiki",
+                                                      "esp": "Reparar",
+                                                      "ex": "Saya memperbaiki sepeda.",
+                                                      "exEsp": "Reparo la bicicleta."
+                                            }
+                                  ],
+                                  "exercises": [
+                                            {
+                                                      "vocabId": "v215",
+                                                      "type": "mc",
+                                                      "prompt": "¿Qué debes hacer al comparar -kan e -i?",
+                                                      "options":["Comparar el verbo y la frase completa","Tratar los sufijos como tiempos verbales","Suponer que son intercambiables"],
+                                                      "answer": 0,
+                                                      "explanation": "Comparar el verbo y la frase completa; no asumir una traducción fija."
+                                            },
+                                            {
+                                                      "vocabId": "v216",
+                                                      "type": "translate_es_id",
+                                                      "prompt": "Traduce: enviar a alguien",
+                                                      "answer": "Mengirimi",
+                                                      "explanation": "Mengirimi significa «Enviar a alguien»."
+                                            },
+                                            {
+                                                      "vocabId": "v217",
+                                                      "type": "listen",
+                                                      "prompt": "Escucha y escribe la expresión",
+                                                      "answer": "Mengisi",
+                                                      "explanation": "La forma Mengisi aparece en esta unidad."
+                                            },
+                                            {
+                                                      "vocabId": "v218",
+                                                      "type": "write",
+                                                      "prompt": "Escribe una frase propia usando Memperbaiki.",
+                                                      "hint": "Usa el contexto y la explicación gramatical; no memorices solo una traducción.",
+                                                      "modelAnswer": "Saya memperbaiki sepeda.",
+                                                      "explanation": "Ejemplo orientativo: Saya memperbaiki sepeda. — Reparo la bicicleta."
+                                            }
+                                  ]
+                        },
+                        {
+                                  "id": "b1_u4",
+                                  "title": "Unidad 4: -an y -nya en familias de palabras",
+                                  "desc": "Reconocer sustantivos derivados y usos frecuentes de -nya en frases y textos cortos.",
+                                  "grammar": "-an aparece en distintas familias léxicas. -nya puede expresar posesión o una referencia definida/contextual. El significado concreto depende de la palabra y la oración; algunas formas son lexicalizadas.",
+                                  "vocab": [
+                                            {
+                                                      "id": "v219",
+                                                      "idn": "Makanan",
+                                                      "esp": "Comida",
+                                                      "ex": "Makanan Indonesia beragam.",
+                                                      "exEsp": "La comida indonesia es variada."
+                                            },
+                                            {
+                                                      "id": "v220",
+                                                      "idn": "Minuman",
+                                                      "esp": "Bebida",
+                                                      "ex": "Minuman ini dingin.",
+                                                      "exEsp": "Esta bebida está fría."
+                                            },
+                                            {
+                                                      "id": "v221",
+                                                      "idn": "Bukunya",
+                                                      "esp": "Su libro / el libro referido",
+                                                      "ex": "Bukunya ada di meja.",
+                                                      "exEsp": "Su libro está en la mesa."
+                                            },
+                                            {
+                                                      "id": "v222",
+                                                      "idn": "Rumahnya",
+                                                      "esp": "Su casa / la casa referida",
+                                                      "ex": "Rumahnya dekat sekolah.",
+                                                      "exEsp": "Su casa está cerca de la escuela."
+                                            }
+                                  ],
+                                  "exercises": [
+                                            {
+                                                      "vocabId": "v219",
+                                                      "type": "mc",
+                                                      "prompt": "¿Qué puede indicar -nya en bukunya?",
+                                                      "options":["Posesión o referencia contextual","Solo pasado","Solo plural"],
+                                                      "answer": 0,
+                                                      "explanation": "Puede indicar posesión o referencia contextual; la frase determina la lectura."
+                                            },
+                                            {
+                                                      "vocabId": "v220",
+                                                      "type": "translate_es_id",
+                                                      "prompt": "Traduce: bebida",
+                                                      "answer": "Minuman",
+                                                      "explanation": "Minuman significa «Bebida»."
+                                            },
+                                            {
+                                                      "vocabId": "v221",
+                                                      "type": "listen",
+                                                      "prompt": "Escucha y escribe la expresión",
+                                                      "answer": "Bukunya",
+                                                      "explanation": "La forma Bukunya aparece en esta unidad."
+                                            },
+                                            {
+                                                      "vocabId": "v222",
+                                                      "type": "write",
+                                                      "prompt": "Escribe una frase propia usando Rumahnya.",
+                                                      "hint": "Usa el contexto y la explicación gramatical; no memorices solo una traducción.",
+                                                      "modelAnswer": "Rumahnya dekat sekolah.",
+                                                      "explanation": "Ejemplo orientativo: Rumahnya dekat sekolah. — Su casa está cerca de la escuela."
+                                            }
+                                  ]
+                        },
+                        {
+                                  "id": "b1_u5",
+                                  "title": "Unidad 5: ter- y primeras nominalizaciones",
+                                  "desc": "Interpretar formas frecuentes con ter- y reconocer familias nominales sin generalizar reglas.",
+                                  "grammar": "ter- puede expresar estado o resultado y, en ciertos verbos y contextos, una lectura accidental. peN- y peN-an aparecen en familias nominales; aprende primero palabras frecuentes y patrones transparentes.",
+                                  "vocab": [
+                                            {
+                                                      "id": "v223",
+                                                      "idn": "Terbuka",
+                                                      "esp": "Abierto",
+                                                      "ex": "Pintu itu terbuka.",
+                                                      "exEsp": "La puerta está abierta."
+                                            },
+                                            {
+                                                      "id": "v224",
+                                                      "idn": "Tertutup",
+                                                      "esp": "Cerrado",
+                                                      "ex": "Jendelanya tertutup.",
+                                                      "exEsp": "La ventana está cerrada."
+                                            },
+                                            {
+                                                      "id": "v225",
+                                                      "idn": "Pekerja",
+                                                      "esp": "Trabajador/a",
+                                                      "ex": "Pekerja itu datang.",
+                                                      "exEsp": "Ese trabajador llega."
+                                            },
+                                            {
+                                                      "id": "v226",
+                                                      "idn": "Pendidikan",
+                                                      "esp": "Educación",
+                                                      "ex": "Pendidikan penting.",
+                                                      "exEsp": "La educación es importante."
+                                            }
+                                  ],
+                                  "exercises": [
+                                            {
+                                                      "vocabId": "v223",
+                                                      "type": "mc",
+                                                      "prompt": "¿Qué expresa terbuka en Pintu itu terbuka?",
+                                                      "options":["Estado de estar abierto","Pasado","Negación"],
+                                                      "answer": 0,
+                                                      "explanation": "Describe el estado de la puerta: está abierta."
+                                            },
+                                            {
+                                                      "vocabId": "v224",
+                                                      "type": "translate_es_id",
+                                                      "prompt": "Traduce: cerrado",
+                                                      "answer": "Tertutup",
+                                                      "explanation": "Tertutup significa «Cerrado»."
+                                            },
+                                            {
+                                                      "vocabId": "v225",
+                                                      "type": "listen",
+                                                      "prompt": "Escucha y escribe la expresión",
+                                                      "answer": "Pekerja",
+                                                      "explanation": "La forma Pekerja aparece en esta unidad."
+                                            },
+                                            {
+                                                      "vocabId": "v226",
+                                                      "type": "write",
+                                                      "prompt": "Escribe una frase propia usando Pendidikan.",
+                                                      "hint": "Usa el contexto y la explicación gramatical; no memorices solo una traducción.",
+                                                      "modelAnswer": "Pendidikan penting.",
+                                                      "explanation": "Ejemplo orientativo: Pendidikan penting. — La educación es importante."
+                                            }
+                                  ]
                         }
                     ]
                 },
@@ -1342,6 +1787,278 @@
                             exercises: [
                                 { vocabId: 'v9', type: 'mc', prompt: 'En «membangunkan anak», ¿qué aporta -kan?', options: ['La idea de hacer que alguien despierte', 'Pasado', 'Plural', 'Duda'], answer: 0, explanation: 'Bangun significa despertarse/levantarse; membangunkan significa despertar a otra persona.' }
                             ]
+                        },
+                        {
+                                  "id": "b2_u2",
+                                  "title": "Unidad 2: Matices de -kan e -i",
+                                  "desc": "Analizar cómo las formas derivadas afectan a participantes, destinatario o resultado.",
+                                  "grammar": "Contrasta -kan e -i solo en verbos donde la diferencia esté documentada. Considera quién realiza la acción, qué entidad cambia, a quién se dirige y qué resultado se expresa. La valencia depende del verbo, no de una equivalencia simple con el español.",
+                                  "vocab": [
+                                            {
+                                                      "id": "v231",
+                                                      "idn": "Mengirimkan",
+                                                      "esp": "Hacer llegar / enviar algo",
+                                                      "ex": "Saya mengirimkan dokumen kepada Rina.",
+                                                      "exEsp": "Le hago llegar el documento a Rina."
+                                            },
+                                            {
+                                                      "id": "v232",
+                                                      "idn": "Mengirimi",
+                                                      "esp": "Enviar a alguien",
+                                                      "ex": "Saya mengirimi Rina dokumen.",
+                                                      "exEsp": "Le envío un documento a Rina."
+                                            },
+                                            {
+                                                      "id": "v233",
+                                                      "idn": "Mengisi",
+                                                      "esp": "Llenar",
+                                                      "ex": "Petugas mengisi formulir.",
+                                                      "exEsp": "El empleado llena el formulario."
+                                            },
+                                            {
+                                                      "id": "v234",
+                                                      "idn": "Menandai",
+                                                      "esp": "Marcar",
+                                                      "ex": "Guru menandai jawaban itu.",
+                                                      "exEsp": "El profesor marca esa respuesta."
+                                            }
+                                  ],
+                                  "exercises": [
+                                            {
+                                                      "vocabId": "v231",
+                                                      "type": "mc",
+                                                      "prompt": "¿Qué se debe comparar para elegir -kan o -i?",
+                                                      "options":["La estructura de participantes y el sentido del verbo","Solo el tiempo verbal","Solo el sujeto gramatical"],
+                                                      "answer": 0,
+                                                      "explanation": "La estructura argumental y el sentido del verbo en la frase completa."
+                                            },
+                                            {
+                                                      "vocabId": "v232",
+                                                      "type": "translate_es_id",
+                                                      "prompt": "Traduce: enviar a alguien",
+                                                      "answer": "Mengirimi",
+                                                      "explanation": "Mengirimi significa «Enviar a alguien»."
+                                            },
+                                            {
+                                                      "vocabId": "v233",
+                                                      "type": "listen",
+                                                      "prompt": "Escucha y escribe la expresión",
+                                                      "answer": "Mengisi",
+                                                      "explanation": "La forma Mengisi aparece en esta unidad."
+                                            },
+                                            {
+                                                      "vocabId": "v234",
+                                                      "type": "write",
+                                                      "prompt": "Escribe una frase propia usando Menandai.",
+                                                      "hint": "Usa el contexto y la explicación gramatical; no memorices solo una traducción.",
+                                                      "modelAnswer": "Guru menandai jawaban itu.",
+                                                      "explanation": "Ejemplo orientativo: Guru menandai jawaban itu. — El profesor marca esa respuesta."
+                                            }
+                                  ]
+                        },
+                        {
+                                  "id": "b2_u3",
+                                  "title": "Unidad 3: ke-an — estados y abstracciones",
+                                  "desc": "Comprender palabras frecuentes con ke-an en contextos descriptivos y abstractos.",
+                                  "grammar": "ke-an aparece en formaciones relacionadas con estados, experiencias y abstracciones, pero también en palabras cuyo significado no se deduce mecánicamente. Aprende familias frecuentes dentro de frases reales.",
+                                  "vocab": [
+                                            {
+                                                      "id": "v235",
+                                                      "idn": "Kesehatan",
+                                                      "esp": "Salud",
+                                                      "ex": "Kesehatan sangat penting.",
+                                                      "exEsp": "La salud es muy importante."
+                                            },
+                                            {
+                                                      "id": "v236",
+                                                      "idn": "Kesulitan",
+                                                      "esp": "Dificultad",
+                                                      "ex": "Mereka mengalami kesulitan.",
+                                                      "exEsp": "Ellos experimentan dificultades."
+                                            },
+                                            {
+                                                      "id": "v237",
+                                                      "idn": "Kedinginan",
+                                                      "esp": "Tener frío",
+                                                      "ex": "Saya kedinginan.",
+                                                      "exEsp": "Tengo frío."
+                                            },
+                                            {
+                                                      "id": "v238",
+                                                      "idn": "Kebersihan",
+                                                      "esp": "Limpieza",
+                                                      "ex": "Kebersihan ruang kelas penting.",
+                                                      "exEsp": "La limpieza del aula es importante."
+                                            }
+                                  ],
+                                  "exercises": [
+                                            {
+                                                      "vocabId": "v235",
+                                                      "type": "mc",
+                                                      "prompt": "¿ke-an siempre tiene una traducción única?",
+                                                      "options":["No; depende de la palabra y el contexto","Sí; siempre indica pasado","Sí; siempre indica plural"],
+                                                      "answer": 0,
+                                                      "explanation": "No. El significado depende de la palabra derivada y del contexto."
+                                            },
+                                            {
+                                                      "vocabId": "v236",
+                                                      "type": "translate_es_id",
+                                                      "prompt": "Traduce: dificultad",
+                                                      "answer": "Kesulitan",
+                                                      "explanation": "Kesulitan significa «Dificultad»."
+                                            },
+                                            {
+                                                      "vocabId": "v237",
+                                                      "type": "listen",
+                                                      "prompt": "Escucha y escribe la expresión",
+                                                      "answer": "Kedinginan",
+                                                      "explanation": "La forma Kedinginan aparece en esta unidad."
+                                            },
+                                            {
+                                                      "vocabId": "v238",
+                                                      "type": "write",
+                                                      "prompt": "Escribe una frase propia usando Kebersihan.",
+                                                      "hint": "Usa el contexto y la explicación gramatical; no memorices solo una traducción.",
+                                                      "modelAnswer": "Kebersihan ruang kelas penting.",
+                                                      "explanation": "Ejemplo orientativo: Kebersihan ruang kelas penting. — La limpieza del aula es importante."
+                                            }
+                                  ]
+                        },
+                        {
+                                  "id": "b2_u4",
+                                  "title": "Unidad 4: Nominalizaciones peN-, peN-an y per-an",
+                                  "desc": "Interpretar nombres de personas, procesos e instituciones en textos informativos.",
+                                  "grammar": "Las familias peN-, peN-an y per-an aparecen en registros formales, pero pueden mostrar cambios de forma y significados lexicalizados. Analiza raíz, palabra derivada y contexto.",
+                                  "vocab": [
+                                            {
+                                                      "id": "v239",
+                                                      "idn": "Penelitian",
+                                                      "esp": "Investigación",
+                                                      "ex": "Penelitian itu berlangsung lama.",
+                                                      "exEsp": "Esa investigación duró mucho."
+                                            },
+                                            {
+                                                      "id": "v240",
+                                                      "idn": "Pekerjaan",
+                                                      "esp": "Trabajo / empleo",
+                                                      "ex": "Pekerjaan saya menarik.",
+                                                      "exEsp": "Mi trabajo es interesante."
+                                            },
+                                            {
+                                                      "id": "v241",
+                                                      "idn": "Perjalanan",
+                                                      "esp": "Viaje / trayecto",
+                                                      "ex": "Perjalanan kami aman.",
+                                                      "exEsp": "Nuestro viaje fue seguro."
+                                            },
+                                            {
+                                                      "id": "v242",
+                                                      "idn": "Peraturan",
+                                                      "esp": "Reglamento",
+                                                      "ex": "Peraturan itu berlaku.",
+                                                      "exEsp": "Ese reglamento está vigente."
+                                            }
+                                  ],
+                                  "exercises": [
+                                            {
+                                                      "vocabId": "v239",
+                                                      "type": "mc",
+                                                      "prompt": "¿Qué estrategia ayuda a entender una nominalización?",
+                                                      "options":["Examinar la palabra, su familia y el contexto","Traducir el prefijo de forma literal","Ignorar el resto de la oración"],
+                                                      "answer": 0,
+                                                      "explanation": "Examinar la palabra, su familia y el contexto."
+                                            },
+                                            {
+                                                      "vocabId": "v240",
+                                                      "type": "translate_es_id",
+                                                      "prompt": "Traduce: trabajo / empleo",
+                                                      "answer": "Pekerjaan",
+                                                      "explanation": "Pekerjaan significa «Trabajo / empleo»."
+                                            },
+                                            {
+                                                      "vocabId": "v241",
+                                                      "type": "listen",
+                                                      "prompt": "Escucha y escribe la expresión",
+                                                      "answer": "Perjalanan",
+                                                      "explanation": "La forma Perjalanan aparece en esta unidad."
+                                            },
+                                            {
+                                                      "vocabId": "v242",
+                                                      "type": "write",
+                                                      "prompt": "Escribe una frase propia usando Peraturan.",
+                                                      "hint": "Usa el contexto y la explicación gramatical; no memorices solo una traducción.",
+                                                      "modelAnswer": "Peraturan itu berlaku.",
+                                                      "explanation": "Ejemplo orientativo: Peraturan itu berlaku. — Ese reglamento está vigente."
+                                            }
+                                  ]
+                        },
+                        {
+                                  "id": "b2_u5",
+                                  "title": "Unidad 5: Registro, reduplicación y compuestos",
+                                  "desc": "Interpretar procesos morfológicos y elegir expresiones apropiadas según el contexto.",
+                                  "grammar": "La reduplicación puede expresar pluralidad, distribución, variedad o formar palabras lexicalizadas. Los compuestos combinan elementos léxicos y no son sufijos. Compara ejemplos en textos reales y observa el registro.",
+                                  "vocab": [
+                                            {
+                                                      "id": "v243",
+                                                      "idn": "Anak-anak",
+                                                      "esp": "Niños",
+                                                      "ex": "Anak-anak bermain di taman.",
+                                                      "exEsp": "Los niños juegan en el parque."
+                                            },
+                                            {
+                                                      "id": "v244",
+                                                      "idn": "Buku-buku",
+                                                      "esp": "Libros",
+                                                      "ex": "Buku-buku itu baru.",
+                                                      "exEsp": "Esos libros son nuevos."
+                                            },
+                                            {
+                                                      "id": "v245",
+                                                      "idn": "Rumah sakit",
+                                                      "esp": "Hospital",
+                                                      "ex": "Rumah sakit itu dekat dari sini.",
+                                                      "exEsp": "Ese hospital está cerca de aquí."
+                                            },
+                                            {
+                                                      "id": "v246",
+                                                      "idn": "Kerja sama",
+                                                      "esp": "Cooperación",
+                                                      "ex": "Kerja sama itu penting.",
+                                                      "exEsp": "Esa cooperación es importante."
+                                            }
+                                  ],
+                                  "exercises": [
+                                            {
+                                                      "vocabId": "v243",
+                                                      "type": "mc",
+                                                      "prompt": "¿La reduplicación siempre significa plural?",
+                                                      "options":["No; también puede expresar distribución o formar palabras lexicalizadas","Sí; siempre indica plural","No; solo marca el pasado"],
+                                                      "answer": 0,
+                                                      "explanation": "No; puede expresar varios sentidos o formar palabras lexicalizadas según el caso."
+                                            },
+                                            {
+                                                      "vocabId": "v244",
+                                                      "type": "translate_es_id",
+                                                      "prompt": "Traduce: libros",
+                                                      "answer": "Buku-buku",
+                                                      "explanation": "Buku-buku significa «Libros»."
+                                            },
+                                            {
+                                                      "vocabId": "v245",
+                                                      "type": "listen",
+                                                      "prompt": "Escucha y escribe la expresión",
+                                                      "answer": "Rumah sakit",
+                                                      "explanation": "La forma Rumah sakit aparece en esta unidad."
+                                            },
+                                            {
+                                                      "vocabId": "v246",
+                                                      "type": "write",
+                                                      "prompt": "Escribe una frase propia usando Kerja sama.",
+                                                      "hint": "Usa el contexto y la explicación gramatical; no memorices solo una traducción.",
+                                                      "modelAnswer": "Kerja sama itu penting.",
+                                                      "explanation": "Ejemplo orientativo: Kerja sama itu penting. — Esa cooperación es importante."
+                                            }
+                                  ]
                         }
                     ]
                 }

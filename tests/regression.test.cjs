@@ -431,8 +431,8 @@ test('backup restoration writes SRS and settings in one readwrite transaction an
 
 
 test('SRS due queue returns one due item per Indonesian headword and excludes placeholders', async () => {
-  const methodStart = html.indexOf('            async getDueItems() {');
-  const methodEnd = html.indexOf('\\n            async startSession()', methodStart);
+  const methodStart = html.indexOf('async getDueItems() {');
+  const methodEnd = html.indexOf('async startSession()', methodStart);
   assert.ok(methodStart >= 0 && methodEnd > methodStart, 'production due queue method must exist');
   const methodSource = html.slice(methodStart, methodEnd);
   const bodyStart = methodSource.indexOf('{') + 1;
@@ -465,8 +465,8 @@ test('SRS due queue returns one due item per Indonesian headword and excludes pl
 });
 
 test('SRS attempt persistence mirrors the updated state to every duplicate word ID', async () => {
-  const methodStart = html.indexOf('            async saveAttemptForDuplicateWords(wordId, item) {');
-  const methodEnd = html.indexOf('\\n            async getDueItems()', methodStart);
+  const methodStart = html.indexOf('async saveAttemptForDuplicateWords(wordId, item) {');
+  const methodEnd = html.indexOf('async getDueItems()', methodStart);
   assert.ok(methodStart >= 0 && methodEnd > methodStart, 'production duplicate save method must exist');
   const methodSource = html.slice(methodStart, methodEnd);
   const bodyStart = methodSource.indexOf('{') + 1;

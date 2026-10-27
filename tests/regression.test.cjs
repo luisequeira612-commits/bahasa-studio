@@ -644,7 +644,7 @@ test('A1 time-of-day examples use complete natural expressions', () => {
 test('A1 unit 9 practices compound numbers from 21 to 99 without duplicate vocabulary', () => {
   const start = html.indexOf('const CourseData =');
   const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
-  const course = vm.runInNewContext(html.slice(start, end) + '\\nCourseData');
+  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
   const a1 = course.levels.find(level => level.id === 'A1');
   const unit9 = a1.units.find(unit => unit.id === 'a1_u9');
   const unit10 = a1.units.find(unit => unit.id === 'a1_u10');
@@ -667,11 +667,11 @@ test('A1 unit 9 practices compound numbers from 21 to 99 without duplicate vocab
 test('A1 unit 10 includes complete guided purchase, price, payment, and change dialogues', () => {
   const start = html.indexOf('const CourseData =');
   const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
-  const course = vm.runInNewContext(html.slice(start, end) + '\\nCourseData');
+  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
   const a1 = course.levels.find(level => level.id === 'A1');
   const unit10 = a1.units.find(unit => unit.id === 'a1_u10');
-  const answers = unit10.exercises.filter(ex => ex.type === 'write').map(ex => ex.modelAnswer || '').join('\\n');
-  assert.match(answers, /Berapa harganya\\?/);
+  const answers = unit10.exercises.filter(ex => ex.type === 'write').map(ex => ex.modelAnswer || '').join('\n');
+  assert.match(answers, /Berapa harganya\?/);
   assert.match(answers, /Dua puluh satu ribu rupiah/);
   assert.match(answers, /Saya bayar sepuluh ribu rupiah/);
   assert.match(answers, /Ini kembaliannya/);

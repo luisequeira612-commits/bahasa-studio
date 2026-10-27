@@ -53,7 +53,7 @@ test('assessment page renders questions, scores closed answers and flags open re
     assert.equal(await page.locator('#assessment').isVisible(), false);
     await page.locator('[data-review-id="a1-write-01"]').fill('3');
     await page.getByRole('button', { name: 'Aplicar puntuaciones revisadas' }).click();
-    assert.match(await page.locator('#results').innerText(), /5 de 11 puntos/);
+    assert.match(await page.locator('#results').innerText(), /5 de 18 puntos/);
     assert.equal(await page.locator('[data-review-id="a1-write-01"]').count(), 1);
     assert.deepEqual(errors, []);
   } finally {

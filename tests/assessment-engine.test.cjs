@@ -25,7 +25,8 @@ test('choice scoring is level-scoped and reports skill breakdowns', () => {
   assert.equal(result.skills.grammar.percent, 100);
   assert.equal(result.skills.vocabulary.percent, 100);
   assert.equal(result.provisionalPass, false);
-  assert.deepEqual(result.openItemsPendingReview, ['a1-write-01']);
+  assert.equal(result.items.find(item => item.id === 'a1-write-01').status, 'unanswered');
+  assert.deepEqual(result.openItemsPendingReview, []);
 });
 
 test('open responses never receive automatic credit from string matching', () => {
@@ -67,4 +68,10 @@ test('assessment definitions and scoring do not mutate SRS or persistent storage
   assert.equal(typeof globalThis.indexedDB, 'undefined');
   assert.ok(ITEM_BANK.every(item => item.id && item.level && item.skill && item.points > 0));
   assert.equal(Object.keys(LEVELS).join(','), 'A1,A2,B1,B2');
+});
+
+test('unanswered open responses remain unanswered and outside the review queue', () => {
+  const result = scoreAssessment('A1', { 'a1-write-01': '   ' });
+  assert.equal(result.items.find(item => item.id === 'a1-write-01').status, 'unanswered');
+  assert.deepEqual(result.openItemsPendingReview, []);
 });

@@ -29,7 +29,7 @@ test('A1 units 1 and 2 teach vocabulary and provide varied practice', () => {
   const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
   assert.ok(start >= 0 && end > start, 'CourseData block must exist');
   const source = html.slice(start, end);
-  const course = vm.runInNewContext(source + '\nCourseData');
+  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
   const a1 = course.levels.find(level => level.id === 'A1');
   const unit1 = a1.units.find(unit => unit.id === 'a1_u1');
   const unit2 = a1.units.find(unit => unit.id === 'a1_u2');

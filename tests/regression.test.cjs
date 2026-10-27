@@ -691,3 +691,26 @@ test('A1 compound-number grammar explains the tens-plus-unit rule and change inc
   const answers = unit10.exercises.filter(ex => ex.type === 'write').map(ex => ex.modelAnswer || '').join('\n');
   assert.match(answers, /Ini kembaliannya, lima ribu rupiah/);
 });
+
+
+test('lesson start avoids duplicating automatic drills for vocabulary already covered by authored exercises', () => {
+  const methodBody = extractMethodBody(html, 'startUnit(unit) {');
+  const startUnit = vm.runInNewContext(
+    '({ startUnit(unit) {' + methodBody + '\\n} }).startUnit',
+    { App: { switchView: () => {} }, Math }
+  );
+  const unit = {
+    vocab: [
+      { id: 'covered', idn: 'Buku', esp: 'Libro' },
+      { id: 'missing-a', idn: 'Air', esp: 'Agua' },
+      { id: 'missing-b', idn: 'Teh', esp: 'Té' }
+    ],
+    exercises: [{ vocabId: 'covered', type: 'mc', prompt: 'Authored exercise' }]
+  };
+  const engine = { renderStep() {} };
+  startUnit.call(engine, unit);
+  assert.equal(engine.queue.length, 4);
+  assert.equal(engine.queue[0].prompt, 'Authored exercise');
+  assert.deepEqual(Array.from(engine.queue.slice(1), ex => ex.vocabId), ['missing-a', 'missing-a', 'missing-b']);
+  assert.deepEqual(Array.from(engine.queue.slice(1), ex => ex.type), ['mc', 'listen', 'translate_es_id']);
+});

@@ -15,5 +15,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Install browser test dependencies
+        run: npm install
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
       - name: Run regression tests
         run: node --test tests/regression.test.cjs
+      - name: Run real-browser end-to-end tests
+        run: node --test tests/browser-e2e.test.cjs

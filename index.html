@@ -1352,7 +1352,7 @@
                             id: 'a1_u9',
                             title: 'Unidad 9: Números del 11 al 100',
                             desc: 'Contar más allá de diez y reconocer números frecuentes en cantidades sencillas.',
-                            grammar: 'Del 11 al 19 se usan formas como sebelas, dua belas, tiga belas y empat belas. Para las decenas se usa puluh: dua puluh = 20 y tiga puluh = 30. Seratus significa 100.',
+                            grammar: 'Del 11 al 19 se usan formas como sebelas, dua belas, tiga belas y empat belas. Para las decenas se combina el número con puluh: dua puluh = 20, tiga puluh = 30, empat puluh = 40, lima puluh = 50, enam puluh = 60, tujuh puluh = 70, delapan puluh = 80 y sembilan puluh = 90. Seratus significa 100.',
                             vocab: [
                                 { id: 'v124', idn: 'Sebelas', esp: 'Once', ex: 'Sebelas teman.', exEsp: 'Once amigos.' },
                                 { id: 'v125', idn: 'Dua belas', esp: 'Doce', ex: 'Dua belas buku.', exEsp: 'Doce libros.' },
@@ -1365,7 +1365,8 @@
                                 { id: 'v132', idn: 'Sembilan belas', esp: 'Diecinueve', ex: 'Sembilan belas tahun.', exEsp: 'Diecinueve años.' },
                                 { id: 'v133', idn: 'Dua puluh', esp: 'Veinte', ex: 'Dua puluh buku.', exEsp: 'Veinte libros.' },
                                 { id: 'v134', idn: 'Tiga puluh', esp: 'Treinta', ex: 'Tiga puluh tahun.', exEsp: 'Treinta años.' },
-                                { id: 'v135', idn: 'Seratus', esp: 'Cien', ex: 'Seratus buku.', exEsp: 'Cien libros.' }
+                                { id: 'v135', idn: 'Seratus', esp: 'Cien', ex: 'Seratus buku.', exEsp: 'Cien libros.' },
+                                { id: 'v158', idn: 'Puluh', esp: 'Decenas; elemento para formar 20, 30, etc.', ex: 'Dua puluh.', exEsp: 'Veinte.' }
                             ],
                             exercises: [
                                 { vocabId: 'v124', type: 'mc', prompt: '¿Qué número significa sebelas?', options: ['11', '12', '20'], answer: 0, explanation: 'Sebelas significa once.' },
@@ -1382,7 +1383,10 @@
                                 { vocabId: 'v135', type: 'mc', prompt: 'Seratus significa…', options: ['100', '13', '30'], answer: 0, explanation: 'Seratus significa cien.' },
                                 { vocabId: 'v124', type: 'order', prompt: 'Ordena para decir “once amigos”', words: ['teman', 'Sebelas'], correctOrder: ['Sebelas', 'teman'], explanation: 'En una cantidad simple, el número precede al sustantivo.' },
                                 { vocabId: 'v133', type: 'listen', prompt: 'Escucha y escribe “veinte”', answer: 'Dua puluh', explanation: 'Dua puluh significa veinte.' },
-                                { vocabId: 'v135', type: 'write', prompt: 'Escribe en indonesio un número entre 11 y 100 que hayas aprendido.', hint: 'Puedes elegir doce, veinte, treinta o cien.', modelAnswer: 'Dua puluh.', explanation: 'Hay varias respuestas correctas; revisa que la forma del número sea correcta.' }
+                                { vocabId: 'v158', type: 'mc', prompt: '¿Cómo se dice cuarenta?', options: ['Empat puluh', 'Empat belas', 'Empat tahun'], answer: 0, explanation: 'Empat puluh significa cuarenta; puluh forma decenas.' },
+                                { vocabId: 'v158', type: 'translate_es_id', prompt: 'Traduce: setenta', answer: 'Tujuh puluh', explanation: 'Tujuh puluh significa setenta.' },
+                                { vocabId: 'v158', type: 'mc', prompt: 'Sembilan puluh significa…', options: ['19', '90', '100'], answer: 1, explanation: 'Sembilan puluh significa noventa.' },
+                                { vocabId: 'v135', type: 'write', prompt: 'Escribe en indonesio un número entre 11 y 100 que hayas aprendido.', hint: 'Puedes elegir doce, veinte, cuarenta, setenta o cien.', modelAnswer: 'Dua puluh.', explanation: 'Hay varias respuestas correctas; revisa que la forma del número sea correcta.' }
                             ]
                         },
                         {

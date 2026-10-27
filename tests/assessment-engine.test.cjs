@@ -15,6 +15,20 @@ test('each level has a small assessment with an open production task', () => {
   }
 });
 
+test('A1 assessment cumulatively covers core topics from all 14 curriculum units', () => {
+  const items = getAssessment('A1');
+  assert.equal(items.length, 13, 'A1 should have 12 assessment items plus an additional production task');
+  const ids = new Set(items.map(item => item.id));
+  for (const id of [
+    'a1-negation-01', 'a1-vocab-01', 'a1-comprehension-01', 'a1-interaction-01',
+    'a1-numbers-01', 'a1-prices-01', 'a1-time-01', 'a1-weather-01',
+    'a1-transport-01', 'a1-location-01', 'a1-family-01'
+  ]) assert.ok(ids.has(id), 'missing cumulative A1 assessment item: ' + id);
+  for (const skill of LEVELS.A1.skills) {
+    assert.ok(items.some(item => item.skill === skill), 'A1 assessment must cover ' + skill);
+  }
+});
+
 test('choice scoring is level-scoped and reports skill breakdowns', () => {
   const answers = {
     'a1-negation-01': 1,
@@ -23,7 +37,7 @@ test('choice scoring is level-scoped and reports skill breakdowns', () => {
   };
   const result = scoreAssessment('A1', answers);
   assert.equal(result.earned, 2);
-  assert.equal(result.possible, 11);
+  assert.equal(result.possible, 18);
   assert.equal(result.skills.grammar.percent, 100);
   assert.equal(result.skills.vocabulary.percent, 100);
   assert.equal(result.provisionalPass, false);

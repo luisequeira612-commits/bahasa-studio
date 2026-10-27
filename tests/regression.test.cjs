@@ -428,3 +428,69 @@ test('backup restoration writes SRS and settings in one readwrite transaction an
   };
   await assert.rejects(replaceBackupData.call({ db: abortDb }, data), /simulated transaction abort/);
 });
+
+
+test('SRS due queue returns one due item per Indonesian headword and excludes placeholders', async () => {
+  const methodStart = html.indexOf('            async getDueItems() {');
+  const methodEnd = html.indexOf('\\n            async startSession()', methodStart);
+  assert.ok(methodStart >= 0 && methodEnd > methodStart, 'production due queue method must exist');
+  const methodSource = html.slice(methodStart, methodEnd);
+  const bodyStart = methodSource.indexOf('{') + 1;
+  const bodyEnd = methodSource.lastIndexOf('\\n            },');
+  assert.ok(bodyStart > 0 && bodyEnd > bodyStart, 'could extract production due queue method body');
+  const methodBody = methodSource.slice(bodyStart, bodyEnd);
+
+  const vocab = [
+    { id: 'dup-a', idn: ' Air ', esp: 'agua' },
+    { id: 'dup-b', idn: 'air', esp: 'agua' },
+    { id: 'other', idn: 'Buku', esp: 'libro' }
+  ];
+  const records = [
+    { key: 'dup-a', val: { nextReview: 10, attempts: 2, lastReviewed: 1, interval: 1, repetition: 1, incorrect: 1 } },
+    { key: 'dup-b', val: { nextReview: 20, attempts: 3, lastReviewed: 2, interval: 1, repetition: 1, incorrect: 2 } },
+    { key: 'other', val: { nextReview: 10, attempts: 0, lastReviewed: null, interval: 0, repetition: 0 } },
+    { key: 'unknown', val: { nextReview: 1, attempts: 1 } },
+    { key: 'future', val: { nextReview: 999999, attempts: 1 } }
+  ];
+  const getDueItems = vm.runInNewContext(
+    '({ async getDueItems() {' + methodBody + '\\n} }).getDueItems',
+    {
+      getLearningLevels: () => [{ units: [{ vocab }] }],
+      DB: { getAll: async () => records },
+      Date: { now: () => 100 }
+    }
+  );
+  const due = await getDueItems.call({});
+  assert.deepEqual(Array.from(due, item => item.key), ['dup-a']);
+});
+
+test('SRS attempt persistence mirrors the updated state to every duplicate word ID', async () => {
+  const methodStart = html.indexOf('            async saveAttemptForDuplicateWords(wordId, item) {');
+  const methodEnd = html.indexOf('\\n            async getDueItems()', methodStart);
+  assert.ok(methodStart >= 0 && methodEnd > methodStart, 'production duplicate save method must exist');
+  const methodSource = html.slice(methodStart, methodEnd);
+  const bodyStart = methodSource.indexOf('{') + 1;
+  const bodyEnd = methodSource.lastIndexOf('\\n            },');
+  const methodBody = methodSource.slice(bodyStart, bodyEnd);
+  const saveAttemptForDuplicateWords = vm.runInNewContext(
+    '({ async saveAttemptForDuplicateWords(wordId, item) {' + methodBody + '\\n} }).saveAttemptForDuplicateWords'
+  );
+
+  const writes = [];
+  const engine = {
+    getDuplicateWordIds: async wordId => wordId === 'v27' ? ['v27', 'v48'] : [wordId],
+    saveAttemptForDuplicateWords,
+  };
+  const DB = { set: async (store, key, val) => writes.push({ store, key, val }) };
+  await engine.saveAttemptForDuplicateWords.call(
+    { ...engine, DB },
+    'v27',
+    { wordId: 'v27', attempts: 4, correct: 3, incorrect: 1, interval: 6 }
+  );
+  assert.equal(writes.length, 2);
+  assert.deepEqual(Array.from(writes, write => write.key), ['v27', 'v48']);
+  assert.ok(writes.every(write => write.store === 'srs'));
+  assert.equal(writes[0].val.wordId, 'v27');
+  assert.equal(writes[1].val.wordId, 'v48');
+  assert.ok(writes.every(write => write.val.attempts === 4 && write.val.interval === 6));
+});

@@ -430,15 +430,25 @@ test('backup restoration writes SRS and settings in one readwrite transaction an
 });
 
 
+
+function extractMethodBody(source, signature) {
+  const start = source.indexOf(signature);
+  assert.ok(start >= 0, 'production method must exist: ' + signature);
+  const open = source.indexOf('{', start);
+  assert.ok(open >= 0, 'production method body must open');
+  let depth = 0;
+  for (let i = open; i < source.length; i++) {
+    if (source[i] === '{') depth++;
+    else if (source[i] === '}') {
+      depth--;
+      if (depth === 0) return source.slice(open + 1, i);
+    }
+  }
+  assert.fail('production method body must close: ' + signature);
+}
+
 test('SRS due queue returns one due item per Indonesian headword and excludes placeholders', async () => {
-  const methodStart = html.indexOf('async getDueItems() {');
-  const methodEnd = html.indexOf('async startSession()', methodStart);
-  assert.ok(methodStart >= 0 && methodEnd > methodStart, 'production due queue method must exist');
-  const methodSource = html.slice(methodStart, methodEnd);
-  const bodyStart = methodSource.indexOf('{') + 1;
-  const bodyEnd = methodSource.lastIndexOf('},');
-  assert.ok(bodyStart > 0 && bodyEnd > bodyStart, 'could extract production due queue method body');
-  const methodBody = methodSource.slice(bodyStart, bodyEnd);
+  const methodBody = extractMethodBody(html, 'async getDueItems() {');
 
   const vocab = [
     { id: 'dup-a', idn: ' Air ', esp: 'agua' },
@@ -465,13 +475,7 @@ test('SRS due queue returns one due item per Indonesian headword and excludes pl
 });
 
 test('SRS attempt persistence mirrors the updated state to every duplicate word ID', async () => {
-  const methodStart = html.indexOf('async saveAttemptForDuplicateWords(wordId, item) {');
-  const methodEnd = html.indexOf('async getDueItems()', methodStart);
-  assert.ok(methodStart >= 0 && methodEnd > methodStart, 'production duplicate save method must exist');
-  const methodSource = html.slice(methodStart, methodEnd);
-  const bodyStart = methodSource.indexOf('{') + 1;
-  const bodyEnd = methodSource.lastIndexOf('},');
-  const methodBody = methodSource.slice(bodyStart, bodyEnd);
+  const methodBody = extractMethodBody(html, 'async saveAttemptForDuplicateWords(wordId, item) {');
   const writes = [];
   const saveAttemptForDuplicateWords = vm.runInNewContext(
     '({ async saveAttemptForDuplicateWords(wordId, item) {' + methodBody + '\n} }).saveAttemptForDuplicateWords',

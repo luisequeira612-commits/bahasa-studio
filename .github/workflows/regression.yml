@@ -25,3 +25,5 @@ jobs:
         run: node --test tests/assessment-engine.test.cjs
       - name: Run real-browser end-to-end tests
         run: node --test tests/browser-e2e.test.cjs
+      - name: Run assessment page browser tests
+        run: node --test tests/assessment-page.e2e.test.cjs

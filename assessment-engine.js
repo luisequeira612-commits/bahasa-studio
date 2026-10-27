@@ -97,4 +97,6 @@ function scoreAssessment(level, answers, { manualScores = {} } = {}) {
   };
 }
 
-module.exports = { LEVELS, ITEM_BANK, getAssessment, scoreAssessment };
+const BahasaAssessment = { LEVELS, ITEM_BANK, getAssessment, scoreAssessment };
+if (typeof module !== 'undefined' && module.exports) module.exports = BahasaAssessment;
+if (typeof globalThis !== 'undefined') globalThis.BahasaAssessment = BahasaAssessment;

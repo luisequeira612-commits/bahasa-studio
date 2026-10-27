@@ -682,12 +682,12 @@ test('A1 unit 10 includes complete guided purchase, price, payment, and change d
 test('A1 compound-number grammar explains the tens-plus-unit rule and change includes its amount', () => {
   const start = html.indexOf('const CourseData =');
   const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
-  const course = vm.runInNewContext(html.slice(start, end) + '\\nCourseData');
+  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
   const a1 = course.levels.find(level => level.id === 'A1');
   const unit9 = a1.units.find(unit => unit.id === 'a1_u9');
   const unit10 = a1.units.find(unit => unit.id === 'a1_u10');
   assert.match(unit9.grammar, /unidad después de la decena/i);
   assert.match(unit9.grammar, /dua puluh satu = 21/i);
-  const answers = unit10.exercises.filter(ex => ex.type === 'write').map(ex => ex.modelAnswer || '').join('\\n');
+  const answers = unit10.exercises.filter(ex => ex.type === 'write').map(ex => ex.modelAnswer || '').join('\n');
   assert.match(answers, /Ini kembaliannya, lima ribu rupiah/);
 });

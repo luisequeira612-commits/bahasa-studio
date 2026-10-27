@@ -236,7 +236,7 @@ test('SRS merge behavior deduplicates mirrored snapshots and preserves distinct 
   const end = html.indexOf('const SRSEngine =', start);
   assert.ok(start >= 0 && end > start, 'production SRS merge helper must exist');
   const helperSource = html.slice(start, end);
-  const mergeSrsRecords = vm.runInNewContext(helperSource + '\\nmergeSrsRecords');
+  const mergeSrsRecords = vm.runInNewContext(helperSource + String.fromCharCode(10) + 'mergeSrsRecords');
 
   const mirrored = {
     attempts: 4, correct: 3, incorrect: 1, lastReviewed: 100,

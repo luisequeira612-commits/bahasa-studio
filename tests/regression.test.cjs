@@ -601,7 +601,7 @@ test('A2–B2 course sections remain hidden until every A1 unit is completed', (
 test('A1 units 12–14 add routine, weather, and transport without duplicate vocabulary', () => {
   const courseStart = html.indexOf('const CourseData =');
   const courseEnd = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', courseStart);
-  const course = vm.runInNewContext('(() => {\\n' + html.slice(courseStart, courseEnd) + '\\nreturn CourseData;\\n})()');
+  const course = vm.runInNewContext('(() => {\n' + html.slice(courseStart, courseEnd) + '\nreturn CourseData;\n})()');
   const a1 = course.levels.find(level => level.id === 'A1');
   const added = ['a1_u12', 'a1_u13', 'a1_u14'].map(id => {
     const unit = a1.units.find(candidate => candidate.id === id);

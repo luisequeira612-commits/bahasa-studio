@@ -1383,6 +1383,32 @@
         };
 
         /* 4. MOTOR DE REPASO ESPACIADO SM-2 */
+        // Merge persisted SRS snapshots for duplicate headwords. Mirrored snapshots
+        // are counted once; distinct legacy states contribute their counters, while the
+        // most recently reviewed state supplies the scheduling fields.
+        function mergeSrsRecords(records, wordId) {
+            if (!records.length) return null;
+            const unique = new Map();
+            for (const item of records) {
+                const signature = JSON.stringify([
+                    item.attempts || 0, item.correct || 0, item.incorrect || 0,
+                    item.lastReviewed ?? null, item.interval || 0, item.repetition || 0,
+                    item.efactor ?? 2.5, item.nextReview ?? null
+                ]);
+                if (!unique.has(signature)) unique.set(signature, item);
+            }
+            const histories = [...unique.values()];
+            const latest = histories.reduce((best, item) =>
+                (item.lastReviewed || 0) > (best.lastReviewed || 0) ? item : best, histories[0]);
+            return {
+                ...latest,
+                wordId,
+                attempts: histories.reduce((sum, item) => sum + (item.attempts || 0), 0),
+                correct: histories.reduce((sum, item) => sum + (item.correct || 0), 0),
+                incorrect: histories.reduce((sum, item) => sum + (item.incorrect || 0), 0)
+            };
+        }
+
         const SRSEngine = {
             activeQueue: [],
             currentIndex: 0,
@@ -1449,29 +1475,7 @@
                 const ids = await this.getDuplicateWordIds(wordId);
                 const records = (await Promise.all(ids.map(id => DB.get('srs', id))))
                     .filter(item => item && typeof item === 'object');
-                if (!records.length) return null;
-
-                // Entries already mirrored by an earlier version must count as one history,
-                // while genuinely different legacy histories are combined.
-                const unique = new Map();
-                for (const item of records) {
-                    const signature = JSON.stringify([
-                        item.attempts || 0, item.correct || 0, item.incorrect || 0,
-                        item.lastReviewed ?? null, item.interval || 0, item.repetition || 0,
-                        item.efactor ?? 2.5, item.nextReview ?? null
-                    ]);
-                    if (!unique.has(signature)) unique.set(signature, item);
-                }
-                const histories = [...unique.values()];
-                const latest = histories.reduce((best, item) =>
-                    (item.lastReviewed || 0) > (best.lastReviewed || 0) ? item : best, histories[0]);
-                return {
-                    ...latest,
-                    wordId,
-                    attempts: histories.reduce((sum, item) => sum + (item.attempts || 0), 0),
-                    correct: histories.reduce((sum, item) => sum + (item.correct || 0), 0),
-                    incorrect: histories.reduce((sum, item) => sum + (item.incorrect || 0), 0)
-                };
+                return mergeSrsRecords(records, wordId);
             },
 
             async saveAttemptForDuplicateWords(wordId, item) {

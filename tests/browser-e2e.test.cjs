@@ -252,6 +252,17 @@ test('tap-to-translate shows a vocabulary meaning and example in the lesson', as
     assert.match(await page.locator('#wordMeaningExample').innerText(), /Saya makan\./);
     assert.match(await page.locator('#wordMeaningExample').innerText(), /Yo como\./);
 
+    // An unknown word must not leave the previous word's meaning visible.
+    await page.evaluate(() => {
+      const target = document.querySelector('#exerciseArea .card');
+      const unknown = document.createElement('span');
+      unknown.id = 'unknownTapTranslationWord';
+      unknown.textContent = 'zqvnotaword';
+      target.append(' ', unknown);
+    });
+    await page.locator('#unknownTapTranslationWord').click();
+    await page.waitForFunction(() => document.querySelector('#wordMeaningPopup')?.hidden === true);
+
     await page.locator('#wordMeaningClose').click();
     await page.waitForFunction(() => document.querySelector('#wordMeaningPopup')?.hidden === true);
   } finally {

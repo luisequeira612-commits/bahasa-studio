@@ -45,7 +45,7 @@ Cada unidad debe incluir vocabulario contextualizado, explicación gramatical br
 
 ## Límites y validación
 
-Los afijos indonesios son polisémicos y las formas derivadas pueden ser lexicalizadas. Antes de ampliar los ejercicios evaluados, validar ejemplos y traducciones con una referencia fiable o una revisión lingüística competente. No inferir que un afijo tiene un solo significado.
+Los afijos indonesios son polisémicos y las formas derivadas pueden ser lexicalizadas. Antes de ampliar los ejercicios evaluados, contrastar ejemplos y traducciones con referencias fiables y, cuando sea posible, con una revisión lingüística competente. Para U21–U23 se realizó una revisión documental con KBBI Daring y materiales BIPA A1; esto mejora la comprobación de significados y coherencia, pero no equivale a una validación de naturalidad por una persona hablante de indonesio. No inferir que un afijo tiene un solo significado. Véase `A1_COVERAGE_AND_NATURALNESS_AUDIT.md` para las fuentes y correcciones.
 
 No cambiar IndexedDB schema v1 ni backup format v3 para una ampliación curricular. Tras cada cambio, comprobar persistencia de progreso, SRS, importación/exportación y CI.
 

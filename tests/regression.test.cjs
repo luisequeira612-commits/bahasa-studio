@@ -1032,6 +1032,8 @@ test('U25 translation prompt matches its verb-only answer and U30 teaches the cl
   const repeat = u30.vocab.find(word => word.id === 'v449');
   assert.equal(repeat.idn, 'Ulangi');
   assert.match(repeat.esp, /imperativo/i);
+  const tracker = fs.readFileSync(path.join(root, 'docs/A1_VOCABULARY_AUDIT_TRACKER_U24_U32.csv'), 'utf8');
+  assert.match(tracker, /\"U30\",\"v449\",\"Ulangi\",\"Repite \/ repítalo \(imperativo\)\"/);
 });
 
 test('U24–U32 multiple-choice answers are semantically correct and not always in the first position', () => {

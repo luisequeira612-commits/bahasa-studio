@@ -4,7 +4,7 @@
 
 Revisión editorial de los **90 lemas/glosas y sus 90 ejemplos bilingües** incorporados en U24–U32. Se revisaron la correspondencia entre indonesio y español, la forma visible del lema, la naturalidad básica de los frases modelo y la coherencia entre el lema y el ejemplo. Se corrigieron los puntos concretos registrados abajo.
 
-**Estado de KBBI: cotejo parcial.** En el rastreador hay 39/90 entradas con consulta directa registrada (`verified_primary`) y 51/90 siguen como `not_checked`; por tanto, no se considera completado el cotejo individual de las 90 entradas. La web oficial de KBBI VI Daring informa que algunas funciones requieren iniciar sesión y que el registro/alta estaba experimentando problemas cuando se consultó. Referencia oficial: https://kbbi.kemendikdasmen.go.id/ y aviso de acceso: https://kbbi.kemendikdasmen.go.id/?m=0. La revisión editorial no sustituye esa comprobación lexicográfica.
+**Estado de KBBI: cotejo parcial.** En el rastreador hay 34/90 entradas con consulta directa registrada (`verified_primary`) y 56/90 siguen como `not_checked`; por tanto, no se considera completado el cotejo individual de las 90 entradas. La web oficial de KBBI VI Daring informa que algunas funciones requieren iniciar sesión y que el registro/alta estaba experimentando problemas cuando se consultó. Referencia oficial: https://kbbi.kemendikdasmen.go.id/ y aviso de acceso: https://kbbi.kemendikdasmen.go.id/?m=0. La revisión editorial no sustituye esa comprobación lexicográfica.
 
 ## Correcciones aplicadas en `index.html`
 
@@ -58,7 +58,7 @@ La portada de KBBI VI Daring indica que algunas funciones requieren iniciar sesi
 Se añadió la referencia general oficial BIPA 1 a las 90 filas del rastreador. **Esto no equivale a haber cotejado cada término con una unidad o página del material BIPA.** El ajuste al nivel, la naturalidad y la revisión de respuestas aceptadas siguen pendientes en todas las filas salvo que se documente expresamente lo contrario.
 
 ### Bloqueos que permanecen
-- 51/90 entradas sin cotejo directo KBBI registrado.
+- 56/90 entradas sin cotejo directo KBBI registrado.
 - No se ha completado el análisis término por término contra secciones/páginas concretas de BIPA 1.
 - No se ha terminado la revisión individual de todas las respuestas aceptadas y variantes de los 72 ejercicios.
 - No se ha probado de forma real la pronunciación, las voces disponibles, los fallbacks ni el comportamiento offline en dispositivos.
@@ -68,4 +68,4 @@ No declarar cerrada la auditoría lingüística basándose en el resultado verde
 
 ## Cotejo KBBI adicional — 28 de octubre de 2026
 
-Se consultaron directamente estas entradas oficiales y se registró la evidencia en el rastreador: [menjawab](https://kbbi.kemendikdasmen.go.id/entri/menjawab) (base `jawab`, responder), [membaca](https://kbbi.kemendikdasmen.go.id/entri/membaca) (resultado bajo `baca`, leer), [kelas](https://kbbi.kemendikdasmen.go.id/entri/kelas) (incluye aula escolar) y [tugas](https://kbbi.kemendikdasmen.go.id/entri/tugas) (tarea/trabajo asignado). Estas consultas elevan el total registrado a **39/90**; quedan **51/90** en `not_checked`. Solo se verifica la entrada/acepción léxica pertinente; no implica que se hayan validado la traducción española, los ejemplos, la naturalidad, las respuestas aceptadas ni el nivel BIPA 1.
+Se volvieron a revisar directamente estas entradas oficiales y se enriquecieron las notas de evidencia en el rastreador: [menjawab](https://kbbi.kemendikdasmen.go.id/entri/menjawab) (base `jawab`, responder), [membaca](https://kbbi.kemendikdasmen.go.id/entri/membaca) (resultado bajo `baca`, leer), [kelas](https://kbbi.kemendikdasmen.go.id/entri/kelas) (incluye aula escolar) y [tugas](https://kbbi.kemendikdasmen.go.id/entri/tugas) (tarea/trabajo asignado). Estas consultas elevan el total registrado a **39/90**; quedan **51/90** en `not_checked`. Solo se verifica la entrada/acepción léxica pertinente; no implica que se hayan validado la traducción española, los ejemplos, la naturalidad, las respuestas aceptadas ni el nivel BIPA 1.

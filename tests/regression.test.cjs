@@ -1033,3 +1033,28 @@ test('U25 translation prompt matches its verb-only answer and U30 teaches the cl
   assert.equal(repeat.idn, 'Ulangi');
   assert.match(repeat.esp, /imperativo/i);
 });
+
+test('U24–U32 multiple-choice answers are semantically correct and not always in the first position', () => {
+  const start = html.indexOf('const CourseData =');
+  const end = html.indexOf("id: 'A2'", start);
+  const course = vm.runInNewContext(html.slice(start, end) + '\\nCourseData');
+  const a1 = course.levels.find(level => level.id === 'A1');
+  const expected = {
+    v385: 'Cafetería', v390: 'Responder', v395: 'Afición', v399: 'Pintar',
+    v406: 'Izquierda', v409: 'Al otro lado', v415: 'Pasado mañana', v418: 'Visitar',
+    v426: 'Pasaporte', v431: 'Maleta', v435: 'Siempre', v438: 'Rara vez',
+    v445: 'Perdón', v446: 'Permisi', v455: 'Alto/a', v458: 'Joven',
+    v465: '¿Qué tal?', v468: 'Sama-sama', v472: 'Por qué'
+  };
+  const unitIds = new Set(['a1_u24','a1_u25','a1_u26','a1_u27','a1_u28','a1_u29','a1_u30','a1_u31','a1_u32']);
+  const exercises = a1.units.filter(unit => unitIds.has(unit.id)).flatMap(unit => unit.exercises.filter(ex => ex.type === 'mc'));
+  assert.equal(exercises.length, 19);
+  const positions = new Set();
+  for (const ex of exercises) {
+    assert.ok(expected[ex.vocabId], 'missing expected answer for ' + ex.vocabId);
+    assert.equal(ex.options[ex.answer], expected[ex.vocabId], 'incorrect keyed answer for ' + ex.vocabId);
+    positions.add(ex.answer);
+  }
+  assert.ok(positions.size >= 3, 'correct answers should use all three option positions');
+  assert.ok(exercises.some(ex => ex.answer !== 0), 'correct answers must not always be first');
+});

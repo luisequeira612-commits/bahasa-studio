@@ -252,7 +252,13 @@ test('tap-to-translate shows a vocabulary meaning and example in the lesson', as
     assert.match(await page.locator('#wordMeaningExample').innerText(), /Saya makan\./);
     assert.match(await page.locator('#wordMeaningExample').innerText(), /Yo como\./);
 
-    // An unknown word must not leave the previous word's meaning visible.
+    // The close control dismisses a known word's meaning.
+    await page.locator('#wordMeaningClose').click();
+    await page.waitForFunction(() => document.querySelector('#wordMeaningPopup')?.hidden === true);
+
+    // Reopen a known word, then ensure an unknown word dismisses stale meaning.
+    await page.locator('#exerciseArea .card strong').first().click();
+    await page.locator('#wordMeaningPopup:not([hidden])').waitFor();
     await page.evaluate(() => {
       const target = document.querySelector('#exerciseArea .card');
       const unknown = document.createElement('span');
@@ -261,9 +267,6 @@ test('tap-to-translate shows a vocabulary meaning and example in the lesson', as
       target.append(' ', unknown);
     });
     await page.locator('#unknownTapTranslationWord').click();
-    await page.waitForFunction(() => document.querySelector('#wordMeaningPopup')?.hidden === true);
-
-    await page.locator('#wordMeaningClose').click();
     await page.waitForFunction(() => document.querySelector('#wordMeaningPopup')?.hidden === true);
   } finally {
     await context.close();

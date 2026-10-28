@@ -25,6 +25,13 @@ test('PWA version is consistent across HTML, manifest and cache', () => {
   assert.doesNotMatch(html + serviceWorker + JSON.stringify(manifest), /3\.5\.1/);
 });
 
+test('Gemini remains optional and discloses possible costs and local key storage', () => {
+  assert.match(html, /Configuración Gemini API \(Opcional\)/);
+  assert.match(html, /no se garantiza que las llamadas a Gemini sean siempre gratuitas/);
+  assert.match(html, /Tu clave se guarda en el almacenamiento local de este dispositivo/);
+  assert.match(html, /Si no hay API Key o estamos offline, usar fallback gramatical local/);
+});
+
 test('A1 units 1 and 2 teach vocabulary and provide varied practice', () => {
   const start = html.indexOf('const CourseData =');
   const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);

@@ -1060,3 +1060,32 @@ test('U24–U32 multiple-choice answers are semantically correct and not always 
   assert.ok(positions.size >= 3, 'correct answers should use all three option positions');
   assert.ok(exercises.some(ex => ex.answer !== 0), 'correct answers must not always be first');
 });
+
+test('U24–U32 curriculum structure keeps vocabulary and exercise references internally consistent', () => {
+  const start = html.indexOf('const CourseData =');
+  const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
+  const course = vm.runInNewContext(html.slice(start, end) + '\\nCourseData');
+  const a1 = course.levels.find(level => level.id === 'A1');
+  for (let number = 24; number <= 32; number++) {
+    const unit = a1.units.find(item => item.id === 'a1_u' + number);
+    assert.ok(unit, 'missing A1 unit ' + number);
+    assert.equal(unit.vocab.length, 10, 'U' + number + ' should contain 10 vocabulary items');
+    assert.equal(unit.exercises.length, 8, 'U' + number + ' should contain 8 exercises');
+    const vocabIds = new Set(unit.vocab.map(item => item.id));
+    assert.equal(vocabIds.size, 10, 'U' + number + ' vocabulary IDs must be unique');
+    for (const exercise of unit.exercises) {
+      assert.ok(vocabIds.has(exercise.vocabId),
+        'U' + number + ' exercise must reference vocabulary in its own unit: ' + exercise.vocabId);
+      if (exercise.type === 'mc') {
+        assert.ok(Array.isArray(exercise.options) && exercise.options.length >= 2,
+          'multiple-choice exercise needs options: ' + exercise.vocabId);
+        assert.ok(Number.isInteger(exercise.answer) && exercise.answer >= 0 && exercise.answer < exercise.options.length,
+          'multiple-choice answer index must be valid: ' + exercise.vocabId);
+      }
+      if (exercise.type === 'order') {
+        assert.deepEqual([...exercise.words].sort(), [...exercise.correctOrder].sort(),
+          'word-order exercise must use each supplied token exactly once: ' + exercise.vocabId);
+      }
+    }
+  }
+});

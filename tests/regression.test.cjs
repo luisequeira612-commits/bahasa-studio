@@ -559,7 +559,7 @@ test('A1 units 9–11 cover numbers, prices, and time with linked exercises', ()
   assert.ok(courseStart >= 0 && courseEnd > courseStart, 'CourseData block must exist');
   const course = vm.runInNewContext('(() => {\n' + html.slice(courseStart, courseEnd) + '\nreturn CourseData;\n})()');
   const a1 = course.levels.find(level => level.id === 'A1');
-  assert.equal(a1.units.length, 20)
+  assert.equal(a1.units.length, 23)
 
   const added = ['a1_u9', 'a1_u10', 'a1_u11'].map(id => {
     const unit = a1.units.find(candidate => candidate.id === id);

@@ -5,7 +5,7 @@ Alcance: revisión estática del temario visible en `index.html` y contraste con
 
 ## Resultado ejecutivo
 
-A1 dispone de 20 unidades implementadas en esta rama, con práctica para presentaciones, negación, datos personales, familia, comida, ubicación, rutinas, números, precios, hora, clima, transporte, acciones, preferencias, preguntas básicas, demostrativos y posesión, pedidos en restaurantes y compras en mercados. **Todavía no debe declararse completo ni abrirse A2**: el plan prevé 32 unidades y las unidades 21–32 siguen pendientes; tener unidades y ejercicios no demuestra por sí solo comprensión oral, producción espontánea, retención acumulativa ni cobertura suficiente de situaciones cotidianas.
+A1 dispone de 23 unidades en la rama de expansión, con práctica para presentaciones, negación, datos personales, familia, comida, ubicación, rutinas, números, precios, hora, clima, transporte, acciones, preferencias y preguntas básicas. **Todavía no debe declararse completo ni abrirse A2**: tener unidades y ejercicios no demuestra por sí solo comprensión oral, producción espontánea, retención acumulativa ni cobertura suficiente de situaciones cotidianas.
 
 ## Cobertura revisada
 
@@ -26,11 +26,8 @@ A1 dispone de 20 unidades implementadas en esta rama, con práctica para present
 | Acciones cotidianas | U15 introduce `pergi`, `datang`, `duduk`, `lari`, `main` y `ambil`, junto con objetos básicos | Revisar naturalidad de los ejemplos y consolidar con verbos de unidades anteriores sin reintroducir vocabulario con IDs nuevos. |
 | Deseos, capacidad y gustos | U16 introduce `bisa`, `suka`, `ingin`, `boleh` y expresiones de intensidad; `mau` se reutiliza de expresiones previas | Practicar respuestas cortas afirmativas y negativas; evitar exigir estructuras o vocabulario aún no enseñados. |
 | Existencia, posesión y preguntas | U17 introduce `ada`, `punya`, `apa`, `siapa`, `kapan`, `kenapa`, `bagaimana` y `tidak ada` | Verificar naturalidad de preguntas/respuestas y añadir variaciones de diálogo usando vocabulario conocido. |
-| Demostrativos, ubicación y posesión | U18 incorpora `ini`, `itu`, `sini`, `situ`, `sana`, `kami`, `kita`, `mereka`, `Anda`, `milik` y `-nya` | Revisar con contexto el contraste `kami/kita`, el registro de `Anda` y los distintos usos de `-nya`; ampliar ejemplos de posesión más allá de frases modelo. |
-| Restaurante y pedidos | U19 practica platos, preferencias, `pesan`, `mau`, `enak`, `pedas`, `tanpa` y cómo pedir la cuenta | Validar la naturalidad y cortesía de pedidos reales, variantes para solicitar la cuenta y el uso regional de términos como `mi`/`mie` y `tagihan`; añadir un diálogo de varias intervenciones. |
-| Mercado y compras | U20 practica lugares de compra, frutas, precios, cantidades y `berbelanja` | Añadir preguntas y respuestas de precio en contexto, unidades de medida y diálogo comprador-vendedor; revisar que los fragmentos nominales se presenten como tales y no como frases completas. |
 | Comprensión auditiva y producción oral | Hay ejercicios etiquetados como escucha y tareas de escritura | Verificar en navegador que las actividades de escucha realmente ofrecen audio reproducible y añadir una evaluación oral guiada; el tipo de ejercicio por sí solo no prueba que el audio funcione. |
-| Repaso acumulativo | La evaluación piloto A1 contiene 19 ítems y 24 puntos. Incluye ítems explícitos de edad (U4), familia (U5), rutina (U12) y acciones, preferencias y preguntas (U15–U17), además de números, precios, hora, clima, transporte, ubicación y negación. No cubre de forma explícita todo el contenido de U18–U20. Es una muestra parcial y no validada; no demuestra por sí sola cobertura de todas las unidades | Añadir repasos espaciados también para U18–U20 y ampliar la prueba final con comprensión auditiva real y una microtarea productiva revisable. Las respuestas correctas de opción múltiple se distribuyen entre las tres posiciones; las tareas abiertas requieren tutor o evaluador competente, no autoevaluación fiable de un principiante. |
+| Repaso acumulativo | La evaluación piloto A1 contiene 19 ítems y 24 puntos. Incluye ítems explícitos de edad (U4), familia (U5), rutina (U12) y acciones, preferencias y preguntas (U15–U17), además de números, precios, hora, clima, transporte, ubicación, negación, comprensión e interacción. Es una muestra parcial y no validada; no demuestra por sí sola cobertura de todas las unidades | Añadir repasos de práctica espaciados entre bloques (U1–4, U5–8, U9–11, U12–14 y U15–17) y ampliar la prueba final con comprensión auditiva real y una microtarea productiva revisable. Las respuestas correctas de opción múltiple se distribuyen entre las tres posiciones; las tareas abiertas requieren tutor o evaluador competente, no autoevaluación fiable de un principiante. |
 
 ## Revisión de naturalidad y correcciones aplicadas
 
@@ -51,6 +48,26 @@ Estas notas son observaciones pedagógicas, no certificación de naturalidad por
 4. Ejecutar regresión, pruebas de navegador y evaluación; confirmar persistencia SRS y compatibilidad de backup.
 5. Mantener A2–B2 ocultos hasta cumplir estos criterios y realizar una revisión lingüística competente.
 
+## Contraste documental U21–U23 (2026-10-27)
+
+Se hizo una revisión estática de vocabulario, glosas en español y ejemplos, contrastando las entradas consultables del diccionario oficial KBBI Daring y materiales didácticos BIPA A1 publicados por Badan Bahasa. Referencias:
+
+- [KBBI Daring — diccionario oficial](https://kbbi.kemendikdasmen.go.id/), administrado por Badan Pengembangan dan Pembinaan Bahasa.
+- [Entrada KBBI: kepala](https://kbbi.kemendikdasmen.go.id/entri/kepala), para contrastar el significado básico de una palabra de U21.
+- [Entrada KBBI: jaket](https://kbbi.kemendikdasmen.go.id/entri/jaket), que define *jaket* como prenda exterior; no como término general para ropa ni como sinónimo de camisa.
+- [Material BIPA A1 del repositorio oficial](https://repositori.kemendikdasmen.go.id/16466/), referencia de progresión didáctica y habilidades para aprendices iniciales.
+
+### Correcciones aplicadas
+
+- U21: se separó explícitamente el sentido de *Saya sakit* («Estoy enfermo/a») de *Saya sakit kepala* («Me duele la cabeza») para no sugerir que *sakit* por sí solo significa «me duele» sin contexto.
+- U22: se corrigió una explicación errónea que equiparaba *jaket* con ropa/camisa. Se mejoraron ejemplos y glosas de color para que expresen frases completas y correspondan entre indonesio y español.
+- U23: se corrigió la concordancia de «ese tejado» y se hicieron más explícitas algunas relaciones de lugar con *ada*, sin cambiar IDs de vocabulario ni añadir requisitos léxicos nuevos.
+
+### Alcance y límites
+
+Esta es una revisión documental y de consistencia, no una certificación de naturalidad por una persona hablante de indonesio. KBBI ayuda a comprobar significados y ortografía, pero no confirma por sí solo que cada frase sea la opción más idiomática en todos los contextos. Los materiales BIPA sirven como referencia pedagógica, no como prueba de que cada ejemplo de esta app haya sido aprobado por sus autores. Las expresiones cotidianas, variación regional, pragmática y calidad real del audio siguen siendo puntos de revisión pendiente.
+
+
 ## Compatibilidad
 
 La corrección de IDs canónicos conserva IndexedDB schema v1 y backup format v3. Se mantiene un mapa de compatibilidad para que los registros SRS antiguos sigan asociados a las palabras canónicas; no se realiza una migración destructiva. La versión de la aplicación pasa a 3.7.1 para precargar la evaluación sin conexión.
@@ -58,4 +75,9 @@ La corrección de IDs canónicos conserva IndexedDB schema v1 y backup format v3
 
 ## Expansión posterior a U17
 
-La ruta curricular prevé 32 unidades A1. Esta rama incorpora U18–U20: demostrativos y posesión, situaciones de restaurante y compras en el mercado. La cobertura sigue incompleta: U21–U32 aún requieren implementación y revisión; no se declara A1 validado. Las nuevas unidades tienen pruebas estructurales y de regresión, pero esas pruebas no sustituyen una validación lingüística competente. Sin acceso a un hablante nativo, los ejemplos se tratan como revisión interna provisional y los riesgos pendientes quedan documentados, no como una certificación de naturalidad.
+La ruta curricular prevé 32 unidades A1, no 17. La tanda U18–U20 introduce demostrativos y posesión, situaciones de restaurante y compras en el mercado. La cobertura sigue incompleta: U24–U32 aún requieren implementación y revisión; no se declara A1 validado. La nueva tanda debe pasar CI y revisión de naturalidad antes de integrarse a `main`.
+
+
+## Expansión U21–U23
+
+La quinta tanda incorpora vocabulario de cuerpo y salud (U21), ropa y colores (U22), y habitaciones y objetos de la casa (U23). Cada unidad incluye 15 ejercicios de varios tipos, escucha y producción guiada. Esta cobertura curricular no sustituye una revisión de naturalidad por un hablante competente ni valida por sí sola la comprensión oral real. A1 continúa incompleto; quedan pendientes U24–U32.

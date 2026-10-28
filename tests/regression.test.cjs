@@ -559,7 +559,7 @@ test('A1 units 9–11 cover numbers, prices, and time with linked exercises', ()
   assert.ok(courseStart >= 0 && courseEnd > courseStart, 'CourseData block must exist');
   const course = vm.runInNewContext('(() => {\n' + html.slice(courseStart, courseEnd) + '\nreturn CourseData;\n})()');
   const a1 = course.levels.find(level => level.id === 'A1');
-  assert.equal(a1.units.length, 20)
+  assert.equal(a1.units.length, 23)
 
   const added = ['a1_u9', 'a1_u10', 'a1_u11'].map(id => {
     const unit = a1.units.find(candidate => candidate.id === id);
@@ -857,6 +857,30 @@ test('A1 units 18–20 are present and have varied, linked practice', () => {
   const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
   const a1 = course.levels.find(level => level.id === 'A1');
   for (const id of ['a1_u18', 'a1_u19', 'a1_u20']) {
+    const unit = a1.units.find(item => item.id === id);
+    assert.ok(unit, id + ' should exist');
+    assert.ok(unit.exercises.length >= 14 && unit.exercises.length <= 22, id + ' should have 14–22 authored exercises');
+    assert.ok(unit.vocab.length >= 8, id + ' should teach at least eight vocabulary items');
+    const ids = new Set(unit.vocab.map(word => word.id));
+    assert.equal(ids.size, unit.vocab.length, id + ' has duplicate vocabulary IDs');
+    assert.ok(new Set(unit.exercises.map(ex => ex.type)).size >= 4, id + ' should have at least four exercise types');
+    assert.ok(unit.exercises.filter(ex => ex.type === 'listen').length >= 2, id + ' should include listening practice');
+    assert.ok(unit.exercises.filter(ex => ex.type === 'write').length >= 2, id + ' should include guided production');
+    for (const ex of unit.exercises) {
+      assert.ok(ids.has(ex.vocabId), id + ' has an exercise linked to vocabulary not taught in that unit');
+      if (ex.type === 'mc') assert.ok(Number.isInteger(ex.answer) && ex.answer >= 0 && ex.answer < ex.options.length);
+      if (ex.type === 'order') assert.equal(JSON.stringify([...ex.words].sort()), JSON.stringify([...ex.correctOrder].sort()));
+    }
+  }
+});
+
+test('A1 units 21–23 cover health, clothing, and home with linked varied practice', () => {
+  const start = html.indexOf('const CourseData =');
+  const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
+  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
+  const a1 = course.levels.find(level => level.id === 'A1');
+  assert.equal(a1.units.length, 23);
+  for (const id of ['a1_u21', 'a1_u22', 'a1_u23']) {
     const unit = a1.units.find(item => item.id === id);
     assert.ok(unit, id + ' should exist');
     assert.ok(unit.exercises.length >= 14 && unit.exercises.length <= 22, id + ' should have 14–22 authored exercises');

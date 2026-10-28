@@ -2,7 +2,7 @@
 
 ## A1: criterios de finalización
 
-El plan curricular define 32 unidades A1. La implementación de la rama ahora cubre las unidades 1–20; las unidades 21–32 siguen pendientes y A1 no se considera terminado. Las unidades 1–8 cubren saludo y pronombres, frases/preguntas/negación, presentación y origen, números/edad, familia, comida, ubicación y tiempo/rutina. Las unidades 9–11 amplían los números del 11 al 100, dinero y precios, y la hora y las partes del día. Las unidades 12–14 incorporan rutina diaria, clima y transporte. Las unidades 15–17 añaden verbos de acción frecuentes, deseos/capacidad/preferencias y preguntas básicas con ada/punya. La unidad 8 conserva su función integradora; se añadirán repasos acumulativos al continuar la expansión. La versión actual incorpora más vocabulario y práctica, pero la calidad final debe evaluarse por la capacidad de producir frases nuevas y resolver situaciones cotidianas, no solo por el número de ejercicios.
+El plan curricular define 32 unidades A1. La implementación de la rama de expansión cubre las unidades 1–23; las unidades 24–32 siguen pendientes y A1 no se considera terminado. Las unidades 1–8 cubren saludo y pronombres, frases/preguntas/negación, presentación y origen, números/edad, familia, comida, ubicación y tiempo/rutina. Las unidades 9–11 amplían los números del 11 al 100, dinero y precios, y la hora y las partes del día. Las unidades 12–14 incorporan rutina diaria, clima y transporte. Las unidades 15–17 añaden verbos de acción frecuentes, deseos/capacidad/preferencias y preguntas básicas con ada/punya. La unidad 8 conserva su función integradora; se añadirán repasos acumulativos al continuar la expansión. La versión actual incorpora más vocabulario y práctica, pero la calidad final debe evaluarse por la capacidad de producir frases nuevas y resolver situaciones cotidianas, no solo por el número de ejercicios.
 
 Objetivos de salida:
 - Presentarse y preguntar por datos personales.
@@ -13,7 +13,7 @@ Objetivos de salida:
 
 ## Expansión de A1 por tandas
 
-La ampliación se realiza en PR pequeñas para revisar contenido y evitar duplicados. La primera tanda añade las unidades 9–11 (números del 11 al 100, dinero y precios, hora y partes del día). La segunda tanda añade las unidades 12–14 (rutina diaria, clima y transporte). La tercera tanda añade las unidades 15–17 (acciones cotidianas, querer/poder/gustar y tener/haber con preguntas básicas). La cuarta tanda añade las unidades 18–20 (demostrativos y posesión, restaurante, mercado y compras). Las tandas usan 14–22 ejercicios por unidad y evitan asignar IDs nuevos a vocabulario ya enseñado. La incorporación de U15–17 no declara A1 terminado: quedan por auditar la cobertura completa del temario guiado, la progresión de vocabulario, los repasos acumulativos y la comprensión/producción oral. A2–B2 permanecen ocultos en la vista del curso hasta completar todas las unidades A1.
+La ampliación se realiza en PR pequeñas para revisar contenido y evitar duplicados. La primera tanda añade las unidades 9–11 (números del 11 al 100, dinero y precios, hora y partes del día). La segunda tanda añade las unidades 12–14 (rutina diaria, clima y transporte). La tercera tanda añade las unidades 15–17 (acciones cotidianas, querer/poder/gustar y tener/haber con preguntas básicas). La cuarta tanda añade las unidades 18–20 (demostrativos y posesión, restaurante, mercado y compras). La quinta tanda añade las unidades 21–23 (cuerpo y salud, ropa y colores, habitaciones y objetos de la casa). Las tandas usan 14–22 ejercicios por unidad y evitan asignar IDs nuevos a vocabulario ya enseñado. La incorporación de U21–23 no declara A1 terminado: quedan por auditar la cobertura completa del temario guiado, la progresión de vocabulario, los repasos acumulativos y la comprensión/producción oral. A2–B2 permanecen ocultos en la vista del curso hasta completar las 32 unidades A1.
 
 ## Progresión de afijos
 
@@ -45,7 +45,7 @@ Cada unidad debe incluir vocabulario contextualizado, explicación gramatical br
 
 ## Límites y validación
 
-Los afijos indonesios son polisémicos y las formas derivadas pueden ser lexicalizadas. Antes de ampliar los ejercicios evaluados, validar ejemplos y traducciones con una referencia fiable o una revisión lingüística competente. No inferir que un afijo tiene un solo significado.
+Los afijos indonesios son polisémicos y las formas derivadas pueden ser lexicalizadas. Antes de ampliar los ejercicios evaluados, contrastar ejemplos y traducciones con referencias fiables y, cuando sea posible, con una revisión lingüística competente. Para U21–U23 se realizó una revisión documental con KBBI Daring y materiales BIPA A1; esto mejora la comprobación de significados y coherencia, pero no equivale a una validación de naturalidad por una persona hablante de indonesio. No inferir que un afijo tiene un solo significado. Véase `A1_COVERAGE_AND_NATURALNESS_AUDIT.md` para las fuentes y correcciones.
 
 No cambiar IndexedDB schema v1 ni backup format v3 para una ampliación curricular. Tras cada cambio, comprobar persistencia de progreso, SRS, importación/exportación y CI.
 

@@ -44,13 +44,31 @@ node scripts/audit-kbbi-pending.mjs \
   --timeout-ms 10000
 ```
 
-Replace the example URL with an actual endpoint you have verified. Do not
-paste secrets or API keys into a committed file or shell history. If the
-provider requires a key, keep it out of the repository and adapt the script
-locally; the default workflow needs no key. Use `--limit 5` to test a small
-sample before running all pending terms. HTTP errors and timeouts are recorded
-instead of aborting the whole batch. Responses are clipped to 12,000 characters
-per entry to keep the review file manageable.
+A documented public candidate is the `raf555/kbbi-api` service. Its README
+shows the endpoint pattern `https://kbbi.raf555.dev/api/v1/entry/{word}` and
+sample JSON fields such as `lemma`, `baseWord`, and `definitions`. The
+maintainer notes that dictionary data belongs to the Indonesian language
+authority; check current terms before reuse. The hosted service is third-party
+and may be unavailable or change, so treat this as a trial—not a guarantee of
+uptime or permission to redistribute its data.
+
+Test just five pending terms first:
+
+```sh
+node scripts/audit-kbbi-pending.mjs \
+  --api-template 'https://kbbi.raf555.dev/api/v1/entry/{word}' \
+  --limit 5 \
+  --delay-ms 1200 \
+  --output /tmp/kbbi-api-smoke-test.json
+```
+
+Inspect each `http_status`, `fetch_error`, and `response_excerpt` in the
+output. A failed request should be recorded as a failed source attempt, not as
+evidence that the word is absent. Do not run all 56 until the five-term sample
+works and its responses are useful. Do not paste secrets or API keys into a
+committed file or shell history. HTTP errors and timeouts are recorded instead
+of aborting the whole batch. Responses are clipped to 12,000 characters per
+entry to keep the review file manageable.
 
 The script intentionally does **not** assume one provider's JSON schema and
 does not treat HTTP 200 as a successful dictionary match. API responses are

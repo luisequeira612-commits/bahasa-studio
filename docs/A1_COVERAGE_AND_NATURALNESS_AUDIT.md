@@ -5,7 +5,7 @@ Alcance: revisión estática del temario visible en `index.html` y contraste con
 
 ## Resultado ejecutivo
 
-A1 dispone de 17 unidades en la rama de expansión, con práctica para presentaciones, negación, datos personales, familia, comida, ubicación, rutinas, números, precios, hora, clima, transporte, acciones, preferencias y preguntas básicas. **Todavía no debe declararse completo ni abrirse A2**: tener unidades y ejercicios no demuestra por sí solo comprensión oral, producción espontánea, retención acumulativa ni cobertura suficiente de situaciones cotidianas.
+A1 dispone de 23 unidades en la rama de expansión, con práctica para presentaciones, negación, datos personales, familia, comida, ubicación, rutinas, números, precios, hora, clima, transporte, acciones, preferencias y preguntas básicas. **Todavía no debe declararse completo ni abrirse A2**: tener unidades y ejercicios no demuestra por sí solo comprensión oral, producción espontánea, retención acumulativa ni cobertura suficiente de situaciones cotidianas.
 
 ## Cobertura revisada
 
@@ -55,4 +55,9 @@ La corrección de IDs canónicos conserva IndexedDB schema v1 y backup format v3
 
 ## Expansión posterior a U17
 
-La ruta curricular prevé 32 unidades A1, no 17. La tanda U18–U20 introduce demostrativos y posesión, situaciones de restaurante y compras en el mercado. La cobertura sigue incompleta: U21–U32 aún requieren implementación y revisión; no se declara A1 validado. La nueva tanda debe pasar CI y revisión de naturalidad antes de integrarse a `main`.
+La ruta curricular prevé 32 unidades A1, no 17. La tanda U18–U20 introduce demostrativos y posesión, situaciones de restaurante y compras en el mercado. La cobertura sigue incompleta: U24–U32 aún requieren implementación y revisión; no se declara A1 validado. La nueva tanda debe pasar CI y revisión de naturalidad antes de integrarse a `main`.
+
+
+## Expansión U21–U23
+
+La quinta tanda incorpora vocabulario de cuerpo y salud (U21), ropa y colores (U22), y habitaciones y objetos de la casa (U23). Cada unidad incluye 15 ejercicios de varios tipos, escucha y producción guiada. Esta cobertura curricular no sustituye una revisión de naturalidad por un hablante competente ni valida por sí sola la comprensión oral real. A1 continúa incompleto; quedan pendientes U24–U32.

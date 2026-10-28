@@ -854,7 +854,7 @@ test('A1 examples teach the time marker and avoid untaught vocabulary in require
 test('A1 units 18–20 are present and have varied, linked practice', () => {
   const start = html.indexOf('const CourseData =');
   const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
-  const course = vm.runInNewContext(html.slice(start, end) + '\\nCourseData');
+  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
   const a1 = course.levels.find(level => level.id === 'A1');
   for (const id of ['a1_u18', 'a1_u19', 'a1_u20']) {
     const unit = a1.units.find(item => item.id === id);
@@ -869,7 +869,7 @@ test('A1 units 18–20 are present and have varied, linked practice', () => {
     for (const ex of unit.exercises) {
       assert.ok(ids.has(ex.vocabId), id + ' has an exercise linked to vocabulary not taught in that unit');
       if (ex.type === 'mc') assert.ok(Number.isInteger(ex.answer) && ex.answer >= 0 && ex.answer < ex.options.length);
-      if (ex.type === 'order') assert.deepEqual([...ex.words].sort(), [...ex.correctOrder].sort());
+      if (ex.type === 'order') assert.equal(JSON.stringify([...ex.words].sort()), JSON.stringify([...ex.correctOrder].sort()));
     }
   }
 });

@@ -74,7 +74,8 @@ test('all authored A1 units have linked vocabulary and structurally valid exerci
   assert.ok(start >= 0 && end > start, 'CourseData block must exist');
   const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
   const a1 = course.levels.find(level => level.id === 'A1');
-  assert.ok(a1 && a1.units.length >= 8, 'A1 should contain its eight authored units');
+  assert.ok(a1, 'A1 level must exist');
+  assert.equal(a1.units.length, 32, 'A1 should contain exactly 32 authored units');
 
   for (const unit of a1.units) {
     assert.ok(unit.vocab.length >= 5, unit.id + ' should teach at least five vocabulary items');
@@ -559,7 +560,7 @@ test('A1 units 9–11 cover numbers, prices, and time with linked exercises', ()
   assert.ok(courseStart >= 0 && courseEnd > courseStart, 'CourseData block must exist');
   const course = vm.runInNewContext('(() => {\n' + html.slice(courseStart, courseEnd) + '\nreturn CourseData;\n})()');
   const a1 = course.levels.find(level => level.id === 'A1');
-  assert.equal(a1.units.length, 23)
+  assert.equal(a1.units.length, 32)
 
   const added = ['a1_u9', 'a1_u10', 'a1_u11'].map(id => {
     const unit = a1.units.find(candidate => candidate.id === id);
@@ -880,7 +881,7 @@ test('A1 units 21–23 cover health, clothing, and home with linked varied pract
   const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
   const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
   const a1 = course.levels.find(level => level.id === 'A1');
-  assert.equal(a1.units.length, 23);
+  assert.equal(a1.units.length, 32);
   for (const id of ['a1_u21', 'a1_u22', 'a1_u23']) {
     const unit = a1.units.find(item => item.id === id);
     assert.ok(unit, id + ' should exist');
@@ -897,4 +898,31 @@ test('A1 units 21–23 cover health, clothing, and home with linked varied pract
       if (ex.type === 'order') assert.equal(JSON.stringify([...ex.words].sort()), JSON.stringify([...ex.correctOrder].sort()));
     }
   }
+});
+
+
+test('A1 units 24–32 extend the course to 32 units with linked beginner practice', () => {
+  const start = html.indexOf('const CourseData =');
+  const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
+  const course = vm.runInNewContext(html.slice(start, end) + '\\nCourseData');
+  const a1 = course.levels.find(level => level.id === 'A1');
+  assert.equal(a1.units.length, 32);
+  const ids = ['a1_u24', 'a1_u25', 'a1_u26', 'a1_u27', 'a1_u28', 'a1_u29', 'a1_u30', 'a1_u31', 'a1_u32'];
+  for (const id of ids) {
+    const unit = a1.units.find(item => item.id === id);
+    assert.ok(unit, 'missing unit ' + id);
+    assert.ok(unit.vocab.length >= 8, id + ' should teach at least eight vocabulary items');
+    assert.ok(unit.exercises.length >= 8, id + ' should have authored practice');
+    assert.ok(unit.exercises.some(ex => ex.type === 'write'), id + ' should include guided writing');
+    assert.ok(unit.exercises.some(ex => ex.type === 'listen'), id + ' should include listening practice');
+    assert.ok(new Set(unit.exercises.map(ex => ex.type)).size >= 4, id + ' should include varied exercise types');
+    const vocabIds = new Set(unit.vocab.map(word => word.id));
+    assert.equal(vocabIds.size, unit.vocab.length, id + ' has duplicate vocabulary IDs');
+    for (const ex of unit.exercises) {
+      assert.ok(vocabIds.has(ex.vocabId), id + ' has an exercise linked to unknown vocabulary');
+      if (ex.type === 'mc') assert.ok(Number.isInteger(ex.answer) && ex.answer >= 0 && ex.answer < ex.options.length);
+      if (ex.type === 'order') assert.equal(JSON.stringify([...ex.words].sort()), JSON.stringify([...ex.correctOrder].sort()), id + ' has mismatched order tokens');
+    }
+  }
+  assert.match(html, /0% · 0\\/32 unidades/);
 });

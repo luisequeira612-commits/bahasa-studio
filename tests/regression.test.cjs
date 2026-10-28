@@ -953,10 +953,21 @@ test('U24–U32 language audit tracker covers all 90 terms without falsely claim
   assert.equal(csv.length, 91, 'expected one header plus 90 vocabulary rows');
   assert.match(csv[0], /vocab_id/);
   assert.match(csv[0], /KBBI_status/);
-  const ids = csv.slice(1).map(line => line.match(/"(v\d+)"/)?.[1]);
+  const rows = csv.slice(1).map(line => {
+    const columns = line.split('","').map(value => value.replace(/^"|"$/g, ''));
+    return { id: columns[1], status: columns[8], url: columns[9], date: columns[10] };
+  });
+  const ids = rows.map(row => row.id);
   assert.equal(new Set(ids).size, 90, 'vocabulary IDs must be unique in the tracker');
   for (let id = 385; id <= 474; id++) assert.ok(ids.includes('v' + id), 'missing tracker ID v' + id);
-  assert.ok(csv.slice(1).every(line => line.includes('"not_checked"')), 'unverified KBBI rows must remain explicitly unverified');
+  for (const row of rows) {
+    assert.ok(['not_checked', 'verified_primary', 'verified_secondary', 'needs_review', 'blocked_access'].includes(row.status),
+      row.id + ' must use a documented KBBI status');
+    if (row.status === 'verified_primary') {
+      assert.match(row.url, /^https:\/\/kbbi\.kemendikdasmen\.go\.id\/entri\//, row.id + ' needs a direct KBBI entry URL');
+      assert.match(row.date, /^\d{4}-\d{2}-\d{2}$/, row.id + ' needs a KBBI check date');
+    }
+  }
   assert.match(fs.readFileSync(protocolPath, 'utf8'), /KBBI VI Daring/);
   assert.match(fs.readFileSync(protocolPath, 'utf8'), /BIPA 1/);
   assert.match(fs.readFileSync(editorialPath, 'utf8'), /no certificación lingüística/);

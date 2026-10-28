@@ -143,7 +143,7 @@
             </div>
             <div style="margin-top:10px;">
                 <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:5px;">
-                    <span>Avance de A1</span><strong id="courseProgressText">0% · 0/14 unidades</strong>
+                    <span>Avance de A1</span><strong id="courseProgressText">0% · 0/20 unidades</strong>
                 </div>
                 <div class="progress-bar" role="progressbar" aria-label="Progreso del nivel A1" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
                     <div id="courseProgressFill" class="progress-fill" style="width:0%;"></div>
@@ -2811,7 +2811,8 @@
                                 { id: 'v315', idn: 'Kami', esp: 'Nosotros/as (sin incluir al oyente)', ex: 'Kami dari Indonesia.', exEsp: 'Nosotros somos de Indonesia (sin incluirte).' },
                                 { id: 'v316', idn: 'Kita', esp: 'Nosotros/as (incluyendo al oyente)', ex: 'Kita belajar bersama.', exEsp: 'Aprendemos juntos.' },
                                 { id: 'v317', idn: 'Mereka', esp: 'Ellos / ellas', ex: 'Mereka di sini.', exEsp: 'Ellos están aquí.' },
-                                { id: 'v318', idn: 'Anda', esp: 'Usted / ustedes (formal)', ex: 'Anda dari mana?', exEsp: '¿De dónde es usted?' },
+                                { id: 'v318', idn: 'Anda', esp: 'Usted / ustedes (formal)', ex: 'Anda di sini.', exEsp: 'Usted está aquí.' },
+                                { id: 'v348', idn: 'Mana', esp: 'Dónde / cuál (según contexto)', ex: 'Anda dari mana?', exEsp: '¿De dónde es usted?' },
                                 { id: 'v319', idn: 'Milik', esp: 'Pertenencia / propiedad de', ex: 'Ini milik saya.', exEsp: 'Esto es mío.' },
                                 { id: 'v320', idn: '-nya', esp: 'Su / de él, ella o ello (según contexto)', ex: 'Namanya Ana.', exEsp: 'Su nombre es Ana.' }
                             ],
@@ -2851,7 +2852,8 @@
                                 { id: 'v330', idn: 'Enak', esp: 'Rico / sabroso', ex: 'Nasi goreng ini enak.', exEsp: 'Este arroz frito está rico.' },
                                 { id: 'v331', idn: 'Tagihan', esp: 'Cuenta (para pagar)', ex: 'Saya minta tagihan.', exEsp: 'Pido la cuenta.' },
                                 { id: 'v332', idn: 'Pedas', esp: 'Picante', ex: 'Saya suka makanan pedas.', exEsp: 'Me gusta la comida picante.' },
-                                { id: 'v333', idn: 'Tanpa', esp: 'Sin', ex: 'Tanpa cabai, ya.', exEsp: 'Sin chile, por favor.' }
+                                { id: 'v333', idn: 'Tanpa', esp: 'Sin', ex: 'Tanpa cabai, ya.', exEsp: 'Sin chile, por favor.' },
+                                { id: 'v347', idn: 'Cabai', esp: 'Chile / ají', ex: 'Tanpa cabai, ya.', exEsp: 'Sin chile, por favor.' }
                             ],
                             exercises: [
                                 { vocabId: 'v321', type: 'mc', prompt: '¿Qué significa «restoran»?', options: ['Restaurante', 'Mercado', 'Cuenta'], answer: 0, explanation: 'Restoran significa restaurante.' },
@@ -2877,14 +2879,14 @@
                             desc: 'Preguntar precios, comprar productos sencillos y hablar de cantidades.',
                             grammar: 'Puedes usar Saya mau beli ... (Quiero comprar ...) y Berapa? (¿Cuánto/cuántos?). Murah significa barato y mahal, caro. Para cantidades, satu kilo significa un kilo. Practica precios y compras con frases breves; el precio real depende del lugar y del momento.',
                             vocab: [
-                                { id: 'v334', idn: 'Pasar', esp: 'Mercado', ex: 'Saya pergi ke pasar.', exEsp: 'Voy al mercado.' },
-                                { id: 'v335', idn: 'Toko', esp: 'Tienda', ex: 'Toko itu besar.', exEsp: 'Esa tienda es grande.' },
+                                { id: 'v334', idn: 'Pasar', esp: 'Mercado', ex: 'Saya di pasar.', exEsp: 'Estoy en el mercado.' },
+                                { id: 'v335', idn: 'Toko', esp: 'Tienda', ex: 'Saya di toko.', exEsp: 'Estoy en la tienda.' },
                                 { id: 'v336', idn: 'Buah', esp: 'Fruta', ex: 'Saya membeli buah.', exEsp: 'Compro fruta.' },
                                 { id: 'v337', idn: 'Apel', esp: 'Manzana', ex: 'Saya mau apel.', exEsp: 'Quiero manzanas.' },
                                 { id: 'v338', idn: 'Pisang', esp: 'Plátano / banana', ex: 'Saya beli pisang.', exEsp: 'Compro plátanos.' },
                                 { id: 'v339', idn: 'Murah', esp: 'Barato/a', ex: 'Ini murah.', exEsp: 'Esto es barato.' },
                                 { id: 'v340', idn: 'Mahal', esp: 'Caro/a', ex: 'Itu mahal.', exEsp: 'Eso es caro.' },
-                                { id: 'v341', idn: 'Beli', esp: 'Comprar', ex: 'Saya mau beli apel.', exEsp: 'Quiero comprar manzanas.' },
+                                { id: 'v341', idn: 'Membeli', esp: 'Comprar', ex: 'Saya mau membeli apel.', exEsp: 'Quiero comprar manzanas.' },
                                 { id: 'v342', idn: 'Uang', esp: 'Dinero', ex: 'Saya punya uang.', exEsp: 'Tengo dinero.' },
                                 { id: 'v343', idn: 'Kilo', esp: 'Kilo', ex: 'Satu kilo pisang.', exEsp: 'Un kilo de plátanos.' },
                                 { id: 'v344', idn: 'Satu kilo', esp: 'Un kilo', ex: 'Saya mau satu kilo apel.', exEsp: 'Quiero un kilo de manzanas.' },
@@ -2899,13 +2901,13 @@
                                 { vocabId: 'v338', type: 'mc', prompt: '¿Qué significa «pisang»?', options: ['Manzana', 'Plátano / banana', 'Bolsa'], answer: 1, explanation: 'Pisang significa plátano o banana.' },
                                 { vocabId: 'v339', type: 'translate_es_id', prompt: 'Traduce: barato/a', answer: 'Murah', explanation: 'Murah significa barato/a.' },
                                 { vocabId: 'v340', type: 'mc', prompt: '¿Qué significa «mahal»?', options: ['Caro/a', 'Barato/a', 'Fruta'], answer: 0, explanation: 'Mahal significa caro/a.' },
-                                { vocabId: 'v341', type: 'listen', prompt: 'Escucha y escribe la palabra.', answer: 'Beli', explanation: 'Beli significa comprar.' },
+                                { vocabId: 'v341', type: 'listen', prompt: 'Escucha y escribe la palabra.', answer: 'Membeli', explanation: 'Membeli significa comprar.' },
                                 { vocabId: 'v342', type: 'translate_es_id', prompt: 'Traduce: dinero', answer: 'Uang', explanation: 'Uang significa dinero.' },
                                 { vocabId: 'v343', type: 'mc', prompt: '¿Qué significa «kilo»?', options: ['Kilo', 'Bolsa', 'Mercado'], answer: 0, explanation: 'Kilo significa kilo.' },
                                 { vocabId: 'v344', type: 'order', prompt: 'Ordena: Quiero un kilo de manzanas.', words: ['apel', 'mau', 'Saya', 'satu', 'kilo'], correctOrder: ['Saya', 'mau', 'satu', 'kilo', 'apel'], explanation: 'Saya mau satu kilo apel significa «Quiero un kilo de manzanas».' },
                                 { vocabId: 'v345', type: 'translate_es_id', prompt: 'Traduce: bolsa', answer: 'Kantong', explanation: 'Kantong significa bolsa.' },
                                 { vocabId: 'v346', type: 'mc', prompt: '¿Qué significa «berbelanja»?', options: ['Hacer compras', 'Comer', 'Dormir'], answer: 0, explanation: 'Berbelanja significa hacer compras.' },
-                                { vocabId: 'v341', type: 'write', prompt: 'Escribe una frase sobre algo que quieres comprar.', hint: 'Usa Saya mau beli apel o Saya mau beli pisang.', modelAnswer: 'Saya mau beli apel.', explanation: 'Ejemplo: Saya mau beli apel. — Quiero comprar manzanas.' },
+                                { vocabId: 'v341', type: 'write', prompt: 'Escribe una frase sobre algo que quieres comprar.', hint: 'Usa Saya mau membeli apel o Saya mau membeli pisang.', modelAnswer: 'Saya mau membeli apel.', explanation: 'Ejemplo: Saya mau beli apel. — Quiero comprar manzanas.' },
                                 { vocabId: 'v339', type: 'write', prompt: 'Escribe una frase para describir un precio.', hint: 'Usa Ini murah o Itu mahal.', modelAnswer: 'Ini murah.', explanation: 'Ini murah significa «Esto es barato».' }
                             ]
                         },

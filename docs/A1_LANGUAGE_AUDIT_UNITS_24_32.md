@@ -4,7 +4,7 @@
 
 Revisión editorial de los **90 lemas/glosas y sus 90 ejemplos bilingües** incorporados en U24–U32. Se revisaron la correspondencia entre indonesio y español, la forma visible del lema, la naturalidad básica de los frases modelo y la coherencia entre el lema y el ejemplo. Se corrigieron los puntos concretos registrados abajo.
 
-**Estado de KBBI: pendiente de cotejo individual.** No se marca ningún lema como «verificado en KBBI»: la web oficial de KBBI VI Daring informa que la búsqueda completa requiere iniciar sesión y que el registro/alta estaba experimentando problemas cuando se consultó. Referencia oficial: https://kbbi.kemendikdasmen.go.id/ y aviso de acceso: https://kbbi.kemendikdasmen.go.id/?m=0. La revisión editorial no sustituye esa comprobación lexicográfica.
+**Estado de KBBI: cotejo parcial.** En el rastreador hay 34/90 entradas con consulta directa registrada (`verified_primary`) y 56/90 siguen como `not_checked`; por tanto, no se considera completado el cotejo individual de las 90 entradas. La web oficial de KBBI VI Daring informa que algunas funciones requieren iniciar sesión y que el registro/alta estaba experimentando problemas cuando se consultó. Referencia oficial: https://kbbi.kemendikdasmen.go.id/ y aviso de acceso: https://kbbi.kemendikdasmen.go.id/?m=0. La revisión editorial no sustituye esa comprobación lexicográfica.
 
 ## Correcciones aplicadas en `index.html`
 
@@ -16,7 +16,7 @@ Revisión editorial de los **90 lemas/glosas y sus 90 ejemplos bilingües** inco
 | U29 | v440 | `Saya menyapu pagi.` | `Saya menyapu pada pagi hari.` — mejora la expresión de tiempo. |
 | U29 | v441 | `Saya menyikat gigi pagi.` | `Saya menyikat gigi pada pagi hari.` — mejora la expresión de tiempo. |
 | U29 | v442 | `Saya beristirahat sore.` | `Saya beristirahat pada sore hari.` — mejora la expresión de tiempo. |
-| U30 | v449 | Lema `Ulang`, ejemplo `Tolong ulangi.` | Lema visible `Ulangi (imperativo)`, glosa «Repite / repítalo» para que coincida con la forma que aparece en el ejemplo. La familia léxica y el lema base deberán confirmarse en KBBI. |
+| U30 | v449 | Lema mostrado con metadato gramatical mezclado: `Ulangi (imperativo)` | Forma indonesia visible `Ulangi`; la glosa española conserva «Repite / repítalo (imperativo)». La familia léxica y el lema base deberán confirmarse en KBBI. |
 | U32 | v470 | Glosa «Encantado/a de conocerte (forma breve)» junto a `dengan Anda` | Glosa «Encantado/a de conocerle (formal)» para mantener la concordancia de registro con `Anda`. |
 
 | U29 | ejercicio de escritura v442 | La pista y respuesta modelo seguían usando `Saya beristirahat sore.` | Se alinearon con `Saya beristirahat pada sore hari.`, igual que el ejemplo de vocabulario corregido. |
@@ -51,17 +51,21 @@ Esta rama contiene correcciones editoriales útiles, pero la auditoría lingüí
 
 ## Seguimiento de auditoría — 2026-10-28
 
-Se amplió el rastreador `docs/A1_VOCABULARY_AUDIT_TRACKER_U24_U32.csv` con evidencia de consulta directa a KBBI VI Daring para **33 de los 90 términos**. Para cada uno se registraron la URL exacta, la fecha de consulta, el lema/base y una nota breve sobre la acepción o la forma derivada. Esto valida únicamente la comprobación lexicográfica indicada; no certifica por sí solo la glosa española, el ejemplo, la naturalidad ni el nivel A1.
+Se amplió el rastreador `docs/A1_VOCABULARY_AUDIT_TRACKER_U24_U32.csv` con evidencia de consulta directa a KBBI VI Daring para **34 de los 90 términos**. Para cada uno se registraron la URL exacta, la fecha de consulta, el lema/base y una nota breve sobre la acepción o la forma derivada. Esto valida únicamente la comprobación lexicográfica indicada; no certifica por sí solo la glosa española, el ejemplo, la naturalidad ni el nivel A1.
 
 La portada de KBBI VI Daring indica que algunas funciones requieren iniciar sesión y que el registro de cuentas nuevas está temporalmente afectado. Sin embargo, varias páginas individuales de entrada se pudieron consultar públicamente sin iniciar sesión. Se registraron solo las entradas realmente abiertas y examinadas; las restantes siguen como `not_checked`, sin inferir su estado por semejanza o por resultados no consultados.
 
 Se añadió la referencia general oficial BIPA 1 a las 90 filas del rastreador. **Esto no equivale a haber cotejado cada término con una unidad o página del material BIPA.** El ajuste al nivel, la naturalidad y la revisión de respuestas aceptadas siguen pendientes en todas las filas salvo que se documente expresamente lo contrario.
 
 ### Bloqueos que permanecen
-- 57/90 entradas sin cotejo directo KBBI registrado.
+- 56/90 entradas sin cotejo directo KBBI registrado.
 - No se ha completado el análisis término por término contra secciones/páginas concretas de BIPA 1.
 - No se ha terminado la revisión individual de todas las respuestas aceptadas y variantes de los 72 ejercicios.
 - No se ha probado de forma real la pronunciación, las voces disponibles, los fallbacks ni el comportamiento offline en dispositivos.
 - La aprobación lingüística final requiere cerrar estas tareas y, cuando haya dudas, revisión competente de indonesio.
 
 No declarar cerrada la auditoría lingüística basándose en el resultado verde de CI.
+
+## Cotejo KBBI adicional — 28 de octubre de 2026
+
+Se volvieron a revisar directamente estas entradas oficiales y se enriquecieron las notas de evidencia en el rastreador: [menjawab](https://kbbi.kemendikdasmen.go.id/entri/menjawab) (base `jawab`, responder), [membaca](https://kbbi.kemendikdasmen.go.id/entri/membaca) (resultado bajo `baca`, leer), [kelas](https://kbbi.kemendikdasmen.go.id/entri/kelas) (incluye aula escolar) y [tugas](https://kbbi.kemendikdasmen.go.id/entri/tugas) (tarea/trabajo asignado). Estas consultas elevan el total registrado a **39/90**; quedan **51/90** en `not_checked`. Solo se verifica la entrada/acepción léxica pertinente; no implica que se hayan validado la traducción española, los ejemplos, la naturalidad, las respuestas aceptadas ni el nivel BIPA 1.

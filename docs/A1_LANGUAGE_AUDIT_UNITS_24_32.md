@@ -19,6 +19,10 @@ Revisión editorial de los **90 lemas/glosas y sus 90 ejemplos bilingües** inco
 | U30 | v449 | Lema `Ulang`, ejemplo `Tolong ulangi.` | Lema visible `Ulangi (imperativo)`, glosa «Repite / repítalo» para que coincida con la forma que aparece en el ejemplo. La familia léxica y el lema base deberán confirmarse en KBBI. |
 | U32 | v470 | Glosa «Encantado/a de conocerte (forma breve)» junto a `dengan Anda` | Glosa «Encantado/a de conocerle (formal)» para mantener la concordancia de registro con `Anda`. |
 
+| U29 | ejercicio de escritura v442 | La pista y respuesta modelo seguían usando `Saya beristirahat sore.` | Se alinearon con `Saya beristirahat pada sore hari.`, igual que el ejemplo de vocabulario corregido. |
+| U31 | ejercicio de traducción «cabello / pelo» | Referenciaba `v456` (Pendek, «corto/a») pese a que la respuesta era `Rambut`. | Corregido a `v460` (Rambut). |
+| U32 | ejercicio de orden con «Muchas gracias» | Se vinculaba a `v468` (Sama-sama, «de nada») aunque la respuesta era `Terima kasih banyak`. | Sustituido por una pregunta de opción múltiple coherente con `v468`: identificar `Sama-sama` como respuesta común a `terima kasih`. |
+
 ## Cobertura revisada
 
 - **U24 — Escuela y estudio:** v385–v394 (10 entradas).

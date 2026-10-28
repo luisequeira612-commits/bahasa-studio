@@ -42,12 +42,19 @@ export function summarizeApiResponse(body) {
   }).slice(0, 100);
   const labels = definitions.flatMap((definition) =>
     definition && typeof definition === 'object' && Array.isArray(definition.labels)
-      ? definition.labels.filter((label) => label && typeof label === 'object').map((label) => ({
-          kind: typeof label.kind === 'string' ? label.kind : null,
-          value: typeof (label.value ?? label.label ?? label.text) === 'string' ? (label.value ?? label.label ?? label.text) : null,
-        }))
+      ? definition.labels.filter((label) => label && typeof label === 'object').map((label) => {
+          const value = label.value ?? label.label ?? label.text ?? label.name;
+          return {
+            kind: typeof label.kind === 'string' ? label.kind : null,
+            code: typeof label.code === 'string' ? label.code : null,
+            name: typeof label.name === 'string' ? label.name : null,
+            value: typeof value === 'string' ? value : null,
+          };
+        })
       : []);
-  const pos = labels.filter((label) => label.kind?.toLowerCase() === 'kelas kata' && label.value).map((label) => label.value);
+  const pos = labels.filter((label) => label.kind?.toLowerCase() === 'kelas kata')
+    .map((label) => label.value ?? label.name ?? label.code)
+    .filter((value) => typeof value === 'string' && value.trim());
   const explicitPos = strings(pick(first, ['partOfSpeech', 'part_of_speech', 'wordClass', 'kelasKata', 'kelas_kata', 'pos']));
   const baseKeys = ['baseWord', 'base_word', 'rootWord', 'root_word'];
   const base = pick(first, baseKeys);

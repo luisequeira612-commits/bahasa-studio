@@ -48,6 +48,26 @@ Estas notas son observaciones pedagógicas, no certificación de naturalidad por
 4. Ejecutar regresión, pruebas de navegador y evaluación; confirmar persistencia SRS y compatibilidad de backup.
 5. Mantener A2–B2 ocultos hasta cumplir estos criterios y realizar una revisión lingüística competente.
 
+## Contraste documental U21–U23 (2026-10-27)
+
+Se hizo una revisión estática de vocabulario, glosas en español y ejemplos, contrastando las entradas consultables del diccionario oficial KBBI Daring y materiales didácticos BIPA A1 publicados por Badan Bahasa. Referencias:
+
+- [KBBI Daring — diccionario oficial](https://kbbi.kemendikdasmen.go.id/), administrado por Badan Pengembangan dan Pembinaan Bahasa.
+- [Entrada KBBI: kepala](https://kbbi.kemendikdasmen.go.id/entri/kepala), para contrastar el significado básico de una palabra de U21.
+- [Entrada KBBI: jaket](https://kbbi.kemendikdasmen.go.id/entri/jaket), que define *jaket* como prenda exterior; no como término general para ropa ni como sinónimo de camisa.
+- [Material BIPA A1 del repositorio oficial](https://repositori.kemendikdasmen.go.id/16466/), referencia de progresión didáctica y habilidades para aprendices iniciales.
+
+### Correcciones aplicadas
+
+- U21: se separó explícitamente el sentido de *Saya sakit* («Estoy enfermo/a») de *Saya sakit kepala* («Me duele la cabeza») para no sugerir que *sakit* por sí solo significa «me duele» sin contexto.
+- U22: se corrigió una explicación errónea que equiparaba *jaket* con ropa/camisa. Se mejoraron ejemplos y glosas de color para que expresen frases completas y correspondan entre indonesio y español.
+- U23: se corrigió la concordancia de «ese tejado» y se hicieron más explícitas algunas relaciones de lugar con *ada*, sin cambiar IDs de vocabulario ni añadir requisitos léxicos nuevos.
+
+### Alcance y límites
+
+Esta es una revisión documental y de consistencia, no una certificación de naturalidad por una persona hablante de indonesio. KBBI ayuda a comprobar significados y ortografía, pero no confirma por sí solo que cada frase sea la opción más idiomática en todos los contextos. Los materiales BIPA sirven como referencia pedagógica, no como prueba de que cada ejemplo de esta app haya sido aprobado por sus autores. Las expresiones cotidianas, variación regional, pragmática y calidad real del audio siguen siendo puntos de revisión pendiente.
+
+
 ## Compatibilidad
 
 La corrección de IDs canónicos conserva IndexedDB schema v1 y backup format v3. Se mantiene un mapa de compatibilidad para que los registros SRS antiguos sigan asociados a las palabras canónicas; no se realiza una migración destructiva. La versión de la aplicación pasa a 3.7.1 para precargar la evaluación sin conexión.

@@ -16,7 +16,7 @@ Revisión editorial de los **90 lemas/glosas y sus 90 ejemplos bilingües** inco
 | U29 | v440 | `Saya menyapu pagi.` | `Saya menyapu pada pagi hari.` — mejora la expresión de tiempo. |
 | U29 | v441 | `Saya menyikat gigi pagi.` | `Saya menyikat gigi pada pagi hari.` — mejora la expresión de tiempo. |
 | U29 | v442 | `Saya beristirahat sore.` | `Saya beristirahat pada sore hari.` — mejora la expresión de tiempo. |
-| U30 | v449 | Lema `Ulang`, ejemplo `Tolong ulangi.` | Lema visible `Ulangi (imperativo)`, glosa «Repite / repítalo» para que coincida con la forma que aparece en el ejemplo. La familia léxica y el lema base deberán confirmarse en KBBI. |
+| U30 | v449 | Lema mostrado con metadato gramatical mezclado: `Ulangi (imperativo)` | Forma indonesia visible `Ulangi`; la glosa española conserva «Repite / repítalo (imperativo)». La familia léxica y el lema base deberán confirmarse en KBBI. |
 | U32 | v470 | Glosa «Encantado/a de conocerte (forma breve)» junto a `dengan Anda` | Glosa «Encantado/a de conocerle (formal)» para mantener la concordancia de registro con `Anda`. |
 
 | U29 | ejercicio de escritura v442 | La pista y respuesta modelo seguían usando `Saya beristirahat sore.` | Se alinearon con `Saya beristirahat pada sore hari.`, igual que el ejemplo de vocabulario corregido. |

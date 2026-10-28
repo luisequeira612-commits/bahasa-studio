@@ -48,3 +48,19 @@ Las recomendaciones anteriores son cuestiones editoriales a confirmar, no afirma
 3. Añadir tests de regresión para cada corrección acordada.
 4. Revisar variantes aceptadas de todas las respuestas.
 5. Probar audio y funcionamiento offline en dispositivos compatibles, o marcarlo explícitamente como no probado.
+
+
+## Correcciones aplicadas tras el cribado — 2026-10-28
+
+Se aplicaron y se añadieron comprobaciones de regresión para estos puntos:
+
+- **v405 `Jalan`:** la glosa ahora se centra en «Calle / camino», que es el sentido usado por el ejemplo. Se retiró «caminar» de la misma tarjeta para no mezclar la forma nominal con el verbo; `Berjalan` enseña caminar en otra unidad.
+- **v408 `Lurus`:** glosa más precisa «Recto (sin girar)», manteniendo la traducción contextual «Sigue recto».
+- **v411 `Depan`:** el ejemplo ya incluye un punto de referencia explícito: `Toko ada di depan rumah.`
+- **v434 `Stempel`:** el ejemplo ahora especifica el contexto de viaje: `Saya perlu stempel di paspor.` / «Necesito un sello en el pasaporte». El lema sigue pendiente de cotejo KBBI.
+- **v456 `Pendek`:** la tarjeta se enfoca en estatura («Bajo/a (de estatura)») y usa `Dia pendek.`, evitando que el único ejemplo mezcle estatura y longitud del cabello.
+- **v464 `Senyum`:** la glosa de esta tarjeta se limita al sentido nominal «Sonrisa», coherente con `Senyumnya manis.`
+- **Ejercicio de escritura de U31:** la consigna «Él/ella es alto/a» estaba vinculada a `v464` (Senyum); se corrigió a `v455` (Tinggi).
+
+Los tests de regresión ahora comprueban estas decisiones y los enlaces afectados. Estas correcciones editoriales no sustituyen el cotejo KBBI pendiente ni una revisión exhaustiva de todas las respuestas aceptadas y variantes.
+

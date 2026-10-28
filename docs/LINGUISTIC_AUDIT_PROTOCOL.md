@@ -10,8 +10,8 @@ Evaluar el indonesio de la app con evidencia rastreable. Las pruebas de software
    Fuente lexicográfica oficial para comprobar lema, grafía, clase de palabra, acepción y etiquetas. La página puede requerir una cuenta; no automatizar el inicio de sesión, no eludir controles de acceso y no copiar en bloque contenido protegido. Registrar el enlace de la entrada y la fecha de consulta. Si el acceso está bloqueado, marcar «pendiente KBBI», no «verificado».
 2. **BIPA 1, material oficial de referencia «Sahabatku Indonesia»** — https://repositori.kemendikdasmen.go.id/19081/  
    Usar para contrastar si los objetivos comunicativos, vocabulario y situaciones son apropiados para un nivel inicial. El repositorio describe BIPA 1 como comunicación sencilla en presentaciones y necesidades concretas, cotidianas y rutinarias.
-3. **Repositorio oficial de materiales BIPA 1–7** — https://repositori.kemendikdasmen.go.id/19072/  
-   Consultar el nivel concreto pertinente; no inferir que cualquier palabra incluida en un material avanzado sea A1.
+3. **Otros materiales oficiales por nivel**: BIPA 2 — https://repositori.kemendikdasmen.go.id/19082/; BIPA 4 — https://repositori.kemendikdasmen.go.id/19072/; BIPA 6 — https://repositori.kemendikdasmen.go.id/19073/.  
+   Son volúmenes de niveles específicos, no un único repositorio que certifique todos los niveles. Consultar el nivel concreto pertinente; no inferir que una palabra incluida en un material avanzado sea A1.
 4. **BIPA Daring, sitio oficial** — https://bipa.kemendikdasmen.go.id/  
    Usar para localizar materiales y orientaciones institucionales adicionales.
 5. **Fuentes lingüísticas secundarias y corpus públicos**: pueden aportar ejemplos de uso y naturalidad, pero deben etiquetarse como fuentes secundarias y nunca presentarse como una validación de KBBI/BIPA.
@@ -73,5 +73,7 @@ Una auditoría solo se declara cerrada si todas las filas del alcance tienen est
 
 - KBBI VI Daring, página oficial y estado de acceso: https://kbbi.kemendikdasmen.go.id/ y https://kbbi.kemendikdasmen.go.id/?m=0
 - Badan Pengembangan dan Pembinaan Bahasa, «Sahabatku Indonesia BIPA 1» (repositorio oficial): https://repositori.kemendikdasmen.go.id/19081/
-- Repositorio de materiales «Sahabatku Indonesia BIPA 1–7»: https://repositori.kemendikdasmen.go.id/19072/
+- «Sahabatku Indonesia BIPA 2»: https://repositori.kemendikdasmen.go.id/19082/
+- «Sahabatku Indonesia BIPA 4»: https://repositori.kemendikdasmen.go.id/19072/
+- «Sahabatku Indonesia BIPA 6»: https://repositori.kemendikdasmen.go.id/19073/
 - BIPA Daring: https://bipa.kemendikdasmen.go.id/

@@ -939,15 +939,16 @@ test('A1 units 24–32 extend the course to 32 units with linked beginner practi
 });
 
 
+
 test('U24–U32 language audit tracker covers all 90 terms without falsely claiming KBBI verification', () => {
   const trackerPath = path.join(root, 'docs', 'A1_VOCABULARY_AUDIT_TRACKER_U24_U32.csv');
   const protocolPath = path.join(root, 'docs', 'LINGUISTIC_AUDIT_PROTOCOL.md');
   const editorialPath = path.join(root, 'docs', 'A1_EDITORIAL_SCREEN_U24_U32.md');
-  const csv = fs.readFileSync(trackerPath, 'utf8').trim().split(/\\r?\\n/);
+  const csv = fs.readFileSync(trackerPath, 'utf8').trim().split(/\r?\n/);
   assert.equal(csv.length, 91, 'expected one header plus 90 vocabulary rows');
   assert.match(csv[0], /vocab_id/);
   assert.match(csv[0], /KBBI_status/);
-  const ids = csv.slice(1).map(line => line.match(/"(v\\d+)"/)?.[1]);
+  const ids = csv.slice(1).map(line => line.match(/"(v\d+)"/)?.[1]);
   assert.equal(new Set(ids).size, 90, 'vocabulary IDs must be unique in the tracker');
   for (let id = 385; id <= 474; id++) assert.ok(ids.includes('v' + id), 'missing tracker ID v' + id);
   assert.ok(csv.slice(1).every(line => line.includes('"not_checked"')), 'unverified KBBI rows must remain explicitly unverified');

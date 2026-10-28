@@ -253,7 +253,7 @@ test('tap-to-translate shows a vocabulary meaning and example in the lesson', as
     assert.match(await page.locator('#wordMeaningExample').innerText(), /Yo como\./);
 
     await page.locator('#wordMeaningClose').click();
-    await page.locator('#wordMeaningPopup[hidden]').waitFor();
+    await page.waitForFunction(() => document.querySelector('#wordMeaningPopup')?.hidden === true);
   } finally {
     await context.close();
     await new Promise(resolve => server.close(resolve));

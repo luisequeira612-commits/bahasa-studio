@@ -123,3 +123,14 @@ For every term, record evidence and make a human decision:
 No dictionary API is added to the app's runtime, no API key is required, and
 normal app use is unaffected if a public service goes down. The generated queue
 is disposable and the source tracker remains the authoritative audit record.
+
+## Nested API response handling
+
+The summarizer supports responses shaped like `{ lemma, entries: [...] }`, including
+definitions nested under `entries[0].definitions`. Grammatical categories are
+also read from definition labels whose `kind` is `Kelas Kata`. The output
+preserves whether `baseWord` exists even when its value is an empty string,
+captures entry variants, and flags multiple returned entries or a lemma that
+differs from the queried form for human review. These flags are not verification
+decisions; keep every tracker status pending until a reviewer checks the primary
+KBBI source.

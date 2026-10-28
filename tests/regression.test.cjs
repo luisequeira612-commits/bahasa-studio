@@ -34,6 +34,8 @@ test('A1 units 1 and 2 teach vocabulary and provide varied practice', () => {
   const a1 = course.levels.find(level => level.id === 'A1');
   const unit1 = a1.units.find(unit => unit.id === 'a1_u1');
   const unit2 = a1.units.find(unit => unit.id === 'a1_u2');
+  assert.match(unit1.grammar, /kamu \(tú, informal\)/);
+  assert.match(unit1.grammar, /Anda \(usted\)/);
 
   for (const unit of [unit1, unit2]) {
     assert.ok(unit.vocab.length >= 8, unit.id + ' should introduce at least 8 words');
@@ -182,7 +184,8 @@ test('A2-B2 starter lessons keep grammar explanations aligned with their example
 test('v3.7.1 audit fixes remain in place without changing backup or database versions', () => {
   assert.match(html, /attempts === 0 && i\.val\.lastReviewed === null && i\.val\.interval === 0 && i\.val\.repetition === 0/);
   assert.doesNotMatch(html, /Escucha y escribe: «Dia tidur»/);
-  assert.match(html, /Tolong, saya mau air significa/);
+  assert.match(html, /idn: 'Tolong', esp: 'Por favor \(al pedir una acción\) \/ ayudar', ex: 'Tolong!', exEsp: '¡Ayuda, por favor!'/);
+  assert.match(html, /no equivale mecánicamente a “por favor”/);
   assert.match(html, /Di” significa “en”/);
   assert.doesNotMatch(html, /\bbaik\b/);
   assert.doesNotMatch(html, /maximum-scale|user-scalable/);
@@ -820,6 +823,10 @@ test('A1 units 15–17 avoid ambiguous Ingin gloses, punctuation errors, and reg
   const u16 = a1.units.find(unit => unit.id === 'a1_u16');
   const u17 = a1.units.find(unit => unit.id === 'a1_u17');
   assert.equal(u15.vocab.find(word => word.idn === 'Ambil').esp, 'Tomar / agarrar');
+  assert.match(u15.grammar, /main y ambil son comunes en el habla coloquial/);
+  assert.match(u15.grammar, /bermain y mengambil/);
+  assert.equal(u15.vocab.find(word => word.idn === 'Ambil').ex, 'Saya ambil bola.');
+  assert.equal(u15.vocab.find(word => word.idn === 'Ambil').exEsp, 'Agarro la pelota.');
   assert.ok(!JSON.stringify(u15).includes('coger'));
   const ingin = u16.exercises.find(ex => ex.vocabId === 'v290' && ex.type === 'mc');
   assert.equal(ingin.prompt, '¿Qué significa «Saya ingin kopi»?');
@@ -840,6 +847,7 @@ test('A1 examples teach the time marker and avoid untaught vocabulary in require
   const u12 = a1.units.find(unit => unit.id === 'a1_u12');
   const u13 = a1.units.find(unit => unit.id === 'a1_u13');
   assert.match(u11.grammar, /pada \+ momento \+ hari/);
+  assert.equal(u11.vocab.find(word => word.idn === 'Siang').exEsp, 'Estudio durante el día.');
   assert.match(u12.desc, /frases breves/);
   assert.doesNotMatch(u12.desc, /en secuencia/);
   assert.equal(u13.vocab.find(word => word.idn === 'Angin').ex, 'Angin.');
@@ -856,6 +864,9 @@ test('A1 units 18–20 are present and have varied, linked practice', () => {
   const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
   const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
   const a1 = course.levels.find(level => level.id === 'A1');
+  const u18 = a1.units.find(item => item.id === 'a1_u18');
+  assert.match(u18.grammar, /Ini también puede usarse al inicio/i);
+  assert.match(u18.grammar, /Ini buku/);
   for (const id of ['a1_u18', 'a1_u19', 'a1_u20']) {
     const unit = a1.units.find(item => item.id === id);
     assert.ok(unit, id + ' should exist');
@@ -873,6 +884,7 @@ test('A1 units 18–20 are present and have varied, linked practice', () => {
     }
   }
 });
+
 
 test('A1 units 21–23 cover health, clothing, and home with linked varied practice', () => {
   const start = html.indexOf('const CourseData =');
@@ -896,4 +908,9 @@ test('A1 units 21–23 cover health, clothing, and home with linked varied pract
       if (ex.type === 'order') assert.equal(JSON.stringify([...ex.words].sort()), JSON.stringify([...ex.correctOrder].sort()));
     }
   }
+  const u21 = a1.units.find(item => item.id === 'a1_u21');
+  const u23 = a1.units.find(item => item.id === 'a1_u23');
+  assert.equal(u21.vocab.find(word => word.idn === 'Mata').exEsp, 'Me duele el ojo / me duelen los ojos.');
+  assert.equal(u21.vocab.find(word => word.idn === 'Telinga').exEsp, 'Me duele la oreja / el oído.');
+  assert.equal(u23.vocab.find(word => word.idn === 'Atap').esp, 'Techo / tejado');
 });

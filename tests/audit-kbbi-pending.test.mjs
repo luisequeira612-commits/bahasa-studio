@@ -5,6 +5,7 @@ import { spawnSync } from 'node:child_process';
 import { mkdtemp, readFile as read, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
+import { summarizeApiResponse } from '../scripts/kbbi-api-response.mjs';
 
 test('audit script exposes help without dependencies', () => {
   const result = spawnSync(process.execPath, ['scripts/audit-kbbi-pending.mjs', '--help'], { encoding: 'utf8' });
@@ -46,8 +47,6 @@ test('script does not mutate the tracker', async () => {
 });
 
 
-import { summarizeApiResponse } from '../scripts/kbbi-api-response.mjs';
-
 test('API summarizer extracts common fields but does not imply verification', () => {
   const summary = summarizeApiResponse(JSON.stringify({
     lemma: 'pensil',
@@ -55,12 +54,19 @@ test('API summarizer extracts common fields but does not imply verification', ()
     definitions: ['alat tulis'],
     partOfSpeech: ['Nomina'],
     variants: ['pensil'],
+    nonStandardWords: ['pencil'],
+    compoundWords: ['pensil warna'],
+    derivedWords: ['memensilkan'],
   }));
   assert.equal(summary.api_json_valid, true);
   assert.equal(summary.api_lemma, 'pensil');
   assert.equal(summary.api_base_word, 'pensil');
   assert.deepEqual(summary.api_definitions, ['alat tulis']);
   assert.deepEqual(summary.api_part_of_speech, ['Nomina']);
+  assert.deepEqual(summary.api_variants, ['pensil']);
+  assert.deepEqual(summary.api_non_standard_words, ['pencil']);
+  assert.deepEqual(summary.api_compound_words, ['pensil warna']);
+  assert.deepEqual(summary.api_derived_words, ['memensilkan']);
   assert.ok(summary.api_top_level_keys.includes('variants'));
   assert.equal(Object.hasOwn(summary, 'verified_primary'), false);
 });
@@ -69,6 +75,7 @@ test('API summarizer keeps malformed and unfamiliar JSON conservative', () => {
   const malformed = summarizeApiResponse('{bad json');
   assert.equal(malformed.api_json_valid, false);
   assert.deepEqual(malformed.api_definitions, []);
+  assert.deepEqual(malformed.api_variants, []);
   const unfamiliar = summarizeApiResponse(JSON.stringify({ payload: { definition: 'nested' } }));
   assert.equal(unfamiliar.api_json_valid, true);
   assert.deepEqual(unfamiliar.api_definitions, []);

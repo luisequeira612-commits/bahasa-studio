@@ -1036,7 +1036,7 @@ test('U25 translation prompt matches its verb-only answer and U30 teaches the cl
 
 test('U24–U32 multiple-choice answers are semantically correct and not always in the first position', () => {
   const start = html.indexOf('const CourseData =');
-  const end = html.indexOf("id: 'A2'", start);
+  const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
   const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
   const a1 = course.levels.find(level => level.id === 'A1');
   const expected = {

@@ -1022,9 +1022,8 @@ test('the optional Gemini tutor clearly explains the zero-cost local path', () =
 test('U25 translation prompt matches its verb-only answer and U30 teaches the clean imperative form', () => {
   const start = html.indexOf('const CourseData =');
   const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
-  const course = html.slice(start, end);
-  const levels = Function(course.replace('const CourseData =', 'return') + ';')();
-  const a1 = levels.find(level => level.id === 'A1');
+  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
+  const a1 = course.levels.find(level => level.id === 'A1');
   const u25 = a1.units.find(unit => unit.id === 'a1_u25');
   const watching = u25.exercises.find(ex => ex.vocabId === 'v400' && ex.type === 'translate_es_id');
   assert.equal(watching.prompt, 'Traduce: ver / mirar');

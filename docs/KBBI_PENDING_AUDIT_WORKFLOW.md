@@ -63,7 +63,12 @@ node scripts/audit-kbbi-pending.mjs \
 ```
 
 Inspect each `http_status`, `fetch_error`, and `response_excerpt` in the
-output. A failed request should be recorded as a failed source attempt, not as
+output. For JSON responses, the script also extracts best-effort fields
+`api_lemma`, `api_base_word`, `api_definitions`, `api_part_of_speech`,
+`api_json_valid`, and `api_top_level_keys`. These are convenience summaries of
+common field names, not a guarantee that every provider schema is understood;
+keep `response_excerpt` as the raw evidence and manually inspect unfamiliar
+structures. A failed request should be recorded as a failed source attempt, not as
 evidence that the word is absent. Do not run all 56 until the five-term sample
 works and its responses are useful. Do not paste secrets or API keys into a
 committed file or shell history. HTTP errors and timeouts are recorded instead

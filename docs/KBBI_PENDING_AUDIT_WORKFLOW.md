@@ -81,6 +81,26 @@ does not treat HTTP 200 as a successful dictionary match. API responses are
 saved as leads for a person to inspect. It does not automatically strip
 Indonesian prefixes, infer lemmas, update CSV fields, or mark anything verified.
 
+
+## 2A. Run the collection from GitHub Actions (no terminal commands)
+
+The repository includes `.github/workflows/kbbi-manual-audit.yml`. Once this
+workflow is present on the repository's default branch, a maintainer can open
+**Actions → Manual KBBI pending audit → Run workflow** and choose 5, 10, 20, or
+56 pending terms. Start with **5** and inspect the artifact before requesting
+the full batch.
+
+When the run finishes, download the artifact named
+`kbbi-api-review-N-terms` from the workflow run summary. It contains
+`kbbi-api-review.json`, including response excerpts and best-effort parsed
+fields. The workflow does not commit results, edit the tracker, or mark terms
+verified. Artifacts are retained for 14 days.
+
+Because GitHub only offers `workflow_dispatch` for workflows present on the
+default branch, adding this file to a pull request does not make the button
+available until that change is merged. Do not merge solely to enable this step
+without the repository owner's approval.
+
 ## 3. Review rules
 
 For every term, record evidence and make a human decision:

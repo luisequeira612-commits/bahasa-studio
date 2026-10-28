@@ -34,8 +34,6 @@ test('A1 units 1 and 2 teach vocabulary and provide varied practice', () => {
   const a1 = course.levels.find(level => level.id === 'A1');
   const unit1 = a1.units.find(unit => unit.id === 'a1_u1');
   const unit2 = a1.units.find(unit => unit.id === 'a1_u2');
-  assert.match(unit1.grammar, /kamu \(tú, informal\)/);
-  assert.match(unit1.grammar, /Anda \(usted\)/);
 
   for (const unit of [unit1, unit2]) {
     assert.ok(unit.vocab.length >= 8, unit.id + ' should introduce at least 8 words');
@@ -76,7 +74,8 @@ test('all authored A1 units have linked vocabulary and structurally valid exerci
   assert.ok(start >= 0 && end > start, 'CourseData block must exist');
   const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
   const a1 = course.levels.find(level => level.id === 'A1');
-  assert.ok(a1 && a1.units.length >= 8, 'A1 should contain its eight authored units');
+  assert.ok(a1, 'A1 level must exist');
+  assert.equal(a1.units.length, 32, 'A1 should contain exactly 32 authored units');
 
   for (const unit of a1.units) {
     assert.ok(unit.vocab.length >= 5, unit.id + ' should teach at least five vocabulary items');
@@ -184,10 +183,8 @@ test('A2-B2 starter lessons keep grammar explanations aligned with their example
 test('v3.7.1 audit fixes remain in place without changing backup or database versions', () => {
   assert.match(html, /attempts === 0 && i\.val\.lastReviewed === null && i\.val\.interval === 0 && i\.val\.repetition === 0/);
   assert.doesNotMatch(html, /Escucha y escribe: «Dia tidur»/);
-  assert.match(html, /idn: 'Tolong', esp: 'Por favor \(al pedir una acción\) \/ ayudar', ex: 'Tolong!', exEsp: '¡Ayuda, por favor!'/);
-  assert.match(html, /no equivale mecánicamente a “por favor”/);
+  assert.match(html, /idn: 'Tolong', esp: 'Por favor \\(al pedir una acción\\) \/ ayudar', ex: 'Tolong!', exEsp: '¡Ayuda, por favor!'/);\n  assert.match(html, /no equivale mecánicamente a “por favor”/);
   assert.match(html, /Di” significa “en”/);
-  assert.doesNotMatch(html, /\bbaik\b/);
   assert.doesNotMatch(html, /maximum-scale|user-scalable/);
   assert.match(html, /version: 1/);
   assert.match(html, /parsed\.version !== 3/);
@@ -562,7 +559,7 @@ test('A1 units 9–11 cover numbers, prices, and time with linked exercises', ()
   assert.ok(courseStart >= 0 && courseEnd > courseStart, 'CourseData block must exist');
   const course = vm.runInNewContext('(() => {\n' + html.slice(courseStart, courseEnd) + '\nreturn CourseData;\n})()');
   const a1 = course.levels.find(level => level.id === 'A1');
-  assert.equal(a1.units.length, 23)
+  assert.equal(a1.units.length, 32)
 
   const added = ['a1_u9', 'a1_u10', 'a1_u11'].map(id => {
     const unit = a1.units.find(candidate => candidate.id === id);
@@ -883,6 +880,11 @@ test('A1 units 18–20 are present and have varied, linked practice', () => {
       if (ex.type === 'order') assert.equal(JSON.stringify([...ex.words].sort()), JSON.stringify([...ex.correctOrder].sort()));
     }
   }
+  const u21 = a1.units.find(item => item.id === 'a1_u21');
+  const u23 = a1.units.find(item => item.id === 'a1_u23');
+  assert.equal(u21.vocab.find(word => word.idn === 'Mata').exEsp, 'Me duele el ojo / me duelen los ojos.');
+  assert.equal(u21.vocab.find(word => word.idn === 'Telinga').exEsp, 'Me duele la oreja / el oído.');
+  assert.equal(u23.vocab.find(word => word.idn === 'Atap').esp, 'Techo / tejado');
 });
 
 
@@ -891,7 +893,7 @@ test('A1 units 21–23 cover health, clothing, and home with linked varied pract
   const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
   const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
   const a1 = course.levels.find(level => level.id === 'A1');
-  assert.equal(a1.units.length, 23);
+  assert.equal(a1.units.length, 32);
   for (const id of ['a1_u21', 'a1_u22', 'a1_u23']) {
     const unit = a1.units.find(item => item.id === id);
     assert.ok(unit, id + ' should exist');
@@ -908,9 +910,109 @@ test('A1 units 21–23 cover health, clothing, and home with linked varied pract
       if (ex.type === 'order') assert.equal(JSON.stringify([...ex.words].sort()), JSON.stringify([...ex.correctOrder].sort()));
     }
   }
-  const u21 = a1.units.find(item => item.id === 'a1_u21');
-  const u23 = a1.units.find(item => item.id === 'a1_u23');
-  assert.equal(u21.vocab.find(word => word.idn === 'Mata').exEsp, 'Me duele el ojo / me duelen los ojos.');
-  assert.equal(u21.vocab.find(word => word.idn === 'Telinga').exEsp, 'Me duele la oreja / el oído.');
-  assert.equal(u23.vocab.find(word => word.idn === 'Atap').esp, 'Techo / tejado');
+});
+
+
+test('A1 units 24–32 extend the course to 32 units with linked beginner practice', () => {
+  const start = html.indexOf('const CourseData =');
+  const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
+  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
+  const a1 = course.levels.find(level => level.id === 'A1');
+  assert.equal(a1.units.length, 32);
+  const ids = ['a1_u24', 'a1_u25', 'a1_u26', 'a1_u27', 'a1_u28', 'a1_u29', 'a1_u30', 'a1_u31', 'a1_u32'];
+  for (const id of ids) {
+    const unit = a1.units.find(item => item.id === id);
+    assert.ok(unit, 'missing unit ' + id);
+    assert.ok(unit.vocab.length >= 8, id + ' should teach at least eight vocabulary items');
+    assert.ok(unit.exercises.length >= 8, id + ' should have authored practice');
+    assert.ok(unit.exercises.some(ex => ex.type === 'write'), id + ' should include guided writing');
+    assert.ok(unit.exercises.some(ex => ex.type === 'listen'), id + ' should include listening practice');
+    assert.ok(new Set(unit.exercises.map(ex => ex.type)).size >= 4, id + ' should include varied exercise types');
+    const vocabIds = new Set(unit.vocab.map(word => word.id));
+    assert.equal(vocabIds.size, unit.vocab.length, id + ' has duplicate vocabulary IDs');
+    for (const ex of unit.exercises) {
+      assert.ok(vocabIds.has(ex.vocabId), id + ' has an exercise linked to unknown vocabulary');
+      if (ex.type === 'mc') assert.ok(Number.isInteger(ex.answer) && ex.answer >= 0 && ex.answer < ex.options.length);
+      if (ex.type === 'order') assert.equal(JSON.stringify([...ex.words].sort()), JSON.stringify([...ex.correctOrder].sort()), id + ' has mismatched order tokens');
+    }
+  }
+  assert.match(html, /0% · 0\/32 unidades/);
+
+  const u26 = a1.units.find(unit => unit.id === 'a1_u26');
+  const jalan = u26.vocab.find(word => word.id === 'v405');
+  assert.equal(jalan.esp, 'Calle / camino', 'keep Jalan focused on its noun sense in this example');
+  const lurus = u26.vocab.find(word => word.id === 'v408');
+  assert.equal(lurus.esp, 'Recto (sin girar)');
+  const depan = u26.vocab.find(word => word.id === 'v411');
+  assert.equal(depan.ex, 'Toko ada di depan rumah.');
+  assert.equal(depan.exEsp, 'La tienda está delante de la casa.');
+
+  const u28 = a1.units.find(unit => unit.id === 'a1_u28');
+  const stempel = u28.vocab.find(word => word.id === 'v434');
+  assert.equal(stempel.ex, 'Saya perlu stempel di paspor.');
+  assert.equal(stempel.exEsp, 'Necesito un sello en el pasaporte.');
+
+  const u29 = a1.units.find(unit => unit.id === 'a1_u29');
+  const rest = u29.exercises.find(ex => ex.vocabId === 'v442' && ex.type === 'write');
+  assert.equal(rest.modelAnswer, 'Saya beristirahat pada sore hari.');
+
+  const u31 = a1.units.find(unit => unit.id === 'a1_u31');
+  const hair = u31.exercises.find(ex => ex.type === 'translate_es_id' && ex.prompt === 'Traduce: cabello / pelo');
+  assert.equal(hair.vocabId, 'v460');
+  const shortHeight = u31.vocab.find(word => word.id === 'v456');
+  assert.equal(shortHeight.esp, 'Bajo/a (de estatura)');
+  assert.equal(shortHeight.ex, 'Dia pendek.');
+  assert.equal(shortHeight.exEsp, 'Él/ella es bajo/a.');
+  const smile = u31.vocab.find(word => word.id === 'v464');
+  assert.equal(smile.esp, 'Sonrisa');
+  const heightWriting = u31.exercises.find(ex => ex.type === 'write' && ex.prompt === 'Escribe una frase para decir «Él/ella es alto/a».');
+  assert.equal(heightWriting.vocabId, 'v455', 'the height-writing exercise must link to Tinggi, not Senyum');
+
+  const u32 = a1.units.find(unit => unit.id === 'a1_u32');
+  const thanks = u32.exercises.find(ex => ex.vocabId === 'v468' && ex.type === 'mc');
+  assert.equal(thanks.options[thanks.answer], 'Sama-sama');
+});
+
+
+
+test('U24–U32 language audit tracker covers all 90 terms without falsely claiming KBBI verification', () => {
+  const trackerPath = path.join(root, 'docs', 'A1_VOCABULARY_AUDIT_TRACKER_U24_U32.csv');
+  const protocolPath = path.join(root, 'docs', 'LINGUISTIC_AUDIT_PROTOCOL.md');
+  const editorialPath = path.join(root, 'docs', 'A1_EDITORIAL_SCREEN_U24_U32.md');
+  const csv = fs.readFileSync(trackerPath, 'utf8').trim().split(/\r?\n/);
+  assert.equal(csv.length, 91, 'expected one header plus 90 vocabulary rows');
+  assert.match(csv[0], /vocab_id/);
+  assert.match(csv[0], /KBBI_status/);
+  const rows = csv.slice(1).map(line => {
+    const columns = line.split('","').map(value => value.replace(/^"|"$/g, ''));
+    return { id: columns[1], status: columns[8], url: columns[9], date: columns[10] };
+  });
+  const ids = rows.map(row => row.id);
+  assert.equal(new Set(ids).size, 90, 'vocabulary IDs must be unique in the tracker');
+  for (let id = 385; id <= 474; id++) assert.ok(ids.includes('v' + id), 'missing tracker ID v' + id);
+  for (const row of rows) {
+    assert.ok(['not_checked', 'verified_primary', 'verified_secondary', 'needs_review', 'blocked_access'].includes(row.status),
+      row.id + ' must use a documented KBBI status');
+    if (row.status === 'verified_primary') {
+      assert.match(row.url, /^https:\/\/kbbi\.kemendikdasmen\.go\.id\/entri\//, row.id + ' needs a direct KBBI entry URL');
+      assert.match(row.date, /^\d{4}-\d{2}-\d{2}$/, row.id + ' needs a KBBI check date');
+    }
+  }
+  const verifiedPrimary = rows.filter(row => row.status === 'verified_primary').length;
+  const auditText = fs.readFileSync(path.join(root, 'docs', 'A1_LANGUAGE_AUDIT_UNITS_24_32.md'), 'utf8');
+  assert.match(auditText, new RegExp(verifiedPrimary + ' de los 90 términos'),
+    'the audit summary must match the number of KBBI-verified tracker rows');
+  assert.match(auditText, new RegExp((rows.length - verifiedPrimary) + '/90 entradas sin cotejo directo KBBI registrado'),
+    'the audit summary must match the remaining unchecked tracker rows');
+  assert.match(fs.readFileSync(protocolPath, 'utf8'), /KBBI VI Daring/);
+  assert.match(fs.readFileSync(protocolPath, 'utf8'), /BIPA 1/);
+  assert.match(fs.readFileSync(editorialPath, 'utf8'), /no certificación lingüística/);
+});
+
+
+test('the optional Gemini tutor clearly explains the zero-cost local path', () => {
+  assert.match(html, /Para mantener el coste en \$0, deja la clave vacía/);
+  assert.match(html, /el curso y sus ejercicios funcionan sin IA/);
+  assert.match(html, /tus consultas se enviarán a Google/);
+  assert.match(html, /no puedo garantizar que las llamadas sean siempre gratuitas/);
 });

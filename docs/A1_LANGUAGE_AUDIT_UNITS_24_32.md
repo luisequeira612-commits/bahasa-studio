@@ -4,7 +4,7 @@
 
 Revisión editorial de los **90 lemas/glosas y sus 90 ejemplos bilingües** incorporados en U24–U32. Se revisaron la correspondencia entre indonesio y español, la forma visible del lema, la naturalidad básica de los frases modelo y la coherencia entre el lema y el ejemplo. Se corrigieron los puntos concretos registrados abajo.
 
-**Estado de KBBI: pendiente de cotejo individual.** No se marca ningún lema como «verificado en KBBI»: la web oficial de KBBI VI Daring informa que la búsqueda completa requiere iniciar sesión y que el registro/alta estaba experimentando problemas cuando se consultó. Referencia oficial: https://kbbi.kemendikdasmen.go.id/ y aviso de acceso: https://kbbi.kemendikdasmen.go.id/?m=0. La revisión editorial no sustituye esa comprobación lexicográfica.
+**Estado de KBBI: cotejo parcial.** En el rastreador hay 34/90 entradas con consulta directa registrada (`verified_primary`) y 56/90 siguen como `not_checked`; por tanto, no se considera completado el cotejo individual de las 90 entradas. La web oficial de KBBI VI Daring informa que algunas funciones requieren iniciar sesión y que el registro/alta estaba experimentando problemas cuando se consultó. Referencia oficial: https://kbbi.kemendikdasmen.go.id/ y aviso de acceso: https://kbbi.kemendikdasmen.go.id/?m=0. La revisión editorial no sustituye esa comprobación lexicográfica.
 
 ## Correcciones aplicadas en `index.html`
 

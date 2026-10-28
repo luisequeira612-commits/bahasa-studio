@@ -904,7 +904,7 @@ test('A1 units 21–23 cover health, clothing, and home with linked varied pract
 test('A1 units 24–32 extend the course to 32 units with linked beginner practice', () => {
   const start = html.indexOf('const CourseData =');
   const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
-  const course = vm.runInNewContext(html.slice(start, end) + '\\nCourseData');
+  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
   const a1 = course.levels.find(level => level.id === 'A1');
   assert.equal(a1.units.length, 32);
   const ids = ['a1_u24', 'a1_u25', 'a1_u26', 'a1_u27', 'a1_u28', 'a1_u29', 'a1_u30', 'a1_u31', 'a1_u32'];
@@ -924,5 +924,5 @@ test('A1 units 24–32 extend the course to 32 units with linked beginner practi
       if (ex.type === 'order') assert.equal(JSON.stringify([...ex.words].sort()), JSON.stringify([...ex.correctOrder].sort()), id + ' has mismatched order tokens');
     }
   }
-  assert.match(html, /0% · 0\\/32 unidades/);
+  assert.match(html, /0% · 0\/32 unidades/);
 });

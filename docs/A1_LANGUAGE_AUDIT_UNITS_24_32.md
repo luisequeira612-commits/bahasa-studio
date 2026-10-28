@@ -4,7 +4,7 @@
 
 Revisión editorial de los **90 lemas/glosas y sus 90 ejemplos bilingües** incorporados en U24–U32. Se revisaron la correspondencia entre indonesio y español, la forma visible del lema, la naturalidad básica de los frases modelo y la coherencia entre el lema y el ejemplo. Se corrigieron los puntos concretos registrados abajo.
 
-**Estado de KBBI: cotejo parcial.** En el rastreador hay 34/90 entradas con consulta directa registrada (`verified_primary`) y 56/90 siguen como `not_checked`; por tanto, no se considera completado el cotejo individual de las 90 entradas. La web oficial de KBBI VI Daring informa que algunas funciones requieren iniciar sesión y que el registro/alta estaba experimentando problemas cuando se consultó. Referencia oficial: https://kbbi.kemendikdasmen.go.id/ y aviso de acceso: https://kbbi.kemendikdasmen.go.id/?m=0. La revisión editorial no sustituye esa comprobación lexicográfica.
+**Estado de KBBI: cotejo parcial.** En el rastreador hay 35/90 entradas con consulta directa registrada (`verified_primary`) y 55/90 siguen como `not_checked`; por tanto, no se considera completado el cotejo individual de las 90 entradas. La web oficial de KBBI VI Daring informa que algunas funciones requieren iniciar sesión y que el registro/alta estaba experimentando problemas cuando se consultó. Referencia oficial: https://kbbi.kemendikdasmen.go.id/ y aviso de acceso: https://kbbi.kemendikdasmen.go.id/?m=0. La revisión editorial no sustituye esa comprobación lexicográfica.
 
 ## Correcciones aplicadas en `index.html`
 
@@ -58,7 +58,7 @@ La portada de KBBI VI Daring indica que algunas funciones requieren iniciar sesi
 Se añadió la referencia general oficial BIPA 1 a las 90 filas del rastreador. **Esto no equivale a haber cotejado cada término con una unidad o página del material BIPA.** El ajuste al nivel, la naturalidad y la revisión de respuestas aceptadas siguen pendientes en todas las filas salvo que se documente expresamente lo contrario.
 
 ### Bloqueos que permanecen
-- 56/90 entradas sin cotejo directo KBBI registrado.
+- 55/90 entradas sin cotejo directo KBBI registrado.
 - No se ha completado el análisis término por término contra secciones/páginas concretas de BIPA 1.
 - No se ha terminado la revisión individual de todas las respuestas aceptadas y variantes de los 72 ejercicios.
 - No se ha probado de forma real la pronunciación, las voces disponibles, los fallbacks ni el comportamiento offline en dispositivos.

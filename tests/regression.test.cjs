@@ -25,13 +25,6 @@ test('PWA version is consistent across HTML, manifest and cache', () => {
   assert.doesNotMatch(html + serviceWorker + JSON.stringify(manifest), /3\.5\.1/);
 });
 
-test('Gemini remains optional and discloses possible costs and local key storage', () => {
-  assert.match(html, /Configuración Gemini API \(Opcional\)/);
-  assert.match(html, /no se garantiza que las llamadas a Gemini sean siempre gratuitas/);
-  assert.match(html, /Tu clave se guarda en el almacenamiento local de este dispositivo/);
-  assert.match(html, /Si no hay API Key o estamos offline, usar fallback gramatical local/);
-});
-
 test('A1 units 1 and 2 teach vocabulary and provide varied practice', () => {
   const start = html.indexOf('const CourseData =');
   const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
@@ -190,7 +183,8 @@ test('A2-B2 starter lessons keep grammar explanations aligned with their example
 test('v3.7.1 audit fixes remain in place without changing backup or database versions', () => {
   assert.match(html, /attempts === 0 && i\.val\.lastReviewed === null && i\.val\.interval === 0 && i\.val\.repetition === 0/);
   assert.doesNotMatch(html, /Escucha y escribe: «Dia tidur»/);
-  assert.match(html, /Tolong, saya mau air significa/);
+  assert.match(html, /idn: 'Tolong', esp: 'Por favor \(al pedir una acción\) \/ ayudar', ex: 'Tolong!', exEsp: '¡Ayuda, por favor!'/);
+  assert.match(html, /no equivale mecánicamente a “por favor”/);
   assert.match(html, /Di” significa “en”/);
   assert.doesNotMatch(html, /maximum-scale|user-scalable/);
   assert.match(html, /version: 1/);
@@ -827,6 +821,10 @@ test('A1 units 15–17 avoid ambiguous Ingin gloses, punctuation errors, and reg
   const u16 = a1.units.find(unit => unit.id === 'a1_u16');
   const u17 = a1.units.find(unit => unit.id === 'a1_u17');
   assert.equal(u15.vocab.find(word => word.idn === 'Ambil').esp, 'Tomar / agarrar');
+  assert.match(u15.grammar, /main y ambil son comunes en el habla coloquial/);
+  assert.match(u15.grammar, /bermain y mengambil/);
+  assert.equal(u15.vocab.find(word => word.idn === 'Ambil').ex, 'Saya ambil bola.');
+  assert.equal(u15.vocab.find(word => word.idn === 'Ambil').exEsp, 'Agarro la pelota.');
   assert.ok(!JSON.stringify(u15).includes('coger'));
   const ingin = u16.exercises.find(ex => ex.vocabId === 'v290' && ex.type === 'mc');
   assert.equal(ingin.prompt, '¿Qué significa «Saya ingin kopi»?');
@@ -847,6 +845,7 @@ test('A1 examples teach the time marker and avoid untaught vocabulary in require
   const u12 = a1.units.find(unit => unit.id === 'a1_u12');
   const u13 = a1.units.find(unit => unit.id === 'a1_u13');
   assert.match(u11.grammar, /pada \+ momento \+ hari/);
+  assert.equal(u11.vocab.find(word => word.idn === 'Siang').exEsp, 'Estudio durante el día.');
   assert.match(u12.desc, /frases breves/);
   assert.doesNotMatch(u12.desc, /en secuencia/);
   assert.equal(u13.vocab.find(word => word.idn === 'Angin').ex, 'Angin.');
@@ -863,6 +862,9 @@ test('A1 units 18–20 are present and have varied, linked practice', () => {
   const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
   const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
   const a1 = course.levels.find(level => level.id === 'A1');
+  const u18 = a1.units.find(item => item.id === 'a1_u18');
+  assert.match(u18.grammar, /Ini también puede usarse al inicio/i);
+  assert.match(u18.grammar, /Ini buku/);
   for (const id of ['a1_u18', 'a1_u19', 'a1_u20']) {
     const unit = a1.units.find(item => item.id === id);
     assert.ok(unit, id + ' should exist');
@@ -879,6 +881,11 @@ test('A1 units 18–20 are present and have varied, linked practice', () => {
       if (ex.type === 'order') assert.equal(JSON.stringify([...ex.words].sort()), JSON.stringify([...ex.correctOrder].sort()));
     }
   }
+  const u21 = a1.units.find(item => item.id === 'a1_u21');
+  const u23 = a1.units.find(item => item.id === 'a1_u23');
+  assert.equal(u21.vocab.find(word => word.idn === 'Mata').exEsp, 'Me duele el ojo / me duelen los ojos.');
+  assert.equal(u21.vocab.find(word => word.idn === 'Telinga').exEsp, 'Me duele la oreja / el oído.');
+  assert.equal(u23.vocab.find(word => word.idn === 'Atap').esp, 'Techo / tejado');
 });
 
 
@@ -992,7 +999,114 @@ test('U24–U32 language audit tracker covers all 90 terms without falsely claim
       assert.match(row.date, /^\d{4}-\d{2}-\d{2}$/, row.id + ' needs a KBBI check date');
     }
   }
+  const verifiedPrimary = rows.filter(row => row.status === 'verified_primary').length;
+  const auditText = fs.readFileSync(path.join(root, 'docs', 'A1_LANGUAGE_AUDIT_UNITS_24_32.md'), 'utf8');
+  assert.match(auditText, new RegExp(verifiedPrimary + ' de los 90 términos'),
+    'the audit summary must match the number of KBBI-verified tracker rows');
+  assert.match(auditText, new RegExp((rows.length - verifiedPrimary) + '/90 entradas sin cotejo directo KBBI registrado'),
+    'the audit summary must match the remaining unchecked tracker rows');
   assert.match(fs.readFileSync(protocolPath, 'utf8'), /KBBI VI Daring/);
   assert.match(fs.readFileSync(protocolPath, 'utf8'), /BIPA 1/);
   assert.match(fs.readFileSync(editorialPath, 'utf8'), /no certificación lingüística/);
+});
+
+
+test('the optional Gemini tutor clearly explains the zero-cost local path', () => {
+  assert.match(html, /Para mantener el coste en \$0, deja la clave vacía/);
+  assert.match(html, /el curso y sus ejercicios funcionan sin IA/);
+  assert.match(html, /tus consultas se enviarán a Google/);
+  assert.match(html, /no puedo garantizar que las llamadas sean siempre gratuitas/);
+});
+
+
+test('U25 translation prompt matches its verb-only answer and U30 teaches the clean imperative form', () => {
+  const start = html.indexOf('const CourseData =');
+  const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
+  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
+  const a1 = course.levels.find(level => level.id === 'A1');
+  const u25 = a1.units.find(unit => unit.id === 'a1_u25');
+  const watching = u25.exercises.find(ex => ex.vocabId === 'v400' && ex.type === 'translate_es_id');
+  assert.equal(watching.prompt, 'Traduce: ver / mirar');
+  assert.equal(watching.answer, 'Menonton');
+  const u30 = a1.units.find(unit => unit.id === 'a1_u30');
+  const repeat = u30.vocab.find(word => word.id === 'v449');
+  assert.equal(repeat.idn, 'Ulangi');
+  assert.match(repeat.esp, /imperativo/i);
+  const tracker = fs.readFileSync(path.join(root, 'docs/A1_VOCABULARY_AUDIT_TRACKER_U24_U32.csv'), 'utf8');
+  assert.match(tracker, /\"U30\",\"v449\",\"Ulangi\",\"Repite \/ repítalo \(imperativo\)\"/);
+});
+
+test('U24–U32 multiple-choice answers are semantically correct and not always in the first position', () => {
+  const start = html.indexOf('const CourseData =');
+  const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
+  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
+  const a1 = course.levels.find(level => level.id === 'A1');
+  const expected = {
+    v385: 'Cafetería', v390: 'Responder', v395: 'Afición', v399: 'Pintar',
+    v406: 'Izquierda', v409: 'Al otro lado', v415: 'Pasado mañana', v418: 'Visitar',
+    v426: 'Pasaporte', v431: 'Maleta', v435: 'Siempre', v438: 'Rara vez',
+    v445: 'Perdón', v446: 'Permisi', v455: 'Alto/a', v458: 'Joven',
+    v465: '¿Qué tal?', v468: 'Sama-sama', v472: 'Por qué'
+  };
+  const unitIds = new Set(['a1_u24','a1_u25','a1_u26','a1_u27','a1_u28','a1_u29','a1_u30','a1_u31','a1_u32']);
+  const exercises = a1.units.filter(unit => unitIds.has(unit.id)).flatMap(unit => unit.exercises.filter(ex => ex.type === 'mc'));
+  assert.equal(exercises.length, 19);
+  const positions = new Set();
+  for (const ex of exercises) {
+    assert.ok(expected[ex.vocabId], 'missing expected answer for ' + ex.vocabId);
+    assert.equal(ex.options[ex.answer], expected[ex.vocabId], 'incorrect keyed answer for ' + ex.vocabId);
+    positions.add(ex.answer);
+  }
+  assert.ok(positions.size >= 3, 'correct answers should use all three option positions');
+  assert.ok(exercises.some(ex => ex.answer !== 0), 'correct answers must not always be first');
+});
+
+test('U24–U32 curriculum structure keeps vocabulary and exercise references internally consistent', () => {
+  const start = html.indexOf('const CourseData =');
+  const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
+  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
+  const a1 = course.levels.find(level => level.id === 'A1');
+  for (let number = 24; number <= 32; number++) {
+    const unit = a1.units.find(item => item.id === 'a1_u' + number);
+    assert.ok(unit, 'missing A1 unit ' + number);
+    assert.equal(unit.vocab.length, 10, 'U' + number + ' should contain 10 vocabulary items');
+    assert.equal(unit.exercises.length, 8, 'U' + number + ' should contain 8 exercises');
+    const vocabIds = new Set(unit.vocab.map(item => item.id));
+    assert.equal(vocabIds.size, 10, 'U' + number + ' vocabulary IDs must be unique');
+    for (const exercise of unit.exercises) {
+      assert.ok(vocabIds.has(exercise.vocabId),
+        'U' + number + ' exercise must reference vocabulary in its own unit: ' + exercise.vocabId);
+      if (exercise.type === 'mc') {
+        assert.ok(Array.isArray(exercise.options) && exercise.options.length >= 2,
+          'multiple-choice exercise needs options: ' + exercise.vocabId);
+        assert.ok(Number.isInteger(exercise.answer) && exercise.answer >= 0 && exercise.answer < exercise.options.length,
+          'multiple-choice answer index must be valid: ' + exercise.vocabId);
+      }
+      if (exercise.type === 'order') {
+        assert.deepEqual([...exercise.words].sort(), [...exercise.correctOrder].sort(),
+          'word-order exercise must use each supplied token exactly once: ' + exercise.vocabId);
+      }
+    }
+  }
+});
+test('U24–U32 audit tracker vocabulary and examples stay synchronized with the app', () => {
+  const start = html.indexOf('const CourseData =');
+  const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
+  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
+  const a1 = course.levels.find(level => level.id === 'A1');
+  const tracker = fs.readFileSync(path.join(root, 'docs/A1_VOCABULARY_AUDIT_TRACKER_U24_U32.csv'), 'utf8').trim().split(/\r?\n/);
+  const rows = tracker.slice(1).map(line => line.split('\",\"').map(value => value.replace(/^\"|\"$/g, '')));
+  assert.equal(rows.length, 90);
+  for (const columns of rows) {
+    const [unitLabel, id, indonesian, spanish, example, exampleSpanish] = columns;
+    const unitNumber = Number(unitLabel.slice(1));
+    const unit = a1.units.find(item => item.id === 'a1_u' + unitNumber);
+    assert.ok(unit, 'tracker references missing unit ' + unitLabel);
+    const vocab = unit.vocab.find(item => item.id === id);
+    assert.ok(vocab, 'tracker references missing vocabulary ' + id);
+    assert.equal(vocab.idn, indonesian, id + ' Indonesian form differs from tracker');
+    assert.equal(vocab.esp, spanish, id + ' Spanish gloss differs from tracker');
+    assert.equal(vocab.ex, example, id + ' Indonesian example differs from tracker');
+    assert.equal(vocab.exEsp, exampleSpanish, id + ' Spanish example differs from tracker');
+  }
 });

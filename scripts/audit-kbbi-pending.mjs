@@ -165,7 +165,10 @@ async function main() {
     warning: 'This file is a review queue, not a verification result. Do not copy API output into the tracker or mark entries verified without human source review.',
     results,
   };
-  const outputPath = resolve(opts.output);\n  await mkdir(new URL('.', `file://${outputPath.startsWith('/') ? '' : '/'}${outputPath}`).pathname, { recursive: true }).catch(async () => {\n    const { dirname } = await import('node:path');\n    await mkdir(dirname(outputPath), { recursive: true });\n  });\n  await writeFile(outputPath, `${JSON.stringify(output, null, 2)}\n`, 'utf8');
+  const outputPath = resolve(opts.output);
+  const { dirname } = await import('node:path');
+  await mkdir(dirname(outputPath), { recursive: true });
+  await writeFile(outputPath, `${JSON.stringify(output, null, 2)}\n`, 'utf8');
   console.log(`Wrote ${results.length} review candidates to ${resolve(opts.output)}`);
   if (!opts.apiTemplate) console.log('No network requests made. Add --api-template with a tested HTTPS endpoint to collect optional API leads.');
 }

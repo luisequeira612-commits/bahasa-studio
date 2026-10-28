@@ -26,6 +26,10 @@ Esta rama amplía el curso A1 de 23 a **32 unidades**. Las unidades 24–32 est�
 - Se añaden pruebas de regresión para exigir exactamente 32 unidades y comprobar los vínculos y la estructura de los ejercicios nuevos.
 - No se cambian el esquema de IndexedDB ni el formato de copias de seguridad.
 
+## Auditoría editorial inicial
+
+Se hizo una pasada editorial de los 90 lemas/glosas y sus ejemplos bilingües de U24–U32 y se aplicaron correcciones de naturalidad/registro. El detalle y los límites de esta revisión están en [A1_LANGUAGE_AUDIT_UNITS_24_32.md](./A1_LANGUAGE_AUDIT_UNITS_24_32.md). Esto **no** significa que los 90 lemas estén cotejados individualmente con KBBI ni que las respuestas y el audio estén validados.
+
 ## Revisión pendiente
 
 1. Cotejar individualmente los lemas y las glosas con KBBI cuando corresponda.

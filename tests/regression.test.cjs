@@ -183,7 +183,7 @@ test('A2-B2 starter lessons keep grammar explanations aligned with their example
 test('v3.7.1 audit fixes remain in place without changing backup or database versions', () => {
   assert.match(html, /attempts === 0 && i\.val\.lastReviewed === null && i\.val\.interval === 0 && i\.val\.repetition === 0/);
   assert.doesNotMatch(html, /Escucha y escribe: «Dia tidur»/);
-  assert.match(html, /idn: 'Tolong', esp: 'Por favor \\(al pedir una acción\\) \/ ayudar', ex: 'Tolong!', exEsp: '¡Ayuda, por favor!'/);
+  assert.match(html, /idn: 'Tolong', esp: 'Por favor \(al pedir una acción\) \/ ayudar', ex: 'Tolong!', exEsp: '¡Ayuda, por favor!'/);
   assert.match(html, /no equivale mecánicamente a “por favor”/);
   assert.match(html, /Di” significa “en”/);
   assert.doesNotMatch(html, /maximum-scale|user-scalable/);

@@ -1064,7 +1064,7 @@ test('U24–U32 multiple-choice answers are semantically correct and not always 
 test('U24–U32 curriculum structure keeps vocabulary and exercise references internally consistent', () => {
   const start = html.indexOf('const CourseData =');
   const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
-  const course = vm.runInNewContext(html.slice(start, end) + '\\nCourseData');
+  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
   const a1 = course.levels.find(level => level.id === 'A1');
   for (let number = 24; number <= 32; number++) {
     const unit = a1.units.find(item => item.id === 'a1_u' + number);

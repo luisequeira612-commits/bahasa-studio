@@ -5217,7 +5217,10 @@ Requisitos:
             function closePopup() { popup.hidden = true; }
             function showMeaning(token) {
                 const matches = index.get(normalizeTapWord(token));
-                if (!matches || !matches.length) return;
+                if (!matches || !matches.length) {
+                    closePopup();
+                    return;
+                }
                 termNode.textContent = matches[0].idn;
                 meaningNode.textContent = matches.slice(0, 3).map(entry => entry.esp).join(' · ');
                 const example = matches.find(entry => entry.ex || entry.exEsp);

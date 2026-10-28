@@ -1110,3 +1110,16 @@ test('U24–U32 audit tracker vocabulary and examples stay synchronized with the
     assert.equal(vocab.exEsp, exampleSpanish, id + ' Spanish example differs from tracker');
   }
 });
+
+
+test('tap-to-translate lookup is wired into learning text and uses safe text rendering', () => {
+  assert.match(html, /id="wordMeaningPopup"/);
+  assert.match(html, /function buildTapTranslationIndex\(\)/);
+  assert.match(html, /function tokenAtPoint\(event\)/);
+  assert.match(html, /caretRangeFromPoint/);
+  assert.match(html, /window\.refreshWordTranslationIndex/);
+  assert.match(html, /Toca una palabra en indonesio para consultar su significado/);
+  assert.match(html, /termNode\.textContent = matches\[0\]\.idn/);
+  assert.match(html, /meaningNode\.textContent = matches\.slice\(0, 3\)/);
+  assert.match(html, /exampleNode\.textContent = \[/);
+});

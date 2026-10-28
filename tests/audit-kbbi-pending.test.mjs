@@ -81,3 +81,51 @@ test('API summarizer keeps malformed and unfamiliar JSON conservative', () => {
   assert.deepEqual(unfamiliar.api_definitions, []);
   assert.ok(unfamiliar.api_top_level_keys.includes('payload'));
 });
+
+test('API summarizer extracts nested KBBI entries and Kelas Kata labels', () => {
+  const summary = summarizeApiResponse(JSON.stringify({
+    lemma: 'menulis',
+    entries: [{
+      entry: 'me.nu.lis',
+      baseWord: 'tulis',
+      definitions: [
+        { labels: [{ kind: 'Kelas Kata', value: '[v] Verba' }], definition: 'membuat huruf dengan pena' },
+        { labels: [{ kind: 'Kelas Kata', value: '[v] Verba' }], definition: 'melahirkan pikiran dengan tulisan' },
+      ],
+      variants: [],
+      nonStandardWords: [],
+      compoundWords: [],
+      derivedWords: [],
+      entryVariants: [],
+    }],
+  }));
+  assert.equal(summary.api_json_valid, true);
+  assert.equal(summary.api_lemma, 'menulis');
+  assert.equal(summary.api_entry, 'me.nu.lis');
+  assert.equal(summary.api_base_word, 'tulis');
+  assert.equal(summary.api_base_word_present, true);
+  assert.deepEqual(summary.api_definitions, ['membuat huruf dengan pena', 'melahirkan pikiran dengan tulisan']);
+  assert.deepEqual(summary.api_part_of_speech, ['[v] Verba']);
+  assert.deepEqual(summary.api_variants, []);
+  assert.deepEqual(summary.api_entry_variants, []);
+  assert.equal(summary.api_entries_count, 1);
+  assert.equal(summary.api_entry_ambiguous, false);
+});
+
+test('API summarizer distinguishes empty base word from absent base word', () => {
+  const empty = summarizeApiResponse(JSON.stringify({ lemma: 'kantin', entries: [{ baseWord: '' }] }));
+  const absent = summarizeApiResponse(JSON.stringify({ lemma: 'kantin', entries: [{ entry: 'kan.tin' }] }));
+  assert.equal(empty.api_base_word_present, true);
+  assert.equal(empty.api_base_word, '');
+  assert.equal(absent.api_base_word_present, false);
+  assert.equal(absent.api_base_word, null);
+});
+
+test('API summarizer flags multiple nested entries for human review', () => {
+  const summary = summarizeApiResponse(JSON.stringify({
+    lemma: 'kata',
+    entries: [{ entry: 'ka.ta' }, { entry: 'ka.ta' }],
+  }));
+  assert.equal(summary.api_entries_count, 2);
+  assert.equal(summary.api_entry_ambiguous, true);
+});

@@ -229,7 +229,7 @@ test('unit and vocabulary IDs are unique and every authored exercise has a valid
       assert.ok(ids.has(ex.vocabId), unit.id + ' has an exercise linked to unknown vocab');
       if (ex.type === 'mc') assert.ok(Number.isInteger(ex.answer) && ex.answer >= 0 && ex.answer < ex.options.length);
       else if (ex.type === 'translate_es_id' || ex.type === 'listen') assert.equal(typeof ex.answer, 'string');
-      else if (ex.type === 'order') assert.deepEqual([...ex.words].sort(), [...ex.correctOrder].sort());
+      else if (ex.type === 'order') assert.equal(JSON.stringify([...ex.words].sort()), JSON.stringify([...ex.correctOrder].sort()));
       else if (ex.type === 'write') assert.ok(ex.modelAnswer && ex.prompt);
       else assert.fail(unit.id + ' has unsupported exercise type ' + ex.type);
     }

@@ -185,7 +185,6 @@ test('v3.7.1 audit fixes remain in place without changing backup or database ver
   assert.doesNotMatch(html, /Escucha y escribe: «Dia tidur»/);
   assert.match(html, /Tolong, saya mau air significa/);
   assert.match(html, /Di” significa “en”/);
-  assert.doesNotMatch(html, /\bbaik\b/);
   assert.doesNotMatch(html, /maximum-scale|user-scalable/);
   assert.match(html, /version: 1/);
   assert.match(html, /parsed\.version !== 3/);

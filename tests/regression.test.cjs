@@ -878,7 +878,7 @@ test('A1 units 18–20 are present and have varied, linked practice', () => {
 test('A1 units 21–23 cover health, clothing, and home with linked varied practice', () => {
   const start = html.indexOf('const CourseData =');
   const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
-  const course = vm.runInNewContext(html.slice(start, end) + '\\nCourseData');
+  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
   const a1 = course.levels.find(level => level.id === 'A1');
   assert.equal(a1.units.length, 23);
   for (const id of ['a1_u21', 'a1_u22', 'a1_u23']) {

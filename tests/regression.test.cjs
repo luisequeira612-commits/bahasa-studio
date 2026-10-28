@@ -924,4 +924,16 @@ test('A1 units 24–32 extend the course to 32 units with linked beginner practi
     }
   }
   assert.match(html, /0% · 0\/32 unidades/);
+
+  const u29 = a1.units.find(unit => unit.id === 'a1_u29');
+  const rest = u29.exercises.find(ex => ex.vocabId === 'v442' && ex.type === 'write');
+  assert.equal(rest.modelAnswer, 'Saya beristirahat pada sore hari.');
+
+  const u31 = a1.units.find(unit => unit.id === 'a1_u31');
+  const hair = u31.exercises.find(ex => ex.type === 'translate_es_id' && ex.prompt === 'Traduce: cabello / pelo');
+  assert.equal(hair.vocabId, 'v460');
+
+  const u32 = a1.units.find(unit => unit.id === 'a1_u32');
+  const thanks = u32.exercises.find(ex => ex.vocabId === 'v468' && ex.type === 'mc');
+  assert.equal(thanks.options[thanks.answer], 'Sama-sama');
 });

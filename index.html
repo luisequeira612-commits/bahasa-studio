@@ -143,7 +143,7 @@
             </div>
             <div style="margin-top:10px;">
                 <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:5px;">
-                    <span>Avance de A1</span><strong id="courseProgressText">0% · 0/14 unidades</strong>
+                    <span>Avance de A1</span><strong id="courseProgressText">0% · 0/20 unidades</strong>
                 </div>
                 <div class="progress-bar" role="progressbar" aria-label="Progreso del nivel A1" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
                     <div id="courseProgressFill" class="progress-fill" style="width:0%;"></div>
@@ -2796,7 +2796,121 @@
                                     "explanation": "Ejemplo: Kapan kamu datang? — ¿Cuándo vienes?"
                                 }
                             ]
-                        }
+                        },
+                        {
+                            id: 'a1_u18',
+                            title: 'Unidad 18: Esto, aquello y posesión',
+                            desc: 'Señalar objetos y lugares, y expresar pertenencia con formas frecuentes.',
+                            grammar: 'Ini e itu suelen ir después del sustantivo: buku ini (este libro), rumah itu (aquella casa). Sini, situ y sana indican aquí, ahí y allá. Kami excluye a quien escucha; kita lo incluye. -nya puede señalar posesión o referencia según el contexto: namanya (su nombre).',
+                            vocab: [
+                                { id: 'v51', idn: 'Ini', esp: 'Este / esta / esto', ex: 'Buku ini.', exEsp: 'Este libro.' },
+                                { id: 'v311', idn: 'Itu', esp: 'Ese / esa / aquel / aquello', ex: 'Rumah itu.', exEsp: 'Aquella casa.' },
+                                { id: 'v312', idn: 'Sini', esp: 'Aquí / acá', ex: 'Saya di sini.', exEsp: 'Estoy aquí.' },
+                                { id: 'v313', idn: 'Situ', esp: 'Ahí', ex: 'Kamu di situ.', exEsp: 'Estás ahí.' },
+                                { id: 'v314', idn: 'Sana', esp: 'Allá', ex: 'Dia di sana.', exEsp: 'Está allá.' },
+                                { id: 'v315', idn: 'Kami', esp: 'Nosotros/as (sin incluir al oyente)', ex: 'Kami dari Indonesia.', exEsp: 'Nosotros somos de Indonesia (sin incluirte).' },
+                                { id: 'v316', idn: 'Kita', esp: 'Nosotros/as (incluyendo al oyente)', ex: 'Kita di sini.', exEsp: 'Estamos aquí (tú y yo / nosotros).' },
+                                { id: 'v317', idn: 'Mereka', esp: 'Ellos / ellas', ex: 'Mereka di sini.', exEsp: 'Ellos están aquí.' },
+                                { id: 'v318', idn: 'Anda', esp: 'Usted / ustedes (formal)', ex: 'Anda di sini.', exEsp: 'Usted está aquí.' },
+                                { id: 'v348', idn: 'Mana', esp: 'Dónde / cuál (según contexto)', ex: 'Anda dari mana?', exEsp: '¿De dónde es usted?' },
+                                { id: 'v319', idn: 'Milik', esp: 'Pertenencia / propiedad de', ex: 'Ini milik saya.', exEsp: 'Esto es mío.' },
+                                { id: 'v320', idn: '-nya', esp: 'Su / de él, ella o ello (según contexto)', ex: 'Namanya Ana.', exEsp: 'Su nombre es Ana.' }
+                            ],
+                            exercises: [
+                                { vocabId: 'v51', type: 'mc', prompt: '¿Qué significa «ini»?', options: ['Este / esto', 'Allá', 'Ellos'], answer: 0, explanation: 'Ini señala algo cercano: buku ini, este libro.' },
+                                { vocabId: 'v311', type: 'translate_es_id', prompt: 'Traduce: aquella casa', answer: 'Rumah itu', explanation: 'Itu suele colocarse después del sustantivo.' },
+                                { vocabId: 'v312', type: 'order', prompt: 'Ordena: Estoy aquí.', words: ['sini', 'Saya', 'di'], correctOrder: ['Saya', 'di', 'sini'], explanation: 'Saya di sini significa «Estoy aquí».' },
+                                { vocabId: 'v313', type: 'listen', prompt: 'Escucha y escribe la frase.', answer: 'Kamu di situ', explanation: 'Kamu di situ significa «Estás ahí».' },
+                                { vocabId: 'v314', type: 'mc', prompt: '¿Cuál expresa «allá»?', options: ['Sini', 'Sana', 'Ini'], answer: 1, explanation: 'Sana indica un lugar más alejado: allá.' },
+                                { vocabId: 'v315', type: 'translate_es_id', prompt: 'Traduce: nosotros (sin incluirte)', answer: 'Kami', explanation: 'Kami excluye a la persona que escucha.' },
+                                { vocabId: 'v316', type: 'mc', prompt: '¿Qué pronombre incluye a quien escucha?', options: ['Kami', 'Mereka', 'Kita'], answer: 2, explanation: 'Kita incluye al oyente; kami no.' },
+                                { vocabId: 'v317', type: 'listen', prompt: 'Escucha y escribe la palabra.', answer: 'Mereka', explanation: 'Mereka significa «ellos/ellas».' },
+                                { vocabId: 'v318', type: 'translate_es_id', prompt: 'Traduce: usted (formal)', answer: 'Anda', explanation: 'Anda es un pronombre formal.' },
+                                { vocabId: 'v319', type: 'order', prompt: 'Ordena: Esto es mío.', words: ['saya', 'Ini', 'milik'], correctOrder: ['Ini', 'milik', 'saya'], explanation: 'Ini milik saya significa «Esto es mío».' },
+                                { vocabId: 'v320', type: 'mc', prompt: 'En «Namanya Ana», ¿qué expresa -nya?', options: ['Su nombre (según contexto)', 'Allá', 'Nosotros'], answer: 0, explanation: 'El sufijo -nya puede indicar posesión o referencia; no tiene una sola traducción fija.' },
+                                { vocabId: 'v51', type: 'translate_es_id', prompt: 'Traduce: este libro', answer: 'Buku ini', explanation: 'El demostrativo aparece después del sustantivo.' },
+                                { vocabId: 'v317', type: 'order', prompt: 'Ordena: Ellos están aquí.', words: ['sini', 'Mereka', 'di'], correctOrder: ['Mereka', 'di', 'sini'], explanation: 'Mereka di sini significa «Ellos están aquí».' },
+                                { vocabId: 'v316', type: 'write', prompt: 'Escribe una frase que incluya a la persona que escucha y diga dónde están.', hint: 'Usa Kita di sini.', modelAnswer: 'Kita di sini.', explanation: 'Kita incluye a quien escucha; Kita di sini significa «Estamos aquí».' },
+                                { vocabId: 'v319', type: 'write', prompt: 'Escribe una frase que indique de quién es algo.', hint: 'Usa Ini milik saya como modelo.', modelAnswer: 'Ini milik saya.', explanation: 'Milik expresa pertenencia; la frase es un modelo que puedes adaptar.' }
+                            ]
+                        },
+                        {
+                            id: 'a1_u19',
+                            title: 'Unidad 19: En el restaurante',
+                            desc: 'Pedir comida, expresar gustos sencillos y solicitar la cuenta.',
+                            grammar: 'Para pedir, puedes usar Saya mau ... (Quiero ...) o Saya pesan ... (Pido ...). En frases sencillas, enak describe algo rico y pedas algo picante. La cortesía y el contexto importan; las frases modelo son útiles en situaciones cotidianas.',
+                            vocab: [
+                                { id: 'v321', idn: 'Restoran', esp: 'Restaurante', ex: 'Saya di restoran.', exEsp: 'Estoy en el restaurante.' },
+                                { id: 'v322', idn: 'Menu', esp: 'Menú / carta', ex: 'Ini menu.', exEsp: 'Esta es la carta.' },
+                                { id: 'v323', idn: 'Pesan', esp: 'Pedir (comida o bebida)', ex: 'Saya pesan nasi goreng.', exEsp: 'Pido arroz frito.' },
+                                { id: 'v324', idn: 'Nasi goreng', esp: 'Arroz frito', ex: 'Saya mau nasi goreng.', exEsp: 'Quiero arroz frito.' },
+                                { id: 'v325', idn: 'Mi', esp: 'Fideos / tallarines', ex: 'Saya pesan mi.', exEsp: 'Pido fideos.' },
+                                { id: 'v326', idn: 'Sayur', esp: 'Verdura(s)', ex: 'Saya mau sayur.', exEsp: 'Quiero verduras.' },
+                                { id: 'v327', idn: 'Ayam', esp: 'Pollo', ex: 'Saya pesan ayam.', exEsp: 'Pido pollo.' },
+                                { id: 'v328', idn: 'Ikan', esp: 'Pescado', ex: 'Saya makan ikan.', exEsp: 'Como pescado.' },
+                                { id: 'v329', idn: 'Telur', esp: 'Huevo', ex: 'Saya mau telur.', exEsp: 'Quiero huevo.' },
+                                { id: 'v330', idn: 'Enak', esp: 'Rico / sabroso', ex: 'Nasi goreng ini enak.', exEsp: 'Este arroz frito está rico.' },
+                                { id: 'v331', idn: 'Tagihan', esp: 'Cuenta (para pagar)', ex: 'Saya minta tagihan.', exEsp: 'Pido la cuenta.' },
+                                { id: 'v332', idn: 'Pedas', esp: 'Picante', ex: 'Saya suka makanan pedas.', exEsp: 'Me gusta la comida picante.' },
+                                { id: 'v333', idn: 'Tanpa', esp: 'Sin', ex: 'Tanpa nasi, ya.', exEsp: 'Sin arroz, por favor.' },
+                                { id: 'v347', idn: 'Cabai', esp: 'Chile / ají', ex: 'Tanpa cabai, ya.', exEsp: 'Sin chile, por favor.' }
+                            ],
+                            exercises: [
+                                { vocabId: 'v321', type: 'mc', prompt: '¿Qué significa «restoran»?', options: ['Restaurante', 'Mercado', 'Cuenta'], answer: 0, explanation: 'Restoran significa restaurante.' },
+                                { vocabId: 'v322', type: 'translate_es_id', prompt: 'Traduce: menú / carta', answer: 'Menu', explanation: 'Menu se usa para la carta del restaurante.' },
+                                { vocabId: 'v323', type: 'order', prompt: 'Ordena: Pido arroz frito.', words: ['goreng', 'Saya', 'pesan', 'nasi'], correctOrder: ['Saya', 'pesan', 'nasi', 'goreng'], explanation: 'Saya pesan nasi goreng significa «Pido arroz frito».' },
+                                { vocabId: 'v324', type: 'listen', prompt: 'Escucha y escribe el plato.', answer: 'Nasi goreng', explanation: 'Nasi goreng significa arroz frito.' },
+                                { vocabId: 'v325', type: 'mc', prompt: '¿Qué significa «mi» en este contexto?', options: ['Fideos', 'Pollo', 'Huevo'], answer: 0, explanation: 'Mi significa fideos o tallarines.' },
+                                { vocabId: 'v326', type: 'translate_es_id', prompt: 'Traduce: verduras', answer: 'Sayur', explanation: 'Sayur significa verdura(s).' },
+                                { vocabId: 'v327', type: 'mc', prompt: '¿Cómo se dice «pollo»?', options: ['Ikan', 'Ayam', 'Telur'], answer: 1, explanation: 'Ayam significa pollo.' },
+                                { vocabId: 'v328', type: 'listen', prompt: 'Escucha y escribe la palabra.', answer: 'Ikan', explanation: 'Ikan significa pescado.' },
+                                { vocabId: 'v329', type: 'translate_es_id', prompt: 'Traduce: huevo', answer: 'Telur', explanation: 'Telur significa huevo.' },
+                                { vocabId: 'v330', type: 'mc', prompt: '¿Qué significa «enak»?', options: ['Picante', 'Rico / sabroso', 'Sin'], answer: 1, explanation: 'Enak describe algo rico o sabroso.' },
+                                { vocabId: 'v331', type: 'order', prompt: 'Ordena: Pido la cuenta.', words: ['tagihan', 'minta', 'Saya'], correctOrder: ['Saya', 'minta', 'tagihan'], explanation: 'Saya minta tagihan significa «Pido la cuenta».' },
+                                { vocabId: 'v332', type: 'translate_es_id', prompt: 'Traduce: picante', answer: 'Pedas', explanation: 'Pedas significa picante.' },
+                                { vocabId: 'v347', type: 'listen', prompt: 'Escucha y escribe la frase para pedir algo sin chile.', answer: 'Tanpa cabai, ya', explanation: 'Tanpa cabai, ya es una petición breve para pedir algo sin chile.' },
+                                { vocabId: 'v324', type: 'write', prompt: 'Escribe un pedido sencillo en un restaurante.', hint: 'Usa Saya mau nasi goreng o Saya pesan ayam.', modelAnswer: 'Saya pesan nasi goreng.', explanation: 'Ejemplo de pedido: Saya pesan nasi goreng. — Pido arroz frito.' },
+                                { vocabId: 'v330', type: 'write', prompt: 'Escribe una frase para decir que un plato está rico.', hint: 'Puedes usar Nasi goreng ini enak.', modelAnswer: 'Nasi goreng ini enak.', explanation: 'El demostrativo ini aparece después del sustantivo.' }
+                            ]
+                        },
+                        {
+                            id: 'a1_u20',
+                            title: 'Unidad 20: En el mercado y de compras',
+                            desc: 'Preguntar precios, comprar productos sencillos y hablar de cantidades.',
+                            grammar: 'Puedes usar Saya mau beli ... (Quiero comprar ...) y Berapa? (¿Cuánto/cuántos?). Murah significa barato y mahal, caro. Para cantidades, satu kilo significa un kilo. Practica precios y compras con frases breves; el precio real depende del lugar y del momento.',
+                            vocab: [
+                                { id: 'v334', idn: 'Pasar', esp: 'Mercado', ex: 'Saya di pasar.', exEsp: 'Estoy en el mercado.' },
+                                { id: 'v335', idn: 'Toko', esp: 'Tienda', ex: 'Saya di toko.', exEsp: 'Estoy en la tienda.' },
+                                { id: 'v336', idn: 'Buah', esp: 'Fruta', ex: 'Saya beli buah.', exEsp: 'Compro fruta.' },
+                                { id: 'v337', idn: 'Apel', esp: 'Manzana', ex: 'Saya mau apel.', exEsp: 'Quiero manzanas.' },
+                                { id: 'v338', idn: 'Pisang', esp: 'Plátano / banana', ex: 'Saya beli pisang.', exEsp: 'Compro plátanos.' },
+                                { id: 'v140', idn: 'Murah', esp: 'Barato/a', ex: 'Ini murah.', exEsp: 'Esto es barato.' },
+                                { id: 'v141', idn: 'Mahal', esp: 'Caro/a', ex: 'Itu mahal.', exEsp: 'Eso es caro.' },
+                                { id: 'v142', idn: 'Beli', esp: 'Comprar', ex: 'Saya mau beli apel.', exEsp: 'Quiero comprar manzanas.' },
+                                { id: 'v136', idn: 'Uang', esp: 'Dinero', ex: 'Saya punya uang.', exEsp: 'Tengo dinero.' },
+                                { id: 'v343', idn: 'Kilo', esp: 'Kilo', ex: 'Satu kilo pisang.', exEsp: 'Un kilo de plátanos.' },
+                                { id: 'v344', idn: 'Satu kilo', esp: 'Un kilo', ex: 'Saya mau satu kilo apel.', exEsp: 'Quiero un kilo de manzanas.' },
+                                { id: 'v345', idn: 'Kantong', esp: 'Bolsa', ex: 'Satu kantong apel.', exEsp: 'Una bolsa de manzanas.' },
+                                { id: 'v346', idn: 'Berbelanja', esp: 'Hacer compras', ex: 'Saya berbelanja di pasar.', exEsp: 'Hago compras en el mercado.' }
+                            ],
+                            exercises: [
+                                { vocabId: 'v334', type: 'mc', prompt: '¿Qué significa «pasar»?', options: ['Mercado', 'Tienda', 'Dinero'], answer: 0, explanation: 'Pasar significa mercado.' },
+                                { vocabId: 'v335', type: 'translate_es_id', prompt: 'Traduce: tienda', answer: 'Toko', explanation: 'Toko significa tienda.' },
+                                { vocabId: 'v336', type: 'order', prompt: 'Ordena: Compro fruta.', words: ['buah', 'beli', 'Saya'], correctOrder: ['Saya', 'beli', 'buah'], explanation: 'Saya beli buah significa «Compro fruta».' },
+                                { vocabId: 'v337', type: 'listen', prompt: 'Escucha y escribe la palabra.', answer: 'Apel', explanation: 'Apel significa manzana.' },
+                                { vocabId: 'v338', type: 'mc', prompt: '¿Qué significa «pisang»?', options: ['Manzana', 'Plátano / banana', 'Bolsa'], answer: 1, explanation: 'Pisang significa plátano o banana.' },
+                                { vocabId: 'v140', type: 'translate_es_id', prompt: 'Traduce: barato/a', answer: 'Murah', explanation: 'Murah significa barato/a.' },
+                                { vocabId: 'v141', type: 'mc', prompt: '¿Qué significa «mahal»?', options: ['Caro/a', 'Barato/a', 'Fruta'], answer: 0, explanation: 'Mahal significa caro/a.' },
+                                { vocabId: 'v142', type: 'listen', prompt: 'Escucha y escribe la palabra.', answer: 'Beli', explanation: 'Beli significa comprar.' },
+                                { vocabId: 'v136', type: 'translate_es_id', prompt: 'Traduce: dinero', answer: 'Uang', explanation: 'Uang significa dinero.' },
+                                { vocabId: 'v343', type: 'mc', prompt: '¿Qué significa «kilo»?', options: ['Kilo', 'Bolsa', 'Mercado'], answer: 0, explanation: 'Kilo significa kilo.' },
+                                { vocabId: 'v344', type: 'order', prompt: 'Ordena: Quiero un kilo de manzanas.', words: ['apel', 'mau', 'Saya', 'satu', 'kilo'], correctOrder: ['Saya', 'mau', 'satu', 'kilo', 'apel'], explanation: 'Saya mau satu kilo apel significa «Quiero un kilo de manzanas».' },
+                                { vocabId: 'v345', type: 'translate_es_id', prompt: 'Traduce: bolsa', answer: 'Kantong', explanation: 'Kantong significa bolsa.' },
+                                { vocabId: 'v346', type: 'mc', prompt: '¿Qué significa «berbelanja»?', options: ['Hacer compras', 'Comer', 'Dormir'], answer: 0, explanation: 'Berbelanja significa hacer compras.' },
+                                { vocabId: 'v142', type: 'write', prompt: 'Escribe una frase sobre algo que quieres comprar.', hint: 'Usa Saya mau beli apel o Saya mau beli pisang.', modelAnswer: 'Saya mau beli apel.', explanation: 'Ejemplo: Saya mau beli apel. — Quiero comprar manzanas.' },
+                                { vocabId: 'v140', type: 'write', prompt: 'Escribe una frase para describir un precio.', hint: 'Usa Ini murah o Itu mahal.', modelAnswer: 'Ini murah.', explanation: 'Ini murah significa «Esto es barato».' }
+                            ]
+                        },
                     ]
                 },
                 {

@@ -229,7 +229,7 @@ test('unit and vocabulary IDs are unique and every authored exercise has a valid
       assert.ok(ids.has(ex.vocabId), unit.id + ' has an exercise linked to unknown vocab');
       if (ex.type === 'mc') assert.ok(Number.isInteger(ex.answer) && ex.answer >= 0 && ex.answer < ex.options.length);
       else if (ex.type === 'translate_es_id' || ex.type === 'listen') assert.equal(typeof ex.answer, 'string');
-      else if (ex.type === 'order') assert.deepEqual([...ex.words].sort(), [...ex.correctOrder].sort());
+      else if (ex.type === 'order') assert.equal(JSON.stringify([...ex.words].sort()), JSON.stringify([...ex.correctOrder].sort()));
       else if (ex.type === 'write') assert.ok(ex.modelAnswer && ex.prompt);
       else assert.fail(unit.id + ' has unsupported exercise type ' + ex.type);
     }
@@ -559,7 +559,7 @@ test('A1 units 9–11 cover numbers, prices, and time with linked exercises', ()
   assert.ok(courseStart >= 0 && courseEnd > courseStart, 'CourseData block must exist');
   const course = vm.runInNewContext('(() => {\n' + html.slice(courseStart, courseEnd) + '\nreturn CourseData;\n})()');
   const a1 = course.levels.find(level => level.id === 'A1');
-  assert.equal(a1.units.length, 17)
+  assert.equal(a1.units.length, 20)
 
   const added = ['a1_u9', 'a1_u10', 'a1_u11'].map(id => {
     const unit = a1.units.find(candidate => candidate.id === id);
@@ -584,7 +584,7 @@ test('A1 units 9–11 cover numbers, prices, and time with linked exercises', ()
     return unit;
   });
 
-  const oldWords = new Set(a1.units.filter(unit => !['a1_u9', 'a1_u10', 'a1_u11'].includes(unit.id))
+  const oldWords = new Set(a1.units.filter(unit => !['a1_u9', 'a1_u10', 'a1_u11', 'a1_u18', 'a1_u19', 'a1_u20'].includes(unit.id))
     .flatMap(unit => unit.vocab).map(word => word.idn.trim().toLocaleLowerCase()));
   const newVocab = added.flatMap(unit => unit.vocab).filter(word => /^v(12[4-9]|1[3-5]\d|158)$/.test(word.id));
   const newIds = newVocab.map(word => word.id);
@@ -848,4 +848,28 @@ test('A1 examples teach the time marker and avoid untaught vocabulary in require
   assert.doesNotMatch(JSON.stringify(u13), /\bkuat\b|\bpunya\b/i);
   const assessment = fs.readFileSync(path.join(__dirname, '..', 'assessment-engine.js'), 'utf8');
   assert.doesNotMatch(assessment, /kembaliannya/i, 'the assessment must not require an untaught change-related word');
+});
+
+
+test('A1 units 18–20 are present and have varied, linked practice', () => {
+  const start = html.indexOf('const CourseData =');
+  const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
+  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
+  const a1 = course.levels.find(level => level.id === 'A1');
+  for (const id of ['a1_u18', 'a1_u19', 'a1_u20']) {
+    const unit = a1.units.find(item => item.id === id);
+    assert.ok(unit, id + ' should exist');
+    assert.ok(unit.exercises.length >= 14 && unit.exercises.length <= 22, id + ' should have 14–22 authored exercises');
+    assert.ok(unit.vocab.length >= 8, id + ' should teach at least eight vocabulary items');
+    const ids = new Set(unit.vocab.map(word => word.id));
+    assert.equal(ids.size, unit.vocab.length, id + ' has duplicate vocabulary IDs');
+    assert.ok(new Set(unit.exercises.map(ex => ex.type)).size >= 4, id + ' should have at least four exercise types');
+    assert.ok(unit.exercises.filter(ex => ex.type === 'listen').length >= 2, id + ' should include listening practice');
+    assert.ok(unit.exercises.filter(ex => ex.type === 'write').length >= 2, id + ' should include guided production');
+    for (const ex of unit.exercises) {
+      assert.ok(ids.has(ex.vocabId), id + ' has an exercise linked to vocabulary not taught in that unit');
+      if (ex.type === 'mc') assert.ok(Number.isInteger(ex.answer) && ex.answer >= 0 && ex.answer < ex.options.length);
+      if (ex.type === 'order') assert.equal(JSON.stringify([...ex.words].sort()), JSON.stringify([...ex.correctOrder].sort()));
+    }
+  }
 });

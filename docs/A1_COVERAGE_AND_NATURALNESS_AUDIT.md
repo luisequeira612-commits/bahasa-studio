@@ -51,3 +51,8 @@ Estas notas son observaciones pedagógicas, no certificación de naturalidad por
 ## Compatibilidad
 
 La corrección de IDs canónicos conserva IndexedDB schema v1 y backup format v3. Se mantiene un mapa de compatibilidad para que los registros SRS antiguos sigan asociados a las palabras canónicas; no se realiza una migración destructiva. La versión de la aplicación pasa a 3.7.1 para precargar la evaluación sin conexión.
+
+
+## Expansión posterior a U17
+
+La ruta curricular prevé 32 unidades A1, no 17. La tanda U18–U20 introduce demostrativos y posesión, situaciones de restaurante y compras en el mercado. La cobertura sigue incompleta: U21–U32 aún requieren implementación y revisión; no se declara A1 validado. La nueva tanda debe pasar CI y revisión de naturalidad antes de integrarse a `main`.

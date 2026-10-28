@@ -143,7 +143,7 @@
             </div>
             <div style="margin-top:10px;">
                 <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:5px;">
-                    <span>Avance de A1</span><strong id="courseProgressText">0% · 0/23 unidades</strong>
+                    <span>Avance de A1</span><strong id="courseProgressText">0% · 0/32 unidades</strong>
                 </div>
                 <div class="progress-bar" role="progressbar" aria-label="Progreso del nivel A1" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
                     <div id="courseProgressFill" class="progress-fill" style="width:0%;"></div>
@@ -3021,6 +3021,258 @@
                                 { vocabId: 'v379', type: 'translate_es_id', prompt: 'Traduce: pared', answer: 'Dinding', explanation: 'Dinding significa pared.' },
                                 { vocabId: 'v383', type: 'write', prompt: 'Escribe una frase para describir una habitación limpia.', hint: 'Usa Kamar saya bersih.', modelAnswer: 'Kamar saya bersih.', explanation: 'Kamar saya bersih significa «Mi habitación está limpia».' },
                                 { vocabId: 'v382', type: 'write', prompt: 'Escribe dónde está la lámpara.', hint: 'Usa Lampu di kamar.', modelAnswer: 'Lampu di kamar.', explanation: 'Di kamar significa «en la habitación».' }
+                            ]
+                        },
+                        {
+                            id: 'a1_u24',
+                            title: 'Unidad 24: La escuela y el estudio',
+                            desc: 'Hablar de clases, materiales y actividades de estudio.',
+                            grammar: 'Para hablar de actividades de estudio, usa el sujeto seguido del verbo: Saya belajar (estudio/aprendo), Saya membaca buku (leo un libro). En indonesio, el sujeto puede omitirse cuando el contexto es claro, pero aquí practicamos frases completas.',
+                            vocab: [
+                                { id: 'v385', idn: 'Sekolah', esp: 'Escuela', ex: 'Saya pergi ke sekolah.', exEsp: 'Voy a la escuela.' },
+                                { id: 'v386', idn: 'Guru', esp: 'Docente / profesor/a', ex: 'Guru itu ramah.', exEsp: 'Ese/a profesor/a es amable.' },
+                                { id: 'v387', idn: 'Murid', esp: 'Alumno/a', ex: 'Saya murid.', exEsp: 'Soy estudiante.' },
+                                { id: 'v388', idn: 'Buku', esp: 'Libro', ex: 'Ini buku saya.', exEsp: 'Este es mi libro.' },
+                                { id: 'v389', idn: 'Pensil', esp: 'Lápiz', ex: 'Saya punya pensil.', exEsp: 'Tengo un lápiz.' },
+                                { id: 'v390', idn: 'Belajar', esp: 'Estudiar / aprender', ex: 'Saya belajar bahasa Indonesia.', exEsp: 'Estudio indonesio.' },
+                                { id: 'v391', idn: 'Membaca', esp: 'Leer', ex: 'Saya membaca buku.', exEsp: 'Leo un libro.' },
+                                { id: 'v392', idn: 'Menulis', esp: 'Escribir', ex: 'Dia menulis.', exEsp: 'Él/ella escribe.' },
+                                { id: 'v393', idn: 'Kelas', esp: 'Clase / aula', ex: 'Kelas saya besar.', exEsp: 'Mi aula es grande.' },
+                                { id: 'v394', idn: 'Tugas', esp: 'Tarea', ex: 'Ini tugas saya.', exEsp: 'Esta es mi tarea.' }
+                            ],
+                            exercises: [
+                                { vocabId: 'v385', type: 'mc', prompt: '¿Qué significa «sekolah»?', options: ['Escuela', 'Libro', 'Lápiz'], answer: 0, explanation: 'Sekolah significa escuela.' },
+                                { vocabId: 'v386', type: 'translate_es_id', prompt: 'Traduce: profesor/a', answer: 'Guru', explanation: 'Guru significa docente o profesor/a.' },
+                                { vocabId: 'v388', type: 'order', prompt: 'Ordena: Este es mi libro.', words: ['saya', 'buku', 'Ini'], correctOrder: ['Ini', 'buku', 'saya'], explanation: 'Ini buku saya significa «Este es mi libro».' },
+                                { vocabId: 'v389', type: 'listen', prompt: 'Escucha y escribe la palabra.', answer: 'Pensil', explanation: 'Pensil significa lápiz.' },
+                                { vocabId: 'v390', type: 'mc', prompt: '¿Qué significa «belajar»?', options: ['Aprender / estudiar', 'Dormir', 'Comprar'], answer: 0, explanation: 'Belajar significa estudiar o aprender.' },
+                                { vocabId: 'v391', type: 'translate_es_id', prompt: 'Traduce: leer', answer: 'Membaca', explanation: 'Membaca significa leer.' },
+                                { vocabId: 'v392', type: 'order', prompt: 'Ordena: Él/ella escribe.', words: ['menulis', 'Dia'], correctOrder: ['Dia', 'menulis'], explanation: 'Dia menulis significa «Él/ella escribe».' },
+                                { vocabId: 'v394', type: 'write', prompt: 'Escribe una frase para decir «Esta es mi tarea».', hint: 'Usa Ini tugas saya.', modelAnswer: 'Ini tugas saya.', explanation: 'Ini tugas saya significa «Esta es mi tarea».' }
+                            ]
+                        },
+                        {
+                            id: 'a1_u25',
+                            title: 'Unidad 25: Aficiones y tiempo libre',
+                            desc: 'Decir qué actividades te gustan y qué haces en tu tiempo libre.',
+                            grammar: 'Usa suka antes de una actividad para expresar gusto: Saya suka membaca (me gusta leer). Para hablar de una actividad, puede aparecer un verbo después de suka. No hace falta añadir una conjugación verbal por persona.',
+                            vocab: [
+                                { id: 'v395', idn: 'Hobi', esp: 'Afición / pasatiempo', ex: 'Apa hobi kamu?', exEsp: '¿Cuál es tu afición?' },
+                                { id: 'v396', idn: 'Musik', esp: 'Música', ex: 'Saya suka musik.', exEsp: 'Me gusta la música.' },
+                                { id: 'v397', idn: 'Berenang', esp: 'Nadar', ex: 'Saya suka berenang.', exEsp: 'Me gusta nadar.' },
+                                { id: 'v398', idn: 'Sepak bola', esp: 'Fútbol', ex: 'Dia suka sepak bola.', exEsp: 'A él/ella le gusta el fútbol.' },
+                                { id: 'v399', idn: 'Memasak', esp: 'Cocinar', ex: 'Saya suka memasak.', exEsp: 'Me gusta cocinar.' },
+                                { id: 'v400', idn: 'Menonton', esp: 'Ver / mirar', ex: 'Saya menonton film.', exEsp: 'Veo una película.' },
+                                { id: 'v401', idn: 'Bermain', esp: 'Jugar', ex: 'Kami bermain bola.', exEsp: 'Jugamos a la pelota.' },
+                                { id: 'v402', idn: 'Akhir pekan', esp: 'Fin de semana', ex: 'Saya membaca pada akhir pekan.', exEsp: 'Leo durante el fin de semana.' },
+                                { id: 'v403', idn: 'Menyanyi', esp: 'Cantar', ex: 'Dia suka menyanyi.', exEsp: 'A él/ella le gusta cantar.' },
+                                { id: 'v404', idn: 'Menari', esp: 'Bailar', ex: 'Saya belajar menari.', exEsp: 'Estoy aprendiendo a bailar.' }
+                            ],
+                            exercises: [
+                                { vocabId: 'v395', type: 'mc', prompt: '¿Qué significa «hobi»?', options: ['Afición', 'Escuela', 'Precio'], answer: 0, explanation: 'Hobi significa afición o pasatiempo.' },
+                                { vocabId: 'v397', type: 'translate_es_id', prompt: 'Traduce: nadar', answer: 'Berenang', explanation: 'Berenang significa nadar.' },
+                                { vocabId: 'v396', type: 'order', prompt: 'Ordena: Me gusta la música.', words: ['musik', 'suka', 'Saya'], correctOrder: ['Saya', 'suka', 'musik'], explanation: 'Saya suka musik significa «Me gusta la música».' },
+                                { vocabId: 'v398', type: 'listen', prompt: 'Escucha y escribe la expresión.', answer: 'Sepak bola', explanation: 'Sepak bola significa fútbol.' },
+                                { vocabId: 'v399', type: 'mc', prompt: '¿Qué significa «memasak»?', options: ['Cocinar', 'Cantar', 'Bailar'], answer: 0, explanation: 'Memasak significa cocinar.' },
+                                { vocabId: 'v400', type: 'translate_es_id', prompt: 'Traduce: ver una película (ver)', answer: 'Menonton', explanation: 'Menonton significa ver o mirar.' },
+                                { vocabId: 'v403', type: 'order', prompt: 'Ordena: A él/ella le gusta cantar.', words: ['menyanyi', 'Dia', 'suka'], correctOrder: ['Dia', 'suka', 'menyanyi'], explanation: 'Dia suka menyanyi significa «Le gusta cantar».' },
+                                { vocabId: 'v404', type: 'write', prompt: 'Escribe una frase para decir «Me gusta bailar».', hint: 'Usa Saya suka menari.', modelAnswer: 'Saya suka menari.', explanation: 'Saya suka menari significa «Me gusta bailar».' }
+                            ]
+                        },
+                        {
+                            id: 'a1_u26',
+                            title: 'Unidad 26: Cómo llegar a un lugar',
+                            desc: 'Comprender indicaciones sencillas y preguntar por una dirección.',
+                            grammar: 'Las indicaciones pueden darse con expresiones breves: belok kiri (gira a la izquierda), belok kanan (gira a la derecha), jalan lurus (sigue recto). Di indica ubicación, mientras que ke puede indicar dirección o destino.',
+                            vocab: [
+                                { id: 'v405', idn: 'Jalan', esp: 'Calle / camino; caminar (según contexto)', ex: 'Jalan ini panjang.', exEsp: 'Esta calle es larga.' },
+                                { id: 'v406', idn: 'Kiri', esp: 'Izquierda', ex: 'Belok kiri.', exEsp: 'Gira a la izquierda.' },
+                                { id: 'v407', idn: 'Kanan', esp: 'Derecha', ex: 'Belok kanan.', exEsp: 'Gira a la derecha.' },
+                                { id: 'v408', idn: 'Lurus', esp: 'Recto / derecho', ex: 'Jalan lurus.', exEsp: 'Sigue recto.' },
+                                { id: 'v409', idn: 'Dekat', esp: 'Cerca', ex: 'Sekolah dekat.', exEsp: 'La escuela está cerca.' },
+                                { id: 'v410', idn: 'Jauh', esp: 'Lejos', ex: 'Rumah saya jauh.', exEsp: 'Mi casa está lejos.' },
+                                { id: 'v411', idn: 'Depan', esp: 'Parte delantera / delante', ex: 'Toko di depan.', exEsp: 'La tienda está delante.' },
+                                { id: 'v412', idn: 'Belakang', esp: 'Parte trasera / detrás', ex: 'Mobil di belakang rumah.', exEsp: 'El coche está detrás de la casa.' },
+                                { id: 'v413', idn: 'Belok', esp: 'Girar', ex: 'Belok di sini.', exEsp: 'Gira aquí.' },
+                                { id: 'v414', idn: 'Alamat', esp: 'Dirección postal', ex: 'Apa alamatnya?', exEsp: '¿Cuál es la dirección?' }
+                            ],
+                            exercises: [
+                                { vocabId: 'v406', type: 'mc', prompt: '¿Qué significa «kiri»?', options: ['Izquierda', 'Derecha', 'Lejos'], answer: 0, explanation: 'Kiri significa izquierda.' },
+                                { vocabId: 'v407', type: 'translate_es_id', prompt: 'Traduce: derecha', answer: 'Kanan', explanation: 'Kanan significa derecha.' },
+                                { vocabId: 'v408', type: 'order', prompt: 'Ordena: Sigue recto.', words: ['lurus', 'Jalan'], correctOrder: ['Jalan', 'lurus'], explanation: 'Jalan lurus es una indicación breve para seguir recto.' },
+                                { vocabId: 'v414', type: 'listen', prompt: 'Escucha y escribe la palabra.', answer: 'Alamat', explanation: 'Alamat significa dirección postal.' },
+                                { vocabId: 'v409', type: 'mc', prompt: '¿Qué significa «dekat»?', options: ['Cerca', 'Lejos', 'Detrás'], answer: 0, explanation: 'Dekat significa cerca.' },
+                                { vocabId: 'v413', type: 'translate_es_id', prompt: 'Traduce: girar', answer: 'Belok', explanation: 'Belok significa girar.' },
+                                { vocabId: 'v406', type: 'order', prompt: 'Ordena: Gira a la izquierda.', words: ['kiri', 'Belok'], correctOrder: ['Belok', 'kiri'], explanation: 'Belok kiri significa «Gira a la izquierda».' },
+                                { vocabId: 'v410', type: 'write', prompt: 'Escribe una frase para decir «Mi casa está lejos».', hint: 'Usa Rumah saya jauh.', modelAnswer: 'Rumah saya jauh.', explanation: 'Rumah saya jauh significa «Mi casa está lejos».' }
+                            ]
+                        },
+                        {
+                            id: 'a1_u27',
+                            title: 'Unidad 27: Invitaciones y planes',
+                            desc: 'Proponer actividades y hablar de planes sencillos para hoy o mañana.',
+                            grammar: 'Besok significa mañana (el día siguiente) y nanti puede significar más tarde. Para proponer algo puedes preguntar Mau ...? (¿Quieres ...?) o usar Ayo ...! (¡Vamos a ...!). El significado concreto depende de la frase y el contexto.',
+                            vocab: [
+                                { id: 'v415', idn: 'Besok', esp: 'Mañana (día siguiente)', ex: 'Besok saya pergi.', exEsp: 'Mañana voy.' },
+                                { id: 'v416', idn: 'Nanti', esp: 'Más tarde / luego', ex: 'Saya datang nanti.', exEsp: 'Vendré más tarde.' },
+                                { id: 'v417', idn: 'Bersama', esp: 'Junto/a(s) / con', ex: 'Saya pergi bersama teman.', exEsp: 'Voy con un amigo.' },
+                                { id: 'v418', idn: 'Datang', esp: 'Venir / llegar', ex: 'Silakan datang besok.', exEsp: 'Por favor, ven mañana.' },
+                                { id: 'v419', idn: 'Pergi', esp: 'Irse / ir', ex: 'Kami pergi besok.', exEsp: 'Nos vamos mañana.' },
+                                { id: 'v420', idn: 'Bertemu', esp: 'Encontrarse / reunirse', ex: 'Saya bertemu teman.', exEsp: 'Me encuentro con un amigo.' },
+                                { id: 'v421', idn: 'Ayo', esp: 'Vamos / ¡venga!', ex: 'Ayo makan!', exEsp: '¡Vamos a comer!' },
+                                { id: 'v422', idn: 'Mungkin', esp: 'Quizá / posiblemente', ex: 'Mungkin saya datang.', exEsp: 'Quizá venga.' },
+                                { id: 'v423', idn: 'Hari ini', esp: 'Hoy', ex: 'Hari ini saya sibuk.', exEsp: 'Hoy estoy ocupado/a.' },
+                                { id: 'v424', idn: 'Akhir pekan', esp: 'Fin de semana', ex: 'Kita bertemu akhir pekan ini.', exEsp: 'Nos vemos este fin de semana.' }
+                            ],
+                            exercises: [
+                                { vocabId: 'v415', type: 'mc', prompt: '¿Qué significa «besok»?', options: ['Mañana (día siguiente)', 'Ayer', 'Ahora'], answer: 0, explanation: 'Besok significa mañana, el día siguiente.' },
+                                { vocabId: 'v416', type: 'translate_es_id', prompt: 'Traduce: más tarde', answer: 'Nanti', explanation: 'Nanti significa más tarde o luego.' },
+                                { vocabId: 'v417', type: 'order', prompt: 'Ordena: Voy con un amigo.', words: ['teman', 'bersama', 'Saya', 'pergi'], correctOrder: ['Saya', 'pergi', 'bersama', 'teman'], explanation: 'Saya pergi bersama teman significa «Voy con un amigo».' },
+                                { vocabId: 'v421', type: 'listen', prompt: 'Escucha y escribe la palabra.', answer: 'Ayo', explanation: 'Ayo se usa para animar a hacer algo juntos.' },
+                                { vocabId: 'v418', type: 'mc', prompt: '¿Qué significa «datang»?', options: ['Venir / llegar', 'Irse', 'Dormir'], answer: 0, explanation: 'Datang significa venir o llegar.' },
+                                { vocabId: 'v420', type: 'translate_es_id', prompt: 'Traduce: encontrarse / reunirse', answer: 'Bertemu', explanation: 'Bertemu significa encontrarse o reunirse.' },
+                                { vocabId: 'v422', type: 'order', prompt: 'Ordena: Quizá venga.', words: ['datang', 'Mungkin', 'saya'], correctOrder: ['Mungkin', 'saya', 'datang'], explanation: 'Mungkin saya datang significa «Quizá venga».' },
+                                { vocabId: 'v423', type: 'write', prompt: 'Escribe una frase para decir «Hoy estoy ocupado/a».', hint: 'Usa Hari ini saya sibuk.', modelAnswer: 'Hari ini saya sibuk.', explanation: 'Hari ini saya sibuk significa «Hoy estoy ocupado/a».' }
+                            ]
+                        },
+                        {
+                            id: 'a1_u28',
+                            title: 'Unidad 28: Viajes y alojamiento',
+                            desc: 'Reconocer vocabulario básico para viajar y alojarse.',
+                            grammar: 'Usa ke para expresar destino: ke bandara (al aeropuerto), ke hotel (al hotel). Para preguntar por una reserva puedes decir Ada reservasi? (¿Hay una reserva?). Las frases son modelos breves; el trato cortés depende de la situación.',
+                            vocab: [
+                                { id: 'v425', idn: 'Hotel', esp: 'Hotel', ex: 'Saya di hotel.', exEsp: 'Estoy en el hotel.' },
+                                { id: 'v426', idn: 'Paspor', esp: 'Pasaporte', ex: 'Ini paspor saya.', exEsp: 'Este es mi pasaporte.' },
+                                { id: 'v427', idn: 'Tiket', esp: 'Billete / boleto / entrada', ex: 'Saya punya tiket.', exEsp: 'Tengo un billete.' },
+                                { id: 'v428', idn: 'Bandara', esp: 'Aeropuerto', ex: 'Saya pergi ke bandara.', exEsp: 'Voy al aeropuerto.' },
+                                { id: 'v429', idn: 'Kereta', esp: 'Tren', ex: 'Saya naik kereta.', exEsp: 'Viajo en tren.' },
+                                { id: 'v430', idn: 'Bus', esp: 'Autobús', ex: 'Bus itu besar.', exEsp: 'Ese autobús es grande.' },
+                                { id: 'v431', idn: 'Koper', esp: 'Maleta', ex: 'Koper saya besar.', exEsp: 'Mi maleta es grande.' },
+                                { id: 'v432', idn: 'Berangkat', esp: 'Salir / partir', ex: 'Kereta berangkat pagi.', exEsp: 'El tren sale por la mañana.' },
+                                { id: 'v433', idn: 'Reservasi', esp: 'Reserva', ex: 'Saya punya reservasi.', exEsp: 'Tengo una reserva.' },
+                                { id: 'v434', idn: 'Stempel', esp: 'Sello / estampilla', ex: 'Saya perlu stempel.', exEsp: 'Necesito un sello.' }
+                            ],
+                            exercises: [
+                                { vocabId: 'v426', type: 'mc', prompt: '¿Qué significa «paspor»?', options: ['Pasaporte', 'Maleta', 'Tren'], answer: 0, explanation: 'Paspor significa pasaporte.' },
+                                { vocabId: 'v427', type: 'translate_es_id', prompt: 'Traduce: billete / boleto', answer: 'Tiket', explanation: 'Tiket puede ser billete, boleto o entrada.' },
+                                { vocabId: 'v428', type: 'order', prompt: 'Ordena: Voy al aeropuerto.', words: ['bandara', 'ke', 'Saya', 'pergi'], correctOrder: ['Saya', 'pergi', 'ke', 'bandara'], explanation: 'Saya pergi ke bandara significa «Voy al aeropuerto».' },
+                                { vocabId: 'v429', type: 'listen', prompt: 'Escucha y escribe la palabra.', answer: 'Kereta', explanation: 'Kereta significa tren.' },
+                                { vocabId: 'v431', type: 'mc', prompt: '¿Qué significa «koper»?', options: ['Maleta', 'Hotel', 'Sello'], answer: 0, explanation: 'Koper significa maleta.' },
+                                { vocabId: 'v432', type: 'translate_es_id', prompt: 'Traduce: partir / salir', answer: 'Berangkat', explanation: 'Berangkat significa partir o salir hacia un destino.' },
+                                { vocabId: 'v433', type: 'order', prompt: 'Ordena: Tengo una reserva.', words: ['reservasi', 'punya', 'Saya'], correctOrder: ['Saya', 'punya', 'reservasi'], explanation: 'Saya punya reservasi significa «Tengo una reserva».' },
+                                { vocabId: 'v425', type: 'write', prompt: 'Escribe una frase para decir «Estoy en el hotel».', hint: 'Usa Saya di hotel.', modelAnswer: 'Saya di hotel.', explanation: 'Saya di hotel significa «Estoy en el hotel».' }
+                            ]
+                        },
+                        {
+                            id: 'a1_u29',
+                            title: 'Unidad 29: Frecuencia y hábitos',
+                            desc: 'Describir hábitos con expresiones sencillas de frecuencia.',
+                            grammar: 'Las expresiones de frecuencia suelen aparecer antes del verbo o después del sujeto: Saya selalu belajar (siempre estudio), Saya kadang-kadang membaca (a veces leo). Cada adverbio puede variar de posición según el énfasis.',
+                            vocab: [
+                                { id: 'v435', idn: 'Selalu', esp: 'Siempre', ex: 'Saya selalu belajar.', exEsp: 'Siempre estudio.' },
+                                { id: 'v436', idn: 'Biasanya', esp: 'Normalmente / por lo general', ex: 'Saya biasanya bangun pagi.', exEsp: 'Normalmente me levanto temprano.' },
+                                { id: 'v437', idn: 'Kadang-kadang', esp: 'A veces', ex: 'Saya kadang-kadang membaca.', exEsp: 'A veces leo.' },
+                                { id: 'v438', idn: 'Jarang', esp: 'Rara vez', ex: 'Saya jarang menonton TV.', exEsp: 'Rara vez veo la televisión.' },
+                                { id: 'v439', idn: 'Setiap hari', esp: 'Todos los días', ex: 'Saya belajar setiap hari.', exEsp: 'Estudio todos los días.' },
+                                { id: 'v440', idn: 'Bangun', esp: 'Levantarse / despertar', ex: 'Saya bangun pagi.', exEsp: 'Me levanto por la mañana.' },
+                                { id: 'v441', idn: 'Mandi', esp: 'Bañarse / ducharse', ex: 'Saya mandi pagi.', exEsp: 'Me ducho por la mañana.' },
+                                { id: 'v442', idn: 'Pulang', esp: 'Volver a casa / regresar', ex: 'Saya pulang sore.', exEsp: 'Vuelvo por la tarde.' },
+                                { id: 'v443', idn: 'Sebelum', esp: 'Antes de', ex: 'Saya makan sebelum belajar.', exEsp: 'Como antes de estudiar.' },
+                                { id: 'v444', idn: 'Sesudah', esp: 'Después de', ex: 'Saya mandi sesudah olahraga.', exEsp: 'Me ducho después de hacer ejercicio.' }
+                            ],
+                            exercises: [
+                                { vocabId: 'v435', type: 'mc', prompt: '¿Qué significa «selalu»?', options: ['Siempre', 'A veces', 'Nunca'], answer: 0, explanation: 'Selalu significa siempre.' },
+                                { vocabId: 'v437', type: 'translate_es_id', prompt: 'Traduce: a veces', answer: 'Kadang-kadang', explanation: 'Kadang-kadang significa a veces.' },
+                                { vocabId: 'v439', type: 'order', prompt: 'Ordena: Estudio todos los días.', words: ['hari', 'Saya', 'setiap', 'belajar'], correctOrder: ['Saya', 'belajar', 'setiap', 'hari'], explanation: 'Saya belajar setiap hari significa «Estudio todos los días».' },
+                                { vocabId: 'v440', type: 'listen', prompt: 'Escucha y escribe la palabra.', answer: 'Bangun', explanation: 'Bangun significa levantarse o despertar.' },
+                                { vocabId: 'v438', type: 'mc', prompt: '¿Qué significa «jarang»?', options: ['Rara vez', 'Siempre', 'Normalmente'], answer: 0, explanation: 'Jarang significa rara vez.' },
+                                { vocabId: 'v443', type: 'translate_es_id', prompt: 'Traduce: antes de', answer: 'Sebelum', explanation: 'Sebelum significa antes de.' },
+                                { vocabId: 'v444', type: 'order', prompt: 'Ordena: Como antes de estudiar.', words: ['belajar', 'makan', 'sebelum', 'Saya'], correctOrder: ['Saya', 'makan', 'sebelum', 'belajar'], explanation: 'Saya makan sebelum belajar significa «Como antes de estudiar».' },
+                                { vocabId: 'v442', type: 'write', prompt: 'Escribe una frase para decir «Vuelvo por la tarde».', hint: 'Usa Saya pulang sore.', modelAnswer: 'Saya pulang sore.', explanation: 'Saya pulang sore significa «Vuelvo por la tarde».' }
+                            ]
+                        },
+                        {
+                            id: 'a1_u30',
+                            title: 'Unidad 30: Pedir ayuda con cortesía',
+                            desc: 'Usar expresiones básicas para disculparse, pedir permiso y solicitar ayuda.',
+                            grammar: 'Permisi se usa para llamar la atención o pasar; maaf para disculparse; silakan para invitar o dar paso. Tolong suele introducir una petición de ayuda o una acción, pero no equivale automáticamente a «por favor» en todos los contextos.',
+                            vocab: [
+                                { id: 'v445', idn: 'Maaf', esp: 'Perdón / lo siento', ex: 'Maaf, saya terlambat.', exEsp: 'Perdón, llego tarde.' },
+                                { id: 'v446', idn: 'Permisi', esp: 'Con permiso / disculpe', ex: 'Permisi, boleh lewat?', exEsp: 'Con permiso, ¿puedo pasar?' },
+                                { id: 'v447', idn: 'Silakan', esp: 'Adelante / por favor (al invitar)', ex: 'Silakan duduk.', exEsp: 'Por favor, siéntese.' },
+                                { id: 'v448', idn: 'Bantuan', esp: 'Ayuda / asistencia', ex: 'Saya perlu bantuan.', exEsp: 'Necesito ayuda.' },
+                                { id: 'v449', idn: 'Ulang', esp: 'Repetir / repetir de nuevo (en expresiones)', ex: 'Tolong ulangi.', exEsp: 'Por favor, repítalo.' },
+                                { id: 'v450', idn: 'Pelan-pelan', esp: 'Despacio', ex: 'Bicara pelan-pelan.', exEsp: 'Habla despacio.' },
+                                { id: 'v451', idn: 'Mengerti', esp: 'Entender', ex: 'Saya mengerti.', exEsp: 'Entiendo.' },
+                                { id: 'v452', idn: 'Tidak mengerti', esp: 'No entender', ex: 'Maaf, saya tidak mengerti.', exEsp: 'Perdón, no entiendo.' },
+                                { id: 'v453', idn: 'Boleh', esp: 'Poder / tener permiso', ex: 'Boleh saya masuk?', exEsp: '¿Puedo entrar?' },
+                                { id: 'v454', idn: 'Terlambat', esp: 'Tarde / con retraso', ex: 'Saya terlambat.', exEsp: 'Llego tarde.' }
+                            ],
+                            exercises: [
+                                { vocabId: 'v445', type: 'mc', prompt: '¿Qué significa «maaf»?', options: ['Perdón', 'Gracias', 'Mañana'], answer: 0, explanation: 'Maaf se usa para disculparse.' },
+                                { vocabId: 'v448', type: 'translate_es_id', prompt: 'Traduce: ayuda', answer: 'Bantuan', explanation: 'Bantuan significa ayuda o asistencia.' },
+                                { vocabId: 'v450', type: 'order', prompt: 'Ordena: Habla despacio.', words: ['pelan-pelan', 'Bicara'], correctOrder: ['Bicara', 'pelan-pelan'], explanation: 'Bicara pelan-pelan significa «Habla despacio».' },
+                                { vocabId: 'v452', type: 'listen', prompt: 'Escucha y escribe la expresión.', answer: 'Tidak mengerti', explanation: 'Tidak mengerti significa no entender.' },
+                                { vocabId: 'v446', type: 'mc', prompt: '¿Qué expresión significa «con permiso»?', options: ['Permisi', 'Selalu', 'Koper'], answer: 0, explanation: 'Permisi se usa para pedir paso o llamar la atención con cortesía.' },
+                                { vocabId: 'v451', type: 'translate_es_id', prompt: 'Traduce: entender', answer: 'Mengerti', explanation: 'Mengerti significa entender.' },
+                                { vocabId: 'v453', type: 'order', prompt: 'Ordena: ¿Puedo entrar?', words: ['masuk', 'saya', 'Boleh'], correctOrder: ['Boleh', 'saya', 'masuk'], explanation: 'Boleh saya masuk? pregunta si se tiene permiso para entrar.' },
+                                { vocabId: 'v452', type: 'write', prompt: 'Escribe una frase para decir «Perdón, no entiendo».', hint: 'Usa Maaf, saya tidak mengerti.', modelAnswer: 'Maaf, saya tidak mengerti.', explanation: 'Maaf, saya tidak mengerti significa «Perdón, no entiendo».' }
+                            ]
+                        },
+                        {
+                            id: 'a1_u31',
+                            title: 'Unidad 31: Describir personas',
+                            desc: 'Describir de forma sencilla la apariencia y algunas cualidades de una persona.',
+                            grammar: 'En una descripción sencilla, el adjetivo suele ir después del sustantivo o del sujeto: Dia tinggi (es alto/a), Teman saya ramah (mi amigo/a es amable). El contexto indica a quién se refiere dia; el indonesio no marca género gramatical en ese pronombre.',
+                            vocab: [
+                                { id: 'v455', idn: 'Tinggi', esp: 'Alto/a', ex: 'Dia tinggi.', exEsp: 'Él/ella es alto/a.' },
+                                { id: 'v456', idn: 'Pendek', esp: 'Bajo/a; corto/a', ex: 'Rambut saya pendek.', exEsp: 'Tengo el pelo corto.' },
+                                { id: 'v457', idn: 'Ramah', esp: 'Amable / simpático/a', ex: 'Teman saya ramah.', exEsp: 'Mi amigo/a es amable.' },
+                                { id: 'v458', idn: 'Muda', esp: 'Joven', ex: 'Dia masih muda.', exEsp: 'Él/ella todavía es joven.' },
+                                { id: 'v459', idn: 'Tua', esp: 'Mayor / viejo/a (según contexto)', ex: 'Kakek saya sudah tua.', exEsp: 'Mi abuelo ya es mayor.' },
+                                { id: 'v460', idn: 'Rambut', esp: 'Cabello / pelo', ex: 'Rambut saya panjang.', exEsp: 'Tengo el pelo largo.' },
+                                { id: 'v461', idn: 'Panjang', esp: 'Largo/a', ex: 'Rambutnya panjang.', exEsp: 'Su pelo es largo.' },
+                                { id: 'v462', idn: 'Teman', esp: 'Amigo/a', ex: 'Dia teman saya.', exEsp: 'Él/ella es mi amigo/a.' },
+                                { id: 'v463', idn: 'Kacamata', esp: 'Gafas / anteojos', ex: 'Saya memakai kacamata.', exEsp: 'Llevo gafas.' },
+                                { id: 'v464', idn: 'Senyum', esp: 'Sonrisa / sonreír (según contexto)', ex: 'Senyumnya manis.', exEsp: 'Su sonrisa es bonita.' }
+                            ],
+                            exercises: [
+                                { vocabId: 'v455', type: 'mc', prompt: '¿Qué significa «tinggi»?', options: ['Alto/a', 'Corto/a', 'Joven'], answer: 0, explanation: 'Tinggi significa alto/a.' },
+                                { vocabId: 'v456', type: 'translate_es_id', prompt: 'Traduce: cabello / pelo', answer: 'Rambut', explanation: 'Rambut significa cabello o pelo.' },
+                                { vocabId: 'v457', type: 'order', prompt: 'Ordena: Mi amigo/a es amable.', words: ['ramah', 'Teman', 'saya'], correctOrder: ['Teman', 'saya', 'ramah'], explanation: 'Teman saya ramah significa «Mi amigo/a es amable».' },
+                                { vocabId: 'v463', type: 'listen', prompt: 'Escucha y escribe la palabra.', answer: 'Kacamata', explanation: 'Kacamata significa gafas o anteojos.' },
+                                { vocabId: 'v458', type: 'mc', prompt: '¿Qué significa «muda»?', options: ['Joven', 'Mayor', 'Alto/a'], answer: 0, explanation: 'Muda significa joven.' },
+                                { vocabId: 'v461', type: 'translate_es_id', prompt: 'Traduce: largo/a', answer: 'Panjang', explanation: 'Panjang significa largo/a.' },
+                                { vocabId: 'v460', type: 'order', prompt: 'Ordena: Tengo el pelo largo.', words: ['panjang', 'Rambut', 'saya'], correctOrder: ['Rambut', 'saya', 'panjang'], explanation: 'Rambut saya panjang significa «Tengo el pelo largo».' },
+                                { vocabId: 'v464', type: 'write', prompt: 'Escribe una frase para decir «Él/ella es alto/a».', hint: 'Usa Dia tinggi.', modelAnswer: 'Dia tinggi.', explanation: 'Dia tinggi significa «Él/ella es alto/a».' }
+                            ]
+                        },
+                        {
+                            id: 'a1_u32',
+                            title: 'Unidad 32: Conversaciones prácticas',
+                            desc: 'Integrar expresiones breves para desenvolverse en situaciones cotidianas.',
+                            grammar: 'En una conversación, combina saludos, preguntas y expresiones de cortesía. Apa kabar? pregunta cómo está alguien; Terima kasih expresa agradecimiento y Sama-sama responde a ese agradecimiento. Elige la expresión según la situación, no como traducción literal palabra por palabra.',
+                            vocab: [
+                                { id: 'v465', idn: 'Apa kabar?', esp: '¿Cómo estás? / ¿Qué tal?', ex: 'Halo, apa kabar?', exEsp: 'Hola, ¿qué tal?' },
+                                { id: 'v466', idn: 'Baik', esp: 'Bien', ex: 'Saya baik.', exEsp: 'Estoy bien.' },
+                                { id: 'v467', idn: 'Terima kasih', esp: 'Gracias', ex: 'Terima kasih banyak.', exEsp: 'Muchas gracias.' },
+                                { id: 'v468', idn: 'Sama-sama', esp: 'De nada', ex: 'Terima kasih. — Sama-sama.', exEsp: 'Gracias. — De nada.' },
+                                { id: 'v469', idn: 'Sampai jumpa', esp: 'Hasta luego / hasta la vista', ex: 'Sampai jumpa besok.', exEsp: 'Hasta mañana.' },
+                                { id: 'v470', idn: 'Senang bertemu', esp: 'Encantado/a de conocerte (forma breve)', ex: 'Senang bertemu dengan Anda.', exEsp: 'Encantado/a de conocerle.' },
+                                { id: 'v471', idn: 'Perlu', esp: 'Necesitar / hacer falta', ex: 'Saya perlu bantuan.', exEsp: 'Necesito ayuda.' },
+                                { id: 'v472', idn: 'Berapa', esp: 'Cuánto/a(s)', ex: 'Berapa harganya?', exEsp: '¿Cuánto cuesta?' },
+                                { id: 'v473', idn: 'Di mana', esp: 'Dónde', ex: 'Di mana toilet?', exEsp: '¿Dónde está el baño?' },
+                                { id: 'v474', idn: 'Permisi', esp: 'Con permiso / disculpe', ex: 'Permisi, di mana toilet?', exEsp: 'Disculpe, ¿dónde está el baño?' }
+                            ],
+                            exercises: [
+                                { vocabId: 'v465', type: 'mc', prompt: '¿Qué significa «Apa kabar?»?', options: ['¿Qué tal?', '¿Cuánto cuesta?', '¿Dónde está?'], answer: 0, explanation: 'Apa kabar? es una pregunta común para saber cómo está alguien.' },
+                                { vocabId: 'v467', type: 'translate_es_id', prompt: 'Traduce: gracias', answer: 'Terima kasih', explanation: 'Terima kasih significa gracias.' },
+                                { vocabId: 'v468', type: 'order', prompt: 'Ordena: Muchas gracias.', words: ['kasih', 'Terima', 'banyak'], correctOrder: ['Terima', 'kasih', 'banyak'], explanation: 'Terima kasih banyak significa «Muchas gracias».' },
+                                { vocabId: 'v469', type: 'listen', prompt: 'Escucha y escribe la expresión.', answer: 'Sampai jumpa', explanation: 'Sampai jumpa se usa para despedirse.' },
+                                { vocabId: 'v472', type: 'mc', prompt: '¿Qué significa «Berapa harganya?»?', options: ['¿Cuánto cuesta?', '¿Cómo estás?', '¿Dónde está el baño?'], answer: 0, explanation: 'Berapa harganya? pregunta por el precio.' },
+                                { vocabId: 'v473', type: 'translate_es_id', prompt: 'Traduce: dónde', answer: 'Di mana', explanation: 'Di mana pregunta por un lugar.' },
+                                { vocabId: 'v474', type: 'order', prompt: 'Ordena: Disculpe, ¿dónde está el baño?', words: ['toilet', 'Permisi', 'di', 'mana'], correctOrder: ['Permisi,', 'di', 'mana', 'toilet?'], explanation: 'Permisi, di mana toilet? es una pregunta cortés por un lugar.' },
+                                { vocabId: 'v466', type: 'write', prompt: 'Escribe una frase para decir «Estoy bien».', hint: 'Usa Saya baik.', modelAnswer: 'Saya baik.', explanation: 'Saya baik significa «Estoy bien».' }
                             ]
                         },
                     ]

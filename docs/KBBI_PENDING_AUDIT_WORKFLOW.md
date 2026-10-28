@@ -65,7 +65,8 @@ node scripts/audit-kbbi-pending.mjs \
 Inspect each `http_status`, `fetch_error`, and `response_excerpt` in the
 output. For JSON responses, the script also extracts best-effort fields
 `api_lemma`, `api_base_word`, `api_definitions`, `api_part_of_speech`,
-`api_json_valid`, and `api_top_level_keys`. These are convenience summaries of
+`api_json_valid`, `api_variants`, `api_non_standard_words`, `api_compound_words`,
+`api_derived_words`, and `api_top_level_keys`. These are convenience summaries of
 common field names, not a guarantee that every provider schema is understood;
 keep `response_excerpt` as the raw evidence and manually inspect unfamiliar
 structures. A failed request should be recorded as a failed source attempt, not as

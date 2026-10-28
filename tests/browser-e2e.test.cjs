@@ -233,6 +233,33 @@ test('audio engine sends Indonesian speech utterances to the browser voice API',
   }
 });
 
+
+test('tap-to-translate shows a vocabulary meaning and example in the lesson', async () => {
+  const { server, url } = await startServer();
+  const context = await browser.newContext({ serviceWorkers: 'block' });
+  const page = await context.newPage();
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
+    await page.evaluate(() => LessonEngine.startUnitById('a1_u1'));
+    await page.locator('#exerciseArea .card strong').first().waitFor();
+    await page.locator('#exerciseArea .card strong').first().click();
+
+    await page.locator('#wordMeaningPopup:not([hidden])').waitFor();
+    assert.equal(await page.locator('#wordMeaningTerm').innerText(), 'Saya');
+    assert.equal(await page.locator('#wordMeaningText').innerText(), 'Yo');
+    assert.match(await page.locator('#wordMeaningExample').innerText(), /Saya makan\./);
+    assert.match(await page.locator('#wordMeaningExample').innerText(), /Yo como\./);
+
+    await page.locator('#wordMeaningClose').click();
+    await page.locator('#wordMeaningPopup[hidden]').waitFor();
+  } finally {
+    await context.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});
+
 test('service worker serves the app after the network is disconnected', async () => {
   const { server, url } = await startServer();
   const context = await browser.newContext();

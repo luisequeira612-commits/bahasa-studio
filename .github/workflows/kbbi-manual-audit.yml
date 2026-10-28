@@ -1,0 +1,45 @@
+name: Manual KBBI pending audit
+
+on:
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: "Number of pending terms to query (5 for a sample, 56 for all pending terms)"
+        required: true
+        default: "5"
+        type: choice
+        options:
+          - "5"
+          - "10"
+          - "20"
+          - "56"
+
+permissions:
+  contents: read
+
+jobs:
+  collect-review-evidence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Collect third-party API leads
+        run: |
+          node scripts/audit-kbbi-pending.mjs \
+            --api-template 'https://kbbi.raf555.dev/api/v1/entry/{word}' \
+            --limit "${{ inputs.limit }}" \
+            --delay-ms 1200 \
+            --timeout-ms 10000 \
+            --output artifacts/kbbi-api-review.json
+      - name: Upload review evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: kbbi-api-review-${{ inputs.limit }}-terms
+          path: artifacts/kbbi-api-review.json
+          if-no-files-found: error
+          retention-days: 14

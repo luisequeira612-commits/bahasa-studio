@@ -131,12 +131,19 @@ async function main() {
       api_base_word: null,
       api_definitions: [],
       api_part_of_speech: [],
+      api_definition_labels: [],
+      api_entry: null,
+      api_base_word_present: false,
+      api_entry_variants: [],
+      api_entries_count: null,
+      api_entry_ambiguous: false,
+      api_lemma_matches_query: null,
       api_top_level_keys: [],
       reviewer_decision: 'not_reviewed',
       notes: 'API output is only a candidate lead. Confirm the exact sense in a primary source and review gloss/example separately.',
     };
     if (opts.apiTemplate) {
-      const url = opts.apiTemplate.replaceAll('{word}', encodeURIComponent(word));
+      const url = opts.apiTemplate.replaceAll('{word}', encodeURIComponent(word.toLowerCase()));
       item.request_url = url;
       try {
         const controller = new AbortController();
@@ -151,6 +158,11 @@ async function main() {
           const body = await response.text();
           item.response_excerpt = body.slice(0, 12000);
           Object.assign(item, summarizeApiResponse(body));
+          item.api_lemma_matches_query = item.api_lemma == null
+            ? null
+            : item.api_lemma.toLocaleLowerCase('id') === word.toLocaleLowerCase('id');
+          if (item.api_entry_ambiguous) item.notes += ' Multiple dictionary entries returned; human disambiguation required.';
+          if (item.api_lemma_matches_query === false) item.notes += ` Returned lemma "${item.api_lemma}" differs from queried form; human review required.`;
           if (!response.ok) item.fetch_error = `HTTP ${response.status}`;
           if (body.length > 12000) item.notes += ' Response excerpt truncated at 12000 characters.';
         } finally {

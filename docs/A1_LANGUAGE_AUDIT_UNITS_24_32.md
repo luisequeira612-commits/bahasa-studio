@@ -47,3 +47,21 @@ Se mantuvieron los IDs para no romper las referencias de los ejercicios. Las exp
 ## Criterio de salida
 
 Esta rama contiene correcciones editoriales útiles, pero la auditoría lingüística **no está cerrada**. No etiquetar U24–U32 como «validadas por KBBI» ni fusionar basándose únicamente en pruebas estructurales. El siguiente paso es completar el cotejo individual KBBI y la revisión de respuestas/audio.
+
+
+## Seguimiento de auditoría — 2026-10-28
+
+Se amplió el rastreador `docs/A1_VOCABULARY_AUDIT_TRACKER_U24_U32.csv` con evidencia de consulta directa a KBBI VI Daring para **33 de los 90 términos**. Para cada uno se registraron la URL exacta, la fecha de consulta, el lema/base y una nota breve sobre la acepción o la forma derivada. Esto valida únicamente la comprobación lexicográfica indicada; no certifica por sí solo la glosa española, el ejemplo, la naturalidad ni el nivel A1.
+
+La portada de KBBI VI Daring indica que algunas funciones requieren iniciar sesión y que el registro de cuentas nuevas está temporalmente afectado. Sin embargo, varias páginas individuales de entrada se pudieron consultar públicamente sin iniciar sesión. Se registraron solo las entradas realmente abiertas y examinadas; las restantes siguen como `not_checked`, sin inferir su estado por semejanza o por resultados no consultados.
+
+Se añadió la referencia general oficial BIPA 1 a las 90 filas del rastreador. **Esto no equivale a haber cotejado cada término con una unidad o página del material BIPA.** El ajuste al nivel, la naturalidad y la revisión de respuestas aceptadas siguen pendientes en todas las filas salvo que se documente expresamente lo contrario.
+
+### Bloqueos que permanecen
+- 57/90 entradas sin cotejo directo KBBI registrado.
+- No se ha completado el análisis término por término contra secciones/páginas concretas de BIPA 1.
+- No se ha terminado la revisión individual de todas las respuestas aceptadas y variantes de los 72 ejercicios.
+- No se ha probado de forma real la pronunciación, las voces disponibles, los fallbacks ni el comportamiento offline en dispositivos.
+- La aprobación lingüística final requiere cerrar estas tareas y, cuando haya dudas, revisión competente de indonesio.
+
+No declarar cerrada la auditoría lingüística basándose en el resultado verde de CI.

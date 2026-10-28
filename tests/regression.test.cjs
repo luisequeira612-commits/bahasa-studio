@@ -584,7 +584,7 @@ test('A1 units 9–11 cover numbers, prices, and time with linked exercises', ()
     return unit;
   });
 
-  const oldWords = new Set(a1.units.filter(unit => !['a1_u9', 'a1_u10', 'a1_u11'].includes(unit.id))
+  const oldWords = new Set(a1.units.filter(unit => !['a1_u9', 'a1_u10', 'a1_u11', 'a1_u18', 'a1_u19', 'a1_u20'].includes(unit.id))
     .flatMap(unit => unit.vocab).map(word => word.idn.trim().toLocaleLowerCase()));
   const newVocab = added.flatMap(unit => unit.vocab).filter(word => /^v(12[4-9]|1[3-5]\d|158)$/.test(word.id));
   const newIds = newVocab.map(word => word.id);

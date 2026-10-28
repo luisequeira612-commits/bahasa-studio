@@ -925,6 +925,11 @@ test('A1 units 24–32 extend the course to 32 units with linked beginner practi
   }
   assert.match(html, /0% · 0\/32 unidades/);
 
+  const u26 = a1.units.find(unit => unit.id === 'a1_u26');
+  const depan = u26.vocab.find(word => word.id === 'v411');
+  assert.equal(depan.ex, 'Toko ada di depan rumah.');
+  assert.equal(depan.exEsp, 'La tienda está delante de la casa.');
+
   const u29 = a1.units.find(unit => unit.id === 'a1_u29');
   const rest = u29.exercises.find(ex => ex.vocabId === 'v442' && ex.type === 'write');
   assert.equal(rest.modelAnswer, 'Saya beristirahat pada sore hari.');

@@ -926,9 +926,18 @@ test('A1 units 24–32 extend the course to 32 units with linked beginner practi
   assert.match(html, /0% · 0\/32 unidades/);
 
   const u26 = a1.units.find(unit => unit.id === 'a1_u26');
+  const jalan = u26.vocab.find(word => word.id === 'v405');
+  assert.equal(jalan.esp, 'Calle / camino', 'keep Jalan focused on its noun sense in this example');
+  const lurus = u26.vocab.find(word => word.id === 'v408');
+  assert.equal(lurus.esp, 'Recto (sin girar)');
   const depan = u26.vocab.find(word => word.id === 'v411');
   assert.equal(depan.ex, 'Toko ada di depan rumah.');
   assert.equal(depan.exEsp, 'La tienda está delante de la casa.');
+
+  const u28 = a1.units.find(unit => unit.id === 'a1_u28');
+  const stempel = u28.vocab.find(word => word.id === 'v434');
+  assert.equal(stempel.ex, 'Saya perlu stempel di paspor.');
+  assert.equal(stempel.exEsp, 'Necesito un sello en el pasaporte.');
 
   const u29 = a1.units.find(unit => unit.id === 'a1_u29');
   const rest = u29.exercises.find(ex => ex.vocabId === 'v442' && ex.type === 'write');
@@ -937,6 +946,14 @@ test('A1 units 24–32 extend the course to 32 units with linked beginner practi
   const u31 = a1.units.find(unit => unit.id === 'a1_u31');
   const hair = u31.exercises.find(ex => ex.type === 'translate_es_id' && ex.prompt === 'Traduce: cabello / pelo');
   assert.equal(hair.vocabId, 'v460');
+  const shortHeight = u31.vocab.find(word => word.id === 'v456');
+  assert.equal(shortHeight.esp, 'Bajo/a (de estatura)');
+  assert.equal(shortHeight.ex, 'Dia pendek.');
+  assert.equal(shortHeight.exEsp, 'Él/ella es bajo/a.');
+  const smile = u31.vocab.find(word => word.id === 'v464');
+  assert.equal(smile.esp, 'Sonrisa');
+  const heightWriting = u31.exercises.find(ex => ex.type === 'write' && ex.prompt === 'Escribe una frase para decir «Él/ella es alto/a».');
+  assert.equal(heightWriting.vocabId, 'v455', 'the height-writing exercise must link to Tinggi, not Senyum');
 
   const u32 = a1.units.find(unit => unit.id === 'a1_u32');
   const thanks = u32.exercises.find(ex => ex.vocabId === 'v468' && ex.type === 'mc');

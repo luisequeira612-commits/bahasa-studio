@@ -3085,10 +3085,10 @@
                             desc: 'Comprender indicaciones sencillas y preguntar por una dirección.',
                             grammar: 'Las indicaciones pueden darse con expresiones breves: belok kiri (gira a la izquierda), belok kanan (gira a la derecha), jalan lurus (sigue recto). Di indica ubicación, mientras que ke puede indicar dirección o destino.',
                             vocab: [
-                                { id: 'v405', idn: 'Jalan', esp: 'Calle / camino; caminar (según contexto)', ex: 'Jalan ini panjang.', exEsp: 'Esta calle es larga.' },
+                                { id: 'v405', idn: 'Jalan', esp: 'Calle / camino', ex: 'Jalan ini panjang.', exEsp: 'Esta calle es larga.' },
                                 { id: 'v406', idn: 'Kiri', esp: 'Izquierda', ex: 'Belok kiri.', exEsp: 'Gira a la izquierda.' },
                                 { id: 'v407', idn: 'Kanan', esp: 'Derecha', ex: 'Belok kanan.', exEsp: 'Gira a la derecha.' },
-                                { id: 'v408', idn: 'Lurus', esp: 'Recto / derecho', ex: 'Jalan lurus.', exEsp: 'Sigue recto.' },
+                                { id: 'v408', idn: 'Lurus', esp: 'Recto (sin girar)', ex: 'Jalan lurus.', exEsp: 'Sigue recto.' },
                                 { id: 'v409', idn: 'Seberang', esp: 'Al otro lado / enfrente', ex: 'Toko di seberang jalan.', exEsp: 'La tienda está al otro lado de la calle.' },
                                 { id: 'v410', idn: 'Jauh', esp: 'Lejos', ex: 'Rumah saya jauh.', exEsp: 'Mi casa está lejos.' },
                                 { id: 'v411', idn: 'Depan', esp: 'Delante / parte delantera', ex: 'Toko ada di depan rumah.', exEsp: 'La tienda está delante de la casa.' },
@@ -3150,7 +3150,7 @@
                                 { id: 'v431', idn: 'Koper', esp: 'Maleta', ex: 'Koper saya besar.', exEsp: 'Mi maleta es grande.' },
                                 { id: 'v432', idn: 'Tiba', esp: 'Llegar', ex: 'Kereta tiba pada pagi hari.', exEsp: 'El tren llega por la mañana.' },
                                 { id: 'v433', idn: 'Reservasi', esp: 'Reserva', ex: 'Saya punya reservasi.', exEsp: 'Tengo una reserva.' },
-                                { id: 'v434', idn: 'Stempel', esp: 'Sello / estampilla', ex: 'Saya perlu stempel.', exEsp: 'Necesito un sello.' }
+                                { id: 'v434', idn: 'Stempel', esp: 'Sello (oficial)', ex: 'Saya perlu stempel di paspor.', exEsp: 'Necesito un sello en el pasaporte.' }
                             ],
                             exercises: [
                                 { vocabId: 'v426', type: 'mc', prompt: '¿Qué significa «paspor»?', options: ['Pasaporte', 'Maleta', 'Tren'], answer: 0, explanation: 'Paspor significa pasaporte.' },
@@ -3226,7 +3226,7 @@
                             grammar: 'En una descripción sencilla, el adjetivo suele ir después del sustantivo o del sujeto: Dia tinggi (es alto/a), Teman saya ramah (mi amigo/a es amable). El contexto indica a quién se refiere dia; el indonesio no marca género gramatical en ese pronombre.',
                             vocab: [
                                 { id: 'v455', idn: 'Tinggi', esp: 'Alto/a', ex: 'Dia tinggi.', exEsp: 'Él/ella es alto/a.' },
-                                { id: 'v456', idn: 'Pendek', esp: 'Bajo/a; corto/a', ex: 'Rambut saya pendek.', exEsp: 'Tengo el pelo corto.' },
+                                { id: 'v456', idn: 'Pendek', esp: 'Bajo/a (de estatura)', ex: 'Dia pendek.', exEsp: 'Él/ella es bajo/a.' },
                                 { id: 'v457', idn: 'Ramah', esp: 'Amable / simpático/a', ex: 'Teman saya ramah.', exEsp: 'Mi amigo/a es amable.' },
                                 { id: 'v458', idn: 'Muda', esp: 'Joven', ex: 'Dia masih muda.', exEsp: 'Él/ella todavía es joven.' },
                                 { id: 'v459', idn: 'Tua', esp: 'Mayor / viejo/a (según contexto)', ex: 'Kakek saya sudah tua.', exEsp: 'Mi abuelo ya es mayor.' },
@@ -3234,7 +3234,7 @@
                                 { id: 'v461', idn: 'Panjang', esp: 'Largo/a', ex: 'Rambutnya panjang.', exEsp: 'Su pelo es largo.' },
                                 { id: 'v462', idn: 'Hidung', esp: 'Nariz', ex: 'Ini hidung saya.', exEsp: 'Esta es mi nariz.' },
                                 { id: 'v463', idn: 'Kacamata', esp: 'Gafas / anteojos', ex: 'Saya memakai kacamata.', exEsp: 'Llevo gafas.' },
-                                { id: 'v464', idn: 'Senyum', esp: 'Sonrisa / sonreír (según contexto)', ex: 'Senyumnya manis.', exEsp: 'Su sonrisa es bonita.' }
+                                { id: 'v464', idn: 'Senyum', esp: 'Sonrisa', ex: 'Senyumnya manis.', exEsp: 'Su sonrisa es bonita.' }
                             ],
                             exercises: [
                                 { vocabId: 'v455', type: 'mc', prompt: '¿Qué significa «tinggi»?', options: ['Alto/a', 'Corto/a', 'Joven'], answer: 0, explanation: 'Tinggi significa alto/a.' },
@@ -3244,7 +3244,7 @@
                                 { vocabId: 'v458', type: 'mc', prompt: '¿Qué significa «muda»?', options: ['Joven', 'Mayor', 'Alto/a'], answer: 0, explanation: 'Muda significa joven.' },
                                 { vocabId: 'v461', type: 'translate_es_id', prompt: 'Traduce: largo/a', answer: 'Panjang', explanation: 'Panjang significa largo/a.' },
                                 { vocabId: 'v460', type: 'order', prompt: 'Ordena: Tengo el pelo largo.', words: ['panjang', 'Rambut', 'saya'], correctOrder: ['Rambut', 'saya', 'panjang'], explanation: 'Rambut saya panjang significa «Tengo el pelo largo».' },
-                                { vocabId: 'v464', type: 'write', prompt: 'Escribe una frase para decir «Él/ella es alto/a».', hint: 'Usa Dia tinggi.', modelAnswer: 'Dia tinggi.', explanation: 'Dia tinggi significa «Él/ella es alto/a».' }
+                                { vocabId: 'v455', type: 'write', prompt: 'Escribe una frase para decir «Él/ella es alto/a».', hint: 'Usa Dia tinggi.', modelAnswer: 'Dia tinggi.', explanation: 'Dia tinggi significa «Él/ella es alto/a».' }
                             ]
                         },
                         {

@@ -44,3 +44,33 @@ test('script does not mutate the tracker', async () => {
     await rm(temp, { recursive: true, force: true });
   }
 });
+
+
+import { summarizeApiResponse } from '../scripts/kbbi-api-response.mjs';
+
+test('API summarizer extracts common fields but does not imply verification', () => {
+  const summary = summarizeApiResponse(JSON.stringify({
+    lemma: 'pensil',
+    baseWord: 'pensil',
+    definitions: ['alat tulis'],
+    partOfSpeech: ['Nomina'],
+    variants: ['pensil'],
+  }));
+  assert.equal(summary.api_json_valid, true);
+  assert.equal(summary.api_lemma, 'pensil');
+  assert.equal(summary.api_base_word, 'pensil');
+  assert.deepEqual(summary.api_definitions, ['alat tulis']);
+  assert.deepEqual(summary.api_part_of_speech, ['Nomina']);
+  assert.ok(summary.api_top_level_keys.includes('variants'));
+  assert.equal(Object.hasOwn(summary, 'verified_primary'), false);
+});
+
+test('API summarizer keeps malformed and unfamiliar JSON conservative', () => {
+  const malformed = summarizeApiResponse('{bad json');
+  assert.equal(malformed.api_json_valid, false);
+  assert.deepEqual(malformed.api_definitions, []);
+  const unfamiliar = summarizeApiResponse(JSON.stringify({ payload: { definition: 'nested' } }));
+  assert.equal(unfamiliar.api_json_valid, true);
+  assert.deepEqual(unfamiliar.api_definitions, []);
+  assert.ok(unfamiliar.api_top_level_keys.includes('payload'));
+});

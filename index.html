@@ -5240,6 +5240,7 @@ Requisitos:
                 if (!zone) { closePopup(); return; }
                 const textTarget = event.target.closest('h2, h3, p, small, strong, span, .msg');
                 if (!textTarget) return;
+                index = buildTapTranslationIndex();
                 const token = tokenAtPoint(event);
                 if (token) showMeaning(token);
             });

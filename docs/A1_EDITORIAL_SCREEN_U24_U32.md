@@ -6,7 +6,7 @@ Estado: **cribado inicial, no certificación lingüística**.
 
 ## Evidencia de fuentes primarias
 
-- KBBI VI Daring indica que se debe registrar/iniciar sesión para acceder a las búsquedas: https://kbbi.kemendikdasmen.go.id/ (consultado el 2026-10-28).
+- La página principal de KBBI VI Daring invita a iniciar sesión para las funciones de búsqueda completas: https://kbbi.kemendikdasmen.go.id/ (consultado el 2026-10-28). No obstante, las páginas directas de entradas individuales pueden ser accesibles sin iniciar sesión; se comprobó, por ejemplo, la entrada «guru» (https://kbbi.kemendikdasmen.go.id/entri/guru) y la entrada derivada «menyapu» (https://kbbi.kemendikdasmen.go.id/entri/menyapu) el 2026-10-28. Por tanto, se debe intentar el cotejo por URL directa antes de marcar una palabra como bloqueada.
 - El aviso oficial de KBBI explica que el alta de usuarios está temporalmente afectada: https://kbbi.kemendikdasmen.go.id/?m=0 (consultado el 2026-10-28).
 - El portal oficial describe que el contenido de KBBI Daring está protegido por derechos de autor; por tanto, esta auditoría no automatizará acceso, no eludirá controles y no copiará definiciones en bloque.
 - El repositorio oficial de «Sahabatku Indonesia BIPA 1» describe objetivos de comunicación sencilla para presentaciones y necesidades concretas, cotidianas y rutinarias: https://repositori.kemendikdasmen.go.id/19081/ (consultado el 2026-10-28).

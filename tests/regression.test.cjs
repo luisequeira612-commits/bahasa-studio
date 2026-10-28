@@ -1089,3 +1089,24 @@ test('U24–U32 curriculum structure keeps vocabulary and exercise references in
     }
   }
 });
+test('U24–U32 audit tracker vocabulary and examples stay synchronized with the app', () => {
+  const start = html.indexOf('const CourseData =');
+  const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
+  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
+  const a1 = course.levels.find(level => level.id === 'A1');
+  const tracker = fs.readFileSync(path.join(root, 'docs/A1_VOCABULARY_AUDIT_TRACKER_U24_U32.csv'), 'utf8').trim().split(/\r?\n/);
+  const rows = tracker.slice(1).map(line => line.split('\",\"').map(value => value.replace(/^\"|\"$/g, '')));
+  assert.equal(rows.length, 90);
+  for (const columns of rows) {
+    const [unitLabel, id, indonesian, spanish, example, exampleSpanish] = columns;
+    const unitNumber = Number(unitLabel.slice(1));
+    const unit = a1.units.find(item => item.id === 'a1_u' + unitNumber);
+    assert.ok(unit, 'tracker references missing unit ' + unitLabel);
+    const vocab = unit.vocab.find(item => item.id === id);
+    assert.ok(vocab, 'tracker references missing vocabulary ' + id);
+    assert.equal(vocab.idn, indonesian, id + ' Indonesian form differs from tracker');
+    assert.equal(vocab.esp, spanish, id + ' Spanish gloss differs from tracker');
+    assert.equal(vocab.ex, example, id + ' Indonesian example differs from tracker');
+    assert.equal(vocab.exEsp, exampleSpanish, id + ' Spanish example differs from tracker');
+  }
+});

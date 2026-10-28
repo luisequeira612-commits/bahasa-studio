@@ -114,6 +114,21 @@
         .badge { background: color-mix(in srgb, var(--accent) 12%, transparent); border-color: var(--accent); }
         .input-field { border: 2px solid var(--border); border-radius: 14px; }
         .msg { border-radius: 16px; }
+    
+        /* Consulta de significado al tocar palabras durante el aprendizaje */
+        .word-meaning-popup {
+            position: fixed; z-index: 1000; left: 50%; bottom: 78px; transform: translateX(-50%);
+            width: min(92vw, 420px); max-height: min(45vh, 360px); overflow-y: auto;
+            background: var(--bg-secondary); color: var(--text-main); border: 2px solid var(--accent);
+            border-radius: 18px; box-shadow: 0 12px 36px #0003; padding: 16px;
+        }
+        .word-meaning-popup[hidden] { display: none; }
+        .word-meaning-popup-head { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; }
+        .word-meaning-popup-term { font-size:1.2rem; font-weight:800; color:var(--accent); }
+        .word-meaning-popup-meaning { font-size:1rem; margin-top:6px; }
+        .word-meaning-popup-example { margin-top:10px; padding-top:10px; border-top:1px solid var(--border); font-size:.9rem; }
+        .word-meaning-popup-close { flex:0 0 auto; border:1px solid var(--border); background:var(--bg-card); color:var(--text-main); border-radius:10px; padding:6px 10px; cursor:pointer; }
+
     </style>
 </head>
 <body>
@@ -4283,6 +4298,7 @@
                 document.getElementById('lessonProgressFill').style.width = '0%';
                 document.getElementById('exerciseArea').innerHTML = `<div><h3>${App.escapeHtml(u.title)}</h3>
                     <div style="background:var(--bg-card); padding:10px; border-radius:12px; font-size:0.85rem; margin:10px 0;">💡 ${App.escapeHtml(u.grammar)}</div>
+                    <p style="font-size:0.8rem;color:var(--text-muted);margin:8px 0;">💡 Toca una palabra en indonesio para consultar su significado sin salir de la lección.</p>
                     ${u.vocab.map(v => `<div class="card" style="padding:10px; margin-bottom:8px; display:flex; justify-content:space-between; align-items:center;">
                         <div><strong>${App.escapeHtml(v.idn)}</strong> — ${App.escapeHtml(v.esp)}<br><small style="color:var(--text-muted);">${App.escapeHtml(v.ex)} (${App.escapeHtml(v.exEsp)})</small></div>
                         <button class="btn btn-outline btn-sm" data-word="${App.escapeHtml(v.idn)}" onclick="AudioEngine.speak(this.dataset.word)">🔊</button></div>`).join('')}</div>
@@ -5125,5 +5141,118 @@ Requisitos:
 
         window.addEventListener('DOMContentLoaded', () => App.init());
     </script>
+
+    <div id="wordMeaningPopup" class="word-meaning-popup" role="dialog" aria-label="Significado de la palabra" aria-live="polite" hidden>
+        <div class="word-meaning-popup-head">
+            <div>
+                <div id="wordMeaningTerm" class="word-meaning-popup-term"></div>
+                <div id="wordMeaningText" class="word-meaning-popup-meaning"></div>
+            </div>
+            <button type="button" id="wordMeaningClose" class="word-meaning-popup-close" aria-label="Cerrar significado">✕</button>
+        </div>
+        <div id="wordMeaningExample" class="word-meaning-popup-example" hidden></div>
+    </div>
+    <script>
+    (() => {
+        'use strict';
+        const normalizeTapWord = value => String(value == null ? '' : value)
+            .normalize('NFKC').toLocaleLowerCase('id').replace(/[^\p{L}\p{M}]/gu, '');
+
+        function buildTapTranslationIndex() {
+            const index = new Map();
+            let vocabulary = [];
+            try {
+                vocabulary = typeof getUniqueLearningVocabulary === 'function' ? getUniqueLearningVocabulary() : [];
+            } catch (error) {
+                console.warn('No se pudo cargar el vocabulario para las traducciones al toque.', error);
+            }
+            for (const word of vocabulary) {
+                const key = normalizeTapWord(word && word.idn);
+                if (!key || !word || !word.esp) continue;
+                const entries = index.get(key) || [];
+                if (!entries.some(entry => entry.esp === word.esp && entry.ex === word.ex)) {
+                    entries.push({ idn: String(word.idn), esp: String(word.esp), ex: String(word.ex || ''), exEsp: String(word.exEsp || '') });
+                }
+                index.set(key, entries);
+            }
+            return index;
+        }
+
+        function tokenAtPoint(event) {
+            let node = null;
+            let offset = 0;
+            if (typeof document.caretRangeFromPoint === 'function') {
+                const range = document.caretRangeFromPoint(event.clientX, event.clientY);
+                if (range) { node = range.startContainer; offset = range.startOffset; }
+            } else if (typeof document.caretPositionFromPoint === 'function') {
+                const position = document.caretPositionFromPoint(event.clientX, event.clientY);
+                if (position) { node = position.offsetNode; offset = position.offset; }
+            }
+            if (!node || node.nodeType !== Node.TEXT_NODE) return '';
+            const text = node.textContent || '';
+            const tokens = /[\p{L}\p{M}]+(?:[-’'][\p{L}\p{M}]+)*/gu;
+            let match;
+            let nearest = '';
+            let distance = Infinity;
+            while ((match = tokens.exec(text)) !== null) {
+                const start = match.index;
+                const end = start + match[0].length;
+                if (offset >= start && offset <= end) return match[0];
+                const currentDistance = Math.min(Math.abs(offset - start), Math.abs(offset - end));
+                if (currentDistance < distance) { distance = currentDistance; nearest = match[0]; }
+            }
+            return distance <= 1 ? nearest : '';
+        }
+
+        function initTapTranslations() {
+            const popup = document.getElementById('wordMeaningPopup');
+            if (!popup || popup.dataset.initialized === 'true') return;
+            popup.dataset.initialized = 'true';
+            const termNode = document.getElementById('wordMeaningTerm');
+            const meaningNode = document.getElementById('wordMeaningText');
+            const exampleNode = document.getElementById('wordMeaningExample');
+            const closeButton = document.getElementById('wordMeaningClose');
+            let index = buildTapTranslationIndex();
+
+            function closePopup() { popup.hidden = true; }
+            function showMeaning(token) {
+                const matches = index.get(normalizeTapWord(token));
+                if (!matches || !matches.length) return;
+                termNode.textContent = matches[0].idn;
+                meaningNode.textContent = matches.slice(0, 3).map(entry => entry.esp).join(' · ');
+                const example = matches.find(entry => entry.ex || entry.exEsp);
+                if (example) {
+                    exampleNode.textContent = [example.ex ? 'Ejemplo: ' + example.ex : '', example.exEsp ? 'Traducción: ' + example.exEsp : ''].filter(Boolean).join(' — ');
+                    exampleNode.hidden = false;
+                } else {
+                    exampleNode.textContent = '';
+                    exampleNode.hidden = true;
+                }
+                popup.hidden = false;
+            }
+
+            closeButton.addEventListener('click', closePopup);
+            document.addEventListener('keydown', event => { if (event.key === 'Escape') closePopup(); });
+            document.addEventListener('click', event => {
+                if (popup.contains(event.target)) return;
+                if (event.target.closest && event.target.closest('button, input, textarea, select, a, label')) return;
+                const zone = event.target.closest && event.target.closest('#exerciseArea, #dictContainer, #chatBox, .flashcard');
+                if (!zone) { closePopup(); return; }
+                const textTarget = event.target.closest('h2, h3, p, small, strong, span, .msg');
+                if (!textTarget) return;
+                index = buildTapTranslationIndex();
+                const token = tokenAtPoint(event);
+                if (token) showMeaning(token);
+            });
+
+            // Expose a refresh hook for vocabulary added by generated lessons.
+            window.refreshWordTranslationIndex = () => { index = buildTapTranslationIndex(); };
+        }
+
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initTapTranslations, { once: true });
+        else initTapTranslations();
+    })();
+    </script>
+
 </body>
 </html>

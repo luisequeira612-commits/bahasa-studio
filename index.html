@@ -5335,13 +5335,26 @@ Requisitos:
                 const margin = 8;
                 let left = rect.left + rect.width / 2 - width / 2;
                 left = Math.max(margin, Math.min(left, window.innerWidth - width - margin));
-                let top = rect.bottom + 9;
-                if (top + height > window.innerHeight - margin && rect.top - height - 9 >= margin) {
-                    top = rect.top - height - 9;
+                const viewportHeight = window.innerHeight;
+                const maxTop = Math.max(margin, viewportHeight - height - margin);
+                const belowTop = rect.bottom + 9;
+                const aboveTop = rect.top - height - 9;
+                let top;
+                if (belowTop + height <= viewportHeight - margin) {
+                    top = belowTop;
+                } else if (aboveTop >= margin) {
+                    top = aboveTop;
+                    bubble.classList.add('above');
+                } else if (viewportHeight - rect.bottom >= rect.top) {
+                    // Neither side fits completely: keep the bubble visible and favor below.
+                    top = Math.min(belowTop, maxTop);
+                } else {
+                    // Favor above when there is more room, while clamping to the viewport.
+                    top = Math.max(margin, Math.min(aboveTop, maxTop));
                     bubble.classList.add('above');
                 }
                 bubble.style.left = left + 'px';
-                bubble.style.top = Math.max(margin, top) + 'px';
+                bubble.style.top = Math.max(margin, Math.min(top, maxTop)) + 'px';
                 const arrowLeft = Math.max(12, Math.min(width - 12, rect.left + rect.width / 2 - left));
                 bubble.style.setProperty('--tap-arrow-left', arrowLeft + 'px');
             }

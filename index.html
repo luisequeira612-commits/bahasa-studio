@@ -5210,8 +5210,8 @@ Requisitos:
         const escapeHtml = value => String(value == null ? '' : value).replace(/[&<>"']/g, char => ({
             '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
         })[char]);
-        const wordTokens = value => [...String(value || '').matchAll(/[\\p{L}\\p{M}]+(?:[’'-][\\p{L}\\p{M}]+)*/gu)];
-        const normToken = value => String(value || '').normalize('NFKC').toLocaleLowerCase('es').replace(/[^\\p{L}\\p{M}]/gu, '');
+        const wordTokens = value => [...String(value || '').matchAll(/[\p{L}\p{M}]+(?:[’'-][\p{L}\p{M}]+)*/gu)];
+        const normToken = value => String(value || '').normalize('NFKC').toLocaleLowerCase('es').replace(/[^\p{L}\p{M}]/gu, '');
 
         function translationCandidates(language) {
             let vocabulary = [];
@@ -5222,7 +5222,7 @@ Requisitos:
                 if (!word || !word.idn || !word.esp) continue;
                 const source = language === 'es' ? String(word.esp) : String(word.idn);
                 const target = language === 'es' ? String(word.idn) : String(word.esp);
-                const variants = [source, ...source.split(/\\s+\\/\\s+/u)].filter(Boolean);
+                const variants = [source, ...source.split(/\s+\/\s+/u)].filter(Boolean);
                 for (const variant of variants) {
                     const tokens = wordTokens(variant).map(match => normToken(match[0])).filter(Boolean);
                     if (tokens.length) candidates.push({ source: variant, target, tokens });
@@ -5277,15 +5277,15 @@ Requisitos:
 
         window.parseTapTranslationPrompt = function (prompt, language) {
             const text = String(prompt || '');
-            const colon = text.match(/^(.+?:)\\s*(?:[«“"'](.+?)[»”"']|(.+))$/u);
+            const colon = text.match(/^(.+?:)\s*(?:[«“"'](.+?)[»”"']|(.+))$/u);
             if (colon) return { label: colon[1], phrase: (colon[2] || colon[3] || '').trim() };
-            const quoted = text.match(/^(.+?)\\s*[«“"'](.+?)[»”"']\\s*\\??$/u);
+            const quoted = text.match(/^(.+?)\s*[«“"'](.+?)[»”"']\s*\??$/u);
             if (quoted) return { label: quoted[1].trim(), phrase: quoted[2].trim() };
             return { label: language === 'es' ? 'Traduce al indonesio:' : text, phrase: text };
         };
 
         window.parseTapMeaningPrompt = function (prompt) {
-            const match = String(prompt || '').match(/^(¿Qué significa)\\s*[«“"']?(.+?)[»”"']?\\?$/iu);
+            const match = String(prompt || '').match(/^(¿Qué significa)\s*[«“"']?(.+?)[»”"']?\?$/iu);
             return match ? { label: match[1] + ':', phrase: match[2].trim() } : null;
         };
 

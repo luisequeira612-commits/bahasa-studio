@@ -1224,10 +1224,12 @@
                                 },
                                 {
                                     "vocabId": "v30",
-                                    "type": "listen",
-                                    "prompt": "Escribe lo que escuchas",
-                                    "answer": "Saya di rumah",
-                                    "explanation": "Saya di rumah significa Estoy en casa."
+                                    "type": "mc",
+                                    "prompt": "Escucha la frase y elige su significado",
+                                    "audioText": "Saya di rumah",
+                                    "options": ["Estoy en casa", "Estoy en la escuela", "Vivo en la ciudad"],
+                                    "answer": 0,
+                                    "explanation": "Saya di rumah significa «Estoy en casa»."
                                 },
                                 {
                                     "vocabId": "v31",
@@ -1244,10 +1246,12 @@
                                 },
                                 {
                                     "vocabId": "v32",
-                                    "type": "listen",
-                                    "prompt": "Escribe lo que escuchas",
-                                    "answer": "Di mana sekolah",
-                                    "explanation": "Di mana sekolah pregunta dónde está la escuela."
+                                    "type": "mc",
+                                    "prompt": "Escucha la pregunta y elige su significado",
+                                    "audioText": "Di mana sekolah?",
+                                    "options": ["¿Dónde está la escuela?", "¿Dónde está mi casa?", "¿Quién está en la ciudad?"],
+                                    "answer": 0,
+                                    "explanation": "Di mana sekolah? pregunta dónde está la escuela."
                                 },
                                 {
                                     "vocabId": "v101",
@@ -1379,17 +1383,21 @@
                                 },
                                 {
                                     "vocabId": "v44",
-                                    "type": "listen",
-                                    "prompt": "Escribe lo que escuchas",
-                                    "answer": "Saya belajar setiap hari",
-                                    "explanation": "La frase significa Estudio todos los días."
+                                    "type": "mc",
+                                    "prompt": "Escucha la frase y elige su significado",
+                                    "audioText": "Saya belajar setiap hari",
+                                    "options": ["Estudio todos los días", "Trabajo todos los días", "Duermo hoy"],
+                                    "answer": 0,
+                                    "explanation": "Saya belajar setiap hari significa «Estudio todos los días»."
                                 },
                                 {
                                     "vocabId": "v35",
-                                    "type": "listen",
-                                    "prompt": "Escribe lo que escuchas",
-                                    "answer": "Hari ini saya belajar",
-                                    "explanation": "Hari ini saya belajar significa Hoy estudio."
+                                    "type": "mc",
+                                    "prompt": "Escucha la frase y elige su significado",
+                                    "audioText": "Hari ini saya belajar",
+                                    "options": ["Hoy estudio", "Mañana trabajo", "Todos los días duermo"],
+                                    "answer": 0,
+                                    "explanation": "Hari ini saya belajar significa «Hoy estudio»."
                                 },
                                 {
                                     "vocabId": "v36",
@@ -1489,18 +1497,18 @@
                             exercises: [
                                 { vocabId: 'v124', type: 'mc', prompt: '¿Qué número significa sebelas?', options: ['11', '12', '20'], answer: 0, explanation: 'Sebelas significa once.' },
                                 { vocabId: 'v125', type: 'translate_es_id', prompt: 'Traduce al indonesio: doce', answer: 'Dua belas', explanation: 'Dua belas significa doce.' },
-                                { vocabId: 'v126', type: 'listen', prompt: 'Escucha y escribe el número', answer: 'Tiga belas', explanation: 'Tiga belas significa trece.' },
+                                { vocabId: 'v126', type: 'mc', prompt: 'Escucha el número y elige su valor', audioText: 'Tiga belas', options: ['3', '13', '30'], answer: 1, explanation: 'Tiga belas significa trece.' },
                                 { vocabId: 'v127', type: 'mc', prompt: '¿Qué significa empat belas?', options: ['Cuatro', 'Catorce', 'Cuarenta'], answer: 1, explanation: 'Empat belas significa catorce.' },
                                 { vocabId: 'v128', type: 'translate_es_id', prompt: 'Traduce: quince', answer: 'Lima belas', explanation: 'Lima belas significa quince.' },
                                 { vocabId: 'v129', type: 'order', prompt: 'Ordena las palabras para formar “dieciséis libros”', words: ['buku', 'Enam', 'belas'], correctOrder: ['Enam', 'belas', 'buku'], explanation: 'El número va antes del sustantivo: Enam belas buku.' },
                                 { vocabId: 'v130', type: 'mc', prompt: 'Tujuh belas equivale a…', options: ['7', '17', '70'], answer: 1, explanation: 'Tujuh belas significa diecisiete.' },
                                 { vocabId: 'v131', type: 'translate_es_id', prompt: 'Traduce: dieciocho', answer: 'Delapan belas', explanation: 'Delapan belas significa dieciocho.' },
-                                { vocabId: 'v132', type: 'listen', prompt: 'Escribe el número que escuchas', answer: 'Sembilan belas', explanation: 'Sembilan belas significa diecinueve.' },
+                                { vocabId: 'v132', type: 'mc', prompt: 'Escucha el número y elige su valor', audioText: 'Sembilan belas', options: ['9', '19', '90'], answer: 1, explanation: 'Sembilan belas significa diecinueve.' },
                                 { vocabId: 'v133', type: 'mc', prompt: '¿Qué número significa dua puluh?', options: ['12', '20', '30'], answer: 1, explanation: 'Dua puluh significa veinte.' },
                                 { vocabId: 'v134', type: 'translate_es_id', prompt: 'Traduce: treinta', answer: 'Tiga puluh', explanation: 'Tiga puluh significa treinta.' },
                                 { vocabId: 'v135', type: 'mc', prompt: 'Seratus significa…', options: ['100', '13', '30'], answer: 0, explanation: 'Seratus significa cien.' },
                                 { vocabId: 'v124', type: 'order', prompt: 'Ordena para decir “once amigos”', words: ['teman', 'Sebelas'], correctOrder: ['Sebelas', 'teman'], explanation: 'En una cantidad simple, el número precede al sustantivo.' },
-                                { vocabId: 'v133', type: 'listen', prompt: 'Escucha y escribe “veinte”', answer: 'Dua puluh', explanation: 'Dua puluh significa veinte.' },
+                                { vocabId: 'v133', type: 'mc', prompt: 'Escucha el número y elige su valor', audioText: 'Dua puluh', options: ['12', '20', '22'], answer: 1, explanation: 'Dua puluh significa veinte.' },
                                 { vocabId: 'v158', type: 'mc', prompt: '¿Cómo se dice cuarenta?', options: ['Empat puluh', 'Empat belas', 'Empat tahun'], answer: 0, explanation: 'Empat puluh significa cuarenta; puluh forma decenas.' },
                                 { vocabId: 'v158', type: 'translate_es_id', prompt: 'Traduce: setenta', answer: 'Tujuh puluh', explanation: 'Tujuh puluh significa setenta.' },
                                 { vocabId: 'v158', type: 'mc', prompt: 'Sembilan puluh significa…', options: ['19', '90', '100'], answer: 1, explanation: 'Sembilan puluh significa noventa.' },
@@ -1534,7 +1542,7 @@
                             exercises: [
                                 { vocabId: 'v136', type: 'mc', prompt: '¿Qué significa uang?', options: ['Dinero', 'Precio', 'Cambio'], answer: 0, explanation: 'Uang significa dinero.' },
                                 { vocabId: 'v137', type: 'translate_es_id', prompt: 'Traduce: precio', answer: 'Harga', explanation: 'Harga significa precio.' },
-                                { vocabId: 'v138', type: 'listen', prompt: 'Escribe la palabra para la moneda de Indonesia', answer: 'Rupiah', explanation: 'Rupiah es la moneda de Indonesia.' },
+                                { vocabId: 'v138', type: 'mc', prompt: 'Escucha la palabra y elige su significado', audioText: 'Rupiah', options: ['La moneda de Indonesia', 'El precio', 'El dinero en efectivo'], answer: 0, explanation: 'Rupiah es la moneda de Indonesia.' },
                                 { vocabId: 'v139', type: 'mc', prompt: 'Lima ribu rupiah significa…', options: ['Cinco rupias', 'Cinco mil rupias', 'Cincuenta rupias'], answer: 1, explanation: 'Ribu significa mil.' },
                                 { vocabId: 'v140', type: 'translate_es_id', prompt: 'Traduce: barato/a', answer: 'Murah', explanation: 'Murah significa barato o barata.' },
                                 { vocabId: 'v141', type: 'mc', prompt: '¿Qué palabra significa caro/a?', options: ['Murah', 'Mahal', 'Tunai'], answer: 1, explanation: 'Mahal significa caro o cara.' },

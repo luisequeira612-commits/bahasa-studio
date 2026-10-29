@@ -1322,3 +1322,25 @@ test('A1 daily routines, location and numbers include listening comprehension ch
     assert.ok(!exercise.options.includes(audioText), 'the Indonesian audio text must not be shown as an option');
   }
 });
+
+
+test('A1 greetings, location, restaurant requests and symptoms include listening choices', () => {
+  const start = html.indexOf('const CourseData =');
+  const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
+  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
+  const a1 = course.levels.find(level => level.id === 'A1');
+  const expected = [
+    ['a1_u1', 'Selamat pagi', 'Buenos días'],
+    ['a1_u18', 'Kamu di situ', 'Estás ahí'],
+    ['a1_u19', 'Tanpa cabai, ya', 'Sin chile, por favor'],
+    ['a1_u21', 'Saya sakit kepala', 'Le duele la cabeza']
+  ];
+  for (const [unitId, audioText, meaning] of expected) {
+    const unit = a1.units.find(item => item.id === unitId);
+    const exercise = unit.exercises.find(item => item.audioText === audioText);
+    assert.ok(exercise, unitId + ' should include ' + audioText);
+    assert.equal(exercise.type, 'mc');
+    assert.equal(exercise.options[exercise.answer], meaning);
+    assert.ok(!exercise.options.includes(audioText), 'the Indonesian audio text must not be shown as an option');
+  }
+});

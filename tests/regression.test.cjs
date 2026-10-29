@@ -1301,7 +1301,7 @@ test('A1 family and food units include sentence-level listening choices', () => 
 test('A1 daily routines, location and numbers include listening comprehension choices', () => {
   const start = html.indexOf('const CourseData =');
   const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
-  const course = vm.runInNewContext(html.slice(start, end) + '\\nCourseData');
+  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
   const a1 = course.levels.find(level => level.id === 'A1');
   const expected = [
     ['a1_u7', 'Saya di rumah', 'Estoy en casa'],

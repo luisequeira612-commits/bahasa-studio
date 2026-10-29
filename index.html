@@ -268,6 +268,7 @@
             </div>
             
             <div id="srsAnswerArea" style="display:none;">
+                <p id="srsGradeError" role="alert" aria-live="polite" style="color:var(--error); font-size:0.85rem; text-align:center; margin:8px 0;"></p>
                 <p style="text-align:center; font-size:1.2rem; margin-bottom:12px; color:var(--success);" id="srsAnswerText"></p>
                 <p style="font-size:0.8rem; text-align:center; color:var(--text-muted); margin-bottom:8px;">¿Qué tan bien lo recordabas?</p>
                 <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:8px;">
@@ -4369,6 +4370,8 @@
 
                 // A rapid double click must never record two attempts for one card.
                 this.isGrading = true;
+                const feedback = document.getElementById('srsGradeError');
+                if (feedback) feedback.textContent = '';
                 try {
                     await this.recordAttempt(current.vocab.id, normalizedGrade);
                     if (this.activeQueue !== queue || this.currentIndex !== index) return;
@@ -4386,6 +4389,9 @@
                         document.getElementById('srsPracticeArea').style.display = 'none';
                         await App.updateSrsView();
                     }
+                } catch (error) {
+                    console.error('No se pudo guardar la calificación del repaso:', error);
+                    if (feedback) feedback.textContent = 'No se pudo guardar tu respuesta. La tarjeta sigue pendiente; comprueba el almacenamiento e inténtalo de nuevo.';
                 } finally {
                     this.isGrading = false;
                 }

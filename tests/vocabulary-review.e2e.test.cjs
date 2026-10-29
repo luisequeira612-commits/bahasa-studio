@@ -228,3 +228,62 @@ test('rapid repeated grading records a vocabulary card only once', async () => {
     await new Promise(resolve => server.close(resolve));
   }
 });
+
+
+test('failed grade persistence keeps the current card and allows retry', async () => {
+  const { server, url } = await startServer();
+  const browser = await chromium.launch({ headless: true });
+  const context = await browser.newContext({ serviceWorkers: 'block' });
+  const page = await context.newPage();
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof SRSEngine !== 'undefined' && DB && DB.db);
+    await page.evaluate(async () => {
+      const now = Date.now();
+      const word = SRSEngine.getA1Vocabulary()[0];
+      await DB.set('srs', word.id, {
+        attempts: 1, correct: 0, incorrect: 1, interval: 1,
+        repetition: 0, efactor: 2, nextReview: now - 1000,
+        lastReviewed: now - 86400000
+      });
+    });
+
+    await page.evaluate(() => App.switchView('srs'));
+    await page.evaluate(() => SRSEngine.startSession());
+    await page.waitForFunction(() => SRSEngine.activeQueue.length === 1);
+    await page.locator('#srsRevealBtn').click();
+
+    const failure = await page.evaluate(async () => {
+      const original = SRSEngine.recordAttempt.bind(SRSEngine);
+      SRSEngine.recordAttempt = async () => { throw new Error('simulated storage failure'); };
+      await SRSEngine.submitGrade(5);
+      const state = {
+        index: SRSEngine.currentIndex,
+        correct: SRSEngine.sessionStats.correct,
+        incorrect: SRSEngine.sessionStats.incorrect,
+        isGrading: SRSEngine.isGrading,
+        feedback: document.getElementById('srsGradeError').textContent
+      };
+      SRSEngine.recordAttempt = original;
+      return state;
+    });
+
+    assert.equal(failure.index, 0, 'failed persistence must not advance the queue');
+    assert.equal(failure.correct, 0);
+    assert.equal(failure.incorrect, 0);
+    assert.equal(failure.isGrading, false, 'the lock must release after failure');
+    assert.match(failure.feedback, /No se pudo guardar/);
+    assert.equal(await page.locator('#srsPracticeArea').isVisible(), true);
+
+    await page.evaluate(() => SRSEngine.submitGrade(5));
+    assert.equal(await page.locator('#srsDashboard').isVisible(), true,
+      'the same card should be reviewable after a successful retry');
+    assert.equal(await page.locator('#srsGradeError').innerText(), '',
+      'successful retry should clear the error message');
+  } finally {
+    await context.close();
+    await browser.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});

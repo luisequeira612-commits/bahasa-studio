@@ -1349,7 +1349,7 @@ test('A1 greetings, location, restaurant requests and symptoms include listening
 test('A1 includes multi-turn listening dialogues with contextual comprehension', () => {
   const start = html.indexOf('const CourseData =');
   const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
-  const course = vm.runInNewContext(html.slice(start, end) + '\\nCourseData');
+  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
   const a1 = course.levels.find(level => level.id === 'A1');
   const expected = [
     ['a1_u1', 'Selamat pagi. Apa kabar? Baik, terima kasih.', 'Dos personas se saludan y preguntan cómo están'],

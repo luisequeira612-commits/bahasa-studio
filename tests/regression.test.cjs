@@ -1239,7 +1239,7 @@ test('tap-to-translate lookup is wired into learning text and uses safe text ren
 test('listening comprehension multiple-choice plays Indonesian audio without revealing the written answer', () => {
   const start = html.indexOf('const CourseData =');
   const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
-  const course = vm.runInNewContext(html.slice(start, end) + '\\nCourseData');
+  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
   const a1 = course.levels.find(level => level.id === 'A1');
   const unit1 = a1.units.find(unit => unit.id === 'a1_u1');
   const exercise = unit1.exercises.find(item => item.type === 'listen_mc');
@@ -1247,7 +1247,7 @@ test('listening comprehension multiple-choice plays Indonesian audio without rev
   assert.equal(exercise.audioText, 'Dia');
   assert.deepEqual(exercise.options, ['Yo', 'Tú', 'Él / ella']);
   assert.equal(exercise.options[exercise.answer], 'Él / ella');
-  assert.match(html, /ex\\.type === 'mc' \\|\\| ex\\.type === 'listen_mc'/);
-  assert.match(html, /if \\(ex\\.type === 'listen_mc'\\) AudioEngine\\.speak\\(ex\\.audioText\\)/);
+  assert.match(html, /ex\.type === 'mc' \|\| ex\.type === 'listen_mc'/);
+  assert.match(html, /if \(ex\.type === 'listen_mc'\) AudioEngine\.speak\(ex\.audioText\)/);
   assert.match(html, /aria-label="Repetir audio"/);
 });

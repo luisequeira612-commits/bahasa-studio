@@ -528,6 +528,7 @@
                                 { vocabId: 'v1', type: 'mc', prompt: '¿Qué palabra significa «yo»?', options: ['Kamu', 'Saya', 'Dia'], answer: 1, explanation: 'Saya significa «yo» y es una forma estándar y respetuosa.' },
                                 { vocabId: 'v2', type: 'translate_es_id', prompt: 'Traduce al indonesio: «tú»', answer: 'Kamu', explanation: 'Kamu significa «tú» en contextos informales.' },
                                 { vocabId: 'v3', type: 'mc', prompt: '¿Qué significa «dia»?', options: ['Yo', 'Tú', 'Él / ella'], answer: 2, explanation: 'Dia puede significar él o ella; el pronombre no indica género.' },
+                                { vocabId: 'v3', type: 'listen_mc', prompt: 'Escucha la palabra y elige su significado', audioText: 'Dia', options: ['Yo', 'Tú', 'Él / ella'], answer: 2, explanation: 'Dia puede significar él o ella; el pronombre no indica género.' },
                                 { vocabId: 'v4', type: 'listen', prompt: 'Escucha y escribe el saludo de la mañana', answer: 'Selamat pagi', explanation: 'Selamat pagi significa «buenos días».' },
                                 { vocabId: 'v60', type: 'translate_es_id', prompt: 'Traduce: «hola»', answer: 'Halo', explanation: 'Halo es un saludo común.' },
                                 { vocabId: 'v45', type: 'mc', prompt: 'Alguien te ayuda. ¿Qué dices para dar las gracias?', options: ['Halo', 'Terima kasih', 'Selamat pagi'], answer: 1, explanation: 'Terima kasih significa «gracias».' },
@@ -4484,14 +4485,18 @@
                 this.selectedOption = null;
                 this.userOrder = [];
 
-                if (ex.type === 'mc') {
-                    const tapPrompt = window.parseTapMeaningPrompt(ex.prompt);
+                if (ex.type === 'mc' || ex.type === 'listen_mc') {
+                    const tapPrompt = ex.type === 'mc' ? window.parseTapMeaningPrompt(ex.prompt) : null;
                     const promptMarkup = tapPrompt
                         ? `<h3>${App.escapeHtml(tapPrompt.label)}</h3>${window.renderTapTranslationSentence(tapPrompt.phrase, 'idn')}`
                         : `<h3>${App.escapeHtml(ex.prompt)}</h3>`;
+                    const listenMarkup = ex.type === 'listen_mc'
+                        ? `<button class="btn btn-outline" style="margin-top:12px;" data-audio-text="${App.escapeHtml(ex.audioText)}" onclick="AudioEngine.speak(this.dataset.audioText)" aria-label="Repetir audio">🔊 Repetir audio</button>`
+                        : '';
                     container.innerHTML = `
                         <div>
                             ${promptMarkup}
+                            ${listenMarkup}
                             <div class="option-grid">
                                 ${ex.options.map((opt, i) => `
                                     <button class="option-btn" onclick="LessonEngine.selectMc(${i}, this)">${App.escapeHtml(opt)}</button>
@@ -4502,6 +4507,7 @@
                             <button class="btn" onclick="LessonEngine.checkMc()">Comprobar</button>
                         </div>
                     `;
+                    if (ex.type === 'listen_mc') AudioEngine.speak(ex.audioText);
                 } else if (ex.type === 'translate_es_id') {
                     const tapPrompt = window.parseTapTranslationPrompt(ex.prompt, 'es');
                     container.innerHTML = `

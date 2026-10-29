@@ -558,7 +558,7 @@ test('SRS duplicate attempt persistence delegates all aliases to one atomic batc
   const batches = [];
   const saveAttemptForDuplicateWords = vm.runInNewContext(
     '({ async saveAttemptForDuplicateWords(wordId, item) {' + methodBody + '\n} }).saveAttemptForDuplicateWords',
-    { DB: { setMany: async (store, entries) => batches.push({ store, entries }) }
+    { DB: { setMany: async (store, entries) => batches.push({ store, entries }) } }
   );
   const engine = {
     getDuplicateWordIds: async wordId => wordId === 'v27' ? ['v27', 'v48'] : [wordId],

@@ -1251,3 +1251,24 @@ test('listening comprehension multiple-choice plays Indonesian audio without rev
   assert.match(html, /if \(ex\.audioText\) AudioEngine\.speak\(ex\.audioText\)/);
   assert.match(html, /aria-label="Repetir audio"/);
 });
+
+
+test('A1 expands sentence-level listening comprehension across multiple units', () => {
+  const start = html.indexOf('const CourseData =');
+  const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
+  const course = vm.runInNewContext(html.slice(start, end) + '\\nCourseData');
+  const a1 = course.levels.find(level => level.id === 'A1');
+  const expected = [
+    ['a1_u2', 'Dia tidur', 'Él / ella duerme'],
+    ['a1_u3', 'Nama saya Ana', 'Me llamo Ana'],
+    ['a1_u4', 'Sepuluh tahun', 'Diez años']
+  ];
+  for (const [unitId, audioText, meaning] of expected) {
+    const unit = a1.units.find(item => item.id === unitId);
+    const exercise = unit.exercises.find(item => item.audioText === audioText);
+    assert.ok(exercise, unitId + ' should include the sentence audio');
+    assert.equal(exercise.type, 'mc');
+    assert.equal(exercise.options[exercise.answer], meaning);
+    assert.ok(!exercise.options.includes(audioText), 'the written Indonesian answer must not be revealed');
+  }
+});

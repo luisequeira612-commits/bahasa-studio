@@ -1205,6 +1205,16 @@ test('U24–U32 audit tracker vocabulary and examples stay synchronized with the
 });
 
 
+test('audio playback speed is adjustable, validated, and persisted without changing default playback', () => {
+  assert.match(html, /id="audioPlaybackRate"/);
+  assert.match(html, /setRate\(value, persist = true\)/);
+  assert.match(html, /\[0\.5, 0\.7, 0\.85, 1\]\.includes\(rate\)/);
+  assert.match(html, /DB\.set\('settings', 'audioPlaybackRate', rate\)/);
+  assert.match(html, /utter\.rate = this\.rate/);
+  assert.match(html, /DB\.get\('settings', 'audioPlaybackRate'\)/);
+  assert.match(html, /value="0\.85" selected/);
+});
+
 test('tapped word-meaning popup can save the matched vocabulary item for SRS review', () => {
   assert.match(html, /id="wordMeaningSave"/);
   assert.match(html, /const saveButton = document\.getElementById\('wordMeaningSave'\)/);

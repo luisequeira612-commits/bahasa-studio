@@ -149,6 +149,8 @@
             font-size: 1rem; line-height: 1.4; overflow-wrap: anywhere; pointer-events: auto;
         }
         .tap-translation-bubble[hidden] { display: none; }
+        .tap-translation-save { flex: 0 0 auto; border: 1px solid var(--accent); border-radius: 999px; padding: 5px 9px; background: var(--bg-card); color: var(--accent); font: inherit; font-size: .82rem; font-weight: 700; cursor: pointer; }
+        .tap-translation-save:disabled { opacity: .65; cursor: wait; }
         .tap-translation-bubble::before {
             content: ""; position: absolute; top: -6px; left: var(--tap-arrow-left, 50%);
             width: 10px; height: 10px; background: var(--bg-secondary);
@@ -283,6 +285,10 @@
             <div style="display:flex; justify-content:space-between; margin-top: 4px;">
                 <span>Reforzar:</span>
                 <strong id="statNeedsPractice">0</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-top: 4px;">
+                <span>Guardadas para repasar:</span>
+                <strong id="statSavedForReview">0</strong>
             </div>
         </div>
     </main>
@@ -4133,6 +4139,7 @@
             return {
                 ...latest,
                 wordId,
+                savedForReview: records.some(item => item.savedForReview === true),
                 attempts: histories.reduce((sum, item) => sum + (item.attempts || 0), 0),
                 correct: histories.reduce((sum, item) => sum + (item.correct || 0), 0),
                 incorrect: histories.reduce((sum, item) => sum + (item.incorrect || 0), 0)
@@ -4156,12 +4163,28 @@
                 });
             },
 
+            async markForReview(wordId) {
+                if (!wordId) return false;
+                const knownWord = getLearningLevels().flatMap(level => level.units.flatMap(unit => unit.vocab || []))
+                    .find(word => word && word.id === wordId);
+                if (!knownWord) return false;
+                const item = await this.getMergedSrsItem(wordId) || {
+                    wordId, interval: 0, repetition: 0, efactor: 2.5,
+                    nextReview: Date.now(), attempts: 0, correct: 0, incorrect: 0, lastReviewed: null
+                };
+                item.savedForReview = true;
+                item.markedAt = Date.now();
+                await this.saveAttemptForDuplicateWords(wordId, item);
+                return true;
+            },
+
             async recordAttempt(wordId, quality) {
                 if (!wordId) return;
                 const item = await this.getMergedSrsItem(wordId) || {
                     wordId: wordId, interval: 0, repetition: 0, efactor: 2.5,
                     nextReview: Date.now(), attempts: 0, correct: 0, incorrect: 0, lastReviewed: null
                 };
+                item.savedForReview = false;
                 const prev = item.lastReviewed;
                 const now = Date.now();
                 item.attempts = (item.attempts || 0) + 1;
@@ -4228,9 +4251,11 @@
                     if (canonicalWord) byId.set(legacyId, canonicalWord);
                 }
                 const due = all.filter(i => i.val && vocabIds.has(i.key) &&
-                    i.val.nextReview <= now &&
-                    !(i.val.attempts === 0 && i.val.lastReviewed === null && i.val.interval === 0 && i.val.repetition === 0))
+                    (i.val.savedForReview === true || i.val.nextReview <= now) &&
+                    (i.val.savedForReview === true || !(i.val.attempts === 0 && i.val.lastReviewed === null && i.val.interval === 0 && i.val.repetition === 0)))
                     .sort((a, b) => {
+                        const savedPriority = Number(b.val.savedForReview === true) - Number(a.val.savedForReview === true);
+                        if (savedPriority !== 0) return savedPriority;
                         const overdue = (a.val.nextReview || 0) - (b.val.nextReview || 0);
                         if (overdue !== 0) return overdue;
                         return (b.val.incorrect || 0) - (a.val.incorrect || 0);
@@ -4952,8 +4977,9 @@ Requisitos:
                     const word = vocabById.get(item.key);
                     const key = String(word && word.idn || '').trim().toLocaleLowerCase();
                     if (!key) continue;
-                    if (!srsByWord.has(key)) srsByWord.set(key, { attempts: 0, correct: 0, incorrect: 0, repetition: 0, seenStates: new Set() });
+                    if (!srsByWord.has(key)) srsByWord.set(key, { attempts: 0, correct: 0, incorrect: 0, repetition: 0, savedForReview: false, seenStates: new Set() });
                     const aggregate = srsByWord.get(key);
+                    aggregate.savedForReview = aggregate.savedForReview || item.val.savedForReview === true;
                     const signature = JSON.stringify([
                         item.val.attempts || 0, item.val.correct || 0, item.val.incorrect || 0,
                         item.val.lastReviewed ?? null, item.val.interval || 0, item.val.repetition || 0,
@@ -4975,6 +5001,7 @@ Requisitos:
                 document.getElementById('statAttempts').innerText = attempts;
                 document.getElementById('statAccuracy').innerText = attempts ? Math.round(correct / attempts * 100) + '%' : '—';
                 document.getElementById('statNeedsPractice').innerText = allSrs.filter(item => item.incorrect > 0 && item.repetition < 4).length;
+                document.getElementById('statSavedForReview').innerText = allSrs.filter(item => item.savedForReview).length;
             },
             renderDict() {
                 const container = document.getElementById('dictContainer');
@@ -5149,6 +5176,7 @@ Requisitos:
                     const lastReviewed = value.lastReviewed === null || value.lastReviewed === undefined ? null :
                         (Number.isFinite(value.lastReviewed) && value.lastReviewed >= 0 ? value.lastReviewed : null);
                     srs.push({ key: item.key, val: {
+                        savedForReview: value.savedForReview === true,
                         interval: num('interval', 0, 0, 1000000), repetition: count('repetition'),
                         efactor: num('efactor', 2.5, 1.3, 5), nextReview: num('nextReview', Date.now()),
                         attempts: count('attempts'), correct: count('correct'), incorrect: count('incorrect'), lastReviewed
@@ -5193,7 +5221,7 @@ Requisitos:
         window.addEventListener('DOMContentLoaded', () => App.init());
     </script>
 
-    <div id="tapTranslationBubble" class="tap-translation-bubble" role="status" aria-live="polite" hidden></div>
+    <div id="tapTranslationBubble" class="tap-translation-bubble" role="group" aria-label="Traducción y repaso" hidden><span id="tapTranslationText"></span><button type="button" id="tapTranslationSave" class="tap-translation-save" hidden>＋ Guardar</button></div>
     <div id="wordMeaningPopup" class="word-meaning-popup" role="dialog" aria-label="Significado de la palabra" aria-live="polite" hidden>
         <div class="word-meaning-popup-head">
             <div>
@@ -5233,7 +5261,7 @@ Requisitos:
                 const variants = [source, ...source.split(/\s+\/\s+/u)].filter(Boolean);
                 for (const variant of variants) {
                     const tokens = wordTokens(variant).map(match => normToken(match[0])).filter(Boolean);
-                    if (tokens.length) candidates.push({ source: variant, target, tokens, priority: item.priority });
+                    if (tokens.length) candidates.push({ source: variant, target, tokens, priority: item.priority, vocabId: word.id });
                 }
             }
 
@@ -5285,7 +5313,8 @@ Requisitos:
                     const end = last.index + last[0].length;
                     const visible = text.slice(current.index, end);
                     output += '<button type="button" class="tap-translation-word" data-translation="' +
-                        escapeHtml(found.target) + '" aria-label="Ver traducción de ' + escapeHtml(visible) + '">' +
+                        escapeHtml(found.target) + '"' + (found.vocabId ? ' data-vocab-id="' + escapeHtml(found.vocabId) + '"' : '') +
+                        ' aria-label="Ver traducción de ' + escapeHtml(visible) + '">' +
                         escapeHtml(visible) + '</button>';
                     cursor = end;
                     i += found.tokens.length;
@@ -5322,11 +5351,17 @@ Requisitos:
             if (!bubble || bubble.dataset.initialized === 'true') return;
             bubble.dataset.initialized = 'true';
             let activeButton = null;
+            const translationText = document.getElementById('tapTranslationText');
+            const saveButton = document.getElementById('tapTranslationSave');
             function close() { bubble.hidden = true; activeButton = null; bubble.classList.remove('above'); }
             function open(button) {
                 if (activeButton === button && !bubble.hidden) { close(); return; }
                 activeButton = button;
-                bubble.textContent = button.dataset.translation || '';
+                translationText.textContent = button.dataset.translation || '';
+                saveButton.dataset.vocabId = button.dataset.vocabId || '';
+                saveButton.hidden = !saveButton.dataset.vocabId;
+                saveButton.disabled = false;
+                saveButton.textContent = '＋ Guardar';
                 bubble.hidden = false;
                 bubble.classList.remove('above');
                 const rect = button.getBoundingClientRect();
@@ -5358,6 +5393,23 @@ Requisitos:
                 const arrowLeft = Math.max(12, Math.min(width - 12, rect.left + rect.width / 2 - left));
                 bubble.style.setProperty('--tap-arrow-left', arrowLeft + 'px');
             }
+            saveButton.addEventListener('click', async event => {
+                event.preventDefault();
+                event.stopPropagation();
+                const wordId = saveButton.dataset.vocabId;
+                if (!wordId || typeof SRSEngine === 'undefined') return;
+                saveButton.disabled = true;
+                try {
+                    const saved = await SRSEngine.markForReview(wordId);
+                    if (!saved) throw new Error('La palabra ya no está disponible en el vocabulario.');
+                    saveButton.textContent = '✓ Guardada';
+                    if (typeof App !== 'undefined' && typeof App.updateSrsView === 'function') await App.updateSrsView();
+                } catch (error) {
+                    console.error('No se pudo guardar la palabra para repasar:', error);
+                    saveButton.disabled = false;
+                    saveButton.textContent = 'Reintentar';
+                }
+            });
             document.addEventListener('click', event => {
                 const word = event.target.closest && event.target.closest('.tap-translation-word');
                 if (word) { event.preventDefault(); open(word); return; }

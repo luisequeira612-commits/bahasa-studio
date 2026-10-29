@@ -414,6 +414,9 @@ test('lesson translation hints are tappable, contextual, and stay within a mobil
       'Indonesian prompts retain a touch-friendly audio control');
 
     // Keyboard users can activate a word and dismiss its hint with Escape.
+    // Close the touch-opened bubble first so Enter opens it rather than toggling it closed.
+    await indonesianWord.tap();
+    await page.waitForFunction(() => document.querySelector('#tapTranslationBubble').hidden);
     await indonesianWord.focus();
     await page.keyboard.press('Enter');
     await bubble.waitFor({ state: 'visible' });

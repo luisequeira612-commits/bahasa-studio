@@ -5218,8 +5218,8 @@ Requisitos:
             try { vocabulary = typeof getUniqueLearningVocabulary === 'function' ? getUniqueLearningVocabulary() : []; }
             catch (error) { console.warn('No se pudo construir la ayuda de traducción.', error); }
             const candidates = [];
-            const localVocabulary = window.LessonEngine && window.LessonEngine.currentUnit &&
-                Array.isArray(window.LessonEngine.currentUnit.vocab) ? window.LessonEngine.currentUnit.vocab : [];
+            const localVocabulary = typeof LessonEngine !== 'undefined' && LessonEngine.currentUnit &&
+                Array.isArray(LessonEngine.currentUnit.vocab) ? LessonEngine.currentUnit.vocab : [];
             const orderedVocabulary = [
                 ...localVocabulary.map(word => ({ word, priority: 0 })),
                 ...vocabulary.filter(word => !localVocabulary.some(local => local && word && local.id === word.id))

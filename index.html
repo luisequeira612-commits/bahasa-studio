@@ -4256,9 +4256,11 @@
                     .sort((a, b) => {
                         const savedPriority = Number(b.val.savedForReview === true) - Number(a.val.savedForReview === true);
                         if (savedPriority !== 0) return savedPriority;
-                        const overdue = (a.val.nextReview || 0) - (b.val.nextReview || 0);
-                        if (overdue !== 0) return overdue;
-                        return (b.val.incorrect || 0) - (a.val.incorrect || 0);
+                        const difficulty = (b.val.incorrect || 0) - (a.val.incorrect || 0);
+                        if (difficulty !== 0) return difficulty;
+                        const effort = (a.val.efactor ?? 2.5) - (b.val.efactor ?? 2.5);
+                        if (effort !== 0) return effort;
+                        return (a.val.nextReview || 0) - (b.val.nextReview || 0);
                     });
                 const seenWords = new Set();
                 return due.filter(item => {

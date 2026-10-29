@@ -58,8 +58,21 @@ test('a tapped vocabulary item can be saved, reviewed, and retained in backups',
       return item && item.savedForReview === true;
     });
 
+    await page.evaluate(async () => {
+      const now = Date.now();
+      await DB.set('srs', 'v46', {
+        attempts: 5, correct: 1, incorrect: 4, interval: 1, repetition: 0,
+        efactor: 1.8, nextReview: now - 86400000, lastReviewed: now - 2 * 86400000
+      });
+      await DB.set('srs', 'v60', {
+        attempts: 2, correct: 1, incorrect: 1, interval: 1, repetition: 0,
+        efactor: 2.3, nextReview: now - 10 * 86400000, lastReviewed: now - 11 * 86400000
+      });
+    });
     const due = await page.evaluate(() => SRSEngine.getDueItems());
     assert.ok(due.some(item => item.key === 'v45'), 'saved vocabulary should enter the existing SRS queue');
+    assert.deepEqual(due.slice(0, 3).map(item => item.key), ['v45', 'v46', 'v60'],
+      'manual saves come first, then words with more errors outrank older but easier cards');
 
     const backup = await page.evaluate(() => App.validateBackup({
       version: 3, xp: 0, completedUnits: [], customUnits: [], syllabusPos: 0,

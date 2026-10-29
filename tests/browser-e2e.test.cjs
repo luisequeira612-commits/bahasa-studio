@@ -309,6 +309,12 @@ test('lesson translation hints are tappable, contextual, and stay within a mobil
           prompt: 'Traduce: «tú»',
           answer: 'Kamu',
           explanation: 'Prueba de palabra individual.'
+        }, {
+          vocabId: 'v14',
+          type: 'translate_es_id',
+          prompt: 'Traduce: setenta',
+          answer: 'Tujuh puluh',
+          explanation: 'La equivalencia existe en un ejercicio del curso.'
         }]
       });
     });
@@ -348,6 +354,13 @@ test('lesson translation hints are tappable, contextual, and stay within a mobil
     await bubble.waitFor({ state: 'visible' });
     assert.equal(await bubble.innerText(), 'Kamu',
       'the current lesson vocabulary should disambiguate a short translation');
+
+    await page.evaluate(() => { LessonEngine.stepIndex = 2; LessonEngine.renderStep(); });
+    const numberPhrase = page.getByRole('button', { name: 'Ver traducción de setenta' });
+    await numberPhrase.tap();
+    await bubble.waitFor({ state: 'visible' });
+    assert.equal(await bubble.innerText(), 'Tujuh puluh',
+      'a full phrase may reuse the answer already authored in a course exercise');
 
     await page.evaluate(() => {
       const dia = getUniqueLearningVocabulary().find(word => word.id === 'v3');

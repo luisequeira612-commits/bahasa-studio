@@ -1242,12 +1242,12 @@ test('listening comprehension multiple-choice plays Indonesian audio without rev
   const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
   const a1 = course.levels.find(level => level.id === 'A1');
   const unit1 = a1.units.find(unit => unit.id === 'a1_u1');
-  const exercise = unit1.exercises.find(item => item.type === 'listen_mc');
+  const exercise = unit1.exercises.find(item => item.audioText);
   assert.ok(exercise, 'A1 should include a listening comprehension question');
   assert.equal(exercise.audioText, 'Dia');
-  assert.deepEqual(exercise.options, ['Yo', 'Tú', 'Él / ella']);
+  assert.deepEqual(Array.from(exercise.options), ['Yo', 'Tú', 'Él / ella']);
   assert.equal(exercise.options[exercise.answer], 'Él / ella');
-  assert.match(html, /ex\.type === 'mc' \|\| ex\.type === 'listen_mc'/);
-  assert.match(html, /if \(ex\.type === 'listen_mc'\) AudioEngine\.speak\(ex\.audioText\)/);
+  assert.match(html, /if \(ex\.type === 'mc'\)/);
+  assert.match(html, /if \(ex\.audioText\) AudioEngine\.speak\(ex\.audioText\)/);
   assert.match(html, /aria-label="Repetir audio"/);
 });

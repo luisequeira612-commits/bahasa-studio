@@ -51,7 +51,7 @@ test('A1 distinguishes informal kamu from formal Anda in vocabulary', () => {
   const start = html.indexOf('const CourseData =');
   const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
   assert.ok(start >= 0 && end > start, 'CourseData block must exist');
-  const course = vm.runInNewContext(html.slice(start, end) + '\\nCourseData');
+  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
   const a1 = course.levels.find(level => level.id === 'A1');
   const allWords = a1.units.flatMap(unit => unit.vocab);
   const kamu = allWords.find(word => word.idn.toLowerCase() === 'kamu');

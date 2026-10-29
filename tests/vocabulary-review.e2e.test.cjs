@@ -44,6 +44,7 @@ test('a tapped vocabulary item can be saved, reviewed, and retained in backups',
     await page.waitForFunction(() => typeof SRSEngine !== 'undefined' && DB && DB.db);
 
     await page.evaluate(() => {
+      document.querySelector('#view-lesson').classList.add('active');
       document.querySelector('#exerciseArea').innerHTML =
         window.renderTapTranslationSentence('Terima kasih', 'idn');
     });

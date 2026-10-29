@@ -1205,6 +1205,14 @@ test('U24–U32 audit tracker vocabulary and examples stay synchronized with the
 });
 
 
+test('tapped word-meaning popup can save the matched vocabulary item for SRS review', () => {
+  assert.match(html, /id="wordMeaningSave"/);
+  assert.match(html, /const saveButton = document\.getElementById\('wordMeaningSave'\)/);
+  assert.match(html, /saveButton\.dataset\.vocabId = matches\[0\]\.id/);
+  assert.match(html, /SRSEngine\.markForReview\(wordId\)/);
+  assert.match(html, /✓ Guardada para repasar/);
+});
+
 test('tap-to-translate lookup is wired into learning text and uses safe text rendering', () => {
   assert.match(html, /id="wordMeaningPopup"/);
   assert.match(html, /function buildTapTranslationIndex\(\)/);

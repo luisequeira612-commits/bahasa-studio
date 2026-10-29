@@ -296,7 +296,10 @@ test('version 3 backup normalization supplies safe defaults for absent legacy SR
     'parsed.completedUnits === undefined ? [] : parsed.completedUnits',
     'parsed.customUnits === undefined ? [] : parsed.customUnits',
     "parsed.srs === undefined ? [] : parsed.srs",
-    "attempts: count('attempts'), correct: count('correct'), incorrect: count('incorrect')",
+    "const attempts = count('attempts');",
+    "const correct = count('correct');",
+    "const incorrect = count('incorrect');",
+    "if (correct + incorrect > attempts) fail();",
     'value.lastReviewed === null || value.lastReviewed === undefined',
     "interval: num('interval', 0",
     "efactor: num('efactor', 2.5",
@@ -389,6 +392,23 @@ test('backup validator executes against valid and invalid version 3 payloads', (
   assert.throws(() => validateBackup({
     version: 2, xp: 12, completedUnits: [], customUnits: [], srs: []
   }), /Formato de copia no válido/);
+
+  assert.throws(() => validateBackup({
+    version: 3, xp: 12, completedUnits: [], customUnits: [], syllabusPos: 0,
+    srs: [{ key: 'v1', val: { attempts: 2, correct: 2, incorrect: 1 } }]
+  }), /Formato de copia no válido/, 'correct and incorrect answers cannot exceed total attempts');
+
+  assert.throws(() => validateBackup({
+    version: 3, xp: 12, completedUnits: [], customUnits: [], syllabusPos: 0,
+    srs: [{ key: 'v1', val: { attempts: 1, correct: 2, incorrect: 0 } }]
+  }), /Formato de copia no válido/, 'correct answers cannot exceed total attempts');
+
+  const legacyCounters = validateBackup({
+    version: 3, xp: 12, completedUnits: [], customUnits: [], syllabusPos: 0,
+    srs: [{ key: 'v1', val: { attempts: 3, correct: 1, incorrect: 1 } }]
+  });
+  assert.equal(legacyCounters.srs[0].val.attempts, 3,
+    'older records with unclassified attempts remain importable');
 });
 
 

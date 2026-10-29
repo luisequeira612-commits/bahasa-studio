@@ -1344,3 +1344,24 @@ test('A1 greetings, location, restaurant requests and symptoms include listening
     assert.ok(!exercise.options.includes(audioText), 'the Indonesian audio text must not be shown as an option');
   }
 });
+
+
+test('A1 includes multi-turn listening dialogues with contextual comprehension', () => {
+  const start = html.indexOf('const CourseData =');
+  const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
+  const course = vm.runInNewContext(html.slice(start, end) + '\\nCourseData');
+  const a1 = course.levels.find(level => level.id === 'A1');
+  const expected = [
+    ['a1_u1', 'Selamat pagi. Apa kabar? Baik, terima kasih.', 'Dos personas se saludan y preguntan cómo están'],
+    ['a1_u19', 'Selamat siang. Saya pesan nasi goreng. Tanpa cabai, ya? Ya, tanpa cabai.', 'Arroz frito sin chile']
+  ];
+  for (const [unitId, audioText, meaning] of expected) {
+    const unit = a1.units.find(item => item.id === unitId);
+    assert.ok(unit, unitId + ' should exist');
+    const exercise = unit.exercises.find(item => item.audioText === audioText);
+    assert.ok(exercise, unitId + ' should include the complete dialogue audio');
+    assert.equal(exercise.type, 'mc');
+    assert.equal(exercise.options[exercise.answer], meaning);
+    assert.ok(!exercise.options.includes(audioText), 'dialogue transcript must not be exposed as an answer option');
+  }
+});

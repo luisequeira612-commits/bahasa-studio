@@ -47,6 +47,22 @@ test('A1 units 1 and 2 teach vocabulary and provide varied practice', () => {
   }
 });
 
+test('A1 distinguishes informal kamu from formal Anda in vocabulary', () => {
+  const start = html.indexOf('const CourseData =');
+  const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
+  assert.ok(start >= 0 && end > start, 'CourseData block must exist');
+  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
+  const a1 = course.levels.find(level => level.id === 'A1');
+  const allWords = a1.units.flatMap(unit => unit.vocab);
+  const kamu = allWords.find(word => word.idn.toLowerCase() === 'kamu');
+  const anda = allWords.find(word => word.idn === 'Anda');
+  assert.ok(kamu, 'A1 should teach kamu');
+  assert.ok(anda, 'A1 should teach Anda');
+  assert.match(kamu.esp, /tú/i);
+  assert.match(anda.esp, /formal/i, 'Anda should be explicitly labelled formal');
+  assert.match(anda.exEsp, /usted/i, 'Anda example should use the formal Spanish register');
+});
+
 test('backup restoration validates version and replaces SRS data transactionally', () => {
   assert.match(html, /parsed\.version !== 3/);
   assert.match(html, /validateBackup\(JSON\.parse/);

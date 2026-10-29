@@ -5246,7 +5246,8 @@ Requisitos:
                 const seenSrs = new Set(), srs = [];
                 for (const item of rawSrs) {
                     if (!isObject(item) || typeof item.key !== 'string' || !item.key || !isObject(item.val)) fail();
-                    if (!knownIds.has(item.key) || seenSrs.has(item.key)) continue;
+                    if (!knownIds.has(item.key)) continue;
+                    if (seenSrs.has(item.key)) fail();
                     seenSrs.add(item.key);
                     const value = item.val;
                     const num = (key, fallback, min = 0, max = 1000000000) =>

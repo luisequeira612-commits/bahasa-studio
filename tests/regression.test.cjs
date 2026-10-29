@@ -404,6 +404,14 @@ test('backup validator executes against valid and invalid version 3 payloads', (
     srs: [{ key: 'v1', val: { attempts: 1, correct: 2, incorrect: 0 } }]
   }), /Formato de copia no válido/, 'correct answers cannot exceed total attempts');
 
+  assert.throws(() => validateBackup({
+    version: 3, xp: 12, completedUnits: [], customUnits: [], syllabusPos: 0,
+    srs: [
+      { key: 'v1', val: { attempts: 1, correct: 1, incorrect: 0 } },
+      { key: 'v1', val: { attempts: 2, correct: 1, incorrect: 1 } }
+    ]
+  }), /Formato de copia no válido/, 'duplicate SRS keys must not silently discard a second history');
+
   const legacyCounters = validateBackup({
     version: 3, xp: 12, completedUnits: [], customUnits: [], syllabusPos: 0,
     srs: [{ key: 'v1', val: { attempts: 3, correct: 1, incorrect: 1 } }]

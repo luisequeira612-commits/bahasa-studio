@@ -128,3 +128,43 @@ test('a tapped vocabulary item can be saved, reviewed, and retained in backups',
     await new Promise(resolve => server.close(resolve));
   }
 });
+
+
+test('review sessions respect the selected card limit or include all due vocabulary', async () => {
+  const { server, url } = await startServer();
+  const browser = await chromium.launch({ headless: true });
+  const context = await browser.newContext({ serviceWorkers: 'block' });
+  const page = await context.newPage();
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof SRSEngine !== 'undefined' && DB && DB.db);
+    await page.evaluate(async () => {
+      const now = Date.now();
+      const words = SRSEngine.getA1Vocabulary().slice(0, 7);
+      for (const word of words) {
+        await DB.set('srs', word.id, {
+          attempts: 1, correct: 0, incorrect: 1, interval: 1,
+          repetition: 0, efactor: 2, nextReview: now - 1000,
+          lastReviewed: now - 86400000
+        });
+      }
+    });
+
+    await page.evaluate(() => App.switchView('srs'));
+    await page.locator('#srsSessionSize').selectOption('5');
+    await page.evaluate(() => SRSEngine.startSession());
+    await page.waitForFunction(() => SRSEngine.activeQueue.length === 5);
+    assert.equal(await page.locator('#srsProgressText').innerText(), 'Tarjeta 1 de 5');
+
+    await page.evaluate(() => SRSEngine.exitSession());
+    await page.locator('#srsSessionSize').selectOption('0');
+    await page.evaluate(() => SRSEngine.startSession());
+    await page.waitForFunction(() => SRSEngine.activeQueue.length === 7);
+    assert.equal(await page.locator('#srsProgressText').innerText(), 'Tarjeta 1 de 7');
+  } finally {
+    await context.close();
+    await browser.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});

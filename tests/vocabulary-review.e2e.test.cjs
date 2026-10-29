@@ -88,19 +88,33 @@ test('a tapped vocabulary item can be saved, reviewed, and retained in backups',
     await page.evaluate(() => App.switchView('srs'));
     await page.evaluate(() => SRSEngine.startSession());
     await page.waitForFunction(() => SRSEngine.activeQueue.length === 3);
-    assert.equal(await page.locator('#srsDirectionText').innerText(), 'Español → indonesio');
-    assert.equal(await page.locator('#srsPromptText').innerText(), 'Gracias');
+    assert.equal(await page.locator('#srsProgressText').innerText(), 'Tarjeta 1 de 3');
+    const beforeExit = await page.evaluate(() => DB.get('srs', 'v45'));
+    await page.getByRole('button', { name: 'Salir del repaso' }).click();
+    assert.equal(await page.locator('#srsDashboard').isVisible(), true);
+    assert.equal(await page.locator('#srsPracticeArea').isVisible(), false);
+    assert.deepEqual(await page.evaluate(() => SRSEngine.getDueItems().then(items => items.map(item => item.key))), ['v45', 'v46', 'v60'],
+      'leaving must not grade or remove unreviewed cards');
+    assert.deepEqual(await page.evaluate(() => DB.get('srs', 'v45')), beforeExit,
+      'leaving must preserve the current card scheduling data');
+
+    await page.evaluate(() => SRSEngine.startSession());
+    await page.waitForFunction(() => SRSEngine.activeQueue.length === 3);
+    assert.equal(await page.locator('#srsProgressText').innerText(), 'Tarjeta 1 de 3');
+    assert.equal(await page.locator('#srsDirectionText').innerText(), 'Indonesio → español');
+    assert.equal(await page.locator('#srsPromptText').innerText(), 'Terima kasih');
     await page.locator('#srsRevealBtn').click();
-    assert.match(await page.locator('#srsAnswerText').innerText(), /^Terima kasih/);
+    assert.match(await page.locator('#srsAnswerText').innerText(), /^Gracias/);
 
     await page.evaluate(() => {
       SRSEngine.currentIndex = 1;
       SRSEngine.renderCard();
     });
-    assert.equal(await page.locator('#srsDirectionText').innerText(), 'Indonesio → español');
-    assert.equal(await page.locator('#srsPromptText').innerText(), 'Makan');
+    assert.equal(await page.locator('#srsProgressText').innerText(), 'Tarjeta 2 de 3');
+    assert.equal(await page.locator('#srsDirectionText').innerText(), 'Español → indonesio');
+    assert.equal(await page.locator('#srsPromptText').innerText(), 'Comer');
     await page.locator('#srsRevealBtn').click();
-    assert.match(await page.locator('#srsAnswerText').innerText(), /^Comer/);
+    assert.match(await page.locator('#srsAnswerText').innerText(), /^Makan/);
 
     await page.evaluate(() => SRSEngine.recordAttempt('v45', 5));
     const reviewed = await page.evaluate(() => DB.get('srs', 'v45'));

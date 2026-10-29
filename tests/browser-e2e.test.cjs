@@ -413,6 +413,16 @@ test('lesson translation hints are tappable, contextual, and stay within a mobil
     assert.equal(await page.locator('.tap-translation-speaker').count(), 1,
       'Indonesian prompts retain a touch-friendly audio control');
 
+    // Keyboard users can activate a word and dismiss its hint with Escape.
+    await indonesianWord.focus();
+    await page.keyboard.press('Enter');
+    await bubble.waitFor({ state: 'visible' });
+    assert.equal(await bubble.innerText(), 'Él / ella');
+    await page.keyboard.press('Escape');
+    await page.waitForFunction(() => document.querySelector('#tapTranslationBubble').hidden);
+
+    await indonesianWord.tap();
+    await bubble.waitFor({ state: 'visible' });
     await page.locator('#actionArea').tap();
     await page.waitForFunction(() => document.querySelector('#tapTranslationBubble').hidden);
   } finally {

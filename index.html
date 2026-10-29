@@ -4166,6 +4166,7 @@
             sessionStats: { correct: 0, incorrect: 0 },
             sessionNumber: 0,
             maxSessionItems: 15,
+            isGrading: false,
 
             getA1Vocabulary() {
                 const a1 = CourseData.levels.find(level => level.id === 'A1');
@@ -4308,6 +4309,7 @@
                 this.currentIndex = 0;
                 this.sessionNumber += 1;
                 this.sessionStats = { correct: 0, incorrect: 0 };
+                this.isGrading = false;
                 document.getElementById('srsDashboard').style.display = 'none';
                 document.getElementById('srsPracticeArea').style.display = 'block';
                 this.renderCard();
@@ -4329,6 +4331,8 @@
             },
 
             exitSession() {
+                // Do not tear down a card while its grade is being saved.
+                if (this.isGrading) return;
                 // Leaving a session does not grade the current card; it remains due for next time.
                 this.activeQueue = [];
                 this.currentIndex = 0;
@@ -4356,21 +4360,34 @@
             },
 
             async submitGrade(grade) {
-                const current = this.activeQueue[this.currentIndex];
-                await this.recordAttempt(current.vocab.id, grade);
-                if (grade >= 3) this.sessionStats.correct++;
-                else this.sessionStats.incorrect++;
-                this.currentIndex++;
+                const normalizedGrade = Number(grade);
+                if (this.isGrading || ![1, 3, 5].includes(normalizedGrade)) return;
+                const queue = this.activeQueue;
+                const index = this.currentIndex;
+                const current = queue[index];
+                if (!current || !current.vocab) return;
 
-                if (this.currentIndex < this.activeQueue.length) {
-                    this.renderCard();
-                } else {
-                    alert('¡Repaso completado!\nCorrectas: ' + this.sessionStats.correct +
-                        '\nPara reforzar: ' + this.sessionStats.incorrect +
-                        '\nRevisadas: ' + this.activeQueue.length);
-                    document.getElementById('srsDashboard').style.display = 'block';
-                    document.getElementById('srsPracticeArea').style.display = 'none';
-                    await App.updateSrsView();
+                // A rapid double click must never record two attempts for one card.
+                this.isGrading = true;
+                try {
+                    await this.recordAttempt(current.vocab.id, normalizedGrade);
+                    if (this.activeQueue !== queue || this.currentIndex !== index) return;
+                    if (normalizedGrade >= 3) this.sessionStats.correct++;
+                    else this.sessionStats.incorrect++;
+                    this.currentIndex++;
+
+                    if (this.currentIndex < this.activeQueue.length) {
+                        this.renderCard();
+                    } else {
+                        alert('¡Repaso completado!\\nCorrectas: ' + this.sessionStats.correct +
+                            '\\nPara reforzar: ' + this.sessionStats.incorrect +
+                            '\\nRevisadas: ' + this.activeQueue.length);
+                        document.getElementById('srsDashboard').style.display = 'block';
+                        document.getElementById('srsPracticeArea').style.display = 'none';
+                        await App.updateSrsView();
+                    }
+                } finally {
+                    this.isGrading = false;
                 }
             }
         };

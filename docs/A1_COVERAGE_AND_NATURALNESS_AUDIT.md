@@ -5,7 +5,7 @@ Alcance: revisión estática del temario visible en `index.html` y contraste con
 
 ## Resultado ejecutivo
 
-A1 dispone de 23 unidades en la rama de expansión, con práctica para presentaciones, negación, datos personales, familia, comida, ubicación, rutinas, números, precios, hora, clima, transporte, acciones, preferencias y preguntas básicas. **Todavía no debe declararse completo ni abrirse A2**: tener unidades y ejercicios no demuestra por sí solo comprensión oral, producción espontánea, retención acumulativa ni cobertura suficiente de situaciones cotidianas.
+A1 dispone actualmente de 32 unidades implementadas (U1–U32) en `main`, con vocabulario y ejercicios sometidos a pruebas de estructura. **A1 todavía no debe declararse validado ni debe abrirse A2**: tener unidades y ejercicios no demuestra por sí solo naturalidad lingüística, comprensión oral, producción espontánea, retención acumulativa ni cobertura suficiente de situaciones cotidianas. La auditoría de U24–U32 sigue siendo parcial y no equivale a certificación lingüística.
 
 ## Cobertura revisada
 
@@ -75,9 +75,9 @@ La corrección de IDs canónicos conserva IndexedDB schema v1 y backup format v3
 
 ## Expansión posterior a U17
 
-La ruta curricular prevé 32 unidades A1, no 17. La tanda U18–U20 introduce demostrativos y posesión, situaciones de restaurante y compras en el mercado. La cobertura sigue incompleta: U24–U32 aún requieren implementación y revisión; no se declara A1 validado. La nueva tanda debe pasar CI y revisión de naturalidad antes de integrarse a `main`.
+La ruta curricular prevé 32 unidades A1 y el código actual de `main` contiene U1–U32. U18–U20 introducen demostrativos, restaurante y compras; U21–U23 cubren salud, ropa y vivienda; U24–U32 ya están implementadas. No obstante, la revisión lingüística y de naturalidad de estas últimas unidades no está completa: el tracker en `main` registra 34/90 términos como `verified_primary` y 56/90 como `not_checked`. Mantener A1 sin declarar validado hasta completar las revisiones pendientes y las pruebas pedagógicas/orales.
 
 
 ## Expansión U21–U23
 
-La quinta tanda incorpora vocabulario de cuerpo y salud (U21), ropa y colores (U22), y habitaciones y objetos de la casa (U23). Cada unidad incluye 15 ejercicios de varios tipos, escucha y producción guiada. Esta cobertura curricular no sustituye una revisión de naturalidad por un hablante competente ni valida por sí sola la comprensión oral real. A1 continúa incompleto; quedan pendientes U24–U32.
+La quinta tanda incorporó vocabulario de cuerpo y salud (U21), ropa y colores (U22), y habitaciones y objetos de la casa (U23). Las unidades U24–U32 también están presentes en `main`, con ejercicios estructurados. Esta cobertura curricular no sustituye una revisión de naturalidad por una persona competente ni valida por sí sola la comprensión oral real. A1 está implementado hasta U32, pero sigue pendiente de validación pedagógica y lingüística completa.

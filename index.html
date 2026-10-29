@@ -248,10 +248,16 @@
 
         <div id="srsPracticeArea" style="display:none;">
             <div class="flashcard">
-                <p id="srsDirectionText" style="font-size:0.8rem; color:var(--text-muted); margin-bottom:8px;">Indonesio → español</p>
+                <div style="display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:8px;">
+                    <p id="srsDirectionText" style="font-size:0.8rem; color:var(--text-muted); margin:0;">Indonesio → español</p>
+                    <p id="srsProgressText" aria-live="polite" style="font-size:0.8rem; color:var(--text-muted); margin:0;">Tarjeta 1 de 1</p>
+                </div>
                 <h2 id="srsPromptText" style="font-size:1.8rem;">...</h2>
                 <p id="srsContextText" style="color:var(--text-muted); margin-top:8px; font-size:0.9rem; display:none;"></p>
-                <button id="srsRevealBtn" class="btn btn-outline btn-sm" style="margin-top:16px;" onclick="SRSEngine.revealAnswer()">Mostrar Respuesta</button>
+                <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; margin-top:16px;">
+                    <button class="btn btn-outline btn-sm" onclick="SRSEngine.exitSession()">Salir del repaso</button>
+                    <button id="srsRevealBtn" class="btn btn-outline btn-sm" onclick="SRSEngine.revealAnswer()">Mostrar Respuesta</button>
+                </div>
             </div>
             
             <div id="srsAnswerArea" style="display:none;">
@@ -4300,6 +4306,8 @@
 
             renderCard() {
                 const current = this.activeQueue[this.currentIndex];
+                const progress = document.getElementById('srsProgressText');
+                if (progress) progress.textContent = 'Tarjeta ' + (this.currentIndex + 1) + ' de ' + this.activeQueue.length;
                 const reverse = (this.currentIndex + this.sessionNumber) % 2 === 1;
                 current.direction = reverse ? 'es-id' : 'id-es';
                 document.getElementById('srsDirectionText').innerText = reverse ? 'Español → indonesio' : 'Indonesio → español';
@@ -4309,6 +4317,21 @@
                 document.getElementById('srsAnswerArea').style.display = 'none';
                 document.getElementById('srsRevealBtn').style.display = 'inline-flex';
                 if (!reverse) AudioEngine.speak(current.vocab.idn);
+            },
+
+            exitSession() {
+                // Leaving a session does not grade the current card; it remains due for next time.
+                this.activeQueue = [];
+                this.currentIndex = 0;
+                document.getElementById('srsDashboard').style.display = 'block';
+                document.getElementById('srsPracticeArea').style.display = 'none';
+                this.updateDashboardAfterExit();
+            },
+
+            async updateDashboardAfterExit() {
+                if (typeof App !== 'undefined' && typeof App.updateSrsView === 'function') {
+                    await App.updateSrsView();
+                }
             },
 
             revealAnswer() {

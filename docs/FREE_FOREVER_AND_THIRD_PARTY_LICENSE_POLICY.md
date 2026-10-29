@@ -4,7 +4,7 @@
 
 Bahasa Studio debe seguir siendo utilizable por estudiantes sin pagos, suscripciones, claves de API ni llamadas a servicios de IA de pago. No introducir una dependencia cuyo uso normal pueda generar cargos, exigir una tarjeta o agotar una cuota esencial para completar las lecciones.
 
-Esta política es una guía de ingeniería, no asesoramiento jurídico ni una garantía de que ningún proveedor vaya a cambiar sus condiciones.
+Esta política es una guía de ingeniería, no asesoramiento jurídico ni una garantía de que ningún proveedor vaya a cambiar sus condiciones. Para las decisiones técnicas fechadas, las alternativas concretas de audio/NLP/traducción y las referencias revisadas, véase también `FREE_FOREVER_ARCHITECTURE.md`.
 
 ## Arquitectura por defecto
 

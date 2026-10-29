@@ -206,7 +206,8 @@ test('v3.7.1 audit fixes remain in place without changing backup or database ver
   assert.match(html, /version: 1/);
   assert.match(html, /parsed\.version !== 3/);
   assert.match(html, /tx\.onabort = \(\) => reject\(tx\.error/);
-  assert.match(html, /async set\(store, key, val\) \{\s+return this\.setMany\(store, \[\{ key, val \}\]\);/);\n  assert.match(html, /async setMany\(store, entries\) \{\s+return new Promise\(\(resolve, reject\) => \{/);
+  assert.match(html, /async set\(store, key, val\) \{\s+return this\.setMany\(store, \[\{ key, val \}\]\);/);
+  assert.match(html, /async setMany\(store, entries\) \{\s+return new Promise\(\(resolve, reject\) => \{/);
   assert.match(html, /Elige la frase que significa «Esta es mi familia»/);
   assert.ok(html.includes("v.lang.toLowerCase().startsWith('id')"));
   assert.ok(html.includes("function getLearningLevels()"));

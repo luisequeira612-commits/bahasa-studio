@@ -338,6 +338,32 @@ test('lesson translation hints are tappable, contextual, and stay within a mobil
     assert.ok(geometry.top >= 0 && geometry.bottom <= geometry.height,
       'translation bubble must remain vertically inside the viewport');
 
+    // Exercise the difficult case where the tapped phrase sits at the bottom edge.
+    await phrase.tap();
+    await page.waitForFunction(() => document.querySelector('#tapTranslationBubble').hidden);
+    await page.evaluate(() => {
+      const button = document.querySelector('.tap-translation-word');
+      button.style.position = 'fixed';
+      button.style.left = '100px';
+      button.style.bottom = '0px';
+      button.style.zIndex = '1300';
+    });
+    await phrase.tap();
+    await bubble.waitFor({ state: 'visible' });
+    const edgeGeometry = await page.evaluate(() => {
+      const rect = document.querySelector('#tapTranslationBubble').getBoundingClientRect();
+      return { top: rect.top, bottom: rect.bottom, height: window.innerHeight };
+    });
+    assert.ok(edgeGeometry.top >= 0 && edgeGeometry.bottom <= edgeGeometry.height,
+      'translation bubble must stay inside the viewport even when the word is at the bottom edge');
+    await page.evaluate(() => {
+      const button = document.querySelector('.tap-translation-word');
+      button.style.position = '';
+      button.style.left = '';
+      button.style.bottom = '';
+      button.style.zIndex = '';
+    });
+
     await phrase.tap();
     await page.waitForFunction(() => document.querySelector('#tapTranslationBubble').hidden);
     await phrase.tap();

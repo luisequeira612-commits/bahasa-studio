@@ -914,10 +914,12 @@
                                 },
                                 {
                                     "vocabId": "v20",
-                                    "type": "listen",
-                                    "prompt": "Escribe lo que escuchas",
-                                    "answer": "Ini keluarga saya",
-                                    "explanation": "La frase presenta a la familia."
+                                    "type": "mc",
+                                    "prompt": "Escucha la frase y elige su significado",
+                                    "audioText": "Ini keluarga saya",
+                                    "options": ["Esta es mi familia", "Esta es mi madre", "Él es mi amigo"],
+                                    "answer": 0,
+                                    "explanation": "Ini keluarga saya significa «Esta es mi familia»."
                                 },
                                 {
                                     "vocabId": "v21",
@@ -934,10 +936,12 @@
                                 },
                                 {
                                     "vocabId": "v22",
-                                    "type": "listen",
-                                    "prompt": "Escribe lo que escuchas",
-                                    "answer": "Ini ayah saya",
-                                    "explanation": "Ini ayah saya significa Este es mi padre."
+                                    "type": "mc",
+                                    "prompt": "Escucha la frase y elige su significado",
+                                    "audioText": "Ini ayah saya",
+                                    "options": ["Esta es mi madre", "Este es mi padre", "Este es mi hermano menor"],
+                                    "answer": 1,
+                                    "explanation": "Ini ayah saya significa «Este es mi padre»."
                                 },
                                 {
                                     "vocabId": "v23",
@@ -1069,10 +1073,12 @@
                                 },
                                 {
                                     "vocabId": "v46",
-                                    "type": "listen",
-                                    "prompt": "Escribe lo que escuchas",
-                                    "answer": "Saya makan nasi",
-                                    "explanation": "La frase significa Como arroz."
+                                    "type": "mc",
+                                    "prompt": "Escucha la frase y elige su significado",
+                                    "audioText": "Saya makan nasi",
+                                    "options": ["Bebo agua", "Como arroz", "Quiero té"],
+                                    "answer": 1,
+                                    "explanation": "Saya makan nasi significa «Como arroz»."
                                 },
                                 {
                                     "vocabId": "v47",
@@ -1089,10 +1095,12 @@
                                 },
                                 {
                                     "vocabId": "v48",
-                                    "type": "listen",
-                                    "prompt": "Escribe lo que escuchas",
-                                    "answer": "Saya mau air",
-                                    "explanation": "Saya mau air significa Quiero agua."
+                                    "type": "mc",
+                                    "prompt": "Escucha la frase y elige su significado",
+                                    "audioText": "Saya mau air",
+                                    "options": ["Quiero agua", "Como arroz", "Él bebe café"],
+                                    "answer": 0,
+                                    "explanation": "Saya mau air significa «Quiero agua»."
                                 },
                                 {
                                     "vocabId": "v49",
@@ -1124,10 +1132,12 @@
                                 },
                                 {
                                     "vocabId": "v47",
-                                    "type": "listen",
-                                    "prompt": "Escribe lo que escuchas",
-                                    "answer": "Saya minum air",
-                                    "explanation": "La frase significa Bebo agua."
+                                    "type": "mc",
+                                    "prompt": "Escucha la frase y elige su significado",
+                                    "audioText": "Saya minum air",
+                                    "options": ["Quiero agua", "Bebo agua", "Como arroz"],
+                                    "answer": 1,
+                                    "explanation": "Saya minum air significa «Bebo agua»."
                                 },
                                 {
                                     "vocabId": "v48",
@@ -1139,7 +1149,7 @@
                                 { vocabId: 'v46', type: 'write', prompt: "Escribe qué comida o bebida te gustaría mencionar.", hint: "Combina saya makan o saya minum con vocabulario de comida.", modelAnswer: "Saya makan nasi.", explanation: "La frase significa «Yo como arroz cocido». Hay otras respuestas posibles." },
                                 {"vocabId":"v113","type":"mc","prompt":"¿Qué significa teh?","options":["Té","Café","Agua"],"answer":0,"explanation":"Teh significa té."},
                                 {"vocabId":"v114","type":"translate_es_id","prompt":"Traduce: café","answer":"Kopi","explanation":"Kopi significa café."},
-                                {"vocabId":"v115","type":"listen","prompt":"Escucha y escribe la pregunta","answer":"Berapa harganya","explanation":"Berapa harganya? significa «¿Cuánto cuesta?»"}
+                                {"vocabId":"v115","type":"mc","prompt":"Escucha la pregunta y elige su significado","audioText":"Berapa harganya?","options":["¿Dónde está el agua?","¿Cuánto cuesta?","¿Cómo te llamas?"],"answer":1,"explanation":"Berapa harganya? significa «¿Cuánto cuesta?»"}
                             ]
                         },
                         {

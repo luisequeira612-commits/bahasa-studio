@@ -248,6 +248,7 @@
 
         <div id="srsPracticeArea" style="display:none;">
             <div class="flashcard">
+                <p id="srsDirectionText" style="font-size:0.8rem; color:var(--text-muted); margin-bottom:8px;">Indonesio → español</p>
                 <h2 id="srsPromptText" style="font-size:1.8rem;">...</h2>
                 <p id="srsContextText" style="color:var(--text-muted); margin-top:8px; font-size:0.9rem; display:none;"></p>
                 <button id="srsRevealBtn" class="btn btn-outline btn-sm" style="margin-top:16px;" onclick="SRSEngine.revealAnswer()">Mostrar Respuesta</button>
@@ -4150,6 +4151,7 @@
             activeQueue: [],
             currentIndex: 0,
             sessionStats: { correct: 0, incorrect: 0 },
+            sessionNumber: 0,
             maxSessionItems: 15,
 
             getA1Vocabulary() {
@@ -4289,6 +4291,7 @@
                 }
 
                 this.currentIndex = 0;
+                this.sessionNumber += 1;
                 this.sessionStats = { correct: 0, incorrect: 0 };
                 document.getElementById('srsDashboard').style.display = 'none';
                 document.getElementById('srsPracticeArea').style.display = 'block';
@@ -4297,17 +4300,25 @@
 
             renderCard() {
                 const current = this.activeQueue[this.currentIndex];
-                document.getElementById('srsPromptText').innerText = current.vocab.idn;
-                document.getElementById('srsContextText').innerText = current.vocab.ex;
+                const reverse = (this.currentIndex + this.sessionNumber) % 2 === 1;
+                current.direction = reverse ? 'es-id' : 'id-es';
+                document.getElementById('srsDirectionText').innerText = reverse ? 'Español → indonesio' : 'Indonesio → español';
+                document.getElementById('srsPromptText').innerText = reverse ? current.vocab.esp : current.vocab.idn;
+                document.getElementById('srsContextText').innerText = reverse ? current.vocab.exEsp : current.vocab.ex;
                 document.getElementById('srsContextText').style.display = 'block';
                 document.getElementById('srsAnswerArea').style.display = 'none';
                 document.getElementById('srsRevealBtn').style.display = 'inline-flex';
-                AudioEngine.speak(current.vocab.idn);
+                if (!reverse) AudioEngine.speak(current.vocab.idn);
             },
 
             revealAnswer() {
                 const current = this.activeQueue[this.currentIndex];
-                document.getElementById('srsAnswerText').innerText = current.vocab.esp + ' (' + current.vocab.exEsp + ')';
+                if (current.direction === 'es-id') {
+                    document.getElementById('srsAnswerText').innerText = current.vocab.idn + (current.vocab.ex ? ' (' + current.vocab.ex + ')' : '');
+                    AudioEngine.speak(current.vocab.idn);
+                } else {
+                    document.getElementById('srsAnswerText').innerText = current.vocab.esp + (current.vocab.exEsp ? ' (' + current.vocab.exEsp + ')' : '');
+                }
                 document.getElementById('srsAnswerArea').style.display = 'block';
                 document.getElementById('srsRevealBtn').style.display = 'none';
             },

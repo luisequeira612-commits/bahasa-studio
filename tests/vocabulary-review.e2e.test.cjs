@@ -168,3 +168,63 @@ test('review sessions respect the selected card limit or include all due vocabul
     await new Promise(resolve => server.close(resolve));
   }
 });
+
+
+test('rapid repeated grading records a vocabulary card only once', async () => {
+  const { server, url } = await startServer();
+  const browser = await chromium.launch({ headless: true });
+  const context = await browser.newContext({ serviceWorkers: 'block' });
+  const page = await context.newPage();
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof SRSEngine !== 'undefined' && DB && DB.db);
+    await page.evaluate(async () => {
+      const now = Date.now();
+      const words = SRSEngine.getA1Vocabulary().slice(0, 2);
+      for (const word of words) {
+        await DB.set('srs', word.id, {
+          attempts: 1, correct: 0, incorrect: 1, interval: 1,
+          repetition: 0, efactor: 2, nextReview: now - 1000,
+          lastReviewed: now - 86400000
+        });
+      }
+    });
+
+    await page.evaluate(() => App.switchView('srs'));
+    await page.evaluate(() => SRSEngine.startSession());
+    await page.waitForFunction(() => SRSEngine.activeQueue.length === 2);
+    await page.locator('#srsRevealBtn').click();
+
+    const result = await page.evaluate(async () => {
+      const originalRecordAttempt = SRSEngine.recordAttempt.bind(SRSEngine);
+      let calls = 0;
+      SRSEngine.recordAttempt = async (...args) => {
+        calls++;
+        await new Promise(resolve => setTimeout(resolve, 80));
+        return originalRecordAttempt(...args);
+      };
+      await Promise.all([SRSEngine.submitGrade(5), SRSEngine.submitGrade(1)]);
+      return {
+        calls,
+        currentIndex: SRSEngine.currentIndex,
+        correct: SRSEngine.sessionStats.correct,
+        incorrect: SRSEngine.sessionStats.incorrect,
+        isGrading: SRSEngine.isGrading
+      };
+    });
+
+    assert.equal(result.calls, 1, 'only the first grade should be persisted');
+    assert.equal(result.currentIndex, 1, 'the session should advance by one card');
+    assert.equal(result.correct, 1);
+    assert.equal(result.incorrect, 0);
+    assert.equal(result.isGrading, false, 'the grading lock should release after persistence');
+    const reviewed = await page.evaluate(wordId => DB.get('srs', wordId),
+      await page.evaluate(() => SRSEngine.activeQueue[0].vocab.id));
+    assert.equal(reviewed.attempts, 2, 'the stored attempt counter should increase only once');
+  } finally {
+    await context.close();
+    await browser.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});

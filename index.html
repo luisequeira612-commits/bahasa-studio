@@ -5236,6 +5236,24 @@ Requisitos:
                     if (tokens.length) candidates.push({ source: variant, target, tokens, priority: item.priority });
                 }
             }
+
+            // Existing authored translation exercises are a fallback source for exact phrases
+            // that are not represented as standalone vocabulary entries.
+            if (language === 'es' && typeof CourseData !== 'undefined' && Array.isArray(CourseData.levels)) {
+                for (const level of CourseData.levels) {
+                    for (const unit of level.units || []) {
+                        for (const exercise of unit.exercises || []) {
+                            if (exercise.type !== 'translate_es_id' || !exercise.prompt || !exercise.answer) continue;
+                            const parsed = window.parseTapTranslationPrompt(exercise.prompt, 'es');
+                            const source = String(parsed.phrase || '').trim();
+                            const tokens = wordTokens(source).map(match => normToken(match[0])).filter(Boolean);
+                            if (tokens.length) candidates.push({
+                                source, target: String(exercise.answer), tokens, priority: 2
+                            });
+                        }
+                    }
+                }
+            }
             return candidates.sort((a, b) => b.tokens.length - a.tokens.length || a.priority - b.priority);
         }
 

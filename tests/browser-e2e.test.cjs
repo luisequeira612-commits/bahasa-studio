@@ -460,3 +460,62 @@ test('service worker serves the app after the network is disconnected', async ()
     await new Promise(resolve => server.close(resolve));
   }
 });
+
+
+test('main navigation opens each primary view and dictionary search filters Indonesian and Spanish text', async () => {
+  const { server, url } = await startServer();
+  const context = await browser.newContext({ serviceWorkers: 'block' });
+  const page = await context.newPage();
+  const pageErrors = [];
+  page.on('pageerror', error => pageErrors.push(error.message));
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
+
+    const views = [
+      { label: 'Curso', id: 'route' },
+      { label: 'Repaso', id: 'srs' },
+      { label: 'Tutor', id: 'ai' },
+      { label: 'Diccionario', id: 'dict' },
+      { label: 'Evaluar', id: 'assessment' },
+      { label: 'Ajustes', id: 'settings' }
+    ];
+
+    for (const view of views) {
+      await page.locator('.nav-btn').filter({ hasText: view.label }).click();
+      await page.locator('#view-' + view.id).waitFor({ state: 'visible' });
+      assert.equal(await page.locator('#view-' + view.id).evaluate(el => el.classList.contains('active')), true,
+        view.label + ' should activate its corresponding view');
+    }
+
+    // Dictionary assertions require the dictionary view to be active again.
+    await page.locator('.nav-btn').filter({ hasText: 'Diccionario' }).click();
+    await page.locator('#view-dict').waitFor({ state: 'visible' });
+    await page.locator('#dictSearch').fill('');
+    const cards = page.locator('#dictContainer .card');
+    assert.ok(await cards.count() > 0, 'dictionary should render vocabulary cards');
+
+    await page.locator('#dictSearch').fill('Saya');
+    const indonesianMatches = await cards.evaluateAll(items =>
+      items.filter(card => getComputedStyle(card).display !== 'none' && card.innerText.includes('Saya')).length
+    );
+    assert.ok(indonesianMatches > 0, 'dictionary search should find Indonesian headwords/examples');
+
+    await page.locator('#dictSearch').fill('Yo');
+    const spanishMatches = await cards.evaluateAll(items =>
+      items.filter(card => getComputedStyle(card).display !== 'none' && card.innerText.includes('Yo')).length
+    );
+    assert.ok(spanishMatches > 0, 'dictionary search should find Spanish translations/examples');
+
+    await page.locator('#dictSearch').fill('zqvnotaword');
+    const noMatches = await cards.evaluateAll(items =>
+      items.filter(card => getComputedStyle(card).display !== 'none').length
+    );
+    assert.equal(noMatches, 0, 'unknown search should hide all non-matching dictionary cards');
+    assert.deepEqual(pageErrors, [], 'navigation and dictionary search should not throw browser errors');
+  } finally {
+    await context.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});

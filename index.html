@@ -558,7 +558,7 @@
                                 { vocabId: 'v6', type: 'mc', prompt: 'Completa: «Ini ___ air» (Esto no es agua)', options: ['tidak', 'bukan', 'tidur'], answer: 1, explanation: 'Air es un sustantivo; para negar la identificación se usa bukan.' },
                                 { vocabId: 'v48', type: 'translate_es_id', prompt: 'Traduce: «agua»', answer: 'Air', explanation: 'Air significa «agua».' },
                                 { vocabId: 'v49', type: 'mc', prompt: '¿Qué significa «nasi»?', options: ['Agua', 'Arroz cocido', 'Libro'], answer: 1, explanation: 'Nasi es arroz cocido, un alimento básico en Indonesia.' },
-                                { vocabId: 'v50', type: 'listen', prompt: 'Escribe lo que escuchas', answer: 'Dia tidur', explanation: 'Dia tidur significa «él / ella duerme».' },
+                                { vocabId: 'v50', type: 'mc', prompt: 'Escucha la frase y elige su significado', audioText: 'Dia tidur', options: ['Él / ella duerme', 'Yo como', 'Tú bebes'], answer: 0, explanation: 'Dia tidur significa «él / ella duerme».' },
                                 { vocabId: 'v51', type: 'translate_es_id', prompt: 'Traduce: «esto»', answer: 'Ini', explanation: 'Ini señala algo cercano: esto, este o esta. Si acompaña a un sustantivo, normalmente va después: buku ini (este libro); al presentar algo, puede ir al inicio: Ini buku (esto es un libro).' },
                                 { vocabId: 'v52', type: 'order', prompt: 'Ordena: «Esto es un libro»', words: ['buku', 'Ini'], correctOrder: ['Ini', 'buku'], explanation: 'En esta frase básica, ini va antes del sustantivo: Ini buku.' },
                                 { vocabId: 'v53', type: 'translate_es_id', prompt: 'Traduce: «amigo / amiga»', answer: 'Teman', explanation: 'Teman significa amigo o amiga.' },
@@ -641,9 +641,11 @@
                                 },
                                 {
                                     "vocabId": "v10",
-                                    "type": "listen",
-                                    "prompt": "Escribe lo que escuchas",
-                                    "answer": "Nama saya Ana",
+                                    "type": "mc",
+                                    "prompt": "Escucha la frase y elige su significado",
+                                    "audioText": "Nama saya Ana",
+                                    "options": ["Me llamo Ana", "Vivo en Perú", "¿Cómo te llamas?"],
+                                    "answer": 0,
                                     "explanation": "Nama saya Ana significa Me llamo Ana."
                                 },
                                 {
@@ -781,9 +783,11 @@
                                           },
                                           {
                                                     "vocabId": "v42",
-                                                    "type": "listen",
-                                                    "prompt": "Escribe lo que escuchas",
-                                                    "answer": "Sepuluh tahun",
+                                                    "type": "mc",
+                                                    "prompt": "Escucha la frase y elige su significado",
+                                                    "audioText": "Sepuluh tahun",
+                                                    "options": ["Diez años", "Siete días", "Ocho personas"],
+                                                    "answer": 0,
                                                     "explanation": "Sepuluh tahun significa diez años."
                                           },
                                           {

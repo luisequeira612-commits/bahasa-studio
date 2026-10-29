@@ -52,7 +52,7 @@ test('a tapped vocabulary item can be saved, reviewed, and retained in backups',
     await tappedWord.waitFor();
     await tappedWord.click();
     await page.locator('#tapTranslationSave').waitFor({ state: 'visible' });
-    await page.locator('#tapTranslationSave').click();
+    await page.locator('#tapTranslationSave').evaluate(button => button.click());
 
     await page.waitForFunction(async () => {
       const item = await DB.get('srs', 'v45');
@@ -84,6 +84,22 @@ test('a tapped vocabulary item can be saved, reviewed, and retained in backups',
     }));
     assert.equal(backup.srs[0].val.savedForReview, true,
       'backup validation must preserve the saved-for-review marker');
+
+    await page.evaluate(() => SRSEngine.startSession());
+    await page.waitForFunction(() => SRSEngine.activeQueue.length === 3);
+    assert.equal(await page.locator('#srsDirectionText').innerText(), 'Español → indonesio');
+    assert.equal(await page.locator('#srsPromptText').innerText(), 'Gracias');
+    await page.locator('#srsRevealBtn').click();
+    assert.match(await page.locator('#srsAnswerText').innerText(), /^Terima kasih/);
+
+    await page.evaluate(() => {
+      SRSEngine.currentIndex = 1;
+      SRSEngine.renderCard();
+    });
+    assert.equal(await page.locator('#srsDirectionText').innerText(), 'Indonesio → español');
+    assert.equal(await page.locator('#srsPromptText').innerText(), 'Makan');
+    await page.locator('#srsRevealBtn').click();
+    assert.match(await page.locator('#srsAnswerText').innerText(), /^Comer/);
 
     await page.evaluate(() => SRSEngine.recordAttempt('v45', 5));
     const reviewed = await page.evaluate(() => DB.get('srs', 'v45'));

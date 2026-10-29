@@ -365,7 +365,14 @@
         <div class="card">
             <h3>Sintetizador de Voz (TTS)</h3>
             <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px;">Comprueba si el paquete de voz en indonesio está instalado en tu dispositivo.</p>
-            <button class="btn btn-outline" onclick="AudioEngine.testVoice()">Probar Voz (id-ID)</button>
+            <label for="audioPlaybackRate" style="display:block; font-size:0.9rem; margin:10px 0 6px;">Velocidad de reproducción</label>
+            <select id="audioPlaybackRate" class="input-field" onchange="AudioEngine.setRate(this.value)" aria-label="Velocidad de reproducción de audio">
+                <option value="0.5">Muy lento (0,5×)</option>
+                <option value="0.7">Lento (0,7×)</option>
+                <option value="0.85" selected>Normal lento (0,85×)</option>
+                <option value="1">Normal (1×)</option>
+            </select>
+            <button class="btn btn-outline" style="margin-top:10px;" onclick="AudioEngine.testVoice()">Probar Voz (id-ID)</button>
         </div>
 
         <div class="card">
@@ -4104,6 +4111,19 @@
         const AudioEngine = {
             synth: window.speechSynthesis,
             idVoice: null,
+            rate: 0.85,
+            setRate(value, persist = true) {
+                const rate = Number(value);
+                if (![0.5, 0.7, 0.85, 1].includes(rate)) return false;
+                this.rate = rate;
+                const control = document.getElementById('audioPlaybackRate');
+                if (control) control.value = String(rate);
+                if (persist && typeof DB !== 'undefined') {
+                    DB.set('settings', 'audioPlaybackRate', rate)
+                        .catch(error => console.error('No se pudo guardar la velocidad de audio:', error));
+                }
+                return true;
+            },
             init() {
                 if (!this.synth) return;
                 const update = () => {
@@ -4122,7 +4142,7 @@
                 const utter = new SpeechSynthesisUtterance(text);
                 utter.lang = 'id-ID';
                 if (this.idVoice) utter.voice = this.idVoice;
-                utter.rate = 0.85;
+                utter.rate = this.rate;
                 this.synth.speak(utter);
             },
             testVoice() {
@@ -4916,6 +4936,7 @@ Requisitos:
             async init() {
                 await DB.init();
                 AudioEngine.init();
+                AudioEngine.setRate((await DB.get('settings', 'audioPlaybackRate')) ?? 0.85, false);
 
                 this.xp = (await DB.get('settings', 'userXp')) || 0;
                 this.completedUnits = (await DB.get('settings', 'completedUnits')) || [];

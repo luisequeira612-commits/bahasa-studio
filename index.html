@@ -529,7 +529,7 @@
                                 { vocabId: 'v2', type: 'translate_es_id', prompt: 'Traduce al indonesio: «tú»', answer: 'Kamu', explanation: 'Kamu significa «tú» en contextos informales.' },
                                 { vocabId: 'v3', type: 'mc', prompt: '¿Qué significa «dia»?', options: ['Yo', 'Tú', 'Él / ella'], answer: 2, explanation: 'Dia puede significar él o ella; el pronombre no indica género.' },
                                 { vocabId: 'v3', type: 'mc', prompt: 'Escucha la palabra y elige su significado', audioText: 'Dia', options: ['Yo', 'Tú', 'Él / ella'], answer: 2, explanation: 'Dia puede significar él o ella; el pronombre no indica género.' },
-                                { vocabId: 'v4', type: 'listen', prompt: 'Escucha y escribe el saludo de la mañana', answer: 'Selamat pagi', explanation: 'Selamat pagi significa «buenos días».' },
+                                { vocabId: 'v4', type: 'mc', prompt: 'Escucha el saludo y elige su significado', audioText: 'Selamat pagi', options: ['Buenos días', 'Buenas noches', 'Hasta luego'], answer: 0, explanation: 'Selamat pagi significa «buenos días».' },
                                 { vocabId: 'v60', type: 'translate_es_id', prompt: 'Traduce: «hola»', answer: 'Halo', explanation: 'Halo es un saludo común.' },
                                 { vocabId: 'v45', type: 'mc', prompt: 'Alguien te ayuda. ¿Qué dices para dar las gracias?', options: ['Halo', 'Terima kasih', 'Selamat pagi'], answer: 1, explanation: 'Terima kasih significa «gracias».' },
                                 { vocabId: 'v46', type: 'order', prompt: 'Ordena: «Yo como»', words: ['makan', 'Saya'], correctOrder: ['Saya', 'makan'], explanation: 'El orden básico es sujeto + verbo: Saya makan.' },
@@ -2942,7 +2942,7 @@
                                 { vocabId: 'v51', type: 'mc', prompt: '¿Qué significa «ini»?', options: ['Este / esto', 'Allá', 'Ellos'], answer: 0, explanation: 'Ini señala algo cercano: buku ini, este libro.' },
                                 { vocabId: 'v311', type: 'translate_es_id', prompt: 'Traduce: aquella casa', answer: 'Rumah itu', explanation: 'Itu suele colocarse después del sustantivo.' },
                                 { vocabId: 'v312', type: 'order', prompt: 'Ordena: Estoy aquí.', words: ['sini', 'Saya', 'di'], correctOrder: ['Saya', 'di', 'sini'], explanation: 'Saya di sini significa «Estoy aquí».' },
-                                { vocabId: 'v313', type: 'listen', prompt: 'Escucha y escribe la frase.', answer: 'Kamu di situ', explanation: 'Kamu di situ significa «Estás ahí».' },
+                                { vocabId: 'v313', type: 'mc', prompt: 'Escucha la frase y elige su significado', audioText: 'Kamu di situ', options: ['Estoy aquí', 'Estás ahí', 'Estamos allá'], answer: 1, explanation: 'Kamu di situ significa «Estás ahí».' },
                                 { vocabId: 'v314', type: 'mc', prompt: '¿Cuál expresa «allá»?', options: ['Sini', 'Sana', 'Ini'], answer: 1, explanation: 'Sana indica un lugar más alejado: allá.' },
                                 { vocabId: 'v315', type: 'translate_es_id', prompt: 'Traduce: nosotros (sin incluirte)', answer: 'Kami', explanation: 'Kami excluye a la persona que escucha.' },
                                 { vocabId: 'v316', type: 'mc', prompt: '¿Qué pronombre incluye a quien escucha?', options: ['Kami', 'Mereka', 'Kita'], answer: 2, explanation: 'Kita incluye al oyente; kami no.' },
@@ -2990,7 +2990,7 @@
                                 { vocabId: 'v330', type: 'mc', prompt: '¿Qué significa «enak»?', options: ['Picante', 'Rico / sabroso', 'Sin'], answer: 1, explanation: 'Enak describe algo rico o sabroso.' },
                                 { vocabId: 'v331', type: 'order', prompt: 'Ordena: Pido la cuenta.', words: ['tagihan', 'minta', 'Saya'], correctOrder: ['Saya', 'minta', 'tagihan'], explanation: 'Saya minta tagihan significa «Pido la cuenta».' },
                                 { vocabId: 'v332', type: 'translate_es_id', prompt: 'Traduce: picante', answer: 'Pedas', explanation: 'Pedas significa picante.' },
-                                { vocabId: 'v347', type: 'listen', prompt: 'Escucha y escribe la frase para pedir algo sin chile.', answer: 'Tanpa cabai, ya', explanation: 'Tanpa cabai, ya es una petición breve para pedir algo sin chile.' },
+                                { vocabId: 'v347', type: 'mc', prompt: 'Escucha la petición y elige qué solicita', audioText: 'Tanpa cabai, ya', options: ['Sin chile, por favor', 'Con mucho chile', 'Sin arroz, por favor'], answer: 0, explanation: 'Tanpa cabai, ya es una petición breve para pedir algo sin chile.' },
                                 { vocabId: 'v324', type: 'write', prompt: 'Escribe un pedido sencillo en un restaurante.', hint: 'Usa Saya mau nasi goreng o Saya pesan ayam.', modelAnswer: 'Saya pesan nasi goreng.', explanation: 'Ejemplo de pedido: Saya pesan nasi goreng. — Pido arroz frito.' },
                                 { vocabId: 'v330', type: 'write', prompt: 'Escribe una frase para decir que un plato está rico.', hint: 'Puedes usar Nasi goreng ini enak.', modelAnswer: 'Nasi goreng ini enak.', explanation: 'El demostrativo ini aparece después del sustantivo.' }
                             ]
@@ -3065,7 +3065,7 @@
                                 { vocabId: 'v360', type: 'translate_es_id', prompt: 'Traduce: sano/a', answer: 'Sehat', explanation: 'Sehat describe un buen estado de salud.' },
                                 { vocabId: 'v352', type: 'mc', prompt: '¿Qué significa «mata»?', options: ['Ojo(s)', 'Oído', 'Pie'], answer: 0, explanation: 'Mata significa ojo; en contexto puede referirse a los ojos.' },
                                 { vocabId: 'v356', type: 'order', prompt: 'Ordena: Voy al médico.', words: ['dokter', 'Saya', 'ke'], correctOrder: ['Saya', 'ke', 'dokter'], explanation: 'Saya ke dokter significa «Voy al médico».' },
-                                { vocabId: 'v355', type: 'listen', prompt: 'Escucha y escribe la frase.', answer: 'Saya sakit kepala', explanation: 'Saya sakit kepala significa «Me duele la cabeza».' },
+                                { vocabId: 'v355', type: 'mc', prompt: 'Escucha la frase y elige qué le ocurre a la persona', audioText: 'Saya sakit kepala', options: ['Tiene fiebre', 'Le duele la cabeza', 'Tiene tos'], answer: 1, explanation: 'Saya sakit kepala significa «Me duele la cabeza».' },
                                 { vocabId: 'v353', type: 'translate_es_id', prompt: 'Traduce: oreja / oído', answer: 'Telinga', explanation: 'Telinga significa oreja u oído.' },
                                 { vocabId: 'v358', type: 'write', prompt: 'Escribe una frase sencilla para decir que tienes fiebre.', hint: 'Usa Saya demam.', modelAnswer: 'Saya demam.', explanation: 'Saya demam significa «Tengo fiebre».' },
                                 { vocabId: 'v360', type: 'write', prompt: 'Escribe una frase para decir que estás bien de salud.', hint: 'Usa Saya sehat.', modelAnswer: 'Saya sehat.', explanation: 'Saya sehat significa «Estoy sano/a».' }

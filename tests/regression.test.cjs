@@ -498,7 +498,7 @@ test('SRS due queue returns one due item per Indonesian headword and excludes pl
     }
   );
   const due = await getDueItems.call({});
-  assert.deepEqual(Array.from(due, item => item.key), ['dup-a']);
+  assert.deepEqual(Array.from(due, item => item.key), ['dup-b'], 'the most difficult duplicate headword should represent the review card');
 });
 
 test('SRS attempt persistence mirrors the updated state to every duplicate word ID', async () => {

@@ -454,9 +454,15 @@
                 });
             },
             async set(store, key, val) {
+                return this.setMany(store, [{ key, val }]);
+            },
+            async setMany(store, entries) {
                 return new Promise((resolve, reject) => {
                     const tx = this.db.transaction(store, 'readwrite');
-                    tx.objectStore(store).put({ id: key, wordId: key, key: key, val: val });
+                    const objectStore = tx.objectStore(store);
+                    for (const entry of entries) {
+                        objectStore.put({ id: entry.key, wordId: entry.key, key: entry.key, val: entry.val });
+                    }
                     tx.oncomplete = () => resolve();
                     tx.onerror = () => reject(tx.error || new Error('No se pudo guardar en IndexedDB.'));
                     tx.onabort = () => reject(tx.error || new Error('La transacción de guardado fue cancelada.'));
@@ -4258,7 +4264,7 @@
 
             async saveAttemptForDuplicateWords(wordId, item) {
                 const ids = await this.getDuplicateWordIds(wordId);
-                await Promise.all(ids.map(id => DB.set('srs', id, { ...item, wordId: id })));
+                await DB.setMany('srs', ids.map(id => ({ key: id, val: { ...item, wordId: id } })));
             },
 
             async getDueItems() {

@@ -206,7 +206,8 @@ test('v3.7.1 audit fixes remain in place without changing backup or database ver
   assert.match(html, /version: 1/);
   assert.match(html, /parsed\.version !== 3/);
   assert.match(html, /tx\.onabort = \(\) => reject\(tx\.error/);
-  assert.match(html, /async set\(store, key, val\) \{\s+return new Promise\(\(resolve, reject\) => \{/);
+  assert.match(html, /async set\(store, key, val\) \{\s+return this\.setMany\(store, \[\{ key, val \}\]\);/);
+  assert.match(html, /async setMany\(store, entries\) \{\s+return new Promise\(\(resolve, reject\) => \{/);
   assert.match(html, /Elige la frase que significa «Esta es mi familia»/);
   assert.ok(html.includes("v.lang.toLowerCase().startsWith('id')"));
   assert.ok(html.includes("function getLearningLevels()"));
@@ -521,31 +522,55 @@ test('SRS due queue returns one due item per Indonesian headword and excludes pl
   assert.deepEqual(Array.from(due, item => item.key), ['dup-b'], 'the most difficult duplicate headword should represent the review card');
 });
 
-test('SRS attempt persistence mirrors the updated state to every duplicate word ID', async () => {
-  const methodBody = extractMethodBody(html, 'async saveAttemptForDuplicateWords(wordId, item) {');
+test('SRS duplicate snapshots are persisted in one atomic IndexedDB transaction', async () => {
+  const setManyBody = extractMethodBody(html, 'async setMany(store, entries) {');
+  const transactions = [];
   const writes = [];
-  const saveAttemptForDuplicateWords = vm.runInNewContext(
-    '({ async saveAttemptForDuplicateWords(wordId, item) {' + methodBody + '\n} }).saveAttemptForDuplicateWords',
-    { DB: { set: async (store, key, val) => writes.push({ store, key, val }) } }
-  );
-
-  const engine = {
-    getDuplicateWordIds: async wordId => wordId === 'v27' ? ['v27', 'v48'] : [wordId],
-    saveAttemptForDuplicateWords,
+  const fakeDb = {
+    transaction(store, mode) {
+      const tx = {
+        error: null,
+        objectStore(name) {
+          assert.equal(name, store);
+          return { put: value => writes.push(value) };
+        }
+      };
+      transactions.push({ store, mode, tx });
+      Promise.resolve().then(() => tx.oncomplete && tx.oncomplete());
+      return tx;
+    }
   };
-  await engine.saveAttemptForDuplicateWords.call(
-    engine,
-    'v27',
-    { wordId: 'v27', attempts: 4, correct: 3, incorrect: 1, interval: 6 }
+  const setMany = vm.runInNewContext(
+    '({ async setMany(store, entries) {' + setManyBody + '\n} }).setMany'
   );
-  assert.equal(writes.length, 2);
-  assert.deepEqual(Array.from(writes, write => write.key), ['v27', 'v48']);
-  assert.ok(writes.every(write => write.store === 'srs'));
-  assert.equal(writes[0].val.wordId, 'v27');
-  assert.equal(writes[1].val.wordId, 'v48');
-  assert.ok(writes.every(write => write.val.attempts === 4 && write.val.interval === 6));
+  await setMany.call({ db: fakeDb }, 'srs', [
+    { key: 'v27', val: { attempts: 4, wordId: 'v27' } },
+    { key: 'v48', val: { attempts: 4, wordId: 'v48' } }
+  ]);
+  assert.equal(transactions.length, 1, 'all duplicate IDs must share one readwrite transaction');
+  assert.equal(transactions[0].store, 'srs');
+  assert.equal(transactions[0].mode, 'readwrite');
+  assert.deepEqual(writes.map(value => value.wordId), ['v27', 'v48']);
+  assert.ok(writes.every(value => value.val.attempts === 4));
 });
 
+test('SRS duplicate attempt persistence delegates all aliases to one atomic batch', async () => {
+  const methodBody = extractMethodBody(html, 'async saveAttemptForDuplicateWords(wordId, item) {');
+  const batches = [];
+  const saveAttemptForDuplicateWords = vm.runInNewContext(
+    '({ async saveAttemptForDuplicateWords(wordId, item) {' + methodBody + '\n} }).saveAttemptForDuplicateWords',
+    { DB: { setMany: async (store, entries) => batches.push({ store, entries }) } }
+  );
+  const engine = {
+    getDuplicateWordIds: async wordId => wordId === 'v27' ? ['v27', 'v48'] : [wordId],
+    saveAttemptForDuplicateWords
+  };
+  await engine.saveAttemptForDuplicateWords.call(engine, 'v27', { attempts: 4, interval: 6 });
+  assert.equal(batches.length, 1);
+  assert.equal(batches[0].store, 'srs');
+  assert.deepEqual(Array.from(batches[0].entries, entry => entry.key), ['v27', 'v48']);
+  assert.ok(batches[0].entries.every(entry => entry.val.attempts === 4));
+});
 
 test('invalid backup import leaves existing progress untouched and never starts restoration', async () => {
   const validatorBody = extractMethodBody(html, 'validateBackup(parsed) {');

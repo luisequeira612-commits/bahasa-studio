@@ -287,3 +287,39 @@ test('failed grade persistence keeps the current card and allows retry', async (
     await new Promise(resolve => server.close(resolve));
   }
 });
+
+
+test('SRS dashboard distinguishes course vocabulary from words with review progress', async () => {
+  const { server, url } = await startServer();
+  const browser = await chromium.launch({ headless: true });
+  const context = await browser.newContext({ serviceWorkers: 'block' });
+  const page = await context.newPage();
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof SRSEngine !== 'undefined' && DB && DB.db);
+    await page.evaluate(async () => {
+      const word = SRSEngine.getA1Vocabulary()[0];
+      await DB.set('srs', word.id, {
+        attempts: 1, correct: 1, incorrect: 0, interval: 1,
+        repetition: 1, efactor: 2.6, nextReview: Date.now() + 86400000,
+        lastReviewed: Date.now(), savedForReview: false
+      });
+      await App.updateSrsView();
+    });
+
+    assert.equal(await page.locator('#statTotalVocab').innerText(),
+      String(await page.evaluate(() => getUniqueLearningVocabulary().length)),
+      'available vocabulary should represent the course vocabulary');
+    assert.equal(await page.locator('#statTrackedVocab').innerText(), '1',
+      'tracked vocabulary should count words with SRS records');
+    assert.match(await page.locator('#statTotalVocab').locator('xpath=..').innerText(),
+      /Vocabulario disponible/);
+    assert.match(await page.locator('#statTrackedVocab').locator('xpath=..').innerText(),
+      /Palabras con seguimiento/);
+  } finally {
+    await context.close();
+    await browser.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});

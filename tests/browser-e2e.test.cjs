@@ -325,7 +325,7 @@ test('lesson translation hints are tappable, contextual, and stay within a mobil
     await phrase.tap();
     const bubble = page.locator('#tapTranslationBubble');
     await bubble.waitFor({ state: 'visible' });
-    assert.equal(await bubble.innerText(), 'Senang bertemu denganmu');
+    assert.equal(await page.locator('#tapTranslationText').innerText(), 'Senang bertemu denganmu');
 
     const geometry = await page.evaluate(() => {
       const el = document.querySelector('#tapTranslationBubble');
@@ -378,14 +378,14 @@ test('lesson translation hints are tappable, contextual, and stay within a mobil
     const pronoun = page.getByRole('button', { name: 'Ver traducción de tú' });
     await pronoun.tap();
     await bubble.waitFor({ state: 'visible' });
-    assert.equal(await bubble.innerText(), 'Kamu',
+    assert.equal(await page.locator('#tapTranslationText').innerText(), 'Kamu',
       'the current lesson vocabulary should disambiguate a short translation');
 
     await page.evaluate(() => { LessonEngine.stepIndex = 2; LessonEngine.renderStep(); });
     const numberPhrase = page.getByRole('button', { name: 'Ver traducción de setenta' });
     await numberPhrase.tap();
     await bubble.waitFor({ state: 'visible' });
-    assert.equal(await bubble.innerText(), 'Tujuh puluh',
+    assert.equal(await page.locator('#tapTranslationText').innerText(), 'Tujuh puluh',
       'a full phrase may reuse the answer already authored in a course exercise');
 
     await page.evaluate(() => {
@@ -409,7 +409,7 @@ test('lesson translation hints are tappable, contextual, and stay within a mobil
     const indonesianWord = page.getByRole('button', { name: 'Ver traducción de dia' });
     await indonesianWord.tap();
     await bubble.waitFor({ state: 'visible' });
-    assert.equal(await bubble.innerText(), 'Él / ella');
+    assert.equal(await page.locator('#tapTranslationText').innerText(), 'Él / ella');
     assert.equal(await page.locator('.tap-translation-speaker').count(), 1,
       'Indonesian prompts retain a touch-friendly audio control');
 
@@ -420,7 +420,7 @@ test('lesson translation hints are tappable, contextual, and stay within a mobil
     await indonesianWord.focus();
     await page.keyboard.press('Enter');
     await bubble.waitFor({ state: 'visible' });
-    assert.equal(await bubble.innerText(), 'Él / ella');
+    assert.equal(await page.locator('#tapTranslationText').innerText(), 'Él / ella');
     await page.keyboard.press('Escape');
     await page.waitForFunction(() => document.querySelector('#tapTranslationBubble').hidden);
 
@@ -452,7 +452,7 @@ test('service worker serves the app after the network is disconnected', async ()
     await context.setOffline(true);
     await page.reload({ waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined');
-    assert.match(await page.title(), /Bahasa Studio 3\.7\.1/);
+    assert.match(await page.title(), /Bahasa Studio 3\.7\.2/);
     assert.equal(await page.locator('body').isVisible(), true);
   } finally {
     await context.setOffline(false);

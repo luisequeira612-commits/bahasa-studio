@@ -5218,17 +5218,25 @@ Requisitos:
             try { vocabulary = typeof getUniqueLearningVocabulary === 'function' ? getUniqueLearningVocabulary() : []; }
             catch (error) { console.warn('No se pudo construir la ayuda de traducción.', error); }
             const candidates = [];
-            for (const word of vocabulary) {
+            const localVocabulary = window.LessonEngine && window.LessonEngine.currentUnit &&
+                Array.isArray(window.LessonEngine.currentUnit.vocab) ? window.LessonEngine.currentUnit.vocab : [];
+            const orderedVocabulary = [
+                ...localVocabulary.map(word => ({ word, priority: 0 })),
+                ...vocabulary.filter(word => !localVocabulary.some(local => local && word && local.id === word.id))
+                    .map(word => ({ word, priority: 1 }))
+            ];
+            for (const item of orderedVocabulary) {
+                const word = item.word;
                 if (!word || !word.idn || !word.esp) continue;
                 const source = language === 'es' ? String(word.esp) : String(word.idn);
                 const target = language === 'es' ? String(word.idn) : String(word.esp);
                 const variants = [source, ...source.split(/\s+\/\s+/u)].filter(Boolean);
                 for (const variant of variants) {
                     const tokens = wordTokens(variant).map(match => normToken(match[0])).filter(Boolean);
-                    if (tokens.length) candidates.push({ source: variant, target, tokens });
+                    if (tokens.length) candidates.push({ source: variant, target, tokens, priority: item.priority });
                 }
             }
-            return candidates.sort((a, b) => b.tokens.length - a.tokens.length);
+            return candidates.sort((a, b) => b.tokens.length - a.tokens.length || a.priority - b.priority);
         }
 
         window.renderTapTranslationSentence = function (phrase, language) {
@@ -5246,9 +5254,11 @@ Requisitos:
                     if (candidate.tokens.length < 1 || i + candidate.tokens.length > tokens.length) continue;
                     const slice = tokens.slice(i, i + candidate.tokens.length).map(token => normToken(token[0]));
                     if (!candidate.tokens.every((token, j) => token === slice[j])) continue;
-                    const equivalentTargets = new Set(candidates
-                        .filter(other => other.tokens.length === candidate.tokens.length &&
-                            other.tokens.every((token, j) => token === candidate.tokens[j]))
+                    const sameCandidates = candidates.filter(other => other.tokens.length === candidate.tokens.length &&
+                        other.tokens.every((token, j) => token === candidate.tokens[j]));
+                    const bestPriority = Math.min(...sameCandidates.map(other => other.priority));
+                    const equivalentTargets = new Set(sameCandidates
+                        .filter(other => other.priority === bestPriority)
                         .map(other => other.target));
                     if (equivalentTargets.size === 1) { found = candidate; break; }
                 }

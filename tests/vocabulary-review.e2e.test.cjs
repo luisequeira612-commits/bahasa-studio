@@ -85,6 +85,7 @@ test('a tapped vocabulary item can be saved, reviewed, and retained in backups',
     assert.equal(backup.srs[0].val.savedForReview, true,
       'backup validation must preserve the saved-for-review marker');
 
+    await page.evaluate(() => App.switchView('srs'));
     await page.evaluate(() => SRSEngine.startSession());
     await page.waitForFunction(() => SRSEngine.activeQueue.length === 3);
     assert.equal(await page.locator('#srsDirectionText').innerText(), 'Español → indonesio');

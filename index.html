@@ -5250,19 +5250,27 @@ Requisitos:
                     if (seenSrs.has(item.key)) fail();
                     seenSrs.add(item.key);
                     const value = item.val;
-                    const num = (key, fallback, min = 0, max = 1000000000) =>
-                        Number.isFinite(value[key]) && value[key] >= min && value[key] <= max ? value[key] : fallback;
-                    const count = key => Number.isSafeInteger(value[key]) && value[key] >= 0 && value[key] <= 10000000 ? value[key] : 0;
+                    const num = (key, fallback, min = 0, max = 1000000000) => {
+                        if (value[key] === undefined) return fallback;
+                        if (!Number.isFinite(value[key]) || value[key] < min || value[key] > max) fail();
+                        return value[key];
+                    };
+                    const count = key => {
+                        if (value[key] === undefined) return 0;
+                        if (!Number.isSafeInteger(value[key]) || value[key] < 0 || value[key] > 10000000) fail();
+                        return value[key];
+                    };
                     const attempts = count('attempts');
                     const correct = count('correct');
                     const incorrect = count('incorrect');
                     if (correct + incorrect > attempts) fail();
-                    const lastReviewed = value.lastReviewed === null || value.lastReviewed === undefined ? null :
-                        (Number.isFinite(value.lastReviewed) && value.lastReviewed >= 0 ? value.lastReviewed : null);
+                    if (value.savedForReview !== undefined && typeof value.savedForReview !== 'boolean') fail();
+                    const lastReviewed = value.lastReviewed === null || value.lastReviewed === undefined ? null : value.lastReviewed;
+                    if (lastReviewed !== null && (!Number.isFinite(lastReviewed) || lastReviewed < 0)) fail();
                     srs.push({ key: item.key, val: {
                         savedForReview: value.savedForReview === true,
                         interval: num('interval', 0, 0, 1000000), repetition: count('repetition'),
-                        efactor: num('efactor', 2.5, 1.3, 5), nextReview: num('nextReview', Date.now()),
+                        efactor: num('efactor', 2.5, 1.3, 5), nextReview: num('nextReview', Date.now(), 0, Number.MAX_SAFE_INTEGER),
                         attempts, correct, incorrect, lastReviewed
                     }});
                 }

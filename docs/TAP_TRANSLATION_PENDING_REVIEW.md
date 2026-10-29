@@ -2,7 +2,7 @@
 
 Fecha: 2026-10-29
 
-Esta lista reúne frases de ejercicios `translate_es_id` cuyo texto español no aparece como una entrada exacta del campo `esp` del vocabulario del curso. Para que la ayuda al toque no quede vacía, la interfaz puede reutilizar la respuesta `answer` que ya existe en el propio ejercicio.
+Esta lista reúne frases de ejercicios `translate_es_id` cuyo texto español no aparece como una entrada exacta del campo `esp` del vocabulario del curso. Para que la ayuda al toque no quede vacía, la interfaz puede reutilizar la respuesta `answer` que ya existe en el propio ejercicio cuando no haya una equivalencia adecuada en el vocabulario. En algunos casos puede resolver la frase desde vocabulario existente; la lista marca que el texto español no tiene una entrada exacta, no que todas las palabras carezcan de traducción.
 
 **Estado de estas equivalencias: pendiente de revisión lingüística.** No son traducciones nuevas inventadas para esta función, pero tampoco se consideran verificadas. No se ha cambiado ningún estado del tracker de vocabulario.
 

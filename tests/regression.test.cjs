@@ -1256,7 +1256,7 @@ test('listening comprehension multiple-choice plays Indonesian audio without rev
 test('A1 expands sentence-level listening comprehension across multiple units', () => {
   const start = html.indexOf('const CourseData =');
   const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
-  const course = vm.runInNewContext(html.slice(start, end) + '\\nCourseData');
+  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
   const a1 = course.levels.find(level => level.id === 'A1');
   const expected = [
     ['a1_u2', 'Dia tidur', 'Él / ella duerme'],

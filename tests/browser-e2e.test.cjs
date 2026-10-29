@@ -342,6 +342,13 @@ test('lesson translation hints are tappable, contextual, and stay within a mobil
     assert.equal(await page.locator('#textAnswer').inputValue(), 'Senang bertemu denganmu',
       'the hint must not interfere with typing the answer');
 
+    await page.evaluate(() => { LessonEngine.stepIndex = 1; LessonEngine.renderStep(); });
+    const pronoun = page.getByRole('button', { name: 'Ver traducción de tú' });
+    await pronoun.tap();
+    await bubble.waitFor({ state: 'visible' });
+    assert.equal(await bubble.innerText(), 'Kamu',
+      'the current lesson vocabulary should disambiguate a short translation');
+
     await page.evaluate(() => {
       const dia = getUniqueLearningVocabulary().find(word => word.id === 'v3');
       LessonEngine.startUnit({

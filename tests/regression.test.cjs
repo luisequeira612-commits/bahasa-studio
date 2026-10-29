@@ -1234,3 +1234,20 @@ test('tap-to-translate lookup is wired into learning text and uses safe text ren
   assert.match(html, /meaningNode\.textContent = matches\.slice\(0, 3\)/);
   assert.match(html, /exampleNode\.textContent = \[/);
 });
+
+
+test('listening comprehension multiple-choice plays Indonesian audio without revealing the written answer', () => {
+  const start = html.indexOf('const CourseData =');
+  const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
+  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
+  const a1 = course.levels.find(level => level.id === 'A1');
+  const unit1 = a1.units.find(unit => unit.id === 'a1_u1');
+  const exercise = unit1.exercises.find(item => item.audioText);
+  assert.ok(exercise, 'A1 should include a listening comprehension question');
+  assert.equal(exercise.audioText, 'Dia');
+  assert.deepEqual(Array.from(exercise.options), ['Yo', 'Tú', 'Él / ella']);
+  assert.equal(exercise.options[exercise.answer], 'Él / ella');
+  assert.match(html, /if \(ex\.type === 'mc'\)/);
+  assert.match(html, /if \(ex\.audioText\) AudioEngine\.speak\(ex\.audioText\)/);
+  assert.match(html, /aria-label="Repetir audio"/);
+});

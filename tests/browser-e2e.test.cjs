@@ -274,6 +274,107 @@ test('tap-to-translate shows a vocabulary meaning and example in the lesson', as
   }
 });
 
+test('lesson translation hints are tappable, contextual, and stay within a mobile viewport', async () => {
+  const { server, url } = await startServer();
+  const context = await browser.newContext({
+    serviceWorkers: 'block',
+    viewport: { width: 320, height: 720 },
+    isMobile: true,
+    hasTouch: true
+  });
+  const page = await context.newPage();
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
+
+    await page.evaluate(() => {
+      const vocabulary = getUniqueLearningVocabulary();
+      const greeting = vocabulary.find(word => word.id === 'v14');
+      const pronoun = vocabulary.find(word => word.id === 'v2');
+      LessonEngine.startUnit({
+        id: 'tap-translation-test',
+        title: 'Prueba de ayuda al toque',
+        grammar: 'Prueba automatizada.',
+        vocab: [greeting, pronoun].filter(Boolean),
+        exercises: [{
+          vocabId: 'v14',
+          type: 'translate_es_id',
+          prompt: 'Traduce al indonesio: «Encantado/a de conocerte»',
+          answer: 'Senang bertemu denganmu',
+          explanation: 'Prueba de expresión completa.'
+        }, {
+          vocabId: 'v2',
+          type: 'translate_es_id',
+          prompt: 'Traduce: «tú»',
+          answer: 'Kamu',
+          explanation: 'Prueba de palabra individual.'
+        }]
+      });
+    });
+    await page.getByRole('button', { name: 'Comenzar' }).click();
+
+    const phrase = page.getByRole('button', { name: 'Ver traducción de Encantado/a de conocerte' });
+    await phrase.waitFor();
+    await phrase.tap();
+    const bubble = page.locator('#tapTranslationBubble');
+    await bubble.waitFor({ state: 'visible' });
+    assert.equal(await bubble.innerText(), 'Senang bertemu denganmu');
+
+    const geometry = await page.evaluate(() => {
+      const el = document.querySelector('#tapTranslationBubble');
+      const rect = el.getBoundingClientRect();
+      return { left: rect.left, right: rect.right, top: rect.top, bottom: rect.bottom,
+        width: window.innerWidth, height: window.innerHeight };
+    });
+    assert.ok(geometry.left >= 0 && geometry.right <= geometry.width,
+      'translation bubble must remain horizontally inside the viewport');
+    assert.ok(geometry.top >= 0 && geometry.bottom <= geometry.height,
+      'translation bubble must remain vertically inside the viewport');
+
+    await phrase.tap();
+    await page.waitForFunction(() => document.querySelector('#tapTranslationBubble').hidden);
+    await phrase.tap();
+    await bubble.waitFor({ state: 'visible' });
+    await page.locator('#textAnswer').tap();
+    await page.locator('#textAnswer').fill('Senang bertemu denganmu');
+    await page.waitForFunction(() => document.querySelector('#tapTranslationBubble').hidden);
+    assert.equal(await page.locator('#textAnswer').inputValue(), 'Senang bertemu denganmu',
+      'the hint must not interfere with typing the answer');
+
+    await page.evaluate(() => {
+      const dia = getUniqueLearningVocabulary().find(word => word.id === 'v3');
+      LessonEngine.startUnit({
+        id: 'tap-translation-id-test',
+        title: 'Prueba de ayuda al toque en indonesio',
+        grammar: 'Prueba automatizada.',
+        vocab: [dia].filter(Boolean),
+        exercises: [{
+          vocabId: 'v3',
+          type: 'mc',
+          prompt: '¿Qué significa «dia»?',
+          options: ['Yo', 'Tú', 'Él / ella'],
+          answer: 2,
+          explanation: 'Dia puede significar él o ella.'
+        }]
+      });
+    });
+    await page.getByRole('button', { name: 'Comenzar' }).click();
+    const indonesianWord = page.getByRole('button', { name: 'Ver traducción de dia' });
+    await indonesianWord.tap();
+    await bubble.waitFor({ state: 'visible' });
+    assert.equal(await bubble.innerText(), 'Él / ella');
+    assert.equal(await page.locator('.tap-translation-speaker').count(), 1,
+      'Indonesian prompts retain a touch-friendly audio control');
+
+    await page.locator('#actionArea').tap();
+    await page.waitForFunction(() => document.querySelector('#tapTranslationBubble').hidden);
+  } finally {
+    await context.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});
+
 test('service worker serves the app after the network is disconnected', async () => {
   const { server, url } = await startServer();
   const context = await browser.newContext();

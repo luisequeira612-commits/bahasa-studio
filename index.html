@@ -282,8 +282,12 @@
         <div class="card" style="margin-top:16px;">
             <h3>Métricas de Retención</h3>
             <div style="display:flex; justify-content:space-between; margin-top: 8px;">
-                <span>Total Registradas:</span>
+                <span>Vocabulario disponible:</span>
                 <strong id="statTotalVocab">0</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-top: 4px;">
+                <span>Palabras con seguimiento:</span>
+                <strong id="statTrackedVocab">0</strong>
             </div>
             <div style="display:flex; justify-content:space-between; margin-top: 4px;">
                 <span>Consolidadas:</span>
@@ -5065,6 +5069,7 @@ Requisitos:
                 const attempts = allSrs.reduce((sum, item) => sum + item.attempts, 0);
                 const correct = allSrs.reduce((sum, item) => sum + item.correct, 0);
                 document.getElementById('statTotalVocab').innerText = uniqueVocab.length;
+                document.getElementById('statTrackedVocab').innerText = allSrs.length;
                 document.getElementById('statMastered').innerText = allSrs.filter(item => item.repetition > 3).length;
                 document.getElementById('statAttempts').innerText = attempts;
                 document.getElementById('statAccuracy').innerText = attempts ? Math.round(correct / attempts * 100) + '%' : '—';

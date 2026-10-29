@@ -418,6 +418,12 @@ test('backup validator executes against valid and invalid version 3 payloads', (
   });
   assert.equal(legacyCounters.srs[0].val.attempts, 3,
     'older records with unclassified attempts remain importable');
+  const scheduled = validateBackup({
+    version: 3, xp: 12, completedUnits: [], customUnits: [], syllabusPos: 0,
+    srs: [{ key: 'v1', val: { attempts: 1, correct: 1, incorrect: 0, nextReview: 1900000000000 } }]
+  });
+  assert.equal(scheduled.srs[0].val.nextReview, 1900000000000,
+    'valid millisecond timestamps must remain intact');
 
   const malformedRecords = [
     { attempts: -1 },

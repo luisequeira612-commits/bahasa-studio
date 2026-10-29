@@ -4379,9 +4379,9 @@
                     if (this.currentIndex < this.activeQueue.length) {
                         this.renderCard();
                     } else {
-                        alert('¡Repaso completado!\\nCorrectas: ' + this.sessionStats.correct +
-                            '\\nPara reforzar: ' + this.sessionStats.incorrect +
-                            '\\nRevisadas: ' + this.activeQueue.length);
+                        alert('¡Repaso completado!\nCorrectas: ' + this.sessionStats.correct +
+                            '\nPara reforzar: ' + this.sessionStats.incorrect +
+                            '\nRevisadas: ' + this.activeQueue.length);
                         document.getElementById('srsDashboard').style.display = 'block';
                         document.getElementById('srsPracticeArea').style.display = 'none';
                         await App.updateSrsView();

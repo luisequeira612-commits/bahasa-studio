@@ -29,3 +29,15 @@ jobs:
         run: node --test tests/browser-e2e.test.cjs
       - name: Run assessment page browser tests
         run: node --test tests/assessment-page.e2e.test.cjs
+      - name: Package a downloadable static preview for pull requests
+        if: github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: bahasa-studio-pr-${{ github.event.pull_request.number }}-preview
+          path: |
+            index.html
+            assessment.html
+            assessment-engine.js
+            manifest.json
+          if-no-files-found: error
+          retention-days: 7

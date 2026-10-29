@@ -418,6 +418,24 @@ test('backup validator executes against valid and invalid version 3 payloads', (
   });
   assert.equal(legacyCounters.srs[0].val.attempts, 3,
     'older records with unclassified attempts remain importable');
+
+  const malformedRecords = [
+    { attempts: -1 },
+    { attempts: 1.5 },
+    { attempts: 1, correct: -1 },
+    { attempts: 1, repetition: 1.5 },
+    { interval: -1 },
+    { efactor: 1.2 },
+    { nextReview: 'tomorrow' },
+    { lastReviewed: -1 },
+    { savedForReview: 'true' }
+  ];
+  for (const val of malformedRecords) {
+    assert.throws(() => validateBackup({
+      version: 3, xp: 12, completedUnits: [], customUnits: [], syllabusPos: 0,
+      srs: [{ key: 'v1', val }]
+    }), /Formato de copia no válido/, 'present malformed SRS fields must be rejected: ' + JSON.stringify(val));
+  }
 });
 
 

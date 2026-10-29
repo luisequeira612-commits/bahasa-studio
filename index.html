@@ -115,6 +115,51 @@
         .input-field { border: 2px solid var(--border); border-radius: 14px; }
         .msg { border-radius: 16px; }
     
+        /* Ayuda de traducción en ejercicios: diseñada para toque y pantallas estrechas. */
+        .tap-translation-sentence {
+            position: relative; display: flex; align-items: center; gap: 10px; width: 100%;
+            margin-top: 12px; padding: 16px 14px; border: 1px solid var(--border);
+            border-radius: 18px; background: var(--bg-secondary); color: var(--text-main);
+            font-size: 1.12rem; line-height: 1.65; overflow-wrap: anywhere;
+        }
+        .tap-translation-sentence::before {
+            content: ""; position: absolute; left: -7px; top: 20px; width: 12px; height: 12px;
+            background: var(--bg-secondary); border-left: 1px solid var(--border);
+            border-bottom: 1px solid var(--border); transform: rotate(45deg);
+        }
+        .tap-translation-phrase { min-width: 0; }
+        .tap-translation-word {
+            display: inline; min-height: 38px; padding: 0 1px; margin: 0;
+            border: 0; border-radius: 3px; background: transparent; color: inherit;
+            font: inherit; cursor: pointer; text-decoration-line: underline;
+            text-decoration-style: dotted; text-decoration-color: #9ca3af;
+            text-decoration-thickness: 1px; text-underline-offset: 4px;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .tap-translation-word:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+        .tap-translation-speaker {
+            flex: 0 0 40px; width: 40px; height: 40px; display: inline-grid; place-items: center;
+            border: 0; border-radius: 50%; background: transparent; color: #0284c7;
+            font-size: 1.35rem; cursor: pointer;
+        }
+        .tap-translation-bubble {
+            position: fixed; z-index: 1200; width: max-content; max-width: min(84vw, 300px);
+            padding: 8px 13px; border: 1px solid var(--border); border-radius: 18px;
+            background: var(--bg-secondary); color: var(--text-main); box-shadow: 0 4px 14px #0002;
+            font-size: 1rem; line-height: 1.4; overflow-wrap: anywhere; pointer-events: auto;
+        }
+        .tap-translation-bubble[hidden] { display: none; }
+        .tap-translation-bubble::before {
+            content: ""; position: absolute; top: -6px; left: var(--tap-arrow-left, 50%);
+            width: 10px; height: 10px; background: var(--bg-secondary);
+            border-left: 1px solid var(--border); border-top: 1px solid var(--border);
+            transform: translateX(-50%) rotate(45deg);
+        }
+        .tap-translation-bubble.above::before {
+            top: auto; bottom: -6px; border: 0; border-right: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
         /* Consulta de significado al tocar palabras durante el aprendizaje */
         .word-meaning-popup {
             position: fixed; z-index: 1000; left: 50%; bottom: 78px; transform: translateX(-50%);
@@ -4317,9 +4362,13 @@
                 this.userOrder = [];
 
                 if (ex.type === 'mc') {
+                    const tapPrompt = window.parseTapMeaningPrompt(ex.prompt);
+                    const promptMarkup = tapPrompt
+                        ? `<h3>${App.escapeHtml(tapPrompt.label)}</h3>${window.renderTapTranslationSentence(tapPrompt.phrase, 'idn')}`
+                        : `<h3>${App.escapeHtml(ex.prompt)}</h3>`;
                     container.innerHTML = `
                         <div>
-                            <h3>${App.escapeHtml(ex.prompt)}</h3>
+                            ${promptMarkup}
                             <div class="option-grid">
                                 ${ex.options.map((opt, i) => `
                                     <button class="option-btn" onclick="LessonEngine.selectMc(${i}, this)">${App.escapeHtml(opt)}</button>
@@ -4331,10 +4380,12 @@
                         </div>
                     `;
                 } else if (ex.type === 'translate_es_id') {
+                    const tapPrompt = window.parseTapTranslationPrompt(ex.prompt, 'es');
                     container.innerHTML = `
                         <div>
-                            <h3>${App.escapeHtml(ex.prompt)}</h3>
-                            <input type="text" id="textAnswer" class="input-field" placeholder="Escribe en indonesio..." style="margin-top:20px;">
+                            <h3>${App.escapeHtml(tapPrompt.label)}</h3>
+                            ${window.renderTapTranslationSentence(tapPrompt.phrase, 'es')}
+                            <input type="text" id="textAnswer" class="input-field" autocomplete="off" placeholder="Escribe en indonesio..." style="margin-top:20px;">
                         </div>
                         <div id="actionArea">
                             <button class="btn" onclick="LessonEngine.checkTranslate()">Comprobar</button>
@@ -5142,6 +5193,7 @@ Requisitos:
         window.addEventListener('DOMContentLoaded', () => App.init());
     </script>
 
+    <div id="tapTranslationBubble" class="tap-translation-bubble" role="status" aria-live="polite" hidden></div>
     <div id="wordMeaningPopup" class="word-meaning-popup" role="dialog" aria-label="Significado de la palabra" aria-live="polite" hidden>
         <div class="word-meaning-popup-head">
             <div>
@@ -5152,6 +5204,134 @@ Requisitos:
         </div>
         <div id="wordMeaningExample" class="word-meaning-popup-example" hidden></div>
     </div>
+    <script>
+    (() => {
+        'use strict';
+        const escapeHtml = value => String(value == null ? '' : value).replace(/[&<>"']/g, char => ({
+            '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+        })[char]);
+        const wordTokens = value => [...String(value || '').matchAll(/[\\p{L}\\p{M}]+(?:[’'-][\\p{L}\\p{M}]+)*/gu)];
+        const normToken = value => String(value || '').normalize('NFKC').toLocaleLowerCase('es').replace(/[^\\p{L}\\p{M}]/gu, '');
+
+        function translationCandidates(language) {
+            let vocabulary = [];
+            try { vocabulary = typeof getUniqueLearningVocabulary === 'function' ? getUniqueLearningVocabulary() : []; }
+            catch (error) { console.warn('No se pudo construir la ayuda de traducción.', error); }
+            const candidates = [];
+            for (const word of vocabulary) {
+                if (!word || !word.idn || !word.esp) continue;
+                const source = language === 'es' ? String(word.esp) : String(word.idn);
+                const target = language === 'es' ? String(word.idn) : String(word.esp);
+                const variants = [source, ...source.split(/\\s+\\/\\s+/u)].filter(Boolean);
+                for (const variant of variants) {
+                    const tokens = wordTokens(variant).map(match => normToken(match[0])).filter(Boolean);
+                    if (tokens.length) candidates.push({ source: variant, target, tokens });
+                }
+            }
+            return candidates.sort((a, b) => b.tokens.length - a.tokens.length);
+        }
+
+        window.renderTapTranslationSentence = function (phrase, language) {
+            const text = String(phrase || '');
+            const tokens = wordTokens(text);
+            const candidates = translationCandidates(language);
+            let output = '';
+            let cursor = 0;
+            let i = 0;
+            while (i < tokens.length) {
+                const current = tokens[i];
+                output += escapeHtml(text.slice(cursor, current.index));
+                let found = null;
+                for (const candidate of candidates) {
+                    if (candidate.tokens.length < 1 || i + candidate.tokens.length > tokens.length) continue;
+                    const slice = tokens.slice(i, i + candidate.tokens.length).map(token => normToken(token[0]));
+                    if (!candidate.tokens.every((token, j) => token === slice[j])) continue;
+                    const equivalentTargets = new Set(candidates
+                        .filter(other => other.tokens.length === candidate.tokens.length &&
+                            other.tokens.every((token, j) => token === candidate.tokens[j]))
+                        .map(other => other.target));
+                    if (equivalentTargets.size === 1) { found = candidate; break; }
+                }
+                if (found) {
+                    const last = tokens[i + found.tokens.length - 1];
+                    const end = last.index + last[0].length;
+                    const visible = text.slice(current.index, end);
+                    output += '<button type="button" class="tap-translation-word" data-translation="' +
+                        escapeHtml(found.target) + '" aria-label="Ver traducción de ' + escapeHtml(visible) + '">' +
+                        escapeHtml(visible) + '</button>';
+                    cursor = end;
+                    i += found.tokens.length;
+                } else {
+                    const end = current.index + current[0].length;
+                    output += escapeHtml(text.slice(current.index, end));
+                    cursor = end;
+                    i++;
+                }
+            }
+            output += escapeHtml(text.slice(cursor));
+            const speaker = language === 'idn'
+                ? '<button type="button" class="tap-translation-speaker" aria-label="Escuchar frase" data-audio="' + escapeHtml(text) +
+                    '" onclick="AudioEngine.speak(this.dataset.audio)">🔊</button>' : '';
+            return '<div class="tap-translation-sentence">' + speaker + '<span class="tap-translation-phrase">' + output + '</span></div>';
+        };
+
+        window.parseTapTranslationPrompt = function (prompt, language) {
+            const text = String(prompt || '');
+            const colon = text.match(/^(.+?:)\\s*(?:[«“"'](.+?)[»”"']|(.+))$/u);
+            if (colon) return { label: colon[1], phrase: (colon[2] || colon[3] || '').trim() };
+            const quoted = text.match(/^(.+?)\\s*[«“"'](.+?)[»”"']\\s*\\??$/u);
+            if (quoted) return { label: quoted[1].trim(), phrase: quoted[2].trim() };
+            return { label: language === 'es' ? 'Traduce al indonesio:' : text, phrase: text };
+        };
+
+        window.parseTapMeaningPrompt = function (prompt) {
+            const match = String(prompt || '').match(/^(¿Qué significa)\\s*[«“"']?(.+?)[»”"']?\\?$/iu);
+            return match ? { label: match[1] + ':', phrase: match[2].trim() } : null;
+        };
+
+        function initTapTranslationBubble() {
+            const bubble = document.getElementById('tapTranslationBubble');
+            if (!bubble || bubble.dataset.initialized === 'true') return;
+            bubble.dataset.initialized = 'true';
+            let activeButton = null;
+            function close() { bubble.hidden = true; activeButton = null; bubble.classList.remove('above'); }
+            function open(button) {
+                if (activeButton === button && !bubble.hidden) { close(); return; }
+                activeButton = button;
+                bubble.textContent = button.dataset.translation || '';
+                bubble.hidden = false;
+                bubble.classList.remove('above');
+                const rect = button.getBoundingClientRect();
+                const width = bubble.getBoundingClientRect().width;
+                const height = bubble.getBoundingClientRect().height;
+                const margin = 8;
+                let left = rect.left + rect.width / 2 - width / 2;
+                left = Math.max(margin, Math.min(left, window.innerWidth - width - margin));
+                let top = rect.bottom + 9;
+                if (top + height > window.innerHeight - margin && rect.top - height - 9 >= margin) {
+                    top = rect.top - height - 9;
+                    bubble.classList.add('above');
+                }
+                bubble.style.left = left + 'px';
+                bubble.style.top = Math.max(margin, top) + 'px';
+                const arrowLeft = Math.max(12, Math.min(width - 12, rect.left + rect.width / 2 - left));
+                bubble.style.setProperty('--tap-arrow-left', arrowLeft + 'px');
+            }
+            document.addEventListener('click', event => {
+                const word = event.target.closest && event.target.closest('.tap-translation-word');
+                if (word) { event.preventDefault(); open(word); return; }
+                if (event.target === bubble) return;
+                if (!bubble.hidden && !bubble.contains(event.target)) close();
+            });
+            document.addEventListener('keydown', event => { if (event.key === 'Escape') close(); });
+            window.addEventListener('resize', close);
+            window.addEventListener('scroll', close, true);
+        }
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initTapTranslationBubble, { once: true });
+        else initTapTranslationBubble();
+    })();
+    </script>
+
     <script>
     (() => {
         'use strict';

@@ -243,7 +243,14 @@
         <div id="srsDashboard" class="card">
             <h3>Palabras Pendientes</h3>
             <p id="srsCountText" style="font-size: 1.8rem; font-weight: bold; margin: 8px 0; color:var(--accent);">0</p>
-            <button class="btn" id="startSrsBtn" onclick="SRSEngine.startSession()">Repasar ahora (hasta 15)</button>
+            <label for="srsSessionSize" style="display:block; font-size:0.85rem; margin:8px 0 4px;">Tarjetas por sesión</label>
+            <select id="srsSessionSize" class="input-field" aria-label="Tarjetas por sesión">
+                <option value="5">5 tarjetas</option>
+                <option value="10">10 tarjetas</option>
+                <option value="15" selected>15 tarjetas</option>
+                <option value="0">Todas las pendientes</option>
+            </select>
+            <button class="btn" id="startSrsBtn" style="margin-top:8px;" onclick="SRSEngine.startSession()">Repasar ahora</button>
         </div>
 
         <div id="srsPracticeArea" style="display:none;">
@@ -4288,8 +4295,10 @@
                 const vocabById = new Map(getLearningLevels().flatMap(level =>
                     level.units.flatMap(unit => unit.vocab || [])
                 ).map(v => [v.id, v]));
+                const selectedSize = Number(document.getElementById('srsSessionSize')?.value || this.maxSessionItems);
+                const sessionLimit = selectedSize === 0 ? rawDue.length : Math.max(1, Math.min(50, selectedSize));
                 this.activeQueue = rawDue.map(item => ({ vocab: vocabById.get(item.key), srs: item.val }))
-                    .filter(item => item.vocab).slice(0, this.maxSessionItems);
+                    .filter(item => item.vocab).slice(0, sessionLimit);
 
                 if (this.activeQueue.length === 0) {
                     alert("¡Todo al día! No hay palabras pendientes para repasar. Vuelve después de estudiar una lección.");

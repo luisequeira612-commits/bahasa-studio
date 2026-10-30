@@ -78,6 +78,12 @@ Estados permitidos: `verified_primary`, `verified_secondary`, `needs_review`, `b
 | U39 | Trabajo remoto y colaboración digital | 12 | 4 | 17 |
 | U40 | Resumir, aclarar y responder | 12 | 4 | 17 |
 
+## Primera comprobación documental
+
+Se consultó directamente la entrada oficial [KBBI VI Daring — minggu](https://kbbi.kemendikdasmen.go.id/entri/minggu) el 2026-10-30. La entrada presenta `ming.gu` como sustantivo y define la acepción de día de la semana como el primer día de una semana (Ahad), con indicación de mayúscula inicial. Se registró `a2u1_minggu` como `verified_primary` únicamente para la comprobación lexicográfica de lema, grafía, clase y acepción. La naturalidad de `Hari ini hari Minggu.`, su traducción y su adecuación a A2 siguen en `not_checked`.
+
+Recuento del registro tras esta consulta: 1 término con evidencia primaria KBBI; 491 pendientes de consulta KBBI. Ningún término tiene todavía cerradas las revisiones de naturalidad, nivel y respuestas aceptadas.
+
 ## Orden de trabajo recomendado
 
 1. Revisar por tandas de cuatro unidades, empezando por U1–U4 para fijar criterios y detectar patrones.

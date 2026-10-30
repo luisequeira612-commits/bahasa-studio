@@ -473,7 +473,7 @@ test('service worker serves the app after the network is disconnected', async ()
     assert.match(await page.title(), /Bahasa Studio 3\.8\.5/);
     assert.equal(await page.locator('body').isVisible(), true);
     assert.equal(await page.evaluate(() => typeof ConversationEngine !== 'undefined' && typeof StudyActivity !== 'undefined'), true,
-      'the conversation engine must be available from the service-worker cache offline');
+      'the conversation and study activity modules must be available from the service-worker cache offline');
   } finally {
     await context.setOffline(false);
     await context.close();
@@ -481,6 +481,47 @@ test('service worker serves the app after the network is disconnected', async ()
   }
 });
 
+
+test('daily XP goals and study streaks persist across reloads', async () => {
+  const { server, url } = await startServer();
+  const context = await browser.newContext({ serviceWorkers: 'block' });
+  const page = await context.newPage();
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' && typeof StudyActivity !== 'undefined' && DB && DB.db);
+
+    await page.evaluate(() => App.addXp(10));
+    await page.waitForFunction(async () => {
+      const activity = await DB.get('settings', 'studyActivity');
+      return activity && activity.todayXp === 10 && activity.currentStreak === 1;
+    });
+    assert.equal(await page.locator('#studyStreakText').innerText(), '1 día');
+    assert.equal(await page.locator('#studyDailyXpText').innerText(), '10 / 30 XP');
+
+    await page.locator('#dailyXpGoal').selectOption('50');
+    await page.waitForFunction(async () => (await DB.get('settings', 'studyActivity')).dailyGoal === 50);
+    await page.evaluate(async () => {
+      await App.recordStudyActivity('lesson', 0);
+      await App.recordStudyActivity('review', 0);
+    });
+    await page.waitForFunction(async () => {
+      const activity = await DB.get('settings', 'studyActivity');
+      return activity && activity.todayLessons === 1 && activity.todayReviews === 1;
+    });
+
+    await page.reload({ waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' && App.studyActivity && App.studyActivity.dailyGoal === 50);
+    assert.equal(await page.locator('#dailyXpGoal').inputValue(), '50');
+    assert.equal(await page.locator('#studyDailyXpText').innerText(), '10 / 50 XP');
+    assert.equal(await page.locator('#studyStreakText').innerText(), '1 día');
+    assert.equal(await page.locator('#studyLessonsTodayText').innerText(), '1 lección hoy');
+    assert.equal(await page.locator('#studyReviewsTodayText').innerText(), '1 tarjeta repasada hoy');
+  } finally {
+    await context.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});
 
 test('six practical conversations support guided replies without changing learner progress', async () => {
   const { server, url } = await startServer();

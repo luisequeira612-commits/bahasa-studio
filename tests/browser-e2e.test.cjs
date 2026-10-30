@@ -452,7 +452,7 @@ test('service worker serves the app after the network is disconnected', async ()
     await context.setOffline(true);
     await page.reload({ waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined');
-    assert.match(await page.title(), /Bahasa Studio 3\.7\.2/);
+    assert.match(await page.title(), /Bahasa Studio 3\.7\.3/);
     assert.equal(await page.locator('body').isVisible(), true);
   } finally {
     await context.setOffline(false);

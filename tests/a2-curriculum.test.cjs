@@ -111,7 +111,7 @@ test('A2 units 5-8 teach ber- and meN- forms in structured multi-lesson units', 
       }
     }
     for (const word of unit.vocab) {
-      assert.ok(!a1Forms.has(word.idn.trim().toLowerCase()), unit.id + ' must not repeat A1 vocabulary');
+      assert.ok(!a1Forms.has(word.idn.trim().toLowerCase()), unit.id + ' must not repeat A1 vocabulary: ' + word.idn);
     }
   }
 });

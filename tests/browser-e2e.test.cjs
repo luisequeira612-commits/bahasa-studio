@@ -556,7 +556,15 @@ test('optional Indonesian pronunciation practice compares browser recognition wi
     await page.waitForFunction(() => window.__recognitionStarts === 1);
     assert.match(await page.locator('#pronunciationStatus').innerText(), /Escuchando/);
     await page.evaluate(() => {
-      window.__mockRecognition.onresult({ results: [[{ transcript: 'Selamat pagi' }]] });
+      const interim = [{ transcript: 'Selamat' }];
+      interim.isFinal = false;
+      window.__mockRecognition.onresult({ results: [interim] });
+    });
+    assert.match(await page.locator('#pronunciationStatus').innerText(), /Te escucho: “Selamat”/);
+    await page.evaluate(() => {
+      const final = [{ transcript: 'Selamat pagi' }];
+      final.isFinal = true;
+      window.__mockRecognition.onresult({ results: [final] });
       window.__mockRecognition.onend();
     });
     assert.match(await page.locator('#pronunciationStatus').innerText(), /frase reconocida coincide/);

@@ -4240,17 +4240,25 @@
                     }
                 });
                 reviewVocab.forEach((word, index) => {
-                    if (index % 2 !== 0) return;
-                    const distractors = meanings.filter(meaning => meaning !== word.esp).slice(0, 3);
-                    const options = distractors.slice();
-                    const answer = index % (options.length + 1);
-                    options.splice(answer, 0, word.esp);
-                    exercises.push({
-                        vocabId: word.id, type: 'mc', generated: true,
-                        prompt: 'Repaso: ¿qué significa «' + word.idn + '»?',
-                        options, answer,
-                        explanation: '«' + word.idn + '» significa «' + word.esp + '».'
-                    });
+                    if (index % 2 === 0) {
+                        const distractors = meanings.filter(meaning => meaning !== word.esp).slice(0, 3);
+                        const options = distractors.slice();
+                        const answer = index % (options.length + 1);
+                        options.splice(answer, 0, word.esp);
+                        exercises.push({
+                            vocabId: word.id, type: 'mc', generated: true,
+                            prompt: 'Repaso: ¿qué significa «' + word.idn + '»?',
+                            options, answer,
+                            explanation: '«' + word.idn + '» significa «' + word.esp + '».'
+                        });
+                    } else {
+                        exercises.push({
+                            vocabId: word.id, type: 'listen', generated: true,
+                            prompt: 'Repaso: escucha y escribe la palabra en indonesio',
+                            answer: word.idn,
+                            explanation: 'La palabra es «' + word.idn + '» («' + word.esp + '»).'
+                        });
+                    }
                 });
                 const learnedIds = new Set(learnedVocab.map(word => word.id));
                 const a1 = CourseData.levels.find(level => level.id === 'A1');

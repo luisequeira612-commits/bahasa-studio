@@ -3749,23 +3749,26 @@
                             vocab: [
                                 { id: 'a2u4_rutinitas', idn: 'Rutinitas', esp: 'Rutina', ex: 'Ini rutinitas saya.', exEsp: 'Esta es mi rutina.' },
                                 { id: 'a2u4_jadwal', idn: 'Jadwal', esp: 'Horario; programa', ex: 'Jadwal saya mulai pukul delapan.', exEsp: 'Mi horario empieza a las ocho.' },
+                                { id: 'a2u4_teratur', idn: 'Teratur', esp: 'Ordenado/a; regular', ex: 'Jadwal saya teratur.', exEsp: 'Mi horario está organizado.' },
                                 { id: 'a2u4_mulai', idn: 'Mulai', esp: 'Empezar; comenzar', ex: 'Kelas mulai pukul delapan.', exEsp: 'La clase empieza a las ocho.' },
                                 { id: 'a2u4_selesai', idn: 'Selesai', esp: 'Terminar; terminado', ex: 'Kelas selesai pukul dua belas.', exEsp: 'La clase termina a las doce.' },
                                 { id: 'a2u4_kegiatan', idn: 'Kegiatan', esp: 'Actividad', ex: 'Kegiatan mulai pukul delapan.', exEsp: 'La actividad empieza a las ocho.' },
                                 { id: 'a2u4_acara', idn: 'Acara', esp: 'Evento; actividad programada', ex: 'Acara itu mulai pukul tujuh.', exEsp: 'Ese evento empieza a las siete.' },
                                 { id: 'a2u4_sibuk', idn: 'Sibuk', esp: 'Ocupado/a', ex: 'Hari ini saya sibuk.', exEsp: 'Hoy estoy ocupado/a.' },
-                                { id: 'a2u4_santai', idn: 'Santai', esp: 'Relajado/a; tranquilo/a', ex: 'Hari ini saya santai.', exEsp: 'Hoy estoy tranquilo/a.' }
+                                { id: 'a2u4_santai', idn: 'Santai', esp: 'Relajado/a; tranquilo/a', ex: 'Hari ini saya santai.', exEsp: 'Hoy estoy tranquilo/a.' },
+                                { id: 'a2u4_penuh', idn: 'Penuh', esp: 'Lleno/a; completo/a', ex: 'Jadwal saya penuh.', exEsp: 'Mi horario está lleno.' }
                             ],
                             lessons: [
                                 {
                                     title: 'Lección 1: La rutina y el horario',
                                     objective: 'Presenta tu rutina y habla de tu horario diario.',
                                     grammar: 'Rutinitas nombra las acciones habituales. Jadwal se refiere al horario; puedes usar ambos con palabras de tiempo ya conocidas.',
-                                    vocabIds: ['a2u4_rutinitas', 'a2u4_jadwal'],
+                                    vocabIds: ['a2u4_rutinitas', 'a2u4_jadwal', 'a2u4_teratur'],
                                     reviewVocabIds: ['v247', 'v248'],
                                     exercises: [
                                         { vocabId: 'a2u4_rutinitas', type: 'mc', prompt: '¿Qué significa «rutinitas»?', options: ['Rutina', 'Horario', 'Evento'], answer: 0, explanation: 'Rutinitas se refiere a las acciones habituales de una persona.' },
                                         { vocabId: 'a2u4_jadwal', type: 'translate_es_id', prompt: 'Traduce: Mi horario empieza a las ocho.', answer: 'Jadwal saya mulai pukul delapan.', explanation: 'Jadwal saya significa «mi horario».' },
+                                        { vocabId: 'a2u4_teratur', type: 'mc', prompt: '¿Qué significa «teratur» al describir un horario?', options: ['Ordenado; regular', 'Lleno', 'Tranquilo'], answer: 0, explanation: 'Teratur describe algo organizado o que sigue un orden.' },
                                         { vocabId: 'v247', type: 'listen', prompt: 'Escucha y escribe la oración.', answer: 'Saya bangun pagi.', explanation: 'La oración dice «Me levanto por la mañana».' },
                                         { vocabId: 'a2u4_rutinitas', type: 'write', prompt: 'Escribe una frase para presentar tu rutina.', hint: 'Puedes empezar con «Ini rutinitas saya».', modelAnswer: 'Ini rutinitas saya.', explanation: 'El modelo presenta la rutina; puedes añadir más información propia.' }
                                     ]
@@ -3800,11 +3803,12 @@
                                     title: 'Lección 4: Describir cómo es tu día',
                                     objective: 'Describe si tu día está ocupado o es tranquilo.',
                                     grammar: 'Sibuk describe un día con muchas tareas; santai describe un ritmo tranquilo o relajado.',
-                                    vocabIds: ['a2u4_sibuk', 'a2u4_santai'],
+                                    vocabIds: ['a2u4_sibuk', 'a2u4_santai', 'a2u4_penuh'],
                                     reviewVocabIds: ['v247', 'v248', 'v249', 'v250', 'v251', 'v252'],
                                     exercises: [
                                         { vocabId: 'a2u4_sibuk', type: 'mc', prompt: '¿Qué significa «sibuk»?', options: ['Ocupado/a', 'Tranquilo/a', 'Cansado/a'], answer: 0, explanation: 'Sibuk describe a alguien que tiene muchas actividades o tareas.' },
                                         { vocabId: 'a2u4_santai', type: 'translate_es_id', prompt: 'Traduce: Hoy estoy tranquilo/a.', answer: 'Hari ini saya santai.', explanation: 'Santai describe un estado relajado o tranquilo.' },
+                                        { vocabId: 'a2u4_penuh', type: 'mc', prompt: 'En «Jadwal saya penuh», ¿qué significa penuh?', options: ['Lleno', 'Ordenado', 'Libre'], answer: 0, explanation: 'Penuh significa «lleno» o «completo».' },
                                         { vocabId: 'v251', type: 'listen', prompt: 'Escucha y escribe la oración.', answer: 'Saya pulang.', explanation: 'La oración dice «Regreso a casa».' },
                                         { vocabId: 'a2u4_sibuk', type: 'write', prompt: 'Escribe una frase para describir que hoy no estás ocupado/a.', hint: 'Usa «Hari ini saya tidak sibuk».', modelAnswer: 'Hari ini saya tidak sibuk.', explanation: 'El modelo niega sibuk con tidak.' }
                                     ]

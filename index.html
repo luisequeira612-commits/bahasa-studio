@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bahasa Studio 3.8.5</title>
+    <title>Bahasa Studio 3.8.6</title>
     <meta name="description" content="Curso de indonesio PWA para hispanohablantes sin costo ni penalizaciones.">
     <meta name="theme-color" content="#e8384f">
     <link rel="manifest" href="./manifest.json">
@@ -182,7 +182,7 @@
 
     <header>
         <div class="logo">
-            <span>🇮🇩</span> Bahasa Studio <span style="font-size:0.72rem; font-weight:700; opacity:.8; margin-left:4px;">v3.8.5</span>
+            <span>🇮🇩</span> Bahasa Studio <span style="font-size:0.72rem; font-weight:700; opacity:.8; margin-left:4px;">v3.8.6</span>
         </div>
         <div class="header-status">
             <span id="connectionStatus" class="connection-indicator online" title="Estado de conexión">Online</span>
@@ -333,9 +333,17 @@
                 <strong id="statTrackedVocab">0</strong>
             </div>
             <div style="display:flex; justify-content:space-between; margin-top: 4px;">
-                <span>Consolidadas:</span>
+                <span>Consolidadas (4+ repasos correctos):</span>
                 <strong id="statMastered">0</strong>
             </div>
+            <div style="display:flex; justify-content:space-between; margin-top: 8px;">
+                <span>Porcentaje de vocabulario consolidado:</span>
+                <strong id="statMasteredPercent">0%</strong>
+            </div>
+            <div class="progress-bar" role="progressbar" aria-label="Porcentaje de vocabulario consolidado" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" style="margin-top:5px;">
+                <div id="statMasteredProgress" class="progress-fill" style="width:0%;"></div>
+            </div>
+            <p style="font-size:0.75rem;color:var(--text-muted);margin:5px 0 0;">Una palabra cuenta como consolidada tras cuatro o más repasos correctos seguidos.</p>
             <div style="display:flex; justify-content:space-between; margin-top: 4px;">
                 <span>Intentos registrados:</span>
                 <strong id="statAttempts">0</strong>
@@ -5679,9 +5687,17 @@ Requisitos:
                 const allSrs = [...srsByWord.values()];
                 const attempts = allSrs.reduce((sum, item) => sum + item.attempts, 0);
                 const correct = allSrs.reduce((sum, item) => sum + item.correct, 0);
+                const mastered = allSrs.filter(item => item.repetition > 3).length;
+                const masteredPercent = uniqueVocab.length ? Math.round(mastered / uniqueVocab.length * 100) : 0;
                 document.getElementById('statTotalVocab').innerText = uniqueVocab.length;
                 document.getElementById('statTrackedVocab').innerText = allSrs.length;
-                document.getElementById('statMastered').innerText = allSrs.filter(item => item.repetition > 3).length;
+                document.getElementById('statMastered').innerText = mastered;
+                document.getElementById('statMasteredPercent').innerText = masteredPercent + '%';
+                const masteredProgress = document.getElementById('statMasteredProgress');
+                if (masteredProgress) {
+                    masteredProgress.style.width = masteredPercent + '%';
+                    masteredProgress.parentElement.setAttribute('aria-valuenow', String(masteredPercent));
+                }
                 document.getElementById('statAttempts').innerText = attempts;
                 document.getElementById('statAccuracy').innerText = attempts ? Math.round(correct / attempts * 100) + '%' : '—';
                 document.getElementById('statNeedsPractice').innerText = allSrs.filter(item => item.incorrect > 0 && item.repetition < 4).length;

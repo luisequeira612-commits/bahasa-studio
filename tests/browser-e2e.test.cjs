@@ -470,7 +470,7 @@ test('service worker serves the app after the network is disconnected', async ()
     await context.setOffline(true);
     await page.reload({ waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined');
-    assert.match(await page.title(), /Bahasa Studio 3\.8\.5/);
+    assert.match(await page.title(), /Bahasa Studio 3\.8\.6/);
     assert.equal(await page.locator('body').isVisible(), true);
     assert.equal(await page.evaluate(() => typeof ConversationEngine !== 'undefined' && typeof StudyActivity !== 'undefined'), true,
       'the conversation and study activity modules must be available from the service-worker cache offline');
@@ -481,6 +481,51 @@ test('service worker serves the app after the network is disconnected', async ()
   }
 });
 
+
+test('vocabulary mastery percentage uses unique words and requires four successful spaced reviews', async () => {
+  const { server, url } = await startServer();
+  const context = await browser.newContext({ serviceWorkers: 'block' });
+  const page = await context.newPage();
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' && typeof SRSEngine !== 'undefined' && DB && DB.db);
+    const sample = await page.evaluate(() => getUniqueLearningVocabulary().slice(0, 3).map(word => word.id));
+    await page.evaluate(async ids => {
+      const now = Date.now();
+      await DB.set('srs', ids[0], {
+        attempts: 4, correct: 4, incorrect: 0, interval: 30, repetition: 4,
+        efactor: 2.5, nextReview: now + 86400000, lastReviewed: now
+      });
+      await DB.set('srs', ids[1], {
+        attempts: 4, correct: 4, incorrect: 0, interval: 30, repetition: 4,
+        efactor: 2.5, nextReview: now + 86400000, lastReviewed: now
+      });
+      await DB.set('srs', ids[2], {
+        attempts: 3, correct: 3, incorrect: 0, interval: 6, repetition: 3,
+        efactor: 2.5, nextReview: now + 86400000, lastReviewed: now
+      });
+    }, sample);
+
+    await page.evaluate(async () => {
+      App.switchView('srs');
+      await App.updateSrsView();
+    });
+    const expected = await page.evaluate(() => {
+      const total = getUniqueLearningVocabulary().length;
+      return Math.round(2 / total * 100) + '%';
+    });
+    assert.equal(await page.locator('#statTotalVocab').innerText(),
+      String(await page.evaluate(() => getUniqueLearningVocabulary().length)));
+    assert.equal(await page.locator('#statMastered').innerText(), '2',
+      'only words with four or more successful reviews should count as consolidated');
+    assert.equal(await page.locator('#statMasteredPercent').innerText(), expected);
+    assert.equal(await page.locator('#statMasteredProgress').evaluate(node => node.style.width), expected);
+  } finally {
+    await context.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});
 
 test('daily XP goals and study streaks persist across reloads', async () => {
   const { server, url } = await startServer();

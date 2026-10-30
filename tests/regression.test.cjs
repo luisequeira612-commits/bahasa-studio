@@ -22,9 +22,9 @@ test('inline application JavaScript and service worker parse', () => {
 });
 
 test('PWA version is consistent across HTML, manifest and cache', () => {
-  assert.match(html, /Bahasa Studio 3\.8\.5/);
-  assert.equal(manifest.name, 'Bahasa Studio 3.8.5');
-  assert.match(serviceWorker, /bahasa-studio-v3\.8\.5/);
+  assert.match(html, /Bahasa Studio 3\.8\.6/);
+  assert.equal(manifest.name, 'Bahasa Studio 3.8.6');
+  assert.match(serviceWorker, /bahasa-studio-v3\.8\.6/);
   assert.match(serviceWorker, /\['\.\/', '\.\/index\.html', '\.\/manifest\.json', '\.\/assessment\.html', '\.\/assessment-engine\.js', '\.\/conversation-engine\.js', '\.\/study-activity\.js'\]/);
   assert.doesNotMatch(html + serviceWorker + JSON.stringify(manifest), /3\.5\.1/);
 });
@@ -367,6 +367,13 @@ test('SRS recordAttempt updates real attempt state for correct and incorrect ans
   assert.equal(incorrectSaved[0].item.incorrect, 2);
   assert.equal(incorrectSaved[0].item.repetition, 0);
   assert.equal(incorrectSaved[0].item.interval, 1);
+});
+
+test('vocabulary mastery percentage is calculated from unique words and spaced-repetition success', () => {
+  assert.match(html, /id="statMasteredPercent"/);
+  assert.match(html, /Math\.round\(mastered \/ uniqueVocab\.length \* 100\)/);
+  assert.match(html, /item\.repetition > 3/);
+  assert.match(html, /cuatro o más repasos correctos seguidos/i);
 });
 
 test('backup export includes the daily study activity record', () => {

@@ -492,3 +492,13 @@ test('new A2 vocabulary identifiers are unique and advanced content remains gate
   assert.match(html, /const isAdvanced = \['A2', 'B1', 'B2'\]\.includes\(lvl\.id\);[\s\S]*?if \(!a1Complete\) return;/,
     'advanced curriculum cards should remain gated until A1 completion');
 });
+
+
+test('A2 is available after A1 completion and included in learning vocabulary', () => {
+  assert.match(htmlSource, /return getLevels\(\)\.filter\(level => !\['B1', 'B2'\]\.includes\(level\.id\)\)/);
+  assert.match(htmlSource, /if \(lvl\.id === 'A2'\)/);
+  assert.match(htmlSource, /A2 ya está disponible/);
+  assert.match(htmlSource, /if \(!a1Complete\) return;/);
+  assert.match(htmlSource, /const isAdvanced = \['B1', 'B2'\]\.includes\(lvl\.id\)/);
+  assert.match(htmlSource, /const unitAccessible = lvl\.id !== 'A1' \|\| isDone \|\| isNext/);
+});

@@ -3523,6 +3523,7 @@
                                 { id: 'a2u1_minggu', idn: 'Minggu', esp: 'Domingo', ex: 'Besok hari Minggu.', exEsp: 'Mañana es domingo.' },
                                 { id: 'a2u1_tanggal', idn: 'Tanggal', esp: 'Fecha; día del mes', ex: 'Tanggal berapa hari ini?', exEsp: '¿Qué fecha es hoy?' },
                                 { id: 'a2u1_bulan', idn: 'Bulan', esp: 'Mes', ex: 'Sekarang bulan Januari.', exEsp: 'Ahora es enero.' },
+                                { id: 'a2u1_musim', idn: 'Musim', esp: 'Estación; temporada', ex: 'Di Indonesia ada musim hujan.', exEsp: 'En Indonesia hay una estación lluviosa.' },
                                 { id: 'a2u1_januari', idn: 'Januari', esp: 'Enero', ex: 'Sekarang bulan Januari.', exEsp: 'Ahora es enero.' },
                                 { id: 'a2u1_februari', idn: 'Februari', esp: 'Febrero', ex: 'Sekarang bulan Februari.', exEsp: 'Ahora es febrero.' },
                                 { id: 'a2u1_maret', idn: 'Maret', esp: 'Marzo', ex: 'Sekarang bulan Maret.', exEsp: 'Ahora es marzo.' },
@@ -3531,10 +3532,12 @@
                                 { id: 'a2u1_juni', idn: 'Juni', esp: 'Junio', ex: 'Sekarang bulan Juni.', exEsp: 'Ahora es junio.' },
                                 { id: 'a2u1_juli', idn: 'Juli', esp: 'Julio', ex: 'Sekarang bulan Juli.', exEsp: 'Ahora es julio.' },
                                 { id: 'a2u1_agustus', idn: 'Agustus', esp: 'Agosto', ex: 'Sekarang bulan Agustus.', exEsp: 'Ahora es agosto.' },
+                                { id: 'a2u1_musim_hujan', idn: 'Musim hujan', esp: 'Estación lluviosa', ex: 'Di Indonesia ada musim hujan.', exEsp: 'En Indonesia hay una estación lluviosa.' },
                                 { id: 'a2u1_september', idn: 'September', esp: 'Septiembre', ex: 'Sekarang bulan September.', exEsp: 'Ahora es septiembre.' },
                                 { id: 'a2u1_oktober', idn: 'Oktober', esp: 'Octubre', ex: 'Sekarang bulan Oktober.', exEsp: 'Ahora es octubre.' },
                                 { id: 'a2u1_november', idn: 'November', esp: 'Noviembre', ex: 'Sekarang bulan November.', exEsp: 'Ahora es noviembre.' },
-                                { id: 'a2u1_desember', idn: 'Desember', esp: 'Diciembre', ex: 'Sekarang bulan Desember.', exEsp: 'Ahora es diciembre.' }
+                                { id: 'a2u1_desember', idn: 'Desember', esp: 'Diciembre', ex: 'Sekarang bulan Desember.', exEsp: 'Ahora es diciembre.' },
+                                { id: 'a2u1_musim_kemarau', idn: 'Musim kemarau', esp: 'Estación seca', ex: 'Di Indonesia ada musim kemarau.', exEsp: 'En Indonesia hay una estación seca.' }
                             ],
                             lessons: [
                                 {
@@ -3565,9 +3568,9 @@
                                     title: 'Lección 3: Enero a abril',
                                     objective: 'Reconoce los nombres de los primeros cuatro meses del año.',
                                     grammar: 'Los nombres de los meses se usan después de «bulan»: «Sekarang bulan Maret» (Ahora es marzo).',
-                                    vocabIds: ['a2u1_januari', 'a2u1_februari', 'a2u1_maret', 'a2u1_april'],
+                                    vocabIds: ['a2u1_musim', 'a2u1_januari', 'a2u1_februari', 'a2u1_maret', 'a2u1_april'],
                                     exercises: [
-                                        { vocabId: 'a2u1_januari', type: 'mc', prompt: '¿Qué mes sigue a Januari?', options: ['Februari', 'Maret', 'April'], answer: 0, explanation: 'Februari es el mes que sigue a Januari.' },
+                                        { vocabId: 'a2u1_musim', type: 'mc', prompt: '¿Qué significa «musim»?', options: ['Estación; temporada', 'Mes', 'Fecha'], answer: 0, explanation: 'Musim significa «estación» o «temporada».' },
                                         { vocabId: 'a2u1_maret', type: 'translate_es_id', prompt: 'Traduce: Ahora es marzo.', answer: 'Sekarang bulan Maret.', explanation: 'Sekarang bulan Maret significa «Ahora es marzo».' },
                                         { vocabId: 'a2u1_april', type: 'listen', prompt: 'Escucha y escribe la oración.', answer: 'Sekarang bulan April.', explanation: 'La oración dice «Ahora es abril».' },
                                         { vocabId: 'a2u1_februari', type: 'order', prompt: 'Ordena: Ahora es febrero.', words: ['bulan', 'Sekarang', 'Februari'], correctOrder: ['Sekarang', 'bulan', 'Februari'], explanation: 'Sekarang bulan Februari significa «Ahora es febrero».' }
@@ -3577,9 +3580,9 @@
                                     title: 'Lección 4: Mayo a agosto',
                                     objective: 'Reconoce los meses de mayo a agosto y úsalos en frases breves.',
                                     grammar: 'Para indicar el mes actual, puedes decir «Sekarang bulan ...».',
-                                    vocabIds: ['a2u1_mei', 'a2u1_juni', 'a2u1_juli', 'a2u1_agustus'],
+                                    vocabIds: ['a2u1_mei', 'a2u1_juni', 'a2u1_juli', 'a2u1_agustus', 'a2u1_musim_hujan'],
                                     exercises: [
-                                        { vocabId: 'a2u1_mei', type: 'mc', prompt: '¿Qué mes sigue a Mei?', options: ['Juni', 'Juli', 'Agustus'], answer: 0, explanation: 'Juni sigue a Mei.' },
+                                        { vocabId: 'a2u1_musim_hujan', type: 'mc', prompt: '¿Qué significa «musim hujan»?', options: ['Estación lluviosa', 'Estación seca', 'Mes lluvioso'], answer: 0, explanation: 'Musim hujan es la estación lluviosa.' },
                                         { vocabId: 'a2u1_juli', type: 'translate_es_id', prompt: 'Traduce: Ahora es julio.', answer: 'Sekarang bulan Juli.', explanation: 'Sekarang bulan Juli significa «Ahora es julio».' },
                                         { vocabId: 'a2u1_agustus', type: 'listen', prompt: 'Escucha y escribe la oración.', answer: 'Sekarang bulan Agustus.', explanation: 'La oración dice «Ahora es agosto».' },
                                         { vocabId: 'a2u1_juni', type: 'write', prompt: 'Escribe una oración para decir que ahora es junio.', hint: 'Usa «Sekarang bulan ...».', modelAnswer: 'Sekarang bulan Juni.', explanation: 'Juni es junio en indonesio.' }
@@ -3589,9 +3592,9 @@
                                     title: 'Lección 5: Septiembre a diciembre',
                                     objective: 'Reconoce los últimos cuatro meses del año.',
                                     grammar: 'Los nombres de los meses no cambian según la persona ni el tiempo de la oración.',
-                                    vocabIds: ['a2u1_september', 'a2u1_oktober', 'a2u1_november', 'a2u1_desember'],
+                                    vocabIds: ['a2u1_september', 'a2u1_oktober', 'a2u1_november', 'a2u1_desember', 'a2u1_musim_kemarau'],
                                     exercises: [
-                                        { vocabId: 'a2u1_desember', type: 'mc', prompt: '¿Qué mes va antes de Desember?', options: ['November', 'Oktober', 'September'], answer: 0, explanation: 'November precede a Desember.' },
+                                        { vocabId: 'a2u1_musim_kemarau', type: 'mc', prompt: '¿Qué significa «musim kemarau»?', options: ['Estación seca', 'Estación lluviosa', 'Mes seco'], answer: 0, explanation: 'Musim kemarau es la estación seca.' },
                                         { vocabId: 'a2u1_oktober', type: 'translate_es_id', prompt: 'Traduce: Ahora es octubre.', answer: 'Sekarang bulan Oktober.', explanation: 'Sekarang bulan Oktober significa «Ahora es octubre».' },
                                         { vocabId: 'a2u1_november', type: 'listen', prompt: 'Escucha y escribe la oración.', answer: 'Sekarang bulan November.', explanation: 'La oración dice «Ahora es noviembre».' },
                                         { vocabId: 'a2u1_desember', type: 'order', prompt: 'Ordena: Ahora es diciembre.', words: ['Desember', 'Sekarang', 'bulan'], correctOrder: ['Sekarang', 'bulan', 'Desember'], explanation: 'Sekarang bulan Desember significa «Ahora es diciembre».' }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bahasa Studio 3.8.6</title>
+    <title>Bahasa Studio 3.8.7</title>
     <meta name="description" content="Curso de indonesio PWA para hispanohablantes sin costo ni penalizaciones.">
     <meta name="theme-color" content="#e8384f">
     <link rel="manifest" href="./manifest.json">
@@ -182,7 +182,7 @@
 
     <header>
         <div class="logo">
-            <span>🇮🇩</span> Bahasa Studio <span style="font-size:0.72rem; font-weight:700; opacity:.8; margin-left:4px;">v3.8.6</span>
+            <span>🇮🇩</span> Bahasa Studio <span style="font-size:0.72rem; font-weight:700; opacity:.8; margin-left:4px;">v3.8.7</span>
         </div>
         <div class="header-status">
             <span id="connectionStatus" class="connection-indicator online" title="Estado de conexión">Online</span>
@@ -3654,6 +3654,120 @@
                                             }
                                   ]
                         }
+                    ,
+                    {
+                        "id": "a2_u4",
+                        "title": "U4 — Verbos activos: mem-",
+                        "description": "Forma verbos activos con meN- antes de p, b y m.",
+                        "grammar": "La forma mem- aparece ante varias raíces que empiezan por b, p, f, v o m. En muchas raíces con p, la p desaparece: pakai → memakai. Con b y m, la consonante inicial se conserva: beli → membeli, masak → memasak. Aprende cada verbo dentro de una frase.",
+                        "vocab": [
+                            { "id": "v501", "idn": "Membeli", "esp": "Comprar", "type": "verb", "example": "Saya membeli buku.", "exampleEsp": "Compro un libro." },
+                            { "id": "v502", "idn": "Memakai", "esp": "Usar; llevar puesto", "type": "verb", "example": "Dia memakai jaket.", "exampleEsp": "Él o ella lleva una chaqueta." },
+                            { "id": "v503", "idn": "Membawa", "esp": "Llevar; traer", "type": "verb", "example": "Saya membawa tas.", "exampleEsp": "Llevo un bolso." },
+                            { "id": "v504", "idn": "Memasak", "esp": "Cocinar", "type": "verb", "example": "Ibu memasak nasi.", "exampleEsp": "Mamá cocina arroz." }
+                        ],
+                        "exercises": [
+                            { "type": "mc", "prompt": "¿Cuál es la forma activa de pakai?", "options": ["Memakai", "Menakai", "Mengpakai"], "answer": "Memakai", "vocabId": "v502", "explanation": "La p de pakai desaparece después del prefijo mem-." },
+                            { "type": "mc", "prompt": "Completa: beli → …", "options": ["Membeli", "Menbeli", "Mengbeli"], "answer": "Membeli", "vocabId": "v501", "explanation": "La b se conserva: beli se convierte en membeli." },
+                            { "type": "mc", "prompt": "¿Qué significa membawa?", "options": ["Llevar o traer", "Comprar", "Cocinar"], "answer": "Llevar o traer", "vocabId": "v503" },
+                            { "type": "mc", "prompt": "Elige la forma correcta de masak.", "options": ["Memasak", "Menmasak", "Mengmasak"], "answer": "Memasak", "vocabId": "v504" },
+                            { "type": "translate_es_id", "prompt": "Traduce: Quiero comprar un libro.", "answer": "Saya mau membeli buku.", "vocabId": "v501", "explanation": "Mau expresa intención y membeli es el verbo activo." },
+                            { "type": "listen", "prompt": "Escucha y escribe la frase.", "answer": "Dia memakai jaket.", "vocabId": "v502" },
+                            { "type": "write", "prompt": "Escribe una frase propia usando membawa.", "hint": "Puedes usar tas (bolso).", "modelAnswer": "Saya membawa tas.", "vocabId": "v503" },
+                            { "type": "translate_id_es", "prompt": "Traduce al español: Ibu memasak nasi.", "answer": "Mamá cocina arroz.", "vocabId": "v504" }
+                        ]
+                    },
+                    {
+                        "id": "a2_u5",
+                        "title": "U5 — Verbos activos: men-",
+                        "description": "Practica men- con raíces que empiezan por t, d, c y j.",
+                        "grammar": "La forma men- aparece ante raíces que empiezan por t, d, c y j. En raíces con t, la t inicial suele desaparecer: tulis → menulis. Con d, c y j, la consonante se conserva: dengar → mendengar, cari → mencari, jual → menjual.",
+                        "vocab": [
+                            { "id": "v505", "idn": "Menulis", "esp": "Escribir", "type": "verb", "example": "Saya menulis pesan.", "exampleEsp": "Escribo un mensaje." },
+                            { "id": "v506", "idn": "Mendengar", "esp": "Escuchar; oír", "type": "verb", "example": "Dia mendengar musik.", "exampleEsp": "Él o ella escucha música." },
+                            { "id": "v507", "idn": "Mencari", "esp": "Buscar", "type": "verb", "example": "Kami mencari alamat.", "exampleEsp": "Buscamos una dirección." },
+                            { "id": "v508", "idn": "Menjual", "esp": "Vender", "type": "verb", "example": "Mereka menjual buah.", "exampleEsp": "Ellos venden fruta." }
+                        ],
+                        "exercises": [
+                            { "type": "mc", "prompt": "¿Cuál es la forma activa de tulis?", "options": ["Menulis", "Mentulis", "Mengtulis"], "answer": "Menulis", "vocabId": "v505", "explanation": "La t inicial de tulis desaparece: menulis." },
+                            { "type": "mc", "prompt": "Completa: dengar → …", "options": ["Mendengar", "Menengar", "Mengdengar"], "answer": "Mendengar", "vocabId": "v506" },
+                            { "type": "mc", "prompt": "¿Qué significa mencari?", "options": ["Buscar", "Vender", "Escuchar"], "answer": "Buscar", "vocabId": "v507" },
+                            { "type": "mc", "prompt": "Elige la forma correcta de jual.", "options": ["Menjual", "Mejual", "Mengjual"], "answer": "Menjual", "vocabId": "v508" },
+                            { "type": "translate_es_id", "prompt": "Traduce: Ella escribe un mensaje.", "answer": "Dia menulis pesan.", "vocabId": "v505" },
+                            { "type": "listen", "prompt": "Escucha y escribe la frase.", "answer": "Kami mencari alamat.", "vocabId": "v507" },
+                            { "type": "write", "prompt": "Escribe una frase usando mendengar.", "hint": "Puedes usar musik (música).", "modelAnswer": "Saya mendengar musik.", "vocabId": "v506" },
+                            { "type": "translate_id_es", "prompt": "Traduce al español: Mereka menjual buah.", "answer": "Ellos venden fruta.", "vocabId": "v508" }
+                        ]
+                    },
+                    {
+                        "id": "a2_u6",
+                        "title": "U6 — Verbos activos: meng-",
+                        "description": "Forma verbos con raíces que empiezan por k, g y vocal.",
+                        "grammar": "La forma meng- aparece ante raíces que empiezan por k, g y vocal. Con k, la consonante inicial suele desaparecer: kirim → mengirim. Con g y vocal, se conserva el sonido inicial: gambar → menggambar, ambil → mengambil, ajar → mengajar.",
+                        "vocab": [
+                            { "id": "v509", "idn": "Mengirim", "esp": "Enviar", "type": "verb", "example": "Saya mengirim pesan.", "exampleEsp": "Envío un mensaje." },
+                            { "id": "v510", "idn": "Menggambar", "esp": "Dibujar", "type": "verb", "example": "Dia menggambar rumah.", "exampleEsp": "Él o ella dibuja una casa." },
+                            { "id": "v511", "idn": "Mengambil", "esp": "Tomar; coger", "type": "verb", "example": "Saya mengambil buku.", "exampleEsp": "Cojo un libro." },
+                            { "id": "v512", "idn": "Mengajar", "esp": "Enseñar", "type": "verb", "example": "Guru mengajar di sekolah.", "exampleEsp": "El profesor enseña en la escuela." }
+                        ],
+                        "exercises": [
+                            { "type": "mc", "prompt": "¿Cuál es la forma activa de kirim?", "options": ["Mengirim", "Mengkirim", "Menirim"], "answer": "Mengirim", "vocabId": "v509", "explanation": "La k inicial de kirim desaparece después de meng-." },
+                            { "type": "mc", "prompt": "Completa: gambar → …", "options": ["Menggambar", "Mengambar", "Memgambar"], "answer": "Menggambar", "vocabId": "v510" },
+                            { "type": "mc", "prompt": "¿Qué significa mengambil?", "options": ["Tomar o coger", "Enviar", "Enseñar"], "answer": "Tomar o coger", "vocabId": "v511" },
+                            { "type": "mc", "prompt": "Elige la forma correcta de ajar.", "options": ["Mengajar", "Menajar", "Memajar"], "answer": "Mengajar", "vocabId": "v512" },
+                            { "type": "translate_es_id", "prompt": "Traduce: Envío un mensaje.", "answer": "Saya mengirim pesan.", "vocabId": "v509" },
+                            { "type": "listen", "prompt": "Escucha y escribe la frase.", "answer": "Dia menggambar rumah.", "vocabId": "v510" },
+                            { "type": "write", "prompt": "Escribe una frase usando mengambil.", "hint": "Puedes usar buku (libro).", "modelAnswer": "Saya mengambil buku.", "vocabId": "v511" },
+                            { "type": "translate_id_es", "prompt": "Traduce al español: Guru mengajar di sekolah.", "answer": "El profesor enseña en la escuela.", "vocabId": "v512" }
+                        ]
+                    },
+                    {
+                        "id": "a2_u7",
+                        "title": "U7 — Verbos activos: meny-",
+                        "description": "Practica verbos frecuentes formados a partir de raíces con s inicial.",
+                        "grammar": "Ante muchas raíces que empiezan por s, el prefijo meN- adopta la forma meny- y la s desaparece: sapu → menyapu, simpan → menyimpan. Aprende estas formas frecuentes como vocabulario en contexto.",
+                        "vocab": [
+                            { "id": "v513", "idn": "Menyapu", "esp": "Barrer", "type": "verb", "example": "Saya menyapu lantai.", "exampleEsp": "Barro el suelo." },
+                            { "id": "v514", "idn": "Menyimpan", "esp": "Guardar; ahorrar", "type": "verb", "example": "Dia menyimpan uang.", "exampleEsp": "Él o ella guarda dinero." },
+                            { "id": "v515", "idn": "Menyewa", "esp": "Alquilar", "type": "verb", "example": "Kami menyewa kamar.", "exampleEsp": "Alquilamos una habitación." },
+                            { "id": "v516", "idn": "Menyusun", "esp": "Ordenar; organizar", "type": "verb", "example": "Mereka menyusun buku.", "exampleEsp": "Ellos ordenan los libros." }
+                        ],
+                        "exercises": [
+                            { "type": "mc", "prompt": "¿Cuál es la forma activa de sapu?", "options": ["Menyapu", "Mensapu", "Mengsapu"], "answer": "Menyapu", "vocabId": "v513" },
+                            { "type": "mc", "prompt": "Completa: simpan → …", "options": ["Menyimpan", "Mensimpan", "Memimpan"], "answer": "Menyimpan", "vocabId": "v514", "explanation": "La s inicial desaparece en esta forma frecuente." },
+                            { "type": "mc", "prompt": "¿Qué significa menyewa?", "options": ["Alquilar", "Barrer", "Ordenar"], "answer": "Alquilar", "vocabId": "v515" },
+                            { "type": "mc", "prompt": "Elige la forma correcta de susun.", "options": ["Menyusun", "Mensusun", "Mengsusun"], "answer": "Menyusun", "vocabId": "v516" },
+                            { "type": "translate_es_id", "prompt": "Traduce: Barro el suelo.", "answer": "Saya menyapu lantai.", "vocabId": "v513" },
+                            { "type": "listen", "prompt": "Escucha y escribe la frase.", "answer": "Dia menyimpan uang.", "vocabId": "v514" },
+                            { "type": "write", "prompt": "Escribe una frase usando menyewa.", "hint": "Puedes usar kamar (habitación).", "modelAnswer": "Kami menyewa kamar.", "vocabId": "v515" },
+                            { "type": "translate_id_es", "prompt": "Traduce al español: Mereka menyusun buku.", "answer": "Ellos ordenan los libros.", "vocabId": "v516" }
+                        ]
+                    },
+                    {
+                        "id": "a2_u8",
+                        "title": "U8 — Voz activa y pasiva; di como preposición",
+                        "description": "Distingue verbos activos con meN-, verbos pasivos con di- y la preposición di.",
+                        "grammar": "En la voz activa, el sujeto realiza la acción: Ana membaca buku. En la pasiva, el objeto afectado pasa al inicio y el verbo lleva di- unido: Buku dibaca oleh Ana. En cambio, di como preposición de lugar se escribe separado: di rumah (en casa). Compara la función y la escritura.",
+                        "vocab": [
+                            { "id": "v201", "idn": "Membaca", "esp": "Leer", "type": "verb", "example": "Ana membaca buku.", "exampleEsp": "Ana lee un libro." },
+                            { "id": "v202", "idn": "Menulis", "esp": "Escribir", "type": "verb", "example": "Ana menulis pesan.", "exampleEsp": "Ana escribe un mensaje." },
+                            { "id": "v205", "idn": "Dibaca", "esp": "Ser leído", "type": "verb", "example": "Buku dibaca oleh Ana.", "exampleEsp": "El libro es leído por Ana." },
+                            { "id": "v206", "idn": "Ditulis", "esp": "Ser escrito", "type": "verb", "example": "Pesan ditulis oleh Budi.", "exampleEsp": "El mensaje es escrito por Budi." },
+                            { "id": "v207", "idn": "Dibeli", "esp": "Ser comprado", "type": "verb", "example": "Buku dibeli oleh Ana.", "exampleEsp": "El libro es comprado por Ana." },
+                            { "id": "v208", "idn": "Oleh", "esp": "Por (agente en pasiva)", "type": "preposition", "example": "Buku dibaca oleh Ana.", "exampleEsp": "El libro es leído por Ana." },
+                            { "id": "v517", "idn": "Di", "esp": "En (preposición de lugar)", "type": "preposition", "example": "Saya belajar di rumah.", "exampleEsp": "Estudio en casa." }
+                        ],
+                        "exercises": [
+                            { "type": "mc", "prompt": "¿Cuál oración está en voz activa?", "options": ["Ana membaca buku.", "Buku dibaca oleh Ana.", "Buku di rumah."], "answer": "Ana membaca buku.", "vocabId": "v201" },
+                            { "type": "mc", "prompt": "¿Cuál oración está en voz pasiva?", "options": ["Buku dibaca oleh Ana.", "Ana membaca buku.", "Ana menulis pesan."], "answer": "Buku dibaca oleh Ana.", "vocabId": "v205" },
+                            { "type": "mc", "prompt": "¿Cómo se escribe la preposición «en» en di rumah?", "options": ["Separada: di rumah", "Unida: dirumah", "Con guion: di-rumah"], "answer": "Separada: di rumah", "vocabId": "v517", "explanation": "La preposición de lugar di se escribe separada del sustantivo." },
+                            { "type": "translate_es_id", "prompt": "Traduce: El libro es leído por Ana.", "answer": "Buku dibaca oleh Ana.", "vocabId": "v205" },
+                            { "type": "listen", "prompt": "Escucha y escribe la frase.", "answer": "Pesan ditulis oleh Budi.", "vocabId": "v206" },
+                            { "type": "write", "prompt": "Escribe una oración pasiva usando dibeli.", "hint": "Puedes usar buku y oleh Ana.", "modelAnswer": "Buku dibeli oleh Ana.", "vocabId": "v207" },
+                            { "type": "translate_id_es", "prompt": "Traduce al español: Buku dibaca di rumah.", "answer": "El libro se lee en casa.", "vocabId": "v517" },
+                            { "type": "mc", "prompt": "En «Buku dibaca oleh Ana», ¿quién realiza la acción?", "options": ["Ana", "Buku", "Rumah"], "answer": "Ana", "vocabId": "v208", "explanation": "Oleh introduce al agente que realiza la acción en la pasiva." }
+                        ]
+                    }
                     ]
                 },
                 {

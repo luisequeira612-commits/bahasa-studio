@@ -708,14 +708,27 @@ test('A1 unit lessons unlock sequentially and the final exam gates the next unit
     await firstUnitButtons.nth(0).click();
     await page.getByRole('button', { name: 'Salir' }).click();
     await page.evaluate(async () => {
+      App.completedLessons = ['a1_u1::0'];
+      await DB.set('settings', 'completedLessons', App.completedLessons);
+      App.renderCourseRoute();
+    });
+    const refreshedButtons = page.locator('[data-unit-id="a1_u1"][data-lesson-index]');
+    assert.equal(await refreshedButtons.nth(1).isEnabled(), true);
+    assert.equal(await refreshedButtons.nth(2).isEnabled(), false);
+
+    await page.evaluate(async () => {
       App.completedLessons = ['a1_u1::0', 'a1_u1::1'];
       await DB.set('settings', 'completedLessons', App.completedLessons);
       App.renderCourseRoute();
     });
-
-    const refreshedButtons = page.locator('[data-unit-id="a1_u1"][data-lesson-index]');
     assert.equal(await refreshedButtons.nth(2).isEnabled(), true);
     assert.equal(await page.locator('[data-unit-id="a1_u2"][data-lesson-index="0"]').isEnabled(), false);
+
+    await page.evaluate(async () => {
+      App.completedLessons = ['a1_u1::0', 'a1_u1::1', 'a1_u1::2'];
+      await DB.set('settings', 'completedLessons', App.completedLessons);
+      App.renderCourseRoute();
+    });
     await page.getByRole('button', { name: 'Prueba final · Desbloquear siguiente unidad' }).click();
 
     const answerCurrentQuestion = async correct => {

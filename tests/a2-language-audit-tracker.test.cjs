@@ -48,7 +48,15 @@ function extractObjectLiteral(source, marker) {
 
 test('A2 language tracker covers all current vocabulary without claiming verification', () => {
   const root = path.join(__dirname, '..');
-  const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+  const a1Source = fs.readFileSync(path.join(root, 'curriculum-a1.js'), 'utf8');
+  const a2Source = fs.readFileSync(path.join(root, 'curriculum-a2.js'), 'utf8');
+  const a1Literal = a1Source.slice(a1Source.indexOf(' = ') + 3).trim().replace(/;$/, '');
+  const a2Literal = a2Source.slice(a2Source.indexOf(' = ') + 3).trim().replace(/;$/, '');
+  const htmlSource = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+  const courseDataStart = htmlSource.indexOf('const CourseData =');
+  const html = htmlSource.slice(0, courseDataStart) + htmlSource.slice(courseDataStart)
+    .replace('window.BAHASA_CURRICULUM_A1', a1Literal)
+    .replace('window.BAHASA_CURRICULUM_A2', a2Literal);
   const course = vm.runInNewContext('(' + extractObjectLiteral(html, 'const CourseData =') + ')');
   const a2 = course.levels.find(level => level.id === 'A2');
   const expected = a2.units.flatMap(unit => unit.vocab.map(word => ({

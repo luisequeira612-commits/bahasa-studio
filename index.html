@@ -4194,7 +4194,9 @@
 
         function buildUnitLessons(unit) {
             if (!unit || !Array.isArray(unit.vocab) || !unit.vocab.length) return [];
-            if (unit.custom) return [{
+            const a1Course = CourseData.levels.find(level => level.id === 'A1');
+            const isOfficialA1Unit = Boolean(a1Course && a1Course.units.some(entry => entry.id === unit.id));
+            if (unit.custom || !isOfficialA1Unit) return [{
                 index: 0, title: 'Lección única', newVocab: unit.vocab, reviewVocab: [],
                 vocab: unit.vocab, grammar: unit.grammar, exercises: unit.exercises || []
             }];

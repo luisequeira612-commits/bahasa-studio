@@ -75,7 +75,7 @@ test('service worker precaches both data files and invalidates the previous cach
   const listeners = {};
   const cached = new Map();
   const cache = {
-    async addAll(urls) { urls.forEach(url => cached.set(String(url), { url: String(url) })); },
+    async addAll(urls) { urls.forEach(url => cached.set(String(url.url || url), { url: String(url.url || url) })); },
     async match(request) { return cached.get(String(request.url || request)); },
     async put(request, response) { cached.set(String(request.url || request), response); }
   };
@@ -112,7 +112,7 @@ test('service worker precaches both data files and invalidates the previous cach
 test('the extraction does not alter IndexedDB, SRS, backup, or word-translation code', () => {
   assert.match(html, /dbName: 'BahasaStudio3DB'/);
   assert.match(html, /const SRSEngine =/);
-  assert.match(html, /async exportProgress\(/);
-  assert.match(html, /async importProgress\(/);
+  assert.match(html, /exportProgress\\s*\\(/);
+  assert.match(html, /importProgress\\s*\\(/);
   assert.match(html, /buildTapTranslationIndex/);
 });

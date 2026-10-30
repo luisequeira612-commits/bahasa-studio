@@ -29,6 +29,8 @@ jobs:
         run: node --test tests/assessment-engine.test.cjs
       - name: Run progressive assessment unit tests
         run: node --test tests/progressive-assessment.test.cjs
+      - name: Run multi-lesson progression tests
+        run: node --test tests/multi-lesson-progression.test.cjs
       - name: Run real-browser end-to-end tests
         run: node --test tests/browser-e2e.test.cjs
       - name: Run assessment page browser tests

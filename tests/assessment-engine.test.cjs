@@ -18,8 +18,8 @@ test('each level has a small assessment with an open production task', () => {
 
 test('A1 assessment covers selected curriculum content, including age, family, routine, and units 15–17', () => {
   const items = getAssessment('A1');
-  assert.equal(items.length, 49, 'A1 pilot should contain 47 closed questions and 2 open tasks');
-  assert.equal(scoreAssessment('A1', {}).possible, 54);
+  assert.equal(items.length, 51, 'A1 pilot should contain 49 closed questions and 2 open tasks');
+  assert.equal(scoreAssessment('A1', {}).possible, 56);
   const byId = Object.fromEntries(items.map(item => [item.id, item]));
   for (const id of [
     'a1-negation-01', 'a1-vocab-01', 'a1-comprehension-01', 'a1-interaction-01',
@@ -51,7 +51,7 @@ test('A1 multiple-choice answers are distributed across all three positions', ()
     assert.equal(item.options.length, 3, item.id + ' should have three answer options');
     counts[item.answer] += 1;
   }
-  assert.deepEqual(counts.slice().sort((a, b) => a - b), [10, 18, 19]);
+  assert.deepEqual(counts.slice().sort((a, b) => a - b), [10, 19, 20]);
 });
 
 test('choice scoring is level-scoped and reports skill breakdowns', () => {
@@ -64,8 +64,8 @@ test('choice scoring is level-scoped and reports skill breakdowns', () => {
   };
   const result = scoreAssessment('A1', answers);
   assert.equal(result.earned, 3);
-  assert.equal(result.possible, 54);
-  assert.equal(result.skills.grammar.percent, 33);
+  assert.equal(result.possible, 56);
+  assert.equal(result.skills.grammar.percent, 29);
   assert.equal(result.skills.grammar.meetsMinimum, false);
   assert.equal(result.skills.vocabulary.percent, 7);
   assert.equal(result.provisionalPass, false);
@@ -117,7 +117,7 @@ test('assessment definitions and scoring never access browser persistence APIs',
   vm.runInNewContext(source, sandbox, { filename: 'assessment-engine.js' });
   assert.ok(sandbox.module.exports.ITEM_BANK.every(item => item.id && item.level && item.skill && item.points > 0));
   assert.equal(Object.keys(sandbox.module.exports.LEVELS).join(','), 'A1,A2,B1,B2');
-  assert.equal(scoreAssessment('A1', {}).possible, 54);
+  assert.equal(scoreAssessment('A1', {}).possible, 56);
 });
 
 test('main app navigation exposes the independent assessment page', () => {

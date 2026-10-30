@@ -71,6 +71,9 @@ test('service worker precaches both data files and invalidates the previous cach
   assert.match(source, /bahasa-studio-v3\.8\.10/);
   assert.match(source, /'\.\/curriculum-a1\.js'/);
   assert.match(source, /'\.\/curriculum-a2\.js'/);
+  assert.match(source, /'\.\/styles\.css'/);
+  assert.match(source, /'\.\/audio-engine\.js'/);
+  assert.match(source, /'\.\/pronunciation-engine\.js'/);
 
   const listeners = {};
   const cached = new Map();
@@ -101,6 +104,8 @@ test('service worker precaches both data files and invalidates the previous cach
   assert.ok(cached.has('https://example.test/curriculum-a1.js'));
   assert.ok(cached.has('https://example.test/curriculum-a2.js'));
   assert.ok(cached.has('https://example.test/styles.css'));
+  assert.ok(cached.has('https://example.test/audio-engine.js'));
+  assert.ok(cached.has('https://example.test/pronunciation-engine.js'));
 
   let activatePromise;
   listeners.activate({ waitUntil(promise) { activatePromise = promise; } });

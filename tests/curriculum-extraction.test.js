@@ -112,7 +112,7 @@ test('service worker precaches both data files and invalidates the previous cach
 test('the extraction does not alter IndexedDB, SRS, backup, or word-translation code', () => {
   assert.match(html, /dbName: 'BahasaStudio3DB'/);
   assert.match(html, /const SRSEngine =/);
-  assert.match(html, /exportProgress\\s*\\(/);
-  assert.match(html, /importProgress\\s*\\(/);
+  assert.match(html, /exportProgress\s*\(/);
+  assert.match(html, /importProgress\s*\(/);
   assert.match(html, /buildTapTranslationIndex/);
 });

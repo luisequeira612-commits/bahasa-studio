@@ -29,7 +29,7 @@ test('inline application JavaScript and service worker parse', () => {
   new vm.Script(serviceWorker);
 });
 
-test('PWA version is consistent across HTML, manifest and cache', () => {
+test('app display version and service-worker cache version are declared separately', () => {
   assert.match(html, /Bahasa Studio 3\.8\.8/);
   assert.equal(manifest.name, 'Bahasa Studio 3.8.8');
   assert.match(serviceWorker, /bahasa-studio-v3\.8\.10/);

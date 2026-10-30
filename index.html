@@ -6261,7 +6261,11 @@ Requisitos:
             if (language === 'es' && typeof CourseData !== 'undefined' && Array.isArray(CourseData.levels)) {
                 for (const level of CourseData.levels) {
                     for (const unit of level.units || []) {
-                        for (const exercise of unit.exercises || []) {
+                        const authoredExercises = [
+                            ...(unit.exercises || []),
+                            ...(unit.lessons || []).flatMap(lesson => lesson.exercises || [])
+                        ];
+                        for (const exercise of authoredExercises) {
                             if (exercise.type !== 'translate_es_id' || !exercise.prompt || !exercise.answer) continue;
                             const parsed = window.parseTapTranslationPrompt(exercise.prompt, 'es');
                             const source = String(parsed.phrase || '').trim();

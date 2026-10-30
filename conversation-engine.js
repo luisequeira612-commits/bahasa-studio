@@ -53,7 +53,7 @@
                     translation: 'Buenas tardes. ¿Qué desea pedir?',
                     prompt: 'Pide arroz frito, por favor',
                     choices: [
-                        { text: 'Saya pesan nasi goreng, tolong.', translation: 'Quisiera pedir arroz frito, por favor.', correct: true, feedback: 'Saya pesan… es una forma útil y cortés de pedir un plato.' },
+                        { text: 'Saya mau nasi goreng, tolong.', translation: 'Quisiera pedir arroz frito, por favor.', correct: true, feedback: 'Saya pesan… es una forma útil y cortés de pedir un plato.' },
                         { text: 'Di mana stasiun?', translation: '¿Dónde está la estación?', correct: false, feedback: 'Esa pregunta sirve para pedir una dirección.' },
                         { text: 'Nama saya Ana.', translation: 'Me llamo Ana.', correct: false, feedback: 'Es una presentación, no un pedido.' }
                     ]

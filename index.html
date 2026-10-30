@@ -4201,6 +4201,9 @@
             const lessonCount = Math.min(5, Math.max(2, Math.ceil(unit.vocab.length / 4)));
             const chunkSize = Math.ceil(unit.vocab.length / lessonCount);
             const lessons = [];
+            const assignedAuthoredExercises = new Set();
+            const normalizeLessonText = value => String(value || '').normalize('NFKD').replace(/\p{M}/gu, '').toLocaleLowerCase()
+                .replace(/[^\p{L}\p{N}]+/gu, ' ').replace(/\s+/g, ' ').trim();
             for (let start = 0; start < unit.vocab.length; start += chunkSize) {
                 const newVocab = unit.vocab.slice(start, start + chunkSize);
                 const reviewVocab = unit.vocab.slice(0, start);
@@ -4213,21 +4216,21 @@
                     const answer = index % (options.length + 1);
                     options.splice(answer, 0, word.esp);
                     exercises.push({
-                        vocabId: word.id, type: 'mc',
+                        vocabId: word.id, type: 'mc', generated: true,
                         prompt: '¿Qué significa «' + word.idn + '»?',
                         options, answer,
                         explanation: '«' + word.idn + '» significa «' + word.esp + '».'
                     });
                     if (index % 2 === 0) {
                         exercises.push({
-                            vocabId: word.id, type: 'listen',
+                            vocabId: word.id, type: 'listen', generated: true,
                             prompt: 'Escucha y escribe la palabra en indonesio',
                             answer: word.idn,
                             explanation: 'La palabra es «' + word.idn + '» («' + word.esp + '»).'
                         });
                     } else {
                         exercises.push({
-                            vocabId: word.id, type: 'translate_es_id',
+                            vocabId: word.id, type: 'translate_es_id', generated: true,
                             prompt: 'Traduce al indonesio: «' + word.esp + '»',
                             answer: word.idn,
                             explanation: '«' + word.idn + '» significa «' + word.esp + '».'
@@ -4241,11 +4244,25 @@
                     const answer = index % (options.length + 1);
                     options.splice(answer, 0, word.esp);
                     exercises.push({
-                        vocabId: word.id, type: 'mc',
+                        vocabId: word.id, type: 'mc', generated: true,
                         prompt: 'Repaso: ¿qué significa «' + word.idn + '»?',
                         options, answer,
                         explanation: '«' + word.idn + '» significa «' + word.esp + '».'
                     });
+                });
+                const learnedIds = new Set(learnedVocab.map(word => word.id));
+                const futureTerms = unit.vocab.slice(learnedVocab.length)
+                    .map(word => normalizeLessonText(word.idn)).filter(term => term.length > 1);
+                (unit.exercises || []).forEach((exercise, exerciseIndex) => {
+                    if (assignedAuthoredExercises.has(exerciseIndex) || !learnedIds.has(exercise.vocabId)) return;
+                    const authoredText = normalizeLessonText([
+                        exercise.prompt, exercise.audioText, exercise.answer, exercise.explanation,
+                        ...(exercise.options || []), ...(exercise.words || []), ...(exercise.correctOrder || [])
+                    ].filter(Boolean).join(' '));
+                    const introducesFutureWord = futureTerms.some(term => (' ' + authoredText + ' ').includes(' ' + term + ' '));
+                    if (introducesFutureWord) return;
+                    exercises.push({ ...exercise, authored: true });
+                    assignedAuthoredExercises.add(exerciseIndex);
                 });
                 const lessonIndex = lessons.length;
                 lessons.push({
@@ -4672,6 +4689,7 @@
                     <p style="font-size:0.8rem;color:var(--text-muted);margin:8px 0;">Palabras nuevas</p>
                     ${lesson.newVocab.map(wordCard).join('')}
                     ${lesson.reviewVocab.length ? `<p style="font-size:0.8rem;color:var(--text-muted);margin:14px 0 8px;">Repaso de lecciones anteriores</p>${lesson.reviewVocab.map(wordCard).join('')}` : ''}
+                    <p style="font-size:0.8rem;color:var(--text-muted);margin:8px 0;">💡 Toca una palabra en indonesio para consultar su significado sin salir de la lección.</p>
                     <p style="font-size:0.8rem;color:var(--text-muted);margin:8px 0;">Escucha cada palabra y repítela en voz alta antes de comenzar.</p>
                     </div><div id="actionArea"><button class="btn" onclick="LessonEngine.renderStep()">Comenzar lección</button></div>`;
             },

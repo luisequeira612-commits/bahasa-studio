@@ -478,7 +478,7 @@ test('six practical conversations support guided replies without changing learne
     await page.waitForFunction(() => typeof ConversationEngine !== 'undefined' &&
       typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
     const xpBefore = await page.evaluate(() => App.xp);
-    const srsBefore = await page.evaluate(async () => (await DB.getAll('srs')).length;
+    const srsBefore = await page.evaluate(async () => (await DB.getAll('srs')).length);
 
     await page.getByRole('button', { name: 'Practicar conversaciones' }).click();
     assert.equal(await page.locator('[data-conversation-start]').count(), 6,

@@ -456,8 +456,10 @@ test('service worker serves the app after the network is disconnected', async ()
     await context.setOffline(true);
     await page.reload({ waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined');
-    assert.match(await page.title(), /Bahasa Studio 3\.8\.3/);
+    assert.match(await page.title(), /Bahasa Studio 3\.8\.4/);
     assert.equal(await page.locator('body').isVisible(), true);
+    assert.equal(await page.evaluate(() => typeof ConversationEngine !== 'undefined'), true,
+      'the conversation engine must be available from the service-worker cache offline');
   } finally {
     await context.setOffline(false);
     await context.close();
@@ -465,6 +467,59 @@ test('service worker serves the app after the network is disconnected', async ()
   }
 });
 
+
+test('six practical conversations support guided replies without changing learner progress', async () => {
+  const { server, url } = await startServer();
+  const context = await browser.newContext({ serviceWorkers: 'block' });
+  const page = await context.newPage();
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof ConversationEngine !== 'undefined' &&
+      typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
+    const xpBefore = await page.evaluate(() => App.xp);
+    const srsBefore = await page.evaluate(async () => (await DB.getAll('srs')).length);
+
+    await page.getByRole('button', { name: 'Practicar conversaciones' }).click();
+    assert.equal(await page.locator('[data-conversation-start]').count(), 6,
+      'all six planned everyday situations should be available');
+
+    const scenarioIds = ['greetings', 'restaurant', 'shopping', 'travel', 'friends', 'help'];
+    for (let scenarioIndex = 0; scenarioIndex < scenarioIds.length; scenarioIndex++) {
+      const scenarioId = scenarioIds[scenarioIndex];
+      await page.locator('[data-conversation-start="' + scenarioId + '"]').click();
+
+      for (let turnIndex = 0; turnIndex < 3; turnIndex++) {
+        if (scenarioIndex === 0 && turnIndex === 0) {
+          await page.locator('[data-conversation-choice][data-correct="false"]').first().click();
+          assert.match(await page.locator('#conversationFeedback').innerText(), /La respuesta adecuada es/,
+            'an incorrect response should explain the better phrase');
+        } else {
+          await page.locator('[data-conversation-choice][data-correct="true"]').click();
+        }
+        await page.locator('[data-conversation-next]').click();
+      }
+
+      await page.getByRole('heading', { name: 'Conversación completada' }).waitFor();
+      const expectedScore = scenarioIndex === 0 ? '2/3' : '3/3';
+      assert.match(await page.locator('#conversationResultScore').innerText(), new RegExp(expectedScore),
+        scenarioId + ' should calculate the correct conversation score');
+      if (scenarioIndex < scenarioIds.length - 1) {
+        await page.locator('[data-conversation-back]').click();
+      }
+    }
+
+    assert.equal(await page.evaluate(() => App.xp), xpBefore,
+      'conversation practice should not award XP before the motivation stage');
+    assert.equal(await page.evaluate(async () => (await DB.getAll('srs')).length), srsBefore,
+      'conversation practice should not modify spaced-repetition records');
+    await page.locator('#conversationPracticeArea [data-conversation-exit]').click();
+    await page.waitForFunction(() => document.getElementById('view-route').classList.contains('active'));
+  } finally {
+    await context.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});
 
 test('main navigation opens each primary view and dictionary search filters Indonesian and Spanish text', async () => {
   const { server, url } = await startServer();

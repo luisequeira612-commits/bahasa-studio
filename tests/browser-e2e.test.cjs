@@ -804,6 +804,14 @@ test('Indonesian TTS voice selection is available, applied to speech, and persis
     await page.waitForFunction(async () => (await DB.get('settings', 'audioVoiceURI')) === 'mock-id-b');
     assert.equal(await page.locator('#audioVoiceSelect').inputValue(), 'mock-id-b');
     assert.match(await page.locator('#audioVoiceStatus').innerText(), /Voz activa: Mock Indonesian B/);
+
+    await page.reload({ waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
+    await page.waitForFunction(() => document.querySelectorAll('#audioVoiceSelect option').length === 3);
+    assert.equal(await page.locator('#audioVoiceSelect').inputValue(), 'mock-id-b',
+      'the selected Indonesian voice should be restored after reload');
+    await page.evaluate(() => AudioEngine.speak('Terima kasih'));
+    assert.deepEqual(await page.evaluate(() => window.__spokenVoices), ['mock-id-b']);
   } finally {
     await context.close();
     await new Promise(resolve => server.close(resolve));
@@ -835,6 +843,43 @@ test('Indonesian TTS voice selector falls back to automatic mode when no Indones
     assert.match(await page.locator('#audioVoiceStatus').innerText(), /No se detectó una voz indonesia instalada/);
     await page.evaluate(() => AudioEngine.speak('Halo'));
     assert.equal(await page.evaluate(() => AudioEngine.selectedVoice === null), true);
+  } finally {
+    await context.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});
+
+
+test('Indonesian voices discovered asynchronously refresh the selector', async () => {
+  const { server, url } = await startServer();
+  const context = await browser.newContext({ serviceWorkers: 'block' });
+  const page = await context.newPage();
+  await page.addInitScript(() => {
+    let voices = [];
+    window.__publishIndonesianVoices = () => {
+      voices = [{ name: 'Late Indonesian', lang: 'id-ID', voiceURI: 'late-id' }];
+      window.speechSynthesis.onvoiceschanged();
+    };
+    Object.defineProperty(window, 'speechSynthesis', {
+      configurable: true,
+      value: {
+        cancel() {},
+        getVoices() { return voices; },
+        speak() {},
+        onvoiceschanged: null
+      }
+    });
+    window.SpeechSynthesisUtterance = function (text) { this.text = text; };
+  });
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
+    assert.equal(await page.locator('#audioVoiceSelect option').count(), 1);
+    await page.evaluate(() => window.__publishIndonesianVoices());
+    await page.waitForFunction(() => document.querySelectorAll('#audioVoiceSelect option').length === 2);
+    assert.equal(await page.locator('#audioVoiceSelect option').nth(1).textContent(), 'Late Indonesian (id-ID)');
+    assert.match(await page.locator('#audioVoiceStatus').innerText(), /1 voz indonesia disponible/);
   } finally {
     await context.close();
     await new Promise(resolve => server.close(resolve));

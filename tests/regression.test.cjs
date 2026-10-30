@@ -1225,6 +1225,8 @@ test('voice test explains and attempts the system fallback when no Indonesian vo
 
 test('audio playback speed is adjustable, validated, and persisted without changing default playback', () => {
   assert.match(html, /id="audioPlaybackRate"/);
+test('audio playback speed is adjustable, validated, and persisted without changing default playback', () => {
+  assert.match(html, /id="audioPlaybackRate"/);
   assert.match(html, /setRate\(value, persist = true\)/);
   assert.match(html, /\[0\.5, 0\.7, 0\.85, 1\]\.includes\(rate\)/);
   assert.match(html, /DB\.set\('settings', 'audioPlaybackRate', rate\)/);

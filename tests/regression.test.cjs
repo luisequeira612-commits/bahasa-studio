@@ -1139,18 +1139,26 @@ test('U24–U32 multiple-choice answers are semantically correct and not always 
     v406: 'Izquierda', v409: 'Al otro lado', v415: 'Pasado mañana', v418: 'Visitar',
     v426: 'Pasaporte', v431: 'Maleta', v435: 'Siempre', v438: 'Rara vez',
     v445: 'Perdón', v446: 'Permisi', v455: 'Alto/a', v458: 'Joven',
-    v465: '¿Qué tal?', v468: 'Sama-sama', v472: 'Por qué',
-    v391: 'Lee un libro', v397: 'Le gusta nadar', v406: 'A la izquierda',
-    v421: '¡Vamos a comer!', v433: 'Tiene una reserva', v435: 'Siempre estudio',
-    v449: 'Por favor, repítalo', v457: 'Mi amigo es amable'
+    v465: '¿Qué tal?', v468: 'Sama-sama', v472: 'Por qué'
   };
   const unitIds = new Set(['a1_u24','a1_u25','a1_u26','a1_u27','a1_u28','a1_u29','a1_u30','a1_u31','a1_u32']);
   const exercises = a1.units.filter(unit => unitIds.has(unit.id)).flatMap(unit => unit.exercises.filter(ex => ex.type === 'mc'));
   assert.equal(exercises.length, 27);
+  const listeningExpected = {
+    'Saya membaca buku.': 'Lee un libro',
+    'Saya suka berenang.': 'Le gusta nadar',
+    'Belok kiri.': 'A la izquierda',
+    'Ayo makan!': '¡Vamos a comer!',
+    'Saya punya reservasi.': 'Tiene una reserva',
+    'Saya selalu belajar.': 'Siempre estudio',
+    'Tolong ulangi.': 'Por favor, repítalo',
+    'Teman saya ramah.': 'Mi amigo es amable'
+  };
   const positions = new Set();
   for (const ex of exercises) {
-    assert.ok(expected[ex.vocabId], 'missing expected answer for ' + ex.vocabId);
-    assert.equal(ex.options[ex.answer], expected[ex.vocabId], 'incorrect keyed answer for ' + ex.vocabId);
+    const keyedAnswer = ex.audioText ? listeningExpected[ex.audioText] : expected[ex.vocabId];
+    assert.ok(keyedAnswer, 'missing expected answer for ' + (ex.audioText || ex.vocabId));
+    assert.equal(ex.options[ex.answer], keyedAnswer, 'incorrect keyed answer for ' + (ex.audioText || ex.vocabId));
     positions.add(ex.answer);
   }
   assert.ok(positions.size >= 3, 'correct answers should use all three option positions');

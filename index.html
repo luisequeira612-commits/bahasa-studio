@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bahasa Studio 3.8.4</title>
+    <title>Bahasa Studio 3.8.5</title>
     <meta name="description" content="Curso de indonesio PWA para hispanohablantes sin costo ni penalizaciones.">
     <meta name="theme-color" content="#e8384f">
     <link rel="manifest" href="./manifest.json">
@@ -182,7 +182,7 @@
 
     <header>
         <div class="logo">
-            <span>🇮🇩</span> Bahasa Studio <span style="font-size:0.72rem; font-weight:700; opacity:.8; margin-left:4px;">v3.8.4</span>
+            <span>🇮🇩</span> Bahasa Studio <span style="font-size:0.72rem; font-weight:700; opacity:.8; margin-left:4px;">v3.8.5</span>
         </div>
         <div class="header-status">
             <span id="connectionStatus" class="connection-indicator online" title="Estado de conexión">Online</span>
@@ -210,6 +210,38 @@
                 <div class="progress-bar" role="progressbar" aria-label="Progreso del nivel A1" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
                     <div id="courseProgressFill" class="progress-fill" style="width:0%;"></div>
                 </div>
+            </div>
+        </div>
+
+        <div class="card" id="studyActivityDashboard" style="margin-bottom:12px;padding:12px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
+                <div>
+                    <h3 style="margin:0;">Racha de estudio</h3>
+                    <strong id="studyStreakText" style="font-size:1.25rem;">0 días</strong>
+                    <p id="studyLongestStreakText" style="font-size:0.8rem;color:var(--text-muted);margin:2px 0 0;">Récord: 0 días</p>
+                </div>
+                <div>
+                    <label for="dailyXpGoal" style="display:block;font-size:0.8rem;margin-bottom:4px;">Objetivo diario</label>
+                    <select id="dailyXpGoal" class="input-field" style="width:auto;min-width:110px;" onchange="App.setDailyGoal(this.value)" aria-label="Objetivo diario de XP">
+                        <option value="20">20 XP</option>
+                        <option value="30" selected>30 XP</option>
+                        <option value="50">50 XP</option>
+                        <option value="100">100 XP</option>
+                    </select>
+                </div>
+            </div>
+            <div style="margin-top:12px;">
+                <div style="display:flex;justify-content:space-between;font-size:0.85rem;margin-bottom:5px;">
+                    <span>XP de hoy</span><strong id="studyDailyXpText">0 / 30 XP</strong>
+                </div>
+                <div class="progress-bar" role="progressbar" aria-label="Progreso del objetivo diario" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                    <div id="studyDailyXpFill" class="progress-fill" style="width:0%;"></div>
+                </div>
+                <p id="studyDailyGoalStatus" role="status" aria-live="polite" style="font-size:0.8rem;color:var(--text-muted);margin:6px 0 0;">Te faltan 30 XP para alcanzar tu objetivo.</p>
+            </div>
+            <div style="display:flex;gap:12px;flex-wrap:wrap;font-size:0.8rem;color:var(--text-muted);margin-top:10px;">
+                <span id="studyLessonsTodayText">0 lecciones hoy</span>
+                <span id="studyReviewsTodayText">0 tarjetas repasadas hoy</span>
             </div>
         </div>
 
@@ -522,6 +554,7 @@
                     putSetting('completedLessons', data.completedLessons || []);
                     putSetting('customUnits', data.customUnits);
                     putSetting('syllabusPos', data.syllabusPos);
+                    putSetting('studyActivity', data.studyActivity || StudyActivity.createDefault());
                     tx.oncomplete = () => resolve();
                     tx.onerror = () => reject(tx.error || new Error('No se pudo restaurar la copia.'));
                     tx.onabort = () => reject(tx.error || new Error('Se canceló la restauración.'));
@@ -4704,6 +4737,12 @@
                 try {
                     await this.recordAttempt(current.vocab.id, normalizedGrade);
                     if (this.activeQueue !== queue || this.currentIndex !== index) return;
+                    try {
+                        await App.recordStudyActivity('review', 0);
+                    } catch (activityError) {
+                        console.error('No se pudo guardar la actividad de repaso:', activityError);
+                    }
+                    App.addXp(5);
                     if (normalizedGrade >= 3) this.sessionStats.correct++;
                     else this.sessionStats.incorrect++;
                     this.currentIndex++;
@@ -5115,6 +5154,7 @@
                 if (!App.completedLessons.includes(lessonKey)) {
                     App.completedLessons.push(lessonKey);
                     await DB.set('settings', 'completedLessons', App.completedLessons);
+                    App.recordStudyActivity('lesson', 0).catch(err => console.error('No se pudo guardar la actividad diaria:', err));
                 }
                 const lessons = buildUnitLessons(unit);
                 const isLastLesson = lesson.index === lessons.length - 1;
@@ -5409,6 +5449,7 @@ Requisitos:
             xp: 0,
             completedUnits: [],
             completedLessons: [],
+            studyActivity: null,
             apiKey: '',
 
             async init() {
@@ -5420,6 +5461,8 @@ Requisitos:
                 this.xp = (await DB.get('settings', 'userXp')) || 0;
                 this.completedUnits = (await DB.get('settings', 'completedUnits')) || [];
                 this.completedLessons = (await DB.get('settings', 'completedLessons')) || [];
+                this.studyActivity = StudyActivity.normalize(await DB.get('settings', 'studyActivity'), new Date());
+                DB.set('settings', 'studyActivity', this.studyActivity).catch(err => console.error('No se pudo inicializar la actividad diaria:', err));
                 this.apiKey = (await DB.get('settings', 'geminiApiKey')) || '';
                 CustomLessons.units = (await DB.get('settings', 'customUnits')) || [];
                 CustomLessons.pos = (await DB.get('settings', 'syllabusPos')) || 0;
@@ -5470,7 +5513,49 @@ Requisitos:
             addXp(amount) {
                 this.xp += amount;
                 DB.set('settings', 'userXp', this.xp).catch(err => console.error('No se pudo guardar la experiencia:', err));
+                this.recordStudyActivity('points', amount).catch(err => console.error('No se pudo guardar la actividad diaria:', err));
                 this.updateUI();
+            },
+            recordStudyActivity(kind, amount = 0) {
+                this.studyActivity = StudyActivity.record(this.studyActivity, kind, amount, new Date());
+                this.updateStudyDashboard();
+                return DB.set('settings', 'studyActivity', this.studyActivity);
+            },
+            setDailyGoal(goal) {
+                try {
+                    this.studyActivity = StudyActivity.setGoal(this.studyActivity, Number(goal), new Date());
+                    this.updateStudyDashboard();
+                    DB.set('settings', 'studyActivity', this.studyActivity).catch(err => console.error('No se pudo guardar el objetivo diario:', err));
+                } catch (error) {
+                    console.error('Objetivo diario no válido:', error);
+                    this.updateStudyDashboard();
+                }
+            },
+            updateStudyDashboard() {
+                if (typeof StudyActivity === 'undefined' || !this.studyActivity) return;
+                this.studyActivity = StudyActivity.normalize(this.studyActivity, new Date());
+                const streak = StudyActivity.currentStreak(this.studyActivity, new Date());
+                const streakNode = document.getElementById('studyStreakText');
+                const recordNode = document.getElementById('studyLongestStreakText');
+                const goalSelect = document.getElementById('dailyXpGoal');
+                const xpText = document.getElementById('studyDailyXpText');
+                const xpFill = document.getElementById('studyDailyXpFill');
+                const xpBar = xpFill && xpFill.parentElement;
+                const status = document.getElementById('studyDailyGoalStatus');
+                const lessons = document.getElementById('studyLessonsTodayText');
+                const reviews = document.getElementById('studyReviewsTodayText');
+                const goal = this.studyActivity.dailyGoal;
+                const earned = this.studyActivity.todayXp;
+                const percent = goal > 0 ? Math.min(100, Math.round(earned / goal * 100)) : 0;
+                if (streakNode) streakNode.textContent = streak + (streak === 1 ? ' día' : ' días');
+                if (recordNode) recordNode.textContent = 'Récord: ' + this.studyActivity.longestStreak + (this.studyActivity.longestStreak === 1 ? ' día' : ' días');
+                if (goalSelect && goalSelect.value !== String(goal)) goalSelect.value = String(goal);
+                if (xpText) xpText.textContent = earned + ' / ' + goal + ' XP';
+                if (xpFill) xpFill.style.width = percent + '%';
+                if (xpBar) xpBar.setAttribute('aria-valuenow', String(percent));
+                if (status) status.textContent = earned >= goal ? '¡Objetivo diario cumplido!' : 'Te faltan ' + (goal - earned) + ' XP para alcanzar tu objetivo.';
+                if (lessons) lessons.textContent = this.studyActivity.todayLessons + (this.studyActivity.todayLessons === 1 ? ' lección hoy' : ' lecciones hoy');
+                if (reviews) reviews.textContent = this.studyActivity.todayReviews + (this.studyActivity.todayReviews === 1 ? ' tarjeta repasada hoy' : ' tarjetas repasadas hoy');
             },
             async markUnitCompleted(unitId) {
                 if (!this.completedUnits.includes(unitId)) {
@@ -5492,6 +5577,7 @@ Requisitos:
                 if (fill) fill.style.width = percent + '%';
                 if (label) label.textContent = `${percent}% · ${completed}/${total} unidades`;
                 if (bar) bar.setAttribute('aria-valuenow', String(percent));
+                this.updateStudyDashboard();
             },
             renderCourseRoute() {
                 const container = document.getElementById('courseContainer');
@@ -5697,6 +5783,7 @@ Requisitos:
                     xp: this.xp,
                     completedUnits: this.completedUnits,
                     completedLessons: this.completedLessons,
+                    studyActivity: this.studyActivity,
                     srs: await DB.getAll('srs'),
                     exportedAt: new Date().toISOString()
                 };
@@ -5797,7 +5884,8 @@ Requisitos:
                     }});
                 }
                 const syllabusPos = Number.isSafeInteger(parsed.syllabusPos) && parsed.syllabusPos >= 0 && parsed.syllabusPos <= SYLLABUS.length ? parsed.syllabusPos : 0;
-                return { version: 3, xp: parsed.xp, completedUnits, completedLessons, customUnits, syllabusPos, srs };
+                const studyActivity = StudyActivity.validateBackup(parsed.studyActivity, new Date());
+                return { version: 3, xp: parsed.xp, completedUnits, completedLessons, customUnits, syllabusPos, srs, studyActivity };
             },
             importProgress(e) {
                 const file = e.target.files[0];
@@ -5812,6 +5900,7 @@ Requisitos:
                         this.xp = backup.xp;
                         this.completedUnits = backup.completedUnits;
                         this.completedLessons = backup.completedLessons || [];
+                        this.studyActivity = backup.studyActivity;
                         CustomLessons.units = backup.customUnits;
                         CustomLessons.pos = backup.syllabusPos;
                         alert('Progreso restaurado con éxito.');
@@ -6170,6 +6259,7 @@ Requisitos:
     })();
     </script>
     <script src="./conversation-engine.js"></script>
+    <script src="./study-activity.js"></script>
 
 </body>
 </html>

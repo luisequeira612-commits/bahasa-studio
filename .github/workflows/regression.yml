@@ -37,6 +37,8 @@ jobs:
         run: node --test tests/written-response.test.cjs
       - name: Run assessment engine unit tests
         run: node --test tests/assessment-engine.test.cjs
+      - name: Run curriculum extraction integrity and offline cache tests
+        run: node --test tests/curriculum-extraction.test.js
       - name: Run assessment bank structure tests
         run: npm run test:assessment
       - name: Run progressive assessment unit tests

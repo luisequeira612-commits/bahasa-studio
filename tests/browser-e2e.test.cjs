@@ -697,7 +697,9 @@ test('A1 unit lessons unlock sequentially and the final exam gates the next unit
 
   try {
     await page.goto(url, { waitUntil: 'domcontentloaded' });
-    await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
+    await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db &&
+      Array.isArray(App.completedLessons) && Array.isArray(App.completedUnits) &&
+      document.querySelectorAll('[data-unit-id="a1_u1"][data-lesson-index]').length === 3);
 
     const firstUnitButtons = page.locator('[data-unit-id="a1_u1"][data-lesson-index]');
     assert.equal(await firstUnitButtons.count(), 3, 'Unit 1 should contain three short lessons');

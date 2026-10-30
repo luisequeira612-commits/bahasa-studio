@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bahasa Studio 3.8.0</title>
+    <title>Bahasa Studio 3.8.1</title>
     <meta name="description" content="Curso de indonesio PWA para hispanohablantes sin costo ni penalizaciones.">
     <meta name="theme-color" content="#e8384f">
     <link rel="manifest" href="./manifest.json">
@@ -182,7 +182,7 @@
 
     <header>
         <div class="logo">
-            <span>🇮🇩</span> Bahasa Studio <span style="font-size:0.72rem; font-weight:700; opacity:.8; margin-left:4px;">v3.8.0</span>
+            <span>🇮🇩</span> Bahasa Studio <span style="font-size:0.72rem; font-weight:700; opacity:.8; margin-left:4px;">v3.8.1</span>
         </div>
         <div class="header-status">
             <span id="connectionStatus" class="connection-indicator online" title="Estado de conexión">Online</span>
@@ -364,7 +364,12 @@
 
         <div class="card">
             <h3>Sintetizador de Voz (TTS)</h3>
-            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px;">Comprueba si el paquete de voz en indonesio está instalado en tu dispositivo.</p>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px;">Elige una voz indonesia instalada en tu dispositivo. La disponibilidad depende del navegador y del sistema.</p>
+            <label for="audioVoiceSelect" style="display:block; font-size:0.9rem; margin:10px 0 6px;">Voz indonesia</label>
+            <select id="audioVoiceSelect" class="input-field" onchange="AudioEngine.setVoice(this.value)" aria-label="Voz indonesia">
+                <option value="auto">Automática (recomendada)</option>
+            </select>
+            <p id="audioVoiceStatus" role="status" aria-live="polite" style="font-size:0.85rem;color:var(--text-muted);margin-top:8px;">Buscando voces instaladas…</p>
             <label for="audioPlaybackRate" style="display:block; font-size:0.9rem; margin:10px 0 6px;">Velocidad de reproducción</label>
             <select id="audioPlaybackRate" class="input-field" onchange="AudioEngine.setRate(this.value)" aria-label="Velocidad de reproducción de audio">
                 <option value="0.5">Muy lento (0,5×)</option>
@@ -4321,8 +4326,14 @@
         /* 3. AUDIO Y AUDIO FALLBACK */
         const AudioEngine = {
             synth: window.speechSynthesis,
+            voices: [],
             idVoice: null,
+            selectedVoice: null,
+            voicePreference: 'auto',
             rate: 0.85,
+            voiceKey(voice) {
+                return voice.voiceURI || (String(voice.lang || '') + ':' + String(voice.name || ''));
+            },
             setRate(value, persist = true) {
                 const rate = Number(value);
                 if (![0.5, 0.7, 0.85, 1].includes(rate)) return false;
@@ -4337,14 +4348,74 @@
                 }
                 return true;
             },
-            init() {
+            renderVoiceOptions() {
+                const select = document.getElementById('audioVoiceSelect');
+                if (!select) return;
+                select.replaceChildren();
+                const automatic = document.createElement('option');
+                automatic.value = 'auto';
+                automatic.textContent = 'Automática (recomendada)';
+                select.appendChild(automatic);
+                this.voices.filter(voice => String(voice.lang || '').toLowerCase().startsWith('id')).forEach(voice => {
+                    const option = document.createElement('option');
+                    option.value = this.voiceKey(voice);
+                    option.textContent = voice.name + ' (' + voice.lang + ')';
+                    select.appendChild(option);
+                });
+                const available = this.voices.some(voice =>
+                    String(voice.lang || '').toLowerCase().startsWith('id') &&
+                    this.voiceKey(voice) === this.voicePreference
+                );
+                select.value = available ? this.voicePreference : 'auto';
+            },
+            updateVoiceStatus() {
+                const status = document.getElementById('audioVoiceStatus');
+                if (!status) return;
+                const indonesianVoices = this.voices.filter(voice => String(voice.lang || '').toLowerCase().startsWith('id'));
+                if (!this.synth) {
+                    status.textContent = 'Este navegador no admite síntesis de voz. Puedes continuar con las actividades sin audio.';
+                } else if (!indonesianVoices.length) {
+                    status.textContent = 'No se detectó una voz indonesia instalada. Se usará la voz predeterminada del sistema con el idioma id-ID; puedes instalar una voz indonesia en los ajustes del dispositivo.';
+                } else {
+                    const active = this.selectedVoice || this.idVoice;
+                    const countLabel = indonesianVoices.length === 1 ? 'voz indonesia disponible' : 'voces indonesias disponibles';
+                    status.textContent = indonesianVoices.length + ' ' + countLabel + '. Voz activa: ' +
+                        (active ? active.name : 'selección automática') + '.';
+                }
+            },
+            refreshVoices() {
                 if (!this.synth) return;
-                const update = () => {
-                    const voices = this.synth.getVoices();
-                    this.idVoice = voices.find(v => v.lang.toLowerCase().startsWith('id'));
-                };
-                update();
-                if (this.synth.onvoiceschanged !== undefined) this.synth.onvoiceschanged = update;
+                this.voices = this.synth.getVoices() || [];
+                const indonesianVoices = this.voices.filter(voice => String(voice.lang || '').toLowerCase().startsWith('id'));
+                this.idVoice = indonesianVoices[0] || null;
+                this.selectedVoice = indonesianVoices.find(voice => this.voiceKey(voice) === this.voicePreference) || this.idVoice;
+                this.renderVoiceOptions();
+                this.updateVoiceStatus();
+            },
+            setVoice(value, persist = true) {
+                const preference = String(value || 'auto');
+                this.voicePreference = preference;
+                this.selectedVoice = preference === 'auto'
+                    ? this.idVoice
+                    : this.voices.find(voice =>
+                        String(voice.lang || '').toLowerCase().startsWith('id') &&
+                        this.voiceKey(voice) === preference
+                    ) || this.idVoice;
+                this.renderVoiceOptions();
+                this.updateVoiceStatus();
+                if (persist && typeof DB !== 'undefined') {
+                    DB.set('settings', 'audioVoiceURI', preference)
+                        .catch(error => console.error('No se pudo guardar la voz de audio:', error));
+                }
+                return true;
+            },
+            init() {
+                if (!this.synth) {
+                    this.updateVoiceStatus();
+                    return;
+                }
+                this.refreshVoices();
+                if (this.synth.onvoiceschanged !== undefined) this.synth.onvoiceschanged = () => this.refreshVoices();
             },
             speak(text) {
                 if (!this.synth) {
@@ -4354,14 +4425,16 @@
                 this.synth.cancel();
                 const utter = new SpeechSynthesisUtterance(text);
                 utter.lang = 'id-ID';
-                if (this.idVoice) utter.voice = this.idVoice;
+                const voice = this.selectedVoice || this.idVoice;
+                if (voice) utter.voice = voice;
                 utter.rate = this.rate;
                 this.synth.speak(utter);
             },
             testVoice() {
                 const status = document.getElementById('voiceTestStatus');
-                if (this.idVoice) {
-                    if (status) status.textContent = 'Probando la voz indonesia disponible (id-ID).';
+                if (this.selectedVoice || this.idVoice) {
+                    const voice = this.selectedVoice || this.idVoice;
+                    if (status) status.textContent = 'Probando la voz indonesia «' + voice.name + '» (' + voice.lang + ').';
                 } else {
                     if (status) status.textContent = 'No se detectó una voz indonesia instalada. Se intentará usar la voz predeterminada del sistema con el idioma id-ID; el resultado puede variar.';
                 }
@@ -5312,6 +5385,7 @@ Requisitos:
                 await DB.init();
                 AudioEngine.init();
                 AudioEngine.setRate((await DB.get('settings', 'audioPlaybackRate')) ?? 0.85, false);
+                AudioEngine.setVoice((await DB.get('settings', 'audioVoiceURI')) || 'auto', false);
 
                 this.xp = (await DB.get('settings', 'userXp')) || 0;
                 this.completedUnits = (await DB.get('settings', 'completedUnits')) || [];

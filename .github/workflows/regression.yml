@@ -27,6 +27,8 @@ jobs:
         run: node --test tests/audit-kbbi-pending.test.mjs
       - name: Run assessment engine unit tests
         run: node --test tests/assessment-engine.test.cjs
+      - name: Run progressive assessment unit tests
+        run: node --test tests/progressive-assessment.test.cjs
       - name: Run real-browser end-to-end tests
         run: node --test tests/browser-e2e.test.cjs
       - name: Run assessment page browser tests

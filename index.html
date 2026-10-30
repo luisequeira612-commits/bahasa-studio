@@ -414,6 +414,15 @@
         </div>
 
         <div class="card">
+            <h3>Registro de respuestas escritas</h3>
+            <p style="font-size:0.85rem;color:var(--text-muted);margin:8px 0;">Guarda respuestas rechazadas y respuestas aceptadas por una pequeña errata en este dispositivo. Es independiente de tu progreso y de las copias de seguridad.</p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;">
+                <button class="btn btn-outline" style="flex:1;min-width:140px;" onclick="WrittenResponse.exportLog()">Exportar registro</button>
+                <button class="btn btn-outline" style="flex:1;min-width:140px;" onclick="WrittenResponse.clearWithConfirmation()">Borrar registro</button>
+            </div>
+        </div>
+
+        <div class="card">
             <h3>Sintetizador de Voz (TTS)</h3>
             <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px;">Elige una voz indonesia instalada en tu dispositivo. La disponibilidad depende del navegador y del sistema.</p>
             <label for="audioVoiceSelect" style="display:block; font-size:0.9rem; margin:10px 0 6px;">Voz indonesia</label>
@@ -500,6 +509,99 @@
     </nav>
 
     <script>
+
+        const WrittenResponse = (() => {
+            const STORAGE_KEY = 'bahasaStudioWrittenAnswerReviewLog';
+            const LIMIT = 300;
+            function normalize(value, language = 'id') {
+                let text = String(value ?? '').normalize('NFKC').toLowerCase();
+                text = text.replace(/[‘’‛ʼ＇\x60]/g, "'").replace(/[“”„‟«»"]/g, ' ');
+                text = text.replace(/[.,!?¿¡;:…()[\]{}]/g, ' ').replace(/\s+/g, ' ').trim();
+                if (language === 'es') text = text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').normalize('NFC');
+                return text.replace(/'/g, '');
+            }
+            function oneCharacterApart(a, b) {
+                if (a === b || Math.abs(a.length - b.length) > 1 || Math.min(a.length, b.length) < 5) return false;
+                let i=0,j=0,edits=0;
+                while(i<a.length&&j<b.length){
+                    if(a[i]===b[j]){i++;j++;continue;}
+                    if(++edits>1)return false;
+                    if(a.length>b.length)i++;else if(b.length>a.length)j++;else{i++;j++;}
+                }
+                if(i<a.length||j<b.length)edits++;
+                return edits===1;
+            }
+            function optionalVariants(answer, words, language) {
+                let variants=[answer];
+                for(const optional of (Array.isArray(words)?words:[]).map(w=>normalize(w,language)).filter(Boolean)){
+                    const expanded=[];
+                    for(const value of variants){
+                        expanded.push(value);
+                        const without=value.split(' ').filter(token=>token!==optional).join(' ');
+                        if(without!==value)expanded.push(without);
+                    }
+                    variants=[...new Set(expanded)];
+                }
+                return variants;
+            }
+            function compare(input, exercise) {
+                const language=exercise.answerLanguage||(exercise.type==='translate_id_es'?'es':'id');
+                const normalizedInput=normalize(input,language);
+                const alternatives=Array.isArray(exercise.acceptedAnswers)?exercise.acceptedAnswers
+                    .filter(item=>typeof item==='string'||(item&&item.status!=='pending-review'&&item.status!=='pending_review'&&typeof item.text==='string'))
+                    .map(item=>typeof item==='string'?item:item.text):[];
+                const candidates=[typeof exercise.answer==='string'?exercise.answer:'',...alternatives]
+                    .flatMap(answer=>optionalVariants(normalize(answer,language),exercise.optionalWords,language)).filter(Boolean);
+                if(candidates.includes(normalizedInput))return{status:'correct',normalizedInput,expected:exercise.answer||''};
+                const inputWords=normalizedInput.split(' ').filter(Boolean);
+                for(const candidate of candidates){
+                    const expectedWords=candidate.split(' ').filter(Boolean);
+                    if(inputWords.length!==expectedWords.length)continue;
+                    let changed=-1;
+                    for(let i=0;i<inputWords.length;i++){
+                        if(inputWords[i]===expectedWords[i])continue;
+                        if(changed!==-1||!oneCharacterApart(inputWords[i],expectedWords[i])){changed=-2;break;}
+                        changed=i;
+                    }
+                    if(changed>=0)return{status:'typo',normalizedInput,expected:candidate,correction:candidate};
+                }
+                return{status:'incorrect',normalizedInput,expected:exercise.answer||''};
+            }
+            function read(){
+                try{const value=JSON.parse(window.localStorage.getItem(STORAGE_KEY)||'[]');return Array.isArray(value)?value:[];}
+                catch(_){return[];}
+            }
+            function record(entry){
+                try{
+                    const entries=read();
+                    const old=entries.find(item=>item.exerciseId===entry.exerciseId&&item.normalizedText===entry.normalizedText&&item.type===entry.type);
+                    const date=entry.date||new Date().toISOString();
+                    if(old){old.count=(Number(old.count)||1)+1;old.date=date;old.originalText=entry.originalText;}
+                    else entries.push({...entry,date,count:1});
+                    window.localStorage.setItem(STORAGE_KEY,JSON.stringify(entries.slice(-LIMIT)));
+                }catch(_){/* Logging must never interrupt a lesson. */}
+            }
+            function recordResult(result,entry){
+                if(result.status==='correct')return;
+                record({...entry,type:result.status==='typo'?'accepted-typo':'rejected'});
+            }
+            function clear(){try{window.localStorage.removeItem(STORAGE_KEY);}catch(_){}}
+            function exportLog(){
+                try{
+                    const blob=new Blob([JSON.stringify(read(),null,2)],{type:'application/json'});
+                    const url=URL.createObjectURL(blob);
+                    const link=document.createElement('a');
+                    link.href=url;link.download='bahasa-studio-respuestas-escritas.json';
+                    document.body.appendChild(link);link.click();link.remove();URL.revokeObjectURL(url);
+                }catch(_){}
+            }
+            function clearWithConfirmation(){
+                try{if(window.confirm('¿Borrar el registro local de respuestas escritas? Esta acción no afecta tu progreso.'))clear();}catch(_){}
+            }
+            return{STORAGE_KEY,LIMIT,normalize,compare,read,record,recordResult,clear,exportLog,clearWithConfirmation};
+        })();
+        window.WrittenResponse = WrittenResponse;
+
         /* 1. MOTOR BASE DE DATOS (IndexedDB) */
         const DB = {
             dbName: 'BahasaStudio3DB',
@@ -15614,7 +15716,10 @@
                 if (!questions.length) return;
                 this.currentUnit = unit;
                 this.currentLesson = null;
-                this.queue = questions;
+                this.queue = questions.map((exercise, index) => ({
+                    ...exercise,
+                    _auditExerciseId: exercise.id || unit.id + ':assessment:exercise-' + (index + 1)
+                }));
                 this.retry = [];
                 this.intro = false;
                 this.assessmentMode = true;
@@ -15649,7 +15754,10 @@
                 this.currentUnit = unit;
                 this.currentLesson = lesson;
                 this.lessonIndex = lessonIndex;
-                this.queue = lesson.exercises;
+                this.queue = lesson.exercises.map((exercise, index) => ({
+                    ...exercise,
+                    _auditExerciseId: exercise.id || unit.id + ':lesson-' + (lesson.index + 1) + ':exercise-' + (index + 1)
+                }));
                 this.retry = [];
                 this.intro = true;
                 this.assessmentMode = false;
@@ -15870,10 +15978,27 @@
                 this.showFeedback(this.selectedOption === ex.answer, ex.explanation);
             },
             checkTranslate() {
+                this.stopPronunciationPractice();
                 const ex = this.queue[this.stepIndex];
-                const norm = s => s.toLowerCase().replace(/[.,!?¿¡]/g, '').replace(/\s+/g, ' ').trim();
-                const input = norm(document.getElementById('textAnswer').value);
-                this.showFeedback(input === norm(ex.answer), ex.explanation);
+                const originalText = document.getElementById('textAnswer').value || '';
+                const result = WrittenResponse.compare(originalText, ex);
+                const direction = ex.direction || (ex.type === 'translate_es_id' ? 'es→id' :
+                    ex.type === 'translate_id_es' ? 'id→es' : 'id→id (dictado)');
+                const unit = this.currentUnit || {};
+                const lesson = this.currentLesson || {};
+                const logEntry = {
+                    exerciseId: ex._auditExerciseId || ex.id || ((unit.id || 'unknown') + ':exercise-' + (this.stepIndex + 1)),
+                    unit: unit.id || unit.title || 'unknown',
+                    unitTitle: unit.title || unit.id || 'unknown',
+                    lesson: Number.isInteger(lesson.index) ? 'Lección ' + (lesson.index + 1) : 'Evaluación',
+                    direction,
+                    expectedAnswer: ex.answer || '',
+                    originalText,
+                    normalizedText: result.normalizedInput
+                };
+                WrittenResponse.recordResult(result, logEntry);
+                if (result.status === 'typo') this.showFeedback(true, ex.explanation, 'Casi: se escribe ' + result.correction);
+                else this.showFeedback(result.status === 'correct', ex.explanation);
             },
             checkWriting() {
                 const ex = this.queue[this.stepIndex];
@@ -15909,7 +16034,7 @@
                 const isCorrect = JSON.stringify(this.userOrder) === JSON.stringify(ex.correctOrder);
                 this.showFeedback(isCorrect, ex.explanation);
             },
-            showFeedback(isCorrect, explanation) {
+            showFeedback(isCorrect, explanation, feedbackMessage) {
                 const ex = this.queue[this.stepIndex];
                 if (this.assessmentMode) {
                     if (isCorrect) this.assessmentCorrect++;
@@ -15922,7 +16047,7 @@
                 const area = document.getElementById('actionArea');
                 area.innerHTML = `
                     <div class="feedback-box ${isCorrect ? 'correct' : 'wrong'}">
-                        ${isCorrect ? '¡Correcto!' : 'Incorrecto'}<br>
+                        ${feedbackMessage ? App.escapeHtml(feedbackMessage) : (isCorrect ? '¡Correcto!' : 'Incorrecto')}<br>
                         <small>${App.escapeHtml(explanation)}</small>
                     </div>
                     <button class="btn" style="margin-top:12px;" onclick="LessonEngine.nextStep(${isCorrect})">Continuar</button>

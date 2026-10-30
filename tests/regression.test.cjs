@@ -18,9 +18,9 @@ test('inline application JavaScript and service worker parse', () => {
 });
 
 test('PWA version is consistent across HTML, manifest and cache', () => {
-  assert.match(html, /Bahasa Studio 3\.7\.3/);
-  assert.equal(manifest.name, 'Bahasa Studio 3.7.3');
-  assert.match(serviceWorker, /bahasa-studio-v3\.7\.3/);
+  assert.match(html, /Bahasa Studio 3\.8\.0/);
+  assert.equal(manifest.name, 'Bahasa Studio 3.8.0');
+  assert.match(serviceWorker, /bahasa-studio-v3\.8\.0/);
   assert.match(serviceWorker, /\['\.\/', '\.\/index\.html', '\.\/manifest\.json', '\.\/assessment\.html', '\.\/assessment-engine\.js'\]/);
   assert.doesNotMatch(html + serviceWorker + JSON.stringify(manifest), /3\.5\.1/);
 });
@@ -295,6 +295,7 @@ test('version 3 backup normalization supplies safe defaults for absent legacy SR
   for (const expected of [
     'Number.isSafeInteger(parsed.xp)',
     'parsed.completedUnits === undefined ? [] : parsed.completedUnits',
+    'parsed.completedLessons === undefined ? [] : parsed.completedLessons',
     'parsed.customUnits === undefined ? [] : parsed.customUnits',
     "parsed.srs === undefined ? [] : parsed.srs",
     "const attempts = count('attempts');",
@@ -304,7 +305,7 @@ test('version 3 backup normalization supplies safe defaults for absent legacy SR
     'value.lastReviewed === null || value.lastReviewed === undefined',
     "interval: num('interval', 0",
     "efactor: num('efactor', 2.5",
-    'return { version: 3, xp: parsed.xp, completedUnits, customUnits, syllabusPos, srs }'
+    'return { version: 3, xp: parsed.xp, completedUnits, completedLessons, customUnits, syllabusPos, srs }'
   ]) assert.ok(validator.includes(expected), 'missing backup normalization: ' + expected);
 });
 
@@ -791,13 +792,14 @@ test('A1 compound-number grammar explains the tens-plus-unit rule and change inc
 
 
 test('lesson start avoids duplicating automatic drills for vocabulary already covered by authored exercises', () => {
-  const start = html.indexOf('startUnit(unit) {');
+  const start = html.indexOf('startUnit(unit, lessonIndex = 0) {');
   const end = html.indexOf('\n            exit() {', start);
   assert.ok(start >= 0 && end > start, 'startUnit method must exist');
   const method = html.slice(start, end);
-  assert.match(method, /const practicedVocabIds = new Set\(unit\.exercises\.map\(ex => ex\.vocabId\)\)/);
-  assert.match(method, /unit\.vocab\.filter\(v => !practicedVocabIds\.has\(v\.id\)\)\.flatMap/);
-  assert.match(method, /this\.queue = \[\.\.\.unit\.exercises, \.\.\.reinforcement\]/);
+  assert.match(method, /const lessons = buildUnitLessons\(unit\)/);
+  assert.match(method, /this\.queue = lesson\.exercises/);
+  assert.match(html, /assignedAuthoredExercises/);
+  assert.match(html, /introducesFutureWord/);
 });
 
 

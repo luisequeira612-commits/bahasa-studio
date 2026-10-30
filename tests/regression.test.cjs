@@ -470,7 +470,8 @@ test('backup restoration writes SRS and settings in one readwrite transaction an
   assert.ok(bodyStart > 0 && bodyEnd > bodyStart, 'could extract production backup restore method body');
   const methodBody = methodSource.slice(bodyStart, bodyEnd);
   const replaceBackupData = vm.runInNewContext(
-    '({ async replaceBackupData(data) {' + methodBody + '\n} }).replaceBackupData'
+    '({ async replaceBackupData(data) {' + methodBody + '\n} }).replaceBackupData',
+    { StudyActivity }
   );
 
   const data = {
@@ -507,6 +508,7 @@ test('backup restoration writes SRS and settings in one readwrite transaction an
   assert.ok(writes.some(write => write.store === 'srs' && write.type === 'put' && write.value.wordId === 'v1'));
   assert.ok(writes.some(write => write.store === 'settings' && write.type === 'put' && write.value.key === 'userXp' && write.value.val === 8));
   assert.ok(writes.some(write => write.store === 'settings' && write.type === 'put' && write.value.key === 'completedUnits'));
+  assert.ok(writes.some(write => write.store === 'settings' && write.type === 'put' && write.value.key === 'studyActivity'));
 
   const abortDb = {
     transaction() {

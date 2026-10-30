@@ -6,7 +6,12 @@ const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
 
-const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+const curriculumSandbox = { window: {} };
+vm.runInNewContext(fs.readFileSync(path.join(__dirname, '..', 'curriculum-a1.js'), 'utf8'), curriculumSandbox);
+vm.runInNewContext(fs.readFileSync(path.join(__dirname, '..', 'curriculum-a2.js'), 'utf8'), curriculumSandbox);
+const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8')
+  .replace('window.BAHASA_CURRICULUM_A1', JSON.stringify(curriculumSandbox.window.BAHASA_CURRICULUM_A1))
+  .replace('window.BAHASA_CURRICULUM_A2', JSON.stringify(curriculumSandbox.window.BAHASA_CURRICULUM_A2));
 
 test('unit assessment questions are generated only from that unit vocabulary', () => {
   const start = html.indexOf('const CourseData =');

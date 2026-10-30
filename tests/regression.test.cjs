@@ -211,6 +211,8 @@ test('A2 units 1-4 have 3-5 authored lessons and a complete unit-test bank', () 
     { CourseData: course, Map, Set, Math }
   );
   const a2 = course.levels.find(level => level.id === 'A2');
+  const allVocabIds = new Set(course.levels.flatMap(level => level.units.flatMap(unit => unit.vocab || [])).map(word => word.id));
+  const a1Forms = new Set(course.levels.find(level => level.id === 'A1').units.flatMap(unit => unit.vocab).map(word => word.idn.trim().toLowerCase()));
   for (const unit of a2.units.slice(0, 4)) {
     const lessons = engine.buildUnitLessons(unit);
     assert.ok(lessons.length >= 3 && lessons.length <= 5, unit.id + ' must have 3-5 lessons');
@@ -232,7 +234,7 @@ test('A2 units 1-4 have 3-5 authored lessons and a complete unit-test bank', () 
       assert.ok(lesson.newVocab.length > 0, lesson.title + ' must introduce vocabulary');
       for (const word of lesson.newVocab) assert.ok(unitVocabIds.has(word.id));
       for (const exercise of lesson.exercises) {
-        assert.ok(unitVocabIds.has(exercise.vocabId), unit.id + ' has an exercise linked to unknown vocabulary');
+        assert.ok(allVocabIds.has(exercise.vocabId), unit.id + ' has an exercise linked to unknown canonical vocabulary');
         assert.ok(['mc', 'translate_es_id', 'listen', 'order', 'write'].includes(exercise.type));
         if (exercise.type === 'mc') {
           assert.ok(Array.isArray(exercise.options) && exercise.options.length >= 2);
@@ -248,6 +250,9 @@ test('A2 units 1-4 have 3-5 authored lessons and a complete unit-test bank', () 
           assert.ok(exercise.modelAnswer.length > 0);
         }
       }
+    }
+    for (const word of unit.vocab) {
+      assert.ok(!a1Forms.has(word.idn.trim().toLowerCase()), unit.id + ' must not reintroduce an A1 word as new vocabulary');
     }
     const testItems = engine.buildUnitAssessmentItems(unit);
     assert.equal(testItems.length, unit.vocab.length, unit.id + ' must generate one assessment item per taught word');

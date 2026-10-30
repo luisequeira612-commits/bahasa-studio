@@ -46,6 +46,7 @@ jobs:
             index.html
             assessment.html
             assessment-engine.js
+            conversation-engine.js
             manifest.json
           if-no-files-found: error
           retention-days: 7

@@ -4196,10 +4196,26 @@
             if (!unit || !Array.isArray(unit.vocab) || !unit.vocab.length) return [];
             const a1Course = CourseData.levels.find(level => level.id === 'A1');
             const isOfficialA1Unit = Boolean(a1Course && a1Course.units.some(entry => entry.id === unit.id));
-            if (unit.custom || !isOfficialA1Unit) return [{
-                index: 0, title: 'Lección única', newVocab: unit.vocab, reviewVocab: [],
-                vocab: unit.vocab, grammar: unit.grammar, exercises: unit.exercises || []
-            }];
+            if (unit.custom || !isOfficialA1Unit) {
+                const authoredExercises = unit.exercises || [];
+                const practicedVocabIds = new Set(authoredExercises.map(exercise => exercise.vocabId));
+                const reinforcement = unit.vocab.filter(word => !practicedVocabIds.has(word.id)).flatMap((word, index) => {
+                    const distractors = unit.vocab.filter(other => other.id !== word.id).map(other => other.esp)
+                        .filter((meaning, i, all) => meaning !== word.esp && all.indexOf(meaning) === i).slice(0, 3);
+                    const options = [word.esp, ...distractors].sort(() => Math.random() - 0.5);
+                    const practice = index % 2 === 0
+                        ? { vocabId: word.id, type: 'mc', prompt: '¿Qué significa «' + word.idn + '»?', options, answer: options.indexOf(word.esp), explanation: '«' + word.idn + '» significa «' + word.esp + '».' }
+                        : { vocabId: word.id, type: 'translate_es_id', prompt: 'Traduce al indonesio: «' + word.esp + '»', answer: word.idn, explanation: '«' + word.idn + '» significa «' + word.esp + '».' };
+                    const listening = index % 2 === 0
+                        ? [{ vocabId: word.id, type: 'listen', prompt: 'Escucha y escribe la palabra en indonesio que oyes (significa «' + word.esp + '»).', answer: word.idn, explanation: 'La palabra es «' + word.idn + '» («' + word.esp + '»).' }]
+                        : [];
+                    return [practice, ...listening];
+                });
+                return [{
+                    index: 0, title: 'Lección única', newVocab: unit.vocab, reviewVocab: [],
+                    vocab: unit.vocab, grammar: unit.grammar, exercises: [...authoredExercises, ...reinforcement]
+                }];
+            }
             const lessonCount = Math.min(5, Math.max(2, Math.ceil(unit.vocab.length / 4)));
             const chunkSize = Math.ceil(unit.vocab.length / lessonCount);
             const lessons = [];
@@ -4639,7 +4655,8 @@
             lessonIndex: 0,
 
             startUnitAssessment(unitId) {
-                const unit = getLevels().flatMap(level => level.units).find(entry => entry.id === unitId);
+                const level = CourseData.levels.find(entry => entry.id === 'A1');
+                const unit = level && level.units.find(entry => entry.id === unitId);
                 if (!unit) return;
                 const lessons = buildUnitLessons(unit);
                 const completedCount = lessons.filter(lesson => App.completedLessons.includes(unitLessonProgressKey(unitId, lesson.index))).length;
@@ -4973,6 +4990,23 @@
                     return;
                 }
                 const unit = this.currentUnit;
+                const a1 = CourseData.levels.find(level => level.id === 'A1');
+                const isProgressiveA1Unit = Boolean(a1 && a1.units.some(entry => entry.id === unit.id));
+                if (!isProgressiveA1Unit) {
+                    await App.markUnitCompleted(unit.id);
+                    for (const word of unit.vocab) {
+                        if (!(await DB.get('srs', word.id))) await SRSEngine.recordAttempt(word.id, 4);
+                    }
+                    document.getElementById('exerciseArea').innerHTML = `
+                        <div style="text-align:center; margin-top:40px;">
+                            <h2>🎉 Unidad completada</h2>
+                            <p style="margin:16px 0; color:var(--text-muted);">Progreso y repetición espaciada guardados.</p>
+                            <button class="btn" onclick="LessonEngine.exit()">Volver al curso</button>
+                        </div>
+                    `;
+                    document.getElementById('lessonProgressFill').style.width = '100%';
+                    return;
+                }
                 const lesson = this.currentLesson;
                 const lessonKey = unitLessonProgressKey(unit.id, lesson.index);
                 if (!App.completedLessons.includes(lessonKey)) {
@@ -5388,13 +5422,15 @@ Requisitos:
                             const lessonUnlocked = unitAccessible && (lessonDone || lesson.index === (nextLesson < 0 ? lessons.length : nextLesson));
                             return `<button class="btn btn-outline btn-sm" style="flex:1; min-width:135px;" data-unit-id="${App.escapeHtml(unit.id)}" data-lesson-index="${lesson.index}" ${lessonUnlocked ? '' : 'disabled'} onclick="LessonEngine.startUnitById(this.dataset.unitId, Number(this.dataset.lessonIndex))">${lessonDone ? '✓ ' : ''}Lección ${lesson.index + 1}${lessonDone ? ' · Repasar' : ''}</button>`;
                         }).join('');
-                        const examButton = !isDone && unitAccessible && completedCount === lessons.length
+                        const examButton = lvl.id === 'A1' && !isDone && unitAccessible && completedCount === lessons.length
                             ? `<button class="btn" data-unit-id="${App.escapeHtml(unit.id)}" onclick="LessonEngine.startUnitAssessment(this.dataset.unitId)">Prueba final · Desbloquear siguiente unidad</button>`
                             : '';
+                        const statusLabel = isDone ? (lvl.id === 'A1' ? 'Aprobada' : 'Completada')
+                            : lvl.id === 'A1' ? (isNext ? 'En curso' : 'Bloqueada') : 'Disponible';
                         card.innerHTML = `
                             <summary>
                                 <span class="unit-title">${App.escapeHtml(unit.title)} ${isDone ? '✓' : ''}${unit.custom ? ' ✨' : ''}</span>
-                                <span class="badge">${isDone ? 'Aprobada' : isNext ? 'En curso' : 'Bloqueada'}</span>
+                                <span class="badge">${statusLabel}</span>
                             </summary>
                             <div class="unit-body">
                                 <p style="font-size:0.85rem; color:var(--text-muted);">${App.escapeHtml(unit.desc)}</p>
@@ -5409,7 +5445,7 @@ Requisitos:
                                 </div>
                                 <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;">${lessonButtons}</div>
                                 ${examButton}
-                                ${isDone ? '<p style="font-size:0.85rem;color:var(--success);margin-top:8px;">Prueba final superada · siguiente unidad desbloqueada</p>' : ''}
+                                ${isDone ? `<p style="font-size:0.85rem;color:var(--success);margin-top:8px;">${lvl.id === 'A1' ? 'Prueba final superada · siguiente unidad desbloqueada' : 'Unidad completada'}</p>` : ''}
                             </div>
                         `;
                         levelEl.appendChild(card);

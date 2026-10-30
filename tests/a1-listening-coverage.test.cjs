@@ -20,7 +20,7 @@ function extractObjectLiteral(source, marker) {
     if (quote) {
       if (escaped) {
         escaped = false;
-      } else if (char === '\\\\') {
+      } else if (char === '\\') {
         escaped = true;
       } else if (char === quote) {
         quote = null;

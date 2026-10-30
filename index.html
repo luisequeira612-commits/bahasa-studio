@@ -4636,8 +4636,8 @@
                 recognition.interimResults = false;
                 recognition.maxAlternatives = 3;
                 const normalize = value => String(value || '').toLocaleLowerCase('id-ID')
-                    .normalize('NFD').replace(/[\\u0300-\\u036f]/g, '')
-                    .replace(/[^\\p{L}\\p{N}\\s]/gu, ' ').replace(/\\s+/g, ' ').trim();
+                    .normalize('NFD').replace(/\p{M}/gu, '')
+                    .replace(/[^\p{L}\p{N}\s]/gu, ' ').replace(/\s+/g, ' ').trim();
                 status.textContent = 'Escuchando… Di la frase en indonesio con claridad.';
                 const button = document.querySelector('[aria-label="Practicar pronunciación"]');
                 if (button) button.disabled = true;

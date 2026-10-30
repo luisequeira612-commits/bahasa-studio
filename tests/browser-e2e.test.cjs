@@ -734,7 +734,7 @@ test('optional Indonesian pronunciation practice compares browser recognition wi
       window.__mockRecognition.onend();
     });
     assert.match(await page.locator('#pronunciationStatus').innerText(), /frase reconocida coincide/);
-    assert.equal(await page.evaluate(() => LessonEngine.activeRecognition === null), true);
+    assert.equal(await page.evaluate(() => PronunciationEngine.activeRecognition === null), true);
     assert.equal(await page.evaluate(() => App.state?.xp || 0), 0,
       'speaking practice must not award XP or grade the exercise');
   } finally {
@@ -807,7 +807,7 @@ test('grading a listening answer immediately stops active microphone recognition
     await page.getByRole('button', { name: 'Buenos días' }).click();
     await page.getByRole('button', { name: 'Comprobar' }).click();
     assert.equal(await page.evaluate(() => window.__recognitionAborted), true);
-    assert.equal(await page.evaluate(() => LessonEngine.activeRecognition === null), true);
+    assert.equal(await page.evaluate(() => PronunciationEngine.activeRecognition === null), true);
   } finally {
     await context.close();
     await new Promise(resolve => server.close(resolve));
@@ -858,7 +858,7 @@ test('listen-and-type exercises support optional pronunciation practice against 
       window.__mockRecognition.onend();
     });
     assert.match(await page.locator('#pronunciationStatus').innerText(), /frase reconocida coincide/);
-    assert.equal(await page.evaluate(() => LessonEngine.activeRecognition === null), true);
+    assert.equal(await page.evaluate(() => PronunciationEngine.activeRecognition === null), true);
     assert.equal(await page.evaluate(() => App.xp), 0,
       'pronunciation practice must not award XP or grade the listening exercise');
   } finally {

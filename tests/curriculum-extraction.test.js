@@ -121,7 +121,7 @@ test('service worker precaches both data files and invalidates the previous cach
 test('the extracted stylesheet preserves the original CSS content', () => {
   const css = fs.readFileSync(require.resolve('../styles.css'), 'utf8');
   assert.match(html, /<link rel="stylesheet" href="\.\/styles\.css">/);
-  assert.doesNotMatch(html, /<style[\\s>]/i);
+  assert.doesNotMatch(html, /<style[\s>]/i);
   assert.equal(fnv1a(css), '75b70c87', 'extracted CSS content changed');
 });
 

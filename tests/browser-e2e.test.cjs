@@ -792,6 +792,7 @@ test('Indonesian TTS voice selection is available, applied to speech, and persis
     await page.goto(url, { waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
     await page.waitForFunction(() => document.querySelectorAll('#audioVoiceSelect option').length === 3);
+    await page.getByRole('button', { name: 'Ajustes' }).click();
     const options = await page.locator('#audioVoiceSelect option').allTextContents();
     assert.deepEqual(options, [
       'Automática (recomendada)',
@@ -808,6 +809,7 @@ test('Indonesian TTS voice selection is available, applied to speech, and persis
     await page.reload({ waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
     await page.waitForFunction(() => document.querySelectorAll('#audioVoiceSelect option').length === 3);
+    await page.getByRole('button', { name: 'Ajustes' }).click();
     assert.equal(await page.locator('#audioVoiceSelect').inputValue(), 'mock-id-b',
       'the selected Indonesian voice should be restored after reload');
     await page.evaluate(() => AudioEngine.speak('Terima kasih'));

@@ -32,7 +32,7 @@ test('unit 1 listening dialogue does not introduce unstudied words', () => {
   const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
   const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
   const unit1 = course.levels.find(level => level.id === 'A1').units.find(unit => unit.id === 'a1_u1');
-  const dialogue = unit1.exercises.find(exercise => String(exercise.audioText || '').includes('Selamat pagi') && String(exercise.audioText || '').includes('Terima kasih'));
+  const dialogue = unit1.exercises.find(exercise => String(exercise.audioText || '').includes('Selamat pagi') && String(exercise.audioText || '').toLocaleLowerCase().includes('terima kasih'));
   assert.equal(dialogue.audioText, 'Selamat pagi. Apa kabar? Baik, terima kasih.');
   const taughtWords = new Set(unit1.vocab.map(word => word.idn));
   assert.ok(taughtWords.has('Apa kabar?'), 'the dialogue question should be taught in Unit 1');

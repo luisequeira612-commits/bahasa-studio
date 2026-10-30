@@ -4912,7 +4912,7 @@
                 this.activeRecognition = recognition;
                 recognition.lang = 'id-ID';
                 recognition.continuous = false;
-                recognition.interimResults = false;
+                recognition.interimResults = true;
                 recognition.maxAlternatives = 3;
                 const normalize = value => String(value || '').toLocaleLowerCase('id-ID')
                     .normalize('NFD').replace(/\p{M}/gu, '')
@@ -4921,7 +4921,17 @@
                 const button = document.querySelector('[aria-label="Practicar pronunciación"]');
                 if (button) button.disabled = true;
                 recognition.onresult = event => {
-                    const alternatives = Array.from(event.results[0] || []).map(item => item.transcript || '');
+                    const results = Array.from(event.results || []);
+                    const finalResults = results.filter(result => result.isFinal);
+                    const finalResult = finalResults[finalResults.length - 1];
+                    if (!finalResult) {
+                        const interimResults = results.filter(result => !result.isFinal);
+                        const interimResult = interimResults[interimResults.length - 1];
+                        const interimText = interimResult && interimResult[0] ? interimResult[0].transcript || '' : '';
+                        if (interimText) status.textContent = 'Te escucho: “' + interimText + '”. Sigue hablando…';
+                        return;
+                    }
+                    const alternatives = Array.from(finalResult).map(item => item.transcript || '');
                     const target = normalize(ex.audioText);
                     const matched = alternatives.some(value => normalize(value) === target);
                     const heard = alternatives[0] || '';
@@ -4939,6 +4949,9 @@
                 };
                 recognition.onend = () => {
                     if (this.activeRecognition === recognition) this.activeRecognition = null;
+                    if (status.isConnected && status.textContent.startsWith('Te escucho:')) {
+                        status.textContent = 'El reconocimiento terminó antes de confirmar la frase. Inténtalo otra vez.';
+                    }
                     if (button && button.isConnected) button.disabled = false;
                 };
                 try {

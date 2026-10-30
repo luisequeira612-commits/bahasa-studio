@@ -403,6 +403,15 @@
             <span id="lessonStepCount" style="font-size:0.85rem; font-weight:bold;">1/1</span>
         </div>
 
+        <div style="display:flex; align-items:center; gap:10px; margin:0 0 12px; padding:10px; border:1px solid var(--border); border-radius:10px;">
+            <label for="lessonAudioPlaybackRate" style="font-size:0.9rem; font-weight:600; flex:1;">Velocidad del audio</label>
+            <select id="lessonAudioPlaybackRate" class="input-field" style="width:auto; min-width:145px;" onchange="AudioEngine.setRate(this.value)" aria-label="Velocidad del audio de la lección">
+                <option value="0.5">Muy lento (0,5×)</option>
+                <option value="0.7">Lento (0,7×)</option>
+                <option value="0.85">Normal lento (0,85×)</option>
+                <option value="1">Normal (1×)</option>
+            </select>
+        </div>
         <div id="exerciseArea" class="quiz-container"></div>
     </main>
 
@@ -531,7 +540,7 @@
                                 { vocabId: 'v3', type: 'mc', prompt: '¿Qué significa «dia»?', options: ['Yo', 'Tú', 'Él / ella'], answer: 2, explanation: 'Dia puede significar él o ella; el pronombre no indica género.' },
                                 { vocabId: 'v3', type: 'mc', prompt: 'Escucha la palabra y elige su significado', audioText: 'Dia', options: ['Yo', 'Tú', 'Él / ella'], answer: 2, explanation: 'Dia puede significar él o ella; el pronombre no indica género.' },
                                 { vocabId: 'v4', type: 'mc', prompt: 'Escucha el saludo y elige su significado', audioText: 'Selamat pagi', options: ['Buenos días', 'Buenas noches', 'Hasta luego'], answer: 0, explanation: 'Selamat pagi significa «buenos días».' },
-                                { vocabId: 'v4', type: 'mc', prompt: 'Escucha el diálogo y elige de qué hablan', audioText: 'Selamat pagi. Apa kabar? Baik, terima kasih.', options: ['Dos personas se saludan y preguntan cómo están', 'Una persona pide comida', 'Dos personas se despiden'], answer: 0, explanation: 'El diálogo combina un saludo matutino con una pregunta por el estado de la otra persona y una respuesta cortés.' },
+                                { vocabId: 'v4', type: 'mc', prompt: 'Escucha el diálogo y elige de qué hablan', audioText: 'Selamat pagi. Terima kasih.', options: ['Dos personas se saludan y se dan las gracias', 'Una persona pide comida', 'Dos personas se despiden'], answer: 0, explanation: 'El diálogo combina un saludo matutino con una pregunta por el estado de la otra persona y una respuesta cortés.' },
                                 { vocabId: 'v60', type: 'translate_es_id', prompt: 'Traduce: «hola»', answer: 'Halo', explanation: 'Halo es un saludo común.' },
                                 { vocabId: 'v45', type: 'mc', prompt: 'Alguien te ayuda. ¿Qué dices para dar las gracias?', options: ['Halo', 'Terima kasih', 'Selamat pagi'], answer: 1, explanation: 'Terima kasih significa «gracias».' },
                                 { vocabId: 'v46', type: 'order', prompt: 'Ordena: «Yo como»', words: ['makan', 'Saya'], correctOrder: ['Saya', 'makan'], explanation: 'El orden básico es sujeto + verbo: Saya makan.' },
@@ -4166,6 +4175,20 @@
             ]
         };
 
+        function buildUnitAssessmentItems(unit) {
+            if (!unit || !Array.isArray(unit.vocab) || unit.vocab.length < 3) return [];
+            const meanings = [...new Set(unit.vocab.map(word => String(word.esp || '').trim()).filter(Boolean))];
+            return unit.vocab.filter(word => word && word.idn && word.esp).map((word, index) => {
+                const distractors = meanings.filter(meaning => meaning !== word.esp);
+                const offset = distractors.length ? index % distractors.length : 0;
+                const options = distractors.slice(offset).concat(distractors.slice(0, offset)).slice(0, 3);
+                const answer = index % (options.length + 1);
+                options.splice(answer, 0, word.esp);
+                return { vocabId: word.id, type: 'mc', prompt: '¿Qué significa «' + word.idn + '»?', options, answer,
+                    explanation: '«' + word.idn + '» significa «' + word.esp + '».' };
+            });
+        }
+
         /* 3. AUDIO Y AUDIO FALLBACK */
         const AudioEngine = {
             synth: window.speechSynthesis,
@@ -4175,8 +4198,10 @@
                 const rate = Number(value);
                 if (![0.5, 0.7, 0.85, 1].includes(rate)) return false;
                 this.rate = rate;
-                const control = document.getElementById('audioPlaybackRate');
-                if (control) control.value = String(rate);
+                ['audioPlaybackRate', 'lessonAudioPlaybackRate'].forEach(id => {
+                    const control = document.getElementById(id);
+                    if (control) control.value = String(rate);
+                });
                 if (persist && typeof DB !== 'undefined') {
                     DB.set('settings', 'audioPlaybackRate', rate)
                         .catch(error => console.error('No se pudo guardar la velocidad de audio:', error));
@@ -4495,6 +4520,25 @@
             stepIndex: 0,
             selectedOption: null,
             userOrder: [],
+            assessmentMode: false,
+            assessmentCorrect: 0,
+
+            startUnitAssessment(unitId) {
+                const level = CourseData.levels.find(entry => entry.id === 'A1');
+                const unit = level && level.units.find(entry => entry.id === unitId);
+                if (!unit) return;
+                const questions = buildUnitAssessmentItems(unit);
+                if (!questions.length) return;
+                this.currentUnit = unit;
+                this.queue = questions;
+                this.retry = [];
+                this.intro = false;
+                this.assessmentMode = true;
+                this.assessmentCorrect = 0;
+                this.stepIndex = 0;
+                App.switchView('lesson');
+                this.renderStep();
+            },
 
             startUnitById(id) { for (const l of getLevels()) { const u = l.units.find(x => x.id === id); if (u) return this.startUnit(u); } },
             startUnit(unit) {
@@ -4515,6 +4559,8 @@
                 });
                 this.queue = [...unit.exercises, ...reinforcement];
                 this.retry = []; this.intro = true;
+                this.assessmentMode = false;
+                this.assessmentCorrect = 0;
                 this.currentUnit = unit;
                 this.stepIndex = 0;
                 App.switchView('lesson');
@@ -4747,8 +4793,12 @@
             },
             showFeedback(isCorrect, explanation) {
                 const ex = this.queue[this.stepIndex];
-                if (!isCorrect && !ex._r) this.retry.push({ ...ex, _r: true });
-                if (ex.vocabId) {
+                if (this.assessmentMode) {
+                    if (isCorrect) this.assessmentCorrect++;
+                } else if (!isCorrect && !ex._r) {
+                    this.retry.push({ ...ex, _r: true });
+                }
+                if (ex.vocabId && !this.assessmentMode) {
                     SRSEngine.recordAttempt(ex.vocabId, isCorrect ? 4 : 1).catch(err => console.error('No se pudo registrar el intento SRS:', err));
                 }
                 const area = document.getElementById('actionArea');
@@ -4759,7 +4809,7 @@
                     </div>
                     <button class="btn" style="margin-top:12px;" onclick="LessonEngine.nextStep(${isCorrect})">Continuar</button>
                 `;
-                if (isCorrect) App.addXp(10);
+                if (isCorrect && !this.assessmentMode) App.addXp(10);
             },
             nextStep() {
                 if (this.stepIndex + 1 >= this.queue.length && this.retry.length) { this.queue.push(...this.retry); this.retry = []; }
@@ -4771,13 +4821,30 @@
                 }
             },
             async finishUnit() {
+                if (this.assessmentMode) {
+                    const total = this.queue.length;
+                    const correct = this.assessmentCorrect;
+                    this.assessmentMode = false;
+                    document.getElementById('exerciseArea').innerHTML = `
+                        <div style="text-align:center; margin-top:40px;">
+                            <h2>📝 Prueba de unidad completada</h2>
+                            <p style="font-size:1.2rem; margin:16px 0;">Resultado: <strong>${correct} de ${total}</strong> respuestas correctas.</p>
+                            <p style="margin:16px 0; color:var(--text-muted);">Esta prueba utiliza únicamente las palabras enseñadas en esta unidad. No modifica tu progreso ni tu repaso.</p>
+                            <button class="btn" onclick="LessonEngine.exit()">Volver al curso</button>
+                        </div>
+                    `;
+                    document.getElementById('lessonProgressFill').style.width = '100%';
+                    return;
+                }
                 await App.markUnitCompleted(this.currentUnit.id);
                 for (const v of this.currentUnit.vocab) { if (!(await DB.get('srs', v.id))) await SRSEngine.recordAttempt(v.id, 4); }
+                const completedUnitId = this.currentUnit.id;
                 document.getElementById('exerciseArea').innerHTML = `
                     <div style="text-align:center; margin-top:40px;">
                         <h2>🎉 Unidad Completada</h2>
                         <p style="margin:16px 0; color:var(--text-muted);">Progreso y repetición espaciada guardados.</p>
-                        <button class="btn" onclick="LessonEngine.exit()">Volver al Curso</button>
+                        <button class="btn" onclick="LessonEngine.startUnitAssessment('${completedUnitId}')">Hacer prueba corta de esta unidad</button>
+                        <button class="btn btn-outline" onclick="LessonEngine.exit()">Volver al curso</button>
                     </div>
                 `;
                 document.getElementById('lessonProgressFill').style.width = '100%';

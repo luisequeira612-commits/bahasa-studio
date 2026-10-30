@@ -88,8 +88,14 @@ test('real Chromium preserves progress on reload and safely imports valid/invali
       version: 3,
       xp: 77,
       completedUnits: ['a1_u2'],
+      completedLessons: ['a1_u2::lesson-0'],
       customUnits: [],
       syllabusPos: 0,
+      studyActivity: {
+        dailyGoal: 50, todayDate: new Date().toISOString().slice(0, 10), todayXp: 25,
+        todayLessons: 1, todayReviews: 3, lastStudyDate: new Date().toISOString().slice(0, 10),
+        currentStreak: 4, longestStreak: 7
+      },
       srs: [{
         key: 'v27',
         val: {
@@ -109,6 +115,10 @@ test('real Chromium preserves progress on reload and safely imports valid/invali
     await page.waitForFunction(() => App.xp === 77 && App.completedUnits.includes('a1_u2'));
     assert.equal(await page.evaluate(() => DB.get('settings', 'userXp')), 77);
     assert.deepEqual(await page.evaluate(() => DB.get('settings', 'completedUnits')), ['a1_u2']);
+    assert.equal((await page.evaluate(() => DB.get('settings', 'studyActivity'))).dailyGoal, 50,
+      'backup restoration should preserve the daily XP goal');
+    assert.equal((await page.evaluate(() => DB.get('settings', 'studyActivity'))).todayXp, 25,
+      'backup restoration should preserve daily XP progress');
     const restoredSrs = await page.evaluate(() => DB.get('srs', 'v27'));
     assert.equal(restoredSrs.attempts, 9);
     assert.equal(restoredSrs.savedForReview, true,
@@ -119,6 +129,7 @@ test('real Chromium preserves progress on reload and safely imports valid/invali
     const beforeAbort = await page.evaluate(async () => ({
       xp: await DB.get('settings', 'userXp'),
       completed: await DB.get('settings', 'completedUnits'),
+      studyActivity: await DB.get('settings', 'studyActivity'),
       srs: await DB.get('srs', 'v27')
     }));
     const abortResult = await page.evaluate(async () => {
@@ -158,6 +169,7 @@ test('real Chromium preserves progress on reload and safely imports valid/invali
     const afterAbort = await page.evaluate(async () => ({
       xp: await DB.get('settings', 'userXp'),
       completed: await DB.get('settings', 'completedUnits'),
+      studyActivity: await DB.get('settings', 'studyActivity'),
       srs: await DB.get('srs', 'v27')
     }));
     assert.deepEqual(afterAbort, beforeAbort,
@@ -166,6 +178,7 @@ test('real Chromium preserves progress on reload and safely imports valid/invali
     const previousState = await page.evaluate(async () => ({
       xp: await DB.get('settings', 'userXp'),
       completed: await DB.get('settings', 'completedUnits'),
+      studyActivity: await DB.get('settings', 'studyActivity'),
       srs: await DB.get('srs', 'v27')
     }));
     const dialogCountBeforeInvalidImport = dialogs.length;
@@ -179,6 +192,7 @@ test('real Chromium preserves progress on reload and safely imports valid/invali
     const afterInvalid = await page.evaluate(async () => ({
       xp: await DB.get('settings', 'userXp'),
       completed: await DB.get('settings', 'completedUnits'),
+      studyActivity: await DB.get('settings', 'studyActivity'),
       srs: await DB.get('srs', 'v27')
     }));
     assert.deepEqual(afterInvalid, previousState,
@@ -456,9 +470,9 @@ test('service worker serves the app after the network is disconnected', async ()
     await context.setOffline(true);
     await page.reload({ waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined');
-    assert.match(await page.title(), /Bahasa Studio 3\.8\.4/);
+    assert.match(await page.title(), /Bahasa Studio 3\.8\.5/);
     assert.equal(await page.locator('body').isVisible(), true);
-    assert.equal(await page.evaluate(() => typeof ConversationEngine !== 'undefined'), true,
+    assert.equal(await page.evaluate(() => typeof ConversationEngine !== 'undefined' && typeof StudyActivity !== 'undefined'), true,
       'the conversation engine must be available from the service-worker cache offline');
   } finally {
     await context.setOffline(false);

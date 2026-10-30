@@ -36,14 +36,14 @@ function extractObjectLiteral(source, marker) {
 const courseData = vm.runInNewContext('(' + extractObjectLiteral(html, 'const CourseData =') + ')');
 const a2 = courseData.levels.find(level => level.id === 'A2');
 
-test('A2 expands to thirty-six sequential units without changing the 32-unit A1 course', () => {
+test('A2 expands to forty sequential units without changing the 32-unit A1 course', () => {
   const a1 = courseData.levels.find(level => level.id === 'A1');
   assert.ok(a1);
   assert.equal(a1.units.length, 32);
   assert.ok(a2);
-  assert.equal(a2.units.length, 36);
+  assert.equal(a2.units.length, 40);
   assert.deepEqual(Array.from(a2.units.slice(3), unit => unit.id),
-    ['a2_u4', 'a2_u5', 'a2_u6', 'a2_u7', 'a2_u8', 'a2_u9', 'a2_u10', 'a2_u11', 'a2_u12', 'a2_u13', 'a2_u14', 'a2_u15', 'a2_u16', 'a2_u17', 'a2_u18', 'a2_u19', 'a2_u20', 'a2_u21', 'a2_u22', 'a2_u23', 'a2_u24', 'a2_u25', 'a2_u26', 'a2_u27', 'a2_u28', 'a2_u29', 'a2_u30', 'a2_u31', 'a2_u32', 'a2_u33', 'a2_u34', 'a2_u35', 'a2_u36']);
+    ['a2_u4', 'a2_u5', 'a2_u6', 'a2_u7', 'a2_u8', 'a2_u9', 'a2_u10', 'a2_u11', 'a2_u12', 'a2_u13', 'a2_u14', 'a2_u15', 'a2_u16', 'a2_u17', 'a2_u18', 'a2_u19', 'a2_u20', 'a2_u21', 'a2_u22', 'a2_u23', 'a2_u24', 'a2_u25', 'a2_u26', 'a2_u27', 'a2_u28', 'a2_u29', 'a2_u30', 'a2_u31', 'a2_u32', 'a2_u33', 'a2_u34', 'a2_u35', 'a2_u36', 'a2_u37', 'a2_u38', 'a2_u39', 'a2_u40']);
 });
 
 test('the first four A2 units have 3-5 lessons, varied practice, listening, and production', () => {
@@ -397,6 +397,51 @@ test('A2 units 33-36 teach geography, etiquette, personal finance, and decision-
   assert.match(units[1].title, /Cortesía/);
   assert.match(units[2].title, /Presupuesto/);
   assert.match(units[3].title, /decisiones/i);
+  for (const unit of units) {
+    assert.equal(unit.vocab.length, 12, unit.id + ' should provide twelve assessment items');
+    assert.equal(unit.lessons.length, 4, unit.id + ' should have four authored lessons');
+    const exercises = unit.lessons.flatMap(lesson => lesson.exercises || []);
+    assert.equal(exercises.length, 17, unit.id + ' should have 17 exercises');
+    assert.ok(new Set(exercises.map(exercise => exercise.type)).size >= 4, unit.id + ' should use four exercise types');
+    assert.ok(exercises.some(exercise => exercise.type === 'listen'), unit.id + ' should include listening');
+    assert.ok(exercises.some(exercise => exercise.type === 'write' && exercise.hint && exercise.modelAnswer),
+      unit.id + ' should include guided writing');
+    assert.ok(exercises.filter(exercise => exercise.answer && /[.!?]$/.test(exercise.answer)).length >= 5,
+      unit.id + ' should include at least five complete sentence answers');
+    const introduced = unit.lessons.flatMap(lesson => lesson.vocabIds || []);
+    assert.equal(introduced.length, unit.vocab.length, unit.id + ' should introduce every new vocabulary item once');
+    assert.equal(new Set(introduced).size, introduced.length, unit.id + ' should not introduce a word twice');
+    for (const lesson of unit.lessons) {
+      for (const id of lesson.vocabIds) assert.ok(unit.vocab.some(word => word.id === id), unit.id + ' lesson has unknown new vocabulary');
+      for (const exercise of lesson.exercises || []) {
+        assert.ok(exercise.vocabId && unit.vocab.some(word => word.id === exercise.vocabId),
+          unit.id + ' exercise must reference vocabulary introduced in the unit');
+      }
+    }
+    for (const word of unit.vocab) {
+      assert.ok(!earlierForms.has(word.idn.trim().toLowerCase()),
+        unit.id + ' must not repeat earlier vocabulary: ' + word.idn);
+    }
+    const order = exercises.find(exercise => exercise.type === 'order');
+    const expectedOrder = unit.vocab[1].ex.replace(/[.!?]$/, '').split(' ');
+    assert.deepEqual(Array.from(order.correctOrder), expectedOrder,
+      unit.id + ' word-order answer should match the translated sentence');
+    assert.deepEqual(Array.from(order.words).reverse(), Array.from(order.correctOrder),
+      unit.id + ' word-order tokens should match the answer');
+  }
+});
+
+
+test('A2 units 37-40 teach emergency readiness, tourism, remote work, and integrated communication', () => {
+  const earlierForms = new Set(courseData.levels.find(level => level.id === 'A1').units
+    .flatMap(unit => unit.vocab).concat(a2.units.slice(0, 36).flatMap(unit => unit.vocab))
+    .map(word => word.idn.trim().toLowerCase()));
+  const units = a2.units.slice(36, 40);
+  assert.deepEqual(Array.from(units, unit => unit.id), ['a2_u37', 'a2_u38', 'a2_u39', 'a2_u40']);
+  assert.match(units[0].title, /Emergencias/);
+  assert.match(units[1].title, /Turismo/);
+  assert.match(units[2].title, /Trabajo remoto/);
+  assert.match(units[3].title, /Resumir/);
   for (const unit of units) {
     assert.equal(unit.vocab.length, 12, unit.id + ' should provide twelve assessment items');
     assert.equal(unit.lessons.length, 4, unit.id + ' should have four authored lessons');

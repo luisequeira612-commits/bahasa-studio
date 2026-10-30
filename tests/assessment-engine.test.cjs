@@ -18,8 +18,8 @@ test('each level has a small assessment with an open production task', () => {
 
 test('A1 assessment covers selected curriculum content, including age, family, routine, and units 15–17', () => {
   const items = getAssessment('A1');
-  assert.equal(items.length, 19, 'A1 should contain 17 closed questions and 2 open tasks');
-  assert.equal(scoreAssessment('A1', {}).possible, 24);
+  assert.equal(items.length, 31, 'A1 pilot should contain 29 closed questions and 2 open tasks');
+  assert.equal(scoreAssessment('A1', {}).possible, 36);
   const byId = Object.fromEntries(items.map(item => [item.id, item]));
   for (const id of [
     'a1-negation-01', 'a1-vocab-01', 'a1-comprehension-01', 'a1-interaction-01',
@@ -51,7 +51,7 @@ test('A1 multiple-choice answers are distributed across all three positions', ()
     assert.equal(item.options.length, 3, item.id + ' should have three answer options');
     counts[item.answer] += 1;
   }
-  assert.deepEqual(counts.slice().sort((a, b) => a - b), [5, 6, 6]);
+  assert.deepEqual(counts.slice().sort((a, b) => a - b), [7, 10, 12]);
 });
 
 test('choice scoring is level-scoped and reports skill breakdowns', () => {
@@ -64,10 +64,10 @@ test('choice scoring is level-scoped and reports skill breakdowns', () => {
   };
   const result = scoreAssessment('A1', answers);
   assert.equal(result.earned, 3);
-  assert.equal(result.possible, 24);
-  assert.equal(result.skills.grammar.percent, 67);
+  assert.equal(result.possible, 36);
+  assert.equal(result.skills.grammar.percent, 40);
   assert.equal(result.skills.grammar.meetsMinimum, true);
-  assert.equal(result.skills.vocabulary.percent, 33);
+  assert.equal(result.skills.vocabulary.percent, 17);
   assert.equal(result.provisionalPass, false);
   assert.deepEqual(result.openItemsPendingReview, ['a1-write-01']);
 });

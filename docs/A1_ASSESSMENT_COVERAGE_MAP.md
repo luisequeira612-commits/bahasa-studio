@@ -48,7 +48,7 @@ El banco está desbalanceado respecto al blueprint de 40 puntos: no hay comprens
 
 ## Cobertura por unidades y vacíos observables
 
-- Hay vínculos identificables o razonablemente inferidos para U1–U17 y U23.
+- Hay vínculos identificables o razonablemente inferidos para U1–U7, U9–U17 y U23.
 - No hay ítems identificados para U18–U22 ni U24–U32.
 - U8 y U18–U22 no deben marcarse como cubiertas solo porque el contenido aparezca en el curso.
 - Las dos tareas abiertas integran más de una unidad, pero no sustituyen ítems independientes de cobertura para cada objetivo.

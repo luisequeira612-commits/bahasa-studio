@@ -40,6 +40,6 @@ test('each conversation has three usable turns and exactly one appropriate respo
 });
 
 test('conversation practice does not write XP, SRS attempts, or microphone recordings', () => {
-  assert.doesNotMatch(source, /App\\.addXp|SRSEngine\\.recordAttempt|DB\\.set|MediaRecorder/);
-  assert.match(source, /AudioEngine\\.speak/);
+  assert.doesNotMatch(source, /App\.addXp|SRSEngine\.recordAttempt|DB\.set|MediaRecorder/);
+  assert.match(source, /AudioEngine\.speak/);
 });

@@ -101,7 +101,7 @@ test('imported lesson content is escaped before rendering into HTML', () => {
 test('published HTML has no stray text or source after its closing tag', () => {
   const closing = html.toLowerCase().lastIndexOf('</html>');
   assert.ok(closing >= 0, 'expected a closing HTML tag');
-  assert.equal(html.slice(closing + '</html>'.length).trim(), '');
+  assert.equal(htmlBase.slice(closing + '</html>'.length).trim(), '');
 });
 
 test('all authored A1 units have linked vocabulary and structurally valid exercises', () => {

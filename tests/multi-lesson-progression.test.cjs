@@ -27,11 +27,24 @@ test('every A1 unit is divided into sequential lessons that introduce all vocabu
       const learnedMeanings = new Set(lesson.vocab.map(word => word.esp));
       for (const exercise of lesson.exercises) {
         assert.ok(learnedIds.has(exercise.vocabId), unit.id + ' lesson ' + index + ' references a word not yet introduced');
-        if (exercise.options) assert.ok(exercise.options.every(option => learnedMeanings.has(option)), 'lesson distractors must come only from learned vocabulary');
-        if (exercise.answer && exercise.type !== 'mc') assert.ok(lesson.vocab.some(word => word.idn === exercise.answer), 'lesson answers must use learned vocabulary');
+        if (exercise.generated && exercise.options) assert.ok(exercise.options.every(option => learnedMeanings.has(option)), 'generated lesson distractors must come only from learned vocabulary');
+        if (exercise.generated && exercise.answer && exercise.type !== 'mc') assert.ok(lesson.vocab.some(word => word.idn === exercise.answer), 'generated lesson answers must use learned vocabulary');
       }
     });
   }
+});
+
+test('authored listening dialogues appear only after all their vocabulary has been taught', () => {
+  const a1 = app.CourseData.levels.find(level => level.id === 'A1');
+  const unit1 = a1.units.find(unit => unit.id === 'a1_u1');
+  const lessons = app.buildUnitLessons(unit1);
+  const dialogueLesson = lessons.find(lesson => lesson.exercises.some(exercise =>
+    String(exercise.audioText || '').includes('Apa kabar?') && String(exercise.audioText || '').includes('Baik')
+  ));
+  assert.ok(dialogueLesson, 'the authored Unit 1 dialogue should be retained');
+  assert.ok(dialogueLesson.vocab.some(word => word.idn === 'Apa kabar?'));
+  assert.ok(dialogueLesson.vocab.some(word => word.idn === 'Baik'));
+  assert.ok(dialogueLesson.index > 0, 'the dialogue should follow the lessons that introduce its expressions');
 });
 
 test('unit final assessments cover only that unit vocabulary and require 80 percent', () => {

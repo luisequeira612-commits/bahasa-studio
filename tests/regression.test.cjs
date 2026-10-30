@@ -5,7 +5,12 @@ const vm = require('node:vm');
 const path = require('node:path');
 
 const root = path.resolve(__dirname, '..');
-const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+const curriculumSandbox = { window: {} };
+vm.runInNewContext(fs.readFileSync(path.join(__dirname, '..', 'curriculum-a1.js'), 'utf8'), curriculumSandbox);
+vm.runInNewContext(fs.readFileSync(path.join(__dirname, '..', 'curriculum-a2.js'), 'utf8'), curriculumSandbox);
+const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8')
+  .replace('window.BAHASA_CURRICULUM_A1', JSON.stringify(curriculumSandbox.window.BAHASA_CURRICULUM_A1))
+  .replace('window.BAHASA_CURRICULUM_A2', JSON.stringify(curriculumSandbox.window.BAHASA_CURRICULUM_A2));
 const serviceWorker = fs.readFileSync(path.join(root, 'service-worker.js'), 'utf8');
 const manifest = JSON.parse(fs.readFileSync(path.join(root, 'manifest.json'), 'utf8'));
 const studyActivitySource = fs.readFileSync(path.join(root, 'study-activity.js'), 'utf8');
@@ -24,8 +29,8 @@ test('inline application JavaScript and service worker parse', () => {
 test('PWA version is consistent across HTML, manifest and cache', () => {
   assert.match(html, /Bahasa Studio 3\.8\.8/);
   assert.equal(manifest.name, 'Bahasa Studio 3.8.8');
-  assert.match(serviceWorker, /bahasa-studio-v3\.8\.8/);
-  assert.match(serviceWorker, /\['\.\/', '\.\/index\.html', '\.\/manifest\.json', '\.\/assessment\.html', '\.\/assessment-engine\.js', '\.\/conversation-engine\.js', '\.\/study-activity\.js'\]/);
+  assert.match(serviceWorker, /bahasa-studio-v3\.8\.9/);
+  assert.match(serviceWorker, /\['\.\/', '\.\/index\.html', '\.\/manifest\.json', '\.\/assessment\.html', '\.\/assessment-engine\.js', '\.\/conversation-engine\.js', '\.\/study-activity\.js', '\.\/curriculum-a1\.js', '\.\/curriculum-a2\.js'\]/);
   assert.doesNotMatch(html + serviceWorker + JSON.stringify(manifest), /3\.5\.1/);
 });
 

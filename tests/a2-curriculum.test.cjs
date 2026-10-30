@@ -36,7 +36,7 @@ function extractObjectLiteral(source, marker) {
 const courseData = vm.runInNewContext('(' + extractObjectLiteral(html, 'const CourseData =') + ')');
 const a2 = courseData.levels.find(level => level.id === 'A2');
 
-test('A2 expands to eight sequential units without changing the 32-unit A1 course', () => {
+test('A2 expands to twelve sequential units without changing the 32-unit A1 course', () => {
   const a1 = courseData.levels.find(level => level.id === 'A1');
   assert.ok(a1);
   assert.equal(a1.units.length, 32);

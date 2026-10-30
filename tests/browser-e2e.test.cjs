@@ -486,8 +486,8 @@ test('service worker serves the app after the network is disconnected', async ()
       'the extracted stylesheet must remain loaded after an offline navigation');
     assert.match(offlineStyles.fontFamily, /system-ui/,
       'the body font rule from styles.css must be applied offline');
-    assert.equal(offlineStyles.backgroundColor, 'rgb(15, 23, 42)',
-      'the body background rule from styles.css must be applied offline');
+    assert.equal(offlineStyles.backgroundColor, 'rgb(255, 255, 255)',
+      'the active red-and-white theme background from styles.css must be applied offline');
   } finally {
     await context.setOffline(false);
     await context.close();

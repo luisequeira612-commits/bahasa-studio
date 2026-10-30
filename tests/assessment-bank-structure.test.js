@@ -37,6 +37,12 @@ for (const item of expanded) {
 assert.equal(getAssessment('A1').filter(item => expanded.some(x => x.id === item.id)).length, 32);
 
 const expectedAnswers = {
+  'a1-u18-01': 'Buku ini', 'a1-u18-02': 'Kita',
+  'a1-u19-01': 'Saya pesan nasi goreng.', 'a1-u19-02': 'Saya minta tagihan.',
+  'a1-u20-01': 'Murah', 'a1-u20-02': 'Un kilo de manzanas',
+  'a1-u21-01': 'Tiene dolor de cabeza', 'a1-u21-02': 'A un médico o una médica',
+  'a1-u22-01': 'Jaket merah', 'a1-u22-02': 'Llevo una camiseta blanca',
+  'a1-u23-01': 'En la cocina hay una nevera', 'a1-u23-02': 'Bersih',
   'a1-u08-01': 'Estudio todos los días', 'a1-u08-02': 'Mañana',
   'a1-u24-01': 'Lee un libro', 'a1-u24-02': 'Profesor/a o docente',
   'a1-u25-01': 'Afición o pasatiempo', 'a1-u25-02': 'Me gusta nadar',

@@ -1,5 +1,5 @@
-const CACHE_NAME = 'bahasa-studio-v3.8.3';
-const ASSETS = ['./', './index.html', './manifest.json', './assessment.html', './assessment-engine.js'];
+const CACHE_NAME = 'bahasa-studio-v3.8.4';
+const ASSETS = ['./', './index.html', './manifest.json', './assessment.html', './assessment-engine.js', './conversation-engine.js'];
 
 self.addEventListener('install', (e) => {
     e.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS.map((u) => new Request(u, { cache: 'reload' })))));

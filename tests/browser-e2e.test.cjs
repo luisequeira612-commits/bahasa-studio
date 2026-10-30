@@ -744,13 +744,17 @@ test('A1 unit lessons unlock sequentially and the final exam gates the next unit
       await page.getByRole('button', { name: 'Continuar' }).click();
     };
 
-    for (let i = 0; i < 10; i++) await answerCurrentQuestion(i >= 3);
-    assert.match(await page.locator('#exerciseArea').innerText(), /Sigue practicando/);
+    const questionCount = await page.evaluate(() => LessonEngine.queue.length);
+    const wrongCount = Math.ceil(questionCount * 0.3);
+    for (let i = 0; i < questionCount; i++) await answerCurrentQuestion(i >= wrongCount);
+    await page.waitForFunction(() => document.getElementById('exerciseArea').innerText.includes('Sigue practicando'));
     assert.equal(await page.evaluate(() => App.completedUnits.includes('a1_u1')), false);
     assert.equal(await page.locator('[data-unit-id="a1_u2"][data-lesson-index="0"]').isEnabled(), false);
 
     await page.getByRole('button', { name: 'Repetir prueba' }).click();
-    for (let i = 0; i < 10; i++) await answerCurrentQuestion(true);
+    const retryQuestionCount = await page.evaluate(() => LessonEngine.queue.length);
+    for (let i = 0; i < retryQuestionCount; i++) await answerCurrentQuestion(true);
+    await page.waitForFunction(() => document.getElementById('exerciseArea').innerText.includes('Prueba superada'));
     assert.match(await page.locator('#exerciseArea').innerText(), /Prueba superada/);
     assert.equal(await page.evaluate(() => App.completedUnits.includes('a1_u1')), true);
     assert.equal(await page.locator('[data-unit-id="a1_u2"][data-lesson-index="0"]').isEnabled(), true);

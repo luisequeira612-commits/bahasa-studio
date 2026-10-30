@@ -65,6 +65,8 @@ test('new A2 units have vocabulary, varied practice, listening, and production',
 test('new A2 vocabulary identifiers are unique and advanced content remains gated', () => {
   const newIds = a2.units.slice(3).flatMap(unit => unit.vocab.map(word => word.id));
   assert.equal(new Set(newIds).size, newIds.length, 'new A2 vocabulary identifiers must be unique');
-  assert.match(html, /function getLearningLevels\(\)\s*\{\s*return CourseData\.levels\.filter\(level => level\.id === 'A1'\)/,
-    'A2, B1, and B2 should remain outside learner-facing SRS until the A1 gate is validated');
+  assert.match(html, /function getLearningLevels\(\)\s*\{\s*return getLevels\(\)\.filter\(level => !\['A2', 'B1', 'B2'\]\.includes\(level\.id\)\);/,
+    'A2, B1, and B2 should remain outside learner-facing vocabulary and SRS');
+  assert.match(html, /const isAdvanced = \['A2', 'B1', 'B2'\]\.includes\(lvl\.id\);[\s\S]*?if \(!a1Complete\) return;/,
+    'advanced curriculum cards should remain gated until A1 completion');
 });

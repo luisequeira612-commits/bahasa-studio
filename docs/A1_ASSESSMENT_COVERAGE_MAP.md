@@ -5,9 +5,9 @@ Estado: inventario estático del banco existente; **no es una especificación de
 
 ## Alcance y método
 
-Este mapa registra los 49 ítems A1 actualmente definidos en `assessment-engine.js`. La puntuación suma **54 puntos**: 47 puntos de opción múltiple y 7 puntos de producción escrita que requieren revisión humana. La unidad se asigna solo cuando el prompt, su explicación o la referencia curricular permite identificarla razonablemente; las asignaciones compuestas o inferidas se marcan como tales.
+Este mapa registra los 51 ítems A1 actualmente definidos en `assessment-engine.js`. La puntuación suma **56 puntos**: 49 puntos de opción múltiple y 7 puntos de producción escrita que requieren revisión humana. La unidad se asigna solo cuando el prompt, su explicación o la referencia curricular permite identificarla razonablemente; las asignaciones compuestas o inferidas se marcan como tales.
 
-Las etiquetas de habilidad proceden del motor (`vocabulary`, `grammar`, `comprehension`, `interaction`, `production`). La modalidad describe lo que realmente hace el ítem, no lo que su nombre pudiera sugerir. Los ítems clasificados como comprensión son lectura/interpretación de texto escrito. Los 30 ítems añadidos para U18–U32 son opciones escritas sin audio enlazado.
+Las etiquetas de habilidad proceden del motor (`vocabulary`, `grammar`, `comprehension`, `interaction`, `production`). La modalidad describe lo que realmente hace el ítem, no lo que su nombre pudiera sugerir. Los ítems clasificados como comprensión son lectura/interpretación de texto escrito. Los 32 ítems añadidos para U8 y U18–U32 son opciones escritas sin audio enlazado.
 
 ## Inventario de ítems
 
@@ -32,6 +32,15 @@ Las etiquetas de habilidad proceden del motor (`vocabulary`, `grammar`, `compreh
 | `a1-actions-01` | U15 | Comprensión | 1 | Lectura de frase | Reconoce `pergi`; no mide producción oral |
 | `a1-preferences-01` | U16 | Interacción | 1 | Interpretación de frase escrita | Expresa preferencia |
 | `a1-questions-01` | U17 | Comprensión | 1 | Selección de pregunta escrita | Identifica pregunta temporal |
+
+## Nuevos ítems añadidos para U8
+
+| ID | Unidad | Dimensión | Puntos | Modalidad | Objetivo |
+|---|---|---|---:|---|---|
+| `a1-u08-01` | U8 | Comprensión | 1 | Opción múltiple escrita | Comprende una frase sobre la frecuencia de estudio |
+| `a1-u08-02` | U8 | Gramática | 1 | Opción múltiple escrita | Interpreta una frase con el adverbio temporal al inicio |
+
+Los dos ítems U8 están vinculados a las expresiones `setiap hari` y `besok` presentes en la unidad. Son preguntas escritas, no ejercicios de escucha.
 
 ## Nuevos ítems añadidos para U18–U23
 
@@ -81,20 +90,19 @@ Los 18 ítems U24–U32 se vinculan a objetivos y ejemplos presentes en esas uni
 
 | Dimensión | Ítems | Puntos | Porcentaje de puntos |
 |---|---:|---:|---:|
-| Vocabulario | 15 | 15 | 27,8% |
-| Gramática | 6 | 6 | 11,1% |
-| Comprensión | 15 | 15 | 27,8% |
-| Interacción | 11 | 11 | 20,4% |
-| Producción | 2 | 7 | 13,0% |
-| **Total** | **49** | **54** | **100%** |
+| Vocabulario | 15 | 15 | 26,8% |
+| Gramática | 7 | 7 | 12,5% |
+| Comprensión | 16 | 16 | 28,6% |
+| Interacción | 11 | 11 | 19,6% |
+| Producción | 2 | 7 | 12,5% |
+| **Total** | **51** | **56** | **100%** |
 
 El banco está desbalanceado respecto al blueprint de 40 puntos: no hay comprensión auditiva, la interacción se mide solo mediante opciones escritas y la producción tiene dos tareas escritas abiertas. La dimensión de producción depende completamente de puntuación manual. No debe calcularse un aprobado de nivel a partir de este banco piloto.
 
 ## Cobertura por unidades y vacíos observables
 
-- Hay vínculos identificables o razonablemente inferidos para U1–U7 y U9–U32; U18–U32 ahora tienen dos ítems piloto nuevos por unidad.
-- No hay ítems identificados para U8.
-- U8 sigue sin ítems directos; no debe marcarse como cubierta solo porque el contenido aparezca en el curso.
+- Hay vínculos identificables o razonablemente inferidos para todas las unidades U1–U32; U8 y U18–U32 tienen ítems piloto directos.
+- No quedan unidades A1 sin ítems directos en el inventario actual. Esto es cobertura básica por unidad, no cobertura exhaustiva de todos sus objetivos.
 - Las dos tareas abiertas integran más de una unidad, pero no sustituyen ítems independientes de cobertura para cada objetivo.
 - Los ítems de comprensión existentes son estímulos escritos. No hay ítems de escucha con recurso de audio en este banco.
 - No hay tarea oral evaluada ni evidencia de interacción espontánea.
@@ -104,8 +112,8 @@ El banco está desbalanceado respecto al blueprint de 40 puntos: no hay comprens
 
 Construir la siguiente tanda como banco de práctica, no como examen habilitador:
 
-1. Añadir cobertura directa de U8 con ítems trazables a sus objetivos.
-2. Revisar lingüísticamente los nuevos ítems U18–U32 y ampliar modalidades cuando haya recursos verificables.
+1. Revisar lingüísticamente los nuevos ítems U8 y U18–U32, incluidas respuestas alternativas y distractores.
+2. Ampliar modalidades cuando haya recursos verificables, con audio real y actividades orales revisables.
 3. Crear ítems de escucha solo cuando exista un audio comprobable, transcripción de referencia y prueba offline; no etiquetar lectura como escucha.
 4. Añadir interacción situacional con turnos y respuestas contextuales; conservar las conversaciones prácticas como práctica hasta validar su adecuación lingüística.
 5. Registrar para cada nuevo ítem: unidad, objetivo, dimensión, modalidad, prerequisitos léxicos, respuestas aceptadas, revisión lingüística y estado de audio.

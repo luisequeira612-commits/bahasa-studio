@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bahasa Studio 3.7.3</title>
+    <title>Bahasa Studio 3.8.0</title>
     <meta name="description" content="Curso de indonesio PWA para hispanohablantes sin costo ni penalizaciones.">
     <meta name="theme-color" content="#e8384f">
     <link rel="manifest" href="./manifest.json">
@@ -182,7 +182,7 @@
 
     <header>
         <div class="logo">
-            <span>🇮🇩</span> Bahasa Studio <span style="font-size:0.72rem; font-weight:700; opacity:.8; margin-left:4px;">v3.7.3</span>
+            <span>🇮🇩</span> Bahasa Studio <span style="font-size:0.72rem; font-weight:700; opacity:.8; margin-left:4px;">v3.8.0</span>
         </div>
         <div class="header-status">
             <span id="connectionStatus" class="connection-indicator online" title="Estado de conexión">Online</span>
@@ -503,6 +503,7 @@
                     const putSetting = (key, val) => settingsStore.put({ id: key, wordId: key, key, val });
                     putSetting('userXp', data.xp);
                     putSetting('completedUnits', data.completedUnits);
+                    putSetting('completedLessons', data.completedLessons || []);
                     putSetting('customUnits', data.customUnits);
                     putSetting('syllabusPos', data.syllabusPos);
                     tx.oncomplete = () => resolve();
@@ -4191,6 +4192,80 @@
             });
         }
 
+        function buildUnitLessons(unit) {
+            if (!unit || !Array.isArray(unit.vocab) || !unit.vocab.length) return [];
+            if (unit.custom) return [{
+                index: 0, title: 'Lección única', newVocab: unit.vocab, reviewVocab: [],
+                vocab: unit.vocab, grammar: unit.grammar, exercises: unit.exercises || []
+            }];
+            const lessonCount = Math.min(5, Math.max(2, Math.ceil(unit.vocab.length / 4)));
+            const chunkSize = Math.ceil(unit.vocab.length / lessonCount);
+            const lessons = [];
+            for (let start = 0; start < unit.vocab.length; start += chunkSize) {
+                const newVocab = unit.vocab.slice(start, start + chunkSize);
+                const reviewVocab = unit.vocab.slice(0, start);
+                const learnedVocab = unit.vocab.slice(0, start + newVocab.length);
+                const meanings = [...new Set(learnedVocab.map(word => String(word.esp || '').trim()).filter(Boolean))];
+                const exercises = [];
+                newVocab.forEach((word, index) => {
+                    const distractors = meanings.filter(meaning => meaning !== word.esp).slice(0, 3);
+                    const options = distractors.slice();
+                    const answer = index % (options.length + 1);
+                    options.splice(answer, 0, word.esp);
+                    exercises.push({
+                        vocabId: word.id, type: 'mc',
+                        prompt: '¿Qué significa «' + word.idn + '»?',
+                        options, answer,
+                        explanation: '«' + word.idn + '» significa «' + word.esp + '».'
+                    });
+                    if (index % 2 === 0) {
+                        exercises.push({
+                            vocabId: word.id, type: 'listen',
+                            prompt: 'Escucha y escribe la palabra en indonesio',
+                            answer: word.idn,
+                            explanation: 'La palabra es «' + word.idn + '» («' + word.esp + '»).'
+                        });
+                    } else {
+                        exercises.push({
+                            vocabId: word.id, type: 'translate_es_id',
+                            prompt: 'Traduce al indonesio: «' + word.esp + '»',
+                            answer: word.idn,
+                            explanation: '«' + word.idn + '» significa «' + word.esp + '».'
+                        });
+                    }
+                });
+                reviewVocab.forEach((word, index) => {
+                    if (index % 2 !== 0) return;
+                    const distractors = meanings.filter(meaning => meaning !== word.esp).slice(0, 3);
+                    const options = distractors.slice();
+                    const answer = index % (options.length + 1);
+                    options.splice(answer, 0, word.esp);
+                    exercises.push({
+                        vocabId: word.id, type: 'mc',
+                        prompt: 'Repaso: ¿qué significa «' + word.idn + '»?',
+                        options, answer,
+                        explanation: '«' + word.idn + '» significa «' + word.esp + '».'
+                    });
+                });
+                const lessonIndex = lessons.length;
+                lessons.push({
+                    index: lessonIndex,
+                    title: 'Lección ' + (lessonIndex + 1),
+                    newVocab, reviewVocab, vocab: learnedVocab,
+                    grammar: unit.grammar, exercises
+                });
+            }
+            return lessons;
+        }
+
+        function unitLessonProgressKey(unitId, lessonIndex) {
+            return String(unitId) + '::' + String(lessonIndex);
+        }
+
+        function isUnitAssessmentPassed(correct, total) {
+            return total > 0 && correct / total >= 0.8;
+        }
+
         /* 3. AUDIO Y AUDIO FALLBACK */
         const AudioEngine = {
             synth: window.speechSynthesis,
@@ -4524,14 +4599,19 @@
             userOrder: [],
             assessmentMode: false,
             assessmentCorrect: 0,
+            currentLesson: null,
+            lessonIndex: 0,
 
             startUnitAssessment(unitId) {
-                const level = CourseData.levels.find(entry => entry.id === 'A1');
-                const unit = level && level.units.find(entry => entry.id === unitId);
+                const unit = getLevels().flatMap(level => level.units).find(entry => entry.id === unitId);
                 if (!unit) return;
+                const lessons = buildUnitLessons(unit);
+                const completedCount = lessons.filter(lesson => App.completedLessons.includes(unitLessonProgressKey(unitId, lesson.index))).length;
+                if (!App.completedUnits.includes(unitId) && completedCount < lessons.length) return;
                 const questions = buildUnitAssessmentItems(unit);
                 if (!questions.length) return;
                 this.currentUnit = unit;
+                this.currentLesson = null;
                 this.queue = questions;
                 this.retry = [];
                 this.intro = false;
@@ -4542,28 +4622,36 @@
                 this.renderStep();
             },
 
-            startUnitById(id) { for (const l of getLevels()) { const u = l.units.find(x => x.id === id); if (u) return this.startUnit(u); } },
-            startUnit(unit) {
-                // Keep the authored lesson exercises, and auto-reinforce only vocabulary
-                // that does not already have an exercise in this unit.
-                const practicedVocabIds = new Set(unit.exercises.map(ex => ex.vocabId));
-                const reinforcement = unit.vocab.filter(v => !practicedVocabIds.has(v.id)).flatMap((v, index) => {
-                    const distractors = unit.vocab.filter(other => other.id !== v.id).map(other => other.esp)
-                        .filter((meaning, i, all) => meaning !== v.esp && all.indexOf(meaning) === i).slice(0, 3);
-                    const options = [v.esp, ...distractors].sort(() => Math.random() - 0.5);
-                    const practice = index % 2 === 0
-                        ? { vocabId: v.id, type: 'mc', prompt: `¿Qué significa “${v.idn}”?`, options, answer: options.indexOf(v.esp), explanation: `“${v.idn}” significa “${v.esp}”.` }
-                        : { vocabId: v.id, type: 'translate_es_id', prompt: `Traduce al indonesio: “${v.esp}”`, answer: v.idn, explanation: `“${v.idn}” significa “${v.esp}”.` };
-                    const listening = index % 2 === 0
-                        ? [{ vocabId: v.id, type: 'listen', prompt: `Escucha y escribe la palabra en indonesio que oyes (significa “${v.esp}”).`, answer: v.idn, explanation: `La palabra es “${v.idn}” (“${v.esp}”).` }]
-                        : [];
-                    return [practice, ...listening];
-                });
-                this.queue = [...unit.exercises, ...reinforcement];
-                this.retry = []; this.intro = true;
+            startUnitById(id, requestedLessonIndex) {
+                for (const level of getLevels()) {
+                    const unit = level.units.find(entry => entry.id === id);
+                    if (!unit) continue;
+                    const lessons = buildUnitLessons(unit);
+                    const nextIndex = lessons.findIndex(lesson => !App.completedLessons.includes(unitLessonProgressKey(id, lesson.index)));
+                    const firstIncomplete = nextIndex < 0 ? lessons.length : nextIndex;
+                    const lessonIndex = Number.isInteger(requestedLessonIndex) ? requestedLessonIndex : firstIncomplete;
+                    if (level.id === 'A1') {
+                        const a1 = CourseData.levels.find(entry => entry.id === 'A1');
+                        const nextUnit = a1.units.find(entry => !App.completedUnits.includes(entry.id));
+                        if (nextUnit && unit.id !== nextUnit.id && !App.completedUnits.includes(unit.id)) return;
+                    }
+                    if (!App.completedUnits.includes(id) && lessonIndex > firstIncomplete) return;
+                    if (lessonIndex >= lessons.length) return this.startUnitAssessment(id);
+                    return this.startUnit(unit, lessonIndex);
+                }
+            },
+            startUnit(unit, lessonIndex = 0) {
+                const lessons = buildUnitLessons(unit);
+                const lesson = lessons[lessonIndex];
+                if (!lesson) return;
+                this.currentUnit = unit;
+                this.currentLesson = lesson;
+                this.lessonIndex = lessonIndex;
+                this.queue = lesson.exercises;
+                this.retry = [];
+                this.intro = true;
                 this.assessmentMode = false;
                 this.assessmentCorrect = 0;
-                this.currentUnit = unit;
                 this.stepIndex = 0;
                 App.switchView('lesson');
                 this.renderStep();
@@ -4571,15 +4659,21 @@
             exit() { this.stopPronunciationPractice(); App.switchView('route'); },
             renderIntro() {
                 const u = this.currentUnit;
+                const lesson = this.currentLesson;
                 document.getElementById('lessonStepCount').innerText = '0/' + this.queue.length;
                 document.getElementById('lessonProgressFill').style.width = '0%';
-                document.getElementById('exerciseArea').innerHTML = `<div><h3>${App.escapeHtml(u.title)}</h3>
-                    <div style="background:var(--bg-card); padding:10px; border-radius:12px; font-size:0.85rem; margin:10px 0;">💡 ${App.escapeHtml(u.grammar)}</div>
-                    <p style="font-size:0.8rem;color:var(--text-muted);margin:8px 0;">💡 Toca una palabra en indonesio para consultar su significado sin salir de la lección.</p>
-                    ${u.vocab.map(v => `<div class="card" style="padding:10px; margin-bottom:8px; display:flex; justify-content:space-between; align-items:center;">
-                        <div><strong>${App.escapeHtml(v.idn)}</strong> — ${App.escapeHtml(v.esp)}<br><small style="color:var(--text-muted);">${App.escapeHtml(v.ex)} (${App.escapeHtml(v.exEsp)})</small></div>
-                        <button class="btn btn-outline btn-sm" data-word="${App.escapeHtml(v.idn)}" onclick="AudioEngine.speak(this.dataset.word)">🔊</button></div>`).join('')}</div>
-                    <div id="actionArea"><button class="btn" onclick="LessonEngine.renderStep()">Comenzar</button></div>`;
+                const wordCard = v => `<div class="card" style="padding:10px; margin-bottom:8px; display:flex; justify-content:space-between; align-items:center;">
+                    <div><strong>${App.escapeHtml(v.idn)}</strong> — ${App.escapeHtml(v.esp)}<br><small style="color:var(--text-muted);">${App.escapeHtml(v.ex)} (${App.escapeHtml(v.exEsp)})</small></div>
+                    <button class="btn btn-outline btn-sm" data-word="${App.escapeHtml(v.idn)}" onclick="AudioEngine.speak(this.dataset.word)">🔊</button></div>`;
+                document.getElementById('exerciseArea').innerHTML = `<div>
+                    <h3>${App.escapeHtml(u.title)}</h3>
+                    <p style="margin:6px 0 12px;color:var(--text-muted);">Lección ${lesson.index + 1} de ${buildUnitLessons(u).length} · ${lesson.newVocab.length} palabras nuevas</p>
+                    <div style="background:var(--bg-card); padding:10px; border-radius:12px; font-size:0.85rem; margin:10px 0;">💡 ${App.escapeHtml(lesson.grammar || u.grammar || '')}</div>
+                    <p style="font-size:0.8rem;color:var(--text-muted);margin:8px 0;">Palabras nuevas</p>
+                    ${lesson.newVocab.map(wordCard).join('')}
+                    ${lesson.reviewVocab.length ? `<p style="font-size:0.8rem;color:var(--text-muted);margin:14px 0 8px;">Repaso de lecciones anteriores</p>${lesson.reviewVocab.map(wordCard).join('')}` : ''}
+                    <p style="font-size:0.8rem;color:var(--text-muted);margin:8px 0;">Escucha cada palabra y repítela en voz alta antes de comenzar.</p>
+                    </div><div id="actionArea"><button class="btn" onclick="LessonEngine.renderStep()">Comenzar lección</button></div>`;
             },
             renderStep() {
                 this.stopPronunciationPractice();
@@ -4780,9 +4874,9 @@
             },
             rateWriting(isCorrect) {
                 const ex = this.queue[this.stepIndex];
-                if (!isCorrect && !ex._r) this.retry.push({ ...ex, _r: true });
-                if (ex.vocabId) SRSEngine.recordAttempt(ex.vocabId, isCorrect ? 3 : 1).catch(err => console.error('No se pudo registrar el intento SRS:', err));
-                if (isCorrect) App.addXp(10);
+                if (!this.assessmentMode && !isCorrect && !ex._r) this.retry.push({ ...ex, _r: true });
+                if (ex.vocabId && !this.assessmentMode) SRSEngine.recordAttempt(ex.vocabId, isCorrect ? 3 : 1).catch(err => console.error('No se pudo registrar el intento SRS:', err));
+                if (isCorrect && !this.assessmentMode) App.addXp(10);
                 document.getElementById('actionArea').innerHTML = `
                     <div class="feedback-box ${isCorrect ? 'correct' : 'wrong'}">${isCorrect ? '¡Buen trabajo!' : 'La repetiremos para afianzarla.'}</div>
                     <button class="btn" style="margin-top:12px;" onclick="LessonEngine.nextStep(${isCorrect})">Continuar</button>
@@ -4826,30 +4920,40 @@
                 if (this.assessmentMode) {
                     const total = this.queue.length;
                     const correct = this.assessmentCorrect;
+                    const passed = isUnitAssessmentPassed(correct, total);
                     this.assessmentMode = false;
+                    if (passed) await App.markUnitCompleted(this.currentUnit.id);
+                    const unitId = this.currentUnit.id;
                     document.getElementById('exerciseArea').innerHTML = `
                         <div style="text-align:center; margin-top:40px;">
-                            <h2>📝 Prueba de unidad completada</h2>
+                            <h2>${passed ? '🎉 ¡Prueba superada!' : '📝 Sigue practicando'}</h2>
                             <p style="font-size:1.2rem; margin:16px 0;">Resultado: <strong>${correct} de ${total}</strong> respuestas correctas.</p>
-                            <p style="margin:16px 0; color:var(--text-muted);">Esta prueba utiliza únicamente las palabras enseñadas en esta unidad. No modifica tu progreso ni tu repaso.</p>
-                            <button class="btn" onclick="LessonEngine.exit()">Volver al curso</button>
+                            <p style="margin:16px 0; color:var(--text-muted);">${passed ? 'Has demostrado que conoces el vocabulario de esta unidad. La siguiente unidad ya está desbloqueada.' : 'Necesitas al menos un 80 % para avanzar. Repasa las lecciones y vuelve a intentarlo.'}</p>
+                            ${passed ? '<button class="btn" onclick="LessonEngine.exit()">Continuar al curso</button>' : `<button class="btn" onclick="LessonEngine.startUnitAssessment('${unitId}')">Repetir prueba</button><button class="btn btn-outline" onclick="LessonEngine.exit()">Volver a las lecciones</button>`}
                         </div>
                     `;
                     document.getElementById('lessonProgressFill').style.width = '100%';
                     return;
                 }
-                await App.markUnitCompleted(this.currentUnit.id);
-                for (const v of this.currentUnit.vocab) { if (!(await DB.get('srs', v.id))) await SRSEngine.recordAttempt(v.id, 4); }
-                const completedUnitId = this.currentUnit.id;
+                const unit = this.currentUnit;
+                const lesson = this.currentLesson;
+                const lessonKey = unitLessonProgressKey(unit.id, lesson.index);
+                if (!App.completedLessons.includes(lessonKey)) {
+                    App.completedLessons.push(lessonKey);
+                    await DB.set('settings', 'completedLessons', App.completedLessons);
+                }
+                const lessons = buildUnitLessons(unit);
+                const isLastLesson = lesson.index === lessons.length - 1;
                 document.getElementById('exerciseArea').innerHTML = `
                     <div style="text-align:center; margin-top:40px;">
-                        <h2>🎉 Unidad Completada</h2>
-                        <p style="margin:16px 0; color:var(--text-muted);">Progreso y repetición espaciada guardados.</p>
-                        <button class="btn" onclick="LessonEngine.startUnitAssessment('${completedUnitId}')">Hacer prueba corta de esta unidad</button>
+                        <h2>🎉 ¡Lección completada!</h2>
+                        <p style="margin:16px 0; color:var(--text-muted);">${App.completedLessons.filter(key => key.startsWith(unit.id + '::')).length} de ${lessons.length} lecciones terminadas en esta unidad.</p>
+                        ${isLastLesson ? `<p style="margin:16px 0;">Has terminado todas las lecciones. Ahora puedes hacer la prueba final para desbloquear la siguiente unidad.</p><button class="btn" onclick="LessonEngine.startUnitAssessment('${unit.id}')">Hacer prueba final de unidad</button>` : `<button class="btn" onclick="LessonEngine.startUnitById('${unit.id}', ${lesson.index + 1})">Siguiente lección</button>`}
                         <button class="btn btn-outline" onclick="LessonEngine.exit()">Volver al curso</button>
                     </div>
                 `;
                 document.getElementById('lessonProgressFill').style.width = '100%';
+                App.renderCourseRoute();
             }
         };
 
@@ -5130,6 +5234,7 @@ Requisitos:
         const App = {
             xp: 0,
             completedUnits: [],
+            completedLessons: [],
             apiKey: '',
 
             async init() {
@@ -5139,6 +5244,7 @@ Requisitos:
 
                 this.xp = (await DB.get('settings', 'userXp')) || 0;
                 this.completedUnits = (await DB.get('settings', 'completedUnits')) || [];
+                this.completedLessons = (await DB.get('settings', 'completedLessons')) || [];
                 this.apiKey = (await DB.get('settings', 'geminiApiKey')) || '';
                 CustomLessons.units = (await DB.get('settings', 'customUnits')) || [];
                 CustomLessons.pos = (await DB.get('settings', 'syllabusPos')) || 0;
@@ -5233,16 +5339,30 @@ Requisitos:
                     lvl.units.forEach(unit => {
                         const isDone = this.completedUnits.includes(unit.id);
                         const isNext = lvl.id === 'A1' && nextA1Unit && unit.id === nextA1Unit.id;
+                        const lessons = buildUnitLessons(unit);
+                        const completedCount = isDone ? lessons.length : lessons.filter(lesson => this.completedLessons.includes(unitLessonProgressKey(unit.id, lesson.index))).length;
+                        const nextLesson = lessons.findIndex(lesson => !this.completedLessons.includes(unitLessonProgressKey(unit.id, lesson.index)));
+                        const unitAccessible = lvl.id !== 'A1' || isDone || isNext;
                         const card = document.createElement('details');
                         card.className = `unit-card ${isDone ? 'completed' : ''}`;
                         if (isNext) card.open = true;
+                        const lessonButtons = lessons.map(lesson => {
+                            const lessonDone = isDone || this.completedLessons.includes(unitLessonProgressKey(unit.id, lesson.index));
+                            const lessonUnlocked = unitAccessible && (lessonDone || lesson.index === (nextLesson < 0 ? lessons.length : nextLesson));
+                            return `<button class="btn btn-outline btn-sm" style="flex:1; min-width:135px;" data-unit-id="${App.escapeHtml(unit.id)}" data-lesson-index="${lesson.index}" ${lessonUnlocked ? '' : 'disabled'} onclick="LessonEngine.startUnitById(this.dataset.unitId, Number(this.dataset.lessonIndex))">${lessonDone ? '✓ ' : ''}Lección ${lesson.index + 1}${lessonDone ? ' · Repasar' : ''}</button>`;
+                        }).join('');
+                        const examButton = !isDone && unitAccessible && completedCount === lessons.length
+                            ? `<button class="btn" data-unit-id="${App.escapeHtml(unit.id)}" onclick="LessonEngine.startUnitAssessment(this.dataset.unitId)">Prueba final · Desbloquear siguiente unidad</button>`
+                            : '';
                         card.innerHTML = `
                             <summary>
                                 <span class="unit-title">${App.escapeHtml(unit.title)} ${isDone ? '✓' : ''}${unit.custom ? ' ✨' : ''}</span>
-                                <span class="badge">${isDone ? 'Completada' : isNext ? 'Siguiente' : 'Pendiente'}</span>
+                                <span class="badge">${isDone ? 'Aprobada' : isNext ? 'En curso' : 'Bloqueada'}</span>
                             </summary>
                             <div class="unit-body">
                                 <p style="font-size:0.85rem; color:var(--text-muted);">${App.escapeHtml(unit.desc)}</p>
+                                <p style="font-size:0.85rem; color:var(--text-muted); margin:8px 0;">Lecciones: ${completedCount}/${lessons.length}</p>
+                                <div class="progress-bar" style="margin-bottom:10px;"><div class="progress-fill" style="width:${lessons.length ? completedCount / lessons.length * 100 : 0}%;"></div></div>
                                 <div style="background:var(--bg-card); padding:8px; border-radius:10px; font-size:0.85rem;">
                                     💡 <strong>Gramática:</strong> ${App.escapeHtml(unit.grammar)}
                                 </div>
@@ -5250,7 +5370,9 @@ Requisitos:
                                     <button class="btn btn-outline btn-sm" data-word="${App.escapeHtml(unit.vocab[0]?.idn || '')}" onclick="AudioEngine.speak(this.dataset.word)">🔊 Pronunciación</button>
                                     ${unit.custom ? `<button class="btn btn-outline btn-sm" data-unit-id="${App.escapeHtml(unit.id)}" onclick="AIGen.remove(this.dataset.unitId)">Eliminar</button>` : ''}
                                 </div>
-                                <button class="btn" data-unit-id="${App.escapeHtml(unit.id)}" onclick="LessonEngine.startUnitById(this.dataset.unitId)">${isDone ? 'Repasar Lección' : 'Iniciar Lección'}</button>
+                                <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;">${lessonButtons}</div>
+                                ${examButton}
+                                ${isDone ? '<p style="font-size:0.85rem;color:var(--success);margin-top:8px;">Prueba final superada · siguiente unidad desbloqueada</p>' : ''}
                             </div>
                         `;
                         levelEl.appendChild(card);
@@ -5397,6 +5519,7 @@ Requisitos:
                     syllabusPos: CustomLessons.pos,
                     xp: this.xp,
                     completedUnits: this.completedUnits,
+                    completedLessons: this.completedLessons,
                     srs: await DB.getAll('srs'),
                     exportedAt: new Date().toISOString()
                 };
@@ -5413,6 +5536,8 @@ Requisitos:
                 if (!isObject(parsed) || parsed.version !== 3 || !Number.isSafeInteger(parsed.xp) || parsed.xp < 0 || parsed.xp > 1000000000) fail();
                 const completedUnits = parsed.completedUnits === undefined ? [] : parsed.completedUnits;
                 if (!Array.isArray(completedUnits) || completedUnits.length > 200 || completedUnits.some(id => !validText(id, 100))) fail();
+                const completedLessons = parsed.completedLessons === undefined ? [] : parsed.completedLessons;
+                if (!Array.isArray(completedLessons) || completedLessons.length > 1000 || completedLessons.some(id => !validText(id, 120))) fail();
                 const customRaw = parsed.customUnits === undefined ? [] : parsed.customUnits;
                 if (!Array.isArray(customRaw) || customRaw.length > 100) fail();
                 const seenUnitIds = new Set(), seenVocabIds = new Set();
@@ -5495,7 +5620,7 @@ Requisitos:
                     }});
                 }
                 const syllabusPos = Number.isSafeInteger(parsed.syllabusPos) && parsed.syllabusPos >= 0 && parsed.syllabusPos <= SYLLABUS.length ? parsed.syllabusPos : 0;
-                return { version: 3, xp: parsed.xp, completedUnits, customUnits, syllabusPos, srs };
+                return { version: 3, xp: parsed.xp, completedUnits, completedLessons, customUnits, syllabusPos, srs };
             },
             importProgress(e) {
                 const file = e.target.files[0];
@@ -5509,6 +5634,7 @@ Requisitos:
                         await DB.replaceBackupData(backup);
                         this.xp = backup.xp;
                         this.completedUnits = backup.completedUnits;
+                        this.completedLessons = backup.completedLessons || [];
                         CustomLessons.units = backup.customUnits;
                         CustomLessons.pos = backup.syllabusPos;
                         alert('Progreso restaurado con éxito.');

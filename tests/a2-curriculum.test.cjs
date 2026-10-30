@@ -46,24 +46,41 @@ test('A2 expands to eight sequential units without changing the 32-unit A1 cours
     ['a2_u4', 'a2_u5', 'a2_u6', 'a2_u7', 'a2_u8']);
 });
 
-test('new A2 units have vocabulary, varied practice, listening, and production', () => {
-  for (const unit of a2.units.slice(3)) {
-    assert.ok(unit.vocab.length >= 4, unit.id + ' should introduce at least four vocabulary items');
-    assert.ok(unit.exercises.length >= 8, unit.id + ' should include at least eight exercises');
-    assert.ok(unit.exercises.some(exercise => exercise.type === 'listen'),
+test('the first four A2 units have 3-5 lessons, varied practice, listening, and production', () => {
+  const allVocabIds = new Set(courseData.levels.flatMap(level => level.units.flatMap(unit => unit.vocab || [])).map(word => word.id));
+  const a1Forms = new Set(courseData.levels.find(level => level.id === 'A1').units.flatMap(unit => unit.vocab).map(word => word.idn.trim().toLowerCase()));
+  for (const unit of a2.units.slice(0, 4)) {
+    assert.ok(unit.vocab.length >= 4, unit.id + ' should introduce vocabulary');
+    assert.ok(Array.isArray(unit.lessons) && unit.lessons.length >= 3 && unit.lessons.length <= 5,
+      unit.id + ' should contain 3-5 authored lessons');
+    const exercises = unit.lessons.flatMap(lesson => lesson.exercises || []);
+    assert.ok(exercises.length >= 14 && exercises.length <= 22,
+      unit.id + ' should include 14-22 exercises across its lessons');
+    assert.ok(new Set(exercises.map(exercise => exercise.type)).size >= 4,
+      unit.id + ' should use at least four exercise types');
+    assert.ok(exercises.some(exercise => exercise.type === 'listen'),
       unit.id + ' should include listening practice');
-    assert.ok(unit.exercises.some(exercise => exercise.type === 'write'),
-      unit.id + ' should include a productive writing prompt');
-    const vocabIds = new Set(unit.vocab.map(word => word.id));
-    for (const exercise of unit.exercises) {
-      if (exercise.vocabId) assert.ok(vocabIds.has(exercise.vocabId) || unit.id === 'a2_u8',
-        unit.id + ' exercise should reference vocabulary introduced in its unit');
+    assert.ok(exercises.some(exercise => exercise.type === 'write' && exercise.hint && exercise.modelAnswer),
+      unit.id + ' should include guided original writing');
+    const unitVocabIds = new Set(unit.vocab.map(word => word.id));
+    for (const lesson of unit.lessons) {
+      assert.ok(lesson.vocabIds.length > 0, lesson.title + ' should introduce new vocabulary');
+      for (const id of lesson.vocabIds) assert.ok(unitVocabIds.has(id), unit.id + ' lesson references unknown new vocabulary');
+      for (const id of lesson.reviewVocabIds || []) assert.ok(allVocabIds.has(id), unit.id + ' lesson references unknown review vocabulary');
+      for (const exercise of lesson.exercises || []) {
+        if (exercise.vocabId) assert.ok(allVocabIds.has(exercise.vocabId),
+          unit.id + ' exercise should reference canonical vocabulary taught in the course');
+      }
+    }
+    for (const word of unit.vocab) {
+      assert.ok(!a1Forms.has(word.idn.trim().toLowerCase()),
+        unit.id + ' should not reintroduce A1 vocabulary as new content');
     }
   }
 });
 
 test('new A2 vocabulary identifiers are unique and advanced content remains gated', () => {
-  const newIds = a2.units.slice(3).flatMap(unit => unit.vocab.map(word => word.id));
+  const newIds = a2.units.slice(0, 4).flatMap(unit => unit.vocab.map(word => word.id));
   assert.equal(new Set(newIds).size, newIds.length, 'new A2 vocabulary identifiers must be unique');
   assert.match(html, /function getLearningLevels\(\)\s*\{\s*return getLevels\(\)\.filter\(level => !\['A2', 'B1', 'B2'\]\.includes\(level\.id\)\);/,
     'A2, B1, and B2 should remain outside learner-facing vocabulary and SRS');

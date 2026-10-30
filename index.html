@@ -4517,7 +4517,7 @@
                 App.switchView('lesson');
                 this.renderStep();
             },
-            exit() { App.switchView('route'); },
+            exit() { this.stopPronunciationPractice(); App.switchView('route'); },
             renderIntro() {
                 const u = this.currentUnit;
                 document.getElementById('lessonStepCount').innerText = '0/' + this.queue.length;
@@ -4531,6 +4531,7 @@
                     <div id="actionArea"><button class="btn" onclick="LessonEngine.renderStep()">Comenzar</button></div>`;
             },
             renderStep() {
+                this.stopPronunciationPractice();
                 if (this.intro) { this.intro = false; return this.renderIntro(); }
                 const container = document.getElementById('exerciseArea');
                 const total = this.queue.length;
@@ -4550,7 +4551,7 @@
                     const listenMarkup = ex.audioText
                         ? `<button class="btn btn-outline" style="margin-top:12px;" data-audio-text="${App.escapeHtml(ex.audioText)}" onclick="AudioEngine.speak(this.dataset.audioText)" aria-label="Repetir audio">🔊 Repetir audio</button>
                             <button class="btn btn-outline" style="margin-top:8px;" onclick="LessonEngine.startPronunciationPractice()" aria-label="Practicar pronunciación">🎙️ Practicar pronunciación (opcional)</button>
-                            <p id="pronunciationStatus" role="status" aria-live="polite" style="font-size:0.85rem;color:var(--text-muted);margin-top:8px;">El micrófono solo se activa cuando pulsas este botón. El reconocimiento depende del navegador.</p>`
+                            <p id="pronunciationStatus" role="status" aria-live="polite" style="font-size:0.85rem;color:var(--text-muted);margin-top:8px;">El micrófono solo se activa al pulsar. El navegador puede enviar audio a su proveedor de reconocimiento.</p>`
                         : '';
                     container.innerHTML = `
                         <div>
@@ -4615,6 +4616,12 @@
                         </div>
                     `;
                 }
+            },
+            stopPronunciationPractice() {
+                if (!this.activeRecognition) return;
+                const recognition = this.activeRecognition;
+                this.activeRecognition = null;
+                try { recognition.abort(); } catch (_) {}
             },
             startPronunciationPractice() {
                 const ex = this.queue[this.stepIndex];

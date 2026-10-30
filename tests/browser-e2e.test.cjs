@@ -94,7 +94,8 @@ test('real Chromium preserves progress on reload and safely imports valid/invali
         key: 'v27',
         val: {
           attempts: 9, correct: 8, incorrect: 1, interval: 6, repetition: 2,
-          efactor: 2.5, nextReview: Date.now() + 86400000, lastReviewed: Date.now()
+          efactor: 2.5, nextReview: Date.now() + 86400000, lastReviewed: Date.now(),
+          savedForReview: true
         }
       }]
     };
@@ -108,7 +109,10 @@ test('real Chromium preserves progress on reload and safely imports valid/invali
     await page.waitForFunction(() => App.xp === 77 && App.completedUnits.includes('a1_u2'));
     assert.equal(await page.evaluate(() => DB.get('settings', 'userXp')), 77);
     assert.deepEqual(await page.evaluate(() => DB.get('settings', 'completedUnits')), ['a1_u2']);
-    assert.equal((await page.evaluate(() => DB.get('srs', 'v27'))).attempts, 9);
+    const restoredSrs = await page.evaluate(() => DB.get('srs', 'v27'));
+    assert.equal(restoredSrs.attempts, 9);
+    assert.equal(restoredSrs.savedForReview, true,
+      'restoring a backup must preserve the manual saved-for-review marker');
     assert.equal(await page.evaluate(() => DB.get('srs', 'v49')), null,
       'successful restore should replace old SRS records rather than leave stale entries');
 

@@ -1730,8 +1730,8 @@
                                     "id": "v254",
                                     "idn": "Mencuci",
                                     "esp": "Lavar",
-                                    "ex": "Saya mencuci baju.",
-                                    "exEsp": "Lavo la ropa."
+                                    "ex": "Saya mencuci.",
+                                    "exEsp": "Lavo."
                                 },
                                 {
                                     "id": "v304",
@@ -3818,97 +3818,1180 @@
                                 }
                             ]
                         },
-                    {
-                        "id": "a2_u5",
-                        "title": "U5 — Verbos activos: men-",
-                        "description": "Practica men- con raíces que empiezan por t, d, c y j.",
-                        "grammar": "La forma men- aparece ante raíces que empiezan por t, d, c y j. En raíces con t, la t inicial suele desaparecer: tulis → menulis. Con d, c y j, la consonante se conserva: dengar → mendengar, cari → mencari, jual → menjual.",
-                        "vocab": [
-                            { "id": "v505", "idn": "Menulis", "esp": "Escribir", "type": "verb", "example": "Saya menulis pesan.", "exampleEsp": "Escribo un mensaje." },
-                            { "id": "v506", "idn": "Mendengar", "esp": "Escuchar; oír", "type": "verb", "example": "Dia mendengar musik.", "exampleEsp": "Él o ella escucha música." },
-                            { "id": "v507", "idn": "Mencari", "esp": "Buscar", "type": "verb", "example": "Kami mencari alamat.", "exampleEsp": "Buscamos una dirección." },
-                            { "id": "v508", "idn": "Menjual", "esp": "Vender", "type": "verb", "example": "Mereka menjual buah.", "exampleEsp": "Ellos venden fruta." }
-                        ],
-                        "exercises": [
-                            { "type": "mc", "prompt": "¿Cuál es la forma activa de tulis?", "options": ["Mentulis", "Mengtulis", "Menulis"], "answer": 2, "vocabId": "v505", "explanation": "La t inicial de tulis desaparece: menulis." },
-                            { "type": "mc", "prompt": "Completa: dengar → …", "options": ["Mengdengar", "Mendengar", "Menengar"], "answer": 1, "vocabId": "v506" },
-                            { "type": "mc", "prompt": "¿Qué significa mencari?", "options": ["Vender", "Buscar", "Escuchar"], "answer": 1, "vocabId": "v507" },
-                            { "type": "mc", "prompt": "Elige la forma correcta de jual.", "options": ["Mengjual", "Menjual", "Mejual"], "answer": 1, "vocabId": "v508" },
-                            { "type": "translate_es_id", "prompt": "Traduce: Ella escribe un mensaje.", "answer": "Dia menulis pesan.", "vocabId": "v505" },
-                            { "type": "listen", "prompt": "Escucha y escribe la frase.", "answer": "Kami mencari alamat.", "vocabId": "v507" },
-                            { "type": "write", "prompt": "Escribe una frase usando mendengar.", "hint": "Puedes usar musik (música).", "modelAnswer": "Saya mendengar musik.", "vocabId": "v506" },
-                            { "type": "mc", "prompt": "¿Qué significa «Mereka menjual buah»?", "options": ["Ellos venden fruta.", "Ellos buscan una dirección.", "Ellos escuchan música."], "answer": 0, "vocabId": "v508" }
-                        ]
-                    },
-                    {
-                        "id": "a2_u6",
-                        "title": "U6 — Verbos activos: meng-",
-                        "description": "Forma verbos con raíces que empiezan por k, g y vocal.",
-                        "grammar": "La forma meng- aparece ante raíces que empiezan por k, g y vocal. Con k, la consonante inicial suele desaparecer: kirim → mengirim. Con g y vocal, se conserva el sonido inicial: gambar → menggambar, ambil → mengambil, ajar → mengajar.",
-                        "vocab": [
-                            { "id": "v509", "idn": "Mengirim", "esp": "Enviar", "type": "verb", "example": "Saya mengirim pesan.", "exampleEsp": "Envío un mensaje." },
-                            { "id": "v510", "idn": "Menggambar", "esp": "Dibujar", "type": "verb", "example": "Dia menggambar rumah.", "exampleEsp": "Él o ella dibuja una casa." },
-                            { "id": "v511", "idn": "Mengambil", "esp": "Tomar; coger", "type": "verb", "example": "Saya mengambil buku.", "exampleEsp": "Cojo un libro." },
-                            { "id": "v512", "idn": "Mengajar", "esp": "Enseñar", "type": "verb", "example": "Guru mengajar di sekolah.", "exampleEsp": "El profesor enseña en la escuela." }
-                        ],
-                        "exercises": [
-                            { "type": "mc", "prompt": "¿Cuál es la forma activa de kirim?", "options": ["Mengkirim", "Mengirim", "Menirim"], "answer": 1, "vocabId": "v509", "explanation": "La k inicial de kirim desaparece después de meng-." },
-                            { "type": "mc", "prompt": "Completa: gambar → …", "options": ["Memgambar", "Menggambar", "Mengambar"], "answer": 1, "vocabId": "v510" },
-                            { "type": "mc", "prompt": "¿Qué significa mengambil?", "options": ["Enviar", "Tomar o coger", "Enseñar"], "answer": 1, "vocabId": "v511" },
-                            { "type": "mc", "prompt": "Elige la forma correcta de ajar.", "options": ["Menajar", "Mengajar", "Memajar"], "answer": 1, "vocabId": "v512" },
-                            { "type": "translate_es_id", "prompt": "Traduce: Envío un mensaje.", "answer": "Saya mengirim pesan.", "vocabId": "v509" },
-                            { "type": "listen", "prompt": "Escucha y escribe la frase.", "answer": "Dia menggambar rumah.", "vocabId": "v510" },
-                            { "type": "write", "prompt": "Escribe una frase usando mengambil.", "hint": "Puedes usar buku (libro).", "modelAnswer": "Saya mengambil buku.", "vocabId": "v511" },
-                            { "type": "mc", "prompt": "¿Qué significa «Guru mengajar di sekolah»?", "options": ["El profesor enseña en la escuela.", "El profesor compra en el mercado.", "El profesor dibuja una casa."], "answer": 0, "vocabId": "v512" }
-                        ]
-                    },
-                    {
-                        "id": "a2_u7",
-                        "title": "U7 — Verbos activos: meny-",
-                        "description": "Practica verbos frecuentes formados a partir de raíces con s inicial.",
-                        "grammar": "Ante muchas raíces que empiezan por s, el prefijo meN- adopta la forma meny- y la s desaparece: sapu → menyapu, simpan → menyimpan. Aprende estas formas frecuentes como vocabulario en contexto.",
-                        "vocab": [
-                            { "id": "v513", "idn": "Menyapu", "esp": "Barrer", "type": "verb", "example": "Saya menyapu lantai.", "exampleEsp": "Barro el suelo." },
-                            { "id": "v514", "idn": "Menyimpan", "esp": "Guardar; ahorrar", "type": "verb", "example": "Dia menyimpan uang.", "exampleEsp": "Él o ella guarda dinero." },
-                            { "id": "v515", "idn": "Menyewa", "esp": "Alquilar", "type": "verb", "example": "Kami menyewa kamar.", "exampleEsp": "Alquilamos una habitación." },
-                            { "id": "v516", "idn": "Menyusun", "esp": "Ordenar; organizar", "type": "verb", "example": "Mereka menyusun buku.", "exampleEsp": "Ellos ordenan los libros." }
-                        ],
-                        "exercises": [
-                            { "type": "mc", "prompt": "¿Cuál es la forma activa de sapu?", "options": ["Mensapu", "Menyapu", "Mengsapu"], "answer": 1, "vocabId": "v513" },
-                            { "type": "mc", "prompt": "Completa: simpan → …", "options": ["Memimpan", "Menyimpan", "Mensimpan"], "answer": 1, "vocabId": "v514", "explanation": "La s inicial desaparece en esta forma frecuente." },
-                            { "type": "mc", "prompt": "¿Qué significa menyewa?", "options": ["Barrer", "Alquilar", "Ordenar"], "answer": 1, "vocabId": "v515" },
-                            { "type": "mc", "prompt": "Elige la forma correcta de susun.", "options": ["Mensusun", "Menyusun", "Mengsusun"], "answer": 1, "vocabId": "v516" },
-                            { "type": "translate_es_id", "prompt": "Traduce: Barro el suelo.", "answer": "Saya menyapu lantai.", "vocabId": "v513" },
-                            { "type": "listen", "prompt": "Escucha y escribe la frase.", "answer": "Dia menyimpan uang.", "vocabId": "v514" },
-                            { "type": "write", "prompt": "Escribe una frase usando menyewa.", "hint": "Puedes usar kamar (habitación).", "modelAnswer": "Kami menyewa kamar.", "vocabId": "v515" },
-                            { "type": "mc", "prompt": "¿Qué significa «Mereka menyusun buku»?", "options": ["Ellos ordenan los libros.", "Ellos alquilan una habitación.", "Ellos barren el suelo."], "answer": 0, "vocabId": "v516" }
-                        ]
-                    },
-                    {
-                        "id": "a2_u8",
-                        "title": "U8 — Voz activa y pasiva; di como preposición",
-                        "description": "Distingue verbos activos con meN-, verbos pasivos con di- y la preposición di.",
-                        "grammar": "En la voz activa, el sujeto realiza la acción: Ana membaca buku. En la pasiva, el objeto afectado pasa al inicio y el verbo lleva di- unido: Buku dibaca oleh Ana. En cambio, di como preposición de lugar se escribe separado: di rumah (en casa). Compara la función y la escritura.",
-                        "vocab": [
-                            { "id": "v201", "idn": "Membaca", "esp": "Leer", "type": "verb", "example": "Ana membaca buku.", "exampleEsp": "Ana lee un libro." },
-                            { "id": "v202", "idn": "Menulis", "esp": "Escribir", "type": "verb", "example": "Ana menulis pesan.", "exampleEsp": "Ana escribe un mensaje." },
-                            { "id": "v205", "idn": "Dibaca", "esp": "Ser leído", "type": "verb", "example": "Buku dibaca oleh Ana.", "exampleEsp": "El libro es leído por Ana." },
-                            { "id": "v206", "idn": "Ditulis", "esp": "Ser escrito", "type": "verb", "example": "Pesan ditulis oleh Budi.", "exampleEsp": "El mensaje es escrito por Budi." },
-                            { "id": "v207", "idn": "Dibeli", "esp": "Ser comprado", "type": "verb", "example": "Buku dibeli oleh Ana.", "exampleEsp": "El libro es comprado por Ana." },
-                            { "id": "v208", "idn": "Oleh", "esp": "Por (agente en pasiva)", "type": "preposition", "example": "Buku dibaca oleh Ana.", "exampleEsp": "El libro es leído por Ana." },
-                            { "id": "v517", "idn": "Di", "esp": "En (preposición de lugar)", "type": "preposition", "example": "Saya belajar di rumah.", "exampleEsp": "Estudio en casa." }
-                        ],
-                        "exercises": [
-                            { "type": "mc", "prompt": "¿Cuál oración está en voz activa?", "options": ["Buku dibaca oleh Ana.", "Ana membaca buku.", "Buku di rumah."], "answer": 1, "vocabId": "v201" },
-                            { "type": "mc", "prompt": "¿Cuál oración está en voz pasiva?", "options": ["Ana membaca buku.", "Buku dibaca oleh Ana.", "Ana menulis pesan."], "answer": 1, "vocabId": "v205" },
-                            { "type": "mc", "prompt": "¿Cómo se escribe la preposición «en» en di rumah?", "options": ["Unida: dirumah", "Separada: di rumah", "Con guion: di-rumah"], "answer": 1, "vocabId": "v517", "explanation": "La preposición de lugar di se escribe separada del sustantivo." },
-                            { "type": "translate_es_id", "prompt": "Traduce: El libro es leído por Ana.", "answer": "Buku dibaca oleh Ana.", "vocabId": "v205" },
-                            { "type": "listen", "prompt": "Escucha y escribe la frase.", "answer": "Pesan ditulis oleh Budi.", "vocabId": "v206" },
-                            { "type": "write", "prompt": "Escribe una oración pasiva usando dibeli.", "hint": "Puedes usar buku y oleh Ana.", "modelAnswer": "Buku dibeli oleh Ana.", "vocabId": "v207" },
-                            { "type": "mc", "prompt": "¿Qué significa «Buku dibaca di rumah»?", "options": ["El libro se lee en casa.", "Ana lee un libro en la escuela.", "El libro compra una casa."], "answer": 0, "vocabId": "v517" },
-                            { "type": "mc", "prompt": "En «Buku dibaca oleh Ana», ¿quién realiza la acción?", "options": ["Buku", "Ana", "Rumah"], "answer": 1, "vocabId": "v208", "explanation": "Oleh introduce al agente que realiza la acción en la pasiva." }
-                        ]
-                    }
+                        {
+                            "id": "a2_u5",
+                            "title": "Unidad 5: Actividades y acciones con ber-",
+                            "desc": "Habla de actividades, movimiento, encuentros y acciones cotidianas con verbos frecuentes en ber-.",
+                            "grammar": "El prefijo ber- forma muchos verbos que expresan actividad, estado o participación. No se aplica mecánicamente a cualquier raíz: aprende las formas frecuentes completas y su uso en contexto.",
+                            "vocab": [
+                                {
+                                    "id": "a2u5_berbicara",
+                                    "idn": "Berbicara",
+                                    "esp": "Hablar",
+                                    "ex": "Dia berbicara.",
+                                    "exEsp": "Él o ella habla."
+                                },
+                                {
+                                    "id": "a2u5_bersepeda",
+                                    "idn": "Bersepeda",
+                                    "esp": "Ir en bicicleta",
+                                    "ex": "Saya bersepeda.",
+                                    "exEsp": "Voy en bicicleta."
+                                },
+                                {
+                                    "id": "a2u5_berkunjung",
+                                    "idn": "Berkunjung",
+                                    "esp": "Visitar",
+                                    "ex": "Kami berkunjung.",
+                                    "exEsp": "Visitamos."
+                                },
+                                {
+                                    "id": "a2u5_berlatih",
+                                    "idn": "Berlatih",
+                                    "esp": "Practicar; entrenar",
+                                    "ex": "Dia berlatih.",
+                                    "exEsp": "Él o ella practica."
+                                },
+                                {
+                                    "id": "a2u5_berdoa",
+                                    "idn": "Berdoa",
+                                    "esp": "Rezar; orar",
+                                    "ex": "Saya berdoa.",
+                                    "exEsp": "Rezo."
+                                },
+                                {
+                                    "id": "a2u5_berdiri",
+                                    "idn": "Berdiri",
+                                    "esp": "Estar de pie",
+                                    "ex": "Saya berdiri di sini.",
+                                    "exEsp": "Estoy de pie aquí."
+                                },
+                                {
+                                    "id": "a2u5_berlari",
+                                    "idn": "Berlari",
+                                    "esp": "Correr",
+                                    "ex": "Dia berlari ke rumah.",
+                                    "exEsp": "Él o ella corre a casa."
+                                },
+                                {
+                                    "id": "a2u5_bernyanyi",
+                                    "idn": "Bernyanyi",
+                                    "esp": "Cantar",
+                                    "ex": "Saya bernyanyi.",
+                                    "exEsp": "Canto."
+                                },
+                                {
+                                    "id": "a2u5_berhenti",
+                                    "idn": "Berhenti",
+                                    "esp": "Parar; detenerse",
+                                    "ex": "Dia berhenti di sini.",
+                                    "exEsp": "Él o ella se detiene aquí."
+                                },
+                                {
+                                    "id": "a2u5_berkumpul",
+                                    "idn": "Berkumpul",
+                                    "esp": "Reunirse; juntarse",
+                                    "ex": "Kami berkumpul di rumah.",
+                                    "exEsp": "Nos reunimos en casa."
+                                },
+                                {
+                                    "id": "a2u5_bertanya",
+                                    "idn": "Bertanya",
+                                    "esp": "Preguntar",
+                                    "ex": "Saya bertanya.",
+                                    "exEsp": "Pregunto."
+                                },
+                                {
+                                    "id": "a2u5_bersantai",
+                                    "idn": "Bersantai",
+                                    "esp": "Relajarse",
+                                    "ex": "Saya bersantai di rumah.",
+                                    "exEsp": "Me relajo en casa."
+                                }
+                            ],
+                            "lessons": [
+                                {
+                                    "title": "Lección 1: Hablar, desplazarse y visitar",
+                                    "objective": "Expresa acciones de comunicación y desplazamiento.",
+                                    "grammar": "Berbicara significa hablar, bersepeda ir en bicicleta y berkunjung visitar. Aprende cada verbo como una forma completa.",
+                                    "vocabIds": [
+                                        "a2u5_berbicara",
+                                        "a2u5_bersepeda",
+                                        "a2u5_berkunjung"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "a2u5_berbicara",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa berbicara?",
+                                            "options": [
+                                                "Hablar",
+                                                "Ir en bicicleta",
+                                                "Visitar"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Berbicara significa hablar."
+                                        },
+                                        {
+                                            "vocabId": "a2u5_bersepeda",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Voy en bicicleta a la escuela.",
+                                            "answer": "Saya bersepeda ke sekolah.",
+                                            "explanation": "La frase usa bersepeda."
+                                        },
+                                        {
+                                            "vocabId": "a2u5_berkunjung",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la oración.",
+                                            "answer": "Kami berkunjung ke rumah teman.",
+                                            "explanation": "La oración contiene berkunjung."
+                                        },
+                                        {
+                                            "vocabId": "a2u5_berbicara",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase usando berbicara.",
+                                            "hint": "Puedes tomar como modelo: Dia berbicara dengan teman.",
+                                            "modelAnswer": "Dia berbicara dengan teman.",
+                                            "explanation": "Usa el verbo en una oración completa."
+                                        },
+                                        {
+                                            "vocabId": "a2u5_bersepeda",
+                                            "type": "order",
+                                            "prompt": "Ordena: Él o ella habla.",
+                                            "words": [
+                                                "berbicara",
+                                                "Dia"
+                                            ],
+                                            "correctOrder": [
+                                                "Dia",
+                                                "berbicara"
+                                            ],
+                                            "explanation": "Saya bersepeda ke sekolah. expresa la idea indicada."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Lección 2: Practicar, rezar y estar de pie",
+                                    "objective": "Reconoce acciones y estados expresados con ber-.",
+                                    "grammar": "Berlatih significa practicar; berdoa, rezar; berdiri, estar de pie.",
+                                    "vocabIds": [
+                                        "a2u5_berlatih",
+                                        "a2u5_berdoa",
+                                        "a2u5_berdiri"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "a2u5_berlatih",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa berlatih?",
+                                            "options": [
+                                                "Practicar; entrenar",
+                                                "Rezar; orar",
+                                                "Estar de pie"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Berlatih significa practicar; entrenar."
+                                        },
+                                        {
+                                            "vocabId": "a2u5_berdoa",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Rezo.",
+                                            "answer": "Saya berdoa.",
+                                            "explanation": "La frase usa berdoa."
+                                        },
+                                        {
+                                            "vocabId": "a2u5_berdiri",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la oración.",
+                                            "answer": "Saya berdiri di sini.",
+                                            "explanation": "La oración contiene berdiri."
+                                        },
+                                        {
+                                            "vocabId": "a2u5_berlatih",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase usando berlatih.",
+                                            "hint": "Puedes tomar como modelo: Dia berlatih bahasa Indonesia.",
+                                            "modelAnswer": "Dia berlatih bahasa Indonesia.",
+                                            "explanation": "Usa el verbo en una oración completa."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Lección 3: Correr, cantar y parar",
+                                    "objective": "Comprende verbos de movimiento y actividad.",
+                                    "grammar": "Berlari expresa correr, bernyanyi cantar y berhenti parar o detenerse.",
+                                    "vocabIds": [
+                                        "a2u5_berlari",
+                                        "a2u5_bernyanyi",
+                                        "a2u5_berhenti"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "a2u5_berlari",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa berlari?",
+                                            "options": [
+                                                "Correr",
+                                                "Cantar",
+                                                "Parar; detenerse"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Berlari significa correr."
+                                        },
+                                        {
+                                            "vocabId": "a2u5_bernyanyi",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Canto.",
+                                            "answer": "Saya bernyanyi.",
+                                            "explanation": "La frase usa bernyanyi."
+                                        },
+                                        {
+                                            "vocabId": "a2u5_berhenti",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la oración.",
+                                            "answer": "Bus berhenti di sini.",
+                                            "explanation": "La oración contiene berhenti."
+                                        },
+                                        {
+                                            "vocabId": "a2u5_berlari",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase usando berlari.",
+                                            "hint": "Puedes tomar como modelo: Dia berlari ke rumah.",
+                                            "modelAnswer": "Dia berlari ke rumah.",
+                                            "explanation": "Usa el verbo en una oración completa."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Lección 4: Reunirse, preguntar y relajarse",
+                                    "objective": "Habla de reuniones, preguntas y descanso.",
+                                    "grammar": "Berkumpul significa reunirse; bertanya, preguntar; bersantai, relajarse.",
+                                    "vocabIds": [
+                                        "a2u5_berkumpul",
+                                        "a2u5_bertanya",
+                                        "a2u5_bersantai"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "a2u5_berkumpul",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa berkumpul?",
+                                            "options": [
+                                                "Reunirse; juntarse",
+                                                "Preguntar",
+                                                "Relajarse"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Berkumpul significa reunirse; juntarse."
+                                        },
+                                        {
+                                            "vocabId": "a2u5_bertanya",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Le pregunto al profesor.",
+                                            "answer": "Saya bertanya kepada guru.",
+                                            "explanation": "La frase usa bertanya."
+                                        },
+                                        {
+                                            "vocabId": "a2u5_bersantai",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la oración.",
+                                            "answer": "Saya bersantai di rumah.",
+                                            "explanation": "La oración contiene bersantai."
+                                        },
+                                        {
+                                            "vocabId": "a2u5_berkumpul",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase usando berkumpul.",
+                                            "hint": "Puedes tomar como modelo: Kami berkumpul di rumah.",
+                                            "modelAnswer": "Kami berkumpul di rumah.",
+                                            "explanation": "Usa el verbo en una oración completa."
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "a2_u6",
+                            "title": "Unidad 6: Verbos activos con men-",
+                            "desc": "Reconoce formas frecuentes con raíces que empiezan por t, d, c y j.",
+                            "grammar": "La forma men- aparece ante muchas raíces que comienzan por t, d, c y j. Con t, la consonante inicial suele desaparecer: tutup → menutup, tunggu → menunggu y tetap → menetap. Con d, c y j, la consonante inicial se conserva: dengar → mendengar, cari → mencari y jual → menjual. Aprende cada forma derivada como vocabulario propio.",
+                            "vocab": [
+                                {
+                                    "id": "a2u6_menutup",
+                                    "idn": "Menutup",
+                                    "esp": "Cerrar; tapar",
+                                    "ex": "Saya menutup buku.",
+                                    "exEsp": "Cierro el libro."
+                                },
+                                {
+                                    "id": "a2u6_menunggu",
+                                    "idn": "Menunggu",
+                                    "esp": "Esperar",
+                                    "ex": "Saya menunggu teman.",
+                                    "exEsp": "Espero a un amigo."
+                                },
+                                {
+                                    "id": "a2u6_menetap",
+                                    "idn": "Menetap",
+                                    "esp": "Establecerse; residir",
+                                    "ex": "Saya menetap di kota.",
+                                    "exEsp": "Resido en la ciudad."
+                                },
+                                {
+                                    "id": "a2u6_mencari",
+                                    "idn": "Mencari",
+                                    "esp": "Buscar",
+                                    "ex": "Saya mencari buku.",
+                                    "exEsp": "Busco un libro."
+                                },
+                                {
+                                    "id": "a2u6_mencatat",
+                                    "idn": "Mencatat",
+                                    "esp": "Anotar",
+                                    "ex": "Saya mencatat baju.",
+                                    "exEsp": "Tomo nota."
+                                },
+                                {
+                                    "id": "a2u6_mencoba",
+                                    "idn": "Mencoba",
+                                    "esp": "Probar; intentar",
+                                    "ex": "Saya mencoba nasi.",
+                                    "exEsp": "Pruebo el arroz."
+                                },
+                                {
+                                    "id": "a2u6_mendengar",
+                                    "idn": "Mendengar",
+                                    "esp": "Oír; escuchar",
+                                    "ex": "Dia mendengar musik.",
+                                    "exEsp": "Él o ella escucha música."
+                                },
+                                {
+                                    "id": "a2u6_mendapat",
+                                    "idn": "Mendapat",
+                                    "esp": "Obtener; recibir",
+                                    "ex": "Saya mendapat buku.",
+                                    "exEsp": "Recibo un libro."
+                                },
+                                {
+                                    "id": "a2u6_menjual",
+                                    "idn": "Menjual",
+                                    "esp": "Vender",
+                                    "ex": "Mereka menjual nasi.",
+                                    "exEsp": "Ellos venden arroz."
+                                },
+                                {
+                                    "id": "a2u6_menjemput",
+                                    "idn": "Menjemput",
+                                    "esp": "Ir a recoger a alguien",
+                                    "ex": "Saya menjemput teman.",
+                                    "exEsp": "Voy a recoger a un amigo."
+                                },
+                                {
+                                    "id": "a2u6_menjaga",
+                                    "idn": "Menjaga",
+                                    "esp": "Cuidar; vigilar",
+                                    "ex": "Dia menjaga rumah.",
+                                    "exEsp": "Él o ella cuida la casa."
+                                },
+                                {
+                                    "id": "a2u6_menjadi",
+                                    "idn": "Menjadi",
+                                    "esp": "Convertirse en; llegar a ser",
+                                    "ex": "Dia menjadi guru.",
+                                    "exEsp": "Él o ella se convierte en profesor."
+                                }
+                            ],
+                            "lessons": [
+                                {
+                                    "title": "Lección 1: Raíces con t inicial",
+                                    "objective": "Identifica formas men- en las que desaparece la t inicial de la raíz.",
+                                    "grammar": "En menutup, menunggu y menetap, la t inicial de la raíz no aparece en la forma derivada.",
+                                    "vocabIds": [
+                                        "a2u6_menutup",
+                                        "a2u6_menunggu",
+                                        "a2u6_menetap"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "a2u6_menutup",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa menutup?",
+                                            "options": [
+                                                "Cerrar; tapar",
+                                                "Esperar",
+                                                "Establecerse; residir"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Menutup significa cerrar; tapar."
+                                        },
+                                        {
+                                            "vocabId": "a2u6_menunggu",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Espero a un amigo.",
+                                            "answer": "Saya menunggu teman.",
+                                            "explanation": "La frase usa menunggu."
+                                        },
+                                        {
+                                            "vocabId": "a2u6_menetap",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la oración.",
+                                            "answer": "Saya menetap di kota.",
+                                            "explanation": "La oración contiene menetap."
+                                        },
+                                        {
+                                            "vocabId": "a2u6_menutup",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase usando menutup.",
+                                            "hint": "Puedes tomar como modelo: Saya menutup buku.",
+                                            "modelAnswer": "Saya menutup buku.",
+                                            "explanation": "Usa el verbo en una oración completa."
+                                        },
+                                        {
+                                            "vocabId": "a2u6_menunggu",
+                                            "type": "order",
+                                            "prompt": "Ordena: Cierro el libro.",
+                                            "words": [
+                                                "buku",
+                                                "menutup",
+                                                "Saya"
+                                            ],
+                                            "correctOrder": [
+                                                "Saya",
+                                                "menutup",
+                                                "buku"
+                                            ],
+                                            "explanation": "Saya menunggu teman. expresa la idea indicada."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Lección 2: Raíces con c inicial",
+                                    "objective": "Usa verbos frecuentes formados con raíces que empiezan por c.",
+                                    "grammar": "En mencari, mencatat y mencoba, la consonante c se conserva después de men-.",
+                                    "vocabIds": [
+                                        "a2u6_mencari",
+                                        "a2u6_mencatat",
+                                        "a2u6_mencoba"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "a2u6_mencari",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa mencari?",
+                                            "options": [
+                                                "Buscar",
+                                                "Anotar",
+                                                "Probar; intentar"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Mencari significa buscar."
+                                        },
+                                        {
+                                            "vocabId": "a2u6_mencatat",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Tomo nota.",
+                                            "answer": "Saya mencatat baju.",
+                                            "explanation": "La frase usa mencatat."
+                                        },
+                                        {
+                                            "vocabId": "a2u6_mencoba",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la oración.",
+                                            "answer": "Saya mencoba nasi.",
+                                            "explanation": "La oración contiene mencoba."
+                                        },
+                                        {
+                                            "vocabId": "a2u6_mencari",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase usando mencari.",
+                                            "hint": "Puedes tomar como modelo: Saya mencari buku.",
+                                            "modelAnswer": "Saya mencari buku.",
+                                            "explanation": "Usa el verbo en una oración completa."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Lección 3: Raíces con d y j",
+                                    "objective": "Reconoce formas en las que se conserva la consonante inicial d o j.",
+                                    "grammar": "En mendengar y mendapat se conserva d; en menjual, la j también se conserva.",
+                                    "vocabIds": [
+                                        "a2u6_mendengar",
+                                        "a2u6_mendapat",
+                                        "a2u6_menjual"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "a2u6_mendengar",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa mendengar?",
+                                            "options": [
+                                                "Oír; escuchar",
+                                                "Obtener; recibir",
+                                                "Vender"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Mendengar significa oír; escuchar."
+                                        },
+                                        {
+                                            "vocabId": "a2u6_mendapat",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Recibo un libro.",
+                                            "answer": "Saya mendapat buku.",
+                                            "explanation": "La frase usa mendapat."
+                                        },
+                                        {
+                                            "vocabId": "a2u6_menjual",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la oración.",
+                                            "answer": "Mereka menjual nasi.",
+                                            "explanation": "La oración contiene menjual."
+                                        },
+                                        {
+                                            "vocabId": "a2u6_mendengar",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase usando mendengar.",
+                                            "hint": "Puedes tomar como modelo: Dia mendengar musik.",
+                                            "modelAnswer": "Dia mendengar musik.",
+                                            "explanation": "Usa el verbo en una oración completa."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Lección 4: Recoger, cuidar y convertirse",
+                                    "objective": "Amplía el repertorio de verbos con men- en contextos cotidianos.",
+                                    "grammar": "Menjemput, menjaga y menjadi son formas frecuentes que se aprenden en frases completas.",
+                                    "vocabIds": [
+                                        "a2u6_menjemput",
+                                        "a2u6_menjaga",
+                                        "a2u6_menjadi"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "a2u6_menjemput",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa menjemput?",
+                                            "options": [
+                                                "Ir a recoger a alguien",
+                                                "Cuidar; vigilar",
+                                                "Convertirse en; llegar a ser"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Menjemput significa ir a recoger a alguien."
+                                        },
+                                        {
+                                            "vocabId": "a2u6_menjaga",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Él o ella cuida la casa.",
+                                            "answer": "Dia menjaga rumah.",
+                                            "explanation": "La frase usa menjaga."
+                                        },
+                                        {
+                                            "vocabId": "a2u6_menjadi",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la oración.",
+                                            "answer": "Dia menjadi guru.",
+                                            "explanation": "La oración contiene menjadi."
+                                        },
+                                        {
+                                            "vocabId": "a2u6_menjemput",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase usando menjemput.",
+                                            "hint": "Puedes tomar como modelo: Saya menjemput teman.",
+                                            "modelAnswer": "Saya menjemput teman.",
+                                            "explanation": "Usa el verbo en una oración completa."
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "a2_u7",
+                            "title": "Unidad 7: Verbos activos con meng-",
+                            "desc": "Aprende formas frecuentes con raíces que comienzan por k, g o vocal.",
+                            "grammar": "La forma meng- aparece ante raíces que comienzan por k, g y vocal. Con k, la consonante inicial suele desaparecer: kirim → mengirim y kunci → mengunci. Con g y vocal, se conserva el sonido inicial: gambar → menggambar, ambil → mengambil y ajar → mengajar. Las formas derivadas se estudian como vocabulario independiente.",
+                            "vocab": [
+                                {
+                                    "id": "a2u7_mengirim",
+                                    "idn": "Mengirim",
+                                    "esp": "Enviar",
+                                    "ex": "Saya mengirim pesan.",
+                                    "exEsp": "Envío un mensaje."
+                                },
+                                {
+                                    "id": "a2u7_menggambar",
+                                    "idn": "Menggambar",
+                                    "esp": "Dibujar",
+                                    "ex": "Dia menggambar rumah.",
+                                    "exEsp": "Él o ella dibuja una casa."
+                                },
+                                {
+                                    "id": "a2u7_mengambil",
+                                    "idn": "Mengambil",
+                                    "esp": "Tomar; coger",
+                                    "ex": "Saya mengambil buku.",
+                                    "exEsp": "Cojo un libro."
+                                },
+                                {
+                                    "id": "a2u7_mengajar",
+                                    "idn": "Mengajar",
+                                    "esp": "Enseñar",
+                                    "ex": "Guru mengajar.",
+                                    "exEsp": "El profesor enseña."
+                                },
+                                {
+                                    "id": "a2u7_mengunci",
+                                    "idn": "Mengunci",
+                                    "esp": "Cerrar con llave",
+                                    "ex": "Saya mengunci rumah.",
+                                    "exEsp": "Cierro la casa con llave."
+                                },
+                                {
+                                    "id": "a2u7_menggoreng",
+                                    "idn": "Menggoreng",
+                                    "esp": "Freír",
+                                    "ex": "Ibu menggoreng nasi.",
+                                    "exEsp": "Mamá fríe arroz."
+                                },
+                                {
+                                    "id": "a2u7_menggunakan",
+                                    "idn": "Menggunakan",
+                                    "esp": "Usar; utilizar",
+                                    "ex": "Saya menggunakan buku.",
+                                    "exEsp": "Uso un libro."
+                                },
+                                {
+                                    "id": "a2u7_mengisi",
+                                    "idn": "Mengisi",
+                                    "esp": "Llenar; rellenar",
+                                    "ex": "Saya mengisi air.",
+                                    "exEsp": "Lleno agua."
+                                },
+                                {
+                                    "id": "a2u7_mengatur",
+                                    "idn": "Mengatur",
+                                    "esp": "Organizar; ajustar",
+                                    "ex": "Dia mengatur buku.",
+                                    "exEsp": "Él o ella organiza los libros."
+                                },
+                                {
+                                    "id": "a2u7_mengundang",
+                                    "idn": "Mengundang",
+                                    "esp": "Invitar",
+                                    "ex": "Kami mengundang teman.",
+                                    "exEsp": "Invitamos a un amigo."
+                                },
+                                {
+                                    "id": "a2u7_menghapus",
+                                    "idn": "Menghapus",
+                                    "esp": "Borrar; eliminar",
+                                    "ex": "Saya menghapus pesan.",
+                                    "exEsp": "Borro el mensaje."
+                                },
+                                {
+                                    "id": "a2u7_mengangkat",
+                                    "idn": "Mengangkat",
+                                    "esp": "Levantar",
+                                    "ex": "Saya mengangkat buku.",
+                                    "exEsp": "Levanto el libro."
+                                }
+                            ],
+                            "lessons": [
+                                {
+                                    "title": "Lección 1: Raíces con k inicial",
+                                    "objective": "Identifica formas meng- en las que desaparece la k inicial.",
+                                    "grammar": "En kirim → mengirim y kunci → mengunci, la k inicial de la raíz desaparece. En mengambil se conserva la vocal inicial de ambil.",
+                                    "vocabIds": [
+                                        "a2u7_mengirim",
+                                        "a2u7_menggambar",
+                                        "a2u7_mengambil"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "a2u7_mengirim",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa mengirim?",
+                                            "options": [
+                                                "Enviar",
+                                                "Dibujar",
+                                                "Tomar; coger"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Mengirim significa enviar."
+                                        },
+                                        {
+                                            "vocabId": "a2u7_menggambar",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Él o ella dibuja una casa.",
+                                            "answer": "Dia menggambar rumah.",
+                                            "explanation": "La frase usa menggambar."
+                                        },
+                                        {
+                                            "vocabId": "a2u7_mengambil",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la oración.",
+                                            "answer": "Saya mengambil buku.",
+                                            "explanation": "La oración contiene mengambil."
+                                        },
+                                        {
+                                            "vocabId": "a2u7_mengirim",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase usando mengirim.",
+                                            "hint": "Puedes tomar como modelo: Saya mengirim pesan.",
+                                            "modelAnswer": "Saya mengirim pesan.",
+                                            "explanation": "Usa el verbo en una oración completa."
+                                        },
+                                        {
+                                            "vocabId": "a2u7_menggambar",
+                                            "type": "order",
+                                            "prompt": "Ordena: Envío un mensaje.",
+                                            "words": [
+                                                "pesan",
+                                                "mengirim",
+                                                "Saya"
+                                            ],
+                                            "correctOrder": [
+                                                "Saya",
+                                                "mengirim",
+                                                "pesan"
+                                            ],
+                                            "explanation": "Dia menggambar rumah. expresa la idea indicada."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Lección 2: Raíces con g inicial",
+                                    "objective": "Reconoce formas meng- que conservan la g inicial.",
+                                    "grammar": "En gambar y goreng, la g inicial se conserva: menggambar y menggoreng.",
+                                    "vocabIds": [
+                                        "a2u7_mengajar",
+                                        "a2u7_mengunci",
+                                        "a2u7_menggoreng"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "a2u7_mengajar",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa mengajar?",
+                                            "options": [
+                                                "Enseñar",
+                                                "Cerrar con llave",
+                                                "Freír"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Mengajar significa enseñar."
+                                        },
+                                        {
+                                            "vocabId": "a2u7_mengunci",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Cierro la casa con llave.",
+                                            "answer": "Saya mengunci rumah.",
+                                            "explanation": "La frase usa mengunci."
+                                        },
+                                        {
+                                            "vocabId": "a2u7_menggoreng",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la oración.",
+                                            "answer": "Ibu menggoreng nasi.",
+                                            "explanation": "La oración contiene menggoreng."
+                                        },
+                                        {
+                                            "vocabId": "a2u7_mengajar",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase usando mengajar.",
+                                            "hint": "Puedes tomar como modelo: Guru mengajar bahasa Indonesia.",
+                                            "modelAnswer": "Guru mengajar bahasa Indonesia.",
+                                            "explanation": "Usa el verbo en una oración completa."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Lección 3: Raíces que comienzan por vocal",
+                                    "objective": "Identifica formas meng- con raíces que comienzan por vocal.",
+                                    "grammar": "En ambil, isi y atur, la vocal inicial se conserva: mengambil, mengisi y mengatur.",
+                                    "vocabIds": [
+                                        "a2u7_menggunakan",
+                                        "a2u7_mengisi",
+                                        "a2u7_mengatur"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "a2u7_menggunakan",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa menggunakan?",
+                                            "options": [
+                                                "Usar; utilizar",
+                                                "Llenar; rellenar",
+                                                "Organizar; ajustar"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Menggunakan significa usar; utilizar."
+                                        },
+                                        {
+                                            "vocabId": "a2u7_mengisi",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Lleno la botella con agua.",
+                                            "answer": "Saya mengisi botol dengan air.",
+                                            "explanation": "La frase usa mengisi."
+                                        },
+                                        {
+                                            "vocabId": "a2u7_mengatur",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la oración.",
+                                            "answer": "Dia mengatur buku.",
+                                            "explanation": "La oración contiene mengatur."
+                                        },
+                                        {
+                                            "vocabId": "a2u7_menggunakan",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase usando menggunakan.",
+                                            "hint": "Puedes tomar como modelo: Saya menggunakan buku.",
+                                            "modelAnswer": "Saya menggunakan buku.",
+                                            "explanation": "Usa el verbo en una oración completa."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Lección 4: Invitar, borrar y levantar",
+                                    "objective": "Usa otros verbos frecuentes con meng- en frases completas.",
+                                    "grammar": "Mengundang, menghapus y mengangkat son formas de uso frecuente. Observa la forma completa y su significado.",
+                                    "vocabIds": [
+                                        "a2u7_mengundang",
+                                        "a2u7_menghapus",
+                                        "a2u7_mengangkat"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "a2u7_mengundang",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa mengundang?",
+                                            "options": [
+                                                "Invitar",
+                                                "Borrar; eliminar",
+                                                "Levantar"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Mengundang significa invitar."
+                                        },
+                                        {
+                                            "vocabId": "a2u7_menghapus",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Borro el mensaje.",
+                                            "answer": "Saya menghapus pesan.",
+                                            "explanation": "La frase usa menghapus."
+                                        },
+                                        {
+                                            "vocabId": "a2u7_mengangkat",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la oración.",
+                                            "answer": "Saya mengangkat buku.",
+                                            "explanation": "La oración contiene mengangkat."
+                                        },
+                                        {
+                                            "vocabId": "a2u7_mengundang",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase usando mengundang.",
+                                            "hint": "Puedes tomar como modelo: Kami mengundang teman.",
+                                            "modelAnswer": "Kami mengundang teman.",
+                                            "explanation": "Usa el verbo en una oración completa."
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "a2_u8",
+                            "title": "Unidad 8: Verbos activos con mem- y meny-",
+                            "desc": "Distingue formas frecuentes con raíces que comienzan por b, p, m y s.",
+                            "grammar": "La forma mem- aparece ante raíces que comienzan por b, p, f, v y m. Con muchas raíces que empiezan por p, la p inicial desaparece: pakai → memakai y pilih → memilih. Con b y m, la consonante inicial se conserva: beli → membeli y mula → memulai. Ante muchas raíces con s, aparece meny- y la s inicial desaparece: simpan → menyimpan, sewa → menyewa y susun → menyusun. Son patrones frecuentes, no reglas sin excepciones.",
+                            "vocab": [
+                                {
+                                    "id": "a2u8_membeli",
+                                    "idn": "Membeli",
+                                    "esp": "Comprar",
+                                    "ex": "Saya membeli buku.",
+                                    "exEsp": "Compro un libro."
+                                },
+                                {
+                                    "id": "a2u8_membawa",
+                                    "idn": "Membawa",
+                                    "esp": "Llevar; traer",
+                                    "ex": "Dia membawa buku.",
+                                    "exEsp": "Él o ella lleva un libro."
+                                },
+                                {
+                                    "id": "a2u8_membantu",
+                                    "idn": "Membantu",
+                                    "esp": "Ayudar",
+                                    "ex": "Saya membantu teman.",
+                                    "exEsp": "Ayudo a un amigo."
+                                },
+                                {
+                                    "id": "a2u8_memakai",
+                                    "idn": "Memakai",
+                                    "esp": "Usar; llevar puesto",
+                                    "ex": "Saya memakai buku.",
+                                    "exEsp": "Uso un libro."
+                                },
+                                {
+                                    "id": "a2u8_memilih",
+                                    "idn": "Memilih",
+                                    "esp": "Elegir; escoger",
+                                    "ex": "Saya memilih buku.",
+                                    "exEsp": "Elijo un libro."
+                                },
+                                {
+                                    "id": "a2u8_memesan",
+                                    "idn": "Memesan",
+                                    "esp": "Pedir; encargar",
+                                    "ex": "Saya memesan nasi.",
+                                    "exEsp": "Pido arroz."
+                                },
+                                {
+                                    "id": "a2u8_memulai",
+                                    "idn": "Memulai",
+                                    "esp": "Comenzar; iniciar",
+                                    "ex": "Saya memulai belajar.",
+                                    "exEsp": "Empiezo a estudiar."
+                                },
+                                {
+                                    "id": "a2u8_meminta",
+                                    "idn": "Meminta",
+                                    "esp": "Pedir; solicitar",
+                                    "ex": "Saya meminta air.",
+                                    "exEsp": "Pido agua."
+                                },
+                                {
+                                    "id": "a2u8_menyimpan",
+                                    "idn": "Menyimpan",
+                                    "esp": "Guardar; ahorrar",
+                                    "ex": "Saya menyimpan buku.",
+                                    "exEsp": "Guardo un libro."
+                                },
+                                {
+                                    "id": "a2u8_menyewa",
+                                    "idn": "Menyewa",
+                                    "esp": "Alquilar",
+                                    "ex": "Kami menyewa rumah.",
+                                    "exEsp": "Alquilamos una casa."
+                                },
+                                {
+                                    "id": "a2u8_menyusun",
+                                    "idn": "Menyusun",
+                                    "esp": "Ordenar; organizar",
+                                    "ex": "Dia menyusun buku.",
+                                    "exEsp": "Él o ella ordena los libros."
+                                },
+                                {
+                                    "id": "a2u8_menyediakan",
+                                    "idn": "Menyediakan",
+                                    "esp": "Proporcionar; preparar",
+                                    "ex": "Kami menyediakan air.",
+                                    "exEsp": "Preparamos agua."
+                                }
+                            ],
+                            "lessons": [
+                                {
+                                    "title": "Lección 1: Formas mem- con b y p",
+                                    "objective": "Reconoce verbos con b conservada y p que desaparece.",
+                                    "grammar": "En membeli, membawa y membantu se conserva la b. En memakai y memilih, la p inicial de la raíz desaparece.",
+                                    "vocabIds": [
+                                        "a2u8_membeli",
+                                        "a2u8_membawa",
+                                        "a2u8_membantu"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "a2u8_membeli",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa membeli?",
+                                            "options": [
+                                                "Comprar",
+                                                "Llevar; traer",
+                                                "Ayudar"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Membeli significa comprar."
+                                        },
+                                        {
+                                            "vocabId": "a2u8_membawa",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Él o ella lleva un libro.",
+                                            "answer": "Dia membawa buku.",
+                                            "explanation": "La frase usa membawa."
+                                        },
+                                        {
+                                            "vocabId": "a2u8_membantu",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la oración.",
+                                            "answer": "Saya membantu teman.",
+                                            "explanation": "La oración contiene membantu."
+                                        },
+                                        {
+                                            "vocabId": "a2u8_membeli",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase usando membeli.",
+                                            "hint": "Puedes tomar como modelo: Saya membeli buku.",
+                                            "modelAnswer": "Saya membeli buku.",
+                                            "explanation": "Usa el verbo en una oración completa."
+                                        },
+                                        {
+                                            "vocabId": "a2u8_membawa",
+                                            "type": "order",
+                                            "prompt": "Ordena: Compro un libro.",
+                                            "words": [
+                                                "buku",
+                                                "membeli",
+                                                "Saya"
+                                            ],
+                                            "correctOrder": [
+                                                "Saya",
+                                                "membeli",
+                                                "buku"
+                                            ],
+                                            "explanation": "Dia membawa buku. expresa la idea indicada."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Lección 2: Ayudar, pedir y encargar",
+                                    "objective": "Usa otros verbos frecuentes con mem-.",
+                                    "grammar": "Membantu significa ayudar, memesan pedir o encargar y memulai comenzar.",
+                                    "vocabIds": [
+                                        "a2u8_memakai",
+                                        "a2u8_memilih",
+                                        "a2u8_memesan"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "a2u8_memakai",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa memakai?",
+                                            "options": [
+                                                "Usar; llevar puesto",
+                                                "Elegir; escoger",
+                                                "Pedir; encargar"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Memakai significa usar; llevar puesto."
+                                        },
+                                        {
+                                            "vocabId": "a2u8_memilih",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Elijo un libro.",
+                                            "answer": "Saya memilih buku.",
+                                            "explanation": "La frase usa memilih."
+                                        },
+                                        {
+                                            "vocabId": "a2u8_memesan",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la oración.",
+                                            "answer": "Saya memesan nasi.",
+                                            "explanation": "La oración contiene memesan."
+                                        },
+                                        {
+                                            "vocabId": "a2u8_memakai",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase usando memakai.",
+                                            "hint": "Puedes tomar como modelo: Saya memakai baju.",
+                                            "modelAnswer": "Saya memakai baju.",
+                                            "explanation": "Usa el verbo en una oración completa."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Lección 3: Comenzar y solicitar",
+                                    "objective": "Distingue verbos con m inicial que se conserva después de mem-.",
+                                    "grammar": "En memulai y meminta, la m inicial de la raíz se conserva después de mem-.",
+                                    "vocabIds": [
+                                        "a2u8_memulai",
+                                        "a2u8_meminta",
+                                        "a2u8_menyimpan"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "a2u8_memulai",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa memulai?",
+                                            "options": [
+                                                "Comenzar; iniciar",
+                                                "Pedir; solicitar",
+                                                "Guardar; ahorrar"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Memulai significa comenzar."
+                                        },
+                                        {
+                                            "vocabId": "a2u8_meminta",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Pido agua.",
+                                            "answer": "Saya meminta air.",
+                                            "explanation": "La frase usa meminta."
+                                        },
+                                        {
+                                            "vocabId": "a2u8_menyimpan",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la oración.",
+                                            "answer": "Saya menyimpan buku.",
+                                            "explanation": "La oración contiene menyimpan."
+                                        },
+                                        {
+                                            "vocabId": "a2u8_memulai",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase usando memulai.",
+                                            "hint": "Puedes tomar como modelo: Saya memulai belajar.",
+                                            "modelAnswer": "Saya memulai belajar.",
+                                            "explanation": "Usa el verbo en una oración completa."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Lección 4: Formas meny- con s inicial",
+                                    "objective": "Reconoce formas meny- en las que desaparece la s inicial.",
+                                    "grammar": "En menyimpan, menyewa y menyusun, la s inicial de la raíz desaparece. Menyediakan se aprende como forma léxica frecuente.",
+                                    "vocabIds": [
+                                        "a2u8_menyewa",
+                                        "a2u8_menyusun",
+                                        "a2u8_menyediakan"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "a2u8_menyewa",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa menyewa?",
+                                            "options": [
+                                                "Alquilar",
+                                                "Ordenar; organizar",
+                                                "Proporcionar; preparar"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Menyewa significa alquilar."
+                                        },
+                                        {
+                                            "vocabId": "a2u8_menyusun",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Él o ella ordena los libros.",
+                                            "answer": "Dia menyusun buku.",
+                                            "explanation": "La frase usa menyusun."
+                                        },
+                                        {
+                                            "vocabId": "a2u8_menyediakan",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la oración.",
+                                            "answer": "Kami menyediakan air.",
+                                            "explanation": "La oración contiene menyediakan."
+                                        },
+                                        {
+                                            "vocabId": "a2u8_menyewa",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase usando menyewa.",
+                                            "hint": "Puedes tomar como modelo: Kami menyewa rumah.",
+                                            "modelAnswer": "Kami menyewa rumah.",
+                                            "explanation": "Usa el verbo en una oración completa."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
                     ]
                 },
                 {

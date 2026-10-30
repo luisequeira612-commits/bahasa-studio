@@ -79,8 +79,45 @@ test('the first four A2 units have 3-5 lessons, varied practice, listening, and 
   }
 });
 
+
+test('A2 units 5-8 teach ber- and meN- forms in structured multi-lesson units', () => {
+  const a1Forms = new Set(courseData.levels.find(level => level.id === 'A1').units
+    .flatMap(unit => unit.vocab).map(word => word.idn.trim().toLowerCase()));
+  const units = a2.units.slice(4, 8);
+  assert.deepEqual(Array.from(units, unit => unit.id), ['a2_u5', 'a2_u6', 'a2_u7', 'a2_u8']);
+  assert.match(units[0].grammar, /ber-/);
+  assert.match(units[1].grammar, /men-/);
+  assert.match(units[2].grammar, /meng-/);
+  assert.match(units[3].grammar, /mem-.*meny-/);
+  for (const unit of units) {
+    assert.ok(unit.vocab.length >= 10, unit.id + ' should provide at least ten assessment items');
+    assert.ok(unit.lessons.length >= 3 && unit.lessons.length <= 5, unit.id + ' should have 3-5 lessons');
+    const exercises = unit.lessons.flatMap(lesson => lesson.exercises || []);
+    assert.ok(exercises.length >= 14 && exercises.length <= 22, unit.id + ' should have 14-22 exercises');
+    assert.ok(new Set(exercises.map(exercise => exercise.type)).size >= 4, unit.id + ' should use four exercise types');
+    assert.ok(exercises.some(exercise => exercise.type === 'listen'), unit.id + ' should include listening');
+    assert.ok(exercises.some(exercise => exercise.type === 'write' && exercise.hint && exercise.modelAnswer),
+      unit.id + ' should include guided writing');
+    assert.ok(exercises.filter(exercise => exercise.answer && /[.!?]$/.test(exercise.answer)).length >= 5,
+      unit.id + ' should include at least five complete sentence answers');
+    const introduced = unit.lessons.flatMap(lesson => lesson.vocabIds || []);
+    assert.equal(introduced.length, unit.vocab.length, unit.id + ' should introduce every new vocabulary item once');
+    assert.equal(new Set(introduced).size, introduced.length, unit.id + ' should not introduce a word twice');
+    const knownIds = new Set(courseData.levels.flatMap(level => level.units.flatMap(entry => entry.vocab || [])).map(word => word.id));
+    for (const lesson of unit.lessons) {
+      for (const id of lesson.vocabIds) assert.ok(unit.vocab.some(word => word.id === id), unit.id + ' lesson has unknown new vocabulary');
+      for (const exercise of lesson.exercises || []) {
+        assert.ok(exercise.vocabId && knownIds.has(exercise.vocabId), unit.id + ' exercise must use canonical vocabulary');
+      }
+    }
+    for (const word of unit.vocab) {
+      assert.ok(!a1Forms.has(word.idn.trim().toLowerCase()), unit.id + ' must not repeat A1 vocabulary: ' + word.idn);
+    }
+  }
+});
+
 test('new A2 vocabulary identifiers are unique and advanced content remains gated', () => {
-  const newIds = a2.units.slice(0, 4).flatMap(unit => unit.vocab.map(word => word.id));
+  const newIds = a2.units.slice(0, 8).flatMap(unit => unit.vocab.map(word => word.id));
   assert.equal(new Set(newIds).size, newIds.length, 'new A2 vocabulary identifiers must be unique');
   assert.match(html, /function getLearningLevels\(\)\s*\{\s*return getLevels\(\)\.filter\(level => !\['A2', 'B1', 'B2'\]\.includes\(level\.id\)\);/,
     'A2, B1, and B2 should remain outside learner-facing vocabulary and SRS');

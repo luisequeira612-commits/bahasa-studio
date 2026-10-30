@@ -188,6 +188,12 @@ test('A2 units 1-4 begin with the approved temporal and narrative progression', 
   assert.match(a2.units[1].grammar, /sudah, belum, sedang y akan/);
   assert.match(a2.units[2].title, /secuencias/);
   assert.match(a2.units[3].title, /jornada cotidiana/);
+  assert.match(a2.units[4].title, /ber-/);
+  assert.match(a2.units[4].grammar, /ber-/);
+  assert.match(a2.units[5].grammar, /men-/);
+  assert.match(a2.units[6].grammar, /meng-/);
+  assert.match(a2.units[7].grammar, /mem-.*meny-/);
+  assert.ok(a2.units.slice(4, 8).every(unit => Array.isArray(unit.lessons) && unit.lessons.length >= 3 && unit.lessons.length <= 5));
 
   const b1 = course.levels.find(level => level.id === 'B1').units[0];
   const b2 = course.levels.find(level => level.id === 'B2').units[0];

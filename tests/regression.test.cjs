@@ -177,22 +177,21 @@ test('A1 examples and explanations stay consistent with the taught material', ()
 });
 
 
-test('A2-B2 starter lessons keep grammar explanations aligned with their examples', () => {
+test('A2 units 1-4 begin with the approved temporal and narrative progression', () => {
   const start = html.indexOf('const CourseData =');
   const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
   const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
-  const a2 = course.levels.find(level => level.id === 'A2').units[0];
+  const a2 = course.levels.find(level => level.id === 'A2');
+  assert.equal(a2.units[0].title, 'Unidad 1: Días, meses y fechas');
+  assert.match(a2.units[1].grammar, /sudah, belum, sedang y akan/);
+  assert.match(a2.units[2].title, /secuencias/);
+  assert.match(a2.units[3].title, /jornada cotidiana/);
+
   const b1 = course.levels.find(level => level.id === 'B1').units[0];
   const b2 = course.levels.find(level => level.id === 'B2').units[0];
-
-  assert.match(a2.title, /meN-/);
-  assert.match(a2.grammar, /baca.*membaca/);
-  assert.match(a2.grammar, /solo ese patrón inicial/);
-
   assert.equal(b1.vocab[0].ex, 'Nasi dimakan oleh mereka.');
   assert.equal(b1.vocab[0].exEsp, 'El arroz es comido por ellos.');
   assert.match(b1.grammar, /oleh mereka/);
-
   assert.equal(b2.vocab[0].idn, 'Membangunkan');
   assert.equal(b2.vocab[0].ex, 'Saya membangunkan anak.');
   assert.match(b2.grammar, /sentido causativo/);
@@ -200,6 +199,71 @@ test('A2-B2 starter lessons keep grammar explanations aligned with their example
   assert.equal(b2.exercises[0].answer, 0);
 });
 
+test('A2 units 1-4 have 3-5 authored lessons and a complete unit-test bank', () => {
+  const start = html.indexOf('const CourseData =');
+  const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
+  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
+  const engineStart = html.indexOf('function buildUnitAssessmentItems');
+  const engineEnd = html.indexOf('function unitLessonProgressKey', engineStart);
+  assert.ok(engineStart >= 0 && engineEnd > engineStart, 'unit lesson and assessment builders must exist');
+  const engine = vm.runInNewContext(
+    html.slice(engineStart, engineEnd) + '\n({ buildUnitLessons, buildUnitAssessmentItems })',
+    { CourseData: course, Map, Set, Math }
+  );
+  const a2 = course.levels.find(level => level.id === 'A2');
+  for (const unit of a2.units.slice(0, 4)) {
+    const lessons = engine.buildUnitLessons(unit);
+    assert.ok(lessons.length >= 3 && lessons.length <= 5, unit.id + ' must have 3-5 lessons');
+    const lessonExercises = lessons.flatMap(lesson => lesson.exercises);
+    assert.ok(lessonExercises.length >= 14 && lessonExercises.length <= 22,
+      unit.id + ' must contain 14-22 exercises across its lessons');
+    assert.ok(new Set(lessonExercises.map(exercise => exercise.type)).size >= 4,
+      unit.id + ' must use at least four exercise types');
+    assert.ok(lessonExercises.some(exercise => exercise.type === 'write' && exercise.hint && exercise.modelAnswer),
+      unit.id + ' must include a concrete original-writing task');
+    const fullSentences = lessonExercises.filter(exercise =>
+      /[.!?]/.test(exercise.answer || exercise.modelAnswer || '') &&
+      /\s/.test(exercise.answer || exercise.modelAnswer || '')
+    );
+    assert.ok(fullSentences.length >= 5, unit.id + ' must include at least five full-sentence tasks');
+
+    const unitVocabIds = new Set(unit.vocab.map(word => word.id));
+    for (const lesson of lessons) {
+      assert.ok(lesson.newVocab.length > 0, lesson.title + ' must introduce vocabulary');
+      for (const word of lesson.newVocab) assert.ok(unitVocabIds.has(word.id));
+      for (const exercise of lesson.exercises) {
+        assert.ok(unitVocabIds.has(exercise.vocabId), unit.id + ' has an exercise linked to unknown vocabulary');
+        assert.ok(['mc', 'translate_es_id', 'listen', 'order', 'write'].includes(exercise.type));
+        if (exercise.type === 'mc') {
+          assert.ok(Array.isArray(exercise.options) && exercise.options.length >= 2);
+          assert.ok(Number.isInteger(exercise.answer) && exercise.answer >= 0 && exercise.answer < exercise.options.length);
+        }
+        if (exercise.type === 'order') assert.deepEqual([...exercise.words].sort(), [...exercise.correctOrder].sort());
+        if (exercise.type === 'translate_es_id' || exercise.type === 'listen') {
+          assert.equal(typeof exercise.answer, 'string');
+          assert.ok(exercise.answer.length > 0);
+        }
+        if (exercise.type === 'write') {
+          assert.equal(typeof exercise.modelAnswer, 'string');
+          assert.ok(exercise.modelAnswer.length > 0);
+        }
+      }
+    }
+    const testItems = engine.buildUnitAssessmentItems(unit);
+    assert.equal(testItems.length, unit.vocab.length, unit.id + ' must generate one assessment item per taught word');
+    assert.ok(testItems.length >= 10);
+    for (const item of testItems) {
+      assert.ok(unitVocabIds.has(item.vocabId));
+      assert.equal(item.options[item.answer], unit.vocab.find(word => word.id === item.vocabId).esp);
+    }
+  }
+});
+
+test('A2 stays hidden and its unit assessment lookup is level-independent', () => {
+  assert.match(html, /return getLevels\(\)\.filter\(level => !\['A2', 'B1', 'B2'\]\.includes\(level\.id\)\)/);
+  assert.match(html, /startUnitAssessment\(unitId\) \{\s*const unit = CourseData\.levels\.flatMap\(level => level\.units\)\.find\(entry => entry\.id === unitId\)/);
+  assert.doesNotMatch(html, /startUnitAssessment\(unitId\) \{\s*const level = CourseData\.levels\.find\(entry => entry\.id === 'A1'\)/);
+});
 
 test('v3.7.1 audit fixes remain in place without changing backup or database versions', () => {
   assert.match(html, /attempts === 0 && i\.val\.lastReviewed === null && i\.val\.interval === 0 && i\.val\.repetition === 0/);

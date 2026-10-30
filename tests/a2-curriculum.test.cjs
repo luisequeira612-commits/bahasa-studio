@@ -153,6 +153,9 @@ test('A2 units 9-12 teach opinions, rules, problems, and goals with complete les
         unit.id + ' must not repeat earlier vocabulary: ' + word.idn);
     }
     const order = exercises.find(exercise => exercise.type === 'order');
+    const expectedOrder = unit.vocab[1].ex.replace(/[.!?]$/, '').split(' ');
+    assert.deepEqual(order.correctOrder, expectedOrder,
+      unit.id + ' word-order answer should match the translated sentence');
     assert.deepEqual(order.words.slice().reverse(), order.correctOrder,
       unit.id + ' word-order tokens should match the answer');
   }

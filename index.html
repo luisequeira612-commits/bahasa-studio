@@ -4922,19 +4922,22 @@
                 if (button) button.disabled = true;
                 recognition.onresult = event => {
                     const results = Array.from(event.results || []);
-                    const finalResults = results.filter(result => result.isFinal);
-                    const finalResult = finalResults[finalResults.length - 1];
-                    if (!finalResult) {
-                        const interimResults = results.filter(result => !result.isFinal);
-                        const interimResult = interimResults[interimResults.length - 1];
-                        const interimText = interimResult && interimResult[0] ? interimResult[0].transcript || '' : '';
-                        if (interimText) status.textContent = 'Te escucho: “' + interimText + '”. Sigue hablando…';
+                    const latestResult = results[results.length - 1];
+                    if (latestResult && !latestResult.isFinal) {
+                        const liveText = results.map(result => result[0] ? result[0].transcript || '' : '')
+                            .join(' ').replace(/\\s+/g, ' ').trim();
+                        if (liveText) status.textContent = 'Te escucho: “' + liveText + '”. Sigue hablando…';
                         return;
                     }
-                    const alternatives = Array.from(finalResult).map(item => item.transcript || '');
+                    const finalResults = results.filter(result => result.isFinal);
+                    if (!finalResults.length) return;
                     const target = normalize(ex.audioText);
-                    const matched = alternatives.some(value => normalize(value) === target);
+                    const prefix = finalResults.slice(0, -1).map(result => result[0] ? result[0].transcript || '' : '').join(' ');
+                    const lastFinal = finalResults[finalResults.length - 1];
+                    const alternatives = Array.from(lastFinal).map(item =>
+                        [prefix, item.transcript || ''].filter(Boolean).join(' ').trim());
                     const heard = alternatives[0] || '';
+                    const matched = alternatives.some(value => normalize(value) === target);
                     status.textContent = (matched ? '✓ La frase reconocida coincide.' : 'Frase reconocida: “' + heard + '”. No coincide exactamente; escucha otra vez e inténtalo más despacio.') +
                         ' Esta comparación es orientativa, no una calificación de pronunciación.';
                 };

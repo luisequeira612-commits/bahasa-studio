@@ -373,6 +373,7 @@
                 <option value="1">Normal (1×)</option>
             </select>
             <button class="btn btn-outline" style="margin-top:10px;" onclick="AudioEngine.testVoice()">Probar Voz (id-ID)</button>
+            <p id="voiceTestStatus" role="status" aria-live="polite" style="font-size:0.85rem;color:var(--text-muted);margin-top:8px;">Prueba la voz disponible en tu dispositivo. La disponibilidad y calidad de id-ID dependen del navegador y del sistema.</p>
         </div>
 
         <div class="card">
@@ -4204,11 +4205,13 @@
                 this.synth.speak(utter);
             },
             testVoice() {
+                const status = document.getElementById('voiceTestStatus');
                 if (this.idVoice) {
-                    this.speak("Halo! Bahasa Indonesia.");
+                    if (status) status.textContent = 'Probando la voz indonesia disponible (id-ID).';
                 } else {
-                    alert("No se detectó un paquete de voz nativo en indonesio (id-ID) en tu sistema. Se usará el emulador genérico del navegador.");
+                    if (status) status.textContent = 'No se detectó una voz indonesia instalada. Se intentará usar la voz predeterminada del sistema con el idioma id-ID; el resultado puede variar.';
                 }
+                this.speak("Halo! Bahasa Indonesia.");
             }
         };
 

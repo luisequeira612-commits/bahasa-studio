@@ -1253,6 +1253,19 @@ test('voice test explains and attempts the system fallback when no Indonesian vo
   assert.doesNotMatch(html, /emulador genérico del navegador/);
 });
 
+test('listen-and-type exercises also offer optional pronunciation practice using the expected phrase', () => {
+  const start = html.indexOf("                } else if (ex.type === 'listen') {");
+  const end = html.indexOf("                } else if (ex.type === 'write') {", start);
+  assert.ok(start >= 0 && end > start, 'listen exercise renderer should exist');
+  const renderer = html.slice(start, end);
+  assert.match(renderer, /aria-label="Practicar pronunciación"/);
+  assert.match(html, /ex\.type === 'listen' \? ex\.answer/);
+  const methodStart = html.indexOf('            startPronunciationPractice() {');
+  const methodEnd = html.indexOf('            selectMc(idx, btn) {', methodStart);
+  assert.match(html.slice(methodStart, methodEnd), /normalize\(targetText\)/,
+    'spoken comparison should use the listen answer when no audioText field exists');
+});
+
 test('audio playback speed is adjustable, validated, and persisted without changing default playback', () => {
   assert.match(html, /id="audioPlaybackRate"/);
   assert.match(html, /setRate\(value, persist = true\)/);

@@ -659,6 +659,59 @@ test('grading a listening answer immediately stops active microphone recognition
   }
 });
 
+test('listen-and-type exercises support optional pronunciation practice against the spoken answer', async () => {
+  const { server, url } = await startServer();
+  const context = await browser.newContext({ serviceWorkers: 'block' });
+  const page = await context.newPage();
+
+  await page.addInitScript(() => {
+    window.__recognitionStarts = 0;
+    window.SpeechRecognition = class {
+      start() { window.__recognitionStarts++; window.__mockRecognition = this; }
+      abort() { this.aborted = true; }
+    };
+    Object.defineProperty(window, 'speechSynthesis', {
+      configurable: true,
+      value: { cancel() {}, getVoices() { return [{ lang: 'id-ID', name: 'Mock Indonesian' }]; }, speak() {}, onvoiceschanged: null }
+    });
+    window.SpeechSynthesisUtterance = function (text) { this.text = text; };
+  });
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
+    await page.evaluate(() => LessonEngine.startUnit({
+      id: 'listen-pronunciation-test',
+      title: 'Prueba de escucha y pronunciación',
+      grammar: 'Prueba automatizada.',
+      vocab: [{ id: 'listen-pronunciation-word', idn: 'Pagi', esp: 'Mañana', ex: 'Selamat pagi.', exEsp: 'Buenos días.' }],
+      exercises: [{
+        vocabId: 'listen-pronunciation-word', type: 'listen',
+        prompt: 'Escucha y escribe la frase', answer: 'Selamat pagi',
+        explanation: 'Buenos días.'
+      }]
+    }));
+    await page.getByRole('button', { name: 'Comenzar' }).click();
+    await page.getByRole('button', { name: 'Practicar pronunciación' }).click();
+    await page.waitForFunction(() => window.__recognitionStarts === 1);
+    assert.match(await page.locator('#pronunciationStatus').innerText(), /Escuchando/);
+
+    await page.evaluate(() => {
+      const finalResult = [{ transcript: 'Selamat pagi' }];
+      finalResult.isFinal = true;
+      window.__mockRecognition.onresult({ results: [finalResult] });
+      window.__mockRecognition.onend();
+    });
+    assert.match(await page.locator('#pronunciationStatus').innerText(), /frase reconocida coincide/);
+    assert.equal(await page.evaluate(() => LessonEngine.activeRecognition === null), true);
+    assert.equal(await page.evaluate(() => App.xp), 0,
+      'pronunciation practice must not award XP or grade the listening exercise');
+  } finally {
+    await context.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});
+
 test('voice test speaks using the system fallback when no Indonesian voice is installed', async () => {
   const { server, url } = await startServer();
   const context = await browser.newContext({ serviceWorkers: 'block' });

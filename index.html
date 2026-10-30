@@ -4857,6 +4857,8 @@
                         <div>
                             <h3>${App.escapeHtml(ex.prompt)}</h3>
                             <button class="btn btn-outline" style="margin-top:12px;" data-answer="${App.escapeHtml(ex.answer)}" onclick="AudioEngine.speak(this.dataset.answer)">🔊 Escuchar de nuevo</button>
+                            <button class="btn btn-outline" style="margin-top:8px;" onclick="LessonEngine.startPronunciationPractice()" aria-label="Practicar pronunciación">🎙️ Practicar pronunciación (opcional)</button>
+                            <p id="pronunciationStatus" role="status" aria-live="polite" style="font-size:0.85rem;color:var(--text-muted);margin-top:8px;">El micrófono solo se activa al pulsar. El navegador puede enviar audio a su proveedor de reconocimiento.</p>
                             <input type="text" id="textAnswer" class="input-field" placeholder="Escribe lo que escuchas..." style="margin-top:20px;">
                         </div>
                         <div id="actionArea"><button class="btn" onclick="LessonEngine.checkTranslate()">Comprobar</button></div>
@@ -4898,7 +4900,8 @@
             startPronunciationPractice() {
                 const ex = this.queue[this.stepIndex];
                 const status = document.getElementById('pronunciationStatus');
-                if (!ex || !ex.audioText || !status) return;
+                const targetText = ex && (ex.audioText || (ex.type === 'listen' ? ex.answer : ''));
+                if (!targetText || !status) return;
                 const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition;
                 if (!Recognition) {
                     status.textContent = 'Este navegador no ofrece reconocimiento de voz. Puedes repetir el audio y practicar en voz alta sin grabación.';
@@ -4931,7 +4934,7 @@
                     }
                     const finalResults = results.filter(result => result.isFinal);
                     if (!finalResults.length) return;
-                    const target = normalize(ex.audioText);
+                    const target = normalize(targetText);
                     const prefix = finalResults.slice(0, -1).map(result => result[0] ? result[0].transcript || '' : '').join(' ');
                     const lastFinal = finalResults[finalResults.length - 1];
                     const alternatives = Array.from(lastFinal).map(item =>

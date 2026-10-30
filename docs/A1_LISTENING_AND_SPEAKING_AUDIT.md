@@ -14,6 +14,30 @@ La lectura del objeto curricular completo, contemplando tanto claves JavaScript 
 
 La cobertura está repartida por todo A1: los ejercicios `audioText` aparecen en U1–U10 (con variación por unidad), U12–U19 y U21–U31; los ejercicios `listen` aparecen en U3–U8, U10–U11 y U18–U32. U11, U20 y U32 cuentan con ejercicios `listen` aunque no tienen `audioText`; U1, U2, U6, U9 y U12–U17 cuentan con `audioText` aunque no usan el tipo `listen`.
 
+## Revisión de traducciones de los prompts auditivos — 2026-10-29
+
+Se hizo una pasada de consistencia sobre los 40 ejercicios A1 que contienen `audioText`, comparando la frase indonesia con la opción española marcada como correcta. Esta pasada se centró en conservar la persona gramatical y el tipo de enunciado; no es una certificación de naturalidad por un hablante nativo.
+
+Se corrigieron 11 opciones que traducían frases con `saya` (primera persona) como tercera persona, o que convertían una pregunta en un fragmento condicional:
+
+| Frase indonesia | Traducción corregida |
+|---|---|
+| `Saya bangun pagi.` | Me levanto por la mañana |
+| `Saya naik bus.` | Voy en autobús |
+| `Saya pergi ke pasar.` | Voy al mercado |
+| `Saya bisa berenang.` | Puedo nadar |
+| `Ada bus di sini?` | ¿Hay un autobús aquí? |
+| `Saya sakit kepala` | Me duele la cabeza |
+| `Saya pakai kaus putih.` | Llevo una camiseta blanca |
+| `Saya di dapur.` | Estoy en la cocina |
+| `Saya membaca buku.` | Leo un libro |
+| `Saya suka berenang.` | Me gusta nadar |
+| `Saya punya reservasi.` | Tengo una reserva |
+
+La prueba `A1 first-person listening prompts use first-person Spanish translations and preserve question intent` en `tests/regression.test.cjs` comprueba estas once correspondencias contra el currículo real. También se actualizaron las expectativas de pruebas existentes para que no reintroduzcan las traducciones anteriores.
+
+El resto de esta pasada no encontró discrepancias claras de persona gramatical en las opciones revisadas, pero eso no demuestra que todas las traducciones sean idiomáticas, que el audio se pronuncie bien ni que las opciones sean pedagógicamente óptimas. La revisión lingüística integral y el contraste con una persona competente siguen pendientes.
+
 ## Comportamiento verificado por CI
 
 - Playwright prueba que `AudioEngine` envía texto a la API de síntesis con locale `id-ID`, elige una voz simulada de indonesio cuando está disponible y usa la velocidad inicial 0.85.

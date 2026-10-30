@@ -5,5 +5,8 @@
   "description": "Regression and browser end-to-end tests for Bahasa Studio",
   "devDependencies": {
     "playwright": "^1.55.0"
+  },
+  "scripts": {
+    "test:assessment": "node tests/assessment-bank-structure.test.js"
   }
 }

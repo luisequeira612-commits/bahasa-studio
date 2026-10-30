@@ -33,8 +33,10 @@ test('unit 1 listening dialogue does not introduce unstudied words', () => {
   const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
   const unit1 = course.levels.find(level => level.id === 'A1').units.find(unit => unit.id === 'a1_u1');
   const dialogue = unit1.exercises.find(exercise => String(exercise.audioText || '').includes('Selamat pagi') && String(exercise.audioText || '').includes('Terima kasih'));
-  assert.equal(dialogue.audioText, 'Selamat pagi. Terima kasih.');
-  assert.doesNotMatch(dialogue.audioText, /Apa kabar|Baik/);
+  assert.equal(dialogue.audioText, 'Selamat pagi. Apa kabar? Baik, terima kasih.');
+  const taughtWords = new Set(unit1.vocab.map(word => word.idn));
+  assert.ok(taughtWords.has('Apa kabar?'), 'the dialogue question should be taught in Unit 1');
+  assert.ok(taughtWords.has('Baik'), 'the dialogue response should be taught in Unit 1');
 });
 
 test('lesson audio speed selector is visible and synchronized with settings', () => {

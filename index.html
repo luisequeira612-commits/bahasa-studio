@@ -4251,8 +4251,16 @@
                     });
                 });
                 const learnedIds = new Set(learnedVocab.map(word => word.id));
-                const futureTerms = unit.vocab.slice(learnedVocab.length)
-                    .map(word => normalizeLessonText(word.idn)).filter(term => term.length > 1);
+                const a1 = CourseData.levels.find(level => level.id === 'A1');
+                const unitIndex = a1 ? a1.units.findIndex(entry => entry.id === unit.id) : -1;
+                const previouslyTaught = unitIndex > 0 ? a1.units.slice(0, unitIndex).flatMap(entry => entry.vocab || []) : [];
+                const knownTerms = new Set([...previouslyTaught, ...learnedVocab].map(word => normalizeLessonText(word.idn)));
+                const futureVocab = [
+                    ...unit.vocab.slice(learnedVocab.length),
+                    ...(unitIndex >= 0 ? a1.units.slice(unitIndex + 1).flatMap(entry => entry.vocab || []) : [])
+                ];
+                const futureTerms = futureVocab.map(word => normalizeLessonText(word.idn))
+                    .filter(term => term.length > 1 && !knownTerms.has(term));
                 (unit.exercises || []).forEach((exercise, exerciseIndex) => {
                     if (assignedAuthoredExercises.has(exerciseIndex) || !learnedIds.has(exercise.vocabId)) return;
                     const authoredText = normalizeLessonText([

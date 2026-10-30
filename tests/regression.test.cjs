@@ -1143,11 +1143,22 @@ test('U24–U32 multiple-choice answers are semantically correct and not always 
   };
   const unitIds = new Set(['a1_u24','a1_u25','a1_u26','a1_u27','a1_u28','a1_u29','a1_u30','a1_u31','a1_u32']);
   const exercises = a1.units.filter(unit => unitIds.has(unit.id)).flatMap(unit => unit.exercises.filter(ex => ex.type === 'mc'));
-  assert.equal(exercises.length, 19);
+  assert.equal(exercises.length, 27);
+  const listeningExpected = {
+    'Saya membaca buku.': 'Lee un libro',
+    'Saya suka berenang.': 'Le gusta nadar',
+    'Belok kiri.': 'A la izquierda',
+    'Ayo makan!': '¡Vamos a comer!',
+    'Saya punya reservasi.': 'Tiene una reserva',
+    'Saya selalu belajar.': 'Siempre estudio',
+    'Tolong ulangi.': 'Por favor, repítalo',
+    'Teman saya ramah.': 'Mi amigo es amable'
+  };
   const positions = new Set();
   for (const ex of exercises) {
-    assert.ok(expected[ex.vocabId], 'missing expected answer for ' + ex.vocabId);
-    assert.equal(ex.options[ex.answer], expected[ex.vocabId], 'incorrect keyed answer for ' + ex.vocabId);
+    const keyedAnswer = ex.audioText ? listeningExpected[ex.audioText] : expected[ex.vocabId];
+    assert.ok(keyedAnswer, 'missing expected answer for ' + (ex.audioText || ex.vocabId));
+    assert.equal(ex.options[ex.answer], keyedAnswer, 'incorrect keyed answer for ' + (ex.audioText || ex.vocabId));
     positions.add(ex.answer);
   }
   assert.ok(positions.size >= 3, 'correct answers should use all three option positions');
@@ -1163,7 +1174,7 @@ test('U24–U32 curriculum structure keeps vocabulary and exercise references in
     const unit = a1.units.find(item => item.id === 'a1_u' + number);
     assert.ok(unit, 'missing A1 unit ' + number);
     assert.equal(unit.vocab.length, 10, 'U' + number + ' should contain 10 vocabulary items');
-    assert.equal(unit.exercises.length, 8, 'U' + number + ' should contain 8 exercises');
+    assert.equal(unit.exercises.length, number === 32 ? 8 : 9, 'U' + number + ' should contain the expected exercise count');
     const vocabIds = new Set(unit.vocab.map(item => item.id));
     assert.equal(vocabIds.size, 10, 'U' + number + ' vocabulary IDs must be unique');
     for (const exercise of unit.exercises) {

@@ -1132,7 +1132,7 @@ test('U25 translation prompt matches its verb-only answer and U30 teaches the cl
 test('A1 first-person listening prompts use first-person Spanish translations and preserve question intent', () => {
   const start = html.indexOf('const CourseData =');
   const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
-  const course = vm.runInNewContext(html.slice(start, end) + '\\nCourseData');
+  const course = vm.runInNewContext(html.slice(start, end) + String.fromCharCode(10) + 'CourseData');
   const a1 = course.levels.find(level => level.id === 'A1');
   const expected = {
     'Saya bangun pagi.': 'Me levanto por la mañana',
@@ -1555,7 +1555,7 @@ test('A1 greetings, location, restaurant requests and symptoms include listening
     ['a1_u1', 'Selamat pagi', 'Buenos días'],
     ['a1_u18', 'Kamu di situ', 'Estás ahí'],
     ['a1_u19', 'Tanpa cabai, ya', 'Sin chile, por favor'],
-    ['a1_u21', 'Saya sakit kepala', 'Le duele la cabeza']
+    ['a1_u21', 'Saya sakit kepala', 'Me duele la cabeza']
   ];
   for (const [unitId, audioText, meaning] of expected) {
     const unit = a1.units.find(item => item.id === unitId);

@@ -5,9 +5,9 @@ Estado: inventario estático del banco existente; **no es una especificación de
 
 ## Alcance y método
 
-Este mapa registra los 31 ítems A1 actualmente definidos en `assessment-engine.js`. La puntuación suma **36 puntos**: 29 puntos de opción múltiple y 7 puntos de producción escrita que requieren revisión humana. La unidad se asigna solo cuando el prompt, su explicación o la referencia curricular permite identificarla razonablemente; las asignaciones compuestas o inferidas se marcan como tales.
+Este mapa registra los 49 ítems A1 actualmente definidos en `assessment-engine.js`. La puntuación suma **54 puntos**: 47 puntos de opción múltiple y 7 puntos de producción escrita que requieren revisión humana. La unidad se asigna solo cuando el prompt, su explicación o la referencia curricular permite identificarla razonablemente; las asignaciones compuestas o inferidas se marcan como tales.
 
-Las etiquetas de habilidad proceden del motor (`vocabulary`, `grammar`, `comprehension`, `interaction`, `production`). La modalidad describe lo que realmente hace el ítem, no lo que su nombre pudiera sugerir. Los ítems clasificados como comprensión son lectura/interpretación de texto escrito. Los 12 ítems añadidos para U18–U23 son opciones escritas sin audio enlazado.
+Las etiquetas de habilidad proceden del motor (`vocabulary`, `grammar`, `comprehension`, `interaction`, `production`). La modalidad describe lo que realmente hace el ítem, no lo que su nombre pudiera sugerir. Los ítems clasificados como comprensión son lectura/interpretación de texto escrito. Los 30 ítems añadidos para U18–U32 son opciones escritas sin audio enlazado.
 
 ## Inventario de ítems
 
@@ -52,24 +52,49 @@ Las etiquetas de habilidad proceden del motor (`vocabulary`, `grammar`, `compreh
 
 Los 12 ítems anteriores tienen metadatos explícitos de unidad, objetivo, modalidad y estado editorial (`pilot-unreviewed`). Son todos de selección escrita. La presencia de ejercicios de escucha en las unidades no significa que este banco tenga audio enlazado.
 
+## Nuevos ítems añadidos para U24–U32
+
+| ID | Unidad | Dimensión | Puntos | Modalidad | Objetivo |
+|---|---|---|---:|---|---|
+| `a1-u24-01` | U24 | Comprensión | 1 | Opción múltiple escrita | Comprende una frase de estudio |
+| `a1-u24-02` | U24 | Vocabulario | 1 | Opción múltiple escrita | Reconoce `guru` |
+| `a1-u25-01` | U25 | Vocabulario | 1 | Opción múltiple escrita | Reconoce `hobi` |
+| `a1-u25-02` | U25 | Interacción | 1 | Opción múltiple escrita | Expresa gusto por una actividad |
+| `a1-u26-01` | U26 | Vocabulario | 1 | Opción múltiple escrita | Reconoce `belok kiri` |
+| `a1-u26-02` | U26 | Comprensión | 1 | Opción múltiple escrita | Interpreta `jalan lurus` |
+| `a1-u27-01` | U27 | Interacción | 1 | Opción múltiple escrita | Reconoce una invitación con `ayo` |
+| `a1-u27-02` | U27 | Vocabulario | 1 | Opción múltiple escrita | Reconoce `lusa` |
+| `a1-u28-01` | U28 | Comprensión | 1 | Opción múltiple escrita | Comprende un destino de viaje |
+| `a1-u28-02` | U28 | Vocabulario | 1 | Opción múltiple escrita | Reconoce `paspor` |
+| `a1-u29-01` | U29 | Gramática | 1 | Opción múltiple escrita | Interpreta frecuencia con `selalu` |
+| `a1-u29-02` | U29 | Vocabulario | 1 | Opción múltiple escrita | Reconoce `kadang-kadang` |
+| `a1-u30-01` | U30 | Vocabulario | 1 | Opción múltiple escrita | Reconoce una petición cortés de paso |
+| `a1-u30-02` | U30 | Interacción | 1 | Opción múltiple escrita | Pide que repitan una expresión |
+| `a1-u31-01` | U31 | Comprensión | 1 | Opción múltiple escrita | Comprende una descripción física |
+| `a1-u31-02` | U31 | Vocabulario | 1 | Opción múltiple escrita | Reconoce `ramah` |
+| `a1-u32-01` | U32 | Interacción | 1 | Opción múltiple escrita | Pregunta cómo está otra persona |
+| `a1-u32-02` | U32 | Vocabulario | 1 | Opción múltiple escrita | Reconoce la respuesta `sama-sama` |
+
+Los 18 ítems U24–U32 se vinculan a objetivos y ejemplos presentes en esas unidades. Al igual que la tanda anterior, son selección escrita sin audio enlazado y permanecen como material piloto sin revisión lingüística competente.
+
 ## Distribución real por dimensión
 
 | Dimensión | Ítems | Puntos | Porcentaje de puntos |
 |---|---:|---:|---:|
-| Vocabulario | 6 | 6 | 16,7% |
-| Gramática | 5 | 5 | 13,9% |
-| Comprensión | 11 | 11 | 30,6% |
-| Interacción | 7 | 7 | 19,4% |
-| Producción | 2 | 7 | 19,4% |
-| **Total** | **31** | **36** | **100%** |
+| Vocabulario | 15 | 15 | 27,8% |
+| Gramática | 6 | 6 | 11,1% |
+| Comprensión | 15 | 15 | 27,8% |
+| Interacción | 11 | 11 | 20,4% |
+| Producción | 2 | 7 | 13,0% |
+| **Total** | **49** | **54** | **100%** |
 
 El banco está desbalanceado respecto al blueprint de 40 puntos: no hay comprensión auditiva, la interacción se mide solo mediante opciones escritas y la producción tiene dos tareas escritas abiertas. La dimensión de producción depende completamente de puntuación manual. No debe calcularse un aprobado de nivel a partir de este banco piloto.
 
 ## Cobertura por unidades y vacíos observables
 
-- Hay vínculos identificables o razonablemente inferidos para U1–U7, U9–U23; U18–U23 ahora tienen dos ítems piloto nuevos por unidad.
-- No hay ítems identificados para U8 ni U24–U32.
-- U8 y U24–U32 siguen sin ítems directos; no deben marcarse como cubiertas solo porque el contenido aparezca en el curso.
+- Hay vínculos identificables o razonablemente inferidos para U1–U7 y U9–U32; U18–U32 ahora tienen dos ítems piloto nuevos por unidad.
+- No hay ítems identificados para U8.
+- U8 sigue sin ítems directos; no debe marcarse como cubierta solo porque el contenido aparezca en el curso.
 - Las dos tareas abiertas integran más de una unidad, pero no sustituyen ítems independientes de cobertura para cada objetivo.
 - Los ítems de comprensión existentes son estímulos escritos. No hay ítems de escucha con recurso de audio en este banco.
 - No hay tarea oral evaluada ni evidencia de interacción espontánea.
@@ -79,8 +104,8 @@ El banco está desbalanceado respecto al blueprint de 40 puntos: no hay comprens
 
 Construir la siguiente tanda como banco de práctica, no como examen habilitador:
 
-1. Ampliar cobertura U24–U32 con ítems trazables a objetivos concretos.
-2. Revisar lingüísticamente los nuevos ítems U18–U23 y ampliar sus modalidades cuando haya recursos verificables.
+1. Añadir cobertura directa de U8 con ítems trazables a sus objetivos.
+2. Revisar lingüísticamente los nuevos ítems U18–U32 y ampliar modalidades cuando haya recursos verificables.
 3. Crear ítems de escucha solo cuando exista un audio comprobable, transcripción de referencia y prueba offline; no etiquetar lectura como escucha.
 4. Añadir interacción situacional con turnos y respuestas contextuales; conservar las conversaciones prácticas como práctica hasta validar su adecuación lingüística.
 5. Registrar para cada nuevo ítem: unidad, objetivo, dimensión, modalidad, prerequisitos léxicos, respuestas aceptadas, revisión lingüística y estado de audio.

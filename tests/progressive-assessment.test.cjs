@@ -21,7 +21,7 @@ test('unit assessment questions are generated only from that unit vocabulary', (
   const start = html.indexOf('const CourseData =');
   const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
   assert.ok(start >= 0 && end > start, 'course data and assessment builder must exist');
-  const app = vm.runInNewContext(html.slice(start, end) + '\\n({ CourseData, buildUnitAssessmentItems })');
+  const app = vm.runInNewContext(html.slice(start, end) + '\n({ CourseData, buildUnitAssessmentItems })');
   const a1 = app.CourseData.levels.find(level => level.id === 'A1');
   for (const unit of a1.units) {
     const items = app.buildUnitAssessmentItems(unit);
@@ -39,7 +39,7 @@ test('unit assessment questions are generated only from that unit vocabulary', (
 test('unit 1 listening dialogue does not introduce unstudied words', () => {
   const start = html.indexOf('const CourseData =');
   const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
-  const course = vm.runInNewContext(html.slice(start, end) + '\\nCourseData');
+  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
   const unit1 = course.levels.find(level => level.id === 'A1').units.find(unit => unit.id === 'a1_u1');
   const dialogue = unit1.exercises.find(exercise => String(exercise.audioText || '').includes('Selamat pagi') && String(exercise.audioText || '').toLocaleLowerCase().includes('terima kasih'));
   assert.equal(dialogue.audioText, 'Selamat pagi. Apa kabar? Baik, terima kasih.');
@@ -55,6 +55,6 @@ test('lesson audio speed selector is visible and synchronized with settings', ()
 });
 
 test('unit assessment mode does not award XP or write SRS attempts', () => {
-  assert.match(html, /if \\(ex\\.vocabId && !this\\.assessmentMode\\)/);
-  assert.match(html, /if \\(isCorrect && !this\\.assessmentMode\\) App\\.addXp\\(10\\)/);
+  assert.match(html, /if \(ex\.vocabId && !this\.assessmentMode\)/);
+  assert.match(html, /if \(isCorrect && !this\.assessmentMode\) App\.addXp\(10\)/);
 });

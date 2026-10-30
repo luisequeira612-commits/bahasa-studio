@@ -183,6 +183,8 @@ test('A2 units 1-4 begin with the approved temporal and narrative progression', 
   const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
   const a2 = course.levels.find(level => level.id === 'A2');
   assert.equal(a2.units[0].title, 'Unidad 1: Días, meses y fechas');
+  assert.ok(a2.units[0].vocab.some(word => word.idn === 'Musim hujan'));
+  assert.ok(a2.units[0].vocab.some(word => word.idn === 'Musim kemarau'));
   assert.match(a2.units[1].grammar, /sudah, belum, sedang y akan/);
   assert.match(a2.units[2].title, /secuencias/);
   assert.match(a2.units[3].title, /jornada cotidiana/);
@@ -262,6 +264,10 @@ test('A2 units 1-4 have 3-5 authored lessons and a complete unit-test bank', () 
       assert.equal(item.options[item.answer], unit.vocab.find(word => word.id === item.vocabId).esp);
     }
   }
+});
+
+test('tap-to-translate includes authored exercises from multi-lesson units', () => {
+  assert.match(html, /const authoredExercises = \[\s*\.\.\.\(unit\.exercises \|\| \[\]\),\s*\.\.\.\(unit\.lessons \|\| \[\]\)\.flatMap\(lesson => lesson\.exercises \|\| \[\]\)\s*\]/);
 });
 
 test('A2 stays hidden and its unit assessment lookup is level-independent', () => {

@@ -599,3 +599,43 @@ test('pronunciation practice degrades gracefully when speech recognition is unav
     await new Promise(resolve => server.close(resolve));
   }
 });
+
+test('grading a listening answer immediately stops active microphone recognition', async () => {
+  const { server, url } = await startServer();
+  const context = await browser.newContext({ serviceWorkers: 'block' });
+  const page = await context.newPage();
+  await page.addInitScript(() => {
+    window.SpeechRecognition = class {
+      start() { window.__activeRecognition = this; }
+      abort() { window.__recognitionAborted = true; }
+    };
+    Object.defineProperty(window, 'speechSynthesis', {
+      configurable: true,
+      value: { cancel() {}, getVoices() { return []; }, speak() {}, onvoiceschanged: null }
+    });
+    window.SpeechSynthesisUtterance = function (text) { this.text = text; };
+  });
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
+    await page.evaluate(() => LessonEngine.startUnit({
+      id: 'recognition-stop-test', title: 'Prueba de cierre', grammar: 'Prueba.',
+      vocab: [{ id: 'stop-word', idn: 'Pagi', esp: 'Mañana', ex: 'Selamat pagi.', exEsp: 'Buenos días.' }],
+      exercises: [{
+        vocabId: 'stop-word', type: 'mc', prompt: 'Escucha', audioText: 'Selamat pagi',
+        options: ['Buenos días', 'Buenas noches'], answer: 0, explanation: 'Correcto.'
+      }]
+    }));
+    await page.getByRole('button', { name: 'Comenzar' }).click();
+    await page.getByRole('button', { name: 'Practicar pronunciación' }).click();
+    await page.waitForFunction(() => !!window.__activeRecognition);
+    await page.getByRole('button', { name: 'Buenos días' }).click();
+    await page.getByRole('button', { name: 'Comprobar' }).click();
+    assert.equal(await page.evaluate(() => window.__recognitionAborted), true);
+    assert.equal(await page.evaluate(() => LessonEngine.activeRecognition === null), true);
+  } finally {
+    await context.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});

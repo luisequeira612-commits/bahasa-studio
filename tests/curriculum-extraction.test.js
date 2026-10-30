@@ -58,7 +58,8 @@ test('A1/A2 curriculum deeply matches the original pre-extraction data', () => {
 test('classic curriculum scripts load synchronously before the main app script', () => {
   const a1Tag = html.indexOf('<script src="./curriculum-a1.js"></script>');
   const a2Tag = html.indexOf('<script src="./curriculum-a2.js"></script>');
-  const mainTag = html.indexOf('<script>', html.indexOf('const WrittenResponse'));
+  const writtenResponse = html.indexOf('const WrittenResponse');
+  const mainTag = html.lastIndexOf('<script>', writtenResponse);
   assert.ok(a1Tag >= 0 && a2Tag > a1Tag && mainTag > a2Tag);
   assert.doesNotMatch(html, /curriculum-a[12]\.js[^>]*type=["']module/i);
   assert.match(html, /No se pudo cargar el currículo/);
@@ -87,7 +88,7 @@ test('service worker precaches both data files and invalidates the previous cach
     self: { location: { origin: 'https://example.test' }, clients: { claim() {} },
       skipWaiting() {}, addEventListener(name, fn) { listeners[name] = fn; } },
     caches: cachesApi,
-    Request: class Request { constructor(url) { this.url = url; } },
+    Request: class Request { constructor(url) { this.url = new URL(url, 'https://example.test').href; } },
     URL,
     fetch: async () => { throw new Error('offline'); },
     Response: { error: () => ({ error: true }) }
@@ -96,8 +97,8 @@ test('service worker precaches both data files and invalidates the previous cach
   let installPromise;
   listeners.install({ waitUntil(promise) { installPromise = promise; } });
   await installPromise;
-  assert.ok(cached.has('./curriculum-a1.js'));
-  assert.ok(cached.has('./curriculum-a2.js'));
+  assert.ok(cached.has('https://example.test/curriculum-a1.js'));
+  assert.ok(cached.has('https://example.test/curriculum-a2.js'));
 
   let responsePromise;
   listeners.fetch({
@@ -105,7 +106,7 @@ test('service worker precaches both data files and invalidates the previous cach
     respondWith(promise) { responsePromise = promise; }
   });
   const response = await responsePromise;
-  assert.equal(response.url, './curriculum-a1.js');
+  assert.equal(response.url, 'https://example.test/curriculum-a1.js');
 });
 
 test('the extraction does not alter IndexedDB, SRS, backup, or word-translation code', () => {

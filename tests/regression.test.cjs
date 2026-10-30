@@ -1385,14 +1385,14 @@ test('listen-and-type exercises also offer optional pronunciation practice using
   assert.match(html, /ex\.type === 'listen' \? ex\.answer/);
   const methodStart = html.indexOf('            startPronunciationPractice() {');
   const methodEnd = html.indexOf('            selectMc(idx, btn) {', methodStart);
-  assert.match(pronunciationEngineSource, /normalize\\(targetText\\)/,
+  assert.match(pronunciationEngineSource, /normalize\(targetText\)/,
     'spoken comparison should use the listen answer when no audioText field exists');
 });
 
 test('extracted audio engine preserves adjustable playback and saved voice preferences', () => {
   assert.match(html, /id="audioPlaybackRate"/);
   assert.match(audioEngineSource, /setRate\(value, persist = true\)/);
-  assert.match(audioEngineSource, /\\[0\\.5, 0\\.7, 0\\.85, 1\\]\\.includes\\(rate\\)/);
+  assert.match(audioEngineSource, /\[0\.5, 0\.7, 0\.85, 1\]\.includes\(rate\)/);
   assert.match(audioEngineSource, /DB\.set\('settings', 'audioPlaybackRate', rate\)/);
   assert.match(audioEngineSource, /utter\.rate = this\.rate/);
   assert.match(html, /DB\.get\('settings', 'audioPlaybackRate'\)/);

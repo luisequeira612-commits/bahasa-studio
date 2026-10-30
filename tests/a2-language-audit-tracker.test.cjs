@@ -69,14 +69,15 @@ test('A2 language tracker covers all current vocabulary without claiming verific
     assert.equal(row[index.spanish_gloss], word.esp);
     assert.equal(row[index.example_indonesian], word.ex);
     assert.equal(row[index.example_spanish], word.exEsp);
-    assert.equal(row[index.KBBI_status], 'not_checked');
+    assert.equal(row[index.KBBI_status], word.id === 'a2u1_minggu' ? 'verified_primary' : 'not_checked');
     assert.equal(row[index.grammar_naturalness_review], 'not_checked');
     assert.equal(row[index.level_fit_review], 'not_checked');
     assert.equal(row[index.accepted_answers_review], 'not_checked');
-    assert.equal(row[index.KBBI_entry_url], '');
-    assert.equal(row[index.KBBI_checked_date], '');
+    assert.equal(row[index.KBBI_entry_url], word.id === 'a2u1_minggu' ? 'https://kbbi.kemendikdasmen.go.id/entri/minggu' : '');
+    assert.equal(row[index.KBBI_checked_date], word.id === 'a2u1_minggu' ? '2026-10-30' : '');
   }
   assert.ok(rows.every(row => row[index.BIPA_reference_url] === 'https://repositori.kemendikdasmen.go.id/19082/'));
+  assert.equal(rows.filter(row => row[index.KBBI_status] === 'verified_primary').length, 1);
 });
 
 test('A2 audit plan clearly separates structural checks from linguistic validation', () => {

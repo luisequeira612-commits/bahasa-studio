@@ -8,7 +8,9 @@ const root = path.resolve(__dirname, '..');
 const curriculumSandbox = { window: {} };
 vm.runInNewContext(fs.readFileSync(path.join(__dirname, '..', 'curriculum-a1.js'), 'utf8'), curriculumSandbox);
 vm.runInNewContext(fs.readFileSync(path.join(__dirname, '..', 'curriculum-a2.js'), 'utf8'), curriculumSandbox);
-const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8')
+const htmlSource = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+const courseDataStart = htmlSource.indexOf('const CourseData =');
+const html = htmlSource.slice(0, courseDataStart) + htmlSource.slice(courseDataStart)
   .replace('window.BAHASA_CURRICULUM_A1', JSON.stringify(curriculumSandbox.window.BAHASA_CURRICULUM_A1))
   .replace('window.BAHASA_CURRICULUM_A2', JSON.stringify(curriculumSandbox.window.BAHASA_CURRICULUM_A2));
 const serviceWorker = fs.readFileSync(path.join(root, 'service-worker.js'), 'utf8');

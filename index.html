@@ -4697,6 +4697,7 @@
                 bank.appendChild(chip);
             },
             checkMc() {
+                this.stopPronunciationPractice();
                 const ex = this.queue[this.stepIndex];
                 if (this.selectedOption === null) return;
                 this.showFeedback(this.selectedOption === ex.answer, ex.explanation);

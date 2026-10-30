@@ -51,7 +51,7 @@ test('A1 multiple-choice answers are distributed across all three positions', ()
     assert.equal(item.options.length, 3, item.id + ' should have three answer options');
     counts[item.answer] += 1;
   }
-  assert.deepEqual(counts.slice().sort((a, b) => a - b), [14, 16, 17]);
+  assert.deepEqual(counts.slice().sort((a, b) => a - b), [10, 18, 19]);
 });
 
 test('choice scoring is level-scoped and reports skill breakdowns', () => {

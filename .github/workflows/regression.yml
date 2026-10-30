@@ -29,6 +29,8 @@ jobs:
         run: node --test tests/study-activity.test.cjs
       - name: Run A2 curriculum structure tests
         run: node --test tests/a2-curriculum.test.cjs
+      - name: Run A2 language audit tracker tests
+        run: node --test tests/a2-language-audit-tracker.test.cjs
       - name: Run KBBI audit queue tests
         run: node --test tests/audit-kbbi-pending.test.mjs
       - name: Run assessment engine unit tests

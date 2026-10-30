@@ -24,7 +24,7 @@
             recognition.maxAlternatives = 3;
             const normalize = value => String(value || '').toLocaleLowerCase('id-ID')
                 .normalize('NFD').replace(/\p{M}/gu, '')
-                .replace(/[^\p{L}\p{N}\\s]/gu, ' ').replace(/\s+/g, ' ').trim();
+                .replace(/[^\p{L}\p{N}\s]/gu, ' ').replace(/\s+/g, ' ').trim();
             status.textContent = 'Escuchando… Di la frase en indonesio con claridad.';
             if (button) button.disabled = true;
             recognition.onresult = event => {

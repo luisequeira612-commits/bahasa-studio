@@ -1376,3 +1376,19 @@ test('A1 includes multi-turn listening dialogues with contextual comprehension',
     assert.ok(!exercise.options.includes(audioText), 'dialogue transcript must not be exposed as an answer option');
   }
 });
+
+test('optional pronunciation practice uses Indonesian browser recognition without changing learning records', () => {
+  assert.match(html, /aria-label="Practicar pronunciación"/);
+  assert.match(html, /El navegador puede enviar audio a su proveedor de reconocimiento/);
+  assert.match(html, /window\.SpeechRecognition \|\| window\.webkitSpeechRecognition/);
+  assert.match(html, /recognition\.lang = 'id-ID'/);
+  assert.match(html, /No se concedió permiso para usar el micrófono/);
+  assert.match(html, /no ofrece reconocimiento de voz/);
+  const start = html.indexOf('            startPronunciationPractice() {');
+  const end = html.indexOf('            selectMc(idx, btn) {', start);
+  assert.ok(start >= 0 && end > start, 'pronunciation practice methods should be present');
+  const method = html.slice(start, end);
+  assert.doesNotMatch(method, /SRSEngine\.recordAttempt|App\.addXp|DB\.set/,
+    'pronunciation comparison must not grade exercises, award XP, or persist microphone data');
+  assert.match(html, /this\.stopPronunciationPractice\(\);/);
+});

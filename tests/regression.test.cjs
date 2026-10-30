@@ -373,7 +373,7 @@ test('vocabulary mastery percentage is calculated from unique words and spaced-r
   assert.match(html, /id="statMasteredPercent"/);
   assert.match(html, /Math\.round\(mastered \/ uniqueVocab\.length \* 100\)/);
   assert.match(html, /item\.repetition > 3/);
-  assert.match(html, /four or more correct reviews in a row/i);
+  assert.match(html, /cuatro o más repasos correctos seguidos/i);
 });
 
 test('backup export includes the daily study activity record', () => {

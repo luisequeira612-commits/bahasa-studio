@@ -559,12 +559,19 @@ test('optional Indonesian pronunciation practice compares browser recognition wi
       const interim = [{ transcript: 'Selamat' }];
       interim.isFinal = false;
       window.__mockRecognition.onresult({ results: [interim] });
+      const partialFinal = [{ transcript: 'Selamat' }];
+      partialFinal.isFinal = true;
+      const nextInterim = [{ transcript: 'pagi' }];
+      nextInterim.isFinal = false;
+      window.__mockRecognition.onresult({ results: [partialFinal, nextInterim] });
     });
-    assert.match(await page.locator('#pronunciationStatus').innerText(), /Te escucho: “Selamat”/);
+    assert.match(await page.locator('#pronunciationStatus').innerText(), /Te escucho: “Selamat pagi”/);
     await page.evaluate(() => {
-      const final = [{ transcript: 'Selamat pagi' }];
-      final.isFinal = true;
-      window.__mockRecognition.onresult({ results: [final] });
+      const firstFinal = [{ transcript: 'Selamat' }];
+      firstFinal.isFinal = true;
+      const lastFinal = [{ transcript: 'pagi' }];
+      lastFinal.isFinal = true;
+      window.__mockRecognition.onresult({ results: [firstFinal, lastFinal] });
       window.__mockRecognition.onend();
     });
     assert.match(await page.locator('#pronunciationStatus').innerText(), /frase reconocida coincide/);

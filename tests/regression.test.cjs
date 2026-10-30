@@ -39,7 +39,7 @@ test('inline application JavaScript and service worker parse', () => {
 test('PWA version is consistent across HTML, manifest and cache', () => {
   assert.match(html, /Bahasa Studio 3\.8\.8/);
   assert.equal(manifest.name, 'Bahasa Studio 3.8.8');
-  assert.match(serviceWorker, /bahasa-studio-v3\.8\.10/);
+  assert.match(serviceWorker, /bahasa-studio-v3\.8\.11/);
   for (const asset of ['./', './index.html', './manifest.json', './assessment.html', './assessment-engine.js', './conversation-engine.js', './study-activity.js', './curriculum-a1.js', './curriculum-a2.js', './styles.css', './audio-engine.js', './pronunciation-engine.js']) {
     assert.ok(serviceWorker.includes("'" + asset + "'"), asset + ' must be precached for offline use');
   }
@@ -298,8 +298,8 @@ test('tap-to-translate includes authored exercises from multi-lesson units', () 
   assert.match(html, /const authoredExercises = \[\s*\.\.\.\(unit\.exercises \|\| \[\]\),\s*\.\.\.\(unit\.lessons \|\| \[\]\)\.flatMap\(lesson => lesson\.exercises \|\| \[\]\)\s*\]/);
 });
 
-test('A2 stays hidden and its unit assessment lookup is level-independent', () => {
-  assert.match(html, /return getLevels\(\)\.filter\(level => !\['A2', 'B1', 'B2'\]\.includes\(level\.id\)\)/);
+test('A2 joins learning vocabulary after A1 completion and its assessment lookup is level-independent', () => {
+  assert.match(html, /return getLevels\(\)\.filter\(level => !\['B1', 'B2'\]\.includes\(level\.id\)\)/);
   assert.match(html, /startUnitAssessment\(unitId\) \{\s*const unit = CourseData\.levels\.flatMap\(level => level\.units\)\.find\(entry => entry\.id === unitId\)/);
   assert.doesNotMatch(html, /startUnitAssessment\(unitId\) \{\s*const level = CourseData\.levels\.find\(entry => entry\.id === 'A1'\)/);
 });
@@ -320,7 +320,7 @@ test('v3.7.1 audit fixes remain in place without changing backup or database ver
   assert.ok(html.includes("String(voice.lang || '').toLowerCase().startsWith('id')"),
     'voice discovery should tolerate missing language metadata without throwing');
   assert.ok(html.includes("function getLearningLevels()"));
-  assert.ok(html.includes("return getLevels().filter(level => !['A2', 'B1', 'B2'].includes(level.id))"));
+  assert.ok(html.includes("return getLevels().filter(level => !['B1', 'B2'].includes(level.id))"));
   assert.ok(html.includes("function getUniqueLearningVocabulary()"));
   assert.ok(html.includes("String(word && word.idn || '').trim().toLocaleLowerCase()"));
   assert.ok(html.includes("async getDuplicateWordIds(wordId)"));

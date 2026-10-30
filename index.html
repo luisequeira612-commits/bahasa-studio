@@ -4378,7 +4378,8 @@
                     status.textContent = 'No se detectó una voz indonesia instalada. Se usará la voz predeterminada del sistema con el idioma id-ID; puedes instalar una voz indonesia en los ajustes del dispositivo.';
                 } else {
                     const active = this.selectedVoice || this.idVoice;
-                    status.textContent = indonesianVoices.length + ' voz/ voces indonesias disponibles. Voz activa: ' +
+                    const countLabel = indonesianVoices.length === 1 ? 'voz indonesia disponible' : 'voces indonesias disponibles';
+                    status.textContent = indonesianVoices.length + ' ' + countLabel + '. Voz activa: ' +
                         (active ? active.name : 'selección automática') + '.';
                 }
             },

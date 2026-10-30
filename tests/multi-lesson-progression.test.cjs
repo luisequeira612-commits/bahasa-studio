@@ -36,6 +36,21 @@ test('every A1 unit is divided into sequential lessons that introduce all vocabu
   }
 });
 
+test('custom and non-A1 units retain their single authored lesson and legacy vocabulary reinforcement', () => {
+  const unit = {
+    id: 'one-off-unit',
+    vocab: [
+      { id: 'known-word', idn: 'Pagi', esp: 'Mañana' },
+      { id: 'new-word', idn: 'Malam', esp: 'Noche' }
+    ],
+    exercises: [{ vocabId: 'known-word', type: 'mc', prompt: '¿Qué significa Pagi?', options: ['Mañana', 'Noche'], answer: 0 }]
+  };
+  const lessons = app.buildUnitLessons(unit);
+  assert.equal(lessons.length, 1);
+  assert.ok(lessons[0].exercises.some(exercise => exercise.vocabId === 'known-word' && !exercise.generated));
+  assert.ok(lessons[0].exercises.some(exercise => exercise.vocabId === 'new-word'));
+});
+
 test('authored listening dialogues appear only after all their vocabulary has been taught', () => {
   const a1 = app.CourseData.levels.find(level => level.id === 'A1');
   const unit1 = a1.units.find(unit => unit.id === 'a1_u1');

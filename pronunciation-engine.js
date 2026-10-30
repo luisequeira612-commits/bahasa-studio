@@ -23,8 +23,8 @@
             recognition.interimResults = true;
             recognition.maxAlternatives = 3;
             const normalize = value => String(value || '').toLocaleLowerCase('id-ID')
-                .normalize('NFD').replace(/\\p{M}/gu, '')
-                .replace(/[^\\p{L}\\p{N}\\s]/gu, ' ').replace(/\\s+/g, ' ').trim();
+                .normalize('NFD').replace(/\p{M}/gu, '')
+                .replace(/[^\p{L}\p{N}\\s]/gu, ' ').replace(/\s+/g, ' ').trim();
             status.textContent = 'Escuchando… Di la frase en indonesio con claridad.';
             if (button) button.disabled = true;
             recognition.onresult = event => {
@@ -32,7 +32,7 @@
                 const latestResult = results[results.length - 1];
                 if (latestResult && !latestResult.isFinal) {
                     const liveText = results.map(result => result[0] ? result[0].transcript || '' : '')
-                        .join(' ').replace(/\\s+/g, ' ').trim();
+                        .join(' ').replace(/\s+/g, ' ').trim();
                     if (liveText) status.textContent = 'Te escucho: “' + liveText + '”. Sigue hablando…';
                     return;
                 }

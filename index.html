@@ -3745,68 +3745,68 @@
                             id: 'a2_u4',
                             title: 'Unidad 4: Narrar una jornada cotidiana',
                             desc: 'Combina horarios, actividades y conectores para contar cómo transcurre un día.',
-                            grammar: 'Para narrar una rutina, combina expresiones temporales con verbos en su forma habitual. El verbo no cambia por indicar pasado o futuro; puedes añadir marcadores como sudah, sedang o akan cuando corresponda.',
+                            grammar: 'Para narrar una rutina, combina expresiones temporales con verbos que ya conoces. El verbo no cambia por indicar pasado o futuro; puedes añadir marcadores como sudah, sedang o akan cuando corresponda.',
                             vocab: [
-                                { id: 'a2u4_bangun', idn: 'Bangun', esp: 'Despertarse; levantarse', ex: 'Saya bangun pagi.', exEsp: 'Me despierto por la mañana.' },
-                                { id: 'a2u4_mandi', idn: 'Mandi', esp: 'Bañarse; ducharse', ex: 'Saya mandi pagi.', exEsp: 'Me ducho por la mañana.' },
-                                { id: 'a2u4_sarapan', idn: 'Sarapan', esp: 'Desayunar; desayuno', ex: 'Saya sarapan pagi.', exEsp: 'Desayuno por la mañana.' },
-                                { id: 'a2u4_berangkat', idn: 'Berangkat', esp: 'Salir; partir', ex: 'Saya berangkat ke sekolah.', exEsp: 'Salgo hacia la escuela.' },
+                                { id: 'a2u4_rutinitas', idn: 'Rutinitas', esp: 'Rutina', ex: 'Ini rutinitas saya.', exEsp: 'Esta es mi rutina.' },
                                 { id: 'a2u4_jadwal', idn: 'Jadwal', esp: 'Horario; programa', ex: 'Jadwal saya mulai pukul delapan.', exEsp: 'Mi horario empieza a las ocho.' },
                                 { id: 'a2u4_mulai', idn: 'Mulai', esp: 'Empezar; comenzar', ex: 'Kelas mulai pukul delapan.', exEsp: 'La clase empieza a las ocho.' },
-                                { id: 'a2u4_istirahat', idn: 'Istirahat', esp: 'Descansar; descanso', ex: 'Saya istirahat siang.', exEsp: 'Descanso al mediodía.' },
-                                { id: 'a2u4_kegiatan', idn: 'Kegiatan', esp: 'Actividad', ex: 'Kegiatan saya mulai pagi.', exEsp: 'Mi actividad empieza por la mañana.' },
                                 { id: 'a2u4_selesai', idn: 'Selesai', esp: 'Terminar; terminado', ex: 'Kelas selesai pukul dua belas.', exEsp: 'La clase termina a las doce.' },
-                                { id: 'a2u4_pulang', idn: 'Pulang', esp: 'Volver a casa; regresar', ex: 'Saya pulang sore.', exEsp: 'Regreso a casa por la tarde.' },
+                                { id: 'a2u4_kegiatan', idn: 'Kegiatan', esp: 'Actividad', ex: 'Kegiatan mulai pukul delapan.', exEsp: 'La actividad empieza a las ocho.' },
+                                { id: 'a2u4_acara', idn: 'Acara', esp: 'Evento; actividad programada', ex: 'Acara itu mulai pukul tujuh.', exEsp: 'Ese evento empieza a las siete.' },
                                 { id: 'a2u4_sibuk', idn: 'Sibuk', esp: 'Ocupado/a', ex: 'Hari ini saya sibuk.', exEsp: 'Hoy estoy ocupado/a.' },
                                 { id: 'a2u4_santai', idn: 'Santai', esp: 'Relajado/a; tranquilo/a', ex: 'Hari ini saya santai.', exEsp: 'Hoy estoy tranquilo/a.' }
                             ],
                             lessons: [
                                 {
-                                    title: 'Lección 1: Al comenzar el día',
-                                    objective: 'Cuenta cómo te despiertas, te aseas y desayunas.',
-                                    grammar: 'Las acciones pueden enlazarse con expresiones temporales ya conocidas: pagi (mañana) y hari ini (hoy).',
-                                    vocabIds: ['a2u4_bangun', 'a2u4_mandi', 'a2u4_sarapan'],
+                                    title: 'Lección 1: La rutina y el horario',
+                                    objective: 'Presenta tu rutina y habla de tu horario diario.',
+                                    grammar: 'Rutinitas nombra las acciones habituales. Jadwal se refiere al horario; puedes usar ambos con palabras de tiempo ya conocidas.',
+                                    vocabIds: ['a2u4_rutinitas', 'a2u4_jadwal'],
+                                    reviewVocabIds: ['v247', 'v248'],
                                     exercises: [
-                                        { vocabId: 'a2u4_bangun', type: 'mc', prompt: '¿Qué significa «bangun» en una rutina?', options: ['Despertarse; levantarse', 'Desayunar', 'Descansar'], answer: 0, explanation: 'Bangun se usa para hablar de despertarse o levantarse.' },
-                                        { vocabId: 'a2u4_mandi', type: 'translate_es_id', prompt: 'Traduce: Me ducho por la mañana.', answer: 'Saya mandi pagi.', explanation: 'Saya mandi pagi expresa que te duchas por la mañana.' },
-                                        { vocabId: 'a2u4_sarapan', type: 'listen', prompt: 'Escucha y escribe la oración.', answer: 'Saya sarapan pagi.', explanation: 'La oración dice «Desayuno por la mañana».' },
-                                        { vocabId: 'a2u4_bangun', type: 'order', prompt: 'Ordena: Me despierto por la mañana.', words: ['pagi', 'Saya', 'bangun'], correctOrder: ['Saya', 'bangun', 'pagi'], explanation: 'Saya bangun pagi es una frase sencilla para hablar del comienzo del día.' }
+                                        { vocabId: 'a2u4_rutinitas', type: 'mc', prompt: '¿Qué significa «rutinitas»?', options: ['Rutina', 'Horario', 'Evento'], answer: 0, explanation: 'Rutinitas se refiere a las acciones habituales de una persona.' },
+                                        { vocabId: 'a2u4_jadwal', type: 'translate_es_id', prompt: 'Traduce: Mi horario empieza a las ocho.', answer: 'Jadwal saya mulai pukul delapan.', explanation: 'Jadwal saya significa «mi horario».' },
+                                        { vocabId: 'v247', type: 'listen', prompt: 'Escucha y escribe la oración.', answer: 'Saya bangun pagi.', explanation: 'La oración dice «Me levanto por la mañana».' },
+                                        { vocabId: 'a2u4_rutinitas', type: 'write', prompt: 'Escribe una frase para presentar tu rutina.', hint: 'Puedes empezar con «Ini rutinitas saya».', modelAnswer: 'Ini rutinitas saya.', explanation: 'El modelo presenta la rutina; puedes añadir más información propia.' }
                                     ]
                                 },
                                 {
-                                    title: 'Lección 2: Salir y empezar las actividades',
-                                    objective: 'Habla de la salida y del horario de una actividad.',
-                                    grammar: 'Jadwal nombra el horario; mulai indica el comienzo. Berangkat expresa salir o partir hacia un destino.',
-                                    vocabIds: ['a2u4_berangkat', 'a2u4_jadwal', 'a2u4_mulai'],
+                                    title: 'Lección 2: Cuándo empiezan y terminan las actividades',
+                                    objective: 'Indica el comienzo y el final de una actividad con una hora.',
+                                    grammar: 'Mulai indica el comienzo y selesai el final. La hora puede expresarse con pukul y un número.',
+                                    vocabIds: ['a2u4_mulai', 'a2u4_selesai'],
+                                    reviewVocabIds: ['v249', 'v250'],
                                     exercises: [
-                                        { vocabId: 'a2u4_berangkat', type: 'mc', prompt: '¿Qué significa «berangkat»?', options: ['Salir; partir', 'Regresar', 'Terminar'], answer: 0, explanation: 'Berangkat indica la salida o partida hacia un destino.' },
-                                        { vocabId: 'a2u4_jadwal', type: 'translate_es_id', prompt: 'Traduce: Mi horario empieza a las ocho.', answer: 'Jadwal saya mulai pukul delapan.', explanation: 'Jadwal saya es «mi horario» y mulai indica que empieza.' },
-                                        { vocabId: 'a2u4_mulai', type: 'listen', prompt: 'Escucha y escribe la oración.', answer: 'Kelas mulai pukul delapan.', explanation: 'La clase empieza a las ocho.' },
-                                        { vocabId: 'a2u4_berangkat', type: 'write', prompt: 'Escribe una frase para decir que sales hacia la escuela a las siete.', hint: 'Usa «Saya berangkat ke sekolah pukul tujuh».', modelAnswer: 'Saya berangkat ke sekolah pukul tujuh.', explanation: 'El modelo indica el destino y la hora de salida.' }
+                                        { vocabId: 'a2u4_mulai', type: 'mc', prompt: '¿Qué significa «mulai»?', options: ['Empezar; comenzar', 'Terminar', 'Regresar'], answer: 0, explanation: 'Mulai indica el comienzo de una actividad.' },
+                                        { vocabId: 'a2u4_selesai', type: 'translate_es_id', prompt: 'Traduce: La clase termina a las doce.', answer: 'Kelas selesai pukul dua belas.', explanation: 'Selesai indica que la clase termina.' },
+                                        { vocabId: 'v249', type: 'listen', prompt: 'Escucha y escribe la oración.', answer: 'Saya sarapan.', explanation: 'La oración dice «Desayuno».' },
+                                        { vocabId: 'a2u4_mulai', type: 'write', prompt: 'Escribe una frase para decir que la clase empieza a las ocho.', hint: 'Usa «Kelas mulai pukul delapan».', modelAnswer: 'Kelas mulai pukul delapan.', explanation: 'El modelo expresa la hora de inicio de la clase.' }
                                     ]
                                 },
                                 {
-                                    title: 'Lección 3: Pausas y final de las actividades',
-                                    objective: 'Describe una pausa y cuándo termina una actividad.',
-                                    grammar: 'Istirahat expresa descanso; selesai indica que una actividad ha terminado. Kegiatan significa actividad.',
-                                    vocabIds: ['a2u4_istirahat', 'a2u4_kegiatan', 'a2u4_selesai'],
+                                    title: 'Lección 3: Actividades y eventos',
+                                    objective: 'Habla de actividades y eventos programados.',
+                                    grammar: 'Kegiatan se refiere a una actividad; acara suele referirse a un evento o programa. El contexto ayuda a distinguirlos.',
+                                    vocabIds: ['a2u4_kegiatan', 'a2u4_acara'],
+                                    reviewVocabIds: ['v252', 'v251'],
                                     exercises: [
-                                        { vocabId: 'a2u4_istirahat', type: 'mc', prompt: '¿Qué significa «istirahat»?', options: ['Descansar; descanso', 'Empezar', 'Salir'], answer: 0, explanation: 'Istirahat se refiere al descanso o a descansar.' },
-                                        { vocabId: 'a2u4_kegiatan', type: 'translate_es_id', prompt: 'Traduce: Mi actividad empieza por la mañana.', answer: 'Kegiatan saya mulai pagi.', explanation: 'Kegiatan saya significa «mi actividad».' },
-                                        { vocabId: 'a2u4_selesai', type: 'listen', prompt: 'Escucha y escribe la oración.', answer: 'Kelas selesai pukul dua belas.', explanation: 'La oración dice que la clase termina a las doce.' },
-                                        { vocabId: 'a2u4_istirahat', type: 'order', prompt: 'Ordena: Descanso al mediodía.', words: ['siang', 'istirahat', 'Saya'], correctOrder: ['Saya', 'istirahat', 'siang'], explanation: 'Saya istirahat siang describe un descanso al mediodía.' }
+                                        { vocabId: 'a2u4_kegiatan', type: 'mc', prompt: '¿Qué significa «kegiatan»?', options: ['Actividad', 'Evento', 'Horario'], answer: 0, explanation: 'Kegiatan significa «actividad».' },
+                                        { vocabId: 'a2u4_acara', type: 'translate_es_id', prompt: 'Traduce: Ese evento empieza a las siete.', answer: 'Acara itu mulai pukul tujuh.', explanation: 'Acara itu significa «ese evento».' },
+                                        { vocabId: 'v252', type: 'listen', prompt: 'Escucha y escribe la oración.', answer: 'Saya istirahat.', explanation: 'La oración dice «Descanso».' },
+                                        { vocabId: 'a2u4_kegiatan', type: 'order', prompt: 'Ordena: La actividad empieza a las ocho.', words: ['pukul', 'Kegiatan', 'delapan', 'mulai'], correctOrder: ['Kegiatan', 'mulai', 'pukul', 'delapan'], explanation: 'Kegiatan mulai pukul delapan expresa la hora de inicio.' }
                                     ]
                                 },
                                 {
-                                    title: 'Lección 4: Regresar y describir el día',
-                                    objective: 'Cierra una narración diaria describiendo el regreso y cómo te sientes.',
-                                    grammar: 'Pulang indica regresar a casa; sibuk y santai describen si el día está ocupado o tranquilo.',
-                                    vocabIds: ['a2u4_pulang', 'a2u4_sibuk', 'a2u4_santai'],
+                                    title: 'Lección 4: Describir cómo es tu día',
+                                    objective: 'Describe si tu día está ocupado o es tranquilo.',
+                                    grammar: 'Sibuk describe un día con muchas tareas; santai describe un ritmo tranquilo o relajado.',
+                                    vocabIds: ['a2u4_sibuk', 'a2u4_santai'],
+                                    reviewVocabIds: ['v247', 'v248', 'v249', 'v250', 'v251', 'v252'],
                                     exercises: [
                                         { vocabId: 'a2u4_sibuk', type: 'mc', prompt: '¿Qué significa «sibuk»?', options: ['Ocupado/a', 'Tranquilo/a', 'Cansado/a'], answer: 0, explanation: 'Sibuk describe a alguien que tiene muchas actividades o tareas.' },
-                                        { vocabId: 'a2u4_pulang', type: 'translate_es_id', prompt: 'Traduce: Regreso a casa por la tarde.', answer: 'Saya pulang sore.', explanation: 'Pulang expresa el regreso a casa.' },
-                                        { vocabId: 'a2u4_santai', type: 'listen', prompt: 'Escucha y escribe la oración.', answer: 'Hari ini saya santai.', explanation: 'La oración describe un día tranquilo.' },
-                                        { vocabId: 'a2u4_pulang', type: 'write', prompt: 'Escribe una frase para describir que hoy no estás ocupado/a.', hint: 'Usa «Hari ini saya tidak sibuk».', modelAnswer: 'Hari ini saya tidak sibuk.', explanation: 'El modelo usa tidak para negar sibuk.' }
+                                        { vocabId: 'a2u4_santai', type: 'translate_es_id', prompt: 'Traduce: Hoy estoy tranquilo/a.', answer: 'Hari ini saya santai.', explanation: 'Santai describe un estado relajado o tranquilo.' },
+                                        { vocabId: 'v251', type: 'listen', prompt: 'Escucha y escribe la oración.', answer: 'Saya pulang.', explanation: 'La oración dice «Regreso a casa».' },
+                                        { vocabId: 'a2u4_sibuk', type: 'write', prompt: 'Escribe una frase para describir que hoy no estás ocupado/a.', hint: 'Usa «Hari ini saya tidak sibuk».', modelAnswer: 'Hari ini saya tidak sibuk.', explanation: 'El modelo niega sibuk con tidak.' }
                                     ]
                                 }
                             ]
@@ -4500,15 +4500,16 @@
         function buildUnitLessons(unit) {
             if (!unit || !Array.isArray(unit.vocab) || !unit.vocab.length) return [];
             if (Array.isArray(unit.lessons) && unit.lessons.length) {
-                const vocabularyById = new Map(unit.vocab.map(word => [word.id, word]));
+                const vocabularyById = new Map(CourseData.levels.flatMap(level => level.units).flatMap(entry => entry.vocab || []).map(word => [word.id, word]));
                 return unit.lessons.map((lesson, index) => {
                     const lessonVocab = (lesson.vocabIds || []).map(id => vocabularyById.get(id)).filter(Boolean);
+                    const reviewVocab = (lesson.reviewVocabIds || []).map(id => vocabularyById.get(id)).filter(Boolean);
                     return {
                         index,
                         title: lesson.title || 'Lección ' + (index + 1),
                         newVocab: lessonVocab,
-                        reviewVocab: [],
-                        vocab: lessonVocab,
+                        reviewVocab,
+                        vocab: [...reviewVocab, ...lessonVocab],
                         grammar: [lesson.objective, lesson.grammar].filter(Boolean).join(' '),
                         exercises: Array.isArray(lesson.exercises) ? lesson.exercises : []
                     };

@@ -5,9 +5,9 @@ Estado: inventario estático del banco existente; **no es una especificación de
 
 ## Alcance y método
 
-Este mapa registra los 19 ítems A1 actualmente definidos en `assessment-engine.js`. La puntuación suma **24 puntos**: 17 puntos de opción múltiple y 7 puntos de producción escrita que requieren revisión humana. La unidad se asigna solo cuando el prompt, su explicación o la referencia curricular permite identificarla razonablemente; las asignaciones compuestas o inferidas se marcan como tales.
+Este mapa registra los 31 ítems A1 actualmente definidos en `assessment-engine.js`. La puntuación suma **36 puntos**: 29 puntos de opción múltiple y 7 puntos de producción escrita que requieren revisión humana. La unidad se asigna solo cuando el prompt, su explicación o la referencia curricular permite identificarla razonablemente; las asignaciones compuestas o inferidas se marcan como tales.
 
-Las etiquetas de habilidad proceden del motor (`vocabulary`, `grammar`, `comprehension`, `interaction`, `production`). La modalidad describe lo que realmente hace el ítem, no lo que su nombre pudiera sugerir. Ninguno de estos 19 ítems contiene audio enlazado: los clasificados como comprensión son lectura/interpretación de texto escrito.
+Las etiquetas de habilidad proceden del motor (`vocabulary`, `grammar`, `comprehension`, `interaction`, `production`). La modalidad describe lo que realmente hace el ítem, no lo que su nombre pudiera sugerir. Los 12 ítems añadidos para U18–U23 son opciones escritas sin audio enlazado; los ítems anteriores se describen individualmente abajo: los clasificados como comprensión son lectura/interpretación de texto escrito.
 
 ## Inventario de ítems
 
@@ -33,23 +33,41 @@ Las etiquetas de habilidad proceden del motor (`vocabulary`, `grammar`, `compreh
 | `a1-preferences-01` | U16 | Interacción | 1 | Interpretación de frase escrita | Expresa preferencia |
 | `a1-questions-01` | U17 | Comprensión | 1 | Selección de pregunta escrita | Identifica pregunta temporal |
 
+## Nuevos ítems añadidos para U18–U23
+
+
+| `a1-u18-01` | U18 | Gramática | 1 | Opción múltiple escrita | Orden sustantivo + demostrativo |
+| `a1-u18-02` | U18 | Comprensión | 1 | Opción múltiple escrita | Distingue `kita` de `kami` |
+| `a1-u19-01` | U19 | Interacción | 1 | Opción múltiple escrita | Pedido de comida en restaurante |
+| `a1-u19-02` | U19 | Interacción | 1 | Opción múltiple escrita | Solicitud de la cuenta |
+| `a1-u20-01` | U20 | Vocabulario | 1 | Opción múltiple escrita | Contrasta `murah` y `mahal` |
+| `a1-u20-02` | U20 | Comprensión | 1 | Opción múltiple escrita | Interpreta una compra por kilo |
+| `a1-u21-01` | U21 | Comprensión | 1 | Opción múltiple escrita | Comprende una expresión de dolor |
+| `a1-u21-02` | U21 | Vocabulario | 1 | Opción múltiple escrita | Reconoce `dokter` |
+| `a1-u22-01` | U22 | Gramática | 1 | Opción múltiple escrita | Orden sustantivo + color |
+| `a1-u22-02` | U22 | Comprensión | 1 | Opción múltiple escrita | Interpreta una frase sobre ropa |
+| `a1-u23-01` | U23 | Comprensión | 1 | Opción múltiple escrita | Comprende existencia con `ada` |
+| `a1-u23-02` | U23 | Vocabulario | 1 | Opción múltiple escrita | Distingue `bersih` y `kotor` |
+
+Los 12 ítems anteriores tienen metadatos explícitos de unidad, objetivo, modalidad y estado editorial (`pilot-unreviewed`). Son todos de selección escrita. La presencia de ejercicios de escucha en las unidades no significa que este banco tenga audio enlazado.
+
 ## Distribución real por dimensión
 
 | Dimensión | Ítems | Puntos | Porcentaje de puntos |
 |---|---:|---:|---:|
-| Vocabulario | 3 | 3 | 12,5% |
-| Gramática | 3 | 3 | 12,5% |
-| Comprensión | 6 | 6 | 25,0% |
-| Interacción | 5 | 5 | 20,8% |
-| Producción | 2 | 7 | 29,2% |
-| **Total** | **19** | **24** | **100%** |
+| Vocabulario | 6 | 6 | 16,7% |
+| Gramática | 5 | 5 | 13,9% |
+| Comprensión | 11 | 11 | 30,6% |
+| Interacción | 7 | 7 | 19,4% |
+| Producción | 2 | 7 | 19,4% |
+| **Total** | **31** | **36** | **100%** |
 
 El banco está desbalanceado respecto al blueprint de 40 puntos: no hay comprensión auditiva, la interacción se mide solo mediante opciones escritas y la producción tiene dos tareas escritas abiertas. La dimensión de producción depende completamente de puntuación manual. No debe calcularse un aprobado de nivel a partir de este banco piloto.
 
 ## Cobertura por unidades y vacíos observables
 
-- Hay vínculos identificables o razonablemente inferidos para U1–U7, U9–U17 y U23.
-- No hay ítems identificados para U18–U22 ni U24–U32.
+- Hay vínculos identificables o razonablemente inferidos para U1–U7, U9–U23; U18–U23 ahora tienen dos ítems piloto nuevos por unidad.
+- No hay ítems identificados para U8 ni U24–U32.
 - U8 y U18–U22 no deben marcarse como cubiertas solo porque el contenido aparezca en el curso.
 - Las dos tareas abiertas integran más de una unidad, pero no sustituyen ítems independientes de cobertura para cada objetivo.
 - Los ítems de comprensión existentes son estímulos escritos. No hay ítems de escucha con recurso de audio en este banco.
@@ -60,8 +78,8 @@ El banco está desbalanceado respecto al blueprint de 40 puntos: no hay comprens
 
 Construir la siguiente tanda como banco de práctica, no como examen habilitador:
 
-1. Añadir cobertura explícita de U18–U23 con énfasis en demostrativos/posesión, restaurante, mercado, salud, ropa y vivienda.
-2. Añadir cobertura U24–U32 en tandas pequeñas, con trazabilidad de cada ítem al objetivo enseñado.
+1. Ampliar cobertura U24–U32 con ítems trazables a objetivos concretos.
+2. Revisar lingüísticamente los nuevos ítems U18–U23 y ampliar sus modalidades cuando haya recursos verificables.
 3. Crear ítems de escucha solo cuando exista un audio comprobable, transcripción de referencia y prueba offline; no etiquetar lectura como escucha.
 4. Añadir interacción situacional con turnos y respuestas contextuales; conservar las conversaciones prácticas como práctica hasta validar su adecuación lingüística.
 5. Registrar para cada nuevo ítem: unidad, objetivo, dimensión, modalidad, prerequisitos léxicos, respuestas aceptadas, revisión lingüística y estado de audio.

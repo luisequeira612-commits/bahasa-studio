@@ -25,6 +25,8 @@ test('every A1 unit is divided into sequential lessons that introduce all vocabu
       assert.ok(lesson.exercises.length >= lesson.newVocab.length, unit.id + ' lesson should actively practise its new words');
       const learnedIds = new Set(lesson.vocab.map(word => word.id));
       const learnedMeanings = new Set(lesson.vocab.map(word => word.esp));
+      const exercisedIds = new Set(lesson.exercises.filter(exercise => exercise.generated).map(exercise => exercise.vocabId));
+      for (const word of lesson.reviewVocab) assert.ok(exercisedIds.has(word.id), 'every previously learned word should be revisited in the next lesson');
       for (const exercise of lesson.exercises) {
         assert.ok(learnedIds.has(exercise.vocabId), unit.id + ' lesson ' + index + ' references a word not yet introduced');
         if (exercise.generated && exercise.options) assert.ok(exercise.options.every(option => learnedMeanings.has(option)), 'generated lesson distractors must come only from learned vocabulary');

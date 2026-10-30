@@ -14,9 +14,12 @@ const courseDataStart = htmlSource.indexOf('const CourseData =');
 const html = htmlSource.slice(0, courseDataStart) + htmlSource.slice(courseDataStart)
   .replace('window.BAHASA_CURRICULUM_A1', a1Literal)
   .replace('window.BAHASA_CURRICULUM_A2', a2Literal);
+const extractedEngines = audioEngineSource + '\n' + pronunciationEngineSource;
 const serviceWorker = fs.readFileSync(path.join(root, 'service-worker.js'), 'utf8');
 const manifest = JSON.parse(fs.readFileSync(path.join(root, 'manifest.json'), 'utf8'));
 const studyActivitySource = fs.readFileSync(path.join(root, 'study-activity.js'), 'utf8');
+const audioEngineSource = fs.readFileSync(path.join(root, 'audio-engine.js'), 'utf8');
+const pronunciationEngineSource = fs.readFileSync(path.join(root, 'pronunciation-engine.js'), 'utf8');
 const studyActivitySandbox = { window: {} };
 vm.runInNewContext(studyActivitySource, studyActivitySandbox);
 const StudyActivity = studyActivitySandbox.window.StudyActivity;
@@ -27,6 +30,10 @@ test('inline application JavaScript and service worker parse', () => {
   assert.ok(scripts.length > 0, 'expected an inline application script');
   scripts.forEach(source => new vm.Script(source));
   new vm.Script(serviceWorker);
+  new vm.Script(audioEngineSource);
+  new vm.Script(pronunciationEngineSource);
+  assert.match(htmlSource, /<script src="\.\/audio-engine\.js"><\/script>/);
+  assert.match(htmlSource, /<script src="\.\/pronunciation-engine\.js"><\/script>/);
 });
 
 test('PWA version is consistent across HTML, manifest and cache', () => {
@@ -1382,14 +1389,14 @@ test('listen-and-type exercises also offer optional pronunciation practice using
     'spoken comparison should use the listen answer when no audioText field exists');
 });
 
-test('audio playback speed is adjustable, validated, and persisted without changing default playback', () => {
+test('extracted audio engine preserves adjustable playback and saved voice preferences', () => {
   assert.match(html, /id="audioPlaybackRate"/);
-  assert.match(html, /setRate\(value, persist = true\)/);
-  assert.match(html, /\[0\.5, 0\.7, 0\.85, 1\]\.includes\(rate\)/);
-  assert.match(html, /DB\.set\('settings', 'audioPlaybackRate', rate\)/);
-  assert.match(html, /utter\.rate = this\.rate/);
-  assert.match(html, /DB\.get\('settings', 'audioPlaybackRate'\)/);
-  assert.match(html, /value="0\.85" selected/);
+  assert.match(audioEngineSource, /setRate\\(value, persist = true\\)/);
+  assert.match(audioEngineSource, /\\[0\\.5, 0\\.7, 0\\.85, 1\\]\\.includes\\(rate\\)/);
+  assert.match(audioEngineSource, /DB\\.set\\('settings', 'audioPlaybackRate', rate\\)/);
+  assert.match(audioEngineSource, /utter\\.rate = this\\.rate/);
+  assert.match(html, /DB\\.get\\('settings', 'audioPlaybackRate'\\)/);
+  assert.match(html, /value="0\\.85" selected/);
 });
 
 test('tapped word-meaning popup can save the matched vocabulary item for SRS review', () => {
@@ -1543,20 +1550,17 @@ test('A1 includes multi-turn listening dialogues with contextual comprehension',
   }
 });
 
-test('optional pronunciation practice uses Indonesian browser recognition without changing learning records', () => {
+test('optional pronunciation practice is isolated and never changes learning records', () => {
   assert.match(html, /aria-label="Practicar pronunciación"/);
   assert.match(html, /El navegador puede enviar audio a su proveedor de reconocimiento/);
-  assert.match(html, /window\.SpeechRecognition \|\| window\.webkitSpeechRecognition/);
-  assert.match(html, /recognition\.lang = 'id-ID'/);
-  assert.match(html, /No se concedió permiso para usar el micrófono/);
-  assert.match(html, /no ofrece reconocimiento de voz/);
-  const start = html.indexOf('            startPronunciationPractice() {');
-  const end = html.indexOf('            selectMc(idx, btn) {', start);
-  assert.ok(start >= 0 && end > start, 'pronunciation practice methods should be present');
-  const method = html.slice(start, end);
-  assert.doesNotMatch(method, /SRSEngine\.recordAttempt|App\.addXp|DB\.set/,
+  assert.match(pronunciationEngineSource, /window\\.SpeechRecognition \\|\\| window\\.webkitSpeechRecognition/);
+  assert.match(pronunciationEngineSource, /recognition\\.lang = 'id-ID'/);
+  assert.match(pronunciationEngineSource, /No se concedió permiso para usar el micrófono/);
+  assert.match(pronunciationEngineSource, /no ofrece reconocimiento de voz/);
+  assert.match(html, /PronunciationEngine\\.start\\(targetText, status, button\\)/);
+  assert.match(html, /PronunciationEngine\\.stop\\(\\)/);
+  assert.doesNotMatch(pronunciationEngineSource, /SRSEngine\\.recordAttempt|App\\.addXp|DB\\.set/,
     'pronunciation comparison must not grade exercises, award XP, or persist microphone data');
-  assert.match(html, /this\.stopPronunciationPractice\(\);/);
 });
 
 test('audio playback speed is adjustable, validated, and persisted without changing default playback', () => {

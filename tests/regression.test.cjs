@@ -1129,6 +1129,33 @@ test('U25 translation prompt matches its verb-only answer and U30 teaches the cl
   assert.match(tracker, /\"U30\",\"v449\",\"Ulangi\",\"Repite \/ repítalo \(imperativo\)\"/);
 });
 
+test('A1 first-person listening prompts use first-person Spanish translations and preserve question intent', () => {
+  const start = html.indexOf('const CourseData =');
+  const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
+  const course = vm.runInNewContext(html.slice(start, end) + '\\nCourseData');
+  const a1 = course.levels.find(level => level.id === 'A1');
+  const expected = {
+    'Saya bangun pagi.': 'Me levanto por la mañana',
+    'Saya naik bus.': 'Voy en autobús',
+    'Saya pergi ke pasar.': 'Voy al mercado',
+    'Saya bisa berenang.': 'Puedo nadar',
+    'Ada bus di sini?': '¿Hay un autobús aquí?',
+    'Saya sakit kepala': 'Me duele la cabeza',
+    'Saya pakai kaus putih.': 'Llevo una camiseta blanca',
+    'Saya di dapur.': 'Estoy en la cocina',
+    'Saya membaca buku.': 'Leo un libro',
+    'Saya suka berenang.': 'Me gusta nadar',
+    'Saya punya reservasi.': 'Tengo una reserva'
+  };
+  const exercises = a1.units.flatMap(unit => unit.exercises || []);
+  for (const [audioText, translation] of Object.entries(expected)) {
+    const exercise = exercises.find(item => item.audioText === audioText);
+    assert.ok(exercise, 'missing listening prompt: ' + audioText);
+    assert.equal(exercise.options[exercise.answer], translation,
+      'Spanish translation should preserve the subject and speech act for: ' + audioText);
+  }
+});
+
 test('U24–U32 multiple-choice answers are semantically correct and not always in the first position', () => {
   const start = html.indexOf('const CourseData =');
   const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
@@ -1145,11 +1172,11 @@ test('U24–U32 multiple-choice answers are semantically correct and not always 
   const exercises = a1.units.filter(unit => unitIds.has(unit.id)).flatMap(unit => unit.exercises.filter(ex => ex.type === 'mc'));
   assert.equal(exercises.length, 27);
   const listeningExpected = {
-    'Saya membaca buku.': 'Lee un libro',
-    'Saya suka berenang.': 'Le gusta nadar',
+    'Saya membaca buku.': 'Leo un libro',
+    'Saya suka berenang.': 'Me gusta nadar',
     'Belok kiri.': 'A la izquierda',
     'Ayo makan!': '¡Vamos a comer!',
-    'Saya punya reservasi.': 'Tiene una reserva',
+    'Saya punya reservasi.': 'Tengo una reserva',
     'Saya selalu belajar.': 'Siempre estudio',
     'Tolong ulangi.': 'Por favor, repítalo',
     'Teman saya ramah.': 'Mi amigo es amable'
@@ -1351,7 +1378,7 @@ test('A1 greetings, location, restaurant requests and symptoms include listening
     ['a1_u1', 'Selamat pagi', 'Buenos días'],
     ['a1_u18', 'Kamu di situ', 'Estás ahí'],
     ['a1_u19', 'Tanpa cabai, ya', 'Sin chile, por favor'],
-    ['a1_u21', 'Saya sakit kepala', 'Le duele la cabeza']
+    ['a1_u21', 'Saya sakit kepala', 'Me duele la cabeza']
   ];
   for (const [unitId, audioText, meaning] of expected) {
     const unit = a1.units.find(item => item.id === unitId);

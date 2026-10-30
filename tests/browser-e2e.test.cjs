@@ -513,7 +513,7 @@ test('six practical conversations support guided replies without changing learne
       'conversation practice should not award XP before the motivation stage');
     assert.equal(await page.evaluate(async () => (await DB.getAll('srs')).length), srsBefore,
       'conversation practice should not modify spaced-repetition records');
-    await page.locator('[data-conversation-exit]').click();
+    await page.locator('#conversationPracticeArea [data-conversation-exit]').click();
     await page.waitForFunction(() => document.getElementById('view-route').classList.contains('active'));
   } finally {
     await context.close();

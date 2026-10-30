@@ -688,3 +688,59 @@ test('voice test speaks using the system fallback when no Indonesian voice is in
     await new Promise(resolve => server.close(resolve));
   }
 });
+
+
+test('A1 unit lessons unlock sequentially and the final exam gates the next unit at 80 percent', async () => {
+  const { server, url } = await startServer();
+  const context = await browser.newContext({ serviceWorkers: 'block' });
+  const page = await context.newPage();
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
+
+    const firstUnitButtons = page.locator('[data-unit-id="a1_u1"][data-lesson-index]');
+    assert.equal(await firstUnitButtons.count(), 3, 'Unit 1 should contain three short lessons');
+    assert.equal(await firstUnitButtons.nth(0).isEnabled(), true);
+    assert.equal(await firstUnitButtons.nth(1).isEnabled(), false);
+    assert.equal(await firstUnitButtons.nth(2).isEnabled(), false);
+
+    await firstUnitButtons.nth(0).click();
+    await page.getByRole('button', { name: 'Salir' }).click();
+    await page.evaluate(async () => {
+      App.completedLessons = ['a1_u1::0', 'a1_u1::1'];
+      await DB.set('settings', 'completedLessons', App.completedLessons);
+      App.renderCourseRoute();
+    });
+
+    const refreshedButtons = page.locator('[data-unit-id="a1_u1"][data-lesson-index]');
+    assert.equal(await refreshedButtons.nth(2).isEnabled(), true);
+    assert.equal(await page.locator('[data-unit-id="a1_u2"][data-lesson-index="0"]').isEnabled(), false);
+    await page.getByRole('button', { name: 'Prueba final · Desbloquear siguiente unidad' }).click();
+
+    const answerCurrentQuestion = async correct => {
+      const details = await page.evaluate(() => {
+        const item = LessonEngine.queue[LessonEngine.stepIndex];
+        return { answer: item.answer, options: item.options.length };
+      });
+      const selected = correct ? details.answer : (details.answer + 1) % details.options;
+      await page.locator('.option-btn').nth(selected).click();
+      await page.getByRole('button', { name: 'Comprobar' }).click();
+      await page.getByRole('button', { name: 'Continuar' }).click();
+    };
+
+    for (let i = 0; i < 10; i++) await answerCurrentQuestion(i >= 3);
+    assert.match(await page.locator('#exerciseArea').innerText(), /Sigue practicando/);
+    assert.equal(await page.evaluate(() => App.completedUnits.includes('a1_u1')), false);
+    assert.equal(await page.locator('[data-unit-id="a1_u2"][data-lesson-index="0"]').isEnabled(), false);
+
+    await page.getByRole('button', { name: 'Repetir prueba' }).click();
+    for (let i = 0; i < 10; i++) await answerCurrentQuestion(true);
+    assert.match(await page.locator('#exerciseArea').innerText(), /Prueba superada/);
+    assert.equal(await page.evaluate(() => App.completedUnits.includes('a1_u1')), true);
+    assert.equal(await page.locator('[data-unit-id="a1_u2"][data-lesson-index="0"]').isEnabled(), true);
+  } finally {
+    await context.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});

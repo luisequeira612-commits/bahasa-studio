@@ -68,12 +68,13 @@ test('classic curriculum scripts load synchronously before the main app script',
 
 test('service worker precaches both data files and invalidates the previous cache', async () => {
   const source = fs.readFileSync(require.resolve('../service-worker.js'), 'utf8');
-  assert.match(source, /bahasa-studio-v3\.8\.9/);
+  assert.match(source, /bahasa-studio-v3\.8\.10/);
   assert.match(source, /'\.\/curriculum-a1\.js'/);
   assert.match(source, /'\.\/curriculum-a2\.js'/);
 
   const listeners = {};
   const cached = new Map();
+  const deleted = [];
   const cache = {
     async addAll(urls) { urls.forEach(url => cached.set(String(url.url || url), { url: String(url.url || url) })); },
     async match(request) { return cached.get(String(request.url || request)); },
@@ -81,8 +82,8 @@ test('service worker precaches both data files and invalidates the previous cach
   };
   const cachesApi = {
     async open() { return cache; },
-    async keys() { return ['bahasa-studio-v3.8.8', 'bahasa-studio-v3.8.9']; },
-    async delete(name) { return name !== 'bahasa-studio-v3.8.9'; }
+    async keys() { return ['bahasa-studio-v3.8.8', 'bahasa-studio-v3.8.9', 'bahasa-studio-v3.8.10', 'another-app-cache-v1']; },
+    async delete(name) { deleted.push(name); return true; }
   };
   const sandbox = {
     self: { location: { origin: 'https://example.test' }, clients: { claim() {} },
@@ -97,6 +98,10 @@ test('service worker precaches both data files and invalidates the previous cach
   let installPromise;
   listeners.install({ waitUntil(promise) { installPromise = promise; } });
   await installPromise;
+  let activatePromise;
+  listeners.activate({ waitUntil(promise) { activatePromise = promise; } });
+  await activatePromise;
+  assert.deepEqual(deleted, ['bahasa-studio-v3.8.8', 'bahasa-studio-v3.8.9']);
   assert.ok(cached.has('https://example.test/curriculum-a1.js'));
   assert.ok(cached.has('https://example.test/curriculum-a2.js'));
 

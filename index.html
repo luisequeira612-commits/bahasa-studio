@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bahasa Studio 3.8.3</title>
+    <title>Bahasa Studio 3.8.4</title>
     <meta name="description" content="Curso de indonesio PWA para hispanohablantes sin costo ni penalizaciones.">
     <meta name="theme-color" content="#e8384f">
     <link rel="manifest" href="./manifest.json">
@@ -182,7 +182,7 @@
 
     <header>
         <div class="logo">
-            <span>🇮🇩</span> Bahasa Studio <span style="font-size:0.72rem; font-weight:700; opacity:.8; margin-left:4px;">v3.8.3</span>
+            <span>🇮🇩</span> Bahasa Studio <span style="font-size:0.72rem; font-weight:700; opacity:.8; margin-left:4px;">v3.8.4</span>
         </div>
         <div class="header-status">
             <span id="connectionStatus" class="connection-indicator online" title="Estado de conexión">Online</span>
@@ -232,7 +232,18 @@
             </div>
         </div>
 
+        <div class="card" style="margin:12px 0; padding:12px;">
+            <h3 style="margin-top:0;">Conversaciones prácticas</h3>
+            <p style="font-size:0.9rem;color:var(--text-muted);">Practica respuestas útiles en situaciones cotidianas: presentaciones, restaurantes, compras, viajes, amistades y ayuda.</p>
+            <button class="btn" type="button" onclick="ConversationEngine.open()">Practicar conversaciones</button>
+        </div>
         <div id="courseContainer"></div>
+    </main>
+
+    <!-- CONVERSACIONES PRÁCTICAS -->
+    <main id="view-conversations" class="app-view">
+        <div id="conversationScenarioList"></div>
+        <div id="conversationPracticeArea" hidden></div>
     </main>
 
     <!-- REPASO SRS INTERACTIVO -->
@@ -6158,6 +6169,7 @@ Requisitos:
         else initTapTranslations();
     })();
     </script>
+    <script src="./conversation-engine.js"></script>
 
 </body>
 </html>

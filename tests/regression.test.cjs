@@ -32,8 +32,8 @@ test('inline application JavaScript and service worker parse', () => {
 test('PWA version is consistent across HTML, manifest and cache', () => {
   assert.match(html, /Bahasa Studio 3\.8\.8/);
   assert.equal(manifest.name, 'Bahasa Studio 3.8.8');
-  assert.match(serviceWorker, /bahasa-studio-v3\.8\.9/);
-  assert.match(serviceWorker, /\['\.\/', '\.\/index\.html', '\.\/manifest\.json', '\.\/assessment\.html', '\.\/assessment-engine\.js', '\.\/conversation-engine\.js', '\.\/study-activity\.js', '\.\/curriculum-a1\.js', '\.\/curriculum-a2\.js'\]/);
+  assert.match(serviceWorker, /bahasa-studio-v3\.8\.10/);
+  assert.match(serviceWorker, /\['\.\/', '\.\/index\.html', '\.\/manifest\.json', '\.\/assessment\.html', '\.\/assessment-engine\.js', '\.\/conversation-engine\.js', '\.\/study-activity\.js', '\.\/curriculum-a1\.js', '\.\/curriculum-a2\.js', '\.\/styles\.css'\]/);
   assert.doesNotMatch(html + serviceWorker + JSON.stringify(manifest), /3\.5\.1/);
 });
 

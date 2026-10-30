@@ -11,6 +11,7 @@ const a2Source = fs.readFileSync(path.join(__dirname, '..', 'curriculum-a2.js'),
 const a1Literal = a1Source.slice(a1Source.indexOf(' = ') + 3).trim().replace(/;$/, '');
 const a2Literal = a2Source.slice(a2Source.indexOf(' = ') + 3).trim().replace(/;$/, '');
 const htmlSource = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+const audioEngineSource = fs.readFileSync(path.join(__dirname, '..', 'audio-engine.js'), 'utf8');
 const courseDataStart = htmlSource.indexOf('const CourseData =');
 const html = htmlSource.slice(0, courseDataStart) + htmlSource.slice(courseDataStart)
   .replace('window.BAHASA_CURRICULUM_A1', a1Literal)
@@ -49,7 +50,7 @@ test('unit 1 listening dialogue does not introduce unstudied words', () => {
 
 test('lesson audio speed selector is visible and synchronized with settings', () => {
   assert.match(html, /id="lessonAudioPlaybackRate"/);
-  assert.match(html, /\['audioPlaybackRate', 'lessonAudioPlaybackRate'\]/);
+  assert.match(audioEngineSource, /\['audioPlaybackRate', 'lessonAudioPlaybackRate'\]/);
   assert.match(html, /Velocidad del audio/);
 });
 

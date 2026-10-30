@@ -11,12 +11,15 @@ const a1Literal = a1Source.slice(a1Source.indexOf(' = ') + 3).trim().replace(/;$
 const a2Literal = a2Source.slice(a2Source.indexOf(' = ') + 3).trim().replace(/;$/, '');
 const htmlSource = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
 const courseDataStart = htmlSource.indexOf('const CourseData =');
-const html = htmlSource.slice(0, courseDataStart) + htmlSource.slice(courseDataStart)
+const htmlBase = htmlSource.slice(0, courseDataStart) + htmlSource.slice(courseDataStart)
   .replace('window.BAHASA_CURRICULUM_A1', a1Literal)
   .replace('window.BAHASA_CURRICULUM_A2', a2Literal);
 const serviceWorker = fs.readFileSync(path.join(root, 'service-worker.js'), 'utf8');
 const manifest = JSON.parse(fs.readFileSync(path.join(root, 'manifest.json'), 'utf8'));
 const studyActivitySource = fs.readFileSync(path.join(root, 'study-activity.js'), 'utf8');
+const audioEngineSource = fs.readFileSync(path.join(root, 'audio-engine.js'), 'utf8');
+const pronunciationEngineSource = fs.readFileSync(path.join(root, 'pronunciation-engine.js'), 'utf8');
+const html = htmlBase + '\n' + audioEngineSource + '\n' + pronunciationEngineSource;
 const studyActivitySandbox = { window: {} };
 vm.runInNewContext(studyActivitySource, studyActivitySandbox);
 const StudyActivity = studyActivitySandbox.window.StudyActivity;
@@ -27,13 +30,19 @@ test('inline application JavaScript and service worker parse', () => {
   assert.ok(scripts.length > 0, 'expected an inline application script');
   scripts.forEach(source => new vm.Script(source));
   new vm.Script(serviceWorker);
+  new vm.Script(audioEngineSource);
+  new vm.Script(pronunciationEngineSource);
+  assert.match(htmlSource, /<script src="\.\/audio-engine\.js"><\/script>/);
+  assert.match(htmlSource, /<script src="\.\/pronunciation-engine\.js"><\/script>/);
 });
 
-test('app display version and service-worker cache version are declared separately', () => {
+test('PWA version is consistent across HTML, manifest and cache', () => {
   assert.match(html, /Bahasa Studio 3\.8\.8/);
   assert.equal(manifest.name, 'Bahasa Studio 3.8.8');
   assert.match(serviceWorker, /bahasa-studio-v3\.8\.10/);
-  assert.match(serviceWorker, /\['\.\/', '\.\/index\.html', '\.\/manifest\.json', '\.\/assessment\.html', '\.\/assessment-engine\.js', '\.\/conversation-engine\.js', '\.\/study-activity\.js', '\.\/curriculum-a1\.js', '\.\/curriculum-a2\.js', '\.\/styles\.css'\]/);
+  for (const asset of ['./', './index.html', './manifest.json', './assessment.html', './assessment-engine.js', './conversation-engine.js', './study-activity.js', './curriculum-a1.js', './curriculum-a2.js', './styles.css', './audio-engine.js', './pronunciation-engine.js']) {
+    assert.ok(serviceWorker.includes("'" + asset + "'"), asset + ' must be precached for offline use');
+  }
   assert.doesNotMatch(html + serviceWorker + JSON.stringify(manifest), /3\.5\.1/);
 });
 
@@ -94,7 +103,7 @@ test('imported lesson content is escaped before rendering into HTML', () => {
 test('published HTML has no stray text or source after its closing tag', () => {
   const closing = html.toLowerCase().lastIndexOf('</html>');
   assert.ok(closing >= 0, 'expected a closing HTML tag');
-  assert.equal(html.slice(closing + '</html>'.length).trim(), '');
+  assert.equal(htmlBase.slice(closing + '</html>'.length).trim(), '');
 });
 
 test('all authored A1 units have linked vocabulary and structurally valid exercises', () => {
@@ -1378,16 +1387,190 @@ test('listen-and-type exercises also offer optional pronunciation practice using
   assert.match(html, /ex\.type === 'listen' \? ex\.answer/);
   const methodStart = html.indexOf('            startPronunciationPractice() {');
   const methodEnd = html.indexOf('            selectMc(idx, btn) {', methodStart);
-  assert.match(html.slice(methodStart, methodEnd), /normalize\(targetText\)/,
+  assert.match(pronunciationEngineSource, /normalize\(targetText\)/,
     'spoken comparison should use the listen answer when no audioText field exists');
 });
 
+test('extracted audio engine preserves adjustable playback and saved voice preferences', () => {
+  assert.match(html, /id="audioPlaybackRate"/);
+  assert.match(audioEngineSource, /setRate\(value, persist = true\)/);
+  assert.match(audioEngineSource, /\[0\.5, 0\.7, 0\.85, 1\]\.includes\(rate\)/);
+  assert.match(audioEngineSource, /DB\.set\('settings', 'audioPlaybackRate', rate\)/);
+  assert.match(audioEngineSource, /utter\.rate = this\.rate/);
+  assert.match(html, /DB\.get\('settings', 'audioPlaybackRate'\)/);
+  assert.match(html, /value="0\.85" selected/);
+});
+
+test('tapped word-meaning popup can save the matched vocabulary item for SRS review', () => {
+  assert.match(html, /id="wordMeaningSave"/);
+  assert.match(html, /const saveButton = document\.getElementById\('wordMeaningSave'\)/);
+  assert.match(html, /saveButton\.dataset\.vocabId = matches\[0\]\.id/);
+  assert.match(html, /SRSEngine\.markForReview\(wordId\)/);
+  assert.match(html, /✓ Guardada para repasar/);
+});
+
+test('tap-to-translate lookup is wired into learning text and uses safe text rendering', () => {
+  assert.match(html, /id="wordMeaningPopup"/);
+  assert.match(html, /function buildTapTranslationIndex\(\)/);
+  assert.match(html, /function tokenAtPoint\(event\)/);
+  assert.match(html, /caretRangeFromPoint/);
+  assert.match(html, /window\.refreshWordTranslationIndex/);
+  assert.match(html, /Toca una palabra en indonesio para consultar su significado/);
+  assert.match(html, /termNode\.textContent = matches\[0\]\.idn/);
+  assert.match(html, /meaningNode\.textContent = matches\.slice\(0, 3\)/);
+  assert.match(html, /exampleNode\.textContent = \[/);
+});
+
+
+test('listening comprehension multiple-choice plays Indonesian audio without revealing the written answer', () => {
+  const start = html.indexOf('const CourseData =');
+  const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
+  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
+  const a1 = course.levels.find(level => level.id === 'A1');
+  const unit1 = a1.units.find(unit => unit.id === 'a1_u1');
+  const exercise = unit1.exercises.find(item => item.audioText);
+  assert.ok(exercise, 'A1 should include a listening comprehension question');
+  assert.equal(exercise.audioText, 'Dia');
+  assert.deepEqual(Array.from(exercise.options), ['Yo', 'Tú', 'Él / ella']);
+  assert.equal(exercise.options[exercise.answer], 'Él / ella');
+  assert.match(html, /if \(ex\.type === 'mc'\)/);
+  assert.match(html, /if \(ex\.audioText\) AudioEngine\.speak\(ex\.audioText\)/);
+  assert.match(html, /aria-label="Repetir audio"/);
+});
+
+
+test('A1 expands sentence-level listening comprehension across multiple units', () => {
+  const start = html.indexOf('const CourseData =');
+  const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
+  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
+  const a1 = course.levels.find(level => level.id === 'A1');
+  const expected = [
+    ['a1_u2', 'Dia tidur', 'Él / ella duerme'],
+    ['a1_u3', 'Nama saya Ana', 'Me llamo Ana'],
+    ['a1_u4', 'Sepuluh tahun', 'Diez años']
+  ];
+  for (const [unitId, audioText, meaning] of expected) {
+    const unit = a1.units.find(item => item.id === unitId);
+    const exercise = unit.exercises.find(item => item.audioText === audioText);
+    assert.ok(exercise, unitId + ' should include the sentence audio');
+    assert.equal(exercise.type, 'mc');
+    assert.equal(exercise.options[exercise.answer], meaning);
+    assert.ok(!exercise.options.includes(audioText), 'the written Indonesian answer must not be revealed');
+  }
+});
+
+
+test('A1 family and food units include sentence-level listening choices', () => {
+  const start = html.indexOf('const CourseData =');
+  const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
+  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
+  const a1 = course.levels.find(level => level.id === 'A1');
+  const expected = [
+    ['a1_u5', 'Ini keluarga saya', 'Esta es mi familia'],
+    ['a1_u5', 'Ini ayah saya', 'Este es mi padre'],
+    ['a1_u6', 'Saya makan nasi', 'Como arroz'],
+    ['a1_u6', 'Saya mau air', 'Quiero agua'],
+    ['a1_u6', 'Saya minum air', 'Bebo agua'],
+    ['a1_u6', 'Berapa harganya?', '¿Cuánto cuesta?']
+  ];
+  for (const [unitId, audioText, meaning] of expected) {
+    const unit = a1.units.find(item => item.id === unitId);
+    const exercise = unit.exercises.find(item => item.audioText === audioText);
+    assert.ok(exercise, unitId + ' should include ' + audioText);
+    assert.equal(exercise.type, 'mc');
+    assert.equal(exercise.options[exercise.answer], meaning);
+    assert.ok(!exercise.options.includes(audioText), 'the Indonesian audio text must not be shown as an option');
+  }
+});
+
+
+test('A1 daily routines, location and numbers include listening comprehension choices', () => {
+  const start = html.indexOf('const CourseData =');
+  const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
+  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
+  const a1 = course.levels.find(level => level.id === 'A1');
+  const expected = [
+    ['a1_u7', 'Saya di rumah', 'Estoy en casa'],
+    ['a1_u7', 'Di mana sekolah?', '¿Dónde está la escuela?'],
+    ['a1_u8', 'Saya belajar setiap hari', 'Estudio todos los días'],
+    ['a1_u8', 'Hari ini saya belajar', 'Hoy estudio'],
+    ['a1_u9', 'Tiga belas', '13'],
+    ['a1_u9', 'Sembilan belas', '19'],
+    ['a1_u9', 'Dua puluh', '20'],
+    ['a1_u10', 'Rupiah', 'La moneda de Indonesia']
+  ];
+  for (const [unitId, audioText, meaning] of expected) {
+    const unit = a1.units.find(item => item.id === unitId);
+    const exercise = unit.exercises.find(item => item.audioText === audioText);
+    assert.ok(exercise, unitId + ' should include ' + audioText);
+    assert.equal(exercise.type, 'mc');
+    assert.equal(exercise.options[exercise.answer], meaning);
+    assert.ok(!exercise.options.includes(audioText), 'the Indonesian audio text must not be shown as an option');
+  }
+});
+
+
+test('A1 greetings, location, restaurant requests and symptoms include listening choices', () => {
+  const start = html.indexOf('const CourseData =');
+  const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
+  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
+  const a1 = course.levels.find(level => level.id === 'A1');
+  const expected = [
+    ['a1_u1', 'Selamat pagi', 'Buenos días'],
+    ['a1_u18', 'Kamu di situ', 'Estás ahí'],
+    ['a1_u19', 'Tanpa cabai, ya', 'Sin chile, por favor'],
+    ['a1_u21', 'Saya sakit kepala', 'Me duele la cabeza']
+  ];
+  for (const [unitId, audioText, meaning] of expected) {
+    const unit = a1.units.find(item => item.id === unitId);
+    const exercise = unit.exercises.find(item => item.audioText === audioText);
+    assert.ok(exercise, unitId + ' should include ' + audioText);
+    assert.equal(exercise.type, 'mc');
+    assert.equal(exercise.options[exercise.answer], meaning);
+    assert.ok(!exercise.options.includes(audioText), 'the Indonesian audio text must not be shown as an option');
+  }
+});
+
+
+test('A1 includes multi-turn listening dialogues with contextual comprehension', () => {
+  const start = html.indexOf('const CourseData =');
+  const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
+  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
+  const a1 = course.levels.find(level => level.id === 'A1');
+  const expected = [
+    ['a1_u1', 'Selamat pagi. Apa kabar? Baik, terima kasih.', 'Dos personas se saludan y preguntan cómo están'],
+    ['a1_u19', 'Selamat siang. Saya pesan nasi goreng. Tanpa cabai, ya? Ya, tanpa cabai.', 'Arroz frito sin chile']
+  ];
+  for (const [unitId, audioText, meaning] of expected) {
+    const unit = a1.units.find(item => item.id === unitId);
+    assert.ok(unit, unitId + ' should exist');
+    const exercise = unit.exercises.find(item => item.audioText === audioText);
+    assert.ok(exercise, unitId + ' should include the complete dialogue audio');
+    assert.equal(exercise.type, 'mc');
+    assert.equal(exercise.options[exercise.answer], meaning);
+    assert.ok(!exercise.options.includes(audioText), 'dialogue transcript must not be exposed as an answer option');
+  }
+});
+
+test('optional pronunciation practice is isolated and never changes learning records', () => {
+  assert.match(html, /aria-label="Practicar pronunciación"/);
+  assert.match(html, /El navegador puede enviar audio a su proveedor de reconocimiento/);
+  assert.match(pronunciationEngineSource, /window\.SpeechRecognition \|\| window\.webkitSpeechRecognition/);
+  assert.match(pronunciationEngineSource, /recognition\.lang = 'id-ID'/);
+  assert.match(pronunciationEngineSource, /No se concedió permiso para usar el micrófono/);
+  assert.match(pronunciationEngineSource, /no ofrece reconocimiento de voz/);
+  assert.match(html, /PronunciationEngine\.start\(targetText, status, button\)/);
+  assert.match(html, /PronunciationEngine\.stop\(\)/);
+  assert.doesNotMatch(pronunciationEngineSource, /SRSEngine\.recordAttempt|App\.addXp|DB\.set/,
+    'pronunciation comparison must not grade exercises, award XP, or persist microphone data');
+});
+
 test('audio playback speed is adjustable, validated, and persisted without changing default playback', () => {
   assert.match(html, /id="audioPlaybackRate"/);
-  assert.match(html, /setRate\(value, persist = true\)/);
-  assert.match(html, /\[0\.5, 0\.7, 0\.85, 1\]\.includes\(rate\)/);
-  assert.match(html, /DB\.set\('settings', 'audioPlaybackRate', rate\)/);
-  assert.match(html, /utter\.rate = this\.rate/);
+  assert.match(audioEngineSource, /setRate\(value, persist = true\)/);
+  assert.match(audioEngineSource, /\[0\.5, 0\.7, 0\.85, 1\]\.includes\(rate\)/);
+  assert.match(audioEngineSource, /DB\.set\('settings', 'audioPlaybackRate', rate\)/);
+  assert.match(audioEngineSource, /utter\.rate = this\.rate/);
   assert.match(html, /DB\.get\('settings', 'audioPlaybackRate'\)/);
   assert.match(html, /value="0\.85" selected/);
 });
@@ -1546,192 +1729,12 @@ test('A1 includes multi-turn listening dialogues with contextual comprehension',
 test('optional pronunciation practice uses Indonesian browser recognition without changing learning records', () => {
   assert.match(html, /aria-label="Practicar pronunciación"/);
   assert.match(html, /El navegador puede enviar audio a su proveedor de reconocimiento/);
-  assert.match(html, /window\.SpeechRecognition \|\| window\.webkitSpeechRecognition/);
-  assert.match(html, /recognition\.lang = 'id-ID'/);
-  assert.match(html, /No se concedió permiso para usar el micrófono/);
-  assert.match(html, /no ofrece reconocimiento de voz/);
-  const start = html.indexOf('            startPronunciationPractice() {');
-  const end = html.indexOf('            selectMc(idx, btn) {', start);
-  assert.ok(start >= 0 && end > start, 'pronunciation practice methods should be present');
-  const method = html.slice(start, end);
-  assert.doesNotMatch(method, /SRSEngine\.recordAttempt|App\.addXp|DB\.set/,
+  assert.match(pronunciationEngineSource, /window\.SpeechRecognition \|\| window\.webkitSpeechRecognition/);
+  assert.match(pronunciationEngineSource, /recognition\.lang = 'id-ID'/);
+  assert.match(pronunciationEngineSource, /No se concedió permiso para usar el micrófono/);
+  assert.match(pronunciationEngineSource, /no ofrece reconocimiento de voz/);
+  assert.match(html, /PronunciationEngine\.start\(targetText, status, button\)/);
+  assert.match(html, /PronunciationEngine\.stop\(\)/);
+  assert.doesNotMatch(pronunciationEngineSource, /SRSEngine\.recordAttempt|App\.addXp|DB\.set/,
     'pronunciation comparison must not grade exercises, award XP, or persist microphone data');
-  assert.match(html, /this\.stopPronunciationPractice\(\);/);
-});
-
-test('audio playback speed is adjustable, validated, and persisted without changing default playback', () => {
-  assert.match(html, /id="audioPlaybackRate"/);
-  assert.match(html, /setRate\(value, persist = true\)/);
-  assert.match(html, /\[0\.5, 0\.7, 0\.85, 1\]\.includes\(rate\)/);
-  assert.match(html, /DB\.set\('settings', 'audioPlaybackRate', rate\)/);
-  assert.match(html, /utter\.rate = this\.rate/);
-  assert.match(html, /DB\.get\('settings', 'audioPlaybackRate'\)/);
-  assert.match(html, /value="0\.85" selected/);
-});
-
-test('tapped word-meaning popup can save the matched vocabulary item for SRS review', () => {
-  assert.match(html, /id="wordMeaningSave"/);
-  assert.match(html, /const saveButton = document\.getElementById\('wordMeaningSave'\)/);
-  assert.match(html, /saveButton\.dataset\.vocabId = matches\[0\]\.id/);
-  assert.match(html, /SRSEngine\.markForReview\(wordId\)/);
-  assert.match(html, /✓ Guardada para repasar/);
-});
-
-test('tap-to-translate lookup is wired into learning text and uses safe text rendering', () => {
-  assert.match(html, /id="wordMeaningPopup"/);
-  assert.match(html, /function buildTapTranslationIndex\(\)/);
-  assert.match(html, /function tokenAtPoint\(event\)/);
-  assert.match(html, /caretRangeFromPoint/);
-  assert.match(html, /window\.refreshWordTranslationIndex/);
-  assert.match(html, /Toca una palabra en indonesio para consultar su significado/);
-  assert.match(html, /termNode\.textContent = matches\[0\]\.idn/);
-  assert.match(html, /meaningNode\.textContent = matches\.slice\(0, 3\)/);
-  assert.match(html, /exampleNode\.textContent = \[/);
-});
-
-
-test('listening comprehension multiple-choice plays Indonesian audio without revealing the written answer', () => {
-  const start = html.indexOf('const CourseData =');
-  const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
-  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
-  const a1 = course.levels.find(level => level.id === 'A1');
-  const unit1 = a1.units.find(unit => unit.id === 'a1_u1');
-  const exercise = unit1.exercises.find(item => item.audioText);
-  assert.ok(exercise, 'A1 should include a listening comprehension question');
-  assert.equal(exercise.audioText, 'Dia');
-  assert.deepEqual(Array.from(exercise.options), ['Yo', 'Tú', 'Él / ella']);
-  assert.equal(exercise.options[exercise.answer], 'Él / ella');
-  assert.match(html, /if \(ex\.type === 'mc'\)/);
-  assert.match(html, /if \(ex\.audioText\) AudioEngine\.speak\(ex\.audioText\)/);
-  assert.match(html, /aria-label="Repetir audio"/);
-});
-
-
-test('A1 expands sentence-level listening comprehension across multiple units', () => {
-  const start = html.indexOf('const CourseData =');
-  const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
-  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
-  const a1 = course.levels.find(level => level.id === 'A1');
-  const expected = [
-    ['a1_u2', 'Dia tidur', 'Él / ella duerme'],
-    ['a1_u3', 'Nama saya Ana', 'Me llamo Ana'],
-    ['a1_u4', 'Sepuluh tahun', 'Diez años']
-  ];
-  for (const [unitId, audioText, meaning] of expected) {
-    const unit = a1.units.find(item => item.id === unitId);
-    const exercise = unit.exercises.find(item => item.audioText === audioText);
-    assert.ok(exercise, unitId + ' should include the sentence audio');
-    assert.equal(exercise.type, 'mc');
-    assert.equal(exercise.options[exercise.answer], meaning);
-    assert.ok(!exercise.options.includes(audioText), 'the written Indonesian answer must not be revealed');
-  }
-});
-
-
-test('A1 family and food units include sentence-level listening choices', () => {
-  const start = html.indexOf('const CourseData =');
-  const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
-  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
-  const a1 = course.levels.find(level => level.id === 'A1');
-  const expected = [
-    ['a1_u5', 'Ini keluarga saya', 'Esta es mi familia'],
-    ['a1_u5', 'Ini ayah saya', 'Este es mi padre'],
-    ['a1_u6', 'Saya makan nasi', 'Como arroz'],
-    ['a1_u6', 'Saya mau air', 'Quiero agua'],
-    ['a1_u6', 'Saya minum air', 'Bebo agua'],
-    ['a1_u6', 'Berapa harganya?', '¿Cuánto cuesta?']
-  ];
-  for (const [unitId, audioText, meaning] of expected) {
-    const unit = a1.units.find(item => item.id === unitId);
-    const exercise = unit.exercises.find(item => item.audioText === audioText);
-    assert.ok(exercise, unitId + ' should include ' + audioText);
-    assert.equal(exercise.type, 'mc');
-    assert.equal(exercise.options[exercise.answer], meaning);
-    assert.ok(!exercise.options.includes(audioText), 'the Indonesian audio text must not be shown as an option');
-  }
-});
-
-
-test('A1 daily routines, location and numbers include listening comprehension choices', () => {
-  const start = html.indexOf('const CourseData =');
-  const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
-  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
-  const a1 = course.levels.find(level => level.id === 'A1');
-  const expected = [
-    ['a1_u7', 'Saya di rumah', 'Estoy en casa'],
-    ['a1_u7', 'Di mana sekolah?', '¿Dónde está la escuela?'],
-    ['a1_u8', 'Saya belajar setiap hari', 'Estudio todos los días'],
-    ['a1_u8', 'Hari ini saya belajar', 'Hoy estudio'],
-    ['a1_u9', 'Tiga belas', '13'],
-    ['a1_u9', 'Sembilan belas', '19'],
-    ['a1_u9', 'Dua puluh', '20'],
-    ['a1_u10', 'Rupiah', 'La moneda de Indonesia']
-  ];
-  for (const [unitId, audioText, meaning] of expected) {
-    const unit = a1.units.find(item => item.id === unitId);
-    const exercise = unit.exercises.find(item => item.audioText === audioText);
-    assert.ok(exercise, unitId + ' should include ' + audioText);
-    assert.equal(exercise.type, 'mc');
-    assert.equal(exercise.options[exercise.answer], meaning);
-    assert.ok(!exercise.options.includes(audioText), 'the Indonesian audio text must not be shown as an option');
-  }
-});
-
-
-test('A1 greetings, location, restaurant requests and symptoms include listening choices', () => {
-  const start = html.indexOf('const CourseData =');
-  const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
-  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
-  const a1 = course.levels.find(level => level.id === 'A1');
-  const expected = [
-    ['a1_u1', 'Selamat pagi', 'Buenos días'],
-    ['a1_u18', 'Kamu di situ', 'Estás ahí'],
-    ['a1_u19', 'Tanpa cabai, ya', 'Sin chile, por favor'],
-    ['a1_u21', 'Saya sakit kepala', 'Me duele la cabeza']
-  ];
-  for (const [unitId, audioText, meaning] of expected) {
-    const unit = a1.units.find(item => item.id === unitId);
-    const exercise = unit.exercises.find(item => item.audioText === audioText);
-    assert.ok(exercise, unitId + ' should include ' + audioText);
-    assert.equal(exercise.type, 'mc');
-    assert.equal(exercise.options[exercise.answer], meaning);
-    assert.ok(!exercise.options.includes(audioText), 'the Indonesian audio text must not be shown as an option');
-  }
-});
-
-
-test('A1 includes multi-turn listening dialogues with contextual comprehension', () => {
-  const start = html.indexOf('const CourseData =');
-  const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
-  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
-  const a1 = course.levels.find(level => level.id === 'A1');
-  const expected = [
-    ['a1_u1', 'Selamat pagi. Apa kabar? Baik, terima kasih.', 'Dos personas se saludan y preguntan cómo están'],
-    ['a1_u19', 'Selamat siang. Saya pesan nasi goreng. Tanpa cabai, ya? Ya, tanpa cabai.', 'Arroz frito sin chile']
-  ];
-  for (const [unitId, audioText, meaning] of expected) {
-    const unit = a1.units.find(item => item.id === unitId);
-    assert.ok(unit, unitId + ' should exist');
-    const exercise = unit.exercises.find(item => item.audioText === audioText);
-    assert.ok(exercise, unitId + ' should include the complete dialogue audio');
-    assert.equal(exercise.type, 'mc');
-    assert.equal(exercise.options[exercise.answer], meaning);
-    assert.ok(!exercise.options.includes(audioText), 'dialogue transcript must not be exposed as an answer option');
-  }
-});
-
-test('optional pronunciation practice uses Indonesian browser recognition without changing learning records', () => {
-  assert.match(html, /aria-label="Practicar pronunciación"/);
-  assert.match(html, /El navegador puede enviar audio a su proveedor de reconocimiento/);
-  assert.match(html, /window\.SpeechRecognition \|\| window\.webkitSpeechRecognition/);
-  assert.match(html, /recognition\.lang = 'id-ID'/);
-  assert.match(html, /No se concedió permiso para usar el micrófono/);
-  assert.match(html, /no ofrece reconocimiento de voz/);
-  const start = html.indexOf('            startPronunciationPractice() {');
-  const end = html.indexOf('            selectMc(idx, btn) {', start);
-  assert.ok(start >= 0 && end > start, 'pronunciation practice methods should be present');
-  const method = html.slice(start, end);
-  assert.doesNotMatch(method, /SRSEngine\.recordAttempt|App\.addXp|DB\.set/,
-    'pronunciation comparison must not grade exercises, award XP, or persist microphone data');
-  assert.match(html, /this\.stopPronunciationPractice\(\);/);
 });

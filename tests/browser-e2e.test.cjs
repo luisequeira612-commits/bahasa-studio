@@ -474,6 +474,20 @@ test('service worker serves the app after the network is disconnected', async ()
     assert.equal(await page.locator('body').isVisible(), true);
     assert.equal(await page.evaluate(() => typeof ConversationEngine !== 'undefined' && typeof StudyActivity !== 'undefined'), true,
       'the conversation and study activity modules must be available from the service-worker cache offline');
+    const offlineStyles = await page.evaluate(() => {
+      const stylesheet = document.querySelector('link[rel="stylesheet"][href="./styles.css"]');
+      return {
+        loaded: Boolean(stylesheet && stylesheet.sheet),
+        fontFamily: getComputedStyle(document.body).fontFamily,
+        backgroundColor: getComputedStyle(document.body).backgroundColor
+      };
+    });
+    assert.equal(offlineStyles.loaded, true,
+      'the extracted stylesheet must remain loaded after an offline navigation');
+    assert.match(offlineStyles.fontFamily, /system-ui/,
+      'the body font rule from styles.css must be applied offline');
+    assert.equal(offlineStyles.backgroundColor, 'rgb(255, 255, 255)',
+      'the active red-and-white theme background from styles.css must be applied offline');
   } finally {
     await context.setOffline(false);
     await context.close();

@@ -68,7 +68,7 @@ test('classic curriculum scripts load synchronously before the main app script',
 
 test('service worker precaches both data files and invalidates the previous cache', async () => {
   const source = fs.readFileSync(require.resolve('../service-worker.js'), 'utf8');
-  assert.match(source, /bahasa-studio-v3\.8\.9/);
+  assert.match(source, /bahasa-studio-v3\.8\.10/);
   assert.match(source, /'\.\/curriculum-a1\.js'/);
   assert.match(source, /'\.\/curriculum-a2\.js'/);
 
@@ -79,10 +79,11 @@ test('service worker precaches both data files and invalidates the previous cach
     async match(request) { return cached.get(String(request.url || request)); },
     async put(request, response) { cached.set(String(request.url || request), response); }
   };
+  const deletedCaches = [];
   const cachesApi = {
     async open() { return cache; },
-    async keys() { return ['bahasa-studio-v3.8.8', 'bahasa-studio-v3.8.9']; },
-    async delete(name) { return name !== 'bahasa-studio-v3.8.9'; }
+    async keys() { return ['bahasa-studio-v3.8.8', 'bahasa-studio-v3.8.9', 'bahasa-studio-v3.8.10', 'another-app-cache-v1']; },
+    async delete(name) { deletedCaches.push(name); return name !== 'bahasa-studio-v3.8.10'; }
   };
   const sandbox = {
     self: { location: { origin: 'https://example.test' }, clients: { claim() {} },
@@ -99,6 +100,13 @@ test('service worker precaches both data files and invalidates the previous cach
   await installPromise;
   assert.ok(cached.has('https://example.test/curriculum-a1.js'));
   assert.ok(cached.has('https://example.test/curriculum-a2.js'));
+  assert.ok(cached.has('https://example.test/styles.css'));
+
+  let activatePromise;
+  listeners.activate({ waitUntil(promise) { activatePromise = promise; } });
+  await activatePromise;
+  assert.deepEqual(deletedCaches.sort(), ['bahasa-studio-v3.8.8', 'bahasa-studio-v3.8.9'],
+    'activation should remove only older Bahasa Studio caches and preserve caches owned by other apps');
 
   let responsePromise;
   listeners.fetch({
@@ -107,6 +115,21 @@ test('service worker precaches both data files and invalidates the previous cach
   });
   const response = await responsePromise;
   assert.equal(response.url, 'https://example.test/curriculum-a1.js');
+
+  let cssResponsePromise;
+  listeners.fetch({
+    request: { method: 'GET', url: 'https://example.test/styles.css', mode: 'no-cors' },
+    respondWith(promise) { cssResponsePromise = promise; }
+  });
+  const cssResponse = await cssResponsePromise;
+  assert.equal(cssResponse.url, 'https://example.test/styles.css');
+});
+
+test('the extracted stylesheet preserves the original CSS content', () => {
+  const css = fs.readFileSync(require.resolve('../styles.css'), 'utf8');
+  assert.match(html, /<link rel="stylesheet" href="\.\/styles\.css">/);
+  assert.doesNotMatch(html, /<style[\s>]/i);
+  assert.equal(fnv1a(css), '75b70c87', 'extracted CSS content changed');
 });
 
 test('the extraction does not alter IndexedDB, SRS, backup, or word-translation code', () => {

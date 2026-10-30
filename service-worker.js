@@ -1,5 +1,5 @@
-const CACHE_NAME = 'bahasa-studio-v3.8.9';
-const ASSETS = ['./', './index.html', './manifest.json', './assessment.html', './assessment-engine.js', './conversation-engine.js', './study-activity.js', './curriculum-a1.js', './curriculum-a2.js'];
+const CACHE_NAME = 'bahasa-studio-v3.8.10';
+const ASSETS = ['./', './index.html', './manifest.json', './assessment.html', './assessment-engine.js', './conversation-engine.js', './study-activity.js', './curriculum-a1.js', './curriculum-a2.js', './styles.css'];
 
 self.addEventListener('install', (e) => {
     e.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS.map((u) => new Request(u, { cache: 'reload' })))));
@@ -9,7 +9,7 @@ self.addEventListener('install', (e) => {
 self.addEventListener('activate', (e) => {
     e.waitUntil(
         caches.keys().then((keys) =>
-            Promise.all(keys.filter((k) => k !== CACHE_NAME).map((k) => caches.delete(k)))
+            Promise.all(keys.filter((k) => k.startsWith('bahasa-studio-') && k !== CACHE_NAME).map((k) => caches.delete(k)))
         )
     );
     self.clients.claim();

@@ -3510,173 +3510,307 @@
                     units: [
                         {
                             id: 'a2_u1',
-                            title: 'Unidad 1: Formar verbos con meN-',
-                            desc: 'Una primera forma verbal activa: baca se convierte en membaca (leer).',
-                            grammar: 'El prefijo meN- tiene varias formas según el sonido inicial de la raíz. En este ejemplo, baca (leer) forma membaca; esta unidad presenta solo ese patrón inicial.',
-                            vocab: [{ id: 'v7', idn: 'Membaca', esp: 'Leer', ex: 'Saya membaca buku.', exEsp: 'Yo leo un libro.' }],
-                            exercises: [
-                                { vocabId: 'v7', type: 'mc', prompt: '¿Cuál es la forma activa de "baca"?', options: ['Membaca', 'Berbaca', 'Terbaca', 'Dibaca'], answer: 0, explanation: 'La raíz con "b" toma el prefijo "mem-".' }
+                            title: 'Unidad 1: Días, meses y fechas',
+                            desc: 'Habla de los días de la semana, los meses y fechas sencillas.',
+                            grammar: 'Los días y los meses se escriben con mayúscula inicial en los nombres propios de los días y meses en indonesio. Para preguntar la fecha puedes usar «Tanggal berapa hari ini?».',
+                            vocab: [
+                                { id: 'a2u1_senin', idn: 'Senin', esp: 'Lunes', ex: 'Hari ini hari Senin.', exEsp: 'Hoy es lunes.' },
+                                { id: 'a2u1_selasa', idn: 'Selasa', esp: 'Martes', ex: 'Besok hari Selasa.', exEsp: 'Mañana es martes.' },
+                                { id: 'a2u1_rabu', idn: 'Rabu', esp: 'Miércoles', ex: 'Hari ini hari Rabu.', exEsp: 'Hoy es miércoles.' },
+                                { id: 'a2u1_kamis', idn: 'Kamis', esp: 'Jueves', ex: 'Besok hari Kamis.', exEsp: 'Mañana es jueves.' },
+                                { id: 'a2u1_jumat', idn: 'Jumat', esp: 'Viernes', ex: 'Hari ini hari Jumat.', exEsp: 'Hoy es viernes.' },
+                                { id: 'a2u1_sabtu', idn: 'Sabtu', esp: 'Sábado', ex: 'Hari ini hari Sabtu.', exEsp: 'Hoy es sábado.' },
+                                { id: 'a2u1_minggu', idn: 'Minggu', esp: 'Domingo', ex: 'Besok hari Minggu.', exEsp: 'Mañana es domingo.' },
+                                { id: 'a2u1_tanggal', idn: 'Tanggal', esp: 'Fecha; día del mes', ex: 'Tanggal berapa hari ini?', exEsp: '¿Qué fecha es hoy?' },
+                                { id: 'a2u1_bulan', idn: 'Bulan', esp: 'Mes', ex: 'Sekarang bulan Januari.', exEsp: 'Ahora es enero.' },
+                                { id: 'a2u1_januari', idn: 'Januari', esp: 'Enero', ex: 'Sekarang bulan Januari.', exEsp: 'Ahora es enero.' },
+                                { id: 'a2u1_februari', idn: 'Februari', esp: 'Febrero', ex: 'Sekarang bulan Februari.', exEsp: 'Ahora es febrero.' },
+                                { id: 'a2u1_maret', idn: 'Maret', esp: 'Marzo', ex: 'Sekarang bulan Maret.', exEsp: 'Ahora es marzo.' },
+                                { id: 'a2u1_april', idn: 'April', esp: 'Abril', ex: 'Sekarang bulan April.', exEsp: 'Ahora es abril.' },
+                                { id: 'a2u1_mei', idn: 'Mei', esp: 'Mayo', ex: 'Sekarang bulan Mei.', exEsp: 'Ahora es mayo.' },
+                                { id: 'a2u1_juni', idn: 'Juni', esp: 'Junio', ex: 'Sekarang bulan Juni.', exEsp: 'Ahora es junio.' },
+                                { id: 'a2u1_juli', idn: 'Juli', esp: 'Julio', ex: 'Sekarang bulan Juli.', exEsp: 'Ahora es julio.' },
+                                { id: 'a2u1_agustus', idn: 'Agustus', esp: 'Agosto', ex: 'Sekarang bulan Agustus.', exEsp: 'Ahora es agosto.' },
+                                { id: 'a2u1_september', idn: 'September', esp: 'Septiembre', ex: 'Sekarang bulan September.', exEsp: 'Ahora es septiembre.' },
+                                { id: 'a2u1_oktober', idn: 'Oktober', esp: 'Octubre', ex: 'Sekarang bulan Oktober.', exEsp: 'Ahora es octubre.' },
+                                { id: 'a2u1_november', idn: 'November', esp: 'Noviembre', ex: 'Sekarang bulan November.', exEsp: 'Ahora es noviembre.' },
+                                { id: 'a2u1_desember', idn: 'Desember', esp: 'Diciembre', ex: 'Sekarang bulan Desember.', exEsp: 'Ahora es diciembre.' }
+                            ],
+                            lessons: [
+                                {
+                                    title: 'Lección 1: Los primeros días de la semana',
+                                    objective: 'Reconoce y usa los nombres de lunes a jueves.',
+                                    grammar: 'Usa «hari» para hablar del día: «Hari ini hari Senin». «Besok» significa mañana.',
+                                    vocabIds: ['a2u1_senin', 'a2u1_selasa', 'a2u1_rabu', 'a2u1_kamis'],
+                                    exercises: [
+                                        { vocabId: 'a2u1_senin', type: 'mc', prompt: '¿Qué día sigue a Senin?', options: ['Selasa', 'Rabu', 'Kamis'], answer: 0, explanation: 'Después de Senin (lunes) viene Selasa (martes).' },
+                                        { vocabId: 'a2u1_rabu', type: 'translate_es_id', prompt: 'Traduce: Hoy es miércoles.', answer: 'Hari ini hari Rabu.', explanation: 'Hari ini hari Rabu significa «Hoy es miércoles».' },
+                                        { vocabId: 'a2u1_kamis', type: 'listen', prompt: 'Escucha y escribe la oración.', answer: 'Hari ini hari Kamis.', explanation: 'La oración dice «Hoy es jueves».' },
+                                        { vocabId: 'a2u1_senin', type: 'order', prompt: 'Ordena: Hoy es lunes.', words: ['Senin', 'hari', 'Hari', 'ini'], correctOrder: ['Hari', 'ini', 'hari', 'Senin'], explanation: 'Hari ini hari Senin significa «Hoy es lunes».' }
+                                    ]
+                                },
+                                {
+                                    title: 'Lección 2: Fin de semana y fechas',
+                                    objective: 'Nombra viernes, sábado y domingo y pregunta por la fecha.',
+                                    grammar: '«Tanggal berapa hari ini?» pregunta qué fecha es hoy. «Tanggal» se refiere al día del mes.',
+                                    vocabIds: ['a2u1_jumat', 'a2u1_sabtu', 'a2u1_minggu', 'a2u1_tanggal', 'a2u1_bulan'],
+                                    exercises: [
+                                        { vocabId: 'a2u1_jumat', type: 'mc', prompt: '¿Qué día viene después de Jumat?', options: ['Sabtu', 'Minggu', 'Kamis'], answer: 0, explanation: 'Después de Jumat (viernes) viene Sabtu (sábado).' },
+                                        { vocabId: 'a2u1_tanggal', type: 'translate_es_id', prompt: 'Traduce: ¿Qué fecha es hoy?', answer: 'Tanggal berapa hari ini?', explanation: 'Tanggal berapa hari ini? es una pregunta para saber la fecha.' },
+                                        { vocabId: 'a2u1_minggu', type: 'listen', prompt: 'Escucha y escribe la oración.', answer: 'Hari ini hari Minggu.', explanation: 'La oración dice «Hoy es domingo».' },
+                                        { vocabId: 'a2u1_sabtu', type: 'write', prompt: 'Escribe una oración para decir que hoy es sábado.', hint: 'Usa «Hari ini hari ...» y el nombre del día.', modelAnswer: 'Hari ini hari Sabtu.', explanation: 'Es un modelo posible; puedes usar el mismo patrón con otro día.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Lección 3: Enero a abril',
+                                    objective: 'Reconoce los nombres de los primeros cuatro meses del año.',
+                                    grammar: 'Los nombres de los meses se usan después de «bulan»: «Sekarang bulan Maret» (Ahora es marzo).',
+                                    vocabIds: ['a2u1_januari', 'a2u1_februari', 'a2u1_maret', 'a2u1_april'],
+                                    exercises: [
+                                        { vocabId: 'a2u1_januari', type: 'mc', prompt: '¿Qué mes sigue a Januari?', options: ['Februari', 'Maret', 'April'], answer: 0, explanation: 'Februari es el mes que sigue a Januari.' },
+                                        { vocabId: 'a2u1_maret', type: 'translate_es_id', prompt: 'Traduce: Ahora es marzo.', answer: 'Sekarang bulan Maret.', explanation: 'Sekarang bulan Maret significa «Ahora es marzo».' },
+                                        { vocabId: 'a2u1_april', type: 'listen', prompt: 'Escucha y escribe la oración.', answer: 'Sekarang bulan April.', explanation: 'La oración dice «Ahora es abril».' },
+                                        { vocabId: 'a2u1_februari', type: 'order', prompt: 'Ordena: Ahora es febrero.', words: ['bulan', 'Sekarang', 'Februari'], correctOrder: ['Sekarang', 'bulan', 'Februari'], explanation: 'Sekarang bulan Februari significa «Ahora es febrero».' }
+                                    ]
+                                },
+                                {
+                                    title: 'Lección 4: Mayo a agosto',
+                                    objective: 'Reconoce los meses de mayo a agosto y úsalos en frases breves.',
+                                    grammar: 'Para indicar el mes actual, puedes decir «Sekarang bulan ...».',
+                                    vocabIds: ['a2u1_mei', 'a2u1_juni', 'a2u1_juli', 'a2u1_agustus'],
+                                    exercises: [
+                                        { vocabId: 'a2u1_mei', type: 'mc', prompt: '¿Qué mes sigue a Mei?', options: ['Juni', 'Juli', 'Agustus'], answer: 0, explanation: 'Juni sigue a Mei.' },
+                                        { vocabId: 'a2u1_juli', type: 'translate_es_id', prompt: 'Traduce: Ahora es julio.', answer: 'Sekarang bulan Juli.', explanation: 'Sekarang bulan Juli significa «Ahora es julio».' },
+                                        { vocabId: 'a2u1_agustus', type: 'listen', prompt: 'Escucha y escribe la oración.', answer: 'Sekarang bulan Agustus.', explanation: 'La oración dice «Ahora es agosto».' },
+                                        { vocabId: 'a2u1_juni', type: 'write', prompt: 'Escribe una oración para decir que ahora es junio.', hint: 'Usa «Sekarang bulan ...».', modelAnswer: 'Sekarang bulan Juni.', explanation: 'Juni es junio en indonesio.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Lección 5: Septiembre a diciembre',
+                                    objective: 'Reconoce los últimos cuatro meses del año.',
+                                    grammar: 'Los nombres de los meses no cambian según la persona ni el tiempo de la oración.',
+                                    vocabIds: ['a2u1_september', 'a2u1_oktober', 'a2u1_november', 'a2u1_desember'],
+                                    exercises: [
+                                        { vocabId: 'a2u1_desember', type: 'mc', prompt: '¿Qué mes va antes de Desember?', options: ['November', 'Oktober', 'September'], answer: 0, explanation: 'November precede a Desember.' },
+                                        { vocabId: 'a2u1_oktober', type: 'translate_es_id', prompt: 'Traduce: Ahora es octubre.', answer: 'Sekarang bulan Oktober.', explanation: 'Sekarang bulan Oktober significa «Ahora es octubre».' },
+                                        { vocabId: 'a2u1_november', type: 'listen', prompt: 'Escucha y escribe la oración.', answer: 'Sekarang bulan November.', explanation: 'La oración dice «Ahora es noviembre».' },
+                                        { vocabId: 'a2u1_desember', type: 'order', prompt: 'Ordena: Ahora es diciembre.', words: ['Desember', 'Sekarang', 'bulan'], correctOrder: ['Sekarang', 'bulan', 'Desember'], explanation: 'Sekarang bulan Desember significa «Ahora es diciembre».' }
+                                    ]
+                                }
                             ]
                         },
                         {
-                                  "id": "a2_u2",
-                                  "title": "Unidad 2: Variantes frecuentes de meN-",
-                                  "desc": "Reconocer patrones comunes de formación verbal sin asumir que todas las raíces se comportan igual.",
-                                  "grammar": "El prefijo verbal meN- presenta variantes según el sonido inicial de la raíz. Empieza con pares frecuentes como baca → membaca y tulis → menulis. Aprende cada forma dentro de una frase; existen excepciones y cambios que deben estudiarse gradualmente.",
-                                  "vocab": [
-                                            {
-                                                      "id": "v201",
-                                                      "idn": "Membaca",
-                                                      "esp": "Leer",
-                                                      "ex": "Saya membaca buku.",
-                                                      "exEsp": "Leo un libro."
-                                            },
-                                            {
-                                                      "id": "v202",
-                                                      "idn": "Menulis",
-                                                      "esp": "Escribir",
-                                                      "ex": "Dia menulis pesan.",
-                                                      "exEsp": "Él/ella escribe un mensaje."
-                                            },
-                                            {
-                                                      "id": "v203",
-                                                      "idn": "Mencari",
-                                                      "esp": "Buscar",
-                                                      "ex": "Saya mencari alamat.",
-                                                      "exEsp": "Busco la dirección."
-                                            },
-                                            {
-                                                      "id": "v204",
-                                                      "idn": "Membeli",
-                                                      "esp": "Comprar",
-                                                      "ex": "Kami membeli nasi.",
-                                                      "exEsp": "Compramos arroz."
-                                            }
-                                  ],
-                                  "exercises": [
-                                            {
-                                                      "vocabId": "v201",
-                                                      "type": "mc",
-                                                      "prompt": "¿Qué significa membaca?",
-                                                      "options":["Leer","Escribir","Buscar"],
-                                                      "answer": 0,
-                                                      "explanation": "Membaca significa leer; meN- forma verbos en patrones frecuentes."
-                                            },
-                                            {
-                                                      "vocabId": "v202",
-                                                      "type": "translate_es_id",
-                                                      "prompt": "Traduce: escribir",
-                                                      "answer": "Menulis",
-                                                      "explanation": "Menulis significa «Escribir»."
-                                            },
-                                            {
-                                                      "vocabId": "v203",
-                                                      "type": "listen",
-                                                      "prompt": "Escucha y escribe la expresión",
-                                                      "answer": "Mencari",
-                                                      "explanation": "La forma Mencari aparece en esta unidad."
-                                            },
-                                            {
-                                                      "vocabId": "v204",
-                                                      "type": "write",
-                                                      "prompt": "Escribe una frase propia usando Membeli.",
-                                                      "hint": "Usa el contexto y la explicación gramatical; no memorices solo una traducción.",
-                                                      "modelAnswer": "Kami membeli nasi.",
-                                                      "explanation": "Ejemplo orientativo: Kami membeli nasi. — Compramos arroz."
-                                            }
-                                  ]
+                            id: 'a2_u2',
+                            title: 'Unidad 2: Expresar cuándo ocurre una acción',
+                            desc: 'Distingue acciones ya realizadas, todavía no realizadas, en curso y futuras.',
+                            grammar: 'El indonesio no conjuga el verbo para marcar pasado o futuro. Palabras como sudah, belum, sedang y akan aportan información temporal o aspectual; se interpretan dentro de la oración.',
+                            vocab: [
+                                { id: 'a2u2_sudah', idn: 'Sudah', esp: 'Ya; acción completada', ex: 'Saya sudah makan.', exEsp: 'Ya he comido.' },
+                                { id: 'a2u2_belum', idn: 'Belum', esp: 'Todavía no; aún no', ex: 'Saya belum makan.', exEsp: 'Todavía no he comido.' },
+                                { id: 'a2u2_sedang', idn: 'Sedang', esp: 'Estar en curso; estar haciendo algo', ex: 'Saya sedang belajar.', exEsp: 'Estoy estudiando.' },
+                                { id: 'a2u2_akan', idn: 'Akan', esp: 'Marcador de futuro', ex: 'Saya akan pergi.', exEsp: 'Voy a ir.' },
+                                { id: 'a2u2_tadi', idn: 'Tadi', esp: 'Hace un rato; antes hoy', ex: 'Saya makan tadi.', exEsp: 'Comí hace un rato.' },
+                                { id: 'a2u2_tadi_pagi', idn: 'Tadi pagi', esp: 'Esta mañana (hace un rato)', ex: 'Saya belajar tadi pagi.', exEsp: 'Estudié esta mañana.' },
+                                { id: 'a2u2_tadi_malam', idn: 'Tadi malam', esp: 'Anoche', ex: 'Saya tidur tadi malam.', exEsp: 'Dormí anoche.' },
+                                { id: 'a2u2_baru_saja', idn: 'Baru saja', esp: 'Acabar de; hace muy poco', ex: 'Dia baru saja datang.', exEsp: 'Él/ella acaba de llegar.' },
+                                { id: 'a2u2_masih', idn: 'Masih', esp: 'Todavía; aún', ex: 'Saya masih di rumah.', exEsp: 'Todavía estoy en casa.' },
+                                { id: 'a2u2_sebentar_lagi', idn: 'Sebentar lagi', esp: 'Dentro de poco; en breve', ex: 'Saya akan pergi sebentar lagi.', exEsp: 'Me iré dentro de poco.' },
+                                { id: 'a2u2_minggu_depan', idn: 'Minggu depan', esp: 'La semana que viene', ex: 'Saya pergi minggu depan.', exEsp: 'Voy la semana que viene.' },
+                                { id: 'a2u2_minggu_lalu', idn: 'Minggu lalu', esp: 'La semana pasada', ex: 'Saya belajar minggu lalu.', exEsp: 'Estudié la semana pasada.' },
+                                { id: 'a2u2_bulan_lalu', idn: 'Bulan lalu', esp: 'El mes pasado', ex: 'Saya bekerja bulan lalu.', exEsp: 'Trabajé el mes pasado.' },
+                                { id: 'a2u2_bulan_depan', idn: 'Bulan depan', esp: 'El mes que viene', ex: 'Saya pulang bulan depan.', exEsp: 'Regreso a casa el mes que viene.' }
+                            ],
+                            lessons: [
+                                {
+                                    title: 'Lección 1: Ya, todavía no, en curso y futuro',
+                                    objective: 'Distingue cuatro marcadores temporales frecuentes.',
+                                    grammar: 'Sudah indica que algo ya ocurrió; belum, que todavía no; sedang, que está en curso; akan, que ocurrirá después.',
+                                    vocabIds: ['a2u2_sudah', 'a2u2_belum', 'a2u2_sedang', 'a2u2_akan'],
+                                    exercises: [
+                                        { vocabId: 'a2u2_sudah', type: 'mc', prompt: 'En «Saya sudah makan», ¿qué indica sudah?', options: ['La acción ya se completó', 'La acción está en curso', 'La acción ocurrirá después'], answer: 0, explanation: 'Sudah presenta la acción como ya realizada.' },
+                                        { vocabId: 'a2u2_belum', type: 'translate_es_id', prompt: 'Traduce: Todavía no he comido.', answer: 'Saya belum makan.', explanation: 'Belum indica que la acción todavía no ha ocurrido.' },
+                                        { vocabId: 'a2u2_sedang', type: 'listen', prompt: 'Escucha y escribe la oración.', answer: 'Saya sedang belajar.', explanation: 'Sedang indica que estudiar está en curso.' },
+                                        { vocabId: 'a2u2_akan', type: 'order', prompt: 'Ordena: Voy a estudiar.', words: ['belajar', 'Saya', 'akan'], correctOrder: ['Saya', 'akan', 'belajar'], explanation: 'Saya akan belajar expresa una acción futura.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Lección 2: Hace un rato y hace muy poco',
+                                    objective: 'Sitúa acciones en momentos recientes del día.',
+                                    grammar: 'Tadi suele referirse a un momento anterior dentro del día actual. Tadi pagi y tadi malam concretan el momento; baru saja indica que algo ocurrió hace muy poco.',
+                                    vocabIds: ['a2u2_tadi', 'a2u2_tadi_pagi', 'a2u2_tadi_malam', 'a2u2_baru_saja'],
+                                    exercises: [
+                                        { vocabId: 'a2u2_tadi_pagi', type: 'mc', prompt: '¿Qué momento indica «tadi pagi»?', options: ['Esta mañana, hace un rato', 'Mañana por la mañana', 'La semana pasada'], answer: 0, explanation: 'Tadi pagi se refiere a esta mañana, antes del momento actual.' },
+                                        { vocabId: 'a2u2_tadi_malam', type: 'translate_es_id', prompt: 'Traduce: Dormí anoche.', answer: 'Saya tidur tadi malam.', explanation: 'Tadi malam sitúa la acción en la noche anterior de hoy.' },
+                                        { vocabId: 'a2u2_baru_saja', type: 'listen', prompt: 'Escucha y escribe la oración.', answer: 'Dia baru saja datang.', explanation: 'Baru saja indica que la llegada ocurrió hace muy poco.' },
+                                        { vocabId: 'a2u2_tadi', type: 'write', prompt: 'Escribe una frase para decir que estudiaste esta mañana.', hint: 'Usa «Saya belajar tadi pagi». Puedes cambiar la actividad si mantienes el marcador temporal.', modelAnswer: 'Saya belajar tadi pagi.', explanation: 'El modelo sitúa el estudio en esta mañana.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Lección 3: Todavía y dentro de poco',
+                                    objective: 'Expresa continuidad y proximidad temporal.',
+                                    grammar: 'Masih indica que una situación continúa. Sebentar lagi señala que algo ocurrirá dentro de poco; minggu depan sitúa una acción en la semana siguiente.',
+                                    vocabIds: ['a2u2_masih', 'a2u2_sebentar_lagi', 'a2u2_minggu_depan'],
+                                    exercises: [
+                                        { vocabId: 'a2u2_masih', type: 'mc', prompt: 'En «Saya masih di rumah», ¿qué significa masih?', options: ['Todavía; aún', 'Ya; completado', 'Nunca'], answer: 0, explanation: 'Masih expresa que la situación continúa.' },
+                                        { vocabId: 'a2u2_sebentar_lagi', type: 'translate_es_id', prompt: 'Traduce: Me iré dentro de poco.', answer: 'Saya akan pergi sebentar lagi.', explanation: 'Sebentar lagi indica que la acción ocurrirá pronto.' },
+                                        { vocabId: 'a2u2_minggu_depan', type: 'listen', prompt: 'Escucha y escribe la oración.', answer: 'Saya pergi minggu depan.', explanation: 'Minggu depan significa «la semana que viene».' },
+                                        { vocabId: 'a2u2_masih', type: 'order', prompt: 'Ordena: Todavía estoy estudiando.', words: ['belajar', 'masih', 'Saya'], correctOrder: ['Saya', 'masih', 'belajar'], explanation: 'Saya masih belajar expresa que el estudio continúa.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Lección 4: La semana y el mes',
+                                    objective: 'Habla de la semana y el mes pasados o futuros.',
+                                    grammar: 'Minggu lalu y bulan lalu se refieren a periodos pasados; bulan depan señala el mes siguiente. El verbo no cambia de forma.',
+                                    vocabIds: ['a2u2_minggu_lalu', 'a2u2_bulan_lalu', 'a2u2_bulan_depan'],
+                                    exercises: [
+                                        { vocabId: 'a2u2_bulan_lalu', type: 'mc', prompt: '¿Qué significa «bulan lalu»?', options: ['El mes pasado', 'El mes que viene', 'Este mes'], answer: 0, explanation: 'Bulan lalu significa «el mes pasado».' },
+                                        { vocabId: 'a2u2_minggu_lalu', type: 'translate_es_id', prompt: 'Traduce: Estudié la semana pasada.', answer: 'Saya belajar minggu lalu.', explanation: 'Minggu lalu sitúa el estudio en la semana pasada.' },
+                                        { vocabId: 'a2u2_bulan_depan', type: 'listen', prompt: 'Escucha y escribe la oración.', answer: 'Saya pulang bulan depan.', explanation: 'Bulan depan significa «el mes que viene».' },
+                                        { vocabId: 'a2u2_bulan_lalu', type: 'write', prompt: 'Escribe una frase para decir que trabajaste el mes pasado.', hint: 'Usa «Saya bekerja bulan lalu».', modelAnswer: 'Saya bekerja bulan lalu.', explanation: 'El modelo usa bulan lalu para situar el trabajo en el pasado.' }
+                                    ]
+                                }
+                            ]
                         },
                         {
-                                  "id": "a2_u3",
-                                  "title": "Unidad 3: Pasiva sencilla con di-",
-                                  "desc": "Comprender quién recibe una acción en frases breves y transparentes.",
-                                  "grammar": "El prefijo unido di- puede marcar una construcción pasiva: Buku dibaca oleh Ana (El libro es leído por Ana). No confundas el prefijo unido, como dibaca, con la preposición separada di rumah (en casa).",
-                                  "vocab": [
-                                            {
-                                                      "id": "v205",
-                                                      "idn": "Dibaca",
-                                                      "esp": "Es leído",
-                                                      "ex": "Buku dibaca oleh Ana.",
-                                                      "exEsp": "El libro es leído por Ana."
-                                            },
-                                            {
-                                                      "id": "v206",
-                                                      "idn": "Ditulis",
-                                                      "esp": "Es escrito",
-                                                      "ex": "Pesan ditulis oleh Budi.",
-                                                      "exEsp": "El mensaje es escrito por Budi."
-                                            },
-                                            {
-                                                      "id": "v207",
-                                                      "idn": "Dibeli",
-                                                      "esp": "Es comprado",
-                                                      "ex": "Nasi dibeli di pasar.",
-                                                      "exEsp": "El arroz se compra en el mercado."
-                                            },
-                                            {
-                                                      "id": "v208",
-                                                      "idn": "Oleh",
-                                                      "esp": "Por (agente pasivo)",
-                                                      "ex": "Buku dibaca oleh Ana.",
-                                                      "exEsp": "El libro es leído por Ana."
-                                            }
-                                  ],
-                                  "exercises": [
-                                            {
-                                                      "vocabId": "v205",
-                                                      "type": "mc",
-                                                      "prompt": "¿Qué función tiene di- en dibaca?",
-                                                      "options":["Voz pasiva","Lugar","Negación"],
-                                                      "answer": 0,
-                                                      "explanation": "En dibaca, di- marca la voz pasiva; no es la preposición di."
-                                            },
-                                            {
-                                                      "vocabId": "v206",
-                                                      "type": "translate_es_id",
-                                                      "prompt": "Traduce: es escrito",
-                                                      "answer": "Ditulis",
-                                                      "explanation": "Ditulis significa «Es escrito»."
-                                            },
-                                            {
-                                                      "vocabId": "v207",
-                                                      "type": "listen",
-                                                      "prompt": "Escucha y escribe la expresión",
-                                                      "answer": "Dibeli",
-                                                      "explanation": "La forma Dibeli aparece en esta unidad."
-                                            },
-                                            {
-                                                      "vocabId": "v208",
-                                                      "type": "write",
-                                                      "prompt": "Escribe una frase propia usando Oleh.",
-                                                      "hint": "Usa el contexto y la explicación gramatical; no memorices solo una traducción.",
-                                                      "modelAnswer": "Buku dibaca oleh Ana.",
-                                                      "explanation": "Ejemplo orientativo: Buku dibaca oleh Ana. — El libro es leído por Ana."
-                                            }
-                                  ]
-                        }
-                    ,
-                    {
-                        "id": "a2_u4",
-                        "title": "U4 — Verbos activos: mem-",
-                        "description": "Forma verbos activos con meN- antes de p, b y m.",
-                        "grammar": "La forma mem- aparece ante varias raíces que empiezan por b, p, f, v o m. En muchas raíces con p, la p desaparece: pakai → memakai. Con b y m, la consonante inicial se conserva: beli → membeli, masak → memasak. Aprende cada verbo dentro de una frase.",
-                        "vocab": [
-                            { "id": "v501", "idn": "Membeli", "esp": "Comprar", "type": "verb", "example": "Saya membeli buku.", "exampleEsp": "Compro un libro." },
-                            { "id": "v502", "idn": "Memakai", "esp": "Usar; llevar puesto", "type": "verb", "example": "Dia memakai jaket.", "exampleEsp": "Él o ella lleva una chaqueta." },
-                            { "id": "v503", "idn": "Membawa", "esp": "Llevar; traer", "type": "verb", "example": "Saya membawa tas.", "exampleEsp": "Llevo un bolso." },
-                            { "id": "v504", "idn": "Memasak", "esp": "Cocinar", "type": "verb", "example": "Ibu memasak nasi.", "exampleEsp": "Mamá cocina arroz." }
-                        ],
-                        "exercises": [
-                            { "type": "mc", "prompt": "¿Cuál es la forma activa de pakai?", "options": ["Menakai", "Memakai", "Mengpakai"], "answer": 1, "vocabId": "v502", "explanation": "La p de pakai desaparece después del prefijo mem-." },
-                            { "type": "mc", "prompt": "Completa: beli → …", "options": ["Mengbeli", "Membeli", "Menbeli"], "answer": 1, "vocabId": "v501", "explanation": "La b se conserva: beli se convierte en membeli." },
-                            { "type": "mc", "prompt": "¿Qué significa membawa?", "options": ["Comprar", "Cocinar", "Llevar o traer"], "answer": 2, "vocabId": "v503" },
-                            { "type": "mc", "prompt": "Elige la forma correcta de masak.", "options": ["Mengmasak", "Menmasak", "Memasak"], "answer": 2, "vocabId": "v504" },
-                            { "type": "translate_es_id", "prompt": "Traduce: Quiero comprar un libro.", "answer": "Saya mau membeli buku.", "vocabId": "v501", "explanation": "Mau expresa intención y membeli es el verbo activo." },
-                            { "type": "listen", "prompt": "Escucha y escribe la frase.", "answer": "Dia memakai jaket.", "vocabId": "v502" },
-                            { "type": "write", "prompt": "Escribe una frase propia usando membawa.", "hint": "Puedes usar tas (bolso).", "modelAnswer": "Saya membawa tas.", "vocabId": "v503" },
-                            { "type": "mc", "prompt": "¿Qué significa «Ibu memasak nasi»?", "options": ["Mamá cocina arroz.", "Mamá compra un libro.", "Mamá lleva una chaqueta."], "answer": 0, "vocabId": "v504" }
-                        ]
-                    },
+                            id: 'a2_u3',
+                            title: 'Unidad 3: Ordenar acontecimientos y contar secuencias',
+                            desc: 'Conecta acciones para explicar qué ocurrió primero, después y al final.',
+                            grammar: 'Los conectores temporales organizan los acontecimientos. Primera posición, continuación y cierre se expresan con palabras como pertama, lalu, kemudian y akhirnya. La forma del verbo no cambia por el pasado.',
+                            vocab: [
+                                { id: 'a2u3_pertama', idn: 'Pertama', esp: 'Primero; en primer lugar', ex: 'Pertama, saya makan.', exEsp: 'Primero, como.' },
+                                { id: 'a2u3_lalu', idn: 'Lalu', esp: 'Luego; después', ex: 'Lalu, saya minum air.', exEsp: 'Luego, bebo agua.' },
+                                { id: 'a2u3_kemudian', idn: 'Kemudian', esp: 'Después; a continuación', ex: 'Kemudian, saya pergi.', exEsp: 'Después, voy.' },
+                                { id: 'a2u3_setelah_itu', idn: 'Setelah itu', esp: 'Después de eso', ex: 'Setelah itu, saya belajar.', exEsp: 'Después de eso, estudio.' },
+                                { id: 'a2u3_akhirnya', idn: 'Akhirnya', esp: 'Finalmente; al final', ex: 'Akhirnya, saya pulang.', exEsp: 'Finalmente, regreso a casa.' },
+                                { id: 'a2u3_berikutnya', idn: 'Berikutnya', esp: 'A continuación; lo siguiente', ex: 'Berikutnya, saya membaca buku.', exEsp: 'A continuación, leo un libro.' },
+                                { id: 'a2u3_sebelumnya', idn: 'Sebelumnya', esp: 'Antes de eso; previamente', ex: 'Sebelumnya, saya belajar.', exEsp: 'Antes de eso, estudio.' },
+                                { id: 'a2u3_selanjutnya', idn: 'Selanjutnya', esp: 'A continuación; después', ex: 'Selanjutnya, saya pergi.', exEsp: 'A continuación, voy.' },
+                                { id: 'a2u3_setelah', idn: 'Setelah', esp: 'Después de; una vez que', ex: 'Setelah makan, saya minum air.', exEsp: 'Después de comer, bebo agua.' },
+                                { id: 'a2u3_ketika', idn: 'Ketika', esp: 'Cuando', ex: 'Ketika saya makan, dia datang.', exEsp: 'Cuando como, él/ella llega.' },
+                                { id: 'a2u3_selama', idn: 'Selama', esp: 'Durante; mientras', ex: 'Selama satu jam, saya belajar.', exEsp: 'Estudio durante una hora.' },
+                                { id: 'a2u3_sampai', idn: 'Sampai', esp: 'Hasta', ex: 'Saya belajar sampai malam.', exEsp: 'Estudio hasta la noche.' }
+                            ],
+                            lessons: [
+                                {
+                                    title: 'Lección 1: Primero y después',
+                                    objective: 'Usa conectores básicos para ordenar dos o más acciones.',
+                                    grammar: 'Pertama introduce el primer paso; lalu y kemudian enlazan acciones posteriores.',
+                                    vocabIds: ['a2u3_pertama', 'a2u3_lalu', 'a2u3_kemudian'],
+                                    exercises: [
+                                        { vocabId: 'a2u3_pertama', type: 'mc', prompt: '¿Qué función cumple «pertama»?', options: ['Presentar el primer paso', 'Indicar el final', 'Indicar el lugar'], answer: 0, explanation: 'Pertama introduce el primer paso de una secuencia.' },
+                                        { vocabId: 'a2u3_pertama', type: 'translate_es_id', prompt: 'Traduce: Primero, como.', answer: 'Pertama, saya makan.', explanation: 'Pertama, saya makan presenta la primera acción.' },
+                                        { vocabId: 'a2u3_lalu', type: 'listen', prompt: 'Escucha y escribe la oración.', answer: 'Lalu, saya minum air.', explanation: 'Lalu conecta esta acción con una anterior.' },
+                                        { vocabId: 'a2u3_kemudian', type: 'order', prompt: 'Ordena: Después, voy.', words: ['pergi', 'Kemudian', 'saya'], correctOrder: ['Kemudian', 'saya', 'pergi'], explanation: 'Kemudian, saya pergi significa «Después, voy».' }
+                                    ]
+                                },
+                                {
+                                    title: 'Lección 2: Después de eso y finalmente',
+                                    objective: 'Marca una continuación y el cierre de una secuencia.',
+                                    grammar: 'Setelah itu enlaza con lo que sigue; akhirnya presenta el resultado o el último acontecimiento.',
+                                    vocabIds: ['a2u3_setelah_itu', 'a2u3_akhirnya', 'a2u3_berikutnya'],
+                                    exercises: [
+                                        { vocabId: 'a2u3_setelah_itu', type: 'mc', prompt: '¿Qué significa «setelah itu»?', options: ['Después de eso', 'Antes de eso', 'Al mismo tiempo'], answer: 0, explanation: 'Setelah itu introduce una acción posterior.' },
+                                        { vocabId: 'a2u3_setelah_itu', type: 'translate_es_id', prompt: 'Traduce: Después de eso, estudio.', answer: 'Setelah itu, saya belajar.', explanation: 'Setelah itu conecta esta acción con una anterior.' },
+                                        { vocabId: 'a2u3_akhirnya', type: 'listen', prompt: 'Escucha y escribe la oración.', answer: 'Akhirnya, saya pulang.', explanation: 'Akhirnya señala el cierre de la secuencia.' },
+                                        { vocabId: 'a2u3_berikutnya', type: 'write', prompt: 'Escribe una frase para indicar cuál es la siguiente actividad.', hint: 'Usa «Berikutnya, saya membaca buku».', modelAnswer: 'Berikutnya, saya membaca buku.', explanation: 'Berikutnya introduce el paso siguiente.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Lección 3: Antes y a continuación',
+                                    objective: 'Relaciona un hecho con lo que ocurrió antes y con el paso siguiente.',
+                                    grammar: 'Sebelumnya remite a un momento anterior. Selanjutnya presenta el siguiente paso. Setelah introduce un hecho que sirve de referencia temporal.',
+                                    vocabIds: ['a2u3_sebelumnya', 'a2u3_selanjutnya', 'a2u3_setelah'],
+                                    exercises: [
+                                        { vocabId: 'a2u3_sebelumnya', type: 'mc', prompt: '¿Qué significa «sebelumnya»?', options: ['Antes de eso; previamente', 'Después de eso', 'Finalmente'], answer: 0, explanation: 'Sebelumnya remite a algo anterior.' },
+                                        { vocabId: 'a2u3_selanjutnya', type: 'translate_es_id', prompt: 'Traduce: A continuación, estudio.', answer: 'Selanjutnya, saya belajar.', explanation: 'Selanjutnya presenta el paso siguiente.' },
+                                        { vocabId: 'a2u3_setelah', type: 'listen', prompt: 'Escucha y escribe la oración.', answer: 'Setelah makan, saya minum air.', explanation: 'Setelah introduce la acción de comer como referencia temporal.' },
+                                        { vocabId: 'a2u3_sebelumnya', type: 'order', prompt: 'Ordena: Antes de eso, estudio.', words: ['saya', 'Sebelumnya', 'belajar'], correctOrder: ['Sebelumnya', 'saya', 'belajar'], explanation: 'Sebelumnya, saya belajar significa «Antes de eso, estudio».' }
+                                    ]
+                                },
+                                {
+                                    title: 'Lección 4: Cuando, durante y hasta',
+                                    objective: 'Expresa relaciones temporales sencillas entre dos acontecimientos.',
+                                    grammar: 'Ketika introduce un momento o una situación; selama indica duración; sampai marca el límite temporal.',
+                                    vocabIds: ['a2u3_ketika', 'a2u3_selama', 'a2u3_sampai'],
+                                    exercises: [
+                                        { vocabId: 'a2u3_ketika', type: 'mc', prompt: '¿Qué significa «ketika»?', options: ['Cuando', 'Durante', 'Hasta'], answer: 0, explanation: 'Ketika introduce una referencia temporal equivalente a «cuando».' },
+                                        { vocabId: 'a2u3_selama', type: 'translate_es_id', prompt: 'Traduce: Estudio durante una hora.', answer: 'Selama satu jam, saya belajar.', explanation: 'Selama expresa la duración de la actividad.' },
+                                        { vocabId: 'a2u3_ketika', type: 'listen', prompt: 'Escucha y escribe la oración.', answer: 'Ketika saya makan, dia datang.', explanation: 'Ketika introduce el momento en que ocurre la llegada.' },
+                                        { vocabId: 'a2u3_sampai', type: 'write', prompt: 'Escribe una frase para decir que estudias hasta la noche.', hint: 'Usa «Saya belajar sampai malam».', modelAnswer: 'Saya belajar sampai malam.', explanation: 'Sampai marca el límite temporal de la actividad.' }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            id: 'a2_u4',
+                            title: 'Unidad 4: Narrar una jornada cotidiana',
+                            desc: 'Combina horarios, actividades y conectores para contar cómo transcurre un día.',
+                            grammar: 'Para narrar una rutina, combina expresiones temporales con verbos en su forma habitual. El verbo no cambia por indicar pasado o futuro; puedes añadir marcadores como sudah, sedang o akan cuando corresponda.',
+                            vocab: [
+                                { id: 'a2u4_bangun', idn: 'Bangun', esp: 'Despertarse; levantarse', ex: 'Saya bangun pagi.', exEsp: 'Me despierto por la mañana.' },
+                                { id: 'a2u4_mandi', idn: 'Mandi', esp: 'Bañarse; ducharse', ex: 'Saya mandi pagi.', exEsp: 'Me ducho por la mañana.' },
+                                { id: 'a2u4_sarapan', idn: 'Sarapan', esp: 'Desayunar; desayuno', ex: 'Saya sarapan pagi.', exEsp: 'Desayuno por la mañana.' },
+                                { id: 'a2u4_berangkat', idn: 'Berangkat', esp: 'Salir; partir', ex: 'Saya berangkat ke sekolah.', exEsp: 'Salgo hacia la escuela.' },
+                                { id: 'a2u4_jadwal', idn: 'Jadwal', esp: 'Horario; programa', ex: 'Jadwal saya mulai pukul delapan.', exEsp: 'Mi horario empieza a las ocho.' },
+                                { id: 'a2u4_mulai', idn: 'Mulai', esp: 'Empezar; comenzar', ex: 'Kelas mulai pukul delapan.', exEsp: 'La clase empieza a las ocho.' },
+                                { id: 'a2u4_istirahat', idn: 'Istirahat', esp: 'Descansar; descanso', ex: 'Saya istirahat siang.', exEsp: 'Descanso al mediodía.' },
+                                { id: 'a2u4_kegiatan', idn: 'Kegiatan', esp: 'Actividad', ex: 'Kegiatan saya mulai pagi.', exEsp: 'Mi actividad empieza por la mañana.' },
+                                { id: 'a2u4_selesai', idn: 'Selesai', esp: 'Terminar; terminado', ex: 'Kelas selesai pukul dua belas.', exEsp: 'La clase termina a las doce.' },
+                                { id: 'a2u4_pulang', idn: 'Pulang', esp: 'Volver a casa; regresar', ex: 'Saya pulang sore.', exEsp: 'Regreso a casa por la tarde.' },
+                                { id: 'a2u4_sibuk', idn: 'Sibuk', esp: 'Ocupado/a', ex: 'Hari ini saya sibuk.', exEsp: 'Hoy estoy ocupado/a.' },
+                                { id: 'a2u4_santai', idn: 'Santai', esp: 'Relajado/a; tranquilo/a', ex: 'Hari ini saya santai.', exEsp: 'Hoy estoy tranquilo/a.' }
+                            ],
+                            lessons: [
+                                {
+                                    title: 'Lección 1: Al comenzar el día',
+                                    objective: 'Cuenta cómo te despiertas, te aseas y desayunas.',
+                                    grammar: 'Las acciones pueden enlazarse con expresiones temporales ya conocidas: pagi (mañana) y hari ini (hoy).',
+                                    vocabIds: ['a2u4_bangun', 'a2u4_mandi', 'a2u4_sarapan'],
+                                    exercises: [
+                                        { vocabId: 'a2u4_bangun', type: 'mc', prompt: '¿Qué significa «bangun» en una rutina?', options: ['Despertarse; levantarse', 'Desayunar', 'Descansar'], answer: 0, explanation: 'Bangun se usa para hablar de despertarse o levantarse.' },
+                                        { vocabId: 'a2u4_mandi', type: 'translate_es_id', prompt: 'Traduce: Me ducho por la mañana.', answer: 'Saya mandi pagi.', explanation: 'Saya mandi pagi expresa que te duchas por la mañana.' },
+                                        { vocabId: 'a2u4_sarapan', type: 'listen', prompt: 'Escucha y escribe la oración.', answer: 'Saya sarapan pagi.', explanation: 'La oración dice «Desayuno por la mañana».' },
+                                        { vocabId: 'a2u4_bangun', type: 'order', prompt: 'Ordena: Me despierto por la mañana.', words: ['pagi', 'Saya', 'bangun'], correctOrder: ['Saya', 'bangun', 'pagi'], explanation: 'Saya bangun pagi es una frase sencilla para hablar del comienzo del día.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Lección 2: Salir y empezar las actividades',
+                                    objective: 'Habla de la salida y del horario de una actividad.',
+                                    grammar: 'Jadwal nombra el horario; mulai indica el comienzo. Berangkat expresa salir o partir hacia un destino.',
+                                    vocabIds: ['a2u4_berangkat', 'a2u4_jadwal', 'a2u4_mulai'],
+                                    exercises: [
+                                        { vocabId: 'a2u4_berangkat', type: 'mc', prompt: '¿Qué significa «berangkat»?', options: ['Salir; partir', 'Regresar', 'Terminar'], answer: 0, explanation: 'Berangkat indica la salida o partida hacia un destino.' },
+                                        { vocabId: 'a2u4_jadwal', type: 'translate_es_id', prompt: 'Traduce: Mi horario empieza a las ocho.', answer: 'Jadwal saya mulai pukul delapan.', explanation: 'Jadwal saya es «mi horario» y mulai indica que empieza.' },
+                                        { vocabId: 'a2u4_mulai', type: 'listen', prompt: 'Escucha y escribe la oración.', answer: 'Kelas mulai pukul delapan.', explanation: 'La clase empieza a las ocho.' },
+                                        { vocabId: 'a2u4_berangkat', type: 'write', prompt: 'Escribe una frase para decir que sales hacia la escuela a las siete.', hint: 'Usa «Saya berangkat ke sekolah pukul tujuh».', modelAnswer: 'Saya berangkat ke sekolah pukul tujuh.', explanation: 'El modelo indica el destino y la hora de salida.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Lección 3: Pausas y final de las actividades',
+                                    objective: 'Describe una pausa y cuándo termina una actividad.',
+                                    grammar: 'Istirahat expresa descanso; selesai indica que una actividad ha terminado. Kegiatan significa actividad.',
+                                    vocabIds: ['a2u4_istirahat', 'a2u4_kegiatan', 'a2u4_selesai'],
+                                    exercises: [
+                                        { vocabId: 'a2u4_istirahat', type: 'mc', prompt: '¿Qué significa «istirahat»?', options: ['Descansar; descanso', 'Empezar', 'Salir'], answer: 0, explanation: 'Istirahat se refiere al descanso o a descansar.' },
+                                        { vocabId: 'a2u4_kegiatan', type: 'translate_es_id', prompt: 'Traduce: Mi actividad empieza por la mañana.', answer: 'Kegiatan saya mulai pagi.', explanation: 'Kegiatan saya significa «mi actividad».' },
+                                        { vocabId: 'a2u4_selesai', type: 'listen', prompt: 'Escucha y escribe la oración.', answer: 'Kelas selesai pukul dua belas.', explanation: 'La oración dice que la clase termina a las doce.' },
+                                        { vocabId: 'a2u4_istirahat', type: 'order', prompt: 'Ordena: Descanso al mediodía.', words: ['siang', 'istirahat', 'Saya'], correctOrder: ['Saya', 'istirahat', 'siang'], explanation: 'Saya istirahat siang describe un descanso al mediodía.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Lección 4: Regresar y describir el día',
+                                    objective: 'Cierra una narración diaria describiendo el regreso y cómo te sientes.',
+                                    grammar: 'Pulang indica regresar a casa; sibuk y santai describen si el día está ocupado o tranquilo.',
+                                    vocabIds: ['a2u4_pulang', 'a2u4_sibuk', 'a2u4_santai'],
+                                    exercises: [
+                                        { vocabId: 'a2u4_sibuk', type: 'mc', prompt: '¿Qué significa «sibuk»?', options: ['Ocupado/a', 'Tranquilo/a', 'Cansado/a'], answer: 0, explanation: 'Sibuk describe a alguien que tiene muchas actividades o tareas.' },
+                                        { vocabId: 'a2u4_pulang', type: 'translate_es_id', prompt: 'Traduce: Regreso a casa por la tarde.', answer: 'Saya pulang sore.', explanation: 'Pulang expresa el regreso a casa.' },
+                                        { vocabId: 'a2u4_santai', type: 'listen', prompt: 'Escucha y escribe la oración.', answer: 'Hari ini saya santai.', explanation: 'La oración describe un día tranquilo.' },
+                                        { vocabId: 'a2u4_pulang', type: 'write', prompt: 'Escribe una frase para describir que hoy no estás ocupado/a.', hint: 'Usa «Hari ini saya tidak sibuk».', modelAnswer: 'Hari ini saya tidak sibuk.', explanation: 'El modelo usa tidak para negar sibuk.' }
+                                    ]
+                                }
+                            ]
+                        },
                     {
                         "id": "a2_u5",
                         "title": "U5 — Verbos activos: men-",
@@ -4365,6 +4499,21 @@
 
         function buildUnitLessons(unit) {
             if (!unit || !Array.isArray(unit.vocab) || !unit.vocab.length) return [];
+            if (Array.isArray(unit.lessons) && unit.lessons.length) {
+                const vocabularyById = new Map(unit.vocab.map(word => [word.id, word]));
+                return unit.lessons.map((lesson, index) => {
+                    const lessonVocab = (lesson.vocabIds || []).map(id => vocabularyById.get(id)).filter(Boolean);
+                    return {
+                        index,
+                        title: lesson.title || 'Lección ' + (index + 1),
+                        newVocab: lessonVocab,
+                        reviewVocab: [],
+                        vocab: lessonVocab,
+                        grammar: [lesson.objective, lesson.grammar].filter(Boolean).join(' '),
+                        exercises: Array.isArray(lesson.exercises) ? lesson.exercises : []
+                    };
+                });
+            }
             const a1Course = CourseData.levels.find(level => level.id === 'A1');
             const isOfficialA1Unit = Boolean(a1Course && a1Course.units.some(entry => entry.id === unit.id));
             if (unit.custom || !isOfficialA1Unit) {
@@ -4900,8 +5049,7 @@
             lessonIndex: 0,
 
             startUnitAssessment(unitId) {
-                const level = CourseData.levels.find(entry => entry.id === 'A1');
-                const unit = level && level.units.find(entry => entry.id === unitId);
+                const unit = CourseData.levels.flatMap(level => level.units).find(entry => entry.id === unitId);
                 if (!unit) return;
                 const lessons = buildUnitLessons(unit);
                 const completedCount = lessons.filter(lesson => App.completedLessons.includes(unitLessonProgressKey(unitId, lesson.index))).length;

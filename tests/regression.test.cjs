@@ -8,6 +8,10 @@ const root = path.resolve(__dirname, '..');
 const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 const serviceWorker = fs.readFileSync(path.join(root, 'service-worker.js'), 'utf8');
 const manifest = JSON.parse(fs.readFileSync(path.join(root, 'manifest.json'), 'utf8'));
+const studyActivitySource = fs.readFileSync(path.join(root, 'study-activity.js'), 'utf8');
+const studyActivitySandbox = { window: {} };
+vm.runInNewContext(studyActivitySource, studyActivitySandbox);
+const StudyActivity = studyActivitySandbox.window.StudyActivity;
 
 test('inline application JavaScript and service worker parse', () => {
   const scripts = [...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/gi)]
@@ -68,6 +72,7 @@ test('backup restoration validates version and replaces SRS data transactionally
   assert.match(html, /validateBackup\(JSON\.parse/);
   assert.match(html, /transaction\(\['srs', 'settings'\], 'readwrite'\)/);
   assert.match(html, /srsStore\.clear\(\)/);
+  assert.match(html, /putSetting\('studyActivity', data\.studyActivity/);
   assert.match(html, /tx\.oncomplete/);
 });
 
@@ -306,7 +311,8 @@ test('version 3 backup normalization supplies safe defaults for absent legacy SR
     'value.lastReviewed === null || value.lastReviewed === undefined',
     "interval: num('interval', 0",
     "efactor: num('efactor', 2.5",
-    'return { version: 3, xp: parsed.xp, completedUnits, completedLessons, customUnits, syllabusPos, srs }'
+    'const studyActivity = StudyActivity.validateBackup(parsed.studyActivity, new Date());',
+    'return { version: 3, xp: parsed.xp, completedUnits, completedLessons, customUnits, syllabusPos, srs, studyActivity }'
   ]) assert.ok(validator.includes(expected), 'missing backup normalization: ' + expected);
 });
 
@@ -363,6 +369,11 @@ test('SRS recordAttempt updates real attempt state for correct and incorrect ans
   assert.equal(incorrectSaved[0].item.interval, 1);
 });
 
+test('backup export includes the daily study activity record', () => {
+  assert.match(html, /studyActivity: this\.studyActivity/);
+  assert.match(html, /this\.studyActivity = backup\.studyActivity/);
+});
+
 test('backup validator executes against valid and invalid version 3 payloads', () => {
   const methodStart = html.indexOf('            validateBackup(parsed) {');
   const methodEnd = html.indexOf('\n            importProgress(e)', methodStart);
@@ -373,7 +384,7 @@ test('backup validator executes against valid and invalid version 3 payloads', (
   const course = vm.runInNewContext('(() => {\n' + html.slice(courseStart, courseEnd) + '\nreturn CourseData;\n})()');
   const validateBackup = vm.runInNewContext(
     '({' + methodSource + '\n}).validateBackup',
-    { CourseData: course, SYLLABUS: [], LEGACY_SRS_ID_ALIASES: {} }
+    { CourseData: course, SYLLABUS: [], LEGACY_SRS_ID_ALIASES: {}, StudyActivity }
   );
 
   const normalized = validateBackup({
@@ -391,6 +402,8 @@ test('backup validator executes against valid and invalid version 3 payloads', (
   assert.equal(normalized.srs[0].val.interval, 0);
   assert.equal(normalized.srs[0].val.efactor, 2.5);
   assert.equal(normalized.srs[0].val.repetition, 0);
+  assert.equal(normalized.studyActivity.dailyGoal, 30,
+    'legacy backups without study activity should receive a safe default');
 
   assert.throws(() => validateBackup({
     version: 2, xp: 12, completedUnits: [], customUnits: [], srs: []

@@ -27,6 +27,8 @@ jobs:
         run: node --test tests/conversation-practice.test.cjs
       - name: Run study activity unit tests
         run: node --test tests/study-activity.test.cjs
+      - name: Run A2 curriculum structure tests
+        run: node --test tests/a2-curriculum.test.cjs
       - name: Run KBBI audit queue tests
         run: node --test tests/audit-kbbi-pending.test.mjs
       - name: Run assessment engine unit tests

@@ -7,7 +7,7 @@ Estado: inventario estático del banco existente; **no es una especificación de
 
 Este mapa registra los 31 ítems A1 actualmente definidos en `assessment-engine.js`. La puntuación suma **36 puntos**: 29 puntos de opción múltiple y 7 puntos de producción escrita que requieren revisión humana. La unidad se asigna solo cuando el prompt, su explicación o la referencia curricular permite identificarla razonablemente; las asignaciones compuestas o inferidas se marcan como tales.
 
-Las etiquetas de habilidad proceden del motor (`vocabulary`, `grammar`, `comprehension`, `interaction`, `production`). La modalidad describe lo que realmente hace el ítem, no lo que su nombre pudiera sugerir. Los 12 ítems añadidos para U18–U23 son opciones escritas sin audio enlazado; los ítems anteriores se describen individualmente abajo: los clasificados como comprensión son lectura/interpretación de texto escrito.
+Las etiquetas de habilidad proceden del motor (`vocabulary`, `grammar`, `comprehension`, `interaction`, `production`). La modalidad describe lo que realmente hace el ítem, no lo que su nombre pudiera sugerir. Los ítems clasificados como comprensión son lectura/interpretación de texto escrito. Los 12 ítems añadidos para U18–U23 son opciones escritas sin audio enlazado.
 
 ## Inventario de ítems
 
@@ -35,7 +35,8 @@ Las etiquetas de habilidad proceden del motor (`vocabulary`, `grammar`, `compreh
 
 ## Nuevos ítems añadidos para U18–U23
 
-
+| ID | Unidad | Dimensión | Puntos | Modalidad | Objetivo |
+|---|---|---|---:|---|---|
 | `a1-u18-01` | U18 | Gramática | 1 | Opción múltiple escrita | Orden sustantivo + demostrativo |
 | `a1-u18-02` | U18 | Comprensión | 1 | Opción múltiple escrita | Distingue `kita` de `kami` |
 | `a1-u19-01` | U19 | Interacción | 1 | Opción múltiple escrita | Pedido de comida en restaurante |
@@ -68,7 +69,7 @@ El banco está desbalanceado respecto al blueprint de 40 puntos: no hay comprens
 
 - Hay vínculos identificables o razonablemente inferidos para U1–U7, U9–U23; U18–U23 ahora tienen dos ítems piloto nuevos por unidad.
 - No hay ítems identificados para U8 ni U24–U32.
-- U8 y U18–U22 no deben marcarse como cubiertas solo porque el contenido aparezca en el curso.
+- U8 y U24–U32 siguen sin ítems directos; no deben marcarse como cubiertas solo porque el contenido aparezca en el curso.
 - Las dos tareas abiertas integran más de una unidad, pero no sustituyen ítems independientes de cobertura para cada objetivo.
 - Los ítems de comprensión existentes son estímulos escritos. No hay ítems de escucha con recurso de audio en este banco.
 - No hay tarea oral evaluada ni evidencia de interacción espontánea.

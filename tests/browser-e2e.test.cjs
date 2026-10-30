@@ -519,3 +519,83 @@ test('main navigation opens each primary view and dictionary search filters Indo
     await new Promise(resolve => server.close(resolve));
   }
 });
+
+test('optional Indonesian pronunciation practice compares browser recognition without grading progress', async () => {
+  const { server, url } = await startServer();
+  const context = await browser.newContext({ serviceWorkers: 'block' });
+  const page = await context.newPage();
+
+  await page.addInitScript(() => {
+    window.__recognitionStarts = 0;
+    window.SpeechRecognition = class {
+      start() { window.__recognitionStarts++; window.__mockRecognition = this; }
+      abort() { this.aborted = true; }
+    };
+    Object.defineProperty(window, 'speechSynthesis', {
+      configurable: true,
+      value: { cancel() {}, getVoices() { return [{ lang: 'id-ID', name: 'Mock Indonesian' }]; }, speak() {}, onvoiceschanged: null }
+    });
+    window.SpeechSynthesisUtterance = function (text) { this.text = text; };
+  });
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
+    await page.evaluate(() => LessonEngine.startUnit({
+      id: 'pronunciation-test',
+      title: 'Prueba de pronunciación',
+      grammar: 'Prueba automatizada.',
+      vocab: [{ id: 'pronunciation-word', idn: 'Pagi', esp: 'Mañana', ex: 'Selamat pagi.', exEsp: 'Buenos días.' }],
+      exercises: [{
+        vocabId: 'pronunciation-word', type: 'mc', prompt: 'Escucha y elige el significado',
+        audioText: 'Selamat pagi', options: ['Buenos días', 'Buenas noches'], answer: 0, explanation: 'Buenos días.'
+      }]
+    }));
+    await page.getByRole('button', { name: 'Comenzar' }).click();
+    await page.getByRole('button', { name: 'Practicar pronunciación' }).click();
+    await page.waitForFunction(() => window.__recognitionStarts === 1);
+    assert.match(await page.locator('#pronunciationStatus').innerText(), /Escuchando/);
+    await page.evaluate(() => {
+      window.__mockRecognition.onresult({ results: [[{ transcript: 'Selamat pagi' }]] });
+      window.__mockRecognition.onend();
+    });
+    assert.match(await page.locator('#pronunciationStatus').innerText(), /frase reconocida coincide/);
+    assert.equal(await page.evaluate(() => LessonEngine.activeRecognition === null), true);
+    assert.equal(await page.evaluate(() => App.state?.xp || 0), 0,
+      'speaking practice must not award XP or grade the exercise');
+  } finally {
+    await context.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});
+
+test('pronunciation practice degrades gracefully when speech recognition is unavailable', async () => {
+  const { server, url } = await startServer();
+  const context = await browser.newContext({ serviceWorkers: 'block' });
+  const page = await context.newPage();
+  await page.addInitScript(() => {
+    window.SpeechRecognition = undefined;
+    window.webkitSpeechRecognition = undefined;
+  });
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
+    await page.evaluate(() => LessonEngine.startUnit({
+      id: 'pronunciation-fallback-test',
+      title: 'Prueba alternativa',
+      grammar: 'Prueba automatizada.',
+      vocab: [{ id: 'fallback-word', idn: 'Pagi', esp: 'Mañana', ex: 'Selamat pagi.', exEsp: 'Buenos días.' }],
+      exercises: [{
+        vocabId: 'fallback-word', type: 'mc', prompt: 'Escucha y elige',
+        audioText: 'Selamat pagi', options: ['Buenos días', 'Buenas noches'], answer: 0, explanation: 'Buenos días.'
+      }]
+    }));
+    await page.getByRole('button', { name: 'Comenzar' }).click();
+    await page.getByRole('button', { name: 'Practicar pronunciación' }).click();
+    assert.match(await page.locator('#pronunciationStatus').innerText(), /no ofrece reconocimiento de voz/);
+  } finally {
+    await context.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});

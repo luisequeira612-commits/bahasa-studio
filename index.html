@@ -4517,7 +4517,7 @@
                 App.switchView('lesson');
                 this.renderStep();
             },
-            exit() { App.switchView('route'); },
+            exit() { this.stopPronunciationPractice(); App.switchView('route'); },
             renderIntro() {
                 const u = this.currentUnit;
                 document.getElementById('lessonStepCount').innerText = '0/' + this.queue.length;
@@ -4531,6 +4531,7 @@
                     <div id="actionArea"><button class="btn" onclick="LessonEngine.renderStep()">Comenzar</button></div>`;
             },
             renderStep() {
+                this.stopPronunciationPractice();
                 if (this.intro) { this.intro = false; return this.renderIntro(); }
                 const container = document.getElementById('exerciseArea');
                 const total = this.queue.length;
@@ -4548,7 +4549,9 @@
                         ? `<h3>${App.escapeHtml(tapPrompt.label)}</h3>${window.renderTapTranslationSentence(tapPrompt.phrase, 'idn')}`
                         : `<h3>${App.escapeHtml(ex.prompt)}</h3>`;
                     const listenMarkup = ex.audioText
-                        ? `<button class="btn btn-outline" style="margin-top:12px;" data-audio-text="${App.escapeHtml(ex.audioText)}" onclick="AudioEngine.speak(this.dataset.audioText)" aria-label="Repetir audio">🔊 Repetir audio</button>`
+                        ? `<button class="btn btn-outline" style="margin-top:12px;" data-audio-text="${App.escapeHtml(ex.audioText)}" onclick="AudioEngine.speak(this.dataset.audioText)" aria-label="Repetir audio">🔊 Repetir audio</button>
+                            <button class="btn btn-outline" style="margin-top:8px;" onclick="LessonEngine.startPronunciationPractice()" aria-label="Practicar pronunciación">🎙️ Practicar pronunciación (opcional)</button>
+                            <p id="pronunciationStatus" role="status" aria-live="polite" style="font-size:0.85rem;color:var(--text-muted);margin-top:8px;">El micrófono solo se activa al pulsar. El navegador puede enviar audio a su proveedor de reconocimiento.</p>`
                         : '';
                     container.innerHTML = `
                         <div>
@@ -4612,6 +4615,66 @@
                             <button class="btn" onclick="LessonEngine.checkOrder()">Comprobar</button>
                         </div>
                     `;
+                }
+            },
+            stopPronunciationPractice() {
+                if (!this.activeRecognition) return;
+                const recognition = this.activeRecognition;
+                this.activeRecognition = null;
+                try { recognition.abort(); } catch (_) {}
+            },
+            startPronunciationPractice() {
+                const ex = this.queue[this.stepIndex];
+                const status = document.getElementById('pronunciationStatus');
+                if (!ex || !ex.audioText || !status) return;
+                const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                if (!Recognition) {
+                    status.textContent = 'Este navegador no ofrece reconocimiento de voz. Puedes repetir el audio y practicar en voz alta sin grabación.';
+                    return;
+                }
+                if (this.activeRecognition) {
+                    try { this.activeRecognition.abort(); } catch (_) {}
+                    this.activeRecognition = null;
+                }
+                const recognition = new Recognition();
+                this.activeRecognition = recognition;
+                recognition.lang = 'id-ID';
+                recognition.continuous = false;
+                recognition.interimResults = false;
+                recognition.maxAlternatives = 3;
+                const normalize = value => String(value || '').toLocaleLowerCase('id-ID')
+                    .normalize('NFD').replace(/\p{M}/gu, '')
+                    .replace(/[^\p{L}\p{N}\s]/gu, ' ').replace(/\s+/g, ' ').trim();
+                status.textContent = 'Escuchando… Di la frase en indonesio con claridad.';
+                const button = document.querySelector('[aria-label="Practicar pronunciación"]');
+                if (button) button.disabled = true;
+                recognition.onresult = event => {
+                    const alternatives = Array.from(event.results[0] || []).map(item => item.transcript || '');
+                    const target = normalize(ex.audioText);
+                    const matched = alternatives.some(value => normalize(value) === target);
+                    const heard = alternatives[0] || '';
+                    status.textContent = (matched ? '✓ La frase reconocida coincide.' : 'Frase reconocida: “' + heard + '”. No coincide exactamente; escucha otra vez e inténtalo más despacio.') +
+                        ' Esta comparación es orientativa, no una calificación de pronunciación.';
+                };
+                recognition.onerror = event => {
+                    const messages = {
+                        'not-allowed': 'No se concedió permiso para usar el micrófono. Puedes continuar sin él.',
+                        'service-not-allowed': 'El servicio de reconocimiento no está disponible. Puedes continuar sin él.',
+                        'no-speech': 'No se detectó voz. Inténtalo de nuevo cuando estés listo.',
+                        'audio-capture': 'No se encontró un micrófono disponible.'
+                    };
+                    status.textContent = messages[event.error] || 'No se pudo reconocer la voz. Puedes repetir el audio e intentarlo otra vez.';
+                };
+                recognition.onend = () => {
+                    if (this.activeRecognition === recognition) this.activeRecognition = null;
+                    if (button && button.isConnected) button.disabled = false;
+                };
+                try {
+                    recognition.start();
+                } catch (error) {
+                    this.activeRecognition = null;
+                    if (button) button.disabled = false;
+                    status.textContent = 'No se pudo iniciar el micrófono. Comprueba los permisos del navegador.';
                 }
             },
             selectMc(idx, btn) {

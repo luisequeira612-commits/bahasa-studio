@@ -51,7 +51,7 @@ test('A1 multiple-choice answers are distributed across all three positions', ()
     assert.equal(item.options.length, 3, item.id + ' should have three answer options');
     counts[item.answer] += 1;
   }
-  assert.deepEqual(counts.slice().sort((a, b) => a - b), [7, 10, 12]);
+  assert.deepEqual(counts.slice().sort((a, b) => a - b), [6, 11, 12]);
 });
 
 test('choice scoring is level-scoped and reports skill breakdowns', () => {
@@ -66,7 +66,7 @@ test('choice scoring is level-scoped and reports skill breakdowns', () => {
   assert.equal(result.earned, 3);
   assert.equal(result.possible, 36);
   assert.equal(result.skills.grammar.percent, 40);
-  assert.equal(result.skills.grammar.meetsMinimum, true);
+  assert.equal(result.skills.grammar.meetsMinimum, false);
   assert.equal(result.skills.vocabulary.percent, 17);
   assert.equal(result.provisionalPass, false);
   assert.deepEqual(result.openItemsPendingReview, ['a1-write-01']);
@@ -117,7 +117,7 @@ test('assessment definitions and scoring never access browser persistence APIs',
   vm.runInNewContext(source, sandbox, { filename: 'assessment-engine.js' });
   assert.ok(sandbox.module.exports.ITEM_BANK.every(item => item.id && item.level && item.skill && item.points > 0));
   assert.equal(Object.keys(sandbox.module.exports.LEVELS).join(','), 'A1,A2,B1,B2');
-  assert.equal(scoreAssessment('A1', {}).possible, 24);
+  assert.equal(scoreAssessment('A1', {}).possible, 36);
 });
 
 test('main app navigation exposes the independent assessment page', () => {

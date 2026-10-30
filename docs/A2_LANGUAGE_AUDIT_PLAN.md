@@ -80,9 +80,9 @@ Estados permitidos: `verified_primary`, `verified_secondary`, `needs_review`, `b
 
 ## Primera comprobación documental
 
-Se consultó directamente la entrada oficial [KBBI VI Daring — minggu](https://kbbi.kemendikdasmen.go.id/entri/minggu) el 2026-10-30. La entrada presenta `ming.gu` como sustantivo y define la acepción de día de la semana como el primer día de una semana (Ahad), con indicación de mayúscula inicial. Se registró `a2u1_minggu` como `verified_primary` únicamente para la comprobación lexicográfica de lema, grafía, clase y acepción. La naturalidad de `Hari ini hari Minggu.`, su traducción y su adecuación a A2 siguen en `not_checked`.
+Se consultaron directamente las entradas oficiales [KBBI VI Daring — minggu](https://kbbi.kemendikdasmen.go.id/entri/minggu) y [KBBI VI Daring — bulan](https://kbbi.kemendikdasmen.go.id/entri/bulan) el 2026-10-30. La entrada presenta `ming.gu` como sustantivo y define la acepción de día de la semana como el primer día de una semana (Ahad), con indicación de mayúscula inicial. Se registraron `a2u1_minggu` y `a2u1_bulan` como `verified_primary` únicamente para la comprobación lexicográfica de lema, grafía, clase y acepción. La entrada `bulan`, acepción 2, confirma el sentido de «mes». La naturalidad de `Hari ini hari Minggu.`, su traducción y su adecuación a A2 siguen en `not_checked`.
 
-Recuento del registro tras esta consulta: 1 término con evidencia primaria KBBI; 491 pendientes de consulta KBBI. Ningún término tiene todavía cerradas las revisiones de naturalidad, nivel y respuestas aceptadas.
+Recuento del registro tras estas consultas: 2 términos con evidencia primaria KBBI; 490 pendientes de consulta KBBI. Ningún término tiene todavía cerradas las revisiones de naturalidad, nivel y respuestas aceptadas.
 
 ## Orden de trabajo recomendado
 

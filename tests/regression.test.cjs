@@ -209,7 +209,8 @@ test('v3.7.1 audit fixes remain in place without changing backup or database ver
   assert.match(html, /async set\(store, key, val\) \{\s+return this\.setMany\(store, \[\{ key, val \}\]\);/);
   assert.match(html, /async setMany\(store, entries\) \{\s+return new Promise\(\(resolve, reject\) => \{/);
   assert.match(html, /Elige la frase que significa «Esta es mi familia»/);
-  assert.ok(html.includes("v.lang.toLowerCase().startsWith('id')"));
+  assert.ok(html.includes("String(voice.lang || '').toLowerCase().startsWith('id')"),
+    'voice discovery should tolerate missing language metadata without throwing');
   assert.ok(html.includes("function getLearningLevels()"));
   assert.ok(html.includes("return getLevels().filter(level => !['A2', 'B1', 'B2'].includes(level.id))"));
   assert.ok(html.includes("function getUniqueLearningVocabulary()"));

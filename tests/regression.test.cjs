@@ -1399,6 +1399,9 @@ test('optional pronunciation practice uses Indonesian browser recognition withou
     'pronunciation comparison must not grade exercises, award XP, or persist microphone data');
   assert.match(html, /this\.stopPronunciationPractice\(\);/);
 });
+
+test('audio playback speed is adjustable, validated, and persisted without changing default playback', () => {
+  assert.match(html, /id="audioPlaybackRate"/);
   assert.match(html, /setRate\(value, persist = true\)/);
   assert.match(html, /\[0\.5, 0\.7, 0\.85, 1\]\.includes\(rate\)/);
   assert.match(html, /DB\.set\('settings', 'audioPlaybackRate', rate\)/);

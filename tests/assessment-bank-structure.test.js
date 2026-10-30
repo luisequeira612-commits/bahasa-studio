@@ -20,10 +20,12 @@ for (const item of ITEM_BANK) {
   if (item.type === 'open') assert.ok(Array.isArray(item.rubric) && item.rubric.length > 0, item.id + ': open rubric');
 }
 
-const expanded = ITEM_BANK.filter(item => /^a1-u(?:18|19|20|21|22|23|24|25|26|27|28|29|30|31|32)-/.test(item.id));
-assert.equal(expanded.length, 30, 'two new items per unit U18–U32');
-assert.deepEqual([...new Set(expanded.map(item => item.unit))].sort(),
-  Array.from({ length: 15 }, (_, index) => 'a1_u' + (index + 18)));
+const expanded = ITEM_BANK.filter(item => /^a1-u(?:08|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32)-/.test(item.id));
+assert.equal(expanded.length, 32, 'two new items for U8 and each unit U18–U32');
+const coveredUnits = [...new Set(expanded.map(item => item.unit))];
+assert.equal(coveredUnits.length, 16);
+assert.ok(coveredUnits.includes('a1_u8'));
+for (let unit = 18; unit <= 32; unit++) assert.ok(coveredUnits.includes('a1_u' + unit));
 for (const item of expanded) {
   assert.equal(item.level, 'A1');
   assert.ok(item.objective && item.objective.length > 10, item.id + ': declared objective');
@@ -32,9 +34,10 @@ for (const item of expanded) {
   assert.equal(item.type, 'choice');
   assert.ok(!Object.hasOwn(item, 'audioText'), item.id + ': no fabricated audio');
 }
-assert.equal(getAssessment('A1').filter(item => expanded.some(x => x.id === item.id)).length, 30);
+assert.equal(getAssessment('A1').filter(item => expanded.some(x => x.id === item.id)).length, 32);
 
 const expectedAnswers = {
+  'a1-u08-01': 'Estudio todos los días', 'a1-u08-02': 'Mañana',
   'a1-u24-01': 'Lee un libro', 'a1-u24-02': 'Profesor/a o docente',
   'a1-u25-01': 'Afición o pasatiempo', 'a1-u25-02': 'Me gusta nadar',
   'a1-u26-01': 'Gira a la izquierda', 'a1-u26-02': 'Seguir recto',
@@ -53,9 +56,9 @@ for (const [id, expected] of Object.entries(expectedAnswers)) {
 
 
 const totalA1Points = ITEM_BANK.filter(item => item.level === 'A1').reduce((sum, item) => sum + item.points, 0);
-assert.equal(totalA1Points, 54, 'A1 pilot total after expansion');
+assert.equal(totalA1Points, 56, 'A1 pilot total after expansion');
 const blank = scoreAssessment('A1', {});
-assert.equal(blank.possible, 54);
+assert.equal(blank.possible, 56);
 assert.equal(blank.earned, 0);
 assert.equal(blank.provisionalPass, false);
 assert.equal(blank.thresholds.validated, false);

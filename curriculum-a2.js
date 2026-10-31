@@ -176,7 +176,7 @@ window.BAHASA_CURRICULUM_A2 = {
                             id: 'a2_u3',
                             title: 'Unidad 3: Ordenar acontecimientos y contar secuencias',
                             desc: 'Conecta acciones para explicar qué ocurrió primero, después y al final.',
-                            grammar: 'Los conectores temporales organizan los acontecimientos. Primera posición, continuación y cierre se expresan con palabras como pertama, lalu, kemudian y akhirnya. La forma del verbo no cambia por el pasado.',
+                            grammar: 'Los conectores temporales organizan los acontecimientos. El primer paso, las acciones siguientes y el cierre se expresan con palabras como pertama, lalu, kemudian y akhirnya. La forma del verbo no cambia para indicar pasado.',
                             vocab: [
                                 { id: 'a2u3_pertama', idn: 'Pertama', esp: 'Primero; en primer lugar', ex: 'Pertama, saya makan.', exEsp: 'Primero, como.' },
                                 { id: 'a2u3_lalu', idn: 'Lalu', esp: 'Luego; después', ex: 'Lalu, saya minum air.', exEsp: 'Luego, bebo agua.' },
@@ -313,7 +313,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                         { vocabId: 'a2u4_penuh', type: 'mc', prompt: 'En «Jadwal saya penuh», ¿qué significa penuh?', options: ['Lleno', 'Ordenado', 'Libre'], answer: 0, explanation: 'Penuh significa «lleno» o «completo».' },
                                         { vocabId: 'v251', type: 'listen', prompt: 'Escucha y escribe la oración.', answer: 'Saya pulang.', explanation: 'La oración dice «Regreso a casa».' },
                                         { vocabId: 'a2u4_sibuk', type: 'write', prompt: 'Escribe una frase para describir que hoy no estás ocupado/a.', hint: 'Usa «Hari ini saya tidak sibuk».', modelAnswer: 'Hari ini saya tidak sibuk.', explanation: 'El modelo niega sibuk con tidak.' },
-                                        { vocabId: 'a2u4_jadwal', type: 'write', prompt: 'Escribe un horario breve con dos actividades y sus horas; termina indicando si tu horario está lleno o tranquilo.', hint: 'Puedes usar «Pukul ... saya ...» para cada actividad y terminar con «Jadwal saya penuh» o «Hari ini saya santai».', modelAnswer: 'Pukul delapan saya belajar. Pukul dua belas saya makan. Jadwal saya penuh.', explanation: 'La respuesta integra dos actividades con sus horas y una descripción global del día. Es un modelo guiado; se pueden aceptar otras actividades y horarios coherentes.' }
+                                        { vocabId: 'a2u4_jadwal', type: 'write', prompt: 'Escribe un horario breve con dos actividades y sus horas; termina indicando si tu horario está lleno o si hoy tienes un ritmo tranquilo.', hint: 'Puedes usar «Pukul ... saya ...» para cada actividad y terminar con «Jadwal saya penuh» o «Hari ini saya santai».', modelAnswer: 'Pukul delapan saya belajar. Pukul dua belas saya makan. Jadwal saya penuh.', explanation: 'La respuesta integra dos actividades con sus horas y una descripción global del día. Es un modelo guiado; se pueden aceptar otras actividades y horarios coherentes.' }
                                     ]
                                 }
                             ]

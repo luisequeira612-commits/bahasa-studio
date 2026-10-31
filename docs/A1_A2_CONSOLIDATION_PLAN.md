@@ -109,3 +109,8 @@ Se añadió una prueba de regresión en `tests/multi-lesson-progression.test.cjs
 ## Tercera corrección A1 detectada por la prueba de alineación — 2026-10-31
 
 La nueva prueba integral de referencias detectó un tercer desajuste demostrable en A1 U5: el ejercicio «Ordena: Esta es mi familia» estaba vinculado a `v23` (`Anak`, hijo/a), pero su solución `Ini keluarga saya` corresponde a `v20` (`Keluarga`, familia). Se corrigió la referencia a `v20`. La prueba ahora distingue los ejercicios cerrados y los modelos de respuesta de las consignas abiertas de escritura que no tienen una respuesta modelo única; no exige que una palabra concreta aparezca en una consigna libre.
+
+
+## Normalización de glosas repetidas A1 — 2026-10-31
+
+La comprobación de términos repetidos encontró tres IDs reutilizados con el mismo término indonesio pero pequeñas variaciones de glosa española entre unidades: `Apa kabar?`, `Ini` y `Teman`. Se armonizaron sus glosas a `¿Cómo estás? / ¿Qué tal?`, `Este / esta / esto` y `Amigo/a`, respectivamente. No se cambió el lema indonesio, los ejemplos, los IDs ni las respuestas de ejercicios. Se añadió una prueba que impide que un ID reutilizado cambie de término o glosa entre sus apariciones. Es una normalización editorial de consistencia, no una nueva validación de equivalencia lingüística.

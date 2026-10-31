@@ -1835,11 +1835,9 @@
                 document.querySelectorAll('.option-btn').forEach(b => {
                     b.classList.remove('selected');
                     b.setAttribute('aria-pressed', 'false');
-                    b.style.removeProperty('background-color');
                 });
                 btn.classList.add('selected');
                 btn.setAttribute('aria-pressed', 'true');
-                btn.style.setProperty('background-color', '#fff0f2', 'important');
                 this.selectedOption = idx;
                 const checkButton = document.getElementById('checkMcButton');
                 if (checkButton) {

@@ -13,7 +13,7 @@ test('accepts a structurally consistent curriculum without external dictionary a
         { vocabId: 'v1', type: 'mc', prompt: 'Choose', options: ['comer', 'beber'], answer: 0 },
         { vocabId: 'v1', type: 'order', prompt: 'Order', words: ['Saya', 'makan'], correctOrder: ['Saya', 'makan'] },
       ],
-      lessons: [{ vocabIds: ['v1'], exercises: [{ vocabId: 'v1' }] }],
+      lessons: [{ vocabIds: ['v1'], exercises: [{ vocabId: 'v1', type: 'listen', prompt: 'Listen' }] }],
     }],
   });
   assert.equal(report.error_count, 0);

@@ -29,7 +29,7 @@ test('compact top bar uses the existing study activity values and a live goal ri
     assert.match(html, /class="app-topbar"/);
     assert.match(html, /id="studyStreakText"/);
     assert.match(html, /id="studyDailyXpText"/);
-    assert.match(html, /id="dailyGoalRing"[^>]*role="progressbar"/);
+    assert.match(html, /id="dailyGoalRing"[^>]*type="button"[^>]*aria-controls="dailyGoalHelp"/);
     assert.match(html, /goalRing\.style\.setProperty\('--goal-progress'/);
     assert.match(html, /id="studyLongestStreakText"/);
     assert.match(html, /id="totalExpBadge"/);
@@ -52,7 +52,7 @@ test('A1 units are rendered as completed, current or locked path nodes without c
     assert.match(html, /card\.dataset\.pathState/);
     assert.match(html, /Empezar lección \${currentLessonIndex \+ 1}/);
     assert.match(html, /lesson-start-btn/);
-    assert.match(html, /data-path-state="current"/);
+    assert.match(html, /card\.dataset\.pathState = isDone \? 'completed' : isNext \? 'current' : 'locked'/);
     assert.match(css, /\.path-node::before/);
     assert.match(css, /\.path-node-current > summary::before/);
 });
@@ -92,6 +92,6 @@ test('application and service worker cache versions are advanced without changin
     assert.match(html, /Bahasa Studio 3\.8\.9/);
     const manifest = fs.readFileSync(path.join(root, 'manifest.json'), 'utf8');
     const serviceWorker = fs.readFileSync(path.join(root, 'service-worker.js'), 'utf8');
-    assert.match(manifest, /Bahasa Studio 3\\.8\\.9/);
-    assert.match(serviceWorker, /bahasa-studio-v3\\.8\\.18/);
+    assert.match(manifest, /Bahasa Studio 3\.8\.9/);
+    assert.match(serviceWorker, /bahasa-studio-v3\.8\.18/);
 });

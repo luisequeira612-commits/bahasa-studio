@@ -110,7 +110,7 @@ test('service worker precaches both data files and invalidates the previous cach
   let activatePromise;
   listeners.activate({ waitUntil(promise) { activatePromise = promise; } });
   await activatePromise;
-  assert.deepEqual(deletedCaches.sort(), ['bahasa-studio-v3.8.8', 'bahasa-studio-v3.8.9', 'bahasa-studio-v3.8.10'],
+  assert.deepEqual(deletedCaches.sort(), ['bahasa-studio-v3.8.10', 'bahasa-studio-v3.8.8', 'bahasa-studio-v3.8.9'],
     'activation should remove only older Bahasa Studio caches and preserve caches owned by other apps');
 
   let responsePromise;

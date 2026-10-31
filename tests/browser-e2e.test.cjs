@@ -1181,3 +1181,32 @@ test('guided A1 writing shows task-specific review criteria and records progress
     await new Promise(resolve => server.close(resolve));
   }
 });
+
+test('free-writing notebook shows an example after a draft and never changes XP or SRS', async () => {
+  const { server, url } = await startServer();
+  const context = await browser.newContext({ serviceWorkers: 'block' });
+  const page = await context.newPage();
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
+    const before = await page.evaluate(async () => ({
+      xp: await DB.get('settings', 'userXp') || 0,
+      srs: (await DB.getAll('srs')).length
+    }));
+    await page.getByRole('button', { name: 'Abrir cuaderno de escritura' }).click();
+    await page.getByRole('button', { name: 'Empezar a escribir' }).nth(1).click();
+    await page.locator('#freeWritingDraft').fill('Hari ini saya di hotel. Besok saya pergi ke pantai.');
+    await page.getByRole('button', { name: 'Mostrar ejemplo orientativo' }).click();
+    await page.getByText('Un ejemplo posible').waitFor();
+    assert.equal(await page.locator('#writingPracticeContent').getByText(/no ha sido validado por un hablante nativo/i).count(), 1);
+    assert.equal(await page.evaluate(() => DB.get('settings', 'userXp') || 0), before.xp);
+    assert.equal(await page.evaluate(async () => (await DB.getAll('srs')).length), before.srs);
+    assert.equal(await page.locator('#writingPracticeContent button').count(), 2);
+    await page.reload({ waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
+    assert.equal(await page.locator('#freeWritingDraft').count(), 0);
+  } finally {
+    await context.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});

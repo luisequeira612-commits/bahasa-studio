@@ -70,7 +70,7 @@ test('A2 stays in beta until all A1 units are complete, including direct lesson 
   assert.match(html, /Beta · en revisión/);
   assert.match(html, /no ha sido validado por hablantes nativos/);
   assert.match(html, /const unitAccessible = lvl\.id === 'A1'[\s\S]*?lvl\.id === 'A2' \? a1Complete/);
-  assert.match(html, /if \(\['B1', 'B2'\]\.includes\(level\.id\)\)/,
+  assert.ok(html.includes("['B1', 'B2'].includes(level.id)"),
     'B1 and B2 must remain blocked from direct lesson entry');
 });
 

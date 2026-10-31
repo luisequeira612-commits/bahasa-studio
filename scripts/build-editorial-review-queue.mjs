@@ -61,7 +61,7 @@ export function buildEditorialQueue(curricula) {
 
 function csvCell(value) {
   const text = String(value ?? '');
-  return /[",\\r\\n]/.test(text) ? `"${text.replaceAll('"', '""')}"` : text;
+  return /[",\r\n]/.test(text) ? `"${text.replaceAll('"', '""')}"` : text;
 }
 
 export function toCsv(rows) {

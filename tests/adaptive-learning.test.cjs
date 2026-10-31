@@ -52,7 +52,7 @@ test('conversation practice is a fallback when no lesson is available and the da
 });
 
 test('maintenance is returned when no task is urgent or available', () => {
-  const result = AdaptiveLearning.recommend({ dueCount: 0, weakWords: [], dailyXp: 30, dailyGoal: 30 });
+  const result = AdaptiveLearning.recommend({ dueCount: 0, weakWords: [], todayXp: 30, dailyGoal: 30 });
   assert.equal(result.type, 'maintenance');
   assert.equal(result.action, 'none');
 });

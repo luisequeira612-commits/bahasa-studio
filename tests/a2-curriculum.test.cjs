@@ -583,6 +583,7 @@ test('A2 U4 includes integrated daily-schedule writing with two timed activities
   const exercise = lesson.exercises.find(entry => entry.type === 'write' && entry.vocabId === 'a2u4_jadwal');
   assert.ok(exercise);
   assert.match(exercise.prompt, /dos actividades y sus horas/);
+  assert.match(exercise.prompt, /ritmo tranquilo/);
   assert.match(exercise.modelAnswer, /Pukul delapan/);
   assert.match(exercise.modelAnswer, /Pukul dua belas/);
   assert.match(exercise.modelAnswer, /Jadwal saya penuh/);

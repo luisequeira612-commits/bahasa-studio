@@ -387,7 +387,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                     "explanation": "Ayah significa padre."
                                 },
                                 {
-                                    "vocabId": "v23",
+                                    "vocabId": "v20",
                                     "type": "order",
                                     "prompt": "Ordena: Esta es mi familia",
                                     "words": [

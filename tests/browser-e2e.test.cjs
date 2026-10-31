@@ -470,7 +470,7 @@ test('service worker serves the app after the network is disconnected', async ()
     await context.setOffline(true);
     await page.reload({ waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined');
-    assert.match(await page.title(), /Bahasa Studio 3\.8\.13/);
+    assert.match(await page.title(), /Bahasa Studio 3\.8\.14/);
     assert.equal(await page.locator('body').isVisible(), true);
     assert.equal(await page.evaluate(() => typeof ConversationEngine !== 'undefined' && typeof StudyActivity !== 'undefined'), true,
       'the conversation and study activity modules must be available from the service-worker cache offline');
@@ -1271,6 +1271,45 @@ test('storage persistence status is honest and the weekly backup reminder can be
       App.updateBackupReminder();
     });
     await page.locator('#backupReminderBanner').waitFor({ state: 'visible' });
+  } finally {
+    await context.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});
+
+test('every lesson exercise exposes a report action connected to the existing response log', async () => {
+  const { server, url } = await startServer();
+  const context = await browser.newContext({ serviceWorkers: 'block' });
+  const page = await context.newPage();
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof LessonEngine !== 'undefined' &&
+      typeof App !== 'undefined' && DB && DB.db);
+    await page.evaluate(() => {
+      App.switchView('lesson');
+      LessonEngine.currentUnit = { id: 'a1_u1', title: 'Saludos' };
+      LessonEngine.currentLesson = { index: 0, title: 'Lección 1' };
+      LessonEngine.lessonIndex = 0;
+      LessonEngine.queue = [{
+        type: 'mc', prompt: '¿Qué significa halo?',
+        options: ['Hola', 'Adiós'], answer: 0,
+        _auditExerciseId: 'a1_u1:lesson-1:exercise-1'
+      }];
+      LessonEngine.stepIndex = 0;
+      LessonEngine.intro = false;
+      LessonEngine.renderStep();
+    });
+    const reportButton = page.getByRole('button', { name: 'Reportar un error en este ejercicio' });
+    await reportButton.click();
+    await page.waitForFunction(() => WrittenResponse.read().some(entry =>
+      entry.type === 'reported-issue' && entry.exerciseId === 'a1_u1:lesson-1:exercise-1'));
+    assert.equal(await reportButton.innerText(), '✓ Reportado');
+    assert.equal(await reportButton.isDisabled(), true);
+    const record = await page.evaluate(() => WrittenResponse.read()[0]);
+    assert.equal(record.unitTitle, 'Saludos');
+    assert.equal(record.expectedAnswer, 'Hola');
+    assert.equal(record.exerciseType, 'mc');
   } finally {
     await context.close();
     await new Promise(resolve => server.close(resolve));

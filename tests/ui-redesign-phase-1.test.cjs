@@ -29,7 +29,7 @@ test('compact top bar uses the existing study activity values and a live goal ri
     assert.match(html, /class="app-topbar"/);
     assert.match(html, /id="studyStreakText"/);
     assert.match(html, /id="studyDailyXpText"/);
-    assert.match(html, /id="dailyGoalRing"[^>]*role="progressbar"/);
+    assert.match(html, /id="dailyGoalRing"[^>]*type="button"[^>]*aria-controls="dailyGoalHelp"/);
     assert.match(html, /goalRing\.style\.setProperty\('--goal-progress'/);
     assert.match(html, /id="studyLongestStreakText"/);
     assert.match(html, /id="totalExpBadge"/);
@@ -50,7 +50,9 @@ test('A1 units are rendered as completed, current or locked path nodes without c
     assert.match(html, /path-node-current/);
     assert.match(html, /path-node-locked/);
     assert.match(html, /card\.dataset\.pathState/);
-    assert.match(html, /isNext && lesson\.index === \(nextLesson < 0 \? lessons\.length : nextLesson\) \? 'Empezar'/);
+    assert.match(html, /Empezar lección \${currentLessonIndex \+ 1}/);
+    assert.match(html, /lesson-start-btn/);
+    assert.match(html, /card\.dataset\.pathState = isDone \? 'completed' : isNext \? 'current' : 'locked'/);
     assert.match(css, /\.path-node::before/);
     assert.match(css, /\.path-node-current > summary::before/);
 });
@@ -59,4 +61,37 @@ test('navigation layout includes safe-area spacing for narrow mobile screens', (
     assert.match(css, /env\(safe-area-inset-bottom\)/);
     assert.match(css, /@media \(max-width:360px\)/);
     assert.match(css, /\.nav-bottom/);
+});
+
+
+test('current unit places a full-width lesson CTA before a collapsed grammar drawer', () => {
+    assert.match(html, /class="btn lesson-start-btn"[^>]*>Empezar lección \${currentLessonIndex \+ 1}/);
+    assert.match(html, /<details class="unit-grammar">\s*<summary>Ver gramática<\/summary>/);
+    assert.match(html, /class="unit-secondary-actions"/);
+    assert.match(css, /\.lesson-start-btn[\s\S]*?min-height:52px/);
+    assert.match(css, /background:#e8384f; color:#fff/);
+    assert.match(css, /border-bottom:4px solid #bd263b/);
+});
+
+test('approved units use green completion styling and remain collapsed by default', () => {
+    assert.match(html, /path-node-completed/);
+    assert.match(html, /badge-completed/);
+    assert.match(css, /\.path-node-completed \.unit-title \{ color:var\(--text-main\); \}/);
+    assert.match(css, /\.path-node-completed \.unit-complete-check \{ color:var\(--success\)/);
+    assert.doesNotMatch(html, /if \(isDone\) card\.open = true/);
+});
+
+test('daily goal ring explains its purpose accessibly and updates its spoken label', () => {
+    assert.match(html, /id="dailyGoalRing"[^>]*aria-controls="dailyGoalHelp"/);
+    assert.match(html, /id="dailyGoalHelp"[^>]*>Este anillo mide cuánto XP/);
+    assert.match(html, /aria-label', 'Objetivo diario: '/);
+    assert.match(html, /scrollToCurrentUnit\(true\)/);
+});
+
+test('application and service worker cache versions are advanced without changing worker strategy', () => {
+    assert.match(html, /Bahasa Studio 3\.8\.9/);
+    const manifest = fs.readFileSync(path.join(root, 'manifest.json'), 'utf8');
+    const serviceWorker = fs.readFileSync(path.join(root, 'service-worker.js'), 'utf8');
+    assert.match(manifest, /Bahasa Studio 3\.8\.9/);
+    assert.match(serviceWorker, /bahasa-studio-v3\.8\.18/);
 });

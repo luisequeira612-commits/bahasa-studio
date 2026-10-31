@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bahasa Studio 3.8.8</title>
+    <title>Bahasa Studio 3.8.9</title>
     <meta name="description" content="Curso de indonesio PWA para hispanohablantes sin costo ni penalizaciones.">
     <meta name="theme-color" content="#e8384f">
     <link rel="manifest" href="./manifest.json">
@@ -16,10 +16,11 @@
         <div class="topbar-metrics" aria-label="Tu actividad">
             <span class="topbar-streak" title="Racha actual">🔥 <strong id="studyStreakText">0 días</strong></span>
             <span class="topbar-xp" title="Experiencia ganada hoy">⚡ <strong id="studyDailyXpText">0 / 30 XP</strong></span>
-            <div class="daily-goal-ring" id="dailyGoalRing" role="progressbar" aria-label="Objetivo diario de XP" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-                <div class="daily-goal-ring-inner"><span id="dailyGoalPercent">0%</span></div>
-                <div id="studyDailyXpFill" class="progress-fill" aria-hidden="true"></div>
-            </div>
+            <button class="daily-goal-ring" id="dailyGoalRing" type="button" aria-label="Objetivo diario: 0 de 30 XP" aria-expanded="false" aria-controls="dailyGoalHelp" aria-describedby="dailyGoalHelp" onclick="App.toggleDailyGoalHelp()">
+                <span class="daily-goal-ring-inner"><span id="dailyGoalPercent">0%</span></span>
+                <span id="studyDailyXpFill" class="progress-fill" aria-hidden="true"></span>
+            </button>
+        <p id="dailyGoalHelp" class="daily-goal-help" hidden>Este anillo mide cuánto XP has ganado hoy frente a tu objetivo diario.</p>
         </div>
     </header>
 
@@ -2341,6 +2342,7 @@ Requisitos:
                 this.updateUI();
                 this.renderCourseRoute();
                 this.renderDict();
+                this.scrollToCurrentUnit(false);
 
                 window.addEventListener('online', () => this.checkNetwork());
                 window.addEventListener('offline', () => this.checkNetwork());
@@ -2383,6 +2385,20 @@ Requisitos:
                     else el.removeAttribute('aria-current');
                 });
                 if (viewId === 'srs' || viewId === 'profile') this.updateSrsView();
+                if (viewId === 'route') this.scrollToCurrentUnit(true);
+            },
+            toggleDailyGoalHelp() {
+                const ring = document.getElementById('dailyGoalRing');
+                const help = document.getElementById('dailyGoalHelp');
+                if (!ring || !help) return;
+                const expanded = ring.getAttribute('aria-expanded') === 'true';
+                ring.setAttribute('aria-expanded', String(!expanded));
+                help.hidden = expanded;
+            },
+            scrollToCurrentUnit(smooth = true) {
+                const current = document.querySelector('#courseContainer [data-path-state="current"]');
+                if (!current || !document.getElementById('view-route').classList.contains('active')) return;
+                current.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', block: 'center' });
             },
             addXp(amount) {
                 this.xp += amount;
@@ -2429,7 +2445,7 @@ Requisitos:
                 const goalRing = document.getElementById('dailyGoalRing');
                 const goalPercent = document.getElementById('dailyGoalPercent');
                 if (goalRing) {
-                    goalRing.setAttribute('aria-valuenow', String(percent));
+                    goalRing.setAttribute('aria-label', 'Objetivo diario: ' + earned + ' de ' + goal + ' XP, ' + percent + '% completado');
                     goalRing.style.setProperty('--goal-progress', percent + '%');
                 }
                 if (goalPercent) goalPercent.textContent = percent + '%';
@@ -2496,11 +2512,17 @@ Requisitos:
                         card.className = `unit-card ${isDone ? 'completed' : ''} ${lvl.id === 'A1' ? 'path-node ' + (isDone ? 'path-node-completed' : isNext ? 'path-node-current' : 'path-node-locked') : ''}`;
                         if (lvl.id === 'A1') card.dataset.pathState = isDone ? 'completed' : isNext ? 'current' : 'locked';
                         if (isNext) card.open = true;
+                        const currentLessonIndex = nextLesson < 0 ? lessons.length : nextLesson;
                         const lessonButtons = lessons.map(lesson => {
                             const lessonDone = isDone || this.completedLessons.includes(unitLessonProgressKey(unit.id, lesson.index));
-                            const lessonUnlocked = unitAccessible && (lessonDone || lesson.index === (nextLesson < 0 ? lessons.length : nextLesson));
-                            return `<button class="btn btn-outline btn-sm" style="flex:1; min-width:135px;" data-unit-id="${App.escapeHtml(unit.id)}" data-lesson-index="${lesson.index}" ${lessonUnlocked ? '' : 'disabled'} onclick="LessonEngine.startUnitById(this.dataset.unitId, Number(this.dataset.lessonIndex))">${lessonDone ? '✓ ' : ''}${isNext && lesson.index === (nextLesson < 0 ? lessons.length : nextLesson) ? 'Empezar' : 'Lección ' + (lesson.index + 1)}${lessonDone ? ' · Repasar' : ''}</button>`;
+                            const isPrimaryLesson = isNext && lesson.index === currentLessonIndex && currentLessonIndex < lessons.length;
+                            const lessonUnlocked = unitAccessible && (lessonDone || lesson.index === currentLessonIndex);
+                            if (isPrimaryLesson) return '';
+                            return `<button class="btn btn-outline btn-sm" style="flex:1; min-width:135px;" data-unit-id="${App.escapeHtml(unit.id)}" data-lesson-index="${lesson.index}" ${lessonUnlocked ? '' : 'disabled'} onclick="LessonEngine.startUnitById(this.dataset.unitId, Number(this.dataset.lessonIndex))">${lessonDone ? '✓ ' : ''}Lección ${lesson.index + 1}${lessonDone ? ' · Repasar' : ''}</button>`;
                         }).join('');
+                        const primaryLessonButton = isNext && currentLessonIndex < lessons.length
+                            ? `<button class="btn lesson-start-btn" data-unit-id="${App.escapeHtml(unit.id)}" data-lesson-index="${currentLessonIndex}" onclick="LessonEngine.startUnitById(this.dataset.unitId, Number(this.dataset.lessonIndex))">Empezar lección ${currentLessonIndex + 1}</button>`
+                            : '';
                         const examButton = lvl.id === 'A1' && !isDone && unitAccessible && completedCount === lessons.length
                             ? `<button class="btn" data-unit-id="${App.escapeHtml(unit.id)}" onclick="LessonEngine.startUnitAssessment(this.dataset.unitId)">Prueba final · Desbloquear siguiente unidad</button>`
                             : '';
@@ -2508,21 +2530,23 @@ Requisitos:
                             : lvl.id === 'A1' ? (isNext ? 'En curso' : 'Bloqueada') : 'Disponible';
                         card.innerHTML = `
                             <summary>
-                                <span class="unit-title">${App.escapeHtml(unit.title)} ${isDone ? '✓' : ''}${unit.custom ? ' ✨' : ''}</span>
-                                <span class="badge">${statusLabel}</span>
+                                <span class="unit-title">${App.escapeHtml(unit.title)} ${isDone ? '<span class="unit-complete-check" aria-label="Completada">✓</span>' : ''}${unit.custom ? ' ✨' : ''}</span>
+                                <span class="badge ${isDone ? 'badge-completed' : ''}">${statusLabel}</span>
                             </summary>
                             <div class="unit-body">
                                 <p style="font-size:0.85rem; color:var(--text-muted);">${App.escapeHtml(unit.desc)}</p>
                                 <p style="font-size:0.85rem; color:var(--text-muted); margin:8px 0;">Lecciones: ${completedCount}/${lessons.length}</p>
                                 <div class="progress-bar" style="margin-bottom:10px;"><div class="progress-fill" style="width:${lessons.length ? completedCount / lessons.length * 100 : 0}%;"></div></div>
-                                <div style="background:var(--bg-card); padding:8px; border-radius:10px; font-size:0.85rem;">
-                                    💡 <strong>Gramática:</strong> ${App.escapeHtml(unit.grammar)}
-                                </div>
-                                <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                                ${primaryLessonButton}
+                                <details class="unit-grammar">
+                                    <summary>Ver gramática</summary>
+                                    <div class="unit-grammar-content">💡 <strong>Gramática:</strong> ${App.escapeHtml(unit.grammar)}</div>
+                                </details>
+                                <div class="unit-secondary-actions">
                                     <button class="btn btn-outline btn-sm" data-word="${App.escapeHtml(unit.vocab[0]?.idn || '')}" onclick="AudioEngine.speak(this.dataset.word)">🔊 Pronunciación</button>
                                     ${unit.custom ? `<button class="btn btn-outline btn-sm" data-unit-id="${App.escapeHtml(unit.id)}" onclick="AIGen.remove(this.dataset.unitId)">Eliminar</button>` : ''}
                                 </div>
-                                <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;">${lessonButtons}</div>
+                                <div class="unit-lesson-actions">${lessonButtons}</div>
                                 ${examButton}
                                 ${isDone ? `<p style="font-size:0.85rem;color:var(--success);margin-top:8px;">${lvl.id === 'A1' ? 'Prueba final superada · siguiente unidad desbloqueada' : 'Unidad completada'}</p>` : ''}
                             </div>

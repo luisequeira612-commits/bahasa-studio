@@ -84,3 +84,12 @@ La fase no se considera cerrada hasta que:
 6. audio/dispositivo no probado se identifique como tal, sin presentarlo como aprobado.
 
 Esta fase produce una consolidación editorial y técnica verificable, no una certificación de indonesio por hablante nativo.
+
+
+## Primera pasada editorial A2 U1–U5 — 2026-10-31
+
+Se inspeccionaron las lecciones, ejemplos y ejercicios de U1–U5. En U1–U4 no se cambió contenido lingüístico en esta pasada: no se encontró una contradicción interna suficientemente demostrable como para justificar una corrección automática. Quedan pendientes los juicios de naturalidad, registro y adecuación de nivel.
+
+En U5, lección 1, se detectó una explicación copiada de otro ejercicio en la actividad de ordenar palabras vinculada a `a2u5_berbicara`: la consigna y la solución eran «Ordena: Él o ella habla» / `Dia berbicara`, pero la explicación hablaba de `Saya bersepeda ke sekolah`. Se sustituyó por una explicación alineada con la consigna y la respuesta. Se añadió una regresión en `tests/a2-curriculum.test.cjs` que comprueba la consigna, el orden correcto y que la explicación no vuelva a mencionar `bersepeda` ni `sekolah`.
+
+Esta corrección es de coherencia didáctica y retroalimentación; no modifica vocabulario, IDs, progresión ni estados de auditoría lingüística.

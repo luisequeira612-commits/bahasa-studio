@@ -72,7 +72,7 @@ export function toCsv(rows) {
     'level_fit_review','accepted_answers_review','reviewer','evidence_notes',
     'proposed_correction','review_dimensions',
   ];
-  return [headers.join(','), ...rows.map((row) => headers.map((key) => csvCell(row[key])).join(','))].join('\\n') + '\\n';
+  return [headers.join(','), ...rows.map((row) => headers.map((key) => csvCell(row[key])).join(','))].join('\n') + '\n';
 }
 
 function loadCurriculum(source, globalName, filename) {

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bahasa Studio 3.8.11</title>
+    <title>Bahasa Studio 3.8.12</title>
     <meta name="description" content="Curso de indonesio PWA para hispanohablantes sin costo ni penalizaciones.">
     <meta name="theme-color" content="#e8384f">
     <link rel="manifest" href="./manifest.json">
@@ -26,6 +26,11 @@
 
     <!-- CURSO / RUTA -->
     <main id="view-route" class="app-view active">
+        <div id="backupReminderBanner" class="backup-reminder-banner" role="status" aria-live="polite" hidden>
+            <span>Recuerda exportar tu copia JSON para proteger tu progreso.</span>
+            <button type="button" onclick="App.exportProgress()">Exportar JSON</button>
+            <button type="button" class="backup-reminder-dismiss" aria-label="Recordar en una semana" title="Recordar en una semana" onclick="App.dismissBackupReminder()">×</button>
+        </div>
         <section class="learning-intro">
             <p class="eyebrow">TU CAMINO DE APRENDIZAJE</p>
             <h1>Aprende indonesio paso a paso</h1>
@@ -167,7 +172,13 @@
     <main id="view-settings" class="app-view">
         <button class="btn btn-outline btn-sm" type="button" onclick="App.switchView('profile')">← Perfil</button>
         <h2>Ajustes y Datos</h2>
-        
+
+        <div class="card">
+            <h3>Protección del almacenamiento</h3>
+            <p id="storagePersistenceStatus" role="status" aria-live="polite" style="font-size:0.85rem;color:var(--text-muted);margin:8px 0;">Comprobando si el navegador protege los datos de esta app…</p>
+            <p style="font-size:0.8rem;color:var(--text-muted);">La persistencia depende del navegador. Mantén también una copia JSON fuera del dispositivo.</p>
+        </div>
+
         <div class="card">
             <h3>Copia de Seguridad</h3>
             <p style="font-size: 0.85rem; color: var(--text-muted); margin: 8px 0;">Exporta o restaura tu progreso en un archivo JSON validado.</p>
@@ -2344,7 +2355,15 @@ Requisitos:
                 CustomLessons.pos = (await DB.get('settings', 'syllabusPos')) || 0;
                 AIGen.showNext();
                 try { if (localStorage.getItem('bs_dark') === '1') document.body.classList.add('dark-mode'); } catch (e) {}
-                if (navigator.storage && navigator.storage.persist) navigator.storage.persist();
+                try {
+                    if (navigator.storage && typeof navigator.storage.persist === 'function') {
+                        await navigator.storage.persist();
+                    }
+                } catch (error) {
+                    console.warn('El navegador no concedió almacenamiento persistente:', error);
+                }
+                await this.updateStoragePersistenceStatus();
+                this.updateBackupReminder();
 
                 if (this.apiKey) document.getElementById('apiKeyInput').value = this.apiKey;
 
@@ -2394,7 +2413,46 @@ Requisitos:
                     else el.removeAttribute('aria-current');
                 });
                 if (viewId === 'srs' || viewId === 'profile') this.updateSrsView();
-                if (viewId === 'route') this.scrollToCurrentUnit(true);
+                if (viewId === 'route') {
+                    this.scrollToCurrentUnit(true);
+                    this.updateBackupReminder();
+                }
+            },
+            async updateStoragePersistenceStatus() {
+                const status = document.getElementById('storagePersistenceStatus');
+                if (!status) return;
+                if (!navigator.storage || typeof navigator.storage.persisted !== 'function') {
+                    status.textContent = 'Este navegador no permite consultar el estado de persistencia.';
+                    status.dataset.persisted = 'unsupported';
+                    return;
+                }
+                try {
+                    const persisted = await navigator.storage.persisted();
+                    status.dataset.persisted = String(persisted);
+                    status.textContent = persisted
+                        ? 'Almacenamiento persistente concedido por el navegador.'
+                        : 'El navegador no ha concedido persistencia. Exporta tu copia JSON con regularidad.';
+                } catch (error) {
+                    status.dataset.persisted = 'unknown';
+                    status.textContent = 'No se pudo consultar la persistencia. Exporta tu copia JSON con regularidad.';
+                }
+            },
+            updateBackupReminder() {
+                const banner = document.getElementById('backupReminderBanner');
+                if (!banner) return;
+                try {
+                    const lastDismissed = Number(localStorage.getItem('bahasaStudioBackupReminderLastDismissedAt')) || 0;
+                    const week = 7 * 24 * 60 * 60 * 1000;
+                    banner.hidden = lastDismissed > 0 && Date.now() - lastDismissed < week;
+                } catch (error) {
+                    banner.hidden = true;
+                }
+            },
+            dismissBackupReminder() {
+                try {
+                    localStorage.setItem('bahasaStudioBackupReminderLastDismissedAt', String(Date.now()));
+                } catch (error) {}
+                this.updateBackupReminder();
             },
             toggleDailyGoalHelp() {
                 const ring = document.getElementById('dailyGoalRing');
@@ -2725,6 +2783,7 @@ Requisitos:
                 a.href = URL.createObjectURL(blob);
                 a.download = `bahasa_studio_backup.json`;
                 a.click();
+                this.dismissBackupReminder();
             },
             validateBackup(parsed) {
                 const fail = () => { throw new Error('Formato de copia no válido.'); };

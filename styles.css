@@ -462,3 +462,22 @@ button:disabled, button:disabled:active { transform:none; border-bottom-width:4p
     width:48px; min-width:48px; height:48px; min-height:48px;
     padding:0; margin-top:8px;
 }
+
+
+/* Prioridad 5: recordatorio semanal discreto de copia local. */
+.backup-reminder-banner {
+    display:flex; align-items:center; gap:8px; flex-wrap:wrap;
+    margin:8px 0 12px; padding:9px 10px;
+    border:1px solid var(--border); border-radius:12px;
+    background:var(--bg-secondary); color:var(--text-muted); font-size:.78rem;
+}
+.backup-reminder-banner[hidden] { display:none; }
+.backup-reminder-banner span { flex:1 1 150px; }
+.backup-reminder-banner button {
+    width:auto; min-height:36px; padding:6px 10px;
+    border:1px solid var(--border); border-radius:9px;
+    background:var(--bg-card); color:var(--text-main); font-size:.78rem;
+}
+.backup-reminder-banner .backup-reminder-dismiss {
+    flex:0 0 36px; width:36px; padding:0; font-size:1.1rem;
+}

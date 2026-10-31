@@ -470,7 +470,7 @@ test('service worker serves the app after the network is disconnected', async ()
     await context.setOffline(true);
     await page.reload({ waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined');
-    assert.match(await page.title(), /Bahasa Studio 3\.8\.11/);
+    assert.match(await page.title(), /Bahasa Studio 3\.8\.12/);
     assert.equal(await page.locator('body').isVisible(), true);
     assert.equal(await page.evaluate(() => typeof ConversationEngine !== 'undefined' && typeof StudyActivity !== 'undefined'), true,
       'the conversation and study activity modules must be available from the service-worker cache offline');
@@ -1232,6 +1232,50 @@ test('free-writing notebook shows an example after a draft and never changes XP 
   }
 });
 
+
+test('storage persistence status is honest and the weekly backup reminder can be deferred', async () => {
+  const { server, url } = await startServer();
+  const context = await browser.newContext({ serviceWorkers: 'block' });
+  const page = await context.newPage();
+
+  try {
+    await page.addInitScript(() => {
+      window.__persistCalls = 0;
+      Object.defineProperty(navigator, 'storage', {
+        configurable: true,
+        value: {
+          persist: async () => { window.__persistCalls += 1; throw new Error('permission denied'); },
+          persisted: async () => false
+        }
+      });
+    });
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' && DB && DB.db &&
+      document.querySelector('#storagePersistenceStatus')?.dataset.persisted === 'false');
+
+    assert.equal(await page.evaluate(() => window.__persistCalls), 1,
+      'the app should request persistence once during startup, without failing if denied');
+    assert.match(await page.locator('#storagePersistenceStatus').innerText(), /no ha concedido persistencia/i);
+
+    await page.evaluate(() => {
+      localStorage.removeItem('bahasaStudioBackupReminderLastDismissedAt');
+      App.updateBackupReminder();
+    });
+    await page.locator('#backupReminderBanner').waitFor({ state: 'visible' });
+    await page.getByRole('button', { name: 'Recordar en una semana' }).click();
+    await page.locator('#backupReminderBanner').waitFor({ state: 'hidden' });
+
+    await page.evaluate(() => {
+      localStorage.setItem('bahasaStudioBackupReminderLastDismissedAt',
+        String(Date.now() - 8 * 24 * 60 * 60 * 1000));
+      App.updateBackupReminder();
+    });
+    await page.locator('#backupReminderBanner').waitFor({ state: 'visible' });
+  } finally {
+    await context.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});
 
 test('lesson word preview cards fit narrow mobile screens and pronunciation control stays touch-sized', async () => {
   const { server, url } = await startServer();

@@ -96,7 +96,7 @@ test('checks reviewVocabIds and does not warn when exercises live inside lessons
     units: [{
       id: 'u1',
       title: 'One',
-      vocab: [{ id: 'a2_word', idn: 'jadwal', esp: 'horario' }],
+      vocab: [{ id: 'a2_word', idn: 'jadwal', esp: 'horario', ex: 'Jadwal saya penuh.', exEsp: 'Mi horario está lleno.' }],
       lessons: [{ vocabIds: ['a2_word'], reviewVocabIds: ['missing'], exercises: [] }],
     }],
   });

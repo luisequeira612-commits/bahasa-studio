@@ -16,7 +16,7 @@ test('due reviews take priority over every other recommendation', () => {
     dueCount: 4,
     weakWords: [{ id: 'w1', term: 'membaca' }],
     nextLesson: { unitId: 'a1_u2', lessonIndex: 0, title: 'Lección 1' },
-    dailyXp: 0,
+    todayXp: 0,
     dailyGoal: 30
   });
   assert.equal(result.type, 'review-due');
@@ -46,7 +46,7 @@ test('the next incomplete lesson is recommended when review is clear', () => {
 });
 
 test('conversation practice is a fallback when no lesson is available and the daily goal is open', () => {
-  const result = AdaptiveLearning.recommend({ dueCount: 0, weakWords: [], dailyXp: 10, dailyGoal: 30 });
+  const result = AdaptiveLearning.recommend({ dueCount: 0, weakWords: [], todayXp: 10, dailyGoal: 30 });
   assert.equal(result.type, 'conversation-practice');
   assert.equal(result.action, 'conversation');
 });
@@ -59,7 +59,7 @@ test('maintenance is returned when no task is urgent or available', () => {
 
 test('invalid inputs are handled conservatively without mutating the source', () => {
   const weakWords = [{ id: 'ok', term: 'kata' }, { id: '', term: 'ignored' }, null];
-  const input = { dueCount: -2, weakWords, dailyXp: -1, dailyGoal: 0 };
+  const input = { dueCount: -2, weakWords, todayXp: -1, dailyGoal: 0 };
   const before = JSON.stringify(input);
   const result = AdaptiveLearning.recommend(input);
   assert.equal(result.type, 'reinforce-weak');

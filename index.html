@@ -1903,7 +1903,7 @@
             return [...extra, ...CourseData.levels];
         }
         function getLearningLevels() {
-            return getLevels().filter(level => !['A2', 'B1', 'B2'].includes(level.id));
+            return getLevels().filter(level => !['B1', 'B2'].includes(level.id));
         }
         function getUniqueLearningVocabulary() {
             const seen = new Set();
@@ -2312,15 +2312,21 @@ Requisitos:
 
                 getLevels().forEach(lvl => {
                     const levelEl = document.createElement('div');
-                    const isAdvanced = ['A2', 'B1', 'B2'].includes(lvl.id);
+                    const isAdvanced = ['B1', 'B2'].includes(lvl.id);
                     if (isAdvanced) {
                         const a1Complete = a1 && a1.units.length > 0 && a1.units.every(unit => this.completedUnits.includes(unit.id));
                         if (!a1Complete) return;
-                        levelEl.innerHTML = `<details style="margin:16px 0; padding:12px; border:1px solid var(--border); border-radius:12px;"><summary style="cursor:pointer; font-weight:700;">${lvl.title} — En desarrollo</summary><p style="margin-top:10px; color:var(--text-muted); font-size:0.9rem;">Este nivel todavía no está completo. Estamos desarrollando el contenido y los ejercicios; por ahora, te recomendamos completar A1.</p></details>`;
+                        levelEl.innerHTML = `<details style="margin:16px 0; padding:12px; border:1px solid var(--border); border-radius:12px;"><summary style="cursor:pointer; font-weight:700;">${lvl.title} — En desarrollo</summary><p style="margin-top:10px; color:var(--text-muted); font-size:0.9rem;">Este nivel todavía no está disponible para estudiar.</p></details>`;
                         container.appendChild(levelEl);
                         return;
                     }
-                    levelEl.innerHTML = `<h2 style="margin:16px 0 8px 0;">${App.escapeHtml(lvl.title)}</h2>`;
+                    if (lvl.id === 'A2') {
+                        const a1Complete = a1 && a1.units.length > 0 && a1.units.every(unit => this.completedUnits.includes(unit.id));
+                        if (!a1Complete) return;
+                        levelEl.innerHTML = `<h2 style="margin:20px 0 8px 0;">${App.escapeHtml(lvl.title)}</h2><p class="text-muted" style="margin:0 0 12px;">A2 ya está disponible. El contenido continúa en revisión y mejorará con tus comentarios.</p>`;
+                    } else {
+                        levelEl.innerHTML = `<h2 style="margin:16px 0 8px 0;">${App.escapeHtml(lvl.title)}</h2>`;
+                    }
 
                     lvl.units.forEach(unit => {
                         const isDone = this.completedUnits.includes(unit.id);

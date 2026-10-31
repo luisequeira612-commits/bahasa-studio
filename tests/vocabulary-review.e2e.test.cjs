@@ -41,7 +41,7 @@ test('a tapped vocabulary item can be saved, reviewed, and retained in backups',
 
   try {
     await page.goto(url, { waitUntil: 'domcontentloaded' });
-    await page.waitForFunction(() => typeof SRSEngine !== 'undefined' && DB && DB.db);
+    await page.waitForFunction(() => typeof SRSEngine !== 'undefined' && DB && DB.db && document.querySelector('#tapTranslationBubble')?.dataset.initialized === 'true');
 
     await page.evaluate(() => {
       document.querySelector('#view-lesson').classList.add('active');

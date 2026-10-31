@@ -598,6 +598,17 @@ test('A2 U2 distinguishes tadi pagi, tadi malam, and pagi ini by time context', 
   assert.match(tadiPagiWrite.prompt, /Si ya pasó la mañana/);
 });
 
+test('A2 U4 contextualizes kegiatan so its distractors do not overlap with acara', () => {
+  const lesson = a2.units[3].lessons.find(entry => /Actividades y eventos/.test(entry.title));
+  assert.ok(lesson);
+  const exercise = lesson.exercises.find(entry => entry.vocabId === 'a2u4_kegiatan' && entry.type === 'mc');
+  assert.ok(exercise);
+  assert.match(exercise.prompt, /Kegiatan mulai pukul delapan/);
+  assert.deepEqual(Array.from(exercise.options), ['Actividad', 'Horario', 'Lugar']);
+  assert.equal(exercise.options[exercise.answer], 'Actividad');
+  assert.match(exercise.explanation, /actividad que empieza a las ocho/);
+});
+
 test('A2 U4 includes integrated daily-schedule writing with two timed activities', () => {
   const lesson = a2.units[3].lessons.find(entry => /Describir cómo es tu día/.test(entry.title));
   assert.ok(lesson);

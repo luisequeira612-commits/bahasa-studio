@@ -141,3 +141,8 @@ El estado `verified_primary` solo registra la evidencia lexicográfica disponibl
 ### Criterio de avance
 
 La fase 2 puede avanzar sin esperar una validación externa para corregir defectos internos demostrables, normalizar esquemas y mejorar pruebas. No se marcarán como lingüísticamente revisadas las 56 entradas A1 o las 490 A2 pendientes sin evidencia adecuada. A2 permanecerá oculto para estudiantes hasta completar su propia puerta de publicación; los 0 errores estructurales y las pruebas verdes no sustituyen esa decisión.
+
+
+## Puerta técnica de publicación A2 — 2026-10-31
+
+Se añadió `A2_RELEASE_ENABLED = false` como bandera explícita y cerrada por defecto. La bandera se aplica a la visibilidad del curso, a la lista de niveles de aprendizaje, al inicio de lecciones y a las evaluaciones de unidad. Completar A1 ya no basta por sí solo para exponer A2 mientras la consolidación editorial siga abierta. La activación requerirá una decisión de publicación después de revisar la cobertura y los estados pendientes; no se activa automáticamente al pasar CI.

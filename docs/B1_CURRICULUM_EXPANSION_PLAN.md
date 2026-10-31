@@ -19,7 +19,7 @@ El currículo B1 está definido dentro de `CourseData` en `index.html`. El inven
 11. Aclarar, negociar y resolver malentendidos.
 12. Integrar información y presentar conclusiones.
 
-La ampliación de U6–U12 incorpora **35 entradas nuevas de vocabulario y 35 ejercicios**, para un total de **52 entradas y 52 ejercicios** en doce unidades. El banco de evaluación independiente pasa de seis a **dieciocho ítems**: incluye una tarea inicial de escucha, tres preguntas de comprensión de un texto más extenso, tres tareas de producción escrita abierta y una tarea oral, todas las respuestas productivas pendientes de revisión humana. La expansión es un borrador de contenido beta; no constituye un currículo B1 completo ni una evaluación calibrada.
+La ampliación de U6–U12 incorpora **35 entradas nuevas de vocabulario y 35 ejercicios**, para un total de **52 entradas y 52 ejercicios** en doce unidades. El banco de evaluación independiente pasa de seis a **veinte ítems**: incluye tres tareas de escucha, tres preguntas de comprensión de un texto más extenso, tres tareas de producción escrita abierta y una tarea oral, todas las respuestas productivas pendientes de revisión humana. La expansión es un borrador de contenido beta; no constituye un currículo B1 completo ni una evaluación calibrada.
 
 ## Brechas principales
 
@@ -92,3 +92,6 @@ U11 incorpora estrategias de aclaración y negociación (`bisa diulangi?`, `maks
 ## Lectura B1 ampliada
 
 Se añadió un texto informativo breve sobre un programa comunitario de lectura, con tres preguntas separadas de idea principal, detalle e inferencia. El texto permite comprobar comprensión de conectores y tendencias en contexto, pero sigue siendo una única muestra de lectura y no cubre por sí sola el rango de textos B1.
+
+
+Las tareas de escucha distinguen respuesta breve por contenido de transcripción literal: el formulario permite una etiqueta de respuesta específica por ítem. Los tres audios/textos son cortos y sintetizados por el motor de voz del navegador; aún no sustituyen grabaciones de hablantes ni una evaluación de comprensión auditiva con variedad de voces y velocidades.

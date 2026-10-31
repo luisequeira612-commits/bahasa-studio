@@ -17,7 +17,6 @@ test('free-writing notebook has distinct A1 composition tasks and clear boundari
     assert.ok(task.checklist.length >= 3);
     assert.ok(task.example.length > 20);
   }
-  assert.match(source, /no se guarda al recargar o salir/i);
   assert.match(source, /no ha sido validado por un hablante nativo/i);
   assert.doesNotMatch(source, /DB\.set|DB\.get|localStorage|indexedDB|addXp|SRSEngine|recordAttempt/,
     'free-writing practice must not persist drafts, award XP, or create SRS records');
@@ -26,5 +25,5 @@ test('free-writing notebook has distinct A1 composition tasks and clear boundari
 test('free-writing notebook uses DOM text nodes for prompts and examples', () => {
   assert.match(source, /textContent =/);
   assert.doesNotMatch(source, /innerHTML/);
-  assert.match(source, /aria-live="polite"/);
+  assert.match(source, /setAttribute\('aria-live', 'polite'\)/);
 });

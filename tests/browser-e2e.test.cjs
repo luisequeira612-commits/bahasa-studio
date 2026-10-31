@@ -1273,7 +1273,11 @@ test('lesson uses a full-screen flow, confirmation, feedback sheet and session s
     assert.deepEqual(defaultOptionStyle, { background: 'rgb(255, 255, 255)', border: 'rgb(209, 213, 219)' });
     const correctOption = await page.evaluate(() => LessonEngine.queue[0].answer);
     await page.locator('.option-btn').nth(correctOption).click();
-    const selectedOptionStyle = await page.locator('.option-btn').nth(correctOption).evaluate(node => {
+    await page.waitForFunction(() => {
+      const selected = document.querySelector('#view-lesson .option-btn.selected');
+      return selected && getComputedStyle(selected).backgroundColor === 'rgb(255, 240, 242)';
+    });
+    const selectedOptionStyle = await page.locator('#view-lesson .option-btn.selected').evaluate(node => {
       const style = getComputedStyle(node);
       return { background: style.backgroundColor, border: style.borderTopColor };
     });

@@ -145,10 +145,42 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
             });
           }
         }
-        if (Array.isArray(lesson.exercises)) {
+        if (!Array.isArray(lesson.exercises)) {
+          issues.push(issue('warning', 'LESSON_EXERCISES_NOT_ARRAY', lessonPath, 'La lección no tiene un array exercises.'));
+        } else {
           lesson.exercises.forEach((exercise, exerciseIndex) => {
-            if (exercise && typeof exercise === 'object' && exercise.vocabId && typeof exercise.vocabId !== 'string') {
-              issues.push(issue('error', 'LESSON_EXERCISE_VOCAB_ID_INVALID', `${lessonPath}.exercises[${exerciseIndex}]`, 'vocabId debe ser texto.'));
+            const exercisePath = `${lessonPath}.exercises[${exerciseIndex}]`;
+            if (!exercise || typeof exercise !== 'object') {
+              issues.push(issue('error', 'LESSON_EXERCISE_INVALID', exercisePath, 'El ejercicio de la lección no es un objeto.'));
+              return;
+            }
+            if (typeof exercise.type !== 'string' || !exercise.type.trim()) {
+              issues.push(issue('error', 'LESSON_EXERCISE_TYPE_MISSING', exercisePath, 'El ejercicio necesita un tipo.'));
+            }
+            if (typeof exercise.prompt !== 'string' || !exercise.prompt.trim()) {
+              issues.push(issue('error', 'LESSON_EXERCISE_PROMPT_MISSING', exercisePath, 'El ejercicio necesita una consigna.'));
+            }
+            if (exercise.vocabId && typeof exercise.vocabId !== 'string') {
+              issues.push(issue('error', 'LESSON_EXERCISE_VOCAB_ID_INVALID', exercisePath, 'vocabId debe ser texto.'));
+            }
+            if (exercise.type === 'mc') {
+              if (!Array.isArray(exercise.options) || exercise.options.length < 2) {
+                issues.push(issue('error', 'LESSON_MC_OPTIONS_INVALID', exercisePath, 'Un ejercicio mc necesita al menos dos opciones.'));
+              } else if (!Number.isInteger(exercise.answer) || exercise.answer < 0 || exercise.answer >= exercise.options.length) {
+                issues.push(issue('error', 'LESSON_MC_ANSWER_OUT_OF_RANGE', exercisePath, 'La respuesta mc debe ser un índice válido de options.'));
+              }
+            }
+            if (exercise.type === 'order') {
+              if (!Array.isArray(exercise.words) || !Array.isArray(exercise.correctOrder)) {
+                issues.push(issue('error', 'LESSON_ORDER_DATA_INVALID', exercisePath, 'Un ejercicio order necesita words y correctOrder como arrays.'));
+              } else if (exercise.words.length !== exercise.correctOrder.length) {
+                issues.push(issue('error', 'LESSON_ORDER_LENGTH_MISMATCH', exercisePath, 'words y correctOrder deben tener la misma cantidad de elementos.'));
+              } else {
+                const sorted = (items) => [...items].map(String).sort();
+                if (JSON.stringify(sorted(exercise.words)) !== JSON.stringify(sorted(exercise.correctOrder))) {
+                  issues.push(issue('error', 'LESSON_ORDER_TOKEN_MISMATCH', exercisePath, 'correctOrder debe contener exactamente los tokens de words.'));
+                }
+              }
             }
           });
         }

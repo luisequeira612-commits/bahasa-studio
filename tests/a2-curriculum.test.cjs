@@ -503,3 +503,22 @@ test('A2 beta is available after A1 completion and enters learning vocabulary on
   assert.match(htmlSource, /const isAdvanced = \['B1', 'B2'\]\.includes\(lvl\.id\)/);
   assert.match(htmlSource, /const unitAccessible = lvl\.id === 'A1'[\s\S]*?lvl\.id === 'A2' \? a1Complete/);
 });
+
+test('A2 date production and sequence context practice are explicitly taught', () => {
+  const dateLesson = a2.units[0].lessons.find(lesson => /Fin de semana y fechas/.test(lesson.title));
+  assert.ok(dateLesson);
+  assert.match(dateLesson.grammar, /Hari ini tanggal/);
+  const dateTask = dateLesson.exercises.find(exercise => exercise.type === 'write' && exercise.vocabId === 'a2u1_tanggal');
+  assert.ok(dateTask, 'A2-U1 should include a guided full-date production task');
+  assert.equal(dateTask.modelAnswer, 'Hari ini tanggal 17 Agustus.');
+
+  const sequenceLesson = a2.units[2].lessons.find(lesson => /Primero y después/.test(lesson.title));
+  assert.ok(sequenceLesson);
+  assert.match(sequenceLesson.grammar, /Setiap hari/);
+  assert.match(sequenceLesson.grammar, /kemarin/);
+  const contextTask = sequenceLesson.exercises.find(exercise => exercise.type === 'write' && exercise.vocabId === 'a2u3_pertama');
+  assert.ok(contextTask, 'A2-U3 should explicitly practise routine versus past-time context');
+  assert.match(contextTask.prompt, /rutina o un hecho pasado/);
+  assert.match(contextTask.hint, /No cambies la forma del verbo/);
+  assert.match(contextTask.modelAnswer, /rutina habitual/);
+});

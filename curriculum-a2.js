@@ -50,13 +50,14 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     title: 'Lección 2: Fin de semana y fechas',
                                     objective: 'Nombra viernes, sábado y domingo y pregunta por la fecha.',
-                                    grammar: '«Tanggal berapa hari ini?» pregunta qué fecha es hoy. «Tanggal» se refiere al día del mes.',
+                                    grammar: '«Tanggal berapa hari ini?» pregunta qué fecha es hoy. «Tanggal» se refiere al día del mes. Para responder con una fecha completa, se puede usar el patrón «Hari ini tanggal [número] [mes]», por ejemplo «Hari ini tanggal 17 Agustus».',
                                     vocabIds: ['a2u1_jumat', 'a2u1_sabtu', 'a2u1_minggu', 'a2u1_tanggal', 'a2u1_bulan'],
                                     exercises: [
                                         { vocabId: 'a2u1_jumat', type: 'mc', prompt: '¿Qué día viene después de Jumat?', options: ['Sabtu', 'Minggu', 'Kamis'], answer: 0, explanation: 'Después de Jumat (viernes) viene Sabtu (sábado).' },
                                         { vocabId: 'a2u1_tanggal', type: 'translate_es_id', prompt: 'Traduce: ¿Qué fecha es hoy?', answer: 'Tanggal berapa hari ini?', explanation: 'Tanggal berapa hari ini? es una pregunta para saber la fecha.' },
                                         { vocabId: 'a2u1_minggu', type: 'listen', prompt: 'Escucha y escribe la oración.', answer: 'Hari ini hari Minggu.', explanation: 'La oración dice «Hoy es domingo».' },
-                                        { vocabId: 'a2u1_sabtu', type: 'write', prompt: 'Escribe una oración para decir que hoy es sábado.', hint: 'Usa «Hari ini hari ...» y el nombre del día.', modelAnswer: 'Hari ini hari Sabtu.', explanation: 'Es un modelo posible; puedes usar el mismo patrón con otro día.' }
+                                        { vocabId: 'a2u1_sabtu', type: 'write', prompt: 'Escribe una oración para decir que hoy es sábado.', hint: 'Usa «Hari ini hari ...» y el nombre del día.', modelAnswer: 'Hari ini hari Sabtu.', explanation: 'Es un modelo posible; puedes usar el mismo patrón con otro día.' },
+                                        { vocabId: 'a2u1_tanggal', type: 'write', prompt: 'Escribe la fecha completa: hoy es 17 de agosto.', hint: 'Usa «Hari ini tanggal ...» seguido del número y el nombre del mes en indonesio.', modelAnswer: 'Hari ini tanggal 17 Agustus.', explanation: 'El patrón propuesto combina «Hari ini tanggal», el número del día y el nombre del mes. La forma y el ejemplo deben considerarse material didáctico beta pendiente de revisión lingüística.' }
                                     ]
                                 },
                                 {
@@ -192,13 +193,14 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     title: 'Lección 1: Primero y después',
                                     objective: 'Usa conectores básicos para ordenar dos o más acciones.',
-                                    grammar: 'Pertama introduce el primer paso; lalu y kemudian enlazan acciones posteriores.',
+                                    grammar: 'Pertama introduce el primer paso; lalu y kemudian enlazan acciones posteriores. La forma verbal no indica por sí sola si la secuencia es habitual o pasada: el contexto temporal ayuda a interpretarla. «Setiap hari» sitúa una rutina; «kemarin» sitúa un hecho en el día anterior.',
                                     vocabIds: ['a2u3_pertama', 'a2u3_lalu', 'a2u3_kemudian'],
                                     exercises: [
                                         { vocabId: 'a2u3_pertama', type: 'mc', prompt: '¿Qué función cumple «pertama»?', options: ['Presentar el primer paso', 'Indicar el final', 'Indicar el lugar'], answer: 0, explanation: 'Pertama introduce el primer paso de una secuencia.' },
                                         { vocabId: 'a2u3_pertama', type: 'translate_es_id', prompt: 'Traduce: Primero, como.', answer: 'Pertama, saya makan.', explanation: 'Pertama, saya makan presenta la primera acción.' },
                                         { vocabId: 'a2u3_lalu', type: 'listen', prompt: 'Escucha y escribe la oración.', answer: 'Lalu, saya minum air.', explanation: 'Lalu conecta esta acción con una anterior.' },
-                                        { vocabId: 'a2u3_kemudian', type: 'order', prompt: 'Ordena: Después, voy.', words: ['pergi', 'Kemudian', 'saya'], correctOrder: ['Kemudian', 'saya', 'pergi'], explanation: 'Kemudian, saya pergi significa «Después, voy».' }
+                                        { vocabId: 'a2u3_kemudian', type: 'order', prompt: 'Ordena: Después, voy.', words: ['pergi', 'Kemudian', 'saya'], correctOrder: ['Kemudian', 'saya', 'pergi'], explanation: 'Kemudian, saya pergi significa «Después, voy».' },
+                                        { vocabId: 'a2u3_pertama', type: 'write', prompt: 'La misma secuencia puede describir una rutina o un hecho pasado. Escribe en español qué contexto expresa cada inicio: «Setiap hari» y «Kemarin». Después, conserva en indonesio la secuencia «Pertama, saya makan. Lalu, saya minum air.»', hint: 'Setiap hari = cada día; kemarin = ayer. No cambies la forma del verbo para marcar pasado.', modelAnswer: 'Setiap hari = rutina habitual. Kemarin = hecho situado en el día anterior. En ambos casos, la secuencia indonesia mantiene «saya makan» y «saya minum».', explanation: 'El contexto temporal sitúa la secuencia; los verbos indonesios del ejemplo no se conjugan como pasado.' }
                                     ]
                                 },
                                 {

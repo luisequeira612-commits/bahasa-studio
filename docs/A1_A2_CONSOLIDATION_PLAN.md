@@ -114,3 +114,30 @@ La nueva prueba integral de referencias detectó un tercer desajuste demostrable
 ## Normalización de glosas repetidas A1 — 2026-10-31
 
 La comprobación de términos repetidos encontró tres IDs reutilizados con el mismo término indonesio pero pequeñas variaciones de glosa española entre unidades: `Apa kabar?`, `Ini` y `Teman`. Se armonizaron sus glosas a `¿Cómo estás? / ¿Qué tal?`, `Este / esta / esto` y `Amigo/a`, respectivamente. No se cambió el lema indonesio, los ejemplos, los IDs ni las respuestas de ejercicios. Se añadió una prueba que impide que un ID reutilizado cambie de término o glosa entre sus apariciones. Es una normalización editorial de consistencia, no una nueva validación de equivalencia lingüística.
+
+
+## Estado consolidado de fase 2 — 2026-10-31
+
+### Trabajo técnico/editorial demostrable ya integrado
+
+- La auditoría de alineación A1/A2 verifica que todas las referencias `vocabId` existen, incluidas las referencias cruzadas intencionales, y que el término vinculado aparece en los ejercicios cerrados.
+- Se corrigieron tres referencias de ejercicios A1: U5 (`Anak` → `Keluarga`), U23 (`Kamar mandi` → `Dapur`) y U29 (`Sesudah` → `Sebelum`).
+- Se corrigió A2 U5: el ejercicio de `berbicara` ya no apunta a `bersepeda` y su explicación coincide con la respuesta.
+- Se armonizaron tres glosas repetidas para los IDs `v465`, `v51` y `v53`.
+- Las pruebas de regresión comprueban referencias de ejercicios y consistencia de glosas para IDs reutilizados.
+
+### Trabajo lingüístico que sigue abierto
+
+| Alcance | Inventario | Estado registrado |
+|---|---:|---|
+| A1 U24–U32 | 90 entradas | 34 `verified_primary`; 56 `not_checked` en KBBI |
+| A2 completo | 492 entradas | 2 `verified_primary`; 490 `not_checked` en KBBI |
+| Naturalidad, nivel y respuestas A1 U24–U32 | 90 entradas | 90 pendientes por dimensión |
+| Naturalidad, nivel y respuestas A2 | 492 entradas | 492 pendientes por dimensión |
+| Cola editorial A1+A2 | 821 entradas | P1: 0; P2: 821 `not_reviewed` |
+
+El estado `verified_primary` solo registra la evidencia lexicográfica disponible y no aprueba naturalidad, glosa española, ejemplo, registro, nivel o respuesta aceptada. La cola P1/P2 mide integridad de campos, no exactitud lingüística.
+
+### Criterio de avance
+
+La fase 2 puede avanzar sin esperar una validación externa para corregir defectos internos demostrables, normalizar esquemas y mejorar pruebas. No se marcarán como lingüísticamente revisadas las 56 entradas A1 o las 490 A2 pendientes sin evidencia adecuada. A2 permanecerá oculto para estudiantes hasta completar su propia puerta de publicación; los 0 errores estructurales y las pruebas verdes no sustituyen esa decisión.

@@ -6,7 +6,7 @@
 const LEVELS = Object.freeze({
   A1: { passPercent: 80, minSkillPercent: 60, skills: ['vocabulary', 'grammar', 'comprehension', 'interaction', 'production'] },
   A2: { passPercent: 80, minSkillPercent: 60, skills: ['context', 'meN', 'diPassive', 'diPreposition', 'production'] },
-  B1: { passPercent: 80, minSkillPercent: 60, skills: ['reading', 'voice', 'kanI', 'derivation', 'register', 'interaction', 'production'] },
+  B1: { passPercent: 80, minSkillPercent: 60, skills: ['reading', 'comprehension', 'voice', 'kanI', 'derivation', 'register', 'interaction', 'production'] },
   B2: { passPercent: 80, minSkillPercent: 60, skills: ['register', 'kanI', 'nominalization', 'reference', 'production'] }
 });
 
@@ -59,6 +59,7 @@ const ITEM_BANK = Object.freeze([
   { id: 'b1-interaction-01', level: 'B1', skill: 'interaction', type: 'choice', prompt: '¿Qué expresión sirve para pedir que repitan algo?', options: ['Maaf, bisa diulangi?', 'Saya setuju.', 'Selamat malam.'], answer: 0, points: 1, explanation: 'Bisa diulangi? pide una repetición para aclarar el mensaje.' },
   { id: 'b1-speaking-01', level: 'B1', skill: 'interaction', type: 'speak', prompt: 'Responde oralmente a una propuesta: pide una aclaración si hace falta, expresa tu postura y propone una alternativa.', rubric: ['interaction', 'clarity', 'repair-strategy', 'lexical-appropriacy'], points: 5 },
   { id: 'b1-integrated-01', level: 'B1', skill: 'production', type: 'open', prompt: 'Resume una experiencia o un texto breve en un párrafo conectado. Explica el propósito, presenta una idea principal y termina con una conclusión.', rubric: ['task-completion', 'cohesion', 'reference', 'grammar-in-context'], points: 5 },
+  { id: 'b1-listening-01', level: 'B1', skill: 'comprehension', type: 'listen', prompt: 'Escucha la frase y escribe qué condición se menciona.', audioText: 'Meskipun hujan deras, kegiatan tetap berlangsung.', answer: 'Hujan deras', points: 1, explanation: 'Hujan deras indica la condición: lluvia intensa.' },
   { id: 'b2-reference-01', level: 'B2', skill: 'reference', type: 'choice', prompt: 'In “Rapat itu berlangsung dua jam. Kegiatan tersebut membahas anggaran”, what does kegiatan tersebut refer to?', options: ['The meeting mentioned earlier', 'The budget itself', 'Two hours in general'], answer: 0, points: 1, explanation: 'Tersebut refers back to the previously mentioned meeting/activity.' },
   { id: 'b2-kan-i-01', level: 'B2', skill: 'kanI', type: 'choice', prompt: 'Which sentence uses -i naturally to describe repeated action directed at a place?', options: ['Petugas mengunjungi beberapa desa.', 'Petugas desa mengunjungi.', 'Desa mengunjungi petugas beberapa.'], answer: 0, points: 1, explanation: 'Mengunjungi is a natural verb meaning to visit a place; affix choice depends on the verb and context.' },
   { id: 'b2-write-02', level: 'B2', skill: 'production', type: 'open', prompt: 'Write a short formal recommendation, give two reasons, and use clear references to the proposal you discuss.', rubric: ['task-completion', 'cohesion', 'register', 'grammar-and-lexis'], points: 5 },

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bahasa Studio 3.8.14</title>
+    <title>Bahasa Studio 3.8.15</title>
     <meta name="description" content="Curso de indonesio PWA para hispanohablantes sin costo ni penalizaciones.">
     <meta name="theme-color" content="#e8384f">
     <link rel="manifest" href="./manifest.json">
@@ -1669,10 +1669,41 @@
                 this.currentUnit = unit;
                 this.currentLesson = lesson;
                 this.lessonIndex = lessonIndex;
-                this.queue = lesson.exercises.map((exercise, index) => ({
-                    ...exercise,
-                    _auditExerciseId: exercise.id || unit.id + ':lesson-' + (lesson.index + 1) + ':exercise-' + (index + 1)
-                }));
+                this.queue = lesson.exercises.map((exercise, index) => {
+                    const isSentenceCompletion = exercise.type === 'mc' &&
+                        /^Completa:/i.test(exercise.prompt || '') && /_{2,}/.test(exercise.prompt || '') &&
+                        Array.isArray(exercise.options) && Number.isInteger(exercise.answer) &&
+                        typeof exercise.options[exercise.answer] === 'string';
+                    const prepared = isSentenceCompletion
+                        ? { ...exercise, type: 'fill', answer: exercise.options[exercise.answer], answerLanguage: 'id', direction: 'id→id (completar)' }
+                        : { ...exercise };
+                    return {
+                        ...prepared,
+                        _auditExerciseId: exercise.id || unit.id + ':lesson-' + (lesson.index + 1) + ':exercise-' + (index + 1)
+                    };
+                });
+                const matchingWords = [];
+                const seenMatchTerms = new Set();
+                [...(lesson.newVocab || []), ...(lesson.reviewVocab || [])].forEach(word => {
+                    const idn = String(word && word.idn || '').trim();
+                    const esp = String(word && word.esp || '').trim();
+                    const key = idn.toLocaleLowerCase() + '|' + esp.toLocaleLowerCase();
+                    if (!idn || !esp || seenMatchTerms.has(key)) return;
+                    seenMatchTerms.add(key);
+                    if (matchingWords.some(item => item.idn.toLocaleLowerCase() === idn.toLocaleLowerCase() ||
+                        item.esp.toLocaleLowerCase() === esp.toLocaleLowerCase())) return;
+                    matchingWords.push({ idn, esp });
+                });
+                if (matchingWords.length >= 3) {
+                    const pairs = matchingWords.slice(0, 4);
+                    this.queue.push({
+                        type: 'match',
+                        prompt: 'Une cada palabra en indonesio con su significado en español.',
+                        pairs,
+                        explanation: 'Relaciona cada palabra con su significado. Lee las parejas completas para fijar el vocabulario.',
+                        _auditExerciseId: unit.id + ':lesson-' + (lesson.index + 1) + ':matching'
+                    });
+                }
                 this.retry = [];
                 this.intro = true;
                 this.assessmentMode = false;
@@ -1704,6 +1735,7 @@
                 if (!exercise) return '';
                 if (exercise.type === 'mc' && Array.isArray(exercise.options)) return exercise.options[exercise.answer] || '';
                 if (exercise.type === 'order' && Array.isArray(exercise.correctOrder)) return exercise.correctOrder.join(' ');
+                if (exercise.type === 'match' && Array.isArray(exercise.pairs)) return exercise.pairs.map(pair => pair.idn + ' — ' + pair.esp).join('; ');
                 return String(exercise.modelAnswer || exercise.answer || '');
             },
             reportCurrentExercise(button) {
@@ -1721,7 +1753,9 @@
                     originalText: exercise.prompt || '',
                     prompt: exercise.prompt || '',
                     exerciseType: exercise.type || '',
-                    options: Array.isArray(exercise.options) ? exercise.options : (Array.isArray(exercise.words) ? exercise.words : [])
+                    options: Array.isArray(exercise.options) ? exercise.options :
+                        (Array.isArray(exercise.words) ? exercise.words :
+                            (Array.isArray(exercise.pairs) ? exercise.pairs.map(pair => pair.idn + ' — ' + pair.esp) : []))
                 });
                 button.textContent = '✓ Reportado';
                 button.disabled = true;
@@ -1770,6 +1804,9 @@
 
                 this.selectedOption = null;
                 this.userOrder = [];
+                this.matchSelection = { idn: null, esp: null };
+                this.matchSolved = new Set();
+                this.matchMistakes = 0;
 
                 if (ex.type === 'mc') {
                     const tapPrompt = ex.audioText ? null : window.parseTapMeaningPrompt(ex.prompt);
@@ -1796,6 +1833,17 @@
                         </div>
                     `;
                     if (ex.audioText) AudioEngine.speak(ex.audioText);
+                } else if (ex.type === 'fill') {
+                    container.innerHTML = `
+                        <div>
+                            <h3>${App.escapeHtml(ex.prompt)}</h3>
+                            <input type="text" id="textAnswer" class="input-field" autocomplete="off"
+                                aria-label="Palabra que falta" placeholder="Escribe la palabra que falta..." style="margin-top:20px;">
+                        </div>
+                        <div id="actionArea">
+                            <button class="btn" type="button" onclick="LessonEngine.checkTranslate()">Comprobar</button>
+                        </div>
+                    `;
                 } else if (ex.type === 'translate_es_id') {
                     const tapPrompt = window.parseTapTranslationPrompt(ex.prompt, 'es');
                     container.innerHTML = `
@@ -1854,6 +1902,26 @@
                             <button class="btn" onclick="LessonEngine.checkOrder()">Comprobar</button>
                         </div>
                     `;
+                } else if (ex.type === 'match') {
+                    const idnOptions = ex.pairs.map((pair, index) => ({ label: pair.idn, index })).sort(() => Math.random() - 0.5);
+                    const espOptions = ex.pairs.map((pair, index) => ({ label: pair.esp, index })).sort(() => Math.random() - 0.5);
+                    container.innerHTML = `
+                        <div class="matching-exercise">
+                            <h3>${App.escapeHtml(ex.prompt)}</h3>
+                            <div class="matching-columns">
+                                <section id="matchIdn" aria-label="Palabras en indonesio">
+                                    <h4>Indonesio</h4>
+                                    ${idnOptions.map(item => `<button type="button" class="match-option-btn" data-side="idn" data-pair-index="${item.index}" onclick="LessonEngine.selectMatch('idn', ${item.index}, this)">${App.escapeHtml(item.label)}</button>`).join('')}
+                                </section>
+                                <section id="matchEsp" aria-label="Significados en español">
+                                    <h4>Español</h4>
+                                    ${espOptions.map(item => `<button type="button" class="match-option-btn" data-side="esp" data-pair-index="${item.index}" onclick="LessonEngine.selectMatch('esp', ${item.index}, this)">${App.escapeHtml(item.label)}</button>`).join('')}
+                                </section>
+                            </div>
+                            <p id="matchStatus" class="matching-status" role="status" aria-live="polite">Selecciona una palabra y después su significado.</p>
+                        </div>
+                        <div id="actionArea"></div>
+                    `;
                 }
                 const questionArea = container.firstElementChild;
                 if (questionArea) {
@@ -1904,6 +1972,39 @@
                 };
                 bank.appendChild(chip);
             },
+            selectMatch(side, index, button) {
+                if (!button || button.disabled || !['idn', 'esp'].includes(side) || this.matchSolved.has(index)) return;
+                this.matchSelection[side] = index;
+                document.querySelectorAll('.match-option-btn').forEach(item => {
+                    item.classList.toggle('selected',
+                        !item.disabled && item.dataset.side === side && Number(item.dataset.pairIndex) === index);
+                });
+                const otherSide = side === 'idn' ? 'esp' : 'idn';
+                const otherIndex = this.matchSelection[otherSide];
+                if (otherIndex === null) return;
+                if (otherIndex === index) {
+                    this.matchSolved.add(index);
+                    document.querySelectorAll('.match-option-btn[data-pair-index="' + index + '"]').forEach(item => {
+                        item.classList.remove('selected');
+                        item.classList.add('solved');
+                        item.disabled = true;
+                    });
+                    const status = document.getElementById('matchStatus');
+                    if (status) status.textContent = 'Pareja correcta. ' + this.matchSolved.size + ' de ' + this.queue[this.stepIndex].pairs.length + ' completadas.';
+                    this.matchSelection = { idn: null, esp: null };
+                    const exercise = this.queue[this.stepIndex];
+                    if (this.matchSolved.size === exercise.pairs.length) {
+                        this.showFeedback(this.matchMistakes === 0, exercise.explanation,
+                            this.matchMistakes === 0 ? '¡Todas las parejas correctas!' : 'Has completado las parejas; revisa las que confundiste.');
+                    }
+                } else {
+                    this.matchMistakes++;
+                    const status = document.getElementById('matchStatus');
+                    if (status) status.textContent = 'No coinciden. Vuelve a intentarlo.';
+                    this.matchSelection = { idn: null, esp: null };
+                    document.querySelectorAll('.match-option-btn').forEach(item => item.classList.remove('selected'));
+                }
+            },
             checkMc() {
                 this.stopPronunciationPractice();
                 const ex = this.queue[this.stepIndex];
@@ -1916,7 +2017,7 @@
                 const originalText = document.getElementById('textAnswer').value || '';
                 const result = WrittenResponse.compare(originalText, ex);
                 const direction = ex.direction || (ex.type === 'translate_es_id' ? 'es→id' :
-                    ex.type === 'translate_id_es' ? 'id→es' : 'id→id (dictado)');
+                    ex.type === 'translate_id_es' ? 'id→es' : ex.type === 'fill' ? 'id→id (completar)' : 'id→id (dictado)');
                 const unit = this.currentUnit || {};
                 const lesson = this.currentLesson || {};
                 const logEntry = {

@@ -470,7 +470,7 @@ test('service worker serves the app after the network is disconnected', async ()
     await context.setOffline(true);
     await page.reload({ waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined');
-    assert.match(await page.title(), /Bahasa Studio 3\.8\.14/);
+    assert.match(await page.title(), /Bahasa Studio 3\.8\.15/);
     assert.equal(await page.locator('body').isVisible(), true);
     assert.equal(await page.evaluate(() => typeof ConversationEngine !== 'undefined' && typeof StudyActivity !== 'undefined'), true,
       'the conversation and study activity modules must be available from the service-worker cache offline');
@@ -1500,6 +1500,64 @@ test('lesson uses a full-screen flow, confirmation, feedback sheet and session s
     await page.getByRole('button', { name: 'Salir de la lección' }).click();
     await page.waitForFunction(() => document.getElementById('view-route').classList.contains('active'));
     assert.equal(await page.locator('body').evaluate(node => node.classList.contains('lesson-active')), false);
+  } finally {
+    await context.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});
+
+
+test('priority 3 adds written sentence completion and tap-to-match practice without curriculum edits', async () => {
+  const { server, url } = await startServer();
+  const context = await browser.newContext({ serviceWorkers: 'block', viewport: { width: 360, height: 800 } });
+  const page = await context.newPage();
+  const pageErrors = [];
+  page.on('pageerror', error => pageErrors.push(error.message));
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
+    await page.evaluate(() => LessonEngine.startUnit({
+      id: 'priority3-test',
+      custom: true,
+      title: 'Prueba de variedad',
+      grammar: 'Ejercicio de prueba.',
+      vocab: [
+        { id: 'p3v1', idn: 'Saya', esp: 'Yo', ex: 'Saya makan.', exEsp: 'Yo como.' },
+        { id: 'p3v2', idn: 'Makan', esp: 'Comer', ex: 'Saya makan.', exEsp: 'Yo como.' },
+        { id: 'p3v3', idn: 'Air', esp: 'Agua', ex: 'Saya minum air.', exEsp: 'Yo bebo agua.' }
+      ],
+      exercises: [{
+        vocabId: 'p3v1', type: 'mc', prompt: 'Completa: «Saya ___ makan»',
+        options: ['bukan', 'tidak', 'ini'], answer: 1,
+        explanation: 'Tidak niega una acción como makan.'
+      }]
+    }));
+    assert.equal(await page.evaluate(() => LessonEngine.queue[0].type), 'fill',
+      'sentence-completion multiple choice should be presented as a short written response');
+    await page.getByRole('button', { name: 'Comenzar lección' }).click();
+    await page.getByRole('textbox', { name: 'Palabra que falta' }).fill('tidak');
+    await page.getByRole('button', { name: 'Comprobar' }).click();
+    await page.locator('#actionArea.lesson-feedback-sheet.correct').waitFor();
+    assert.match(await page.locator('#actionArea').innerText(), /Tidak niega una acción/);
+    await page.getByRole('button', { name: 'Continuar' }).click();
+
+    const matchIndex = await page.evaluate(() => LessonEngine.queue.findIndex(item => item.type === 'match'));
+    assert.ok(matchIndex >= 0, 'a lesson with at least three unique vocabulary pairs should add one matching exercise');
+    await page.evaluate(index => {
+      LessonEngine.stepIndex = index;
+      LessonEngine.renderStep();
+    }, matchIndex);
+    assert.equal(await page.locator('#matchIdn .match-option-btn').count(), 3);
+    assert.equal(await page.locator('#matchEsp .match-option-btn').count(), 3);
+    for (let index = 0; index < 3; index++) {
+      await page.locator('#matchIdn .match-option-btn[data-pair-index="' + index + '"]').click();
+      await page.locator('#matchEsp .match-option-btn[data-pair-index="' + index + '"]').click();
+      await page.waitForFunction(expected => LessonEngine.matchSolved.size === expected, index + 1);
+    }
+    await page.locator('#actionArea.lesson-feedback-sheet.correct').waitFor();
+    assert.equal(await page.locator('.match-option-btn.solved').count(), 6);
+    assert.deepEqual(pageErrors, [], 'new exercise types should not throw browser errors');
   } finally {
     await context.close();
     await new Promise(resolve => server.close(resolve));

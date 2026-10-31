@@ -511,3 +511,24 @@ button:disabled, button:disabled:active { transform:none; border-bottom-width:4p
 #view-lesson .exercise-report-btn:disabled {
     color:var(--success); opacity:1;
 }
+
+
+/* Prioridad 3: ejercicios ligeros de unir pares y completar frases. */
+#view-lesson .matching-exercise { width:100%; min-width:0; }
+#view-lesson .matching-columns { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin-top:14px; }
+#view-lesson .matching-columns section { display:flex; flex-direction:column; gap:8px; min-width:0; }
+#view-lesson .matching-columns h4 { margin:0 0 2px; color:var(--text-muted); font-size:.8rem; }
+#view-lesson .match-option-btn {
+    width:100%; min-width:0; min-height:52px; padding:9px 7px;
+    border:2px solid var(--border); border-bottom-width:3px; border-radius:12px;
+    background:var(--bg-card); color:var(--text-main); font-size:.88rem;
+    overflow-wrap:anywhere; touch-action:manipulation;
+}
+#view-lesson .match-option-btn.selected { border-color:var(--accent); background:var(--lesson-option-selected-bg); }
+#view-lesson .match-option-btn.solved { border-color:var(--success); background:color-mix(in srgb,var(--success) 12%,var(--bg-card)); color:var(--text-main); opacity:1; }
+#view-lesson .match-option-btn:disabled { cursor:default; }
+#view-lesson .matching-status { min-height:24px; margin:12px 0 0; color:var(--text-muted); font-size:.85rem; }
+@media (max-width:360px) {
+    #view-lesson .matching-columns { gap:6px; }
+    #view-lesson .match-option-btn { padding:8px 5px; font-size:.8rem; }
+}

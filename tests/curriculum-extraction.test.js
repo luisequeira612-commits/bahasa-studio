@@ -68,7 +68,7 @@ test('classic curriculum scripts load synchronously before the main app script',
 
 test('service worker precaches both data files and invalidates the previous cache', async () => {
   const source = fs.readFileSync(require.resolve('../service-worker.js'), 'utf8');
-  assert.match(source, /bahasa-studio-v3\.8\.23/);
+  assert.match(source, /bahasa-studio-v3\.8\.24/);
   assert.match(source, /'\.\/curriculum-a1\.js'/);
   assert.match(source, /'\.\/curriculum-a2\.js'/);
   assert.match(source, /'\.\/styles\.css'/);
@@ -87,7 +87,7 @@ test('service worker precaches both data files and invalidates the previous cach
   const deletedCaches = [];
   const cachesApi = {
     async open() { return cache; },
-    async keys() { return ['bahasa-studio-v3.8.8', 'bahasa-studio-v3.8.9', 'bahasa-studio-v3.8.10', 'bahasa-studio-v3.8.11', 'bahasa-studio-v3.8.12', 'bahasa-studio-v3.8.13', 'bahasa-studio-v3.8.14', 'bahasa-studio-v3.8.15', 'bahasa-studio-v3.8.16', 'bahasa-studio-v3.8.17', 'bahasa-studio-v3.8.18', 'bahasa-studio-v3.8.19', 'bahasa-studio-v3.8.20', 'bahasa-studio-v3.8.21', 'bahasa-studio-v3.8.22', 'bahasa-studio-v3.8.23', 'another-app-cache-v1']; },
+    async keys() { return ['bahasa-studio-v3.8.8', 'bahasa-studio-v3.8.9', 'bahasa-studio-v3.8.10', 'bahasa-studio-v3.8.11', 'bahasa-studio-v3.8.12', 'bahasa-studio-v3.8.13', 'bahasa-studio-v3.8.14', 'bahasa-studio-v3.8.15', 'bahasa-studio-v3.8.16', 'bahasa-studio-v3.8.17', 'bahasa-studio-v3.8.18', 'bahasa-studio-v3.8.19', 'bahasa-studio-v3.8.20', 'bahasa-studio-v3.8.21', 'bahasa-studio-v3.8.22', 'bahasa-studio-v3.8.23', 'bahasa-studio-v3.8.24', 'another-app-cache-v1']; },
     async delete(name) { deletedCaches.push(name); return name !== 'bahasa-studio-v3.8.23'; }
   };
   const sandbox = {
@@ -113,7 +113,7 @@ test('service worker precaches both data files and invalidates the previous cach
   let activatePromise;
   listeners.activate({ waitUntil(promise) { activatePromise = promise; } });
   await activatePromise;
-  assert.deepEqual(deletedCaches.sort(), ['bahasa-studio-v3.8.10', 'bahasa-studio-v3.8.11', 'bahasa-studio-v3.8.12', 'bahasa-studio-v3.8.13', 'bahasa-studio-v3.8.14', 'bahasa-studio-v3.8.15', 'bahasa-studio-v3.8.16', 'bahasa-studio-v3.8.17', 'bahasa-studio-v3.8.18', 'bahasa-studio-v3.8.19', 'bahasa-studio-v3.8.20', 'bahasa-studio-v3.8.21', 'bahasa-studio-v3.8.22', 'bahasa-studio-v3.8.8', 'bahasa-studio-v3.8.9'],
+  assert.deepEqual(deletedCaches.sort(), ['bahasa-studio-v3.8.10', 'bahasa-studio-v3.8.11', 'bahasa-studio-v3.8.12', 'bahasa-studio-v3.8.13', 'bahasa-studio-v3.8.14', 'bahasa-studio-v3.8.15', 'bahasa-studio-v3.8.16', 'bahasa-studio-v3.8.17', 'bahasa-studio-v3.8.18', 'bahasa-studio-v3.8.19', 'bahasa-studio-v3.8.20', 'bahasa-studio-v3.8.21', 'bahasa-studio-v3.8.22', 'bahasa-studio-v3.8.23', 'bahasa-studio-v3.8.8', 'bahasa-studio-v3.8.9'],
     'activation should remove only older Bahasa Studio caches and preserve caches owned by other apps');
 
   let responsePromise;
@@ -137,7 +137,7 @@ test('the extracted stylesheet stays linked and its canonical content hash remai
   const css = fs.readFileSync(require.resolve('../styles.css'), 'utf8');
   assert.match(html, /<link rel="stylesheet" href="\.\/styles\.css">/);
   assert.doesNotMatch(html, /<style[\s>]/i);
-  assert.equal(fnv1a(css), 'e4f9d597', 'canonical extracted CSS content changed');
+  assert.equal(fnv1a(css), '5ad17882', 'canonical extracted CSS content changed');
 });
 
 test('the extraction does not alter IndexedDB, SRS, backup, or word-translation code', () => {

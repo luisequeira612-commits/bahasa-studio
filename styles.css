@@ -416,3 +416,24 @@ button:disabled, button:disabled:active { transform:none; border-bottom-width:4p
 @media (prefers-reduced-motion:reduce) {
     .lesson-start-btn { transition:none; }
 }
+
+
+/* Prioridad 1: estados inequívocos para respuestas de elección múltiple. */
+#view-lesson #exerciseArea .option-btn {
+    background:#ffffff;
+    color:#3b2427;
+    border:2px solid #d1d5db;
+    border-bottom-width:4px;
+}
+#view-lesson #exerciseArea .option-btn.selected {
+    background:#fff0f2;
+    color:#3b2427;
+    border-color:#e8384f;
+}
+#view-lesson #actionArea > .btn:disabled {
+    background:#e5e7eb;
+    color:#6b7280;
+    border-color:#d1d5db;
+    cursor:not-allowed;
+    opacity:1;
+}

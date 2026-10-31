@@ -7,9 +7,16 @@ const vm = require('node:vm');
 const { test } = require('node:test');
 
 const source = fs.readFileSync(path.join(__dirname, '..', 'conversation-engine.js'), 'utf8');
+const elements = {
+  conversationScenarioList: { hidden: false, innerHTML: '' },
+  conversationPracticeArea: { hidden: true, innerHTML: '' }
+};
 const sandbox = {
   window: {},
-  document: { addEventListener() {} }
+  document: {
+    addEventListener() {},
+    getElementById(id) { return elements[id] || null; }
+  }
 };
 vm.runInNewContext(source, sandbox);
 
@@ -42,4 +49,45 @@ test('each conversation has three usable turns and exactly one appropriate respo
 test('conversation practice does not write XP, SRS attempts, or microphone recordings', () => {
   assert.doesNotMatch(source, /App\.addXp|SRSEngine\.recordAttempt|DB\.set|MediaRecorder/);
   assert.match(source, /AudioEngine\.speak/);
+});
+
+
+test('each guided conversation turn can be answered freely before a model example is revealed', () => {
+  const engine = sandbox.window.ConversationEngine;
+  engine.start('greetings');
+  assert.match(elements.conversationPracticeArea.innerHTML, /data-conversation-free/);
+
+  engine.useFreeResponse();
+  assert.match(elements.conversationPracticeArea.innerHTML, /id="conversationFreeResponse"/);
+  assert.match(elements.conversationPracticeArea.innerHTML, /data-conversation-speech/);
+
+  elements.conversationFreeResponse = { value: 'Halo, saya baik.' };
+  engine.showFreeExample();
+  assert.equal(engine.score, 0, 'free responses must not be auto-scored');
+  assert.equal(engine.freeResponseTurns, 1);
+  assert.match(elements.conversationPracticeArea.innerHTML, /Un ejemplo posible/);
+  assert.match(elements.conversationPracticeArea.innerHTML, /Halo! Baik, terima kasih\./);
+
+  engine.next();
+  assert.equal(engine.turnIndex, 1);
+  assert.equal(engine.freeResponseMode, false);
+  assert.equal(engine.freeResponseTurns, 1);
+});
+
+test('free response cannot reveal an example before the learner attempts an answer', () => {
+  const engine = sandbox.window.ConversationEngine;
+  engine.start('greetings');
+  engine.useFreeResponse();
+  elements.conversationFreeResponse = { value: '   ' };
+  engine.showFreeExample();
+  assert.equal(engine.answered, false);
+  assert.equal(engine.freeResponseTurns, 0);
+  assert.match(elements.conversationSpeechStatus.textContent, /Escribe o dicta primero/);
+});
+
+test('free-response speech capture is optional and never persists audio or learning records', () => {
+  assert.match(source, /window\.SpeechRecognition \|\| window\.webkitSpeechRecognition/);
+  assert.match(source, /recognition\.lang = 'id-ID'/);
+  assert.match(source, /la app no guarda grabaciones/);
+  assert.doesNotMatch(source, /App\.addXp|SRSEngine\.recordAttempt|DB\.set|MediaRecorder/);
 });

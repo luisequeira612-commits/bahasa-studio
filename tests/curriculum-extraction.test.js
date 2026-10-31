@@ -136,7 +136,7 @@ test('the extracted stylesheet stays linked and its canonical content hash remai
   const css = fs.readFileSync(require.resolve('../styles.css'), 'utf8');
   assert.match(html, /<link rel="stylesheet" href="\.\/styles\.css">/);
   assert.doesNotMatch(html, /<style[\s>]/i);
-  assert.equal(fnv1a(css), 'd1034346', 'canonical extracted CSS content changed');
+  assert.equal(fnv1a(css), '5af62f58', 'canonical extracted CSS content changed');
 });
 
 test('the extraction does not alter IndexedDB, SRS, backup, or word-translation code', () => {

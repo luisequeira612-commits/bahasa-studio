@@ -1651,8 +1651,8 @@
             },
             startUnit(unit, lessonIndex = 0) {
                 const level = getLevels().find(entry => entry.units.some(candidate => candidate.id === unit.id));
-                if (!level || ['B1', 'B2'].includes(level.id) ||
-                    (level.id === 'A2' && !isA1Complete(App.completedUnits))) return;
+                if (level && (['B1', 'B2'].includes(level.id) ||
+                    (level.id === 'A2' && !isA1Complete(App.completedUnits)))) return;
                 const lessons = buildUnitLessons(unit);
                 const lesson = lessons[lessonIndex];
                 if (!lesson) return;

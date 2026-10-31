@@ -124,58 +124,14 @@
             </div>
         </div>
 
-        <div class="card" style="margin-top:16px;">
-            <h3>Métricas de Retención</h3>
-            <div style="display:flex; justify-content:space-between; margin-top: 8px;">
-                <span>Vocabulario disponible:</span>
-                <strong id="statTotalVocab">0</strong>
-            </div>
-            <div style="display:flex; justify-content:space-between; margin-top: 4px;">
-                <span>Palabras con seguimiento:</span>
-                <strong id="statTrackedVocab">0</strong>
-            </div>
-            <div style="display:flex; justify-content:space-between; margin-top: 4px;">
-                <span>Consolidadas (4+ repasos correctos):</span>
-                <strong id="statMastered">0</strong>
-            </div>
-            <div style="display:flex; justify-content:space-between; margin-top: 8px;">
-                <span>Porcentaje de vocabulario consolidado:</span>
-                <strong id="statMasteredPercent">0%</strong>
-            </div>
-            <div class="progress-bar" role="progressbar" aria-label="Porcentaje de vocabulario consolidado" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" style="margin-top:5px;">
-                <div id="statMasteredProgress" class="progress-fill" style="width:0%;"></div>
-            </div>
-            <p style="font-size:0.75rem;color:var(--text-muted);margin:5px 0 0;">Una palabra cuenta como consolidada tras cuatro o más repasos correctos seguidos.</p>
-            <div style="display:flex; justify-content:space-between; margin-top: 4px;">
-                <span>Intentos registrados:</span>
-                <strong id="statAttempts">0</strong>
-            </div>
-            <div style="display:flex; justify-content:space-between; margin-top: 4px;">
-                <span>Precisión:</span>
-                <strong id="statAccuracy">—</strong>
-            </div>
-            <div style="display:flex; justify-content:space-between; margin-top: 4px;">
-                <span>Reforzar:</span>
-                <strong id="statNeedsPractice">0</strong>
-            </div>
-            <div style="display:flex; justify-content:space-between; margin-top: 4px;">
-                <span>Guardadas para repasar:</span>
-                <strong id="statSavedForReview">0</strong>
-            </div>
-        </div>
     </main>
 
     <!-- TUTOR INTEGRADO / LOCAL -->
     <main id="view-ai" class="app-view">
         <div class="tutor-heading">
-            <div><p class="eyebrow">TU ESPACIO DE APOYO</p><h1>Tutor</h1></div>
+            <div><p class="eyebrow">TU ESPACIO DE APOYO</p><h1>Tutor</h1><span class="badge">Local / Opcional</span></div>
             <button class="btn btn-outline tutor-dictionary-link" type="button" onclick="App.switchView('dict')">📖 Diccionario</button>
         </div>
-        <div style="display:none; justify-content:space-between; align-items:center; margin-bottom:8px;">
-            <h2>Tutor de Gramática</h2>
-            <span class="badge" style="background:#16a34a22; color:var(--success);">Local / Opcional</span>
-        </div>
-        
         <div class="card" style="padding: 12px;">
             <details>
                 <summary style="font-size:0.85rem; cursor:pointer; font-weight:bold;">Configuración Gemini API (Opcional)</summary>
@@ -200,6 +156,7 @@
 
     <!-- DICCIONARIO -->
     <main id="view-dict" class="app-view">
+        <button class="btn btn-outline btn-sm" type="button" onclick="App.switchView('ai')">← Tutor</button>
         <h2>Diccionario General</h2>
         <input type="text" id="dictSearch" class="input-field" placeholder="Buscar indonesio o español..." oninput="App.filterDict()" style="margin: 12px 0;">
         <div id="dictContainer"></div>
@@ -281,6 +238,45 @@
             <div class="profile-device-status"><span id="connectionStatus" class="connection-indicator online">Online</span><span id="localLessonsStatus" class="local-lessons-indicator">0 guardadas</span></div>
             <button class="btn btn-outline" type="button" onclick="App.toggleTheme()">🌓 Cambiar tema</button>
         </section>
+                <div class="card" style="margin-top:16px;">
+            <h3>Métricas de Retención</h3>
+            <div style="display:flex; justify-content:space-between; margin-top: 8px;">
+                <span>Vocabulario disponible:</span>
+                <strong id="statTotalVocab">0</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-top: 4px;">
+                <span>Palabras con seguimiento:</span>
+                <strong id="statTrackedVocab">0</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-top: 4px;">
+                <span>Consolidadas (4+ repasos correctos):</span>
+                <strong id="statMastered">0</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-top: 8px;">
+                <span>Porcentaje de vocabulario consolidado:</span>
+                <strong id="statMasteredPercent">0%</strong>
+            </div>
+            <div class="progress-bar" role="progressbar" aria-label="Porcentaje de vocabulario consolidado" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" style="margin-top:5px;">
+                <div id="statMasteredProgress" class="progress-fill" style="width:0%;"></div>
+            </div>
+            <p style="font-size:0.75rem;color:var(--text-muted);margin:5px 0 0;">Una palabra cuenta como consolidada tras cuatro o más repasos correctos seguidos.</p>
+            <div style="display:flex; justify-content:space-between; margin-top: 4px;">
+                <span>Intentos registrados:</span>
+                <strong id="statAttempts">0</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-top: 4px;">
+                <span>Precisión:</span>
+                <strong id="statAccuracy">—</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-top: 4px;">
+                <span>Reforzar:</span>
+                <strong id="statNeedsPractice">0</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-top: 4px;">
+                <span>Guardadas para repasar:</span>
+                <strong id="statSavedForReview">0</strong>
+            </div>
+        </div>
     </main>
 
     <!-- EVALUACIÓN DE DOMINIO -->
@@ -2366,7 +2362,10 @@ Requisitos:
                 if (xpFill) xpFill.style.width = percent + '%';
                 const goalRing = document.getElementById('dailyGoalRing');
                 const goalPercent = document.getElementById('dailyGoalPercent');
-                if (goalRing) goalRing.setAttribute('aria-valuenow', String(percent));
+                if (goalRing) {
+                    goalRing.setAttribute('aria-valuenow', String(percent));
+                    goalRing.style.setProperty('--goal-progress', percent + '%');
+                }
                 if (goalPercent) goalPercent.textContent = percent + '%';
                 if (xpBar) xpBar.setAttribute('aria-valuenow', String(percent));
                 if (status) status.textContent = earned >= goal ? '¡Objetivo diario cumplido!' : 'Te faltan ' + (goal - earned) + ' XP para alcanzar tu objetivo.';

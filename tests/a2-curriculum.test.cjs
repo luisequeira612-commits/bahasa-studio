@@ -514,6 +514,8 @@ test('A2 date production and sequence context practice are explicitly taught', (
   const dateTask = dateLesson.exercises.find(exercise => exercise.type === 'write' && exercise.vocabId === 'a2u1_tanggal');
   assert.ok(dateTask, 'A2-U1 should include a guided full-date production task');
   assert.equal(dateTask.modelAnswer, 'Hari ini tanggal 17 Agustus.');
+  assert.match(dateTask.prompt, /día y el mes/);
+  assert.doesNotMatch(dateTask.prompt, /fecha completa/);
 
   const sequenceLesson = a2.units[2].lessons.find(lesson => /Primero y después/.test(lesson.title));
   assert.ok(sequenceLesson);

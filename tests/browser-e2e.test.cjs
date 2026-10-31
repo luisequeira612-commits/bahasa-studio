@@ -470,7 +470,7 @@ test('service worker serves the app after the network is disconnected', async ()
     await context.setOffline(true);
     await page.reload({ waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined');
-    assert.match(await page.title(), /Bahasa Studio 3\.8\.10/);
+    assert.match(await page.title(), /Bahasa Studio 3\.8\.11/);
     assert.equal(await page.locator('body').isVisible(), true);
     assert.equal(await page.evaluate(() => typeof ConversationEngine !== 'undefined' && typeof StudyActivity !== 'undefined'), true,
       'the conversation and study activity modules must be available from the service-worker cache offline');
@@ -575,6 +575,11 @@ test('daily XP goals and study streaks persist across reloads', async () => {
     await page.locator('.nav-btn').filter({ hasText: 'Perfil' }).click();
     assert.equal(await page.locator('#dailyXpGoal').inputValue(), '50');
     assert.equal(await page.locator('#studyDailyXpText').innerText(), '10 / 50 XP');
+    await page.evaluate(() => App.addXp(45));
+    await page.waitForFunction(() => App.studyActivity && App.studyActivity.todayXp === 55);
+    assert.equal(await page.locator('#studyDailyXpText').innerText(), '55 XP hoy');
+    assert.equal(await page.locator('#dailyGoalPercent').innerText(), '✓');
+    assert.match(await page.locator('#dailyGoalRing').getAttribute('aria-label'), /100% completado/);
     assert.equal(await page.locator('#studyStreakText').innerText(), '1 día');
     assert.equal(await page.locator('#studyLessonsTodayText').innerText(), '1 lección hoy');
     assert.equal(await page.locator('#studyReviewsTodayText').innerText(), '1 tarjeta repasada hoy');
@@ -1227,6 +1232,55 @@ test('free-writing notebook shows an example after a draft and never changes XP 
   }
 });
 
+
+test('lesson word preview cards fit narrow mobile screens and pronunciation control stays touch-sized', async () => {
+  const { server, url } = await startServer();
+  const context = await browser.newContext({ viewport: { width: 320, height: 640 }, serviceWorkers: 'block' });
+  const page = await context.newPage();
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof LessonEngine !== 'undefined' &&
+      typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
+    await page.evaluate(() => LessonEngine.startUnitById('a1_u1', 0));
+    await page.locator('#view-lesson.active').waitFor();
+
+    const cards = await page.locator('.lesson-word-card').evaluateAll(nodes => nodes.map(node => {
+      const main = node.querySelector('.lesson-word-card-main');
+      const rect = node.getBoundingClientRect();
+      return {
+        right: rect.right,
+        scrollWidth: node.scrollWidth,
+        clientWidth: node.clientWidth,
+        textScrollWidth: main.scrollWidth,
+        textClientWidth: main.clientWidth
+      };
+    }));
+    assert.ok(cards.length > 0, 'the lesson preview should show its new vocabulary cards');
+    assert.ok(cards.every(card => card.right <= 320 && card.scrollWidth <= card.clientWidth + 1 &&
+      card.textScrollWidth <= card.textClientWidth + 1),
+    'vocabulary cards and their text should stay inside a 320px mobile viewport');
+
+    await page.evaluate(() => {
+      LessonEngine.queue = [{
+        type: 'mc', prompt: 'Escucha y elige', audioText: 'Halo',
+        options: ['Hola', 'Adiós'], answer: 0
+      }];
+      LessonEngine.stepIndex = 0;
+      LessonEngine.intro = false;
+      LessonEngine.renderStep();
+    });
+    const pronunciationSize = await page.locator('.pronunciation-practice-btn').evaluate(node => {
+      const rect = node.getBoundingClientRect();
+      return { width: rect.width, height: rect.height };
+    });
+    assert.deepEqual(pronunciationSize, { width: 48, height: 48 },
+      'the pronunciation control should remain a compact, touch-friendly icon button');
+  } finally {
+    await context.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});
 
 test('lesson uses a full-screen flow, confirmation, feedback sheet and session summary', async () => {
   const { server, url } = await startServer();

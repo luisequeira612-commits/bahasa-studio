@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bahasa Studio 3.8.10</title>
+    <title>Bahasa Studio 3.8.11</title>
     <meta name="description" content="Curso de indonesio PWA para hispanohablantes sin costo ni penalizaciones.">
     <meta name="theme-color" content="#e8384f">
     <link rel="manifest" href="./manifest.json">
@@ -1709,9 +1709,9 @@
                 const lesson = this.currentLesson;
                 document.getElementById('lessonStepCount').innerText = '0/' + this.queue.length;
                 document.getElementById('lessonProgressFill').style.width = '0%';
-                const wordCard = v => `<div class="card" style="padding:10px; margin-bottom:8px; display:flex; justify-content:space-between; align-items:center;">
-                    <div><strong>${App.escapeHtml(v.idn)}</strong> — ${App.escapeHtml(v.esp)}<br><small style="color:var(--text-muted);">${App.escapeHtml(v.ex)} (${App.escapeHtml(v.exEsp)})</small></div>
-                    <button class="btn btn-outline btn-sm" data-word="${App.escapeHtml(v.idn)}" onclick="AudioEngine.speak(this.dataset.word)">🔊</button></div>`;
+                const wordCard = v => `<div class="card lesson-word-card">
+                    <div class="lesson-word-card-main"><strong>${App.escapeHtml(v.idn)}</strong> — ${App.escapeHtml(v.esp)}<br><small>${App.escapeHtml(v.ex)} (${App.escapeHtml(v.exEsp)})</small></div>
+                    <button class="btn btn-outline btn-sm lesson-word-audio" type="button" data-word="${App.escapeHtml(v.idn)}" onclick="AudioEngine.speak(this.dataset.word)" aria-label="Escuchar ${App.escapeHtml(v.idn)}">🔊</button></div>`;
                 document.getElementById('exerciseArea').innerHTML = `<div>
                     <h3>${App.escapeHtml(u.title)}</h3>
                     <p style="margin:6px 0 12px;color:var(--text-muted);">Lección ${lesson.index + 1} de ${buildUnitLessons(u).length} · ${lesson.newVocab.length} palabras nuevas</p>
@@ -1743,7 +1743,7 @@
                         : `<h3>${App.escapeHtml(ex.prompt)}</h3>`;
                     const listenMarkup = ex.audioText
                         ? `<button class="btn btn-outline" style="margin-top:12px;" data-audio-text="${App.escapeHtml(ex.audioText)}" onclick="AudioEngine.speak(this.dataset.audioText)" aria-label="Repetir audio">🔊 Repetir audio</button>
-                            <button class="btn btn-outline" style="margin-top:8px;" onclick="LessonEngine.startPronunciationPractice()" aria-label="Practicar pronunciación">🎙️ Practicar pronunciación (opcional)</button>
+                            <button class="btn btn-outline pronunciation-practice-btn" type="button" title="Practicar pronunciación" onclick="LessonEngine.startPronunciationPractice()" aria-label="Practicar pronunciación">🎙️</button>
                             <p id="pronunciationStatus" role="status" aria-live="polite" style="font-size:0.85rem;color:var(--text-muted);margin-top:8px;">El micrófono solo se activa al pulsar. El navegador puede enviar audio a su proveedor de reconocimiento.</p>`
                         : '';
                     container.innerHTML = `
@@ -1778,7 +1778,7 @@
                         <div>
                             <h3>${App.escapeHtml(ex.prompt)}</h3>
                             <button class="btn btn-outline" style="margin-top:12px;" data-answer="${App.escapeHtml(ex.answer)}" onclick="AudioEngine.speak(this.dataset.answer)">🔊 Escuchar de nuevo</button>
-                            <button class="btn btn-outline" style="margin-top:8px;" onclick="LessonEngine.startPronunciationPractice()" aria-label="Practicar pronunciación">🎙️ Practicar pronunciación (opcional)</button>
+                            <button class="btn btn-outline pronunciation-practice-btn" type="button" title="Practicar pronunciación" onclick="LessonEngine.startPronunciationPractice()" aria-label="Practicar pronunciación">🎙️</button>
                             <p id="pronunciationStatus" role="status" aria-live="polite" style="font-size:0.85rem;color:var(--text-muted);margin-top:8px;">El micrófono solo se activa al pulsar. El navegador puede enviar audio a su proveedor de reconocimiento.</p>
                             <input type="text" id="textAnswer" class="input-field" placeholder="Escribe lo que escuchas..." style="margin-top:20px;">
                         </div>
@@ -2449,7 +2449,7 @@ Requisitos:
                 if (streakNode) streakNode.textContent = streak + (streak === 1 ? ' día' : ' días');
                 if (recordNode) recordNode.textContent = 'Récord: ' + this.studyActivity.longestStreak + (this.studyActivity.longestStreak === 1 ? ' día' : ' días');
                 if (goalSelect && goalSelect.value !== String(goal)) goalSelect.value = String(goal);
-                if (xpText) xpText.textContent = earned + ' / ' + goal + ' XP';
+                if (xpText) xpText.textContent = earned >= goal ? earned + ' XP hoy' : earned + ' / ' + goal + ' XP';
                 if (xpFill) xpFill.style.width = percent + '%';
                 const goalRing = document.getElementById('dailyGoalRing');
                 const goalPercent = document.getElementById('dailyGoalPercent');
@@ -2457,7 +2457,10 @@ Requisitos:
                     goalRing.setAttribute('aria-label', 'Objetivo diario: ' + earned + ' de ' + goal + ' XP, ' + percent + '% completado');
                     goalRing.style.setProperty('--goal-progress', percent + '%');
                 }
-                if (goalPercent) goalPercent.textContent = percent + '%';
+                if (goalPercent) {
+                    goalPercent.textContent = percent >= 100 ? '✓' : percent + '%';
+                    goalPercent.classList.toggle('is-complete', percent >= 100);
+                }
                 if (xpBar) xpBar.setAttribute('aria-valuenow', String(percent));
                 if (status) status.textContent = earned >= goal ? '¡Objetivo diario cumplido!' : 'Te faltan ' + (goal - earned) + ' XP para alcanzar tu objetivo.';
                 if (lessons) lessons.textContent = this.studyActivity.todayLessons + (this.studyActivity.todayLessons === 1 ? ' lección hoy' : ' lecciones hoy');

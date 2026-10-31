@@ -149,11 +149,13 @@ window.BAHASA_CURRICULUM_A2 = {
                                     objective: 'Expresa continuidad y proximidad temporal.',
                                     grammar: 'Masih indica que una situación continúa. Sebentar lagi señala que algo ocurrirá dentro de poco; minggu depan sitúa una acción en la semana siguiente.',
                                     vocabIds: ['a2u2_masih', 'a2u2_sebentar_lagi', 'a2u2_minggu_depan'],
+                                    reviewVocabIds: ['a2u2_belum'],
                                     exercises: [
                                         { vocabId: 'a2u2_masih', type: 'mc', prompt: 'En «Saya masih di rumah», ¿qué significa masih?', options: ['Todavía; aún', 'Ya; completado', 'Nunca'], answer: 0, explanation: 'Masih expresa que la situación continúa.' },
                                         { vocabId: 'a2u2_sebentar_lagi', type: 'translate_es_id', prompt: 'Traduce: Me iré dentro de poco.', answer: 'Saya akan pergi sebentar lagi.', explanation: 'Sebentar lagi indica que la acción ocurrirá pronto.' },
                                         { vocabId: 'a2u2_minggu_depan', type: 'listen', prompt: 'Escucha y escribe la oración.', answer: 'Saya pergi minggu depan.', explanation: 'Minggu depan significa «la semana que viene».' },
-                                        { vocabId: 'a2u2_masih', type: 'order', prompt: 'Ordena: Todavía estoy estudiando.', words: ['belajar', 'masih', 'Saya'], correctOrder: ['Saya', 'masih', 'belajar'], explanation: 'Saya masih belajar expresa que el estudio continúa.' }
+                                        { vocabId: 'a2u2_masih', type: 'order', prompt: 'Ordena: Todavía estoy estudiando.', words: ['belajar', 'masih', 'Saya'], correctOrder: ['Saya', 'masih', 'belajar'], explanation: 'Saya masih belajar expresa que el estudio continúa.' },
+                                        { vocabId: 'a2u2_belum', type: 'mc', prompt: '¿Qué diferencia expresan «Saya belum makan» y «Saya masih makan»?', options: ['Belum: todavía no he comido; masih: sigo comiendo.', 'Belum: ya terminé de comer; masih: nunca como.', 'Belum y masih siempre significan exactamente lo mismo.'], answer: 0, explanation: 'Belum indica que la acción todavía no ha ocurrido; masih indica que la situación o actividad continúa. El contexto y el verbo ayudan a distinguirlos.' }
                                     ]
                                 },
                                 {
@@ -304,13 +306,14 @@ window.BAHASA_CURRICULUM_A2 = {
                                     objective: 'Describe si tu día está ocupado o es tranquilo.',
                                     grammar: 'Sibuk describe un día con muchas tareas; santai describe un ritmo tranquilo o relajado.',
                                     vocabIds: ['a2u4_sibuk', 'a2u4_santai', 'a2u4_penuh'],
-                                    reviewVocabIds: ['v247', 'v248', 'v249', 'v250', 'v251', 'v252'],
+                                    reviewVocabIds: ['a2u4_jadwal', 'v247', 'v248', 'v249', 'v250', 'v251', 'v252'],
                                     exercises: [
                                         { vocabId: 'a2u4_sibuk', type: 'mc', prompt: '¿Qué significa «sibuk»?', options: ['Ocupado/a', 'Tranquilo/a', 'Cansado/a'], answer: 0, explanation: 'Sibuk describe a alguien que tiene muchas actividades o tareas.' },
                                         { vocabId: 'a2u4_santai', type: 'translate_es_id', prompt: 'Traduce: Hoy estoy tranquilo/a.', answer: 'Hari ini saya santai.', explanation: 'Santai describe un estado relajado o tranquilo.' },
                                         { vocabId: 'a2u4_penuh', type: 'mc', prompt: 'En «Jadwal saya penuh», ¿qué significa penuh?', options: ['Lleno', 'Ordenado', 'Libre'], answer: 0, explanation: 'Penuh significa «lleno» o «completo».' },
                                         { vocabId: 'v251', type: 'listen', prompt: 'Escucha y escribe la oración.', answer: 'Saya pulang.', explanation: 'La oración dice «Regreso a casa».' },
-                                        { vocabId: 'a2u4_sibuk', type: 'write', prompt: 'Escribe una frase para describir que hoy no estás ocupado/a.', hint: 'Usa «Hari ini saya tidak sibuk».', modelAnswer: 'Hari ini saya tidak sibuk.', explanation: 'El modelo niega sibuk con tidak.' }
+                                        { vocabId: 'a2u4_sibuk', type: 'write', prompt: 'Escribe una frase para describir que hoy no estás ocupado/a.', hint: 'Usa «Hari ini saya tidak sibuk».', modelAnswer: 'Hari ini saya tidak sibuk.', explanation: 'El modelo niega sibuk con tidak.' },
+                                        { vocabId: 'a2u4_jadwal', type: 'write', prompt: 'Escribe un horario breve con dos actividades y sus horas; termina indicando si tu horario está lleno o tranquilo.', hint: 'Puedes usar «Pukul ... saya ...» para cada actividad y terminar con «Jadwal saya penuh» o «Hari ini saya santai».', modelAnswer: 'Pukul delapan saya belajar. Pukul dua belas saya makan. Jadwal saya penuh.', explanation: 'La respuesta integra dos actividades con sus horas y una descripción global del día. Es un modelo guiado; se pueden aceptar otras actividades y horarios coherentes.' }
                                     ]
                                 }
                             ]

@@ -5,7 +5,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
-const { getAssessment } = require('../assessment-engine.js');
+const { getAssessment, LEVELS } = require('../assessment-engine.js');
 
 const root = path.join(__dirname, '..');
 const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
@@ -63,4 +63,7 @@ test('B1 assessment bank includes open production items that require human revie
   assert.ok(items.some(item => item.type === 'open' && item.skill === 'production'));
   for (const id of ['b1-connectors-01', 'b1-report-01', 'b1-process-01', 'b1-opinion-01', 'b1-formal-01']) assert.ok(items.some(item => item.id === id), 'missing B1 assessment item ' + id);
   assert.ok(items.some(item => item.skill === 'register'));
+  for (const skill of LEVELS.B1.skills) assert.ok(items.some(item => item.skill === skill), 'B1 assessment must cover ' + skill);
+  const addedItems = items.filter(item => ['b1-connectors-01', 'b1-report-01', 'b1-process-01', 'b1-opinion-01', 'b1-formal-01'].includes(item.id));
+  assert.ok(addedItems.every(item => item.prompt && item.explanation && item.options[item.answer]));
 });

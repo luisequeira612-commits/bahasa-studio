@@ -89,9 +89,9 @@ test('daily goal ring explains its purpose accessibly and updates its spoken lab
 });
 
 test('application and service worker cache versions are advanced without changing worker strategy', () => {
-    assert.match(html, /Bahasa Studio 3\.8\.13/);
+    assert.match(html, /Bahasa Studio 3\.8\.14/);
     const manifest = fs.readFileSync(path.join(root, 'manifest.json'), 'utf8');
     const serviceWorker = fs.readFileSync(path.join(root, 'service-worker.js'), 'utf8');
-    assert.match(manifest, /Bahasa Studio 3\.8\.13/);
-    assert.match(serviceWorker, /bahasa-studio-v3\.8\.22/);
+    assert.match(manifest, /Bahasa Studio 3\.8\.14/);
+    assert.match(serviceWorker, /bahasa-studio-v3\.8\.23/);
 });

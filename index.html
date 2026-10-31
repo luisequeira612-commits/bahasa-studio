@@ -965,6 +965,48 @@
                                 { vocabId: 'b1u10_tersedia', type: 'write', prompt: 'Escribe una frase formal que use «tersedia» para indicar que hay información disponible.', hint: 'Puedes mencionar información en un sitio oficial.', modelAnswer: 'Informasi tersedia di situs resmi.', explanation: 'Tersedia indica que algo está disponible.' }
                             ]
                         }
+
+                        ,
+                        {
+                            id: 'b1_u11',
+                            title: 'Unidad 11: Aclarar, negociar y resolver malentendidos',
+                            desc: 'Pide aclaraciones, comprueba lo que otra persona quiere decir y propone una alternativa.',
+                            grammar: 'En una interacción, las preguntas de aclaración y las reformulaciones ayudan a reparar malentendidos. Atiende a la intención y al tono: una petición de repetición no es lo mismo que expresar desacuerdo.',
+                            vocab: [
+                                { id: 'b1u11_bisa_diulangi', idn: 'Bisa diulangi?', esp: '¿Se puede repetir?; ¿podría repetirlo?', ex: 'Maaf, bisa diulangi?', exEsp: 'Disculpe, ¿podría repetirlo?' },
+                                { id: 'b1u11_maksud_saya', idn: 'Maksud saya', esp: 'Lo que quiero decir es; me refiero a', ex: 'Maksud saya, kita bertemu besok.', exEsp: 'Lo que quiero decir es que nos vemos mañana.' },
+                                { id: 'b1u11_maksud_anda', idn: 'Maksud Anda', esp: 'Lo que usted quiere decir', ex: 'Apa maksud Anda?', exEsp: '¿Qué quiere decir usted?' },
+                                { id: 'b1u11_bagaimana_kalau', idn: 'Bagaimana kalau', esp: '¿Qué tal si…?; ¿y si…?', ex: 'Bagaimana kalau kita mulai sekarang?', exEsp: '¿Qué tal si empezamos ahora?' },
+                                { id: 'b1u11_kalau_begitu', idn: 'Kalau begitu', esp: 'En ese caso; entonces', ex: 'Kalau begitu, saya setuju.', exEsp: 'En ese caso, estoy de acuerdo.' }
+                            ],
+                            exercises: [
+                                { vocabId: 'b1u11_bisa_diulangi', type: 'mc', prompt: '¿Qué expresión sirve para pedir que repitan algo?', options: ['Maaf, bisa diulangi?', 'Saya setuju.', 'Selamat malam.'], answer: 0, explanation: 'Bisa diulangi? pide que repitan una información.' },
+                                { vocabId: 'b1u11_kalau_begitu', type: 'translate_es_id', prompt: 'Traduce al indonesio: en ese caso', answer: 'Kalau begitu', explanation: 'Kalau begitu introduce una consecuencia o decisión a partir de lo anterior.' },
+                                { vocabId: 'b1u11_bagaimana_kalau', type: 'mc', prompt: '¿Qué función tiene «bagaimana kalau»?', options: ['Proponer una opción', 'Pedir disculpas', 'Indicar una fecha pasada'], answer: 0, explanation: 'Bagaimana kalau introduce una propuesta o sugerencia.' },
+                                { vocabId: 'b1u11_maksud_anda', type: 'translate_es_id', prompt: 'Traduce al indonesio: ¿qué quiere decir usted?', answer: 'Apa maksud Anda?', explanation: 'Apa maksud Anda? pregunta por el sentido de lo que otra persona ha dicho.' },
+                                { vocabId: 'b1u11_maksud_saya', type: 'write', prompt: 'Escribe dos frases para aclarar una idea usando «maksud saya».', hint: 'Reformula la idea con palabras más concretas.', modelAnswer: 'Kita bertemu pada hari Jumat. Maksud saya, setelah makan siang.', explanation: 'Maksud saya introduce una aclaración o reformulación.' }
+                            ]
+                        },
+                        {
+                            id: 'b1_u12',
+                            title: 'Unidad 12: Integrar información y presentar conclusiones',
+                            desc: 'Resume una experiencia o un texto breve, explica su propósito y responde a una idea principal.',
+                            grammar: 'En una síntesis, distingue la experiencia o fuente, la explicación y la conclusión. Organiza las frases para que cada referencia sea clara y la conclusión se apoye en la información presentada.',
+                            vocab: [
+                                { id: 'b1u12_pengalaman', idn: 'Pengalaman', esp: 'Experiencia', ex: 'Saya ingin menceritakan pengalaman saya.', exEsp: 'Quiero contar mi experiencia.' },
+                                { id: 'b1u12_menjelaskan', idn: 'Menjelaskan', esp: 'Explicar', ex: 'Dia menjelaskan proses itu dengan jelas.', exEsp: 'Él/ella explica el proceso con claridad.' },
+                                { id: 'b1u12_menanggapi', idn: 'Menanggapi', esp: 'Responder a; reaccionar ante', ex: 'Saya menanggapi pertanyaan itu.', exEsp: 'Respondo a esa pregunta.' },
+                                { id: 'b1u12_kesimpulan', idn: 'Kesimpulan', esp: 'Conclusión', ex: 'Kesimpulan laporan itu cukup jelas.', exEsp: 'La conclusión del informe es bastante clara.' },
+                                { id: 'b1u12_tujuan', idn: 'Tujuan', esp: 'Objetivo; propósito', ex: 'Tujuan kegiatan ini adalah membantu warga.', exEsp: 'El propósito de esta actividad es ayudar a los residentes.' }
+                            ],
+                            exercises: [
+                                { vocabId: 'b1u12_pengalaman', type: 'mc', prompt: '¿Qué significa «pengalaman»?', options: ['Experiencia', 'Conclusión', 'Objetivo'], answer: 0, explanation: 'Pengalaman se refiere a una experiencia vivida.' },
+                                { vocabId: 'b1u12_menjelaskan', type: 'translate_es_id', prompt: 'Traduce al indonesio: explicar', answer: 'Menjelaskan', explanation: 'Menjelaskan significa explicar algo.' },
+                                { vocabId: 'b1u12_menanggapi', type: 'mc', prompt: '¿Qué significa «menanggapi pertanyaan»?', options: ['Responder a una pregunta', 'Escribir un informe', 'Cambiar de objetivo'], answer: 0, explanation: 'Menanggapi pertanyaan es responder a una pregunta o reaccionar ante ella.' },
+                                { vocabId: 'b1u12_kesimpulan', type: 'translate_es_id', prompt: 'Traduce al indonesio: conclusión', answer: 'Kesimpulan', explanation: 'Kesimpulan es la conclusión o resultado final de un razonamiento.' },
+                                { vocabId: 'b1u12_tujuan', type: 'write', prompt: 'Escribe dos frases que expliquen el propósito de una actividad usando «tujuan».', hint: 'Presenta el propósito y después una acción concreta.', modelAnswer: 'Tujuan kegiatan ini adalah membantu warga. Kami menjelaskan informasi dengan sederhana.', explanation: 'El modelo expresa un propósito y una acción relacionada.' }
+                            ]
+                        }
                     ]
                 },
 {

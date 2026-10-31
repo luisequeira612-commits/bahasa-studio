@@ -51,7 +51,7 @@ test('A2 stays in beta until all A1 units are complete, including direct lesson 
   const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
   assert.ok(start >= 0 && end > start, 'CourseData block must exist');
   const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
-  const helper = html.match(/function isA1Complete\\(completedUnits\\) \\{[\\s\\S]*?\\n        \\}/);
+  const helper = html.match(/function isA1Complete\(completedUnits\) \{[\s\S]*?\n        \}/);
   assert.ok(helper, 'the A1 completion rule must be centralized');
   const isA1Complete = vm.runInNewContext(helper[0] + '\nisA1Complete', { CourseData: course });
   const a1 = course.levels.find(level => level.id === 'A1');
@@ -59,18 +59,18 @@ test('A2 stays in beta until all A1 units are complete, including direct lesson 
   assert.equal(isA1Complete([]), false);
   assert.equal(isA1Complete(allIds.slice(0, -1)), false);
   assert.equal(isA1Complete(allIds), true);
-  assert.match(html, /level\\.id !== 'A2' \\|\\| isA1Complete\\(App\\.completedUnits\\)/,
+  assert.match(html, /level\.id !== 'A2' \|\| isA1Complete\(App\.completedUnits\)/,
     'A2 vocabulary must not enter learning and SRS pools before A1 is complete');
   const lessonEntry = html.slice(html.indexOf('startUnitById(id, requestedLessonIndex)'), html.indexOf('startUnit(unit, lessonIndex = 0)'));
   const assessmentEntry = html.slice(html.indexOf('startUnitAssessment(unitId)'), html.indexOf('startUnitById(id, requestedLessonIndex)'));
-  assert.match(lessonEntry, /level\\.id === 'A2' && !isA1Complete\\(App\\.completedUnits\\)/,
+  assert.match(lessonEntry, /level\.id === 'A2' && !isA1Complete\(App\.completedUnits\)/,
     'direct lesson entry must reject A2 before A1 completion');
-  assert.match(assessmentEntry, /level\\.id === 'A2' && !isA1Complete\\(App\\.completedUnits\\)/,
+  assert.match(assessmentEntry, /level\.id === 'A2' && !isA1Complete\(App\.completedUnits\)/,
     'direct assessment entry must reject A2 before A1 completion');
   assert.match(html, /Beta · en revisión/);
   assert.match(html, /no ha sido validado por hablantes nativos/);
-  assert.match(html, /const unitAccessible = lvl\\.id === 'A1'[\\s\\S]*?lvl\\.id === 'A2' \\? a1Complete/);
-  assert.match(html, /if \\(\\['B1', 'B2'\\]\\.includes\\(level\\.id\\)\\)/,
+  assert.match(html, /const unitAccessible = lvl\.id === 'A1'[\s\S]*?lvl\.id === 'A2' \? a1Complete/);
+  assert.match(html, /if \(\['B1', 'B2'\]\.includes\(level\.id\)\)/,
     'B1 and B2 must remain blocked from direct lesson entry');
 });
 
@@ -326,10 +326,10 @@ test('tap-to-translate includes authored exercises from multi-lesson units', () 
   assert.match(html, /const authoredExercises = \[\s*\.\.\.\(unit\.exercises \|\| \[\]\),\s*\.\.\.\(unit\.lessons \|\| \[\]\)\.flatMap\(lesson => lesson\.exercises \|\| \[\]\)\s*\]/);
 });
 
-test('A2 joins learning vocabulary after A1 completion and its assessment lookup is level-independent', () => {
-  assert.match(html, /return getLevels\(\)\.filter\(level => !\['B1', 'B2'\]\.includes\(level\.id\)\)/);
-  assert.match(html, /startUnitAssessment\(unitId\) \{\s*const unit = CourseData\.levels\.flatMap\(level => level\.units\)\.find\(entry => entry\.id === unitId\)/);
-  assert.doesNotMatch(html, /startUnitAssessment\(unitId\) \{\s*const level = CourseData\.levels\.find\(entry => entry\.id === 'A1'\)/);
+test('A2 joins learning vocabulary only after A1 completion and assessment lookup is level-independent', () => {
+  assert.match(html, /return getLevels\(\)\.filter\(level =>[\s\S]*?level\.id !== 'A2' \|\| isA1Complete\(App\.completedUnits\)/);
+  assert.match(html, /startUnitAssessment\(unitId\) \{\s*const level = getLevels\(\)\.find\(entry => entry\.units\.some\(unit => unit\.id === unitId\)\)/);
+  assert.match(html, /\(level\.id === 'A2' && !isA1Complete\(App\.completedUnits\)\)/);
 });
 
 test('v3.7.1 audit fixes remain in place without changing backup or database versions', () => {
@@ -348,7 +348,8 @@ test('v3.7.1 audit fixes remain in place without changing backup or database ver
   assert.ok(html.includes("String(voice.lang || '').toLowerCase().startsWith('id')"),
     'voice discovery should tolerate missing language metadata without throwing');
   assert.ok(html.includes("function getLearningLevels()"));
-  assert.ok(html.includes("return getLevels().filter(level => !['B1', 'B2'].includes(level.id))"));
+  assert.ok(html.includes("return getLevels().filter(level =>"));
+  assert.ok(html.includes("(level.id !== 'A2' || isA1Complete(App.completedUnits))"));
   assert.ok(html.includes("function getUniqueLearningVocabulary()"));
   assert.ok(html.includes("String(word && word.idn || '').trim().toLocaleLowerCase()"));
   assert.ok(html.includes("async getDuplicateWordIds(wordId)"));
@@ -844,9 +845,12 @@ test('A1 units 9–11 cover numbers, prices, and time with linked exercises', ()
   }
 });
 
-test('A2–B2 course sections remain hidden until every A1 unit is completed', () => {
-  assert.match(html, /const a1Complete = a1 && a1\.units\.length > 0 && a1\.units\.every\(unit => this\.completedUnits\.includes\(unit\.id\)\)/);
+test('A2 is available after A1 completion while B1 and B2 remain in development', () => {
+  assert.match(html, /const a1Complete = isA1Complete\(this\.completedUnits\)/);
   assert.match(html, /if \(!a1Complete\) return;/);
+  assert.match(html, /A2 ya está disponible|Beta · en revisión/);
+  assert.match(html, /\$\{lvl\.title\} — En desarrollo/);
+  assert.match(html, /\['B1', 'B2'\]\.includes\(level\.id\)/);
 });
 
 

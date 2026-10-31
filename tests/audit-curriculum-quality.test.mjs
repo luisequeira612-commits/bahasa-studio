@@ -105,3 +105,24 @@ test('checks reviewVocabIds and does not warn when exercises live inside lessons
   assert.equal(report.warning_count, 0);
   assert.ok(report.issues.some((item) => item.code === 'VOCAB_REFERENCE_MISSING'));
 });
+
+test('validates lesson-level exercise prompts and answer structures', () => {
+  const report = auditCurriculum({
+    id: 'A2',
+    units: [{
+      id: 'u1',
+      title: 'One',
+      vocab: [],
+      lessons: [{
+        exercises: [
+          { type: 'mc', prompt: 'Pick one', options: ['a', 'b'], answer: 3 },
+          { type: 'order', prompt: 'Order', words: ['a', 'b'], correctOrder: ['a', 'c'] },
+          { type: 'listen', answer: 'Saya makan.' },
+        ],
+      }],
+    }],
+  });
+  assert.ok(report.issues.some((item) => item.code === 'LESSON_MC_ANSWER_OUT_OF_RANGE'));
+  assert.ok(report.issues.some((item) => item.code === 'LESSON_ORDER_TOKEN_MISMATCH'));
+  assert.ok(report.issues.some((item) => item.code === 'LESSON_EXERCISE_PROMPT_MISSING'));
+});

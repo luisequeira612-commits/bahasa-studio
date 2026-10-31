@@ -2445,7 +2445,6 @@ Requisitos:
                 const goalRing = document.getElementById('dailyGoalRing');
                 const goalPercent = document.getElementById('dailyGoalPercent');
                 if (goalRing) {
-                    goalRing.setAttribute('aria-valuenow', String(percent));
                     goalRing.setAttribute('aria-label', 'Objetivo diario: ' + earned + ' de ' + goal + ' XP, ' + percent + '% completado');
                     goalRing.style.setProperty('--goal-progress', percent + '%');
                 }

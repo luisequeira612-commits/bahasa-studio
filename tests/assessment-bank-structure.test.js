@@ -66,9 +66,9 @@ for (const [id, expected] of Object.entries(expectedAnswers)) {
 
 
 const totalA1Points = ITEM_BANK.filter(item => item.level === 'A1').reduce((sum, item) => sum + item.points, 0);
-assert.equal(totalA1Points, 62, 'A1 pilot total after expansion');
+assert.equal(totalA1Points, 66, 'A1 pilot total after adding a human-reviewed A1 writing task');
 const blank = scoreAssessment('A1', {});
-assert.equal(blank.possible, 62);
+assert.equal(blank.possible, 66);
 assert.equal(blank.earned, 0);
 assert.equal(blank.provisionalPass, false);
 assert.equal(blank.thresholds.validated, false);

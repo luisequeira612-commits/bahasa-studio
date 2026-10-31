@@ -67,9 +67,9 @@ test('A2 stays hidden until explicit release approval, even after A1 completion'
     'A2 vocabulary must remain out of learning and SRS pools until explicit release approval');
   const lessonEntry = html.slice(html.indexOf('startUnitById(id, requestedLessonIndex)'), html.indexOf('startUnit(unit, lessonIndex = 0)'));
   const assessmentEntry = html.slice(html.indexOf('startUnitAssessment(unitId)'), html.indexOf('startUnitById(id, requestedLessonIndex)'));
-  assert.match(lessonEntry, /level\.id === 'A2' && !isA1Complete\(App\.completedUnits\)/,
+  assert.match(lessonEntry, /level\.id === 'A2' && \(!A2_RELEASE_ENABLED \|\| !isA1Complete\(App\.completedUnits\)\)/,
     'direct lesson entry must reject A2 before A1 completion');
-  assert.match(assessmentEntry, /level\.id === 'A2' && !isA1Complete\(App\.completedUnits\)/,
+  assert.match(assessmentEntry, /level\.id === 'A2' && \(!A2_RELEASE_ENABLED \|\| !isA1Complete\(App\.completedUnits\)\)/,
     'direct assessment entry must reject A2 before A1 completion');
   assert.match(html, /Beta · en revisión/);
   assert.match(html, /no ha sido validado por hablantes nativos/);

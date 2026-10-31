@@ -85,7 +85,7 @@ test('service worker precaches both data files and invalidates the previous cach
   const deletedCaches = [];
   const cachesApi = {
     async open() { return cache; },
-    async keys() { return ['bahasa-studio-v3.8.8', 'bahasa-studio-v3.8.9', 'bahasa-studio-v3.8.10', 'bahasa-studio-v3.8.11', 'another-app-cache-v1']; },
+    async keys() { return ['bahasa-studio-v3.8.8', 'bahasa-studio-v3.8.9', 'bahasa-studio-v3.8.10', 'bahasa-studio-v3.8.11', 'bahasa-studio-v3.8.12', 'another-app-cache-v1']; },
     async delete(name) { deletedCaches.push(name); return name !== 'bahasa-studio-v3.8.10'; }
   };
   const sandbox = {
@@ -110,7 +110,7 @@ test('service worker precaches both data files and invalidates the previous cach
   let activatePromise;
   listeners.activate({ waitUntil(promise) { activatePromise = promise; } });
   await activatePromise;
-  assert.deepEqual(deletedCaches.sort(), ['bahasa-studio-v3.8.10', 'bahasa-studio-v3.8.8', 'bahasa-studio-v3.8.9'],
+  assert.deepEqual(deletedCaches.sort(), ['bahasa-studio-v3.8.10', 'bahasa-studio-v3.8.11', 'bahasa-studio-v3.8.8', 'bahasa-studio-v3.8.9'],
     'activation should remove only older Bahasa Studio caches and preserve caches owned by other apps');
 
   let responsePromise;

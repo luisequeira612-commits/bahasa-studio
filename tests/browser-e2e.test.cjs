@@ -1233,6 +1233,50 @@ test('free-writing notebook shows an example after a draft and never changes XP 
 });
 
 
+test('storage persistence status is honest and the weekly backup reminder can be deferred', async () => {
+  const { server, url } = await startServer();
+  const context = await browser.newContext({ serviceWorkers: 'block' });
+  const page = await context.newPage();
+
+  try {
+    await page.addInitScript(() => {
+      window.__persistCalls = 0;
+      Object.defineProperty(navigator, 'storage', {
+        configurable: true,
+        value: {
+          persist: async () => { window.__persistCalls += 1; throw new Error('permission denied'); },
+          persisted: async () => false
+        }
+      });
+    });
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' && DB && DB.db &&
+      document.querySelector('#storagePersistenceStatus')?.dataset.persisted === 'false');
+
+    assert.equal(await page.evaluate(() => window.__persistCalls), 1,
+      'the app should request persistence once during startup, without failing if denied');
+    assert.match(await page.locator('#storagePersistenceStatus').innerText(), /no ha concedido persistencia/i);
+
+    await page.evaluate(() => {
+      localStorage.removeItem('bahasaStudioBackupReminderLastDismissedAt');
+      App.updateBackupReminder();
+    });
+    await page.locator('#backupReminderBanner').waitFor({ state: 'visible' });
+    await page.getByRole('button', { name: 'Recordar en una semana' }).click();
+    await page.locator('#backupReminderBanner').waitFor({ state: 'hidden' });
+
+    await page.evaluate(() => {
+      localStorage.setItem('bahasaStudioBackupReminderLastDismissedAt',
+        String(Date.now() - 8 * 24 * 60 * 60 * 1000));
+      App.updateBackupReminder();
+    });
+    await page.locator('#backupReminderBanner').waitFor({ state: 'visible' });
+  } finally {
+    await context.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});
+
 test('lesson word preview cards fit narrow mobile screens and pronunciation control stays touch-sized', async () => {
   const { server, url } = await startServer();
   const context = await browser.newContext({ viewport: { width: 320, height: 640 }, serviceWorkers: 'block' });

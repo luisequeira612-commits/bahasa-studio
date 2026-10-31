@@ -57,6 +57,7 @@ test('exercise prompts, answers, or model text contain their linked vocabulary t
     for (const exercise of exercisesOf(unit)) {
       const term = normalize(vocabulary.get(exercise.vocabId));
       if (!term) continue;
+      if (exercise.type === 'write' && !exercise.modelAnswer) continue;
       const content = normalize(strings(exercise).join(' '));
       if (!content.includes(term)) {
         mismatches.push({

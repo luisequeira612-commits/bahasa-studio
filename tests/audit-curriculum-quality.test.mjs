@@ -69,6 +69,8 @@ test('allows a shared vocabulary ID for the same Indonesian term as a warning', 
     ],
   });
   assert.equal(report.error_count, 0);
+  assert.equal(report.vocabulary_count, 2);
+  assert.equal(report.unique_vocabulary_id_count, 1);
   assert.ok(report.issues.some((item) => item.code === 'VOCAB_ID_REUSED_SAME_TERM' && item.severity === 'warning'));
 });
 

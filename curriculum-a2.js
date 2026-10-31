@@ -135,7 +135,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     title: 'Lección 2: Hace un rato y hace muy poco',
                                     objective: 'Sitúa acciones en momentos recientes del día.',
-                                    grammar: 'Tadi suele referirse a un momento anterior dentro del día actual. Tadi pagi y tadi malam concretan el momento; baru saja indica que algo ocurrió hace muy poco.',
+                                    grammar: 'Tadi sitúa algo en un pasado reciente. Con partes del día, tadi pagi significa «esta mañana» cuando ese tramo ya ha pasado y tadi malam suele significar «anoche»; la referencia exacta depende de la hora y del contexto. Si todavía es por la mañana, se usa pagi ini, no tadi pagi. Baru saja indica que algo ocurrió hace muy poco.',
                                     vocabIds: ['a2u2_tadi', 'a2u2_tadi_pagi', 'a2u2_tadi_malam', 'a2u2_baru_saja'],
                                     exercises: [
                                         { vocabId: 'a2u2_tadi_pagi', type: 'mc', prompt: '¿Qué momento indica «tadi pagi»?', options: ['Esta mañana, hace un rato', 'Mañana por la mañana', 'La semana pasada'], answer: 0, explanation: 'Tadi pagi se refiere a esta mañana, antes del momento actual.' },

@@ -16,18 +16,20 @@ El currículo B1 está definido dentro de `CourseData` en `index.html`. El inven
 8. Procesos y resultados con voz pasiva.
 9. Opiniones y justificaciones.
 10. Comunicación formal y cortesía.
+11. Aclarar, negociar y resolver malentendidos.
+12. Integrar información y presentar conclusiones.
 
 La ampliación de U6–U12 incorpora **35 entradas nuevas de vocabulario y 35 ejercicios**, para un total de **52 entradas y 52 ejercicios** en doce unidades. El banco de evaluación independiente pasa de seis a **catorce ítems**, incluidos tres ítems de producción abierta/oral que requieren revisión humana. La expansión es un borrador de contenido beta; no constituye un currículo B1 completo ni una evaluación calibrada.
 
 ## Brechas principales
 
-- La cobertura se concentra en morfología; faltan secuencias de lectura, escucha, interacción y escritura sostenida.
-- Hay pocos ejemplos por patrón y pocos contextos comunicativos para distinguir significado, participantes, foco y registro.
+- La cobertura ahora incluye lectura, interacción y producción escrita inicial; todavía faltan textos de lectura más extensos, actividades de escucha y muestras orales suficientes para cubrir las habilidades B1.
+- Hay pocos ejemplos por patrón y pocos contextos comunicativos para distinguir significado, participantes, foco y registro; la progresión necesita una revisión de carga y recurrencia.
 - La evaluación B1 actual no cubre con suficiente amplitud las unidades y las habilidades.
 - No existe evidencia de calibración con estudiantes ni validación lingüística global.
 - B1/B2 están deliberadamente excluidos de `getLearningLevels()`; no deben aparecer en recomendaciones adaptativas ni desbloquearse por error.
 
-## Estructura objetivo propuesta
+## Estructura objetivo y estado del borrador
 
 La expansión se hará por bloques y no se publicará como curso habilitado hasta superar la puerta de calidad.
 

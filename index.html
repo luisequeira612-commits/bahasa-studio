@@ -2316,7 +2316,7 @@ Requisitos:
                     if (active) el.setAttribute('aria-current', 'page');
                     else el.removeAttribute('aria-current');
                 });
-                if (viewId === 'srs') this.updateSrsView();
+                if (viewId === 'srs' || viewId === 'profile') this.updateSrsView();
             },
             addXp(amount) {
                 this.xp += amount;

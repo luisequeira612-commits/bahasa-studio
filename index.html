@@ -96,6 +96,11 @@
         </div>
 
         <div class="card" style="margin:12px 0; padding:12px;">
+            <h3 style="margin-top:0;">Cuaderno de escritura libre A1</h3>
+            <p style="font-size:0.9rem;color:var(--text-muted);">Escribe mensajes y textos breves con vocabulario de A1. Sin nota, XP ni repasos registrados.</p>
+            <button class="btn btn-outline" type="button" onclick="WritingPractice.open()">Abrir cuaderno de escritura</button>
+        </div>
+        <div class="card" style="margin:12px 0; padding:12px;">
             <h3 style="margin-top:0;">Conversaciones prácticas</h3>
             <p style="font-size:0.9rem;color:var(--text-muted);">Practica respuestas útiles en situaciones cotidianas: presentaciones, restaurantes, compras, viajes, amistades y ayuda.</p>
             <button class="btn" type="button" onclick="ConversationEngine.open()">Practicar conversaciones</button>
@@ -309,6 +314,16 @@
             </select>
         </div>
         <div id="exerciseArea" class="quiz-container"></div>
+    </main>
+
+    <!-- CUADERNO DE ESCRITURA LIBRE -->
+    <main id="view-writing-practice" class="app-view">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px;">
+            <h2 style="margin:0;">Cuaderno de escritura libre A1</h2>
+            <button class="btn btn-outline btn-sm" type="button" onclick="WritingPractice.close()">Volver al curso</button>
+        </div>
+        <p style="font-size:0.9rem;color:var(--text-muted);">Elige una situación y escribe con tus propias palabras. Tu borrador solo permanece en esta sesión: no se guarda al recargar o salir.</p>
+        <div id="writingPracticeContent"></div>
     </main>
 
     <!-- NAVEGACIÓN INFERIOR -->
@@ -3063,6 +3078,7 @@ Requisitos:
     </script>
     <script src="./conversation-engine.js"></script>
     <script src="./study-activity.js"></script>
+    <script src="./writing-practice.js"></script>
 
 </body>
 </html>

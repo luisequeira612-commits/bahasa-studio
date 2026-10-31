@@ -39,8 +39,8 @@ test('inline application JavaScript and service worker parse', () => {
 test('PWA version is consistent across HTML, manifest and cache', () => {
   assert.match(html, /Bahasa Studio 3\.8\.8/);
   assert.equal(manifest.name, 'Bahasa Studio 3.8.8');
-  assert.match(serviceWorker, /bahasa-studio-v3\.8\.15/);
-  for (const asset of ['./', './index.html', './manifest.json', './assessment.html', './assessment-engine.js', './conversation-engine.js', './study-activity.js', './curriculum-a1.js', './curriculum-a2.js', './styles.css', './audio-engine.js', './pronunciation-engine.js']) {
+  assert.match(serviceWorker, /bahasa-studio-v3\.8\.16/);
+  for (const asset of ['./', './index.html', './manifest.json', './assessment.html', './assessment-engine.js', './conversation-engine.js', './study-activity.js', './curriculum-a1.js', './curriculum-a2.js', './styles.css', './audio-engine.js', './pronunciation-engine.js', './writing-practice.js']) {
     assert.ok(serviceWorker.includes("'" + asset + "'"), asset + ' must be precached for offline use');
   }
   assert.doesNotMatch(html + serviceWorker + JSON.stringify(manifest), /3\.5\.1/);
@@ -1737,4 +1737,22 @@ test('optional pronunciation practice uses Indonesian browser recognition withou
   assert.match(html, /PronunciationEngine\.stop\(\)/);
   assert.doesNotMatch(pronunciationEngineSource, /SRSEngine\.recordAttempt|App\.addXp|DB\.set/,
     'pronunciation comparison must not grade exercises, award XP, or persist microphone data');
+});
+
+const writingPracticeSource = fs.readFileSync(path.join(root, 'writing-practice.js'), 'utf8');
+
+test('free-writing notebook offers distinct A1 compositions without persistence or scoring', () => {
+  const sandbox = { window: {} };
+  vm.runInNewContext(writingPracticeSource, sandbox, { filename: 'writing-practice.js' });
+  const practice = sandbox.window.WritingPractice;
+  assert.deepEqual(Array.from(practice.tasks, task => task.id), ['profile', 'travel', 'directions']);
+  for (const task of practice.tasks) {
+    assert.ok(task.situation.length > 50);
+    assert.ok(task.checklist.length >= 3);
+    assert.ok(task.example.length > 20);
+  }
+  assert.match(writingPracticeSource, /no ha sido validado por un hablante nativo/i);
+  assert.match(writingPracticeSource, /setAttribute\('aria-live', 'polite'\)/);
+  assert.doesNotMatch(writingPracticeSource, /DB\.set|DB\.get|localStorage|indexedDB|addXp|SRSEngine|recordAttempt|innerHTML/,
+    'free-writing drafts must stay ephemeral, safely rendered, and separate from XP/SRS');
 });

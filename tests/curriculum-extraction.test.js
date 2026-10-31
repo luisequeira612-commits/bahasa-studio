@@ -68,12 +68,13 @@ test('classic curriculum scripts load synchronously before the main app script',
 
 test('service worker precaches both data files and invalidates the previous cache', async () => {
   const source = fs.readFileSync(require.resolve('../service-worker.js'), 'utf8');
-  assert.match(source, /bahasa-studio-v3\.8\.15/);
+  assert.match(source, /bahasa-studio-v3\.8\.16/);
   assert.match(source, /'\.\/curriculum-a1\.js'/);
   assert.match(source, /'\.\/curriculum-a2\.js'/);
   assert.match(source, /'\.\/styles\.css'/);
   assert.match(source, /'\.\/audio-engine\.js'/);
   assert.match(source, /'\.\/pronunciation-engine\.js'/);
+  assert.match(source, /'\.\/writing-practice\.js'/);
 
   const listeners = {};
   const cached = new Map();
@@ -85,7 +86,7 @@ test('service worker precaches both data files and invalidates the previous cach
   const deletedCaches = [];
   const cachesApi = {
     async open() { return cache; },
-    async keys() { return ['bahasa-studio-v3.8.8', 'bahasa-studio-v3.8.9', 'bahasa-studio-v3.8.10', 'bahasa-studio-v3.8.11', 'bahasa-studio-v3.8.12', 'bahasa-studio-v3.8.13', 'bahasa-studio-v3.8.14', 'bahasa-studio-v3.8.15', 'another-app-cache-v1']; },
+    async keys() { return ['bahasa-studio-v3.8.8', 'bahasa-studio-v3.8.9', 'bahasa-studio-v3.8.10', 'bahasa-studio-v3.8.11', 'bahasa-studio-v3.8.12', 'bahasa-studio-v3.8.13', 'bahasa-studio-v3.8.14', 'bahasa-studio-v3.8.15', 'bahasa-studio-v3.8.16', 'another-app-cache-v1']; },
     async delete(name) { deletedCaches.push(name); return name !== 'bahasa-studio-v3.8.10'; }
   };
   const sandbox = {
@@ -106,11 +107,12 @@ test('service worker precaches both data files and invalidates the previous cach
   assert.ok(cached.has('https://example.test/styles.css'));
   assert.ok(cached.has('https://example.test/audio-engine.js'));
   assert.ok(cached.has('https://example.test/pronunciation-engine.js'));
+  assert.ok(cached.has('https://example.test/writing-practice.js'));
 
   let activatePromise;
   listeners.activate({ waitUntil(promise) { activatePromise = promise; } });
   await activatePromise;
-  assert.deepEqual(deletedCaches.sort(), ['bahasa-studio-v3.8.10', 'bahasa-studio-v3.8.11', 'bahasa-studio-v3.8.12', 'bahasa-studio-v3.8.13', 'bahasa-studio-v3.8.14', 'bahasa-studio-v3.8.8', 'bahasa-studio-v3.8.9'],
+  assert.deepEqual(deletedCaches.sort(), ['bahasa-studio-v3.8.10', 'bahasa-studio-v3.8.11', 'bahasa-studio-v3.8.12', 'bahasa-studio-v3.8.13', 'bahasa-studio-v3.8.14', 'bahasa-studio-v3.8.15', 'bahasa-studio-v3.8.8', 'bahasa-studio-v3.8.9'],
     'activation should remove only older Bahasa Studio caches and preserve caches owned by other apps');
 
   let responsePromise;

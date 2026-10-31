@@ -269,11 +269,11 @@ body.lesson-active #view-lesson.active {
 .lesson-audio-settings .input-field { width:100%; }
 #view-lesson .quiz-container {
     flex:1 1 auto; min-height:0; height:auto; display:flex; flex-direction:column;
-    justify-content:center; gap:16px; margin:0; padding:16px 0 0; overflow:hidden;
+    justify-content:flex-start; gap:16px; margin:0; padding:16px 0 0; overflow:hidden;
 }
 #view-lesson #exerciseArea > div:first-child {
     flex:1 1 auto; min-height:0; display:flex; flex-direction:column;
-    justify-content:center; overflow-y:auto; overscroll-behavior:contain;
+    justify-content:flex-start; overflow-y:auto; overscroll-behavior:contain;
     padding:4px 0 12px;
 }
 #view-lesson #exerciseArea h3 { font-size:clamp(1.2rem,5vw,1.65rem); line-height:1.25; margin-bottom:12px; }
@@ -415,4 +415,27 @@ button:disabled, button:disabled:active { transform:none; border-bottom-width:4p
 .path-node-completed > summary::before { background:var(--success); box-shadow:0 0 0 2px var(--success); }
 @media (prefers-reduced-motion:reduce) {
     .lesson-start-btn { transition:none; }
+}
+
+
+/* Prioridad 1: estados inequívocos para respuestas de elección múltiple. */
+#view-lesson #exerciseArea .option-btn {
+    background:#ffffff;
+    color:#3b2427;
+    border:2px solid #d1d5db;
+    border-bottom-width:4px;
+}
+#view-lesson #exerciseArea .option-btn.selected {
+    background:#fff0f2 !important;
+    background-color:#fff0f2 !important;
+    background-image:none !important;
+    color:#3b2427;
+    border-color:#e8384f;
+}
+#view-lesson #actionArea > .btn:disabled {
+    background:#e5e7eb;
+    color:#6b7280;
+    border-color:#d1d5db;
+    cursor:not-allowed;
+    opacity:1;
 }

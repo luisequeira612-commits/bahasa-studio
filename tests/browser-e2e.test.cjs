@@ -470,7 +470,7 @@ test('service worker serves the app after the network is disconnected', async ()
     await context.setOffline(true);
     await page.reload({ waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined');
-    assert.match(await page.title(), /Bahasa Studio 3\.8\.9/);
+    assert.match(await page.title(), /Bahasa Studio 3\.8\.10/);
     assert.equal(await page.locator('body').isVisible(), true);
     assert.equal(await page.evaluate(() => typeof ConversationEngine !== 'undefined' && typeof StudyActivity !== 'undefined'), true,
       'the conversation and study activity modules must be available from the service-worker cache offline');
@@ -1257,9 +1257,34 @@ test('lesson uses a full-screen flow, confirmation, feedback sheet and session s
       });
     });
     await page.getByRole('button', { name: 'Comenzar lección' }).click();
+    const questionLayout = await page.evaluate(() => ({
+      quiz: getComputedStyle(document.querySelector('#view-lesson .quiz-container')).justifyContent,
+      content: getComputedStyle(document.querySelector('#view-lesson #exerciseArea > div:first-child')).justifyContent
+    }));
+    assert.deepEqual(questionLayout, { quiz: 'flex-start', content: 'flex-start' },
+      'the question and choices should begin near the top without an empty vertical gap');
+    const checkButton = page.getByRole('button', { name: 'Comprobar' });
+    assert.equal(await checkButton.isDisabled(), true,
+      'multiple-choice answers cannot be checked before selecting an option');
+    const defaultOptionStyle = await page.locator('.option-btn').first().evaluate(node => {
+      const style = getComputedStyle(node);
+      return { background: style.backgroundColor, border: style.borderTopColor };
+    });
+    assert.deepEqual(defaultOptionStyle, { background: 'rgb(255, 255, 255)', border: 'rgb(209, 213, 219)' });
     const correctOption = await page.evaluate(() => LessonEngine.queue[0].answer);
     await page.locator('.option-btn').nth(correctOption).click();
-    await page.getByRole('button', { name: 'Comprobar' }).click();
+    await page.waitForFunction(() => {
+      const selected = document.querySelector('#view-lesson .option-btn.selected');
+      return selected && getComputedStyle(selected).backgroundColor === 'rgb(255, 240, 242)';
+    });
+    const selectedOptionStyle = await page.locator('#view-lesson .option-btn.selected').evaluate(node => {
+      const style = getComputedStyle(node);
+      return { background: style.backgroundColor, border: style.borderTopColor };
+    });
+    assert.deepEqual(selectedOptionStyle, { background: 'rgb(255, 240, 242)', border: 'rgb(232, 56, 79)' });
+    assert.equal(await checkButton.isEnabled(), true,
+      'selecting an option enables the check action');
+    await checkButton.click();
     await page.locator('#actionArea.lesson-feedback-sheet.correct').waitFor();
     const expectedAnswer = await page.evaluate(() => LessonEngine.correctAnswerText(LessonEngine.queue[0]));
     assert.equal(await page.locator('#actionArea .lesson-correct-answer').innerText(), 'Respuesta: ' + expectedAnswer);

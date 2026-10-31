@@ -127,8 +127,8 @@ function scoreAssessment(level, answers, { manualScores = {} } = {}) {
       }
     } else if (item.type === 'listen') {
       const normalize = value => String(value || '').toLocaleLowerCase('id-ID')
-        .normalize('NFD').replace(/\\p{M}/gu, '')
-        .replace(/[^\\p{L}\\p{N}\\s]/gu, ' ').replace(/\\s+/g, ' ').trim();
+        .normalize('NFD').replace(/\p{M}/gu, '')
+        .replace(/[^\p{L}\p{N}\s]/gu, ' ').replace(/\s+/g, ' ').trim();
       if (typeof submitted !== 'string' || !submitted.trim()) {
         status = 'unanswered';
       } else if (normalize(submitted) === normalize(item.answer)) {

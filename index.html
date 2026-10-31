@@ -2309,7 +2309,7 @@ Requisitos:
                 const targetView = document.getElementById(`view-${viewId}`);
                 if (!targetView) return;
                 targetView.classList.add('active');
-                const navGroup = ({ route: 'learn', srs: 'review', ai: 'tutor', dict: 'tutor', conversations: 'tutor', profile: 'profile', settings: 'profile', assessment: 'profile' })[viewId];
+                const navGroup = ({ route: 'learn', lesson: 'learn', 'writing-practice': 'learn', srs: 'review', ai: 'tutor', dict: 'tutor', conversations: 'tutor', profile: 'profile', settings: 'profile', assessment: 'profile' })[viewId];
                 document.querySelectorAll('.nav-btn').forEach(el => {
                     const active = !!navGroup && el.dataset.navGroup === navGroup;
                     el.classList.toggle('active', active);

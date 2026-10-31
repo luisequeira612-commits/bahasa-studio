@@ -141,7 +141,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                         { vocabId: 'a2u2_tadi_pagi', type: 'mc', prompt: 'Si ya pasó la mañana, ¿qué momento indica «tadi pagi»?', options: ['Esta mañana, hace un rato', 'Mañana por la mañana', 'La semana pasada'], answer: 0, explanation: 'Tadi pagi se refiere a esta mañana, antes del momento actual.' },
                                         { vocabId: 'a2u2_tadi_malam', type: 'translate_es_id', prompt: 'Traduce: Dormí anoche.', answer: 'Saya tidur tadi malam.', explanation: 'Tadi malam sitúa la acción en la noche anterior de hoy.' },
                                         { vocabId: 'a2u2_baru_saja', type: 'listen', prompt: 'Escucha y escribe la oración.', answer: 'Dia baru saja datang.', explanation: 'Baru saja indica que la llegada ocurrió hace muy poco.' },
-                                        { vocabId: 'a2u2_tadi', type: 'write', prompt: 'Escribe una frase para decir que estudiaste esta mañana.', hint: 'Usa «Saya belajar tadi pagi». Puedes cambiar la actividad si mantienes el marcador temporal.', modelAnswer: 'Saya belajar tadi pagi.', explanation: 'El modelo sitúa el estudio en esta mañana.' }
+                                        { vocabId: 'a2u2_tadi', type: 'write', prompt: 'Si ya pasó la mañana, escribe una frase para decir que estudiaste esta mañana.', hint: 'Usa «Saya belajar tadi pagi». Puedes cambiar la actividad si mantienes el marcador temporal.', modelAnswer: 'Saya belajar tadi pagi.', explanation: 'El modelo sitúa el estudio en esta mañana.' }
                                     ]
                                 },
                                 {

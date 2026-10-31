@@ -329,3 +329,9 @@ body.lesson-active #view-lesson.active {
 @media (prefers-reduced-motion:reduce) {
     #view-lesson * { scroll-behavior:auto !important; }
 }
+
+/* Keep the contextual word bubble clear of the fixed answer controls on lesson screens. */
+body.lesson-active .tap-translation-bubble {
+    top:62px !important; left:50% !important; bottom:auto !important;
+    transform:translateX(-50%); z-index:1003;
+}

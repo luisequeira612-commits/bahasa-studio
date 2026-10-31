@@ -11,71 +11,29 @@
 </head>
 <body>
 
-    <header>
-        <div class="logo">
-            <span>🇮🇩</span> Bahasa Studio <span style="font-size:0.72rem; font-weight:700; opacity:.8; margin-left:4px;">v3.8.8</span>
-        </div>
-        <div class="header-status">
-            <span id="connectionStatus" class="connection-indicator online" title="Estado de conexión">Online</span>
-            <span id="localLessonsStatus" class="local-lessons-indicator" title="Lecciones generadas guardadas en este dispositivo">0 guardadas</span>
-            <button class="btn btn-outline btn-sm" onclick="App.toggleTheme()">🌓</button>
+    <header class="app-topbar">
+        <div class="logo"><span aria-hidden="true">🇮🇩</span><span>Bahasa Studio</span></div>
+        <div class="topbar-metrics" aria-label="Tu actividad">
+            <span class="topbar-streak" title="Racha actual">🔥 <strong id="studyStreakText">0 días</strong></span>
+            <span class="topbar-xp" title="Experiencia ganada hoy">⚡ <strong id="studyDailyXpText">0 / 30 XP</strong></span>
+            <div class="daily-goal-ring" id="dailyGoalRing" role="progressbar" aria-label="Objetivo diario de XP" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                <div class="daily-goal-ring-inner"><span id="dailyGoalPercent">0%</span></div>
+                <div id="studyDailyXpFill" class="progress-fill" aria-hidden="true"></div>
+            </div>
         </div>
     </header>
 
     <!-- CURSO / RUTA -->
     <main id="view-route" class="app-view active">
-        <div class="card" style="margin-bottom: 12px; padding: 12px;">
-            <div style="display:flex; justify-content:space-between; align-items:center;">
-                <div>
-                    <h3 style="margin:0;">Progreso General</h3>
-                    <p style="font-size:0.85rem; color: var(--text-muted);">Estatus: Nivel A1 Activo</p>
-                </div>
-                <div>
-                    <span id="totalExpBadge" class="badge" style="font-size: 0.9rem;">0 XP</span>
-                </div>
-            </div>
-            <div style="margin-top:10px;">
-                <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:5px;">
-                    <span>Avance de A1</span><strong id="courseProgressText">0% · 0/32 unidades</strong>
-                </div>
-                <div class="progress-bar" role="progressbar" aria-label="Progreso del nivel A1" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-                    <div id="courseProgressFill" class="progress-fill" style="width:0%;"></div>
-                </div>
-            </div>
-        </div>
+        <section class="learning-intro">
+            <p class="eyebrow">TU CAMINO DE APRENDIZAJE</p>
+            <h1>Aprende indonesio paso a paso</h1>
+            <p>Completa cada unidad para desbloquear la siguiente. Tu avance se guarda en este dispositivo.</p>
+        </section>
 
-        <div class="card" id="studyActivityDashboard" style="margin-bottom:12px;padding:12px;">
-            <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
-                <div>
-                    <h3 style="margin:0;">Racha de estudio</h3>
-                    <strong id="studyStreakText" style="font-size:1.25rem;">0 días</strong>
-                    <p id="studyLongestStreakText" style="font-size:0.8rem;color:var(--text-muted);margin:2px 0 0;">Récord: 0 días</p>
-                </div>
-                <div>
-                    <label for="dailyXpGoal" style="display:block;font-size:0.8rem;margin-bottom:4px;">Objetivo diario</label>
-                    <select id="dailyXpGoal" class="input-field" style="width:auto;min-width:110px;" onchange="App.setDailyGoal(this.value)" aria-label="Objetivo diario de XP">
-                        <option value="20">20 XP</option>
-                        <option value="30" selected>30 XP</option>
-                        <option value="50">50 XP</option>
-                        <option value="100">100 XP</option>
-                    </select>
-                </div>
-            </div>
-            <div style="margin-top:12px;">
-                <div style="display:flex;justify-content:space-between;font-size:0.85rem;margin-bottom:5px;">
-                    <span>XP de hoy</span><strong id="studyDailyXpText">0 / 30 XP</strong>
-                </div>
-                <div class="progress-bar" role="progressbar" aria-label="Progreso del objetivo diario" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-                    <div id="studyDailyXpFill" class="progress-fill" style="width:0%;"></div>
-                </div>
-                <p id="studyDailyGoalStatus" role="status" aria-live="polite" style="font-size:0.8rem;color:var(--text-muted);margin:6px 0 0;">Te faltan 30 XP para alcanzar tu objetivo.</p>
-            </div>
-            <div style="display:flex;gap:12px;flex-wrap:wrap;font-size:0.8rem;color:var(--text-muted);margin-top:10px;">
-                <span id="studyLessonsTodayText">0 lecciones hoy</span>
-                <span id="studyReviewsTodayText">0 tarjetas repasadas hoy</span>
-            </div>
-        </div>
-
+        <details class="feature-drawer">
+            <summary>✨ Generador de lecciones con IA <span>Opcional</span></summary>
+            <div class="feature-drawer-content">
         <div class="card" style="margin-bottom:12px; padding:12px;">
             <div id="nextTopicLine" style="font-size:0.9rem; margin-bottom:8px;"></div>
             <label for="syllabusSelector" style="display:block; font-size:0.85rem; margin:8px 0 4px;">Empezar desde un tema del temario</label>
@@ -94,17 +52,25 @@
                 <div id="aiPreview" style="margin-top:10px;"></div>
             </div>
         </div>
+            </div>
+        </details>
 
-        <div class="card" style="margin:12px 0; padding:12px;">
+        <details class="feature-drawer">
+            <summary>📓 Cuaderno de escritura <span>Práctica libre</span></summary>
+            <div class="feature-drawer-content">        <div class="card" style="margin:12px 0; padding:12px;">
             <h3 style="margin-top:0;">Cuaderno de escritura libre A1</h3>
             <p style="font-size:0.9rem;color:var(--text-muted);">Escribe mensajes y textos breves con vocabulario de A1. Sin nota, XP ni repasos registrados.</p>
             <button class="btn btn-outline" type="button" onclick="WritingPractice.open()">Abrir cuaderno de escritura</button>
-        </div>
-        <div class="card" style="margin:12px 0; padding:12px;">
+        </div></div>
+        </details>
+        <details class="feature-drawer">
+            <summary>💬 Conversaciones prácticas <span>Situaciones cotidianas</span></summary>
+            <div class="feature-drawer-content">        <div class="card" style="margin:12px 0; padding:12px;">
             <h3 style="margin-top:0;">Conversaciones prácticas</h3>
             <p style="font-size:0.9rem;color:var(--text-muted);">Practica respuestas útiles en situaciones cotidianas: presentaciones, restaurantes, compras, viajes, amistades y ayuda.</p>
             <button class="btn" type="button" onclick="ConversationEngine.open()">Practicar conversaciones</button>
-        </div>
+        </div></div>
+        </details>
         <div id="courseContainer"></div>
     </main>
 
@@ -158,54 +124,14 @@
             </div>
         </div>
 
-        <div class="card" style="margin-top:16px;">
-            <h3>Métricas de Retención</h3>
-            <div style="display:flex; justify-content:space-between; margin-top: 8px;">
-                <span>Vocabulario disponible:</span>
-                <strong id="statTotalVocab">0</strong>
-            </div>
-            <div style="display:flex; justify-content:space-between; margin-top: 4px;">
-                <span>Palabras con seguimiento:</span>
-                <strong id="statTrackedVocab">0</strong>
-            </div>
-            <div style="display:flex; justify-content:space-between; margin-top: 4px;">
-                <span>Consolidadas (4+ repasos correctos):</span>
-                <strong id="statMastered">0</strong>
-            </div>
-            <div style="display:flex; justify-content:space-between; margin-top: 8px;">
-                <span>Porcentaje de vocabulario consolidado:</span>
-                <strong id="statMasteredPercent">0%</strong>
-            </div>
-            <div class="progress-bar" role="progressbar" aria-label="Porcentaje de vocabulario consolidado" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" style="margin-top:5px;">
-                <div id="statMasteredProgress" class="progress-fill" style="width:0%;"></div>
-            </div>
-            <p style="font-size:0.75rem;color:var(--text-muted);margin:5px 0 0;">Una palabra cuenta como consolidada tras cuatro o más repasos correctos seguidos.</p>
-            <div style="display:flex; justify-content:space-between; margin-top: 4px;">
-                <span>Intentos registrados:</span>
-                <strong id="statAttempts">0</strong>
-            </div>
-            <div style="display:flex; justify-content:space-between; margin-top: 4px;">
-                <span>Precisión:</span>
-                <strong id="statAccuracy">—</strong>
-            </div>
-            <div style="display:flex; justify-content:space-between; margin-top: 4px;">
-                <span>Reforzar:</span>
-                <strong id="statNeedsPractice">0</strong>
-            </div>
-            <div style="display:flex; justify-content:space-between; margin-top: 4px;">
-                <span>Guardadas para repasar:</span>
-                <strong id="statSavedForReview">0</strong>
-            </div>
-        </div>
     </main>
 
     <!-- TUTOR INTEGRADO / LOCAL -->
     <main id="view-ai" class="app-view">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-            <h2>Tutor de Gramática</h2>
-            <span class="badge" style="background:#16a34a22; color:var(--success);">Local / Opcional</span>
+        <div class="tutor-heading">
+            <div><p class="eyebrow">TU ESPACIO DE APOYO</p><h1>Tutor</h1><span class="badge">Local / Opcional</span></div>
+            <button class="btn btn-outline tutor-dictionary-link" type="button" onclick="App.switchView('dict')">📖 Diccionario</button>
         </div>
-        
         <div class="card" style="padding: 12px;">
             <details>
                 <summary style="font-size:0.85rem; cursor:pointer; font-weight:bold;">Configuración Gemini API (Opcional)</summary>
@@ -230,6 +156,7 @@
 
     <!-- DICCIONARIO -->
     <main id="view-dict" class="app-view">
+        <button class="btn btn-outline btn-sm" type="button" onclick="App.switchView('ai')">← Tutor</button>
         <h2>Diccionario General</h2>
         <input type="text" id="dictSearch" class="input-field" placeholder="Buscar indonesio o español..." oninput="App.filterDict()" style="margin: 12px 0;">
         <div id="dictContainer"></div>
@@ -237,6 +164,7 @@
 
     <!-- AJUSTES Y RESPALDO -->
     <main id="view-settings" class="app-view">
+        <button class="btn btn-outline btn-sm" type="button" onclick="App.switchView('profile')">← Perfil</button>
         <h2>Ajustes y Datos</h2>
         
         <div class="card">
@@ -283,8 +211,77 @@
         </div>
     </main>
 
+    <!-- PERFIL: estadísticas, evaluación y ajustes -->
+    <main id="view-profile" class="app-view">
+        <p class="eyebrow">TU ESPACIO PERSONAL</p>
+        <h1>Perfil</h1>
+        <section class="card profile-progress-card">
+            <h2>Tu progreso</h2>
+            <div class="profile-xp-row"><span>Experiencia total</span><strong id="totalExpBadge" class="badge">0 XP</strong></div>
+            <div class="profile-xp-row"><span>Avance de A1</span><strong id="courseProgressText">0% · 0/32 unidades</strong></div>
+            <div class="progress-bar" role="progressbar" aria-label="Progreso del nivel A1" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="courseProgressFill" class="progress-fill" style="width:0%;"></div></div>
+        </section>
+        <section class="card" id="studyActivityDashboard">
+            <h2>Actividad de estudio</h2>
+            <div class="profile-xp-row"><span>Racha más larga</span><strong id="studyLongestStreakText">Récord: 0 días</strong></div>
+            <label for="dailyXpGoal">Objetivo diario</label>
+            <select id="dailyXpGoal" class="input-field" onchange="App.setDailyGoal(this.value)" aria-label="Objetivo diario de XP">
+                <option value="20">20 XP</option><option value="30" selected>30 XP</option><option value="50">50 XP</option><option value="100">100 XP</option>
+            </select>
+            <p id="studyDailyGoalStatus" role="status" aria-live="polite" class="profile-muted">Te faltan 30 XP para alcanzar tu objetivo.</p>
+            <div class="profile-xp-row"><span id="studyLessonsTodayText">0 lecciones hoy</span><span id="studyReviewsTodayText">0 tarjetas repasadas hoy</span></div>
+        </section>
+        <section class="card">
+            <h2>Herramientas</h2>
+            <button class="btn btn-outline" type="button" onclick="App.switchView('assessment', this)">📝 Evaluación piloto</button>
+            <button class="btn btn-outline" type="button" onclick="App.switchView('settings')">⚙️ Ajustes y datos</button>
+            <div class="profile-device-status"><span id="connectionStatus" class="connection-indicator online">Online</span><span id="localLessonsStatus" class="local-lessons-indicator">0 guardadas</span></div>
+            <button class="btn btn-outline" type="button" onclick="App.toggleTheme()">🌓 Cambiar tema</button>
+        </section>
+                <div class="card" style="margin-top:16px;">
+            <h3>Métricas de Retención</h3>
+            <div style="display:flex; justify-content:space-between; margin-top: 8px;">
+                <span>Vocabulario disponible:</span>
+                <strong id="statTotalVocab">0</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-top: 4px;">
+                <span>Palabras con seguimiento:</span>
+                <strong id="statTrackedVocab">0</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-top: 4px;">
+                <span>Consolidadas (4+ repasos correctos):</span>
+                <strong id="statMastered">0</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-top: 8px;">
+                <span>Porcentaje de vocabulario consolidado:</span>
+                <strong id="statMasteredPercent">0%</strong>
+            </div>
+            <div class="progress-bar" role="progressbar" aria-label="Porcentaje de vocabulario consolidado" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" style="margin-top:5px;">
+                <div id="statMasteredProgress" class="progress-fill" style="width:0%;"></div>
+            </div>
+            <p style="font-size:0.75rem;color:var(--text-muted);margin:5px 0 0;">Una palabra cuenta como consolidada tras cuatro o más repasos correctos seguidos.</p>
+            <div style="display:flex; justify-content:space-between; margin-top: 4px;">
+                <span>Intentos registrados:</span>
+                <strong id="statAttempts">0</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-top: 4px;">
+                <span>Precisión:</span>
+                <strong id="statAccuracy">—</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-top: 4px;">
+                <span>Reforzar:</span>
+                <strong id="statNeedsPractice">0</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-top: 4px;">
+                <span>Guardadas para repasar:</span>
+                <strong id="statSavedForReview">0</strong>
+            </div>
+        </div>
+    </main>
+
     <!-- EVALUACIÓN DE DOMINIO -->
     <main id="view-assessment" class="app-view">
+        <button class="btn btn-outline btn-sm" type="button" onclick="App.switchView('profile')">← Perfil</button>
         <h2>Evaluación piloto de A1</h2>
         <div class="card">
             <span class="badge">Prueba piloto</span>
@@ -295,23 +292,25 @@
     </main>
 
     <!-- INTERFAZ DE LECCIÓN -->
-    <main id="view-lesson" class="app-view">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 12px;">
-            <button class="btn btn-outline btn-sm" onclick="LessonEngine.exit()">✕ Salir</button>
-            <div class="progress-bar" style="width: 60%;">
-                <div id="lessonProgressFill" class="progress-fill"></div>
+    <main id="view-lesson" class="app-view lesson-screen" aria-label="Lección">
+        <div class="lesson-topbar">
+            <button class="lesson-exit-button" type="button" aria-label="Salir de la lección" onclick="LessonEngine.requestExit()">✕</button>
+            <div class="lesson-progress-wrap">
+                <div class="progress-bar" role="progressbar" aria-label="Progreso de la lección" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                    <div id="lessonProgressFill" class="progress-fill"></div>
+                </div>
             </div>
-            <span id="lessonStepCount" style="font-size:0.85rem; font-weight:bold;">1/1</span>
-        </div>
-
-        <div style="display:flex; align-items:center; gap:10px; margin:0 0 12px; padding:10px; border:1px solid var(--border); border-radius:10px;">
-            <label for="lessonAudioPlaybackRate" style="font-size:0.9rem; font-weight:600; flex:1;">Velocidad del audio</label>
-            <select id="lessonAudioPlaybackRate" class="input-field" style="width:auto; min-width:145px;" onchange="AudioEngine.setRate(this.value)" aria-label="Velocidad del audio de la lección">
-                <option value="0.5">Muy lento (0,5×)</option>
-                <option value="0.7">Lento (0,7×)</option>
-                <option value="0.85">Normal lento (0,85×)</option>
-                <option value="1">Normal (1×)</option>
-            </select>
+            <span id="lessonStepCount" class="lesson-step-count" aria-live="polite">1/1</span>
+            <details class="lesson-audio-settings">
+                <summary aria-label="Velocidad del audio">🔊</summary>
+                <label for="lessonAudioPlaybackRate">Velocidad del audio</label>
+                <select id="lessonAudioPlaybackRate" class="input-field" onchange="AudioEngine.setRate(this.value)" aria-label="Velocidad del audio de la lección">
+                    <option value="0.5">Muy lento (0,5×)</option>
+                    <option value="0.7">Lento (0,7×)</option>
+                    <option value="0.85" selected>Normal lento (0,85×)</option>
+                    <option value="1">Normal (1×)</option>
+                </select>
+            </details>
         </div>
         <div id="exerciseArea" class="quiz-container"></div>
     </main>
@@ -326,31 +325,19 @@
         <div id="writingPracticeContent"></div>
     </main>
 
-    <!-- NAVEGACIÓN INFERIOR -->
-    <nav class="nav-bottom">
-        <button class="nav-btn active" onclick="App.switchView('route', this)">
-            <svg viewBox="0 0 24 24"><path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/></svg>
-            Curso
+    <!-- NAVEGACIÓN PRINCIPAL: cuatro destinos -->
+    <nav class="nav-bottom" aria-label="Navegación principal">
+        <button class="nav-btn active" data-nav-group="learn" aria-current="page" onclick="App.switchView('route', this)">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/></svg><span>Aprender</span>
         </button>
-        <button class="nav-btn" onclick="App.switchView('srs', this)">
-            <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
-            Repaso
+        <button class="nav-btn" data-nav-group="review" onclick="App.switchView('srs', this)">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg><span>Repasar</span>
         </button>
-        <button class="nav-btn" onclick="App.switchView('ai', this)">
-            <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM9 11H7V9h2v2zm4 0h-2V9h2v2zm4 0h-2V9h2v2z"/></svg>
-            Tutor
+        <button class="nav-btn" data-nav-group="tutor" onclick="App.switchView('ai', this)">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM9 11H7V9h2v2zm4 0h-2V9h2v2zm4 0h-2V9h2v2z"/></svg><span>Tutor</span>
         </button>
-        <button class="nav-btn" onclick="App.switchView('dict', this)">
-            <svg viewBox="0 0 24 24"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2z"/></svg>
-            Diccionario
-        </button>
-        <button class="nav-btn" onclick="App.switchView('assessment', this)">
-            <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9 14-4-4 1.4-1.4L10 14.2l6.6-6.6L18 9l-8 8z"/></svg>
-            Evaluar
-        </button>
-        <button class="nav-btn" onclick="App.switchView('settings', this)">
-            <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
-            Ajustes
+        <button class="nav-btn" data-nav-group="profile" onclick="App.switchView('profile', this)">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0 2c-4.42 0-8 2.24-8 5v1h16v-1c0-2.76-3.58-5-8-5z"/></svg><span>Perfil</span>
         </button>
     </nav>
 
@@ -1602,6 +1589,10 @@
             assessmentCorrect: 0,
             currentLesson: null,
             lessonIndex: 0,
+            sessionXpStart: 0,
+            sessionExerciseCount: 0,
+            sessionAnswered: 0,
+            sessionCorrect: 0,
 
             startUnitAssessment(unitId) {
                 const level = getLevels().find(entry => entry.units.some(unit => unit.id === unitId));
@@ -1625,6 +1616,10 @@
                 this.assessmentMode = true;
                 this.assessmentCorrect = 0;
                 this.stepIndex = 0;
+                this.sessionXpStart = App.xp;
+                this.sessionExerciseCount = this.queue.length;
+                this.sessionAnswered = 0;
+                this.sessionCorrect = 0;
                 App.switchView('lesson');
                 this.renderStep();
             },
@@ -1668,10 +1663,46 @@
                 this.assessmentMode = false;
                 this.assessmentCorrect = 0;
                 this.stepIndex = 0;
+                this.sessionXpStart = App.xp;
+                this.sessionExerciseCount = this.queue.length;
+                this.sessionAnswered = 0;
+                this.sessionCorrect = 0;
                 App.switchView('lesson');
                 this.renderStep();
             },
+            requestExit() {
+                const confirmed = window.confirm('¿Salir de esta lección? El XP y los intentos ya registrados se conservarán, pero la lección no contará como terminada.');
+                if (confirmed) this.exit();
+            },
+            vibrateFeedback() {
+                if (typeof navigator === 'undefined' || typeof navigator.vibrate !== 'function') return;
+                try { navigator.vibrate(24); } catch (error) { /* La vibración es opcional y nunca bloquea la lección. */ }
+            },
             exit() { this.stopPronunciationPractice(); App.switchView('route'); },
+            recordFirstAttempt(exercise, isCorrect) {
+                if (!exercise || exercise._firstAttempted) return;
+                exercise._firstAttempted = true;
+                this.sessionAnswered++;
+                if (isCorrect) this.sessionCorrect++;
+            },
+            correctAnswerText(exercise) {
+                if (!exercise) return '';
+                if (exercise.type === 'mc' && Array.isArray(exercise.options)) return exercise.options[exercise.answer] || '';
+                if (exercise.type === 'order' && Array.isArray(exercise.correctOrder)) return exercise.correctOrder.join(' ');
+                return String(exercise.modelAnswer || exercise.answer || '');
+            },
+            sessionSummaryMarkup() {
+                const total = this.sessionExerciseCount || this.queue.length || 0;
+                const accuracy = total ? Math.round(this.sessionCorrect / total * 100) : 0;
+                const xp = Math.max(0, App.xp - this.sessionXpStart);
+                const streak = typeof StudyActivity !== 'undefined' && App.studyActivity
+                    ? StudyActivity.currentStreak(App.studyActivity, new Date()) : 0;
+                return `<div class="lesson-results-grid">
+                    <div class="lesson-result-stat"><strong>${xp}</strong><span>XP ganado</span></div>
+                    <div class="lesson-result-stat"><strong>${accuracy}%</strong><span>Precisión</span></div>
+                    <div class="lesson-result-stat"><strong>🔥 ${streak}</strong><span>Días de racha</span></div>
+                </div>`;
+            },
             renderIntro() {
                 const u = this.currentUnit;
                 const lesson = this.currentLesson;
@@ -1851,7 +1882,9 @@
                 const ex = this.queue[this.stepIndex];
                 const input = (document.getElementById('textAnswer').value || '').trim();
                 if (!input) {
-                    document.getElementById('actionArea').innerHTML = '<p class="feedback-box wrong">Escribe una frase antes de continuar.</p><button class="btn" style="margin-top:12px;" onclick="LessonEngine.renderStep()">Volver a escribir</button>';
+                    const emptyArea = document.getElementById('actionArea');
+                    emptyArea.classList.add('lesson-feedback-sheet', 'wrong');
+                    emptyArea.innerHTML = '<p class="feedback-box wrong">Escribe una frase antes de continuar.</p><button class="btn" type="button" onclick="LessonEngine.renderStep()">Volver a escribir</button>';
                     return;
                 }
                 const area = document.getElementById('actionArea');
@@ -1860,6 +1893,7 @@
                 const selfAssessmentNote = this.assessmentMode
                     ? 'Tu valoración es una autoevaluación orientativa; no sustituye una revisión lingüística.'
                     : 'En el curso, marcar que lo conseguiste registra 10 XP y un intento de repaso espaciado. Si necesitas practicar, la actividad se programa para repetirla. Esta elección registra tu autoevaluación: no corrige automáticamente la gramática ni demuestra que cada frase sea la única forma correcta.';
+                area.classList.add('lesson-feedback-sheet', 'neutral');
                 area.innerHTML = `
                     <div class="feedback-box">
                         <strong>Tu respuesta:</strong><p style="white-space:pre-wrap;">${App.escapeHtml(input)}</p>
@@ -1878,12 +1912,16 @@
             },
             rateWriting(isCorrect) {
                 const ex = this.queue[this.stepIndex];
+                this.recordFirstAttempt(ex, isCorrect);
+                this.vibrateFeedback();
                 if (!this.assessmentMode && !isCorrect && !ex._r) this.retry.push({ ...ex, _r: true });
                 if (ex.vocabId && !this.assessmentMode) SRSEngine.recordAttempt(ex.vocabId, isCorrect ? 3 : 1).catch(err => console.error('No se pudo registrar el intento SRS:', err));
                 if (isCorrect && !this.assessmentMode) App.addXp(10);
-                document.getElementById('actionArea').innerHTML = `
+                const actionArea = document.getElementById('actionArea');
+                actionArea.classList.add('lesson-feedback-sheet', isCorrect ? 'correct' : 'wrong');
+                actionArea.innerHTML = `
                     <div class="feedback-box ${isCorrect ? 'correct' : 'wrong'}">${isCorrect ? '¡Buen trabajo!' : 'La repetiremos para afianzarla.'}</div>
-                    <button class="btn" style="margin-top:12px;" onclick="LessonEngine.nextStep(${isCorrect})">Continuar</button>
+                    <button class="btn" type="button" onclick="LessonEngine.nextStep(${isCorrect})">Continuar</button>
                 `;
             },
             checkOrder() {
@@ -1893,6 +1931,8 @@
             },
             showFeedback(isCorrect, explanation, feedbackMessage) {
                 const ex = this.queue[this.stepIndex];
+                this.recordFirstAttempt(ex, isCorrect);
+                this.vibrateFeedback();
                 if (this.assessmentMode) {
                     if (isCorrect) this.assessmentCorrect++;
                 } else if (!isCorrect && !ex._r) {
@@ -1901,13 +1941,17 @@
                 if (ex.vocabId && !this.assessmentMode) {
                     SRSEngine.recordAttempt(ex.vocabId, isCorrect ? 4 : 1).catch(err => console.error('No se pudo registrar el intento SRS:', err));
                 }
+                this.recordFirstAttempt(ex, isCorrect);
                 const area = document.getElementById('actionArea');
+                const correctAnswer = this.correctAnswerText(ex);
+                area.classList.add('lesson-feedback-sheet', isCorrect ? 'correct' : 'wrong');
                 area.innerHTML = `
                     <div class="feedback-box ${isCorrect ? 'correct' : 'wrong'}">
-                        ${feedbackMessage ? App.escapeHtml(feedbackMessage) : (isCorrect ? '¡Correcto!' : 'Incorrecto')}<br>
-                        <small>${App.escapeHtml(explanation)}</small>
+                        <strong>${feedbackMessage ? App.escapeHtml(feedbackMessage) : (isCorrect ? '¡Correcto!' : 'Incorrecto')}</strong><br>
+                        <small>${App.escapeHtml(explanation || '')}</small>
+                        ${correctAnswer ? `<p class="lesson-correct-answer">Respuesta: ${App.escapeHtml(correctAnswer)}</p>` : ''}
                     </div>
-                    <button class="btn" style="margin-top:12px;" onclick="LessonEngine.nextStep(${isCorrect})">Continuar</button>
+                    <button class="btn" type="button" onclick="LessonEngine.nextStep(${isCorrect})">Continuar</button>
                 `;
                 if (isCorrect && !this.assessmentMode) App.addXp(10);
             },
@@ -1928,11 +1972,13 @@
                     this.assessmentMode = false;
                     if (passed) await App.markUnitCompleted(this.currentUnit.id);
                     const unitId = this.currentUnit.id;
+                    document.getElementById('exerciseArea').classList.add('lesson-results-screen');
                     document.getElementById('exerciseArea').innerHTML = `
-                        <div style="text-align:center; margin-top:40px;">
+                        <div class="lesson-results-card card">
                             <h2>${passed ? '🎉 ¡Prueba superada!' : '📝 Sigue practicando'}</h2>
-                            <p style="font-size:1.2rem; margin:16px 0;">Resultado: <strong>${correct} de ${total}</strong> respuestas correctas.</p>
-                            <p style="margin:16px 0; color:var(--text-muted);">${passed ? 'Has demostrado que conoces el vocabulario de esta unidad. La siguiente unidad ya está desbloqueada.' : 'Necesitas al menos un 80 % para avanzar. Repasa las lecciones y vuelve a intentarlo.'}</p>
+                            <p>${passed ? 'Has desbloqueado la siguiente unidad.' : 'Necesitas al menos un 80 % para avanzar. Repasa las lecciones y vuelve a intentarlo.'}</p>
+                            <p>Resultado: <strong>${correct} de ${total}</strong> respuestas correctas.</p>
+                            ${this.sessionSummaryMarkup()}
                             ${passed ? '<button class="btn" onclick="LessonEngine.exit()">Continuar al curso</button>' : `<button class="btn" onclick="LessonEngine.startUnitAssessment('${unitId}')">Repetir prueba</button><button class="btn btn-outline" onclick="LessonEngine.exit()">Volver a las lecciones</button>`}
                         </div>
                     `;
@@ -1947,10 +1993,12 @@
                     for (const word of unit.vocab) {
                         if (!(await DB.get('srs', word.id))) await SRSEngine.recordAttempt(word.id, 4);
                     }
+                    document.getElementById('exerciseArea').classList.add('lesson-results-screen');
                     document.getElementById('exerciseArea').innerHTML = `
-                        <div style="text-align:center; margin-top:40px;">
+                        <div class="lesson-results-card card">
                             <h2>🎉 Unidad completada</h2>
-                            <p style="margin:16px 0; color:var(--text-muted);">Progreso y repetición espaciada guardados.</p>
+                            <p>Progreso y repetición espaciada guardados.</p>
+                            ${this.sessionSummaryMarkup()}
                             <button class="btn" onclick="LessonEngine.exit()">Volver al curso</button>
                         </div>
                     `;
@@ -1966,11 +2014,13 @@
                 }
                 const lessons = buildUnitLessons(unit);
                 const isLastLesson = lesson.index === lessons.length - 1;
+                document.getElementById('exerciseArea').classList.add('lesson-results-screen');
                 document.getElementById('exerciseArea').innerHTML = `
-                    <div style="text-align:center; margin-top:40px;">
+                    <div class="lesson-results-card card">
                         <h2>🎉 ¡Lección completada!</h2>
-                        <p style="margin:16px 0; color:var(--text-muted);">${App.completedLessons.filter(key => key.startsWith(unit.id + '::')).length} de ${lessons.length} lecciones terminadas en esta unidad.</p>
-                        ${isLastLesson ? `<p style="margin:16px 0;">Has terminado todas las lecciones. Ahora puedes hacer la prueba final para desbloquear la siguiente unidad.</p><button class="btn" onclick="LessonEngine.startUnitAssessment('${unit.id}')">Hacer prueba final de unidad</button>` : `<button class="btn" onclick="LessonEngine.startUnitById('${unit.id}', ${lesson.index + 1})">Siguiente lección</button>`}
+                        <p>${App.completedLessons.filter(key => key.startsWith(unit.id + '::')).length} de ${lessons.length} lecciones terminadas en esta unidad.</p>
+                        ${this.sessionSummaryMarkup()}
+                        ${isLastLesson ? `<p>Has terminado todas las lecciones. Ahora puedes hacer la prueba final para desbloquear la siguiente unidad.</p><button class="btn" onclick="LessonEngine.startUnitAssessment('${unit.id}')">Hacer prueba final de unidad</button>` : `<button class="btn" onclick="LessonEngine.startUnitById('${unit.id}', ${lesson.index + 1})">Siguiente lección</button>`}
                         <button class="btn btn-outline" onclick="LessonEngine.exit()">Volver al curso</button>
                     </div>
                 `;
@@ -2321,10 +2371,18 @@ Requisitos:
             toggleTheme() { document.body.classList.toggle('dark-mode'); try { localStorage.setItem('bs_dark', document.body.classList.contains('dark-mode') ? '1' : '0'); } catch (e) {} },
             switchView(viewId, btn) {
                 document.querySelectorAll('.app-view').forEach(el => el.classList.remove('active'));
-                document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('active'));
-                document.getElementById(`view-${viewId}`).classList.add('active');
-                if (btn) btn.classList.add('active');
-                if (viewId === 'srs') this.updateSrsView();
+                const targetView = document.getElementById(`view-${viewId}`);
+                if (!targetView) return;
+                targetView.classList.add('active');
+                document.body.classList.toggle('lesson-active', viewId === 'lesson');
+                const navGroup = ({ route: 'learn', lesson: 'learn', 'writing-practice': 'learn', srs: 'review', ai: 'tutor', dict: 'tutor', conversations: 'tutor', profile: 'profile', settings: 'profile', assessment: 'profile' })[viewId];
+                document.querySelectorAll('.nav-btn').forEach(el => {
+                    const active = !!navGroup && el.dataset.navGroup === navGroup;
+                    el.classList.toggle('active', active);
+                    if (active) el.setAttribute('aria-current', 'page');
+                    else el.removeAttribute('aria-current');
+                });
+                if (viewId === 'srs' || viewId === 'profile') this.updateSrsView();
             },
             addXp(amount) {
                 this.xp += amount;
@@ -2368,6 +2426,13 @@ Requisitos:
                 if (goalSelect && goalSelect.value !== String(goal)) goalSelect.value = String(goal);
                 if (xpText) xpText.textContent = earned + ' / ' + goal + ' XP';
                 if (xpFill) xpFill.style.width = percent + '%';
+                const goalRing = document.getElementById('dailyGoalRing');
+                const goalPercent = document.getElementById('dailyGoalPercent');
+                if (goalRing) {
+                    goalRing.setAttribute('aria-valuenow', String(percent));
+                    goalRing.style.setProperty('--goal-progress', percent + '%');
+                }
+                if (goalPercent) goalPercent.textContent = percent + '%';
                 if (xpBar) xpBar.setAttribute('aria-valuenow', String(percent));
                 if (status) status.textContent = earned >= goal ? '¡Objetivo diario cumplido!' : 'Te faltan ' + (goal - earned) + ' XP para alcanzar tu objetivo.';
                 if (lessons) lessons.textContent = this.studyActivity.todayLessons + (this.studyActivity.todayLessons === 1 ? ' lección hoy' : ' lecciones hoy');
@@ -2428,12 +2493,13 @@ Requisitos:
                             ? isDone || isNext
                             : lvl.id === 'A2' ? a1Complete : true;
                         const card = document.createElement('details');
-                        card.className = `unit-card ${isDone ? 'completed' : ''}`;
+                        card.className = `unit-card ${isDone ? 'completed' : ''} ${lvl.id === 'A1' ? 'path-node ' + (isDone ? 'path-node-completed' : isNext ? 'path-node-current' : 'path-node-locked') : ''}`;
+                        if (lvl.id === 'A1') card.dataset.pathState = isDone ? 'completed' : isNext ? 'current' : 'locked';
                         if (isNext) card.open = true;
                         const lessonButtons = lessons.map(lesson => {
                             const lessonDone = isDone || this.completedLessons.includes(unitLessonProgressKey(unit.id, lesson.index));
                             const lessonUnlocked = unitAccessible && (lessonDone || lesson.index === (nextLesson < 0 ? lessons.length : nextLesson));
-                            return `<button class="btn btn-outline btn-sm" style="flex:1; min-width:135px;" data-unit-id="${App.escapeHtml(unit.id)}" data-lesson-index="${lesson.index}" ${lessonUnlocked ? '' : 'disabled'} onclick="LessonEngine.startUnitById(this.dataset.unitId, Number(this.dataset.lessonIndex))">${lessonDone ? '✓ ' : ''}Lección ${lesson.index + 1}${lessonDone ? ' · Repasar' : ''}</button>`;
+                            return `<button class="btn btn-outline btn-sm" style="flex:1; min-width:135px;" data-unit-id="${App.escapeHtml(unit.id)}" data-lesson-index="${lesson.index}" ${lessonUnlocked ? '' : 'disabled'} onclick="LessonEngine.startUnitById(this.dataset.unitId, Number(this.dataset.lessonIndex))">${lessonDone ? '✓ ' : ''}${isNext && lesson.index === (nextLesson < 0 ? lessons.length : nextLesson) ? 'Empezar' : 'Lección ' + (lesson.index + 1)}${lessonDone ? ' · Repasar' : ''}</button>`;
                         }).join('');
                         const examButton = lvl.id === 'A1' && !isDone && unitAccessible && completedCount === lessons.length
                             ? `<button class="btn" data-unit-id="${App.escapeHtml(unit.id)}" onclick="LessonEngine.startUnitAssessment(this.dataset.unitId)">Prueba final · Desbloquear siguiente unidad</button>`

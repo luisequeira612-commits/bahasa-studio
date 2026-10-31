@@ -558,6 +558,7 @@ test('daily XP goals and study streaks persist across reloads', async () => {
     assert.equal(await page.locator('#studyStreakText').innerText(), '1 día');
     assert.equal(await page.locator('#studyDailyXpText').innerText(), '10 / 30 XP');
 
+    await page.locator('.nav-btn').filter({ hasText: 'Perfil' }).click();
     await page.locator('#dailyXpGoal').selectOption('50');
     await page.waitForFunction(async () => (await DB.get('settings', 'studyActivity')).dailyGoal === 50);
     await page.evaluate(async () => {
@@ -571,6 +572,7 @@ test('daily XP goals and study streaks persist across reloads', async () => {
 
     await page.reload({ waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => typeof App !== 'undefined' && App.studyActivity && App.studyActivity.dailyGoal === 50);
+    await page.locator('.nav-btn').filter({ hasText: 'Perfil' }).click();
     assert.equal(await page.locator('#dailyXpGoal').inputValue(), '50');
     assert.equal(await page.locator('#studyDailyXpText').innerText(), '10 / 50 XP');
     assert.equal(await page.locator('#studyStreakText').innerText(), '1 día');
@@ -594,6 +596,7 @@ test('six practical conversations support guided replies without changing learne
     const xpBefore = await page.evaluate(() => App.xp);
     const srsBefore = await page.evaluate(async () => (await DB.getAll('srs')).length);
 
+    await page.locator('#view-route details.feature-drawer').filter({ hasText: 'Conversaciones prácticas' }).locator('summary').click();
     await page.getByRole('button', { name: 'Practicar conversaciones' }).click();
     assert.equal(await page.locator('[data-conversation-start]').count(), 6,
       'all six planned everyday situations should be available');
@@ -647,12 +650,10 @@ test('main navigation opens each primary view and dictionary search filters Indo
     await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
 
     const views = [
-      { label: 'Curso', id: 'route' },
-      { label: 'Repaso', id: 'srs' },
+      { label: 'Aprender', id: 'route' },
+      { label: 'Repasar', id: 'srs' },
       { label: 'Tutor', id: 'ai' },
-      { label: 'Diccionario', id: 'dict' },
-      { label: 'Evaluar', id: 'assessment' },
-      { label: 'Ajustes', id: 'settings' }
+      { label: 'Perfil', id: 'profile' }
     ];
 
     for (const view of views) {
@@ -662,8 +663,19 @@ test('main navigation opens each primary view and dictionary search filters Indo
         view.label + ' should activate its corresponding view');
     }
 
-    // Dictionary assertions require the dictionary view to be active again.
-    await page.locator('.nav-btn').filter({ hasText: 'Diccionario' }).click();
+    // Secondary destinations remain available from their requested parent tabs.
+    await page.locator('#view-profile button[onclick*="assessment"]').click();
+    await page.locator('#view-assessment').waitFor({ state: 'visible' });
+    await page.locator('#view-assessment button[onclick*="profile"]').click();
+    await page.locator('#view-profile').waitFor({ state: 'visible' });
+    await page.locator('#view-profile button[onclick*="settings"]').click();
+    await page.locator('#view-settings').waitFor({ state: 'visible' });
+    await page.locator('#view-settings button[onclick*="profile"]').click();
+    await page.locator('#view-profile').waitFor({ state: 'visible' });
+
+    // Dictionary is opened from Tutor rather than as a fifth bottom tab.
+    await page.locator('.nav-btn').filter({ hasText: 'Tutor' }).click();
+    await page.locator('#view-ai button[onclick*="dict"]').click();
     await page.locator('#view-dict').waitFor({ state: 'visible' });
     await page.locator('#dictSearch').fill('');
     const cards = page.locator('#dictContainer .card');
@@ -949,7 +961,8 @@ test('A1 unit lessons unlock sequentially and the final exam gates the next unit
     assert.equal(await firstUnitButtons.nth(2).isEnabled(), false);
 
     await firstUnitButtons.nth(0).click();
-    await page.getByRole('button', { name: 'Salir' }).click();
+    await page.evaluate(() => { window.confirm = () => true; });
+    await page.getByRole('button', { name: 'Salir de la lección' }).click();
     await page.evaluate(async () => {
       App.completedLessons = ['a1_u1::0'];
       await DB.set('settings', 'completedLessons', App.completedLessons);
@@ -1033,7 +1046,8 @@ test('Indonesian TTS voice selection is available, applied to speech, and persis
     await page.goto(url, { waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
     await page.waitForFunction(() => document.querySelectorAll('#audioVoiceSelect option').length === 3);
-    await page.getByRole('button', { name: 'Ajustes' }).click();
+    await page.locator('.nav-btn').filter({ hasText: 'Perfil' }).click();
+    await page.locator('#view-profile button[onclick*="settings"]').click();
     const options = await page.locator('#audioVoiceSelect option').allTextContents();
     assert.deepEqual(options, [
       'Automática (recomendada)',
@@ -1050,7 +1064,8 @@ test('Indonesian TTS voice selection is available, applied to speech, and persis
     await page.reload({ waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
     await page.waitForFunction(() => document.querySelectorAll('#audioVoiceSelect option').length === 3);
-    await page.getByRole('button', { name: 'Ajustes' }).click();
+    await page.locator('.nav-btn').filter({ hasText: 'Perfil' }).click();
+    await page.locator('#view-profile button[onclick*="settings"]').click();
     assert.equal(await page.locator('#audioVoiceSelect').inputValue(), 'mock-id-b',
       'the selected Indonesian voice should be restored after reload');
     await page.evaluate(() => AudioEngine.speak('Terima kasih'));
@@ -1193,6 +1208,7 @@ test('free-writing notebook shows an example after a draft and never changes XP 
       xp: await DB.get('settings', 'userXp') || 0,
       srs: (await DB.getAll('srs')).length
     }));
+    await page.locator('#view-route details.feature-drawer').filter({ hasText: 'Cuaderno de escritura' }).locator('summary').click();
     await page.getByRole('button', { name: 'Abrir cuaderno de escritura' }).click();
     await page.getByRole('button', { name: 'Empezar a escribir' }).nth(1).click();
     await page.locator('#freeWritingDraft').fill('Hari ini saya di hotel. Besok saya pergi ke pantai.');
@@ -1205,6 +1221,69 @@ test('free-writing notebook shows an example after a draft and never changes XP 
     await page.reload({ waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
     assert.equal(await page.locator('#freeWritingDraft').count(), 0);
+  } finally {
+    await context.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});
+
+
+test('lesson uses a full-screen flow, confirmation, feedback sheet and session summary', async () => {
+  const { server, url } = await startServer();
+  const context = await browser.newContext({ serviceWorkers: 'block' });
+  const page = await context.newPage();
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof LessonEngine !== 'undefined' &&
+      typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
+    await page.evaluate(() => LessonEngine.startUnitById('a1_u1', 0));
+    await page.locator('#view-lesson.active').waitFor();
+
+    assert.equal(await page.locator('body').evaluate(node => node.classList.contains('lesson-active')), true);
+    assert.equal(await page.locator('.nav-bottom').evaluate(node => getComputedStyle(node).display), 'none');
+    assert.equal(await page.locator('body').evaluate(node => getComputedStyle(node).overflow), 'hidden');
+
+    await page.evaluate(() => { window.confirm = () => false; });
+    await page.getByRole('button', { name: 'Salir de la lección' }).click();
+    assert.equal(await page.locator('#view-lesson').evaluate(node => node.classList.contains('active')), true,
+      'cancelling the exit confirmation should keep the lesson open');
+
+    await page.evaluate(() => {
+      window.__vibrationCalls = [];
+      Object.defineProperty(navigator, 'vibrate', {
+        configurable: true,
+        value: duration => { window.__vibrationCalls.push(duration); return true; }
+      });
+    });
+    await page.getByRole('button', { name: 'Comenzar lección' }).click();
+    const correctOption = await page.evaluate(() => LessonEngine.queue[0].answer);
+    await page.locator('.option-btn').nth(correctOption).click();
+    await page.getByRole('button', { name: 'Comprobar' }).click();
+    await page.locator('#actionArea.lesson-feedback-sheet.correct').waitFor();
+    const expectedAnswer = await page.evaluate(() => LessonEngine.correctAnswerText(LessonEngine.queue[0]));
+    assert.equal(await page.locator('#actionArea .lesson-correct-answer').innerText(), 'Respuesta: ' + expectedAnswer);
+    assert.deepEqual(await page.evaluate(() => window.__vibrationCalls), [24]);
+
+    await page.getByRole('button', { name: 'Continuar' }).click();
+    await page.waitForFunction(() => LessonEngine.stepIndex === 1);
+    await page.locator('#textAnswer').fill('respuesta incorrecta');
+    await page.getByRole('button', { name: 'Comprobar' }).click();
+    await page.locator('#actionArea.lesson-feedback-sheet.wrong').waitFor();
+    assert.deepEqual(await page.evaluate(() => window.__vibrationCalls), [24, 24]);
+    await page.getByRole('button', { name: 'Continuar' }).click();
+    await page.waitForFunction(() => LessonEngine.stepIndex === 2);
+    await page.evaluate(() => LessonEngine.finishUnit());
+    await page.locator('.lesson-results-card').waitFor();
+    const summary = await page.locator('.lesson-results-card').innerText();
+    assert.match(summary, /XP ganado/);
+    assert.match(summary, /Precisión/);
+    assert.match(summary, /Días de racha/);
+
+    await page.evaluate(() => { window.confirm = () => true; });
+    await page.getByRole('button', { name: 'Salir de la lección' }).click();
+    await page.waitForFunction(() => document.getElementById('view-route').classList.contains('active'));
+    assert.equal(await page.locator('body').evaluate(node => node.classList.contains('lesson-active')), false);
   } finally {
     await context.close();
     await new Promise(resolve => server.close(resolve));

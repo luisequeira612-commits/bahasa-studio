@@ -558,6 +558,7 @@ test('daily XP goals and study streaks persist across reloads', async () => {
     assert.equal(await page.locator('#studyStreakText').innerText(), '1 día');
     assert.equal(await page.locator('#studyDailyXpText').innerText(), '10 / 30 XP');
 
+    await page.locator('.nav-btn').filter({ hasText: 'Perfil' }).click();
     await page.locator('#dailyXpGoal').selectOption('50');
     await page.waitForFunction(async () => (await DB.get('settings', 'studyActivity')).dailyGoal === 50);
     await page.evaluate(async () => {
@@ -571,6 +572,7 @@ test('daily XP goals and study streaks persist across reloads', async () => {
 
     await page.reload({ waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => typeof App !== 'undefined' && App.studyActivity && App.studyActivity.dailyGoal === 50);
+    await page.locator('.nav-btn').filter({ hasText: 'Perfil' }).click();
     assert.equal(await page.locator('#dailyXpGoal').inputValue(), '50');
     assert.equal(await page.locator('#studyDailyXpText').innerText(), '10 / 50 XP');
     assert.equal(await page.locator('#studyStreakText').innerText(), '1 día');
@@ -594,6 +596,7 @@ test('six practical conversations support guided replies without changing learne
     const xpBefore = await page.evaluate(() => App.xp);
     const srsBefore = await page.evaluate(async () => (await DB.getAll('srs')).length);
 
+    await page.locator('#view-route details.feature-drawer').filter({ hasText: 'Conversaciones prácticas' }).locator('summary').click();
     await page.getByRole('button', { name: 'Practicar conversaciones' }).click();
     assert.equal(await page.locator('[data-conversation-start]').count(), 6,
       'all six planned everyday situations should be available');
@@ -1204,6 +1207,7 @@ test('free-writing notebook shows an example after a draft and never changes XP 
       xp: await DB.get('settings', 'userXp') || 0,
       srs: (await DB.getAll('srs')).length
     }));
+    await page.locator('#view-route details.feature-drawer').filter({ hasText: 'Cuaderno de escritura' }).locator('summary').click();
     await page.getByRole('button', { name: 'Abrir cuaderno de escritura' }).click();
     await page.getByRole('button', { name: 'Empezar a escribir' }).nth(1).click();
     await page.locator('#freeWritingDraft').fill('Hari ini saya di hotel. Besok saya pergi ke pantai.');

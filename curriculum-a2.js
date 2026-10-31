@@ -184,7 +184,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 { id: 'a2u3_setelah_itu', idn: 'Setelah itu', esp: 'Después de eso', ex: 'Setelah itu, saya belajar.', exEsp: 'Después de eso, estudio.' },
                                 { id: 'a2u3_akhirnya', idn: 'Akhirnya', esp: 'Finalmente; al final', ex: 'Akhirnya, saya pulang.', exEsp: 'Finalmente, regreso a casa.' },
                                 { id: 'a2u3_berikutnya', idn: 'Berikutnya', esp: 'A continuación; lo siguiente', ex: 'Berikutnya, saya membaca buku.', exEsp: 'A continuación, leo un libro.' },
-                                { id: 'a2u3_sebelumnya', idn: 'Sebelumnya', esp: 'Antes de eso; previamente', ex: 'Sebelumnya, saya belajar.', exEsp: 'Antes de eso, estudio.' },
+                                { id: 'a2u3_sebelumnya', idn: 'Sebelumnya', esp: 'Antes de eso; previamente', ex: 'Sebelumnya, saya belajar.', exEsp: 'Antes de eso, estudié.' },
                                 { id: 'a2u3_selanjutnya', idn: 'Selanjutnya', esp: 'A continuación; después', ex: 'Selanjutnya, saya pergi.', exEsp: 'A continuación, voy.' },
                                 { id: 'a2u3_setelah', idn: 'Setelah', esp: 'Después de; una vez que', ex: 'Setelah makan, saya minum air.', exEsp: 'Después de comer, bebo agua.' },
                                 { id: 'a2u3_ketika', idn: 'Ketika', esp: 'Cuando', ex: 'Ketika saya makan, dia datang.', exEsp: 'Cuando como, él/ella llega.' },
@@ -223,7 +223,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                     grammar: 'Sebelumnya remite a un momento anterior. Selanjutnya presenta el siguiente paso. Setelah introduce un hecho que sirve de referencia temporal.',
                                     vocabIds: ['a2u3_sebelumnya', 'a2u3_selanjutnya', 'a2u3_setelah'],
                                     exercises: [
-                                        { vocabId: 'a2u3_sebelumnya', type: 'mc', prompt: '¿Qué significa «sebelumnya»?', options: ['Antes de eso; previamente', 'Después de eso', 'Finalmente'], answer: 0, explanation: 'Sebelumnya remite a algo anterior.' },
+                                        { vocabId: 'a2u3_sebelumnya', type: 'mc', prompt: '¿Qué significa «sebelumnya»?', options: ['Antes de eso; previamente', 'Después de eso', 'Finalmente'], answer: 0, explanation: 'Sebelumnya remite a un hecho anterior; el contexto temporal sitúa el verbo en el pasado.' },
                                         { vocabId: 'a2u3_selanjutnya', type: 'translate_es_id', prompt: 'Traduce: A continuación, estudio.', answer: 'Selanjutnya, saya belajar.', explanation: 'Selanjutnya presenta el paso siguiente.' },
                                         { vocabId: 'a2u3_setelah', type: 'listen', prompt: 'Escucha y escribe la oración.', answer: 'Setelah makan, saya minum air.', explanation: 'Setelah introduce la acción de comer como referencia temporal.' },
                                         { vocabId: 'a2u3_sebelumnya', type: 'order', prompt: 'Ordena: Antes de eso, estudio.', words: ['saya', 'Sebelumnya', 'belajar'], correctOrder: ['Sebelumnya', 'saya', 'belajar'], explanation: 'Sebelumnya, saya belajar significa «Antes de eso, estudio».' }

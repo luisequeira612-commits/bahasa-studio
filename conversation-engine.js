@@ -257,6 +257,10 @@
         score: 0,
         answered: false,
         selectedChoice: null,
+        freeResponseMode: false,
+        freeResponseText: '',
+        freeResponseRevealed: false,
+        freeResponseTurns: 0,
 
         open: function () {
             if (typeof App !== 'undefined') App.switchView('conversations');
@@ -275,6 +279,10 @@
             this.score = 0;
             this.answered = false;
             this.selectedChoice = null;
+            this.freeResponseMode = false;
+            this.freeResponseText = '';
+            this.freeResponseRevealed = false;
+            this.freeResponseTurns = 0;
             this.renderStep();
         },
 
@@ -306,6 +314,10 @@
             list.hidden = true;
             practice.hidden = false;
             const turn = this.currentScenario.turns[this.turnIndex];
+            if (this.freeResponseMode) {
+                this.renderFreeResponseStep(turn, practice);
+                return;
+            }
             const choices = turn.choices.map(function (choice, index) {
                 let style = '';
                 if (ConversationEngine.answered && choice.correct) style = 'border:2px solid var(--success);';
@@ -342,11 +354,98 @@
                 '<button class="btn btn-outline btn-sm" style="margin-top:10px;" type="button" data-conversation-audio>🔊 Escuchar frase</button>' +
                 '</div>' +
                 '<h3>' + escapeHtml(turn.prompt) + '</h3>' +
+                '<button class="btn btn-outline btn-sm" type="button" data-conversation-free>Responder sin opciones</button>' +
                 '<div>' + choices + '</div>' +
                 '<div id="conversationFeedback" role="status" aria-live="polite" style="margin-top:10px;">' + feedback + '</div>' +
                 '<button class="btn" type="button" data-conversation-next ' + (this.answered ? '' : 'disabled') +
                 ' style="margin-top:12px;width:100%;">Continuar</button>' +
                 '</div>';
+        },
+
+        renderFreeResponseStep: function (turn, practice) {
+            const example = turn.choices.find(function (choice) { return choice.correct; });
+            const responsePanel = this.freeResponseRevealed
+                ? '<div class="card" style="margin-top:12px;"><p><strong>Tu respuesta</strong></p><p style="white-space:pre-wrap;">' + escapeHtml(this.freeResponseText) + '</p><p><strong>Un ejemplo posible</strong></p><p>' + escapeHtml(example.text) + '</p><p style="color:var(--text-muted);">' + escapeHtml(example.translation) + ' Otras respuestas también pueden ser correctas.</p></div>'
+                : '<label for="conversationFreeResponse" style="display:block;margin:12px 0 6px;">Tu respuesta en indonesio</label><textarea id="conversationFreeResponse" rows="3" maxlength="1000" style="width:100%;box-sizing:border-box;" placeholder="Escribe o dicta lo que responderías…"></textarea><button class="btn btn-outline btn-sm" type="button" data-conversation-speech>🎙️ Dictar respuesta (opcional)</button><p id="conversationSpeechStatus" role="status" aria-live="polite" style="font-size:0.85rem;color:var(--text-muted);">El micrófono solo se activa al pulsar. El navegador puede procesar el audio; la app no guarda grabaciones.</p><button class="btn" type="button" data-conversation-free-example>Ver un ejemplo posible</button>';
+            practice.innerHTML = '<div class="card" style="padding:14px;">' +
+                '<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;">' +
+                '<button class="btn btn-outline btn-sm" type="button" data-conversation-back>← Escenarios</button>' +
+                '<span style="font-size:0.8rem;color:var(--text-muted);">Turno ' + (this.turnIndex + 1) + ' de ' + this.currentScenario.turns.length + ' · práctica libre</span>' +
+                '</div><h2 style="margin:14px 0 4px;">' + escapeHtml(this.currentScenario.title) + '</h2>' +
+                '<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:12px;margin:12px 0;">' +
+                '<strong>' + escapeHtml(turn.speaker) + '</strong><p style="font-size:1.1rem;margin:8px 0;">' + escapeHtml(turn.line) + '</p>' +
+                '<p style="font-size:0.85rem;color:var(--text-muted);margin:0;">' + escapeHtml(turn.translation) + '</p>' +
+                '<button class="btn btn-outline btn-sm" style="margin-top:10px;" type="button" data-conversation-audio>🔊 Escuchar frase</button></div>' +
+                '<h3>' + escapeHtml(turn.prompt) + '</h3>' +
+                '<p style="color:var(--text-muted);font-size:0.85rem;">Intenta responder con tus propias palabras antes de ver el ejemplo. Esta práctica no se califica automáticamente.</p>' +
+                responsePanel +
+                '<button class="btn" type="button" data-conversation-next ' + (this.freeResponseRevealed ? '' : 'disabled') + ' style="margin-top:12px;width:100%;">Continuar</button></div>';
+        },
+
+        useFreeResponse: function () {
+            if (this.answered || !this.currentScenario) return;
+            this.freeResponseMode = true;
+            this.freeResponseText = '';
+            this.freeResponseRevealed = false;
+            this.renderStep();
+        },
+
+        showFreeExample: function () {
+            if (!this.freeResponseMode || this.freeResponseRevealed) return;
+            const input = document.getElementById('conversationFreeResponse');
+            const response = input && typeof input.value === 'string' ? input.value.trim() : '';
+            if (!response) {
+                const status = document.getElementById('conversationSpeechStatus');
+                if (status) status.textContent = 'Escribe o dicta primero tu respuesta; después podrás compararla con el ejemplo.';
+                return;
+            }
+            this.freeResponseText = response;
+            this.freeResponseRevealed = true;
+            this.answered = true;
+            this.freeResponseTurns += 1;
+            this.renderStep();
+        },
+
+        captureFreeResponse: function (button) {
+            const status = document.getElementById('conversationSpeechStatus');
+            const input = document.getElementById('conversationFreeResponse');
+            const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (!Recognition) {
+                if (status) status.textContent = 'Este navegador no ofrece reconocimiento de voz. Puedes responder en voz alta y escribir tu frase.';
+                return;
+            }
+            if (!status || !input) return;
+            const recognition = new Recognition();
+            recognition.lang = 'id-ID';
+            recognition.continuous = false;
+            recognition.interimResults = false;
+            button.disabled = true;
+            status.textContent = 'Escuchando… responde en indonesio.';
+            recognition.onresult = function (event) {
+                const result = event.results && event.results[0] && event.results[0][0];
+                if (result && result.transcript) {
+                    input.value = result.transcript;
+                    status.textContent = 'Transcripción provisional añadida. Revísala antes de continuar.';
+                }
+            };
+            recognition.onerror = function (event) {
+                const messages = {
+                    'not-allowed': 'No se concedió permiso para usar el micrófono. Puedes escribir tu respuesta.',
+                    'no-speech': 'No se detectó voz. Inténtalo otra vez.',
+                    'audio-capture': 'No se encontró un micrófono disponible.',
+                    'service-not-allowed': 'El servicio de reconocimiento no está disponible.'
+                };
+                status.textContent = messages[event.error] || 'No se pudo reconocer la voz. Puedes escribir tu respuesta.';
+            };
+            recognition.onend = function () {
+                if (button.isConnected) button.disabled = false;
+            };
+            try {
+                recognition.start();
+            } catch (error) {
+                button.disabled = false;
+                status.textContent = 'No se pudo iniciar el micrófono. Comprueba los permisos del navegador.';
+            }
         },
 
         choose: function (index) {
@@ -361,6 +460,11 @@
 
         next: function () {
             if (!this.answered || !this.currentScenario) return;
+            if (this.freeResponseMode) {
+                this.freeResponseMode = false;
+                this.freeResponseText = '';
+                this.freeResponseRevealed = false;
+            }
             if (this.turnIndex + 1 < this.currentScenario.turns.length) {
                 this.turnIndex += 1;
                 this.answered = false;
@@ -375,12 +479,22 @@
             const practice = document.getElementById('conversationPracticeArea');
             if (!practice) return;
             const total = this.currentScenario.turns.length;
-            const message = this.score === total ? '¡Muy bien! Has mantenido la conversación.' :
+            const guidedTotal = total - this.freeResponseTurns;
+            const message = this.freeResponseTurns
+                ? 'Has practicado respuestas propias. Compáralas con los ejemplos, recordando que puede haber otras formas correctas.'
+                : this.score === total ? '¡Muy bien! Has mantenido la conversación.' :
                 this.score > 0 ? 'Buen trabajo. Revisa las expresiones y vuelve a intentarlo.' :
                 'Sigue practicando. Puedes repetir el diálogo cuando quieras.';
+            const scoreSummary = guidedTotal
+                ? 'Resultado guiado: ' + this.score + '/' + guidedTotal + ' respuestas correctas'
+                : 'Has completado los turnos en práctica libre';
+            const freeSummary = this.freeResponseTurns
+                ? '<p style="color:var(--text-muted);">' + this.freeResponseTurns + ' respuesta(s) libre(s) practicada(s), sin calificación automática.</p>'
+                : '';
             practice.innerHTML = '<div class="card" style="padding:16px;text-align:center;">' +
                 '<h2>Conversación completada</h2>' +
-                '<p id="conversationResultScore" style="font-size:1.25rem;font-weight:700;">Resultado: ' + this.score + '/' + total + ' respuestas correctas</p>' +
+                '<p id="conversationResultScore" style="font-size:1.25rem;font-weight:700;">' + scoreSummary + '</p>' +
+                freeSummary +
                 '<p style="color:var(--text-muted);">' + message + '</p>' +
                 '<div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:14px;">' +
                 '<button class="btn" type="button" data-conversation-replay>Repetir conversación</button>' +
@@ -409,6 +523,10 @@
         if (startButton) return ConversationEngine.start(startButton.dataset.conversationStart);
         const choiceButton = target.closest('[data-conversation-choice]');
         if (choiceButton) return ConversationEngine.choose(Number(choiceButton.dataset.conversationChoice));
+        if (target.closest('[data-conversation-free]')) return ConversationEngine.useFreeResponse();
+        if (target.closest('[data-conversation-free-example]')) return ConversationEngine.showFreeExample();
+        const speechButton = target.closest('[data-conversation-speech]');
+        if (speechButton) return ConversationEngine.captureFreeResponse(speechButton);
         if (target.closest('[data-conversation-next]')) return ConversationEngine.next();
         if (target.closest('[data-conversation-audio]')) return ConversationEngine.speakCurrent();
         if (target.closest('[data-conversation-replay]')) return ConversationEngine.replay();

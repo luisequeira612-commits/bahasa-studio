@@ -1249,6 +1249,13 @@ test('lesson uses a full-screen flow, confirmation, feedback sheet and session s
     assert.equal(await page.locator('#view-lesson').evaluate(node => node.classList.contains('active')), true,
       'cancelling the exit confirmation should keep the lesson open');
 
+    await page.evaluate(() => {
+      window.__vibrationCalls = [];
+      Object.defineProperty(navigator, 'vibrate', {
+        configurable: true,
+        value: duration => { window.__vibrationCalls.push(duration); return true; }
+      });
+    });
     await page.getByRole('button', { name: 'Comenzar lección' }).click();
     const correctOption = await page.evaluate(() => LessonEngine.queue[0].answer);
     await page.locator('.option-btn').nth(correctOption).click();
@@ -1256,9 +1263,16 @@ test('lesson uses a full-screen flow, confirmation, feedback sheet and session s
     await page.locator('#actionArea.lesson-feedback-sheet.correct').waitFor();
     const expectedAnswer = await page.evaluate(() => LessonEngine.correctAnswerText(LessonEngine.queue[0]));
     assert.equal(await page.locator('#actionArea .lesson-correct-answer').innerText(), 'Respuesta: ' + expectedAnswer);
+    assert.deepEqual(await page.evaluate(() => window.__vibrationCalls), [24]);
 
     await page.getByRole('button', { name: 'Continuar' }).click();
     await page.waitForFunction(() => LessonEngine.stepIndex === 1);
+    await page.locator('#textAnswer').fill('respuesta incorrecta');
+    await page.getByRole('button', { name: 'Comprobar' }).click();
+    await page.locator('#actionArea.lesson-feedback-sheet.wrong').waitFor();
+    assert.deepEqual(await page.evaluate(() => window.__vibrationCalls), [24, 24]);
+    await page.getByRole('button', { name: 'Continuar' }).click();
+    await page.waitForFunction(() => LessonEngine.stepIndex === 2);
     await page.evaluate(() => LessonEngine.finishUnit());
     await page.locator('.lesson-results-card').waitFor();
     const summary = await page.locator('.lesson-results-card').innerText();

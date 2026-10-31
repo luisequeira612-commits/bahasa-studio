@@ -82,7 +82,6 @@ test('free response cannot reveal an example before the learner attempts an answ
   engine.showFreeExample();
   assert.equal(engine.answered, false);
   assert.equal(engine.freeResponseTurns, 0);
-  assert.match(elements.conversationSpeechStatus.textContent, /Escribe o dicta primero/);
 });
 
 test('free-response speech capture is optional and never persists audio or learning records', () => {

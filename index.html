@@ -351,6 +351,47 @@
 <script src="./pronunciation-engine.js"></script>
 <script>
 
+        const GUIDED_WRITING_CHECKLISTS = Object.freeze({
+            'a1_u8|Escribe dos frases sobre tu rutina.': [
+                'Escribí al menos dos frases completas sobre mi rutina.',
+                'Incluí una expresión temporal, como hari ini, besok o setiap hari.',
+                'Comprobé que cada frase comunica una idea clara.'
+            ],
+            'a1_u8|Tarea integradora: preséntate, pide una bebida, pregunta el precio y describe tu rutina.': [
+                'Me presenté con mi nombre y, si quiero, mi lugar de origen.',
+                'Incluí un pedido de bebida cortés.',
+                'Pregunté el precio con Berapa harganya?',
+                'Añadí una frase sobre mi rutina con una expresión temporal.'
+            ],
+            'a1_u10|Escribe un diálogo completo: pide té, pregunta el precio, recibe la respuesta y paga en efectivo.': [
+                'Incluí el pedido de té y una expresión cortés.',
+                'Pregunté el precio.',
+                'Incluí una respuesta del vendedor con un precio.',
+                'Indiqué que pago en efectivo y cerré el diálogo con cortesía.'
+            ],
+            'a1_u10|Completa un diálogo de compra con precio, pago de diez mil rupias y devolución del cambio.': [
+                'El vendedor indicó un precio de cinco mil rupias.',
+                'El comprador pagó diez mil rupias.',
+                'El vendedor devolvió cinco mil rupias de cambio.',
+                'El diálogo incluye el agradecimiento o cierre correspondiente.'
+            ],
+            'a1_u10|Escribe otro diálogo breve para comprar té. Incluye una pregunta por el precio y una respuesta de treinta y dos mil rupias.': [
+                'Incluí el pedido de té.',
+                'Pregunté cuánto cuesta.',
+                'El vendedor indicó treinta y dos mil rupias.',
+                'Cerré la compra con una respuesta adecuada.'
+            ]
+        });
+
+        function getGuidedWritingChecklist(exercise, unit) {
+            const key = String(unit && unit.id || '') + '|' + String(exercise && exercise.prompt || '');
+            return GUIDED_WRITING_CHECKLISTS[key] || [
+                '¿Respondí a la situación que plantea la consigna?',
+                '¿Incluí el vocabulario o la estructura que sugiere la pista?',
+                '¿Revisé el orden de las palabras y la escritura?'
+            ];
+        }
+
         const WrittenResponse = (() => {
             const STORAGE_KEY = 'bahasaStudioWrittenAnswerReviewLog';
             const LIMIT = 300;
@@ -1690,11 +1731,20 @@
                     `;
                     AudioEngine.speak(ex.answer);
                 } else if (ex.type === 'write') {
+                    const writingChecklist = getGuidedWritingChecklist(ex, this.currentUnit);
+                    const checklistMarkup = writingChecklist.map(item => '<li>' + App.escapeHtml(item) + '</li>').join('');
+                    const writingRows = /diálogo|dos frases|Tarea integradora/i.test(ex.prompt) ? 6 : 3;
                     container.innerHTML = `
                         <div>
+                            <p class="pill" style="display:inline-block;margin-bottom:8px;">Escritura guiada · autoevaluación</p>
                             <h3>${App.escapeHtml(ex.prompt)}</h3>
                             <p style="margin-top:10px;color:var(--text-secondary);">${App.escapeHtml(ex.hint || 'Escribe tu propia frase en indonesio.')}</p>
-                            <textarea id="textAnswer" class="input-field" rows="3" placeholder="Escribe tu frase en indonesio..." style="margin-top:16px;"></textarea>
+                            <section class="card" data-guided-writing-checklist aria-label="Lista para revisar tu escritura">
+                                <strong>Antes de comparar, revisa:</strong>
+                                <ul>${checklistMarkup}</ul>
+                                <small style="color:var(--text-muted);">Son criterios de autoevaluación, no una corrección automática.</small>
+                            </section>
+                            <textarea id="textAnswer" class="input-field" rows="${writingRows}" placeholder="Escribe tu respuesta en indonesio..." style="margin-top:16px;"></textarea>
                         </div>
                         <div id="actionArea">
                             <button class="btn" onclick="LessonEngine.checkWriting()">Comparar con el ejemplo</button>
@@ -1782,14 +1832,24 @@
                     return;
                 }
                 const area = document.getElementById('actionArea');
+                const checklist = getGuidedWritingChecklist(ex, this.currentUnit);
+                const checklistMarkup = checklist.map(item => '<li>' + App.escapeHtml(item) + '</li>').join('');
+                const selfAssessmentNote = this.assessmentMode
+                    ? 'Tu valoración es una autoevaluación orientativa; no sustituye una revisión lingüística.'
+                    : 'En el curso, marcar que lo conseguiste registra 10 XP y un intento de repaso espaciado. Si necesitas practicar, la actividad se programa para repetirla. Esta elección registra tu autoevaluación: no corrige automáticamente la gramática ni demuestra que cada frase sea la única forma correcta.';
                 area.innerHTML = `
                     <div class="feedback-box">
-                        <strong>Tu frase:</strong> ${App.escapeHtml(input)}<br>
-                        <strong>Ejemplo posible:</strong> ${App.escapeHtml(ex.modelAnswer)}<br>
+                        <strong>Tu respuesta:</strong><p style="white-space:pre-wrap;">${App.escapeHtml(input)}</p>
+                        <strong>Un ejemplo posible:</strong><p style="white-space:pre-wrap;">${App.escapeHtml(ex.modelAnswer || '')}</p>
                         <small>${App.escapeHtml(ex.explanation || 'Compara el orden de las palabras y el vocabulario. Puede haber otras respuestas correctas.')}</small>
                     </div>
-                    <p style="margin-top:12px;">¿Tu frase expresa la idea y usaste el vocabulario de la unidad?</p>
-                    <button class="btn" style="margin-top:8px;" onclick="LessonEngine.rateWriting(true)">Sí, lo conseguí</button>
+                    <section class="card" data-writing-review>
+                        <strong>Revisa estos criterios:</strong>
+                        <ul>${checklistMarkup}</ul>
+                        <p style="color:var(--text-muted);">El ejemplo es una referencia, no una respuesta única. Una frase diferente también puede expresar correctamente la idea.</p>
+                    </section>
+                    <p style="margin-top:12px;"><strong>Autoevaluación, no nota automática:</strong> ${App.escapeHtml(selfAssessmentNote)}</p>
+                    <button class="btn" style="margin-top:8px;" onclick="LessonEngine.rateWriting(true)">Sí, cumplí los criterios</button>
                     <button class="btn btn-outline" style="margin-top:8px;" onclick="LessonEngine.rateWriting(false)">Necesito practicarlo</button>
                 `;
             },

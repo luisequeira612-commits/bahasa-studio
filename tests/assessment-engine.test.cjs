@@ -88,8 +88,9 @@ test('human-reviewed open responses contribute rubric points and clear review re
     'b1-kan-i-01': 0,
     'b1-voice-01': 1,
     'b1-write-01': 'A short response',
-    'b1-write-02': 'Another short response'
-  }, { manualScores: { 'b1-write-01': 4, 'b1-write-02': 4 } });
+    'b1-write-02': 'Another short response',
+    'b1-integrated-01': 'A connected summary with a conclusion.'
+  }, { manualScores: { 'b1-write-01': 4, 'b1-write-02': 4, 'b1-integrated-01': 4 } });
   assert.equal(result.items.find(item => item.id === 'b1-write-01').points, 4);
   assert.equal(result.openItemsPendingReview.length, 0);
   assert.equal(result.skills.production.percent, 80);

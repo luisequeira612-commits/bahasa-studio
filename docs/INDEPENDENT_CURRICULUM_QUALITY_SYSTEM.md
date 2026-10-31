@@ -17,9 +17,9 @@ El script `scripts/audit-curriculum-quality.mjs` carga los currículos locales A
 - IDs de unidad duplicados y colisiones de vocabulario (un mismo ID asociado a términos indonesios distintos); las repeticiones del mismo término se registran como avisos porque pueden representar vocabulario compartido; el informe distingue entradas totales de IDs únicos;
 - campos obligatorios de cada entrada (`idn`, `esp`);
 - ejemplos incompletos como avisos editoriales;
-- estructura básica de ejercicios y consignas;
-- índices de respuesta MC dentro del rango de opciones;
-- consistencia entre `words` y `correctOrder` en ejercicios de orden;
+- estructura básica de ejercicios y consignas tanto a nivel de unidad como dentro de cada lección;
+- índices de respuesta MC dentro del rango de opciones, también en ejercicios de lección;
+- consistencia entre `words` y `correctOrder` en ejercicios de orden, también en ejercicios de lección;
 - referencias `vocabId`, `vocabIds` y `reviewVocabIds` que no resuelven al vocabulario combinado de A1/A2, permitiendo repasos acumulativos entre niveles;
 - referencias en ejercicios de unidad y de lección.
 

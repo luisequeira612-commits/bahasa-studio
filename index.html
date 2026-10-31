@@ -94,6 +94,7 @@
         <div id="srsDashboard" class="card">
             <h3>Palabras Pendientes</h3>
             <p id="srsCountText" style="font-size: 1.8rem; font-weight: bold; margin: 8px 0; color:var(--accent);">0</p>
+            <section id="adaptiveRecommendation" class="card" aria-live="polite" style="margin:12px 0; padding:12px;"><p class="text-muted">Preparando tu siguiente paso…</p></section>
             <label for="srsSessionSize" style="display:block; font-size:0.85rem; margin:8px 0 4px;">Tarjetas por sesión</label>
             <select id="srsSessionSize" class="input-field" aria-label="Tarjetas por sesión">
                 <option value="5">5 tarjetas</option>
@@ -2812,6 +2813,71 @@ Requisitos:
                 document.getElementById('statAccuracy').innerText = attempts ? Math.round(correct / attempts * 100) + '%' : '—';
                 document.getElementById('statNeedsPractice').innerText = allSrs.filter(item => item.incorrect > 0 && item.repetition < 4).length;
                 document.getElementById('statSavedForReview').innerText = allSrs.filter(item => item.savedForReview).length;
+
+                const weakWords = [...srsByWord.entries()]
+                    .filter(([, item]) => item.incorrect > 0 && item.repetition < 4)
+                    .sort((a, b) => b[1].incorrect - a[1].incorrect)
+                    .slice(0, 5)
+                    .map(([term]) => {
+                        const word = uniqueVocab.find(entry => String(entry.idn || '').trim().toLocaleLowerCase() === term);
+                        return word ? { id: word.id, term: word.idn } : null;
+                    }).filter(Boolean);
+                let nextLesson = null;
+                for (const level of getLearningLevels()) {
+                    for (const unit of level.units) {
+                        if (this.completedUnits.includes(unit.id)) continue;
+                        const lesson = buildUnitLessons(unit).find(entry =>
+                            !this.completedLessons.includes(unitLessonProgressKey(unit.id, entry.index)));
+                        if (lesson) {
+                            nextLesson = { unitId: unit.id, lessonIndex: lesson.index, unitTitle: unit.title, title: lesson.title };
+                            break;
+                        }
+                    }
+                    if (nextLesson) break;
+                }
+                this.renderAdaptiveRecommendation({
+                    dueCount: due.length,
+                    weakWords,
+                    nextLesson,
+                    todayXp: this.studyActivity && this.studyActivity.todayXp,
+                    dailyGoal: this.studyActivity && this.studyActivity.dailyGoal
+                });
+            },
+            renderAdaptiveRecommendation(input) {
+                const host = document.getElementById('adaptiveRecommendation');
+                if (!host || typeof AdaptiveLearning === 'undefined') return;
+                const recommendation = AdaptiveLearning.recommend(input);
+                host.replaceChildren();
+                const heading = document.createElement('h3');
+                heading.textContent = recommendation.title;
+                const description = document.createElement('p');
+                description.textContent = recommendation.description;
+                description.style.color = 'var(--text-muted)';
+                const button = document.createElement('button');
+                button.type = 'button';
+                button.className = 'btn';
+                button.textContent = recommendation.label;
+                button.disabled = recommendation.action === 'none';
+                button.addEventListener('click', async () => {
+                    button.disabled = true;
+                    try {
+                        if (recommendation.action === 'review') {
+                            await SRSEngine.startSession();
+                        } else if (recommendation.action === 'reinforce') {
+                            for (const wordId of recommendation.wordIds) await SRSEngine.markForReview(wordId);
+                            await this.updateSrsView();
+                            await SRSEngine.startSession();
+                        } else if (recommendation.action === 'lesson') {
+                            LessonEngine.startUnitById(recommendation.unitId, recommendation.lessonIndex);
+                        } else if (recommendation.action === 'conversation') {
+                            ConversationEngine.open();
+                        }
+                    } catch (error) {
+                        console.error('No se pudo iniciar la actividad recomendada:', error);
+                        button.disabled = false;
+                    }
+                });
+                host.append(heading, description, button);
             },
             renderDict() {
                 const container = document.getElementById('dictContainer');
@@ -3395,6 +3461,7 @@ Requisitos:
     </script>
     <script src="./conversation-engine.js"></script>
     <script src="./study-activity.js"></script>
+    <script src="./adaptive-learning.js"></script>
     <script src="./writing-practice.js"></script>
 
 </body>

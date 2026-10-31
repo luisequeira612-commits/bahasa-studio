@@ -24,8 +24,8 @@ test('builds one neutral editorial work item per vocabulary entry', () => {
 });
 
 test('serializes commas, quotes and newlines as valid CSV cells', () => {
-  const csv = toCsv([{ term: 'kata, "contoh"\\nbaris' }]);
-  assert.equal(csv, 'term\\n"kata, ""contoh""\\nbaris"\\n');
+  const csv = toCsv([{ term: 'kata, "contoh"\nbaris' }]);
+  assert.equal(csv, 'term\n"kata, ""contoh""\nbaris"\n');
 });
 
 test('does not infer linguistic approval from populated curriculum fields', () => {

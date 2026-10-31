@@ -33,6 +33,7 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
   const units = Array.isArray(curriculum?.units) ? curriculum.units : [];
   const vocabIds = new Map();
   const unitIds = new Set();
+  let vocabularyEntryCount = 0;
 
   if (!units.length) issues.push(issue('error', 'CURRICULUM_EMPTY', level, 'El currículo no contiene unidades.'));
 
@@ -56,6 +57,7 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
     }
     if (Array.isArray(unit.vocab)) {
       unit.vocab.forEach((word, wordIndex) => {
+        vocabularyEntryCount += 1;
         const wordPath = `${unitPath}.vocab[${wordIndex}]`;
         if (!word || typeof word !== 'object') {
           issues.push(issue('error', 'VOCAB_ITEM_INVALID', wordPath, 'La entrada de vocabulario no es un objeto.'));
@@ -180,7 +182,8 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
   return {
     level,
     unit_count: units.length,
-    vocabulary_count: vocabIds.size,
+    vocabulary_count: vocabularyEntryCount,
+    unique_vocabulary_id_count: vocabIds.size,
     error_count: issues.filter((item) => item.severity === 'error').length,
     warning_count: issues.filter((item) => item.severity === 'warning').length,
     issues,
@@ -226,6 +229,7 @@ async function main() {
       levels: reports.length,
       units: reports.reduce((sum, item) => sum + item.unit_count, 0),
       vocabulary_entries: reports.reduce((sum, item) => sum + item.vocabulary_count, 0),
+      unique_vocabulary_ids: reports.reduce((sum, item) => sum + item.unique_vocabulary_id_count, 0),
       errors: reports.reduce((sum, item) => sum + item.error_count, 0),
       warnings: reports.reduce((sum, item) => sum + item.warning_count, 0),
     },

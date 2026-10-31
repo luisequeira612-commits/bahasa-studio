@@ -69,3 +69,10 @@ No declarar cerrada la auditoría lingüística basándose en el resultado verde
 ## Cotejo KBBI adicional — 28 de octubre de 2026
 
 Se volvieron a revisar directamente estas entradas oficiales y se enriquecieron las notas de evidencia en el rastreador: [menjawab](https://kbbi.kemendikdasmen.go.id/entri/menjawab) (base `jawab`, responder), [membaca](https://kbbi.kemendikdasmen.go.id/entri/membaca) (resultado bajo `baca`, leer), [kelas](https://kbbi.kemendikdasmen.go.id/entri/kelas) (incluye aula escolar) y [tugas](https://kbbi.kemendikdasmen.go.id/entri/tugas) (tarea/trabajo asignado). Estas consultas elevan el total registrado a **39/90**; quedan **51/90** en `not_checked`. Solo se verifica la entrada/acepción léxica pertinente; no implica que se hayan validado la traducción española, los ejemplos, la naturalidad, las respuestas aceptadas ni el nivel BIPA 1.
+
+
+## Reconciliación del contador del rastreador — 2026-10-31
+
+Una comprobación directa del CSV vigente encuentra **34/90** filas con `KBBI_status=verified_primary` y **56/90** con `not_checked`. Una nota anterior de este documento mencionaba 39/90 y 51/90; ese recuento no coincide con el archivo actualmente versionado. Para evitar atribuir verificaciones no presentes en el registro, el CSV es la referencia operativa y el total vigente se fija en 34/90 hasta que se documenten nuevas consultas con URL, fecha y evidencia. Las dimensiones de naturalidad, adecuación de nivel y respuestas aceptadas siguen en `not_checked` en las 90 filas.
+
+También se corrigió el encabezado de la quinta columna del CSV: sus valores son ejemplos completos en indonesio, no IDs de ejemplo. El cambio de nombre a `example_indonesian` corrige la etiqueta sin modificar ninguna fila, ID de vocabulario, evidencia ni estado de revisión.

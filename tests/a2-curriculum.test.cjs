@@ -501,7 +501,7 @@ test('A2 remains hidden from learners until explicit release approval', () => {
   assert.match(htmlSource, /Disponible al completar A1/);
   assert.match(htmlSource, /if \(!a1Complete\) return;/);
   assert.match(htmlSource, /const isAdvanced = \['B1', 'B2'\]\.includes\(lvl\.id\)/);
-  assert.match(htmlSource, /const unitAccessible = lvl\.id === 'A1'[\s\S]*?lvl\.id === 'A2' \? a1Complete/);
+  assert.match(htmlSource, /const unitAccessible = lvl\.id === 'A1'[\s\S]*?lvl\.id === 'A2' \? \(A2_RELEASE_ENABLED && a1Complete\)/);
 });
 
 test('A2 date production and sequence context practice are explicitly taught', () => {

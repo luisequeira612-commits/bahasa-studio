@@ -23,6 +23,8 @@ const ITEM_BANK = Object.freeze([
   { id: 'a1-transport-01', level: 'A1', skill: 'comprehension', type: 'choice', prompt: 'Si alguien dice «Saya naik bus», ¿cómo viaja?', options: ['A pie', 'En autobús', 'En barco'], answer: 1, points: 1, explanation: 'Naik bus significa viajar o ir en autobús.' },
   { id: 'a1-location-01', level: 'A1', skill: 'grammar', type: 'choice', prompt: 'Completa la frase de ubicación: «Saya tinggal ___ Managua».', options: ['di', 'bukan', 'berapa'], answer: 0, points: 1, explanation: 'La preposición separada di indica ubicación: di Managua.' },
   { id: 'a1-family-01', level: 'A1', skill: 'interaction', type: 'choice', prompt: 'En «Ini ibu saya», ¿quién es la persona mencionada?', options: ['Mi amiga', 'Mi madre', 'Mi profesora'], answer: 1, points: 1, explanation: 'Ibu significa «madre»; el ejemplo evalúa vocabulario de familia de la unidad 5.' },
+  { id: 'a1-listen-01', level: 'A1', skill: 'comprehension', type: 'listen', prompt: 'Escucha la frase en indonesio y escribe exactamente lo que oyes.', audioText: 'Saya tinggal di Managua', answer: 'Saya tinggal di Managua', points: 2, explanation: 'Saya tinggal di Managua significa «Vivo en Managua». La transcripción se compara de forma normalizada, sin exigir mayúsculas ni puntuación.' },
+  { id: 'a1-speak-01', level: 'A1', skill: 'production', type: 'speak', prompt: 'Preséntate en voz alta en indonesio. Di tu nombre y de dónde eres; después, añade una actividad cotidiana.', rubric: ['cumplimiento-de-la-tarea', 'claridad', 'gramática-básica', 'vocabulario-relevante'], points: 4 },
   { id: 'a2-di-01', level: 'A2', skill: 'diPreposition', type: 'choice', prompt: 'Which spelling means “read at home”?', options: ['dibaca rumah', 'di baca rumah', 'dibaca di rumah'], answer: 2, points: 1, explanation: 'The passive prefix di- joins the verb; the preposition di is separate.' },
   { id: 'a2-passive-01', level: 'A2', skill: 'diPassive', type: 'choice', prompt: 'In “Buku itu dibaca Rina”, what is being read?', options: ['Rina', 'The book', 'The place'], answer: 1, points: 1, explanation: 'Buku itu is the affected item in this passive sentence.' },
   { id: 'a2-write-01', level: 'A2', skill: 'production', type: 'open', prompt: 'Describe a simple activity and where it happens. Include one natural active or passive sentence.', rubric: ['task-completion', 'intelligibility', 'target-pattern', 'relevant-vocabulary'], points: 4 },
@@ -122,6 +124,16 @@ function scoreAssessment(level, answers, { manualScores = {} } = {}) {
         status = 'correct';
       } else if (submitted === undefined || submitted === null || submitted === '') {
         status = 'unanswered';
+      }
+    } else if (item.type === 'listen') {
+      const normalize = value => String(value || '').toLocaleLowerCase('id-ID')
+        .normalize('NFD').replace(/\\p{M}/gu, '')
+        .replace(/[^\\p{L}\\p{N}\\s]/gu, ' ').replace(/\\s+/g, ' ').trim();
+      if (typeof submitted !== 'string' || !submitted.trim()) {
+        status = 'unanswered';
+      } else if (normalize(submitted) === normalize(item.answer)) {
+        points = item.points;
+        status = 'correct';
       }
     } else {
       const hasResponse = typeof submitted === 'string' && submitted.trim().length > 0;

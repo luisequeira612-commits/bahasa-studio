@@ -51,14 +51,25 @@ test('assessment page renders questions, scores closed answers and flags open re
     await page.locator('input[name="a1-negation-01"][value="0"]').check();
     await page.locator('input[name="a1-vocab-01"][value="2"]').check();
     await page.locator('#a1-write-01').fill('Nama saya Ana. Saya belajar bahasa Indonesia.');
+    const writing = page.locator('#a1-write-03');
+    const reveal = page.locator('[data-reveal-model]');
+    assert.equal(await reveal.isDisabled(), true, 'the model must stay unavailable before a learner drafts a response');
+    await writing.fill('Halo. Saya suka makan nasi goreng. Ayo makan bersama besok. Kamu mau?');
+    assert.equal(await reveal.isDisabled(), false);
+    await reveal.click();
+    assert.ok(await page.locator('[data-model-example]').isVisible());
     await page.getByRole('button', { name: 'Calcular resultado provisional' }).click();
     await page.getByRole('heading', { name: 'Resultado provisional' }).waitFor();
     assert.match(await page.locator('#results').innerText(), /requieren revisión humana/);
+    assert.match(await page.locator('#results').innerText(), /2 de 66 puntos/, 'open writing responses must not receive automatic credit');
+    assert.equal(await page.locator('[data-review-id="a1-write-03"]').count(), 1);
+    assert.match(await page.locator('#results').innerText(), /Incluye saludo, preferencia, invitación y pregunta/);
     assert.match(await page.locator('#results').innerText(), /producción/i);
     assert.equal(await page.locator('#assessment').isVisible(), false);
     await page.locator('[data-review-id="a1-write-01"]').fill('3');
+    await page.locator('[data-review-id="a1-write-03"]').fill('3');
     await page.getByRole('button', { name: 'Aplicar puntuaciones revisadas' }).click();
-    assert.match(await page.locator('#results').innerText(), /5 de 62 puntos/);
+    assert.match(await page.locator('#results').innerText(), /8 de 66 puntos/);
     assert.equal(await page.locator('[data-review-id="a1-write-01"]').count(), 1);
     assert.deepEqual(errors, []);
   } finally {

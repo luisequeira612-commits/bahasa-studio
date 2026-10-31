@@ -64,6 +64,7 @@ El modelo es una respuesta guiada, no una respuesta única. Las variantes válid
 
 - La prueba existente de A2 U1 comprueba que haya una tarea guiada de producción de fecha completa.
 - La prueba existente de A2 U3 comprueba la distinción entre rutina y hecho pasado.
+- U1: la consigna de fecha ahora pide explícitamente «el día y el mes», porque el modelo `Hari ini tanggal 17 Agustus.` no incluye año. Se evita así llamar «fecha completa» a un ejemplo que solo practica día y mes; se añadió una aserción para fijar el alcance de la tarea.
 - Se añadió una prueba de cobertura de vocabulario para U1–U4: cada entrada nueva se introduce una sola vez y las referencias de repaso/ejercicio existen.
 - Se añadió una prueba para el contraste `belum` / `masih` en U2.
 - Se añadió una prueba para la producción integrada de horario en U4.

@@ -1752,7 +1752,7 @@
                             ${listenMarkup}
                             <div class="option-grid">
                                 ${ex.options.map((opt, i) => `
-                                    <button class="option-btn" onclick="LessonEngine.selectMc(${i}, this)">${App.escapeHtml(opt)}</button>
+                                    <button class="option-btn" aria-pressed="false" onclick="LessonEngine.selectMc(${i}, this)">${App.escapeHtml(opt)}</button>
                                 `).join('')}
                             </div>
                         </div>

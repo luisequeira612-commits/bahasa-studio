@@ -59,11 +59,15 @@ test('B1 remains hidden from the unlocked learning path until a separate release
 
 test('B1 assessment bank includes open production items that require human review', () => {
   const items = getAssessment('B1');
-  assert.equal(items.length, 14);
+  assert.equal(items.length, 15);
   assert.ok(items.some(item => item.type === 'open' && item.skill === 'production'));
-  for (const id of ['b1-connectors-01', 'b1-report-01', 'b1-process-01', 'b1-opinion-01', 'b1-formal-01', 'b1-interaction-01', 'b1-speaking-01', 'b1-integrated-01']) assert.ok(items.some(item => item.id === id), 'missing B1 assessment item ' + id);
+  for (const id of ['b1-connectors-01', 'b1-report-01', 'b1-process-01', 'b1-opinion-01', 'b1-formal-01', 'b1-interaction-01', 'b1-speaking-01', 'b1-integrated-01', 'b1-listening-01']) assert.ok(items.some(item => item.id === id), 'missing B1 assessment item ' + id);
   assert.ok(items.some(item => item.skill === 'register'));
   assert.ok(items.some(item => item.skill === 'interaction'));
+  const listening = items.find(item => item.id === 'b1-listening-01');
+  assert.equal(listening.type, 'listen');
+  assert.equal(listening.skill, 'comprehension');
+  assert.ok(listening.audioText && listening.answer);
   const speaking = items.find(item => item.id === 'b1-speaking-01');
   assert.equal(speaking.type, 'speak');
   assert.ok(Array.isArray(speaking.rubric) && speaking.rubric.length > 0);

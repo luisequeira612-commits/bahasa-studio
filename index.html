@@ -2859,7 +2859,7 @@ Requisitos:
                         const nextLesson = lessons.findIndex(lesson => !this.completedLessons.includes(unitLessonProgressKey(unit.id, lesson.index)));
                         const unitAccessible = lvl.id === 'A1'
                             ? isDone || isNext
-                            : lvl.id === 'A2' ? a1Complete : true;
+                            : lvl.id === 'A2' ? (A2_RELEASE_ENABLED && a1Complete) : true;
                         const card = document.createElement('details');
                         card.className = `unit-card ${isDone ? 'completed' : ''} ${lvl.id === 'A1' ? 'path-node ' + (isDone ? 'path-node-completed' : isNext ? 'path-node-current' : 'path-node-locked') : ''}`;
                         if (lvl.id === 'A1') card.dataset.pathState = isDone ? 'completed' : isNext ? 'current' : 'locked';

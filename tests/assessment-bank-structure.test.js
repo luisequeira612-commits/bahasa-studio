@@ -11,13 +11,17 @@ for (const item of ITEM_BANK) {
   assert.ok(['vocabulary', 'grammar', 'comprehension', 'interaction', 'production',
     'context', 'meN', 'diPassive', 'diPreposition', 'reading', 'voice', 'kanI',
     'derivation', 'register', 'nominalization', 'reference'].includes(item.skill), item.id + ': valid skill');
-  assert.ok(['choice', 'open'].includes(item.type), item.id + ': valid type');
+  assert.ok(['choice', 'open', 'listen', 'speak'].includes(item.type), item.id + ': valid type');
   assert.ok(Number.isInteger(item.points) && item.points > 0, item.id + ': positive integer points');
   if (item.type === 'choice') {
     assert.ok(Array.isArray(item.options) && item.options.length >= 2, item.id + ': choice options');
     assert.ok(Number.isInteger(item.answer) && item.answer >= 0 && item.answer < item.options.length, item.id + ': answer key');
   }
-  if (item.type === 'open') assert.ok(Array.isArray(item.rubric) && item.rubric.length > 0, item.id + ': open rubric');
+  if (item.type === 'open' || item.type === 'speak') assert.ok(Array.isArray(item.rubric) && item.rubric.length > 0, item.id + ': production rubric');
+  if (item.type === 'listen') {
+    assert.ok(item.audioText && item.answer, item.id + ': listening audio and answer');
+    assert.equal(item.skill, 'comprehension');
+  }
 }
 
 const expanded = ITEM_BANK.filter(item => /^a1-u(?:08|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32)-/.test(item.id));
@@ -62,9 +66,9 @@ for (const [id, expected] of Object.entries(expectedAnswers)) {
 
 
 const totalA1Points = ITEM_BANK.filter(item => item.level === 'A1').reduce((sum, item) => sum + item.points, 0);
-assert.equal(totalA1Points, 56, 'A1 pilot total after expansion');
+assert.equal(totalA1Points, 62, 'A1 pilot total after expansion');
 const blank = scoreAssessment('A1', {});
-assert.equal(blank.possible, 56);
+assert.equal(blank.possible, 62);
 assert.equal(blank.earned, 0);
 assert.equal(blank.provisionalPass, false);
 assert.equal(blank.thresholds.validated, false);

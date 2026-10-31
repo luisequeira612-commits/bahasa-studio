@@ -9,6 +9,7 @@ const { getAssessment, LEVELS } = require('../assessment-engine.js');
 
 const root = path.join(__dirname, '..');
 const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+const assessmentHtml = fs.readFileSync(path.join(root, 'assessment.html'), 'utf8');
 const a1Source = fs.readFileSync(path.join(root, 'curriculum-a1.js'), 'utf8');
 const a2Source = fs.readFileSync(path.join(root, 'curriculum-a2.js'), 'utf8');
 const a1Literal = a1Source.slice(a1Source.indexOf(' = ') + 3).trim().replace(/;$/, '');
@@ -70,7 +71,9 @@ test('B1 assessment bank includes open production items that require human revie
   assert.ok(listening.audioText && listening.answer);
   const readingItems = items.filter(item => item.id.startsWith('b1-reading-'));
   assert.equal(readingItems.length, 3);
-  assert.ok(readingItems.every(item => item.skill === 'reading' && item.prompt.includes('Bandung') && item.options[item.answer]));
+  assert.ok(readingItems.every(item => item.skill === 'reading' && item.readingText.includes('Bandung') && item.prompt && item.options[item.answer]));
+  assert.match(assessmentHtml, /item\.readingText/);
+  assert.match(assessmentHtml, /reading-passage/);
   const speaking = items.find(item => item.id === 'b1-speaking-01');
   assert.equal(speaking.type, 'speak');
   assert.ok(Array.isArray(speaking.rubric) && speaking.rubric.length > 0);

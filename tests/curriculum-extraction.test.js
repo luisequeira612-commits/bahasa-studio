@@ -50,7 +50,7 @@ test('A1/A2 curriculum deeply matches the original pre-extraction data', () => {
   assert.equal(a1.units.length, 32);
   assert.equal(a2.units.length, 40);
   assert.equal(fnv1a(JSON.stringify(a1)), 'c447e29a', 'A1 canonical-data hash changed');
-  assert.equal(fnv1a(JSON.stringify(a2)), 'TO_BE_COMPUTED', 'A2 canonical-data hash changed');
+  assert.equal(fnv1a(JSON.stringify(a2)), '7f157b61', 'A2 canonical-data hash changed');
   assert.deepEqual(counts(a1), { units: 32, lessons: 91, exercises: 437, vocabulary: 329 });
   assert.deepEqual(counts(a2), { units: 40, lessons: 161, exercises: 682, vocabulary: 492 });
 });

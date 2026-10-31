@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bahasa Studio 3.8.9</title>
+    <title>Bahasa Studio 3.8.10</title>
     <meta name="description" content="Curso de indonesio PWA para hispanohablantes sin costo ni penalizaciones.">
     <meta name="theme-color" content="#e8384f">
     <link rel="manifest" href="./manifest.json">
@@ -1757,7 +1757,7 @@
                             </div>
                         </div>
                         <div id="actionArea">
-                            <button class="btn" onclick="LessonEngine.checkMc()">Comprobar</button>
+                            <button class="btn" id="checkMcButton" onclick="LessonEngine.checkMc()" disabled aria-disabled="true">Comprobar</button>
                         </div>
                     `;
                     if (ex.audioText) AudioEngine.speak(ex.audioText);
@@ -1832,9 +1832,18 @@
                 PronunciationEngine.start(targetText, status, button);
             },
             selectMc(idx, btn) {
-                document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+                document.querySelectorAll('.option-btn').forEach(b => {
+                    b.classList.remove('selected');
+                    b.setAttribute('aria-pressed', 'false');
+                });
                 btn.classList.add('selected');
+                btn.setAttribute('aria-pressed', 'true');
                 this.selectedOption = idx;
+                const checkButton = document.getElementById('checkMcButton');
+                if (checkButton) {
+                    checkButton.disabled = false;
+                    checkButton.setAttribute('aria-disabled', 'false');
+                }
             },
             pickWord(word, el) {
                 this.userOrder.push(word);

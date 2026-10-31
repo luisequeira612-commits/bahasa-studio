@@ -1199,7 +1199,7 @@ test('free-writing notebook shows an example after a draft and never changes XP 
     await page.getByRole('button', { name: 'Mostrar ejemplo orientativo' }).click();
     await page.getByText('Un ejemplo posible').waitFor();
     assert.equal(await page.locator('#writingPracticeContent').getByText(/no ha sido validado por un hablante nativo/i).count(), 1);
-    assert.equal(await page.evaluate(() => DB.get('settings', 'userXp') || 0), before.xp);
+    assert.equal(await page.evaluate(async () => (await DB.get('settings', 'userXp')) || 0), before.xp);
     assert.equal(await page.evaluate(async () => (await DB.getAll('srs')).length), before.srs);
     assert.equal(await page.locator('#writingPracticeContent button').count(), 2);
     await page.reload({ waitUntil: 'domcontentloaded' });

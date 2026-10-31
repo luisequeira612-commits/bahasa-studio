@@ -3051,6 +3051,12 @@ Requisitos:
                     saveButton.textContent = 'Reintentar';
                 }
             });
+            document.addEventListener('pointerdown', event => {
+                const target = event.target;
+                if (target === bubble || bubble.contains(target)) return;
+                if (target.closest && target.closest('.tap-translation-word')) return;
+                if (!bubble.hidden) close();
+            }, true);
             document.addEventListener('click', event => {
                 const word = event.target.closest && event.target.closest('.tap-translation-word');
                 if (word) { event.preventDefault(); open(word); return; }

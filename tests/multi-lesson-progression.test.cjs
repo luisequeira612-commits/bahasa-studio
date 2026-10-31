@@ -97,3 +97,16 @@ test('course progression persists lesson completion separately from unit approva
   assert.match(html, /completedLessons: this\.completedLessons/);
   assert.match(html, /putSetting\('completedLessons', data\.completedLessons \|\| \[\]\)/);
 });
+
+
+test('authored A1 ordering exercises reference the vocabulary used by their answers', () => {
+  const a1 = app.CourseData.levels.find(level => level.id === 'A1');
+  const kitchen = a1.units.find(unit => unit.id === 'a1_u23');
+  const kitchenExercise = kitchen.exercises.find(exercise => exercise.prompt === 'Ordena: Estoy en la cocina.');
+  assert.equal(kitchenExercise.vocabId, 'v374');
+  assert.deepEqual(Array.from(kitchenExercise.correctOrder), ['Saya', 'di', 'dapur']);
+  const sequence = a1.units.find(unit => unit.id === 'a1_u29');
+  const sequenceExercise = sequence.exercises.find(exercise => exercise.prompt === 'Ordena: Como antes de estudiar.');
+  assert.equal(sequenceExercise.vocabId, 'v443');
+  assert.deepEqual(Array.from(sequenceExercise.correctOrder), ['Saya', 'makan', 'sebelum', 'belajar']);
+});

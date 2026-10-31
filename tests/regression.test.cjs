@@ -39,11 +39,37 @@ test('inline application JavaScript and service worker parse', () => {
 test('PWA version is consistent across HTML, manifest and cache', () => {
   assert.match(html, /Bahasa Studio 3\.8\.8/);
   assert.equal(manifest.name, 'Bahasa Studio 3.8.8');
-  assert.match(serviceWorker, /bahasa-studio-v3\.8\.16/);
+  assert.match(serviceWorker, /bahasa-studio-v3\.8\.17/);
   for (const asset of ['./', './index.html', './manifest.json', './assessment.html', './assessment-engine.js', './conversation-engine.js', './study-activity.js', './curriculum-a1.js', './curriculum-a2.js', './styles.css', './audio-engine.js', './pronunciation-engine.js', './writing-practice.js']) {
     assert.ok(serviceWorker.includes("'" + asset + "'"), asset + ' must be precached for offline use');
   }
   assert.doesNotMatch(html + serviceWorker + JSON.stringify(manifest), /3\.5\.1/);
+});
+
+test('A2 stays in beta until all A1 units are complete, including direct lesson entry', () => {
+  const start = html.indexOf('const CourseData =');
+  const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
+  assert.ok(start >= 0 && end > start, 'CourseData block must exist');
+  const course = vm.runInNewContext(html.slice(start, end) + '\\nCourseData');
+  const helper = html.match(/function isA1Complete\\(completedUnits\\) \\{[\\s\\S]*?\\n        \\}/);
+  assert.ok(helper, 'the A1 completion rule must be centralized');
+  const isA1Complete = vm.runInNewContext(helper[0] + '\\nisA1Complete', { CourseData: course });
+  const a1 = course.levels.find(level => level.id === 'A1');
+  const allIds = a1.units.map(unit => unit.id);
+  assert.equal(isA1Complete([]), false);
+  assert.equal(isA1Complete(allIds.slice(0, -1)), false);
+  assert.equal(isA1Complete(allIds), true);
+  assert.match(html, /level\\.id !== 'A2' \\|\\| isA1Complete\\(App\\.completedUnits\\)/,
+    'A2 vocabulary must not enter learning and SRS pools before A1 is complete');
+  assert.match(html, /\\(level\\.id === 'A2' && !isA1Complete\\(App\\.completedUnits\\)\\)\\) return;/,
+    'direct lesson entry must reject A2 before A1 completion');
+  assert.match(html, /\\(level\\.id === 'A2' && !isA1Complete\\(App\\.completedUnits\\)\\)\\) return;/,
+    'direct assessment entry must reject A2 before A1 completion');
+  assert.match(html, /Beta · en revisión/);
+  assert.match(html, /no ha sido validado por hablantes nativos/);
+  assert.match(html, /const unitAccessible = lvl\\.id === 'A1'[\\s\\S]*?lvl\\.id === 'A2' \\? a1Complete/);
+  assert.match(html, /if \\(\\['B1', 'B2'\\]\\.includes\\(level\\.id\\)\\)/,
+    'B1 and B2 must remain blocked from direct lesson entry');
 });
 
 test('A1 units 1 and 2 teach vocabulary and provide varied practice', () => {

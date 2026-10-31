@@ -28,7 +28,7 @@ function issue(severity, code, path, message) {
   return { severity, code, path, message };
 }
 
-export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown') {
+export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown', knownVocabIds = []) {
   const issues = [];
   const units = Array.isArray(curriculum?.units) ? curriculum.units : [];
   const vocabIds = new Map();
@@ -64,8 +64,14 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown')
         if (!word.id || typeof word.id !== 'string') {
           issues.push(issue('error', 'VOCAB_ID_MISSING', wordPath, 'La entrada necesita un ID.'));
         } else if (vocabIds.has(word.id)) {
-          issues.push(issue('error', 'VOCAB_ID_DUPLICATE', wordPath, `ID de vocabulario duplicado: ${word.id}; primera aparición en ${vocabIds.get(word.id)}.`));
-        } else vocabIds.set(word.id, wordPath);
+          const previous = vocabIds.get(word.id);
+          const sameIndonesianTerm = String(previous.idn ?? '').trim().toLocaleLowerCase() === String(word.idn ?? '').trim().toLocaleLowerCase();
+          if (sameIndonesianTerm) {
+            issues.push(issue('warning', 'VOCAB_ID_REUSED_SAME_TERM', wordPath, `El ID ${word.id} vuelve a aparecer para el mismo término indonesio; primera aparición en ${previous.path}.`));
+          } else {
+            issues.push(issue('error', 'VOCAB_ID_DUPLICATE', wordPath, `El ID ${word.id} identifica términos distintos; primera aparición en ${previous.path}.`));
+          }
+        } else vocabIds.set(word.id, { path: wordPath, idn: word.idn });
 
         for (const field of ['idn', 'esp']) {
           if (typeof word[field] !== 'string' || !word[field].trim()) {
@@ -79,8 +85,8 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown')
     }
 
     const exercises = Array.isArray(unit.exercises) ? unit.exercises : [];
-    if (!Array.isArray(unit.exercises)) {
-      issues.push(issue('warning', 'EXERCISES_NOT_ARRAY', unitPath, 'La unidad no tiene un array exercises.'));
+    if (!Array.isArray(unit.exercises) && !Array.isArray(unit.lessons)) {
+      issues.push(issue('warning', 'EXERCISES_NOT_ARRAY', unitPath, 'La unidad no tiene ejercicios a nivel de unidad ni lecciones.'));
     }
     exercises.forEach((exercise, exerciseIndex) => {
       const exercisePath = `${unitPath}.exercises[${exerciseIndex}]`;
@@ -125,12 +131,17 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown')
           issues.push(issue('error', 'LESSON_INVALID', lessonPath, 'La lección no es un objeto.'));
           return;
         }
-        if (Array.isArray(lesson.vocabIds)) {
-          lesson.vocabIds.forEach((id, idIndex) => {
-            if (typeof id !== 'string' || !id.trim()) {
-              issues.push(issue('error', 'LESSON_VOCAB_ID_INVALID', `${lessonPath}.vocabIds[${idIndex}]`, 'La referencia de vocabulario debe ser texto no vacío.'));
-            }
-          });
+        for (const field of ['vocabIds', 'reviewVocabIds']) {
+          if (lesson[field] !== undefined && !Array.isArray(lesson[field])) {
+            issues.push(issue('error', 'LESSON_VOCAB_LIST_INVALID', `${lessonPath}.${field}`, `${field} debe ser un array.`));
+          }
+          if (Array.isArray(lesson[field])) {
+            lesson[field].forEach((id, idIndex) => {
+              if (typeof id !== 'string' || !id.trim()) {
+                issues.push(issue('error', 'LESSON_VOCAB_ID_INVALID', `${lessonPath}.${field}[${idIndex}]`, 'La referencia de vocabulario debe ser texto no vacío.'));
+              }
+            });
+          }
         }
         if (Array.isArray(lesson.exercises)) {
           lesson.exercises.forEach((exercise, exerciseIndex) => {
@@ -143,12 +154,13 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown')
     }
   });
 
-  // Resolve references after collecting every vocabulary ID, allowing legitimate
-  // cross-unit references used by cumulative review activities.
+  // Resolve references after collecting every vocabulary ID. Cumulative A2
+  // review activities may deliberately point back to vocabulary taught in A1.
+  const availableVocabIds = new Set([...vocabIds.keys(), ...knownVocabIds]);
   units.forEach((unit, unitIndex) => {
     const unitPath = `${level}.units[${unitIndex}]`;
     const checkRef = (id, path) => {
-      if (id && typeof id === 'string' && !vocabIds.has(id)) {
+      if (id && typeof id === 'string' && !availableVocabIds.has(id)) {
         issues.push(issue('error', 'VOCAB_REFERENCE_MISSING', path, `No existe una entrada de vocabulario con ID ${id} en este nivel.`));
       }
     };
@@ -158,6 +170,7 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown')
     (unit.lessons ?? []).forEach((lesson, lessonIndex) => {
       if (!lesson || typeof lesson !== 'object') return;
       (lesson.vocabIds ?? []).forEach((id, index) => checkRef(id, `${unitPath}.lessons[${lessonIndex}].vocabIds[${index}]`));
+      (lesson.reviewVocabIds ?? []).forEach((id, index) => checkRef(id, `${unitPath}.lessons[${lessonIndex}].reviewVocabIds[${index}]`));
       (lesson.exercises ?? []).forEach((exercise, index) => {
         if (exercise && typeof exercise === 'object') checkRef(exercise.vocabId, `${unitPath}.lessons[${lessonIndex}].exercises[${index}].vocabId`);
       });
@@ -191,12 +204,17 @@ async function main() {
     ['curriculum-a1.js', 'BAHASA_CURRICULUM_A1'],
     ['curriculum-a2.js', 'BAHASA_CURRICULUM_A2'],
   ];
-  const reports = [];
+  const curricula = [];
   for (const [filename, globalName] of definitions) {
     const source = await readFile(resolve(filename), 'utf8');
-    const curriculum = loadCurriculum(source, globalName, filename);
-    reports.push(auditCurriculum(curriculum, curriculum.id));
+    curricula.push(loadCurriculum(source, globalName, filename));
   }
+  const allVocabIds = new Set(curricula.flatMap((curriculum) =>
+    curriculum.units.flatMap((unit) => (unit.vocab ?? []).map((word) => word?.id).filter((id) => typeof id === 'string'))
+  ));
+  const reports = curricula.map((curriculum) =>
+    auditCurriculum(curriculum, curriculum.id, allVocabIds)
+  );
   const report = {
     schema_version: 1,
     generated_at: new Date().toISOString(),

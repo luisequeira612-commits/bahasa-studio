@@ -93,3 +93,14 @@ Se inspeccionaron las lecciones, ejemplos y ejercicios de U1–U5. En U1–U4 no
 En U5, lección 1, se detectó una explicación copiada de otro ejercicio en la actividad de ordenar palabras vinculada a `a2u5_berbicara`: la consigna y la solución eran «Ordena: Él o ella habla» / `Dia berbicara`, pero la explicación hablaba de `Saya bersepeda ke sekolah`. Se corrigieron dos campos: el ejercicio apuntaba por error al vocabulario `a2u5_bersepeda` en lugar de `a2u5_berbicara`, y su explicación describía ir en bicicleta. Ahora referencia `a2u5_berbicara` y explica `Dia berbicara`. Se añadió una regresión en `tests/a2-curriculum.test.cjs` que comprueba la consigna, el orden correcto y que la explicación no vuelva a mencionar `bersepeda` ni `sekolah`.
 
 Esta corrección es de coherencia didáctica y retroalimentación; no modifica vocabulario, IDs, progresión ni estados de auditoría lingüística.
+
+
+## Segunda pasada de coherencia ejercicio–vocabulario — 2026-10-31
+
+Se ejecutó una comprobación de referencias de ejercicios sobre el vocabulario conjunto A1/A2. Las referencias cruzadas a vocabulario previamente enseñado se conservaron cuando eran válidas. No se encontró ningún caso adicional de esta clase en A2 tras la corrección ya integrada de A2 U5.
+
+En A1 se detectaron dos ejercicios de ordenar palabras cuya respuesta y explicación correspondían a otro término:
+- U23: «Ordena: Estoy en la cocina» usaba `v375` (Kamar mandi, cuarto de baño), aunque la solución era `Saya di dapur`. Se corrigió la referencia a `v374` (Dapur, cocina).
+- U29: «Ordena: Como antes de estudiar» usaba `v444` (Sesudah, después de), aunque la solución era `Saya makan sebelum belajar`. Se corrigió la referencia a `v443` (Sebelum, antes de).
+
+Se añadió una prueba de regresión en `tests/multi-lesson-progression.test.cjs` que comprueba tanto el ID de vocabulario como el orden correcto de las palabras. Estas son correcciones demostrables de coherencia entre el objetivo del ejercicio y el elemento de vocabulario asociado; no constituyen una validación de naturalidad o nivel.

@@ -23,6 +23,12 @@ jobs:
         run: node --test tests/regression.test.cjs
       - name: Run phase 1 UI navigation tests
         run: node --test tests/ui-redesign-phase-1.test.cjs
+      - name: Run phase 2 lesson flow tests
+        run: node --test tests/ui-redesign-phase-2.test.cjs
+      - name: Run phase 3 touch and theme tests
+        run: node --test tests/ui-redesign-phase-3.test.cjs
+      - name: Run preview artifact coverage tests
+        run: node --test tests/preview-artifact.test.cjs
       - name: Run vocabulary review browser tests
         run: node --test tests/vocabulary-review.e2e.test.cjs
       - name: Run practical conversation unit tests
@@ -64,6 +70,9 @@ jobs:
             study-activity.js
             curriculum-a1.js
             curriculum-a2.js
+            audio-engine.js
+            pronunciation-engine.js
+            writing-practice.js
             styles.css
             manifest.json
           if-no-files-found: error

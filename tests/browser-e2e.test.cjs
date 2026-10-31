@@ -961,7 +961,8 @@ test('A1 unit lessons unlock sequentially and the final exam gates the next unit
     assert.equal(await firstUnitButtons.nth(2).isEnabled(), false);
 
     await firstUnitButtons.nth(0).click();
-    await page.getByRole('button', { name: 'Salir' }).click();
+    await page.evaluate(() => { window.confirm = () => true; });
+    await page.getByRole('button', { name: 'Salir de la lección' }).click();
     await page.evaluate(async () => {
       App.completedLessons = ['a1_u1::0'];
       await DB.set('settings', 'completedLessons', App.completedLessons);
@@ -1220,6 +1221,69 @@ test('free-writing notebook shows an example after a draft and never changes XP 
     await page.reload({ waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
     assert.equal(await page.locator('#freeWritingDraft').count(), 0);
+  } finally {
+    await context.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});
+
+
+test('lesson uses a full-screen flow, confirmation, feedback sheet and session summary', async () => {
+  const { server, url } = await startServer();
+  const context = await browser.newContext({ serviceWorkers: 'block' });
+  const page = await context.newPage();
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof LessonEngine !== 'undefined' &&
+      typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
+    await page.evaluate(() => LessonEngine.startUnitById('a1_u1', 0));
+    await page.locator('#view-lesson.active').waitFor();
+
+    assert.equal(await page.locator('body').evaluate(node => node.classList.contains('lesson-active')), true);
+    assert.equal(await page.locator('.nav-bottom').evaluate(node => getComputedStyle(node).display), 'none');
+    assert.equal(await page.locator('body').evaluate(node => getComputedStyle(node).overflow), 'hidden');
+
+    await page.evaluate(() => { window.confirm = () => false; });
+    await page.getByRole('button', { name: 'Salir de la lección' }).click();
+    assert.equal(await page.locator('#view-lesson').evaluate(node => node.classList.contains('active')), true,
+      'cancelling the exit confirmation should keep the lesson open');
+
+    await page.evaluate(() => {
+      window.__vibrationCalls = [];
+      Object.defineProperty(navigator, 'vibrate', {
+        configurable: true,
+        value: duration => { window.__vibrationCalls.push(duration); return true; }
+      });
+    });
+    await page.getByRole('button', { name: 'Comenzar lección' }).click();
+    const correctOption = await page.evaluate(() => LessonEngine.queue[0].answer);
+    await page.locator('.option-btn').nth(correctOption).click();
+    await page.getByRole('button', { name: 'Comprobar' }).click();
+    await page.locator('#actionArea.lesson-feedback-sheet.correct').waitFor();
+    const expectedAnswer = await page.evaluate(() => LessonEngine.correctAnswerText(LessonEngine.queue[0]));
+    assert.equal(await page.locator('#actionArea .lesson-correct-answer').innerText(), 'Respuesta: ' + expectedAnswer);
+    assert.deepEqual(await page.evaluate(() => window.__vibrationCalls), [24]);
+
+    await page.getByRole('button', { name: 'Continuar' }).click();
+    await page.waitForFunction(() => LessonEngine.stepIndex === 1);
+    await page.locator('#textAnswer').fill('respuesta incorrecta');
+    await page.getByRole('button', { name: 'Comprobar' }).click();
+    await page.locator('#actionArea.lesson-feedback-sheet.wrong').waitFor();
+    assert.deepEqual(await page.evaluate(() => window.__vibrationCalls), [24, 24]);
+    await page.getByRole('button', { name: 'Continuar' }).click();
+    await page.waitForFunction(() => LessonEngine.stepIndex === 2);
+    await page.evaluate(() => LessonEngine.finishUnit());
+    await page.locator('.lesson-results-card').waitFor();
+    const summary = await page.locator('.lesson-results-card').innerText();
+    assert.match(summary, /XP ganado/);
+    assert.match(summary, /Precisión/);
+    assert.match(summary, /Días de racha/);
+
+    await page.evaluate(() => { window.confirm = () => true; });
+    await page.getByRole('button', { name: 'Salir de la lección' }).click();
+    await page.waitForFunction(() => document.getElementById('view-route').classList.contains('active'));
+    assert.equal(await page.locator('body').evaluate(node => node.classList.contains('lesson-active')), false);
   } finally {
     await context.close();
     await new Promise(resolve => server.close(resolve));

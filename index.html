@@ -292,23 +292,25 @@
     </main>
 
     <!-- INTERFAZ DE LECCIÓN -->
-    <main id="view-lesson" class="app-view">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 12px;">
-            <button class="btn btn-outline btn-sm" onclick="LessonEngine.exit()">✕ Salir</button>
-            <div class="progress-bar" style="width: 60%;">
-                <div id="lessonProgressFill" class="progress-fill"></div>
+    <main id="view-lesson" class="app-view lesson-screen" aria-label="Lección">
+        <div class="lesson-topbar">
+            <button class="lesson-exit-button" type="button" aria-label="Salir de la lección" onclick="LessonEngine.requestExit()">✕</button>
+            <div class="lesson-progress-wrap">
+                <div class="progress-bar" role="progressbar" aria-label="Progreso de la lección" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                    <div id="lessonProgressFill" class="progress-fill"></div>
+                </div>
             </div>
-            <span id="lessonStepCount" style="font-size:0.85rem; font-weight:bold;">1/1</span>
-        </div>
-
-        <div style="display:flex; align-items:center; gap:10px; margin:0 0 12px; padding:10px; border:1px solid var(--border); border-radius:10px;">
-            <label for="lessonAudioPlaybackRate" style="font-size:0.9rem; font-weight:600; flex:1;">Velocidad del audio</label>
-            <select id="lessonAudioPlaybackRate" class="input-field" style="width:auto; min-width:145px;" onchange="AudioEngine.setRate(this.value)" aria-label="Velocidad del audio de la lección">
-                <option value="0.5">Muy lento (0,5×)</option>
-                <option value="0.7">Lento (0,7×)</option>
-                <option value="0.85">Normal lento (0,85×)</option>
-                <option value="1">Normal (1×)</option>
-            </select>
+            <span id="lessonStepCount" class="lesson-step-count" aria-live="polite">1/1</span>
+            <details class="lesson-audio-settings">
+                <summary aria-label="Velocidad del audio">🔊</summary>
+                <label for="lessonAudioPlaybackRate">Velocidad del audio</label>
+                <select id="lessonAudioPlaybackRate" class="input-field" onchange="AudioEngine.setRate(this.value)" aria-label="Velocidad del audio de la lección">
+                    <option value="0.5">Muy lento (0,5×)</option>
+                    <option value="0.7">Lento (0,7×)</option>
+                    <option value="0.85" selected>Normal lento (0,85×)</option>
+                    <option value="1">Normal (1×)</option>
+                </select>
+            </details>
         </div>
         <div id="exerciseArea" class="quiz-container"></div>
     </main>
@@ -1587,6 +1589,10 @@
             assessmentCorrect: 0,
             currentLesson: null,
             lessonIndex: 0,
+            sessionXpStart: 0,
+            sessionExerciseCount: 0,
+            sessionAnswered: 0,
+            sessionCorrect: 0,
 
             startUnitAssessment(unitId) {
                 const level = getLevels().find(entry => entry.units.some(unit => unit.id === unitId));
@@ -1610,6 +1616,10 @@
                 this.assessmentMode = true;
                 this.assessmentCorrect = 0;
                 this.stepIndex = 0;
+                this.sessionXpStart = App.xp;
+                this.sessionExerciseCount = this.queue.length;
+                this.sessionAnswered = 0;
+                this.sessionCorrect = 0;
                 App.switchView('lesson');
                 this.renderStep();
             },
@@ -1653,10 +1663,46 @@
                 this.assessmentMode = false;
                 this.assessmentCorrect = 0;
                 this.stepIndex = 0;
+                this.sessionXpStart = App.xp;
+                this.sessionExerciseCount = this.queue.length;
+                this.sessionAnswered = 0;
+                this.sessionCorrect = 0;
                 App.switchView('lesson');
                 this.renderStep();
             },
+            requestExit() {
+                const confirmed = window.confirm('¿Salir de esta lección? El XP y los intentos ya registrados se conservarán, pero la lección no contará como terminada.');
+                if (confirmed) this.exit();
+            },
+            vibrateFeedback() {
+                if (typeof navigator === 'undefined' || typeof navigator.vibrate !== 'function') return;
+                try { navigator.vibrate(24); } catch (error) { /* La vibración es opcional y nunca bloquea la lección. */ }
+            },
             exit() { this.stopPronunciationPractice(); App.switchView('route'); },
+            recordFirstAttempt(exercise, isCorrect) {
+                if (!exercise || exercise._firstAttempted) return;
+                exercise._firstAttempted = true;
+                this.sessionAnswered++;
+                if (isCorrect) this.sessionCorrect++;
+            },
+            correctAnswerText(exercise) {
+                if (!exercise) return '';
+                if (exercise.type === 'mc' && Array.isArray(exercise.options)) return exercise.options[exercise.answer] || '';
+                if (exercise.type === 'order' && Array.isArray(exercise.correctOrder)) return exercise.correctOrder.join(' ');
+                return String(exercise.modelAnswer || exercise.answer || '');
+            },
+            sessionSummaryMarkup() {
+                const total = this.sessionExerciseCount || this.queue.length || 0;
+                const accuracy = total ? Math.round(this.sessionCorrect / total * 100) : 0;
+                const xp = Math.max(0, App.xp - this.sessionXpStart);
+                const streak = typeof StudyActivity !== 'undefined' && App.studyActivity
+                    ? StudyActivity.currentStreak(App.studyActivity, new Date()) : 0;
+                return `<div class="lesson-results-grid">
+                    <div class="lesson-result-stat"><strong>${xp}</strong><span>XP ganado</span></div>
+                    <div class="lesson-result-stat"><strong>${accuracy}%</strong><span>Precisión</span></div>
+                    <div class="lesson-result-stat"><strong>🔥 ${streak}</strong><span>Días de racha</span></div>
+                </div>`;
+            },
             renderIntro() {
                 const u = this.currentUnit;
                 const lesson = this.currentLesson;
@@ -1836,7 +1882,9 @@
                 const ex = this.queue[this.stepIndex];
                 const input = (document.getElementById('textAnswer').value || '').trim();
                 if (!input) {
-                    document.getElementById('actionArea').innerHTML = '<p class="feedback-box wrong">Escribe una frase antes de continuar.</p><button class="btn" style="margin-top:12px;" onclick="LessonEngine.renderStep()">Volver a escribir</button>';
+                    const emptyArea = document.getElementById('actionArea');
+                    emptyArea.classList.add('lesson-feedback-sheet', 'wrong');
+                    emptyArea.innerHTML = '<p class="feedback-box wrong">Escribe una frase antes de continuar.</p><button class="btn" type="button" onclick="LessonEngine.renderStep()">Volver a escribir</button>';
                     return;
                 }
                 const area = document.getElementById('actionArea');
@@ -1845,6 +1893,7 @@
                 const selfAssessmentNote = this.assessmentMode
                     ? 'Tu valoración es una autoevaluación orientativa; no sustituye una revisión lingüística.'
                     : 'En el curso, marcar que lo conseguiste registra 10 XP y un intento de repaso espaciado. Si necesitas practicar, la actividad se programa para repetirla. Esta elección registra tu autoevaluación: no corrige automáticamente la gramática ni demuestra que cada frase sea la única forma correcta.';
+                area.classList.add('lesson-feedback-sheet', 'neutral');
                 area.innerHTML = `
                     <div class="feedback-box">
                         <strong>Tu respuesta:</strong><p style="white-space:pre-wrap;">${App.escapeHtml(input)}</p>
@@ -1863,12 +1912,16 @@
             },
             rateWriting(isCorrect) {
                 const ex = this.queue[this.stepIndex];
+                this.recordFirstAttempt(ex, isCorrect);
+                this.vibrateFeedback();
                 if (!this.assessmentMode && !isCorrect && !ex._r) this.retry.push({ ...ex, _r: true });
                 if (ex.vocabId && !this.assessmentMode) SRSEngine.recordAttempt(ex.vocabId, isCorrect ? 3 : 1).catch(err => console.error('No se pudo registrar el intento SRS:', err));
                 if (isCorrect && !this.assessmentMode) App.addXp(10);
-                document.getElementById('actionArea').innerHTML = `
+                const actionArea = document.getElementById('actionArea');
+                actionArea.classList.add('lesson-feedback-sheet', isCorrect ? 'correct' : 'wrong');
+                actionArea.innerHTML = `
                     <div class="feedback-box ${isCorrect ? 'correct' : 'wrong'}">${isCorrect ? '¡Buen trabajo!' : 'La repetiremos para afianzarla.'}</div>
-                    <button class="btn" style="margin-top:12px;" onclick="LessonEngine.nextStep(${isCorrect})">Continuar</button>
+                    <button class="btn" type="button" onclick="LessonEngine.nextStep(${isCorrect})">Continuar</button>
                 `;
             },
             checkOrder() {
@@ -1878,6 +1931,8 @@
             },
             showFeedback(isCorrect, explanation, feedbackMessage) {
                 const ex = this.queue[this.stepIndex];
+                this.recordFirstAttempt(ex, isCorrect);
+                this.vibrateFeedback();
                 if (this.assessmentMode) {
                     if (isCorrect) this.assessmentCorrect++;
                 } else if (!isCorrect && !ex._r) {
@@ -1886,13 +1941,17 @@
                 if (ex.vocabId && !this.assessmentMode) {
                     SRSEngine.recordAttempt(ex.vocabId, isCorrect ? 4 : 1).catch(err => console.error('No se pudo registrar el intento SRS:', err));
                 }
+                this.recordFirstAttempt(ex, isCorrect);
                 const area = document.getElementById('actionArea');
+                const correctAnswer = this.correctAnswerText(ex);
+                area.classList.add('lesson-feedback-sheet', isCorrect ? 'correct' : 'wrong');
                 area.innerHTML = `
                     <div class="feedback-box ${isCorrect ? 'correct' : 'wrong'}">
-                        ${feedbackMessage ? App.escapeHtml(feedbackMessage) : (isCorrect ? '¡Correcto!' : 'Incorrecto')}<br>
-                        <small>${App.escapeHtml(explanation)}</small>
+                        <strong>${feedbackMessage ? App.escapeHtml(feedbackMessage) : (isCorrect ? '¡Correcto!' : 'Incorrecto')}</strong><br>
+                        <small>${App.escapeHtml(explanation || '')}</small>
+                        ${correctAnswer ? `<p class="lesson-correct-answer">Respuesta: ${App.escapeHtml(correctAnswer)}</p>` : ''}
                     </div>
-                    <button class="btn" style="margin-top:12px;" onclick="LessonEngine.nextStep(${isCorrect})">Continuar</button>
+                    <button class="btn" type="button" onclick="LessonEngine.nextStep(${isCorrect})">Continuar</button>
                 `;
                 if (isCorrect && !this.assessmentMode) App.addXp(10);
             },
@@ -1913,11 +1972,13 @@
                     this.assessmentMode = false;
                     if (passed) await App.markUnitCompleted(this.currentUnit.id);
                     const unitId = this.currentUnit.id;
+                    document.getElementById('exerciseArea').classList.add('lesson-results-screen');
                     document.getElementById('exerciseArea').innerHTML = `
-                        <div style="text-align:center; margin-top:40px;">
+                        <div class="lesson-results-card card">
                             <h2>${passed ? '🎉 ¡Prueba superada!' : '📝 Sigue practicando'}</h2>
-                            <p style="font-size:1.2rem; margin:16px 0;">Resultado: <strong>${correct} de ${total}</strong> respuestas correctas.</p>
-                            <p style="margin:16px 0; color:var(--text-muted);">${passed ? 'Has demostrado que conoces el vocabulario de esta unidad. La siguiente unidad ya está desbloqueada.' : 'Necesitas al menos un 80 % para avanzar. Repasa las lecciones y vuelve a intentarlo.'}</p>
+                            <p>${passed ? 'Has desbloqueado la siguiente unidad.' : 'Necesitas al menos un 80 % para avanzar. Repasa las lecciones y vuelve a intentarlo.'}</p>
+                            <p>Resultado: <strong>${correct} de ${total}</strong> respuestas correctas.</p>
+                            ${this.sessionSummaryMarkup()}
                             ${passed ? '<button class="btn" onclick="LessonEngine.exit()">Continuar al curso</button>' : `<button class="btn" onclick="LessonEngine.startUnitAssessment('${unitId}')">Repetir prueba</button><button class="btn btn-outline" onclick="LessonEngine.exit()">Volver a las lecciones</button>`}
                         </div>
                     `;
@@ -1932,10 +1993,12 @@
                     for (const word of unit.vocab) {
                         if (!(await DB.get('srs', word.id))) await SRSEngine.recordAttempt(word.id, 4);
                     }
+                    document.getElementById('exerciseArea').classList.add('lesson-results-screen');
                     document.getElementById('exerciseArea').innerHTML = `
-                        <div style="text-align:center; margin-top:40px;">
+                        <div class="lesson-results-card card">
                             <h2>🎉 Unidad completada</h2>
-                            <p style="margin:16px 0; color:var(--text-muted);">Progreso y repetición espaciada guardados.</p>
+                            <p>Progreso y repetición espaciada guardados.</p>
+                            ${this.sessionSummaryMarkup()}
                             <button class="btn" onclick="LessonEngine.exit()">Volver al curso</button>
                         </div>
                     `;
@@ -1951,11 +2014,13 @@
                 }
                 const lessons = buildUnitLessons(unit);
                 const isLastLesson = lesson.index === lessons.length - 1;
+                document.getElementById('exerciseArea').classList.add('lesson-results-screen');
                 document.getElementById('exerciseArea').innerHTML = `
-                    <div style="text-align:center; margin-top:40px;">
+                    <div class="lesson-results-card card">
                         <h2>🎉 ¡Lección completada!</h2>
-                        <p style="margin:16px 0; color:var(--text-muted);">${App.completedLessons.filter(key => key.startsWith(unit.id + '::')).length} de ${lessons.length} lecciones terminadas en esta unidad.</p>
-                        ${isLastLesson ? `<p style="margin:16px 0;">Has terminado todas las lecciones. Ahora puedes hacer la prueba final para desbloquear la siguiente unidad.</p><button class="btn" onclick="LessonEngine.startUnitAssessment('${unit.id}')">Hacer prueba final de unidad</button>` : `<button class="btn" onclick="LessonEngine.startUnitById('${unit.id}', ${lesson.index + 1})">Siguiente lección</button>`}
+                        <p>${App.completedLessons.filter(key => key.startsWith(unit.id + '::')).length} de ${lessons.length} lecciones terminadas en esta unidad.</p>
+                        ${this.sessionSummaryMarkup()}
+                        ${isLastLesson ? `<p>Has terminado todas las lecciones. Ahora puedes hacer la prueba final para desbloquear la siguiente unidad.</p><button class="btn" onclick="LessonEngine.startUnitAssessment('${unit.id}')">Hacer prueba final de unidad</button>` : `<button class="btn" onclick="LessonEngine.startUnitById('${unit.id}', ${lesson.index + 1})">Siguiente lección</button>`}
                         <button class="btn btn-outline" onclick="LessonEngine.exit()">Volver al curso</button>
                     </div>
                 `;
@@ -2309,6 +2374,7 @@ Requisitos:
                 const targetView = document.getElementById(`view-${viewId}`);
                 if (!targetView) return;
                 targetView.classList.add('active');
+                document.body.classList.toggle('lesson-active', viewId === 'lesson');
                 const navGroup = ({ route: 'learn', lesson: 'learn', 'writing-practice': 'learn', srs: 'review', ai: 'tutor', dict: 'tutor', conversations: 'tutor', profile: 'profile', settings: 'profile', assessment: 'profile' })[viewId];
                 document.querySelectorAll('.nav-btn').forEach(el => {
                     const active = !!navGroup && el.dataset.navGroup === navGroup;

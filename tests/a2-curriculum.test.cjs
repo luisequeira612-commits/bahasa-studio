@@ -536,3 +536,51 @@ test('A2 U5 word-order feedback matches the berbicara prompt and answer', () => 
   assert.match(exercise.explanation, /Dia berbicara/);
   assert.doesNotMatch(exercise.explanation, /bersepeda|sekolah/);
 });
+
+
+test('A2 U1-U4 introduce every new vocabulary item once and keep lesson references resolvable', () => {
+  const knownIds = new Set(courseData.levels.flatMap(level =>
+    level.units.flatMap(unit => (unit.vocab || []).map(word => word.id))));
+  for (const unit of a2.units.slice(0, 4)) {
+    const introduced = unit.lessons.flatMap(lesson => lesson.vocabIds || []);
+    assert.equal(introduced.length, unit.vocab.length, unit.id + ' should introduce every vocabulary item');
+    assert.equal(new Set(introduced).size, introduced.length, unit.id + ' should not introduce vocabulary twice');
+    for (const lesson of unit.lessons) {
+      for (const id of lesson.vocabIds || []) {
+        assert.ok(unit.vocab.some(word => word.id === id), unit.id + ' lesson introduces unknown vocabulary: ' + id);
+      }
+      for (const id of lesson.reviewVocabIds || []) {
+        assert.ok(knownIds.has(id), unit.id + ' lesson reviews unknown vocabulary: ' + id);
+      }
+      for (const exercise of lesson.exercises || []) {
+        if (exercise.vocabId) {
+          assert.ok(knownIds.has(exercise.vocabId), unit.id + ' exercise references unknown vocabulary: ' + exercise.vocabId);
+        }
+      }
+    }
+  }
+});
+
+test('A2 U2 explicitly contrasts belum and masih in a contextualized exercise', () => {
+  const lesson = a2.units[1].lessons.find(entry => /Todavía y dentro de poco/.test(entry.title));
+  assert.ok(lesson);
+  assert.ok(lesson.reviewVocabIds.includes('a2u2_belum'));
+  const exercise = lesson.exercises.find(entry => entry.vocabId === 'a2u2_belum' && /Saya belum makan/.test(entry.prompt));
+  assert.ok(exercise);
+  assert.equal(exercise.type, 'mc');
+  assert.equal(exercise.options[exercise.answer], 'Belum: todavía no he comido; masih: sigo comiendo.');
+  assert.match(exercise.explanation, /todavía no ha ocurrido/);
+  assert.match(exercise.explanation, /continúa/);
+});
+
+test('A2 U4 includes integrated daily-schedule writing with two timed activities', () => {
+  const lesson = a2.units[3].lessons.find(entry => /Describir cómo es tu día/.test(entry.title));
+  assert.ok(lesson);
+  assert.ok(lesson.reviewVocabIds.includes('a2u4_jadwal'));
+  const exercise = lesson.exercises.find(entry => entry.type === 'write' && entry.vocabId === 'a2u4_jadwal');
+  assert.ok(exercise);
+  assert.match(exercise.prompt, /dos actividades y sus horas/);
+  assert.match(exercise.modelAnswer, /Pukul delapan/);
+  assert.match(exercise.modelAnswer, /Pukul dua belas/);
+  assert.match(exercise.modelAnswer, /Jadwal saya penuh/);
+});

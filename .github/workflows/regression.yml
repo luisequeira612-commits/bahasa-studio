@@ -23,6 +23,8 @@ jobs:
         run: node --test tests/regression.test.cjs
       - name: Run phase 1 UI navigation tests
         run: node --test tests/ui-redesign-phase-1.test.cjs
+      - name: Run phase 2 lesson flow tests
+        run: node --test tests/ui-redesign-phase-2.test.cjs
       - name: Run vocabulary review browser tests
         run: node --test tests/vocabulary-review.e2e.test.cjs
       - name: Run practical conversation unit tests

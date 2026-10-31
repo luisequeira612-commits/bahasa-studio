@@ -50,10 +50,10 @@ test('A2 stays in beta until all A1 units are complete, including direct lesson 
   const start = html.indexOf('const CourseData =');
   const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
   assert.ok(start >= 0 && end > start, 'CourseData block must exist');
-  const course = vm.runInNewContext(html.slice(start, end) + '\\nCourseData');
+  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
   const helper = html.match(/function isA1Complete\\(completedUnits\\) \\{[\\s\\S]*?\\n        \\}/);
   assert.ok(helper, 'the A1 completion rule must be centralized');
-  const isA1Complete = vm.runInNewContext(helper[0] + '\\nisA1Complete', { CourseData: course });
+  const isA1Complete = vm.runInNewContext(helper[0] + '\nisA1Complete', { CourseData: course });
   const a1 = course.levels.find(level => level.id === 'A1');
   const allIds = a1.units.map(unit => unit.id);
   assert.equal(isA1Complete([]), false);
@@ -61,9 +61,11 @@ test('A2 stays in beta until all A1 units are complete, including direct lesson 
   assert.equal(isA1Complete(allIds), true);
   assert.match(html, /level\\.id !== 'A2' \\|\\| isA1Complete\\(App\\.completedUnits\\)/,
     'A2 vocabulary must not enter learning and SRS pools before A1 is complete');
-  assert.match(html, /\\(level\\.id === 'A2' && !isA1Complete\\(App\\.completedUnits\\)\\)\\) return;/,
+  const lessonEntry = html.slice(html.indexOf('startUnitById(id, requestedLessonIndex)'), html.indexOf('startUnit(unit, lessonIndex = 0)'));
+  const assessmentEntry = html.slice(html.indexOf('startUnitAssessment(unitId)'), html.indexOf('startUnitById(id, requestedLessonIndex)'));
+  assert.match(lessonEntry, /level\\.id === 'A2' && !isA1Complete\\(App\\.completedUnits\\)/,
     'direct lesson entry must reject A2 before A1 completion');
-  assert.match(html, /\\(level\\.id === 'A2' && !isA1Complete\\(App\\.completedUnits\\)\\)\\) return;/,
+  assert.match(assessmentEntry, /level\\.id === 'A2' && !isA1Complete\\(App\\.completedUnits\\)/,
     'direct assessment entry must reject A2 before A1 completion');
   assert.match(html, /Beta · en revisión/);
   assert.match(html, /no ha sido validado por hablantes nativos/);

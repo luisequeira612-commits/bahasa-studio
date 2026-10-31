@@ -86,7 +86,7 @@ test('service worker precaches both data files and invalidates the previous cach
   const deletedCaches = [];
   const cachesApi = {
     async open() { return cache; },
-    async keys() { return ['bahasa-studio-v3.8.8', 'bahasa-studio-v3.8.9', 'bahasa-studio-v3.8.10', 'bahasa-studio-v3.8.11', 'bahasa-studio-v3.8.12', 'bahasa-studio-v3.8.13', 'bahasa-studio-v3.8.14', 'bahasa-studio-v3.8.16', 'another-app-cache-v1']; },
+    async keys() { return ['bahasa-studio-v3.8.8', 'bahasa-studio-v3.8.9', 'bahasa-studio-v3.8.10', 'bahasa-studio-v3.8.11', 'bahasa-studio-v3.8.12', 'bahasa-studio-v3.8.13', 'bahasa-studio-v3.8.14', 'bahasa-studio-v3.8.15', 'bahasa-studio-v3.8.16', 'another-app-cache-v1']; },
     async delete(name) { deletedCaches.push(name); return name !== 'bahasa-studio-v3.8.10'; }
   };
   const sandbox = {

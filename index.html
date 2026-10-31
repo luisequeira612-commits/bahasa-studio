@@ -2433,7 +2433,7 @@ Requisitos:
                         const lessonButtons = lessons.map(lesson => {
                             const lessonDone = isDone || this.completedLessons.includes(unitLessonProgressKey(unit.id, lesson.index));
                             const lessonUnlocked = unitAccessible && (lessonDone || lesson.index === (nextLesson < 0 ? lessons.length : nextLesson));
-                            return `<button class="btn btn-outline btn-sm" style="flex:1; min-width:135px;" data-unit-id="${App.escapeHtml(unit.id)}" data-lesson-index="${lesson.index}" ${lessonUnlocked ? '' : 'disabled'} onclick="LessonEngine.startUnitById(this.dataset.unitId, Number(this.dataset.lessonIndex))">${lessonDone ? '✓ ' : isNext && lesson.index === (nextLesson < 0 ? lessons.length : nextLesson) ? 'Empezar' : 'Lección ' + (lesson.index + 1)}${lessonDone ? ' · Repasar' : ''}</button>`;
+                            return `<button class="btn btn-outline btn-sm" style="flex:1; min-width:135px;" data-unit-id="${App.escapeHtml(unit.id)}" data-lesson-index="${lesson.index}" ${lessonUnlocked ? '' : 'disabled'} onclick="LessonEngine.startUnitById(this.dataset.unitId, Number(this.dataset.lessonIndex))">${lessonDone ? '✓ ' : ''}${isNext && lesson.index === (nextLesson < 0 ? lessons.length : nextLesson) ? 'Empezar' : 'Lección ' + (lesson.index + 1)}${lessonDone ? ' · Repasar' : ''}</button>`;
                         }).join('');
                         const examButton = lvl.id === 'A1' && !isDone && unitAccessible && completedCount === lessons.length
                             ? `<button class="btn" data-unit-id="${App.escapeHtml(unit.id)}" onclick="LessonEngine.startUnitAssessment(this.dataset.unitId)">Prueba final · Desbloquear siguiente unidad</button>`

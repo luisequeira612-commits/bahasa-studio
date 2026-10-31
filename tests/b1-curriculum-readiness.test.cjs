@@ -21,16 +21,16 @@ const courseSource = html.slice(start, end)
   .replace('window.BAHASA_CURRICULUM_A2', a2Literal);
 const course = vm.runInNewContext(courseSource + '\nCourseData');
 
-test('B1 prototype has five units and a small, explicitly incomplete vocabulary bank', () => {
+test('B1 draft has ten units and an explicitly incomplete vocabulary bank', () => {
   const b1 = course.levels.find(level => level.id === 'B1');
   assert.ok(b1);
-  assert.equal(b1.units.length, 5);
-  assert.equal(b1.units.reduce((sum, unit) => sum + unit.vocab.length, 0), 17);
-  assert.equal(b1.units.reduce((sum, unit) => sum + unit.exercises.length, 0), 17);
-  assert.deepEqual(Array.from(b1.units, unit => unit.id), ['b1_u1', 'b1_u2', 'b1_u3', 'b1_u4', 'b1_u5']);
+  assert.equal(b1.units.length, 10);
+  assert.equal(b1.units.reduce((sum, unit) => sum + unit.vocab.length, 0), 42);
+  assert.equal(b1.units.reduce((sum, unit) => sum + unit.exercises.length, 0), 42);
+  assert.deepEqual(Array.from(b1.units, unit => unit.id), ['b1_u1', 'b1_u2', 'b1_u3', 'b1_u4', 'b1_u5', 'b1_u6', 'b1_u7', 'b1_u8', 'b1_u9', 'b1_u10']);
 });
 
-test('every B1 prototype exercise references vocabulary in its own unit', () => {
+test('every B1 draft exercise references vocabulary in its own unit', () => {
   const b1 = course.levels.find(level => level.id === 'B1');
   const ids = new Set();
   for (const unit of b1.units) {
@@ -59,6 +59,8 @@ test('B1 remains hidden from the unlocked learning path until a separate release
 
 test('B1 assessment bank includes open production items that require human review', () => {
   const items = getAssessment('B1');
-  assert.equal(items.length, 6);
+  assert.equal(items.length, 11);
   assert.ok(items.some(item => item.type === 'open' && item.skill === 'production'));
+  for (const id of ['b1-connectors-01', 'b1-report-01', 'b1-process-01', 'b1-opinion-01', 'b1-formal-01']) assert.ok(items.some(item => item.id === id), 'missing B1 assessment item ' + id);
+  assert.ok(items.some(item => item.skill === 'register'));
 });

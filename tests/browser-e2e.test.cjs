@@ -1141,7 +1141,12 @@ test('guided A1 writing shows task-specific review criteria and records progress
 
     await page.evaluate(() => {
       const unit = CourseData.levels.find(level => level.id === 'A1').units.find(entry => entry.id === 'a1_u8');
-      LessonEngine.startUnit(unit, 2);
+      const lessons = buildUnitLessons(unit);
+      const lessonIndex = lessons.findIndex(lesson => lesson.exercises.some(
+        exercise => exercise.prompt === 'Escribe dos frases sobre tu rutina.'
+      ));
+      if (lessonIndex < 0) throw new Error('The existing A1 routine-writing activity was not assigned to a lesson');
+      LessonEngine.startUnit(unit, lessonIndex);
       const index = LessonEngine.queue.findIndex(exercise => exercise.prompt === 'Escribe dos frases sobre tu rutina.');
       if (index < 0) throw new Error('The existing A1 routine-writing activity was not found in its lesson');
       LessonEngine.intro = false;

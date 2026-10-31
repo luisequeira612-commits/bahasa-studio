@@ -86,7 +86,7 @@
     
         /* ---- Tema rojo y blanco ---- */
         :root, .light-mode { --bg-primary:#ffffff; --bg-secondary:#ffffff; --bg-card:#fff1f2; --text-main:#3b2427; --text-muted:#8c7174; --accent:#e8384f; --accent-hover:#c92a40; --success:#2e9e4f; --error:#b3261e; --border:#f1d6d9; --font: ui-rounded, 'Nunito', 'Segoe UI', system-ui, sans-serif; }
-        .dark-mode { --bg-primary:#1d1214; --bg-secondary:#2a1a1d; --bg-card:#3a2428; --text-main:#fcefef; --text-muted:#c7a8ab; --border:#55353a; --accent:#ff5a6e; --accent-hover:#e8384f; --success:#58c26f; --error:#ff8a8a; }
+        .dark-mode { --bg-primary:#1d1214; --bg-secondary:#2a1a1d; --bg-card:#3a2428; --text-main:#fcefef; --text-muted:#c7a8ab; --border:#55353a; --accent:#e8384f; --accent-hover:#c92a40; --success:#58c26f; --error:#ff8a8a; }
         .logo { font-weight: 800; }
         .card, .unit-card { border: 2px solid var(--border); border-radius: 18px; }
         .unit-card.completed { border-color: var(--success); background: color-mix(in srgb, var(--success) 7%, var(--bg-secondary)); }
@@ -334,4 +334,44 @@ body.lesson-active #view-lesson.active {
 body.lesson-active .tap-translation-bubble {
     top:62px !important; left:50% !important; bottom:auto !important;
     transform:translateX(-50%); z-index:1003;
+}
+
+
+/* Fase 3: tactilidad consistente, acento único y microanimaciones CSS */
+:root, .light-mode { --accent:#e8384f; --accent-hover:#c92a40; }
+.dark-mode { --accent:#e8384f; --accent-hover:#c92a40; }
+button {
+    min-height:48px;
+    border-bottom-style:solid;
+    border-bottom-width:4px;
+    border-bottom-color:color-mix(in srgb, var(--accent) 45%, var(--border));
+    touch-action:manipulation;
+    transition:transform .08s ease, border-bottom-width .08s ease, background-color .15s ease, color .15s ease;
+}
+button:active {
+    transform:translateY(2px);
+    border-bottom-width:2px;
+}
+button:disabled, button:disabled:active { transform:none; border-bottom-width:4px; }
+.btn-sm { min-height:48px; }
+.nav-btn { min-height:48px; border-bottom:0; transition:color .15s ease, background-color .15s ease; }
+.nav-btn:active { transform:none; border-bottom:0; background:color-mix(in srgb,var(--accent) 9%,transparent); }
+.lesson-exit-button { width:48px; height:48px; min-height:48px; border-bottom:4px solid var(--border); }
+.option-btn { min-height:52px; border-bottom:4px solid color-mix(in srgb,var(--accent) 32%,var(--border)); }
+.option-btn:active { border-bottom-width:2px; }
+.tap-translation-speaker { min-height:48px; border-bottom:0; }
+#view-lesson #actionArea.lesson-feedback-sheet { animation:lessonSheetEnter .22s ease-out both; }
+.lesson-results-card { animation:lessonResultEnter .24s ease-out both; }
+@keyframes lessonSheetEnter {
+    from { opacity:0; transform:translateY(18px); }
+    to { opacity:1; transform:translateY(0); }
+}
+@keyframes lessonResultEnter {
+    from { opacity:0; transform:translateY(8px) scale(.99); }
+    to { opacity:1; transform:translateY(0) scale(1); }
+}
+@media (prefers-reduced-motion:reduce) {
+    button, #view-lesson #actionArea.lesson-feedback-sheet, .lesson-results-card {
+        transition:none !important; animation:none !important;
+    }
 }

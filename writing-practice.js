@@ -31,12 +31,22 @@
     }
     const WritingPractice = {
         tasks,
+        showView(viewId) {
+            document.querySelectorAll('.app-view').forEach(view => view.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(button => button.classList.remove('active'));
+            const view = document.getElementById('view-' + viewId);
+            if (view) view.classList.add('active');
+            if (viewId === 'route') {
+                const courseButton = document.querySelector('.nav-btn');
+                if (courseButton) courseButton.classList.add('active');
+            }
+        },
         open() {
             this.renderList();
-            if (root.App && typeof root.App.switchView === 'function') root.App.switchView('writing-practice');
+            this.showView('writing-practice');
         },
         close() {
-            if (root.App && typeof root.App.switchView === 'function') root.App.switchView('route');
+            this.showView('route');
         },
         renderList() {
             const host = document.getElementById('writingPracticeContent');

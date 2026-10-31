@@ -19,11 +19,11 @@ El currículo B1 está definido dentro de `CourseData` en `index.html`. El inven
 11. Aclarar, negociar y resolver malentendidos.
 12. Integrar información y presentar conclusiones.
 
-La ampliación de U6–U12 incorpora **35 entradas nuevas de vocabulario y 35 ejercicios**, para un total de **52 entradas y 52 ejercicios** en doce unidades. El banco de evaluación independiente pasa de seis a **catorce ítems**, incluidos tres ítems de producción abierta/oral que requieren revisión humana. La expansión es un borrador de contenido beta; no constituye un currículo B1 completo ni una evaluación calibrada.
+La ampliación de U6–U12 incorpora **35 entradas nuevas de vocabulario y 35 ejercicios**, para un total de **52 entradas y 52 ejercicios** en doce unidades. El banco de evaluación independiente pasa de seis a **quince ítems**: incluye una tarea inicial de escucha, tres tareas de producción escrita abierta y una tarea oral, todas las respuestas productivas pendientes de revisión humana. La expansión es un borrador de contenido beta; no constituye un currículo B1 completo ni una evaluación calibrada.
 
 ## Brechas principales
 
-- La cobertura ahora incluye lectura, interacción y producción escrita inicial; todavía faltan textos de lectura más extensos, actividades de escucha y muestras orales suficientes para cubrir las habilidades B1.
+- La cobertura ahora incluye una muestra inicial de escucha, lectura, interacción y producción; todavía faltan textos de lectura más extensos, más variedad de escucha y muestras orales suficientes para cubrir las habilidades B1.
 - Hay pocos ejemplos por patrón y pocos contextos comunicativos para distinguir significado, participantes, foco y registro; la progresión necesita una revisión de carga y recurrencia.
 - La evaluación B1 actual no cubre con suficiente amplitud las unidades y las habilidades.
 - No existe evidencia de calibración con estudiantes ni validación lingüística global.
@@ -72,7 +72,7 @@ Los contenidos gramaticales adicionales se decidirán según el objetivo de cada
 El inventario y las pruebas automáticas pueden demostrar estructura, referencias y coherencia interna. No certifican naturalidad, registro, gramática avanzada, adecuación MCER/BIPA ni pronunciación. Mientras no exista evidencia suficiente, los elementos deben permanecer pendientes de revisión competente y no se presentarán como validados por hablante nativo.
 
 
-## Avance de contenido B1 — U6–U10
+## Avance de contenido B1 — U6–U12
 
 Se incorporaron siete unidades nuevas al borrador oculto:
 - U6: `ketika`, `meskipun`, `namun`, `oleh karena itu`, `sementara itu`.
@@ -81,9 +81,9 @@ Se incorporaron siete unidades nuevas al borrador oculto:
 - U9: `pendapat`, `alasan`, `setuju`, `berbeda`, `sebaliknya`.
 - U10: `mohon`, `harap`, `menghubungi`, `bersedia`, `tersedia`.
 
-Se añadieron cinco preguntas de opción múltiple al banco B1 para cubrir conectores, lectura de informes, voz pasiva, opinión y registro formal. Se incorporó `register` como habilidad explícita de evaluación B1. Las respuestas abiertas existentes siguen pendientes de revisión humana; los nuevos ítems de selección solo prueban comprensión de los ejemplos redactados y no validan el dominio productivo.
+Se añadieron cinco preguntas de opción múltiple para cubrir conectores, lectura de informes, voz pasiva, opinión y registro formal; una pregunta de interacción; una tarea oral con rúbrica; una tarea de síntesis escrita; y una tarea inicial de escucha. El banco incorpora explícitamente las habilidades `register`, `interaction` y `comprehension`. Las tres tareas escritas abiertas y la tarea oral requieren revisión humana; los ítems cerrados solo prueban comprensión de los ejemplos redactados y no validan el dominio productivo.
 
 La prueba `tests/b1-curriculum-readiness.test.cjs` ahora fija la estructura de doce unidades, 52 entradas y 52 ejercicios, comprueba que cada ejercicio apunte a vocabulario de su unidad, y confirma que B1 permanezca oculto. Las formas y ejemplos nuevos son material beta pendiente de revisión lingüística; no se deben presentar como validados por hablante nativo.
 
 
-U11 incorpora estrategias de aclaración y negociación (`bisa diulangi?`, `maksud saya`, `bagaimana kalau`); U12 incorpora vocabulario de experiencia, explicación, respuesta y conclusión. Se añadieron al banco una pregunta de interacción, una tarea oral con rúbrica y una tarea de síntesis escrita. Las dos tareas abiertas/orales quedan explícitamente pendientes de evaluación humana y no reciben crédito automático.
+U11 incorpora estrategias de aclaración y negociación (`bisa diulangi?`, `maksud saya`, `bagaimana kalau`); U12 incorpora vocabulario de experiencia, explicación, respuesta y conclusión. Se añadieron al banco una pregunta de interacción, una tarea oral con rúbrica y una tarea de síntesis escrita. Las tareas abiertas y orales quedan explícitamente pendientes de evaluación humana y no reciben crédito automático.

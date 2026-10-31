@@ -1257,9 +1257,24 @@ test('lesson uses a full-screen flow, confirmation, feedback sheet and session s
       });
     });
     await page.getByRole('button', { name: 'Comenzar lección' }).click();
+    const checkButton = page.getByRole('button', { name: 'Comprobar' });
+    assert.equal(await checkButton.isDisabled(), true,
+      'multiple-choice answers cannot be checked before selecting an option');
+    const defaultOptionStyle = await page.locator('.option-btn').first().evaluate(node => {
+      const style = getComputedStyle(node);
+      return { background: style.backgroundColor, border: style.borderTopColor };
+    });
+    assert.deepEqual(defaultOptionStyle, { background: 'rgb(255, 255, 255)', border: 'rgb(209, 213, 219)' });
     const correctOption = await page.evaluate(() => LessonEngine.queue[0].answer);
     await page.locator('.option-btn').nth(correctOption).click();
-    await page.getByRole('button', { name: 'Comprobar' }).click();
+    const selectedOptionStyle = await page.locator('.option-btn').nth(correctOption).evaluate(node => {
+      const style = getComputedStyle(node);
+      return { background: style.backgroundColor, border: style.borderTopColor };
+    });
+    assert.deepEqual(selectedOptionStyle, { background: 'rgb(255, 240, 242)', border: 'rgb(232, 56, 79)' });
+    assert.equal(await checkButton.isEnabled(), true,
+      'selecting an option enables the check action');
+    await checkButton.click();
     await page.locator('#actionArea.lesson-feedback-sheet.correct').waitFor();
     const expectedAnswer = await page.evaluate(() => LessonEngine.correctAnswerText(LessonEngine.queue[0]));
     assert.equal(await page.locator('#actionArea .lesson-correct-answer').innerText(), 'Respuesta: ' + expectedAnswer);

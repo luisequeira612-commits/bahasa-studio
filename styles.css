@@ -426,7 +426,9 @@ button:disabled, button:disabled:active { transform:none; border-bottom-width:4p
     border-bottom-width:4px;
 }
 #view-lesson #exerciseArea .option-btn.selected {
-    background:#fff0f2;
+    background:#fff0f2 !important;
+    background-color:#fff0f2 !important;
+    background-image:none !important;
     color:#3b2427;
     border-color:#e8384f;
 }

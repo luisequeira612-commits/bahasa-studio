@@ -1128,3 +1128,51 @@ test('Indonesian voices discovered asynchronously refresh the selector', async (
     await new Promise(resolve => server.close(resolve));
   }
 });
+
+
+test('guided A1 writing shows task-specific review criteria and records progress only after self-assessment', async () => {
+  const { server, url } = await startServer();
+  const context = await browser.newContext({ serviceWorkers: 'block' });
+  const page = await context.newPage();
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof LessonEngine !== 'undefined' && typeof DB !== 'undefined' && DB.db && App);
+
+    await page.evaluate(() => {
+      const unit = CourseData.levels.find(level => level.id === 'A1').units.find(entry => entry.id === 'a1_u8');
+      LessonEngine.startUnit(unit, 2);
+      const index = LessonEngine.queue.findIndex(exercise => exercise.prompt === 'Escribe dos frases sobre tu rutina.');
+      if (index < 0) throw new Error('The existing A1 routine-writing activity was not found in its lesson');
+      LessonEngine.intro = false;
+      LessonEngine.stepIndex = index;
+      LessonEngine.renderStep();
+    });
+
+    assert.match(await page.locator('#exerciseArea').innerText(), /Escritura guiada/);
+    assert.match(await page.locator('[data-guided-writing-checklist]').innerText(), /al menos dos frases completas/);
+    assert.match(await page.locator('[data-guided-writing-checklist]').innerText(), /expresión temporal/);
+
+    const before = await page.evaluate(() => App.xp);
+    assert.equal(await page.evaluate(() => DB.get('srs', 'v44')), null,
+      'rendering or drafting must not create an SRS attempt');
+
+    await page.locator('#textAnswer').fill('Hoy estudio. Bebo agua todos los días.');
+    await page.getByRole('button', { name: 'Comparar con el ejemplo' }).click();
+    assert.match(await page.locator('[data-writing-review]').innerText(), /dos frases completas/);
+    assert.match(await page.locator('#actionArea').innerText(), /Un ejemplo posible/);
+    assert.match(await page.locator('#actionArea').innerText(), /no corrige automáticamente/);
+    assert.equal(await page.evaluate(() => App.xp), before,
+      'writing must not award XP before the learner explicitly self-assesses');
+
+    await page.getByRole('button', { name: 'Sí, cumplí los criterios' }).click();
+    await page.waitForFunction(previous => App.xp >= previous + 10, before);
+    await page.waitForFunction(async () => {
+      const record = await DB.get('srs', 'v44');
+      return record && record.attempts === 1;
+    });
+  } finally {
+    await context.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});

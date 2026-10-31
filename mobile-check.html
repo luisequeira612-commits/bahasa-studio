@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#e8384f">
+  <title>Comprobación móvil · Bahasa Studio</title>
+  <style>
+    :root{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#332326;background:#fff7f7}
+    *{box-sizing:border-box}body{margin:0;padding:20px;max-width:760px;margin-inline:auto}
+    header,section{background:white;border:1px solid #f0dadd;border-radius:16px;padding:18px;margin:0 0 14px}
+    h1{font-size:1.45rem;margin:0 0 8px}p{line-height:1.5}
+    .muted{color:#765e62;font-size:.92rem}
+    ul{padding:0;list-style:none;margin:12px 0}
+    li{padding:12px 0;border-bottom:1px solid #f2e5e7;display:flex;gap:12px;align-items:flex-start}
+    li:last-child{border:0}.status{font-weight:750;min-width:74px}
+    .ok{color:#18743a}.bad{color:#b3261e}.warn{color:#8a5b00}
+    code{overflow-wrap:anywhere;background:#fff0f1;padding:2px 5px;border-radius:5px}
+    a.button{display:block;text-align:center;background:#e8384f;color:white;text-decoration:none;font-weight:750;padding:14px 18px;border-radius:12px;min-height:48px}
+    button{width:100%;min-height:48px;padding:12px;border:1px solid #e8384f;border-radius:12px;background:white;color:#a51e32;font-weight:700;font-size:1rem}
+    small{color:#765e62}
+  </style>
+  <script src="./curriculum-a1.js"></script>
+  <script src="./curriculum-a2.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Comprobación de Bahasa Studio</h1>
+    <p class="muted">Diagnóstico de carga para Chrome Android y el Tecno Pova 4. Solo comprueba archivos y capacidades del navegador: no modifica XP, rachas, repasos, progreso ni IndexedDB.</p>
+    <a class="button" href="./index.html">Abrir Bahasa Studio</a>
+  </header>
+  <section>
+    <h2>Resultados</h2>
+    <ul id="results" aria-live="polite"><li><span class="status warn">…</span><span>Comprobando archivos y navegador</span></li></ul>
+    <button id="retry" type="button">Volver a comprobar</button>
+  </section>
+  <section>
+    <h2>Si aparece un error</h2>
+    <p class="muted">Envía una captura de esta pantalla. En particular, necesitamos ver si <code>curriculum-a1.js</code> y <code>curriculum-a2.js</code> responden correctamente y si sus datos se registran en la página.</p>
+    <p class="muted">Esta página debe abrirse mediante una dirección HTTPS, no desde un archivo ZIP ni con una dirección <code>file://</code>.</p>
+  </section>
+  <script>
+    const results = document.getElementById('results');
+    const add = (label, ok, detail, kind) => {
+      const li = document.createElement('li');
+      const status = document.createElement('span');
+      status.className = 'status ' + (kind || (ok ? 'ok' : 'bad'));
+      status.textContent = kind === 'warn' ? 'AVISO' : (ok ? 'OK' : 'FALLO');
+      const text = document.createElement('span');
+      const strong = document.createElement('strong');
+      strong.textContent = label + ': ';
+      text.append(strong, document.createTextNode(detail));
+      li.append(status, text);
+      results.append(li);
+    };
+    async function check() {
+      results.replaceChildren();
+      add('A1 en memoria', !!window.BAHASA_CURRICULUM_A1,
+        window.BAHASA_CURRICULUM_A1 ? 'Datos del curso detectados.' : 'No se creó window.BAHASA_CURRICULUM_A1.');
+      add('A2 en memoria', !!window.BAHASA_CURRICULUM_A2,
+        window.BAHASA_CURRICULUM_A2 ? 'Datos del curso detectados.' : 'No se creó window.BAHASA_CURRICULUM_A2.');
+      add('Conexión segura', window.isSecureContext,
+        window.isSecureContext ? 'El navegador reconoce un contexto seguro.' : 'No es un contexto seguro; usa HTTPS.', window.isSecureContext ? 'ok' : 'warn');
+      add('IndexedDB disponible', !!window.indexedDB,
+        window.indexedDB ? 'La API está disponible; no se han leído ni escrito datos.' : 'La API no está disponible.');
+      add('Service Worker', 'serviceWorker' in navigator,
+        'Compatibilidad del navegador: ' + ('serviceWorker' in navigator ? 'sí' : 'no') + '. No se ha registrado ni cambiado ninguno.',
+        'serviceWorker' in navigator ? 'ok' : 'warn');
+      for (const file of ['curriculum-a1.js','curriculum-a2.js']) {
+        try {
+          const response = await fetch('./' + file, {cache:'no-store'});
+          const type = response.headers.get('content-type') || 'sin Content-Type';
+          const body = await response.text();
+          const valid = response.ok && body.length > 1000 && !/^\s*<!doctype html/i.test(body);
+          add(file, valid, 'HTTP ' + response.status + ', ' + body.length + ' caracteres, ' + type + '.');
+        } catch (error) {
+          add(file, false, 'No se pudo descargar: ' + (error && error.message ? error.message : String(error)));
+        }
+      }
+      add('Dirección actual', true, location.href, 'warn');
+    }
+    document.getElementById('retry').addEventListener('click', check);
+    check();
+  </script>
+</body>
+</html>

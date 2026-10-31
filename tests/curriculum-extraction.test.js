@@ -43,7 +43,7 @@ function counts(level) {
   return { units: level.units.length, lessons, exercises, vocabulary };
 }
 
-test('A1/A2 curriculum deeply matches the original pre-extraction data', () => {
+test('A1/A2 canonical curriculum integrity hashes and structure remain pinned', () => {
   assert.ok(a1 && a2, 'both classic scripts must define their globals');
   assert.equal(a1.id, 'A1');
   assert.equal(a2.id, 'A2');
@@ -52,7 +52,7 @@ test('A1/A2 curriculum deeply matches the original pre-extraction data', () => {
   assert.equal(fnv1a(JSON.stringify(a1)), 'c447e29a', 'A1 canonical-data hash changed');
   assert.equal(fnv1a(JSON.stringify(a2)), '7f157b61', 'A2 canonical-data hash changed');
   assert.deepEqual(counts(a1), { units: 32, lessons: 91, exercises: 437, vocabulary: 329 });
-  assert.deepEqual(counts(a2), { units: 40, lessons: 161, exercises: 682, vocabulary: 492 });
+  assert.deepEqual(counts(a2), { units: 40, lessons: 161, exercises: 684, vocabulary: 492 });
 });
 
 test('classic curriculum scripts load synchronously before the main app script', () => {

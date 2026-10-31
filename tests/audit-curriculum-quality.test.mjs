@@ -59,3 +59,47 @@ test('reports incomplete examples as warnings, not linguistic verdicts', () => {
   assert.equal(report.warning_count, 1);
   assert.equal(report.issues[0].code, 'VOCAB_EXAMPLE_INCOMPLETE');
 });
+
+test('allows a shared vocabulary ID for the same Indonesian term as a warning', () => {
+  const report = auditCurriculum({
+    id: 'A1',
+    units: [
+      { id: 'u1', title: 'One', vocab: [{ id: 'makan', idn: 'Makan', esp: 'Comer' }], exercises: [] },
+      { id: 'u2', title: 'Two', vocab: [{ id: 'makan', idn: 'makan', esp: 'Comer' }], exercises: [] },
+    ],
+  });
+  assert.equal(report.error_count, 0);
+  assert.ok(report.issues.some((item) => item.code === 'VOCAB_ID_REUSED_SAME_TERM' && item.severity === 'warning'));
+});
+
+test('resolves cumulative review references against vocabulary from another level', () => {
+  const report = auditCurriculum({
+    id: 'A2',
+    units: [{
+      id: 'u1',
+      title: 'One',
+      vocab: [{ id: 'a2_word', idn: 'jadwal', esp: 'horario' }],
+      lessons: [{
+        vocabIds: ['a2_word'],
+        reviewVocabIds: ['a1_word'],
+        exercises: [{ vocabId: 'a1_word', type: 'listen', prompt: 'Listen' }],
+      }],
+    }],
+  }, 'A2', new Set(['a1_word']));
+  assert.equal(report.error_count, 0);
+  assert.ok(!report.issues.some((item) => item.code === 'VOCAB_REFERENCE_MISSING'));
+});
+
+test('checks reviewVocabIds and does not warn when exercises live inside lessons', () => {
+  const report = auditCurriculum({
+    id: 'A2',
+    units: [{
+      id: 'u1',
+      title: 'One',
+      vocab: [{ id: 'a2_word', idn: 'jadwal', esp: 'horario' }],
+      lessons: [{ vocabIds: ['a2_word'], reviewVocabIds: ['missing'], exercises: [] }],
+    }],
+  });
+  assert.equal(report.warning_count, 0);
+  assert.ok(report.issues.some((item) => item.code === 'VOCAB_REFERENCE_MISSING'));
+});

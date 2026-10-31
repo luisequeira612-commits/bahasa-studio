@@ -37,7 +37,7 @@ test('inline application JavaScript and service worker parse', () => {
 });
 
 test('PWA version is consistent across HTML, manifest and cache', () => {
-  assert.match(html, /Bahasa Studio 3\.8\.14/);
+  assert.match(html, /Bahasa Studio 3\.8\.15/);
   assert.equal(manifest.name, 'Bahasa Studio 3.8.15');
   assert.equal(manifest.icons[0].src, './icon.svg');
   assert.equal(manifest.background_color, '#0f172a');

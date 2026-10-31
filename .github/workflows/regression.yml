@@ -35,6 +35,8 @@ jobs:
         run: node --test tests/conversation-practice.test.cjs
       - name: Run study activity unit tests
         run: node --test tests/study-activity.test.cjs
+      - name: Run adaptive learning recommendation tests
+        run: node --test tests/adaptive-learning.test.cjs
       - name: Run A2 curriculum structure tests
         run: node --test tests/a2-curriculum.test.cjs
       - name: Run A2 language audit tracker tests
@@ -96,6 +98,7 @@ jobs:
             assessment-engine.js
             conversation-engine.js
             study-activity.js
+            adaptive-learning.js
             curriculum-a1.js
             curriculum-a2.js
             audio-engine.js

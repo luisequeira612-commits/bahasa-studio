@@ -647,12 +647,10 @@ test('main navigation opens each primary view and dictionary search filters Indo
     await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
 
     const views = [
-      { label: 'Curso', id: 'route' },
-      { label: 'Repaso', id: 'srs' },
+      { label: 'Aprender', id: 'route' },
+      { label: 'Repasar', id: 'srs' },
       { label: 'Tutor', id: 'ai' },
-      { label: 'Diccionario', id: 'dict' },
-      { label: 'Evaluar', id: 'assessment' },
-      { label: 'Ajustes', id: 'settings' }
+      { label: 'Perfil', id: 'profile' }
     ];
 
     for (const view of views) {
@@ -662,8 +660,19 @@ test('main navigation opens each primary view and dictionary search filters Indo
         view.label + ' should activate its corresponding view');
     }
 
-    // Dictionary assertions require the dictionary view to be active again.
-    await page.locator('.nav-btn').filter({ hasText: 'Diccionario' }).click();
+    // Secondary destinations remain available from their requested parent tabs.
+    await page.locator('#view-profile button[onclick*="assessment"]').click();
+    await page.locator('#view-assessment').waitFor({ state: 'visible' });
+    await page.locator('#view-assessment button[onclick*="profile"]').click();
+    await page.locator('#view-profile').waitFor({ state: 'visible' });
+    await page.locator('#view-profile button[onclick*="settings"]').click();
+    await page.locator('#view-settings').waitFor({ state: 'visible' });
+    await page.locator('#view-settings button[onclick*="profile"]').click();
+    await page.locator('#view-profile').waitFor({ state: 'visible' });
+
+    // Dictionary is opened from Tutor rather than as a fifth bottom tab.
+    await page.locator('.nav-btn').filter({ hasText: 'Tutor' }).click();
+    await page.locator('#view-ai button[onclick*="dict"]').click();
     await page.locator('#view-dict').waitFor({ state: 'visible' });
     await page.locator('#dictSearch').fill('');
     const cards = page.locator('#dictContainer .card');
@@ -1033,7 +1042,8 @@ test('Indonesian TTS voice selection is available, applied to speech, and persis
     await page.goto(url, { waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
     await page.waitForFunction(() => document.querySelectorAll('#audioVoiceSelect option').length === 3);
-    await page.getByRole('button', { name: 'Ajustes' }).click();
+    await page.locator('.nav-btn').filter({ hasText: 'Perfil' }).click();
+    await page.locator('#view-profile button[onclick*="settings"]').click();
     const options = await page.locator('#audioVoiceSelect option').allTextContents();
     assert.deepEqual(options, [
       'Automática (recomendada)',

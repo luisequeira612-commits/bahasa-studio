@@ -1,11 +1,11 @@
 # Plan de expansión y puerta de calidad de B1
 
-Estado: fase 4 en desarrollo; borrador ampliado a diez unidades, aún oculto y pendiente de revisión editorial.  
+Estado: fase 4 en desarrollo; borrador ampliado a doce unidades, aún oculto y pendiente de revisión editorial.  
 Fecha de corte: 2026-10-31.
 
 ## Inventario actual
 
-El currículo B1 está definido dentro de `CourseData` en `index.html`. El inventario actual contiene diez unidades:
+El currículo B1 está definido dentro de `CourseData` en `index.html`. El inventario actual contiene doce unidades:
 1. Voz pasiva con `di-`.
 2. Contraste entre `meN-` y `di-`.
 3. Contraste contextual de `-kan` e `-i`.
@@ -17,7 +17,7 @@ El currículo B1 está definido dentro de `CourseData` en `index.html`. El inven
 9. Opiniones y justificaciones.
 10. Comunicación formal y cortesía.
 
-La ampliación de U6–U10 incorpora **25 entradas nuevas de vocabulario y 25 ejercicios**, para un total de **42 entradas y 42 ejercicios** en diez unidades. El banco de evaluación independiente pasa de seis a **once ítems**, incluidos dos de producción abierta que requieren revisión humana. La expansión es un borrador de contenido beta; no constituye un currículo B1 completo ni una evaluación calibrada.
+La ampliación de U6–U12 incorpora **35 entradas nuevas de vocabulario y 35 ejercicios**, para un total de **52 entradas y 52 ejercicios** en doce unidades. El banco de evaluación independiente pasa de seis a **catorce ítems**, incluidos tres ítems de producción abierta/oral que requieren revisión humana. La expansión es un borrador de contenido beta; no constituye un currículo B1 completo ni una evaluación calibrada.
 
 ## Brechas principales
 
@@ -72,7 +72,7 @@ El inventario y las pruebas automáticas pueden demostrar estructura, referencia
 
 ## Avance de contenido B1 — U6–U10
 
-Se incorporaron cinco unidades nuevas al borrador oculto:
+Se incorporaron siete unidades nuevas al borrador oculto:
 - U6: `ketika`, `meskipun`, `namun`, `oleh karena itu`, `sementara itu`.
 - U7: `menurut`, `berdasarkan`, `laporan`, `meningkat`, `menurun`.
 - U8: `dilakukan`, `digunakan`, `diproses`, `dihasilkan`, `langkah`.
@@ -81,4 +81,7 @@ Se incorporaron cinco unidades nuevas al borrador oculto:
 
 Se añadieron cinco preguntas de opción múltiple al banco B1 para cubrir conectores, lectura de informes, voz pasiva, opinión y registro formal. Se incorporó `register` como habilidad explícita de evaluación B1. Las respuestas abiertas existentes siguen pendientes de revisión humana; los nuevos ítems de selección solo prueban comprensión de los ejemplos redactados y no validan el dominio productivo.
 
-La prueba `tests/b1-curriculum-readiness.test.cjs` ahora fija la estructura de diez unidades, 42 entradas y 42 ejercicios, comprueba que cada ejercicio apunte a vocabulario de su unidad, y confirma que B1 permanezca oculto. Las formas y ejemplos nuevos son material beta pendiente de revisión lingüística; no se deben presentar como validados por hablante nativo.
+La prueba `tests/b1-curriculum-readiness.test.cjs` ahora fija la estructura de doce unidades, 52 entradas y 52 ejercicios, comprueba que cada ejercicio apunte a vocabulario de su unidad, y confirma que B1 permanezca oculto. Las formas y ejemplos nuevos son material beta pendiente de revisión lingüística; no se deben presentar como validados por hablante nativo.
+
+
+U11 incorpora estrategias de aclaración y negociación (`bisa diulangi?`, `maksud saya`, `bagaimana kalau`); U12 incorpora vocabulario de experiencia, explicación, respuesta y conclusión. Se añadieron al banco una pregunta de interacción, una tarea oral con rúbrica y una tarea de síntesis escrita. Las dos tareas abiertas/orales quedan explícitamente pendientes de evaluación humana y no reciben crédito automático.

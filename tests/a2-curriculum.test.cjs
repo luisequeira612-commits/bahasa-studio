@@ -522,3 +522,17 @@ test('A2 date production and sequence context practice are explicitly taught', (
   assert.match(contextTask.hint, /No cambies la forma del verbo/);
   assert.match(contextTask.modelAnswer, /rutina habitual/);
 });
+
+
+test('A2 U5 word-order feedback matches the berbicara prompt and answer', () => {
+  const unit = a2.units.find(entry => entry.id === 'a2_u5');
+  assert.ok(unit);
+  const lesson = unit.lessons.find(entry => entry.title === 'Lección 1: Hablar, desplazarse y visitar');
+  assert.ok(lesson);
+  const exercise = lesson.exercises.find(entry => entry.type === 'order' && entry.vocabId === 'a2u5_berbicara');
+  assert.ok(exercise);
+  assert.equal(exercise.prompt, 'Ordena: Él o ella habla.');
+  assert.deepEqual(Array.from(exercise.correctOrder), ['Dia', 'berbicara']);
+  assert.match(exercise.explanation, /Dia berbicara/);
+  assert.doesNotMatch(exercise.explanation, /bersepeda|sekolah/);
+});

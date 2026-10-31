@@ -39,6 +39,32 @@ jobs:
         run: node --test tests/a2-curriculum.test.cjs
       - name: Run A2 language audit tracker tests
         run: node --test tests/a2-language-audit-tracker.test.cjs
+      - name: Run independent curriculum quality tests
+        run: node --test tests/audit-curriculum-quality.test.mjs
+      - name: Run editorial review queue tests
+        run: node --test tests/build-editorial-review-queue.test.mjs
+      - name: Generate independent editorial review queue
+        run: node scripts/build-editorial-review-queue.mjs --output artifacts/editorial-review-queue.csv
+      - name: Upload editorial review queue
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: editorial-review-queue
+          path: artifacts/editorial-review-queue.csv
+          if-no-files-found: ignore
+          retention-days: 14
+      - name: Prepare curriculum audit report directory
+        run: mkdir -p artifacts
+      - name: Run independent curriculum quality audit
+        run: node scripts/audit-curriculum-quality.mjs --json artifacts/curriculum-quality-report.json
+      - name: Upload curriculum quality report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: curriculum-quality-report
+          path: artifacts/curriculum-quality-report.json
+          if-no-files-found: ignore
+          retention-days: 14
       - name: Run KBBI audit queue tests
         run: node --test tests/audit-kbbi-pending.test.mjs
       - name: Run written-response matching and local log tests

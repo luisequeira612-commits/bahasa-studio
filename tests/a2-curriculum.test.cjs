@@ -583,6 +583,14 @@ test('A2 U2 explicitly contrasts belum and masih in a contextualized exercise', 
   assert.match(exercise.explanation, /continúa/);
 });
 
+test('A2 U2 distinguishes tadi pagi, tadi malam, and pagi ini by time context', () => {
+  const lesson = a2.units[1].lessons.find(entry => /Hace un rato y hace muy poco/.test(entry.title));
+  assert.ok(lesson);
+  assert.match(lesson.grammar, /pasado reciente/);
+  assert.match(lesson.grammar, /tadi malam suele significar «anoche»/);
+  assert.match(lesson.grammar, /Si todavía es por la mañana, se usa pagi ini/);
+});
+
 test('A2 U4 includes integrated daily-schedule writing with two timed activities', () => {
   const lesson = a2.units[3].lessons.find(entry => /Describir cómo es tu día/.test(entry.title));
   assert.ok(lesson);

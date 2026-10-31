@@ -52,12 +52,13 @@ test('assessment page renders questions, scores closed answers and flags open re
     await page.locator('input[name="a1-vocab-01"][value="2"]').check();
     await page.locator('#a1-write-01').fill('Nama saya Ana. Saya belajar bahasa Indonesia.');
     const writing = page.locator('#a1-write-03');
-    const reveal = page.locator('[data-reveal-model]');
+    const writingSection = page.locator('[data-id="a1-write-03"]');
+    const reveal = writingSection.locator('[data-reveal-model]');
     assert.equal(await reveal.isDisabled(), true, 'the model must stay unavailable before a learner drafts a response');
     await writing.fill('Halo. Saya suka makan nasi goreng. Ayo makan bersama besok. Kamu mau?');
     assert.equal(await reveal.isDisabled(), false);
     await reveal.click();
-    assert.ok(await page.locator('[data-model-example]').isVisible());
+    assert.ok(await writingSection.locator('[data-model-example]').isVisible());
     await page.getByRole('button', { name: 'Calcular resultado provisional' }).click();
     await page.getByRole('heading', { name: 'Resultado provisional' }).waitFor();
     assert.match(await page.locator('#results').innerText(), /requieren revisión humana/);

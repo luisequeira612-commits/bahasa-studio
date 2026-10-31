@@ -1257,6 +1257,12 @@ test('lesson uses a full-screen flow, confirmation, feedback sheet and session s
       });
     });
     await page.getByRole('button', { name: 'Comenzar lección' }).click();
+    const questionLayout = await page.evaluate(() => ({
+      quiz: getComputedStyle(document.querySelector('#view-lesson .quiz-container')).justifyContent,
+      content: getComputedStyle(document.querySelector('#view-lesson #exerciseArea > div:first-child')).justifyContent
+    }));
+    assert.deepEqual(questionLayout, { quiz: 'flex-start', content: 'flex-start' },
+      'the question and choices should begin near the top without an empty vertical gap');
     const checkButton = page.getByRole('button', { name: 'Comprobar' });
     assert.equal(await checkButton.isDisabled(), true,
       'multiple-choice answers cannot be checked before selecting an option');

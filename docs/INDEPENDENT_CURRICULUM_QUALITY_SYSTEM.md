@@ -14,7 +14,7 @@ Permitir que Bahasa Studio siga desarrollándose cuando KBBI no está disponible
 El script `scripts/audit-curriculum-quality.mjs` carga los currículos locales A1 y A2 y comprueba:
 
 - existencia de unidades, títulos y arrays de vocabulario;
-- IDs de unidad duplicados y colisiones de vocabulario (un mismo ID asociado a términos indonesios distintos); las repeticiones del mismo término se registran como avisos porque pueden representar vocabulario compartido;
+- IDs de unidad duplicados y colisiones de vocabulario (un mismo ID asociado a términos indonesios distintos); las repeticiones del mismo término se registran como avisos porque pueden representar vocabulario compartido; el informe distingue entradas totales de IDs únicos;
 - campos obligatorios de cada entrada (`idn`, `esp`);
 - ejemplos incompletos como avisos editoriales;
 - estructura básica de ejercicios y consignas;

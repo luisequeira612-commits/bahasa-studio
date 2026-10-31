@@ -269,11 +269,11 @@ body.lesson-active #view-lesson.active {
 .lesson-audio-settings .input-field { width:100%; }
 #view-lesson .quiz-container {
     flex:1 1 auto; min-height:0; height:auto; display:flex; flex-direction:column;
-    justify-content:center; gap:16px; margin:0; padding:16px 0 0; overflow:hidden;
+    justify-content:flex-start; gap:16px; margin:0; padding:16px 0 0; overflow:hidden;
 }
 #view-lesson #exerciseArea > div:first-child {
     flex:1 1 auto; min-height:0; display:flex; flex-direction:column;
-    justify-content:center; overflow-y:auto; overscroll-behavior:contain;
+    justify-content:flex-start; overflow-y:auto; overscroll-behavior:contain;
     padding:4px 0 12px;
 }
 #view-lesson #exerciseArea h3 { font-size:clamp(1.2rem,5vw,1.65rem); line-height:1.25; margin-bottom:12px; }

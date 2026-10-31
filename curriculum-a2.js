@@ -463,7 +463,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                                 "Dia",
                                                 "berbicara"
                                             ],
-                                            "explanation": "Saya bersepeda ke sekolah. expresa la idea indicada."
+                                            "explanation": "Dia berbicara significa «Él o ella habla»."
                                         }
                                     ]
                                 },

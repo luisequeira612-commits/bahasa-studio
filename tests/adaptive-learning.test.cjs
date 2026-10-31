@@ -64,5 +64,5 @@ test('invalid inputs are handled conservatively without mutating the source', ()
   const result = AdaptiveLearning.recommend(input);
   assert.equal(result.type, 'reinforce-weak');
   assert.equal(JSON.stringify(input), before);
-  assert.throws(() => AdaptiveLearning.recommend({ nextLesson: { unitId: 'a1_u1', lessonIndex: -1 } }).unitId, undefined);
+  assert.equal(AdaptiveLearning.recommend({ nextLesson: { unitId: 'a1_u1', lessonIndex: -1 } }).type, 'maintenance');
 });

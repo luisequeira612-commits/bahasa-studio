@@ -18,10 +18,18 @@ No se marca ninguna entrada como `verified_primary` ni se afirma validación por
 
 | Unidad | Contenido comprobado | Estado técnico | Pendiente principal |
 |---|---|---|---|
-| A2 U1 — Días, meses y fechas | 5 lecciones, 24 entradas, 21 ejercicios; incluye producción guiada de fecha completa: `Hari ini tanggal 17 Agustus.` | Cobertura de producción de fecha presente y protegida por prueba existente | Revisar el patrón completo de fechas, variedad de fechas y adecuación de ejemplos; no se certifica naturalidad |
+| A2 U1 — Días, meses y fechas | 5 lecciones, 24 entradas, 21 ejercicios; incluye producción guiada de fecha completa: `Hari ini tanggal 17 Agustus.` | Cobertura de producción de fecha presente; se aclaró la distinción entre preguntar por la fecha (`Tanggal berapa hari ini?`) y por el día (`Hari apa hari ini?`) | Revisar el patrón completo con año, variedad de fechas y adecuación de ejemplos; no se certifica naturalidad |
 | A2 U2 — Cuándo ocurre una acción | 4 lecciones, 14 entradas, 16 ejercicios; se añadió contraste explícito entre `belum` y `masih` | Contraste añadido como ejercicio de opción múltiple y prueba de regresión | Revisión lingüística/pragmática del contraste y de sus contextos |
 | A2 U3 — Secuencias | 4 lecciones, 12 entradas, 17 ejercicios; la primera lección distingue rutina (`setiap hari`) de hecho pasado (`kemarin`) | Contexto temporal explícito y prueba existente | Revisar variedad de secuencias, consistencia temporal y claridad de ejemplos |
 | A2 U4 — Jornada cotidiana | 4 lecciones, 10 entradas, 14 ejercicios; se añadió una tarea que integra dos actividades con horas y una descripción global del día | Producción integrada añadida y protegida por prueba | Revisar naturalidad, progresión, respuestas alternativas y si el vocabulario previo basta para completar la tarea |
+
+## Revisión puntual de U1 con fuentes
+
+- Se afinó la explicación de mayúsculas: ahora habla de nombres de días y meses, sin calificarlos imprecisamente como «nombres propios».
+- Se distingue explícitamente la pregunta por el número de la fecha, `Tanggal berapa hari ini?`, de la pregunta por el día de la semana, `Hari apa hari ini?`.
+- La regla de mayúsculas se contrastó con la sección de [Huruf Kapital de EYD V](https://ejaan.kemendikdasmen.go.id/eyd/penggunaan-huruf/huruf-kapital/), que prescribe mayúscula para nombres de meses y días.
+- La diferencia funcional entre las preguntas y el patrón de fecha se contrastó con el [Learner’s Dictionary of Today’s Indonesian](https://api.pageplace.de/preview/DT0400.9781000251845_A40102783/preview-9781000251845_A40102783.pdf).
+- Esta consulta respalda esas decisiones puntuales, pero no constituye una revisión nativa completa de la unidad ni valida todos sus ejemplos.
 
 ## Cambios de esta pasada
 

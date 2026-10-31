@@ -39,6 +39,8 @@ jobs:
         run: node --test tests/adaptive-learning.test.cjs
       - name: Run A2 curriculum structure tests
         run: node --test tests/a2-curriculum.test.cjs
+      - name: Run A1/A2 exercise vocabulary alignment tests
+        run: node --test tests/exercise-vocabulary-alignment.test.cjs
       - name: Run A2 language audit tracker tests
         run: node --test tests/a2-language-audit-tracker.test.cjs
       - name: Run independent curriculum quality tests

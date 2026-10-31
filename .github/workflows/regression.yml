@@ -77,6 +77,8 @@ jobs:
         run: node --test tests/assessment-engine.test.cjs
       - name: Run B1 curriculum readiness tests
         run: node --test tests/b1-curriculum-readiness.test.cjs
+      - name: Run curriculum release gate tests
+        run: node --test tests/curriculum-release-gates.test.cjs
       - name: Run curriculum extraction integrity and offline cache tests
         run: node --test tests/curriculum-extraction.test.js
       - name: Run assessment bank structure tests

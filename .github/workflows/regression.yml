@@ -41,6 +41,8 @@ jobs:
         run: node --test tests/a2-language-audit-tracker.test.cjs
       - name: Run independent curriculum quality tests
         run: node --test tests/audit-curriculum-quality.test.mjs
+      - name: Prepare curriculum audit report directory
+        run: mkdir -p artifacts
       - name: Run independent curriculum quality audit
         run: node scripts/audit-curriculum-quality.mjs --json artifacts/curriculum-quality-report.json
       - name: Upload curriculum quality report

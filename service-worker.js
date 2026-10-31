@@ -1,4 +1,4 @@
-const CACHE_NAME = 'bahasa-studio-v3.8.13';
+const CACHE_NAME = 'bahasa-studio-v3.8.14';
 const ASSETS = ['./', './index.html', './manifest.json', './assessment.html', './assessment-engine.js', './conversation-engine.js', './study-activity.js', './curriculum-a1.js', './curriculum-a2.js', './styles.css', './audio-engine.js', './pronunciation-engine.js'];
 
 self.addEventListener('install', (e) => {

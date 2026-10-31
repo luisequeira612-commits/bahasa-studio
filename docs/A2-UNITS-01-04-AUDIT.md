@@ -16,7 +16,7 @@ It does **not** certify Indonesian naturalness, register, regional usage, CEFR a
 
 - **What is in place:** all seven weekdays and twelve months are represented; the five lessons sequence weekdays, dates, and months; practice includes recognition, translation, listening, ordering, and guided writing.
 - **Coverage gap:** the unit description promises “fechas sencillas”, but the visible practice primarily asks for the weekday or month. There is no explicit worked example for expressing a calendar date (for example, a day number together with a month), nor a guided exercise that asks the learner to produce one.
-- **Editorial follow-up:** add a carefully checked date-format example and a guided production item once the exact Indonesian convention and punctuation have been reviewed. Keep this separate from the existing weekday/month drills.
+- **Editorial follow-up:** add a carefully checked date-format example and a guided production item. A candidate teaching frame to validate is `Hari ini tanggal 17 Agustus.` (“Hoy es 17 de agosto”), paired with the already-present question `Tanggal berapa hari ini?`. This is a proposed example, not a claim of native-speaker approval. A simple task could ask learners to replace the day and month using the numbers/month names they already know. Confirm date wording, word order, capitalization, and punctuation before putting it into the live curriculum.
 
 ### A2-U2 — Expresar cuándo ocurre una acción
 
@@ -28,7 +28,8 @@ It does **not** certify Indonesian naturalness, register, regional usage, CEFR a
 
 - **What is in place:** the four lessons progress from basic sequence markers to “before”, “next”, “when”, duration, and endpoint. The exercises include translation, listening, ordering, and writing.
 - **Context/translation ambiguity:** several vocabulary examples are translated into Spanish in the present (“Primero, como”; “Luego, bebo agua”; “Finalmente, regreso a casa”), while the unit description invites learners to narrate events and the grammar note mentions the past. Since Indonesian verb forms do not themselves mark tense, this is not necessarily a language error; however, the intended timeline is underspecified.
-- **Editorial follow-up:** state explicitly that the example sentences are interpreted through context and can describe a routine or a past sequence; add a short paired context showing how the same verb form is understood differently. Do not mechanically change the Indonesian verbs to create a “past tense”.
+- **Editorial follow-up:** explicitly label the timeline in the Spanish context and add a short paired example. Candidate classroom illustration: a routine context such as “Cada día: primero desayuno; después estudio” versus a past context such as “Ayer: primero desayuné; después estudié”. Keep the Indonesian verb forms unchanged in the draft until each complete sentence has been checked. The learning point is that surrounding time/context can locate an event; it is **not** that a special past-tense verb form should be invented.
+- **Candidate production task:** give learners a three-step picture/timeline labelled “ayer” and ask them to connect the actions with `pertama`, `lalu` or `kemudian`, and `akhirnya`. Assess the order and connector choice, not an unreviewed translation nuance.
 
 ### A2-U4 — Narrar una jornada cotidiana
 

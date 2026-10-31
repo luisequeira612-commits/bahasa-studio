@@ -452,7 +452,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                             "explanation": "Usa el verbo en una oración completa."
                                         },
                                         {
-                                            "vocabId": "a2u5_bersepeda",
+                                            "vocabId": "a2u5_berbicara",
                                             "type": "order",
                                             "prompt": "Ordena: Él o ella habla.",
                                             "words": [

@@ -1839,7 +1839,7 @@
                 });
                 btn.classList.add('selected');
                 btn.setAttribute('aria-pressed', 'true');
-                btn.style.backgroundColor = '#fff0f2';
+                btn.style.setProperty('background-color', '#fff0f2', 'important');
                 this.selectedOption = idx;
                 const checkButton = document.getElementById('checkMcButton');
                 if (checkButton) {

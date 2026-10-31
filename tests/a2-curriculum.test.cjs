@@ -548,7 +548,7 @@ test('A2 U5 word-order feedback matches the berbicara prompt and answer', () => 
 
 
 test('A2 U1-U4 introduce every new vocabulary item once and keep lesson references resolvable', () => {
-  assert.deepEqual(a2.units.slice(0, 4).map(unit => unit.lessons.reduce((sum, lesson) => sum + (lesson.exercises || []).length, 0)), [21, 17, 17, 15]);
+  assert.deepEqual(a2.units.slice(0, 4).map(unit => unit.lessons.reduce((sum, lesson) => sum + (lesson.exercises || []).length, 0)), [21, 17, 17, 19]);
   const knownIds = new Set(courseData.levels.flatMap(level =>
     level.units.flatMap(unit => (unit.vocab || []).map(word => word.id))));
   for (const unit of a2.units.slice(0, 4)) {

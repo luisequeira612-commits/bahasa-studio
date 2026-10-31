@@ -523,6 +523,7 @@ test('A2 date production and sequence context practice are explicitly taught', (
   assert.equal(priorEvent.exEsp, 'Antes de eso, estudié.');
   const priorEventLesson = a2.units[2].lessons.find(lesson => /Antes y a continuación/.test(lesson.title));
   const priorEventOrder = priorEventLesson.exercises.find(exercise => exercise.type === 'order' && exercise.vocabId === 'a2u3_sebelumnya');
+  assert.match(priorEventOrder.prompt, /narración sobre ayer/);
   assert.match(priorEventOrder.prompt, /Antes de eso, estudié/);
   assert.match(priorEventOrder.explanation, /Antes de eso, estudié/);
   const contextTask = sequenceLesson.exercises.find(exercise => exercise.type === 'write' && exercise.vocabId === 'a2u3_pertama');
@@ -589,6 +590,9 @@ test('A2 U2 distinguishes tadi pagi, tadi malam, and pagi ini by time context', 
   assert.match(lesson.grammar, /pasado reciente/);
   assert.match(lesson.grammar, /tadi malam suele significar «anoche»/);
   assert.match(lesson.grammar, /Si todavía es por la mañana, se usa pagi ini/);
+  const tadiPagiExercise = lesson.exercises.find(entry => entry.vocabId === 'a2u2_tadi_pagi' && entry.type === 'mc');
+  assert.ok(tadiPagiExercise);
+  assert.match(tadiPagiExercise.prompt, /Si ya pasó la mañana/);
 });
 
 test('A2 U4 includes integrated daily-schedule writing with two timed activities', () => {

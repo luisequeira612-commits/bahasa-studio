@@ -19,11 +19,11 @@ El currículo B1 está definido dentro de `CourseData` en `index.html`. El inven
 11. Aclarar, negociar y resolver malentendidos.
 12. Integrar información y presentar conclusiones.
 
-La ampliación de U6–U12 incorpora **35 entradas nuevas de vocabulario y 35 ejercicios**, para un total de **52 entradas y 52 ejercicios** en doce unidades. El banco de evaluación independiente pasa de seis a **quince ítems**: incluye una tarea inicial de escucha, tres tareas de producción escrita abierta y una tarea oral, todas las respuestas productivas pendientes de revisión humana. La expansión es un borrador de contenido beta; no constituye un currículo B1 completo ni una evaluación calibrada.
+La ampliación de U6–U12 incorpora **35 entradas nuevas de vocabulario y 35 ejercicios**, para un total de **52 entradas y 52 ejercicios** en doce unidades. El banco de evaluación independiente pasa de seis a **veinte ítems**: incluye tres tareas de escucha, tres preguntas de comprensión de un texto más extenso, tres tareas de producción escrita abierta y una tarea oral, todas las respuestas productivas pendientes de revisión humana. La expansión es un borrador de contenido beta; no constituye un currículo B1 completo ni una evaluación calibrada.
 
 ## Brechas principales
 
-- La cobertura ahora incluye una muestra inicial de escucha, lectura, interacción y producción; todavía faltan textos de lectura más extensos, más variedad de escucha y muestras orales suficientes para cubrir las habilidades B1.
+- La cobertura ahora incluye una muestra inicial de escucha, lectura, interacción y producción; todavía faltan más textos de lectura y variedad de escucha y muestras orales suficientes para cubrir las habilidades B1.
 - Hay pocos ejemplos por patrón y pocos contextos comunicativos para distinguir significado, participantes, foco y registro; la progresión necesita una revisión de carga y recurrencia.
 - La evaluación B1 actual no cubre con suficiente amplitud las unidades y las habilidades.
 - No existe evidencia de calibración con estudiantes ni validación lingüística global.
@@ -87,3 +87,11 @@ La prueba `tests/b1-curriculum-readiness.test.cjs` ahora fija la estructura de d
 
 
 U11 incorpora estrategias de aclaración y negociación (`bisa diulangi?`, `maksud saya`, `bagaimana kalau`); U12 incorpora vocabulario de experiencia, explicación, respuesta y conclusión. Se añadieron al banco una pregunta de interacción, una tarea oral con rúbrica y una tarea de síntesis escrita. Las tareas abiertas y orales quedan explícitamente pendientes de evaluación humana y no reciben crédito automático.
+
+
+## Lectura B1 ampliada
+
+Se añadió un texto informativo breve sobre un programa comunitario de lectura, con tres preguntas separadas de idea principal, detalle e inferencia. El texto permite comprobar comprensión de conectores y tendencias en contexto, pero sigue siendo una única muestra de lectura y no cubre por sí sola el rango de textos B1.
+
+
+Las tareas de escucha distinguen respuesta breve por contenido de transcripción literal: el formulario permite una etiqueta de respuesta específica por ítem. Los tres audios/textos son cortos y sintetizados por el motor de voz del navegador; aún no sustituyen grabaciones de hablantes ni una evaluación de comprensión auditiva con variedad de voces y velocidades.

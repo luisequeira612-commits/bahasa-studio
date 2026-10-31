@@ -9,6 +9,7 @@ const { getAssessment, LEVELS } = require('../assessment-engine.js');
 
 const root = path.join(__dirname, '..');
 const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+const assessmentHtml = fs.readFileSync(path.join(root, 'assessment.html'), 'utf8');
 const a1Source = fs.readFileSync(path.join(root, 'curriculum-a1.js'), 'utf8');
 const a2Source = fs.readFileSync(path.join(root, 'curriculum-a2.js'), 'utf8');
 const a1Literal = a1Source.slice(a1Source.indexOf(' = ') + 3).trim().replace(/;$/, '');
@@ -59,15 +60,23 @@ test('B1 remains hidden from the unlocked learning path until a separate release
 
 test('B1 assessment bank includes open production items that require human review', () => {
   const items = getAssessment('B1');
-  assert.equal(items.length, 15);
+  assert.equal(items.length, 20);
   assert.ok(items.some(item => item.type === 'open' && item.skill === 'production'));
-  for (const id of ['b1-connectors-01', 'b1-report-01', 'b1-process-01', 'b1-opinion-01', 'b1-formal-01', 'b1-interaction-01', 'b1-speaking-01', 'b1-integrated-01', 'b1-listening-01']) assert.ok(items.some(item => item.id === id), 'missing B1 assessment item ' + id);
+  for (const id of ['b1-connectors-01', 'b1-report-01', 'b1-process-01', 'b1-opinion-01', 'b1-formal-01', 'b1-interaction-01', 'b1-speaking-01', 'b1-integrated-01', 'b1-listening-01', 'b1-listening-day-01', 'b1-listening-hall-01', 'b1-reading-main-01', 'b1-reading-detail-01', 'b1-reading-inference-01']) assert.ok(items.some(item => item.id === id), 'missing B1 assessment item ' + id);
   assert.ok(items.some(item => item.skill === 'register'));
   assert.ok(items.some(item => item.skill === 'interaction'));
   const listening = items.find(item => item.id === 'b1-listening-01');
   assert.equal(listening.type, 'listen');
   assert.equal(listening.skill, 'comprehension');
-  assert.ok(listening.audioText && listening.answer);
+  assert.ok(listening.audioText && listening.answer && listening.inputLabel);
+  const listeningItems = items.filter(item => item.id.startsWith('b1-listening-'));
+  assert.equal(listeningItems.length, 3);
+  assert.ok(listeningItems.every(item => item.audioText && item.answer && item.inputLabel));
+  const readingItems = items.filter(item => ['b1-reading-main-01', 'b1-reading-detail-01', 'b1-reading-inference-01'].includes(item.id));
+  assert.equal(readingItems.length, 3);
+  assert.ok(readingItems.every(item => item.skill === 'reading' && item.readingText.includes('Bandung') && item.prompt && item.options[item.answer]));
+  assert.match(assessmentHtml, /item\.readingText/);
+  assert.match(assessmentHtml, /reading-passage/);
   const speaking = items.find(item => item.id === 'b1-speaking-01');
   assert.equal(speaking.type, 'speak');
   assert.ok(Array.isArray(speaking.rubric) && speaking.rubric.length > 0);

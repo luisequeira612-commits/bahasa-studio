@@ -17,7 +17,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                 { id: 'v45', idn: 'Terima kasih', esp: 'Gracias', ex: 'Terima kasih, Ana.', exEsp: 'Gracias, Ana.' },
                                 { id: 'v46', idn: 'Makan', esp: 'Comer', ex: 'Saya makan.', exEsp: 'Yo como.' },
                                 { id: 'v47', idn: 'Minum', esp: 'Beber', ex: 'Dia minum.', exEsp: 'Él / ella bebe.' },
-                                { id: 'v465', idn: 'Apa kabar?', esp: '¿Cómo estás?', ex: 'Apa kabar?', exEsp: '¿Cómo estás?' },
+                                { id: 'v465', idn: 'Apa kabar?', esp: '¿Cómo estás? / ¿Qué tal?', ex: 'Apa kabar?', exEsp: '¿Cómo estás?' },
                                 { id: 'v1002', idn: 'Baik', esp: 'Bien', ex: 'Saya baik.', exEsp: 'Estoy bien.' }
                             ],
                             exercises: [
@@ -46,9 +46,9 @@ window.BAHASA_CURRICULUM_A1 = {
                                 { id: 'v48', idn: 'Air', esp: 'Agua', ex: 'Saya minum air.', exEsp: 'Yo bebo agua.' },
                                 { id: 'v49', idn: 'Nasi', esp: 'Arroz cocido', ex: 'Saya makan nasi.', exEsp: 'Yo como arroz.' },
                                 { id: 'v50', idn: 'Tidur', esp: 'Dormir', ex: 'Dia tidur.', exEsp: 'Él / ella duerme.' },
-                                { id: 'v51', idn: 'Ini', esp: 'Esto / este / esta', ex: 'Ini nasi.', exEsp: 'Esto es arroz.' },
+                                { id: 'v51', idn: 'Ini', esp: 'Este / esta / esto', ex: 'Ini nasi.', exEsp: 'Esto es arroz.' },
                                 { id: 'v52', idn: 'Buku', esp: 'Libro', ex: 'Ini buku.', exEsp: 'Esto es un libro.' },
-                                { id: 'v53', idn: 'Teman', esp: 'Amigo / amiga', ex: 'Dia teman saya.', exEsp: 'Él / ella es mi amigo/a.' }
+                                { id: 'v53', idn: 'Teman', esp: 'Amigo/a', ex: 'Dia teman saya.', exEsp: 'Él / ella es mi amigo/a.' }
                             ],
                             exercises: [
                                 { vocabId: 'v5', type: 'mc', prompt: 'Completa: «Saya ___ makan» (Yo no como)', options: ['bukan', 'tidak', 'ini'], answer: 1, explanation: 'Makan es una acción; se niega con tidak.' },

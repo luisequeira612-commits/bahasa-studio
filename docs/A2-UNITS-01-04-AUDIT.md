@@ -34,7 +34,7 @@ Esta tanda no añade nuevas entradas `verified_primary` ni afirma validación po
 ## Segunda revisión puntual de U2–U4
 
 - U2: se conserva el contraste contextual `Saya belum makan` / `Saya masih makan`. Las fuentes consultadas respaldan el valor de `belum` como «todavía no» y el de `masih` como continuidad, pero no justifican convertir esa oposición en una regla absoluta para todos los predicados. Véanse las notas gramaticales sobre [`belum`](https://elon.io/grammar/indonesian/aspect-modality/belum) y la descripción de [marcadores aspectuales y temporales](https://files.eric.ed.gov/fulltext/ED021206.pdf). La prueba sigue limitada a ese par de ejemplos. También se afinó la explicación de `tadi`: `tadi pagi` se usa cuando la mañana ya pasó y `tadi malam` suele equivaler a «anoche»; si aún es por la mañana, corresponde `pagi ini`. Esta distinción se contrastó con las notas de [Indonesian: A Comprehensive Grammar](https://life-with-dream.org/wp-content/uploads/2013/08/Indonesian_A_Comprehensive_Grammar.pdf) y [ERIC, Grammar Notes](https://files.eric.ed.gov/fulltext/ED024955.pdf).
-- U3: se simplificó la formulación española de la explicación general y se corrigió la traducción de `Sebelumnya, saya belajar.` a «Antes de eso, estudié», para que el ejemplo use un marco pasado coherente. Se añadió una aserción de regresión. Como referencia secundaria, la descripción de [`pertama`, `kemudian`, `lalu` y `akhirnya`](https://elon.io/grammar/indonesian/discourse-markers/sequence) respalda su función organizadora, pero aún falta revisar cada oración y la puntuación de los conectores.
+- U3: se simplificó la formulación española de la explicación general y se corrigió la traducción de `Sebelumnya, saya belajar.` a «Antes de eso, estudié». La consigna de orden ahora explicita «En una narración sobre ayer» para que el marco pasado no dependa de una inferencia del alumno. Se añadió una aserción de regresión. Como referencia secundaria, la descripción de [`pertama`, `kemudian`, `lalu` y `akhirnya`](https://elon.io/grammar/indonesian/discourse-markers/sequence) respalda su función organizadora, pero aún falta revisar cada oración y la puntuación de los conectores.
 - U4: la consigna ahora distingue entre tener el horario lleno y llevar un ritmo tranquilo; la prueba comprueba que la consigna mantenga esa distinción. Esto resuelve una incoherencia editorial de la consigna, no certifica la naturalidad global de la unidad.
 
 ## Cambios de esta pasada
@@ -76,12 +76,12 @@ El modelo es una respuesta guiada, no una respuesta única. Las variantes válid
 
 ### U2
 - [ ] Revisar los matices de `belum` y `masih` en más de un contexto.
-- [ ] Comprobar que las opciones distractoras no puedan interpretarse como correctas en otro contexto.
+- [ ] Comprobar que las opciones distractoras no puedan interpretarse como correctas en otro contexto. La pregunta sobre `tadi pagi` ahora fija que la mañana ya pasó; falta ampliar esta comprobación al resto de ejercicios.
 - [ ] Revisar traducciones, ejemplos y respuestas alternativas.
 
 ### U3
 - [ ] Revisar conectores temporales y su combinación en secuencias de más de dos acciones.
-- [ ] Comprobar que los ejemplos mantengan el marco temporal indicado.
+- [ ] Comprobar que los ejemplos mantengan el marco temporal indicado. La consigna de `sebelumnya` ya explicita una narración sobre ayer; falta revisar las demás actividades de la unidad.
 - [ ] Revisar traducciones y respuestas aceptables.
 
 ### U4

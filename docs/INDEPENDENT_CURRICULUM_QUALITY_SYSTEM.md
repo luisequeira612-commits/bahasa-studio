@@ -1,6 +1,6 @@
 # Sistema de calidad curricular independiente de KBBI
 
-**Estado:** primera implementación técnica en desarrollo.  
+**Estado:** auditor estructural implementado; cola editorial independiente añadida y en validación CI.  
 **Alcance inicial:** integridad estructural y consistencia de referencias de A1 y A2.  
 **Dependencias externas:** ninguna.  
 **Certificación lingüística:** no incluida.
@@ -72,3 +72,22 @@ Los estados son independientes. La ausencia de una fuente o de un revisor nunca 
 ## Principio operativo
 
 KBBI es una fuente de evidencia útil, no una dependencia de ejecución ni un semáforo universal de calidad. La aplicación puede seguir avanzando con controles reproducibles, documentación honesta y una cola explícita de cuestiones lingüísticas pendientes.
+
+## Cola editorial independiente
+
+El generador `scripts/build-editorial-review-queue.mjs` crea una fila por entrada de vocabulario A1/A2 en `artifacts/editorial-review-queue.csv`. La cola incluye nivel, unidad, ID, forma indonesia, glosa española, ejemplo bilingüe, campos ausentes y estados editoriales independientes.
+
+- `P1`: falta algún dato base de la entrada o del ejemplo.
+- `P2`: entrada con los campos básicos presentes; requiere revisión editorial normal.
+- Los estados comienzan en `not_reviewed`; tener texto en los campos no equivale a que sea correcto.
+- La cola no consulta KBBI, no modifica los trackers lingüísticos existentes y no marca términos como verificados.
+- CI ejecuta sus pruebas y publica el CSV como artefacto descargable.
+
+Ejecución local:
+
+```bash
+node --test tests/build-editorial-review-queue.test.mjs
+node scripts/build-editorial-review-queue.mjs --output artifacts/editorial-review-queue.csv
+```
+
+La prioridad P1 identifica incompletitud de datos, no un juicio de incorrección lingüística. P2 tampoco significa aprobado: indica que la entrada está lista para revisión normal.

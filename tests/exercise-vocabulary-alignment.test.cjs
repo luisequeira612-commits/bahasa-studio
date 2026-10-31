@@ -73,3 +73,21 @@ test('exercise prompts, answers, or model text contain their linked vocabulary t
   }
   assert.deepEqual(mismatches, []);
 });
+
+
+test('reused vocabulary IDs keep one Indonesian headword and one Spanish gloss', () => {
+  const byId = new Map();
+  const conflicts = [];
+  for (const level of levels) for (const unit of level.units) {
+    for (const word of unit.vocab || []) {
+      const previous = byId.get(word.id);
+      const current = { term: normalize(word.idn), gloss: normalize(word.esp) };
+      if (previous && (previous.term !== current.term || previous.gloss !== current.gloss)) {
+        conflicts.push({ id: word.id, previous, current });
+      } else if (!previous) {
+        byId.set(word.id, current);
+      }
+    }
+  }
+  assert.deepEqual(conflicts, []);
+});

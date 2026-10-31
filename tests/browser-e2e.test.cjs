@@ -470,7 +470,7 @@ test('service worker serves the app after the network is disconnected', async ()
     await context.setOffline(true);
     await page.reload({ waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined');
-    assert.match(await page.title(), /Bahasa Studio 3\.8\.14/);
+    assert.match(await page.title(), /Bahasa Studio 3\\.8\\.15/);
     assert.equal(await page.locator('body').isVisible(), true);
     assert.equal(await page.evaluate(() => typeof ConversationEngine !== 'undefined' && typeof StudyActivity !== 'undefined'), true,
       'the conversation and study activity modules must be available from the service-worker cache offline');
@@ -1553,6 +1553,7 @@ test('priority 3 adds written sentence completion and tap-to-match practice with
     for (let index = 0; index < 3; index++) {
       await page.locator('#matchIdn .match-option-btn[data-pair-index="' + index + '"]').click();
       await page.locator('#matchEsp .match-option-btn[data-pair-index="' + index + '"]').click();
+      await page.waitForFunction(expected => LessonEngine.matchSolved.size === expected, index + 1);
     }
     await page.locator('#actionArea.lesson-feedback-sheet.correct').waitFor();
     assert.equal(await page.locator('.match-option-btn.solved').count(), 6);

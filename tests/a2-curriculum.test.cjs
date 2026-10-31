@@ -593,6 +593,9 @@ test('A2 U2 distinguishes tadi pagi, tadi malam, and pagi ini by time context', 
   const tadiPagiExercise = lesson.exercises.find(entry => entry.vocabId === 'a2u2_tadi_pagi' && entry.type === 'mc');
   assert.ok(tadiPagiExercise);
   assert.match(tadiPagiExercise.prompt, /Si ya pasó la mañana/);
+  const tadiPagiWrite = lesson.exercises.find(entry => entry.vocabId === 'a2u2_tadi' && entry.type === 'write');
+  assert.ok(tadiPagiWrite);
+  assert.match(tadiPagiWrite.prompt, /Si ya pasó la mañana/);
 });
 
 test('A2 U4 includes integrated daily-schedule writing with two timed activities', () => {

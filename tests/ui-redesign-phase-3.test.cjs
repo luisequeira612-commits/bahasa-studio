@@ -18,6 +18,15 @@ test('all buttons have at least 48px touch height and a press-down border treatm
     assert.match(css, /\.nav-btn\s*\{\s*min-height:48px/);
 });
 
+test('short lesson viewports do not reduce answer targets below 48px', () => {
+    const compactViewport = css.split('@media (max-height:620px) {')[1]?.split('\n}')[0] || '';
+    assert.ok(compactViewport, 'compact viewport rules exist');
+    assert.ok(
+        compactViewport.includes('.option-btn { min-height:48px'),
+        'answer options remain at least 48px tall on short viewports'
+    );
+});
+
 test('light and dark themes use the same requested red accent', () => {
     assert.match(css, /:root, \.light-mode\s*\{[^}]*--bg-primary:#ffffff[^}]*--accent:#e8384f/);
     assert.match(css, /\.dark-mode\s*\{[^}]*--accent:#e8384f/);

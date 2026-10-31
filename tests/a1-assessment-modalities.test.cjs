@@ -21,6 +21,23 @@ test('A1 assessment includes scored listening and human-reviewed speaking', () =
   assert.ok(speaking.rubric.length >= 3);
 });
 
+test('A1 written production has guided prompts, examples and transparent human-review criteria', () => {
+  const items = BahasaAssessment.getAssessment('A1');
+  const writing = items.find(item => item.id === 'a1-write-03');
+  assert.ok(writing, 'A1 should include a distinct everyday writing situation');
+  assert.equal(writing.type, 'open');
+  assert.equal(writing.points, writing.rubric.length);
+  assert.ok(writing.writingGuide.length >= 3);
+  assert.ok(writing.selfCheck.length >= 3);
+  assert.ok(writing.modelAnswer);
+  for (const criterion of writing.rubric) assert.ok(writing.rubricDescriptions[criterion]);
+  const response = BahasaAssessment.scoreAssessment('A1', { 'a1-write-03': writing.modelAnswer });
+  const result = response.items.find(item => item.id === 'a1-write-03');
+  assert.equal(result.status, 'needs-review');
+  assert.equal(result.points, 0, 'a model-like open response must not be scored automatically');
+  assert.deepEqual(response.openItemsPendingReview, ['a1-write-03']);
+});
+
 test('listening transcription scoring ignores case, accents and punctuation only', () => {
   const correct = BahasaAssessment.scoreAssessment('A1', {
     'a1-listen-01': 'saya tinggal di managua.'

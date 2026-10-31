@@ -292,23 +292,25 @@
     </main>
 
     <!-- INTERFAZ DE LECCIÓN -->
-    <main id="view-lesson" class="app-view">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 12px;">
-            <button class="btn btn-outline btn-sm" onclick="LessonEngine.exit()">✕ Salir</button>
-            <div class="progress-bar" style="width: 60%;">
-                <div id="lessonProgressFill" class="progress-fill"></div>
+    <main id="view-lesson" class="app-view lesson-screen" aria-label="Lección">
+        <div class="lesson-topbar">
+            <button class="lesson-exit-button" type="button" aria-label="Salir de la lección" onclick="LessonEngine.requestExit()">✕</button>
+            <div class="lesson-progress-wrap">
+                <div class="progress-bar" role="progressbar" aria-label="Progreso de la lección" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                    <div id="lessonProgressFill" class="progress-fill"></div>
+                </div>
             </div>
-            <span id="lessonStepCount" style="font-size:0.85rem; font-weight:bold;">1/1</span>
-        </div>
-
-        <div style="display:flex; align-items:center; gap:10px; margin:0 0 12px; padding:10px; border:1px solid var(--border); border-radius:10px;">
-            <label for="lessonAudioPlaybackRate" style="font-size:0.9rem; font-weight:600; flex:1;">Velocidad del audio</label>
-            <select id="lessonAudioPlaybackRate" class="input-field" style="width:auto; min-width:145px;" onchange="AudioEngine.setRate(this.value)" aria-label="Velocidad del audio de la lección">
-                <option value="0.5">Muy lento (0,5×)</option>
-                <option value="0.7">Lento (0,7×)</option>
-                <option value="0.85">Normal lento (0,85×)</option>
-                <option value="1">Normal (1×)</option>
-            </select>
+            <span id="lessonStepCount" class="lesson-step-count" aria-live="polite">1/1</span>
+            <details class="lesson-audio-settings">
+                <summary aria-label="Velocidad del audio">🔊</summary>
+                <label for="lessonAudioPlaybackRate">Velocidad del audio</label>
+                <select id="lessonAudioPlaybackRate" class="input-field" onchange="AudioEngine.setRate(this.value)" aria-label="Velocidad del audio de la lección">
+                    <option value="0.5">Muy lento (0,5×)</option>
+                    <option value="0.7">Lento (0,7×)</option>
+                    <option value="0.85" selected>Normal lento (0,85×)</option>
+                    <option value="1">Normal (1×)</option>
+                </select>
+            </details>
         </div>
         <div id="exerciseArea" class="quiz-container"></div>
     </main>
@@ -2309,6 +2311,7 @@ Requisitos:
                 const targetView = document.getElementById(`view-${viewId}`);
                 if (!targetView) return;
                 targetView.classList.add('active');
+                document.body.classList.toggle('lesson-active', viewId === 'lesson');
                 const navGroup = ({ route: 'learn', lesson: 'learn', 'writing-practice': 'learn', srs: 'review', ai: 'tutor', dict: 'tutor', conversations: 'tutor', profile: 'profile', settings: 'profile', assessment: 'profile' })[viewId];
                 document.querySelectorAll('.nav-btn').forEach(el => {
                     const active = !!navGroup && el.dataset.navGroup === navGroup;

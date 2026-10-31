@@ -5,7 +5,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
-const { getAssessment } = require('../assessment-engine.js');
+const { getAssessment, LEVELS } = require('../assessment-engine.js');
 
 const root = path.join(__dirname, '..');
 const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
@@ -21,16 +21,16 @@ const courseSource = html.slice(start, end)
   .replace('window.BAHASA_CURRICULUM_A2', a2Literal);
 const course = vm.runInNewContext(courseSource + '\nCourseData');
 
-test('B1 prototype has five units and a small, explicitly incomplete vocabulary bank', () => {
+test('B1 draft has twelve units and an explicitly incomplete vocabulary bank', () => {
   const b1 = course.levels.find(level => level.id === 'B1');
   assert.ok(b1);
-  assert.equal(b1.units.length, 5);
-  assert.equal(b1.units.reduce((sum, unit) => sum + unit.vocab.length, 0), 17);
-  assert.equal(b1.units.reduce((sum, unit) => sum + unit.exercises.length, 0), 17);
-  assert.deepEqual(Array.from(b1.units, unit => unit.id), ['b1_u1', 'b1_u2', 'b1_u3', 'b1_u4', 'b1_u5']);
+  assert.equal(b1.units.length, 12);
+  assert.equal(b1.units.reduce((sum, unit) => sum + unit.vocab.length, 0), 52);
+  assert.equal(b1.units.reduce((sum, unit) => sum + unit.exercises.length, 0), 52);
+  assert.deepEqual(Array.from(b1.units, unit => unit.id), ['b1_u1', 'b1_u2', 'b1_u3', 'b1_u4', 'b1_u5', 'b1_u6', 'b1_u7', 'b1_u8', 'b1_u9', 'b1_u10', 'b1_u11', 'b1_u12']);
 });
 
-test('every B1 prototype exercise references vocabulary in its own unit', () => {
+test('every B1 draft exercise references vocabulary in its own unit', () => {
   const b1 = course.levels.find(level => level.id === 'B1');
   const ids = new Set();
   for (const unit of b1.units) {
@@ -49,7 +49,7 @@ test('every B1 prototype exercise references vocabulary in its own unit', () => 
       }
     }
   }
-  assert.equal(ids.size, 17);
+  assert.equal(ids.size, 52);
 });
 
 test('B1 remains hidden from the unlocked learning path until a separate release decision', () => {
@@ -59,6 +59,20 @@ test('B1 remains hidden from the unlocked learning path until a separate release
 
 test('B1 assessment bank includes open production items that require human review', () => {
   const items = getAssessment('B1');
-  assert.equal(items.length, 6);
+  assert.equal(items.length, 14);
   assert.ok(items.some(item => item.type === 'open' && item.skill === 'production'));
+  for (const id of ['b1-connectors-01', 'b1-report-01', 'b1-process-01', 'b1-opinion-01', 'b1-formal-01', 'b1-interaction-01', 'b1-speaking-01', 'b1-integrated-01']) assert.ok(items.some(item => item.id === id), 'missing B1 assessment item ' + id);
+  assert.ok(items.some(item => item.skill === 'register'));
+  assert.ok(items.some(item => item.skill === 'interaction'));
+  const speaking = items.find(item => item.id === 'b1-speaking-01');
+  assert.equal(speaking.type, 'speak');
+  assert.ok(Array.isArray(speaking.rubric) && speaking.rubric.length > 0);
+  const manualReview = require('../assessment-engine.js').scoreAssessment('B1', {
+    'b1-speaking-01': 'Respuesta oral simulada',
+    'b1-integrated-01': 'Párrafo de prueba'
+  });
+  assert.deepEqual(manualReview.openItemsPendingReview, ['b1-speaking-01', 'b1-integrated-01']);
+  for (const skill of LEVELS.B1.skills) assert.ok(items.some(item => item.skill === skill), 'B1 assessment must cover ' + skill);
+  const addedItems = items.filter(item => ['b1-connectors-01', 'b1-report-01', 'b1-process-01', 'b1-opinion-01', 'b1-formal-01'].includes(item.id));
+  assert.ok(addedItems.every(item => item.prompt && item.explanation && item.options[item.answer]));
 });

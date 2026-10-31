@@ -1,28 +1,35 @@
 # Plan de expansión y puerta de calidad de B1
 
-Estado: fase 4 iniciada; inventario técnico del currículo B1 existente.  
+Estado: fase 4 en desarrollo; borrador ampliado a doce unidades, aún oculto y pendiente de revisión editorial.  
 Fecha de corte: 2026-10-31.
 
 ## Inventario actual
 
-El currículo B1 está definido dentro de `CourseData` en `index.html` y contiene cinco unidades:
+El currículo B1 está definido dentro de `CourseData` en `index.html`. El inventario actual contiene doce unidades:
 1. Voz pasiva con `di-`.
 2. Contraste entre `meN-` y `di-`.
 3. Contraste contextual de `-kan` e `-i`.
 4. Familias de palabras con `-an` y `-nya`.
 5. `ter-` y primeras nominalizaciones.
+6. Conectores para narrar experiencias y relacionar ideas.
+7. Lectura y resumen de información.
+8. Procesos y resultados con voz pasiva.
+9. Opiniones y justificaciones.
+10. Comunicación formal y cortesía.
+11. Aclarar, negociar y resolver malentendidos.
+12. Integrar información y presentar conclusiones.
 
-La pasada estructural inicial cuenta **17 entradas de vocabulario y 17 ejercicios** en esas cinco unidades. El banco de evaluación independiente tiene seis ítems B1, incluidos dos de producción abierta que requieren revisión humana. Esto es un prototipo pequeño, no un currículo B1 completo ni una evaluación calibrada.
+La ampliación de U6–U12 incorpora **35 entradas nuevas de vocabulario y 35 ejercicios**, para un total de **52 entradas y 52 ejercicios** en doce unidades. El banco de evaluación independiente pasa de seis a **catorce ítems**, incluidos tres ítems de producción abierta/oral que requieren revisión humana. La expansión es un borrador de contenido beta; no constituye un currículo B1 completo ni una evaluación calibrada.
 
 ## Brechas principales
 
-- La cobertura se concentra en morfología; faltan secuencias de lectura, escucha, interacción y escritura sostenida.
-- Hay pocos ejemplos por patrón y pocos contextos comunicativos para distinguir significado, participantes, foco y registro.
+- La cobertura ahora incluye lectura, interacción y producción escrita inicial; todavía faltan textos de lectura más extensos, actividades de escucha y muestras orales suficientes para cubrir las habilidades B1.
+- Hay pocos ejemplos por patrón y pocos contextos comunicativos para distinguir significado, participantes, foco y registro; la progresión necesita una revisión de carga y recurrencia.
 - La evaluación B1 actual no cubre con suficiente amplitud las unidades y las habilidades.
 - No existe evidencia de calibración con estudiantes ni validación lingüística global.
 - B1/B2 están deliberadamente excluidos de `getLearningLevels()`; no deben aparecer en recomendaciones adaptativas ni desbloquearse por error.
 
-## Estructura objetivo propuesta
+## Estructura objetivo y estado del borrador
 
 La expansión se hará por bloques y no se publicará como curso habilitado hasta superar la puerta de calidad.
 
@@ -63,3 +70,20 @@ Los contenidos gramaticales adicionales se decidirán según el objetivo de cada
 ## Estado lingüístico y editorial
 
 El inventario y las pruebas automáticas pueden demostrar estructura, referencias y coherencia interna. No certifican naturalidad, registro, gramática avanzada, adecuación MCER/BIPA ni pronunciación. Mientras no exista evidencia suficiente, los elementos deben permanecer pendientes de revisión competente y no se presentarán como validados por hablante nativo.
+
+
+## Avance de contenido B1 — U6–U10
+
+Se incorporaron siete unidades nuevas al borrador oculto:
+- U6: `ketika`, `meskipun`, `namun`, `oleh karena itu`, `sementara itu`.
+- U7: `menurut`, `berdasarkan`, `laporan`, `meningkat`, `menurun`.
+- U8: `dilakukan`, `digunakan`, `diproses`, `dihasilkan`, `langkah`.
+- U9: `pendapat`, `alasan`, `setuju`, `berbeda`, `sebaliknya`.
+- U10: `mohon`, `harap`, `menghubungi`, `bersedia`, `tersedia`.
+
+Se añadieron cinco preguntas de opción múltiple al banco B1 para cubrir conectores, lectura de informes, voz pasiva, opinión y registro formal. Se incorporó `register` como habilidad explícita de evaluación B1. Las respuestas abiertas existentes siguen pendientes de revisión humana; los nuevos ítems de selección solo prueban comprensión de los ejemplos redactados y no validan el dominio productivo.
+
+La prueba `tests/b1-curriculum-readiness.test.cjs` ahora fija la estructura de doce unidades, 52 entradas y 52 ejercicios, comprueba que cada ejercicio apunte a vocabulario de su unidad, y confirma que B1 permanezca oculto. Las formas y ejemplos nuevos son material beta pendiente de revisión lingüística; no se deben presentar como validados por hablante nativo.
+
+
+U11 incorpora estrategias de aclaración y negociación (`bisa diulangi?`, `maksud saya`, `bagaimana kalau`); U12 incorpora vocabulario de experiencia, explicación, respuesta y conclusión. Se añadieron al banco una pregunta de interacción, una tarea oral con rúbrica y una tarea de síntesis escrita. Las dos tareas abiertas/orales quedan explícitamente pendientes de evaluación humana y no reciben crédito automático.

@@ -226,7 +226,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                         { vocabId: 'a2u3_sebelumnya', type: 'mc', prompt: '¿Qué significa «sebelumnya»?', options: ['Antes de eso; previamente', 'Después de eso', 'Finalmente'], answer: 0, explanation: 'Sebelumnya remite a un hecho anterior; el contexto temporal sitúa el verbo en el pasado.' },
                                         { vocabId: 'a2u3_selanjutnya', type: 'translate_es_id', prompt: 'Traduce: A continuación, estudio.', answer: 'Selanjutnya, saya belajar.', explanation: 'Selanjutnya presenta el paso siguiente.' },
                                         { vocabId: 'a2u3_setelah', type: 'listen', prompt: 'Escucha y escribe la oración.', answer: 'Setelah makan, saya minum air.', explanation: 'Setelah introduce la acción de comer como referencia temporal.' },
-                                        { vocabId: 'a2u3_sebelumnya', type: 'order', prompt: 'Ordena: Antes de eso, estudio.', words: ['saya', 'Sebelumnya', 'belajar'], correctOrder: ['Sebelumnya', 'saya', 'belajar'], explanation: 'Sebelumnya, saya belajar significa «Antes de eso, estudio».' }
+                                        { vocabId: 'a2u3_sebelumnya', type: 'order', prompt: 'Ordena: Antes de eso, estudié.', words: ['saya', 'Sebelumnya', 'belajar'], correctOrder: ['Sebelumnya', 'saya', 'belajar'], explanation: 'Sebelumnya, saya belajar significa «Antes de eso, estudié» en este contexto narrativo.' }
                                     ]
                                 },
                                 {

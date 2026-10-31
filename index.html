@@ -2457,7 +2457,10 @@ Requisitos:
                     goalRing.setAttribute('aria-label', 'Objetivo diario: ' + earned + ' de ' + goal + ' XP, ' + percent + '% completado');
                     goalRing.style.setProperty('--goal-progress', percent + '%');
                 }
-                if (goalPercent) goalPercent.textContent = percent >= 100 ? '✓' : percent + '%';
+                if (goalPercent) {
+                    goalPercent.textContent = percent >= 100 ? '✓' : percent + '%';
+                    goalPercent.classList.toggle('is-complete', percent >= 100);
+                }
                 if (xpBar) xpBar.setAttribute('aria-valuenow', String(percent));
                 if (status) status.textContent = earned >= goal ? '¡Objetivo diario cumplido!' : 'Te faltan ' + (goal - earned) + ' XP para alcanzar tu objetivo.';
                 if (lessons) lessons.textContent = this.studyActivity.todayLessons + (this.studyActivity.todayLessons === 1 ? ' lección hoy' : ' lecciones hoy');

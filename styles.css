@@ -495,3 +495,19 @@ button:disabled, button:disabled:active { transform:none; border-bottom-width:4p
 #view-lesson #actionArea.lesson-feedback-sheet { animation:lesson-feedback-enter .2s ease-out both; }
 @keyframes lesson-feedback-enter { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
 @media (prefers-reduced-motion:reduce) { #view-lesson #actionArea.lesson-feedback-sheet { animation:none; } }
+
+
+/* Prioridad 2: reporte de errores visible pero discreto en cada ejercicio. */
+#view-lesson .exercise-report-btn {
+    align-self:flex-end; width:auto; min-width:0; min-height:44px;
+    margin:8px 0 6px; padding:5px 9px;
+    border:1px solid transparent; border-radius:9px;
+    background:transparent; color:var(--text-muted);
+    font-size:.78rem; font-weight:600;
+}
+#view-lesson .exercise-report-btn:focus-visible {
+    outline:2px solid var(--accent); outline-offset:2px;
+}
+#view-lesson .exercise-report-btn:disabled {
+    color:var(--success); opacity:1;
+}

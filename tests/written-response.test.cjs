@@ -75,6 +75,21 @@ test('correct results are not logged; rejected and typo-accepted results are',()
  assert.equal(entries[0].unitTitle,'Saludos');
  assert.equal(entries[0].direction,'es→id');
 });
+test('exercise issue reports are stored in the existing response log and counted',()=>{
+ const api=load(makeStorage());
+ const issue={exerciseId:'a1_u1:lesson-1:exercise-2',unit:'a1_u1',unitTitle:'Saludos',
+  lesson:'Lección 1',direction:'mc',expectedAnswer:'Hola',originalText:'¿Qué significa halo?',
+  prompt:'¿Qué significa halo?',exerciseType:'mc',options:['Hola','Adiós']};
+ api.recordIssue(issue);
+ api.recordIssue(issue);
+ const entries=api.read();
+ assert.equal(entries.length,1);
+ assert.equal(entries[0].type,'reported-issue');
+ assert.equal(entries[0].issueCategory,'exercise-content');
+ assert.equal(entries[0].count,2);
+ assert.equal(entries[0].expectedAnswer,'Hola');
+});
+
 test('same exercise and rejected answer increments counter and updates date',()=>{
  const api=load(makeStorage());
  const item={exerciseId:'e1',unit:'a1_u1',lesson:'Lección 1',direction:'es→id',
@@ -102,6 +117,8 @@ test('storage errors never escape log methods',()=>{
 test('UI wiring is separate from backups and keeps tap translation and SRS hooks',()=>{
  assert.match(html,/WrittenResponse\.compare\(originalText, ex\)/);
  assert.match(html,/WrittenResponse\.recordResult\(result, logEntry\)/);
+ assert.match(html,/WrittenResponse\.recordIssue\(/);
+ assert.match(html,/exercise-report-btn/);
  assert.match(html,/WrittenResponse\.exportLog\(\)/);
  assert.match(html,/WrittenResponse\.clearWithConfirmation\(\)/);
  assert.doesNotMatch(html,/putSetting\(['"]writtenAnswerReviewLog/);

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bahasa Studio 3.8.13</title>
+    <title>Bahasa Studio 3.8.14</title>
     <meta name="description" content="Curso de indonesio PWA para hispanohablantes sin costo ni penalizaciones.">
     <meta name="theme-color" content="#e8384f">
     <link rel="manifest" href="./manifest.json">
@@ -190,8 +190,8 @@
         </div>
 
         <div class="card">
-            <h3>Registro de respuestas escritas</h3>
-            <p style="font-size:0.85rem;color:var(--text-muted);margin:8px 0;">Guarda respuestas rechazadas y respuestas aceptadas por una pequeña errata en este dispositivo. Es independiente de tu progreso y de las copias de seguridad.</p>
+            <h3>Registro de respuestas y errores</h3>
+            <p style="font-size:0.85rem;color:var(--text-muted);margin:8px 0;">Guarda respuestas rechazadas, pequeñas erratas aceptadas y errores reportados en ejercicios. Se conserva en este dispositivo y es independiente de tu progreso y de las copias de seguridad.</p>
             <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;">
                 <button class="btn btn-outline" style="flex:1;min-width:140px;" onclick="WrittenResponse.exportLog()">Exportar registro</button>
                 <button class="btn btn-outline" style="flex:1;min-width:140px;" onclick="WrittenResponse.clearWithConfirmation()">Borrar registro</button>
@@ -481,20 +481,23 @@
                 if(result.status==='correct')return;
                 record({...entry,type:result.status==='typo'?'accepted-typo':'rejected'});
             }
+            function recordIssue(entry){
+                record({...entry,type:'reported-issue',issueCategory:'exercise-content',normalizedText:''});
+            }
             function clear(){try{window.localStorage.removeItem(STORAGE_KEY);}catch(_){}}
             function exportLog(){
                 try{
                     const blob=new Blob([JSON.stringify(read(),null,2)],{type:'application/json'});
                     const url=URL.createObjectURL(blob);
                     const link=document.createElement('a');
-                    link.href=url;link.download='bahasa-studio-respuestas-escritas.json';
+                    link.href=url;link.download='bahasa-studio-respuestas-y-errores.json';
                     document.body.appendChild(link);link.click();link.remove();URL.revokeObjectURL(url);
                 }catch(_){}
             }
             function clearWithConfirmation(){
-                try{if(window.confirm('¿Borrar el registro local de respuestas escritas? Esta acción no afecta tu progreso.'))clear();}catch(_){}
+                try{if(window.confirm('¿Borrar el registro local de respuestas y errores reportados? Esta acción no afecta tu progreso.'))clear();}catch(_){}
             }
-            return{STORAGE_KEY,LIMIT,normalize,compare,read,record,recordResult,clear,exportLog,clearWithConfirmation};
+            return{STORAGE_KEY,LIMIT,normalize,compare,read,record,recordResult,recordIssue,clear,exportLog,clearWithConfirmation};
         })();
         window.WrittenResponse = WrittenResponse;
 
@@ -1703,6 +1706,27 @@
                 if (exercise.type === 'order' && Array.isArray(exercise.correctOrder)) return exercise.correctOrder.join(' ');
                 return String(exercise.modelAnswer || exercise.answer || '');
             },
+            reportCurrentExercise(button) {
+                const exercise = this.queue && this.queue[this.stepIndex];
+                if (!exercise || !button || button.disabled) return;
+                const unit = this.currentUnit || {};
+                const lesson = this.currentLesson || {};
+                WrittenResponse.recordIssue({
+                    exerciseId: exercise._auditExerciseId || unit.id + ':lesson-' + ((lesson.index ?? this.lessonIndex) + 1) + ':exercise-' + (this.stepIndex + 1),
+                    unit: unit.id || '',
+                    unitTitle: unit.title || '',
+                    lesson: lesson.title || 'Lección ' + ((lesson.index ?? this.lessonIndex) + 1),
+                    direction: exercise.type || 'exercise',
+                    expectedAnswer: this.correctAnswerText(exercise),
+                    originalText: exercise.prompt || '',
+                    prompt: exercise.prompt || '',
+                    exerciseType: exercise.type || '',
+                    options: Array.isArray(exercise.options) ? exercise.options : (Array.isArray(exercise.words) ? exercise.words : [])
+                });
+                button.textContent = '✓ Reportado';
+                button.disabled = true;
+                button.setAttribute('aria-label', 'Error reportado en este ejercicio');
+            },
             sessionSummaryMarkup() {
                 const total = this.sessionExerciseCount || this.queue.length || 0;
                 const accuracy = total ? Math.round(this.sessionCorrect / total * 100) : 0;
@@ -1830,6 +1854,16 @@
                             <button class="btn" onclick="LessonEngine.checkOrder()">Comprobar</button>
                         </div>
                     `;
+                }
+                const questionArea = container.firstElementChild;
+                if (questionArea) {
+                    const reportButton = document.createElement('button');
+                    reportButton.type = 'button';
+                    reportButton.className = 'exercise-report-btn';
+                    reportButton.textContent = '⚑ Reportar error';
+                    reportButton.setAttribute('aria-label', 'Reportar un error en este ejercicio');
+                    reportButton.addEventListener('click', () => this.reportCurrentExercise(reportButton));
+                    questionArea.appendChild(reportButton);
                 }
             },
             stopPronunciationPractice() {

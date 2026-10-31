@@ -1604,7 +1604,10 @@
             lessonIndex: 0,
 
             startUnitAssessment(unitId) {
-                const unit = CourseData.levels.flatMap(level => level.units).find(entry => entry.id === unitId);
+                const level = getLevels().find(entry => entry.units.some(unit => unit.id === unitId));
+                if (!level || ['B1', 'B2'].includes(level.id) ||
+                    (level.id === 'A2' && !isA1Complete(App.completedUnits))) return;
+                const unit = level.units.find(entry => entry.id === unitId);
                 if (!unit) return;
                 const lessons = buildUnitLessons(unit);
                 const completedCount = lessons.filter(lesson => App.completedLessons.includes(unitLessonProgressKey(unitId, lesson.index))).length;
@@ -1630,6 +1633,8 @@
                 for (const level of getLevels()) {
                     const unit = level.units.find(entry => entry.id === id);
                     if (!unit) continue;
+                    if (['B1', 'B2'].includes(level.id) ||
+                        (level.id === 'A2' && !isA1Complete(App.completedUnits))) return;
                     const lessons = buildUnitLessons(unit);
                     const nextIndex = lessons.findIndex(lesson => !App.completedLessons.includes(unitLessonProgressKey(id, lesson.index)));
                     const firstIncomplete = nextIndex < 0 ? lessons.length : nextIndex;
@@ -1645,6 +1650,9 @@
                 }
             },
             startUnit(unit, lessonIndex = 0) {
+                const level = getLevels().find(entry => entry.units.some(candidate => candidate.id === unit.id));
+                if (!level || ['B1', 'B2'].includes(level.id) ||
+                    (level.id === 'A2' && !isA1Complete(App.completedUnits))) return;
                 const lessons = buildUnitLessons(unit);
                 const lesson = lessons[lessonIndex];
                 if (!lesson) return;
@@ -1977,8 +1985,16 @@
             const extra = CustomLessons.units.length ? [{ id: 'IA', title: '✨ Mis lecciones (IA)', units: CustomLessons.units }] : [];
             return [...extra, ...CourseData.levels];
         }
+        function isA1Complete(completedUnits) {
+            const a1 = CourseData.levels.find(level => level.id === 'A1');
+            const completed = Array.isArray(completedUnits) ? completedUnits : [];
+            return Boolean(a1 && a1.units.length > 0 && a1.units.every(unit => completed.includes(unit.id)));
+        }
         function getLearningLevels() {
-            return getLevels().filter(level => !['B1', 'B2'].includes(level.id));
+            return getLevels().filter(level =>
+                !['B1', 'B2'].includes(level.id) &&
+                (level.id !== 'A2' || isA1Complete(App.completedUnits))
+            );
         }
         function getUniqueLearningVocabulary() {
             const seen = new Set();
@@ -2383,22 +2399,21 @@ Requisitos:
                 const container = document.getElementById('courseContainer');
                 container.innerHTML = '';
                 const a1 = CourseData.levels.find(level => level.id === 'A1');
+                const a1Complete = isA1Complete(this.completedUnits);
                 const nextA1Unit = a1 ? a1.units.find(unit => !this.completedUnits.includes(unit.id)) : null;
 
                 getLevels().forEach(lvl => {
                     const levelEl = document.createElement('div');
                     const isAdvanced = ['B1', 'B2'].includes(lvl.id);
                     if (isAdvanced) {
-                        const a1Complete = a1 && a1.units.length > 0 && a1.units.every(unit => this.completedUnits.includes(unit.id));
                         if (!a1Complete) return;
                         levelEl.innerHTML = `<details style="margin:16px 0; padding:12px; border:1px solid var(--border); border-radius:12px;"><summary style="cursor:pointer; font-weight:700;">${lvl.title} — En desarrollo</summary><p style="margin-top:10px; color:var(--text-muted); font-size:0.9rem;">Este nivel todavía no está disponible para estudiar.</p></details>`;
                         container.appendChild(levelEl);
                         return;
                     }
                     if (lvl.id === 'A2') {
-                        const a1Complete = a1 && a1.units.length > 0 && a1.units.every(unit => this.completedUnits.includes(unit.id));
                         if (!a1Complete) return;
-                        levelEl.innerHTML = `<h2 style="margin:20px 0 8px 0;">${App.escapeHtml(lvl.title)}</h2><p class="text-muted" style="margin:0 0 12px;">A2 ya está disponible. El contenido continúa en revisión y mejorará con tus comentarios.</p>`;
+                        levelEl.innerHTML = `<h2 style="margin:20px 0 8px 0;">${App.escapeHtml(lvl.title)} <span class="badge" style="vertical-align:middle;">Beta · en revisión</span></h2><p class="text-muted" style="margin:0 0 12px;">Disponible al completar A1. El contenido A2 está en revisión interna; puede contener errores y no ha sido validado por hablantes nativos. Tus comentarios ayudan a mejorarlo.</p>`;
                     } else {
                         levelEl.innerHTML = `<h2 style="margin:16px 0 8px 0;">${App.escapeHtml(lvl.title)}</h2>`;
                     }
@@ -2409,7 +2424,9 @@ Requisitos:
                         const lessons = buildUnitLessons(unit);
                         const completedCount = isDone ? lessons.length : lessons.filter(lesson => this.completedLessons.includes(unitLessonProgressKey(unit.id, lesson.index))).length;
                         const nextLesson = lessons.findIndex(lesson => !this.completedLessons.includes(unitLessonProgressKey(unit.id, lesson.index)));
-                        const unitAccessible = lvl.id !== 'A1' || isDone || isNext;
+                        const unitAccessible = lvl.id === 'A1'
+                            ? isDone || isNext
+                            : lvl.id === 'A2' ? a1Complete : true;
                         const card = document.createElement('details');
                         card.className = `unit-card ${isDone ? 'completed' : ''}`;
                         if (isNext) card.open = true;

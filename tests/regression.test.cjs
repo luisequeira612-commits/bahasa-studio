@@ -39,7 +39,7 @@ test('inline application JavaScript and service worker parse', () => {
 test('PWA version is consistent across HTML, manifest and cache', () => {
   assert.match(html, /Bahasa Studio 3\.8\.8/);
   assert.equal(manifest.name, 'Bahasa Studio 3.8.8');
-  assert.match(serviceWorker, /bahasa-studio-v3\.8\.14/);
+  assert.match(serviceWorker, /bahasa-studio-v3\.8\.15/);
   for (const asset of ['./', './index.html', './manifest.json', './assessment.html', './assessment-engine.js', './conversation-engine.js', './study-activity.js', './curriculum-a1.js', './curriculum-a2.js', './styles.css', './audio-engine.js', './pronunciation-engine.js']) {
     assert.ok(serviceWorker.includes("'" + asset + "'"), asset + ' must be precached for offline use');
   }

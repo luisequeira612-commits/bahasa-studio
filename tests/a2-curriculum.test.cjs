@@ -484,18 +484,18 @@ test('A2 units 37-40 teach emergency readiness, tourism, remote work, and integr
   }
 });
 
-test('new A2 vocabulary identifiers are unique and only B1/B2 remain gated', () => {
+test('A2 vocabulary identifiers are unique and A2/B1/B2 remain gated until release', () => {
   const newIds = a2.units.flatMap(unit => unit.vocab.map(word => word.id));
   assert.equal(new Set(newIds).size, newIds.length, 'new A2 vocabulary identifiers must be unique');
-  assert.match(html, /function getLearningLevels\(\)[\s\S]*?level\.id !== 'A2' \|\| isA1Complete\(App\.completedUnits\)/,
-    'A2 should join learner-facing vocabulary and SRS after A1 completion while B1/B2 remain excluded');
+  assert.match(html, /function getLearningLevels\(\)[\s\S]*?level\.id !== 'A2' \|\| \(A2_RELEASE_ENABLED && isA1Complete\(App\.completedUnits\)\)/,
+    'A2 must remain outside learner-facing vocabulary and SRS until explicit release approval');
   assert.match(html, /const isAdvanced = \['B1', 'B2'\]\.includes\(lvl\.id\);[\s\S]*?if \(!a1Complete\) return;/,
     'B1/B2 curriculum cards should remain gated until A1 completion');
 });
 
 
-test('A2 beta is available after A1 completion and enters learning vocabulary only then', () => {
-  assert.match(htmlSource, /return getLevels\(\)\.filter\(level =>[\s\S]*?level\.id !== 'A2' \|\| isA1Complete\(App\.completedUnits\)/);
+test('A2 remains hidden from learners until explicit release approval', () => {
+  assert.match(htmlSource, /return getLevels\(\)\.filter\(level =>[\s\S]*?level\.id !== 'A2' \|\| \(A2_RELEASE_ENABLED && isA1Complete\(App\.completedUnits\)\)/);
   assert.match(htmlSource, /if \(lvl\.id === 'A2'\)/);
   assert.match(htmlSource, /Beta · en revisión/);
   assert.match(htmlSource, /Disponible al completar A1/);

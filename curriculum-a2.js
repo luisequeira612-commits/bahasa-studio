@@ -295,7 +295,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                     vocabIds: ['a2u4_kegiatan', 'a2u4_acara'],
                                     reviewVocabIds: ['v252', 'v251'],
                                     exercises: [
-                                        { vocabId: 'a2u4_kegiatan', type: 'mc', prompt: '¿Qué significa «kegiatan»?', options: ['Actividad', 'Evento', 'Horario'], answer: 0, explanation: 'Kegiatan significa «actividad».' },
+                                        { vocabId: 'a2u4_kegiatan', type: 'mc', prompt: 'En «Kegiatan mulai pukul delapan», ¿qué significa «kegiatan»?', options: ['Actividad', 'Horario', 'Lugar'], answer: 0, explanation: 'En esta oración, kegiatan se refiere a la actividad que empieza a las ocho.' },
                                         { vocabId: 'a2u4_acara', type: 'translate_es_id', prompt: 'Traduce: Ese evento empieza a las siete.', answer: 'Acara itu mulai pukul tujuh.', explanation: 'Acara itu significa «ese evento».' },
                                         { vocabId: 'v252', type: 'listen', prompt: 'Escucha y escribe la oración.', answer: 'Saya istirahat.', explanation: 'La oración dice «Descanso».' },
                                         { vocabId: 'a2u4_kegiatan', type: 'order', prompt: 'Ordena: La actividad empieza a las ocho.', words: ['pukul', 'Kegiatan', 'delapan', 'mulai'], correctOrder: ['Kegiatan', 'mulai', 'pukul', 'delapan'], explanation: 'Kegiatan mulai pukul delapan expresa la hora de inicio.' }

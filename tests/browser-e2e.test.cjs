@@ -961,7 +961,8 @@ test('A1 unit lessons unlock sequentially and the final exam gates the next unit
     assert.equal(await firstUnitButtons.nth(2).isEnabled(), false);
 
     await firstUnitButtons.nth(0).click();
-    await page.getByRole('button', { name: 'Salir' }).click();
+    await page.evaluate(() => { window.confirm = () => true; });
+    await page.getByRole('button', { name: 'Salir de la lección' }).click();
     await page.evaluate(async () => {
       App.completedLessons = ['a1_u1::0'];
       await DB.set('settings', 'completedLessons', App.completedLessons);
@@ -1253,7 +1254,8 @@ test('lesson uses a full-screen flow, confirmation, feedback sheet and session s
     await page.locator('.option-btn').nth(correctOption).click();
     await page.getByRole('button', { name: 'Comprobar' }).click();
     await page.locator('#actionArea.lesson-feedback-sheet.correct').waitFor();
-    assert.match(await page.locator('#actionArea .lesson-correct-answer').innerText(), /Respuesta: Saya/);
+    const expectedAnswer = await page.evaluate(() => LessonEngine.correctAnswerText(LessonEngine.queue[0]));
+    assert.equal(await page.locator('#actionArea .lesson-correct-answer').innerText(), 'Respuesta: ' + expectedAnswer);
 
     await page.getByRole('button', { name: 'Continuar' }).click();
     await page.waitForFunction(() => LessonEngine.stepIndex === 1);

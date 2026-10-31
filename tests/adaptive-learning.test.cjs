@@ -66,3 +66,14 @@ test('invalid inputs are handled conservatively without mutating the source', ()
   assert.equal(JSON.stringify(input), before);
   assert.equal(AdaptiveLearning.recommend({ nextLesson: { unitId: 'a1_u1', lessonIndex: -1 } }).type, 'maintenance');
 });
+
+
+test('SRS dashboard wires adaptive recommendations to existing learner actions', () => {
+  const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+  assert.match(html, /id="adaptiveRecommendation"/);
+  assert.match(html, /this\.renderAdaptiveRecommendation\(/);
+  assert.match(html, /SRSEngine\.startSession\(\)/);
+  assert.match(html, /SRSEngine\.markForReview\(wordId\)/);
+  assert.match(html, /LessonEngine\.startUnitById\(recommendation\.unitId, recommendation\.lessonIndex\)/);
+  assert.match(html, /ConversationEngine\.open\(\)/);
+});

@@ -20,7 +20,7 @@ test('primary navigation exposes exactly four requested destinations', () => {
 test('dictionary, pilot assessment and settings are reachable from their requested parent areas', () => {
     assert.match(html, /onclick="App\.switchView\('dict'\)">📖 Diccionario/);
     assert.match(html, /id="view-dict"[\s\S]*?onclick="App\.switchView\('ai'\)">← Tutor/);
-    assert.match(html, /id="view-profile"[\s\S]*?switchView\('assessment'\)[\s\S]*?Evaluación piloto/);
+    assert.match(html, /id="view-profile"[\s\S]*?switchView\('assessment'(?:, this)?\)[\s\S]*?Evaluación piloto/);
     assert.match(html, /id="view-profile"[\s\S]*?switchView\('settings'\)[\s\S]*?Ajustes y datos/);
     assert.match(html, /settings: 'profile', assessment: 'profile'/);
 });
@@ -49,7 +49,7 @@ test('A1 units are rendered as completed, current or locked path nodes without c
     assert.match(html, /path-node-completed/);
     assert.match(html, /path-node-current/);
     assert.match(html, /path-node-locked/);
-    assert.match(html, /data-path-state/);
+    assert.match(html, /card\.dataset\.pathState/);
     assert.match(html, /isNext && lesson\.index === \(nextLesson < 0 \? lessons\.length : nextLesson\) \? 'Empezar'/);
     assert.match(css, /\.path-node::before/);
     assert.match(css, /\.path-node-current > summary::before/);

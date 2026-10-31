@@ -481,3 +481,17 @@ button:disabled, button:disabled:active { transform:none; border-bottom-width:4p
 .backup-reminder-banner .backup-reminder-dismiss {
     flex:0 0 36px; width:36px; padding:0; font-size:1.1rem;
 }
+
+
+/* Prioridad 6: tema coherente con el acento de la app y feedback suave. */
+:root { --accent:#e8384f; --accent-hover:#c92a40; --lesson-option-bg:#fff; --lesson-option-text:#3b2427; --lesson-option-border:#d1d5db; --lesson-option-selected-bg:#fff0f2; --lesson-feedback-correct-bg:#e8f7ec; --lesson-feedback-correct-text:#14532d; --lesson-feedback-wrong-bg:#fff0f0; --lesson-feedback-wrong-text:#8b1e2d; }
+.light-mode { --accent:#e8384f; --accent-hover:#c92a40; --lesson-option-bg:#fff; --lesson-option-text:#3b2427; --lesson-option-border:#d1d5db; --lesson-option-selected-bg:#fff0f2; --lesson-feedback-correct-bg:#e8f7ec; --lesson-feedback-correct-text:#14532d; --lesson-feedback-wrong-bg:#fff0f0; --lesson-feedback-wrong-text:#8b1e2d; }
+.dark-mode { --accent:#e8384f; --accent-hover:#c92a40; --lesson-option-bg:#2a1a1d; --lesson-option-text:#fcefef; --lesson-option-border:#55353a; --lesson-option-selected-bg:#4a2028; --lesson-feedback-correct-bg:#173d2a; --lesson-feedback-correct-text:#d1fae5; --lesson-feedback-wrong-bg:#4b2028; --lesson-feedback-wrong-text:#ffe4e6; }
+#view-lesson #exerciseArea .option-btn { background:var(--lesson-option-bg) !important; background-color:var(--lesson-option-bg) !important; color:var(--lesson-option-text); border-color:var(--lesson-option-border); }
+#view-lesson #exerciseArea .option-btn.selected { background:var(--lesson-option-selected-bg) !important; background-color:var(--lesson-option-selected-bg) !important; background-image:none !important; color:var(--lesson-option-text); border-color:#e8384f; }
+#view-lesson #actionArea.lesson-feedback-sheet.correct { background:var(--lesson-feedback-correct-bg); color:var(--lesson-feedback-correct-text); }
+#view-lesson #actionArea.lesson-feedback-sheet.wrong { background:var(--lesson-feedback-wrong-bg); color:var(--lesson-feedback-wrong-text); }
+#view-lesson #actionArea.lesson-feedback-sheet .lesson-correct-answer { background:color-mix(in srgb,var(--bg-secondary) 76%,transparent); color:var(--text-main); }
+#view-lesson #actionArea.lesson-feedback-sheet { animation:lesson-feedback-enter .2s ease-out both; }
+@keyframes lesson-feedback-enter { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
+@media (prefers-reduced-motion:reduce) { #view-lesson #actionArea.lesson-feedback-sheet { animation:none; } }

@@ -470,7 +470,7 @@ test('service worker serves the app after the network is disconnected', async ()
     await context.setOffline(true);
     await page.reload({ waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined');
-    assert.match(await page.title(), /Bahasa Studio 3\.8\.12/);
+    assert.match(await page.title(), /Bahasa Studio 3\.8\.13/);
     assert.equal(await page.locator('body').isVisible(), true);
     assert.equal(await page.evaluate(() => typeof ConversationEngine !== 'undefined' && typeof StudyActivity !== 'undefined'), true,
       'the conversation and study activity modules must be available from the service-worker cache offline');
@@ -1271,6 +1271,59 @@ test('storage persistence status is honest and the weekly backup reminder can be
       App.updateBackupReminder();
     });
     await page.locator('#backupReminderBanner').waitFor({ state: 'visible' });
+  } finally {
+    await context.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});
+
+test('dark lesson theme keeps red accents, readable feedback and smooth progress', async () => {
+  const { server, url } = await startServer();
+  const context = await browser.newContext({ serviceWorkers: 'block' });
+  const page = await context.newPage();
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof LessonEngine !== 'undefined' &&
+      typeof App !== 'undefined' && DB && DB.db);
+    await page.evaluate(() => {
+      App.toggleTheme();
+      App.switchView('lesson');
+      LessonEngine.queue = [{
+        type: 'mc', prompt: 'Elige la respuesta correcta',
+        options: ['Sí', 'No'], answer: 0
+      }];
+      LessonEngine.stepIndex = 0;
+      LessonEngine.intro = false;
+      LessonEngine.renderStep();
+    });
+    const accent = await page.evaluate(() =>
+      getComputedStyle(document.body).getPropertyValue('--accent').trim());
+    assert.equal(accent, '#e8384f', 'the dark theme should keep the app red accent');
+
+    await page.locator('#view-lesson .option-btn').first().click();
+    await page.waitForFunction(() => {
+      const selected = document.querySelector('#view-lesson .option-btn.selected');
+      return selected && getComputedStyle(selected).backgroundColor === 'rgb(74, 32, 40)';
+    });
+    const selectedText = await page.locator('#view-lesson .option-btn.selected').evaluate(node =>
+      getComputedStyle(node).color);
+    assert.equal(selectedText, 'rgb(252, 239, 239)');
+
+    await page.evaluate(() => LessonEngine.showFeedback(true, 'Explicación breve'));
+    const feedback = await page.locator('#view-lesson #actionArea').evaluate(node => ({
+      background: getComputedStyle(node).backgroundColor,
+      text: getComputedStyle(node).color,
+      animation: getComputedStyle(node).animationName
+    }));
+    assert.deepEqual(feedback, {
+      background: 'rgb(23, 61, 42)',
+      text: 'rgb(209, 250, 229)',
+      animation: 'lesson-feedback-enter'
+    });
+    const progressTransition = await page.locator('.progress-fill').first().evaluate(node =>
+      getComputedStyle(node).transitionDuration);
+    assert.equal(progressTransition, '0.3s');
   } finally {
     await context.close();
     await new Promise(resolve => server.close(resolve));

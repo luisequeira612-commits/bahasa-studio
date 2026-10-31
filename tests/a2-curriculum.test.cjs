@@ -519,6 +519,8 @@ test('A2 date production and sequence context practice are explicitly taught', (
   assert.ok(sequenceLesson);
   assert.match(sequenceLesson.grammar, /Setiap hari/);
   assert.match(sequenceLesson.grammar, /kemarin/);
+  const priorEvent = a2.units[2].vocab.find(word => word.id === 'a2u3_sebelumnya');
+  assert.equal(priorEvent.exEsp, 'Antes de eso, estudié.');
   const contextTask = sequenceLesson.exercises.find(exercise => exercise.type === 'write' && exercise.vocabId === 'a2u3_pertama');
   assert.ok(contextTask, 'A2-U3 should explicitly practise routine versus past-time context');
   assert.match(contextTask.prompt, /rutina o un hecho pasado/);

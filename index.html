@@ -1674,6 +1674,10 @@
                 const confirmed = window.confirm('¿Salir de esta lección? El XP y los intentos ya registrados se conservarán, pero la lección no contará como terminada.');
                 if (confirmed) this.exit();
             },
+            vibrateFeedback() {
+                if (typeof navigator === 'undefined' || typeof navigator.vibrate !== 'function') return;
+                try { navigator.vibrate(24); } catch (error) { /* La vibración es opcional y nunca bloquea la lección. */ }
+            },
             exit() { this.stopPronunciationPractice(); App.switchView('route'); },
             recordFirstAttempt(exercise, isCorrect) {
                 if (!exercise || exercise._firstAttempted) return;
@@ -1909,6 +1913,7 @@
             rateWriting(isCorrect) {
                 const ex = this.queue[this.stepIndex];
                 this.recordFirstAttempt(ex, isCorrect);
+                this.vibrateFeedback();
                 if (!this.assessmentMode && !isCorrect && !ex._r) this.retry.push({ ...ex, _r: true });
                 if (ex.vocabId && !this.assessmentMode) SRSEngine.recordAttempt(ex.vocabId, isCorrect ? 3 : 1).catch(err => console.error('No se pudo registrar el intento SRS:', err));
                 if (isCorrect && !this.assessmentMode) App.addXp(10);
@@ -1927,6 +1932,7 @@
             showFeedback(isCorrect, explanation, feedbackMessage) {
                 const ex = this.queue[this.stepIndex];
                 this.recordFirstAttempt(ex, isCorrect);
+                this.vibrateFeedback();
                 if (this.assessmentMode) {
                     if (isCorrect) this.assessmentCorrect++;
                 } else if (!isCorrect && !ex._r) {

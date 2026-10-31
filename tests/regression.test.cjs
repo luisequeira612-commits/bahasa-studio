@@ -1738,3 +1738,21 @@ test('optional pronunciation practice uses Indonesian browser recognition withou
   assert.doesNotMatch(pronunciationEngineSource, /SRSEngine\.recordAttempt|App\.addXp|DB\.set/,
     'pronunciation comparison must not grade exercises, award XP, or persist microphone data');
 });
+
+const writingPracticeSource = fs.readFileSync(path.join(root, 'writing-practice.js'), 'utf8');
+
+test('free-writing notebook offers distinct A1 compositions without persistence or scoring', () => {
+  const sandbox = { window: {} };
+  vm.runInNewContext(writingPracticeSource, sandbox, { filename: 'writing-practice.js' });
+  const practice = sandbox.window.WritingPractice;
+  assert.deepEqual(Array.from(practice.tasks, task => task.id), ['profile', 'travel', 'directions']);
+  for (const task of practice.tasks) {
+    assert.ok(task.situation.length > 50);
+    assert.ok(task.checklist.length >= 3);
+    assert.ok(task.example.length > 20);
+  }
+  assert.match(writingPracticeSource, /no ha sido validado por un hablante nativo/i);
+  assert.match(writingPracticeSource, /setAttribute\('aria-live', 'polite'\)/);
+  assert.doesNotMatch(writingPracticeSource, /DB\.set|DB\.get|localStorage|indexedDB|addXp|SRSEngine|recordAttempt|innerHTML/,
+    'free-writing drafts must stay ephemeral, safely rendered, and separate from XP/SRS');
+});

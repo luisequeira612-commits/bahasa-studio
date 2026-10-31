@@ -14,16 +14,16 @@ Permitir que Bahasa Studio siga desarrollándose cuando KBBI no está disponible
 El script `scripts/audit-curriculum-quality.mjs` carga los currículos locales A1 y A2 y comprueba:
 
 - existencia de unidades, títulos y arrays de vocabulario;
-- IDs de unidad y vocabulario duplicados;
+- IDs de unidad duplicados y colisiones de vocabulario (un mismo ID asociado a términos indonesios distintos); las repeticiones del mismo término se registran como avisos porque pueden representar vocabulario compartido;
 - campos obligatorios de cada entrada (`idn`, `esp`);
 - ejemplos incompletos como avisos editoriales;
 - estructura básica de ejercicios y consignas;
 - índices de respuesta MC dentro del rango de opciones;
 - consistencia entre `words` y `correctOrder` en ejercicios de orden;
-- referencias `vocabId` y `vocabIds` que no resuelven a vocabulario del nivel;
+- referencias `vocabId`, `vocabIds` y `reviewVocabIds` que no resuelven al vocabulario combinado de A1/A2, permitiendo repasos acumulativos entre niveles;
 - referencias en ejercicios de unidad y de lección.
 
-Los chequeos son locales, deterministas y no hacen peticiones de red. Un resultado sin errores significa únicamente que las reglas estructurales implementadas han pasado.
+Las referencias de repaso pueden apuntar legítimamente de A2 a vocabulario presentado en A1. Las unidades con lecciones se auditan en esa estructura y no se consideran incompletas por no tener un array de ejercicios en el nivel superior. Los chequeos son locales, deterministas y no hacen peticiones de red. Un resultado sin errores significa únicamente que las reglas estructurales implementadas han pasado.
 
 ## Qué NO afirma
 

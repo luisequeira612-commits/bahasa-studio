@@ -2643,7 +2643,7 @@ window.BAHASA_CURRICULUM_A1 = {
                             exercises: [
                                 { vocabId: 'v373', type: 'mc', prompt: '¿Qué significa «kamar»?', options: ['Habitación', 'Cocina', 'Ventana'], answer: 0, explanation: 'Kamar significa habitación o cuarto.' },
                                 { vocabId: 'v374', type: 'translate_es_id', prompt: 'Traduce: cocina', answer: 'Dapur', explanation: 'Dapur significa cocina.' },
-                                { vocabId: 'v375', type: 'order', prompt: 'Ordena: Estoy en la cocina.', words: ['dapur', 'di', 'Saya'], correctOrder: ['Saya', 'di', 'dapur'], explanation: 'Saya di dapur significa «Estoy en la cocina».' },
+                                { vocabId: 'v374', type: 'order', prompt: 'Ordena: Estoy en la cocina.', words: ['dapur', 'di', 'Saya'], correctOrder: ['Saya', 'di', 'dapur'], explanation: 'Saya di dapur significa «Estoy en la cocina».' },
                                 { vocabId: 'v381', type: 'listen', prompt: 'Escucha y escribe la palabra.', answer: 'Kulkas', explanation: 'Kulkas significa nevera o refrigerador.' },
                                 { vocabId: 'v376', type: 'mc', prompt: '¿Qué significa «atap»?', options: ['Tejado', 'Suelo', 'Cama'], answer: 0, explanation: 'Atap significa tejado.' },
                                 { vocabId: 'v377', type: 'translate_es_id', prompt: 'Traduce: ventana', answer: 'Jendela', explanation: 'Jendela significa ventana.' },
@@ -2834,7 +2834,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                 { vocabId: 'v440', type: 'listen', prompt: 'Escucha y escribe la palabra.', answer: 'Menyapu', explanation: 'Menyapu significa barrer.' },
                                 { vocabId: 'v438', type: 'mc', prompt: '¿Qué significa «jarang»?', options: ['Rara vez', 'Siempre', 'Normalmente'], answer: 0, explanation: 'Jarang significa rara vez.' },
                                 { vocabId: 'v443', type: 'translate_es_id', prompt: 'Traduce: antes de', answer: 'Sebelum', explanation: 'Sebelum significa antes de.' },
-                                { vocabId: 'v444', type: 'order', prompt: 'Ordena: Como antes de estudiar.', words: ['belajar', 'makan', 'sebelum', 'Saya'], correctOrder: ['Saya', 'makan', 'sebelum', 'belajar'], explanation: 'Saya makan sebelum belajar significa «Como antes de estudiar».' },
+                                { vocabId: 'v443', type: 'order', prompt: 'Ordena: Como antes de estudiar.', words: ['belajar', 'makan', 'sebelum', 'Saya'], correctOrder: ['Saya', 'makan', 'sebelum', 'belajar'], explanation: 'Saya makan sebelum belajar significa «Como antes de estudiar».' },
                                 { vocabId: 'v442', type: 'write', prompt: 'Escribe una frase para decir «Descanso por la tarde».', hint: 'Usa Saya beristirahat pada sore hari.', modelAnswer: 'Saya beristirahat pada sore hari.', explanation: 'Saya beristirahat pada sore hari significa «Descanso por la tarde».' }
                             
                                 , { vocabId: 'v435', type: 'mc', prompt: 'Escucha el hábito y elige su frecuencia', audioText: 'Saya selalu belajar.', options: ["Siempre estudio","A veces estudio","Nunca estudio"], answer: 0, explanation: 'Selalu significa siempre.' }

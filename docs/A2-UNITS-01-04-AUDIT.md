@@ -20,8 +20,8 @@ No se marca ninguna entrada como `verified_primary` ni se afirma validación por
 |---|---|---|---|
 | A2 U1 — Días, meses y fechas | 5 lecciones, 24 entradas, 21 ejercicios; incluye producción guiada de fecha completa: `Hari ini tanggal 17 Agustus.` | Cobertura de producción de fecha presente; se aclaró la distinción entre preguntar por la fecha (`Tanggal berapa hari ini?`) y por el día (`Hari apa hari ini?`) | Revisar el patrón completo con año, variedad de fechas y adecuación de ejemplos; no se certifica naturalidad |
 | A2 U2 — Cuándo ocurre una acción | 4 lecciones, 14 entradas, 16 ejercicios; se añadió contraste explícito entre `belum` y `masih` | Contraste añadido como ejercicio de opción múltiple y prueba de regresión | Revisión lingüística/pragmática del contraste y de sus contextos |
-| A2 U3 — Secuencias | 4 lecciones, 12 entradas, 17 ejercicios; la primera lección distingue rutina (`setiap hari`) de hecho pasado (`kemarin`) | Contexto temporal explícito y prueba existente | Revisar variedad de secuencias, consistencia temporal y claridad de ejemplos |
-| A2 U4 — Jornada cotidiana | 4 lecciones, 10 entradas, 14 ejercicios; se añadió una tarea que integra dos actividades con horas y una descripción global del día | Producción integrada añadida y protegida por prueba | Revisar naturalidad, progresión, respuestas alternativas y si el vocabulario previo basta para completar la tarea |
+| A2 U3 — Secuencias | 4 lecciones, 12 entradas, 17 ejercicios; la primera lección distingue rutina (`setiap hari`) de hecho pasado (`kemarin`) | Contexto temporal explícito y redacción española afinada para describir pasos, continuación y cierre | Revisar variedad de secuencias, consistencia temporal y claridad de ejemplos; falta revisar puntuación y uso en contexto |
+| A2 U4 — Jornada cotidiana | 4 lecciones, 10 entradas, 14 ejercicios; se añadió una tarea que integra dos actividades con horas y una descripción global del día | Se ajustó la consigna para que «horario lleno» y «ritmo tranquilo» no se presenten como la misma categoría | Revisar naturalidad, progresión, respuestas alternativas y si el vocabulario previo basta para completar la tarea |
 
 ## Revisión puntual de U1 con fuentes
 
@@ -30,6 +30,12 @@ No se marca ninguna entrada como `verified_primary` ni se afirma validación por
 - La regla de mayúsculas se contrastó con la sección de [Huruf Kapital de EYD V](https://ejaan.kemendikdasmen.go.id/eyd/penggunaan-huruf/huruf-kapital/), que prescribe mayúscula para nombres de meses y días.
 - La diferencia funcional entre las preguntas y el patrón de fecha se contrastó con el [Learner’s Dictionary of Today’s Indonesian](https://api.pageplace.de/preview/DT0400.9781000251845_A40102783/preview-9781000251845_A40102783.pdf).
 - Esta consulta respalda esas decisiones puntuales, pero no constituye una revisión nativa completa de la unidad ni valida todos sus ejemplos.
+
+## Segunda revisión puntual de U2–U4
+
+- U2: se conserva el contraste contextual `Saya belum makan` / `Saya masih makan`. Las fuentes consultadas respaldan el valor de `belum` como «todavía no» y el de `masih` como continuidad, pero no justifican convertir esa oposición en una regla absoluta para todos los predicados. Véanse las notas gramaticales sobre [`belum`](https://elon.io/grammar/indonesian/aspect-modality/belum) y la descripción de [marcadores aspectuales y temporales](https://files.eric.ed.gov/fulltext/ED021206.pdf). La prueba sigue limitada a ese par de ejemplos.
+- U3: se simplificó la formulación española de la explicación general. Como referencia secundaria, la descripción de [`pertama`, `kemudian`, `lalu` y `akhirnya`](https://elon.io/grammar/indonesian/discourse-markers/sequence) respalda su función organizadora, pero aún falta revisar cada oración y la puntuación de los conectores.
+- U4: la consigna ahora distingue entre tener el horario lleno y llevar un ritmo tranquilo; la prueba comprueba que la consigna mantenga esa distinción. Esto resuelve una incoherencia editorial de la consigna, no certifica la naturalidad global de la unidad.
 
 ## Cambios de esta pasada
 

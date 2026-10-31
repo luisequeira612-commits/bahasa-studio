@@ -1288,6 +1288,7 @@ test('dark lesson theme keeps red accents, readable feedback and smooth progress
       typeof App !== 'undefined' && DB && DB.db);
     await page.evaluate(() => {
       App.toggleTheme();
+      App.switchView('lesson');
       LessonEngine.queue = [{
         type: 'mc', prompt: 'Elige la respuesta correcta',
         options: ['Sí', 'No'], answer: 0

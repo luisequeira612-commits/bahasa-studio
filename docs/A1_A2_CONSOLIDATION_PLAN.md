@@ -104,3 +104,8 @@ En A1 se detectaron dos ejercicios de ordenar palabras cuya respuesta y explicac
 - U29: «Ordena: Como antes de estudiar» usaba `v444` (Sesudah, después de), aunque la solución era `Saya makan sebelum belajar`. Se corrigió la referencia a `v443` (Sebelum, antes de).
 
 Se añadió una prueba de regresión en `tests/multi-lesson-progression.test.cjs` que comprueba tanto el ID de vocabulario como el orden correcto de las palabras. Estas son correcciones demostrables de coherencia entre el objetivo del ejercicio y el elemento de vocabulario asociado; no constituyen una validación de naturalidad o nivel.
+
+
+## Tercera corrección A1 detectada por la prueba de alineación — 2026-10-31
+
+La nueva prueba integral de referencias detectó un tercer desajuste demostrable en A1 U5: el ejercicio «Ordena: Esta es mi familia» estaba vinculado a `v23` (`Anak`, hijo/a), pero su solución `Ini keluarga saya` corresponde a `v20` (`Keluarga`, familia). Se corrigió la referencia a `v20`. La prueba ahora distingue los ejercicios cerrados y los modelos de respuesta de las consignas abiertas de escritura que no tienen una respuesta modelo única; no exige que una palabra concreta aparezca en una consigna libre.

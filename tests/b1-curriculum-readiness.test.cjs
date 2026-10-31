@@ -49,7 +49,7 @@ test('every B1 draft exercise references vocabulary in its own unit', () => {
       }
     }
   }
-  assert.equal(ids.size, 17);
+  assert.equal(ids.size, 42);
 });
 
 test('B1 remains hidden from the unlocked learning path until a separate release decision', () => {

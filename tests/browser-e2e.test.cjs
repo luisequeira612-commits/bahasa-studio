@@ -1304,8 +1304,9 @@ test('every lesson exercise exposes a report action connected to the existing re
     await reportButton.click();
     await page.waitForFunction(() => WrittenResponse.read().some(entry =>
       entry.type === 'reported-issue' && entry.exerciseId === 'a1_u1:lesson-1:exercise-1'));
-    assert.equal(await reportButton.innerText(), '✓ Reportado');
-    assert.equal(await reportButton.isDisabled(), true);
+    const reportedButton = page.locator('.exercise-report-btn');
+    assert.equal(await reportedButton.innerText(), '✓ Reportado');
+    assert.equal(await reportedButton.isDisabled(), true);
     const record = await page.evaluate(() => WrittenResponse.read()[0]);
     assert.equal(record.unitTitle, 'Saludos');
     assert.equal(record.expectedAnswer, 'Hola');

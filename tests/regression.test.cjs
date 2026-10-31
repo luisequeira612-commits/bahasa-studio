@@ -49,7 +49,7 @@ test('PWA version is consistent across HTML, manifest and cache', () => {
   assert.doesNotMatch(html + serviceWorker + JSON.stringify(manifest), /3\.5\.1/);
 });
 
-test('A2 stays in beta until all A1 units are complete, including direct lesson entry', () => {
+test('A2 stays hidden until explicit release approval, even after A1 completion', () => {
   const start = html.indexOf('const CourseData =');
   const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
   assert.ok(start >= 0 && end > start, 'CourseData block must exist');
@@ -62,8 +62,9 @@ test('A2 stays in beta until all A1 units are complete, including direct lesson 
   assert.equal(isA1Complete([]), false);
   assert.equal(isA1Complete(allIds.slice(0, -1)), false);
   assert.equal(isA1Complete(allIds), true);
-  assert.match(html, /level\.id !== 'A2' \|\| isA1Complete\(App\.completedUnits\)/,
-    'A2 vocabulary must not enter learning and SRS pools before A1 is complete');
+  assert.match(html, /const A2_RELEASE_ENABLED = false;/);
+  assert.match(html, /level\.id !== 'A2' \|\| \(A2_RELEASE_ENABLED && isA1Complete\(App\.completedUnits\)\)/,
+    'A2 vocabulary must remain out of learning and SRS pools until explicit release approval');
   const lessonEntry = html.slice(html.indexOf('startUnitById(id, requestedLessonIndex)'), html.indexOf('startUnit(unit, lessonIndex = 0)'));
   const assessmentEntry = html.slice(html.indexOf('startUnitAssessment(unitId)'), html.indexOf('startUnitById(id, requestedLessonIndex)'));
   assert.match(lessonEntry, /level\.id === 'A2' && !isA1Complete\(App\.completedUnits\)/,
@@ -72,7 +73,7 @@ test('A2 stays in beta until all A1 units are complete, including direct lesson 
     'direct assessment entry must reject A2 before A1 completion');
   assert.match(html, /Beta · en revisión/);
   assert.match(html, /no ha sido validado por hablantes nativos/);
-  assert.match(html, /const unitAccessible = lvl\.id === 'A1'[\s\S]*?lvl\.id === 'A2' \? a1Complete/);
+  assert.match(html, /const unitAccessible = lvl\.id === 'A1'[\s\S]*?lvl\.id === 'A2' \? \(A2_RELEASE_ENABLED && a1Complete\)/);
   assert.ok(html.includes("['B1', 'B2'].includes(level.id)"),
     'B1 and B2 must remain blocked from direct lesson entry');
 });
@@ -329,10 +330,10 @@ test('tap-to-translate includes authored exercises from multi-lesson units', () 
   assert.match(html, /const authoredExercises = \[\s*\.\.\.\(unit\.exercises \|\| \[\]\),\s*\.\.\.\(unit\.lessons \|\| \[\]\)\.flatMap\(lesson => lesson\.exercises \|\| \[\]\)\s*\]/);
 });
 
-test('A2 joins learning vocabulary only after A1 completion and assessment lookup is level-independent', () => {
-  assert.match(html, /return getLevels\(\)\.filter\(level =>[\s\S]*?level\.id !== 'A2' \|\| isA1Complete\(App\.completedUnits\)/);
+test('A2 stays out of learning vocabulary until explicit release and assessment lookup is level-independent', () => {
+  assert.match(html, /return getLevels\(\)\.filter\(level =>[\s\S]*?level\.id !== 'A2' \|\| \(A2_RELEASE_ENABLED && isA1Complete\(App\.completedUnits\)\)/);
   assert.match(html, /startUnitAssessment\(unitId\) \{\s*const level = getLevels\(\)\.find\(entry => entry\.units\.some\(unit => unit\.id === unitId\)\)/);
-  assert.match(html, /\(level\.id === 'A2' && !isA1Complete\(App\.completedUnits\)\)/);
+  assert.match(html, /\(level\.id === 'A2' && \(!A2_RELEASE_ENABLED \|\| !isA1Complete\(App\.completedUnits\)\)\)/);
 });
 
 test('v3.7.1 audit fixes remain in place without changing backup or database versions', () => {
@@ -352,7 +353,7 @@ test('v3.7.1 audit fixes remain in place without changing backup or database ver
     'voice discovery should tolerate missing language metadata without throwing');
   assert.ok(html.includes("function getLearningLevels()"));
   assert.ok(html.includes("return getLevels().filter(level =>"));
-  assert.ok(html.includes("(level.id !== 'A2' || isA1Complete(App.completedUnits))"));
+  assert.ok(html.includes("(level.id !== 'A2' || (A2_RELEASE_ENABLED && isA1Complete(App.completedUnits)))"));
   assert.ok(html.includes("function getUniqueLearningVocabulary()"));
   assert.ok(html.includes("String(word && word.idn || '').trim().toLocaleLowerCase()"));
   assert.ok(html.includes("async getDuplicateWordIds(wordId)"));

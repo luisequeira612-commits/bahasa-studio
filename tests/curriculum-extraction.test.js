@@ -52,7 +52,7 @@ test('A1/A2 canonical curriculum integrity hashes and structure remain pinned', 
   assert.equal(fnv1a(JSON.stringify(a1)), 'acfa08f4', 'A1 canonical-data hash changed');
   assert.equal(fnv1a(JSON.stringify(a2)), '60b1ffe9', 'A2 canonical-data hash changed');
   assert.deepEqual(counts(a1), { units: 32, lessons: 91, exercises: 437, vocabulary: 329 });
-  assert.deepEqual(counts(a2), { units: 40, lessons: 161, exercises: 684, vocabulary: 492 });
+  assert.deepEqual(counts(a2), { units: 40, lessons: 161, exercises: 686, vocabulary: 492 });
 });
 
 test('classic curriculum scripts load synchronously before the main app script', () => {

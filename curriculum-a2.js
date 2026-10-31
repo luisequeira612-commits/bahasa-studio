@@ -7,7 +7,7 @@ window.BAHASA_CURRICULUM_A2 = {
                             id: 'a2_u1',
                             title: 'Unidad 1: Días, meses y fechas',
                             desc: 'Habla de los días de la semana, los meses y fechas sencillas.',
-                            grammar: 'Los días y los meses se escriben con mayúscula inicial en los nombres propios de los días y meses en indonesio. Para preguntar la fecha puedes usar «Tanggal berapa hari ini?».',
+                            grammar: 'Los nombres de los días y los meses llevan mayúscula inicial: «Senin», «Jumat» y «Agustus». Para preguntar por el número de la fecha puedes usar «Tanggal berapa hari ini?»; para preguntar por el día de la semana, «Hari apa hari ini?».',
                             vocab: [
                                 { id: 'a2u1_senin', idn: 'Senin', esp: 'Lunes', ex: 'Hari ini hari Senin.', exEsp: 'Hoy es lunes.' },
                                 { id: 'a2u1_selasa', idn: 'Selasa', esp: 'Martes', ex: 'Besok hari Selasa.', exEsp: 'Mañana es martes.' },

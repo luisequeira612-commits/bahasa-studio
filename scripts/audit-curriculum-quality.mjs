@@ -94,7 +94,7 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
           } else {
             issues.push(issue('error', 'VOCAB_ID_DUPLICATE', wordPath, `El ID ${word.id} identifica términos distintos; primera aparición en ${previous.path}.`));
           }
-        } else vocabIds.set(word.id, { path: wordPath, idn: word.idn });
+        } else vocabIds.set(word.id, { path: wordPath, idn: word.idn, esp: word.esp });
 
         for (const field of ['idn', 'esp']) {
           if (typeof word[field] !== 'string' || !word[field].trim()) {

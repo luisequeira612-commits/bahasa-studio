@@ -8734,7 +8734,7 @@ window.BAHASA_CURRICULUM_A2 = {
                             ],
                             "lessons": [
                                 {
-                                    "title": "Lección 1: Provincias y distritos",
+                                    "title": "Lección 1: Provincias, distritos y fronteras",
                                     "objective": "Describe provincias, distritos y fronteras entre distintas regiones.",
                                     "grammar": "Practica vocabulario para ubicar provincias, distritos y fronteras.",
                                     "vocabIds": [
@@ -9328,7 +9328,7 @@ window.BAHASA_CURRICULUM_A2 = {
                             ],
                             "lessons": [
                                 {
-                                    "title": "Lección 1: Presupuestos y gastos",
+                                    "title": "Lección 1: Presupuestos, ingresos y gastos",
                                     "objective": "Describe cómo se organizan los presupuestos, los ingresos y los gastos.",
                                     "grammar": "Practica vocabulario para hablar de ingresos y gastos mensuales.",
                                     "vocabIds": [
@@ -10335,7 +10335,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 3: Tarifas, horarios y entradas",
                                     "objective": "Explica las tarifas de entrada, los horarios de visita y la compra de entradas.",
-                                    "grammar": "Practica expresiones para pagar y confirmar una reserva.",
+                                    "grammar": "Practica expresiones para consultar tarifas, horarios y entradas.",
                                     "vocabIds": [
                                         "a2u38_biaya_masuk",
                                         "a2u38_jam_kunjung",
@@ -10379,7 +10379,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                     ]
                                 },
                                 {
-                                    "title": "Lección 4: Horarios y recuerdos",
+                                    "title": "Lección 4: Atracciones, horarios y recuerdos",
                                     "objective": "Habla de atracciones turísticas, recuerdos y horarios de visita.",
                                     "grammar": "Usa berubah para explicar cambios de horario.",
                                     "vocabIds": [
@@ -10821,7 +10821,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 1: Resúmenes, conclusiones y aclaraciones",
                                     "objective": "Identifica las ideas principales, presenta un resumen y pide aclaraciones.",
-                                    "grammar": "Practica expresiones para resumir y concluir una explicación.",
+                                    "grammar": "Practica expresiones para resumir, concluir y aclarar una explicación.",
                                     "vocabIds": [
                                         "a2u40_ringkasan",
                                         "a2u40_kesimpulan",
@@ -10885,7 +10885,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 2: Énfasis, respuestas y objeciones",
                                     "objective": "Refuerza una idea, responde a otras opiniones y presenta objeciones.",
-                                    "grammar": "Usa maksud saya para explicar de nuevo lo que quieres decir.",
+                                    "grammar": "Practica expresiones para enfatizar una idea, responder y presentar objeciones.",
                                     "vocabIds": [
                                         "a2u40_penegasan",
                                         "a2u40_tanggapan",
@@ -10931,7 +10931,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 3: Ejemplos, explicaciones y detalles",
                                     "objective": "Amplía una explicación con ejemplos adicionales y detalles.",
-                                    "grammar": "Practica expresiones para apoyar o cuestionar una idea.",
+                                    "grammar": "Practica expresiones para añadir ejemplos, explicaciones y detalles a una idea.",
                                     "vocabIds": [
                                         "a2u40_contoh_tambahan",
                                         "a2u40_uraian",

@@ -241,7 +241,7 @@
                     ]
                 }
             ]
-        }
+        },
         {
             id: 'organizar-evento',
             level: 'A2',

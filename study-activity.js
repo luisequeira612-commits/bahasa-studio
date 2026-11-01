@@ -49,7 +49,10 @@
             const entry = isObject(source[skill]) ? source[skill] : {};
             const correct = safeCount(entry.correct) ? entry.correct : 0;
             const incorrect = safeCount(entry.incorrect) ? entry.incorrect : 0;
-            const attempts = safeCount(entry.attempts) ? Math.max(entry.attempts, correct + incorrect) : correct + incorrect;
+            const totalResults = correct + incorrect;
+            if (!safeCount(totalResults)) return;
+            const attempts = safeCount(entry.attempts) ? Math.max(entry.attempts, totalResults) : totalResults;
+            if (!safeCount(attempts)) return;
             result[skill] = { attempts: attempts, correct: correct, incorrect: incorrect, sessions: safeCount(entry.sessions) ? entry.sessions : 0 };
         });
         return result;
@@ -143,6 +146,9 @@
         const activity = normalize(value, now);
         markStudyDay(activity, now);
         const stats = activity.skillStats[skill];
+        if (!safeCount(stats.attempts + 1) || !safeCount((isCorrect ? stats.correct : stats.incorrect) + 1)) {
+            throw new Error('Contador de habilidad no válido.');
+        }
         stats.attempts += 1;
         if (isCorrect) stats.correct += 1;
         else stats.incorrect += 1;
@@ -153,6 +159,7 @@
         if (!['writing', 'conversation'].includes(skill)) throw new Error('Sesión de práctica no válida.');
         const activity = normalize(value, now);
         markStudyDay(activity, now);
+        if (!safeCount(activity.skillStats[skill].sessions + 1)) throw new Error('Contador de habilidad no válido.');
         activity.skillStats[skill].sessions += 1;
         return activity;
     }

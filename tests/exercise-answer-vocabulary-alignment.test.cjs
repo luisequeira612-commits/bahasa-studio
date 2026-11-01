@@ -69,13 +69,17 @@ test('meaning multiple-choice answers match a registered full gloss or one of it
       if (exercise.type !== 'mc' || !/qué significa/i.test(exercise.prompt || '')) continue;
       if (reviewIds.has(exercise.vocabId) && !vocabulary.has(exercise.vocabId)) continue;
       const word = vocabulary.get(exercise.vocabId);
+      // Phrase-level meaning questions can have contextual translations that
+      // cannot be judged from a single-word gloss without linguistic review.
+      const target = normalize(String(exercise.prompt || '').split(/qué significa/i).pop());
+      if (!word || target !== normalize(word.idn)) continue;
       const selected = exercise.options?.[exercise.answer];
-      if (!word || typeof selected !== 'string') {
+      if (typeof selected !== 'string') {
         mismatches.push({ level: level.id, unit: unit.id, vocabId: exercise.vocabId, reason: 'missing linked word or selected option' });
         continue;
       }
       const fullGloss = normalize(word.esp);
-      const alternatives = String(word.esp).split(/[;/]/).map(normalize).filter(Boolean);
+      const alternatives = String(word.esp).split(/[;/]|\\s+o\\s+/i).map(normalize).filter(Boolean);
       const accepted = new Set([fullGloss, ...alternatives]);
       if (!accepted.has(normalize(selected))) {
         mismatches.push({

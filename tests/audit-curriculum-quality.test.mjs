@@ -379,3 +379,38 @@ test('checks grouped vocabIds references for missing and future lesson vocabular
   assert.ok(report.issues.some((item) => item.code === 'VOCAB_REFERENCE_MISSING' && item.path.endsWith('.vocabIds')));
   assert.ok(report.issues.some((item) => item.code === 'LESSON_VOCAB_USED_BEFORE_INTRODUCTION' && item.path.endsWith('.vocabIds')));
 });
+
+test('rejects malformed single and grouped vocabulary references on unit and lesson exercises', () => {
+  const report = auditCurriculum({
+    id: 'A1',
+    units: [{
+      id: 'u1',
+      title: 'One',
+      vocab: [],
+      exercises: [
+        { type: 'listen', prompt: 'Listen', vocabId: '' },
+        { type: 'listen', prompt: 'Listen', vocabIds: 'not-an-array' },
+        { type: 'listen', prompt: 'Listen', vocabIds: ['valid', '', null] },
+      ],
+      lessons: [{
+        exercises: [
+          { type: 'listen', prompt: 'Listen', vocabId: 42 },
+          { type: 'listen', prompt: 'Listen', vocabIds: { id: 'word' } },
+          { type: 'listen', prompt: 'Listen', vocabIds: ['valid', false] },
+        ],
+      }],
+    }],
+  });
+
+  for (const code of [
+    'EXERCISE_VOCAB_ID_INVALID',
+    'EXERCISE_VOCAB_IDS_INVALID',
+    'EXERCISE_VOCAB_IDS_ITEM_INVALID',
+    'LESSON_EXERCISE_VOCAB_ID_INVALID',
+    'LESSON_EXERCISE_VOCAB_IDS_INVALID',
+    'LESSON_EXERCISE_VOCAB_IDS_ITEM_INVALID',
+  ]) {
+    assert.ok(report.issues.some((item) => item.code === code), `Missing audit issue: ${code}`);
+  }
+  assert.equal(report.error_count, 9);
+});

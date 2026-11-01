@@ -2669,7 +2669,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                 { id: 'v385', idn: 'Kantin', esp: 'Cafetería / comedor escolar', ex: 'Kantin sekolah itu besar.', exEsp: 'La cafetería de la escuela es grande.' },
                                 { id: 'v386', idn: 'Guru', esp: 'Docente / profesor/a', ex: 'Guru itu ramah.', exEsp: 'Ese/a profesor/a es amable.' },
                                 { id: 'v387', idn: 'Murid', esp: 'Alumno/a', ex: 'Saya murid.', exEsp: 'Soy estudiante.' },
-                                { id: 'v388', idn: 'Penghapus', esp: 'Borrador / goma de borrar', ex: 'Ini penghapus saya.', exEsp: 'Este es mi borrador.' },
+                                { id: 'v388', idn: 'Penghapus', esp: 'Goma de borrar', ex: 'Ini penghapus saya.', exEsp: 'Esta es mi goma de borrar.' },
                                 { id: 'v389', idn: 'Pensil', esp: 'Lápiz', ex: 'Saya punya pensil.', exEsp: 'Tengo un lápiz.' },
                                 { id: 'v390', idn: 'Menjawab', esp: 'Responder', ex: 'Murid menjawab.', exEsp: 'El alumno responde.' },
                                 { id: 'v391', idn: 'Membaca', esp: 'Leer', ex: 'Saya membaca buku.', exEsp: 'Leo un libro.' },

@@ -14,7 +14,7 @@ const levels = [context.window.BAHASA_CURRICULUM_A1, context.window.BAHASA_CURRI
 
 function normalize(value) {
   return String(value ?? '').toLocaleLowerCase('es').normalize('NFD')
-    .replace(/\p{M}/gu, '').replace(/\\/a\\b/g, '')
+    .replace(/\p{M}/gu, '').replace(/\/a\b/g, '')
     .replace(/[^\p{L}\p{N}\s]/gu, ' ').replace(/\s+/g, ' ').trim();
 }
 

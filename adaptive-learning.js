@@ -67,6 +67,21 @@
             }, focus);
         }
 
+        const skillLesson = data.skillLesson;
+        if (focus && focus.key !== 'writing' && skillLesson &&
+            typeof skillLesson.unitId === 'string' && skillLesson.unitId &&
+            Number.isInteger(skillLesson.lessonIndex) && skillLesson.lessonIndex >= 0) {
+            return contextualize({
+                type: 'reinforce-skill',
+                title: 'Practica ' + focus.label,
+                description: 'Encontramos una lección pendiente que incluye ejercicios de ' + focus.label + '. Practica esa habilidad dentro de una lección existente.',
+                action: 'lesson',
+                label: 'Practicar ' + focus.label,
+                unitId: skillLesson.unitId,
+                lessonIndex: skillLesson.lessonIndex
+            }, focus);
+        }
+
         if (focus && focus.key === 'writing') {
             return contextualize({
                 type: 'reinforce-writing',

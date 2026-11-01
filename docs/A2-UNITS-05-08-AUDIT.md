@@ -31,6 +31,9 @@ Cada unidad incluye práctica variada, escucha y producción escrita guiada. Las
 
 ## Hallazgos de alineación interna (corregidos)
 
+- En U8, la Lección 1 se titulaba «Formas mem- con b y p» y su explicación incluía ejemplos con p, aunque sus tres palabras nuevas eran `membeli`, `membawa` y `membantu`. Se ajustaron título, objetivo y explicación para limitar el foco a las raíces con b; las formas con p quedan en la Lección 2.
+
+
 La comparación entre el foco de cada lección, sus `vocabIds` y los ejercicios reveló dos desajustes reproducibles en U8:
 
 - La Lección 2 enumeraba en su explicación `membantu` y `memulai`, aunque sus tres palabras nuevas eran `memakai`, `memilih` y `memesan`. Se actualizó el título, el objetivo y la explicación para describir el grupo que realmente se enseña.

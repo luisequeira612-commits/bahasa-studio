@@ -142,3 +142,29 @@ test('skill counters reject values beyond the safe local limit', () => {
   activity.skillStats.conversation.sessions = 1000000000;
   assert.throws(() => StudyActivity.recordSkillSession(activity, 'conversation', day), /Contador de habilidad no válido/);
 });
+
+
+test('daily activity counters enforce the same safe local limit as skill counters', () => {
+  const day = localDate(2026, 10, 29);
+  const activity = StudyActivity.createDefault(day);
+
+  activity.todayXp = 1000000000;
+  assert.throws(() => StudyActivity.record(activity, 'points', 1, day), /Contador de actividad no válido/);
+  activity.todayXp = 0;
+
+  activity.todayLessons = 1000000000;
+  assert.throws(() => StudyActivity.record(activity, 'lesson', 0, day), /Contador de actividad no válido/);
+  activity.todayLessons = 0;
+
+  activity.todayReviews = 1000000000;
+  assert.throws(() => StudyActivity.record(activity, 'review', 0, day), /Contador de actividad no válido/);
+});
+
+test('daily activity counters reject oversized XP increments without mutating the input', () => {
+  const day = localDate(2026, 10, 29);
+  const activity = StudyActivity.createDefault(day);
+  activity.todayXp = 999999999;
+  const before = JSON.stringify(activity);
+  assert.throws(() => StudyActivity.record(activity, 'points', 2, day), /Contador de actividad no válido/);
+  assert.equal(JSON.stringify(activity), before);
+});

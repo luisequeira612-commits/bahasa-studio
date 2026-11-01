@@ -10143,7 +10143,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 },
                                 {
                                     "id": "a2u38_oleh_oleh",
-                                    "idn": "oleh oleh",
+                                    "idn": "oleh-oleh",
                                     "esp": "Recuerdo",
                                     "ex": "Saya membeli oleh-oleh untuk keluarga.",
                                     "exEsp": "Compro un recuerdo para mi familia."
@@ -10340,7 +10340,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                             "type": "translate_es_id",
                                             "prompt": "Traduce: Compro un recuerdo para mi familia.",
                                             "answer": "Saya membeli oleh-oleh untuk keluarga.",
-                                            "explanation": "La frase utiliza «oleh oleh»."
+                                            "explanation": "La frase utiliza «oleh-oleh»."
                                         },
                                         {
                                             "vocabId": "a2u38_jadwal_kunjungan",

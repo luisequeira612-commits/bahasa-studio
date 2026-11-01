@@ -776,3 +776,45 @@ test('A2 U38 uses consistent hyphenation for oleh-oleh', () => {
   assert.equal(exercise.answer, 'Saya membeli oleh-oleh untuk keluarga.');
   assert.equal(exercise.explanation, 'La frase utiliza «oleh-oleh».');
 });
+
+test('A2 units 25-40 keep exercise answers aligned with their linked vocabulary', () => {
+  const units = a2.units.slice(24);
+  assert.equal(units.length, 16, 'the final A2 block should contain units 25-40');
+
+  for (const unit of units) {
+    const unitVocab = new Map(unit.vocab.map(word => [word.id, word]));
+    for (const lesson of unit.lessons) {
+      for (const exercise of lesson.exercises || []) {
+        const word = unitVocab.get(exercise.vocabId);
+        assert.ok(word, unit.id + ' exercise must reference vocabulary introduced in the same unit');
+
+        if (exercise.type === 'mc' && /qué significa/i.test(exercise.prompt || '')) {
+          assert.ok(Array.isArray(exercise.options), unit.id + ' meaning question must provide options');
+          assert.ok(Number.isInteger(exercise.answer) && exercise.answer >= 0 && exercise.answer < exercise.options.length,
+            unit.id + ' meaning question must have a valid answer index');
+          assert.equal(exercise.options[exercise.answer], word.esp,
+            unit.id + ' meaning answer must match the linked gloss for ' + word.idn);
+        }
+
+        if (exercise.type === 'order') {
+          assert.ok(Array.isArray(exercise.words) && Array.isArray(exercise.correctOrder),
+            unit.id + ' ordering exercise must define tokens and a canonical answer');
+          assert.deepEqual(Array.from(exercise.words).sort(), Array.from(exercise.correctOrder).sort(),
+            unit.id + ' ordering tokens must match the canonical answer');
+          assert.ok(exercise.explanation && exercise.explanation.includes(exercise.correctOrder.join(' ')),
+            unit.id + ' ordering feedback must reproduce the canonical answer');
+        }
+
+        if (exercise.type === 'write') {
+          assert.ok(exercise.modelAnswer && exercise.modelAnswer.toLowerCase().includes(word.idn.toLowerCase()),
+            unit.id + ' writing model must include its linked vocabulary: ' + word.idn);
+        }
+
+        if (exercise.type === 'translate_es_id' || exercise.type === 'listen') {
+          assert.ok(exercise.answer && exercise.answer.toLowerCase().includes(word.idn.toLowerCase()),
+            unit.id + ' sentence answer must include its linked vocabulary: ' + word.idn);
+        }
+      }
+    }
+  }
+});

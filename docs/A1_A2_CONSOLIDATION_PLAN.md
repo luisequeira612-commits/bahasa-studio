@@ -306,3 +306,38 @@ La inspección de las pruebas existentes confirma que no hace falta duplicar otr
 Estas pruebas detectan incoherencias mecánicas demostrables: referencias erróneas, respuestas sin el término objetivo, glosas seleccionadas que no coinciden con el registro, tokens de ordenamiento inconsistentes y feedback que no reproduce la solución. No certifican naturalidad, equivalencia semántica, pragmática, registro, pronunciación ni adecuación MCER/BIPA. Los ejercicios abiertos admiten respuestas alternativas y no deben someterse a reglas literales que produzcan falsos positivos.
 
 La fase 2 continúa abierta. La cobertura estructural y de alineación automática está reforzada en A1/A2, pero la cola editorial, las dimensiones lingüísticas sin evidencia, la revisión documental por unidad y las pruebas de audio/dispositivo siguen pendientes. La falta de hablante nativo y la indisponibilidad práctica de KBBI no deben bloquear correcciones internas ni generar estados de validación ficticios.
+
+## Novena pasada de consolidación — 2026-11-01
+
+### Auditoría de progresión y consistencia estructural
+
+- PR #187 incorpora un resumen JSON de la cola editorial A1/A2: totales, prioridades, unidades afectadas, campos incompletos y estado explícito `not_reviewed`.
+- PR #188 corrige la dirección de las referencias entre niveles: A1 no puede apoyarse en vocabulario futuro de A2; A2 sí puede reutilizar vocabulario A1.
+- PR #189 añade avisos no bloqueantes cuando un mismo ID y lema indonesio reutilizado aparece con glosas españolas diferentes.
+- PR #190 detecta vocabulario usado en ejercicios de una unidad antes de su primera introducción en el mismo nivel.
+- PR #191 extiende el control a la progresión entre lecciones: los ejercicios no deben usar vocabulario introducido en una lección posterior, salvo que esté declarado en `reviewVocabIds`.
+- Los cinco PR se integraron después de CI exitoso. #191 terminó con 37 pasos correctos, incluidos los tests de navegador y evaluación.
+
+### Revisión focalizada de A2 U5–U8
+
+Se revisaron los objetivos, las listas de vocabulario, los patrones morfológicos declarados y las pruebas de regresión de las cuatro unidades:
+
+- U5: formas frecuentes con `ber-`.
+- U6: formas frecuentes con `men-` ante raíces con t, d, c y j.
+- U7: formas frecuentes con `meng-`, incluidas raíces con k, g, h y vocal.
+- U8: formas frecuentes con `mem-` y `meny-`.
+
+La estructura conserva 12 entradas y cuatro lecciones por unidad. Las pruebas específicas comprueban preguntas de significado, glosas seleccionadas, feedback y ejercicios de ordenamiento; también existen regresiones puntuales para el ejemplo de `mencatat`, la explicación de `meng-` y el ejemplo de `mengisi`. En esta pasada no se encontró una contradicción interna adicional suficientemente demostrable para cambiar el contenido.
+
+Esta conclusión es limitada: no valida que todas las frases sean idiomáticas, que las glosas sean exhaustivas ni que el nivel sea correcto. Las cuestiones que requieren juicio lingüístico permanecen pendientes.
+
+### Estado de la auditoría automática
+
+El informe local estructural más reciente registra 32 unidades A1, 40 A2, 821 entradas de vocabulario y cero errores estructurales. Los 20 avisos A1 corresponden a IDs reutilizados para el mismo término indonesio; se mantienen como avisos editoriales y no se tratan automáticamente como errores. La auditoría no usa servicios externos y no emite certificación lingüística.
+
+### Siguiente trabajo
+
+1. Mantener la cola editorial y sus estados como fuente de pendientes, sin convertir CI en aprobación lingüística.
+2. Continuar la revisión por bloques solo cuando haya una contradicción demostrable o una mejora de trazabilidad; evitar crear pruebas duplicadas.
+3. Pasar a la siguiente prioridad funcional en paralelo: reforzar el aprendizaje adaptativo y las conversaciones con métricas locales, preservando el almacenamiento y las restricciones del proyecto.
+

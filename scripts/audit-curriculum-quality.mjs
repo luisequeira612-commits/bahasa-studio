@@ -153,6 +153,29 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
           issues.push(issue('error', 'LESSON_INVALID', lessonPath, 'La lección no es un objeto.'));
           return;
         }
+        const introducedIds = Array.isArray(lesson.vocabIds) ? lesson.vocabIds : [];
+        const reviewIds = Array.isArray(lesson.reviewVocabIds) ? lesson.reviewVocabIds : [];
+        const seenIntroduced = new Set();
+        introducedIds.forEach((id, idIndex) => {
+          if (typeof id !== 'string' || !id.trim()) return;
+          if (seenIntroduced.has(id)) {
+            issues.push(issue('error', 'LESSON_VOCAB_INTRODUCED_DUPLICATE', `${lessonPath}.vocabIds[${idIndex}]`, `La palabra ${id} se introduce más de una vez en la misma lección.`));
+          }
+          seenIntroduced.add(id);
+        });
+        const seenReview = new Set();
+        reviewIds.forEach((id, idIndex) => {
+          if (typeof id !== 'string' || !id.trim()) return;
+          if (seenReview.has(id)) {
+            issues.push(issue('warning', 'LESSON_REVIEW_VOCAB_DUPLICATE', `${lessonPath}.reviewVocabIds[${idIndex}]`, `La palabra ${id} aparece más de una vez en la lista de repaso.`));
+          }
+          seenReview.add(id);
+        });
+        introducedIds.forEach((id, idIndex) => {
+          if (typeof id === 'string' && id.trim() && seenReview.has(id)) {
+            issues.push(issue('warning', 'LESSON_VOCAB_NEW_AND_REVIEW', `${lessonPath}.vocabIds[${idIndex}]`, `La palabra ${id} figura como vocabulario nuevo y como repaso en la misma lección.`));
+          }
+        });
         for (const field of ['vocabIds', 'reviewVocabIds']) {
           if (lesson[field] !== undefined && !Array.isArray(lesson[field])) {
             issues.push(issue('error', 'LESSON_VOCAB_LIST_INVALID', `${lessonPath}.${field}`, `${field} debe ser un array.`));

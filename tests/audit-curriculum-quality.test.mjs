@@ -61,18 +61,20 @@ test('reports incomplete examples as warnings, not linguistic verdicts', () => {
   assert.ok(report.issues.some((item) => item.code === 'VOCAB_NOT_EXPLICITLY_ASSESSED'));
 });
 
-test('allows a shared vocabulary ID for the same Indonesian term as a warning', () => {
+test('classifies a shared vocabulary ID for the same Indonesian term as informational', () => {
   const report = auditCurriculum({
     id: 'A1',
     units: [
-      { id: 'u1', title: 'One', vocab: [{ id: 'makan', idn: 'Makan', esp: 'Comer' }], exercises: [] },
-      { id: 'u2', title: 'Two', vocab: [{ id: 'makan', idn: 'makan', esp: 'Comer' }], exercises: [] },
+      { id: 'u1', title: 'One', vocab: [{ id: 'makan', idn: 'Makan', esp: 'Comer', ex: 'Saya makan', exEsp: 'Yo como' }], exercises: [{ vocabId: 'makan', type: 'listen', prompt: 'Listen' }] },
+      { id: 'u2', title: 'Two', vocab: [{ id: 'makan', idn: 'makan', esp: 'Comer', ex: 'Saya makan', exEsp: 'Yo como' }], exercises: [{ vocabId: 'makan', type: 'listen', prompt: 'Listen' }] },
     ],
   });
   assert.equal(report.error_count, 0);
   assert.equal(report.vocabulary_count, 2);
   assert.equal(report.unique_vocabulary_id_count, 1);
-  assert.ok(report.issues.some((item) => item.code === 'VOCAB_ID_REUSED_SAME_TERM' && item.severity === 'warning'));
+  assert.ok(report.issues.some((item) => item.code === 'VOCAB_ID_REUSED_SAME_TERM' && item.severity === 'info'));
+  assert.equal(report.warning_count, 0);
+  assert.equal(report.info_count, 1);
 });
 
 test('resolves cumulative review references against vocabulary from another level', () => {
@@ -230,6 +232,22 @@ test('warns when a reused vocabulary ID keeps the Indonesian term but changes it
     item.severity === 'warning' &&
     item.path === 'A1.units[1].vocab[0]'
   ));
+});
+
+test('classifies same-term vocabulary ID reuse with the same gloss as informational', () => {
+  const report = auditCurriculum({
+    id: 'A1',
+    units: [
+      { id: 'u1', title: 'One', vocab: [{ id: 'shared', idn: 'baik', esp: 'Bueno', ex: 'Dia baik', exEsp: 'Él es bueno' }], exercises: [{ vocabId: 'shared', type: 'listen', prompt: 'Listen' }] },
+      { id: 'u2', title: 'Two', vocab: [{ id: 'shared', idn: 'BAIK', esp: '  bueno  ', ex: 'Dia baik', exEsp: 'Él es bueno' }], exercises: [{ vocabId: 'shared', type: 'listen', prompt: 'Listen' }] },
+    ],
+  });
+
+  const reuse = report.issues.find((item) => item.code === 'VOCAB_ID_REUSED_SAME_TERM');
+  assert.equal(reuse?.severity, 'info');
+  assert.equal(report.error_count, 0);
+  assert.equal(report.warning_count, 0);
+  assert.equal(report.info_count, 1);
 });
 
 test('does not warn for harmless case and whitespace differences in reused glosses', () => {

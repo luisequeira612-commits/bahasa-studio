@@ -14,7 +14,7 @@ Permitir que Bahasa Studio siga desarrollándose cuando KBBI no está disponible
 El script `scripts/audit-curriculum-quality.mjs` carga los currículos locales A1 y A2 y comprueba:
 
 - existencia de unidades, títulos y arrays de vocabulario;
-- IDs de unidad duplicados y colisiones de vocabulario (un mismo ID asociado a términos indonesios distintos); las repeticiones del mismo término se registran como avisos porque pueden representar vocabulario compartido; si un ID reutilizado conserva el término indonesio pero cambia la glosa española, se genera un aviso de consistencia para revisión editorial; el informe distingue entradas totales de IDs únicos;
+- IDs de unidad duplicados y colisiones de vocabulario (un mismo ID asociado a términos indonesios distintos); las repeticiones del mismo ID y término con la misma glosa se registran como información (no como aviso), porque representan una reutilización compatible con el repaso acumulativo y conservan el historial SRS; si un ID reutilizado conserva el término indonesio pero cambia la glosa española, se genera un aviso de consistencia para revisión editorial; el informe distingue entradas totales de IDs únicos;
 - campos obligatorios de cada entrada (`idn`, `esp`);
 - ejemplos incompletos como avisos editoriales;
 - estructura básica de ejercicios y consignas tanto a nivel de unidad como dentro de cada lección;
@@ -49,7 +49,7 @@ node scripts/audit-curriculum-quality.mjs --json artifacts/curriculum-quality-re
 node --test tests/audit-curriculum-quality.test.mjs
 ```
 
-El comando devuelve código distinto de cero si encuentra errores estructurales. Los avisos no bloquean el proceso; deben revisarse y priorizarse. El informe JSON registra `external_services_used: false`, `kbbi_required: false` y `linguistic_certification: false`.
+El comando devuelve código distinto de cero si encuentra errores estructurales. Los avisos no bloquean el proceso; deben revisarse y priorizarse. Los eventos informativos documentan reutilizaciones compatibles de IDs y no requieren corrección. El informe JSON registra `external_services_used: false`, `kbbi_required: false` y `linguistic_certification: false`.
 
 ## Modelo de calidad propuesto
 

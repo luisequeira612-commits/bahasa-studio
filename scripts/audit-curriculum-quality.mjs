@@ -128,7 +128,7 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
           const previous = vocabIds.get(word.id);
           const sameIndonesianTerm = String(previous.idn ?? '').trim().toLocaleLowerCase() === String(word.idn ?? '').trim().toLocaleLowerCase();
           if (sameIndonesianTerm) {
-            issues.push(issue('warning', 'VOCAB_ID_REUSED_SAME_TERM', wordPath, `El ID ${word.id} vuelve a aparecer para el mismo término indonesio; primera aparición en ${previous.path}.`));
+            issues.push(issue('info', 'VOCAB_ID_REUSED_SAME_TERM', wordPath, `El ID ${word.id} vuelve a aparecer para el mismo término indonesio; primera aparición en ${previous.path}.`));
             const normalizeGloss = (value) => String(value ?? '').trim().replace(/\s+/g, ' ').toLocaleLowerCase();
             if (normalizeGloss(previous.esp) && normalizeGloss(word.esp) && normalizeGloss(previous.esp) !== normalizeGloss(word.esp)) {
               issues.push(issue('warning', 'VOCAB_TRANSLATION_INCONSISTENT', wordPath, `El ID ${word.id} mantiene el término indonesio, pero cambia la glosa española respecto a ${previous.path}; revisar si es una diferencia contextual o una inconsistencia.`));
@@ -380,6 +380,7 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
     unique_vocabulary_id_count: vocabIds.size,
     error_count: issues.filter((item) => item.severity === 'error').length,
     warning_count: issues.filter((item) => item.severity === 'warning').length,
+    info_count: issues.filter((item) => item.severity === 'info').length,
     issues,
   };
 }
@@ -433,6 +434,7 @@ async function main() {
       unique_vocabulary_ids: reports.reduce((sum, item) => sum + item.unique_vocabulary_id_count, 0),
       errors: reports.reduce((sum, item) => sum + item.error_count, 0),
       warnings: reports.reduce((sum, item) => sum + item.warning_count, 0),
+      informational: reports.reduce((sum, item) => sum + item.info_count, 0),
     },
     levels: reports,
     limitations: [
@@ -446,7 +448,7 @@ async function main() {
   if (jsonPath) await writeFile(resolve(jsonPath), output, 'utf8');
   console.log(JSON.stringify(report.summary, null, 2));
   for (const level of reports) {
-    console.log(`${level.level}: ${level.unit_count} unidades, ${level.vocabulary_count} vocablos, ${level.error_count} errores, ${level.warning_count} avisos`);
+    console.log(`${level.level}: ${level.unit_count} unidades, ${level.vocabulary_count} vocablos, ${level.error_count} errores, ${level.warning_count} avisos, ${level.info_count} informativos`);
     for (const item of level.issues.slice(0, 30)) {
       console.log(`[${item.severity}] ${item.code} ${item.path}: ${item.message}`);
     }

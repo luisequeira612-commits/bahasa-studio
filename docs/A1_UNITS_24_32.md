@@ -1,5 +1,7 @@
 # A1: ampliación de 23 a 32 unidades
 
+> **Política operativa vigente (2026-11-01):** este documento conserva evidencia y observaciones históricas. KBBI no es requisito para continuar, cerrar tareas estructurales, integrar contenido ni publicar. Los estados `not_checked` reflejan ausencia de esa consulta concreta; no son un bloqueo de desarrollo. Sin hablante nativo disponible, las dimensiones de naturalidad, registro y adecuación lingüística deben permanecer explícitamente sin certificar. Las correcciones asistidas y los tests internos no equivalen a validación nativa.
+
 ## Estado
 
 Esta rama amplía el curso A1 de 23 a **32 unidades**. Las unidades 24–32 están integradas en `index.html` con vocabulario, ejemplos, explicación gramatical y práctica. Esta incorporación no certifica por sí misma la naturalidad de cada lema o frase: las nuevas unidades también deben pasar por la auditoría lingüística individual.
@@ -30,12 +32,12 @@ Esta rama amplía el curso A1 de 23 a **32 unidades**. Las unidades 24–32 est�
 
 Se hizo una pasada editorial de los 90 lemas/glosas y sus ejemplos bilingües de U24–U32 y se aplicaron correcciones de naturalidad/registro. El detalle y los límites de esta revisión están en [A1_LANGUAGE_AUDIT_UNITS_24_32.md](./A1_LANGUAGE_AUDIT_UNITS_24_32.md). Esto **no** significa que los 90 lemas estén cotejados individualmente con KBBI ni que las respuestas y el audio estén validados.
 
-## Revisión pendiente
+## Revisión pendiente y trabajo que sí puede completarse
 
-1. Cotejar individualmente los lemas y las glosas con KBBI cuando corresponda.
-2. Revisar naturalidad, registro y contexto de todos los ejemplos en indonesio y sus traducciones al español.
-3. Revisar las explicaciones gramaticales para que no presenten tendencias como reglas absolutas.
-4. Verificar las respuestas aceptadas y la calidad real del audio; una prueba estructural no valida pronunciación.
-5. Ejecutar todas las suites de CI sobre el commit final.
+1. Revisar la correspondencia entre cada ejercicio, su vocabulario objetivo y sus respuestas aceptadas/alternativas mediante auditorías locales.
+2. Revisar la claridad de las consignas, la consistencia de traducciones y las explicaciones gramaticales; registrar dudas en lugar de asumir que una propuesta asistida es definitiva.
+3. Probar la calidad real del audio y el comportamiento offline en dispositivos; hasta entonces, marcar esas dimensiones como no probadas.
+4. Ejecutar las suites de CI sobre cada cambio.
+5. Mantener separadas las cuestiones de naturalidad, registro y adecuación de nivel que no pueden confirmarse sin revisión competente. KBBI es opcional y no es puerta de salida.
 
-**Estado lingüístico:** las unidades 24–32 están implementadas, pero su auditoría léxica y de ejemplos sigue pendiente. No deben describirse todavía como validadas exhaustivamente.
+**Estado lingüístico:** U24–U32 tienen una pasada editorial asistida y correcciones concretas, pero no están certificadas por hablante nativo ni por revisión experta. Esto no impide continuar con pruebas, mejoras deterministas y correcciones justificadas.

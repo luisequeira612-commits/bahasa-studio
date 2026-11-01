@@ -1,10 +1,12 @@
-# Auditoría lingüística editorial — A1, unidades 24–32
+# Auditoría editorial asistida — A1, unidades 24–32
+
+> **Política operativa vigente (2026-11-01):** este documento conserva evidencia y observaciones históricas. KBBI no es requisito para continuar, cerrar tareas estructurales, integrar contenido ni publicar. Los estados `not_checked` reflejan ausencia de esa consulta concreta; no son un bloqueo de desarrollo. Sin hablante nativo disponible, las dimensiones de naturalidad, registro y adecuación lingüística deben permanecer explícitamente sin certificar. Las correcciones asistidas y los tests internos no equivalen a validación nativa.
 
 ## Alcance y estado
 
 Revisión editorial de los **90 lemas/glosas y sus 90 ejemplos bilingües** incorporados en U24–U32. Se revisaron la correspondencia entre indonesio y español, la forma visible del lema, la naturalidad básica de los frases modelo y la coherencia entre el lema y el ejemplo. Se corrigieron los puntos concretos registrados abajo.
 
-**Estado de KBBI: cotejo parcial.** En el rastreador hay 34/90 entradas con consulta directa registrada (`verified_primary`) y 56/90 siguen como `not_checked`; por tanto, no se considera completado el cotejo individual de las 90 entradas. La web oficial de KBBI VI Daring informa que algunas funciones requieren iniciar sesión y que el registro/alta estaba experimentando problemas cuando se consultó. Referencia oficial: https://kbbi.kemendikdasmen.go.id/ y aviso de acceso: https://kbbi.kemendikdasmen.go.id/?m=0. La revisión editorial no sustituye esa comprobación lexicográfica.
+**Evidencia histórica KBBI: parcial, no bloqueante.** El rastreador conserva 34/90 entradas con consulta directa registrada (`verified_primary`) y 56/90 como `not_checked`, según la reconciliación documentada. Estos estados describen únicamente si quedó registrada esa consulta lexicográfica; no determinan si la unidad puede seguir desarrollándose ni si una glosa, ejemplo o ejercicio está correcto. No se requiere completar las 90 consultas para continuar. Referencias y notas históricas se conservan en el CSV.
 
 ## Correcciones aplicadas en `index.html`
 
@@ -47,9 +49,9 @@ Se mantuvieron los IDs para no romper las referencias de los ejercicios. Las exp
 - Las actividades de escucha deben probarse en navegador/dispositivos reales: la revisión del texto no valida pronunciación, voz sintetizada, disponibilidad de audio ni comportamiento offline.
 - Pendiente de cotejar los 90 lemas uno por uno en KBBI VI Daring y registrar, para cada forma, si es lema, forma flexionada/derivada, variante o expresión. KBBI no debe usarse como única medida de naturalidad conversacional.
 
-## Criterio de salida
+## Criterio de salida y estado operativo
 
-Esta rama contiene correcciones editoriales útiles, pero la auditoría lingüística **no está cerrada**. No etiquetar U24–U32 como «validadas por KBBI» ni fusionar basándose únicamente en pruebas estructurales. El siguiente paso es completar el cotejo individual KBBI y la revisión de respuestas/audio.
+Las correcciones editoriales y los tests pueden integrarse cuando la suite estructural/regresiva esté verde y no existan contradicciones conocidas. No etiquetar U24–U32 como «validadas por KBBI», «validadas por hablante nativo» ni «lingüísticamente certificadas». El cotejo individual KBBI no es un requisito de salida. Las respuestas aceptadas, naturalidad, registro y audio deben revisarse en tareas independientes; cuando no haya evidencia suficiente, conservar el estado pendiente y explicar el límite. La falta de hablante nativo no bloquea mejoras deterministas, pero impide afirmar una validación nativa.
 
 
 ## Seguimiento de auditoría — 2026-10-28

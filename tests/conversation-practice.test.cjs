@@ -323,3 +323,17 @@ test('every guided conversation has unique identity and complete, unambiguous tu
     }
   }
 });
+
+test('incorrect guided answers explain both the intended response and the selected mistake', () => {
+  const engine = sandbox.window.ConversationEngine;
+  engine.start('greetings');
+  const turn = engine.currentScenario.turns[0];
+  const correct = turn.choices.find(choice => choice.correct);
+  const wrongIndex = turn.choices.findIndex(choice => !choice.correct);
+  const wrong = turn.choices[wrongIndex];
+  engine.choose(wrongIndex);
+  assert.ok(elements.conversationPracticeArea.innerHTML.includes(correct.feedback),
+    'feedback should explain why the displayed correct response fits');
+  assert.ok(elements.conversationPracticeArea.innerHTML.includes(wrong.feedback),
+    'feedback should also explain the learner selected response');
+});

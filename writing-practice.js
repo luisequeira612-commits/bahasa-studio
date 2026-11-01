@@ -3,6 +3,7 @@
     const tasks = Object.freeze([
         {
             id: 'profile',
+            level: 'A1',
             title: 'Un pequeño perfil de una amistad',
             situation: 'Escribe un perfil breve de una persona que conoces. Incluye su nombre, dos características físicas o de personalidad y una afición. Intenta escribir tres o cuatro frases.',
             checklist: ['Mencioné quién es la persona y cómo se llama.', 'Incluí al menos dos características.', 'Añadí una afición o actividad que le gusta.', 'Separé las ideas en frases claras.'],
@@ -10,6 +11,7 @@
         },
         {
             id: 'travel',
+            level: 'A1',
             title: 'Mi diario de viaje',
             situation: 'Imagina que acabas de llegar a una ciudad. Escribe una nota breve sobre dónde estás, cuándo llegaste, qué llevas y adónde irás después. Intenta escribir tres o cuatro frases.',
             checklist: ['Dije dónde estoy.', 'Mencioné cuándo llegué o cuándo saldré.', 'Incluí un objeto de viaje o equipaje.', 'Expliqué cuál será mi siguiente destino.'],
@@ -17,11 +19,39 @@
         },
         {
             id: 'directions',
+            level: 'A1',
             title: 'Una nota para indicar el camino',
             situation: 'Un amigo quiere visitar una tienda cerca de tu casa. Escríbele indicaciones sencillas: por dónde caminar, dónde girar y qué lugar verá. Intenta escribir tres o cuatro frases.',
             checklist: ['Indiqué desde dónde debe empezar.', 'Usé una instrucción para seguir o girar.', 'Mencioné izquierda o derecha.', 'Expliqué qué lugar encontrará.'],
             example: 'Dari rumah saya, berjalan lurus. Belok kiri di jalan besar. Toko ada di sebelah kanan. Toko itu dekat sekolah.'
         }
+        {
+            id: 'budget',
+            level: 'A2',
+            title: 'Mi presupuesto personal',
+            situation: 'Explica cómo organizas tu presupuesto: qué registras, qué priorizas y para qué ahorras. Intenta escribir cinco o seis frases y conecta tus ideas.',
+            vocabulary: ['anggaran', 'bulan', 'pemasukan', 'pengeluaran', 'mencatat', 'menabung', 'dana darurat', 'kebutuhan', 'prioritas', 'pemborosan'],
+            checklist: ['Expliqué cuál es mi presupuesto.', 'Mencioné ingresos y gastos.', 'Dije para qué ahorro.', 'Expliqué qué considero una prioridad.', 'Conecté las ideas en cinco o seis frases.'],
+            example: 'Saya punya anggaran untuk bulan ini. Saya mencatat pemasukan dan pengeluaran. Saya menabung untuk dana darurat. Saya memilih kebutuhan sebagai prioritas. Pemborosan bukan prioritas saya.'
+        },
+        {
+            id: 'online-meeting',
+            level: 'A2',
+            title: 'Una reunión de trabajo en línea',
+            situation: 'Describe una reunión en línea desde el inicio hasta el final. Menciona las herramientas que utilizas, los archivos que compartes y qué haces después. Intenta escribir cinco o seis frases.',
+            vocabulary: ['rapat daring', 'konferensi video', 'berbagi layar', 'dokumen bersama', 'tautan', 'lampiran', 'mengirim', 'unduh', 'penyimpanan awan', 'pembaruan'],
+            checklist: ['Expliqué cuándo y por qué hay una reunión.', 'Mencioné la videoconferencia.', 'Describí cómo comparto pantalla o documentos.', 'Incluí un enlace o archivo adjunto.', 'Conté qué hago después de la reunión.'],
+            example: 'Hari ini kami ada rapat daring. Kami menggunakan konferensi video. Saya berbagi layar dan membuka dokumen bersama. Saya mengirim tautan dan lampiran. Setelah rapat, saya unduh dokumen dari penyimpanan awan. Saya melihat pembaruan.'
+        },
+        {
+            id: 'compare-decisions',
+            level: 'A2',
+            title: 'Comparar opciones y tomar una decisión',
+            situation: 'Compara dos opciones. Explica sus ventajas, riesgos o consecuencias y termina con una conclusión clara. Intenta escribir cinco a siete frases.',
+            vocabulary: ['alternatif', 'mempertimbangkan', 'mengevaluasi', 'risiko', 'keuntungan', 'kerugian', 'konsekuensi', 'kesimpulan', 'memilih', 'tujuan', 'menjelaskan', 'langkah berikutnya'],
+            checklist: ['Presenté dos alternativas.', 'Mencioné una ventaja y una desventaja.', 'Expliqué al menos un riesgo o consecuencia.', 'Justifiqué mi elección.', 'Terminé con una conclusión y el siguiente paso.'],
+            example: 'Saya mempertimbangkan dua alternatif. Saya mengevaluasi risiko dan keuntungan. Saya juga melihat kerugian dan konsekuensi. Menurut saya, alternatif pertama sesuai dengan tujuan. Saya memilih alternatif pertama. Saya menjelaskan langkah berikutnya.'
+        },
     ]);
     function make(tag, text, className) {
         const node = document.createElement(tag);
@@ -52,10 +82,10 @@
             const host = document.getElementById('writingPracticeContent');
             if (!host) return;
             host.replaceChildren();
-            host.appendChild(make('p', 'Prácticas independientes: no se califican y no modifican tu progreso.', 'text-muted'));
+            host.appendChild(make('p', 'Escritura progresiva A1–A2: empieza con tres o cuatro frases y avanza hacia textos de cinco a siete. No se califican ni modifican tu XP o SRS.', 'text-muted'));
             tasks.forEach(task => {
                 const card = make('section', undefined, 'card');
-                const heading = make('h3', task.title);
+                const heading = make('h3', task.level + ' · ' + task.title);
                 const description = make('p', task.situation);
                 description.style.color = 'var(--text-muted)';
                 const button = make('button', 'Empezar a escribir');
@@ -75,6 +105,7 @@
             back.type = 'button';
             back.className = 'btn btn-outline btn-sm';
             back.addEventListener('click', () => this.renderList());
+            const levelLabel = make('p', task.level + ' · Escritura progresiva', 'text-muted');
             const heading = make('h3', task.title);
             const situation = make('p', task.situation);
             const label = make('label', 'Tu borrador en indonesio');
@@ -115,7 +146,7 @@
                 }
             });
             const disclaimer = make('p', 'Sin nota, sin XP ni registro SRS. Solo se cuenta una sesión al comparar tu borrador con el ejemplo; el texto no se guarda ni se incluye en las copias de seguridad.', 'text-muted');
-            host.append(back, heading, situation, label, textarea, checklistHeading, checklist, note, reveal, status, example, disclaimer);
+            host.append(back, levelLabel, heading, situation, label, textarea, checklistHeading, checklist, note, reveal, status, example, disclaimer);
         }
     };
     root.WritingPractice = WritingPractice;

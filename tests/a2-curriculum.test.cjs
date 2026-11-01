@@ -869,3 +869,16 @@ test('A2 units 25-40 keep exercise answers aligned with their linked vocabulary'
     }
   }
 });
+
+
+test('A2 U14 uses consistent travel glosses and translation prompts', () => {
+  const unit = a2.units.find(entry => entry.id === 'a2_u14');
+  assert.ok(unit);
+  assert.match(unit.grammar, /bepergian, viajar/);
+  assert.match(unit.grammar, /keberangkatan, salida/);
+  const travel = unit.lessons.flatMap(lesson => lesson.exercises || [])
+    .find(exercise => exercise.vocabId === 'a2u14_bepergian' && exercise.type === 'translate_es_id');
+  assert.ok(travel);
+  assert.equal(travel.prompt, 'Traduce: Viajo por la mañana.');
+  assert.equal(travel.answer, 'Saya bepergian pagi.');
+});

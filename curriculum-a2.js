@@ -2935,7 +2935,7 @@ window.BAHASA_CURRICULUM_A2 = {
                         "id": "a2_u14",
                         "title": "Unidad 14: Viajes y transporte",
                         "desc": "Organiza desplazamientos y habla de estaciones, puertos, billetes y retrasos.",
-                        "grammar": "Perjalanan nombra un viaje; bepergian, partir; mendarat, aterrizar. Karcis significa billete y keberangkatan, viaje.",
+                        "grammar": "Perjalanan nombra un viaje; bepergian, viajar; mendarat, aterrizar. Karcis significa billete y keberangkatan, salida.",
                         "vocab": [
                             {
                                 "id": "a2u14_perjalanan",
@@ -3048,7 +3048,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                     {
                                         "vocabId": "a2u14_bepergian",
                                         "type": "translate_es_id",
-                                        "prompt": "Traduce: Salgo por la mañana.",
+                                        "prompt": "Traduce: Viajo por la mañana.",
                                         "answer": "Saya bepergian pagi.",
                                         "explanation": "La frase utiliza bepergian."
                                     },

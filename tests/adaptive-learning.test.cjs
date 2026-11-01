@@ -79,3 +79,36 @@ test('SRS dashboard wires adaptive recommendations to existing learner actions',
   assert.match(html, /LessonEngine\.startUnitById\(recommendation\.unitId, recommendation\.lessonIndex\)/);
   assert.match(html, /ConversationEngine\.open\(\)/);
 });
+
+
+test('lowest skill accuracy is surfaced only after five scored attempts', () => {
+  const result = AdaptiveLearning.recommend({
+    dueCount: 0,
+    weakWords: [],
+    nextLesson: { unitId: 'a2_u1', lessonIndex: 0, title: 'Lección 1' },
+    skillStats: {
+      recognition: { attempts: 8, correct: 7 },
+      translation: { attempts: 5, correct: 2 },
+      listening: { attempts: 4, correct: 0 }
+    }
+  });
+  assert.equal(result.type, 'continue-lesson');
+  assert.match(result.description, /menor precisión registrada está en traducción: 40% \(5 intentos\)/);
+  assert.doesNotMatch(result.description, /escucha/);
+});
+
+test('skill focus ignores malformed counters and does not claim mastery', () => {
+  const focus = AdaptiveLearning.weakestSkill({
+    recognition: { attempts: 4, correct: 0 },
+    translation: { attempts: 8, correct: 9 },
+    listening: { attempts: 10, correct: 6 }
+  });
+  assert.equal(focus.key, 'listening');
+  assert.equal(focus.accuracy, 60);
+  assert.equal(AdaptiveLearning.weakestSkill({ writing: { attempts: 4, correct: 0 } }), null);
+});
+
+test('adaptive dashboard passes the saved skill profile into recommendation logic', () => {
+  const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+  assert.match(html, /skillStats: this\.studyActivity && this\.studyActivity\.skillStats/);
+});

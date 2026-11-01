@@ -12,7 +12,7 @@ const unit = context.window.BAHASA_CURRICULUM_A2.units.find(item => item.id === 
 
 test('A2 U12 lesson titles, objectives and grammar match their vocabulary groups', () => {
   assert.ok(unit);
-  assert.deepEqual(unit.lessons.map(lesson => lesson.title), [
+  assert.deepEqual(Array.from(unit.lessons, lesson => lesson.title), [
     'Lección 1: Experiencia, capacidades y oportunidades',
     'Lección 2: Metas, aspiraciones y resultados',
     'Lección 3: Fracaso, decisiones y continuidad',

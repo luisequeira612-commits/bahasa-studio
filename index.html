@@ -3017,8 +3017,18 @@ Requisitos:
 
                 const rankedWordHistory = [...srsByWord.entries()]
                     .filter(([, item]) => (item.incorrect > 0 || item.savedForReview) && item.repetition < 4)
-                    .sort((a, b) => Number(b[1].savedForReview) - Number(a[1].savedForReview) ||
-                        b[1].incorrect - a[1].incorrect || a[1].repetition - b[1].repetition);
+                    .sort((a, b) => {
+                        const savedPriority = Number(b[1].savedForReview) - Number(a[1].savedForReview);
+                        if (savedPriority) return savedPriority;
+                        const errorRateA = a[1].attempts > 0 ? a[1].incorrect / a[1].attempts : 0;
+                        const errorRateB = b[1].attempts > 0 ? b[1].incorrect / b[1].attempts : 0;
+                        if (errorRateA !== errorRateB) return errorRateB - errorRateA;
+                        if (a[1].repetition !== b[1].repetition) return a[1].repetition - b[1].repetition;
+                        const reviewedA = Number.isFinite(a[1].lastReviewed) ? a[1].lastReviewed : 0;
+                        const reviewedB = Number.isFinite(b[1].lastReviewed) ? b[1].lastReviewed : 0;
+                        if (reviewedA !== reviewedB) return reviewedA - reviewedB;
+                        return b[1].incorrect - a[1].incorrect;
+                    });
                 const toAdaptiveWord = ([term, history]) => {
                     const word = uniqueVocab.find(entry => String(entry.idn || '').trim().toLocaleLowerCase() === term);
                     return word ? {

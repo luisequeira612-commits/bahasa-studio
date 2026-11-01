@@ -7,7 +7,7 @@ window.BAHASA_CURRICULUM_A2 = {
                             id: 'a2_u1',
                             title: 'Unidad 1: Días, meses y fechas',
                             desc: 'Habla de los días de la semana, los meses y fechas sencillas.',
-                            grammar: 'Los días y los meses se escriben con mayúscula inicial en los nombres propios de los días y meses en indonesio. Para preguntar la fecha puedes usar «Tanggal berapa hari ini?».',
+                            grammar: 'Los nombres de los días y los meses llevan mayúscula inicial: «Senin», «Jumat» y «Agustus». Para preguntar por el número de la fecha puedes usar «Tanggal berapa hari ini?»; para preguntar por el día de la semana, «Hari apa hari ini?».',
                             vocab: [
                                 { id: 'a2u1_senin', idn: 'Senin', esp: 'Lunes', ex: 'Hari ini hari Senin.', exEsp: 'Hoy es lunes.' },
                                 { id: 'a2u1_selasa', idn: 'Selasa', esp: 'Martes', ex: 'Besok hari Selasa.', exEsp: 'Mañana es martes.' },
@@ -50,14 +50,14 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     title: 'Lección 2: Fin de semana y fechas',
                                     objective: 'Nombra viernes, sábado y domingo y pregunta por la fecha.',
-                                    grammar: '«Tanggal berapa hari ini?» pregunta qué fecha es hoy. «Tanggal» se refiere al día del mes. Para responder con una fecha completa, se puede usar el patrón «Hari ini tanggal [número] [mes]», por ejemplo «Hari ini tanggal 17 Agustus».',
+                                    grammar: 'Los nombres de los días y los meses llevan mayúscula inicial: «Senin», «Jumat» y «Agustus». «Tanggal berapa hari ini?» pregunta por el número de la fecha; «Hari apa hari ini?» pregunta por el día de la semana. «Tanggal» se refiere al día del mes. Para responder con una fecha sencilla (día y mes), se puede usar el patrón «Hari ini tanggal [número] [mes]», por ejemplo «Hari ini tanggal 17 Agustus».',
                                     vocabIds: ['a2u1_jumat', 'a2u1_sabtu', 'a2u1_minggu', 'a2u1_tanggal', 'a2u1_bulan'],
                                     exercises: [
                                         { vocabId: 'a2u1_jumat', type: 'mc', prompt: '¿Qué día viene después de Jumat?', options: ['Sabtu', 'Minggu', 'Kamis'], answer: 0, explanation: 'Después de Jumat (viernes) viene Sabtu (sábado).' },
                                         { vocabId: 'a2u1_tanggal', type: 'translate_es_id', prompt: 'Traduce: ¿Qué fecha es hoy?', answer: 'Tanggal berapa hari ini?', explanation: 'Tanggal berapa hari ini? es una pregunta para saber la fecha.' },
                                         { vocabId: 'a2u1_minggu', type: 'listen', prompt: 'Escucha y escribe la oración.', answer: 'Hari ini hari Minggu.', explanation: 'La oración dice «Hoy es domingo».' },
                                         { vocabId: 'a2u1_sabtu', type: 'write', prompt: 'Escribe una oración para decir que hoy es sábado.', hint: 'Usa «Hari ini hari ...» y el nombre del día.', modelAnswer: 'Hari ini hari Sabtu.', explanation: 'Es un modelo posible; puedes usar el mismo patrón con otro día.' },
-                                        { vocabId: 'a2u1_tanggal', type: 'write', prompt: 'Escribe la fecha completa: hoy es 17 de agosto.', hint: 'Usa «Hari ini tanggal ...» seguido del número y el nombre del mes en indonesio.', modelAnswer: 'Hari ini tanggal 17 Agustus.', explanation: 'El patrón propuesto combina «Hari ini tanggal», el número del día y el nombre del mes. La forma y el ejemplo deben considerarse material didáctico beta pendiente de revisión lingüística.' }
+                                        { vocabId: 'a2u1_tanggal', type: 'write', prompt: 'Escribe el día y el mes: hoy es 17 de agosto.', hint: 'Usa «Hari ini tanggal ...» seguido del número y el nombre del mes en indonesio.', modelAnswer: 'Hari ini tanggal 17 Agustus.', explanation: 'El patrón propuesto combina «Hari ini tanggal», el número del día y el nombre del mes. La forma y el ejemplo deben considerarse material didáctico beta pendiente de revisión lingüística.' }
                                     ]
                                 },
                                 {
@@ -135,13 +135,13 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     title: 'Lección 2: Hace un rato y hace muy poco',
                                     objective: 'Sitúa acciones en momentos recientes del día.',
-                                    grammar: 'Tadi suele referirse a un momento anterior dentro del día actual. Tadi pagi y tadi malam concretan el momento; baru saja indica que algo ocurrió hace muy poco.',
+                                    grammar: 'Tadi sitúa algo en un pasado reciente. Con partes del día, tadi pagi significa «esta mañana» cuando ese tramo ya ha pasado y tadi malam suele significar «anoche»; la referencia exacta depende de la hora y del contexto. Si todavía es por la mañana, se usa pagi ini, no tadi pagi. Baru saja indica que algo ocurrió hace muy poco.',
                                     vocabIds: ['a2u2_tadi', 'a2u2_tadi_pagi', 'a2u2_tadi_malam', 'a2u2_baru_saja'],
                                     exercises: [
-                                        { vocabId: 'a2u2_tadi_pagi', type: 'mc', prompt: '¿Qué momento indica «tadi pagi»?', options: ['Esta mañana, hace un rato', 'Mañana por la mañana', 'La semana pasada'], answer: 0, explanation: 'Tadi pagi se refiere a esta mañana, antes del momento actual.' },
+                                        { vocabId: 'a2u2_tadi_pagi', type: 'mc', prompt: 'Si ya pasó la mañana, ¿qué momento indica «tadi pagi»?', options: ['Esta mañana, hace un rato', 'Mañana por la mañana', 'La semana pasada'], answer: 0, explanation: 'Tadi pagi se refiere a esta mañana, antes del momento actual.' },
                                         { vocabId: 'a2u2_tadi_malam', type: 'translate_es_id', prompt: 'Traduce: Dormí anoche.', answer: 'Saya tidur tadi malam.', explanation: 'Tadi malam sitúa la acción en la noche anterior de hoy.' },
                                         { vocabId: 'a2u2_baru_saja', type: 'listen', prompt: 'Escucha y escribe la oración.', answer: 'Dia baru saja datang.', explanation: 'Baru saja indica que la llegada ocurrió hace muy poco.' },
-                                        { vocabId: 'a2u2_tadi', type: 'write', prompt: 'Escribe una frase para decir que estudiaste esta mañana.', hint: 'Usa «Saya belajar tadi pagi». Puedes cambiar la actividad si mantienes el marcador temporal.', modelAnswer: 'Saya belajar tadi pagi.', explanation: 'El modelo sitúa el estudio en esta mañana.' }
+                                        { vocabId: 'a2u2_tadi', type: 'write', prompt: 'Si ya pasó la mañana, escribe una frase para decir que estudiaste esta mañana.', hint: 'Usa «Saya belajar tadi pagi». Puedes cambiar la actividad si mantienes el marcador temporal.', modelAnswer: 'Saya belajar tadi pagi.', explanation: 'El modelo sitúa el estudio en esta mañana.' }
                                     ]
                                 },
                                 {
@@ -149,11 +149,13 @@ window.BAHASA_CURRICULUM_A2 = {
                                     objective: 'Expresa continuidad y proximidad temporal.',
                                     grammar: 'Masih indica que una situación continúa. Sebentar lagi señala que algo ocurrirá dentro de poco; minggu depan sitúa una acción en la semana siguiente.',
                                     vocabIds: ['a2u2_masih', 'a2u2_sebentar_lagi', 'a2u2_minggu_depan'],
+                                    reviewVocabIds: ['a2u2_belum'],
                                     exercises: [
                                         { vocabId: 'a2u2_masih', type: 'mc', prompt: 'En «Saya masih di rumah», ¿qué significa masih?', options: ['Todavía; aún', 'Ya; completado', 'Nunca'], answer: 0, explanation: 'Masih expresa que la situación continúa.' },
                                         { vocabId: 'a2u2_sebentar_lagi', type: 'translate_es_id', prompt: 'Traduce: Me iré dentro de poco.', answer: 'Saya akan pergi sebentar lagi.', explanation: 'Sebentar lagi indica que la acción ocurrirá pronto.' },
                                         { vocabId: 'a2u2_minggu_depan', type: 'listen', prompt: 'Escucha y escribe la oración.', answer: 'Saya pergi minggu depan.', explanation: 'Minggu depan significa «la semana que viene».' },
-                                        { vocabId: 'a2u2_masih', type: 'order', prompt: 'Ordena: Todavía estoy estudiando.', words: ['belajar', 'masih', 'Saya'], correctOrder: ['Saya', 'masih', 'belajar'], explanation: 'Saya masih belajar expresa que el estudio continúa.' }
+                                        { vocabId: 'a2u2_masih', type: 'order', prompt: 'Ordena: Todavía estoy estudiando.', words: ['belajar', 'masih', 'Saya'], correctOrder: ['Saya', 'masih', 'belajar'], explanation: 'Saya masih belajar expresa que el estudio continúa.' },
+                                        { vocabId: 'a2u2_belum', type: 'mc', prompt: '¿Qué diferencia expresan «Saya belum makan» y «Saya masih makan»?', options: ['Belum: todavía no he comido; masih: sigo comiendo.', 'Belum: ya terminé de comer; masih: nunca como.', 'Belum y masih siempre significan exactamente lo mismo.'], answer: 0, explanation: 'Belum indica que la acción todavía no ha ocurrido; masih indica que la situación o actividad continúa. El contexto y el verbo ayudan a distinguirlos.' }
                                     ]
                                 },
                                 {
@@ -174,7 +176,7 @@ window.BAHASA_CURRICULUM_A2 = {
                             id: 'a2_u3',
                             title: 'Unidad 3: Ordenar acontecimientos y contar secuencias',
                             desc: 'Conecta acciones para explicar qué ocurrió primero, después y al final.',
-                            grammar: 'Los conectores temporales organizan los acontecimientos. Primera posición, continuación y cierre se expresan con palabras como pertama, lalu, kemudian y akhirnya. La forma del verbo no cambia por el pasado.',
+                            grammar: 'Los conectores temporales organizan los acontecimientos. El primer paso, las acciones siguientes y el cierre se expresan con palabras como pertama, lalu, kemudian y akhirnya. La forma del verbo no cambia para indicar pasado.',
                             vocab: [
                                 { id: 'a2u3_pertama', idn: 'Pertama', esp: 'Primero; en primer lugar', ex: 'Pertama, saya makan.', exEsp: 'Primero, como.' },
                                 { id: 'a2u3_lalu', idn: 'Lalu', esp: 'Luego; después', ex: 'Lalu, saya minum air.', exEsp: 'Luego, bebo agua.' },
@@ -182,7 +184,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 { id: 'a2u3_setelah_itu', idn: 'Setelah itu', esp: 'Después de eso', ex: 'Setelah itu, saya belajar.', exEsp: 'Después de eso, estudio.' },
                                 { id: 'a2u3_akhirnya', idn: 'Akhirnya', esp: 'Finalmente; al final', ex: 'Akhirnya, saya pulang.', exEsp: 'Finalmente, regreso a casa.' },
                                 { id: 'a2u3_berikutnya', idn: 'Berikutnya', esp: 'A continuación; lo siguiente', ex: 'Berikutnya, saya membaca buku.', exEsp: 'A continuación, leo un libro.' },
-                                { id: 'a2u3_sebelumnya', idn: 'Sebelumnya', esp: 'Antes de eso; previamente', ex: 'Sebelumnya, saya belajar.', exEsp: 'Antes de eso, estudio.' },
+                                { id: 'a2u3_sebelumnya', idn: 'Sebelumnya', esp: 'Antes de eso; previamente', ex: 'Sebelumnya, saya belajar.', exEsp: 'Antes de eso, estudié.' },
                                 { id: 'a2u3_selanjutnya', idn: 'Selanjutnya', esp: 'A continuación; después', ex: 'Selanjutnya, saya pergi.', exEsp: 'A continuación, voy.' },
                                 { id: 'a2u3_setelah', idn: 'Setelah', esp: 'Después de; una vez que', ex: 'Setelah makan, saya minum air.', exEsp: 'Después de comer, bebo agua.' },
                                 { id: 'a2u3_ketika', idn: 'Ketika', esp: 'Cuando', ex: 'Ketika saya makan, dia datang.', exEsp: 'Cuando como, él/ella llega.' },
@@ -221,10 +223,10 @@ window.BAHASA_CURRICULUM_A2 = {
                                     grammar: 'Sebelumnya remite a un momento anterior. Selanjutnya presenta el siguiente paso. Setelah introduce un hecho que sirve de referencia temporal.',
                                     vocabIds: ['a2u3_sebelumnya', 'a2u3_selanjutnya', 'a2u3_setelah'],
                                     exercises: [
-                                        { vocabId: 'a2u3_sebelumnya', type: 'mc', prompt: '¿Qué significa «sebelumnya»?', options: ['Antes de eso; previamente', 'Después de eso', 'Finalmente'], answer: 0, explanation: 'Sebelumnya remite a algo anterior.' },
+                                        { vocabId: 'a2u3_sebelumnya', type: 'mc', prompt: '¿Qué significa «sebelumnya»?', options: ['Antes de eso; previamente', 'Después de eso', 'Finalmente'], answer: 0, explanation: 'Sebelumnya remite a un hecho anterior; el contexto temporal sitúa el verbo en el pasado.' },
                                         { vocabId: 'a2u3_selanjutnya', type: 'translate_es_id', prompt: 'Traduce: A continuación, estudio.', answer: 'Selanjutnya, saya belajar.', explanation: 'Selanjutnya presenta el paso siguiente.' },
                                         { vocabId: 'a2u3_setelah', type: 'listen', prompt: 'Escucha y escribe la oración.', answer: 'Setelah makan, saya minum air.', explanation: 'Setelah introduce la acción de comer como referencia temporal.' },
-                                        { vocabId: 'a2u3_sebelumnya', type: 'order', prompt: 'Ordena: Antes de eso, estudio.', words: ['saya', 'Sebelumnya', 'belajar'], correctOrder: ['Sebelumnya', 'saya', 'belajar'], explanation: 'Sebelumnya, saya belajar significa «Antes de eso, estudio».' }
+                                        { vocabId: 'a2u3_sebelumnya', type: 'order', prompt: 'En una narración sobre ayer, ordena: Antes de eso, estudié.', words: ['saya', 'Sebelumnya', 'belajar'], correctOrder: ['Sebelumnya', 'saya', 'belajar'], explanation: 'Sebelumnya, saya belajar significa «Antes de eso, estudié» en este contexto narrativo.' }
                                     ]
                                 },
                                 {
@@ -293,7 +295,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                     vocabIds: ['a2u4_kegiatan', 'a2u4_acara'],
                                     reviewVocabIds: ['v252', 'v251'],
                                     exercises: [
-                                        { vocabId: 'a2u4_kegiatan', type: 'mc', prompt: '¿Qué significa «kegiatan»?', options: ['Actividad', 'Evento', 'Horario'], answer: 0, explanation: 'Kegiatan significa «actividad».' },
+                                        { vocabId: 'a2u4_kegiatan', type: 'mc', prompt: 'En «Kegiatan mulai pukul delapan», ¿qué significa «kegiatan»?', options: ['Actividad', 'Horario', 'Lugar'], answer: 0, explanation: 'En esta oración, kegiatan se refiere a la actividad que empieza a las ocho.' },
                                         { vocabId: 'a2u4_acara', type: 'translate_es_id', prompt: 'Traduce: Ese evento empieza a las siete.', answer: 'Acara itu mulai pukul tujuh.', explanation: 'Acara itu significa «ese evento».' },
                                         { vocabId: 'v252', type: 'listen', prompt: 'Escucha y escribe la oración.', answer: 'Saya istirahat.', explanation: 'La oración dice «Descanso».' },
                                         { vocabId: 'a2u4_kegiatan', type: 'order', prompt: 'Ordena: La actividad empieza a las ocho.', words: ['pukul', 'Kegiatan', 'delapan', 'mulai'], correctOrder: ['Kegiatan', 'mulai', 'pukul', 'delapan'], explanation: 'Kegiatan mulai pukul delapan expresa la hora de inicio.' }
@@ -304,13 +306,14 @@ window.BAHASA_CURRICULUM_A2 = {
                                     objective: 'Describe si tu día está ocupado o es tranquilo.',
                                     grammar: 'Sibuk describe un día con muchas tareas; santai describe un ritmo tranquilo o relajado.',
                                     vocabIds: ['a2u4_sibuk', 'a2u4_santai', 'a2u4_penuh'],
-                                    reviewVocabIds: ['v247', 'v248', 'v249', 'v250', 'v251', 'v252'],
+                                    reviewVocabIds: ['a2u4_jadwal', 'v247', 'v248', 'v249', 'v250', 'v251', 'v252'],
                                     exercises: [
                                         { vocabId: 'a2u4_sibuk', type: 'mc', prompt: '¿Qué significa «sibuk»?', options: ['Ocupado/a', 'Tranquilo/a', 'Cansado/a'], answer: 0, explanation: 'Sibuk describe a alguien que tiene muchas actividades o tareas.' },
                                         { vocabId: 'a2u4_santai', type: 'translate_es_id', prompt: 'Traduce: Hoy estoy tranquilo/a.', answer: 'Hari ini saya santai.', explanation: 'Santai describe un estado relajado o tranquilo.' },
                                         { vocabId: 'a2u4_penuh', type: 'mc', prompt: 'En «Jadwal saya penuh», ¿qué significa penuh?', options: ['Lleno', 'Ordenado', 'Libre'], answer: 0, explanation: 'Penuh significa «lleno» o «completo».' },
                                         { vocabId: 'v251', type: 'listen', prompt: 'Escucha y escribe la oración.', answer: 'Saya pulang.', explanation: 'La oración dice «Regreso a casa».' },
-                                        { vocabId: 'a2u4_sibuk', type: 'write', prompt: 'Escribe una frase para describir que hoy no estás ocupado/a.', hint: 'Usa «Hari ini saya tidak sibuk».', modelAnswer: 'Hari ini saya tidak sibuk.', explanation: 'El modelo niega sibuk con tidak.' }
+                                        { vocabId: 'a2u4_sibuk', type: 'write', prompt: 'Escribe una frase para describir que hoy no estás ocupado/a.', hint: 'Usa «Hari ini saya tidak sibuk».', modelAnswer: 'Hari ini saya tidak sibuk.', explanation: 'El modelo niega sibuk con tidak.' },
+                                        { vocabId: 'a2u4_jadwal', type: 'write', prompt: 'Escribe un horario breve con dos actividades y sus horas; termina indicando si tu horario está lleno o si hoy tienes un ritmo tranquilo.', hint: 'Puedes usar «Pukul ... saya ...» para cada actividad y terminar con «Jadwal saya penuh» o «Hari ini saya santai».', modelAnswer: 'Pukul delapan saya belajar. Pukul dua belas saya makan. Jadwal saya penuh.', explanation: 'La respuesta integra dos actividades con sus horas y una descripción global del día. Es un modelo guiado; se pueden aceptar otras actividades y horarios coherentes.' }
                                     ]
                                 }
                             ]

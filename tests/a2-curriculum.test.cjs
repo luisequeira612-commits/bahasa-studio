@@ -289,6 +289,27 @@ test('A2 units 21-24 teach culture, digital media, banking, and education with c
       for (const exercise of lesson.exercises || []) {
         assert.ok(exercise.vocabId && unit.vocab.some(word => word.id === exercise.vocabId),
           unit.id + ' exercise must reference vocabulary introduced in the unit');
+        const word = unit.vocab.find(entry => entry.id === exercise.vocabId);
+        const target = word.idn.toLowerCase();
+        if (exercise.type === 'mc') {
+          assert.ok(Number.isInteger(exercise.answer) && exercise.answer >= 0 && exercise.answer < exercise.options.length,
+            unit.id + ' multiple-choice answer index must be valid');
+          assert.equal(exercise.options[exercise.answer], word.esp,
+            unit.id + ' multiple-choice answer must match ' + word.idn);
+          assert.ok(exercise.explanation.toLowerCase().includes(target),
+            unit.id + ' multiple-choice feedback must name ' + word.idn);
+        } else if (exercise.type === 'order') {
+          assert.deepEqual(Array.from(exercise.words).sort(), Array.from(exercise.correctOrder).sort(),
+            unit.id + ' ordering tokens must match the canonical answer');
+          assert.ok(exercise.explanation.includes(exercise.correctOrder.join(' ')),
+            unit.id + ' ordering feedback must reproduce the canonical answer');
+        } else if (exercise.type === 'write') {
+          assert.ok(exercise.modelAnswer && exercise.modelAnswer.toLowerCase().includes(target),
+            unit.id + ' writing model must contain its target vocabulary: ' + word.idn);
+        } else if (exercise.type === 'translate_es_id' || exercise.type === 'listen') {
+          assert.ok(exercise.answer && exercise.answer.toLowerCase().includes(target),
+            unit.id + ' sentence answer must contain its target vocabulary: ' + word.idn);
+        }
       }
     }
     for (const word of unit.vocab) {

@@ -22,7 +22,8 @@
         translation: 'traducción',
         listening: 'escucha',
         sentenceBuilding: 'construcción de frases',
-        writing: 'escritura'
+        writing: 'escritura',
+        conversation: 'conversación'
     };
 
     function weakestSkill(value) {
@@ -125,6 +126,16 @@
                 action: 'reinforce',
                 label: 'Repasar estas palabras',
                 wordIds: isolatedWords.map(word => word.id)
+            }, focus);
+        }
+
+        if (focus && focus.key === 'conversation') {
+            return contextualize({
+                type: 'reinforce-conversation',
+                title: 'Refuerza tu conversación',
+                description: 'Tus respuestas en conversaciones guiadas muestran que conviene practicar más. Repite un escenario y presta atención a las respuestas y sus explicaciones.',
+                action: 'conversation',
+                label: 'Practicar conversación'
             }, focus);
         }
 

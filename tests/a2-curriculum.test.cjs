@@ -1104,6 +1104,18 @@ test('A2 U9-U12 editorial audit records bounded findings without claiming lingui
   assert.match(audit, /No se modificaron IndexedDB, el formato de backup v3/);
 });
 
+test('A2 U14 and U16 lesson headings and objectives match their taught vocabulary', () => {
+  const u14 = a2.units.find(unit => unit.id === 'a2_u14');
+  const u14Lesson = u14.lessons[1];
+  assert.equal(u14Lesson.title, 'Lección 2: Equipaje, puertos y billetes');
+  assert.deepEqual(u14Lesson.vocabIds, ['a2u14_bagasi', 'a2u14_pelabuhan', 'a2u14_karcis']);
+
+  const u16 = a2.units.find(unit => unit.id === 'a2_u16');
+  const u16Lesson = u16.lessons[3];
+  assert.equal(u16Lesson.objective, 'Describe una experiencia mediante fotografías y paisajes.');
+  assert.deepEqual(u16Lesson.vocabIds, ['a2u16_berfoto', 'a2u16_pemandangan', 'a2u16_menyenangkan']);
+});
+
 test('A2 U13-U16 editorial audit records bounded findings without claiming linguistic certification', () => {
   const audit = fs.readFileSync(path.join(__dirname, '..', 'docs/A2-UNITS-13-16-AUDIT.md'), 'utf8');
   for (const unit of ['U13', 'U14', 'U15', 'U16']) assert.match(audit, new RegExp('\\b' + unit + '\\b'));

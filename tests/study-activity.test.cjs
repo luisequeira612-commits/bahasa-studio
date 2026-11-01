@@ -75,6 +75,7 @@ test('legacy backups without activity data receive a clean default', () => {
   assert.equal(activity.dailyGoal, 30);
   assert.equal(activity.lastStudyDate, null);
   assert.equal(activity.todayXp, 0);
+  assert.equal(activity.skillStats.listening.attempts, 0, 'legacy backups receive empty skill counters');
 });
 
 

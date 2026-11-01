@@ -124,3 +124,14 @@ test('free writing and conversation sessions count without storing their text', 
   assert.equal(restored.todayLessons, 0);
   assert.throws(() => StudyActivity.recordSkillSession(activity, 'listening', day), /Sesión de práctica no válida/);
 });
+
+
+test('skill counters reject values beyond the safe local limit', () => {
+  const day = localDate(2026, 10, 29);
+  const activity = StudyActivity.createDefault(day);
+  activity.skillStats.listening.attempts = 1000000000;
+  activity.skillStats.listening.correct = 1000000000;
+  assert.throws(() => StudyActivity.recordSkill(activity, 'listening', true, day), /Contador de habilidad no válido/);
+  activity.skillStats.conversation.sessions = 1000000000;
+  assert.throws(() => StudyActivity.recordSkillSession(activity, 'conversation', day), /Contador de habilidad no válido/);
+});

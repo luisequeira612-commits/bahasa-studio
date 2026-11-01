@@ -49,6 +49,7 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
   const issues = [];
   const units = Array.isArray(curriculum?.units) ? curriculum.units : [];
   const vocabIds = new Map();
+  const vocabIntroductionUnit = new Map();
   const unitIds = new Set();
   let vocabularyEntryCount = 0;
 
@@ -79,6 +80,9 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
         if (!word || typeof word !== 'object') {
           issues.push(issue('error', 'VOCAB_ITEM_INVALID', wordPath, 'La entrada de vocabulario no es un objeto.'));
           return;
+        }
+        if (typeof word.id === 'string' && word.id && !vocabIntroductionUnit.has(word.id)) {
+          vocabIntroductionUnit.set(word.id, unitIndex);
         }
         if (!word.id || typeof word.id !== 'string') {
           issues.push(issue('error', 'VOCAB_ID_MISSING', wordPath, 'La entrada necesita un ID.'));
@@ -240,6 +244,8 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
 
   // Resolve references after collecting every vocabulary ID. Cumulative A2
   // review activities may deliberately point back to vocabulary taught in A1.
+  // Unit-level exercises should not assess same-level vocabulary introduced
+  // only in a later unit; report this as a warning to avoid false hard blocks.
   const availableVocabIds = new Set([...vocabIds.keys(), ...knownVocabIds]);
   units.forEach((unit, unitIndex) => {
     const unitPath = `${level}.units[${unitIndex}]`;
@@ -249,7 +255,12 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
       }
     };
     (unit.exercises ?? []).forEach((exercise, index) => {
-      if (exercise && typeof exercise === 'object') checkRef(exercise.vocabId, `${unitPath}.exercises[${index}].vocabId`);
+      if (!exercise || typeof exercise !== 'object') return;
+      checkRef(exercise.vocabId, `${unitPath}.exercises[${index}].vocabId`);
+      const introductionUnit = vocabIntroductionUnit.get(exercise.vocabId);
+      if (Number.isInteger(introductionUnit) && introductionUnit > unitIndex) {
+        issues.push(issue('warning', 'VOCAB_USED_BEFORE_INTRODUCTION', `${unitPath}.exercises[${index}].vocabId`, `El ejercicio usa ${exercise.vocabId}, introducido en la unidad ${introductionUnit + 1}; revisar si es un adelanto intencional o vocabulario fuera de progresión.`));
+      }
     });
     (unit.lessons ?? []).forEach((lesson, lessonIndex) => {
       if (!lesson || typeof lesson !== 'object') return;

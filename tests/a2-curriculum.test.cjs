@@ -1087,7 +1087,7 @@ test('A2 U5-U8 editorial audit records bounded findings without claiming linguis
   assert.match(audit, /revisión lingüística independiente pendiente/);
   assert.match(audit, /No se usó KBBI como bloqueo/);
   assert.match(audit, /No hubo hablante nativo disponible/);
-  assert.match(audit, /Saya memakai buku/);
+  assert.match(audit, /Saya menggunakan buku/);
   assert.match(audit, /sin introducir vocabulario nuevo no enseñado/);
 });
 

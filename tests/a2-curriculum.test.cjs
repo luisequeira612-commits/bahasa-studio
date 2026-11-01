@@ -627,6 +627,17 @@ test('A2 U4 includes integrated daily-schedule writing with two timed activities
 });
 
 
+test('A2 U3 sequence-writing model answer includes the full Indonesian sequence', () => {
+  const unit = a2.units.find(entry => entry.id === 'a2_u3');
+  assert.ok(unit);
+  const lesson = unit.lessons.find(entry => entry.title.includes('Primero y después'));
+  assert.ok(lesson);
+  const exercise = lesson.exercises.find(entry => entry.type === 'write' && entry.vocabId === 'a2u3_pertama');
+  assert.ok(exercise);
+  assert.match(exercise.prompt, /conserva en indonesio la secuencia/);
+  assert.match(exercise.modelAnswer, /Pertama, saya makan\. Lalu, saya minum air\./);
+});
+
 test('A2 U14 listening and writing exercises match their target travel vocabulary', () => {
   const unit = a2.units.find(entry => entry.id === 'a2_u14');
   assert.ok(unit);

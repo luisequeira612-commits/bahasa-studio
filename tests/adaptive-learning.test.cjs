@@ -182,3 +182,20 @@ test('without a matching lesson, adaptive learning safely falls back to the next
   assert.equal(result.type, 'continue-lesson');
   assert.equal(result.unitId, 'a1_u2');
 });
+
+test('weakest-skill selection ignores missing, negative, fractional, and excessive correct counters', () => {
+  const focus = AdaptiveLearning.weakestSkill({
+    recognition: { attempts: 10 },
+    translation: { attempts: 10, correct: -1 },
+    listening: { attempts: 10, correct: 4.5 },
+    sentenceBuilding: { attempts: 10, correct: 11 },
+    writing: { attempts: 10, correct: 6 }
+  });
+  assert.equal(focus.key, 'writing');
+  assert.equal(focus.accuracy, 60);
+  assert.equal(focus.attempts, 10);
+  assert.equal(AdaptiveLearning.weakestSkill({
+    recognition: { attempts: 10, correct: -1 },
+    translation: { attempts: 10 }
+  }), null, 'malformed counters must not be interpreted as zero-percent accuracy');
+});

@@ -87,6 +87,10 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
           const sameIndonesianTerm = String(previous.idn ?? '').trim().toLocaleLowerCase() === String(word.idn ?? '').trim().toLocaleLowerCase();
           if (sameIndonesianTerm) {
             issues.push(issue('warning', 'VOCAB_ID_REUSED_SAME_TERM', wordPath, `El ID ${word.id} vuelve a aparecer para el mismo término indonesio; primera aparición en ${previous.path}.`));
+            const normalizeGloss = (value) => String(value ?? '').trim().replace(/\\s+/g, ' ').toLocaleLowerCase();
+            if (normalizeGloss(previous.esp) && normalizeGloss(word.esp) && normalizeGloss(previous.esp) !== normalizeGloss(word.esp)) {
+              issues.push(issue('warning', 'VOCAB_TRANSLATION_INCONSISTENT', wordPath, `El ID ${word.id} mantiene el término indonesio, pero cambia la glosa española respecto a ${previous.path}; revisar si es una diferencia contextual o una inconsistencia.`));
+            }
           } else {
             issues.push(issue('error', 'VOCAB_ID_DUPLICATE', wordPath, `El ID ${word.id} identifica términos distintos; primera aparición en ${previous.path}.`));
           }

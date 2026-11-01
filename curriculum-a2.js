@@ -5317,8 +5317,8 @@ window.BAHASA_CURRICULUM_A2 = {
                                     ]
                                 },
                                 {
-                                    "title": "Lección 4: Espectáculos y festivales",
-                                    "objective": "Habla de visitantes, espectáculos y festivales culturales.",
+                                    "title": "Lección 4: Espectáculos y patrimonio cultural",
+                                    "objective": "Habla de espectáculos, patrimonio cultural y festivales.",
                                     "grammar": "Usa expresiones temporales para describir la duración y el horario de un evento.",
                                     "vocabIds": [
                                         "a2u21_pertunjukan",
@@ -5569,9 +5569,9 @@ window.BAHASA_CURRICULUM_A2 = {
                                     ]
                                 },
                                 {
-                                    "title": "Lección 3: Publicaciones y respuestas",
-                                    "objective": "Habla de comentarios y publicaciones en espacios digitales.",
-                                    "grammar": "Practica expresiones para describir reacciones y respuestas.",
+                                    "title": "Lección 3: Redes, conexiones y contraseñas",
+                                    "objective": "Describe redes, conexiones y contraseñas en espacios digitales.",
+                                    "grammar": "Practica expresiones para hablar de redes, conexiones y contraseñas seguras.",
                                     "vocabIds": [
                                         "a2u22_jaringan",
                                         "a2u22_koneksi",
@@ -5615,9 +5615,9 @@ window.BAHASA_CURRICULUM_A2 = {
                                     ]
                                 },
                                 {
-                                    "title": "Lección 4: Conexión y seguridad",
-                                    "objective": "Explica problemas de conexión y cómo proteger una cuenta.",
-                                    "grammar": "Usa expresiones para dar consejos sobre contraseñas y fuentes de información.",
+                                    "title": "Lección 4: Cuentas, información y fuentes",
+                                    "objective": "Habla de cuentas digitales, información y fuentes en línea.",
+                                    "grammar": "Practica expresiones para describir cuentas y valorar la información y sus fuentes.",
                                     "vocabIds": [
                                         "a2u22_akun",
                                         "a2u22_informasi",
@@ -5821,9 +5821,9 @@ window.BAHASA_CURRICULUM_A2 = {
                                     ]
                                 },
                                 {
-                                    "title": "Lección 2: Transferencias y tarjetas",
-                                    "objective": "Describe operaciones bancarias sencillas y formas de pago.",
-                                    "grammar": "Usa dengan para indicar el medio de pago.",
+                                    "title": "Lección 2: Transferencias, tarjetas y préstamos",
+                                    "objective": "Habla de transferencias, tarjetas de débito y préstamos.",
+                                    "grammar": "Practica expresiones para hablar de transferencias, tarjetas de débito y préstamos.",
                                     "vocabIds": [
                                         "a2u23_transfer",
                                         "a2u23_kartu_debit",
@@ -6163,9 +6163,9 @@ window.BAHASA_CURRICULUM_A2 = {
                                     ]
                                 },
                                 {
-                                    "title": "Lección 3: Exámenes y resultados",
-                                    "objective": "Describe exámenes, calificaciones y certificados.",
-                                    "grammar": "Practica expresiones para comunicar resultados y progreso.",
+                                    "title": "Lección 3: Certificados, becas e inscripciones",
+                                    "objective": "Habla de certificados, becas e inscripciones en programas educativos.",
+                                    "grammar": "Practica expresiones para hablar de certificados, ayudas educativas y procesos de inscripción.",
                                     "vocabIds": [
                                         "a2u24_sertifikat",
                                         "a2u24_beasiswa",
@@ -6209,9 +6209,9 @@ window.BAHASA_CURRICULUM_A2 = {
                                     ]
                                 },
                                 {
-                                    "title": "Lección 4: Becas y matrículas",
-                                    "objective": "Habla de becas, inscripciones y participantes en programas educativos.",
-                                    "grammar": "Usa dibuka para indicar cuándo se abre un periodo de inscripción.",
+                                    "title": "Lección 4: Instructores, participantes y graduación",
+                                    "objective": "Describe a los instructores, los participantes y la graduación en programas educativos.",
+                                    "grammar": "Practica expresiones para describir a los instructores, los participantes y la finalización de un programa.",
                                     "vocabIds": [
                                         "a2u24_instruktur",
                                         "a2u24_peserta",

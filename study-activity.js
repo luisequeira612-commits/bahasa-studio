@@ -117,11 +117,17 @@
         if (kind === 'points') {
             const points = Number(amount);
             if (!Number.isFinite(points) || points < 0) throw new Error('Los puntos diarios no son válidos.');
-            activity.todayXp += Math.floor(points);
+            const nextXp = activity.todayXp + Math.floor(points);
+            if (!safeCount(nextXp)) throw new Error('Contador de actividad no válido.');
+            activity.todayXp = nextXp;
         } else if (kind === 'lesson') {
-            activity.todayLessons += 1;
+            const nextLessons = activity.todayLessons + 1;
+            if (!safeCount(nextLessons)) throw new Error('Contador de actividad no válido.');
+            activity.todayLessons = nextLessons;
         } else if (kind === 'review') {
-            activity.todayReviews += 1;
+            const nextReviews = activity.todayReviews + 1;
+            if (!safeCount(nextReviews)) throw new Error('Contador de actividad no válido.');
+            activity.todayReviews = nextReviews;
         }
         activity.longestStreak = Math.max(activity.longestStreak, activity.currentStreak);
         return activity;

@@ -1885,7 +1885,7 @@
                 exercise._firstAttempted = true;
                 this.sessionAnswered++;
                 if (isCorrect) this.sessionCorrect++;
-                const skill = typeof StudyActivity !== 'undefined' ? StudyActivity.skillForExercise(exercise.type) : null;
+                const skill = typeof StudyActivity !== 'undefined' ? StudyActivity.skillForExercise(exercise.type, Boolean(exercise.audioText)) : null;
                 if (skill && typeof App !== 'undefined' && typeof App.recordSkillActivity === 'function') {
                     App.recordSkillActivity(skill, Boolean(isCorrect)).catch(error => console.error('No se pudo guardar el perfil de práctica:', error));
                 }

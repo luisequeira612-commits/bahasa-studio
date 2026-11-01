@@ -75,4 +75,65 @@ test('legacy backups without activity data receive a clean default', () => {
   assert.equal(activity.dailyGoal, 30);
   assert.equal(activity.lastStudyDate, null);
   assert.equal(activity.todayXp, 0);
+  assert.equal(activity.skillStats.listening.attempts, 0, 'legacy backups receive empty skill counters');
+});
+
+
+test('exercise types map to explicit practice skills', () => {
+  assert.equal(StudyActivity.skillForExercise('mc'), 'recognition');
+  assert.equal(StudyActivity.skillForExercise('mc', true), 'listening');
+  assert.equal(StudyActivity.skillForExercise('match'), 'recognition');
+  assert.equal(StudyActivity.skillForExercise('translate_es_id'), 'translation');
+  assert.equal(StudyActivity.skillForExercise('listen'), 'listening');
+  assert.equal(StudyActivity.skillForExercise('mc', false), 'recognition');
+  assert.equal(StudyActivity.skillForExercise('order'), 'sentenceBuilding');
+  assert.equal(StudyActivity.skillForExercise('write'), 'writing');
+  assert.equal(StudyActivity.skillForExercise('unknown'), null);
+});
+
+test('first attempts update skill accuracy and survive version-3 backup validation', () => {
+  const day = localDate(2026, 10, 29);
+  let activity = StudyActivity.createDefault(day);
+  activity = StudyActivity.recordSkill(activity, 'listening', true, day);
+  activity = StudyActivity.recordSkill(activity, 'listening', false, day);
+  activity = StudyActivity.recordSkill(activity, 'translation', true, day);
+  const restored = StudyActivity.validateBackup(activity, day);
+  assert.equal(restored.skillStats.listening.attempts, 2);
+  assert.equal(restored.skillStats.listening.correct, 1);
+  assert.equal(restored.skillStats.listening.incorrect, 1);
+  assert.equal(restored.skillStats.translation.attempts, 1);
+  assert.equal(restored.skillStats.translation.correct, 1);
+  assert.equal(restored.todayXp, 0, 'skill tracking does not award XP');
+  assert.equal(restored.todayLessons, 0, 'skill tracking does not fabricate completed lessons');
+  assert.throws(() => StudyActivity.recordSkill(activity, 'unknown', true, day), /Habilidad de práctica no válida/);
+  assert.throws(() => StudyActivity.recordSkill(activity, 'writing', 'yes', day), /Resultado de práctica no válido/);
+  assert.throws(() => StudyActivity.validateBackup({
+    skillStats: { listening: { attempts: 1, correct: 2, incorrect: 0, sessions: 0 } }
+  }, day), /Intentos de habilidad incoherentes/);
+});
+
+test('free writing and conversation sessions count without storing their text', () => {
+  const day = localDate(2026, 10, 29);
+  let activity = StudyActivity.createDefault(day);
+  activity = StudyActivity.recordSkillSession(activity, 'writing', day);
+  activity = StudyActivity.recordSkillSession(activity, 'conversation', day);
+  const restored = StudyActivity.validateBackup(activity, day);
+  assert.equal(restored.skillStats.writing.sessions, 1);
+  assert.equal(restored.skillStats.conversation.sessions, 1);
+  assert.equal(restored.skillStats.writing.attempts, 0);
+  assert.equal(restored.currentStreak, 1);
+  assert.equal(restored.todayXp, 0);
+  assert.equal(restored.todayLessons, 0);
+  assert.throws(() => StudyActivity.recordSkillSession(activity, 'listening', day), /Sesión de práctica no válida/);
+});
+
+
+test('skill counters reject values beyond the safe local limit', () => {
+  const day = localDate(2026, 10, 29);
+  const activity = StudyActivity.createDefault(day);
+  activity.skillStats.listening.attempts = 1000000000;
+  activity.skillStats.listening.correct = 1000000000;
+  assert.throws(() => StudyActivity.recordSkill(activity, 'listening', true, day), /Contador de habilidad no válido/);
+  activity.skillStats.conversation.sessions = 1000000000;
+  assert.throws(() => StudyActivity.recordSkillSession(activity, 'conversation', day), /Contador de habilidad no válido/);
 });

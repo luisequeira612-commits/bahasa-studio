@@ -42,7 +42,7 @@ test('PWA version is consistent across HTML, manifest and cache', () => {
   assert.equal(manifest.icons[0].src, './icon.svg');
   assert.equal(manifest.background_color, '#0f172a');
   assert.match(fs.readFileSync(path.join(root, 'icon.svg'), 'utf8'), /<svg[^>]+viewBox="0 0 512 512"/);
-  assert.match(serviceWorker, /bahasa-studio-v3\.8\.26/);
+  assert.match(serviceWorker, /bahasa-studio-v3\.8\.27/);
   for (const asset of ['./', './index.html', './manifest.json', './assessment.html', './assessment-engine.js', './conversation-engine.js', './study-activity.js', './adaptive-learning.js', './curriculum-a1.js', './curriculum-a2.js', './styles.css', './icon.svg', './audio-engine.js', './pronunciation-engine.js', './writing-practice.js']) {
     assert.ok(serviceWorker.includes("'" + asset + "'"), asset + ' must be precached for offline use');
   }
@@ -1795,7 +1795,7 @@ test('optional pronunciation practice uses Indonesian browser recognition withou
 
 const writingPracticeSource = fs.readFileSync(path.join(root, 'writing-practice.js'), 'utf8');
 
-test('free-writing notebook offers distinct A1 compositions without persistence or scoring', () => {
+test('free-writing notebook offers distinct A1 compositions without draft persistence or scoring', () => {
   const sandbox = { window: {} };
   vm.runInNewContext(writingPracticeSource, sandbox, { filename: 'writing-practice.js' });
   const practice = sandbox.window.WritingPractice;
@@ -1809,4 +1809,29 @@ test('free-writing notebook offers distinct A1 compositions without persistence 
   assert.match(writingPracticeSource, /setAttribute\('aria-live', 'polite'\)/);
   assert.doesNotMatch(writingPracticeSource, /DB\.set|DB\.get|localStorage|indexedDB|addXp|SRSEngine|recordAttempt|innerHTML/,
     'free-writing drafts must stay ephemeral, safely rendered, and separate from XP/SRS');
+});
+
+
+test('local skill profile records first attempts and aggregate free-practice sessions', () => {
+  assert.match(html, /id="studySkillProfile"/);
+  assert.match(html, /studySkillRecognitionText/);
+  assert.match(html, /studySkillTranslationText/);
+  assert.match(html, /studySkillListeningText/);
+  assert.match(html, /studySkillSentenceText/);
+  assert.match(html, /studySkillWritingText/);
+  assert.match(html, /studySkillConversationText/);
+  assert.match(html, /StudyActivity\.skillForExercise\(exercise\.type, Boolean\(exercise\.audioText\)\)/);
+  assert.match(html, /App\.recordSkillActivity\(skill, Boolean\(isCorrect\)\)/);
+  assert.match(html, /recordSkillSession\(skill\)/);
+  assert.match(html, /parsed\.version !== 3/);
+  assert.match(studyActivitySource, /skillStats/);
+  assert.match(studyActivitySource, /recordSkillSession/);
+});
+
+
+test('free-writing completion records a session but never stores the draft', () => {
+  assert.match(writingPracticeSource, /App\.recordSkillSession\('writing'\)/);
+  assert.match(writingPracticeSource, /practiceRecorded/);
+  assert.match(writingPracticeSource, /el texto no se guarda/);
+  assert.doesNotMatch(writingPracticeSource, /DB\.set|DB\.get|localStorage|indexedDB|innerHTML/);
 });

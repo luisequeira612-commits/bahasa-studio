@@ -243,6 +243,16 @@
             </select>
             <p id="studyDailyGoalStatus" role="status" aria-live="polite" class="profile-muted">Te faltan 30 XP para alcanzar tu objetivo.</p>
             <div class="profile-xp-row"><span id="studyLessonsTodayText">0 lecciones hoy</span><span id="studyReviewsTodayText">0 tarjetas repasadas hoy</span></div>
+            <details id="studySkillProfile" class="study-skill-profile">
+                <summary>Perfil de práctica</summary>
+                <p class="profile-muted">Cuenta primeros intentos y sesiones completadas en este dispositivo. No es una certificación de nivel; no guarda borradores ni grabaciones.</p>
+                <div class="profile-xp-row"><span>Reconocimiento</span><strong id="studySkillRecognitionText">Sin datos</strong></div>
+                <div class="profile-xp-row"><span>Traducción</span><strong id="studySkillTranslationText">Sin datos</strong></div>
+                <div class="profile-xp-row"><span>Escucha</span><strong id="studySkillListeningText">Sin datos</strong></div>
+                <div class="profile-xp-row"><span>Construcción de frases</span><strong id="studySkillSentenceText">Sin datos</strong></div>
+                <div class="profile-xp-row"><span>Escritura</span><strong id="studySkillWritingText">Sin datos</strong></div>
+                <div class="profile-xp-row"><span>Conversación</span><strong id="studySkillConversationText">Sin sesiones</strong></div>
+            </details>
         </section>
         <section class="card">
             <h2>Herramientas</h2>
@@ -1875,6 +1885,10 @@
                 exercise._firstAttempted = true;
                 this.sessionAnswered++;
                 if (isCorrect) this.sessionCorrect++;
+                const skill = typeof StudyActivity !== 'undefined' ? StudyActivity.skillForExercise(exercise.type, Boolean(exercise.audioText)) : null;
+                if (skill && typeof App !== 'undefined' && typeof App.recordSkillActivity === 'function') {
+                    App.recordSkillActivity(skill, Boolean(isCorrect)).catch(error => console.error('No se pudo guardar el perfil de práctica:', error));
+                }
             },
             correctAnswerText(exercise) {
                 if (!exercise) return '';
@@ -2760,6 +2774,18 @@ Requisitos:
                 this.updateStudyDashboard();
                 return DB.set('settings', 'studyActivity', this.studyActivity);
             },
+            recordSkillActivity(skill, isCorrect) {
+                if (typeof StudyActivity === 'undefined') return Promise.resolve();
+                this.studyActivity = StudyActivity.recordSkill(this.studyActivity, skill, isCorrect, new Date());
+                this.updateStudyDashboard();
+                return DB.set('settings', 'studyActivity', this.studyActivity);
+            },
+            recordSkillSession(skill) {
+                if (typeof StudyActivity === 'undefined') return Promise.resolve();
+                this.studyActivity = StudyActivity.recordSkillSession(this.studyActivity, skill, new Date());
+                this.updateStudyDashboard();
+                return DB.set('settings', 'studyActivity', this.studyActivity);
+            },
             setDailyGoal(goal) {
                 try {
                     this.studyActivity = StudyActivity.setGoal(this.studyActivity, Number(goal), new Date());
@@ -2805,6 +2831,27 @@ Requisitos:
                 if (status) status.textContent = earned >= goal ? '¡Objetivo diario cumplido!' : 'Te faltan ' + (goal - earned) + ' XP para alcanzar tu objetivo.';
                 if (lessons) lessons.textContent = this.studyActivity.todayLessons + (this.studyActivity.todayLessons === 1 ? ' lección hoy' : ' lecciones hoy');
                 if (reviews) reviews.textContent = this.studyActivity.todayReviews + (this.studyActivity.todayReviews === 1 ? ' tarjeta repasada hoy' : ' tarjetas repasadas hoy');
+                const skillStats = this.studyActivity.skillStats || {};
+                const skillLabels = [
+                    ['recognition', 'studySkillRecognitionText'],
+                    ['translation', 'studySkillTranslationText'],
+                    ['listening', 'studySkillListeningText'],
+                    ['sentenceBuilding', 'studySkillSentenceText'],
+                    ['writing', 'studySkillWritingText']
+                ];
+                skillLabels.forEach(([key, id]) => {
+                    const node = document.getElementById(id);
+                    if (!node) return;
+                    const stats = skillStats[key] || { attempts: 0, correct: 0, sessions: 0 };
+                    const accuracy = stats.attempts ? Math.round(stats.correct / stats.attempts * 100) : 0;
+                    const base = stats.attempts ? stats.attempts + ' intentos · ' + accuracy + '% acierto' : 'Sin intentos';
+                    node.textContent = key === 'writing' && stats.sessions ? base + ' · ' + stats.sessions + ' prácticas libres' : base;
+                });
+                const conversationNode = document.getElementById('studySkillConversationText');
+                if (conversationNode) {
+                    const sessions = skillStats.conversation?.sessions || 0;
+                    conversationNode.textContent = sessions ? sessions + (sessions === 1 ? ' sesión' : ' sesiones') : 'Sin sesiones';
+                }
             },
             async markUnitCompleted(unitId) {
                 if (!this.completedUnits.includes(unitId)) {

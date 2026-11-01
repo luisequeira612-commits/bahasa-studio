@@ -11,7 +11,9 @@ const elements = {
   conversationScenarioList: { hidden: false, innerHTML: '' },
   conversationPracticeArea: { hidden: true, innerHTML: '' }
 };
+const recordedSessions = [];
 const sandbox = {
+  App: { recordSkillSession(skill) { recordedSessions.push(skill); return Promise.resolve(); } },
   window: {},
   document: {
     addEventListener() {},
@@ -84,9 +86,34 @@ test('free response cannot reveal an example before the learner attempts an answ
   assert.equal(engine.freeResponseTurns, 0);
 });
 
-test('free-response speech capture is optional and never persists audio or learning records', () => {
+test('free-response speech capture is optional and never persists audio, XP, SRS attempts, or response text', () => {
   assert.match(source, /window\.SpeechRecognition \|\| window\.webkitSpeechRecognition/);
   assert.match(source, /recognition\.lang = 'id-ID'/);
   assert.match(source, /la app no guarda grabaciones/);
   assert.doesNotMatch(source, /App\.addXp|SRSEngine\.recordAttempt|DB\.set|MediaRecorder/);
+});
+
+
+test('a completed conversation records one aggregate session without scoring free responses', () => {
+  const engine = sandbox.window.ConversationEngine;
+  recordedSessions.length = 0;
+  engine.start('greetings');
+  for (let turn = 0; turn < 3; turn += 1) {
+    const current = engine.currentScenario.turns[engine.turnIndex];
+    const correctIndex = current.choices.findIndex(choice => choice.correct);
+    engine.choose(correctIndex);
+    engine.next();
+  }
+  assert.deepEqual(recordedSessions, ['conversation']);
+  engine.renderResult();
+  assert.deepEqual(recordedSessions, ['conversation'], 'rendering the result again must not double-count');
+  assert.match(elements.conversationPracticeArea.innerHTML, /tus respuestas no se guardan/);
+});
+
+
+test('completed conversations record only an aggregate session counter', () => {
+  assert.match(source, /App\.recordSkillSession\('conversation'\)/);
+  assert.match(source, /sessionRecorded/);
+  assert.match(source, /tus respuestas no se guardan/);
+  assert.doesNotMatch(source, /DB\.set|localStorage|indexedDB|MediaRecorder/);
 });

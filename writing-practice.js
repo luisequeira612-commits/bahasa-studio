@@ -90,6 +90,7 @@
             task.checklist.forEach(item => checklist.appendChild(make('li', item)));
             const note = make('p', 'No corregimos ni puntuamos automáticamente el texto. Las listas sirven para revisar si respondiste a la situación; puede haber otras respuestas válidas.', 'text-muted');
             const reveal = make('button', 'Mostrar ejemplo orientativo');
+            let practiceRecorded = false;
             reveal.type = 'button';
             reveal.className = 'btn btn-outline';
             const status = make('p', '');
@@ -108,8 +109,12 @@
                 }
                 example.hidden = false;
                 status.textContent = 'Ejemplo visible. Compara las ideas y la claridad; no se ha asignado ninguna nota.';
+                if (!practiceRecorded && typeof App !== 'undefined' && typeof App.recordSkillSession === 'function') {
+                    practiceRecorded = true;
+                    App.recordSkillSession('writing').catch(error => console.error('No se pudo registrar la práctica de escritura:', error));
+                }
             });
-            const disclaimer = make('p', 'Sin nota, sin XP y sin registro SRS. El borrador permanece solo mientras esta pantalla siga abierta; no se incluye en las copias de seguridad.', 'text-muted');
+            const disclaimer = make('p', 'Sin nota, sin XP ni registro SRS. Solo se cuenta una sesión al comparar tu borrador con el ejemplo; el texto no se guarda ni se incluye en las copias de seguridad.', 'text-muted');
             host.append(back, heading, situation, label, textarea, checklistHeading, checklist, note, reveal, status, example, disclaimer);
         }
     };

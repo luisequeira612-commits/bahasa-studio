@@ -41,3 +41,21 @@ No se crea un esquema de persistencia nuevo, no se envían datos a servicios ext
 - Definir ventanas temporales para distinguir errores recientes de errores antiguos.
 - Recoger telemetría solo si se diseña con consentimiento y minimización de datos; la implementación actual no añade telemetría.
 - Calibrar prioridades con pruebas de usabilidad antes de modificar las reglas.
+
+
+## Perfil local de práctica — 2026-11-01
+
+La aplicación registra un perfil descriptivo y local a partir de los primeros intentos:
+
+- **Reconocimiento:** ejercicios de opción múltiple y asociación.
+- **Traducción:** traducción del español al indonesio.
+- **Escucha:** ejercicios con audio.
+- **Construcción de frases:** ejercicios de ordenar palabras.
+- **Escritura:** ejercicios escritos con respuesta comprobable y sesiones libres completadas.
+- **Conversación:** número de escenarios completados; no se asigna una precisión automática a las respuestas libres.
+
+Los contadores se guardan dentro de la clave existente `settings.studyActivity` y se incluyen en el mismo objeto `studyActivity` del backup v3. No se añade una tabla de IndexedDB ni se cambia la versión del backup. Los backups antiguos sin `skillStats` reciben contadores vacíos.
+
+El perfil conserva solo intentos, aciertos, errores y sesiones agregadas. No guarda el texto de los borradores, transcripciones, audio ni respuestas libres. Los primeros intentos no equivalen a dominio de una habilidad: la cifra de acierto es descriptiva, mezcla lecciones y evaluaciones y todavía no se utiliza para recomendaciones adaptativas ni para declarar un nivel MCER.
+
+Antes de usarlo para recomendaciones por habilidad habrá que definir mínimos de evidencia, separar tipos de actividad comparables y evitar conclusiones con muestras pequeñas.

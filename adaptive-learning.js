@@ -67,6 +67,16 @@
             }, focus);
         }
 
+        if (focus && focus.key === 'writing') {
+            return contextualize({
+                type: 'reinforce-writing',
+                title: 'Refuerza tu escritura',
+                description: 'Tu práctica registrada indica que la escritura necesita atención. Completa una situación breve en el cuaderno y compara tu borrador con el ejemplo orientativo.',
+                action: 'writing',
+                label: 'Practicar escritura'
+            }, focus);
+        }
+
         const lesson = data.nextLesson;
         if (lesson && typeof lesson.unitId === 'string' && lesson.unitId &&
             Number.isInteger(lesson.lessonIndex) && lesson.lessonIndex >= 0) {

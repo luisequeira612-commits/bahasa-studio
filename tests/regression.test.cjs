@@ -42,7 +42,7 @@ test('PWA version is consistent across HTML, manifest and cache', () => {
   assert.equal(manifest.icons[0].src, './icon.svg');
   assert.equal(manifest.background_color, '#0f172a');
   assert.match(fs.readFileSync(path.join(root, 'icon.svg'), 'utf8'), /<svg[^>]+viewBox="0 0 512 512"/);
-  assert.match(serviceWorker, /bahasa-studio-v3\.8\.27/);
+  assert.match(serviceWorker, /bahasa-studio-v3\.8\.28/);
   for (const asset of ['./', './index.html', './manifest.json', './assessment.html', './assessment-engine.js', './conversation-engine.js', './study-activity.js', './adaptive-learning.js', './curriculum-a1.js', './curriculum-a2.js', './styles.css', './icon.svg', './audio-engine.js', './pronunciation-engine.js', './writing-practice.js']) {
     assert.ok(serviceWorker.includes("'" + asset + "'"), asset + ' must be precached for offline use');
   }
@@ -1799,7 +1799,14 @@ test('free-writing notebook offers distinct A1 compositions without draft persis
   const sandbox = { window: {} };
   vm.runInNewContext(writingPracticeSource, sandbox, { filename: 'writing-practice.js' });
   const practice = sandbox.window.WritingPractice;
-  assert.deepEqual(Array.from(practice.tasks, task => task.id), ['profile', 'travel', 'directions']);
+  assert.deepEqual(Array.from(practice.tasks, task => task.id), ['profile', 'travel', 'directions', 'budget', 'online-meeting', 'compare-decisions']);
+  assert.deepEqual(Array.from(practice.tasks, task => task.level), ['A1', 'A1', 'A1', 'A2', 'A2', 'A2']);
+  const a2Sandbox = { window: {} };
+  vm.runInNewContext(a2Source, a2Sandbox, { filename: 'curriculum-a2.js' });
+  const a2Terms = new Set(a2Sandbox.window.BAHASA_CURRICULUM_A2.units.flatMap(unit => unit.vocab.map(word => word.idn)));
+  for (const task of practice.tasks.filter(item => item.level === 'A2')) {
+    for (const term of task.vocabulary) assert.ok(a2Terms.has(term), task.id + ' uses an A2 curriculum term: ' + term);
+  }
   for (const task of practice.tasks) {
     assert.ok(task.situation.length > 50);
     assert.ok(task.checklist.length >= 3);

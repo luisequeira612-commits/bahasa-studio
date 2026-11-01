@@ -2905,7 +2905,7 @@ window.BAHASA_CURRICULUM_A1 = {
                             exercises: [
                                 { vocabId: 'v385', type: 'mc', prompt: '¿Qué significa «kantin»?', options: ['Libro', 'Cafetería', 'Lápiz'], answer: 1, explanation: 'Kantin significa cafetería o comedor.' },
                                 { vocabId: 'v386', type: 'translate_es_id', prompt: 'Traduce: profesor/a', answer: 'Guru', explanation: 'Guru significa docente o profesor/a.' },
-                                { vocabId: 'v388', type: 'order', prompt: 'Ordena: Este es mi borrador.', words: ['saya', 'penghapus', 'Ini'], correctOrder: ['Ini', 'penghapus', 'saya'], explanation: 'Ini penghapus saya significa «Este es mi borrador».' },
+                                { vocabId: 'v388', type: 'order', prompt: 'Ordena: Esta es mi goma de borrar.', words: ['saya', 'penghapus', 'Ini'], correctOrder: ['Ini', 'penghapus', 'saya'], explanation: 'Ini penghapus saya significa «Esta es mi goma de borrar».' },
                                 { vocabId: 'v389', type: 'listen', prompt: 'Escucha y escribe la palabra.', answer: 'Pensil', explanation: 'Pensil significa lápiz.' },
                                 { vocabId: 'v390', type: 'mc', prompt: '¿Qué significa «menjawab»?', options: ['Comprar', 'Escribir', 'Responder'], answer: 2, explanation: 'Menjawab significa responder.' },
                                 { vocabId: 'v391', type: 'translate_es_id', prompt: 'Traduce: leer', answer: 'Membaca', explanation: 'Membaca significa leer.' },
@@ -2950,7 +2950,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                 { id: 'v396', idn: 'Musik', esp: 'Música', ex: 'Saya suka musik.', exEsp: 'Me gusta la música.' },
                                 { id: 'v397', idn: 'Berenang', esp: 'Nadar', ex: 'Saya suka berenang.', exEsp: 'Me gusta nadar.' },
                                 { id: 'v398', idn: 'Sepak bola', esp: 'Fútbol', ex: 'Dia suka sepak bola.', exEsp: 'A él/ella le gusta el fútbol.' },
-                                { id: 'v399', idn: 'Melukis', esp: 'Pintar / hacer dibujos', ex: 'Saya suka melukis.', exEsp: 'Me gusta pintar.' },
+                                { id: 'v399', idn: 'Melukis', esp: 'Pintar', ex: 'Saya suka melukis.', exEsp: 'Me gusta pintar.' },
                                 { id: 'v400', idn: 'Menonton', esp: 'Ver / mirar', ex: 'Saya menonton film.', exEsp: 'Veo una película.' },
                                 { id: 'v401', idn: 'Bermain', esp: 'Jugar', ex: 'Kami bermain bola.', exEsp: 'Jugamos a la pelota.' },
                                 { id: 'v402', idn: 'Akhir pekan', esp: 'Fin de semana', ex: 'Saya membaca pada akhir pekan.', exEsp: 'Leo durante el fin de semana.' },
@@ -2962,7 +2962,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                 { vocabId: 'v397', type: 'translate_es_id', prompt: 'Traduce: nadar', answer: 'Berenang', explanation: 'Berenang significa nadar.' },
                                 { vocabId: 'v396', type: 'order', prompt: 'Ordena: Me gusta la música.', words: ['musik', 'suka', 'Saya'], correctOrder: ['Saya', 'suka', 'musik'], explanation: 'Saya suka musik significa «Me gusta la música».' },
                                 { vocabId: 'v398', type: 'listen', prompt: 'Escucha y escribe la expresión.', answer: 'Sepak bola', explanation: 'Sepak bola significa fútbol.' },
-                                { vocabId: 'v399', type: 'mc', prompt: '¿Qué significa «melukis»?', options: ['Cantar', 'Pintar', 'Bailar'], answer: 1, explanation: 'Melukis significa pintar o hacer dibujos.' },
+                                { vocabId: 'v399', type: 'mc', prompt: '¿Qué significa «melukis»?', options: ['Cantar', 'Pintar', 'Bailar'], answer: 1, explanation: 'Melukis significa pintar.' },
                                 { vocabId: 'v400', type: 'translate_es_id', prompt: 'Traduce: ver / mirar', answer: 'Menonton', explanation: 'Menonton significa ver o mirar.' },
                                 { vocabId: 'v403', type: 'order', prompt: 'Ordena: A él/ella le gusta cantar.', words: ['menyanyi', 'Dia', 'suka'], correctOrder: ['Dia', 'suka', 'menyanyi'], explanation: 'Dia suka menyanyi significa «Le gusta cantar».' },
                                 { vocabId: 'v404', type: 'write', prompt: 'Escribe una frase para decir «Me gusta bailar».', hint: 'Usa Saya suka menari.', modelAnswer: 'Saya suka menari.', explanation: 'Saya suka menari significa «Me gusta bailar».' }

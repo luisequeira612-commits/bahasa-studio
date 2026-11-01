@@ -21,6 +21,7 @@ const sandbox = {
     getElementById(id) { return elements[id] || null; }
   }
 };
+sandbox.window.App = sandbox.App;
 vm.runInNewContext(source, sandbox);
 
 const scenarios = sandbox.window.ConversationEngine.scenarios;
@@ -271,6 +272,7 @@ test('A2 conversations remain hidden and cannot be started until every A1 unit i
   sandbox.window.CourseData = { levels: [{ id: 'A1', units: [{ id: 'a1_u1' }, { id: 'a1_u2' }] }] };
   sandbox.window.App.completedUnits = ['a1_u1'];
   assert.equal(engine.getAvailableScenarios().some(scenario => scenario.level === 'A2'), false);
+  engine.currentScenario = null;
   engine.start('organizar-evento');
   assert.equal(engine.currentScenario, null, 'direct starts must respect the level gate');
   engine.renderScenarioList();

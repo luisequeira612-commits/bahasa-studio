@@ -1332,7 +1332,7 @@ test('U24–U32 multiple-choice answers are semantically correct and not always 
     v445: 'Perdón', v446: 'Permisi', v455: 'Alto/a', v458: 'Joven',
     v465: '¿Qué tal?', v468: 'Sama-sama', v472: 'Por qué',
     v387: 'Alumno/a', v393: 'Clase / aula', v401: 'Jugar', v402: 'Fin de semana',
-    v405: 'Calle / camino', v411: 'Delante / parte delantera', v412: 'Detrás / parte trasera',
+    v405: 'Calle / camino', v411: 'Delante / parte delantera', v412: 'Parte trasera / detrás',
     v420: 'Encontrarse / reunirse', v424: 'Plan', v430: 'Barco', v434: 'Sello (oficial)',
     v436: 'Normalmente / por lo general', v441: 'Cepillarse los dientes', v444: 'Después de',
     v447: 'Adelante / por favor (al invitar)', v454: 'Tarde / con retraso',

@@ -45,6 +45,22 @@ function auditMultipleChoiceOptions(options, path, issues, prefix = '') {
   });
 }
 
+function auditExerciseVocabularyReferences(exercise, path, issues, prefix = '') {
+  if (exercise.vocabId !== undefined &&
+      (typeof exercise.vocabId !== 'string' || !exercise.vocabId.trim())) {
+    issues.push(issue('error', prefix + 'EXERCISE_VOCAB_ID_INVALID', path + '.vocabId', 'vocabId debe ser un ID de texto no vacío.'));
+  }
+  if (exercise.vocabIds !== undefined && !Array.isArray(exercise.vocabIds)) {
+    issues.push(issue('error', prefix + 'EXERCISE_VOCAB_IDS_INVALID', path + '.vocabIds', 'vocabIds debe ser un array de IDs.'));
+  } else if (Array.isArray(exercise.vocabIds)) {
+    exercise.vocabIds.forEach((id, index) => {
+      if (typeof id !== 'string' || !id.trim()) {
+        issues.push(issue('error', prefix + 'EXERCISE_VOCAB_IDS_ITEM_INVALID', path + '.vocabIds[' + index + ']', 'Cada referencia de vocabulario debe ser un ID de texto no vacío.'));
+      }
+    });
+  }
+}
+
 export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown', knownVocabIds = []) {
   const issues = [];
   const units = Array.isArray(curriculum?.units) ? curriculum.units : [];
@@ -127,9 +143,7 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
       if (typeof exercise.prompt !== 'string' || !exercise.prompt.trim()) {
         issues.push(issue('error', 'EXERCISE_PROMPT_MISSING', exercisePath, 'El ejercicio necesita una consigna.'));
       }
-      if (exercise.vocabId && typeof exercise.vocabId !== 'string') {
-        issues.push(issue('error', 'EXERCISE_VOCAB_ID_INVALID', exercisePath, 'vocabId debe ser texto.'));
-      }
+      auditExerciseVocabularyReferences(exercise, exercisePath, issues);
       if (exercise.type === 'mc') {
         if (!Array.isArray(exercise.options) || exercise.options.length < 2) {
           issues.push(issue('error', 'MC_OPTIONS_INVALID', exercisePath, 'Un ejercicio mc necesita al menos dos opciones.'));
@@ -211,9 +225,7 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
             if (typeof exercise.prompt !== 'string' || !exercise.prompt.trim()) {
               issues.push(issue('error', 'LESSON_EXERCISE_PROMPT_MISSING', exercisePath, 'El ejercicio necesita una consigna.'));
             }
-            if (exercise.vocabId && typeof exercise.vocabId !== 'string') {
-              issues.push(issue('error', 'LESSON_EXERCISE_VOCAB_ID_INVALID', exercisePath, 'vocabId debe ser texto.'));
-            }
+            auditExerciseVocabularyReferences(exercise, exercisePath, issues, 'LESSON_');
             if (exercise.type === 'mc') {
               if (!Array.isArray(exercise.options) || exercise.options.length < 2) {
                 issues.push(issue('error', 'LESSON_MC_OPTIONS_INVALID', exercisePath, 'Un ejercicio mc necesita al menos dos opciones.'));

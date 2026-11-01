@@ -3555,9 +3555,8 @@ Requisitos:
                 meaningNode.textContent = matches.slice(0, 3).map(entry => entry.esp).join(' · ');
                 const example = matches.find(entry => entry.ex || entry.exEsp);
                 if (example) {
-                    exampleNode.textContent = [example.ex ? 'Ejemplo: ' + example.ex : '', example.exEsp ? 'Traducción: ' + example.exEsp : ''
-                                , { vocabId: 'v465', type: 'mc', prompt: 'Escucha el saludo y elige qué pregunta', audioText: 'Halo, apa kabar?', options: ["Hola, ¿qué tal?","Adiós, hasta mañana","Gracias, de nada"], answer: 0, explanation: 'Apa kabar? pregunta cómo está alguien.' }
-                            ].filter(Boolean).join(' — ');
+                    exampleNode.textContent = [example.ex ? 'Ejemplo: ' + example.ex : '', example.exEsp ? 'Traducción: ' + example.exEsp : '']
+                        .filter(Boolean).join(' — ');
                     exampleNode.hidden = false;
                 } else {
                     exampleNode.textContent = '';

@@ -61,6 +61,28 @@ function auditExerciseVocabularyReferences(exercise, path, issues, prefix = '') 
   }
 }
 
+function auditAcceptedAnswers(exercise, path, issues, prefix = '') {
+  if (exercise.acceptedAnswers === undefined) return;
+  if (!Array.isArray(exercise.acceptedAnswers)) {
+    issues.push(issue('error', prefix + 'ACCEPTED_ANSWERS_INVALID', path + '.acceptedAnswers', 'acceptedAnswers debe ser un array.'));
+    return;
+  }
+  exercise.acceptedAnswers.forEach((item, index) => {
+    const itemPath = path + '.acceptedAnswers[' + index + ']';
+    if (typeof item === 'string') {
+      if (!item.trim()) issues.push(issue('error', prefix + 'ACCEPTED_ANSWER_EMPTY', itemPath, 'La respuesta alternativa no puede estar vacía.'));
+      return;
+    }
+    if (!item || typeof item !== 'object' || typeof item.text !== 'string' || !item.text.trim()) {
+      issues.push(issue('error', prefix + 'ACCEPTED_ANSWER_ITEM_INVALID', itemPath, 'Cada alternativa debe ser texto no vacío o un objeto con text no vacío.'));
+      return;
+    }
+    if (item.status !== undefined && (typeof item.status !== 'string' || !item.status.trim())) {
+      issues.push(issue('error', prefix + 'ACCEPTED_ANSWER_STATUS_INVALID', itemPath + '.status', 'El estado de una alternativa debe ser texto no vacío.'));
+    }
+  });
+}
+
 export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown', knownVocabIds = []) {
   const issues = [];
   const units = Array.isArray(curriculum?.units) ? curriculum.units : [];
@@ -144,6 +166,7 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
         issues.push(issue('error', 'EXERCISE_PROMPT_MISSING', exercisePath, 'El ejercicio necesita una consigna.'));
       }
       auditExerciseVocabularyReferences(exercise, exercisePath, issues);
+      auditAcceptedAnswers(exercise, exercisePath, issues);
       if (exercise.type === 'mc') {
         if (!Array.isArray(exercise.options) || exercise.options.length < 2) {
           issues.push(issue('error', 'MC_OPTIONS_INVALID', exercisePath, 'Un ejercicio mc necesita al menos dos opciones.'));
@@ -226,6 +249,7 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
               issues.push(issue('error', 'LESSON_EXERCISE_PROMPT_MISSING', exercisePath, 'El ejercicio necesita una consigna.'));
             }
             auditExerciseVocabularyReferences(exercise, exercisePath, issues, 'LESSON_');
+            auditAcceptedAnswers(exercise, exercisePath, issues, 'LESSON_');
             if (exercise.type === 'mc') {
               if (!Array.isArray(exercise.options) || exercise.options.length < 2) {
                 issues.push(issue('error', 'LESSON_MC_OPTIONS_INVALID', exercisePath, 'Un ejercicio mc necesita al menos dos opciones.'));

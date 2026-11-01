@@ -136,8 +136,28 @@
             textarea.maxLength = 2000;
             textarea.placeholder = 'Escribe aquí tus propias frases…';
             const checklistHeading = make('h4', 'Antes de terminar, revisa tu texto');
-            const checklist = make('ul');
-            task.checklist.forEach(item => checklist.appendChild(make('li', item)));
+            const checklist = make('div');
+            checklist.className = 'writing-self-review';
+            const checklistStatus = make('p', '0 de ' + task.checklist.length + ' criterios revisados.', 'text-muted');
+            checklistStatus.setAttribute('role', 'status');
+            checklistStatus.setAttribute('aria-live', 'polite');
+            let checkedItems = 0;
+            task.checklist.forEach((item, index) => {
+                const row = make('label', item);
+                row.style.display = 'flex';
+                row.style.alignItems = 'center';
+                row.style.gap = '10px';
+                row.style.padding = '8px 0';
+                const checkbox = make('input');
+                checkbox.type = 'checkbox';
+                checkbox.id = 'writingCheck-' + index;
+                checkbox.addEventListener('change', () => {
+                    checkedItems += checkbox.checked ? 1 : -1;
+                    checklistStatus.textContent = checkedItems + ' de ' + task.checklist.length + ' criterios revisados.';
+                });
+                row.appendChild(checkbox);
+                checklist.appendChild(row);
+            });
             const note = make('p', 'No corregimos ni puntuamos automáticamente el texto. Las listas sirven para revisar si respondiste a la situación; puede haber otras respuestas válidas.', 'text-muted');
             const reveal = make('button', 'Mostrar ejemplo orientativo');
             let practiceRecorded = false;
@@ -165,7 +185,7 @@
                 }
             });
             const disclaimer = make('p', 'Sin nota, sin XP ni registro SRS. Solo se cuenta una sesión al comparar tu borrador con el ejemplo; el texto no se guarda ni se incluye en las copias de seguridad.', 'text-muted');
-            host.append(back, levelLabel, heading, situation, label, textarea, checklistHeading, checklist, note, reveal, status, example, disclaimer);
+            host.append(back, levelLabel, heading, situation, label, textarea, checklistHeading, checklist, checklistStatus, note, reveal, status, example, disclaimer);
         }
     };
     root.WritingPractice = WritingPractice;

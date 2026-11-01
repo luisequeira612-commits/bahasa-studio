@@ -135,7 +135,8 @@
         return activity;
     }
 
-    function skillForExercise(type) {
+    function skillForExercise(type, hasAudio) {
+        if (hasAudio) return 'listening';
         const mapping = { mc: 'recognition', match: 'recognition', translate_es_id: 'translation', listen: 'listening', order: 'sentenceBuilding', write: 'writing' };
         return mapping[type] || null;
     }

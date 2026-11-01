@@ -1290,7 +1290,7 @@ test('A2 U5-U8 lesson exercises stay aligned with introduced vocabulary and cano
           assert.deepEqual(Array.from(exercise.words).sort(), Array.from(exercise.correctOrder).sort(),
             lesson.title + ' ordering tokens must match the canonical answer');
           const normalize = value => String(value).normalize('NFC').toLocaleLowerCase()
-            .replace(/[.,!?;:«»"“”]/g, ' ').replace(/\\s+/g, ' ').trim();
+            .replace(/[.,!?;:«»"“”]/g, ' ').replace(/\s+/g, ' ').trim();
           assert.ok(normalize(exercise.explanation).includes(normalize(exercise.correctOrder.join(' '))),
             lesson.title + ' feedback must reproduce the ordering answer');
         } else if (exercise.type === 'translate_es_id' || exercise.type === 'listen') {

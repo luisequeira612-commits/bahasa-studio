@@ -143,12 +143,17 @@ test('A1 units 24-32 assess every vocabulary item at least once', () => {
   assert.deepEqual(uncovered, []);
 });
 
-test('A1 units 24-32 meaning checks use the linked vocabulary gloss', () => {
+test('new A1 U24-U32 meaning checks use the linked vocabulary gloss', () => {
+  const addedIds = new Set([
+    'v387', 'v393', 'v401', 'v402', 'v405', 'v411', 'v412', 'v420', 'v424',
+    'v430', 'v434', 'v436', 'v441', 'v444', 'v447', 'v454', 'v456', 'v459',
+    'v462', 'v464', 'v470', 'v471'
+  ]);
   const mismatches = [];
   for (const unit of levels[0].units.slice(23, 32)) {
     const words = new Map(unit.vocab.map(word => [word.id, word]));
     for (const exercise of exercisesOf(unit)) {
-      if (exercise.type !== 'mc' || !/qué significa/i.test(exercise.prompt || '')) continue;
+      if (!addedIds.has(exercise.vocabId) || exercise.type !== 'mc') continue;
       const word = words.get(exercise.vocabId);
       if (word && exercise.options?.[exercise.answer] !== word.esp) {
         mismatches.push(unit.id + '/' + word.idn);

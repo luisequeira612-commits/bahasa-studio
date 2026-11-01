@@ -33,7 +33,32 @@ window.BAHASA_CURRICULUM_A1 = {
                                 { vocabId: 'v47', type: 'translate_es_id', prompt: 'Traduce: «beber»', answer: 'Minum', explanation: 'Minum significa «beber».' },
                                 { vocabId: 'v46', type: 'mc', prompt: 'Completa: «Dia ___» (Él / ella come)', options: ['makan', 'minum', 'kamu'], answer: 0, explanation: 'Makan significa «comer» y no cambia con dia.' },
                                 { vocabId: 'v1', type: 'write', prompt: "Escribe una frase propia con «saya» y un verbo de la unidad.", hint: "Por ejemplo, habla de algo que tú haces; no copies literalmente un ejercicio anterior.", modelAnswer: "Saya makan.", explanation: "Saya significa «yo» y makan significa «comer». Puedes crear otras frases correctas con el vocabulario aprendido." }
-                            ]
+                            ,
+                                            {
+                                                "vocabId": "v465",
+                                                "type": "mc",
+                                                "prompt": "¿Qué significa «apa kabar»?",
+                                                "options": [
+                                                    "Gracias",
+                                                    "¿Cómo estás? / ¿Qué tal?",
+                                                    "¿Dónde estás?"
+                                                ],
+                                                "answer": 1,
+                                                "explanation": "Apa kabar? pregunta cómo está alguien."
+                                            },
+                                            {
+                                                "vocabId": "v1002",
+                                                "type": "mc",
+                                                "prompt": "¿Qué significa «baik»?",
+                                                "options": [
+                                                    "Bien",
+                                                    "Mal",
+                                                    "Mañana"
+                                                ],
+                                                "answer": 0,
+                                                "explanation": "Baik significa bien."
+                                            }
+]
                         },
                         {
                             id: 'a1_u2',
@@ -337,7 +362,32 @@ window.BAHASA_CURRICULUM_A1 = {
                                 {"vocabId":"v105","type":"mc","prompt":"¿Cómo se dice seis?","options":["Enam","Tujuh","Delapan"],"answer":0,"explanation":"Enam significa seis."},
                                 {"vocabId":"v106","type":"translate_es_id","prompt":"Traduce: siete","answer":"Tujuh","explanation":"Tujuh significa siete."},
                                 {"vocabId":"v107","type":"listen","prompt":"Escucha y escribe el número","answer":"Delapan","explanation":"Delapan significa ocho."}
-                            ]
+                            ,
+                                            {
+                                                "vocabId": "v40",
+                                                "type": "mc",
+                                                "prompt": "¿Qué significa «empat»?",
+                                                "options": [
+                                                    "Cuatro",
+                                                    "Cinco",
+                                                    "Seis"
+                                                ],
+                                                "answer": 0,
+                                                "explanation": "Empat significa cuatro."
+                                            },
+                                            {
+                                                "vocabId": "v41",
+                                                "type": "mc",
+                                                "prompt": "¿Qué significa «lima»?",
+                                                "options": [
+                                                    "Cuatro",
+                                                    "Cinco",
+                                                    "Siete"
+                                                ],
+                                                "answer": 1,
+                                                "explanation": "Lima significa cinco."
+                                            }
+]
                         },
                         {
                             id: 'a1_u5',
@@ -1014,7 +1064,68 @@ window.BAHASA_CURRICULUM_A1 = {
                                 { vocabId: 'v272', type: 'translate_es_id', prompt: 'Traduce al indonesio: veinticinco', answer: 'Dua puluh lima', explanation: 'Para formar veinticinco se dice dua puluh lima.' },
                                 { vocabId: 'v274', type: 'order', prompt: 'Ordena para decir “cuarenta y siete”', words: ['tujuh', 'Empat', 'puluh'], correctOrder: ['Empat', 'puluh', 'tujuh'], explanation: 'En los números compuestos, la unidad va después de la decena: empat puluh tujuh.' },
                                 { vocabId: 'v278', type: 'mc', prompt: 'Delapan puluh sembilan equivale a…', options: ['19', '80', '89'], answer: 2, explanation: 'Delapan puluh sembilan significa ochenta y nueve.' }
-                            ]
+                            ,
+                                            {
+                                                "vocabId": "v273",
+                                                "type": "mc",
+                                                "prompt": "¿Qué significa «tiga puluh dua»?",
+                                                "options": [
+                                                    "Treinta y dos",
+                                                    "Treinta y ocho",
+                                                    "Treinta y cuatro"
+                                                ],
+                                                "answer": 0,
+                                                "explanation": "Tiga puluh dua significa treinta y dos."
+                                            },
+                                            {
+                                                "vocabId": "v275",
+                                                "type": "mc",
+                                                "prompt": "¿Qué significa «lima puluh delapan»?",
+                                                "options": [
+                                                    "Cincuenta y seis",
+                                                    "Cincuenta y ocho",
+                                                    "Cincuenta y nueve"
+                                                ],
+                                                "answer": 1,
+                                                "explanation": "Lima puluh delapan significa cincuenta y ocho."
+                                            },
+                                            {
+                                                "vocabId": "v276",
+                                                "type": "mc",
+                                                "prompt": "¿Qué significa «enam puluh empat»?",
+                                                "options": [
+                                                    "Sesenta y cuatro",
+                                                    "Sesenta y seis",
+                                                    "Cuarenta y seis"
+                                                ],
+                                                "answer": 0,
+                                                "explanation": "Enam puluh empat significa sesenta y cuatro."
+                                            },
+                                            {
+                                                "vocabId": "v277",
+                                                "type": "mc",
+                                                "prompt": "¿Qué significa «tujuh puluh enam»?",
+                                                "options": [
+                                                    "Setenta y cinco",
+                                                    "Setenta y seis",
+                                                    "Setenta y ocho"
+                                                ],
+                                                "answer": 1,
+                                                "explanation": "Tujuh puluh enam significa setenta y seis."
+                                            },
+                                            {
+                                                "vocabId": "v279",
+                                                "type": "mc",
+                                                "prompt": "¿Qué significa «sembilan puluh sembilan»?",
+                                                "options": [
+                                                    "Noventa y ocho",
+                                                    "Noventa y nueve",
+                                                    "Ochenta y nueve"
+                                                ],
+                                                "answer": 1,
+                                                "explanation": "Sembilan puluh sembilan significa noventa y nueve."
+                                            }
+]
                         },
                         {
                             id: 'a1_u10',
@@ -1095,7 +1206,44 @@ window.BAHASA_CURRICULUM_A1 = {
                                 { vocabId: 'v146', type: 'listen', prompt: 'Escribe la expresión “esta mañana”', answer: 'Pagi ini', explanation: 'Pagi ini significa esta mañana.' },
                                 { vocabId: 'v151', type: 'write', prompt: 'Escribe una frase para decir que son las siete en punto.', hint: 'Usa jam, tujuh y tepat.', modelAnswer: 'Jam tujuh tepat.', explanation: 'La frase significa las siete en punto.' },
                                 { vocabId: 'v155', type: 'write', prompt: 'Escribe una frase sencilla con nanti.', hint: 'Puedes hablar de estudiar más tarde.', modelAnswer: 'Saya belajar nanti.', explanation: 'Nanti significa más tarde; otras frases correctas también valen.' }
-                            ]
+                            ,
+                                            {
+                                                "vocabId": "v35",
+                                                "type": "mc",
+                                                "prompt": "¿Qué significa «hari»?",
+                                                "options": [
+                                                    "Día",
+                                                    "Mes",
+                                                    "Mañana"
+                                                ],
+                                                "answer": 0,
+                                                "explanation": "Hari significa día."
+                                            },
+                                            {
+                                                "vocabId": "v36",
+                                                "type": "mc",
+                                                "prompt": "¿Qué significa «hari ini»?",
+                                                "options": [
+                                                    "Ayer",
+                                                    "Hoy / este día",
+                                                    "Mañana"
+                                                ],
+                                                "answer": 1,
+                                                "explanation": "Hari ini significa hoy o este día."
+                                            },
+                                            {
+                                                "vocabId": "v122",
+                                                "type": "mc",
+                                                "prompt": "¿Qué significa «besok»?",
+                                                "options": [
+                                                    "Ayer",
+                                                    "Mañana",
+                                                    "Hoy"
+                                                ],
+                                                "answer": 1,
+                                                "explanation": "Besok significa mañana."
+                                            }
+]
                         },
                         {
                             "id": "a1_u12",
@@ -1319,7 +1467,20 @@ window.BAHASA_CURRICULUM_A1 = {
                                 }
                             
                                 , { vocabId: 'v247', type: 'mc', prompt: 'Escucha la rutina y elige qué hace la persona', audioText: 'Saya bangun pagi.', options: ["Me levanto por la mañana","Se acuesta por la noche","Cena por la tarde"], answer: 0, explanation: 'Bangun significa levantarse; pagi indica la mañana.' }
-                            ]
+                            ,
+                                            {
+                                                "vocabId": "v304",
+                                                "type": "mc",
+                                                "prompt": "¿Qué significa «baju»?",
+                                                "options": [
+                                                    "Ropa / prenda de vestir",
+                                                    "Zapato",
+                                                    "Comida"
+                                                ],
+                                                "answer": 0,
+                                                "explanation": "Baju significa ropa o prenda de vestir."
+                                            }
+]
                         },
                         {
                             "id": "a1_u13",
@@ -2464,7 +2625,20 @@ window.BAHASA_CURRICULUM_A1 = {
                                 { vocabId: 'v317', type: 'order', prompt: 'Ordena: Ellos están aquí.', words: ['sini', 'Mereka', 'di'], correctOrder: ['Mereka', 'di', 'sini'], explanation: 'Mereka di sini significa «Ellos están aquí».' },
                                 { vocabId: 'v316', type: 'write', prompt: 'Escribe una frase que incluya a la persona que escucha y diga dónde están.', hint: 'Usa Kita di sini.', modelAnswer: 'Kita di sini.', explanation: 'Kita incluye a quien escucha; Kita di sini significa «Estamos aquí».' },
                                 { vocabId: 'v319', type: 'write', prompt: 'Escribe una frase que indique de quién es algo.', hint: 'Usa Ini milik saya como modelo.', modelAnswer: 'Ini milik saya.', explanation: 'Milik expresa pertenencia; la frase es un modelo que puedes adaptar.' }
-                            ]
+                            ,
+                                            {
+                                                "vocabId": "v348",
+                                                "type": "mc",
+                                                "prompt": "¿Qué significa «mana»?",
+                                                "options": [
+                                                    "Dónde / cuál (según contexto)",
+                                                    "Cuándo",
+                                                    "Quién"
+                                                ],
+                                                "answer": 0,
+                                                "explanation": "Mana puede preguntar dónde o cuál, según el contexto."
+                                            }
+]
                         },
                         {
                             id: 'a1_u19',
@@ -2504,7 +2678,20 @@ window.BAHASA_CURRICULUM_A1 = {
                                 { vocabId: 'v347', type: 'mc', prompt: 'Escucha el diálogo del restaurante y elige qué pide el cliente', audioText: 'Selamat siang. Saya pesan nasi goreng. Tanpa cabai, ya? Ya, tanpa cabai.', options: ['Arroz frito sin chile', 'Sopa con mucho chile', 'Agua sin hielo'], answer: 0, explanation: 'El cliente pide nasi goreng (arroz frito) y confirma que lo quiere sin chile.' },
                                 { vocabId: 'v324', type: 'write', prompt: 'Escribe un pedido sencillo en un restaurante.', hint: 'Usa Saya mau nasi goreng o Saya pesan ayam.', modelAnswer: 'Saya pesan nasi goreng.', explanation: 'Ejemplo de pedido: Saya pesan nasi goreng. — Pido arroz frito.' },
                                 { vocabId: 'v330', type: 'write', prompt: 'Escribe una frase para decir que un plato está rico.', hint: 'Puedes usar Nasi goreng ini enak.', modelAnswer: 'Nasi goreng ini enak.', explanation: 'El demostrativo ini aparece después del sustantivo.' }
-                            ]
+                            ,
+                                            {
+                                                "vocabId": "v333",
+                                                "type": "mc",
+                                                "prompt": "¿Qué significa «tanpa»?",
+                                                "options": [
+                                                    "Con",
+                                                    "Sin",
+                                                    "Antes"
+                                                ],
+                                                "answer": 1,
+                                                "explanation": "Tanpa significa sin."
+                                            }
+]
                         },
                         {
                             id: 'a1_u20',
@@ -2580,7 +2767,32 @@ window.BAHASA_CURRICULUM_A1 = {
                                 { vocabId: 'v353', type: 'translate_es_id', prompt: 'Traduce: oreja / oído', answer: 'Telinga', explanation: 'Telinga significa oreja u oído.' },
                                 { vocabId: 'v358', type: 'write', prompt: 'Escribe una frase sencilla para decir que tienes fiebre.', hint: 'Usa Saya demam.', modelAnswer: 'Saya demam.', explanation: 'Saya demam significa «Tengo fiebre».' },
                                 { vocabId: 'v360', type: 'write', prompt: 'Escribe una frase para decir que estás bien de salud.', hint: 'Usa Saya sehat.', modelAnswer: 'Saya sehat.', explanation: 'Saya sehat significa «Estoy sano/a».' }
-                            ]
+                            ,
+                                            {
+                                                "vocabId": "v351",
+                                                "type": "mc",
+                                                "prompt": "¿Qué significa «kaki»?",
+                                                "options": [
+                                                    "Pie / pierna",
+                                                    "Mano",
+                                                    "Cabeza"
+                                                ],
+                                                "answer": 0,
+                                                "explanation": "Kaki puede significar pie o pierna."
+                                            },
+                                            {
+                                                "vocabId": "v354",
+                                                "type": "mc",
+                                                "prompt": "¿Qué significa «mulut»?",
+                                                "options": [
+                                                    "Boca",
+                                                    "Ojo",
+                                                    "Nariz"
+                                                ],
+                                                "answer": 0,
+                                                "explanation": "Mulut significa boca."
+                                            }
+]
                         },
                         {
                             id: 'a1_u22',
@@ -2658,7 +2870,20 @@ window.BAHASA_CURRICULUM_A1 = {
                                 { vocabId: 'v382', type: 'write', prompt: 'Escribe dónde está la lámpara.', hint: 'Usa Lampu di kamar.', modelAnswer: 'Lampu di kamar.', explanation: 'Di kamar significa «en la habitación».' }
                             
                                 , { vocabId: 'v374', type: 'mc', prompt: 'Escucha dónde está la persona', audioText: 'Saya di dapur.', options: ["Estoy en la cocina","Está en el dormitorio","Está en la escuela"], answer: 0, explanation: 'Dapur significa cocina.' }
-                            ]
+                            ,
+                                            {
+                                                "vocabId": "v375",
+                                                "type": "mc",
+                                                "prompt": "¿Qué significa «kamar mandi»?",
+                                                "options": [
+                                                    "Cuarto de baño",
+                                                    "Cocina",
+                                                    "Dormitorio"
+                                                ],
+                                                "answer": 0,
+                                                "explanation": "Kamar mandi significa cuarto de baño."
+                                            }
+]
                         },
                         {
                             id: 'a1_u24',

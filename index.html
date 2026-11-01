@@ -3065,6 +3065,8 @@ Requisitos:
                             for (const wordId of recommendation.wordIds) await SRSEngine.markForReview(wordId);
                             await this.updateSrsView();
                             await SRSEngine.startSession();
+                        } else if (recommendation.action === 'writing') {
+                            WritingPractice.open();
                         } else if (recommendation.action === 'lesson') {
                             LessonEngine.startUnitById(recommendation.unitId, recommendation.lessonIndex);
                         } else if (recommendation.action === 'conversation') {

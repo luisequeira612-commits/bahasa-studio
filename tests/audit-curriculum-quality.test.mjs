@@ -310,3 +310,42 @@ test('allows a lesson exercise to use later-introduced vocabulary when explicitl
   });
   assert.ok(!report.issues.some((item) => item.code === 'LESSON_VOCAB_USED_BEFORE_INTRODUCTION'));
 });
+
+test('reports vocabulary without an explicit exercise link across unit and lesson exercises', () => {
+  const report = auditCurriculum({
+    id: 'A1',
+    units: [{
+      id: 'u1',
+      title: 'One',
+      vocab: [
+        { id: 'unit_word', idn: 'satu', esp: 'uno' },
+        { id: 'lesson_word', idn: 'dua', esp: 'dos' },
+        { id: 'uncovered_word', idn: 'tiga', esp: 'tres' },
+      ],
+      exercises: [{ vocabId: 'unit_word', type: 'listen', prompt: 'Listen' }],
+      lessons: [{
+        exercises: [{ vocabId: 'lesson_word', type: 'translate_es_id', prompt: 'Translate' }],
+      }],
+    }],
+  });
+  const uncovered = report.issues.filter((item) => item.code === 'VOCAB_NOT_EXPLICITLY_ASSESSED');
+  assert.equal(uncovered.length, 1);
+  assert.equal(uncovered[0].path, 'A1.units[0].vocab[2]');
+  assert.match(uncovered[0].message, /uncovered_word/);
+  assert.equal(uncovered[0].severity, 'warning');
+});
+
+test('does not treat an uncovered-vocabulary warning as a structural error', () => {
+  const report = auditCurriculum({
+    id: 'A2',
+    units: [{
+      id: 'u1',
+      title: 'One',
+      vocab: [{ id: 'word', idn: 'satu', esp: 'uno' }],
+      exercises: [],
+    }],
+  });
+  assert.equal(report.error_count, 0);
+  assert.equal(report.warning_count, 2); // missing example plus missing explicit exercise link
+  assert.ok(report.issues.some((item) => item.code === 'VOCAB_NOT_EXPLICITLY_ASSESSED'));
+});

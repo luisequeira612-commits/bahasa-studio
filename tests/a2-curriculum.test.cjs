@@ -627,6 +627,26 @@ test('A2 U4 includes integrated daily-schedule writing with two timed activities
 });
 
 
+test('A2 U9-U12 word-order feedback matches each prompt and canonical answer', () => {
+  const cases = [
+    { unitId: 'a2_u9', vocabId: 'a2u9_menurut', prompt: 'Ordena: En mi opinión, él o ella está de acuerdo.', sentence: 'Menurut saya, dia setuju' },
+    { unitId: 'a2_u10', vocabId: 'a2u10_peraturan', prompt: 'Ordena: Leo el reglamento.', sentence: 'Saya membaca peraturan' },
+    { unitId: 'a2_u11', vocabId: 'a2u11_solusi', prompt: 'Ordena: Esta es una solución.', sentence: 'Ini solusi' },
+    { unitId: 'a2_u12', vocabId: 'a2u12_kemampuan', prompt: 'Ordena: Mi capacidad es buena.', sentence: 'Kemampuan saya baik' }
+  ];
+  for (const item of cases) {
+    const unit = a2.units.find(entry => entry.id === item.unitId);
+    assert.ok(unit, item.unitId + ' should exist');
+    const exercise = unit.lessons.flatMap(lesson => lesson.exercises || [])
+      .find(entry => entry.type === 'order' && entry.vocabId === item.vocabId);
+    assert.ok(exercise, item.unitId + ' should include the expected word-order exercise');
+    assert.equal(exercise.prompt, item.prompt);
+    assert.equal(exercise.correctOrder.join(' '), item.sentence);
+    assert.equal(exercise.explanation, 'La frase completa es: ' + item.sentence + '.');
+    assert.equal(exercise.words.slice().sort().join(' '), exercise.correctOrder.slice().sort().join(' '));
+  }
+});
+
 test('A2 U6-U8 word-order feedback matches each prompt and canonical answer', () => {
   const cases = [
     { unitId: 'a2_u6', vocabId: 'a2u6_menutup', prompt: 'Ordena: Cierro el libro.', sentence: 'Saya menutup buku' },

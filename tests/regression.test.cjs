@@ -42,11 +42,21 @@ test('PWA version is consistent across HTML, manifest and cache', () => {
   assert.equal(manifest.icons[0].src, './icon.svg');
   assert.equal(manifest.background_color, '#0f172a');
   assert.match(fs.readFileSync(path.join(root, 'icon.svg'), 'utf8'), /<svg[^>]+viewBox="0 0 512 512"/);
-  assert.match(serviceWorker, /bahasa-studio-v3\.8\.25/);
+  assert.match(serviceWorker, /bahasa-studio-v3\.8\.26/);
   for (const asset of ['./', './index.html', './manifest.json', './assessment.html', './assessment-engine.js', './conversation-engine.js', './study-activity.js', './adaptive-learning.js', './curriculum-a1.js', './curriculum-a2.js', './styles.css', './icon.svg', './audio-engine.js', './pronunciation-engine.js', './writing-practice.js']) {
     assert.ok(serviceWorker.includes("'" + asset + "'"), asset + ' must be precached for offline use');
   }
   assert.doesNotMatch(html + serviceWorker + JSON.stringify(manifest), /3\.5\.1/);
+});
+
+test('word meaning popup renders only the example and its translation', () => {
+  const start = html.indexOf("exampleNode.textContent = [");
+  const end = html.indexOf(".filter(Boolean).join(' — ');", start);
+  assert.ok(start >= 0 && end > start, 'example text builder must exist');
+  const expression = html.slice(start, end);
+  assert.match(expression, /example\.ex/);
+  assert.match(expression, /example\.exEsp/);
+  assert.doesNotMatch(expression, /vocabId|audioText|type:\s*['"]mc/);
 });
 
 test('A2 is available in beta only after A1 completion', () => {

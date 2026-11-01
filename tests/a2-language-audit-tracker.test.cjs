@@ -95,3 +95,26 @@ test('A2 audit plan clearly separates structural checks from linguistic validati
   assert.match(plan, /No se verificaron ejemplos con corpus ni con hablantes nativos/);
   assert.match(plan, /not_checked/);
 });
+
+test('A2 editorial audit index links every four-unit block from U1 through U40', () => {
+  const root = path.join(__dirname, '..');
+  const index = fs.readFileSync(path.join(root, 'docs/A2-EDITORIAL-AUDIT-INDEX.md'), 'utf8');
+  const files = [
+    'A2-UNITS-01-04-AUDIT.md', 'A2-UNITS-05-08-AUDIT.md',
+    'A2-UNITS-09-12-AUDIT.md', 'A2-UNITS-13-16-AUDIT.md',
+    'A2-UNITS-17-20-AUDIT.md', 'A2-UNITS-21-24-AUDIT.md',
+    'A2-UNITS-25-28-AUDIT.md', 'A2-UNITS-29-32-AUDIT.md',
+    'A2-UNITS-33-36-AUDIT.md', 'A2-UNITS-37-40-AUDIT.md',
+  ];
+  for (const file of files) {
+    assert.ok(fs.existsSync(path.join(root, 'docs', file)), 'Missing A2 audit report: ' + file);
+    assert.ok(index.includes(file), 'A2 audit index must link ' + file);
+  }
+  assert.match(index, /40 unidades/);
+  assert.match(index, /492 entradas de vocabulario/);
+  assert.match(index, /161 lecciones/);
+  assert.match(index, /682 ejercicios/);
+  assert.match(index, /No hubo hablante nativo disponible/);
+  assert.match(index, /KBBI no es requisito/);
+  assert.match(index, /No se deben cambiar IDs, IndexedDB ni el formato de backup v3/);
+});

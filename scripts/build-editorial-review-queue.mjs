@@ -29,12 +29,17 @@ export function buildEditorialQueue(curricula) {
         if (!hasGloss) missing.push('spanish_gloss');
         if (!hasExample) missing.push('example_indonesian');
         if (!hasExampleTranslation) missing.push('example_spanish');
+        const unitId = String(unit.id ?? '');
+        const vocabId = String(word.id ?? '');
+        const stableTermFallback = String(word.idn ?? '').trim().toLocaleLowerCase().replace(/\\s+/g, ' ');
+        const reviewId = [level, unitId, vocabId || `missing-id:${stableTermFallback || vocabIndex}`].join(':');
         rows.push({
+          review_id: reviewId,
           level,
-          unit_id: String(unit.id ?? ''),
+          unit_id: unitId,
           unit_title: String(unit.title ?? ''),
           source_path: `${level}.units[${unitIndex}].vocab[${vocabIndex}]`,
-          vocab_id: String(word.id ?? ''),
+          vocab_id: vocabId,
           indonesian_form: String(word.idn ?? ''),
           spanish_gloss: String(word.esp ?? ''),
           example_indonesian: String(word.ex ?? ''),
@@ -66,7 +71,7 @@ function csvCell(value) {
 
 export function toCsv(rows) {
   const headers = rows.length ? Object.keys(rows[0]) : [
-    'level','unit_id','unit_title','source_path','vocab_id','indonesian_form','spanish_gloss',
+    'review_id','level','unit_id','unit_title','source_path','vocab_id','indonesian_form','spanish_gloss',
     'example_indonesian','example_spanish','priority','missing_fields','editorial_status',
     'meaning_review','morphology_review','naturalness_review','translation_review',
     'level_fit_review','accepted_answers_review','reviewer','evidence_notes',

@@ -148,3 +148,34 @@ La fase 2 puede avanzar sin esperar una validación externa para corregir defect
 A2 está habilitado en beta mediante `A2_RELEASE_ENABLED = true`, pero solo aparece en las rutas de aprendizaje cuando el estudiante completa las 32 unidades de A1. La condición de finalización de A1 también protege el acceso directo a lecciones y evaluaciones, así como la inclusión de vocabulario A2 en el aprendizaje y SRS. B1 y B2 continúan fuera del acceso normal.
 
 La habilitación beta es una decisión de producto para no bloquear el aprendizaje por falta de hablante nativo o por la indisponibilidad de KBBI. **No certifica la naturalidad, precisión semántica, registro ni adecuación CEFR/BIPA del contenido.** La revisión editorial y las pruebas estructurales continúan; las incertidumbres lingüísticas deben permanecer documentadas. CI nunca activa ni desactiva esta bandera automáticamente.
+
+
+## Cuarta pasada de consolidación — 2026-11-01
+
+### Correcciones integradas y trazabilidad
+
+- A2 U14: se alineó la explicación de `keberangkatan` con «salida» en vez de «viaje» (PR #150).
+- A2 U15: se distinguió `mengusulkan` («proponer») de `mengundang` («invitar») en la retroalimentación (PR #150).
+- A2 U18: se aclaró que el indonesio `pagar` significa «cerca», para evitar confundirlo con el verbo español «pagar» (PR #151).
+- A1 U5: se corrigió el modelo de escritura asociado a `Adik`; ahora usa `Ini adik saya` en vez de una frase sobre la madre (PR #153).
+- A2 U38: se normalizó `oleh-oleh` en el lema, la explicación, el ejemplo del currículo y el tracker, para que la forma sea consistente (PR #154).
+
+Estas correcciones abordan contradicciones internas o desambiguación pedagógica. No deben marcarse como validaciones de naturalidad, registro ni nivel.
+
+### Cobertura de pruebas reforzada
+
+- A2 U21–U24: las regresiones comprueban que la respuesta MC coincide con la glosa asociada, que el feedback identifica el término, que los tokens y la explicación de ordenamiento coinciden y que las respuestas de producción contienen el vocabulario objetivo (PR #152).
+- A2 U38: regresión específica para la forma `oleh-oleh` y correspondencia con el tracker (PR #154).
+- A1 U5: regresión específica para el modelo de `Adik` (PR #153).
+- No se generalizó una regla que exigiera que toda respuesta modelo de escritura abierta repitiera literalmente el término vinculado: la primera prueba exploratoria produjo falsos positivos en consignas que admiten múltiples respuestas. Se conservó el control de alineación para ejercicios cerrados y se corrigieron solo los casos demostrables.
+
+### Pasada estructural A1 U24–U32 y A2 U25–U40
+
+- A1 U24–U32: 9 unidades y 90 entradas en el tracker; la inspección local encontró ejemplos bilingües completos y no detectó desajustes en tokens/feedback de ordenamiento. Las respuestas modelo revisadas en ese bloque contienen el término objetivo. Esto no valida naturalidad ni nivel.
+- A2 U25–U37 y U39–U40: la pasada interna no encontró contradicciones en la correspondencia de MC, ordenamiento, traducción, listening y modelos de escritura revisados.
+- A2 U38: se encontró la diferencia de escritura `oleh oleh` / `oleh-oleh`, corregida en el PR #154.
+- El bloque A2 U21–U40 mantiene 12 vocablos, 4 lecciones y 17 ejercicios por unidad según las comprobaciones estructurales existentes.
+
+### Estado operativo
+
+La fase 2 sigue abierta. A1 U24–U32 y A2 U1–U40 están disponibles en el producto conforme a las puertas actuales, pero siguen pendientes la revisión lingüística externa, la naturalidad, la adecuación de nivel y las pruebas de audio/dispositivo que no se hayan ejecutado. No convertir CI verde ni una auditoría de coherencia en certificación lingüística.

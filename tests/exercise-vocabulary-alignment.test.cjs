@@ -130,3 +130,30 @@ test('A1 Unit 5 younger-sibling writing model matches its linked vocabulary', ()
   assert.equal(exercise.modelAnswer, 'Ini adik saya.');
   assert.match(exercise.explanation, /adik saya/i);
 });
+
+
+test('A1 units 24-32 assess every vocabulary item at least once', () => {
+  const uncovered = [];
+  for (const unit of levels[0].units.slice(23, 32)) {
+    const linked = new Set(exercisesOf(unit).map(exercise => exercise.vocabId));
+    for (const word of unit.vocab || []) {
+      if (!linked.has(word.id)) uncovered.push(unit.id + '/' + word.id);
+    }
+  }
+  assert.deepEqual(uncovered, []);
+});
+
+test('A1 units 24-32 meaning checks use the linked vocabulary gloss', () => {
+  const mismatches = [];
+  for (const unit of levels[0].units.slice(23, 32)) {
+    const words = new Map(unit.vocab.map(word => [word.id, word]));
+    for (const exercise of exercisesOf(unit)) {
+      if (exercise.type !== 'mc' || !/qué significa/i.test(exercise.prompt || '')) continue;
+      const word = words.get(exercise.vocabId);
+      if (word && exercise.options?.[exercise.answer] !== word.esp) {
+        mismatches.push(unit.id + '/' + word.idn);
+      }
+    }
+  }
+  assert.deepEqual(mismatches, []);
+});

@@ -3025,22 +3025,10 @@ Requisitos:
                     }).filter(Boolean);
                 let nextLesson = null;
                 let skillLesson = null;
-                const skillForExercise = exercise => {
-                    if (!exercise || typeof exercise !== 'object') return null;
-                    if (exercise.audioText) return 'listening';
-                    const mapping = {
-                        mc: 'recognition',
-                        match: 'recognition',
-                        translate_es_id: 'translation',
-                        listen: 'listening',
-                        order: 'sentenceBuilding',
-                        write: 'writing'
-                    };
-                    return mapping[exercise.type] || null;
-                };
                 const weakestSkill = typeof AdaptiveLearning !== 'undefined'
                     ? AdaptiveLearning.weakestSkill(this.studyActivity && this.studyActivity.skillStats)
                     : null;
+                const skillLessons = [];
                 for (const level of getLearningLevels()) {
                     for (const unit of level.units) {
                         if (this.completedUnits.includes(unit.id)) continue;
@@ -3050,17 +3038,23 @@ Requisitos:
                             const first = unfinishedLessons[0];
                             nextLesson = { unitId: unit.id, lessonIndex: first.index, unitTitle: unit.title, title: first.title };
                         }
-                        if (weakestSkill && !skillLesson) {
-                            const matching = unfinishedLessons.find(entry =>
-                                Array.isArray(entry.exercises) &&
-                                entry.exercises.some(exercise => skillForExercise(exercise) === weakestSkill.key));
-                            if (matching) {
-                                skillLesson = { unitId: unit.id, lessonIndex: matching.index, unitTitle: unit.title, title: matching.title };
-                            }
+                        if (weakestSkill) {
+                            unfinishedLessons.forEach(entry => {
+                                if (Array.isArray(entry.exercises)) {
+                                    skillLessons.push({
+                                        unitId: unit.id,
+                                        lessonIndex: entry.index,
+                                        unitTitle: unit.title,
+                                        title: entry.title,
+                                        exercises: entry.exercises
+                                    });
+                                }
+                            });
                         }
-                        if (nextLesson && (!weakestSkill || skillLesson)) break;
                     }
-                    if (nextLesson && (!weakestSkill || skillLesson)) break;
+                }
+                if (weakestSkill && typeof AdaptiveLearning.selectSkillLesson === 'function') {
+                    skillLesson = AdaptiveLearning.selectSkillLesson(weakestSkill.key, skillLessons);
                 }
                 this.renderAdaptiveRecommendation({
                     dueCount: due.length,

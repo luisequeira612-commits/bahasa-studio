@@ -1289,7 +1289,7 @@ test('U25 translation prompt matches its verb-only answer and U30 teaches the cl
   assert.equal(repeat.idn, 'Ulangi');
   assert.match(repeat.esp, /imperativo/i);
   const tracker = fs.readFileSync(path.join(root, 'docs/A1_VOCABULARY_AUDIT_TRACKER_U24_U32.csv'), 'utf8');
-  assert.match(tracker, /\"U30\",\"v449\",\"Ulangi\",\"Repite \/ repítalo \(imperativo\)\"/);
+  assert.match(tracker, /\"U30\",\"v449\",\"Ulangi\",\"Repite \/ repita \(imperativo\)\"/);
 });
 
 test('A1 first-person listening prompts use first-person Spanish translations and preserve question intent', () => {

@@ -3025,42 +3025,39 @@ Requisitos:
                     }).filter(Boolean);
                 let nextLesson = null;
                 let skillLesson = null;
-                const skillForExercise = exercise => {
-                    if (!exercise || typeof exercise !== 'object') return null;
-                    if (exercise.audioText) return 'listening';
-                    const mapping = {
-                        mc: 'recognition',
-                        match: 'recognition',
-                        translate_es_id: 'translation',
-                        listen: 'listening',
-                        order: 'sentenceBuilding',
-                        write: 'writing'
-                    };
-                    return mapping[exercise.type] || null;
-                };
                 const weakestSkill = typeof AdaptiveLearning !== 'undefined'
                     ? AdaptiveLearning.weakestSkill(this.studyActivity && this.studyActivity.skillStats)
                     : null;
+                const skillLessons = [];
+                const a1Complete = isA1Complete(this.completedUnits);
+                const a1Level = getLearningLevels().find(level => level.id === 'A1');
+                const nextA1Unit = a1Level && a1Level.units.find(unit => !this.completedUnits.includes(unit.id));
                 for (const level of getLearningLevels()) {
+                    if (level.id === 'A2' && (!A2_RELEASE_ENABLED || !a1Complete)) continue;
+                    if (!['A1', 'A2'].includes(level.id)) continue;
                     for (const unit of level.units) {
                         if (this.completedUnits.includes(unit.id)) continue;
+                        if (level.id === 'A1' && (!nextA1Unit || unit.id !== nextA1Unit.id)) continue;
                         const unfinishedLessons = buildUnitLessons(unit).filter(entry =>
                             !this.completedLessons.includes(unitLessonProgressKey(unit.id, entry.index)));
-                        if (!nextLesson && unfinishedLessons.length) {
-                            const first = unfinishedLessons[0];
+                        if (!unfinishedLessons.length) continue;
+                        const first = unfinishedLessons[0];
+                        if (!nextLesson) {
                             nextLesson = { unitId: unit.id, lessonIndex: first.index, unitTitle: unit.title, title: first.title };
                         }
-                        if (weakestSkill && !skillLesson) {
-                            const matching = unfinishedLessons.find(entry =>
-                                Array.isArray(entry.exercises) &&
-                                entry.exercises.some(exercise => skillForExercise(exercise) === weakestSkill.key));
-                            if (matching) {
-                                skillLesson = { unitId: unit.id, lessonIndex: matching.index, unitTitle: unit.title, title: matching.title };
-                            }
+                        if (weakestSkill && Array.isArray(first.exercises)) {
+                            skillLessons.push({
+                                unitId: unit.id,
+                                lessonIndex: first.index,
+                                unitTitle: unit.title,
+                                title: first.title,
+                                exercises: first.exercises
+                            });
                         }
-                        if (nextLesson && (!weakestSkill || skillLesson)) break;
                     }
-                    if (nextLesson && (!weakestSkill || skillLesson)) break;
+                }
+                if (weakestSkill && typeof AdaptiveLearning.selectSkillLesson === 'function') {
+                    skillLesson = AdaptiveLearning.selectSkillLesson(weakestSkill.key, skillLessons);
                 }
                 this.renderAdaptiveRecommendation({
                     dueCount: due.length,

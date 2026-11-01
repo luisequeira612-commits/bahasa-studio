@@ -97,6 +97,13 @@ test('A2 units 5-8 teach ber- and meN- forms in structured multi-lesson units', 
   assert.match(units[1].grammar, /men-/);
   assert.match(units[2].grammar, /meng-/);
   assert.match(units[3].grammar, /mem-.*meny-/);
+  const expectedPrefixes = [/^ber/i, /^men/i, /^meng/i, /^(mem|meny)/i];
+  units.forEach((unit, index) => {
+    for (const word of unit.vocab) {
+      assert.match(word.idn, expectedPrefixes[index],
+        unit.id + ' vocabulary form should match the unit prefix focus: ' + word.idn);
+    }
+  });
   for (const unit of units) {
     assert.ok(unit.vocab.length >= 10, unit.id + ' should provide at least ten assessment items');
     assert.ok(unit.lessons.length >= 3 && unit.lessons.length <= 5, unit.id + ' should have 3-5 lessons');

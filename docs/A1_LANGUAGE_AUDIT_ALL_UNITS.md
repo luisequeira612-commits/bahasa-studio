@@ -12,7 +12,7 @@ Esta revisión transversal cubre las 23 unidades A1 implementadas (U1–U23) en 
 - **Verificar** cuando la decisión dependa de contexto, registro, variante regional o uso real y la evidencia consultada no sea suficiente.
 - **Conservar** cuando no se detecte un problema claro; esto no equivale a declarar el elemento definitivamente validado.
 - Mantener los IDs canónicos y no modificar el esquema persistente ni el formato de exportación/importación.
-- Usar KBBI como referencia léxica oficial y materiales BIPA 1 como orientación de alcance y situaciones comunicativas. KBBI no certifica por sí solo que una frase sea natural en conversación.
+- Los materiales BIPA 1 ya documentados pueden orientar el alcance y las situaciones comunicativas. KBBI es opcional y no constituye una dependencia del proceso: si no está disponible, la revisión continúa con controles internos y las dudas quedan explícitamente pendientes. Ningún diccionario por sí solo certifica naturalidad conversacional.
 
 ## Registro de revisión por unidad
 
@@ -58,12 +58,12 @@ Estas fuentes sirven para orientar la revisión, pero no constituyen una validac
 
 La segunda pasada ya ha corregido tres puntos de precisión adicionales: la traducción demasiado estrecha de `siang hari`, el ejemplo ambiguo de `ambil` y la explicación incompleta de la posición de `ini/itu`. Se añadió cobertura de regresión para esos cambios. La revisión de abajo sigue abierta y no debe confundirse con una certificación completa.
 
-1. Continuar el cotejo individual de los lemas U1–U23 con KBBI cuando exista una entrada pertinente; registrar forma estándar, significado y casos no cubiertos.
-2. Revisar las frases de ejemplo en indonesio y español, incluidos orden de palabras, elipsis, registro, colocaciones y traducciones que dependan del contexto.
-3. Revisar las explicaciones gramaticales contra ejemplos reales y materiales BIPA 1, evitando presentar como regla universal una tendencia o una simplificación didáctica.
-4. Auditar cada ejercicio: enunciado, opciones, respuesta correcta, explicaciones, equivalencias aceptadas y correspondencia con el vocabulario de la unidad.
-5. Comprobar audio y escritura guiada por separado; el texto de una transcripción no basta para validar pronunciación ni calidad de audio.
-6. Ejecutar las pruebas de regresión y navegador después de cada grupo de cambios y conservar todos los IDs existentes.
+1. Revisar los lemas U1–U23 con un procedimiento interno reproducible: consistencia de glosas, ejemplos cruzados, morfología ya enseñada, duplicados y posibles confusiones de registro. KBBI puede consultarse solo si está disponible y aporta evidencia clara, pero nunca es requisito ni bloqueo.
+2. Revisar las frases de ejemplo en indonesio y español, incluidos orden de palabras, elipsis, registro, colocaciones y traducciones dependientes del contexto. Cuando no haya evidencia suficiente, registrar la duda en vez de inventar certeza.
+3. Contrastar las explicaciones gramaticales con los ejemplos del propio curso y las referencias BIPA ya documentadas, evitando presentar como regla universal una tendencia o simplificación didáctica.
+4. Auditar cada ejercicio: enunciado, opciones, respuesta correcta, explicaciones, equivalencias aceptadas y correspondencia con vocabulario enseñado o explícitamente marcado como repaso.
+5. Comprobar audio y escritura guiada por separado; el texto de una transcripción no basta para validar pronunciación ni calidad de audio. Distinguir audio sintetizado de grabación nativa.
+6. Ejecutar las pruebas de regresión y navegador después de cada grupo de cambios y conservar todos los IDs existentes. Mantener los estados editoriales como pendientes cuando no exista evidencia suficiente; no declarar certificación lingüística.
 
 ## Límites
 

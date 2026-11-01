@@ -240,3 +240,26 @@ test('does not warn for harmless case and whitespace differences in reused gloss
   });
   assert.ok(!report.issues.some((item) => item.code === 'VOCAB_TRANSLATION_INCONSISTENT'));
 });
+
+
+test('warns when a unit exercise assesses vocabulary introduced only in a later unit', () => {
+  const report = auditCurriculum({
+    id: 'A1',
+    units: [
+      { id: 'u1', title: 'First', vocab: [{ id: 'first', idn: 'satu', esp: 'uno' }], exercises: [{ vocabId: 'later', type: 'mc', prompt: 'Choose', options: ['dos', 'uno'], answer: 0 }] },
+      { id: 'u2', title: 'Second', vocab: [{ id: 'later', idn: 'dua', esp: 'dos' }], exercises: [{ vocabId: 'later', type: 'mc', prompt: 'Choose', options: ['dos', 'uno'], answer: 0 }] },
+    ],
+  });
+  assert.equal(report.error_count, 0);
+  assert.ok(report.issues.some((item) => item.code === 'VOCAB_USED_BEFORE_INTRODUCTION' && item.path === 'A1.units[0].exercises[0].vocabId'));
+  assert.ok(!report.issues.some((item) => item.code === 'VOCAB_USED_BEFORE_INTRODUCTION' && item.path === 'A1.units[1].exercises[0].vocabId'));
+});
+
+ test('allows A2 unit exercises to review vocabulary introduced in A1', () => {
+  const report = auditCurriculum({
+    id: 'A2',
+    units: [{ id: 'a2_u1', title: 'A2', vocab: [{ id: 'a2_new', idn: 'jadwal', esp: 'horario' }], exercises: [{ vocabId: 'a1_known', type: 'listen', prompt: 'Listen' }] }],
+  }, 'A2', new Set(['a1_known']));
+  assert.equal(report.error_count, 0);
+  assert.ok(!report.issues.some((item) => item.code === 'VOCAB_USED_BEFORE_INTRODUCTION'));
+});

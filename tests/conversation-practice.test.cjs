@@ -30,6 +30,17 @@ test('the practical conversation module includes all six planned everyday situat
   ]);
 });
 
+test('restaurant ordering feedback explains the exact accepted response', () => {
+  const restaurant = scenarios.find(scenario => scenario.id === 'restaurant');
+  assert.ok(restaurant);
+  const orderingTurn = restaurant.turns[0];
+  const correctChoice = orderingTurn.choices.find(choice => choice.correct);
+  assert.equal(correctChoice.text, 'Saya mau nasi goreng, tolong.');
+  assert.match(correctChoice.feedback, /Saya mau/);
+  assert.match(correctChoice.feedback, /tolong/);
+  assert.doesNotMatch(correctChoice.feedback, /Saya pesan/);
+});
+
 test('each conversation has three usable turns and exactly one appropriate response per turn', () => {
   for (const scenario of scenarios) {
     assert.ok(scenario.title && scenario.description, scenario.id + ' should have a title and description');

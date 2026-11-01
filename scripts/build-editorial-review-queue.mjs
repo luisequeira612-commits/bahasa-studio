@@ -69,6 +69,31 @@ function csvCell(value) {
   return /[",\r\n]/.test(text) ? `"${text.replaceAll('"', '""')}"` : text;
 }
 
+export function buildEditorialSummary(rows) {
+  const byLevel = {};
+  const byPriority = {};
+  const byUnit = {};
+  const missingFields = {};
+  for (const row of rows) {
+    byLevel[row.level] = (byLevel[row.level] ?? 0) + 1;
+    byPriority[row.priority] = (byPriority[row.priority] ?? 0) + 1;
+    const unitKey = [row.level, row.unit_id].join(':');
+    byUnit[unitKey] = (byUnit[unitKey] ?? 0) + 1;
+    for (const field of String(row.missing_fields ?? '').split(';').filter(Boolean)) {
+      missingFields[field] = (missingFields[field] ?? 0) + 1;
+    }
+  }
+  return {
+    total_entries: rows.length,
+    units: Object.keys(byUnit).length,
+    by_level: byLevel,
+    by_priority: byPriority,
+    missing_fields: missingFields,
+    editorial_status: 'not_reviewed',
+    linguistic_certification: false,
+  };
+}
+
 export function toCsv(rows) {
   const headers = rows.length ? Object.keys(rows[0]) : [
     'review_id','level','unit_id','unit_title','source_path','vocab_id','indonesian_form','spanish_gloss',
@@ -92,7 +117,7 @@ function loadCurriculum(source, globalName, filename) {
 
 async function main() {
   const args = process.argv.slice(2);
-  let outputPath = 'artifacts/editorial-review-queue.csv';
+  let outputPath = 'artifacts/editorial-review-queue.csv';\n  let summaryPath = null;
   for (let i = 0; i < args.length; i += 1) {
     if (args[i] === '--output') {
       outputPath = args[++i];

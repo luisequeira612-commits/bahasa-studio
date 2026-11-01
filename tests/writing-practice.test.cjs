@@ -85,3 +85,14 @@ test('writing self-review checklist is interactive and never presents itself as 
   assert.match(source, /No corregimos ni puntuamos automáticamente el texto/);
   assert.doesNotMatch(source, /checklistStatus.*nota|checklistStatus.*porcentaje/i);
 });
+
+
+test('A2 writing support vocabulary is rendered as a visible reference list', () => {
+  assert.match(source, /task\.vocabulary && task\.vocabulary\.length/);
+  assert.match(source, /make\('h4', 'Vocabulario de apoyo'\)/);
+  assert.match(source, /task\.vocabulary\.forEach\(term => vocabularyList\.appendChild\(make\('li', term\)\)\)/);
+  assert.match(source, /host\.append\(vocabularyHeading, vocabularyList\)/);
+  assert.match(source, /id: 'budget'[\s\S]*?vocabulary: \[/);
+  assert.match(source, /id: 'online-meeting'[\s\S]*?vocabulary: \[/);
+  assert.match(source, /id: 'compare-decisions'[\s\S]*?vocabulary: \[/);
+});

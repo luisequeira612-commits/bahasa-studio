@@ -127,6 +127,13 @@
             const levelLabel = make('p', task.level + ' · Escritura progresiva', 'text-muted');
             const heading = make('h3', task.title);
             const situation = make('p', task.situation);
+            const vocabularyHeading = task.vocabulary && task.vocabulary.length
+                ? make('h4', 'Vocabulario de apoyo') : null;
+            const vocabularyList = task.vocabulary && task.vocabulary.length ? make('ul') : null;
+            if (vocabularyList) {
+                vocabularyList.className = 'writing-vocabulary';
+                task.vocabulary.forEach(term => vocabularyList.appendChild(make('li', term)));
+            }
             const label = make('label', 'Tu borrador en indonesio');
             label.htmlFor = 'freeWritingDraft';
             const textarea = make('textarea');
@@ -185,7 +192,9 @@
                 }
             });
             const disclaimer = make('p', 'Sin nota, sin XP ni registro SRS. Solo se cuenta una sesión al comparar tu borrador con el ejemplo; el texto no se guarda ni se incluye en las copias de seguridad.', 'text-muted');
-            host.append(back, levelLabel, heading, situation, label, textarea, checklistHeading, checklist, checklistStatus, note, reveal, status, example, disclaimer);
+            host.append(back, levelLabel, heading, situation);
+            if (vocabularyHeading && vocabularyList) host.append(vocabularyHeading, vocabularyList);
+            host.append(label, textarea, checklistHeading, checklist, checklistStatus, note, reveal, status, example, disclaimer);
         }
     };
     root.WritingPractice = WritingPractice;

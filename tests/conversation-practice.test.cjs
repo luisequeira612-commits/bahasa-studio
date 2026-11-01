@@ -13,7 +13,7 @@ const elements = {
 };
 const recordedSessions = [];
 const sandbox = {
-  App: { recordSkillSession(skill) { recordedSessions.push(skill); return Promise.resolve(); } },
+  App: { recordSkillSession(skill) { recordedSessions.push(skill); return Promise.resolve(); }, switchView() {} },
   window: {},
   document: {
     addEventListener() {},
@@ -177,3 +177,30 @@ test('all 18 guided conversation answers retain their audited Spanish meanings',
     });
   }
 });
+
+test('starting or abandoning a conversation does not record a completed session', () => {
+  const engine = sandbox.window.ConversationEngine;
+  recordedSessions.length = 0;
+  engine.start('restaurant');
+  assert.deepEqual(recordedSessions, []);
+  engine.exit();
+  assert.deepEqual(recordedSessions, []);
+});
+
+test('replaying a completed conversation records a separate session exactly once', () => {
+  const engine = sandbox.window.ConversationEngine;
+  recordedSessions.length = 0;
+  for (let session = 0; session < 2; session += 1) {
+    engine.start('shopping');
+    for (let turn = 0; turn < 3; turn += 1) {
+      const current = engine.currentScenario.turns[engine.turnIndex];
+      const correctIndex = current.choices.findIndex(choice => choice.correct);
+      engine.choose(correctIndex);
+      engine.next();
+    }
+    assert.deepEqual(recordedSessions, Array(session + 1).fill('conversation'));
+    engine.renderResult();
+    assert.deepEqual(recordedSessions, Array(session + 1).fill('conversation'));
+  }
+});
+

@@ -693,7 +693,7 @@ test('A2 U14 listening and writing exercises match their target travel vocabular
   const lessons = unit.lessons;
   const cases = [
     { lesson: 'Preparar un viaje', vocabId: 'a2u14_mendarat', type: 'listen', answer: 'Pesawat mendarat pagi ini.' },
-    { lesson: 'Estaciones, puertos y billetes', vocabId: 'a2u14_bagasi', type: 'write', answer: 'Bagasi saya berat.' },
+    { lesson: 'Equipaje, puertos y billetes', vocabId: 'a2u14_bagasi', type: 'write', answer: 'Bagasi saya berat.' },
     { lesson: 'Medios de transporte', vocabId: 'a2u14_kendaraan', type: 'write', answer: 'Kendaraan itu besar.' }
   ];
   for (const item of cases) {
@@ -1108,12 +1108,12 @@ test('A2 U14 and U16 lesson headings and objectives match their taught vocabular
   const u14 = a2.units.find(unit => unit.id === 'a2_u14');
   const u14Lesson = u14.lessons[1];
   assert.equal(u14Lesson.title, 'Lección 2: Equipaje, puertos y billetes');
-  assert.deepEqual(u14Lesson.vocabIds, ['a2u14_bagasi', 'a2u14_pelabuhan', 'a2u14_karcis']);
+  assert.deepEqual(Array.from(u14Lesson.vocabIds), ['a2u14_bagasi', 'a2u14_pelabuhan', 'a2u14_karcis']);
 
   const u16 = a2.units.find(unit => unit.id === 'a2_u16');
   const u16Lesson = u16.lessons[3];
   assert.equal(u16Lesson.objective, 'Describe una experiencia mediante fotografías y paisajes.');
-  assert.deepEqual(u16Lesson.vocabIds, ['a2u16_berfoto', 'a2u16_pemandangan', 'a2u16_menyenangkan']);
+  assert.deepEqual(Array.from(u16Lesson.vocabIds), ['a2u16_berfoto', 'a2u16_pemandangan', 'a2u16_menyenangkan']);
 });
 
 test('A2 U13-U16 editorial audit records bounded findings without claiming linguistic certification', () => {

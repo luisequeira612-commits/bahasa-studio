@@ -212,3 +212,31 @@ test('allows cumulative references from A2 to A1 but rejects references from A1 
   assert.equal(reports[1].error_count, 0);
   assert.ok(!reports[1].issues.some((item) => item.code === 'VOCAB_REFERENCE_MISSING'));
 });
+
+
+test('warns when a reused vocabulary ID keeps the Indonesian term but changes its Spanish gloss', () => {
+  const report = auditCurriculum({
+    id: 'A1',
+    units: [
+      { id: 'u1', title: 'One', vocab: [{ id: 'shared', idn: 'baik', esp: 'bueno' }], exercises: [] },
+      { id: 'u2', title: 'Two', vocab: [{ id: 'shared', idn: 'Baik', esp: 'bien' }], exercises: [] },
+    ],
+  });
+  assert.equal(report.error_count, 0);
+  assert.ok(report.issues.some((item) =>
+    item.code === 'VOCAB_TRANSLATION_INCONSISTENT' &&
+    item.severity === 'warning' &&
+    item.path === 'A1.units[1].vocab[0]'
+  ));
+});
+
+test('does not warn for harmless case and whitespace differences in reused glosses', () => {
+  const report = auditCurriculum({
+    id: 'A1',
+    units: [
+      { id: 'u1', title: 'One', vocab: [{ id: 'shared', idn: 'baik', esp: 'Bueno' }], exercises: [] },
+      { id: 'u2', title: 'Two', vocab: [{ id: 'shared', idn: 'BAIK', esp: '  bueno  ' }], exercises: [] },
+    ],
+  });
+  assert.ok(!report.issues.some((item) => item.code === 'VOCAB_TRANSLATION_INCONSISTENT'));
+});

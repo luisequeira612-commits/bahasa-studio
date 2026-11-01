@@ -1330,11 +1330,18 @@ test('U24–U32 multiple-choice answers are semantically correct and not always 
     v406: 'Izquierda', v409: 'Al otro lado', v415: 'Pasado mañana', v418: 'Visitar',
     v426: 'Pasaporte', v431: 'Maleta', v435: 'Siempre', v438: 'Rara vez',
     v445: 'Perdón', v446: 'Permisi', v455: 'Alto/a', v458: 'Joven',
-    v465: '¿Qué tal?', v468: 'Sama-sama', v472: 'Por qué'
+    v465: '¿Qué tal?', v468: 'Sama-sama', v472: 'Por qué',
+    v387: 'Alumno/a', v393: 'Clase / aula', v401: 'Jugar', v402: 'Fin de semana',
+    v405: 'Calle / camino', v411: 'Delante / parte delantera', v412: 'Detrás / parte trasera',
+    v420: 'Encontrarse / reunirse', v424: 'Plan', v430: 'Barco', v434: 'Sello (oficial)',
+    v436: 'Normalmente / por lo general', v441: 'Cepillarse los dientes', v444: 'Después de',
+    v447: 'Adelante / por favor (al invitar)', v454: 'Tarde / con retraso',
+    v456: 'Bajo/a (de estatura)', v459: 'Mayor / viejo/a (según contexto)', v462: 'Nariz', v464: 'Sonrisa',
+    v470: 'Encantado/a de conocerle (formal)', v471: 'Necesitar / hacer falta'
   };
   const unitIds = new Set(['a1_u24','a1_u25','a1_u26','a1_u27','a1_u28','a1_u29','a1_u30','a1_u31','a1_u32']);
   const exercises = a1.units.filter(unit => unitIds.has(unit.id)).flatMap(unit => unit.exercises.filter(ex => ex.type === 'mc'));
-  assert.equal(exercises.length, 27);
+  assert.equal(exercises.length, 49);
   const listeningExpected = {
     'Saya membaca buku.': 'Leo un libro',
     'Saya suka berenang.': 'Me gusta nadar',
@@ -1365,7 +1372,8 @@ test('U24–U32 curriculum structure keeps vocabulary and exercise references in
     const unit = a1.units.find(item => item.id === 'a1_u' + number);
     assert.ok(unit, 'missing A1 unit ' + number);
     assert.equal(unit.vocab.length, 10, 'U' + number + ' should contain 10 vocabulary items');
-    assert.equal(unit.exercises.length, number === 32 ? 8 : 9, 'U' + number + ' should contain the expected exercise count');
+    const expectedCounts = { 24: 11, 25: 11, 26: 12, 27: 11, 28: 11, 29: 12, 30: 11, 31: 13, 32: 10 };
+    assert.equal(unit.exercises.length, expectedCounts[number], 'U' + number + ' should contain the expected exercise count');
     const vocabIds = new Set(unit.vocab.map(item => item.id));
     assert.equal(vocabIds.size, 10, 'U' + number + ' vocabulary IDs must be unique');
     for (const exercise of unit.exercises) {

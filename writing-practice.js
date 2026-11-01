@@ -29,9 +29,9 @@
             id: 'budget',
             level: 'A2',
             title: 'Mi presupuesto personal',
-            situation: 'Explica cómo organizas tu presupuesto: qué registras, qué priorizas y para qué ahorras. Intenta escribir cinco o seis frases y conecta tus ideas.',
+            situation: 'Explica cómo organizas tu presupuesto: qué registras, qué priorizas y para qué ahorras. Intenta escribir cinco a siete frases y conecta tus ideas.',
             vocabulary: ['anggaran', 'bulan', 'pemasukan', 'pengeluaran', 'mencatat', 'menabung', 'dana darurat', 'kebutuhan', 'prioritas', 'pemborosan'],
-            checklist: ['Expliqué cuál es mi presupuesto.', 'Mencioné ingresos y gastos.', 'Dije para qué ahorro.', 'Expliqué qué considero una prioridad.', 'Conecté las ideas en cinco o seis frases.'],
+            checklist: ['Expliqué cuál es mi presupuesto.', 'Mencioné ingresos y gastos.', 'Dije para qué ahorro.', 'Expliqué qué considero una prioridad.', 'Conecté las ideas en cinco a siete frases.'],
             example: 'Saya punya anggaran untuk bulan ini. Saya mencatat pemasukan dan pengeluaran. Saya menabung untuk dana darurat. Saya memilih kebutuhan sebagai prioritas. Pemborosan bukan prioritas saya.'
         },
         {
@@ -147,7 +147,7 @@
             draftCount.setAttribute('role', 'status');
             draftCount.setAttribute('aria-live', 'polite');
             const updateDraftCount = () => {
-                const words = textarea.value.trim().match(/\\S+/g) || [];
+                const words = textarea.value.trim().match(/\S+/g) || [];
                 draftCount.textContent = words.length + (words.length === 1 ? ' palabra' : ' palabras') +
                     ' · objetivo orientativo: ' + (task.level === 'A1' ? '3–4 frases' : '5–7 frases');
             };

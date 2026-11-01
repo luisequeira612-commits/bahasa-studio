@@ -10,6 +10,7 @@ Revisión editorial de los **90 lemas/glosas y sus 90 ejemplos bilingües** inco
 
 | Unidad | ID | Antes | Después / motivo |
 |---|---|---|---|
+| U24 | v388 | `Borrador / goma de borrar` | `Goma de borrar`; `Esta es mi goma de borrar.` — se evita la ambigüedad española de «borrador» como texto preliminar. |
 | U24 | v385 | `Kantin sekolah besar.` | `Kantin sekolah itu besar.` — añade `itu` para expresar claramente «la cafetería de la escuela» como sujeto definido. |
 | U26 | v411 | `Toko di depan.` | `Toko ada di depan.` — frase completa más clara para la ubicación. |
 | U28 | v432 | `Kereta tiba pagi.` | `Kereta tiba pada pagi hari.` — expresión temporal más natural y explícita para este nivel. |

@@ -3056,7 +3056,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                         "vocabId": "a2u14_mendarat",
                                         "type": "listen",
                                         "prompt": "Escucha y escribe la oración.",
-                                        "answer": "Kendaraan tiba pagi.",
+                                        "answer": "Pesawat mendarat pagi ini.",
                                         "explanation": "La oración contiene mendarat."
                                     },
                                     {
@@ -3125,8 +3125,8 @@ window.BAHASA_CURRICULUM_A2 = {
                                         "vocabId": "a2u14_bagasi",
                                         "type": "write",
                                         "prompt": "Escribe una frase usando bagasi.",
-                                        "hint": "Puedes tomar como modelo: Stasiun itu besar.",
-                                        "modelAnswer": "Stasiun itu besar.",
+                                        "hint": "Puedes tomar como modelo: Bagasi saya berat.",
+                                        "modelAnswer": "Bagasi saya berat.",
                                         "explanation": "Usa el vocabulario en una oración completa."
                                     }
                                 ]
@@ -3171,8 +3171,8 @@ window.BAHASA_CURRICULUM_A2 = {
                                         "vocabId": "a2u14_kendaraan",
                                         "type": "write",
                                         "prompt": "Escribe una frase usando kendaraan.",
-                                        "hint": "Puedes tomar como modelo: Kereta datang.",
-                                        "modelAnswer": "Kereta datang.",
+                                        "hint": "Puedes tomar como modelo: Kendaraan itu besar.",
+                                        "modelAnswer": "Kendaraan itu besar.",
                                         "explanation": "Usa el vocabulario en una oración completa."
                                     }
                                 ]

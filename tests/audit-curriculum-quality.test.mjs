@@ -56,8 +56,9 @@ test('reports incomplete examples as warnings, not linguistic verdicts', () => {
     units: [{ id: 'u1', title: 'One', vocab: [{ id: 'v1', idn: 'baik', esp: 'bueno' }], exercises: [] }],
   });
   assert.equal(report.error_count, 0);
-  assert.equal(report.warning_count, 1);
-  assert.equal(report.issues[0].code, 'VOCAB_EXAMPLE_INCOMPLETE');
+  assert.equal(report.warning_count, 2);
+  assert.ok(report.issues.some((item) => item.code === 'VOCAB_EXAMPLE_INCOMPLETE'));
+  assert.ok(report.issues.some((item) => item.code === 'VOCAB_NOT_EXPLICITLY_ASSESSED'));
 });
 
 test('allows a shared vocabulary ID for the same Indonesian term as a warning', () => {
@@ -92,7 +93,7 @@ test('resolves cumulative review references against vocabulary from another leve
   assert.ok(!report.issues.some((item) => item.code === 'VOCAB_REFERENCE_MISSING'));
 });
 
-test('checks reviewVocabIds and does not warn when exercises live inside lessons', () => {
+test('checks reviewVocabIds and reports missing explicit exercise coverage inside lessons', () => {
   const report = auditCurriculum({
     id: 'A2',
     units: [{
@@ -102,8 +103,9 @@ test('checks reviewVocabIds and does not warn when exercises live inside lessons
       lessons: [{ vocabIds: ['a2_word'], reviewVocabIds: ['missing'], exercises: [] }],
     }],
   });
-  assert.equal(report.warning_count, 0);
+  assert.equal(report.warning_count, 1);
   assert.ok(report.issues.some((item) => item.code === 'VOCAB_REFERENCE_MISSING'));
+  assert.ok(report.issues.some((item) => item.code === 'VOCAB_NOT_EXPLICITLY_ASSESSED'));
 });
 
 test('validates lesson-level exercise prompts and answer structures', () => {

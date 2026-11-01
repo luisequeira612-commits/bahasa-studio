@@ -330,8 +330,8 @@ test('tap-to-translate includes authored exercises from multi-lesson units', () 
   assert.match(html, /const authoredExercises = \[\s*\.\.\.\(unit\.exercises \|\| \[\]\),\s*\.\.\.\(unit\.lessons \|\| \[\]\)\.flatMap\(lesson => lesson\.exercises \|\| \[\]\)\s*\]/);
 });
 
-test('A2 joins learning vocabulary only after A1 completion and assessment lookup is level-independent', () => {
-  assert.match(html, /return getLevels\(\)\.filter\(level =>[\s\S]*?level\.id !== 'A2' \|\| isA1Complete\(App\.completedUnits\)/);
+test('A2 stays out of learning vocabulary until explicit release and assessment lookup is level-independent', () => {
+  assert.match(html, /return getLevels\(\)\.filter\(level =>[\s\S]*?level\.id !== 'A2' \|\| \(A2_RELEASE_ENABLED && isA1Complete\(App\.completedUnits\)\)/);
   assert.match(html, /startUnitAssessment\(unitId\) \{\s*const level = getLevels\(\)\.find\(entry => entry\.units\.some\(unit => unit\.id === unitId\)\)/);
   assert.match(html, /\(level\.id === 'A2' && \(!A2_RELEASE_ENABLED \|\| !isA1Complete\(App\.completedUnits\)\)\)/);
 });

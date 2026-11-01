@@ -1634,7 +1634,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                             "prompt": "Ordena: En mi opinión, él o ella está de acuerdo.",
                                             "words": ["setuju","dia","saya,","Menurut"],
                                             "correctOrder": ["Menurut","saya,","dia","setuju"],
-                                            "explanation": "Saya punya pendapat. expresa una idea relacionada con el tema."
+                                            "explanation": "La frase completa es: Menurut saya, dia setuju."
                                         }
                                     ]
                                 },
@@ -1920,7 +1920,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                             "prompt": "Ordena: Leo el reglamento.",
                                             "words": ["peraturan","membaca","Saya"],
                                             "correctOrder": ["Saya","membaca","peraturan"],
-                                            "explanation": "Saya mengikuti aturan. expresa una idea relacionada con el tema."
+                                            "explanation": "La frase completa es: Saya membaca peraturan."
                                         }
                                     ]
                                 },
@@ -2206,7 +2206,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                             "prompt": "Ordena: Esta es una solución.",
                                             "words": ["solusi","Ini"],
                                             "correctOrder": ["Ini","solusi"],
-                                            "explanation": "Saya punya masalah. expresa una idea relacionada con el tema."
+                                            "explanation": "La frase completa es: Ini solusi."
                                         }
                                     ]
                                 },
@@ -2492,7 +2492,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                             "prompt": "Ordena: Mi capacidad es buena.",
                                             "words": ["baik","saya","Kemampuan"],
                                             "correctOrder": ["Kemampuan","saya","baik"],
-                                            "explanation": "Saya punya pengalaman. expresa una idea relacionada con el tema."
+                                            "explanation": "La frase completa es: Kemampuan saya baik."
                                         }
                                     ]
                                 },

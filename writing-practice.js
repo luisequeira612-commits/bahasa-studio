@@ -53,6 +53,14 @@
             example: 'Saya mempertimbangkan dua alternatif. Saya mengevaluasi risiko dan keuntungan. Saya juga melihat kerugian dan konsekuensi. Menurut saya, alternatif pertama sesuai dengan tujuan. Saya memilih alternatif pertama. Saya menjelaskan langkah berikutnya.'
         },
     ]);
+    function isA1Complete() {
+        const app = root.App;
+        const levels = root.CourseData && root.CourseData.levels;
+        const a1 = Array.isArray(levels) ? levels.find(level => level && level.id === 'A1') : null;
+        if (!a1 || !Array.isArray(a1.units) || !Array.isArray(app && app.completedUnits)) return false;
+        return a1.units.length > 0 && a1.units.every(unit =>
+            unit && typeof unit.id === 'string' && app.completedUnits.includes(unit.id));
+    }
     function make(tag, text, className) {
         const node = document.createElement(tag);
         if (text !== undefined) node.textContent = text;
@@ -61,6 +69,10 @@
     }
     const WritingPractice = {
         tasks,
+        getAvailableTasks() {
+            const a1Complete = isA1Complete();
+            return tasks.filter(task => task.level === 'A1' || (task.level === 'A2' && a1Complete));
+        },
         showView(viewId) {
             document.querySelectorAll('.app-view').forEach(view => view.classList.remove('active'));
             document.querySelectorAll('.nav-btn').forEach(button => button.classList.remove('active'));
@@ -83,7 +95,8 @@
             if (!host) return;
             host.replaceChildren();
             host.appendChild(make('p', 'Escritura progresiva A1–A2: empieza con tres o cuatro frases y avanza hacia textos de cinco a siete. No se califican ni modifican tu XP o SRS.', 'text-muted'));
-            tasks.forEach(task => {
+            const availableTasks = this.getAvailableTasks();
+            availableTasks.forEach(task => {
                 const card = make('section', undefined, 'card');
                 const heading = make('h3', task.level + ' · ' + task.title);
                 const description = make('p', task.situation);
@@ -95,9 +108,12 @@
                 card.append(heading, description, button);
                 host.appendChild(card);
             });
+            if (!isA1Complete()) {
+                host.appendChild(make('p', 'Completa las 32 unidades de A1 para desbloquear las situaciones de escritura A2.', 'text-muted'));
+            }
         },
         renderTask(taskId) {
-            const task = tasks.find(item => item.id === taskId);
+            const task = this.getAvailableTasks().find(item => item.id === taskId);
             const host = document.getElementById('writingPracticeContent');
             if (!task || !host) return;
             host.replaceChildren();

@@ -1192,3 +1192,25 @@ test('A2 U33-U36 audit keeps administrative, financial and decision terms distin
   assert.match(audit, /keuntungan/);
   assert.match(audit, /kerugian/);
 });
+
+test('A2 U37-U40 editorial audit records bounded findings without claiming linguistic certification', () => {
+  const audit = fs.readFileSync(path.join(__dirname, '..', 'docs/A2-UNITS-37-40-AUDIT.md'), 'utf8');
+  for (const unit of ['U37', 'U38', 'U39', 'U40']) assert.match(audit, new RegExp('\\b' + unit + '\\b'));
+  assert.match(audit, /48 entradas/);
+  assert.match(audit, /16 lecciones/);
+  assert.match(audit, /68 ejercicios/);
+  assert.match(audit, /revisión lingüística independiente pendiente/);
+  assert.match(audit, /No hubo hablante nativo disponible/);
+  assert.match(audit, /KBBI no es requisito/);
+  assert.match(audit, /no guía operativa oficial/);
+  assert.match(audit, /No se modificaron IndexedDB, el formato de backup v3/);
+});
+
+test('A2 U37-U40 audit protects key distinctions for safety and digital vocabulary', () => {
+  const audit = fs.readFileSync(path.join(__dirname, '..', 'docs/A2-UNITS-37-40-AUDIT.md'), 'utf8');
+  assert.match(audit, /evakuasi/);
+  assert.match(audit, /unduh/);
+  assert.match(audit, /unggah/);
+  assert.match(audit, /biaya masuk/);
+  assert.match(audit, /tiket masuk/);
+});

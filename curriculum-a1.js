@@ -2688,7 +2688,32 @@ window.BAHASA_CURRICULUM_A1 = {
                                 { vocabId: 'v394', type: 'write', prompt: 'Escribe una frase para decir «Esta es mi tarea».', hint: 'Usa Ini tugas saya.', modelAnswer: 'Ini tugas saya.', explanation: 'Ini tugas saya significa «Esta es mi tarea».' }
                             
                                 , { vocabId: 'v391', type: 'mc', prompt: 'Escucha qué hace el estudiante', audioText: 'Saya membaca buku.', options: ["Leo un libro","Escribe una carta","Responde al profesor"], answer: 0, explanation: 'Membaca buku significa leer un libro.' }
-                            ]
+                            ,
+                                        {
+                                            "vocabId": "v387",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «murid»?",
+                                            "options": [
+                                                "Alumno/a",
+                                                "Docente",
+                                                "Aula"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Murid significa alumno/a."
+                                        },
+                                        {
+                                            "vocabId": "v393",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «kelas»?",
+                                            "options": [
+                                                "Clase / aula",
+                                                "Tarea",
+                                                "Lápiz"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Kelas significa clase o aula."
+                                        }
+]
                         },
                         {
                             id: 'a1_u25',
@@ -2718,7 +2743,32 @@ window.BAHASA_CURRICULUM_A1 = {
                                 { vocabId: 'v404', type: 'write', prompt: 'Escribe una frase para decir «Me gusta bailar».', hint: 'Usa Saya suka menari.', modelAnswer: 'Saya suka menari.', explanation: 'Saya suka menari significa «Me gusta bailar».' }
                             
                                 , { vocabId: 'v397', type: 'mc', prompt: 'Escucha qué actividad le gusta', audioText: 'Saya suka berenang.', options: ["Me gusta nadar","Le gusta bailar","Le gusta pintar"], answer: 0, explanation: 'Suka berenang significa gustar de nadar.' }
-                            ]
+                            ,
+                                        {
+                                            "vocabId": "v401",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «bermain»?",
+                                            "options": [
+                                                "Jugar",
+                                                "Nadar",
+                                                "Pintar"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Bermain significa jugar."
+                                        },
+                                        {
+                                            "vocabId": "v402",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «akhir pekan»?",
+                                            "options": [
+                                                "Fin de semana",
+                                                "Esta noche",
+                                                "Un momento"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Akhir pekan significa fin de semana."
+                                        }
+]
                         },
                         {
                             id: 'a1_u26',
@@ -2748,7 +2798,44 @@ window.BAHASA_CURRICULUM_A1 = {
                                 { vocabId: 'v410', type: 'write', prompt: 'Escribe una frase para decir «Mi casa está lejos».', hint: 'Usa Rumah saya jauh.', modelAnswer: 'Rumah saya jauh.', explanation: 'Rumah saya jauh significa «Mi casa está lejos».' }
                             
                                 , { vocabId: 'v406', type: 'mc', prompt: 'Escucha la indicación y elige hacia dónde girar', audioText: 'Belok kiri.', options: ["A la izquierda","A la derecha","Sigue recto"], answer: 0, explanation: 'Belok kiri significa gira a la izquierda.' }
-                            ]
+                            ,
+                                        {
+                                            "vocabId": "v405",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «jalan»?",
+                                            "options": [
+                                                "Calle / camino",
+                                                "Izquierda",
+                                                "Mapa"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Jalan significa calle o camino."
+                                        },
+                                        {
+                                            "vocabId": "v411",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «depan»?",
+                                            "options": [
+                                                "Delante / parte delantera",
+                                                "Detrás",
+                                                "Al otro lado"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Depan indica delante o la parte delantera."
+                                        },
+                                        {
+                                            "vocabId": "v412",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «belakang»?",
+                                            "options": [
+                                                "Detrás / parte trasera",
+                                                "Delante",
+                                                "Lejos"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Belakang indica detrás o la parte trasera."
+                                        }
+]
                         },
                         {
                             id: 'a1_u27',
@@ -2778,7 +2865,32 @@ window.BAHASA_CURRICULUM_A1 = {
                                 { vocabId: 'v423', type: 'write', prompt: 'Escribe una frase para decir «Esta noche estoy ocupado/a».', hint: 'Usa Malam ini saya sibuk.', modelAnswer: 'Malam ini saya sibuk.', explanation: 'Malam ini saya sibuk significa «Esta noche estoy ocupado/a».' }
                             
                                 , { vocabId: 'v421', type: 'mc', prompt: 'Escucha la invitación y elige qué propone', audioText: 'Ayo makan!', options: ["¡Vamos a comer!","¡Vamos a dormir!","¡Vamos a estudiar!"], answer: 0, explanation: 'Ayo introduce una invitación o propuesta.' }
-                            ]
+                            ,
+                                        {
+                                            "vocabId": "v420",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «bertemu»?",
+                                            "options": [
+                                                "Encontrarse / reunirse",
+                                                "Visitar",
+                                                "Invitar"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Bertemu significa encontrarse o reunirse."
+                                        },
+                                        {
+                                            "vocabId": "v424",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «rencana»?",
+                                            "options": [
+                                                "Plan",
+                                                "Pasado mañana",
+                                                "Quizá"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Rencana significa plan."
+                                        }
+]
                         },
                         {
                             id: 'a1_u28',
@@ -2808,7 +2920,32 @@ window.BAHASA_CURRICULUM_A1 = {
                                 { vocabId: 'v425', type: 'write', prompt: 'Escribe una frase para decir «Estoy en el hotel».', hint: 'Usa Saya di hotel.', modelAnswer: 'Saya di hotel.', explanation: 'Saya di hotel significa «Estoy en el hotel».' }
                             
                                 , { vocabId: 'v433', type: 'mc', prompt: 'Escucha qué informa la persona', audioText: 'Saya punya reservasi.', options: ["Tengo una reserva","Ha perdido el pasaporte","Necesita un billete"], answer: 0, explanation: 'Reservasi significa reserva.' }
-                            ]
+                            ,
+                                        {
+                                            "vocabId": "v430",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «kapal»?",
+                                            "options": [
+                                                "Barco",
+                                                "Avión",
+                                                "Aeropuerto"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Kapal significa barco."
+                                        },
+                                        {
+                                            "vocabId": "v434",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «stempel»?",
+                                            "options": [
+                                                "Sello (oficial)",
+                                                "Pasaporte",
+                                                "Maleta"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Stempel significa sello, por ejemplo uno oficial."
+                                        }
+]
                         },
                         {
                             id: 'a1_u29',
@@ -2838,7 +2975,44 @@ window.BAHASA_CURRICULUM_A1 = {
                                 { vocabId: 'v442', type: 'write', prompt: 'Escribe una frase para decir «Descanso por la tarde».', hint: 'Usa Saya beristirahat pada sore hari.', modelAnswer: 'Saya beristirahat pada sore hari.', explanation: 'Saya beristirahat pada sore hari significa «Descanso por la tarde».' }
                             
                                 , { vocabId: 'v435', type: 'mc', prompt: 'Escucha el hábito y elige su frecuencia', audioText: 'Saya selalu belajar.', options: ["Siempre estudio","A veces estudio","Nunca estudio"], answer: 0, explanation: 'Selalu significa siempre.' }
-                            ]
+                            ,
+                                        {
+                                            "vocabId": "v436",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «biasanya»?",
+                                            "options": [
+                                                "Normalmente / por lo general",
+                                                "Siempre",
+                                                "Rara vez"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Biasanya significa normalmente o por lo general."
+                                        },
+                                        {
+                                            "vocabId": "v441",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «menyikat gigi»?",
+                                            "options": [
+                                                "Cepillarse los dientes",
+                                                "Barrer",
+                                                "Descansar"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Menyikat gigi significa cepillarse los dientes."
+                                        },
+                                        {
+                                            "vocabId": "v444",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «sesudah»?",
+                                            "options": [
+                                                "Después de",
+                                                "Antes de",
+                                                "A veces"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Sesudah significa después de."
+                                        }
+]
                         },
                         {
                             id: 'a1_u30',
@@ -2868,7 +3042,32 @@ window.BAHASA_CURRICULUM_A1 = {
                                 { vocabId: 'v452', type: 'write', prompt: 'Escribe una frase para decir «Perdón, no entiendo».', hint: 'Usa Maaf, saya tidak mengerti.', modelAnswer: 'Maaf, saya tidak mengerti.', explanation: 'Maaf, saya tidak mengerti significa «Perdón, no entiendo».' }
                             
                                 , { vocabId: 'v449', type: 'mc', prompt: 'Escucha qué pide la persona', audioText: 'Tolong ulangi.', options: ["Por favor, repítalo","Por favor, espere","Hable más rápido"], answer: 0, explanation: 'Ulangi es el imperativo de repetir.' }
-                            ]
+                            ,
+                                        {
+                                            "vocabId": "v447",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «silakan» en una invitación?",
+                                            "options": [
+                                                "Adelante / por favor (al invitar)",
+                                                "Con permiso",
+                                                "Perdón"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Silakan se usa para invitar o dar paso; el contexto determina la traducción."
+                                        },
+                                        {
+                                            "vocabId": "v454",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «terlambat»?",
+                                            "options": [
+                                                "Tarde / con retraso",
+                                                "Temprano",
+                                                "Despacio"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Terlambat significa tarde o con retraso."
+                                        }
+]
                         },
                         {
                             id: 'a1_u31',
@@ -2898,7 +3097,56 @@ window.BAHASA_CURRICULUM_A1 = {
                                 { vocabId: 'v455', type: 'write', prompt: 'Escribe una frase para decir «Él/ella es alto/a».', hint: 'Usa Dia tinggi.', modelAnswer: 'Dia tinggi.', explanation: 'Dia tinggi significa «Él/ella es alto/a».' }
                             
                                 , { vocabId: 'v457', type: 'mc', prompt: 'Escucha cómo describen al amigo', audioText: 'Teman saya ramah.', options: ["Mi amigo es amable","Mi amigo es alto","Mi amigo está cansado"], answer: 0, explanation: 'Ramah significa amable o simpático.' }
-                            ]
+                            ,
+                                        {
+                                            "vocabId": "v456",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «pendek» al describir la estatura?",
+                                            "options": [
+                                                "Bajo/a (de estatura)",
+                                                "Alto/a",
+                                                "Joven"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Pendek significa bajo/a cuando se habla de estatura."
+                                        },
+                                        {
+                                            "vocabId": "v459",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «tua» al describir la edad?",
+                                            "options": [
+                                                "Mayor / viejo/a (según contexto)",
+                                                "Joven",
+                                                "Amable"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Tua se refiere a una persona mayor o vieja, según el contexto."
+                                        },
+                                        {
+                                            "vocabId": "v462",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «hidung»?",
+                                            "options": [
+                                                "Nariz",
+                                                "Cabello",
+                                                "Sonrisa"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Hidung significa nariz."
+                                        },
+                                        {
+                                            "vocabId": "v464",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «senyum»?",
+                                            "options": [
+                                                "Sonrisa",
+                                                "Nariz",
+                                                "Gafas"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Senyum significa sonrisa."
+                                        }
+]
                         },
                         {
                             id: 'a1_u32',
@@ -2926,7 +3174,32 @@ window.BAHASA_CURRICULUM_A1 = {
                                 { vocabId: 'v473', type: 'translate_es_id', prompt: 'Traduce: adónde', answer: 'Ke mana', explanation: 'Ke mana pregunta por el destino.' },
                                 { vocabId: 'v474', type: 'order', prompt: 'Ordena: Bienvenido/a a mi casa.', words: ['rumah', 'Selamat', 'saya', 'datang', 'di'], correctOrder: ['Selamat', 'datang', 'di', 'rumah', 'saya'], explanation: 'Selamat datang di rumah saya significa «Bienvenido/a a mi casa».' },
                                 { vocabId: 'v466', type: 'write', prompt: 'Escribe una frase para decir «Estoy cansado/a».', hint: 'Usa Saya lelah.', modelAnswer: 'Saya lelah.', explanation: 'Saya lelah significa «Estoy cansado/a».' }
-                            ]
+                            ,
+                                        {
+                                            "vocabId": "v470",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «senang bertemu dengan Anda»?",
+                                            "options": [
+                                                "Encantado/a de conocerle (formal)",
+                                                "¿Qué tal?",
+                                                "De nada"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Senang bertemu dengan Anda es una forma formal de decir «Encantado/a de conocerle»."
+                                        },
+                                        {
+                                            "vocabId": "v471",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «perlu»?",
+                                            "options": [
+                                                "Necesitar / hacer falta",
+                                                "Preguntar por qué",
+                                                "Despedirse"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Perlu expresa necesidad o algo que hace falta."
+                                        }
+]
                         },
                     ]
                 };

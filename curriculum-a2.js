@@ -648,8 +648,8 @@ window.BAHASA_CURRICULUM_A2 = {
                                     "id": "a2u6_mencatat",
                                     "idn": "Mencatat",
                                     "esp": "Anotar",
-                                    "ex": "Saya mencatat baju.",
-                                    "exEsp": "Tomo nota."
+                                    "ex": "Saya mencatat alamat.",
+                                    "exEsp": "Anoto una dirección."
                                 },
                                 {
                                     "id": "a2u6_mencoba",
@@ -908,7 +908,7 @@ window.BAHASA_CURRICULUM_A2 = {
                             "id": "a2_u7",
                             "title": "Unidad 7: Verbos activos con meng-",
                             "desc": "Aprende formas frecuentes con raíces que comienzan por k, g o vocal.",
-                            "grammar": "La forma meng- aparece ante raíces que comienzan por k, g y vocal. Con k, la consonante inicial suele desaparecer: kirim → mengirim y kunci → mengunci. Con g y vocal, se conserva el sonido inicial: gambar → menggambar, ambil → mengambil y ajar → mengajar. Las formas derivadas se estudian como vocabulario independiente.",
+                            "grammar": "La forma meng- aparece ante raíces que comienzan por k, g, h o vocal. Con k, la consonante inicial suele desaparecer: kirim → mengirim y kunci → mengunci. Con g, h y vocal, se conserva el sonido inicial: gambar → menggambar, hapus → menghapus, ambil → mengambil y ajar → mengajar. Las formas derivadas se estudian como vocabulario independiente.",
                             "vocab": [
                                 {
                                     "id": "a2u7_mengirim",
@@ -963,8 +963,8 @@ window.BAHASA_CURRICULUM_A2 = {
                                     "id": "a2u7_mengisi",
                                     "idn": "Mengisi",
                                     "esp": "Llenar; rellenar",
-                                    "ex": "Saya mengisi air.",
-                                    "exEsp": "Lleno agua."
+                                    "ex": "Saya mengisi botol dengan air.",
+                                    "exEsp": "Lleno una botella con agua."
                                 },
                                 {
                                     "id": "a2u7_mengatur",

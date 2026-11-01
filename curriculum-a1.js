@@ -2828,7 +2828,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                             "type": "mc",
                                             "prompt": "¿Qué significa «belakang»?",
                                             "options": [
-                                                "Detrás / parte trasera",
+                                                "Parte trasera / detrás",
                                                 "Delante",
                                                 "Lejos"
                                             ],

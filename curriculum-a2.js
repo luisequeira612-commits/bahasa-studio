@@ -760,7 +760,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                                 "menutup",
                                                 "buku"
                                             ],
-                                            "explanation": "Saya menunggu teman. expresa la idea indicada."
+                                            "explanation": "Saya menutup buku. expresa la idea indicada."
                                         }
                                     ]
                                 },
@@ -1054,7 +1054,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                                 "mengirim",
                                                 "pesan"
                                             ],
-                                            "explanation": "Dia menggambar rumah. expresa la idea indicada."
+                                            "explanation": "Saya mengirim pesan. expresa la idea indicada."
                                         }
                                     ]
                                 },
@@ -1348,7 +1348,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                                 "membeli",
                                                 "buku"
                                             ],
-                                            "explanation": "Dia membawa buku. expresa la idea indicada."
+                                            "explanation": "Saya membeli buku. expresa la idea indicada."
                                         }
                                     ]
                                 },

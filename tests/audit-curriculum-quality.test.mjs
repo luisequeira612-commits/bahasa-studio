@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { auditCurriculum } from '../scripts/audit-curriculum-quality.mjs';
+import { auditCurriculum, auditCurricula } from '../scripts/audit-curriculum-quality.mjs';
 
 test('accepts a structurally consistent curriculum without external dictionary access', () => {
   const report = auditCurriculum({
@@ -169,4 +169,46 @@ test('detects duplicate lesson introductions and contradictory new-versus-review
   assert.ok(report.issues.some((item) => item.code === 'LESSON_VOCAB_INTRODUCED_DUPLICATE' && item.severity === 'error'));
   assert.ok(report.issues.some((item) => item.code === 'LESSON_REVIEW_VOCAB_DUPLICATE' && item.severity === 'warning'));
   assert.ok(report.issues.some((item) => item.code === 'LESSON_VOCAB_NEW_AND_REVIEW' && item.severity === 'warning'));
+});
+
+
+test('allows cumulative references from A2 to A1 but rejects references from A1 to future A2 vocabulary', () => {
+  const reports = auditCurricula([
+    {
+      id: 'A1',
+      units: [{
+        id: 'a1_u1',
+        title: 'A1 unit',
+        vocab: [{ id: 'a1_word', idn: 'makan', esp: 'comer' }],
+        lessons: [{
+          vocabIds: ['a2_word'],
+          reviewVocabIds: [],
+          exercises: [{ vocabId: 'a2_word', type: 'listen', prompt: 'Listen' }],
+        }],
+      }],
+    },
+    {
+      id: 'A2',
+      units: [{
+        id: 'a2_u1',
+        title: 'A2 unit',
+        vocab: [{ id: 'a2_word', idn: 'jadwal', esp: 'horario' }],
+        lessons: [{
+          vocabIds: ['a2_word'],
+          reviewVocabIds: ['a1_word'],
+          exercises: [{ vocabId: 'a1_word', type: 'listen', prompt: 'Listen' }],
+        }],
+      }],
+    },
+  ]);
+
+  assert.equal(reports.length, 2);
+  assert.ok(reports[0].issues.some((item) =>
+    item.code === 'VOCAB_REFERENCE_MISSING' && item.path.includes('vocabIds')
+  ));
+  assert.ok(reports[0].issues.some((item) =>
+    item.code === 'VOCAB_REFERENCE_MISSING' && item.path.includes('exercises')
+  ));
+  assert.equal(reports[1].error_count, 0);
+  assert.ok(!reports[1].issues.some((item) => item.code === 'VOCAB_REFERENCE_MISSING'));
 });

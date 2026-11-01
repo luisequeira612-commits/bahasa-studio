@@ -66,3 +66,10 @@ Se aplicaron y se añadieron comprobaciones de regresión para estos puntos:
 
 Los tests de regresión ahora comprueban estas decisiones y los enlaces afectados. Estas correcciones editoriales no sustituyen el cotejo KBBI pendiente ni una revisión exhaustiva de todas las respuestas aceptadas y variantes.
 
+
+
+## Corrección de ambigüedad — A1 U25, Menonton (2026-11-01)
+
+El vocabulario y el ejercicio traducían Menonton como «ver / mirar» sin contexto, aunque el ejemplo del propio curso es «Saya menonton film» / «Veo una película». Se acotó la glosa y la consigna a «ver (una película)», manteniendo intacta la forma indonesia y su ejemplo. Se añadió una prueba para evitar que la consigna vuelva a presentar la equivalencia demasiado amplia.
+
+Esta es una corrección de contexto basada en el ejemplo existente; no certifica todos los usos de Menonton ni sustituye una revisión nativa.

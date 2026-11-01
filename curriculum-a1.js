@@ -2951,7 +2951,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                 { id: 'v397', idn: 'Berenang', esp: 'Nadar', ex: 'Saya suka berenang.', exEsp: 'Me gusta nadar.' },
                                 { id: 'v398', idn: 'Sepak bola', esp: 'Fútbol', ex: 'Dia suka sepak bola.', exEsp: 'A él/ella le gusta el fútbol.' },
                                 { id: 'v399', idn: 'Melukis', esp: 'Pintar', ex: 'Saya suka melukis.', exEsp: 'Me gusta pintar.' },
-                                { id: 'v400', idn: 'Menonton', esp: 'Ver / mirar', ex: 'Saya menonton film.', exEsp: 'Veo una película.' },
+                                { id: 'v400', idn: 'Menonton', esp: 'Ver (una película)', ex: 'Saya menonton film.', exEsp: 'Veo una película.' },
                                 { id: 'v401', idn: 'Bermain', esp: 'Jugar', ex: 'Kami bermain bola.', exEsp: 'Jugamos a la pelota.' },
                                 { id: 'v402', idn: 'Akhir pekan', esp: 'Fin de semana', ex: 'Saya membaca pada akhir pekan.', exEsp: 'Leo durante el fin de semana.' },
                                 { id: 'v403', idn: 'Menyanyi', esp: 'Cantar', ex: 'Dia suka menyanyi.', exEsp: 'A él/ella le gusta cantar.' },
@@ -2963,7 +2963,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                 { vocabId: 'v396', type: 'order', prompt: 'Ordena: Me gusta la música.', words: ['musik', 'suka', 'Saya'], correctOrder: ['Saya', 'suka', 'musik'], explanation: 'Saya suka musik significa «Me gusta la música».' },
                                 { vocabId: 'v398', type: 'listen', prompt: 'Escucha y escribe la expresión.', answer: 'Sepak bola', explanation: 'Sepak bola significa fútbol.' },
                                 { vocabId: 'v399', type: 'mc', prompt: '¿Qué significa «melukis»?', options: ['Cantar', 'Pintar', 'Bailar'], answer: 1, explanation: 'Melukis significa pintar.' },
-                                { vocabId: 'v400', type: 'translate_es_id', prompt: 'Traduce: ver / mirar', answer: 'Menonton', explanation: 'Menonton significa ver o mirar.' },
+                                { vocabId: 'v400', type: 'translate_es_id', prompt: 'Traduce: ver una película', answer: 'Menonton', explanation: 'Menonton se usa para ver una película.' },
                                 { vocabId: 'v403', type: 'order', prompt: 'Ordena: A él/ella le gusta cantar.', words: ['menyanyi', 'Dia', 'suka'], correctOrder: ['Dia', 'suka', 'menyanyi'], explanation: 'Dia suka menyanyi significa «Le gusta cantar».' },
                                 { vocabId: 'v404', type: 'write', prompt: 'Escribe una frase para decir «Me gusta bailar».', hint: 'Usa Saya suka menari.', modelAnswer: 'Saya suka menari.', explanation: 'Saya suka menari significa «Me gusta bailar».' }
                             

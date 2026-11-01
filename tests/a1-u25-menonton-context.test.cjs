@@ -1,0 +1,22 @@
+'use strict';
+const test = require('node:test');
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const vm = require('node:vm');
+const context = { window: {} };
+vm.runInNewContext(fs.readFileSync(path.join(__dirname, '..', 'curriculum-a1.js'), 'utf8'), context);
+const unit = context.window.BAHASA_CURRICULUM_A1.units.find(item => item.id === 'a1_u25');
+test('A1 U25 Menonton translation is contextualized to watching a film', () => {
+  assert.ok(unit);
+  const word = unit.vocab.find(item => item.id === 'v400');
+  const exercise = unit.exercises.find(item => item.vocabId === 'v400' && item.type === 'translate_es_id');
+  assert.ok(word);
+  assert.ok(exercise);
+  assert.equal(word.esp, 'Ver (una película)');
+  assert.equal(word.exEsp, 'Veo una película.');
+  assert.equal(exercise.prompt, 'Traduce: ver una película');
+  assert.equal(exercise.answer, 'Menonton');
+  assert.equal(exercise.explanation, 'Menonton se usa para ver una película.');
+  assert.doesNotMatch(exercise.prompt, /ver \/ mirar/i);
+});

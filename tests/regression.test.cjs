@@ -1827,3 +1827,11 @@ test('local skill profile records first attempts and aggregate free-practice ses
   assert.match(studyActivitySource, /skillStats/);
   assert.match(studyActivitySource, /recordSkillSession/);
 });
+
+
+test('free-writing completion records a session but never stores the draft', () => {
+  assert.match(writingPracticeSource, /App\.recordSkillSession\('writing'\)/);
+  assert.match(writingPracticeSource, /practiceRecorded/);
+  assert.match(writingPracticeSource, /el texto no se guarda/);
+  assert.doesNotMatch(writingPracticeSource, /DB\.set|DB\.get|localStorage|indexedDB|innerHTML/);
+});

@@ -10,12 +10,14 @@ Revisión editorial de los **90 lemas/glosas y sus 90 ejemplos bilingües** inco
 
 | Unidad | ID | Antes | Después / motivo |
 |---|---|---|---|
-| U24 | v388 | `Borrador / goma de borrar` | `Goma de borrar`; `Esta es mi goma de borrar.` — se evita la ambigüedad española de «borrador» como texto preliminar. |
+| U24 | v388 |
+| U30 | v449 | `Repite / repítalo (imperativo)` | `Repite / repita (imperativo)`; ejemplo `Por favor, repite.` — se evita mezclar el tuteo con el tratamiento de usted y se explicita que la forma indonesia no marca esa distinción. | `Borrador / goma de borrar` | `Goma de borrar`; `Esta es mi goma de borrar.` — se evita la ambigüedad española de «borrador» como texto preliminar. |
 | U24 | v385 | `Kantin sekolah besar.` | `Kantin sekolah itu besar.` — añade `itu` para expresar claramente «la cafetería de la escuela» como sujeto definido. |
 | U26 | v411 | `Toko di depan.` | `Toko ada di depan.` — frase completa más clara para la ubicación. |
 | U28 | v432 | `Kereta tiba pagi.` | `Kereta tiba pada pagi hari.` — expresión temporal más natural y explícita para este nivel. |
 | U29 | v440 | `Saya menyapu pagi.` | `Saya menyapu pada pagi hari.` — mejora la expresión de tiempo. |
 | U29 | v441 | `Saya menyikat gigi pagi.` | `Saya menyikat gigi pada pagi hari.` — mejora la expresión de tiempo. |
+| U30 | v449 | Lema mostrado con metadato gramatical mezclado: `Ulangi (imperativo)` | Forma indonesia visible `Ulangi`; la glosa española usa formas paralelas «repite / repita» y el ejemplo adopta el tuteo «Por favor, repite». `Tolong` suaviza la petición, pero no determina por sí solo el tratamiento español. |
 | U29 | v442 | `Saya beristirahat sore.` | `Saya beristirahat pada sore hari.` — mejora la expresión de tiempo. |
 | U30 | v449 | Lema mostrado con metadato gramatical mezclado: `Ulangi (imperativo)` | Forma indonesia visible `Ulangi`; la glosa española conserva «Repite / repítalo (imperativo)». La familia léxica y el lema base deberán confirmarse en KBBI. |
 | U32 | v470 | Glosa «Encantado/a de conocerte (forma breve)» junto a `dengan Anda` | Glosa «Encantado/a de conocerle (formal)» para mantener la concordancia de registro con `Anda`. |

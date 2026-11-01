@@ -263,3 +263,50 @@ test('warns when a unit exercise assesses vocabulary introduced only in a later 
   assert.equal(report.error_count, 0);
   assert.ok(!report.issues.some((item) => item.code === 'VOCAB_USED_BEFORE_INTRODUCTION'));
 });
+
+
+test('warns when a lesson exercise uses vocabulary introduced in a later lesson', () => {
+  const report = auditCurriculum({
+    id: 'A1',
+    units: [{
+      id: 'u1',
+      title: 'One',
+      vocab: [
+        { id: 'first', idn: 'satu', esp: 'uno' },
+        { id: 'later', idn: 'dua', esp: 'dos' },
+      ],
+      lessons: [
+        { vocabIds: ['first'], reviewVocabIds: [], exercises: [{ vocabId: 'later', type: 'listen', prompt: 'Listen' }] },
+        { vocabIds: ['later'], reviewVocabIds: [], exercises: [{ vocabId: 'later', type: 'listen', prompt: 'Listen' }] },
+      ],
+    }],
+  });
+  assert.equal(report.error_count, 0);
+  assert.ok(report.issues.some((item) =>
+    item.code === 'LESSON_VOCAB_USED_BEFORE_INTRODUCTION' &&
+    item.path === 'A1.units[0].lessons[0].exercises[0].vocabId'
+  ));
+  assert.ok(!report.issues.some((item) =>
+    item.code === 'LESSON_VOCAB_USED_BEFORE_INTRODUCTION' &&
+    item.path === 'A1.units[0].lessons[1].exercises[0].vocabId'
+  ));
+});
+
+test('allows a lesson exercise to use later-introduced vocabulary when explicitly marked for review', () => {
+  const report = auditCurriculum({
+    id: 'A1',
+    units: [{
+      id: 'u1',
+      title: 'One',
+      vocab: [
+        { id: 'first', idn: 'satu', esp: 'uno' },
+        { id: 'later', idn: 'dua', esp: 'dos' },
+      ],
+      lessons: [
+        { vocabIds: ['first'], reviewVocabIds: ['later'], exercises: [{ vocabId: 'later', type: 'listen', prompt: 'Listen' }] },
+        { vocabIds: ['later'], reviewVocabIds: [], exercises: [{ vocabId: 'later', type: 'listen', prompt: 'Listen' }] },
+      ],
+    }],
+  });
+  assert.ok(!report.issues.some((item) => item.code === 'LESSON_VOCAB_USED_BEFORE_INTRODUCTION'));
+});

@@ -19,11 +19,30 @@ test('skill profile only displays an accuracy percentage after five attempts', (
   assert.ok(updateStart >= 0 && updateEnd > updateStart);
   const dashboard = html.slice(updateStart, updateEnd);
   assert.match(dashboard, /stats\.attempts < 5/);
-  assert.match(dashboard, /stats\.attempts \+ ' intentos · ' \+ accuracy \+ '% acierto'/);
+  assert.match(dashboard, /resultCounts \+ ' · ' \+ accuracy \+ '% acierto'/);
   assert.match(dashboard, /'Sin intentos'/);
 });
 
 test('writing sessions remain visible even before scored writing attempts exist', () => {
   assert.match(html, /key === 'writing' && stats\.sessions/);
   assert.match(html, /prácticas libres/);
+});
+
+
+test('skill accuracy always exposes its correct and incorrect attempt counts', () => {
+  const updateStart = html.indexOf('updateStudyDashboard()');
+  const updateEnd = html.indexOf('async markUnitCompleted', updateStart);
+  const dashboard = html.slice(updateStart, updateEnd);
+  assert.match(dashboard, /stats\.correct \+ ' aciertos · ' \+ stats\.incorrect \+ ' errores'/);
+  assert.match(dashboard, /resultCounts \+ ' · datos iniciales \(mínimo 5\)'/);
+  assert.match(dashboard, /resultCounts \+ ' · ' \+ accuracy \+ '% acierto'/);
+});
+
+test('writing free-practice sessions and conversation sessions remain separate from scored attempts', () => {
+  const updateStart = html.indexOf('updateStudyDashboard()');
+  const updateEnd = html.indexOf('async markUnitCompleted', updateStart);
+  const dashboard = html.slice(updateStart, updateEnd);
+  assert.match(dashboard, /key === 'writing' && stats\.sessions/);
+  assert.match(dashboard, /studySkillConversationText/);
+  assert.match(dashboard, /skillStats\.conversation\?\.sessions/);
 });

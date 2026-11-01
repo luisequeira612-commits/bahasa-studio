@@ -2145,7 +2145,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                     "idn": "Segera",
                                     "esp": "Inmediatamente; enseguida",
                                     "ex": "Saya datang segera.",
-                                    "exEsp": "Voy enseguida."
+                                    "exEsp": "Vengo enseguida."
                                 },
                                 {
                                     "id": "a2u11_kerusakan",
@@ -2327,7 +2327,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                         {
                                             "vocabId": "a2u11_segera",
                                             "type": "translate_es_id",
-                                            "prompt": "Traduce: Voy enseguida.",
+                                            "prompt": "Traduce: Vengo enseguida.",
                                             "answer": "Saya datang segera.",
                                             "explanation": "La frase usa segera."
                                         },

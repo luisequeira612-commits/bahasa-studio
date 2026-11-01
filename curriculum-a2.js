@@ -1021,8 +1021,8 @@ window.BAHASA_CURRICULUM_A2 = {
                                     "id": "a2u7_menggunakan",
                                     "idn": "Menggunakan",
                                     "esp": "Usar; utilizar",
-                                    "ex": "Saya menggunakan buku.",
-                                    "exEsp": "Uso un libro."
+                                    "ex": "Saya menggunakan buku ini untuk belajar.",
+                                    "exEsp": "Uso este libro para estudiar."
                                 },
                                 {
                                     "id": "a2u7_mengisi",
@@ -1209,8 +1209,8 @@ window.BAHASA_CURRICULUM_A2 = {
                                             "vocabId": "a2u7_menggunakan",
                                             "type": "write",
                                             "prompt": "Escribe una frase usando menggunakan.",
-                                            "hint": "Puedes tomar como modelo: Saya menggunakan buku.",
-                                            "modelAnswer": "Saya menggunakan buku.",
+                                            "hint": "Puedes tomar como modelo: Saya menggunakan buku ini untuk belajar.",
+                                            "modelAnswer": "Saya menggunakan buku ini untuk belajar.",
                                             "explanation": "Usa el verbo en una oración completa."
                                         }
                                     ]

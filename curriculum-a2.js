@@ -3151,7 +3151,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 ]
                             },
                             {
-                                "title": "Lección 2: Estaciones, puertos y billetes",
+                                "title": "Lección 2: Equipaje, puertos y billetes",
                                 "objective": "Identifica lugares y billetes de transporte.",
                                 "grammar": "Practica estas expresiones en oraciones completas: bagasi, pelabuhan, karcis.",
                                 "vocabIds": [
@@ -3834,7 +3834,7 @@ window.BAHASA_CURRICULUM_A2 = {
                             },
                             {
                                 "title": "Lección 4: Describir una experiencia",
-                                "objective": "Describe el tiempo y valora una experiencia.",
+                                "objective": "Describe una experiencia mediante fotografías y paisajes.",
                                 "grammar": "Practica estas expresiones en oraciones completas: berfoto, pemandangan, menyenangkan.",
                                 "vocabIds": [
                                     "a2u16_berfoto",

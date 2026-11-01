@@ -278,6 +278,7 @@
         freeResponseText: '',
         freeResponseRevealed: false,
         freeResponseTurns: 0,
+        mistakeTurns: [],
         sessionRecorded: false,
 
         open: function () {
@@ -301,6 +302,7 @@
             this.freeResponseText = '';
             this.freeResponseRevealed = false;
             this.freeResponseTurns = 0;
+            this.mistakeTurns = [];
             this.sessionRecorded = false;
             this.renderStep();
         },
@@ -474,6 +476,7 @@
             this.answered = true;
             this.selectedChoice = index;
             if (turn.choices[index].correct) this.score += 1;
+            else this.mistakeTurns.push(turn);
             this.renderStep();
         },
 
@@ -523,10 +526,30 @@
                 freeSummary + trackingNote +
                 '<p style="color:var(--text-muted);">' + message + '</p>' +
                 '<div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:14px;">' +
+                (this.mistakeTurns.length ? '<button class="btn" type="button" data-conversation-retry>Practicar errores (' + this.mistakeTurns.length + ')</button>' : '') +
                 '<button class="btn" type="button" data-conversation-replay>Repetir conversación</button>' +
                 '<button class="btn btn-outline" type="button" data-conversation-back>Volver a escenarios</button>' +
                 '<button class="btn btn-outline" type="button" data-conversation-exit>Volver al curso</button>' +
                 '</div></div>';
+        },
+
+        retryMistakes: function () {
+            if (!this.currentScenario || !this.mistakeTurns.length) return;
+            const original = this.scenarios.find(scenario => scenario.id === this.currentScenario.id);
+            if (!original) return;
+            const missedTurns = this.mistakeTurns.slice();
+            this.currentScenario = shuffledScenario(Object.assign({}, original, { turns: missedTurns }));
+            this.turnIndex = 0;
+            this.score = 0;
+            this.answered = false;
+            this.selectedChoice = null;
+            this.freeResponseMode = false;
+            this.freeResponseText = '';
+            this.freeResponseRevealed = false;
+            this.freeResponseTurns = 0;
+            this.mistakeTurns = [];
+            this.sessionRecorded = false;
+            this.renderStep();
         },
 
         replay: function () {
@@ -555,6 +578,7 @@
         if (speechButton) return ConversationEngine.captureFreeResponse(speechButton);
         if (target.closest('[data-conversation-next]')) return ConversationEngine.next();
         if (target.closest('[data-conversation-audio]')) return ConversationEngine.speakCurrent();
+        if (target.closest('[data-conversation-retry]')) return ConversationEngine.retryMistakes();
         if (target.closest('[data-conversation-replay]')) return ConversationEngine.replay();
         if (target.closest('[data-conversation-back]')) return ConversationEngine.renderScenarioList();
         if (target.closest('[data-conversation-exit]')) return ConversationEngine.exit();

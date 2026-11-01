@@ -1,6 +1,6 @@
 # Sistema de calidad curricular independiente de KBBI
 
-**Estado:** auditor estructural implementado; cola editorial independiente añadida y en validación CI.  
+**Estado:** sistema oficial de calidad curricular independiente de KBBI; auditor estructural, cola editorial, pruebas automatizadas y artefactos integrados en CI.  
 **Alcance inicial:** integridad estructural y consistencia de referencias de A1 y A2.  
 **Dependencias externas:** ninguna.  
 **Certificación lingüística:** no incluida.
@@ -91,3 +91,12 @@ node scripts/build-editorial-review-queue.mjs --output artifacts/editorial-revie
 ```
 
 La prioridad P1 identifica incompletitud de datos, no un juicio de incorrección lingüística. P2 tampoco significa aprobado: indica que la entrada está lista para revisión normal.
+
+
+## Estado operativo y reglas permanentes
+
+El sistema descrito en este documento ya está integrado en el workflow `.github/workflows/regression.yml`: CI ejecuta las pruebas del auditor y del generador de cola, produce `artifacts/editorial-review-queue.csv` y `artifacts/curriculum-quality-report.json`, y publica ambos como artefactos de la ejecución. No hace falta una conexión a KBBI ni a ningún servicio externo para estos pasos.
+
+Las reglas permanentes para agentes y colaboradores están en `PROJECT_RULES.md`. En particular, no hay un hablante nativo disponible para este proyecto y KBBI/API no son dependencias fiables. El desarrollo no debe detenerse por esas limitaciones. Los resultados automáticos certifican únicamente las comprobaciones deterministas implementadas; nunca deben cambiar por sí solos estados de revisión lingüística ni presentarse como certificación de naturalidad, nivel o pronunciación.
+
+El workflow manual `kbbi-manual-audit.yml` es opcional y experimental. No forma parte de la puerta de calidad del proyecto y sus resultados no se usan para aprobar contenido. Si el servicio falla o devuelve datos dudosos, se registra como intento fallido y se continúa con el sistema independiente.

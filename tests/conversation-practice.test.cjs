@@ -130,14 +130,17 @@ test('a completed conversation records one aggregate session without scoring fre
   assert.deepEqual(recordedSessions, ['conversation']);
   engine.renderResult();
   assert.deepEqual(recordedSessions, ['conversation'], 'rendering the result again must not double-count');
-  assert.match(elements.conversationPracticeArea.innerHTML, /tus respuestas no se guardan/);
+  assert.match(elements.conversationPracticeArea.innerHTML, /aciertos y errores de las respuestas guiadas/);
+  assert.match(elements.conversationPracticeArea.innerHTML, /No se guardan tus frases, transcripciones ni respuestas libres/);
 });
 
 
-test('completed conversations record only an aggregate session counter', () => {
+test('completed conversations disclose aggregate accuracy counters without storing responses', () => {
   assert.match(source, /App\.recordSkillSession\('conversation'\)/);
   assert.match(source, /sessionRecorded/);
-  assert.match(source, /tus respuestas no se guardan/);
+  assert.match(source, /App\.recordSkillActivity\('conversation', isCorrect\)/);
+  assert.match(source, /Se registran los aciertos y errores de las respuestas guiadas/);
+  assert.match(source, /No se guardan tus frases, transcripciones ni respuestas libres/);
   assert.doesNotMatch(source, /DB\.set|localStorage|indexedDB|MediaRecorder/);
 });
 

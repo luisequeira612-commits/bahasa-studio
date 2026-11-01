@@ -18,7 +18,7 @@ Esta tanda no añade nuevas entradas `verified_primary` ni afirma validación po
 
 | Unidad | Contenido comprobado | Estado técnico | Pendiente principal |
 |---|---|---|---|
-| A2 U1 — Días, meses y fechas | 5 lecciones, 24 entradas, 21 ejercicios; incluye producción guiada de fecha completa: `Hari ini tanggal 17 Agustus.` | Cobertura de producción de fecha presente; se aclaró la distinción entre preguntar por la fecha (`Tanggal berapa hari ini?`) y por el día (`Hari apa hari ini?`) | Revisar el patrón completo con año, variedad de fechas y adecuación de ejemplos; no se certifica naturalidad |
+| A2 U1 — Días, meses y fechas | 5 lecciones, 24 entradas, 21 ejercicios; incluye producción guiada de día y mes: `Hari ini tanggal 17 Agustus.` | Cobertura de producción de fecha presente; se aclaró la distinción entre preguntar por la fecha (`Tanggal berapa hari ini?`) y por el día (`Hari apa hari ini?`) | Revisar el patrón completo con año, variedad de fechas y adecuación de ejemplos; no se certifica naturalidad |
 | A2 U2 — Cuándo ocurre una acción | 4 lecciones, 14 entradas, 17 ejercicios; se añadió contraste explícito entre `belum` y `masih` | Contraste añadido como ejercicio de opción múltiple y prueba de regresión | Revisión lingüística/pragmática del contraste y de sus contextos |
 | A2 U3 — Secuencias | 4 lecciones, 12 entradas, 17 ejercicios; la primera lección distingue rutina (`setiap hari`) de hecho pasado (`kemarin`) | Contexto temporal explícito y redacción española afinada para describir pasos, continuación y cierre | Revisar variedad de secuencias, consistencia temporal y claridad de ejemplos; falta revisar puntuación y uso en contexto |
 | A2 U4 — Jornada cotidiana | 4 lecciones, 10 entradas, 19 ejercicios; se añadió una tarea que integra dos actividades con horas y una descripción global del día | Se ajustó la consigna para que «horario lleno» y «ritmo tranquilo» no se presenten como la misma categoría | Revisar naturalidad, progresión, respuestas alternativas y si el vocabulario previo basta para completar la tarea |
@@ -72,7 +72,7 @@ El modelo es una respuesta guiada, no una respuesta única. Las variantes válid
 ## Lista de cierre pendiente
 
 ### U1
-- [ ] Revisar con evidencia competente la formulación de fechas completas y ejemplos con distintos días/meses.
+- [ ] Ampliar con evidencia competente el patrón de fecha con año y ejemplos variados antes de presentarlo como fecha completa.
 - [ ] Comprobar si conviene enseñar también año y variaciones de contexto.
 - [ ] Revisar las traducciones españolas y las respuestas aceptables.
 

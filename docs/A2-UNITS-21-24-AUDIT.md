@@ -43,3 +43,17 @@ Total: **48 entradas, 16 lecciones y 68 ejercicios**.
 ## Siguiente paso
 
 Revisar vocabulario de consignas y respuestas aceptadas contra la secuencia de introducción de A1/A2. Después, continuar con U25–U28 usando el mismo protocolo.
+
+
+## Correcciones de coherencia didáctica — U21–U24 (2026-11-01)
+
+Se alinearon seis grupos de lecciones cuyo título, objetivo o explicación describían contenidos distintos de los tres vocablos realmente asignados:
+
+- U21 L4: espectáculos, patrimonio cultural y festivales.
+- U22 L3: redes, conexiones y contraseñas.
+- U22 L4: cuentas, información y fuentes.
+- U23 L2: transferencias, tarjetas de débito y préstamos.
+- U24 L3: certificados, becas e inscripciones.
+- U24 L4: instructores, participantes y graduación.
+
+Se conservaron las entradas de vocabulario, ejemplos y respuestas indonesias. Se añadió una prueba de regresión para los seis grupos y su cobertura de ejercicios. Estas son correcciones de organización y redacción, no una certificación lingüística.

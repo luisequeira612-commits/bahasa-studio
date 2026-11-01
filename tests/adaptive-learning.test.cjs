@@ -24,12 +24,14 @@ test('due reviews take priority over every other recommendation', () => {
   assert.match(result.description, /4 palabras/);
 });
 
-test('recently difficult words are recommended when no reviews are due', () => {
+test('words with recorded errors are recommended without claiming they are recent', () => {
   const weakWords = Array.from({ length: 7 }, (_, index) => ({ id: 'w' + index, term: 'palabra' + index }));
   const result = AdaptiveLearning.recommend({ dueCount: 0, weakWords });
   assert.equal(result.type, 'reinforce-weak');
   assert.equal(result.wordIds.length, 5);
+  assert.match(result.description, /historial de práctica registra errores/);
   assert.match(result.description, /palabra0/);
+  assert.doesNotMatch(result.description, /recientes/);
   assert.doesNotMatch(result.description, /palabra5/);
 });
 

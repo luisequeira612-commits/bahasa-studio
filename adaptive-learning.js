@@ -28,8 +28,8 @@
         if (weakWords.length) {
             return {
                 type: 'reinforce-weak',
-                title: 'Refuerza las palabras que más cuestan',
-                description: 'Has tenido errores recientes con: ' +
+                title: 'Refuerza palabras con errores registrados',
+                description: 'El historial de práctica registra errores con: ' +
                     weakWords.map(word => word.term).join(', ') + '. Puedes repasarlas ahora.',
                 action: 'reinforce',
                 label: 'Practicar estas palabras',

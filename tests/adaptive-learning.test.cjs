@@ -244,3 +244,11 @@ test('adaptive dashboard only recommends the next unlocked A1 lesson or released
   assert.match(html, /const first = unfinishedLessons\[0\]/);
   assert.match(html, /AdaptiveLearning\.selectSkillLesson\(weakestSkill\.key, skillLessons\)/);
 });
+
+
+test('adaptive recommendation action is programmatically associated with its explanation', () => {
+  const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+  assert.match(html, /description\.id = 'adaptiveRecommendationDescription'/);
+  assert.match(html, /button\.setAttribute\('aria-describedby', description\.id\)/);
+  assert.match(html, /host\.append\(heading, description, button\)/);
+});

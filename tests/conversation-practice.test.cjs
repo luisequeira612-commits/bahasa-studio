@@ -354,3 +354,21 @@ test('guided and free conversation turns expose an accessible live progress bar'
     /<progress class="conversation-progress" value="2" max="3" aria-label="Progreso de la conversación"/);
   assert.match(elements.conversationPracticeArea.innerHTML, /Turno 2 de 3 · práctica libre/);
 });
+
+
+test('conversation turn changes are announced politely to assistive technology in both modes', () => {
+  const engine = sandbox.window.ConversationEngine;
+  engine.start('greetings');
+  assert.match(elements.conversationPracticeArea.innerHTML,
+    /role="status" aria-live="polite" aria-atomic="true"[^>]*>Turno 1 de 3/);
+
+  const correctIndex = engine.currentScenario.turns[0].choices.findIndex(choice => choice.correct);
+  engine.choose(correctIndex);
+  engine.next();
+  assert.match(elements.conversationPracticeArea.innerHTML,
+    /role="status" aria-live="polite" aria-atomic="true"[^>]*>Turno 2 de 3/);
+
+  engine.useFreeResponse();
+  assert.match(elements.conversationPracticeArea.innerHTML,
+    /role="status" aria-live="polite" aria-atomic="true"[^>]*>Turno 2 de 3 · práctica libre/);
+});

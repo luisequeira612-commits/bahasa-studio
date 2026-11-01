@@ -503,7 +503,7 @@
             practice.innerHTML = '<div class="card" style="padding:14px;">' +
                 '<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;">' +
                 '<button class="btn btn-outline btn-sm" type="button" data-conversation-back>← Escenarios</button>' +
-                '<span style="font-size:0.8rem;color:var(--text-muted);">Turno ' + (this.turnIndex + 1) + ' de ' + this.currentScenario.turns.length + '</span>' +
+                '<span role="status" aria-live="polite" aria-atomic="true" style="font-size:0.8rem;color:var(--text-muted);">Turno ' + (this.turnIndex + 1) + ' de ' + this.currentScenario.turns.length + '</span>' +
                 '</div>' +
                 '<progress class="conversation-progress" value="' + (this.turnIndex + 1) + '" max="' + this.currentScenario.turns.length + '" aria-label="Progreso de la conversación" style="display:block;width:100%;height:10px;margin:10px 0 14px;"></progress>' +
                 '<h2 style="margin:14px 0 4px;">' + escapeHtml(this.currentScenario.title) + '</h2>' +
@@ -530,7 +530,7 @@
             practice.innerHTML = '<div class="card" style="padding:14px;">' +
                 '<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;">' +
                 '<button class="btn btn-outline btn-sm" type="button" data-conversation-back>← Escenarios</button>' +
-                '<span style="font-size:0.8rem;color:var(--text-muted);">Turno ' + (this.turnIndex + 1) + ' de ' + this.currentScenario.turns.length + ' · práctica libre</span>' +
+                '<span role="status" aria-live="polite" aria-atomic="true" style="font-size:0.8rem;color:var(--text-muted);">Turno ' + (this.turnIndex + 1) + ' de ' + this.currentScenario.turns.length + ' · práctica libre</span>' +
                 '</div><progress class="conversation-progress" value="' + (this.turnIndex + 1) + '" max="' + this.currentScenario.turns.length + '" aria-label="Progreso de la conversación" style="display:block;width:100%;height:10px;margin:10px 0 14px;"></progress><h2 style="margin:14px 0 4px;">' + escapeHtml(this.currentScenario.title) + '</h2>' +
                 '<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:12px;margin:12px 0;">' +
                 '<strong>' + escapeHtml(turn.speaker) + '</strong><p style="font-size:1.1rem;margin:8px 0;">' + escapeHtml(turn.line) + '</p>' +

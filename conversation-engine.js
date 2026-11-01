@@ -261,6 +261,7 @@
         freeResponseText: '',
         freeResponseRevealed: false,
         freeResponseTurns: 0,
+        sessionRecorded: false,
 
         open: function () {
             if (typeof App !== 'undefined') App.switchView('conversations');
@@ -283,6 +284,7 @@
             this.freeResponseText = '';
             this.freeResponseRevealed = false;
             this.freeResponseTurns = 0;
+            this.sessionRecorded = false;
             this.renderStep();
         },
 
@@ -478,6 +480,12 @@
         renderResult: function () {
             const practice = document.getElementById('conversationPracticeArea');
             if (!practice) return;
+            if (!this.sessionRecorded) {
+                this.sessionRecorded = true;
+                if (typeof App !== 'undefined' && typeof App.recordSkillSession === 'function') {
+                    App.recordSkillSession('conversation').catch(error => console.error('No se pudo registrar la sesión de conversación:', error));
+                }
+            }
             const total = this.currentScenario.turns.length;
             const guidedTotal = total - this.freeResponseTurns;
             const message = this.freeResponseTurns
@@ -491,10 +499,11 @@
             const freeSummary = this.freeResponseTurns
                 ? '<p style="color:var(--text-muted);">' + this.freeResponseTurns + ' respuesta(s) libre(s) practicada(s), sin calificación automática.</p>'
                 : '';
+            const trackingNote = '<p style="color:var(--text-muted);">Se registra solo que completaste una sesión; tus respuestas no se guardan.</p>';
             practice.innerHTML = '<div class="card" style="padding:16px;text-align:center;">' +
                 '<h2>Conversación completada</h2>' +
                 '<p id="conversationResultScore" style="font-size:1.25rem;font-weight:700;">' + scoreSummary + '</p>' +
-                freeSummary +
+                freeSummary + trackingNote +
                 '<p style="color:var(--text-muted);">' + message + '</p>' +
                 '<div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:14px;">' +
                 '<button class="btn" type="button" data-conversation-replay>Repetir conversación</button>' +

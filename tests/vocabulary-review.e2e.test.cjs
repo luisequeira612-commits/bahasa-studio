@@ -50,7 +50,8 @@ test('a tapped vocabulary item can be saved, reviewed, and retained in backups',
     });
     const tappedWord = page.locator('.tap-translation-word[data-vocab-id="v45"]');
     await tappedWord.waitFor();
-    await tappedWord.click();
+    // Dispatch the delegated click without Playwright auto-scrolling the fixed bubble off-screen.
+    await tappedWord.evaluate(element => element.click());
     await page.locator('#tapTranslationSave').waitFor({ state: 'visible' });
     await page.locator('#tapTranslationSave').evaluate(button => button.click());
 

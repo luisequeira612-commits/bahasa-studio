@@ -140,6 +140,18 @@ test('A2 units 5-8 teach ber- and meN- forms in structured multi-lesson units', 
 });
 
 
+test('A2 U7 menggunakan examples make the intended use context explicit', () => {
+  const unit = a2.units.find(entry => entry.id === 'a2_u7');
+  const word = unit.vocab.find(entry => entry.id === 'a2u7_menggunakan');
+  const writing = unit.lessons.flatMap(lesson => lesson.exercises || [])
+    .find(exercise => exercise.type === 'write' && exercise.vocabId === word.id);
+  assert.equal(word.ex, 'Saya menggunakan buku ini untuk belajar.');
+  assert.equal(word.exEsp, 'Uso este libro para estudiar.');
+  assert.ok(writing);
+  assert.equal(writing.modelAnswer, word.ex);
+  assert.equal(writing.hint, 'Puedes tomar como modelo: ' + word.ex);
+});
+
 test('A2 units 9-12 teach opinions, rules, problems, and goals with complete lesson structure', () => {
   const earlierForms = new Set(courseData.levels.find(level => level.id === 'A1').units
     .flatMap(unit => unit.vocab).concat(a2.units.slice(0, 8).flatMap(unit => unit.vocab))
@@ -1075,7 +1087,7 @@ test('A2 U5-U8 editorial audit records bounded findings without claiming linguis
   assert.match(audit, /revisión lingüística independiente pendiente/);
   assert.match(audit, /No se usó KBBI como bloqueo/);
   assert.match(audit, /No hubo hablante nativo disponible/);
-  assert.match(audit, /Saya memakai buku/);
+  assert.match(audit, /Saya menggunakan buku/);
   assert.match(audit, /sin introducir vocabulario nuevo no enseñado/);
 });
 

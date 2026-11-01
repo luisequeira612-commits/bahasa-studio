@@ -511,6 +511,8 @@ test('A2 date production and sequence context practice are explicitly taught', (
   assert.match(dateLesson.grammar, /mayúscula inicial/);
   assert.match(dateLesson.grammar, /Tanggal berapa hari ini/);
   assert.match(dateLesson.grammar, /Hari apa hari ini/);
+  assert.match(dateLesson.grammar, /fecha sencilla \(día y mes\)/);
+  assert.doesNotMatch(dateLesson.grammar, /fecha completa/);
   const dateTask = dateLesson.exercises.find(exercise => exercise.type === 'write' && exercise.vocabId === 'a2u1_tanggal');
   assert.ok(dateTask, 'A2-U1 should include a guided full-date production task');
   assert.equal(dateTask.modelAnswer, 'Hari ini tanggal 17 Agustus.');

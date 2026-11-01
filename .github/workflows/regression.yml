@@ -53,6 +53,8 @@ jobs:
         run: node --test tests/a2-u29-u32-lesson-focus.test.cjs
       - name: Run A2 U33-U40 lesson focus tests
         run: node --test tests/a2-u33-u40-lesson-focus.test.cjs
+      - name: Run A1 curriculum progression guardrails
+        run: node --test tests/a1-curriculum-progression.test.cjs
       - name: Run A1 U25 Menonton context tests
         run: node --test tests/a1-u25-menonton-context.test.cjs
       - name: Run A1/A2 exercise vocabulary alignment tests

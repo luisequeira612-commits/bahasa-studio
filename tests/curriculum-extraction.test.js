@@ -49,9 +49,9 @@ test('A1/A2 canonical curriculum integrity hashes and structure remain pinned', 
   assert.equal(a2.id, 'A2');
   assert.equal(a1.units.length, 32);
   assert.equal(a2.units.length, 40);
-  assert.equal(fnv1a(JSON.stringify(a1)), 'db636d5a', 'A1 canonical-data hash changed');
-  assert.equal(fnv1a(JSON.stringify(a2)), 'f9898377', 'A2 canonical-data hash changed');
-  assert.deepEqual(counts(a1), { units: 32, lessons: 91, exercises: 459, vocabulary: 329 });
+  assert.equal(fnv1a(JSON.stringify(a1)), '0b502388', 'A1 canonical-data hash changed');
+  assert.equal(fnv1a(JSON.stringify(a2)), '4104ea5e', 'A2 canonical-data hash changed');
+  assert.deepEqual(counts(a1), { units: 32, lessons: 91, exercises: 477, vocabulary: 329 });
   const u24 = a1.units.find(unit => unit.id === 'a1_u24');
   const eraser = u24.vocab.find(item => item.id === 'v388');
   assert.equal(eraser.esp, 'Goma de borrar');
@@ -60,7 +60,7 @@ test('A1/A2 canonical curriculum integrity hashes and structure remain pinned', 
   const repeat = u30.vocab.find(item => item.id === 'v449');
   assert.equal(repeat.esp, 'Repite / repita (imperativo)');
   assert.equal(repeat.exEsp, 'Por favor, repite.');
-  assert.deepEqual(counts(a2), { units: 40, lessons: 161, exercises: 686, vocabulary: 492 });
+  assert.deepEqual(counts(a2), { units: 40, lessons: 161, exercises: 691, vocabulary: 492 });
 });
 
 test('classic curriculum scripts load synchronously before the main app script', () => {

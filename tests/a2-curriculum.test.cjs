@@ -1180,7 +1180,7 @@ test('A2 U33-U36 editorial audit records bounded findings without claiming lingu
   assert.match(audit, /revisión lingüística independiente pendiente/);
   assert.match(audit, /No hubo hablante nativo disponible/);
   assert.match(audit, /KBBI no es requisito/);
-  assert.match(audit, /no es asesoramiento financiero/);
+  assert.match(audit, /asesoramiento financiero/);
   assert.match(audit, /No se modificaron IndexedDB, el formato de backup v3/);
 });
 

@@ -45,3 +45,19 @@ Total: **48 entradas, 16 lecciones y 68 ejercicios**.
 ## Siguiente paso
 
 Completar la pasada de secuencia de introducción y respuestas aceptadas de A2 U29–U32. Con este bloque queda cubierta la auditoría editorial inicial de las 40 unidades A2; después corresponde revisar los hallazgos concretos y regresar a los pendientes de consolidación de A1 antes de cerrar la FASE 2.
+
+
+## Correcciones de coherencia didáctica — U29–U32 (2026-11-01)
+
+Se alinearon ocho grupos de lecciones con sus vocablos objetivo:
+
+- U29 L1: clientes, quejas y devoluciones.
+- U29 L2: garantías, calidad y modelos.
+- U29 L3: existencias, pedidos y envíos.
+- U29 L4: envases, sustituciones y atención al cliente.
+- U30 L1: pintura, artistas y puestas en escena.
+- U31 L2: laderas, campamentos y tiendas de campaña.
+- U32 L2: inauguraciones, conmemoraciones y recuerdos.
+- U32 L3: regalos, felicitaciones y asistencia.
+
+Se conservan las formas, ejemplos y respuestas indonesias. Se añadió una prueba de regresión que comprueba los términos del foco y la cobertura de cada ID de vocabulario. No es una certificación lingüística.

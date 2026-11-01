@@ -294,3 +294,32 @@ test('A2 conversation prompts contain usable context, three choices, and one int
     }
   }
 });
+
+
+test('every guided conversation has unique identity and complete, unambiguous turn structure', () => {
+  const ids = scenarios.map(scenario => scenario.id);
+  assert.equal(new Set(ids).size, ids.length, 'scenario IDs must be unique');
+  for (const scenario of scenarios) {
+    assert.ok(typeof scenario.id === 'string' && scenario.id.trim(), 'scenario ID is required');
+    assert.ok(typeof scenario.title === 'string' && scenario.title.trim(), scenario.id + ' title');
+    assert.ok(typeof scenario.description === 'string' && scenario.description.trim(), scenario.id + ' description');
+    assert.equal(scenario.turns.length, 3, scenario.id + ' must contain three turns');
+    for (const [index, turn] of scenario.turns.entries()) {
+      const label = scenario.id + ' turn ' + (index + 1);
+      assert.ok(typeof turn.speaker === 'string' && turn.speaker.trim(), label + ' speaker');
+      assert.ok(typeof turn.line === 'string' && turn.line.trim(), label + ' Indonesian prompt');
+      assert.ok(typeof turn.translation === 'string' && turn.translation.trim(), label + ' Spanish translation');
+      assert.ok(typeof turn.prompt === 'string' && turn.prompt.trim(), label + ' learner instruction');
+      assert.equal(turn.choices.length, 3, label + ' must offer three choices');
+      assert.equal(turn.choices.filter(choice => choice.correct === true).length, 1,
+        label + ' must have exactly one intended answer');
+      const choiceTexts = turn.choices.map(choice => choice.text.trim());
+      assert.equal(new Set(choiceTexts).size, 3, label + ' choices must not duplicate');
+      assert.ok(turn.choices.every(choice =>
+        typeof choice.text === 'string' && choice.text.trim() &&
+        typeof choice.translation === 'string' && choice.translation.trim() &&
+        typeof choice.feedback === 'string' && choice.feedback.trim() &&
+        typeof choice.correct === 'boolean'), label + ' choices must be fully explained');
+    }
+  }
+});

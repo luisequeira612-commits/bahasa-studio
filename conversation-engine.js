@@ -496,6 +496,7 @@
                     const correct = turn.choices.find(function (choice) { return choice.correct; });
                     feedback = '<p style="color:var(--error);font-weight:600;">Buen intento. La respuesta adecuada es:</p><p><strong>' +
                         escapeHtml(correct.text) + '</strong> — ' + escapeHtml(correct.translation) + '</p><p>' +
+                        escapeHtml(correct.feedback) + '</p><p>' +
                         escapeHtml(chosen.feedback) + '</p>';
                 }
             }

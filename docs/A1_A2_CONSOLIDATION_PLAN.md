@@ -274,3 +274,35 @@ Con la integración de #171, #172, #174, #176 y #178, los bloques A2 U1–U20 cu
 - A2 U1–U20: cobertura de regresión ampliada.
 - No se modificaron entradas curriculares, glosas, IDs, estados de trackers, IndexedDB ni backup v3 en #178.
 - La auditoría editorial y lingüística sigue abierta; no hay hablante nativo disponible y KBBI no es una dependencia operativa. Los juicios no demostrables permanecen pendientes, sin bloquear el desarrollo.
+
+
+## Octava pasada de consolidación — 2026-11-01
+
+### Cobertura de alineación A1/A2 ampliada
+
+- PR #180 añade guardas estructurales para A1 U24–U32: 9 unidades, 90 entradas de vocabulario con ejemplos bilingües no vacíos y presencia de las modalidades de práctica esperadas.
+- PR #181 incorpora una regresión transversal para A1 y A2: las respuestas de traducción y escucha deben contener el término vinculado cuando se trata de vocabulario nuevo de la unidad; las preguntas explícitas de significado comparan la opción elegida con la glosa registrada o una alternativa declarada.
+- La comprobación transversal distingue referencias heredadas de repaso de vocabulario nuevo y evita juzgar automáticamente preguntas de frase/contexto como si fueran glosas de una palabra aislada.
+- La prueba de navegador de repaso se ajustó para activar el elemento tocado sin el desplazamiento automático que ocultaba el globo contextual fijo.
+
+### Revisión de cobertura A2 U21–U40
+
+La inspección de las pruebas existentes confirma que no hace falta duplicar otra batería para este bloque:
+
+- U21–U24: las regresiones existentes verifican las opciones de significado frente a la glosa, el término en el feedback, la consistencia de tokens/solución y la correspondencia de respuestas/modelos con el vocabulario vinculado.
+- U25–U40: las regresiones existentes comprueban referencias locales, preguntas de significado, respuestas de ordenamiento, modelos de escritura y respuestas de traducción/escucha.
+- Las unidades U21–U40 mantienen además controles estructurales de 12 entradas, cuatro lecciones y 17 ejercicios por unidad.
+
+### Integración y CI
+
+- PR #178: integrado; amplía las comprobaciones de A2 U1–U4.
+- PR #179: integrado; actualiza el registro de cobertura A2 U1–U20.
+- PR #180: integrado; añade guardas estructurales A1 U24–U32.
+- PR #181: integrado; añade alineación de respuestas y vocabulario en A1/A2.
+- El CI del commit de #181 terminó con 37 pasos exitosos. La regresión de `main` y el despliegue de Pages posteriores al merge se ejecutan de forma independiente y no deben considerarse exitosos hasta que terminen.
+
+### Límites y trabajo que continúa
+
+Estas pruebas detectan incoherencias mecánicas demostrables: referencias erróneas, respuestas sin el término objetivo, glosas seleccionadas que no coinciden con el registro, tokens de ordenamiento inconsistentes y feedback que no reproduce la solución. No certifican naturalidad, equivalencia semántica, pragmática, registro, pronunciación ni adecuación MCER/BIPA. Los ejercicios abiertos admiten respuestas alternativas y no deben someterse a reglas literales que produzcan falsos positivos.
+
+La fase 2 continúa abierta. La cobertura estructural y de alineación automática está reforzada en A1/A2, pero la cola editorial, las dimensiones lingüísticas sin evidencia, la revisión documental por unidad y las pruebas de audio/dispositivo siguen pendientes. La falta de hablante nativo y la indisponibilidad práctica de KBBI no deben bloquear correcciones internas ni generar estados de validación ficticios.

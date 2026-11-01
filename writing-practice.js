@@ -73,6 +73,9 @@
             const a1Complete = isA1Complete();
             return tasks.filter(task => task.level === 'A1' || (task.level === 'A2' && a1Complete));
         },
+        getTask(taskId) {
+            return this.getAvailableTasks().find(task => task.id === taskId) || null;
+        },
         showView(viewId) {
             document.querySelectorAll('.app-view').forEach(view => view.classList.remove('active'));
             document.querySelectorAll('.nav-btn').forEach(button => button.classList.remove('active'));
@@ -113,7 +116,7 @@
             }
         },
         renderTask(taskId) {
-            const task = this.getAvailableTasks().find(item => item.id === taskId);
+            const task = this.getTask(taskId);
             const host = document.getElementById('writingPracticeContent');
             if (!task || !host) return;
             host.replaceChildren();

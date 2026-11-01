@@ -8734,8 +8734,8 @@ window.BAHASA_CURRICULUM_A2 = {
                             ],
                             "lessons": [
                                 {
-                                    "title": "Lección 1: Provincias y distritos",
-                                    "objective": "Describe la organización territorial y las características de distintas regiones.",
+                                    "title": "Lección 1: Provincias, distritos y fronteras",
+                                    "objective": "Describe provincias, distritos y fronteras entre distintas regiones.",
                                     "grammar": "Practica vocabulario para ubicar provincias, distritos y fronteras.",
                                     "vocabIds": [
                                         "a2u33_provinsi",
@@ -8801,7 +8801,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 },
                                 {
                                     "title": "Lección 2: Población y territorio",
-                                    "objective": "Habla de los habitantes y de las características de una región.",
+                                    "objective": "Describe a los habitantes, las regiones y las zonas costeras.",
                                     "grammar": "Usa memiliki para describir características de un territorio.",
                                     "vocabIds": [
                                         "a2u33_penduduk",
@@ -8847,7 +8847,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 },
                                 {
                                     "title": "Lección 3: Paisajes y zonas naturales",
-                                    "objective": "Describe zonas costeras, interiores, llanuras y montañas.",
+                                    "objective": "Describe zonas interiores, llanuras y cordilleras.",
                                     "grammar": "Practica expresiones para comparar paisajes y ubicaciones.",
                                     "vocabIds": [
                                         "a2u33_pedalaman",
@@ -8892,8 +8892,8 @@ window.BAHASA_CURRICULUM_A2 = {
                                     ]
                                 },
                                 {
-                                    "title": "Lección 4: Islas y vías marítimas",
-                                    "objective": "Habla de islas, estrechos y bahías y de cómo se desplazan las embarcaciones.",
+                                    "title": "Lección 4: Islas, estrechos y bahías",
+                                    "objective": "Habla de islas, estrechos y bahías.",
                                     "grammar": "Usa melewati para describir el paso por una ruta.",
                                     "vocabIds": [
                                         "a2u33_pulau",
@@ -9096,8 +9096,8 @@ window.BAHASA_CURRICULUM_A2 = {
                                     ]
                                 },
                                 {
-                                    "title": "Lección 2: Disculpas y agradecimientos",
-                                    "objective": "Pide disculpas y expresa agradecimiento en situaciones cotidianas.",
+                                    "title": "Lección 2: Agradecimientos, costumbres y comportamiento",
+                                    "objective": "Expresa agradecimiento y describe costumbres y comportamientos cotidianos.",
                                     "grammar": "Usa menyampaikan para presentar una disculpa o un agradecimiento.",
                                     "vocabIds": [
                                         "a2u34_ucapan_terima_kasih",
@@ -9143,7 +9143,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 },
                                 {
                                     "title": "Lección 3: Costumbres y registros",
-                                    "objective": "Distingue comportamientos y estilos de comunicación formales e informales.",
+                                    "objective": "Distingue estilos de comunicación formales e informales y muestra respeto.",
                                     "grammar": "Practica vocabulario para describir registros y costumbres sociales.",
                                     "vocabIds": [
                                         "a2u34_formal",
@@ -9189,7 +9189,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 },
                                 {
                                     "title": "Lección 4: Conversación respetuosa",
-                                    "objective": "Habla de turnos de palabra, interrupciones y atención al interlocutor.",
+                                    "objective": "Habla de turnos de palabra, interrupciones y contacto visual en una conversación respetuosa.",
                                     "grammar": "Usa jangan para dar consejos sobre cómo conversar con respeto.",
                                     "vocabIds": [
                                         "a2u34_menyela",
@@ -9328,8 +9328,8 @@ window.BAHASA_CURRICULUM_A2 = {
                             ],
                             "lessons": [
                                 {
-                                    "title": "Lección 1: Presupuestos y gastos",
-                                    "objective": "Describe cómo se organiza un presupuesto y se controlan los gastos.",
+                                    "title": "Lección 1: Presupuestos, ingresos y gastos",
+                                    "objective": "Describe cómo se organizan los presupuestos, los ingresos y los gastos.",
                                     "grammar": "Practica vocabulario para hablar de ingresos y gastos mensuales.",
                                     "vocabIds": [
                                         "a2u35_anggaran",
@@ -9392,8 +9392,8 @@ window.BAHASA_CURRICULUM_A2 = {
                                     ]
                                 },
                                 {
-                                    "title": "Lección 2: Ahorro e inversión",
-                                    "objective": "Habla de ahorrar dinero y de riesgos sencillos de inversión.",
+                                    "title": "Lección 2: Ahorro, inversión y cuotas",
+                                    "objective": "Habla de ahorrar, invertir y pagar compras en cuotas.",
                                     "grammar": "Usa untuk para explicar el propósito de un ahorro.",
                                     "vocabIds": [
                                         "a2u35_menabung",
@@ -9439,7 +9439,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 },
                                 {
                                     "title": "Lección 3: Prioridades y necesidades",
-                                    "objective": "Distingue necesidades básicas y deseos personales.",
+                                    "objective": "Distingue prioridades, necesidades básicas y deseos personales.",
                                     "grammar": "Practica expresiones para establecer prioridades.",
                                     "vocabIds": [
                                         "a2u35_prioritas",
@@ -9485,7 +9485,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 },
                                 {
                                     "title": "Lección 4: Emergencias y consumo responsable",
-                                    "objective": "Habla de gastos inesperados y de cómo evitar el gasto innecesario.",
+                                    "objective": "Describe gastos imprevistos, fondos de emergencia y cómo evitar gastos innecesarios.",
                                     "grammar": "Usa menyiapkan para describir cómo prepararse para un imprevisto.",
                                     "vocabIds": [
                                         "a2u35_biaya_tak_terduga",
@@ -9625,7 +9625,7 @@ window.BAHASA_CURRICULUM_A2 = {
                             "lessons": [
                                 {
                                     "title": "Lección 1: Consideraciones y riesgos",
-                                    "objective": "Explica qué factores debes valorar antes de tomar una decisión.",
+                                    "objective": "Explica consideraciones, riesgos y ventajas antes de tomar una decisión.",
                                     "grammar": "Practica vocabulario para hablar de riesgos y consideraciones.",
                                     "vocabIds": [
                                         "a2u36_pertimbangan",
@@ -9690,8 +9690,8 @@ window.BAHASA_CURRICULUM_A2 = {
                                     ]
                                 },
                                 {
-                                    "title": "Lección 2: Ventajas y desventajas",
-                                    "objective": "Compara beneficios y pérdidas de distintas alternativas.",
+                                    "title": "Lección 2: Pérdidas, alternativas y consecuencias",
+                                    "objective": "Compara pérdidas y consecuencias al elegir entre alternativas.",
                                     "grammar": "Usa lebih y kurang para expresar comparaciones sencillas.",
                                     "vocabIds": [
                                         "a2u36_kerugian",
@@ -9737,7 +9737,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 },
                                 {
                                     "title": "Lección 3: Acuerdos y compromisos",
-                                    "objective": "Describe compromisos y acuerdos alcanzados entre varias personas.",
+                                    "objective": "Describe compromisos, acuerdos y planes alternativos entre varias personas.",
                                     "grammar": "Practica expresiones para negociar y llegar a un compromiso.",
                                     "vocabIds": [
                                         "a2u36_kompromi",
@@ -9783,7 +9783,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 },
                                 {
                                     "title": "Lección 4: Planes y evaluación",
-                                    "objective": "Explica planes alternativos y los pasos siguientes de un proyecto.",
+                                    "objective": "Explica cómo considerar opciones, evaluar resultados y definir los siguientes pasos de un proyecto.",
                                     "grammar": "Usa langkah berikutnya para organizar acciones futuras.",
                                     "vocabIds": [
                                         "a2u36_langkah_berikutnya",
@@ -10038,7 +10038,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 },
                                 {
                                     "title": "Lección 3: Refugios y suministros",
-                                    "objective": "Habla de refugios temporales y de los recursos necesarios durante una emergencia.",
+                                    "objective": "Habla de refugios temporales, suministros de alimentos y primeros auxilios durante una emergencia.",
                                     "grammar": "Practica expresiones de cantidad y suficiencia.",
                                     "vocabIds": [
                                         "a2u37_tempat_pengungsian",
@@ -10083,8 +10083,8 @@ window.BAHASA_CURRICULUM_A2 = {
                                     ]
                                 },
                                 {
-                                    "title": "Lección 4: Ayuda y seguridad",
-                                    "objective": "Describe primeros auxilios, rutas de evacuación y apoyo comunitario.",
+                                    "title": "Lección 4: Rutas de evacuación y centros de ayuda",
+                                    "objective": "Habla de rutas de evacuación, voluntarios de desastres y centros de ayuda.",
                                     "grammar": "Usa harus para expresar medidas de seguridad.",
                                     "vocabIds": [
                                         "a2u37_jalur_evakuasi",
@@ -10224,7 +10224,7 @@ window.BAHASA_CURRICULUM_A2 = {
                             "lessons": [
                                 {
                                     "title": "Lección 1: Destinos y visitantes",
-                                    "objective": "Describe destinos turísticos y a las personas que los visitan.",
+                                    "objective": "Describe destinos turísticos, visitantes y guías turísticos.",
                                     "grammar": "Practica vocabulario para hablar de lugares y visitantes.",
                                     "vocabIds": [
                                         "a2u38_wisatawan",
@@ -10287,8 +10287,8 @@ window.BAHASA_CURRICULUM_A2 = {
                                     ]
                                 },
                                 {
-                                    "title": "Lección 2: Guías y alojamiento",
-                                    "objective": "Habla de guías turísticos y lugares donde alojarse.",
+                                    "title": "Lección 2: Alojamiento, reservas y mapas turísticos",
+                                    "objective": "Habla de alojamientos, reservas y mapas turísticos.",
                                     "grammar": "Usa dekat para indicar proximidad y expresiones de ubicación.",
                                     "vocabIds": [
                                         "a2u38_penginapan",
@@ -10333,9 +10333,9 @@ window.BAHASA_CURRICULUM_A2 = {
                                     ]
                                 },
                                 {
-                                    "title": "Lección 3: Reservas y entradas",
-                                    "objective": "Explica cómo reservar alojamiento y comprar entradas.",
-                                    "grammar": "Practica expresiones para pagar y confirmar una reserva.",
+                                    "title": "Lección 3: Tarifas, horarios y entradas",
+                                    "objective": "Explica las tarifas de entrada, los horarios de visita y la compra de entradas.",
+                                    "grammar": "Practica expresiones para consultar tarifas, horarios y entradas.",
                                     "vocabIds": [
                                         "a2u38_biaya_masuk",
                                         "a2u38_jam_kunjung",
@@ -10379,8 +10379,8 @@ window.BAHASA_CURRICULUM_A2 = {
                                     ]
                                 },
                                 {
-                                    "title": "Lección 4: Horarios y recuerdos",
-                                    "objective": "Comprende horarios de visita y habla de recuerdos de un viaje.",
+                                    "title": "Lección 4: Atracciones, horarios y recuerdos",
+                                    "objective": "Habla de atracciones turísticas, recuerdos y horarios de visita.",
                                     "grammar": "Usa berubah para explicar cambios de horario.",
                                     "vocabIds": [
                                         "a2u38_objek_wisata",
@@ -10520,7 +10520,7 @@ window.BAHASA_CURRICULUM_A2 = {
                             "lessons": [
                                 {
                                     "title": "Lección 1: Reuniones virtuales",
-                                    "objective": "Describe reuniones en línea y videoconferencias con compañeros.",
+                                    "objective": "Describe reuniones en línea, videoconferencias y acciones para compartir pantalla.",
                                     "grammar": "Practica expresiones para organizar y participar en reuniones.",
                                     "vocabIds": [
                                         "a2u39_rapat_daring",
@@ -10588,7 +10588,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 },
                                 {
                                     "title": "Lección 2: Compartir documentos",
-                                    "objective": "Explica cómo colaborar en documentos y presentaciones compartidas.",
+                                    "objective": "Explica cómo compartir documentos, enlaces y archivos adjuntos con otras personas.",
                                     "grammar": "Usa bersama para indicar colaboración.",
                                     "vocabIds": [
                                         "a2u39_dokumen_bersama",
@@ -10633,8 +10633,8 @@ window.BAHASA_CURRICULUM_A2 = {
                                     ]
                                 },
                                 {
-                                    "title": "Lección 3: Archivos y enlaces",
-                                    "objective": "Habla de enlaces, archivos adjuntos y acciones de descarga y subida.",
+                                    "title": "Lección 3: Descargas, subidas y almacenamiento en la nube",
+                                    "objective": "Explica cómo descargar, subir y guardar archivos en la nube.",
                                     "grammar": "Practica instrucciones con silakan y jangan.",
                                     "vocabIds": [
                                         "a2u39_unduh",
@@ -10680,7 +10680,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 },
                                 {
                                     "title": "Lección 4: Acceso y actualizaciones",
-                                    "objective": "Describe almacenamiento en la nube, notificaciones y permisos de acceso.",
+                                    "objective": "Habla de notificaciones, actualizaciones y permisos de acceso.",
                                     "grammar": "Usa tersedia y memiliki para explicar disponibilidad y acceso.",
                                     "vocabIds": [
                                         "a2u39_notifikasi",
@@ -10819,9 +10819,9 @@ window.BAHASA_CURRICULUM_A2 = {
                             ],
                             "lessons": [
                                 {
-                                    "title": "Lección 1: Resúmenes y conclusiones",
-                                    "objective": "Identifica las ideas principales y presenta un resumen breve.",
-                                    "grammar": "Practica expresiones para resumir y concluir una explicación.",
+                                    "title": "Lección 1: Resúmenes, conclusiones y aclaraciones",
+                                    "objective": "Identifica las ideas principales, presenta un resumen y pide aclaraciones.",
+                                    "grammar": "Practica expresiones para resumir, concluir y aclarar una explicación.",
                                     "vocabIds": [
                                         "a2u40_ringkasan",
                                         "a2u40_kesimpulan",
@@ -10883,9 +10883,9 @@ window.BAHASA_CURRICULUM_A2 = {
                                     ]
                                 },
                                 {
-                                    "title": "Lección 2: Aclarar y enfatizar",
-                                    "objective": "Pide aclaraciones y refuerza una idea cuando sea necesario.",
-                                    "grammar": "Usa maksud saya para explicar de nuevo lo que quieres decir.",
+                                    "title": "Lección 2: Énfasis, respuestas y objeciones",
+                                    "objective": "Refuerza una idea, responde a otras opiniones y presenta objeciones.",
+                                    "grammar": "Practica expresiones para enfatizar una idea, responder y presentar objeciones.",
                                     "vocabIds": [
                                         "a2u40_penegasan",
                                         "a2u40_tanggapan",
@@ -10929,9 +10929,9 @@ window.BAHASA_CURRICULUM_A2 = {
                                     ]
                                 },
                                 {
-                                    "title": "Lección 3: Respuestas y objeciones",
-                                    "objective": "Responde a opiniones y presenta desacuerdos de manera respetuosa.",
-                                    "grammar": "Practica expresiones para apoyar o cuestionar una idea.",
+                                    "title": "Lección 3: Ejemplos, explicaciones y detalles",
+                                    "objective": "Amplía una explicación con ejemplos adicionales y detalles.",
+                                    "grammar": "Practica expresiones para añadir ejemplos, explicaciones y detalles a una idea.",
                                     "vocabIds": [
                                         "a2u40_contoh_tambahan",
                                         "a2u40_uraian",
@@ -10975,8 +10975,8 @@ window.BAHASA_CURRICULUM_A2 = {
                                     ]
                                 },
                                 {
-                                    "title": "Lección 4: Explicaciones y detalles",
-                                    "objective": "Añade ejemplos, detalles y declaraciones para que una explicación sea clara.",
+                                    "title": "Lección 4: Información, declaraciones y debate",
+                                    "objective": "Describe información, presenta declaraciones y desarrolla un debate.",
                                     "grammar": "Usa misalnya y secara rinci para ampliar información.",
                                     "vocabIds": [
                                         "a2u40_keterangan",

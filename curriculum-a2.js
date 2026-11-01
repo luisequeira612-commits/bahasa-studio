@@ -50,7 +50,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     title: 'Lección 2: Fin de semana y fechas',
                                     objective: 'Nombra viernes, sábado y domingo y pregunta por la fecha.',
-                                    grammar: 'Los nombres de los días y los meses llevan mayúscula inicial: «Senin», «Jumat» y «Agustus». «Tanggal berapa hari ini?» pregunta por el número de la fecha; «Hari apa hari ini?» pregunta por el día de la semana. «Tanggal» se refiere al día del mes. Para responder con una fecha completa, se puede usar el patrón «Hari ini tanggal [número] [mes]», por ejemplo «Hari ini tanggal 17 Agustus».',
+                                    grammar: 'Los nombres de los días y los meses llevan mayúscula inicial: «Senin», «Jumat» y «Agustus». «Tanggal berapa hari ini?» pregunta por el número de la fecha; «Hari apa hari ini?» pregunta por el día de la semana. «Tanggal» se refiere al día del mes. Para responder con una fecha sencilla (día y mes), se puede usar el patrón «Hari ini tanggal [número] [mes]», por ejemplo «Hari ini tanggal 17 Agustus».',
                                     vocabIds: ['a2u1_jumat', 'a2u1_sabtu', 'a2u1_minggu', 'a2u1_tanggal', 'a2u1_bulan'],
                                     exercises: [
                                         { vocabId: 'a2u1_jumat', type: 'mc', prompt: '¿Qué día viene después de Jumat?', options: ['Sabtu', 'Minggu', 'Kamis'], answer: 0, explanation: 'Después de Jumat (viernes) viene Sabtu (sábado).' },

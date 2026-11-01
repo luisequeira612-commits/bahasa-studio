@@ -75,7 +75,7 @@ KBBI es una fuente de evidencia útil, no una dependencia de ejecución ni un se
 
 ## Cola editorial independiente
 
-El generador `scripts/build-editorial-review-queue.mjs` crea una fila por entrada de vocabulario A1/A2 en `artifacts/editorial-review-queue.csv`. La cola incluye nivel, unidad, ID, forma indonesia, glosa española, ejemplo bilingüe, campos ausentes y estados editoriales independientes.
+El generador `scripts/build-editorial-review-queue.mjs` crea una fila por entrada de vocabulario A1/A2 en `artifacts/editorial-review-queue.csv`. La cola incluye un `review_id` determinista (`nivel:unidad:id_vocabulario`) que no cambia al reordenar las entradas, además de nivel, unidad, ID, forma indonesia, glosa española, ejemplo bilingüe, campos ausentes y estados editoriales independientes. Si falta el ID canónico, usa como respaldo la forma indonesia normalizada (y el índice solo si también falta la forma).
 
 - `P1`: falta algún dato base de la entrada o del ejemplo.
 - `P2`: entrada con los campos básicos presentes; requiere revisión editorial normal.

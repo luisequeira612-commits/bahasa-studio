@@ -15,6 +15,8 @@ test('builds one neutral editorial work item per vocabulary entry', () => {
     }],
   }]);
   assert.equal(rows.length, 2);
+  assert.equal(rows[0].review_id, 'A1:a1_u1:v1');
+  assert.equal(rows[1].review_id, 'A1:a1_u1:v2');
   assert.equal(rows[0].priority, 'P2');
   assert.equal(rows[1].priority, 'P1');
   assert.equal(rows[1].missing_fields, 'example_indonesian;example_spanish');
@@ -36,4 +38,30 @@ test('does not infer linguistic approval from populated curriculum fields', () =
   assert.equal(row.editorial_status, 'not_reviewed');
   assert.equal(row.translation_review, 'not_reviewed');
   assert.equal(row.level_fit_review, 'not_reviewed');
+});
+
+
+test('review IDs stay stable when vocabulary entries are reordered', () => {
+  const unit = {
+    id: 'a1_u3',
+    title: 'Origen',
+    vocab: [
+      { id: 'v-origin', idn: 'asal', esp: 'origen', ex: 'Saya dari sini.', exEsp: 'Soy de aquí.' },
+      { id: 'v-city', idn: 'kota', esp: 'ciudad', ex: 'Ini kota.', exEsp: 'Esta es una ciudad.' },
+    ],
+  };
+  const first = buildEditorialQueue([{ id: 'A1', units: [unit] }]);
+  const second = buildEditorialQueue([{ id: 'A1', units: [{ ...unit, vocab: [...unit.vocab].reverse() }] }]);
+  const ids = (rows) => rows.map((row) => row.review_id).sort();
+  assert.deepEqual(ids(first), ids(second));
+  assert.equal(new Set(ids(first)).size, 2);
+});
+
+test('uses a deterministic fallback when a vocabulary ID is missing', () => {
+  const [row] = buildEditorialQueue([{
+    id: 'A1',
+    units: [{ id: 'a1_u1', vocab: [{ idn: 'nama', esp: 'nombre' }] }],
+  }]);
+  assert.equal(row.review_id, 'A1:a1_u1:missing-id:nama');
+  assert.equal(row.priority, 'P1');
 });

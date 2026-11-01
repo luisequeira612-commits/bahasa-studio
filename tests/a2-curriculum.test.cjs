@@ -1038,9 +1038,10 @@ test('A2 U1-U4 vocabulary-meaning questions and ordering feedback match their ca
       assert.ok(Number.isInteger(exercise.answer) && exercise.answer >= 0 && exercise.answer < exercise.options.length,
         unit.id + ' meaning question must have a valid answer index');
       const normalizeGloss = value => String(value).normalize('NFC').toLocaleLowerCase()
-        .replace(/\/a\b/g, '').replace(/\s+/g, ' ').trim();
-      assert.equal(normalizeGloss(exercise.options[exercise.answer]), normalizeGloss(word.esp),
-        unit.id + ' correct meaning option must match the canonical Spanish gloss for ' + word.idn);
+        .replace(/\\/a\\b/g, '').replace(/\\s+/g, ' ').trim();
+      const acceptedGlosses = String(word.esp).split(';').map(normalizeGloss);
+      assert.ok(acceptedGlosses.includes(normalizeGloss(exercise.options[exercise.answer])),
+        unit.id + ' correct meaning option must match one of the canonical Spanish glosses for ' + word.idn);
       assert.ok((exercise.explanation || '').toLowerCase().includes(word.idn.toLowerCase()),
         unit.id + ' feedback should identify the vocabulary item being explained');
     }

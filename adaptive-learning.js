@@ -20,9 +20,9 @@
             const attempts = count(entry.attempts);
             const correct = entry.correct;
             if (attempts < 5 || !Number.isSafeInteger(correct) || correct < 0 || correct > attempts) return null;
-            return { key, label: SKILL_LABELS[key], attempts, accuracy: Math.round(correct / attempts * 100), order: index };
+            return { key, label: SKILL_LABELS[key], attempts, precision: correct / attempts, accuracy: Math.round(correct / attempts * 100), order: index };
         }).filter(Boolean);
-        candidates.sort((a, b) => a.accuracy - b.accuracy || b.attempts - a.attempts || a.order - b.order);
+        candidates.sort((a, b) => a.precision - b.precision || b.attempts - a.attempts || a.order - b.order);
         return candidates[0] || null;
     }
 

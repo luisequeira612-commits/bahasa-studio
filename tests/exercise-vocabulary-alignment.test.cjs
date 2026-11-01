@@ -120,3 +120,13 @@ test('word-order exercises preserve exactly the supplied tokens', () => {
   }
   assert.deepEqual(malformed, []);
 });
+
+
+test('A1 Unit 5 younger-sibling writing model matches its linked vocabulary', () => {
+  const unit = levels[0].units.find(entry => entry.id === 'a1_u5');
+  assert.ok(unit);
+  const exercise = exercisesOf(unit).find(entry => entry.type === 'write' && entry.vocabId === 'v111');
+  assert.ok(exercise);
+  assert.equal(exercise.modelAnswer, 'Ini adik saya.');
+  assert.match(exercise.explanation, /adik saya/i);
+});

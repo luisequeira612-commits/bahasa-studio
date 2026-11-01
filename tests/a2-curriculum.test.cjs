@@ -1260,3 +1260,54 @@ test('A2 U7 lesson titles and explanations describe their actual vocabulary grou
     }
   }
 });
+
+test('A2 U5-U8 lesson exercises stay aligned with introduced vocabulary and canonical feedback', () => {
+  const units = a2.units.slice(4, 8);
+  assert.deepEqual(Array.from(units, unit => unit.id), ['a2_u5', 'a2_u6', 'a2_u7', 'a2_u8']);
+
+  for (const unit of units) {
+    const vocabulary = new Map(unit.vocab.map(word => [word.id, word]));
+    for (const lesson of unit.lessons) {
+      const introduced = new Set([...(lesson.vocabIds || []), ...(lesson.reviewVocabIds || [])]);
+      assert.ok(lesson.title && lesson.objective && lesson.grammar,
+        unit.id + ' lessons must explain their focus');
+      for (const exercise of lesson.exercises || []) {
+        const word = vocabulary.get(exercise.vocabId);
+        assert.ok(word, unit.id + ' exercises must reference vocabulary from the same unit');
+        assert.ok(introduced.has(exercise.vocabId),
+          lesson.title + ' must assess vocabulary introduced in that lesson or explicitly marked for review');
+        assert.ok(exercise.prompt && exercise.explanation,
+          lesson.title + ' exercises must include a prompt and feedback');
+
+        if (exercise.type === 'mc') {
+          assert.ok(Array.isArray(exercise.options) && exercise.options.length >= 2);
+          assert.ok(Number.isInteger(exercise.answer) &&
+            exercise.answer >= 0 && exercise.answer < exercise.options.length);
+          assert.equal(exercise.options[exercise.answer], word.esp,
+            lesson.title + ' correct meaning option must match the canonical Spanish gloss for ' + word.idn);
+        } else if (exercise.type === 'order') {
+          assert.ok(Array.isArray(exercise.words) && Array.isArray(exercise.correctOrder));
+          assert.deepEqual(Array.from(exercise.words).sort(), Array.from(exercise.correctOrder).sort(),
+            lesson.title + ' ordering tokens must match the canonical answer');
+          const normalize = value => String(value).normalize('NFC').toLocaleLowerCase()
+            .replace(/[.,!?;:«»"“”]/g, ' ').replace(/\\s+/g, ' ').trim();
+          assert.ok(normalize(exercise.explanation).includes(normalize(exercise.correctOrder.join(' '))),
+            lesson.title + ' feedback must reproduce the ordering answer');
+        } else if (exercise.type === 'translate_es_id' || exercise.type === 'listen') {
+          assert.ok(typeof exercise.answer === 'string' && exercise.answer.trim(),
+            lesson.title + ' written response exercises must have a reference answer');
+        } else if (exercise.type === 'write') {
+          assert.ok(typeof exercise.modelAnswer === 'string' && exercise.modelAnswer.trim(),
+            lesson.title + ' writing exercises must have a model answer');
+        } else {
+          assert.fail(unit.id + ' contains an unreviewed exercise type: ' + exercise.type);
+        }
+      }
+    }
+  }
+
+  const u8 = units[3];
+  assert.equal(u8.lessons[0].title, 'Lección 1: Formas mem- con b inicial');
+  assert.match(u8.lessons[0].grammar, /membeli, membawa y membantu/);
+  assert.doesNotMatch(u8.lessons[0].grammar, /memakai|memilih/);
+});

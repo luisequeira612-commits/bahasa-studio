@@ -289,6 +289,37 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
     });
   });
 
+  // Track explicit exercise-to-vocabulary links so uncovered entries can
+  // be reviewed. This is a coverage signal, not proof that a word is taught
+  // or assessed adequately; exercises without vocabId cannot be attributed.
+  const assessedVocabIds = new Set();
+  const collectExerciseVocab = (exercise) => {
+    if (!exercise || typeof exercise !== 'object') return;
+    if (typeof exercise.vocabId === 'string' && exercise.vocabId.trim()) {
+      assessedVocabIds.add(exercise.vocabId);
+    }
+    if (Array.isArray(exercise.vocabIds)) {
+      exercise.vocabIds.forEach((id) => {
+        if (typeof id === 'string' && id.trim()) assessedVocabIds.add(id);
+      });
+    }
+  };
+  units.forEach((unit) => {
+    (Array.isArray(unit?.exercises) ? unit.exercises : []).forEach(collectExerciseVocab);
+    (Array.isArray(unit?.lessons) ? unit.lessons : []).forEach((lesson) => {
+      (Array.isArray(lesson?.exercises) ? lesson.exercises : []).forEach(collectExerciseVocab);
+    });
+    (Array.isArray(unit?.vocab) ? unit.vocab : []).forEach((word, wordIndex) => {
+      if (!word || typeof word.id !== 'string' || !word.id.trim() || assessedVocabIds.has(word.id)) return;
+      issues.push(issue(
+        'warning',
+        'VOCAB_NOT_EXPLICITLY_ASSESSED',
+        `${level}.units[${units.indexOf(unit)}].vocab[${wordIndex}]`,
+        `No se encontró una referencia explícita a ${word.id} en ejercicios de unidad o lección; revisar si se practica de forma indirecta o falta cobertura.`
+      ));
+    });
+  });
+
   return {
     level,
     unit_count: units.length,

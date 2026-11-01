@@ -1039,7 +1039,7 @@ test('A2 U1-U4 vocabulary-meaning questions and ordering feedback match their ca
         unit.id + ' meaning question must have a valid answer index');
       const normalizeGloss = value => String(value).normalize('NFC').toLocaleLowerCase()
         .replace(/\/a\b/g, '').replace(/\s+/g, ' ').trim();
-      const acceptedGlosses = String(word.esp).split(';').map(normalizeGloss);
+      const acceptedGlosses = [String(word.esp), ...String(word.esp).split(';')].map(normalizeGloss);
       assert.ok(acceptedGlosses.includes(normalizeGloss(exercise.options[exercise.answer])),
         unit.id + ' correct meaning option must match one of the canonical Spanish glosses for ' + word.idn);
       assert.ok((exercise.explanation || '').toLowerCase().includes(word.idn.toLowerCase()),

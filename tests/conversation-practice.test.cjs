@@ -15,6 +15,7 @@ const recordedSessions = [];
 const sandbox = {
   App: { recordSkillSession(skill) { recordedSessions.push(skill); return Promise.resolve(); }, switchView() {} },
   window: {},
+  Math: Object.assign(Object.create(Math), { random: () => 0 }),
   document: {
     addEventListener() {},
     getElementById(id) { return elements[id] || null; }
@@ -204,3 +205,26 @@ test('replaying a completed conversation records a separate session exactly once
   }
 });
 
+
+test('guided answer choices are shuffled in a session without mutating source content', () => {
+  const engine = sandbox.window.ConversationEngine;
+  const original = scenarios.find(scenario => scenario.id === 'greetings');
+  const originalOrder = original.turns.map(turn => turn.choices.map(choice => choice.text));
+  engine.start('greetings');
+
+  assert.notStrictEqual(engine.currentScenario, original);
+  engine.currentScenario.turns.forEach((turn, index) => {
+    const shuffledTexts = turn.choices.map(choice => choice.text);
+    assert.deepEqual([...shuffledTexts].sort(), [...originalOrder[index]].sort());
+    assert.notDeepEqual(shuffledTexts, originalOrder[index],
+      'the deterministic test shuffle should change the displayed order');
+    const correctIndex = turn.choices.findIndex(choice => choice.correct);
+    assert.ok(correctIndex >= 0, 'the correct answer must remain attached to its choice');
+  });
+
+  assert.deepEqual(original.turns.map(turn => turn.choices.map(choice => choice.text)), originalOrder,
+    'starting a session must not mutate the reusable scenario definitions');
+  const correctIndex = engine.currentScenario.turns[0].choices.findIndex(choice => choice.correct);
+  engine.choose(correctIndex);
+  assert.equal(engine.score, 1);
+});

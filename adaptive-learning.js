@@ -72,7 +72,8 @@
         const weakWords = Array.isArray(data.weakWords)
             ? data.weakWords.filter(word => word && typeof word.id === 'string' && word.id &&
                 typeof word.term === 'string' && word.term &&
-                (word.savedForReview === true || !Number.isSafeInteger(word.incorrect) || word.incorrect >= 2)).slice(0, 5)
+                (word.savedForReview === true || !Object.prototype.hasOwnProperty.call(word, 'incorrect') ||
+                    (Number.isSafeInteger(word.incorrect) && word.incorrect >= 2))).slice(0, 5)
             : [];
         const isolatedWords = Array.isArray(data.isolatedWords)
             ? data.isolatedWords.filter(word => word && typeof word.id === 'string' && word.id &&

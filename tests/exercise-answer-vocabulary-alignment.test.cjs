@@ -81,7 +81,8 @@ test('meaning multiple-choice answers match a registered full gloss or one of it
       const fullGloss = normalize(word.esp);
       const alternatives = String(word.esp).split(/[;/]|\s+o\s+/i).map(normalize).filter(Boolean);
       const accepted = new Set([fullGloss, ...alternatives]);
-      if (!accepted.has(normalize(selected))) {
+      const selectedAlternatives = String(selected).split(/[;/]|\\s+o\\s+/i).map(normalize).filter(Boolean);
+      if (!selectedAlternatives.some(value => accepted.has(value))) {
         mismatches.push({
           level: level.id, unit: unit.id, vocabId: word.id, term: word.idn,
           selected, gloss: word.esp, prompt: exercise.prompt

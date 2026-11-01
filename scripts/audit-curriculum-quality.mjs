@@ -28,6 +28,23 @@ function issue(severity, code, path, message) {
   return { severity, code, path, message };
 }
 
+function auditMultipleChoiceOptions(options, path, issues, prefix = '') {
+  if (!Array.isArray(options)) return;
+  const seen = new Set();
+  options.forEach((option, index) => {
+    if (typeof option !== 'string' || !option.trim()) {
+      issues.push(issue('error', prefix + 'MC_OPTION_EMPTY', path + '.options[' + index + ']', 'Cada opción debe ser un texto no vacío.'));
+      return;
+    }
+    const normalized = option.trim().normalize('NFC').toLocaleLowerCase();
+    if (seen.has(normalized)) {
+      issues.push(issue('warning', prefix + 'MC_OPTION_DUPLICATE', path + '.options[' + index + ']', 'La opción repite otra alternativa después de normalizar espacios y mayúsculas.'));
+    } else {
+      seen.add(normalized);
+    }
+  });
+}
+
 export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown', knownVocabIds = []) {
   const issues = [];
   const units = Array.isArray(curriculum?.units) ? curriculum.units : [];
@@ -108,8 +125,11 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
       if (exercise.type === 'mc') {
         if (!Array.isArray(exercise.options) || exercise.options.length < 2) {
           issues.push(issue('error', 'MC_OPTIONS_INVALID', exercisePath, 'Un ejercicio mc necesita al menos dos opciones.'));
-        } else if (!Number.isInteger(exercise.answer) || exercise.answer < 0 || exercise.answer >= exercise.options.length) {
-          issues.push(issue('error', 'MC_ANSWER_OUT_OF_RANGE', exercisePath, 'La respuesta mc debe ser un índice válido de options.'));
+        } else {
+          auditMultipleChoiceOptions(exercise.options, exercisePath, issues);
+          if (!Number.isInteger(exercise.answer) || exercise.answer < 0 || exercise.answer >= exercise.options.length) {
+            issues.push(issue('error', 'MC_ANSWER_OUT_OF_RANGE', exercisePath, 'La respuesta mc debe ser un índice válido de options.'));
+          }
         }
       }
       if (exercise.type === 'order') {
@@ -166,8 +186,11 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
             if (exercise.type === 'mc') {
               if (!Array.isArray(exercise.options) || exercise.options.length < 2) {
                 issues.push(issue('error', 'LESSON_MC_OPTIONS_INVALID', exercisePath, 'Un ejercicio mc necesita al menos dos opciones.'));
-              } else if (!Number.isInteger(exercise.answer) || exercise.answer < 0 || exercise.answer >= exercise.options.length) {
-                issues.push(issue('error', 'LESSON_MC_ANSWER_OUT_OF_RANGE', exercisePath, 'La respuesta mc debe ser un índice válido de options.'));
+              } else {
+                auditMultipleChoiceOptions(exercise.options, exercisePath, issues, 'LESSON_');
+                if (!Number.isInteger(exercise.answer) || exercise.answer < 0 || exercise.answer >= exercise.options.length) {
+                  issues.push(issue('error', 'LESSON_MC_ANSWER_OUT_OF_RANGE', exercisePath, 'La respuesta mc debe ser un índice válido de options.'));
+                }
               }
             }
             if (exercise.type === 'order') {

@@ -142,6 +142,16 @@
             textarea.rows = 6;
             textarea.maxLength = 2000;
             textarea.placeholder = 'Escribe aquí tus propias frases…';
+            const draftCount = make('p', '0 palabras · objetivo orientativo: ' +
+                (task.level === 'A1' ? '3–4 frases' : '5–7 frases'), 'text-muted');
+            draftCount.setAttribute('role', 'status');
+            draftCount.setAttribute('aria-live', 'polite');
+            const updateDraftCount = () => {
+                const words = textarea.value.trim().match(/\\S+/g) || [];
+                draftCount.textContent = words.length + (words.length === 1 ? ' palabra' : ' palabras') +
+                    ' · objetivo orientativo: ' + (task.level === 'A1' ? '3–4 frases' : '5–7 frases');
+            };
+            textarea.addEventListener('input', updateDraftCount);
             const checklistHeading = make('h4', 'Antes de terminar, revisa tu texto');
             const checklist = make('div');
             checklist.className = 'writing-self-review';
@@ -194,7 +204,7 @@
             const disclaimer = make('p', 'Sin nota, sin XP ni registro SRS. Solo se cuenta una sesión al comparar tu borrador con el ejemplo; el texto no se guarda ni se incluye en las copias de seguridad.', 'text-muted');
             host.append(back, levelLabel, heading, situation);
             if (vocabularyHeading && vocabularyList) host.append(vocabularyHeading, vocabularyList);
-            host.append(label, textarea, checklistHeading, checklist, checklistStatus, note, reveal, status, example, disclaimer);
+            host.append(label, textarea, draftCount, checklistHeading, checklist, checklistStatus, note, reveal, status, example, disclaimer);
         }
     };
     root.WritingPractice = WritingPractice;

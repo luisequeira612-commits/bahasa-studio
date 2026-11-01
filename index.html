@@ -2844,10 +2844,14 @@ Requisitos:
                     if (!node) return;
                     const stats = skillStats[key] || { attempts: 0, correct: 0, sessions: 0 };
                     const accuracy = stats.attempts ? Math.round(stats.correct / stats.attempts * 100) : 0;
+                    const resultCounts = stats.attempts
+                        ? stats.attempts + (stats.attempts === 1 ? ' intento · ' : ' intentos · ') +
+                            stats.correct + ' aciertos · ' + stats.incorrect + ' errores'
+                        : '';
                     const base = stats.attempts
                         ? (stats.attempts < 5
-                            ? stats.attempts + (stats.attempts === 1 ? ' intento · datos iniciales (mínimo 5)' : ' intentos · datos iniciales (mínimo 5)')
-                            : stats.attempts + ' intentos · ' + accuracy + '% acierto')
+                            ? resultCounts + ' · datos iniciales (mínimo 5)'
+                            : resultCounts + ' · ' + accuracy + '% acierto')
                         : 'Sin intentos';
                     node.textContent = key === 'writing' && stats.sessions ? base + ' · ' + stats.sessions + ' prácticas libres' : base;
                 });

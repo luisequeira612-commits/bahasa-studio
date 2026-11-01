@@ -46,3 +46,10 @@ Total: **48 entradas, 16 lecciones y 68 ejercicios**.
 ## Siguiente paso
 
 Con U37–U40 se completa la serie de auditorías editoriales iniciales de las 40 unidades A2. Corresponde ahora una pasada transversal de integridad: secuencia de introducción, vocabulario usado antes de presentarse, consistencia de traducciones, respuestas aceptadas y ejercicios abiertos; después, regresar a los pendientes de A1. Esta auditoría no declara A2 lingüísticamente certificado.
+
+
+## Correcciones de coherencia didáctica — U37–U40 (2026-11-01)
+
+Se alinearon las lecciones de refugios/suministros/primeros auxilios y rutas/voluntariado/centros de ayuda; destinos/visitantes/guías; alojamiento/reservas/mapas; tarifas/horarios/entradas; atracciones/recuerdos/horarios; reuniones/videoconferencias/compartir pantalla; documentos/enlaces/adjuntos; descargas/subidas/nube; notificaciones/actualizaciones/acceso; y los cuatro grupos de resumir, aclarar, responder y explicar.
+
+Se conservaron las palabras y respuestas indonesias. La prueba de regresión comprueba los focos y la cobertura de ejercicios; no certifica naturalidad ni equivalencia lingüística.

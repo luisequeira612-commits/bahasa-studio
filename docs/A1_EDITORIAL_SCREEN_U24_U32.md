@@ -1,4 +1,6 @@
-# Primera revisión lingüística independiente — U24–U32
+# Primera revisión editorial independiente — U24–U32
+
+> **Política operativa vigente (2026-11-01):** este documento conserva evidencia y observaciones históricas. KBBI no es requisito para continuar, cerrar tareas estructurales, integrar contenido ni publicar. Los estados `not_checked` reflejan ausencia de esa consulta concreta; no son un bloqueo de desarrollo. Sin hablante nativo disponible, las dimensiones de naturalidad, registro y adecuación lingüística deben permanecer explícitamente sin certificar. Las correcciones asistidas y los tests internos no equivalen a validación nativa.
 
 Fecha: 2026-10-28  
 Alcance: lectura editorial inicial de las 90 entradas de vocabulario y sus ejemplos visibles en `index.html`.  
@@ -41,13 +43,13 @@ Las recomendaciones anteriores son cuestiones editoriales a confirmar, no afirma
 - No se ha probado el audio en dispositivos reales en esta pasada.
 - La adecuación completa a BIPA 1 y el cotejo individual KBBI siguen pendientes.
 
-## Siguiente paso
+## Siguiente paso operativo
 
-1. Resolver las decisiones editoriales anteriores con contexto y revisión competente de indonesio.
-2. Completar el registro de cada entrada con fuente/fecha/evidencia verificable.
-3. Añadir tests de regresión para cada corrección acordada.
-4. Revisar variantes aceptadas de todas las respuestas.
-5. Probar audio y funcionamiento offline en dispositivos compatibles, o marcarlo explícitamente como no probado.
+1. Resolver las observaciones editoriales que puedan aclararse con contexto, consistencia interna y fuentes documentales accesibles, registrando la confianza y las dudas.
+2. Revisar las variantes aceptadas y los enlaces de los ejercicios de U24–U32 mediante reglas reproducibles y pruebas.
+3. Añadir tests de regresión para cada corrección estructural/editorial acordada.
+4. Probar audio y funcionamiento offline en dispositivos compatibles, o marcarlos explícitamente como no probados.
+5. Mantener las dudas de naturalidad, registro o uso idiomático como pendientes no bloqueantes; no inferir aprobación por falta de evidencia.
 
 
 ## Correcciones aplicadas tras el cribado — 2026-10-28

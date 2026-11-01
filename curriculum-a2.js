@@ -4305,10 +4305,10 @@ window.BAHASA_CURRICULUM_A2 = {
                                         {
                                             "vocabId": "a2u18_pagar",
                                             "type": "write",
-                                            "prompt": "Escribe una frase usando pagar.",
-                                            "hint": "Puedes tomar como modelo: Pagar rumah itu tinggi.",
+                                            "prompt": "En indonesio, «pagar» significa «cerca», no el verbo español «pagar». Escribe una frase usando esta palabra.",
+                                            "hint": "Recuerda el significado indonesio: «cerca». Puedes tomar como modelo: Pagar rumah itu tinggi.",
                                             "modelAnswer": "Pagar rumah itu tinggi.",
-                                            "explanation": "Usa el vocabulario en una oración completa."
+                                            "explanation": "En esta frase, «pagar» es el sustantivo indonesio «cerca»; no significa el verbo español «pagar»."
                                         }
                                     ]
                                 },

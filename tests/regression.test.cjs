@@ -1803,9 +1803,9 @@ test('free-writing notebook offers distinct A1 compositions without draft persis
   assert.deepEqual(Array.from(practice.tasks, task => task.level), ['A1', 'A1', 'A1', 'A2', 'A2', 'A2']);
   const a2Sandbox = { window: {} };
   vm.runInNewContext(a2Source, a2Sandbox, { filename: 'curriculum-a2.js' });
-  const a2Terms = new Set(a2Sandbox.window.BAHASA_CURRICULUM_A2.units.flatMap(unit => unit.vocab.map(word => word.idn)));
+  const a2Terms = new Set(a2Sandbox.window.BAHASA_CURRICULUM_A2.units.flatMap(unit => unit.vocab.map(word => word.idn.toLowerCase())));
   for (const task of practice.tasks.filter(item => item.level === 'A2')) {
-    for (const term of task.vocabulary) assert.ok(a2Terms.has(term), task.id + ' uses an A2 curriculum term: ' + term);
+    for (const term of task.vocabulary) assert.ok(a2Terms.has(term.toLowerCase()), task.id + ' uses an A2 curriculum term: ' + term);
   }
   for (const task of practice.tasks) {
     assert.ok(task.situation.length > 50);

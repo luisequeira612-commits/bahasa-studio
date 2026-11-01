@@ -59,7 +59,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: editorial-review-queue
-          path: |\n            artifacts/editorial-review-queue.csv\n            artifacts/editorial-review-summary.json
+          path: |
+            artifacts/editorial-review-queue.csv
+            artifacts/editorial-review-summary.json
           if-no-files-found: ignore
           retention-days: 14
       - name: Prepare curriculum audit report directory

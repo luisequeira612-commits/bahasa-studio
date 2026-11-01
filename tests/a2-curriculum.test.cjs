@@ -1710,3 +1710,40 @@ test('A2 U37-U40 introduce every new vocabulary item before assessing it', () =>
     });
   }
 });
+
+test('A2 units 5-8 align each lesson explanation and exercise with vocabulary introduced so far', () => {
+  const units = a2.units.slice(4, 8);
+  assert.deepEqual(Array.from(units, unit => unit.id), ['a2_u5', 'a2_u6', 'a2_u7', 'a2_u8']);
+
+  for (const unit of units) {
+    const vocabularyById = new Map(unit.vocab.map(word => [word.id, word]));
+    const introducedSoFar = new Set();
+
+    for (const lesson of unit.lessons) {
+      const introducedHere = Array.isArray(lesson.vocabIds) ? lesson.vocabIds : [];
+      assert.ok(introducedHere.length > 0, unit.id + ' ' + lesson.title + ' should introduce vocabulary');
+      const explanation = String(lesson.grammar || '').toLocaleLowerCase();
+
+      for (const id of introducedHere) {
+        const word = vocabularyById.get(id);
+        assert.ok(word, unit.id + ' ' + lesson.title + ' introduces an unknown vocabulary ID: ' + id);
+        assert.ok(explanation.includes(word.idn.toLocaleLowerCase()),
+          unit.id + ' ' + lesson.title + ' should explain the newly introduced form ' + word.idn);
+        assert.ok(!introducedSoFar.has(id), unit.id + ' should not introduce ' + id + ' more than once');
+      }
+
+      const availableInLesson = new Set([...introducedSoFar, ...introducedHere]);
+      for (const exercise of lesson.exercises || []) {
+        assert.ok(exercise.vocabId && vocabularyById.has(exercise.vocabId),
+          unit.id + ' ' + lesson.title + ' exercise must reference vocabulary from its unit');
+        assert.ok(availableInLesson.has(exercise.vocabId),
+          unit.id + ' ' + lesson.title + ' exercise uses vocabulary before its lesson introduction: ' + exercise.vocabId);
+      }
+
+      introducedHere.forEach(id => introducedSoFar.add(id));
+    }
+
+    assert.equal(introducedSoFar.size, unit.vocab.length,
+      unit.id + ' should introduce every vocabulary item exactly once across its lessons');
+  }
+});

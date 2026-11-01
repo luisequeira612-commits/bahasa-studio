@@ -253,3 +253,24 @@ Estas regresiones detectan desajustes internos entre el ID de vocabulario, la gl
 - La fase 2 continúa abierta: quedan por revisar los bloques no cubiertos con este mismo nivel de detalle, además de la auditoría editorial/documental y las dimensiones lingüísticas que no pueden validarse automáticamente.
 
 No se ha cambiado el inventario de 492 entradas A2, los IDs estables, IndexedDB, ni el formato de backup v3.
+
+
+## Séptima pasada de consolidación — 2026-11-01
+
+### Regresiones de coherencia de ejercicios A2 U1–U4
+
+- PR #178 añade controles para A2 U1–U4: las preguntas explícitas de significado deben referenciar vocabulario de la unidad, ofrecer una respuesta que corresponda a la glosa registrada y explicar el término evaluado.
+- Los ejercicios de ordenar palabras deben conservar el mismo conjunto de tokens y respuesta, y su explicación debe reproducir la solución canónica permitiendo diferencias de puntuación.
+- La comparación de glosas admite variantes registradas separadas por punto y coma, así como formas editoriales opcionales como `/a`; no declara equivalencias que no estén en los datos.
+- PR #178 se fusionó después de CI exitoso. Durante su desarrollo se corrigieron aserciones demasiado estrictas que confundían puntuación, glosas compuestas y alternativas legítimas con errores de contenido.
+
+### Cobertura de regresión A2 U1–U20
+
+Con la integración de #171, #172, #174, #176 y #178, los bloques A2 U1–U20 cuentan con pruebas de alineación de preguntas de significado y, donde corresponde, integridad de tokens y feedback de ordenamiento. Estas pruebas verifican consistencia interna del material y no constituyen validación de naturalidad, pragmática, registro, pronunciación ni nivel MCER/BIPA.
+
+### Estado y límites
+
+- PR #178: integrado en `main`; CI exitoso.
+- A2 U1–U20: cobertura de regresión ampliada.
+- No se modificaron entradas curriculares, glosas, IDs, estados de trackers, IndexedDB ni backup v3 en #178.
+- La auditoría editorial y lingüística sigue abierta; no hay hablante nativo disponible y KBBI no es una dependencia operativa. Los juicios no demostrables permanecen pendientes, sin bloquear el desarrollo.

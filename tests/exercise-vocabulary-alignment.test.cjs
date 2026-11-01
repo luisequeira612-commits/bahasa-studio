@@ -57,7 +57,21 @@ test('exercise prompts, answers, or model text contain their linked vocabulary t
     for (const exercise of exercisesOf(unit)) {
       const term = normalize(vocabulary.get(exercise.vocabId));
       if (!term) continue;
-      if (exercise.type === 'write') continue;
+      if (exercise.type === 'write') {
+        const modelAnswer = normalize(exercise.modelAnswer);
+        if (!modelAnswer.includes(term)) {
+          mismatches.push({
+            level: level.id,
+            unit: unit.id,
+            vocabId: exercise.vocabId,
+            term: vocabulary.get(exercise.vocabId),
+            type: 'write-model',
+            prompt: exercise.prompt,
+            modelAnswer: exercise.modelAnswer
+          });
+        }
+        continue;
+      }
       const content = normalize(strings(exercise).join(' '));
       if (!content.includes(term)) {
         mismatches.push({

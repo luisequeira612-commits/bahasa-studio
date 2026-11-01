@@ -7543,8 +7543,8 @@ window.BAHASA_CURRICULUM_A2 = {
                             ],
                             "lessons": [
                                 {
-                                    "title": "Lección 1: Clientes y reclamaciones",
-                                    "objective": "Describe las necesidades de los clientes y cómo presentar una queja.",
+                                    "title": "Lección 1: Clientes, quejas y devoluciones",
+                                    "objective": "Describe las necesidades de los clientes, presenta quejas y habla de devoluciones.",
                                     "grammar": "Practica expresiones corteses para comunicar un problema.",
                                     "vocabIds": [
                                         "a2u29_pelanggan",
@@ -7609,8 +7609,8 @@ window.BAHASA_CURRICULUM_A2 = {
                                     ]
                                 },
                                 {
-                                    "title": "Lección 2: Garantías y devoluciones",
-                                    "objective": "Habla de garantías, calidad y devoluciones de productos.",
+                                    "title": "Lección 2: Garantías, calidad y modelos",
+                                    "objective": "Describe garantías, calidad y modelos de productos.",
                                     "grammar": "Usa harus y perlu para explicar condiciones y requisitos.",
                                     "vocabIds": [
                                         "a2u29_garansi",
@@ -7655,9 +7655,9 @@ window.BAHASA_CURRICULUM_A2 = {
                                     ]
                                 },
                                 {
-                                    "title": "Lección 3: Productos y disponibilidad",
-                                    "objective": "Describe modelos disponibles y consulta si hay existencias.",
-                                    "grammar": "Practica expresiones para preguntar por características y disponibilidad.",
+                                    "title": "Lección 3: Existencias, pedidos y envíos",
+                                    "objective": "Consulta existencias y habla de pedidos y envíos de productos.",
+                                    "grammar": "Practica expresiones para consultar existencias, pedidos y envíos.",
                                     "vocabIds": [
                                         "a2u29_stok",
                                         "a2u29_pesanan",
@@ -7701,9 +7701,9 @@ window.BAHASA_CURRICULUM_A2 = {
                                     ]
                                 },
                                 {
-                                    "title": "Lección 4: Pedidos y entregas",
-                                    "objective": "Habla de pedidos, envíos y sustituciones de productos.",
-                                    "grammar": "Usa expresiones temporales para explicar cuándo llega un pedido.",
+                                    "title": "Lección 4: Envases, sustituciones y atención al cliente",
+                                    "objective": "Describe envases, solicita sustituciones y habla de la atención al cliente.",
+                                    "grammar": "Practica expresiones para describir envases, solicitar sustituciones y comunicarse con atención al cliente.",
                                     "vocabIds": [
                                         "a2u29_kemasan",
                                         "a2u29_penggantian",
@@ -7841,9 +7841,9 @@ window.BAHASA_CURRICULUM_A2 = {
                             ],
                             "lessons": [
                                 {
-                                    "title": "Lección 1: Pintura y artistas",
-                                    "objective": "Habla de pinturas, artistas y exposiciones de arte.",
-                                    "grammar": "Practica vocabulario para describir obras y sus autores.",
+                                    "title": "Lección 1: Pintura, artistas y representaciones",
+                                    "objective": "Habla de pinturas, artistas y puestas en escena.",
+                                    "grammar": "Practica vocabulario para describir obras, artistas y representaciones.",
                                     "vocabIds": [
                                         "a2u30_lukisan",
                                         "a2u30_pelukis",
@@ -8203,8 +8203,8 @@ window.BAHASA_CURRICULUM_A2 = {
                                     ]
                                 },
                                 {
-                                    "title": "Lección 2: Montañas y campamentos",
-                                    "objective": "Habla de cumbres, pendientes y lugares para acampar.",
+                                    "title": "Lección 2: Laderas y campamentos",
+                                    "objective": "Describe laderas, campamentos y tiendas de campaña durante una excursión.",
                                     "grammar": "Usa expresiones de ubicación para describir el terreno.",
                                     "vocabIds": [
                                         "a2u31_lereng",
@@ -8501,8 +8501,8 @@ window.BAHASA_CURRICULUM_A2 = {
                                     ]
                                 },
                                 {
-                                    "title": "Lección 2: Ceremonias y conmemoraciones",
-                                    "objective": "Habla de inauguraciones y actos conmemorativos.",
+                                    "title": "Lección 2: Inauguraciones, conmemoraciones y recuerdos",
+                                    "objective": "Habla de inauguraciones, conmemoraciones y recuerdos asociados a eventos familiares.",
                                     "grammar": "Usa berlangsung para describir cómo se desarrolla una ceremonia.",
                                     "vocabIds": [
                                         "a2u32_peresmian",
@@ -8547,9 +8547,9 @@ window.BAHASA_CURRICULUM_A2 = {
                                     ]
                                 },
                                 {
-                                    "title": "Lección 3: Recuerdos y felicitaciones",
-                                    "objective": "Comparte recuerdos y expresa felicitaciones en ocasiones especiales.",
-                                    "grammar": "Practica expresiones para dar buenos deseos y entregar regalos.",
+                                    "title": "Lección 3: Regalos, felicitaciones y asistencia",
+                                    "objective": "Habla de regalos, expresa felicitaciones y menciona la asistencia a ocasiones especiales.",
+                                    "grammar": "Practica expresiones para dar buenos deseos, entregar regalos y hablar de la asistencia.",
                                     "vocabIds": [
                                         "a2u32_hadiah",
                                         "a2u32_ucapan_selamat",

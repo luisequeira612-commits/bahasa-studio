@@ -5,7 +5,7 @@ Alcance: revisión estática del temario visible en `index.html` y contraste con
 
 ## Resultado ejecutivo
 
-A1 dispone actualmente de 32 unidades implementadas (U1–U32) en `main`, con vocabulario y ejercicios sometidos a pruebas de estructura. **A1 todavía no debe declararse validado ni debe abrirse A2**: tener unidades y ejercicios no demuestra por sí solo naturalidad lingüística, comprensión oral, producción espontánea, retención acumulativa ni cobertura suficiente de situaciones cotidianas. La auditoría de U24–U32 sigue siendo parcial y no equivale a certificación lingüística.
+A1 dispone actualmente de 32 unidades implementadas (U1–U32) en `main`, con vocabulario y ejercicios sometidos a pruebas de estructura. **A1 está implementado hasta U32 y A2 permanece disponible en beta tras completar A1.** La disponibilidad de A2 no significa que A1 esté lingüísticamente certificado: tener unidades y ejercicios no demuestra por sí solo naturalidad, comprensión oral real, producción espontánea ni retención acumulativa. La auditoría de U24–U32 y las comprobaciones automáticas son controles parciales, no una certificación lingüística.
 
 ## Cobertura revisada
 
@@ -40,13 +40,13 @@ A1 dispone actualmente de 32 unidades implementadas (U1–U32) en `main`, con vo
 
 Estas notas son observaciones pedagógicas, no certificación de naturalidad por un hablante nativo. Las decisiones que impliquen nuevo vocabulario deben incorporarlo primero al temario y no usarlo como requisito oculto en ejercicios evaluados.
 
-## Criterios de cierre antes de A2
+## Criterios de seguimiento de calidad (no bloquean el acceso a A2 beta)
 
-1. Completar los repasos acumulativos y una evaluación final equilibrada de reconocimiento, traducción, orden, escritura y comprensión auditiva real.
-2. Auditar todas las respuestas esperadas para detectar vocabulario no enseñado, traducciones demasiado rígidas y frases modelo poco naturales.
-3. Verificar que la evaluación permite respuestas alternativas válidas cuando corresponde, que las posiciones de las respuestas correctas están equilibradas y que la escritura libre no se marca automáticamente como correcta sin revisión. La parte abierta requiere una persona competente en indonesio.
-4. Ejecutar regresión, pruebas de navegador y evaluación; confirmar persistencia SRS y compatibilidad de backup.
-5. Mantener A2–B2 ocultos hasta cumplir estos criterios y realizar una revisión lingüística competente.
+1. Seguir ampliando los repasos acumulativos y equilibrar reconocimiento, traducción, orden, escritura y escucha sintética.
+2. Auditar respuestas para detectar vocabulario no enseñado, traducciones demasiado rígidas, ambigüedad y alternativas válidas omitidas.
+3. Mantener separadas las comprobaciones estructurales/automatizadas de las observaciones lingüísticas; no presentar escritura libre como validada automáticamente.
+4. Ejecutar regresión y pruebas de navegador tras cada cambio; preservar IndexedDB y backup v3.
+5. Mantener A2 como beta progresiva: el acceso se desbloquea al completar A1, sin exigir una revisión nativa o KBBI que no está disponible de forma fiable. La expansión B1/B2 seguirá su propio control de preparación.
 
 ## Contraste documental U21–U23 (2026-10-27)
 
@@ -75,7 +75,7 @@ La corrección de IDs canónicos conserva IndexedDB schema v1 y backup format v3
 
 ## Expansión posterior a U17
 
-La ruta curricular prevé 32 unidades A1 y el código actual de `main` contiene U1–U32. U18–U20 introducen demostrativos, restaurante y compras; U21–U23 cubren salud, ropa y vivienda; U24–U32 ya están implementadas. No obstante, la revisión lingüística y de naturalidad de estas últimas unidades no está completa: el tracker en `main` registra 34/90 términos como `verified_primary` y 56/90 como `not_checked`. Mantener A1 sin declarar validado hasta completar las revisiones pendientes y las pruebas pedagógicas/orales.
+La ruta curricular prevé 32 unidades A1 y el código actual de `main` contiene U1–U32. U18–U20 introducen demostrativos, restaurante y compras; U21–U23 cubren salud, ropa y vivienda; U24–U32 ya están implementadas. No obstante, la revisión lingüística y de naturalidad de estas últimas unidades no está completa: el tracker en `main` registra 34/90 términos como `verified_primary` y 56/90 como `not_checked`. Mantener explícito que A1 está implementado, pero no certificado lingüísticamente. Las revisiones pendientes sirven para mejorar la calidad de forma incremental y no vuelven a bloquear A2 beta.
 
 
 ## Expansión U21–U23

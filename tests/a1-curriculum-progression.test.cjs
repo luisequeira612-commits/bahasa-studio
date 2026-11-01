@@ -56,3 +56,10 @@ test('A1 keeps its complete 32-unit sequence and does not assess vocabulary befo
     }
   }
 });
+
+
+test('A1 progression guard is registered exactly once in the regression workflow', () => {
+  const workflow = fs.readFileSync(path.join(__dirname, '..', '.github', 'workflows', 'regression.yml'), 'utf8');
+  const registrations = workflow.match(/node --test tests\/a1-curriculum-progression\.test\.cjs/g) || [];
+  assert.equal(registrations.length, 1);
+});

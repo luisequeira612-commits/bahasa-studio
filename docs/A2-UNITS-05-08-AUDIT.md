@@ -34,9 +34,9 @@ Cada unidad incluye práctica variada, escucha y producción escrita guiada. Las
 La comparación entre el foco de cada lección, sus `vocabIds` y los ejercicios reveló dos desajustes reproducibles en U8:
 
 - La Lección 2 enumeraba en su explicación `membantu` y `memulai`, aunque sus tres palabras nuevas eran `memakai`, `memilih` y `memesan`. Se actualizó el título, el objetivo y la explicación para describir el grupo que realmente se enseña.
-- La Lección 3 incluía `menyimpan` dentro de una lección dedicada a formas `mem-`; su explicación sobre la conservación de la `m` solo correspondía a `memulai` y `meminta`. `menyimpan` y su ejercicio de escucha se trasladaron a la Lección 4, dedicada a `meny-`. Se conserva el total de 12 palabras y 17 ejercicios de U8.
+- La Lección 3 incluía `menyimpan` dentro de una lección dedicada a formas `mem-`; su explicación sobre la conservación de la `m` solo correspondía a `memulai` y `meminta`. `menyimpan` y su ejercicio de escucha se trasladaron a la Lección 4, dedicada a `meny-`. Se conserva el total de 12 palabras y 17 ejercicios de U8. La edición de U7 también conserva sus 12 palabras y 17 ejercicios.
 
-En U7 también se observó que los títulos de las lecciones 1–3 no describen de forma precisa todos los grupos mezclados en sus listas (por ejemplo, la lección titulada «Raíces con k inicial» incluye `menggambar` y `mengambil`). Se deja como hallazgo editorial pendiente: no se reagruparon formas ni se reescribió gramática sin una revisión más amplia de la secuencia.
+En U7, los títulos y explicaciones de las lecciones 1–3 también mezclaban categorías de raíces que no correspondían a todas las palabras nuevas de cada lista. Se cambiaron por títulos descriptivos y explicaciones que reflejan exactamente las formas introducidas, sin alterar vocabulario ni glosas.
 
 ## Decisiones de esta pasada
 

@@ -1240,3 +1240,23 @@ test('A2 U8 lesson focus, vocabulary introductions, and exercises stay aligned',
     }
   }
 });
+
+test('A2 U7 lesson titles and explanations describe their actual vocabulary groups', () => {
+  const unit = a2.units.find(entry => entry.id === 'a2_u7');
+  assert.deepEqual(Array.from(unit.lessons, lesson => lesson.title), [
+    'Lección 1: Enviar, dibujar y tomar',
+    'Lección 2: Enseñar, cerrar con llave y freír',
+    'Lección 3: Usar, llenar y organizar',
+    'Lección 4: Invitar, borrar y levantar'
+  ]);
+  assert.match(unit.lessons[0].grammar, /mengirim.*menggambar y mengambil/);
+  assert.match(unit.lessons[1].grammar, /mengunci.*mengajar y menggoreng/);
+  assert.match(unit.lessons[2].grammar, /menggunakan.*mengisi y mengatur/);
+  for (const lesson of unit.lessons) {
+    const introduced = new Set([...(lesson.vocabIds || []), ...(lesson.reviewVocabIds || [])]);
+    for (const exercise of lesson.exercises || []) {
+      assert.ok(introduced.has(exercise.vocabId),
+        lesson.title + ' must assess vocabulary introduced in that lesson or explicitly marked for review');
+    }
+  }
+});

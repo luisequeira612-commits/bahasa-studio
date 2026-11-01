@@ -1062,9 +1062,9 @@ window.BAHASA_CURRICULUM_A2 = {
                             ],
                             "lessons": [
                                 {
-                                    "title": "Lección 1: Raíces con k inicial",
-                                    "objective": "Identifica formas meng- en las que desaparece la k inicial.",
-                                    "grammar": "En kirim → mengirim y kunci → mengunci, la k inicial de la raíz desaparece. En mengambil se conserva la vocal inicial de ambil.",
+                                    "title": "Lección 1: Enviar, dibujar y tomar",
+                                    "objective": "Reconoce tres formas frecuentes con meng- y sus significados.",
+                                    "grammar": "En mengirim, la k inicial de kirim desaparece; en menggambar y mengambil se conservan los sonidos iniciales de gambar y ambil.",
                                     "vocabIds": [
                                         "a2u7_mengirim",
                                         "a2u7_menggambar",
@@ -1124,9 +1124,9 @@ window.BAHASA_CURRICULUM_A2 = {
                                     ]
                                 },
                                 {
-                                    "title": "Lección 2: Raíces con g inicial",
-                                    "objective": "Reconoce formas meng- que conservan la g inicial.",
-                                    "grammar": "En gambar y goreng, la g inicial se conserva: menggambar y menggoreng.",
+                                    "title": "Lección 2: Enseñar, cerrar con llave y freír",
+                                    "objective": "Usa verbos frecuentes con meng- en situaciones cotidianas.",
+                                    "grammar": "En mengunci, la k inicial de kunci desaparece; en mengajar y menggoreng se conservan los sonidos iniciales de ajar y goreng.",
                                     "vocabIds": [
                                         "a2u7_mengajar",
                                         "a2u7_mengunci",
@@ -1170,9 +1170,9 @@ window.BAHASA_CURRICULUM_A2 = {
                                     ]
                                 },
                                 {
-                                    "title": "Lección 3: Raíces que comienzan por vocal",
-                                    "objective": "Identifica formas meng- con raíces que comienzan por vocal.",
-                                    "grammar": "En ambil, isi y atur, la vocal inicial se conserva: mengambil, mengisi y mengatur.",
+                                    "title": "Lección 3: Usar, llenar y organizar",
+                                    "objective": "Practica verbos frecuentes con meng- en frases cotidianas.",
+                                    "grammar": "En menggunakan, la g inicial de guna se conserva; en mengisi y mengatur se conserva la vocal inicial de isi y atur.",
                                     "vocabIds": [
                                         "a2u7_menggunakan",
                                         "a2u7_mengisi",

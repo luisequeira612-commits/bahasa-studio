@@ -6,7 +6,7 @@ Estado: **en curso; inventario y reconciliación documental inicial completados*
 
 ## Objetivo
 
-Consolidar los contenidos A1 y A2 antes de habilitar A2 para estudiantes: coherencia de vocabulario, ejemplos, glosas, morfología, progresión, ejercicios, referencias cruzadas y criterios de publicación. La consolidación se hará con evidencia trazable y sin convertir comprobaciones automáticas en certificación lingüística.
+Consolidar los contenidos A1 y A2, manteniendo A2 disponible en beta después de completar A1: coherencia de vocabulario, ejemplos, glosas, morfología, progresión, ejercicios, referencias cruzadas y criterios de publicación. La consolidación se hará con evidencia trazable y sin convertir comprobaciones automáticas en certificación lingüística.
 
 ## Inventario de partida
 
@@ -49,7 +49,7 @@ Las 34 entradas A1 y las 2 A2 con `verified_primary` tienen evidencia lexicográ
 
 - Trabajar por bloques de cuatro unidades (U1–U4, luego U5–U8, etc.).
 - Empezar por ejercicios y ejemplos que condicionan respuestas evaluadas; continuar con formas derivadas/afijos, expresiones multipalabra y glosas con más de un sentido.
-- Usar KBBI VI Daring para evidencia lexicográfica cuando sea accesible; si no, registrar el bloqueo sin inferir ausencia o corrección.
+- Usar KBBI solo como consulta opcional si aporta evidencia verificable; nunca bloquear una tarea ni inferir corrección cuando no esté disponible.
 - Contrastar objetivos pedagógicos con materiales BIPA oficiales sin afirmar equivalencia automática entre BIPA y MCER.
 - Mantener las 492 filas en `not_checked` para las dimensiones no revisadas; registrar por separado las decisiones documentales y lingüísticas.
 
@@ -80,7 +80,7 @@ La fase no se considera cerrada hasta que:
 2. las incidencias P0/P1 estén resueltas o justificadamente bloqueadas;
 3. las decisiones editoriales estén trazadas por unidad, con pruebas de regresión para cambios de contenido;
 4. los estados lingüísticos reflejen exactamente la evidencia disponible;
-5. A1 tenga una decisión documentada de publicación y A2 siga oculto hasta cumplir sus propios criterios;
+5. A1 tenga una decisión documentada de publicación y A2 permanezca disponible en beta tras completar A1, con sus limitaciones visibles;
 6. audio/dispositivo no probado se identifique como tal, sin presentarlo como aprobado.
 
 Esta fase produce una consolidación editorial y técnica verificable, no una certificación de indonesio por hablante nativo.
@@ -140,9 +140,11 @@ El estado `verified_primary` solo registra la evidencia lexicográfica disponibl
 
 ### Criterio de avance
 
-La fase 2 puede avanzar sin esperar una validación externa para corregir defectos internos demostrables, normalizar esquemas y mejorar pruebas. No se marcarán como lingüísticamente revisadas las 56 entradas A1 o las 490 A2 pendientes sin evidencia adecuada. A2 permanecerá oculto para estudiantes hasta completar su propia puerta de publicación; los 0 errores estructurales y las pruebas verdes no sustituyen esa decisión.
+La fase 2 puede avanzar sin esperar una validación externa para corregir defectos internos demostrables, normalizar esquemas y mejorar pruebas. No se marcarán como lingüísticamente revisadas las 56 entradas A1 o las 490 A2 pendientes sin evidencia adecuada. A2 permanece disponible en beta tras completar A1; las pruebas verdes y los 0 errores estructurales no equivalen a certificación lingüística.
 
 
-## Puerta técnica de publicación A2 — reconciliada
+## Acceso beta de A2 — decisión de producto
 
-A2 conserva una bandera explícita `A2_RELEASE_ENABLED = false`, cerrada por defecto. Se aplica a la visibilidad del curso, al conjunto de vocabulario de aprendizaje y SRS, al inicio directo de lecciones y a las evaluaciones de unidad. Completar A1 no basta para exponer A2. La bandera solo debe cambiar mediante una decisión de publicación documentada después de cumplir los criterios editoriales y técnicos de A2; CI no la activa automáticamente. Las pruebas dedicadas verifican el cierre por defecto, la protección de las entradas directas y la conservación de la condición de finalización de A1.
+A2 está habilitado en beta mediante `A2_RELEASE_ENABLED = true`, pero solo aparece en las rutas de aprendizaje cuando el estudiante completa las 32 unidades de A1. La condición de finalización de A1 también protege el acceso directo a lecciones y evaluaciones, así como la inclusión de vocabulario A2 en el aprendizaje y SRS. B1 y B2 continúan fuera del acceso normal.
+
+La habilitación beta es una decisión de producto para no bloquear el aprendizaje por falta de hablante nativo o por la indisponibilidad de KBBI. **No certifica la naturalidad, precisión semántica, registro ni adecuación CEFR/BIPA del contenido.** La revisión editorial y las pruebas estructurales continúan; las incertidumbres lingüísticas deben permanecer documentadas. CI nunca activa ni desactiva esta bandera automáticamente.

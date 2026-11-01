@@ -3015,14 +3015,27 @@ Requisitos:
                 document.getElementById('statNeedsPractice').innerText = allSrs.filter(item => item.incorrect > 0 && item.repetition < 4).length;
                 document.getElementById('statSavedForReview').innerText = allSrs.filter(item => item.savedForReview).length;
 
-                const weakWords = [...srsByWord.entries()]
-                    .filter(([, item]) => item.incorrect > 0 && item.repetition < 4)
-                    .sort((a, b) => b[1].incorrect - a[1].incorrect)
-                    .slice(0, 5)
-                    .map(([term]) => {
-                        const word = uniqueVocab.find(entry => String(entry.idn || '').trim().toLocaleLowerCase() === term);
-                        return word ? { id: word.id, term: word.idn } : null;
-                    }).filter(Boolean);
+                const rankedWordHistory = [...srsByWord.entries()]
+                    .filter(([, item]) => (item.incorrect > 0 || item.savedForReview) && item.repetition < 4)
+                    .sort((a, b) => Number(b[1].savedForReview) - Number(a[1].savedForReview) ||
+                        b[1].incorrect - a[1].incorrect || a[1].repetition - b[1].repetition);
+                const toAdaptiveWord = ([term, history]) => {
+                    const word = uniqueVocab.find(entry => String(entry.idn || '').trim().toLocaleLowerCase() === term);
+                    return word ? {
+                        id: word.id,
+                        term: word.idn,
+                        incorrect: history.incorrect,
+                        attempts: history.attempts,
+                        repetition: history.repetition,
+                        savedForReview: history.savedForReview
+                    } : null;
+                };
+                const weakWords = rankedWordHistory
+                    .filter(([, item]) => item.savedForReview || item.incorrect >= 2)
+                    .slice(0, 5).map(toAdaptiveWord).filter(Boolean);
+                const isolatedWords = rankedWordHistory
+                    .filter(([, item]) => !item.savedForReview && item.incorrect === 1)
+                    .slice(0, 5).map(toAdaptiveWord).filter(Boolean);
                 let nextLesson = null;
                 let skillLesson = null;
                 const weakestSkill = typeof AdaptiveLearning !== 'undefined'
@@ -3062,6 +3075,7 @@ Requisitos:
                 this.renderAdaptiveRecommendation({
                     dueCount: due.length,
                     weakWords,
+                    isolatedWords,
                     nextLesson,
                     skillLesson,
                     skillStats: this.studyActivity && this.studyActivity.skillStats,

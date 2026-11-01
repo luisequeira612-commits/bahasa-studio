@@ -341,3 +341,30 @@ El informe local estructural más reciente registra 32 unidades A1, 40 A2, 821 e
 2. Continuar la revisión por bloques solo cuando haya una contradicción demostrable o una mejora de trazabilidad; evitar crear pruebas duplicadas.
 3. Pasar a la siguiente prioridad funcional en paralelo: reforzar el aprendizaje adaptativo y las conversaciones con métricas locales, preservando el almacenamiento y las restricciones del proyecto.
 
+## Décima pasada — conversaciones y perfil de habilidades (2026-11-01)
+
+### Regresiones y límites integrados
+
+- PR #193 corrige una contradicción entre la respuesta correcta y el feedback del primer turno del escenario de restaurante.
+- PR #194 añade una matriz de regresión para 18 pares de respuesta correcta y traducción española en seis escenarios guiados. Es una comprobación de coherencia interna, no certificación por hablante nativo.
+- PR #195 aclara que el perfil de habilidades es descriptivo: la observación de habilidad más débil requiere al menos cinco intentos y no cambia por sí sola el tipo, la acción ni la prioridad de la recomendación.
+- PR #196 protege la privacidad de la práctica escrita: los borradores permanecen en la página y no se guardan en DB, localStorage, IndexedDB o sessionStorage ni se envían por fetch. La sesión se registra después de comparar un borrador no vacío con el ejemplo; no concede XP ni SRS.
+- PR #197 evita mostrar como concluyentes porcentajes basados en menos de cinco intentos. Entre uno y cuatro se muestran como datos iniciales; desde cinco se muestra el porcentaje junto con el tamaño de muestra.
+- PR #198 añade regresiones para que iniciar o abandonar una conversación no cuente una sesión completada y para que cada repetición completada se registre exactamente una vez.
+
+### Estado integrado
+
+Los PR #193–#198 se fusionaron tras superar CI. La ejecución completa de #198 terminó con 37/37 etapas exitosas, incluidas pruebas de conversaciones, actividad, aprendizaje adaptativo, auditorías curriculares, E2E y evaluación en navegador.
+
+### Límites de interpretación
+
+- Las conversaciones registran sesiones agregadas, no precisión por turno ni evaluación de producción libre.
+- Las sesiones de escritura y conversación no se suman a los intentos puntuados.
+- Las categorías de habilidad contienen actividades distintas y no son directamente comparables; los porcentajes no equivalen a nivel MCER/BIPA ni a diagnóstico estable.
+- No se alteraron prioridades adaptativas, IndexedDB, el esquema de datos ni el formato de backup v3.
+- No se guardan los borradores de escritura ni el texto/audio de las conversaciones mediante estas métricas.
+
+### Próxima prioridad
+
+Continuar mejorando estadísticas locales comprensibles y útiles sin inferir conclusiones con muestras pequeñas. Después, evaluar conversaciones con retroalimentación más específica solo cuando las reglas puedan verificarse de forma determinista y sin afirmar validación lingüística externa. Mantener la revisión editorial A1/A2 abierta y no duplicar baterías de pruebas ya cubiertas.
+

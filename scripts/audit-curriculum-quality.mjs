@@ -262,12 +262,29 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
         issues.push(issue('warning', 'VOCAB_USED_BEFORE_INTRODUCTION', `${unitPath}.exercises[${index}].vocabId`, `El ejercicio usa ${exercise.vocabId}, introducido en la unidad ${introductionUnit + 1}; revisar si es un adelanto intencional o vocabulario fuera de progresión.`));
       }
     });
-    (unit.lessons ?? []).forEach((lesson, lessonIndex) => {
+    const lessonIntroductionIndex = new Map();
+    const lessons = Array.isArray(unit.lessons) ? unit.lessons : [];
+    lessons.forEach((lesson, lessonIndex) => {
+      if (!lesson || typeof lesson !== 'object' || !Array.isArray(lesson.vocabIds)) return;
+      lesson.vocabIds.forEach((id) => {
+        if (typeof id === 'string' && id && !lessonIntroductionIndex.has(id)) {
+          lessonIntroductionIndex.set(id, lessonIndex);
+        }
+      });
+    });
+    lessons.forEach((lesson, lessonIndex) => {
       if (!lesson || typeof lesson !== 'object') return;
-      (lesson.vocabIds ?? []).forEach((id, index) => checkRef(id, `${unitPath}.lessons[${lessonIndex}].vocabIds[${index}]`));
-      (lesson.reviewVocabIds ?? []).forEach((id, index) => checkRef(id, `${unitPath}.lessons[${lessonIndex}].reviewVocabIds[${index}]`));
-      (lesson.exercises ?? []).forEach((exercise, index) => {
-        if (exercise && typeof exercise === 'object') checkRef(exercise.vocabId, `${unitPath}.lessons[${lessonIndex}].exercises[${index}].vocabId`);
+      (Array.isArray(lesson.vocabIds) ? lesson.vocabIds : []).forEach((id, index) => checkRef(id, `${unitPath}.lessons[${lessonIndex}].vocabIds[${index}]`));
+      const reviewIds = Array.isArray(lesson.reviewVocabIds) ? lesson.reviewVocabIds : [];
+      reviewIds.forEach((id, index) => checkRef(id, `${unitPath}.lessons[${lessonIndex}].reviewVocabIds[${index}]`));
+      (Array.isArray(lesson.exercises) ? lesson.exercises : []).forEach((exercise, index) => {
+        if (!exercise || typeof exercise !== 'object') return;
+        const exercisePath = `${unitPath}.lessons[${lessonIndex}].exercises[${index}].vocabId`;
+        checkRef(exercise.vocabId, exercisePath);
+        const introductionLesson = lessonIntroductionIndex.get(exercise.vocabId);
+        if (Number.isInteger(introductionLesson) && introductionLesson > lessonIndex && !reviewIds.includes(exercise.vocabId)) {
+          issues.push(issue('warning', 'LESSON_VOCAB_USED_BEFORE_INTRODUCTION', exercisePath, `El ejercicio usa ${exercise.vocabId}, introducido en la lección ${introductionLesson + 1}; revisar si debe declararse como repaso o moverse después de su presentación.`));
+        }
       });
     });
   });

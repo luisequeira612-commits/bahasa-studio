@@ -95,7 +95,7 @@ Recuento del registro tras estas consultas: 2 términos con evidencia primaria K
 
 ## Puerta de publicación
 
-A2 debe permanecer oculto para estudiantes mientras A1 no haya satisfecho sus criterios de validación y mientras no se haya completado la revisión requerida para la publicación de A2. No declarar A2 «validado» por pasar CI ni por completar este registro. B1 no debe comenzar como currículo publicable hasta que la revisión y la decisión de salida de A2 estén documentadas.
+A2 está habilitado en beta y se desbloquea al completar las 32 unidades de A1; no se exige una certificación lingüística externa para acceder a él. Esta decisión evita paralizar el aprendizaje por la falta de un hablante nativo disponible y por la falta de fiabilidad práctica de KBBI/API en este proyecto. La etiqueta beta y los pendientes editoriales deben mantenerse visibles: pasar CI no valida naturalidad, registro, traducciones, audio ni nivel. La puerta de B1 es independiente y debe decidirse/documentarse antes de publicar ese nivel.
 
 ## Limitaciones de esta pasada
 

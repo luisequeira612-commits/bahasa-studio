@@ -2857,8 +2857,23 @@ Requisitos:
                 });
                 const conversationNode = document.getElementById('studySkillConversationText');
                 if (conversationNode) {
-                    const sessions = skillStats.conversation?.sessions || 0;
-                    conversationNode.textContent = sessions ? sessions + (sessions === 1 ? ' sesión' : ' sesiones') : 'Sin sesiones';
+                    const conversation = skillStats.conversation || { attempts: 0, correct: 0, incorrect: 0, sessions: 0 };
+                    const attempts = conversation.attempts || 0;
+                    const sessions = conversation.sessions || 0;
+                    const accuracy = attempts ? Math.round(conversation.correct / attempts * 100) : 0;
+                    const resultCounts = attempts
+                        ? attempts + (attempts === 1 ? ' respuesta guiada · ' : ' respuestas guiadas · ') +
+                            conversation.correct + ' aciertos · ' + conversation.incorrect + ' errores'
+                        : '';
+                    const resultSummary = attempts
+                        ? (attempts < 5
+                            ? resultCounts + ' · datos iniciales (mínimo 5)'
+                            : resultCounts + ' · ' + accuracy + '% acierto')
+                        : 'Sin respuestas guiadas';
+                    const sessionSummary = sessions
+                        ? sessions + (sessions === 1 ? ' sesión completada' : ' sesiones completadas')
+                        : 'Sin sesiones completadas';
+                    conversationNode.textContent = resultSummary + ' · ' + sessionSummary;
                 }
             },
             async markUnitCompleted(unitId) {

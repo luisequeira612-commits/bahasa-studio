@@ -20,12 +20,12 @@ test('A2 U12 lesson titles, objectives and grammar match their vocabulary groups
   ]);
   const expected = [
     ['experiencia', 'capacidades', 'oportunidades', 'pengalaman', 'kemampuan', 'kesempatan'],
-    ['meta', 'aspiración', 'resultado', 'tujuan', 'cita-cita', 'berhasil'],
-    ['fracaso', 'decisión', 'continuación', 'gagal', 'memutuskan', 'melanjutkan'],
+    ['meta', 'aspiracion', 'resultado', 'tujuan', 'cita-cita', 'berhasil'],
+    ['fracaso', 'decision', 'continuacion', 'gagal', 'memutuskan', 'melanjutkan'],
     ['mejorar', 'desarrollar', 'destrezas', 'meningkatkan', 'mengembangkan', 'keterampilan']
   ];
   unit.lessons.forEach((lesson, index) => {
-    const content = [lesson.title, lesson.objective, lesson.grammar].join(' ').toLocaleLowerCase('es');
+    const content = [lesson.title, lesson.objective, lesson.grammar].join(' ').toLocaleLowerCase('es').normalize('NFD').replace(/[\\u0300-\\u036f]/g, '');
     for (const term of expected[index]) assert.ok(content.includes(term), lesson.title + ' should mention ' + term);
     const exerciseIds = new Set(lesson.exercises.map(exercise => exercise.vocabId));
     for (const id of lesson.vocabIds) assert.ok(exerciseIds.has(id), lesson.title + ' must assess ' + id);

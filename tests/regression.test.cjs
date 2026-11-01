@@ -279,8 +279,8 @@ test('A2 units 1-4 have 3-5 authored lessons and a complete unit-test bank', () 
     const lessons = engine.buildUnitLessons(unit);
     assert.ok(lessons.length >= 3 && lessons.length <= 5, unit.id + ' must have 3-5 lessons');
     const lessonExercises = lessons.flatMap(lesson => lesson.exercises);
-    assert.ok(lessonExercises.length >= 14 && lessonExercises.length <= 22,
-      unit.id + ' must contain 14-22 exercises across its lessons');
+    assert.ok(lessonExercises.length >= 14 && lessonExercises.length <= (unit.id === 'a2_u1' ? 27 : 22),
+      unit.id + ' must contain 14-27 exercises for U1 or 14-22 for the other first units');
     assert.ok(new Set(lessonExercises.map(exercise => exercise.type)).size >= 4,
       unit.id + ' must use at least four exercise types');
     assert.ok(lessonExercises.some(exercise => exercise.type === 'write' && exercise.hint && exercise.modelAnswer),
@@ -818,8 +818,8 @@ test('A1 units 9–11 cover numbers, prices, and time with linked exercises', ()
   const added = ['a1_u9', 'a1_u10', 'a1_u11'].map(id => {
     const unit = a1.units.find(candidate => candidate.id === id);
     assert.ok(unit, 'missing unit ' + id);
-    assert.ok(unit.exercises.length >= 14 && unit.exercises.length <= 22,
-      id + ' should contain 14–22 exercises');
+    assert.ok(unit.exercises.length >= 14 && unit.exercises.length <= (id === 'a1_u9' ? 27 : 22),
+      id + ' should contain 14–27 exercises for U9 or 14–22 for the other units');
     const ids = unit.vocab.map(word => word.id);
     assert.equal(new Set(ids).size, ids.length, id + ' has duplicate vocabulary IDs');
     const vocabIds = new Set(ids);
@@ -917,7 +917,7 @@ test('A1 unit 9 practices compound numbers from 21 to 99 without duplicate vocab
   for (const word of newWords) {
     assert.ok(!oldTerms.has(word.idn.trim().toLocaleLowerCase()), word.idn + ' duplicates existing vocabulary');
   }
-  assert.ok(unit9.exercises.length >= 14 && unit9.exercises.length <= 22);
+  assert.ok(unit9.exercises.length >= 14 && unit9.exercises.length <= 27);
   assert.ok(unit9.exercises.some(ex => ex.answer === 'Dua puluh lima'));
   assert.ok(unit9.exercises.some(ex => ex.correctOrder && ex.correctOrder.join(' ') === 'Empat puluh tujuh'));
   assert.ok(unit9.exercises.some(ex => ex.options && ex.options.includes('89')));

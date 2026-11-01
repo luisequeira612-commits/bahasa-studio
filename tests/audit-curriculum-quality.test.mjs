@@ -126,3 +126,25 @@ test('validates lesson-level exercise prompts and answer structures', () => {
   assert.ok(report.issues.some((item) => item.code === 'LESSON_ORDER_TOKEN_MISMATCH'));
   assert.ok(report.issues.some((item) => item.code === 'LESSON_EXERCISE_PROMPT_MISSING'));
 });
+
+test('detects empty and duplicate multiple-choice options at unit and lesson level', () => {
+  const report = auditCurriculum({
+    id: 'A1',
+    units: [{
+      id: 'u1',
+      title: 'One',
+      vocab: [],
+      exercises: [
+        { type: 'mc', prompt: 'Pick', options: ['Uno', ' uno ', ''], answer: 0 },
+      ],
+      lessons: [{
+        exercises: [
+          { type: 'mc', prompt: 'Pick', options: ['Sí', 'sí'], answer: 0 },
+        ],
+      }],
+    }],
+  });
+  assert.ok(report.issues.some((item) => item.code === 'MC_OPTION_EMPTY' && item.severity === 'error'));
+  assert.ok(report.issues.some((item) => item.code === 'MC_OPTION_DUPLICATE' && item.severity === 'warning'));
+  assert.ok(report.issues.some((item) => item.code === 'LESSON_MC_OPTION_DUPLICATE' && item.severity === 'warning'));
+});

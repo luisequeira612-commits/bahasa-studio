@@ -31,12 +31,12 @@ test('writing session is recorded only after a non-empty draft is compared with 
 });
 
 test('writing draft shows a live word count and a level-appropriate sentence target', () => {
-  assert.match(source, /const draftCount = make\\('p', '0 palabras/);
-  assert.match(source, /textarea\\.addEventListener\\('input', updateDraftCount\\)/);
-  assert.match(source, /textarea\\.value\\.trim\\(\\)\\.match\\(\\/\\\\S\\+\\/g\\)/);
-  assert.match(source, /task\\.level === 'A1' \\? '3–4 frases' : '5–7 frases'/);
-  assert.match(source, /draftCount\\.setAttribute\\('aria-live', 'polite'\\)/);
-  assert.match(source, /host\\.append\\(label, textarea, draftCount,/);
+  assert.match(source, /const draftCount = make\('p', '0 palabras/);
+  assert.match(source, /textarea\.addEventListener\('input', updateDraftCount\)/);
+  assert.match(source, /textarea\.value\.trim\(\)\.match\(\/\\S\+\/g\)/);
+  assert.match(source, /task\.level === 'A1' \? '3–4 frases' : '5–7 frases'/);
+  assert.match(source, /draftCount\.setAttribute\('aria-live', 'polite'\)/);
+  assert.match(source, /host\.append\(label, textarea, draftCount,/);
 });
 
 test('writing examples are references, not automatic corrections', () => {

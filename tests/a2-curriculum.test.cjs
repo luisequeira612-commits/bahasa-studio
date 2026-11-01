@@ -779,6 +779,22 @@ test('A2 U38 uses consistent hyphenation for oleh-oleh', () => {
 
 
 
+
+
+test('A2 U11 segera translation preserves the direction expressed by datang', () => {
+  const unit = a2.units.find(entry => entry.id === 'a2_u11');
+  assert.ok(unit);
+  const word = unit.vocab.find(entry => entry.id === 'a2u11_segera');
+  assert.ok(word);
+  assert.equal(word.ex, 'Saya datang segera.');
+  assert.equal(word.exEsp, 'Vengo enseguida.');
+  const exercise = unit.lessons.flatMap(lesson => lesson.exercises || [])
+    .find(entry => entry.vocabId === 'a2u11_segera' && entry.type === 'translate_es_id');
+  assert.ok(exercise);
+  assert.equal(exercise.prompt, 'Traduce: Vengo enseguida.');
+  assert.equal(exercise.answer, 'Saya datang segera.');
+});
+
 test('A2 U6 Mencatat example and translation describe the same action', () => {
   const unit = a2.units.find(entry => entry.id === 'a2_u6');
   assert.ok(unit);

@@ -46,3 +46,18 @@ Total: **48 entradas, 16 lecciones y 68 ejercicios**.
 ## Siguiente paso
 
 Revisar el orden de introducción de las 48 entradas y las respuestas aceptadas de U25–U28; priorizar la glosa de `kelurahan` y la contextualización de términos culinarios. Después, continuar con U29–U32.
+
+
+## Correcciones de coherencia didáctica — U25–U28 (2026-11-01)
+
+Se alinearon siete lecciones cuyo título, objetivo o explicación no reflejaban por completo el vocabulario agrupado:
+
+- U25 L1: incorpora la acción de hervir junto a condimentos y especias.
+- U26 L2: alivio, ofensa y confianza personal.
+- U26 L3: soledad, gratitud y valoración.
+- U27 L2: ayuntamiento, instalaciones públicas y parques.
+- U28 L2: investigación y herramientas digitales.
+- U28 L3: pantallas táctiles, baterías y carga.
+- U28 L4: automatización y privacidad digital.
+
+Se mantuvieron las entradas y frases indonesias. La prueba nueva comprueba los términos del foco y que cada ID de vocabulario tenga un ejercicio asociado. No certifica naturalidad ni equivalencia lingüística.

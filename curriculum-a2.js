@@ -6351,8 +6351,8 @@ window.BAHASA_CURRICULUM_A2 = {
                             "lessons": [
                                 {
                                     "title": "Lección 1: Ingredientes y especias",
-                                    "objective": "Describe condimentos y especias que se utilizan al preparar alimentos.",
-                                    "grammar": "Practica vocabulario para describir ingredientes y su procedencia.",
+                                    "objective": "Describe condimentos y especias y reconoce la acción de hervir alimentos.",
+                                    "grammar": "Practica vocabulario para describir condimentos, especias y la acción de hervir alimentos.",
                                     "vocabIds": [
                                         "a2u25_bumbu",
                                         "a2u25_rempah",
@@ -6716,9 +6716,9 @@ window.BAHASA_CURRICULUM_A2 = {
                                     ]
                                 },
                                 {
-                                    "title": "Lección 2: Orgullo, preocupación y alivio",
-                                    "objective": "Explica cómo te sientes ante logros, exámenes y situaciones difíciles.",
-                                    "grammar": "Usa khawatir tentang para expresar preocupación por algo.",
+                                    "title": "Lección 2: Alivio, ofensa y confianza personal",
+                                    "objective": "Describe alivio, ofensa y confianza personal ante distintas situaciones.",
+                                    "grammar": "Practica expresiones para describir alivio, ofensa y confianza personal.",
                                     "vocabIds": [
                                         "a2u26_lega",
                                         "a2u26_tersinggung",
@@ -6762,9 +6762,9 @@ window.BAHASA_CURRICULUM_A2 = {
                                     ]
                                 },
                                 {
-                                    "title": "Lección 3: Confianza y gratitud",
-                                    "objective": "Habla de confianza personal y de agradecer la ayuda de otras personas.",
-                                    "grammar": "Practica expresiones para valorar el apoyo recibido.",
+                                    "title": "Lección 3: Soledad, gratitud y valoración",
+                                    "objective": "Habla de la soledad, expresa gratitud y muestra aprecio por otras personas.",
+                                    "grammar": "Practica expresiones para hablar de la soledad, agradecer y valorar a otras personas.",
                                     "vocabIds": [
                                         "a2u26_kesepian",
                                         "a2u26_bersyukur",
@@ -7014,8 +7014,8 @@ window.BAHASA_CURRICULUM_A2 = {
                                     ]
                                 },
                                 {
-                                    "title": "Lección 2: Oficinas y servicios locales",
-                                    "objective": "Describe oficinas municipales y lugares donde se atienden trámites.",
+                                    "title": "Lección 2: Ayuntamiento, instalaciones y parques",
+                                    "objective": "Describe el ayuntamiento, las instalaciones públicas y los parques urbanos.",
                                     "grammar": "Usa di para indicar dónde se ofrece un servicio.",
                                     "vocabIds": [
                                         "a2u27_balai_kota",
@@ -7310,9 +7310,9 @@ window.BAHASA_CURRICULUM_A2 = {
                                     ]
                                 },
                                 {
-                                    "title": "Lección 2: Investigación y científicos",
-                                    "objective": "Habla de científicos y proyectos de investigación.",
-                                    "grammar": "Usa expresiones para explicar objetivos y resultados de una investigación.",
+                                    "title": "Lección 2: Investigación y herramientas digitales",
+                                    "objective": "Habla de investigaciones, dispositivos y aplicaciones utilizadas en proyectos.",
+                                    "grammar": "Usa expresiones para explicar cómo se utilizan dispositivos y aplicaciones en una investigación.",
                                     "vocabIds": [
                                         "a2u28_penelitian",
                                         "a2u28_perangkat",
@@ -7356,8 +7356,8 @@ window.BAHASA_CURRICULUM_A2 = {
                                     ]
                                 },
                                 {
-                                    "title": "Lección 3: Dispositivos y aplicaciones",
-                                    "objective": "Describe dispositivos digitales, pantallas y aplicaciones.",
+                                    "title": "Lección 3: Pantallas táctiles, baterías y carga",
+                                    "objective": "Describe pantallas táctiles, baterías y procesos de carga.",
                                     "grammar": "Practica vocabulario para explicar funciones y características de la tecnología.",
                                     "vocabIds": [
                                         "a2u28_layar_sentuh",
@@ -7402,8 +7402,8 @@ window.BAHASA_CURRICULUM_A2 = {
                                     ]
                                 },
                                 {
-                                    "title": "Lección 4: Baterías y privacidad",
-                                    "objective": "Habla de carga, automatización y protección de datos personales.",
+                                    "title": "Lección 4: Automatización y privacidad digital",
+                                    "objective": "Habla de funciones automáticas, datos personales y privacidad.",
                                     "grammar": "Usa imperativos y expresiones de obligación para dar consejos de seguridad.",
                                     "vocabIds": [
                                         "a2u28_otomatis",

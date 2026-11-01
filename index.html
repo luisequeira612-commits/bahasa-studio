@@ -3020,22 +3020,49 @@ Requisitos:
                         return word ? { id: word.id, term: word.idn } : null;
                     }).filter(Boolean);
                 let nextLesson = null;
+                let skillLesson = null;
+                const skillForExercise = exercise => {
+                    if (!exercise || typeof exercise !== 'object') return null;
+                    if (exercise.audioText) return 'listening';
+                    const mapping = {
+                        mc: 'recognition',
+                        match: 'recognition',
+                        translate_es_id: 'translation',
+                        listen: 'listening',
+                        order: 'sentenceBuilding',
+                        write: 'writing'
+                    };
+                    return mapping[exercise.type] || null;
+                };
+                const weakestSkill = typeof AdaptiveLearning !== 'undefined'
+                    ? AdaptiveLearning.weakestSkill(this.studyActivity && this.studyActivity.skillStats)
+                    : null;
                 for (const level of getLearningLevels()) {
                     for (const unit of level.units) {
                         if (this.completedUnits.includes(unit.id)) continue;
-                        const lesson = buildUnitLessons(unit).find(entry =>
+                        const unfinishedLessons = buildUnitLessons(unit).filter(entry =>
                             !this.completedLessons.includes(unitLessonProgressKey(unit.id, entry.index)));
-                        if (lesson) {
-                            nextLesson = { unitId: unit.id, lessonIndex: lesson.index, unitTitle: unit.title, title: lesson.title };
-                            break;
+                        if (!nextLesson && unfinishedLessons.length) {
+                            const first = unfinishedLessons[0];
+                            nextLesson = { unitId: unit.id, lessonIndex: first.index, unitTitle: unit.title, title: first.title };
                         }
+                        if (weakestSkill && !skillLesson) {
+                            const matching = unfinishedLessons.find(entry =>
+                                Array.isArray(entry.exercises) &&
+                                entry.exercises.some(exercise => skillForExercise(exercise) === weakestSkill.key));
+                            if (matching) {
+                                skillLesson = { unitId: unit.id, lessonIndex: matching.index, unitTitle: unit.title, title: matching.title };
+                            }
+                        }
+                        if (nextLesson && (!weakestSkill || skillLesson)) break;
                     }
-                    if (nextLesson) break;
+                    if (nextLesson && (!weakestSkill || skillLesson)) break;
                 }
                 this.renderAdaptiveRecommendation({
                     dueCount: due.length,
                     weakWords,
                     nextLesson,
+                    skillLesson,
                     skillStats: this.studyActivity && this.studyActivity.skillStats,
                     todayXp: this.studyActivity && this.studyActivity.todayXp,
                     dailyGoal: this.studyActivity && this.studyActivity.dailyGoal

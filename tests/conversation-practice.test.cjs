@@ -13,7 +13,7 @@ const elements = {
 };
 const recordedSessions = [];
 const sandbox = {
-  App: { recordSkillSession(skill) { recordedSessions.push(skill); return Promise.resolve(); } },
+  App: { recordSkillSession(skill) { recordedSessions.push(skill); return Promise.resolve(); }, switchView() {} },
   window: {},
   document: {
     addEventListener() {},

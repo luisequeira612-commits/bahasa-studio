@@ -21,3 +21,11 @@ test('A2 course visibility and lesson entry points all honor the release flag', 
 test('A2 release gate does not alter the A1 completion requirement', () => {
   assert.match(html, /return Boolean\(a1 && a1\.units\.length > 0 && a1\.units\.every\(unit => completed\.includes\(unit\.id\)\)\);/);
 });
+
+test('A2 beta policy documentation matches the enabled release gate', () => {
+  const audit = fs.readFileSync(path.join(__dirname, '..', 'docs', 'A2-UNITS-01-04-AUDIT.md'), 'utf8');
+  const plan = fs.readFileSync(path.join(__dirname, '..', 'docs', 'A2_LANGUAGE_AUDIT_PLAN.md'), 'utf8');
+  assert.match(audit, /A2 está habilitado en beta \(\`A2_RELEASE_ENABLED = true\`\)/);
+  assert.match(plan, /A2 está habilitado en beta y se desbloquea al completar las 32 unidades de A1/);
+  assert.doesNotMatch(plan, /A2 debe permanecer oculto para estudiantes/);
+});

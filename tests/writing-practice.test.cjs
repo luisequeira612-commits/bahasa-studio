@@ -74,3 +74,14 @@ test('writing task lookup cannot bypass the A2 progression gate', () => {
   vm.runInNewContext(source, context);
   assert.equal(context.window.WritingPractice.getAvailableTasks().some(task => task.id === 'budget'), false);
 });
+
+
+test('writing self-review checklist is interactive and never presents itself as a score', () => {
+  assert.match(source, /checkbox\.type = 'checkbox'/);
+  assert.match(source, /checkbox\.addEventListener\('change'/);
+  assert.match(source, /checkedItems \+= checkbox\.checked \? 1 : -1/);
+  assert.match(source, /checklistStatus\.setAttribute\('aria-live', 'polite'\)/);
+  assert.match(source, /criterios revisados/);
+  assert.match(source, /No corregimos ni puntuamos automáticamente el texto/);
+  assert.doesNotMatch(source, /checklistStatus.*nota|checklistStatus.*porcentaje/i);
+});

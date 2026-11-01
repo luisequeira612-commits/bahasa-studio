@@ -1183,7 +1183,7 @@ test('guided A1 writing shows task-specific review criteria and records progress
       'rendering or drafting must not create an SRS attempt');
 
     await page.locator('#textAnswer').fill('Hoy estudio. Bebo agua todos los días.');
-    await page.getByRole('button', { name: 'Comparar con el ejemplo' }).click();
+    await page.getByRole('button', { name: 'Revisar mi escritura' }).click();
     assert.match(await page.locator('[data-writing-review]').innerText(), /dos frases completas/);
     assert.match(await page.locator('#actionArea').innerText(), /Un ejemplo posible/);
     assert.match(await page.locator('#actionArea').innerText(), /no corrige automáticamente/);

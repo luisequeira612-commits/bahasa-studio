@@ -38,7 +38,7 @@
             id: 'online-meeting',
             level: 'A2',
             title: 'Una reunión de trabajo en línea',
-            situation: 'Describe una reunión en línea desde el inicio hasta el final. Menciona las herramientas que utilizas, los archivos que compartes y qué haces después. Intenta escribir cinco o seis frases.',
+            situation: 'Describe una reunión en línea desde el inicio hasta el final. Menciona las herramientas que utilizas, los archivos que compartes y qué haces después. Intenta escribir cinco a siete frases.',
             vocabulary: ['rapat daring', 'konferensi video', 'berbagi layar', 'dokumen bersama', 'tautan', 'lampiran', 'mengirim', 'unduh', 'penyimpanan awan', 'pembaruan'],
             checklist: ['Expliqué cuándo y por qué hay una reunión.', 'Mencioné la videoconferencia.', 'Describí cómo comparto pantalla o documentos.', 'Incluí un enlace o archivo adjunto.', 'Conté qué hago después de la reunión.'],
             example: 'Hari ini kami ada rapat daring. Kami menggunakan konferensi video. Saya berbagi layar dan membuka dokumen bersama. Saya mengirim tautan dan lampiran. Setelah rapat, saya unduh dokumen dari penyimpanan awan. Saya melihat pembaruan.'

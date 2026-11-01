@@ -20,10 +20,10 @@ El script `scripts/audit-curriculum-quality.mjs` carga los currículos locales A
 - estructura básica de ejercicios y consignas tanto a nivel de unidad como dentro de cada lección;
 - índices de respuesta MC dentro del rango de opciones, también en ejercicios de lección;
 - consistencia entre `words` y `correctOrder` en ejercicios de orden, también en ejercicios de lección;
-- referencias `vocabId`, `vocabIds` y `reviewVocabIds` que no resuelven al vocabulario combinado de A1/A2, permitiendo repasos acumulativos entre niveles;
+- referencias `vocabId`, `vocabIds` y `reviewVocabIds` que no resuelven al vocabulario del nivel; se permiten referencias acumulativas de A2 hacia A1, pero no referencias de A1 hacia vocabulario futuro de A2;
 - referencias en ejercicios de unidad y de lección.
 
-Las referencias de repaso pueden apuntar legítimamente de A2 a vocabulario presentado en A1. Las unidades con lecciones se auditan en esa estructura y no se consideran incompletas por no tener un array de ejercicios en el nivel superior. Los chequeos son locales, deterministas y no hacen peticiones de red. Un resultado sin errores significa únicamente que las reglas estructurales implementadas han pasado.
+Las referencias de repaso pueden apuntar legítimamente de A2 a vocabulario presentado en A1. La dirección inversa no se permite: A1 no debe depender de vocabulario que solo se presenta en A2. Las unidades con lecciones se auditan en esa estructura y no se consideran incompletas por no tener un array de ejercicios en el nivel superior. Los chequeos son locales, deterministas y no hacen peticiones de red. Un resultado sin errores significa únicamente que las reglas estructurales implementadas han pasado.
 
 ## Qué NO afirma
 

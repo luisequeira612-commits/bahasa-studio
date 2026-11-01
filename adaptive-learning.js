@@ -71,6 +71,11 @@
         const dueCount = count(data.dueCount);
         const weakWords = Array.isArray(data.weakWords)
             ? data.weakWords.filter(word => word && typeof word.id === 'string' && word.id &&
+                typeof word.term === 'string' && word.term &&
+                (word.savedForReview === true || !Number.isSafeInteger(word.incorrect) || word.incorrect >= 2)).slice(0, 5)
+            : [];
+        const isolatedWords = Array.isArray(data.isolatedWords)
+            ? data.isolatedWords.filter(word => word && typeof word.id === 'string' && word.id &&
                 typeof word.term === 'string' && word.term).slice(0, 5)
             : [];
 
@@ -95,6 +100,18 @@
                 action: 'reinforce',
                 label: 'Practicar estas palabras',
                 wordIds: weakWords.map(word => word.id)
+            }, focus);
+        }
+
+        if (isolatedWords.length) {
+            return contextualize({
+                type: 'review-isolated',
+                title: 'Repasa un error puntual',
+                description: 'Has fallado estas palabras una vez. Un repaso breve puede ayudarte a comprobar si ya las recuerdas: ' +
+                    isolatedWords.map(word => word.term).join(', ') + '.',
+                action: 'reinforce',
+                label: 'Repasar estas palabras',
+                wordIds: isolatedWords.map(word => word.id)
             }, focus);
         }
 

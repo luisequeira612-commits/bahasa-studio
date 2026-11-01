@@ -663,7 +663,7 @@
             const freeSummary = this.freeResponseTurns
                 ? '<p style="color:var(--text-muted);">' + this.freeResponseTurns + ' respuesta(s) libre(s) practicada(s), sin calificación automática.</p>'
                 : '';
-            const trackingNote = '<p style="color:var(--text-muted);">Se registra solo que completaste una sesión; tus respuestas no se guardan.</p>';
+            const trackingNote = '<p style="color:var(--text-muted);">Se registran los aciertos y errores de las respuestas guiadas y que completaste una sesión. No se guardan tus frases, transcripciones ni respuestas libres.</p>';
             practice.innerHTML = '<div class="card" style="padding:16px;text-align:center;">' +
                 '<h2>Conversación completada</h2>' +
                 '<p id="conversationResultScore" style="font-size:1.25rem;font-weight:700;">' + scoreSummary + '</p>' +

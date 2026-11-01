@@ -126,3 +126,11 @@ test('UI wiring is separate from backups and keeps tap translation and SRS hooks
  assert.match(html,/renderTapTranslationSentence/);
  assert.match(html,/SRSEngine\.recordAttempt/);
 });
+
+test('guided writing copy makes clear that the model answer is an example, not an exact-match target', () => {
+ assert.match(html, /Antes de revisar tu escritura, comprueba:/);
+ assert.match(html, />Revisar mi escritura<\/button>/);
+ assert.match(html, /Un ejemplo posible:/);
+ assert.match(html, /auto-evaluación|autoevaluación/i);
+ assert.doesNotMatch(html, />Comparar con el ejemplo<\/button>/);
+});

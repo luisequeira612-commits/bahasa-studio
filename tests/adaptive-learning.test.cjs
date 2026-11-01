@@ -300,6 +300,14 @@ test('adaptive dashboard separates repeated word errors from isolated mistakes u
   assert.match(html, /repetition: history\.repetition/);
 });
 
+test('adaptive vocabulary ranking balances error rate, repetition and review age after manual saves', () => {
+  const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+  assert.match(html, /errorRateA = a\[1\]\.attempts > 0 \? a\[1\]\.incorrect \/ a\[1\]\.attempts : 0/);
+  assert.match(html, /errorRateB = b\[1\]\.attempts > 0 \? b\[1\]\.incorrect \/ b\[1\]\.attempts : 0/);
+  assert.match(html, /reviewedA - reviewedB/);
+  assert.match(html, /savedPriority/);
+});
+
 test('adaptive recommendation action is programmatically associated with its explanation', () => {
   const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
   assert.match(html, /description\.id = 'adaptiveRecommendationDescription'/);

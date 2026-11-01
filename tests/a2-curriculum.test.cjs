@@ -942,7 +942,7 @@ test('A2 U9-U12 meaning questions and ordering feedback match their canonical vo
       assert.deepEqual(Array.from(exercise.words).sort(), Array.from(exercise.correctOrder).sort(),
         unit.id + ' ordering tokens must match the canonical answer');
       const normalizeAnswer = value => String(value).normalize('NFC').toLocaleLowerCase()
-        .replace(/[.,!?;:«»\"“”]/g, ' ').replace(/\\s+/g, ' ').trim();
+        .replace(/[.,!?;:«»\"“”]/g, ' ').replace(/\s+/g, ' ').trim();
       assert.ok(normalizeAnswer(exercise.explanation || '').includes(normalizeAnswer(exercise.correctOrder.join(' '))),
         unit.id + ' ordering feedback must reproduce the canonical answer, allowing punctuation differences');
     }
@@ -1049,7 +1049,7 @@ test('A2 U1-U4 vocabulary-meaning questions and ordering feedback match their ca
       assert.deepEqual(Array.from(exercise.words).sort(), Array.from(exercise.correctOrder).sort(),
         unit.id + ' ordering tokens must match the canonical answer');
       const normalizeAnswer = value => String(value).normalize('NFC').toLocaleLowerCase()
-        .replace(/[.,!?;:«»\"“”]/g, ' ').replace(/\\s+/g, ' ').trim();
+        .replace(/[.,!?;:«»\"“”]/g, ' ').replace(/\s+/g, ' ').trim();
       assert.ok(normalizeAnswer(exercise.explanation || '').includes(normalizeAnswer(exercise.correctOrder.join(' '))),
         unit.id + ' ordering feedback must reproduce the canonical answer, allowing punctuation differences');
     }

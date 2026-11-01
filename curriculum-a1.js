@@ -2850,7 +2850,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                 { id: 'v446', idn: 'Permisi', esp: 'Con permiso / disculpe', ex: 'Permisi, boleh lewat?', exEsp: 'Con permiso, ¿puedo pasar?' },
                                 { id: 'v447', idn: 'Silakan', esp: 'Adelante / por favor (al invitar)', ex: 'Silakan duduk.', exEsp: 'Por favor, siéntese.' },
                                 { id: 'v448', idn: 'Bantuan', esp: 'Ayuda / asistencia', ex: 'Saya perlu bantuan.', exEsp: 'Necesito ayuda.' },
-                                { id: 'v449', idn: 'Ulangi', esp: 'Repite / repítalo (imperativo)', ex: 'Tolong ulangi.', exEsp: 'Por favor, repítalo.' },
+                                { id: 'v449', idn: 'Ulangi', esp: 'Repite / repita (imperativo)', ex: 'Tolong ulangi.', exEsp: 'Por favor, repite.' },
                                 { id: 'v450', idn: 'Pelan-pelan', esp: 'Despacio', ex: 'Bicara pelan-pelan.', exEsp: 'Habla despacio.' },
                                 { id: 'v451', idn: 'Mengerti', esp: 'Entender', ex: 'Saya mengerti.', exEsp: 'Entiendo.' },
                                 { id: 'v452', idn: 'Tidak mengerti', esp: 'No entender', ex: 'Maaf, saya tidak mengerti.', exEsp: 'Perdón, no entiendo.' },

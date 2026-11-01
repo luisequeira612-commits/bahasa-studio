@@ -148,3 +148,25 @@ test('detects empty and duplicate multiple-choice options at unit and lesson lev
   assert.ok(report.issues.some((item) => item.code === 'MC_OPTION_DUPLICATE' && item.severity === 'warning'));
   assert.ok(report.issues.some((item) => item.code === 'LESSON_MC_OPTION_DUPLICATE' && item.severity === 'warning'));
 });
+
+test('detects duplicate lesson introductions and contradictory new-versus-review references', () => {
+  const report = auditCurriculum({
+    id: 'A2',
+    units: [{
+      id: 'u1',
+      title: 'One',
+      vocab: [
+        { id: 'new_word', idn: 'berbicara', esp: 'hablar' },
+        { id: 'review_word', idn: 'makan', esp: 'comer' },
+      ],
+      lessons: [{
+        vocabIds: ['new_word', 'new_word', 'review_word'],
+        reviewVocabIds: ['review_word', 'review_word'],
+        exercises: [],
+      }],
+    }],
+  });
+  assert.ok(report.issues.some((item) => item.code === 'LESSON_VOCAB_INTRODUCED_DUPLICATE' && item.severity === 'error'));
+  assert.ok(report.issues.some((item) => item.code === 'LESSON_REVIEW_VOCAB_DUPLICATE' && item.severity === 'warning'));
+  assert.ok(report.issues.some((item) => item.code === 'LESSON_VOCAB_NEW_AND_REVIEW' && item.severity === 'warning'));
+});

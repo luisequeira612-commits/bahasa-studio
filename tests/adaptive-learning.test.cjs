@@ -324,3 +324,21 @@ test('weakest skill ranking compares exact accuracy before applying display roun
   assert.equal(focus.accuracy, 50);
   assert.equal(focus.attempts, 10);
 });
+
+test('malformed word error counters are ignored while legacy and manually saved words remain compatible', () => {
+  const result = AdaptiveLearning.recommend({
+    dueCount: 0,
+    weakWords: [
+      { id: 'negative', term: 'negativo', incorrect: -1 },
+      { id: 'fraction', term: 'fracción', incorrect: 2.5 },
+      { id: 'string', term: 'texto', incorrect: '3' },
+      { id: 'null', term: 'nulo', incorrect: null },
+      { id: 'legacy', term: 'antigua' },
+      { id: 'saved', term: 'guardada', incorrect: -4, savedForReview: true }
+    ]
+  });
+  assert.equal(result.type, 'reinforce-weak');
+  assert.deepEqual(Array.from(result.wordIds), ['legacy', 'saved']);
+  assert.match(result.description, /antigua, guardada/);
+  assert.doesNotMatch(result.description, /negativo|fracción|texto|nulo/);
+});

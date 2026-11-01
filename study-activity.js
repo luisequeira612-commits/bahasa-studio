@@ -3,6 +3,8 @@
 
     const DAILY_GOALS = [20, 30, 50, 100];
     const DEFAULT_GOAL = 30;
+    const SKILL_KEYS = ['recognition', 'translation', 'listening', 'sentenceBuilding', 'writing', 'conversation'];
+    const SCORED_SKILLS = ['recognition', 'translation', 'listening', 'sentenceBuilding', 'writing'];
 
     function dateKey(value) {
         const date = new Date(value == null ? Date.now() : value);
@@ -34,6 +36,36 @@
         return Number.isSafeInteger(value) && value >= 0 && value <= 1000000000;
     }
 
+    function defaultSkillStats() {
+        const stats = {};
+        SKILL_KEYS.forEach(skill => { stats[skill] = { attempts: 0, correct: 0, incorrect: 0, sessions: 0 }; });
+        return stats;
+    }
+
+    function normalizeSkillStats(value) {
+        const source = isObject(value) ? value : {};
+        const result = defaultSkillStats();
+        SKILL_KEYS.forEach(skill => {
+            const entry = isObject(source[skill]) ? source[skill] : {};
+            const correct = safeCount(entry.correct) ? entry.correct : 0;
+            const incorrect = safeCount(entry.incorrect) ? entry.incorrect : 0;
+            const attempts = safeCount(entry.attempts) ? Math.max(entry.attempts, correct + incorrect) : correct + incorrect;
+            result[skill] = { attempts: attempts, correct: correct, incorrect: incorrect, sessions: safeCount(entry.sessions) ? entry.sessions : 0 };
+        });
+        return result;
+    }
+
+    function markStudyDay(activity, now) {
+        const today = dateKey(now);
+        const yesterday = previousDateKey(now);
+        if (activity.lastStudyDate !== today) {
+            activity.currentStreak = activity.lastStudyDate === yesterday ? activity.currentStreak + 1 : 1;
+            activity.lastStudyDate = today;
+        }
+        activity.longestStreak = Math.max(activity.longestStreak, activity.currentStreak);
+        return activity;
+    }
+
     function createDefault(now) {
         return {
             dailyGoal: DEFAULT_GOAL,
@@ -43,7 +75,8 @@
             todayReviews: 0,
             lastStudyDate: null,
             currentStreak: 0,
-            longestStreak: 0
+            longestStreak: 0,
+            skillStats: defaultSkillStats()
         };
     }
 
@@ -60,7 +93,8 @@
             lastStudyDate: source.lastStudyDate === null || source.lastStudyDate === undefined || isDateKey(source.lastStudyDate)
                 ? (source.lastStudyDate || null) : null,
             currentStreak: safeCount(source.currentStreak) ? source.currentStreak : 0,
-            longestStreak: safeCount(source.longestStreak) ? source.longestStreak : 0
+            longestStreak: safeCount(source.longestStreak) ? source.longestStreak : 0,
+            skillStats: normalizeSkillStats(source.skillStats)
         };
         if (activity.todayDate !== today) {
             activity.todayDate = today;
@@ -75,13 +109,8 @@
 
     function record(value, kind, amount, now) {
         const activity = normalize(value, now);
-        const today = dateKey(now);
-        const yesterday = previousDateKey(now);
         if (!['points', 'lesson', 'review'].includes(kind)) throw new Error('Tipo de actividad no válido.');
-        if (activity.lastStudyDate !== today) {
-            activity.currentStreak = activity.lastStudyDate === yesterday ? activity.currentStreak + 1 : 1;
-            activity.lastStudyDate = today;
-        }
+        markStudyDay(activity, now);
         if (kind === 'points') {
             const points = Number(amount);
             if (!Number.isFinite(points) || points < 0) throw new Error('Los puntos diarios no son válidos.');
@@ -103,6 +132,31 @@
         return activity;
     }
 
+    function skillForExercise(type) {
+        const mapping = { mc: 'recognition', match: 'recognition', translate_es_id: 'translation', listen: 'listening', order: 'sentenceBuilding', write: 'writing' };
+        return mapping[type] || null;
+    }
+
+    function recordSkill(value, skill, isCorrect, now) {
+        if (!SCORED_SKILLS.includes(skill)) throw new Error('Habilidad de práctica no válida.');
+        if (typeof isCorrect !== 'boolean') throw new Error('Resultado de práctica no válido.');
+        const activity = normalize(value, now);
+        markStudyDay(activity, now);
+        const stats = activity.skillStats[skill];
+        stats.attempts += 1;
+        if (isCorrect) stats.correct += 1;
+        else stats.incorrect += 1;
+        return activity;
+    }
+
+    function recordSkillSession(value, skill, now) {
+        if (!['writing', 'conversation'].includes(skill)) throw new Error('Sesión de práctica no válida.');
+        const activity = normalize(value, now);
+        markStudyDay(activity, now);
+        activity.skillStats[skill].sessions += 1;
+        return activity;
+    }
+
     function validateBackup(value, now) {
         if (value === undefined || value === null) return createDefault(now);
         if (!isObject(value)) throw new Error('Actividad diaria no válida.');
@@ -110,6 +164,20 @@
         if (value.todayDate !== undefined && !isDateKey(value.todayDate)) throw new Error('Fecha diaria no válida.');
         if (value.lastStudyDate !== undefined && value.lastStudyDate !== null && !isDateKey(value.lastStudyDate)) {
             throw new Error('Fecha de racha no válida.');
+        }
+        if (value.skillStats !== undefined) {
+            if (!isObject(value.skillStats)) throw new Error('Perfil de habilidades no válido.');
+            SKILL_KEYS.forEach(skill => {
+                const stats = value.skillStats[skill];
+                if (stats === undefined) return;
+                if (!isObject(stats)) throw new Error('Estadísticas de habilidad no válidas.');
+                for (const key of ['attempts', 'correct', 'incorrect', 'sessions']) {
+                    if (stats[key] !== undefined && !safeCount(stats[key])) throw new Error('Contador de habilidad no válido.');
+                }
+                if ((stats.correct || 0) + (stats.incorrect || 0) > (stats.attempts || 0)) {
+                    throw new Error('Intentos de habilidad incoherentes.');
+                }
+            });
         }
         for (const key of ['todayXp', 'todayLessons', 'todayReviews', 'currentStreak', 'longestStreak']) {
             if (value[key] !== undefined && !safeCount(value[key])) throw new Error('Contador de actividad no válido.');
@@ -124,6 +192,10 @@
         normalize: normalize,
         record: record,
         setGoal: setGoal,
+        skillKeys: SKILL_KEYS.slice(),
+        skillForExercise: skillForExercise,
+        recordSkill: recordSkill,
+        recordSkillSession: recordSkillSession,
         validateBackup: validateBackup,
         currentStreak: function (value, now) { return normalize(value, now).currentStreak; }
     };

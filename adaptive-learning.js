@@ -18,8 +18,8 @@
         const candidates = Object.keys(SKILL_LABELS).map((key, index) => {
             const entry = stats[key] && typeof stats[key] === 'object' ? stats[key] : {};
             const attempts = count(entry.attempts);
-            const correct = count(entry.correct);
-            if (attempts < 5 || correct > attempts) return null;
+            const correct = entry.correct;
+            if (attempts < 5 || !Number.isSafeInteger(correct) || correct < 0 || correct > attempts) return null;
             return { key, label: SKILL_LABELS[key], attempts, accuracy: Math.round(correct / attempts * 100), order: index };
         }).filter(Boolean);
         candidates.sort((a, b) => a.accuracy - b.accuracy || b.attempts - a.attempts || a.order - b.order);

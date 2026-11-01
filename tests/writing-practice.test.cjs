@@ -40,3 +40,37 @@ test('writing practice does not award XP or create SRS reviews', () => {
   assert.match(source, /Sin nota, sin XP ni registro SRS/i);
   assert.doesNotMatch(source, /addXp\s*\(|markForReview\s*\(/);
 });
+
+
+test('A2 writing prompts stay locked until all A1 units are completed', () => {
+  const vm = require('node:vm');
+  const context = { window: {
+    App: { completedUnits: ['a1_u1'] },
+    CourseData: { levels: [{ id: 'A1', units: [{ id: 'a1_u1' }, { id: 'a1_u2' }] }] }
+  } };
+  vm.runInNewContext(source, context);
+  const practice = context.window.WritingPractice;
+  assert.deepEqual(practice.getAvailableTasks().map(task => task.level), ['A1', 'A1', 'A1']);
+  assert.equal(practice.getAvailableTasks().some(task => task.id === 'budget'), false);
+});
+
+test('A2 writing prompts unlock when every A1 unit is complete', () => {
+  const vm = require('node:vm');
+  const context = { window: {
+    App: { completedUnits: ['a1_u1', 'a1_u2'] },
+    CourseData: { levels: [{ id: 'A1', units: [{ id: 'a1_u1' }, { id: 'a1_u2' }] }] }
+  } };
+  vm.runInNewContext(source, context);
+  const levels = context.window.WritingPractice.getAvailableTasks().map(task => task.level);
+  assert.deepEqual(levels, ['A1', 'A1', 'A1', 'A2', 'A2', 'A2']);
+});
+
+test('writing task lookup cannot bypass the A2 progression gate', () => {
+  const vm = require('node:vm');
+  const context = { window: {
+    App: { completedUnits: [] },
+    CourseData: { levels: [{ id: 'A1', units: [{ id: 'a1_u1' }] }] }
+  } };
+  vm.runInNewContext(source, context);
+  assert.equal(context.window.WritingPractice.getAvailableTasks().some(task => task.id === 'budget'), false);
+});

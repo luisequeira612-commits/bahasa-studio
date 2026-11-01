@@ -1,47 +1,66 @@
 # Política de recomendaciones adaptativas
 
-Estado: implementación inicial en beta técnica.  
+Estado: implementación inicial en beta técnica.
 Alcance: recomendación de la siguiente actividad; no es una evaluación del nivel ni una certificación.
 
 ## Fuentes de datos
 
 La recomendación usa únicamente datos que ya existen en el dispositivo:
-- elementos de repaso vencidos en el motor SM-2;
-- palabras con errores registrados y menos de cuatro repeticiones;
-- siguiente lección incompleta dentro de los niveles actualmente desbloqueados;
+- elementos de repaso vencidos o guardados explícitamente para repasar en el motor SRS;
+- palabras con al menos dos errores registrados, palabras guardadas manualmente para repaso y registros antiguos sin contador de errores;
+- errores aislados (un error) para sugerir un repaso ligero, sin etiquetar la palabra como dificultad persistente;
+- perfil local de habilidades con intentos puntuados;
+- primera lección incompleta de cada unidad accesible y su cobertura de tipos de ejercicio;
 - XP del día y objetivo diario.
 
 No se crea un esquema de persistencia nuevo, no se envían datos a servicios externos y no se modifica el algoritmo SM-2.
 
-## Orden de prioridad
+## Orden de prioridad implementado
 
-1. **Repaso vencido:** si hay tarjetas cuyo `nextReview` ya venció o se guardaron explícitamente para repasar, ofrecer la sesión SRS existente.
-2. **Refuerzo de palabras difíciles:** si no hay repaso vencido, ofrecer hasta cinco palabras con errores registrados y menos de cuatro repeticiones. Solo se marcan para repaso después de que el estudiante pulse el botón.
-3. **Siguiente lección:** si no hay repaso ni palabras difíciles, continuar con la primera lección incompleta de A1 o de otro nivel ya desbloqueado.
-4. **Conversación:** si no hay una lección disponible y el objetivo diario sigue abierto, sugerir una conversación práctica.
-5. **Mantenimiento:** si no hay una tarea urgente, indicar que no hay actividad pendiente.
+1. **Repaso vencido:** si hay tarjetas listas para repasar, ofrecer la sesión SRS existente.
+2. **Palabras con errores persistentes:** si no hay repaso vencido, ofrecer hasta cinco palabras con al menos dos errores válidos o guardadas manualmente. Los registros antiguos que no contienen el campo de errores se conservan por compatibilidad.
+3. **Error aislado:** si no hay palabras persistentes, ofrecer hasta cinco palabras falladas una vez como repaso ligero. No se etiquetan como debilidad estable.
+4. **Habilidad con menor precisión:** con al menos cinco intentos puntuados válidos, identificar la habilidad con menor proporción de aciertos. Si existe una primera lección incompleta y accesible con ejercicios de esa habilidad, recomendarla. Si escritura es la habilidad con menor precisión, ofrecer el cuaderno de escritura.
+5. **Siguiente lección:** si no hay una acción de refuerzo anterior, continuar con la primera lección incompleta disponible.
+6. **Conversación:** si no hay una lección disponible y el objetivo diario sigue abierto, sugerir una conversación práctica.
+7. **Mantenimiento:** si no hay una tarea urgente, indicar que no hay actividad pendiente.
 
-## Límites
+Los repasos vencidos y las palabras con errores conservan prioridad sobre el refuerzo por habilidad. El selector de lecciones solo recibe primeras lecciones incompletas de unidades que la aplicación ya considera accesibles; no modifica las reglas de desbloqueo ni permite iniciar lecciones bloqueadas.
 
-- La recomendación es determinista, explicable y comprobable; no es un diagnóstico generado por IA.
-- Los errores registrados en una palabra no demuestran por sí solos una dificultad lingüística estable.
-- Los umbrales actuales (menos de cuatro repeticiones y máximo cinco palabras) son reglas iniciales de producto, no parámetros calibrados con un estudio de usuarios.
+## Perfil de habilidades y límites
+
+- **Reconocimiento:** opción múltiple y asociación.
+- **Traducción:** traducción del español al indonesio.
+- **Escucha:** ejercicios con audio.
+- **Construcción de frases:** ejercicios de ordenar palabras.
+- **Escritura:** ejercicios escritos puntuados y sesiones libres completadas.
+- **Conversación:** escenarios completados; no se asigna precisión automática a respuestas libres.
+
+El umbral de cinco intentos evita recomendaciones basadas en una muestra mínima, pero no convierte las categorías en medidas plenamente comparables. Los tipos de ejercicio, la dificultad y la exposición pueden diferir. La precisión es descriptiva y no demuestra dominio, debilidad estable ni nivel MCER.
+
+La recomendación es determinista, explicable y comprobable; no es un diagnóstico generado por IA. Los errores registrados en una palabra no demuestran por sí solos una dificultad lingüística estable. Los umbrales actuales (dos errores persistentes, cinco intentos puntuados y máximo cinco palabras) son reglas iniciales de producto, no parámetros calibrados con un estudio de usuarios.
+
+## Privacidad, persistencia y compatibilidad
+
+- Los datos permanecen en el dispositivo; no se añade telemetría.
+- El perfil conserva contadores agregados, no el texto de borradores, transcripciones, audio ni respuestas libres.
+- No se crea una tabla de IndexedDB ni se cambia la versión del backup v3.
+- Los backups antiguos sin `skillStats` reciben contadores vacíos.
+- Las palabras solo se marcan para repaso después de que el estudiante pulse el botón.
 - No se cambia el orden de intervalos SM-2 ni se inventan calificaciones.
-- No se recomienda contenido de A2 hasta que el gate actual de finalización A1 lo habilite; B1/B2 permanecen fuera del camino de recomendación.
-- Si el estudiante marca una palabra difícil para repaso, la operación se ejecuta solo tras una acción explícita.
-- Las recomendaciones deben seguir funcionando offline.
+- La recomendación debe seguir funcionando offline.
 
 ## Validación automatizada
 
-`tests/adaptive-learning.test.cjs` comprueba prioridad de repaso, refuerzo, lección, conversación, estado de mantenimiento y entradas inválidas. `tests/curriculum-extraction.test.js` y `tests/regression.test.cjs` verifican que el módulo se cargue y se precargue offline. La CI también lo incluye en el artefacto de vista previa.
+`tests/adaptive-learning.test.cjs` comprueba prioridad de repaso, refuerzo de palabras persistentes, errores aislados, selección por habilidad, escritura, lección, conversación, mantenimiento y entradas inválidas. Las pruebas de integración verifican que el panel use las acciones existentes y que el selector respete las unidades accesibles. La CI incluye el módulo en el artefacto de vista previa.
 
 ## Próximas mejoras antes de ampliar el alcance
 
-- Evaluar si conviene adaptar por habilidad (lectura, escucha, escritura, conversación), una vez que las actividades registren resultados comparables.
-- Añadir marcas temporales a los eventos de error antes de describirlos como recientes o priorizarlos por recencia. El esquema actual agrega errores sin conservar su fecha.
-- Recoger telemetría solo si se diseña con consentimiento y minimización de datos; la implementación actual no añade telemetría.
 - Calibrar prioridades con pruebas de usabilidad antes de modificar las reglas.
-
+- Separar mejor tipos de actividad comparables y considerar la dificultad de los ejercicios.
+- Añadir marcas temporales a eventos de error antes de describirlos como recientes o priorizarlos por recencia; el esquema actual agrega errores sin conservar su fecha.
+- Evaluar si conviene adaptar por conversación, una vez que existan resultados comparables sin calificar respuestas libres por intuición.
+- Mantener explícitamente pendientes las dimensiones lingüísticas que no se pueden certificar sin revisión competente.
 
 ## Perfil local de práctica — 2026-11-01
 

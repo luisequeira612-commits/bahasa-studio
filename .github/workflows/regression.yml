@@ -53,13 +53,15 @@ jobs:
         run: node --test tests/build-editorial-review-queue.test.mjs
       - name: Generate independent editorial review queue
         if: ${{ !cancelled() }}
-        run: node scripts/build-editorial-review-queue.mjs --output artifacts/editorial-review-queue.csv
+        run: node scripts/build-editorial-review-queue.mjs --output artifacts/editorial-review-queue.csv --summary artifacts/editorial-review-summary.json
       - name: Upload editorial review queue
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: editorial-review-queue
-          path: artifacts/editorial-review-queue.csv
+          path: |
+            artifacts/editorial-review-queue.csv
+            artifacts/editorial-review-summary.json
           if-no-files-found: ignore
           retention-days: 14
       - name: Prepare curriculum audit report directory

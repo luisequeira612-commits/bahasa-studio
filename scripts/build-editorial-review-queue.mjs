@@ -69,6 +69,31 @@ function csvCell(value) {
   return /[",\r\n]/.test(text) ? `"${text.replaceAll('"', '""')}"` : text;
 }
 
+export function buildEditorialSummary(rows) {
+  const byLevel = {};
+  const byPriority = {};
+  const byUnit = {};
+  const missingFields = {};
+  for (const row of rows) {
+    byLevel[row.level] = (byLevel[row.level] ?? 0) + 1;
+    byPriority[row.priority] = (byPriority[row.priority] ?? 0) + 1;
+    const unitKey = [row.level, row.unit_id].join(':');
+    byUnit[unitKey] = (byUnit[unitKey] ?? 0) + 1;
+    for (const field of String(row.missing_fields ?? '').split(';').filter(Boolean)) {
+      missingFields[field] = (missingFields[field] ?? 0) + 1;
+    }
+  }
+  return {
+    total_entries: rows.length,
+    units: Object.keys(byUnit).length,
+    by_level: byLevel,
+    by_priority: byPriority,
+    missing_fields: missingFields,
+    editorial_status: 'not_reviewed',
+    linguistic_certification: false,
+  };
+}
+
 export function toCsv(rows) {
   const headers = rows.length ? Object.keys(rows[0]) : [
     'review_id','level','unit_id','unit_title','source_path','vocab_id','indonesian_form','spanish_gloss',
@@ -93,12 +118,16 @@ function loadCurriculum(source, globalName, filename) {
 async function main() {
   const args = process.argv.slice(2);
   let outputPath = 'artifacts/editorial-review-queue.csv';
+  let summaryPath = null;
   for (let i = 0; i < args.length; i += 1) {
     if (args[i] === '--output') {
       outputPath = args[++i];
       if (!outputPath) throw new Error('--output needs a path.');
+    } else if (args[i] === '--summary') {
+      summaryPath = args[++i];
+      if (!summaryPath) throw new Error('--summary needs a path.');
     } else if (args[i] === '--help' || args[i] === '-h') {
-      console.log('Usage: node scripts/build-editorial-review-queue.mjs [--output PATH]');
+      console.log('Usage: node scripts/build-editorial-review-queue.mjs [--output PATH] [--summary PATH]');
       return;
     } else throw new Error(`Unknown argument: ${args[i]}`);
   }
@@ -115,6 +144,11 @@ async function main() {
   const destination = resolve(outputPath);
   await mkdir(dirname(destination), { recursive: true });
   await writeFile(destination, csv, 'utf8');
+  if (summaryPath) {
+    const summaryDestination = resolve(summaryPath);
+    await mkdir(dirname(summaryDestination), { recursive: true });
+    await writeFile(summaryDestination, JSON.stringify(buildEditorialSummary(rows), null, 2) + '\n', 'utf8');
+  }
   const p1 = rows.filter((row) => row.priority === 'P1').length;
   console.log(JSON.stringify({
     rows: rows.length,

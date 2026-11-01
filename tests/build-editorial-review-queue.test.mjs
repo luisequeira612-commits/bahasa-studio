@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { buildEditorialQueue, toCsv } from '../scripts/build-editorial-review-queue.mjs';
+import { buildEditorialQueue, buildEditorialSummary, toCsv } from '../scripts/build-editorial-review-queue.mjs';
 
 test('builds one neutral editorial work item per vocabulary entry', () => {
   const rows = buildEditorialQueue([{
@@ -64,4 +64,26 @@ test('uses a deterministic fallback when a vocabulary ID is missing', () => {
   }]);
   assert.equal(row.review_id, 'A1:a1_u1:missing-id:nama');
   assert.equal(row.priority, 'P1');
+});
+
+
+test('summarizes editorial workload without treating completeness as approval', () => {
+  const rows = buildEditorialQueue([
+    { id: 'A1', units: [{ id: 'a1_u1', vocab: [
+      { id: 'v1', idn: 'nama', esp: 'nombre', ex: 'Nama saya Ana.', exEsp: 'Me llamo Ana.' },
+      { id: 'v2', idn: 'asal', esp: 'origen' },
+    ] }] },
+    { id: 'A2', units: [{ id: 'a2_u1', vocab: [
+      { id: 'v3', idn: 'pergi', esp: 'ir', ex: 'Saya pergi.', exEsp: 'Yo voy.' },
+    ] }] },
+  ]);
+  assert.deepEqual(buildEditorialSummary(rows), {
+    total_entries: 3,
+    units: 2,
+    by_level: { A1: 2, A2: 1 },
+    by_priority: { P2: 2, P1: 1 },
+    missing_fields: { example_indonesian: 1, example_spanish: 1 },
+    editorial_status: 'not_reviewed',
+    linguistic_certification: false,
+  });
 });

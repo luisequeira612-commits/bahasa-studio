@@ -1820,7 +1820,7 @@ test('local skill profile records first attempts and aggregate free-practice ses
   assert.match(html, /studySkillSentenceText/);
   assert.match(html, /studySkillWritingText/);
   assert.match(html, /studySkillConversationText/);
-  assert.match(html, /StudyActivity\.skillForExercise\(exercise\.type\)/);
+  assert.match(html, /StudyActivity\.skillForExercise\(exercise\.type, Boolean\(exercise\.audioText\)\)/);
   assert.match(html, /App\.recordSkillActivity\(skill, Boolean\(isCorrect\)\)/);
   assert.match(html, /recordSkillSession\(skill\)/);
   assert.match(html, /parsed\.version !== 3/);

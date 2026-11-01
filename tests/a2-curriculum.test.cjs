@@ -761,3 +761,18 @@ test('A2 U18 clarifies the Indonesian-Spanish false friend pagar', () => {
   assert.match(write.hint, /significado indonesio: «cerca»/);
   assert.match(write.explanation, /sustantivo indonesio «cerca»/);
 });
+
+
+test('A2 U38 uses consistent hyphenation for oleh-oleh', () => {
+  const unit = a2.units.find(entry => entry.id === 'a2_u38');
+  assert.ok(unit);
+  const word = unit.vocab.find(entry => entry.id === 'a2u38_oleh_oleh');
+  assert.ok(word);
+  assert.equal(word.idn, 'oleh-oleh');
+  assert.match(word.ex, /oleh-oleh/);
+  const exercise = unit.lessons.flatMap(lesson => lesson.exercises || [])
+    .find(entry => entry.vocabId === 'a2u38_oleh_oleh' && entry.type === 'translate_es_id');
+  assert.ok(exercise);
+  assert.equal(exercise.answer, 'Saya membeli oleh-oleh untuk keluarga.');
+  assert.equal(exercise.explanation, 'La frase utiliza «oleh-oleh».');
+});

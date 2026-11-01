@@ -53,3 +53,10 @@ Con U37–U40 se completa la serie de auditorías editoriales iniciales de las 4
 Se alinearon las lecciones de refugios/suministros/primeros auxilios y rutas/voluntariado/centros de ayuda; destinos/visitantes/guías; alojamiento/reservas/mapas; tarifas/horarios/entradas; atracciones/recuerdos/horarios; reuniones/videoconferencias/compartir pantalla; documentos/enlaces/adjuntos; descargas/subidas/nube; notificaciones/actualizaciones/acceso; y los cuatro grupos de resumir, aclarar, responder y explicar.
 
 Se conservaron las palabras y respuestas indonesias. La prueba de regresión comprueba los focos y la cobertura de ejercicios; no certifica naturalidad ni equivalencia lingüística.
+
+
+## Correcciones de coherencia didáctica — U37–U40 (2026-11-01)
+
+Se alinearon títulos, objetivos y explicaciones con los grupos de vocabulario existentes: refugios, suministros y primeros auxilios; rutas, voluntarios y centros de ayuda; destinos, visitantes, guías, alojamiento y reservas; tarifas, horarios y entradas; reuniones virtuales, documentos, enlaces, descargas, nube y permisos; y funciones de resumen, aclaración, respuesta, objeción y debate.
+
+Se conservaron las formas y respuestas indonesias. La prueba de regresión comprueba los focos de cada lección y la vinculación de sus IDs con ejercicios. No certifica naturalidad ni equivalencia lingüística.

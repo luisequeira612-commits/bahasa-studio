@@ -53,3 +53,29 @@ test('A1 U24-U25 exercise wording stays aligned with corrected vocabulary glosse
   assert.match(paintingExercise.explanation, /significa pintar/i);
   assert.doesNotMatch(paintingExercise.explanation, /hacer dibujos/i);
 });
+
+
+test('A1 U31 hair translation and U32 thank-you response stay linked to the correct vocabulary', () => {
+  const unit31 = a1.units.find(unit => unit.id === 'a1_u31');
+  const hair = unit31.vocab.find(word => word.id === 'v460');
+  const hairExercise = unit31.exercises.find(exercise =>
+    exercise.type === 'translate_es_id' && /cabello|pelo/i.test(exercise.prompt || '')
+  );
+  assert.ok(hair);
+  assert.equal(hair.idn, 'Rambut');
+  assert.ok(hairExercise, 'U31 must retain a translation exercise for cabello/pelo');
+  assert.equal(hairExercise.vocabId, hair.id);
+  assert.equal(hairExercise.answer, hair.idn);
+
+  const unit32 = a1.units.find(unit => unit.id === 'a1_u32');
+  const gratitude = unit32.vocab.find(word => word.id === 'v468');
+  const gratitudeExercise = unit32.exercises.find(exercise =>
+    exercise.vocabId === 'v468' && exercise.type === 'mc'
+  );
+  assert.ok(gratitude);
+  assert.equal(gratitude.idn, 'Sama-sama');
+  assert.ok(gratitudeExercise, 'U32 must assess the response to terima kasih');
+  assert.match(gratitudeExercise.prompt, /responde a «terima kasih»/i);
+  assert.equal(gratitudeExercise.options[gratitudeExercise.answer], 'Sama-sama');
+  assert.match(gratitudeExercise.explanation, /respuesta común/i);
+});

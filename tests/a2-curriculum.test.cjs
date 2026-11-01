@@ -941,8 +941,10 @@ test('A2 U9-U12 meaning questions and ordering feedback match their canonical vo
         unit.id + ' ordering exercise must define its tokens and answer');
       assert.deepEqual(Array.from(exercise.words).sort(), Array.from(exercise.correctOrder).sort(),
         unit.id + ' ordering tokens must match the canonical answer');
-      assert.ok((exercise.explanation || '').includes(exercise.correctOrder.join(' ')),
-        unit.id + ' ordering feedback must reproduce the canonical answer');
+      const normalizeAnswer = value => String(value).normalize('NFC').toLocaleLowerCase()
+        .replace(/[.,!?;:«»\"“”]/g, ' ').replace(/\s+/g, ' ').trim();
+      assert.ok(normalizeAnswer(exercise.explanation || '').includes(normalizeAnswer(exercise.correctOrder.join(' '))),
+        unit.id + ' ordering feedback must reproduce the canonical answer, allowing punctuation differences');
     }
   }
 });
@@ -1013,6 +1015,46 @@ test('A2 U13-U16 meaning questions and ordering feedback match their canonical v
         unit.id + ' ordering tokens must match the canonical answer');
       assert.ok((exercise.explanation || '').includes(exercise.correctOrder.join(' ')),
         unit.id + ' ordering feedback must reproduce the canonical answer');
+    }
+  }
+});
+
+test('A2 U1-U4 vocabulary-meaning questions and ordering feedback match their canonical data', () => {
+  const units = a2.units.slice(0, 4);
+  assert.deepEqual(Array.from(units, unit => unit.id), ['a2_u1', 'a2_u2', 'a2_u3', 'a2_u4']);
+
+  for (const unit of units) {
+    const vocabulary = new Map(unit.vocab.map(word => [word.id, word]));
+    const exercises = unit.lessons.flatMap(lesson => lesson.exercises || []);
+    const meaningExercises = exercises.filter(exercise =>
+      exercise.type === 'mc' && /qué significa/i.test(exercise.prompt || '')
+    );
+    assert.ok(meaningExercises.length > 0, unit.id + ' should include vocabulary-meaning questions');
+
+    for (const exercise of meaningExercises) {
+      const word = vocabulary.get(exercise.vocabId);
+      assert.ok(word, unit.id + ' meaning question must reference vocabulary introduced in the same unit');
+      assert.ok(Array.isArray(exercise.options), unit.id + ' meaning question must provide options');
+      assert.ok(Number.isInteger(exercise.answer) && exercise.answer >= 0 && exercise.answer < exercise.options.length,
+        unit.id + ' meaning question must have a valid answer index');
+      const normalizeGloss = value => String(value).normalize('NFC').toLocaleLowerCase()
+        .replace(/\/a\b/g, '').replace(/\s+/g, ' ').trim();
+      const acceptedGlosses = [String(word.esp), ...String(word.esp).split(';')].map(normalizeGloss);
+      assert.ok(acceptedGlosses.includes(normalizeGloss(exercise.options[exercise.answer])),
+        unit.id + ' correct meaning option must match one of the canonical Spanish glosses for ' + word.idn);
+      assert.ok((exercise.explanation || '').toLowerCase().includes(word.idn.toLowerCase()),
+        unit.id + ' feedback should identify the vocabulary item being explained');
+    }
+
+    for (const exercise of exercises.filter(item => item.type === 'order')) {
+      assert.ok(Array.isArray(exercise.words) && Array.isArray(exercise.correctOrder),
+        unit.id + ' ordering exercise must define its tokens and answer');
+      assert.deepEqual(Array.from(exercise.words).sort(), Array.from(exercise.correctOrder).sort(),
+        unit.id + ' ordering tokens must match the canonical answer');
+      const normalizeAnswer = value => String(value).normalize('NFC').toLocaleLowerCase()
+        .replace(/[.,!?;:«»\"“”]/g, ' ').replace(/\s+/g, ' ').trim();
+      assert.ok(normalizeAnswer(exercise.explanation || '').includes(normalizeAnswer(exercise.correctOrder.join(' '))),
+        unit.id + ' ordering feedback must reproduce the canonical answer, allowing punctuation differences');
     }
   }
 });

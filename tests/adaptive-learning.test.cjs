@@ -142,3 +142,43 @@ test('adaptive dashboard connects the writing recommendation to the existing wri
   const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
   assert.match(html, /WritingPractice\.open\(\)/);
 });
+
+
+test('a matching unfinished lesson becomes actionable for the weakest scored skill', () => {
+  const result = AdaptiveLearning.recommend({
+    dueCount: 0,
+    weakWords: [],
+    nextLesson: { unitId: 'a1_u2', lessonIndex: 0, title: 'Siguiente lección' },
+    skillLesson: { unitId: 'a1_u5', lessonIndex: 1, title: 'Práctica de traducción' },
+    skillStats: {
+      translation: { attempts: 10, correct: 3 },
+      recognition: { attempts: 8, correct: 7 }
+    }
+  });
+  assert.equal(result.type, 'reinforce-skill');
+  assert.equal(result.action, 'lesson');
+  assert.equal(result.unitId, 'a1_u5');
+  assert.equal(result.lessonIndex, 1);
+  assert.match(result.title, /traducción/);
+  assert.match(result.description, /lección pendiente/);
+});
+
+test('targeted skill lessons do not override due reviews or recorded weak words', () => {
+  const focus = { translation: { attempts: 10, correct: 2 } };
+  const skillLesson = { unitId: 'a1_u5', lessonIndex: 0 };
+  assert.equal(AdaptiveLearning.recommend({ dueCount: 1, skillStats: focus, skillLesson }).action, 'review');
+  assert.equal(AdaptiveLearning.recommend({
+    dueCount: 0, weakWords: [{ id: 'w1', term: 'rumah' }], skillStats: focus, skillLesson
+  }).action, 'reinforce');
+});
+
+test('without a matching lesson, adaptive learning safely falls back to the next lesson', () => {
+  const result = AdaptiveLearning.recommend({
+    dueCount: 0,
+    weakWords: [],
+    nextLesson: { unitId: 'a1_u2', lessonIndex: 0 },
+    skillStats: { listening: { attempts: 10, correct: 3 } }
+  });
+  assert.equal(result.type, 'continue-lesson');
+  assert.equal(result.unitId, 'a1_u2');
+});

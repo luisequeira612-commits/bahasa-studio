@@ -226,3 +226,30 @@ La cobertura estructural de vocabulario ya no tiene huecos, pero la fase 2 **no 
 - El inventario A2 actual es de 492 palabras, por debajo del objetivo orientativo inicial de unas 600; no se añadirán palabras solo para alcanzar una cifra si no hay ejemplos y ejercicios coherentes.
 
 **Conclusión operativa:** la brecha de cobertura vocabulario–ejercicio está cerrada en A1 y A2. La fase 2 continúa como auditoría editorial/documental, no como validación lingüística. La siguiente fase funcional puede avanzar en paralelo sin declarar certificado el currículo.
+
+## Sexta pasada de consolidación — 2026-11-01
+
+### Regresiones de coherencia de ejercicios A2 U5–U20
+
+Se amplió la cobertura de pruebas por bloques de cuatro unidades, sin modificar vocabulario, traducciones ni estados del tracker:
+
+- U5–U8 (PR #171): las preguntas «¿Qué significa…?» deben asociar la palabra de la unidad, seleccionar exactamente su glosa española canónica y explicar el término en el feedback.
+- U9–U12 (PR #172): se comprueba la correspondencia entre palabra y glosa en preguntas de significado, y que los ejercicios de ordenar palabras conserven los mismos tokens y expliquen la solución canónica.
+- U13–U16 (PR #176): se aplican las mismas comprobaciones de significado, tokens y explicación de ordenamiento.
+- U17–U20 (PR #174): se aplican las mismas comprobaciones de significado, tokens y explicación de ordenamiento.
+
+Los cuatro PR quedaron fusionados después de CI exitoso. Las ramas temporales de #173 y #175 se cerraron al quedar desactualizadas por cambios concurrentes en el mismo archivo de pruebas; su contenido se trasladó a #176, sin perder las comprobaciones.
+
+### Límite de las nuevas pruebas
+
+Estas regresiones detectan desajustes internos entre el ID de vocabulario, la glosa, la opción seleccionada y el feedback; también detectan diferencias entre tokens de ordenamiento, solución y explicación. No prueban que una traducción sea la única posible, ni certifican naturalidad, pragmática, registro, pronunciación o adecuación MCER/BIPA. No sustituyen revisión editorial humana.
+
+### Estado operativo actualizado
+
+- PR #171, #172, #174 y #176: integrados en `main`, con CI exitoso.
+- PR #173 y #175: cerrados por quedar obsoletos; trabajo trasladado a PRs sucesores.
+- A2 U5–U20: cobertura adicional de regresión para preguntas de significado y ejercicios de ordenamiento.
+- A2 U21–U24 y U25–U40: mantienen las comprobaciones existentes descritas en pasadas anteriores.
+- La fase 2 continúa abierta: quedan por revisar los bloques no cubiertos con este mismo nivel de detalle, además de la auditoría editorial/documental y las dimensiones lingüísticas que no pueden validarse automáticamente.
+
+No se ha cambiado el inventario de 492 entradas A2, los IDs estables, IndexedDB, ni el formato de backup v3.

@@ -904,7 +904,7 @@ test('A2 U5-U8 meaning questions keep the correct option and feedback aligned wi
       assert.ok(Array.isArray(exercise.options), unit.id + ' meaning question must provide answer options');
       assert.equal(exercise.options[exercise.answer], word.esp,
         unit.id + ' correct meaning option must match the canonical Spanish gloss for ' + word.idn);
-      assert.match(exercise.explanation || '', new RegExp(word.idn.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&'), 'i'),
+      assert.ok((exercise.explanation || '').toLowerCase().includes(word.idn.toLowerCase()),
         unit.id + ' feedback should identify the vocabulary item being explained');
       assert.match(exercise.explanation || '', /significa/i,
         unit.id + ' feedback should explain the meaning rather than only repeat the answer');

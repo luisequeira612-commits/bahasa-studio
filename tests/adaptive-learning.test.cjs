@@ -246,6 +246,60 @@ test('adaptive dashboard only recommends the next unlocked A1 lesson or released
 });
 
 
+test('isolated mistakes are offered as a light review, not labelled as persistent weaknesses', () => {
+  const result = AdaptiveLearning.recommend({
+    dueCount: 0,
+    weakWords: [],
+    isolatedWords: [{ id: 'w1', term: 'makan', incorrect: 1, attempts: 1, repetition: 0 }]
+  });
+  assert.equal(result.type, 'review-isolated');
+  assert.equal(result.action, 'reinforce');
+  assert.equal(result.wordIds[0], 'w1');
+  assert.match(result.title, /error puntual/);
+  assert.doesNotMatch(result.description, /dificultad|errores repetidos/i);
+});
+
+test('persistent errors take priority over isolated mistakes and due reviews remain highest priority', () => {
+  const result = AdaptiveLearning.recommend({
+    dueCount: 0,
+    weakWords: [{ id: 'w2', term: 'berjalan', incorrect: 3, attempts: 5, repetition: 1 }],
+    isolatedWords: [{ id: 'w1', term: 'makan' }]
+  });
+  assert.equal(result.type, 'reinforce-weak');
+  assert.equal(result.wordIds[0], 'w2');
+  assert.equal(AdaptiveLearning.recommend({
+    dueCount: 2,
+    weakWords: [{ id: 'w2', term: 'berjalan', incorrect: 3 }],
+    isolatedWords: [{ id: 'w1', term: 'makan' }]
+  }).type, 'review-due');
+});
+
+test('word records with only one error are not treated as persistent weaknesses', () => {
+  const result = AdaptiveLearning.recommend({
+    dueCount: 0,
+    weakWords: [{ id: 'w1', term: 'makan', incorrect: 1 }],
+    isolatedWords: []
+  });
+  assert.equal(result.type, 'maintenance');
+});
+
+test('legacy word recommendations without error counters remain compatible', () => {
+  const result = AdaptiveLearning.recommend({
+    dueCount: 0,
+    weakWords: [{ id: 'w1', term: 'rumah' }]
+  });
+  assert.equal(result.type, 'reinforce-weak');
+});
+
+test('adaptive dashboard separates repeated word errors from isolated mistakes using SRS history', () => {
+  const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+  assert.match(html, /item\.savedForReview \|\| item\.incorrect >= 2/);
+  assert.match(html, /item\.incorrect === 1/);
+  assert.match(html, /isolatedWords,/);
+  assert.match(html, /incorrect: history\.incorrect/);
+  assert.match(html, /repetition: history\.repetition/);
+});
+
 test('adaptive recommendation action is programmatically associated with its explanation', () => {
   const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
   assert.match(html, /description\.id = 'adaptiveRecommendationDescription'/);

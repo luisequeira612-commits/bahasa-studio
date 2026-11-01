@@ -92,3 +92,25 @@ test('meaning multiple-choice answers match a registered full gloss or one of it
   }
   assert.deepEqual(mismatches, []);
 });
+
+
+test('A1/A2 multiple-choice exercises have distinct options after normalization', () => {
+  const duplicates = [];
+  const malformed = [];
+  for (const level of levels) for (const unit of level.units) {
+    for (const exercise of exercisesOf(unit)) {
+      if (exercise.type !== 'mc') continue;
+      const options = Array.isArray(exercise.options) ? exercise.options : [];
+      if (options.length < 2 || !Number.isInteger(exercise.answer) || exercise.answer < 0 || exercise.answer >= options.length) {
+        malformed.push({ level: level.id, unit: unit.id, prompt: exercise.prompt });
+        continue;
+      }
+      const normalized = options.map(normalize);
+      if (new Set(normalized).size !== normalized.length) {
+        duplicates.push({ level: level.id, unit: unit.id, prompt: exercise.prompt, options });
+      }
+    }
+  }
+  assert.deepEqual(malformed, []);
+  assert.deepEqual(duplicates, []);
+});

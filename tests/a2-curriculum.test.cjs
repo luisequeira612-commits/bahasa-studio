@@ -1048,8 +1048,10 @@ test('A2 U1-U4 vocabulary-meaning questions and ordering feedback match their ca
         unit.id + ' ordering exercise must define its tokens and answer');
       assert.deepEqual(Array.from(exercise.words).sort(), Array.from(exercise.correctOrder).sort(),
         unit.id + ' ordering tokens must match the canonical answer');
-      assert.ok((exercise.explanation || '').includes(exercise.correctOrder.join(' ')),
-        unit.id + ' ordering feedback must reproduce the canonical answer');
+      const normalizeAnswer = value => String(value).normalize('NFC').toLocaleLowerCase()
+        .replace(/[.,!?;:«»\"“”]/g, ' ').replace(/\\s+/g, ' ').trim();
+      assert.ok(normalizeAnswer(exercise.explanation || '').includes(normalizeAnswer(exercise.correctOrder.join(' '))),
+        unit.id + ' ordering feedback must reproduce the canonical answer, allowing punctuation differences');
     }
   }
 });

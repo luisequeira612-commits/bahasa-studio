@@ -241,8 +241,140 @@
                     ]
                 }
             ]
-        }
+        },
+        {
+            id: 'organizar-evento',
+            level: 'A2',
+            title: 'Organizar un evento',
+            description: 'Coordina una hora, propone un lugar y confirma los preparativos',
+            turns: [
+                {
+                    speaker: 'Maya',
+                    line: 'Kapan kita mau mengadakan acara?',
+                    translation: '¿Cuándo queremos organizar el evento?',
+                    prompt: 'Propón organizarlo el sábado por la tarde',
+                    choices: [
+                        { text: 'Bagaimana kalau hari Sabtu sore?', translation: '¿Qué tal el sábado por la tarde?', correct: true, feedback: 'Bagaimana kalau… permite proponer una opción para que la otra persona la considere.' },
+                        { text: 'Saya sudah makan tadi pagi.', translation: 'Ya comí esta mañana.', correct: false, feedback: 'Esta frase habla de una comida pasada, no propone una fecha.' },
+                        { text: 'Acara itu sangat jauh.', translation: 'Ese evento está muy lejos.', correct: false, feedback: 'Describe una distancia, no responde cuándo organizarlo.' }
+                    ]
+                },
+                {
+                    speaker: 'Maya',
+                    line: 'Di mana sebaiknya kita bertemu?',
+                    translation: '¿Dónde sería mejor encontrarnos?',
+                    prompt: 'Sugiere encontrarse en la biblioteca porque es tranquila',
+                    choices: [
+                        { text: 'Kita bertemu di perpustakaan karena tempatnya tenang.', translation: 'Nos encontramos en la biblioteca porque el lugar es tranquilo.', correct: true, feedback: 'Kita bertemu propone el lugar y karena introduce el motivo.' },
+                        { text: 'Saya belum menyelesaikan pekerjaan.', translation: 'Todavía no he terminado el trabajo.', correct: false, feedback: 'Explica una tarea pendiente, pero no propone un lugar.' },
+                        { text: 'Tolong tutup pintunya.', translation: 'Por favor, cierra la puerta.', correct: false, feedback: 'Es una petición, no una propuesta para encontrarse.' }
+                    ]
+                },
+                {
+                    speaker: 'Maya',
+                    line: 'Baik. Siapa yang akan membawa makanan?',
+                    translation: 'De acuerdo. ¿Quién llevará la comida?',
+                    prompt: 'Di que tú llevarás las bebidas y pregunta si está bien',
+                    choices: [
+                        { text: 'Saya akan membawa minuman. Bagaimana?', translation: 'Yo llevaré las bebidas. ¿Qué te parece?', correct: true, feedback: 'Akan expresa una acción futura y la pregunta invita a confirmar el plan.' },
+                        { text: 'Kemarin saya membeli sepatu.', translation: 'Ayer compré zapatos.', correct: false, feedback: 'Habla de una compra pasada, no de los preparativos.' },
+                        { text: 'Saya tidak tahu jalan pulang.', translation: 'No conozco el camino de regreso.', correct: false, feedback: 'Habla de una dirección, no de qué llevarás.' }
+                    ]
+                }
+            ]
+        },
+        {
+            id: 'pengalaman-kerja',
+            level: 'A2',
+            title: 'Hablar de experiencia laboral',
+            description: 'Describe tareas anteriores, explica una habilidad y habla de tus objetivos',
+            turns: [
+                {
+                    speaker: 'Budi',
+                    line: 'Apa pekerjaanmu sebelumnya?',
+                    translation: '¿Cuál era tu trabajo anterior?',
+                    prompt: 'Di que antes trabajabas en una tienda',
+                    choices: [
+                        { text: 'Sebelumnya, saya bekerja di toko.', translation: 'Anteriormente trabajaba en una tienda.', correct: true, feedback: 'Sebelumnya sitúa la experiencia en el pasado y bekerja di toko describe el trabajo.' },
+                        { text: 'Besok saya pergi ke pasar.', translation: 'Mañana iré al mercado.', correct: false, feedback: 'Habla de un plan futuro, no de experiencia laboral.' },
+                        { text: 'Saya sedang mencari alamat.', translation: 'Estoy buscando una dirección.', correct: false, feedback: 'Describe una acción actual sin relación con el trabajo anterior.' }
+                    ]
+                },
+                {
+                    speaker: 'Budi',
+                    line: 'Tugas apa yang biasa kamu lakukan?',
+                    translation: '¿Qué tareas solías realizar?',
+                    prompt: 'Explica que atendías a los clientes y organizabas los productos',
+                    choices: [
+                        { text: 'Saya melayani pelanggan dan mengatur barang.', translation: 'Atendía a los clientes y organizaba los productos.', correct: true, feedback: 'La respuesta menciona dos tareas concretas y relacionadas con el trabajo.' },
+                        { text: 'Saya ingin membeli tiket kereta.', translation: 'Quiero comprar un billete de tren.', correct: false, feedback: 'Expresa una intención de viaje, no tareas laborales.' },
+                        { text: 'Cuacanya sangat panas hari ini.', translation: 'Hoy hace mucho calor.', correct: false, feedback: 'Describe el clima, no tu experiencia.' }
+                    ]
+                },
+                {
+                    speaker: 'Budi',
+                    line: 'Apa tujuanmu untuk pekerjaan berikutnya?',
+                    translation: '¿Cuál es tu objetivo para el próximo trabajo?',
+                    prompt: 'Di que quieres aprender nuevas habilidades',
+                    choices: [
+                        { text: 'Saya ingin mempelajari keterampilan baru.', translation: 'Quiero aprender nuevas habilidades.', correct: true, feedback: 'Saya ingin… expresa un objetivo o deseo.' },
+                        { text: 'Saya sudah makan siang.', translation: 'Ya almorcé.', correct: false, feedback: 'Informa sobre una comida, no sobre un objetivo laboral.' },
+                        { text: 'Kantor itu berada di lantai dua.', translation: 'La oficina está en el segundo piso.', correct: false, feedback: 'Indica una ubicación, no una meta.' }
+                    ]
+                }
+            ]
+        },
+        {
+            id: 'layanan-digital',
+            level: 'A2',
+            title: 'Resolver un problema con un servicio digital',
+            description: 'Explica un problema, solicita ayuda y confirma una solución',
+            turns: [
+                {
+                    speaker: 'Petugas',
+                    line: 'Apa masalah yang Anda alami?',
+                    translation: '¿Qué problema está experimentando?',
+                    prompt: 'Explica que no puedes iniciar sesión en tu cuenta',
+                    choices: [
+                        { text: 'Saya tidak bisa masuk ke akun saya.', translation: 'No puedo iniciar sesión en mi cuenta.', correct: true, feedback: 'Tidak bisa expresa una imposibilidad y masuk ke akun describe el acceso a la cuenta.' },
+                        { text: 'Saya ingin memesan meja untuk dua orang.', translation: 'Quiero reservar una mesa para dos personas.', correct: false, feedback: 'Es una reserva de restaurante, no un problema de acceso.' },
+                        { text: 'Kemarin saya pergi ke kantor.', translation: 'Ayer fui a la oficina.', correct: false, feedback: 'Cuenta una actividad pasada, no explica el problema.' }
+                    ]
+                },
+                {
+                    speaker: 'Petugas',
+                    line: 'Apakah Anda sudah mencoba mengatur ulang kata sandi?',
+                    translation: '¿Ya intentó restablecer la contraseña?',
+                    prompt: 'Di que ya lo intentaste, pero el problema continúa',
+                    choices: [
+                        { text: 'Sudah, tetapi masalahnya masih terjadi.', translation: 'Sí, ya lo hice, pero el problema continúa.', correct: true, feedback: 'Sudah confirma que lo intentaste y tetapi introduce el contraste.' },
+                        { text: 'Belum, saya sedang makan.', translation: 'Todavía no, estoy comiendo.', correct: false, feedback: 'No confirma el intento ni explica que el problema continúa.' },
+                        { text: 'Saya tinggal dekat stasiun.', translation: 'Vivo cerca de la estación.', correct: false, feedback: 'Habla de dónde vives, no del restablecimiento.' }
+                    ]
+                },
+                {
+                    speaker: 'Petugas',
+                    line: 'Kami akan mengirim tautan bantuan melalui email.',
+                    translation: 'Le enviaremos un enlace de ayuda por correo electrónico.',
+                    prompt: 'Agradece y di que revisarás tu correo',
+                    choices: [
+                        { text: 'Terima kasih. Saya akan memeriksa email saya.', translation: 'Gracias. Revisaré mi correo electrónico.', correct: true, feedback: 'Agradece y usa akan para indicar lo que harás después.' },
+                        { text: 'Saya tidak suka makanan pedas.', translation: 'No me gusta la comida picante.', correct: false, feedback: 'Expresa una preferencia de comida, no responde a la ayuda.' },
+                        { text: 'Berapa jauh dari sini?', translation: '¿A qué distancia está de aquí?', correct: false, feedback: 'Es una pregunta sobre distancia, no una respuesta de agradecimiento.' }
+                    ]
+                }
+            ]
+        },
     ];
+
+    function isA1Complete() {
+        const app = window.App;
+        const levels = window.CourseData && window.CourseData.levels;
+        const a1 = Array.isArray(levels) ? levels.find(level => level && level.id === 'A1') : null;
+        if (!a1 || !Array.isArray(a1.units) || !Array.isArray(app && app.completedUnits)) return false;
+        return a1.units.length > 0 && a1.units.every(unit =>
+            unit && typeof unit.id === 'string' && app.completedUnits.includes(unit.id));
+    }
 
     const escapeHtml = function (value) {
         return String(value == null ? '' : value).replace(/[&<>"']/g, function (char) {
@@ -269,6 +401,10 @@
 
     const ConversationEngine = {
         scenarios: scenarios,
+        getAvailableScenarios: function () {
+            const unlockedA2 = isA1Complete();
+            return scenarios.filter(scenario => scenario.level !== 'A2' || unlockedA2);
+        },
         currentScenario: null,
         turnIndex: 0,
         score: 0,
@@ -291,7 +427,7 @@
         },
 
         start: function (scenarioId) {
-            const scenario = this.scenarios.find(function (item) { return item.id === scenarioId; });
+            const scenario = this.getAvailableScenarios().find(function (item) { return item.id === scenarioId; });
             if (!scenario) return;
             this.currentScenario = shuffledScenario(scenario);
             this.turnIndex = 0;
@@ -313,11 +449,12 @@
             if (!list || !practice) return;
             list.hidden = false;
             practice.hidden = true;
-            const cards = this.scenarios.map(function (scenario) {
+            const availableScenarios = this.getAvailableScenarios();
+            const cards = availableScenarios.map(function (scenario) {
                 return '<article class="card" style="margin:10px 0;padding:14px;">' +
                     '<h3 style="margin:0 0 6px;">' + escapeHtml(scenario.title) + '</h3>' +
                     '<p style="color:var(--text-muted);font-size:0.9rem;margin:0 0 10px;">' + escapeHtml(scenario.description) + '</p>' +
-                    '<p style="font-size:0.8rem;color:var(--text-muted);">3 turnos · Respuestas prácticas</p>' +
+                    '<p style="font-size:0.8rem;color:var(--text-muted);">' + escapeHtml(scenario.level || 'A1') + ' · 3 turnos · Respuestas prácticas</p>' +
                     '<button class="btn" type="button" data-conversation-start="' + escapeHtml(scenario.id) + '">Empezar</button>' +
                     '</article>';
             }).join('');
@@ -325,7 +462,7 @@
                 '<button class="btn btn-outline btn-sm" type="button" data-conversation-exit>← Volver al curso</button>' +
                 '<h2 style="margin-top:12px;">Conversaciones prácticas</h2>' +
                 '<p style="color:var(--text-muted);font-size:0.9rem;">Elige una situación. Escucha la frase, decide cómo responder en indonesio y recibe una explicación inmediata.</p>' +
-                cards + '</div>';
+                cards + (!isA1Complete() ? '<p class="text-muted">Completa las 32 unidades de A1 para desbloquear las conversaciones de nivel A2.</p>' : '') + '</div>';
         },
 
         renderStep: function () {

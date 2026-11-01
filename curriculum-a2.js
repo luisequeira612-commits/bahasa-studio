@@ -4928,9 +4928,9 @@ window.BAHASA_CURRICULUM_A2 = {
                                     ]
                                 },
                                 {
-                                    "title": "Lección 2: Recursos y consumo",
-                                    "objective": "Habla de ahorro de energía y uso responsable del agua.",
-                                    "grammar": "Usa harus para expresar lo que debemos hacer.",
+                                    "title": "Lección 2: Plantación, inundaciones y sequías",
+                                    "objective": "Describe la plantación de árboles y fenómenos como las inundaciones y las sequías.",
+                                    "grammar": "Usa harus para expresar obligaciones relacionadas con la prevención y el cuidado del entorno.",
                                     "vocabIds": [
                                         "a2u20_penanaman",
                                         "a2u20_banjir",

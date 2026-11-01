@@ -42,3 +42,8 @@ Total: **48 entradas, 16 lecciones y 68 ejercicios**.
 ## Siguiente paso
 
 Auditar el vocabulario usado en consignas y ejemplos contra su orden de introducción y revisar las respuestas aceptadas de U17–U20. Después, continuar con U21–U24 usando el mismo protocolo.
+
+
+## Corrección de coherencia didáctica — U20, Lección 2 (2026-11-01)
+
+El título y el objetivo originales («Recursos y consumo» / ahorro de energía y uso responsable del agua) no describían el vocabulario realmente agrupado en la lección: penanaman (plantación), banjir (inundación) y kekeringan (sequía). Se alinearon el título, el objetivo y la explicación de harus con esos tres conceptos y con prevención ambiental. No se modificaron las palabras, ejemplos ni respuestas indonesias. Se añadió una prueba de regresión para el foco y la cobertura de ejercicios.

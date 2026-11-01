@@ -1342,3 +1342,49 @@ test('A2 U5-U8 never assess a new verb before its lesson introduction', () => {
     });
   }
 });
+
+
+test('A2 U9-U12 introduce every new vocabulary item before assessing it', () => {
+  const units = a2.units.slice(8, 12);
+  assert.deepEqual(Array.from(units, unit => unit.id), ['a2_u9', 'a2_u10', 'a2_u11', 'a2_u12']);
+
+  for (const unit of units) {
+    const unitVocabIds = new Set(unit.vocab.map(word => word.id));
+    const introducedAt = new Map();
+
+    unit.lessons.forEach((lesson, lessonIndex) => {
+      assert.ok(lesson.title && lesson.objective && lesson.grammar,
+        unit.id + ' lessons must explain their learning focus');
+      for (const id of lesson.vocabIds || []) {
+        assert.ok(unitVocabIds.has(id),
+          unit.id + ' introduces vocabulary outside its own unit: ' + id);
+        assert.ok(!introducedAt.has(id),
+          unit.id + ' introduces the same vocabulary item more than once: ' + id);
+        introducedAt.set(id, lessonIndex);
+      }
+    });
+
+    assert.equal(introducedAt.size, unit.vocab.length,
+      unit.id + ' must introduce every new vocabulary item in a lesson');
+
+    unit.lessons.forEach((lesson, lessonIndex) => {
+      const declaredReview = new Set(lesson.reviewVocabIds || []);
+      for (const exercise of lesson.exercises || []) {
+        const references = [
+          ...(typeof exercise.vocabId === 'string' ? [exercise.vocabId] : []),
+          ...(Array.isArray(exercise.vocabIds) ? exercise.vocabIds : [])
+        ];
+        for (const id of references) {
+          if (!unitVocabIds.has(id)) continue;
+          const firstLesson = introducedAt.get(id);
+          assert.ok(Number.isInteger(firstLesson),
+            unit.id + ' exercise references a new word absent from all lesson introductions: ' + id);
+          assert.ok(firstLesson <= lessonIndex || declaredReview.has(id),
+            unit.id + ' assesses ' + id + ' before its introduction in lesson ' + (firstLesson + 1));
+        }
+        assert.ok(exercise.prompt && exercise.explanation,
+          unit.id + ' exercises must include a prompt and feedback');
+      }
+    });
+  }
+});

@@ -696,3 +696,17 @@ test('A2 U6-U8 word-order feedback matches each prompt and canonical answer', ()
     assert.equal(exercise.words.slice().sort().join(' '), exercise.correctOrder.slice().sort().join(' '));
   }
 });
+
+
+test('A2 U15 distinguishes proposing from inviting in vocabulary feedback', () => {
+  const unit = a2.units.find(entry => entry.id === 'a2_u15');
+  assert.ok(unit);
+  const lesson = unit.lessons.find(entry => entry.title.includes('Hacer una invitación'));
+  assert.ok(lesson);
+  const exercise = lesson.exercises.find(entry => entry.vocabId === 'a2u15_mengusulkan' && entry.type === 'mc');
+  assert.ok(exercise);
+  assert.equal(exercise.options[exercise.answer], 'Proponer');
+  assert.match(exercise.explanation, /mengusulkan significa proponer/);
+  assert.match(exercise.explanation, /mengundang significa invitar/);
+  assert.doesNotMatch(exercise.explanation, /mengusulkan significa invitar/);
+});

@@ -65,8 +65,8 @@ test('classifies a shared vocabulary ID for the same Indonesian term as informat
   const report = auditCurriculum({
     id: 'A1',
     units: [
-      { id: 'u1', title: 'One', vocab: [{ id: 'makan', idn: 'Makan', esp: 'Comer' }], exercises: [] },
-      { id: 'u2', title: 'Two', vocab: [{ id: 'makan', idn: 'makan', esp: 'Comer' }], exercises: [] },
+      { id: 'u1', title: 'One', vocab: [{ id: 'makan', idn: 'Makan', esp: 'Comer', ex: 'Saya makan', exEsp: 'Yo como' }], exercises: [{ vocabId: 'makan', type: 'listen', prompt: 'Listen' }] },
+      { id: 'u2', title: 'Two', vocab: [{ id: 'makan', idn: 'makan', esp: 'Comer', ex: 'Saya makan', exEsp: 'Yo como' }], exercises: [{ vocabId: 'makan', type: 'listen', prompt: 'Listen' }] },
     ],
   });
   assert.equal(report.error_count, 0);

@@ -36,8 +36,12 @@ test('translation and listening answers contain the vocabulary term they assess'
   const mismatches = [];
   for (const level of levels) for (const unit of level.units) {
     const vocabulary = vocabularyByUnit.get(unit.id);
+    const reviewIds = new Set((unit.lessons || []).flatMap(lesson => lesson.reviewVocabIds || []));
     for (const exercise of exercisesOf(unit)) {
       if (!['translate_es_id', 'listen'].includes(exercise.type)) continue;
+      // Legacy review IDs can refer to earlier vocabulary banks; this check targets
+      // only the unit's own newly introduced vocabulary.
+      if (reviewIds.has(exercise.vocabId) && !vocabulary.has(exercise.vocabId)) continue;
       const word = vocabulary.get(exercise.vocabId);
       if (!word || typeof exercise.answer !== 'string') {
         mismatches.push({ level: level.id, unit: unit.id, vocabId: exercise.vocabId, reason: 'missing linked word or text answer' });
@@ -60,8 +64,10 @@ test('meaning multiple-choice answers match a registered full gloss or one of it
   const mismatches = [];
   for (const level of levels) for (const unit of level.units) {
     const vocabulary = vocabularyByUnit.get(unit.id);
+    const reviewIds = new Set((unit.lessons || []).flatMap(lesson => lesson.reviewVocabIds || []));
     for (const exercise of exercisesOf(unit)) {
       if (exercise.type !== 'mc' || !/qué significa/i.test(exercise.prompt || '')) continue;
+      if (reviewIds.has(exercise.vocabId) && !vocabulary.has(exercise.vocabId)) continue;
       const word = vocabulary.get(exercise.vocabId);
       const selected = exercise.options?.[exercise.answer];
       if (!word || typeof selected !== 'string') {

@@ -212,7 +212,7 @@ test('the best matching unfinished lesson is selected by relevant exercise cover
   const before = JSON.stringify(lessons);
   const selected = AdaptiveLearning.selectSkillLesson('translation', lessons);
   assert.deepEqual(JSON.parse(JSON.stringify(selected)), {
-    unitId: 'a2_u3', lessonIndex: 1, unitTitle: undefined, title: 'Más práctica'
+    unitId: 'a2_u3', lessonIndex: 1, title: 'Más práctica'
   });
   assert.equal(JSON.stringify(lessons), before, 'selection must not mutate curriculum data');
 });

@@ -3077,10 +3077,12 @@ Requisitos:
                 const heading = document.createElement('h3');
                 heading.textContent = recommendation.title;
                 const description = document.createElement('p');
+                description.id = 'adaptiveRecommendationDescription';
                 description.textContent = recommendation.description;
                 description.style.color = 'var(--text-muted)';
                 const button = document.createElement('button');
                 button.type = 'button';
+                button.setAttribute('aria-describedby', description.id);
                 button.className = 'btn';
                 button.textContent = recommendation.label;
                 button.disabled = recommendation.action === 'none';

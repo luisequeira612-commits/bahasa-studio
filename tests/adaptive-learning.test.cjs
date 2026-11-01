@@ -199,3 +199,39 @@ test('weakest-skill selection ignores missing, negative, fractional, and excessi
     translation: { attempts: 10 }
   }), null, 'malformed counters must not be interpreted as zero-percent accuracy');
 });
+
+
+test('the best matching unfinished lesson is selected by relevant exercise coverage', () => {
+  const lessons = [
+    { unitId: 'a1_u2', lessonIndex: 0, title: 'Primera', exercises: [{ type: 'translate_es_id' }] },
+    { unitId: 'a2_u3', lessonIndex: 1, title: 'Más práctica', exercises: [
+      { type: 'translate_es_id' }, { type: 'translate_es_id' }, { type: 'mc' }
+    ] },
+    { unitId: 'a1_u4', lessonIndex: 0, title: 'No coincide', exercises: [{ type: 'mc' }] }
+  ];
+  const before = JSON.stringify(lessons);
+  const selected = AdaptiveLearning.selectSkillLesson('translation', lessons);
+  assert.deepEqual(JSON.parse(JSON.stringify(selected)), {
+    unitId: 'a2_u3', lessonIndex: 1, unitTitle: undefined, title: 'Más práctica'
+  });
+  assert.equal(JSON.stringify(lessons), before, 'selection must not mutate curriculum data');
+});
+
+test('skill lesson selection keeps the earliest lesson on equal coverage and ignores invalid candidates', () => {
+  const selected = AdaptiveLearning.selectSkillLesson('listening', [
+    null,
+    { unitId: '', lessonIndex: 0, exercises: [{ audioText: true }] },
+    { unitId: 'a1_u3', lessonIndex: 0, exercises: [{ audioText: true }] },
+    { unitId: 'a2_u1', lessonIndex: 2, exercises: [{ type: 'listen' }] }
+  ]);
+  assert.equal(selected.unitId, 'a1_u3');
+  assert.equal(AdaptiveLearning.selectSkillLesson('conversation', [
+    { unitId: 'a1_u1', lessonIndex: 0, exercises: [{ type: 'listen' }] }
+  ]), null);
+});
+
+test('adaptive dashboard delegates targeted lesson selection to exercise coverage', () => {
+  const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+  assert.match(html, /skillLessons\.push\(/);
+  assert.match(html, /AdaptiveLearning\.selectSkillLesson\(weakestSkill\.key, skillLessons\)/);
+});

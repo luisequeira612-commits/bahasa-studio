@@ -25,7 +25,7 @@ test('A2 U12 lesson titles, objectives and grammar match their vocabulary groups
     ['mejorar', 'desarrollar', 'destrezas', 'meningkatkan', 'mengembangkan', 'keterampilan']
   ];
   unit.lessons.forEach((lesson, index) => {
-    const content = [lesson.title, lesson.objective, lesson.grammar].join(' ').toLocaleLowerCase('es').normalize('NFD').replace(/[\\u0300-\\u036f]/g, '');
+    const content = [lesson.title, lesson.objective, lesson.grammar].join(' ').toLocaleLowerCase('es').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
     for (const term of expected[index]) assert.ok(content.includes(term), lesson.title + ' should mention ' + term);
     const exerciseIds = new Set(lesson.exercises.map(exercise => exercise.vocabId));
     for (const id of lesson.vocabIds) assert.ok(exerciseIds.has(id), lesson.title + ' must assess ' + id);

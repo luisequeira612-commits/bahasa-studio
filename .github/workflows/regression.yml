@@ -47,6 +47,8 @@ jobs:
         run: node --test tests/a2-u20-lesson-focus.test.cjs
       - name: Run A2 U21-U24 lesson focus tests
         run: node --test tests/a2-u21-u24-lesson-focus.test.cjs
+      - name: Run A2 U25-U28 lesson focus tests
+        run: node --test tests/a2-u25-u28-lesson-focus.test.cjs
       - name: Run A1/A2 exercise vocabulary alignment tests
         run: node --test tests/exercise-vocabulary-alignment.test.cjs
       - name: Run exercise answer-to-vocabulary alignment tests

@@ -1116,3 +1116,23 @@ test('A2 U18 explicitly distinguishes Indonesian pagar from the Spanish verb pag
   assert.match(curriculum, /«pagar» significa «cerca», no el verbo español «pagar»/);
   assert.match(curriculum, /Pagar rumah itu tinggi\./);
 });
+
+test('A2 U25-U28 editorial audit records bounded findings without claiming linguistic certification', () => {
+  const audit = fs.readFileSync(path.join(__dirname, '..', 'docs/A2-UNITS-25-28-AUDIT.md'), 'utf8');
+  for (const unit of ['U25', 'U26', 'U27', 'U28']) assert.match(audit, new RegExp('\\b' + unit + '\\b'));
+  assert.match(audit, /48 entradas/);
+  assert.match(audit, /16 lecciones/);
+  assert.match(audit, /68 ejercicios/);
+  assert.match(audit, /revisión lingüística independiente pendiente/);
+  assert.match(audit, /No hubo hablante nativo disponible/);
+  assert.match(audit, /KBBI no es requisito/);
+  assert.match(audit, /kelurahan/);
+  assert.match(audit, /No se modificaron IndexedDB, el formato de backup v3/);
+});
+
+test('A2 U25 keeps bumbu and rempah as distinct contextual vocabulary targets', () => {
+  const curriculum = fs.readFileSync(path.join(__dirname, '..', 'curriculum-a2.js'), 'utf8');
+  assert.match(curriculum, /¿Qué significa «bumbu»?/);
+  assert.match(curriculum, /La frase utiliza «rempah»/);
+  assert.match(curriculum, /«bumbu» significa «Condimento»/);
+});

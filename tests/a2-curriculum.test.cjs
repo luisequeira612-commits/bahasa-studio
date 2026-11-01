@@ -1170,3 +1170,25 @@ test('A2 U29-U32 audit preserves distinctions between related customer service a
   assert.match(audit, /pernikahan/);
   assert.match(audit, /peresmian/);
 });
+
+test('A2 U33-U36 editorial audit records bounded findings without claiming linguistic certification', () => {
+  const audit = fs.readFileSync(path.join(__dirname, '..', 'docs/A2-UNITS-33-36-AUDIT.md'), 'utf8');
+  for (const unit of ['U33', 'U34', 'U35', 'U36']) assert.match(audit, new RegExp('\\b' + unit + '\\b'));
+  assert.match(audit, /48 entradas/);
+  assert.match(audit, /16 lecciones/);
+  assert.match(audit, /68 ejercicios/);
+  assert.match(audit, /revisión lingüística independiente pendiente/);
+  assert.match(audit, /No hubo hablante nativo disponible/);
+  assert.match(audit, /KBBI no es requisito/);
+  assert.match(audit, /no es asesoramiento financiero/);
+  assert.match(audit, /No se modificaron IndexedDB, el formato de backup v3/);
+});
+
+test('A2 U33-U36 audit keeps administrative, financial and decision terms distinct', () => {
+  const audit = fs.readFileSync(path.join(__dirname, '..', 'docs/A2-UNITS-33-36-AUDIT.md'), 'utf8');
+  assert.match(audit, /kabupaten/);
+  assert.match(audit, /pemasukan/);
+  assert.match(audit, /pengeluaran/);
+  assert.match(audit, /keuntungan/);
+  assert.match(audit, /kerugian/);
+});

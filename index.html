@@ -455,7 +455,7 @@
                 const language=exercise.answerLanguage||(exercise.type==='translate_id_es'?'es':'id');
                 const normalizedInput=normalize(input,language);
                 const alternatives=Array.isArray(exercise.acceptedAnswers)?exercise.acceptedAnswers
-                    .filter(item=>typeof item==='string'||(item&&item.status!=='pending-review'&&item.status!=='pending_review'&&typeof item.text==='string'))
+                    .filter(item=>typeof item==='string'||(item&&typeof item.text==='string'&&(!item.status||item.status==='approved')))
                     .map(item=>typeof item==='string'?item:item.text):[];
                 const candidates=[typeof exercise.answer==='string'?exercise.answer:'',...alternatives]
                     .flatMap(answer=>optionalVariants(normalize(answer,language),exercise.optionalWords,language)).filter(Boolean);

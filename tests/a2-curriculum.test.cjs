@@ -1096,3 +1096,24 @@ test('A2 U13-U16 editorial audit records bounded findings without claiming lingu
   assert.match(audit, /mengundang/);
   assert.match(audit, /No se modificaron IndexedDB, el formato de backup v3/);
 });
+
+test('A2 U17-U20 editorial audit records bounded findings and preserves the pagar distinction', () => {
+  const audit = fs.readFileSync(path.join(__dirname, '..', 'docs/A2-UNITS-17-20-AUDIT.md'), 'utf8');
+  for (const unit of ['U17', 'U18', 'U19', 'U20']) assert.match(audit, new RegExp('\\b' + unit + '\\b'));
+  assert.match(audit, /48 entradas/);
+  assert.match(audit, /16 lecciones/);
+  assert.match(audit, /68 ejercicios/);
+  assert.match(audit, /revisión lingüística independiente pendiente/);
+  assert.match(audit, /No hubo hablante nativo disponible/);
+  assert.match(audit, /KBBI no es requisito/);
+  assert.match(audit, /pagar.*significa «cerca»/);
+  assert.match(audit, /No se modificaron IndexedDB, el formato de backup v3/);
+});
+
+test('A2 U18 explicitly distinguishes Indonesian pagar from the Spanish verb pagar', () => {
+  const curriculum = fs.readFileSync(path.join(__dirname, '..', 'curriculum-a2.js'), 'utf8');
+  const pagarIndex = curriculum.indexOf('"pagar" significa "Cerca"');
+  assert.notEqual(pagarIndex, -1, 'U18 must explain the Indonesian word pagar');
+  const context = curriculum.slice(pagarIndex, pagarIndex + 1800);
+  assert.match(context, /no el verbo español «pagar»/);
+});

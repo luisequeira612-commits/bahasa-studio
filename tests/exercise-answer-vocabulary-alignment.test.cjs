@@ -96,7 +96,7 @@ test('meaning multiple-choice answers match a registered full gloss or one of it
 
 function normalizeOption(value) {
   return String(value ?? '').toLocaleLowerCase('es').normalize('NFC')
-    .replace(/[^\\p{L}\\p{N}\\s]/gu, ' ').replace(/\\s+/g, ' ').trim();
+    .replace(/[^\p{L}\p{N}\s]/gu, ' ').replace(/\s+/g, ' ').trim();
 }
 
 test('A1/A2 multiple-choice exercises have distinct options after normalization', () => {

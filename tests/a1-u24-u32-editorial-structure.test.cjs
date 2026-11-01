@@ -35,3 +35,21 @@ test('A1 U24-U32 retain complete bilingual examples and core exercise modalities
     }
   }
 });
+
+
+test('A1 U24-U25 exercise wording stays aligned with corrected vocabulary glosses', () => {
+  const unit24 = a1.units.find(unit => unit.id === 'a1_u24');
+  const eraserExercise = unit24.exercises.find(exercise => exercise.vocabId === 'v388' && exercise.type === 'order');
+  assert.ok(eraserExercise);
+  assert.match(eraserExercise.prompt, /goma de borrar/i);
+  assert.match(eraserExercise.explanation, /goma de borrar/i);
+  assert.doesNotMatch(eraserExercise.prompt + ' ' + eraserExercise.explanation, /borrador/i);
+
+  const unit25 = a1.units.find(unit => unit.id === 'a1_u25');
+  const painting = unit25.vocab.find(word => word.id === 'v399');
+  const paintingExercise = unit25.exercises.find(exercise => exercise.vocabId === 'v399' && exercise.type === 'mc');
+  assert.equal(painting.esp, 'Pintar');
+  assert.match(painting.exEsp, /Me gusta pintar/);
+  assert.match(paintingExercise.explanation, /significa pintar/i);
+  assert.doesNotMatch(paintingExercise.explanation, /hacer dibujos/i);
+});

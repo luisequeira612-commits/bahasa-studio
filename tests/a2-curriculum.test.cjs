@@ -627,6 +627,36 @@ test('A2 U4 includes integrated daily-schedule writing with two timed activities
 });
 
 
+test('A2 U3 sequence-writing model answer includes the full Indonesian sequence', () => {
+  const unit = a2.units.find(entry => entry.id === 'a2_u3');
+  assert.ok(unit);
+  const lesson = unit.lessons.find(entry => entry.title.includes('Primero y después'));
+  assert.ok(lesson);
+  const exercise = lesson.exercises.find(entry => entry.type === 'write' && entry.vocabId === 'a2u3_pertama');
+  assert.ok(exercise);
+  assert.match(exercise.prompt, /conserva en indonesio la secuencia/);
+  assert.match(exercise.modelAnswer, /Pertama, saya makan\. Lalu, saya minum air\./);
+});
+
+test('A2 U14 listening and writing exercises match their target travel vocabulary', () => {
+  const unit = a2.units.find(entry => entry.id === 'a2_u14');
+  assert.ok(unit);
+  const lessons = unit.lessons;
+  const cases = [
+    { lesson: 'Preparar un viaje', vocabId: 'a2u14_mendarat', type: 'listen', answer: 'Pesawat mendarat pagi ini.' },
+    { lesson: 'Estaciones, puertos y billetes', vocabId: 'a2u14_bagasi', type: 'write', answer: 'Bagasi saya berat.' },
+    { lesson: 'Medios de transporte', vocabId: 'a2u14_kendaraan', type: 'write', answer: 'Kendaraan itu besar.' }
+  ];
+  for (const item of cases) {
+    const lesson = lessons.find(entry => entry.title.includes(item.lesson));
+    assert.ok(lesson, item.lesson + ' should exist');
+    const exercise = lesson.exercises.find(entry => entry.type === item.type && entry.vocabId === item.vocabId);
+    assert.ok(exercise, item.vocabId + ' should exist');
+    assert.equal(item.type === 'listen' ? exercise.answer : exercise.modelAnswer, item.answer);
+    if (item.type === 'write') assert.match(exercise.hint, new RegExp(item.answer.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
+  }
+});
+
 test('A2 U9-U12 word-order feedback matches each prompt and canonical answer', () => {
   const cases = [
     { unitId: 'a2_u9', vocabId: 'a2u9_menurut', prompt: 'Ordena: En mi opinión, él o ella está de acuerdo.', sentence: 'Menurut saya, dia setuju' },

@@ -123,6 +123,14 @@ test('A2 units 5-8 teach ber- and meN- forms in structured multi-lesson units', 
       for (const id of lesson.vocabIds) assert.ok(unit.vocab.some(word => word.id === id), unit.id + ' lesson has unknown new vocabulary');
       for (const exercise of lesson.exercises || []) {
         assert.ok(exercise.vocabId && knownIds.has(exercise.vocabId), unit.id + ' exercise must use canonical vocabulary');
+        if (exercise.type === 'write') {
+          const target = unit.vocab.find(word => word.id === exercise.vocabId);
+          assert.ok(target, unit.id + ' writing exercise must target vocabulary introduced in its unit');
+          assert.ok(exercise.modelAnswer && exercise.modelAnswer.toLocaleLowerCase().includes(target.idn.toLocaleLowerCase()),
+            unit.id + ' writing model answer must include the requested form ' + target.idn);
+          assert.ok(exercise.prompt && exercise.prompt.toLocaleLowerCase().includes(target.idn.toLocaleLowerCase()),
+            unit.id + ' writing prompt must name the form being practiced ' + target.idn);
+        }
       }
     }
     for (const word of unit.vocab) {

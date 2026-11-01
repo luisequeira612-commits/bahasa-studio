@@ -26,6 +26,37 @@
         return candidates[0] || null;
     }
 
+    function selectSkillLesson(skill, lessons) {
+        if (!Object.prototype.hasOwnProperty.call(SKILL_LABELS, skill) || !Array.isArray(lessons)) return null;
+        const typeSkills = {
+            mc: 'recognition',
+            match: 'recognition',
+            translate_es_id: 'translation',
+            listen: 'listening',
+            order: 'sentenceBuilding',
+            write: 'writing'
+        };
+        let best = null;
+        let bestMatches = 0;
+        lessons.forEach((lesson, index) => {
+            if (!lesson || typeof lesson.unitId !== 'string' || !lesson.unitId ||
+                !Number.isInteger(lesson.lessonIndex) || lesson.lessonIndex < 0 ||
+                !Array.isArray(lesson.exercises)) return;
+            const matches = lesson.exercises.filter(exercise => exercise &&
+                (exercise.audioText || typeSkills[exercise.type]) === skill).length;
+            if (matches > bestMatches) {
+                bestMatches = matches;
+                best = {
+                    unitId: lesson.unitId,
+                    lessonIndex: lesson.lessonIndex,
+                    unitTitle: lesson.unitTitle,
+                    title: lesson.title
+                };
+            }
+        });
+        return best;
+    }
+
     function contextualize(recommendation, focus) {
         if (!focus) return recommendation;
         return Object.assign({}, recommendation, {
@@ -127,5 +158,5 @@
         }, focus);
     }
 
-    root.AdaptiveLearning = Object.freeze({ recommend, weakestSkill });
+    root.AdaptiveLearning = Object.freeze({ recommend, weakestSkill, selectSkillLesson });
 })(typeof window !== 'undefined' ? window : globalThis);

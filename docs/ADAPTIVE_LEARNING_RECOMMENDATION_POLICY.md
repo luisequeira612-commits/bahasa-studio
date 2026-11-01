@@ -16,7 +16,7 @@ No se crea un esquema de persistencia nuevo, no se envían datos a servicios ext
 ## Orden de prioridad
 
 1. **Repaso vencido:** si hay tarjetas cuyo `nextReview` ya venció o se guardaron explícitamente para repasar, ofrecer la sesión SRS existente.
-2. **Refuerzo de palabras difíciles:** si no hay repaso vencido, ofrecer hasta cinco palabras con errores recientes y menos de cuatro repeticiones. Solo se marcan para repaso después de que el estudiante pulse el botón.
+2. **Refuerzo de palabras difíciles:** si no hay repaso vencido, ofrecer hasta cinco palabras con errores registrados y menos de cuatro repeticiones. Solo se marcan para repaso después de que el estudiante pulse el botón.
 3. **Siguiente lección:** si no hay repaso ni palabras difíciles, continuar con la primera lección incompleta de A1 o de otro nivel ya desbloqueado.
 4. **Conversación:** si no hay una lección disponible y el objetivo diario sigue abierto, sugerir una conversación práctica.
 5. **Mantenimiento:** si no hay una tarea urgente, indicar que no hay actividad pendiente.
@@ -38,7 +38,7 @@ No se crea un esquema de persistencia nuevo, no se envían datos a servicios ext
 ## Próximas mejoras antes de ampliar el alcance
 
 - Evaluar si conviene adaptar por habilidad (lectura, escucha, escritura, conversación), una vez que las actividades registren resultados comparables.
-- Definir ventanas temporales para distinguir errores recientes de errores antiguos.
+- Añadir marcas temporales a los eventos de error antes de describirlos como recientes o priorizarlos por recencia. El esquema actual agrega errores sin conservar su fecha.
 - Recoger telemetría solo si se diseña con consentimiento y minimización de datos; la implementación actual no añade telemetría.
 - Calibrar prioridades con pruebas de usabilidad antes de modificar las reglas.
 

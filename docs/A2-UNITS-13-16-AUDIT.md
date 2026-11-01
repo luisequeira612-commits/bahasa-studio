@@ -47,3 +47,10 @@ Revisar referencias de vocabulario de U13–U16 contra el orden de introducción
 ## Corrección de texto en U14 (2026-11-01)
 
 Se detectó un error ortográfico evidente en el objetivo de la Lección 3: «Habla de vehículoes y autoangkutanes». Se sustituyó por «Habla de vehículos, medios de transporte y retrasos», que describe los tres conceptos del grupo de vocabulario (kendaraan, angkutan y tertunda). No se modificaron las formas indonesias, los ejemplos ni las respuestas. Se añadió una prueba de regresión para el texto y la cobertura de los tres IDs.
+
+## Correcciones editoriales de alineación (2026-11-01)
+
+- U14, Lección 2: el título «Estaciones, puertos y billetes» nombraba estaciones, aunque sus tres objetivos de vocabulario son equipaje, puerto y billete. Se cambió a «Equipaje, puertos y billetes» para reflejar exactamente el contenido existente.
+- U16, Lección 4: el objetivo mencionaba el tiempo, pero las formas enseñadas son `berfoto`, `pemandangan` y `menyenangkan`. Se sustituyó por «Describe una experiencia mediante fotografías y paisajes».
+- Se añadieron pruebas de regresión que fijan títulos/objetivos y los IDs de vocabulario asociados.
+- Son ajustes de coherencia didáctica en español; no constituyen validación lingüística del indonesio.

@@ -12,8 +12,13 @@ const elements = {
   conversationPracticeArea: { hidden: true, innerHTML: '' }
 };
 const recordedSessions = [];
+const recordedAnswers = [];
 const sandbox = {
-  App: { recordSkillSession(skill) { recordedSessions.push(skill); return Promise.resolve(); }, switchView() {} },
+  App: {
+    recordSkillSession(skill) { recordedSessions.push(skill); return Promise.resolve(); },
+    recordSkillActivity(skill, isCorrect) { recordedAnswers.push([skill, isCorrect]); return Promise.resolve(); },
+    switchView() {}
+  },
   window: {},
   Math: Object.assign(Object.create(Math), { random: () => 0 }),
   document: {
@@ -372,3 +377,29 @@ test('conversation turn changes are announced politely to assistive technology i
   assert.match(elements.conversationPracticeArea.innerHTML,
     /role="status" aria-live="polite" aria-atomic="true"[^>]*>Turno 2 de 3 · práctica libre/);
 });
+
+test('guided conversation choices record correct and incorrect attempts in the local skill profile', () => {
+  const engine = sandbox.window.ConversationEngine;
+  recordedAnswers.length = 0;
+  engine.start('greetings');
+  const wrongIndex = engine.currentScenario.turns[0].choices.findIndex(choice => !choice.correct);
+  engine.choose(wrongIndex);
+  assert.deepEqual(recordedAnswers, [['conversation', false]]);
+
+  engine.next();
+  const correctIndex = engine.currentScenario.turns[1].choices.findIndex(choice => choice.correct);
+  engine.choose(correctIndex);
+  assert.deepEqual(recordedAnswers, [['conversation', false], ['conversation', true]]);
+});
+
+test('free-response conversation attempts are not scored or added to the guided skill profile', () => {
+  const engine = sandbox.window.ConversationEngine;
+  recordedAnswers.length = 0;
+  engine.start('greetings');
+  engine.useFreeResponse();
+  elements.conversationFreeResponse = { value: 'Halo, saya baik.' };
+  engine.showFreeExample();
+  assert.deepEqual(recordedAnswers, []);
+  assert.equal(engine.score, 0);
+});
+

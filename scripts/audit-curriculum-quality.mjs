@@ -290,11 +290,13 @@ async function main() {
     const source = await readFile(resolve(filename), 'utf8');
     curricula.push(loadCurriculum(source, globalName, filename));
   }
-  const allVocabIds = new Set(curricula.flatMap((curriculum) =>
-    curriculum.units.flatMap((unit) => (unit.vocab ?? []).map((word) => word?.id).filter((id) => typeof id === 'string'))
-  ));
+  const a1VocabularyIds = new Set(
+    (curricula.find((curriculum) => curriculum.id === 'A1')?.units ?? [])
+      .flatMap((unit) => (unit.vocab ?? []).map((word) => word?.id))
+      .filter((id) => typeof id === 'string')
+  );
   const reports = curricula.map((curriculum) =>
-    auditCurriculum(curriculum, curriculum.id, allVocabIds)
+    auditCurriculum(curriculum, curriculum.id, curriculum.id === 'A2' ? a1VocabularyIds : [])
   );
   const report = {
     schema_version: 1,

@@ -45,3 +45,10 @@ Total: **48 entradas, 16 lecciones y 68 ejercicios**.
 ## Siguiente paso
 
 Continuar con U37–U40 y después realizar una pasada de correspondencia entre consignas, vocabulario vinculado, ejemplos y respuestas aceptadas en los 40 bloques A2.
+
+
+## Correcciones de coherencia didáctica — U33–U36 (2026-11-01)
+
+Se alinearon objetivos y explicaciones con los grupos existentes: provincias/distritos/fronteras; habitantes/regiones/costa; interior/llanuras/cordilleras; islas/estrechos/bahías; agradecimientos/costumbres/comportamiento; registros formales/informales y respeto; turnos/interrupciones/contacto visual; presupuestos/ingresos/gastos; ahorro/inversión/cuotas; prioridades/necesidades/deseos; gastos imprevistos/fondo de emergencia/gasto innecesario; consideraciones/riesgos/ventajas; pérdidas/alternativas/consecuencias; compromisos/acuerdos/planes alternativos; y evaluación/pasos siguientes.
+
+Se conservaron las palabras y respuestas indonesias. La prueba de regresión comprueba los focos y la cobertura de ejercicios; no certifica naturalidad ni equivalencia lingüística.

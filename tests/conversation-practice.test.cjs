@@ -128,3 +128,52 @@ test('completed conversations record only an aggregate session counter', () => {
   assert.match(source, /tus respuestas no se guardan/);
   assert.doesNotMatch(source, /DB\.set|localStorage|indexedDB|MediaRecorder/);
 });
+
+
+// This fixture locks the manually audited learner-facing answer/translation pairs.
+// It is a regression guard, not a claim of native-speaker linguistic certification.
+test('all 18 guided conversation answers retain their audited Spanish meanings', () => {
+  const expected = {
+    greetings: [
+      ['Halo! Baik, terima kasih.', '¡Hola! Bien, gracias.'],
+      ['Nama saya Ana.', 'Me llamo Ana.'],
+      ['Senang bertemu denganmu juga.', 'Encantado/a de conocerte también.']
+    ],
+    restaurant: [
+      ['Saya mau nasi goreng, tolong.', 'Quisiera pedir arroz frito, por favor.'],
+      ['Tidak, tanpa cabai, ya.', 'No, sin chile, por favor.'],
+      ['Saya mau air putih.', 'Quiero agua.']
+    ],
+    shopping: [
+      ['Saya mau beli kaus ini.', 'Quiero comprar esta camiseta.'],
+      ['Baik, saya beli.', 'De acuerdo, lo compro.'],
+      ['Saya bayar tunai.', 'Pago en efectivo.']
+    ],
+    travel: [
+      ['Saya mau ke stasiun.', 'Quiero ir a la estación.'],
+      ['Saya naik bus.', 'Voy en autobús.'],
+      ['Halte bus di sebelah kiri.', 'La parada de autobús está a la izquierda.']
+    ],
+    friends: [
+      ['Baik. Kamu apa kabar?', 'Bien. ¿Y tú cómo estás?'],
+      ['Saya suka membaca buku.', 'Me gusta leer libros.'],
+      ['Ya, boleh. Terima kasih.', 'Sí, me gustaría. Gracias.']
+    ],
+    help: [
+      ['Tentu. Ada apa?', 'Por supuesto. ¿Qué ocurre?'],
+      ['Rumah sakit di sebelah kiri.', 'El hospital está a la izquierda.'],
+      ['Sama-sama.', 'De nada.']
+    ]
+  };
+
+  for (const [scenarioId, turns] of Object.entries(expected)) {
+    const scenario = scenarios.find(item => item.id === scenarioId);
+    assert.ok(scenario, 'missing scenario: ' + scenarioId);
+    turns.forEach(([answer, translation], index) => {
+      const correct = scenario.turns[index].choices.filter(choice => choice.correct);
+      assert.equal(correct.length, 1, scenarioId + ' turn ' + (index + 1));
+      assert.deepEqual([correct[0].text, correct[0].translation], [answer, translation],
+        scenarioId + ' turn ' + (index + 1) + ' answer/translation pair changed');
+    });
+  }
+});

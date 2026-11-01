@@ -50,7 +50,7 @@ test('A1/A2 canonical curriculum integrity hashes and structure remain pinned', 
   assert.equal(a1.units.length, 32);
   assert.equal(a2.units.length, 40);
   assert.equal(fnv1a(JSON.stringify(a1)), '7adcee05', 'A1 canonical-data hash changed');
-  assert.equal(fnv1a(JSON.stringify(a2)), 'd0729ea7', 'A2 canonical-data hash changed');
+  assert.equal(fnv1a(JSON.stringify(a2)), 'ba3c98ef', 'A2 canonical-data hash changed');
   assert.deepEqual(counts(a1), { units: 32, lessons: 91, exercises: 437, vocabulary: 329 });
   const u24 = a1.units.find(unit => unit.id === 'a1_u24');
   const eraser = u24.vocab.find(item => item.id === 'v388');

@@ -130,3 +130,35 @@ test('A1 Unit 5 younger-sibling writing model matches its linked vocabulary', ()
   assert.equal(exercise.modelAnswer, 'Ini adik saya.');
   assert.match(exercise.explanation, /adik saya/i);
 });
+
+
+test('A1 units 24-32 assess every vocabulary item at least once', () => {
+  const uncovered = [];
+  for (const unit of levels[0].units.slice(23, 32)) {
+    const linked = new Set(exercisesOf(unit).map(exercise => exercise.vocabId));
+    for (const word of unit.vocab || []) {
+      if (!linked.has(word.id)) uncovered.push(unit.id + '/' + word.id);
+    }
+  }
+  assert.deepEqual(uncovered, []);
+});
+
+test('new A1 U24-U32 meaning checks use the linked vocabulary gloss', () => {
+  const addedIds = new Set([
+    'v387', 'v393', 'v401', 'v402', 'v405', 'v411', 'v412', 'v420', 'v424',
+    'v430', 'v434', 'v436', 'v441', 'v444', 'v447', 'v454', 'v456', 'v459',
+    'v462', 'v464', 'v470', 'v471'
+  ]);
+  const mismatches = [];
+  for (const unit of levels[0].units.slice(23, 32)) {
+    const words = new Map(unit.vocab.map(word => [word.id, word]));
+    for (const exercise of exercisesOf(unit)) {
+      if (!addedIds.has(exercise.vocabId) || exercise.type !== 'mc') continue;
+      const word = words.get(exercise.vocabId);
+      if (word && exercise.options?.[exercise.answer] !== word.esp) {
+        mismatches.push(unit.id + '/' + word.idn);
+      }
+    }
+  }
+  assert.deepEqual(mismatches, []);
+});

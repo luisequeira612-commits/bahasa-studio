@@ -29,16 +29,16 @@
             id: 'budget',
             level: 'A2',
             title: 'Mi presupuesto personal',
-            situation: 'Explica cómo organizas tu presupuesto: qué registras, qué priorizas y para qué ahorras. Intenta escribir cinco o seis frases y conecta tus ideas.',
+            situation: 'Explica cómo organizas tu presupuesto: qué registras, qué priorizas y para qué ahorras. Intenta escribir cinco a siete frases y conecta tus ideas.',
             vocabulary: ['anggaran', 'bulan', 'pemasukan', 'pengeluaran', 'mencatat', 'menabung', 'dana darurat', 'kebutuhan', 'prioritas', 'pemborosan'],
-            checklist: ['Expliqué cuál es mi presupuesto.', 'Mencioné ingresos y gastos.', 'Dije para qué ahorro.', 'Expliqué qué considero una prioridad.', 'Conecté las ideas en cinco o seis frases.'],
+            checklist: ['Expliqué cuál es mi presupuesto.', 'Mencioné ingresos y gastos.', 'Dije para qué ahorro.', 'Expliqué qué considero una prioridad.', 'Conecté las ideas en cinco a siete frases.'],
             example: 'Saya punya anggaran untuk bulan ini. Saya mencatat pemasukan dan pengeluaran. Saya menabung untuk dana darurat. Saya memilih kebutuhan sebagai prioritas. Pemborosan bukan prioritas saya.'
         },
         {
             id: 'online-meeting',
             level: 'A2',
             title: 'Una reunión de trabajo en línea',
-            situation: 'Describe una reunión en línea desde el inicio hasta el final. Menciona las herramientas que utilizas, los archivos que compartes y qué haces después. Intenta escribir cinco o seis frases.',
+            situation: 'Describe una reunión en línea desde el inicio hasta el final. Menciona las herramientas que utilizas, los archivos que compartes y qué haces después. Intenta escribir cinco a siete frases.',
             vocabulary: ['rapat daring', 'konferensi video', 'berbagi layar', 'dokumen bersama', 'tautan', 'lampiran', 'mengirim', 'unduh', 'penyimpanan awan', 'pembaruan'],
             checklist: ['Expliqué cuándo y por qué hay una reunión.', 'Mencioné la videoconferencia.', 'Describí cómo comparto pantalla o documentos.', 'Incluí un enlace o archivo adjunto.', 'Conté qué hago después de la reunión.'],
             example: 'Hari ini kami ada rapat daring. Kami menggunakan konferensi video. Saya berbagi layar dan membuka dokumen bersama. Saya mengirim tautan dan lampiran. Setelah rapat, saya unduh dokumen dari penyimpanan awan. Saya melihat pembaruan.'
@@ -142,6 +142,16 @@
             textarea.rows = 6;
             textarea.maxLength = 2000;
             textarea.placeholder = 'Escribe aquí tus propias frases…';
+            const draftCount = make('p', '0 palabras · objetivo orientativo: ' +
+                (task.level === 'A1' ? '3–4 frases' : '5–7 frases'), 'text-muted');
+            draftCount.setAttribute('role', 'status');
+            draftCount.setAttribute('aria-live', 'polite');
+            const updateDraftCount = () => {
+                const words = textarea.value.trim().match(/\S+/g) || [];
+                draftCount.textContent = words.length + (words.length === 1 ? ' palabra' : ' palabras') +
+                    ' · objetivo orientativo: ' + (task.level === 'A1' ? '3–4 frases' : '5–7 frases');
+            };
+            textarea.addEventListener('input', updateDraftCount);
             const checklistHeading = make('h4', 'Antes de terminar, revisa tu texto');
             const checklist = make('div');
             checklist.className = 'writing-self-review';
@@ -194,7 +204,7 @@
             const disclaimer = make('p', 'Sin nota, sin XP ni registro SRS. Solo se cuenta una sesión al comparar tu borrador con el ejemplo; el texto no se guarda ni se incluye en las copias de seguridad.', 'text-muted');
             host.append(back, levelLabel, heading, situation);
             if (vocabularyHeading && vocabularyList) host.append(vocabularyHeading, vocabularyList);
-            host.append(label, textarea, checklistHeading, checklist, checklistStatus, note, reveal, status, example, disclaimer);
+            host.append(label, textarea, draftCount, checklistHeading, checklist, checklistStatus, note, reveal, status, example, disclaimer);
         }
     };
     root.WritingPractice = WritingPractice;

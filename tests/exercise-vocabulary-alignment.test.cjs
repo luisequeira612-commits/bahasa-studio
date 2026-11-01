@@ -91,3 +91,32 @@ test('reused vocabulary IDs keep one Indonesian headword and one Spanish gloss',
   }
   assert.deepEqual(conflicts, []);
 });
+
+test('word-order exercises preserve exactly the supplied tokens', () => {
+  const malformed = [];
+  for (const level of levels) for (const unit of level.units) {
+    for (const exercise of exercisesOf(unit)) {
+      if (exercise.type !== 'order') continue;
+      const words = exercise.words;
+      const answer = exercise.correctOrder;
+      if (!Array.isArray(words) || !Array.isArray(answer)) {
+        malformed.push(level.id + '/' + unit.id + ': missing words/correctOrder arrays');
+        continue;
+      }
+      const sortedWords = words.map(normalize).sort();
+      const sortedAnswer = answer.map(normalize).sort();
+      if (sortedWords.length !== sortedAnswer.length ||
+          sortedWords.some((word, index) => word !== sortedAnswer[index])) {
+        malformed.push({
+          level: level.id,
+          unit: unit.id,
+          vocabId: exercise.vocabId,
+          prompt: exercise.prompt,
+          words,
+          correctOrder: answer
+        });
+      }
+    }
+  }
+  assert.deepEqual(malformed, []);
+});

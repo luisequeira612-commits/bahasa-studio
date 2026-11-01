@@ -1356,9 +1356,9 @@ window.BAHASA_CURRICULUM_A2 = {
                             ],
                             "lessons": [
                                 {
-                                    "title": "Lección 1: Formas mem- con b y p",
-                                    "objective": "Reconoce verbos con b conservada y p que desaparece.",
-                                    "grammar": "En membeli, membawa y membantu se conserva la b. En memakai y memilih, la p inicial de la raíz desaparece.",
+                                    "title": "Lección 1: Formas mem- con b inicial",
+                                    "objective": "Reconoce verbos con b inicial que se conserva en la forma mem-.",
+                                    "grammar": "En membeli, membawa y membantu se conserva la b inicial de la raíz.",
                                     "vocabIds": [
                                         "a2u8_membeli",
                                         "a2u8_membawa",

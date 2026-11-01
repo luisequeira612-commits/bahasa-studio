@@ -43,7 +43,7 @@
                 !Number.isInteger(lesson.lessonIndex) || lesson.lessonIndex < 0 ||
                 !Array.isArray(lesson.exercises)) return;
             const matches = lesson.exercises.filter(exercise => exercise &&
-                (exercise.audioText || typeSkills[exercise.type]) === skill).length;
+                (exercise.audioText ? 'listening' : typeSkills[exercise.type]) === skill).length;
             if (matches > bestMatches) {
                 bestMatches = matches;
                 best = {

@@ -414,3 +414,35 @@ test('rejects malformed single and grouped vocabulary references on unit and les
   }
   assert.equal(report.error_count, 9);
 });
+
+test('validates acceptedAnswers arrays, entries and optional status metadata', () => {
+  const report = auditCurriculum({
+    id: 'A1',
+    units: [{
+      id: 'u1',
+      title: 'One',
+      vocab: [],
+      exercises: [
+        { type: 'translate_es_id', prompt: 'Translate', answer: 'Terima kasih', acceptedAnswers: 'Makasih' },
+        { type: 'translate_es_id', prompt: 'Translate', answer: 'Terima kasih', acceptedAnswers: ['Makasih', '   '] },
+        { type: 'translate_es_id', prompt: 'Translate', answer: 'Terima kasih', acceptedAnswers: [{ text: '' }] },
+        { type: 'translate_es_id', prompt: 'Translate', answer: 'Terima kasih', acceptedAnswers: [{ text: 'Makasih', status: '' }] },
+      ],
+      lessons: [{
+        exercises: [
+          { type: 'translate_es_id', prompt: 'Translate', answer: 'Terima kasih', acceptedAnswers: [null] },
+        ],
+      }],
+    }],
+  });
+  for (const code of [
+    'ACCEPTED_ANSWERS_INVALID',
+    'ACCEPTED_ANSWER_EMPTY',
+    'ACCEPTED_ANSWER_ITEM_INVALID',
+    'ACCEPTED_ANSWER_STATUS_INVALID',
+    'LESSON_ACCEPTED_ANSWER_ITEM_INVALID',
+  ]) {
+    assert.ok(report.issues.some((item) => item.code === code), `Missing audit issue: ${code}`);
+  }
+  assert.equal(report.error_count, 5);
+});

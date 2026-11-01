@@ -87,3 +87,16 @@ Antes de usar el perfil para elegir actividades o ajustar dificultad por habilid
 El cuaderno de escritura independiente amplía de tres a seis situaciones: tres A1 y tres A2. Las tareas A2 trabajan presupuesto personal, colaboración digital y comparación de alternativas. Cada tarea declara sus referencias léxicas y las pruebas verifican que esas palabras existan en el currículo A2.
 
 Las tareas siguen siendo abiertas: no califican, no asignan XP/SRS ni guardan borradores. Al comparar un borrador con el ejemplo se registra únicamente una sesión agregada de escritura. Los ejemplos se presentan como orientativos y no como modelos validados por hablantes nativos.
+
+## Precisión de conversaciones guiadas — 2026-11-01
+
+Las respuestas de opción múltiple en conversaciones guiadas ahora registran un intento local de la habilidad `conversation` por turno. Se cuentan aciertos y errores solo cuando el estudiante elige una de las opciones guiadas. Las respuestas libres escritas o dictadas siguen sin puntuación automática y no incrementan estos contadores.
+
+- El perfil muestra respuestas guiadas, aciertos, errores y sesiones completadas por separado.
+- Los porcentajes solo se muestran a partir de cinco respuestas guiadas; antes se identifican como datos iniciales.
+- Una conversación pasa a ser candidata a refuerzo adaptativo cuando tiene al menos cinco respuestas puntuadas y resulta la habilidad con menor precisión.
+- La acción reutiliza el catálogo de escenarios existente; no genera diálogos nuevos ni afirma que una respuesta libre sea correcta o incorrecta.
+- Repasos vencidos, palabras con errores persistentes y errores aislados conservan prioridad sobre este refuerzo.
+- Se usan los contadores ya presentes en `settings.studyActivity.skillStats.conversation`; no se añade tabla, campo persistente nuevo ni versión de backup. Los backups v3 antiguos siguen recibiendo contadores vacíos.
+- El perfil conserva únicamente contadores agregados; no guarda respuestas, transcripciones ni audio.
+

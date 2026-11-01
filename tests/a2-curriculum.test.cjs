@@ -1311,3 +1311,34 @@ test('A2 U5-U8 lesson exercises stay aligned with introduced vocabulary and cano
   assert.match(u8.lessons[0].grammar, /membeli, membawa y membantu/);
   assert.doesNotMatch(u8.lessons[0].grammar, /memakai|memilih/);
 });
+
+
+test('A2 U5-U8 never assess a new verb before its lesson introduction', () => {
+  const units = a2.units.slice(4, 8);
+  for (const unit of units) {
+    const unitVocabIds = new Set(unit.vocab.map(word => word.id));
+    const introducedAt = new Map();
+    unit.lessons.forEach((lesson, lessonIndex) => {
+      for (const id of lesson.vocabIds || []) {
+        assert.ok(unitVocabIds.has(id), unit.id + ' introduces vocabulary outside its own unit: ' + id);
+        assert.ok(!introducedAt.has(id), unit.id + ' introduces the same word more than once: ' + id);
+        introducedAt.set(id, lessonIndex);
+      }
+    });
+
+    assert.equal(introducedAt.size, unit.vocab.length,
+      unit.id + ' must introduce every new vocabulary item in a lesson');
+
+    unit.lessons.forEach((lesson, lessonIndex) => {
+      const declaredReview = new Set(lesson.reviewVocabIds || []);
+      for (const exercise of lesson.exercises || []) {
+        if (!exercise.vocabId || !unitVocabIds.has(exercise.vocabId)) continue;
+        const firstLesson = introducedAt.get(exercise.vocabId);
+        assert.ok(Number.isInteger(firstLesson),
+          unit.id + ' exercise references a new word absent from all lesson introductions: ' + exercise.vocabId);
+        assert.ok(firstLesson <= lessonIndex || declaredReview.has(exercise.vocabId),
+          unit.id + ' assesses ' + exercise.vocabId + ' before its introduction in lesson ' + (firstLesson + 1));
+      }
+    });
+  }
+});

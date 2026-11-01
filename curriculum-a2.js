@@ -45,7 +45,20 @@ window.BAHASA_CURRICULUM_A2 = {
                                         { vocabId: 'a2u1_rabu', type: 'translate_es_id', prompt: 'Traduce: Hoy es miércoles.', answer: 'Hari ini hari Rabu.', explanation: 'Hari ini hari Rabu significa «Hoy es miércoles».' },
                                         { vocabId: 'a2u1_kamis', type: 'listen', prompt: 'Escucha y escribe la oración.', answer: 'Hari ini hari Kamis.', explanation: 'La oración dice «Hoy es jueves».' },
                                         { vocabId: 'a2u1_senin', type: 'order', prompt: 'Ordena: Hoy es lunes.', words: ['Senin', 'hari', 'Hari', 'ini'], correctOrder: ['Hari', 'ini', 'hari', 'Senin'], explanation: 'Hari ini hari Senin significa «Hoy es lunes».' }
-                                    ]
+                                    ,
+                                        {
+                                            "vocabId": "a2u1_selasa",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Selasa»?",
+                                            "options": [
+                                                "Martes",
+                                                "Lunes",
+                                                "Miércoles"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Selasa significa martes."
+                                        }
+]
                                 },
                                 {
                                     title: 'Lección 2: Fin de semana y fechas',
@@ -58,7 +71,20 @@ window.BAHASA_CURRICULUM_A2 = {
                                         { vocabId: 'a2u1_minggu', type: 'listen', prompt: 'Escucha y escribe la oración.', answer: 'Hari ini hari Minggu.', explanation: 'La oración dice «Hoy es domingo».' },
                                         { vocabId: 'a2u1_sabtu', type: 'write', prompt: 'Escribe una oración para decir que hoy es sábado.', hint: 'Usa «Hari ini hari ...» y el nombre del día.', modelAnswer: 'Hari ini hari Sabtu.', explanation: 'Es un modelo posible; puedes usar el mismo patrón con otro día.' },
                                         { vocabId: 'a2u1_tanggal', type: 'write', prompt: 'Escribe el día y el mes: hoy es 17 de agosto.', hint: 'Usa «Hari ini tanggal ...» seguido del número y el nombre del mes en indonesio.', modelAnswer: 'Hari ini tanggal 17 Agustus.', explanation: 'El patrón propuesto combina «Hari ini tanggal», el número del día y el nombre del mes. La forma y el ejemplo deben considerarse material didáctico beta pendiente de revisión lingüística.' }
-                                    ]
+                                    ,
+                                        {
+                                            "vocabId": "a2u1_bulan",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «bulan»?",
+                                            "options": [
+                                                "Mes",
+                                                "Día",
+                                                "Fecha"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Bulan significa mes."
+                                        }
+]
                                 },
                                 {
                                     title: 'Lección 3: Enero a abril',
@@ -70,7 +96,20 @@ window.BAHASA_CURRICULUM_A2 = {
                                         { vocabId: 'a2u1_maret', type: 'translate_es_id', prompt: 'Traduce: Ahora es marzo.', answer: 'Sekarang bulan Maret.', explanation: 'Sekarang bulan Maret significa «Ahora es marzo».' },
                                         { vocabId: 'a2u1_april', type: 'listen', prompt: 'Escucha y escribe la oración.', answer: 'Sekarang bulan April.', explanation: 'La oración dice «Ahora es abril».' },
                                         { vocabId: 'a2u1_februari', type: 'order', prompt: 'Ordena: Ahora es febrero.', words: ['bulan', 'Sekarang', 'Februari'], correctOrder: ['Sekarang', 'bulan', 'Februari'], explanation: 'Sekarang bulan Februari significa «Ahora es febrero».' }
-                                    ]
+                                    ,
+                                        {
+                                            "vocabId": "a2u1_januari",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Januari»?",
+                                            "options": [
+                                                "Enero",
+                                                "Febrero",
+                                                "Marzo"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Januari significa enero."
+                                        }
+]
                                 },
                                 {
                                     title: 'Lección 4: Mayo a agosto',
@@ -82,7 +121,20 @@ window.BAHASA_CURRICULUM_A2 = {
                                         { vocabId: 'a2u1_juli', type: 'translate_es_id', prompt: 'Traduce: Ahora es julio.', answer: 'Sekarang bulan Juli.', explanation: 'Sekarang bulan Juli significa «Ahora es julio».' },
                                         { vocabId: 'a2u1_agustus', type: 'listen', prompt: 'Escucha y escribe la oración.', answer: 'Sekarang bulan Agustus.', explanation: 'La oración dice «Ahora es agosto».' },
                                         { vocabId: 'a2u1_juni', type: 'write', prompt: 'Escribe una oración para decir que ahora es junio.', hint: 'Usa «Sekarang bulan ...».', modelAnswer: 'Sekarang bulan Juni.', explanation: 'Juni es junio en indonesio.' }
-                                    ]
+                                    ,
+                                        {
+                                            "vocabId": "a2u1_mei",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Mei»?",
+                                            "options": [
+                                                "Abril",
+                                                "Mayo",
+                                                "Junio"
+                                            ],
+                                            "answer": 1,
+                                            "explanation": "Mei significa mayo."
+                                        }
+]
                                 },
                                 {
                                     title: 'Lección 5: Septiembre a diciembre',
@@ -94,7 +146,20 @@ window.BAHASA_CURRICULUM_A2 = {
                                         { vocabId: 'a2u1_oktober', type: 'translate_es_id', prompt: 'Traduce: Ahora es octubre.', answer: 'Sekarang bulan Oktober.', explanation: 'Sekarang bulan Oktober significa «Ahora es octubre».' },
                                         { vocabId: 'a2u1_november', type: 'listen', prompt: 'Escucha y escribe la oración.', answer: 'Sekarang bulan November.', explanation: 'La oración dice «Ahora es noviembre».' },
                                         { vocabId: 'a2u1_desember', type: 'order', prompt: 'Ordena: Ahora es diciembre.', words: ['Desember', 'Sekarang', 'bulan'], correctOrder: ['Sekarang', 'bulan', 'Desember'], explanation: 'Sekarang bulan Desember significa «Ahora es diciembre».' }
-                                    ]
+                                    ,
+                                        {
+                                            "vocabId": "a2u1_september",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «September»?",
+                                            "options": [
+                                                "Agosto",
+                                                "Octubre",
+                                                "Septiembre"
+                                            ],
+                                            "answer": 2,
+                                            "explanation": "September significa septiembre."
+                                        }
+]
                                 }
                             ]
                         },

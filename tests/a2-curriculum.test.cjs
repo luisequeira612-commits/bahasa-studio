@@ -1112,8 +1112,7 @@ test('A2 U17-U20 editorial audit records bounded findings and preserves the paga
 
 test('A2 U18 explicitly distinguishes Indonesian pagar from the Spanish verb pagar', () => {
   const curriculum = fs.readFileSync(path.join(__dirname, '..', 'curriculum-a2.js'), 'utf8');
-  const pagarIndex = curriculum.indexOf('"pagar" significa "Cerca"');
-  assert.notEqual(pagarIndex, -1, 'U18 must explain the Indonesian word pagar');
-  const context = curriculum.slice(pagarIndex, pagarIndex + 1800);
-  assert.match(context, /no el verbo español «pagar»/);
+  assert.match(curriculum, /¿Qué significa «pagar»\?/);
+  assert.match(curriculum, /«pagar» significa «cerca», no el verbo español «pagar»/);
+  assert.match(curriculum, /Pagar rumah itu tinggi\./);
 });

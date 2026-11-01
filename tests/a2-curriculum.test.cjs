@@ -1149,3 +1149,24 @@ test('A2 U25 keeps bumbu and rempah as distinct contextual vocabulary targets', 
   assert.match(curriculum, /La frase utiliza «rempah»/);
   assert.match(curriculum, /«bumbu» significa «Condimento»/);
 });
+
+test('A2 U29-U32 editorial audit records bounded findings without claiming linguistic certification', () => {
+  const audit = fs.readFileSync(path.join(__dirname, '..', 'docs/A2-UNITS-29-32-AUDIT.md'), 'utf8');
+  for (const unit of ['U29', 'U30', 'U31', 'U32']) assert.match(audit, new RegExp('\\b' + unit + '\\b'));
+  assert.match(audit, /48 entradas/);
+  assert.match(audit, /16 lecciones/);
+  assert.match(audit, /68 ejercicios/);
+  assert.match(audit, /revisión lingüística independiente pendiente/);
+  assert.match(audit, /No hubo hablante nativo disponible/);
+  assert.match(audit, /KBBI no es requisito/);
+  assert.match(audit, /lereng/);
+  assert.match(audit, /No se modificaron IndexedDB, el formato de backup v3/);
+});
+
+test('A2 U29-U32 audit preserves distinctions between related customer service and event terms', () => {
+  const audit = fs.readFileSync(path.join(__dirname, '..', 'docs/A2-UNITS-29-32-AUDIT.md'), 'utf8');
+  assert.match(audit, /pengembalian/);
+  assert.match(audit, /penggantian/);
+  assert.match(audit, /pernikahan/);
+  assert.match(audit, /peresmian/);
+});

@@ -715,7 +715,7 @@ test('A2 U15 distinguishes proposing from inviting in vocabulary feedback', () =
 test('A2 U14 explains keberangkatan as departure, matching its vocabulary gloss', () => {
   const unit = a2.units.find(entry => entry.id === 'a2_u14');
   assert.ok(unit);
-  const lesson = unit.lessons.find(entry => entry.title.includes('Medios de transporte'));
+  const lesson = unit.lessons.find(entry => entry.title.includes('Salidas y cambios de ruta'));
   assert.ok(lesson);
   const exercise = lesson.exercises.find(entry => entry.vocabId === 'a2u14_keberangkatan' && entry.type === 'mc');
   assert.ok(exercise);

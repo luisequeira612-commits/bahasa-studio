@@ -314,3 +314,13 @@ test('adaptive recommendation action is programmatically associated with its exp
   assert.match(html, /button\.setAttribute\('aria-describedby', description\.id\)/);
   assert.match(html, /host\.append\(heading, description, button\)/);
 });
+
+test('weakest skill ranking compares exact accuracy before applying display rounding or tie-breakers', () => {
+  const focus = AdaptiveLearning.weakestSkill({
+    recognition: { attempts: 10, correct: 5 },
+    translation: { attempts: 1000, correct: 505 }
+  });
+  assert.equal(focus.key, 'recognition');
+  assert.equal(focus.accuracy, 50);
+  assert.equal(focus.attempts, 10);
+});

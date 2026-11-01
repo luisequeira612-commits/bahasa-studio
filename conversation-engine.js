@@ -250,6 +250,23 @@
         });
     };
 
+    function shuffledScenario(scenario) {
+        const copy = Object.assign({}, scenario, {
+            turns: scenario.turns.map(function (turn) {
+                return Object.assign({}, turn, { choices: turn.choices.slice() });
+            })
+        });
+        copy.turns.forEach(function (turn) {
+            for (let index = turn.choices.length - 1; index > 0; index -= 1) {
+                const swapIndex = Math.floor(Math.random() * (index + 1));
+                const current = turn.choices[index];
+                turn.choices[index] = turn.choices[swapIndex];
+                turn.choices[swapIndex] = current;
+            }
+        });
+        return copy;
+    }
+
     const ConversationEngine = {
         scenarios: scenarios,
         currentScenario: null,
@@ -275,7 +292,7 @@
         start: function (scenarioId) {
             const scenario = this.scenarios.find(function (item) { return item.id === scenarioId; });
             if (!scenario) return;
-            this.currentScenario = scenario;
+            this.currentScenario = shuffledScenario(scenario);
             this.turnIndex = 0;
             this.score = 0;
             this.answered = false;

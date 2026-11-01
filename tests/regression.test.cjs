@@ -49,7 +49,7 @@ test('PWA version is consistent across HTML, manifest and cache', () => {
   assert.doesNotMatch(html + serviceWorker + JSON.stringify(manifest), /3\.5\.1/);
 });
 
-test('A2 stays hidden until explicit release approval, even after A1 completion', () => {
+test('A2 is available in beta only after A1 completion', () => {
   const start = html.indexOf('const CourseData =');
   const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
   assert.ok(start >= 0 && end > start, 'CourseData block must exist');
@@ -62,7 +62,7 @@ test('A2 stays hidden until explicit release approval, even after A1 completion'
   assert.equal(isA1Complete([]), false);
   assert.equal(isA1Complete(allIds.slice(0, -1)), false);
   assert.equal(isA1Complete(allIds), true);
-  assert.match(html, /const A2_RELEASE_ENABLED = false;/);
+  assert.match(html, /const A2_RELEASE_ENABLED = true;/);
   assert.match(html, /level\.id !== 'A2' \|\| \(A2_RELEASE_ENABLED && isA1Complete\(App\.completedUnits\)\)/,
     'A2 vocabulary must not enter learning and SRS pools before A1 is complete');
   const lessonEntry = html.slice(html.indexOf('startUnitById(id, requestedLessonIndex)'), html.indexOf('startUnit(unit, lessonIndex = 0)'));

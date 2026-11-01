@@ -2,7 +2,7 @@
 
 Fecha de corte: 2026-10-31  
 Rama de trabajo: `feat/independent-curriculum-quality-gate`  
-Estado: **en curso; inventario y reconciliación documental inicial completados**.
+Estado: **consolidación estructural de cobertura completada; auditoría editorial y lingüística continúa abierta**.
 
 ## Objetivo
 
@@ -179,3 +179,50 @@ Estas correcciones abordan contradicciones internas o desambiguación pedagógic
 ### Estado operativo
 
 La fase 2 sigue abierta. A1 U24–U32 y A2 U1–U40 están disponibles en el producto conforme a las puertas actuales, pero siguen pendientes la revisión lingüística externa, la naturalidad, la adecuación de nivel y las pruebas de audio/dispositivo que no se hayan ejecutado. No convertir CI verde ni una auditoría de coherencia en certificación lingüística.
+
+
+## Quinta pasada de consolidación — 2026-11-01
+
+### Cobertura estructural completa de vocabulario y ejercicios
+
+Tras los PR #157–#161, se ejecutó una auditoría por unidad que compara los IDs de vocabulario con los ejercicios locales y sus referencias válidas. El resultado actual en `main` es:
+
+| Nivel | Unidades | Vocabulario | Ejercicios | Vocabulario sin ejercicio |
+|---|---:|---:|---:|---:|
+| A1 | 32 | 329 | 477 | 0 |
+| A2 | 40 | 492 | 691 | 0 |
+
+- A1 U24–U32: se añadieron 22 ejercicios de significado para cubrir entradas sin práctica vinculada.
+- A1 U1, U4, U9, U11, U12, U18, U19, U21 y U23: se añadieron 18 ejercicios para completar la cobertura de esas unidades.
+- A2 U1: se añadieron 5 ejercicios para cubrir `Selasa`, `bulan`, `Januari`, `Mei` y `September`.
+- A2 U1–U40: todas las unidades tienen 4 lecciones, excepto U1 con 5; todas las unidades incluyen ejercicios MC, traducción, escucha, orden y escritura.
+- A1 U24–U32 conserva su formato de ejercicios heredado; `buildUnitLessons` organiza ese contenido en lecciones generadas para el flujo de aprendizaje. La cobertura de vocabulario queda comprobada, pero esto no equivale a una autoría editorial completa de cada lección.
+
+### Correcciones internas A2 añadidas en esta pasada
+
+- U6: se corrigió el ejemplo de `mencatat` para que `Saya mencatat alamat` coincida con «Anoto una dirección».
+- U7: se alineó `mengisi` con `Saya mengisi botol dengan air` y se amplió la explicación de `meng-` para incluir la raíz `hapus`.
+- U11: se corrigió «Voy enseguida» a «Vengo enseguida» para `Saya datang segera`.
+- U14: se aclaró `bepergian` como «viajar» y `keberangkatan` como «salida»; también se alineó la consigna del ejercicio con «Viajo por la mañana».
+
+Estas decisiones corrigen contradicciones o desajustes internos detectables en los propios datos. No deben registrarse como verificaciones de naturalidad, pragmática, registro ni nivel.
+
+### Estado de publicación y pruebas
+
+- PR #157, #158, #159, #160 y #161 integrados en `main`.
+- Último commit de consolidación: `613b35e`.
+- CI de `main`: exitoso.
+- GitHub Pages: publicación exitosa.
+- Los tests comprueban cobertura de vocabulario, referencias, glosas de los nuevos ejercicios y hashes de integridad A1/A2.
+
+### Lo que sigue pendiente
+
+La cobertura estructural de vocabulario ya no tiene huecos, pero la fase 2 **no se cierra** porque siguen abiertas dimensiones que CI no puede certificar:
+
+- A1 U24–U32: 34/90 entradas con evidencia lexicográfica primaria registrada y 56/90 sin cotejo; naturalidad, nivel y respuestas aceptadas siguen pendientes.
+- A2: 2/492 entradas con evidencia lexicográfica primaria registrada y 490/492 sin cotejo; naturalidad, nivel y respuestas aceptadas siguen pendientes.
+- La cola editorial A1+A2 continúa con 821 entradas P2 `not_reviewed`; los cambios de ejercicios no alteran los estados editoriales.
+- Falta completar la revisión documental por bloques, registrar las decisiones con evidencia y comprobar audio/dispositivo donde corresponda.
+- El inventario A2 actual es de 492 palabras, por debajo del objetivo orientativo inicial de unas 600; no se añadirán palabras solo para alcanzar una cifra si no hay ejemplos y ejercicios coherentes.
+
+**Conclusión operativa:** la brecha de cobertura vocabulario–ejercicio está cerrada en A1 y A2. La fase 2 continúa como auditoría editorial/documental, no como validación lingüística. La siguiente fase funcional puede avanzar en paralelo sin declarar certificado el currículo.

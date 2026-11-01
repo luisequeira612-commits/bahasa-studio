@@ -228,3 +228,34 @@ test('guided answer choices are shuffled in a session without mutating source co
   engine.choose(correctIndex);
   assert.equal(engine.score, 1);
 });
+
+
+test('learners can retry only the guided turns they answered incorrectly', () => {
+  const engine = sandbox.window.ConversationEngine;
+  recordedSessions.length = 0;
+  engine.start('greetings');
+  const originalScenario = scenarios.find(scenario => scenario.id === 'greetings');
+  const wrongIndex = engine.currentScenario.turns[0].choices.findIndex(choice => !choice.correct);
+  engine.choose(wrongIndex);
+  engine.next();
+  for (let turn = 1; turn < 3; turn += 1) {
+    const correctIndex = engine.currentScenario.turns[engine.turnIndex].choices.findIndex(choice => choice.correct);
+    engine.choose(correctIndex);
+    engine.next();
+  }
+  assert.equal(engine.mistakeTurns.length, 1);
+  assert.match(elements.conversationPracticeArea.innerHTML, /data-conversation-retry/);
+  assert.match(elements.conversationPracticeArea.innerHTML, /Practicar errores \(1\)/);
+  engine.retryMistakes();
+  assert.equal(engine.currentScenario.turns.length, 1);
+  assert.equal(engine.turnIndex, 0);
+  assert.equal(engine.score, 0);
+  assert.equal(engine.mistakeTurns.length, 0);
+  assert.equal(engine.currentScenario.id, 'greetings');
+  assert.equal(originalScenario.turns.length, 3, 'retry must not mutate the source scenario');
+  const correctIndex = engine.currentScenario.turns[0].choices.findIndex(choice => choice.correct);
+  engine.choose(correctIndex);
+  engine.next();
+  assert.match(elements.conversationPracticeArea.innerHTML, /Resultado guiado: 1\/1 respuestas correctas/);
+  assert.deepEqual(recordedSessions, ['conversation', 'conversation']);
+});

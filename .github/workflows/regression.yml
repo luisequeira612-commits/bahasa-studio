@@ -41,6 +41,8 @@ jobs:
         run: node --test tests/a2-curriculum.test.cjs
       - name: Run A2 U12 lesson focus alignment tests
         run: node --test tests/a2-u12-lesson-focus.test.cjs
+      - name: Run A2 U14 Spanish copy tests
+        run: node --test tests/a2-u14-copy.test.cjs
       - name: Run A1/A2 exercise vocabulary alignment tests
         run: node --test tests/exercise-vocabulary-alignment.test.cjs
       - name: Run exercise answer-to-vocabulary alignment tests

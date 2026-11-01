@@ -42,3 +42,8 @@ Total: **48 entradas, 16 lecciones y 68 ejercicios**.
 ## Siguiente paso
 
 Revisar referencias de vocabulario de U13–U16 contra el orden de introducción de A1/A2 y comprobar si las formas citadas en explicaciones están disponibles para el alumno antes de usarse en consignas. Después, continuar con U17–U20 bajo el mismo protocolo.
+
+
+## Corrección de texto en U14 (2026-11-01)
+
+Se detectó un error ortográfico evidente en el objetivo de la Lección 3: «Habla de vehículoes y autoangkutanes». Se sustituyó por «Habla de vehículos, medios de transporte y retrasos», que describe los tres conceptos del grupo de vocabulario (kendaraan, angkutan y tertunda). No se modificaron las formas indonesias, los ejemplos ni las respuestas. Se añadió una prueba de regresión para el texto y la cobertura de los tres IDs.

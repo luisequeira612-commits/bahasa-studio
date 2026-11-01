@@ -3198,7 +3198,7 @@ window.BAHASA_CURRICULUM_A2 = {
                             },
                             {
                                 "title": "Lección 3: Medios de transporte",
-                                "objective": "Habla de vehículoes y autoangkutanes.",
+                                "objective": "Habla de vehículos, medios de transporte y retrasos.",
                                 "grammar": "Practica estas expresiones en oraciones completas: kendaraan, angkutan, tertunda.",
                                 "vocabIds": [
                                     "a2u14_kendaraan",

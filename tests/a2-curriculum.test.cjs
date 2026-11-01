@@ -1062,7 +1062,7 @@ test('A2 U1-U4 vocabulary-meaning questions and ordering feedback match their ca
 
 test('A2 U5-U8 editorial audit records bounded findings without claiming linguistic certification', () => {
   const audit = fs.readFileSync(path.join(__dirname, '..', 'docs/A2-UNITS-05-08-AUDIT.md'), 'utf8');
-  for (const unit of ['U5', 'U6', 'U7', 'U8']) assert.match(audit, new RegExp('\\\\b' + unit + '\\\\b'));
+  for (const unit of ['U5', 'U6', 'U7', 'U8']) assert.match(audit, new RegExp('\\b' + unit + '\\b'));
   assert.match(audit, /48 entradas/);
   assert.match(audit, /revisión lingüística independiente pendiente/);
   assert.match(audit, /No se usó KBBI como bloqueo/);

@@ -52,3 +52,12 @@ La siguiente pasada debe comprobar automáticamente, contra el currículo fuente
 6. Que el informe de incidencias diferencie errores estructurales reproducibles de dudas lingüísticas pendientes.
 
 No se deben cambiar IDs, IndexedDB ni el formato de backup v3 para realizar esta revisión.
+
+
+## Resultado de integridad transversal — 2026-11-01
+
+El auditor local integrado en CI revisó A1 y A2 sin servicios externos: 72 unidades, 821 entradas de vocabulario y 801 IDs únicos. El informe más reciente registra 0 errores estructurales y 20 avisos en A1 por reutilización del mismo ID para el mismo término; A2 registra 0 avisos. No se detectaron referencias de vocabulario ausentes ni uso antes de la introducción en la pasada de progresión que incluye `vocabId` y `vocabIds`.
+
+Se comprobó además el banco completo de opción múltiple: 395 ejercicios, todos con al menos dos opciones, índice de respuesta válido y sin opciones duplicadas tras normalización. Se añade una prueba de regresión para conservar esa propiedad.
+
+Este resultado solo acredita las reglas estructurales y de consistencia que ejecuta el repositorio. No certifica que las opciones sean lingüísticamente naturales, que no exista ambigüedad semántica ni que todas las respuestas abiertas estén cubiertas.

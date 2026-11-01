@@ -2991,10 +2991,14 @@ Requisitos:
                     if (!aggregate.seenStates) aggregate.seenStates = new Set();
                     if (aggregate.seenStates.has(signature)) continue;
                     aggregate.seenStates.add(signature);
-                    aggregate.attempts += item.val.attempts || 0;
-                    aggregate.correct += item.val.correct || 0;
-                    aggregate.incorrect += item.val.incorrect || 0;
-                    aggregate.repetition = Math.max(aggregate.repetition, item.val.repetition || 0);
+                    const attempts = AdaptiveLearning.normalizeSrsCount(item.val.attempts);
+                    aggregate.attempts += attempts;
+                    aggregate.correct += Math.min(AdaptiveLearning.normalizeSrsCount(item.val.correct), attempts);
+                    aggregate.incorrect += Math.min(AdaptiveLearning.normalizeSrsCount(item.val.incorrect), attempts);
+                    aggregate.repetition = Math.max(aggregate.repetition,
+                        AdaptiveLearning.normalizeSrsCount(item.val.repetition));
+                    aggregate.lastReviewed = AdaptiveLearning.earliestValidTimestamp(
+                        aggregate.lastReviewed, item.val.lastReviewed);
                 }
                 const allSrs = [...srsByWord.values()];
                 const attempts = allSrs.reduce((sum, item) => sum + item.attempts, 0);

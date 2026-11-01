@@ -2336,8 +2336,8 @@
             const extra = CustomLessons.units.length ? [{ id: 'IA', title: '✨ Mis lecciones (IA)', units: CustomLessons.units }] : [];
             return [...extra, ...CourseData.levels];
         }
-        // Keep A2 unavailable to learners until an explicit release decision is made.
-        const A2_RELEASE_ENABLED = false;
+        // A2 is available in beta after A1 completion; linguistic certification remains pending.
+        const A2_RELEASE_ENABLED = true;
         function isA1Complete(completedUnits) {
             const a1 = CourseData.levels.find(level => level.id === 'A1');
             const completed = Array.isArray(completedUnits) ? completedUnits : [];

@@ -79,7 +79,7 @@ test('meaning multiple-choice answers match a registered full gloss or one of it
         continue;
       }
       const fullGloss = normalize(word.esp);
-      const alternatives = String(word.esp).split(/[;/]|\\s+o\\s+/i).map(normalize).filter(Boolean);
+      const alternatives = String(word.esp).split(/[;/]|\s+o\s+/i).map(normalize).filter(Boolean);
       const accepted = new Set([fullGloss, ...alternatives]);
       if (!accepted.has(normalize(selected))) {
         mismatches.push({

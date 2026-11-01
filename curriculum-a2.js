@@ -3197,7 +3197,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                             "Pasajero"
                                         ],
                                         "answer": 0,
-                                        "explanation": "keberangkatan significa viaje."
+                                        "explanation": "keberangkatan significa salida."
                                     },
                                     {
                                         "vocabId": "a2u14_pindah",
@@ -3337,7 +3337,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                             "Actividad"
                                         ],
                                         "answer": 0,
-                                        "explanation": "mengusulkan significa invitar."
+                                        "explanation": "mengusulkan significa proponer; mengundang significa invitar."
                                     },
                                     {
                                         "vocabId": "a2u15_undangan",

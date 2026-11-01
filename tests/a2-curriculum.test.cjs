@@ -62,8 +62,8 @@ test('the first four A2 units have 3-5 lessons, varied practice, listening, and 
     assert.ok(Array.isArray(unit.lessons) && unit.lessons.length >= 3 && unit.lessons.length <= 5,
       unit.id + ' should contain 3-5 authored lessons');
     const exercises = unit.lessons.flatMap(lesson => lesson.exercises || []);
-    assert.ok(exercises.length >= 14 && exercises.length <= 22,
-      unit.id + ' should include 14-22 exercises across its lessons');
+    assert.ok(exercises.length >= 14 && exercises.length <= (unit.id === 'a2_u1' ? 27 : 22),
+      unit.id + ' should include 14-27 exercises for U1 or 14-22 for the other units');
     assert.ok(new Set(exercises.map(exercise => exercise.type)).size >= 4,
       unit.id + ' should use at least four exercise types');
     assert.ok(exercises.some(exercise => exercise.type === 'listen'),

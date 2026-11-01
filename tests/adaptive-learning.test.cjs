@@ -112,3 +112,33 @@ test('adaptive dashboard passes the saved skill profile into recommendation logi
   const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
   assert.match(html, /skillStats: this\.studyActivity && this\.studyActivity\.skillStats/);
 });
+
+
+test('writing becomes an actionable recommendation when it is the weakest measured skill', () => {
+  const result = AdaptiveLearning.recommend({
+    dueCount: 0,
+    weakWords: [],
+    nextLesson: { unitId: 'a2_u1', lessonIndex: 0, title: 'Lección 1' },
+    skillStats: {
+      recognition: { attempts: 8, correct: 7 },
+      writing: { attempts: 10, correct: 4 }
+    }
+  });
+  assert.equal(result.type, 'reinforce-writing');
+  assert.equal(result.action, 'writing');
+  assert.equal(result.label, 'Practicar escritura');
+  assert.match(result.description, /escritura: 40%/);
+});
+
+test('writing recommendations preserve urgent review and weak-word priorities', () => {
+  const stats = { writing: { attempts: 10, correct: 2 } };
+  assert.equal(AdaptiveLearning.recommend({ dueCount: 2, skillStats: stats }).action, 'review');
+  assert.equal(AdaptiveLearning.recommend({
+    dueCount: 0, weakWords: [{ id: 'w1', term: 'rumah' }], skillStats: stats
+  }).action, 'reinforce');
+});
+
+test('adaptive dashboard connects the writing recommendation to the existing writing notebook', () => {
+  const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+  assert.match(html, /WritingPractice\.open\(\)/);
+});

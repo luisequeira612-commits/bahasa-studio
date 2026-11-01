@@ -50,7 +50,7 @@ test('A2 writing prompts stay locked until all A1 units are completed', () => {
   } };
   vm.runInNewContext(source, context);
   const practice = context.window.WritingPractice;
-  assert.deepEqual(practice.getAvailableTasks().map(task => task.level), ['A1', 'A1', 'A1']);
+  assert.deepEqual(Array.from(practice.getAvailableTasks(), task => task.level), ['A1', 'A1', 'A1']);
   assert.equal(practice.getAvailableTasks().some(task => task.id === 'budget'), false);
 });
 

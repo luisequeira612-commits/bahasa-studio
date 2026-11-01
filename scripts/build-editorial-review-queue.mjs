@@ -31,7 +31,7 @@ export function buildEditorialQueue(curricula) {
         if (!hasExampleTranslation) missing.push('example_spanish');
         const unitId = String(unit.id ?? '');
         const vocabId = String(word.id ?? '');
-        const stableTermFallback = String(word.idn ?? '').trim().toLocaleLowerCase().replace(/\\s+/g, ' ');
+        const stableTermFallback = String(word.idn ?? '').trim().toLocaleLowerCase().replace(/\s+/g, ' ');
         const reviewId = [level, unitId, vocabId || `missing-id:${stableTermFallback || vocabIndex}`].join(':');
         rows.push({
           review_id: reviewId,

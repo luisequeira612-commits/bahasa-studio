@@ -2037,14 +2037,14 @@
                             <h3>${App.escapeHtml(ex.prompt)}</h3>
                             <p style="margin-top:10px;color:var(--text-secondary);">${App.escapeHtml(ex.hint || 'Escribe tu propia frase en indonesio.')}</p>
                             <section class="card" data-guided-writing-checklist aria-label="Lista para revisar tu escritura">
-                                <strong>Antes de comparar, revisa:</strong>
+                                <strong>Antes de revisar tu escritura, comprueba:</strong>
                                 <ul>${checklistMarkup}</ul>
                                 <small style="color:var(--text-muted);">Son criterios de autoevaluación, no una corrección automática.</small>
                             </section>
                             <textarea id="textAnswer" class="input-field" rows="${writingRows}" placeholder="Escribe tu respuesta en indonesio..." style="margin-top:16px;"></textarea>
                         </div>
                         <div id="actionArea">
-                            <button class="btn" onclick="LessonEngine.checkWriting()">Comparar con el ejemplo</button>
+                            <button class="btn" onclick="LessonEngine.checkWriting()">Revisar mi escritura</button>
                         </div>
                     `;
                 } else if (ex.type === 'order') {

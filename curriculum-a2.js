@@ -1418,9 +1418,9 @@ window.BAHASA_CURRICULUM_A2 = {
                                     ]
                                 },
                                 {
-                                    "title": "Lección 2: Ayudar, pedir y encargar",
-                                    "objective": "Usa otros verbos frecuentes con mem-.",
-                                    "grammar": "Membantu significa ayudar, memesan pedir o encargar y memulai comenzar.",
+                                    "title": "Lección 2: Raíces con p inicial",
+                                    "objective": "Reconoce formas mem- en las que desaparece la p inicial de la raíz.",
+                                    "grammar": "En memakai, memilih y memesan, la p inicial de la raíz desaparece en la forma derivada.",
                                     "vocabIds": [
                                         "a2u8_memakai",
                                         "a2u8_memilih",
@@ -1469,8 +1469,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                     "grammar": "En memulai y meminta, la m inicial de la raíz se conserva después de mem-.",
                                     "vocabIds": [
                                         "a2u8_memulai",
-                                        "a2u8_meminta",
-                                        "a2u8_menyimpan"
+                                        "a2u8_meminta"
                                     ],
                                     "exercises": [
                                         {
@@ -1493,13 +1492,6 @@ window.BAHASA_CURRICULUM_A2 = {
                                             "explanation": "La frase usa meminta."
                                         },
                                         {
-                                            "vocabId": "a2u8_menyimpan",
-                                            "type": "listen",
-                                            "prompt": "Escucha y escribe la oración.",
-                                            "answer": "Saya menyimpan buku.",
-                                            "explanation": "La oración contiene menyimpan."
-                                        },
-                                        {
                                             "vocabId": "a2u8_memulai",
                                             "type": "write",
                                             "prompt": "Escribe una frase usando memulai.",
@@ -1514,11 +1506,19 @@ window.BAHASA_CURRICULUM_A2 = {
                                     "objective": "Reconoce formas meny- en las que desaparece la s inicial.",
                                     "grammar": "En menyimpan, menyewa y menyusun, la s inicial de la raíz desaparece. Menyediakan se aprende como forma léxica frecuente.",
                                     "vocabIds": [
+                                        "a2u8_menyimpan",
                                         "a2u8_menyewa",
                                         "a2u8_menyusun",
                                         "a2u8_menyediakan"
                                     ],
                                     "exercises": [
+                                        {
+                                            "vocabId": "a2u8_menyimpan",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la oración.",
+                                            "answer": "Saya menyimpan buku.",
+                                            "explanation": "La oración contiene menyimpan."
+                                        },
                                         {
                                             "vocabId": "a2u8_menyewa",
                                             "type": "mc",

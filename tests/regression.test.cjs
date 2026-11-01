@@ -1795,7 +1795,7 @@ test('optional pronunciation practice uses Indonesian browser recognition withou
 
 const writingPracticeSource = fs.readFileSync(path.join(root, 'writing-practice.js'), 'utf8');
 
-test('free-writing notebook offers distinct A1 compositions without persistence or scoring', () => {
+test('free-writing notebook offers distinct A1 compositions without draft persistence or scoring', () => {
   const sandbox = { window: {} };
   vm.runInNewContext(writingPracticeSource, sandbox, { filename: 'writing-practice.js' });
   const practice = sandbox.window.WritingPractice;

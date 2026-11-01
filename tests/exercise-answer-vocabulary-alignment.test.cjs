@@ -94,6 +94,11 @@ test('meaning multiple-choice answers match a registered full gloss or one of it
 });
 
 
+function normalizeOption(value) {
+  return String(value ?? '').toLocaleLowerCase('es').normalize('NFC')
+    .replace(/[^\\p{L}\\p{N}\\s]/gu, ' ').replace(/\\s+/g, ' ').trim();
+}
+
 test('A1/A2 multiple-choice exercises have distinct options after normalization', () => {
   const duplicates = [];
   const malformed = [];
@@ -105,7 +110,7 @@ test('A1/A2 multiple-choice exercises have distinct options after normalization'
         malformed.push({ level: level.id, unit: unit.id, prompt: exercise.prompt });
         continue;
       }
-      const normalized = options.map(normalize);
+      const normalized = options.map(normalizeOption);
       if (new Set(normalized).size !== normalized.length) {
         duplicates.push({ level: level.id, unit: unit.id, prompt: exercise.prompt, options });
       }

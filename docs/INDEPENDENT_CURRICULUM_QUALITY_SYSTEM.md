@@ -95,7 +95,7 @@ La prioridad P1 identifica incompletitud de datos, no un juicio de incorrección
 
 ## Estado operativo y reglas permanentes
 
-El sistema descrito en este documento ya está integrado en el workflow `.github/workflows/regression.yml`: CI ejecuta las pruebas del auditor y del generador de cola, produce `artifacts/editorial-review-queue.csv` y `artifacts/curriculum-quality-report.json`, y publica ambos como artefactos de la ejecución. No hace falta una conexión a KBBI ni a ningún servicio externo para estos pasos.
+El sistema descrito en este documento está integrado en el workflow `.github/workflows/regression.yml`: CI ejecuta las pruebas del auditor y del generador de cola, produce `artifacts/editorial-review-queue.csv` y `artifacts/curriculum-quality-report.json`, y publica ambos como artefactos de la ejecución. Estos pasos usan `if: !cancelled()` para que la auditoría independiente y sus informes se ejecuten incluso si falla antes una prueba de regresión ajena a este sistema. No hace falta una conexión a KBBI ni a ningún servicio externo para estos pasos.
 
 Las reglas permanentes para agentes y colaboradores están en `PROJECT_RULES.md`. En particular, no hay un hablante nativo disponible para este proyecto y KBBI/API no son dependencias fiables. El desarrollo no debe detenerse por esas limitaciones. Los resultados automáticos certifican únicamente las comprobaciones deterministas implementadas; nunca deben cambiar por sí solos estados de revisión lingüística ni presentarse como certificación de naturalidad, nivel o pronunciación.
 

@@ -268,6 +268,18 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
   };
 }
 
+
+export function auditCurricula(curricula) {
+  const a1VocabularyIds = new Set(
+    (curricula.find((curriculum) => curriculum.id === 'A1')?.units ?? [])
+      .flatMap((unit) => (unit.vocab ?? []).map((word) => word?.id))
+      .filter((id) => typeof id === 'string')
+  );
+  return curricula.map((curriculum) =>
+    auditCurriculum(curriculum, curriculum.id, curriculum.id === 'A2' ? a1VocabularyIds : [])
+  );
+}
+
 async function main() {
   const args = process.argv.slice(2);
   let jsonPath = '';
@@ -290,14 +302,7 @@ async function main() {
     const source = await readFile(resolve(filename), 'utf8');
     curricula.push(loadCurriculum(source, globalName, filename));
   }
-  const a1VocabularyIds = new Set(
-    (curricula.find((curriculum) => curriculum.id === 'A1')?.units ?? [])
-      .flatMap((unit) => (unit.vocab ?? []).map((word) => word?.id))
-      .filter((id) => typeof id === 'string')
-  );
-  const reports = curricula.map((curriculum) =>
-    auditCurriculum(curriculum, curriculum.id, curriculum.id === 'A2' ? a1VocabularyIds : [])
-  );
+  const reports = auditCurricula(curricula);
   const report = {
     schema_version: 1,
     generated_at: new Date().toISOString(),

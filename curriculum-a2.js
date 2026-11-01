@@ -2508,9 +2508,9 @@ window.BAHASA_CURRICULUM_A2 = {
                             ],
                             "lessons": [
                                 {
-                                    "title": "Lección 1: Experiencia y capacidades",
-                                    "objective": "Habla de la experiencia y de lo que sabes hacer.",
-                                    "grammar": "Pengalaman significa experiencia y kemampuan, capacidad o habilidad.",
+                                    "title": "Lección 1: Experiencia, capacidades y oportunidades",
+                                    "objective": "Habla de tu experiencia, tus capacidades y las oportunidades que tienes.",
+                                    "grammar": "Pengalaman significa experiencia; kemampuan, capacidad o habilidad; y kesempatan, oportunidad.",
                                     "vocabIds": [
                                         "a2u12_pengalaman",
                                         "a2u12_kemampuan",
@@ -2562,9 +2562,9 @@ window.BAHASA_CURRICULUM_A2 = {
                                     ]
                                 },
                                 {
-                                    "title": "Lección 2: Oportunidades y objetivos",
-                                    "objective": "Expresa una oportunidad y presenta una meta personal.",
-                                    "grammar": "Kesempatan significa oportunidad; tujuan, objetivo; cita-cita, aspiración o sueño.",
+                                    "title": "Lección 2: Metas, aspiraciones y resultados",
+                                    "objective": "Presenta una meta personal, una aspiración y un resultado positivo.",
+                                    "grammar": "Tujuan significa objetivo o meta; cita-cita, aspiración o sueño; y berhasil, tener éxito o lograrlo.",
                                     "vocabIds": [
                                         "a2u12_tujuan",
                                         "a2u12_cita_cita",
@@ -2608,9 +2608,9 @@ window.BAHASA_CURRICULUM_A2 = {
                                     ]
                                 },
                                 {
-                                    "title": "Lección 3: Éxito, fracaso y decisiones",
-                                    "objective": "Describe resultados y decisiones sencillas.",
-                                    "grammar": "Berhasil significa tener éxito; gagal, fracasar; memutuskan, decidir.",
+                                    "title": "Lección 3: Fracaso, decisiones y continuidad",
+                                    "objective": "Describe un fracaso, una decisión y la continuación de una actividad.",
+                                    "grammar": "Gagal significa fracasar; memutuskan, decidir; y melanjutkan, continuar o proseguir.",
                                     "vocabIds": [
                                         "a2u12_gagal",
                                         "a2u12_memutuskan",
@@ -2654,8 +2654,8 @@ window.BAHASA_CURRICULUM_A2 = {
                                     ]
                                 },
                                 {
-                                    "title": "Lección 4: Continuar y mejorar",
-                                    "objective": "Habla de continuar aprendiendo y desarrollar capacidades.",
+                                    "title": "Lección 4: Mejorar y desarrollar habilidades",
+                                    "objective": "Habla de mejorar tus capacidades y desarrollar destrezas.",
                                     "grammar": "Melanjutkan significa continuar; meningkatkan, mejorar; mengembangkan, desarrollar; keterampilan, destreza.",
                                     "vocabIds": [
                                         "a2u12_meningkatkan",

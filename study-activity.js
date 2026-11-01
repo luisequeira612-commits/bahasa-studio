@@ -4,7 +4,7 @@
     const DAILY_GOALS = [20, 30, 50, 100];
     const DEFAULT_GOAL = 30;
     const SKILL_KEYS = ['recognition', 'translation', 'listening', 'sentenceBuilding', 'writing', 'conversation'];
-    const SCORED_SKILLS = ['recognition', 'translation', 'listening', 'sentenceBuilding', 'writing'];
+    const SCORED_SKILLS = ['recognition', 'translation', 'listening', 'sentenceBuilding', 'writing', 'conversation'];
 
     function dateKey(value) {
         const date = new Date(value == null ? Date.now() : value);

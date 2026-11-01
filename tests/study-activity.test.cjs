@@ -97,12 +97,17 @@ test('first attempts update skill accuracy and survive version-3 backup validati
   activity = StudyActivity.recordSkill(activity, 'listening', true, day);
   activity = StudyActivity.recordSkill(activity, 'listening', false, day);
   activity = StudyActivity.recordSkill(activity, 'translation', true, day);
+  activity = StudyActivity.recordSkill(activity, 'conversation', true, day);
+  activity = StudyActivity.recordSkill(activity, 'conversation', false, day);
   const restored = StudyActivity.validateBackup(activity, day);
   assert.equal(restored.skillStats.listening.attempts, 2);
   assert.equal(restored.skillStats.listening.correct, 1);
   assert.equal(restored.skillStats.listening.incorrect, 1);
   assert.equal(restored.skillStats.translation.attempts, 1);
   assert.equal(restored.skillStats.translation.correct, 1);
+  assert.equal(restored.skillStats.conversation.attempts, 2);
+  assert.equal(restored.skillStats.conversation.correct, 1);
+  assert.equal(restored.skillStats.conversation.incorrect, 1);
   assert.equal(restored.todayXp, 0, 'skill tracking does not award XP');
   assert.equal(restored.todayLessons, 0, 'skill tracking does not fabricate completed lessons');
   assert.throws(() => StudyActivity.recordSkill(activity, 'unknown', true, day), /Habilidad de práctica no válida/);

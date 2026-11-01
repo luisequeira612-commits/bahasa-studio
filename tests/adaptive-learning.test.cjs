@@ -368,3 +368,47 @@ test('SRS dashboard sanitizes aggregated counters and records the oldest valid r
   assert.match(html, /aggregate\.lastReviewed = AdaptiveLearning\.earliestValidTimestamp\(/);
   assert.match(html, /Number\.isFinite\(a\[1\]\.lastReviewed\)/);
 });
+
+test('guided conversation accuracy becomes actionable after five scored responses', () => {
+  const result = AdaptiveLearning.recommend({
+    dueCount: 0,
+    weakWords: [],
+    isolatedWords: [],
+    nextLesson: { unitId: 'a2_u1', lessonIndex: 0, title: 'Siguiente lección' },
+    skillStats: {
+      recognition: { attempts: 8, correct: 7 },
+      conversation: { attempts: 5, correct: 2, incorrect: 3, sessions: 2 }
+    }
+  });
+  assert.equal(result.type, 'reinforce-conversation');
+  assert.equal(result.action, 'conversation');
+  assert.equal(result.label, 'Practicar conversación');
+  assert.match(result.description, /conversación: 40% \(5 intentos\)/);
+});
+
+test('conversation skill focus ignores fewer than five attempts and keeps urgent review priorities', () => {
+  const stats = {
+    recognition: { attempts: 8, correct: 6 },
+    conversation: { attempts: 4, correct: 0, incorrect: 4 }
+  };
+  const result = AdaptiveLearning.recommend({
+    dueCount: 0,
+    weakWords: [],
+    nextLesson: { unitId: 'a1_u1', lessonIndex: 0 },
+    skillStats: stats
+  });
+  assert.equal(result.type, 'continue-lesson');
+  assert.doesNotMatch(result.description, /conversación/);
+
+  assert.equal(AdaptiveLearning.recommend({
+    dueCount: 1,
+    weakWords: [],
+    skillStats: { conversation: { attempts: 10, correct: 1, incorrect: 9 } }
+  }).action, 'review');
+  assert.equal(AdaptiveLearning.recommend({
+    dueCount: 0,
+    weakWords: [{ id: 'w1', term: 'rumah', incorrect: 2 }],
+    skillStats: { conversation: { attempts: 10, correct: 1, incorrect: 9 } }
+  }).action, 'reinforce');
+});
+

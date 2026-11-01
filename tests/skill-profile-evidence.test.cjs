@@ -46,3 +46,13 @@ test('writing free-practice sessions and conversation sessions remain separate f
   assert.match(dashboard, /studySkillConversationText/);
   assert.match(dashboard, /skillStats\.conversation\?\.sessions/);
 });
+
+test('conversation profile distinguishes guided answer accuracy from completed session count', () => {
+  assert.match(html, /conversation\.attempts/);
+  assert.match(html, /respuestas guiadas/);
+  assert.match(html, /conversation\.correct/);
+  assert.match(html, /conversation\.incorrect/);
+  assert.match(html, /sesiones completadas/);
+  assert.match(html, /datos iniciales \(mínimo 5\)/);
+});
+

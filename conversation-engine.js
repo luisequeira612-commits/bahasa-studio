@@ -609,13 +609,18 @@
         },
 
         choose: function (index) {
-            if (this.answered || !this.currentScenario) return;
+            if (this.answered || this.freeResponseMode || !this.currentScenario) return;
             const turn = this.currentScenario.turns[this.turnIndex];
             if (!Number.isInteger(index) || index < 0 || index >= turn.choices.length) return;
             this.answered = true;
             this.selectedChoice = index;
-            if (turn.choices[index].correct) this.score += 1;
+            const isCorrect = Boolean(turn.choices[index].correct);
+            if (isCorrect) this.score += 1;
             else this.mistakeTurns.push(turn);
+            if (typeof App !== 'undefined' && typeof App.recordSkillActivity === 'function') {
+                App.recordSkillActivity('conversation', isCorrect)
+                    .catch(error => console.error('No se pudo guardar el perfil de conversación:', error));
+            }
             this.renderStep();
         },
 

@@ -723,3 +723,20 @@ test('A2 U14 explains keberangkatan as departure, matching its vocabulary gloss'
   assert.equal(exercise.explanation, 'keberangkatan significa salida.');
   assert.doesNotMatch(exercise.explanation, /viaje/);
 });
+
+
+test('A2 U18 clarifies the Indonesian-Spanish false friend pagar', () => {
+  const unit = a2.units.find(entry => entry.id === 'a2_u18');
+  assert.ok(unit);
+  const word = unit.vocab.find(entry => entry.id === 'a2u18_pagar');
+  assert.equal(word.idn, 'pagar');
+  assert.equal(word.esp, 'Cerca');
+  assert.match(word.exEsp, /cerca/i);
+  const lesson = unit.lessons.find(entry => entry.exercises.some(exercise => exercise.vocabId === 'a2u18_pagar'));
+  assert.ok(lesson);
+  const write = lesson.exercises.find(exercise => exercise.type === 'write' && exercise.vocabId === 'a2u18_pagar');
+  assert.ok(write);
+  assert.match(write.prompt, /no el verbo español «pagar»/);
+  assert.match(write.hint, /significado indonesio: «cerca»/);
+  assert.match(write.explanation, /sustantivo indonesio «cerca»/);
+});

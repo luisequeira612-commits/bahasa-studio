@@ -1214,3 +1214,29 @@ test('A2 U37-U40 audit protects key distinctions for safety and digital vocabula
   assert.match(audit, /biaya masuk/);
   assert.match(audit, /tiket masuk/);
 });
+
+test('A2 U8 lesson focus, vocabulary introductions, and exercises stay aligned', () => {
+  const unit = a2.units.find(entry => entry.id === 'a2_u8');
+  const [lesson1, lesson2, lesson3, lesson4] = unit.lessons;
+  assert.match(lesson2.title, /raíces con p inicial/i);
+  assert.match(lesson2.grammar, /memakai, memilih y memesan/);
+  assert.deepEqual(Array.from(lesson2.vocabIds), [
+    'a2u8_memakai', 'a2u8_memilih', 'a2u8_memesan'
+  ]);
+  assert.match(lesson3.grammar, /memulai y meminta/);
+  assert.deepEqual(Array.from(lesson3.vocabIds), [
+    'a2u8_memulai', 'a2u8_meminta'
+  ]);
+  assert.ok(lesson3.exercises.every(exercise => exercise.vocabId !== 'a2u8_menyimpan'));
+  assert.ok(lesson4.vocabIds.includes('a2u8_menyimpan'));
+  assert.ok(lesson4.exercises.some(exercise =>
+    exercise.vocabId === 'a2u8_menyimpan' && exercise.type === 'listen'
+  ));
+  for (const lesson of [lesson1, lesson2, lesson3, lesson4]) {
+    const introduced = new Set([...(lesson.vocabIds || []), ...(lesson.reviewVocabIds || [])]);
+    for (const exercise of lesson.exercises || []) {
+      assert.ok(introduced.has(exercise.vocabId),
+        lesson.title + ' must assess vocabulary introduced in that lesson or explicitly marked for review');
+    }
+  }
+});

@@ -117,7 +117,8 @@ function loadCurriculum(source, globalName, filename) {
 
 async function main() {
   const args = process.argv.slice(2);
-  let outputPath = 'artifacts/editorial-review-queue.csv';\n  let summaryPath = null;
+  let outputPath = 'artifacts/editorial-review-queue.csv';
+  let summaryPath = null;
   for (let i = 0; i < args.length; i += 1) {
     if (args[i] === '--output') {
       outputPath = args[++i];

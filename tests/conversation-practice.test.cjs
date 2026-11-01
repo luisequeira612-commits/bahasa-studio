@@ -109,3 +109,11 @@ test('a completed conversation records one aggregate session without scoring fre
   assert.deepEqual(recordedSessions, ['conversation'], 'rendering the result again must not double-count');
   assert.match(elements.conversationPracticeArea.innerHTML, /tus respuestas no se guardan/);
 });
+
+
+test('completed conversations record only an aggregate session counter', () => {
+  assert.match(source, /App\.recordSkillSession\('conversation'\)/);
+  assert.match(source, /sessionRecorded/);
+  assert.match(source, /tus respuestas no se guardan/);
+  assert.doesNotMatch(source, /DB\.set|localStorage|indexedDB|MediaRecorder/);
+});

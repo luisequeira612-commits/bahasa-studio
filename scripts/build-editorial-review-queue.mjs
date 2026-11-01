@@ -122,8 +122,11 @@ async function main() {
     if (args[i] === '--output') {
       outputPath = args[++i];
       if (!outputPath) throw new Error('--output needs a path.');
+    } else if (args[i] === '--summary') {
+      summaryPath = args[++i];
+      if (!summaryPath) throw new Error('--summary needs a path.');
     } else if (args[i] === '--help' || args[i] === '-h') {
-      console.log('Usage: node scripts/build-editorial-review-queue.mjs [--output PATH]');
+      console.log('Usage: node scripts/build-editorial-review-queue.mjs [--output PATH] [--summary PATH]');
       return;
     } else throw new Error(`Unknown argument: ${args[i]}`);
   }
@@ -140,6 +143,11 @@ async function main() {
   const destination = resolve(outputPath);
   await mkdir(dirname(destination), { recursive: true });
   await writeFile(destination, csv, 'utf8');
+  if (summaryPath) {
+    const summaryDestination = resolve(summaryPath);
+    await mkdir(dirname(summaryDestination), { recursive: true });
+    await writeFile(summaryDestination, JSON.stringify(buildEditorialSummary(rows), null, 2) + '\n', 'utf8');
+  }
   const p1 = rows.filter((row) => row.priority === 'P1').length;
   console.log(JSON.stringify({
     rows: rows.length,

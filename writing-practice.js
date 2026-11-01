@@ -24,7 +24,7 @@
             situation: 'Un amigo quiere visitar una tienda cerca de tu casa. Escríbele indicaciones sencillas: por dónde caminar, dónde girar y qué lugar verá. Intenta escribir tres o cuatro frases.',
             checklist: ['Indiqué desde dónde debe empezar.', 'Usé una instrucción para seguir o girar.', 'Mencioné izquierda o derecha.', 'Expliqué qué lugar encontrará.'],
             example: 'Dari rumah saya, berjalan lurus. Belok kiri di jalan besar. Toko ada di sebelah kanan. Toko itu dekat sekolah.'
-        }
+        },
         {
             id: 'budget',
             level: 'A2',

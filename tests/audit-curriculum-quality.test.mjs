@@ -61,7 +61,7 @@ test('reports incomplete examples as warnings, not linguistic verdicts', () => {
   assert.ok(report.issues.some((item) => item.code === 'VOCAB_NOT_EXPLICITLY_ASSESSED'));
 });
 
-test('allows a shared vocabulary ID for the same Indonesian term as a warning', () => {
+test('classifies a shared vocabulary ID for the same Indonesian term as informational', () => {
   const report = auditCurriculum({
     id: 'A1',
     units: [
@@ -72,7 +72,9 @@ test('allows a shared vocabulary ID for the same Indonesian term as a warning', 
   assert.equal(report.error_count, 0);
   assert.equal(report.vocabulary_count, 2);
   assert.equal(report.unique_vocabulary_id_count, 1);
-  assert.ok(report.issues.some((item) => item.code === 'VOCAB_ID_REUSED_SAME_TERM' && item.severity === 'warning'));
+  assert.ok(report.issues.some((item) => item.code === 'VOCAB_ID_REUSED_SAME_TERM' && item.severity === 'info'));
+  assert.equal(report.warning_count, 0);
+  assert.equal(report.info_count, 1);
 });
 
 test('resolves cumulative review references against vocabulary from another level', () => {
@@ -236,8 +238,8 @@ test('classifies same-term vocabulary ID reuse with the same gloss as informatio
   const report = auditCurriculum({
     id: 'A1',
     units: [
-      { id: 'u1', title: 'One', vocab: [{ id: 'shared', idn: 'baik', esp: 'Bueno' }], exercises: [] },
-      { id: 'u2', title: 'Two', vocab: [{ id: 'shared', idn: 'BAIK', esp: '  bueno  ' }], exercises: [] },
+      { id: 'u1', title: 'One', vocab: [{ id: 'shared', idn: 'baik', esp: 'Bueno', ex: 'Dia baik', exEsp: 'Él es bueno' }], exercises: [{ vocabId: 'shared', type: 'listen', prompt: 'Listen' }] },
+      { id: 'u2', title: 'Two', vocab: [{ id: 'shared', idn: 'BAIK', esp: '  bueno  ', ex: 'Dia baik', exEsp: 'Él es bueno' }], exercises: [{ vocabId: 'shared', type: 'listen', prompt: 'Listen' }] },
     ],
   });
 

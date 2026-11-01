@@ -1779,3 +1779,55 @@ test('A2 units 5-8 align each lesson explanation and exercise with vocabulary in
       unit.id + ' should introduce every vocabulary item exactly once across its lessons');
   }
 });
+
+test('A2 U21-U24 introduce all new vocabulary before exercises assess it', () => {
+  const units = a2.units.slice(20, 24);
+  assert.deepEqual(Array.from(units, unit => unit.id), ['a2_u21', 'a2_u22', 'a2_u23', 'a2_u24']);
+
+  for (const unit of units) {
+    const unitVocabIds = new Set(unit.vocab.map(word => word.id));
+    const introducedAt = new Map();
+
+    assert.equal(unit.vocab.length, 12, unit.id + ' should contain 12 vocabulary entries');
+    assert.equal(unit.lessons.length, 4, unit.id + ' should contain four lessons');
+
+    unit.lessons.forEach((lesson, lessonIndex) => {
+      assert.ok(lesson.title && lesson.objective && lesson.grammar,
+        unit.id + ' lessons must state their learning focus');
+      assert.ok(Array.isArray(lesson.vocabIds) && lesson.vocabIds.length > 0,
+        unit.id + ' lessons must introduce vocabulary');
+
+      for (const id of lesson.vocabIds) {
+        assert.ok(unitVocabIds.has(id),
+          unit.id + ' introduces vocabulary outside its unit: ' + id);
+        assert.ok(!introducedAt.has(id),
+          unit.id + ' introduces the same vocabulary item more than once: ' + id);
+        introducedAt.set(id, lessonIndex);
+      }
+    });
+
+    assert.equal(introducedAt.size, unit.vocab.length,
+      unit.id + ' must introduce every new vocabulary item exactly once');
+
+    unit.lessons.forEach((lesson, lessonIndex) => {
+      const declaredReview = new Set(lesson.reviewVocabIds || []);
+      for (const exercise of lesson.exercises || []) {
+        const references = [
+          ...(typeof exercise.vocabId === 'string' ? [exercise.vocabId] : []),
+          ...(Array.isArray(exercise.vocabIds) ? exercise.vocabIds : [])
+        ];
+        for (const id of references) {
+          if (!unitVocabIds.has(id)) continue;
+          const firstLesson = introducedAt.get(id);
+          assert.ok(Number.isInteger(firstLesson),
+            unit.id + ' exercise references a word absent from lesson introductions: ' + id);
+          assert.ok(firstLesson <= lessonIndex || declaredReview.has(id),
+            unit.id + ' assesses ' + id + ' before its introduction');
+        }
+        assert.ok(exercise.prompt && exercise.explanation,
+          unit.id + ' exercises must include a prompt and feedback');
+      }
+    });
+  }
+});
+

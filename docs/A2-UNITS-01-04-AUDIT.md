@@ -102,4 +102,4 @@ El modelo es una respuesta guiada, no una respuesta única. Las variantes válid
 
 U1–U4 no se declaran lingüísticamente cerradas por tener pruebas verdes. Esta tanda puede considerarse técnicamente consolidada cuando las pruebas de regresión pasan y las incidencias estructurales quedan resueltas. La aprobación editorial y lingüística requiere cerrar los puntos pendientes anteriores con evidencia trazable.
 
-A2 permanece sujeto a la puerta explícita `A2_RELEASE_ENABLED = false` integrada en main; este trabajo no habilita el nivel ni cambia la política de acceso.
+A2 está habilitado en beta (`A2_RELEASE_ENABLED = true`) y se ofrece cuando el estudiante completa las 32 unidades A1. La habilitación beta no equivale a validación lingüística: naturalidad, registro, traducciones, audio y adecuación de nivel siguen documentados como pendientes. La falta de KBBI fiable o de una persona revisora no debe volver a bloquear el acceso al nivel.

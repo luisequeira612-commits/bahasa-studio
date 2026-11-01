@@ -56,9 +56,11 @@ La aplicación registra un perfil descriptivo y local a partir de los primeros i
 
 Los contadores se guardan dentro de la clave existente `settings.studyActivity` y se incluyen en el mismo objeto `studyActivity` del backup v3. No se añade una tabla de IndexedDB ni se cambia la versión del backup. Los backups antiguos sin `skillStats` reciben contadores vacíos.
 
-El perfil conserva solo intentos, aciertos, errores y sesiones agregadas. No guarda el texto de los borradores, transcripciones, audio ni respuestas libres. Los primeros intentos no equivalen a dominio de una habilidad: la cifra de acierto es descriptiva, mezcla lecciones y evaluaciones y todavía no se utiliza para recomendaciones adaptativas ni para declarar un nivel MCER.
+El perfil conserva solo intentos, aciertos, errores y sesiones agregadas. No guarda el texto de los borradores, transcripciones, audio ni respuestas libres. Los primeros intentos no equivalen a dominio de una habilidad: la cifra de acierto es descriptiva, mezcla lecciones y evaluaciones y no sirve para declarar un nivel MCER.
 
-Antes de usarlo para recomendaciones por habilidad habrá que definir mínimos de evidencia, separar tipos de actividad comparables y evitar conclusiones con muestras pequeñas.
+**Uso actual en el panel adaptativo:** `AdaptiveLearning.weakestSkill` puede añadir una observación contextual cuando una habilidad tiene al menos cinco intentos puntuados. Esa observación no cambia `recommendation.type`, `recommendation.action` ni el orden de prioridad de actividades: solo muestra la menor precisión registrada como dato orientativo. Las categorías no son todavía plenamente comparables entre sí porque agrupan tipos de ejercicios distintos; la interfaz no debe presentarlas como un diagnóstico ni como una debilidad estable.
+
+Antes de usar el perfil para elegir actividades o ajustar dificultad por habilidad habrá que definir mínimos de evidencia, separar tipos de actividad comparables y evitar conclusiones con muestras pequeñas.
 
 
 ## Escritura progresiva A1–A2 — 2026-11-01

@@ -777,6 +777,41 @@ test('A2 U38 uses consistent hyphenation for oleh-oleh', () => {
   assert.equal(exercise.explanation, 'La frase utiliza «oleh-oleh».');
 });
 
+
+
+test('A2 U6 Mencatat example and translation describe the same action', () => {
+  const unit = a2.units.find(entry => entry.id === 'a2_u6');
+  assert.ok(unit);
+  const word = unit.vocab.find(entry => entry.id === 'a2u6_mencatat');
+  assert.ok(word);
+  assert.equal(word.ex, 'Saya mencatat alamat.');
+  assert.equal(word.exEsp, 'Anoto una dirección.');
+  const exercise = unit.lessons.flatMap(lesson => lesson.exercises || [])
+    .find(entry => entry.vocabId === 'a2u6_mencatat' && entry.type === 'translate_es_id');
+  assert.ok(exercise);
+  assert.equal(exercise.prompt, 'Traduce: Anoto una dirección.');
+  assert.equal(exercise.answer, 'Saya mencatat alamat.');
+});
+
+test('A2 U7 meng- explanation includes the h-initial root hapus', () => {
+  const unit = a2.units.find(entry => entry.id === 'a2_u7');
+  assert.ok(unit);
+  assert.match(unit.grammar, /k, g, h o vocal/);
+  assert.match(unit.grammar, /hapus → menghapus/);
+  const word = unit.vocab.find(entry => entry.id === 'a2u7_menghapus');
+  assert.ok(word);
+  assert.equal(word.idn, 'Menghapus');
+});
+
+test('A2 U7 mengisi example matches its Spanish translation', () => {
+  const unit = a2.units.find(entry => entry.id === 'a2_u7');
+  assert.ok(unit);
+  const word = unit.vocab.find(entry => entry.id === 'a2u7_mengisi');
+  assert.ok(word);
+  assert.equal(word.ex, 'Saya mengisi botol dengan air.');
+  assert.equal(word.exEsp, 'Lleno una botella con agua.');
+});
+
 test('A2 units 25-40 keep exercise answers aligned with their linked vocabulary', () => {
   const units = a2.units.slice(24);
   assert.equal(units.length, 16, 'the final A2 block should contain units 25-40');

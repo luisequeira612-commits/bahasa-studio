@@ -747,7 +747,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                             "explanation": "Usa el verbo en una oración completa."
                                         },
                                         {
-                                            "vocabId": "a2u6_menunggu",
+                                            "vocabId": "a2u6_menutup",
                                             "type": "order",
                                             "prompt": "Ordena: Cierro el libro.",
                                             "words": [
@@ -1041,7 +1041,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                             "explanation": "Usa el verbo en una oración completa."
                                         },
                                         {
-                                            "vocabId": "a2u7_menggambar",
+                                            "vocabId": "a2u7_mengirim",
                                             "type": "order",
                                             "prompt": "Ordena: Envío un mensaje.",
                                             "words": [
@@ -1335,7 +1335,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                             "explanation": "Usa el verbo en una oración completa."
                                         },
                                         {
-                                            "vocabId": "a2u8_membawa",
+                                            "vocabId": "a2u8_membeli",
                                             "type": "order",
                                             "prompt": "Ordena: Compro un libro.",
                                             "words": [

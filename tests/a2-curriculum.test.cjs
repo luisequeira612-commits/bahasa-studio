@@ -889,3 +889,25 @@ test('A2 U14 uses consistent travel glosses and translation prompts', () => {
   assert.equal(travel.prompt, 'Traduce: Viajo por la mañana.');
   assert.equal(travel.answer, 'Saya bepergian pagi.');
 });
+
+test('A2 U5-U8 meaning questions keep the correct option and feedback aligned with vocabulary glosses', () => {
+  for (const unit of a2.units.slice(4, 8)) {
+    const vocabulary = new Map(unit.vocab.map(word => [word.id, word]));
+    const meaningExercises = unit.lessons.flatMap(lesson => lesson.exercises || [])
+      .filter(exercise => exercise.type === 'mc' && /qué significa/i.test(exercise.prompt || ''));
+
+    assert.ok(meaningExercises.length > 0, unit.id + ' should include explicit vocabulary-meaning questions');
+
+    for (const exercise of meaningExercises) {
+      const word = vocabulary.get(exercise.vocabId);
+      assert.ok(word, unit.id + ' meaning question must reference vocabulary introduced in the same unit');
+      assert.ok(Array.isArray(exercise.options), unit.id + ' meaning question must provide answer options');
+      assert.equal(exercise.options[exercise.answer], word.esp,
+        unit.id + ' correct meaning option must match the canonical Spanish gloss for ' + word.idn);
+      assert.ok((exercise.explanation || '').toLowerCase().includes(word.idn.toLowerCase()),
+        unit.id + ' feedback should identify the vocabulary item being explained');
+      assert.match(exercise.explanation || '', /significa/i,
+        unit.id + ' feedback should explain the meaning rather than only repeat the answer');
+    }
+  }
+});

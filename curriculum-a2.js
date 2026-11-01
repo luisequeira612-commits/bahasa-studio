@@ -789,8 +789,8 @@ window.BAHASA_CURRICULUM_A2 = {
                                         {
                                             "vocabId": "a2u6_mencatat",
                                             "type": "translate_es_id",
-                                            "prompt": "Traduce: Tomo nota.",
-                                            "answer": "Saya mencatat baju.",
+                                            "prompt": "Traduce: Anoto una dirección.",
+                                            "answer": "Saya mencatat alamat.",
                                             "explanation": "La frase usa mencatat."
                                         },
                                         {

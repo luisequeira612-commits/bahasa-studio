@@ -710,3 +710,16 @@ test('A2 U15 distinguishes proposing from inviting in vocabulary feedback', () =
   assert.match(exercise.explanation, /mengundang significa invitar/);
   assert.doesNotMatch(exercise.explanation, /mengusulkan significa invitar/);
 });
+
+
+test('A2 U14 explains keberangkatan as departure, matching its vocabulary gloss', () => {
+  const unit = a2.units.find(entry => entry.id === 'a2_u14');
+  assert.ok(unit);
+  const lesson = unit.lessons.find(entry => entry.title.includes('Medios de transporte'));
+  assert.ok(lesson);
+  const exercise = lesson.exercises.find(entry => entry.vocabId === 'a2u14_keberangkatan' && entry.type === 'mc');
+  assert.ok(exercise);
+  assert.equal(exercise.options[exercise.answer], 'Salida');
+  assert.equal(exercise.explanation, 'keberangkatan significa salida.');
+  assert.doesNotMatch(exercise.explanation, /viaje/);
+});

@@ -96,7 +96,7 @@ test('service worker precaches both data files and invalidates the previous cach
   const deletedCaches = [];
   const cachesApi = {
     async open() { return cache; },
-    async keys() { return ['bahasa-studio-v3.8.8', 'bahasa-studio-v3.8.9', 'bahasa-studio-v3.8.10', 'bahasa-studio-v3.8.11', 'bahasa-studio-v3.8.12', 'bahasa-studio-v3.8.13', 'bahasa-studio-v3.8.14', 'bahasa-studio-v3.8.15', 'bahasa-studio-v3.8.16', 'bahasa-studio-v3.8.17', 'bahasa-studio-v3.8.18', 'bahasa-studio-v3.8.19', 'bahasa-studio-v3.8.20', 'bahasa-studio-v3.8.21', 'bahasa-studio-v3.8.22', 'bahasa-studio-v3.8.23', 'bahasa-studio-v3.8.24', 'bahasa-studio-v3.8.25', 'another-app-cache-v1']; },
+    async keys() { return ['bahasa-studio-v3.8.8', 'bahasa-studio-v3.8.9', 'bahasa-studio-v3.8.10', 'bahasa-studio-v3.8.11', 'bahasa-studio-v3.8.12', 'bahasa-studio-v3.8.13', 'bahasa-studio-v3.8.14', 'bahasa-studio-v3.8.15', 'bahasa-studio-v3.8.16', 'bahasa-studio-v3.8.17', 'bahasa-studio-v3.8.18', 'bahasa-studio-v3.8.19', 'bahasa-studio-v3.8.20', 'bahasa-studio-v3.8.21', 'bahasa-studio-v3.8.22', 'bahasa-studio-v3.8.23', 'bahasa-studio-v3.8.24', 'bahasa-studio-v3.8.25', 'bahasa-studio-v3.8.26', 'another-app-cache-v1']; },
     async delete(name) { deletedCaches.push(name); return name !== 'bahasa-studio-v3.8.23'; }
   };
   const sandbox = {

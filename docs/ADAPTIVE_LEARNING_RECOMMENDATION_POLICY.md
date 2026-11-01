@@ -59,3 +59,10 @@ Los contadores se guardan dentro de la clave existente `settings.studyActivity` 
 El perfil conserva solo intentos, aciertos, errores y sesiones agregadas. No guarda el texto de los borradores, transcripciones, audio ni respuestas libres. Los primeros intentos no equivalen a dominio de una habilidad: la cifra de acierto es descriptiva, mezcla lecciones y evaluaciones y todavía no se utiliza para recomendaciones adaptativas ni para declarar un nivel MCER.
 
 Antes de usarlo para recomendaciones por habilidad habrá que definir mínimos de evidencia, separar tipos de actividad comparables y evitar conclusiones con muestras pequeñas.
+
+
+## Escritura progresiva A1–A2 — 2026-11-01
+
+El cuaderno de escritura independiente amplía de tres a seis situaciones: tres A1 y tres A2. Las tareas A2 trabajan presupuesto personal, colaboración digital y comparación de alternativas. Cada tarea declara sus referencias léxicas y las pruebas verifican que esas palabras existan en el currículo A2.
+
+Las tareas siguen siendo abiertas: no califican, no asignan XP/SRS ni guardan borradores. Al comparar un borrador con el ejemplo se registra únicamente una sesión agregada de escritura. Los ejemplos se presentan como orientativos y no como modelos validados por hablantes nativos.

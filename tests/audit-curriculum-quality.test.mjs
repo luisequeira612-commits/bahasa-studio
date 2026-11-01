@@ -232,6 +232,22 @@ test('warns when a reused vocabulary ID keeps the Indonesian term but changes it
   ));
 });
 
+test('classifies same-term vocabulary ID reuse with the same gloss as informational', () => {
+  const report = auditCurriculum({
+    id: 'A1',
+    units: [
+      { id: 'u1', title: 'One', vocab: [{ id: 'shared', idn: 'baik', esp: 'Bueno' }], exercises: [] },
+      { id: 'u2', title: 'Two', vocab: [{ id: 'shared', idn: 'BAIK', esp: '  bueno  ' }], exercises: [] },
+    ],
+  });
+
+  const reuse = report.issues.find((item) => item.code === 'VOCAB_ID_REUSED_SAME_TERM');
+  assert.equal(reuse?.severity, 'info');
+  assert.equal(report.error_count, 0);
+  assert.equal(report.warning_count, 0);
+  assert.equal(report.info_count, 1);
+});
+
 test('does not warn for harmless case and whitespace differences in reused glosses', () => {
   const report = auditCurriculum({
     id: 'A1',

@@ -629,9 +629,9 @@ test('A2 U4 includes integrated daily-schedule writing with two timed activities
 
 test('A2 U6-U8 word-order feedback matches each prompt and canonical answer', () => {
   const cases = [
-    { unitId: 'a2_u6', vocabId: 'a2u6_menutup', prompt: 'Ordena: Cierro el libro.', sentence: 'Saya menutup buku.' },
-    { unitId: 'a2_u7', vocabId: 'a2u7_mengirim', prompt: 'Ordena: Envío un mensaje.', sentence: 'Saya mengirim pesan.' },
-    { unitId: 'a2_u8', vocabId: 'a2u8_membawa', prompt: 'Ordena: Compro un libro.', sentence: 'Saya membeli buku.' }
+    { unitId: 'a2_u6', vocabId: 'a2u6_menutup', prompt: 'Ordena: Cierro el libro.', sentence: 'Saya menutup buku' },
+    { unitId: 'a2_u7', vocabId: 'a2u7_mengirim', prompt: 'Ordena: Envío un mensaje.', sentence: 'Saya mengirim pesan' },
+    { unitId: 'a2_u8', vocabId: 'a2u8_membawa', prompt: 'Ordena: Compro un libro.', sentence: 'Saya membeli buku' }
   ];
   for (const item of cases) {
     const unit = a2.units.find(entry => entry.id === item.unitId);

@@ -81,9 +81,11 @@ test('legacy backups without activity data receive a clean default', () => {
 
 test('exercise types map to explicit practice skills', () => {
   assert.equal(StudyActivity.skillForExercise('mc'), 'recognition');
+  assert.equal(StudyActivity.skillForExercise('mc', true), 'listening');
   assert.equal(StudyActivity.skillForExercise('match'), 'recognition');
   assert.equal(StudyActivity.skillForExercise('translate_es_id'), 'translation');
   assert.equal(StudyActivity.skillForExercise('listen'), 'listening');
+  assert.equal(StudyActivity.skillForExercise('mc', false), 'recognition');
   assert.equal(StudyActivity.skillForExercise('order'), 'sentenceBuilding');
   assert.equal(StudyActivity.skillForExercise('write'), 'writing');
   assert.equal(StudyActivity.skillForExercise('unknown'), null);

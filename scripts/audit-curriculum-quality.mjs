@@ -256,10 +256,19 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
     };
     (unit.exercises ?? []).forEach((exercise, index) => {
       if (!exercise || typeof exercise !== 'object') return;
-      checkRef(exercise.vocabId, `${unitPath}.exercises[${index}].vocabId`);
-      const introductionUnit = vocabIntroductionUnit.get(exercise.vocabId);
-      if (Number.isInteger(introductionUnit) && introductionUnit > unitIndex) {
-        issues.push(issue('warning', 'VOCAB_USED_BEFORE_INTRODUCTION', `${unitPath}.exercises[${index}].vocabId`, `El ejercicio usa ${exercise.vocabId}, introducido en la unidad ${introductionUnit + 1}; revisar si es un adelanto intencional o vocabulario fuera de progresión.`));
+      const references = [
+        ...(typeof exercise.vocabId === 'string' ? [exercise.vocabId] : []),
+        ...(Array.isArray(exercise.vocabIds) ? exercise.vocabIds : []),
+      ];
+      for (const id of new Set(references)) {
+        const referencePath = typeof exercise.vocabId === 'string' && id === exercise.vocabId
+          ? `${unitPath}.exercises[${index}].vocabId`
+          : `${unitPath}.exercises[${index}].vocabIds`;
+        checkRef(id, referencePath);
+        const introductionUnit = vocabIntroductionUnit.get(id);
+        if (Number.isInteger(introductionUnit) && introductionUnit > unitIndex) {
+          issues.push(issue('warning', 'VOCAB_USED_BEFORE_INTRODUCTION', referencePath, `El ejercicio usa ${id}, introducido en la unidad ${introductionUnit + 1}; revisar si es un adelanto intencional o vocabulario fuera de progresión.`));
+        }
       }
     });
     const lessonIntroductionIndex = new Map();
@@ -279,11 +288,19 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
       reviewIds.forEach((id, index) => checkRef(id, `${unitPath}.lessons[${lessonIndex}].reviewVocabIds[${index}]`));
       (Array.isArray(lesson.exercises) ? lesson.exercises : []).forEach((exercise, index) => {
         if (!exercise || typeof exercise !== 'object') return;
-        const exercisePath = `${unitPath}.lessons[${lessonIndex}].exercises[${index}].vocabId`;
-        checkRef(exercise.vocabId, exercisePath);
-        const introductionLesson = lessonIntroductionIndex.get(exercise.vocabId);
-        if (Number.isInteger(introductionLesson) && introductionLesson > lessonIndex && !reviewIds.includes(exercise.vocabId)) {
-          issues.push(issue('warning', 'LESSON_VOCAB_USED_BEFORE_INTRODUCTION', exercisePath, `El ejercicio usa ${exercise.vocabId}, introducido en la lección ${introductionLesson + 1}; revisar si debe declararse como repaso o moverse después de su presentación.`));
+        const references = [
+          ...(typeof exercise.vocabId === 'string' ? [exercise.vocabId] : []),
+          ...(Array.isArray(exercise.vocabIds) ? exercise.vocabIds : []),
+        ];
+        for (const id of new Set(references)) {
+          const referencePath = typeof exercise.vocabId === 'string' && id === exercise.vocabId
+            ? `${unitPath}.lessons[${lessonIndex}].exercises[${index}].vocabId`
+            : `${unitPath}.lessons[${lessonIndex}].exercises[${index}].vocabIds`;
+          checkRef(id, referencePath);
+          const introductionLesson = lessonIntroductionIndex.get(id);
+          if (Number.isInteger(introductionLesson) && introductionLesson > lessonIndex && !reviewIds.includes(id)) {
+            issues.push(issue('warning', 'LESSON_VOCAB_USED_BEFORE_INTRODUCTION', referencePath, `El ejercicio usa ${id}, introducido en la lección ${introductionLesson + 1}; revisar si debe declararse como repaso o moverse después de su presentación.`));
+          }
         }
       });
     });

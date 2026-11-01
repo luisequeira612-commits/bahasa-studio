@@ -351,3 +351,31 @@ test('does not treat an uncovered-vocabulary warning as a structural error', () 
   assert.equal(report.warning_count, 2); // missing example plus missing explicit exercise link
   assert.ok(report.issues.some((item) => item.code === 'VOCAB_NOT_EXPLICITLY_ASSESSED'));
 });
+
+test('checks grouped vocabIds references for missing and future unit vocabulary', () => {
+  const report = auditCurriculum({
+    id: 'A1',
+    units: [
+      { id: 'u1', title: 'First', vocab: [{ id: 'first', idn: 'satu', esp: 'uno' }], exercises: [{ vocabIds: ['later', 'missing'], type: 'listen', prompt: 'Listen' }] },
+      { id: 'u2', title: 'Second', vocab: [{ id: 'later', idn: 'dua', esp: 'dos' }], exercises: [] },
+    ],
+  });
+  assert.ok(report.issues.some((item) => item.code === 'VOCAB_REFERENCE_MISSING' && item.path.endsWith('.vocabIds')));
+  assert.ok(report.issues.some((item) => item.code === 'VOCAB_USED_BEFORE_INTRODUCTION' && item.path.endsWith('.vocabIds')));
+});
+
+test('checks grouped vocabIds references for missing and future lesson vocabulary', () => {
+  const report = auditCurriculum({
+    id: 'A1',
+    units: [{
+      id: 'u1', title: 'One',
+      vocab: [{ id: 'first', idn: 'satu', esp: 'uno' }, { id: 'later', idn: 'dua', esp: 'dos' }],
+      lessons: [
+        { vocabIds: ['first'], reviewVocabIds: [], exercises: [{ vocabIds: ['later', 'missing'], type: 'listen', prompt: 'Listen' }] },
+        { vocabIds: ['later'], reviewVocabIds: [], exercises: [] },
+      ],
+    }],
+  });
+  assert.ok(report.issues.some((item) => item.code === 'VOCAB_REFERENCE_MISSING' && item.path.endsWith('.vocabIds')));
+  assert.ok(report.issues.some((item) => item.code === 'LESSON_VOCAB_USED_BEFORE_INTRODUCTION' && item.path.endsWith('.vocabIds')));
+});

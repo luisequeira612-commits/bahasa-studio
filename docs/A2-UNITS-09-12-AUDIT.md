@@ -41,3 +41,15 @@ Total inspeccionado: **48 entradas, 16 lecciones y 68 ejercicios**. Las unidades
 ## Siguiente paso
 
 Auditar consignas, respuestas esperadas y retroalimentación de U9–U12 contra sus glosas y ejemplos; corregir únicamente contradicciones internas verificables. Después, continuar con U13–U16 usando el mismo protocolo.
+
+
+## Corrección de coherencia didáctica — U12 (2026-11-01)
+
+La inspección detallada encontró que los grupos de vocabulario de las cuatro lecciones sí estaban cubiertos por sus ejercicios, pero los títulos, objetivos y explicaciones gramaticales no siempre describían esos mismos grupos. Se alinearon los rótulos y objetivos sin modificar vocabulario, frases indonesias, respuestas ni progresión:
+
+- Lección 1 ahora explicita experiencia, capacidades y oportunidades; su gramática menciona los tres conceptos.
+- Lección 2 se centra en metas, aspiraciones y resultados, de acuerdo con tujuan, cita-cita y berhasil.
+- Lección 3 explicita fracaso, decisiones y continuidad; su gramática incluye melanjutkan.
+- Lección 4 se centra en mejorar y desarrollar habilidades.
+
+Se añadió una prueba de regresión que comprueba la correspondencia entre título, objetivo, gramática, vocabIds y ejercicios. Es una mejora de organización pedagógica, no una certificación lingüística independiente.

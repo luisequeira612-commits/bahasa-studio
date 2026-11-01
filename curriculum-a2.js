@@ -747,7 +747,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                             "explanation": "Usa el verbo en una oración completa."
                                         },
                                         {
-                                            "vocabId": "a2u6_menunggu",
+                                            "vocabId": "a2u6_menutup",
                                             "type": "order",
                                             "prompt": "Ordena: Cierro el libro.",
                                             "words": [
@@ -760,7 +760,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                                 "menutup",
                                                 "buku"
                                             ],
-                                            "explanation": "Saya menunggu teman. expresa la idea indicada."
+                                            "explanation": "Saya menutup buku. expresa la idea indicada."
                                         }
                                     ]
                                 },
@@ -1041,7 +1041,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                             "explanation": "Usa el verbo en una oración completa."
                                         },
                                         {
-                                            "vocabId": "a2u7_menggambar",
+                                            "vocabId": "a2u7_mengirim",
                                             "type": "order",
                                             "prompt": "Ordena: Envío un mensaje.",
                                             "words": [
@@ -1054,7 +1054,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                                 "mengirim",
                                                 "pesan"
                                             ],
-                                            "explanation": "Dia menggambar rumah. expresa la idea indicada."
+                                            "explanation": "Saya mengirim pesan. expresa la idea indicada."
                                         }
                                     ]
                                 },
@@ -1335,7 +1335,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                             "explanation": "Usa el verbo en una oración completa."
                                         },
                                         {
-                                            "vocabId": "a2u8_membawa",
+                                            "vocabId": "a2u8_membeli",
                                             "type": "order",
                                             "prompt": "Ordena: Compro un libro.",
                                             "words": [
@@ -1348,7 +1348,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                                 "membeli",
                                                 "buku"
                                             ],
-                                            "explanation": "Dia membawa buku. expresa la idea indicada."
+                                            "explanation": "Saya membeli buku. expresa la idea indicada."
                                         }
                                     ]
                                 },

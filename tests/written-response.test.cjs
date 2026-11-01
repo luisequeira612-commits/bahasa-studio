@@ -134,3 +134,17 @@ test('guided writing copy makes clear that the model answer is an example, not a
  assert.match(html, /auto-evaluación|autoevaluación/i);
  assert.doesNotMatch(html, />Comparar con el ejemplo<\/button>/);
 });
+
+test('only approved or explicitly unreviewed legacy alternatives can be accepted',()=>{
+ const api=load();
+ const ex={type:'translate_es_id',answer:'Terima kasih',acceptedAnswers:[
+  {text:'Makasih',status:'approved'},
+  {text:'Thanks',status:'rejected'},
+  {text:'Thx',status:'needs-review'},
+  {text:'Terima kasih banyak'}
+ ]};
+ assert.equal(api.compare('Makasih',ex).status,'correct');
+ assert.equal(api.compare('Thanks',ex).status,'incorrect');
+ assert.equal(api.compare('Thx',ex).status,'incorrect');
+ assert.equal(api.compare('Terima kasih banyak',ex).status,'correct');
+});

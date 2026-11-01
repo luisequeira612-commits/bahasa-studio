@@ -372,10 +372,12 @@ test('v3.7.1 audit fixes remain in place without changing backup or database ver
   assert.ok(html.includes("if (!unique.has(signature)) unique.set(signature, item)"));
   assert.ok(html.includes("async saveAttemptForDuplicateWords(wordId, item)"));
   assert.ok(html.includes("if (aggregate.seenStates.has(signature)) continue"));
-  assert.ok(html.includes("aggregate.attempts += item.val.attempts || 0"));
-  assert.ok(html.includes("aggregate.correct += item.val.correct || 0"));
-  assert.ok(html.includes("aggregate.incorrect += item.val.incorrect || 0"));
-  assert.ok(html.includes("aggregate.repetition = Math.max(aggregate.repetition, item.val.repetition || 0)"));
+  assert.ok(html.includes("const attempts = AdaptiveLearning.normalizeSrsCount(item.val.attempts)"));
+  assert.ok(html.includes("aggregate.attempts += attempts"));
+  assert.ok(html.includes("Math.min(AdaptiveLearning.normalizeSrsCount(item.val.correct), attempts)"));
+  assert.ok(html.includes("Math.min(AdaptiveLearning.normalizeSrsCount(item.val.incorrect), attempts)"));
+  assert.ok(html.includes("AdaptiveLearning.normalizeSrsCount(item.val.repetition)"));
+  assert.ok(html.includes("aggregate.lastReviewed = AdaptiveLearning.earliestValidTimestamp("));
 });
 
 test('unit and vocabulary IDs are unique and every authored exercise has a valid answer structure', () => {

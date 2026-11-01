@@ -5,6 +5,18 @@
         return Number.isSafeInteger(value) && value > 0 ? value : 0;
     }
 
+    function normalizeSrsCount(value) {
+        return Number.isSafeInteger(value) && value >= 0 ? value : 0;
+    }
+
+    function earliestValidTimestamp(current, candidate) {
+        const validCurrent = Number.isSafeInteger(current) && current >= 0 ? current : null;
+        const validCandidate = Number.isSafeInteger(candidate) && candidate >= 0 ? candidate : null;
+        if (validCurrent === null) return validCandidate;
+        if (validCandidate === null) return validCurrent;
+        return Math.min(validCurrent, validCandidate);
+    }
+
     const SKILL_LABELS = {
         recognition: 'reconocimiento',
         translation: 'traducción',
@@ -176,5 +188,5 @@
         }, focus);
     }
 
-    root.AdaptiveLearning = Object.freeze({ recommend, weakestSkill, selectSkillLesson });
+    root.AdaptiveLearning = Object.freeze({ recommend, weakestSkill, selectSkillLesson, normalizeSrsCount, earliestValidTimestamp });
 })(typeof window !== 'undefined' ? window : globalThis);

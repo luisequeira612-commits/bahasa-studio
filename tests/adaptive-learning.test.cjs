@@ -342,3 +342,29 @@ test('malformed word error counters are ignored while legacy and manually saved 
   assert.match(result.description, /antigua, guardada/);
   assert.doesNotMatch(result.description, /negativo|fracción|texto|nulo/);
 });
+
+
+test('SRS counters reject malformed and negative values without coercion', () => {
+  for (const value of [-1, 2.5, '3', null, NaN, Infinity, Number.MAX_SAFE_INTEGER + 1]) {
+    assert.equal(AdaptiveLearning.normalizeSrsCount(value), 0);
+  }
+  assert.equal(AdaptiveLearning.normalizeSrsCount(0), 0);
+  assert.equal(AdaptiveLearning.normalizeSrsCount(7), 7);
+});
+
+test('earliest valid SRS timestamp ignores malformed values and keeps the oldest valid review', () => {
+  assert.equal(AdaptiveLearning.earliestValidTimestamp(null, 200), 200);
+  assert.equal(AdaptiveLearning.earliestValidTimestamp(200, 100), 100);
+  assert.equal(AdaptiveLearning.earliestValidTimestamp(100, '50'), 100);
+  assert.equal(AdaptiveLearning.earliestValidTimestamp(-1, 300), 300);
+  assert.equal(AdaptiveLearning.earliestValidTimestamp(null, NaN), null);
+});
+
+test('SRS dashboard sanitizes aggregated counters and records the oldest valid review timestamp', () => {
+  const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+  assert.match(html, /AdaptiveLearning\.normalizeSrsCount\(item\.val\.attempts\)/);
+  assert.match(html, /Math\.min\(AdaptiveLearning\.normalizeSrsCount\(item\.val\.correct\), attempts\)/);
+  assert.match(html, /Math\.min\(AdaptiveLearning\.normalizeSrsCount\(item\.val\.incorrect\), attempts\)/);
+  assert.match(html, /aggregate\.lastReviewed = AdaptiveLearning\.earliestValidTimestamp\(/);
+  assert.match(html, /Number\.isFinite\(a\[1\]\.lastReviewed\)/);
+});

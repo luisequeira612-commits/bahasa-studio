@@ -7,8 +7,8 @@ const path = require('node:path');
 
 const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
 
-test('A2 has an explicit false-by-default learner release flag', () => {
-  assert.match(html, /const A2_RELEASE_ENABLED = false;/);
+test('A2 is enabled in beta after A1 completion', () => {
+  assert.match(html, /const A2_RELEASE_ENABLED = true;/);
   assert.match(html, /level\.id !== 'A2' \|\| \(A2_RELEASE_ENABLED && isA1Complete\(App\.completedUnits\)\)/);
 });
 

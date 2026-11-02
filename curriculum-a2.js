@@ -6878,9 +6878,9 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "id": "a2u27_kelurahan",
                                     "idn": "kelurahan",
-                                    "esp": "Oficina de barrio",
-                                    "ex": "Kantor kelurahan buka pagi.",
-                                    "exEsp": "La oficina del barrio abre por la mañana."
+                                    "esp": "Unidad administrativa local (Indonesia)",
+                                    "ex": "Kelurahan ini berada di kecamatan tersebut.",
+                                    "exEsp": "Esta unidad administrativa local está dentro de ese distrito."
                                 },
                                 {
                                     "id": "a2u27_balai_kota",
@@ -6980,8 +6980,8 @@ window.BAHASA_CURRICULUM_A2 = {
                                             "vocabId": "a2u27_kelurahan",
                                             "type": "listen",
                                             "prompt": "Escucha y escribe la oración.",
-                                            "answer": "Kantor kelurahan buka pagi.",
-                                            "explanation": "La oración contiene «kelurahan»."
+                                            "answer": "Kelurahan ini berada di kecamatan tersebut.",
+                                            "explanation": "La oración presenta kelurahan como una unidad administrativa local dentro de un kecamatan."
                                         },
                                         {
                                             "vocabId": "a2u27_warga",

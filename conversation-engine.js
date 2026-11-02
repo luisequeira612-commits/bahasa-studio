@@ -405,6 +405,7 @@
         freeResponseText: '',
         freeResponseRevealed: false,
         freeResponseTurns: 0,
+        freeResponseCounted: false,
         mistakeTurns: [],
         sessionRecorded: false,
 
@@ -429,6 +430,7 @@
             this.freeResponseText = '';
             this.freeResponseRevealed = false;
             this.freeResponseTurns = 0;
+            this.freeResponseCounted = false;
             this.mistakeTurns = [];
             this.sessionRecorded = false;
             this.renderStep();
@@ -516,7 +518,7 @@
         renderFreeResponseStep: function (turn, practice) {
             const example = turn.choices.find(function (choice) { return choice.correct; });
             const responsePanel = this.freeResponseRevealed
-                ? '<div class="card" style="margin-top:12px;"><p><strong>Tu respuesta</strong></p><p style="white-space:pre-wrap;">' + escapeHtml(this.freeResponseText) + '</p><p><strong>Un ejemplo posible</strong></p><p>' + escapeHtml(example.text) + '</p><p style="color:var(--text-muted);">' + escapeHtml(example.translation) + ' Otras respuestas también pueden ser correctas.</p></div>'
+                ? '<div class="card" style="margin-top:12px;"><p><strong>Tu respuesta</strong></p><p style="white-space:pre-wrap;">' + escapeHtml(this.freeResponseText) + '</p><p><strong>Un ejemplo posible</strong></p><p>' + escapeHtml(example.text) + '</p><p style="color:var(--text-muted);">' + escapeHtml(example.translation) + ' Otras respuestas también pueden ser correctas.</p><button class="btn btn-outline btn-sm" type="button" data-conversation-edit-response>Editar mi respuesta</button></div>'
 : '<label for="conversationFreeResponse" style="display:block;margin:12px 0 6px;">Tu respuesta en indonesio</label><textarea id="conversationFreeResponse" rows="3" maxlength="1000" style="width:100%;box-sizing:border-box;" placeholder="Escribe o dicta lo que responderías…">' + escapeHtml(this.freeResponseText) + '</textarea><button class="btn btn-outline btn-sm" type="button" data-conversation-speech>🎙️ Dictar respuesta (opcional)</button><p id="conversationSpeechStatus" role="status" aria-live="polite" style="font-size:0.85rem;color:var(--text-muted);">El micrófono solo se activa al pulsar. El navegador puede procesar el audio; la app no guarda grabaciones.</p><button class="btn" type="button" data-conversation-free-example>Ver un ejemplo posible</button>';
             practice.innerHTML = '<div class="card" style="padding:14px;">' +
                 '<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;">' +
@@ -564,7 +566,17 @@
             this.freeResponseText = response;
             this.freeResponseRevealed = true;
             this.answered = true;
-            this.freeResponseTurns += 1;
+            if (!this.freeResponseCounted) {
+                this.freeResponseTurns += 1;
+                this.freeResponseCounted = true;
+            }
+            this.renderStep();
+        },
+
+        editFreeResponse: function () {
+            if (!this.freeResponseMode || !this.freeResponseRevealed) return;
+            this.freeResponseRevealed = false;
+            this.answered = false;
             this.renderStep();
         },
 
@@ -632,6 +644,7 @@
                 this.freeResponseMode = false;
                 this.freeResponseText = '';
                 this.freeResponseRevealed = false;
+                this.freeResponseCounted = false;
             }
             if (this.turnIndex + 1 < this.currentScenario.turns.length) {
                 this.turnIndex += 1;
@@ -693,6 +706,7 @@
             this.freeResponseText = '';
             this.freeResponseRevealed = false;
             this.freeResponseTurns = 0;
+            this.freeResponseCounted = false;
             this.mistakeTurns = [];
             this.sessionRecorded = false;
             this.renderStep();
@@ -721,6 +735,7 @@
         if (target.closest('[data-conversation-free]')) return ConversationEngine.useFreeResponse();
         if (target.closest('[data-conversation-guided]')) return ConversationEngine.useGuidedResponse();
         if (target.closest('[data-conversation-free-example]')) return ConversationEngine.showFreeExample();
+        if (target.closest('[data-conversation-edit-response]')) return ConversationEngine.editFreeResponse();
         const speechButton = target.closest('[data-conversation-speech]');
         if (speechButton) return ConversationEngine.captureFreeResponse(speechButton);
         if (target.closest('[data-conversation-next]')) return ConversationEngine.next();

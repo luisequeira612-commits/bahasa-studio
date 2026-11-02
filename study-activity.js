@@ -62,7 +62,9 @@
         const today = dateKey(now);
         const yesterday = previousDateKey(now);
         if (activity.lastStudyDate !== today) {
-            activity.currentStreak = activity.lastStudyDate === yesterday ? activity.currentStreak + 1 : 1;
+            const nextStreak = activity.lastStudyDate === yesterday ? activity.currentStreak + 1 : 1;
+            if (!safeCount(nextStreak)) throw new Error('Contador de actividad no válido.');
+            activity.currentStreak = nextStreak;
             activity.lastStudyDate = today;
         }
         activity.longestStreak = Math.max(activity.longestStreak, activity.currentStreak);

@@ -37,10 +37,15 @@ test('the tutor makes all A1 and A2 conversation situations available', () => {
     'greetings', 'restaurant', 'shopping', 'travel', 'friends', 'help',
     'organizar-evento', 'pengalaman-kerja', 'layanan-digital'
   ]);
+  assert.deepEqual(Array.from(scenarios.filter(scenario => scenario.level === 'A1'), scenario => scenario.id), [
+    'greetings', 'restaurant', 'shopping', 'travel', 'friends', 'help'
+  ]);
   assert.deepEqual(Array.from(scenarios.filter(scenario => scenario.level === 'A2'), scenario => scenario.id), [
     'organizar-evento', 'pengalaman-kerja', 'layanan-digital'
   ]);
   assert.equal(scenarios.length, 9);
+  assert.ok(scenarios.every(scenario => ['A1', 'A2'].includes(scenario.level)),
+    'every conversation scenario must declare its curriculum level');
 });
 
 test('restaurant ordering feedback explains the exact accepted response', () => {

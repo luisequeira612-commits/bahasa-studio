@@ -16,8 +16,13 @@ test('A2 is enabled in beta independently of A1 completion', () => {
 test('A2 course visibility and lesson entry points only honor the release flag', () => {
   assert.match(html, /if \(!A2_RELEASE_ENABLED\) return;/);
   assert.match(html, /: lvl\.id === 'A2' \? A2_RELEASE_ENABLED : true/);
-  const guardedEntryPoints = [...html.matchAll(/\(level\.id === 'A2' && !A2_RELEASE_ENABLED\)/g)];
-  assert.equal(guardedEntryPoints.length, 3);
+  const assessmentEntry = html.slice(html.indexOf('startUnitAssessment(unitId)'), html.indexOf('startUnitById(id, requestedLessonIndex)'));
+  const lessonEntry = html.slice(html.indexOf('startUnitById(id, requestedLessonIndex)'), html.indexOf('startUnit(unit, lessonIndex = 0)'));
+  const unitEntry = html.slice(html.indexOf('startUnit(unit, lessonIndex = 0)'), html.indexOf('function getLevels()'));
+  for (const entry of [assessmentEntry, lessonEntry, unitEntry]) {
+    assert.match(entry, /level\.id === 'A2' && !A2_RELEASE_ENABLED/);
+    assert.doesNotMatch(entry, /isA1Complete/);
+  }
 });
 
 test('A1 completion helper remains available for the separate advanced-level gate', () => {

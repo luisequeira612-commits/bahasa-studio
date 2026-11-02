@@ -1934,3 +1934,16 @@ test('A2 U8 menyediakan is translated as providing or supplying water', () => {
   assert.equal(word.esp, 'Proporcionar; suministrar');
   assert.equal(word.exEsp, 'Proporcionamos agua.');
 });
+
+
+test('A2 U8 menyediakan follows the same meny- pattern as other s-initial roots', () => {
+  const unit = a2.units.find(entry => entry.id === 'a2_u8');
+  const lesson = unit.lessons.find(entry => entry.title.includes('meny-'));
+  const word = unit.vocab.find(entry => entry.id === 'a2u8_menyediakan');
+  const exercise = lesson.exercises.find(entry => entry.vocabId === word.id);
+  assert.ok(lesson.grammar.includes('sedia → menyediakan'));
+  assert.equal(word.idn, 'Menyediakan');
+  assert.equal(word.esp, 'Proporcionar; suministrar');
+  assert.equal(word.ex, 'Kami menyediakan air.');
+  assert.equal(exercise.answer, word.ex);
+});

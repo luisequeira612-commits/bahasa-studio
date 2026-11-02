@@ -3975,7 +3975,7 @@ window.BAHASA_CURRICULUM_A2 = {
                             "lessons": [
                                 {
                                     "title": "Lección 1: Síntomas y chequeos",
-                                    "objective": "Describe gejala (síntomas), mual (náuseas) y cuándo necesitas una pemeriksaan (revisión médica).",
+                                    "objective": "Describe síntomas como mual (náuseas) y explica cuándo necesitas una pemeriksaan (revisión médica).",
                                     "grammar": "Pemeriksaan significa chequeo médico; gejala, síntoma; mual, náusea. Para expresar cómo te sientes, usa merasa + adjetivo: Saya merasa mual.",
                                     "vocabIds": [
                                         "a2u17_pemeriksaan",
@@ -4039,7 +4039,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 },
                                 {
                                     "title": "Lección 2: Atención médica y farmacia",
-                                    "objective": "Habla de un pilek (resfriado), una resep (receta médica) y dónde encontrar una apotek (farmacia).",
+                                    "objective": "Habla de pilek (resfriado), resep (receta médica) y apotek (farmacia).",
                                     "grammar": "Pilek significa resfriado; resep, receta médica; apotek, farmacia. Ejemplo: Dokter memberi saya resep.",
                                     "vocabIds": [
                                         "a2u17_pilek",
@@ -4085,7 +4085,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 },
                                 {
                                     "title": "Lección 3: Condiciones y alergias",
-                                    "objective": "Comunica tu tekanan darah (presión arterial), una alergi (alergia) y el proceso de pemulihan (recuperación).",
+                                    "objective": "Explica qué significa tekanan darah (presión arterial), cómo comunicar una alergi (alergia) y qué es la pemulihan (recuperación).",
                                     "grammar": "Tekanan darah significa presión arterial; alergi, alergia; pemulihan, recuperación. Para expresar una alergia, usa punya alergi terhadap + sustantivo.",
                                     "vocabIds": [
                                         "a2u17_tekanan_darah",
@@ -4131,7 +4131,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 },
                                 {
                                     "title": "Lección 4: Recuperación y prevención",
-                                    "objective": "Describe el uso de vitamin (vitaminas), el perawatan (cuidado o tratamiento) y síntomas como pusing (mareo).",
+                                    "objective": "Describe vitamin (vitamina), perawatan (cuidado o tratamiento) y síntomas como pusing (mareo).",
                                     "grammar": "Vitamin significa vitamina; perawatan, cuidado o tratamiento; pusing, mareo. Para decir que estás mareado, usa Saya merasa pusing.",
                                     "vocabIds": [
                                         "a2u17_vitamin",
@@ -4271,7 +4271,7 @@ window.BAHASA_CURRICULUM_A2 = {
                             "lessons": [
                                 {
                                     "title": "Lección 1: Vecinos y entorno",
-                                    "objective": "Describe a tus tetangga (vecinos), el lingkungan (entorno o vecindario) y la halaman (patio).",
+                                    "objective": "Describe a tus tetangga (vecinos), cómo es el entorno o lingkungan y qué hay en la halaman (patio).",
                                     "grammar": "Tetangga significa vecino; lingkungan, entorno o vecindario; halaman, patio. Ejemplo: Anak-anak bermain di halaman.",
                                     "vocabIds": [
                                         "a2u18_tetangga",
@@ -4333,7 +4333,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 },
                                 {
                                     "title": "Lección 2: Espacios de la vivienda",
-                                    "objective": "Nombra el pagar (cerca), una kebocoran (fuga) y el saluran air (desagüe o conducto de agua).",
+                                    "objective": "Nombra pagar (cerca), kebocoran (fuga) y saluran air (conducto de agua).",
                                     "grammar": "Pagar significa cerca; kebocoran, fuga; saluran air, desagüe o conducto de agua. Usa di para indicar dónde está la fuga: Ada kebocoran di saluran air.",
                                     "vocabIds": [
                                         "a2u18_pagar",
@@ -4379,7 +4379,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 },
                                 {
                                     "title": "Lección 3: Mantenimiento del hogar",
-                                    "objective": "Habla del garasi (garaje), una renovasi (reforma) y la teras (terraza).",
+                                    "objective": "Habla de garasi (garaje), renovasi (reforma) y teras (terraza).",
                                     "grammar": "Garasi significa garaje; renovasi, reforma; teras, terraza. Usa perlu + verbo para explicar qué hace falta reparar o mejorar.",
                                     "vocabIds": [
                                         "a2u18_garasi",
@@ -4425,7 +4425,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 },
                                 {
                                     "title": "Lección 4: Servicios y convivencia",
-                                    "objective": "Describe el ruang tamu (sala de estar), al pemilik rumah (propietario) y al penyewa (inquilino).",
+                                    "objective": "Describe ruang tamu (sala de estar), pemilik rumah (propietario de la vivienda) y penyewa (inquilino).",
                                     "grammar": "Ruang tamu significa sala de estar; pemilik rumah, propietario de la vivienda; penyewa, inquilino. Ejemplo: Pemilik rumah bertemu penyewa.",
                                     "vocabIds": [
                                         "a2u18_ruang_tamu",
@@ -4631,7 +4631,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 },
                                 {
                                     "title": "Lección 2: Entrevistas y candidatos",
-                                    "objective": "Habla del gaji (salario), tu atasan (supervisor) y tus rekan kerja (compañeros de trabajo).",
+                                    "objective": "Habla de gaji (salario), atasan (supervisor) y rekan kerja (compañeros de trabajo).",
                                     "grammar": "Gaji significa salario; atasan, superior o supervisor; rekan kerja, compañero de trabajo. Ejemplo: Atasan saya memberi arahan.",
                                     "vocabIds": [
                                         "a2u19_gaji",
@@ -4677,7 +4677,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 },
                                 {
                                     "title": "Lección 3: Tareas y plazos",
-                                    "objective": "Explica una presentasi (presentación), un laporan (informe) y un tenggat (plazo límite).",
+                                    "objective": "Explica presentasi (presentación), laporan (informe) y tenggat (plazo límite).",
                                     "grammar": "Presentasi significa presentación; laporan, informe; tenggat, fecha límite. Puedes decir menyelesaikan laporan sebelum tenggat.",
                                     "vocabIds": [
                                         "a2u19_presentasi",
@@ -4929,7 +4929,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 },
                                 {
                                     "title": "Lección 2: Plantación, inundaciones y sequías",
-                                    "objective": "Describe la penanaman (plantación), el banjir (inundación) y la kekeringan (sequía).",
+                                    "objective": "Describe penanaman (plantación), banjir (inundación) y kekeringan (sequía).",
                                     "grammar": "Penanaman significa plantación; banjir, inundación; kekeringan, sequía. Ejemplos: penanaman pohon; banjir menutup jalan; kekeringan memengaruhi petani.",
                                     "vocabIds": [
                                         "a2u20_penanaman",
@@ -4975,7 +4975,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 },
                                 {
                                     "title": "Lección 3: Naturaleza y biodiversidad",
-                                    "objective": "Describe el sungai (río), el hutan (bosque) y las tanaman (plantas).",
+                                    "objective": "Describe sungai (río), hutan (bosque) y tanaman (plantas).",
                                     "grammar": "Sungai significa río; hutan, bosque; tanaman, planta. Ejemplos: Tanaman membutuhkan air y Sungai mengalir ke laut.",
                                     "vocabIds": [
                                         "a2u20_sungai",
@@ -5021,7 +5021,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 },
                                 {
                                     "title": "Lección 4: Acciones comunitarias",
-                                    "objective": "Propón acciones de kebersihan (limpieza), kerja bakti (jornada comunitaria) y penghematan air (ahorro de agua).",
+                                    "objective": "Propón acciones para mejorar kebersihan (limpieza), organizar kerja bakti (jornada comunitaria) y promover penghematan air (ahorro de agua).",
                                     "grammar": "Kebersihan significa limpieza; kerja bakti, trabajo comunitario; penghematan air, ahorro de agua. Usa agar para explicar el propósito de una acción.",
                                     "vocabIds": [
                                         "a2u20_kebersihan",

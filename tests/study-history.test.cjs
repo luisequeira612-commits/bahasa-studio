@@ -113,7 +113,7 @@ test('profile, service worker and CI include the history module and its regressi
     assert.match(html, /StudyHistory\.recordSkill\(skill, isCorrect, new Date\(\)\)/);
     assert.match(html, /StudyHistory\.recordSession\(skill, new Date\(\)\)/);
     assert.match(html, /StudyHistory\.clear\(\)/);
-    assert.match(worker, /bahasa-studio-v3\.8\.29/);
+    assert.match(worker, /bahasa-studio-v3\.8\.30/);
     assert.match(worker, /'\.\/study-history\.js'/);
     assert.match(workflow, /node --test tests\/study-history\.test\.cjs/);
     assert.match(workflow, /            study-history\.js/);

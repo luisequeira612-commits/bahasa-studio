@@ -1458,11 +1458,15 @@
                     assignedAuthoredExercises.add(exerciseIndex);
                 });
                 const lessonIndex = lessons.length;
+                const lessonPlan = Array.isArray(unit.lessonPlans) ? unit.lessonPlans[lessonIndex] : null;
                 lessons.push({
                     index: lessonIndex,
-                    title: 'Lección ' + (lessonIndex + 1),
+                    title: lessonPlan?.title || 'Lección ' + (lessonIndex + 1),
                     newVocab, reviewVocab, vocab: learnedVocab,
-                    grammar: unit.grammar, exercises
+                    grammar: lessonPlan
+                        ? [lessonPlan.objective, lessonPlan.grammar].filter(Boolean).join(' ')
+                        : unit.grammar,
+                    exercises
                 });
             }
             return lessons;

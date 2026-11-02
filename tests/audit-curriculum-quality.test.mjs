@@ -464,3 +464,47 @@ test('validates acceptedAnswers arrays, entries and optional status metadata', (
   }
   assert.equal(report.error_count, 5);
 });
+
+test('warns when accepted alternatives duplicate each other or the canonical answer after normalization', () => {
+  const report = auditCurriculum({
+    id: 'A1',
+    units: [{
+      id: 'u1',
+      title: 'One',
+      vocab: [],
+      exercises: [{
+        type: 'translate_es_id',
+        prompt: 'Translate',
+        answer: 'Terima kasih',
+        acceptedAnswers: ['Makasih', ' makasih ', '  TERIMA   KASIH  '],
+      }],
+      lessons: [{
+        exercises: [{
+          type: 'translate_es_id',
+          prompt: 'Translate',
+          answer: 'Sampai jumpa',
+          acceptedAnswers: [{ text: 'Sampai jumpa' }, { text: ' sampai   jumpa ' }],
+        }],
+      }],
+    }],
+  });
+
+  assert.equal(report.error_count, 0);
+  assert.equal(report.warning_count, 5);
+  assert.ok(report.issues.some((item) =>
+    item.code === 'ACCEPTED_ANSWER_DUPLICATE' &&
+    item.path.endsWith('.acceptedAnswers[1]')
+  ));
+  assert.ok(report.issues.some((item) =>
+    item.code === 'ACCEPTED_ANSWER_DUPLICATES_CANONICAL' &&
+    item.path.endsWith('.acceptedAnswers[2]')
+  ));
+  assert.ok(report.issues.some((item) =>
+    item.code === 'LESSON_ACCEPTED_ANSWER_DUPLICATES_CANONICAL' &&
+    item.path.endsWith('.acceptedAnswers[0]')
+  ));
+  assert.ok(report.issues.some((item) =>
+    item.code === 'LESSON_ACCEPTED_ANSWER_DUPLICATE' &&
+    item.path.endsWith('.acceptedAnswers[1]')
+  ));
+});

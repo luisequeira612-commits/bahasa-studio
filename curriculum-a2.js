@@ -3540,8 +3540,8 @@ window.BAHASA_CURRICULUM_A2 = {
                             },
                             {
                                 "title": "Lección 4: Organizar y cambiar planes",
-                                "objective": "Explica planes, cambios y cancelaciones.",
-                                "grammar": "Practica estas expresiones en oraciones completas: membatalkan, menemani, pertemuan.",
+                                "objective": "Habla de cancelar planes, acompañar a alguien y organizar una reunión.",
+                                "grammar": "Membatalkan significa cancelar; menemani, acompañar; pertemuan, reunión.",
                                 "vocabIds": [
                                     "a2u15_membatalkan",
                                     "a2u15_menemani",
@@ -3571,7 +3571,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                         "vocabId": "a2u15_pertemuan",
                                         "type": "listen",
                                         "prompt": "Escucha y escribe la oración.",
-                                        "answer": "Kami belajar pertemuan.",
+                                        "answer": "Ada pertemuan hari ini.",
                                         "explanation": "La oración contiene pertemuan."
                                     },
                                     {

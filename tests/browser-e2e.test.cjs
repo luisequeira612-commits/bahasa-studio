@@ -607,7 +607,7 @@ test('all A1 and A2 practical conversations support guided replies without chang
       'all six A1 and three A2 everyday situations should be available');
 
     const scenarioIds = ['greetings', 'restaurant', 'shopping', 'travel', 'friends', 'help',
-      'organizar-evento', 'experiencia-kerja', 'layanan-digital'];
+      'organizar-evento', 'pengalaman-kerja', 'layanan-digital'];
     for (let scenarioIndex = 0; scenarioIndex < scenarioIds.length; scenarioIndex++) {
       const scenarioId = scenarioIds[scenarioIndex];
       await page.locator('[data-conversation-start="' + scenarioId + '"]').click();

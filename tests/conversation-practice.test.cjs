@@ -546,3 +546,26 @@ test('free-response learners can reveal and hide a hint before seeing the exampl
   assert.equal(engine.freeResponseHintVisible, false);
   assert.match(elements.conversationPracticeArea.innerHTML, /Un ejemplo posible/);
 });
+
+
+test('free-response character counter follows typing and keeps the draft only in the active session', () => {
+  const engine = sandbox.window.ConversationEngine;
+  engine.start('greetings');
+  engine.useFreeResponse();
+  const counter = { textContent: '' };
+  elements.conversationFreeResponseCount = counter;
+  const input = { value: 'Halo, apa kabar?' };
+
+  engine.updateFreeResponseCounter(input);
+  assert.equal(counter.textContent, '16/1000 caracteres');
+  assert.equal(engine.freeResponseText, 'Halo, apa kabar?');
+
+  input.value = 'Saya baik. Terima kasih.';
+  engine.updateFreeResponseCounter(input);
+  assert.equal(counter.textContent, '24/1000 caracteres');
+  assert.equal(engine.freeResponseText, input.value);
+
+  engine.showFreeExample();
+  assert.match(elements.conversationPracticeArea.innerHTML, /Saya baik\. Terima kasih\./);
+  assert.equal(engine.score, 0, 'the character counter must not introduce automatic scoring');
+});

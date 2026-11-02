@@ -368,3 +368,15 @@ Los PR #193–#198 se fusionaron tras superar CI. La ejecución completa de #198
 
 Continuar mejorando estadísticas locales comprensibles y útiles sin inferir conclusiones con muestras pequeñas. Después, evaluar conversaciones con retroalimentación más específica solo cuando las reglas puedan verificarse de forma determinista y sin afirmar validación lingüística externa. Mantener la revisión editorial A1/A2 abierta y no duplicar baterías de pruebas ya cubiertas.
 
+
+
+## Sexta pasada — secuenciación didáctica explícita A1 U24–U32
+
+Se añadieron tres planes de lección específicos por unidad para A1 U24–U32. Antes, el motor dividía el vocabulario en lecciones, pero mostraba títulos genéricos («Lección 1», etc.) y repetía la explicación gramatical completa de la unidad en cada bloque. Ahora cada lección tiene un título, un objetivo y una explicación breve alineada con el grupo de vocabulario que introduce.
+
+- Alcance: 9 unidades, 27 planes de lección.
+- Se conserva el orden y los IDs del vocabulario, los ejercicios originales, los repasos acumulativos, las evaluaciones y la progresión.
+- No se agregan palabras ni se cambian glosas, ejemplos, respuestas aceptadas, IndexedDB ni backup v3.
+- Se conserva el generador de práctica existente; los planes solo aportan el foco didáctico de cada bloque.
+- Las nuevas regresiones comprueban títulos, objetivos, explicaciones, introducción progresiva y conservación de ejercicios.
+- Esta edición mejora la organización pedagógica y la claridad de la interfaz; no constituye validación lingüística por hablante nativo ni certificación de nivel.

@@ -454,3 +454,10 @@ test('learner skill profile uses the same ten-attempt confidence threshold as ad
   assert.match(html, /attempts < 10/);
   assert.match(html, /datos iniciales \(mínimo 10\)/);
 });
+
+
+test('adaptive recommendations keep released A2 lessons available before A1 completion', () => {
+  const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+  assert.match(html, /level\.id === 'A2' && !A2_RELEASE_ENABLED/);
+  assert.doesNotMatch(html, /level\.id === 'A2' && \([^\n]*a1Complete/);
+});

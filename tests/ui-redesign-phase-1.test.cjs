@@ -93,6 +93,16 @@ test('application and service worker cache versions are advanced without changin
     const manifest = fs.readFileSync(path.join(root, 'manifest.json'), 'utf8');
     const serviceWorker = fs.readFileSync(path.join(root, 'service-worker.js'), 'utf8');
     assert.match(manifest, /Bahasa Studio 3\.8\.15/);
-    assert.match(serviceWorker, /bahasa-studio-v3\.8\.28/);
+    assert.match(serviceWorker, /bahasa-studio-v3.8.29/);
     assert.match(serviceWorker, /adaptive-learning\.js/);
+});
+
+
+test('profile exposes a local 14-day study history without changing the primary navigation', () => {
+    assert.match(html, /id="studyHistoryDashboard"/);
+    assert.match(html, /id="studyHistoryChart"/);
+    assert.match(html, /últimos 14 días/);
+    assert.match(html, /no forma parte de las copias JSON v3/);
+    assert.match(html, /this\.renderStudyHistory\(\)/);
+    assert.match(css, /\.study-history-chart/);
 });

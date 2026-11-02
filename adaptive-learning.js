@@ -72,9 +72,12 @@
 
     function contextualize(recommendation, focus) {
         if (!focus) return recommendation;
+        const sampleNote = focus.attempts < 10
+            ? ' La muestra todavía es pequeña; toma este porcentaje como orientación y no como una conclusión firme.'
+            : ' El resultado se basa en ' + focus.attempts + ' intentos registrados.';
         return Object.assign({}, recommendation, {
             description: recommendation.description + ' Tu menor precisión registrada está en ' +
-                focus.label + ': ' + focus.accuracy + '% (' + focus.attempts + ' intentos).'
+                focus.label + ': ' + focus.accuracy + '% (' + focus.attempts + ' intentos).' + sampleNote
         });
     }
 

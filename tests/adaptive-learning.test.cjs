@@ -97,6 +97,28 @@ test('lowest skill accuracy is surfaced only after five scored attempts', () => 
   assert.doesNotMatch(result.description, /escucha/);
 });
 
+test('adaptive skill descriptions qualify small samples and state when evidence is broader', () => {
+  const smallSample = AdaptiveLearning.recommend({
+    dueCount: 0,
+    weakWords: [],
+    nextLesson: { unitId: 'a1_u1', lessonIndex: 0, title: 'Lección 1' },
+    skillStats: { translation: { attempts: 6, correct: 2 } }
+  });
+  assert.match(smallSample.description, /33% \(6 intentos\)/);
+  assert.match(smallSample.description, /muestra todavía es pequeña/);
+  assert.match(smallSample.description, /no como una conclusión firme/);
+
+  const broaderSample = AdaptiveLearning.recommend({
+    dueCount: 0,
+    weakWords: [],
+    nextLesson: { unitId: 'a1_u1', lessonIndex: 0, title: 'Lección 1' },
+    skillStats: { translation: { attempts: 12, correct: 4 } }
+  });
+  assert.match(broaderSample.description, /33% \(12 intentos\)/);
+  assert.match(broaderSample.description, /se basa en 12 intentos registrados/);
+  assert.doesNotMatch(broaderSample.description, /muestra todavía es pequeña/);
+});
+
 test('skill focus ignores malformed counters and does not claim mastery', () => {
   const focus = AdaptiveLearning.weakestSkill({
     recognition: { attempts: 4, correct: 0 },

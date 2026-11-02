@@ -1797,12 +1797,12 @@ test('optional pronunciation practice uses Indonesian browser recognition withou
 
 const writingPracticeSource = fs.readFileSync(path.join(root, 'writing-practice.js'), 'utf8');
 
-test('free-writing notebook offers distinct A1 compositions without draft persistence or scoring', () => {
+test('free-writing notebook offers progressive A1 and A2 compositions without draft persistence or scoring', () => {
   const sandbox = { window: {} };
   vm.runInNewContext(writingPracticeSource, sandbox, { filename: 'writing-practice.js' });
   const practice = sandbox.window.WritingPractice;
-  assert.deepEqual(Array.from(practice.tasks, task => task.id), ['profile', 'travel', 'directions', 'budget', 'online-meeting', 'compare-decisions']);
-  assert.deepEqual(Array.from(practice.tasks, task => task.level), ['A1', 'A1', 'A1', 'A2', 'A2', 'A2']);
+  assert.deepEqual(Array.from(practice.tasks, task => task.id), ['profile', 'travel', 'directions', 'study-day', 'budget', 'online-meeting', 'recent-experience', 'compare-decisions']);
+  assert.deepEqual(Array.from(practice.tasks, task => task.level), ['A1', 'A1', 'A1', 'A1', 'A2', 'A2', 'A2', 'A2']);
   const a2Sandbox = { window: {} };
   vm.runInNewContext(a2Source, a2Sandbox, { filename: 'curriculum-a2.js' });
   const a2Terms = new Set(a2Sandbox.window.BAHASA_CURRICULUM_A2.units.flatMap(unit => unit.vocab.map(word => word.idn.toLowerCase())));

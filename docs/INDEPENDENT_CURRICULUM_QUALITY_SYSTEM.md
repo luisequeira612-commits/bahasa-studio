@@ -103,3 +103,10 @@ El sistema descrito en este documento está integrado en el workflow `.github/wo
 Las reglas permanentes para agentes y colaboradores están en `PROJECT_RULES.md`. En particular, no hay un hablante nativo disponible para este proyecto y KBBI/API no son dependencias fiables. El desarrollo no debe detenerse por esas limitaciones. Los resultados automáticos certifican únicamente las comprobaciones deterministas implementadas; nunca deben cambiar por sí solos estados de revisión lingüística ni presentarse como certificación de naturalidad, nivel o pronunciación.
 
 El workflow manual `kbbi-manual-audit.yml` es opcional y experimental. No forma parte de la puerta de calidad del proyecto y sus resultados no se usan para aprobar contenido. Si el servicio falla o devuelve datos dudosos, se registra como intento fallido y se continúa con el sistema independiente.
+
+
+## Control de alternativas duplicadas
+
+El auditor compara las respuestas de `acceptedAnswers` entre sí y con la respuesta canónica del ejercicio cuando esta es texto. La comparación normaliza Unicode NFC, espacios exteriores/interiores y mayúsculas. Si dos alternativas son idénticas tras esa normalización, o una alternativa repite la respuesta canónica, se genera un aviso editorial (también en ejercicios dentro de lecciones).
+
+Este control detecta duplicados textuales; no decide si dos expresiones distintas son sinónimos, equivalentes o lingüísticamente aceptables. Las alternativas diferentes se mantienen para revisión contextual y el aviso no bloquea CI por sí solo.

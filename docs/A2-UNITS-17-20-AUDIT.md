@@ -47,3 +47,10 @@ Auditar el vocabulario usado en consignas y ejemplos contra su orden de introduc
 ## Corrección de coherencia didáctica — U20, Lección 2 (2026-11-01)
 
 El título y el objetivo originales («Recursos y consumo» / ahorro de energía y uso responsable del agua) no describían el vocabulario realmente agrupado en la lección: penanaman (plantación), banjir (inundación) y kekeringan (sequía). Se alinearon el título, el objetivo y la explicación de harus con esos tres conceptos y con prevención ambiental. No se modificaron las palabras, ejemplos ni respuestas indonesias. Se añadió una prueba de regresión para el foco y la cobertura de ejercicios.
+
+
+## Segunda pasada — foco didáctico de U17–U20
+
+Se detectó que las 16 lecciones tenían objetivos generales, pero sus explicaciones no nombraban las 48 palabras nuevas que se introducían. Aunque los ejercicios sí enlazaban cada ID con su vocabulario, el foco didáctico quedaba implícito. Se reescribieron los objetivos y las explicaciones para presentar cada término con su glosa española y, cuando aporta valor, un ejemplo o patrón breve.
+
+El cambio cubre salud y cuidados (U17), vivienda y comunidad (U18), trabajo (U19) y medio ambiente (U20). Se añadió una prueba que exige que cada lección mencione en su objetivo o explicación todos los IDs de vocabulario nuevo que introduce. No se modificaron palabras, glosas canónicas, IDs, respuestas, orden de lecciones, ejercicios, IndexedDB ni backup v3. La edición mejora la claridad pedagógica y no sustituye la revisión lingüística independiente.

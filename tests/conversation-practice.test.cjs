@@ -605,3 +605,34 @@ test('speech dictation appends to the current draft and updates the live charact
   recognition.onresult({ results: [[{ transcript: '   ' }]] });
   assert.equal(input.value, 'Saya ingin belajar bahasa Indonesia setiap hari', 'empty recognition must not change the draft');
 });
+
+
+test('speech dictation never exceeds the 1000-character free-response limit', () => {
+  const engine = sandbox.window.ConversationEngine;
+  engine.start('greetings');
+  engine.useFreeResponse();
+  const input = { value: 'x'.repeat(995) };
+  const status = { textContent: '' };
+  const counter = { textContent: '' };
+  elements.conversationFreeResponse = input;
+  elements.conversationSpeechStatus = status;
+  elements.conversationFreeResponseCount = counter;
+  let recognition;
+  sandbox.window.SpeechRecognition = class {
+    constructor() { recognition = this; }
+    start() {}
+  };
+  engine.captureFreeResponse({ disabled: false, isConnected: true });
+  recognition.onresult({ results: [[{ transcript: 'abcdef' }]] });
+
+  assert.equal(input.value.length, 1000);
+  assert.equal(engine.freeResponseText, input.value);
+  assert.equal(counter.textContent, '1000/1000 caracteres');
+  assert.match(status.textContent, /límite de 1000 caracteres/);
+
+  input.value = 'y'.repeat(1005);
+  engine.updateFreeResponseCounter(input);
+  assert.equal(input.value.length, 1000, 'counter synchronization also enforces the limit');
+  assert.equal(engine.freeResponseText.length, 1000);
+  assert.equal(counter.textContent, '1000/1000 caracteres');
+});

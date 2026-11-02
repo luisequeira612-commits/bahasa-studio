@@ -109,3 +109,9 @@ El workflow manual `kbbi-manual-audit.yml` es opcional y experimental. No forma 
 El auditor compara las respuestas de `acceptedAnswers` entre sí y con la respuesta canónica del ejercicio cuando esta es texto. La comparación normaliza Unicode NFC, espacios exteriores/interiores y mayúsculas. Si dos alternativas son idénticas tras esa normalización, o una alternativa repite la respuesta canónica, se genera un aviso editorial (también en ejercicios dentro de lecciones).
 
 Este control detecta duplicados textuales; no decide si dos expresiones distintas son sinónimos, equivalentes o lingüísticamente aceptables. Las alternativas diferentes se mantienen para revisión contextual y el aviso no bloquea CI por sí solo.
+
+## Métricas de cobertura de ejercicios
+
+El informe estructural también resume el número de ejercicios por tipo y la distribución de unidades/lecciones con y sin ejercicios. Son métricas descriptivas del contenido presente, no una puntuación de calidad ni una equivalencia automática con habilidades CEFR: por ejemplo, un tipo `listen` o `write` no demuestra por sí solo que la comprensión auditiva o la producción escrita estén bien enseñadas.
+
+Las métricas permiten detectar desequilibrios y unidades sin práctica explícita sin cambiar el contenido ni bloquear CI por ausencia de una modalidad concreta. Los ejercicios de unidad y de lección se cuentan una sola vez cada uno.

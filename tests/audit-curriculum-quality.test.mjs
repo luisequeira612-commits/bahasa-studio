@@ -508,3 +508,33 @@ test('warns when accepted alternatives duplicate each other or the canonical ans
     item.path.endsWith('.acceptedAnswers[1]')
   ));
 });
+
+test('reports exercise modality and unit/lesson coverage metrics', () => {
+  const report = auditCurriculum({
+    id: 'A1',
+    units: [
+      {
+        id: 'u1',
+        title: 'With exercises',
+        vocab: [{ id: 'v1', idn: 'satu', esp: 'uno', ex: 'Satu.', exEsp: 'Uno.' }],
+        exercises: [
+          { vocabId: 'v1', type: 'mc', prompt: 'Choose', options: ['uno', 'dos'], answer: 0 },
+          { vocabId: 'v1', type: 'write', prompt: 'Write' },
+        ],
+        lessons: [
+          { vocabIds: ['v1'], exercises: [{ vocabId: 'v1', type: 'listen', prompt: 'Listen' }] },
+          { vocabIds: [], exercises: [] },
+        ],
+      },
+      { id: 'u2', title: 'Without exercises', vocab: [], exercises: [] },
+    ],
+  });
+
+  assert.equal(report.exercise_count, 3);
+  assert.deepEqual(report.exercise_type_counts, { mc: 1, write: 1, listen: 1 });
+  assert.equal(report.units_with_exercises, 1);
+  assert.equal(report.units_without_exercises, 1);
+  assert.equal(report.lesson_count, 2);
+  assert.equal(report.lessons_with_exercises, 1);
+  assert.equal(report.lessons_without_exercises, 1);
+});

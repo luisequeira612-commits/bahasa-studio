@@ -436,3 +436,25 @@ test('free-response conversation attempts are not scored or added to the guided 
   assert.equal(engine.score, 0);
 });
 
+
+
+test('learners can revise a free response after comparing it with the example without double-counting the turn', () => {
+  const engine = sandbox.window.ConversationEngine;
+  engine.start('greetings');
+  engine.useFreeResponse();
+  elements.conversationFreeResponse = { value: 'Halo, saya baik.' };
+  engine.showFreeExample();
+  assert.equal(engine.freeResponseTurns, 1);
+  assert.match(elements.conversationPracticeArea.innerHTML, /data-conversation-edit-response/);
+
+  engine.editFreeResponse();
+  assert.equal(engine.answered, false);
+  assert.equal(engine.freeResponseRevealed, false);
+  assert.equal(engine.freeResponseTurns, 1);
+  assert.match(elements.conversationPracticeArea.innerHTML, /Halo, saya baik\\./);
+
+  elements.conversationFreeResponse = { value: 'Halo! Saya baik, terima kasih.' };
+  engine.showFreeExample();
+  assert.equal(engine.freeResponseTurns, 1, 'editing and revealing again must count one completed free-response turn');
+  assert.equal(engine.score, 0);
+});

@@ -636,3 +636,40 @@ test('speech dictation never exceeds the 1000-character free-response limit', ()
   assert.equal(engine.freeResponseText.length, 1000);
   assert.equal(counter.textContent, '1000/1000 caracteres');
 });
+
+
+test('late speech results cannot overwrite a newer draft after switching response modes', () => {
+  const engine = sandbox.window.ConversationEngine;
+  engine.start('greetings');
+  engine.useFreeResponse();
+  const oldInput = { value: 'Borrador anterior' };
+  const oldStatus = { textContent: '' };
+  const oldCounter = { textContent: '' };
+  elements.conversationFreeResponse = oldInput;
+  elements.conversationSpeechStatus = oldStatus;
+  elements.conversationFreeResponseCount = oldCounter;
+  let recognition;
+  sandbox.window.SpeechRecognition = class {
+    constructor() { recognition = this; }
+    start() {}
+  };
+
+  engine.captureFreeResponse({ disabled: false, isConnected: true });
+  engine.useGuidedResponse();
+  engine.useFreeResponse();
+
+  const currentInput = { value: 'Borrador nuevo' };
+  const currentStatus = { textContent: 'Estado actual' };
+  const currentCounter = { textContent: '14/1000 caracteres' };
+  elements.conversationFreeResponse = currentInput;
+  elements.conversationSpeechStatus = currentStatus;
+  elements.conversationFreeResponseCount = currentCounter;
+
+  recognition.onresult({ results: [[{ transcript: 'texto atrasado' }]] });
+  recognition.onerror({ error: 'no-speech' });
+
+  assert.equal(currentInput.value, 'Borrador nuevo');
+  assert.equal(engine.freeResponseText, 'Borrador nuevo');
+  assert.equal(currentCounter.textContent, '14/1000 caracteres');
+  assert.equal(currentStatus.textContent, 'Estado actual');
+});

@@ -25,8 +25,9 @@ test('all 32 canonical A1 units include at least one listening-capable exercise'
     !(unit.exercises || []).some(hasAudioSupport)
   );
 
-  assert.deepEqual(uncovered.map(unit => unit.id), [],
-    'every A1 unit must offer spoken prompt audio or a listen-and-type exercise');
+  assert.equal(uncovered.length, 0,
+    'every A1 unit must offer spoken prompt audio or a listen-and-type exercise; uncovered units: ' +
+    uncovered.map(unit => unit.id).join(', '));
 });
 
 test('canonical A1 data retains both spoken prompts and listen-and-type exercises', () => {

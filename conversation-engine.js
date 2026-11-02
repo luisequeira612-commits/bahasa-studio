@@ -685,7 +685,9 @@
                     'not-allowed': 'No se concedió permiso para usar el micrófono. Puedes escribir tu respuesta.',
                     'no-speech': 'No se detectó voz. Inténtalo otra vez.',
                     'audio-capture': 'No se encontró un micrófono disponible.',
-                    'service-not-allowed': 'El servicio de reconocimiento no está disponible.'
+                    'service-not-allowed': 'El servicio de reconocimiento no está disponible.',
+                    'network': 'Falló la conexión del servicio de reconocimiento. Comprueba tu conexión o escribe la respuesta.',
+                    'language-not-supported': 'El navegador no admite el reconocimiento en indonesio. Puedes escribir tu respuesta.'
                 };
                 status.textContent = messages[event.error] || 'No se pudo reconocer la voz. Puedes escribir tu respuesta.';
             };

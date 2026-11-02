@@ -776,3 +776,36 @@ test('free-response example can be played with the Indonesian speech engine', ()
   assert.deepEqual(spoken, [example.text], 'example audio is available only while reviewing a free response');
   delete sandbox.AudioEngine;
 });
+
+
+test('voice dictation explains network and unsupported-language errors in Spanish', () => {
+  const engine = sandbox.window.ConversationEngine;
+  const status = { textContent: '' };
+  const input = { value: '' };
+  const counter = { textContent: '' };
+  elements.conversationSpeechStatus = status;
+  elements.conversationFreeResponse = input;
+  elements.conversationFreeResponseCount = counter;
+  const expected = [
+    ['network', /Falló la conexión.*Comprueba tu conexión o escribe la respuesta/],
+    ['language-not-supported', /no admite el reconocimiento en indonesio.*Puedes escribir tu respuesta/]
+  ];
+
+  for (const [error, message] of expected) {
+    engine.start('greetings');
+    engine.useFreeResponse();
+    let recognition;
+    sandbox.window.SpeechRecognition = class {
+      constructor() { recognition = this; }
+      start() {}
+      abort() {}
+    };
+    const button = { disabled: false, isConnected: true };
+    engine.captureFreeResponse(button);
+    recognition.onerror({ error });
+    assert.match(status.textContent, message, error + ' should have actionable Spanish guidance');
+    recognition.onend();
+    assert.equal(button.disabled, false, 'the dictation button should recover after an error');
+    assert.equal(engine.activeFreeRecognition, null);
+  }
+});

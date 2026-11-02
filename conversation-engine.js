@@ -404,6 +404,7 @@
         freeResponseMode: false,
         freeResponseText: '',
         freeResponseRevealed: false,
+        freeResponseHintVisible: false,
         freeResponseTurns: 0,
         freeResponseCounted: false,
         mistakeTurns: [],
@@ -429,6 +430,7 @@
             this.freeResponseMode = false;
             this.freeResponseText = '';
             this.freeResponseRevealed = false;
+            this.freeResponseHintVisible = false;
             this.freeResponseTurns = 0;
             this.freeResponseCounted = false;
             this.mistakeTurns = [];
@@ -517,9 +519,12 @@
 
         renderFreeResponseStep: function (turn, practice) {
             const example = turn.choices.find(function (choice) { return choice.correct; });
+            const hintPanel = this.freeResponseHintVisible
+                ? '<p class="conversation-hint" role="status" aria-live="polite" style="padding:10px;border-left:3px solid var(--border);color:var(--text-muted);">' + escapeHtml(example.feedback) + '</p>'
+                : '';
             const responsePanel = this.freeResponseRevealed
                 ? '<div class="card" style="margin-top:12px;"><p><strong>Tu respuesta</strong></p><p style="white-space:pre-wrap;">' + escapeHtml(this.freeResponseText) + '</p><p><strong>Un ejemplo posible</strong></p><p>' + escapeHtml(example.text) + '</p><p style="color:var(--text-muted);">' + escapeHtml(example.translation) + ' Otras respuestas también pueden ser correctas.</p><button class="btn btn-outline btn-sm" type="button" data-conversation-edit-response>Editar mi respuesta</button></div>'
-: '<label for="conversationFreeResponse" style="display:block;margin:12px 0 6px;">Tu respuesta en indonesio</label><textarea id="conversationFreeResponse" rows="3" maxlength="1000" style="width:100%;box-sizing:border-box;" placeholder="Escribe o dicta lo que responderías…">' + escapeHtml(this.freeResponseText) + '</textarea><button class="btn btn-outline btn-sm" type="button" data-conversation-speech>🎙️ Dictar respuesta (opcional)</button><p id="conversationSpeechStatus" role="status" aria-live="polite" style="font-size:0.85rem;color:var(--text-muted);">El micrófono solo se activa al pulsar. El navegador puede procesar el audio; la app no guarda grabaciones.</p><button class="btn" type="button" data-conversation-free-example>Ver un ejemplo posible</button>';
+: '<label for="conversationFreeResponse" style="display:block;margin:12px 0 6px;">Tu respuesta en indonesio</label><textarea id="conversationFreeResponse" rows="3" maxlength="1000" style="width:100%;box-sizing:border-box;" placeholder="Escribe o dicta lo que responderías…">' + escapeHtml(this.freeResponseText) + '</textarea><button class="btn btn-outline btn-sm" type="button" data-conversation-speech>🎙️ Dictar respuesta (opcional)</button><p id="conversationSpeechStatus" role="status" aria-live="polite" style="font-size:0.85rem;color:var(--text-muted);">El micrófono solo se activa al pulsar. El navegador puede procesar el audio; la app no guarda grabaciones.</p><button class="btn btn-outline btn-sm" type="button" data-conversation-hint>' + (this.freeResponseHintVisible ? 'Ocultar pista' : 'Ver pista') + '</button><div>' + hintPanel + '</div><button class="btn" type="button" data-conversation-free-example>Ver un ejemplo posible</button>';
             practice.innerHTML = '<div class="card" style="padding:14px;">' +
                 '<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;">' +
                 '<button class="btn btn-outline btn-sm" type="button" data-conversation-back>← Escenarios</button>' +
@@ -554,6 +559,14 @@
             this.renderStep();
         },
 
+        toggleFreeHint: function () {
+            if (!this.freeResponseMode || this.freeResponseRevealed) return;
+            const input = document.getElementById('conversationFreeResponse');
+            if (input && typeof input.value === 'string') this.freeResponseText = input.value;
+            this.freeResponseHintVisible = !this.freeResponseHintVisible;
+            this.renderStep();
+        },
+
         showFreeExample: function () {
             if (!this.freeResponseMode || this.freeResponseRevealed) return;
             const input = document.getElementById('conversationFreeResponse');
@@ -564,6 +577,7 @@
                 return;
             }
             this.freeResponseText = response;
+            this.freeResponseHintVisible = false;
             this.freeResponseRevealed = true;
             this.answered = true;
             if (!this.freeResponseCounted) {
@@ -644,6 +658,7 @@
                 this.freeResponseMode = false;
                 this.freeResponseText = '';
                 this.freeResponseRevealed = false;
+                this.freeResponseHintVisible = false;
                 this.freeResponseCounted = false;
             }
             if (this.turnIndex + 1 < this.currentScenario.turns.length) {
@@ -705,6 +720,7 @@
             this.freeResponseMode = false;
             this.freeResponseText = '';
             this.freeResponseRevealed = false;
+            this.freeResponseHintVisible = false;
             this.freeResponseTurns = 0;
             this.freeResponseCounted = false;
             this.mistakeTurns = [];
@@ -734,6 +750,7 @@
         if (choiceButton) return ConversationEngine.choose(Number(choiceButton.dataset.conversationChoice));
         if (target.closest('[data-conversation-free]')) return ConversationEngine.useFreeResponse();
         if (target.closest('[data-conversation-guided]')) return ConversationEngine.useGuidedResponse();
+        if (target.closest('[data-conversation-hint]')) return ConversationEngine.toggleFreeHint();
         if (target.closest('[data-conversation-free-example]')) return ConversationEngine.showFreeExample();
         if (target.closest('[data-conversation-edit-response]')) return ConversationEngine.editFreeResponse();
         const speechButton = target.closest('[data-conversation-speech]');

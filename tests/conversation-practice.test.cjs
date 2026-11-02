@@ -458,3 +458,32 @@ test('learners can revise a free response after comparing it with the example wi
   assert.equal(engine.freeResponseTurns, 1, 'editing and revealing again must count one completed free-response turn');
   assert.equal(engine.score, 0);
 });
+
+
+test('free-response learners can reveal and hide a hint before seeing the example', () => {
+  const engine = sandbox.window.ConversationEngine;
+  engine.start('restaurant');
+  engine.useFreeResponse();
+  const example = engine.currentScenario.turns[0].choices.find(choice => choice.correct);
+  assert.match(elements.conversationPracticeArea.innerHTML, /data-conversation-hint/);
+  assert.doesNotMatch(elements.conversationPracticeArea.innerHTML, /class="conversation-hint"/);
+  elements.conversationFreeResponse = { value: 'Saya mau makan.' };
+
+  engine.toggleFreeHint();
+  assert.equal(engine.freeResponseHintVisible, true);
+  assert.ok(elements.conversationPracticeArea.innerHTML.includes(example.feedback));
+  assert.match(elements.conversationPracticeArea.innerHTML, /Ocultar pista/);
+  assert.match(elements.conversationPracticeArea.innerHTML, /Saya mau makan\./);
+  assert.equal(engine.freeResponseText, 'Saya mau makan.');
+  assert.equal(engine.answered, false);
+  assert.equal(engine.freeResponseTurns, 0);
+  assert.equal(engine.score, 0);
+
+  engine.toggleFreeHint();
+  assert.equal(engine.freeResponseHintVisible, false);
+  assert.doesNotMatch(elements.conversationPracticeArea.innerHTML, /class="conversation-hint"/);
+  elements.conversationFreeResponse = { value: 'Saya mau nasi goreng.' };
+  engine.showFreeExample();
+  assert.equal(engine.freeResponseHintVisible, false);
+  assert.match(elements.conversationPracticeArea.innerHTML, /Un ejemplo posible/);
+});

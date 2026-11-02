@@ -94,6 +94,16 @@ test('A1 U24-U32 lesson plans explicitly introduce every tracked vocabulary item
 });
 
 
+test('A1 U24-U32 multiple-choice audio stimuli are visible as text when no player is available', () => {
+  const units = a1.units.filter(unit => /^a1_u(?:2[4-9]|3[0-2])$/.test(unit.id));
+  const hiddenStimuli = units.flatMap(unit => (unit.exercises || [])
+    .filter(exercise => exercise.type === 'mc' && exercise.audioText)
+    .filter(exercise => !(exercise.prompt || '').includes(exercise.audioText))
+    .map(exercise => unit.id + ': ' + exercise.audioText));
+  assert.deepEqual(hiddenStimuli, [],
+    'MC exercises must show their Indonesian stimulus in the prompt because they do not render an audio player');
+});
+
 test('A1 U24-U32 multiple-choice prompts do not claim audio playback', () => {
   const units = a1.units.filter(unit => /^a1_u(?:2[4-9]|3[0-2])$/.test(unit.id));
   const misleading = units.flatMap(unit => (unit.exercises || [])

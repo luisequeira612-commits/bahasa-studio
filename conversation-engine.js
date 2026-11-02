@@ -619,9 +619,13 @@
             recognition.onresult = function (event) {
                 const result = event.results && event.results[0] && event.results[0][0];
                 if (result && result.transcript) {
-                    input.value = result.transcript;
-                    ConversationEngine.updateFreeResponseCounter(input);
-                    status.textContent = 'Transcripción provisional añadida. Revísala antes de continuar.';
+                    const transcript = result.transcript.trim();
+                    const existing = input.value.trim();
+                    if (transcript) {
+                        input.value = existing ? existing + ' ' + transcript : transcript;
+                        ConversationEngine.updateFreeResponseCounter(input);
+                        status.textContent = 'Transcripción provisional añadida al borrador. Revísala antes de continuar.';
+                    }
                 }
             };
             recognition.onerror = function (event) {

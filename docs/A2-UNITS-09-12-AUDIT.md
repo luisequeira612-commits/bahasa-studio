@@ -53,3 +53,15 @@ La inspección detallada encontró que los grupos de vocabulario de las cuatro l
 - Lección 4 se centra en mejorar y desarrollar habilidades.
 
 Se añadió una prueba de regresión que comprueba la correspondencia entre título, objetivo, gramática, vocabIds y ejercicios. Es una mejora de organización pedagógica, no una certificación lingüística independiente.
+
+
+## Segunda pasada — alineación entre vocabulario nuevo y explicación de lección
+
+Se compararon los 48 términos de U9–U12 con los objetivos y explicaciones de sus 16 lecciones, además de las pruebas ya existentes de consignas, respuestas, opciones y ordenamiento.
+
+Se encontraron tres omisiones editoriales reproducibles:
+- **U10, Lección 4:** berbahaya (peligroso) se evaluaba en la lección, pero no aparecía en su explicación. Se añadió al objetivo y a la explicación junto a mematuhi y melanggar.
+- **U11, Lección 2:** kehilangan (perder) se introducía y evaluaba, pero la explicación solo cubría memperbaiki y macet. Se añadió el término al objetivo y a la explicación.
+- **U11, Lección 3:** menghubungi (contactar) se introducía con una actividad de escucha, pero la explicación no lo describía. Se incorporó a la explicación; kehilangan se mantiene como repaso del bloque anterior.
+
+Se añadió una regresión que exige que el objetivo o la explicación de cada lección nombre todas las palabras nuevas que introduce en U9–U12. No se modificaron vocabulario, glosas, respuestas, IDs, progresión, estados del tracker, IndexedDB ni backup v3. Estas correcciones mejoran la coherencia didáctica; no certifican naturalidad o corrección nativa.

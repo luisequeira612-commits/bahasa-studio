@@ -2083,8 +2083,8 @@ window.BAHASA_CURRICULUM_A2 = {
                                 },
                                 {
                                     "title": "Lección 4: Cumplir las normas",
-                                    "objective": "Explica si una persona respeta o infringe una regla.",
-                                    "grammar": "Mematuhi significa cumplir u obedecer; melanggar significa infringir o incumplir.",
+                                    "objective": "Explica si una acción es peligrosa y si una persona respeta o infringe una regla.",
+                                    "grammar": "Berbahaya significa peligroso; mematuhi significa cumplir u obedecer; melanggar significa infringir o incumplir.",
                                     "vocabIds": [
                                         "a2u10_berbahaya",
                                         "a2u10_mematuhi",
@@ -2277,8 +2277,8 @@ window.BAHASA_CURRICULUM_A2 = {
                                 },
                                 {
                                     "title": "Lección 2: Reparaciones y tráfico",
-                                    "objective": "Describe una avería o una situación de tráfico.",
-                                    "grammar": "Memperbaiki significa reparar; macet describe una vía congestionada.",
+                                    "objective": "Describe una avería, una situación de tráfico o la pérdida de un objeto.",
+                                    "grammar": "Memperbaiki significa reparar; macet describe una vía congestionada y kehilangan significa perder algo.",
                                     "vocabIds": [
                                         "a2u11_memperbaiki",
                                         "a2u11_macet",
@@ -2323,8 +2323,8 @@ window.BAHASA_CURRICULUM_A2 = {
                                 },
                                 {
                                     "title": "Lección 3: Perder, encontrar e informar",
-                                    "objective": "Explica qué has perdido, encontrado o comunicado.",
-                                    "grammar": "Kehilangan significa perder; menemukan, encontrar; melaporkan, informar o denunciar.",
+                                    "objective": "Explica qué has perdido, encontrado o comunicado y a quién contactas.",
+                                    "grammar": "Kehilangan significa perder; menemukan, encontrar; melaporkan, informar o denunciar; menghubungi, contactar con alguien.",
                                     "vocabIds": [
                                         "a2u11_menemukan",
                                         "a2u11_melaporkan",

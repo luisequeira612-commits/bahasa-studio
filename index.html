@@ -3454,6 +3454,7 @@ Requisitos:
             },
             async resetAllData() {
                 if (confirm("¿Confirmas que deseas borrar todos los datos guardados en este dispositivo?")) {
+                    if (typeof StudyHistory !== 'undefined') StudyHistory.clear();
                     indexedDB.deleteDatabase('BahasaStudio3DB');
                     location.reload();
                 }

@@ -2850,7 +2850,7 @@ Requisitos:
                         : '';
                     const base = stats.attempts
                         ? (stats.attempts < 10
-                            ? resultCounts + ' · datos iniciales (mínimo 5)'
+                            ? resultCounts + ' · datos iniciales (mínimo 10)'
                             : resultCounts + ' · ' + accuracy + '% acierto')
                         : 'Sin intentos';
                     node.textContent = key === 'writing' && stats.sessions ? base + ' · ' + stats.sessions + ' prácticas libres' : base;
@@ -2867,7 +2867,7 @@ Requisitos:
                         : '';
                     const resultSummary = attempts
                         ? (attempts < 10
-                            ? resultCounts + ' · datos iniciales (mínimo 5)'
+                            ? resultCounts + ' · datos iniciales (mínimo 10)'
                             : resultCounts + ' · ' + accuracy + '% acierto')
                         : 'Sin respuestas guiadas';
                     const sessionSummary = sessions

@@ -51,40 +51,27 @@ test('writing practice does not award XP or create SRS reviews', () => {
 });
 
 
-test('A2 writing prompts stay locked until all A1 units are completed', () => {
+test('A2 writing prompts are available in beta without completing A1', () => {
   const vm = require('node:vm');
   const context = { window: {
-    App: { completedUnits: ['a1_u1'] },
+    App: { completedUnits: [] },
     CourseData: { levels: [{ id: 'A1', units: [{ id: 'a1_u1' }, { id: 'a1_u2' }] }] }
   } };
   vm.runInNewContext(source, context);
   const practice = context.window.WritingPractice;
-  assert.deepEqual(Array.from(practice.getAvailableTasks(), task => task.level), ['A1', 'A1', 'A1', 'A1']);
-  assert.equal(practice.getTask('budget'), null);
-  assert.equal(practice.getTask('recent-experience'), null);
+  assert.deepEqual(Array.from(practice.getAvailableTasks(), task => task.level),
+    ['A1', 'A1', 'A1', 'A1', 'A2', 'A2', 'A2', 'A2']);
+  assert.equal(practice.getTask('budget').level, 'A2');
+  assert.equal(practice.getTask('recent-experience').level, 'A2');
 });
 
-test('A2 writing prompts unlock when every A1 unit is complete', () => {
+test('A2 writing access does not depend on A1 completion data being present', () => {
   const vm = require('node:vm');
-  const context = { window: {
-    App: { completedUnits: ['a1_u1', 'a1_u2'] },
-    CourseData: { levels: [{ id: 'A1', units: [{ id: 'a1_u1' }, { id: 'a1_u2' }] }] }
-  } };
+  const context = { window: { App: { completedUnits: [] } } };
   vm.runInNewContext(source, context);
-  const levels = context.window.WritingPractice.getAvailableTasks().map(task => task.level);
-  assert.deepEqual(levels, ['A1', 'A1', 'A1', 'A1', 'A2', 'A2', 'A2', 'A2']);
+  assert.equal(context.window.WritingPractice.getTask('compare-decisions').level, 'A2');
+  assert.doesNotMatch(source, /isA1Complete|Completa las 32 unidades de A1 para desbloquear/);
 });
-
-test('writing task lookup cannot bypass the A2 progression gate', () => {
-  const vm = require('node:vm');
-  const context = { window: {
-    App: { completedUnits: [] },
-    CourseData: { levels: [{ id: 'A1', units: [{ id: 'a1_u1' }] }] }
-  } };
-  vm.runInNewContext(source, context);
-  assert.equal(context.window.WritingPractice.getAvailableTasks().some(task => task.id === 'budget'), false);
-});
-
 
 test('writing self-review checklist is interactive and never presents itself as a score', () => {
   assert.match(source, /checkbox\.type = 'checkbox'/);

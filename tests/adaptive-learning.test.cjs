@@ -446,3 +446,11 @@ test('adaptive skill recommendations only target the earliest unfinished lesson 
   assert.ok(!html.includes('unfinishedLessons.forEach(entry =>'),
     'later unfinished lessons must not be recommended while earlier lessons remain locked');
 });
+
+test('learner skill profile uses the same ten-attempt confidence threshold as adaptive recommendations', () => {
+  const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+  assert.match(html, /porcentajes con menos de diez intentos son orientativos/i);
+  assert.match(html, /stats\.attempts < 10/);
+  assert.match(html, /attempts < 10/);
+  assert.match(html, /datos iniciales \(mínimo 5\)/);
+});

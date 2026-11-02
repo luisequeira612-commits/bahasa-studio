@@ -342,10 +342,12 @@ test('tap-to-translate includes authored exercises from multi-lesson units', () 
   assert.match(html, /const authoredExercises = \[\s*\.\.\.\(unit\.exercises \|\| \[\]\),\s*\.\.\.\(unit\.lessons \|\| \[\]\)\.flatMap\(lesson => lesson\.exercises \|\| \[\]\)\s*\]/);
 });
 
-test('A2 stays out of learning vocabulary until explicit release and assessment lookup is level-independent', () => {
-  assert.match(html, /return getLevels\(\)\.filter\(level =>[\s\S]*?level\.id !== 'A2' \|\| \(A2_RELEASE_ENABLED && isA1Complete\(App\.completedUnits\)\)/);
+test('A2 beta vocabulary and assessments are available independently of A1 completion', () => {
+  assert.match(html, /return getLevels\(\)\.filter\(level =>[\s\S]*?level\.id !== 'A2' \|\| A2_RELEASE_ENABLED/);
+  assert.doesNotMatch(html, /level\.id !== 'A2'[^\n]*isA1Complete/);
   assert.match(html, /startUnitAssessment\(unitId\) \{\s*const level = getLevels\(\)\.find\(entry => entry\.units\.some\(unit => unit\.id === unitId\)\)/);
-  assert.match(html, /\(level\.id === 'A2' && \(!A2_RELEASE_ENABLED \|\| !isA1Complete\(App\.completedUnits\)\)\)/);
+  assert.match(html, /\(level\.id === 'A2' && !A2_RELEASE_ENABLED\)/);
+  assert.doesNotMatch(html, /level\.id === 'A2'[^\n]*isA1Complete/);
 });
 
 test('v3.7.1 audit fixes remain in place without changing backup or database versions', () => {
@@ -365,7 +367,7 @@ test('v3.7.1 audit fixes remain in place without changing backup or database ver
     'voice discovery should tolerate missing language metadata without throwing');
   assert.ok(html.includes("function getLearningLevels()"));
   assert.ok(html.includes("return getLevels().filter(level =>"));
-  assert.ok(html.includes("(level.id !== 'A2' || (A2_RELEASE_ENABLED && isA1Complete(App.completedUnits)))"));
+  assert.ok(html.includes("(level.id !== 'A2' || A2_RELEASE_ENABLED)"));
   assert.ok(html.includes("function getUniqueLearningVocabulary()"));
   assert.ok(html.includes("String(word && word.idn || '').trim().toLocaleLowerCase()"));
   assert.ok(html.includes("async getDuplicateWordIds(wordId)"));

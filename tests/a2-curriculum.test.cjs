@@ -1163,6 +1163,21 @@ test('A2 U18 explicitly distinguishes Indonesian pagar from the Spanish verb pag
   assert.match(curriculum, /Pagar rumah itu tinggi\./);
 });
 
+test('A2 U17-U20 lesson objectives and explanations name every newly introduced vocabulary item', () => {
+  for (const unit of a2.units.slice(16, 20)) {
+    const vocabulary = new Map(unit.vocab.map(word => [word.id, word]));
+    for (const lesson of unit.lessons) {
+      const explanation = [lesson.objective, lesson.grammar].filter(Boolean).join(' ').toLocaleLowerCase();
+      for (const id of lesson.vocabIds || []) {
+        const word = vocabulary.get(id);
+        assert.ok(word, unit.id + ' ' + lesson.title + ' must introduce known vocabulary: ' + id);
+        assert.ok(explanation.includes(word.idn.toLocaleLowerCase()),
+          unit.id + ' ' + lesson.title + ' should explain newly introduced vocabulary: ' + word.idn);
+      }
+    }
+  }
+});
+
 test('A2 U21-U24 editorial audit records bounded findings without claiming linguistic certification', () => {
   const audit = fs.readFileSync(path.join(__dirname, '..', 'docs/A2-UNITS-21-24-AUDIT.md'), 'utf8');
   for (const unit of ['U21', 'U22', 'U23', 'U24']) assert.match(audit, new RegExp('\\b' + unit + '\\b'));

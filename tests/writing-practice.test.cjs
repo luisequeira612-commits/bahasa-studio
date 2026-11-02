@@ -61,6 +61,7 @@ test('A2 writing prompts stay locked until all A1 units are completed', () => {
   const practice = context.window.WritingPractice;
   assert.deepEqual(Array.from(practice.getAvailableTasks(), task => task.level), ['A1', 'A1', 'A1', 'A1']);
   assert.equal(practice.getTask('budget'), null);
+  assert.equal(practice.getTask('recent-experience'), null);
 });
 
 test('A2 writing prompts unlock when every A1 unit is complete', () => {

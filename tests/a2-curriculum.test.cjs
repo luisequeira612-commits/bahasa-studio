@@ -761,6 +761,19 @@ test('A2 U15 distinguishes proposing from inviting in vocabulary feedback', () =
 });
 
 
+test('A2 U15 meeting listening example matches the meaning of pertemuan', () => {
+  const unit = a2.units.find(entry => entry.id === 'a2_u15');
+  assert.ok(unit);
+  const lesson = unit.lessons.find(entry => entry.title === 'Lección 4: Organizar y cambiar planes');
+  assert.ok(lesson);
+  assert.match(lesson.objective, /reunión/i);
+  assert.match(lesson.grammar, /pertemuan, reunión/i);
+  const exercise = lesson.exercises.find(entry => entry.vocabId === 'a2u15_pertemuan' && entry.type === 'listen');
+  assert.ok(exercise);
+  assert.equal(exercise.answer, 'Ada pertemuan hari ini.');
+  assert.match(exercise.explanation, /pertemuan/i);
+});
+
 test('A2 U14 explains keberangkatan as departure, matching its vocabulary gloss', () => {
   const unit = a2.units.find(entry => entry.id === 'a2_u14');
   assert.ok(unit);

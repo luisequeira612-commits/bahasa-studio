@@ -122,7 +122,7 @@ test('A1 U24-U32 use focused authored lesson plans while retaining generated pra
     assert.equal(unit.lessonPlans.length, 3, unit.id + ' should define three focused lesson plans');
     const lessons = app.buildUnitLessons(unit);
     assert.equal(lessons.length, 3, unit.id + ' should keep three study lessons');
-    assert.deepEqual(Array.from(lessons, lesson => lesson.title), unit.lessonPlans.map(plan => plan.title));
+    assert.deepEqual(Array.from(lessons, lesson => lesson.title), Array.from(unit.lessonPlans, plan => plan.title));
     lessons.forEach((lesson, index) => {
       const plan = unit.lessonPlans[index];
       assert.ok(plan.objective && plan.grammar, unit.id + ' lesson plan needs an objective and focused explanation');

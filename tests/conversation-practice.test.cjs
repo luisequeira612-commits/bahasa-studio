@@ -96,7 +96,10 @@ test('each guided conversation turn can be answered freely before a model exampl
 
   engine.next();
   assert.equal(engine.turnIndex, 1);
-  assert.equal(engine.freeResponseMode, false);
+  assert.equal(engine.freeResponseMode, true, 'free-response practice should continue into the next turn');
+  assert.equal(engine.freeResponseText, '');
+  assert.equal(engine.freeResponseRevealed, false);
+  assert.equal(engine.freeResponseHintVisible, false);
   assert.equal(engine.freeResponseTurns, 1);
 });
 
@@ -133,6 +136,36 @@ test('switching response modes does not complete or score a conversation turn', 
   assert.equal(engine.freeResponseTurns, 0);
   assert.equal(engine.score, 0);
   assert.deepEqual(recordedAnswers, []);
+});
+
+test('free-response mode continues across turns while clearing only turn-specific draft and hint state', () => {
+  const engine = sandbox.window.ConversationEngine;
+  engine.start('greetings');
+  engine.useFreeResponse();
+
+  for (let turn = 0; turn < 3; turn += 1) {
+    assert.equal(engine.freeResponseMode, true);
+    assert.match(elements.conversationPracticeArea.innerHTML, /id="conversationFreeResponse"/);
+    elements.conversationFreeResponse = { value: 'Respuesta propia ' + (turn + 1) };
+    engine.toggleFreeHint();
+    assert.equal(engine.freeResponseHintVisible, true);
+    engine.showFreeExample();
+    assert.equal(engine.freeResponseTurns, turn + 1);
+    engine.next();
+    if (turn < 2) {
+      assert.equal(engine.turnIndex, turn + 1);
+      assert.equal(engine.freeResponseMode, true);
+      assert.equal(engine.freeResponseText, '');
+      assert.equal(engine.freeResponseRevealed, false);
+      assert.equal(engine.freeResponseHintVisible, false);
+      assert.equal(engine.freeResponseCounted, false);
+    }
+  }
+
+  assert.match(elements.conversationPracticeArea.innerHTML, /Conversación completada/);
+  assert.match(elements.conversationPracticeArea.innerHTML, /Has completado los turnos en práctica libre/);
+  assert.equal(engine.freeResponseTurns, 3);
+  assert.equal(engine.score, 0);
 });
 
 test('free response cannot reveal an example before the learner attempts an answer', () => {

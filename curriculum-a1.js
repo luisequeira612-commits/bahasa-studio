@@ -2913,7 +2913,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                 { vocabId: 'v392', type: 'order', prompt: 'Ordena: Él/ella escribe.', words: ['menulis', 'Dia'], correctOrder: ['Dia', 'menulis'], explanation: 'Dia menulis significa «Él/ella escribe».' },
                                 { vocabId: 'v394', type: 'write', prompt: 'Escribe una frase para decir «Esta es mi tarea».', hint: 'Usa Ini tugas saya.', modelAnswer: 'Ini tugas saya.', explanation: 'Ini tugas saya significa «Esta es mi tarea».' }
                             
-                                , { vocabId: 'v391', type: 'mc', prompt: 'Escucha qué hace el estudiante', audioText: 'Saya membaca buku.', options: ["Leo un libro","Escribe una carta","Responde al profesor"], answer: 0, explanation: 'Membaca buku significa leer un libro.' }
+                                , { vocabId: 'v391', type: 'mc', prompt: 'Identifica qué hace el estudiante', audioText: 'Saya membaca buku.', options: ["Leo un libro","Escribe una carta","Responde al profesor"], answer: 0, explanation: 'Membaca buku significa leer un libro.' }
                             ,
                                         {
                                             "vocabId": "v387",
@@ -2969,7 +2969,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                 { vocabId: 'v403', type: 'order', prompt: 'Ordena: A él/ella le gusta cantar.', words: ['menyanyi', 'Dia', 'suka'], correctOrder: ['Dia', 'suka', 'menyanyi'], explanation: 'Dia suka menyanyi significa «Le gusta cantar».' },
                                 { vocabId: 'v404', type: 'write', prompt: 'Escribe una frase para decir «Me gusta bailar».', hint: 'Usa Saya suka menari.', modelAnswer: 'Saya suka menari.', explanation: 'Saya suka menari significa «Me gusta bailar».' }
                             
-                                , { vocabId: 'v397', type: 'mc', prompt: 'Escucha qué actividad le gusta', audioText: 'Saya suka berenang.', options: ["Me gusta nadar","Le gusta bailar","Le gusta pintar"], answer: 0, explanation: 'Suka berenang significa gustar de nadar.' }
+                                , { vocabId: 'v397', type: 'mc', prompt: 'Identifica qué actividad le gusta', audioText: 'Saya suka berenang.', options: ["Me gusta nadar","Le gusta bailar","Le gusta pintar"], answer: 0, explanation: 'Suka berenang significa gustar de nadar.' }
                             ,
                                         {
                                             "vocabId": "v401",
@@ -3025,7 +3025,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                 { vocabId: 'v406', type: 'order', prompt: 'Ordena: Gira a la izquierda.', words: ['kiri', 'Belok'], correctOrder: ['Belok', 'kiri'], explanation: 'Belok kiri significa «Gira a la izquierda».' },
                                 { vocabId: 'v410', type: 'write', prompt: 'Escribe una frase para decir «Mi casa está lejos».', hint: 'Usa Rumah saya jauh.', modelAnswer: 'Rumah saya jauh.', explanation: 'Rumah saya jauh significa «Mi casa está lejos».' }
                             
-                                , { vocabId: 'v406', type: 'mc', prompt: 'Escucha la indicación y elige hacia dónde girar', audioText: 'Belok kiri.', options: ["A la izquierda","A la derecha","Sigue recto"], answer: 0, explanation: 'Belok kiri significa gira a la izquierda.' }
+                                , { vocabId: 'v406', type: 'mc', prompt: 'Elige la dirección indicada', audioText: 'Belok kiri.', options: ["A la izquierda","A la derecha","Sigue recto"], answer: 0, explanation: 'Belok kiri significa gira a la izquierda.' }
                             ,
                                         {
                                             "vocabId": "v405",
@@ -3093,7 +3093,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                 { vocabId: 'v422', type: 'order', prompt: 'Ordena: Quizá venga.', words: ['datang', 'Mungkin', 'saya'], correctOrder: ['Mungkin', 'saya', 'datang'], explanation: 'Mungkin saya datang significa «Quizá venga».' },
                                 { vocabId: 'v423', type: 'write', prompt: 'Escribe una frase para decir «Esta noche estoy ocupado/a».', hint: 'Usa Malam ini saya sibuk.', modelAnswer: 'Malam ini saya sibuk.', explanation: 'Malam ini saya sibuk significa «Esta noche estoy ocupado/a».' }
                             
-                                , { vocabId: 'v421', type: 'mc', prompt: 'Escucha la invitación y elige qué propone', audioText: 'Ayo makan!', options: ["¡Vamos a comer!","¡Vamos a dormir!","¡Vamos a estudiar!"], answer: 0, explanation: 'Ayo introduce una invitación o propuesta.' }
+                                , { vocabId: 'v421', type: 'mc', prompt: 'Identifica qué propone la invitación', audioText: 'Ayo makan!', options: ["¡Vamos a comer!","¡Vamos a dormir!","¡Vamos a estudiar!"], answer: 0, explanation: 'Ayo introduce una invitación o propuesta.' }
                             ,
                                         {
                                             "vocabId": "v420",
@@ -3149,7 +3149,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                 { vocabId: 'v433', type: 'order', prompt: 'Ordena: Tengo una reserva.', words: ['reservasi', 'punya', 'Saya'], correctOrder: ['Saya', 'punya', 'reservasi'], explanation: 'Saya punya reservasi significa «Tengo una reserva».' },
                                 { vocabId: 'v425', type: 'write', prompt: 'Escribe una frase para decir «Estoy en el hotel».', hint: 'Usa Saya di hotel.', modelAnswer: 'Saya di hotel.', explanation: 'Saya di hotel significa «Estoy en el hotel».' }
                             
-                                , { vocabId: 'v433', type: 'mc', prompt: 'Escucha qué informa la persona', audioText: 'Saya punya reservasi.', options: ["Tengo una reserva","Ha perdido el pasaporte","Necesita un billete"], answer: 0, explanation: 'Reservasi significa reserva.' }
+                                , { vocabId: 'v433', type: 'mc', prompt: 'Identifica qué informa la persona', audioText: 'Saya punya reservasi.', options: ["Tengo una reserva","Ha perdido el pasaporte","Necesita un billete"], answer: 0, explanation: 'Reservasi significa reserva.' }
                             ,
                                         {
                                             "vocabId": "v430",
@@ -3205,7 +3205,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                 { vocabId: 'v443', type: 'order', prompt: 'Ordena: Como antes de estudiar.', words: ['belajar', 'makan', 'sebelum', 'Saya'], correctOrder: ['Saya', 'makan', 'sebelum', 'belajar'], explanation: 'Saya makan sebelum belajar significa «Como antes de estudiar».' },
                                 { vocabId: 'v442', type: 'write', prompt: 'Escribe una frase para decir «Descanso por la tarde».', hint: 'Usa Saya beristirahat pada sore hari.', modelAnswer: 'Saya beristirahat pada sore hari.', explanation: 'Saya beristirahat pada sore hari significa «Descanso por la tarde».' }
                             
-                                , { vocabId: 'v435', type: 'mc', prompt: 'Escucha el hábito y elige su frecuencia', audioText: 'Saya selalu belajar.', options: ["Siempre estudio","A veces estudio","Nunca estudio"], answer: 0, explanation: 'Selalu significa siempre.' }
+                                , { vocabId: 'v435', type: 'mc', prompt: 'Identifica la frecuencia del hábito', audioText: 'Saya selalu belajar.', options: ["Siempre estudio","A veces estudio","Nunca estudio"], answer: 0, explanation: 'Selalu significa siempre.' }
                             ,
                                         {
                                             "vocabId": "v436",
@@ -3273,7 +3273,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                 { vocabId: 'v453', type: 'order', prompt: 'Ordena: Espera un momento.', words: ['sebentar', 'Tunggu'], correctOrder: ['Tunggu', 'sebentar'], explanation: 'Tunggu sebentar significa «Espera un momento».' },
                                 { vocabId: 'v452', type: 'write', prompt: 'Escribe una frase para decir «Perdón, no entiendo».', hint: 'Usa Maaf, saya tidak mengerti.', modelAnswer: 'Maaf, saya tidak mengerti.', explanation: 'Maaf, saya tidak mengerti significa «Perdón, no entiendo».' }
                             
-                                , { vocabId: 'v449', type: 'mc', prompt: 'Escucha qué pide la persona', audioText: 'Tolong ulangi.', options: ["Por favor, repítalo","Por favor, espere","Hable más rápido"], answer: 0, explanation: 'Ulangi es el imperativo de repetir.' }
+                                , { vocabId: 'v449', type: 'mc', prompt: 'Identifica qué pide la persona', audioText: 'Tolong ulangi.', options: ["Por favor, repítalo","Por favor, espere","Hable más rápido"], answer: 0, explanation: 'Ulangi es el imperativo de repetir.' }
                             ,
                                         {
                                             "vocabId": "v447",
@@ -3329,7 +3329,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                 { vocabId: 'v460', type: 'order', prompt: 'Ordena: Tengo el pelo largo.', words: ['panjang', 'Rambut', 'saya'], correctOrder: ['Rambut', 'saya', 'panjang'], explanation: 'Rambut saya panjang significa «Tengo el pelo largo».' },
                                 { vocabId: 'v455', type: 'write', prompt: 'Escribe una frase para decir «Él/ella es alto/a».', hint: 'Usa Dia tinggi.', modelAnswer: 'Dia tinggi.', explanation: 'Dia tinggi significa «Él/ella es alto/a».' }
                             
-                                , { vocabId: 'v457', type: 'mc', prompt: 'Escucha cómo describen al amigo', audioText: 'Teman saya ramah.', options: ["Mi amigo es amable","Mi amigo es alto","Mi amigo está cansado"], answer: 0, explanation: 'Ramah significa amable o simpático.' }
+                                , { vocabId: 'v457', type: 'mc', prompt: 'Identifica cómo describen al amigo', audioText: 'Teman saya ramah.', options: ["Mi amigo es amable","Mi amigo es alto","Mi amigo está cansado"], answer: 0, explanation: 'Ramah significa amable o simpático.' }
                             ,
                                         {
                                             "vocabId": "v456",

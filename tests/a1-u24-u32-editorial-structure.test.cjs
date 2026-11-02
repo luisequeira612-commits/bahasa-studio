@@ -92,3 +92,17 @@ test('A1 U24-U32 lesson plans explicitly introduce every tracked vocabulary item
     }
   }
 });
+
+
+test('A1 U24-U32 multiple-choice prompts do not claim audio playback', () => {
+  const units = a1.units.filter(unit => /^a1_u(?:2[4-9]|3[0-2])$/.test(unit.id));
+  const misleading = units.flatMap(unit => (unit.exercises || [])
+    .filter(exercise => exercise.type === 'mc' && /escucha/i.test(exercise.prompt || ''))
+    .map(exercise => unit.id + ': ' + exercise.prompt));
+  assert.deepEqual(misleading, [],
+    'Multiple-choice exercises do not play audio; listening practice must use the listen modality');
+  for (const unit of units) {
+    assert.ok((unit.exercises || []).some(exercise => exercise.type === 'listen'),
+      unit.id + ' must retain a real listen exercise');
+  }
+});

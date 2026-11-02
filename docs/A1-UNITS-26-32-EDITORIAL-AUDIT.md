@@ -38,3 +38,12 @@ Se ajusta el texto del botón y de la lista previa para evitar que «comparar» 
 No hubo hablante nativo disponible para esta pasada. No se afirma corrección lingüística certificada, naturalidad completa, adecuación MCER ni equivalencia contextual exhaustiva. KBBI no es requisito ni bloqueo. Las observaciones anteriores son focos editoriales para futuras revisiones, no errores confirmados.
 
 No se modifican IDs, IndexedDB ni el formato de backup v3.
+
+
+## Precisión de las consignas de audio — U24–U32
+
+La inspección de la interfaz confirmó que el reproductor automático y el botón «Escuchar de nuevo» pertenecen al tipo de ejercicio `listen`. Ocho ejercicios de selección múltiple usaban consignas que empezaban por «Escucha…», pero ese tipo de ejercicio no reproduce audio. Se sustituyeron por instrucciones de identificación/selección que describen lo que la interfaz realmente ofrece.
+
+No se cambió el contenido de las opciones, las respuestas, el vocabulario, la cantidad de ejercicios ni la práctica real de escucha. Se añadió una regresión que impide que los ejercicios MC de U24–U32 vuelvan a afirmar que reproducen audio y comprueba que cada unidad conserva al menos un ejercicio `listen`.
+
+Esta corrección mejora la honestidad de la interfaz y la claridad de la tarea; no valida la calidad de la voz sintética ni la naturalidad lingüística.

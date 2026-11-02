@@ -168,3 +168,20 @@ test('daily activity counters reject oversized XP increments without mutating th
   assert.throws(() => StudyActivity.record(activity, 'points', 2, day), /Contador de actividad no válido/);
   assert.equal(JSON.stringify(activity), before);
 });
+
+
+test('streak counters reject an unsafe consecutive-day increment without mutating the input', () => {
+  const yesterday = localDate(2026, 10, 29);
+  const today = localDate(2026, 10, 30);
+  const activity = StudyActivity.createDefault(yesterday);
+  activity.lastStudyDate = '2026-10-29';
+  activity.currentStreak = 1000000000;
+  activity.longestStreak = 1000000000;
+  const before = JSON.stringify(activity);
+
+  assert.throws(
+    () => StudyActivity.record(activity, 'lesson', 0, today),
+    /Contador de actividad no válido/
+  );
+  assert.equal(JSON.stringify(activity), before);
+});

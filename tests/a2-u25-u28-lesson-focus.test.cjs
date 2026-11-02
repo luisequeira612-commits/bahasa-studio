@@ -70,3 +70,20 @@ test('A2 U25-U28 examples and exercises do not use vocabulary from a later lesso
     }
   }
 });
+
+test('A2 U27 distinguishes kelurahan from its office (kantor kelurahan)', () => {
+  const unit = units.find(item => item.id === 'a2_u27');
+  assert.ok(unit, 'missing a2_u27');
+  const word = unit.vocab.find(item => item.id === 'a2u27_kelurahan');
+  assert.ok(word, 'missing kelurahan vocabulary');
+  assert.equal(word.esp, 'Unidad administrativa local (Indonesia)');
+  assert.equal(word.ex, 'Kelurahan ini berada di kecamatan tersebut.');
+  assert.equal(word.exEsp, 'Esta unidad administrativa local está dentro de ese distrito.');
+  const lesson = unit.lessons.find(item => item.vocabIds.includes('a2u27_kelurahan'));
+  assert.ok(lesson, 'kelurahan must be introduced in a lesson');
+  const listening = lesson.exercises.find(item => item.vocabId === 'a2u27_kelurahan' && item.type === 'listen');
+  assert.ok(listening, 'kelurahan must retain its listening practice');
+  assert.equal(listening.answer, word.ex);
+  assert.match(listening.explanation, /unidad administrativa local/i);
+  assert.doesNotMatch([word.esp, word.exEsp, listening.answer].join(' '), /oficina de barrio|kantor kelurahan/i);
+});

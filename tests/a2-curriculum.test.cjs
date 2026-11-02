@@ -532,7 +532,7 @@ test('A2 units 37-40 teach emergency readiness, tourism, remote work, and integr
   }
 });
 
-test('A2 vocabulary identifiers are unique; A2 opens after A1 completion while B1/B2 remain gated', () => {
+test('A2 vocabulary identifiers are unique; A2 beta is independent while B1/B2 remain gated', () => {
   const newIds = a2.units.flatMap(unit => unit.vocab.map(word => word.id));
   assert.equal(new Set(newIds).size, newIds.length, 'new A2 vocabulary identifiers must be unique');
   assert.match(html, /function getLearningLevels\(\)[\s\S]*?level\.id !== 'A2' \|\| \(A2_RELEASE_ENABLED && isA1Complete\(App\.completedUnits\)\)/,
@@ -542,15 +542,15 @@ test('A2 vocabulary identifiers are unique; A2 opens after A1 completion while B
 });
 
 
-test('A2 is available in beta after A1 completion', () => {
+test('A2 is available in beta independently of A1 completion', () => {
   assert.match(htmlSource, /const A2_RELEASE_ENABLED = true;/);
-  assert.match(htmlSource, /return getLevels\(\)\.filter\(level =>[\s\S]*?level\.id !== 'A2' \|\| \(A2_RELEASE_ENABLED && isA1Complete\(App\.completedUnits\)\)/);
+  assert.match(htmlSource, /return getLevels\(\)\.filter\(level =>[\s\S]*?level\.id !== 'A2' \|\| A2_RELEASE_ENABLED/);
   assert.match(htmlSource, /if \(lvl\.id === 'A2'\)/);
   assert.match(htmlSource, /Beta · en revisión/);
-  assert.match(htmlSource, /Disponible al completar A1/);
-  assert.match(htmlSource, /if \(!A2_RELEASE_ENABLED \|\| !a1Complete\) return;/);
+  assert.match(htmlSource, /Disponible en beta sin requisito de completar A1/);
+  assert.match(htmlSource, /if \(!A2_RELEASE_ENABLED\) return;/);
   assert.match(htmlSource, /const isAdvanced = \['B1', 'B2'\]\.includes\(lvl\.id\)/);
-  assert.match(htmlSource, /const unitAccessible = lvl\.id === 'A1'[\s\S]*?lvl\.id === 'A2' \? \(A2_RELEASE_ENABLED && a1Complete\)/);
+  assert.match(htmlSource, /const unitAccessible = lvl\.id === 'A1'[\s\S]*?lvl\.id === 'A2' \? A2_RELEASE_ENABLED/);
 });
 
 test('A2 date production and sequence context practice are explicitly taught', () => {

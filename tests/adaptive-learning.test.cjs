@@ -259,9 +259,10 @@ test('adaptive dashboard delegates targeted lesson selection to exercise coverag
 });
 
 
-test('adaptive dashboard only recommends the next unlocked A1 lesson or released A2 lessons', () => {
+test('adaptive dashboard recommends the next unlocked A1 lesson and beta A2 lessons independently', () => {
   const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
-  assert.match(html, /level\.id === 'A2' && \(!A2_RELEASE_ENABLED \|\| !a1Complete\)/);
+  assert.match(html, /level\.id === 'A2' && !A2_RELEASE_ENABLED/);
+  assert.doesNotMatch(html, /level\.id === 'A2' && \(!A2_RELEASE_ENABLED \|\| !a1Complete\)/);
   assert.match(html, /level\.id === 'A1' && \(!nextA1Unit \|\| unit\.id !== nextA1Unit\.id\)/);
   assert.match(html, /const first = unfinishedLessons\[0\]/);
   assert.match(html, /AdaptiveLearning\.selectSkillLesson\(weakestSkill\.key, skillLessons\)/);

@@ -367,14 +367,6 @@
         },
     ];
 
-    function isA1Complete() {
-        const app = window.App;
-        const levels = window.CourseData && window.CourseData.levels;
-        const a1 = Array.isArray(levels) ? levels.find(level => level && level.id === 'A1') : null;
-        if (!a1 || !Array.isArray(a1.units) || !Array.isArray(app && app.completedUnits)) return false;
-        return a1.units.length > 0 && a1.units.every(unit =>
-            unit && typeof unit.id === 'string' && app.completedUnits.includes(unit.id));
-    }
 
     const escapeHtml = function (value) {
         return String(value == null ? '' : value).replace(/[&<>"']/g, function (char) {
@@ -402,8 +394,7 @@
     const ConversationEngine = {
         scenarios: scenarios,
         getAvailableScenarios: function () {
-            const unlockedA2 = isA1Complete();
-            return scenarios.filter(scenario => scenario.level !== 'A2' || unlockedA2);
+            return scenarios.slice();
         },
         currentScenario: null,
         turnIndex: 0,
@@ -462,7 +453,7 @@
                 '<button class="btn btn-outline btn-sm" type="button" data-conversation-exit>← Volver al curso</button>' +
                 '<h2 style="margin-top:12px;">Conversaciones prácticas</h2>' +
                 '<p style="color:var(--text-muted);font-size:0.9rem;">Elige una situación. Escucha la frase, decide cómo responder en indonesio y recibe una explicación inmediata.</p>' +
-                cards + (!isA1Complete() ? '<p class="text-muted">Completa las 32 unidades de A1 para desbloquear las conversaciones de nivel A2.</p>' : '') + '</div>';
+                cards + '</div>';
         },
 
         renderStep: function () {

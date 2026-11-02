@@ -245,7 +245,7 @@
             <div class="profile-xp-row"><span id="studyLessonsTodayText">0 lecciones hoy</span><span id="studyReviewsTodayText">0 tarjetas repasadas hoy</span></div>
             <details id="studySkillProfile" class="study-skill-profile">
                 <summary>Perfil de práctica</summary>
-                <p class="profile-muted">Cuenta primeros intentos y sesiones completadas en este dispositivo. Los porcentajes con menos de cinco intentos son datos iniciales, no conclusiones. No es una certificación de nivel; no guarda borradores ni grabaciones.</p>
+                <p class="profile-muted">Cuenta primeros intentos y sesiones completadas en este dispositivo. Los porcentajes con menos de diez intentos son orientativos, no conclusiones firmes. No es una certificación de nivel; no guarda borradores ni grabaciones.</p>
                 <div class="profile-xp-row"><span>Reconocimiento</span><strong id="studySkillRecognitionText">Sin datos</strong></div>
                 <div class="profile-xp-row"><span>Traducción</span><strong id="studySkillTranslationText">Sin datos</strong></div>
                 <div class="profile-xp-row"><span>Escucha</span><strong id="studySkillListeningText">Sin datos</strong></div>
@@ -2849,8 +2849,8 @@ Requisitos:
                             stats.correct + ' aciertos · ' + stats.incorrect + ' errores'
                         : '';
                     const base = stats.attempts
-                        ? (stats.attempts < 5
-                            ? resultCounts + ' · datos iniciales (mínimo 5)'
+                        ? (stats.attempts < 10
+                            ? resultCounts + ' · datos iniciales (mínimo 10)'
                             : resultCounts + ' · ' + accuracy + '% acierto')
                         : 'Sin intentos';
                     node.textContent = key === 'writing' && stats.sessions ? base + ' · ' + stats.sessions + ' prácticas libres' : base;
@@ -2866,8 +2866,8 @@ Requisitos:
                             conversation.correct + ' aciertos · ' + conversation.incorrect + ' errores'
                         : '';
                     const resultSummary = attempts
-                        ? (attempts < 5
-                            ? resultCounts + ' · datos iniciales (mínimo 5)'
+                        ? (attempts < 10
+                            ? resultCounts + ' · datos iniciales (mínimo 10)'
                             : resultCounts + ' · ' + accuracy + '% acierto')
                         : 'Sin respuestas guiadas';
                     const sessionSummary = sessions

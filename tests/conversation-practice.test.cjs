@@ -555,6 +555,7 @@ test('free-response character counter follows typing and keeps the draft only in
   const counter = { textContent: '' };
   elements.conversationFreeResponseCount = counter;
   const input = { value: 'Halo, apa kabar?' };
+  elements.conversationFreeResponse = input;
 
   engine.updateFreeResponseCounter(input);
   assert.equal(counter.textContent, '16/1000 caracteres');

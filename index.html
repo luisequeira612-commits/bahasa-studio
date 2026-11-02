@@ -2834,11 +2834,13 @@ Requisitos:
                     result.reviews += day.reviews;
                     result.attempts += day.attempts;
                     result.correct += day.correct;
+                    result.sessions += day.sessions;
                     return result;
-                }, { xp: 0, lessons: 0, reviews: 0, attempts: 0, correct: 0 });
+                }, { xp: 0, lessons: 0, reviews: 0, attempts: 0, correct: 0, sessions: 0 });
                 const accuracy = totals.attempts ? Math.round(totals.correct / totals.attempts * 100) : null;
                 if (summary) summary.textContent = 'Últimos 7 días: ' + totals.xp + ' XP · ' + totals.lessons + ' lecciones · ' +
-                    totals.reviews + ' repasos · ' + totals.attempts + ' respuestas puntuadas' +
+                    totals.reviews + ' repasos · ' + totals.attempts + ' respuestas puntuadas · ' +
+                    totals.sessions + ' sesiones de escritura/conversación' +
                     (accuracy === null ? '.' : ' · ' + accuracy + '% de acierto.');
                 const maxXp = Math.max(1, ...days.map(day => day.xp));
                 days.forEach(day => {
@@ -2846,19 +2848,24 @@ Requisitos:
                     column.className = 'study-history-day';
                     const bar = document.createElement('span');
                     bar.className = 'study-history-bar';
-                    bar.style.height = Math.max(day.xp ? 8 : 2, Math.round(day.xp / maxXp * 100)) + '%';
+                    const hasNonXpActivity = day.lessons || day.reviews || day.attempts || day.sessions;
+                    if (!day.xp && hasNonXpActivity) bar.classList.add('study-history-bar--activity-only');
+                    bar.style.height = day.xp
+                        ? Math.max(8, Math.round(day.xp / maxXp * 100)) + '%'
+                        : (hasNonXpActivity ? '8%' : '2%');
                     const date = new Date(day.date + 'T12:00:00');
                     const label = document.createElement('span');
                     label.className = 'study-history-day-label';
                     label.textContent = String(date.getDate());
                     column.title = day.date + ': ' + day.xp + ' XP, ' + day.lessons + ' lecciones, ' +
-                        day.reviews + ' repasos, ' + day.attempts + ' respuestas puntuadas.';
+                        day.reviews + ' repasos, ' + day.attempts + ' respuestas puntuadas, ' +
+                        day.sessions + ' sesiones de escritura/conversación.';
                     column.setAttribute('aria-label', column.title);
                     column.append(bar, label);
                     chart.append(column);
                 });
-                chart.setAttribute('aria-label', 'Actividad de los últimos 14 días. ' + activeDays.length + ' días con actividad. ' +
-                    totals.xp + ' XP durante los últimos 7 días.');
+                chart.setAttribute('aria-label', 'XP de los últimos 14 días; las marcas grises indican actividad sin XP. ' +
+                    activeDays.length + ' días con actividad. ' + totals.xp + ' XP durante los últimos 7 días.');
             },
             updateStudyDashboard() {
                 if (typeof StudyActivity === 'undefined' || !this.studyActivity) return;

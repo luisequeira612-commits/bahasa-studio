@@ -3975,8 +3975,8 @@ window.BAHASA_CURRICULUM_A2 = {
                             "lessons": [
                                 {
                                     "title": "Lección 1: Síntomas y chequeos",
-                                    "objective": "Describe síntomas y explica cuándo necesitas una revisión médica.",
-                                    "grammar": "Practica merasa + adjetivo y las expresiones para describir síntomas.",
+                                    "objective": "Describe gejala (síntomas), mual (náuseas) y cuándo necesitas una pemeriksaan (revisión médica).",
+                                    "grammar": "Pemeriksaan significa chequeo médico; gejala, síntoma; mual, náusea. Para expresar cómo te sientes, usa merasa + adjetivo: Saya merasa mual.",
                                     "vocabIds": [
                                         "a2u17_pemeriksaan",
                                         "a2u17_gejala",
@@ -4039,8 +4039,8 @@ window.BAHASA_CURRICULUM_A2 = {
                                 },
                                 {
                                     "title": "Lección 2: Atención médica y farmacia",
-                                    "objective": "Habla de recetas, farmacias y consultas con profesionales de salud.",
-                                    "grammar": "Practica expresiones para recibir indicaciones y comprar productos en una farmacia.",
+                                    "objective": "Habla de un pilek (resfriado), una resep (receta médica) y dónde encontrar una apotek (farmacia).",
+                                    "grammar": "Pilek significa resfriado; resep, receta médica; apotek, farmacia. Ejemplo: Dokter memberi saya resep.",
                                     "vocabIds": [
                                         "a2u17_pilek",
                                         "a2u17_resep",
@@ -4085,8 +4085,8 @@ window.BAHASA_CURRICULUM_A2 = {
                                 },
                                 {
                                     "title": "Lección 3: Condiciones y alergias",
-                                    "objective": "Explica alergias y comunica información importante sobre tu salud.",
-                                    "grammar": "Usa punya alergi terhadap para indicar una alergia y explica sus efectos.",
+                                    "objective": "Comunica tu tekanan darah (presión arterial), una alergi (alergia) y el proceso de pemulihan (recuperación).",
+                                    "grammar": "Tekanan darah significa presión arterial; alergi, alergia; pemulihan, recuperación. Para expresar una alergia, usa punya alergi terhadap + sustantivo.",
                                     "vocabIds": [
                                         "a2u17_tekanan_darah",
                                         "a2u17_alergi",
@@ -4131,8 +4131,8 @@ window.BAHASA_CURRICULUM_A2 = {
                                 },
                                 {
                                     "title": "Lección 4: Recuperación y prevención",
-                                    "objective": "Describe la recuperación y hábitos sencillos de cuidado personal.",
-                                    "grammar": "Practica expresiones de duración, cuidado y prevención.",
+                                    "objective": "Describe el uso de vitamin (vitaminas), el perawatan (cuidado o tratamiento) y síntomas como pusing (mareo).",
+                                    "grammar": "Vitamin significa vitamina; perawatan, cuidado o tratamiento; pusing, mareo. Para decir que estás mareado, usa Saya merasa pusing.",
                                     "vocabIds": [
                                         "a2u17_vitamin",
                                         "a2u17_perawatan",
@@ -4271,8 +4271,8 @@ window.BAHASA_CURRICULUM_A2 = {
                             "lessons": [
                                 {
                                     "title": "Lección 1: Vecinos y entorno",
-                                    "objective": "Describe a tus vecinos y el ambiente de tu comunidad.",
-                                    "grammar": "Practica adjetivos para describir el vecindario y relaciones con otras personas.",
+                                    "objective": "Describe a tus tetangga (vecinos), el lingkungan (entorno o vecindario) y la halaman (patio).",
+                                    "grammar": "Tetangga significa vecino; lingkungan, entorno o vecindario; halaman, patio. Ejemplo: Anak-anak bermain di halaman.",
                                     "vocabIds": [
                                         "a2u18_tetangga",
                                         "a2u18_lingkungan",
@@ -4333,8 +4333,8 @@ window.BAHASA_CURRICULUM_A2 = {
                                 },
                                 {
                                     "title": "Lección 2: Espacios de la vivienda",
-                                    "objective": "Nombra espacios exteriores y zonas comunes de una casa.",
-                                    "grammar": "Usa di para indicar dónde ocurre una actividad.",
+                                    "objective": "Nombra el pagar (cerca), una kebocoran (fuga) y el saluran air (desagüe o conducto de agua).",
+                                    "grammar": "Pagar significa cerca; kebocoran, fuga; saluran air, desagüe o conducto de agua. Usa di para indicar dónde está la fuga: Ada kebocoran di saluran air.",
                                     "vocabIds": [
                                         "a2u18_pagar",
                                         "a2u18_kebocoran",
@@ -4379,8 +4379,8 @@ window.BAHASA_CURRICULUM_A2 = {
                                 },
                                 {
                                     "title": "Lección 3: Mantenimiento del hogar",
-                                    "objective": "Explica pequeñas averías y necesidades de mantenimiento.",
-                                    "grammar": "Practica perlu + verbo para indicar lo que hace falta reparar o mejorar.",
+                                    "objective": "Habla del garasi (garaje), una renovasi (reforma) y la teras (terraza).",
+                                    "grammar": "Garasi significa garaje; renovasi, reforma; teras, terraza. Usa perlu + verbo para explicar qué hace falta reparar o mejorar.",
                                     "vocabIds": [
                                         "a2u18_garasi",
                                         "a2u18_renovasi",
@@ -4425,8 +4425,8 @@ window.BAHASA_CURRICULUM_A2 = {
                                 },
                                 {
                                     "title": "Lección 4: Servicios y convivencia",
-                                    "objective": "Habla de servicios domésticos y de las personas que viven en una casa.",
-                                    "grammar": "Practica expresiones para describir responsabilidades de propietarios e inquilinos.",
+                                    "objective": "Describe el ruang tamu (sala de estar), al pemilik rumah (propietario) y al penyewa (inquilino).",
+                                    "grammar": "Ruang tamu significa sala de estar; pemilik rumah, propietario de la vivienda; penyewa, inquilino. Ejemplo: Pemilik rumah bertemu penyewa.",
                                     "vocabIds": [
                                         "a2u18_ruang_tamu",
                                         "a2u18_pemilik_rumah",
@@ -4565,8 +4565,8 @@ window.BAHASA_CURRICULUM_A2 = {
                             "lessons": [
                                 {
                                     "title": "Lección 1: Buscar empleo",
-                                    "objective": "Comprende ofertas de trabajo y prepara una solicitud.",
-                                    "grammar": "Practica el vocabulario de ofertas y solicitudes laborales.",
+                                    "objective": "Comprende una lowongan (vacante), prepara una lamaran (solicitud) y una wawancara (entrevista).",
+                                    "grammar": "Wawancara significa entrevista; lamaran, solicitud; lowongan, vacante. Las expresiones lowongan kerja y lamaran kerja sitúan el contexto laboral.",
                                     "vocabIds": [
                                         "a2u19_wawancara",
                                         "a2u19_lamaran",
@@ -4631,8 +4631,8 @@ window.BAHASA_CURRICULUM_A2 = {
                                 },
                                 {
                                     "title": "Lección 2: Entrevistas y candidatos",
-                                    "objective": "Describe entrevistas y personas que participan en un proceso de selección.",
-                                    "grammar": "Usa expresiones para hablar de cualidades y experiencia.",
+                                    "objective": "Habla del gaji (salario), tu atasan (supervisor) y tus rekan kerja (compañeros de trabajo).",
+                                    "grammar": "Gaji significa salario; atasan, superior o supervisor; rekan kerja, compañero de trabajo. Ejemplo: Atasan saya memberi arahan.",
                                     "vocabIds": [
                                         "a2u19_gaji",
                                         "a2u19_atasan",
@@ -4677,8 +4677,8 @@ window.BAHASA_CURRICULUM_A2 = {
                                 },
                                 {
                                     "title": "Lección 3: Tareas y plazos",
-                                    "objective": "Explica tareas, informes y fechas de entrega.",
-                                    "grammar": "Practica expresiones de tiempo y cumplimiento de plazos.",
+                                    "objective": "Explica una presentasi (presentación), un laporan (informe) y un tenggat (plazo límite).",
+                                    "grammar": "Presentasi significa presentación; laporan, informe; tenggat, fecha límite. Puedes decir menyelesaikan laporan sebelum tenggat.",
                                     "vocabIds": [
                                         "a2u19_presentasi",
                                         "a2u19_laporan",
@@ -4723,8 +4723,8 @@ window.BAHASA_CURRICULUM_A2 = {
                                 },
                                 {
                                     "title": "Lección 4: Colaboración y desarrollo",
-                                    "objective": "Habla de compañeros, presentaciones y prácticas profesionales.",
-                                    "grammar": "Usa dengan para indicar colaboración y expresiones para describir experiencia.",
+                                    "objective": "Habla de magang (prácticas profesionales), pengalaman kerja (experiencia laboral) y kandidat (candidato).",
+                                    "grammar": "Magang significa prácticas profesionales; pengalaman kerja, experiencia laboral; kandidat, candidato. Estos términos describen la experiencia y las personas de un proceso laboral.",
                                     "vocabIds": [
                                         "a2u19_magang",
                                         "a2u19_pengalaman_kerja",
@@ -4863,8 +4863,8 @@ window.BAHASA_CURRICULUM_A2 = {
                             "lessons": [
                                 {
                                     "title": "Lección 1: Problemas ambientales",
-                                    "objective": "Identifica problemas que afectan al aire, el agua y las comunidades.",
-                                    "grammar": "Practica expresiones para describir causas y consecuencias ambientales.",
+                                    "objective": "Identifica polusi (contaminación), daur ulang (reciclaje) y hemat energi (ahorro de energía).",
+                                    "grammar": "Polusi significa contaminación; daur ulang, reciclaje; hemat energi, ahorrar energía. Ejemplos: polusi udara, daur ulang kertas y kita harus hemat energi.",
                                     "vocabIds": [
                                         "a2u20_polusi",
                                         "a2u20_daur_ulang",
@@ -4929,8 +4929,8 @@ window.BAHASA_CURRICULUM_A2 = {
                                 },
                                 {
                                     "title": "Lección 2: Plantación, inundaciones y sequías",
-                                    "objective": "Describe la plantación de árboles y fenómenos como las inundaciones y las sequías.",
-                                    "grammar": "Usa harus para expresar obligaciones relacionadas con la prevención y el cuidado del entorno.",
+                                    "objective": "Describe la penanaman (plantación), el banjir (inundación) y la kekeringan (sequía).",
+                                    "grammar": "Penanaman significa plantación; banjir, inundación; kekeringan, sequía. Ejemplos: penanaman pohon; banjir menutup jalan; kekeringan memengaruhi petani.",
                                     "vocabIds": [
                                         "a2u20_penanaman",
                                         "a2u20_banjir",
@@ -4975,8 +4975,8 @@ window.BAHASA_CURRICULUM_A2 = {
                                 },
                                 {
                                     "title": "Lección 3: Naturaleza y biodiversidad",
-                                    "objective": "Describe ríos, bosques y plantas y explica por qué son importantes.",
-                                    "grammar": "Practica descripciones de lugares naturales y seres vivos.",
+                                    "objective": "Describe el sungai (río), el hutan (bosque) y las tanaman (plantas).",
+                                    "grammar": "Sungai significa río; hutan, bosque; tanaman, planta. Ejemplos: Tanaman membutuhkan air y Sungai mengalir ke laut.",
                                     "vocabIds": [
                                         "a2u20_sungai",
                                         "a2u20_hutan",
@@ -5021,8 +5021,8 @@ window.BAHASA_CURRICULUM_A2 = {
                                 },
                                 {
                                     "title": "Lección 4: Acciones comunitarias",
-                                    "objective": "Propón actividades para mantener limpio el entorno y proteger los recursos.",
-                                    "grammar": "Usa agar para explicar el propósito de una acción.",
+                                    "objective": "Propón acciones de kebersihan (limpieza), kerja bakti (jornada comunitaria) y penghematan air (ahorro de agua).",
+                                    "grammar": "Kebersihan significa limpieza; kerja bakti, trabajo comunitario; penghematan air, ahorro de agua. Usa agar para explicar el propósito de una acción.",
                                     "vocabIds": [
                                         "a2u20_kebersihan",
                                         "a2u20_kerja_bakti",

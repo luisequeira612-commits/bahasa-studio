@@ -115,3 +115,7 @@ Este control detecta duplicados textuales; no decide si dos expresiones distinta
 El informe estructural también resume el número de ejercicios por tipo y la distribución de unidades/lecciones con y sin ejercicios. Son métricas descriptivas del contenido presente, no una puntuación de calidad ni una equivalencia automática con habilidades CEFR: por ejemplo, un tipo `listen` o `write` no demuestra por sí solo que la comprensión auditiva o la producción escrita estén bien enseñadas.
 
 Las métricas permiten detectar desequilibrios y unidades sin práctica explícita sin cambiar el contenido ni bloquear CI por ausencia de una modalidad concreta. Los ejercicios de unidad y de lección se cuentan una sola vez cada uno.
+
+## Distribución de ejercicios por unidad y lección
+
+Además del total por tipo y de las unidades/lecciones vacías, el informe calcula cantidad mínima, máxima y media de ejercicios por unidad y por lección. La distribución de unidad incluye sus ejercicios directos y los de sus lecciones; la distribución de lección cuenta únicamente los ejercicios de esa lección. Esto ayuda a detectar unidades o lecciones con una carga muy distinta a la del resto, pero no impone un número ideal universal ni interpreta cantidad como calidad.

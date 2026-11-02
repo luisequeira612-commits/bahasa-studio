@@ -82,7 +82,7 @@
 
     function record(kind, amount, now) {
         if (!['points', 'lesson', 'review'].includes(kind)) return false;
-        return update(now, day => increment(day, kind === 'points' ? 'xp' : kind === 'lesson' ? 'lessons' : 'reviews', amount));
+        return update(now, day => increment(day, kind === 'points' ? 'xp' : kind === 'lesson' ? 'lessons' : 'reviews', kind === 'points' ? amount : 1));
     }
 
     function recordSkill(skill, isCorrect, now) {

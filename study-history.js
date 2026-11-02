@@ -13,7 +13,7 @@
     }
 
     function validDateKey(value) {
-        if (typeof value !== 'string' || !/^\\d{4}-\\d{2}-\\d{2}$/.test(value)) return false;
+        if (typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
         const parts = value.split('-').map(Number);
         const date = new Date(parts[0], parts[1] - 1, parts[2]);
         return date.getFullYear() === parts[0] && date.getMonth() === parts[1] - 1 && date.getDate() === parts[2];
@@ -82,6 +82,7 @@
 
     function record(kind, amount, now) {
         if (!['points', 'lesson', 'review'].includes(kind)) return false;
+        if (kind === 'points' && (!Number.isFinite(Number(amount)) || Number(amount) < 0 || !safeCount(Math.floor(Number(amount))))) return false;
         return update(now, day => increment(day, kind === 'points' ? 'xp' : kind === 'lesson' ? 'lessons' : 'reviews', kind === 'points' ? amount : 1));
     }
 

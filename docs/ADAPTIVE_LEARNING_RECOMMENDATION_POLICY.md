@@ -20,7 +20,7 @@ No se crea un esquema de persistencia nuevo, no se envían datos a servicios ext
 1. **Repaso vencido:** si hay tarjetas listas para repasar, ofrecer la sesión SRS existente.
 2. **Palabras con errores persistentes:** si no hay repaso vencido, ofrecer hasta cinco palabras con al menos dos errores válidos o guardadas manualmente. Los registros antiguos que no contienen el campo de errores se conservan por compatibilidad.
 3. **Error aislado:** si no hay palabras persistentes, ofrecer hasta cinco palabras falladas una vez como repaso ligero. No se etiquetan como debilidad estable.
-4. **Habilidad con menor precisión:** con al menos cinco intentos puntuados válidos, identificar la habilidad con menor proporción de aciertos. Si existe una primera lección incompleta y accesible con ejercicios de esa habilidad, recomendarla. Si escritura es la habilidad con menor precisión, ofrecer el cuaderno de escritura.
+4. **Habilidad con menor precisión:** con al menos diez intentos puntuados válidos, identificar la habilidad con menor proporción de aciertos. Si existe una primera lección incompleta y accesible con ejercicios de esa habilidad, recomendarla. Si escritura es la habilidad con menor precisión, ofrecer el cuaderno de escritura.
 5. **Siguiente lección:** si no hay una acción de refuerzo anterior, continuar con la primera lección incompleta disponible.
 6. **Conversación:** si no hay una lección disponible y el objetivo diario sigue abierto, sugerir una conversación práctica.
 7. **Mantenimiento:** si no hay una tarea urgente, indicar que no hay actividad pendiente.
@@ -36,9 +36,9 @@ Los repasos vencidos y las palabras con errores conservan prioridad sobre el ref
 - **Escritura:** ejercicios escritos puntuados y sesiones libres completadas.
 - **Conversación:** escenarios completados; no se asigna precisión automática a respuestas libres.
 
-El umbral de cinco intentos evita recomendaciones basadas en una muestra mínima, pero no convierte las categorías en medidas plenamente comparables. Los tipos de ejercicio, la dificultad y la exposición pueden diferir. La precisión es descriptiva y no demuestra dominio, debilidad estable ni nivel MCER.
+El umbral de diez intentos evita recomendaciones basadas en una muestra mínima, pero no convierte las categorías en medidas plenamente comparables. Los tipos de ejercicio, la dificultad y la exposición pueden diferir. La precisión es descriptiva y no demuestra dominio, debilidad estable ni nivel MCER.
 
-La recomendación es determinista, explicable y comprobable; no es un diagnóstico generado por IA. Los errores registrados en una palabra no demuestran por sí solos una dificultad lingüística estable. Los umbrales actuales (dos errores persistentes, cinco intentos puntuados y máximo cinco palabras) son reglas iniciales de producto, no parámetros calibrados con un estudio de usuarios.
+La recomendación es determinista, explicable y comprobable; no es un diagnóstico generado por IA. Los errores registrados en una palabra no demuestran por sí solos una dificultad lingüística estable. Los umbrales actuales (dos errores persistentes, diez intentos puntuados y máximo cinco palabras) son reglas iniciales de producto, no parámetros calibrados con un estudio de usuarios.
 
 ## Privacidad, persistencia y compatibilidad
 
@@ -77,7 +77,7 @@ Los contadores se guardan dentro de la clave existente `settings.studyActivity` 
 
 El perfil conserva solo intentos, aciertos, errores y sesiones agregadas. No guarda el texto de los borradores, transcripciones, audio ni respuestas libres. Los primeros intentos no equivalen a dominio de una habilidad: la cifra de acierto es descriptiva, mezcla lecciones y evaluaciones y no sirve para declarar un nivel MCER.
 
-**Uso actual en el panel adaptativo:** `AdaptiveLearning.weakestSkill` puede añadir una observación contextual cuando una habilidad tiene al menos cinco intentos puntuados. Esa observación no cambia `recommendation.type`, `recommendation.action` ni el orden de prioridad de actividades: solo muestra la menor precisión registrada como dato orientativo. Las categorías no son todavía plenamente comparables entre sí porque agrupan tipos de ejercicios distintos; la interfaz no debe presentarlas como un diagnóstico ni como una debilidad estable.
+**Uso actual en el panel adaptativo:** `AdaptiveLearning.weakestSkill` puede añadir una observación contextual cuando una habilidad tiene al menos diez intentos puntuados. Esa observación no cambia `recommendation.type`, `recommendation.action` ni el orden de prioridad de actividades: solo muestra la menor precisión registrada como dato orientativo. Las categorías no son todavía plenamente comparables entre sí porque agrupan tipos de ejercicios distintos; la interfaz no debe presentarlas como un diagnóstico ni como una debilidad estable.
 
 Antes de usar el perfil para elegir actividades o ajustar dificultad por habilidad habrá que definir mínimos de evidencia, separar tipos de actividad comparables y evitar conclusiones con muestras pequeñas.
 
@@ -93,8 +93,8 @@ Las tareas siguen siendo abiertas: no califican, no asignan XP/SRS ni guardan bo
 Las respuestas de opción múltiple en conversaciones guiadas ahora registran un intento local de la habilidad `conversation` por turno. Se cuentan aciertos y errores solo cuando el estudiante elige una de las opciones guiadas. Las respuestas libres escritas o dictadas siguen sin puntuación automática y no incrementan estos contadores.
 
 - El perfil muestra respuestas guiadas, aciertos, errores y sesiones completadas por separado.
-- Los porcentajes solo se muestran a partir de cinco respuestas guiadas; antes se identifican como datos iniciales.
-- Una conversación pasa a ser candidata a refuerzo adaptativo cuando tiene al menos cinco respuestas puntuadas y resulta la habilidad con menor precisión.
+- Los porcentajes solo se muestran a partir de diez respuestas guiadas; antes se identifican como datos iniciales.
+- Una conversación pasa a ser candidata a refuerzo adaptativo cuando tiene al menos diez respuestas puntuadas y resulta la habilidad con menor precisión.
 - La acción reutiliza el catálogo de escenarios existente; no genera diálogos nuevos ni afirma que una respuesta libre sea correcta o incorrecta.
 - Repasos vencidos, palabras con errores persistentes y errores aislados conservan prioridad sobre este refuerzo.
 - Se usan los contadores ya presentes en `settings.studyActivity.skillStats.conversation`; no se añade tabla, campo persistente nuevo ni versión de backup. Los backups v3 antiguos siguen recibiendo contadores vacíos.

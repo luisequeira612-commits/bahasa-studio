@@ -81,19 +81,19 @@ test('SRS dashboard wires adaptive recommendations to existing learner actions',
 });
 
 
-test('lowest skill accuracy is surfaced only after five scored attempts', () => {
+test('lowest skill accuracy is surfaced only after ten scored attempts', () => {
   const result = AdaptiveLearning.recommend({
     dueCount: 0,
     weakWords: [],
     nextLesson: { unitId: 'a2_u1', lessonIndex: 0, title: 'Lección 1' },
     skillStats: {
       recognition: { attempts: 8, correct: 7 },
-      translation: { attempts: 5, correct: 2 },
+      translation: { attempts: 10, correct: 4 },
       listening: { attempts: 4, correct: 0 }
     }
   });
   assert.equal(result.type, 'continue-lesson');
-  assert.match(result.description, /menor precisión registrada está en traducción: 40% \(5 intentos\)/);
+  assert.match(result.description, /menor precisión registrada está en traducción: 40% \(10 intentos\)/);
   assert.doesNotMatch(result.description, /escucha/);
 });
 
@@ -102,11 +102,11 @@ test('adaptive skill descriptions qualify small samples and state when evidence 
     dueCount: 0,
     weakWords: [],
     nextLesson: { unitId: 'a1_u1', lessonIndex: 0, title: 'Lección 1' },
-    skillStats: { translation: { attempts: 6, correct: 2 } }
+    skillStats: { translation: { attempts: 9, correct: 3 } }
   });
-  assert.match(smallSample.description, /33% \(6 intentos\)/);
-  assert.match(smallSample.description, /muestra todavía es pequeña/);
-  assert.match(smallSample.description, /no como una conclusión firme/);
+  assert.doesNotMatch(smallSample.description, /menor precisión registrada/);
+  assert.doesNotMatch(smallSample.description, /muestra todavía es pequeña/);
+  assert.doesNotMatch(smallSample.description, /no como una conclusión firme/);
 
   const broaderSample = AdaptiveLearning.recommend({
     dueCount: 0,
@@ -392,7 +392,7 @@ test('SRS dashboard sanitizes aggregated counters and records the oldest valid r
   assert.match(html, /Number\.isFinite\(a\[1\]\.lastReviewed\)/);
 });
 
-test('guided conversation accuracy becomes actionable after five scored responses', () => {
+test('guided conversation accuracy becomes actionable after ten scored responses', () => {
   const result = AdaptiveLearning.recommend({
     dueCount: 0,
     weakWords: [],
@@ -400,19 +400,19 @@ test('guided conversation accuracy becomes actionable after five scored response
     nextLesson: { unitId: 'a2_u1', lessonIndex: 0, title: 'Siguiente lección' },
     skillStats: {
       recognition: { attempts: 8, correct: 7 },
-      conversation: { attempts: 5, correct: 2, incorrect: 3, sessions: 2 }
+      conversation: { attempts: 10, correct: 4, incorrect: 6, sessions: 2 }
     }
   });
   assert.equal(result.type, 'reinforce-conversation');
   assert.equal(result.action, 'conversation');
   assert.equal(result.label, 'Practicar conversación');
-  assert.match(result.description, /conversación: 40% \(5 intentos\)/);
+  assert.match(result.description, /conversación: 40% \(10 intentos\)/);
 });
 
-test('conversation skill focus ignores fewer than five attempts and keeps urgent review priorities', () => {
+test('conversation skill focus ignores fewer than ten attempts and keeps urgent review priorities', () => {
   const stats = {
     recognition: { attempts: 8, correct: 6 },
-    conversation: { attempts: 4, correct: 0, incorrect: 4 }
+    conversation: { attempts: 9, correct: 0, incorrect: 9 }
   };
   const result = AdaptiveLearning.recommend({
     dueCount: 0,

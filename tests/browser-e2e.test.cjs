@@ -589,7 +589,7 @@ test('daily XP goals and study streaks persist across reloads', async () => {
   }
 });
 
-test('six practical conversations support guided replies without changing learner progress', async () => {
+test('all A1 and A2 practical conversations support guided replies without changing learner progress', async () => {
   const { server, url } = await startServer();
   const context = await browser.newContext({ serviceWorkers: 'block' });
   const page = await context.newPage();
@@ -603,10 +603,11 @@ test('six practical conversations support guided replies without changing learne
 
     await page.locator('#view-route details.feature-drawer').filter({ hasText: 'Conversaciones prácticas' }).locator('summary').click();
     await page.getByRole('button', { name: 'Practicar conversaciones' }).click();
-    assert.equal(await page.locator('[data-conversation-start]').count(), 6,
-      'all six planned everyday situations should be available');
+    assert.equal(await page.locator('[data-conversation-start]').count(), 9,
+      'all six A1 and three A2 everyday situations should be available');
 
-    const scenarioIds = ['greetings', 'restaurant', 'shopping', 'travel', 'friends', 'help'];
+    const scenarioIds = ['greetings', 'restaurant', 'shopping', 'travel', 'friends', 'help',
+      'organizar-evento', 'experiencia-laboral', 'servicios-digitales'];
     for (let scenarioIndex = 0; scenarioIndex < scenarioIds.length; scenarioIndex++) {
       const scenarioId = scenarioIds[scenarioIndex];
       await page.locator('[data-conversation-start="' + scenarioId + '"]').click();

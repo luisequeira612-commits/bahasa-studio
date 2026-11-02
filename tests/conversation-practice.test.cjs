@@ -702,13 +702,14 @@ test('leaving free-response mode aborts active microphone recognition immediatel
   engine.captureFreeResponse(button);
   assert.equal(engine.activeFreeRecognition, recognition);
   assert.equal(button.disabled, true);
+  const statusAfterStart = status.textContent;
 
   engine.useGuidedResponse();
 
   assert.equal(abortCalls, 1);
   assert.equal(engine.activeFreeRecognition, null);
   assert.equal(button.disabled, false);
-  assert.equal(status.textContent, 'Escuchando…', 'an abort event must not replace the current status');
+  assert.equal(status.textContent, statusAfterStart, 'an abort event must not replace the current status');
   recognition.onresult({ results: [[{ transcript: 'texto tardío' }]] });
   assert.equal(engine.freeResponseText, 'Saya sedang belajar');
 });

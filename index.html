@@ -3087,16 +3087,13 @@ Requisitos:
                         if (!nextLesson) {
                             nextLesson = { unitId: unit.id, lessonIndex: first.index, unitTitle: unit.title, title: first.title };
                         }
-                        if (weakestSkill) {
-                            unfinishedLessons.forEach(entry => {
-                                if (!Array.isArray(entry.exercises)) return;
-                                skillLessons.push({
-                                    unitId: unit.id,
-                                    lessonIndex: entry.index,
-                                    unitTitle: unit.title,
-                                    title: entry.title,
-                                    exercises: entry.exercises
-                                });
+                        if (weakestSkill && Array.isArray(first.exercises)) {
+                            skillLessons.push({
+                                unitId: unit.id,
+                                lessonIndex: first.index,
+                                unitTitle: unit.title,
+                                title: first.title,
+                                exercises: first.exercises
                             });
                         }
                     }

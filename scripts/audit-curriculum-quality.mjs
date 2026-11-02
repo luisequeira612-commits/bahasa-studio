@@ -117,6 +117,11 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
   const vocabIntroductionUnit = new Map();
   const unitIds = new Set();
   let vocabularyEntryCount = 0;
+  let exerciseCount = 0;
+  let lessonCount = 0;
+  let unitsWithExercises = 0;
+  let lessonsWithExercises = 0;
+  const exerciseTypeCounts = {};
 
   if (!units.length) issues.push(issue('error', 'CURRICULUM_EMPTY', level, 'El currículo no contiene unidades.'));
 
@@ -176,6 +181,7 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
       });
     }
 
+    let unitExerciseCount = 0;
     const exercises = Array.isArray(unit.exercises) ? unit.exercises : [];
     if (!Array.isArray(unit.exercises) && !Array.isArray(unit.lessons)) {
       issues.push(issue('warning', 'EXERCISES_NOT_ARRAY', unitPath, 'La unidad no tiene ejercicios a nivel de unidad ni lecciones.'));
@@ -185,6 +191,11 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
       if (!exercise || typeof exercise !== 'object') {
         issues.push(issue('error', 'EXERCISE_INVALID', exercisePath, 'El ejercicio no es un objeto.'));
         return;
+      }
+      exerciseCount += 1;
+      unitExerciseCount += 1;
+      if (typeof exercise.type === 'string' && exercise.type.trim()) {
+        exerciseTypeCounts[exercise.type] = (exerciseTypeCounts[exercise.type] ?? 0) + 1;
       }
       if (typeof exercise.type !== 'string' || !exercise.type.trim()) {
         issues.push(issue('error', 'EXERCISE_TYPE_MISSING', exercisePath, 'El ejercicio necesita un tipo.'));
@@ -220,6 +231,7 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
 
     if (Array.isArray(unit.lessons)) {
       unit.lessons.forEach((lesson, lessonIndex) => {
+        lessonCount += 1;
         const lessonPath = `${unitPath}.lessons[${lessonIndex}]`;
         if (!lesson || typeof lesson !== 'object') {
           issues.push(issue('error', 'LESSON_INVALID', lessonPath, 'La lección no es un objeto.'));
@@ -263,11 +275,19 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
         if (!Array.isArray(lesson.exercises)) {
           issues.push(issue('warning', 'LESSON_EXERCISES_NOT_ARRAY', lessonPath, 'La lección no tiene un array exercises.'));
         } else {
+          if (lesson.exercises.some((exercise) => exercise && typeof exercise === 'object')) {
+            lessonsWithExercises += 1;
+          }
           lesson.exercises.forEach((exercise, exerciseIndex) => {
             const exercisePath = `${lessonPath}.exercises[${exerciseIndex}]`;
             if (!exercise || typeof exercise !== 'object') {
               issues.push(issue('error', 'LESSON_EXERCISE_INVALID', exercisePath, 'El ejercicio de la lección no es un objeto.'));
               return;
+            }
+            exerciseCount += 1;
+            unitExerciseCount += 1;
+            if (typeof exercise.type === 'string' && exercise.type.trim()) {
+              exerciseTypeCounts[exercise.type] = (exerciseTypeCounts[exercise.type] ?? 0) + 1;
             }
             if (typeof exercise.type !== 'string' || !exercise.type.trim()) {
               issues.push(issue('error', 'LESSON_EXERCISE_TYPE_MISSING', exercisePath, 'El ejercicio necesita un tipo.'));
@@ -303,6 +323,7 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
         }
       });
     }
+    if (unitExerciseCount > 0) unitsWithExercises += 1;
   });
 
   // Resolve references after collecting every vocabulary ID. Cumulative A2
@@ -405,6 +426,13 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
     unit_count: units.length,
     vocabulary_count: vocabularyEntryCount,
     unique_vocabulary_id_count: vocabIds.size,
+    exercise_count: exerciseCount,
+    exercise_type_counts: exerciseTypeCounts,
+    units_with_exercises: unitsWithExercises,
+    units_without_exercises: units.length - unitsWithExercises,
+    lesson_count: lessonCount,
+    lessons_with_exercises: lessonsWithExercises,
+    lessons_without_exercises: lessonCount - lessonsWithExercises,
     error_count: issues.filter((item) => item.severity === 'error').length,
     warning_count: issues.filter((item) => item.severity === 'warning').length,
     info_count: issues.filter((item) => item.severity === 'info').length,

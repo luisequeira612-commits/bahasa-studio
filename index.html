@@ -256,6 +256,13 @@
                 <div class="profile-xp-row"><span>Conversación</span><strong id="studySkillConversationText">Sin sesiones</strong></div>
             </details>
         </section>
+        <section class="card study-history-card" id="studyHistoryDashboard">
+            <h2>Tu evolución reciente</h2>
+            <p class="profile-muted">Actividad registrada en este dispositivo durante los últimos 14 días. El historial comienza con esta versión; no reconstruye días anteriores y no forma parte de las copias JSON v3.</p>
+            <p id="studyHistorySummary" class="study-history-summary" aria-live="polite">Todavía no hay actividad histórica.</p>
+            <div id="studyHistoryChart" class="study-history-chart" role="img" aria-label="Actividad de los últimos 14 días"></div>
+            <p id="studyHistoryEmpty" class="profile-muted">Tu historial aparecerá aquí después de tu próxima práctica.</p>
+        </section>
         <section class="card">
             <h2>Herramientas</h2>
             <button class="btn btn-outline" type="button" onclick="App.switchView('assessment', this)">📝 Evaluación piloto</button>
@@ -2773,18 +2780,21 @@ Requisitos:
             },
             recordStudyActivity(kind, amount = 0) {
                 this.studyActivity = StudyActivity.record(this.studyActivity, kind, amount, new Date());
+                if (typeof StudyHistory !== 'undefined') StudyHistory.record(kind, amount, new Date());
                 this.updateStudyDashboard();
                 return DB.set('settings', 'studyActivity', this.studyActivity);
             },
             recordSkillActivity(skill, isCorrect) {
                 if (typeof StudyActivity === 'undefined') return Promise.resolve();
                 this.studyActivity = StudyActivity.recordSkill(this.studyActivity, skill, isCorrect, new Date());
+                if (typeof StudyHistory !== 'undefined') StudyHistory.recordSkill(skill, isCorrect, new Date());
                 this.updateStudyDashboard();
                 return DB.set('settings', 'studyActivity', this.studyActivity);
             },
             recordSkillSession(skill) {
                 if (typeof StudyActivity === 'undefined') return Promise.resolve();
                 this.studyActivity = StudyActivity.recordSkillSession(this.studyActivity, skill, new Date());
+                if (typeof StudyHistory !== 'undefined') StudyHistory.recordSession(skill, new Date());
                 this.updateStudyDashboard();
                 return DB.set('settings', 'studyActivity', this.studyActivity);
             },
@@ -2798,9 +2808,58 @@ Requisitos:
                     this.updateStudyDashboard();
                 }
             },
+            renderStudyHistory() {
+                const chart = document.getElementById('studyHistoryChart');
+                const summary = document.getElementById('studyHistorySummary');
+                const empty = document.getElementById('studyHistoryEmpty');
+                if (!chart || typeof StudyHistory === 'undefined') return;
+                const days = StudyHistory.getRecentDays(14, new Date());
+                const activeDays = days.filter(day => day.xp || day.lessons || day.reviews || day.attempts || day.sessions);
+                chart.replaceChildren();
+                if (!activeDays.length) {
+                    if (summary) summary.textContent = 'Todavía no hay actividad histórica.';
+                    if (empty) empty.hidden = false;
+                    chart.setAttribute('aria-label', 'Aún no hay actividad registrada en los últimos 14 días.');
+                    return;
+                }
+                if (empty) empty.hidden = true;
+                const recent = days.slice(-7);
+                const totals = recent.reduce((result, day) => {
+                    result.xp += day.xp;
+                    result.lessons += day.lessons;
+                    result.reviews += day.reviews;
+                    result.attempts += day.attempts;
+                    result.correct += day.correct;
+                    return result;
+                }, { xp: 0, lessons: 0, reviews: 0, attempts: 0, correct: 0 });
+                const accuracy = totals.attempts ? Math.round(totals.correct / totals.attempts * 100) : null;
+                if (summary) summary.textContent = 'Últimos 7 días: ' + totals.xp + ' XP · ' + totals.lessons + ' lecciones · ' +
+                    totals.reviews + ' repasos · ' + totals.attempts + ' respuestas puntuadas' +
+                    (accuracy === null ? '.' : ' · ' + accuracy + '% de acierto.');
+                const maxXp = Math.max(1, ...days.map(day => day.xp));
+                days.forEach(day => {
+                    const column = document.createElement('div');
+                    column.className = 'study-history-day';
+                    const bar = document.createElement('span');
+                    bar.className = 'study-history-bar';
+                    bar.style.height = Math.max(day.xp ? 8 : 2, Math.round(day.xp / maxXp * 100)) + '%';
+                    const date = new Date(day.date + 'T12:00:00');
+                    const label = document.createElement('span');
+                    label.className = 'study-history-day-label';
+                    label.textContent = String(date.getDate());
+                    column.title = day.date + ': ' + day.xp + ' XP, ' + day.lessons + ' lecciones, ' +
+                        day.reviews + ' repasos, ' + day.attempts + ' respuestas puntuadas.';
+                    column.setAttribute('aria-label', column.title);
+                    column.append(bar, label);
+                    chart.append(column);
+                });
+                chart.setAttribute('aria-label', 'Actividad de los últimos 14 días. ' + activeDays.length + ' días con actividad. ' +
+                    totals.xp + ' XP durante los últimos 7 días.');
+            },
             updateStudyDashboard() {
                 if (typeof StudyActivity === 'undefined' || !this.studyActivity) return;
                 this.studyActivity = StudyActivity.normalize(this.studyActivity, new Date());
+                this.renderStudyHistory();
                 const streak = StudyActivity.currentStreak(this.studyActivity, new Date());
                 const streakNode = document.getElementById('studyStreakText');
                 const recordNode = document.getElementById('studyLongestStreakText');
@@ -3745,6 +3804,7 @@ Requisitos:
     })();
     </script>
     <script src="./conversation-engine.js"></script>
+    <script src="./study-history.js"></script>
     <script src="./study-activity.js"></script>
     <script src="./adaptive-learning.js"></script>
     <script src="./writing-practice.js"></script>

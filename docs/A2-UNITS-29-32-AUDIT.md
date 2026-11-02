@@ -61,3 +61,21 @@ Se alinearon ocho grupos de lecciones con sus vocablos objetivo:
 - U32 L3: regalos, felicitaciones y asistencia.
 
 Se conservan las formas, ejemplos y respuestas indonesias. Se añadió una prueba de regresión que comprueba los términos del foco y la cobertura de cada ID de vocabulario. No es una certificación lingüística.
+
+
+## Segunda pasada — explicaciones y secuenciación de U29–U32
+
+Se añadieron explicaciones explícitas a las 16 lecciones para identificar y contextualizar los 48 términos nuevos: atención al cliente y compras (U29), arte y espectáculos (U30), excursiones y actividades al aire libre (U31), y celebraciones familiares (U32).
+
+Se detectó además una fuga de secuenciación en U30 L2: el ejemplo de «aktor» utilizaba «tokoh», que se introduce en U30 L3. Se sustituyó por «Aktor itu sangat terkenal» (Ese actor es muy famoso), sin adelantar ese término. Una nueva regresión revisa ejemplos, pistas, respuestas y ejercicios para detectar vocabulario de lecciones posteriores.
+
+Se conservan IDs, glosas, estructura y cantidad de ejercicios. No se modifican IndexedDB, el formato de backup v3, SRS ni el tracker de revisión lingüística. La mejora es de claridad y coherencia interna; no constituye validación por hablante nativo.
+
+
+## Segunda pasada — explicaciones y secuenciación de U29–U32
+
+Se añadieron explicaciones explícitas a las 16 lecciones para identificar y contextualizar los 48 términos nuevos: atención al cliente y compras (U29), arte y espectáculos (U30), excursiones y actividades al aire libre (U31), y celebraciones familiares (U32).
+
+Se detectó una fuga de secuenciación en U30 L2: el ejemplo de «aktor» utilizaba «tokoh», que se introduce en U30 L3. Se sustituyó por «Aktor itu sangat terkenal» (Ese actor es muy famoso). Una nueva regresión revisa ejemplos, pistas, respuestas y ejercicios para detectar vocabulario de lecciones posteriores.
+
+Se conservan IDs, glosas, estructura y cantidad de ejercicios. No se modifican IndexedDB, el formato de backup v3, SRS ni el tracker de revisión lingüística. La mejora es de claridad y coherencia interna; no constituye validación por hablante nativo.

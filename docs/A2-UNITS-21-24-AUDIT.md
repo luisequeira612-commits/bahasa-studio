@@ -57,3 +57,14 @@ Se alinearon seis grupos de lecciones cuyo título, objetivo o explicación desc
 - U24 L4: instructores, participantes y graduación.
 
 Se conservaron las entradas de vocabulario, ejemplos y respuestas indonesias. Se añadió una prueba de regresión para los seis grupos y su cobertura de ejercicios. Estas son correcciones de organización y redacción, no una certificación lingüística.
+
+
+## Segunda pasada — foco didáctico de U21–U24
+
+Se comprobó que las 16 lecciones tenían objetivos temáticos, pero sus explicaciones no nombraban explícitamente los 48 términos nuevos de las unidades. Se añadieron definiciones breves y ejemplos de uso para que el alumno vea qué significa cada palabra y cómo se relaciona con el foco de la lección:
+- U21: cultura, tradiciones, ropa tradicional, artesanía y patrimonio.
+- U22: noticias, emisiones, mensajes, publicaciones, conexiones, cuentas y fuentes digitales.
+- U23: cuentas, ahorros, transferencias, tarjetas, préstamos y atención bancaria.
+- U24: cursos, materiales, exámenes, certificados, becas e inscripciones.
+
+Se añadió una regresión que exige que el objetivo o la explicación de cada lección nombre todas las palabras nuevas que introduce. No se modificaron vocabulario, glosas, IDs, ejercicios, respuestas, progresión, IndexedDB ni backup v3. La edición mejora la claridad didáctica, no certifica naturalidad lingüística.

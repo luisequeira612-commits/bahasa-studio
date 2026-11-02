@@ -1191,6 +1191,21 @@ test('A2 U21-U24 editorial audit records bounded findings without claiming lingu
   assert.match(audit, /No se modificaron IndexedDB, el formato de backup v3/);
 });
 
+test('A2 U21-U24 lesson explanations name every newly introduced vocabulary item', () => {
+  for (const unit of a2.units.slice(20, 24)) {
+    const vocabulary = new Map(unit.vocab.map(word => [word.id, word]));
+    for (const lesson of unit.lessons) {
+      const explanation = [lesson.objective, lesson.grammar].filter(Boolean).join(' ').toLocaleLowerCase();
+      for (const id of lesson.vocabIds || []) {
+        const word = vocabulary.get(id);
+        assert.ok(word, unit.id + ' ' + lesson.title + ' must introduce known vocabulary: ' + id);
+        assert.ok(explanation.includes(word.idn.toLocaleLowerCase()),
+          unit.id + ' ' + lesson.title + ' should explain newly introduced vocabulary: ' + word.idn);
+      }
+    }
+  }
+});
+
 test('A2 U25-U28 editorial audit records bounded findings without claiming linguistic certification', () => {
   const audit = fs.readFileSync(path.join(__dirname, '..', 'docs/A2-UNITS-25-28-AUDIT.md'), 'utf8');
   for (const unit of ['U25', 'U26', 'U27', 'U28']) assert.match(audit, new RegExp('\\b' + unit + '\\b'));

@@ -6352,7 +6352,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 1: Ingredientes y especias",
                                     "objective": "Describe condimentos y especias y reconoce la acción de hervir alimentos.",
-                                    "grammar": "Practica vocabulario para describir condimentos, especias y la acción de hervir alimentos.",
+                                    "grammar": "Bumbu significa condimento; rempah, especias; rebus, hervir. Usa merebus + alimento + duración: Saya merebus sayuran selama sepuluh menit.",
                                     "vocabIds": [
                                         "a2u25_bumbu",
                                         "a2u25_rempah",
@@ -6418,7 +6418,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 2: Técnicas de preparación",
                                     "objective": "Explica cómo se hierven, cuecen al vapor y asan distintos alimentos.",
-                                    "grammar": "Practica verbos de cocina para describir pasos de preparación.",
+                                    "grammar": "Mengukus significa cocinar al vapor; memanggang, asar u hornear; mengiris, cortar en rodajas. Usa estos verbos para explicar cada paso de preparación.",
                                     "vocabIds": [
                                         "a2u25_mengukus",
                                         "a2u25_memanggang",
@@ -6464,7 +6464,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 3: Recetas y platos",
                                     "objective": "Habla de masas, recetas y platos que se sirven en una comida.",
-                                    "grammar": "Usa expresiones para explicar instrucciones y el orden de una receta.",
+                                    "grammar": "Adonan significa masa; resep masakan, receta de cocina; hidangan, plato servido. Puedes decir mengikuti resep masakan para explicar que sigues una receta.",
                                     "vocabIds": [
                                         "a2u25_adonan",
                                         "a2u25_resep_masakan",
@@ -6510,7 +6510,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 4: Sabores y preferencias",
                                     "objective": "Describe sabores dulces, salados y especiados.",
-                                    "grammar": "Practica adjetivos para valorar el sabor y la intensidad de un plato.",
+                                    "grammar": "Rasa pedas significa sabor picante; manis, dulce; gurih, sabroso o umami. Usa estos adjetivos para describir el sabor de un plato.",
                                     "vocabIds": [
                                         "a2u25_rasa_pedas",
                                         "a2u25_manis",
@@ -6650,7 +6650,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 1: Expresar sentimientos",
                                     "objective": "Describe emociones y cómo cambian según una situación.",
-                                    "grammar": "Practica merasa + adjetivo para comunicar estados emocionales.",
+                                    "grammar": "Perasaan significa sentimiento; bangga, orgulloso; khawatir, preocupado. Usa merasa + adjetivo para expresar cómo te sientes.",
                                     "vocabIds": [
                                         "a2u26_perasaan",
                                         "a2u26_bangga",
@@ -6718,7 +6718,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 2: Alivio, ofensa y confianza personal",
                                     "objective": "Describe alivio, ofensa y confianza personal ante distintas situaciones.",
-                                    "grammar": "Practica expresiones para describir alivio, ofensa y confianza personal.",
+                                    "grammar": "Lega significa aliviado; tersinggung, ofendido; percaya diri, seguro de sí mismo. Puedes usar merasa para describir esos estados.",
                                     "vocabIds": [
                                         "a2u26_lega",
                                         "a2u26_tersinggung",
@@ -6764,7 +6764,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 3: Soledad, gratitud y valoración",
                                     "objective": "Habla de la soledad, expresa gratitud y muestra aprecio por otras personas.",
-                                    "grammar": "Practica expresiones para hablar de la soledad, agradecer y valorar a otras personas.",
+                                    "grammar": "Kesepian significa soledad; bersyukur, estar agradecido; menghargai, apreciar o valorar. Usa atas para mencionar el motivo del agradecimiento: Kami bersyukur atas bantuan Anda.",
                                     "vocabIds": [
                                         "a2u26_kesepian",
                                         "a2u26_bersyukur",
@@ -6810,7 +6810,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 4: Apoyo y reconciliación",
                                     "objective": "Describe desacuerdos y cómo las personas pueden reconciliarse.",
-                                    "grammar": "Usa expresiones para hablar de conflictos y acuerdos.",
+                                    "grammar": "Mendukung significa apoyar; perselisihan, desacuerdo o conflicto; berdamai, reconciliarse. Puedes describir cómo las personas resuelven una perselisihan y vuelven a berdamai.",
                                     "vocabIds": [
                                         "a2u26_mendukung",
                                         "a2u26_perselisihan",
@@ -6865,8 +6865,8 @@ window.BAHASA_CURRICULUM_A2 = {
                                     "id": "a2u27_warga",
                                     "idn": "warga",
                                     "esp": "Residente",
-                                    "ex": "Warga berkumpul di balai kota.",
-                                    "exEsp": "Los residentes se reúnen en el ayuntamiento."
+                                    "ex": "Warga berkumpul di sini.",
+                                    "exEsp": "Los residentes se reúnen aquí."
                                 },
                                 {
                                     "id": "a2u27_kecamatan",
@@ -6950,7 +6950,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 1: Residentes y distritos",
                                     "objective": "Habla de los residentes y de la organización de los barrios y distritos.",
-                                    "grammar": "Practica vocabulario para describir la administración local.",
+                                    "grammar": "Warga significa residente; kecamatan, distrito administrativo; kelurahan, unidad administrativa local. Estos términos sirven para hablar de la organización de una comunidad.",
                                     "vocabIds": [
                                         "a2u27_warga",
                                         "a2u27_kecamatan",
@@ -6987,8 +6987,8 @@ window.BAHASA_CURRICULUM_A2 = {
                                             "vocabId": "a2u27_warga",
                                             "type": "write",
                                             "prompt": "Escribe una frase usando warga.",
-                                            "hint": "Puedes tomar como modelo: Warga berkumpul di balai kota.",
-                                            "modelAnswer": "Warga berkumpul di balai kota.",
+                                            "hint": "Puedes tomar como modelo: Warga berkumpul di sini.",
+                                            "modelAnswer": "Warga berkumpul di sini.",
                                             "explanation": "Usa el vocabulario en una oración completa."
                                         },
                                         {
@@ -7016,7 +7016,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 2: Ayuntamiento, instalaciones y parques",
                                     "objective": "Describe el ayuntamiento, las instalaciones públicas y los parques urbanos.",
-                                    "grammar": "Usa di para indicar dónde se ofrece un servicio.",
+                                    "grammar": "Balai kota significa ayuntamiento; fasilitas umum, instalaciones públicas; taman kota, parque urbano. Usa di para ubicar un servicio: Pertemuan berlangsung di balai kota.",
                                     "vocabIds": [
                                         "a2u27_balai_kota",
                                         "a2u27_fasilitas_umum",
@@ -7062,7 +7062,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 3: Espacios y seguridad vial",
                                     "objective": "Habla de parques, aceras y señales para peatones.",
-                                    "grammar": "Practica instrucciones para desplazarse con seguridad.",
+                                    "grammar": "Trotoar significa acera; rambu lalu lintas, señal de tráfico; penyeberangan, paso de peatones. Usa instrucciones para desplazarte con seguridad: Gunakan penyeberangan untuk menyeberang jalan.",
                                     "vocabIds": [
                                         "a2u27_trotoar",
                                         "a2u27_rambu_lalu_lintas",
@@ -7108,7 +7108,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 4: Participación comunitaria",
                                     "objective": "Describe voluntariado, donaciones y actividades sociales.",
-                                    "grammar": "Usa expresiones para explicar cómo colaborar con otras personas.",
+                                    "grammar": "Sukarelawan significa voluntario; donasi, donación; kegiatan sosial, actividad social. Puedes explicar cómo colaborar con otras personas mediante una kegiatan sosial.",
                                     "vocabIds": [
                                         "a2u27_sukarelawan",
                                         "a2u27_donasi",
@@ -7248,7 +7248,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 1: Descubrimientos y experimentos",
                                     "objective": "Describe descubrimientos científicos y experimentos sencillos.",
-                                    "grammar": "Practica vocabulario para hablar de ciencia y observación.",
+                                    "grammar": "Penemuan significa descubrimiento; percobaan, experimento; ilmuwan, científico. Usa melakukan percobaan para describir la realización de un experimento.",
                                     "vocabIds": [
                                         "a2u28_penemuan",
                                         "a2u28_percobaan",
@@ -7312,7 +7312,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 2: Investigación y herramientas digitales",
                                     "objective": "Habla de investigaciones, dispositivos y aplicaciones utilizadas en proyectos.",
-                                    "grammar": "Usa expresiones para explicar cómo se utilizan dispositivos y aplicaciones en una investigación.",
+                                    "grammar": "Penelitian significa investigación; perangkat, dispositivo; aplikasi, aplicación. Describe cómo se utilizan perangkat y aplikasi en una investigación.",
                                     "vocabIds": [
                                         "a2u28_penelitian",
                                         "a2u28_perangkat",
@@ -7358,7 +7358,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 3: Pantallas táctiles, baterías y carga",
                                     "objective": "Describe pantallas táctiles, baterías y procesos de carga.",
-                                    "grammar": "Practica vocabulario para explicar funciones y características de la tecnología.",
+                                    "grammar": "Layar sentuh significa pantalla táctil; baterai, batería; pengisian daya, carga eléctrica. Puedes describir funciones, estado de batería y tiempo de carga.",
                                     "vocabIds": [
                                         "a2u28_layar_sentuh",
                                         "a2u28_baterai",
@@ -7404,7 +7404,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 4: Automatización y privacidad digital",
                                     "objective": "Habla de funciones automáticas, datos personales y privacidad.",
-                                    "grammar": "Usa imperativos y expresiones de obligación para dar consejos de seguridad.",
+                                    "grammar": "Otomatis significa automático; data pribadi, datos personales; privasi, privacidad. Usa secara otomatis para explicar una acción automática y recuerda proteger los datos personales.",
                                     "vocabIds": [
                                         "a2u28_otomatis",
                                         "a2u28_data_pribadi",

@@ -47,3 +47,8 @@ La inspección de la interfaz confirmó que el reproductor automático y el bot�
 No se cambió el contenido de las opciones, las respuestas, el vocabulario, la cantidad de ejercicios ni la práctica real de escucha. Se añadió una regresión que impide que los ejercicios MC de U24–U32 vuelvan a afirmar que reproducen audio y comprueba que cada unidad conserva al menos un ejercicio `listen`.
 
 Esta corrección mejora la honestidad de la interfaz y la claridad de la tarea; no valida la calidad de la voz sintética ni la naturalidad lingüística.
+
+
+## Estímulo visible en ejercicios MC — U24–U32
+
+La segunda inspección detectó que ocho preguntas MC conservaban un campo `audioText`, pero ese tipo de ejercicio no muestra un reproductor. Se incorporó la frase indonesia directamente en cada consigna para que el estudiante tenga el estímulo visible y pueda responder sin audio oculto. Se mantienen el tipo MC, las opciones, las respuestas y las explicaciones. La regresión comprueba que todo estímulo textual de estas preguntas aparezca en la consigna. Esto no convierte la actividad en escucha ni certifica la naturalidad de las frases.

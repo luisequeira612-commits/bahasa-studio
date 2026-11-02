@@ -674,3 +674,42 @@ test('late speech results cannot overwrite a newer draft after switching respons
   assert.equal(currentCounter.textContent, '14/1000 caracteres');
   assert.equal(currentStatus.textContent, 'Estado actual');
 });
+
+
+test('leaving free-response mode aborts active microphone recognition immediately', () => {
+  const engine = sandbox.window.ConversationEngine;
+  engine.start('greetings');
+  engine.useFreeResponse();
+  const input = { value: 'Saya sedang belajar' };
+  const status = { textContent: 'Escuchando…' };
+  const counter = { textContent: '' };
+  elements.conversationFreeResponse = input;
+  elements.conversationSpeechStatus = status;
+  elements.conversationFreeResponseCount = counter;
+  let recognition;
+  let abortCalls = 0;
+  sandbox.window.SpeechRecognition = class {
+    constructor() { recognition = this; }
+    start() {}
+    abort() {
+      abortCalls += 1;
+      if (this.onerror) this.onerror({ error: 'aborted' });
+      if (this.onend) this.onend();
+    }
+  };
+  const button = { disabled: false, isConnected: true };
+
+  engine.captureFreeResponse(button);
+  assert.equal(engine.activeFreeRecognition, recognition);
+  assert.equal(button.disabled, true);
+  const statusAfterStart = status.textContent;
+
+  engine.useGuidedResponse();
+
+  assert.equal(abortCalls, 1);
+  assert.equal(engine.activeFreeRecognition, null);
+  assert.equal(button.disabled, false);
+  assert.equal(status.textContent, statusAfterStart, 'an abort event must not replace the current status');
+  recognition.onresult({ results: [[{ transcript: 'texto tardío' }]] });
+  assert.equal(engine.freeResponseText, 'Saya sedang belajar');
+});

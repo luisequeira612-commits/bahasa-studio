@@ -407,6 +407,7 @@
         freeResponseHintVisible: false,
         freeResponseTurns: 0,
         freeResponseCounted: false,
+        activeFreeRecognition: null,
         mistakeTurns: [],
         sessionRecorded: false,
 
@@ -416,10 +417,21 @@
         },
 
         exit: function () {
+            this.stopFreeResponseRecognition();
             if (typeof App !== 'undefined') App.switchView('route');
         },
 
+        stopFreeResponseRecognition: function () {
+            const recognition = this.activeFreeRecognition;
+            if (!recognition) return;
+            this.activeFreeRecognition = null;
+            if (typeof recognition.abort === 'function') {
+                try { recognition.abort(); } catch (error) { /* Recognition may already have ended. */ }
+            }
+        },
+
         start: function (scenarioId) {
+            this.stopFreeResponseRecognition();
             const scenario = this.getAvailableScenarios().find(function (item) { return item.id === scenarioId; });
             if (!scenario) return;
             this.currentScenario = shuffledScenario(scenario);
@@ -439,6 +451,7 @@
         },
 
         renderScenarioList: function () {
+            this.stopFreeResponseRecognition();
             const list = document.getElementById('conversationScenarioList');
             const practice = document.getElementById('conversationPracticeArea');
             if (!list || !practice) return;
@@ -552,6 +565,7 @@
             if (!this.freeResponseMode || this.answered || !this.currentScenario) return;
             const input = document.getElementById('conversationFreeResponse');
             if (input && typeof input.value === 'string') this.freeResponseText = input.value;
+            this.stopFreeResponseRecognition();
             this.freeResponseMode = false;
             this.freeResponseRevealed = false;
             this.answered = false;
@@ -563,6 +577,7 @@
             if (!this.freeResponseMode || this.freeResponseRevealed) return;
             const input = document.getElementById('conversationFreeResponse');
             if (input && typeof input.value === 'string') this.freeResponseText = input.value;
+            this.stopFreeResponseRecognition();
             this.freeResponseHintVisible = !this.freeResponseHintVisible;
             this.renderStep();
         },
@@ -577,6 +592,7 @@
                 return;
             }
             this.freeResponseText = response;
+            this.stopFreeResponseRecognition();
             this.freeResponseHintVisible = false;
             this.freeResponseRevealed = true;
             this.answered = true;
@@ -612,13 +628,15 @@
             }
             if (!status || !input) return;
             const recognition = new Recognition();
+            this.activeFreeRecognition = recognition;
             recognition.lang = 'id-ID';
             recognition.continuous = false;
             recognition.interimResults = false;
             button.disabled = true;
             status.textContent = 'Escuchando… responde en indonesio.';
             const isCurrentDraft = function () {
-                return ConversationEngine.freeResponseMode &&
+                return ConversationEngine.activeFreeRecognition === recognition &&
+                    ConversationEngine.freeResponseMode &&
                     document.getElementById('conversationFreeResponse') === input;
             };
             recognition.onresult = function (event) {
@@ -649,11 +667,15 @@
                 status.textContent = messages[event.error] || 'No se pudo reconocer la voz. Puedes escribir tu respuesta.';
             };
             recognition.onend = function () {
+                if (ConversationEngine.activeFreeRecognition === recognition) {
+                    ConversationEngine.activeFreeRecognition = null;
+                }
                 if (button.isConnected) button.disabled = false;
             };
             try {
                 recognition.start();
             } catch (error) {
+                if (this.activeFreeRecognition === recognition) this.activeFreeRecognition = null;
                 button.disabled = false;
                 status.textContent = 'No se pudo iniciar el micrófono. Comprueba los permisos del navegador.';
             }
@@ -677,6 +699,7 @@
 
         next: function () {
             if (!this.answered || !this.currentScenario) return;
+            this.stopFreeResponseRecognition();
             if (this.freeResponseMode) {
                 this.freeResponseText = '';
                 this.freeResponseRevealed = false;

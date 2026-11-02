@@ -93,7 +93,7 @@ test('invalid event types, skills and counters do not create misleading history'
     const { api } = createHistory();
     const day = localDate(2026, 11, 2);
     assert.equal(api.record('unknown', 10, day), false);
-    assert.equal(api.record('points', -1, day), true);
+    assert.equal(api.record('points', -1, day), false);
     assert.equal(api.recordSkill('unknown', true, day), false);
     assert.equal(api.recordSkill('writing', 'yes', day), false);
     assert.equal(api.recordSession('listening', day), false);
@@ -112,6 +112,7 @@ test('profile, service worker and CI include the history module and its regressi
     assert.match(html, /StudyHistory\.record\(kind, amount, new Date\(\)\)/);
     assert.match(html, /StudyHistory\.recordSkill\(skill, isCorrect, new Date\(\)\)/);
     assert.match(html, /StudyHistory\.recordSession\(skill, new Date\(\)\)/);
+    assert.match(html, /StudyHistory\.clear\(\)/);
     assert.match(worker, /bahasa-studio-v3\.8\.29/);
     assert.match(worker, /'\.\/study-history\.js'/);
     assert.match(workflow, /node --test tests\/study-history\.test\.cjs/);

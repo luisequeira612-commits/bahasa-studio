@@ -110,3 +110,31 @@ test('authored A1 ordering exercises reference the vocabulary used by their answ
   assert.equal(sequenceExercise.vocabId, 'v443');
   assert.deepEqual(Array.from(sequenceExercise.correctOrder), ['Saya', 'makan', 'sebelum', 'belajar']);
 });
+
+
+test('A1 U24-U32 use focused authored lesson plans while retaining generated practice and progression', () => {
+  const a1 = app.CourseData.levels.find(level => level.id === 'A1');
+  const units = a1.units.slice(23, 32);
+  assert.deepEqual(Array.from(units, unit => unit.id),
+    ['a1_u24', 'a1_u25', 'a1_u26', 'a1_u27', 'a1_u28', 'a1_u29', 'a1_u30', 'a1_u31', 'a1_u32']);
+
+  for (const unit of units) {
+    assert.equal(unit.lessonPlans.length, 3, unit.id + ' should define three focused lesson plans');
+    const lessons = app.buildUnitLessons(unit);
+    assert.equal(lessons.length, 3, unit.id + ' should keep three study lessons');
+    assert.deepEqual(Array.from(lessons, lesson => lesson.title), unit.lessonPlans.map(plan => plan.title));
+    lessons.forEach((lesson, index) => {
+      const plan = unit.lessonPlans[index];
+      assert.ok(plan.objective && plan.grammar, unit.id + ' lesson plan needs an objective and focused explanation');
+      assert.equal(lesson.grammar, plan.objective + ' ' + plan.grammar);
+      assert.ok(lesson.newVocab.length > 0, unit.id + ' lesson should introduce new vocabulary');
+      assert.ok(lesson.exercises.length >= lesson.newVocab.length,
+        unit.id + ' must preserve active practice after adding lesson metadata');
+      const available = new Set(lesson.vocab.map(word => word.id));
+      for (const exercise of lesson.exercises) {
+        assert.ok(available.has(exercise.vocabId),
+          unit.id + ' ' + lesson.title + ' must not assess vocabulary before it is introduced');
+      }
+    });
+  }
+});

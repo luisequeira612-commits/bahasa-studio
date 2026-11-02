@@ -61,3 +61,12 @@ Se alinearon siete lecciones cuyo título, objetivo o explicación no reflejaban
 - U28 L4: automatización y privacidad digital.
 
 Se mantuvieron las entradas y frases indonesias. La prueba nueva comprueba los términos del foco y que cada ID de vocabulario tenga un ejercicio asociado. No certifica naturalidad ni equivalencia lingüística.
+
+
+## Segunda pasada — foco didáctico y progresión de U25–U28
+
+Se añadieron definiciones y explicaciones concretas para las 16 lecciones y sus 48 términos nuevos: cocina y gastronomía (U25), sentimientos y relaciones (U26), vida cívica y espacios públicos (U27), y ciencia y tecnología (U28). Las explicaciones ahora identifican las palabras nuevas y ofrecen patrones o ejemplos breves.
+
+También se detectó que el ejemplo de vocabulario y la actividad de escritura de warga en U27 L1 usaban balai kota, palabra que se introduce en U27 L2. Se sustituyó por «Warga berkumpul di sini», que conserva la práctica de warga sin exigir vocabulario de una lección futura. Se añadió una prueba que revisa ejemplos de vocabulario y todos los campos de ejercicios para impedir fugas similares entre lecciones.
+
+Se mantienen vocabulario, glosas, IDs, número de ejercicios, progresión, IndexedDB y backup JSON v3. Estas correcciones son de coherencia y secuenciación interna, no una certificación lingüística nativa.

@@ -1926,3 +1926,11 @@ test('A2 units 5-8 align each lesson explanation and exercise with vocabulary in
       unit.id + ' should introduce every vocabulary item exactly once across its lessons');
   }
 });
+
+
+test('A2 U8 menyediakan is translated as providing or supplying water', () => {
+  const unit = a2.units.find(entry => entry.id === 'a2_u8');
+  const word = unit.vocab.find(entry => entry.id === 'a2u8_menyediakan');
+  assert.equal(word.esp, 'Proporcionar; suministrar');
+  assert.equal(word.exEsp, 'Proporcionamos agua.');
+});

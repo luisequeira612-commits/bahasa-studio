@@ -7545,7 +7545,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 1: Clientes, quejas y devoluciones",
                                     "objective": "Describe las necesidades de los clientes, presenta quejas y habla de devoluciones.",
-                                    "grammar": "Practica expresiones corteses para comunicar un problema.",
+                                    "grammar": "Pelanggan: cliente; keluhan: queja; pengembalian: devolución. Usa menyampaikan keluhan para presentar una queja y pengembalian barang para hablar de devolver un producto.",
                                     "vocabIds": [
                                         "a2u29_pelanggan",
                                         "a2u29_keluhan",
@@ -7611,7 +7611,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 2: Garantías, calidad y modelos",
                                     "objective": "Describe garantías, calidad y modelos de productos.",
-                                    "grammar": "Usa harus y perlu para explicar condiciones y requisitos.",
+                                    "grammar": "Garansi: garantía; kualitas: calidad; model: modelo. Puedes preguntar si un producto tiene garansi y describir su kualitas y model.",
                                     "vocabIds": [
                                         "a2u29_garansi",
                                         "a2u29_kualitas",
@@ -7657,7 +7657,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 3: Existencias, pedidos y envíos",
                                     "objective": "Consulta existencias y habla de pedidos y envíos de productos.",
-                                    "grammar": "Practica expresiones para consultar existencias, pedidos y envíos.",
+                                    "grammar": "Stok: existencias; pesanan: pedido; pengiriman: envío. Usa memeriksa stok para consultar existencias, pesanan saya para hablar de tu pedido y pengiriman para hablar del envío.",
                                     "vocabIds": [
                                         "a2u29_stok",
                                         "a2u29_pesanan",
@@ -7703,7 +7703,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 4: Envases, sustituciones y atención al cliente",
                                     "objective": "Describe envases, solicita sustituciones y habla de la atención al cliente.",
-                                    "grammar": "Practica expresiones para describir envases, solicitar sustituciones y comunicarse con atención al cliente.",
+                                    "grammar": "Kemasan: envase; penggantian: sustitución; layanan pelanggan: atención al cliente. Usa meminta penggantian para solicitar una sustitución y contactar layanan pelanggan para pedir ayuda.",
                                     "vocabIds": [
                                         "a2u29_kemasan",
                                         "a2u29_penggantian",
@@ -7779,8 +7779,8 @@ window.BAHASA_CURRICULUM_A2 = {
                                     "id": "a2u30_aktor",
                                     "idn": "aktor",
                                     "esp": "Actor",
-                                    "ex": "Aktor itu memerankan tokoh utama.",
-                                    "exEsp": "Ese actor interpreta al personaje principal."
+                                    "ex": "Aktor itu sangat terkenal.",
+                                    "exEsp": "Ese actor es muy famoso."
                                 },
                                 {
                                     "id": "a2u30_sutradara",
@@ -7843,7 +7843,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 1: Pintura, artistas y representaciones",
                                     "objective": "Habla de pinturas, artistas y puestas en escena.",
-                                    "grammar": "Practica vocabulario para describir obras, artistas y representaciones.",
+                                    "grammar": "Lukisan: pintura; pelukis: pintor; pementasan: puesta en escena. Puedes describir una lukisan, hablar de un pelukis y decir cuándo empieza una pementasan.",
                                     "vocabIds": [
                                         "a2u30_lukisan",
                                         "a2u30_pelukis",
@@ -7909,7 +7909,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 2: Teatro y cine",
                                     "objective": "Describe producciones escénicas y a las personas que participan en ellas.",
-                                    "grammar": "Usa expresiones para hablar de actores y directores.",
+                                    "grammar": "Aktor: actor; sutradara: director; penonton: espectador. Usa aktor para quien interpreta, sutradara para quien dirige y penonton para el público.",
                                     "vocabIds": [
                                         "a2u30_aktor",
                                         "a2u30_sutradara",
@@ -7955,7 +7955,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 3: Historias y personajes",
                                     "objective": "Explica el argumento, los personajes y las escenas de una historia.",
-                                    "grammar": "Practica conectores para resumir una narración.",
+                                    "grammar": "Alur cerita: trama; tokoh: personaje; adegan: escena. Estos términos te permiten resumir una historia: alur cerita, tokoh y adegan.",
                                     "vocabIds": [
                                         "a2u30_alur_cerita",
                                         "a2u30_tokoh",
@@ -8001,7 +8001,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 4: Opiniones y galerías",
                                     "objective": "Expresa opiniones sobre obras y lugares de exposición.",
-                                    "grammar": "Usa menurut saya y ulasan para compartir una valoración.",
+                                    "grammar": "Ulasan: crítica o reseña; karya seni: obra de arte; galeri: galería. Puedes leer una ulasan sobre una karya seni y verla en una galeri.",
                                     "vocabIds": [
                                         "a2u30_ulasan",
                                         "a2u30_karya_seni",
@@ -8141,7 +8141,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 1: Rutas y caminatas",
                                     "objective": "Describe rutas de senderismo y objetivos de una excursión.",
-                                    "grammar": "Practica vocabulario para explicar distancias y recorridos.",
+                                    "grammar": "Pendakian: excursión de montaña; jalur: ruta; puncak: cumbre. Usa memulai pendakian para iniciar la excursión, mengikuti jalur para seguir la ruta y tiba di puncak para llegar a la cumbre.",
                                     "vocabIds": [
                                         "a2u31_pendakian",
                                         "a2u31_jalur",
@@ -8205,7 +8205,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 2: Laderas y campamentos",
                                     "objective": "Describe laderas, campamentos y tiendas de campaña durante una excursión.",
-                                    "grammar": "Usa expresiones de ubicación para describir el terreno.",
+                                    "grammar": "Lereng: pendiente o ladera; perkemahan: campamento; tenda: tienda de campaña. Puedes describir la lereng, ubicar el perkemahan y decir mendirikan tenda para montar una tienda.",
                                     "vocabIds": [
                                         "a2u31_lereng",
                                         "a2u31_perkemahan",
@@ -8251,7 +8251,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 3: Equipo y orientación",
                                     "objective": "Explica qué equipo y provisiones hacen falta para una salida.",
-                                    "grammar": "Practica instrucciones y recomendaciones de preparación.",
+                                    "grammar": "Perlengkapan: equipo; kompas: brújula; persediaan: provisiones. Usa perlengkapan pendakian para el equipo, kompas para orientarte y persediaan air para hablar de provisiones.",
                                     "vocabIds": [
                                         "a2u31_perlengkapan",
                                         "a2u31_kompas",
@@ -8297,7 +8297,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 4: Guías y seguridad",
                                     "objective": "Habla de guías, huellas y normas para disfrutar de la naturaleza con seguridad.",
-                                    "grammar": "Usa imperativos y expresiones de obligación para dar consejos.",
+                                    "grammar": "Jejak: huella; pemandu: guía; berkemah: acampar. Puedes observar jejak, seguir las indicaciones del pemandu y usar berkemah para hablar de acampar.",
                                     "vocabIds": [
                                         "a2u31_jejak",
                                         "a2u31_pemandu",
@@ -8437,7 +8437,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 1: Bodas y nuevos comienzos",
                                     "objective": "Describe bodas, nacimientos y compromisos familiares.",
-                                    "grammar": "Practica vocabulario para hablar de acontecimientos importantes.",
+                                    "grammar": "Pernikahan: boda; kelahiran: nacimiento; pertunangan: compromiso. Usa acara pernikahan para hablar de una boda, kelahiran bayi para un nacimiento y pertunangan para un compromiso.",
                                     "vocabIds": [
                                         "a2u32_pernikahan",
                                         "a2u32_kelahiran",
@@ -8503,7 +8503,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 2: Inauguraciones, conmemoraciones y recuerdos",
                                     "objective": "Habla de inauguraciones, conmemoraciones y recuerdos asociados a eventos familiares.",
-                                    "grammar": "Usa berlangsung para describir cómo se desarrolla una ceremonia.",
+                                    "grammar": "Peresmian: inauguración; peringatan: conmemoración; kenangan: recuerdo. Usa peresmian gedung para una inauguración, peringatan hari para una conmemoración y kenangan para recuerdos.",
                                     "vocabIds": [
                                         "a2u32_peresmian",
                                         "a2u32_peringatan",
@@ -8549,7 +8549,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 3: Regalos, felicitaciones y asistencia",
                                     "objective": "Habla de regalos, expresa felicitaciones y menciona la asistencia a ocasiones especiales.",
-                                    "grammar": "Practica expresiones para dar buenos deseos, entregar regalos y hablar de la asistencia.",
+                                    "grammar": "Hadiah: regalo; ucapan selamat: felicitación; kehadiran: asistencia. Puedes memberi hadiah para entregar un regalo, mengirim ucapan selamat para felicitar y kehadiran tamu para hablar de la asistencia.",
                                     "vocabIds": [
                                         "a2u32_hadiah",
                                         "a2u32_ucapan_selamat",
@@ -8595,7 +8595,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 4: Invitados y preparativos",
                                     "objective": "Describe la asistencia de invitados y la organización de reuniones familiares.",
-                                    "grammar": "Usa expresiones para hablar de preparativos y participantes.",
+                                    "grammar": "Persiapan: preparativos; tamu undangan: invitados; acara keluarga: evento familiar. Usa persiapan acara para los preparativos, tamu undangan para los invitados y acara keluarga para una reunión familiar.",
                                     "vocabIds": [
                                         "a2u32_persiapan",
                                         "a2u32_tamu_undangan",

@@ -693,6 +693,7 @@ test('leaving free-response mode aborts active microphone recognition immediatel
     start() {}
     abort() {
       abortCalls += 1;
+      if (this.onerror) this.onerror({ error: 'aborted' });
       if (this.onend) this.onend();
     }
   };

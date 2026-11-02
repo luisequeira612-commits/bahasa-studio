@@ -4,6 +4,7 @@
     const scenarios = [
         {
             id: 'greetings',
+            level: 'A1',
             title: 'Saludos y presentaciones',
             description: 'Saluda, di tu nombre y responde con cortesía',
             turns: [
@@ -44,6 +45,7 @@
         },
         {
             id: 'restaurant',
+            level: 'A1',
             title: 'Restaurante y comida',
             description: 'Pide un plato, indica tus preferencias y elige una bebida',
             turns: [
@@ -84,6 +86,7 @@
         },
         {
             id: 'shopping',
+            level: 'A1',
             title: 'Compras y precios',
             description: 'Pregunta por un producto, acepta el precio y paga',
             turns: [
@@ -124,6 +127,7 @@
         },
         {
             id: 'travel',
+            level: 'A1',
             title: 'Viajes y transporte',
             description: 'Indica adónde vas, cómo viajas y dónde está una parada',
             turns: [
@@ -164,6 +168,7 @@
         },
         {
             id: 'friends',
+            level: 'A1',
             title: 'Conversaciones con amigos',
             description: 'Pregunta cómo está alguien, habla de tus aficiones y acepta una invitación',
             turns: [
@@ -204,6 +209,7 @@
         },
         {
             id: 'help',
+            level: 'A1',
             title: 'Pedir ayuda y resolver situaciones',
             description: 'Ofrece ayuda, da una indicación sencilla y responde a un agradecimiento',
             turns: [

@@ -451,7 +451,7 @@ test('learners can revise a free response after comparing it with the example wi
   assert.equal(engine.answered, false);
   assert.equal(engine.freeResponseRevealed, false);
   assert.equal(engine.freeResponseTurns, 1);
-  assert.match(elements.conversationPracticeArea.innerHTML, /Halo, saya baik\\./);
+  assert.match(elements.conversationPracticeArea.innerHTML, /Halo, saya baik\./);
 
   elements.conversationFreeResponse = { value: 'Halo! Saya baik, terima kasih.' };
   engine.showFreeExample();

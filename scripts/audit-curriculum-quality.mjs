@@ -374,6 +374,7 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
         total: exerciseTypeCounts[type],
         units_with_type: unitsWithType,
         units_without_type: units.length - unitsWithType,
+        units_without_type_ids: units.filter((unit, index) => counts[index] === 0).map((unit) => unit?.id ?? null),
         min_per_unit: counts.length ? Math.min(...counts) : 0,
         max_per_unit: counts.length ? Math.max(...counts) : 0,
         average_per_unit: counts.length

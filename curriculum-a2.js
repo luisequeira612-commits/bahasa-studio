@@ -4929,7 +4929,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 },
                                 {
                                     "title": "Lección 2: Plantación, inundaciones y sequías",
-                                    "objective": "Describe penanaman (plantación), banjir (inundación) y kekeringan (sequía).",
+                                    "objective": "Describe penanaman (plantación), banjir (inundación) y kekeringan (sequía), y explica medidas de prevención.",
                                     "grammar": "Penanaman significa plantación; banjir, inundación; kekeringan, sequía. Ejemplos: penanaman pohon; banjir menutup jalan; kekeringan memengaruhi petani.",
                                     "vocabIds": [
                                         "a2u20_penanaman",

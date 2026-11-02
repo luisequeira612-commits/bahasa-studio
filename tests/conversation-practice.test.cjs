@@ -186,6 +186,38 @@ test('free-response speech capture is optional and never persists audio, XP, SRS
 });
 
 
+test('speech dictation appends to an existing draft instead of replacing typed or earlier dictated text', () => {
+  const engine = sandbox.window.ConversationEngine;
+  const input = { value: 'Saya mau', selectionStart: 8, selectionEnd: 8 };
+  const status = { textContent: '' };
+  elements.conversationFreeResponse = input;
+  elements.conversationSpeechStatus = status;
+  const recognitions = [];
+  sandbox.window.SpeechRecognition = class {
+    constructor() { recognitions.push(this); }
+    start() {}
+  };
+  const button = { disabled: false, isConnected: true };
+
+  engine.captureFreeResponse(button);
+  assert.equal(recognitions.length, 1);
+  assert.equal(recognitions[0].lang, 'id-ID');
+  assert.equal(button.disabled, true);
+  recognitions[0].onresult({ results: [[{ transcript: 'nasi goreng' }]] });
+  assert.equal(input.value, 'Saya mau nasi goreng');
+  assert.match(status.textContent, /añadida al borrador/);
+
+  recognitions[0].onend();
+  assert.equal(button.disabled, false);
+  engine.captureFreeResponse(button);
+  recognitions[1].onresult({ results: [[{ transcript: 'tolong' }]] });
+  assert.equal(input.value, 'Saya mau nasi goreng tolong');
+  recognitions[1].onend();
+  delete sandbox.window.SpeechRecognition;
+  delete elements.conversationFreeResponse;
+  delete elements.conversationSpeechStatus;
+});
+
 test('a completed conversation records one aggregate session without scoring free responses', () => {
   const engine = sandbox.window.ConversationEngine;
   recordedSessions.length = 0;

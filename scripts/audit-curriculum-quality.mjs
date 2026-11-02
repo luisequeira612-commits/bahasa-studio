@@ -123,6 +123,9 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
   let lessonsWithExercises = 0;
   const exerciseTypeCounts = {};
   const unitExerciseTypeCounts = [];
+  const unitAudioTextCounts = [];
+  const unitListenExerciseCounts = [];
+  const unitAudioSupportCounts = [];
   const unitExerciseCounts = [];
   const lessonExerciseCounts = [];
 
@@ -185,6 +188,9 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
     }
 
     let unitExerciseCount = 0;
+    let unitAudioTextCount = 0;
+    let unitListenExerciseCount = 0;
+    let unitAudioSupportCount = 0;
     const unitTypeCounts = {};
     const exercises = Array.isArray(unit.exercises) ? unit.exercises : [];
     if (!Array.isArray(unit.exercises) && !Array.isArray(unit.lessons)) {
@@ -198,6 +204,11 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
       }
       exerciseCount += 1;
       unitExerciseCount += 1;
+      const hasAudioText = typeof exercise.audioText === 'string' && exercise.audioText.trim();
+      const hasListenAnswer = exercise.type === 'listen' && typeof exercise.answer === 'string' && exercise.answer.trim();
+      if (hasAudioText) unitAudioTextCount += 1;
+      if (hasListenAnswer) unitListenExerciseCount += 1;
+      if (hasAudioText || hasListenAnswer) unitAudioSupportCount += 1;
       if (typeof exercise.type === 'string' && exercise.type.trim()) {
         exerciseTypeCounts[exercise.type] = (exerciseTypeCounts[exercise.type] ?? 0) + 1;
         unitTypeCounts[exercise.type] = (unitTypeCounts[exercise.type] ?? 0) + 1;
@@ -293,6 +304,11 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
             }
             exerciseCount += 1;
             unitExerciseCount += 1;
+      const hasAudioText = typeof exercise.audioText === 'string' && exercise.audioText.trim();
+      const hasListenAnswer = exercise.type === 'listen' && typeof exercise.answer === 'string' && exercise.answer.trim();
+      if (hasAudioText) unitAudioTextCount += 1;
+      if (hasListenAnswer) unitListenExerciseCount += 1;
+      if (hasAudioText || hasListenAnswer) unitAudioSupportCount += 1;
             lessonExerciseCount += 1;
             if (typeof exercise.type === 'string' && exercise.type.trim()) {
               exerciseTypeCounts[exercise.type] = (exerciseTypeCounts[exercise.type] ?? 0) + 1;
@@ -335,6 +351,9 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
     }
     unitExerciseCounts.push(unitExerciseCount);
     unitExerciseTypeCounts.push(unitTypeCounts);
+    unitAudioTextCounts.push(unitAudioTextCount);
+    unitListenExerciseCounts.push(unitListenExerciseCount);
+    unitAudioSupportCounts.push(unitAudioSupportCount);
     if (unitExerciseCount > 0) unitsWithExercises += 1;
   });
 
@@ -363,6 +382,24 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
       }];
     })
   );
+
+  const countUnitsWithExercises = (counts) => counts.filter((count) => count > 0).length;
+  const sumCounts = (counts) => counts.reduce((total, count) => total + count, 0);
+  const unitsWithAudioText = countUnitsWithExercises(unitAudioTextCounts);
+  const unitsWithListenExercise = countUnitsWithExercises(unitListenExerciseCounts);
+  const unitsWithAudioSupport = countUnitsWithExercises(unitAudioSupportCounts);
+  const audioCapabilityCoverage = {
+    audio_text_exercise_count: sumCounts(unitAudioTextCounts),
+    listen_exercise_count: sumCounts(unitListenExerciseCounts),
+    audio_capable_exercise_count: sumCounts(unitAudioSupportCounts),
+    units_with_audio_text: unitsWithAudioText,
+    units_without_audio_text: units.length - unitsWithAudioText,
+    units_with_listen_exercise: unitsWithListenExercise,
+    units_without_listen_exercise: units.length - unitsWithListenExercise,
+    units_with_audio_support: unitsWithAudioSupport,
+    units_without_audio_support: units.length - unitsWithAudioSupport,
+    units_without_audio_support_ids: units.filter((unit, index) => !unitAudioSupportCounts[index]).map((unit) => unit?.id ?? null),
+  };
 
   // Resolve references after collecting every vocabulary ID. Cumulative A2
   // review activities may deliberately point back to vocabulary taught in A1.
@@ -467,6 +504,7 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
     exercise_count: exerciseCount,
     exercise_type_counts: exerciseTypeCounts,
     exercise_type_distribution: exerciseTypeDistribution,
+    audio_capability_coverage: audioCapabilityCoverage,
     unit_exercise_distribution: summarizeDistribution(unitExerciseCounts),
     lesson_exercise_distribution: summarizeDistribution(lessonExerciseCounts),
     units_with_exercises: unitsWithExercises,

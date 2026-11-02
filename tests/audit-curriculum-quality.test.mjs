@@ -10,14 +10,26 @@ test('accepts a structurally consistent curriculum without external dictionary a
       title: 'Unit 1',
       vocab: [{ id: 'v1', idn: 'makan', esp: 'comer', ex: 'Saya makan.', exEsp: 'Yo como.' }],
       exercises: [
-        { vocabId: 'v1', type: 'mc', prompt: 'Choose', options: ['comer', 'beber'], answer: 0 },
+        { vocabId: 'v1', type: 'mc', prompt: 'Choose', options: ['comer', 'beber'], answer: 0, audioText: 'Saya makan.' },
         { vocabId: 'v1', type: 'order', prompt: 'Order', words: ['Saya', 'makan'], correctOrder: ['Saya', 'makan'] },
       ],
-      lessons: [{ vocabIds: ['v1'], exercises: [{ vocabId: 'v1', type: 'listen', prompt: 'Listen' }] }],
+      lessons: [{ vocabIds: ['v1'], exercises: [{ vocabId: 'v1', type: 'listen', prompt: 'Listen', answer: 'makan' }] }],
     }],
   });
   assert.equal(report.error_count, 0);
   assert.equal(report.vocabulary_count, 1);
+  assert.deepEqual(report.audio_capability_coverage, {
+    audio_text_exercise_count: 1,
+    listen_exercise_count: 1,
+    audio_capable_exercise_count: 2,
+    units_with_audio_text: 1,
+    units_without_audio_text: 0,
+    units_with_listen_exercise: 1,
+    units_without_listen_exercise: 0,
+    units_with_audio_support: 1,
+    units_without_audio_support: 0,
+    units_without_audio_support_ids: [],
+  });
 });
 
 test('detects duplicate IDs and unresolved vocabulary references', () => {

@@ -18,6 +18,7 @@ El script `scripts/audit-curriculum-quality.mjs` carga los currículos locales A
 - campos obligatorios de cada entrada (`idn`, `esp`);
 - ejemplos incompletos como avisos editoriales;
 - estructura básica de ejercicios y consignas tanto a nivel de unidad como dentro de cada lección;
+- cobertura de audio por unidad, diferenciando ejercicios `listen` (escucha y escritura) de ejercicios con `audioText` (consigna o frase reproducida mediante síntesis de voz); el informe cuenta la cobertura combinada sin duplicar un ejercicio que use ambos campos;
 - índices de respuesta MC dentro del rango de opciones, también en ejercicios de lección;
 - consistencia entre `words` y `correctOrder` en ejercicios de orden, también en ejercicios de lección;
 - referencias `vocabId`, `vocabIds` y `reviewVocabIds` que no resuelven al vocabulario del nivel; se permiten referencias acumulativas de A2 hacia A1, pero no referencias de A1 hacia vocabulario futuro de A2;
@@ -36,7 +37,7 @@ El informe no certifica:
 - que la traducción sea semánticamente equivalente;
 - que una palabra tenga el registro adecuado;
 - que el contenido corresponda al nivel CEFR/BIPA;
-- que la pronunciación o el audio sean correctos;
+- que la pronunciación o el audio sean correctos; la cobertura solo confirma que hay texto conectado a una función de síntesis de voz, no que el dispositivo tenga una voz indonesia instalada ni que la pronunciación generada sea correcta;
 - que KBBI u otra fuente haya confirmado una entrada.
 
 No se debe convertir automáticamente un resultado de CI en `verified_primary`, `grammar_naturalness_review` ni otro estado de validación lingüística.

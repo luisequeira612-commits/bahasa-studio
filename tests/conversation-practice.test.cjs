@@ -289,6 +289,32 @@ test('replaying a completed conversation records a separate session exactly once
 });
 
 
+test('replaying a free-response conversation keeps free-response mode and resets turn state', () => {
+  const engine = sandbox.window.ConversationEngine;
+  engine.start('greetings');
+  engine.useFreeResponse();
+
+  for (let turn = 0; turn < 3; turn += 1) {
+    elements.conversationFreeResponse = { value: 'Respuesta libre ' + (turn + 1) };
+    engine.showFreeExample();
+    engine.next();
+  }
+
+  assert.match(elements.conversationPracticeArea.innerHTML, /Conversación completada/);
+  assert.equal(engine.freeResponseMode, true);
+  engine.replay();
+
+  assert.equal(engine.freeResponseMode, true);
+  assert.equal(engine.turnIndex, 0);
+  assert.equal(engine.freeResponseTurns, 0);
+  assert.equal(engine.freeResponseText, '');
+  assert.equal(engine.freeResponseRevealed, false);
+  assert.equal(engine.freeResponseHintVisible, false);
+  assert.equal(engine.freeResponseCounted, false);
+  assert.match(elements.conversationPracticeArea.innerHTML, /id="conversationFreeResponse"/);
+  assert.match(elements.conversationPracticeArea.innerHTML, /práctica libre/);
+});
+
 test('guided answer choices are shuffled in a session without mutating source content', () => {
   const engine = sandbox.window.ConversationEngine;
   const original = scenarios.find(scenario => scenario.id === 'greetings');

@@ -71,7 +71,7 @@ function auditAcceptedAnswers(exercise, path, issues, prefix = '') {
   const normalizeAnswer = (value) => String(value ?? '')
     .normalize('NFC')
     .trim()
-    .replace(/\\s+/g, ' ')
+    .replace(/\s+/g, ' ')
     .toLocaleLowerCase();
   const canonicalAnswer = typeof exercise.answer === 'string'
     ? normalizeAnswer(exercise.answer)

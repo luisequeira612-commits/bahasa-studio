@@ -1349,9 +1349,9 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "id": "a2u8_menyediakan",
                                     "idn": "Menyediakan",
-                                    "esp": "Proporcionar; preparar",
+                                    "esp": "Proporcionar; suministrar",
                                     "ex": "Kami menyediakan air.",
-                                    "exEsp": "Preparamos agua."
+                                    "exEsp": "Proporcionamos agua."
                                 }
                             ],
                             "lessons": [

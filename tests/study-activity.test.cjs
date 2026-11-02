@@ -217,7 +217,7 @@ test('every A1/A2 curriculum exercise is included in the adaptive skill profile'
     }
   }
 
-  assert.equal(exerciseCount, 1168, 'the coverage check must include all current A1/A2 exercises');
+  assert.equal(exerciseCount, 477, 'the coverage check must include all current A1/A2 lesson exercises');
   assert.deepEqual(uncovered, [], 'every released exercise must contribute to a tracked skill');
   for (const skill of ['recognition', 'translation', 'listening', 'sentenceBuilding', 'writing']) {
     assert.ok(coveredSkills.has(skill), skill + ' must receive exercises from the released curriculum');

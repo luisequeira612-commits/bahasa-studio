@@ -416,11 +416,11 @@ test('conversation skill focus ignores fewer than five attempts and keeps urgent
 
 test('adaptive skill recommendations only target the earliest unfinished lesson that progression allows', () => {
   const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
-  assert.match(html, /const first = unfinishedLessons\\[0\\]/);
-  assert.match(html, /if \\(weakestSkill && Array\\.isArray\\(first\\.exercises\\)\\)/);
-  assert.match(html, /lessonIndex: first\\.index/);
-  assert.match(html, /lessonIndex > firstIncomplete/,
+  assert.ok(html.includes('const first = unfinishedLessons[0]'));
+  assert.ok(html.includes('if (weakestSkill && Array.isArray(first.exercises))'));
+  assert.ok(html.includes('lessonIndex: first.index'));
+  assert.ok(html.includes('lessonIndex > firstIncomplete'),
     'lesson navigation must reject skipping ahead, so adaptive recommendations must respect that boundary');
-  assert.doesNotMatch(html, /unfinishedLessons\\.forEach\\(entry =>/,
+  assert.ok(!html.includes('unfinishedLessons.forEach(entry =>'),
     'later unfinished lessons must not be recommended while earlier lessons remain locked');
 });

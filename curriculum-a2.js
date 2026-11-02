@@ -10181,9 +10181,9 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "id": "a2u38_biaya_masuk",
                                     "idn": "biaya masuk",
-                                    "esp": "Entrada",
+                                    "esp": "Tarifa de entrada",
                                     "ex": "Biaya masuk dibayar di loket.",
-                                    "exEsp": "La entrada se paga en la taquilla."
+                                    "exEsp": "La tarifa de entrada se paga en la taquilla."
                                 },
                                 {
                                     "id": "a2u38_jam_kunjung",
@@ -10195,9 +10195,9 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "id": "a2u38_tiket_masuk",
                                     "idn": "tiket masuk",
-                                    "esp": "Entrada",
+                                    "esp": "Boleto de entrada",
                                     "ex": "Simpan tiket masuk Anda.",
-                                    "exEsp": "Guarde su entrada."
+                                    "exEsp": "Guarde el boleto de entrada."
                                 },
                                 {
                                     "id": "a2u38_objek_wisata",

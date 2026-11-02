@@ -535,8 +535,9 @@ test('A2 units 37-40 teach emergency readiness, tourism, remote work, and integr
 test('A2 vocabulary identifiers are unique; A2 beta is independent while B1/B2 remain gated', () => {
   const newIds = a2.units.flatMap(unit => unit.vocab.map(word => word.id));
   assert.equal(new Set(newIds).size, newIds.length, 'new A2 vocabulary identifiers must be unique');
-  assert.match(html, /function getLearningLevels\(\)[\s\S]*?level\.id !== 'A2' \|\| \(A2_RELEASE_ENABLED && isA1Complete\(App\.completedUnits\)\)/,
-    'A2 learner-facing vocabulary and SRS must require A1 completion when beta release is enabled');
+  assert.match(html, /function getLearningLevels\(\)[\s\S]*?level\.id !== 'A2' \|\| A2_RELEASE_ENABLED/,
+    'A2 learner-facing vocabulary and SRS must include beta content independently of A1 completion');
+  assert.doesNotMatch(html, /level\.id !== 'A2'[^\n]*isA1Complete/);
   assert.match(html, /const isAdvanced = \['B1', 'B2'\]\.includes\(lvl\.id\);[\s\S]*?if \(!a1Complete\) return;/,
     'B1/B2 curriculum cards should remain gated until A1 completion');
 });

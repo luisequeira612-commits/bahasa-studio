@@ -549,7 +549,7 @@
                 ? '<p class="conversation-hint" role="status" aria-live="polite" style="padding:10px;border-left:3px solid var(--border);color:var(--text-muted);">' + escapeHtml(example.feedback) + '</p>'
                 : '';
             const responsePanel = this.freeResponseRevealed
-                ? '<div class="card" style="margin-top:12px;"><p><strong>Tu respuesta</strong></p><p style="white-space:pre-wrap;">' + escapeHtml(this.freeResponseText) + '</p><p><strong>Un ejemplo posible</strong></p><p>' + escapeHtml(example.text) + '</p><p style="color:var(--text-muted);">' + escapeHtml(example.translation) + ' Otras respuestas también pueden ser correctas.</p><button class="btn btn-outline btn-sm" type="button" data-conversation-edit-response>Editar mi respuesta</button></div>'
+                ? '<div class="card" style="margin-top:12px;"><p><strong>Tu respuesta</strong></p><p style="white-space:pre-wrap;">' + escapeHtml(this.freeResponseText) + '</p><p><strong>Un ejemplo posible</strong></p><p>' + escapeHtml(example.text) + '</p><p style="color:var(--text-muted);">' + escapeHtml(example.translation) + ' Otras respuestas también pueden ser correctas.</p><button class="btn btn-outline btn-sm" type="button" data-conversation-example-audio>🔊 Escuchar ejemplo</button> <button class="btn btn-outline btn-sm" type="button" data-conversation-edit-response>Editar mi respuesta</button></div>'
 : '<label for="conversationFreeResponse" style="display:block;margin:12px 0 6px;">Tu respuesta en indonesio</label><textarea id="conversationFreeResponse" rows="3" maxlength="1000" aria-describedby="conversationFreeResponseCount" style="width:100%;box-sizing:border-box;" placeholder="Escribe o dicta lo que responderías…">' + escapeHtml(this.freeResponseText) + '</textarea><p id="conversationFreeResponseCount" style="font-size:0.8rem;color:var(--text-muted);margin:4px 0 8px;">' + this.freeResponseText.length + '/1000 caracteres</p><button class="btn btn-outline btn-sm" type="button" data-conversation-speech>🎙️ Dictar respuesta (opcional)</button><button id="conversationSpeechCancel" class="btn btn-outline btn-sm" type="button" data-conversation-cancel-speech disabled>Cancelar dictado</button><p id="conversationSpeechStatus" role="status" aria-live="polite" style="font-size:0.85rem;color:var(--text-muted);">El micrófono solo se activa al pulsar. El navegador puede procesar el audio; la app no guarda grabaciones.</p><button class="btn btn-outline btn-sm" type="button" data-conversation-hint>' + (this.freeResponseHintVisible ? 'Ocultar pista' : 'Ver pista') + '</button><div>' + hintPanel + '</div><button class="btn" type="button" data-conversation-free-example>Ver un ejemplo posible</button>';
             practice.innerHTML = '<div class="card" style="padding:14px;">' +
                 '<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;">' +
@@ -614,6 +614,13 @@
                 this.freeResponseCounted = true;
             }
             this.renderStep();
+        },
+
+        speakFreeExample: function () {
+            if (!this.freeResponseMode || !this.freeResponseRevealed || typeof AudioEngine === 'undefined') return;
+            const turn = this.currentScenario && this.currentScenario.turns[this.turnIndex];
+            const example = turn && turn.choices.find(function (choice) { return choice.correct; });
+            if (example) AudioEngine.speak(example.text);
         },
 
         editFreeResponse: function () {
@@ -833,6 +840,7 @@
         if (target.closest('[data-conversation-guided]')) return ConversationEngine.useGuidedResponse();
         if (target.closest('[data-conversation-hint]')) return ConversationEngine.toggleFreeHint();
         if (target.closest('[data-conversation-free-example]')) return ConversationEngine.showFreeExample();
+        if (target.closest('[data-conversation-example-audio]')) return ConversationEngine.speakFreeExample();
         if (target.closest('[data-conversation-edit-response]')) return ConversationEngine.editFreeResponse();
         if (target.closest('[data-conversation-cancel-speech]')) return ConversationEngine.cancelFreeResponseRecognition();
         const speechButton = target.closest('[data-conversation-speech]');

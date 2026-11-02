@@ -754,3 +754,25 @@ test('learner can cancel voice dictation without losing the current draft', () =
   assert.equal(input.value, 'Saya ingin belajar');
   assert.equal(status.textContent, 'Dictado cancelado. Tu borrador se conserva.');
 });
+
+
+test('free-response example can be played with the Indonesian speech engine', () => {
+  const engine = sandbox.window.ConversationEngine;
+  engine.start('greetings');
+  engine.useFreeResponse();
+  const turn = engine.currentScenario.turns[engine.turnIndex];
+  const example = turn.choices.find(choice => choice.correct);
+  elements.conversationFreeResponse = { value: 'Halo, baik.' };
+  const spoken = [];
+  sandbox.AudioEngine = { speak(text) { spoken.push(text); } };
+
+  engine.showFreeExample();
+  assert.match(elements.conversationPracticeArea.innerHTML, /data-conversation-example-audio/);
+  engine.speakFreeExample();
+
+  assert.deepEqual(spoken, [example.text]);
+  engine.freeResponseMode = false;
+  engine.speakFreeExample();
+  assert.deepEqual(spoken, [example.text], 'example audio is available only while reviewing a free response');
+  delete sandbox.AudioEngine;
+});

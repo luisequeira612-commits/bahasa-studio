@@ -728,7 +728,13 @@
         },
 
         replay: function () {
-            if (this.currentScenario) this.start(this.currentScenario.id);
+            if (!this.currentScenario) return;
+            const keepFreeResponseMode = this.freeResponseMode;
+            this.start(this.currentScenario.id);
+            if (keepFreeResponseMode) {
+                this.freeResponseMode = true;
+                this.renderStep();
+            }
         },
 
         speakCurrent: function () {

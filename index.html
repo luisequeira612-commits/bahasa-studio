@@ -1767,7 +1767,7 @@
             startUnitAssessment(unitId) {
                 const level = getLevels().find(entry => entry.units.some(unit => unit.id === unitId));
                 if (!level || ['B1', 'B2'].includes(level.id) ||
-                    (level.id === 'A2' && (!A2_RELEASE_ENABLED || !isA1Complete(App.completedUnits)))) return;
+                    (level.id === 'A2' && !A2_RELEASE_ENABLED)) return;
                 const unit = level.units.find(entry => entry.id === unitId);
                 if (!unit) return;
                 const lessons = buildUnitLessons(unit);
@@ -1799,7 +1799,7 @@
                     const unit = level.units.find(entry => entry.id === id);
                     if (!unit) continue;
                     if (['B1', 'B2'].includes(level.id) ||
-                        (level.id === 'A2' && (!A2_RELEASE_ENABLED || !isA1Complete(App.completedUnits)))) return;
+                        (level.id === 'A2' && !A2_RELEASE_ENABLED)) return;
                     const lessons = buildUnitLessons(unit);
                     const nextIndex = lessons.findIndex(lesson => !App.completedLessons.includes(unitLessonProgressKey(id, lesson.index)));
                     const firstIncomplete = nextIndex < 0 ? lessons.length : nextIndex;
@@ -1817,7 +1817,7 @@
             startUnit(unit, lessonIndex = 0) {
                 const level = getLevels().find(entry => entry.units.some(candidate => candidate.id === unit.id));
                 if (level && (['B1', 'B2'].includes(level.id) ||
-                    (level.id === 'A2' && (!A2_RELEASE_ENABLED || !isA1Complete(App.completedUnits))))) return;
+                    (level.id === 'A2' && !A2_RELEASE_ENABLED))) return;
                 const lessons = buildUnitLessons(unit);
                 const lesson = lessons[lessonIndex];
                 if (!lesson) return;
@@ -2350,7 +2350,7 @@
             const extra = CustomLessons.units.length ? [{ id: 'IA', title: '✨ Mis lecciones (IA)', units: CustomLessons.units }] : [];
             return [...extra, ...CourseData.levels];
         }
-        // A2 is available in beta after A1 completion; linguistic certification remains pending.
+        // A2 is available in beta independently of A1 completion; linguistic certification remains pending.
         const A2_RELEASE_ENABLED = true;
         function isA1Complete(completedUnits) {
             const a1 = CourseData.levels.find(level => level.id === 'A1');
@@ -2360,7 +2360,7 @@
         function getLearningLevels() {
             return getLevels().filter(level =>
                 !['B1', 'B2'].includes(level.id) &&
-                (level.id !== 'A2' || (A2_RELEASE_ENABLED && isA1Complete(App.completedUnits)))
+                (level.id !== 'A2' || A2_RELEASE_ENABLED)
             );
         }
         function getUniqueLearningVocabulary() {
@@ -2915,8 +2915,8 @@ Requisitos:
                         return;
                     }
                     if (lvl.id === 'A2') {
-                        if (!A2_RELEASE_ENABLED || !a1Complete) return;
-                        levelEl.innerHTML = `<h2 style="margin:20px 0 8px 0;">${App.escapeHtml(lvl.title)} <span class="badge" style="vertical-align:middle;">Beta · en revisión</span></h2><p class="text-muted" style="margin:0 0 12px;">Disponible al completar A1. El contenido A2 está en revisión interna; puede contener errores y no ha sido validado por hablantes nativos. Tus comentarios ayudan a mejorarlo.</p>`;
+                        if (!A2_RELEASE_ENABLED) return;
+                        levelEl.innerHTML = `<h2 style="margin:20px 0 8px 0;">${App.escapeHtml(lvl.title)} <span class="badge" style="vertical-align:middle;">Beta · en revisión</span></h2><p class="text-muted" style="margin:0 0 12px;">Disponible en beta sin requisito de completar A1. El contenido A2 está en revisión interna; puede contener errores y no ha sido validado por hablantes nativos. Tus comentarios ayudan a mejorarlo.</p>`;
                     } else {
                         levelEl.innerHTML = `<h2 style="margin:16px 0 8px 0;">${App.escapeHtml(lvl.title)}</h2>`;
                     }
@@ -2929,7 +2929,7 @@ Requisitos:
                         const nextLesson = lessons.findIndex(lesson => !this.completedLessons.includes(unitLessonProgressKey(unit.id, lesson.index)));
                         const unitAccessible = lvl.id === 'A1'
                             ? isDone || isNext
-                            : lvl.id === 'A2' ? (A2_RELEASE_ENABLED && a1Complete) : true;
+                            : lvl.id === 'A2' ? A2_RELEASE_ENABLED : true;
                         const card = document.createElement('details');
                         card.className = `unit-card ${isDone ? 'completed' : ''} ${lvl.id === 'A1' ? 'path-node ' + (isDone ? 'path-node-completed' : isNext ? 'path-node-current' : 'path-node-locked') : ''}`;
                         if (lvl.id === 'A1') card.dataset.pathState = isDone ? 'completed' : isNext ? 'current' : 'locked';
@@ -3071,11 +3071,10 @@ Requisitos:
                     ? AdaptiveLearning.weakestSkill(this.studyActivity && this.studyActivity.skillStats)
                     : null;
                 const skillLessons = [];
-                const a1Complete = isA1Complete(this.completedUnits);
                 const a1Level = getLearningLevels().find(level => level.id === 'A1');
                 const nextA1Unit = a1Level && a1Level.units.find(unit => !this.completedUnits.includes(unit.id));
                 for (const level of getLearningLevels()) {
-                    if (level.id === 'A2' && (!A2_RELEASE_ENABLED || !a1Complete)) continue;
+                    if (level.id === 'A2' && !A2_RELEASE_ENABLED) continue;
                     if (!['A1', 'A2'].includes(level.id)) continue;
                     for (const unit of level.units) {
                         if (this.completedUnits.includes(unit.id)) continue;

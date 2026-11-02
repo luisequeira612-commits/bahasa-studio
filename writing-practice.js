@@ -26,6 +26,14 @@
             example: 'Dari rumah saya, berjalan lurus. Belok kiri di jalan besar. Toko ada di sebelah kanan. Toko itu dekat sekolah.'
         },
         {
+            id: 'study-day',
+            level: 'A1',
+            title: 'Mi día de estudio',
+            situation: 'Escribe una nota breve sobre tu rutina de estudio. Di cuándo estudias, qué haces y dónde. Intenta escribir tres o cuatro frases.',
+            checklist: ['Dije cuándo estudio.', 'Mencioné qué materia o idioma estudio.', 'Incluí una actividad de lectura o escritura.', 'Organicé las ideas en frases sencillas.'],
+            example: 'Saya belajar bahasa Indonesia setiap pagi. Saya membaca buku di rumah. Setelah itu, saya menulis kalimat. Pada malam hari, saya mengulang pelajaran.'
+        },
+        {
             id: 'budget',
             level: 'A2',
             title: 'Mi presupuesto personal',
@@ -42,6 +50,15 @@
             vocabulary: ['rapat daring', 'konferensi video', 'berbagi layar', 'dokumen bersama', 'tautan', 'lampiran', 'mengirim', 'unduh', 'penyimpanan awan', 'pembaruan'],
             checklist: ['Expliqué cuándo y por qué hay una reunión.', 'Mencioné la videoconferencia.', 'Describí cómo comparto pantalla o documentos.', 'Incluí un enlace o archivo adjunto.', 'Conté qué hago después de la reunión.'],
             example: 'Hari ini kami ada rapat daring. Kami menggunakan konferensi video. Saya berbagi layar dan membuka dokumen bersama. Saya mengirim tautan dan lampiran. Setelah rapat, saya unduh dokumen dari penyimpanan awan. Saya melihat pembaruan.'
+        },
+        {
+            id: 'recent-experience',
+            level: 'A2',
+            title: 'Contar una experiencia reciente',
+            situation: 'Cuenta algo que hiciste ayer. Ordena los acontecimientos desde el principio hasta el final y añade algunos detalles. Intenta escribir cinco a siete frases.',
+            vocabulary: ['kemarin', 'pertama', 'kemudian', 'setelah itu', 'akhirnya', 'membeli'],
+            checklist: ['Dije cuándo ocurrió.', 'Expliqué qué hice primero.', 'Ordené al menos dos acontecimientos.', 'Añadí un detalle sobre una persona o un lugar.', 'Terminé contando cómo acabó la experiencia.'],
+            example: 'Kemarin saya pergi ke pasar. Pertama, saya membeli buah. Kemudian, saya bertemu teman. Setelah itu, kami minum kopi. Akhirnya, saya pulang naik bus.'
         },
         {
             id: 'compare-decisions',

@@ -70,3 +70,10 @@ Se añadieron definiciones y explicaciones concretas para las 16 lecciones y sus
 También se detectó que el ejemplo de vocabulario y la actividad de escritura de warga en U27 L1 usaban balai kota, palabra que se introduce en U27 L2. Se sustituyó por «Warga berkumpul di sini», que conserva la práctica de warga sin exigir vocabulario de una lección futura. Se añadió una prueba que revisa ejemplos de vocabulario y todos los campos de ejercicios para impedir fugas similares entre lecciones.
 
 Se mantienen vocabulario, glosas, IDs, número de ejercicios, progresión, IndexedDB y backup JSON v3. Estas correcciones son de coherencia y secuenciación interna, no una certificación lingüística nativa.
+
+
+## Resolución de la glosa de kelurahan — U27 L1
+
+Se corrigió la entrada `kelurahan`: la glosa «Oficina de barrio» confundía la unidad administrativa con su oficina. La nueva glosa es «Unidad administrativa local (Indonesia)». El ejemplo ahora sitúa la kelurahan dentro de un kecamatan: `Kelurahan ini berada di kecamatan tersebut.` / «Esta unidad administrativa local está dentro de ese distrito». La práctica de escucha usa la misma frase para que no dependa de `kantor` (oficina), término que no forma parte del vocabulario objetivo de esta lección.
+
+La prueba de regresión comprueba la glosa, ambos ejemplos y la respuesta de escucha. No se cambian IDs, número de ejercicios, estructura, tracker lingüístico, IndexedDB ni backup v3. La corrección es de precisión conceptual y coherencia interna; no equivale a validación por hablante nativo.

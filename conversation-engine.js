@@ -577,6 +577,7 @@
             if (!this.freeResponseMode || this.freeResponseRevealed) return;
             const input = document.getElementById('conversationFreeResponse');
             if (input && typeof input.value === 'string') this.freeResponseText = input.value;
+            this.stopFreeResponseRecognition();
             this.freeResponseHintVisible = !this.freeResponseHintVisible;
             this.renderStep();
         },
@@ -591,6 +592,7 @@
                 return;
             }
             this.freeResponseText = response;
+            this.stopFreeResponseRecognition();
             this.freeResponseHintVisible = false;
             this.freeResponseRevealed = true;
             this.answered = true;

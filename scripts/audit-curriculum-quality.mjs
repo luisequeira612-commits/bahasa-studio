@@ -67,18 +67,45 @@ function auditAcceptedAnswers(exercise, path, issues, prefix = '') {
     issues.push(issue('error', prefix + 'ACCEPTED_ANSWERS_INVALID', path + '.acceptedAnswers', 'acceptedAnswers debe ser un array.'));
     return;
   }
+  const normalizeAnswer = (value) => String(value ?? '')
+    .normalize('NFC')
+    .trim()
+    .replace(/\\s+/g, ' ')
+    .toLocaleLowerCase();
+  const canonicalAnswer = typeof exercise.answer === 'string'
+    ? normalizeAnswer(exercise.answer)
+    : '';
+  const seen = new Set();
+
   exercise.acceptedAnswers.forEach((item, index) => {
     const itemPath = path + '.acceptedAnswers[' + index + ']';
+    let answerText = '';
     if (typeof item === 'string') {
-      if (!item.trim()) issues.push(issue('error', prefix + 'ACCEPTED_ANSWER_EMPTY', itemPath, 'La respuesta alternativa no puede estar vacía.'));
-      return;
-    }
-    if (!item || typeof item !== 'object' || typeof item.text !== 'string' || !item.text.trim()) {
+      answerText = item;
+      if (!item.trim()) {
+        issues.push(issue('error', prefix + 'ACCEPTED_ANSWER_EMPTY', itemPath, 'La respuesta alternativa no puede estar vacía.'));
+        return;
+      }
+    } else if (!item || typeof item !== 'object' || typeof item.text !== 'string' || !item.text.trim()) {
       issues.push(issue('error', prefix + 'ACCEPTED_ANSWER_ITEM_INVALID', itemPath, 'Cada alternativa debe ser texto no vacío o un objeto con text no vacío.'));
       return;
+    } else {
+      answerText = item.text;
+      if (item.status !== undefined && (typeof item.status !== 'string' || !item.status.trim())) {
+        issues.push(issue('error', prefix + 'ACCEPTED_ANSWER_STATUS_INVALID', itemPath + '.status', 'El estado de una alternativa debe ser texto no vacío.'));
+      }
     }
-    if (item.status !== undefined && (typeof item.status !== 'string' || !item.status.trim())) {
-      issues.push(issue('error', prefix + 'ACCEPTED_ANSWER_STATUS_INVALID', itemPath + '.status', 'El estado de una alternativa debe ser texto no vacío.'));
+
+    const normalized = normalizeAnswer(answerText);
+    if (canonicalAnswer && normalized === canonicalAnswer) {
+      issues.push(issue('warning', prefix + 'ACCEPTED_ANSWER_DUPLICATES_CANONICAL', itemPath,
+        'La respuesta alternativa repite la respuesta canónica después de normalizar espacios, mayúsculas y Unicode.'));
+    }
+    if (seen.has(normalized)) {
+      issues.push(issue('warning', prefix + 'ACCEPTED_ANSWER_DUPLICATE', itemPath,
+        'La respuesta alternativa repite otra alternativa después de normalizar espacios, mayúsculas y Unicode.'));
+    } else {
+      seen.add(normalized);
     }
   });
 }

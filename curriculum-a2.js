@@ -5163,7 +5163,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 1: Cultura y tradiciones",
                                     "objective": "Describe la diversidad cultural y las costumbres que se transmiten entre generaciones.",
-                                    "grammar": "Practica expresiones para hablar de costumbres, ceremonias y herencia cultural.",
+                                    "grammar": "Budaya significa cultura; tradisi, tradición; upacara, ceremonia. Usa berasal dari para indicar el origen y parte dari para explicar que algo forma parte de una tradición.",
                                     "vocabIds": [
                                         "a2u21_budaya",
                                         "a2u21_tradisi",
@@ -5227,7 +5227,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 2: Ropa y expresiones artísticas",
                                     "objective": "Habla de ropa tradicional, danzas y música de distintas regiones.",
-                                    "grammar": "Usa berasal dari para indicar el origen de una expresión artística.",
+                                    "grammar": "Pakaian adat significa ropa tradicional; tarian, danza; musik tradisional, música tradicional. Usa berasal dari para indicar de qué región procede una expresión artística.",
                                     "vocabIds": [
                                         "a2u21_pakaian_adat",
                                         "a2u21_tarian",
@@ -5273,7 +5273,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 3: Artesanía y exposiciones",
                                     "objective": "Describe objetos artesanales y eventos culturales abiertos al público.",
-                                    "grammar": "Practica vocabulario para explicar dónde y cuándo se presenta una exposición.",
+                                    "grammar": "Kerajinan significa artesanía; pameran, exposición; pengunjung, visitante. Puedes explicar dónde se presenta una exposición y quién la visita.",
                                     "vocabIds": [
                                         "a2u21_kerajinan",
                                         "a2u21_pameran",
@@ -5319,7 +5319,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 4: Espectáculos y patrimonio cultural",
                                     "objective": "Habla de espectáculos, patrimonio cultural y festivales.",
-                                    "grammar": "Usa expresiones temporales para describir la duración y el horario de un evento.",
+                                    "grammar": "Pertunjukan significa espectáculo; warisan budaya, patrimonio cultural; festival, festival. Usa bagian dari para explicar que un lugar o evento forma parte del patrimonio.",
                                     "vocabIds": [
                                         "a2u21_pertunjukan",
                                         "a2u21_warisan_budaya",
@@ -5459,7 +5459,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 1: Noticias y emisiones",
                                     "objective": "Habla de noticias y programas que se transmiten por radio u otros medios.",
-                                    "grammar": "Practica verbos para leer, escuchar y seguir noticias.",
+                                    "grammar": "Berita significa noticia; siaran, emisión o transmisión; media sosial, redes sociales. Puedes decir membaca berita para hablar de leer noticias y siaran radio dimulai pukul enam para describir una emisión.",
                                     "vocabIds": [
                                         "a2u22_berita",
                                         "a2u22_siaran",
@@ -5525,7 +5525,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 2: Redes y mensajes",
                                     "objective": "Describe cómo se comunica la gente mediante redes sociales y mensajes de voz.",
-                                    "grammar": "Usa kepada para indicar a quién se envía un mensaje.",
+                                    "grammar": "Pesan suara significa mensaje de voz; komentar, comentario; unggahan, publicación. Usa kepada para indicar a quién envías un mensaje: Saya mengirim pesan suara kepada teman.",
                                     "vocabIds": [
                                         "a2u22_pesan_suara",
                                         "a2u22_komentar",
@@ -5571,7 +5571,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 3: Redes, conexiones y contraseñas",
                                     "objective": "Describe redes, conexiones y contraseñas en espacios digitales.",
-                                    "grammar": "Practica expresiones para hablar de redes, conexiones y contraseñas seguras.",
+                                    "grammar": "Jaringan significa red; koneksi, conexión; kata sandi, contraseña. Para hablar de una conexión interrumpida, puedes decir Koneksi saya terputus tadi malam. No compartas tu kata sandi.",
                                     "vocabIds": [
                                         "a2u22_jaringan",
                                         "a2u22_koneksi",
@@ -5617,7 +5617,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 4: Cuentas, información y fuentes",
                                     "objective": "Habla de cuentas digitales, información y fuentes en línea.",
-                                    "grammar": "Practica expresiones para describir cuentas y valorar la información y sus fuentes.",
+                                    "grammar": "Akun significa cuenta; informasi, información; sumber, fuente. Antes de compartir información, revisa la fuente: Periksa sumber berita sebelum membagikannya.",
                                     "vocabIds": [
                                         "a2u22_akun",
                                         "a2u22_informasi",
@@ -5757,7 +5757,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 1: Cuentas y ahorros",
                                     "objective": "Habla de cuentas bancarias, ahorros y saldos disponibles.",
-                                    "grammar": "Practica expresiones para consultar y describir el estado de una cuenta.",
+                                    "grammar": "Rekening significa cuenta bancaria; tabungan, ahorros; saldo, saldo disponible. Usa membuka rekening para hablar de abrir una cuenta y consultar saldo para saber cuánto dinero queda.",
                                     "vocabIds": [
                                         "a2u23_rekening",
                                         "a2u23_tabungan",
@@ -5823,7 +5823,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 2: Transferencias, tarjetas y préstamos",
                                     "objective": "Habla de transferencias, tarjetas de débito y préstamos.",
-                                    "grammar": "Practica expresiones para hablar de transferencias, tarjetas de débito y préstamos.",
+                                    "grammar": "Transfer significa transferencia; kartu debit, tarjeta de débito; pinjaman, préstamo. Usa melakukan transfer para describir una operación y mengajukan pinjaman para solicitar un préstamo.",
                                     "vocabIds": [
                                         "a2u23_transfer",
                                         "a2u23_kartu_debit",
@@ -5869,7 +5869,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 3: Préstamos y formularios",
                                     "objective": "Comprende gastos administrativos y solicitudes bancarias.",
-                                    "grammar": "Practica instrucciones para completar formularios y solicitar un servicio.",
+                                    "grammar": "Biaya admin significa cargo administrativo; formulir, formulario; loket, ventanilla. Puedes indicar cómo completar un formulario: Isi formulir ini dengan lengkap. Para indicar dónde ir: Silakan datang ke loket nomor dua.",
                                     "vocabIds": [
                                         "a2u23_biaya_admin",
                                         "a2u23_formulir",
@@ -5915,7 +5915,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 4: Atención en la oficina",
                                     "objective": "Pide ayuda en una sucursal y comprende turnos y servicios disponibles.",
-                                    "grammar": "Usa silakan para formular indicaciones corteses.",
+                                    "grammar": "Petugas significa empleado de atención; antrean, cola; layanan, servicio. Puedes pedir ayuda al petugas y consultar la antrean y los layanan disponibles.",
                                     "vocabIds": [
                                         "a2u23_petugas",
                                         "a2u23_antrean",
@@ -6055,7 +6055,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 1: Cursos y formación",
                                     "objective": "Describe cursos y actividades de formación para desarrollar habilidades.",
-                                    "grammar": "Practica verbos para participar en cursos y programas formativos.",
+                                    "grammar": "Kursus significa curso; pelatihan, formación; kelas daring, clase en línea. Usa mengikuti kursus para decir que participas en un curso y kelas daring berlangsung setiap Selasa para hablar de una clase en línea.",
                                     "vocabIds": [
                                         "a2u24_kursus",
                                         "a2u24_pelatihan",
@@ -6119,7 +6119,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 2: Clases y materiales",
                                     "objective": "Habla de clases en línea y materiales de estudio.",
-                                    "grammar": "Usa tersedia para indicar que un recurso está disponible.",
+                                    "grammar": "Materi significa material de estudio; ujian, examen; nilai, calificación. Usa tersedia para indicar que un recurso está disponible: Materi pelajaran tersedia di situs. También puedes decir Ujian bahasa dimulai besok.",
                                     "vocabIds": [
                                         "a2u24_materi",
                                         "a2u24_ujian",
@@ -6165,7 +6165,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 3: Certificados, becas e inscripciones",
                                     "objective": "Habla de certificados, becas e inscripciones en programas educativos.",
-                                    "grammar": "Practica expresiones para hablar de certificados, ayudas educativas y procesos de inscripción.",
+                                    "grammar": "Sertifikat significa certificado; beasiswa, beca; pendaftaran, inscripción. Puedes hablar de recibir un sertifikat, obtener una beasiswa y cuándo se abre la pendaftaran.",
                                     "vocabIds": [
                                         "a2u24_sertifikat",
                                         "a2u24_beasiswa",
@@ -6211,7 +6211,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 4: Instructores, participantes y graduación",
                                     "objective": "Describe a los instructores, los participantes y la graduación en programas educativos.",
-                                    "grammar": "Practica expresiones para describir a los instructores, los participantes y la finalización de un programa.",
+                                    "grammar": "Instruktur significa instructor; peserta, participante; kelulusan, graduación o aprobación. Ejemplos: Instruktur menjelaskan topik; peserta datang tepat waktu; kelulusan diumumkan pada hari Jumat.",
                                     "vocabIds": [
                                         "a2u24_instruktur",
                                         "a2u24_peserta",

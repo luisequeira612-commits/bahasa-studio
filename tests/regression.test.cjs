@@ -63,29 +63,29 @@ test('A2 is available in beta independently of A1 completion', () => {
   const start = html.indexOf('const CourseData =');
   const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
   assert.ok(start >= 0 && end > start, 'CourseData block must exist');
-  const course = vm.runInNewContext(html.slice(start, end) + '\\nCourseData');
-  const helper = html.match(/function isA1Complete\\(completedUnits\\) \\{[\\s\\S]*?\\n        \\}/);
+  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
+  const helper = html.match(/function isA1Complete\(completedUnits\) \{[\s\S]*?\n        \}/);
   assert.ok(helper, 'the A1 completion rule must remain centralized for advanced levels');
-  const isA1Complete = vm.runInNewContext(helper[0] + '\\nisA1Complete', { CourseData: course });
+  const isA1Complete = vm.runInNewContext(helper[0] + '\nisA1Complete', { CourseData: course });
   const a1 = course.levels.find(level => level.id === 'A1');
   const allIds = a1.units.map(unit => unit.id);
   assert.equal(isA1Complete([]), false);
   assert.equal(isA1Complete(allIds.slice(0, -1)), false);
   assert.equal(isA1Complete(allIds), true);
   assert.match(html, /const A2_RELEASE_ENABLED = true;/);
-  assert.match(html, /level\\.id !== 'A2' \\|\\| A2_RELEASE_ENABLED/,
+  assert.match(html, /level\.id !== 'A2' \|\| A2_RELEASE_ENABLED/,
     'A2 learning and review pools must include beta content without A1 completion');
   const lessonEntry = html.slice(html.indexOf('startUnitById(id, requestedLessonIndex)'), html.indexOf('startUnit(unit, lessonIndex = 0)'));
   const assessmentEntry = html.slice(html.indexOf('startUnitAssessment(unitId)'), html.indexOf('startUnitById(id, requestedLessonIndex)'));
-  assert.match(lessonEntry, /level\\.id === 'A2' && !A2_RELEASE_ENABLED/,
+  assert.match(lessonEntry, /level\.id === 'A2' && !A2_RELEASE_ENABLED/,
     'direct lesson entry must honor only the A2 release switch');
-  assert.match(assessmentEntry, /level\\.id === 'A2' && !A2_RELEASE_ENABLED/,
+  assert.match(assessmentEntry, /level\.id === 'A2' && !A2_RELEASE_ENABLED/,
     'direct assessment entry must honor only the A2 release switch');
-  assert.doesNotMatch(lessonEntry + assessmentEntry, /A2[^\\n]*isA1Complete|isA1Complete[^\\n]*A2/,
+  assert.doesNotMatch(lessonEntry + assessmentEntry, /A2[^\n]*isA1Complete|isA1Complete[^\n]*A2/,
     'A1 completion must not gate A2 lesson or assessment access');
   assert.match(html, /Beta · en revisión/);
   assert.match(html, /no ha sido validado por hablantes nativos/);
-  assert.match(html, /const unitAccessible = lvl\\.id === 'A1'[\\s\\S]*?lvl\\.id === 'A2' \\? A2_RELEASE_ENABLED/);
+  assert.match(html, /const unitAccessible = lvl\.id === 'A1'[\s\S]*?lvl\.id === 'A2' \? A2_RELEASE_ENABLED/);
   assert.ok(html.includes("['B1', 'B2'].includes(level.id)"),
     'B1 and B2 must remain blocked from direct lesson entry');
 });

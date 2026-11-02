@@ -76,7 +76,7 @@ test('classic curriculum scripts load synchronously before the main app script',
 
 test('service worker precaches both data files and invalidates the previous cache', async () => {
   const source = fs.readFileSync(require.resolve('../service-worker.js'), 'utf8');
-  assert.match(source, /bahasa-studio-v3\.8\.28/);
+  assert.match(source, /bahasa-studio-v3\.8\.29/);
   assert.match(source, /'\.\/curriculum-a1\.js'/);
   assert.match(source, /'\.\/curriculum-a2\.js'/);
   assert.match(source, /'\.\/styles\.css'/);
@@ -85,6 +85,7 @@ test('service worker precaches both data files and invalidates the previous cach
   assert.match(source, /'\.\/pronunciation-engine\.js'/);
   assert.match(source, /'\.\/writing-practice\.js'/);
   assert.match(source, /'\.\/adaptive-learning\.js'/);
+  assert.match(source, /'\.\/study-history\.js'/);
 
   const listeners = {};
   const cached = new Map();
@@ -147,7 +148,7 @@ test('the extracted stylesheet stays linked and its canonical content hash remai
   const css = fs.readFileSync(require.resolve('../styles.css'), 'utf8');
   assert.match(html, /<link rel="stylesheet" href="\.\/styles\.css">/);
   assert.doesNotMatch(html, /<style[\s>]/i);
-  assert.equal(fnv1a(css), '5ad17882', 'canonical extracted CSS content changed');
+  assert.equal(fnv1a(css), '9dbe4b62', 'canonical extracted CSS content changed');
 });
 
 test('the extraction does not alter IndexedDB, SRS, backup, or word-translation code', () => {

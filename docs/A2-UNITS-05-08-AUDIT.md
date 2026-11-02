@@ -41,6 +41,10 @@ La comparación entre el foco de cada lección, sus `vocabIds` y los ejercicios 
 
 En U7, los títulos y explicaciones de las lecciones 1–3 también mezclaban categorías de raíces que no correspondían a todas las palabras nuevas de cada lista. Se cambiaron por títulos descriptivos y explicaciones que reflejan exactamente las formas introducidas, sin alterar vocabulario ni glosas.
 
+## Aclaración adicional de la revisión de ejercicios
+
+- En U8, la explicación de la Lección 4 se amplió para incluir explícitamente `sedia → menyediakan`: esta forma sigue el mismo patrón de pérdida de la `s` inicial que `menyimpan`, `menyewa` y `menyusun`. La glosa y el ejemplo se mantienen sin cambios.
+
 ## Decisiones de esta pasada
 
 - No se alteraron las formas ni las glosas del vocabulario.

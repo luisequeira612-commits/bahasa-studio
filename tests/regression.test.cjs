@@ -59,13 +59,13 @@ test('word meaning popup renders only the example and its translation', () => {
   assert.doesNotMatch(expression, /vocabId|audioText|type:\s*['"]mc/);
 });
 
-test('A2 is available in beta only after A1 completion', () => {
+test('A2 is available in beta independently of A1 completion', () => {
   const start = html.indexOf('const CourseData =');
   const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
   assert.ok(start >= 0 && end > start, 'CourseData block must exist');
   const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
   const helper = html.match(/function isA1Complete\(completedUnits\) \{[\s\S]*?\n        \}/);
-  assert.ok(helper, 'the A1 completion rule must be centralized');
+  assert.ok(helper, 'the A1 completion rule must remain centralized for advanced levels');
   const isA1Complete = vm.runInNewContext(helper[0] + '\nisA1Complete', { CourseData: course });
   const a1 = course.levels.find(level => level.id === 'A1');
   const allIds = a1.units.map(unit => unit.id);
@@ -73,17 +73,19 @@ test('A2 is available in beta only after A1 completion', () => {
   assert.equal(isA1Complete(allIds.slice(0, -1)), false);
   assert.equal(isA1Complete(allIds), true);
   assert.match(html, /const A2_RELEASE_ENABLED = true;/);
-  assert.match(html, /level\.id !== 'A2' \|\| \(A2_RELEASE_ENABLED && isA1Complete\(App\.completedUnits\)\)/,
-    'A2 vocabulary must not enter learning and SRS pools before A1 is complete');
+  assert.match(html, /level\.id !== 'A2' \|\| A2_RELEASE_ENABLED/,
+    'A2 learning and review pools must include beta content without A1 completion');
   const lessonEntry = html.slice(html.indexOf('startUnitById(id, requestedLessonIndex)'), html.indexOf('startUnit(unit, lessonIndex = 0)'));
   const assessmentEntry = html.slice(html.indexOf('startUnitAssessment(unitId)'), html.indexOf('startUnitById(id, requestedLessonIndex)'));
-  assert.match(lessonEntry, /level\.id === 'A2' && \(!A2_RELEASE_ENABLED \|\| !isA1Complete\(App\.completedUnits\)\)/,
-    'direct lesson entry must reject A2 before A1 completion');
-  assert.match(assessmentEntry, /level\.id === 'A2' && \(!A2_RELEASE_ENABLED \|\| !isA1Complete\(App\.completedUnits\)\)/,
-    'direct assessment entry must reject A2 before A1 completion');
+  assert.match(lessonEntry, /level\.id === 'A2' && !A2_RELEASE_ENABLED/,
+    'direct lesson entry must honor only the A2 release switch');
+  assert.match(assessmentEntry, /level\.id === 'A2' && !A2_RELEASE_ENABLED/,
+    'direct assessment entry must honor only the A2 release switch');
+  assert.doesNotMatch(lessonEntry + assessmentEntry, /A2[^\n]*isA1Complete|isA1Complete[^\n]*A2/,
+    'A1 completion must not gate A2 lesson or assessment access');
   assert.match(html, /Beta · en revisión/);
   assert.match(html, /no ha sido validado por hablantes nativos/);
-  assert.match(html, /const unitAccessible = lvl\.id === 'A1'[\s\S]*?lvl\.id === 'A2' \? \(A2_RELEASE_ENABLED && a1Complete\)/);
+  assert.match(html, /const unitAccessible = lvl\.id === 'A1'[\s\S]*?lvl\.id === 'A2' \? A2_RELEASE_ENABLED/);
   assert.ok(html.includes("['B1', 'B2'].includes(level.id)"),
     'B1 and B2 must remain blocked from direct lesson entry');
 });
@@ -340,10 +342,12 @@ test('tap-to-translate includes authored exercises from multi-lesson units', () 
   assert.match(html, /const authoredExercises = \[\s*\.\.\.\(unit\.exercises \|\| \[\]\),\s*\.\.\.\(unit\.lessons \|\| \[\]\)\.flatMap\(lesson => lesson\.exercises \|\| \[\]\)\s*\]/);
 });
 
-test('A2 stays out of learning vocabulary until explicit release and assessment lookup is level-independent', () => {
-  assert.match(html, /return getLevels\(\)\.filter\(level =>[\s\S]*?level\.id !== 'A2' \|\| \(A2_RELEASE_ENABLED && isA1Complete\(App\.completedUnits\)\)/);
+test('A2 beta vocabulary and assessments are available independently of A1 completion', () => {
+  assert.match(html, /return getLevels\(\)\.filter\(level =>[\s\S]*?level\.id !== 'A2' \|\| A2_RELEASE_ENABLED/);
+  assert.doesNotMatch(html, /level\.id !== 'A2'[^\n]*isA1Complete/);
   assert.match(html, /startUnitAssessment\(unitId\) \{\s*const level = getLevels\(\)\.find\(entry => entry\.units\.some\(unit => unit\.id === unitId\)\)/);
-  assert.match(html, /\(level\.id === 'A2' && \(!A2_RELEASE_ENABLED \|\| !isA1Complete\(App\.completedUnits\)\)\)/);
+  assert.match(html, /\(level\.id === 'A2' && !A2_RELEASE_ENABLED\)/);
+  assert.doesNotMatch(html, /level\.id === 'A2'[^\n]*isA1Complete/);
 });
 
 test('v3.7.1 audit fixes remain in place without changing backup or database versions', () => {
@@ -363,7 +367,7 @@ test('v3.7.1 audit fixes remain in place without changing backup or database ver
     'voice discovery should tolerate missing language metadata without throwing');
   assert.ok(html.includes("function getLearningLevels()"));
   assert.ok(html.includes("return getLevels().filter(level =>"));
-  assert.ok(html.includes("(level.id !== 'A2' || (A2_RELEASE_ENABLED && isA1Complete(App.completedUnits)))"));
+  assert.ok(html.includes("(level.id !== 'A2' || A2_RELEASE_ENABLED)"));
   assert.ok(html.includes("function getUniqueLearningVocabulary()"));
   assert.ok(html.includes("String(word && word.idn || '').trim().toLocaleLowerCase()"));
   assert.ok(html.includes("async getDuplicateWordIds(wordId)"));

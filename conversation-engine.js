@@ -596,6 +596,7 @@
 
         updateFreeResponseCounter: function (input) {
             if (!this.freeResponseMode || !input || typeof input.value !== 'string') return;
+            if (input.value.length > 1000) input.value = input.value.slice(0, 1000);
             this.freeResponseText = input.value;
             const counter = document.getElementById('conversationFreeResponseCount');
             if (counter) counter.textContent = input.value.length + '/1000 caracteres';
@@ -622,9 +623,13 @@
                     const transcript = result.transcript.trim();
                     const existing = input.value.trim();
                     if (transcript) {
-                        input.value = existing ? existing + ' ' + transcript : transcript;
+                        const combined = existing ? existing + ' ' + transcript : transcript;
+                        const exceedsLimit = combined.length > 1000;
+                        input.value = combined.slice(0, 1000);
                         ConversationEngine.updateFreeResponseCounter(input);
-                        status.textContent = 'Transcripción provisional añadida al borrador. Revísala antes de continuar.';
+                        status.textContent = exceedsLimit
+                            ? 'Se alcanzó el límite de 1000 caracteres; la transcripción se recortó para ajustarse. Revisa el borrador.'
+                            : 'Transcripción provisional añadida al borrador. Revísala antes de continuar.';
                     }
                 }
             };

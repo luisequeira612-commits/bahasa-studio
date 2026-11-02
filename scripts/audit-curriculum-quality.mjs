@@ -122,6 +122,8 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
   let unitsWithExercises = 0;
   let lessonsWithExercises = 0;
   const exerciseTypeCounts = {};
+  const unitExerciseCounts = [];
+  const lessonExerciseCounts = [];
 
   if (!units.length) issues.push(issue('error', 'CURRICULUM_EMPTY', level, 'El currículo no contiene unidades.'));
 
@@ -232,9 +234,11 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
     if (Array.isArray(unit.lessons)) {
       unit.lessons.forEach((lesson, lessonIndex) => {
         lessonCount += 1;
+        let lessonExerciseCount = 0;
         const lessonPath = `${unitPath}.lessons[${lessonIndex}]`;
         if (!lesson || typeof lesson !== 'object') {
           issues.push(issue('error', 'LESSON_INVALID', lessonPath, 'La lección no es un objeto.'));
+          lessonExerciseCounts.push(0);
           return;
         }
         const introducedIds = Array.isArray(lesson.vocabIds) ? lesson.vocabIds : [];
@@ -286,6 +290,7 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
             }
             exerciseCount += 1;
             unitExerciseCount += 1;
+            lessonExerciseCount += 1;
             if (typeof exercise.type === 'string' && exercise.type.trim()) {
               exerciseTypeCounts[exercise.type] = (exerciseTypeCounts[exercise.type] ?? 0) + 1;
             }
@@ -321,9 +326,20 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
             }
           });
         }
+        lessonExerciseCounts.push(lessonExerciseCount);
       });
     }
+    unitExerciseCounts.push(unitExerciseCount);
     if (unitExerciseCount > 0) unitsWithExercises += 1;
+  });
+
+  const summarizeDistribution = (values) => ({
+    count: values.length,
+    min: values.length ? Math.min(...values) : 0,
+    max: values.length ? Math.max(...values) : 0,
+    average: values.length
+      ? Number((values.reduce((total, value) => total + value, 0) / values.length).toFixed(2))
+      : 0,
   });
 
   // Resolve references after collecting every vocabulary ID. Cumulative A2
@@ -428,6 +444,8 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
     unique_vocabulary_id_count: vocabIds.size,
     exercise_count: exerciseCount,
     exercise_type_counts: exerciseTypeCounts,
+    unit_exercise_distribution: summarizeDistribution(unitExerciseCounts),
+    lesson_exercise_distribution: summarizeDistribution(lessonExerciseCounts),
     units_with_exercises: unitsWithExercises,
     units_without_exercises: units.length - unitsWithExercises,
     lesson_count: lessonCount,

@@ -9,14 +9,14 @@ const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
 
 test('A2 is enabled in beta independently of A1 completion', () => {
   assert.match(html, /const A2_RELEASE_ENABLED = true;/);
-  assert.match(html, /level\\.id !== 'A2' \\|\\| A2_RELEASE_ENABLED/);
-  assert.doesNotMatch(html, /A2[^\\n]{0,100}isA1Complete|isA1Complete[^\\n]{0,100}A2/);
+  assert.match(html, /level\.id !== 'A2' \|\| A2_RELEASE_ENABLED/);
+  assert.doesNotMatch(html, /A2[^\n]{0,100}isA1Complete|isA1Complete[^\n]{0,100}A2/);
 });
 
 test('A2 course visibility and lesson entry points only honor the release flag', () => {
-  assert.match(html, /if \\(!A2_RELEASE_ENABLED\\) return;/);
-  assert.match(html, /: lvl\\.id === 'A2' \\? A2_RELEASE_ENABLED : true/);
-  const guardedEntryPoints = [...html.matchAll(/level\\.id === 'A2' && !A2_RELEASE_ENABLED/g)];
+  assert.match(html, /if \(!A2_RELEASE_ENABLED\) return;/);
+  assert.match(html, /: lvl\.id === 'A2' \\? A2_RELEASE_ENABLED : true/);
+  const guardedEntryPoints = [...html.matchAll(/level\.id === 'A2' && !A2_RELEASE_ENABLED/g)];
   assert.equal(guardedEntryPoints.length, 3);
 });
 

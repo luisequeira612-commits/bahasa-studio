@@ -452,5 +452,5 @@ test('learner skill profile uses the same ten-attempt confidence threshold as ad
   assert.match(html, /porcentajes con menos de diez intentos son orientativos/i);
   assert.match(html, /stats\.attempts < 10/);
   assert.match(html, /attempts < 10/);
-  assert.match(html, /datos iniciales \(mínimo 5\)/);
+  assert.match(html, /datos iniciales \(mínimo 10\)/);
 });

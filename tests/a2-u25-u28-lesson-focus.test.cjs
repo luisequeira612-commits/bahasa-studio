@@ -45,7 +45,7 @@ test('A2 U25-U28 lesson explanations name every new vocabulary item', () => {
 
 test('A2 U25-U28 examples and exercises do not use vocabulary from a later lesson', () => {
   const normalize = value => String(value || '').toLocaleLowerCase().normalize('NFD')
-    .replace(/\\p{M}/gu, '').replace(/[^\\p{L}\\p{N}]+/gu, ' ').replace(/\\s+/g, ' ').trim();
+    .replace(/\p{M}/gu, '').replace(/[^\p{L}\p{N}]+/gu, ' ').replace(/\s+/g, ' ').trim();
   for (const unit of units.slice(24, 28)) {
     for (let lessonIndex = 0; lessonIndex < unit.lessons.length; lessonIndex++) {
       const lesson = unit.lessons[lessonIndex];

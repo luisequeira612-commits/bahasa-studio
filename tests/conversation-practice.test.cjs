@@ -664,6 +664,7 @@ test('late speech results cannot overwrite a newer draft after switching respons
   elements.conversationFreeResponse = currentInput;
   elements.conversationSpeechStatus = currentStatus;
   elements.conversationFreeResponseCount = currentCounter;
+  engine.updateFreeResponseCounter(currentInput);
 
   recognition.onresult({ results: [[{ transcript: 'texto atrasado' }]] });
   recognition.onerror({ error: 'no-speech' });

@@ -2902,7 +2902,6 @@ Requisitos:
                 const container = document.getElementById('courseContainer');
                 container.innerHTML = '';
                 const a1 = CourseData.levels.find(level => level.id === 'A1');
-                const a1Complete = isA1Complete(this.completedUnits);
                 const nextA1Unit = a1 ? a1.units.find(unit => !this.completedUnits.includes(unit.id)) : null;
 
                 getLevels().forEach(lvl => {
@@ -3075,7 +3074,7 @@ Requisitos:
                 const a1Level = getLearningLevels().find(level => level.id === 'A1');
                 const nextA1Unit = a1Level && a1Level.units.find(unit => !this.completedUnits.includes(unit.id));
                 for (const level of getLearningLevels()) {
-                    if (level.id === 'A2' && (!A2_RELEASE_ENABLED || !a1Complete)) continue;
+                    if (level.id === 'A2' && !A2_RELEASE_ENABLED) continue;
                     if (!['A1', 'A2'].includes(level.id)) continue;
                     for (const unit of level.units) {
                         if (this.completedUnits.includes(unit.id)) continue;

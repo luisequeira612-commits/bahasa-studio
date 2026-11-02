@@ -491,7 +491,7 @@ test('warns when accepted alternatives duplicate each other or the canonical ans
   });
 
   assert.equal(report.error_count, 0);
-  assert.equal(report.warning_count, 4);
+  assert.equal(report.warning_count, 5);
   assert.ok(report.issues.some((item) =>
     item.code === 'ACCEPTED_ANSWER_DUPLICATE' &&
     item.path.endsWith('.acceptedAnswers[1]')

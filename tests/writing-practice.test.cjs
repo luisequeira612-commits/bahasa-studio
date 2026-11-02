@@ -7,10 +7,10 @@ const test = require('node:test');
 
 const source = fs.readFileSync(path.join(__dirname, '..', 'writing-practice.js'), 'utf8');
 
-test('writing practice offers three A1 and three A2 prompts', () => {
+test('writing practice offers four A1 and four A2 prompts', () => {
   const levels = [...source.matchAll(/level: '(A1|A2)'/g)].map(match => match[1]);
-  assert.equal(levels.filter(level => level === 'A1').length, 3);
-  assert.equal(levels.filter(level => level === 'A2').length, 3);
+  assert.equal(levels.filter(level => level === 'A1').length, 4);
+  assert.equal(levels.filter(level => level === 'A2').length, 4);
 });
 
 test('writing drafts remain in the current page and are never persisted', () => {
@@ -59,7 +59,7 @@ test('A2 writing prompts stay locked until all A1 units are completed', () => {
   } };
   vm.runInNewContext(source, context);
   const practice = context.window.WritingPractice;
-  assert.deepEqual(Array.from(practice.getAvailableTasks(), task => task.level), ['A1', 'A1', 'A1']);
+  assert.deepEqual(Array.from(practice.getAvailableTasks(), task => task.level), ['A1', 'A1', 'A1', 'A1']);
   assert.equal(practice.getTask('budget'), null);
 });
 
@@ -71,7 +71,7 @@ test('A2 writing prompts unlock when every A1 unit is complete', () => {
   } };
   vm.runInNewContext(source, context);
   const levels = context.window.WritingPractice.getAvailableTasks().map(task => task.level);
-  assert.deepEqual(levels, ['A1', 'A1', 'A1', 'A2', 'A2', 'A2']);
+  assert.deepEqual(levels, ['A1', 'A1', 'A1', 'A1', 'A2', 'A2', 'A2', 'A2']);
 });
 
 test('writing task lookup cannot bypass the A2 progression gate', () => {
@@ -104,4 +104,12 @@ test('A2 writing support vocabulary is rendered as a visible reference list', ()
   assert.match(source, /id: 'budget'[\s\S]*?vocabulary: \[/);
   assert.match(source, /id: 'online-meeting'[\s\S]*?vocabulary: \[/);
   assert.match(source, /id: 'compare-decisions'[\s\S]*?vocabulary: \[/);
+});
+
+
+test('progressive writing includes a routine prompt and an A2 chronological narrative', () => {
+  assert.match(source, /id: 'study-day'[\\s\\S]*?level: 'A1'[\\s\\S]*?3–4 frases|id: 'study-day'/);
+  assert.match(source, /id: 'recent-experience'[\\s\\S]*?level: 'A2'/);
+  assert.match(source, /vocabulary: \\['kemarin', 'pertama', 'kemudian', 'setelah itu', 'akhirnya'/);
+  assert.match(source, /Cuenta algo que hiciste ayer/);
 });

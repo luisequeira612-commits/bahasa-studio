@@ -233,6 +233,8 @@
             <div class="profile-xp-row"><span>Experiencia total</span><strong id="totalExpBadge" class="badge">0 XP</strong></div>
             <div class="profile-xp-row"><span>Avance de A1</span><strong id="courseProgressText">0% · 0/32 unidades</strong></div>
             <div class="progress-bar" role="progressbar" aria-label="Progreso del nivel A1" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="courseProgressFill" class="progress-fill" style="width:0%;"></div></div>
+            <div class="profile-xp-row"><span>Avance de A2 <span class="profile-muted">(beta)</span></span><strong id="a2CourseProgressText">0% · 0/40 unidades</strong></div>
+            <div class="progress-bar" role="progressbar" aria-label="Progreso del nivel A2 en beta" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="a2CourseProgressFill" class="progress-fill" style="width:0%;"></div></div>
         </section>
         <section class="card" id="studyActivityDashboard">
             <h2>Actividad de estudio</h2>
@@ -2896,6 +2898,18 @@ Requisitos:
                 if (fill) fill.style.width = percent + '%';
                 if (label) label.textContent = `${percent}% · ${completed}/${total} unidades`;
                 if (bar) bar.setAttribute('aria-valuenow', String(percent));
+
+                const a2 = CourseData.levels.find(level => level.id === 'A2');
+                const a2Total = a2 ? a2.units.length : 0;
+                const a2Completed = a2 ? a2.units.filter(unit => this.completedUnits.includes(unit.id)).length : 0;
+                const a2Percent = a2Total ? Math.round(a2Completed / a2Total * 100) : 0;
+                const a2Fill = document.getElementById('a2CourseProgressFill');
+                const a2Label = document.getElementById('a2CourseProgressText');
+                const a2Bar = a2Fill && a2Fill.parentElement;
+                if (a2Fill) a2Fill.style.width = a2Percent + '%';
+                if (a2Label) a2Label.textContent = a2Percent + '% · ' + a2Completed + '/' + a2Total + ' unidades';
+                if (a2Bar) a2Bar.setAttribute('aria-valuenow', String(a2Percent));
+
                 this.updateStudyDashboard();
             },
             renderCourseRoute() {

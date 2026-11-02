@@ -532,6 +532,32 @@ test('reports exercise modality and unit/lesson coverage metrics', () => {
 
   assert.equal(report.exercise_count, 3);
   assert.deepEqual(report.exercise_type_counts, { mc: 1, write: 1, listen: 1 });
+  assert.deepEqual(report.exercise_type_distribution, {
+    listen: {
+      total: 1,
+      units_with_type: 1,
+      units_without_type: 1,
+      min_per_unit: 0,
+      max_per_unit: 1,
+      average_per_unit: 0.5,
+    },
+    mc: {
+      total: 1,
+      units_with_type: 1,
+      units_without_type: 1,
+      min_per_unit: 0,
+      max_per_unit: 1,
+      average_per_unit: 0.5,
+    },
+    write: {
+      total: 1,
+      units_with_type: 1,
+      units_without_type: 1,
+      min_per_unit: 0,
+      max_per_unit: 1,
+      average_per_unit: 0.5,
+    },
+  });
   assert.equal(report.units_with_exercises, 1);
   assert.equal(report.units_without_exercises, 1);
   assert.equal(report.lesson_count, 2);

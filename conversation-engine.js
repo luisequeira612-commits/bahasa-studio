@@ -617,7 +617,12 @@
             recognition.interimResults = false;
             button.disabled = true;
             status.textContent = 'Escuchando… responde en indonesio.';
+            const isCurrentDraft = function () {
+                return ConversationEngine.freeResponseMode &&
+                    document.getElementById('conversationFreeResponse') === input;
+            };
             recognition.onresult = function (event) {
+                if (!isCurrentDraft()) return;
                 const result = event.results && event.results[0] && event.results[0][0];
                 if (result && result.transcript) {
                     const transcript = result.transcript.trim();
@@ -634,6 +639,7 @@
                 }
             };
             recognition.onerror = function (event) {
+                if (!isCurrentDraft()) return;
                 const messages = {
                     'not-allowed': 'No se concedió permiso para usar el micrófono. Puedes escribir tu respuesta.',
                     'no-speech': 'No se detectó voz. Inténtalo otra vez.',

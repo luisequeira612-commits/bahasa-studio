@@ -100,6 +100,41 @@ test('each guided conversation turn can be answered freely before a model exampl
   assert.equal(engine.freeResponseTurns, 1);
 });
 
+
+test('learners can switch from free response back to guided choices without losing the draft', () => {
+  const engine = sandbox.window.ConversationEngine;
+  engine.start('greetings');
+  engine.useFreeResponse();
+  elements.conversationFreeResponse = { value: 'Halo, saya baik.' };
+
+  engine.useGuidedResponse();
+  assert.equal(engine.freeResponseMode, false);
+  assert.equal(engine.freeResponseText, 'Halo, saya baik.');
+  assert.match(elements.conversationPracticeArea.innerHTML, /data-conversation-choice/);
+  assert.equal(engine.answered, false);
+  assert.equal(engine.score, 0);
+
+  engine.useFreeResponse();
+  assert.match(elements.conversationPracticeArea.innerHTML,
+    /<textarea id="conversationFreeResponse"[^>]*>Halo, saya baik\.<\/textarea>/);
+  assert.match(elements.conversationPracticeArea.innerHTML, /data-conversation-guided/);
+  assert.equal(engine.score, 0);
+  assert.deepEqual(recordedAnswers, []);
+});
+
+test('switching response modes does not complete or score a conversation turn', () => {
+  const engine = sandbox.window.ConversationEngine;
+  recordedAnswers.length = 0;
+  engine.start('restaurant');
+  engine.useFreeResponse();
+  elements.conversationFreeResponse = { value: 'Saya mau nasi goreng.' };
+  engine.useGuidedResponse();
+  assert.equal(engine.answered, false);
+  assert.equal(engine.freeResponseTurns, 0);
+  assert.equal(engine.score, 0);
+  assert.deepEqual(recordedAnswers, []);
+});
+
 test('free response cannot reveal an example before the learner attempts an answer', () => {
   const engine = sandbox.window.ConversationEngine;
   engine.start('greetings');

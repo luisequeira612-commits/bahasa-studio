@@ -517,7 +517,7 @@
             const example = turn.choices.find(function (choice) { return choice.correct; });
             const responsePanel = this.freeResponseRevealed
                 ? '<div class="card" style="margin-top:12px;"><p><strong>Tu respuesta</strong></p><p style="white-space:pre-wrap;">' + escapeHtml(this.freeResponseText) + '</p><p><strong>Un ejemplo posible</strong></p><p>' + escapeHtml(example.text) + '</p><p style="color:var(--text-muted);">' + escapeHtml(example.translation) + ' Otras respuestas también pueden ser correctas.</p></div>'
-                : '<label for="conversationFreeResponse" style="display:block;margin:12px 0 6px;">Tu respuesta en indonesio</label><textarea id="conversationFreeResponse" rows="3" maxlength="1000" style="width:100%;box-sizing:border-box;" placeholder="Escribe o dicta lo que responderías…"></textarea><button class="btn btn-outline btn-sm" type="button" data-conversation-speech>🎙️ Dictar respuesta (opcional)</button><p id="conversationSpeechStatus" role="status" aria-live="polite" style="font-size:0.85rem;color:var(--text-muted);">El micrófono solo se activa al pulsar. El navegador puede procesar el audio; la app no guarda grabaciones.</p><button class="btn" type="button" data-conversation-free-example>Ver un ejemplo posible</button>';
+: '<label for="conversationFreeResponse" style="display:block;margin:12px 0 6px;">Tu respuesta en indonesio</label><textarea id="conversationFreeResponse" rows="3" maxlength="1000" style="width:100%;box-sizing:border-box;" placeholder="Escribe o dicta lo que responderías…">' + escapeHtml(this.freeResponseText) + '</textarea><button class="btn btn-outline btn-sm" type="button" data-conversation-speech>🎙️ Dictar respuesta (opcional)</button><p id="conversationSpeechStatus" role="status" aria-live="polite" style="font-size:0.85rem;color:var(--text-muted);">El micrófono solo se activa al pulsar. El navegador puede procesar el audio; la app no guarda grabaciones.</p><button class="btn" type="button" data-conversation-free-example>Ver un ejemplo posible</button>';
             practice.innerHTML = '<div class="card" style="padding:14px;">' +
                 '<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;">' +
                 '<button class="btn btn-outline btn-sm" type="button" data-conversation-back>← Escenarios</button>' +
@@ -528,7 +528,8 @@
                 '<p style="font-size:0.85rem;color:var(--text-muted);margin:0;">' + escapeHtml(turn.translation) + '</p>' +
                 '<button class="btn btn-outline btn-sm" style="margin-top:10px;" type="button" data-conversation-audio>🔊 Escuchar frase</button></div>' +
                 '<h3>' + escapeHtml(turn.prompt) + '</h3>' +
-                '<p style="color:var(--text-muted);font-size:0.85rem;">Intenta responder con tus propias palabras antes de ver el ejemplo. Esta práctica no se califica automáticamente.</p>' +
+                '<button class="btn btn-outline btn-sm" type="button" data-conversation-guided>← Volver a opciones guiadas</button>' +
+                '<p style="color:var(--text-muted);font-size:0.85rem;">Intenta responder con tus propias palabras antes de ver el ejemplo. Esta práctica no se califica automáticamente. Puedes cambiar de modalidad sin perder tu borrador.</p>' +
                 responsePanel +
                 '<button class="btn" type="button" data-conversation-next ' + (this.freeResponseRevealed ? '' : 'disabled') + ' style="margin-top:12px;width:100%;">Continuar</button></div>';
         },
@@ -536,8 +537,18 @@
         useFreeResponse: function () {
             if (this.answered || !this.currentScenario) return;
             this.freeResponseMode = true;
-            this.freeResponseText = '';
             this.freeResponseRevealed = false;
+            this.renderStep();
+        },
+
+        useGuidedResponse: function () {
+            if (!this.freeResponseMode || this.answered || !this.currentScenario) return;
+            const input = document.getElementById('conversationFreeResponse');
+            if (input && typeof input.value === 'string') this.freeResponseText = input.value;
+            this.freeResponseMode = false;
+            this.freeResponseRevealed = false;
+            this.answered = false;
+            this.selectedChoice = null;
             this.renderStep();
         },
 
@@ -708,6 +719,7 @@
         const choiceButton = target.closest('[data-conversation-choice]');
         if (choiceButton) return ConversationEngine.choose(Number(choiceButton.dataset.conversationChoice));
         if (target.closest('[data-conversation-free]')) return ConversationEngine.useFreeResponse();
+        if (target.closest('[data-conversation-guided]')) return ConversationEngine.useGuidedResponse();
         if (target.closest('[data-conversation-free-example]')) return ConversationEngine.showFreeExample();
         const speechButton = target.closest('[data-conversation-speech]');
         if (speechButton) return ConversationEngine.captureFreeResponse(speechButton);

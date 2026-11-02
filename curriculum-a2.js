@@ -7946,8 +7946,8 @@ window.BAHASA_CURRICULUM_A2 = {
                                             "vocabId": "a2u30_aktor",
                                             "type": "write",
                                             "prompt": "Escribe una frase usando aktor.",
-                                            "hint": "Puedes tomar como modelo: Aktor itu memerankan tokoh utama.",
-                                            "modelAnswer": "Aktor itu memerankan tokoh utama.",
+                                            "hint": "Puedes tomar como modelo: Aktor itu sangat terkenal.",
+                                            "modelAnswer": "Aktor itu sangat terkenal.",
                                             "explanation": "Usa el vocabulario en una oración completa."
                                         }
                                     ]

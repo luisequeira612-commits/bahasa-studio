@@ -548,6 +548,7 @@ button:disabled, button:disabled:active { transform:none; border-bottom-width:4p
     display:block; width:min(100%,24px); min-height:2px; border-radius:6px 6px 2px 2px;
     background:var(--accent); opacity:.88;
 }
+.study-history-bar--activity-only { background:var(--text-muted); opacity:.75; }
 .study-history-day-label { color:var(--text-muted); font-size:.68rem; line-height:1.2; }
 #studyHistoryEmpty[hidden] { display:none; }
 @media (max-width:360px) {

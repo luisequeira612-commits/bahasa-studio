@@ -76,7 +76,7 @@ test('classic curriculum scripts load synchronously before the main app script',
 
 test('service worker precaches both data files and invalidates the previous cache', async () => {
   const source = fs.readFileSync(require.resolve('../service-worker.js'), 'utf8');
-  assert.match(source, /bahasa-studio-v3\.8\.38/);
+  assert.match(source, /bahasa-studio-v3\.8\.39/);
   assert.match(source, /'\.\/curriculum-a1\.js'/);
   assert.match(source, /'\.\/curriculum-a2\.js'/);
   assert.match(source, /'\.\/styles\.css'/);
@@ -148,7 +148,7 @@ test('the extracted stylesheet stays linked and its canonical content hash remai
   const css = fs.readFileSync(require.resolve('../styles.css'), 'utf8');
   assert.match(html, /<link rel="stylesheet" href="\.\/styles\.css">/);
   assert.doesNotMatch(html, /<style[\s>]/i);
-  assert.equal(fnv1a(css), '9dbe4b62', 'canonical extracted CSS content changed');
+  assert.equal(fnv1a(css), '6cd4eba6', 'canonical extracted CSS content changed');
 });
 
 test('the extraction does not alter IndexedDB, SRS, backup, or word-translation code', () => {

@@ -56,7 +56,7 @@
             level: 'A2',
             title: 'Contar una experiencia reciente',
             situation: 'Cuenta algo que hiciste ayer. Ordena los acontecimientos desde el principio hasta el final y añade algunos detalles. Intenta escribir cinco a siete frases.',
-            vocabulary: ['kemarin', 'pertama', 'kemudian', 'setelah itu', 'akhirnya', 'membeli', 'pulang'],
+            vocabulary: ['kemarin', 'pertama', 'kemudian', 'setelah itu', 'akhirnya', 'membeli'],
             checklist: ['Dije cuándo ocurrió.', 'Expliqué qué hice primero.', 'Ordené al menos dos acontecimientos.', 'Añadí un detalle sobre una persona o un lugar.', 'Terminé contando cómo acabó la experiencia.'],
             example: 'Kemarin saya pergi ke pasar. Pertama, saya membeli buah. Kemudian, saya bertemu teman. Setelah itu, kami minum kopi. Akhirnya, saya pulang naik bus.'
         },

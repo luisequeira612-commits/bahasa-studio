@@ -655,7 +655,6 @@
         next: function () {
             if (!this.answered || !this.currentScenario) return;
             if (this.freeResponseMode) {
-                this.freeResponseMode = false;
                 this.freeResponseText = '';
                 this.freeResponseRevealed = false;
                 this.freeResponseHintVisible = false;

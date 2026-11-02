@@ -561,6 +561,8 @@
 
         toggleFreeHint: function () {
             if (!this.freeResponseMode || this.freeResponseRevealed) return;
+            const input = document.getElementById('conversationFreeResponse');
+            if (input && typeof input.value === 'string') this.freeResponseText = input.value;
             this.freeResponseHintVisible = !this.freeResponseHintVisible;
             this.renderStep();
         },

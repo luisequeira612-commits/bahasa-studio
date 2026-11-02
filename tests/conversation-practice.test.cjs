@@ -31,10 +31,11 @@ vm.runInNewContext(source, sandbox);
 
 const scenarios = sandbox.window.ConversationEngine.scenarios;
 
-test('the tutor includes six A1 situations and three A2 situations behind the A1 completion gate', () => {
+test('the tutor makes all A1 and A2 conversation situations available', () => {
   const engine = sandbox.window.ConversationEngine;
   assert.deepEqual(Array.from(engine.getAvailableScenarios(), scenario => scenario.id), [
-    'greetings', 'restaurant', 'shopping', 'travel', 'friends', 'help'
+    'greetings', 'restaurant', 'shopping', 'travel', 'friends', 'help',
+    'organizar-evento', 'pengalaman-kerja', 'layanan-digital'
   ]);
   assert.deepEqual(Array.from(scenarios.filter(scenario => scenario.level === 'A2'), scenario => scenario.id), [
     'organizar-evento', 'pengalaman-kerja', 'layanan-digital'
@@ -275,20 +276,14 @@ test('learners can retry only the guided turns they answered incorrectly', () =>
 });
 
 
-test('A2 conversations remain hidden and cannot be started until every A1 unit is complete', () => {
+test('A2 conversations can be opened without completing all A1 units', () => {
   const engine = sandbox.window.ConversationEngine;
   sandbox.window.CourseData = { levels: [{ id: 'A1', units: [{ id: 'a1_u1' }, { id: 'a1_u2' }] }] };
   sandbox.window.App.completedUnits = ['a1_u1'];
-  assert.equal(engine.getAvailableScenarios().some(scenario => scenario.level === 'A2'), false);
-  engine.currentScenario = null;
-  engine.start('organizar-evento');
-  assert.equal(engine.currentScenario, null, 'direct starts must respect the level gate');
-  engine.renderScenarioList();
-  assert.match(elements.conversationScenarioList.innerHTML, /Completa las 32 unidades de A1/);
-  sandbox.window.App.completedUnits = ['a1_u1', 'a1_u2'];
   assert.equal(engine.getAvailableScenarios().filter(scenario => scenario.level === 'A2').length, 3);
   engine.start('organizar-evento');
-  assert.equal(engine.currentScenario.id, 'organizar-evento');
+  assert.equal(engine.currentScenario.id, 'organizar-evento',
+    'A2 conversation access must not depend on A1 completion');
 });
 
 test('A2 conversation prompts contain usable context, three choices, and one intended response per turn', () => {

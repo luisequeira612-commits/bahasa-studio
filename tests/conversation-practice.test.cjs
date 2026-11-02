@@ -713,3 +713,44 @@ test('leaving free-response mode aborts active microphone recognition immediatel
   recognition.onresult({ results: [[{ transcript: 'texto tardío' }]] });
   assert.equal(engine.freeResponseText, 'Saya sedang belajar');
 });
+
+
+test('learner can cancel voice dictation without losing the current draft', () => {
+  const engine = sandbox.window.ConversationEngine;
+  engine.start('greetings');
+  engine.useFreeResponse();
+  const input = { value: 'Saya ingin belajar' };
+  const status = { textContent: '' };
+  const counter = { textContent: '' };
+  const cancelButton = { disabled: true };
+  elements.conversationFreeResponse = input;
+  elements.conversationSpeechStatus = status;
+  elements.conversationFreeResponseCount = counter;
+  elements.conversationSpeechCancel = cancelButton;
+  let recognition;
+  let abortCalls = 0;
+  sandbox.window.SpeechRecognition = class {
+    constructor() { recognition = this; }
+    start() {}
+    abort() {
+      abortCalls += 1;
+      if (this.onerror) this.onerror({ error: 'aborted' });
+      if (this.onend) this.onend();
+    }
+  };
+  const speechButton = { disabled: false, isConnected: true };
+
+  engine.captureFreeResponse(speechButton);
+  assert.equal(cancelButton.disabled, false);
+  assert.equal(speechButton.disabled, true);
+
+  engine.cancelFreeResponseRecognition();
+
+  assert.equal(abortCalls, 1);
+  assert.equal(engine.activeFreeRecognition, null);
+  assert.equal(engine.activeFreeRecognitionButton, null);
+  assert.equal(cancelButton.disabled, true);
+  assert.equal(speechButton.disabled, false);
+  assert.equal(input.value, 'Saya ingin belajar');
+  assert.equal(status.textContent, 'Dictado cancelado. Tu borrador se conserva.');
+});

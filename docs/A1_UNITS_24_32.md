@@ -41,3 +41,10 @@ Se hizo una pasada editorial de los 90 lemas/glosas y sus ejemplos bilingües de
 5. Mantener separadas las cuestiones de naturalidad, registro y adecuación de nivel que no pueden confirmarse sin revisión competente. KBBI es opcional y no es puerta de salida.
 
 **Estado lingüístico:** U24–U32 tienen una pasada editorial asistida y correcciones concretas, pero no están certificadas por hablante nativo ni por revisión experta. Esto no impide continuar con pruebas, mejoras deterministas y correcciones justificadas.
+
+
+## Segunda pasada — cobertura explícita del vocabulario en U24–U32
+
+La revisión detectó 13 términos cuyo nombre no aparecía en los objetivos ni en las explicaciones de los planes de lección: pensil, menulis, hobi, sepak bola, melukis, menonton, mengunjungi, paspor, tiket, pesawat, kapal, hidung, hati-hati y sampai jumpa. Se añadieron aclaraciones breves en los planes temáticos correspondientes para que el estudiante encuentre el significado y el uso del vocabulario dentro de la lección, no solo en la lista o en los ejercicios.
+
+Se añadió una prueba que recorre los 90 términos de U24–U32 y exige que cada uno aparezca en el título, objetivo o explicación de algún plan de lección. No se cambiaron las palabras, glosas, ejemplos, IDs, ejercicios ni la estructura de IndexedDB o del backup v3. No es certificación lingüística nativa.

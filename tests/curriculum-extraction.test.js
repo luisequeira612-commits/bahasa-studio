@@ -50,7 +50,7 @@ test('A1/A2 canonical curriculum integrity hashes and structure remain pinned', 
   assert.equal(a1.units.length, 32);
   assert.equal(a2.units.length, 40);
   assert.equal(fnv1a(JSON.stringify(a1)), '01051338', 'A1 canonical-data hash changed');
-  assert.equal(fnv1a(JSON.stringify(a2)), 'fd97524d', 'A2 canonical-data hash changed');
+  assert.equal(fnv1a(JSON.stringify(a2)), '131a9f29', 'A2 canonical-data hash changed');
   assert.deepEqual(counts(a1), { units: 32, lessons: 91, exercises: 477, vocabulary: 329 });
   const u24 = a1.units.find(unit => unit.id === 'a1_u24');
   const eraser = u24.vocab.find(item => item.id === 'v388');
@@ -76,7 +76,7 @@ test('classic curriculum scripts load synchronously before the main app script',
 
 test('service worker precaches both data files and invalidates the previous cache', async () => {
   const source = fs.readFileSync(require.resolve('../service-worker.js'), 'utf8');
-  assert.match(source, /bahasa-studio-v3\.8\.31/);
+  assert.match(source, /bahasa-studio-v3\.8\.32/);
   assert.match(source, /'\.\/curriculum-a1\.js'/);
   assert.match(source, /'\.\/curriculum-a2\.js'/);
   assert.match(source, /'\.\/styles\.css'/);

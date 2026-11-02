@@ -54,3 +54,10 @@ Se detectó un error ortográfico evidente en el objetivo de la Lección 3: «Ha
 - U16, Lección 4: el objetivo mencionaba el tiempo, pero las formas enseñadas son `berfoto`, `pemandangan` y `menyenangkan`. Se sustituyó por «Describe una experiencia mediante fotografías y paisajes».
 - Se añadieron pruebas de regresión que fijan títulos/objetivos y los IDs de vocabulario asociados.
 - Son ajustes de coherencia didáctica en español; no constituyen validación lingüística del indonesio.
+
+
+## Segunda pasada — ejemplo de reunión en U15
+
+En U15, Lección 4, la actividad de escucha asociada a pertemuan (reunión) usaba la respuesta «Kami belajar pertemuan», que vinculaba el sustantivo reunión con belajar (estudiar) y no expresaba el sentido esperado. Se sustituyó por «Ada pertemuan hari ini» (Hay una reunión hoy). También se alinearon el objetivo y la explicación de la lección con cancelar planes, acompañar a alguien y hablar de una reunión.
+
+Se añadió una regresión que fija la relación entre el vocabulario pertemuan, el objetivo de la lección y el ejemplo de escucha. No se modifica el vocabulario ni se afirma validación nativa; es una corrección de coherencia semántica interna.

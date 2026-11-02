@@ -16,7 +16,7 @@ test('A2 is enabled in beta independently of A1 completion', () => {
 test('A2 course visibility and lesson entry points only honor the release flag', () => {
   assert.match(html, /if \(!A2_RELEASE_ENABLED\) return;/);
   assert.match(html, /: lvl\.id === 'A2' \? A2_RELEASE_ENABLED : true/);
-  const guardedEntryPoints = [...html.matchAll(/level\.id === 'A2' && !A2_RELEASE_ENABLED/g)];
+  const guardedEntryPoints = [...html.matchAll(/\(level\.id === 'A2' && !A2_RELEASE_ENABLED\)/g)];
   assert.equal(guardedEntryPoints.length, 3);
 });
 

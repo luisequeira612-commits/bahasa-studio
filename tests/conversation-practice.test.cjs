@@ -546,3 +546,62 @@ test('free-response learners can reveal and hide a hint before seeing the exampl
   assert.equal(engine.freeResponseHintVisible, false);
   assert.match(elements.conversationPracticeArea.innerHTML, /Un ejemplo posible/);
 });
+
+
+test('free-response character counter follows typing and keeps the draft only in the active session', () => {
+  const engine = sandbox.window.ConversationEngine;
+  engine.start('greetings');
+  engine.useFreeResponse();
+  const counter = { textContent: '' };
+  elements.conversationFreeResponseCount = counter;
+  const input = { value: 'Halo, apa kabar?' };
+  elements.conversationFreeResponse = input;
+
+  engine.updateFreeResponseCounter(input);
+  assert.equal(counter.textContent, '16/1000 caracteres');
+  assert.equal(engine.freeResponseText, 'Halo, apa kabar?');
+
+  input.value = 'Saya baik. Terima kasih.';
+  engine.updateFreeResponseCounter(input);
+  assert.equal(counter.textContent, '24/1000 caracteres');
+  assert.equal(engine.freeResponseText, input.value);
+
+  engine.showFreeExample();
+  assert.match(elements.conversationPracticeArea.innerHTML, /Saya baik\. Terima kasih\./);
+  assert.equal(engine.score, 0, 'the character counter must not introduce automatic scoring');
+});
+
+
+test('speech dictation appends to the current draft and updates the live character counter', () => {
+  const engine = sandbox.window.ConversationEngine;
+  engine.start('greetings');
+  engine.useFreeResponse();
+  const input = { value: 'Saya ingin belajar' };
+  const status = { textContent: '' };
+  const counter = { textContent: '' };
+  elements.conversationFreeResponse = input;
+  elements.conversationSpeechStatus = status;
+  elements.conversationFreeResponseCount = counter;
+  let recognition;
+  sandbox.window.SpeechRecognition = class {
+    constructor() { recognition = this; }
+    start() {}
+  };
+  const button = { disabled: false, isConnected: true };
+
+  engine.captureFreeResponse(button);
+  recognition.onresult({ results: [[{ transcript: 'bahasa Indonesia' }]] });
+  assert.equal(input.value, 'Saya ingin belajar bahasa Indonesia');
+  assert.equal(engine.freeResponseText, input.value);
+  assert.equal(counter.textContent, input.value.length + '/1000 caracteres');
+  assert.match(status.textContent, /añadida al borrador/);
+
+  engine.captureFreeResponse(button);
+  recognition.onresult({ results: [[{ transcript: 'setiap hari' }]] });
+  assert.equal(input.value, 'Saya ingin belajar bahasa Indonesia setiap hari');
+  assert.equal(counter.textContent, input.value.length + '/1000 caracteres');
+
+  engine.captureFreeResponse(button);
+  recognition.onresult({ results: [[{ transcript: '   ' }]] });
+  assert.equal(input.value, 'Saya ingin belajar bahasa Indonesia setiap hari', 'empty recognition must not change the draft');
+});

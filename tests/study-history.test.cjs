@@ -72,9 +72,9 @@ test('recent day series fills missing dates with zeros and follows local calenda
     api.record('points', 10, first);
     api.record('lesson', 0, last);
     const days = api.getRecentDays(3, last);
-    assert.deepEqual(days.map(day => day.date), ['2026-11-01', '2026-11-02', '2026-11-03']);
-    assert.deepEqual(days.map(day => day.xp), [10, 0, 0]);
-    assert.deepEqual(days.map(day => day.lessons), [0, 0, 1]);
+    assert.deepEqual(Array.from(days, day => day.date), ['2026-11-01', '2026-11-02', '2026-11-03']);
+    assert.deepEqual(Array.from(days, day => day.xp), [10, 0, 0]);
+    assert.deepEqual(Array.from(days, day => day.lessons), [0, 0, 1]);
 });
 
 test('malformed storage is ignored and storage failures never interrupt study activity', () => {

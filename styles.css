@@ -532,3 +532,25 @@ button:disabled, button:disabled:active { transform:none; border-bottom-width:4p
     #view-lesson .matching-columns { gap:6px; }
     #view-lesson .match-option-btn { padding:8px 5px; font-size:.8rem; }
 }
+
+
+/* Historial local de actividad: compacto y legible en pantallas táctiles. */
+.study-history-summary { margin:10px 0 12px; font-size:.88rem; font-weight:700; line-height:1.5; }
+.study-history-chart {
+    display:flex; align-items:stretch; gap:5px; width:100%; height:116px;
+    padding:8px 4px 0; border-bottom:1px solid var(--border);
+}
+.study-history-day {
+    display:flex; flex:1 1 0; min-width:0; flex-direction:column;
+    align-items:center; justify-content:flex-end; gap:5px;
+}
+.study-history-bar {
+    display:block; width:min(100%,24px); min-height:2px; border-radius:6px 6px 2px 2px;
+    background:var(--accent); opacity:.88;
+}
+.study-history-day-label { color:var(--text-muted); font-size:.68rem; line-height:1.2; }
+#studyHistoryEmpty[hidden] { display:none; }
+@media (max-width:360px) {
+    .study-history-chart { gap:3px; height:104px; }
+    .study-history-day-label { font-size:.62rem; }
+}

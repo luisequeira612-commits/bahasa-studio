@@ -119,3 +119,7 @@ Las métricas permiten detectar desequilibrios y unidades sin práctica explíci
 ## Distribución de ejercicios por unidad y lección
 
 Además del total por tipo y de las unidades/lecciones vacías, el informe calcula cantidad mínima, máxima y media de ejercicios por unidad y por lección. La distribución de unidad incluye sus ejercicios directos y los de sus lecciones; la distribución de lección cuenta únicamente los ejercicios de esa lección. Esto ayuda a detectar unidades o lecciones con una carga muy distinta a la del resto, pero no impone un número ideal universal ni interpreta cantidad como calidad.
+
+## Cobertura por modalidad en cada unidad
+
+El informe desglosa cada tipo de ejercicio por unidad: total del tipo, cuántas unidades lo incluyen y cuántas no, además de mínimo, máximo y promedio por unidad. Los conteos incluyen ejercicios de unidad y de sus lecciones. Esto permite identificar modalidades concentradas en pocas unidades o ausentes en otras, sin convertir una distribución uniforme en requisito pedagógico ni asumir que todos los tipos deben aparecer en todas las unidades.

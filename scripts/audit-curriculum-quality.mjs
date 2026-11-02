@@ -122,6 +122,7 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
   let unitsWithExercises = 0;
   let lessonsWithExercises = 0;
   const exerciseTypeCounts = {};
+  const unitExerciseTypeCounts = [];
   const unitExerciseCounts = [];
   const lessonExerciseCounts = [];
 
@@ -184,6 +185,7 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
     }
 
     let unitExerciseCount = 0;
+    const unitTypeCounts = {};
     const exercises = Array.isArray(unit.exercises) ? unit.exercises : [];
     if (!Array.isArray(unit.exercises) && !Array.isArray(unit.lessons)) {
       issues.push(issue('warning', 'EXERCISES_NOT_ARRAY', unitPath, 'La unidad no tiene ejercicios a nivel de unidad ni lecciones.'));
@@ -198,6 +200,7 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
       unitExerciseCount += 1;
       if (typeof exercise.type === 'string' && exercise.type.trim()) {
         exerciseTypeCounts[exercise.type] = (exerciseTypeCounts[exercise.type] ?? 0) + 1;
+        unitTypeCounts[exercise.type] = (unitTypeCounts[exercise.type] ?? 0) + 1;
       }
       if (typeof exercise.type !== 'string' || !exercise.type.trim()) {
         issues.push(issue('error', 'EXERCISE_TYPE_MISSING', exercisePath, 'El ejercicio necesita un tipo.'));
@@ -293,6 +296,7 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
             lessonExerciseCount += 1;
             if (typeof exercise.type === 'string' && exercise.type.trim()) {
               exerciseTypeCounts[exercise.type] = (exerciseTypeCounts[exercise.type] ?? 0) + 1;
+        unitTypeCounts[exercise.type] = (unitTypeCounts[exercise.type] ?? 0) + 1;
             }
             if (typeof exercise.type !== 'string' || !exercise.type.trim()) {
               issues.push(issue('error', 'LESSON_EXERCISE_TYPE_MISSING', exercisePath, 'El ejercicio necesita un tipo.'));
@@ -330,6 +334,7 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
       });
     }
     unitExerciseCounts.push(unitExerciseCount);
+    unitExerciseTypeCounts.push(unitTypeCounts);
     if (unitExerciseCount > 0) unitsWithExercises += 1;
   });
 
@@ -341,6 +346,23 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
       ? Number((values.reduce((total, value) => total + value, 0) / values.length).toFixed(2))
       : 0,
   });
+
+  const exerciseTypeDistribution = Object.fromEntries(
+    Object.keys(exerciseTypeCounts).sort().map((type) => {
+      const counts = unitExerciseTypeCounts.map((unitCounts) => unitCounts[type] ?? 0);
+      const unitsWithType = counts.filter((count) => count > 0).length;
+      return [type, {
+        total: exerciseTypeCounts[type],
+        units_with_type: unitsWithType,
+        units_without_type: units.length - unitsWithType,
+        min_per_unit: counts.length ? Math.min(...counts) : 0,
+        max_per_unit: counts.length ? Math.max(...counts) : 0,
+        average_per_unit: counts.length
+          ? Number((counts.reduce((total, count) => total + count, 0) / counts.length).toFixed(2))
+          : 0,
+      }];
+    })
+  );
 
   // Resolve references after collecting every vocabulary ID. Cumulative A2
   // review activities may deliberately point back to vocabulary taught in A1.
@@ -444,6 +466,7 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
     unique_vocabulary_id_count: vocabIds.size,
     exercise_count: exerciseCount,
     exercise_type_counts: exerciseTypeCounts,
+    exercise_type_distribution: exerciseTypeDistribution,
     unit_exercise_distribution: summarizeDistribution(unitExerciseCounts),
     lesson_exercise_distribution: summarizeDistribution(lessonExerciseCounts),
     units_with_exercises: unitsWithExercises,

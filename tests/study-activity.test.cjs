@@ -185,3 +185,41 @@ test('streak counters reject an unsafe consecutive-day increment without mutatin
   );
   assert.equal(JSON.stringify(activity), before);
 });
+
+
+test('every A1/A2 curriculum exercise is included in the adaptive skill profile', () => {
+  const a1Source = fs.readFileSync(path.join(__dirname, '..', 'curriculum-a1.js'), 'utf8');
+  const a2Source = fs.readFileSync(path.join(__dirname, '..', 'curriculum-a2.js'), 'utf8');
+  const curriculumSandbox = { window: {} };
+  vm.runInNewContext(a1Source, curriculumSandbox, { filename: 'curriculum-a1.js' });
+  vm.runInNewContext(a2Source, curriculumSandbox, { filename: 'curriculum-a2.js' });
+
+  const levels = [
+    curriculumSandbox.window.BAHASA_CURRICULUM_A1,
+    curriculumSandbox.window.BAHASA_CURRICULUM_A2
+  ];
+  const uncovered = [];
+  const coveredSkills = new Set();
+  let exerciseCount = 0;
+
+  for (const level of levels) {
+    assert.ok(level && Array.isArray(level.units), 'each released level must expose its units');
+    for (const unit of level.units) {
+      for (const exercise of unit.exercises || []) {
+        exerciseCount += 1;
+        const skill = StudyActivity.skillForExercise(exercise.type, Boolean(exercise.audioText));
+        if (!skill) {
+          uncovered.push(level.id + ' / ' + unit.id + ' / ' + exercise.type + ' / ' + exercise.prompt);
+        } else {
+          coveredSkills.add(skill);
+        }
+      }
+    }
+  }
+
+  assert.equal(exerciseCount, 1168, 'the coverage check must include all current A1/A2 exercises');
+  assert.deepEqual(uncovered, [], 'every released exercise must contribute to a tracked skill');
+  for (const skill of ['recognition', 'translation', 'listening', 'sentenceBuilding', 'writing']) {
+    assert.ok(coveredSkills.has(skill), skill + ' must receive exercises from the released curriculum');
+  }
+});

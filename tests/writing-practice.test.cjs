@@ -109,8 +109,8 @@ test('A2 writing support vocabulary is rendered as a visible reference list', ()
 
 
 test('progressive writing includes a routine prompt and an A2 chronological narrative', () => {
-  assert.match(source, /id: 'study-day'[\\s\\S]*?level: 'A1'[\\s\\S]*?3–4 frases|id: 'study-day'/);
-  assert.match(source, /id: 'recent-experience'[\\s\\S]*?level: 'A2'/);
-  assert.match(source, /vocabulary: \\['kemarin', 'pertama', 'kemudian', 'setelah itu', 'akhirnya'/);
+  assert.match(source, /id: 'study-day'[\s\S]*?example: 'Saya belajar bahasa Indonesia setiap pagi/);
+  assert.match(source, /id: 'recent-experience'[\s\S]*?level: 'A2'/);
+  assert.match(source, /vocabulary: \['kemarin', 'pertama', 'kemudian', 'setelah itu', 'akhirnya'/);
   assert.match(source, /Cuenta algo que hiciste ayer/);
 });

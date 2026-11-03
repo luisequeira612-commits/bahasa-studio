@@ -22,7 +22,7 @@ Los validadores existentes son la autoridad para las reglas deterministas. No se
 
 ### 2. DeepSeek Harness (coordinación y análisis asistido)
 
-DeepSeek Harness puede leer `AGENTS.md` como instrucciones del agente. Se usa como capa opcional para:
+DeepSeek Harness descubre instrucciones de tipo `AGENTS.md` desde el directorio de trabajo y descubre skills locales en `.agents/skills/<skill-name>/SKILL.md`. Esta integración define reglas en `AGENTS.md` y tres skills del proyecto: `curriculum-quality-audit`, `language-review-triage` y `quality-regression-preflight`. Las skills son instrucciones invocables, no validadores autónomos. Consulta la [referencia oficial de skills](https://deepseek-harness.github.io/deepseek-harness/en/reference/subsystems/skills) antes de cambiar su formato. Se usa como capa opcional para:
 
 - resumir informes del Quality Engine;
 - agrupar hallazgos repetidos;
@@ -46,11 +46,11 @@ La guía oficial documenta el arranque web mediante:
 npx @deepseek-ai/dsh web --no-open
 ```
 
-El comando está disponible como `npm run harness`. Requiere Node.js compatible con la versión actual de Harness; comprueba los requisitos publicados antes de instalarlo. El workflow de CI de Bahasa Studio permanece independiente de Harness.
+El comando está disponible como `npm run harness`. Requiere una versión de Node.js compatible con el paquete publicado; la guía de inicio oficial consultada documenta Node.js `^22.19.0` o `>=24.0.0`. Comprueba los requisitos actuales antes de instalarlo, ya que Harness está en preview. El workflow de CI de Bahasa Studio permanece independiente de Harness.
 
 Harness necesita un proveedor de modelo configurado para realizar análisis con IA. No guardes claves en el repositorio ni en `.env` versionados. No configures proveedores de pago como requisito. Si no hay un proveedor gratuito/local adecuado, omite Harness: el Quality Engine local seguirá funcionando.
 
-## Protocolo de auditoría recomendado
+## Skills del proyecto\n\n- `curriculum-quality-audit`: auditoría integral de A1/A2 en modo de solo lectura.\n- `language-review-triage`: clasificación de posibles problemas lingüísticos sin declarar validación nativa.\n- `quality-regression-preflight`: ejecución e interpretación de las pruebas antes de preparar un PR.\n\nLas skills viven en `.agents/skills/`, la ruta de descubrimiento local documentada por Harness. Una prueba Node dedicada valida su presencia, metadatos y límites de seguridad en CI.\n\n## Protocolo de auditoría recomendado
 
 1. Ejecutar `npm run quality:local`.
 2. Leer el resumen del auditor y `artifacts/editorial-review-summary.json`.

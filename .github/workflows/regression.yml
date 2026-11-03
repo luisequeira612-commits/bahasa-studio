@@ -67,6 +67,8 @@ jobs:
         run: node --test tests/exercise-answer-vocabulary-alignment.test.cjs
       - name: Run A2 language audit tracker tests
         run: node --test tests/a2-language-audit-tracker.test.cjs
+      - name: Run Harness quality skill contract tests
+        run: node --test tests/harness-quality-skills.test.mjs
       - name: Run independent curriculum quality tests
         if: ${{ !cancelled() }}
         run: node --test tests/audit-curriculum-quality.test.mjs

@@ -75,6 +75,8 @@ jobs:
       - name: Run editorial review queue tests
         if: ${{ !cancelled() }}
         run: node --test tests/build-editorial-review-queue.test.mjs
+      - name: Run DeepSeek review packet tests
+        run: node --test tests/build-deepseek-review-packet.test.mjs
       - name: Run unified quality report tests
         if: ${{ !cancelled() }}
         run: node --test tests/build-unified-quality-report.test.mjs
@@ -114,6 +116,17 @@ jobs:
         with:
           name: unified-quality-report
           path: artifacts/unified-quality-report.json
+          if-no-files-found: ignore
+          retention-days: 14
+      - name: Generate source-backed DeepSeek review packet
+        if: ${{ !cancelled() }}
+        run: npm run quality:deepseek-packet
+      - name: Upload DeepSeek first-review packet
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: deepseek-first-review-packet
+          path: artifacts/deepseek-first-review-packet.md
           if-no-files-found: ignore
           retention-days: 14
       - name: Run KBBI audit queue tests

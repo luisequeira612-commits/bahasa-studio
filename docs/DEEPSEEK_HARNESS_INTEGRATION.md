@@ -16,7 +16,8 @@ Se ejecuta con Node.js desde el repositorio y no requiere servicios externos:
 - `npm run quality:tests`: pruebas del auditor curricular, cola editorial y tracker A2.
 - `npm run quality:audit`: auditor estructural y de referencias A1/A2.
 - `npm run quality:queue`: genera la cola editorial CSV y su resumen JSON en `artifacts/`.
-- `npm run quality:local`: ejecuta los tres pasos anteriores en orden.
+- `npm run quality:report`: combina ambos resúmenes en `artifacts/unified-quality-report.json`.
+- `npm run quality:local`: ejecuta pruebas, auditoría, cola y reporte unificado en orden.
 
 Los validadores existentes son la autoridad para las reglas deterministas. No se deben duplicar ni reemplazar con respuestas de un modelo.
 
@@ -53,7 +54,7 @@ Harness necesita un proveedor de modelo configurado para realizar análisis con 
 ## Skills del proyecto\n\n- `curriculum-quality-audit`: auditoría integral de A1/A2 en modo de solo lectura.\n- `language-review-triage`: clasificación de posibles problemas lingüísticos sin declarar validación nativa.\n- `quality-regression-preflight`: ejecución e interpretación de las pruebas antes de preparar un PR.\n\nLas skills viven en `.agents/skills/`, la ruta de descubrimiento local documentada por Harness. Una prueba Node dedicada valida su presencia, metadatos y límites de seguridad en CI.\n\n## Protocolo de auditoría recomendado
 
 1. Ejecutar `npm run quality:local`.
-2. Leer el resumen del auditor y `artifacts/editorial-review-summary.json`.
+2. Leer `artifacts/unified-quality-report.json` como resumen ejecutivo y consultar los informes de auditoría/cola para el detalle.
 3. Examinar los hallazgos completos y rastrear cada uno hasta la unidad, lección, ejercicio o ID original.
 4. Comparar con los documentos de auditoría pertinentes en `docs/`.
 5. Etiquetar cada resultado:

@@ -16,7 +16,7 @@ Se ejecuta con Node.js desde el repositorio y no requiere servicios externos:
 - `npm run quality:tests`: pruebas del auditor curricular, cola editorial y tracker A2.
 - `npm run quality:audit`: auditor estructural y de referencias A1/A2.
 - `npm run quality:queue`: genera la cola editorial CSV y su resumen JSON en `artifacts/`.
-- `npm run quality:report`: combina ambos resúmenes en `artifacts/unified-quality-report.json`.
+- `npm run quality:report`: combina ambos resúmenes en `artifacts/unified-quality-report.json`. El informe conserva también el detalle y la distribución por código de los hallazgos informativos del auditor, para que no queden reducidos a un contador.
 - `npm run quality:local`: ejecuta pruebas, auditoría, cola y reporte unificado en orden.
 
 Los validadores existentes son la autoridad para las reglas deterministas. No se deben duplicar ni reemplazar con respuestas de un modelo.

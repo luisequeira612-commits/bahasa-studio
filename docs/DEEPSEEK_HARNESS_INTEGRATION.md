@@ -51,7 +51,24 @@ El comando está disponible como `npm run harness`. Requiere una versión de Nod
 
 Harness necesita un proveedor de modelo configurado para realizar análisis con IA. No guardes claves en el repositorio ni en `.env` versionados. No configures proveedores de pago como requisito. Si no hay un proveedor gratuito/local adecuado, omite Harness: el Quality Engine local seguirá funcionando.
 
-## Skills del proyecto\n\n- `curriculum-quality-audit`: auditoría integral de A1/A2 en modo de solo lectura.\n- `language-review-triage`: clasificación de posibles problemas lingüísticos sin declarar validación nativa.\n- `quality-regression-preflight`: ejecución e interpretación de las pruebas antes de preparar un PR.\n\nLas skills viven en `.agents/skills/`, la ruta de descubrimiento local documentada por Harness. Una prueba Node dedicada valida su presencia, metadatos y límites de seguridad en CI.\n\n## Protocolo de auditoría recomendado
+## Skills del proyecto\n\n- `curriculum-quality-audit`: auditoría integral de A1/A2 en modo de solo lectura.\n- `language-review-triage`: clasificación de posibles problemas lingüísticos sin declarar validación nativa.\n- `quality-regression-preflight`: ejecución e interpretación de las pruebas antes de preparar un PR.\n\nLas skills viven en `.agents/skills/`, la ruta de descubrimiento local documentada por Harness. Una prueba Node dedicada valida su presencia, metadatos y límites de seguridad en CI.\n\n## Primera auditoría real: modo gratuito y modo Harness
+
+El proyecto no debe asumir que existe una API gratuita permanente. La documentación oficial de DeepSeek Harness indica que hay que configurar una credencial del proveedor en Settings → Models antes de iniciar una sesión. La API oficial se factura por tokens; consulta siempre la tarifa vigente en https://api-docs.deepseek.com/quick_start/pricing/ . El chat web/app gratuito de DeepSeek es distinto de la API y no activa Harness automáticamente.
+
+Para avanzar sin introducir costes obligatorios, el repositorio genera un paquete reproducible para revisión manual con el chat gratuito:
+
+- Comando: `npm run quality:deepseek-packet`.
+- Salida: `artifacts/deepseek-first-review-packet.md`.
+- Cobertura inicial: A1 U24–U32 y A2 U1–U8.
+- Incluye los objetos curriculares fuente completos de esas unidades y las auditorías previas relevantes.
+- No incluye secretos, no llama a servicios externos y no modifica currículo ni trackers.
+- CI publica el paquete como artefacto `deepseek-first-review-packet`.
+
+El usuario puede descargar ese Markdown, adjuntarlo a DeepSeek Chat y usar el prompt incluido. Después, la respuesta debe volver al repositorio como propuesta no verificada; no se aplican correcciones ni se cambian estados automáticamente.
+
+Cuando se configure una API key de DeepSeek en un entorno aislado, Harness podrá realizar la misma misión directamente en el workspace. No compartas la clave en chats, commits ni archivos versionados. Hasta entonces, Harness está preparado pero no ejecuta tareas autónomas.
+
+## Protocolo de auditoría recomendado
 
 1. Ejecutar `npm run quality:local`.
 2. Leer `artifacts/unified-quality-report.json` como resumen ejecutivo y consultar los informes de auditoría/cola para el detalle.

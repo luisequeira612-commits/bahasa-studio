@@ -75,6 +75,9 @@ jobs:
       - name: Run editorial review queue tests
         if: ${{ !cancelled() }}
         run: node --test tests/build-editorial-review-queue.test.mjs
+      - name: Run unified quality report tests
+        if: ${{ !cancelled() }}
+        run: node --test tests/build-unified-quality-report.test.mjs
       - name: Generate independent editorial review queue
         if: ${{ !cancelled() }}
         run: node scripts/build-editorial-review-queue.mjs --output artifacts/editorial-review-queue.csv --summary artifacts/editorial-review-summary.json
@@ -100,6 +103,17 @@ jobs:
         with:
           name: curriculum-quality-report
           path: artifacts/curriculum-quality-report.json
+          if-no-files-found: ignore
+          retention-days: 14
+      - name: Generate unified quality report
+        if: ${{ !cancelled() }}
+        run: node scripts/build-unified-quality-report.mjs --audit artifacts/curriculum-quality-report.json --editorial artifacts/editorial-review-summary.json --output artifacts/unified-quality-report.json
+      - name: Upload unified quality report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: unified-quality-report
+          path: artifacts/unified-quality-report.json
           if-no-files-found: ignore
           retention-days: 14
       - name: Run KBBI audit queue tests

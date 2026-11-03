@@ -10,8 +10,8 @@
  *   node scripts/audit-curriculum-quality.mjs
  *   node scripts/audit-curriculum-quality.mjs --json /tmp/curriculum-quality.json
  */
-import { readFile, writeFile } from 'node:fs/promises';
-import { resolve } from 'node:path';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { dirname, resolve } from 'node:path';
 import vm from 'node:vm';
 
 function loadCurriculum(source, globalName, filename) {
@@ -580,7 +580,11 @@ async function main() {
     ],
   };
   const output = `${JSON.stringify(report, null, 2)}\n`;
-  if (jsonPath) await writeFile(resolve(jsonPath), output, 'utf8');
+  if (jsonPath) {
+    const destination = resolve(jsonPath);
+    await mkdir(dirname(destination), { recursive: true });
+    await writeFile(destination, output, 'utf8');
+  }
   console.log(JSON.stringify(report.summary, null, 2));
   for (const level of reports) {
     console.log(`${level.level}: ${level.unit_count} unidades, ${level.vocabulary_count} vocablos, ${level.error_count} errores, ${level.warning_count} avisos, ${level.info_count} informativos`);

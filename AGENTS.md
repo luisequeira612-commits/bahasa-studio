@@ -20,6 +20,7 @@ Desde la raíz del repositorio:
 - `npm run quality:tests`
 - `npm run quality:audit`
 - `npm run quality:queue`
+- `npm run quality:report`
 - `npm run quality:local`
 - Las pruebas específicas `node --test tests/NOMBRE.test.*` cuando sean pertinentes.
 

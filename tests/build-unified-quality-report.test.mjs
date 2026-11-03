@@ -1,5 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { execFileSync } from 'node:child_process';
+import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { buildUnifiedQualityReport } from '../scripts/build-unified-quality-report.mjs';
 
 const audit = (errors = 0, warnings = 0) => ({
@@ -57,4 +62,29 @@ test('rejects source reports that imply editorial approval or linguistic certifi
 
 test('rejects incomplete deterministic audit summaries', () => {
   assert.throws(() => buildUnifiedQualityReport({ ...audit(), summary: { errors: 0 } }, editorial), /warnings/);
+});
+
+
+test('CLI writes parseable JSON and creates a missing output directory', () => {
+  const directory = mkdtempSync(join(tmpdir(), 'bahasa-quality-report-'));
+  try {
+    const auditPath = join(directory, 'audit.json');
+    const editorialPath = join(directory, 'editorial.json');
+    const outputPath = join(directory, 'nested', 'report.json');
+    writeFileSync(auditPath, JSON.stringify(audit()), 'utf8');
+    writeFileSync(editorialPath, JSON.stringify(editorial), 'utf8');
+    const scriptPath = fileURLToPath(new URL('../scripts/build-unified-quality-report.mjs', import.meta.url));
+    execFileSync(process.execPath, [
+      scriptPath,
+      '--audit', auditPath,
+      '--editorial', editorialPath,
+      '--output', outputPath,
+    ], { stdio: 'pipe' });
+    const raw = readFileSync(outputPath, 'utf8');
+    const parsed = JSON.parse(raw);
+    assert.equal(parsed.structural_quality.gate, 'clear');
+    assert.equal(raw.endsWith('\n'), true);
+  } finally {
+    rmSync(directory, { recursive: true, force: true });
+  }
 });

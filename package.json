@@ -7,6 +7,11 @@
     "playwright": "^1.55.0"
   },
   "scripts": {
-    "test:assessment": "node tests/assessment-bank-structure.test.js"
+    "test:assessment": "node tests/assessment-bank-structure.test.js",
+    "quality:tests": "node --test tests/audit-curriculum-quality.test.mjs tests/build-editorial-review-queue.test.mjs tests/a2-language-audit-tracker.test.cjs",
+    "quality:audit": "node scripts/audit-curriculum-quality.mjs",
+    "quality:queue": "node scripts/build-editorial-review-queue.mjs --output artifacts/editorial-review-queue.csv --summary artifacts/editorial-review-summary.json",
+    "quality:local": "npm run quality:tests && npm run quality:audit && npm run quality:queue",
+    "harness": "npx @deepseek-ai/dsh web --no-open"
   }
 }

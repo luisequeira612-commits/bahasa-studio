@@ -37,6 +37,15 @@ export function buildUnifiedQualityReport(auditInput, editorialInput) {
     throw new Error('Source reports must explicitly deny linguistic certification.');
   }
 
+  const informationalFindings = levels.flatMap((level) =>
+    (Array.isArray(level.issues) ? level.issues : [])
+      .filter((issue) => issue.severity === 'info')
+      .map((issue) => ({ level: level.level, code: issue.code, path: issue.path, message: issue.message }))
+  );
+  const informationalByCode = informationalFindings.reduce((counts, issue) => {
+    counts[issue.code] = (counts[issue.code] ?? 0) + 1;
+    return counts;
+  }, {});
   const gate = summary.errors > 0 ? 'blocked' : summary.warnings > 0 ? 'attention' : 'clear';
   return {
     schema_version: 1,
@@ -53,6 +62,10 @@ export function buildUnifiedQualityReport(auditInput, editorialInput) {
       informational: summary.informational,
       units: summary.units,
       vocabulary_entries: summary.vocabulary_entries,
+      unique_vocabulary_ids: summary.unique_vocabulary_ids ?? null,
+      exercises: levels.reduce((total, level) => total + (Number.isFinite(level.exercise_count) ? level.exercise_count : 0), 0),
+      informational_by_code: informationalByCode,
+      informational_findings: informationalFindings,
       levels: levels.map((level) => ({
         level: level.level,
         units: level.unit_count,

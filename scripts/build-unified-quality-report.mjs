@@ -117,7 +117,7 @@ async function main() {
   const report = buildUnifiedQualityReport(audit, editorial);
   const destination = resolve(paths.output);
   await mkdir(dirname(destination), { recursive: true });
-  await writeFile(destination, JSON.stringify(report, null, 2) + '\\n', 'utf8');
+  await writeFile(destination, JSON.stringify(report, null, 2) + '\n', 'utf8');
   console.log(JSON.stringify({
     gate: report.structural_quality.gate,
     errors: report.structural_quality.errors,

@@ -8,10 +8,10 @@ test('builds one neutral editorial work item per vocabulary entry', () => {
     { id: 'v2', idn: 'asal', esp: 'origen' },
   ] }] }]);
   assert.equal(rows.length, 2);
-  assert.equal(rows[0].review_id, 'A1:a1_u1:v1');
-  assert.equal(rows[1].review_id, 'A1:a1_u1:v2');
   const complete = rows.find((row) => row.vocab_id === 'v1');
   const incomplete = rows.find((row) => row.vocab_id === 'v2');
+  assert.equal(rows[0].review_id, 'A1:a1_u1:v2');
+  assert.equal(rows[1].review_id, 'A1:a1_u1:v1');
   assert.equal(rows[0].priority, 'P1');
   assert.equal(complete.priority, 'P2');
   assert.equal(incomplete.priority, 'P1');

@@ -1945,5 +1945,6 @@ test('A2 U8 menyediakan follows the same meny- pattern as other s-initial roots'
   assert.equal(word.idn, 'Menyediakan');
   assert.equal(word.esp, 'Proporcionar; suministrar');
   assert.equal(word.ex, 'Kami menyediakan air.');
-  assert.equal(exercise.answer, word.ex);
+  assert.equal(exercise.type, 'write');
+  assert.equal(exercise.modelAnswer, word.ex);
 });

@@ -1511,7 +1511,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 4: Formas meny- con s inicial",
                                     "objective": "Reconoce formas meny- en las que desaparece la s inicial.",
-                                    "grammar": "En menyimpan, menyewa y menyusun, la s inicial de la raíz desaparece. Menyediakan se aprende como forma léxica frecuente.",
+                                    "grammar": "En menyimpan, menyewa y menyusun, la s inicial de la raíz desaparece: simpan → menyimpan, sewa → menyewa y susun → menyusun. Menyediakan es una forma léxica frecuente: sedia → menyediakan.",
                                     "vocabIds": [
                                         "a2u8_menyimpan",
                                         "a2u8_menyewa",

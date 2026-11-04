@@ -1493,6 +1493,13 @@ window.BAHASA_CURRICULUM_A2 = {
                                         },
                                         {
                                             "vocabId": "a2u8_memulai",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la oración.",
+                                            "answer": "Saya memulai belajar.",
+                                            "explanation": "La oración contiene memulai."
+                                        },
+                                        {
+                                            "vocabId": "a2u8_memulai",
                                             "type": "write",
                                             "prompt": "Escribe una frase usando memulai.",
                                             "hint": "Puedes tomar como modelo: Saya memulai belajar.",
@@ -1504,7 +1511,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                 {
                                     "title": "Lección 4: Formas meny- con s inicial",
                                     "objective": "Reconoce formas meny- en las que desaparece la s inicial.",
-                                    "grammar": "En menyimpan, menyewa, menyusun y menyediakan, la s inicial de la raíz desaparece: simpan → menyimpan, sewa → menyewa, susun → menyusun y sedia → menyediakan.",
+                                    "grammar": "En menyimpan, menyewa y menyusun, la s inicial de la raíz desaparece: simpan → menyimpan, sewa → menyewa y susun → menyusun. Menyediakan es una forma léxica frecuente: sedia → menyediakan.",
                                     "vocabIds": [
                                         "a2u8_menyimpan",
                                         "a2u8_menyewa",
@@ -1540,17 +1547,10 @@ window.BAHASA_CURRICULUM_A2 = {
                                         },
                                         {
                                             "vocabId": "a2u8_menyediakan",
-                                            "type": "listen",
-                                            "prompt": "Escucha y escribe la oración.",
-                                            "answer": "Kami menyediakan air.",
-                                            "explanation": "La oración contiene menyediakan."
-                                        },
-                                        {
-                                            "vocabId": "a2u8_menyewa",
                                             "type": "write",
-                                            "prompt": "Escribe una frase usando menyewa.",
-                                            "hint": "Puedes tomar como modelo: Kami menyewa rumah.",
-                                            "modelAnswer": "Kami menyewa rumah.",
+                                            "prompt": "Escribe una frase usando menyediakan.",
+                                            "hint": "Puedes tomar como modelo: Kami menyediakan air.",
+                                            "modelAnswer": "Kami menyediakan air.",
                                             "explanation": "Usa el verbo en una oración completa."
                                         }
                                     ]

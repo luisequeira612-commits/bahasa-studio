@@ -67,6 +67,7 @@ export function buildEditorialQueue(curricula) {
           exercise_type: '', prompt: '', canonical_answer: '',
           accepted_answers: '', options: '', linked_vocab_ids: '',
           priority: missing.length ? 'P1' : 'P2',
+          priority_reason: missing.length ? 'missing_required_editorial_fields' : 'routine_vocabulary_review',
           missing_fields: missing.join(';'),
         });
       }
@@ -101,7 +102,7 @@ export function buildEditorialQueue(curricula) {
           }
           const priority = flags.some((flag) => [
             'open_response_review', 'accepted_alternatives_review', 'missing_prompt',
-            'missing_canonical_answer', 'insufficient_mc_options', 'invalid_mc_answer_index',
+            'missing_canonical_answer', 'insufficient_mc_options', 'invalid_mc_answer_index', 'duplicate_mc_options',
           ].includes(flag)) ? 'P1' : exercise.type === 'mc' ? 'P2' : 'P3';
           const priorityReason = priority === 'P1'
             ? 'needs_attention_before_routine_review'

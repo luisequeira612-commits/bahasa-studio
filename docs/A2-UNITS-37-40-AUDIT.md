@@ -53,3 +53,8 @@ Con U37–U40 se completa la serie de auditorías editoriales iniciales de las 4
 Se alinearon las lecciones de refugios/suministros/primeros auxilios y rutas/voluntariado/centros de ayuda; destinos/visitantes/guías; alojamiento/reservas/mapas; tarifas/horarios/entradas; atracciones/recuerdos/horarios; reuniones/videoconferencias/compartir pantalla; documentos/enlaces/adjuntos; descargas/subidas/nube; notificaciones/actualizaciones/acceso; y los cuatro grupos de resumir, aclarar, responder y explicar.
 
 Se conservaron las palabras y respuestas indonesias. La prueba de regresión comprueba los focos y la cobertura de ejercicios; no certifica naturalidad ni equivalencia lingüística.
+
+
+## Precisión terminológica U38 — tarifa y boleto de entrada
+
+Se resolvió la ambigüedad editorial registrada entre `biaya masuk` y `tiket masuk`: la primera glosa y su ejemplo ahora identifican la **tarifa de entrada** (el importe pagado); la segunda identifica el **boleto de entrada** (el documento que se guarda/presenta). Se sincronizó el tracker A2 y se añadió una regresión para evitar que ambas vuelvan a compartir la misma glosa. Se conserva el estado `not_checked`: es una distinción contextual/editorial y no una certificación por hablante nativo.

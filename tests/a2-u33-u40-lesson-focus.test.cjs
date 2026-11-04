@@ -48,3 +48,13 @@ test('A2 U33-U40 lesson titles and objectives match their vocabulary groups', ()
     for (const id of lesson.vocabIds) assert.ok(lesson.exercises.some(exercise => exercise.vocabId === id), lesson.title + ' must assess ' + id);
   }
 });
+
+test('A2 U38 distinguishes the entrance fee from the admission ticket', () => {
+  const unit = units.find(item => item.id === 'a2_u38');
+  const fee = unit.vocab.find(item => item.id === 'a2u38_biaya_masuk');
+  const ticket = unit.vocab.find(item => item.id === 'a2u38_tiket_masuk');
+  assert.equal(fee.esp, 'Tarifa de entrada');
+  assert.equal(fee.exEsp, 'La tarifa de entrada se paga en la taquilla.');
+  assert.equal(ticket.esp, 'Boleto de entrada');
+  assert.equal(ticket.exEsp, 'Guarde el boleto de entrada.');
+});

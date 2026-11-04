@@ -30,7 +30,10 @@ export function buildUnifiedQualityReport(auditInput, editorialInput) {
   if (!Number.isFinite(editorial.total_entries) || editorial.total_entries < 0) {
     throw new Error('Editorial summary has an invalid total_entries count.');
   }
-  if (editorial.review_status !== undefined && editorial.review_status !== 'pending') {\n    throw new Error('Editorial review queue status must remain pending.');\n  }\n  if (editorial.editorial_status !== 'not_reviewed') {
+  if (editorial.review_status !== undefined && editorial.review_status !== 'pending') {
+    throw new Error('Editorial review queue status must remain pending.');
+  }
+  if (editorial.editorial_status !== 'not_reviewed') {
     throw new Error('Editorial summary status must remain not_reviewed.');
   }
   if (editorial.linguistic_certification !== false || audit.linguistic_certification !== false) {

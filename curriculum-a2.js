@@ -10347,12 +10347,12 @@ window.BAHASA_CURRICULUM_A2 = {
                                             "type": "mc",
                                             "prompt": "¿Qué significa «biaya masuk»?",
                                             "options": [
-                                                "Entrada",
+                                                "Tarifa de entrada",
                                                 "Atracción turística",
                                                 "Recuerdo"
                                             ],
                                             "answer": 0,
-                                            "explanation": "«biaya masuk» significa «Entrada»."
+                                            "explanation": "«biaya masuk» significa «Tarifa de entrada»."
                                         },
                                         {
                                             "vocabId": "a2u38_jam_kunjung",

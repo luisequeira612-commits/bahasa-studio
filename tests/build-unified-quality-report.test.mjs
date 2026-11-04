@@ -21,6 +21,9 @@ const editorial = {
   units: 72,
   by_level: { A1: 280, A2: 360 },
   by_priority: { P1: 12, P2: 628 },
+  review_status: 'pending',
+  by_item_type: { vocabulary: 640, exercise: 1200 },
+  candidate_flags: { open_response_review: 45, accepted_alternatives_review: 12 },
   missing_fields: { example_indonesian: 4 },
   editorial_status: 'not_reviewed',
   linguistic_certification: false,
@@ -39,6 +42,9 @@ test('combines both reports while preserving unreviewed linguistic status', () =
   assert.equal(report.structural_quality.informational_findings[0].path, 'A1.units[4].vocab[4]');
   assert.equal(report.editorial_workload.entries, 640);
   assert.equal(report.editorial_workload.status, 'not_reviewed');
+  assert.equal(report.editorial_workload.review_status, 'pending');
+  assert.deepEqual(report.editorial_workload.by_item_type, { vocabulary: 640, exercise: 1200 });
+  assert.deepEqual(report.editorial_workload.candidate_flags, { open_response_review: 45, accepted_alternatives_review: 12 });
   assert.equal(report.editorial_workload.review_completion, null);
   assert.equal(report.linguistic_validation.status, 'not_certified');
   assert.equal(report.linguistic_validation.native_speaker_validation, false);
@@ -57,6 +63,7 @@ test('clears the structural gate only when errors and warnings are zero', () => 
 
 test('rejects source reports that imply editorial approval or linguistic certification', () => {
   assert.throws(() => buildUnifiedQualityReport(audit(), { ...editorial, editorial_status: 'approved' }), /not_reviewed/);
+  assert.throws(() => buildUnifiedQualityReport(audit(), { ...editorial, review_status: 'complete' }), /pending/);
   assert.throws(() => buildUnifiedQualityReport({ ...audit(), linguistic_certification: true }, editorial), /certification/);
 });
 

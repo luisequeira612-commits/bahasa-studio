@@ -45,7 +45,7 @@ export function buildVocabularyReport({a1,a2,a1Tracker,a2Tracker,expectedTotal=8
  ...candidates(all).flatMap(g=>['### '+g.label+' — '+g.forms.length+' candidatos','',g.forms.length?g.forms.map(v=>String.fromCharCode(96)+v+String.fromCharCode(96)).join(', '):'Sin coincidencias.','']),
  '## 5. Estado de verificación por entrada','','Se usa la columna KBBI_status de los CSV actuales. Esto no valida por sí solo naturalidad, nivel ni respuestas aceptadas.',''];
  for(const [label,v] of [['A1 (tracker U24–U32)',va],['A2 (tracker completo)',vb]]){
-  out.push('### '+label,'',table(['Indicador','Entradas'],[['Entradas curriculares',v.total],['Con registro CSV',v.registered],['Sin registro CSV',v.missing],...[...v.counts].sort(([a],[b])=>a.localeCompare(b)),['Filas CSV sin ID curricular correspondiente',v.orphans]]),'');
+  out.push('### '+label,'',table(['Indicador','Entradas'],[['Entradas curriculares (registros)',v.total],['Registros de entrada con fila CSV coincidente',v.registered],['Sin registro CSV',v.missing],['Filas CSV en el tracker',v.trackerRows],...[...v.counts].sort(([a],[b])=>a.localeCompare(b)),['Filas CSV sin ID curricular correspondiente',v.orphans]]),'');
  }
  out.push('**Cobertura:** A1 U1–U23 carece de tracker; toda entrada A1 sin fila coincidente se cuenta como “sin registro”. A2 se contrasta por ID. Si un ID aparece varias veces en CSV, la última fila determina su estado y las filas huérfanas se informan aparte.','',
  'Estados futuros aprobados: cross_checked_secondary (coincidencia en dos fuentes secundarias independientes; no es verificación primaria) y doubtful. Este informe no los asigna porque los CSV no aportan evidencia suficiente. Solo revisión humana de fuente primaria permite verified_primary.','',

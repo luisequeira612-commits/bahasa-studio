@@ -30,6 +30,6 @@ test('supports exact unit scope and rejects invalid or empty scopes', () => {
 });
 
 test('parses quoted CSV fields without losing commas, quotes or newlines', () => {
-  const rows = parseCsv('id,prompt\n1,"Traduce, \"comer\"\npor favor"\n');
+  const rows = parseCsv('id,prompt\n1,"Traduce, ""comer""\npor favor"\n');
   assert.equal(rows[0].prompt, 'Traduce, "comer"\npor favor');
 });

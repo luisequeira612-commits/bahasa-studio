@@ -2,67 +2,65 @@
 
 > Se actualiza en CADA PR. Mantener corto (unas 150 líneas como máximo). Última actualización: 5 nov 2026.
 
-## Visión
-- App para aprender idiomas, estilo Duolingo, en rojo y blanco.
-- Hoy existe el curso de indonesio; A1 y A2 están construidos. B1 y B2 siguen pendientes.
-- Más idiomas en el futuro, sobre todo los que Duolingo no ofrece para hispanohablantes. Candidatos: tagalo, tailandés, toki pona, ido.
-- Uso personal; posible futuro: compartirla gratis con amigos o una comunidad de nicho.
-- Prioridad principal del dueño: perfeccionar esta app y aprender idiomas con ella.
-- Terminar bien el indonesio antes de abrir un segundo idioma.
+## Visión y límites
+- App personal gratuita para aprender indonesio; quizá compartirla gratis más adelante.
+- Sin cuentas, backend, servidores, costes, anuncios, vidas, funciones sociales ni publicación en tiendas.
+- Offline, móvil primero. No añadir dependencias sin necesidad real.
+- Preservar IndexedDB v3 y backup JSON v3.
+- No sobrediseñar; el dueño trabaja desde el celular.
 
-## Estado actual del currículo
-- A1: 32 de 32 unidades hechas.
-- A2: 40 de 40 unidades hechas. U5–U8 siguen en consolidación; PR #337 aclara el vocabulario objetivo de 16 prompts de traducción.
-- B1 y B2: pendientes.
-- Sistema de calidad: auditoría estructural/editorial independiente de KBBI y cola editorial para vocabulario y ejercicios.
+## Estado del currículo
+- A1: 32/32 unidades.
+- A2: 40/40 unidades; A2 permanece desbloqueado.
+- B1/B2: pendientes. No iniciar B1 hasta consolidar A1/A2.
+- A2 U5–U8: PR #337 aclara el vocabulario objetivo en 16 consignas de traducción; fusionado en main el 5 nov 2026.
+- A1 U24–U32 y A2 U1–U8 siguen dentro del alcance prioritario de revisión editorial.
 
-## Interfaz (ya hecho)
-- Barra inferior de 4 pestañas: Aprender / Repasar / Tutor / Perfil.
-- Barra superior con racha y XP.
-- Camino de unidades A1.
-- Traducción al tocar palabras (burbuja) y explicaciones contextuales (PR #45, #46).
-- Botón "crear nueva lección con IA" (Gemini), guarda offline.
-- Historial y estadísticas: implementados, por consolidar.
+## Interfaz y funciones existentes
+- Pestañas Aprender / Repasar / Tutor / Perfil; racha y XP.
+- Camino de unidades, lecciones a pantalla completa, traducción al tocar palabras y explicaciones contextuales.
+- Historial, estadísticas, tutor, escritura, audio y aprendizaje adaptativo existen en distintos grados de consolidación.
 
-## En desarrollo
-- PR #337 abierto: aclara los objetivos de vocabulario de 16 prompts en A2 U5–U8 y añade regresión; corrige las expectativas antiguas de caché en los tests UI y de historial (v3.8.53) para alinearlas con la versión de la rama (v3.8.54). El primer CI detectó ambos tests desactualizados; el de UI ya pasó y el de historial se corrigió. Pendiente de CI verde completo y revisión.
-- PR #338 fusionado: incorpora AGENTS.md, MEMORY.md y SKILL.md con las reglas de trabajo del proyecto.
+## Sistema de calidad
+- Auditoría estructural independiente de KBBI: `scripts/audit-curriculum-quality.mjs`.
+- Cola editorial de vocabulario y ejercicios: `scripts/build-editorial-review-queue.mjs`.
+- Informe combinado: `scripts/build-unified-quality-report.mjs`.
+- Paquete de primera revisión externa/manual: `scripts/build-deepseek-review-packet.mjs`.
+- El workflow `.github/workflows/regression.yml` genera y publica como artifacts la auditoría, cola editorial, informe combinado y paquete de revisión (retención de 14 días).
+- El run de main posterior al merge de #337 es [41982650726](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/41982650726). Los pasos de tests y generación/subida de informes terminaron correctamente; el workflow completo aún estaba en curso al actualizar esta memoria.
+- La cola editorial es priorización de trabajo, no un veredicto lingüístico. No marcar como revisado algo que no haya sido revisado con evidencia.
 
-## Pendiente (en este orden)
-1. Completar y revisar los informes del auditor y la cola editorial con evidencia; scripts principales: scripts/audit-curriculum-quality.mjs y scripts/build-editorial-review-queue.mjs.
-2. Consolidar A2 y continuar la revisión de A1 U24–U32.
-3. Mejorar el tutor conversacional.
-4. Aprendizaje adaptativo y repaso con repetición espaciada.
-5. Pronunciación y escucha.
-6. Lección a pantalla completa con hoja de feedback y pulido visual.
-7. B1 y luego B2.
-8. Cuando el indonesio esté sólido: preparar la estructura para un segundo idioma y, si decido compartir la app, la revisión previa a compartir (licencias, datos expuestos, instrucciones de uso).
+## Estados honestos de verificación lingüística
+- `verified_primary`: solo lo marca el dueño tras revisar una fuente primaria oficial.
+- `cross_checked`: coincidencia en 2+ fuentes secundarias independientes; anotar fuentes en el tracker.
+- `not_checked`: todo lo demás, incluida la salida de IA sin cruce.
+- No hay hablante nativo disponible y KBBI/API puede fallar. El proyecto NO se detiene por ello. No afirmar naturalidad, gramática o equivalencia semántica sin evidencia.
 
-## Decisiones tomadas
-- No añadir capa de IA extra dentro de la app por ahora.
-- La app no se publica en tiendas de apps.
-- Sin vidas, sin anuncios, sin social.
-- Siempre gratuita, local, sin cuentas y sin backend, incluso si se comparte.
-- Más vocabulario básico repetido en distintos contextos dentro de cada unidad.
-- Un segundo idioma solo se empieza con autorización del dueño y después de proponer cómo organizar los datos por idioma sin cambiar IndexedDB ni el backup v3.
-- No se usan herramientas locales de memoria de código (tipo MCP): se trabaja desde el celular; la memoria del proyecto son estos tres archivos.
-- Todo merge requiere "Aprobado" explícito del dueño; ChatGPT no fusiona por su cuenta.
-- No hay hablante nativo que valide el indonesio y KBBI puede fallar: el proyecto NO se detiene por eso. El contenido avanza con estados honestos (verified_primary solo lo marca el dueño; cross_checked = 2+ fuentes secundarias independientes; not_checked = el resto) y se corrigen errores cuando se descubran.
-
-## Reparto de herramientas
-- Claude: revisión técnica y curricular antes de aprobar.
-- Gemini: ideas de experiencia de usuario.
-- ChatGPT: integra cambios en el repo (rama + PR) y los valida.
+## Decisiones
+- A2 permanece desbloqueado porque A1 no tiene validación lingüística externa.
+- No añadir otra capa de IA dentro de la app por ahora.
+- No cambiar IndexedDB ni backup v3 para incorporar estados de revisión.
+- No crear un segundo idioma hasta terminar de consolidar indonesio y recibir autorización.
+- Todo merge requiere el "Aprobado" explícito del dueño.
+- Revisión externa/manual: Claude para revisión técnica/curricular, Gemini para ideas UX, ChatGPT integra cambios y valida.
 
 ## Estado técnico de referencia
-- Service worker en main: cache bahasa-studio-v3.8.53.
-- Service worker en PR #337: cache bahasa-studio-v3.8.54.
-- Scripts de calidad disponibles: scripts/audit-curriculum-quality.mjs, scripts/build-editorial-review-queue.mjs, scripts/build-unified-quality-report.mjs y scripts/build-deepseek-review-packet.mjs.
-- IndexedDB v3 y backup v3: preservados; PR #337 no modifica sus esquemas.
+- Service worker en main: `bahasa-studio-v3.8.54` (actualizado por PR #337).
+- PR #337: squash commit `591567a47b592d66a261e79375fd94fca3714e51`.
+- PR #338: reglas AGENTS.md, MEMORY.md y SKILL.md ya fusionadas.
+- IndexedDB v3 y backup v3 no fueron modificados por #337.
+
+## Pendiente (orden actual)
+1. Revisar los artifacts del pipeline de calidad: informe estructural, resumen/CSV editorial, informe combinado y paquete manual. Separar fallos estructurales de advertencias editoriales; no inferir certificación lingüística.
+2. Consolidar A2 (especialmente U1–U8) y revisar A1 U24–U32 con evidencia.
+3. Mejorar tutor conversacional y luego repaso adaptativo.
+4. Pronunciación/escucha y pulido de lección a pantalla completa.
+5. B1 y después B2, solo tras cerrar consolidación.
+6. Antes de compartir: revisar licencias/fuentes, secretos/datos expuestos e instrucciones.
 
 ## Historial breve
-- PR #326 fusionado: corrección de distinción entre entrada/tarifa de entrada en A2 U38.
-- PR #327–#330 fusionados: base/herramientas del sistema de calidad y auditoría.
-- PR #331–#336 fusionados: consolidación/guardrails A2 U5–U8, A1 U24–U32 y cola editorial.
-- 5 nov 2026: PR #338 fusionado (commit 613467b9e1f179aad400a2fa4156eb7b6142fc8c), con AGENTS.md, MEMORY.md y SKILL.md.
-- 5 nov 2026: PR #337 continúa abierto; prompts A2 U5–U8 aclarados y tests de caché UI/historial alineados con v3.8.54; CI completo pendiente.
+- PR #326: corrección de distinción entre entrada/tarifa de entrada en A2 U38.
+- PR #327–#330: base y herramientas del sistema de calidad.
+- PR #331–#336: guardrails de A2 U5–U8, A1 U24–U32 y cola editorial.
+- PR #338: añadió AGENTS.md, MEMORY.md y SKILL.md.
+- PR #337: aclaró 16 prompts de traducción A2 U5–U8, alineó tests de caché a v3.8.54; fusionado el 5 nov 2026.

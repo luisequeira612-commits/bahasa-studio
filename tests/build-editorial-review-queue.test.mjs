@@ -67,7 +67,8 @@ test('adds pending review candidates for unit and lesson exercises without judgi
   assert.equal(exercises[0].canonical_answer, 'makan');
   assert.equal(exercises[0].accepted_answers, '["menyantap"]');
   assert.equal(exercises[0].candidate_flags, 'open_response_review;accepted_alternatives_review');
-  assert.equal(exercises[0].priority, 'P1');
+  assert.equal(exercises[0].priority, 'P2');
+  assert.equal(exercises[0].priority_reason, 'open_response_editorial_review');
   assert.equal(exercises[1].canonical_answer, 'makan');
   assert.equal(exercises[1].linked_vocab_ids, 'v1');
   assert.equal(exercises[1].priority, 'P2');
@@ -86,7 +87,7 @@ test('summarizes vocabulary and exercise review workload separately', () => {
   const summary = buildEditorialSummary(rows);
   assert.equal(summary.total_entries, 3);
   assert.deepEqual(summary.by_item_type, { vocabulary: 2, exercise: 1 });
-  assert.deepEqual(summary.by_priority, { P1: 1, P2: 2 });
+  assert.deepEqual(summary.by_priority, { P2: 3 });
   assert.deepEqual(summary.candidate_flags, { open_response_review: 1 });
   assert.equal(summary.review_status, 'pending');
   assert.equal(summary.editorial_status, 'not_reviewed');
@@ -100,12 +101,34 @@ test('prioritizes exercise review without issuing linguistic verdicts', () => {
     { type: 'write', prompt: 'Escribe', answer: 'una frase' },
     { type: 'mc', prompt: 'Elige', options: ['uno', 'uno'], answer: 4 },
   ] }] }]);
-  assert.deepEqual(rows.map((row) => row.priority), ['P1', 'P1', 'P2', 'P3']);
+  assert.equal(rows.filter((row) => row.priority === 'P1').length, 1);
+  assert.equal(rows.find((row) => row.exercise_type === 'write').priority, 'P2');
+  assert.equal(rows.find((row) => row.exercise_type === 'mc' && row.candidate_flags.includes('duplicate_mc_options')).priority, 'P1');
   const malformed = rows.find((row) => row.candidate_flags.includes('invalid_mc_answer_index'));
   assert.ok(malformed.candidate_flags.includes('duplicate_mc_options'));
   assert.equal(malformed.review_status, 'pending');
   assert.equal(malformed.review_confidence, 'unassessed');
   assert.equal(malformed.editorial_status, 'not_reviewed');
-  assert.equal(rows.find((row) => row.exercise_type === 'write').priority_reason, 'needs_attention_before_routine_review');
+  assert.equal(rows.find((row) => row.exercise_type === 'write').priority_reason, 'open_response_editorial_review');
   assert.equal(rows.find((row) => row.exercise_type === 'match').priority_reason, 'routine_closed_exercise_review');
+});
+
+
+test('uses authored model answers for write and correctOrder for order without false missing-answer flags', () => {
+  const rows = buildEditorialQueue([{ id: 'A1', units: [{ id: 'u1', title: 'Unidad', vocab: [], exercises: [
+    { type: 'write', prompt: 'Escribe una frase propia', modelAnswer: 'Saya makan.' },
+    { type: 'order', prompt: 'Ordena: «Yo como»', words: ['makan', 'Saya'], correctOrder: ['Saya', 'makan'] },
+    { type: 'translate_es_id', prompt: 'Traduce: «comer»', answer: 'makan' },
+  ] }] }]);
+  const write = rows.find((row) => row.exercise_type === 'write');
+  const order = rows.find((row) => row.exercise_type === 'order');
+  const translate = rows.find((row) => row.exercise_type === 'translate_es_id');
+  assert.equal(write.canonical_answer, 'Saya makan.');
+  assert.ok(!write.candidate_flags.includes('missing_canonical_answer'));
+  assert.equal(write.priority, 'P2');
+  assert.equal(order.canonical_answer, 'Saya makan');
+  assert.ok(!order.candidate_flags.includes('missing_canonical_answer'));
+  assert.equal(order.priority, 'P3');
+  assert.equal(translate.canonical_answer, 'makan');
+  assert.equal(translate.priority, 'P2');
 });

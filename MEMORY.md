@@ -31,7 +31,7 @@
 - PR #343 fusionado en `785a31f08ad80ea07b0be550c1dbfb361043cf2`: paquetes editoriales acotados por nivel/unidad/prioridad.
 - PR #344 fusionado en `817b4246b0f6302544e09b357041e95f44cd791b`: parser CSV compatible con campos multilínea/comillas y pruebas integradas en CI.
 - PR #345 reemplaza el antiguo #340: cobertura diferenciada de audioText, ejercicios listen y soporte general; CI verde, pendiente de aprobación.
-- PR #346 reemplaza el antiguo #341: desglose editorial por unidad; CI verde, pendiente de aprobación.
+- PR #346 reemplaza el antiguo #341: desglose editorial por unidad; primer CI detectó que faltaba exponer `by_unit` en el objeto devuelto. Corrección aplicada en `4b2bc488`; CI de ese commit pendiente.
 - PR #339 antiguo permanece abierto sobre base obsoleta; no fusionar. Su registro se puede incorporar en una futura actualización documental, no es un cambio funcional.
 - Cola editorial: las entradas siguen pendientes/no revisadas; la certificación lingüística sigue en not_certified.
 ## Pendiente (en este orden)
@@ -70,4 +70,4 @@
 - PR #327–#330 fusionados: base/herramientas del sistema de calidad y auditoría.
 - PR #331–#336 fusionados: consolidación/guardrails A2 U5–U8, A1 U24–U32 y cola editorial.
 - 5 nov 2026: PR #338 fusionado (commit 613467b9e1f179aad400a2fa4156eb7b6142fc8c), con AGENTS.md, MEMORY.md y SKILL.md.
-- 5 nov 2026: PR #337–#344 fusionados tras aprobación explícita. PR #345 y #346 son reemplazos actualizados de #340 y #341; CI verde, pendientes de aprobación. PR #339 antiguo permanece obsoleto y sin fusionar.
+- 5 nov 2026: PR #337–#344 fusionados tras aprobación explícita. PR #345 es reemplazo actualizado de #340; CI verde, pendiente de aprobación. PR #346 reemplaza #341; corregido fallo detectado en CI y pendiente de nueva ejecución. PR #339 antiguo permanece obsoleto y sin fusionar.

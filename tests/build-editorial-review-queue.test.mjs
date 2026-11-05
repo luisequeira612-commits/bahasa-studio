@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { buildEditorialQueue, buildEditorialSummary, toCsv } from '../scripts/build-editorial-review-queue.mjs';
+import { buildEditorialQueue, buildEditorialSummary, filterEditorialQueue, toCsv } from '../scripts/build-editorial-review-queue.mjs';
 
 test('builds one neutral editorial work item per vocabulary entry', () => {
   const rows = buildEditorialQueue([{ id: 'A1', units: [{ id: 'a1_u1', title: 'Presentaciones', vocab: [
@@ -131,4 +131,29 @@ test('uses authored model answers for write and correctOrder for order without f
   assert.equal(order.priority, 'P3');
   assert.equal(translate.canonical_answer, 'makan');
   assert.equal(translate.priority, 'P2');
+});
+
+
+test('filters editorial exports by level and exact unit without changing the default full queue', () => {
+  const rows = buildEditorialQueue([
+    { id: 'A1', units: [
+      { id: 'a1_u24', vocab: [{ id: 'v1', idn: 'rumah', esp: 'casa', ex: 'Ini rumah.', exEsp: 'Esta es una casa.' }] },
+      { id: 'a1_u25', vocab: [{ id: 'v2', idn: 'makan', esp: 'comer', ex: 'Saya makan.', exEsp: 'Yo como.' }] },
+    ] },
+    { id: 'A2', units: [
+      { id: 'a2_u5', vocab: [{ id: 'v3', idn: 'pagi', esp: 'mañana', ex: 'Saya bangun pagi.', exEsp: 'Me levanto temprano.' }] },
+    ] },
+  ]);
+  assert.equal(filterEditorialQueue(rows).length, 3);
+  assert.deepEqual(filterEditorialQueue(rows, { level: 'a1' }).map((row) => row.unit_id), ['a1_u24', 'a1_u25']);
+  assert.deepEqual(filterEditorialQueue(rows, { level: 'A2', unit: 'A2_U5' }).map((row) => row.unit_id), ['a2_u5']);
+});
+
+test('rejects ambiguous or empty editorial queue scopes', () => {
+  const rows = buildEditorialQueue([{ id: 'A1', units: [
+    { id: 'a1_u24', vocab: [{ id: 'v1', idn: 'rumah', esp: 'casa', ex: 'Ini rumah.', exEsp: 'Esta es una casa.' }] },
+  ] }]);
+  assert.throws(() => filterEditorialQueue(rows, { unit: 'a1_u24' }), /requires --level/);
+  assert.throws(() => filterEditorialQueue(rows, { level: 'B1' }), /must be A1 or A2/);
+  assert.throws(() => filterEditorialQueue(rows, { level: 'A1', unit: 'a1_u99' }), /No editorial entries found/);
 });

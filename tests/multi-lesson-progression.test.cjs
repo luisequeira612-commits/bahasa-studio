@@ -147,6 +147,7 @@ test('authored lesson vocabulary references resolve unambiguously within their i
   orderedUnits.forEach((unit, unitIndex) => {
     if (!Array.isArray(unit.lessons) || !unit.lessons.length) return;
 
+    const previouslyTaughtInUnit = [];
     for (const lesson of unit.lessons) {
       for (const id of lesson.vocabIds || []) {
         const localMatches = (unit.vocab || []).filter(word => word.id === id);
@@ -155,11 +156,16 @@ test('authored lesson vocabulary references resolve unambiguously within their i
       }
 
       for (const id of lesson.reviewVocabIds || []) {
-        const previousMatches = orderedUnits.slice(0, unitIndex)
-          .flatMap(previousUnit => previousUnit.vocab || [])
-          .filter(word => word.id === id);
+        const previousMatches = [
+          ...orderedUnits.slice(0, unitIndex).flatMap(previousUnit => previousUnit.vocab || []),
+          ...previouslyTaughtInUnit
+        ].filter(word => word.id === id);
         assert.equal(previousMatches.length, 1,
-          unit.id + ' review vocabulary reference ' + id + ' must resolve to exactly one previously taught item');
+          unit.id + ' review vocabulary reference ' + id + ' must resolve exactly once in previously taught course vocabulary');
+      }
+
+      for (const id of lesson.vocabIds || []) {
+        previouslyTaughtInUnit.push(...(unit.vocab || []).filter(word => word.id === id));
       }
     }
   });

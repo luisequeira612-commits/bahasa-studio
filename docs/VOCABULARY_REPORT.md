@@ -15,6 +15,8 @@ La normalización reproduce `getUniqueLearningVocabulary()`: convertir `idn` a t
 
 **Comprobación del total mostrado:** 313 calculadas frente a 801 esperadas. **DISCREPANCIA**: revisar currículo o cifra esperada. Se reproduce la lógica con los datos curriculares; no se ejecuta navegador ni se leen lecciones locales del dispositivo.
 
+**Discrepancia estructural importante:** los archivos curriculares de `main` contienen actualmente 26 unidades A1 (faltan U12–U17) y 4 unidades A2 (U1–U4), no las 32 y 40 comunicadas como estado del curso. El tracker A2 conserva 492 filas, pero 432 IDs no aparecen en el currículo A2 actual. Por eso el inventario del repositorio arroja 253 formas A1 + 60 A2 = 313, no 309 + 492 = 801. Este informe no corrige ni reconstruye contenido; hace visible la diferencia para investigarla en un PR separado antes de añadir vocabulario.
+
 ## 2. Entradas nuevas por unidad
 
 Cada forma se atribuye a su primera aparición dentro del nivel. Se marcan unidades con menos de 8 entradas nuevas; no es una cuota pedagógica.

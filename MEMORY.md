@@ -24,15 +24,16 @@
 - Botón "crear nueva lección con IA" (Gemini), guarda offline.
 - Historial y estadísticas: implementados, por consolidar.
 
-## En desarrollo
-- PR #337 fusionado en `591567a47b592d66a261e79375fd94fca3714e51`: aclara los objetivos de vocabulario de 16 prompts de traducción en A2 U5–U8; referencia de caché v3.8.54.
+## Estado de PR y sistema de calidad
+- PR #337 fusionado en `591567a47b592d66a261e79375fd94fca3714e51`: aclara objetivos de vocabulario de 16 prompts A2 U5–U8; caché v3.8.54.
 - PR #338 fusionado: incorpora AGENTS.md, MEMORY.md y SKILL.md.
-- PR #339 abierto, CI verde, pendiente de aprobación: registra el merge de #337 y el estado de calidad.
-- PR #340 abierto, CI verde, pendiente de aprobación: expone métricas de cobertura de audio en el informe unificado.
-- PR #341 abierto, CI verde, pendiente de aprobación: añade desglose de carga editorial por unidad.
-- PR #342 fusionado en `5014b5f703e61385d15643e4510fb35787b73c57`: exportación filtrada de la cola editorial por nivel/unidad; sin veredictos lingüísticos.\n- PR #343 fusionado en `785a31f08ad80ea07b0dbe550c1dbfb361043cf2`: empaquetado acotado de tandas editoriales por nivel/unidad/prioridad.
-- PR de corrección en preparación: parser CSV multilínea y cobertura de pruebas CI para el empaquetador.
-
+- PR #342 fusionado en `5014b5f703e61385d15643e4510fb35787b73c57`: filtros seguros por nivel/unidad en cola editorial.
+- PR #343 fusionado en `785a31f08ad80ea07b0be550c1dbfb361043cf2`: paquetes editoriales acotados por nivel/unidad/prioridad.
+- PR #344 fusionado en `817b4246b0f6302544e09b357041e95f44cd791b`: parser CSV compatible con campos multilínea/comillas y pruebas integradas en CI.
+- PR #345 reemplaza el antiguo #340: cobertura diferenciada de audioText, ejercicios listen y soporte general; CI verde, pendiente de aprobación.
+- PR #346 reemplaza el antiguo #341: desglose editorial por unidad; primer CI detectó que faltaba exponer `by_unit` en el objeto devuelto. Corrección aplicada en `4b2bc488`; CI de ese commit pendiente.
+- PR #339 antiguo permanece abierto sobre base obsoleta; no fusionar. Su registro se puede incorporar en una futura actualización documental, no es un cambio funcional.
+- Cola editorial: las entradas siguen pendientes/no revisadas; la certificación lingüística sigue en not_certified.
 ## Pendiente (en este orden)
 1. Revisar la cola editorial por tandas de nivel/unidad con evidencia; último informe: 1,989 entradas pendientes, todas sin revisión editorial ni certificación lingüística. PR #342 permite exportaciones acotadas y PR #343 genera paquetes por unidad/prioridad.
 2. Consolidar A2 y continuar la revisión de A1 U24–U32.
@@ -69,4 +70,4 @@
 - PR #327–#330 fusionados: base/herramientas del sistema de calidad y auditoría.
 - PR #331–#336 fusionados: consolidación/guardrails A2 U5–U8, A1 U24–U32 y cola editorial.
 - 5 nov 2026: PR #338 fusionado (commit 613467b9e1f179aad400a2fa4156eb7b6142fc8c), con AGENTS.md, MEMORY.md y SKILL.md.
-- 5 nov 2026: PR #337 fusionado; PR #339–#341 siguen abiertos sobre una base anterior y requieren reconciliación. PR #342 y #343 fusionados tras aprobación explícita.
+- 5 nov 2026: PR #337–#344 fusionados tras aprobación explícita. PR #345 es reemplazo actualizado de #340; CI verde, pendiente de aprobación. PR #346 reemplaza #341; corregido fallo detectado en CI y pendiente de nueva ejecución. PR #339 antiguo permanece obsoleto y sin fusionar.

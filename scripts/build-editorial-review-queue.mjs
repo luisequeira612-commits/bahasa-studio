@@ -34,6 +34,12 @@ function exerciseAnswer(exercise) {
   if (exercise.type === 'mc' && Array.isArray(exercise.options) && Number.isInteger(exercise.answer)) {
     return exercise.options[exercise.answer] ?? '';
   }
+  if (exercise.type === 'order' && Array.isArray(exercise.correctOrder)) {
+    return exercise.correctOrder.join(' ');
+  }
+  if (exercise.type === 'write' && typeof exercise.modelAnswer === 'string') {
+    return exercise.modelAnswer;
+  }
   return typeof exercise.answer === 'string' ? exercise.answer : '';
 }
 
@@ -90,7 +96,8 @@ export function buildEditorialQueue(curricula) {
           if (exercise.type === 'translate_es_id' || exercise.type === 'write') flags.push('open_response_review');
           if (accepted.length) flags.push('accepted_alternatives_review');
           if (!prompt) flags.push('missing_prompt');
-          if (!canonicalAnswer) flags.push('missing_canonical_answer');
+          const expectsCanonicalAnswer = ['mc', 'translate_es_id', 'order', 'match'].includes(exercise.type);
+          if (expectsCanonicalAnswer && !canonicalAnswer) flags.push('missing_canonical_answer');
           if (exercise.type === 'mc') {
             flags.push('distractor_quality_review');
             if (options.length < 2) flags.push('insufficient_mc_options');
@@ -100,13 +107,20 @@ export function buildEditorialQueue(curricula) {
             const normalizedOptions = options.map((option) => String(option).trim().toLocaleLowerCase());
             if (new Set(normalizedOptions).size !== normalizedOptions.length) flags.push('duplicate_mc_options');
           }
-          const priority = flags.some((flag) => [
-            'open_response_review', 'accepted_alternatives_review', 'missing_prompt',
-            'missing_canonical_answer', 'insufficient_mc_options', 'invalid_mc_answer_index', 'duplicate_mc_options',
-          ].includes(flag)) ? 'P1' : exercise.type === 'mc' ? 'P2' : 'P3';
+          const structuralFlags = [
+            'missing_prompt', 'missing_canonical_answer', 'insufficient_mc_options',
+            'invalid_mc_answer_index', 'duplicate_mc_options',
+          ];
+          const priority = flags.some((flag) => structuralFlags.includes(flag))
+            ? 'P1'
+            : flags.includes('open_response_review') || flags.includes('accepted_alternatives_review') || exercise.type === 'mc'
+              ? 'P2'
+              : 'P3';
           const priorityReason = priority === 'P1'
-            ? 'needs_attention_before_routine_review'
-            : priority === 'P2' ? 'closed_choice_distractor_review' : 'routine_closed_exercise_review';
+            ? 'structural_integrity_review'
+            : priority === 'P2' && (flags.includes('open_response_review') || flags.includes('accepted_alternatives_review'))
+              ? 'open_response_editorial_review'
+              : priority === 'P2' ? 'closed_choice_distractor_review' : 'routine_closed_exercise_review';
           rows.push({
             ...baseReviewFields('exercise', EXERCISE_REVIEW_DIMENSIONS),
             review_id: [level, unitId, 'exercise', sourcePath.replace(/[^a-zA-Z0-9:_-]/g, '_')].join(':'),

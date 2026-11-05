@@ -138,3 +138,29 @@ test('A1 U24-U32 use focused authored lesson plans while retaining generated pra
     });
   }
 });
+
+
+test('authored lesson vocabulary references resolve unambiguously within their intended unit history', () => {
+  const levels = app.CourseData.levels;
+  const orderedUnits = levels.flatMap(level => level.units);
+
+  orderedUnits.forEach((unit, unitIndex) => {
+    if (!Array.isArray(unit.lessons) || !unit.lessons.length) return;
+
+    for (const lesson of unit.lessons) {
+      for (const id of lesson.vocabIds || []) {
+        const localMatches = (unit.vocab || []).filter(word => word.id === id);
+        assert.equal(localMatches.length, 1,
+          unit.id + ' new vocabulary reference ' + id + ' must resolve exactly once inside its own unit');
+      }
+
+      for (const id of lesson.reviewVocabIds || []) {
+        const previousMatches = orderedUnits.slice(0, unitIndex)
+          .flatMap(previousUnit => previousUnit.vocab || [])
+          .filter(word => word.id === id);
+        assert.equal(previousMatches.length, 1,
+          unit.id + ' review vocabulary reference ' + id + ' must resolve to exactly one previously taught item');
+      }
+    }
+  });
+});

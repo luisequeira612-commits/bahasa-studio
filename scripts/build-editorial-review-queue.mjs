@@ -173,9 +173,26 @@ export function buildEditorialSummary(rows) {
     byPriority[row.priority] = (byPriority[row.priority] ?? 0) + 1;
     byItemType[row.item_type] = (byItemType[row.item_type] ?? 0) + 1;
     const unitKey = [row.level, row.unit_id].join(':');
-    byUnit[unitKey] = (byUnit[unitKey] ?? 0) + 1;
+    const unit = byUnit[unitKey] ??= {
+      level: row.level,
+      unit_id: row.unit_id,
+      total_entries: 0,
+      by_item_type: {},
+      by_priority: {},
+      candidate_flags: {},
+      review_status: {},
+      editorial_status: {},
+    };
+    unit.total_entries += 1;
+    unit.by_item_type[row.item_type] = (unit.by_item_type[row.item_type] ?? 0) + 1;
+    unit.by_priority[row.priority] = (unit.by_priority[row.priority] ?? 0) + 1;
+    unit.review_status[row.review_status] = (unit.review_status[row.review_status] ?? 0) + 1;
+    unit.editorial_status[row.editorial_status] = (unit.editorial_status[row.editorial_status] ?? 0) + 1;
     for (const field of String(row.missing_fields ?? '').split(';').filter(Boolean)) missingFields[field] = (missingFields[field] ?? 0) + 1;
-    for (const flag of String(row.candidate_flags ?? '').split(';').filter(Boolean)) candidateFlags[flag] = (candidateFlags[flag] ?? 0) + 1;
+    for (const flag of String(row.candidate_flags ?? '').split(';').filter(Boolean)) {
+      candidateFlags[flag] = (candidateFlags[flag] ?? 0) + 1;
+      unit.candidate_flags[flag] = (unit.candidate_flags[flag] ?? 0) + 1;
+    }
   }
   return {
     total_entries: rows.length,

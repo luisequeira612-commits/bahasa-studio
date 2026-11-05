@@ -11,13 +11,13 @@ Generado por `node scripts/vocabulary-report.mjs`. Inventario estructural local;
 | Total A1+A2 (unión) | 313 |
 | Compartidas A1/A2 | 0 |
 
-La normalización reproduce `getUniqueLearningVocabulary()`: convertir `idn` a texto, aplicar `trim()` y `toLocaleLowerCase()`, excluir valores vacíos y conservar primera aparición. El informe se limita al currículo A1/A2 del repositorio. La app también puede incluir lecciones locales IA guardadas en el dispositivo; esas entradas no están disponibles para este informe offline del repositorio.
+La normalización reproduce `getUniqueLearningVocabulary()`: convertir `idn` a texto, aplicar `trim()` y `toLocaleLowerCase()`, excluir valores vacíos y conservar primera aparición. El informe se limita al currículo A1/A2 del repositorio. La app puede incluir lecciones locales IA guardadas en el dispositivo; esas entradas no se encuentran en los archivos del repositorio.
 
-**Comprobación del total mostrado:** 313 calculadas frente a 801 esperadas. **DISCREPANCIA**: revisar currículo o cifra esperada. La comparación reproduce la lógica de la función con los datos del repositorio; no ejecuta el navegador ni lee datos locales del dispositivo.
+**Comprobación del total mostrado:** 313 calculadas frente a 801 esperadas. **DISCREPANCIA**: revisar currículo o cifra esperada. Se reproduce la lógica con los datos curriculares; no se ejecuta navegador ni se leen lecciones locales del dispositivo.
 
 ## 2. Entradas nuevas por unidad
 
-Cada forma se atribuye a su primera aparición dentro del nivel. Se marcan las unidades con menos de 8 entradas nuevas; no es una cuota pedagógica.
+Cada forma se atribuye a su primera aparición dentro del nivel. Se marcan unidades con menos de 8 entradas nuevas; no es una cuota pedagógica.
 
 | Nivel | Unidad | Título | Nuevas | Menos de 8 |
 | --- | --- | --- | --- | --- |
@@ -128,5 +128,5 @@ Estados aprobados para el flujo editorial: `cross_checked_secondary` (dos fuente
 
 - Las formas derivadas con ID canónico propio cuentan como entradas; las familias léxicas se reportan aparte. No se calculan familias porque no existe taxonomía morfológica validada por ID.
 - `not_checked` solo puede ser respuesta obligatoria si es básica, frecuente y supera las pruebas automáticas. `doubtful` nunca puede ser obligatoria.
-- No hay hablante nativo disponible y KBBI oficial requiere iniciar sesión; los servicios externos son opcionales y nunca bloquean el avance.
+- No hay hablante nativo disponible y KBBI oficial requiere iniciar sesión; servicios externos opcionales, nunca bloqueantes.
 - El informe no usa red ni modifica currículo, vocabulario, ejercicios, CSV, IndexedDB o backup JSON v3.

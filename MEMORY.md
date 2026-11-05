@@ -25,11 +25,11 @@
 - Historial y estadísticas: implementados, por consolidar.
 
 ## En desarrollo
-- PR #337 abierto: aclara los objetivos de vocabulario de 16 prompts en A2 U5–U8 y añade regresión; corrige las expectativas antiguas de caché en los tests UI y de historial (v3.8.53) para alinearlas con la versión de la rama (v3.8.54). El primer CI detectó ambos tests desactualizados; el de UI ya pasó y el de historial se corrigió. Pendiente de CI verde completo y revisión.
-- PR #338 fusionado: incorpora AGENTS.md, MEMORY.md y SKILL.md con las reglas de trabajo del proyecto.
+- PR #337 fusionado en 591567a47b592d66a261e79375fd94fca3714e51: aclara los objetivos de vocabulario de 16 prompts de traducción en A2 U5–U8; referencia de caché v3.8.54.
+- PR #338 fusionado: incorpora AGENTS.md, MEMORY.md y SKILL.md con las reglas de trabajo del proyecto.\n- PR #339 abierto y pendiente de aprobación: registra el merge de #337 y el estado real de la auditoría.\n- PR #340 abierto, CI verde y pendiente de aprobación: expone la cobertura audioText/listen/soporte general en el informe unificado.\n- Rama feat/editorial-queue-unit-summary: añade desglose de la carga editorial por unidad, sin emitir veredictos lingüísticos.
 
 ## Pendiente (en este orden)
-1. Completar y revisar los informes del auditor y la cola editorial con evidencia; scripts principales: scripts/audit-curriculum-quality.mjs y scripts/build-editorial-review-queue.mjs.
+1. Revisar la cola editorial con evidencia; el último informe registró 1,989 entradas pendientes y ninguna revisada. La cola ahora incluye desglose por unidad para facilitar la priorización.
 2. Consolidar A2 y continuar la revisión de A1 U24–U32.
 3. Mejorar el tutor conversacional.
 4. Aprendizaje adaptativo y repaso con repetición espaciada.
@@ -65,4 +65,4 @@
 - PR #327–#330 fusionados: base/herramientas del sistema de calidad y auditoría.
 - PR #331–#336 fusionados: consolidación/guardrails A2 U5–U8, A1 U24–U32 y cola editorial.
 - 5 nov 2026: PR #338 fusionado (commit 613467b9e1f179aad400a2fa4156eb7b6142fc8c), con AGENTS.md, MEMORY.md y SKILL.md.
-- 5 nov 2026: PR #337 continúa abierto; prompts A2 U5–U8 aclarados y tests de caché UI/historial alineados con v3.8.54; CI completo pendiente.
+- 5 nov 2026: PR #337 fusionado en 591567a47b592d66a261e79375fd94fca3714e51.

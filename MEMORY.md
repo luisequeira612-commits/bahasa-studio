@@ -67,4 +67,5 @@
 - PR #327–#330 fusionados: base/herramientas del sistema de calidad y auditoría.
 - PR #331–#336 fusionados: consolidación/guardrails A2 U5–U8, A1 U24–U32 y cola editorial.
 - 5 nov 2026: PR #338 fusionado (commit 613467b9e1f179aad400a2fa4156eb7b6142fc8c), con AGENTS.md, MEMORY.md y SKILL.md.
-- 5 nov 2026: PR #337–#345 fusionados tras aprobación explícita. PR #346 original conserva conflictos de base; su cambio se está validando en una rama reconciliada. PR #339–#341 antiguos no deben fusionarse.
+- 5 nov 2026: PR #337–#347 fusionados tras aprobación explícita. PR #346 original quedó obsoleto por conflictos y fue reemplazado por #347. PR #339–#341 antiguos no deben fusionarse.
+- Tras #347, las pruebas de regresión post-merge y el despliegue de Pages terminaron correctamente; la validación de PR #348 actualiza este registro.

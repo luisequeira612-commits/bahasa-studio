@@ -27,7 +27,7 @@ function firstByUnit(level){const seen=new Set();return level.units.map((u,i)=>{
 function verification(level,rows){const map=new Map();for(const r of rows)if(r.vocab_id)map.set(r.vocab_id,r);
  const words=level.units.flatMap(u=>u.vocab||[]),counts=new Map();let missing=0;
  for(const w of words){const r=map.get(w.id);if(!r){missing++;continue;}const st=r.KBBI_status||'status_missing';counts.set(st,(counts.get(st)||0)+1);}
- return {total:words.length,registered:words.length-missing,missing,counts,orphans:rows.filter(r=>!words.some(w=>w.id===r.vocab_id)).length};}
+ return {total:words.length,registered:words.length-missing,missing,counts,orphans:rows.filter(r=>!words.some(w=>w.id===r.vocab_id)).length,trackerRows:rows.length};}
 function candidates(words){return [['ber-',/^ber/i],['meN-',/^me(?:ng|ny|m|n)/i],['di-',/^di/i],['ter-',/^ter/i],['se-',/^se/i],['ke-',/^ke/i],['-an',/an$/i]].map(([label,re])=>({label,forms:[...new Set(words.map(w=>String(w.idn||'').trim()).filter(v=>re.test(v)))].sort((a,b)=>a.localeCompare(b,'id'))}));}
 export function buildVocabularyReport({a1,a2,a1Tracker,a2Tracker,expectedTotal=801}){
  const all=unique([a1,a2]),one=unique([a1]),two=unique([a2]),set=new Set(one.map(w=>norm(w.idn)));

@@ -11,9 +11,9 @@ Generado por `node scripts/vocabulary-report.mjs`. Inventario estructural local;
 | Total A1+A2 (unión) | 793 |
 | Compartidas A1/A2 | 0 |
 
-La normalización reproduce `getUniqueLearningVocabulary()`: convertir `idn` a texto, aplicar `trim()` y `toLocaleLowerCase()`, excluir valores vacíos y conservar primera aparición. Se incluyen A1 y A2 habilitado; no B1/B2. La app también puede incluir lecciones locales IA guardadas en el dispositivo; esas entradas no están en el inventario del repositorio.
+La normalización reproduce `getUniqueLearningVocabulary()`: convertir `idn` a texto, aplicar `trim()` y `toLocaleLowerCase()`, excluir valores vacíos y conservar primera aparición. Se incluyen A1 y A2 habilitado del repositorio; no B1/B2. La app también puede incluir lecciones locales IA guardadas en el dispositivo, no disponibles para este informe.
 
-**Comprobación del total mostrado:** 793 calculadas frente a 801 esperadas. **DISCREPANCIA**: revisar currículo o cifra esperada. Se reproduce la lógica con datos del repositorio; no se ejecuta navegador ni se leen lecciones locales del dispositivo.
+**Comprobación del total mostrado:** 793 calculadas frente a 801 esperadas. **DISCREPANCIA**: el total es 8 menor. A1 aporta 301 frente a 309 comunicadas (−8); A2 coincide en 492. Revisar el origen de las 8 entradas de diferencia. Se reproduce la lógica con datos del repositorio; no se ejecuta navegador ni se leen lecciones locales del dispositivo.
 
 ## 2. Entradas nuevas por unidad
 

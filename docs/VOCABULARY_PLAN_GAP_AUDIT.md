@@ -119,6 +119,22 @@ Candidatos transparentes de A2 que sí están como entradas propias incluyen:
 - **ter-:** `teratur`, `terjangkau`, `tertunda`, `tersinggung`.
 
 No se asigna una cifra lingüística definitiva a `-an`, `se-` y `ke-` sin revisar cada lema, su segmentación y su significado. El repositorio tampoco mantiene aún un campo morfológico estructurado y completo para las 492 entradas A2.
+### Conteo mecánico de patrones (no equivale a conteo lingüístico)
+
+La búsqueda literal en las formas A2 registradas produce estos candidatos, con posibles falsos positivos y solapamientos:
+
+| Patrón superficial | Formas candidatas | Observación |
+|---|---:|---|
+| ber- | 26 | Incluye coincidencias lexicalizadas como `berita` y `berikutnya`; revisar lema por lema. |
+| meN- | 72 | Incluye falsos positivos como `Mei` y `media sosial`; no todos son derivados. |
+| di- | 3 | Incluye `diskon`, que no es una forma con prefijo di-. |
+| ter- | 5 | Incluye `teras`, que no debe clasificarse por el prefijo. |
+| -an | 160 | Muy sobreinclusivo: captura raíces y expresiones que terminan en esas letras. |
+| se- | 18 | Incluye días/meses y raíces que no llevan el prefijo productivo. |
+| ke- | 37 | Incluye raíces y términos lexicalizados; requiere segmentación. |
+
+Estos números no se suman entre sí porque una misma forma puede coincidir con prefijo y sufijo. La cifra de formas derivadas realmente registradas como entradas propias solo puede fijarse tras revisión morfológica individual; por ahora, el dato reproducible es el número de coincidencias de patrón anterior, no una validación lingüística.
+
 
 En los campos de ejemplos `ex` del currículo A2, la búsqueda automática encontró 12 tokens que parecen coincidir con alguno de esos patrones pero no tienen entrada A2 propia: `berapa`, `delapan`, `depan`, `di`, `dia`, `hujan`, `kelas`, `kemarau`, `makan`, `membaca`, `sebentar`, `sekarang`. La mayoría son falsos positivos claros o formas ya enseñadas en A1; **no son 12 derivaciones confirmadas pendientes**. La extracción no certifica que se hayan cubierto todos los ejemplos de gramática y explicaciones de lecciones. Se necesita una pasada morfológica por campos, no una búsqueda de prefijos sin contexto.
 

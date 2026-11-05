@@ -54,7 +54,9 @@ export function buildVocabularyReport({a1,a2,a1Tracker,a2Tracker,expectedTotal=8
 }
 async function main(){const [a1,a2,c1,c2]=await Promise.all([loadLevel('curriculum-a1.js','BAHASA_CURRICULUM_A1'),loadLevel('curriculum-a2.js','BAHASA_CURRICULUM_A2'),readFile(resolve(ROOT,'docs/A1_VOCABULARY_AUDIT_TRACKER_U24_U32.csv'),'utf8'),readFile(resolve(ROOT,'docs/A2_LANGUAGE_AUDIT_TRACKER_ALL_UNITS.csv'),'utf8')]);
  const report=buildVocabularyReport({a1,a2,a1Tracker:parseCsv(c1),a2Tracker:parseCsv(c2),expectedTotal:EXPECTED});await mkdir(dirname(OUTPUT),{recursive:true});await writeFile(OUTPUT,report,'utf8');
- const line=report.match(/\\*\\*Comprobación del total mostrado:\\*\\* ([^\\n]+)/)?.[1]||'No disponible';
+ const label='**Comprobación del total mostrado:** ';
+ const at=report.indexOf(label);
+ const line=at>=0?report.slice(at+label.length).split('\n')[0]:'No disponible';
  console.log('Wrote docs/VOCABULARY_REPORT.md — '+line);
  // A mismatch is reported in Markdown but does not block local work or CI.
 }

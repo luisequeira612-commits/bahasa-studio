@@ -160,3 +160,48 @@ test('rejects ambiguous or empty editorial queue scopes', () => {
 
 // Keep batch parser regressions in the existing CI-invoked editorial test step.
 await import('./build-editorial-review-batches.test.mjs');
+
+
+test('summarizes editorial workload by unit without converting candidates into verdicts', () => {
+  const rows = buildEditorialQueue([{ id: 'A2', units: [
+    {
+      id: 'a2_u5', title: 'Rutinas', vocab: [
+        { id: 'v1', idn: 'pagi', esp: 'mañana', ex: 'Saya bangun pagi.', exEsp: 'Me levanto temprano.' },
+      ],
+      exercises: [
+        { type: 'translate_es_id', prompt: 'Traduce: mañana', answer: 'pagi', vocabId: 'v1' },
+        { type: 'mc', prompt: 'Elige', options: ['pagi', 'malam'], answer: 0, vocabId: 'v1' },
+      ],
+    },
+    {
+      id: 'a2_u6', title: 'Comida', vocab: [
+        { id: 'v2', idn: 'makan', esp: 'comer', ex: 'Saya makan nasi.', exEsp: 'Como arroz.' },
+      ],
+      exercises: [],
+    },
+  ] }]);
+  const summary = buildEditorialSummary(rows);
+  assert.equal(summary.units, 2);
+  assert.deepEqual(summary.by_unit['A2:a2_u5'], {
+    level: 'A2',
+    unit_id: 'a2_u5',
+    total_entries: 3,
+    by_item_type: { vocabulary: 1, exercise: 2 },
+    by_priority: { P2: 3 },
+    candidate_flags: { open_response_review: 1, distractor_quality_review: 1 },
+    review_status: { pending: 3 },
+    editorial_status: { not_reviewed: 3 },
+  });
+  assert.deepEqual(summary.by_unit['A2:a2_u6'], {
+    level: 'A2',
+    unit_id: 'a2_u6',
+    total_entries: 1,
+    by_item_type: { vocabulary: 1 },
+    by_priority: { P2: 1 },
+    candidate_flags: {},
+    review_status: { pending: 1 },
+    editorial_status: { not_reviewed: 1 },
+  });
+  assert.equal(summary.editorial_status, 'not_reviewed');
+  assert.equal(summary.linguistic_certification, false);
+});

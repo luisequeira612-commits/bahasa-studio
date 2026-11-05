@@ -25,11 +25,15 @@
 - Historial y estadísticas: implementados, por consolidar.
 
 ## En desarrollo
-- PR #337 abierto: aclara los objetivos de vocabulario de 16 prompts en A2 U5–U8 y añade regresión; corrige las expectativas antiguas de caché en los tests UI y de historial (v3.8.53) para alinearlas con la versión de la rama (v3.8.54). El primer CI detectó ambos tests desactualizados; el de UI ya pasó y el de historial se corrigió. Pendiente de CI verde completo y revisión.
-- PR #338 fusionado: incorpora AGENTS.md, MEMORY.md y SKILL.md con las reglas de trabajo del proyecto.
+- PR #337 fusionado en `591567a47b592d66a261e79375fd94fca3714e51`: aclara los objetivos de vocabulario de 16 prompts de traducción en A2 U5–U8; referencia de caché v3.8.54.
+- PR #338 fusionado: incorpora AGENTS.md, MEMORY.md y SKILL.md.
+- PR #339 abierto, CI verde, pendiente de aprobación: registra el merge de #337 y el estado de calidad.
+- PR #340 abierto, CI verde, pendiente de aprobación: expone métricas de cobertura de audio en el informe unificado.
+- PR #341 abierto, CI verde, pendiente de aprobación: añade desglose de carga editorial por unidad.
+- PR #342 en preparación: exportación filtrada de la cola editorial por nivel/unidad; sin veredictos lingüísticos.
 
 ## Pendiente (en este orden)
-1. Completar y revisar los informes del auditor y la cola editorial con evidencia; scripts principales: scripts/audit-curriculum-quality.mjs y scripts/build-editorial-review-queue.mjs.
+1. Revisar la cola editorial por tandas de nivel/unidad con evidencia; último informe: 1,989 entradas pendientes, todas sin revisión editorial ni certificación lingüística. PR #342 prepara exportaciones acotadas para que la revisión manual sea manejable.
 2. Consolidar A2 y continuar la revisión de A1 U24–U32.
 3. Mejorar el tutor conversacional.
 4. Aprendizaje adaptativo y repaso con repetición espaciada.
@@ -55,8 +59,7 @@
 - ChatGPT: integra cambios en el repo (rama + PR) y los valida.
 
 ## Estado técnico de referencia
-- Service worker en main: cache bahasa-studio-v3.8.53.
-- Service worker en PR #337: cache bahasa-studio-v3.8.54.
+- Service worker en main: cache bahasa-studio-v3.8.54 (tras PR #337).
 - Scripts de calidad disponibles: scripts/audit-curriculum-quality.mjs, scripts/build-editorial-review-queue.mjs, scripts/build-unified-quality-report.mjs y scripts/build-deepseek-review-packet.mjs.
 - IndexedDB v3 y backup v3: preservados; PR #337 no modifica sus esquemas.
 
@@ -65,4 +68,4 @@
 - PR #327–#330 fusionados: base/herramientas del sistema de calidad y auditoría.
 - PR #331–#336 fusionados: consolidación/guardrails A2 U5–U8, A1 U24–U32 y cola editorial.
 - 5 nov 2026: PR #338 fusionado (commit 613467b9e1f179aad400a2fa4156eb7b6142fc8c), con AGENTS.md, MEMORY.md y SKILL.md.
-- 5 nov 2026: PR #337 continúa abierto; prompts A2 U5–U8 aclarados y tests de caché UI/historial alineados con v3.8.54; CI completo pendiente.
+- 5 nov 2026: PR #337 fusionado; PR #339–#341 abiertos con CI verde, sin aprobación/merge.

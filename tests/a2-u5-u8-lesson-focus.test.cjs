@@ -70,3 +70,23 @@ test('A2 U5-U8 retain four focused lessons and cover every unit vocabulary item'
       unitId + ' must retain one sentence-order exercise');
   }
 });
+
+
+test('A2 U5-U8 translation prompts name the vocabulary form required by their canonical answer', () => {
+  for (const unitId of targetUnitIds) {
+    const unit = units.find(item => item.id === unitId);
+    const vocabularyById = new Map(Array.from(unit.vocab, word => [word.id, word]));
+    for (const lesson of unit.lessons) {
+      const exercise = lesson.exercises.find(item => item.type === 'translate_es_id');
+      assert.ok(exercise, lesson.title + ' must retain its translation exercise');
+      const word = vocabularyById.get(exercise.vocabId);
+      assert.ok(word, lesson.title + ' translation must link to unit vocabulary');
+      assert.ok(
+        exercise.prompt.startsWith('Traduce usando «' + word.idn + '»: '),
+        lesson.title + ' translation prompt must state the target vocabulary and preserve the tap-translation phrase format'
+      );
+      assert.ok(exercise.prompt.slice(('Traduce usando «' + word.idn + '»: ').length).trim(),
+        lesson.title + ' translation prompt must retain its Spanish phrase');
+    }
+  }
+});

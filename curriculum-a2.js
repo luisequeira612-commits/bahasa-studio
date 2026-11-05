@@ -500,7 +500,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                         {
                                             "vocabId": "a2u5_bersepeda",
                                             "type": "translate_es_id",
-                                            "prompt": "Traduce: Voy en bicicleta a la escuela.",
+                                            "prompt": "Traduce usando «Bersepeda»: Voy en bicicleta a la escuela.",
                                             "answer": "Saya bersepeda ke sekolah.",
                                             "explanation": "La frase usa bersepeda."
                                         },
@@ -560,7 +560,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                         {
                                             "vocabId": "a2u5_berdoa",
                                             "type": "translate_es_id",
-                                            "prompt": "Traduce: Rezo.",
+                                            "prompt": "Traduce usando «Berdoa»: Rezo.",
                                             "answer": "Saya berdoa.",
                                             "explanation": "La frase usa berdoa."
                                         },
@@ -606,7 +606,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                         {
                                             "vocabId": "a2u5_bernyanyi",
                                             "type": "translate_es_id",
-                                            "prompt": "Traduce: Canto.",
+                                            "prompt": "Traduce usando «Bernyanyi»: Canto.",
                                             "answer": "Saya bernyanyi.",
                                             "explanation": "La frase usa bernyanyi."
                                         },
@@ -652,7 +652,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                         {
                                             "vocabId": "a2u5_bertanya",
                                             "type": "translate_es_id",
-                                            "prompt": "Traduce: Le pregunto al profesor.",
+                                            "prompt": "Traduce usando «Bertanya»: Le pregunto al profesor.",
                                             "answer": "Saya bertanya kepada guru.",
                                             "explanation": "La frase usa bertanya."
                                         },
@@ -792,7 +792,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                         {
                                             "vocabId": "a2u6_menunggu",
                                             "type": "translate_es_id",
-                                            "prompt": "Traduce: Espero a un amigo.",
+                                            "prompt": "Traduce usando «Menunggu»: Espero a un amigo.",
                                             "answer": "Saya menunggu teman.",
                                             "explanation": "La frase usa menunggu."
                                         },
@@ -854,7 +854,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                         {
                                             "vocabId": "a2u6_mencatat",
                                             "type": "translate_es_id",
-                                            "prompt": "Traduce: Anoto una dirección.",
+                                            "prompt": "Traduce usando «Mencatat»: Anoto una dirección.",
                                             "answer": "Saya mencatat alamat.",
                                             "explanation": "La frase usa mencatat."
                                         },
@@ -900,7 +900,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                         {
                                             "vocabId": "a2u6_mendapat",
                                             "type": "translate_es_id",
-                                            "prompt": "Traduce: Recibo un libro.",
+                                            "prompt": "Traduce usando «Mendapat»: Recibo un libro.",
                                             "answer": "Saya mendapat buku.",
                                             "explanation": "La frase usa mendapat."
                                         },
@@ -946,7 +946,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                         {
                                             "vocabId": "a2u6_menjaga",
                                             "type": "translate_es_id",
-                                            "prompt": "Traduce: Él o ella cuida la casa.",
+                                            "prompt": "Traduce usando «Menjaga»: Él o ella cuida la casa.",
                                             "answer": "Dia menjaga rumah.",
                                             "explanation": "La frase usa menjaga."
                                         },
@@ -1086,7 +1086,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                         {
                                             "vocabId": "a2u7_menggambar",
                                             "type": "translate_es_id",
-                                            "prompt": "Traduce: Él o ella dibuja una casa.",
+                                            "prompt": "Traduce usando «Menggambar»: Él o ella dibuja una casa.",
                                             "answer": "Dia menggambar rumah.",
                                             "explanation": "La frase usa menggambar."
                                         },
@@ -1148,7 +1148,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                         {
                                             "vocabId": "a2u7_mengunci",
                                             "type": "translate_es_id",
-                                            "prompt": "Traduce: Cierro la casa con llave.",
+                                            "prompt": "Traduce usando «Mengunci»: Cierro la casa con llave.",
                                             "answer": "Saya mengunci rumah.",
                                             "explanation": "La frase usa mengunci."
                                         },
@@ -1194,7 +1194,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                         {
                                             "vocabId": "a2u7_mengisi",
                                             "type": "translate_es_id",
-                                            "prompt": "Traduce: Lleno la botella con agua.",
+                                            "prompt": "Traduce usando «Mengisi»: Lleno la botella con agua.",
                                             "answer": "Saya mengisi botol dengan air.",
                                             "explanation": "La frase usa mengisi."
                                         },
@@ -1240,7 +1240,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                         {
                                             "vocabId": "a2u7_menghapus",
                                             "type": "translate_es_id",
-                                            "prompt": "Traduce: Borro el mensaje.",
+                                            "prompt": "Traduce usando «Menghapus»: Borro el mensaje.",
                                             "answer": "Saya menghapus pesan.",
                                             "explanation": "La frase usa menghapus."
                                         },
@@ -1380,7 +1380,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                         {
                                             "vocabId": "a2u8_membawa",
                                             "type": "translate_es_id",
-                                            "prompt": "Traduce: Él o ella lleva un libro.",
+                                            "prompt": "Traduce usando «Membawa»: Él o ella lleva un libro.",
                                             "answer": "Dia membawa buku.",
                                             "explanation": "La frase usa membawa."
                                         },
@@ -1442,7 +1442,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                         {
                                             "vocabId": "a2u8_memilih",
                                             "type": "translate_es_id",
-                                            "prompt": "Traduce: Elijo un libro.",
+                                            "prompt": "Traduce usando «Memilih»: Elijo un libro.",
                                             "answer": "Saya memilih buku.",
                                             "explanation": "La frase usa memilih."
                                         },
@@ -1487,7 +1487,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                         {
                                             "vocabId": "a2u8_meminta",
                                             "type": "translate_es_id",
-                                            "prompt": "Traduce: Pido agua.",
+                                            "prompt": "Traduce usando «Meminta»: Pido agua.",
                                             "answer": "Saya meminta air.",
                                             "explanation": "La frase usa meminta."
                                         },
@@ -1541,7 +1541,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                         {
                                             "vocabId": "a2u8_menyusun",
                                             "type": "translate_es_id",
-                                            "prompt": "Traduce: Él o ella ordena los libros.",
+                                            "prompt": "Traduce usando «Menyusun»: Él o ella ordena los libros.",
                                             "answer": "Dia menyusun buku.",
                                             "explanation": "La frase usa menyusun."
                                         },

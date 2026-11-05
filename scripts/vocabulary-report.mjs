@@ -42,7 +42,7 @@ export function buildVocabularyReport({a1,a2,a1Tracker,a2Tracker,expectedTotal=8
  '## 3. Palabras simples y expresiones','',table(['Tipo','Criterio','Entradas'],[['Palabras/formas de un token','Sin espacios internos',simple],['Expresiones de varias palabras','Al menos un espacio',all.length-simple],['Total','Suma',all.length]]),'',
  'Clasificación ortográfica: las expresiones multi-palabra cuentan como una entrada, igual que en la métrica de la app.','',
  '## 4. Candidatos morfológicos para revisión manual','','> ADVERTENCIA: coincidencias de patrones de texto, NO análisis morfológico ni recuento lingüístico. Incluyen falsos positivos (nombres, préstamos y raíces con esas letras). No interpretar como cobertura de afijos.','',
- ...candidates(all).flatMap(g=>['### '+g.label+' — '+g.forms.length+' candidatos','',g.forms.length?g.forms.map(v=>'\`'+v+'\`').join(', '):'Sin coincidencias.','']),
+ ...candidates(all).flatMap(g=>['### '+g.label+' — '+g.forms.length+' candidatos','',g.forms.length?g.forms.map(v=>String.fromCharCode(96)+v+String.fromCharCode(96)).join(', '):'Sin coincidencias.','']),
  '## 5. Estado de verificación por entrada','','Se usa la columna KBBI_status de los CSV actuales. Esto no valida por sí solo naturalidad, nivel ni respuestas aceptadas.',''];
  for(const [label,v] of [['A1 (tracker U24–U32)',va],['A2 (tracker completo)',vb]]){
   out.push('### '+label,'',table(['Indicador','Entradas'],[['Entradas curriculares',v.total],['Con registro CSV',v.registered],['Sin registro CSV',v.missing],...[...v.counts].sort(([a],[b])=>a.localeCompare(b)),['Filas CSV sin ID curricular correspondiente',v.orphans]]),'');
@@ -54,5 +54,8 @@ export function buildVocabularyReport({a1,a2,a1Tracker,a2Tracker,expectedTotal=8
 }
 async function main(){const [a1,a2,c1,c2]=await Promise.all([loadLevel('curriculum-a1.js','BAHASA_CURRICULUM_A1'),loadLevel('curriculum-a2.js','BAHASA_CURRICULUM_A2'),readFile(resolve(ROOT,'docs/A1_VOCABULARY_AUDIT_TRACKER_U24_U32.csv'),'utf8'),readFile(resolve(ROOT,'docs/A2_LANGUAGE_AUDIT_TRACKER_ALL_UNITS.csv'),'utf8')]);
  const report=buildVocabularyReport({a1,a2,a1Tracker:parseCsv(c1),a2Tracker:parseCsv(c2),expectedTotal:EXPECTED});await mkdir(dirname(OUTPUT),{recursive:true});await writeFile(OUTPUT,report,'utf8');
- const line=report.match(/\*\*Comprobación del total mostrado:\*\* ([^\n]+)/)?.[1]||'No disponible';console.log('Wrote docs/VOCABULARY_REPORT.md — '+line);\n // A mismatch is reported in Markdown but does not block local work or CI.\n}
+ const line=report.match(/\\*\\*Comprobación del total mostrado:\\*\\* ([^\\n]+)/)?.[1]||'No disponible';
+ console.log('Wrote docs/VOCABULARY_REPORT.md — '+line);
+ // A mismatch is reported in Markdown but does not block local work or CI.
+}
 if(process.argv[1]&&resolve(process.argv[1])===resolve(import.meta.url.replace('file://','')))await main();

@@ -17,8 +17,19 @@ App web para aprender idiomas, estilo Duolingo, alojada en GitHub Pages. Hoy tie
 - Sin agentes de IA externos dentro de la app por ahora.
 - No se publica en tiendas de apps.
 
+## Hoja de ruta de idiomas (decisión del dueño: 5 nov 2026)
+1. **Indonesio:** completar todo el material hasta B2. A1 está completo; A2 y B1 están pendientes de consolidación; B2 se desarrollará después. No añadir ningún otro idioma hasta completar el indonesio hasta B2.
+2. **Inglés:** se añadirá después del indonesio, desde nivel cero (A1), pensado para hispanohablantes. Incluir pronunciación con audio o transcripción sencilla, falsos amigos y verbos frasales.
+3. **Otros idiomas:** no hay ningún otro idioma planificado por ahora. Cualquier idioma adicional lo decidirá el dueño más adelante.
+
+### Regla de independencia del idioma
+- Todo código y estructura de datos nuevos deben ser independientes del idioma: no introducir textos, rutas, nombres de archivo, identificadores ni reglas fijas que solo funcionen para el indonesio.
+- No hacer ahora una refactorización general ni migrar el currículo existente. El alcance es preventivo: evitar nuevas dependencias del indonesio al añadir o modificar código y datos, de modo que incorporar inglés no exija una reestructuración grande.
+- Cuando un PR afecte esta hoja de ruta, la arquitectura multiidioma o la preparación para inglés, debe registrar la hoja de ruta vigente y cualquier impacto o desviación en MEMORY.md y en la descripción del PR.
+- Esta regla no autoriza a empezar inglés antes de completar indonesio hasta B2 ni a introducir idiomas adicionales no decididos por el dueño.
+
 ## Pensar en crecer (sin sobrediseñar)
-- Varios idiomas: no asumir que el único idioma es indonesio (textos, rutas, nombres de archivo, vocabulario, auditoría). No refactorizar ahora; solo no cerrar la puerta.
+- Aplicar la hoja de ruta del 5 nov 2026: indonesio hasta B2 → inglés A1 para hispanohablantes; no hay otros idiomas planificados. Todo código y estructura de datos nuevos deben ser independientes del idioma. No hacer ahora una refactorización general ni añadir inglés antes de completar indonesio hasta B2.
 - Compartir con otros: el contenido debe estar separado del código (datos por idioma, nivel y unidad), para que añadir un curso o corregir una lección no obligue a tocar la lógica.
 - Cada persona guarda su progreso en su propio dispositivo. Debe seguir siendo posible exportar e importar el progreso (backup v3) sin romper compatibilidad.
 - Cualquier decisión de escalabilidad debe mantener cero backend y cero costo. Si una idea requiere servidor, cuentas o pago, no se implementa: me la propones aparte.

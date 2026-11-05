@@ -322,7 +322,7 @@ test('SRS dashboard distinguishes course vocabulary from words with review progr
     assert.equal(await page.locator('#statTrackedVocab').innerText(), '1',
       'tracked vocabulary should count words with SRS records');
     assert.match(await page.locator('#statTotalVocab').locator('xpath=..').innerText(),
-      /Vocabulario disponible/);
+      /Entradas de vocabulario distintas/);
     assert.match(await page.locator('#statTrackedVocab').locator('xpath=..').innerText(),
       /Palabras con seguimiento/);
   } finally {

@@ -30,10 +30,10 @@
 - PR #339 abierto, CI verde, pendiente de aprobación: registra el merge de #337 y el estado de calidad.
 - PR #340 abierto, CI verde, pendiente de aprobación: expone métricas de cobertura de audio en el informe unificado.
 - PR #341 abierto, CI verde, pendiente de aprobación: añade desglose de carga editorial por unidad.
-- PR #342 en preparación: exportación filtrada de la cola editorial por nivel/unidad; sin veredictos lingüísticos.
+- PR #342 fusionado en `5014b5f703e61385d15643e4510fb35787b73c57`: exportación filtrada de la cola editorial por nivel/unidad; sin veredictos lingüísticos.\n- PR nuevo en preparación: empaquetado acotado de tandas editoriales por nivel/unidad/prioridad, sobre la cola existente; no cambia estados ni certificación lingüística.
 
 ## Pendiente (en este orden)
-1. Revisar la cola editorial por tandas de nivel/unidad con evidencia; último informe: 1,989 entradas pendientes, todas sin revisión editorial ni certificación lingüística. PR #342 prepara exportaciones acotadas para que la revisión manual sea manejable.
+1. Revisar la cola editorial por tandas de nivel/unidad con evidencia; último informe: 1,989 entradas pendientes, todas sin revisión editorial ni certificación lingüística. PR #342 ya permite exportaciones acotadas y el siguiente bloque prepara paquetes por unidad/prioridad.
 2. Consolidar A2 y continuar la revisión de A1 U24–U32.
 3. Mejorar el tutor conversacional.
 4. Aprendizaje adaptativo y repaso con repetición espaciada.
@@ -68,4 +68,4 @@
 - PR #327–#330 fusionados: base/herramientas del sistema de calidad y auditoría.
 - PR #331–#336 fusionados: consolidación/guardrails A2 U5–U8, A1 U24–U32 y cola editorial.
 - 5 nov 2026: PR #338 fusionado (commit 613467b9e1f179aad400a2fa4156eb7b6142fc8c), con AGENTS.md, MEMORY.md y SKILL.md.
-- 5 nov 2026: PR #337 fusionado; PR #339–#341 abiertos con CI verde, sin aprobación/merge.
+- 5 nov 2026: PR #337 fusionado; PR #339–#341 abiertos con CI verde, sin aprobación/merge. PR #342 fusionado tras aprobación explícita.

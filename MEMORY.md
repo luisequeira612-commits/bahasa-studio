@@ -27,7 +27,8 @@
 ## Estado de PR y sistema de calidad
 - PR #337–#344 fusionados; #344 (commit `817b4246b0f6302544e09b357041e95f44cd791b`) incorpora parser CSV multilínea y sus pruebas en CI.
 - PR #339–#341 siguen abiertos sobre una base antigua y requieren reemplazo/reconciliación; no fusionar esas ramas obsoletas.
-- PR #345 reemplaza el trabajo útil del antiguo #340 sobre main posterior a #344: añade métricas separadas de audioText, listen y soporte general al informe unificado; pendiente de CI y aprobación.
+- PR #345 fusionado en `3b97d5e1d0bfae7e1e8efc14ad03e73a9f0c7b33`: añade métricas separadas de audioText, listen y soporte general al informe unificado.
+- PR #346 (reconciliado en una rama basada en #345): añade desglose de carga editorial por unidad; pendiente de CI.
 - La cola editorial se mantiene en `pending` / `not_reviewed`; la certificación lingüística sigue en `not_certified`.
 
 ## Pendiente (en este orden)
@@ -66,4 +67,4 @@
 - PR #327–#330 fusionados: base/herramientas del sistema de calidad y auditoría.
 - PR #331–#336 fusionados: consolidación/guardrails A2 U5–U8, A1 U24–U32 y cola editorial.
 - 5 nov 2026: PR #338 fusionado (commit 613467b9e1f179aad400a2fa4156eb7b6142fc8c), con AGENTS.md, MEMORY.md y SKILL.md.
-- 5 nov 2026: PR #337 fusionado; PR #342–#344 fusionados tras aprobación explícita. PR #339–#341 antiguos siguen abiertos y no deben fusionarse sin reconciliación.
+- 5 nov 2026: PR #337–#345 fusionados tras aprobación explícita. PR #346 original conserva conflictos de base; su cambio se está validando en una rama reconciliada. PR #339–#341 antiguos no deben fusionarse.

@@ -1,6 +1,6 @@
 # MEMORY.md — Estado de Bahasa Studio
 
-> Se actualiza en CADA PR. Mantener corto (unas 150 líneas como máximo). Última actualización: 5 nov 2026.
+> Se actualiza en CADA PR (obligatorio, sin excepción). Mantener corto (unas 150 líneas como máximo). Última actualización: 5 nov 2026.
 
 ## Visión
 - App para aprender idiomas, estilo Duolingo, en rojo y blanco.
@@ -16,6 +16,14 @@
 - A2: 40 de 40 unidades hechas. U5–U8 siguen en consolidación; PR #337 aclara el vocabulario objetivo de 16 prompts de traducción.
 - B1 y B2: pendientes.
 - Sistema de calidad: auditoría estructural/editorial independiente de KBBI y cola editorial para vocabulario y ejercicios.
+
+## Vocabulario y calidad (decisiones del dueño: 5 nov 2026)
+- Meta A1+A2: rango de 900–1.000 entradas distintas, no cuota; referencia inicial 801 (A1 309, A2 492, compartidas 0), recalculada desde currículo.
+- Formas derivadas con ID canónico propio cuentan como entradas; familias léxicas se reportan aparte. No hay hablante nativo disponible y KBBI oficial exige inicio de sesión; validación externa opcional, nunca bloqueante.
+- Estados: mantener verified_primary y not_checked; añadir cross_checked_secondary (dos fuentes secundarias independientes; no equivale a verificado) y doubtful. Solo revisión humana de fuente primaria permite verified_primary.
+- not_checked puede ser obligatoria solo si es básica, frecuente y supera pruebas automáticas; doubtful nunca puede ser obligatoria.
+- Pasivo di- y superlativo ter- se enseñarán en A2 en unidades existentes, en PR posterior, sin nuevas unidades ni reestructuración.
+- PR 1 de vocabulario: informe local de entradas/primera aparición/expresiones/candidatos morfológicos/estado CSV y aclaración de la métrica en Perfil; sin vocabulario ni ejercicios nuevos, sin cambios de IndexedDB/backup v3.
 
 ## Interfaz (ya hecho)
 - Barra inferior de 4 pestañas: Aprender / Repasar / Tutor / Perfil.

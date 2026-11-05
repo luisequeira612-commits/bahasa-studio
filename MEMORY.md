@@ -4,11 +4,12 @@
 
 ## Visión
 - App para aprender idiomas, estilo Duolingo, en rojo y blanco.
-- Hoy existe el curso de indonesio; A1 y A2 están construidos. B1 y B2 siguen pendientes.
-- Más idiomas en el futuro, sobre todo los que Duolingo no ofrece para hispanohablantes. Candidatos: tagalo, tailandés, toki pona, ido.
+- Hoja de ruta decidida por el dueño el 5 nov 2026: completar indonesio hasta B2 (A1 completo; A2 y B1 pendientes de consolidar; B2 después) → inglés desde cero/A1 para hispanohablantes.
+- El curso de inglés incluirá pronunciación con audio o transcripción sencilla, falsos amigos y verbos frasales. No hay ningún otro idioma planificado; cualquier idioma adicional lo decidirá el dueño más adelante.
+- Todo código y estructura de datos nuevos deben ser independientes del idioma. No hacer ahora una refactorización general; solo evitar nuevas dependencias fijas del indonesio para que añadir inglés no exija una reestructuración grande.
 - Uso personal; posible futuro: compartirla gratis con amigos o una comunidad de nicho.
 - Prioridad principal del dueño: perfeccionar esta app y aprender idiomas con ella.
-- Terminar bien el indonesio antes de abrir un segundo idioma.
+- Completar todo el indonesio hasta B2 antes de abrir inglés; no hay otros idiomas planificados.
 
 ## Estado actual del currículo
 - A1: 32 de 32 unidades hechas.
@@ -39,7 +40,7 @@
 5. Pronunciación y escucha.
 6. Lección a pantalla completa con hoja de feedback y pulido visual.
 7. B1 y luego B2.
-8. Cuando el indonesio esté sólido: preparar la estructura para un segundo idioma y, si decido compartir la app, la revisión previa a compartir (licencias, datos expuestos, instrucciones de uso).
+8. Completar indonesio hasta B2; después crear inglés A1 para hispanohablantes (pronunciación, falsos amigos y verbos frasales). No planificar otros idiomas salvo decisión futura del dueño. La independencia del idioma se aplica preventivamente a todo código/dato nuevo, sin refactor general ahora.
 
 ## Decisiones tomadas
 - No añadir capa de IA extra dentro de la app por ahora.
@@ -47,7 +48,10 @@
 - Sin vidas, sin anuncios, sin social.
 - Siempre gratuita, local, sin cuentas y sin backend, incluso si se comparte.
 - Más vocabulario básico repetido en distintos contextos dentro de cada unidad.
-- Un segundo idioma solo se empieza con autorización del dueño y después de proponer cómo organizar los datos por idioma sin cambiar IndexedDB ni el backup v3.
+- Hoja de ruta de idiomas (5 nov 2026): indonesio hasta B2 → inglés A1 para hispanohablantes. Ningún otro idioma está planificado; cualquier idioma adicional lo decidirá el dueño.
+- Código y estructuras de datos nuevos independientes del idioma; no introducir nuevas dependencias exclusivas del indonesio. No hacer ahora un refactor general.
+- Todo PR que afecte la hoja de ruta o la preparación multiidioma debe registrar esta decisión y su impacto en MEMORY.md y en la descripción del PR.
+- No cambiar IndexedDB ni backup v3; la independencia del idioma no autoriza cambios de esquema.
 - No se usan herramientas locales de memoria de código (tipo MCP): se trabaja desde el celular; la memoria del proyecto son estos tres archivos.
 - Todo merge requiere "Aprobado" explícito del dueño; ChatGPT no fusiona por su cuenta.
 - No hay hablante nativo que valide el indonesio y KBBI puede fallar: el proyecto NO se detiene por eso. El contenido avanza con estados honestos (verified_primary solo lo marca el dueño; cross_checked = 2+ fuentes secundarias independientes; not_checked = el resto) y se corrigen errores cuando se descubran.
@@ -67,5 +71,6 @@
 - PR #327–#330 fusionados: base/herramientas del sistema de calidad y auditoría.
 - PR #331–#336 fusionados: consolidación/guardrails A2 U5–U8, A1 U24–U32 y cola editorial.
 - 5 nov 2026: PR #338 fusionado (commit 613467b9e1f179aad400a2fa4156eb7b6142fc8c), con AGENTS.md, MEMORY.md y SKILL.md.
-- 5 nov 2026: PR #337–#347 fusionados tras aprobación explícita. PR #346 original quedó obsoleto por conflictos y fue reemplazado por #347. PR #339–#341 antiguos no deben fusionarse.
+- 5 nov 2026: PR #337–#348 fusionados tras aprobación explícita. PR #346 original quedó obsoleto por conflictos y fue reemplazado por #347. PR #339–#341 antiguos no deben fusionarse.
+- 5 nov 2026: el dueño fijó la hoja de ruta indonesio hasta B2 → inglés A1 para hispanohablantes; no hay otros idiomas planificados. Se exige independencia del idioma en todo código/dato nuevo, sin refactor general ahora.
 - Tras #347, las pruebas de regresión post-merge y el despliegue de Pages terminaron correctamente; la validación de PR #348 actualiza este registro.

@@ -1,6 +1,6 @@
 # MEMORY.md — Estado de Bahasa Studio
 
-> Se actualiza en CADA PR. Mantener corto (unas 150 líneas como máximo). Última actualización: 4 nov 2026.
+> Se actualiza en CADA PR. Mantener corto (unas 150 líneas como máximo). Última actualización: 5 nov 2026.
 
 ## Visión
 - App para aprender idiomas, estilo Duolingo, en rojo y blanco.
@@ -12,7 +12,7 @@
 
 ## Estado actual del currículo
 - A1: 32 de 32 unidades hechas.
-- A2: 40 de 40 unidades hechas. U5–U8 están dentro de la consolidación/revisión actual; PR #337 está abierto para aclarar 16 objetivos de vocabulario en prompts de traducción.
+- A2: 40 de 40 unidades hechas. U5–U8 siguen en consolidación; PR #337 aclara el vocabulario objetivo de 16 prompts de traducción.
 - B1 y B2: pendientes.
 - Sistema de calidad: auditoría estructural/editorial independiente de KBBI y cola editorial para vocabulario y ejercicios.
 
@@ -25,9 +25,8 @@
 - Historial y estadísticas: implementados, por consolidar.
 
 ## En desarrollo
-- Consolidación de calidad y currículo A1/A2.
-- PR #337 abierto: aclaración de vocabulario objetivo en 16 prompts de traducción A2 U5–U8. No se fusiona hasta tener CI verde y aprobación del dueño.
-- PR #301 ya no es el PR activo; los PR recientes de calidad #326–#336 están fusionados.
+- PR #337 abierto: aclara los objetivos de vocabulario de 16 prompts en A2 U5–U8 y añade regresión; corrige además la expectativa antigua de caché del test UI (v3.8.53) para alinearla con la versión de la rama (v3.8.54). Pendiente de CI verde y revisión.
+- PR #338 fusionado: incorpora AGENTS.md, MEMORY.md y SKILL.md con las reglas de trabajo del proyecto.
 
 ## Pendiente (en este orden)
 1. Completar y revisar los informes del auditor y la cola editorial con evidencia; scripts principales: scripts/audit-curriculum-quality.mjs y scripts/build-editorial-review-queue.mjs.
@@ -45,10 +44,10 @@
 - Sin vidas, sin anuncios, sin social.
 - Siempre gratuita, local, sin cuentas y sin backend, incluso si se comparte.
 - Más vocabulario básico repetido en distintos contextos dentro de cada unidad.
-- Un segundo idioma solo se empieza con mi autorización y después de proponerme cómo organizar los datos por idioma sin cambiar IndexedDB ni el backup v3.
+- Un segundo idioma solo se empieza con autorización del dueño y después de proponer cómo organizar los datos por idioma sin cambiar IndexedDB ni el backup v3.
 - No se usan herramientas locales de memoria de código (tipo MCP): se trabaja desde el celular; la memoria del proyecto son estos tres archivos.
-- Todo merge requiere mi "Aprobado" explícito; ChatGPT no fusiona por su cuenta.
-- No hay hablante nativo que valide el indonesio y KBBI puede fallar: el proyecto NO se detiene por eso. El contenido avanza con estados honestos (verified_primary solo lo marco yo; cross_checked = 2+ fuentes secundarias independientes; not_checked = el resto) y se corrigen errores cuando se descubran.
+- Todo merge requiere "Aprobado" explícito del dueño; ChatGPT no fusiona por su cuenta.
+- No hay hablante nativo que valide el indonesio y KBBI puede fallar: el proyecto NO se detiene por eso. El contenido avanza con estados honestos (verified_primary solo lo marca el dueño; cross_checked = 2+ fuentes secundarias independientes; not_checked = el resto) y se corrigen errores cuando se descubran.
 
 ## Reparto de herramientas
 - Claude: revisión técnica y curricular antes de aprobar.
@@ -57,11 +56,13 @@
 
 ## Estado técnico de referencia
 - Service worker en main: cache bahasa-studio-v3.8.53.
+- Service worker en PR #337: cache bahasa-studio-v3.8.54.
 - Scripts de calidad disponibles: scripts/audit-curriculum-quality.mjs, scripts/build-editorial-review-queue.mjs, scripts/build-unified-quality-report.mjs y scripts/build-deepseek-review-packet.mjs.
-- IndexedDB v3 y backup v3: preservados por las reglas del proyecto; este PR no los modifica.
+- IndexedDB v3 y backup v3: preservados; PR #337 no modifica sus esquemas.
 
 ## Historial breve
 - PR #326 fusionado: corrección de distinción entre entrada/tarifa de entrada en A2 U38.
 - PR #327–#330 fusionados: base/herramientas del sistema de calidad y auditoría.
 - PR #331–#336 fusionados: consolidación/guardrails A2 U5–U8, A1 U24–U32 y cola editorial.
-- 4 nov 2026: se crean/actualizan AGENTS.md, MEMORY.md y SKILL.md en la rama de este PR.
+- 5 nov 2026: PR #338 fusionado (commit 613467b9e1f179aad400a2fa4156eb7b6142fc8c), con AGENTS.md, MEMORY.md y SKILL.md.
+- 5 nov 2026: PR #337 continúa abierto; corrección del test de versión de caché y actualización de memoria en curso.

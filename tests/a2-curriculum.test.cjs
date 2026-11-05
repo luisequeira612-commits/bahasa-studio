@@ -846,7 +846,7 @@ test('A2 U6 Mencatat example and translation describe the same action', () => {
   const exercise = unit.lessons.flatMap(lesson => lesson.exercises || [])
     .find(entry => entry.vocabId === 'a2u6_mencatat' && entry.type === 'translate_es_id');
   assert.ok(exercise);
-  assert.equal(exercise.prompt, 'Traduce: Anoto una dirección.');
+  assert.equal(exercise.prompt, 'Traduce usando «Mencatat»: Anoto una dirección.');
   assert.equal(exercise.answer, 'Saya mencatat alamat.');
 });
 

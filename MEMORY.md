@@ -18,7 +18,7 @@
 - Sistema de calidad: auditoría estructural/editorial independiente de KBBI y cola editorial para vocabulario y ejercicios.
 
 ## Vocabulario y calidad (decisiones del dueño: 5 nov 2026)
-- Meta A1+A2: rango de 900–1.000 entradas distintas, no cuota; referencia inicial 801 (A1 309, A2 492, compartidas 0), recalculada desde currículo.
+- Meta A1+A2: rango de 900–1.000 entradas distintas, no cuota; referencia comunicada 801 (A1 309, A2 492, compartidas 0). PR #353 detecta discrepancia en main: currículo visible 253 A1 + 60 A2 = 313; archivos contienen 26 unidades A1 y 4 A2, mientras el tracker A2 conserva 492 filas (432 sin ID curricular correspondiente). Investigar la divergencia antes de ampliar vocabulario.
 - Formas derivadas con ID canónico propio cuentan como entradas; familias léxicas se reportan aparte. No hay hablante nativo disponible y KBBI oficial exige inicio de sesión; validación externa opcional, nunca bloqueante.
 - Estados: mantener verified_primary y not_checked; añadir cross_checked_secondary (dos fuentes secundarias independientes; no equivale a verificado) y doubtful. Solo revisión humana de fuente primaria permite verified_primary.
 - not_checked puede ser obligatoria solo si es básica, frecuente y supera pruebas automáticas; doubtful nunca puede ser obligatoria.

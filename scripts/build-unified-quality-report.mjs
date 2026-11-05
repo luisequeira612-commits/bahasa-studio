@@ -69,15 +69,32 @@ export function buildUnifiedQualityReport(auditInput, editorialInput) {
       exercises: levels.reduce((total, level) => total + (Number.isFinite(level.exercise_count) ? level.exercise_count : 0), 0),
       informational_by_code: informationalByCode,
       informational_findings: informationalFindings,
-      levels: levels.map((level) => ({
-        level: level.level,
-        units: level.unit_count,
-        vocabulary_entries: level.vocabulary_count,
-        exercises: level.exercise_count,
-        errors: level.error_count,
-        warnings: level.warning_count,
-        informational: level.info_count,
-      })),
+      levels: levels.map((level) => {
+        const audio = level.audio_capability_coverage ?? {};
+        const listenType = level.exercise_type_distribution?.listen ?? {};
+        return {
+          level: level.level,
+          units: level.unit_count,
+          vocabulary_entries: level.vocabulary_count,
+          exercises: level.exercise_count,
+          errors: level.error_count,
+          warnings: level.warning_count,
+          informational: level.info_count,
+          audio_coverage: {
+            audio_text_exercise_count: audio.audio_text_exercise_count ?? 0,
+            listen_exercise_count: audio.listen_exercise_count ?? 0,
+            audio_capable_exercise_count: audio.audio_capable_exercise_count ?? 0,
+            units_with_audio_text: audio.units_with_audio_text ?? 0,
+            units_without_audio_text: audio.units_without_audio_text ?? 0,
+            units_with_listen_exercise: audio.units_with_listen_exercise ?? 0,
+            units_without_listen_exercise: audio.units_without_listen_exercise ?? 0,
+            units_without_listen_exercise_ids: listenType.units_without_type_ids ?? [],
+            units_with_audio_support: audio.units_with_audio_support ?? 0,
+            units_without_audio_support: audio.units_without_audio_support ?? 0,
+            units_without_audio_support_ids: audio.units_without_audio_support_ids ?? [],
+          },
+        };
+      }),
     },
     editorial_workload: {
       entries: editorial.total_entries,
@@ -98,6 +115,7 @@ export function buildUnifiedQualityReport(auditInput, editorialInput) {
     },
     limitations: [
       'El informe combina métricas estructurales y carga editorial; no revisa automáticamente la lengua.',
+      'La cobertura de audio distingue audioText, ejercicios listen y soporte de audio; no mide calidad ni pronunciación.',
       'Una cola generada no demuestra que sus entradas hayan sido revisadas.',
       'CI verde no equivale a certificación lingüística ni a validación por hablante nativo.',
     ],

@@ -95,3 +95,45 @@ test('CLI writes parseable JSON and creates a missing output directory', () => {
     rmSync(directory, { recursive: true, force: true });
   }
 });
+
+
+test('reports audioText, dedicated listen exercises and general audio support separately', () => {
+  const source = audit();
+  source.levels[0].audio_capability_coverage = {
+    audio_text_exercise_count: 12,
+    listen_exercise_count: 4,
+    audio_capable_exercise_count: 16,
+    units_with_audio_text: 30,
+    units_without_audio_text: 2,
+    units_with_listen_exercise: 22,
+    units_without_listen_exercise: 10,
+    units_with_audio_support: 32,
+    units_without_audio_support: 0,
+    units_without_audio_support_ids: [],
+  };
+  source.levels[0].exercise_type_distribution = {
+    listen: { units_without_type_ids: ['a1_u2', 'a1_u6'] },
+  };
+  const report = buildUnifiedQualityReport(source, editorial);
+  assert.deepEqual(report.structural_quality.levels[0].audio_coverage, {
+    audio_text_exercise_count: 12,
+    listen_exercise_count: 4,
+    audio_capable_exercise_count: 16,
+    units_with_audio_text: 30,
+    units_without_audio_text: 2,
+    units_with_listen_exercise: 22,
+    units_without_listen_exercise: 10,
+    units_without_listen_exercise_ids: ['a1_u2', 'a1_u6'],
+    units_with_audio_support: 32,
+    units_without_audio_support: 0,
+    units_without_audio_support_ids: [],
+  });
+  assert.equal(report.linguistic_validation.status, 'not_certified');
+});
+
+test('defaults audio coverage for legacy reports without audio metrics', () => {
+  const source = audit();
+  const report = buildUnifiedQualityReport(source, editorial);
+  assert.equal(report.structural_quality.levels[0].audio_coverage.listen_exercise_count, 0);
+  assert.deepEqual(report.structural_quality.levels[0].audio_coverage.units_without_listen_exercise_ids, []);
+});

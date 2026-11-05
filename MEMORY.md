@@ -27,7 +27,7 @@
 ## Estado de PR y sistema de calidad
 - PR #337–#344 fusionados; #344 (commit `817b4246b0f6302544e09b357041e95f44cd791b`) incorpora parser CSV multilínea y sus pruebas en CI.
 - PR #339–#341 siguen abiertos sobre una base antigua y requieren reemplazo/reconciliación; no fusionar esas ramas obsoletas.
-- PR #340 se está trasladando a una rama nueva sobre main para añadir métricas separadas de audioText, listen y soporte general al informe unificado.
+- PR #345 reemplaza el trabajo útil del antiguo #340 sobre main posterior a #344: añade métricas separadas de audioText, listen y soporte general al informe unificado; pendiente de CI y aprobación.
 - La cola editorial se mantiene en `pending` / `not_reviewed`; la certificación lingüística sigue en `not_certified`.
 
 ## Pendiente (en este orden)

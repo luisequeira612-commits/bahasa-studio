@@ -162,7 +162,7 @@ Se usa la columna `KBBI_status` de los CSV actuales. Esto no valida por sí solo
 | verified_primary | 2 |
 | Filas CSV sin ID curricular correspondiente | 0 |
 
-**Cobertura:** A1 U1–U23 carece de tracker; el informe cuenta cada registro curricular A1 sin fila coincidente como “sin registro”. A2 se contrasta por ID. Si un ID aparece duplicado en CSV, la última fila determina su estado y las filas huérfanas se informan aparte.
+**Cobertura:** A1 U1–U23 carece de tracker; el informe cuenta cada registro curricular A1 sin fila coincidente como “sin registro”. A2 se contrasta por ID. Los registros curriculares que comparten un mismo vocab_id pueden hacer que las entradas coincidentes superen el número de filas CSV. Si un ID aparece duplicado en CSV, la última fila determina su estado y las filas huérfanas se informan aparte.
 
 Estados aprobados para el flujo editorial: `cross_checked_secondary` (dos fuentes secundarias independientes coinciden; no equivale a verificación primaria) y `doubtful`. Este informe no asigna esos estados porque los CSV actuales no aportan evidencia suficiente. Solo revisión humana de fuente primaria permite `verified_primary`.
 

@@ -157,3 +157,6 @@ test('rejects ambiguous or empty editorial queue scopes', () => {
   assert.throws(() => filterEditorialQueue(rows, { level: 'B1' }), /must be A1 or A2/);
   assert.throws(() => filterEditorialQueue(rows, { level: 'A1', unit: 'a1_u99' }), /No editorial entries found/);
 });
+
+// Keep batch parser regressions in the existing CI-invoked editorial test step.
+await import('./build-editorial-review-batches.test.mjs');

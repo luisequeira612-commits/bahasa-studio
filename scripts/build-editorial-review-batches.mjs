@@ -68,34 +68,39 @@ export function buildReviewBatch(rows, { level, units, priorities = [] } = {}) {
   };
 }
 
-function parseCsvLine(line) {
-  const cells = [];
+export function parseCsv(csv) {
+  const source = String(csv).replace(/^\uFEFF/, '');
+  const records = [];
+  let record = [];
   let cell = '';
   let quoted = false;
-  for (let i = 0; i < line.length; i += 1) {
-    const char = line[i];
+  for (let i = 0; i < source.length; i += 1) {
+    const ch = source[i];
     if (quoted) {
-      if (char === '"' && line[i + 1] === '"') { cell += '"'; i += 1; }
-      else if (char === '"') quoted = false;
-      else cell += char;
-    } else if (char === '"') quoted = true;
-    else if (char === ',') { cells.push(cell); cell = ''; }
-    else cell += char;
+      if (ch === '"' && source[i + 1] === '"') { cell += '"'; i += 1; }
+      else if (ch === '"') quoted = false;
+      else if (ch === '\r' && source[i + 1] === '\n') { cell += '\n'; i += 1; }
+      else cell += ch;
+    } else if (ch === '"') {
+      if (cell.length) throw new Error('Invalid CSV quote');
+      quoted = true;
+    } else if (ch === ',') { record.push(cell); cell = ''; }
+    else if (ch === '\n' || ch === '\r') {
+      if (ch === '\r' && source[i + 1] === '\n') i += 1;
+      record.push(cell);
+      if (record.some((value) => value.length)) records.push(record);
+      record = []; cell = '';
+    } else cell += ch;
   }
-  cells.push(cell);
-  return cells;
+  if (quoted) throw new Error('Invalid CSV: unterminated quoted field');
+  if (cell.length || record.length) {
+    record.push(cell);
+    if (record.some((value) => value.length)) records.push(record);
+  }
+  if (!records.length) return [];
+  const headers = records[0];
+  return records.slice(1).map((cells) => Object.fromEntries(headers.map((header, index) => [header, cells[index] ?? ''])));
 }
-
-export function parseCsv(csv) {
-  const lines = String(csv).replace(/^\uFEFF/, '').split(/\r?\n/).filter((line) => line.length);
-  if (!lines.length) return [];
-  const headers = parseCsvLine(lines[0]);
-  return lines.slice(1).map((line) => {
-    const cells = parseCsvLine(line);
-    return Object.fromEntries(headers.map((header, index) => [header, cells[index] ?? '']));
-  });
-}
-
 async function main() {
   const args = process.argv.slice(2);
   let level = '';

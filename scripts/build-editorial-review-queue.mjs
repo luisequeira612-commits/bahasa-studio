@@ -191,6 +191,26 @@ export function buildEditorialSummary(rows) {
   };
 }
 
+export function filterEditorialQueue(rows, { level = '', unit = '' } = {}) {
+  const normalizedLevel = String(level ?? '').trim().toUpperCase();
+  const normalizedUnit = String(unit ?? '').trim().toLocaleLowerCase();
+  if (normalizedLevel && !['A1', 'A2'].includes(normalizedLevel)) {
+    throw new Error('--level must be A1 or A2.');
+  }
+  if (normalizedUnit && !normalizedLevel) {
+    throw new Error('--unit requires --level so the scope is unambiguous.');
+  }
+  const filtered = rows.filter((row) =>
+    (!normalizedLevel || row.level === normalizedLevel) &&
+    (!normalizedUnit || String(row.unit_id ?? '').toLocaleLowerCase() === normalizedUnit)
+  );
+  if ((normalizedLevel || normalizedUnit) && filtered.length === 0) {
+    const scope = [normalizedLevel, normalizedUnit].filter(Boolean).join(' / ');
+    throw new Error(`No editorial entries found for scope: ${scope}.`);
+  }
+  return filtered;
+}
+
 export function toCsv(rows) {
   const headers = rows.length ? Object.keys(rows[0]) : [
     'item_type','review_status','review_confidence','editorial_status','candidate_flags','review_dimensions',
@@ -213,16 +233,21 @@ async function main() {
   const args = process.argv.slice(2);
   let outputPath = 'artifacts/editorial-review-queue.csv';
   let summaryPath = null;
+  let level = '';
+  let unit = '';
   for (let i = 0; i < args.length; i += 1) {
     if (args[i] === '--output') { outputPath = args[++i]; if (!outputPath) throw new Error('--output needs a path.'); }
     else if (args[i] === '--summary') { summaryPath = args[++i]; if (!summaryPath) throw new Error('--summary needs a path.'); }
-    else if (args[i] === '--help' || args[i] === '-h') { console.log('Usage: node scripts/build-editorial-review-queue.mjs [--output PATH] [--summary PATH]'); return; }
+    else if (args[i] === '--level') { level = args[++i]; if (!level) throw new Error('--level needs A1 or A2.'); }
+    else if (args[i] === '--unit') { unit = args[++i]; if (!unit) throw new Error('--unit needs a unit ID.'); }
+    else if (args[i] === '--help' || args[i] === '-h') { console.log('Usage: node scripts/build-editorial-review-queue.mjs [--level A1|A2] [--unit a1_u24] [--output PATH] [--summary PATH]'); return; }
     else throw new Error(`Unknown argument: ${args[i]}`);
   }
   const definitions = [['curriculum-a1.js', 'BAHASA_CURRICULUM_A1'], ['curriculum-a2.js', 'BAHASA_CURRICULUM_A2']];
   const curricula = [];
   for (const [filename, globalName] of definitions) curricula.push(loadCurriculum(await readFile(resolve(filename), 'utf8'), globalName, filename));
-  const rows = buildEditorialQueue(curricula);
+  const allRows = buildEditorialQueue(curricula);
+  const rows = filterEditorialQueue(allRows, { level, unit });
   const destination = resolve(outputPath);
   await mkdir(dirname(destination), { recursive: true });
   await writeFile(destination, toCsv(rows), 'utf8');
@@ -232,7 +257,7 @@ async function main() {
     await writeFile(summaryDestination, JSON.stringify(buildEditorialSummary(rows), null, 2) + '\n', 'utf8');
   }
   const summary = buildEditorialSummary(rows);
-  console.log(JSON.stringify({ rows: rows.length, by_item_type: summary.by_item_type, candidate_flags: summary.candidate_flags, review_status: 'pending', editorial_status: 'not_reviewed', linguistic_certification: false, output: destination }, null, 2));
+  console.log(JSON.stringify({ rows: rows.length, scope: { level: level || 'all', unit: unit || 'all' }, by_item_type: summary.by_item_type, candidate_flags: summary.candidate_flags, review_status: 'pending', editorial_status: 'not_reviewed', linguistic_certification: false, output: destination }, null, 2));
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === resolve(new URL(import.meta.url).pathname)) {

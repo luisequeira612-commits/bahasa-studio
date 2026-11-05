@@ -25,7 +25,7 @@
 - Historial y estadísticas: implementados, por consolidar.
 
 ## En desarrollo
-- PR #337 abierto: aclara los objetivos de vocabulario de 16 prompts en A2 U5–U8 y añade regresión; corrige además la expectativa antigua de caché del test UI (v3.8.53) para alinearla con la versión de la rama (v3.8.54). Pendiente de CI verde y revisión.
+- PR #337 abierto: aclara los objetivos de vocabulario de 16 prompts en A2 U5–U8 y añade regresión; corrige las expectativas antiguas de caché en los tests UI y de historial (v3.8.53) para alinearlas con la versión de la rama (v3.8.54). El primer CI detectó ambos tests desactualizados; el de UI ya pasó y el de historial se corrigió. Pendiente de CI verde completo y revisión.
 - PR #338 fusionado: incorpora AGENTS.md, MEMORY.md y SKILL.md con las reglas de trabajo del proyecto.
 
 ## Pendiente (en este orden)
@@ -65,4 +65,4 @@
 - PR #327–#330 fusionados: base/herramientas del sistema de calidad y auditoría.
 - PR #331–#336 fusionados: consolidación/guardrails A2 U5–U8, A1 U24–U32 y cola editorial.
 - 5 nov 2026: PR #338 fusionado (commit 613467b9e1f179aad400a2fa4156eb7b6142fc8c), con AGENTS.md, MEMORY.md y SKILL.md.
-- 5 nov 2026: PR #337 continúa abierto; corrección del test de versión de caché y actualización de memoria en curso.
+- 5 nov 2026: PR #337 continúa abierto; prompts A2 U5–U8 aclarados y tests de caché UI/historial alineados con v3.8.54; CI completo pendiente.

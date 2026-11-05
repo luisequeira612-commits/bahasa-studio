@@ -67,6 +67,7 @@ export function buildEditorialQueue(curricula) {
           exercise_type: '', prompt: '', canonical_answer: '',
           accepted_answers: '', options: '', linked_vocab_ids: '',
           priority: missing.length ? 'P1' : 'P2',
+          priority_reason: missing.length ? 'missing_required_editorial_fields' : 'routine_vocabulary_review',
           missing_fields: missing.join(';'),
         });
       }
@@ -84,9 +85,28 @@ export function buildEditorialQueue(curricula) {
             typeof item === 'string' ? item : String(item?.text ?? '')
           ) : [];
           const flags = [];
+          const prompt = String(exercise.prompt ?? '').trim();
+          const canonicalAnswer = String(exerciseAnswer(exercise) ?? '').trim();
           if (exercise.type === 'translate_es_id' || exercise.type === 'write') flags.push('open_response_review');
           if (accepted.length) flags.push('accepted_alternatives_review');
-          if (exercise.type === 'mc' && options.length > 2) flags.push('distractor_quality_review');
+          if (!prompt) flags.push('missing_prompt');
+          if (!canonicalAnswer) flags.push('missing_canonical_answer');
+          if (exercise.type === 'mc') {
+            flags.push('distractor_quality_review');
+            if (options.length < 2) flags.push('insufficient_mc_options');
+            if (!Number.isInteger(exercise.answer) || exercise.answer < 0 || exercise.answer >= options.length) {
+              flags.push('invalid_mc_answer_index');
+            }
+            const normalizedOptions = options.map((option) => String(option).trim().toLocaleLowerCase());
+            if (new Set(normalizedOptions).size !== normalizedOptions.length) flags.push('duplicate_mc_options');
+          }
+          const priority = flags.some((flag) => [
+            'open_response_review', 'accepted_alternatives_review', 'missing_prompt',
+            'missing_canonical_answer', 'insufficient_mc_options', 'invalid_mc_answer_index', 'duplicate_mc_options',
+          ].includes(flag)) ? 'P1' : exercise.type === 'mc' ? 'P2' : 'P3';
+          const priorityReason = priority === 'P1'
+            ? 'needs_attention_before_routine_review'
+            : priority === 'P2' ? 'closed_choice_distractor_review' : 'routine_closed_exercise_review';
           rows.push({
             ...baseReviewFields('exercise', EXERCISE_REVIEW_DIMENSIONS),
             review_id: [level, unitId, 'exercise', sourcePath.replace(/[^a-zA-Z0-9:_-]/g, '_')].join(':'),
@@ -104,7 +124,8 @@ export function buildEditorialQueue(curricula) {
             options: JSON.stringify(options),
             linked_vocab_ids: [...new Set(vocabIds)].join(';'),
             candidate_flags: flags.join(';'),
-            priority: flags.length ? 'P1' : 'P2',
+            priority,
+            priority_reason: priorityReason,
             missing_fields: '',
           });
         }
@@ -115,7 +136,10 @@ export function buildEditorialQueue(curricula) {
       }
     }
   }
-  return rows;
+  const priorityRank = { P1: 1, P2: 2, P3: 3 };
+  return rows.map((row, index) => ({ row, index }))
+    .sort((a, b) => (priorityRank[a.row.priority] ?? 99) - (priorityRank[b.row.priority] ?? 99) || a.index - b.index)
+    .map(({ row }) => row);
 }
 
 function csvCell(value) {
@@ -158,7 +182,7 @@ export function toCsv(rows) {
     'item_type','review_status','review_confidence','editorial_status','candidate_flags','review_dimensions',
     'reviewer','evidence_notes','proposed_correction','review_id','level','unit_id','unit_title','source_path',
     'vocab_id','indonesian_form','spanish_gloss','example_indonesian','example_spanish','exercise_type','prompt',
-    'canonical_answer','accepted_answers','options','linked_vocab_ids','priority','missing_fields',
+    'canonical_answer','accepted_answers','options','linked_vocab_ids','priority','priority_reason','missing_fields',
   ];
   return [headers.join(','), ...rows.map((row) => headers.map((key) => csvCell(row[key])).join(','))].join('\n') + '\n';
 }

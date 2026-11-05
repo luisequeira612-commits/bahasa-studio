@@ -8,11 +8,14 @@ test('builds one neutral editorial work item per vocabulary entry', () => {
     { id: 'v2', idn: 'asal', esp: 'origen' },
   ] }] }]);
   assert.equal(rows.length, 2);
-  assert.equal(rows[0].review_id, 'A1:a1_u1:v1');
-  assert.equal(rows[1].review_id, 'A1:a1_u1:v2');
-  assert.equal(rows[0].priority, 'P2');
-  assert.equal(rows[1].priority, 'P1');
-  assert.equal(rows[1].missing_fields, 'example_indonesian;example_spanish');
+  const complete = rows.find((row) => row.vocab_id === 'v1');
+  const incomplete = rows.find((row) => row.vocab_id === 'v2');
+  assert.equal(rows[0].review_id, 'A1:a1_u1:v2');
+  assert.equal(rows[1].review_id, 'A1:a1_u1:v1');
+  assert.equal(rows[0].priority, 'P1');
+  assert.equal(complete.priority, 'P2');
+  assert.equal(incomplete.priority, 'P1');
+  assert.equal(incomplete.missing_fields, 'example_indonesian;example_spanish');
   assert.ok(rows.every((row) => row.editorial_status === 'not_reviewed'));
   assert.ok(rows.every((row) => row.review_status === 'pending'));
   assert.ok(rows.every((row) => row.review_confidence === 'unassessed'));
@@ -67,6 +70,8 @@ test('adds pending review candidates for unit and lesson exercises without judgi
   assert.equal(exercises[0].priority, 'P1');
   assert.equal(exercises[1].canonical_answer, 'makan');
   assert.equal(exercises[1].linked_vocab_ids, 'v1');
+  assert.equal(exercises[1].priority, 'P2');
+  assert.equal(exercises[1].priority_reason, 'closed_choice_distractor_review');
   assert.match(exercises[0].source_path, /\.exercises\[0\]$/);
   assert.match(exercises[1].source_path, /\.lessons\[0\]\.exercises\[0\]$/);
 });
@@ -81,9 +86,26 @@ test('summarizes vocabulary and exercise review workload separately', () => {
   const summary = buildEditorialSummary(rows);
   assert.equal(summary.total_entries, 3);
   assert.deepEqual(summary.by_item_type, { vocabulary: 2, exercise: 1 });
-  assert.deepEqual(summary.by_priority, { P2: 2, P1: 1 });
+  assert.deepEqual(summary.by_priority, { P1: 1, P2: 2 });
   assert.deepEqual(summary.candidate_flags, { open_response_review: 1 });
   assert.equal(summary.review_status, 'pending');
   assert.equal(summary.editorial_status, 'not_reviewed');
   assert.equal(summary.linguistic_certification, false);
+});
+
+test('prioritizes exercise review without issuing linguistic verdicts', () => {
+  const rows = buildEditorialQueue([{ id: 'A1', units: [{ id: 'u1', title: 'Unidad', vocab: [], exercises: [
+    { type: 'mc', prompt: 'Elige', options: ['uno', 'dos'], answer: 0 },
+    { type: 'match', prompt: 'Relaciona', answer: 'pares' },
+    { type: 'write', prompt: 'Escribe', answer: 'una frase' },
+    { type: 'mc', prompt: 'Elige', options: ['uno', 'uno'], answer: 4 },
+  ] }] }]);
+  assert.deepEqual(rows.map((row) => row.priority), ['P1', 'P1', 'P2', 'P3']);
+  const malformed = rows.find((row) => row.candidate_flags.includes('invalid_mc_answer_index'));
+  assert.ok(malformed.candidate_flags.includes('duplicate_mc_options'));
+  assert.equal(malformed.review_status, 'pending');
+  assert.equal(malformed.review_confidence, 'unassessed');
+  assert.equal(malformed.editorial_status, 'not_reviewed');
+  assert.equal(rows.find((row) => row.exercise_type === 'write').priority_reason, 'needs_attention_before_routine_review');
+  assert.equal(rows.find((row) => row.exercise_type === 'match').priority_reason, 'routine_closed_exercise_review');
 });

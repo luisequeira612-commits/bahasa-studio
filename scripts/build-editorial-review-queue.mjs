@@ -200,6 +200,7 @@ export function buildEditorialSummary(rows) {
     by_level: byLevel,
     by_priority: byPriority,
     by_item_type: byItemType,
+    by_unit: byUnit,
     candidate_flags: candidateFlags,
     missing_fields: missingFields,
     review_status: 'pending',

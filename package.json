@@ -14,6 +14,7 @@
     "quality:local": "npm run quality:tests && npm run quality:audit && npm run quality:queue && npm run quality:report",
     "harness": "npx @deepseek-ai/dsh web --no-open",
     "quality:report": "node scripts/build-unified-quality-report.mjs --audit artifacts/curriculum-quality-report.json --editorial artifacts/editorial-review-summary.json --output artifacts/unified-quality-report.json",
-    "quality:deepseek-packet": "node scripts/build-deepseek-review-packet.mjs"
+    "quality:deepseek-packet": "node scripts/build-deepseek-review-packet.mjs",
+    "quality:batch": "node scripts/build-editorial-review-batches.mjs"
   }
 }

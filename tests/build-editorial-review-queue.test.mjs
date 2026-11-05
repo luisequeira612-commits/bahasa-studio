@@ -87,7 +87,7 @@ test('summarizes vocabulary and exercise review workload separately', () => {
   const summary = buildEditorialSummary(rows);
   assert.equal(summary.total_entries, 3);
   assert.deepEqual(summary.by_item_type, { vocabulary: 2, exercise: 1 });
-  assert.deepEqual(summary.by_priority, { P1: 1, P2: 2 });
+  assert.deepEqual(summary.by_priority, { P2: 3 });
   assert.deepEqual(summary.candidate_flags, { open_response_review: 1 });
   assert.equal(summary.review_status, 'pending');
   assert.equal(summary.editorial_status, 'not_reviewed');

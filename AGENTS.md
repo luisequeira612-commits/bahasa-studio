@@ -35,6 +35,16 @@ App web para aprender idiomas, estilo Duolingo, alojada en GitHub Pages. Hoy tie
 - Cualquier decisión de escalabilidad debe mantener cero backend y cero costo. Si una idea requiere servidor, cuentas o pago, no se implementa: me la propones aparte.
 - Antes de compartir la app con otras personas, revisar: licencias y fuentes del vocabulario, que no haya datos personales ni claves expuestas en el repo, y que las instrucciones de uso estén claras.
 
+## Calidad y vocabulario (decisiones del dueño: 5 nov 2026)
+- Meta A1+A2: rango de 900–1.000 entradas distintas, no cuota. Referencia actual: 801 (A1 309, A2 492, compartidas 0); recalcular desde currículo y señalar discrepancias.
+- Formas derivadas con ID canónico propio cuentan como entradas; familias léxicas se informan aparte.
+- No hay hablante nativo disponible y KBBI oficial requiere iniciar sesión. Ninguna validación externa puede bloquear el avance; servicios externos son ayuda opcional.
+- Estados: mantener verified_primary y not_checked; añadir cross_checked_secondary (dos fuentes secundarias independientes coinciden, no equivale a verificación primaria) y doubtful. Nunca promover a verified_primary sin revisión humana de fuente primaria.
+- not_checked solo puede ser respuesta obligatoria si es básica, frecuente y supera pruebas automáticas; doubtful nunca puede ser respuesta obligatoria.
+- Pasivo di- y superlativo ter- se enseñarán en A2 dentro de unidades existentes en un PR posterior, sin nuevas unidades ni reestructuración.
+- Cada PR actualiza MEMORY.md. Sin cambios de IndexedDB ni backup JSON v3 para calidad/vocabulario.
+- Los patrones morfológicos solo producen candidatos para revisión manual, nunca recuentos lingüísticos.
+
 ## Git
 - Nunca trabajar en main. Una rama por cambio y un pull request.
 - NO hacer merge sin mi autorización explícita ("Aprobado").

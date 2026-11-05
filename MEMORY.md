@@ -74,3 +74,10 @@
 - 5 nov 2026: PR #337–#348 fusionados tras aprobación explícita. PR #346 original quedó obsoleto por conflictos y fue reemplazado por #347. PR #339–#341 antiguos no deben fusionarse.
 - 5 nov 2026: el dueño fijó la hoja de ruta indonesio hasta B2 → inglés A1 para hispanohablantes; no hay otros idiomas planificados. Se exige independencia del idioma en todo código/dato nuevo, sin refactor general ahora.
 - Tras #347, las pruebas de regresión post-merge y el despliegue de Pages terminaron correctamente; la validación de PR #348 actualiza este registro.
+
+
+## Auditoría de cobertura de vocabulario (5 nov 2026)
+- Métrica Perfil > Retención: `getUniqueLearningVocabulary().length`; cuenta formas `idn` únicas de niveles habilitados (A1+A2), sin depender de SRS. Auditoría estática: A1 309, A2 492, compartidas 0, total 801.
+- Referencia de plan: ~400 A1 y ~600 nuevas A2 (~1.000 acumuladas); diferencia estimada 91 A1 + 108 A2 = 199.
+- Estados: tracker A1 solo U24–U32 (34 verified_primary, 56 not_checked); A1 U1–U23 sin tracker. Tracker A2 (2 verified_primary, 490 not_checked). No completar ni inferir estados faltantes.
+- PR de auditoría vocabulario: solo documentación y propuesta; no añadir vocabulario hasta aprobación explícita del dueño. Preservar IndexedDB y backup JSON v3.

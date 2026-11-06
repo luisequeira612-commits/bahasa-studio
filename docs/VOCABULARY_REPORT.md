@@ -162,7 +162,7 @@ La normalización reproduce la lógica de getUniqueLearningVocabulary(): idn, tr
 
 Criterio: normalización de mayúsculas/signos y sustitución de pronombres por un marcador. Solo informa; no borra.
 
-No se encontraron pares con este criterio.
+- Senang bertemu denganmu ↔ Senang bertemu dengan Anda — a1_u3:v14, a1_u32:v470
 
 ## 4. Unidades con menos de 8 entradas nuevas
 

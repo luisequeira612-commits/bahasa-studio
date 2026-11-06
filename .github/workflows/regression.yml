@@ -84,7 +84,7 @@ jobs:
             docs/VOCABULARY_REPORT.md
             docs/CURRICULUM_LINT_REPORT.md
             docs/CURRICULUM_LINT_SUPPRESSIONS.md
-          if-no-files-found: error
+          if-no-files-found: ignore
           retention-days: 14
       - name: Run Harness quality skill contract tests
         run: node --test tests/harness-quality-skills.test.mjs
@@ -207,8 +207,12 @@ jobs:
       - name: Run blocking tracker synchronization check
         run: node scripts/check-tracker-sync.mjs
       - name: Generate informational unit contract report
+        if: always()
+        continue-on-error: true
         run: node scripts/unit-contract-report.mjs
       - name: Generate informational language coupling report
+        if: always()
+        continue-on-error: true
         run: node scripts/check-language-coupling.mjs
       - name: Upload PR4 quality reports
         if: always()

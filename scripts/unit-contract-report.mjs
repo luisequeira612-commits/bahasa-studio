@@ -1,0 +1,58 @@
+#!/usr/bin/env node
+import { readFile, writeFile } from 'node:fs/promises';
+import vm from 'node:vm';
+const ROOT=process.cwd();
+function load(file,name){const sandbox={window:{}};vm.runInNewContext(await readFile(ROOT+'/'+file,'utf8'),sandbox,{filename:file,timeout:10000});const value=sandbox.window[name];if(!value||!Array.isArray(value.units))throw new Error('No se encontró '+name+'.units');return value;}
+async function loadLevel(file,name){const source=await readFile(ROOT+'/'+file,'utf8');const sandbox={window:{}};vm.runInNewContext(source,sandbox,{filename:file,timeout:10000});const value=sandbox.window[name];if(!value||!Array.isArray(value.units))throw new Error('No se encontró '+name+'.units');return value;}
+function collectExercises(unit){
+ const out=[...(Array.isArray(unit.exercises)?unit.exercises:[])];
+ function visit(node){if(!node||typeof node!=='object')return;if(Array.isArray(node)){for(const item of node)visit(item);return;}
+   if(Array.isArray(node.exercises))out.push(...node.exercises);
+   if(Array.isArray(node.lessons))visit(node.lessons);
+   if(Array.isArray(node.sections))visit(node.sections);
+ }
+ visit(unit.lessons??[]);return out;
+}
+function targetText(ex){
+ if(Array.isArray(ex.correctOrder))return ex.correctOrder.join(' ');
+ if(typeof ex.modelAnswer==='string')return ex.modelAnswer;
+ if(typeof ex.answer==='string')return ex.answer;
+ if(Number.isInteger(ex.answer)&&Array.isArray(ex.options))return String(ex.options[ex.answer]??'');
+ return '';
+}
+function sentenceEstimate(ex){const value=targetText(ex).trim();return value?value.split(/\s+/).filter(Boolean).length>=2:false;}
+function hasReviewMarker(unit,exercises){
+ const fields=[unit.title,unit.desc,unit.objective,unit.type,unit.reviewLabel];
+ for(const lesson of unit.lessons??[])fields.push(lesson.title,lesson.objective,lesson.type);
+ for(const ex of exercises)fields.push(ex.prompt,ex.title,ex.type,ex.reviewLabel);
+ return fields.some(v=>typeof v==='string'&&/(repaso|review|acumulativ)/i.test(v));
+}
+const levels=[await loadLevel('curriculum-a1.js','BAHASA_CURRICULUM_A1'),await loadLevel('curriculum-a2.js','BAHASA_CURRICULUM_A2')];
+const units=[];for(const level of levels)for(const unit of level.units)units.push({level:level.id??level.title,unit,exercises:collectExercises(unit)});
+const firstTeaching=new Map(),entryInfo=new Map(),uses=new Map();
+units.forEach((item,index)=>{for(const entry of item.unit.vocab??[]){if(!entry?.id)continue;const id=String(entry.id);if(!firstTeaching.has(id)){firstTeaching.set(id,index);entryInfo.set(id,{id,form:entry.idn??'',gloss:entry.esp??'',unit:item.unit.id??'?' });}}});
+units.forEach((item,index)=>{for(const ex of item.exercises){const refs=[];if(typeof ex.vocabId==='string')refs.push(ex.vocabId);if(Array.isArray(ex.vocabIds))refs.push(...ex.vocabIds.filter(x=>typeof x==='string'));for(const id of new Set(refs)){if(!uses.has(id))uses.set(id,{total:0,later:0});const count=uses.get(id);count.total++;if(index>(firstTeaching.get(id)??index))count.later++;}}});
+const rows=units.map((item,index)=>{const ex=item.exercises;const types=[...new Set(ex.map(e=>String(e.type??'sin_tipo')))].sort();const full=ex.filter(sentenceEstimate).length;const own=ex.filter(e=>/^(write|writing|production|produce)$/i.test(String(e.type??''))&&typeof e.hint==='string'&&e.hint.trim()).length;const review=hasReviewMarker(item.unit,ex);return{index,level:item.level,id:item.unit.id??'?',title:item.unit.title??'',count:ex.length,types,full,own,review};});
+const reviewRows=rows.filter(r=>r.review);const reviewGaps=reviewRows.slice(1).map((r,i)=>r.index-reviewRows[i].index);
+const outliers=rows.filter(r=>r.count<14||r.count>22||r.types.length<4||r.full<5);
+const low=[...entryInfo.values()].map(e=>({...e,...(uses.get(e.id)??{total:0,later:0})})).filter(e=>e.total<3).sort((a,b)=>a.unit.localeCompare(b.unit)||a.id.localeCompare(b.id));
+const lines=['# Informe de contrato por unidad','','Generado: '+new Date().toISOString(),'','## Criterios y método','','- Ejercicios esperados por unidad: 14–22; tipos distintos: al menos 4; ejercicios de frase completa: al menos 5. Son indicadores informativos y no bloquean CI.',
+ '- A1 y A2 se recorren desde sus archivos de currículo; se cuentan ejercicios directos de unidad y los contenidos en lecciones.',
+ '- Frase completa: estimación por respuesta objetivo con dos o más palabras. Para selección múltiple se usa la opción señalada por el índice answer; para ordenar se unen correctOrder; para producción se usa modelAnswer. No se comprueba sintaxis ni que una frase sea gramaticalmente completa; expresiones de varias palabras pueden sobrecontarse.',
+ '- Producción propia con pista: se detecta solo cuando type es write/writing/production/produce y existe hint no vacío. Un resultado negativo no demuestra que no haya otra forma de producción no representada por esos campos.',
+ '- Repaso acumulativo: solo se detectan marcas explícitas en título, objetivo, descripción, tipo o consigna que contengan “repaso”, “review” o “acumulativ”. No se infiere por la dificultad de los ejercicios.',
+ '- Recurrencia: se cuentan referencias vocabId/vocabIds en ejercicios de todo el curso. La unidad de enseñanza es la primera aparición del ID en el inventario; “posteriores” significa unidades posteriores a esa primera unidad. IDs compartidos se cuentan como una entrada.','',
+ '## Tabla por unidad','','| Nivel | Unidad | Ejercicios | Tipos distintos | Frase completa (estimada) | Producción propia con pista | Marca de repaso |',
+ '|---|---|---:|---:|---:|---|---|',
+ ...rows.map(r=>'| '+r.level+' | '+r.id+' | '+r.count+' | '+r.types.length+' ('+r.types.join(', ')+') | '+r.full+' | '+(r.own?'Sí ('+r.own+')':'No detectada')+' | '+(r.review?'Sí':'No detectada')+' |'),
+ '','## Resumen','','- Unidades analizadas: **'+rows.length+'**.',
+ '- Unidades fuera de uno o más indicadores (14–22 ejercicios, 4 tipos, 5 frases estimadas): **'+outliers.length+'**.',
+ '- Unidades con marca explícita de repaso: **'+reviewRows.length+'** ('+(reviewRows.map(r=>r.id).join(', ')||'ninguna')+').',
+ '- Distancias entre marcas detectadas, en unidades: **'+(reviewGaps.join(', ')||'no calculables')+'**. Esto no demuestra por sí solo que el repaso sea acumulativo ni que falte cuando no hay marca.',
+ '- Entradas con menos de 3 apariciones en ejercicios: **'+low.length+'**.',
+ '','### Unidades fuera de indicadores','','| Unidad | Ejercicios | Tipos | Frases estimadas | Motivos |','|---|---:|---:|---:|---|',
+ ...(outliers.length?outliers.map(r=>'| '+r.id+' | '+r.count+' | '+r.types.length+' | '+r.full+' | '+[r.count<14?'menos de 14 ejercicios':r.count>22?'más de 22 ejercicios':'',r.types.length<4?'menos de 4 tipos':'',r.full<5?'menos de 5 frases estimadas':''].filter(Boolean).join('; ')+' |'):['| Ninguna | — | — | — | — |']),
+ '','### Entradas con baja recurrencia','','| Unidad de enseñanza | vocab_id | Forma | Glosa | Apariciones totales | En unidades posteriores |','|---|---|---|---|---:|---:|',
+ ...(low.length?low.map(e=>'| '+e.unit+' | '+e.id+' | '+String(e.form).replace(/\|/g,'/')+' | '+String(e.gloss).replace(/\|/g,'/')+' | '+e.total+' | '+e.later+' |'):['| Ninguna | — | — | — | — | — |']),
+ '','## Limitaciones','','Este informe describe la estructura observable, no certifica calidad pedagógica ni lingüística. No inventa umbrales adicionales ni modifica ejercicios, vocabulario, explicaciones, glosas o contenido curricular.',''];
+await writeFile(ROOT+'/docs/UNIT_CONTRACT_REPORT.md',lines.join('\n'),'utf8');console.log('UNIT_CONTRACT_REPORT: '+rows.length+' unidades; '+outliers.length+' fuera de indicadores; '+low.length+' entradas con baja recurrencia; '+reviewRows.length+' con marca explícita de repaso.');

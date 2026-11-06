@@ -89,3 +89,30 @@ Clasificación:
 - Se priorizan sustantivos/adjetivos de contenido que pueden ser necesarios para comprender el ejemplo; no se propone convertir automáticamente partículas, preposiciones o nombres propios en entradas de vocabulario.
 - La revisión compara las entradas curriculares previas; no certifica naturalidad nativa ni nivel CEFR.
 - No se modifica currículo, vocabulario, glosas, ejemplos, ejercicios, explicaciones, trackers/CSV, IndexedDB ni backup JSON v3.
+
+
+## Revisión de prerrequisitos A2 U6 (6 nov 2026; recuperación del PR #370)
+
+Alcance: comparación de los sustantivos y términos de contenido en los ejemplos de U6 con el vocabulario presentado en A1 y en A2 U5. Inventario de U6: 12 términos y 17 ejercicios.
+
+- Los sustantivos relevantes de los ejemplos —`buku`, `teman`, `kota`, `alamat`, `nasi`, `musik`, `rumah` y `guru`— ya aparecen en A1.
+- Las raíces `tutup`, `tunggu`, `tetap`, `dengar`, `cari` y `jual` se mencionan en notas morfológicas; no se exigen como respuestas independientes antes de enseñar sus formas verbales.
+- No se identifica un problema nuevo de secuenciación léxica en U6.
+- No se certifica naturalidad nativa ni nivel CEFR. Sin cambios en currículo, vocabulario, ejercicios, glosas, explicaciones, trackers/CSV, IndexedDB o backup JSON v3.
+
+## Revisión de prerrequisitos A2 U17–U20 (6 nov 2026)
+
+Alcance: inspección de ejemplos de vocabulario y consignas, comparando términos de contenido con las entradas previas de A1 y A2 U5–U16. Recuento comprobado: 12 términos y 17 ejercicios por unidad; 48 términos y 68 ejercicios en total.
+
+| Unidad | Candidatos observados en ejemplos |
+|---|---|
+| A2 U17 — Salud, consultas y cuidados | `kacang` (cacahuete/maní) aparece en el ejemplo de alergia y no tiene entrada previa identificada; `perawat` (enfermero/a) aparece en el ejemplo de presión arterial sin entrada previa identificada. `terhadap` se menciona en la gramática de la propia unidad, por lo que no se registra como vocabulario omitido. |
+| A2 U18 — Vecindario y vivienda | `atap` (techo) aparece en el ejemplo de fuga sin entrada previa identificada. `sewa` aparece en el ejemplo del inquilino, pero se relaciona transparentemente con `menyewa`, ya enseñado en A2 U8; no se cuenta como hallazgo separado. El ejercicio de `pagar` incluye una advertencia explícita para evitar confundirlo con el verbo español «pagar». |
+| A2 U19 — Trabajo y empleo | `perusahaan` (empresa) aparece en el ejemplo de oferta de empleo sin entrada previa identificada. `mengikuti` ya fue introducido en A2 U10, así que no se duplica como hallazgo. |
+| A2 U20 — Medio ambiente y comunidad | `udara` (aire), `pohon` (árbol), `petani` (agricultor) y `hewan` (animal) aparecen en ejemplos sin entrada previa identificada. `musim kemarau` (estación seca) aparece en el ejemplo de ahorro de agua y también queda como candidato contextual. |
+
+Clasificación y límites:
+- Son candidatos de andamiaje léxico contextual, no errores lingüísticos confirmados. El ejemplo puede permitir inferir el significado, pero el estudiante podría necesitar esos términos para comprender el objetivo.
+- Se excluyen como hallazgos duplicados las formas transparentemente relacionadas con vocabulario previo y los elementos ya explicados en la gramática.
+- La comparación no certifica naturalidad nativa, frecuencia de uso ni nivel CEFR.
+- No se modifica vocabulario, glosas, ejemplos, ejercicios, explicaciones curriculares, trackers/CSV, IndexedDB ni backup JSON v3.

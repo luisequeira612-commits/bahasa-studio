@@ -4,7 +4,7 @@ Fecha: 6 nov 2026
 
 ## Resultado de esta revisión
 
-Se revisó directamente el currículo publicado en main para delimitar la siguiente tanda de consolidación.
+Se revisó directamente el currículo publicado en main para delimitar la siguiente tanda de consolidación y después se ejecutó una comprobación interna sobre las 13 unidades objetivo.
 
 ### A1 U24–U32
 
@@ -20,6 +20,28 @@ Se revisó directamente el currículo publicado en main para delimitar la siguie
 - U5 trabaja formas frecuentes con ber-; U6 con men-; U7 con meng-; U8 con mem- y meny-.
 - Las lecciones organizan el vocabulario en grupos y contienen ejercicios propios por lección.
 
+## Comprobación interna ejecutada
+
+Sobre las 13 unidades se comprobó, sin modificar el currículo:
+
+- referencias vocabId/vocabIds que no existan dentro de la unidad;
+- índices answer fuera del rango de options;
+- correspondencia de correctOrder con las palabras disponibles;
+- ejercicios de producción sin hint o modelAnswer;
+- duplicados exactos de objetos de ejercicio dentro de cada unidad.
+
+Resultado: **0 hallazgos en las cinco comprobaciones**.
+
+| Comprobación | A1 U24–U32 | A2 U5–U8 | Total |
+|---|---:|---:|---:|
+| Referencias de vocabulario inexistentes | 0 | 0 | 0 |
+| Respuestas fuera de opciones | 0 | 0 | 0 |
+| correctOrder incompatible con words | 0 | 0 | 0 |
+| Producción sin pista/respuesta modelo | 0 | 0 | 0 |
+| Duplicados exactos de ejercicios | 0 | 0 | 0 |
+
+Esto es una **validación estructural interna**, no una validación lingüística nativa.
+
 ## Qué se conserva
 
 Esta tanda no cambia:
@@ -34,4 +56,4 @@ La revisión lingüística seguirá separando hallazgos estructurales de validac
 
 ## Siguiente paso
 
-La siguiente revisión debe concentrarse en detectar inconsistencias internas concretas de U24–U32 y U5–U8: referencias a vocabulario inexistente, respuestas incompatibles con las opciones/orden, ejercicios de producción sin pista o respuesta, y duplicados exactos. Los hallazgos confirmados se corregirán en una tanda posterior; este PR no altera todavía el contenido curricular.
+Con las comprobaciones internas sin hallazgos, la siguiente revisión puede pasar a una auditoría editorial más fina de U24–U32 y U5–U8: calidad de consignas, alternativas plausibles, traducciones y coherencia pedagógica. Los posibles cambios de contenido se harán en un PR separado y solo después de confirmar cada hallazgo; este PR no altera todavía el contenido curricular.

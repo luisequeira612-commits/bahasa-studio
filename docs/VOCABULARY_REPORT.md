@@ -146,7 +146,8 @@ Se usa la columna `KBBI_status` de los CSV actuales. Esto no valida por sí solo
 | --- | --- |
 | Entradas curriculares (registros) | 317 |
 | Registros de entrada con fila CSV coincidente | 91 |
-| Sin registro CSV | 226 |\n| Filas CSV en el tracker | 90 |
+| Sin registro CSV | 226 |
+| Filas CSV en el tracker | 90 |
 | not_checked | 57 |
 | verified_primary | 34 |
 | Filas CSV sin ID curricular correspondiente | 0 |
@@ -157,7 +158,8 @@ Se usa la columna `KBBI_status` de los CSV actuales. Esto no valida por sí solo
 | --- | --- |
 | Entradas curriculares (registros) | 492 |
 | Registros de entrada con fila CSV coincidente | 492 |
-| Sin registro CSV | 0 |\n| Filas CSV en el tracker | 492 |
+| Sin registro CSV | 0 |
+| Filas CSV en el tracker | 492 |
 | not_checked | 490 |
 | verified_primary | 2 |
 | Filas CSV sin ID curricular correspondiente | 0 |

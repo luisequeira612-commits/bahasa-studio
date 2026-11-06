@@ -122,3 +122,8 @@
 ## PR8 — reconciliación del recuento de ejercicios A1 U24–U32 (6 nov 2026)
 - La auditoría estructural vigente contabiliza 102 ejercicios en A1 U24–U32; la cifra histórica de 72 correspondía solo al bloque base de 8 por unidad.
 - La revisión contextual individual de respuestas aceptadas y variantes de los 102 ejercicios sigue pendiente. Cambio exclusivamente documental; sin currículo, trackers, IndexedDB ni backup JSON v3.
+
+
+## PR9 — reconciliación del inventario del examen A1 (6 nov 2026)
+- El inventario vigente de `assessment-engine.js` registra 51 ítems y 56 puntos, incluidas dos tareas abiertas que requieren revisión humana.
+- El blueprint de 40 puntos continúa siendo una propuesta no reconciliada ni implementada. No se alteran banco, claves, puntos, rúbricas, desbloqueo, IndexedDB ni backup JSON v3.

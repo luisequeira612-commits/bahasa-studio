@@ -85,6 +85,7 @@ jobs:
           if-no-files-found: ignore
           retention-days: 14
       - name: Run local quality tests
+        if: ${{ !cancelled() }}
         run: npm run quality:tests
       - name: Run DeepSeek review packet tests
         run: node --test tests/build-deepseek-review-packet.test.mjs

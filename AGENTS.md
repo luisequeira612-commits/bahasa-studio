@@ -88,7 +88,7 @@ Reglas:
 - PR2 no modifica IndexedDB, backup v3, vocabulario, ejercicios, CSV ni contenido curricular.
 
 ## PR4 — comprobaciones automáticas de calidad
-- `scripts/check-tracker-sync.mjs`: compara los IDs curriculares únicos A1/A2 con los tres trackers, valida estados permitidos y evidencia mínima de `verified_primary`. Es la única comprobación potencialmente bloqueante; antes de activarla se ejecuta en modo informativo y no se corrigen los CSV automáticamente. Los IDs compartidos entre unidades se cuentan una vez.
+- `scripts/check-tracker-sync.mjs`: compara los IDs curriculares únicos A1/A2 con los tres trackers, valida estados permitidos y evidencia mínima de `verified_primary`. Es la única comprobación bloqueante; se activó después de ejecutar el baseline actual con cero hallazgos y no corrige los CSV automáticamente. Los IDs compartidos entre unidades se cuentan una vez.
 - `scripts/unit-contract-report.mjs`: informe informativo por unidad sobre cantidad/tipos de ejercicios, estimación explícita de frases completas, producción propia con pista, marcas de repaso y recurrencia del vocabulario. No bloquea CI.
 - `scripts/check-language-coupling.mjs`: inventario informativo de textos, códigos de voz, rutas y lógica específica del idioma en el código de la app; los usos legítimos se documentan en `docs/LANGUAGE_COUPLING_SUPPRESSIONS.md`. No refactoriza ni bloquea CI.
 - Los tres informes se generan localmente, sin red ni servicios externos, y se publican como artefactos del workflow. No añadir dependencias ni modificar currículo, trackers, IndexedDB o backup JSON v3.

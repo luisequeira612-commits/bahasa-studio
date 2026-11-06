@@ -26,12 +26,18 @@ const trackerRows=[];for(const file of TRACKERS)for(const row of parseCsv(await 
 const trackedIds=new Set(trackerRows.map(r=>String(r.vocab_id??'').trim()).filter(Boolean));
 const missingRows=[...curriculumIds].filter(id=>!trackedIds.has(id)).sort();
 const staleRows=trackerRows.filter(r=>!curriculumIds.has(String(r.vocab_id??'').trim()));
-const invalidStates=trackerRows.filter(r=>!ALLOWED.has(String(r.KBBI_status??'').trim()));
-const missingEvidence=trackerRows.filter(r=>String(r.KBBI_status??'').trim()==='verified_primary'&&(!String(r.KBBI_entry_url??'').trim()||!String(r.KBBI_checked_date??'').trim()));
+const statusFields=Object.keys(trackerRows[0]??{}).filter(key=>key==='KBBI_status'||/_review$/.test(key));
+const invalidStates=trackerRows.flatMap(r=>statusFields.filter(field=>!ALLOWED.has(String(r[field]??'').trim())).map(field=>({...r,__field:field})));
+const missingEvidence=trackerRows.flatMap(r=>{
+ const issues=[];
+ if(String(r.KBBI_status??'').trim()==='verified_primary'&&(!String(r.KBBI_entry_url??'').trim()||!String(r.KBBI_checked_date??'').trim()))issues.push('KBBI_status requiere KBBI_entry_url y KBBI_checked_date');
+ for(const field of statusFields.filter(key=>key!=='KBBI_status'))if(String(r[field]??'').trim()==='verified_primary'&&!String(r.reviewer_notes??'').trim())issues.push(field+' requiere reviewer_notes');
+ return issues.map(message=>({...r,__message:message}));
+});
 const findings=[
  ...missingRows.map(id=>'Currículo sin fila en tracker: '+id),
  ...staleRows.map(r=>'Fila sin ID curricular: '+(r.vocab_id||'(vacío)')+' — '+r.__file+':'+r.__row),
- ...invalidStates.map(r=>'Estado no permitido "'+r.KBBI_status+'" — '+r.__file+':'+r.__row+' ('+r.vocab_id+')'),
+ ...invalidStates.map(r=>'Estado no permitido "'+r[r.__field]+'" en '+r.__field+' — '+r.__file+':'+r.__row+' ('+r.vocab_id+')'),
  ...missingEvidence.map(r=>'verified_primary sin KBBI_entry_url o KBBI_checked_date — '+r.__file+':'+r.__row+' ('+r.vocab_id+')')
 ];
 const lines=['# Informe de sincronía con los trackers','','Generado: '+new Date().toISOString(),'','## Resultado','',
@@ -40,7 +46,7 @@ const lines=['# Informe de sincronía con los trackers','','Generado: '+new Date
  '- Filas de tracker: **'+trackerRows.length+'**.',
  '- IDs curriculares sin fila: **'+missingRows.length+'**.',
  '- Filas con vocab_id inexistente: **'+staleRows.length+'**.',
- '- Estados no permitidos: **'+invalidStates.length+'**.',
+ '- Estados no permitidos en KBBI_status y campos *_review: **'+invalidStates.length+'**.',
  '- verified_primary sin fuente/fecha: **'+missingEvidence.length+'**.',
  '- Hallazgos totales: **'+findings.length+'**.','',
  'Los IDs repetidos en varias unidades se cuentan una sola vez en la cobertura curricular. Un ID compartido como v465 queda cubierto con una única fila; no se exige duplicarla por cada unidad.','',

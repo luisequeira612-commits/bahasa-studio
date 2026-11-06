@@ -52,3 +52,12 @@ Se detectó un punto pedagógico que no estaba incluido entre los siete candidat
 - Acción recomendada para una futura edición curricular: añadir una nota breve de uso o una pista contextual antes de exigir la frase completa, o aceptar una respuesta más simple si el objetivo de la actividad es únicamente `bertanya`. No se modifica el ejercicio en esta pasada.
 
 La revisión se basa en la comparación directa de A1/A2 y de la consigna, respuesta y gramática de U5. No certifica naturalidad nativa ni cambia estados del tracker. No se modifican vocabulario, ejercicios, glosas, explicaciones, CSV, IndexedDB ni backup JSON v3.
+
+
+## Revisión complementaria: A2 U6, prerrequisitos léxicos (6 nov 2026)
+
+Se revisaron las doce frases de vocabulario y los ejemplos/pistas/respuestas de las cuatro lecciones de U6. No se añade ningún candidato de vocabulario cotidiano sin apoyo previo: los sustantivos relevantes de los ejemplos (buku, teman, kota, alamat, nasi, musik, rumah y guru) ya aparecen en el currículo A1. Las formas verbales objetivo pertenecen al contenido explícito de U6.
+
+La mención de las raíces `tutup`, `tunggu`, `tetap`, `dengar`, `cari` y `jual` está limitada a explicaciones morfológicas; no se usan como respuestas de ejercicios independientes. No se confirma un problema de secuenciación en U6 a partir de esta revisión. Esto no certifica naturalidad nativa ni constituye validación por hablante nativo.
+
+No se modifica el currículo, vocabulario, ejercicios, glosas, explicaciones curriculares, CSV, IndexedDB ni backup JSON v3.

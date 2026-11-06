@@ -102,3 +102,9 @@
 - Se añade una comprobación de sincronía entre IDs únicos del currículo A1/A2 y los tres trackers, incluidos estados permitidos y evidencia mínima de `verified_primary`; es la única comprobación bloqueante, activada tras un baseline real con cero hallazgos. Los IDs compartidos cuentan una sola vez.
 - Se añaden informes informativos por unidad (contrato de ejercicios, estimación de frases, pistas de producción, marcas de repaso y recurrencia) y de acoplamiento del código al indonesio. El análisis de frases es heurístico; la detección de repaso solo reconoce marcas explícitas.
 - Supresiones de usos legítimos documentadas en `docs/LANGUAGE_COUPLING_SUPPRESSIONS.md`. Los tres informes se generan offline y se suben como artefactos; sin dependencias nuevas ni cambios en datos curriculares, trackers, IndexedDB o backup JSON v3.
+
+
+## PR5 — consolidación focalizada (6 nov 2026)
+- Se inicia la consolidación focalizada de A1 U24–U32 y A2 U5–U8 con revisión directa del currículo publicado.
+- Esta tanda delimita el alcance y prepara comprobaciones internas de referencias, respuestas, producción y duplicados; no modifica vocabulario, ejercicios, trackers, IndexedDB ni backup v3.
+- A1 U24–U32: 9 unidades; A2 U5–U8: 4 unidades. El informe PR4 ya había confirmado los indicadores estructurales básicos de estas unidades.

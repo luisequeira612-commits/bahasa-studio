@@ -39,3 +39,16 @@ Esta pasada contrasta el sentido léxico y el uso visible en fuentes lexicográf
 - No se usaron servicios externos desde la app; esta es documentación de investigación editorial fuera de línea de ejecución curricular.
 
 La revisión no certifica nivel CEFR, frecuencia, naturalidad nativa ni todos los matices regionales. Los dos puntos no certificados permanecen pendientes, sin bloquear el progreso del proyecto.
+
+
+## Revisión complementaria: A2 U5, ejercicio de `bertanya` (6 nov 2026)
+
+Se detectó un punto pedagógico que no estaba incluido entre los siete candidatos iniciales:
+
+- La consigna «Traduce usando `Bertanya`: Le pregunto al profesor» exige la respuesta `Saya bertanya kepada guru.`
+- `guru` sí está enseñado en A1 (entrada `v386`), por lo que no es vocabulario nuevo sin apoyo.
+- `kepada` no aparece como entrada de vocabulario ni se explica en la gramática de A2 U5. Aparece en contextos posteriores de A2 (U15 y U22), pero eso no proporciona apoyo previo al estudiante de U5.
+- Clasificación: **candidato de andamiaje didáctico**, no error lingüístico confirmado. `kepada` funciona aquí como elemento gramatical para introducir el complemento de destinatario; no se propone convertir automáticamente cada palabra funcional en una entrada de vocabulario.
+- Acción recomendada para una futura edición curricular: añadir una nota breve de uso o una pista contextual antes de exigir la frase completa, o aceptar una respuesta más simple si el objetivo de la actividad es únicamente `bertanya`. No se modifica el ejercicio en esta pasada.
+
+La revisión se basa en la comparación directa de A1/A2 y de la consigna, respuesta y gramática de U5. No certifica naturalidad nativa ni cambia estados del tracker. No se modifican vocabulario, ejercicios, glosas, explicaciones, CSV, IndexedDB ni backup JSON v3.

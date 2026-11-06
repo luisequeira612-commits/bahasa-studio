@@ -1,6 +1,6 @@
 # MEMORY.md — Estado de Bahasa Studio
 
-> Se actualiza en CADA PR. Mantener corto (unas 150 líneas como máximo). Última actualización: 5 nov 2026.
+> Se actualiza en CADA PR. Mantener corto (unas 150 líneas como máximo). Última actualización: 6 nov 2026.
 
 ## Visión
 - App para aprender idiomas, estilo Duolingo, en rojo y blanco.
@@ -108,3 +108,7 @@
 - Se revisaron A1 U24–U32 y A2 U5–U8 y se ejecutaron comprobaciones internas de referencias de vocabulario, índices de respuesta, correctOrder/words, producción con pista/respuesta y duplicados exactos: 0 hallazgos en las 13 unidades.
 - El resultado es estructural; no certifica corrección lingüística nativa. Este PR sigue sin modificar currículo, trackers, IndexedDB ni backup v3.
 - Siguiente foco: auditoría editorial fina de consignas, alternativas, traducciones y coherencia pedagógica; cualquier corrección curricular irá en un PR separado.
+
+
+## PR6 — auditoría editorial inicial (6 nov 2026)
+- Lectura directa de A1 U24–U32 y A2 U5–U8: 13 unidades, 138 entradas y 170 ejercicios. Se documentan 7 candidatos editoriales, sin errores lingüísticos confirmados ni cambios de contenido; no equivale a validación nativa. Ver `docs/EDITORIAL_AUDIT_A1_U24_U32_A2_U5_U8.md`.

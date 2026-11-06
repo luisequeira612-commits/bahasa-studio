@@ -15,7 +15,7 @@ function parseSuppressions(text){
 }
 function classify(line){
  const found=[];
- if(/\b(indonesio|indonesian|bahasa indonesia|curso de indonesio)\b/i.test(line))found.push('TEXTO DE INTERFAZ');
+ if(/\b(indonesio|indonesian|bahasa indonesia|\\bBahasa\\b(?!\\s+Studio)|curso de indonesio)\b/i.test(line))found.push('TEXTO DE INTERFAZ');
  if(/\bid-ID\b|speechSynthesis[^;\n]*\blang\b|recognition[^;\n]*lang/i.test(line))found.push('CÓDIGO DE VOZ');
  if(/curriculum-a[12]\.js|curriculum\/(?:a1|a2)|(?:a1|a2)[-_](?:curriculum|data)\.(?:json|js)/i.test(line))found.push('RUTA DE DATOS');
  if(/(?:prefijo|sufijo|afijo|morfolog|imbuhan|awalan|akhiran).*(?:meN|meng|meny|mem|ber-|ter-|di-)|(?:meN|meng|meny|mem|ber-|ter-|di-).*(?:prefijo|sufijo|afijo|morfolog|imbuhan|awalan|akhiran)/i.test(line))found.push('LÓGICA DEL IDIOMA');

@@ -71,6 +71,18 @@ jobs:
         run: node --test tests/exercise-answer-vocabulary-alignment.test.cjs
       - name: Run A2 language audit tracker tests
         run: node --test tests/a2-language-audit-tracker.test.cjs
+      - name: Run vocabulary report unit tests
+        run: node --test tests/vocabulary-report.test.mjs
+      - name: Generate offline vocabulary report
+        run: node scripts/vocabulary-report.mjs
+      - name: Upload offline vocabulary report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: vocabulary-report
+          path: docs/VOCABULARY_REPORT.md
+          if-no-files-found: error
+          retention-days: 14
       - name: Run Harness quality skill contract tests
         run: node --test tests/harness-quality-skills.test.mjs
       - name: Run independent curriculum quality tests

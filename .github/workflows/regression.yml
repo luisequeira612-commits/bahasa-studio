@@ -204,7 +204,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Run tracker synchronization check (baseline only)
+      - name: Run blocking tracker synchronization check
         run: node scripts/check-tracker-sync.mjs
       - name: Generate informational unit contract report
         run: node scripts/unit-contract-report.mjs

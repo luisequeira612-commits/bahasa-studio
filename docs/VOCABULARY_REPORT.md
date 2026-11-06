@@ -270,10 +270,17 @@ Total: **78** candidatas por patrón.
 
 | Nivel | Filas tracker | verified_primary | not_checked |
 | --- | ---: | ---: | ---: |
-| A1 U24–U32 | 0 | 0 | 0 |
-| A2 U1–U40 | 0 | 0 | 0 |
+| A1 U1–U23 | 238 | 0 | 238 |
+| A1 U24–U32 | 90 | 34 | 56 |
+| A1 combinado | 328 | 34 | 294 |
+| A2 U1–U40 | 492 | 2 | 490 |
+| A1+A2 combinado | 820 | 36 | 784 |
 
-A1 U1–U23 no tiene tracker equivalente. No se inventan estados.
+El inventario bruto de A1 U1–U23 contiene 239 registros: 238 no tenían fila en el tracker anterior y `v465` ya estaba representado en el tracker U24–U32. Los IDs repetidos dentro de U1–U23 se conservan como filas separadas porque la tarea pide una fila por registro curricular.
+
+En PR2 los trackers sumaban 582 filas CSV: 36 `verified_primary` y 546 `not_checked`. El 57 del informe anterior contaba ocurrencias curriculares, no filas CSV: las 56 filas `not_checked` de U24–U32 más la ocurrencia duplicada de `v465` en U1–U23 suman 57 ocurrencias para 56 filas no verificadas. En el conjunto, 90 filas del tracker U24–U32 representan 91 ocurrencias curriculares al incluir esa repetición de `v465`; la fila de U32 ya representa el mismo ID y por eso U1–U23 no necesita otra. La misma deduplicación explica que U1–U23 tenga 239 registros curriculares, pero solo 238 filas nuevas.
+
+El corte combinado actual tras PR3 es de 820 filas: 36 `verified_primary` + 784 `not_checked`; A1 combinado es 34 + 294 = 328 y A2 es 2 + 490 = 492.
 
 ## 8. Hallazgos para PR posteriores
 

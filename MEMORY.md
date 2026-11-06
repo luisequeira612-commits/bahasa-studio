@@ -127,3 +127,7 @@
 ## PR9 — reconciliación del inventario del examen A1 (6 nov 2026)
 - El inventario vigente de `assessment-engine.js` registra 51 ítems y 56 puntos, incluidas dos tareas abiertas que requieren revisión humana.
 - El blueprint de 40 puntos continúa siendo una propuesta no reconciliada ni implementada. No se alteran banco, claves, puntos, rúbricas, desbloqueo, IndexedDB ni backup JSON v3.
+
+
+## Revisión complementaria A2 U5 (6 nov 2026)
+- Se detecta un candidato de andamiaje: la traducción de `bertanya` exige `kepada`, aún no explicado en U5; `guru` sí fue enseñado en A1. Se documenta sin cambiar el ejercicio ni certificar un error lingüístico.

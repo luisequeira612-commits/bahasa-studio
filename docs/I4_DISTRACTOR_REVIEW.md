@@ -4,11 +4,13 @@ PR3 — revisión documental de los **197 avisos** del lint. **No se modifica ni
 
 ## Método de gravedad
 
-- **ALTA:** la respuesta correcta y todos los distractores son de tipo diferente (PALABRA frente a FRASE), por lo que la forma puede revelar la respuesta.
-- **MEDIA:** al menos dos distractores son de tipo diferente; existe una pista estructural parcial.
-- **BAJA:** solo un distractor difiere de tipo; la diferencia formal tiene efecto práctico limitado.
+La clasificación se recalcula caso por caso usando el tipo de la respuesta correcta y de cada distractor (PALABRA/FRASE):
 
-La clasificación es estructural y conservadora; no certifica equivalencia semántica. Las propuestas son solo propuestas y no se aplican en PR3.
+- **ALTA:** todos los distractores son de tipo diferente a la respuesta correcta.
+- **MEDIA:** dos o más distractores son de tipo diferente, pero al menos uno coincide con el tipo de la respuesta correcta.
+- **BAJA:** exactamente un distractor es de tipo diferente.
+
+Es una heurística estructural basada en número de tokens, no una evaluación semántica de plausibilidad. MEDIA no queda vacía por diseño: aparece cuando hay una mezcla de distractores del mismo tipo y de tipo distinto. Las propuestas son solo propuestas y no se aplican en PR3.
 
 ## Resumen
 
@@ -18,6 +20,8 @@ La clasificación es estructural y conservadora; no certifica equivalencia semá
 | MEDIA | 0 |
 | BAJA | 67 |
 | **Total** | **197** |
+
+El total coincide con los **197** casos enumerados en la sección I4 de `docs/CURRICULUM_LINT_REPORT.md`. La tabla por unidad se obtiene de los casos revisados y se contrasta contra ese listado del lint; no se cuenta el texto de las tablas previas.
 
 ## Conteo por unidad
 
@@ -90,29 +94,26 @@ La clasificación es estructural y conservadora; no certifica equivalencia semá
 
 ## Tandas propuestas
 
-Se propone corregir por gravedad y luego por unidad, agrupando 3–4 unidades por PR:
+Las tandas conservan grupos de 3–4 unidades y se reordenan por número de avisos ALTA (desempate por total). Los conteos se recalculan sumando las unidades incluidas.
 
-- **Tanda 1: a1_u1, a1_u2, a1_u3, a1_u5** — 11 avisos; 4 ALTA.
-- **Tanda 2: a1_u6, a1_u7, a1_u8, a1_u10** — 11 avisos; 1 ALTA.
-- **Tanda 3: a1_u11, a1_u12, a1_u13, a1_u14** — 27 avisos; 19 ALTA.
-- **Tanda 4: a1_u15, a1_u16, a1_u17, a1_u18** — 23 avisos; 14 ALTA.
-- **Tanda 5: a1_u19, a1_u20, a1_u21, a1_u22** — 9 avisos; 5 ALTA.
-- **Tanda 6: a1_u23, a1_u24, a1_u25, a1_u26** — 8 avisos; 5 ALTA.
-- **Tanda 7: a1_u27, a1_u28, a1_u29, a1_u30** — 12 avisos; 8 ALTA.
-- **Tanda 8: a1_u31, a1_u32, a2_u1, a2_u2** — 11 avisos; 6 ALTA.
-- **Tanda 9: a2_u3, a2_u4, a2_u5, a2_u6** — 12 avisos; 8 ALTA.
-- **Tanda 10: a2_u7, a2_u8, a2_u9, a2_u10** — 13 avisos; 10 ALTA.
-- **Tanda 11: a2_u11, a2_u12, a2_u13, a2_u15** — 11 avisos; 9 ALTA.
-- **Tanda 12: a2_u16, a2_u17, a2_u18, a2_u19** — 11 avisos; 10 ALTA.
-- **Tanda 13: a2_u20, a2_u21, a2_u22, a2_u23** — 10 avisos; 7 ALTA.
-- **Tanda 14: a2_u25, a2_u27, a2_u28, a2_u30** — 9 avisos; 9 ALTA.
-- **Tanda 15: a2_u31, a2_u34, a2_u35, a2_u36** — 7 avisos; 7 ALTA.
-- **Tanda 16: a2_u37, a2_u38, a2_u39, a2_u40** — 12 avisos; 8 ALTA.
+- **Tanda 1: a1_u11, a1_u12, a1_u13, a1_u14** — 27 avisos; 19 ALTA, 0 MEDIA y 8 BAJA.
+- **Tanda 2: a1_u15, a1_u16, a1_u17, a1_u18** — 23 avisos; 14 ALTA, 0 MEDIA y 9 BAJA.
+- **Tanda 3: a2_u7, a2_u8, a2_u9, a2_u10** — 13 avisos; 10 ALTA, 0 MEDIA y 3 BAJA.
+- **Tanda 4: a2_u16, a2_u17, a2_u18, a2_u19** — 11 avisos; 10 ALTA, 0 MEDIA y 1 BAJA.
+- **Tanda 5: a2_u11, a2_u12, a2_u13, a2_u15** — 11 avisos; 9 ALTA, 0 MEDIA y 2 BAJA.
+- **Tanda 6: a2_u25, a2_u27, a2_u28, a2_u30** — 9 avisos; 9 ALTA, 0 MEDIA y 0 BAJA.
+- **Tanda 7: a1_u27, a1_u28, a1_u29, a1_u30** — 12 avisos; 8 ALTA, 0 MEDIA y 4 BAJA.
+- **Tanda 8: a2_u3, a2_u4, a2_u5, a2_u6** — 12 avisos; 8 ALTA, 0 MEDIA y 4 BAJA.
+- **Tanda 9: a2_u37, a2_u38, a2_u39, a2_u40** — 12 avisos; 8 ALTA, 0 MEDIA y 4 BAJA.
+- **Tanda 10: a2_u20, a2_u21, a2_u22, a2_u23** — 10 avisos; 7 ALTA, 0 MEDIA y 3 BAJA.
+- **Tanda 11: a2_u31, a2_u34, a2_u35, a2_u36** — 7 avisos; 7 ALTA, 0 MEDIA y 0 BAJA.
+- **Tanda 12: a1_u31, a1_u32, a2_u1, a2_u2** — 11 avisos; 6 ALTA, 0 MEDIA y 5 BAJA.
+- **Tanda 13: a1_u19, a1_u20, a1_u21, a1_u22** — 9 avisos; 5 ALTA, 0 MEDIA y 4 BAJA.
+- **Tanda 14: a1_u23, a1_u24, a1_u25, a1_u26** — 8 avisos; 5 ALTA, 0 MEDIA y 3 BAJA.
+- **Tanda 15: a1_u1, a1_u2, a1_u3, a1_u5** — 11 avisos; 4 ALTA, 0 MEDIA y 7 BAJA.
+- **Tanda 16: a1_u6, a1_u7, a1_u8, a1_u10** — 11 avisos; 1 ALTA, 0 MEDIA y 10 BAJA.
 
 ## Casos
-
-### a1_u1
-
 #### ALTA — v3
 - Respuesta: «Él / ella»
 - Distractores: «Yo» / «Tú»
@@ -1353,4 +1354,5 @@ Se propone corregir por gravedad y luego por unidad, agrupando 3–4 unidades po
 - Distractores: «Información» / «Declaración»
 - Tipo: correcta FRASE; distractores PALABRA, PALABRA.
 - **Propuestas SIN APLICAR:** «Fecha; día del mes» [a2u1_tanggal; a2_u1] / «Estación; temporada» [a2u1_musim; a2_u1] / «Estación lluviosa» [a2u1_musim_hujan; a2_u1]
+
 

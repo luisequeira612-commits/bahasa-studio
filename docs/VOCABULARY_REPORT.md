@@ -6,14 +6,14 @@ Generado por `node scripts/vocabulary-report.mjs`. Inventario estructural local;
 
 | Ámbito | Entradas distintas |
 | --- | --- |
-| A1 | 301 |
+| A1 | 309 |
 | A2 | 492 |
-| Total A1+A2 (unión) | 793 |
+| Total A1+A2 (unión) | 801 |
 | Compartidas A1/A2 | 0 |
 
 La normalización reproduce `getUniqueLearningVocabulary()`: convertir `idn` a texto, aplicar `trim()` y `toLocaleLowerCase()`, excluir valores vacíos y conservar primera aparición. Se incluyen A1 y A2 habilitado del repositorio; no B1/B2. La app también puede incluir lecciones locales IA guardadas en el dispositivo, no disponibles para este informe.
 
-**Comprobación del total mostrado:** 793 calculadas frente a 801 esperadas. **DISCREPANCIA**: A1 301 frente a 309 comunicadas; A2 492 frente a 492; total 793 frente a 801. Se reproduce la lógica con datos del repositorio; no se ejecuta navegador ni se leen lecciones locales del dispositivo.
+**Comprobación del total mostrado:** 801 calculadas frente a 801 esperadas. **COINCIDE**. Se reproduce la lógica con datos del repositorio; no se ejecuta navegador ni se leen lecciones locales del dispositivo.
 
 ## 2. Entradas nuevas por unidad
 
@@ -23,15 +23,15 @@ Cada forma se atribuye a su primera aparición dentro del nivel. Se marcan unida
 | --- | --- | --- | --- | --- |
 | A1 | a1_u1 | Unidad 1: Primeras palabras, saludos y pronombres | 10 | — |
 | A1 | a1_u2 | Unidad 2: Decir no y construir frases básicas | 8 | — |
-| A1 | a1_u3 | Unidad 3: Presentarse y decir de dónde eres | 5 | SÍ (<8) |
-| A1 | a1_u4 | Unidad 4: Números y edad | 9 | — |
-| A1 | a1_u5 | Unidad 5: Familia y personas | 4 | SÍ (<8) |
-| A1 | a1_u6 | Unidad 6: Comida y bebida | 1 | SÍ (<8) |
+| A1 | a1_u3 | Unidad 3: Presentarse y decir de dónde eres | 8 | — |
+| A1 | a1_u4 | Unidad 4: Números y edad | 12 | — |
+| A1 | a1_u5 | Unidad 5: Familia y personas | 5 | SÍ (<8) |
+| A1 | a1_u6 | Unidad 6: Comida y bebida | 4 | SÍ (<8) |
 | A1 | a1_u7 | Unidad 7: Lugares y ubicación | 5 | SÍ (<8) |
-| A1 | a1_u8 | Unidad 8: Tiempo, rutina e integración | 5 | SÍ (<8) |
+| A1 | a1_u8 | Unidad 8: Tiempo, rutina e integración | 6 | SÍ (<8) |
 | A1 | a1_u9 | Unidad 9: Números del 11 al 100 | 22 | — |
-| A1 | a1_u10 | Unidad 10: Dinero y precios | 12 | — |
-| A1 | a1_u11 | Unidad 11: La hora y partes del día | 13 | — |
+| A1 | a1_u10 | Unidad 10: Dinero y precios | 10 | — |
+| A1 | a1_u11 | Unidad 11: La hora y partes del día | 12 | — |
 | A1 | a1_u12 | Unidad 12: Rutina diaria | 9 | — |
 | A1 | a1_u13 | Unidad 13: El tiempo y el clima | 8 | — |
 | A1 | a1_u14 | Unidad 14: Transporte y desplazamientos | 8 | — |
@@ -98,9 +98,9 @@ Cada forma se atribuye a su primera aparición dentro del nivel. Se marcan unida
 
 | Tipo | Criterio | Entradas |
 | --- | --- | --- |
-| Palabras/formas de un token | Sin espacios internos | 668 |
+| Palabras/formas de un token | Sin espacios internos | 676 |
 | Expresiones de varias palabras | Al menos un espacio | 125 |
-| Total | Suma | 793 |
+| Total | Suma | 801 |
 
 Clasificación ortográfica: las expresiones multi-palabra cuentan como una entrada, igual que en la métrica de la app.
 
@@ -132,9 +132,9 @@ Clasificación ortográfica: las expresiones multi-palabra cuentan como una entr
 
 `Ke mana`, `keberangkatan`, `kebersihan`, `kebiasaan`, `kebocoran`, `kebutuhan`, `kecamatan`, `Kecewa`, `Kegiatan`, `kegiatan sosial`, `kehadiran`, `Kehilangan`, `keinginan`, `kekeringan`, `kelahiran`, `Kelas`, `kelas daring`, `Keluarga`, `keluhan`, `kelulusan`, `kelurahan`, `Kemampuan`, `kemarin`, `kemasan`, `Kembalian`, `Kemudian`, `kenangan`, `Kenapa`, `kendaraan`, `Kepala`, `kerajinan`, `Kereta`, `kerja bakti`, `kerugian`, `Kerusakan`, `Keselamatan`, `Kesempatan`, `kesepakatan`, `kesepian`, `kesimpulan`, `Keterampilan`, `keterangan`, `Ketika`, `keuntungan`
 
-### -an — 184 candidatos
+### -an — 185 candidatos
 
-`adegan`, `adonan`, `Akan`, `Akhir pekan`, `Alasan`, `Aman`, `anggaran`, `angkutan`, `antrean`, `atasan`, `Aturan`, `Bantuan`, `bepergian`, `berhalangan`, `Berjalan`, `Bukan`, `Bulan`, `Bulan depan`, `cicilan`, `contoh tambahan`, `dataran`, `Delapan puluh sembilan`, `Depan`, `Diizinkan`, `halaman`, `hidangan`, `Hujan`, `hutan`, `Ikan`, `ilmuwan`, `jadwal kunjungan`, `Jalan`, `jaringan`, `Kanan`, `Kapan`, `keberangkatan`, `kebersihan`, `kebiasaan`, `kebocoran`, `kebutuhan`, `kecamatan`, `Kegiatan`, `kehadiran`, `Kehilangan`, `keinginan`, `kekeringan`, `kelahiran`, `keluhan`, `kelulusan`, `kelurahan`, `Kemampuan`, `kemasan`, `Kembalian`, `Kemudian`, `kenangan`, `kendaraan`, `kerajinan`, `kerugian`, `Kerusakan`, `Keselamatan`, `Kesempatan`, `kesepakatan`, `kesepian`, `kesimpulan`, `Keterampilan`, `keterangan`, `keuntungan`, `lamaran`, `lampiran`, `laporan`, `Larangan`, `layanan`, `layanan pelanggan`, `liburan`, `Lima puluh delapan`, `lingkungan`, `lowongan`, `lukisan`, `Makan`, `Melanjutkan`, `Melaporkan`, `membandingkan`, `membatalkan`, `Memesan`, `mempertimbangkan`, `Memutuskan`, `Menemukan`, `Mengembangkan`, `Menggunakan`, `mengusulkan`, `Meningkatkan`, `Menjelaskan`, `Menyarankan`, `Menyediakan`, `menyenangkan`, `Menyimpan`, `merencanakan`, `Minggu depan`, `Musim hujan`, `pameran`, `pedalaman`, `pegunungan`, `pelabuhan`, `Pelan-pelan`, `pelanggan`, `pelatihan`, `pemandangan`, `pemasukan`, `pembahasan`, `pembaruan`, `pemborosan`, `pementasan`, `pemeriksaan`, `pemesanan`, `pemulihan`, `penanaman`, `pendaftaran`, `pendakian`, `penegasan`, `penelitian`, `penemuan`, `Pengalaman`, `pengeluaran`, `pengembalian`, `penggantian`, `penginapan`, `pengiriman`, `penyeberangan`, `penyimpanan awan`, `perasaan`, `Peraturan`, `perawatan`, `perbatasan`, `percobaan`, `peresmian`, `peringatan`, `perjalanan`, `perkemahan`, `perlengkapan`, `pernikahan`, `pernyataan`, `persediaan`, `persediaan makanan`, `perselisihan`, `persiapan`, `pertemuan`, `pertimbangan`, `pertunangan`, `pertunjukan`, `Pesan`, `pesanan`, `Pilihan`, `pinjaman`, `pusat bantuan`, `rencana cadangan`, `resep masakan`, `Restoran`, `rincian`, `ringkasan`, `sanggahan`, `sapaan`, `Sarapan`, `Sembilan puluh sembilan`, `siaran`, `Silakan`, `sukarelawan`, `tabungan`, `Tagihan`, `tamu undangan`, `tanaman`, `Tangan`, `tanggapan`, `tarian`, `tautan`, `Teman`, `tempat pengungsian`, `Tujuan`, `ujian`, `Ukuran`, `ulasan`, `undangan`, `unggahan`, `uraian`, `wisatawan`
+`adegan`, `adonan`, `Akan`, `Akhir pekan`, `Alasan`, `Aman`, `anggaran`, `angkutan`, `antrean`, `atasan`, `Aturan`, `Bantuan`, `bepergian`, `berhalangan`, `Berjalan`, `Bukan`, `Bulan`, `Bulan depan`, `cicilan`, `contoh tambahan`, `dataran`, `Delapan`, `Delapan puluh sembilan`, `Depan`, `Diizinkan`, `halaman`, `hidangan`, `Hujan`, `hutan`, `Ikan`, `ilmuwan`, `jadwal kunjungan`, `Jalan`, `jaringan`, `Kanan`, `Kapan`, `keberangkatan`, `kebersihan`, `kebiasaan`, `kebocoran`, `kebutuhan`, `kecamatan`, `Kegiatan`, `kehadiran`, `Kehilangan`, `keinginan`, `kekeringan`, `kelahiran`, `keluhan`, `kelulusan`, `kelurahan`, `Kemampuan`, `kemasan`, `Kembalian`, `Kemudian`, `kenangan`, `kendaraan`, `kerajinan`, `kerugian`, `Kerusakan`, `Keselamatan`, `Kesempatan`, `kesepakatan`, `kesepian`, `kesimpulan`, `Keterampilan`, `keterangan`, `keuntungan`, `lamaran`, `lampiran`, `laporan`, `Larangan`, `layanan`, `layanan pelanggan`, `liburan`, `Lima puluh delapan`, `lingkungan`, `lowongan`, `lukisan`, `Makan`, `Melanjutkan`, `Melaporkan`, `membandingkan`, `membatalkan`, `Memesan`, `mempertimbangkan`, `Memutuskan`, `Menemukan`, `Mengembangkan`, `Menggunakan`, `mengusulkan`, `Meningkatkan`, `Menjelaskan`, `Menyarankan`, `Menyediakan`, `menyenangkan`, `Menyimpan`, `merencanakan`, `Minggu depan`, `Musim hujan`, `pameran`, `pedalaman`, `pegunungan`, `pelabuhan`, `Pelan-pelan`, `pelanggan`, `pelatihan`, `pemandangan`, `pemasukan`, `pembahasan`, `pembaruan`, `pemborosan`, `pementasan`, `pemeriksaan`, `pemesanan`, `pemulihan`, `penanaman`, `pendaftaran`, `pendakian`, `penegasan`, `penelitian`, `penemuan`, `Pengalaman`, `pengeluaran`, `pengembalian`, `penggantian`, `penginapan`, `pengiriman`, `penyeberangan`, `penyimpanan awan`, `perasaan`, `Peraturan`, `perawatan`, `perbatasan`, `percobaan`, `peresmian`, `peringatan`, `perjalanan`, `perkemahan`, `perlengkapan`, `pernikahan`, `pernyataan`, `persediaan`, `persediaan makanan`, `perselisihan`, `persiapan`, `pertemuan`, `pertimbangan`, `pertunangan`, `pertunjukan`, `Pesan`, `pesanan`, `Pilihan`, `pinjaman`, `pusat bantuan`, `rencana cadangan`, `resep masakan`, `Restoran`, `rincian`, `ringkasan`, `sanggahan`, `sapaan`, `Sarapan`, `Sembilan puluh sembilan`, `siaran`, `Silakan`, `sukarelawan`, `tabungan`, `Tagihan`, `tamu undangan`, `tanaman`, `Tangan`, `tanggapan`, `tarian`, `tautan`, `Teman`, `tempat pengungsian`, `Tujuan`, `ujian`, `Ukuran`, `ulasan`, `undangan`, `unggahan`, `uraian`, `wisatawan`
 
 ## 5. Estado de verificación por entrada
 
@@ -144,9 +144,9 @@ Se usa la columna `KBBI_status` de los CSV actuales. Esto no valida por sí solo
 
 | Indicador | Entradas |
 | --- | --- |
-| Entradas curriculares (registros) | 317 |
+| Entradas curriculares (registros) | 329 |
 | Registros de entrada con fila CSV coincidente | 91 |
-| Sin registro CSV | 226 |
+| Sin registro CSV | 238 |
 | Filas CSV en el tracker | 90 |
 | not_checked | 57 |
 | verified_primary | 34 |

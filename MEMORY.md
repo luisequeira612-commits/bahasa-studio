@@ -155,3 +155,9 @@
 - Inventario: 48 términos y 68 ejercicios (12 términos/17 ejercicios por unidad).
 - Candidatos contextuales: U21 `bambu`, `candi` (y `adat` dentro de `pakaian adat` como apoyo opcional); U22 `tanggapan`; U23 `bank`, `pelanggan`, `nomor`; U24 `situs`, `topik`. `aplikasi` es transparente y queda como observación de baja prioridad.
 - No son errores lingüísticos confirmados ni certificación de naturalidad nativa/nivel CEFR. Solo documentación; sin cambios curriculares, trackers, IndexedDB ni backup JSON v3. Ver `docs/EDITORIAL_AUDIT_RESOLUTION_A1_U24_A2_U5_U8.md`.
+
+
+## Revisión A2 U25–U28 (6 nov 2026)
+- Inventario: 48 términos y 68 ejercicios (12/17 por unidad).
+- Candidatos contextuales: U25 `sayuran`, `ikan`, `roti`, `oven`, `bawang`, `masakan`; U26 `orang tua`, `ujian`, `komentar`, `keputusan`; U27 `kelurahan` en una respuesta; U28 `siswa`, `laboratorium`, `ponsel`, `pengguna`.
+- `mengikuti` reaparece en U25, pero ya estaba documentado en U10 y no se duplica. Son observaciones, no errores confirmados ni certificación de naturalidad nativa. Solo documentación; sin cambios curriculares, trackers, IndexedDB ni backup JSON v3. Ver `docs/EDITORIAL_AUDIT_RESOLUTION_A1_U24_A2_U5_U8.md`.

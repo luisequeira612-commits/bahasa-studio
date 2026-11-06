@@ -192,3 +192,21 @@ jobs:
             manifest.json
           if-no-files-found: error
           retention-days: 7
+
+      - name: Run tracker synchronization check (baseline only)
+        run: node scripts/check-tracker-sync.mjs --report-only
+      - name: Generate informational unit contract report
+        run: node scripts/unit-contract-report.mjs
+      - name: Generate informational language coupling report
+        run: node scripts/check-language-coupling.mjs
+      - name: Upload PR4 quality reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr4-quality-reports
+          path: |
+            docs/TRACKER_SYNC_REPORT.md
+            docs/UNIT_CONTRACT_REPORT.md
+            docs/LANGUAGE_COUPLING_REPORT.md
+          if-no-files-found: error
+          retention-days: 14

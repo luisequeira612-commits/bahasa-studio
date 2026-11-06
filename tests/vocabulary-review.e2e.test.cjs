@@ -322,7 +322,11 @@ test('SRS dashboard distinguishes course vocabulary from words with review progr
     assert.equal(await page.locator('#statTrackedVocab').innerText(), '1',
       'tracked vocabulary should count words with SRS records');
     assert.match(await page.locator('#statTotalVocab').locator('xpath=..').innerText(),
-      /Vocabulario disponible/);
+      /Entradas distintas del curso/);
+    assert.match(await page.locator('#profileVocabularyMetricHelp').innerText(),
+      /palabras, formas derivadas y expresiones distintas del curso/);
+    assert.match(await page.locator('#profileVocabularyMetricHelp').innerText(),
+      /no cuenta familias léxicas ni mide cuánto dominas el idioma/);
     assert.match(await page.locator('#statTrackedVocab').locator('xpath=..').innerText(),
       /Palabras con seguimiento/);
   } finally {

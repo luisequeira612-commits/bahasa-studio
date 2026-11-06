@@ -118,3 +118,7 @@
 - Se documenta la resolución de los 7 candidatos del PR #360: no se confirma ningún error curricular ni se modifica contenido.
 - «Senyum manis» y «Memulai belajar» permanecen `not_checked` en naturalidad; no se afirma validación nativa ni se cuentan fuentes dependientes como independientes.
 - Se mantienen intactos currículo, trackers, IndexedDB y backup JSON v3. Ver `docs/EDITORIAL_AUDIT_RESOLUTION_A1_U24_U5_U8.md`.
+
+## PR9 — reconciliación del inventario del examen A1 (6 nov 2026)
+- El inventario vigente de `assessment-engine.js` registra 51 ítems y 56 puntos, incluidas dos tareas abiertas que requieren revisión humana.
+- El blueprint de 40 puntos continúa siendo una propuesta no reconciliada ni implementada. No se alteran banco, claves, puntos, rúbricas, desbloqueo, IndexedDB ni backup JSON v3.

@@ -71,3 +71,21 @@ Clasificación y límites:
 - La comparación se limita a las entradas de vocabulario de A1 y a las unidades A2 anteriores a cada caso. No implica que toda palabra funcional o transparente deba convertirse en una entrada curricular.
 - No se modifica vocabulario, glosas, ejemplos, ejercicios, explicaciones, trackers/CSV, IndexedDB ni backup JSON v3.
 - Recuento comprobado: 48 términos y 68 ejercicios en U9–U12. La revisión no certifica naturalidad nativa ni nivel CEFR.
+
+
+## Revisión de prerrequisitos A2 U13–U16 (6 nov 2026)
+
+Alcance: inspección de los ejemplos de vocabulario y del inventario de las unidades U13–U16, comparando términos léxicos concretos con entradas de vocabulario previas en A1 y A2. Recuento: 12 términos y 17 ejercicios por unidad; 48 términos y 68 ejercicios en total.
+
+| Unidad | Candidatos observados en ejemplos |
+|---|---|
+| A2 U13 — Compras, pagos y productos | `tas` (bolso), `barang` (artículo) y `pakaian` (ropa) no tienen entrada previa identificada. |
+| A2 U14 — Viajes y transporte | `umum` (público) en `angkutan umum`; `berat` (pesado) y `ramai` (concurrido) no tienen entrada previa identificada. |
+| A2 U15 — Invitaciones y planes | `kepada` reaparece en un ejemplo; ya está documentado como candidato de andamiaje en U5. No se duplica como hallazgo nuevo. |
+| A2 U16 — Experiencias y vacaciones | `pantai` (playa) e `indah` (hermoso) no tienen entrada previa identificada; `Bali` es un nombre propio y no se trata como vocabulario general obligatorio. |
+
+Clasificación:
+- Son candidatos de andamiaje léxico contextual, no errores lingüísticos confirmados.
+- Se priorizan sustantivos/adjetivos de contenido que pueden ser necesarios para comprender el ejemplo; no se propone convertir automáticamente partículas, preposiciones o nombres propios en entradas de vocabulario.
+- La revisión compara las entradas curriculares previas; no certifica naturalidad nativa ni nivel CEFR.
+- No se modifica currículo, vocabulario, glosas, ejemplos, ejercicios, explicaciones, trackers/CSV, IndexedDB ni backup JSON v3.

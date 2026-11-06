@@ -13,9 +13,9 @@
 
 ## Estado actual del currículo
 - A1: 32 de 32 unidades hechas.
-- A2: 40 de 40 unidades hechas. U5–U8 siguen en consolidación; PR #337 aclara el vocabulario objetivo de 16 prompts de traducción.
+- A2: 40 de 40 unidades hechas y habilitadas en beta (`A2_RELEASE_ENABLED = true`). U5–U8 siguen en consolidación; PR #337 aclara el vocabulario objetivo de 16 prompts de traducción.
 - B1 y B2: pendientes.
-- Sistema de calidad: auditoría estructural/editorial independiente de KBBI y cola editorial para vocabulario y ejercicios.
+- Sistema de calidad: auditoría estructural/editorial independiente de KBBI y cola editorial para vocabulario y ejercicios. Último informe CI (#350): 0 errores, 0 avisos en 72 unidades; 1.989 entradas editoriales pendientes (806 A1, 1.183 A2), sin certificación lingüística.
 
 ## Interfaz (ya hecho)
 - Barra inferior de 4 pestañas: Aprender / Repasar / Tutor / Perfil.
@@ -26,6 +26,8 @@
 - Historial y estadísticas: implementados, por consolidar.
 
 ## Estado de PR y sistema de calidad
+- PR #349 fusionado: fija Playwright 1.55.0 y el runner `ubuntu-24.04` para estabilizar CI.
+- PR #350 fusionado: registra la hoja de ruta lingüística vigente y las reglas preventivas de independencia del idioma.
 - PR #337–#344 fusionados; #344 (commit `817b4246b0f6302544e09b357041e95f44cd791b`) incorpora parser CSV multilínea y sus pruebas en CI.
 - PR #339–#341 siguen abiertos sobre una base antigua y requieren reemplazo/reconciliación; no fusionar esas ramas obsoletas.
 - PR #345 fusionado en `3b97d5e1d0bfae7e1e8efc14ad03e73a9f0c7b33`: añade métricas separadas de audioText, listen y soporte general al informe unificado.
@@ -33,14 +35,14 @@
 - La cola editorial se mantiene en `pending` / `not_reviewed`; la certificación lingüística sigue en `not_certified`.
 
 ## Pendiente (en este orden)
-1. Revisar la cola editorial por tandas de nivel/unidad con evidencia; último informe: 1,989 entradas pendientes, todas sin revisión editorial ni certificación lingüística. PR #342 permite exportaciones acotadas y PR #343 genera paquetes por unidad/prioridad.
-2. Consolidar A2 y continuar la revisión de A1 U24–U32.
-3. Mejorar el tutor conversacional.
-4. Aprendizaje adaptativo y repaso con repetición espaciada.
-5. Pronunciación y escucha.
-6. Lección a pantalla completa con hoja de feedback y pulido visual.
-7. B1 y luego B2.
-8. Completar indonesio hasta B2; después crear inglés A1 para hispanohablantes (pronunciación, falsos amigos y verbos frasales). No planificar otros idiomas salvo decisión futura del dueño. La independencia del idioma se aplica preventivamente a todo código/dato nuevo, sin refactor general ahora.
+1. Consolidar A1 U24–U32 y A2 U5–U8: revisar respuestas, alternativas y consignas con evidencia interna, sin declarar validación nativa.
+2. Revisar la cola editorial por tandas de nivel/unidad; último informe: 1.989 entradas pendientes, todas sin revisión editorial ni certificación lingüística. PR #342 permite exportaciones acotadas y PR #343 genera paquetes por unidad/prioridad.
+3. Consolidar el resto de A2.
+4. Mejorar el tutor conversacional.
+5. Aprendizaje adaptativo y repaso con repetición espaciada.
+6. Pronunciación y escucha.
+7. Lección a pantalla completa con hoja de feedback y pulido visual.
+8. Desarrollar y consolidar B1 y luego B2; completar indonesio hasta B2 antes de crear inglés A1 para hispanohablantes (pronunciación, falsos amigos y verbos frasales). No planificar otros idiomas salvo decisión futura del dueño. La independencia del idioma se aplica preventivamente a todo código/dato nuevo, sin refactor general ahora.
 
 ## Decisiones tomadas
 - No añadir capa de IA extra dentro de la app por ahora.

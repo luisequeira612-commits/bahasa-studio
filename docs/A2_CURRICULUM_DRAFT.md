@@ -1,8 +1,8 @@
 # Currículo A2 — 40 unidades
 
-Estado: **contenido implementado en main; borrador pedagógico y lingüístico; no desbloqueado para estudiantes**.
+Estado: **contenido implementado en main y disponible en beta; revisión pedagógica/lingüística aún no certificada**.
 
-La estructura A2 actual contiene 40 unidades secuenciales, 492 entradas de vocabulario, 161 lecciones y 682 ejercicios. Cada unidad combina vocabulario contextualizado, explicación gramatical, práctica receptiva y productiva, y una evaluación final generada por el motor existente a partir del vocabulario de la unidad.
+La estructura A2 actual contiene 40 unidades secuenciales, 492 entradas de vocabulario, 161 lecciones y 691 ejercicios (según la auditoría estructural vigente del 5 nov 2026). Cada unidad combina vocabulario contextualizado, explicación gramatical, práctica receptiva y productiva, y una evaluación final generada por el motor existente a partir del vocabulario de la unidad.
 
 ## Mapa de contenidos
 
@@ -61,10 +61,12 @@ La auditoría está abierta. El registro inicial está en `A2_LANGUAGE_AUDIT_TRA
 
 La referencia institucional BIPA 2 (https://repositori.kemendikdasmen.go.id/19082/) se utiliza como punto de partida de consulta. No representa una equivalencia oficial entre MCER A2 y BIPA 2 ni valida automáticamente los términos.
 
-## Puerta de publicación
+## Disponibilidad beta y límites de validación
 
-A2 permanece fuera de las rutas de aprendizaje, del índice de vocabulario y del SRS para estudiantes hasta que A1 cumpla sus criterios de validación y la revisión lingüística/pedagógica de A2 tenga una decisión documentada. Las pruebas estructurales y de navegador son necesarias, pero no sustituyen a una persona revisora competente en indonesio.
+A2 está habilitado en beta mediante `A2_RELEASE_ENABLED = true` y aparece en las rutas de aprendizaje independientemente de que el estudiante haya completado A1. Esta disponibilidad es una decisión de producto para permitir que el curso siga utilizándose mientras se consolida; **no equivale a certificación lingüística, naturalidad validada ni equivalencia oficial MCER/BIPA**.
 
-B1 y B2 siguen siendo andamiajes no publicables. No iniciar su expansión como currículo de estudiantes antes de cerrar la auditoría y la puerta de publicación de A2.
+El informe estructural del 5 nov 2026 registra 0 errores y 0 avisos en A1/A2. La cola editorial contiene 1.989 entradas pendientes de revisión (806 A1 y 1.183 A2); son elementos por revisar, no errores confirmados. La revisión de ejercicios, alternativas aceptadas, naturalidad y adecuación de nivel continúa por bloques priorizados.
+
+B1 y B2 siguen fuera del acceso normal para estudiantes. La expansión curricular debe continuar primero con la consolidación de A1 y A2; B1 se abordará después, sin esperar una certificación nativa imposible de obtener en este momento.
 
 No cambiar IndexedDB schema v1 ni backup format v3 por tareas de auditoría curricular.

@@ -52,3 +52,22 @@ Se detectó un punto pedagógico que no estaba incluido entre los siete candidat
 - Acción recomendada para una futura edición curricular: añadir una nota breve de uso o una pista contextual antes de exigir la frase completa, o aceptar una respuesta más simple si el objetivo de la actividad es únicamente `bertanya`. No se modifica el ejercicio en esta pasada.
 
 La revisión se basa en la comparación directa de A1/A2 y de la consigna, respuesta y gramática de U5. No certifica naturalidad nativa ni cambia estados del tracker. No se modifican vocabulario, ejercicios, glosas, explicaciones, CSV, IndexedDB ni backup JSON v3.
+
+
+## Revisión de prerrequisitos A2 U9–U12 (6 nov 2026)
+
+Alcance: inspección de las cuatro unidades en `curriculum-a2.js`, comparación de términos visibles en ejemplos con el vocabulario previo de A1 y A2, y recuento estructural. No se evalúa naturalidad nativa.
+
+| Unidad | Vocabulario | Ejercicios | Candidatos observados |
+|---|---:|---:|---|
+| A2 U9 — Opiniones y preferencias | 12 | 17 | `berhasil` aparece en «Saya berharap berhasil», aunque se introduce como vocabulario en U12. |
+| A2 U10 — Normas y permisos | 12 | 17 | `mengikuti` y `berlari` aparecen en ejemplos sin entrada previa de vocabulario. |
+| A2 U11 — Problemas y soluciones | 12 | 17 | `pintu` aparece en ejemplos de `rusak` y `memperbaiki`, sin entrada previa de vocabulario identificada. |
+| A2 U12 — Experiencia y objetivos | 12 | 17 | `menjadi` aparece en «Cita-cita saya menjadi guru» sin entrada previa de vocabulario identificada. |
+
+Clasificación y límites:
+- Son **candidatos de andamiaje léxico en ejemplos**, no errores lingüísticos confirmados. El ejemplo puede aportar contexto, pero conviene que el estudiante no dependa de una palabra aún no presentada para interpretar el objetivo.
+- El caso de U9 es una dependencia hacia delante especialmente clara: `berhasil` se enseña en U12, tres unidades después.
+- La comparación se limita a las entradas de vocabulario de A1 y a las unidades A2 anteriores a cada caso. No implica que toda palabra funcional o transparente deba convertirse en una entrada curricular.
+- No se modifica vocabulario, glosas, ejemplos, ejercicios, explicaciones, trackers/CSV, IndexedDB ni backup JSON v3.
+- Recuento comprobado: 48 términos y 68 ejercicios en U9–U12. La revisión no certifica naturalidad nativa ni nivel CEFR.

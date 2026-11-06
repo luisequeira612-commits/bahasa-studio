@@ -17,6 +17,10 @@
 - B1 y B2: pendientes.
 - Sistema de calidad: auditoría estructural/editorial independiente de KBBI y cola editorial para vocabulario y ejercicios. Último informe CI (#350): 0 errores, 0 avisos en 72 unidades; 1.989 entradas editoriales pendientes (806 A1, 1.183 A2), sin certificación lingüística.
 
+## Aclaración de métricas de Perfil (PR pendiente)
+- La cifra de vocabulario debe presentarse como entradas distintas del curso (palabras, formas derivadas y expresiones), no como familias léxicas ni como medida de dominio. La métrica de palabras con seguimiento es independiente.
+- Cambio limitado a texto de interfaz y prueba de navegador; sin cambios en el cálculo, currículo, IndexedDB ni backup JSON v3.
+
 ## Interfaz (ya hecho)
 - Barra inferior de 4 pestañas: Aprender / Repasar / Tutor / Perfil.
 - Barra superior con racha y XP.

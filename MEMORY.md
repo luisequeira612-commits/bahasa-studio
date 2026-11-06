@@ -137,3 +137,9 @@
 - Inventario: 12 términos y 17 ejercicios por unidad; 48 términos y 68 ejercicios en total.
 - Candidatos de andamiaje en ejemplos: `berhasil` adelantado en U9 aunque se enseña en U12; `mengikuti` y `berlari` en U10; `pintu` en U11; `menjadi` en U12. No son errores lingüísticos confirmados ni se modificó currículo.
 - Ver `docs/EDITORIAL_AUDIT_RESOLUTION_A1_U24_A2_U5_U8.md`. Sin cambios en trackers, IndexedDB ni backup JSON v3.
+
+
+## Revisión A2 U13–U16 (6 nov 2026)
+- Inventario: 48 términos y 68 ejercicios (12/17 por unidad).
+- Candidatos de andamiaje en ejemplos: U13 `tas`, `barang`, `pakaian`; U14 `umum`, `berat`, `ramai`; U16 `pantai`, `indah`. En U15 reaparece `kepada`, ya documentado en la revisión de U5.
+- Son observaciones de secuenciación, no errores confirmados ni certificación de naturalidad nativa. No se modifica el currículo ni los datos persistentes.

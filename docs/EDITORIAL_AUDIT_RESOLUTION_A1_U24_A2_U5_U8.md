@@ -134,3 +134,21 @@ Clasificación y límites:
 - Se evita contar palabras funcionales, formas derivadas transparentes, nombres propios o términos ya enseñados como nuevos hallazgos.
 - Esta comparación no certifica naturalidad nativa, frecuencia de uso ni nivel CEFR.
 - No se modifica vocabulario, glosas, ejemplos, ejercicios, explicaciones curriculares, trackers/CSV, IndexedDB ni backup JSON v3.
+
+
+## Revisión de prerrequisitos A2 U25–U28 (6 nov 2026)
+
+Alcance: comparación de términos de contenido en ejemplos de vocabulario y consignas con las entradas previas de A1 y A2 U1–U24. Inventario comprobado: 12 términos y 17 ejercicios por unidad; 48 términos y 68 ejercicios en total.
+
+| Unidad | Candidatos observados |
+|---|---|
+| A2 U25 — Cocina y gastronomía | `sayuran` (verduras), `ikan` (pescado), `roti` (pan), `oven` (horno), `bawang` (cebolla) y `masakan` (comida/plato preparado) aparecen en ejemplos sin entrada previa identificada. `mengikuti` reaparece en «Saya mengikuti resep masakan itu», pero ya está documentado como candidato en U10 y no se duplica. |
+| A2 U26 — Sentimientos y relaciones | `orang tua` (padres), `ujian` (examen), `komentar` (comentario) y `keputusan` (decisión) aparecen en ejemplos sin entrada previa identificada. |
+| A2 U27 — Comunidad y servicios públicos | `kelurahan` aparece en la respuesta «Kelurahan ini berada di kecamatan tersebut», pero no figura entre las entradas de vocabulario de la unidad. Se registra como candidato contextual específico; no se convierte automáticamente en objetivo curricular. |
+| A2 U28 — Ciencia y tecnología | `siswa` (estudiantes), `laboratorium` (laboratorio), `ponsel` (teléfono móvil) y `pengguna` (usuario) aparecen en ejemplos sin entrada previa identificada. `data pribadi` sí se enseña en la propia unidad y no se cuenta como omisión. |
+
+Clasificación y límites:
+- Son candidatos de andamiaje léxico contextual, no errores lingüísticos confirmados. Algunas palabras pueden inferirse por contexto o por derivación y no necesariamente requieren nuevas entradas.
+- Se evita duplicar `mengikuti`, ya registrado en U10, y no se cuentan como omisiones los términos enseñados en la misma unidad.
+- La comparación no certifica naturalidad nativa, frecuencia de uso ni nivel CEFR.
+- Solo documentación; no se modifica vocabulario, glosas, ejemplos, ejercicios, explicaciones curriculares, trackers/CSV, IndexedDB ni backup JSON v3.

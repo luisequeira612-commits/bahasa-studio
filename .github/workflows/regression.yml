@@ -205,7 +205,7 @@ jobs:
         with:
           node-version: 22
       - name: Run tracker synchronization check (baseline only)
-        run: node scripts/check-tracker-sync.mjs --report-only
+        run: node scripts/check-tracker-sync.mjs
       - name: Generate informational unit contract report
         run: node scripts/unit-contract-report.mjs
       - name: Generate informational language coupling report

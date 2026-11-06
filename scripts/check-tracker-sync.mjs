@@ -47,11 +47,11 @@ const lines=['# Informe de sincronía con los trackers','','Generado: '+new Date
  '- IDs curriculares sin fila: **'+missingRows.length+'**.',
  '- Filas con vocab_id inexistente: **'+staleRows.length+'**.',
  '- Estados no permitidos en KBBI_status y campos *_review: **'+invalidStates.length+'**.',
- '- verified_primary sin fuente/fecha: **'+missingEvidence.length+'**.',
+ '- verified_primary sin evidencia requerida: **'+missingEvidence.length+'**.',
  '- Hallazgos totales: **'+findings.length+'**.','',
  'Los IDs repetidos en varias unidades se cuentan una sola vez en la cobertura curricular. Un ID compartido como v465 queda cubierto con una única fila; no se exige duplicarla por cada unidad.','',
  'Estados aceptados: verified_primary, not_checked, cross_checked_secondary, doubtful.','',
- 'Para verified_primary se exigen KBBI_entry_url y KBBI_checked_date, campos de fuente primaria y fecha ya presentes en los trackers. No se cambia ningún estado ni CSV.','','## Detalle','',
+ 'Para verified_primary en KBBI_status se exigen KBBI_entry_url y KBBI_checked_date; para estados verified_primary en campos *_review se exige reviewer_notes. Son campos de evidencia ya presentes en los trackers. No se cambia ningún estado ni CSV.','','## Detalle','',
  ...(findings.length?findings.map((item,i)=>(i+1)+'. '+item):['Sin discrepancias.']),
  '','## Alcance y limitaciones','','Comprobación estructural de cobertura y estados; no valida corrección lingüística, glosas ni calidad de las fuentes. No modifica currículo, trackers, IndexedDB ni backup JSON v3.',''];
 await writeFile(ROOT+'/docs/TRACKER_SYNC_REPORT.md',lines.join('\n'),'utf8');console.log(lines.join('\n'));

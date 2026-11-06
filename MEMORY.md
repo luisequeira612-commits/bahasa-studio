@@ -96,3 +96,9 @@
 ## Reconciliación de auditoría de vocabulario (5 nov 2026)
 - Tras PR #355, el tracker A1 U1–U23 ya existe: cobertura total 820 filas (A1 328; A2 492), con 36 `verified_primary` y 784 `not_checked`. Desglose A1 U1–U23: 238/0/238; A1 U24–U32: 90/34/56; A2: 492/2/490.
 - El antiguo informe de PR #352 quedó obsoleto en su sección de estados; PR de reconciliación actualiza solo documentación y memoria. Sin cambios de currículo, IndexedDB ni backup v3.
+
+
+## PR4 — comprobaciones automáticas de calidad (6 nov 2026)
+- Se añade una comprobación de sincronía entre IDs únicos del currículo A1/A2 y los tres trackers, incluidos estados permitidos y evidencia mínima de `verified_primary`; es la única comprobación bloqueante, activada tras un baseline real con cero hallazgos. Los IDs compartidos cuentan una sola vez.
+- Se añaden informes informativos por unidad (contrato de ejercicios, estimación de frases, pistas de producción, marcas de repaso y recurrencia) y de acoplamiento del código al indonesio. El análisis de frases es heurístico; la detección de repaso solo reconoce marcas explícitas.
+- Supresiones de usos legítimos documentadas en `docs/LANGUAGE_COUPLING_SUPPRESSIONS.md`. Los tres informes se generan offline y se suben como artefactos; sin dependencias nuevas ni cambios en datos curriculares, trackers, IndexedDB o backup JSON v3.

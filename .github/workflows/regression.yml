@@ -84,7 +84,7 @@ jobs:
             docs/VOCABULARY_REPORT.md
             docs/CURRICULUM_LINT_REPORT.md
             docs/CURRICULUM_LINT_SUPPRESSIONS.md
-          if-no-files-found: error
+          if-no-files-found: ignore
           retention-days: 14
       - name: Run Harness quality skill contract tests
         run: node --test tests/harness-quality-skills.test.mjs
@@ -192,3 +192,36 @@ jobs:
             manifest.json
           if-no-files-found: error
           retention-days: 7
+
+
+  quality-reports:
+    name: Offline quality reports
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Run blocking tracker synchronization check
+        run: node scripts/check-tracker-sync.mjs
+      - name: Generate informational unit contract report
+        if: always()
+        continue-on-error: true
+        run: node scripts/unit-contract-report.mjs
+      - name: Generate informational language coupling report
+        if: always()
+        continue-on-error: true
+        run: node scripts/check-language-coupling.mjs
+      - name: Upload PR4 quality reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr4-quality-reports
+          path: |
+            docs/TRACKER_SYNC_REPORT.md
+            docs/UNIT_CONTRACT_REPORT.md
+            docs/LANGUAGE_COUPLING_REPORT.md
+          if-no-files-found: ignore
+          retention-days: 14

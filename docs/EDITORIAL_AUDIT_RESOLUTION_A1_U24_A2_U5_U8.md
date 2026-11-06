@@ -116,3 +116,21 @@ Clasificación y límites:
 - Se excluyen como hallazgos duplicados las formas transparentemente relacionadas con vocabulario previo y los elementos ya explicados en la gramática.
 - La comparación no certifica naturalidad nativa, frecuencia de uso ni nivel CEFR.
 - No se modifica vocabulario, glosas, ejemplos, ejercicios, explicaciones curriculares, trackers/CSV, IndexedDB ni backup JSON v3.
+
+
+## Revisión de prerrequisitos A2 U21–U24 (6 nov 2026)
+
+Alcance: inspección de ejemplos de vocabulario y consignas de U21–U24, contrastando términos de contenido con las entradas previas de A1 y A2 U1–U20. Recuento estructural: 12 términos y 17 ejercicios por unidad; 48 términos y 68 ejercicios en total.
+
+| Unidad | Candidatos observados en ejemplos |
+|---|---|
+| A2 U21 — Cultura y tradiciones | `bambu` (bambú) aparece en el ejemplo de artesanías; `candi` (templo/monumento) aparece en el ejemplo de patrimonio cultural. No se identifican como entradas previas. `adat` forma parte de la expresión `pakaian adat`; queda como posible apoyo contextual, no como palabra exigida de forma aislada. |
+| A2 U22 — Noticias y comunicación digital | `tanggapan` (respuesta/reacción) aparece en el ejemplo de una publicación que recibe muchas reacciones; no se identifica entrada previa. `kata sandi` aparece en la unidad como término enseñado y no se cuenta como omisión. |
+| A2 U23 — Servicios bancarios | `bank`, `pelanggan` (cliente) y `nomor` aparecen en ejemplos/consignas sin entrada previa identificada. `aplikasi` es transparente para un hispanohablante y se registra solo como observación de comprensión, no como candidato prioritario. |
+| A2 U24 — Educación y formación | `situs` (sitio web) y `topik` (tema) aparecen en ejemplos sin entrada previa identificada. `bahasa`, `minggu` y `kursus` se enseñan o aparecen en el vocabulario de la propia unidad, por lo que no se cuentan como omisiones. |
+
+Clasificación y límites:
+- Son candidatos de andamiaje léxico en contexto, no errores lingüísticos confirmados. Algunos son transparentes o inferibles por contexto y no necesariamente requieren una nueva entrada curricular.
+- Se evita contar palabras funcionales, formas derivadas transparentes, nombres propios o términos ya enseñados como nuevos hallazgos.
+- Esta comparación no certifica naturalidad nativa, frecuencia de uso ni nivel CEFR.
+- No se modifica vocabulario, glosas, ejemplos, ejercicios, explicaciones curriculares, trackers/CSV, IndexedDB ni backup JSON v3.

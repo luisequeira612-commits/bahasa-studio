@@ -105,6 +105,6 @@
 
 
 ## PR5 — consolidación focalizada (6 nov 2026)
-- Se inicia la consolidación focalizada de A1 U24–U32 y A2 U5–U8 con revisión directa del currículo publicado.
-- Esta tanda delimita el alcance y prepara comprobaciones internas de referencias, respuestas, producción y duplicados; no modifica vocabulario, ejercicios, trackers, IndexedDB ni backup v3.
-- A1 U24–U32: 9 unidades; A2 U5–U8: 4 unidades. El informe PR4 ya había confirmado los indicadores estructurales básicos de estas unidades.
+- Se revisaron A1 U24–U32 y A2 U5–U8 y se ejecutaron comprobaciones internas de referencias de vocabulario, índices de respuesta, correctOrder/words, producción con pista/respuesta y duplicados exactos: 0 hallazgos en las 13 unidades.
+- El resultado es estructural; no certifica corrección lingüística nativa. Este PR sigue sin modificar currículo, trackers, IndexedDB ni backup v3.
+- Siguiente foco: auditoría editorial fina de consignas, alternativas, traducciones y coherencia pedagógica; cualquier corrección curricular irá en un PR separado.

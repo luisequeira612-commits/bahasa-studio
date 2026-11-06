@@ -75,6 +75,28 @@ test('exercise prompts, answers, or model text contain their linked vocabulary t
 });
 
 
+test('listening audio text contains the linked vocabulary term', () => {
+  const mismatches = [];
+  for (const level of levels) for (const unit of level.units) {
+    const termById = new Map((unit.vocab || []).map(word => [word.id, word.idn]));
+    for (const exercise of exercisesOf(unit)) {
+      if (exercise.type !== 'listen') continue;
+      const term = normalize(termById.get(exercise.vocabId));
+      const audioText = normalize(exercise.audioText);
+      if (!term || !audioText || !audioText.includes(term)) {
+        mismatches.push({
+          level: level.id,
+          unit: unit.id,
+          vocabId: exercise.vocabId,
+          term: termById.get(exercise.vocabId),
+          audioText: exercise.audioText
+        });
+      }
+    }
+  }
+  assert.deepEqual(mismatches, []);
+});
+
 test('reused vocabulary IDs keep one Indonesian headword and one Spanish gloss', () => {
   const byId = new Map();
   const conflicts = [];

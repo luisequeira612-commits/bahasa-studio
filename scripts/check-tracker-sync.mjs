@@ -38,7 +38,7 @@ const findings=[
  ...missingRows.map(id=>'Currículo sin fila en tracker: '+id),
  ...staleRows.map(r=>'Fila sin ID curricular: '+(r.vocab_id||'(vacío)')+' — '+r.__file+':'+r.__row),
  ...invalidStates.map(r=>'Estado no permitido "'+r[r.__field]+'" en '+r.__field+' — '+r.__file+':'+r.__row+' ('+r.vocab_id+')'),
- ...missingEvidence.map(r=>'verified_primary sin KBBI_entry_url o KBBI_checked_date — '+r.__file+':'+r.__row+' ('+r.vocab_id+')')
+ ...missingEvidence.map(r=>r.__message+' — '+r.__file+':'+r.__row+' ('+r.vocab_id+')')
 ];
 const lines=['# Informe de sincronía con los trackers','','Generado: '+new Date().toISOString(),'','## Resultado','',
  '- IDs curriculares distintos A1+A2: **'+curriculumIds.size+'**.',

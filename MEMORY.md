@@ -131,3 +131,7 @@
 
 ## Revisión complementaria A2 U5 (6 nov 2026)
 - Se detecta un candidato de andamiaje: la traducción de `bertanya` exige `kepada`, aún no explicado en U5; `guru` sí fue enseñado en A1. Se documenta sin cambiar el ejercicio ni certificar un error lingüístico.
+
+
+## Revisión complementaria A2 U6 (6 nov 2026)
+- Auditoría de prerrequisitos: las palabras nominales relevantes de los ejemplos (buku, teman, kota, alamat, nasi, musik, rumah, guru) están presentes en A1. Las raíces de la explicación son notas morfológicas, no respuestas exigidas por separado. No se añade candidato nuevo ni se certifica naturalidad nativa.

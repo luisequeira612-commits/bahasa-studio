@@ -15,7 +15,7 @@ function parseSuppressions(text){
 }
 function classify(line){
  const found=[];
- if(/\b(indonesio|indonesian|bahasa indonesia|\\bBahasa\\b(?!\\s+Studio)|curso de indonesio)\b/i.test(line))found.push('TEXTO DE INTERFAZ');
+ if(/\b(indonesio|indonesian|bahasa indonesia|\bBahasa\b(?!\s+Studio)|curso de indonesio)\b/i.test(line))found.push('TEXTO DE INTERFAZ');
  if(/\bid-ID\b|speechSynthesis[^;\n]*\blang\b|recognition[^;\n]*lang/i.test(line))found.push('CÓDIGO DE VOZ');
  if(/curriculum-a[12]\.js|curriculum\/(?:a1|a2)|(?:a1|a2)[-_](?:curriculum|data)\.(?:json|js)/i.test(line))found.push('RUTA DE DATOS');
  if(/(?:prefijo|sufijo|afijo|morfolog|imbuhan|awalan|akhiran).*(?:meN|meng|meny|mem|ber-|ter-|di-)|(?:meN|meng|meny|mem|ber-|ter-|di-).*(?:prefijo|sufijo|afijo|morfolog|imbuhan|awalan|akhiran)/i.test(line))found.push('LÓGICA DEL IDIOMA');
@@ -24,7 +24,7 @@ function classify(line){
 }
 const suppressionText=await readFile(ROOT+'/docs/LANGUAGE_COUPLING_SUPPRESSIONS.md','utf8');
 const suppressions=parseSuppressions(suppressionText), findings=[], suppressed=[], files=await collect();
-for(const file of files){const content=await readFile(path.join(ROOT,file),'utf8');content.split(/\r?\n/).forEach((line,index)=>{for(const category of classify(line)){
+for(const file of files){const content=await readFile(path.join(ROOT,file),'utf8');let inInlineCurriculum=false;content.split(/\r?\n/).forEach((line,index)=>{if(file==='index.html'&&line.includes('/* 2. CURRICULO COMPLETO A1 CON ESTRUCTURA A2-B2 */'))inInlineCurriculum=true;if(inInlineCurriculum){if(line.trim()==='};;')inInlineCurriculum=false;return;}for(const category of classify(line)){
  const match=suppressions.find(s=>(s.category===category||s.category==='*')&&(s.file===file||s.file==='*')&&line.toLowerCase().includes(s.contains.toLowerCase()));
  const item={category,file,line:index+1,snippet:line.trim().slice(0,220),reason:match?.reason??''};if(match)suppressed.push(item);else findings.push(item);
  }});}

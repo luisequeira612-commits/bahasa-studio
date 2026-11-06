@@ -149,3 +149,9 @@
 - Se recupera la auditoría de prerrequisitos de U6 del PR #370, cuyo branch quedó en conflicto tras avanzar `main`: los sustantivos relevantes de los ejemplos ya están en A1 y no se identifica un problema nuevo de secuenciación.
 - U17–U20: 48 términos y 68 ejercicios (12/17 por unidad). Candidatos contextuales: U17 `kacang`, `perawat`; U18 `atap`; U19 `perusahaan`; U20 `udara`, `pohon`, `petani`, `hewan`, `musim kemarau`. No son errores confirmados; se excluyen duplicados o elementos ya explicados.
 - Documentación únicamente; no se cambia currículo, trackers/CSV, IndexedDB ni backup JSON v3. No se certifica naturalidad nativa ni nivel CEFR. Ver `docs/EDITORIAL_AUDIT_RESOLUTION_A1_U24_A2_U5_U8.md`.
+
+
+## Revisión A2 U21–U24 (6 nov 2026)
+- Inventario: 48 términos y 68 ejercicios (12 términos/17 ejercicios por unidad).
+- Candidatos contextuales: U21 `bambu`, `candi` (y `adat` dentro de `pakaian adat` como apoyo opcional); U22 `tanggapan`; U23 `bank`, `pelanggan`, `nomor`; U24 `situs`, `topik`. `aplikasi` es transparente y queda como observación de baja prioridad.
+- No son errores lingüísticos confirmados ni certificación de naturalidad nativa/nivel CEFR. Solo documentación; sin cambios curriculares, trackers, IndexedDB ni backup JSON v3. Ver `docs/EDITORIAL_AUDIT_RESOLUTION_A1_U24_A2_U5_U8.md`.

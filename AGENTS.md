@@ -36,7 +36,7 @@ App web para aprender idiomas, estilo Duolingo, alojada en GitHub Pages. Hoy tie
 - Antes de compartir la app con otras personas, revisar: licencias y fuentes del vocabulario, que no haya datos personales ni claves expuestas en el repo, y que las instrucciones de uso estén claras.
 
 ## Calidad y vocabulario (decisiones del dueño: 5 nov 2026)
-- Meta A1+A2: rango de 900–1.000 entradas distintas, no cuota. Referencia comunicada: 801 (A1 309, A2 492, compartidas 0); recalcular desde currículo y señalar discrepancias. PR #353 detecta discrepancia en el conteo: A1 aporta 301 formas únicas (317 registros) frente a 309 comunicadas; A2 aporta 492, total 793 frente a 801. Las 32 unidades A1 y 40 A2 están presentes. Investigar las 8 entradas de diferencia antes de ampliar.
+- Meta A1+A2: rango de 900–1.000 entradas distintas, no cuota. Referencia comunicada: 801 (A1 309, A2 492, compartidas 0); recalcular desde currículo y señalar discrepancias. PR #353 confirma con la ejecución Node del generador: A1 309, A2 492, compartidas 0, total 801; coincide con la referencia comunicada. El currículo contiene 32 unidades A1 y 40 A2. Tracker A1 U24–U32: 90 filas; tracker A2: 492 filas.
 - Formas derivadas con ID canónico propio cuentan como entradas; familias léxicas se informan aparte.
 - No hay hablante nativo disponible y KBBI oficial requiere iniciar sesión. Ninguna validación externa puede bloquear el avance; servicios externos son ayuda opcional.
 - Estados: mantener verified_primary y not_checked; añadir cross_checked_secondary (dos fuentes secundarias independientes coinciden, no equivale a verificación primaria) y doubtful. Nunca promover a verified_primary sin revisión humana de fuente primaria.

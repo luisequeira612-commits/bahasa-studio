@@ -131,3 +131,9 @@
 
 ## Revisión complementaria A2 U5 (6 nov 2026)
 - Se detecta un candidato de andamiaje: la traducción de `bertanya` exige `kepada`, aún no explicado en U5; `guru` sí fue enseñado en A1. Se documenta sin cambiar el ejercicio ni certificar un error lingüístico.
+
+
+## Revisión A2 U9–U12 (6 nov 2026)
+- Inventario: 12 términos y 17 ejercicios por unidad; 48 términos y 68 ejercicios en total.
+- Candidatos de andamiaje en ejemplos: `berhasil` adelantado en U9 aunque se enseña en U12; `mengikuti` y `berlari` en U10; `pintu` en U11; `menjadi` en U12. No son errores lingüísticos confirmados ni se modificó currículo.
+- Ver `docs/EDITORIAL_AUDIT_RESOLUTION_A1_U24_A2_U5_U8.md`. Sin cambios en trackers, IndexedDB ni backup JSON v3.

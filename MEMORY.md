@@ -87,3 +87,8 @@
 - PR3: rama `feat/quality-pr3-tracker-i4-i5-review`. Añade 238 filas `not_checked` para A1 U1–U23, amplía `vocabulary-report.mjs` para leer los tres trackers y documenta I4/I5 sin aplicar correcciones.
 - Cobertura actual: A1 U1–U23 238/0/238; A1 U24–U32 90/34/56; A2 492/2/490; A1+A2 820/36/784. Las 546 entradas `not_checked` son filas CSV (582 filas: 36 `verified_primary` + 546 `not_checked`). El 57 del informe anterior contaba ocurrencias curriculares, no filas CSV: las 56 filas `not_checked` de U24–U32 más la ocurrencia duplicada de `v465` en U1–U23 suman 57 ocurrencias para 56 filas no verificadas. En el conjunto, 90 filas del tracker U24–U32 representan 91 ocurrencias curriculares al incluir esa repetición de `v465`; la fila de U32 ya representa el mismo ID y por eso U1–U23 no necesita otra. La misma deduplicación explica que U1–U23 tenga 239 registros curriculares, pero solo 238 filas nuevas.
 - I4 queda pendiente de aprobación por tandas de 3–4 unidades; las propuestas son solo propuestas. I5 tiene 3 falsos positivos de plantilla y queda pendiente ajustar el detector en un PR posterior.
+
+
+## Reconciliación de auditoría de vocabulario (5 nov 2026)
+- Tras PR #355, el tracker A1 U1–U23 ya existe: cobertura total 820 filas (A1 328; A2 492), con 36 `verified_primary` y 784 `not_checked`. Desglose A1 U1–U23: 238/0/238; A1 U24–U32: 90/34/56; A2: 492/2/490.
+- El antiguo informe de PR #352 quedó obsoleto en su sección de estados; PR de reconciliación actualiza solo documentación y memoria. Sin cambios de currículo, IndexedDB ni backup v3.

@@ -44,8 +44,8 @@ Se mantuvieron los IDs para no romper las referencias de los ejercicios. Las exp
 
 ## Respuestas, ejercicios y audio
 
-- La estructura de U24–U32 contiene 8 ejercicios por unidad (72 en total). La suite de regresión comprueba el total de unidades y la estructura/enlaces de ejercicios; eso no certifica por sí solo la exactitud lingüística de cada respuesta aceptada.
-- Antes de considerar cerrada la auditoría, queda una pasada específica de cada respuesta aceptada y variante válida, incluidas tildes/capitalización cuando corresponda y alternativas de traducción.
+- El bloque base descrito en esta auditoría tenía 8 ejercicios por unidad (72 en total). La auditoría estructural posterior del currículo vigente, documentada el 6 nov 2026, contabilizó 102 ejercicios en U24–U32. Por tanto, 72 es el recuento histórico del bloque base, no el total actual.
+- Sigue pendiente una pasada específica de las respuestas aceptadas y variantes válidas de los 102 ejercicios actuales, incluidas tildes/capitalización cuando corresponda y alternativas de traducción. Las pruebas estructurales no sustituyen esa revisión contextual.
 - Las actividades de escucha deben probarse en navegador/dispositivos reales: la revisión del texto no valida pronunciación, voz sintetizada, disponibilidad de audio ni comportamiento offline.
 - Pendiente de cotejar los 90 lemas uno por uno en KBBI VI Daring y registrar, para cada forma, si es lema, forma flexionada/derivada, variante o expresión. KBBI no debe usarse como única medida de naturalidad conversacional.
 
@@ -65,7 +65,7 @@ Se añadió la referencia general oficial BIPA 1 a las 90 filas del rastreador. 
 ### Bloqueos que permanecen
 - 56/90 entradas sin cotejo directo KBBI registrado.
 - No se ha completado el análisis término por término contra secciones/páginas concretas de BIPA 1.
-- No se ha terminado la revisión individual de todas las respuestas aceptadas y variantes de los 72 ejercicios.
+- No se ha terminado la revisión individual de todas las respuestas aceptadas y variantes de los 102 ejercicios actuales; 72 corresponde al inventario histórico del bloque base.
 - No se ha probado de forma real la pronunciación, las voces disponibles, los fallbacks ni el comportamiento offline en dispositivos.
 - La aprobación lingüística final requiere cerrar estas tareas y, cuando haya dudas, revisión competente de indonesio.
 

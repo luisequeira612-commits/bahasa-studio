@@ -209,3 +209,32 @@ test('new remaining A1 and A2 U1 meaning checks match their vocabulary glosses',
   }
   assert.deepEqual(mismatches, []);
 });
+
+
+test('A1 U24-U32 writing model answers contain their linked vocabulary term', () => {
+  const units = levels[0].units.filter(unit => /^a1_u(?:2[4-9]|3[0-2])$/.test(unit.id));
+  const mismatches = [];
+  for (const unit of units) {
+    const words = new Map((unit.vocab || []).map(word => [word.id, word]));
+    const writing = exercisesOf(unit).filter(exercise => exercise.type === 'write');
+    if (writing.length === 0) {
+      mismatches.push({ unit: unit.id, reason: 'missing writing exercise' });
+      continue;
+    }
+    for (const exercise of writing) {
+      const word = words.get(exercise.vocabId);
+      const model = normalize(exercise.modelAnswer);
+      const term = normalize(word?.idn);
+      if (!word || !model || !term || !model.includes(term)) {
+        mismatches.push({
+          unit: unit.id,
+          vocabId: exercise.vocabId,
+          term: word?.idn,
+          modelAnswer: exercise.modelAnswer,
+          reason: !word ? 'missing unit vocabulary link' : 'model answer does not contain linked term'
+        });
+      }
+    }
+  }
+  assert.deepEqual(mismatches, []);
+});

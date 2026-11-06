@@ -114,6 +114,11 @@
 - Lectura directa de A1 U24–U32 y A2 U5–U8: 13 unidades, 138 entradas y 170 ejercicios. Se documentan 7 candidatos editoriales, sin errores lingüísticos confirmados ni cambios de contenido; no equivale a validación nativa. Ver `docs/EDITORIAL_AUDIT_A1_U24_U32_A2_U5_U8.md`.
 
 
+## PR7 — resolución de auditoría editorial inicial (6 nov 2026)
+- Se documenta la resolución de los 7 candidatos del PR #360: no se confirma ningún error curricular ni se modifica contenido.
+- «Senyum manis» y «Memulai belajar» permanecen `not_checked` en naturalidad; no se afirma validación nativa ni se cuentan fuentes dependientes como independientes.
+- Se mantienen intactos currículo, trackers, IndexedDB y backup JSON v3. Ver `docs/EDITORIAL_AUDIT_RESOLUTION_A1_U24_U5_U8.md`.
+
 ## PR8 — reconciliación del recuento de ejercicios A1 U24–U32 (6 nov 2026)
 - La auditoría estructural vigente contabiliza 102 ejercicios en A1 U24–U32; la cifra histórica de 72 correspondía solo al bloque base de 8 por unidad.
 - La revisión contextual individual de respuestas aceptadas y variantes de los 102 ejercicios sigue pendiente. Cambio exclusivamente documental; sin currículo, trackers, IndexedDB ni backup JSON v3.

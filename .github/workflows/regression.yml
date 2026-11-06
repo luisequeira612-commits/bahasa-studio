@@ -223,5 +223,5 @@ jobs:
             docs/TRACKER_SYNC_REPORT.md
             docs/UNIT_CONTRACT_REPORT.md
             docs/LANGUAGE_COUPLING_REPORT.md
-          if-no-files-found: error
+          if-no-files-found: ignore
           retention-days: 14

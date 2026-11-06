@@ -7,7 +7,7 @@ Estado: **especificación de trabajo; no es un examen implementado ni validado**
 
 Definir una evaluación acumulativa para decidir si el alumno está preparado para avanzar de A1 a A2. La evaluación debe comprobar comprensión y uso funcional del indonesio en situaciones cotidianas, no memorizar traducciones aisladas. Este blueprint no acredita un nivel oficial, no sustituye una evaluación BIPA formal y no certifica naturalidad por sí mismo.
 
-El banco A1 actual de `assessment-engine.js` es una muestra piloto pequeña (19 ítems en la rama revisada, con tareas abiertas que requieren revisión humana). No debe presentarse como examen final completo. A2–B2 permanecen ocultos hasta cerrar la puerta de calidad de A1.
+El inventario vigente de `assessment-engine.js`, según el mapa de cobertura actualizado el 29 oct 2026, registra 51 ítems y 56 puntos, incluidas dos tareas abiertas que requieren revisión humana. Este inventario piloto no debe presentarse como examen final completo. Difiere del plano propuesto de 40 puntos: esa diferencia sigue pendiente de reconciliación y no implica que el blueprint esté implementado. A2–B2 permanecen ocultos hasta cerrar la puerta de calidad de A1.
 
 ## Plano propuesto
 

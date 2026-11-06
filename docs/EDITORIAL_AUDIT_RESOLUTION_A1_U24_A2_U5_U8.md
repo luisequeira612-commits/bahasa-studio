@@ -152,3 +152,20 @@ Clasificación y límites:
 - Se evita duplicar `mengikuti`, ya registrado en U10, y no se cuentan como omisiones los términos enseñados en la misma unidad.
 - La comparación no certifica naturalidad nativa, frecuencia de uso ni nivel CEFR.
 - Solo documentación; no se modifica vocabulario, glosas, ejemplos, ejercicios, explicaciones curriculares, trackers/CSV, IndexedDB ni backup JSON v3.
+
+## Revisión de prerrequisitos A2 U29–U32 (6 nov 2026)
+
+Alcance: inspección de vocabulario, ejemplos y consignas en curriculum-a2.js, comparando términos de contenido con las entradas previas de A1 y A2 U1–U28. Inventario comprobado: 12 términos y 17 ejercicios por unidad; 48 términos y 68 ejercicios en total. Cada unidad tiene 12 IDs de vocabulario, los 17 ejercicios apuntan a IDs existentes y no hay IDs de vocabulario sin ejercicio ni referencias huérfanas.
+
+| Unidad | Candidatos contextuales observados |
+|---|---|
+| A2 U29 — Atención al cliente y compras | barang (artículo/bien) y produk (producto) aparecen en ejemplos sin entrada previa identificada. petugas y struk ya tienen entrada previa; kepada reaparece, pero ya estaba documentado como candidato de andamiaje en U5 y no se duplica. |
+| A2 U30 — Arte, cine y espectáculos | film e ide aparecen en ejemplos sin entrada previa identificada. Yogyakarta es nombre propio y no se cuenta como vocabulario general; pertunjukan ya aparece en el vocabulario previo. |
+| A2 U31 — Excursiones y actividades al aire libre | gunung (montaña), matahari (sol), tanah (tierra/suelo) y arah (dirección) aparecen en ejemplos sin entrada previa identificada. sungai, hutan y air ya tienen entradas previas. |
+| A2 U32 — Celebraciones y acontecimientos familiares | bayi (bebé), gedung (edificio), foto (foto) y pasangan (pareja) aparecen en ejemplos sin entrada previa identificada. warga, keluarga, rumah y teman ya se enseñaron previamente. |
+
+Clasificación y límites:
+- Son candidatos de andamiaje léxico contextual, no errores lingüísticos confirmados. No se concluye que cada término deba convertirse en una nueva entrada: algunos pueden inferirse por el contexto o no ser esenciales para el objetivo de la actividad.
+- Se evita duplicar elementos ya enseñados o ya documentados (petugas, struk, kepada, pertunjukan, sungai, hutan, air, warga, keluarga, rumah, teman) y se excluye el nombre propio Yogyakarta.
+- La comparación no certifica naturalidad nativa, frecuencia de uso ni nivel CEFR.
+- Solo documentación; no se modifica vocabulario, glosas, ejemplos, ejercicios, explicaciones curriculares, trackers/CSV, IndexedDB ni backup JSON v3.

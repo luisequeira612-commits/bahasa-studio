@@ -10,7 +10,7 @@ La clasificación se recalcula caso por caso usando el tipo de la respuesta corr
 - **MEDIA:** dos o más distractores son de tipo diferente, pero al menos uno coincide con el tipo de la respuesta correcta.
 - **BAJA:** exactamente un distractor es de tipo diferente.
 
-La heurística compara únicamente la cantidad de tokens como aproximación PALABRA/FRASE. No evalúa si los distractores son semánticamente plausibles ni si son traducciones alternativas válidas. MEDIA no queda vacía: contiene los casos mixtos con dos o más distractores de tipo diferente, pero no todos.
+La heurística compara únicamente la cantidad de tokens como aproximación PALABRA/FRASE. En estos 197 casos, MEDIA da 0 porque no aparece ningún caso con dos o más distractores de tipo distinto y al menos uno del mismo tipo que la respuesta correcta: todos los casos quedan en uno de dos extremos, todos los distractores son de tipo distinto (ALTA) o solo uno difiere (BAJA). Es una limitación de esta heurística binaria; no evalúa plausibilidad semántica ni detecta problemas intermedios de calidad que no se reflejen en la forma.
 
 El listado I4 de `docs/CURRICULUM_LINT_REPORT.md` contiene 197 casos en 64 unidades. No existe un aviso número 198 que pueda asignarse a una unidad: la cifra 198 no aparece en el listado fuente y no es un caso curricular adicional.
 

@@ -69,8 +69,6 @@ jobs:
         run: node --test tests/exercise-vocabulary-alignment.test.cjs
       - name: Run exercise answer-to-vocabulary alignment tests
         run: node --test tests/exercise-answer-vocabulary-alignment.test.cjs
-      - name: Run A2 language audit tracker tests
-        run: node --test tests/a2-language-audit-tracker.test.cjs
       - name: Run offline vocabulary report
         run: node scripts/vocabulary-report.mjs
       - name: Run offline curriculum lint (B1/B2 blocking, I1-I5 informational)
@@ -86,19 +84,10 @@ jobs:
             docs/CURRICULUM_LINT_SUPPRESSIONS.md
           if-no-files-found: ignore
           retention-days: 14
-      - name: Run Harness quality skill contract tests
-        run: node --test tests/harness-quality-skills.test.mjs
-      - name: Run independent curriculum quality tests
-        if: ${{ !cancelled() }}
-        run: node --test tests/audit-curriculum-quality.test.mjs
-      - name: Run editorial review queue tests
-        if: ${{ !cancelled() }}
-        run: node --test tests/build-editorial-review-queue.test.mjs
+      - name: Run local quality tests
+        run: npm run quality:tests
       - name: Run DeepSeek review packet tests
         run: node --test tests/build-deepseek-review-packet.test.mjs
-      - name: Run unified quality report tests
-        if: ${{ !cancelled() }}
-        run: node --test tests/build-unified-quality-report.test.mjs
       - name: Generate independent editorial review queue
         if: ${{ !cancelled() }}
         run: node scripts/build-editorial-review-queue.mjs --output artifacts/editorial-review-queue.csv --summary artifacts/editorial-review-summary.json

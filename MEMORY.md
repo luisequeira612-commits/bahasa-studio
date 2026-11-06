@@ -59,7 +59,7 @@
 - Todo PR que afecte la hoja de ruta o la preparación multiidioma debe registrar esta decisión y su impacto en MEMORY.md y en la descripción del PR.
 - No cambiar IndexedDB ni backup v3; la independencia del idioma no autoriza cambios de esquema.
 - No se usan herramientas locales de memoria de código (tipo MCP): se trabaja desde el celular; la memoria del proyecto son estos tres archivos.
-- Todo merge requiere "Aprobado" explícito del dueño; ChatGPT no fusiona por su cuenta.
+- Las fusiones se realizan cuando el dueño las autoriza; las actualizaciones de ramas y PR pueden hacerse de forma autónoma para resolver conflictos y mantener CI al día.
 - No hay hablante nativo que valide el indonesio y KBBI puede fallar: el proyecto NO se detiene por eso. El contenido avanza con estados honestos (verified_primary solo lo marca el dueño; cross_checked = 2+ fuentes secundarias independientes; not_checked = el resto) y se corrigen errores cuando se descubran.
 
 ## Reparto de herramientas
@@ -112,3 +112,9 @@
 
 ## PR6 — auditoría editorial inicial (6 nov 2026)
 - Lectura directa de A1 U24–U32 y A2 U5–U8: 13 unidades, 138 entradas y 170 ejercicios. Se documentan 7 candidatos editoriales, sin errores lingüísticos confirmados ni cambios de contenido; no equivale a validación nativa. Ver `docs/EDITORIAL_AUDIT_A1_U24_U32_A2_U5_U8.md`.
+
+
+## PR7 — resolución de auditoría editorial inicial (6 nov 2026)
+- Se documenta la resolución de los 7 candidatos del PR #360: no se confirma ningún error curricular ni se modifica contenido.
+- «Senyum manis» y «Memulai belajar» permanecen `not_checked` en naturalidad; no se afirma validación nativa ni se cuentan fuentes dependientes como independientes.
+- Se mantienen intactos currículo, trackers, IndexedDB y backup JSON v3. Ver `docs/EDITORIAL_AUDIT_RESOLUTION_A1_U24_U5_U8.md`.

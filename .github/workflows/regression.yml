@@ -71,6 +71,21 @@ jobs:
         run: node --test tests/exercise-answer-vocabulary-alignment.test.cjs
       - name: Run A2 language audit tracker tests
         run: node --test tests/a2-language-audit-tracker.test.cjs
+      - name: Run offline vocabulary report
+        run: node scripts/vocabulary-report.mjs
+      - name: Run offline curriculum lint (B1/B2 blocking, I1-I5 informational)
+        run: node scripts/lint-curriculum.mjs
+      - name: Upload vocabulary and curriculum lint reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: vocabulary-and-curriculum-lint-pr-${{ github.event.pull_request.number || github.run_number }}
+          path: |
+            docs/VOCABULARY_REPORT.md
+            docs/CURRICULUM_LINT_REPORT.md
+            docs/CURRICULUM_LINT_SUPPRESSIONS.md
+          if-no-files-found: error
+          retention-days: 14
       - name: Run Harness quality skill contract tests
         run: node --test tests/harness-quality-skills.test.mjs
       - name: Run independent curriculum quality tests

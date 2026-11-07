@@ -170,5 +170,5 @@
 - Solo documentación; sin cambios de currículo, trackers/CSV, IndexedDB ni backup JSON v3. Ver docs/EDITORIAL_AUDIT_RESOLUTION_A1_U24_A2_U5_U8.md.
 
 ## PR10 — regresión del evaluador de respuestas escritas (6 nov 2026)
-- La suite de calidad ejecuta ahora las pruebas de `WrittenResponse` contra 123 ejercicios reales A1/A2 (89 A1, 34 A2): cada respuesta canónica debe ser aceptada; las alternativas solo se aceptan si son heredadas sin estado o están aprobadas.
+- La suite de calidad ejecuta ahora las pruebas de `WrittenResponse` contra 462 ejercicios reales A1/A2: cada respuesta canónica debe ser aceptada; las alternativas solo se aceptan si son heredadas sin estado o están aprobadas.
 - Es una prueba de coherencia entre currículo y evaluador, no una validación semántica/nativa de las respuestas. Sin cambios de currículo, trackers, IndexedDB ni backup JSON v3.

@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "language": "id",
+  "level_order": [
+    "A1",
+    "A2"
+  ],
+  "rules": [
+    {
+      "id": "negation-tidak",
+      "description": "Negación de acciones o cualidades con tidak",
+      "markers": [
+        "tidak"
+      ],
+      "introduced_level": "A1",
+      "introduced_unit": "a1_u2"
+    },
+    {
+      "id": "negation-bukan",
+      "description": "Negación de identificación nominal con bukan",
+      "markers": [
+        "bukan"
+      ],
+      "introduced_level": "A1",
+      "introduced_unit": "a1_u2"
+    },
+    {
+      "id": "aspect-temporal-markers",
+      "description": "Marcadores temporales/aspectuales sudah, belum, sedang y akan",
+      "markers": [
+        "sudah",
+        "belum",
+        "sedang",
+        "akan"
+      ],
+      "introduced_level": "A2",
+      "introduced_unit": "a2_u2"
+    },
+    {
+      "id": "sequence-connectors",
+      "description": "Conectores de secuencia pertama, lalu, kemudian y akhirnya",
+      "markers": [
+        "pertama",
+        "lalu",
+        "kemudian",
+        "akhirnya"
+      ],
+      "introduced_level": "A2",
+      "introduced_unit": "a2_u3"
+    },
+    {
+      "id": "ber-verbs-u5",
+      "description": "Verbos frecuentes con ber- introducidos en A2 U5",
+      "markers": [
+        "berbicara",
+        "bersepeda",
+        "berkunjung",
+        "berlatih",
+        "berdoa",
+        "berdiri",
+        "berlari",
+        "bernyanyi",
+        "berhenti"
+      ],
+      "introduced_level": "A2",
+      "introduced_unit": "a2_u5"
+    }
+  ]
+}

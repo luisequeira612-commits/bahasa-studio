@@ -544,7 +544,7 @@ test('B1 U35-U37 teach negotiation, clear communication and continuous improveme
   ];
   const forms = [
     ['kesepakatan', 'berunding', 'menyetujui', 'menolak', 'kompromi'],
-    ['menjelaskan', 'menanggapi', 'mengonfirmasi', 'menyampaikan', 'memastikan'],
+    ['menerangkan', 'menanggapi', 'mengonfirmasi', 'menyampaikan', 'memastikan'],
     ['kemajuan', 'pencapaian', 'menyelesaikan', 'meningkatkan', 'mengembangkan']
   ];
   const earlierIds = new Set(b1.units.filter(unit => !['b1_u35', 'b1_u36', 'b1_u37'].includes(unit.id)).flatMap(unit => unit.vocab.map(word => word.id)));
@@ -576,7 +576,7 @@ test('B1 U35-U37 teach negotiation, clear communication and continuous improveme
     }
   }
   assert.match(units[0].grammar + units[0].lessons.map(lesson => lesson.grammar).join(' '), /kesepakatan[\s\S]*berunding[\s\S]*menyetujui[\s\S]*menolak[\s\S]*kompromi/i);
-  assert.match(units[1].grammar + units[1].lessons.map(lesson => lesson.grammar).join(' '), /menjelaskan[\s\S]*menanggapi[\s\S]*mengonfirmasi[\s\S]*menyampaikan[\s\S]*memastikan/i);
+  assert.match(units[1].grammar + units[1].lessons.map(lesson => lesson.grammar).join(' '), /menerangkan[\s\S]*menanggapi[\s\S]*mengonfirmasi[\s\S]*menyampaikan[\s\S]*memastikan/i);
   assert.match(units[2].grammar + units[2].lessons.map(lesson => lesson.grammar).join(' '), /kemajuan[\s\S]*pencapaian[\s\S]*menyelesaikan[\s\S]*meningkatkan[\s\S]*mengembangkan/i);
 });
 

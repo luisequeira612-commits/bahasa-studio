@@ -148,3 +148,41 @@ test('only approved or explicitly unreviewed legacy alternatives can be accepted
  assert.equal(api.compare('Thx',ex).status,'incorrect');
  assert.equal(api.compare('Terima kasih banyak',ex).status,'correct');
 });
+
+
+test('real A1/A2 written-response exercises accept their canonical answer through the production evaluator',()=>{
+ const curriculumContext={window:{}};
+ for(const file of ['curriculum-a1.js','curriculum-a2.js']){
+  const source=fs.readFileSync(path.join(__dirname,'..',file),'utf8');
+  vm.runInNewContext(source,curriculumContext,{filename:file});
+ }
+ const levels=[curriculumContext.window.BAHASA_CURRICULUM_A1,curriculumContext.window.BAHASA_CURRICULUM_A2];
+ const api=load();
+ const cases=[];
+ for(const level of levels){
+  for(const unit of level.units){
+   const exercises=[...(unit.exercises||[]),...(unit.lessons||[]).flatMap(lesson=>lesson.exercises||[])];
+   for(const exercise of exercises){
+    if(!['translate_es_id','translate_id_es','listen'].includes(exercise.type))continue;
+    assert.equal(typeof exercise.answer,'string',level.id+'/'+unit.id+' has a text answer');
+    assert.ok(exercise.answer.trim(),level.id+'/'+unit.id+' has a non-empty answer');
+    cases.push({level:level.id,unit:unit.id,exercise});
+   }
+  }
+ }
+ assert.ok(cases.length>0,'the real curriculum must supply written-response cases');
+ for(const {level,unit,exercise} of cases){
+  const result=api.compare(exercise.answer,exercise);
+  assert.equal(result.status,'correct',level+'/'+unit+'/'+(exercise.id||exercise.vocabId||exercise.prompt));
+  for(const alternative of exercise.acceptedAnswers||[]){
+   const text=typeof alternative==='string'?alternative:alternative?.text;
+   if(typeof text!=='string'||!text.trim())continue;
+   const status=typeof alternative==='string'?undefined:alternative.status;
+   const accepted=!status||status==='approved';
+   const alternativeResult=api.compare(text,exercise);
+   if(accepted)assert.equal(alternativeResult.status,'correct',level+'/'+unit+' approved alternative: '+text);
+   else assert.notEqual(alternativeResult.status,'correct',level+'/'+unit+' unapproved alternative: '+text);
+  }
+ }
+ assert.equal(cases.length,123,'baseline: 89 A1 and 34 A2 written-response exercises');
+});

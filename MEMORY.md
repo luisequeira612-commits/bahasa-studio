@@ -253,3 +253,6 @@
 
 ## Auditoría de checkpoints acumulativos B1 (7 nov 2026)
 - Se refuerzan las pruebas para comprobar que los IDs de repaso acumulativo son únicos, corresponden a vocabulario ya enseñado o introducido en la unidad de checkpoint y mantienen la cadencia U4/U8/U12/U17/U22/U27/U32/U37/U42/U47. También se corrige el nombre de una prueba cuyo texto decía 703 ejercicios aunque la aserción y el currículo vigente son 727. Solo pruebas/documentación; sin cambios de currículo, IndexedDB, backup v3 ni dependencias.
+
+## Revisión editorial contextual B1 U17–U22 (7 nov 2026)
+- Lectura de seis unidades: 0 errores confirmados y 2 candidatos editoriales (temporalidad no explícita en U21; uso de `-lah` no explicado en una respuesta modelo U22). Sin cambios curriculares ni datos persistentes. Ver `docs/EDITORIAL_AUDIT_B1_U17_U22.md`.

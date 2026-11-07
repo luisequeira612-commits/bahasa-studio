@@ -188,7 +188,7 @@ test('B1 U13-U26 introduce new vocabulary in the correct lesson and review only 
   assert.equal(targetUnits.length, 14);
   for (const unit of targetUnits) {
     const lessons = app.buildUnitLessons(unit);
-    assert.equal(lessons.length, 3, unit.id + ' should have three authored lessons');
+    assert.equal(lessons.length, unit.id === 'b1_u22' ? 4 : 3, unit.id + ' should preserve its authored lesson count');
     const expectedNewIds = unit.vocab.filter(word => !known.has(word.id)).map(word => word.id).sort();
     const declaredNewIds = unit.lessons.flatMap(lesson => lesson.vocabIds || []);
     assert.equal(new Set(declaredNewIds).size, declaredNewIds.length, unit.id + ' must not introduce a word twice');

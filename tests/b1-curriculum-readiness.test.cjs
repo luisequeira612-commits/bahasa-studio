@@ -183,7 +183,7 @@ test('B1 selected examples do not introduce later vocabulary before its teaching
   const unit = id => b1.units.find(item => item.id === id);
   assert.doesNotMatch(JSON.stringify(unit('b1_u4')), /pelajaran/i);
   assert.doesNotMatch(JSON.stringify(unit('b1_u6')), /pelajaran/i);
-  assert.doesNotMatch(JSON.stringify(unit('b1_u13')), /tanggung jawab/i);
+  assert.doesNotMatch(JSON.stringify(unit('b1_u13')), /tanggung|jawab/i);
   assert.doesNotMatch(JSON.stringify(unit('b1_u17')), /tanggung jawab/i);
   assert.doesNotMatch(JSON.stringify(unit('b1_u31').lessons[0]), /mencapai/i);
   assert.doesNotMatch(JSON.stringify(unit('b1_u32')), /menyelesaikan/i);

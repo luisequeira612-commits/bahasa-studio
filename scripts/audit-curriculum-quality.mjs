@@ -769,10 +769,15 @@ export function auditCurricula(curricula) {
       earlierByTerm.set(term, matches);
     }
 
+    const reportedCurrentPairs = new Set();
     (curriculum.units ?? []).forEach((unit, unitIndex) => {
       (unit?.vocab ?? []).forEach((word, wordIndex) => {
         const term = normalizeTextForVocabularyMatch(word?.idn);
         if (!term || typeof word?.id !== 'string' || !word.id.trim()) return;
+        const pairKey = JSON.stringify([term, word.id]);
+        if (reportedCurrentPairs.has(pairKey)) return;
+        reportedCurrentPairs.add(pairKey);
+
         const priorMatches = earlierByTerm.get(term) ?? [];
         const differentIds = priorMatches.filter((item) => item.id !== word.id);
         if (!differentIds.length) return;

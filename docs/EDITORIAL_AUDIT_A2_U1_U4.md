@@ -36,7 +36,7 @@
 
 ## Siguiente paso
 
-Comprobar el comportamiento real del evaluador para la actividad mixta de U3 L1 antes de proponer cualquier cambio. Después, continuar con la revisión contextual de A2 U5–U8 solo si no duplica la auditoría editorial ya existente; alternativamente, revisar A2 U9–U12 para avanzar por bloques sin repetir trabajo.
+Alinear, en una revisión curricular separada si se decide, el texto de ayuda/placeholder con la consigna bilingüe. El motor `checkWriting()` no califica automáticamente: muestra un ejemplo posible y ofrece autoevaluación. Después, continuar con la revisión contextual de A2 U5–U8 solo si no duplica la auditoría editorial ya existente; alternativamente, revisar A2 U9–U12 para avanzar por bloques sin repetir trabajo.
 
 ## Método
 

@@ -37,7 +37,9 @@
 ## Estado de PR y sistema de calidad
 - PR #413 fusionado en `42115e07263fe9e50a92abe210387f90128be7e1`: consolida U1–U4 con 14–15 ejercicios combinados por unidad y repaso acumulativo en U4.
 - PR #414 fusionado en `57fddebeb533b80962ef684d3d1c9fb9271beb2e`: consolida U5–U8 con 14, 15, 14 y 14 ejercicios combinados, dos lecciones por unidad y repaso acumulativo U5–U8. B1 queda en 671 ejercicios.
-- PR en curso `feat/b1-u9-u12-exercise-consolidation`: amplía U9–U12 a 14 ejercicios combinados por unidad, con dos lecciones y repaso acumulativo U9–U12. Total B1 previsto: 703 ejercicios. CI pendiente.
+- PR #415 fusionado en `18981167fb559d4f1ae727014e955134743382aa`: consolida U9–U12 a 14 ejercicios combinados por unidad, con repaso acumulativo U9–U12. B1 queda en 703 ejercicios.
+- PR en curso `fix/b1-lesson-review-metadata`: corrige 23 colisiones donde una misma entrada figuraba como vocabulario nuevo y como repaso en la misma lección (U1, U5–U7 y U9–U11), sin cambiar el inventario ni los ejercicios.
+- Auditoría estructural tras #415: B1 tiene 0 errores y 71 avisos; 23 son colisiones new/review, 39 son posibles adelantos de vocabulario en textos y 9 son avisos de cobertura explícita que requieren revisar IDs reutilizados. No se asume que los avisos sean errores lingüísticos.
 - PR #410 fusionado en `d137db065e792d563994ae4796768b35377f5f4e`; B1 50/50 completo en unidades. Auditoría estructural final pendiente.
 - PR #411 fusionado en `7a88c4750b9cb5707f50c286f73d2884e3c1568a`: auditor y cola editorial ya incluyen B1. PR #412 fusionado en `c7f56e1e0a6162945941d0362fd0006db8d6fdd2`: informe de contrato por unidad ya incluye B1.
 - Auditoría estructural integrada: 122 unidades (A1/A2/B1), 1.062 entradas, 1.025 IDs únicos, 0 errores, 85 avisos y 37 informativos. B1: 50 unidades, 241 entradas/224 IDs, 114 lecciones y 605 ejercicios antes de consolidar U1–U4; auditoría estructural: 0 errores y 44 avisos. Cola B1: 846 filas, 0 P1. Avisos pendientes: 30 de progresión textual, 5 entre lecciones y 9 de cobertura explícita.

@@ -233,7 +233,7 @@ test('B1 U15-U17 teach yang relatives, interrogatives, passive clauses and cumul
       if (exercise.type === 'order') assert.deepEqual(Array.from(exercise.words).sort(), Array.from(exercise.correctOrder).sort());
     }
     const completeSentences = exercises.filter(exercise =>
-      (['listen', 'translate_es_id'].includes(exercise.type) && typeof exercise.answer === 'string' && /\\s/.test(exercise.answer)) ||
+      (['listen', 'translate_es_id'].includes(exercise.type) && typeof exercise.answer === 'string' && /\s/.test(exercise.answer)) ||
       (exercise.type === 'order' && exercise.correctOrder.length >= 2) ||
       (exercise.type === 'write' && exercise.modelAnswer && /[.!?]/.test(exercise.modelAnswer)) ||
       (exercise.type === 'mc' && /«[^»]+»/.test(exercise.prompt))

@@ -29,15 +29,15 @@ function exercisesOf(unit) {
   ];
 }
 
-test('B1 draft has twenty-six units, one hundred two unique IDs including earlier canonical vocabulary, and two hundred sixty-nine exercises', () => {
+test('B1 draft has twenty-nine units, one hundred nineteen unique IDs including earlier canonical vocabulary, and three hundred eleven exercises', () => {
   const b1 = course.levels.find(level => level.id === 'B1');
   assert.ok(b1);
-  assert.equal(b1.units.length, 26);
-  assert.equal(new Set(b1.units.flatMap(unit => unit.vocab.map(word => word.id))).size, 102);
-  assert.equal(b1.units.reduce((sum, unit) => sum + exercisesOf(unit).length, 0), 269);
+  assert.equal(b1.units.length, 29);
+  assert.equal(new Set(b1.units.flatMap(unit => unit.vocab.map(word => word.id))).size, 119);
+  assert.equal(b1.units.reduce((sum, unit) => sum + exercisesOf(unit).length, 0), 311);
   assert.deepEqual(Array.from(b1.units, unit => unit.id), [
     'b1_u1', 'b1_u2', 'b1_u3', 'b1_u4', 'b1_u5', 'b1_u6', 'b1_u7',
-    'b1_u8', 'b1_u9', 'b1_u10', 'b1_u11', 'b1_u12', 'b1_u13', 'b1_u14', 'b1_u15', 'b1_u16', 'b1_u17', 'b1_u18', 'b1_u19', 'b1_u20', 'b1_u21', 'b1_u22', 'b1_u23', 'b1_u24', 'b1_u25', 'b1_u26'
+    'b1_u8', 'b1_u9', 'b1_u10', 'b1_u11', 'b1_u12', 'b1_u13', 'b1_u14', 'b1_u15', 'b1_u16', 'b1_u17', 'b1_u18', 'b1_u19', 'b1_u20', 'b1_u21', 'b1_u22', 'b1_u23', 'b1_u24', 'b1_u25', 'b1_u26', 'b1_u27', 'b1_u28', 'b1_u29'
   ]);
 });
 
@@ -379,6 +379,62 @@ test('B1 U21-U24 teach cause, purpose and past-experience narration', () => {
   assert.match(u23.grammar + u23.lessons.map(lesson => lesson.grammar).join(' '), /pernah[\s\S]*belum pernah[\s\S]*baru saja[\s\S]*sempat[\s\S]*telah[\s\S]*masih/i);
   assert.match(u24.grammar + u24.lessons.map(lesson => lesson.grammar).join(' '), /dulu[\s\S]*waktu itu[\s\S]*ketika[\s\S]*kemudian[\s\S]*pengalaman[\s\S]*perjalanan/i);
   assert.ok(exercisesOf(u24).some(exercise => exercise.type === 'write' && /viaje o un día especial/.test(exercise.prompt)));
+});
+
+
+
+test('B1 U27-U29 teach opinions, probability and advice', () => {
+  const b1 = course.levels.find(level => level.id === 'B1');
+  const u27 = b1.units.find(unit => unit.id === 'b1_u27');
+  const u28 = b1.units.find(unit => unit.id === 'b1_u28');
+  const u29 = b1.units.find(unit => unit.id === 'b1_u29');
+  assert.ok(u27 && u28 && u29);
+  assert.deepEqual(Array.from(u27.vocab, word => word.id), ['b1v088', 'b1v089', 'b1v090', 'b1v091', 'b1v092', 'b1v093', 'b1v094']);
+  assert.deepEqual(Array.from(u28.vocab, word => word.id), ['b1v095', 'b1v096', 'b1v097', 'b1v098', 'b1v099']);
+  assert.deepEqual(Array.from(u29.vocab, word => word.id), ['b1v100', 'b1v101', 'b1v102', 'b1v103', 'b1v104']);
+  const expectedCounts = new Map([[u27, 14], [u28, 14], [u29, 14]]);
+  const allNewForms = new Map([
+    ['b1v088', 'pendapat'], ['b1v089', 'menurut saya'], ['b1v090', 'bagi saya'],
+    ['b1v091', 'setuju'], ['b1v092', 'tidak setuju'], ['b1v093', 'berpikir'], ['b1v094', 'merasa'],
+    ['b1v095', 'kira-kira'], ['b1v096', 'mungkin'], ['b1v097', 'sepertinya'], ['b1v098', 'tampaknya'], ['b1v099', 'pasti'],
+    ['b1v100', 'seharusnya'], ['b1v101', 'harus'], ['b1v102', 'wajib'], ['b1v103', 'perlu'], ['b1v104', 'menyarankan']
+  ]);
+  const earlierIds = new Set(b1.units.filter(unit => !['b1_u27', 'b1_u28', 'b1_u29'].includes(unit.id)).flatMap(unit => unit.vocab.map(word => word.id)));
+  for (const [unit, expectedCount] of expectedCounts) {
+    assert.equal(unit.lessons.length, 3);
+    const exercises = exercisesOf(unit);
+    assert.equal(exercises.length, expectedCount);
+    const types = new Set(exercises.map(exercise => exercise.type));
+    for (const type of ['mc', 'translate_es_id', 'order', 'listen', 'write']) assert.ok(types.has(type), unit.id + ' missing ' + type);
+    const localIds = new Set(unit.vocab.map(word => word.id));
+    for (const exercise of exercises) {
+      assert.ok(localIds.has(exercise.vocabId), unit.id + ' exercise references vocabulary outside its unit');
+      assert.ok(exercise.prompt && exercise.explanation);
+      if (exercise.type === 'mc') {
+        assert.ok(Array.isArray(exercise.options) && Number.isInteger(exercise.answer));
+        assert.ok(exercise.answer >= 0 && exercise.answer < exercise.options.length);
+      }
+      if (exercise.type === 'order') assert.deepEqual(Array.from(exercise.words).sort(), Array.from(exercise.correctOrder).sort());
+    }
+    const completeSentences = exercises.filter(exercise =>
+      (['listen', 'translate_es_id'].includes(exercise.type) && typeof exercise.answer === 'string' && /\s/.test(exercise.answer)) ||
+      (exercise.type === 'order' && exercise.correctOrder.length >= 2) ||
+      (exercise.type === 'write' && exercise.modelAnswer && /[.!?]/.test(exercise.modelAnswer)) ||
+      (exercise.type === 'mc' && /«[^»]+»/.test(exercise.prompt))
+    );
+    assert.ok(completeSentences.length >= 5, unit.id + ' needs five complete-sentence exercises');
+    assert.ok(exercises.some(exercise => exercise.type === 'write' && exercise.hint && exercise.modelAnswer));
+    assert.ok(exercises.filter(exercise => exercise.type === 'listen').every(exercise => /\s/.test(exercise.answer)));
+    for (const word of unit.vocab) {
+      assert.ok(!earlierIds.has(word.id), 'new U27-U29 ID already existed earlier: ' + word.id);
+      assert.equal(word.idn.toLowerCase(), allNewForms.get(word.id));
+    }
+  }
+  assert.match(u27.grammar + u27.lessons.map(lesson => lesson.grammar).join(' '), /pendapat[\s\S]*menurut saya[\s\S]*bagi saya[\s\S]*setuju[\s\S]*tidak setuju[\s\S]*berpikir[\s\S]*merasa/i);
+  assert.match(u28.grammar + u28.lessons.map(lesson => lesson.grammar).join(' '), /kira-kira[\s\S]*mungkin[\s\S]*sepertinya[\s\S]*tampaknya[\s\S]*pasti/i);
+  assert.match(u29.grammar + u29.lessons.map(lesson => lesson.grammar).join(' '), /seharusnya[\s\S]*harus[\s\S]*wajib[\s\S]*perlu[\s\S]*menyarankan/i);
+  assert.ok(exercisesOf(u29).some(exercise => exercise.type === 'write' && /opinión|posibilidad|recomendación/i.test(exercise.prompt)),
+    'U29 must include cumulative production integrating earlier B1 discourse skills');
 });
 
 

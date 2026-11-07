@@ -2993,6 +2993,175 @@
                             ]
                         },
 
+                        {
+                            id: 'b1_u47',
+                            title: 'Unidad 47: reglamentos, procedimientos y responsabilidad',
+                            desc: 'Comprende reglas, sigue procedimientos y explica las responsabilidades de cada persona.',
+                            grammar: 'Peraturan significa reglamento y se reutiliza con el ID canónico A1. Prosedur significa procedimiento. Mematuhi expresa cumplir una regla; melanggar, infringirla o incumplirla; tanggung jawab, responsabilidad. Estas formas permiten describir normas y responsabilidades en situaciones cotidianas o laborales.',
+                            vocab: [
+                                { id: 'v242', idn: 'Peraturan', esp: 'Reglamento', ex: 'Peraturan itu berlaku.', exEsp: 'Ese reglamento está vigente.' },
+                                { id: 'b1v186', idn: 'Prosedur', esp: 'Procedimiento', ex: 'Kami mengikuti prosedur yang benar.', exEsp: 'Seguimos el procedimiento correcto.' },
+                                { id: 'a2u10_mematuhi', idn: 'Mematuhi', esp: 'Cumplir; obedecer', ex: 'Saya mematuhi aturan.', exEsp: 'Cumplo la regla.' },
+                                { id: 'a2u10_melanggar', idn: 'Melanggar', esp: 'Infringir; incumplir', ex: 'Dia melanggar aturan.', exEsp: 'Él o ella infringe la regla.' },
+                                { id: 'b1v187', idn: 'Tanggung jawab', esp: 'Responsabilidad', ex: 'Setiap anggota memiliki tanggung jawab.', exEsp: 'Cada miembro tiene una responsabilidad.' }
+                            ],
+                            lessons: [
+                                {
+                                    title: 'Peraturan y prosedur',
+                                    objective: 'Distingue una norma de los pasos establecidos para cumplirla.',
+                                    grammar: 'Peraturan es una regla o reglamento. Prosedur es el conjunto de pasos que se siguen para realizar una actividad de forma establecida.',
+                                    reviewVocabIds: ['b1v181', 'b1v182', 'b1v185', 'b1v166', 'b1v167'],
+                                    vocabIds: ['v242', 'b1v186'],
+                                    exercises: [
+                                        { vocabId: 'v242', type: 'mc', prompt: '¿Qué significa peraturan?', options: ['Reglamento', 'Procedimiento', 'Responsabilidad'], answer: 0, explanation: 'Peraturan significa reglamento o normativa.' },
+                                        { vocabId: 'b1v186', type: 'translate_es_id', prompt: 'Traduce: «Seguimos el procedimiento correcto».', answer: 'Kami mengikuti prosedur yang benar.', explanation: 'Prosedur significa procedimiento.' },
+                                        { vocabId: 'v242', type: 'order', prompt: 'Ordena: «Ese reglamento está vigente».', words: ['berlaku.', 'itu', 'Peraturan'], correctOrder: ['Peraturan', 'itu', 'berlaku.'], explanation: 'Peraturan itu es el sujeto y berlaku expresa que está vigente.' },
+                                        { vocabId: 'b1v186', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Kami mengikuti prosedur yang benar setiap hari.', explanation: 'La frase presenta el seguimiento habitual de un procedimiento.' },
+                                        { vocabId: 'b1v186', type: 'write', prompt: 'Describe una actividad y explica qué reglamento o procedimiento se debe seguir.', hint: 'Usa peraturan y prosedur.', modelAnswer: 'Peraturan itu berlaku. Kami mengikuti prosedur yang benar setiap hari.', explanation: 'La producción diferencia la norma de los pasos que se siguen.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Mematuhi y melanggar reglas',
+                                    objective: 'Explica si una persona cumple una regla o la infringe.',
+                                    grammar: 'Mematuhi expresa cumplir u obedecer una regla. Melanggar expresa infringirla o incumplirla. Ambos verbos pueden tomar como objeto aturan o peraturan.',
+                                    reviewVocabIds: ['v242', 'b1v186', 'b1v181', 'b1v179'],
+                                    vocabIds: ['a2u10_mematuhi', 'a2u10_melanggar'],
+                                    exercises: [
+                                        { vocabId: 'a2u10_mematuhi', type: 'mc', prompt: '¿Qué significa mematuhi?', options: ['Cumplir u obedecer', 'Infringir', 'Solicitar'], answer: 0, explanation: 'Mematuhi significa cumplir u obedecer una regla.' },
+                                        { vocabId: 'a2u10_melanggar', type: 'translate_es_id', prompt: 'Traduce: «Él o ella infringe la regla».', answer: 'Dia melanggar aturan.', explanation: 'Melanggar significa infringir o incumplir.' },
+                                        { vocabId: 'a2u10_mematuhi', type: 'order', prompt: 'Ordena: «Cumplo la regla».', words: ['aturan.', 'mematuhi', 'Saya'], correctOrder: ['Saya', 'mematuhi', 'aturan.'], explanation: 'Mematuhi toma aturan como la regla que se cumple.' },
+                                        { vocabId: 'a2u10_melanggar', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Dia melanggar aturan karena tidak membaca peraturan.', explanation: 'La frase explica una infracción y su motivo.' },
+                                        { vocabId: 'a2u10_mematuhi', type: 'write', prompt: 'Compara dos situaciones: una persona cumple una regla y otra la infringe.', hint: 'Contrasta mematuhi y melanggar.', modelAnswer: 'Saya mematuhi aturan. Dia melanggar aturan karena tidak membaca peraturan.', explanation: 'La producción contrasta el cumplimiento y la infracción de una norma.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Tanggung jawab de cada persona',
+                                    objective: 'Explica qué responsabilidad corresponde a cada miembro de un equipo.',
+                                    grammar: 'Tanggung jawab significa responsabilidad. Puede combinarse con memiliki para expresar tener una responsabilidad y con setiap anggota para hablar de cada miembro de un grupo.',
+                                    reviewVocabIds: ['v242', 'b1v186', 'a2u10_mematuhi', 'a2u10_melanggar', 'b1v185'],
+                                    vocabIds: ['b1v187'],
+                                    exercises: [
+                                        { vocabId: 'b1v187', type: 'mc', prompt: '¿Qué significa tanggung jawab?', options: ['Responsabilidad', 'Procedimiento', 'Estimación'], answer: 0, explanation: 'Tanggung jawab significa responsabilidad.' },
+                                        { vocabId: 'b1v187', type: 'translate_es_id', prompt: 'Traduce: «Cada miembro tiene una responsabilidad».', answer: 'Setiap anggota memiliki tanggung jawab.', explanation: 'Tanggung jawab es la responsabilidad que tiene cada miembro.' },
+                                        { vocabId: 'b1v187', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Setiap anggota memiliki tanggung jawab untuk mengikuti prosedur.', explanation: 'La frase relaciona la responsabilidad con seguir un procedimiento.' },
+                                        { vocabId: 'b1v187', type: 'write', prompt: 'Escribe cuatro frases: menciona un reglamento, un procedimiento, una regla que se debe cumplir y la responsabilidad de cada miembro.', hint: 'Integra peraturan, prosedur, mematuhi y tanggung jawab.', modelAnswer: 'Peraturan itu berlaku. Kami mengikuti prosedur yang benar. Setiap anggota harus mematuhi aturan. Setiap anggota memiliki tanggung jawab.', explanation: 'La producción integra normas, procedimientos y responsabilidades.' }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            id: 'b1_u48',
+                            title: 'Unidad 48: participación, solicitudes y apoyo comunitario',
+                            desc: 'Explica cómo participar en una iniciativa, presentar una solicitud y organizar apoyo.',
+                            grammar: 'Partisipasi significa participación. Mengajukan expresa presentar o solicitar formalmente algo; permohonan, solicitud o petición; menyelenggarakan, organizar o llevar a cabo una actividad; dukungan, apoyo. Estas formas permiten describir cómo se propone y organiza una iniciativa colectiva.',
+                            vocab: [
+                                { id: 'b1v188', idn: 'Partisipasi', esp: 'Participación', ex: 'Partisipasi warga sangat penting.', exEsp: 'La participación de los vecinos es muy importante.' },
+                                { id: 'b1v189', idn: 'Mengajukan', esp: 'Presentar; solicitar; proponer formalmente', ex: 'Kami mengajukan usulan kepada panitia.', exEsp: 'Presentamos una propuesta al comité.' },
+                                { id: 'b1v190', idn: 'Permohonan', esp: 'Solicitud; petición', ex: 'Permohonan itu sudah diterima.', exEsp: 'La solicitud ya fue recibida.' },
+                                { id: 'b1v191', idn: 'Menyelenggarakan', esp: 'Organizar; llevar a cabo', ex: 'Mereka menyelenggarakan kegiatan bersama.', exEsp: 'Organizan una actividad en conjunto.' },
+                                { id: 'b1v192', idn: 'Dukungan', esp: 'Apoyo; respaldo', ex: 'Kami membutuhkan dukungan masyarakat.', exEsp: 'Necesitamos el apoyo de la comunidad.' }
+                            ],
+                            lessons: [
+                                {
+                                    title: 'Partisipasi y mengajukan propuestas',
+                                    objective: 'Describe la participación en una iniciativa y cómo presentar una propuesta.',
+                                    grammar: 'Partisipasi nombra la participación en una actividad o decisión. Mengajukan expresa presentar una propuesta, solicitud o petición a una persona o grupo.',
+                                    reviewVocabIds: ['b1v187', 'b1v186', 'b1v158', 'a2u36_kesepakatan', 'b1v145'],
+                                    vocabIds: ['b1v188', 'b1v189'],
+                                    exercises: [
+                                        { vocabId: 'b1v188', type: 'mc', prompt: '¿Qué significa partisipasi?', options: ['Participación', 'Solicitud', 'Apoyo'], answer: 0, explanation: 'Partisipasi significa participación.' },
+                                        { vocabId: 'b1v189', type: 'translate_es_id', prompt: 'Traduce: «Presentamos una propuesta al comité».', answer: 'Kami mengajukan usulan kepada panitia.', explanation: 'Mengajukan expresa presentar o solicitar formalmente.' },
+                                        { vocabId: 'b1v188', type: 'order', prompt: 'Ordena: «La participación de los vecinos es muy importante».', words: ['penting.', 'warga', 'sangat', 'Partisipasi'], correctOrder: ['Partisipasi', 'warga', 'sangat', 'penting.'], explanation: 'Partisipasi warga es el sujeto de la frase.' },
+                                        { vocabId: 'b1v189', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Kami mengajukan usulan kepada panitia untuk kegiatan baru.', explanation: 'La frase explica qué propuesta se presenta y a quién.' },
+                                        { vocabId: 'b1v188', type: 'write', prompt: 'Describe una iniciativa comunitaria y explica cómo pueden participar las personas y presentar propuestas.', hint: 'Usa partisipasi y mengajukan.', modelAnswer: 'Partisipasi warga sangat penting. Kami mengajukan usulan kepada panitia untuk kegiatan baru.', explanation: 'La producción conecta participación y presentación de propuestas.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Permohonan y dukungan',
+                                    objective: 'Explica cómo presentar una solicitud y pedir apoyo para una iniciativa.',
+                                    grammar: 'Permohonan es una solicitud o petición formal. Dukungan es el apoyo o respaldo que una persona o comunidad ofrece a una iniciativa.',
+                                    reviewVocabIds: ['b1v188', 'b1v189', 'b1v187', 'a2u36_kesepakatan'],
+                                    vocabIds: ['b1v190', 'b1v192'],
+                                    exercises: [
+                                        { vocabId: 'b1v190', type: 'mc', prompt: '¿Qué significa permohonan?', options: ['Solicitud o petición', 'Participación', 'Procedimiento'], answer: 0, explanation: 'Permohonan significa solicitud o petición.' },
+                                        { vocabId: 'b1v192', type: 'translate_es_id', prompt: 'Traduce: «Necesitamos el apoyo de la comunidad».', answer: 'Kami membutuhkan dukungan masyarakat.', explanation: 'Dukungan significa apoyo o respaldo.' },
+                                        { vocabId: 'b1v190', type: 'order', prompt: 'Ordena: «La solicitud ya fue recibida».', words: ['diterima.', 'sudah', 'itu', 'Permohonan'], correctOrder: ['Permohonan', 'itu', 'sudah', 'diterima.'], explanation: 'Permohonan itu es el sujeto y sudah diterima expresa que ya fue recibida.' },
+                                        { vocabId: 'b1v192', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Kami membutuhkan dukungan masyarakat untuk kegiatan itu.', explanation: 'La frase explica para qué se necesita el apoyo comunitario.' },
+                                        { vocabId: 'b1v192', type: 'write', prompt: 'Escribe una petición breve: explica qué iniciativa propones, qué solicitud presentas y qué apoyo necesitas.', hint: 'Integra permohonan y dukungan.', modelAnswer: 'Permohonan itu sudah diterima. Kami membutuhkan dukungan masyarakat untuk kegiatan itu.', explanation: 'La producción presenta una solicitud y el apoyo necesario.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Menyelenggarakan actividades',
+                                    objective: 'Explica cómo organizar una actividad y coordinar la participación de la comunidad.',
+                                    grammar: 'Menyelenggarakan expresa organizar o llevar a cabo una actividad, reunión o evento. Puede combinarse con kegiatan para hablar de una actividad organizada.',
+                                    reviewVocabIds: ['b1v188', 'b1v189', 'b1v190', 'b1v192', 'b1v181'],
+                                    vocabIds: ['b1v191'],
+                                    exercises: [
+                                        { vocabId: 'b1v191', type: 'mc', prompt: '¿Qué significa menyelenggarakan?', options: ['Organizar o llevar a cabo', 'Solicitar', 'Prevenir'], answer: 0, explanation: 'Menyelenggarakan significa organizar o llevar a cabo.' },
+                                        { vocabId: 'b1v191', type: 'translate_es_id', prompt: 'Traduce: «Organizan una actividad en conjunto».', answer: 'Mereka menyelenggarakan kegiatan bersama.', explanation: 'Menyelenggarakan expresa organizar una actividad.' },
+                                        { vocabId: 'b1v191', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Mereka menyelenggarakan kegiatan bersama pada hari Sabtu.', explanation: 'La frase presenta una actividad organizada para el sábado.' },
+                                        { vocabId: 'b1v191', type: 'write', prompt: 'Escribe cuatro frases: presenta una iniciativa, explica cómo solicitar apoyo, menciona la participación y describe la actividad que organizarán.', hint: 'Integra partisipasi, mengajukan, dukungan y menyelenggarakan.', modelAnswer: 'Partisipasi warga sangat penting. Kami mengajukan usulan kepada panitia. Kami membutuhkan dukungan masyarakat. Mereka menyelenggarakan kegiatan bersama pada hari Sabtu.', explanation: 'La producción recorre una iniciativa desde la propuesta hasta su organización.' }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            id: 'b1_u49',
+                            title: 'Unidad 49: naturaleza, conservación y sostenibilidad',
+                            desc: 'Describe acciones para cuidar la naturaleza, reducir residuos y promover prácticas sostenibles.',
+                            grammar: 'Alam significa naturaleza. Berkelanjutan significa sostenible o que puede mantenerse a largo plazo. Pelestarian es conservación o preservación; mengurangi, reducir; limbah, residuos o desechos. Estas formas permiten hablar de acciones para cuidar la naturaleza y reducir los residuos.',
+                            vocab: [
+                                { id: 'b1v193', idn: 'Alam', esp: 'Naturaleza', ex: 'Kita harus menjaga alam.', exEsp: 'Debemos cuidar la naturaleza.' },
+                                { id: 'b1v194', idn: 'Berkelanjutan', esp: 'Sostenible; sustentable', ex: 'Kita membutuhkan pembangunan berkelanjutan.', exEsp: 'Necesitamos un desarrollo sostenible.' },
+                                { id: 'b1v195', idn: 'Pelestarian', esp: 'Conservación; preservación', ex: 'Pelestarian alam membutuhkan kerja sama.', exEsp: 'La conservación de la naturaleza requiere cooperación.' },
+                                { id: 'b1v196', idn: 'Mengurangi', esp: 'Reducir; disminuir', ex: 'Kami berusaha mengurangi limbah.', exEsp: 'Intentamos reducir los residuos.' },
+                                { id: 'b1v197', idn: 'Limbah', esp: 'Residuos; desechos', ex: 'Limbah plastik dapat mencemari air.', exEsp: 'Los residuos plásticos pueden contaminar el agua.' }
+                            ],
+                            lessons: [
+                                {
+                                    title: 'Alam y pelestarian',
+                                    objective: 'Describe por qué es importante conservar la naturaleza y cooperar para protegerla.',
+                                    grammar: 'Alam significa naturaleza. Pelestarian expresa la acción de conservar o preservar algo para protegerlo a largo plazo.',
+                                    reviewVocabIds: ['b1v166', 'b1v167', 'b1v154', 'b1v157'],
+                                    vocabIds: ['b1v193', 'b1v195'],
+                                    exercises: [
+                                        { vocabId: 'b1v193', type: 'mc', prompt: '¿Qué significa alam?', options: ['Naturaleza', 'Residuo', 'Solicitud'], answer: 0, explanation: 'Alam significa naturaleza.' },
+                                        { vocabId: 'b1v195', type: 'translate_es_id', prompt: 'Traduce: «La conservación de la naturaleza requiere cooperación».', answer: 'Pelestarian alam membutuhkan kerja sama.', explanation: 'Pelestarian significa conservación o preservación.' },
+                                        { vocabId: 'b1v193', type: 'order', prompt: 'Ordena: «Debemos cuidar la naturaleza».', words: ['alam.', 'menjaga', 'harus', 'Kita'], correctOrder: ['Kita', 'harus', 'menjaga', 'alam.'], explanation: 'Harus expresa necesidad y menjaga alam, cuidar la naturaleza.' },
+                                        { vocabId: 'b1v195', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Pelestarian alam membutuhkan kerja sama semua orang.', explanation: 'La frase destaca la cooperación para conservar la naturaleza.' },
+                                        { vocabId: 'b1v193', type: 'write', prompt: 'Explica por qué es importante cuidar la naturaleza y qué tipo de cooperación puede ayudar.', hint: 'Usa alam y pelestarian.', modelAnswer: 'Kita harus menjaga alam. Pelestarian alam membutuhkan kerja sama semua orang.', explanation: 'La producción conecta el cuidado de la naturaleza con la conservación colectiva.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Berkelanjutan y mengurangi',
+                                    objective: 'Describe prácticas sostenibles y explica cómo reducir el consumo o los residuos.',
+                                    grammar: 'Berkelanjutan describe algo sostenible, que puede mantenerse a largo plazo. Mengurangi expresa reducir o disminuir una cantidad, un consumo o un residuo.',
+                                    reviewVocabIds: ['b1v193', 'b1v195', 'b1v181', 'b1v183'],
+                                    vocabIds: ['b1v194', 'b1v196'],
+                                    exercises: [
+                                        { vocabId: 'b1v194', type: 'mc', prompt: '¿Qué significa berkelanjutan?', options: ['Sostenible', 'Temporal', 'Peligroso'], answer: 0, explanation: 'Berkelanjutan significa sostenible o sustentable.' },
+                                        { vocabId: 'b1v196', type: 'translate_es_id', prompt: 'Traduce: «Intentamos reducir los residuos».', answer: 'Kami berusaha mengurangi limbah.', explanation: 'Mengurangi significa reducir o disminuir.' },
+                                        { vocabId: 'b1v194', type: 'order', prompt: 'Ordena: «Necesitamos un desarrollo sostenible».', words: ['berkelanjutan.', 'pembangunan', 'membutuhkan', 'Kita'], correctOrder: ['Kita', 'membutuhkan', 'pembangunan', 'berkelanjutan.'], explanation: 'Pembangunan berkelanjutan significa desarrollo sostenible.' },
+                                        { vocabId: 'b1v196', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Kami berusaha mengurangi limbah plastik setiap hari.', explanation: 'La frase describe una acción habitual para reducir residuos plásticos.' },
+                                        { vocabId: 'b1v196', type: 'write', prompt: 'Propón dos prácticas sostenibles y explica cómo pueden reducir los residuos.', hint: 'Integra berkelanjutan y mengurangi.', modelAnswer: 'Kita membutuhkan pembangunan berkelanjutan. Kami berusaha mengurangi limbah plastik setiap hari.', explanation: 'La producción relaciona sostenibilidad con la reducción de residuos.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Limbah y acciones responsables',
+                                    objective: 'Explica qué residuos se producen y qué acciones pueden reducir su impacto.',
+                                    grammar: 'Limbah se refiere a residuos o desechos que quedan después de una actividad. Puede combinarse con jenis para especificar el tipo de residuo y con mengurangi para explicar cómo reducirlo.',
+                                    reviewVocabIds: ['b1v193', 'b1v194', 'b1v195', 'b1v196', 'b1v183'],
+                                    vocabIds: ['b1v197'],
+                                    exercises: [
+                                        { vocabId: 'b1v197', type: 'mc', prompt: '¿Qué significa limbah?', options: ['Residuos o desechos', 'Naturaleza', 'Participación'], answer: 0, explanation: 'Limbah significa residuos o desechos.' },
+                                        { vocabId: 'b1v197', type: 'translate_es_id', prompt: 'Traduce: «Los residuos plásticos pueden contaminar el agua».', answer: 'Limbah plastik dapat mencemari air.', explanation: 'Limbah plastik significa residuos plásticos.' },
+                                        { vocabId: 'b1v197', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Limbah plastik dapat mencemari air dan tanah.', explanation: 'La frase señala dos posibles efectos de los residuos plásticos.' },
+                                        { vocabId: 'b1v197', type: 'write', prompt: 'Escribe un texto breve en cuatro frases: identifica un residuo, explica su impacto, propone cómo reducirlo y relaciona la acción con la conservación de la naturaleza.', hint: 'Integra limbah, mengurangi, berkelanjutan y pelestarian.', modelAnswer: 'Limbah plastik dapat mencemari air. Kami berusaha mengurangi limbah plastik setiap hari. Kita membutuhkan pembangunan berkelanjutan. Pelestarian alam membutuhkan kerja sama semua orang.', explanation: 'La producción presenta un residuo, su impacto y acciones de sostenibilidad.' }
+                                    ]
+                                }
+                            ]
+                        },
+
                     ]
                 },
 {

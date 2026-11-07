@@ -208,5 +208,5 @@
 - U4: `memberikan`, `mengirimkan`, `menjelaskan`, `membersihkan` (-kan).
 - U5: `mengingatkan`, `memasukkan` (-kan); `mendatangi`, `menemui` (-i).
 - U6: `menghadiri`, `mencintai`, `memasuki` (-i); pasivas `dijelaskan` y `ditemui`.
-- 18 ejercicios nuevos (6/6/7); 57 entradas de vocabulario y 65 ejercicios en el borrador B1. Se conserva el contenido previo de U4–U6 en `docs/B1_U4_U6_DISPLACED_CONTENT.md` para reorganizarlo después, sin pérdida de información.
+- 19 ejercicios nuevos (6/6/7); 57 entradas de vocabulario y 66 ejercicios en el borrador B1. Se conserva el contenido previo de U4–U6 en `docs/B1_U4_U6_DISPLACED_CONTENT.md` para reorganizarlo después, sin pérdida de información.
 - Las formas y glosas siguen siendo material beta; no implican validación nativa ni calibración MCER/BIPA. B1 sigue oculto.

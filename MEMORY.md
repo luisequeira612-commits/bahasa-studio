@@ -14,7 +14,7 @@
 ## Estado actual del currículo
 - A1: 32 de 32 unidades hechas.
 - A2: 40 de 40 unidades hechas y habilitadas en beta (`A2_RELEASE_ENABLED = true`). U5–U8 siguen en consolidación; PR #337 aclara el vocabulario objetivo de 16 prompts de traducción.
-- B1: 29/50 unidades redactadas (21 pendientes), visible y accesible sin completar A1; 119 IDs únicos en sus unidades, incluidos 20 IDs canónicos reutilizados desde A1/A2, y 311 ejercicios. U13–U14: ke-an; U15–U17: cláusulas relativas con yang; U18–U20: condiciones, concesiones y contraste; U21: causa/consecuencia; U22: finalidad; U23: experiencias pasadas; U24: narración temporal; U25: carácter y personalidad; U26: descripción de lugares y ambientes; U27: opiniones y desacuerdo; U28: posibilidad y certeza; U29: consejos, obligación y recomendaciones. U27–U29 añaden 17 formas nuevas. B2: 0/60 unidades del plan alineadas (60 pendientes); empieza tras completar B1. Escucha con síntesis de voz local. Próximo bloque del plan: U30–U31, planes y metas.
+- B1: 31/50 unidades redactadas (19 pendientes), visible y accesible sin completar A1; 129 IDs únicos en sus unidades, incluidos 20 IDs canónicos reutilizados desde A1/A2, y 339 ejercicios. U13–U14: ke-an; U15–U17: cláusulas relativas con yang; U18–U20: condiciones, concesiones y contraste; U21: causa/consecuencia; U22: finalidad; U23: experiencias pasadas; U24: narración temporal; U25: carácter y personalidad; U26: descripción de lugares y ambientes; U27: opiniones y desacuerdo; U28: posibilidad y certeza; U29: consejos, obligación y recomendaciones. U27–U29 añaden 17 formas nuevas; U30–U31 añaden 10 formas nuevas sobre planes, metas, pasos, preparación y decisiones. B2: 0/60 unidades del plan alineadas (60 pendientes); empieza tras completar B1. Escucha con síntesis de voz local. Próximo bloque del plan: U32–U34, consolidación de planificación, decisiones y resolución de problemas.
 - Sistema de calidad: auditoría estructural/editorial independiente de KBBI y cola editorial para vocabulario y ejercicios. Último informe CI (#350): 0 errores, 0 avisos en 72 unidades; 1.989 entradas editoriales pendientes (806 A1, 1.183 A2), sin certificación lingüística.
 
 ## Aclaración de métricas de Perfil (PR pendiente)
@@ -76,6 +76,12 @@
 - Service worker en main durante este bloque: cache bahasa-studio-v3.8.60; el PR lo actualiza a `bahasa-studio-v3.8.61`.
 - Scripts de calidad disponibles: scripts/audit-curriculum-quality.mjs, scripts/build-editorial-review-queue.mjs, scripts/build-unified-quality-report.mjs y scripts/build-deepseek-review-packet.mjs.
 - IndexedDB v3 y backup v3: preservados; PR #337 no modifica sus esquemas.
+
+## PR B1 U30–U31 — planes, metas, pasos y decisiones (7 nov 2026)
+- Añade U30–U31, 6 lecciones/28 ejercicios y 10 formas nuevas: planes y metas; pasos, preparación y decisiones.
+- Se mantienen 5 tipos de ejercicio por unidad y producción guiada; U30 conecta rencana/tujuan/berencana/merencanakan/berusaha y U31 conecta langkah/target/mencapai/mempersiapkan/memutuskan.
+- B1 queda en 31/50 y B2 en 0/60. El contenido sigue en beta y no implica validación nativa ni calibración MCER/BIPA.
+- Cache actualizado a `bahasa-studio-v3.8.62`. Sin cambios en A1/A2, IndexedDB, backup JSON v3 ni dependencias.
 
 ## PR B1 U27–U29 — opiniones, posibilidad y consejo (7 nov 2026)\n- Añade U27–U29, 3 unidades/9 lecciones/42 ejercicios y 17 formas nuevas: opiniones y desacuerdo; posibilidad/certeza; consejo/obligación/recomendación.\n- Se mantienen 5 tipos de ejercicio por unidad y producción guiada; U29 integra revisión acumulativa de causa, opinión y probabilidad.\n- KBBI no proporcionó páginas de lema directas mediante la consulta indexada; no se marca ninguna forma como `verified_primary`. B1 queda en 29/50 y B2 en 0/60.\n- Cache actualizado a `bahasa-studio-v3.8.61`. Sin cambios en A1/A2, IndexedDB, backup JSON v3 ni dependencias.\n\n## PR B1 U27–U29 — opiniones, posibilidad y consejo (7 nov 2026)
 - Añade U27–U29, 3 unidades/9 lecciones/42 ejercicios y 17 formas nuevas: opiniones y desacuerdo; posibilidad/certeza; consejo/obligación/recomendación.

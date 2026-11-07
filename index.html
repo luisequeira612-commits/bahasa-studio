@@ -5039,12 +5039,65 @@
                     units: [
                         {
                             id: 'b2_u1',
-                            title: 'Unidad 1: Uso causativo de -kan',
-                            desc: 'Matices causativos y beneficio a terceros.',
-                            grammar: 'En verbos como membangunkan, -kan aporta un sentido causativo: hacer que otra persona despierte. El sentido concreto de -kan depende del verbo y del contexto.',
-                            vocab: [{ id: 'v9', idn: 'Membangunkan', esp: 'Despertar a alguien', ex: 'Saya membangunkan anak.', exEsp: 'Despierto al niño.' }],
-                            exercises: [
-                                { vocabId: 'v9', type: 'mc', prompt: 'En «membangunkan anak», ¿qué aporta -kan?', options: ['La idea de hacer que alguien despierte', 'Pasado', 'Plural', 'Duda'], answer: 0, explanation: 'Bangun significa despertarse/levantarse; membangunkan significa despertar a otra persona.' },
+                            title: 'Unidad 1: Voz, agente y foco discursivo',
+                            desc: 'Elegir entre meN- y di- para mantener o cambiar el punto de partida de un texto.',
+                            grammar: 'La activa con meN- presenta al agente como sujeto: “Ana membaca buku”. La pasiva con di- coloca en primer plano aquello que recibe la acción: “Buku dibaca oleh Ana”. Oleh puede introducir al agente, pero no es obligatorio: “Buku dibaca” sigue expresando la acción sobre el libro sin identificar quién la realiza. La elección depende del foco y de la continuidad del discurso; no cambia por sí sola el tiempo ni el aspecto.',
+                            vocab: [
+                                { id: 'v211', idn: 'Membaca', esp: 'Leer (forma activa)', ex: 'Ana membaca buku.', exEsp: 'Ana lee un libro.' },
+                                { id: 'v212', idn: 'Menulis', esp: 'Escribir (forma activa)', ex: 'Rina menulis surat.', exEsp: 'Rina escribe una carta.' },
+                                { id: 'v213', idn: 'Menjual', esp: 'Vender (forma activa)', ex: 'Mereka menjual buah.', exEsp: 'Ellos venden fruta.' },
+                                { id: 'v214', idn: 'Mengajar', esp: 'Enseñar (forma activa)', ex: 'Guru mengajar murid.', exEsp: 'El profesor enseña al alumno.' },
+                                { id: 'v8', idn: 'Dibaca', esp: 'Leído/a; se lee', ex: 'Buku dibaca oleh Rina.', exEsp: 'El libro es leído por Rina.' },
+                                { id: 'b1v001', idn: 'Ditulis', esp: 'Escrito/a; se escribe', ex: 'Surat ditulis oleh Rina.', exEsp: 'La carta es escrita por Rina.' },
+                                { id: 'b1v002', idn: 'Dijual', esp: 'Vendido/a; se vende', ex: 'Buah dijual di pasar.', exEsp: 'La fruta se vende en el mercado.' },
+                                { id: 'b1v003', idn: 'Diajar', esp: 'Enseñado/a; recibe enseñanza', ex: 'Murid diajar oleh guru.', exEsp: 'El alumno recibe enseñanza del profesor.' },
+                                { id: 'b1v004', idn: 'Oleh', esp: 'Por (agente en una pasiva)', ex: 'Buku dibaca oleh Ana.', exEsp: 'El libro es leído por Ana.' }
+                            ],
+                            exercises: [],
+                            lessons: [
+                                {
+                                    title: 'Mismo acontecimiento, distinto punto de partida',
+                                    objective: 'Contrasta activa y pasiva e identifica quién realiza la acción y qué elemento la recibe.',
+                                    grammar: 'La activa presenta al agente como sujeto. La pasiva coloca al participante afectado al principio. La acción y sus participantes se mantienen aunque cambie el foco.',
+                                    vocabIds: [],
+                                    reviewVocabIds: ['v211', 'v212', 'v213', 'v214', 'v8', 'b1v001', 'b1v002', 'b1v003', 'b1v004'],
+                                    exercises: [
+                                        { vocabId: 'v8', type: 'mc', prompt: 'En «Buku dibaca oleh Ana», ¿qué elemento recibe la acción?', options: ['Buku (el libro)', 'Ana', 'Oleh'], answer: 0, explanation: 'Buku es lo que se lee; Ana es quien realiza la acción.' },
+                                        { vocabId: 'v211', type: 'mc', prompt: '¿Qué oración expresa el mismo acontecimiento que «Buku dibaca oleh Ana»?', options: ['Ana membaca buku.', 'Buku membaca Ana.', 'Ana dibaca buku.'], answer: 0, explanation: 'Ana membaca buku conserva los participantes: Ana lee y buku recibe la acción.' },
+                                        { vocabId: 'v211', type: 'translate_es_id', prompt: 'Traduce al indonesio: «Ana lee un libro».', answer: 'Ana membaca buku.', explanation: 'Membaca presenta a Ana como agente y buku como aquello que se lee.' },
+                                        { vocabId: 'b1v001', type: 'order', prompt: 'Ordena la oración: «La carta es escrita por Rina».', words: ['Surat', 'ditulis', 'oleh', 'Rina.'], correctOrder: ['Surat', 'ditulis', 'oleh', 'Rina.'], explanation: 'La carta ocupa el primer plano; oleh introduce a Rina como agente.' },
+                                        { vocabId: 'b1v003', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Murid diajar oleh guru.', explanation: 'Murid recibe la enseñanza y guru realiza la acción.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Agente explícito u omitido',
+                                    objective: 'Interpreta cuándo se menciona al agente con oleh y cuándo queda sin expresar.',
+                                    grammar: 'Oleh puede introducir al agente en una pasiva, pero no es obligatorio. Si se omite, la oración sigue presentando al participante afectado y la acción; el contexto puede dejar claro quién actúa.',
+                                    vocabIds: [],
+                                    reviewVocabIds: ['v8', 'b1v001', 'b1v002', 'b1v003', 'b1v004'],
+                                    exercises: [
+                                        { vocabId: 'v8', type: 'mc', prompt: 'En «Buku dibaca», ¿qué información queda sin expresar?', options: ['Quién realiza la acción', 'Qué recibe la acción', 'Que ocurre una lectura'], answer: 0, explanation: 'Buku sigue siendo lo que se lee; no se identifica al agente.' },
+                                        { vocabId: 'b1v004', type: 'mc', prompt: '¿Qué función cumple «oleh» en «Buku dibaca oleh Ana»?', options: ['Introduce al agente', 'Indica el lugar', 'Marca el tiempo pasado'], answer: 0, explanation: 'Oleh introduce a Ana como quien realiza la acción en esta pasiva.' },
+                                        { vocabId: 'b1v002', type: 'translate_es_id', prompt: 'Traduce: «La fruta se vende en el mercado».', answer: 'Buah dijual di pasar.', explanation: 'Dijual es la forma pasiva; di pasar indica el lugar.' },
+                                        { vocabId: 'v8', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Buku dibaca oleh Ana.', explanation: 'Oleh Ana expresa quién realiza la lectura.' },
+                                        { vocabId: 'b1v001', type: 'write', prompt: 'Transforma «Rina menulis surat» en una pasiva que mantenga explícito al agente.', hint: 'Coloca surat al principio, usa ditulis y añade oleh antes de Rina.', modelAnswer: 'Surat ditulis oleh Rina.', explanation: 'La carta pasa al primer plano y Rina sigue siendo el agente.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Continuidad del foco en un texto breve',
+                                    objective: 'Elige la voz que mantiene el tema de varias oraciones y justifica el cambio de foco.',
+                                    grammar: 'Un texto puede mantener como tema aquello que recibe la acción mediante pasivas sucesivas. La activa vuelve a poner al agente en primer plano. No hay una voz obligatoria: la elección depende de qué información conecta mejor con lo anterior.',
+                                    vocabIds: [],
+                                    reviewVocabIds: ['v211', 'v212', 'v213', 'v214', 'v8', 'b1v001', 'b1v002', 'b1v003', 'b1v004'],
+                                    exercises: [
+                                        { vocabId: 'b1v002', type: 'mc', prompt: 'El texto ya trata sobre «buah». ¿Qué oración mantiene ese elemento como punto de partida?', options: ['Buah dijual di pasar.', 'Mereka menjual buah.', 'Guru mengajar murid.'], answer: 0, explanation: 'La pasiva mantiene buah al principio y conserva ese foco.' },
+                                        { vocabId: 'v214', type: 'translate_es_id', prompt: 'Traduce: «El profesor enseña al alumno».', answer: 'Guru mengajar murid.', explanation: 'Guru realiza la acción de enseñar y murid la recibe.' },
+                                        { vocabId: 'v8', type: 'order', prompt: 'Ordena la oración: «El libro es leído por Ana».', words: ['Buku', 'dibaca', 'oleh', 'Ana.'], correctOrder: ['Buku', 'dibaca', 'oleh', 'Ana.'], explanation: 'Buku es el elemento que recibe la acción y aparece al inicio.' },
+                                        { vocabId: 'b1v001', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Surat ditulis oleh Rina.', explanation: 'Surat recibe la acción de escribir y Rina es el agente.' },
+                                        { vocabId: 'v211', type: 'write', prompt: 'Escribe un mini texto de tres o cuatro oraciones sobre Ana y un libro. Mantén «buku» como tema en al menos dos oraciones.', hint: 'Puedes empezar con «Ana membaca buku» y continuar con una o dos pasivas con «dibaca».', modelAnswer: 'Ana membaca buku. Buku dibaca oleh Ana. Buku dibaca di rumah.', explanation: 'El texto presenta primero al agente y después mantiene buku como tema mediante la pasiva.' },
+                                        { vocabId: 'v212', type: 'write', prompt: 'Reescribe «Rina menulis surat» para poner la carta en primer plano y explica en una frase por qué elegiste esa voz.', hint: 'Usa «Surat ditulis oleh Rina». Después explica en español qué elemento quieres mantener como tema.', modelAnswer: 'Surat ditulis oleh Rina. Pongo la carta en primer plano para mantenerla como tema.', explanation: 'La pasiva coloca surat al inicio y mantiene a Rina como agente explícito.' }
+                                    ]
+                                }
                             ]
                         },
                         {

@@ -36,7 +36,6 @@
 
 ## Estado de PR y sistema de calidad
 - PR en curso `feat/b1-u1-u4-exercise-consolidation`: amplía U1–U4 a 14–15 ejercicios combinados, añade dos lecciones por unidad y un repaso acumulativo en U4; total B1 previsto 639 ejercicios. CI pendiente.
-- PR en curso `feat/b1-unit-contract-report`: amplía el informe informativo de contrato por unidad a B1 y añade pruebas de conteo combinado unidad+lecciones; sin cambios curriculares, IndexedDB ni backup v3.
 - PR #410 fusionado en `d137db065e792d563994ae4796768b35377f5f4e`; B1 50/50 completo en unidades. Auditoría estructural final pendiente.
 - PR #411 fusionado en `7a88c4750b9cb5707f50c286f73d2884e3c1568a`: auditor y cola editorial ya incluyen B1. PR #412 fusionado en `c7f56e1e0a6162945941d0362fd0006db8d6fdd2`: informe de contrato por unidad ya incluye B1.
 - Auditoría estructural integrada: 122 unidades (A1/A2/B1), 1.062 entradas, 1.025 IDs únicos, 0 errores, 85 avisos y 37 informativos. B1: 50 unidades, 241 entradas/224 IDs, 114 lecciones y 605 ejercicios antes de consolidar U1–U4; auditoría estructural: 0 errores y 44 avisos. Cola B1: 846 filas, 0 P1. Avisos pendientes: 30 de progresión textual, 5 entre lecciones y 9 de cobertura explícita.

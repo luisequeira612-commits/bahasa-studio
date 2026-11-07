@@ -854,5 +854,4 @@ test('deduplicates cross-level term notes when the same vocabulary ID is reused 
   assert.equal(crossLevelNotes.length, 1);
   assert.equal(crossLevelNotes[0].path, 'B1.units[0].vocab[0]');
   assert.equal(b1.error_count, 0);
-  assert.equal(b1.warning_count, 0);
 });

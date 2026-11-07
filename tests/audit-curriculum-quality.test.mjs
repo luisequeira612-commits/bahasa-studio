@@ -287,6 +287,176 @@ test('warns when a unit exercise assesses vocabulary introduced only in a later 
   assert.ok(!report.issues.some((item) => item.code === 'VOCAB_USED_BEFORE_INTRODUCTION' && item.path === 'A1.units[1].exercises[0].vocabId'));
 });
 
+test('warns when later-unit vocabulary appears in examples, dialogue, prompts and instructions', () => {
+  const report = auditCurriculum({
+    id: 'A1',
+    units: [
+      {
+        id: 'u1', title: 'First',
+        vocab: [{ id: 'first', idn: 'satu', esp: 'uno', ex: 'Saya pergi ke sekolah.', exEsp: 'Voy a la escuela.' }],
+        exercises: [{ type: 'listen', prompt: 'Traduce: «besok»', hint: 'Usa también «pergi».', audioText: 'Besok saya pergi.', answer: 'Besok saya pergi.' }],
+      },
+      { id: 'u2', title: 'Second', vocab: [
+        { id: 'later', idn: 'pergi', esp: 'ir' },
+        { id: 'tomorrow', idn: 'besok', esp: 'mañana' },
+      ], exercises: [] },
+    ],
+  });
+
+  const textIssues = report.issues.filter((item) => item.code === 'TEXT_VOCAB_USED_BEFORE_INTRODUCTION');
+  assert.ok(textIssues.some((item) => item.path.endsWith('.vocab[0].ex') && item.message.includes('pergi')));
+  assert.ok(textIssues.some((item) => item.path.endsWith('.exercises[0].prompt#quoted[0]') && item.message.includes('besok')));
+  assert.ok(textIssues.some((item) => item.path.endsWith('.exercises[0].hint#quoted[0]') && item.message.includes('pergi')));
+  assert.ok(textIssues.some((item) => item.path.endsWith('.exercises[0].audioText') && item.message.includes('pergi')));
+  assert.ok(textIssues.some((item) => item.path.endsWith('.exercises[0].answer') && item.message.includes('pergi')));
+});
+
+test('warns when a lesson prompt or dialogue contains vocabulary introduced in a later lesson', () => {
+  const report = auditCurriculum({
+    id: 'A1',
+    units: [{
+      id: 'u1', title: 'One',
+      vocab: [
+        { id: 'first', idn: 'satu', esp: 'uno' },
+        { id: 'later', idn: 'pergi', esp: 'ir' },
+      ],
+      lessons: [
+        { title: 'First lesson', vocabIds: ['first'], exercises: [{ type: 'listen', prompt: 'Escucha: «Saya pergi»', audioText: 'Saya pergi.' }] },
+        { title: 'Second lesson', vocabIds: ['later'], exercises: [] },
+      ],
+    }],
+  });
+
+  const issue = report.issues.find((item) => item.code === 'LESSON_TEXT_VOCAB_USED_BEFORE_INTRODUCTION' && item.path.includes('.prompt#quoted'));
+  assert.ok(issue);
+  assert.match(issue.path, /lessons\[0\]\.exercises\[0\]\.prompt#quoted/);
+  assert.match(issue.message, /pergi/);
+});
+
+test('text vocabulary scan respects exact token boundaries and prior introductions', () => {
+  const report = auditCurriculum({
+    id: 'A1',
+    units: [
+      { id: 'u1', title: 'First', vocab: [{ id: 'makan', idn: 'makan', esp: 'comer' }], exercises: [] },
+      { id: 'u2', title: 'Second', vocab: [{ id: 'later', idn: 'makanan', esp: 'comida' }], exercises: [{ type: 'write', prompt: 'La forma memakan se relaciona con makan.' }] },
+    ],
+  });
+
+  const issues = report.issues.filter((item) => item.code === 'TEXT_VOCAB_USED_BEFORE_INTRODUCTION');
+  assert.equal(issues.length, 0);
+});
+
+test('ignores Spanish prose around quoted Indonesian model-answer text', () => {
+  const report = auditCurriculum({
+    id: 'A2',
+    units: [
+      { id: 'u1', title: 'First', vocab: [{ id: 'makan', idn: 'makan', esp: 'comer' }], exercises: [] },
+      { id: 'u2', title: 'Second', vocab: [{ id: 'yesterday', idn: 'kemarin', esp: 'ayer' }], exercises: [{
+        type: 'write',
+        modelAnswer: 'Kemarin = hecho situado en el día anterior. En ambos casos: «Pertama, saya makan.»',
+      }] },
+    ],
+  });
+
+  assert.ok(!report.issues.some((item) =>
+    ['TEXT_VOCAB_USED_BEFORE_INTRODUCTION', 'LESSON_TEXT_VOCAB_USED_BEFORE_INTRODUCTION'].includes(item.code) &&
+    item.message.includes('kemarin')
+  ));
+});
+
+test('continues scanning model answers written entirely in Indonesian', () => {
+  const report = auditCurriculum({
+    id: 'A1',
+    units: [
+      { id: 'u1', title: 'First', vocab: [{ id: 'first', idn: 'satu', esp: 'uno' }], exercises: [{ type: 'write', modelAnswer: 'Saya pergi.' }] },
+      { id: 'u2', title: 'Second', vocab: [{ id: 'later', idn: 'pergi', esp: 'ir' }], exercises: [] },
+    ],
+  });
+
+  assert.ok(report.issues.some((item) =>
+    item.code === 'TEXT_VOCAB_USED_BEFORE_INTRODUCTION' &&
+    item.path.endsWith('.modelAnswer') && item.message.includes('pergi')
+  ));
+});
+
+test('counts a component as introduced through an earlier multiword vocabulary entry', () => {
+  const report = auditCurriculum({
+    id: 'A1',
+    units: [
+      { id: 'u1', title: 'First', vocab: [{ id: 'greeting', idn: 'Apa kabar?', esp: '¿Qué tal?' }], exercises: [] },
+      { id: 'u2', title: 'Second', vocab: [], exercises: [{ type: 'listen', audioText: 'Apa ya?' }] },
+      { id: 'u3', title: 'Third', vocab: [{ id: 'apa', idn: 'Apa', esp: 'qué' }], exercises: [] },
+    ],
+  });
+
+  assert.ok(!report.issues.some((item) => item.code === 'TEXT_VOCAB_USED_BEFORE_INTRODUCTION' && item.message.includes('Apa')));
+});
+
+test('keeps the specific Di sini warning without a duplicate Sini warning', () => {
+  const report = auditCurriculum({
+    id: 'A1',
+    units: [
+      { id: 'u1', title: 'First', vocab: [], exercises: [{ type: 'listen', audioText: 'Saya di sini.' }] },
+      { id: 'u2', title: 'Second', vocab: [{ id: 'di_sini', idn: 'Di sini', esp: 'aquí' }], exercises: [] },
+      { id: 'u3', title: 'Third', vocab: [{ id: 'sini', idn: 'Sini', esp: 'aquí' }], exercises: [] },
+    ],
+  });
+
+  const issues = report.issues.filter((item) => item.code === 'TEXT_VOCAB_USED_BEFORE_INTRODUCTION');
+  assert.equal(issues.filter((item) => item.message.includes('Di sini')).length, 1);
+  assert.ok(!issues.some((item) => item.message.includes('Sini')));
+});
+
+test('does not treat Spanish glosses, prose or translated options as Indonesian segments', () => {
+  const report = auditCurriculum({
+    id: 'A1',
+    units: [
+      {
+        id: 'u1', title: 'First',
+        grammar: 'Membayar significa pagar; describe un tono formal o informal.',
+        exercises: [{ type: 'mc', prompt: '¿Qué significa comprar?', options: ['Formal', 'Informal'], answer: 0 }],
+      },
+      { id: 'u2', title: 'Second', vocab: [
+        { id: 'pagar', idn: 'pagar', esp: 'cerca' },
+        { id: 'formal', idn: 'formal', esp: 'formal' },
+        { id: 'informal', idn: 'informal', esp: 'informal' },
+      ], exercises: [] },
+    ],
+  });
+
+  assert.ok(!report.issues.some((item) =>
+    ['TEXT_VOCAB_USED_BEFORE_INTRODUCTION', 'LESSON_TEXT_VOCAB_USED_BEFORE_INTRODUCTION'].includes(item.code)
+  ));
+});
+
+test('does not flag a later single-word entry inside an earlier taught expression', () => {
+  const report = auditCurriculum({
+    id: 'A1',
+    units: [
+      { id: 'u1', title: 'First', vocab: [{ id: 'greeting', idn: 'selamat pagi', esp: 'buenos días' }], exercises: [{ type: 'listen', prompt: 'Escucha', audioText: 'Selamat pagi.' }] },
+      { id: 'u2', title: 'Second', vocab: [{ id: 'morning', idn: 'pagi', esp: 'mañana' }], exercises: [] },
+    ],
+  });
+
+  assert.ok(!report.issues.some((item) => item.code === 'TEXT_VOCAB_USED_BEFORE_INTRODUCTION'));
+});
+
+test('lesson text scan allows future vocabulary explicitly declared as review', () => {
+  const report = auditCurriculum({
+    id: 'A1',
+    units: [{
+      id: 'u1', title: 'One',
+      vocab: [{ id: 'first', idn: 'satu', esp: 'uno' }, { id: 'later', idn: 'pergi', esp: 'ir' }],
+      lessons: [
+        { vocabIds: ['first'], reviewVocabIds: ['later'], exercises: [{ type: 'listen', prompt: 'Escucha «Saya pergi»', audioText: 'Saya pergi.' }] },
+        { vocabIds: ['later'], exercises: [] },
+      ],
+    }],
+  });
+
+  assert.ok(!report.issues.some((item) => item.code === 'LESSON_TEXT_VOCAB_USED_BEFORE_INTRODUCTION'));
+});
+
  test('allows A2 unit exercises to review vocabulary introduced in A1', () => {
   const report = auditCurriculum({
     id: 'A2',

@@ -17,6 +17,7 @@
     "quality:deepseek-packet": "node scripts/build-deepseek-review-packet.mjs",
     "quality:batch": "node scripts/build-editorial-review-batches.mjs",
     "quality:grammar-prerequisites": "node scripts/detect-grammar-prerequisites.mjs --output artifacts/grammar-prerequisite-candidates.json",
-    "quality:ambiguity": "node scripts/detect-semantic-ambiguities.mjs --output artifacts/semantic-ambiguity-candidates.json"
+    "quality:ambiguity": "node scripts/detect-semantic-ambiguities.mjs --output artifacts/semantic-ambiguity-candidates.json",
+    "quality:deepseek-b1-u1-u12": "node scripts/build-b1-u1-u12-review-packet.mjs"
   }
 }

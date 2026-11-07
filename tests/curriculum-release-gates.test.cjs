@@ -36,3 +36,22 @@ test('A2 beta policy documentation matches the enabled release gate', () => {
   assert.match(plan, /A2 está habilitado en beta y está disponible sin completar las 32 unidades de A1/);
   assert.doesNotMatch(plan, /A2 debe permanecer oculto para estudiantes/);
 });
+
+
+test('B1 is released immediately; B2 remains sequenced after B1 completion', () => {
+  const learningLevels = html.slice(html.indexOf('function getLearningLevels()'), html.indexOf('function getUniqueLearningVocabulary()'));
+  assert.match(learningLevels, /level\.id !== 'B2'/);
+  assert.doesNotMatch(learningLevels, /B1/);
+
+  const assessmentEntry = html.slice(html.indexOf('startUnitAssessment(unitId)'), html.indexOf('startUnitById(id, requestedLessonIndex)'));
+  const lessonEntry = html.slice(html.indexOf('startUnitById(id, requestedLessonIndex)'), html.indexOf('startUnit(unit, lessonIndex = 0)'));
+  const unitEntry = html.slice(html.indexOf('startUnit(unit, lessonIndex = 0)'), html.indexOf('function getLevels()'));
+  for (const entry of [assessmentEntry, lessonEntry, unitEntry]) {
+    assert.match(entry, /level\.id === 'B2'/);
+    assert.doesNotMatch(entry, /level\.id === 'B1'/);
+  }
+
+  assert.match(html, /function isB1Complete\(completedUnits\)/);
+  assert.match(html, /const isAdvanced = lvl\.id === 'B2'/);
+  assert.match(html, /if \(!isB1Complete\(this\.completedUnits\)\) return;/);
+});

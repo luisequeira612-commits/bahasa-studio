@@ -19,6 +19,9 @@ Se intentaron las entradas oficiales KBBI VI para los nueve conectores; las pág
 ## Solapamiento
 La búsqueda de vocabulario en A1/A2 no encontró entradas explícitas para estos nueve conectores. Las apariciones de `kalau` y `tetapi` en el archivo principal son etiquetas de una lista temática de planificación, no lecciones A1/A2. No se modifica A1 ni A2.
 
+## Próximo repaso acumulativo
+El siguiente repaso acumulativo se programa en U22, después de cinco unidades consecutivas (U18–U22), para recuperar los conectores de este bloque y contenidos anteriores.
+
 ## Calidad y límites
 - 3 unidades, 3 lecciones por unidad; U18, U19 y U20 contienen 14 ejercicios cada una (42 en total).
 - Cada unidad cubre opción múltiple, traducción, ordenación, escucha reproducible y escritura guiada; contiene al menos cinco ejercicios con frases completas.

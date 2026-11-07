@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 import { readFile, writeFile } from 'node:fs/promises';
 import vm from 'node:vm';
+import { resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { loadInlineB1Curriculum } from './load-inline-b1-curriculum.mjs';
 const ROOT=process.cwd();
 async function loadLevel(file,name){const source=await readFile(ROOT+'/'+file,'utf8');const sandbox={window:{}};vm.runInNewContext(source,sandbox,{filename:file,timeout:10000});const value=sandbox.window[name];if(!value||!Array.isArray(value.units))throw new Error('No se encontró '+name+'.units');return value;}
@@ -17,6 +19,7 @@ export function buildUnitContractRows(levels) {
   units.forEach((item,index)=>{for(const ex of item.exercises){const refs=[];if(typeof ex.vocabId==='string')refs.push(ex.vocabId);if(Array.isArray(ex.vocabIds))refs.push(...ex.vocabIds.filter(x=>typeof x==='string'));for(const id of new Set(refs)){if(!uses.has(id))uses.set(id,{total:0,later:0});const count=uses.get(id);count.total++;if(index>(firstTeaching.get(id)??index))count.later++;}}});
   return units.map((item,index)=>{const ex=item.exercises;const types=[...new Set(ex.map(e=>String(e.type??'sin_tipo')))].sort();const full=ex.filter(sentenceEstimate).length;const own=ex.filter(e=>/^(write|writing|production|produce)$/i.test(String(e.type??''))&&typeof e.hint==='string'&&e.hint.trim()).length;return{index,level:item.level,id:item.unit.id??'?',count:ex.length,types,full,own,review:hasReviewMarker(item.unit,ex),reviewVocab:reviewVocabCount(item.unit)};});
 }
+async function main() {
 const a1=await loadLevel('curriculum-a1.js','BAHASA_CURRICULUM_A1');
 const a2=await loadLevel('curriculum-a2.js','BAHASA_CURRICULUM_A2');
 const indexSource=await readFile(ROOT+'/index.html','utf8');
@@ -41,3 +44,9 @@ const lines=['# Informe de contrato por unidad','','Generado: '+new Date().toISO
 ...(low.length?low.map(e=>'| '+e.unit+' | '+e.id+' | '+String(e.form).replace(/\|/g,'/')+' | '+String(e.gloss).replace(/\|/g,'/')+' | '+e.total+' | '+e.later+' |'):['| Ninguna | — | — | — | — | — |']),
 '','## Limitaciones','','Este informe describe la estructura observable, no certifica calidad pedagógica ni lingüística. No inventa umbrales adicionales ni modifica ejercicios, vocabulario, explicaciones, glosas o contenido curricular.',''];
 await writeFile(ROOT+'/docs/UNIT_CONTRACT_REPORT.md',lines.join('\n'),'utf8');console.log('UNIT_CONTRACT_REPORT: '+rows.length+' unidades; '+outliers.length+' fuera de indicadores; '+low.length+' entradas con baja recurrencia; '+reviewRows.length+' con marca explícita de repaso.');
+
+}
+
+if (process.argv[1] && resolve(process.argv[1]) === resolve(fileURLToPath(import.meta.url))) {
+  main().catch((error) => { console.error(`unit-contract-report: ${error.message}`); process.exitCode = 1; });
+}

@@ -30,12 +30,12 @@ function exercisesOf(unit) {
 }
 
 // B1 U50 readiness baseline updated with the final curriculum unit.
-test('B1 draft has fifty units, two hundred twenty-four unique IDs including earlier canonical vocabulary, and six hundred five exercises', () => {
+test('B1 draft has fifty units, two hundred twenty-four unique IDs including earlier canonical vocabulary, and six hundred thirty-nine exercises', () => {
   const b1 = course.levels.find(level => level.id === 'B1');
   assert.ok(b1);
   assert.equal(b1.units.length, 50);
   assert.equal(new Set(b1.units.flatMap(unit => unit.vocab.map(word => word.id))).size, 224);
-  assert.equal(b1.units.reduce((sum, unit) => sum + exercisesOf(unit).length, 0), 605);
+  assert.equal(b1.units.reduce((sum, unit) => sum + exercisesOf(unit).length, 0), 639);
   assert.deepEqual(Array.from(b1.units, unit => unit.id), [
     'b1_u1', 'b1_u2', 'b1_u3', 'b1_u4', 'b1_u5', 'b1_u6', 'b1_u7',
     'b1_u8', 'b1_u9', 'b1_u10', 'b1_u11', 'b1_u12', 'b1_u13', 'b1_u14', 'b1_u15', 'b1_u16', 'b1_u17', 'b1_u18', 'b1_u19', 'b1_u20', 'b1_u21', 'b1_u22', 'b1_u23', 'b1_u24', 'b1_u25', 'b1_u26', 'b1_u27', 'b1_u28', 'b1_u29', 'b1_u30', 'b1_u31', 'b1_u32', 'b1_u33', 'b1_u34', 'b1_u35', 'b1_u36', 'b1_u37', 'b1_u38', 'b1_u39', 'b1_u40', 'b1_u41', 'b1_u42', 'b1_u43', 'b1_u44', 'b1_u45', 'b1_u46', 'b1_u47', 'b1_u48', 'b1_u49', 'b1_u50'
@@ -53,6 +53,38 @@ test('B1 U1 provides a complete introductory practice set for passive di-', () =
   assert.ok(unit.exercises.some(item => item.type === 'translate_es_id'));
   assert.ok(unit.exercises.some(item => item.type === 'listen'));
   assert.ok(unit.exercises.some(item => item.type === 'write'));
+});
+
+test('B1 U1-U4 meet the consolidated unit practice contract and U4 closes the first cumulative review', () => {
+  const b1 = course.levels.find(level => level.id === 'B1');
+  for (const unitId of ['b1_u1', 'b1_u2', 'b1_u3', 'b1_u4']) {
+    const unit = b1.units.find(item => item.id === unitId);
+    assert.ok(unit, unitId + ' must exist');
+    assert.ok(Array.isArray(unit.lessons) && unit.lessons.length >= 2, unitId + ' needs at least two practice lessons');
+    const exercises = exercisesOf(unit);
+    assert.ok(exercises.length >= 14 && exercises.length <= 22, unitId + ' must have 14–22 combined exercises');
+    const types = new Set(exercises.map(item => item.type));
+    for (const type of ['mc', 'translate_es_id', 'order', 'listen', 'write']) {
+      assert.ok(types.has(type), unitId + ' missing exercise type ' + type);
+    }
+    const completeSentenceExercises = exercises.filter(item =>
+      (['listen', 'translate_es_id'].includes(item.type) && typeof item.answer === 'string' && /\s/.test(item.answer)) ||
+      (item.type === 'order' && Array.isArray(item.correctOrder) && item.correctOrder.length >= 2) ||
+      (item.type === 'write' && typeof item.modelAnswer === 'string' && /[.!?]/.test(item.modelAnswer))
+    );
+    assert.ok(completeSentenceExercises.length >= 5, unitId + ' needs at least five complete-sentence exercises');
+    assert.ok(exercises.some(item => item.type === 'write' && item.hint && item.modelAnswer),
+      unitId + ' needs guided original production');
+    const localIds = new Set(unit.vocab.map(word => word.id));
+    for (const exercise of exercises) assert.ok(localIds.has(exercise.vocabId), unitId + ' exercise references non-local vocabulary');
+    for (const lesson of unit.lessons) assert.ok(lesson.exercises.length >= 4, unitId + ' lesson needs at least four exercises');
+  }
+  const u4 = b1.units.find(item => item.id === 'b1_u4');
+  const cumulative = u4.lessons.find(lesson => /repaso acumulativo/i.test(lesson.title));
+  assert.ok(cumulative, 'B1 U4 must close the first four-unit cumulative review');
+  for (const id of ['v8', 'b1v001', 'b1v002', 'b1v003', 'v211', 'v212', 'v213', 'v214', 'b1v005', 'b1v006']) {
+    assert.ok(cumulative.reviewVocabIds.includes(id), 'cumulative review missing earlier vocabulary ' + id);
+  }
 });
 
 test('every B1 draft exercise references vocabulary in its own unit', () => {

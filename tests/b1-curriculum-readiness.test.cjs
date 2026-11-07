@@ -528,9 +528,9 @@ test('B1 U32-U34 consolidate planning, problem solving and decision evaluation',
       assert.ok(!earlierIds.has(word.id), 'new U32-U34 ID already existed earlier: ' + word.id);
     }
   }
-  assert.match(units[0].grammar + units[0].lessons.map(lesson => lesson.grammar).join(' '), /prioritas[\\s\\S]*jadwal[\\s\\S]*mengatur[\\s\\S]*menunda[\\s\\S]*mendahulukan/i);
-  assert.match(units[1].grammar + units[1].lessons.map(lesson => lesson.grammar).join(' '), /masalah[\\s\\S]*hambatan[\\s\\S]*mengatasi[\\s\\S]*solusi[\\s\\S]*memperbaiki/i);
-  assert.match(units[2].grammar + units[2].lessons.map(lesson => lesson.grammar).join(' '), /pilihan[\\s\\S]*mempertimbangkan[\\s\\S]*risiko[\\s\\S]*akibat[\\s\\S]*mengevaluasi/i);
+  assert.match(units[0].grammar + units[0].lessons.map(lesson => lesson.grammar).join(' '), /prioritas[\s\S]*jadwal[\s\S]*mengatur[\s\S]*menunda[\s\S]*mendahulukan/i);
+  assert.match(units[1].grammar + units[1].lessons.map(lesson => lesson.grammar).join(' '), /masalah[\s\S]*hambatan[\s\S]*mengatasi[\s\S]*solusi[\s\S]*memperbaiki/i);
+  assert.match(units[2].grammar + units[2].lessons.map(lesson => lesson.grammar).join(' '), /pilihan[\s\S]*mempertimbangkan[\s\S]*risiko[\s\S]*akibat[\s\S]*mengevaluasi/i);
 });
 
 test('B1 U25-U26 describe character and places with canonical A1 vocabulary', () => {

@@ -1236,11 +1236,11 @@
                             desc: 'Amplía las cláusulas relativas con orang, hal y tempat para precisar de quién o de qué se habla.',
                             grammar: 'La estructura nombre + yang + descripción también se usa con nombres de personas, cosas y lugares: orang yang baik (la persona que es buena), hal yang baik (la cosa buena), tempat yang dekat (el lugar que está cerca). El nombre principal indica de qué se habla; la parte con yang lo especifica.',
                             vocab: [
-                                { id: 'b1v051', idn: 'Yang', esp: 'Partícula que introduce una descripción o cláusula relativa', ex: 'Orang yang baik itu teman saya.', exEsp: 'La persona que es buena es mi amigo/a.' },
-                                { id: 'b1v052', idn: 'Orang', esp: 'Persona; gente', ex: 'Orang yang baik itu teman saya.', exEsp: 'La persona que es buena es mi amigo/a.' },
+                                { id: 'b1v051', idn: 'Yang', esp: 'Partícula que introduce una descripción o cláusula relativa', ex: 'Orang yang baik membaca buku.', exEsp: 'La persona buena lee un libro.' },
+                                { id: 'b1v052', idn: 'Orang', esp: 'Persona; gente', ex: 'Orang yang baik membaca buku.', exEsp: 'La persona buena lee un libro.' },
                                 { id: 'b1v053', idn: 'Tempat', esp: 'Lugar', ex: 'Tempat yang dekat itu baik.', exEsp: 'El lugar que está cerca es bueno.' },
                                 { id: 'b1v054', idn: 'Hal', esp: 'Asunto; cosa; hecho', ex: 'Hal yang baik itu ada di sini.', exEsp: 'La cosa buena está aquí.' },
-                                { id: 'v1002', idn: 'Baik', esp: 'Bueno/a; bien', ex: 'Orang yang baik itu teman saya.', exEsp: 'La persona que es buena es mi amigo/a.' },
+                                { id: 'v1002', idn: 'Baik', esp: 'Bueno/a; bien', ex: 'Orang yang baik membaca buku.', exEsp: 'La persona buena lee un libro.' },
                                 { id: 'v53', idn: 'Teman', esp: 'Amigo/a', ex: 'Teman saya membaca buku.', exEsp: 'Mi amigo/a lee un libro.' },
                                 { id: 'v52', idn: 'Buku', esp: 'Libro', ex: 'Ini buku saya.', exEsp: 'Este es mi libro.' },
                                 { id: 'v211', idn: 'Membaca', esp: 'Leer (forma activa)', ex: 'Teman saya membaca buku.', exEsp: 'Mi amigo/a lee un libro.' }
@@ -1253,10 +1253,10 @@
                                     reviewVocabIds: ['b1v051', 'b1v052', 'v1002', 'v53'],
                                     exercises: [
                                         { vocabId: 'b1v052', type: 'mc', prompt: 'En «orang yang baik», ¿qué nombre se está describiendo?', options: ['Baik', 'Yang', 'Orang'], answer: 2, explanation: 'Orang es el nombre principal; yang baik lo describe.' },
-                                        { vocabId: 'b1v052', type: 'translate_es_id', prompt: 'Traduce: «La persona que es buena es mi amigo/a».', answer: 'Orang yang baik itu teman saya.', explanation: 'Orang yang baik identifica a la persona; itu teman saya completa la oración.' },
+                                        { vocabId: 'b1v052', type: 'translate_es_id', prompt: 'Traduce: «La persona que es buena es mi amigo/a».', answer: 'Orang yang baik membaca buku.', explanation: 'Orang yang baik identifica a la persona; itu teman saya completa la oración.' },
                                         { vocabId: 'b1v052', type: 'order', prompt: 'Ordena: «La persona que es buena es mi amigo/a».', words: ['Orang', 'yang', 'baik', 'itu', 'teman', 'saya.'], correctOrder: ['Orang', 'yang', 'baik', 'itu', 'teman', 'saya.'], explanation: 'La cláusula yang baik aparece después de orang.' },
-                                        { vocabId: 'b1v052', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Orang yang baik itu teman saya.', explanation: 'La frase identifica a la persona por su cualidad.' },
-                                        { vocabId: 'b1v052', type: 'write', prompt: 'Escribe una frase para describir a una persona usando orang yang.', hint: 'Usa orang yang baik y completa la oración con una información conocida.', modelAnswer: 'Orang yang baik itu teman saya.', explanation: 'La expresión orang yang baik describe a una persona.' }
+                                        { vocabId: 'b1v052', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Orang yang baik membaca buku.', explanation: 'La frase identifica a la persona por su cualidad.' },
+                                        { vocabId: 'b1v052', type: 'write', prompt: 'Escribe una frase para describir a una persona usando orang yang.', hint: 'Usa orang yang baik y completa la oración con una información conocida.', modelAnswer: 'Orang yang baik membaca buku.', explanation: 'La expresión orang yang baik describe a una persona.' }
                                     ]
                                 },
                                 {
@@ -1281,7 +1281,7 @@
                                         { vocabId: 'b1v053', type: 'mc', prompt: '¿Qué palabra nombra un lugar en la expresión «tempat yang dekat»?', options: ['Yang', 'Tempat', 'Dekat'], answer: 1, explanation: 'Tempat significa lugar; yang dekat lo describe.' },
                                         { vocabId: 'b1v053', type: 'translate_es_id', prompt: 'Traduce: «El lugar que está cerca es bueno».', answer: 'Tempat yang dekat itu baik.', explanation: 'Tempat es el nombre principal y yang dekat es la descripción relativa.' },
                                         { vocabId: 'b1v053', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Tempat yang dekat itu baik.', explanation: 'La frase identifica un lugar mediante la descripción yang dekat.' },
-                                        { vocabId: 'b1v053', type: 'write', prompt: 'Escribe tres frases breves: una sobre una persona, otra sobre una cosa y otra sobre un lugar. Usa yang en cada una.', hint: 'Combina orang, hal y tempat con yang baik o yang dekat.', modelAnswer: 'Orang yang baik itu teman saya. Hal yang baik itu ada di sini. Tempat yang dekat itu baik.', explanation: 'El texto aplica la misma estructura relativa a personas, cosas y lugares.' }
+                                        { vocabId: 'b1v053', type: 'write', prompt: 'Escribe tres frases breves: una sobre una persona, otra sobre una cosa y otra sobre un lugar. Usa yang en cada una.', hint: 'Combina orang, hal y tempat con yang baik o yang dekat.', modelAnswer: 'Orang yang baik membaca buku. Hal yang baik itu ada di sini. Tempat yang dekat itu baik.', explanation: 'El texto aplica la misma estructura relativa a personas, cosas y lugares.' }
                                     ]
                                 }
                             ]

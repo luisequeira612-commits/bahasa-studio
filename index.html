@@ -2317,6 +2317,175 @@
                             ]
                         },
 
+                        {
+                            id: 'b1_u35',
+                            title: 'Unidad 35: negociación y acuerdos',
+                            desc: 'Expresa propuestas, acepta o rechaza opciones y busca acuerdos mediante compromisos.',
+                            grammar: 'Kesepakatan significa acuerdo o consenso. Berunding expresa negociar o deliberar; menyetujui, aprobar o estar de acuerdo con algo; menolak, rechazar; kompromi, compromiso o concesión mutua. Estas formas permiten describir cómo las personas negocian y llegan a un acuerdo.',
+                            vocab: [
+                                { id: 'a2u36_kesepakatan', idn: 'kesepakatan', esp: 'Acuerdo', ex: 'Kesepakatan dibuat kemarin.', exEsp: 'El acuerdo se hizo ayer.' },
+                                { id: 'b1v131', idn: 'Berunding', esp: 'Negociar; deliberar', ex: 'Mereka berunding tentang jadwal baru.', exEsp: 'Negocian sobre el nuevo horario.' },
+                                { id: 'b1v132', idn: 'Menyetujui', esp: 'Aprobar; estar de acuerdo con', ex: 'Saya menyetujui usulan itu.', exEsp: 'Estoy de acuerdo con esa propuesta.' },
+                                { id: 'b1v133', idn: 'Menolak', esp: 'Rechazar; negarse a', ex: 'Dia menolak tawaran tersebut.', exEsp: 'Él/Ella rechazó esa oferta.' },
+                                { id: 'a2u36_kompromi', idn: 'kompromi', esp: 'Compromiso', ex: 'Mereka mencapai kompromi bersama.', exEsp: 'Ellos llegan a un compromiso.' }
+                            ],
+                            lessons: [
+                                {
+                                    title: 'Kesepakatan y berunding',
+                                    objective: 'Describe una negociación y el acuerdo que las personas intentan alcanzar.',
+                                    grammar: 'Kesepakatan nombra el resultado de llegar a un entendimiento. Berunding describe el proceso de negociar o deliberar para encontrar una solución aceptable.',
+                                    reviewVocabIds: ['b1v125', 'b1v126', 'b1v123', 'b1v114'],
+                                    vocabIds: ['a2u36_kesepakatan', 'b1v131'],
+                                    exercises: [
+                                        { vocabId: 'a2u36_kesepakatan', type: 'mc', prompt: '¿Qué significa kesepakatan?', options: ['Acuerdo o consenso', 'Obstáculo', 'Horario'], answer: 0, explanation: 'Kesepakatan significa acuerdo o consenso.' },
+                                        { vocabId: 'b1v131', type: 'translate_es_id', prompt: 'Traduce: «Negocian sobre el nuevo horario».', answer: 'Mereka berunding tentang jadwal baru.', explanation: 'Berunding expresa negociar o deliberar.' },
+                                        { vocabId: 'a2u36_kesepakatan', type: 'order', prompt: 'Ordena: «Queremos llegar a un acuerdo».', words: ['kesepakatan.', 'mencapai', 'ingin', 'Kami'], correctOrder: ['Kami', 'ingin', 'mencapai', 'kesepakatan.'], explanation: 'Ingin mencapai expresa el deseo de llegar a un acuerdo.' },
+                                        { vocabId: 'b1v131', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Mereka berunding tentang jadwal baru.', explanation: 'La frase presenta el tema de una negociación.' },
+                                        { vocabId: 'a2u36_kesepakatan', type: 'write', prompt: 'Describe una situación en la que dos personas necesitan llegar a un acuerdo y explica qué están negociando.', hint: 'Usa kesepakatan y berunding.', modelAnswer: 'Kami ingin mencapai kesepakatan. Kami berunding tentang jadwal baru.', explanation: 'La producción presenta el objetivo de la negociación y el tema tratado.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Menyetujui y menolak propuestas',
+                                    objective: 'Expresa si aceptas o rechazas una propuesta y explica tu postura.',
+                                    grammar: 'Menyetujui expresa aprobar o estar de acuerdo con una propuesta. Menolak expresa rechazarla o negarse a aceptarla. Ambas formas suelen tomar como objeto la propuesta, oferta o invitación.',
+                                    reviewVocabIds: ['a2u36_kesepakatan', 'b1v131', 'b1v125', 'b1v126'],
+                                    vocabIds: ['b1v132', 'b1v133'],
+                                    exercises: [
+                                        { vocabId: 'b1v132', type: 'mc', prompt: 'En «Saya menyetujui usulan itu», ¿qué expresa menyetujui?', options: ['Aprobar o aceptar una propuesta', 'Rechazar una oferta', 'Posponer una decisión'], answer: 0, explanation: 'Menyetujui expresa aprobar o estar de acuerdo con algo.' },
+                                        { vocabId: 'b1v133', type: 'translate_es_id', prompt: 'Traduce: «Él/Ella rechazó esa oferta».', answer: 'Dia menolak tawaran tersebut.', explanation: 'Menolak significa rechazar.' },
+                                        { vocabId: 'b1v132', type: 'order', prompt: 'Ordena: «Estoy de acuerdo con esa propuesta».', words: ['itu.', 'usulan', 'Saya', 'menyetujui'], correctOrder: ['Saya', 'menyetujui', 'usulan', 'itu.'], explanation: 'Menyetujui toma usulan itu como aquello que se aprueba.' },
+                                        { vocabId: 'b1v133', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Dia menolak tawaran tersebut karena terlalu mahal.', explanation: 'La frase expresa un rechazo y presenta su motivo.' },
+                                        { vocabId: 'b1v133', type: 'write', prompt: 'Escribe dos frases: una para aceptar una propuesta y otra para rechazar una oferta, con una razón breve.', hint: 'Contrasta menyetujui y menolak.', modelAnswer: 'Saya menyetujui usulan itu karena sangat berguna. Dia menolak tawaran tersebut karena terlalu mahal.', explanation: 'La producción contrasta aceptación y rechazo con motivos.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Kompromi y concesiones',
+                                    objective: 'Explica cómo las partes pueden ceder en algunos puntos para llegar a un acuerdo.',
+                                    grammar: 'Kompromi nombra una solución en la que cada parte acepta alguna concesión. Puede combinarse con mencari para expresar la búsqueda de un punto aceptable para todos.',
+                                    reviewVocabIds: ['a2u36_kesepakatan', 'b1v131', 'b1v132', 'b1v133', 'b1v126'],
+                                    vocabIds: ['a2u36_kompromi'],
+                                    exercises: [
+                                        { vocabId: 'a2u36_kompromi', type: 'mc', prompt: '¿Qué significa kompromi?', options: ['Compromiso o concesión mutua', 'Rechazo definitivo', 'Resultado inesperado'], answer: 0, explanation: 'Kompromi describe una concesión mutua para acercar posiciones.' },
+                                        { vocabId: 'a2u36_kompromi', type: 'translate_es_id', prompt: 'Traduce: «Necesitamos buscar un compromiso».', answer: 'Kita perlu mencari kompromi.', explanation: 'Mencari kompromi expresa buscar una solución de concesión mutua.' },
+                                        { vocabId: 'a2u36_kompromi', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Kita perlu mencari kompromi agar semua pihak setuju.', explanation: 'La frase relaciona el compromiso con la aceptación de todas las partes.' },
+                                        { vocabId: 'a2u36_kompromi', type: 'write', prompt: 'Resume una negociación en cuatro frases: presenta el tema, una propuesta, un rechazo o aceptación y el compromiso final.', hint: 'Integra berunding, menyetujui, menolak y kompromi.', modelAnswer: 'Kami berunding tentang jadwal baru. Saya menyetujui usulan pertama. Mereka menolak waktu tersebut. Akhirnya, kita mencari kompromi.', explanation: 'La producción recorre el proceso desde la negociación hasta una solución de compromiso.' }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            id: 'b1_u36',
+                            title: 'Unidad 36: explicar, responder y confirmar información',
+                            desc: 'Aclara ideas, responde a otras personas y confirma que la información se ha entendido.',
+                            grammar: 'Menerangkan significa explicar; menanggapi, responder o reaccionar a algo; mengonfirmasi, confirmar; menyampaikan, comunicar o transmitir información; memastikan, asegurarse de algo. Estas formas permiten mantener una comunicación clara y comprobar los detalles.',
+                            vocab: [
+                                { id: 'b1v135', idn: 'Menerangkan', esp: 'Explicar; aclarar', ex: 'Saya menerangkan alasan keputusan itu.', exEsp: 'Explico el motivo de esa decisión.' },
+                                { id: 'b1v136', idn: 'Menanggapi', esp: 'Responder; reaccionar a', ex: 'Dia menanggapi pertanyaan itu.', exEsp: 'Él/Ella responde a esa pregunta.' },
+                                { id: 'b1v137', idn: 'Mengonfirmasi', esp: 'Confirmar', ex: 'Saya mengonfirmasi jadwal pertemuan.', exEsp: 'Confirmo el horario de la reunión.' },
+                                { id: 'b1v138', idn: 'Menyampaikan', esp: 'Comunicar; transmitir; expresar', ex: 'Kami menyampaikan informasi kepada peserta.', exEsp: 'Comunicamos la información a los participantes.' },
+                                { id: 'b1v139', idn: 'Memastikan', esp: 'Asegurarse de; comprobar', ex: 'Saya memastikan semua orang memahami rencana itu.', exEsp: 'Me aseguro de que todos entiendan ese plan.' }
+                            ],
+                            lessons: [
+                                {
+                                    title: 'Menerangkan y menanggapi',
+                                    objective: 'Explica una idea y responde a una pregunta o comentario.',
+                                    grammar: 'Menerangkan expresa hacer comprensible una idea, razón o situación. Menanggapi expresa responder o reaccionar a una pregunta, comentario o situación.',
+                                    reviewVocabIds: ['a2u36_kesepakatan', 'b1v132', 'b1v133', 'b1v126'],
+                                    vocabIds: ['b1v135', 'b1v136'],
+                                    exercises: [
+                                        { vocabId: 'b1v135', type: 'mc', prompt: '¿Qué significa menerangkan?', options: ['Explicar o aclarar', 'Confirmar una cita', 'Rechazar una propuesta'], answer: 0, explanation: 'Menerangkan significa explicar o aclarar.' },
+                                        { vocabId: 'b1v136', type: 'translate_es_id', prompt: 'Traduce: «Él/Ella responde a esa pregunta».', answer: 'Dia menanggapi pertanyaan itu.', explanation: 'Menanggapi expresa responder o reaccionar a algo.' },
+                                        { vocabId: 'b1v135', type: 'order', prompt: 'Ordena: «Explico el motivo de esa decisión».', words: ['keputusan', 'alasan', 'Saya', 'itu.', 'menerangkan'], correctOrder: ['Saya', 'menerangkan', 'alasan', 'keputusan', 'itu.'], explanation: 'Menerangkan toma alasan keputusan itu como contenido que se explica.' },
+                                        { vocabId: 'b1v136', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Dia menanggapi pertanyaan itu dengan tenang.', explanation: 'La frase describe una respuesta tranquila a una pregunta.' },
+                                        { vocabId: 'b1v135', type: 'write', prompt: 'Escribe dos frases: explica una decisión y responde a una pregunta sobre ella.', hint: 'Usa menerangkan y menanggapi.', modelAnswer: 'Saya menerangkan alasan keputusan itu. Dia menanggapi pertanyaan tersebut dengan tenang.', explanation: 'La producción conecta una explicación con una respuesta.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Mengonfirmasi y menyampaikan',
+                                    objective: 'Confirma un detalle y comunica información relevante a otras personas.',
+                                    grammar: 'Mengonfirmasi expresa confirmar que un dato o acuerdo es correcto. Menyampaikan expresa comunicar o transmitir información, un mensaje o una idea a otra persona.',
+                                    reviewVocabIds: ['b1v135', 'b1v136', 'a2u36_kesepakatan', 'b1v131'],
+                                    vocabIds: ['b1v137', 'b1v138'],
+                                    exercises: [
+                                        { vocabId: 'b1v137', type: 'mc', prompt: '¿Qué expresa mengonfirmasi?', options: ['Confirmar un dato o acuerdo', 'Explicar un problema', 'Negociar un precio'], answer: 0, explanation: 'Mengonfirmasi significa confirmar.' },
+                                        { vocabId: 'b1v138', type: 'translate_es_id', prompt: 'Traduce: «Comunicamos la información a los participantes».', answer: 'Kami menyampaikan informasi kepada peserta.', explanation: 'Menyampaikan significa comunicar o transmitir información.' },
+                                        { vocabId: 'b1v137', type: 'order', prompt: 'Ordena: «Confirmo el horario de la reunión».', words: ['pertemuan.', 'jadwal', 'mengonfirmasi', 'Saya'], correctOrder: ['Saya', 'mengonfirmasi', 'jadwal', 'pertemuan.'], explanation: 'Mengonfirmasi toma jadwal pertemuan como dato que se confirma.' },
+                                        { vocabId: 'b1v138', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Kami menyampaikan informasi baru kepada peserta.', explanation: 'La frase identifica el mensaje y sus destinatarios.' },
+                                        { vocabId: 'b1v138', type: 'write', prompt: 'Escribe tres frases: confirma un horario, comunica un cambio y explica a quién va dirigido el mensaje.', hint: 'Integra mengonfirmasi y menyampaikan.', modelAnswer: 'Saya mengonfirmasi jadwal pertemuan. Kami menyampaikan perubahan itu kepada peserta. Semua orang menerima informasi baru.', explanation: 'La producción presenta la confirmación y la comunicación de un cambio.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Memastikan que todos comprendan',
+                                    objective: 'Comprueba que los detalles son correctos y que las personas han entendido la información.',
+                                    grammar: 'Memastikan expresa asegurarse de que algo es correcto o de que una condición se cumple. Puede introducir el resultado que se quiere comprobar, por ejemplo memastikan semua orang memahami informasi.',
+                                    reviewVocabIds: ['b1v135', 'b1v136', 'b1v137', 'b1v138', 'a2u36_kesepakatan', 'b1v126'],
+                                    vocabIds: ['b1v139'],
+                                    exercises: [
+                                        { vocabId: 'b1v139', type: 'mc', prompt: '¿Qué significa memastikan?', options: ['Asegurarse de algo o comprobarlo', 'Rechazar una oferta', 'Buscar un compromiso'], answer: 0, explanation: 'Memastikan significa asegurarse de que algo es correcto o se cumple.' },
+                                        { vocabId: 'b1v139', type: 'translate_es_id', prompt: 'Traduce: «Me aseguro de que todos entiendan ese plan».', answer: 'Saya memastikan semua orang memahami rencana itu.', explanation: 'Memastikan introduce aquello que se comprueba.' },
+                                        { vocabId: 'b1v139', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Saya memastikan semua orang memahami informasi tersebut.', explanation: 'La frase expresa una comprobación de comprensión.' },
+                                        { vocabId: 'b1v139', type: 'write', prompt: 'Redacta un mensaje breve en cuatro frases: explica el plan, comunica un cambio, confirma el horario y comprueba que todos lo entendieron.', hint: 'Integra menerangkan, menyampaikan, mengonfirmasi y memastikan.', modelAnswer: 'Saya menerangkan rencana baru. Kami menyampaikan perubahan kepada peserta. Saya mengonfirmasi jadwal pertemuan. Saya memastikan semua orang memahami informasi tersebut.', explanation: 'La producción reúne explicación, comunicación, confirmación y comprobación.' }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            id: 'b1_u37',
+                            title: 'Unidad 37: progreso, logros y mejora continua',
+                            desc: 'Describe avances, reconoce logros y explica cómo mejorar o desarrollar nuevas capacidades.',
+                            grammar: 'Kemajuan significa progreso o avance y pencapaian, logro o consecución. Menyelesaikan expresa terminar o resolver una tarea; meningkatkan, aumentar o mejorar; mengembangkan, desarrollar. Estas formas permiten informar sobre resultados y planificar mejoras.',
+                            vocab: [
+                                { id: 'b1v140', idn: 'Kemajuan', esp: 'Progreso; avance', ex: 'Kami melihat kemajuan dalam pekerjaan.', exEsp: 'Vemos progreso en el trabajo.' },
+                                { id: 'b1v141', idn: 'Pencapaian', esp: 'Logro; consecución', ex: 'Pencapaian itu penting bagi tim.', exEsp: 'Ese logro es importante para el equipo.' },
+                                { id: 'b1v142', idn: 'Menyelesaikan', esp: 'Terminar; completar; resolver', ex: 'Kami menyelesaikan tugas tepat waktu.', exEsp: 'Terminamos la tarea a tiempo.' },
+                                { id: 'a2u12_meningkatkan', idn: 'Meningkatkan', esp: 'Mejorar; aumentar', ex: 'Saya ingin meningkatkan kemampuan.', exEsp: 'Quiero mejorar mi capacidad.' },
+                                { id: 'a2u12_mengembangkan', idn: 'Mengembangkan', esp: 'Desarrollar', ex: 'Saya mengembangkan kemampuan.', exEsp: 'Desarrollo mi capacidad.' }
+                            ],
+                            lessons: [
+                                {
+                                    title: 'Kemajuan y pencapaian',
+                                    objective: 'Distingue el progreso continuo de un logro concreto.',
+                                    grammar: 'Kemajuan se refiere al avance o mejora a lo largo del tiempo. Pencapaian destaca un resultado o logro alcanzado. Se puede describir el progreso de un proyecto y después señalar un logro concreto.',
+                                    reviewVocabIds: ['a2u36_kesepakatan', 'b1v137', 'b1v129', 'b1v128'],
+                                    vocabIds: ['b1v140', 'b1v141'],
+                                    exercises: [
+                                        { vocabId: 'b1v140', type: 'mc', prompt: '¿Qué significa kemajuan?', options: ['Progreso o avance', 'Acuerdo', 'Riesgo'], answer: 0, explanation: 'Kemajuan significa progreso o avance.' },
+                                        { vocabId: 'b1v141', type: 'translate_es_id', prompt: 'Traduce: «Ese logro es importante para el equipo».', answer: 'Pencapaian itu penting bagi tim.', explanation: 'Pencapaian significa logro o consecución.' },
+                                        { vocabId: 'b1v140', type: 'order', prompt: 'Ordena: «Vemos progreso en el trabajo».', words: ['pekerjaan.', 'kemajuan', 'melihat', 'Kami', 'dalam'], correctOrder: ['Kami', 'melihat', 'kemajuan', 'dalam', 'pekerjaan.'], explanation: 'Dalam pekerjaan sitúa el progreso en el ámbito del trabajo.' },
+                                        { vocabId: 'b1v141', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Pencapaian itu penting bagi seluruh tim.', explanation: 'La frase valora un logro para el equipo completo.' },
+                                        { vocabId: 'b1v140', type: 'write', prompt: 'Describe el progreso de una actividad y menciona un logro concreto que ya alcanzaste.', hint: 'Usa kemajuan y pencapaian.', modelAnswer: 'Kami melihat kemajuan dalam pekerjaan. Pencapaian itu penting bagi seluruh tim.', explanation: 'La producción diferencia el avance general de un resultado concreto.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Menyelesaikan tareas y objetivos',
+                                    objective: 'Explica cómo completas una tarea y alcanzas un resultado en el tiempo previsto.',
+                                    grammar: 'Menyelesaikan puede significar terminar una tarea o resolver un asunto. Puede combinarse con tugas para hablar de completar un trabajo y tepat waktu para indicar que se hace a tiempo.',
+                                    reviewVocabIds: ['b1v140', 'b1v141', 'b1v115', 'b1v116', 'b1v119'],
+                                    vocabIds: ['b1v142'],
+                                    exercises: [
+                                        { vocabId: 'b1v142', type: 'mc', prompt: '¿Qué significa menyelesaikan tugas?', options: ['Completar una tarea', 'Aplazar una tarea', 'Rechazar una propuesta'], answer: 0, explanation: 'Menyelesaikan tugas significa completar una tarea.' },
+                                        { vocabId: 'b1v142', type: 'translate_es_id', prompt: 'Traduce: «Terminamos la tarea a tiempo».', answer: 'Kami menyelesaikan tugas tepat waktu.', explanation: 'Menyelesaikan expresa completar y tepat waktu indica hacerlo a tiempo.' },
+                                        { vocabId: 'b1v142', type: 'order', prompt: 'Ordena: «Terminamos el trabajo antes del plazo».', words: ['batas', 'pekerjaan', 'Kami', 'menyelesaikan', 'sebelum', 'waktu.'], correctOrder: ['Kami', 'menyelesaikan', 'pekerjaan', 'sebelum', 'batas', 'waktu.'], explanation: 'Sebelum batas waktu indica que se termina antes del plazo.' },
+                                        { vocabId: 'b1v142', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Kami menyelesaikan tugas tepat waktu dan mencapai tujuan.', explanation: 'La frase relaciona completar una tarea con alcanzar una meta.' },
+                                        { vocabId: 'b1v142', type: 'write', prompt: 'Explica una tarea que completaste, cuándo la terminaste y qué resultado conseguiste.', hint: 'Usa menyelesaikan y vocabulario de metas de unidades anteriores.', modelAnswer: 'Kami menyelesaikan tugas tepat waktu. Kami mencapai tujuan yang sudah direncanakan.', explanation: 'La producción presenta la tarea terminada y el resultado alcanzado.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Meningkatkan y mengembangkan',
+                                    objective: 'Propón una mejora y explica qué capacidad o resultado quieres desarrollar.',
+                                    grammar: 'Meningkatkan expresa mejorar o aumentar un nivel, una calidad o una cantidad. Mengembangkan expresa desarrollar o ampliar una capacidad, idea o actividad. Se pueden combinar para describir un plan de mejora.',
+                                    reviewVocabIds: ['b1v140', 'b1v141', 'b1v142', 'b1v117', 'b1v122'],
+                                    vocabIds: ['a2u12_meningkatkan', 'a2u12_mengembangkan'],
+                                    exercises: [
+                                        { vocabId: 'a2u12_meningkatkan', type: 'mc', prompt: '¿Qué significa meningkatkan kualitas pekerjaan?', options: ['Mejorar la calidad del trabajo', 'Posponer el trabajo', 'Negociar un acuerdo'], answer: 0, explanation: 'Meningkatkan expresa mejorar o aumentar.' },
+                                        { vocabId: 'a2u12_mengembangkan', type: 'translate_es_id', prompt: 'Traduce: «Desarrollan nuevas capacidades».', answer: 'Mereka mengembangkan kemampuan baru.', explanation: 'Mengembangkan significa desarrollar o ampliar.' },
+                                        { vocabId: 'a2u12_meningkatkan', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Kami ingin meningkatkan kualitas pekerjaan.', explanation: 'La frase expresa una meta de mejora.' },
+                                        { vocabId: 'a2u12_mengembangkan', type: 'write', prompt: 'Escribe un plan de mejora de cuatro frases: indica un avance, un logro, algo que quieres mejorar y una capacidad que deseas desarrollar.', hint: 'Integra kemajuan, pencapaian, meningkatkan y mengembangkan.', modelAnswer: 'Kami melihat kemajuan dalam pekerjaan. Pencapaian itu penting bagi tim. Kami ingin meningkatkan kualitas pekerjaan. Kami juga ingin mengembangkan kemampuan baru.', explanation: 'La producción integra progreso, logro y dos acciones de mejora futura.' }
+                                    ]
+                                }
+                            ]
+                        },
+
                     ]
                 },
 {

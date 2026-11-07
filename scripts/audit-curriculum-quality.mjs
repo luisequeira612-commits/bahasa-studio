@@ -13,6 +13,7 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import vm from 'node:vm';
+import { loadInlineB1Curriculum } from './load-inline-b1-curriculum.mjs';
 
 function loadCurriculum(source, globalName, filename) {
   const sandbox = { window: {} };
@@ -736,14 +737,14 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
 
 
 export function auditCurricula(curricula) {
-  const a1VocabularyIds = new Set(
-    (curricula.find((curriculum) => curriculum.id === 'A1')?.units ?? [])
-      .flatMap((unit) => (unit.vocab ?? []).map((word) => word?.id))
-      .filter((id) => typeof id === 'string')
-  );
-  return curricula.map((curriculum) =>
-    auditCurriculum(curriculum, curriculum.id, curriculum.id === 'A2' ? a1VocabularyIds : [])
-  );
+  return curricula.map((curriculum, index) => {
+    const earlierVocabularyIds = new Set(
+      curricula.slice(0, index)
+        .flatMap((earlier) => (earlier.units ?? []).flatMap((unit) => (unit.vocab ?? []).map((word) => word?.id)))
+        .filter((id) => typeof id === 'string')
+    );
+    return auditCurriculum(curriculum, curriculum.id, earlierVocabularyIds);
+  });
 }
 
 async function main() {
@@ -768,6 +769,8 @@ async function main() {
     const source = await readFile(resolve(filename), 'utf8');
     curricula.push(loadCurriculum(source, globalName, filename));
   }
+  const indexSource = await readFile(resolve('index.html'), 'utf8');
+  curricula.push(loadInlineB1Curriculum(indexSource, curricula[0], curricula[1]));
   const reports = auditCurricula(curricula);
   const report = {
     schema_version: 1,

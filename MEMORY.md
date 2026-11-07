@@ -36,7 +36,7 @@
 
 ## Estado de PR y sistema de calidad
 - PR #410 fusionado en `d137db065e792d563994ae4796768b35377f5f4e`; B1 50/50 completo en unidades. Auditoría estructural final pendiente.
-- Rama `feat/b1-quality-audit-integration`: conecta el auditor y la cola editorial existentes a B1 (extraído de `CourseData` en `index.html`); no modifica currículo, IndexedDB ni backup v3. CI pendiente.
+- PR #411 `feat/b1-quality-audit-integration`: conecta auditor y cola editorial a B1; no modifica currículo, IndexedDB ni backup v3. CI verde en el commit `77b78736a5799d300c13e466049bbe3206c135e7`; pendiente revisión final y fusión.\n- Auditoría integrada: 122 unidades (A1/A2/B1), 1.062 entradas de vocabulario, 1.025 IDs únicos, 0 errores, 85 avisos y 37 informativos. B1: 50 unidades, 241 entradas/224 IDs, 114 lecciones, 605 ejercicios, 0 errores y 44 avisos (30 de progresión entre unidades, 5 entre lecciones y 9 de cobertura explícita). Cola B1: 846 filas (241 vocabulario + 605 ejercicios), 642 P2 y 204 P3, todas `pending`/`not_reviewed`, 0 P1.
 - PR #349 fusionado: fija Playwright 1.55.0 y el runner `ubuntu-24.04` para estabilizar CI.
 - PR #350 fusionado: registra la hoja de ruta lingüística vigente y las reglas preventivas de independencia del idioma.
 - PR #337–#344 fusionados; #344 (commit `817b4246b0f6302544e09b357041e95f44cd791b`) incorpora parser CSV multilínea y sus pruebas en CI.

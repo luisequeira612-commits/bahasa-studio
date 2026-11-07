@@ -21,7 +21,7 @@ El script `scripts/audit-curriculum-quality.mjs` carga A1 y A2 desde sus archivo
 - cobertura de audio por unidad, diferenciando ejercicios `listen` (escucha y escritura) de ejercicios con `audioText` (consigna o frase reproducida mediante síntesis de voz); el informe cuenta la cobertura combinada sin duplicar un ejercicio que use ambos campos;
 - índices de respuesta MC dentro del rango de opciones, también en ejercicios de lección;
 - consistencia entre `words` y `correctOrder` en ejercicios de orden, también en ejercicios de lección;
-- referencias `vocabId`, `vocabIds` y `reviewVocabIds` que no resuelven al vocabulario del nivel; se permiten referencias acumulativas hacia niveles anteriores (A2→A1 y B1→A1/A2), pero no referencias hacia vocabulario de niveles posteriores;
+- referencias `vocabId`, `vocabIds` y `reviewVocabIds` que no resuelven al vocabulario del nivel; se permiten referencias acumulativas hacia niveles anteriores (A2→A1 y B1→A1/A2); los IDs no disponibles en el nivel actual ni en los niveles anteriores se reportan como referencias sin resolver;
 - referencias en ejercicios de unidad y de lección;
 - avisos heurísticos cuando una forma de vocabulario presentada después aparece en campos de contenido indonesio (`ex`, `audioText`, `dialogue`, `readingText`, `words`, `correctOrder` y respuestas de ejercicios que esperan indonesio); en instrucciones o prosa bilingüe solo se inspeccionan fragmentos entre comillas. Se excluyen glosas españolas, ejemplos traducidos y opciones MC sin clasificación de idioma;
 - avisos cuando un ejercicio de unidad usa vocabulario del mismo nivel que solo se introduce en una unidad posterior;

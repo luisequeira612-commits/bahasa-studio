@@ -26,8 +26,8 @@ test('B1 draft has twelve units and an explicitly incomplete vocabulary bank', (
   const b1 = course.levels.find(level => level.id === 'B1');
   assert.ok(b1);
   assert.equal(b1.units.length, 12);
-  assert.equal(b1.units.reduce((sum, unit) => sum + unit.vocab.length, 0), 51);
-  assert.equal(b1.units.reduce((sum, unit) => sum + unit.exercises.length, 0), 69);
+  assert.equal(b1.units.reduce((sum, unit) => sum + unit.vocab.length, 0), 45);
+  assert.equal(b1.units.reduce((sum, unit) => sum + unit.exercises.length, 0), 72);
   assert.deepEqual(Array.from(b1.units, unit => unit.id), ['b1_u1', 'b1_u2', 'b1_u3', 'b1_u4', 'b1_u5', 'b1_u6', 'b1_u7', 'b1_u8', 'b1_u9', 'b1_u10', 'b1_u11', 'b1_u12']);
 });
 
@@ -63,7 +63,7 @@ test('every B1 draft exercise references vocabulary in its own unit', () => {
       }
     }
   }
-  assert.equal(ids.size, 51);
+  assert.equal(ids.size, 45);
 });
 
 
@@ -93,6 +93,35 @@ test('displaced B1 U7-U9 content is preserved outside the active curriculum', ()
   const archive = fs.readFileSync(path.join(root, 'docs/B1_U7_U9_DISPLACED_CONTENT.md'), 'utf8');
   for (const term of ['menurut', 'berdasarkan', 'laporan', 'meningkat', 'menurun', 'dilakukan', 'digunakan', 'diproses', 'dihasilkan', 'langkah', 'pendapat', 'alasan', 'setuju', 'berbeda', 'sebaliknya']) {
     assert.ok(archive.includes(term), 'archive missing displaced term ' + term);
+  }
+  assert.match(archive, /Objetos originales preservados/);
+});
+
+test('B1 U10-U12 follow the approved nominalization and ke-an sequence without duplicating A1/A2 vocabulary', () => {
+  const b1 = course.levels.find(level => level.id === 'B1');
+  const forms = unitId => b1.units.find(unit => unit.id === unitId).vocab.map(word => word.idn.toLowerCase());
+  assert.deepEqual(forms('b1_u10'), ['pelajaran', 'pekerjaan']);
+  assert.deepEqual(forms('b1_u11'), ['pertanyaan', 'percakapan', 'perkenalan']);
+  assert.deepEqual(forms('b1_u12'), ['kesehatan', 'kecelakaan', 'keadaan', 'kebudayaan']);
+  for (const unitId of ['b1_u10', 'b1_u11', 'b1_u12']) {
+    const unit = b1.units.find(item => item.id === unitId);
+    assert.equal(unit.exercises.length, 6);
+    assert.ok(unit.exercises.some(item => item.type === 'write'));
+    assert.ok(unit.exercises.some(item => item.type === 'listen'));
+    const localIds = new Set(unit.vocab.map(word => word.id));
+    for (const exercise of unit.exercises) assert.ok(localIds.has(exercise.vocabId));
+  }
+  for (const [source, id] of [
+    [a1Source, 'v20'],
+    [a2Source, 'a2u12_pengalaman'],
+    [a2Source, 'a2u12_kesempatan'],
+    [a2Source, 'a2u14_perjalanan'],
+    [a2Source, 'a2u15_pertemuan'],
+    [a2Source, 'a2u20_kebersihan']
+  ]) assert.ok(source.includes(id), 'missing canonical earlier vocabulary ID ' + id);
+  const archive = fs.readFileSync(path.join(root, 'docs/B1_U10_U12_DISPLACED_CONTENT.md'), 'utf8');
+  for (const id of ['b1u10_mohon', 'b1u11_bisa_diulangi', 'b1u12_kesimpulan']) {
+    assert.ok(archive.includes(id), 'archive missing displaced object content ' + id);
   }
   assert.match(archive, /Objetos originales preservados/);
 });

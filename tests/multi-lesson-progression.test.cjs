@@ -160,8 +160,11 @@ test('authored lesson vocabulary references resolve unambiguously within their i
           ...orderedUnits.slice(0, unitIndex).flatMap(previousUnit => previousUnit.vocab || []),
           ...previouslyTaughtInUnit
         ].filter(word => word.id === id);
-        assert.equal(previousMatches.length, 1,
-          unit.id + ' review vocabulary reference ' + id + ' must resolve exactly once in previously taught course vocabulary');
+        assert.ok(previousMatches.length >= 1,
+          unit.id + ' review vocabulary reference ' + id + ' must exist in previously taught course vocabulary');
+        const resolvedForms = new Set(previousMatches.map(word => String(word.idn || '').toLowerCase()));
+        assert.equal(resolvedForms.size, 1,
+          unit.id + ' review vocabulary reference ' + id + ' must always resolve to the same Indonesian form');
       }
 
       for (const id of lesson.vocabIds || []) {

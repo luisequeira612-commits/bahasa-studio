@@ -1343,6 +1343,160 @@
                                     ]
                                 }
                             ]
+                        },
+
+                        {
+                            id: 'b1_u18',
+                            title: 'Unidad 18: condiciones — kalau, jika, seandainya y asalkan',
+                            desc: 'Distingue condiciones posibles, situaciones imaginarias y requisitos suficientes.',
+                            grammar: 'Kalau es el conector más común para condiciones reales o posibles; jika expresa una condición similar en un registro más neutro o formal. Seandainya presenta una situación imaginaria o poco probable. Asalkan introduce un requisito suficiente: el resultado se cumple con tal de que esa condición se satisfaga. El verbo no cambia de forma por tratarse de una condición.',
+                            vocab: [
+                                { id: 'b1v056', idn: 'Kalau', esp: 'Si; en caso de que (condición posible)', ex: 'Kalau hujan, saya akan pulang.', exEsp: 'Si llueve, volveré a casa.' },
+                                { id: 'b1v057', idn: 'Jika', esp: 'Si (condición neutra o formal)', ex: 'Jika hujan, saya akan pulang.', exEsp: 'Si llueve, volveré a casa.' },
+                                { id: 'b1v058', idn: 'Seandainya', esp: 'Si; si imaginario (hipotético)', ex: 'Seandainya saya punya waktu, saya akan belajar.', exEsp: 'Si tuviera tiempo, estudiaría.' },
+                                { id: 'b1v059', idn: 'Asalkan', esp: 'Siempre que; con tal de que', ex: 'Saya akan datang asalkan ada waktu.', exEsp: 'Iré siempre que haya tiempo.' }
+                            ],
+                            lessons: [
+                                {
+                                    title: 'Condiciones posibles: kalau y jika',
+                                    objective: 'Expresa una condición posible y reconoce la diferencia de registro entre kalau y jika.',
+                                    grammar: 'Kalau es muy frecuente en conversación y también puede aparecer en prosa neutral. Jika es una alternativa neutra o más formal, habitual en instrucciones y escritura cuidada. Ambos introducen una condición posible; no cambian la forma del verbo.',
+                                    reviewVocabIds: ['v258', 'v280'],
+                                    exercises: [
+                                        { vocabId: 'b1v056', type: 'mc', prompt: '¿Qué conector suele ser la opción más común en una conversación cotidiana para expresar «si llueve»?', options: ['Kalau', 'Seandainya', 'Asalkan'], answer: 0, explanation: 'Kalau es la opción más común para una condición posible en la conversación cotidiana.' },
+                                        { vocabId: 'b1v057', type: 'translate_es_id', prompt: 'Traduce: «Si llueve, volveré a casa».', answer: 'Jika hujan, saya akan pulang.', explanation: 'Jika introduce la condición; saya akan pulang expresa el resultado futuro.' },
+                                        { vocabId: 'b1v056', type: 'order', prompt: 'Ordena: «Si llueve, volveré a casa».', words: ['saya', 'Kalau', 'pulang.', 'hujan,', 'akan'], correctOrder: ['Kalau', 'hujan,', 'saya', 'akan', 'pulang.'], explanation: 'Cuando la condición aparece primero, se separa del resultado con una coma.' },
+                                        { vocabId: 'b1v057', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Jika hujan, saya akan pulang.', explanation: 'La frase usa jika para presentar una condición posible.' },
+                                        { vocabId: 'b1v056', type: 'write', prompt: 'Escribe dos oraciones: una con kalau y otra con jika. Expresa condiciones posibles.', hint: 'Puedes usar hujan, ada waktu, pulang o belajar.', modelAnswer: 'Kalau hujan, saya akan pulang. Jika ada waktu, saya akan belajar di rumah.', explanation: 'Kalau y jika pueden introducir condiciones posibles; la diferencia principal aquí es el registro.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Hipótesis y requisitos: seandainya y asalkan',
+                                    objective: 'Diferencia una situación imaginaria de una condición que funciona como requisito.',
+                                    grammar: 'Seandainya invita a imaginar una situación que no se presenta como un hecho: seandainya saya punya waktu. Asalkan expresa una condición que basta para permitir el resultado: saya akan datang asalkan ada waktu.',
+                                    reviewVocabIds: ['v37', 'v281'],
+                                    exercises: [
+                                        { vocabId: 'b1v058', type: 'mc', prompt: '¿Qué conector presenta con mayor claridad una situación imaginaria o poco probable?', options: ['Jika', 'Seandainya', 'Kalau'], answer: 1, explanation: 'Seandainya marca explícitamente una hipótesis o situación imaginaria.' },
+                                        { vocabId: 'b1v058', type: 'translate_es_id', prompt: 'Traduce: «Si tuviera tiempo, estudiaría indonesio».', answer: 'Seandainya saya punya waktu, saya akan belajar bahasa Indonesia.', explanation: 'Seandainya presenta la situación imaginaria; saya akan belajar expresa el resultado.' },
+                                        { vocabId: 'b1v058', type: 'order', prompt: 'Ordena: «Si tuviera tiempo, estudiaría indonesio».', words: ['bahasa', 'Seandainya', 'Indonesia.', 'saya', 'belajar', 'punya', 'waktu,', 'akan', 'saya'], correctOrder: ['Seandainya', 'saya', 'punya', 'waktu,', 'saya', 'akan', 'belajar', 'bahasa', 'Indonesia.'], explanation: 'La condición hipotética va primero y el resultado después de la coma.' },
+                                        { vocabId: 'b1v058', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Seandainya saya punya waktu, saya akan belajar bahasa Indonesia.', explanation: 'La oración expresa una situación imaginaria mediante seandainya.' },
+                                        { vocabId: 'b1v059', type: 'write', prompt: 'Escribe una oración con asalkan para indicar un requisito suficiente para que puedas ir a casa o llegar a un lugar.', hint: 'Usa asalkan ada waktu o asalkan pekerjaan selesai.', modelAnswer: 'Saya boleh pulang asalkan pekerjaan selesai.', explanation: 'Asalkan introduce el requisito que debe cumplirse para que el resultado sea posible.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Elegir el tipo de condición',
+                                    objective: 'Selecciona el conector según la posibilidad, la hipótesis o el requisito expresado.',
+                                    grammar: 'Compara: kalau/jika para condiciones posibles, seandainya para situaciones imaginarias y asalkan para un requisito suficiente. No son sufijos ni cambian la conjugación verbal; la relación lógica entre las dos partes determina la elección.',
+                                    reviewVocabIds: ['v258', 'v37'],
+                                    exercises: [
+                                        { vocabId: 'b1v059', type: 'mc', prompt: 'En «Saya boleh pulang asalkan pekerjaan selesai», ¿qué expresa asalkan?', options: ['Una condición suficiente o requisito', 'Una concesión', 'Un contraste entre dos ideas'], answer: 0, explanation: 'Asalkan presenta el requisito que permite que se cumpla el resultado.' },
+                                        { vocabId: 'b1v059', type: 'translate_es_id', prompt: 'Traduce: «Iré siempre que haya tiempo».', answer: 'Saya akan datang asalkan ada waktu.', explanation: 'Asalkan indica que tener tiempo es la condición suficiente para ir.' },
+                                        { vocabId: 'b1v059', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Saya akan datang asalkan ada waktu.', explanation: 'La condición con asalkan aparece después del resultado.' },
+                                        { vocabId: 'b1v058', type: 'write', prompt: 'Escribe un texto de tres frases: una condición posible, una hipótesis y un requisito suficiente.', hint: 'Usa kalau, seandainya y asalkan al menos una vez cada uno.', modelAnswer: 'Kalau hujan, saya akan pulang. Seandainya saya punya waktu, saya akan belajar. Saya akan datang asalkan ada waktu.', explanation: 'El texto diferencia una posibilidad, una situación imaginaria y un requisito.' }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            id: 'b1_u19',
+                            title: 'Unidad 19: concesión — walaupun, meskipun y biarpun',
+                            desc: 'Expresa que una situación no impide que ocurra el resultado esperado.',
+                            grammar: 'Walaupun y meskipun introducen una concesión: se reconoce un obstáculo, pero el resultado ocurre de todos modos. Ambas son opciones neutrales; meskipun puede sonar algo más medida o escrita. Biarpun también expresa concesión y suele sonar más conversacional o personal. Tetap en la oración principal puede reforzar la idea de «aun así», pero no es obligatorio.',
+                            vocab: [
+                                { id: 'b1v060', idn: 'Walaupun', esp: 'Aunque; a pesar de que', ex: 'Walaupun hujan, saya tetap pergi.', exEsp: 'Aunque llueve, de todos modos voy.' },
+                                { id: 'b1v061', idn: 'Meskipun', esp: 'Aunque; a pesar de que (neutro, algo más formal)', ex: 'Meskipun hujan, saya tetap pulang.', exEsp: 'Aunque llueve, de todos modos vuelvo a casa.' },
+                                { id: 'b1v062', idn: 'Biarpun', esp: 'Aunque; incluso si (conversacional)', ex: 'Biarpun rumah jauh, saya tetap datang.', exEsp: 'Aunque la casa esté lejos, de todos modos voy.' }
+                            ],
+                            lessons: [
+                                {
+                                    title: 'Walaupun y meskipun',
+                                    objective: 'Reconoce una concesión y usa walaupun o meskipun para presentar un obstáculo.',
+                                    grammar: 'La concesión reconoce una circunstancia que normalmente favorecería otro resultado, pero afirma que el resultado ocurre igualmente. Walaupun y meskipun pueden introducir una oración completa; si la cláusula aparece primero, se escribe una coma antes del resultado.',
+                                    reviewVocabIds: ['b1v056', 'b1v057'],
+                                    exercises: [
+                                        { vocabId: 'b1v060', type: 'mc', prompt: '¿Qué relación expresa walaupun en una oración como «Walaupun hujan, saya tetap pergi»?', options: ['Una condición necesaria', 'Una concesión: el resultado ocurre pese al obstáculo', 'Una causa directa'], answer: 1, explanation: 'Walaupun presenta un obstáculo que no impide que ocurra el resultado.' },
+                                        { vocabId: 'b1v060', type: 'translate_es_id', prompt: 'Traduce: «Aunque llueve, de todos modos vuelvo a casa».', answer: 'Walaupun hujan, saya tetap pulang.', explanation: 'Walaupun introduce el obstáculo; tetap refuerza que el resultado ocurre aun así.' },
+                                        { vocabId: 'b1v060', type: 'order', prompt: 'Ordena: «Aunque llueve, de todos modos vuelvo a casa».', words: ['tetap', 'Walaupun', 'pulang.', 'hujan,', 'saya'], correctOrder: ['Walaupun', 'hujan,', 'saya', 'tetap', 'pulang.'], explanation: 'La cláusula concesiva inicial se separa del resultado con una coma.' },
+                                        { vocabId: 'b1v061', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Meskipun hujan, saya tetap pulang.', explanation: 'Meskipun expresa la misma relación concesiva que walaupun.' },
+                                        { vocabId: 'b1v061', type: 'write', prompt: 'Escribe dos frases con el mismo sentido general: una con walaupun y otra con meskipun.', hint: 'Usa hujan y tetap; cambia el conector.', modelAnswer: 'Walaupun hujan, saya tetap pulang. Meskipun hujan, saya tetap pergi.', explanation: 'Ambos conectores expresan concesión; meskipun puede sonar algo más medido o escrito.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Biarpun y el registro conversacional',
+                                    objective: 'Usa biarpun en una concesión de tono conversacional o personal.',
+                                    grammar: 'Biarpun comparte la relación concesiva de walaupun y meskipun, pero suele sonar más conversacional, personal o decidido. No significa que el obstáculo sea una condición para el resultado: el resultado se mantiene a pesar de él.',
+                                    reviewVocabIds: ['b1v058', 'b1v059'],
+                                    exercises: [
+                                        { vocabId: 'b1v062', type: 'mc', prompt: '¿Qué conector suele sonar más conversacional o personal al expresar una concesión?', options: ['Meskipun', 'Biarpun', 'Jika'], answer: 1, explanation: 'Biarpun es frecuente en expresiones personales y conversacionales.' },
+                                        { vocabId: 'b1v062', type: 'translate_es_id', prompt: 'Traduce: «Aunque la casa esté lejos, de todos modos voy».', answer: 'Biarpun rumah jauh, saya tetap datang.', explanation: 'Biarpun presenta la distancia como un obstáculo que no impide ir.' },
+                                        { vocabId: 'b1v062', type: 'order', prompt: 'Ordena: «Aunque la casa esté lejos, de todos modos voy».', words: ['saya', 'Biarpun', 'datang.', 'jauh,', 'rumah', 'tetap'], correctOrder: ['Biarpun', 'rumah', 'jauh,', 'saya', 'tetap', 'datang.'], explanation: 'La cláusula con biarpun aparece primero y va seguida de una coma.' },
+                                        { vocabId: 'b1v062', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Biarpun rumah jauh, saya tetap datang.', explanation: 'La frase expresa una decisión que se mantiene a pesar de la distancia.' },
+                                        { vocabId: 'b1v062', type: 'write', prompt: 'Escribe una frase personal con biarpun y un resultado que se mantiene.', hint: 'Puedes usar rumah jauh y tetap datang.', modelAnswer: 'Biarpun rumah jauh, saya tetap datang.', explanation: 'Biarpun presenta el obstáculo; la oración principal afirma que el resultado se mantiene.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Elegir una concesión',
+                                    objective: 'Distingue el sentido concesivo y selecciona el conector según el tono.',
+                                    grammar: 'Walaupun y meskipun son opciones neutrales; biarpun suele ser más conversacional. En los tres casos, el resultado contradice la consecuencia que normalmente se esperaría del obstáculo. Tetap puede reforzar esa persistencia.',
+                                    reviewVocabIds: ['b1v056', 'b1v058'],
+                                    exercises: [
+                                        { vocabId: 'b1v061', type: 'mc', prompt: '¿Cuál afirmación describe mejor walaupun, meskipun y biarpun?', options: ['Todos expresan una causa', 'Los tres expresan concesión, con diferencias de registro', 'Todos expresan un requisito'], answer: 1, explanation: 'Los tres son concesivos; biarpun tiende a sonar más conversacional.' },
+                                        { vocabId: 'b1v061', type: 'translate_es_id', prompt: 'Traduce: «Aunque llueve, seguiremos trabajando».', answer: 'Meskipun hujan, kami akan tetap bekerja.', explanation: 'Meskipun introduce el obstáculo y la cláusula principal expresa el resultado que continúa.' },
+                                        { vocabId: 'b1v060', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Walaupun hujan, saya tetap belajar.', explanation: 'Walaupun introduce una circunstancia que no impide que la persona siga estudiando.' },
+                                        { vocabId: 'b1v062', type: 'write', prompt: 'Escribe dos frases: una con walaupun o meskipun y otra con biarpun. En ambas, el resultado debe ocurrir a pesar del obstáculo.', hint: 'Puedes usar hujan, rumah jauh y tetap.', modelAnswer: 'Walaupun hujan, saya tetap belajar. Biarpun rumah jauh, saya tetap datang.', explanation: 'El texto practica una concesión neutral y otra de tono más conversacional.' }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            id: 'b1_u20',
+                            title: 'Unidad 20: contraste — tetapi y namun',
+                            desc: 'Distingue el contraste dentro de una oración del conector que enlaza oraciones.',
+                            grammar: 'Tetapi es una conjunción coordinante que enlaza dos partes contrastivas dentro de una misma oración: Saya akan pergi, tetapi hujan. Namun suele funcionar como conector entre oraciones: Hujan. Namun, saya tetap pergi. No añadas automáticamente tetapi después de una cláusula que ya comienza con meskipun o walaupun; en escritura cuidada se elige una sola estructura.',
+                            vocab: [
+                                { id: 'b1v063', idn: 'Tetapi', esp: 'Pero; sin embargo (entre cláusulas de una oración)', ex: 'Saya akan pergi, tetapi hujan.', exEsp: 'Iré, pero está lloviendo.' },
+                                { id: 'b1v064', idn: 'Namun', esp: 'Sin embargo; no obstante (entre oraciones)', ex: 'Hujan. Namun, saya tetap pergi.', exEsp: 'Llueve. Sin embargo, de todos modos voy.' }
+                            ],
+                            lessons: [
+                                {
+                                    title: 'Tetapi: contraste dentro de una oración',
+                                    objective: 'Usa tetapi para coordinar dos ideas contrastivas dentro de una misma oración.',
+                                    grammar: 'Tetapi enlaza dos cláusulas contrastivas dentro de una oración: Saya akan pergi, tetapi hujan. No introduce por sí solo una nueva oración independiente; para ese uso, namun es una opción adecuada.',
+                                    reviewVocabIds: ['b1v060', 'b1v061'],
+                                    exercises: [
+                                        { vocabId: 'b1v063', type: 'mc', prompt: '¿Dónde se usa normalmente tetapi en una oración contrastiva?', options: ['Entre dos cláusulas de una misma oración', 'Solo al comienzo de un párrafo', 'Para introducir una condición hipotética'], answer: 0, explanation: 'Tetapi coordina dos cláusulas dentro de una misma oración.' },
+                                        { vocabId: 'b1v063', type: 'translate_es_id', prompt: 'Traduce: «Iré, pero está lloviendo».', answer: 'Saya akan pergi, tetapi hujan.', explanation: 'Tetapi enlaza la intención de ir con la circunstancia contrastiva.' },
+                                        { vocabId: 'b1v063', type: 'order', prompt: 'Ordena: «Iré, pero está lloviendo».', words: ['hujan.', 'Saya', 'tetapi', 'akan', 'pergi,'], correctOrder: ['Saya', 'akan', 'pergi,', 'tetapi', 'hujan.'], explanation: 'Tetapi aparece entre las dos partes contrastivas de la oración.' },
+                                        { vocabId: 'b1v063', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Saya akan pergi, tetapi hujan.', explanation: 'La oración coordina dos ideas contrastivas mediante tetapi.' },
+                                        { vocabId: 'b1v063', type: 'write', prompt: 'Escribe una oración con dos ideas contrastivas enlazadas por tetapi.', hint: 'Puedes usar hujan y akan pulang o akan pergi.', modelAnswer: 'Hujan, tetapi saya akan pulang.', explanation: 'Tetapi conecta dos cláusulas contrastivas dentro de la misma oración.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Namun: contraste entre oraciones',
+                                    objective: 'Usa namun para introducir una oración que contrasta con la anterior.',
+                                    grammar: 'Namun suele aparecer al comienzo de una nueva oración o después de una pausa: Hujan. Namun, saya tetap pergi. En escritura, la oración que comienza con namun suele llevar una coma después del conector.',
+                                    reviewVocabIds: ['b1v062', 'b1v060'],
+                                    exercises: [
+                                        { vocabId: 'b1v064', type: 'mc', prompt: 'En «Hujan. Namun, saya tetap pergi», ¿qué función cumple namun?', options: ['Introduce una condición', 'Enlaza una nueva oración con la anterior mediante contraste', 'Marca una hipótesis imaginaria'], answer: 1, explanation: 'Namun introduce una oración nueva que contrasta con la anterior.' },
+                                        { vocabId: 'b1v064', type: 'translate_es_id', prompt: 'Traduce: «Llueve. Sin embargo, de todos modos vuelvo a casa».', answer: 'Hujan. Namun, saya tetap pulang.', explanation: 'Namun enlaza la segunda oración con la primera mediante contraste.' },
+                                        { vocabId: 'b1v064', type: 'order', prompt: 'Ordena: «Llueve. Sin embargo, de todos modos vuelvo a casa».', words: ['Namun,', 'pulang.', 'Hujan.', 'saya', 'tetap'], correctOrder: ['Hujan.', 'Namun,', 'saya', 'tetap', 'pulang.'], explanation: 'Namun aparece al comienzo de la segunda oración y va seguido de una coma.' },
+                                        { vocabId: 'b1v064', type: 'listen', prompt: 'Escucha y escribe las dos oraciones completas.', answer: 'Hujan. Namun, saya tetap pulang.', explanation: 'La segunda oración introduce el contraste mediante namun.' },
+                                        { vocabId: 'b1v064', type: 'write', prompt: 'Escribe dos oraciones: la segunda debe comenzar con namun y contrastar con la primera.', hint: 'Usa Hujan. Namun, saya tetap pergi.', modelAnswer: 'Hujan. Namun, saya tetap pergi.', explanation: 'Namun enlaza la segunda oración con la primera sin convertirlas en una sola oración coordinada.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Elegir una estructura de contraste',
+                                    objective: 'Distingue tetapi y namun y evita duplicar automáticamente los marcadores concesivos.',
+                                    grammar: 'Usa tetapi para contrastar cláusulas en una oración y namun para iniciar una oración que contrasta con la anterior. Con meskipun o walaupun, no es necesario añadir automáticamente tetapi: Meskipun hujan, saya tetap pergi es una construcción completa.',
+                                    reviewVocabIds: ['b1v060', 'b1v062'],
+                                    exercises: [
+                                        { vocabId: 'b1v063', type: 'mc', prompt: '¿Cuál oración usa una concesión sin duplicar innecesariamente el contraste?', options: ['Meskipun hujan, saya tetap pergi.', 'Meskipun hujan, tetapi saya tetap pergi.', 'Meskipun hujan, maka saya tetap pergi.'], answer: 0, explanation: 'Meskipun ya introduce la concesión; no hace falta añadir tetapi automáticamente.' },
+                                        { vocabId: 'b1v063', type: 'translate_es_id', prompt: 'Traduce: «Llueve, pero volveré a casa».', answer: 'Hujan, tetapi saya akan pulang.', explanation: 'Tetapi coordina el hecho de que llueve con el resultado contrastivo.' },
+                                        { vocabId: 'b1v064', type: 'listen', prompt: 'Escucha y escribe las dos oraciones completas.', answer: 'Hujan. Namun, saya akan pulang.', explanation: 'Namun inicia una segunda oración que contrasta con la primera.' },
+                                        { vocabId: 'b1v063', type: 'write', prompt: 'Escribe dos versiones del mismo contraste: una con tetapi dentro de una oración y otra con namun al comienzo de una segunda oración.', hint: 'No combines meskipun con tetapi de forma automática.', modelAnswer: 'Hujan, tetapi saya tetap pergi. Hujan. Namun, saya tetap pergi.', explanation: 'Las dos versiones expresan contraste con estructuras distintas: coordinación dentro de una oración y enlace entre oraciones.' }
+                                    ]
+                                }
+                            ]
                         }
                     ]
                 },

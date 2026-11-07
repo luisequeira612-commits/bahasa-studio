@@ -200,6 +200,22 @@ test('B1 selected examples do not introduce later vocabulary before its teaching
   assert.doesNotMatch(JSON.stringify(limbah), /mengurangi/i);
 });
 
+
+test('B1 reused vocabulary in U15-U17 and U25 is explicitly mapped to existing exercises', () => {
+  const b1 = course.levels.find(level => level.id === 'B1');
+  const required = {
+    b1_u15: ['v53', 'v1002', 'v52'],
+    b1_u16: ['v1002', 'v53', 'v52'],
+    b1_u17: ['v52', 'v1002'],
+    b1_u25: ['v457']
+  };
+  for (const [unitId, ids] of Object.entries(required)) {
+    const unit = b1.units.find(item => item.id === unitId);
+    const assessed = new Set(exercisesOf(unit).map(exercise => exercise.vocabId));
+    for (const id of ids) assert.ok(assessed.has(id), unitId + ' must explicitly assess reused vocabulary ' + id);
+  }
+});
+
 test('every B1 draft exercise references vocabulary in its own unit', () => {
   const b1 = course.levels.find(level => level.id === 'B1');
   const byId = new Map();

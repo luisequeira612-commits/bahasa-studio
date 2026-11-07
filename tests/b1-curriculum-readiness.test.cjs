@@ -83,7 +83,7 @@ test('every B1 draft exercise references vocabulary in its own unit', () => {
       }
     }
   }
-  assert.equal(byId.size, 50);
+  assert.equal(byId.size, 60);
 });
 
 

@@ -164,6 +164,19 @@ test('B1 U9-U12 meet the consolidated practice contract and U12 closes the third
   ]) assert.ok(cumulative.reviewVocabIds.includes(id), 'cumulative review missing earlier vocabulary ' + id);
 });
 
+
+test('B1 lesson vocabulary is never classified as both new and review in the same lesson', () => {
+  const b1 = course.levels.find(level => level.id === 'B1');
+  for (const unit of b1.units) {
+    for (const lesson of unit.lessons || []) {
+      const newIds = new Set(lesson.vocabIds || []);
+      for (const id of lesson.reviewVocabIds || []) {
+        assert.ok(!newIds.has(id), unit.id + ' / ' + lesson.title + ' classifies ' + id + ' as both new and review');
+      }
+    }
+  }
+});
+
 test('every B1 draft exercise references vocabulary in its own unit', () => {
   const b1 = course.levels.find(level => level.id === 'B1');
   const byId = new Map();

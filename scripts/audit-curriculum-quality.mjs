@@ -177,7 +177,7 @@ function collectIndonesianExerciseText(exercise, path) {
   return entries;
 }
 
-export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown', knownVocabIds = []) {
+export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown', knownVocabIds = [], knownVocabEntries = []) {
   const issues = [];
   const units = Array.isArray(curriculum?.units) ? curriculum.units : [];
   const vocabIds = new Map();
@@ -486,34 +486,38 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
       }
     });
   });
+  const addTextVocabularyIntroduction = (word, introductionUnit, lessonIndex) => {
+    if (!word || typeof word.id !== 'string' || !word.id) return;
+    const normalized = normalizeTextForVocabularyMatch(word.idn);
+    // Very short entries are too ambiguous for a reliable text search.
+    if (normalized.length < 3) return;
+    const introduction = { id: word.id, unitIndex: introductionUnit, lessonIndex };
+    const term = textVocabulary.get(normalized) ?? { normalized, display: word.idn, introductions: [] };
+    if (!term.introductions.some((item) => item.id === introduction.id && item.unitIndex === introduction.unitIndex)) {
+      term.introductions.push(introduction);
+    }
+    textVocabulary.set(normalized, term);
+    if (normalized.includes(' ')) {
+      for (const token of normalized.split(' ')) {
+        if (token.length < 3) continue;
+        const tokenIntroductions = vocabularyTokenIntroductions.get(token) ?? [];
+        if (!tokenIntroductions.some((item) => item.id === introduction.id && item.unitIndex === introduction.unitIndex)) {
+          tokenIntroductions.push(introduction);
+        }
+        vocabularyTokenIntroductions.set(token, tokenIntroductions);
+      }
+    }
+  };
+  // Prior-level vocabulary was already taught before this curriculum begins.
+  // Include its forms in progression checks to avoid flagging familiar terms
+  // merely because B1 reuses their canonical IDs or examples.
+  for (const word of knownVocabEntries) addTextVocabularyIntroduction(word, -1);
   units.forEach((unit, unitIndex) => {
     (unit?.vocab ?? []).forEach((word) => {
-      if (!word || typeof word.id !== 'string' || !word.id) return;
-      const normalized = normalizeTextForVocabularyMatch(word.idn);
-      // Very short entries are too ambiguous for a reliable text search.
-      if (normalized.length < 3) return;
-      const introductionUnit = vocabIntroductionUnit.get(word.id) ?? unitIndex;
-      const lessonIntroduction = firstLessonByVocabId.get(word.id);
-      const introduction = {
-        id: word.id,
-        unitIndex: introductionUnit,
-        lessonIndex: lessonIntroduction?.unitIndex === introductionUnit ? lessonIntroduction.lessonIndex : undefined,
-      };
-      const term = textVocabulary.get(normalized) ?? { normalized, display: word.idn, introductions: [] };
-      if (!term.introductions.some((item) => item.id === introduction.id && item.unitIndex === introduction.unitIndex)) {
-        term.introductions.push(introduction);
-      }
-      textVocabulary.set(normalized, term);
-      if (normalized.includes(' ')) {
-        for (const token of normalized.split(' ')) {
-          if (token.length < 3) continue;
-          const tokenIntroductions = vocabularyTokenIntroductions.get(token) ?? [];
-          if (!tokenIntroductions.some((item) => item.id === introduction.id && item.unitIndex === introduction.unitIndex)) {
-            tokenIntroductions.push(introduction);
-          }
-          vocabularyTokenIntroductions.set(token, tokenIntroductions);
-        }
-      }
+      const introductionUnit = vocabIntroductionUnit.get(word?.id) ?? unitIndex;
+      const lessonIntroduction = firstLessonByVocabId.get(word?.id);
+      addTextVocabularyIntroduction(word, introductionUnit,
+        lessonIntroduction?.unitIndex === introductionUnit ? lessonIntroduction.lessonIndex : undefined);
     });
   });
 
@@ -738,12 +742,12 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
 
 export function auditCurricula(curricula) {
   return curricula.map((curriculum, index) => {
-    const earlierVocabularyIds = new Set(
-      curricula.slice(0, index)
-        .flatMap((earlier) => (earlier.units ?? []).flatMap((unit) => (unit.vocab ?? []).map((word) => word?.id)))
-        .filter((id) => typeof id === 'string')
-    );
-    return auditCurriculum(curriculum, curriculum.id, earlierVocabularyIds);
+    const earlierVocabulary = curricula.slice(0, index)
+      .flatMap((earlier) => (earlier.units ?? []).flatMap((unit) => unit.vocab ?? []));
+    const earlierVocabularyIds = new Set(earlierVocabulary
+      .map((word) => word?.id)
+      .filter((id) => typeof id === 'string'));
+    return auditCurriculum(curriculum, curriculum.id, earlierVocabularyIds, earlierVocabulary);
   });
 }
 

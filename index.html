@@ -3183,8 +3183,8 @@ Requisitos:
                         const primaryLessonButton = isNext && currentLessonIndex < lessons.length
                             ? `<button class="btn lesson-start-btn" data-unit-id="${App.escapeHtml(unit.id)}" data-lesson-index="${currentLessonIndex}" onclick="LessonEngine.startUnitById(this.dataset.unitId, Number(this.dataset.lessonIndex))">Empezar lección ${currentLessonIndex + 1}</button>`
                             : '';
-                        const examButton = lvl.id === 'A1' && !isDone && unitAccessible && completedCount === lessons.length
-                            ? `<button class="btn" data-unit-id="${App.escapeHtml(unit.id)}" onclick="LessonEngine.startUnitAssessment(this.dataset.unitId)">Prueba final · Desbloquear siguiente unidad</button>`
+                        const examButton = ['A1', 'B1'].includes(lvl.id) && !isDone && unitAccessible && completedCount === lessons.length
+                            ? `<button class="btn" data-unit-id="${App.escapeHtml(unit.id)}" onclick="LessonEngine.startUnitAssessment(this.dataset.unitId)">${lvl.id === 'A1' ? 'Prueba final · Desbloquear siguiente unidad' : 'Prueba de unidad'}</button>`
                             : '';
                         const statusLabel = isDone ? (lvl.id === 'A1' ? 'Aprobada' : 'Completada')
                             : lvl.id === 'A1' ? (isNext ? 'En curso' : 'Bloqueada') : 'Disponible';

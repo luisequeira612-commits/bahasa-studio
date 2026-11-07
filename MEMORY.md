@@ -14,7 +14,7 @@
 ## Estado actual del currículo
 - A1: 32 de 32 unidades hechas.
 - A2: 40 de 40 unidades hechas y habilitadas en beta (`A2_RELEASE_ENABLED = true`). U5–U8 siguen en consolidación; PR #337 aclara el vocabulario objetivo de 16 prompts de traducción.
-- B1: borrador oculto de 12 unidades; PR actual amplía U1 a 6 vocablos y 7 ejercicios (57 vocablos y 60 ejercicios en total). Sigue pendiente consolidar el resto y revisar el material; B2 aún no iniciado.
+- B1: borrador oculto de 12 unidades, 57 entradas y 66 ejercicios. U1–U3 siguen la progresión de afijos inicial; U4–U6 ya se reorganizaron según el plan del usuario (-kan/-i y pasivas). Los antiguos contenidos U4–U6 están preservados en docs/B1_U4_U6_DISPLACED_CONTENT.md para reubicación futura. U7–U12 aún requieren alineación con la hoja de ruta; B2 aún no iniciado.
 - Sistema de calidad: auditoría estructural/editorial independiente de KBBI y cola editorial para vocabulario y ejercicios. Último informe CI (#350): 0 errores, 0 avisos en 72 unidades; 1.989 entradas editoriales pendientes (806 A1, 1.183 A2), sin certificación lingüística.
 
 ## Aclaración de métricas de Perfil (PR pendiente)
@@ -202,3 +202,11 @@
 
 ## Revisión editorial contextual A2 U13–U16 (7 nov 2026)
 - Lectura de 4 unidades, 48 entradas, 16 lecciones y 68 ejercicios. Se documentan 6 candidatos de secuenciación/alineación/contexto: exposición anticipada de vocabulario en U13/U14/U16, matiz de «Salgo» frente a `bepergian` en U14, `mengundang` en explicaciones de U15 y especificidad temporal en la traducción de U16. Ninguno se confirma como error lingüístico; no se modificó el currículo. Ver `docs/EDITORIAL_AUDIT_A2_U13_U16.md`.
+
+
+## Reorganización autorizada B1 U4–U6 (7 nov 2026)
+- U4: `memberikan`, `mengirimkan`, `menjelaskan`, `membersihkan` (-kan).
+- U5: `mengingatkan`, `memasukkan` (-kan); `mendatangi`, `menemui` (-i).
+- U6: `menghadiri`, `mencintai`, `memasuki` (-i); pasivas `dijelaskan` y `ditemui`.
+- 19 ejercicios nuevos (6/6/7); 57 entradas de vocabulario y 66 ejercicios en el borrador B1. Se conserva el contenido previo de U4–U6 en `docs/B1_U4_U6_DISPLACED_CONTENT.md` para reorganizarlo después, sin pérdida de información.
+- Las formas y glosas siguen siendo material beta; no implican validación nativa ni calibración MCER/BIPA. B1 sigue oculto.

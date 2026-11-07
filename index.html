@@ -3162,6 +3162,63 @@
                             ]
                         },
 
+                        {
+                            id: 'b1_u50',
+                            title: 'Unidad 50: proyecto integrador y presentación final',
+                            desc: 'Diseña una propuesta, valora su viabilidad, presenta su ejecución y define cómo dar seguimiento a los resultados.',
+                            grammar: 'Rancangan significa diseño o plan; kelayakan, viabilidad o factibilidad; pelaksanaan, ejecución o implementación; mempresentasikan, presentar formalmente; menindaklanjuti, dar seguimiento. Esta unidad integra planificación, negociación, comunicación, evidencia, prevención, recursos y evaluación en un proyecto completo.',
+                            vocab: [
+                                { id: 'b1v198', idn: 'Rancangan', esp: 'Diseño; plan; propuesta', ex: 'Rancangan proyek itu sudah siap.', exEsp: 'El plan del proyecto ya está listo.' },
+                                { id: 'b1v199', idn: 'Kelayakan', esp: 'Viabilidad; factibilidad', ex: 'Kami menilai kelayakan rencana itu.', exEsp: 'Evaluamos la viabilidad de ese plan.' },
+                                { id: 'b1v200', idn: 'Pelaksanaan', esp: 'Ejecución; implementación', ex: 'Pelaksanaan proyek dimulai besok.', exEsp: 'La ejecución del proyecto comienza mañana.' },
+                                { id: 'b1v201', idn: 'Mempresentasikan', esp: 'Presentar; exponer formalmente', ex: 'Kami mempresentasikan rancangan kepada tim.', exEsp: 'Presentamos el plan al equipo.' },
+                                { id: 'b1v202', idn: 'Menindaklanjuti', esp: 'Dar seguimiento; tomar medidas posteriores', ex: 'Kami menindaklanjuti hasil evaluasi.', exEsp: 'Damos seguimiento a los resultados de la evaluación.' }
+                            ],
+                            lessons: [
+                                {
+                                    title: 'Rancangan y kelayakan del proyecto',
+                                    objective: 'Presenta un plan y valora si puede realizarse con los recursos disponibles.',
+                                    grammar: 'Rancangan es el diseño o plan de una iniciativa. Kelayakan expresa si ese plan es viable o factible. Se puede valorar la kelayakan de un proyecto antes de iniciar su ejecución.',
+                                    reviewVocabIds: ['b1v171', 'b1v172', 'b1v173', 'b1v181', 'b1v185'],
+                                    vocabIds: ['b1v198', 'b1v199'],
+                                    exercises: [
+                                        { vocabId: 'b1v198', type: 'mc', prompt: '¿Qué significa rancangan?', options: ['Diseño o plan', 'Ejecución', 'Seguimiento'], answer: 0, explanation: 'Rancangan significa diseño, plan o propuesta.' },
+                                        { vocabId: 'b1v199', type: 'translate_es_id', prompt: 'Traduce: «Evaluamos la viabilidad de ese plan».', answer: 'Kami menilai kelayakan rencana itu.', explanation: 'Kelayakan expresa viabilidad o factibilidad.' },
+                                        { vocabId: 'b1v198', type: 'order', prompt: 'Ordena: «El plan del proyecto ya está listo».', words: ['siap.', 'proyek', 'rancangan', 'sudah', 'itu'], correctOrder: ['Rancangan', 'proyek', 'itu', 'sudah', 'siap.'], explanation: 'Rancangan proyek itu es el sujeto y sudah siap expresa que ya está listo.' },
+                                        { vocabId: 'b1v199', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Kami menilai kelayakan rencana itu sebelum memulai proyek.', explanation: 'La frase valora la viabilidad antes de iniciar el proyecto.' },
+                                        { vocabId: 'b1v198', type: 'write', prompt: 'Presenta una propuesta y explica qué recursos y condiciones necesitas para valorar su viabilidad.', hint: 'Integra rancangan y kelayakan.', modelAnswer: 'Rancangan proyek itu sudah siap. Kami menilai kelayakan rencana itu sebelum memulai proyek.', explanation: 'La producción presenta el plan y la valoración previa de su viabilidad.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Pelaksanaan y presentación',
+                                    objective: 'Describe cómo se ejecuta un proyecto y cómo se presenta el plan al equipo.',
+                                    grammar: 'Pelaksanaan nombra la ejecución o implementación de una actividad. Mempresentasikan expresa presentar formalmente una propuesta, un plan o unos resultados a un grupo.',
+                                    reviewVocabIds: ['b1v198', 'b1v199', 'b1v188', 'b1v189', 'b1v191'],
+                                    vocabIds: ['b1v200', 'b1v201'],
+                                    exercises: [
+                                        { vocabId: 'b1v200', type: 'mc', prompt: '¿Qué significa pelaksanaan?', options: ['Ejecución o implementación', 'Viabilidad', 'Solicitud'], answer: 0, explanation: 'Pelaksanaan significa ejecución o implementación.' },
+                                        { vocabId: 'b1v201', type: 'translate_es_id', prompt: 'Traduce: «Presentamos el plan al equipo».', answer: 'Kami mempresentasikan rancangan kepada tim.', explanation: 'Mempresentasikan significa presentar formalmente.' },
+                                        { vocabId: 'b1v200', type: 'order', prompt: 'Ordena: «La ejecución del proyecto comienza mañana».', words: ['besok.', 'proyek', 'dimulai', 'Pelaksanaan'], correctOrder: ['Pelaksanaan', 'proyek', 'dimulai', 'besok.'], explanation: 'Pelaksanaan proyek es el sujeto y dimulai besok indica cuándo empieza.' },
+                                        { vocabId: 'b1v201', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Kami mempresentasikan rancangan kepada tim sebelum pelaksanaan proyek.', explanation: 'La frase sitúa la presentación antes de ejecutar el proyecto.' },
+                                        { vocabId: 'b1v201', type: 'write', prompt: 'Explica en tres frases cómo presentarás tu propuesta y cuándo comenzará su ejecución.', hint: 'Usa mempresentasikan y pelaksanaan.', modelAnswer: 'Kami mempresentasikan rancangan kepada tim. Tim menilai kelayakan rencana itu. Pelaksanaan proyek dimulai besok.', explanation: 'La producción conecta la presentación, la valoración y la ejecución.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Menindaklanjuti los resultados',
+                                    objective: 'Explica cómo revisar los resultados y dar seguimiento después de terminar un proyecto.',
+                                    grammar: 'Menindaklanjuti expresa dar seguimiento o tomar medidas posteriores a una decisión, evaluación o actividad. Puede tomar como objeto hasil evaluasi para hablar de actuar a partir de los resultados de una evaluación.',
+                                    reviewVocabIds: ['b1v198', 'b1v199', 'b1v200', 'b1v201', 'b1v140', 'b1v141', 'b1v152'],
+                                    vocabIds: ['b1v202'],
+                                    exercises: [
+                                        { vocabId: 'b1v202', type: 'mc', prompt: '¿Qué significa menindaklanjuti?', options: ['Dar seguimiento o tomar medidas posteriores', 'Presentar un plan', 'Prevenir un problema'], answer: 0, explanation: 'Menindaklanjuti significa dar seguimiento o actuar después de una evaluación o decisión.' },
+                                        { vocabId: 'b1v202', type: 'translate_es_id', prompt: 'Traduce: «Damos seguimiento a los resultados de la evaluación».', answer: 'Kami menindaklanjuti hasil evaluasi.', explanation: 'Menindaklanjuti expresa dar seguimiento a unos resultados.' },
+                                        { vocabId: 'b1v202', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Kami menindaklanjuti hasil evaluasi untuk meningkatkan kualitas proyek.', explanation: 'La frase explica el propósito del seguimiento.' },
+                                        { vocabId: 'b1v202', type: 'write', prompt: 'Redacta un resumen final de cinco frases: presenta el plan, valora su viabilidad, describe la ejecución, menciona un resultado y explica cómo darás seguimiento.', hint: 'Integra rancangan, kelayakan, pelaksanaan y menindaklanjuti.', modelAnswer: 'Rancangan proyek itu sudah siap. Kami menilai kelayakan rencana itu. Pelaksanaan proyek dimulai besok. Kami mengevaluasi hasilnya setelah proyek selesai. Kami menindaklanjuti hasil evaluasi untuk meningkatkan kualitas proyek.', explanation: 'La producción integra planificación, viabilidad, ejecución, evaluación y seguimiento.' }
+                                    ]
+                                }
+                            ]
+                        },
+
                     ]
                 },
 {

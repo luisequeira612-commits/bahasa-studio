@@ -87,6 +87,17 @@ jobs:
       - name: Run local quality tests
         if: ${{ !cancelled() }}
         run: npm run quality:tests
+      - name: Generate semantic ambiguity candidate report
+        if: ${{ !cancelled() }}
+        run: npm run quality:ambiguity
+      - name: Upload semantic ambiguity candidate report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: semantic-ambiguity-candidates
+          path: artifacts/semantic-ambiguity-candidates.json
+          if-no-files-found: ignore
+          retention-days: 14
       - name: Run DeepSeek review packet tests
         run: node --test tests/build-deepseek-review-packet.test.mjs
       - name: Generate independent editorial review queue

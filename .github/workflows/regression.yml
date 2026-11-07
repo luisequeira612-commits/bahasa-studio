@@ -124,6 +124,19 @@ jobs:
           path: artifacts/deepseek-b1-u1-u12-review-packet.md
           if-no-files-found: ignore
           retention-days: 14
+      - name: Run B1 U13-U26 independent review packet tests
+        run: node --test tests/build-b1-u13-u26-review-packet.test.mjs
+      - name: Generate B1 U13-U26 independent review packet
+        if: ${{ !cancelled() }}
+        run: npm run quality:deepseek-b1-u13-u26
+      - name: Upload B1 U13-U26 review packet
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: deepseek-b1-u13-u26-review-packet
+          path: artifacts/deepseek-b1-u13-u26-review-packet.md
+          if-no-files-found: ignore
+          retention-days: 14
       - name: Generate independent editorial review queue
         if: ${{ !cancelled() }}
         run: node scripts/build-editorial-review-queue.mjs --output artifacts/editorial-review-queue.csv --summary artifacts/editorial-review-summary.json

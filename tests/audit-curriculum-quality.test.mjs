@@ -761,3 +761,20 @@ test('reports exercise modality and unit/lesson coverage metrics', () => {
     average: 0.5,
   });
 });
+
+
+test('allows B1 lesson references to canonical vocabulary from A1 and A2', () => {
+  const reports = auditCurricula([
+    { id: 'A1', units: [{ id: 'a1_u1', title: 'A1', vocab: [{ id: 'a1_word', idn: 'makan', esp: 'comer' }], exercises: [] }] },
+    { id: 'A2', units: [{ id: 'a2_u1', title: 'A2', vocab: [{ id: 'a2_word', idn: 'jadwal', esp: 'horario' }], exercises: [] }] },
+    { id: 'B1', units: [{ id: 'b1_u1', title: 'B1', vocab: [{ id: 'b1_word', idn: 'dibaca', esp: 'es leído' }], lessons: [{
+      vocabIds: ['b1_word'],
+      reviewVocabIds: ['a1_word', 'a2_word'],
+      exercises: [{ vocabId: 'a1_word', type: 'listen', prompt: 'Listen', answer: 'Saya makan.' }],
+    }] }] },
+  ]);
+  const b1 = reports.find((report) => report.level === 'B1');
+  assert.ok(b1);
+  assert.equal(b1.error_count, 0);
+  assert.ok(!b1.issues.some((item) => item.code === 'VOCAB_REFERENCE_MISSING'));
+});

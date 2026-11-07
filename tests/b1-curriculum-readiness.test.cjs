@@ -29,6 +29,7 @@ function exercisesOf(unit) {
   ];
 }
 
+// B1 U27-U29 readiness baseline updated with this curriculum block.
 test('B1 draft has twenty-nine units, one hundred nineteen unique IDs including earlier canonical vocabulary, and three hundred eleven exercises', () => {
   const b1 = course.levels.find(level => level.id === 'B1');
   assert.ok(b1);

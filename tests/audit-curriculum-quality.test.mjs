@@ -830,3 +830,28 @@ test('does not report cross-level terms when the canonical ID is reused or the t
   assert.ok(!b1.issues.some((item) => item.code === 'VOCAB_TERM_REUSED_WITH_DIFFERENT_ID'));
   assert.equal(b1.info_count, 0);
 });
+
+
+test('deduplicates cross-level term notes when the same vocabulary ID is reused across units', () => {
+  const reports = auditCurricula([
+    { id: 'A1', units: [{ id: 'a1_u1', title: 'A1', vocab: [
+      { id: 'canonical_membaca', idn: 'Membaca', esp: 'leer' },
+    ], exercises: [] }] },
+    { id: 'B1', units: [
+      { id: 'b1_u1', title: 'B1 first use', vocab: [
+        { id: 'b1_membaca', idn: 'Membaca', esp: 'leer (forma activa)' },
+      ], exercises: [] },
+      { id: 'b1_u2', title: 'B1 reuse', vocab: [
+        { id: 'b1_membaca', idn: 'Membaca', esp: 'leer (forma activa)' },
+      ], exercises: [] },
+      { id: 'b1_u3', title: 'B1 another use', vocab: [
+        { id: 'b1_membaca', idn: 'membaca', esp: 'leer (forma activa)' },
+      ], exercises: [] },
+    ] },
+  ]);
+  const b1 = reports.find((report) => report.level === 'B1');
+  const crossLevelNotes = b1.issues.filter((item) => item.code === 'VOCAB_TERM_REUSED_WITH_DIFFERENT_ID');
+  assert.equal(crossLevelNotes.length, 1);
+  assert.equal(crossLevelNotes[0].path, 'B1.units[0].vocab[0]');
+  assert.equal(b1.error_count, 0);
+});

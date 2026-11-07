@@ -102,7 +102,7 @@ test('B1 U5-U8 meet the consolidated practice contract and U8 closes the second 
       assert.ok(types.has(type), unitId + ' missing exercise type ' + type);
     }
     const completeSentences = exercises.filter(item =>
-      (['listen', 'translate_es_id'].includes(item.type) && typeof item.answer === 'string' && /\\s/.test(item.answer)) ||
+      (['listen', 'translate_es_id'].includes(item.type) && typeof item.answer === 'string' && /\s/.test(item.answer)) ||
       (item.type === 'order' && Array.isArray(item.correctOrder) && item.correctOrder.length >= 2) ||
       (item.type === 'write' && typeof item.modelAnswer === 'string' && /[.!?]/.test(item.modelAnswer))
     );

@@ -1,6 +1,6 @@
 # MEMORY.md — Estado de Bahasa Studio
 
-> Se actualiza en CADA PR. Mantener corto (unas 150 líneas como máximo). Última actualización: 6 nov 2026.
+> Se actualiza en CADA PR. Mantener corto (unas 150 líneas como máximo). Última actualización: 7 nov 2026.
 
 ## Visión
 - App para aprender idiomas, estilo Duolingo, en rojo y blanco.
@@ -77,7 +77,7 @@
 - Scripts de calidad disponibles: scripts/audit-curriculum-quality.mjs, scripts/build-editorial-review-queue.mjs, scripts/build-unified-quality-report.mjs y scripts/build-deepseek-review-packet.mjs.
 - IndexedDB v3 y backup v3: preservados; PR #337 no modifica sus esquemas.
 
-## Historial breve
+## PR B1 U27–U29 — opiniones, posibilidad y consejo (7 nov 2026)\n- Añade U27–U29, 3 unidades/9 lecciones/42 ejercicios y 17 formas nuevas: opiniones y desacuerdo; posibilidad/certeza; consejo/obligación/recomendación.\n- Se mantienen 5 tipos de ejercicio por unidad y producción guiada; U29 integra revisión acumulativa de causa, opinión y probabilidad.\n- KBBI no proporcionó páginas de lema directas mediante la consulta indexada; no se marca ninguna forma como `verified_primary`. B1 queda en 29/50 y B2 en 0/60.\n- Cache actualizado a `bahasa-studio-v3.8.61`. Sin cambios en A1/A2, IndexedDB, backup JSON v3 ni dependencias.\n\n## Historial breve
 - PR #326 fusionado: corrección de distinción entre entrada/tarifa de entrada en A2 U38.
 - PR #327–#330 fusionados: base/herramientas del sistema de calidad y auditoría.
 - PR #331–#336 fusionados: consolidación/guardrails A2 U5–U8, A1 U24–U32 y cola editorial.

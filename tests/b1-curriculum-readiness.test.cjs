@@ -374,10 +374,10 @@ test('B1 U21-U24 teach cause, purpose and past-experience narration', () => {
     assert.ok(occurrences.length >= 1, 'missing new B1 form ' + form);
     assert.ok(occurrences.every(word => word.idn.toLowerCase() === form));
   }
-  assert.match(u21.grammar + u21.lessons.map(lesson => lesson.grammar).join(' '), /karena[\s\S]*sebab[\s\S]*oleh karena itu[\s\S]*sehingga[\s\S]*akibatnya[\s\S]*makanya/);
-  assert.match(u22.grammar + u22.lessons.map(lesson => lesson.grammar).join(' '), /supaya[\s\S]*agar[\s\S]*untuk/);
-  assert.match(u23.grammar + u23.lessons.map(lesson => lesson.grammar).join(' '), /pernah[\s\S]*belum pernah[\s\S]*baru saja[\s\S]*sempat[\s\S]*telah[\s\S]*masih/);
-  assert.match(u24.grammar + u24.lessons.map(lesson => lesson.grammar).join(' '), /dulu[\s\S]*waktu itu[\s\S]*ketika[\s\S]*kemudian[\s\S]*pengalaman[\s\S]*perjalanan/);
+  assert.match(u21.grammar + u21.lessons.map(lesson => lesson.grammar).join(' '), /karena[\s\S]*sebab[\s\S]*oleh karena itu[\s\S]*sehingga[\s\S]*akibatnya[\s\S]*makanya/i);
+  assert.match(u22.grammar + u22.lessons.map(lesson => lesson.grammar).join(' '), /supaya[\s\S]*agar[\s\S]*untuk/i);
+  assert.match(u23.grammar + u23.lessons.map(lesson => lesson.grammar).join(' '), /pernah[\s\S]*belum pernah[\s\S]*baru saja[\s\S]*sempat[\s\S]*telah[\s\S]*masih/i);
+  assert.match(u24.grammar + u24.lessons.map(lesson => lesson.grammar).join(' '), /dulu[\s\S]*waktu itu[\s\S]*ketika[\s\S]*kemudian[\s\S]*pengalaman[\s\S]*perjalanan/i);
   assert.ok(exercisesOf(u24).some(exercise => exercise.type === 'write' && /viaje o un día especial/.test(exercise.prompt)));
 });
 

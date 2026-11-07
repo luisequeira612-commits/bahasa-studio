@@ -1,7 +1,27 @@
-# Plan de expansión y puerta de calidad de B1
+# Estado actual de B1 y bitácora histórica
 
-Estado: borrador ampliado a doce unidades, aún oculto y pendiente de revisión editorial. U1–U12 siguen la secuencia acordada por bloques; el contenido de U10–U12 se reorganizó el 6 nov 2026.  
-Fecha de corte: 2026-11-06.
+Fecha de actualización: 2026-11-07.
+
+## Estado vigente del currículo
+
+- **B1 está completo en contenido: 50/50 unidades.**
+- Inventario: **241 entradas de vocabulario**, **144 lecciones** y **727 ejercicios** combinados.
+- Las 50 unidades cumplen actualmente los indicadores estructurales automatizados: entre 14 y 18 ejercicios combinados por unidad, cinco tipos de ejercicio y al menos cinco respuestas objetivo estimadas como frases completas. La estimación estructural no demuestra corrección lingüística.
+- Se han preparado tres paquetes de revisión editorial asistida: U1–U12, U13–U26 y U27–U50. Los paquetes extraen el contenido activo y no modifican el currículo. La revisión externa de sus hallazgos sigue pendiente.
+- **B2: 0/60 unidades creadas.** Su desarrollo comienza después de revisar y consolidar B1.
+- B1 sigue siendo material beta. No está validado por hablantes nativos ni certificado o calibrado oficialmente para MCER/BIPA.
+
+Los datos actuales proceden del currículo activo en `index.html`, de los informes de contrato por unidad y de los paquetes de revisión generados en CI el 7 nov 2026.
+
+## Cómo leer el resto de este documento
+
+El contenido que sigue se conserva como **bitácora histórica** de las primeras fases de expansión de B1. Sus inventarios (por ejemplo, 12 unidades, 45 entradas o 72 ejercicios), estados, propuestas futuras y referencias a unidades pendientes describen cortes anteriores, no el currículo actual. Se preserva para rastrear decisiones y contenido desplazado; no debe utilizarse como fuente del estado vigente sin contrastarlo con el código y los informes actuales.
+
+---
+
+## Bitácora histórica — plan inicial de expansión B1
+
+Estado histórico al 2026-11-06: borrador inicial de doce unidades, todavía en construcción. U1–U12 seguían la secuencia acordada por bloques; U10–U12 se reorganizaron el 6 nov 2026.
 
 ## Inventario actual
 
@@ -140,3 +160,4 @@ El usuario autorizó sustituir los borradores antiguos de U10–U12 y conservar 
 - Se evita duplicar las seis entradas ya enseñadas; se añaden nueve formas nuevas y 18 ejercicios (6 por unidad). El borrador B1 queda en 45 entradas activas y 72 ejercicios.
 - Las antiguas unidades de cortesía formal, negociación e integración se conservan literalmente en el archivo de desplazados para futura reasignación, no se cargan ni se descartan.
 - B1 continúa oculto. No se modifican A1/A2, IndexedDB, backup JSON v3, trackers/CSV ni dependencias. Material beta sin validación nativa ni calibración MCER/BIPA.
+

@@ -199,3 +199,6 @@
 
 ## Revisión editorial contextual A2 U9–U12 (7 nov 2026)
 - Lectura de 4 unidades, 48 entradas de vocabulario, 16 lecciones y 68 ejercicios. Referencias internas completas: sin IDs huérfanos ni vocabulario sin uso. Un candidato editorial de neutralidad de género en la glosa de `yakin` («Estoy seguro» frente a una frase indonesia que no marca género); no es error confirmado. Sin cambios curriculares. Ver docs/EDITORIAL_AUDIT_A2_U9_U12.md.
+
+## Revisión editorial contextual A2 U13–U16 (7 nov 2026)
+- Lectura de 4 unidades, 48 entradas, 16 lecciones y 68 ejercicios. Se documentan 6 candidatos de secuenciación/alineación/contexto: exposición anticipada de vocabulario en U13/U14/U16, matiz de «Salgo» frente a `bepergian` en U14, `mengundang` en explicaciones de U15 y especificidad temporal en la traducción de U16. Ninguno se confirma como error lingüístico; no se modificó el currículo. Ver `docs/EDITORIAL_AUDIT_A2_U13_U16.md`.

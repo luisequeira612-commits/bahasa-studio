@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test:assessment": "node tests/assessment-bank-structure.test.js",
-    "quality:tests": "node --test tests/audit-curriculum-quality.test.mjs tests/build-editorial-review-queue.test.mjs tests/build-editorial-review-batches.test.mjs tests/a2-language-audit-tracker.test.cjs tests/harness-quality-skills.test.mjs tests/build-unified-quality-report.test.mjs tests/written-response.test.cjs tests/detect-grammar-prerequisites.test.mjs",
+    "quality:tests": "node --test tests/audit-curriculum-quality.test.mjs tests/build-editorial-review-queue.test.mjs tests/build-editorial-review-batches.test.mjs tests/a2-language-audit-tracker.test.cjs tests/harness-quality-skills.test.mjs tests/build-unified-quality-report.test.mjs tests/written-response.test.cjs tests/detect-grammar-prerequisites.test.mjs tests/detect-semantic-ambiguities.test.mjs",
     "quality:audit": "node scripts/audit-curriculum-quality.mjs --json artifacts/curriculum-quality-report.json",
     "quality:queue": "node scripts/build-editorial-review-queue.mjs --output artifacts/editorial-review-queue.csv --summary artifacts/editorial-review-summary.json",
     "quality:local": "npm run quality:tests && npm run quality:audit && npm run quality:queue && npm run quality:report",
@@ -16,6 +16,7 @@
     "quality:report": "node scripts/build-unified-quality-report.mjs --audit artifacts/curriculum-quality-report.json --editorial artifacts/editorial-review-summary.json --output artifacts/unified-quality-report.json",
     "quality:deepseek-packet": "node scripts/build-deepseek-review-packet.mjs",
     "quality:batch": "node scripts/build-editorial-review-batches.mjs",
-    "quality:grammar-prerequisites": "node scripts/detect-grammar-prerequisites.mjs --output artifacts/grammar-prerequisite-candidates.json"
+    "quality:grammar-prerequisites": "node scripts/detect-grammar-prerequisites.mjs --output artifacts/grammar-prerequisite-candidates.json",
+    "quality:ambiguity": "node scripts/detect-semantic-ambiguities.mjs --output artifacts/semantic-ambiguity-candidates.json"
   }
 }

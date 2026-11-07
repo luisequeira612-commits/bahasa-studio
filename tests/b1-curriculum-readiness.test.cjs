@@ -274,8 +274,6 @@ test('B1 cumulative review IDs resolve only to vocabulary already taught or intr
     'B1 must retain the planned cumulative review cadence');
 });
 
-
-
 test('B1 cumulative checkpoint exercises stay within reviewed or newly taught vocabulary', () => {
   const b1 = course.levels.find(level => level.id === 'B1');
   const expectedCheckpoints = [4, 8, 12, 17, 22, 27, 32, 37, 42, 47];
@@ -285,7 +283,7 @@ test('B1 cumulative checkpoint exercises stay within reviewed or newly taught vo
     const lesson = (unit.lessons || []).find(item => /repaso acumulativo/i.test(item.title));
     if (!lesson) continue;
 
-    checkpoints.push(Number(unit.id.match(/^b1_u(\\d+)$/)?.[1]));
+    checkpoints.push(Number(unit.id.slice('b1_u'.length)));
     const reviewedIds = new Set(lesson.reviewVocabIds || []);
     const newlyTaughtIds = new Set(lesson.vocabIds || []);
     assert.ok(reviewedIds.size > 0, unit.id + ' cumulative checkpoint must declare reviewed vocabulary');

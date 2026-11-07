@@ -580,6 +580,53 @@ test('B1 U35-U37 teach negotiation, clear communication and continuous improveme
   assert.match(units[2].grammar + units[2].lessons.map(lesson => lesson.grammar).join(' '), /kemajuan[\s\S]*pencapaian[\s\S]*menyelesaikan[\s\S]*meningkatkan[\s\S]*mengembangkan/i);
 });
 
+test('B1 U38-U40 teach feedback, evidence and adaptation', () => {
+  const b1 = course.levels.find(level => level.id === 'B1');
+  const units = ['b1_u38', 'b1_u39', 'b1_u40'].map(id => b1.units.find(unit => unit.id === id));
+  assert.ok(units.every(Boolean));
+  const expected = [
+    ['b1v145', 'b1v146', 'b1v147', 'b1v148', 'a2u26_menghargai'],
+    ['b1v149', 'b1v150', 'b1v151', 'b1v152', 'b1v153'],
+    ['b1v154', 'b1v155', 'b1v156', 'b1v157', 'a2u34_kebiasaan']
+  ];
+  const forms = [
+    ['umpan balik', 'kritik', 'mengkritik', 'memuji', 'menghargai'],
+    ['bukti', 'fakta', 'berdasarkan', 'membuktikan', 'menyimpulkan'],
+    ['perubahan', 'menyesuaikan', 'beradaptasi', 'dampak', 'kebiasaan']
+  ];
+  const earlierIds = new Set(b1.units.filter(unit => !['b1_u38', 'b1_u39', 'b1_u40'].includes(unit.id)).flatMap(unit => unit.vocab.map(word => word.id)));
+  for (let i = 0; i < units.length; i++) {
+    const unit = units[i];
+    assert.deepEqual(Array.from(unit.vocab, word => word.id), expected[i]);
+    assert.equal(unit.lessons.length, 3);
+    const exercises = exercisesOf(unit);
+    assert.equal(exercises.length, 14);
+    for (const type of ['mc', 'translate_es_id', 'order', 'listen', 'write']) {
+      assert.ok(exercises.some(exercise => exercise.type === type), unit.id + ' missing exercise type ' + type);
+    }
+    const localIds = new Set(unit.vocab.map(word => word.id));
+    for (const exercise of exercises) {
+      assert.ok(localIds.has(exercise.vocabId), unit.id + ' exercise references vocabulary outside its unit');
+      assert.ok(exercise.prompt && exercise.explanation);
+      if (exercise.type === 'mc') {
+        assert.ok(Array.isArray(exercise.options) && Number.isInteger(exercise.answer));
+        assert.ok(exercise.answer >= 0 && exercise.answer < exercise.options.length);
+      }
+      if (exercise.type === 'order') assert.deepEqual(Array.from(exercise.words).sort(), Array.from(exercise.correctOrder).sort());
+    }
+    assert.ok(exercises.some(exercise => exercise.type === 'write' && exercise.hint && exercise.modelAnswer));
+    assert.ok(exercises.filter(exercise => exercise.type === 'listen').every(exercise => /\s/.test(exercise.answer)));
+    for (let j = 0; j < unit.vocab.length; j++) {
+      const word = unit.vocab[j];
+      assert.equal(word.idn.toLowerCase(), forms[i][j]);
+      assert.ok(!earlierIds.has(word.id), 'new U38-U40 ID already existed earlier: ' + word.id);
+    }
+  }
+  assert.match(units[0].grammar + units[0].lessons.map(lesson => lesson.grammar).join(' '), /umpan balik[\s\S]*kritik[\s\S]*mengkritik[\s\S]*memuji[\s\S]*menghargai/i);
+  assert.match(units[1].grammar + units[1].lessons.map(lesson => lesson.grammar).join(' '), /bukti[\s\S]*fakta[\s\S]*berdasarkan[\s\S]*membuktikan[\s\S]*menyimpulkan/i);
+  assert.match(units[2].grammar + units[2].lessons.map(lesson => lesson.grammar).join(' '), /perubahan[\s\S]*menyesuaikan[\s\S]*beradaptasi[\s\S]*dampak[\s\S]*kebiasaan/i);
+});
+
 test('B1 U25-U26 describe character and places with canonical A1 vocabulary', () => {
   const b1 = course.levels.find(level => level.id === 'B1');
   const u25 = b1.units.find(unit => unit.id === 'b1_u25');

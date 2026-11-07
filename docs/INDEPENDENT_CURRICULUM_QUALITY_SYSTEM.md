@@ -24,7 +24,7 @@ El script `scripts/audit-curriculum-quality.mjs` carga A1 y A2 desde sus archivo
 - referencias `vocabId`, `vocabIds` y `reviewVocabIds` que no resuelven al vocabulario del nivel; se permiten referencias acumulativas hacia niveles anteriores (A2→A1 y B1→A1/A2); los IDs no disponibles en el nivel actual ni en los niveles anteriores se reportan como referencias sin resolver;
 - referencias en ejercicios de unidad y de lección;
 - avisos heurísticos cuando una forma de vocabulario presentada después aparece en campos de contenido indonesio (`ex`, `audioText`, `dialogue`, `readingText`, `words`, `correctOrder` y respuestas de ejercicios que esperan indonesio); en instrucciones o prosa bilingüe solo se inspeccionan fragmentos entre comillas. Se excluyen glosas españolas, ejemplos traducidos y opciones MC sin clasificación de idioma;
-- avisos cuando un ejercicio de unidad usa vocabulario del mismo nivel que solo se introduce en una unidad posterior;
+- avisos cuando un ejercicio de unidad usa vocabulario del mismo nivel que solo se introduce en una unidad posterior; las formas de vocabulario de niveles anteriores se consideran ya conocidas y no se vuelven a marcar como adelantos en niveles superiores;
 - avisos equivalentes dentro de una unidad cuando un ejercicio de lección usa vocabulario presentado en una lección posterior; se respeta `reviewVocabIds` como declaración explícita de repaso;
 - se permite el vocabulario ya presentado y el repaso acumulativo A2→A1.
 

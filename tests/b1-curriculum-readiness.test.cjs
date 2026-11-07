@@ -30,7 +30,7 @@ function exercisesOf(unit) {
 }
 
 // B1 U50 readiness baseline updated with the final curriculum unit.
-test('B1 draft has fifty units, two hundred twenty-four unique IDs including earlier canonical vocabulary, and seven hundred three exercises', () => {
+test('B1 draft has fifty units, two hundred twenty-four unique IDs including earlier canonical vocabulary, and seven hundred twenty-seven exercises', () => {
   const b1 = course.levels.find(level => level.id === 'B1');
   assert.ok(b1);
   assert.equal(b1.units.length, 50);
@@ -239,6 +239,41 @@ test('B1 cumulative review checkpoints cover U22, U27, U32, U37, U42 and U47', (
     assert.equal(exercisesOf(unit).length, 18, unitId + ' should contain fourteen existing exercises plus four review exercises');
   }
 });
+
+test('B1 cumulative review IDs resolve only to vocabulary already taught or introduced in the checkpoint unit', () => {
+  const b1 = course.levels.find(level => level.id === 'B1');
+  const availableBeforeUnit = new Set(
+    course.levels
+      .filter(level => ['A1', 'A2'].includes(level.id))
+      .flatMap(level => level.units.flatMap(unit => (unit.vocab || []).map(word => word.id)))
+  );
+  const expectedCheckpoints = [4, 8, 12, 17, 22, 27, 32, 37, 42, 47];
+  const actualCheckpoints = [];
+
+  for (const unit of b1.units) {
+    const checkpoint = (unit.lessons || []).find(lesson => /repaso acumulativo/i.test(lesson.title));
+    if (checkpoint) {
+      const unitNumber = Number(unit.id.match(/^b1_u(\d+)$/)?.[1]);
+      actualCheckpoints.push(unitNumber);
+      const reviewIds = checkpoint.reviewVocabIds || [];
+      assert.equal(new Set(reviewIds).size, reviewIds.length,
+        unit.id + ' cumulative review must not repeat vocabulary IDs');
+      const availableAtCheckpoint = new Set([
+        ...availableBeforeUnit,
+        ...(unit.vocab || []).map(word => word.id)
+      ]);
+      for (const id of reviewIds) {
+        assert.ok(availableAtCheckpoint.has(id),
+          unit.id + ' cumulative review references vocabulary not yet taught: ' + id);
+      }
+    }
+    for (const word of unit.vocab || []) availableBeforeUnit.add(word.id);
+  }
+
+  assert.deepEqual(actualCheckpoints, expectedCheckpoints,
+    'B1 must retain the planned cumulative review cadence');
+});
+
 
 test('every B1 draft exercise references vocabulary in its own unit', () => {
   const b1 = course.levels.find(level => level.id === 'B1');

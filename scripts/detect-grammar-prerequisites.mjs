@@ -27,7 +27,7 @@ export function detectGrammarPrerequisiteCandidates(curricula, catalogue) {
     if (introIndex < 0) continue;
     const patterns = rule.markers.map(marker => ({
       marker,
-      regex: new RegExp('(^|[^\\p{L}\\p{N}])' + normalize(marker).replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\regex: new RegExp('(^|[^\\p{L}\\p{N}])' + normalize(marker) + '($|[^\\p{L}\\p{N}])', 'giu'),') + '($|[^\\p{L}\\p{N}])', 'iu'),
+      regex: new RegExp('(^|[^\\p{L}\\p{N}])' + normalize(marker) + '($|[^\\p{L}\\p{N}])', 'iu'),
     }));
     for (const curriculum of curricula) {
       const levelIndex = (catalogue.level_order ?? []).indexOf(curriculum.id);

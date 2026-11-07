@@ -21,7 +21,10 @@ test('does not flag markers in or after their introduction unit', () => {
  assert.equal(detectGrammarPrerequisiteCandidates(curricula, catalogue).candidate_count, 0);
 });
 test('uses whole-word matching and ignores unrelated substrings', () => {
- const curricula = [{ id: 'A1', units: [{ id: 'a1_u1', exercises: [{ prompt: 'Nama saya Sudi.' }, { prompt: 'Saya sudah makan.' }] }] }];
+ const curricula = [
+  { id: 'A1', units: [{ id: 'a1_u1', exercises: [{ prompt: 'Nama saya Sudi.' }, { prompt: 'Saya sudah makan.' }] }] },
+  { id: 'A2', units: [{ id: 'a2_u1', exercises: [] }, { id: 'a2_u2', exercises: [] }] },
+ ];
  const report = detectGrammarPrerequisiteCandidates(curricula, catalogue);
  assert.equal(report.candidate_count, 1);
  assert.deepEqual(report.candidates[0].markers, ['sudah']);

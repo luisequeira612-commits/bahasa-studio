@@ -1,6 +1,6 @@
 # Plan de expansión y puerta de calidad de B1
 
-Estado: fase 4 en desarrollo; borrador ampliado a doce unidades, aún oculto y pendiente de revisión editorial.  
+Estado: borrador ampliado a doce unidades, aún oculto y pendiente de revisión editorial. La secuencia U1–U6 se ha alineado con el plan curricular del usuario; U7–U12 requieren reorganización posterior.  
 Fecha de corte: 2026-10-31.
 
 ## Inventario actual
@@ -19,7 +19,7 @@ El currículo B1 está definido dentro de `CourseData` en `index.html`. El inven
 11. Aclarar, negociar y resolver malentendidos.
 12. Integrar información y presentar conclusiones.
 
-La ampliación de U6–U12 incorpora **35 entradas nuevas de vocabulario y 35 ejercicios**, para un total inicial de **52 entradas y 52 ejercicios** en doce unidades. Tras la ampliación de B1 U1, el inventario asciende a **57 entradas y 60 ejercicios**. El banco de evaluación independiente pasa de seis a **veinte ítems**: incluye tres tareas de escucha, tres preguntas de comprensión de un texto más extenso, tres tareas de producción escrita abierta y una tarea oral, todas las respuestas productivas pendientes de revisión humana. La expansión es un borrador de contenido beta; no constituye un currículo B1 completo ni una evaluación calibrada.
+El inventario actual conserva doce unidades, 57 entradas de vocabulario y 65 ejercicios. U4–U6 incorporan 13 formas (11 verbos de la lista del usuario y dos pasivas relacionadas) y 18 ejercicios. El total de vocabulario no aumenta porque las 13 entradas anteriores de U4–U6 se archivaron para reorganizarlas después. El banco de evaluación independiente pasa de seis a **veinte ítems**: incluye tres tareas de escucha, tres preguntas de comprensión de un texto más extenso, tres tareas de producción escrita abierta y una tarea oral, todas las respuestas productivas pendientes de revisión humana. La expansión es un borrador de contenido beta; no constituye un currículo B1 completo ni una evaluación calibrada.
 
 ## Brechas principales
 
@@ -35,7 +35,7 @@ La expansión se hará por bloques y no se publicará como curso habilitado hast
 
 | Bloque | Unidad propuesta | Evidencia comunicativa |
 |---|---|---|
-| Morfología y significado | U1–U5 existentes | U1–U2: pasiva/activa con `di-` y `meN-`; U3: reconocimiento de `ber-` y `ter-`; U4–U5: `-an/-nya`, nominalizaciones y ampliación contextual de `ter-` |
+| Morfología y significado | U1–U6 | U1–U2: pasiva/activa con `di-` y `meN-`; U3: reconocimiento de `ber-` y `ter-`; U4–U6: sufijos `-kan/-i`, contraste contextual y pasivas correspondientes |
 | Cohesión y narración | U6: Secuenciar experiencias | Narrar una experiencia con marcadores temporales y referencias claras |
 | Lectura | U7: Comprender textos informativos | Identificar idea principal, detalles y relaciones entre párrafos |
 | Procesos | U8: Explicar cómo se hace algo | Describir pasos, agentes y resultados con activa/pasiva |
@@ -114,3 +114,10 @@ Con autorización del usuario, se alineó la progresión inicial con su plan cur
 - U3: reconocimiento de `ber-` y `ter-` con `bekerja`, `bermain`, `terbaca`, `tertulis` y `terjual`.
 
 Se retiraron de U1 las formas `dimakan`, `dibuka`, `ditutup`, `dibuat` y `dikirim`; de U2, `dibaca` como entrada duplicada y `penulis`; de U3, `mengirimkan`, `mengirimi`, `mengisi` y `memperbaiki`, para respetar la secuencia aprobada y evitar adelantar `-kan/-i`, `peN-` y contenido de B2. Las prácticas se reescribieron para las formas de cada unidad. El inventario B1 permanece en 57 entradas; el total de ejercicios pasa a 60. B1 sigue oculto. Las formas y glosas siguen siendo borrador beta, no certificación nativa ni calibración MCER/BIPA.
+
+
+## Reorganización autorizada de B1 U4–U6 (7 nov 2026)
+
+El usuario autorizó reemplazar los antiguos contenidos de U4–U6 y conservarlos para su futura reorganización. La secuencia actual sigue su plan: U4 -kan (memberikan, mengirimkan, menjelaskan, membersihkan); U5 contraste -kan/-i (mengingatkan, memasukkan, mendatangi, menemui); U6 -i y pasivas (menghadiri, mencintai, memasuki, dijelaskan, ditemui). Se incorporaron 18 ejercicios: seis en U4, seis en U5 y siete en U6. La explicación advierte que la selección del sufijo depende del verbo, los participantes y el contexto, no de una regla mecánica universal.
+
+Los objetos originales de U4–U6 se preservan literalmente en docs/B1_U4_U6_DISPLACED_CONTENT.md, junto con destinos propuestos para su revisión: Makanan/Minuman, Bukunya/Rumahnya, Terbuka/Tertutup, Pekerja/Pendidikan y conectores anteriores. No se pierde contenido ni se reintroduce automáticamente. El inventario de B1 sigue en 57 entradas y pasa a 65 ejercicios. B1 permanece oculto; las formas y glosas son borrador beta no validado por hablante nativo ni calibrado MCER/BIPA.

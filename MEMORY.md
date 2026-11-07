@@ -196,3 +196,6 @@
 
 ## Revisión editorial contextual A2 U1–U4 (7 nov 2026)
 - Lectura de 4 unidades, 60 entradas de vocabulario, 17 lecciones y 78 ejercicios. Un candidato de alineación entre consigna y placeholder en U3 L1: la consigna pide una respuesta bilingüe (explicación española + secuencia indonesia), pero el campo muestra «Escribe tu respuesta en indonesio». `checkWriting()` no corrige automáticamente; muestra el modelo y permite autoevaluarse. No es error lingüístico confirmado. Sin cambios curriculares. Ver docs/EDITORIAL_AUDIT_A2_U1_U4.md.
+
+## Revisión editorial contextual A2 U9–U12 (7 nov 2026)
+- Lectura de 4 unidades, 48 entradas de vocabulario, 16 lecciones y 68 ejercicios. Referencias internas completas: sin IDs huérfanos ni vocabulario sin uso. Un candidato editorial de neutralidad de género en la glosa de `yakin` («Estoy seguro» frente a una frase indonesia que no marca género); no es error confirmado. Sin cambios curriculares. Ver docs/EDITORIAL_AUDIT_A2_U9_U12.md.

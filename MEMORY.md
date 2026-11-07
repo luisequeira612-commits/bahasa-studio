@@ -177,3 +177,8 @@
 ## PR11 — candidatos de prerrequisitos gramaticales (6 nov 2026)
 - Añade un detector genérico offline gobernado por un catálogo de reglas separado del código; señala marcas explícitas usadas antes de su unidad declarada. Los resultados requieren revisión contextual y no prueban que falte una explicación.
 - Incluye pruebas sintéticas, suite de calidad y artifact CI. Sin cambios de currículo, trackers/CSV, IndexedDB ni backup JSON v3; sin dependencias ni red.
+
+
+## PR — candidatos de ambigüedad semántica (6 nov 2026)
+- Añade un detector offline conservador para ejercicios de opción múltiple: solo señala opciones que coinciden con la glosa española objetivo mediante coincidencia exacta normalizada. Los resultados son candidatos para revisión humana, no errores confirmados ni certificación lingüística.
+- Incluye pruebas sintéticas, ejecución en la suite de calidad y artifact CI. Reconciliado sobre el main posterior a PR #383. Sin cambios de currículo, trackers/CSV, IndexedDB ni backup JSON v3; sin dependencias ni red.

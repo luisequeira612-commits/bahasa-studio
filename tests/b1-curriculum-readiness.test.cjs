@@ -26,9 +26,22 @@ test('B1 draft has twelve units and an explicitly incomplete vocabulary bank', (
   const b1 = course.levels.find(level => level.id === 'B1');
   assert.ok(b1);
   assert.equal(b1.units.length, 12);
-  assert.equal(b1.units.reduce((sum, unit) => sum + unit.vocab.length, 0), 52);
-  assert.equal(b1.units.reduce((sum, unit) => sum + unit.exercises.length, 0), 52);
+  assert.equal(b1.units.reduce((sum, unit) => sum + unit.vocab.length, 0), 57);
+  assert.equal(b1.units.reduce((sum, unit) => sum + unit.exercises.length, 0), 58);
   assert.deepEqual(Array.from(b1.units, unit => unit.id), ['b1_u1', 'b1_u2', 'b1_u3', 'b1_u4', 'b1_u5', 'b1_u6', 'b1_u7', 'b1_u8', 'b1_u9', 'b1_u10', 'b1_u11', 'b1_u12']);
+});
+
+test('B1 U1 provides a complete introductory practice set for passive di-', () => {
+  const b1 = course.levels.find(level => level.id === 'B1');
+  const unit = b1.units.find(item => item.id === 'b1_u1');
+  assert.equal(unit.vocab.length, 6);
+  assert.equal(unit.exercises.length, 7);
+  for (const id of ['v8', 'b1v001', 'b1v002', 'b1v003', 'b1v004', 'b1v005']) {
+    assert.ok(unit.vocab.some(word => word.id === id), 'B1 U1 missing vocabulary ' + id);
+  }
+  assert.ok(unit.exercises.some(item => item.type === 'translate_es_id'));
+  assert.ok(unit.exercises.some(item => item.type === 'listen'));
+  assert.ok(unit.exercises.some(item => item.type === 'write'));
 });
 
 test('every B1 draft exercise references vocabulary in its own unit', () => {

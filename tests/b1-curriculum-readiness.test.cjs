@@ -33,7 +33,7 @@ test('B1 draft has fourteen units, forty-five unique vocabulary entries and one 
   const b1 = course.levels.find(level => level.id === 'B1');
   assert.ok(b1);
   assert.equal(b1.units.length, 14);
-  assert.equal(new Set(b1.units.flatMap(unit => unit.vocab.map(word => word.id))).size, 45);
+  assert.equal(new Set(b1.units.flatMap(unit => unit.vocab.map(word => word.id))).size, 50);
   assert.equal(b1.units.reduce((sum, unit) => sum + exercisesOf(unit).length, 0), 100);
   assert.deepEqual(Array.from(b1.units, unit => unit.id), [
     'b1_u1', 'b1_u2', 'b1_u3', 'b1_u4', 'b1_u5', 'b1_u6', 'b1_u7',
@@ -83,7 +83,7 @@ test('every B1 draft exercise references vocabulary in its own unit', () => {
       }
     }
   }
-  assert.equal(byId.size, 45);
+  assert.equal(byId.size, 50);
 });
 
 

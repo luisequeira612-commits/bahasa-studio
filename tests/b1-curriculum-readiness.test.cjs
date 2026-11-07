@@ -190,7 +190,9 @@ test('B1 selected examples do not introduce later vocabulary before its teaching
   assert.doesNotMatch(JSON.stringify(unit('b1_u36')), /perubahan/i);
   assert.doesNotMatch(JSON.stringify(unit('b1_u39')), /perubahan/i);
   assert.doesNotMatch(JSON.stringify(unit('b1_u40')), /memengaruhi/i);
+  assert.doesNotMatch(JSON.stringify(unit('b1_u40').lessons[0]), /dampak/i);
   assert.doesNotMatch(JSON.stringify(unit('b1_u45')), /mengurangi/i);
+  assert.doesNotMatch(JSON.stringify(unit('b1_u45').lessons[0]), /menghindari/i);
   const u49 = unit('b1_u49');
   const titles = u49.lessons.map(lesson => lesson.title);
   assert.ok(titles.indexOf('Limbah y acciones responsables') < titles.indexOf('Berkelanjutan y mengurangi'));

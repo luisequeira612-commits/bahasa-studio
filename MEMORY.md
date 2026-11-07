@@ -266,3 +266,7 @@
 
 ## Revisión editorial contextual B1 U33–U37 (7 nov 2026)
 - Lectura manual de cinco unidades: 0 errores confirmados y 0 candidatos que justifiquen corrección curricular. U33–U37 mantienen coherencia interna entre objetivos, glosas, explicaciones, ejemplos y ejercicios. La reutilización de IDs A2 en U35/U37 se considera coherente con la revisión acumulativa. No se modificó el currículo ni datos persistentes. Ver `docs/EDITORIAL_AUDIT_B1_U33_U37.md`.
+
+
+## Revisión editorial contextual B1 U43–U47 (7 nov 2026)
+- Lectura manual de cinco unidades: 0 errores confirmados y 0 candidatos que justifiquen corrección curricular. U43–U47 mantienen coherencia entre objetivos, glosas, ejemplos, explicaciones y ejercicios; la reutilización de IDs A1/A2 en U47 es coherente con el conocimiento previo. No se modificó el currículo ni datos persistentes. Ver `docs/EDITORIAL_AUDIT_B1_U43_U47.md`.

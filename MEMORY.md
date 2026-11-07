@@ -14,7 +14,7 @@
 ## Estado actual del currículo
 - A1: 32 de 32 unidades hechas.
 - A2: 40 de 40 unidades hechas y habilitadas en beta (`A2_RELEASE_ENABLED = true`). U5–U8 siguen en consolidación; PR #337 aclara el vocabulario objetivo de 16 prompts de traducción.
-- B1: borrador oculto de 12 unidades, 57 entradas y 66 ejercicios. U1–U3 siguen la progresión de afijos inicial; U4–U6 ya se reorganizaron según el plan del usuario (-kan/-i y pasivas). Los antiguos contenidos U4–U6 están preservados en docs/B1_U4_U6_DISPLACED_CONTENT.md para reubicación futura. U7–U12 aún requieren alineación con la hoja de ruta; B2 aún no iniciado.
+- B1: borrador oculto de 12 unidades, 51 entradas activas y 69 ejercicios. U1–U3 siguen la progresión di-/meN-/ber-/ter-; U4–U6 están alineadas con -kan/-i; U7–U9 con nombres de agente pe-/peN-. Los contenidos desplazados de U4–U6 y U7–U9 se preservan en sus archivos docs/B1_*_DISPLACED_CONTENT.md. U10–U12 aún requieren alineación; B2 aún no iniciado.
 - Sistema de calidad: auditoría estructural/editorial independiente de KBBI y cola editorial para vocabulario y ejercicios. Último informe CI (#350): 0 errores, 0 avisos en 72 unidades; 1.989 entradas editoriales pendientes (806 A1, 1.183 A2), sin certificación lingüística.
 
 ## Aclaración de métricas de Perfil (PR pendiente)
@@ -210,3 +210,10 @@
 - U6: `menghadiri`, `mencintai`, `memasuki` (-i); pasivas `dijelaskan` y `ditemui`.
 - 19 ejercicios nuevos (6/6/7); 57 entradas de vocabulario y 66 ejercicios en el borrador B1. Se conserva el contenido previo de U4–U6 en `docs/B1_U4_U6_DISPLACED_CONTENT.md` para reorganizarlo después, sin pérdida de información.
 - Las formas y glosas siguen siendo material beta; no implican validación nativa ni calibración MCER/BIPA. B1 sigue oculto.
+
+
+## Reorganización autorizada B1 U7–U9 (6 nov 2026)
+- U7: `penjual`, `pembeli`, `pemain`; U8: `penulis`, `pengajar`, `pekerja`; U9: `pemimpin`, `penduduk`, `pembaca`.
+- `pembelian` y `pengiriman` quedan solo como reconocimiento peN-an, sin entrada curricular ni producción obligatoria.
+- Se archivan literalmente los objetos anteriores de U7–U9 en `docs/B1_U7_U9_DISPLACED_CONTENT.md`. El inventario activo cambia de 57/66 a 51 vocablos/69 ejercicios; B1 sigue oculto.
+- PR en revisión; no fusionar sin aprobación explícita. Material beta sin validación nativa ni calibración MCER/BIPA. Sin cambios a A1/A2, IndexedDB, backup v3, trackers/CSV ni dependencias.

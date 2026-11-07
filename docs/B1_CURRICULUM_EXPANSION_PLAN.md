@@ -1,6 +1,6 @@
 # Plan de expansión y puerta de calidad de B1
 
-Estado: borrador ampliado a doce unidades, aún oculto y pendiente de revisión editorial. La secuencia U1–U6 se ha alineado con el plan curricular del usuario; U7–U12 requieren reorganización posterior.  
+Estado: borrador ampliado a doce unidades, aún oculto y pendiente de revisión editorial. La secuencia U1–U9 se ha alineado con el plan curricular del usuario; U10–U12 requieren reorganización posterior.  
 Fecha de corte: 2026-10-31.
 
 ## Inventario actual
@@ -19,7 +19,7 @@ El currículo B1 está definido dentro de `CourseData` en `index.html`. El inven
 11. Aclarar, negociar y resolver malentendidos.
 12. Integrar información y presentar conclusiones.
 
-El inventario actual conserva doce unidades, 57 entradas de vocabulario y 66 ejercicios. U4–U6 incorporan 13 formas (11 verbos de la lista del usuario y dos pasivas relacionadas) y 19 ejercicios. El total de vocabulario no aumenta porque las 13 entradas anteriores de U4–U6 se archivaron para reorganizarlas después. El banco de evaluación independiente pasa de seis a **veinte ítems**: incluye tres tareas de escucha, tres preguntas de comprensión de un texto más extenso, tres tareas de producción escrita abierta y una tarea oral, todas las respuestas productivas pendientes de revisión humana. La expansión es un borrador de contenido beta; no constituye un currículo B1 completo ni una evaluación calibrada.
+El inventario actual conserva doce unidades, 51 entradas de vocabulario y 69 ejercicios. U4–U6 incorporan 13 formas (11 verbos de la lista del usuario y dos pasivas relacionadas) y 19 ejercicios. El total de vocabulario no aumenta porque las 13 entradas anteriores de U4–U6 se archivaron para reorganizarlas después. El banco de evaluación independiente pasa de seis a **veinte ítems**: incluye tres tareas de escucha, tres preguntas de comprensión de un texto más extenso, tres tareas de producción escrita abierta y una tarea oral, todas las respuestas productivas pendientes de revisión humana. La expansión es un borrador de contenido beta; no constituye un currículo B1 completo ni una evaluación calibrada.
 
 ## Brechas principales
 
@@ -37,9 +37,9 @@ La expansión se hará por bloques y no se publicará como curso habilitado hast
 |---|---|---|
 | Morfología y significado | U1–U6 | U1–U2: pasiva/activa con `di-` y `meN-`; U3: reconocimiento de `ber-` y `ter-`; U4–U6: sufijos `-kan/-i`, contraste contextual y pasivas correspondientes |
 | Cohesión y narración | U18–U24 según la hoja de ruta del usuario | Condicionales, concesivas, causa, consecuencia y narración de experiencias; las unidades de borrador U7–U12 aún deben reorganizarse |
-| Lectura | U7: Comprender textos informativos | Identificar idea principal, detalles y relaciones entre párrafos |
-| Procesos | U8: Explicar cómo se hace algo | Describir pasos, agentes y resultados con activa/pasiva |
-| Opinión | U9: Expresar y justificar una postura | Dar razones, contrastar ideas y responder a una objeción sencilla |
+| Lectura | U7–U9: Nombres de agente pe-/peN- | Identificar vendedor, comprador, jugador, escritor, docente, trabajador, líder, habitante y lector en frases y contextos sencillos |
+| Procesos | U10–U11: Nominalizaciones -an, pe-an y per-an | Reconocer nombres frecuentes y sus contextos |
+| Opinión | U12–U14: ke-an básico | Reconocer nombres de estado y cualidad en contexto |
 | Registro | U10: Adaptar el mensaje al contexto | Elegir formas de petición, respuesta y tratamiento según situación |
 | Interacción | U11: Resolver una situación práctica | Negociar, aclarar, confirmar y reparar malentendidos |
 | Integración | U12: Proyecto comunicativo B1 | Leer/escuchar información y producir un texto o explicación conectada |
@@ -74,12 +74,7 @@ El inventario y las pruebas automáticas pueden demostrar estructura, referencia
 
 ## Avance de contenido B1 — U6–U12
 
-Se incorporaron siete unidades nuevas al borrador oculto:
-- U6: `ketika`, `meskipun`, `namun`, `oleh karena itu`, `sementara itu`.
-- U7: `menurut`, `berdasarkan`, `laporan`, `meningkat`, `menurun`.
-- U8: `dilakukan`, `digunakan`, `diproses`, `dihasilkan`, `langkah`.
-- U9: `pendapat`, `alasan`, `setuju`, `berbeda`, `sebaliknya`.
-- U10: `mohon`, `harap`, `menghubungi`, `bersedia`, `tersedia`.
+El borrador conserva doce unidades. U6 mantiene conectores; U7–U9 se reorganizaron según la secuencia de nombres de agente del plan del usuario. U10–U12 siguen siendo borradores anteriores y requieren alineación posterior.
 
 Se añadieron cinco preguntas de opción múltiple para cubrir conectores, lectura de informes, voz pasiva, opinión y registro formal; una pregunta de interacción; una tarea oral con rúbrica; una tarea de síntesis escrita; y una tarea inicial de escucha. El banco incorpora explícitamente las habilidades `register`, `interaction` y `comprehension`. Las tres tareas escritas abiertas y la tarea oral requieren revisión humana; los ítems cerrados solo prueban comprensión de los ejemplos redactados y no validan el dominio productivo.
 
@@ -121,3 +116,15 @@ Se retiraron de U1 las formas `dimakan`, `dibuka`, `ditutup`, `dibuat` y `dikiri
 El usuario autorizó reemplazar los antiguos contenidos de U4–U6 y conservarlos para su futura reorganización. La secuencia actual sigue su plan: U4 -kan (memberikan, mengirimkan, menjelaskan, membersihkan); U5 contraste -kan/-i (mengingatkan, memasukkan, mendatangi, menemui); U6 -i y pasivas (menghadiri, mencintai, memasuki, dijelaskan, ditemui). Se incorporaron 19 ejercicios: seis en U4, seis en U5 y siete en U6. La explicación advierte que la selección del sufijo depende del verbo, los participantes y el contexto, no de una regla mecánica universal.
 
 Los objetos originales de U4–U6 se preservan literalmente en docs/B1_U4_U6_DISPLACED_CONTENT.md, junto con destinos propuestos para su revisión: Makanan/Minuman, Bukunya/Rumahnya, Terbuka/Tertutup, Pekerja/Pendidikan y conectores anteriores. No se pierde contenido ni se reintroduce automáticamente. El inventario de B1 sigue en 57 entradas y pasa a 66 ejercicios. B1 permanece oculto; las formas y glosas son borrador beta no validado por hablante nativo ni calibrado MCER/BIPA.
+
+
+## Reorganización autorizada de B1 U7–U9 (6 nov 2026)
+
+El usuario autorizó reemplazar los borradores de U7–U9 y archivar íntegramente los objetos anteriores en `docs/B1_U7_U9_DISPLACED_CONTENT.md`.
+
+- U7: `penjual`, `pembeli`, `pemain`.
+- U8: `penulis`, `pengajar`, `pekerja`.
+- U9: `pemimpin`, `penduduk`, `pembaca`.
+- `pembelian` y `pengiriman` aparecen solo como reconocimiento de nominalizaciones peN-an; no son entradas de vocabulario ni se exigen en producción.
+- Se añadieron 18 ejercicios (6 por unidad). El inventario B1 pasa de 57 a 51 entradas activas y de 66 a 69 ejercicios; las 15 entradas/ejercicios previos de U7–U9 quedan preservados en el archivo y no se cargan en la app.
+- B1 continúa oculto. No se modificaron A1/A2, IndexedDB, backup JSON v3, trackers/CSV ni dependencias. Las formas y glosas siguen siendo material beta no validado por hablante nativo ni calibrado MCER/BIPA.

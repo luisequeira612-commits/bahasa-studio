@@ -958,62 +958,59 @@
                         ,
                         {
                             id: 'b1_u7',
-                            title: 'Unidad 7: Leer y resumir información',
-                            desc: 'Interpreta afirmaciones atribuidas a informes y describe cambios sencillos en datos.',
-                            grammar: 'Al resumir información, distingue la fuente («menurut», «berdasarkan») del dato comunicado. Verbos como meningkat y menurun describen tendencias; comprueba qué magnitud cambia y en qué periodo.',
+                            title: 'Unidad 7: Nombres de agente con pe-/peN- (1)',
+                            desc: 'Identifica a quien vende, compra o participa en una actividad mediante nombres de agente frecuentes.',
+                            grammar: 'En estas palabras, pe-/peN- forma nombres de personas relacionados con una actividad: penjual (quien vende), pembeli (quien compra) y pemain (quien juega o participa). La forma concreta depende de la raíz y no se obtiene aplicando una sola terminación mecánica. Como reconocimiento, observa también pembelian (compra) y pengiriman (envío): son nombres de acción con peN-an y no son vocabulario productivo de esta unidad.',
                             vocab: [
-                                { id: 'b1u7_menurut', idn: 'Menurut', esp: 'Según; de acuerdo con', ex: 'Menurut laporan itu, jumlah pengunjung meningkat.', exEsp: 'Según ese informe, aumenta el número de visitantes.' },
-                                { id: 'b1u7_berdasarkan', idn: 'Berdasarkan', esp: 'Basado en; según', ex: 'Berdasarkan data ini, harga berubah.', exEsp: 'Según estos datos, los precios cambian.' },
-                                { id: 'b1u7_laporan', idn: 'Laporan', esp: 'Informe; reporte', ex: 'Laporan itu diterbitkan kemarin.', exEsp: 'Ese informe se publicó ayer.' },
-                                { id: 'b1u7_meningkat', idn: 'Meningkat', esp: 'Aumentar; aumentar(se)', ex: 'Jumlah pengunjung meningkat tahun ini.', exEsp: 'El número de visitantes aumenta este año.' },
-                                { id: 'b1u7_menurun', idn: 'Menurun', esp: 'Disminuir; bajar', ex: 'Penjualan menurun pada bulan lalu.', exEsp: 'Las ventas disminuyeron el mes pasado.' }
+                                { id: 'b1u7_penjual', idn: 'Penjual', esp: 'Vendedor/a; quien vende', ex: 'Penjual menjual buku.', exEsp: 'El vendedor vende libros.' },
+                                { id: 'b1u7_pembeli', idn: 'Pembeli', esp: 'Comprador/a; quien compra', ex: 'Pembeli membeli buah.', exEsp: 'El comprador compra fruta.' },
+                                { id: 'b1u7_pemain', idn: 'Pemain', esp: 'Jugador/a; participante', ex: 'Pemain bermain sepak bola.', exEsp: 'El jugador juega al fútbol.' }
                             ],
                             exercises: [
-                                { vocabId: 'b1u7_menurut', type: 'mc', prompt: '¿Qué introduce «menurut»?', options: ['La fuente o el punto de vista', 'Una orden', 'Una negación'], answer: 0, explanation: 'Menurut atribuye la información a una fuente o perspectiva.' },
-                                { vocabId: 'b1u7_berdasarkan', type: 'translate_es_id', prompt: 'Traduce al indonesio: basado en', answer: 'Berdasarkan', explanation: 'Berdasarkan introduce la base o evidencia de una afirmación.' },
-                                { vocabId: 'b1u7_laporan', type: 'mc', prompt: '¿Qué significa «laporan»?', options: ['Informe', 'Visitante', 'Precio'], answer: 0, explanation: 'Laporan es un informe o reporte.' },
-                                { vocabId: 'b1u7_meningkat', type: 'translate_es_id', prompt: 'Traduce al indonesio: aumentar', answer: 'Meningkat', explanation: 'Meningkat describe un aumento.' },
-                                { vocabId: 'b1u7_menurun', type: 'write', prompt: 'Escribe una frase que resuma una tendencia usando «menurun».', hint: 'Indica qué dato baja y cuándo.', modelAnswer: 'Jumlah kendaraan menurun tahun ini.', explanation: 'El ejemplo comunica una tendencia descendente.' }
+                                { vocabId: 'b1u7_penjual', type: 'mc', prompt: '¿Quién vende libros en «Penjual menjual buku»?', options: ['El vendedor', 'El comprador', 'El jugador'], answer: 0, explanation: 'Penjual nombra a la persona que vende.' },
+                                { vocabId: 'b1u7_penjual', type: 'translate_es_id', prompt: 'Traduce al indonesio: El vendedor vende libros.', answer: 'Penjual menjual buku.', explanation: 'Penjual es el nombre de la persona que realiza la actividad de vender.' },
+                                { vocabId: 'b1u7_pembeli', type: 'listen', prompt: 'Escucha y escribe el nombre de la persona que compra.', answer: 'Pembeli', explanation: 'Pembeli significa comprador o compradora.' },
+                                { vocabId: 'b1u7_pemain', type: 'mc', prompt: '¿Qué significa «pemain»?', options: ['Jugador/a; participante', 'Vendedor/a', 'Comprador/a'], answer: 0, explanation: 'Pemain nombra a quien juega o participa en una actividad.' },
+                                { vocabId: 'b1u7_pembeli', type: 'translate_es_id', prompt: 'Traduce al indonesio: El comprador compra fruta.', answer: 'Pembeli membeli buah.', explanation: 'Pembeli nombra a quien compra; membeli es la forma verbal ya estudiada.' },
+                                { vocabId: 'b1u7_pemain', type: 'write', prompt: 'Escribe una frase breve con «pemain».', hint: 'Puedes usar bermain y una actividad deportiva.', modelAnswer: 'Pemain bermain sepak bola.', explanation: 'El ejemplo relaciona pemain con la actividad que realiza.' }
                             ]
                         },
                         {
                             id: 'b1_u8',
-                            title: 'Unidad 8: Explicar procesos y resultados',
-                            desc: 'Describe pasos de un proceso y reconoce formas pasivas en instrucciones e informes.',
-                            grammar: 'En una descripción de procesos, la voz pasiva puede destacar el procedimiento o el elemento afectado. Identifica el verbo y aquello sobre lo que recae la acción; no supongas que toda frase con di- tiene el mismo foco discursivo.',
+                            title: 'Unidad 8: Nombres de agente con pe-/peN- (2)',
+                            desc: 'Reconoce nombres de personas relacionados con escribir, enseñar y trabajar.',
+                            grammar: 'Los nombres penulis, pengajar y pekerja identifican a personas por su actividad: escribir, enseñar y trabajar. Compara cada forma con la raíz y con los verbos que ya conoces (menulis, mengajar y bekerja). Aprende las palabras completas en contexto; los cambios de forma de peN- dependen del sonido inicial de la raíz.',
                             vocab: [
-                                { id: 'b1u8_dilakukan', idn: 'Dilakukan', esp: 'Realizado; llevado a cabo', ex: 'Pemeriksaan dilakukan setiap pagi.', exEsp: 'La inspección se realiza cada mañana.' },
-                                { id: 'b1u8_digunakan', idn: 'Digunakan', esp: 'Utilizado; usado', ex: 'Alat ini digunakan untuk mengukur suhu.', exEsp: 'Esta herramienta se utiliza para medir la temperatura.' },
-                                { id: 'b1u8_diproses', idn: 'Diproses', esp: 'Procesado', ex: 'Data diproses oleh komputer.', exEsp: 'Los datos son procesados por la computadora.' },
-                                { id: 'b1u8_dihasilkan', idn: 'Dihasilkan', esp: 'Producido; generado', ex: 'Energi dihasilkan dari matahari.', exEsp: 'La energía se genera a partir del sol.' },
-                                { id: 'b1u8_langkah', idn: 'Langkah', esp: 'Paso; medida', ex: 'Langkah pertama adalah mencuci beras.', exEsp: 'El primer paso es lavar el arroz.' }
+                                { id: 'b1u8_penulis', idn: 'Penulis', esp: 'Escritor/a; quien escribe', ex: 'Penulis menulis surat.', exEsp: 'El escritor escribe una carta.' },
+                                { id: 'b1u8_pengajar', idn: 'Pengajar', esp: 'Docente; instructor/a', ex: 'Pengajar mengajar murid.', exEsp: 'El docente enseña al alumno.' },
+                                { id: 'b1u8_pekerja', idn: 'Pekerja', esp: 'Trabajador/a; quien trabaja', ex: 'Pekerja bekerja di kantor.', exEsp: 'El trabajador trabaja en la oficina.' }
                             ],
                             exercises: [
-                                { vocabId: 'b1u8_dilakukan', type: 'mc', prompt: '¿Qué expresa «dilakukan» en «Pemeriksaan dilakukan»?', options: ['La acción se lleva a cabo', 'La acción está prohibida', 'La acción acaba de empezar'], answer: 0, explanation: 'Dilakukan es una forma pasiva que indica que la acción se realiza.' },
-                                { vocabId: 'b1u8_digunakan', type: 'translate_es_id', prompt: 'Traduce al indonesio: utilizado', answer: 'Digunakan', explanation: 'Digunakan indica que algo se utiliza.' },
-                                { vocabId: 'b1u8_diproses', type: 'mc', prompt: 'En «Data diproses oleh komputer», ¿qué recibe la acción?', options: ['Los datos', 'La computadora', 'El proceso'], answer: 0, explanation: 'Data es el elemento procesado; oleh komputer identifica al agente.' },
-                                { vocabId: 'b1u8_dihasilkan', type: 'translate_es_id', prompt: 'Traduce al indonesio: generado', answer: 'Dihasilkan', explanation: 'Dihasilkan significa producido o generado.' },
-                                { vocabId: 'b1u8_langkah', type: 'write', prompt: 'Escribe dos pasos de un proceso usando «langkah».', hint: 'Empieza con Langkah pertama y añade un paso siguiente.', modelAnswer: 'Langkah pertama adalah mencuci beras. Langkah berikutnya adalah memasak nasi.', explanation: 'El modelo organiza dos pasos de un proceso.' }
+                                { vocabId: 'b1u8_penulis', type: 'mc', prompt: '¿Quién escribe una carta en «Penulis menulis surat»?', options: ['El escritor', 'El docente', 'El trabajador'], answer: 0, explanation: 'Penulis nombra a la persona que escribe.' },
+                                { vocabId: 'b1u8_penulis', type: 'translate_es_id', prompt: 'Traduce al indonesio: El escritor escribe una carta.', answer: 'Penulis menulis surat.', explanation: 'Penulis es el nombre de agente relacionado con menulis.' },
+                                { vocabId: 'b1u8_pengajar', type: 'listen', prompt: 'Escucha y escribe el nombre de la persona que enseña.', answer: 'Pengajar', explanation: 'Pengajar significa docente o instructor.' },
+                                { vocabId: 'b1u8_pekerja', type: 'mc', prompt: '¿Qué significa «pekerja»?', options: ['Trabajador/a', 'Escritor/a', 'Docente'], answer: 0, explanation: 'Pekerja nombra a la persona que trabaja.' },
+                                { vocabId: 'b1u8_pekerja', type: 'translate_es_id', prompt: 'Traduce al indonesio: El trabajador trabaja en la oficina.', answer: 'Pekerja bekerja di kantor.', explanation: 'Pekerja se relaciona con el verbo bekerja.' },
+                                { vocabId: 'b1u8_pengajar', type: 'write', prompt: 'Escribe una frase breve con «pengajar».', hint: 'Puedes usar mengajar y murid.', modelAnswer: 'Pengajar mengajar murid.', explanation: 'El ejemplo presenta al pengajar como la persona que enseña.' }
                             ]
                         },
                         {
                             id: 'b1_u9',
-                            title: 'Unidad 9: Expresar opiniones y justificarlas',
-                            desc: 'Formula una opinión, presenta razones y reconoce puntos de vista diferentes.',
-                            grammar: 'Una opinión clara suele distinguir la postura de la razón que la apoya. Usa expresiones de acuerdo o diferencia con referencia a la propuesta concreta, no como respuestas aisladas.',
+                            title: 'Unidad 9: Nombres de agente con pe-/peN- (3)',
+                            desc: 'Identifica a líderes, residentes y lectores en frases cotidianas.',
+                            grammar: 'Pemimpin, penduduk y pembaca nombran personas por su papel o actividad. Observa las palabras completas y su contexto: pemimpin es un líder, penduduk es quien reside en un lugar y pembaca es quien lee. La forma derivada puede presentar cambios en la raíz; no generalices una única regla para todas las palabras.',
                             vocab: [
-                                { id: 'b1u9_pendapat', idn: 'Pendapat', esp: 'Opinión; punto de vista', ex: 'Menurut pendapat saya, transportasi umum penting.', exEsp: 'En mi opinión, el transporte público es importante.' },
-                                { id: 'b1u9_alasan', idn: 'Alasan', esp: 'Razón; motivo', ex: 'Apa alasan kamu memilih itu?', exEsp: '¿Cuál es tu razón para elegir eso?' },
-                                { id: 'b1u9_setuju', idn: 'Setuju', esp: 'Estar de acuerdo', ex: 'Saya setuju dengan usulan itu.', exEsp: 'Estoy de acuerdo con esa propuesta.' },
-                                { id: 'b1u9_berbeda', idn: 'Berbeda', esp: 'Diferente; diferir', ex: 'Pendapat kami berbeda.', exEsp: 'Nuestras opiniones son diferentes.' },
-                                { id: 'b1u9_sebaliknya', idn: 'Sebaliknya', esp: 'Por el contrario; en cambio', ex: 'Dia tidak memilih kopi; sebaliknya, dia memilih teh.', exEsp: 'No eligió café; por el contrario, eligió té.' }
+                                { id: 'b1u9_pemimpin', idn: 'Pemimpin', esp: 'Líder; persona que dirige', ex: 'Pemimpin itu datang.', exEsp: 'Ese líder llega.' },
+                                { id: 'b1u9_penduduk', idn: 'Penduduk', esp: 'Habitante; residente', ex: 'Penduduk tinggal di desa.', exEsp: 'Los habitantes viven en el pueblo.' },
+                                { id: 'b1u9_pembaca', idn: 'Pembaca', esp: 'Lector/a; quien lee', ex: 'Pembaca membaca buku.', exEsp: 'El lector lee un libro.' }
                             ],
                             exercises: [
-                                { vocabId: 'b1u9_pendapat', type: 'mc', prompt: '¿Qué significa «pendapat»?', options: ['Opinión', 'Razón', 'Propuesta'], answer: 0, explanation: 'Pendapat se refiere a una opinión o punto de vista.' },
-                                { vocabId: 'b1u9_alasan', type: 'translate_es_id', prompt: 'Traduce al indonesio: razón', answer: 'Alasan', explanation: 'Alasan expresa el motivo o la razón.' },
-                                { vocabId: 'b1u9_setuju', type: 'mc', prompt: '¿Qué significa «setuju»?', options: ['Estar de acuerdo', 'Estar cansado', 'Estar disponible'], answer: 0, explanation: 'Setuju expresa acuerdo con una idea o propuesta.' },
-                                { vocabId: 'b1u9_berbeda', type: 'translate_es_id', prompt: 'Traduce al indonesio: diferente', answer: 'Berbeda', explanation: 'Berbeda indica que dos cosas u opiniones no son iguales.' },
-                                { vocabId: 'b1u9_sebaliknya', type: 'write', prompt: 'Escribe dos frases que presenten una idea y luego un contraste con «sebaliknya».', hint: 'Muestra dos elecciones o situaciones opuestas.', modelAnswer: 'Saya biasanya naik bus. Sebaliknya, adik saya naik sepeda.', explanation: 'Sebaliknya introduce el contraste con la idea anterior.' }
+                                { vocabId: 'b1u9_pemimpin', type: 'mc', prompt: '¿Qué significa «pemimpin»?', options: ['Líder', 'Habitante', 'Lector'], answer: 0, explanation: 'Pemimpin nombra a una persona que dirige o lidera.' },
+                                { vocabId: 'b1u9_pemimpin', type: 'translate_es_id', prompt: 'Traduce al indonesio: Ese líder llega.', answer: 'Pemimpin itu datang.', explanation: 'Pemimpin es el nombre de la persona que dirige.' },
+                                { vocabId: 'b1u9_penduduk', type: 'listen', prompt: 'Escucha y escribe la palabra que significa habitante o residente.', answer: 'Penduduk', explanation: 'Penduduk se refiere a los habitantes de un lugar.' },
+                                { vocabId: 'b1u9_pembaca', type: 'mc', prompt: '¿Quién lee un libro en «Pembaca membaca buku»?', options: ['El lector', 'El líder', 'El habitante'], answer: 0, explanation: 'Pembaca nombra a la persona que lee.' },
+                                { vocabId: 'b1u9_penduduk', type: 'translate_es_id', prompt: 'Traduce al indonesio: Los habitantes viven en el pueblo.', answer: 'Penduduk tinggal di desa.', explanation: 'Penduduk nombra a las personas que viven en un lugar.' },
+                                { vocabId: 'b1u9_pembaca', type: 'write', prompt: 'Escribe una frase breve con «pembaca».', hint: 'Puedes usar membaca y buku.', modelAnswer: 'Pembaca membaca buku.', explanation: 'El ejemplo relaciona pembaca con la actividad membaca.' }
                             ]
                         },
                         {

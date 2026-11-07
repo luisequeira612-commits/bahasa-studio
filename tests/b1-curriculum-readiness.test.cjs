@@ -768,6 +768,34 @@ test('B1 U47-U49 teach procedures, community participation and sustainability', 
   assert.match(units[2].grammar + units[2].lessons.map(lesson => lesson.grammar).join(' '), /alam[\s\S]*berkelanjutan[\s\S]*pelestarian[\s\S]*mengurangi[\s\S]*limbah/i);
 });
 
+test('B1 U50 closes the level with an integrated project capstone', () => {
+  const b1 = course.levels.find(level => level.id === 'B1');
+  const unit = b1.units.find(item => item.id === 'b1_u50');
+  assert.ok(unit);
+  assert.deepEqual(Array.from(unit.vocab, word => word.id), ['b1v198', 'b1v199', 'b1v200', 'b1v201', 'b1v202']);
+  assert.deepEqual(Array.from(unit.vocab, word => word.idn.toLowerCase()), ['rancangan', 'kelayakan', 'pelaksanaan', 'mempresentasikan', 'menindaklanjuti']);
+  assert.equal(unit.lessons.length, 3);
+  const exercises = exercisesOf(unit);
+  assert.equal(exercises.length, 14);
+  for (const type of ['mc', 'translate_es_id', 'order', 'listen', 'write']) {
+    assert.ok(exercises.some(exercise => exercise.type === type), 'B1 U50 missing exercise type ' + type);
+  }
+  const localIds = new Set(unit.vocab.map(word => word.id));
+  for (const exercise of exercises) {
+    assert.ok(localIds.has(exercise.vocabId));
+    assert.ok(exercise.prompt && exercise.explanation);
+    if (exercise.type === 'mc') {
+      assert.ok(Array.isArray(exercise.options) && Number.isInteger(exercise.answer));
+      assert.ok(exercise.answer >= 0 && exercise.answer < exercise.options.length);
+    }
+    if (exercise.type === 'order') assert.deepEqual(Array.from(exercise.words).sort(), Array.from(exercise.correctOrder).sort());
+  }
+  assert.ok(exercises.some(exercise => exercise.type === 'write' && exercise.hint && exercise.modelAnswer));
+  assert.ok(exercises.filter(exercise => exercise.type === 'listen').every(exercise => /\s/.test(exercise.answer)));
+  assert.match(unit.grammar + unit.lessons.map(lesson => lesson.grammar).join(' '), /rancangan[\s\S]*kelayakan[\s\S]*pelaksanaan[\s\S]*mempresentasikan[\s\S]*menindaklanjuti/i);
+  assert.equal(unit.vocab.some(word => word.verificationStatus === 'verified_primary'), false);
+});
+
 test('B1 U25-U26 describe character and places with canonical A1 vocabulary', () => {
   const b1 = course.levels.find(level => level.id === 'B1');
   const u25 = b1.units.find(unit => unit.id === 'b1_u25');

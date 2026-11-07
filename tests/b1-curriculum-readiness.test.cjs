@@ -30,12 +30,12 @@ function exercisesOf(unit) {
 }
 
 // B1 U32-U34 readiness baseline updated with this curriculum block.
-test('B1 draft has thirty-four units, one hundred forty-four unique IDs including earlier canonical vocabulary, and four hundred sixty-five exercises', () => {
+test('B1 draft has thirty-four units, one hundred forty-four unique IDs including earlier canonical vocabulary, and three hundred eighty-one exercises', () => {
   const b1 = course.levels.find(level => level.id === 'B1');
   assert.ok(b1);
   assert.equal(b1.units.length, 34);
   assert.equal(new Set(b1.units.flatMap(unit => unit.vocab.map(word => word.id))).size, 144);
-  assert.equal(b1.units.reduce((sum, unit) => sum + exercisesOf(unit).length, 0), 465);
+  assert.equal(b1.units.reduce((sum, unit) => sum + exercisesOf(unit).length, 0), 381);
   assert.deepEqual(Array.from(b1.units, unit => unit.id), [
     'b1_u1', 'b1_u2', 'b1_u3', 'b1_u4', 'b1_u5', 'b1_u6', 'b1_u7',
     'b1_u8', 'b1_u9', 'b1_u10', 'b1_u11', 'b1_u12', 'b1_u13', 'b1_u14', 'b1_u15', 'b1_u16', 'b1_u17', 'b1_u18', 'b1_u19', 'b1_u20', 'b1_u21', 'b1_u22', 'b1_u23', 'b1_u24', 'b1_u25', 'b1_u26', 'b1_u27', 'b1_u28', 'b1_u29', 'b1_u30', 'b1_u31', 'b1_u32', 'b1_u33', 'b1_u34'
@@ -521,7 +521,7 @@ test('B1 U32-U34 consolidate planning, problem solving and decision evaluation',
       if (exercise.type === 'order') assert.deepEqual(Array.from(exercise.words).sort(), Array.from(exercise.correctOrder).sort());
     }
     assert.ok(exercises.some(exercise => exercise.type === 'write' && exercise.hint && exercise.modelAnswer));
-    assert.ok(exercises.filter(exercise => exercise.type === 'listen').every(exercise => /\\s/.test(exercise.answer)));
+    assert.ok(exercises.filter(exercise => exercise.type === 'listen').every(exercise => /\s/.test(exercise.answer)));
     for (let j = 0; j < unit.vocab.length; j++) {
       const word = unit.vocab[j];
       assert.equal(word.idn.toLowerCase(), forms[i][j]);

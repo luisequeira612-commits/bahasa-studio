@@ -187,3 +187,6 @@
 ## Revisión estructural A2 U33–U40 (6–7 nov 2026)
 - Inventario comprobado: 8 unidades, 96 entradas de vocabulario, 32 lecciones y 136 ejercicios. Cada unidad tiene 12 entradas, 4 lecciones y 17 ejercicios; no se encontraron IDs huérfanos ni entradas sin uso.
 - `tanggapan` aparece en un ejemplo de U22 y se enseña como entrada en U40; queda como candidato de exposición anticipada, no como error confirmado. La revisión editorial contextual completa de U33–U40 sigue pendiente. Sin cambios curriculares, trackers/CSV, IndexedDB ni backup JSON v3.
+
+## Revisión editorial contextual A2 U33–U40 (6–7 nov 2026)
+- Lectura interna de 8 unidades (96 vocablos, 32 lecciones, 136 ejercicios): 2 candidatos de exposición anticipada, risiko en U35 antes de U36 y tanggapan en U22 antes de U40; ninguno se confirma como error. Sin cambios curriculares ni de datos persistentes. Ver docs/EDITORIAL_AUDIT_A2_U33_U40.md.

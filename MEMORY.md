@@ -190,3 +190,6 @@
 
 ## Revisión editorial contextual A2 U33–U40 (6–7 nov 2026)
 - Lectura interna de 8 unidades (96 vocablos, 32 lecciones, 136 ejercicios): 2 candidatos de exposición anticipada, risiko en U35 antes de U36 y tanggapan en U22 antes de U40; ninguno se confirma como error. Sin cambios curriculares ni de datos persistentes. Ver docs/EDITORIAL_AUDIT_A2_U33_U40.md.
+
+## Revisión contextual A1 U24–U32 (7 nov 2026)
+- Lectura de 102 ejercicios: 2 candidatos de concordancia de persona en consignas (U25 y U29); 0 errores confirmados y ningún cambio curricular. Ver docs/EDITORIAL_AUDIT_A1_U24_U32_EXERCISES.md.

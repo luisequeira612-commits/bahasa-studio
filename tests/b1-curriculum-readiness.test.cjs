@@ -29,15 +29,15 @@ function exercisesOf(unit) {
   ];
 }
 
-test('B1 draft has twenty units, sixty-nine unique IDs including earlier canonical vocabulary, and one hundred eighty-five exercises', () => {
+test('B1 draft has twenty-four units, ninety-one unique IDs including earlier canonical vocabulary, and two hundred forty-one exercises', () => {
   const b1 = course.levels.find(level => level.id === 'B1');
   assert.ok(b1);
-  assert.equal(b1.units.length, 20);
-  assert.equal(new Set(b1.units.flatMap(unit => unit.vocab.map(word => word.id))).size, 69);
-  assert.equal(b1.units.reduce((sum, unit) => sum + exercisesOf(unit).length, 0), 185);
+  assert.equal(b1.units.length, 24);
+  assert.equal(new Set(b1.units.flatMap(unit => unit.vocab.map(word => word.id))).size, 91);
+  assert.equal(b1.units.reduce((sum, unit) => sum + exercisesOf(unit).length, 0), 241);
   assert.deepEqual(Array.from(b1.units, unit => unit.id), [
     'b1_u1', 'b1_u2', 'b1_u3', 'b1_u4', 'b1_u5', 'b1_u6', 'b1_u7',
-    'b1_u8', 'b1_u9', 'b1_u10', 'b1_u11', 'b1_u12', 'b1_u13', 'b1_u14', 'b1_u15', 'b1_u16', 'b1_u17', 'b1_u18', 'b1_u19', 'b1_u20'
+    'b1_u8', 'b1_u9', 'b1_u10', 'b1_u11', 'b1_u12', 'b1_u13', 'b1_u14', 'b1_u15', 'b1_u16', 'b1_u17', 'b1_u18', 'b1_u19', 'b1_u20', 'b1_u21', 'b1_u22', 'b1_u23', 'b1_u24'
   ]);
 });
 
@@ -83,7 +83,7 @@ test('every B1 draft exercise references vocabulary in its own unit', () => {
       }
     }
   }
-  assert.equal(byId.size, 69);
+  assert.equal(byId.size, 91);
 });
 
 
@@ -316,6 +316,69 @@ test('B1 U18-U20 teach conditionals, concessions and sentence contrast', () => {
   assert.match(u18.grammar + u18.lessons.map(lesson => lesson.grammar).join(' '), /kalau[\s\S]*jika[\s\S]*seandainya[\s\S]*asalkan/);
   assert.match(u19.grammar + u19.lessons.map(lesson => lesson.grammar).join(' '), /walaupun[\s\S]*meskipun[\s\S]*biarpun/);
   assert.match(u20.grammar + u20.lessons.map(lesson => lesson.grammar).join(' '), /tetapi[\s\S]*namun[\s\S]*meskipun/);
+});
+
+
+test('B1 U21-U24 teach cause, purpose and past-experience narration', () => {
+  const b1 = course.levels.find(level => level.id === 'B1');
+  const u21 = b1.units.find(unit => unit.id === 'b1_u21');
+  const u22 = b1.units.find(unit => unit.id === 'b1_u22');
+  const u23 = b1.units.find(unit => unit.id === 'b1_u23');
+  const u24 = b1.units.find(unit => unit.id === 'b1_u24');
+  assert.ok(u21 && u22 && u23 && u24);
+  assert.deepEqual(Array.from(u21.vocab, word => word.id), ['b1v065', 'b1v066', 'b1v067', 'b1v068', 'b1v069', 'b1v070']);
+  assert.deepEqual(Array.from(u22.vocab, word => word.id), ['b1v071', 'b1v072']);
+  assert.deepEqual(Array.from(u23.vocab, word => word.id), ['a2u16_pernah', 'b1v073', 'a2u2_baru_saja', 'b1v074', 'b1v075', 'a2u2_masih']);
+  assert.deepEqual(Array.from(u24.vocab, word => word.id), ['b1v076', 'b1v077', 'a2u3_ketika', 'a2u3_kemudian', 'a2u3_setelah_itu', 'a2u12_pengalaman', 'a2u14_perjalanan', 'a2u16_liburan']);
+  const expectedCounts = new Map([[u21, 14], [u22, 14], [u23, 14], [u24, 14]]);
+  const allNewForms = new Map([
+    ['b1v065', 'karena'], ['b1v066', 'sebab'], ['b1v067', 'oleh karena itu'],
+    ['b1v068', 'sehingga'], ['b1v069', 'akibatnya'], ['b1v070', 'makanya'],
+    ['b1v071', 'supaya'], ['b1v072', 'agar'], ['b1v073', 'belum pernah'],
+    ['b1v074', 'sempat'], ['b1v075', 'telah'], ['b1v076', 'dulu'], ['b1v077', 'waktu itu']
+  ]);
+  const earlierIds = new Set(b1.units.filter(unit => !['b1_u21', 'b1_u22', 'b1_u23', 'b1_u24'].includes(unit.id)).flatMap(unit => unit.vocab.map(word => word.id)));
+  for (const [unit, expectedCount] of expectedCounts) {
+    assert.equal(unit.lessons.length, 3);
+    const exercises = exercisesOf(unit);
+    assert.equal(exercises.length, expectedCount);
+    const types = new Set(exercises.map(exercise => exercise.type));
+    for (const type of ['mc', 'translate_es_id', 'order', 'listen', 'write']) assert.ok(types.has(type), unit.id + ' missing ' + type);
+    const localIds = new Set(unit.vocab.map(word => word.id));
+    for (const exercise of exercises) {
+      assert.ok(localIds.has(exercise.vocabId), unit.id + ' exercise references vocabulary outside its unit');
+      assert.ok(exercise.prompt && exercise.explanation);
+      if (exercise.type === 'mc') {
+        assert.ok(Array.isArray(exercise.options) && Number.isInteger(exercise.answer));
+        assert.ok(exercise.answer >= 0 && exercise.answer < exercise.options.length);
+      }
+      if (exercise.type === 'order') assert.deepEqual(Array.from(exercise.words).sort(), Array.from(exercise.correctOrder).sort());
+    }
+    const completeSentences = exercises.filter(exercise =>
+      (['listen', 'translate_es_id'].includes(exercise.type) && typeof exercise.answer === 'string' && /\s/.test(exercise.answer)) ||
+      (exercise.type === 'order' && exercise.correctOrder.length >= 2) ||
+      (exercise.type === 'write' && exercise.modelAnswer && /[.!?]/.test(exercise.modelAnswer)) ||
+      (exercise.type === 'mc' && /«[^»]+»/.test(exercise.prompt))
+    );
+    assert.ok(completeSentences.length >= 5, unit.id + ' needs five complete-sentence exercises');
+    assert.ok(exercises.some(exercise => exercise.type === 'write' && exercise.hint && exercise.modelAnswer));
+    for (const word of unit.vocab) {
+      if (allNewForms.has(word.id)) {
+        assert.equal(word.idn.toLowerCase(), allNewForms.get(word.id));
+        assert.ok(!earlierIds.has(word.id), 'new form already existed in earlier B1 units: ' + word.id);
+      }
+    }
+  }
+  for (const [id, form] of allNewForms) {
+    const occurrences = b1.units.flatMap(unit => unit.vocab).filter(word => word.id === id);
+    assert.ok(occurrences.length >= 1, 'missing new B1 form ' + form);
+    assert.ok(occurrences.every(word => word.idn.toLowerCase() === form));
+  }
+  assert.match(u21.grammar + u21.lessons.map(lesson => lesson.grammar).join(' '), /karena[\s\S]*sebab[\s\S]*oleh karena itu[\s\S]*sehingga[\s\S]*akibatnya[\s\S]*makanya/);
+  assert.match(u22.grammar + u22.lessons.map(lesson => lesson.grammar).join(' '), /supaya[\s\S]*agar[\s\S]*untuk/);
+  assert.match(u23.grammar + u23.lessons.map(lesson => lesson.grammar).join(' '), /pernah[\s\S]*belum pernah[\s\S]*baru saja[\s\S]*sempat[\s\S]*telah[\s\S]*masih/);
+  assert.match(u24.grammar + u24.lessons.map(lesson => lesson.grammar).join(' '), /dulu[\s\S]*waktu itu[\s\S]*ketika[\s\S]*kemudian[\s\S]*pengalaman[\s\S]*perjalanan/);
+  assert.ok(exercisesOf(u24).some(exercise => exercise.type === 'write' && /viaje o un día especial/.test(exercise.prompt)));
 });
 
 test('B1 assessment bank includes open production items that require human review', () => {

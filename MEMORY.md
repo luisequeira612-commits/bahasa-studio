@@ -168,3 +168,7 @@
 - Candidatos contextuales en ejemplos: U29 barang y produk; U30 film e ide; U31 gunung, matahari, tanah y arah; U32 bayi, gedung, foto y pasangan.
 - Se excluyen duplicados ya enseñados/documentados (petugas, struk, kepada, pertunjukan, sungai, hutan, air, warga, keluarga, rumah, teman) y el nombre propio Yogyakarta. Son candidatos de andamiaje, no errores lingüísticos confirmados ni certificación de naturalidad nativa/nivel CEFR.
 - Solo documentación; sin cambios de currículo, trackers/CSV, IndexedDB ni backup JSON v3. Ver docs/EDITORIAL_AUDIT_RESOLUTION_A1_U24_A2_U5_U8.md.
+
+## PR10 — regresión del evaluador de respuestas escritas (6 nov 2026)
+- La suite de calidad ejecuta ahora las pruebas de `WrittenResponse` contra 462 ejercicios reales A1/A2: cada respuesta canónica debe ser aceptada; las alternativas solo se aceptan si son heredadas sin estado o están aprobadas.
+- Es una prueba de coherencia entre currículo y evaluador, no una validación semántica/nativa de las respuestas. Sin cambios de currículo, trackers, IndexedDB ni backup JSON v3.

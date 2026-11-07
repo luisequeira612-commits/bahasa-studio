@@ -27,7 +27,7 @@ test('B1 draft has twelve units and an explicitly incomplete vocabulary bank', (
   assert.ok(b1);
   assert.equal(b1.units.length, 12);
   assert.equal(b1.units.reduce((sum, unit) => sum + unit.vocab.length, 0), 57);
-  assert.equal(b1.units.reduce((sum, unit) => sum + unit.exercises.length, 0), 60);
+  assert.equal(b1.units.reduce((sum, unit) => sum + unit.exercises.length, 0), 65);
   assert.deepEqual(Array.from(b1.units, unit => unit.id), ['b1_u1', 'b1_u2', 'b1_u3', 'b1_u4', 'b1_u5', 'b1_u6', 'b1_u7', 'b1_u8', 'b1_u9', 'b1_u10', 'b1_u11', 'b1_u12']);
 });
 
@@ -113,5 +113,22 @@ test('B1 U1-U3 follow the approved affix-family sequence and roots', () => {
     const unit = b1.units.find(item => item.id === unitId);
     const ids = new Set(unit.vocab.map(word => word.id));
     for (const exercise of unit.exercises) assert.ok(ids.has(exercise.vocabId));
+  }
+});
+
+
+test('B1 U4-U6 follow the approved -kan/-i sequence and preserve passive contrasts', () => {
+  const b1 = course.levels.find(level => level.id === 'B1');
+  const forms = unitId => b1.units.find(unit => unit.id === unitId).vocab.map(word => word.idn.toLowerCase());
+  assert.deepEqual(forms('b1_u4'), ['memberikan', 'mengirimkan', 'menjelaskan', 'membersihkan']);
+  assert.deepEqual(forms('b1_u5'), ['mengingatkan', 'memasukkan', 'mendatangi', 'menemui']);
+  assert.deepEqual(forms('b1_u6'), ['menghadiri', 'mencintai', 'memasuki', 'dijelaskan', 'ditemui']);
+  for (const unitId of ['b1_u4', 'b1_u5', 'b1_u6']) {
+    const unit = b1.units.find(item => item.id === unitId);
+    assert.equal(unit.exercises.length, unitId === 'b1_u6' ? 7 : 6);
+    assert.ok(unit.exercises.some(item => item.type === 'write'));
+    assert.ok(unit.exercises.some(item => item.type === 'listen'));
+    const localIds = new Set(unit.vocab.map(word => word.id));
+    for (const exercise of unit.exercises) assert.ok(localIds.has(exercise.vocabId));
   }
 });

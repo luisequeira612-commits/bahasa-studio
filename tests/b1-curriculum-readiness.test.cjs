@@ -256,8 +256,8 @@ test('B1 U15-U17 teach yang relatives, interrogatives, passive clauses and cumul
   assert.match(u16.grammar + u16.lessons.map(lesson => lesson.grammar).join(' '), /orang[\s\S]*hal[\s\S]*tempat/);
   assert.match(u17.grammar + u17.lessons.map(lesson => lesson.grammar).join(' '), /apa yang[\s\S]*yang mana[\s\S]*dibaca[\s\S]*yang paling/);
   assert.ok(u17.vocab.some(word => word.id === 'b1u12_kesehatan') && u17.vocab.some(word => word.id === 'a2u20_kebersihan'));
-  assert.ok(exercisesOf(u17).some(exercise => exercise.vocabId === 'b1u12_kesehatan') && exercisesOf(u17).some(exercise => exercise.vocabId === 'a2u20_kebersihan'),
-    'U17 must include a cumulative review exercise for U13-U14 vocabulary');
+  assert.ok(exercisesOf(u17).some(exercise => /kesehatan/i.test(exercise.prompt + ' ' + (exercise.modelAnswer || '')) && /kebersihan/i.test(exercise.prompt + ' ' + (exercise.modelAnswer || ''))),
+    'U17 must include a cumulative review exercise covering both U13-U14 vocabulary items');
 });
 
 test('B1 assessment bank includes open production items that require human review', () => {

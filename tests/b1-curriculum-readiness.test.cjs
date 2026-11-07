@@ -355,7 +355,7 @@ test('B1 U13-U14 consolidate the ke-an family using canonical earlier vocabulary
       .flatMap(unit => (unit.vocab || []).map(word => word.id))
   );
   for (const unit of [u13, u14]) {
-    assert.equal(unit.lessons.length, 3);
+    assert.equal(unit.lessons.length, ['b1_u22', 'b1_u27', 'b1_u32', 'b1_u37', 'b1_u42', 'b1_u47'].includes(unit.id) ? 4 : 3);
     const exercises = exercisesOf(unit);
     assert.equal(exercises.length, 14);
     const types = new Set(exercises.map(exercise => exercise.type));
@@ -405,7 +405,7 @@ test('B1 U15-U17 teach yang relatives, interrogatives, passive clauses and cumul
   const allNewForms = new Map([['b1v051', 'yang'], ['b1v052', 'orang'], ['b1v053', 'tempat'], ['b1v054', 'hal'], ['b1v055', 'paling']]);
   const earlierIds = new Set(b1.units.filter(unit => !['b1_u15', 'b1_u16', 'b1_u17'].includes(unit.id)).flatMap(unit => unit.vocab.map(word => word.id)));
   for (const [unit, expectedCount] of expectedCounts) {
-    assert.equal(unit.lessons.length, 3);
+    assert.equal(unit.lessons.length, ['b1_u22', 'b1_u27', 'b1_u32', 'b1_u37', 'b1_u42', 'b1_u47'].includes(unit.id) ? 4 : 3);
     const exercises = exercisesOf(unit);
     assert.equal(exercises.length, expectedCount);
     const types = new Set(exercises.map(exercise => exercise.type));
@@ -466,7 +466,7 @@ test('B1 U18-U20 teach conditionals, concessions and sentence contrast', () => {
   ]);
   const earlierIds = new Set(b1.units.filter(unit => !['b1_u18', 'b1_u19', 'b1_u20'].includes(unit.id)).flatMap(unit => unit.vocab.map(word => word.id)));
   for (const [unit, expectedCount] of expectedCounts) {
-    assert.equal(unit.lessons.length, 3);
+    assert.equal(unit.lessons.length, ['b1_u22', 'b1_u27', 'b1_u32', 'b1_u37', 'b1_u42', 'b1_u47'].includes(unit.id) ? 4 : 3);
     const exercises = exercisesOf(unit);
     assert.equal(exercises.length, expectedCount);
     const types = new Set(exercises.map(exercise => exercise.type));
@@ -527,7 +527,7 @@ test('B1 U21-U24 teach cause, purpose and past-experience narration', () => {
   ]);
   const earlierIds = new Set(b1.units.filter(unit => !['b1_u21', 'b1_u22', 'b1_u23', 'b1_u24'].includes(unit.id)).flatMap(unit => unit.vocab.map(word => word.id)));
   for (const [unit, expectedCount] of expectedCounts) {
-    assert.equal(unit.lessons.length, 3);
+    assert.equal(unit.lessons.length, ['b1_u22', 'b1_u27', 'b1_u32', 'b1_u37', 'b1_u42', 'b1_u47'].includes(unit.id) ? 4 : 3);
     const exercises = exercisesOf(unit);
     assert.equal(exercises.length, expectedCount);
     const types = new Set(exercises.map(exercise => exercise.type));
@@ -589,7 +589,7 @@ test('B1 U27-U29 teach opinions, probability and advice', () => {
   ]);
   const earlierIds = new Set(b1.units.filter(unit => !['b1_u27', 'b1_u28', 'b1_u29'].includes(unit.id)).flatMap(unit => unit.vocab.map(word => word.id)));
   for (const [unit, expectedCount] of expectedCounts) {
-    assert.equal(unit.lessons.length, 3);
+    assert.equal(unit.lessons.length, ['b1_u22', 'b1_u27', 'b1_u32', 'b1_u37', 'b1_u42', 'b1_u47'].includes(unit.id) ? 4 : 3);
     const exercises = exercisesOf(unit);
     assert.equal(exercises.length, expectedCount);
     const types = new Set(exercises.map(exercise => exercise.type));
@@ -640,7 +640,7 @@ test('B1 U30-U31 teach plans, goals, steps and decisions', () => {
   ]);
   const earlierIds = new Set(b1.units.filter(unit => !['b1_u30', 'b1_u31'].includes(unit.id)).flatMap(unit => unit.vocab.map(word => word.id)));
   for (const [unit, expectedCount] of expectedCounts) {
-    assert.equal(unit.lessons.length, 3);
+    assert.equal(unit.lessons.length, ['b1_u22', 'b1_u27', 'b1_u32', 'b1_u37', 'b1_u42', 'b1_u47'].includes(unit.id) ? 4 : 3);
     const exercises = exercisesOf(unit);
     assert.equal(exercises.length, expectedCount);
     const types = new Set(exercises.map(exercise => exercise.type));
@@ -691,7 +691,7 @@ test('B1 U32-U34 consolidate planning, problem solving and decision evaluation',
   for (let i = 0; i < units.length; i++) {
     const unit = units[i];
     assert.deepEqual(Array.from(unit.vocab, word => word.id), expected[i]);
-    assert.equal(unit.lessons.length, 3);
+    assert.equal(unit.lessons.length, ['b1_u22', 'b1_u27', 'b1_u32', 'b1_u37', 'b1_u42', 'b1_u47'].includes(unit.id) ? 4 : 3);
     const exercises = exercisesOf(unit);
     assert.equal(exercises.length, 14);
     for (const type of ['mc', 'translate_es_id', 'order', 'listen', 'write']) {
@@ -738,7 +738,7 @@ test('B1 U35-U37 teach negotiation, clear communication and continuous improveme
   for (let i = 0; i < units.length; i++) {
     const unit = units[i];
     assert.deepEqual(Array.from(unit.vocab, word => word.id), expected[i]);
-    assert.equal(unit.lessons.length, 3);
+    assert.equal(unit.lessons.length, ['b1_u22', 'b1_u27', 'b1_u32', 'b1_u37', 'b1_u42', 'b1_u47'].includes(unit.id) ? 4 : 3);
     const exercises = exercisesOf(unit);
     assert.equal(exercises.length, 14);
     for (const type of ['mc', 'translate_es_id', 'order', 'listen', 'write']) {
@@ -785,7 +785,7 @@ test('B1 U38-U40 teach feedback, evidence and adaptation', () => {
   for (let i = 0; i < units.length; i++) {
     const unit = units[i];
     assert.deepEqual(Array.from(unit.vocab, word => word.id), expected[i]);
-    assert.equal(unit.lessons.length, 3);
+    assert.equal(unit.lessons.length, ['b1_u22', 'b1_u27', 'b1_u32', 'b1_u37', 'b1_u42', 'b1_u47'].includes(unit.id) ? 4 : 3);
     const exercises = exercisesOf(unit);
     assert.equal(exercises.length, 14);
     for (const type of ['mc', 'translate_es_id', 'order', 'listen', 'write']) {
@@ -832,7 +832,7 @@ test('B1 U41-U43 teach reporting, comparison and conditional influence', () => {
   for (let i = 0; i < units.length; i++) {
     const unit = units[i];
     assert.deepEqual(Array.from(unit.vocab, word => word.id), expected[i]);
-    assert.equal(unit.lessons.length, 3);
+    assert.equal(unit.lessons.length, ['b1_u22', 'b1_u27', 'b1_u32', 'b1_u37', 'b1_u42', 'b1_u47'].includes(unit.id) ? 4 : 3);
     const exercises = exercisesOf(unit);
     assert.equal(exercises.length, 14);
     for (const type of ['mc', 'translate_es_id', 'order', 'listen', 'write']) {
@@ -879,7 +879,7 @@ test('B1 U44-U46 teach forecasting, prevention and resource efficiency', () => {
   for (let i = 0; i < units.length; i++) {
     const unit = units[i];
     assert.deepEqual(Array.from(unit.vocab, word => word.id), expected[i]);
-    assert.equal(unit.lessons.length, 3);
+    assert.equal(unit.lessons.length, ['b1_u22', 'b1_u27', 'b1_u32', 'b1_u37', 'b1_u42', 'b1_u47'].includes(unit.id) ? 4 : 3);
     const exercises = exercisesOf(unit);
     assert.equal(exercises.length, 14);
     for (const type of ['mc', 'translate_es_id', 'order', 'listen', 'write']) {
@@ -913,7 +913,7 @@ test('B1 U50 closes the level with an integrated capstone', () => {
   const unit = b1.units.find(item => item.id === 'b1_u50');
   assert.ok(unit);
   assert.deepEqual(Array.from(unit.vocab, word => word.id), ['b1v198', 'b1v199', 'b1v200', 'b1v201', 'b1v202']);
-  assert.equal(unit.lessons.length, 3);
+  assert.equal(unit.lessons.length, ['b1_u22', 'b1_u27', 'b1_u32', 'b1_u37', 'b1_u42', 'b1_u47'].includes(unit.id) ? 4 : 3);
   const exercises = exercisesOf(unit);
   assert.equal(exercises.length, 14);
   assert.deepEqual(
@@ -948,7 +948,7 @@ test('B1 U47-U49 teach procedures, community participation and sustainability', 
   for (let i = 0; i < units.length; i++) {
     const unit = units[i];
     assert.deepEqual(Array.from(unit.vocab, word => word.id), expected[i]);
-    assert.equal(unit.lessons.length, 3);
+    assert.equal(unit.lessons.length, ['b1_u22', 'b1_u27', 'b1_u32', 'b1_u37', 'b1_u42', 'b1_u47'].includes(unit.id) ? 4 : 3);
     const exercises = exercisesOf(unit);
     assert.equal(exercises.length, 14);
     for (const type of ['mc', 'translate_es_id', 'order', 'listen', 'write']) {
@@ -983,7 +983,7 @@ test('B1 U50 closes the level with an integrated project capstone', () => {
   assert.ok(unit);
   assert.deepEqual(Array.from(unit.vocab, word => word.id), ['b1v198', 'b1v199', 'b1v200', 'b1v201', 'b1v202']);
   assert.deepEqual(Array.from(unit.vocab, word => word.idn.toLowerCase()), ['rancangan', 'kelayakan', 'pelaksanaan', 'mempresentasikan', 'menindaklanjuti']);
-  assert.equal(unit.lessons.length, 3);
+  assert.equal(unit.lessons.length, ['b1_u22', 'b1_u27', 'b1_u32', 'b1_u37', 'b1_u42', 'b1_u47'].includes(unit.id) ? 4 : 3);
   const exercises = exercisesOf(unit);
   assert.equal(exercises.length, 14);
   for (const type of ['mc', 'translate_es_id', 'order', 'listen', 'write']) {
@@ -1020,7 +1020,7 @@ test('B1 U25-U26 describe character and places with canonical A1 vocabulary', ()
   ]);
   const earlierIds = new Set(b1.units.filter(unit => !['b1_u25', 'b1_u26'].includes(unit.id)).flatMap(unit => unit.vocab.map(word => word.id)));
   for (const [unit, expectedCount] of expectedCounts) {
-    assert.equal(unit.lessons.length, 3);
+    assert.equal(unit.lessons.length, ['b1_u22', 'b1_u27', 'b1_u32', 'b1_u37', 'b1_u42', 'b1_u47'].includes(unit.id) ? 4 : 3);
     const exercises = exercisesOf(unit);
     assert.equal(exercises.length, expectedCount);
     const types = new Set(exercises.map(exercise => exercise.type));

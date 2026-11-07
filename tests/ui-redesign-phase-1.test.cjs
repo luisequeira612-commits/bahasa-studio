@@ -93,7 +93,7 @@ test('application and service worker cache versions are advanced without changin
     const manifest = fs.readFileSync(path.join(root, 'manifest.json'), 'utf8');
     const serviceWorker = fs.readFileSync(path.join(root, 'service-worker.js'), 'utf8');
     assert.match(manifest, /Bahasa Studio 3\.8\.15/);
-    assert.match(serviceWorker, /bahasa-studio-v3.8.61/);
+    assert.match(serviceWorker, /bahasa-studio-v3.8.62/);
     assert.match(serviceWorker, /adaptive-learning\.js/);
 });
 

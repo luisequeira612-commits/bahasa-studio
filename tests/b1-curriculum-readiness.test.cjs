@@ -253,7 +253,7 @@ test('B1 cumulative review IDs resolve only to vocabulary already taught or intr
   for (const unit of b1.units) {
     const checkpoint = (unit.lessons || []).find(lesson => /repaso acumulativo/i.test(lesson.title));
     if (checkpoint) {
-      const unitNumber = Number(unit.id.match(/_(\d+)$/)?.[1]);
+      const unitNumber = Number(unit.id.match(/^b1_u(\d+)$/)?.[1]);
       actualCheckpoints.push(unitNumber);
       const reviewIds = checkpoint.reviewVocabIds || [];
       assert.equal(new Set(reviewIds).size, reviewIds.length,

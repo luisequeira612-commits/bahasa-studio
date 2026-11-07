@@ -2034,6 +2034,119 @@
                                 }
                             ]
                         },
+                        {
+                            id: 'b1_u30',
+                            title: 'Unidad 30: planes y metas',
+                            desc: 'Habla de planes, metas y esfuerzos con los que quieres avanzar hacia un objetivo.',
+                            grammar: 'Rencana significa plan y tujuan, objetivo o meta. Berencana expresa tener planes; merencanakan expresa planear algo de forma más explícita. Berusaha significa esforzarse o intentar. Estas formas permiten pasar de una intención general a una meta y al esfuerzo necesario para alcanzarla.',
+                            vocab: [
+                                { id: 'b1v105', idn: 'Rencana', esp: 'Plan', ex: 'Saya punya rencana untuk belajar.', exEsp: 'Tengo un plan para estudiar.' },
+                                { id: 'b1v106', idn: 'Tujuan', esp: 'Objetivo; meta', ex: 'Tujuan saya adalah berbicara lebih lancar.', exEsp: 'Mi objetivo es hablar con más fluidez.' },
+                                { id: 'b1v107', idn: 'Berencana', esp: 'Tener planes; planear', ex: 'Saya berencana pergi bulan depan.', exEsp: 'Planeo ir el próximo mes.' },
+                                { id: 'b1v108', idn: 'Merencanakan', esp: 'Planear; planificar', ex: 'Kami sedang merencanakan perjalanan.', exEsp: 'Estamos planeando el viaje.' },
+                                { id: 'b1v109', idn: 'Berusaha', esp: 'Esforzarse; intentar', ex: 'Saya berusaha belajar setiap hari.', exEsp: 'Me esfuerzo por estudiar todos los días.' }
+                            ],
+                            lessons: [
+                                {
+                                    title: 'Rencana y tujuan',
+                                    objective: 'Distingue un plan de la meta que quieres alcanzar.',
+                                    grammar: 'Rencana nombra el plan o proyecto; tujuan nombra el objetivo que orienta ese plan. Untuk introduce el propósito en expresiones como rencana untuk belajar.',
+                                    reviewVocabIds: ['b1v100', 'b1v104'],
+                                    vocabIds: ['b1v105', 'b1v106'],
+                                    exercises: [
+                                        { vocabId: 'b1v105', type: 'mc', prompt: '¿Qué palabra significa «plan»?', options: ['Rencana', 'Tujuan', 'Berusaha'], answer: 0, explanation: 'Rencana significa plan.' },
+                                        { vocabId: 'b1v106', type: 'translate_es_id', prompt: 'Traduce: «Mi objetivo es hablar con más fluidez».', answer: 'Tujuan saya adalah berbicara lebih lancar.', explanation: 'Tujuan nombra la meta y adalah introduce la identificación del objetivo.' },
+                                        { vocabId: 'b1v105', type: 'order', prompt: 'Ordena: «Tengo un plan para estudiar».', words: ['belajar.', 'Saya', 'untuk', 'punya', 'rencana'], correctOrder: ['Saya', 'punya', 'rencana', 'untuk', 'belajar.'], explanation: 'Rencana nombra el plan y untuk introduce la actividad prevista.' },
+                                        { vocabId: 'b1v106', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Tujuan saya adalah berbicara lebih lancar.', explanation: 'La oración presenta una meta personal.' },
+                                        { vocabId: 'b1v105', type: 'write', prompt: 'Escribe dos frases: una sobre un plan y otra sobre el objetivo de ese plan.', hint: 'Usa rencana en una frase y tujuan en la otra.', modelAnswer: 'Saya punya rencana untuk belajar setiap hari. Tujuan saya adalah berbicara lebih lancar.', explanation: 'La primera frase presenta el plan y la segunda su objetivo.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Berencana y merencanakan',
+                                    objective: 'Expresa que tienes previsto hacer algo y que estás planificando una actividad.',
+                                    grammar: 'Berencana puede presentar la intención o el plan de hacer algo. Merencanakan pone el foco en la acción de planificar algo concreto. En ambos casos el contexto determina cuánto detalle tiene el plan.',
+                                    reviewVocabIds: ['b1v105', 'b1v106', 'b1v107'],
+                                    vocabIds: ['b1v107', 'b1v108'],
+                                    exercises: [
+                                        { vocabId: 'b1v107', type: 'mc', prompt: 'En «Saya berencana pergi bulan depan», ¿qué expresa berencana?', options: ['Tener previsto hacer algo', 'Estar de acuerdo', 'Sentir una emoción'], answer: 0, explanation: 'Berencana expresa que alguien tiene previsto hacer algo.' },
+                                        { vocabId: 'b1v107', type: 'translate_es_id', prompt: 'Traduce: «Planeo ir el próximo mes».', answer: 'Saya berencana pergi bulan depan.', explanation: 'Berencana presenta un plan o intención futura.' },
+                                        { vocabId: 'b1v108', type: 'order', prompt: 'Ordena: «Estamos planeando el viaje».', words: ['perjalanan.', 'sedang', 'Kami', 'merencanakan'], correctOrder: ['Kami', 'sedang', 'merencanakan', 'perjalanan.'], explanation: 'Sedang marca la acción en curso de planificar.' },
+                                        { vocabId: 'b1v108', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Kami sedang merencanakan perjalanan.', explanation: 'Merencanakan presenta la actividad de planificar el viaje.' },
+                                        { vocabId: 'b1v107', type: 'write', prompt: 'Escribe tres frases sobre algo que planeas hacer el próximo mes.', hint: 'Usa berencana y menciona cuándo o con quién realizarás el plan.', modelAnswer: 'Saya berencana pergi ke kota bulan depan. Saya berencana pergi dengan keluarga. Kami berencana tinggal selama dua hari.', explanation: 'Berencana permite presentar varios planes relacionados.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Berusaha hacia una meta',
+                                    objective: 'Explica el esfuerzo que haces para avanzar hacia un objetivo.',
+                                    grammar: 'Berusaha expresa esfuerzo o intento. Puede combinarse con untuk y una acción: berusaha belajar setiap hari. Así se conecta el esfuerzo con la meta presentada anteriormente.',
+                                    reviewVocabIds: ['b1v105', 'b1v106', 'b1v107', 'b1v108'],
+                                    vocabIds: ['b1v109'],
+                                    exercises: [
+                                        { vocabId: 'b1v109', type: 'mc', prompt: '¿Qué expresa berusaha?', options: ['Esforzarse o intentar', 'Planificar un viaje', 'Estar seguro'], answer: 0, explanation: 'Berusaha expresa esfuerzo o intento.' },
+                                        { vocabId: 'b1v109', type: 'translate_es_id', prompt: 'Traduce: «Me esfuerzo por estudiar todos los días».', answer: 'Saya berusaha belajar setiap hari.', explanation: 'Berusaha presenta el esfuerzo y la acción aparece después.' },
+                                        { vocabId: 'b1v109', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Saya berusaha belajar setiap hari.', explanation: 'La frase relaciona el esfuerzo con una rutina de estudio.' },
+                                        { vocabId: 'b1v109', type: 'write', prompt: 'Escribe cuatro frases sobre una meta: presenta tu objetivo, tu plan, cuándo lo harás y el esfuerzo que harás para conseguirlo.', hint: 'Integra tujuan, rencana, berencana y berusaha.', modelAnswer: 'Tujuan saya adalah berbicara lebih lancar. Saya punya rencana untuk belajar setiap hari. Saya berencana belajar pada pagi hari. Saya berusaha berlatih setiap hari.', explanation: 'La producción integra meta, plan, intención y esfuerzo.' }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            id: 'b1_u31',
+                            title: 'Unidad 31: pasos, preparación y decisiones',
+                            desc: 'Organiza una meta en pasos, prepara lo necesario y expresa decisiones para avanzar.',
+                            grammar: 'Langkah significa paso o etapa. Target es una meta concreta o cifra objetivo. Mencapai significa alcanzar; mempersiapkan, preparar; memutuskan, decidir. Estas formas permiten explicar cómo una meta se convierte en acciones concretas.',
+                            vocab: [
+                                { id: 'b1v110', idn: 'Langkah', esp: 'Paso; etapa', ex: 'Langkah pertama adalah membuat rencana.', exEsp: 'El primer paso es hacer un plan.' },
+                                { id: 'b1v111', idn: 'Target', esp: 'Meta; objetivo concreto', ex: 'Target saya adalah membaca sepuluh buku.', exEsp: 'Mi meta es leer diez libros.' },
+                                { id: 'b1v112', idn: 'Mencapai', esp: 'Alcanzar; lograr', ex: 'Saya ingin mencapai tujuan saya.', exEsp: 'Quiero alcanzar mi objetivo.' },
+                                { id: 'b1v113', idn: 'Mempersiapkan', esp: 'Preparar', ex: 'Saya mempersiapkan semua bahan.', exEsp: 'Preparo todos los materiales.' },
+                                { id: 'b1v114', idn: 'Memutuskan', esp: 'Decidir; tomar una decisión', ex: 'Kami memutuskan untuk mulai besok.', exEsp: 'Decidimos empezar mañana.' }
+                            ],
+                            lessons: [
+                                {
+                                    title: 'Langkah y target',
+                                    objective: 'Divide una meta en pasos y formula un objetivo concreto.',
+                                    grammar: 'Langkah puede referirse a un paso de un proceso o a una etapa. Target presenta una meta concreta que puede servir para orientar los pasos siguientes.',
+                                    reviewVocabIds: ['b1v105', 'b1v106', 'b1v109'],
+                                    vocabIds: ['b1v110', 'b1v111'],
+                                    exercises: [
+                                        { vocabId: 'b1v110', type: 'mc', prompt: '¿Qué palabra significa «paso» o «etapa»?', options: ['Langkah', 'Target', 'Mencapai'], answer: 0, explanation: 'Langkah significa paso o etapa.' },
+                                        { vocabId: 'b1v111', type: 'translate_es_id', prompt: 'Traduce: «Mi meta es leer diez libros».', answer: 'Target saya adalah membaca sepuluh buku.', explanation: 'Target presenta una meta concreta.' },
+                                        { vocabId: 'b1v110', type: 'order', prompt: 'Ordena: «El primer paso es hacer un plan».', words: ['membuat', 'Langkah', 'rencana.', 'adalah', 'pertama'], correctOrder: ['Langkah', 'pertama', 'adalah', 'membuat', 'rencana.'], explanation: 'Langkah pertama nombra la primera etapa del proceso.' },
+                                        { vocabId: 'b1v111', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Target saya adalah membaca sepuluh buku.', explanation: 'La frase expresa una meta cuantificable.' },
+                                        { vocabId: 'b1v110', type: 'write', prompt: 'Explica una meta en tres pasos. Usa langkah y menciona un target concreto.', hint: 'Puedes hablar de estudiar, leer, viajar o ahorrar.', modelAnswer: 'Langkah pertama adalah membuat rencana. Langkah kedua adalah belajar setiap hari. Target saya adalah mencapai hasil yang lebih baik.', explanation: 'Langkah organiza el proceso y target concreta la meta.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Mencapai y mempersiapkan',
+                                    objective: 'Explica qué quieres alcanzar y qué preparas para conseguirlo.',
+                                    grammar: 'Mencapai expresa llegar a un objetivo o conseguir un resultado. Mempersiapkan expresa preparar algo con antelación. Ambos verbos permiten relacionar una acción concreta con una meta.',
+                                    reviewVocabIds: ['b1v110', 'b1v111', 'b1v109'],
+                                    vocabIds: ['b1v112', 'b1v113'],
+                                    exercises: [
+                                        { vocabId: 'b1v112', type: 'mc', prompt: '¿Qué verbo significa «alcanzar o lograr»?', options: ['Mencapai', 'Mempersiapkan', 'Memutuskan'], answer: 0, explanation: 'Mencapai significa alcanzar o lograr.' },
+                                        { vocabId: 'b1v113', type: 'translate_es_id', prompt: 'Traduce: «Preparo todos los materiales».', answer: 'Saya mempersiapkan semua bahan.', explanation: 'Mempersiapkan expresa la acción de preparar los materiales.' },
+                                        { vocabId: 'b1v112', type: 'order', prompt: 'Ordena: «Quiero alcanzar mi objetivo».', words: ['tujuan', 'mencapai', 'Saya', 'ingin', 'saya.'], correctOrder: ['Saya', 'ingin', 'mencapai', 'tujuan', 'saya.'], explanation: 'Ingin introduce el deseo y mencapai expresa alcanzar la meta.' },
+                                        { vocabId: 'b1v113', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Saya mempersiapkan semua bahan.', explanation: 'La frase expresa la preparación necesaria.' },
+                                        { vocabId: 'b1v113', type: 'write', prompt: 'Escribe tres frases sobre cómo te preparas para alcanzar una meta.', hint: 'Usa mempersiapkan y menciona materiales, tiempo o actividades.', modelAnswer: 'Saya mempersiapkan semua bahan. Saya mempersiapkan waktu untuk belajar. Dengan persiapan itu, saya ingin mencapai tujuan saya.', explanation: 'La producción conecta preparación y logro de una meta.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Memutuskan y planificar el siguiente paso',
+                                    objective: 'Expresa una decisión y explica cómo se conecta con tu plan y tu meta.',
+                                    grammar: 'Memutuskan significa decidir o tomar una decisión. Puede combinarse con untuk para expresar la acción decidida. En una explicación completa, la decisión puede presentarse como el siguiente paso de un plan.',
+                                    reviewVocabIds: ['b1v105', 'b1v106', 'b1v110', 'b1v112', 'b1v113'],
+                                    vocabIds: ['b1v114'],
+                                    exercises: [
+                                        { vocabId: 'b1v114', type: 'mc', prompt: '¿Qué significa memutuskan?', options: ['Decidir', 'Alcanzar', 'Preparar'], answer: 0, explanation: 'Memutuskan significa decidir o tomar una decisión.' },
+                                        { vocabId: 'b1v114', type: 'translate_es_id', prompt: 'Traduce: «Decidimos empezar mañana».', answer: 'Kami memutuskan untuk mulai besok.', explanation: 'Memutuskan expresa la decisión y untuk introduce la acción decidida.' },
+                                        { vocabId: 'b1v114', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Kami memutuskan untuk mulai besok.', explanation: 'La frase presenta una decisión sobre el inicio de una actividad.' },
+                                        { vocabId: 'b1v114', type: 'write', prompt: 'Escribe un mini-plan de cuatro frases: indica una meta, un paso, una preparación y una decisión concreta para seguir avanzando.', hint: 'Integra tujuan, langkah, mempersiapkan y memutuskan.', modelAnswer: 'Tujuan saya adalah belajar lebih banyak. Langkah pertama adalah membuat rencana. Saya mempersiapkan waktu untuk belajar. Saya memutuskan untuk mulai besok.', explanation: 'La producción organiza una meta, un paso, una preparación y una decisión.' }
+                                    ]
+                                }
+                            ]
+                        },
+
 
                     ]
                 },

@@ -182,3 +182,8 @@
 ## PR — candidatos de ambigüedad semántica (6 nov 2026)
 - Añade un detector offline conservador para ejercicios de opción múltiple: solo señala opciones que coinciden con la glosa española objetivo mediante coincidencia exacta normalizada. Los resultados son candidatos para revisión humana, no errores confirmados ni certificación lingüística.
 - Incluye pruebas sintéticas, ejecución en la suite de calidad y artifact CI. Reconciliado sobre el main posterior a PR #383. Sin cambios de currículo, trackers/CSV, IndexedDB ni backup JSON v3; sin dependencias ni red.
+
+
+## Revisión estructural A2 U33–U40 (6–7 nov 2026)
+- Inventario comprobado: 8 unidades, 96 entradas de vocabulario, 32 lecciones y 136 ejercicios. Cada unidad tiene 12 entradas, 4 lecciones y 17 ejercicios; no se encontraron IDs huérfanos ni entradas sin uso.
+- `tanggapan` aparece en un ejemplo de U22 y se enseña como entrada en U40; queda como candidato de exposición anticipada, no como error confirmado. La revisión editorial contextual completa de U33–U40 sigue pendiente. Sin cambios curriculares, trackers/CSV, IndexedDB ni backup JSON v3.

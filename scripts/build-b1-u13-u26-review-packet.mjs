@@ -62,7 +62,7 @@ export function buildB1ReviewPacket({ curriculum, notes = [], prompt = '' }) {
     );
   }
   return {
-    markdown: sections.join('\\n').replace(/\\n{3,}/g, '\\n\\n').trim() + '\\n',
+    markdown: sections.join('\n').replace(/\n{3,}/g, '\n\n').trim() + '\n',
     coverage: counts,
   };
 }

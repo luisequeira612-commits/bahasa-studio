@@ -57,7 +57,7 @@ export function detectSemanticAmbiguityCandidates(curricula) {
         if (competingOptions.length) candidates.push({
           code: 'MC_EQUIVALENT_GLOSS_OPTION', severity: 'candidate',
           level: curriculum.id ?? 'unknown', unit_id: unit.id ?? null,
-          path: ${prefix}[${exerciseIndex}], vocab_id: exercise.vocabId,
+          path: prefix + '[' + exerciseIndex + ']', vocab_id: exercise.vocabId,
           target_gloss: target.esp,
           correct_option: { index: exercise.answer, text: String(exercise.options[exercise.answer]) },
           competing_options: competingOptions,
@@ -65,9 +65,9 @@ export function detectSemanticAmbiguityCandidates(curricula) {
         });
       }
     };
-    inspect(unit?.exercises, \`units[${unitIndex}].exercises\`);
+    inspect(unit?.exercises, 'units[' + unitIndex + '].exercises');
     for (const [lessonIndex, lesson] of (unit?.lessons ?? []).entries()) {
-      inspect(lesson?.exercises, \`units[${unitIndex}].lessons[${lessonIndex}].exercises\`);
+      inspect(lesson?.exercises, 'units[' + unitIndex + '].lessons[' + lessonIndex + '].exercises');
     }
   }
   return {
@@ -80,7 +80,7 @@ function loadCurriculum(source, globalName, filename) {
   const sandbox = { window: {} };
   vm.runInNewContext(source, sandbox, { filename, timeout: 5000 });
   const curriculum = sandbox.window[globalName];
-  if (!curriculum || !Array.isArray(curriculum.units)) throw new Error(\`${filename} did not define window.${globalName}.units\`);
+  if (!curriculum || !Array.isArray(curriculum.units)) throw new Error(filename + ' did not define window.' + globalName + '.units');
   return curriculum;
 }
 async function main() {
@@ -91,8 +91,8 @@ async function main() {
   const report = detectSemanticAmbiguityCandidates([a1, a2]);
   await mkdir(dirname(outputPath), { recursive: true });
   await writeFile(outputPath, JSON.stringify(report, null, 2) + '\n');
-  console.log(\`Semantic ambiguity candidates: ${report.candidate_count}. Human review required; no linguistic verdicts.\`);
-  console.log(\`Report: ${outputPath}\`);
+  console.log('Semantic ambiguity candidates: ' + report.candidate_count + '. Human review required; no linguistic verdicts.');
+  console.log('Report: ' + outputPath);
 }
 if (process.argv[1] && resolve(process.argv[1]) === resolve(new URL(import.meta.url).pathname)) {
   main().catch((error) => { console.error(error); process.exitCode = 1; });

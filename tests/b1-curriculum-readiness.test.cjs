@@ -364,7 +364,9 @@ test('B1 U13-U14 consolidate the ke-an family using canonical earlier vocabulary
     }
     const localIds = new Set(unit.vocab.map(word => word.id));
     for (const exercise of exercises) {
-      assert.ok(localIds.has(exercise.vocabId), unit.id + ' exercise references vocabulary outside its unit');
+      const reviewLesson = (unit.lessons || []).find(item => item.exercises?.includes(exercise));
+      const inCumulativeReview = reviewLesson && /repaso acumulativo/i.test(reviewLesson.title) && reviewLesson.reviewVocabIds?.includes(exercise.vocabId);
+      assert.ok(localIds.has(exercise.vocabId) || inCumulativeReview, unit.id + ' exercise references vocabulary outside its unit and review scope');
       assert.ok(exercise.prompt && exercise.explanation);
       if (exercise.type === 'mc') {
         assert.ok(Array.isArray(exercise.options) && Number.isInteger(exercise.answer));
@@ -412,7 +414,9 @@ test('B1 U15-U17 teach yang relatives, interrogatives, passive clauses and cumul
     for (const type of ['mc', 'translate_es_id', 'order', 'listen', 'write']) assert.ok(types.has(type), unit.id + ' missing ' + type);
     const localIds = new Set(unit.vocab.map(word => word.id));
     for (const exercise of exercises) {
-      assert.ok(localIds.has(exercise.vocabId), unit.id + ' exercise references vocabulary outside its unit');
+      const reviewLesson = (unit.lessons || []).find(item => item.exercises?.includes(exercise));
+      const inCumulativeReview = reviewLesson && /repaso acumulativo/i.test(reviewLesson.title) && reviewLesson.reviewVocabIds?.includes(exercise.vocabId);
+      assert.ok(localIds.has(exercise.vocabId) || inCumulativeReview, unit.id + ' exercise references vocabulary outside its unit and review scope');
       assert.ok(exercise.prompt && exercise.explanation);
       if (exercise.type === 'mc') {
         assert.ok(Array.isArray(exercise.options) && Number.isInteger(exercise.answer));
@@ -473,7 +477,9 @@ test('B1 U18-U20 teach conditionals, concessions and sentence contrast', () => {
     for (const type of ['mc', 'translate_es_id', 'order', 'listen', 'write']) assert.ok(types.has(type), unit.id + ' missing ' + type);
     const localIds = new Set(unit.vocab.map(word => word.id));
     for (const exercise of exercises) {
-      assert.ok(localIds.has(exercise.vocabId), unit.id + ' exercise references vocabulary outside its unit');
+      const reviewLesson = (unit.lessons || []).find(item => item.exercises?.includes(exercise));
+      const inCumulativeReview = reviewLesson && /repaso acumulativo/i.test(reviewLesson.title) && reviewLesson.reviewVocabIds?.includes(exercise.vocabId);
+      assert.ok(localIds.has(exercise.vocabId) || inCumulativeReview, unit.id + ' exercise references vocabulary outside its unit and review scope');
       assert.ok(exercise.prompt && exercise.explanation);
       if (exercise.type === 'mc') {
         assert.ok(Array.isArray(exercise.options) && Number.isInteger(exercise.answer));
@@ -534,7 +540,9 @@ test('B1 U21-U24 teach cause, purpose and past-experience narration', () => {
     for (const type of ['mc', 'translate_es_id', 'order', 'listen', 'write']) assert.ok(types.has(type), unit.id + ' missing ' + type);
     const localIds = new Set(unit.vocab.map(word => word.id));
     for (const exercise of exercises) {
-      assert.ok(localIds.has(exercise.vocabId), unit.id + ' exercise references vocabulary outside its unit');
+      const reviewLesson = (unit.lessons || []).find(item => item.exercises?.includes(exercise));
+      const inCumulativeReview = reviewLesson && /repaso acumulativo/i.test(reviewLesson.title) && reviewLesson.reviewVocabIds?.includes(exercise.vocabId);
+      assert.ok(localIds.has(exercise.vocabId) || inCumulativeReview, unit.id + ' exercise references vocabulary outside its unit and review scope');
       assert.ok(exercise.prompt && exercise.explanation);
       if (exercise.type === 'mc') {
         assert.ok(Array.isArray(exercise.options) && Number.isInteger(exercise.answer));
@@ -596,7 +604,9 @@ test('B1 U27-U29 teach opinions, probability and advice', () => {
     for (const type of ['mc', 'translate_es_id', 'order', 'listen', 'write']) assert.ok(types.has(type), unit.id + ' missing ' + type);
     const localIds = new Set(unit.vocab.map(word => word.id));
     for (const exercise of exercises) {
-      assert.ok(localIds.has(exercise.vocabId), unit.id + ' exercise references vocabulary outside its unit');
+      const reviewLesson = (unit.lessons || []).find(item => item.exercises?.includes(exercise));
+      const inCumulativeReview = reviewLesson && /repaso acumulativo/i.test(reviewLesson.title) && reviewLesson.reviewVocabIds?.includes(exercise.vocabId);
+      assert.ok(localIds.has(exercise.vocabId) || inCumulativeReview, unit.id + ' exercise references vocabulary outside its unit and review scope');
       assert.ok(exercise.prompt && exercise.explanation);
       if (exercise.type === 'mc') {
         assert.ok(Array.isArray(exercise.options) && Number.isInteger(exercise.answer));
@@ -647,7 +657,9 @@ test('B1 U30-U31 teach plans, goals, steps and decisions', () => {
     for (const type of ['mc', 'translate_es_id', 'order', 'listen', 'write']) assert.ok(types.has(type), unit.id + ' missing exercise type ' + type);
     const localIds = new Set(unit.vocab.map(word => word.id));
     for (const exercise of exercises) {
-      assert.ok(localIds.has(exercise.vocabId), unit.id + ' exercise references vocabulary outside its unit');
+      const reviewLesson = (unit.lessons || []).find(item => item.exercises?.includes(exercise));
+      const inCumulativeReview = reviewLesson && /repaso acumulativo/i.test(reviewLesson.title) && reviewLesson.reviewVocabIds?.includes(exercise.vocabId);
+      assert.ok(localIds.has(exercise.vocabId) || inCumulativeReview, unit.id + ' exercise references vocabulary outside its unit and review scope');
       assert.ok(exercise.prompt && exercise.explanation);
       if (exercise.type === 'mc') {
         assert.ok(Array.isArray(exercise.options) && Number.isInteger(exercise.answer));
@@ -699,7 +711,9 @@ test('B1 U32-U34 consolidate planning, problem solving and decision evaluation',
     }
     const localIds = new Set(unit.vocab.map(word => word.id));
     for (const exercise of exercises) {
-      assert.ok(localIds.has(exercise.vocabId), unit.id + ' exercise references vocabulary outside its unit');
+      const reviewLesson = (unit.lessons || []).find(item => item.exercises?.includes(exercise));
+      const inCumulativeReview = reviewLesson && /repaso acumulativo/i.test(reviewLesson.title) && reviewLesson.reviewVocabIds?.includes(exercise.vocabId);
+      assert.ok(localIds.has(exercise.vocabId) || inCumulativeReview, unit.id + ' exercise references vocabulary outside its unit and review scope');
       assert.ok(exercise.prompt && exercise.explanation);
       if (exercise.type === 'mc') {
         assert.ok(Array.isArray(exercise.options) && Number.isInteger(exercise.answer));
@@ -746,7 +760,9 @@ test('B1 U35-U37 teach negotiation, clear communication and continuous improveme
     }
     const localIds = new Set(unit.vocab.map(word => word.id));
     for (const exercise of exercises) {
-      assert.ok(localIds.has(exercise.vocabId), unit.id + ' exercise references vocabulary outside its unit');
+      const reviewLesson = (unit.lessons || []).find(item => item.exercises?.includes(exercise));
+      const inCumulativeReview = reviewLesson && /repaso acumulativo/i.test(reviewLesson.title) && reviewLesson.reviewVocabIds?.includes(exercise.vocabId);
+      assert.ok(localIds.has(exercise.vocabId) || inCumulativeReview, unit.id + ' exercise references vocabulary outside its unit and review scope');
       assert.ok(exercise.prompt && exercise.explanation);
       if (exercise.type === 'mc') {
         assert.ok(Array.isArray(exercise.options) && Number.isInteger(exercise.answer));
@@ -793,7 +809,9 @@ test('B1 U38-U40 teach feedback, evidence and adaptation', () => {
     }
     const localIds = new Set(unit.vocab.map(word => word.id));
     for (const exercise of exercises) {
-      assert.ok(localIds.has(exercise.vocabId), unit.id + ' exercise references vocabulary outside its unit');
+      const reviewLesson = (unit.lessons || []).find(item => item.exercises?.includes(exercise));
+      const inCumulativeReview = reviewLesson && /repaso acumulativo/i.test(reviewLesson.title) && reviewLesson.reviewVocabIds?.includes(exercise.vocabId);
+      assert.ok(localIds.has(exercise.vocabId) || inCumulativeReview, unit.id + ' exercise references vocabulary outside its unit and review scope');
       assert.ok(exercise.prompt && exercise.explanation);
       if (exercise.type === 'mc') {
         assert.ok(Array.isArray(exercise.options) && Number.isInteger(exercise.answer));
@@ -840,7 +858,9 @@ test('B1 U41-U43 teach reporting, comparison and conditional influence', () => {
     }
     const localIds = new Set(unit.vocab.map(word => word.id));
     for (const exercise of exercises) {
-      assert.ok(localIds.has(exercise.vocabId), unit.id + ' exercise references vocabulary outside its unit');
+      const reviewLesson = (unit.lessons || []).find(item => item.exercises?.includes(exercise));
+      const inCumulativeReview = reviewLesson && /repaso acumulativo/i.test(reviewLesson.title) && reviewLesson.reviewVocabIds?.includes(exercise.vocabId);
+      assert.ok(localIds.has(exercise.vocabId) || inCumulativeReview, unit.id + ' exercise references vocabulary outside its unit and review scope');
       assert.ok(exercise.prompt && exercise.explanation);
       if (exercise.type === 'mc') {
         assert.ok(Array.isArray(exercise.options) && Number.isInteger(exercise.answer));
@@ -887,7 +907,9 @@ test('B1 U44-U46 teach forecasting, prevention and resource efficiency', () => {
     }
     const localIds = new Set(unit.vocab.map(word => word.id));
     for (const exercise of exercises) {
-      assert.ok(localIds.has(exercise.vocabId), unit.id + ' exercise references vocabulary outside its unit');
+      const reviewLesson = (unit.lessons || []).find(item => item.exercises?.includes(exercise));
+      const inCumulativeReview = reviewLesson && /repaso acumulativo/i.test(reviewLesson.title) && reviewLesson.reviewVocabIds?.includes(exercise.vocabId);
+      assert.ok(localIds.has(exercise.vocabId) || inCumulativeReview, unit.id + ' exercise references vocabulary outside its unit and review scope');
       assert.ok(exercise.prompt && exercise.explanation);
       if (exercise.type === 'mc') {
         assert.ok(Array.isArray(exercise.options) && Number.isInteger(exercise.answer));
@@ -956,7 +978,9 @@ test('B1 U47-U49 teach procedures, community participation and sustainability', 
     }
     const localIds = new Set(unit.vocab.map(word => word.id));
     for (const exercise of exercises) {
-      assert.ok(localIds.has(exercise.vocabId), unit.id + ' exercise references vocabulary outside its unit');
+      const reviewLesson = (unit.lessons || []).find(item => item.exercises?.includes(exercise));
+      const inCumulativeReview = reviewLesson && /repaso acumulativo/i.test(reviewLesson.title) && reviewLesson.reviewVocabIds?.includes(exercise.vocabId);
+      assert.ok(localIds.has(exercise.vocabId) || inCumulativeReview, unit.id + ' exercise references vocabulary outside its unit and review scope');
       assert.ok(exercise.prompt && exercise.explanation);
       if (exercise.type === 'mc') {
         assert.ok(Array.isArray(exercise.options) && Number.isInteger(exercise.answer));
@@ -1027,7 +1051,9 @@ test('B1 U25-U26 describe character and places with canonical A1 vocabulary', ()
     for (const type of ['mc', 'translate_es_id', 'order', 'listen', 'write']) assert.ok(types.has(type), unit.id + ' missing ' + type);
     const localIds = new Set(unit.vocab.map(word => word.id));
     for (const exercise of exercises) {
-      assert.ok(localIds.has(exercise.vocabId), unit.id + ' exercise references vocabulary outside its unit');
+      const reviewLesson = (unit.lessons || []).find(item => item.exercises?.includes(exercise));
+      const inCumulativeReview = reviewLesson && /repaso acumulativo/i.test(reviewLesson.title) && reviewLesson.reviewVocabIds?.includes(exercise.vocabId);
+      assert.ok(localIds.has(exercise.vocabId) || inCumulativeReview, unit.id + ' exercise references vocabulary outside its unit and review scope');
       assert.ok(exercise.prompt && exercise.explanation);
       if (exercise.type === 'mc') {
         assert.ok(Array.isArray(exercise.options) && Number.isInteger(exercise.answer));

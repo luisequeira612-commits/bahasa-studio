@@ -2655,6 +2655,175 @@
                             ]
                         },
 
+                        {
+                            id: 'b1_u41',
+                            title: 'Unidad 41: declaraciones, afirmaciones y reconocimiento',
+                            desc: 'Presenta declaraciones, enfatiza una idea y distingue entre admitir o negar algo.',
+                            grammar: 'Pernyataan significa declaración o afirmación y se reutiliza con su ID canónico de A2. Menyatakan expresa declarar o afirmar; menegaskan, recalcar o enfatizar; mengakui, reconocer o admitir; menyangkal, negar o desmentir. Estas formas permiten informar sobre lo que una persona afirma y cómo responde a una acusación o idea.',
+                            vocab: [
+                                { id: 'a2u40_pernyataan', idn: 'pernyataan', esp: 'Declaración', ex: 'Pernyataan resmi akan diumumkan besok.', exEsp: 'La declaración oficial se anunciará mañana.' },
+                                { id: 'b1v158', idn: 'Menyatakan', esp: 'Declarar; afirmar; expresar', ex: 'Dia menyatakan pendapatnya dengan jelas.', exEsp: 'Él/Ella expresa su opinión claramente.' },
+                                { id: 'b1v159', idn: 'Menegaskan', esp: 'Recalcar; enfatizar; afirmar con firmeza', ex: 'Dia menegaskan bahwa informasi itu benar.', exEsp: 'Él/Ella recalca que esa información es correcta.' },
+                                { id: 'b1v160', idn: 'Mengakui', esp: 'Reconocer; admitir', ex: 'Dia mengakui kesalahannya.', exEsp: 'Él/Ella reconoce su error.' },
+                                { id: 'b1v161', idn: 'Menyangkal', esp: 'Negar; desmentir', ex: 'Dia menyangkal tuduhan tersebut.', exEsp: 'Él/Ella niega esa acusación.' }
+                            ],
+                            lessons: [
+                                {
+                                    title: 'Pernyataan y menyatakan',
+                                    objective: 'Distingue una declaración de la acción de expresar una afirmación.',
+                                    grammar: 'Pernyataan es una declaración o afirmación. Menyatakan es el verbo que expresa declarar, afirmar o expresar una idea. Se puede presentar una pernyataan y explicar quién la menyatakan.',
+                                    reviewVocabIds: ['b1v149', 'b1v150', 'b1v151', 'b1v153', 'b1v135'],
+                                    vocabIds: ['a2u40_pernyataan', 'b1v158'],
+                                    exercises: [
+                                        { vocabId: 'a2u40_pernyataan', type: 'mc', prompt: '¿Qué significa pernyataan?', options: ['Declaración o afirmación', 'Comparación', 'Costumbre'], answer: 0, explanation: 'Pernyataan significa declaración.' },
+                                        { vocabId: 'b1v158', type: 'translate_es_id', prompt: 'Traduce: «Él/Ella expresa su opinión claramente».', answer: 'Dia menyatakan pendapatnya dengan jelas.', explanation: 'Menyatakan expresa declarar o expresar una idea.' },
+                                        { vocabId: 'a2u40_pernyataan', type: 'order', prompt: 'Ordena: «La declaración oficial se anunciará mañana».', words: ['besok.', 'resmi', 'Pernyataan', 'akan', 'diumumkan'], correctOrder: ['Pernyataan', 'resmi', 'akan', 'diumumkan', 'besok.'], explanation: 'Pernyataan resmi es el sujeto y akan diumumkan expresa una acción futura en pasiva.' },
+                                        { vocabId: 'b1v158', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Dia menyatakan pendapatnya dengan jelas.', explanation: 'La frase describe cómo alguien expresa su opinión.' },
+                                        { vocabId: 'b1v158', type: 'write', prompt: 'Escribe dos frases: presenta una declaración y explica qué afirma una persona.', hint: 'Usa pernyataan y menyatakan.', modelAnswer: 'Pernyataan resmi akan diumumkan besok. Dia menyatakan pendapatnya dengan jelas.', explanation: 'La producción distingue el contenido de una declaración y el acto de afirmarla.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Menegaskan y mengakui',
+                                    objective: 'Enfatiza una afirmación y admite un hecho o error.',
+                                    grammar: 'Menegaskan expresa afirmar algo con firmeza o recalcarlo. Mengakui expresa reconocer o admitir un hecho, una responsabilidad o un error.',
+                                    reviewVocabIds: ['a2u40_pernyataan', 'b1v158', 'b1v149', 'b1v152'],
+                                    vocabIds: ['b1v159', 'b1v160'],
+                                    exercises: [
+                                        { vocabId: 'b1v159', type: 'mc', prompt: '¿Qué significa menegaskan?', options: ['Recalcar o enfatizar', 'Negar una acusación', 'Comparar dos opciones'], answer: 0, explanation: 'Menegaskan significa recalcar o afirmar con firmeza.' },
+                                        { vocabId: 'b1v160', type: 'translate_es_id', prompt: 'Traduce: «Él/Ella reconoce su error».', answer: 'Dia mengakui kesalahannya.', explanation: 'Mengakui significa reconocer o admitir.' },
+                                        { vocabId: 'b1v159', type: 'order', prompt: 'Ordena: «Él/Ella recalca que esa información es correcta».', words: ['benar.', 'informasi', 'bahwa', 'menegaskan', 'Dia', 'itu'], correctOrder: ['Dia', 'menegaskan', 'bahwa', 'informasi', 'itu', 'benar.'], explanation: 'Bahwa introduce el contenido de la afirmación.' },
+                                        { vocabId: 'b1v160', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Dia mengakui kesalahannya dan meminta maaf.', explanation: 'La frase relaciona admitir un error con pedir disculpas.' },
+                                        { vocabId: 'b1v160', type: 'write', prompt: 'Escribe dos frases: enfatiza un hecho y admite un error o una responsabilidad.', hint: 'Integra menegaskan y mengakui.', modelAnswer: 'Dia menegaskan bahwa informasi itu benar. Dia mengakui kesalahannya.', explanation: 'La producción contrasta afirmar algo con firmeza y admitir un error.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Menyangkal una acusación',
+                                    objective: 'Explica cuándo una persona niega una acusación y distingue la negación de una admisión.',
+                                    grammar: 'Menyangkal significa negar o desmentir una acusación, afirmación o hecho atribuido a alguien. Puede tomar como objeto una acusación concreta.',
+                                    reviewVocabIds: ['a2u40_pernyataan', 'b1v158', 'b1v159', 'b1v160', 'b1v146'],
+                                    vocabIds: ['b1v161'],
+                                    exercises: [
+                                        { vocabId: 'b1v161', type: 'mc', prompt: '¿Qué significa menyangkal?', options: ['Negar o desmentir', 'Reconocer un error', 'Elogiar a alguien'], answer: 0, explanation: 'Menyangkal significa negar o desmentir.' },
+                                        { vocabId: 'b1v161', type: 'translate_es_id', prompt: 'Traduce: «Él/Ella niega esa acusación».', answer: 'Dia menyangkal tuduhan tersebut.', explanation: 'Menyangkal expresa negar una acusación.' },
+                                        { vocabId: 'b1v161', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Dia menyangkal tuduhan tersebut dalam pernyataan resmi.', explanation: 'La frase sitúa la negación dentro de una declaración oficial.' },
+                                        { vocabId: 'b1v161', type: 'write', prompt: 'Resume una situación en cuatro frases: presenta una declaración, explica qué se afirma, qué se admite y qué se niega.', hint: 'Integra pernyataan, menyatakan, mengakui y menyangkal.', modelAnswer: 'Pernyataan resmi akan diumumkan besok. Dia menyatakan pendapatnya dengan jelas. Dia mengakui kesalahannya. Dia menyangkal tuduhan tersebut.', explanation: 'La producción distingue una declaración, una afirmación, una admisión y una negación.' }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            id: 'b1_u42',
+                            title: 'Unidad 42: comparar alternativas y señalar contrastes',
+                            desc: 'Compara opciones, identifica semejanzas y explica diferencias entre situaciones.',
+                            grammar: 'Perbandingan significa comparación y membandingkan, comparar; membandingkan se reutiliza con su ID canónico de A2. Sebaliknya puede expresar contraste o lo contrario, sementara introduce una comparación entre situaciones simultáneas o diferentes, y kesamaan significa semejanza o similitud.',
+                            vocab: [
+                                { id: 'b1v162', idn: 'Perbandingan', esp: 'Comparación', ex: 'Perbandingan itu menunjukkan perbedaan.', exEsp: 'Esa comparación muestra una diferencia.' },
+                                { id: 'a2u13_membandingkan', idn: 'membandingkan', esp: 'Comparar', ex: 'Saya membandingkan pakaian.', exEsp: 'Comparo ropa.' },
+                                { id: 'b1v163', idn: 'Sebaliknya', esp: 'Por el contrario; a la inversa', ex: 'Dia memilih cara sederhana; saya, sebaliknya, memilih cara lain.', exEsp: 'Él/Ella elige un método sencillo; yo, por el contrario, elijo otro.' },
+                                { id: 'b1v164', idn: 'Sementara', esp: 'Mientras; mientras que', ex: 'Saya bekerja, sementara dia belajar.', exEsp: 'Yo trabajo, mientras que él/ella estudia.' },
+                                { id: 'b1v165', idn: 'Kesamaan', esp: 'Semejanza; similitud', ex: 'Kami menemukan kesamaan dalam pendapat.', exEsp: 'Encontramos semejanzas en las opiniones.' }
+                            ],
+                            lessons: [
+                                {
+                                    title: 'Perbandingan y membandingkan',
+                                    objective: 'Presenta una comparación sencilla entre dos opciones o situaciones.',
+                                    grammar: 'Perbandingan nombra la comparación o el resultado de comparar. Membandingkan expresa la acción de comparar dos o más elementos para observar diferencias o semejanzas.',
+                                    reviewVocabIds: ['b1v125', 'b1v126', 'b1v127', 'b1v149', 'b1v150'],
+                                    vocabIds: ['b1v162', 'a2u13_membandingkan'],
+                                    exercises: [
+                                        { vocabId: 'b1v162', type: 'mc', prompt: '¿Qué significa perbandingan?', options: ['Comparación', 'Declaración', 'Impacto'], answer: 0, explanation: 'Perbandingan significa comparación.' },
+                                        { vocabId: 'a2u13_membandingkan', type: 'translate_es_id', prompt: 'Traduce: «Comparo ropa».', answer: 'Saya membandingkan pakaian.', explanation: 'Membandingkan significa comparar.' },
+                                        { vocabId: 'b1v162', type: 'order', prompt: 'Ordena: «Esa comparación muestra una diferencia».', words: ['perbedaan.', 'menunjukkan', 'itu', 'Perbandingan'], correctOrder: ['Perbandingan', 'itu', 'menunjukkan', 'perbedaan.'], explanation: 'Perbandingan itu es el sujeto de menunjukkan.' },
+                                        { vocabId: 'a2u13_membandingkan', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Saya membandingkan dua pilihan sebelum memutuskan.', explanation: 'La frase compara dos opciones antes de tomar una decisión.' },
+                                        { vocabId: 'b1v162', type: 'write', prompt: 'Compara dos opciones que conozcas y explica qué diferencia observas.', hint: 'Usa perbandingan y membandingkan.', modelAnswer: 'Saya membandingkan dua pilihan sebelum memutuskan. Perbandingan itu menunjukkan perbedaan.', explanation: 'La producción conecta la acción de comparar con una diferencia observada.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Sebaliknya y sementara',
+                                    objective: 'Contrasta dos situaciones y explica qué ocurre en cada una.',
+                                    grammar: 'Sebaliknya introduce una idea opuesta o un contraste con lo anterior. Sementara puede relacionar dos acciones simultáneas o presentar una diferencia entre dos situaciones.',
+                                    reviewVocabIds: ['b1v162', 'a2u13_membandingkan', 'b1v154', 'b1v155'],
+                                    vocabIds: ['b1v163', 'b1v164'],
+                                    exercises: [
+                                        { vocabId: 'b1v163', type: 'mc', prompt: '¿Qué expresa sebaliknya?', options: ['Un contraste o lo contrario', 'Una causa', 'Una conclusión'], answer: 0, explanation: 'Sebaliknya expresa contraste o lo contrario.' },
+                                        { vocabId: 'b1v164', type: 'translate_es_id', prompt: 'Traduce: «Yo trabajo, mientras que él/ella estudia».', answer: 'Saya bekerja, sementara dia belajar.', explanation: 'Sementara relaciona dos situaciones.' },
+                                        { vocabId: 'b1v163', type: 'order', prompt: 'Ordena: «Él/Ella elige un método sencillo; yo, por el contrario, elijo otro».', words: ['lain.', 'sebaliknya,', 'cara', 'saya,', 'Dia', 'memilih', 'sederhana;', 'cara'], correctOrder: ['Dia', 'memilih', 'cara', 'sederhana;', 'saya,', 'sebaliknya,', 'cara', 'lain.'], explanation: 'Sebaliknya introduce el contraste con la elección anterior.' },
+                                        { vocabId: 'b1v164', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Saya bekerja, sementara dia belajar di rumah.', explanation: 'La frase contrasta dos actividades que ocurren al mismo tiempo.' },
+                                        { vocabId: 'b1v164', type: 'write', prompt: 'Escribe dos frases que comparen dos rutinas o situaciones usando sementara y sebaliknya.', hint: 'Contrasta las acciones o preferencias de dos personas.', modelAnswer: 'Saya bekerja, sementara dia belajar di rumah. Dia memilih cara sederhana; saya, sebaliknya, memilih cara lain.', explanation: 'La producción utiliza una relación simultánea y un contraste.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Kesamaan y diferencias',
+                                    objective: 'Explica qué tienen en común dos opciones y en qué se diferencian.',
+                                    grammar: 'Kesamaan significa semejanza o similitud. Puede usarse para señalar una característica compartida entre personas, ideas u opciones.',
+                                    reviewVocabIds: ['b1v162', 'a2u13_membandingkan', 'b1v163', 'b1v164', 'b1v126'],
+                                    vocabIds: ['b1v165'],
+                                    exercises: [
+                                        { vocabId: 'b1v165', type: 'mc', prompt: '¿Qué significa kesamaan?', options: ['Semejanza o similitud', 'Diferencia', 'Acusación'], answer: 0, explanation: 'Kesamaan significa semejanza o similitud.' },
+                                        { vocabId: 'b1v165', type: 'translate_es_id', prompt: 'Traduce: «Encontramos semejanzas en las opiniones».', answer: 'Kami menemukan kesamaan dalam pendapat.', explanation: 'Kesamaan expresa una característica compartida.' },
+                                        { vocabId: 'b1v165', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Kami menemukan kesamaan dalam pendapat mereka.', explanation: 'La frase identifica semejanzas entre opiniones.' },
+                                        { vocabId: 'b1v165', type: 'write', prompt: 'Escribe un texto de cuatro frases: compara dos opciones, menciona una diferencia, una semejanza y concluye cuál prefieres.', hint: 'Integra perbandingan, sebaliknya y kesamaan.', modelAnswer: 'Saya membandingkan dua pilihan. Perbandingan itu menunjukkan perbedaan. Kami juga menemukan kesamaan dalam pendapat. Saya memilih pilihan pertama.', explanation: 'La producción reúne comparación, diferencia, semejanza y preferencia.' }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            id: 'b1_u43',
+                            title: 'Unidad 43: condiciones, relaciones e influencia',
+                            desc: 'Explica de qué depende una situación, qué factores la afectan y cómo se relacionan entre sí.',
+                            grammar: 'Kondisi significa condición o situación. Hubungan significa relación o vínculo. Bergantung expresa depender de algo; memengaruhi, afectar o influir en algo; berpengaruh, tener influencia o producir un efecto. Estas formas permiten explicar relaciones entre condiciones y resultados.',
+                            vocab: [
+                                { id: 'b1v166', idn: 'Kondisi', esp: 'Condición; situación', ex: 'Kondisi kerja berubah setiap tahun.', exEsp: 'Las condiciones de trabajo cambian cada año.' },
+                                { id: 'b1v167', idn: 'Hubungan', esp: 'Relación; vínculo', ex: 'Ada hubungan antara waktu dan hasil.', exEsp: 'Hay una relación entre el tiempo y el resultado.' },
+                                { id: 'b1v168', idn: 'Bergantung', esp: 'Depender de', ex: 'Hasilnya bergantung pada kondisi.', exEsp: 'El resultado depende de las condiciones.' },
+                                { id: 'b1v169', idn: 'Memengaruhi', esp: 'Afectar; influir en', ex: 'Cuaca dapat memengaruhi perjalanan.', exEsp: 'El clima puede afectar el viaje.' },
+                                { id: 'b1v170', idn: 'Berpengaruh', esp: 'Tener influencia; influir', ex: 'Pengalaman itu berpengaruh pada keputusan.', exEsp: 'Esa experiencia influye en la decisión.' }
+                            ],
+                            lessons: [
+                                {
+                                    title: 'Kondisi y hubungan',
+                                    objective: 'Describe una condición y explica la relación entre dos factores.',
+                                    grammar: 'Kondisi se refiere a una condición o situación. Hubungan expresa la relación o conexión entre dos elementos, como tiempo y resultado.',
+                                    reviewVocabIds: ['b1v154', 'b1v155', 'b1v149', 'b1v150', 'b1v151'],
+                                    vocabIds: ['b1v166', 'b1v167'],
+                                    exercises: [
+                                        { vocabId: 'b1v166', type: 'mc', prompt: '¿Qué significa kondisi?', options: ['Condición o situación', 'Semejanza', 'Declaración'], answer: 0, explanation: 'Kondisi significa condición o situación.' },
+                                        { vocabId: 'b1v167', type: 'translate_es_id', prompt: 'Traduce: «Hay una relación entre el tiempo y el resultado».', answer: 'Ada hubungan antara waktu dan hasil.', explanation: 'Hubungan significa relación o vínculo.' },
+                                        { vocabId: 'b1v166', type: 'order', prompt: 'Ordena: «Las condiciones de trabajo cambian cada año».', words: ['tahun.', 'kerja', 'setiap', 'berubah', 'Kondisi'], correctOrder: ['Kondisi', 'kerja', 'berubah', 'setiap', 'tahun.'], explanation: 'Kondisi kerja es el sujeto y berubah expresa que cambia.' },
+                                        { vocabId: 'b1v167', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Ada hubungan antara waktu dan hasil pekerjaan.', explanation: 'La frase relaciona el tiempo con el resultado del trabajo.' },
+                                        { vocabId: 'b1v166', type: 'write', prompt: 'Describe una condición que afecta una actividad y explica qué relación tiene con el resultado.', hint: 'Usa kondisi y hubungan.', modelAnswer: 'Kondisi kerja berubah setiap tahun. Ada hubungan antara waktu dan hasil pekerjaan.', explanation: 'La producción presenta una condición y una relación entre factores.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Bergantung y memengaruhi',
+                                    objective: 'Explica de qué depende un resultado y qué factor puede afectarlo.',
+                                    grammar: 'Bergantung expresa depender y suele combinarse con pada para introducir aquello de lo que depende algo. Memengaruhi expresa afectar o influir directamente en una situación, actividad o resultado.',
+                                    reviewVocabIds: ['b1v166', 'b1v167', 'b1v154', 'b1v157'],
+                                    vocabIds: ['b1v168', 'b1v169'],
+                                    exercises: [
+                                        { vocabId: 'b1v168', type: 'mc', prompt: '¿Qué expresa bergantung?', options: ['Depender de algo', 'Negar una afirmación', 'Comparar dos cosas'], answer: 0, explanation: 'Bergantung significa depender.' },
+                                        { vocabId: 'b1v169', type: 'translate_es_id', prompt: 'Traduce: «El clima puede afectar el viaje».', answer: 'Cuaca dapat memengaruhi perjalanan.', explanation: 'Memengaruhi significa afectar o influir en.' },
+                                        { vocabId: 'b1v168', type: 'order', prompt: 'Ordena: «El resultado depende de las condiciones».', words: ['kondisi.', 'bergantung', 'Hasilnya', 'pada'], correctOrder: ['Hasilnya', 'bergantung', 'pada', 'kondisi.'], explanation: 'Bergantung pada introduce el factor del que depende el resultado.' },
+                                        { vocabId: 'b1v169', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Cuaca dapat memengaruhi perjalanan kami.', explanation: 'La frase presenta el clima como factor que afecta el viaje.' },
+                                        { vocabId: 'b1v169', type: 'write', prompt: 'Explica de qué depende un resultado y qué factor puede influir en él.', hint: 'Integra bergantung y memengaruhi.', modelAnswer: 'Hasilnya bergantung pada kondisi. Cuaca dapat memengaruhi perjalanan kami.', explanation: 'La producción conecta una condición de la que depende un resultado y un factor que lo afecta.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Berpengaruh en los resultados',
+                                    objective: 'Explica cómo una experiencia o condición ejerce influencia sobre una decisión.',
+                                    grammar: 'Berpengaruh significa tener influencia o producir un efecto. Puede combinarse con pada para señalar aquello sobre lo que se ejerce influencia.',
+                                    reviewVocabIds: ['b1v166', 'b1v167', 'b1v168', 'b1v169', 'b1v140', 'b1v141'],
+                                    vocabIds: ['b1v170'],
+                                    exercises: [
+                                        { vocabId: 'b1v170', type: 'mc', prompt: '¿Qué significa berpengaruh?', options: ['Tener influencia o producir un efecto', 'Depender de un horario', 'Admitir un error'], answer: 0, explanation: 'Berpengaruh significa tener influencia.' },
+                                        { vocabId: 'b1v170', type: 'translate_es_id', prompt: 'Traduce: «Esa experiencia influye en la decisión».', answer: 'Pengalaman itu berpengaruh pada keputusan.', explanation: 'Berpengaruh pada indica aquello sobre lo que algo influye.' },
+                                        { vocabId: 'b1v170', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Pengalaman itu berpengaruh pada keputusan akhir.', explanation: 'La frase explica la influencia de una experiencia en una decisión final.' },
+                                        { vocabId: 'b1v170', type: 'write', prompt: 'Escribe cuatro frases que expliquen una situación, dos factores relacionados, de qué depende el resultado y qué experiencia influye en la decisión.', hint: 'Integra kondisi, hubungan, bergantung y berpengaruh.', modelAnswer: 'Kondisi kerja berubah setiap tahun. Ada hubungan antara waktu dan hasil pekerjaan. Hasilnya bergantung pada kondisi. Pengalaman itu berpengaruh pada keputusan akhir.', explanation: 'La producción integra condiciones, relaciones, dependencia e influencia.' }
+                                    ]
+                                }
+                            ]
+                        },
+
                     ]
                 },
 {

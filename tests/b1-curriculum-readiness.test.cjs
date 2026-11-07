@@ -177,6 +177,29 @@ test('B1 lesson vocabulary is never classified as both new and review in the sam
   }
 });
 
+
+test('B1 selected examples do not introduce later vocabulary before its teaching point', () => {
+  const b1 = course.levels.find(level => level.id === 'B1');
+  const unit = id => b1.units.find(item => item.id === id);
+  assert.doesNotMatch(JSON.stringify(unit('b1_u4')), /pelajaran/i);
+  assert.doesNotMatch(JSON.stringify(unit('b1_u6')), /pelajaran/i);
+  assert.doesNotMatch(JSON.stringify(unit('b1_u13')), /tanggung|jawab/i);
+  assert.doesNotMatch(JSON.stringify(unit('b1_u17')), /tanggung jawab/i);
+  assert.doesNotMatch(JSON.stringify(unit('b1_u31').lessons[0]), /mencapai/i);
+  assert.doesNotMatch(JSON.stringify(unit('b1_u32')), /menyelesaikan/i);
+  assert.doesNotMatch(JSON.stringify(unit('b1_u36')), /perubahan/i);
+  assert.doesNotMatch(JSON.stringify(unit('b1_u39')), /perubahan/i);
+  assert.doesNotMatch(JSON.stringify(unit('b1_u40')), /memengaruhi/i);
+  assert.doesNotMatch(JSON.stringify(unit('b1_u40').lessons[0]), /dampak/i);
+  assert.doesNotMatch(JSON.stringify(unit('b1_u45')), /mengurangi/i);
+  assert.doesNotMatch(JSON.stringify(unit('b1_u45').lessons[0]), /menghindari/i);
+  const u49 = unit('b1_u49');
+  const titles = u49.lessons.map(lesson => lesson.title);
+  assert.ok(titles.indexOf('Limbah y acciones responsables') < titles.indexOf('Berkelanjutan y mengurangi'));
+  const limbah = u49.lessons.find(lesson => lesson.title === 'Limbah y acciones responsables');
+  assert.doesNotMatch(JSON.stringify(limbah), /mengurangi/i);
+});
+
 test('every B1 draft exercise references vocabulary in its own unit', () => {
   const b1 = course.levels.find(level => level.id === 'B1');
   const byId = new Map();

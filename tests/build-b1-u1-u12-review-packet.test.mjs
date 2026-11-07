@@ -29,5 +29,5 @@ test('packet includes the exact unit source, review notes and scope counts', () 
   assert.match(result.markdown, /Review conservatively/);
   assert.match(result.markdown, /B1 U01/);
   assert.match(result.markdown, /B1 U12/);
-  assert.match(result.markdown, /Total de ejercicios combinados: 2/);
+  assert.match(result.markdown, /Total de ejercicios combinados: 4/);
 });

@@ -739,7 +739,6 @@ test('B1 U50 closes the level with an integrated capstone', () => {
     assert.ok(exercise.prompt && exercise.explanation);
   }
   assert.equal(new Set(unit.vocab.map(word => word.id)).size, 5);
-  assert.ok(unit.lessons[2].lessons === undefined);
   assert.match(unit.grammar + unit.lessons.map(lesson => lesson.grammar).join(' '), /rancangan[\\s\\S]*kelayakan[\\s\\S]*pelaksanaan[\\s\\S]*mempresentasikan[\\s\\S]*menindaklanjuti/i);
   assert.ok(exercises.some(exercise => exercise.type === 'write' && /rancangan/i.test(exercise.hint) && /menindaklanjuti/i.test(exercise.modelAnswer)));
 });

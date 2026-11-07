@@ -34,7 +34,9 @@
 - El dueño concedió autorización permanente para crear y fusionar PRs sin aprobación individual. Fusionar solo con CI completamente verde en el último commit y sin revisiones, comentarios ni problemas pendientes; informar cada fusión.
 - Mantener una rama por cambio basada en main actualizado; cada PR incluye alcance, archivos, pruebas, riesgos y actualiza MEMORY.md.
 
-## Estado de PR y sistema de calidad\n- PR #410 fusionado en `d137db065e792d563994ae4796768b35377f5f4e`; B1 50/50 completo en unidades. Auditoría estructural final pendiente.\n- PR en curso `feat/b1-quality-audit-integration`: conecta el auditor y la cola editorial existentes a B1 (extraído de `CourseData` en `index.html`); no modifica currículo, IndexedDB ni backup v3. CI pendiente.
+## Estado de PR y sistema de calidad
+- PR #410 fusionado en `d137db065e792d563994ae4796768b35377f5f4e`; B1 50/50 completo en unidades. Auditoría estructural final pendiente.
+- Rama `feat/b1-quality-audit-integration`: conecta el auditor y la cola editorial existentes a B1 (extraído de `CourseData` en `index.html`); no modifica currículo, IndexedDB ni backup v3. CI pendiente.
 - PR #349 fusionado: fija Playwright 1.55.0 y el runner `ubuntu-24.04` para estabilizar CI.
 - PR #350 fusionado: registra la hoja de ruta lingüística vigente y las reglas preventivas de independencia del idioma.
 - PR #337–#344 fusionados; #344 (commit `817b4246b0f6302544e09b357041e95f44cd791b`) incorpora parser CSV multilínea y sus pruebas en CI.

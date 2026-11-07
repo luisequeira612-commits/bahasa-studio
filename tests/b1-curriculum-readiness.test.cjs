@@ -211,8 +211,8 @@ test('B1 U15-U17 teach yang relatives, interrogatives, passive clauses and cumul
   const u17 = b1.units.find(unit => unit.id === 'b1_u17');
   assert.ok(u15 && u16 && u17);
   assert.deepEqual(Array.from(u15.vocab, word => word.id), ['b1v051', 'v53', 'v1002', 'v52', 'v211']);
-  assert.deepEqual(Array.from(u16.vocab, word => word.id), ['b1v051', 'b1v052', 'b1v053', 'b1v054', 'v1002', 'v53', 'v52', 'v211']);
-  assert.deepEqual(Array.from(u17.vocab, word => word.id), ['b1v051', 'v298', 'v348', 'v52', 'v211', 'v8', 'b1v001', 'b1v055', 'b1u12_kesehatan', 'a2u20_kebersihan', 'v1002']);
+  assert.deepEqual(Array.from(u16.vocab, word => word.id), ['b1v052', 'b1v053', 'b1v054', 'v1002', 'v53', 'v52', 'v211']);
+  assert.deepEqual(Array.from(u17.vocab, word => word.id), ['v298', 'v348', 'v52', 'v211', 'v8', 'b1v001', 'b1v055', 'b1u12_kesehatan', 'a2u20_kebersihan', 'v1002']);
   const expectedCounts = new Map([[u15, 14], [u16, 14], [u17, 15]]);
   const allNewForms = new Map([['b1v051', 'yang'], ['b1v052', 'orang'], ['b1v053', 'tempat'], ['b1v054', 'hal'], ['b1v055', 'paling']]);
   const earlierIds = new Set(b1.units.filter(unit => !['b1_u15', 'b1_u16', 'b1_u17'].includes(unit.id)).flatMap(unit => unit.vocab.map(word => word.id)));

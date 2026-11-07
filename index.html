@@ -1998,7 +1998,120 @@
                                 { vocabId: 'b1u9_penduduk', type: 'translate_es_id', prompt: 'Traduce al indonesio: Los habitantes viven en el pueblo.', answer: 'Penduduk tinggal di desa.', explanation: 'Penduduk nombra a las personas que viven en un lugar.' },
                                 { vocabId: 'b1u9_pembaca', type: 'write', prompt: 'Escribe una frase breve con «pembaca».', hint: 'Puedes usar membaca y buku.', modelAnswer: 'Pembaca membaca buku.', explanation: 'El ejemplo relaciona pembaca con la actividad membaca.' }
                             ]
-                        },
+                        ,
+                                "lessons": [
+                                    {
+                                        "title": "Comprender los nombres de agente en contexto",
+                                        "objective": "Identifica líderes, habitantes y lectores en oraciones completas.",
+                                        "grammar": "Pemimpin nombra a quien dirige, penduduk a quienes residen en un lugar y pembaca a quien lee. La forma se aprende como palabra completa y se interpreta por su contexto.",
+                                        "vocabIds": [
+                                            "b1u9_pemimpin",
+                                            "b1u9_penduduk",
+                                            "b1u9_pembaca"
+                                        ],
+                                        "reviewVocabIds": [
+                                            "b1u7_penjual",
+                                            "b1u7_pembeli",
+                                            "b1u7_pemain"
+                                        ],
+                                        "exercises": [
+                                            {
+                                                "vocabId": "b1u9_pemimpin",
+                                                "type": "mc",
+                                                "prompt": "En «Pemimpin itu datang», ¿quién llega?",
+                                                "options": [
+                                                    "El líder",
+                                                    "El habitante",
+                                                    "El lector"
+                                                ],
+                                                "answer": 0,
+                                                "explanation": "Pemimpin nombra a la persona que dirige."
+                                            },
+                                            {
+                                                "vocabId": "b1u9_penduduk",
+                                                "type": "translate_es_id",
+                                                "prompt": "Traduce: Los habitantes viven en el pueblo.",
+                                                "answer": "Penduduk tinggal di desa.",
+                                                "explanation": "Penduduk se refiere a quienes residen en un lugar."
+                                            },
+                                            {
+                                                "vocabId": "b1u9_pembaca",
+                                                "type": "order",
+                                                "prompt": "Ordena la oración: «El lector lee un libro».",
+                                                "words": [
+                                                    "Pembaca",
+                                                    "membaca",
+                                                    "buku."
+                                                ],
+                                                "correctOrder": [
+                                                    "Pembaca",
+                                                    "membaca",
+                                                    "buku."
+                                                ],
+                                                "explanation": "Pembaca nombra a quien realiza la acción de leer."
+                                            },
+                                            {
+                                                "vocabId": "b1u9_pemimpin",
+                                                "type": "listen",
+                                                "prompt": "Escucha y escribe la oración completa.",
+                                                "answer": "Pemimpin itu datang.",
+                                                "explanation": "La oración indica que el líder llega."
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "title": "Distinguir papeles y actividades",
+                                        "objective": "Relaciona cada nombre de agente con su papel sin confundirlo con la acción verbal.",
+                                        "grammar": "Pemimpin, penduduk y pembaca designan personas. Compara las frases de la unidad y observa qué información aporta el resto de la oración.",
+                                        "vocabIds": [
+                                            "b1u9_pemimpin",
+                                            "b1u9_penduduk",
+                                            "b1u9_pembaca"
+                                        ],
+                                        "reviewVocabIds": [
+                                            "b1u9_pemimpin",
+                                            "b1u9_penduduk",
+                                            "b1u9_pembaca"
+                                        ],
+                                        "exercises": [
+                                            {
+                                                "vocabId": "b1u9_penduduk",
+                                                "type": "mc",
+                                                "prompt": "¿Qué palabra se refiere a los residentes de un lugar?",
+                                                "options": [
+                                                    "Penduduk",
+                                                    "Pemimpin",
+                                                    "Pembaca"
+                                                ],
+                                                "answer": 0,
+                                                "explanation": "Penduduk significa habitante o residente."
+                                            },
+                                            {
+                                                "vocabId": "b1u9_pembaca",
+                                                "type": "translate_es_id",
+                                                "prompt": "Traduce: El lector lee un libro.",
+                                                "answer": "Pembaca membaca buku.",
+                                                "explanation": "Pembaca nombra a la persona que lee."
+                                            },
+                                            {
+                                                "vocabId": "b1u9_penduduk",
+                                                "type": "listen",
+                                                "prompt": "Escucha y escribe la oración completa.",
+                                                "answer": "Penduduk tinggal di desa.",
+                                                "explanation": "La oración dice que los habitantes viven en el pueblo."
+                                            },
+                                            {
+                                                "vocabId": "b1u9_pemimpin",
+                                                "type": "write",
+                                                "prompt": "Escribe una oración breve con «pemimpin».",
+                                                "hint": "Puedes indicar que ese líder llega.",
+                                                "modelAnswer": "Pemimpin itu datang.",
+                                                "explanation": "El modelo presenta al líder como participante de la oración."
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
                         {
                             id: 'b1_u10',
                             title: 'Unidad 10: Nominalizaciones con -an y pe-an',
@@ -2016,7 +2129,115 @@
                                 { vocabId: 'b1u10_pekerjaan', type: 'translate_es_id', prompt: 'Traduce al indonesio: trabajo (empleo).', answer: 'Pekerjaan', explanation: 'Pekerjaan nombra un trabajo o empleo.' },
                                 { vocabId: 'b1u10_pekerjaan', type: 'write', prompt: 'Escribe una frase sencilla usando «pekerjaan».', hint: 'Puedes describir tu trabajo.', modelAnswer: 'Pekerjaan saya menarik.', explanation: 'El modelo usa pekerjaan para hablar del trabajo de una persona.' }
                             ]
-                        }
+                        ,
+                                "lessons": [
+                                    {
+                                        "title": "Interpretar nombres de contenido y trabajo",
+                                        "objective": "Distingue pelajaran y pekerjaan según el contexto de estudio o empleo.",
+                                        "grammar": "Pelajaran puede referirse a una lección, materia o contenido de estudio; pekerjaan a un trabajo o empleo. No asignes una traducción fija a todos los nombres derivados: aprende cada forma en su contexto.",
+                                        "vocabIds": [
+                                            "b1u10_pelajaran",
+                                            "b1u10_pekerjaan"
+                                        ],
+                                        "reviewVocabIds": [
+                                            "a2u12_pengalaman"
+                                        ],
+                                        "exercises": [
+                                            {
+                                                "vocabId": "b1u10_pelajaran",
+                                                "type": "mc",
+                                                "prompt": "En «Guru menjelaskan pelajaran itu», ¿qué significa pelajaran?",
+                                                "options": [
+                                                    "Lección o contenido de estudio",
+                                                    "Trabajo o empleo",
+                                                    "Conversación"
+                                                ],
+                                                "answer": 0,
+                                                "explanation": "Pelajaran se refiere a una lección o materia."
+                                            },
+                                            {
+                                                "vocabId": "b1u10_pelajaran",
+                                                "type": "translate_es_id",
+                                                "prompt": "Traduce: El profesor explica esa lección.",
+                                                "answer": "Guru menjelaskan pelajaran itu.",
+                                                "explanation": "La frase utiliza pelajaran como contenido que se explica."
+                                            },
+                                            {
+                                                "vocabId": "b1u10_pekerjaan",
+                                                "type": "order",
+                                                "prompt": "Ordena la oración: «Mi trabajo es interesante».",
+                                                "words": [
+                                                    "Pekerjaan",
+                                                    "saya",
+                                                    "menarik."
+                                                ],
+                                                "correctOrder": [
+                                                    "Pekerjaan",
+                                                    "saya",
+                                                    "menarik."
+                                                ],
+                                                "explanation": "Pekerjaan saya se refiere a mi trabajo."
+                                            },
+                                            {
+                                                "vocabId": "b1u10_pekerjaan",
+                                                "type": "listen",
+                                                "prompt": "Escucha y escribe la oración completa.",
+                                                "answer": "Pekerjaan itu membutuhkan waktu.",
+                                                "explanation": "La oración indica que ese trabajo requiere tiempo."
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "title": "Usar las nominalizaciones en frases",
+                                        "objective": "Interpreta y produce frases sencillas con pelajaran y pekerjaan.",
+                                        "grammar": "Observa qué función cumple cada nombre en la frase: pelajaran identifica el contenido que se estudia y pekerjaan nombra el trabajo o empleo. El contexto aclara el sentido.",
+                                        "vocabIds": [
+                                            "b1u10_pelajaran",
+                                            "b1u10_pekerjaan"
+                                        ],
+                                        "reviewVocabIds": [
+                                            "b1u10_pelajaran",
+                                            "b1u10_pekerjaan"
+                                        ],
+                                        "exercises": [
+                                            {
+                                                "vocabId": "b1u10_pekerjaan",
+                                                "type": "mc",
+                                                "prompt": "¿Qué palabra nombra un empleo o trabajo?",
+                                                "options": [
+                                                    "Pekerjaan",
+                                                    "Pelajaran",
+                                                    "Pelajar"
+                                                ],
+                                                "answer": 0,
+                                                "explanation": "Pekerjaan significa trabajo o empleo."
+                                            },
+                                            {
+                                                "vocabId": "b1u10_pelajaran",
+                                                "type": "translate_es_id",
+                                                "prompt": "Traduce: Esa lección es fácil.",
+                                                "answer": "Pelajaran itu mudah.",
+                                                "explanation": "Pelajaran nombra la lección y mudah significa fácil."
+                                            },
+                                            {
+                                                "vocabId": "b1u10_pelajaran",
+                                                "type": "listen",
+                                                "prompt": "Escucha y escribe la oración completa.",
+                                                "answer": "Guru menjelaskan pelajaran itu.",
+                                                "explanation": "La oración presenta al profesor explicando la lección."
+                                            },
+                                            {
+                                                "vocabId": "b1u10_pekerjaan",
+                                                "type": "write",
+                                                "prompt": "Escribe una frase sencilla con «pekerjaan».",
+                                                "hint": "Puedes describir tu trabajo.",
+                                                "modelAnswer": "Pekerjaan saya menarik.",
+                                                "explanation": "El modelo habla del trabajo de una persona."
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
 
                         ,
                         {
@@ -2037,7 +2258,121 @@
                                 { vocabId: 'b1u11_perkenalan', type: 'translate_es_id', prompt: 'Traduce al indonesio: presentación (acto de presentarse).', answer: 'Perkenalan', explanation: 'Perkenalan se refiere a una presentación o acto de presentarse.' },
                                 { vocabId: 'b1u11_perkenalan', type: 'write', prompt: 'Escribe una frase breve usando «perkenalan».', hint: 'Describe una presentación.', modelAnswer: 'Perkenalan itu berlangsung singkat.', explanation: 'El modelo usa perkenalan como nombre de una presentación.' }
                             ]
-                        },
+                        ,
+                                "lessons": [
+                                    {
+                                        "title": "Comprender preguntas, conversaciones y presentaciones",
+                                        "objective": "Identifica el tipo de interacción que nombra cada palabra de la unidad.",
+                                        "grammar": "Pertanyaan es una pregunta o cuestión; percakapan es una conversación; perkenalan es una presentación o acto de presentarse. Aprende las formas completas y observa cómo aparecen en las frases.",
+                                        "vocabIds": [
+                                            "b1u11_pertanyaan",
+                                            "b1u11_percakapan",
+                                            "b1u11_perkenalan"
+                                        ],
+                                        "reviewVocabIds": [
+                                            "b1u10_pelajaran",
+                                            "b1u10_pekerjaan"
+                                        ],
+                                        "exercises": [
+                                            {
+                                                "vocabId": "b1u11_pertanyaan",
+                                                "type": "mc",
+                                                "prompt": "¿Qué significa «pertanyaan»?",
+                                                "options": [
+                                                    "Pregunta o cuestión",
+                                                    "Conversación",
+                                                    "Presentación"
+                                                ],
+                                                "answer": 0,
+                                                "explanation": "Pertanyaan significa pregunta o cuestión."
+                                            },
+                                            {
+                                                "vocabId": "b1u11_percakapan",
+                                                "type": "translate_es_id",
+                                                "prompt": "Traduce: La conversación de ellos fue breve.",
+                                                "answer": "Percakapan mereka berlangsung singkat.",
+                                                "explanation": "Percakapan nombra la conversación."
+                                            },
+                                            {
+                                                "vocabId": "b1u11_perkenalan",
+                                                "type": "order",
+                                                "prompt": "Ordena la oración: «La presentación fue breve».",
+                                                "words": [
+                                                    "Perkenalan",
+                                                    "itu",
+                                                    "berlangsung",
+                                                    "singkat."
+                                                ],
+                                                "correctOrder": [
+                                                    "Perkenalan",
+                                                    "itu",
+                                                    "berlangsung",
+                                                    "singkat."
+                                                ],
+                                                "explanation": "Perkenalan itu es el sujeto de la frase."
+                                            },
+                                            {
+                                                "vocabId": "b1u11_pertanyaan",
+                                                "type": "listen",
+                                                "prompt": "Escucha y escribe la oración completa.",
+                                                "answer": "Pertanyaan itu mudah.",
+                                                "explanation": "La frase indica que esa pregunta es fácil."
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "title": "Describir una interacción breve",
+                                        "objective": "Usa el vocabulario de interacción en frases completas y reconoce sus diferencias.",
+                                        "grammar": "Una pertanyaan puede aparecer dentro de una percakapan; perkenalan describe el acto de presentarse. No son sinónimos: cada nombre señala una parte distinta de la interacción.",
+                                        "vocabIds": [
+                                            "b1u11_pertanyaan",
+                                            "b1u11_percakapan",
+                                            "b1u11_perkenalan"
+                                        ],
+                                        "reviewVocabIds": [
+                                            "b1u11_pertanyaan",
+                                            "b1u11_percakapan",
+                                            "b1u11_perkenalan"
+                                        ],
+                                        "exercises": [
+                                            {
+                                                "vocabId": "b1u11_percakapan",
+                                                "type": "mc",
+                                                "prompt": "¿Qué palabra nombra una conversación?",
+                                                "options": [
+                                                    "Percakapan",
+                                                    "Pertanyaan",
+                                                    "Perkenalan"
+                                                ],
+                                                "answer": 0,
+                                                "explanation": "Percakapan significa conversación."
+                                            },
+                                            {
+                                                "vocabId": "b1u11_pertanyaan",
+                                                "type": "translate_es_id",
+                                                "prompt": "Traduce: Esa pregunta es fácil.",
+                                                "answer": "Pertanyaan itu mudah.",
+                                                "explanation": "Pertanyaan es el nombre de una pregunta."
+                                            },
+                                            {
+                                                "vocabId": "b1u11_perkenalan",
+                                                "type": "listen",
+                                                "prompt": "Escucha y escribe la oración completa.",
+                                                "answer": "Perkenalan itu berlangsung singkat.",
+                                                "explanation": "La frase describe una presentación breve."
+                                            },
+                                            {
+                                                "vocabId": "b1u11_perkenalan",
+                                                "type": "write",
+                                                "prompt": "Escribe una frase breve usando «perkenalan».",
+                                                "hint": "Puedes describir una presentación breve.",
+                                                "modelAnswer": "Perkenalan itu berlangsung singkat.",
+                                                "explanation": "El modelo usa perkenalan como nombre de una presentación."
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
                         {
                             id: 'b1_u12',
                             title: 'Unidad 12: ke-an — estados y conceptos',
@@ -2057,7 +2392,129 @@
                                 { vocabId: 'b1u12_keadaan', type: 'translate_es_id', prompt: 'Traduce al indonesio: situación o condición.', answer: 'Keadaan', explanation: 'Keadaan se refiere a una situación, estado o condición.' },
                                 { vocabId: 'b1u12_kebudayaan', type: 'write', prompt: 'Escribe una frase breve usando «kebudayaan».', hint: 'Puedes hablar de la cultura de Indonesia.', modelAnswer: 'Kebudayaan Indonesia beragam.', explanation: 'El modelo usa kebudayaan para hablar de la cultura.' }
                             ]
-                        },
+                        ,
+                                "lessons": [
+                                    {
+                                        "title": "Interpretar estados, sucesos y conceptos",
+                                        "objective": "Distingue salud, accidente, situación y cultura en ejemplos completos.",
+                                        "grammar": "Kesehatan nombra la salud; kecelakaan, un accidente; keadaan, una situación o condición; kebudayaan, la cultura. Aunque varias palabras contienen ke-an, sus significados se aprenden por separado y en contexto.",
+                                        "vocabIds": [
+                                            "b1u12_kesehatan",
+                                            "b1u12_kecelakaan",
+                                            "b1u12_keadaan",
+                                            "b1u12_kebudayaan"
+                                        ],
+                                        "reviewVocabIds": [
+                                            "b1u11_pertanyaan",
+                                            "b1u11_percakapan",
+                                            "b1u11_perkenalan"
+                                        ],
+                                        "exercises": [
+                                            {
+                                                "vocabId": "b1u12_kesehatan",
+                                                "type": "mc",
+                                                "prompt": "¿Qué significa «kesehatan»?",
+                                                "options": [
+                                                    "Salud",
+                                                    "Accidente",
+                                                    "Cultura"
+                                                ],
+                                                "answer": 0,
+                                                "explanation": "Kesehatan significa salud."
+                                            },
+                                            {
+                                                "vocabId": "b1u12_kecelakaan",
+                                                "type": "translate_es_id",
+                                                "prompt": "Traduce: El accidente ocurrió ayer.",
+                                                "answer": "Kecelakaan itu terjadi kemarin.",
+                                                "explanation": "Kecelakaan nombra el accidente."
+                                            },
+                                            {
+                                                "vocabId": "b1u12_keadaan",
+                                                "type": "order",
+                                                "prompt": "Ordena la oración: «La situación actual está mejor».",
+                                                "words": [
+                                                    "Keadaan",
+                                                    "sekarang",
+                                                    "lebih",
+                                                    "baik."
+                                                ],
+                                                "correctOrder": [
+                                                    "Keadaan",
+                                                    "sekarang",
+                                                    "lebih",
+                                                    "baik."
+                                                ],
+                                                "explanation": "Keadaan sekarang se refiere a la situación actual."
+                                            },
+                                            {
+                                                "vocabId": "b1u12_kebudayaan",
+                                                "type": "listen",
+                                                "prompt": "Escucha y escribe la oración completa.",
+                                                "answer": "Kebudayaan Indonesia beragam.",
+                                                "explanation": "La oración dice que la cultura indonesia es diversa."
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "title": "Repaso acumulativo de B1 U9–U12",
+                                        "objective": "Recupera vocabulario de nombres de agente, nominalizaciones y conceptos con ke-an en contextos breves.",
+                                        "grammar": "Este repaso conecta los papeles de las personas (U9), los nombres de estudio y trabajo (U10), la interacción (U11) y los estados o conceptos (U12). Las palabras se recuperan dentro de frases; no se trata el afijo como una regla de traducción única.",
+                                        "vocabIds": [
+                                            "b1u12_kesehatan",
+                                            "b1u12_kecelakaan",
+                                            "b1u12_keadaan",
+                                            "b1u12_kebudayaan"
+                                        ],
+                                        "reviewVocabIds": [
+                                            "b1u9_pemimpin",
+                                            "b1u9_penduduk",
+                                            "b1u9_pembaca",
+                                            "b1u10_pelajaran",
+                                            "b1u10_pekerjaan",
+                                            "b1u11_pertanyaan",
+                                            "b1u11_percakapan",
+                                            "b1u11_perkenalan"
+                                        ],
+                                        "exercises": [
+                                            {
+                                                "vocabId": "b1u12_keadaan",
+                                                "type": "mc",
+                                                "prompt": "¿Qué palabra se refiere a una situación o condición?",
+                                                "options": [
+                                                    "Keadaan",
+                                                    "Kesehatan",
+                                                    "Kebudayaan"
+                                                ],
+                                                "answer": 0,
+                                                "explanation": "Keadaan significa situación, estado o condición."
+                                            },
+                                            {
+                                                "vocabId": "b1u12_kebudayaan",
+                                                "type": "translate_es_id",
+                                                "prompt": "Traduce: La cultura indonesia es diversa.",
+                                                "answer": "Kebudayaan Indonesia beragam.",
+                                                "explanation": "Kebudayaan nombra la cultura."
+                                            },
+                                            {
+                                                "vocabId": "b1u12_kesehatan",
+                                                "type": "listen",
+                                                "prompt": "Escucha y escribe la oración completa.",
+                                                "answer": "Kesehatan sangat penting.",
+                                                "explanation": "La oración indica que la salud es muy importante."
+                                            },
+                                            {
+                                                "vocabId": "b1u12_kecelakaan",
+                                                "type": "write",
+                                                "prompt": "Escribe una oración breve con «kecelakaan».",
+                                                "hint": "Puedes decir cuándo ocurrió el accidente.",
+                                                "modelAnswer": "Kecelakaan itu terjadi kemarin.",
+                                                "explanation": "El modelo sitúa el accidente en el día de ayer."
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
                         {
                             id: 'b1_u13',
                             title: 'Unidad 13: ke-an — cualidades y estados',

@@ -26,8 +26,8 @@ test('B1 draft has twelve units and an explicitly incomplete vocabulary bank', (
   const b1 = course.levels.find(level => level.id === 'B1');
   assert.ok(b1);
   assert.equal(b1.units.length, 12);
-  assert.equal(b1.units.reduce((sum, unit) => sum + unit.vocab.length, 0), 57);
-  assert.equal(b1.units.reduce((sum, unit) => sum + unit.exercises.length, 0), 66);
+  assert.equal(b1.units.reduce((sum, unit) => sum + unit.vocab.length, 0), 51);
+  assert.equal(b1.units.reduce((sum, unit) => sum + unit.exercises.length, 0), 69);
   assert.deepEqual(Array.from(b1.units, unit => unit.id), ['b1_u1', 'b1_u2', 'b1_u3', 'b1_u4', 'b1_u5', 'b1_u6', 'b1_u7', 'b1_u8', 'b1_u9', 'b1_u10', 'b1_u11', 'b1_u12']);
 });
 
@@ -63,7 +63,38 @@ test('every B1 draft exercise references vocabulary in its own unit', () => {
       }
     }
   }
-  assert.equal(ids.size, 57);
+  assert.equal(ids.size, 51);
+});
+
+
+test('B1 U7-U9 follow the approved pe-/peN- agent-noun sequence', () => {
+  const b1 = course.levels.find(level => level.id === 'B1');
+  const forms = unitId => b1.units.find(unit => unit.id === unitId).vocab.map(word => word.idn.toLowerCase());
+  assert.equal(forms('b1_u7').join(','), 'penjual,pembeli,pemain');
+  assert.equal(forms('b1_u8').join(','), 'penulis,pengajar,pekerja');
+  assert.equal(forms('b1_u9').join(','), 'pemimpin,penduduk,pembaca');
+  for (const unitId of ['b1_u7', 'b1_u8', 'b1_u9']) {
+    const unit = b1.units.find(item => item.id === unitId);
+    assert.equal(unit.vocab.length, 3);
+    assert.equal(unit.exercises.length, 6);
+    assert.ok(unit.exercises.some(item => item.type === 'write'));
+    assert.ok(unit.exercises.some(item => item.type === 'listen'));
+    const localIds = new Set(unit.vocab.map(word => word.id));
+    for (const exercise of unit.exercises) assert.ok(localIds.has(exercise.vocabId));
+  }
+  const agentUnits = b1.units.filter(unit => ['b1_u7', 'b1_u8', 'b1_u9'].includes(unit.id));
+  const vocabForms = agentUnits.flatMap(unit => unit.vocab.map(word => word.idn.toLowerCase()));
+  assert.ok(agentUnits.every(unit => /pembelian/.test(unit.grammar) && /pengiriman/.test(unit.grammar)));
+  assert.ok(!vocabForms.includes('pembelian'));
+  assert.ok(!vocabForms.includes('pengiriman'));
+});
+
+test('displaced B1 U7-U9 content is preserved outside the active curriculum', () => {
+  const archive = fs.readFileSync(path.join(root, 'docs/B1_U7_U9_DISPLACED_CONTENT.md'), 'utf8');
+  for (const term of ['menurut', 'berdasarkan', 'laporan', 'meningkat', 'menurun', 'dilakukan', 'digunakan', 'diproses', 'dihasilkan', 'langkah', 'pendapat', 'alasan', 'setuju', 'berbeda', 'sebaliknya']) {
+    assert.ok(archive.includes(term), 'archive missing displaced term ' + term);
+  }
+  assert.match(archive, /Objetos originales preservados/);
 });
 
 test('B1 remains hidden from the unlocked learning path until a separate release decision', () => {

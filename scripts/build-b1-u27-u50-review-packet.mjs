@@ -9,10 +9,11 @@ import { loadInlineB1Curriculum } from './load-inline-b1-curriculum.mjs';
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const RANGE = [27, 50];
 const NOTE_PATHS = ['docs/B1_CURRICULUM_EXPANSION_PLAN.md'];
+const FENCE = String.fromCharCode(96).repeat(3);
 
 export function selectB1ReviewUnits(curriculum) {
   return (curriculum?.units ?? []).flatMap((unit) => {
-    const match = String(unit?.id ?? '').match(/^b1_u(\\d+)$/i);
+    const match = String(unit?.id ?? '').match(/^b1_u(\d+)$/i);
     if (!match) return [];
     const number = Number(match[1]);
     return number >= RANGE[0] && number <= RANGE[1] ? [{ number, unit }] : [];
@@ -55,14 +56,14 @@ export function buildB1ReviewPacket({ curriculum, notes = [], prompt = '' }) {
       '',
       'Ruta: index.html → CourseData.levels[B1] → ' + entry.unit.id,
       '',
-      '```json',
+      FENCE + 'json',
       JSON.stringify(entry.unit, null, 2),
-      '```',
+      FENCE,
       '',
     );
   }
   return {
-    markdown: sections.join('\\n').replace(/\\n{3,}/g, '\\n\\n').trim() + '\\n',
+    markdown: sections.join('\n').replace(/\n{3,}/g, '\n\n').trim() + '\n',
     coverage: counts,
   };
 }

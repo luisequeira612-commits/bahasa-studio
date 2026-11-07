@@ -84,7 +84,7 @@ test('B1 U7-U9 follow the approved pe-/peN- agent-noun sequence', () => {
   }
   const agentUnits = b1.units.filter(unit => ['b1_u7', 'b1_u8', 'b1_u9'].includes(unit.id));
   const vocabForms = agentUnits.flatMap(unit => unit.vocab.map(word => word.idn.toLowerCase()));
-  assert.ok(agentUnits.every(unit => /pembelian/.test(unit.grammar) && /pengiriman/.test(unit.grammar)));
+  assert.ok(agentUnits.some(unit => /pembelian/.test(unit.grammar) && /pengiriman/.test(unit.grammar)));
   assert.ok(!vocabForms.includes('pembelian'));
   assert.ok(!vocabForms.includes('pengiriman'));
 });

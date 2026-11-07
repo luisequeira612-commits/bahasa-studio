@@ -106,9 +106,9 @@ test('B1 assessment bank includes open production items that require human revie
 test('B1 U1-U3 follow the approved affix-family sequence and roots', () => {
   const b1 = course.levels.find(level => level.id === 'B1');
   const forms = unitId => b1.units.find(unit => unit.id === unitId).vocab.map(word => word.idn.toLowerCase());
-  assert.deepEqual(forms('b1_u1'), ['dibaca', 'ditulis', 'dijual', 'diajar']);
-  assert.deepEqual(forms('b1_u2'), ['membaca', 'menulis', 'menjual', 'mengajar', 'oleh']);
-  assert.deepEqual(forms('b1_u3'), ['bekerja', 'bermain', 'terbaca', 'tertulis', 'terjual']);
+  assert.equal(forms('b1_u1').join(','), 'dibaca,ditulis,dijual,diajar');
+  assert.equal(forms('b1_u2').join(','), 'membaca,menulis,menjual,mengajar,oleh');
+  assert.equal(forms('b1_u3').join(','), 'bekerja,bermain,terbaca,tertulis,terjual');
   for (const unitId of ['b1_u1', 'b1_u2', 'b1_u3']) {
     const unit = b1.units.find(item => item.id === unitId);
     const ids = new Set(unit.vocab.map(word => word.id));

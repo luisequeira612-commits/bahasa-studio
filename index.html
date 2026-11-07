@@ -2148,6 +2148,175 @@
                         },
 
 
+                        {
+                            id: 'b1_u32',
+                            title: 'Unidad 32: prioridades, horarios y organización',
+                            desc: 'Ordena prioridades, organiza un horario y decide qué hacer primero o dejar para después.',
+                            grammar: 'Prioritas significa prioridad y jadwal, horario o calendario. Mengatur expresa organizar o gestionar algo; menunda, posponer; mendahulukan, dar prioridad a algo o alguien. Estas formas permiten explicar cómo se organiza el tiempo y por qué una tarea se atiende antes que otra.',
+                            vocab: [
+                                { id: 'b1v115', idn: 'Prioritas', esp: 'Prioridad', ex: 'Kesehatan adalah prioritas saya.', exEsp: 'La salud es mi prioridad.' },
+                                { id: 'b1v116', idn: 'Jadwal', esp: 'Horario; calendario', ex: 'Saya membuat jadwal belajar.', exEsp: 'Hago un horario de estudio.' },
+                                { id: 'b1v117', idn: 'Mengatur', esp: 'Organizar; gestionar; arreglar', ex: 'Saya mengatur waktu dengan baik.', exEsp: 'Organizo bien el tiempo.' },
+                                { id: 'b1v118', idn: 'Menunda', esp: 'Posponer; aplazar', ex: 'Jangan menunda pekerjaan penting.', exEsp: 'No pospongas el trabajo importante.' },
+                                { id: 'b1v119', idn: 'Mendahulukan', esp: 'Dar prioridad a; poner primero', ex: 'Kita harus mendahulukan tugas penting.', exEsp: 'Debemos dar prioridad a las tareas importantes.' }
+                            ],
+                            lessons: [
+                                {
+                                    title: 'Prioritas y jadwal',
+                                    objective: 'Identifica qué es prioritario y presenta un horario sencillo.',
+                                    grammar: 'Prioritas nombra aquello que recibe mayor atención. Jadwal organiza actividades según el tiempo. Se puede hablar de una prioridad personal y de un jadwal para cumplirla.',
+                                    reviewVocabIds: ['b1v105', 'b1v106', 'b1v110', 'b1v111'],
+                                    vocabIds: ['b1v115', 'b1v116'],
+                                    exercises: [
+                                        { vocabId: 'b1v115', type: 'mc', prompt: '¿Qué palabra significa «prioridad»?', options: ['Prioritas', 'Jadwal', 'Menunda'], answer: 0, explanation: 'Prioritas significa prioridad.' },
+                                        { vocabId: 'b1v116', type: 'translate_es_id', prompt: 'Traduce: «Hago un horario de estudio».', answer: 'Saya membuat jadwal belajar.', explanation: 'Jadwal es un horario o calendario.' },
+                                        { vocabId: 'b1v115', type: 'order', prompt: 'Ordena: «La salud es mi prioridad».', words: ['saya.', 'prioritas', 'Kesehatan', 'adalah'], correctOrder: ['Kesehatan', 'adalah', 'prioritas', 'saya.'], explanation: 'La estructura presenta primero el tema y después lo identifica como prioridad.' },
+                                        { vocabId: 'b1v116', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Saya membuat jadwal belajar setiap minggu.', explanation: 'La oración presenta un horario de estudio semanal.' },
+                                        { vocabId: 'b1v115', type: 'write', prompt: 'Escribe dos frases: indica una prioridad personal y explica qué horario te ayudará a atenderla.', hint: 'Usa prioritas y jadwal.', modelAnswer: 'Belajar adalah prioritas saya. Saya membuat jadwal belajar setiap malam.', explanation: 'La primera frase identifica la prioridad y la segunda organiza el tiempo.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Mengatur y menunda',
+                                    objective: 'Explica cómo organizas tus actividades y cuándo aplazas una tarea.',
+                                    grammar: 'Mengatur expresa organizar o gestionar algo, como el tiempo o las actividades. Menunda expresa aplazar una acción. Puede contrastarse una buena organización con la decisión de posponer una tarea no urgente.',
+                                    reviewVocabIds: ['b1v115', 'b1v116', 'b1v105', 'b1v110'],
+                                    vocabIds: ['b1v117', 'b1v118'],
+                                    exercises: [
+                                        { vocabId: 'b1v117', type: 'mc', prompt: 'En «Saya mengatur waktu», ¿qué expresa mengatur?', options: ['Organizar o gestionar', 'Alcanzar una meta', 'Tomar una decisión'], answer: 0, explanation: 'Mengatur puede expresar organizar o gestionar algo.' },
+                                        { vocabId: 'b1v118', type: 'translate_es_id', prompt: 'Traduce: «No pospongas el trabajo importante».', answer: 'Jangan menunda pekerjaan penting.', explanation: 'Menunda significa posponer o aplazar.' },
+                                        { vocabId: 'b1v117', type: 'order', prompt: 'Ordena: «Organizo bien mi tiempo».', words: ['baik.', 'waktu', 'Saya', 'mengatur', 'dengan'], correctOrder: ['Saya', 'mengatur', 'waktu', 'dengan', 'baik.'], explanation: 'Mengatur toma como objeto waktu y dengan baik describe cómo se organiza.' },
+                                        { vocabId: 'b1v118', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Saya tidak ingin menunda pekerjaan penting.', explanation: 'La frase expresa que no se desea aplazar una tarea importante.' },
+                                        { vocabId: 'b1v118', type: 'write', prompt: 'Describe una tarea que no conviene aplazar y explica cómo organizarás tu tiempo para terminarla.', hint: 'Integra mengatur y menunda.', modelAnswer: 'Saya mengatur waktu untuk menyelesaikan tugas. Saya tidak ingin menunda pekerjaan penting.', explanation: 'La producción relaciona organización del tiempo y prevención de aplazamientos.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Mendahulukan lo importante',
+                                    objective: 'Explica qué actividad debe hacerse primero y justifica el orden.',
+                                    grammar: 'Mendahulukan expresa poner algo primero o darle prioridad. Suele llevar como objeto aquello que debe atenderse antes. Puede combinarse con harus para expresar una necesidad.',
+                                    reviewVocabIds: ['b1v115', 'b1v116', 'b1v117', 'b1v118', 'b1v110', 'b1v111'],
+                                    vocabIds: ['b1v119'],
+                                    exercises: [
+                                        { vocabId: 'b1v119', type: 'mc', prompt: '¿Qué significa mendahulukan?', options: ['Dar prioridad a algo', 'Posponer una tarea', 'Preparar materiales'], answer: 0, explanation: 'Mendahulukan significa poner primero o dar prioridad.' },
+                                        { vocabId: 'b1v119', type: 'translate_es_id', prompt: 'Traduce: «Debemos dar prioridad a las tareas importantes».', answer: 'Kita harus mendahulukan tugas penting.', explanation: 'Harus expresa necesidad y mendahulukan indica qué se atiende primero.' },
+                                        { vocabId: 'b1v119', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Kita harus mendahulukan tugas yang paling penting.', explanation: 'La frase indica que las tareas más importantes deben atenderse primero.' },
+                                        { vocabId: 'b1v119', type: 'write', prompt: 'Escribe un mini-plan de tres frases: menciona tu prioridad, el horario y qué tarea atenderás primero.', hint: 'Integra prioritas, jadwal y mendahulukan.', modelAnswer: 'Belajar adalah prioritas saya. Saya membuat jadwal setiap minggu. Saya mendahulukan tugas yang paling penting.', explanation: 'La producción conecta prioridad, planificación y orden de las tareas.' }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            id: 'b1_u33',
+                            title: 'Unidad 33: problemas, obstáculos y soluciones',
+                            desc: 'Describe dificultades, explica cómo las superas y propone soluciones concretas.',
+                            grammar: 'Masalah significa problema y hambatan, obstáculo o impedimento. Mengatasi expresa superar o hacer frente a una dificultad; solusi significa solución; memperbaiki, reparar o mejorar. Estas formas permiten describir un problema y explicar una respuesta práctica.',
+                            vocab: [
+                                { id: 'b1v120', idn: 'Masalah', esp: 'Problema', ex: 'Kami membicarakan masalah itu.', exEsp: 'Hablamos de ese problema.' },
+                                { id: 'b1v121', idn: 'Hambatan', esp: 'Obstáculo; impedimento', ex: 'Waktu menjadi hambatan utama.', exEsp: 'El tiempo se convierte en el principal obstáculo.' },
+                                { id: 'b1v122', idn: 'Mengatasi', esp: 'Superar; hacer frente a', ex: 'Kami mencoba mengatasi masalah bersama.', exEsp: 'Intentamos superar el problema juntos.' },
+                                { id: 'b1v123', idn: 'Solusi', esp: 'Solución', ex: 'Kita perlu mencari solusi.', exEsp: 'Necesitamos buscar una solución.' },
+                                { id: 'b1v124', idn: 'Memperbaiki', esp: 'Reparar; corregir; mejorar', ex: 'Saya ingin memperbaiki kesalahan itu.', exEsp: 'Quiero corregir ese error.' }
+                            ],
+                            lessons: [
+                                {
+                                    title: 'Masalah y hambatan',
+                                    objective: 'Distingue un problema de un obstáculo que dificulta avanzar.',
+                                    grammar: 'Masalah nombra una cuestión o situación problemática. Hambatan destaca aquello que impide o dificulta el progreso. Una situación puede ser el masalah y la falta de tiempo, por ejemplo, un hambatan.',
+                                    reviewVocabIds: ['b1v115', 'b1v117', 'b1v118', 'b1v112'],
+                                    vocabIds: ['b1v120', 'b1v121'],
+                                    exercises: [
+                                        { vocabId: 'b1v120', type: 'mc', prompt: '¿Qué palabra significa «problema»?', options: ['Masalah', 'Hambatan', 'Solusi'], answer: 0, explanation: 'Masalah significa problema.' },
+                                        { vocabId: 'b1v121', type: 'translate_es_id', prompt: 'Traduce: «El tiempo es el principal obstáculo».', answer: 'Waktu adalah hambatan utama.', explanation: 'Hambatan significa obstáculo o impedimento.' },
+                                        { vocabId: 'b1v120', type: 'order', prompt: 'Ordena: «Hablamos de ese problema».', words: ['itu.', 'masalah', 'Kami', 'membicarakan'], correctOrder: ['Kami', 'membicarakan', 'masalah', 'itu.'], explanation: 'Masalah itu es el objeto de membicarakan.' },
+                                        { vocabId: 'b1v121', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Kurangnya waktu menjadi hambatan utama.', explanation: 'La frase presenta la falta de tiempo como obstáculo principal.' },
+                                        { vocabId: 'b1v120', type: 'write', prompt: 'Describe un problema y menciona un obstáculo que dificulta resolverlo.', hint: 'Usa masalah y hambatan.', modelAnswer: 'Saya punya masalah dengan jadwal. Kurangnya waktu menjadi hambatan utama.', explanation: 'La primera frase presenta el problema y la segunda concreta el obstáculo.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Mengatasi y mencari solusi',
+                                    objective: 'Explica cómo hacer frente a una dificultad y buscar una solución.',
+                                    grammar: 'Mengatasi expresa superar, afrontar o resolver una dificultad. Solusi es el resultado o propuesta que permite responder a un problema. Buscar una solución puede expresarse con mencari solusi.',
+                                    reviewVocabIds: ['b1v120', 'b1v121', 'b1v115', 'b1v119'],
+                                    vocabIds: ['b1v122', 'b1v123'],
+                                    exercises: [
+                                        { vocabId: 'b1v122', type: 'mc', prompt: '¿Qué expresa mengatasi?', options: ['Superar o afrontar una dificultad', 'Aplazar una actividad', 'Elegir un horario'], answer: 0, explanation: 'Mengatasi significa superar o hacer frente a un problema.' },
+                                        { vocabId: 'b1v123', type: 'translate_es_id', prompt: 'Traduce: «Necesitamos buscar una solución».', answer: 'Kita perlu mencari solusi.', explanation: 'Solusi significa solución.' },
+                                        { vocabId: 'b1v122', type: 'order', prompt: 'Ordena: «Intentamos superar el problema juntos».', words: ['bersama.', 'masalah', 'mengatasi', 'Kami', 'mencoba'], correctOrder: ['Kami', 'mencoba', 'mengatasi', 'masalah', 'bersama.'], explanation: 'Mencoba mengatasi expresa intentar superar el problema.' },
+                                        { vocabId: 'b1v123', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Kita perlu mencari solusi bersama.', explanation: 'La frase propone buscar una solución en conjunto.' },
+                                        { vocabId: 'b1v123', type: 'write', prompt: 'Propón dos acciones para afrontar un problema y encontrar una solución.', hint: 'Integra mengatasi y solusi.', modelAnswer: 'Kami mencoba mengatasi masalah bersama. Kita perlu mencari solusi yang sederhana.', explanation: 'La producción conecta la acción de afrontar un problema con la búsqueda de una solución.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Memperbaiki y aprender del problema',
+                                    objective: 'Explica qué puedes corregir o mejorar después de detectar una dificultad.',
+                                    grammar: 'Memperbaiki puede significar reparar algo, corregir un error o mejorar una situación. El contexto indica qué se cambia. Puede usarse con kesalahan para hablar de corregir un error.',
+                                    reviewVocabIds: ['b1v120', 'b1v121', 'b1v122', 'b1v123', 'b1v117'],
+                                    vocabIds: ['b1v124'],
+                                    exercises: [
+                                        { vocabId: 'b1v124', type: 'mc', prompt: '¿Qué significa memperbaiki en «memperbaiki kesalahan»?', options: ['Corregir un error', 'Posponer un trabajo', 'Alcanzar una meta'], answer: 0, explanation: 'Memperbaiki puede significar corregir o mejorar.' },
+                                        { vocabId: 'b1v124', type: 'translate_es_id', prompt: 'Traduce: «Quiero corregir ese error».', answer: 'Saya ingin memperbaiki kesalahan itu.', explanation: 'Memperbaiki expresa corregir o mejorar algo.' },
+                                        { vocabId: 'b1v124', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Kami ingin memperbaiki cara kerja kami.', explanation: 'La frase expresa el deseo de mejorar la forma de trabajar.' },
+                                        { vocabId: 'b1v124', type: 'write', prompt: 'Escribe un breve plan: explica el problema, la solución y qué vas a corregir para evitar que se repita.', hint: 'Integra masalah, solusi y memperbaiki.', modelAnswer: 'Masalah ini menghambat pekerjaan kami. Kami mencari solusi bersama. Kami ingin memperbaiki cara kerja kami.', explanation: 'La producción presenta el problema, la respuesta y una mejora concreta.' }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            id: 'b1_u34',
+                            title: 'Unidad 34: opciones, riesgos y consecuencias',
+                            desc: 'Compara alternativas, considera riesgos y evalúa las consecuencias antes de decidir.',
+                            grammar: 'Pilihan significa opción o elección. Mempertimbangkan expresa considerar algo antes de decidir. Risiko es riesgo y akibat, consecuencia o resultado. Mengevaluasi significa evaluar o valorar. Estas formas ayudan a comparar alternativas y tomar decisiones razonadas.',
+                            vocab: [
+                                { id: 'b1v125', idn: 'Pilihan', esp: 'Opción; elección', ex: 'Kita punya dua pilihan.', exEsp: 'Tenemos dos opciones.' },
+                                { id: 'b1v126', idn: 'Mempertimbangkan', esp: 'Considerar; tener en cuenta', ex: 'Saya mempertimbangkan semua pilihan.', exEsp: 'Considero todas las opciones.' },
+                                { id: 'b1v127', idn: 'Risiko', esp: 'Riesgo', ex: 'Setiap pilihan memiliki risiko.', exEsp: 'Cada opción tiene un riesgo.' },
+                                { id: 'b1v128', idn: 'Akibat', esp: 'Consecuencia; resultado', ex: 'Kita harus memahami akibatnya.', exEsp: 'Debemos comprender sus consecuencias.' },
+                                { id: 'b1v129', idn: 'Mengevaluasi', esp: 'Evaluar; valorar', ex: 'Kami mengevaluasi hasilnya bersama.', exEsp: 'Evaluamos el resultado juntos.' }
+                            ],
+                            lessons: [
+                                {
+                                    title: 'Pilihan y mempertimbangkan',
+                                    objective: 'Presenta alternativas y explica qué factores consideras antes de elegir.',
+                                    grammar: 'Pilihan nombra una opción disponible o el acto de elegir según el contexto. Mempertimbangkan significa tener algo en cuenta antes de tomar una decisión.',
+                                    reviewVocabIds: ['b1v115', 'b1v116', 'b1v120', 'b1v123', 'b1v114'],
+                                    vocabIds: ['b1v125', 'b1v126'],
+                                    exercises: [
+                                        { vocabId: 'b1v125', type: 'mc', prompt: '¿Qué palabra significa «opción» o «elección»?', options: ['Pilihan', 'Risiko', 'Akibat'], answer: 0, explanation: 'Pilihan significa opción o elección.' },
+                                        { vocabId: 'b1v126', type: 'translate_es_id', prompt: 'Traduce: «Considero todas las opciones».', answer: 'Saya mempertimbangkan semua pilihan.', explanation: 'Mempertimbangkan expresa considerar o tener en cuenta.' },
+                                        { vocabId: 'b1v125', type: 'order', prompt: 'Ordena: «Tenemos dos opciones».', words: ['pilihan.', 'dua', 'Kita', 'punya'], correctOrder: ['Kita', 'punya', 'dua', 'pilihan.'], explanation: 'La frase presenta el número de opciones disponibles.' },
+                                        { vocabId: 'b1v126', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Saya mempertimbangkan semua pilihan sebelum memutuskan.', explanation: 'La oración indica que se consideran las opciones antes de decidir.' },
+                                        { vocabId: 'b1v126', type: 'write', prompt: 'Compara dos opciones para alcanzar una meta y explica qué factores tienes en cuenta.', hint: 'Usa pilihan y mempertimbangkan.', modelAnswer: 'Kita punya dua pilihan. Saya mempertimbangkan waktu dan biaya sebelum memutuskan.', explanation: 'La producción presenta alternativas y los factores considerados.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Risiko y akibat',
+                                    objective: 'Explica los riesgos de una alternativa y sus posibles consecuencias.',
+                                    grammar: 'Risiko se refiere a la posibilidad de un resultado negativo o incierto. Akibat nombra lo que ocurre como resultado de una acción o situación. Se pueden considerar los riesgos antes de conocer las consecuencias.',
+                                    reviewVocabIds: ['b1v125', 'b1v126', 'b1v120', 'b1v121', 'b1v122'],
+                                    vocabIds: ['b1v127', 'b1v128'],
+                                    exercises: [
+                                        { vocabId: 'b1v127', type: 'mc', prompt: '¿Qué significa risiko?', options: ['Riesgo', 'Solución', 'Horario'], answer: 0, explanation: 'Risiko significa riesgo.' },
+                                        { vocabId: 'b1v128', type: 'translate_es_id', prompt: 'Traduce: «Debemos comprender sus consecuencias».', answer: 'Kita harus memahami akibatnya.', explanation: 'Akibat significa consecuencia o resultado.' },
+                                        { vocabId: 'b1v127', type: 'order', prompt: 'Ordena: «Cada opción tiene un riesgo».', words: ['risiko.', 'memiliki', 'pilihan', 'Setiap'], correctOrder: ['Setiap', 'pilihan', 'memiliki', 'risiko.'], explanation: 'Setiap pilihan es el sujeto general de la frase.' },
+                                        { vocabId: 'b1v128', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Kita harus memahami akibat dari keputusan itu.', explanation: 'La frase relaciona las consecuencias con una decisión.' },
+                                        { vocabId: 'b1v128', type: 'write', prompt: 'Describe una decisión y explica un riesgo y una consecuencia posible.', hint: 'Integra risiko y akibat.', modelAnswer: 'Pilihan itu memiliki risiko. Kita harus memahami akibat dari keputusan tersebut.', explanation: 'La producción distingue el riesgo de la consecuencia de una decisión.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Mengevaluasi antes de decidir',
+                                    objective: 'Valora los resultados y explica por qué una alternativa es más conveniente.',
+                                    grammar: 'Mengevaluasi expresa examinar o valorar algo para determinar su calidad, utilidad o resultado. Puede combinarse con hasil para hablar de evaluar resultados y con sebelum memutuskan para indicar el orden de la decisión.',
+                                    reviewVocabIds: ['b1v125', 'b1v126', 'b1v127', 'b1v128', 'b1v115', 'b1v123'],
+                                    vocabIds: ['b1v129'],
+                                    exercises: [
+                                        { vocabId: 'b1v129', type: 'mc', prompt: '¿Qué significa mengevaluasi?', options: ['Evaluar o valorar', 'Posponer', 'Preparar'], answer: 0, explanation: 'Mengevaluasi significa evaluar o valorar.' },
+                                        { vocabId: 'b1v129', type: 'translate_es_id', prompt: 'Traduce: «Evaluamos el resultado juntos».', answer: 'Kami mengevaluasi hasilnya bersama.', explanation: 'Mengevaluasi expresa la acción de valorar un resultado.' },
+                                        { vocabId: 'b1v129', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Kami mengevaluasi hasilnya sebelum mengambil keputusan.', explanation: 'La frase sitúa la evaluación antes de tomar una decisión.' },
+                                        { vocabId: 'b1v129', type: 'write', prompt: 'Escribe cuatro frases: presenta dos opciones, compara sus riesgos, explica una consecuencia y di cómo evaluarás el resultado.', hint: 'Integra pilihan, risiko, akibat y mengevaluasi.', modelAnswer: 'Kita punya dua pilihan. Setiap pilihan memiliki risiko. Kita harus memahami akibat dari keputusan itu. Kami mengevaluasi hasilnya sebelum memutuskan.', explanation: 'La producción integra alternativas, riesgos, consecuencias y evaluación.' }
+                                    ]
+                                }
+                            ]
+                        },
+
                     ]
                 },
 {

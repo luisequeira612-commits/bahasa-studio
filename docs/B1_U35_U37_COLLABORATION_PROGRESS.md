@@ -4,9 +4,9 @@ Fecha: 7 nov 2026
 
 ## Alcance
 - U35: negociación y acuerdos — `kesepakatan`, `berunding`, `menyetujui`, `menolak`, `kompromi`.
-- U36: explicación, respuesta y confirmación — `menjelaskan`, `menanggapi`, `mengonfirmasi`, `menyampaikan`, `memastikan`.
+- U36: explicación, respuesta y confirmación — `menerangkan`, `menanggapi`, `mengonfirmasi`, `menyampaikan`, `memastikan`.
 - U37: progreso, logros y mejora continua — `kemajuan`, `pencapaian`, `menyelesaikan`, `meningkatkan`, `mengembangkan`.
-- 3 lecciones por unidad, 14 ejercicios por unidad y 42 ejercicios en total.
+- 15 formas curriculares: 11 nuevas y 4 reutilizadas con sus IDs canónicos de A2; 9 lecciones y 42 ejercicios en total (14 por unidad).
 
 ## Progresión didáctica
 - U35 recorre la negociación: plantear el acuerdo, aceptar o rechazar propuestas y buscar un compromiso.

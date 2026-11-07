@@ -1,23 +1,23 @@
 # Plan de expansión y puerta de calidad de B1
 
 Estado: borrador ampliado a doce unidades, aún oculto y pendiente de revisión editorial. U1–U12 siguen la secuencia acordada por bloques; el contenido de U10–U12 se reorganizó el 6 nov 2026.  
-Fecha de corte: 2026-10-31.
+Fecha de corte: 2026-11-06.
 
 ## Inventario actual
 
 El currículo B1 está definido dentro de `CourseData` en `index.html`. El inventario actual contiene doce unidades:
-1. Voz pasiva con `di-` a partir de las raíces baca, tulis, jual y ajar.
-2. Contraste entre `meN-` y `di-` con las mismas raíces.
-3. Reconocimiento de las familias `ber-` y `ter-` con las raíces kerja, main, baca, tulis y jual.
-4. Familias de palabras con `-an` y `-nya`.
-5. `ter-` y primeras nominalizaciones.
-6. Conectores para narrar experiencias y relacionar ideas.
-7. Lectura y resumen de información.
-8. Procesos y resultados con voz pasiva.
-9. Opiniones y justificaciones.
-10. Comunicación formal y cortesía.
-11. Aclarar, negociar y resolver malentendidos.
-12. Integrar información y presentar conclusiones.
+1. Voz pasiva con `di-` a partir de baca, tulis, jual y ajar.
+2. Contraste entre activa `meN-` y pasiva `di-`.
+3. Reconocimiento de las familias `ber-` y `ter-`.
+4. Verbos con sufijo `-kan`.
+5. Contraste contextual entre `-kan` y `-i`.
+6. Verbos con `-i` y sus pasivas correspondientes.
+7. Nombres de agente con `pe-/peN-` (penjual, pembeli, pemain).
+8. Nombres de agente con `pe-/peN-` (penulis, pengajar, pekerja).
+9. Nombres de agente con `pe-/peN-` (pemimpin, penduduk, pembaca).
+10. Nominalizaciones con `-an` y `pe-an`.
+11. Nominalizaciones con `per-an`.
+12. Nombres de estado y conceptos con `ke-an`.
 
 El inventario actual conserva doce unidades, 45 entradas activas de vocabulario y 72 ejercicios. U10–U12 aportan nueve entradas nuevas; seis formas de la lista del usuario ya tenían IDs canónicos en A1/A2 y se reutilizan sin duplicarlas. U4–U6 incorporan 13 formas (11 verbos de la lista del usuario y dos pasivas relacionadas) y 19 ejercicios. El total de vocabulario no aumenta porque las 13 entradas anteriores de U4–U6 se archivaron para reorganizarlas después. El banco de evaluación independiente pasa de seis a **veinte ítems**: incluye tres tareas de escucha, tres preguntas de comprensión de un texto más extenso, tres tareas de producción escrita abierta y una tarea oral, todas las respuestas productivas pendientes de revisión humana. La expansión es un borrador de contenido beta; no constituye un currículo B1 completo ni una evaluación calibrada.
 
@@ -36,7 +36,7 @@ La expansión se hará por bloques y no se publicará como curso habilitado hast
 | Bloque | Unidad propuesta | Evidencia comunicativa |
 |---|---|---|
 | Morfología y significado | U1–U6 | U1–U2: pasiva/activa con `di-` y `meN-`; U3: reconocimiento de `ber-` y `ter-`; U4–U6: sufijos `-kan/-i`, contraste contextual y pasivas correspondientes |
-| Cohesión y narración | U18–U24 según la hoja de ruta del usuario | Condicionales, concesivas, causa, consecuencia y narración de experiencias; las unidades de borrador U7–U12 aún deben reorganizarse |
+| Cohesión y narración | U18–U24 según la hoja de ruta del usuario | Condicionales, concesivas, causa, consecuencia y narración de experiencias; U1–U12 ya siguen los primeros bloques de la secuencia y las unidades U13+ continúan pendientes |
 | Lectura | U7–U9: Nombres de agente pe-/peN- | Identificar vendedor, comprador, jugador, escritor, docente, trabajador, líder, habitante y lector en frases y contextos sencillos |
 | Procesos | U10–U11: Nominalizaciones -an, pe-an y per-an | U10: pelajaran y pekerjaan; U11: pertanyaan, percakapan y perkenalan. pengalaman, perjalanan y pertemuan ya tienen IDs canónicos en A2 y se reutilizan como conocimientos previos |
 | Estados y conceptos | U12–U14: ke-an básico | U12 introduce kesehatan, kecelakaan, keadaan y kebudayaan; kebersihan, keluarga y kesempatan se reutilizan desde A1/A2 |

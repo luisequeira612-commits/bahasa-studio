@@ -14,7 +14,7 @@
 ## Estado actual del currículo
 - A1: 32 de 32 unidades hechas.
 - A2: 40 de 40 unidades hechas y habilitadas en beta (`A2_RELEASE_ENABLED = true`). U5–U8 siguen en consolidación; PR #337 aclara el vocabulario objetivo de 16 prompts de traducción.
-- B1: borrador oculto de 12 unidades, 45 entradas activas y 72 ejercicios. U1–U3 siguen di-/meN-/ber-/ter-; U4–U6, -kan/-i; U7–U9, nombres de agente pe-/peN-; U10–U11, nominalizaciones; U12 inicia ke-an. Los contenidos desplazados de U4–U6, U7–U9 y U10–U12 se preservan en sus archivos docs/B1_*_DISPLACED_CONTENT.md. B2 aún no iniciado.
+- B1: 12/50 unidades redactadas (38 pendientes), borrador oculto con 45 entradas activas y 72 ejercicios. U1–U3 siguen di-/meN-/ber-/ter-; U4–U6, -kan/-i; U7–U9, nombres de agente pe-/peN-; U10–U11, nominalizaciones; U12, ke-an. Las 12 están alineadas con los primeros bloques del plan, pero esto no significa revisión editorial completa ni validación nativa. Contenido desplazado de U4–U6, U7–U9 y U10–U12 preservado en docs/B1_*_DISPLACED_CONTENT.md. B2: 0/60 unidades redactadas (60 pendientes).
 - Sistema de calidad: auditoría estructural/editorial independiente de KBBI y cola editorial para vocabulario y ejercicios. Último informe CI (#350): 0 errores, 0 avisos en 72 unidades; 1.989 entradas editoriales pendientes (806 A1, 1.183 A2), sin certificación lingüística.
 
 ## Aclaración de métricas de Perfil (PR pendiente)

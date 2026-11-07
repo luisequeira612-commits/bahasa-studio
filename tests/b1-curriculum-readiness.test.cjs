@@ -26,9 +26,22 @@ test('B1 draft has twelve units and an explicitly incomplete vocabulary bank', (
   const b1 = course.levels.find(level => level.id === 'B1');
   assert.ok(b1);
   assert.equal(b1.units.length, 12);
-  assert.equal(b1.units.reduce((sum, unit) => sum + unit.vocab.length, 0), 52);
-  assert.equal(b1.units.reduce((sum, unit) => sum + unit.exercises.length, 0), 52);
+  assert.equal(b1.units.reduce((sum, unit) => sum + unit.vocab.length, 0), 57);
+  assert.equal(b1.units.reduce((sum, unit) => sum + unit.exercises.length, 0), 60);
   assert.deepEqual(Array.from(b1.units, unit => unit.id), ['b1_u1', 'b1_u2', 'b1_u3', 'b1_u4', 'b1_u5', 'b1_u6', 'b1_u7', 'b1_u8', 'b1_u9', 'b1_u10', 'b1_u11', 'b1_u12']);
+});
+
+test('B1 U1 provides a complete introductory practice set for passive di-', () => {
+  const b1 = course.levels.find(level => level.id === 'B1');
+  const unit = b1.units.find(item => item.id === 'b1_u1');
+  assert.equal(unit.vocab.length, 4);
+  assert.equal(unit.exercises.length, 7);
+  for (const id of ['v8', 'b1v001', 'b1v002', 'b1v003']) {
+    assert.ok(unit.vocab.some(word => word.id === id), 'B1 U1 missing vocabulary ' + id);
+  }
+  assert.ok(unit.exercises.some(item => item.type === 'translate_es_id'));
+  assert.ok(unit.exercises.some(item => item.type === 'listen'));
+  assert.ok(unit.exercises.some(item => item.type === 'write'));
 });
 
 test('every B1 draft exercise references vocabulary in its own unit', () => {
@@ -50,7 +63,7 @@ test('every B1 draft exercise references vocabulary in its own unit', () => {
       }
     }
   }
-  assert.equal(ids.size, 52);
+  assert.equal(ids.size, 57);
 });
 
 test('B1 remains hidden from the unlocked learning path until a separate release decision', () => {
@@ -88,4 +101,17 @@ test('B1 assessment bank includes open production items that require human revie
   for (const skill of LEVELS.B1.skills) assert.ok(items.some(item => item.skill === skill), 'B1 assessment must cover ' + skill);
   const addedItems = items.filter(item => ['b1-connectors-01', 'b1-report-01', 'b1-process-01', 'b1-opinion-01', 'b1-formal-01'].includes(item.id));
   assert.ok(addedItems.every(item => item.prompt && item.explanation && item.options[item.answer]));
+});
+
+test('B1 U1-U3 follow the approved affix-family sequence and roots', () => {
+  const b1 = course.levels.find(level => level.id === 'B1');
+  const forms = unitId => b1.units.find(unit => unit.id === unitId).vocab.map(word => word.idn.toLowerCase());
+  assert.equal(forms('b1_u1').join(','), 'dibaca,ditulis,dijual,diajar');
+  assert.equal(forms('b1_u2').join(','), 'membaca,menulis,menjual,mengajar,oleh');
+  assert.equal(forms('b1_u3').join(','), 'bekerja,bermain,terbaca,tertulis,terjual');
+  for (const unitId of ['b1_u1', 'b1_u2', 'b1_u3']) {
+    const unit = b1.units.find(item => item.id === unitId);
+    const ids = new Set(unit.vocab.map(word => word.id));
+    for (const exercise of unit.exercises) assert.ok(ids.has(exercise.vocabId));
+  }
 });

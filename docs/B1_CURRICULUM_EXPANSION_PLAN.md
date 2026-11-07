@@ -6,9 +6,9 @@ Fecha de corte: 2026-10-31.
 ## Inventario actual
 
 El currículo B1 está definido dentro de `CourseData` en `index.html`. El inventario actual contiene doce unidades:
-1. Voz pasiva con `di-`.
-2. Contraste entre `meN-` y `di-`.
-3. Contraste contextual de `-kan` e `-i`.
+1. Voz pasiva con `di-` a partir de las raíces baca, tulis, jual y ajar.
+2. Contraste entre `meN-` y `di-` con las mismas raíces.
+3. Reconocimiento de las familias `ber-` y `ter-` con las raíces kerja, main, baca, tulis y jual.
 4. Familias de palabras con `-an` y `-nya`.
 5. `ter-` y primeras nominalizaciones.
 6. Conectores para narrar experiencias y relacionar ideas.
@@ -19,7 +19,7 @@ El currículo B1 está definido dentro de `CourseData` en `index.html`. El inven
 11. Aclarar, negociar y resolver malentendidos.
 12. Integrar información y presentar conclusiones.
 
-La ampliación de U6–U12 incorpora **35 entradas nuevas de vocabulario y 35 ejercicios**, para un total de **52 entradas y 52 ejercicios** en doce unidades. El banco de evaluación independiente pasa de seis a **veinte ítems**: incluye tres tareas de escucha, tres preguntas de comprensión de un texto más extenso, tres tareas de producción escrita abierta y una tarea oral, todas las respuestas productivas pendientes de revisión humana. La expansión es un borrador de contenido beta; no constituye un currículo B1 completo ni una evaluación calibrada.
+La ampliación de U6–U12 incorpora **35 entradas nuevas de vocabulario y 35 ejercicios**, para un total inicial de **52 entradas y 52 ejercicios** en doce unidades. Tras la ampliación de B1 U1, el inventario asciende a **57 entradas y 60 ejercicios**. El banco de evaluación independiente pasa de seis a **veinte ítems**: incluye tres tareas de escucha, tres preguntas de comprensión de un texto más extenso, tres tareas de producción escrita abierta y una tarea oral, todas las respuestas productivas pendientes de revisión humana. La expansión es un borrador de contenido beta; no constituye un currículo B1 completo ni una evaluación calibrada.
 
 ## Brechas principales
 
@@ -35,7 +35,7 @@ La expansión se hará por bloques y no se publicará como curso habilitado hast
 
 | Bloque | Unidad propuesta | Evidencia comunicativa |
 |---|---|---|
-| Morfología y significado | U1–U5 existentes | Pasiva, activa, `-kan/-i`, `-an/-nya`, `ter-` y nominalizaciones |
+| Morfología y significado | U1–U5 existentes | U1–U2: pasiva/activa con `di-` y `meN-`; U3: reconocimiento de `ber-` y `ter-`; U4–U5: `-an/-nya`, nominalizaciones y ampliación contextual de `ter-` |
 | Cohesión y narración | U6: Secuenciar experiencias | Narrar una experiencia con marcadores temporales y referencias claras |
 | Lectura | U7: Comprender textos informativos | Identificar idea principal, detalles y relaciones entre párrafos |
 | Procesos | U8: Explicar cómo se hace algo | Describir pasos, agentes y resultados con activa/pasiva |
@@ -83,7 +83,7 @@ Se incorporaron siete unidades nuevas al borrador oculto:
 
 Se añadieron cinco preguntas de opción múltiple para cubrir conectores, lectura de informes, voz pasiva, opinión y registro formal; una pregunta de interacción; una tarea oral con rúbrica; una tarea de síntesis escrita; y una tarea inicial de escucha. El banco incorpora explícitamente las habilidades `register`, `interaction` y `comprehension`. Las tres tareas escritas abiertas y la tarea oral requieren revisión humana; los ítems cerrados solo prueban comprensión de los ejemplos redactados y no validan el dominio productivo.
 
-La prueba `tests/b1-curriculum-readiness.test.cjs` ahora fija la estructura de doce unidades, 52 entradas y 52 ejercicios, comprueba que cada ejercicio apunte a vocabulario de su unidad, y confirma que B1 permanezca oculto. Las formas y ejemplos nuevos son material beta pendiente de revisión lingüística; no se deben presentar como validados por hablante nativo.
+La prueba `tests/b1-curriculum-readiness.test.cjs` ahora fija la estructura de doce unidades, 57 entradas y 60 ejercicios, comprueba que cada ejercicio apunte a vocabulario de su unidad, y confirma que B1 permanezca oculto. Las formas y ejemplos nuevos son material beta pendiente de revisión lingüística; no se deben presentar como validados por hablante nativo.
 
 
 U11 incorpora estrategias de aclaración y negociación (`bisa diulangi?`, `maksud saya`, `bagaimana kalau`); U12 incorpora vocabulario de experiencia, explicación, respuesta y conclusión. Se añadieron al banco una pregunta de interacción, una tarea oral con rúbrica y una tarea de síntesis escrita. Las tareas abiertas y orales quedan explícitamente pendientes de evaluación humana y no reciben crédito automático.
@@ -95,3 +95,22 @@ Se añadió un texto informativo breve sobre un programa comunitario de lectura,
 
 
 Las tareas de escucha distinguen respuesta breve por contenido de transcripción literal: el formulario permite una etiqueta de respuesta específica por ítem. Los tres audios/textos son cortos y sintetizados por el motor de voz del navegador; aún no sustituyen grabaciones de hablantes ni una evaluación de comprensión auditiva con variedad de voces y velocidades.
+
+
+## Ampliación B1 U1–U3 — progresión de familias de afijos
+
+Tras la reorganización aprobada, U1 contiene cuatro formas pasivas con `di-` (`dibaca`, `ditulis`, `dijual`, `diajar`) y siete ejercicios. U2 contrasta las formas activas `membaca`, `menulis`, `menjual` y `mengajar` con la pasiva ya estudiada; conserva `oleh` como marcador del agente. U3 introduce reconocimiento contextual de `ber-` y `ter-` mediante `bekerja`, `bermain`, `terbaca`, `tertulis` y `terjual`.
+
+La reorganización retiró de U1 las formas `dimakan`, `dibuka`, `ditutup`, `dibuat` y `dikirim`; de U2, la entrada duplicada `dibaca` y `penulis`; y de U3, `mengirimkan`, `mengirimi`, `mengisi` y `memperbaiki`, para respetar la secuencia aprobada y evitar adelantar `-kan/-i`, `peN-` y contenido de B2. El inventario provisional de B1 queda en 57 entradas y 60 ejercicios, distribuidos en doce unidades.
+
+Este material sigue siendo un borrador interno: las frases y glosas no están certificadas por hablante nativo ni calibradas para MCER/BIPA. B1 permanece oculto. Las pruebas de preparación verifican inventario, referencias locales y progresión declarada; no certifican corrección lingüística.
+
+
+## Reorganización aprobada de B1 U1–U3
+
+Con autorización del usuario, se alineó la progresión inicial con su plan curricular:
+- U1: pasiva con `di-`, usando `dibaca`, `ditulis`, `dijual` y `diajar`.
+- U2: contraste activa `meN-` / pasiva `di-` con `membaca`, `menulis`, `menjual` y `mengajar`; `oleh` se mantiene como marcador del agente.
+- U3: reconocimiento de `ber-` y `ter-` con `bekerja`, `bermain`, `terbaca`, `tertulis` y `terjual`.
+
+Se retiraron de U1 las formas `dimakan`, `dibuka`, `ditutup`, `dibuat` y `dikirim`; de U2, `dibaca` como entrada duplicada y `penulis`; de U3, `mengirimkan`, `mengirimi`, `mengisi` y `memperbaiki`, para respetar la secuencia aprobada y evitar adelantar `-kan/-i`, `peN-` y contenido de B2. Las prácticas se reescribieron para las formas de cada unidad. El inventario B1 permanece en 57 entradas; el total de ejercicios pasa a 60. B1 sigue oculto. Las formas y glosas siguen siendo borrador beta, no certificación nativa ni calibración MCER/BIPA.

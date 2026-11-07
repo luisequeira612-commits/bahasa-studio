@@ -29,15 +29,15 @@ function exercisesOf(unit) {
   ];
 }
 
-test('B1 draft has twenty-four units, ninety-one unique IDs including earlier canonical vocabulary, and two hundred forty-one exercises', () => {
+test('B1 draft has twenty-six units, one hundred two unique IDs including earlier canonical vocabulary, and two hundred sixty-nine exercises', () => {
   const b1 = course.levels.find(level => level.id === 'B1');
   assert.ok(b1);
-  assert.equal(b1.units.length, 24);
-  assert.equal(new Set(b1.units.flatMap(unit => unit.vocab.map(word => word.id))).size, 91);
-  assert.equal(b1.units.reduce((sum, unit) => sum + exercisesOf(unit).length, 0), 241);
+  assert.equal(b1.units.length, 26);
+  assert.equal(new Set(b1.units.flatMap(unit => unit.vocab.map(word => word.id))).size, 102);
+  assert.equal(b1.units.reduce((sum, unit) => sum + exercisesOf(unit).length, 0), 269);
   assert.deepEqual(Array.from(b1.units, unit => unit.id), [
     'b1_u1', 'b1_u2', 'b1_u3', 'b1_u4', 'b1_u5', 'b1_u6', 'b1_u7',
-    'b1_u8', 'b1_u9', 'b1_u10', 'b1_u11', 'b1_u12', 'b1_u13', 'b1_u14', 'b1_u15', 'b1_u16', 'b1_u17', 'b1_u18', 'b1_u19', 'b1_u20', 'b1_u21', 'b1_u22', 'b1_u23', 'b1_u24'
+    'b1_u8', 'b1_u9', 'b1_u10', 'b1_u11', 'b1_u12', 'b1_u13', 'b1_u14', 'b1_u15', 'b1_u16', 'b1_u17', 'b1_u18', 'b1_u19', 'b1_u20', 'b1_u21', 'b1_u22', 'b1_u23', 'b1_u24', 'b1_u25', 'b1_u26'
   ]);
 });
 
@@ -83,7 +83,7 @@ test('every B1 draft exercise references vocabulary in its own unit', () => {
       }
     }
   }
-  assert.equal(byId.size, 91);
+  assert.equal(byId.size, 102);
 });
 
 
@@ -379,6 +379,64 @@ test('B1 U21-U24 teach cause, purpose and past-experience narration', () => {
   assert.match(u23.grammar + u23.lessons.map(lesson => lesson.grammar).join(' '), /pernah[\s\S]*belum pernah[\s\S]*baru saja[\s\S]*sempat[\s\S]*telah[\s\S]*masih/i);
   assert.match(u24.grammar + u24.lessons.map(lesson => lesson.grammar).join(' '), /dulu[\s\S]*waktu itu[\s\S]*ketika[\s\S]*kemudian[\s\S]*pengalaman[\s\S]*perjalanan/i);
   assert.ok(exercisesOf(u24).some(exercise => exercise.type === 'write' && /viaje o un día especial/.test(exercise.prompt)));
+});
+
+
+test('B1 U25-U26 describe character and places with canonical A1 vocabulary', () => {
+  const b1 = course.levels.find(level => level.id === 'B1');
+  const u25 = b1.units.find(unit => unit.id === 'b1_u25');
+  const u26 = b1.units.find(unit => unit.id === 'b1_u26');
+  assert.ok(u25 && u26);
+  assert.deepEqual(Array.from(u25.vocab, word => word.id), ['v457', 'b1v078', 'b1v079', 'b1v080', 'b1v081', 'b1v082', 'b1v083']);
+  assert.deepEqual(Array.from(u26.vocab, word => word.id), ['b1v084', 'b1v085', 'b1v086', 'b1v087', 'v383']);
+  const expectedCounts = new Map([[u25, 14], [u26, 14]]);
+  const allNewForms = new Map([
+    ['b1v078', 'sabar'], ['b1v079', 'pendiam'], ['b1v080', 'rajin'], ['b1v081', 'malas'],
+    ['b1v082', 'lucu'], ['b1v083', 'sopan'], ['b1v084', 'nyaman'], ['b1v085', 'ramai'],
+    ['b1v086', 'sepi'], ['b1v087', 'indah']
+  ]);
+  const earlierIds = new Set(b1.units.filter(unit => !['b1_u25', 'b1_u26'].includes(unit.id)).flatMap(unit => unit.vocab.map(word => word.id)));
+  for (const [unit, expectedCount] of expectedCounts) {
+    assert.equal(unit.lessons.length, 3);
+    const exercises = exercisesOf(unit);
+    assert.equal(exercises.length, expectedCount);
+    const types = new Set(exercises.map(exercise => exercise.type));
+    for (const type of ['mc', 'translate_es_id', 'order', 'listen', 'write']) assert.ok(types.has(type), unit.id + ' missing ' + type);
+    const localIds = new Set(unit.vocab.map(word => word.id));
+    for (const exercise of exercises) {
+      assert.ok(localIds.has(exercise.vocabId), unit.id + ' exercise references vocabulary outside its unit');
+      assert.ok(exercise.prompt && exercise.explanation);
+      if (exercise.type === 'mc') {
+        assert.ok(Array.isArray(exercise.options) && Number.isInteger(exercise.answer));
+        assert.ok(exercise.answer >= 0 && exercise.answer < exercise.options.length);
+      }
+      if (exercise.type === 'order') assert.deepEqual(Array.from(exercise.words).sort(), Array.from(exercise.correctOrder).sort());
+    }
+    const completeSentences = exercises.filter(exercise =>
+      (['listen', 'translate_es_id'].includes(exercise.type) && typeof exercise.answer === 'string' && /\s/.test(exercise.answer)) ||
+      (exercise.type === 'order' && exercise.correctOrder.length >= 2) ||
+      (exercise.type === 'write' && exercise.modelAnswer && /[.!?]/.test(exercise.modelAnswer)) ||
+      (exercise.type === 'mc' && /«[^»]+»/.test(exercise.prompt))
+    );
+    assert.ok(completeSentences.length >= 5, unit.id + ' needs five complete-sentence exercises');
+    assert.ok(exercises.some(exercise => exercise.type === 'write' && exercise.hint && exercise.modelAnswer));
+    for (const word of unit.vocab) {
+      if (allNewForms.has(word.id)) {
+        assert.equal(word.idn.toLowerCase(), allNewForms.get(word.id));
+        assert.ok(!earlierIds.has(word.id), 'new form already existed in earlier B1 units: ' + word.id);
+      }
+    }
+  }
+  for (const [id, form] of allNewForms) {
+    const occurrences = b1.units.flatMap(unit => unit.vocab).filter(word => word.id === id);
+    assert.ok(occurrences.length >= 1, 'missing new B1 form ' + form);
+    assert.ok(occurrences.every(word => word.idn.toLowerCase() === form));
+  }
+  assert.match(u25.grammar + u25.lessons.map(lesson => lesson.grammar).join(' '), /ramah[\s\S]*sabar[\s\S]*pendiam[\s\S]*rajin[\s\S]*malas[\s\S]*lucu[\s\S]*sopan/i);
+  assert.match(u25.grammar + u25.lessons.map(lesson => lesson.grammar).join(' '), /diam[\s\S]*peN-/i);
+  assert.match(u26.grammar + u26.lessons.map(lesson => lesson.grammar).join(' '), /nyaman[\s\S]*ramai[\s\S]*sepi[\s\S]*indah[\s\S]*bersih/i);
+  assert.ok(exercisesOf(u25).some(exercise => exercise.type === 'write' && /yang/.test(exercise.modelAnswer)));
+  assert.ok(exercisesOf(u26).some(exercise => exercise.type === 'write' && /lugar/.test(exercise.prompt)));
 });
 
 test('B1 assessment bank includes open production items that require human review', () => {

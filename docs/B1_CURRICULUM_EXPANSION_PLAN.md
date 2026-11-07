@@ -97,11 +97,13 @@ Se añadió un texto informativo breve sobre un programa comunitario de lectura,
 Las tareas de escucha distinguen respuesta breve por contenido de transcripción literal: el formulario permite una etiqueta de respuesta específica por ítem. Los tres audios/textos son cortos y sintetizados por el motor de voz del navegador; aún no sustituyen grabaciones de hablantes ni una evaluación de comprensión auditiva con variedad de voces y velocidades.
 
 
-## Ampliación B1 U1 — voz pasiva con di-
+## Ampliación B1 U1–U3 — progresión de familias de afijos
 
-Se amplía U1 de una a seis entradas de vocabulario y de un ejercicio a siete. Se incorporan `ditulis`, `dibuka`, `ditutup`, `dibuat` y `dikirim`, con ejemplos breves; las prácticas cubren reconocimiento, traducción, escucha y producción guiada. La explicación distingue el prefijo unido `di-` de la preposición de lugar `di` escrita separadamente. El total provisional de B1 queda en 57 entradas y 60 ejercicios, distribuidos en doce unidades.
+Tras la reorganización aprobada, U1 contiene cuatro formas pasivas con `di-` (`dibaca`, `ditulis`, `dijual`, `diajar`) y siete ejercicios. U2 contrasta las formas activas `membaca`, `menulis`, `menjual` y `mengajar` con la pasiva ya estudiada; conserva `oleh` como marcador del agente. U3 introduce reconocimiento contextual de `ber-` y `ter-` mediante `bekerja`, `bermain`, `terbaca`, `tertulis` y `terjual`.
 
-Este material sigue siendo un borrador interno: las frases y glosas no están certificadas por hablante nativo ni calibradas para MCER/BIPA. B1 permanece oculto. La prueba de preparación verifica inventario, referencias locales y presencia de prácticas variadas; no certifica corrección lingüística.
+La reorganización retiró de U1 las formas `dimakan`, `dibuka`, `ditutup`, `dibuat` y `dikirim`; de U2, la entrada duplicada `dibaca` y `penulis`; y de U3, `mengirimkan`, `mengirimi`, `mengisi` y `memperbaiki`, para respetar la secuencia aprobada y evitar adelantar `-kan/-i`, `peN-` y contenido de B2. El inventario provisional de B1 queda en 57 entradas y 60 ejercicios, distribuidos en doce unidades.
+
+Este material sigue siendo un borrador interno: las frases y glosas no están certificadas por hablante nativo ni calibradas para MCER/BIPA. B1 permanece oculto. Las pruebas de preparación verifican inventario, referencias locales y progresión declarada; no certifican corrección lingüística.
 
 
 ## Reorganización aprobada de B1 U1–U3

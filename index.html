@@ -606,11 +606,24 @@
                         {
                             id: 'b1_u1',
                             title: 'Unidad 1: Voz pasiva con di-',
-                            desc: 'Estructuras pasivas formales.',
-                            grammar: 'El prefijo di- forma una voz pasiva y pone en primer plano aquello que recibe la acción. En “Nasi dimakan oleh mereka”, nasi (arroz) es lo que se come; oleh mereka indica quién realiza la acción.',
-                            vocab: [{ id: 'v8', idn: 'Dimakan', esp: 'Es comido', ex: 'Nasi dimakan oleh mereka.', exEsp: 'El arroz es comido por ellos.' }],
+                            desc: 'Reconocer quién recibe la acción y cómo se expresa en una oración pasiva.',
+                            grammar: 'El prefijo di- se une al verbo para formar una voz pasiva y poner en primer plano aquello que recibe la acción: “Buku ditulis oleh Rina” (El libro es escrito por Rina). El agente puede aparecer después de oleh o quedar sin mencionar si no importa. No confundas el prefijo unido al verbo (ditulis) con di separado, que indica lugar (di rumah = en casa).',
+                            vocab: [
+                                { id: 'v8', idn: 'Dimakan', esp: 'Comido/a', ex: 'Nasi dimakan oleh mereka.', exEsp: 'El arroz es comido por ellos.' },
+                                { id: 'b1v001', idn: 'Ditulis', esp: 'Escrito/a', ex: 'Buku ditulis oleh Rina.', exEsp: 'El libro es escrito por Rina.' },
+                                { id: 'b1v002', idn: 'Dibuka', esp: 'Abierto/a', ex: 'Pintu dibuka setiap pagi.', exEsp: 'La puerta se abre cada mañana.' },
+                                { id: 'b1v003', idn: 'Ditutup', esp: 'Cerrado/a', ex: 'Pintu ditutup pada malam hari.', exEsp: 'La puerta se cierra por la noche.' },
+                                { id: 'b1v004', idn: 'Dibuat', esp: 'Hecho/a; preparado/a', ex: 'Makanan dibuat di rumah.', exEsp: 'La comida se prepara en casa.' },
+                                { id: 'b1v005', idn: 'Dikirim', esp: 'Enviado/a', ex: 'Pesan dikirim kemarin.', exEsp: 'El mensaje se envió ayer.' }
+                            ],
                             exercises: [
-                                { vocabId: 'v8', type: 'mc', prompt: '¿Qué función cumple el prefijo "di-"?', options: ['Imperativo', 'Voz Pasiva', 'Lugar', 'Negación'], answer: 1, explanation: 'Marca la voz pasiva del verbo.' }
+                                { vocabId: 'v8', type: 'mc', prompt: '¿Qué función cumple el prefijo unido di- en “dimakan”?', options: ['Imperativo', 'Voz pasiva', 'Lugar', 'Negación'], answer: 1, explanation: 'El prefijo di- unido al verbo forma una voz pasiva.' },
+                                { vocabId: 'b1v001', type: 'translate_es_id', prompt: 'Traduce al indonesio: El libro es escrito por Rina.', answer: 'Buku ditulis oleh Rina.', explanation: 'Ditulis es la forma pasiva de escribir en este ejemplo.' },
+                                { vocabId: 'b1v002', type: 'listen', prompt: 'Escucha y escribe la forma pasiva', answer: 'Dibuka', explanation: 'Dibuka significa «abierto/a» y aparece en una oración sobre una puerta.' },
+                                { vocabId: 'b1v003', type: 'mc', prompt: 'Completa la oración: “Pintu ___ pada malam hari.”', options: ['menutup', 'ditutup', 'penutup'], answer: 1, explanation: 'Ditutup expresa que la puerta recibe la acción de cerrar.' },
+                                { vocabId: 'b1v004', type: 'write', prompt: 'Escribe una oración sencilla usando “dibuat”.', hint: 'Puedes indicar dónde se prepara algo.', modelAnswer: 'Makanan dibuat di rumah.', explanation: 'Ejemplo orientativo: Makanan dibuat di rumah. — La comida se prepara en casa.' },
+                                { vocabId: 'b1v005', type: 'translate_es_id', prompt: 'Traduce al indonesio: El mensaje se envió ayer.', answer: 'Pesan dikirim kemarin.', explanation: 'Dikirim es la forma pasiva de enviar; kemarin sitúa la acción en el pasado.' },
+                                { vocabId: 'b1v001', type: 'mc', prompt: 'En “Buku ditulis oleh Rina”, ¿qué elemento recibe la acción?', options: ['Buku (el libro)', 'Rina', 'Oleh'], answer: 0, explanation: 'Buku es el elemento afectado por la acción de escribir y aparece al inicio.' }
                             ]
                         },
                         {

@@ -29,16 +29,16 @@ function exercisesOf(unit) {
   ];
 }
 
-// B1 U47-U49 readiness baseline updated with this curriculum block.
-test('B1 draft has forty-nine units, two hundred nineteen unique IDs including earlier canonical vocabulary, and five hundred ninety-one exercises', () => {
+// B1 U50 readiness baseline updated with the final curriculum unit.
+test('B1 draft has fifty units, two hundred twenty-four unique IDs including earlier canonical vocabulary, and six hundred five exercises', () => {
   const b1 = course.levels.find(level => level.id === 'B1');
   assert.ok(b1);
-  assert.equal(b1.units.length, 49);
-  assert.equal(new Set(b1.units.flatMap(unit => unit.vocab.map(word => word.id))).size, 219);
-  assert.equal(b1.units.reduce((sum, unit) => sum + exercisesOf(unit).length, 0), 591);
+  assert.equal(b1.units.length, 50);
+  assert.equal(new Set(b1.units.flatMap(unit => unit.vocab.map(word => word.id))).size, 224);
+  assert.equal(b1.units.reduce((sum, unit) => sum + exercisesOf(unit).length, 0), 605);
   assert.deepEqual(Array.from(b1.units, unit => unit.id), [
     'b1_u1', 'b1_u2', 'b1_u3', 'b1_u4', 'b1_u5', 'b1_u6', 'b1_u7',
-    'b1_u8', 'b1_u9', 'b1_u10', 'b1_u11', 'b1_u12', 'b1_u13', 'b1_u14', 'b1_u15', 'b1_u16', 'b1_u17', 'b1_u18', 'b1_u19', 'b1_u20', 'b1_u21', 'b1_u22', 'b1_u23', 'b1_u24', 'b1_u25', 'b1_u26', 'b1_u27', 'b1_u28', 'b1_u29', 'b1_u30', 'b1_u31', 'b1_u32', 'b1_u33', 'b1_u34', 'b1_u35', 'b1_u36', 'b1_u37', 'b1_u38', 'b1_u39', 'b1_u40', 'b1_u41', 'b1_u42', 'b1_u43', 'b1_u44', 'b1_u45', 'b1_u46', 'b1_u47', 'b1_u48', 'b1_u49'
+    'b1_u8', 'b1_u9', 'b1_u10', 'b1_u11', 'b1_u12', 'b1_u13', 'b1_u14', 'b1_u15', 'b1_u16', 'b1_u17', 'b1_u18', 'b1_u19', 'b1_u20', 'b1_u21', 'b1_u22', 'b1_u23', 'b1_u24', 'b1_u25', 'b1_u26', 'b1_u27', 'b1_u28', 'b1_u29', 'b1_u30', 'b1_u31', 'b1_u32', 'b1_u33', 'b1_u34', 'b1_u35', 'b1_u36', 'b1_u37', 'b1_u38', 'b1_u39', 'b1_u40', 'b1_u41', 'b1_u42', 'b1_u43', 'b1_u44', 'b1_u45', 'b1_u46', 'b1_u47', 'b1_u48', 'b1_u49', 'b1_u50'
   ]);
 });
 
@@ -84,7 +84,7 @@ test('every B1 draft exercise references vocabulary in its own unit', () => {
       }
     }
   }
-  assert.equal(byId.size, 219);
+  assert.equal(byId.size, 224);
 });
 
 
@@ -721,6 +721,28 @@ test('B1 U44-U46 teach forecasting, prevention and resource efficiency', () => {
   assert.match(units[2].grammar + units[2].lessons.map(lesson => lesson.grammar).join(' '), /sumber daya[\s\S]*penggunaan[\s\S]*menghemat[\s\S]*efisien[\s\S]*mengalokasikan/i);
 });
 
+test('B1 U50 closes the level with an integrated capstone', () => {
+  const b1 = course.levels.find(level => level.id === 'B1');
+  const unit = b1.units.find(item => item.id === 'b1_u50');
+  assert.ok(unit);
+  assert.deepEqual(Array.from(unit.vocab, word => word.id), ['b1v198', 'b1v199', 'b1v200', 'b1v201', 'b1v202']);
+  assert.equal(unit.lessons.length, 3);
+  const exercises = exercisesOf(unit);
+  assert.equal(exercises.length, 14);
+  assert.deepEqual(
+    exercises.map(exercise => exercise.type),
+    ['mc', 'translate_es_id', 'order', 'listen', 'write', 'mc', 'translate_es_id', 'order', 'listen', 'write', 'mc', 'translate_es_id', 'listen', 'write']
+  );
+  const localIds = new Set(unit.vocab.map(word => word.id));
+  for (const exercise of exercises) {
+    assert.ok(localIds.has(exercise.vocabId), 'U50 exercise references vocabulary outside the unit');
+    assert.ok(exercise.prompt && exercise.explanation);
+  }
+  assert.equal(new Set(unit.vocab.map(word => word.id)).size, 5);
+  assert.match(unit.grammar + unit.lessons.map(lesson => lesson.grammar).join(' '), /rancangan[\s\S]*kelayakan[\s\S]*pelaksanaan[\s\S]*mempresentasikan[\s\S]*menindaklanjuti/i);
+  assert.ok(exercises.some(exercise => exercise.type === 'write' && /rancangan/i.test(exercise.hint) && /menindaklanjuti/i.test(exercise.modelAnswer)));
+});
+ 
 test('B1 U47-U49 teach procedures, community participation and sustainability', () => {
   const b1 = course.levels.find(level => level.id === 'B1');
   const units = ['b1_u47', 'b1_u48', 'b1_u49'].map(id => b1.units.find(unit => unit.id === id));
@@ -766,6 +788,34 @@ test('B1 U47-U49 teach procedures, community participation and sustainability', 
   assert.match(units[0].grammar + units[0].lessons.map(lesson => lesson.grammar).join(' '), /peraturan[\s\S]*prosedur[\s\S]*mematuhi[\s\S]*melanggar[\s\S]*tanggung jawab/i);
   assert.match(units[1].grammar + units[1].lessons.map(lesson => lesson.grammar).join(' '), /partisipasi[\s\S]*mengajukan[\s\S]*permohonan[\s\S]*menyelenggarakan[\s\S]*dukungan/i);
   assert.match(units[2].grammar + units[2].lessons.map(lesson => lesson.grammar).join(' '), /alam[\s\S]*berkelanjutan[\s\S]*pelestarian[\s\S]*mengurangi[\s\S]*limbah/i);
+});
+
+test('B1 U50 closes the level with an integrated project capstone', () => {
+  const b1 = course.levels.find(level => level.id === 'B1');
+  const unit = b1.units.find(item => item.id === 'b1_u50');
+  assert.ok(unit);
+  assert.deepEqual(Array.from(unit.vocab, word => word.id), ['b1v198', 'b1v199', 'b1v200', 'b1v201', 'b1v202']);
+  assert.deepEqual(Array.from(unit.vocab, word => word.idn.toLowerCase()), ['rancangan', 'kelayakan', 'pelaksanaan', 'mempresentasikan', 'menindaklanjuti']);
+  assert.equal(unit.lessons.length, 3);
+  const exercises = exercisesOf(unit);
+  assert.equal(exercises.length, 14);
+  for (const type of ['mc', 'translate_es_id', 'order', 'listen', 'write']) {
+    assert.ok(exercises.some(exercise => exercise.type === type), 'B1 U50 missing exercise type ' + type);
+  }
+  const localIds = new Set(unit.vocab.map(word => word.id));
+  for (const exercise of exercises) {
+    assert.ok(localIds.has(exercise.vocabId));
+    assert.ok(exercise.prompt && exercise.explanation);
+    if (exercise.type === 'mc') {
+      assert.ok(Array.isArray(exercise.options) && Number.isInteger(exercise.answer));
+      assert.ok(exercise.answer >= 0 && exercise.answer < exercise.options.length);
+    }
+    if (exercise.type === 'order') assert.deepEqual(Array.from(exercise.words).sort(), Array.from(exercise.correctOrder).sort());
+  }
+  assert.ok(exercises.some(exercise => exercise.type === 'write' && exercise.hint && exercise.modelAnswer));
+  assert.ok(exercises.filter(exercise => exercise.type === 'listen').every(exercise => /\s/.test(exercise.answer)));
+  assert.match(unit.grammar + unit.lessons.map(lesson => lesson.grammar).join(' '), /rancangan[\s\S]*kelayakan[\s\S]*pelaksanaan[\s\S]*mempresentasikan[\s\S]*menindaklanjuti/i);
+  assert.equal(unit.vocab.some(word => word.verificationStatus === 'verified_primary'), false);
 });
 
 test('B1 U25-U26 describe character and places with canonical A1 vocabulary', () => {

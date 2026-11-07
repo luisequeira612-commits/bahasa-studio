@@ -259,3 +259,6 @@
 
 ## Revisión editorial contextual B1 U23–U26 (7 nov 2026)
 - Lectura de cuatro unidades: 0 errores confirmados y 0 candidatos que requieran corrección. La comparación `telah`/`sudah` ya tiene antecedente en B1; las demás explicaciones y ejercicios revisados mantienen coherencia interna. Sin cambios curriculares ni datos persistentes. Ver `docs/EDITORIAL_AUDIT_B1_U23_U26.md`.
+
+## Revisión editorial contextual B1 U27–U32 (7 nov 2026)
+- Lectura de seis unidades: 0 errores confirmados y 2 candidatos editoriales (glosa «quizá» para `kira-kira` en U28; precisión contextual de `Saya mengatur waktu untuk tugas` en U32). No se modificó el currículo. Ver `docs/EDITORIAL_AUDIT_B1_U27_U32.md`.

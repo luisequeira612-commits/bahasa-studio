@@ -120,9 +120,9 @@ test('B1 U1-U3 follow the approved affix-family sequence and roots', () => {
 test('B1 U4-U6 follow the approved -kan/-i sequence and preserve passive contrasts', () => {
   const b1 = course.levels.find(level => level.id === 'B1');
   const forms = unitId => b1.units.find(unit => unit.id === unitId).vocab.map(word => word.idn.toLowerCase());
-  assert.deepEqual(forms('b1_u4'), ['memberikan', 'mengirimkan', 'menjelaskan', 'membersihkan']);
-  assert.deepEqual(forms('b1_u5'), ['mengingatkan', 'memasukkan', 'mendatangi', 'menemui']);
-  assert.deepEqual(forms('b1_u6'), ['menghadiri', 'mencintai', 'memasuki', 'dijelaskan', 'ditemui']);
+  assert.equal(forms('b1_u4').join(','), 'memberikan,mengirimkan,menjelaskan,membersihkan');
+  assert.equal(forms('b1_u5').join(','), 'mengingatkan,memasukkan,mendatangi,menemui');
+  assert.equal(forms('b1_u6').join(','), 'menghadiri,mencintai,memasuki,dijelaskan,ditemui');
   for (const unitId of ['b1_u4', 'b1_u5', 'b1_u6']) {
     const unit = b1.units.find(item => item.id === unitId);
     assert.equal(unit.exercises.length, unitId === 'b1_u6' ? 7 : 6);

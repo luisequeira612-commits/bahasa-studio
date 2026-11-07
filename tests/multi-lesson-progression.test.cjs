@@ -160,8 +160,11 @@ test('authored lesson vocabulary references resolve unambiguously within their i
           ...orderedUnits.slice(0, unitIndex).flatMap(previousUnit => previousUnit.vocab || []),
           ...previouslyTaughtInUnit
         ].filter(word => word.id === id);
-        assert.equal(previousMatches.length, 1,
-          unit.id + ' review vocabulary reference ' + id + ' must resolve exactly once in previously taught course vocabulary');
+        assert.ok(previousMatches.length >= 1,
+          unit.id + ' review vocabulary reference ' + id + ' must exist in previously taught course vocabulary');
+        const resolvedForms = new Set(previousMatches.map(word => String(word.idn || '').toLowerCase()));
+        assert.equal(resolvedForms.size, 1,
+          unit.id + ' review vocabulary reference ' + id + ' must always resolve to the same Indonesian form');
       }
 
       for (const id of lesson.vocabIds || []) {
@@ -169,4 +172,43 @@ test('authored lesson vocabulary references resolve unambiguously within their i
       }
     }
   });
+});
+
+
+test('B1 U13-U26 introduce new vocabulary in the correct lesson and review only learned words', () => {
+  const levels = app.CourseData.levels;
+  const a1 = levels.find(level => level.id === 'A1');
+  const a2 = levels.find(level => level.id === 'A2');
+  const b1 = levels.find(level => level.id === 'B1');
+  const known = new Set([...a1.units, ...a2.units].flatMap(unit => unit.vocab.map(word => word.id)));
+  for (const unit of b1.units.filter(unit => /^b1_u(?:[1-9]|1[0-2])$/.test(unit.id))) {
+    for (const word of unit.vocab) known.add(word.id);
+  }
+  const targetUnits = b1.units.filter(unit => /^b1_u(?:1[3-9]|2[0-6])$/.test(unit.id));
+  assert.equal(targetUnits.length, 14);
+  for (const unit of targetUnits) {
+    const lessons = app.buildUnitLessons(unit);
+    assert.equal(lessons.length, 3, unit.id + ' should have three authored lessons');
+    const expectedNewIds = unit.vocab.filter(word => !known.has(word.id)).map(word => word.id).sort();
+    const declaredNewIds = unit.lessons.flatMap(lesson => lesson.vocabIds || []);
+    assert.equal(new Set(declaredNewIds).size, declaredNewIds.length, unit.id + ' must not introduce a word twice');
+    assert.deepEqual(declaredNewIds.slice().sort(), expectedNewIds, unit.id + ' must introduce every new B1 word exactly once');
+    let learned = new Set(known);
+    for (const [index, lesson] of lessons.entries()) {
+      const authored = unit.lessons[index];
+      for (const id of authored.reviewVocabIds || []) {
+        assert.ok(learned.has(id), unit.id + ' lesson ' + index + ' reviews an unknown word: ' + id);
+      }
+      for (const id of authored.vocabIds || []) {
+        assert.ok(!learned.has(id), unit.id + ' lesson ' + index + ' reintroduces an already learned word: ' + id);
+      }
+      const lessonIds = new Set(lesson.vocab.map(word => word.id));
+      for (const exercise of lesson.exercises) {
+        assert.ok(lessonIds.has(exercise.vocabId), unit.id + ' lesson ' + index + ' exercises vocabulary not yet taught or reviewed: ' + exercise.vocabId);
+      }
+      for (const id of authored.vocabIds || []) learned.add(id);
+    }
+    for (const word of unit.vocab) { learned.add(word.id); known.add(word.id); }
+    for (const word of unit.vocab) assert.ok(learned.has(word.id), unit.id + ' vocabulary should be available by unit end: ' + word.id);
+  }
 });

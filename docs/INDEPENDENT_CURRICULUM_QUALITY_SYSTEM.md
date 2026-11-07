@@ -1,7 +1,7 @@
 # Sistema de calidad curricular independiente de KBBI
 
 **Estado:** sistema oficial de calidad curricular independiente de KBBI; auditor estructural, cola editorial, pruebas automatizadas y artefactos integrados en CI.  
-**Alcance inicial:** integridad estructural y consistencia de referencias de A1 y A2.  
+**Alcance actual:** integridad estructural y consistencia de referencias de A1, A2 y B1.  
 **Dependencias externas:** ninguna.  
 **Certificación lingüística:** no incluida.
 
@@ -11,7 +11,7 @@ Permitir que Bahasa Studio siga desarrollándose cuando KBBI no está disponible
 
 ## Qué comprueba la primera versión
 
-El script `scripts/audit-curriculum-quality.mjs` carga los currículos locales A1 y A2 y comprueba:
+El script `scripts/audit-curriculum-quality.mjs` carga A1 y A2 desde sus archivos curriculares y extrae B1 del bloque `CourseData` de `index.html`; comprueba:
 
 - existencia de unidades, títulos y arrays de vocabulario;
 - IDs de unidad duplicados y colisiones de vocabulario (un mismo ID asociado a términos indonesios distintos); las repeticiones del mismo ID y término con la misma glosa se registran como información (no como aviso), porque representan una reutilización compatible con el repaso acumulativo y conservan el historial SRS; si un ID reutilizado conserva el término indonesio pero cambia la glosa española, se genera un aviso de consistencia para revisión editorial; el informe distingue entradas totales de IDs únicos;
@@ -21,10 +21,10 @@ El script `scripts/audit-curriculum-quality.mjs` carga los currículos locales A
 - cobertura de audio por unidad, diferenciando ejercicios `listen` (escucha y escritura) de ejercicios con `audioText` (consigna o frase reproducida mediante síntesis de voz); el informe cuenta la cobertura combinada sin duplicar un ejercicio que use ambos campos;
 - índices de respuesta MC dentro del rango de opciones, también en ejercicios de lección;
 - consistencia entre `words` y `correctOrder` en ejercicios de orden, también en ejercicios de lección;
-- referencias `vocabId`, `vocabIds` y `reviewVocabIds` que no resuelven al vocabulario del nivel; se permiten referencias acumulativas de A2 hacia A1, pero no referencias de A1 hacia vocabulario futuro de A2;
+- referencias `vocabId`, `vocabIds` y `reviewVocabIds` que no resuelven al vocabulario del nivel; se permiten referencias acumulativas hacia niveles anteriores (A2→A1 y B1→A1/A2); los IDs no disponibles en el nivel actual ni en los niveles anteriores se reportan como referencias sin resolver;
 - referencias en ejercicios de unidad y de lección;
 - avisos heurísticos cuando una forma de vocabulario presentada después aparece en campos de contenido indonesio (`ex`, `audioText`, `dialogue`, `readingText`, `words`, `correctOrder` y respuestas de ejercicios que esperan indonesio); en instrucciones o prosa bilingüe solo se inspeccionan fragmentos entre comillas. Se excluyen glosas españolas, ejemplos traducidos y opciones MC sin clasificación de idioma;
-- avisos cuando un ejercicio de unidad usa vocabulario del mismo nivel que solo se introduce en una unidad posterior;
+- avisos cuando un ejercicio de unidad usa vocabulario del mismo nivel que solo se introduce en una unidad posterior; las formas de vocabulario de niveles anteriores se consideran ya conocidas y no se vuelven a marcar como adelantos en niveles superiores;
 - avisos equivalentes dentro de una unidad cuando un ejercicio de lección usa vocabulario presentado en una lección posterior; se respeta `reviewVocabIds` como declaración explícita de repaso;
 - se permite el vocabulario ya presentado y el repaso acumulativo A2→A1.
 
@@ -88,7 +88,7 @@ La búsqueda usa coincidencia exacta de tokens normalizados: no analiza flexión
 
 ## Cola editorial independiente
 
-El generador `scripts/build-editorial-review-queue.mjs` crea una fila por entrada de vocabulario A1/A2 en `artifacts/editorial-review-queue.csv`. La cola incluye un `review_id` determinista (`nivel:unidad:id_vocabulario`) que no cambia al reordenar las entradas, además de nivel, unidad, ID, forma indonesia, glosa española, ejemplo bilingüe, campos ausentes y estados editoriales independientes. Si falta el ID canónico, usa como respaldo la forma indonesia normalizada (y el índice solo si también falta la forma).
+El generador `scripts/build-editorial-review-queue.mjs` crea una fila por entrada de vocabulario y ejercicio de unidad/lección de A1/A2/B1 en `artifacts/editorial-review-queue.csv`. La cola incluye un `review_id` determinista (`nivel:unidad:id_vocabulario` para vocabulario y un identificador de ruta estable para ejercicios) que no cambia al reordenar las entradas, además de nivel, unidad, ID, forma indonesia, glosa española, ejemplo bilingüe, campos ausentes y estados editoriales independientes. Si falta el ID canónico, usa como respaldo la forma indonesia normalizada (y el índice solo si también falta la forma).
 
 - `P1`: falta algún dato base de la entrada o del ejemplo.
 - `P2`: entrada con los campos básicos presentes; requiere revisión editorial normal.
@@ -100,7 +100,7 @@ Ejecución local:
 
 ```bash
 node --test tests/build-editorial-review-queue.test.mjs
-node scripts/build-editorial-review-queue.mjs --output artifacts/editorial-review-queue.csv
+node scripts/build-editorial-review-queue.mjs --output artifacts/editorial-review-queue.csv\nnode scripts/build-editorial-review-queue.mjs --level B1 --unit b1_u13 --output artifacts/b1-u13-editorial-review.csv
 ```
 
 La prioridad P1 identifica incompletitud de datos, no un juicio de incorrección lingüística. P2 tampoco significa aprobado: indica que la entrada está lista para revisión normal.

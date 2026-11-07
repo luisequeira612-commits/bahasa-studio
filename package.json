@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test:assessment": "node tests/assessment-bank-structure.test.js",
-    "quality:tests": "node --test tests/audit-curriculum-quality.test.mjs tests/build-editorial-review-queue.test.mjs tests/build-editorial-review-batches.test.mjs tests/a2-language-audit-tracker.test.cjs tests/harness-quality-skills.test.mjs tests/build-unified-quality-report.test.mjs tests/written-response.test.cjs tests/detect-grammar-prerequisites.test.mjs",
+    "quality:tests": "node --test tests/audit-curriculum-quality.test.mjs tests/load-inline-b1-curriculum.test.mjs tests/build-editorial-review-queue.test.mjs tests/build-editorial-review-batches.test.mjs tests/a2-language-audit-tracker.test.cjs tests/harness-quality-skills.test.mjs tests/build-unified-quality-report.test.mjs tests/written-response.test.cjs tests/detect-grammar-prerequisites.test.mjs",
     "quality:audit": "node scripts/audit-curriculum-quality.mjs --json artifacts/curriculum-quality-report.json",
     "quality:queue": "node scripts/build-editorial-review-queue.mjs --output artifacts/editorial-review-queue.csv --summary artifacts/editorial-review-summary.json",
     "quality:local": "npm run quality:tests && npm run quality:audit && npm run quality:queue && npm run quality:report",

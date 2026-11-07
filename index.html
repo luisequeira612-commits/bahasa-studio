@@ -1712,6 +1712,115 @@
                                     ]
                                 }
                             ]
+                        },
+
+                        {
+                            id: 'b1_u25',
+                            title: 'Unidad 25: describir el carácter y la personalidad',
+                            desc: 'Describe cómo es una persona mediante adjetivos de carácter y comportamiento.',
+                            grammar: 'Los adjetivos suelen aparecer después del sujeto o del sustantivo: teman saya ramah, ibu saya sabar. Yang permite ampliar la descripción: orang yang rajin. Pendiam se forma históricamente con peN- sobre la base diam y funciona como adjetivo para describir a una persona reservada; se aprende como una forma léxica, no como un nuevo patrón general de nombres de agente.',
+                            vocab: [
+                                { id: 'v457', idn: 'Ramah', esp: 'Amable; amistoso/a', ex: 'Guru itu ramah.', exEsp: 'Ese/a profesor/a es amable.' },
+                                { id: 'b1v078', idn: 'Sabar', esp: 'Paciente', ex: 'Ibu saya sabar.', exEsp: 'Mi madre es paciente.' },
+                                { id: 'b1v079', idn: 'Pendiam', esp: 'Callado/a; reservado/a', ex: 'Teman saya pendiam.', exEsp: 'Mi amigo/a es reservado/a.' },
+                                { id: 'b1v080', idn: 'Rajin', esp: 'Aplicado/a; trabajador/a; diligente', ex: 'Teman saya rajin belajar.', exEsp: 'Mi amigo/a estudia con dedicación.' },
+                                { id: 'b1v081', idn: 'Malas', esp: 'Perezoso/a; poco dispuesto/a a trabajar', ex: 'Anak itu malas belajar.', exEsp: 'Ese niño es perezoso para estudiar.' },
+                                { id: 'b1v082', idn: 'Lucu', esp: 'Gracioso/a; divertido/a', ex: 'Teman saya lucu.', exEsp: 'Mi amigo/a es gracioso/a.' },
+                                { id: 'b1v083', idn: 'Sopan', esp: 'Educado/a; cortés; respetuoso/a', ex: 'Dia sopan kepada orang tua.', exEsp: 'Es respetuoso/a con las personas mayores.' }
+                            ],
+                            lessons: [
+                                {
+                                    title: 'Ramah, sabar y rajin',
+                                    objective: 'Describe cualidades positivas de una persona mediante frases completas.',
+                                    grammar: 'Ramah describe una actitud amable; sabar, la paciencia; rajin, la dedicación al trabajo o al estudio. El adjetivo aparece después del sujeto: Ibu saya sabar. Para enlazar cualidades se usa dan.',
+                                    reviewVocabIds: ['b1v073', 'b1v074'],
+                                    exercises: [
+                                        { vocabId: 'b1v078', type: 'mc', prompt: '¿Qué adjetivo describe a una persona que mantiene la calma y no se irrita fácilmente?', options: ['Malas', 'Sabar', 'Pendiam'], answer: 1, explanation: 'Sabar significa paciente: alguien que sabe mantener la calma.' },
+                                        { vocabId: 'v457', type: 'translate_es_id', prompt: 'Traduce: «Mi madre es paciente y amable».', answer: 'Ibu saya sabar dan ramah.', explanation: 'Sabar y ramah describen dos cualidades de la misma persona.' },
+                                        { vocabId: 'b1v078', type: 'order', prompt: 'Ordena: «Mi madre es paciente y amable».', words: ['ramah.', 'Ibu', 'sabar', 'dan', 'saya'], correctOrder: ['Ibu', 'saya', 'sabar', 'dan', 'ramah.'], explanation: 'El sujeto aparece primero y los adjetivos después.' },
+                                        { vocabId: 'b1v080', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Teman saya rajin belajar.', explanation: 'Rajin describe la dedicación con la que el amigo estudia.' },
+                                        { vocabId: 'b1v080', type: 'write', prompt: 'Describe a una persona que conozcas con dos o tres cualidades positivas. Escribe al menos dos frases.', hint: 'Puedes usar ramah, sabar y rajin.', modelAnswer: 'Guru saya ramah dan sabar. Dia juga rajin bekerja.', explanation: 'La descripción usa adjetivos después del sujeto y los enlaza con dan.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Pendiam, lucu y malas',
+                                    objective: 'Distingue una personalidad reservada, un carácter gracioso y la falta de ganas de hacer algo.',
+                                    grammar: 'Pendiam describe a una persona callada o reservada; no significa necesariamente pemalu («tímido»). Lucu significa gracioso o divertido. Malas expresa poca disposición para hacer algo y puede aparecer antes de un verbo: malas belajar. Pendiam deriva de diam mediante peN- y funciona como adjetivo lexicalizado.',
+                                    reviewVocabIds: ['b1v075', 'b1v076'],
+                                    exercises: [
+                                        { vocabId: 'b1v079', type: 'mc', prompt: '¿Qué palabra describe a alguien que habla poco y suele ser reservado?', options: ['Lucu', 'Pendiam', 'Rajin'], answer: 1, explanation: 'Pendiam describe a una persona callada o reservada; no equivale necesariamente a tímida.' },
+                                        { vocabId: 'b1v079', type: 'translate_es_id', prompt: 'Traduce: «Mi amigo es callado, pero gracioso».', answer: 'Teman saya pendiam, tetapi lucu.', explanation: 'Pendiam describe el carácter reservado y lucu el sentido del humor.' },
+                                        { vocabId: 'b1v079', type: 'order', prompt: 'Ordena: «Mi amigo es callado, pero gracioso».', words: ['lucu.', 'Teman', 'tetapi', 'pendiam,', 'saya'], correctOrder: ['Teman', 'saya', 'pendiam,', 'tetapi', 'lucu.'], explanation: 'Tetapi introduce el contraste entre dos rasgos de carácter.' },
+                                        { vocabId: 'b1v082', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Dia pendiam, tetapi lucu.', explanation: 'La frase contrasta una personalidad reservada con un carácter divertido.' },
+                                        { vocabId: 'b1v081', type: 'write', prompt: 'Escribe dos frases que contrasten el carácter de una persona con su comportamiento en una actividad.', hint: 'Usa pendiam, lucu o malas belajar.', modelAnswer: 'Teman saya pendiam, tetapi lucu. Anak itu malas belajar.', explanation: 'La descripción diferencia rasgos de personalidad y disposición para una actividad.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Sopan y descripción con yang',
+                                    objective: 'Describe el comportamiento respetuoso e integra varios adjetivos en una frase relativa.',
+                                    grammar: 'Sopan describe un comportamiento educado y respetuoso. Puede aparecer con kepada para señalar hacia quién se muestra respeto: sopan kepada orang tua. Yang permite reunir varios detalles en una descripción: teman yang ramah, sabar, dan sopan.',
+                                    reviewVocabIds: ['b1v077', 'b1v075'],
+                                    exercises: [
+                                        { vocabId: 'b1v083', type: 'mc', prompt: '¿Qué adjetivo describe a alguien que muestra respeto y buenos modales?', options: ['Sopan', 'Malas', 'Lucu'], answer: 0, explanation: 'Sopan significa educado, cortés o respetuoso.' },
+                                        { vocabId: 'b1v083', type: 'translate_es_id', prompt: 'Traduce: «Ese niño es respetuoso con sus padres».', answer: 'Anak itu sopan kepada orang tuanya.', explanation: 'Sopan describe el comportamiento respetuoso; kepada introduce a quién se dirige.' },
+                                        { vocabId: 'b1v083', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Dia sopan kepada orang tua.', explanation: 'La frase describe una conducta respetuosa hacia las personas mayores.' },
+                                        { vocabId: 'v457', type: 'write', prompt: 'Describe a alguien con una frase que use yang y al menos tres adjetivos de esta unidad.', hint: 'Combina ramah, sabar, sopan, rajin, pendiam o lucu.', modelAnswer: 'Saya punya teman yang ramah, sabar, dan sopan. Dia juga rajin belajar.', explanation: 'Yang conecta el sustantivo con una descripción más completa.' }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            id: 'b1_u26',
+                            title: 'Unidad 26: describir lugares y ambientes',
+                            desc: 'Describe si un lugar es animado, tranquilo, cómodo, limpio o bonito.',
+                            grammar: 'Ramai describe un lugar concurrido, activo o bullicioso; sepi describe un lugar tranquilo, vacío o con poca actividad. Ninguno es siempre positivo o negativo: el contexto decide. Nyaman describe comodidad o agrado; bersih, limpieza; indah, belleza. Como con otros adjetivos, se colocan después del sujeto o sustantivo: rumah ini nyaman.',
+                            vocab: [
+                                { id: 'b1v084', idn: 'Nyaman', esp: 'Cómodo/a; agradable', ex: 'Rumah ini nyaman.', exEsp: 'Esta casa es cómoda.' },
+                                { id: 'b1v085', idn: 'Ramai', esp: 'Concurrido/a; animado/a; bullicioso/a', ex: 'Pasar itu ramai.', exEsp: 'Ese mercado está concurrido.' },
+                                { id: 'b1v086', idn: 'Sepi', esp: 'Tranquilo/a; vacío/a; poco concurrido/a', ex: 'Jalan itu sepi.', exEsp: 'Esa calle está tranquila.' },
+                                { id: 'b1v087', idn: 'Indah', esp: 'Hermoso/a; bonito/a; bello/a', ex: 'Taman itu indah.', exEsp: 'Ese jardín es bonito.' },
+                                { id: 'v383', idn: 'Bersih', esp: 'Limpio/a', ex: 'Rumah ini bersih.', exEsp: 'Esta casa está limpia.' }
+                            ],
+                            lessons: [
+                                {
+                                    title: 'Ramai y sepi: el ambiente de un lugar',
+                                    objective: 'Compara lugares concurridos y tranquilos sin asumir que uno sea siempre mejor.',
+                                    grammar: 'Ramai puede describir un lugar lleno de gente, animado o ruidoso. Sepi describe poca gente, silencio o falta de actividad. El contexto determina si esa característica resulta agradable o no: un mercado puede ser ramai y una calle puede estar sepi por la noche.',
+                                    reviewVocabIds: ['b1v078', 'b1v079'],
+                                    exercises: [
+                                        { vocabId: 'b1v085', type: 'mc', prompt: '¿Qué adjetivo describe un mercado con mucha gente y actividad?', options: ['Sepi', 'Nyaman', 'Ramai'], answer: 2, explanation: 'Ramai describe un lugar concurrido o con mucha actividad.' },
+                                        { vocabId: 'b1v085', type: 'translate_es_id', prompt: 'Traduce: «El mercado está concurrido, pero la calle está tranquila».', answer: 'Pasar itu ramai, tetapi jalan itu sepi.', explanation: 'Ramai y sepi contrastan dos ambientes distintos.' },
+                                        { vocabId: 'b1v086', type: 'order', prompt: 'Ordena: «El mercado está concurrido, pero la calle está tranquila».', words: ['sepi.', 'Pasar', 'jalan', 'itu', 'ramai,', 'tetapi', 'itu'], correctOrder: ['Pasar', 'itu', 'ramai,', 'tetapi', 'jalan', 'itu', 'sepi.'], explanation: 'La frase compara dos lugares y usa tetapi para marcar el contraste.' },
+                                        { vocabId: 'b1v085', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Pasar itu ramai, tetapi taman itu sepi.', explanation: 'La frase contrasta un mercado concurrido con un jardín tranquilo.' },
+                                        { vocabId: 'b1v086', type: 'write', prompt: 'Compara dos lugares: uno concurrido y otro tranquilo. Explica cuál ambiente prefieres.', hint: 'Usa ramai, sepi y tetapi.', modelAnswer: 'Pasar itu ramai, tetapi taman itu sepi. Saya suka taman yang sepi.', explanation: 'La descripción compara los ambientes y expresa una preferencia.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Nyaman y bersih: comodidad y limpieza',
+                                    objective: 'Describe cómo se siente un lugar y si está limpio.',
+                                    grammar: 'Nyaman se refiere a la comodidad o sensación agradable que ofrece un lugar. Bersih describe que está limpio. Pueden combinarse para describir una casa, habitación, aula o espacio público: rumah ini nyaman dan bersih.',
+                                    reviewVocabIds: ['b1v080', 'b1v081'],
+                                    exercises: [
+                                        { vocabId: 'b1v084', type: 'mc', prompt: '¿Qué adjetivo describe un lugar en el que uno se siente cómodo?', options: ['Nyaman', 'Ramai', 'Indah'], answer: 0, explanation: 'Nyaman describe comodidad o una sensación agradable.' },
+                                        { vocabId: 'b1v084', type: 'translate_es_id', prompt: 'Traduce: «Esta casa es cómoda y limpia».', answer: 'Rumah ini nyaman dan bersih.', explanation: 'Nyaman describe la comodidad y bersih la limpieza.' },
+                                        { vocabId: 'v383', type: 'order', prompt: 'Ordena: «Esta casa es cómoda y limpia».', words: ['bersih.', 'Rumah', 'dan', 'nyaman', 'ini'], correctOrder: ['Rumah', 'ini', 'nyaman', 'dan', 'bersih.'], explanation: 'El sujeto rumah ini va seguido de los adjetivos enlazados con dan.' },
+                                        { vocabId: 'v383', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Rumah ini nyaman dan bersih.', explanation: 'La frase combina dos cualidades de una casa.' },
+                                        { vocabId: 'b1v084', type: 'write', prompt: 'Describe una habitación o un lugar que te resulte cómodo. Incluye una frase sobre su limpieza.', hint: 'Usa nyaman y bersih.', modelAnswer: 'Rumah saya nyaman. Rumah saya juga bersih.', explanation: 'Nyaman y bersih describen cualidades diferentes del mismo lugar.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Indah y descripción completa de un lugar',
+                                    objective: 'Integra belleza, ambiente, comodidad y limpieza en una descripción breve.',
+                                    grammar: 'Indah describe algo bello o agradable a la vista. Para describir un lugar con más precisión, combina indah con ramai o sepi para el ambiente, nyaman para la comodidad y bersih para la limpieza. Los adjetivos pueden enlazarse con dan o contrastarse con tetapi.',
+                                    reviewVocabIds: ['b1v082', 'b1v083'],
+                                    exercises: [
+                                        { vocabId: 'b1v087', type: 'mc', prompt: '¿Qué adjetivo describe un jardín o paisaje que resulta bello a la vista?', options: ['Indah', 'Sepi', 'Bersih'], answer: 0, explanation: 'Indah significa hermoso o bonito.' },
+                                        { vocabId: 'b1v087', type: 'translate_es_id', prompt: 'Traduce: «El jardín es bonito y tranquilo».', answer: 'Taman itu indah dan sepi.', explanation: 'Indah describe la belleza y sepi el ambiente tranquilo.' },
+                                        { vocabId: 'b1v087', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Taman itu indah dan bersih.', explanation: 'La frase describe la belleza y limpieza de un jardín.' },
+                                        { vocabId: 'b1v087', type: 'write', prompt: 'Describe un lugar en tres o cuatro frases. Incluye su belleza, ambiente, comodidad o limpieza.', hint: 'Usa al menos tres entre indah, nyaman, ramai, sepi y bersih.', modelAnswer: 'Taman itu indah dan bersih. Tempat itu nyaman. Pada pagi hari, taman itu sepi. Pada sore hari, taman itu ramai.', explanation: 'La descripción combina características visuales, ambiente y comodidad.' }
+                                    ]
+                                }
+                            ]
                         }
                     ]
                 },

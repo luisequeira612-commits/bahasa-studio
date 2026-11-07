@@ -6,7 +6,7 @@ Fecha: 7 nov 2026
 - U32: prioridades, horarios y organización — `prioritas`, `jadwal`, `mengatur`, `menunda`, `mendahulukan`.
 - U33: problemas, obstáculos y soluciones — `masalah`, `hambatan`, `mengatasi`, `solusi`, `memperbaiki`.
 - U34: opciones, riesgos y consecuencias — `pilihan`, `mempertimbangkan`, `risiko`, `akibat`, `mengevaluasi`.
-- 3 lecciones por unidad, 14 ejercicios por unidad: 42 por unidad y 126 en el bloque.
+- 3 lecciones por unidad, 14 ejercicios por unidad y 42 en total.
 
 ## Progresión didáctica
 - U32 pasa de identificar prioridades y horarios a organizar tareas, aplazamientos y orden de ejecución.

@@ -172,3 +172,8 @@
 ## PR10 — regresión del evaluador de respuestas escritas (6 nov 2026)
 - La suite de calidad ejecuta ahora las pruebas de `WrittenResponse` contra 462 ejercicios reales A1/A2: cada respuesta canónica debe ser aceptada; las alternativas solo se aceptan si son heredadas sin estado o están aprobadas.
 - Es una prueba de coherencia entre currículo y evaluador, no una validación semántica/nativa de las respuestas. Sin cambios de currículo, trackers, IndexedDB ni backup JSON v3.
+
+
+## PR11 — candidatos de prerrequisitos gramaticales (6 nov 2026)
+- Añade un detector genérico offline gobernado por un catálogo de reglas separado del código; señala marcas explícitas usadas antes de su unidad declarada. Los resultados requieren revisión contextual y no prueban que falte una explicación.
+- Incluye pruebas sintéticas, suite de calidad y artifact CI. Sin cambios de currículo, trackers/CSV, IndexedDB ni backup JSON v3; sin dependencias ni red.

@@ -29,7 +29,7 @@ function exercisesOf(unit) {
   ];
 }
 
-test('B1 draft has fourteen units, forty-five unique vocabulary entries and one hundred exercises', () => {
+test('B1 draft has fourteen units, fifty unique IDs including earlier canonical vocabulary, and one hundred exercises', () => {
   const b1 = course.levels.find(level => level.id === 'B1');
   assert.ok(b1);
   assert.equal(b1.units.length, 14);

@@ -54,4 +54,5 @@ test('B1 is released immediately; B2 remains sequenced after B1 completion', () 
   assert.match(html, /function isB1Complete\(completedUnits\)/);
   assert.match(html, /const isAdvanced = lvl\.id === 'B2'/);
   assert.match(html, /if \(!isB1Complete\(this\.completedUnits\)\) return;/);
+  assert.match(html, /const examButton = \['A1', 'B1'\]\.includes\(lvl\.id\)/);
 });

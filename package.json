@@ -19,6 +19,7 @@
     "quality:grammar-prerequisites": "node scripts/detect-grammar-prerequisites.mjs --output artifacts/grammar-prerequisite-candidates.json",
     "quality:ambiguity": "node scripts/detect-semantic-ambiguities.mjs --output artifacts/semantic-ambiguity-candidates.json",
     "quality:deepseek-b1-u1-u12": "node scripts/build-b1-u1-u12-review-packet.mjs",
-    "quality:deepseek-b1-u13-u26": "node scripts/build-b1-u13-u26-review-packet.mjs"
+    "quality:deepseek-b1-u13-u26": "node scripts/build-b1-u13-u26-review-packet.mjs",
+    "quality:deepseek-b1-u27-u50": "node scripts/build-b1-u27-u50-review-packet.mjs"
   }
 }

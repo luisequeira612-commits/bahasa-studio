@@ -205,7 +205,7 @@ test('B1 U13-U26 introduce new vocabulary in the correct lesson and review only 
       }
       for (const id of authored.vocabIds || []) learned.add(id);
     }
-    for (const word of unit.vocab) learned.add(word.id);
+    for (const word of unit.vocab) { learned.add(word.id); known.add(word.id); }
     for (const word of unit.vocab) assert.ok(learned.has(word.id), unit.id + ' vocabulary should be available by unit end: ' + word.id);
   }
 });

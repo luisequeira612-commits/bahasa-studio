@@ -27,7 +27,7 @@ test('B1 draft has twelve units and an explicitly incomplete vocabulary bank', (
   assert.ok(b1);
   assert.equal(b1.units.length, 12);
   assert.equal(b1.units.reduce((sum, unit) => sum + unit.vocab.length, 0), 57);
-  assert.equal(b1.units.reduce((sum, unit) => sum + unit.exercises.length, 0), 65);
+  assert.equal(b1.units.reduce((sum, unit) => sum + unit.exercises.length, 0), 66);
   assert.deepEqual(Array.from(b1.units, unit => unit.id), ['b1_u1', 'b1_u2', 'b1_u3', 'b1_u4', 'b1_u5', 'b1_u6', 'b1_u7', 'b1_u8', 'b1_u9', 'b1_u10', 'b1_u11', 'b1_u12']);
 });
 

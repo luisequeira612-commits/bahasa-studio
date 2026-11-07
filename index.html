@@ -2824,6 +2824,175 @@
                             ]
                         },
 
+                        {
+                            id: 'b1_u44',
+                            title: 'Unidad 44: estimaciones, posibilidades y potencial',
+                            desc: 'Formula estimaciones, expresa posibilidades y distingue lo probable de lo seguro.',
+                            grammar: 'Perkiraan significa estimación o previsión y memperkirakan, estimar o calcular. Kemungkinan expresa posibilidad; berpotensi, tener potencial; diperkirakan, se estima o se prevé. Estas formas permiten hablar de escenarios futuros sin presentar una previsión como un hecho seguro.',
+                            vocab: [
+                                { id: 'b1v171', idn: 'Perkiraan', esp: 'Estimación; previsión', ex: 'Perkiraan itu berdasarkan data terbaru.', exEsp: 'Esa estimación se basa en los datos más recientes.' },
+                                { id: 'b1v172', idn: 'Memperkirakan', esp: 'Estimar; calcular; prever', ex: 'Kami memperkirakan biaya perjalanan.', exEsp: 'Estimamos el costo del viaje.' },
+                                { id: 'b1v173', idn: 'Kemungkinan', esp: 'Posibilidad; probabilidad', ex: 'Ada kemungkinan hujan besok.', exEsp: 'Existe la posibilidad de que llueva mañana.' },
+                                { id: 'b1v174', idn: 'Berpotensi', esp: 'Tener potencial; ser susceptible de', ex: 'Ide itu berpotensi berhasil.', exEsp: 'Esa idea tiene potencial para funcionar.' },
+                                { id: 'b1v175', idn: 'Diperkirakan', esp: 'Se estima; se prevé', ex: 'Biaya itu diperkirakan meningkat.', exEsp: 'Se estima que ese costo aumentará.' }
+                            ],
+                            lessons: [
+                                {
+                                    title: 'Perkiraan y memperkirakan',
+                                    objective: 'Distingue una estimación del acto de calcular o prever un resultado.',
+                                    grammar: 'Perkiraan es una estimación o previsión. Memperkirakan expresa hacer esa estimación. Se puede presentar una perkiraan y explicar qué datos se usan para memperkirakan un costo o resultado.',
+                                    reviewVocabIds: ['b1v166', 'b1v168', 'b1v170', 'b1v149', 'b1v151'],
+                                    vocabIds: ['b1v171', 'b1v172'],
+                                    exercises: [
+                                        { vocabId: 'b1v171', type: 'mc', prompt: '¿Qué significa perkiraan?', options: ['Estimación o previsión', 'Prevención', 'Recurso'], answer: 0, explanation: 'Perkiraan significa estimación o previsión.' },
+                                        { vocabId: 'b1v172', type: 'translate_es_id', prompt: 'Traduce: «Estimamos el costo del viaje».', answer: 'Kami memperkirakan biaya perjalanan.', explanation: 'Memperkirakan expresa estimar o calcular.' },
+                                        { vocabId: 'b1v171', type: 'order', prompt: 'Ordena: «Esa estimación se basa en los datos más recientes».', words: ['terbaru.', 'data', 'berdasarkan', 'itu', 'Perkiraan'], correctOrder: ['Perkiraan', 'itu', 'berdasarkan', 'data', 'terbaru.'], explanation: 'Berdasarkan data terbaru explica la base de la estimación.' },
+                                        { vocabId: 'b1v172', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Kami memperkirakan biaya perjalanan sebelum berangkat.', explanation: 'La frase presenta una estimación antes de iniciar el viaje.' },
+                                        { vocabId: 'b1v171', type: 'write', prompt: 'Describe una estimación que necesitas hacer y explica qué información usarás.', hint: 'Integra perkiraan y memperkirakan.', modelAnswer: 'Perkiraan itu berdasarkan data terbaru. Kami memperkirakan biaya perjalanan sebelum berangkat.', explanation: 'La producción presenta una estimación y el proceso de calcularla.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Kemungkinan y berpotensi',
+                                    objective: 'Expresa que algo es posible y que una idea tiene potencial.',
+                                    grammar: 'Kemungkinan nombra una posibilidad o probabilidad. Berpotensi expresa que una persona, idea o situación tiene potencial para producir un resultado.',
+                                    reviewVocabIds: ['b1v171', 'b1v172', 'b1v153', 'b1v168'],
+                                    vocabIds: ['b1v173', 'b1v174'],
+                                    exercises: [
+                                        { vocabId: 'b1v173', type: 'mc', prompt: '¿Qué significa kemungkinan?', options: ['Posibilidad o probabilidad', 'Estimación exacta', 'Prevención'], answer: 0, explanation: 'Kemungkinan significa posibilidad o probabilidad.' },
+                                        { vocabId: 'b1v174', type: 'translate_es_id', prompt: 'Traduce: «Esa idea tiene potencial para funcionar».', answer: 'Ide itu berpotensi berhasil.', explanation: 'Berpotensi expresa tener potencial.' },
+                                        { vocabId: 'b1v173', type: 'order', prompt: 'Ordena: «Existe la posibilidad de que llueva mañana».', words: ['besok.', 'hujan', 'kemungkinan', 'Ada'], correctOrder: ['Ada', 'kemungkinan', 'hujan', 'besok.'], explanation: 'Ada kemungkinan presenta la existencia de una posibilidad.' },
+                                        { vocabId: 'b1v174', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Ide itu berpotensi berhasil jika kita bekerja sama.', explanation: 'La frase expresa el potencial de una idea bajo una condición.' },
+                                        { vocabId: 'b1v174', type: 'write', prompt: 'Describe una idea, expresa una posibilidad y explica qué podría ayudarla a tener éxito.', hint: 'Usa kemungkinan y berpotensi.', modelAnswer: 'Ada kemungkinan ide itu berhasil. Ide itu berpotensi berhasil jika kita bekerja sama.', explanation: 'La producción expresa posibilidad y potencial sin asegurar el resultado.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Diperkirakan y previsiones',
+                                    objective: 'Comunica una previsión y diferencia una estimación de un hecho confirmado.',
+                                    grammar: 'Diperkirakan es una forma pasiva que significa se estima o se prevé. Permite presentar una previsión sin identificar a quien la realiza. No expresa certeza absoluta.',
+                                    reviewVocabIds: ['b1v171', 'b1v172', 'b1v173', 'b1v174', 'b1v152'],
+                                    vocabIds: ['b1v175'],
+                                    exercises: [
+                                        { vocabId: 'b1v175', type: 'mc', prompt: '¿Qué significa diperkirakan?', options: ['Se estima o se prevé', 'Se demuestra con certeza', 'Se evita'], answer: 0, explanation: 'Diperkirakan significa se estima o se prevé.' },
+                                        { vocabId: 'b1v175', type: 'translate_es_id', prompt: 'Traduce: «Se estima que ese costo aumentará».', answer: 'Biaya itu diperkirakan meningkat.', explanation: 'Diperkirakan presenta una estimación o previsión.' },
+                                        { vocabId: 'b1v175', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Biaya itu diperkirakan meningkat tahun depan.', explanation: 'La frase presenta una previsión para el próximo año.' },
+                                        { vocabId: 'b1v175', type: 'write', prompt: 'Escribe un breve informe de cuatro frases: presenta una estimación, menciona una posibilidad, explica el potencial y formula una previsión sin afirmar que sea segura.', hint: 'Integra perkiraan, kemungkinan, berpotensi y diperkirakan.', modelAnswer: 'Perkiraan itu berdasarkan data terbaru. Ada kemungkinan biaya meningkat. Ide itu berpotensi berhasil. Biaya itu diperkirakan meningkat tahun depan.', explanation: 'La producción distingue estimación, posibilidad, potencial y previsión.' }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            id: 'b1_u45',
+                            title: 'Unidad 45: anticipación, prevención y precauciones',
+                            desc: 'Anticipa posibles dificultades, previene problemas y evita riesgos innecesarios.',
+                            grammar: 'Antisipasi significa anticipación o previsión preventiva y mengantisipasi, anticipar. Pencegahan significa prevención; mencegah, prevenir o impedir; menghindari, evitar. Estas formas permiten describir acciones tomadas antes de que aparezca un problema.',
+                            vocab: [
+                                { id: 'b1v176', idn: 'Antisipasi', esp: 'Anticipación; previsión preventiva', ex: 'Antisipasi membantu mengurangi risiko.', exEsp: 'La anticipación ayuda a reducir el riesgo.' },
+                                { id: 'b1v177', idn: 'Mengantisipasi', esp: 'Anticipar; prever', ex: 'Kami mengantisipasi perubahan cuaca.', exEsp: 'Anticipamos el cambio del clima.' },
+                                { id: 'b1v178', idn: 'Pencegahan', esp: 'Prevención', ex: 'Pencegahan masalah membutuhkan persiapan.', exEsp: 'La prevención de problemas requiere preparación.' },
+                                { id: 'b1v179', idn: 'Mencegah', esp: 'Prevenir; impedir', ex: 'Kita dapat mencegah kesalahan.', exEsp: 'Podemos prevenir errores.' },
+                                { id: 'b1v180', idn: 'Menghindari', esp: 'Evitar; eludir', ex: 'Saya ingin menghindari risiko yang tidak perlu.', exEsp: 'Quiero evitar riesgos innecesarios.' }
+                            ],
+                            lessons: [
+                                {
+                                    title: 'Antisipasi y mengantisipasi',
+                                    objective: 'Explica cómo prever una dificultad antes de que ocurra.',
+                                    grammar: 'Antisipasi es la previsión que se realiza para prepararse ante una situación posible. Mengantisipasi expresa la acción de anticipar o prever esa situación.',
+                                    reviewVocabIds: ['b1v171', 'b1v172', 'b1v173', 'b1v154', 'b1v155'],
+                                    vocabIds: ['b1v176', 'b1v177'],
+                                    exercises: [
+                                        { vocabId: 'b1v176', type: 'mc', prompt: '¿Qué significa antisipasi?', options: ['Anticipación o previsión preventiva', 'Consecuencia', 'Conclusión'], answer: 0, explanation: 'Antisipasi es la preparación anticipada ante una situación posible.' },
+                                        { vocabId: 'b1v177', type: 'translate_es_id', prompt: 'Traduce: «Anticipamos el cambio del clima».', answer: 'Kami mengantisipasi perubahan cuaca.', explanation: 'Mengantisipasi significa anticipar o prever.' },
+                                        { vocabId: 'b1v176', type: 'order', prompt: 'Ordena: «La anticipación ayuda a reducir el riesgo».', words: ['risiko.', 'mengurangi', 'membantu', 'Antisipasi'], correctOrder: ['Antisipasi', 'membantu', 'mengurangi', 'risiko.'], explanation: 'Antisipasi es el sujeto y membantu mengurangi expresa que ayuda a reducir.' },
+                                        { vocabId: 'b1v177', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Kami mengantisipasi perubahan cuaca sebelum bepergian.', explanation: 'La frase presenta una acción preventiva antes de viajar.' },
+                                        { vocabId: 'b1v176', type: 'write', prompt: 'Describe una dificultad que podría aparecer y explica cómo te prepararías con anticipación.', hint: 'Integra antisipasi y mengantisipasi.', modelAnswer: 'Antisipasi membantu mengurangi risiko. Kami mengantisipasi perubahan cuaca sebelum bepergian.', explanation: 'La producción conecta la previsión con una acción anticipada.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Pencegahan y mencegah',
+                                    objective: 'Describe una medida preventiva y explica qué problema intenta impedir.',
+                                    grammar: 'Pencegahan es la prevención de un problema o situación no deseada. Mencegah es el verbo que expresa prevenir o impedir que algo ocurra.',
+                                    reviewVocabIds: ['b1v176', 'b1v177', 'b1v168', 'b1v169'],
+                                    vocabIds: ['b1v178', 'b1v179'],
+                                    exercises: [
+                                        { vocabId: 'b1v178', type: 'mc', prompt: '¿Qué significa pencegahan?', options: ['Prevención', 'Estimación', 'Comparación'], answer: 0, explanation: 'Pencegahan significa prevención.' },
+                                        { vocabId: 'b1v179', type: 'translate_es_id', prompt: 'Traduce: «Podemos prevenir errores».', answer: 'Kita dapat mencegah kesalahan.', explanation: 'Mencegah significa prevenir o impedir.' },
+                                        { vocabId: 'b1v178', type: 'order', prompt: 'Ordena: «La prevención de problemas requiere preparación».', words: ['persiapan.', 'membutuhkan', 'masalah', 'Pencegahan'], correctOrder: ['Pencegahan', 'masalah', 'membutuhkan', 'persiapan.'], explanation: 'Pencegahan masalah es el sujeto de la oración.' },
+                                        { vocabId: 'b1v179', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Kita dapat mencegah kesalahan dengan memeriksa pekerjaan.', explanation: 'La frase presenta una medida concreta para prevenir errores.' },
+                                        { vocabId: 'b1v179', type: 'write', prompt: 'Propón una medida de prevención y explica qué error o problema puede impedir.', hint: 'Usa pencegahan y mencegah.', modelAnswer: 'Pencegahan masalah membutuhkan persiapan. Kita dapat mencegah kesalahan dengan memeriksa pekerjaan.', explanation: 'La producción presenta una medida preventiva y su propósito.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Menghindari riesgos innecesarios',
+                                    objective: 'Explica qué riesgo conviene evitar y qué acción puede reducirlo.',
+                                    grammar: 'Menghindari significa evitar o eludir algo. Puede tomar como objeto un riesgo, un error o una situación que se desea prevenir.',
+                                    reviewVocabIds: ['b1v176', 'b1v177', 'b1v178', 'b1v179', 'b1v127'],
+                                    vocabIds: ['b1v180'],
+                                    exercises: [
+                                        { vocabId: 'b1v180', type: 'mc', prompt: '¿Qué significa menghindari?', options: ['Evitar o eludir', 'Anticipar', 'Reconocer'], answer: 0, explanation: 'Menghindari significa evitar.' },
+                                        { vocabId: 'b1v180', type: 'translate_es_id', prompt: 'Traduce: «Quiero evitar riesgos innecesarios».', answer: 'Saya ingin menghindari risiko yang tidak perlu.', explanation: 'Menghindari expresa evitar un riesgo o situación.' },
+                                        { vocabId: 'b1v180', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Saya ingin menghindari risiko yang tidak perlu.', explanation: 'La frase expresa el deseo de evitar riesgos innecesarios.' },
+                                        { vocabId: 'b1v180', type: 'write', prompt: 'Escribe cuatro frases: anticipa un riesgo, propone una prevención, explica qué error quieres impedir y qué situación deseas evitar.', hint: 'Integra antisipasi, pencegahan, mencegah y menghindari.', modelAnswer: 'Antisipasi membantu mengurangi risiko. Pencegahan masalah membutuhkan persiapan. Kita dapat mencegah kesalahan. Saya ingin menghindari risiko yang tidak perlu.', explanation: 'La producción integra previsión, prevención y evitación de riesgos.' }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            id: 'b1_u46',
+                            title: 'Unidad 46: recursos, ahorro y eficiencia',
+                            desc: 'Habla de recursos disponibles, explica cómo ahorrar y propone una distribución eficiente.',
+                            grammar: 'Sumber daya significa recursos y penggunaan, uso o utilización. Menghemat expresa ahorrar o conservar; efisien, eficiente; mengalokasikan, asignar o distribuir recursos. Estas formas permiten explicar cómo utilizar recursos de manera responsable.',
+                            vocab: [
+                                { id: 'b1v181', idn: 'Sumber daya', esp: 'Recursos', ex: 'Kami menggunakan sumber daya dengan bijak.', exEsp: 'Utilizamos los recursos con prudencia.' },
+                                { id: 'b1v182', idn: 'Penggunaan', esp: 'Uso; utilización', ex: 'Penggunaan air harus diperhatikan.', exEsp: 'Hay que prestar atención al uso del agua.' },
+                                { id: 'b1v183', idn: 'Menghemat', esp: 'Ahorrar; economizar; conservar', ex: 'Kita perlu menghemat energi.', exEsp: 'Necesitamos ahorrar energía.' },
+                                { id: 'b1v184', idn: 'Efisien', esp: 'Eficiente', ex: 'Cara ini lebih efisien.', exEsp: 'Este método es más eficiente.' },
+                                { id: 'b1v185', idn: 'Mengalokasikan', esp: 'Asignar; distribuir recursos', ex: 'Kami mengalokasikan waktu untuk setiap tugas.', exEsp: 'Asignamos tiempo a cada tarea.' }
+                            ],
+                            lessons: [
+                                {
+                                    title: 'Sumber daya y penggunaan',
+                                    objective: 'Identifica recursos disponibles y describe cómo se utilizan.',
+                                    grammar: 'Sumber daya se refiere a los recursos disponibles para una actividad. Penggunaan nombra el uso o la utilización de esos recursos.',
+                                    reviewVocabIds: ['b1v176', 'b1v178', 'b1v171', 'b1v166'],
+                                    vocabIds: ['b1v181', 'b1v182'],
+                                    exercises: [
+                                        { vocabId: 'b1v181', type: 'mc', prompt: '¿Qué significa sumber daya?', options: ['Recursos', 'Resultados', 'Costumbres'], answer: 0, explanation: 'Sumber daya significa recursos.' },
+                                        { vocabId: 'b1v182', type: 'translate_es_id', prompt: 'Traduce: «Hay que prestar atención al uso del agua».', answer: 'Penggunaan air harus diperhatikan.', explanation: 'Penggunaan significa uso o utilización.' },
+                                        { vocabId: 'b1v181', type: 'order', prompt: 'Ordena: «Utilizamos los recursos con prudencia».', words: ['bijak.', 'dengan', 'sumber daya', 'menggunakan', 'Kami'], correctOrder: ['Kami', 'menggunakan', 'sumber daya', 'dengan', 'bijak.'], explanation: 'Dengan bijak describe cómo se utilizan los recursos.' },
+                                        { vocabId: 'b1v182', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Penggunaan air harus diperhatikan setiap hari.', explanation: 'La frase expresa que el uso del agua debe vigilarse diariamente.' },
+                                        { vocabId: 'b1v181', type: 'write', prompt: 'Describe qué recursos necesitas para una actividad y cómo deben utilizarse.', hint: 'Usa sumber daya y penggunaan.', modelAnswer: 'Kami menggunakan sumber daya dengan bijak. Penggunaan air harus diperhatikan setiap hari.', explanation: 'La producción presenta recursos y la forma de utilizarlos.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Menghemat y efisien',
+                                    objective: 'Explica cómo ahorrar recursos y elegir un método eficiente.',
+                                    grammar: 'Menghemat expresa ahorrar o conservar recursos para evitar desperdicios. Efisien describe un método que logra un resultado utilizando bien el tiempo, la energía o los materiales.',
+                                    reviewVocabIds: ['b1v181', 'b1v182', 'b1v115', 'b1v117'],
+                                    vocabIds: ['b1v183', 'b1v184'],
+                                    exercises: [
+                                        { vocabId: 'b1v183', type: 'mc', prompt: '¿Qué significa menghemat?', options: ['Ahorrar o conservar', 'Asignar', 'Negociar'], answer: 0, explanation: 'Menghemat significa ahorrar o conservar.' },
+                                        { vocabId: 'b1v184', type: 'translate_es_id', prompt: 'Traduce: «Este método es más eficiente».', answer: 'Cara ini lebih efisien.', explanation: 'Efisien significa eficiente.' },
+                                        { vocabId: 'b1v183', type: 'order', prompt: 'Ordena: «Necesitamos ahorrar energía».', words: ['energi.', 'menghemat', 'perlu', 'Kita'], correctOrder: ['Kita', 'perlu', 'menghemat', 'energi.'], explanation: 'Perlu expresa necesidad y menghemat, ahorrar.' },
+                                        { vocabId: 'b1v184', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Cara ini lebih efisien dan dapat menghemat energi.', explanation: 'La frase relaciona eficiencia con ahorro de energía.' },
+                                        { vocabId: 'b1v183', type: 'write', prompt: 'Compara dos métodos de trabajo y explica cuál ahorra más recursos y por qué es más eficiente.', hint: 'Integra menghemat y efisien.', modelAnswer: 'Kita perlu menghemat energi. Cara ini lebih efisien dan dapat menghemat energi.', explanation: 'La producción relaciona el ahorro de recursos con la eficiencia.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Mengalokasikan recursos',
+                                    objective: 'Explica cómo distribuir tiempo, materiales o presupuesto entre varias tareas.',
+                                    grammar: 'Mengalokasikan expresa asignar o distribuir recursos para distintos usos. Puede tomar como objeto waktu, dana u otros recursos, y combinarse con untuk para indicar el propósito.',
+                                    reviewVocabIds: ['b1v181', 'b1v182', 'b1v183', 'b1v184', 'b1v119'],
+                                    vocabIds: ['b1v185'],
+                                    exercises: [
+                                        { vocabId: 'b1v185', type: 'mc', prompt: '¿Qué significa mengalokasikan?', options: ['Asignar o distribuir recursos', 'Ahorrar', 'Negar'], answer: 0, explanation: 'Mengalokasikan significa asignar o distribuir recursos.' },
+                                        { vocabId: 'b1v185', type: 'translate_es_id', prompt: 'Traduce: «Asignamos tiempo a cada tarea».', answer: 'Kami mengalokasikan waktu untuk setiap tugas.', explanation: 'Mengalokasikan expresa asignar recursos.' },
+                                        { vocabId: 'b1v185', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Kami mengalokasikan waktu untuk setiap tugas dengan bijak.', explanation: 'La frase describe una distribución cuidadosa del tiempo.' },
+                                        { vocabId: 'b1v185', type: 'write', prompt: 'Escribe cuatro frases: identifica los recursos, describe su uso, explica cómo ahorrar y di cómo distribuirás el tiempo entre las tareas.', hint: 'Integra sumber daya, penggunaan, menghemat y mengalokasikan.', modelAnswer: 'Kami menggunakan sumber daya dengan bijak. Penggunaan air harus diperhatikan. Kita perlu menghemat energi. Kami mengalokasikan waktu untuk setiap tugas dengan bijak.', explanation: 'La producción integra uso responsable, ahorro y distribución de recursos.' }
+                                    ]
+                                }
+                            ]
+                        },
+
                     ]
                 },
 {

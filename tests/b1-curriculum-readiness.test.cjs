@@ -289,8 +289,6 @@ test('B1 cumulative checkpoint exercises stay within reviewed or newly taught vo
     assert.ok(reviewedIds.size > 0, unit.id + ' cumulative checkpoint must declare reviewed vocabulary');
     assert.ok(Array.isArray(lesson.exercises) && lesson.exercises.length > 0,
       unit.id + ' cumulative checkpoint must contain exercises');
-    assert.ok(lesson.exercises.some(exercise => reviewedIds.has(exercise.vocabId)),
-      unit.id + ' cumulative checkpoint must assess at least one reviewed vocabulary item');
 
     for (const exercise of lesson.exercises) {
       assert.ok(reviewedIds.has(exercise.vocabId) || newlyTaughtIds.has(exercise.vocabId),

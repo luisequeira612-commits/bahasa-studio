@@ -268,11 +268,13 @@ test('A2 units 1-4 begin with the approved temporal and narrative progression', 
   assert.equal(b1.vocab[0].ex, 'Buku dibaca oleh Rina.');
   assert.equal(b1.vocab[0].exEsp, 'El libro es leído por Rina.');
   assert.match(b1.grammar, /oleh Rina/);
-  assert.equal(b2.vocab[0].idn, 'Membangunkan');
-  assert.equal(b2.vocab[0].ex, 'Saya membangunkan anak.');
-  assert.match(b2.grammar, /sentido causativo/);
-  assert.match(b2.exercises[0].prompt, /membangunkan anak/);
-  assert.equal(b2.exercises[0].answer, 0);
+  assert.equal(b2.id, 'b2_u1');
+  assert.match(b2.title, /voz, agente y foco discursivo/i);
+  assert.equal(b2.vocab[0].id, 'v211');
+  assert.equal(b2.vocab[0].idn, 'Membaca');
+  assert.match(b2.grammar, /continuidad del discurso/);
+  assert.equal(b2.lessons.length, 3);
+  assert.equal(b2.lessons.reduce((total, lesson) => total + lesson.exercises.length, 0), 16);
 });
 
 test('A2 units 1-4 have 3-5 authored lessons and a complete unit-test bank', () => {

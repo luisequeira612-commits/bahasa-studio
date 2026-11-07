@@ -1,6 +1,6 @@
 # Diseño de B2 U1 — Voz, agente y foco discursivo
 
-**Estado:** diseño editorial inicial; todavía no es una unidad publicada ni contabilizada como terminada.  
+**Estado:** implementada en `index.html` en la rama `feat/b2-u1-voice-discourse-focus`; permanece oculta y no publicada hasta completar B2.  
 **Fecha:** 7 nov 2026  
 **Base:** plan B2 aprobado y currículo B1 actual en `index.html`.  
 **Alcance:** diseño sin vocabulario nuevo. Reutiliza únicamente las formas y raíces ya introducidas en B1 U1–U2.
@@ -83,3 +83,12 @@ Los ejercicios deben usar oraciones completas; al menos cinco deben exigir inter
 6. B2 permanece oculto/no publicado hasta completar el currículo y pasar el flujo de liberación habitual.
 
 **Límite de este documento:** especifica la primera unidad; no modifica `CourseData`, datos de usuario, IndexedDB, backup JSON v3 ni el comportamiento de la aplicación.
+
+
+## Implementación
+
+- Tres lecciones y 16 ejercicios escritos: 5 de opción múltiple, 3 de traducción, 2 de ordenación, 3 de escucha y 3 de escritura.
+- Se reutilizan los nueve IDs canónicos de B1 U1–U2, sin entradas léxicas nuevas ni cambios a las formas o glosas existentes.
+- Los nueve términos se presentan como vocabulario de repaso, no como vocabulario nuevo. El motor puede añadir una actividad local de emparejamiento por lección cuando detecta suficientes términos de repaso.
+- La unidad permanece bloqueada por las comprobaciones B2 existentes; su implementación no habilita el nivel ni cambia la liberación.
+- Se añade una prueba específica para contrato, IDs, objetivos de frase completa, escritura guiada y mantenimiento del bloqueo.

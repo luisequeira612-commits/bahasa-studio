@@ -262,3 +262,7 @@
 
 ## Revisión editorial contextual B1 U27–U32 (7 nov 2026)
 - Lectura de seis unidades: 0 errores confirmados y 2 candidatos editoriales (glosa «quizá» para `kira-kira` en U28; precisión contextual de `Saya mengatur waktu untuk tugas` en U32). No se modificó el currículo. Ver `docs/EDITORIAL_AUDIT_B1_U27_U32.md`.
+
+
+## Revisión editorial contextual B1 U33–U37 (7 nov 2026)
+- Lectura manual de cinco unidades: 0 errores confirmados y 0 candidatos que justifiquen corrección curricular. U33–U37 mantienen coherencia interna entre objetivos, glosas, explicaciones, ejemplos y ejercicios. La reutilización de IDs A2 en U35/U37 se considera coherente con la revisión acumulativa. No se modificó el currículo ni datos persistentes. Ver `docs/EDITORIAL_AUDIT_B1_U33_U37.md`.

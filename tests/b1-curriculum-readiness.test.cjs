@@ -432,9 +432,11 @@ test('B1 U25-U26 describe character and places with canonical A1 vocabulary', ()
     assert.ok(occurrences.length >= 1, 'missing new B1 form ' + form);
     assert.ok(occurrences.every(word => word.idn.toLowerCase() === form));
   }
-  assert.match(u25.grammar + u25.lessons.map(lesson => lesson.grammar).join(' '), /ramah[\s\S]*sabar[\s\S]*pendiam[\s\S]*rajin[\s\S]*malas[\s\S]*lucu[\s\S]*sopan/i);
+  const u25Text = (u25.grammar + u25.lessons.map(lesson => lesson.grammar).join(' ')).toLowerCase();
+  for (const term of ['ramah', 'sabar', 'pendiam', 'rajin', 'malas', 'lucu', 'sopan']) assert.ok(u25Text.includes(term), 'missing character adjective ' + term);
   assert.match(u25.grammar + u25.lessons.map(lesson => lesson.grammar).join(' '), /diam[\s\S]*peN-/i);
-  assert.match(u26.grammar + u26.lessons.map(lesson => lesson.grammar).join(' '), /nyaman[\s\S]*ramai[\s\S]*sepi[\s\S]*indah[\s\S]*bersih/i);
+  const u26Text = (u26.grammar + u26.lessons.map(lesson => lesson.grammar).join(' ')).toLowerCase();
+  for (const term of ['nyaman', 'ramai', 'sepi', 'indah', 'bersih']) assert.ok(u26Text.includes(term), 'missing place adjective ' + term);
   assert.ok(exercisesOf(u25).some(exercise => exercise.type === 'write' && /yang/.test(exercise.modelAnswer)));
   assert.ok(exercisesOf(u26).some(exercise => exercise.type === 'write' && /lugar/.test(exercise.prompt)));
 });

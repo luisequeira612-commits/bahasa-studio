@@ -19,7 +19,7 @@ El currículo B1 está definido dentro de `CourseData` en `index.html`. El inven
 11. Aclarar, negociar y resolver malentendidos.
 12. Integrar información y presentar conclusiones.
 
-La ampliación de U6–U12 incorpora **35 entradas nuevas de vocabulario y 35 ejercicios**, para un total de **52 entradas y 52 ejercicios** en doce unidades. El banco de evaluación independiente pasa de seis a **veinte ítems**: incluye tres tareas de escucha, tres preguntas de comprensión de un texto más extenso, tres tareas de producción escrita abierta y una tarea oral, todas las respuestas productivas pendientes de revisión humana. La expansión es un borrador de contenido beta; no constituye un currículo B1 completo ni una evaluación calibrada.
+La ampliación de U6–U12 incorpora **35 entradas nuevas de vocabulario y 35 ejercicios**, para un total inicial de **52 entradas y 52 ejercicios** en doce unidades. Tras la ampliación de B1 U1, el inventario asciende a **57 entradas y 58 ejercicios**. El banco de evaluación independiente pasa de seis a **veinte ítems**: incluye tres tareas de escucha, tres preguntas de comprensión de un texto más extenso, tres tareas de producción escrita abierta y una tarea oral, todas las respuestas productivas pendientes de revisión humana. La expansión es un borrador de contenido beta; no constituye un currículo B1 completo ni una evaluación calibrada.
 
 ## Brechas principales
 
@@ -83,7 +83,7 @@ Se incorporaron siete unidades nuevas al borrador oculto:
 
 Se añadieron cinco preguntas de opción múltiple para cubrir conectores, lectura de informes, voz pasiva, opinión y registro formal; una pregunta de interacción; una tarea oral con rúbrica; una tarea de síntesis escrita; y una tarea inicial de escucha. El banco incorpora explícitamente las habilidades `register`, `interaction` y `comprehension`. Las tres tareas escritas abiertas y la tarea oral requieren revisión humana; los ítems cerrados solo prueban comprensión de los ejemplos redactados y no validan el dominio productivo.
 
-La prueba `tests/b1-curriculum-readiness.test.cjs` ahora fija la estructura de doce unidades, 52 entradas y 52 ejercicios, comprueba que cada ejercicio apunte a vocabulario de su unidad, y confirma que B1 permanezca oculto. Las formas y ejemplos nuevos son material beta pendiente de revisión lingüística; no se deben presentar como validados por hablante nativo.
+La prueba `tests/b1-curriculum-readiness.test.cjs` ahora fija la estructura de doce unidades, 57 entradas y 58 ejercicios, comprueba que cada ejercicio apunte a vocabulario de su unidad, y confirma que B1 permanezca oculto. Las formas y ejemplos nuevos son material beta pendiente de revisión lingüística; no se deben presentar como validados por hablante nativo.
 
 
 U11 incorpora estrategias de aclaración y negociación (`bisa diulangi?`, `maksud saya`, `bagaimana kalau`); U12 incorpora vocabulario de experiencia, explicación, respuesta y conclusión. Se añadieron al banco una pregunta de interacción, una tarea oral con rúbrica y una tarea de síntesis escrita. Las tareas abiertas y orales quedan explícitamente pendientes de evaluación humana y no reciben crédito automático.
@@ -95,3 +95,10 @@ Se añadió un texto informativo breve sobre un programa comunitario de lectura,
 
 
 Las tareas de escucha distinguen respuesta breve por contenido de transcripción literal: el formulario permite una etiqueta de respuesta específica por ítem. Los tres audios/textos son cortos y sintetizados por el motor de voz del navegador; aún no sustituyen grabaciones de hablantes ni una evaluación de comprensión auditiva con variedad de voces y velocidades.
+
+
+## Ampliación B1 U1 — voz pasiva con di-
+
+Se amplía U1 de una a seis entradas de vocabulario y de un ejercicio a siete. Se incorporan `ditulis`, `dibuka`, `ditutup`, `dibuat` y `dikirim`, con ejemplos breves; las prácticas cubren reconocimiento, traducción, escucha y producción guiada. La explicación distingue el prefijo unido `di-` de la preposición de lugar `di` escrita separadamente. El total provisional de B1 queda en 57 entradas y 58 ejercicios, distribuidos en doce unidades.
+
+Este material sigue siendo un borrador interno: las frases y glosas no están certificadas por hablante nativo ni calibradas para MCER/BIPA. B1 permanece oculto. La prueba de preparación verifica inventario, referencias locales y presencia de prácticas variadas; no certifica corrección lingüística.

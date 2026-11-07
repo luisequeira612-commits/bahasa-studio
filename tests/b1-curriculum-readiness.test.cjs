@@ -274,6 +274,32 @@ test('B1 cumulative review IDs resolve only to vocabulary already taught or intr
     'B1 must retain the planned cumulative review cadence');
 });
 
+test('B1 cumulative checkpoint exercises stay within reviewed or newly taught vocabulary', () => {
+  const b1 = course.levels.find(level => level.id === 'B1');
+  const expectedCheckpoints = [4, 8, 12, 17, 22, 27, 32, 37, 42, 47];
+  const checkpoints = [];
+
+  for (const unit of b1.units) {
+    const lesson = (unit.lessons || []).find(item => /repaso acumulativo/i.test(item.title));
+    if (!lesson) continue;
+
+    checkpoints.push(Number(unit.id.slice('b1_u'.length)));
+    const reviewedIds = new Set(lesson.reviewVocabIds || []);
+    const newlyTaughtIds = new Set(lesson.vocabIds || []);
+    assert.ok(reviewedIds.size > 0, unit.id + ' cumulative checkpoint must declare reviewed vocabulary');
+    assert.ok(Array.isArray(lesson.exercises) && lesson.exercises.length > 0,
+      unit.id + ' cumulative checkpoint must contain exercises');
+
+    for (const exercise of lesson.exercises) {
+      assert.ok(reviewedIds.has(exercise.vocabId) || newlyTaughtIds.has(exercise.vocabId),
+        unit.id + ' cumulative checkpoint exercise targets vocabulary outside its review/new scope: ' + exercise.vocabId);
+    }
+  }
+
+  assert.deepEqual(checkpoints, expectedCheckpoints,
+    'all ten planned B1 checkpoints must be covered by the exercise-scope guard');
+});
+
 
 test('every B1 draft exercise references vocabulary in its own unit', () => {
   const b1 = course.levels.find(level => level.id === 'B1');

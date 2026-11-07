@@ -14,7 +14,7 @@
 ## Estado actual del currículo
 - A1: 32 de 32 unidades hechas.
 - A2: 40 de 40 unidades hechas y habilitadas en beta (`A2_RELEASE_ENABLED = true`). U5–U8 siguen en consolidación; PR #337 aclara el vocabulario objetivo de 16 prompts de traducción.
-- B1: 12/50 unidades redactadas (38 pendientes), borrador oculto con 45 entradas activas y 72 ejercicios. U1–U3 siguen di-/meN-/ber-/ter-; U4–U6, -kan/-i; U7–U9, nombres de agente pe-/peN-; U10–U11, nominalizaciones; U12, ke-an. Las 12 están alineadas con los primeros bloques del plan, pero esto no significa revisión editorial completa ni validación nativa. Contenido desplazado de U4–U6, U7–U9 y U10–U12 preservado en docs/B1_*_DISPLACED_CONTENT.md. B2: 0/60 unidades redactadas (60 pendientes).
+- B1: 14/50 unidades redactadas (36 pendientes), visible y accesible sin completar A1; 50 IDs únicos referenciados en sus unidades (incluyen 5 formas canónicas reutilizadas desde A1/A2) y 100 ejercicios. U13–U14 añaden 28 ejercicios en tres lecciones por unidad, reutilizan nueve formas ya enseñadas y suman 0 palabras nuevas globales. U1–U3: di-/meN-/ber-/ter-; U4–U6: -kan/-i; U7–U9: agentes pe-/peN-; U10–U11: nominalizaciones -an/pe-an/per-an; U12–U14: ke-an. Sin IDs duplicados ni formas nuevas. La escucha usa la síntesis de voz local del dispositivo, no grabaciones humanas. B2: 0/60 unidades del plan alineadas (60 pendientes); su desarrollo empieza al completar B1.
 - Sistema de calidad: auditoría estructural/editorial independiente de KBBI y cola editorial para vocabulario y ejercicios. Último informe CI (#350): 0 errores, 0 avisos en 72 unidades; 1.989 entradas editoriales pendientes (806 A1, 1.183 A2), sin certificación lingüística.
 
 ## Aclaración de métricas de Perfil (PR pendiente)
@@ -28,6 +28,11 @@
 - Traducción al tocar palabras (burbuja) y explicaciones contextuales (PR #45, #46).
 - Botón "crear nueva lección con IA" (Gemini), guarda offline.
 - Historial y estadísticas: implementados, por consolidar.
+
+
+## Flujo Git vigente (6 nov 2026)
+- El dueño concedió autorización permanente para crear y fusionar PRs sin aprobación individual. Fusionar solo con CI completamente verde en el último commit y sin revisiones, comentarios ni problemas pendientes; informar cada fusión.
+- Mantener una rama por cambio basada en main actualizado; cada PR incluye alcance, archivos, pruebas, riesgos y actualiza MEMORY.md.
 
 ## Estado de PR y sistema de calidad
 - PR #349 fusionado: fija Playwright 1.55.0 y el runner `ubuntu-24.04` para estabilizar CI.

@@ -35,9 +35,19 @@ App web para aprender idiomas, estilo Duolingo, alojada en GitHub Pages. Hoy tie
 - Cualquier decisión de escalabilidad debe mantener cero backend y cero costo. Si una idea requiere servidor, cuentas o pago, no se implementa: me la propones aparte.
 - Antes de compartir la app con otras personas, revisar: licencias y fuentes del vocabulario, que no haya datos personales ni claves expuestas en el repo, y que las instrucciones de uso estén claras.
 
+## Reglas curriculares B1/B2 (decisión del dueño: 6 nov 2026)
+- A1 (32 unidades) y A2 (40 unidades) están completos: no modificar sus unidades, vocabulario, ejercicios, glosas, explicaciones ni datos de seguimiento.
+- Completar B1 U1–U50 antes de desarrollar B2 U1–U60. No añadir nuevas unidades B2 antes de completar B1.
+- Las unidades B1 se muestran y se pueden estudiar en cuanto su PR se fusiona; no ocultarlas mediante flags o bloqueos ligados a A1.
+- Cada unidad nueva: 14–22 ejercicios, al menos cuatro tipos entre opción múltiple, traducción, ordenación, escucha con audio reproducible y escritura; al menos cinco ejercicios con frases completas y una producción original guiada. Añadir repaso acumulativo cada 4–5 unidades.
+- Desde A2 en adelante, enseñar mediante textos, diálogos y familias léxicas, no listas aisladas.
+- Enseñar afijos mediante familias (raíz + derivados en ejemplos completos); no asignar una traducción fija al afijo. Cada forma derivada nueva conserva su propio ID canónico; nunca duplicar una forma con IDs distintos. No exigir producción antes del nivel previsto.
+- En B1, memper- y ber-kan son solo de reconocimiento. Consultar KBBI cuando esté disponible; marcar dudas y no afirmar validación nativa.
+- No cambiar IndexedDB, el formato de backup JSON v3 ni añadir dependencias/servicios externos.
+
 ## Git
 - Nunca trabajar en main. Una rama por cambio y un pull request.
-- NO hacer merge sin mi autorización explícita ("Aprobado").
+- El dueño ha otorgado autorización permanente para crear y fusionar PRs sin aprobación individual. Fusiona únicamente cuando el CI del último commit esté completamente verde y no haya revisiones, comentarios ni problemas pendientes; informa siempre del resultado.
 - Si el CI falla, no fusionar: diagnosticar y corregir en la misma rama.
 - Cada PR incluye: qué cambió, archivos tocados, cómo se probó, riesgos.
 - Cada PR actualiza MEMORY.md. Sin excepción.

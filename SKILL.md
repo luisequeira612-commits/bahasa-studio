@@ -10,13 +10,13 @@ Cualquier tarea sobre el repo: lecciones nuevas, correcciones de vocabulario, ca
 
 ## Procedimiento
 1. Lee AGENTS.md y MEMORY.md; luego solo los archivos relacionados con la tarea.
-2. Resume en 2–3 líneas lo que vas a hacer y espera mi visto bueno si el cambio es grande.
+2. Resume brevemente el alcance y procede sin pedir aprobación por PR: el dueño ha otorgado autorización permanente para crear y fusionar PRs.
 3. Crea una rama con nombre descriptivo (ej. feat/tutor-conversacional).
 4. Haz el cambio más pequeño que cumpla el objetivo.
 5. Verifica: que la app cargue, que funcione offline, que IndexedDB y el backup v3 no cambien, y que el CI pase.
 6. Abre el PR con: qué cambió, archivos, cómo se probó, riesgos.
 7. Actualiza MEMORY.md en el mismo PR (obligatorio), editando solo las secciones que cambiaron.
-8. Espera mi "Aprobado" antes de cualquier merge.
+8. Comprueba el CI del último commit, confirma que no haya revisiones/comentarios ni problemas pendientes y fusiona la PR; informa del resultado.
 
 ## Reglas para lecciones nuevas
 - Vocabulario básico y de alta frecuencia primero; repetirlo en distintos contextos dentro de la unidad.
@@ -43,7 +43,7 @@ Cualquier tarea sobre el repo: lecciones nuevas, correcciones de vocabulario, ca
 - Mantener MEMORY.md corto: resumir etapas terminadas en 1–2 líneas.
 
 ## Qué NO hacer
-- Merge sin autorización.
+- No fusionar con CI fallido o pendiente ni con revisiones, comentarios o problemas sin resolver.
 - Dependencias nuevas sin aprobación.
 - Marcar vocabulario como "verified_primary" (solo lo hace el dueño).
 - Detener el proyecto o bloquear un PR solo porque KBBI falló o no hay validación nativa.

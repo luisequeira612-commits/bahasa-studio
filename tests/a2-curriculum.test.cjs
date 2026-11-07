@@ -532,14 +532,17 @@ test('A2 units 37-40 teach emergency readiness, tourism, remote work, and integr
   }
 });
 
-test('A2 vocabulary identifiers are unique; A2 beta is independent while B1/B2 remain gated', () => {
+test('A2 beta and B1 release are independent; B2 remains sequenced after B1', () => {
   const newIds = a2.units.flatMap(unit => unit.vocab.map(word => word.id));
   assert.equal(new Set(newIds).size, newIds.length, 'new A2 vocabulary identifiers must be unique');
   assert.match(html, /function getLearningLevels\(\)[\s\S]*?level\.id !== 'A2' \|\| A2_RELEASE_ENABLED/,
     'A2 learner-facing vocabulary and SRS must include beta content independently of A1 completion');
   assert.doesNotMatch(html, /level\.id !== 'A2'[^\n]*isA1Complete/);
-  assert.match(html, /const isAdvanced = \['B1', 'B2'\]\.includes\(lvl\.id\);[\s\S]*?if \(!a1Complete\) return;/,
-    'B1/B2 curriculum cards should remain gated until A1 completion');
+  assert.match(html, /const isAdvanced = lvl\.id === 'B2';[\s\S]*?if \(!isB1Complete\(this\.completedUnits\)\) return;/,
+    'B2 should remain sequenced after B1 completion');
+  assert.match(html, /level\.id !== 'B2'/,
+    'B1 should remain in the learner-facing levels and review pool');
+  assert.doesNotMatch(html, /!\['B1', 'B2'\]\.includes\(level\.id\)/);
 });
 
 
@@ -550,7 +553,8 @@ test('A2 is available in beta independently of A1 completion', () => {
   assert.match(htmlSource, /Beta · en revisión/);
   assert.match(htmlSource, /Disponible en beta sin requisito de completar A1/);
   assert.match(htmlSource, /if \(!A2_RELEASE_ENABLED\) return;/);
-  assert.match(htmlSource, /const isAdvanced = \['B1', 'B2'\]\.includes\(lvl\.id\)/);
+  assert.match(htmlSource, /const isAdvanced = lvl\.id === 'B2'/);
+  assert.match(htmlSource, /function isB1Complete\(completedUnits\)/);
   assert.match(htmlSource, /const unitAccessible = lvl\.id === 'A1'[\s\S]*?lvl\.id === 'A2' \? A2_RELEASE_ENABLED/);
 });
 

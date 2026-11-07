@@ -42,7 +42,7 @@ test('PWA version is consistent across HTML, manifest and cache', () => {
   assert.equal(manifest.icons[0].src, './icon.svg');
   assert.equal(manifest.background_color, '#0f172a');
   assert.match(fs.readFileSync(path.join(root, 'icon.svg'), 'utf8'), /<svg[^>]+viewBox="0 0 512 512"/);
-  assert.match(serviceWorker, /bahasa-studio-v3.8.54/);
+  assert.match(serviceWorker, /bahasa-studio-v3.8.55/);
   for (const asset of ['./', './index.html', './manifest.json', './assessment.html', './assessment-engine.js', './conversation-engine.js', './study-history.js', './study-activity.js', './adaptive-learning.js', './curriculum-a1.js', './curriculum-a2.js', './styles.css', './icon.svg', './audio-engine.js', './pronunciation-engine.js', './writing-practice.js']) {
     assert.ok(serviceWorker.includes("'" + asset + "'"), asset + ' must be precached for offline use');
   }
@@ -86,8 +86,10 @@ test('A2 is available in beta independently of A1 completion', () => {
   assert.match(html, /Beta · en revisión/);
   assert.match(html, /no ha sido validado por hablantes nativos/);
   assert.match(html, /const unitAccessible = lvl\.id === 'A1'[\s\S]*?lvl\.id === 'A2' \? A2_RELEASE_ENABLED/);
-  assert.ok(html.includes("['B1', 'B2'].includes(level.id)"),
-    'B1 and B2 must remain blocked from direct lesson entry');
+  assert.doesNotMatch(lessonEntry + assessmentEntry, /level\.id === 'B1'/,
+    'B1 must be directly accessible after release');
+  assert.match(lessonEntry + assessmentEntry, /level\.id === 'B2'/,
+    'B2 must remain sequenced after B1');
 });
 
 test('A1 units 1 and 2 teach vocabulary and provide varied practice', () => {
@@ -865,12 +867,12 @@ test('A1 units 9–11 cover numbers, prices, and time with linked exercises', ()
   }
 });
 
-test('A2 is available after A1 completion while B1 and B2 remain in development', () => {
-  assert.match(html, /const a1Complete = isA1Complete\(this\.completedUnits\)/);
-  assert.match(html, /if \(!a1Complete\) return;/);
-  assert.match(html, /A2 ya está disponible|Beta · en revisión/);
+test('B1 is released immediately and B2 follows completion of B1', () => {
+  assert.match(html, /const isAdvanced = lvl\.id === 'B2'/);
+  assert.match(html, /if \(!isB1Complete\(this\.completedUnits\)\) return;/);
+  assert.doesNotMatch(html, /if \(!a1Complete\) return;/);
   assert.match(html, /\$\{lvl\.title\} — En desarrollo/);
-  assert.match(html, /\['B1', 'B2'\]\.includes\(level\.id\)/);
+  assert.doesNotMatch(html, /\['B1', 'B2'\]\.includes\(level\.id\)/);
 });
 
 

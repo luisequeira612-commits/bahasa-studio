@@ -1071,6 +1071,111 @@
                                 { vocabId: 'b1u12_keadaan', type: 'translate_es_id', prompt: 'Traduce al indonesio: situación o condición.', answer: 'Keadaan', explanation: 'Keadaan se refiere a una situación, estado o condición.' },
                                 { vocabId: 'b1u12_kebudayaan', type: 'write', prompt: 'Escribe una frase breve usando «kebudayaan».', hint: 'Puedes hablar de la cultura de Indonesia.', modelAnswer: 'Kebudayaan Indonesia beragam.', explanation: 'El modelo usa kebudayaan para hablar de la cultura.' }
                             ]
+                        },
+                        {
+                            id: 'b1_u13',
+                            title: 'Unidad 13: ke-an — cualidades y estados',
+                            desc: 'Relaciona adjetivos conocidos con nombres de cualidad y habla de salud e higiene en frases completas.',
+                            grammar: 'En algunas palabras, ke-an forma nombres relacionados con cualidades o estados: sehat → kesehatan; bersih → kebersihan. No traduzcas el afijo por una sola palabra: aprende cada derivado y observa el contexto. Estas formas ya aparecieron en niveles anteriores; aquí se comparan y se usan en textos breves.',
+                            vocab: [
+                                { id: 'b1u12_kesehatan', idn: 'Kesehatan', esp: 'Salud', ex: 'Kesehatan sangat penting.', exEsp: 'La salud es muy importante.' },
+                                { id: 'a2u20_kebersihan', idn: 'kebersihan', esp: 'Limpieza', ex: 'Kebersihan lingkungan tanggung jawab bersama.', exEsp: 'La limpieza del entorno es responsabilidad de todos.' },
+                                { id: 'v360', idn: 'Sehat', esp: 'Sano/a; estar bien de salud', ex: 'Saya sehat.', exEsp: 'Estoy sano/a.' },
+                                { id: 'v383', idn: 'Bersih', esp: 'Limpio/a', ex: 'Kamar saya bersih.', exEsp: 'Mi habitación está limpia.' }
+                            ],
+                            lessons: [
+                                {
+                                    title: 'De adjetivo a nombre de cualidad',
+                                    objective: 'Distingue el adjetivo que describe una cualidad del nombre que la presenta como estado o concepto.',
+                                    grammar: 'Sehat describe cómo está una persona; kesehatan nombra la salud. Bersih describe algo limpio; kebersihan nombra la limpieza. La relación ayuda a reconocer familias, pero no convierte ke-an en una traducción fija.',
+                                    reviewVocabIds: ['v360', 'b1u12_kesehatan'],
+                                    exercises: [
+                                        { vocabId: 'b1u12_kesehatan', type: 'mc', prompt: 'Lee: «Kesehatan sangat penting». ¿Qué forma nombra el estado de salud?', options: ['Kesehatan', 'Sehat', 'Bersih'], answer: 0, explanation: 'Kesehatan es el nombre relacionado con la salud; sehat es el adjetivo.' },
+                                        { vocabId: 'b1u12_kesehatan', type: 'translate_es_id', prompt: 'Traduce al indonesio: «La salud es muy importante».', answer: 'Kesehatan sangat penting.', explanation: 'Kesehatan nombra la salud; sangat penting expresa que es muy importante.' },
+                                        { vocabId: 'v383', type: 'order', prompt: 'Ordena: «Mi habitación está limpia».', words: ['Kamar', 'saya', 'bersih.'], correctOrder: ['Kamar', 'saya', 'bersih.'], explanation: 'Kamar saya bersih significa «Mi habitación está limpia».' },
+                                        { vocabId: 'b1u12_kesehatan', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Kesehatan sangat penting.', explanation: 'La oración dice que la salud es muy importante.' },
+                                        { vocabId: 'v360', type: 'write', prompt: 'Escribe dos frases: una sobre tu estado de salud y otra sobre la limpieza de tu habitación.', hint: 'Usa las formas estudiadas para describir un estado y una cualidad.', modelAnswer: 'Saya sehat. Kamar saya bersih.', explanation: 'El modelo combina sehat como adjetivo y bersih para describir la habitación.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Comparar salud e higiene',
+                                    objective: 'Interpreta kebersihan en una frase completa y contrástala con sehat y kesehatan.',
+                                    grammar: 'Kebersihan es un nombre de cualidad. En «Kebersihan lingkungan tanggung jawab bersama», el contexto muestra que se habla de la limpieza como responsabilidad compartida.',
+                                    reviewVocabIds: ['a2u20_kebersihan', 'v383', 'v360'],
+                                    exercises: [
+                                        { vocabId: 'a2u20_kebersihan', type: 'mc', prompt: 'En «Kebersihan lingkungan tanggung jawab bersama», ¿qué significa «kebersihan»?', options: ['Limpieza', 'Salud', 'Familia'], answer: 0, explanation: 'Kebersihan significa limpieza; el resto de la frase indica que es una responsabilidad compartida.' },
+                                        { vocabId: 'a2u20_kebersihan', type: 'translate_es_id', prompt: 'Traduce al indonesio: «La limpieza del entorno es responsabilidad de todos».', answer: 'Kebersihan lingkungan tanggung jawab bersama.', explanation: 'Es la frase estudiada para hablar de la limpieza del entorno como responsabilidad compartida.' },
+                                        { vocabId: 'a2u20_kebersihan', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Kebersihan lingkungan tanggung jawab bersama.', explanation: 'Escucha la frase completa sobre la responsabilidad compartida por la limpieza del entorno.' },
+                                        { vocabId: 'a2u20_kebersihan', type: 'order', prompt: 'Ordena: «La limpieza del entorno es responsabilidad de todos».', words: ['Kebersihan', 'lingkungan', 'tanggung', 'jawab', 'bersama.'], correctOrder: ['Kebersihan', 'lingkungan', 'tanggung', 'jawab', 'bersama.'], explanation: 'Kebersihan lingkungan tanggung jawab bersama presenta la limpieza como responsabilidad compartida.' },
+                                        { vocabId: 'v360', type: 'mc', prompt: '¿Cuál de estas frases usa «sehat» como adjetivo?', options: ['Saya sehat.', 'Kesehatan sangat penting.', 'Kebersihan lingkungan tanggung jawab bersama.'], answer: 0, explanation: 'Saya sehat describe el estado de una persona; kesehatan y kebersihan son nombres.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Leer y producir frases sobre cualidades',
+                                    objective: 'Integra los nombres de cualidad y sus adjetivos en frases completas.',
+                                    grammar: 'Reconoce la función de cada forma por su uso en la oración: sehat y bersih describen; kesehatan y kebersihan nombran estados o cualidades.',
+                                    reviewVocabIds: ['b1u12_kesehatan', 'a2u20_kebersihan', 'v360', 'v383'],
+                                    exercises: [
+                                        { vocabId: 'b1u12_kesehatan', type: 'mc', prompt: 'Lee: «Kesehatan sangat penting. Kamar saya bersih». ¿Qué dos temas aparecen?', options: ['Salud e higiene', 'Familia y oportunidades', 'Accidentes y cultura'], answer: 0, explanation: 'La primera frase habla de la salud y la segunda describe una habitación limpia.' },
+                                        { vocabId: 'v360', type: 'translate_es_id', prompt: 'Traduce al indonesio: «Estoy sano/a».', answer: 'Saya sehat.', explanation: 'Saya sehat expresa que la persona está sana.' },
+                                        { vocabId: 'v383', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Kamar saya bersih.', explanation: 'La oración describe una habitación limpia.' },
+                                        { vocabId: 'v360', type: 'order', prompt: 'Ordena: «Estoy sano/a».', words: ['Saya', 'sehat.'], correctOrder: ['Saya', 'sehat.'], explanation: 'Saya sehat significa «Estoy sano/a».' }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            id: 'b1_u14',
+                            title: 'Unidad 14: ke-an — conceptos en contexto',
+                            desc: 'Interpreta nombres ya conocidos de familia, oportunidad, situación, accidente y cultura dentro de textos breves.',
+                            grammar: 'Algunas palabras con ke-an son formas lexicalizadas cuyo significado se aprende como una unidad: kesempatan (oportunidad), keadaan (situación o estado), kecelakaan (accidente) y kebudayaan (cultura). Keluarga también forma parte del vocabulario conocido. No deduzcas una traducción única del afijo; atiende a cada palabra y a su contexto.',
+                            vocab: [
+                                { id: 'v20', idn: 'Keluarga', esp: 'Familia', ex: 'Ini keluarga saya.', exEsp: 'Esta es mi familia.' },
+                                { id: 'a2u12_kesempatan', idn: 'Kesempatan', esp: 'Oportunidad', ex: 'Saya punya kesempatan.', exEsp: 'Tengo una oportunidad.' },
+                                { id: 'b1u12_kecelakaan', idn: 'Kecelakaan', esp: 'Accidente', ex: 'Kecelakaan itu terjadi kemarin.', exEsp: 'El accidente ocurrió ayer.' },
+                                { id: 'b1u12_keadaan', idn: 'Keadaan', esp: 'Situación; estado; condición', ex: 'Keadaan sekarang lebih baik.', exEsp: 'La situación actual está mejor.' },
+                                { id: 'b1u12_kebudayaan', idn: 'Kebudayaan', esp: 'Cultura', ex: 'Kebudayaan Indonesia beragam.', exEsp: 'La cultura indonesia es diversa.' }
+                            ],
+                            lessons: [
+                                {
+                                    title: 'Familia y oportunidad',
+                                    objective: 'Reconoce el significado de palabras completas y reutiliza vocabulario conocido en frases propias.',
+                                    grammar: 'Kesempatan significa oportunidad y keluarga significa familia. Son palabras que conviene aprender en expresiones completas, no traducir mediante una regla mecánica del afijo.',
+                                    reviewVocabIds: ['v20', 'a2u12_kesempatan'],
+                                    exercises: [
+                                        { vocabId: 'a2u12_kesempatan', type: 'mc', prompt: 'Lee: «Saya punya kesempatan». ¿Qué significa «kesempatan»?', options: ['Oportunidad', 'Familia', 'Accidente'], answer: 0, explanation: 'Kesempatan significa oportunidad.' },
+                                        { vocabId: 'a2u12_kesempatan', type: 'translate_es_id', prompt: 'Traduce al indonesio: «Tengo una oportunidad».', answer: 'Saya punya kesempatan.', explanation: 'Saya punya kesempatan significa «Tengo una oportunidad».' },
+                                        { vocabId: 'v20', type: 'order', prompt: 'Ordena: «Esta es mi familia».', words: ['Ini', 'keluarga', 'saya.'], correctOrder: ['Ini', 'keluarga', 'saya.'], explanation: 'Ini keluarga saya significa «Esta es mi familia».' },
+                                        { vocabId: 'a2u12_kesempatan', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Saya punya kesempatan.', explanation: 'La frase dice «Tengo una oportunidad».' },
+                                        { vocabId: 'v20', type: 'write', prompt: 'Escribe dos frases: presenta a tu familia y menciona una oportunidad que tengas.', hint: 'Usa una frase con cada nombre ya estudiado.', modelAnswer: 'Ini keluarga saya. Saya punya kesempatan.', explanation: 'El modelo presenta a la familia y después expresa que existe una oportunidad.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Situaciones y accidentes',
+                                    objective: 'Distingue una situación de un suceso y comprende ambas palabras dentro de oraciones completas.',
+                                    grammar: 'Keadaan se refiere a una situación, estado o condición; kecelakaan nombra un accidente. Sus significados concretos no se obtienen traduciendo ke-an de una sola manera.',
+                                    reviewVocabIds: ['b1u12_keadaan', 'b1u12_kecelakaan'],
+                                    exercises: [
+                                        { vocabId: 'b1u12_keadaan', type: 'mc', prompt: 'En «Keadaan sekarang lebih baik», ¿qué significa «keadaan»?', options: ['Situación o estado', 'Oportunidad', 'Cultura'], answer: 0, explanation: 'Keadaan se refiere a la situación o condición actual.' },
+                                        { vocabId: 'b1u12_keadaan', type: 'translate_es_id', prompt: 'Traduce al indonesio: «La situación actual está mejor».', answer: 'Keadaan sekarang lebih baik.', explanation: 'Keadaan sekarang lebih baik expresa que la situación actual está mejor.' },
+                                        { vocabId: 'b1u12_kecelakaan', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Kecelakaan itu terjadi kemarin.', explanation: 'La frase informa de un accidente ocurrido ayer.' },
+                                        { vocabId: 'b1u12_kecelakaan', type: 'order', prompt: 'Ordena: «El accidente ocurrió ayer».', words: ['Kecelakaan', 'itu', 'terjadi', 'kemarin.'], correctOrder: ['Kecelakaan', 'itu', 'terjadi', 'kemarin.'], explanation: 'Kecelakaan itu terjadi kemarin significa «El accidente ocurrió ayer».' },
+                                        { vocabId: 'b1u12_kecelakaan', type: 'mc', prompt: 'En «Kecelakaan itu terjadi kemarin», ¿qué pasó?', options: ['Ocurrió un accidente', 'La situación mejoró', 'La familia tuvo una oportunidad'], answer: 0, explanation: 'Kecelakaan itu terjadi kemarin informa de un accidente.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Cultura en contexto',
+                                    objective: 'Interpreta kebudayaan en una frase y relaciona el tema cultural con otros nombres ya conocidos.',
+                                    grammar: 'Kebudayaan significa cultura. Se aprende como una palabra completa; el contexto indica de qué cultura se habla y qué se afirma sobre ella.',
+                                    reviewVocabIds: ['b1u12_kebudayaan', 'v20', 'a2u12_kesempatan'],
+                                    exercises: [
+                                        { vocabId: 'b1u12_kebudayaan', type: 'mc', prompt: 'Lee: «Kebudayaan Indonesia penting». ¿Qué tema nombra «kebudayaan»?', options: ['La cultura', 'La salud', 'La limpieza'], answer: 0, explanation: 'Kebudayaan nombra la cultura.' },
+                                        { vocabId: 'b1u12_kebudayaan', type: 'translate_es_id', prompt: 'Traduce al indonesio: «La cultura de Indonesia es importante».', answer: 'Kebudayaan Indonesia penting.', explanation: 'Kebudayaan Indonesia penting expresa que la cultura indonesia es importante.' },
+                                        { vocabId: 'b1u12_kebudayaan', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Kebudayaan Indonesia penting.', explanation: 'La frase dice que la cultura indonesia es importante.' },
+                                        { vocabId: 'b1u12_kebudayaan', type: 'order', prompt: 'Ordena: «La cultura de Indonesia es importante».', words: ['Kebudayaan', 'Indonesia', 'penting.'], correctOrder: ['Kebudayaan', 'Indonesia', 'penting.'], explanation: 'Kebudayaan Indonesia penting significa «La cultura indonesia es importante».' }
+                                    ]
+                                }
+                            ]
                         }
                     ]
                 },
@@ -1824,7 +1929,7 @@
 
             startUnitAssessment(unitId) {
                 const level = getLevels().find(entry => entry.units.some(unit => unit.id === unitId));
-                if (!level || ['B1', 'B2'].includes(level.id) ||
+                if (!level || level.id === 'B2' ||
                     (level.id === 'A2' && !A2_RELEASE_ENABLED)) return;
                 const unit = level.units.find(entry => entry.id === unitId);
                 if (!unit) return;
@@ -1856,7 +1961,7 @@
                 for (const level of getLevels()) {
                     const unit = level.units.find(entry => entry.id === id);
                     if (!unit) continue;
-                    if (['B1', 'B2'].includes(level.id) ||
+                    if (level.id === 'B2' ||
                         (level.id === 'A2' && !A2_RELEASE_ENABLED)) return;
                     const lessons = buildUnitLessons(unit);
                     const nextIndex = lessons.findIndex(lesson => !App.completedLessons.includes(unitLessonProgressKey(id, lesson.index)));
@@ -1874,7 +1979,7 @@
             },
             startUnit(unit, lessonIndex = 0) {
                 const level = getLevels().find(entry => entry.units.some(candidate => candidate.id === unit.id));
-                if (level && (['B1', 'B2'].includes(level.id) ||
+                if (level && (level.id === 'B2' ||
                     (level.id === 'A2' && !A2_RELEASE_ENABLED))) return;
                 const lessons = buildUnitLessons(unit);
                 const lesson = lessons[lessonIndex];
@@ -2415,9 +2520,14 @@
             const completed = Array.isArray(completedUnits) ? completedUnits : [];
             return Boolean(a1 && a1.units.length > 0 && a1.units.every(unit => completed.includes(unit.id)));
         }
+        function isB1Complete(completedUnits) {
+            const b1 = CourseData.levels.find(level => level.id === 'B1');
+            const completed = Array.isArray(completedUnits) ? completedUnits : [];
+            return Boolean(b1 && b1.units.length > 0 && b1.units.every(unit => completed.includes(unit.id)));
+        }
         function getLearningLevels() {
             return getLevels().filter(level =>
-                !['B1', 'B2'].includes(level.id) &&
+                level.id !== 'B2' &&
                 (level.id !== 'A2' || A2_RELEASE_ENABLED)
             );
         }
@@ -3031,14 +3141,13 @@ Requisitos:
                 const container = document.getElementById('courseContainer');
                 container.innerHTML = '';
                 const a1 = CourseData.levels.find(level => level.id === 'A1');
-                const a1Complete = isA1Complete(this.completedUnits);
                 const nextA1Unit = a1 ? a1.units.find(unit => !this.completedUnits.includes(unit.id)) : null;
 
                 getLevels().forEach(lvl => {
                     const levelEl = document.createElement('div');
-                    const isAdvanced = ['B1', 'B2'].includes(lvl.id);
+                    const isAdvanced = lvl.id === 'B2';
                     if (isAdvanced) {
-                        if (!a1Complete) return;
+                        if (!isB1Complete(this.completedUnits)) return;
                         levelEl.innerHTML = `<details style="margin:16px 0; padding:12px; border:1px solid var(--border); border-radius:12px;"><summary style="cursor:pointer; font-weight:700;">${lvl.title} — En desarrollo</summary><p style="margin-top:10px; color:var(--text-muted); font-size:0.9rem;">Este nivel todavía no está disponible para estudiar.</p></details>`;
                         container.appendChild(levelEl);
                         return;
@@ -3074,8 +3183,8 @@ Requisitos:
                         const primaryLessonButton = isNext && currentLessonIndex < lessons.length
                             ? `<button class="btn lesson-start-btn" data-unit-id="${App.escapeHtml(unit.id)}" data-lesson-index="${currentLessonIndex}" onclick="LessonEngine.startUnitById(this.dataset.unitId, Number(this.dataset.lessonIndex))">Empezar lección ${currentLessonIndex + 1}</button>`
                             : '';
-                        const examButton = lvl.id === 'A1' && !isDone && unitAccessible && completedCount === lessons.length
-                            ? `<button class="btn" data-unit-id="${App.escapeHtml(unit.id)}" onclick="LessonEngine.startUnitAssessment(this.dataset.unitId)">Prueba final · Desbloquear siguiente unidad</button>`
+                        const examButton = ['A1', 'B1'].includes(lvl.id) && !isDone && unitAccessible && completedCount === lessons.length
+                            ? `<button class="btn" data-unit-id="${App.escapeHtml(unit.id)}" onclick="LessonEngine.startUnitAssessment(this.dataset.unitId)">${lvl.id === 'A1' ? 'Prueba final · Desbloquear siguiente unidad' : 'Prueba de unidad'}</button>`
                             : '';
                         const statusLabel = isDone ? (lvl.id === 'A1' ? 'Aprobada' : 'Completada')
                             : lvl.id === 'A1' ? (isNext ? 'En curso' : 'Bloqueada') : 'Disponible';

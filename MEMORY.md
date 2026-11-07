@@ -101,6 +101,7 @@
 ## PR4 — comprobaciones automáticas de calidad (6 nov 2026)
 - Se añade una comprobación de sincronía entre IDs únicos del currículo A1/A2 y los tres trackers, incluidos estados permitidos y evidencia mínima de `verified_primary`; es la única comprobación bloqueante, activada tras un baseline real con cero hallazgos. Los IDs compartidos cuentan una sola vez.
 - Se añaden informes informativos por unidad (contrato de ejercicios, estimación de frases, pistas de producción, marcas de repaso y recurrencia) y de acoplamiento del código al indonesio. El análisis de frases es heurístico; la detección de repaso solo reconoce marcas explícitas.
+- Incremento de calidad (6 nov 2026): el auditor busca formas futuras en segmentos indonesios; en `modelAnswer` prioriza segmentos entre comillas y excluye la prosa española que los rodea. Componentes de expresiones ya enseñadas cuentan como exposición previa y se evita duplicar una coincidencia específica con otra genérica (`Di sini`/`Sini`). Coincide tokens exactos, sin análisis morfológico ni validación lingüística; ver límites en `docs/INDEPENDENT_CURRICULUM_QUALITY_SYSTEM.md`.
 - Supresiones de usos legítimos documentadas en `docs/LANGUAGE_COUPLING_SUPPRESSIONS.md`. Los tres informes se generan offline y se suben como artefactos; sin dependencias nuevas ni cambios en datos curriculares, trackers, IndexedDB o backup JSON v3.
 
 

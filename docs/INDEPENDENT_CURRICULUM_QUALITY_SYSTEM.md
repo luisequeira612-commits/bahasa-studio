@@ -23,11 +23,14 @@ El script `scripts/audit-curriculum-quality.mjs` carga los currículos locales A
 - consistencia entre `words` y `correctOrder` en ejercicios de orden, también en ejercicios de lección;
 - referencias `vocabId`, `vocabIds` y `reviewVocabIds` que no resuelven al vocabulario del nivel; se permiten referencias acumulativas de A2 hacia A1, pero no referencias de A1 hacia vocabulario futuro de A2;
 - referencias en ejercicios de unidad y de lección;
+- avisos heurísticos cuando una forma de vocabulario presentada después aparece en campos de contenido indonesio (`ex`, `audioText`, `dialogue`, `readingText`, `words`, `correctOrder` y respuestas de ejercicios que esperan indonesio); en instrucciones o prosa bilingüe solo se inspeccionan fragmentos entre comillas. Se excluyen glosas españolas, ejemplos traducidos y opciones MC sin clasificación de idioma;
 - avisos cuando un ejercicio de unidad usa vocabulario del mismo nivel que solo se introduce en una unidad posterior;
 - avisos equivalentes dentro de una unidad cuando un ejercicio de lección usa vocabulario presentado en una lección posterior; se respeta `reviewVocabIds` como declaración explícita de repaso;
 - se permite el vocabulario ya presentado y el repaso acumulativo A2→A1.
 
 Las referencias de repaso pueden apuntar legítimamente de A2 a vocabulario presentado en A1. La dirección inversa no se permite: A1 no debe depender de vocabulario que solo se presenta en A2. Las unidades con lecciones se auditan en esa estructura y no se consideran incompletas por no tener un array de ejercicios en el nivel superior. Los chequeos son locales, deterministas y no hacen peticiones de red. Un resultado sin errores significa únicamente que las reglas estructurales implementadas han pasado.
+
+La búsqueda textual solo compara formas completas normalizadas de tres o más caracteres y suprime coincidencias cubiertas por expresiones más largas ya enseñadas. No detecta variantes morfológicas, no puede clasificar con certeza el idioma de un fragmento citado y no determina equivalencia semántica. Puede pasar por alto código mezclado sin comillas o avisar por homógrafos entre idiomas dentro de un segmento citado; los avisos son candidatos editoriales no bloqueantes que requieren revisión contextual.
 
 ## Qué NO afirma
 
@@ -76,6 +79,12 @@ Los estados son independientes. La ausencia de una fuente o de un revisor nunca 
 ## Principio operativo
 
 KBBI es una fuente de evidencia útil, no una dependencia de ejecución ni un semáforo universal de calidad. La aplicación puede seguir avanzando con controles reproducibles, documentación honesta y una cola explícita de cuestiones lingüísticas pendientes.
+
+## Detección de vocabulario adelantado en texto
+
+El auditor busca entradas de vocabulario en ejemplos y segmentos de ejercicios escritos en indonesio. En `modelAnswer`, si hay segmentos entre comillas reconocidas, solo analiza esos segmentos: la prosa española que los rodea queda fuera. Si no hay segmentos entre comillas, trata la respuesta completa como indonesia. Las formas que aparecen dentro de una entrada de vocabulario de varias palabras cuentan como exposición previa de sus componentes; si una coincidencia contiene una expresión más específica introducida antes que una entrada de una sola palabra, informa solo la expresión específica.
+
+La búsqueda usa coincidencia exacta de tokens normalizados: no analiza flexión, morfología ni significado, y la puntuación se normaliza como separador. Por ello puede omitir formas derivadas o producir coincidencias incidentales, especialmente cuando la respuesta completa sin comillas contiene español. Estos avisos señalan posibles problemas de secuencia; no certifican que una frase sea correcta o incorrecta ni sustituyen la revisión editorial.
 
 ## Cola editorial independiente
 

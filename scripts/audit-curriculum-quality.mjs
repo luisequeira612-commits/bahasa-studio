@@ -110,6 +110,72 @@ function auditAcceptedAnswers(exercise, path, issues, prefix = '') {
   });
 }
 
+function normalizeTextForVocabularyMatch(value) {
+  return String(value ?? '')
+    .normalize('NFD')
+    .replace(/\p{M}/gu, '')
+    .toLocaleLowerCase()
+    .replace(/[^\p{L}\p{N}]+/gu, ' ')
+    .trim()
+    .replace(/\s+/g, ' ');
+}
+
+function collectDirectText(value, path, entries) {
+  if (typeof value === 'string') {
+    if (value.trim()) entries.push({ path, text: value });
+    return;
+  }
+  if (Array.isArray(value)) {
+    value.forEach((item, index) => collectDirectText(item, `${path}[${index}]`, entries));
+    return;
+  }
+  if (!value || typeof value !== 'object') return;
+  if (typeof value.text === 'string') {
+    collectDirectText(value.text, `${path}.text`, entries);
+  }
+}
+
+function collectQuotedIndonesianSegments(value, path, entries) {
+  if (typeof value === 'string') {
+    const quotePattern = /«([^»]+)»|“([^”]+)”|"([^"]+)"/gu;
+    for (const [index, match] of [...value.matchAll(quotePattern)].entries()) {
+      const text = match[1] ?? match[2] ?? match[3];
+      if (text.trim()) entries.push({ path: `${path}#quoted[${index}]`, text });
+    }
+    return;
+  }
+  if (Array.isArray(value)) {
+    value.forEach((item, index) => collectQuotedIndonesianSegments(item, `${path}[${index}]`, entries));
+    return;
+  }
+  if (value && typeof value === 'object') {
+    for (const [key, child] of Object.entries(value)) {
+      collectQuotedIndonesianSegments(child, `${path}.${key}`, entries);
+    }
+  }
+}
+
+function collectIndonesianExerciseText(exercise, path) {
+  const entries = [];
+  for (const field of ['audioText', 'dialogue', 'readingText', 'words', 'correctOrder']) {
+    if (exercise[field] !== undefined) collectDirectText(exercise[field], `${path}.${field}`, entries);
+  }
+  if (['listen', 'translate_es_id'].includes(exercise.type) && exercise.answer !== undefined) {
+    collectDirectText(exercise.answer, `${path}.answer`, entries);
+    if (exercise.acceptedAnswers !== undefined) collectDirectText(exercise.acceptedAnswers, `${path}.acceptedAnswers`, entries);
+  }
+  if (exercise.type === 'write' && exercise.modelAnswer !== undefined) {
+    const quotedSegments = [];
+    collectQuotedIndonesianSegments(exercise.modelAnswer, `${path}.modelAnswer`, quotedSegments);
+    if (quotedSegments.length) entries.push(...quotedSegments);
+    else collectDirectText(exercise.modelAnswer, `${path}.modelAnswer`, entries);
+  }
+  for (const field of ['prompt', 'hint', 'explanation']) {
+    if (exercise[field] !== undefined) collectQuotedIndonesianSegments(exercise[field], `${path}.${field}`, entries);
+  }
+  return entries;
+}
+
 export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown', knownVocabIds = []) {
   const issues = [];
   const units = Array.isArray(curriculum?.units) ? curriculum.units : [];
@@ -407,6 +473,103 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
   // Unit-level exercises should not assess same-level vocabulary introduced
   // only in a later unit; report this as a warning to avoid false hard blocks.
   const availableVocabIds = new Set([...vocabIds.keys(), ...knownVocabIds]);
+  const textVocabulary = new Map();
+  const vocabularyTokenIntroductions = new Map();
+  const firstLessonByVocabId = new Map();
+  units.forEach((unit, unitIndex) => {
+    (unit?.lessons ?? []).forEach((lesson, lessonIndex) => {
+      for (const id of Array.isArray(lesson?.vocabIds) ? lesson.vocabIds : []) {
+        if (typeof id === 'string' && id && !firstLessonByVocabId.has(id)) {
+          firstLessonByVocabId.set(id, { unitIndex, lessonIndex });
+        }
+      }
+    });
+  });
+  units.forEach((unit, unitIndex) => {
+    (unit?.vocab ?? []).forEach((word) => {
+      if (!word || typeof word.id !== 'string' || !word.id) return;
+      const normalized = normalizeTextForVocabularyMatch(word.idn);
+      // Very short entries are too ambiguous for a reliable text search.
+      if (normalized.length < 3) return;
+      const introductionUnit = vocabIntroductionUnit.get(word.id) ?? unitIndex;
+      const lessonIntroduction = firstLessonByVocabId.get(word.id);
+      const introduction = {
+        id: word.id,
+        unitIndex: introductionUnit,
+        lessonIndex: lessonIntroduction?.unitIndex === introductionUnit ? lessonIntroduction.lessonIndex : undefined,
+      };
+      const term = textVocabulary.get(normalized) ?? { normalized, display: word.idn, introductions: [] };
+      if (!term.introductions.some((item) => item.id === introduction.id && item.unitIndex === introduction.unitIndex)) {
+        term.introductions.push(introduction);
+      }
+      textVocabulary.set(normalized, term);
+      if (normalized.includes(' ')) {
+        for (const token of normalized.split(' ')) {
+          if (token.length < 3) continue;
+          const tokenIntroductions = vocabularyTokenIntroductions.get(token) ?? [];
+          if (!tokenIntroductions.some((item) => item.id === introduction.id && item.unitIndex === introduction.unitIndex)) {
+            tokenIntroductions.push(introduction);
+          }
+          vocabularyTokenIntroductions.set(token, tokenIntroductions);
+        }
+      }
+    });
+  });
+
+  const auditAuthoredTextEntries = (entries, { unitIndex, lessonIndex, reviewIds = [], linkedIds = [] }) => {
+    const reviewSet = new Set(reviewIds);
+    const linkedSet = new Set(linkedIds);
+    const availableAtPosition = (introduction) => introduction.unitIndex < unitIndex ||
+      (introduction.unitIndex === unitIndex && (lessonIndex === undefined || introduction.lessonIndex === undefined || introduction.lessonIndex <= lessonIndex));
+    for (const entry of entries) {
+      const normalizedText = normalizeTextForVocabularyMatch(entry.text);
+      const paddedText = ` ${normalizedText} `;
+      if (normalizedText.length < 3) continue;
+      for (const term of textVocabulary.values()) {
+        if (!paddedText.includes(` ${term.normalized} `)) continue;
+        const introductions = term.introductions;
+        if (introductions.some((item) => linkedSet.has(item.id) || reviewSet.has(item.id))) continue;
+        const alreadyAvailable = introductions.some(availableAtPosition);
+        if (alreadyAvailable) continue;
+
+        // A word already appeared inside a previously taught multiword entry.
+        // Treat that exposure as prior vocabulary, while keeping the exact
+        // later expression itself eligible for a sequencing warning.
+        const componentAlreadyAvailable = !term.normalized.includes(' ') &&
+          (vocabularyTokenIntroductions.get(term.normalized) ?? []).some(availableAtPosition);
+        if (componentAlreadyAvailable) continue;
+
+        // If the same occurrence contains a longer expression introduced
+        // before the shorter entry, keep the more specific warning only.
+        const coveredByMoreSpecificExpression = [...textVocabulary.values()].some((expression) =>
+          expression.normalized.length > term.normalized.length &&
+          ` ${expression.normalized} `.includes(` ${term.normalized} `) &&
+          paddedText.includes(` ${expression.normalized} `) &&
+          expression.introductions.some((expressionIntroduction) =>
+            introductions.some((termIntroduction) =>
+              expressionIntroduction.unitIndex < termIntroduction.unitIndex ||
+              (expressionIntroduction.unitIndex === termIntroduction.unitIndex &&
+                (expressionIntroduction.lessonIndex ?? -1) <= (termIntroduction.lessonIndex ?? -1))
+            )
+          )
+        );
+        if (coveredByMoreSpecificExpression) continue;
+
+        const laterUnit = introductions.find((item) => item.unitIndex > unitIndex);
+        if (laterUnit) {
+          issues.push(issue('warning', 'TEXT_VOCAB_USED_BEFORE_INTRODUCTION', entry.path,
+            `El texto contiene «${term.display}», introducido en la unidad ${laterUnit.unitIndex + 1}; revisar si es un adelanto intencional o vocabulario fuera de progresión.`));
+          continue;
+        }
+        const laterLesson = introductions.find((item) => item.unitIndex === unitIndex && item.lessonIndex > lessonIndex);
+        if (laterLesson) {
+          issues.push(issue('warning', 'LESSON_TEXT_VOCAB_USED_BEFORE_INTRODUCTION', entry.path,
+            `El texto contiene «${term.display}», introducido en la lección ${laterLesson.lessonIndex + 1}; revisar si debe declararse como repaso o moverse después de su presentación.`));
+        }
+      }
+    }
+  };
+
   units.forEach((unit, unitIndex) => {
     const unitPath = `${level}.units[${unitIndex}]`;
     const checkRef = (id, path) => {
@@ -462,6 +625,57 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
             issues.push(issue('warning', 'LESSON_VOCAB_USED_BEFORE_INTRODUCTION', referencePath, `El ejercicio usa ${id}, introducido en la lección ${introductionLesson + 1}; revisar si debe declararse como repaso o moverse después de su presentación.`));
           }
         }
+      });
+    });
+
+    (Array.isArray(unit.exercises) ? unit.exercises : []).forEach((exercise, index) => {
+      const entries = collectIndonesianExerciseText(exercise, `${unitPath}.exercises[${index}]`);
+      const linkedIds = [
+        ...(typeof exercise?.vocabId === 'string' ? [exercise.vocabId] : []),
+        ...(Array.isArray(exercise?.vocabIds) ? exercise.vocabIds : []),
+      ];
+      auditAuthoredTextEntries(entries, { unitIndex, linkedIds });
+    });
+    const unitMetadataEntries = [];
+    for (const field of ['title', 'grammar', 'description', 'objective', 'goal', 'introduction', 'context', 'instruction', 'instructions']) {
+      if (unit[field] !== undefined) collectQuotedIndonesianSegments(unit[field], `${unitPath}.${field}`, unitMetadataEntries);
+    }
+    auditAuthoredTextEntries(unitMetadataEntries, { unitIndex });
+    (Array.isArray(unit.vocab) ? unit.vocab : []).forEach((word, index) => {
+      if (typeof word?.ex !== 'string') return;
+      const lessonIntroduction = firstLessonByVocabId.get(word.id);
+      auditAuthoredTextEntries([{ path: `${unitPath}.vocab[${index}].ex`, text: word.ex }], {
+        unitIndex,
+        lessonIndex: lessonIntroduction?.unitIndex === unitIndex ? lessonIntroduction.lessonIndex : undefined,
+        linkedIds: [word.id],
+      });
+    });
+
+    lessons.forEach((lesson, lessonIndex) => {
+      if (!lesson || typeof lesson !== 'object') return;
+      const lessonEntries = [];
+      for (const field of ['title', 'grammar', 'description', 'objective', 'goal', 'introduction', 'context', 'instruction', 'instructions']) {
+        if (lesson[field] !== undefined) {
+          collectQuotedIndonesianSegments(lesson[field], `${unitPath}.lessons[${lessonIndex}].${field}`, lessonEntries);
+        }
+      }
+      auditAuthoredTextEntries(lessonEntries, {
+        unitIndex,
+        lessonIndex,
+        reviewIds: Array.isArray(lesson.reviewVocabIds) ? lesson.reviewVocabIds : [],
+      });
+      (Array.isArray(lesson.exercises) ? lesson.exercises : []).forEach((exercise, exerciseIndex) => {
+        const exerciseEntries = collectIndonesianExerciseText(exercise, `${unitPath}.lessons[${lessonIndex}].exercises[${exerciseIndex}]`);
+        const linkedIds = [
+          ...(typeof exercise?.vocabId === 'string' ? [exercise.vocabId] : []),
+          ...(Array.isArray(exercise?.vocabIds) ? exercise.vocabIds : []),
+        ];
+        auditAuthoredTextEntries(exerciseEntries, {
+          unitIndex,
+          lessonIndex,
+          reviewIds: Array.isArray(lesson.reviewVocabIds) ? lesson.reviewVocabIds : [],
+          linkedIds,
+        });
       });
     });
   });

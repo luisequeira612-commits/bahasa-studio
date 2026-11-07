@@ -193,3 +193,6 @@
 
 ## Revisión contextual A1 U24–U32 (7 nov 2026)
 - Lectura de 102 ejercicios: 2 candidatos de concordancia de persona en consignas (U25 y U29); 0 errores confirmados y ningún cambio curricular. Ver docs/EDITORIAL_AUDIT_A1_U24_U32_EXERCISES.md.
+
+## Revisión editorial contextual A2 U1–U4 (7 nov 2026)
+- Lectura de 4 unidades, 60 entradas de vocabulario, 17 lecciones y 78 ejercicios. Un candidato de alineación entre consigna y placeholder en U3 L1: la consigna pide una respuesta bilingüe (explicación española + secuencia indonesia), pero el campo muestra «Escribe tu respuesta en indonesio». `checkWriting()` no corrige automáticamente; muestra el modelo y permite autoevaluarse. No es error lingüístico confirmado. Sin cambios curriculares. Ver docs/EDITORIAL_AUDIT_A2_U1_U4.md.

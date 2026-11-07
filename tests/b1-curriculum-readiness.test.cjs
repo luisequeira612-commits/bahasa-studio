@@ -518,7 +518,7 @@ test('B1 U21-U24 teach cause, purpose and past-experience narration', () => {
   assert.deepEqual(Array.from(u22.vocab, word => word.id), ['b1v071', 'b1v072']);
   assert.deepEqual(Array.from(u23.vocab, word => word.id), ['a2u16_pernah', 'b1v073', 'a2u2_baru_saja', 'b1v074', 'b1v075', 'a2u2_masih']);
   assert.deepEqual(Array.from(u24.vocab, word => word.id), ['b1v076', 'b1v077', 'a2u3_ketika', 'a2u3_kemudian', 'a2u3_setelah_itu', 'a2u12_pengalaman', 'a2u14_perjalanan', 'a2u16_liburan']);
-  const expectedCounts = new Map([[u21, 14], [u22, 14], [u23, 14], [u24, 14]]);
+  const expectedCounts = new Map([[u21, 14], [u22, 18], [u23, 14], [u24, 14]]);
   const allNewForms = new Map([
     ['b1v065', 'karena'], ['b1v066', 'sebab'], ['b1v067', 'oleh karena itu'],
     ['b1v068', 'sehingga'], ['b1v069', 'akibatnya'], ['b1v070', 'makanya'],
@@ -580,7 +580,7 @@ test('B1 U27-U29 teach opinions, probability and advice', () => {
   assert.deepEqual(Array.from(u27.vocab, word => word.id), ['b1v088', 'b1v089', 'b1v090', 'b1v091', 'b1v092', 'b1v093', 'b1v094']);
   assert.deepEqual(Array.from(u28.vocab, word => word.id), ['b1v095', 'b1v096', 'b1v097', 'b1v098', 'b1v099']);
   assert.deepEqual(Array.from(u29.vocab, word => word.id), ['b1v100', 'b1v101', 'b1v102', 'b1v103', 'b1v104']);
-  const expectedCounts = new Map([[u27, 14], [u28, 14], [u29, 14]]);
+  const expectedCounts = new Map([[u27, 18], [u28, 14], [u29, 14]]);
   const allNewForms = new Map([
     ['b1v088', 'pendapat'], ['b1v089', 'menurut saya'], ['b1v090', 'bagi saya'],
     ['b1v091', 'setuju'], ['b1v092', 'tidak setuju'], ['b1v093', 'berpikir'], ['b1v094', 'merasa'],
@@ -693,7 +693,7 @@ test('B1 U32-U34 consolidate planning, problem solving and decision evaluation',
     assert.deepEqual(Array.from(unit.vocab, word => word.id), expected[i]);
     assert.equal(unit.lessons.length, ['b1_u22', 'b1_u27', 'b1_u32', 'b1_u37', 'b1_u42', 'b1_u47'].includes(unit.id) ? 4 : 3);
     const exercises = exercisesOf(unit);
-    assert.equal(exercises.length, 14);
+    assert.equal(exercises.length, unit.id === 'b1_u32' ? 18 : 14);
     for (const type of ['mc', 'translate_es_id', 'order', 'listen', 'write']) {
       assert.ok(exercises.some(exercise => exercise.type === type), unit.id + ' missing exercise type ' + type);
     }
@@ -740,7 +740,7 @@ test('B1 U35-U37 teach negotiation, clear communication and continuous improveme
     assert.deepEqual(Array.from(unit.vocab, word => word.id), expected[i]);
     assert.equal(unit.lessons.length, ['b1_u22', 'b1_u27', 'b1_u32', 'b1_u37', 'b1_u42', 'b1_u47'].includes(unit.id) ? 4 : 3);
     const exercises = exercisesOf(unit);
-    assert.equal(exercises.length, 14);
+    assert.equal(exercises.length, unit.id === 'b1_u37' ? 18 : 14);
     for (const type of ['mc', 'translate_es_id', 'order', 'listen', 'write']) {
       assert.ok(exercises.some(exercise => exercise.type === type), unit.id + ' missing exercise type ' + type);
     }
@@ -834,7 +834,7 @@ test('B1 U41-U43 teach reporting, comparison and conditional influence', () => {
     assert.deepEqual(Array.from(unit.vocab, word => word.id), expected[i]);
     assert.equal(unit.lessons.length, ['b1_u22', 'b1_u27', 'b1_u32', 'b1_u37', 'b1_u42', 'b1_u47'].includes(unit.id) ? 4 : 3);
     const exercises = exercisesOf(unit);
-    assert.equal(exercises.length, 14);
+    assert.equal(exercises.length, unit.id === 'b1_u42' ? 18 : 14);
     for (const type of ['mc', 'translate_es_id', 'order', 'listen', 'write']) {
       assert.ok(exercises.some(exercise => exercise.type === type), unit.id + ' missing exercise type ' + type);
     }
@@ -950,7 +950,7 @@ test('B1 U47-U49 teach procedures, community participation and sustainability', 
     assert.deepEqual(Array.from(unit.vocab, word => word.id), expected[i]);
     assert.equal(unit.lessons.length, ['b1_u22', 'b1_u27', 'b1_u32', 'b1_u37', 'b1_u42', 'b1_u47'].includes(unit.id) ? 4 : 3);
     const exercises = exercisesOf(unit);
-    assert.equal(exercises.length, 14);
+    assert.equal(exercises.length, unit.id === 'b1_u47' ? 18 : 14);
     for (const type of ['mc', 'translate_es_id', 'order', 'listen', 'write']) {
       assert.ok(exercises.some(exercise => exercise.type === type), unit.id + ' missing exercise type ' + type);
     }

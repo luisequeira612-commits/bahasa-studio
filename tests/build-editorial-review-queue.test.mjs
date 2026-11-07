@@ -154,8 +154,23 @@ test('rejects ambiguous or empty editorial queue scopes', () => {
     { id: 'a1_u24', vocab: [{ id: 'v1', idn: 'rumah', esp: 'casa', ex: 'Ini rumah.', exEsp: 'Esta es una casa.' }] },
   ] }]);
   assert.throws(() => filterEditorialQueue(rows, { unit: 'a1_u24' }), /requires --level/);
-  assert.throws(() => filterEditorialQueue(rows, { level: 'B1' }), /must be A1 or A2/);
+  assert.throws(() => filterEditorialQueue(rows, { level: 'B2' }), /must be A1, A2 or B1/);
   assert.throws(() => filterEditorialQueue(rows, { level: 'A1', unit: 'a1_u99' }), /No editorial entries found/);
+});
+
+
+test('includes B1 lesson vocabulary and exercises in scoped editorial queues', () => {
+  const rows = buildEditorialQueue([{ id: 'B1', units: [{
+    id: 'b1_u1',
+    title: 'Voz pasiva',
+    vocab: [{ id: 'b1v1', idn: 'dibaca', esp: 'es leído', ex: 'Buku itu dibaca.', exEsp: 'Ese libro es leído.' }],
+    lessons: [{ exercises: [
+      { type: 'listen', prompt: 'Escucha la frase', answer: 'Buku itu dibaca.', vocabId: 'b1v1' },
+    ] }],
+  }] }]);
+  assert.equal(rows.length, 2);
+  assert.deepEqual(filterEditorialQueue(rows, { level: 'B1', unit: 'B1_U1' }).map((row) => row.item_type), ['vocabulary', 'exercise']);
+  assert.equal(filterEditorialQueue(rows, { level: 'B1' }).length, 2);
 });
 
 // Keep batch parser regressions in the existing CI-invoked editorial test step.

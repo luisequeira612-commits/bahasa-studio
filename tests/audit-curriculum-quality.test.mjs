@@ -801,8 +801,8 @@ test('reports a repeated cross-level Indonesian term under a different ID as inf
     ], exercises: [] }] },
     { id: 'A2', units: [{ id: 'a2_u1', title: 'A2', vocab: [], exercises: [] }] },
     { id: 'B1', units: [{ id: 'b1_u1', title: 'B1', vocab: [
-      { id: 'new_mungkin', idn: ' mungkin ', esp: 'quizá' },
-    ], exercises: [] }] },
+      { id: 'new_mungkin', idn: ' mungkin ', esp: 'quizá', ex: 'Mungkin dia datang.', exEsp: 'Quizá venga.' },
+    ], exercises: [{ vocabId: 'new_mungkin', type: 'listen', prompt: 'Escucha la palabra.', answer: 'Mungkin' }] }] },
   ]);
   const b1 = reports.find((report) => report.level === 'B1');
   const issue = b1.issues.find((item) => item.code === 'VOCAB_TERM_REUSED_WITH_DIFFERENT_ID');

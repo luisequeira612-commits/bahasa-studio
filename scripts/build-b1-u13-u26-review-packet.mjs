@@ -3,6 +3,7 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import vm from 'node:vm';
 import { loadInlineB1Curriculum } from './load-inline-b1-curriculum.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');

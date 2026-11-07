@@ -623,6 +623,129 @@
                                 { vocabId: 'b1v001', type: 'write', prompt: 'Escribe una oración breve usando “ditulis”.', hint: 'Puedes mencionar qué se escribe y quién lo escribe.', modelAnswer: 'Surat ditulis oleh Rina.', explanation: 'Ejemplo orientativo: Surat ditulis oleh Rina. — La carta es escrita por Rina.' },
                                 { vocabId: 'b1v002', type: 'mc', prompt: '¿Qué indica di- en “Buah dijual di pasar”?', options: ['Que la fruta realiza la venta', 'Que la fruta recibe la acción de vender', 'Que la oración está en futuro'], answer: 1, explanation: 'El prefijo unido di- marca la voz pasiva; el di separado indica lugar.' }
                             ]
+                        ,
+                            lessons: [
+                              {
+                                "title": "Reconocer el paciente y el agente",
+                                "objective": "Identifica qué elemento recibe la acción y quién la realiza en una oración pasiva.",
+                                "grammar": "En una pasiva con di-, el elemento que recibe la acción ocupa el primer plano. Oleh puede introducir al agente, mientras que el lugar se expresa con di separado.",
+                                "vocabIds": [
+                                  "v8",
+                                  "b1v001",
+                                  "b1v002",
+                                  "b1v003"
+                                ],
+                                "reviewVocabIds": [],
+                                "exercises": [
+                                  {
+                                    "vocabId": "v8",
+                                    "type": "mc",
+                                    "prompt": "En «Buku dibaca oleh Rina», ¿qué elemento recibe la acción?",
+                                    "options": [
+                                      "Buku",
+                                      "Rina",
+                                      "Oleh"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Buku es el elemento leído; Rina es quien realiza la acción."
+                                  },
+                                  {
+                                    "vocabId": "b1v001",
+                                    "type": "translate_es_id",
+                                    "prompt": "Traduce: La carta es escrita por Rina.",
+                                    "answer": "Surat ditulis oleh Rina.",
+                                    "explanation": "Ditulis presenta la carta como elemento que recibe la acción."
+                                  },
+                                  {
+                                    "vocabId": "b1v002",
+                                    "type": "order",
+                                    "prompt": "Ordena la oración: «La fruta se vende en el mercado».",
+                                    "words": [
+                                      "Buah",
+                                      "dijual",
+                                      "di",
+                                      "pasar."
+                                    ],
+                                    "correctOrder": [
+                                      "Buah",
+                                      "dijual",
+                                      "di",
+                                      "pasar."
+                                    ],
+                                    "explanation": "Di- unido a jual forma la pasiva; di pasar indica el lugar."
+                                  },
+                                  {
+                                    "vocabId": "b1v003",
+                                    "type": "listen",
+                                    "prompt": "Escucha la oración y escribe quién recibe la enseñanza.",
+                                    "answer": "Murid diajar oleh guru.",
+                                    "explanation": "Murid recibe la enseñanza y guru es el agente."
+                                  }
+                                ]
+                              },
+                              {
+                                "title": "Agente, lugar y forma pasiva",
+                                "objective": "Distingue el prefijo pasivo di- de la preposición di que introduce un lugar.",
+                                "grammar": "Compara dibaca o dijual, donde di- forma el verbo pasivo, con di pasar, donde di es una preposición separada. La presencia de oleh es posible, pero no obligatoria.",
+                                "vocabIds": [
+                                  "v8",
+                                  "b1v001",
+                                  "b1v002",
+                                  "b1v003"
+                                ],
+                                "reviewVocabIds": [
+                                  "v8",
+                                  "b1v001",
+                                  "b1v002"
+                                ],
+                                "exercises": [
+                                  {
+                                    "vocabId": "b1v002",
+                                    "type": "mc",
+                                    "prompt": "En «Buah dijual di pasar», ¿qué función tiene el segundo di?",
+                                    "options": [
+                                      "Forma la voz pasiva",
+                                      "Indica el lugar donde se vende la fruta",
+                                      "Introduce al agente"
+                                    ],
+                                    "answer": 1,
+                                    "explanation": "El di separado de di pasar indica ubicación; dijual contiene el prefijo pasivo."
+                                  },
+                                  {
+                                    "vocabId": "b1v003",
+                                    "type": "translate_es_id",
+                                    "prompt": "Traduce: El alumno recibe enseñanza del profesor.",
+                                    "answer": "Murid diajar oleh guru.",
+                                    "explanation": "Diajar es la forma pasiva; oleh introduce al profesor como agente."
+                                  },
+                                  {
+                                    "vocabId": "v8",
+                                    "type": "listen",
+                                    "prompt": "Escucha y escribe la oración completa.",
+                                    "answer": "Buku dibaca oleh Rina.",
+                                    "explanation": "La oración presenta buku como paciente y Rina como agente."
+                                  },
+                                  {
+                                    "vocabId": "b1v001",
+                                    "type": "order",
+                                    "prompt": "Ordena la oración: «La carta es escrita por Rina».",
+                                    "words": [
+                                      "Surat",
+                                      "ditulis",
+                                      "oleh",
+                                      "Rina."
+                                    ],
+                                    "correctOrder": [
+                                      "Surat",
+                                      "ditulis",
+                                      "oleh",
+                                      "Rina."
+                                    ],
+                                    "explanation": "El objeto que recibe la acción aparece antes del verbo pasivo."
+                                  }
+                                ]
+                              }
+                            ]
                         },
                         {
                             id: 'b1_u2',
@@ -643,6 +766,143 @@
                                 { vocabId: 'v214', type: 'mc', prompt: 'En “Guru mengajar murid”, ¿quién realiza la acción?', options: ['Guru (el profesor)', 'Murid (el alumno)', 'La acción no tiene agente'], answer: 0, explanation: 'En esta oración activa, guru realiza la acción de enseñar.' },
                                 { vocabId: 'b1v004', type: 'write', prompt: 'Escribe una oración pasiva breve usando “oleh”.', hint: 'Puedes usar la forma dibaca que ya estudiaste en U1.', modelAnswer: 'Buku dibaca oleh Ana.', explanation: 'Oleh introduce al agente de la oración pasiva en este ejemplo.' }
                             ]
+                        ,
+                            lessons: [
+                              {
+                                "title": "Comparar activa y pasiva con la misma raíz",
+                                "objective": "Relaciona una acción activa con su equivalente pasivo sin confundir quién realiza y quién recibe la acción.",
+                                "grammar": "En la activa, el sujeto realiza la acción: Ana membaca buku. En la pasiva, buku pasa al primer plano: Buku dibaca oleh Ana. La raíz se mantiene, pero cambia la forma verbal y la organización de la oración.",
+                                "vocabIds": [
+                                  "v211",
+                                  "v212",
+                                  "v213",
+                                  "v214",
+                                  "b1v004"
+                                ],
+                                "reviewVocabIds": [
+                                  "v8",
+                                  "b1v001",
+                                  "b1v002",
+                                  "b1v003"
+                                ],
+                                "exercises": [
+                                  {
+                                    "vocabId": "v211",
+                                    "type": "mc",
+                                    "prompt": "¿Cuál oración presenta a Ana como quien realiza la acción de leer?",
+                                    "options": [
+                                      "Ana membaca buku.",
+                                      "Buku dibaca oleh Ana.",
+                                      "Buku di meja."
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Membaca es la forma activa y Ana realiza la acción."
+                                  },
+                                  {
+                                    "vocabId": "v213",
+                                    "type": "translate_es_id",
+                                    "prompt": "Traduce: Ellos venden fruta.",
+                                    "answer": "Mereka menjual buah.",
+                                    "explanation": "Menjual es la forma activa de vender."
+                                  },
+                                  {
+                                    "vocabId": "v212",
+                                    "type": "order",
+                                    "prompt": "Ordena la oración: «Rina escribe una carta».",
+                                    "words": [
+                                      "Rina",
+                                      "menulis",
+                                      "surat."
+                                    ],
+                                    "correctOrder": [
+                                      "Rina",
+                                      "menulis",
+                                      "surat."
+                                    ],
+                                    "explanation": "En la activa, el sujeto agente precede al verbo."
+                                  },
+                                  {
+                                    "vocabId": "v211",
+                                    "type": "listen",
+                                    "prompt": "Escucha y escribe la oración pasiva completa.",
+                                    "answer": "Buku dibaca oleh Ana.",
+                                    "explanation": "La pasiva pone buku en primer plano y puede nombrar al agente con oleh."
+                                  },
+                                  {
+                                    "vocabId": "v214",
+                                    "type": "mc",
+                                    "prompt": "¿Qué oración expresa que el profesor realiza la acción de enseñar?",
+                                    "options": [
+                                      "Guru mengajar murid.",
+                                      "Murid diajar oleh guru.",
+                                      "Guru diajar oleh murid."
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Mengajar es la forma activa: guru realiza la acción."
+                                  }
+                                ]
+                              },
+                              {
+                                "title": "Cambiar el punto de vista de la oración",
+                                "objective": "Transforma el foco entre agente y paciente usando las formas activas y pasivas ya estudiadas.",
+                                "grammar": "El cambio de activa a pasiva no cambia el hecho principal: cambia qué participante se presenta como tema. Oleh puede mantener visible al agente.",
+                                "vocabIds": [
+                                  "v211",
+                                  "v212",
+                                  "v213",
+                                  "v214",
+                                  "b1v004"
+                                ],
+                                "reviewVocabIds": [
+                                  "v8",
+                                  "b1v001",
+                                  "b1v002",
+                                  "b1v003"
+                                ],
+                                "exercises": [
+                                  {
+                                    "vocabId": "v212",
+                                    "type": "translate_es_id",
+                                    "prompt": "Traduce: La carta es escrita por Rina.",
+                                    "answer": "Surat ditulis oleh Rina.",
+                                    "explanation": "La carta pasa al primer plano y Rina aparece después de oleh."
+                                  },
+                                  {
+                                    "vocabId": "v213",
+                                    "type": "order",
+                                    "prompt": "Ordena la oración pasiva: «La fruta es vendida por ellos».",
+                                    "words": [
+                                      "Buah",
+                                      "dijual",
+                                      "oleh",
+                                      "mereka."
+                                    ],
+                                    "correctOrder": [
+                                      "Buah",
+                                      "dijual",
+                                      "oleh",
+                                      "mereka."
+                                    ],
+                                    "explanation": "Buah recibe la acción; mereka es el agente."
+                                  },
+                                  {
+                                    "vocabId": "v214",
+                                    "type": "listen",
+                                    "prompt": "Escucha y escribe la oración activa.",
+                                    "answer": "Guru mengajar murid.",
+                                    "explanation": "Guru realiza la acción de enseñar al alumno."
+                                  },
+                                  {
+                                    "vocabId": "v211",
+                                    "type": "write",
+                                    "prompt": "Escribe una oración propia con membaca y después indica qué elemento recibe la acción en su versión pasiva.",
+                                    "hint": "Puedes usar Ana, buku y la forma dibaca que ya conoces.",
+                                    "modelAnswer": "Ana membaca buku. Buku dibaca oleh Ana.",
+                                    "explanation": "La primera oración es activa; la segunda pone buku en primer plano."
+                                  }
+                                ]
+                              }
+                            ]
                         },
                         {
                             id: 'b1_u3',
@@ -662,6 +922,136 @@
                                 { vocabId: 'b1v007', type: 'listen', prompt: 'Escucha y escribe la forma que significa “se alcanza a leer”.', answer: 'Terbaca', explanation: 'Terbaca se interpreta aquí como “legible” o “que se alcanza a leer”.' },
                                 { vocabId: 'b1v008', type: 'mc', prompt: 'En “Nama saya tertulis di sini”, ¿qué indica tertulis?', options: ['Que el nombre está escrito/consignado', 'Que alguien está escribiendo ahora', 'Que el nombre escribe algo'], answer: 0, explanation: 'Tertulis describe el estado de algo que está escrito.' },
                                 { vocabId: 'b1v009', type: 'write', prompt: 'Escribe una oración sencilla usando “terjual”.', hint: 'Puedes indicar que todas las entradas ya se vendieron.', modelAnswer: 'Semua tiket sudah terjual.', explanation: 'Ejemplo orientativo: Semua tiket sudah terjual. — Todas las entradas ya se han vendido.' }
+                            ]
+                        ,
+                            lessons: [
+                              {
+                                "title": "Describir actividades con ber-",
+                                "objective": "Reconoce y utiliza bekerja y bermain para hablar de actividades habituales.",
+                                "grammar": "En estas palabras, ber- forma verbos como trabajar y jugar. Aprende cada forma dentro de su oración; no atribuyas al prefijo una traducción idéntica en todos los casos.",
+                                "vocabIds": [
+                                  "b1v005",
+                                  "b1v006",
+                                  "b1v007",
+                                  "b1v008",
+                                  "b1v009"
+                                ],
+                                "reviewVocabIds": [],
+                                "exercises": [
+                                  {
+                                    "vocabId": "b1v005",
+                                    "type": "mc",
+                                    "prompt": "¿Qué oración expresa que el padre trabaja en la oficina?",
+                                    "options": [
+                                      "Ayah bekerja di kantor.",
+                                      "Ayah bermain di taman.",
+                                      "Tulisan itu tertulis."
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Bekerja significa trabajar."
+                                  },
+                                  {
+                                    "vocabId": "b1v006",
+                                    "type": "translate_es_id",
+                                    "prompt": "Traduce: Los niños juegan en el parque.",
+                                    "answer": "Anak-anak bermain di taman.",
+                                    "explanation": "Bermain significa jugar."
+                                  },
+                                  {
+                                    "vocabId": "b1v005",
+                                    "type": "order",
+                                    "prompt": "Ordena la oración: «Papá trabaja en la oficina».",
+                                    "words": [
+                                      "Ayah",
+                                      "bekerja",
+                                      "di",
+                                      "kantor."
+                                    ],
+                                    "correctOrder": [
+                                      "Ayah",
+                                      "bekerja",
+                                      "di",
+                                      "kantor."
+                                    ],
+                                    "explanation": "Bekerja expresa la actividad realizada por ayah."
+                                  },
+                                  {
+                                    "vocabId": "b1v006",
+                                    "type": "listen",
+                                    "prompt": "Escucha y escribe la oración completa.",
+                                    "answer": "Anak-anak bermain di taman.",
+                                    "explanation": "La oración describe dónde juegan los niños."
+                                  },
+                                  {
+                                    "vocabId": "b1v006",
+                                    "type": "write",
+                                    "prompt": "Escribe una oración propia con bermain.",
+                                    "hint": "Menciona quién juega y dónde; puedes usar anak-anak y di taman.",
+                                    "modelAnswer": "Anak-anak bermain di taman.",
+                                    "explanation": "La respuesta es un modelo; puedes escribir otra oración correcta con bermain."
+                                  }
+                                ]
+                              },
+                              {
+                                "title": "Reconocer estados y resultados con ter-",
+                                "objective": "Distingue terbaca, tertulis y terjual como formas léxicas con significados relacionados con estado o resultado.",
+                                "grammar": "Ter- tiene varios usos según la palabra y el contexto. En las formas de esta unidad puede expresar un estado o resultado; aprende terbaca, tertulis y terjual con sus ejemplos concretos.",
+                                "vocabIds": [
+                                  "b1v007",
+                                  "b1v008",
+                                  "b1v009"
+                                ],
+                                "reviewVocabIds": [
+                                  "b1v005",
+                                  "b1v006"
+                                ],
+                                "exercises": [
+                                  {
+                                    "vocabId": "b1v007",
+                                    "type": "mc",
+                                    "prompt": "¿Qué forma indica que un texto todavía se alcanza a leer?",
+                                    "options": [
+                                      "terbaca",
+                                      "bekerja",
+                                      "bermain"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Terbaca puede describir algo que es legible."
+                                  },
+                                  {
+                                    "vocabId": "b1v008",
+                                    "type": "translate_es_id",
+                                    "prompt": "Traduce: Mi nombre está escrito aquí.",
+                                    "answer": "Nama saya tertulis di sini.",
+                                    "explanation": "Tertulis describe el estado de algo que está escrito."
+                                  },
+                                  {
+                                    "vocabId": "b1v009",
+                                    "type": "order",
+                                    "prompt": "Ordena la oración: «Todas las entradas ya se han vendido».",
+                                    "words": [
+                                      "Semua",
+                                      "tiket",
+                                      "sudah",
+                                      "terjual."
+                                    ],
+                                    "correctOrder": [
+                                      "Semua",
+                                      "tiket",
+                                      "sudah",
+                                      "terjual."
+                                    ],
+                                    "explanation": "Terjual expresa aquí el resultado de vender todas las entradas."
+                                  },
+                                  {
+                                    "vocabId": "b1v007",
+                                    "type": "listen",
+                                    "prompt": "Escucha y escribe la oración completa.",
+                                    "answer": "Tulisan itu masih terbaca.",
+                                    "explanation": "La frase indica que el texto todavía es legible."
+                                  }
+                                ]
+                              }
                             ]
                         },
                         {
@@ -755,7 +1145,133 @@
                                         "explanation": "Membersihkan lleva como objeto aquello que se limpia."
                                     }
                                 ]
-                            },
+                            ,
+                            "lessons": [
+                              {
+                                "title": "Organizar el objeto y el destinatario con -kan",
+                                "objective": "Reconoce qué se entrega, envía o explica y a quién llega la acción.",
+                                "grammar": "En estos verbos con -kan, observa el objeto y, cuando aparece, el destinatario introducido por kepada. La relación depende del verbo y de su uso concreto.",
+                                "vocabIds": [
+                                  "b1u4_memberikan",
+                                  "b1u4_mengirimkan",
+                                  "b1u4_menjelaskan",
+                                  "b1u4_membersihkan"
+                                ],
+                                "reviewVocabIds": [],
+                                "exercises": [
+                                  {
+                                    "vocabId": "b1u4_mengirimkan",
+                                    "type": "mc",
+                                    "prompt": "En «Saya mengirimkan dokumen kepada Rina», ¿qué se envía?",
+                                    "options": [
+                                      "El documento",
+                                      "La casa",
+                                      "La lección"
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Dokumen es el objeto enviado; kepada Rina señala a la destinataria."
+                                  },
+                                  {
+                                    "vocabId": "b1u4_menjelaskan",
+                                    "type": "translate_es_id",
+                                    "prompt": "Traduce: El profesor explica la lección a los estudiantes.",
+                                    "answer": "Guru menjelaskan pelajaran kepada siswa.",
+                                    "explanation": "Menjelaskan presenta lo explicado y a quién se explica."
+                                  },
+                                  {
+                                    "vocabId": "b1u4_memberikan",
+                                    "type": "order",
+                                    "prompt": "Ordena la oración: «Le doy un libro a Rina».",
+                                    "words": [
+                                      "Saya",
+                                      "memberikan",
+                                      "buku",
+                                      "kepada",
+                                      "Rina."
+                                    ],
+                                    "correctOrder": [
+                                      "Saya",
+                                      "memberikan",
+                                      "buku",
+                                      "kepada",
+                                      "Rina."
+                                    ],
+                                    "explanation": "El objeto buku precede al destinatario introducido por kepada."
+                                  },
+                                  {
+                                    "vocabId": "b1u4_membersihkan",
+                                    "type": "listen",
+                                    "prompt": "Escucha y escribe la oración completa.",
+                                    "answer": "Saya membersihkan rumah setiap pagi.",
+                                    "explanation": "Membersihkan expresa limpiar algo; rumah es el objeto."
+                                  }
+                                ]
+                              },
+                              {
+                                "title": "Repaso acumulativo de B1 U1–U4",
+                                "objective": "Integra voz pasiva, contraste activa-pasiva, formas ber-/ter- y verbos con -kan en oraciones completas.",
+                                "grammar": "Repasa las formas ya estudiadas: dibaca y ditulis en pasiva; membaca y menulis en activa; bekerja y bermain para actividades; terbaca, tertulis y terjual como formas léxicas; y memberikan, mengirimkan y menjelaskan con sus objetos y destinatarios.",
+                                "vocabIds": [
+                                  "b1u4_memberikan",
+                                  "b1u4_mengirimkan",
+                                  "b1u4_menjelaskan",
+                                  "b1u4_membersihkan"
+                                ],
+                                "reviewVocabIds": [
+                                  "v8",
+                                  "b1v001",
+                                  "b1v002",
+                                  "b1v003",
+                                  "v211",
+                                  "v212",
+                                  "v213",
+                                  "v214",
+                                  "b1v004",
+                                  "b1v005",
+                                  "b1v006",
+                                  "b1v007",
+                                  "b1v008",
+                                  "b1v009"
+                                ],
+                                "exercises": [
+                                  {
+                                    "vocabId": "b1u4_memberikan",
+                                    "type": "mc",
+                                    "prompt": "¿Qué oración presenta una voz pasiva?",
+                                    "options": [
+                                      "Buku dibaca oleh Rina.",
+                                      "Rina membaca buku.",
+                                      "Rina bekerja di kantor."
+                                    ],
+                                    "answer": 0,
+                                    "explanation": "Dibaca es una forma pasiva con di-."
+                                  },
+                                  {
+                                    "vocabId": "b1u4_mengirimkan",
+                                    "type": "translate_es_id",
+                                    "prompt": "Traduce: Envío el documento a Rina.",
+                                    "answer": "Saya mengirimkan dokumen kepada Rina.",
+                                    "explanation": "Mengirimkan expresa hacer llegar el documento a su destinataria."
+                                  },
+                                  {
+                                    "vocabId": "b1u4_menjelaskan",
+                                    "type": "listen",
+                                    "prompt": "Escucha y escribe la oración completa.",
+                                    "answer": "Guru menjelaskan pelajaran kepada siswa.",
+                                    "explanation": "Menjelaskan se usa con el contenido explicado y el destinatario."
+                                  },
+                                  {
+                                    "vocabId": "b1u4_membersihkan",
+                                    "type": "write",
+                                    "prompt": "Escribe dos oraciones breves: una con un verbo pasivo de U1 y otra con un verbo con -kan de U4.",
+                                    "hint": "Puedes usar surat ditulis y memberikan buku kepada Rina.",
+                                    "modelAnswer": "Surat ditulis oleh Rina. Saya memberikan buku kepada Rina.",
+                                    "explanation": "La primera oración repasa la voz pasiva; la segunda, un verbo con -kan y su destinataria."
+                                  }
+                                ]
+                              }
+                            ]
+                        },
                         {
                                 "id": "b1_u5",
                                 "title": "Unidad 5: Contrastar -kan e -i en acciones dirigidas",

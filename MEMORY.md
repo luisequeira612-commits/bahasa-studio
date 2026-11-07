@@ -1,6 +1,6 @@
 # MEMORY.md — Estado de Bahasa Studio
 
-> Se actualiza en CADA PR. Mantener corto (unas 150 líneas como máximo). Última actualización: 6 nov 2026.
+> Se actualiza en CADA PR. Mantener corto (unas 150 líneas como máximo). Última actualización: 7 nov 2026.
 
 ## Visión
 - App para aprender idiomas, estilo Duolingo, en rojo y blanco.
@@ -14,7 +14,7 @@
 ## Estado actual del currículo
 - A1: 32 de 32 unidades hechas.
 - A2: 40 de 40 unidades hechas y habilitadas en beta (`A2_RELEASE_ENABLED = true`). U5–U8 siguen en consolidación; PR #337 aclara el vocabulario objetivo de 16 prompts de traducción.
-- B1: 26/50 unidades redactadas (24 pendientes), visible y accesible sin completar A1; 102 IDs únicos en sus unidades, incluidos 20 IDs canónicos reutilizados desde A1/A2, y 269 ejercicios. U13–U14: ke-an; U15–U17: cláusulas relativas con yang; U18–U20: condiciones, concesiones y contraste; U21: causa/consecuencia; U22: finalidad; U23: experiencias pasadas; U24: narración temporal; U25: carácter y personalidad; U26: descripción de lugares y ambientes. U25–U26 añaden 10 adjetivos nuevos y reutilizan ramah (A1) y bersih (A1). Pendiam es una forma derivada lexicalizada de diam con peN-, no un nuevo patrón productivo; no se añaden sufijos. Próximo repaso acumulativo en U27 tras U23–U26. B2: 0/60 unidades del plan alineadas (60 pendientes); empieza tras completar B1. Escucha con síntesis de voz local. Corrección técnica pendiente en PR: U13–U26 declaran explícitamente vocabulario nuevo y repaso por lección; no cambia el contenido ni las métricas curriculares.
+- B1: 29/50 unidades redactadas (21 pendientes), visible y accesible sin completar A1; 119 IDs únicos en sus unidades, incluidos 20 IDs canónicos reutilizados desde A1/A2, y 311 ejercicios. U13–U14: ke-an; U15–U17: cláusulas relativas con yang; U18–U20: condiciones, concesiones y contraste; U21: causa/consecuencia; U22: finalidad; U23: experiencias pasadas; U24: narración temporal; U25: carácter y personalidad; U26: descripción de lugares y ambientes; U27: opiniones y desacuerdo; U28: posibilidad y certeza; U29: consejos, obligación y recomendaciones. U27–U29 añaden 17 formas nuevas. B2: 0/60 unidades del plan alineadas (60 pendientes); empieza tras completar B1. Escucha con síntesis de voz local. Próximo bloque del plan: U30–U31, planes y metas.
 - Sistema de calidad: auditoría estructural/editorial independiente de KBBI y cola editorial para vocabulario y ejercicios. Último informe CI (#350): 0 errores, 0 avisos en 72 unidades; 1.989 entradas editoriales pendientes (806 A1, 1.183 A2), sin certificación lingüística.
 
 ## Aclaración de métricas de Perfil (PR pendiente)
@@ -73,9 +73,15 @@
 - ChatGPT: integra cambios en el repo (rama + PR) y los valida.
 
 ## Estado técnico de referencia
-- Service worker en main: cache bahasa-studio-v3.8.54 (tras PR #337).
+- Service worker en main durante este bloque: cache bahasa-studio-v3.8.60; el PR lo actualiza a `bahasa-studio-v3.8.61`.
 - Scripts de calidad disponibles: scripts/audit-curriculum-quality.mjs, scripts/build-editorial-review-queue.mjs, scripts/build-unified-quality-report.mjs y scripts/build-deepseek-review-packet.mjs.
 - IndexedDB v3 y backup v3: preservados; PR #337 no modifica sus esquemas.
+
+## PR B1 U27–U29 — opiniones, posibilidad y consejo (7 nov 2026)\n- Añade U27–U29, 3 unidades/9 lecciones/42 ejercicios y 17 formas nuevas: opiniones y desacuerdo; posibilidad/certeza; consejo/obligación/recomendación.\n- Se mantienen 5 tipos de ejercicio por unidad y producción guiada; U29 integra revisión acumulativa de causa, opinión y probabilidad.\n- KBBI no proporcionó páginas de lema directas mediante la consulta indexada; no se marca ninguna forma como `verified_primary`. B1 queda en 29/50 y B2 en 0/60.\n- Cache actualizado a `bahasa-studio-v3.8.61`. Sin cambios en A1/A2, IndexedDB, backup JSON v3 ni dependencias.\n\n## PR B1 U27–U29 — opiniones, posibilidad y consejo (7 nov 2026)
+- Añade U27–U29, 3 unidades/9 lecciones/42 ejercicios y 17 formas nuevas: opiniones y desacuerdo; posibilidad/certeza; consejo/obligación/recomendación.
+- Se mantienen 5 tipos de ejercicio por unidad y producción guiada; U29 integra revisión acumulativa de causa, opinión y probabilidad.
+- KBBI no proporcionó páginas de lema directas mediante la consulta indexada; no se marca ninguna forma como `verified_primary`. B1 queda en 29/50 y B2 en 0/60.
+- Cache actualizado a `bahasa-studio-v3.8.61`. Sin cambios en A1/A2, IndexedDB, backup JSON v3 ni dependencias.
 
 ## Historial breve
 - PR #326 fusionado: corrección de distinción entre entrada/tarifa de entrada en A2 U38.

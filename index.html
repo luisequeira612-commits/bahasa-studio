@@ -1863,7 +1863,178 @@
                                     ]
                                 }
                             ]
-                        }
+                        },
+                        {
+                            id: 'b1_u27',
+                            title: 'Unidad 27: expresar opiniones y desacuerdo',
+                            desc: 'Expresa tu punto de vista, muestra acuerdo o desacuerdo y explica cómo llegas a una opinión.',
+                            grammar: 'Pendapat significa opinión. Menurut saya y bagi saya introducen el punto de vista del hablante. Setuju y tidak setuju expresan acuerdo y desacuerdo. Berpikir y merasa presentan procesos de pensamiento o percepción personal; no son equivalentes en todos los contextos.',
+                            vocab: [
+                                { id: 'b1v088', idn: 'Pendapat', esp: 'Opinión; punto de vista', ex: 'Menurut saya, pendapat itu masuk akal.', exEsp: 'En mi opinión, ese punto de vista tiene sentido.' },
+                                { id: 'b1v089', idn: 'Menurut saya', esp: 'En mi opinión; según yo', ex: 'Menurut saya, rencana ini baik.', exEsp: 'En mi opinión, este plan es bueno.' },
+                                { id: 'b1v090', idn: 'Bagi saya', esp: 'Para mí; desde mi punto de vista', ex: 'Bagi saya, masalah ini penting.', exEsp: 'Para mí, este problema es importante.' },
+                                { id: 'b1v091', idn: 'Setuju', esp: 'Estar de acuerdo', ex: 'Saya setuju dengan pendapat itu.', exEsp: 'Estoy de acuerdo con esa opinión.' },
+                                { id: 'b1v092', idn: 'Tidak setuju', esp: 'No estar de acuerdo', ex: 'Saya tidak setuju dengan keputusan itu.', exEsp: 'No estoy de acuerdo con esa decisión.' },
+                                { id: 'b1v093', idn: 'Berpikir', esp: 'Pensar; considerar', ex: 'Saya berpikir bahwa rencana itu baik.', exEsp: 'Pienso que ese plan es bueno.' },
+                                { id: 'b1v094', idn: 'Merasa', esp: 'Sentir; considerar; tener la sensación de', ex: 'Saya merasa keputusan itu adil.', exEsp: 'Siento que esa decisión es justa.' }
+                            ],
+                            lessons: [
+                                {
+                                    title: 'Introducir una opinión',
+                                    objective: 'Presenta tu punto de vista con pendapat, menurut saya y bagi saya.',
+                                    grammar: 'Pendapat es el sustantivo «opinión». Menurut saya y bagi saya son expresiones que sitúan lo que sigue como una valoración personal. No conviene tratarlas como traducciones mecánicamente intercambiables en todas las frases.',
+                                    reviewVocabIds: ['b1v076', 'b1v080'],
+                                    vocabIds: ['b1v088', 'b1v089', 'b1v090'],
+                                    exercises: [
+                                        { vocabId: 'b1v088', type: 'mc', prompt: '¿Qué palabra significa «opinión» o «punto de vista»?', options: ['Pendapat', 'Setuju', 'Berpikir'], answer: 0, explanation: 'Pendapat es el sustantivo que nombra una opinión o punto de vista.' },
+                                        { vocabId: 'b1v089', type: 'translate_es_id', prompt: 'Traduce: «En mi opinión, este plan es bueno».', answer: 'Menurut saya, rencana ini baik.', explanation: 'Menurut saya introduce el punto de vista personal.' },
+                                        { vocabId: 'b1v090', type: 'order', prompt: 'Ordena: «Para mí, este problema es importante».', words: ['penting.', 'Bagi', 'ini', 'saya,', 'masalah'], correctOrder: ['Bagi', 'saya,', 'masalah', 'ini', 'penting.'], explanation: 'Bagi saya introduce el punto de vista y la valoración aparece después.' },
+                                        { vocabId: 'b1v089', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Menurut saya, rencana ini baik.', explanation: 'La oración presenta una valoración personal.' },
+                                        { vocabId: 'b1v088', type: 'write', prompt: 'Escribe dos frases de opinión sobre un plan, una comida o un lugar. Usa pendapat en una frase y menurut saya en la otra.', hint: 'Puedes hablar de un plan bueno, una comida interesante o un lugar nyaman.', modelAnswer: 'Pendapat saya tentang rencana ini positif. Menurut saya, tempat itu nyaman.', explanation: 'Pendapat nombra la opinión y menurut saya introduce el punto de vista.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Acuerdo y desacuerdo',
+                                    objective: 'Expresa acuerdo o desacuerdo de forma clara y respetuosa.',
+                                    grammar: 'Setuju expresa acuerdo. Tidak setuju expresa desacuerdo. Con dengan se señala la idea, persona o decisión con la que se coincide o discrepa: setuju dengan pendapat itu.',
+                                    reviewVocabIds: ['b1v088', 'b1v089', 'b1v090'],
+                                    vocabIds: ['b1v091', 'b1v092'],
+                                    exercises: [
+                                        { vocabId: 'b1v091', type: 'mc', prompt: '¿Qué expresión indica que compartes una opinión?', options: ['Tidak setuju', 'Setuju', 'Merasa'], answer: 1, explanation: 'Setuju expresa acuerdo.' },
+                                        { vocabId: 'b1v092', type: 'translate_es_id', prompt: 'Traduce: «No estoy de acuerdo con esa decisión».', answer: 'Saya tidak setuju dengan keputusan itu.', explanation: 'Tidak setuju expresa desacuerdo y dengan introduce la decisión.' },
+                                        { vocabId: 'b1v091', type: 'order', prompt: 'Ordena: «Estoy de acuerdo con esa opinión».', words: ['pendapat', 'Saya', 'itu.', 'setuju', 'dengan'], correctOrder: ['Saya', 'setuju', 'dengan', 'pendapat', 'itu.'], explanation: 'Setuju se combina con dengan para señalar aquello con lo que se está de acuerdo.' },
+                                        { vocabId: 'b1v092', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Saya tidak setuju dengan keputusan itu.', explanation: 'La frase expresa un desacuerdo explícito con una decisión.' },
+                                        { vocabId: 'b1v091', type: 'write', prompt: 'Escribe una respuesta respetuosa: primero muestra acuerdo y después explica brevemente por qué.', hint: 'Empieza con Saya setuju dengan pendapat itu y añade una razón con karena.', modelAnswer: 'Saya setuju dengan pendapat itu karena rencananya masuk akal.', explanation: 'El acuerdo puede acompañarse de una razón para hacer la respuesta más completa.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Berpikir y merasa: explicar la propia postura',
+                                    objective: 'Distingue pensamiento y percepción personal al justificar una opinión.',
+                                    grammar: 'Berpikir se centra en pensar o considerar algo. Merasa puede expresar una sensación o una valoración personal, como merasa keputusan itu adil. En una opinión argumentada, ambos pueden combinarse con una razón.',
+                                    reviewVocabIds: ['b1v091', 'b1v092', 'b1v065', 'b1v067'],
+                                    vocabIds: ['b1v093', 'b1v094'],
+                                    exercises: [
+                                        { vocabId: 'b1v093', type: 'mc', prompt: 'En «Saya berpikir bahwa rencana itu baik», ¿qué expresa berpikir?', options: ['Pensar o considerar', 'Estar de acuerdo', 'Sentir una emoción física'], answer: 0, explanation: 'Berpikir presenta una actividad de pensamiento o consideración.' },
+                                        { vocabId: 'b1v094', type: 'translate_es_id', prompt: 'Traduce: «Siento que esa decisión es justa».', answer: 'Saya merasa keputusan itu adil.', explanation: 'Merasa introduce una valoración o percepción personal.' },
+                                        { vocabId: 'b1v093', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Saya berpikir bahwa rencana itu baik.', explanation: 'Berpikir presenta la valoración como un pensamiento o consideración.' },
+                                        { vocabId: 'b1v094', type: 'write', prompt: 'Escribe tres frases: una con menurut saya, una con berpikir y una con merasa. Explica tu opinión sobre un tema sencillo.', hint: 'Puedes justificar la opinión con karena y usar keputusan, rencana o tempat.', modelAnswer: 'Menurut saya, rencana ini baik. Saya berpikir bahwa rencana ini masuk akal karena sederhana. Saya merasa keputusan itu tepat.', explanation: 'Las tres estructuras presentan una postura personal desde ángulos ligeramente distintos.' }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            id: 'b1_u28',
+                            title: 'Unidad 28: expresar posibilidad y certeza',
+                            desc: 'Habla de lo probable, lo aparente y lo seguro con distintos grados de certeza.',
+                            grammar: 'Kira-kira y mungkin expresan estimación o posibilidad. Sepertinya y tampaknya presentan una inferencia basada en lo que parece observarse. Pasti expresa certeza. Estas formas no tienen el mismo grado de compromiso con la verdad: mungkin deja abierta la posibilidad y pasti la presenta como segura.',
+                            vocab: [
+                                { id: 'b1v095', idn: 'Kira-kira', esp: 'Aproximadamente; más o menos; quizá', ex: 'Kira-kira ada dua puluh orang.', exEsp: 'Hay aproximadamente veinte personas.' },
+                                { id: 'b1v096', idn: 'Mungkin', esp: 'Quizá; posiblemente', ex: 'Mungkin dia datang besok.', exEsp: 'Quizá venga mañana.' },
+                                { id: 'b1v097', idn: 'Sepertinya', esp: 'Parece que; al parecer', ex: 'Sepertinya hujan akan turun.', exEsp: 'Parece que va a llover.' },
+                                { id: 'b1v098', idn: 'Tampaknya', esp: 'Parece que; aparentemente', ex: 'Tampaknya mereka sudah pergi.', exEsp: 'Parece que ya se fueron.' },
+                                { id: 'b1v099', idn: 'Pasti', esp: 'Seguro; seguramente; sin duda', ex: 'Dia pasti datang.', exEsp: 'Seguro que viene.' }
+                            ],
+                            lessons: [
+                                {
+                                    title: 'Kira-kira y mungkin',
+                                    objective: 'Expresa una cantidad aproximada o una posibilidad abierta.',
+                                    grammar: 'Kira-kira puede aproximar una cantidad o expresar una estimación. Mungkin expresa posibilidad: algo puede ocurrir, pero no se presenta como seguro. El contexto determina cuál de los sentidos de kira-kira es relevante.',
+                                    reviewVocabIds: ['b1v088', 'b1v093'],
+                                    vocabIds: ['b1v095', 'b1v096'],
+                                    exercises: [
+                                        { vocabId: 'b1v095', type: 'mc', prompt: 'En «Kira-kira ada dua puluh orang», ¿qué aporta kira-kira?', options: ['Una cantidad aproximada', 'Una certeza absoluta', 'Un desacuerdo'], answer: 0, explanation: 'Kira-kira indica que la cantidad es aproximada.' },
+                                        { vocabId: 'b1v096', type: 'translate_es_id', prompt: 'Traduce: «Quizá venga mañana».', answer: 'Mungkin dia datang besok.', explanation: 'Mungkin deja abierta la posibilidad de que llegue mañana.' },
+                                        { vocabId: 'b1v095', type: 'order', prompt: 'Ordena: «Hay aproximadamente veinte personas».', words: ['orang.', 'dua', 'Kira-kira', 'puluh', 'ada'], correctOrder: ['Kira-kira', 'ada', 'dua', 'puluh', 'orang.'], explanation: 'Kira-kira aparece antes de la cantidad aproximada.' },
+                                        { vocabId: 'b1v096', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Mungkin dia datang besok.', explanation: 'Mungkin presenta una posibilidad, no una certeza.' },
+                                        { vocabId: 'b1v095', type: 'write', prompt: 'Escribe dos estimaciones: una sobre una cantidad y otra sobre una situación futura. Usa kira-kira al menos una vez.', hint: 'Puedes usar kira-kira ada sepuluh orang y mungkin para una posibilidad.', modelAnswer: 'Kira-kira ada sepuluh orang di sana. Mungkin mereka datang besok.', explanation: 'Kira-kira aproxima una cantidad; mungkin expresa una posibilidad.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Sepertinya y tampaknya',
+                                    objective: 'Presenta una conclusión basada en lo que parece observarse.',
+                                    grammar: 'Sepertinya y tampaknya suelen introducir una inferencia o impresión: «parece que». Se parecen a mungkin, pero pueden señalar que la conclusión se basa en indicios observables.',
+                                    reviewVocabIds: ['b1v095', 'b1v096', 'b1v065'],
+                                    vocabIds: ['b1v097', 'b1v098'],
+                                    exercises: [
+                                        { vocabId: 'b1v097', type: 'mc', prompt: '¿Qué expresión equivale aproximadamente a «parece que»?', options: ['Sepertinya', 'Pasti', 'Setuju'], answer: 0, explanation: 'Sepertinya presenta una impresión o inferencia: «parece que».' },
+                                        { vocabId: 'b1v098', type: 'translate_es_id', prompt: 'Traduce: «Parece que ya se fueron».', answer: 'Tampaknya mereka sudah pergi.', explanation: 'Tampaknya presenta la conclusión como algo que parece cierto según los indicios.' },
+                                        { vocabId: 'b1v097', type: 'order', prompt: 'Ordena: «Parece que va a llover».', words: ['turun.', 'Sepertinya', 'akan', 'hujan'], correctOrder: ['Sepertinya', 'hujan', 'akan', 'turun.'], explanation: 'Sepertinya introduce la impresión de que lloverá.' },
+                                        { vocabId: 'b1v098', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Tampaknya mereka sudah pergi.', explanation: 'Tampaknya presenta una inferencia a partir de indicios.' },
+                                        { vocabId: 'b1v097', type: 'write', prompt: 'Escribe dos observaciones sobre una situación usando sepertinya y tampaknya.', hint: 'Puedes hablar de lluvia, personas que ya se fueron o una tienda que está cerrada.', modelAnswer: 'Sepertinya hujan akan turun. Tampaknya mereka sudah pergi.', explanation: 'Ambas expresiones presentan una conclusión basada en lo que parece observarse.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Pasti y escala de certeza',
+                                    objective: 'Diferencia una posibilidad de una afirmación de certeza y combina los marcadores en un contexto breve.',
+                                    grammar: 'Mungkin presenta una posibilidad; sepertinya y tampaknya una inferencia; pasti una certeza fuerte. La elección depende del grado de seguridad que quiera expresar el hablante.',
+                                    reviewVocabIds: ['b1v096', 'b1v097', 'b1v098'],
+                                    vocabIds: ['b1v099'],
+                                    exercises: [
+                                        { vocabId: 'b1v099', type: 'mc', prompt: '¿Qué marcador expresa el mayor grado de certeza en este bloque?', options: ['Mungkin', 'Sepertinya', 'Pasti'], answer: 2, explanation: 'Pasti presenta el hecho como seguro.' },
+                                        { vocabId: 'b1v099', type: 'translate_es_id', prompt: 'Traduce: «Seguro que viene».', answer: 'Dia pasti datang.', explanation: 'Pasti expresa certeza.' },
+                                        { vocabId: 'b1v099', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Dia pasti datang.', explanation: 'La oración presenta la llegada como segura.' },
+                                        { vocabId: 'b1v099', type: 'write', prompt: 'Escribe un mini-diálogo de tres frases en el que una persona exprese posibilidad, otra haga una inferencia y después aparezca una afirmación de certeza.', hint: 'Usa mungkin, sepertinya o tampaknya y pasti.', modelAnswer: 'Mungkin dia datang besok. Sepertinya dia sudah siap. Dia pasti datang.', explanation: 'El diálogo muestra una escala desde posibilidad hasta inferencia y certeza.' }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            id: 'b1_u29',
+                            title: 'Unidad 29: consejos, obligación y recomendaciones',
+                            desc: 'Da consejos y expresa distintos grados de necesidad, obligación y recomendación de manera adecuada.',
+                            grammar: 'Seharusnya expresa lo que sería conveniente o lo que se espera que ocurra. Harus y wajib expresan obligación; wajib suele sonar más fuerte o normativo. Perlu expresa necesidad. Menyarankan significa recomendar y permite formular consejos sin imponerlos directamente.',
+                            vocab: [
+                                { id: 'b1v100', idn: 'Seharusnya', esp: 'Debería; lo adecuado sería', ex: 'Kamu seharusnya istirahat.', exEsp: 'Deberías descansar.' },
+                                { id: 'b1v101', idn: 'Harus', esp: 'Tener que; deber', ex: 'Kita harus belajar.', exEsp: 'Tenemos que estudiar.' },
+                                { id: 'b1v102', idn: 'Wajib', esp: 'Obligatorio; tener la obligación de', ex: 'Semua siswa wajib memakai seragam.', exEsp: 'Todos los estudiantes deben llevar uniforme.' },
+                                { id: 'b1v103', idn: 'Perlu', esp: 'Necesitar; ser necesario', ex: 'Kita perlu berhati-hati.', exEsp: 'Tenemos que / es necesario tener cuidado.' },
+                                { id: 'b1v104', idn: 'Menyarankan', esp: 'Recomendar; aconsejar', ex: 'Saya menyarankan agar kamu istirahat.', exEsp: 'Te recomiendo que descanses.' }
+                            ],
+                            lessons: [
+                                {
+                                    title: 'Seharusnya: consejo y expectativa',
+                                    objective: 'Formula un consejo sobre lo que sería conveniente hacer.',
+                                    grammar: 'Seharusnya presenta una recomendación o expectativa: lo adecuado sería hacer algo. Es menos directo que una obligación expresada con harus o wajib.',
+                                    reviewVocabIds: ['b1v091', 'b1v096'],
+                                    vocabIds: ['b1v100'],
+                                    exercises: [
+                                        { vocabId: 'b1v100', type: 'mc', prompt: '¿Qué expresa seharusnya en «Kamu seharusnya istirahat»?', options: ['Una recomendación sobre lo conveniente', 'Una cantidad aproximada', 'Una certeza absoluta'], answer: 0, explanation: 'Seharusnya presenta lo que sería conveniente o apropiado hacer.' },
+                                        { vocabId: 'b1v100', type: 'translate_es_id', prompt: 'Traduce: «Deberías descansar».', answer: 'Kamu seharusnya istirahat.', explanation: 'Seharusnya formula un consejo.' },
+                                        { vocabId: 'b1v100', type: 'order', prompt: 'Ordena: «Deberías descansar más».', words: ['lebih', 'Kamu', 'seharusnya', 'istirahat'], correctOrder: ['Kamu', 'seharusnya', 'istirahat', 'lebih'], explanation: 'Seharusnya aparece después del sujeto y antes de la acción.' },
+                                        { vocabId: 'b1v100', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Kamu seharusnya istirahat.', explanation: 'La frase expresa un consejo sobre lo conveniente.' },
+                                        { vocabId: 'b1v100', type: 'write', prompt: 'Escribe dos consejos para una persona que está cansada. Usa seharusnya al menos una vez.', hint: 'Puedes recomendar istirahat, makan o tidur.', modelAnswer: 'Kamu seharusnya istirahat. Kamu seharusnya tidur lebih awal.', explanation: 'Seharusnya presenta recomendaciones sobre acciones convenientes.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Harus, wajib y perlu',
+                                    objective: 'Distingue obligación fuerte de necesidad práctica.',
+                                    grammar: 'Harus expresa obligación o necesidad fuerte. Wajib se usa para algo obligatorio, especialmente cuando existe una norma o requisito. Perlu expresa necesidad sin implicar siempre una regla formal.',
+                                    reviewVocabIds: ['b1v100', 'b1v099', 'b1v065'],
+                                    vocabIds: ['b1v101', 'b1v102', 'b1v103'],
+                                    exercises: [
+                                        { vocabId: 'b1v101', type: 'mc', prompt: '¿Qué marcador expresa «tener que/deber»?', options: ['Harus', 'Perlu', 'Seharusnya'], answer: 0, explanation: 'Harus expresa obligación o necesidad fuerte.' },
+                                        { vocabId: 'b1v102', type: 'translate_es_id', prompt: 'Traduce: «Todos los estudiantes deben llevar uniforme».', answer: 'Semua siswa wajib memakai seragam.', explanation: 'Wajib presenta el uniforme como un requisito obligatorio.' },
+                                        { vocabId: 'b1v103', type: 'order', prompt: 'Ordena: «Tenemos que tener cuidado».', words: ['berhati-hati.', 'Kita', 'perlu'], correctOrder: ['Kita', 'perlu', 'berhati-hati.'], explanation: 'Perlu se coloca antes de la acción que se considera necesaria.' },
+                                        { vocabId: 'b1v101', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Kita harus belajar.', explanation: 'Harus presenta el estudio como una obligación o necesidad fuerte.' },
+                                        { vocabId: 'b1v103', type: 'write', prompt: 'Escribe tres frases: una con harus para una obligación, una con wajib para una norma y una con perlu para una necesidad práctica.', hint: 'Usa belajar, memakai seragam y berhati-hati.', modelAnswer: 'Kita harus belajar. Semua siswa wajib memakai seragam. Kita perlu berhati-hati.', explanation: 'Las tres formas expresan necesidad, pero no con el mismo grado ni el mismo contexto.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Menyarankan y consejo respetuoso',
+                                    objective: 'Formula una recomendación explícita e integra opiniones, razones y grados de certeza.',
+                                    grammar: 'Menyarankan significa recomendar o aconsejar. Puede introducir una propuesta con agar, supaya u otra construcción de finalidad. En una respuesta más completa se puede combinar con menurut saya, mungkin o seharusnya para suavizar el consejo.',
+                                    reviewVocabIds: ['b1v088', 'b1v096', 'b1v100', 'b1v101'],
+                                    vocabIds: ['b1v104'],
+                                    exercises: [
+                                        { vocabId: 'b1v104', type: 'mc', prompt: '¿Qué verbo significa «recomendar» o «aconsejar»?', options: ['Menyarankan', 'Merasa', 'Berpikir'], answer: 0, explanation: 'Menyarankan significa recomendar o aconsejar.' },
+                                        { vocabId: 'b1v104', type: 'translate_es_id', prompt: 'Traduce: «Te recomiendo que descanses».', answer: 'Saya menyarankan agar kamu istirahat.', explanation: 'Menyarankan expresa la recomendación y agar introduce la acción recomendada.' },
+                                        { vocabId: 'b1v104', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Saya menyarankan agar kamu istirahat.', explanation: 'La frase formula una recomendación explícita.' },
+                                        { vocabId: 'b1v104', type: 'write', prompt: 'Escribe un consejo respetuoso de cuatro frases sobre un problema cotidiano. Incluye una opinión, una razón, un grado de posibilidad y una recomendación.', hint: 'Combina menurut saya, karena, mungkin o sepertinya y menyarankan.', modelAnswer: 'Menurut saya, kamu perlu istirahat karena kamu terlihat lelah. Mungkin kamu terlalu sibuk. Sepertinya pekerjaan itu bisa ditunda. Saya menyarankan agar kamu istirahat lebih banyak.', explanation: 'El texto integra opinión, causa, posibilidad o inferencia y una recomendación explícita.' }
+                                    ]
+                                }
+                            ]
+                        },
+
                     ]
                 },
 {

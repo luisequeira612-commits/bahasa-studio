@@ -100,9 +100,9 @@ test('displaced B1 U7-U9 content is preserved outside the active curriculum', ()
 test('B1 U10-U12 follow the approved nominalization and ke-an sequence without duplicating A1/A2 vocabulary', () => {
   const b1 = course.levels.find(level => level.id === 'B1');
   const forms = unitId => b1.units.find(unit => unit.id === unitId).vocab.map(word => word.idn.toLowerCase());
-  assert.deepEqual(forms('b1_u10'), ['pelajaran', 'pekerjaan']);
-  assert.deepEqual(forms('b1_u11'), ['pertanyaan', 'percakapan', 'perkenalan']);
-  assert.deepEqual(forms('b1_u12'), ['kesehatan', 'kecelakaan', 'keadaan', 'kebudayaan']);
+  assert.deepEqual(Array.from(forms('b1_u10')), ['pelajaran', 'pekerjaan']);
+  assert.deepEqual(Array.from(forms('b1_u11')), ['pertanyaan', 'percakapan', 'perkenalan']);
+  assert.deepEqual(Array.from(forms('b1_u12')), ['kesehatan', 'kecelakaan', 'keadaan', 'kebudayaan']);
   for (const unitId of ['b1_u10', 'b1_u11', 'b1_u12']) {
     const unit = b1.units.find(item => item.id === unitId);
     assert.equal(unit.exercises.length, 6);

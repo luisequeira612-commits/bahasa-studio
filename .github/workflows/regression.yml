@@ -87,6 +87,17 @@ jobs:
       - name: Run local quality tests
         if: ${{ !cancelled() }}
         run: npm run quality:tests
+      - name: Generate grammar prerequisite candidate report
+        if: ${{ !cancelled() }}
+        run: npm run quality:grammar-prerequisites
+      - name: Upload grammar prerequisite candidate report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: grammar-prerequisite-candidates
+          path: artifacts/grammar-prerequisite-candidates.json
+          if-no-files-found: ignore
+          retention-days: 14
       - name: Run DeepSeek review packet tests
         run: node --test tests/build-deepseek-review-packet.test.mjs
       - name: Generate independent editorial review queue

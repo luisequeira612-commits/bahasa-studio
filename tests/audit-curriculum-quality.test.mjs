@@ -778,3 +778,17 @@ test('allows B1 lesson references to canonical vocabulary from A1 and A2', () =>
   assert.equal(b1.error_count, 0);
   assert.ok(!b1.issues.some((item) => item.code === 'VOCAB_REFERENCE_MISSING'));
 });
+
+
+test('does not flag vocabulary already introduced in an earlier level as future B1 vocabulary', () => {
+  const reports = auditCurricula([
+    { id: 'A1', units: [{ id: 'a1_u1', title: 'A1', vocab: [{ id: 'a1_buku', idn: 'Buku', esp: 'libro' }], exercises: [] }] },
+    { id: 'A2', units: [{ id: 'a2_u1', title: 'A2', vocab: [], exercises: [] }] },
+    { id: 'B1', units: [{ id: 'b1_u1', title: 'B1', vocab: [{ id: 'b1_word', idn: 'Dibaca', esp: 'es leído' }], exercises: [
+      { vocabId: 'b1_word', type: 'listen', prompt: 'Escucha «Buku itu dibaca».', answer: 'Buku itu dibaca.' },
+    ] }] },
+  ]);
+  const b1 = reports.find((report) => report.level === 'B1');
+  assert.ok(b1);
+  assert.ok(!b1.issues.some((item) => item.code === 'TEXT_VOCAB_USED_BEFORE_INTRODUCTION'));
+});

@@ -538,9 +538,9 @@ test('B1 U35-U37 teach negotiation, clear communication and continuous improveme
   const units = ['b1_u35', 'b1_u36', 'b1_u37'].map(id => b1.units.find(unit => unit.id === id));
   assert.ok(units.every(Boolean));
   const expected = [
-    ['b1v130', 'b1v131', 'b1v132', 'b1v133', 'b1v134'],
+    ['a2u36_kesepakatan', 'b1v131', 'b1v132', 'b1v133', 'a2u36_kompromi'],
     ['b1v135', 'b1v136', 'b1v137', 'b1v138', 'b1v139'],
-    ['b1v140', 'b1v141', 'b1v142', 'b1v143', 'b1v144']
+    ['b1v140', 'b1v141', 'b1v142', 'a2u12_meningkatkan', 'a2u12_mengembangkan']
   ];
   const forms = [
     ['kesepakatan', 'berunding', 'menyetujui', 'menolak', 'kompromi'],

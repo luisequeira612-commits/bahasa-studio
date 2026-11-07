@@ -721,6 +721,29 @@ test('B1 U44-U46 teach forecasting, prevention and resource efficiency', () => {
   assert.match(units[2].grammar + units[2].lessons.map(lesson => lesson.grammar).join(' '), /sumber daya[\s\S]*penggunaan[\s\S]*menghemat[\s\S]*efisien[\s\S]*mengalokasikan/i);
 });
 
+test('B1 U50 closes the level with an integrated capstone', () => {
+  const b1 = course.levels.find(level => level.id === 'B1');
+  const unit = b1.units.find(item => item.id === 'b1_u50');
+  assert.ok(unit);
+  assert.deepEqual(Array.from(unit.vocab, word => word.id), ['b1v198', 'b1v199', 'b1v200', 'b1v201', 'b1v202']);
+  assert.equal(unit.lessons.length, 3);
+  const exercises = exercisesOf(unit);
+  assert.equal(exercises.length, 14);
+  assert.deepEqual(
+    exercises.map(exercise => exercise.type),
+    ['mc', 'translate_es_id', 'order', 'listen', 'write', 'mc', 'translate_es_id', 'order', 'listen', 'write', 'mc', 'translate_es_id', 'listen', 'write']
+  );
+  const localIds = new Set(unit.vocab.map(word => word.id));
+  for (const exercise of exercises) {
+    assert.ok(localIds.has(exercise.vocabId), 'U50 exercise references vocabulary outside the unit');
+    assert.ok(exercise.prompt && exercise.explanation);
+  }
+  assert.equal(new Set(unit.vocab.map(word => word.id)).size, 5);
+  assert.ok(unit.lessons[2].lessons === undefined);
+  assert.match(unit.grammar + unit.lessons.map(lesson => lesson.grammar).join(' '), /rancangan[\\s\\S]*kelayakan[\\s\\S]*pelaksanaan[\\s\\S]*mempresentasikan[\\s\\S]*menindaklanjuti/i);
+  assert.ok(exercises.some(exercise => exercise.type === 'write' && /rancangan/i.test(exercise.hint) && /menindaklanjuti/i.test(exercise.modelAnswer)));
+});
+ 
 test('B1 U47-U49 teach procedures, community participation and sustainability', () => {
   const b1 = course.levels.find(level => level.id === 'B1');
   const units = ['b1_u47', 'b1_u48', 'b1_u49'].map(id => b1.units.find(unit => unit.id === id));

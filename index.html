@@ -1497,6 +1497,221 @@
                                     ]
                                 }
                             ]
+                        },
+
+                        {
+                            id: 'b1_u21',
+                            title: 'Unidad 21: causa y consecuencia',
+                            desc: 'Explica por qué ocurre algo y presenta sus resultados con conectores adecuados al registro.',
+                            grammar: 'Karena y sebab introducen una causa: responden a «¿por qué?». Oleh karena itu suele enlazar una oración con una consecuencia lógica; sehingga introduce un resultado dentro de la misma construcción; akibatnya presenta una consecuencia como resultado de lo anterior. Makanya es una opción coloquial y conversacional, no la mejor elección para un informe formal.',
+                            vocab: [
+                                { id: 'b1v065', idn: 'Karena', esp: 'Porque; debido a que', ex: 'Saya pulang karena hujan.', exEsp: 'Volví a casa porque llovía.' },
+                                { id: 'b1v066', idn: 'Sebab', esp: 'Porque; pues (causa)', ex: 'Saya belajar sebab saya punya waktu.', exEsp: 'Estudio porque tengo tiempo.' },
+                                { id: 'b1v067', idn: 'Oleh karena itu', esp: 'Por lo tanto; por esa razón', ex: 'Hujan turun. Oleh karena itu, saya pulang.', exEsp: 'Llovió. Por lo tanto, volví a casa.' },
+                                { id: 'b1v068', idn: 'Sehingga', esp: 'De modo que; así que (resultado)', ex: 'Hujan turun sehingga jalan basah.', exEsp: 'Llovió, de modo que la calle quedó mojada.' },
+                                { id: 'b1v069', idn: 'Akibatnya', esp: 'Como consecuencia; como resultado', ex: 'Hujan turun. Akibatnya, jalan basah.', exEsp: 'Llovió. Como resultado, la calle quedó mojada.' },
+                                { id: 'b1v070', idn: 'Makanya', esp: 'Por eso; por esa razón (coloquial)', ex: 'Hujan turun, makanya saya tinggal di rumah.', exEsp: 'Está lloviendo; por eso me quedo en casa.' }
+                            ],
+                            lessons: [
+                                {
+                                    title: 'Expresar la causa: karena y sebab',
+                                    objective: 'Identifica la razón de un hecho y distingue dos conectores causales frecuentes.',
+                                    grammar: 'Karena es muy común para introducir una causa. Sebab también expresa causa y puede sonar más explicativo o escrito. Ambos pueden aparecer antes o después de la consecuencia; si la causa aparece al final, no se necesita invertir el orden verbal.',
+                                    reviewVocabIds: ['b1v056', 'b1v060'],
+                                    exercises: [
+                                        { vocabId: 'b1v065', type: 'mc', prompt: 'En «Saya pulang karena hujan», ¿qué introduce karena?', options: ['La razón por la que vuelvo a casa', 'El resultado de volver a casa', 'Una situación imaginaria'], answer: 0, explanation: 'Karena introduce la causa o razón.' },
+                                        { vocabId: 'b1v065', type: 'translate_es_id', prompt: 'Traduce: «Volví a casa porque llovía».', answer: 'Saya pulang karena hujan.', explanation: 'Karena enlaza la acción de volver a casa con su causa.' },
+                                        { vocabId: 'b1v066', type: 'order', prompt: 'Ordena: «Estudio porque tengo tiempo».', words: ['punya', 'Saya', 'sebab', 'waktu.', 'belajar', 'saya'], correctOrder: ['Saya', 'belajar', 'sebab', 'saya', 'punya', 'waktu.'], explanation: 'Sebab introduce la razón por la que la persona estudia.' },
+                                        { vocabId: 'b1v066', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Saya belajar sebab saya punya waktu.', explanation: 'Sebab presenta la causa de la acción de estudiar.' },
+                                        { vocabId: 'b1v065', type: 'write', prompt: 'Escribe dos frases: una con karena y otra con sebab. En ambas, explica una causa.', hint: 'Puedes usar hujan, punya waktu, belajar o pulang.', modelAnswer: 'Saya pulang karena hujan. Saya belajar sebab saya punya waktu.', explanation: 'Karena y sebab expresan una relación causal.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Presentar consecuencias: sehingga, oleh karena itu y akibatnya',
+                                    objective: 'Distingue un resultado dentro de la oración de un conector que enlaza dos oraciones.',
+                                    grammar: 'Sehingga introduce el resultado dentro de una construcción: Hujan turun sehingga jalan basah. Oleh karena itu suele iniciar una nueva oración que presenta una conclusión o consecuencia. Akibatnya también puede iniciar una oración y destaca el resultado producido.',
+                                    reviewVocabIds: ['b1v057', 'b1v061'],
+                                    exercises: [
+                                        { vocabId: 'b1v068', type: 'mc', prompt: '¿Qué conector introduce el resultado dentro de una misma construcción, como en «Hujan turun sehingga jalan basah»?', options: ['Karena', 'Sehingga', 'Makanya'], answer: 1, explanation: 'Sehingga introduce el resultado que se deriva de la primera parte.' },
+                                        { vocabId: 'b1v068', type: 'translate_es_id', prompt: 'Traduce: «Llovió, de modo que la calle quedó mojada».', answer: 'Hujan turun sehingga jalan basah.', explanation: 'Sehingga enlaza el hecho inicial con el resultado.' },
+                                        { vocabId: 'b1v068', type: 'order', prompt: 'Ordena: «Llovió, de modo que la calle quedó mojada».', words: ['basah.', 'turun', 'Hujan', 'sehingga', 'jalan'], correctOrder: ['Hujan', 'turun', 'sehingga', 'jalan', 'basah.'], explanation: 'Sehingga introduce la consecuencia dentro de la misma oración.' },
+                                        { vocabId: 'b1v067', type: 'listen', prompt: 'Escucha y escribe las dos oraciones completas.', answer: 'Hujan turun. Oleh karena itu, saya pulang.', explanation: 'Oleh karena itu enlaza la segunda oración con la causa anterior.' },
+                                        { vocabId: 'b1v069', type: 'write', prompt: 'Escribe dos oraciones relacionadas: presenta primero una causa y después su consecuencia con oleh karena itu o akibatnya.', hint: 'Usa hujan turun y una consecuencia como jalan basah o saya pulang.', modelAnswer: 'Hujan turun. Oleh karena itu, saya pulang. Hujan turun. Akibatnya, jalan basah.', explanation: 'Oleh karena itu y akibatnya pueden presentar una consecuencia al comienzo de una nueva oración.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Makanya y el registro conversacional',
+                                    objective: 'Reconoce makanya como conector coloquial de consecuencia y elige un registro adecuado.',
+                                    grammar: 'Makanya suele aparecer en conversación para presentar una consecuencia o explicar por qué se hizo algo. En textos formales, prefiere oleh karena itu o akibatnya. No es un sufijo ni una regla productiva: se aprende como conector lexicalizado.',
+                                    reviewVocabIds: ['b1v063', 'b1v064'],
+                                    exercises: [
+                                        { vocabId: 'b1v070', type: 'mc', prompt: '¿Qué conector tiene un tono más coloquial y conversacional?', options: ['Oleh karena itu', 'Makanya', 'Sehingga'], answer: 1, explanation: 'Makanya es más coloquial; los otros conectores funcionan mejor en escritura neutral o formal.' },
+                                        { vocabId: 'b1v070', type: 'translate_es_id', prompt: 'Traduce en un registro conversacional: «Está lloviendo; por eso me quedo en casa».', answer: 'Hujan turun, makanya saya tinggal di rumah.', explanation: 'Makanya presenta la consecuencia en un tono conversacional.' },
+                                        { vocabId: 'b1v070', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Hujan turun, makanya saya tinggal di rumah.', explanation: 'La frase usa makanya para explicar la consecuencia de la lluvia.' },
+                                        { vocabId: 'b1v070', type: 'write', prompt: 'Escribe dos versiones de una relación causa-consecuencia: una formal y otra conversacional.', hint: 'Usa oleh karena itu en la formal y makanya en la conversacional.', modelAnswer: 'Hujan turun. Oleh karena itu, saya pulang. Hujan turun, makanya saya tinggal di rumah.', explanation: 'El significado general es parecido, pero el registro cambia.' }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            id: 'b1_u22',
+                            title: 'Unidad 22: expresar propósito — supaya, agar y untuk + verbo',
+                            desc: 'Explica la finalidad de una acción y elige la estructura según la construcción y el registro.',
+                            grammar: 'Supaya y agar introducen una finalidad o el resultado que se desea conseguir. Supaya es muy frecuente en el uso cotidiano; agar suele sonar algo más formal o escrito. Untuk + verbo expresa el propósito de una acción mediante un infinitivo verbal: Saya datang untuk belajar. Untuk ya aparece en A1/A2; aquí se amplía su uso de finalidad.',
+                            vocab: [
+                                { id: 'b1v071', idn: 'Supaya', esp: 'Para que; con el fin de que', ex: 'Saya belajar supaya lulus ujian.', exEsp: 'Estudio para aprobar el examen.' },
+                                { id: 'b1v072', idn: 'Agar', esp: 'Para que; a fin de que (más formal)', ex: 'Saya belajar agar lulus ujian.', exEsp: 'Estudio a fin de aprobar el examen.' }
+                            ],
+                            lessons: [
+                                {
+                                    title: 'Supaya: finalidad y resultado deseado',
+                                    objective: 'Expresa el propósito de una acción con supaya.',
+                                    grammar: 'Supaya introduce una finalidad: la primera acción se realiza con la intención de conseguir el resultado de la segunda parte. Puede ir seguido de una cláusula con sujeto y verbo, como en Saya belajar supaya saya bisa lulus ujian.',
+                                    reviewVocabIds: ['b1v065', 'b1v066'],
+                                    exercises: [
+                                        { vocabId: 'b1v071', type: 'mc', prompt: '¿Qué relación expresa supaya en «Saya belajar supaya lulus ujian»?', options: ['La causa de estudiar', 'El propósito de estudiar', 'Una consecuencia inesperada'], answer: 1, explanation: 'Supaya presenta el resultado que se desea conseguir.' },
+                                        { vocabId: 'b1v071', type: 'translate_es_id', prompt: 'Traduce: «Estudio para aprobar el examen».', answer: 'Saya belajar supaya lulus ujian.', explanation: 'Supaya introduce el propósito de estudiar.' },
+                                        { vocabId: 'b1v071', type: 'order', prompt: 'Ordena: «Estudio para aprobar el examen».', words: ['ujian.', 'belajar', 'Saya', 'supaya', 'lulus'], correctOrder: ['Saya', 'belajar', 'supaya', 'lulus', 'ujian.'], explanation: 'Supaya conecta la acción con el resultado deseado.' },
+                                        { vocabId: 'b1v071', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Saya belajar supaya lulus ujian.', explanation: 'La oración expresa la finalidad de estudiar.' },
+                                        { vocabId: 'b1v071', type: 'write', prompt: 'Escribe una frase con supaya que explique para qué haces algo.', hint: 'Puedes usar belajar, membaca o datang.', modelAnswer: 'Saya belajar supaya lulus ujian.', explanation: 'La segunda parte presenta el resultado que se desea conseguir.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Agar y el registro más formal',
+                                    objective: 'Reconoce agar como una alternativa más formal para expresar propósito.',
+                                    grammar: 'Agar y supaya expresan finalidad. Agar es frecuente en instrucciones, explicaciones y escritura cuidada; supaya suele ser más común en conversación. La estructura puede contener una cláusula completa o un verbo que expresa el resultado deseado.',
+                                    reviewVocabIds: ['b1v067', 'b1v068'],
+                                    exercises: [
+                                        { vocabId: 'b1v072', type: 'mc', prompt: 'En una instrucción escrita y cuidada, ¿qué conector puede sonar más formal para expresar finalidad?', options: ['Makanya', 'Agar', 'Akibatnya'], answer: 1, explanation: 'Agar es una opción habitual en instrucciones y escritura más formal.' },
+                                        { vocabId: 'b1v072', type: 'translate_es_id', prompt: 'Traduce: «Estudio a fin de aprobar el examen».', answer: 'Saya belajar agar lulus ujian.', explanation: 'Agar introduce el propósito de la acción.' },
+                                        { vocabId: 'b1v072', type: 'order', prompt: 'Ordena: «Estudio a fin de aprobar el examen».', words: ['agar', 'Saya', 'ujian.', 'lulus', 'belajar'], correctOrder: ['Saya', 'belajar', 'agar', 'lulus', 'ujian.'], explanation: 'Agar enlaza la acción con el resultado que se desea conseguir.' },
+                                        { vocabId: 'b1v072', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Saya belajar agar lulus ujian.', explanation: 'Agar expresa finalidad en un registro neutro o más formal.' },
+                                        { vocabId: 'b1v072', type: 'write', prompt: 'Escribe una instrucción breve con agar para explicar el propósito de una acción.', hint: 'Puedes usar belajar, membaca o memahami.', modelAnswer: 'Bacalah buku agar kamu memahami pelajaran.', explanation: 'Agar introduce la finalidad de la instrucción.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Untuk + verbo y elección del conector',
+                                    objective: 'Distingue supaya, agar y untuk + verbo al expresar finalidad.',
+                                    grammar: 'Untuk + verbo expresa propósito sin introducir una cláusula finita: Saya datang untuk belajar. Supaya y agar introducen la finalidad mediante una cláusula o resultado deseado. Untuk ya aparece en A1/A2; este bloque consolida su uso con verbos.',
+                                    reviewVocabIds: ['b1v069', 'b1v070'],
+                                    exercises: [
+                                        { vocabId: 'b1v071', type: 'mc', prompt: '¿Qué estructura expresa propósito mediante «para + infinitivo»?', options: ['Untuk + verbo', 'Karena + verbo', 'Makanya + verbo'], answer: 0, explanation: 'Untuk + verbo expresa el propósito de la acción.' },
+                                        { vocabId: 'b1v071', type: 'translate_es_id', prompt: 'Traduce: «Vine para estudiar».', answer: 'Saya datang untuk belajar.', explanation: 'Untuk va seguido del verbo belajar para expresar la finalidad de venir.' },
+                                        { vocabId: 'b1v072', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Saya datang untuk belajar.', explanation: 'La frase usa untuk + verbo para indicar propósito.' },
+                                        { vocabId: 'b1v071', type: 'write', prompt: 'Escribe tres frases cortas: una con supaya, otra con agar y otra con untuk + verbo.', hint: 'Expresa el propósito de estudiar, aprobar un examen o venir.', modelAnswer: 'Saya belajar supaya lulus ujian. Saya belajar agar lulus ujian. Saya datang untuk belajar.', explanation: 'Las tres estructuras expresan finalidad, pero tienen construcciones y matices de registro diferentes.' }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            id: 'b1_u23',
+                            title: 'Unidad 23: experiencias pasadas — pernah, belum pernah, baru saja, sempat y telah',
+                            desc: 'Habla de experiencias, acciones recientes, oportunidades y hechos completados.',
+                            grammar: 'Pernah expresa que una experiencia ocurrió alguna vez. Belum pernah indica que todavía no se ha tenido esa experiencia. Baru saja señala una acción ocurrida hace muy poco. Sempat expresa que hubo tiempo u oportunidad para hacer algo. Telah marca una acción completada y suele sonar más formal o escrito que sudah. Masih indica que una situación continúa.',
+                            vocab: [
+                                { id: 'a2u16_pernah', idn: 'Pernah', esp: 'Alguna vez; haber hecho algo alguna vez', ex: 'Saya pernah ke Bali.', exEsp: 'He estado en Bali alguna vez.' },
+                                { id: 'b1v073', idn: 'Belum pernah', esp: 'Nunca antes; todavía no haber tenido una experiencia', ex: 'Saya belum pernah naik pesawat.', exEsp: 'Nunca he viajado en avión.' },
+                                { id: 'a2u2_baru_saja', idn: 'Baru saja', esp: 'Acabar de; hace muy poco', ex: 'Saya baru saja datang.', exEsp: 'Acabo de llegar.' },
+                                { id: 'b1v074', idn: 'Sempat', esp: 'Haber tenido tiempo u oportunidad de; alcanzar a', ex: 'Saya sempat belajar di rumah.', exEsp: 'Tuve tiempo de estudiar en casa.' },
+                                { id: 'b1v075', idn: 'Telah', esp: 'Haber; ya (aspecto completado, registro formal)', ex: 'Saya telah pergi ke Bali.', exEsp: 'He ido a Bali.' },
+                                { id: 'a2u2_masih', idn: 'Masih', esp: 'Todavía; aún', ex: 'Saya masih ingat pengalaman itu.', exEsp: 'Todavía recuerdo esa experiencia.' }
+                            ],
+                            lessons: [
+                                {
+                                    title: 'Pernah y belum pernah',
+                                    objective: 'Distingue una experiencia vivida de una experiencia que todavía no se ha tenido.',
+                                    grammar: 'Pernah presenta una experiencia ocurrida alguna vez. Belum pernah niega que esa experiencia se haya producido hasta el momento: belum («todavía no») + pernah («alguna vez»). La forma belum pernah no significa exactamente lo mismo que tidak pernah, que puede expresar una negación más general.',
+                                    reviewVocabIds: ['b1v071', 'b1v072'],
+                                    exercises: [
+                                        { vocabId: 'a2u16_pernah', type: 'mc', prompt: '¿Qué forma indica que una experiencia ocurrió alguna vez?', options: ['Belum pernah', 'Pernah', 'Baru saja'], answer: 1, explanation: 'Pernah indica que la experiencia se ha vivido alguna vez.' },
+                                        { vocabId: 'b1v073', type: 'translate_es_id', prompt: 'Traduce: «Nunca he viajado en avión».', answer: 'Saya belum pernah naik pesawat.', explanation: 'Belum pernah indica que la experiencia no se ha tenido hasta ahora.' },
+                                        { vocabId: 'b1v073', type: 'order', prompt: 'Ordena: «Nunca he viajado en avión».', words: ['pesawat.', 'Saya', 'naik', 'belum', 'pernah'], correctOrder: ['Saya', 'belum', 'pernah', 'naik', 'pesawat.'], explanation: 'Belum pernah aparece antes del verbo que expresa la experiencia.' },
+                                        { vocabId: 'a2u16_pernah', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Saya pernah ke Bali.', explanation: 'Pernah expresa una experiencia que ocurrió alguna vez.' },
+                                        { vocabId: 'b1v073', type: 'write', prompt: 'Escribe dos frases: una experiencia que sí has tenido y otra que todavía no has tenido.', hint: 'Usa pernah y belum pernah.', modelAnswer: 'Saya pernah ke Bali. Saya belum pernah naik pesawat.', explanation: 'El contraste entre pernah y belum pernah diferencia una experiencia vivida de una pendiente.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Acciones recientes y oportunidades: baru saja y sempat',
+                                    objective: 'Expresa una acción muy reciente y distingue haber tenido oportunidad de hacer algo.',
+                                    grammar: 'Baru saja señala que una acción ocurrió hace muy poco. Sempat destaca que alguien tuvo tiempo u oportunidad de hacer algo, incluso si la oportunidad fue limitada. Sempat no equivale simplemente a pernah: se centra en la posibilidad o el momento disponible.',
+                                    reviewVocabIds: ['b1v065', 'b1v070'],
+                                    exercises: [
+                                        { vocabId: 'a2u2_baru_saja', type: 'mc', prompt: '¿Qué expresión indica que una acción ocurrió hace muy poco?', options: ['Sempat', 'Baru saja', 'Telah'], answer: 1, explanation: 'Baru saja expresa una acción muy reciente.' },
+                                        { vocabId: 'a2u2_baru_saja', type: 'translate_es_id', prompt: 'Traduce: «Acabo de llegar».', answer: 'Saya baru saja datang.', explanation: 'Baru saja indica que la llegada ocurrió hace muy poco.' },
+                                        { vocabId: 'b1v074', type: 'order', prompt: 'Ordena: «Tuve tiempo de estudiar en casa».', words: ['rumah.', 'Saya', 'sempat', 'di', 'belajar'], correctOrder: ['Saya', 'sempat', 'belajar', 'di', 'rumah.'], explanation: 'Sempat precede al verbo que expresa la acción que se pudo realizar.' },
+                                        { vocabId: 'b1v074', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Saya sempat belajar di rumah.', explanation: 'Sempat indica que hubo tiempo u oportunidad para estudiar.' },
+                                        { vocabId: 'b1v074', type: 'write', prompt: 'Escribe dos frases: una con baru saja y otra con sempat.', hint: 'Usa datang o belajar di rumah.', modelAnswer: 'Saya baru saja pulang. Saya sempat belajar sebelum tidur.', explanation: 'Baru saja sitúa una acción muy cerca del presente; sempat destaca la oportunidad de realizarla.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Telah y masih: acción completada y situación que continúa',
+                                    objective: 'Reconoce telah como marcador más formal de acción completada y masih como continuidad.',
+                                    grammar: 'Telah presenta una acción como completada y es más habitual en escritura formal, noticias o informes. Masih indica que una situación continúa en el momento de referencia. En una narración, pueden contrastarse una acción ya realizada y un recuerdo o estado que sigue vigente.',
+                                    reviewVocabIds: ['b1v068', 'b1v069'],
+                                    exercises: [
+                                        { vocabId: 'b1v075', type: 'mc', prompt: '¿Qué marcador suele sonar más formal o escrito para presentar una acción completada?', options: ['Masih', 'Telah', 'Belum pernah'], answer: 1, explanation: 'Telah es más formal o escrito que sudah en muchos contextos.' },
+                                        { vocabId: 'b1v075', type: 'translate_es_id', prompt: 'Traduce: «He ido a Bali».', answer: 'Saya telah pergi ke Bali.', explanation: 'Telah presenta la acción de ir como completada.' },
+                                        { vocabId: 'a2u2_masih', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Saya masih ingat pengalaman itu.', explanation: 'Masih indica que el recuerdo continúa.' },
+                                        { vocabId: 'b1v075', type: 'write', prompt: 'Escribe dos frases sobre una experiencia pasada: una con telah y otra con masih.', hint: 'Puedes usar pergi ke Bali y ingat pengalaman itu.', modelAnswer: 'Saya telah pergi ke Bali. Saya masih ingat pengalaman itu.', explanation: 'La primera frase presenta una acción completada; la segunda, un estado que continúa.' }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            id: 'b1_u24',
+                            title: 'Unidad 24: narrar experiencias — dulu, waktu itu, ketika y kemudian',
+                            desc: 'Organiza un viaje o un día especial con referencias temporales y vocabulario narrativo.',
+                            grammar: 'Dulu sitúa algo en un pasado general o en una etapa anterior. Waktu itu se refiere a un momento específico del pasado. Ketika introduce una cláusula temporal; kemudian y setelah itu ordenan acciones sucesivas. Pengalaman, perjalanan y liburan permiten hablar de lo vivido, de un viaje o de unas vacaciones.',
+                            vocab: [
+                                { id: 'b1v076', idn: 'Dulu', esp: 'Antes; antiguamente; en aquel entonces', ex: 'Dulu, saya tinggal di desa.', exEsp: 'Antes vivía en un pueblo.' },
+                                { id: 'b1v077', idn: 'Waktu itu', esp: 'En aquel momento; en esa ocasión', ex: 'Waktu itu, saya pergi ke rumah nenek.', exEsp: 'En aquel momento, fui a casa de mi abuela.' },
+                                { id: 'a2u3_ketika', idn: 'Ketika', esp: 'Cuando', ex: 'Ketika saya pulang, hujan turun.', exEsp: 'Cuando volví a casa, llovió.' },
+                                { id: 'a2u3_kemudian', idn: 'Kemudian', esp: 'Después; a continuación', ex: 'Kemudian, saya masuk ke rumah.', exEsp: 'Después, entré en la casa.' },
+                                { id: 'a2u3_setelah_itu', idn: 'Setelah itu', esp: 'Después de eso', ex: 'Setelah itu, saya makan.', exEsp: 'Después de eso, comí.' },
+                                { id: 'a2u12_pengalaman', idn: 'Pengalaman', esp: 'Experiencia', ex: 'Liburan itu pengalaman yang baik.', exEsp: 'Esas vacaciones fueron una buena experiencia.' },
+                                { id: 'a2u14_perjalanan', idn: 'Perjalanan', esp: 'Viaje; trayecto', ex: 'Perjalanan saya jauh.', exEsp: 'Mi viaje fue largo.' },
+                                { id: 'a2u16_liburan', idn: 'Liburan', esp: 'Vacaciones', ex: 'Liburan itu pengalaman yang baik.', exEsp: 'Esas vacaciones fueron una buena experiencia.' }
+                            ],
+                            lessons: [
+                                {
+                                    title: 'Dulu y waktu itu',
+                                    objective: 'Distingue una referencia general al pasado de un momento pasado concreto.',
+                                    grammar: 'Dulu suele situar una etapa anterior o un hábito pasado. Waktu itu señala una ocasión o momento específico del pasado. Ambos pueden aparecer al comienzo de la oración y separarse del resto mediante una coma.',
+                                    reviewVocabIds: ['b1v073', 'b1v074'],
+                                    exercises: [
+                                        { vocabId: 'b1v076', type: 'mc', prompt: '¿Qué expresión se refiere más claramente a una ocasión concreta del pasado?', options: ['Dulu', 'Waktu itu', 'Telah'], answer: 1, explanation: 'Waktu itu apunta a un momento específico; dulu puede referirse a una etapa anterior más general.' },
+                                        { vocabId: 'b1v076', type: 'translate_es_id', prompt: 'Traduce: «Antes vivía en un pueblo».', answer: 'Dulu, saya tinggal di desa.', explanation: 'Dulu sitúa la situación en una etapa anterior.' },
+                                        { vocabId: 'b1v077', type: 'order', prompt: 'Ordena: «En aquel momento, fui a casa de mi abuela».', words: ['nenek.', 'Waktu', 'pergi', 'rumah', 'itu,', 'saya', 'ke'], correctOrder: ['Waktu', 'itu,', 'saya', 'pergi', 'ke', 'rumah', 'nenek.'], explanation: 'Waktu itu introduce el momento pasado específico.' },
+                                        { vocabId: 'b1v077', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Waktu itu, saya pergi ke rumah nenek.', explanation: 'La frase se refiere a una ocasión concreta del pasado.' },
+                                        { vocabId: 'b1v076', type: 'write', prompt: 'Escribe dos frases sobre tu pasado: una con dulu y otra con waktu itu.', hint: 'Puedes usar tinggal di desa y pergi ke rumah nenek.', modelAnswer: 'Dulu, saya tinggal di desa. Waktu itu, saya pergi ke rumah nenek.', explanation: 'Dulu sitúa una etapa anterior y waktu itu señala una ocasión concreta.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Ordenar acciones: ketika, kemudian y setelah itu',
+                                    objective: 'Construye una secuencia temporal con una cláusula introducida por ketika y conectores de continuación.',
+                                    grammar: 'Ketika introduce el momento en que sucede otra acción. Kemudian y setelah itu indican qué ocurrió después. En una narración, estos marcadores ayudan a ordenar los acontecimientos sin cambiar la forma del verbo.',
+                                    reviewVocabIds: ['b1v075', 'b1v073'],
+                                    exercises: [
+                                        { vocabId: 'a2u3_ketika', type: 'mc', prompt: '¿Qué expresión introduce una cláusula equivalente a «cuando»?', options: ['Kemudian', 'Ketika', 'Waktu itu'], answer: 1, explanation: 'Ketika introduce una cláusula temporal equivalente a «cuando».' },
+                                        { vocabId: 'a2u3_ketika', type: 'translate_es_id', prompt: 'Traduce: «Cuando volví a casa, llovió».', answer: 'Ketika saya pulang, hujan turun.', explanation: 'Ketika introduce el momento en que ocurrió la lluvia.' },
+                                        { vocabId: 'a2u3_kemudian', type: 'order', prompt: 'Ordena: «Después, entré en la casa».', words: ['rumah.', 'Kemudian,', 'masuk', 'ke', 'saya'], correctOrder: ['Kemudian,', 'saya', 'masuk', 'ke', 'rumah.'], explanation: 'Kemudian marca la acción que ocurre después.' },
+                                        { vocabId: 'a2u3_ketika', type: 'listen', prompt: 'Escucha y escribe las dos oraciones completas.', answer: 'Ketika saya pulang, hujan turun. Kemudian, saya masuk ke rumah.', explanation: 'Ketika sitúa el primer acontecimiento y kemudian presenta el siguiente.' },
+                                        { vocabId: 'a2u3_setelah_itu', type: 'write', prompt: 'Escribe una secuencia de tres acciones usando ketika, kemudian y setelah itu.', hint: 'Cuenta qué ocurrió al volver a casa, entrar y comer.', modelAnswer: 'Ketika saya pulang, hujan turun. Kemudian, saya masuk ke rumah. Setelah itu, saya makan.', explanation: 'Los tres conectores ordenan los acontecimientos en el tiempo.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Narrar un viaje o un día especial',
+                                    objective: 'Integra referencias temporales y vocabulario de experiencias en una narración breve.',
+                                    grammar: 'Pengalaman se refiere a lo vivido; perjalanan, a un viaje o trayecto; liburan, a las vacaciones. Una narración clara puede combinar dulu o waktu itu para situar el contexto, ketika para introducir un momento y kemudian o setelah itu para ordenar acciones.',
+                                    reviewVocabIds: ['b1v073', 'b1v074', 'b1v075'],
+                                    exercises: [
+                                        { vocabId: 'a2u12_pengalaman', type: 'mc', prompt: '¿Qué palabra significa «experiencia»?', options: ['Perjalanan', 'Pengalaman', 'Liburan'], answer: 1, explanation: 'Pengalaman significa experiencia; perjalanan es viaje y liburan son vacaciones.' },
+                                        { vocabId: 'a2u14_perjalanan', type: 'translate_es_id', prompt: 'Traduce: «Mi viaje fue largo».', answer: 'Perjalanan saya jauh.', explanation: 'Perjalanan se refiere al viaje o trayecto.' },
+                                        { vocabId: 'a2u16_liburan', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Liburan itu pengalaman yang baik.', explanation: 'La frase conecta las vacaciones con la experiencia vivida.' },
+                                        { vocabId: 'a2u12_pengalaman', type: 'write', prompt: 'Narra un viaje o un día especial en cuatro o cinco frases. Incluye una referencia temporal, dos acciones en secuencia y una valoración de la experiencia.', hint: 'Usa al menos tres entre dulu, waktu itu, ketika, kemudian, setelah itu, perjalanan, pengalaman y liburan.', modelAnswer: 'Dulu, saya pergi ke rumah nenek. Waktu itu, perjalanan saya jauh. Ketika saya pulang, hujan turun. Kemudian, saya masuk ke rumah. Liburan itu pengalaman yang baik.', explanation: 'La narración combina referencias temporales, secuencia de acciones y vocabulario de experiencias.' }
+                                    ]
+                                }
+                            ]
                         }
                     ]
                 },

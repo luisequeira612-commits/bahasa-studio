@@ -263,9 +263,9 @@ test('A2 units 1-4 begin with the approved temporal and narrative progression', 
 
   const b1 = course.levels.find(level => level.id === 'B1').units[0];
   const b2 = course.levels.find(level => level.id === 'B2').units[0];
-  assert.equal(b1.vocab[0].ex, 'Nasi dimakan oleh mereka.');
-  assert.equal(b1.vocab[0].exEsp, 'El arroz es comido por ellos.');
-  assert.match(b1.grammar, /oleh mereka/);
+  assert.equal(b1.vocab[0].ex, 'Buku dibaca oleh Rina.');
+  assert.equal(b1.vocab[0].exEsp, 'El libro es leído por Rina.');
+  assert.match(b1.grammar, /oleh Rina/);
   assert.equal(b2.vocab[0].idn, 'Membangunkan');
   assert.equal(b2.vocab[0].ex, 'Saya membangunkan anak.');
   assert.match(b2.grammar, /sentido causativo/);

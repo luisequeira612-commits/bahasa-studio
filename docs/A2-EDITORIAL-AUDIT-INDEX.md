@@ -10,7 +10,7 @@ Estado global: **primera pasada editorial documentada; revisión lingüística i
 | U1–U4 | [A2-UNITS-01-04-AUDIT.md](A2-UNITS-01-04-AUDIT.md) |
 | U5–U8 | [A2-UNITS-05-08-AUDIT.md](A2-UNITS-05-08-AUDIT.md) |
 | U9–U12 | [A2-UNITS-09-12-AUDIT.md](A2-UNITS-09-12-AUDIT.md) |
-| U13–U16 | [A2-UNITS-13-16-AUDIT.md](A2-UNITS-13-16-AUDIT.md) |
+| U13–U16 | [A2-UNITS-13-16-AUDIT.md](A2-UNITS-13-16-AUDIT.md) + [revisión contextual](EDITORIAL_AUDIT_A2_U13_U16.md) |
 | U17–U20 | [A2-UNITS-17-20-AUDIT.md](A2-UNITS-17-20-AUDIT.md) |
 | U21–U24 | [A2-UNITS-21-24-AUDIT.md](A2-UNITS-21-24-AUDIT.md) |
 | U25–U28 | [A2-UNITS-25-28-AUDIT.md](A2-UNITS-25-28-AUDIT.md) |

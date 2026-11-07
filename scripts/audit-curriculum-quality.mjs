@@ -743,11 +743,51 @@ export function auditCurriculum(curriculum, level = curriculum?.id ?? 'unknown',
 export function auditCurricula(curricula) {
   return curricula.map((curriculum, index) => {
     const earlierVocabulary = curricula.slice(0, index)
-      .flatMap((earlier) => (earlier.units ?? []).flatMap((unit) => unit.vocab ?? []));
+      .flatMap((earlier) => (earlier.units ?? []).flatMap((unit, unitIndex) =>
+        (unit.vocab ?? []).map((word, wordIndex) => ({
+          ...word,
+          sourceLevel: earlier.id,
+          sourcePath: `${earlier.id}.units[${unitIndex}].vocab[${wordIndex}]`,
+        }))
+      ));
     const earlierVocabularyIds = new Set(earlierVocabulary
       .map((word) => word?.id)
       .filter((id) => typeof id === 'string'));
-    return auditCurriculum(curriculum, curriculum.id, earlierVocabularyIds, earlierVocabulary);
+    const report = auditCurriculum(curriculum, curriculum.id, earlierVocabularyIds, earlierVocabulary);
+
+    // A repeated Indonesian form under a new ID may be an intentional new
+    // sense or a vocabulary-canonicalization gap. Keep it informational so a
+    // reviewer can inspect it without treating the match as a linguistic error.
+    const earlierByTerm = new Map();
+    for (const word of earlierVocabulary) {
+      const term = normalizeTextForVocabularyMatch(word?.idn);
+      if (!term || typeof word?.id !== 'string' || !word.id.trim()) continue;
+      const matches = earlierByTerm.get(term) ?? [];
+      if (!matches.some((item) => item.id === word.id && item.sourcePath === word.sourcePath)) {
+        matches.push({ id: word.id, sourceLevel: word.sourceLevel, sourcePath: word.sourcePath });
+      }
+      earlierByTerm.set(term, matches);
+    }
+
+    (curriculum.units ?? []).forEach((unit, unitIndex) => {
+      (unit?.vocab ?? []).forEach((word, wordIndex) => {
+        const term = normalizeTextForVocabularyMatch(word?.idn);
+        if (!term || typeof word?.id !== 'string' || !word.id.trim()) return;
+        const priorMatches = earlierByTerm.get(term) ?? [];
+        const differentIds = priorMatches.filter((item) => item.id !== word.id);
+        if (!differentIds.length) return;
+        const references = [...new Map(differentIds.map((item) => [item.id, item])).values()];
+        report.issues.push(issue(
+          'info',
+          'VOCAB_TERM_REUSED_WITH_DIFFERENT_ID',
+          `${curriculum.id}.units[${unitIndex}].vocab[${wordIndex}]`,
+          `El término indonesio “${word.idn}” ya aparece en un nivel anterior con ID ${references.map((item) => `${item.id} (${item.sourcePath})`).join('; ')}. Revisar si corresponde reutilizar el ID canónico o si se está enseñando un sentido distinto.`
+        ));
+      });
+    });
+
+    report.info_count = report.issues.filter((item) => item.severity === 'info').length;
+    return report;
   });
 }
 

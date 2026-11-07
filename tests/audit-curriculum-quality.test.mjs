@@ -792,3 +792,41 @@ test('does not flag vocabulary already introduced in an earlier level as future 
   assert.ok(b1);
   assert.ok(!b1.issues.some((item) => item.code === 'TEXT_VOCAB_USED_BEFORE_INTRODUCTION'));
 });
+
+
+test('reports a repeated cross-level Indonesian term under a different ID as informational', () => {
+  const reports = auditCurricula([
+    { id: 'A1', units: [{ id: 'a1_u1', title: 'A1', vocab: [
+      { id: 'canonical_mungkin', idn: 'Mungkin', esp: 'quizá' },
+    ], exercises: [] }] },
+    { id: 'A2', units: [{ id: 'a2_u1', title: 'A2', vocab: [], exercises: [] }] },
+    { id: 'B1', units: [{ id: 'b1_u1', title: 'B1', vocab: [
+      { id: 'new_mungkin', idn: ' mungkin ', esp: 'quizá', ex: 'Mungkin dia datang.', exEsp: 'Quizá venga.' },
+    ], exercises: [{ vocabId: 'new_mungkin', type: 'listen', prompt: 'Escucha la palabra.', answer: 'Mungkin' }] }] },
+  ]);
+  const b1 = reports.find((report) => report.level === 'B1');
+  const issue = b1.issues.find((item) => item.code === 'VOCAB_TERM_REUSED_WITH_DIFFERENT_ID');
+  assert.ok(issue);
+  assert.equal(issue.severity, 'info');
+  assert.equal(issue.path, 'B1.units[0].vocab[0]');
+  assert.match(issue.message, /canonical_mungkin/);
+  assert.match(issue.message, /A1\.units\[0\]\.vocab\[0\]/);
+  assert.equal(b1.error_count, 0);
+  assert.equal(b1.warning_count, 0);
+  assert.equal(b1.info_count, 1);
+});
+
+test('does not report cross-level terms when the canonical ID is reused or the term differs', () => {
+  const reports = auditCurricula([
+    { id: 'A1', units: [{ id: 'a1_u1', title: 'A1', vocab: [
+      { id: 'shared_mungkin', idn: 'Mungkin', esp: 'quizá' },
+    ], exercises: [] }] },
+    { id: 'B1', units: [{ id: 'b1_u1', title: 'B1', vocab: [
+      { id: 'shared_mungkin', idn: 'mungkin', esp: 'quizá' },
+      { id: 'new_berlari', idn: 'Berlari', esp: 'correr' },
+    ], exercises: [] }] },
+  ]);
+  const b1 = reports.find((report) => report.level === 'B1');
+  assert.ok(!b1.issues.some((item) => item.code === 'VOCAB_TERM_REUSED_WITH_DIFFERENT_ID'));
+  assert.equal(b1.info_count, 0);
+});

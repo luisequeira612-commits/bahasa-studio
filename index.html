@@ -1176,6 +1176,173 @@
                                     ]
                                 }
                             ]
+                        },
+                        {
+                            id: 'b1_u15',
+                            title: 'Unidad 15: yang — nombres y adjetivos',
+                            desc: 'Aprende a precisar personas y cosas con descripciones introducidas por yang.',
+                            grammar: 'Yang introduce una descripción que especifica el nombre anterior: teman yang baik (el amigo que es bueno), buku yang saya baca (el libro que leo). No cambia según género ni número. En esta unidad se combina primero con adjetivos conocidos y después con cláusulas breves.',
+                            vocab: [
+                                { id: 'b1v051', idn: 'Yang', esp: 'Partícula que introduce una descripción o cláusula relativa', ex: 'Teman yang baik membaca buku.', exEsp: 'El amigo que es bueno lee un libro.' },
+                                { id: 'v53', idn: 'Teman', esp: 'Amigo/a', ex: 'Teman saya membaca buku.', exEsp: 'Mi amigo/a lee un libro.' },
+                                { id: 'v1002', idn: 'Baik', esp: 'Bueno/a; bien', ex: 'Teman saya baik.', exEsp: 'Mi amigo/a es bueno/a.' },
+                                { id: 'v52', idn: 'Buku', esp: 'Libro', ex: 'Ini buku saya.', exEsp: 'Este es mi libro.' },
+                                { id: 'v211', idn: 'Membaca', esp: 'Leer (forma activa)', ex: 'Saya membaca buku.', exEsp: 'Leo un libro.' }
+                            ],
+                            lessons: [
+                                {
+                                    title: 'Yang + adjetivo',
+                                    objective: 'Identifica cómo yang enlaza un nombre con una descripción adjetival.',
+                                    grammar: 'En teman yang baik, el nombre teman queda precisado por yang baik. La descripción va después del nombre; yang no se traduce siempre con una sola palabra española.',
+                                    reviewVocabIds: ['v1002', 'b1u10_pelajaran'],
+                                    exercises: [
+                                        { vocabId: 'b1v051', type: 'mc', prompt: 'En «teman yang baik», ¿qué función cumple la palabra que enlaza el nombre con su descripción?', options: ['Introduce la descripción que sigue', 'Marca una acción pasada', 'Indica pluralidad'], answer: 0, explanation: 'Yang introduce la descripción baik y permite precisar a qué amigo se refiere la frase.' },
+                                        { vocabId: 'b1v051', type: 'translate_es_id', prompt: 'Traduce: «El amigo que es bueno lee un libro».', answer: 'Teman yang baik membaca buku.', explanation: 'Teman es el nombre; yang baik lo describe y membaca buku completa la oración.' },
+                                        { vocabId: 'b1v051', type: 'order', prompt: 'Ordena la frase: «El amigo que es bueno lee un libro».', words: ['Teman', 'yang', 'baik', 'membaca', 'buku.'], correctOrder: ['Teman', 'yang', 'baik', 'membaca', 'buku.'], explanation: 'La descripción yang baik aparece inmediatamente después del nombre teman.' },
+                                        { vocabId: 'b1v051', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Teman yang baik membaca buku.', explanation: 'La frase identifica al amigo mediante la descripción yang baik.' },
+                                        { vocabId: 'b1v051', type: 'write', prompt: 'Escribe dos frases breves para describir a un amigo usando yang.', hint: 'Puedes combinar teman, yang y baik; añade una segunda oración con membaca buku.', modelAnswer: 'Teman saya baik. Teman yang baik membaca buku.', explanation: 'La segunda oración usa yang baik para precisar el nombre teman.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Yang + cláusula breve',
+                                    objective: 'Reconoce una cláusula que especifica un libro mediante la acción de leer.',
+                                    grammar: 'En buku yang saya baca, la cláusula saya baca identifica el libro. El nombre aparece primero y la información que lo precisa comienza con yang.',
+                                    reviewVocabIds: ['v52', 'v211'],
+                                    exercises: [
+                                        { vocabId: 'b1v051', type: 'mc', prompt: 'En «buku yang saya baca», ¿qué parte identifica el libro?', options: ['Solo buku', 'La cláusula yang saya baca', 'Solo saya'], answer: 1, explanation: 'Yang saya baca aporta la información que permite identificar el libro.' },
+                                        { vocabId: 'b1v051', type: 'translate_es_id', prompt: 'Traduce: «El libro que leo es mío».', answer: 'Buku yang saya baca milik saya.', explanation: 'Buku yang saya baca significa «el libro que leo»; milik saya indica que es mío.' },
+                                        { vocabId: 'b1v051', type: 'order', prompt: 'Ordena: «El libro que leo es mío».', words: ['Buku', 'yang', 'saya', 'baca', 'milik', 'saya.'], correctOrder: ['Buku', 'yang', 'saya', 'baca', 'milik', 'saya.'], explanation: 'La cláusula relativa yang saya baca sigue al nombre buku.' },
+                                        { vocabId: 'b1v051', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Buku yang saya baca milik saya.', explanation: 'La oración identifica el libro por la acción de leerlo y después expresa pertenencia.' },
+                                        { vocabId: 'b1v051', type: 'write', prompt: 'Describe un libro usando una cláusula que comience con yang.', hint: 'Usa buku yang saya baca y completa la idea con milik saya.', modelAnswer: 'Buku yang saya baca milik saya.', explanation: 'La cláusula yang saya baca precisa el nombre buku.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Leer descripciones relativas',
+                                    objective: 'Integra descripciones adjetivales y cláusulas breves en un texto coherente.',
+                                    grammar: 'Compara teman yang baik y buku yang saya baca. En ambos casos, yang introduce información que precisa el nombre anterior; lo que sigue puede ser un adjetivo o una cláusula.',
+                                    reviewVocabIds: ['b1u11_pertanyaan', 'b1u11_percakapan'],
+                                    exercises: [
+                                        { vocabId: 'b1v051', type: 'mc', prompt: 'Lee: «Teman saya membaca buku. Buku yang saya baca milik saya». ¿Qué frase identifica el libro?', options: ['Teman saya', 'Buku yang saya baca', 'Milik saya'], answer: 1, explanation: 'Buku yang saya baca identifica el libro mediante la cláusula introducida por yang.' },
+                                        { vocabId: 'b1v051', type: 'translate_es_id', prompt: 'Traduce: «Mi amigo lee el libro que es bueno».', answer: 'Teman saya membaca buku yang baik.', explanation: 'Yang baik describe al nombre buku.' },
+                                        { vocabId: 'b1v051', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Teman saya membaca buku yang baik.', explanation: 'La oración contiene una descripción relativa con yang baik.' },
+                                        { vocabId: 'b1v051', type: 'write', prompt: 'Escribe un pequeño texto de dos frases sobre un amigo y un libro, usando yang al menos una vez.', hint: 'Puedes presentar a tu amigo y después describir el libro que lees.', modelAnswer: 'Teman saya membaca buku. Buku yang saya baca milik saya.', explanation: 'El texto combina una oración principal con una cláusula relativa introducida por yang.' }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            id: 'b1_u16',
+                            title: 'Unidad 16: yang — personas, cosas y lugares',
+                            desc: 'Amplía las cláusulas relativas con orang, hal y tempat para precisar de quién o de qué se habla.',
+                            grammar: 'La estructura nombre + yang + descripción también se usa con nombres de personas, cosas y lugares: orang yang baik (la persona que es buena), hal yang baik (la cosa buena), tempat yang dekat (el lugar que está cerca). El nombre principal indica de qué se habla; la parte con yang lo especifica.',
+                            vocab: [
+                                { id: 'b1v052', idn: 'Orang', esp: 'Persona; gente', ex: 'Orang yang baik membaca buku.', exEsp: 'La persona buena lee un libro.' },
+                                { id: 'b1v053', idn: 'Tempat', esp: 'Lugar', ex: 'Tempat yang dekat itu baik.', exEsp: 'El lugar que está cerca es bueno.' },
+                                { id: 'b1v054', idn: 'Hal', esp: 'Asunto; cosa; hecho', ex: 'Hal yang baik itu ada di sini.', exEsp: 'La cosa buena está aquí.' },
+                                { id: 'v1002', idn: 'Baik', esp: 'Bueno/a; bien', ex: 'Orang yang baik membaca buku.', exEsp: 'La persona buena lee un libro.' },
+                                { id: 'v53', idn: 'Teman', esp: 'Amigo/a', ex: 'Teman saya membaca buku.', exEsp: 'Mi amigo/a lee un libro.' },
+                                { id: 'v52', idn: 'Buku', esp: 'Libro', ex: 'Ini buku saya.', exEsp: 'Este es mi libro.' },
+                                { id: 'v211', idn: 'Membaca', esp: 'Leer (forma activa)', ex: 'Teman saya membaca buku.', exEsp: 'Mi amigo/a lee un libro.' }
+                            ],
+                            lessons: [
+                                {
+                                    title: 'Personas: orang yang...',
+                                    objective: 'Usa orang yang para identificar a una persona mediante una característica o una acción.',
+                                    grammar: 'Orang significa persona. En orang yang baik, la descripción yang baik especifica a la persona. También puede seguir una cláusula: orang yang membaca buku, la persona que lee un libro.',
+                                    reviewVocabIds: ['b1v051'],
+                                    exercises: [
+                                        { vocabId: 'b1v052', type: 'mc', prompt: 'En «orang yang baik», ¿qué nombre se está describiendo?', options: ['Baik', 'Yang', 'Orang'], answer: 2, explanation: 'Orang es el nombre principal; yang baik lo describe.' },
+                                        { vocabId: 'b1v052', type: 'translate_es_id', prompt: 'Traduce: «La persona que es buena es mi amigo/a».', answer: 'Orang yang baik membaca buku.', explanation: 'Orang yang baik identifica a la persona; itu teman saya completa la oración.' },
+                                        { vocabId: 'b1v052', type: 'order', prompt: 'Ordena: «La persona que es buena es mi amigo/a».', words: ['Orang', 'yang', 'baik', 'itu', 'teman', 'saya.'], correctOrder: ['Orang', 'yang', 'baik', 'itu', 'teman', 'saya.'], explanation: 'La cláusula yang baik aparece después de orang.' },
+                                        { vocabId: 'b1v052', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Orang yang baik membaca buku.', explanation: 'La frase identifica a la persona por su cualidad.' },
+                                        { vocabId: 'b1v052', type: 'write', prompt: 'Escribe una frase para describir a una persona usando orang yang.', hint: 'Usa orang yang baik y completa la oración con una información conocida.', modelAnswer: 'Orang yang baik membaca buku.', explanation: 'La expresión orang yang baik describe a una persona.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Cosas: hal yang...',
+                                    objective: 'Interpreta hal yang como una expresión que identifica un asunto o una cosa.',
+                                    grammar: 'Hal puede referirse a un asunto, una cosa o un hecho. En hal yang baik, la parte yang baik especifica de qué asunto o cosa se habla.',
+                                    reviewVocabIds: ['b1v051'],
+                                    exercises: [
+                                        { vocabId: 'b1v054', type: 'mc', prompt: 'En «hal yang baik», ¿qué aporta yang baik?', options: ['Una descripción de hal', 'El nombre de una persona', 'Una marca de pasado'], answer: 0, explanation: 'Yang baik describe el asunto o la cosa nombrada por hal.' },
+                                        { vocabId: 'b1v054', type: 'translate_es_id', prompt: 'Traduce: «La cosa buena está aquí».', answer: 'Hal yang baik itu ada di sini.', explanation: 'Hal yang baik identifica la cosa; itu ada di sini indica que está aquí.' },
+                                        { vocabId: 'b1v054', type: 'order', prompt: 'Ordena: «La cosa buena está aquí».', words: ['Hal', 'yang', 'baik', 'itu', 'ada', 'di', 'sini.'], correctOrder: ['Hal', 'yang', 'baik', 'itu', 'ada', 'di', 'sini.'], explanation: 'La expresión relativa yang baik sigue al nombre hal.' },
+                                        { vocabId: 'b1v054', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Hal yang baik itu ada di sini.', explanation: 'La frase identifica una cosa o un asunto por medio de yang baik.' },
+                                        { vocabId: 'b1v054', type: 'write', prompt: 'Escribe una frase sobre una cosa o un asunto usando hal yang.', hint: 'Puedes usar hal yang baik y completar con ada di sini.', modelAnswer: 'Hal yang baik itu ada di sini.', explanation: 'Yang baik precisa el significado del nombre hal.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Lugares y texto integrado',
+                                    objective: 'Combina orang, hal y tempat con descripciones relativas en un texto breve.',
+                                    grammar: 'Tempat significa lugar. En tempat yang dekat, la cláusula yang dekat identifica el lugar. La misma estructura funciona con orang y hal: cambia el nombre principal, no la forma yang.',
+                                    reviewVocabIds: ['b1v051'],
+                                    exercises: [
+                                        { vocabId: 'b1v053', type: 'mc', prompt: '¿Qué palabra nombra un lugar en la expresión «tempat yang dekat»?', options: ['Yang', 'Tempat', 'Dekat'], answer: 1, explanation: 'Tempat significa lugar; yang dekat lo describe.' },
+                                        { vocabId: 'b1v053', type: 'translate_es_id', prompt: 'Traduce: «El lugar que está cerca es bueno».', answer: 'Tempat yang dekat itu baik.', explanation: 'Tempat es el nombre principal y yang dekat es la descripción relativa.' },
+                                        { vocabId: 'b1v053', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Tempat yang dekat itu baik.', explanation: 'La frase identifica un lugar mediante la descripción yang dekat.' },
+                                        { vocabId: 'b1v053', type: 'write', prompt: 'Escribe tres frases breves: una sobre una persona, otra sobre una cosa y otra sobre un lugar. Usa yang en cada una.', hint: 'Combina orang, hal y tempat con yang baik o yang dekat.', modelAnswer: 'Orang yang baik membaca buku. Hal yang baik itu ada di sini. Tempat yang dekat itu baik.', explanation: 'El texto aplica la misma estructura relativa a personas, cosas y lugares.' }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            id: 'b1_u17',
+                            title: 'Unidad 17: yang — preguntas, voz pasiva y superlativos',
+                            desc: 'Practica apa yang, yang mana, cláusulas relativas pasivas y yang paling; termina con un repaso acumulativo.',
+                            grammar: 'Apa yang pregunta por aquello que realiza o recibe una acción: apa yang dia baca? Yang mana pregunta cuál de varias opciones: buku yang mana? En una relativa pasiva, el nombre se precisa con yang + forma pasiva: buku yang dibaca Rina (el libro que lee Rina). Yang paling + adjetivo expresa el grado máximo: buku yang paling baik. Paling se incluye con estado cross_checked_secondary; la consulta directa de su entrada oficial KBBI VI no estuvo disponible.',
+                            vocab: [
+                                { id: 'v298', idn: 'Apa', esp: 'Qué', ex: 'Apa yang dia baca?', exEsp: '¿Qué lee él/ella?' },
+                                { id: 'v348', idn: 'Mana', esp: 'Dónde; cuál (según el contexto)', ex: 'Buku yang mana?', exEsp: '¿Qué libro? / ¿Cuál libro?' },
+                                { id: 'v52', idn: 'Buku', esp: 'Libro', ex: 'Buku yang dibaca Rina ada di sini.', exEsp: 'El libro que lee Rina está aquí.' },
+                                { id: 'v211', idn: 'Membaca', esp: 'Leer (forma activa)', ex: 'Saya membaca buku.', exEsp: 'Leo un libro.' },
+                                { id: 'v8', idn: 'Dibaca', esp: 'Leído/a; se lee', ex: 'Buku dibaca oleh Rina.', exEsp: 'El libro es leído por Rina.' },
+                                { id: 'b1v001', idn: 'Ditulis', esp: 'Escrito/a; se escribe', ex: 'Surat ditulis oleh Rina.', exEsp: 'La carta es escrita por Rina.' },
+                                { id: 'b1v055', idn: 'Paling', esp: 'El/la más; grado máximo', ex: 'Buku yang paling baik itu milik saya.', exEsp: 'El libro que es el mejor es mío.' },
+                                { id: 'b1u12_kesehatan', idn: 'Kesehatan', esp: 'Salud', ex: 'Kesehatan sangat penting.', exEsp: 'La salud es muy importante.' },
+                                { id: 'a2u20_kebersihan', idn: 'Kebersihan', esp: 'Limpieza', ex: 'Kebersihan lingkungan tanggung jawab bersama.', exEsp: 'La limpieza del entorno es responsabilidad de todos.' },
+                                { id: 'v1002', idn: 'Baik', esp: 'Bueno/a; bien', ex: 'Buku yang paling baik itu milik saya.', exEsp: 'El libro que es el mejor es mío.' }
+                            ],
+                            lessons: [
+                                {
+                                    title: 'Apa yang y yang mana',
+                                    objective: 'Formula preguntas sobre el contenido de una acción y sobre cuál de varias opciones se elige.',
+                                    grammar: 'Apa yang pregunta «qué es lo que…»: apa yang dia baca? Yang mana pregunta «cuál»: buku yang mana? La palabra yang permanece igual; apa y mana determinan el tipo de pregunta.',
+                                    reviewVocabIds: ['b1v051', 'v8', 'b1v001'],
+                                    exercises: [
+                                        { vocabId: 'v298', type: 'mc', prompt: 'En «Apa yang dia baca?», ¿qué se pregunta?', options: ['Qué lee él/ella', 'Dónde está el libro', 'Quién escribió el libro'], answer: 0, explanation: 'Apa yang dia baca pregunta por el contenido de la acción de leer.' },
+                                        { vocabId: 'v298', type: 'translate_es_id', prompt: 'Traduce: «¿Qué lee él/ella?».', answer: 'Apa yang dia baca?', explanation: 'Apa yang introduce la pregunta por aquello que dia baca.' },
+                                        { vocabId: 'v298', type: 'order', prompt: 'Ordena: «¿Qué lee él/ella?».', words: ['Apa', 'yang', 'dia', 'baca?'], correctOrder: ['Apa', 'yang', 'dia', 'baca?'], explanation: 'La pregunta empieza con apa yang y continúa con el sujeto y el verbo.' },
+                                        { vocabId: 'v298', type: 'listen', prompt: 'Escucha y escribe la pregunta completa.', answer: 'Apa yang dia baca?', explanation: 'La pregunta solicita saber qué lee esa persona.' },
+                                        { vocabId: 'v348', type: 'write', prompt: 'Escribe una pregunta con yang mana para pedir que alguien identifique un libro entre varias opciones.', hint: 'Comienza con buku yang mana y añade una cláusula breve.', modelAnswer: 'Buku yang mana yang dibaca Rina?', explanation: 'Yang mana pregunta cuál de los libros se identifica; la segunda cláusula precisa la opción.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Cláusulas relativas con voz pasiva',
+                                    objective: 'Distingue una relativa activa de una pasiva y reconoce el papel de dibaca y ditulis.',
+                                    grammar: 'Compara buku yang saya baca (el libro que yo leo) con buku yang dibaca Rina (el libro que lee Rina). En la segunda, dibaca es pasiva: el libro recibe la acción. También se puede decir surat yang ditulis Rina para identificar una carta por la acción de escribirla.',
+                                    reviewVocabIds: ['v8', 'b1v001'],
+                                    exercises: [
+                                        { vocabId: 'v8', type: 'mc', prompt: 'En «Buku yang dibaca Rina», ¿qué papel tiene el libro?', options: ['Realiza la acción de leer', 'Recibe la acción de leer', 'Es quien escribe la carta'], answer: 1, explanation: 'Dibaca es una forma pasiva: el libro recibe la acción de leer.' },
+                                        { vocabId: 'v8', type: 'translate_es_id', prompt: 'Traduce: «El libro que lee Rina está aquí».', answer: 'Buku yang dibaca Rina ada di sini.', explanation: 'Yang dibaca Rina identifica el libro mediante una cláusula pasiva.' },
+                                        { vocabId: 'v8', type: 'order', prompt: 'Ordena: «El libro que lee Rina está aquí».', words: ['Buku', 'yang', 'dibaca', 'Rina', 'ada', 'di', 'sini.'], correctOrder: ['Buku', 'yang', 'dibaca', 'Rina', 'ada', 'di', 'sini.'], explanation: 'La forma pasiva dibaca sigue a yang y precede al agente Rina.' },
+                                        { vocabId: 'b1v001', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Surat yang ditulis Rina ada di sini.', explanation: 'Yang ditulis Rina identifica la carta mediante una cláusula pasiva.' },
+                                        { vocabId: 'v8', type: 'write', prompt: 'Escribe una oración que identifique un libro mediante una acción pasiva.', hint: 'Usa buku yang dibaca Rina y completa con ada di sini.', modelAnswer: 'Buku yang dibaca Rina ada di sini.', explanation: 'La cláusula pasiva yang dibaca Rina describe el libro.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Yang paling y repaso acumulativo',
+                                    objective: 'Interpreta yang paling en una descripción superlativa y recupera vocabulario de ke-an.',
+                                    grammar: 'Yang paling + adjetivo expresa el grado máximo dentro de un grupo: buku yang paling baik. El uso de paling se ha contrastado con fuentes gramaticales secundarias; la entrada directa de KBBI VI no se pudo consultar, por lo que no se presenta como validación primaria.',
+                                    reviewVocabIds: ['b1v051', 'v8', 'b1v001'],
+                                    exercises: [
+                                        { vocabId: 'b1v055', type: 'mc', prompt: 'En «buku yang paling baik», ¿qué expresa paling?', options: ['El grado máximo de la cualidad', 'Una acción pasada', 'El agente de una acción'], answer: 0, explanation: 'Paling expresa el grado máximo; yang introduce la descripción del libro.' },
+                                        { vocabId: 'b1v055', type: 'translate_es_id', prompt: 'Traduce: «El libro que es el mejor es mío».', answer: 'Buku yang paling baik itu milik saya.', explanation: 'Yang paling baik expresa que el libro alcanza el grado máximo de la cualidad.' },
+                                        { vocabId: 'b1v055', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Buku yang paling baik itu milik saya.', explanation: 'La oración usa yang paling baik como descripción superlativa.' },
+                                        { vocabId: 'b1u12_kesehatan', type: 'mc', prompt: 'En el repaso «Kesehatan dan kebersihan itu penting», ¿qué palabra nombra la salud?', options: ['Kebersihan', 'Kesehatan', 'Yang'], answer: 1, explanation: 'Kesehatan significa salud; kebersihan significa limpieza. Ambas recuperan el bloque anterior de ke-an.' },
+                                        { vocabId: 'b1v055', type: 'write', prompt: 'Escribe dos frases: una que identifique el mejor libro y otra que conecte salud y limpieza usando las dos palabras.', hint: 'Usa yang paling baik y las dos formas kesehatan y kebersihan.', modelAnswer: 'Buku yang paling baik itu milik saya. Kesehatan dan kebersihan itu penting.', explanation: 'La primera frase usa el superlativo relativo; la segunda recupera el vocabulario de ke-an de U13–U14.' }
+                                    ]
+                                }
+                            ]
                         }
                     ]
                 },

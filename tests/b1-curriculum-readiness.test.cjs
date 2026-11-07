@@ -29,15 +29,15 @@ function exercisesOf(unit) {
   ];
 }
 
-test('B1 draft has fourteen units, fifty unique IDs including earlier canonical vocabulary, and one hundred exercises', () => {
+test('B1 draft has seventeen units, sixty unique IDs including earlier canonical vocabulary, and one hundred forty-three exercises', () => {
   const b1 = course.levels.find(level => level.id === 'B1');
   assert.ok(b1);
-  assert.equal(b1.units.length, 14);
-  assert.equal(new Set(b1.units.flatMap(unit => unit.vocab.map(word => word.id))).size, 50);
-  assert.equal(b1.units.reduce((sum, unit) => sum + exercisesOf(unit).length, 0), 100);
+  assert.equal(b1.units.length, 17);
+  assert.equal(new Set(b1.units.flatMap(unit => unit.vocab.map(word => word.id))).size, 60);
+  assert.equal(b1.units.reduce((sum, unit) => sum + exercisesOf(unit).length, 0), 143);
   assert.deepEqual(Array.from(b1.units, unit => unit.id), [
     'b1_u1', 'b1_u2', 'b1_u3', 'b1_u4', 'b1_u5', 'b1_u6', 'b1_u7',
-    'b1_u8', 'b1_u9', 'b1_u10', 'b1_u11', 'b1_u12', 'b1_u13', 'b1_u14'
+    'b1_u8', 'b1_u9', 'b1_u10', 'b1_u11', 'b1_u12', 'b1_u13', 'b1_u14', 'b1_u15', 'b1_u16', 'b1_u17'
   ]);
 });
 
@@ -83,7 +83,7 @@ test('every B1 draft exercise references vocabulary in its own unit', () => {
       }
     }
   }
-  assert.equal(byId.size, 50);
+  assert.equal(byId.size, 60);
 });
 
 
@@ -201,6 +201,63 @@ test('B1 U13-U14 consolidate the ke-an family using canonical earlier vocabulary
       assert.ok(earlierIds.has(word.id), 'U13-U14 must reuse an earlier canonical vocabulary ID: ' + word.id);
     }
   }
+});
+
+
+test('B1 U15-U17 teach yang relatives, interrogatives, passive clauses and cumulative review', () => {
+  const b1 = course.levels.find(level => level.id === 'B1');
+  const u15 = b1.units.find(unit => unit.id === 'b1_u15');
+  const u16 = b1.units.find(unit => unit.id === 'b1_u16');
+  const u17 = b1.units.find(unit => unit.id === 'b1_u17');
+  assert.ok(u15 && u16 && u17);
+  assert.deepEqual(Array.from(u15.vocab, word => word.id), ['b1v051', 'v53', 'v1002', 'v52', 'v211']);
+  assert.deepEqual(Array.from(u16.vocab, word => word.id), ['b1v052', 'b1v053', 'b1v054', 'v1002', 'v53', 'v52', 'v211']);
+  assert.deepEqual(Array.from(u17.vocab, word => word.id), ['v298', 'v348', 'v52', 'v211', 'v8', 'b1v001', 'b1v055', 'b1u12_kesehatan', 'a2u20_kebersihan', 'v1002']);
+  const expectedCounts = new Map([[u15, 14], [u16, 14], [u17, 15]]);
+  const allNewForms = new Map([['b1v051', 'yang'], ['b1v052', 'orang'], ['b1v053', 'tempat'], ['b1v054', 'hal'], ['b1v055', 'paling']]);
+  const earlierIds = new Set(b1.units.filter(unit => !['b1_u15', 'b1_u16', 'b1_u17'].includes(unit.id)).flatMap(unit => unit.vocab.map(word => word.id)));
+  for (const [unit, expectedCount] of expectedCounts) {
+    assert.equal(unit.lessons.length, 3);
+    const exercises = exercisesOf(unit);
+    assert.equal(exercises.length, expectedCount);
+    const types = new Set(exercises.map(exercise => exercise.type));
+    for (const type of ['mc', 'translate_es_id', 'order', 'listen', 'write']) assert.ok(types.has(type), unit.id + ' missing ' + type);
+    const localIds = new Set(unit.vocab.map(word => word.id));
+    for (const exercise of exercises) {
+      assert.ok(localIds.has(exercise.vocabId), unit.id + ' exercise references vocabulary outside its unit');
+      assert.ok(exercise.prompt && exercise.explanation);
+      if (exercise.type === 'mc') {
+        assert.ok(Array.isArray(exercise.options) && Number.isInteger(exercise.answer));
+        assert.ok(exercise.answer >= 0 && exercise.answer < exercise.options.length);
+      }
+      if (exercise.type === 'order') assert.deepEqual(Array.from(exercise.words).sort(), Array.from(exercise.correctOrder).sort());
+    }
+    const completeSentences = exercises.filter(exercise =>
+      (['listen', 'translate_es_id'].includes(exercise.type) && typeof exercise.answer === 'string' && /\s/.test(exercise.answer)) ||
+      (exercise.type === 'order' && exercise.correctOrder.length >= 2) ||
+      (exercise.type === 'write' && exercise.modelAnswer && /[.!?]/.test(exercise.modelAnswer)) ||
+      (exercise.type === 'mc' && /«[^»]+»/.test(exercise.prompt))
+    );
+    assert.ok(completeSentences.length >= 5, unit.id + ' needs five complete-sentence exercises');
+    assert.ok(exercises.some(exercise => exercise.type === 'write' && exercise.hint && exercise.modelAnswer));
+    for (const word of unit.vocab) {
+      if (allNewForms.has(word.id)) {
+        assert.equal(word.idn.toLowerCase(), allNewForms.get(word.id));
+        assert.ok(!earlierIds.has(word.id), 'new form already existed in earlier B1 units: ' + word.id);
+      }
+    }
+  }
+  for (const [id, form] of allNewForms) {
+    const occurrences = b1.units.flatMap(unit => unit.vocab).filter(word => word.id === id);
+    assert.ok(occurrences.length >= 1, 'missing new B1 form ' + form);
+    assert.ok(occurrences.every(word => word.idn.toLowerCase() === form));
+  }
+  assert.match(u15.grammar + u15.lessons.map(lesson => lesson.grammar).join(' '), /yang/);
+  assert.match(u16.grammar + u16.lessons.map(lesson => lesson.grammar).join(' '), /orang[\s\S]*hal[\s\S]*tempat/);
+  assert.match(u17.grammar + u17.lessons.map(lesson => lesson.grammar).join(' '), /apa yang[\s\S]*yang mana[\s\S]*dibaca[\s\S]*yang paling/);
+  assert.ok(u17.vocab.some(word => word.id === 'b1u12_kesehatan') && u17.vocab.some(word => word.id === 'a2u20_kebersihan'));
+  assert.ok(exercisesOf(u17).some(exercise => /kesehatan/i.test(exercise.prompt + ' ' + (exercise.modelAnswer || '')) && /kebersihan/i.test(exercise.prompt + ' ' + (exercise.modelAnswer || ''))),
+    'U17 must include a cumulative review exercise covering both U13-U14 vocabulary items');
 });
 
 test('B1 assessment bank includes open production items that require human review', () => {

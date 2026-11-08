@@ -81,13 +81,33 @@ test('B2 U1 has at least five sentence-level targets and a guided original-writi
   assert.ok(exercises.some((exercise) => exercise.type === 'write' && exercise.hint?.trim() && /mini texto|tres o cuatro oraciones/i.test(exercise.prompt)));
 });
 
-test('B2 remains inaccessible in the lesson engine until the release gate is changed separately', async () => {
+test('B2 stays inaccessible through every lesson entry point and the course route', async () => {
   const { indexSource } = await loadCurricula();
-  assert.match(indexSource, /if \(level && \(level\.id === 'B2' \|\|/);
-  assert.match(indexSource, /if \(level\.id === 'B2' \|\|/);
-  const directStart = indexSource.indexOf('startUnit(unit, lessonIndex = 0) {');
-  assert.notEqual(directStart, -1);
-  assert.ok(indexSource.slice(directStart, directStart + 900).includes("if (level && (level.id === 'B2' ||"));
+  const assertGuard = (method, expected, width = 650) => {
+    const start = indexSource.indexOf(method);
+    assert.notEqual(start, -1, method + ' must remain present');
+    assert.ok(indexSource.slice(start, start + width).includes(expected),
+      method + ' must reject registered B2 units');
+  };
+
+  assertGuard('startUnitById(id, requestedLessonIndex) {', "if (level.id === 'B2' ||");
+  assertGuard('startUnitAssessment(unitId) {', "if (level && (level.id === 'B2' ||");
+  assertGuard('startUnit(unit, lessonIndex = 0) {', "if (level && (level.id === 'B2' ||");
+
+  const learningLevels = indexSource.indexOf('function getLearningLevels() {');
+  assert.notEqual(learningLevels, -1);
+  assert.ok(indexSource.slice(learningLevels, learningLevels + 260).includes("level.id !== 'B2'"),
+    'B2 must stay out of learning and review collections');
+
+  const routeStart = indexSource.indexOf("const isAdvanced = lvl.id === 'B2';");
+  const routeEnd = indexSource.indexOf('lvl.units.forEach(unit => {', routeStart);
+  assert.notEqual(routeStart, -1);
+  assert.ok(routeEnd > routeStart, 'B2 route gate must precede unit-card rendering');
+  const routeGate = indexSource.slice(routeStart, routeEnd);
+  assert.ok(routeGate.includes('if (!isB1Complete(this.completedUnits)) return;'));
+  assert.ok(routeGate.includes('Este nivel todavía no está disponible para estudiar.'));
+  assert.ok(routeGate.includes('container.appendChild(levelEl);'));
+  assert.match(routeGate, /return;\s*}/);
 });
 
 test('B2 U2 candidate forms stay out of executable curriculum until explicit approval', async () => {

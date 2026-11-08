@@ -69,6 +69,8 @@ test('B2 shows only its implemented U1 and one upcoming placeholder without remo
     assert.match(html, /level\.id === 'B2' \? level\.units\.slice\(0, 1\) : level\.units/);
     assert.match(html, /unit-path-coming-soon/);
     assert.match(html, /Las demás unidades B2 todavía no están implementadas/);
+    assert.match(html, /unit-path-coming-soon-circle/);
+    assert.match(css, /\\.unit-path-coming-soon \\.unit-path-coming-soon-circle/);
     assert.match(html, /B2 stays in development/);
     assert.match(html, /getEmergencyUnitSkips\(\)\.includes\(id\)/);
 });

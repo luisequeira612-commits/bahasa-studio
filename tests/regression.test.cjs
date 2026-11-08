@@ -64,7 +64,7 @@ test('A2 remains a released beta level, but its first unit waits for A1 completi
   const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
   assert.ok(start >= 0 && end > start, 'CourseData and progression helpers must exist');
   const source = html.slice(start, end) +
-    '\\nconst A2_RELEASE_ENABLED = true; ({ CourseData, getUnitProgressState, isUnitUnlocked })';
+    '\nconst A2_RELEASE_ENABLED = true; ({ CourseData, getUnitProgressState, isUnitUnlocked })';
   const api = vm.runInNewContext(source);
   const a1 = api.CourseData.levels.find(level => level.id === 'A1');
   const a2 = api.CourseData.levels.find(level => level.id === 'A2');
@@ -83,13 +83,13 @@ test('A2 remains a released beta level, but its first unit waits for A1 completi
   assert.equal(api.isUnitUnlocked(b2, b2.units[0], allA1A2.concat(b1.units.map(unit => unit.id)), [], []), false,
     'normal B2 access remains gated by the development guard');
   assert.match(html, /const A2_RELEASE_ENABLED = true;/);
-  assert.match(html, /level\\.id !== 'A2' \\|\\| A2_RELEASE_ENABLED/);
+  assert.match(html, /level\.id !== 'A2' \|\| A2_RELEASE_ENABLED/);
   assert.match(html, /Disponible en beta sin requisito de completar A1/);
   const lessonEntry = html.slice(html.indexOf('startUnitById(id, requestedLessonIndex)'), html.indexOf('startUnit(unit, lessonIndex = 0)'));
   const assessmentEntry = html.slice(html.indexOf('startUnitAssessment(unitId)'), html.indexOf('startUnitById(id, requestedLessonIndex)'));
-  assert.match(lessonEntry, /!isUnitUnlocked\\(level, unit\\)/,
+  assert.match(lessonEntry, /!isUnitUnlocked\(level, unit\)/,
     'direct lesson entry must enforce sequential unit unlocking');
-  assert.match(assessmentEntry, /!isUnitUnlocked\\(level, unit\\)/,
+  assert.match(assessmentEntry, /!isUnitUnlocked\(level, unit\)/,
     'direct assessment entry must enforce sequential unit unlocking');
   assert.doesNotMatch(lessonEntry + assessmentEntry, /isA1Complete/,
     'progression is derived from previous units, not a separate A1-only shortcut');
@@ -873,14 +873,14 @@ test('A1 units 9–11 cover numbers, prices, and time with linked exercises', ()
 });
 
 test('B1 follows A2 progression and B2 keeps its development presentation and emergency-only path', () => {
-  assert.match(html, /function isUnitUnlocked\\(level, unit/);
-  assert.match(html, /const previousLevel = levels\\[levelIndex - 1\\]/);
-  assert.match(html, /if \\(level\\.id === 'B2'\\) return false/);
-  assert.match(html, /level\\.id === 'B2' \\? level\\.units\\.slice\\(0, 1\\) : level\\.units/);
+  assert.match(html, /function isUnitUnlocked\(level, unit/);
+  assert.match(html, /const previousLevel = levels\[levelIndex - 1\]/);
+  assert.match(html, /if \(level\.id === 'B2'\) return false/);
+  assert.match(html, /level\.id === 'B2' \? level\.units\.slice\(0, 1\) : level\.units/);
   assert.match(html, /unit-path-coming-soon/);
   assert.match(html, /Las demás unidades B2 todavía no están implementadas/);
   assert.match(html, /B2 stays in development/);
-  assert.doesNotMatch(html, /if \\(!isB1Complete\\(this\\.completedUnits\\)\\) return;/);
+  assert.doesNotMatch(html, /if \(!isB1Complete\(this\.completedUnits\)\) return;/);
   assert.doesNotMatch(html, /: 'Disponible'/,
     'B1 units must no longer be shown as unconditionally available');
 });

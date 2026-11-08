@@ -60,5 +60,5 @@ test('B1 unlocks after A2; B2 keeps its development guard with an emergency-only
   assert.match(html, /if \(level\.id === 'B2'\) return false/);
   assert.match(html, /level\.id === 'B2' \? level\.units\.slice\(0, 1\) : level\.units/);
   assert.match(html, /unit-path-coming-soon/);
-  assert.match(html, /const examButton = \['A1', 'B1'\]\.includes\(lvl\.id\)/);
+  assert.match(html, /['A1', 'B1'].includes(level.id)/);
 });

@@ -977,6 +977,7 @@ test('A1 lesson progress is sequential and the final exam gates the next unit at
     await page.evaluate(async () => {
       App.completedLessons = ['a1_u1::0'];
       await DB.set('settings', 'completedLessons', App.completedLessons);
+      App.closeUnitSheet();
       App.renderCourseRoute();
     });
     await firstNode.click();
@@ -986,6 +987,7 @@ test('A1 lesson progress is sequential and the final exam gates the next unit at
     await page.evaluate(async () => {
       App.completedLessons = ['a1_u1::0', 'a1_u1::1', 'a1_u1::2'];
       await DB.set('settings', 'completedLessons', App.completedLessons);
+      App.closeUnitSheet();
       App.renderCourseRoute();
     });
     await firstNode.click();
@@ -1174,6 +1176,8 @@ test('guided A1 writing shows task-specific review criteria and records progress
         exercise => exercise.prompt === 'Escribe dos frases sobre tu rutina.'
       ));
       if (lessonIndex < 0) throw new Error('The existing A1 routine-writing activity was not assigned to a lesson');
+      App.completedLessons = lessons.slice(0, lessonIndex).map(lesson => unit.id + '::' + lesson.index);
+      DB.set('settings', 'completedLessons', App.completedLessons);
       LessonEngine.startUnit(unit, lessonIndex);
       const index = LessonEngine.queue.findIndex(exercise => exercise.prompt === 'Escribe dos frases sobre tu rutina.');
       if (index < 0) throw new Error('The existing A1 routine-writing activity was not found in its lesson');

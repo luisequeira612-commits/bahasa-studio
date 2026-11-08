@@ -7103,6 +7103,12 @@ Requisitos:
                     (level.id === 'A2' ? '<span class="badge">Beta · en revisión</span>' : '') +
                     (level.id === 'B2' ? '<span class="badge">En desarrollo</span>' : '');
                 container.appendChild(heading);
+                if (level.id === 'A2') {
+                    const betaNote = document.createElement('p');
+                    betaNote.className = 'learning-level-note';
+                    betaNote.textContent = 'Disponible en beta sin requisito de completar A1. El contenido A2 está en revisión interna; puede contener errores y no ha sido validado por hablantes nativos. Tus comentarios ayudan a mejorarlo.';
+                    container.appendChild(betaNote);
+                }
 
                 const positions = [50, 78, 50, 22, 50, 78, 50, 22];
                 const visibleUnits = level.id === 'B2' ? level.units.slice(0, 1) : level.units;

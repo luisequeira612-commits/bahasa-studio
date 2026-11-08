@@ -3,9 +3,11 @@
 
 ## Estado vigente verificado — 8 nov 2026 (prevalece sobre notas históricas anteriores)
 - A1 32/32, A2 40/40 y B1 50/50 unidades completas; B2 1/60 implementada (U1), oculta/no publicada. Total: 123/182; quedan 59 unidades, todas B2. B1 sigue en beta, sin validación nativa ni certificación MCER/BIPA.
-- Fase actual: implementación de B2. U1 tiene 3 lecciones y 16 ejercicios de cinco tipos, reutiliza nueve IDs existentes y no añade vocabulario.
+- Fase actual: diseño e implementación progresiva de B2. U1 tiene 3 lecciones y 16 ejercicios de cinco tipos, reutiliza nueve IDs existentes y no añade vocabulario.
 - B2 U2: diseño preliminar en `docs/B2_U2_DESIGN.md`; `kubaca`, `kaubaca`, `kutulis` y `kautulis` siguen siendo candidatas pendientes de aprobación explícita. No asignarles IDs ni incorporarlas al currículo o a ejercicios evaluados sin aprobación.
 - B2 U3: diseño preliminar en `docs/B2_U3_DESIGN.md`; integra U1 y U2, sin vocabulario nuevo. No finalizar claves ni implementarla antes de aprobar e implementar U2.
+- B2 U4: diseño preliminar en `docs/B2_U4_DESIGN.md` sobre la polisemia de `-kan`; PR #454 fusionado. No hay contenido ejecutable ni vocabulario nuevo.
+- B2 U5: diseño preliminar en `docs/B2_U5_DESIGN.md` sobre usos aplicativos/causativos de `-i`; los ejemplos y el desglose son propuestas documentales, no contenido aprobado. No hay vocabulario ni IDs nuevos.
 - Secuencia B2 aprobada: U1–U3 contrastes avanzados de voz/afijos; U4–U6 `-kan`/`-i`/`memper-`; U7–U10 nominalizaciones; U11–U12 reduplicación/compuestos; U13–U60 sin desglose temático aprobado.
 - PR #443 retiró del currículo ejecutable los borradores heredados U2–U5 y los conservó en `docs/B2_LEGACY_DRAFT_ARCHIVE.md`; una regresión exige que solo U1 permanezca activa.
 - Reglas vigentes: 14–22 ejercicios por unidad, al menos cuatro tipos, cinco ejercicios con oraciones completas, una producción guiada y repaso acumulativo cada 4–5 unidades. B2 permanece oculta hasta completar contenido y flujo de liberación. No tocar IndexedDB ni backup JSON v3; no añadir dependencias ni vocabulario sin aprobación.
@@ -351,3 +353,11 @@
 ## Diseño preliminar B2 U4 — 8 nov 2026
 - Se prepara una propuesta documental para U4 sobre funciones de `-kan` y estructura de participantes, dentro del bloque U4–U6 aprobado (`-kan`, `-i`, `memper-`). Las fuentes académicas consultadas describen funciones causativas y aplicativas/benefactivas; no respaldan una equivalencia fija ni una regla universal de valencia. Referencias: Musgrave, Arka y Rajeg (2024), Jeong (2019), Dwijatmoko (2021) y Sedeng (2011). Ver `docs/B2_U4_DESIGN.md`.
 - El diseño no incorpora vocabulario ni IDs. Las formas del borrador antiguo son solo pistas y requieren auditoría global antes de reutilizarse. El eje U4–U6 está aprobado, pero este desglose, ejemplos y ejercicios siguen siendo propuesta documental; no hay autorización para contenido ejecutable. Sin cambios a IndexedDB, backup JSON v3, A1/A2/B1, trackers ni dependencias.
+
+
+## Diseño preliminar B2 U5 — 8 nov 2026
+- Se prepara `docs/B2_U5_DESIGN.md` para el sufijo `-i`: la evidencia académica describe usos aplicativos, causativos y valencia no uniforme; no se enseña como equivalente fijo de «lugar» ni como regla universal. Referencias: Arka et al. (2009), Arka (2012), Rajeg (2023) y Musgrave, Arka & Rajeg (2024).
+- No añade vocabulario, IDs, glosas ni ejercicios ejecutables. El desglose y los ejemplos siguen pendientes de revisión; el eje U4–U6 está aprobado, no esta propuesta específica. Sin cambios a A1/A2/B1, IndexedDB, backup JSON v3, trackers ni dependencias.
+
+## PR #454 — 8 nov 2026
+- Fusionado mediante squash en `39f1aa20cee1a5be03871729754ee430f2c510a8` tras CI verde en ambos jobs y sin revisiones/comentarios/hilos pendientes. Añade el diseño documental preliminar de B2 U4 (`-kan`) y actualiza esta memoria. Sin cambios curriculares ejecutables ni vocabulario.

@@ -40,7 +40,7 @@ test('A2 beta policy documentation matches the enabled release gate', () => {
 });
 
 
-test('B1 unlocks after A2; B2 keeps its development guard with an emergency-only exception', () => {
+test('B1 unlocks after A2; B2 U1 unlocks after B1 while the rest stays in development', () => {
   const learningLevels = html.slice(html.indexOf('function getLearningLevels()'), html.indexOf('function getUniqueLearningVocabulary()'));
   assert.match(learningLevels, /level\.id !== 'B2'/);
   assert.doesNotMatch(learningLevels, /B1/);
@@ -49,15 +49,16 @@ test('B1 unlocks after A2; B2 keeps its development guard with an emergency-only
   const lessonEntry = html.slice(html.indexOf('startUnitById(id, requestedLessonIndex)'), html.indexOf('startUnit(unit, lessonIndex = 0)'));
   const unitEntry = html.slice(html.indexOf('startUnit(unit, lessonIndex = 0)'), html.indexOf('function getLevels()'));
   assert.match(assessmentEntry, /level\.id === 'B2'/);
-  assert.match(lessonEntry, /level\.id === 'B2' && !getUnitProgressState\(level, unit\)\.completed/);
-  assert.match(unitEntry, /level\.id === 'B2' && !getUnitProgressState\(level, unit\)\.completed/);
+  assert.match(lessonEntry, /!isUnitUnlocked\(level, unit\)/);
+  assert.match(unitEntry, /!isUnitUnlocked\(level, unit\)/);
   for (const entry of [assessmentEntry, lessonEntry, unitEntry]) {
     assert.doesNotMatch(entry, /level\.id === 'B1'/);
   }
 
   assert.match(html, /function isUnitUnlocked\(level, unit/);
   assert.match(html, /const previousLevel = levels\[levelIndex - 1\]/);
-  assert.match(html, /if \(level\.id === 'B2'\) return false/);
+  assert.match(html, /if \(level\.id === 'B2'\) \{/);
+  assert.match(html, /return unitIndex === 0 && Boolean\(previousUnit/);
   assert.match(html, /level\.id === 'B2' \? level\.units\.slice\(0, 1\) : level\.units/);
   assert.match(html, /unit-path-coming-soon/);
   assert.ok(html.includes("['A1', 'B1'].includes(level.id)"));

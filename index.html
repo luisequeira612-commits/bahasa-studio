@@ -5586,13 +5586,11 @@
 
             startUnitAssessment(unitId) {
                 const level = getLevels().find(entry => entry.units.some(unit => unit.id === unitId));
-                if (level && (level.id === 'B2' ||
-                    (level.id === 'A2' && !A2_RELEASE_ENABLED))) return;
+                if (!level) return;
                 const unit = level.units.find(entry => entry.id === unitId);
-                if (!unit) return;
-                const lessons = buildUnitLessons(unit);
-                const completedCount = lessons.filter(lesson => App.completedLessons.includes(unitLessonProgressKey(unitId, lesson.index))).length;
-                if (!App.completedUnits.includes(unitId) && completedCount < lessons.length) return;
+                if (!unit || !isUnitUnlocked(level, unit)) return;
+                const progress = getUnitProgressState(level, unit);
+                if (!progress.requiresAssessment || (!progress.allLessonsComplete && !progress.approved)) return;
                 const questions = buildUnitAssessmentItems(unit);
                 if (!questions.length) return;
                 this.currentUnit = unit;
@@ -5618,17 +5616,13 @@
                 for (const level of getLevels()) {
                     const unit = level.units.find(entry => entry.id === id);
                     if (!unit) continue;
-                    if (level.id === 'B2' ||
-                        (level.id === 'A2' && !A2_RELEASE_ENABLED)) return;
+                    if (!isUnitUnlocked(level, unit)) return;
                     const lessons = buildUnitLessons(unit);
                     const nextIndex = lessons.findIndex(lesson => !App.completedLessons.includes(unitLessonProgressKey(id, lesson.index)));
                     const firstIncomplete = nextIndex < 0 ? lessons.length : nextIndex;
-                    const lessonIndex = Number.isInteger(requestedLessonIndex) ? requestedLessonIndex : firstIncomplete;
-                    if (level.id === 'A1') {
-                        const a1 = CourseData.levels.find(entry => entry.id === 'A1');
-                        const nextUnit = a1.units.find(entry => !App.completedUnits.includes(entry.id));
-                        if (nextUnit && unit.id !== nextUnit.id && !App.completedUnits.includes(unit.id)) return;
-                    }
+                    const lessonIndex = Number.isInteger(requestedLessonIndex)
+                        ? requestedLessonIndex
+                        : (App.completedUnits.includes(id) ? 0 : firstIncomplete);
                     if (!App.completedUnits.includes(id) && lessonIndex > firstIncomplete) return;
                     if (lessonIndex >= lessons.length) return this.startUnitAssessment(id);
                     return this.startUnit(unit, lessonIndex);
@@ -5636,8 +5630,7 @@
             },
             startUnit(unit, lessonIndex = 0) {
                 const level = getLevels().find(entry => entry.units.some(candidate => candidate.id === unit.id));
-                if (level && (level.id === 'B2' ||
-                    (level.id === 'A2' && !A2_RELEASE_ENABLED))) return;
+                if (level && !isUnitUnlocked(level, unit)) return;
                 const lessons = buildUnitLessons(unit);
                 const lesson = lessons[lessonIndex];
                 if (!lesson) return;
@@ -6109,59 +6102,82 @@
                     const unitId = this.currentUnit.id;
                     document.getElementById('exerciseArea').classList.add('lesson-results-screen');
                     document.getElementById('exerciseArea').innerHTML = `
-                        <div class="lesson-results-card card">
-                            <h2>${passed ? '🎉 ¡Prueba superada!' : '📝 Sigue practicando'}</h2>
-                            <p>${passed ? 'Has desbloqueado la siguiente unidad.' : 'Necesitas al menos un 80 % para avanzar. Repasa las lecciones y vuelve a intentarlo.'}</p>
+                        <div class="lesson-results-card card ${passed ? 'unit-complete-celebration' : ''}">
+                            <h2>${passed ? '🎉 ¡Unidad completada!' : '📝 Sigue practicando'}</h2>
+                            <p>${passed ? 'Prueba superada. La siguiente unidad ya está desbloqueada.' : 'Necesitas al menos un 80 % para avanzar. Repasa las lecciones y vuelve a intentarlo.'}</p>
                             <p>Resultado: <strong>${correct} de ${total}</strong> respuestas correctas.</p>
                             ${this.sessionSummaryMarkup()}
-                            ${passed ? '<button class="btn" onclick="LessonEngine.exit()">Continuar al curso</button>' : `<button class="btn" onclick="LessonEngine.startUnitAssessment('${unitId}')">Repetir prueba</button><button class="btn btn-outline" onclick="LessonEngine.exit()">Volver a las lecciones</button>`}
+                            ${passed ? '<button class="btn" onclick="LessonEngine.exit()">Continuar al camino</button>' : `<button class="btn" onclick="LessonEngine.startUnitAssessment('${unitId}')">Repetir prueba</button><button class="btn btn-outline" onclick="LessonEngine.exit()">Volver a las lecciones</button>`}
                         </div>
                     `;
                     document.getElementById('lessonProgressFill').style.width = '100%';
                     return;
                 }
+
                 const unit = this.currentUnit;
-                const a1 = CourseData.levels.find(level => level.id === 'A1');
-                const isProgressiveA1Unit = Boolean(a1 && a1.units.some(entry => entry.id === unit.id));
-                if (!isProgressiveA1Unit) {
+                const level = getLevels().find(entry => entry.units.some(candidate => candidate.id === unit.id));
+                if (!level || level.id === 'IA') {
                     await App.markUnitCompleted(unit.id);
-                    for (const word of unit.vocab) {
+                    for (const word of unit.vocab || []) {
                         if (!(await DB.get('srs', word.id))) await SRSEngine.recordAttempt(word.id, 4);
                     }
                     document.getElementById('exerciseArea').classList.add('lesson-results-screen');
                     document.getElementById('exerciseArea').innerHTML = `
-                        <div class="lesson-results-card card">
+                        <div class="lesson-results-card card unit-complete-celebration">
                             <h2>🎉 Unidad completada</h2>
                             <p>Progreso y repetición espaciada guardados.</p>
                             ${this.sessionSummaryMarkup()}
-                            <button class="btn" onclick="LessonEngine.exit()">Volver al curso</button>
+                            <button class="btn" onclick="LessonEngine.exit()">Volver al camino</button>
                         </div>
                     `;
                     document.getElementById('lessonProgressFill').style.width = '100%';
                     return;
                 }
+
                 const lesson = this.currentLesson;
+                if (!lesson) return;
                 const lessonKey = unitLessonProgressKey(unit.id, lesson.index);
                 if (!App.completedLessons.includes(lessonKey)) {
                     App.completedLessons.push(lessonKey);
                     await DB.set('settings', 'completedLessons', App.completedLessons);
                     App.recordStudyActivity('lesson', 0).catch(err => console.error('No se pudo guardar la actividad diaria:', err));
                 }
-                const lessons = buildUnitLessons(unit);
-                const isLastLesson = lesson.index === lessons.length - 1;
+
+                const progress = getUnitProgressState(level, unit);
+                const unitCompletedNow = progress.allLessonsComplete && !progress.requiresAssessment;
+                if (unitCompletedNow) {
+                    await App.markUnitCompleted(unit.id);
+                    for (const word of unit.vocab || []) {
+                        if (!(await DB.get('srs', word.id))) await SRSEngine.recordAttempt(word.id, 4);
+                    }
+                }
+
+                const nextLesson = progress.lessons.find(item =>
+                    !App.completedLessons.includes(unitLessonProgressKey(unit.id, item.index))
+                );
+                const lessonCount = progress.completedLessonCount;
+                let nextAction = '';
+                if (unitCompletedNow) {
+                    nextAction = '<p>Has terminado todas las lecciones. La siguiente unidad ya está desbloqueada.</p>';
+                } else if (progress.allLessonsComplete && progress.requiresAssessment) {
+                    nextAction = '<p>Has terminado todas las lecciones. Supera la evaluación con al menos un 80 % para desbloquear la siguiente unidad.</p><button class="btn" onclick="LessonEngine.startUnitAssessment(\'' + App.escapeHtml(unit.id) + '\')">Hacer prueba final de unidad</button>';
+                } else {
+                    nextAction = '<button class="btn" onclick="LessonEngine.startUnitById(\'' + App.escapeHtml(unit.id) + '\', ' + nextLesson.index + ')">Siguiente lección</button>';
+                }
+
                 document.getElementById('exerciseArea').classList.add('lesson-results-screen');
                 document.getElementById('exerciseArea').innerHTML = `
-                    <div class="lesson-results-card card">
-                        <h2>🎉 ¡Lección completada!</h2>
-                        <p>${App.completedLessons.filter(key => key.startsWith(unit.id + '::')).length} de ${lessons.length} lecciones terminadas en esta unidad.</p>
+                    <div class="lesson-results-card card ${unitCompletedNow ? 'unit-complete-celebration' : ''}">
+                        <h2>${unitCompletedNow ? '🎉 ¡Unidad completada!' : '🎉 ¡Lección completada!'}</h2>
+                        <p>${lessonCount} de ${progress.lessons.length} lecciones terminadas en esta unidad.</p>
                         ${this.sessionSummaryMarkup()}
-                        ${isLastLesson ? `<p>Has terminado todas las lecciones. Ahora puedes hacer la prueba final para desbloquear la siguiente unidad.</p><button class="btn" onclick="LessonEngine.startUnitAssessment('${unit.id}')">Hacer prueba final de unidad</button>` : `<button class="btn" onclick="LessonEngine.startUnitById('${unit.id}', ${lesson.index + 1})">Siguiente lección</button>`}
-                        <button class="btn btn-outline" onclick="LessonEngine.exit()">Volver al curso</button>
+                        ${nextAction}
+                        <button class="btn btn-outline" onclick="LessonEngine.exit()">Volver al camino</button>
                     </div>
                 `;
                 document.getElementById('lessonProgressFill').style.width = '100%';
                 App.renderCourseRoute();
-            }
+            },
         };
 
         /* 5b. LECCIONES GENERADAS CON IA */

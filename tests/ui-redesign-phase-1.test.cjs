@@ -56,12 +56,13 @@ test('unit path groups official levels in sections of eight and draws numbered, 
     assert.match(html, /offset \+= 8/);
     assert.match(html, /visibleUnits\.slice\(offset, offset \+ 8\)/);
     assert.match(html, /node\.dataset\.pathState = state/);
-    assert.match(html, /progress\.completed \? '✓' : isCurrent \? String\(offset \+ index \+ 1\) : '🔒'/);
+    assert.match(html, /state === 'locked' \? '🔒' : String\(offset \+ index \+ 1\)/);
     assert.match(html, /function getUnitProgressState/);
     assert.match(html, /function isUnitUnlocked/);
     assert.match(css, /\.learning-unit-node\.node-completed[\s\S]*?background: #16834b/);
     assert.match(css, /\.learning-unit-node\.node-current[\s\S]*?background: var\(--accent\)/);
     assert.match(css, /\.learning-unit-node\.node-locked[\s\S]*?background: #e5e7eb/);
+    assert.match(css, /\.learning-unit-node\.node-available/);
 });
 
 test('B2 shows only its implemented U1 and one upcoming placeholder without removing the development guard', () => {

@@ -77,7 +77,22 @@
             <button class="btn" type="button" onclick="ConversationEngine.open()">Practicar conversaciones</button>
         </div></div>
         </details>
+        <div id="learningLevelSelector" class="learning-level-selector" role="group" aria-label="Seleccionar nivel">
+            <button type="button" class="learning-level-button" data-level="A1" onclick="App.selectLearningLevel('A1')">A1</button>
+            <button type="button" class="learning-level-button" data-level="A2" onclick="App.selectLearningLevel('A2')">A2</button>
+            <button type="button" class="learning-level-button" data-level="B1" onclick="App.selectLearningLevel('B1')">B1</button>
+            <button type="button" class="learning-level-button" data-level="B2" onclick="App.selectLearningLevel('B2')">B2</button>
+        </div>
+        <p id="unitPathNotice" class="unit-path-notice" role="status" aria-live="polite" hidden></p>
         <div id="courseContainer"></div>
+        <button id="jumpToCurrentUnitBtn" class="jump-current-unit-button" type="button" onclick="App.scrollToCurrentUnit(true)" hidden>↑ Ir a mi unidad</button>
+        <div id="unitSheetOverlay" class="unit-sheet-overlay" hidden onclick="App.handleUnitSheetBackdrop(event)">
+            <section id="unitBottomSheet" class="unit-bottom-sheet" role="dialog" aria-modal="true" aria-labelledby="unitSheetTitle">
+                <div class="unit-sheet-grabber" aria-hidden="true"></div>
+                <button class="unit-sheet-close" type="button" aria-label="Cerrar" onclick="App.closeUnitSheet()">×</button>
+                <div id="unitSheetContent"></div>
+            </section>
+        </div>
     </main>
 
     <!-- CONVERSACIONES PRÁCTICAS -->
@@ -235,6 +250,13 @@
             <div class="progress-bar" role="progressbar" aria-label="Progreso del nivel A1" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="courseProgressFill" class="progress-fill" style="width:0%;"></div></div>
             <div class="profile-xp-row"><span>Avance de A2 <span class="profile-muted">(beta)</span></span><strong id="a2CourseProgressText">0% · 0/40 unidades</strong></div>
             <div class="progress-bar" role="progressbar" aria-label="Progreso del nivel A2 en beta" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="a2CourseProgressFill" class="progress-fill" style="width:0%;"></div></div>
+        </section>
+        <section class="card emergency-unit-jump-card" id="emergencyUnitJump">
+            <h2>Saltar a una unidad</h2>
+            <p class="profile-muted">Acceso de emergencia para estudiar una unidad sin completar las anteriores. No la marca como aprobada.</p>
+            <label for="emergencyUnitSelect">Unidad</label>
+            <select id="emergencyUnitSelect" class="input-field" aria-label="Elegir unidad para saltar"></select>
+            <button class="btn btn-outline" type="button" onclick="App.confirmUnitJump()">Saltar a una unidad</button>
         </section>
         <section class="card" id="studyActivityDashboard">
             <h2>Actividad de estudio</h2>
@@ -6166,6 +6188,70 @@
                 (level.id !== 'A2' || A2_RELEASE_ENABLED)
             );
         }
+        function hasUnitFinalAssessment(level, unit) {
+            return Boolean(level && ['A1', 'B1'].includes(level.id) && buildUnitAssessmentItems(unit).length);
+        }
+
+        function getUnitProgressState(level, unit, completedUnits = App.completedUnits, completedLessons = App.completedLessons) {
+            const lessons = buildUnitLessons(unit);
+            const approved = Array.isArray(completedUnits) && completedUnits.includes(unit.id);
+            const completedLessonCount = approved ? lessons.length : lessons.filter(lesson =>
+                Array.isArray(completedLessons) && completedLessons.includes(unitLessonProgressKey(unit.id, lesson.index))
+            ).length;
+            const allLessonsComplete = lessons.length > 0 && completedLessonCount === lessons.length;
+            const requiresAssessment = hasUnitFinalAssessment(level, unit);
+            return {
+                lessons,
+                completedLessonCount,
+                allLessonsComplete,
+                requiresAssessment,
+                completed: approved || (allLessonsComplete && !requiresAssessment),
+                approved
+            };
+        }
+
+        function getEmergencyUnitSkips() {
+            try {
+                const id = localStorage.getItem('bahasaStudioUnitSkipId');
+                return id ? [id] : [];
+            } catch (error) {
+                return [];
+            }
+        }
+
+        function isUnitUnlocked(level, unit, completedUnits = App.completedUnits, completedLessons = App.completedLessons, skipIds = getEmergencyUnitSkips()) {
+            const progress = getUnitProgressState(level, unit, completedUnits, completedLessons);
+            if (progress.completed || (Array.isArray(skipIds) && skipIds.includes(unit.id))) return true;
+            if (!level || level.id === 'IA') return true;
+            if (level.id === 'A2' && !A2_RELEASE_ENABLED) return false;
+            if (level.id === 'B2') return false;
+
+            const levels = CourseData.levels;
+            const levelIndex = levels.findIndex(entry => entry.id === level.id);
+            const unitIndex = level.units.findIndex(entry => entry.id === unit.id);
+            if (levelIndex < 0 || unitIndex < 0) return false;
+            if (unitIndex > 0) {
+                return getUnitProgressState(level, level.units[unitIndex - 1], completedUnits, completedLessons).completed;
+            }
+            if (levelIndex === 0) return true;
+            const previousLevel = levels[levelIndex - 1];
+            const previousUnit = previousLevel.units[previousLevel.units.length - 1];
+            return Boolean(previousUnit && getUnitProgressState(previousLevel, previousUnit, completedUnits, completedLessons).completed);
+        }
+
+        function getCurrentLearningLevelId(completedUnits = App.completedUnits, completedLessons = App.completedLessons) {
+            for (const level of CourseData.levels) {
+                if (level.id === 'A2' && !A2_RELEASE_ENABLED) continue;
+                if (level.id === 'B2') continue;
+                const current = level.units.find(unit =>
+                    isUnitUnlocked(level, unit, completedUnits, completedLessons) &&
+                    !getUnitProgressState(level, unit, completedUnits, completedLessons).completed
+                );
+                if (current) return level.id;
+            }
+            return 'A1';
+        }
+
         function getUniqueLearningVocabulary() {
             const seen = new Set();
             return getLearningLevels().flatMap(level => level.units.flatMap(unit => unit.vocab || []))

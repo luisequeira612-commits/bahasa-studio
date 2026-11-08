@@ -842,3 +842,38 @@ body.unit-sheet-open { overflow: hidden; }
     font-size: .82rem;
     line-height: 1.45;
 }
+
+.unit-path-coming-soon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 12px 0 22px;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    text-align: center;
+    color: var(--text-muted);
+}
+.unit-path-coming-soon::before {
+    content: "";
+    width: 3px;
+    height: 28px;
+    margin-bottom: 8px;
+    border-radius: 99px;
+    background: var(--border);
+}
+.unit-path-coming-soon .unit-path-coming-soon-circle {
+    display: grid;
+    place-items: center;
+    width: 62px;
+    height: 62px;
+    margin-bottom: 8px;
+    border: 3px dashed #9ca3af;
+    border-radius: 50%;
+    background: #e5e7eb;
+    color: #4b5563;
+    font-size: 1.5rem;
+    font-weight: 900;
+    letter-spacing: .12em;
+}

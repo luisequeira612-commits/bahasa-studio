@@ -215,6 +215,8 @@ jobs:
         run: node --test tests/progressive-assessment.test.cjs
       - name: Run multi-lesson progression tests
         run: node --test tests/multi-lesson-progression.test.cjs
+      - name: Run learning path progression tests
+        run: node --test tests/learning-path-progression.test.mjs
       - name: Run real-browser end-to-end tests
         run: node --test tests/browser-e2e.test.cjs
       - name: Run assessment page browser tests

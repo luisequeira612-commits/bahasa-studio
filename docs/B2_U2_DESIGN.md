@@ -152,3 +152,10 @@ Se encontró un testimonio independiente en la revista literaria **PUSAT**, publ
 - La fuente complementa, sin sustituir, el ejemplo de la antología de 2017 ya registrado arriba. Ambas publicaciones proceden del repositorio oficial de Kemendikdasmen; la revista PUSAT declara expresamente como editor a Badan Pengembangan dan Pembinaan Bahasa.
 
 **Ajuste de confianza:** hay ahora dos testimonios literarios contextuales independientes de `kautulis` en publicaciones alojadas en el repositorio oficial, además del respaldo ortográfico (2016) y morfológico académico (2022). Esto confirma uso escrito literario en indonesio; no resuelve registro neutro, frecuencia conversacional ni si debe exigirse como producción activa en B2. Las cuatro formas siguen pendientes de aprobación.
+
+
+## Referencia didáctica complementaria para `kubaca` (8 nov 2026)
+
+Se localizó una referencia reciente en Hasbul, Wahyuni; Roni Juliansyah; Reni Kusmiarti; Apriyanto; Dian Septikasari; Amelia Warikar; y Jasmari, *Bahasa Indonesia: Pemahaman, Penggunaan, dan Pengembangan di Era Modern* (CV Pustaka Inspirasi Minang, primera edición, agosto de 2025, ISBN 978-634-96236-2-9), p. 51 impresa / p. 52 del PDF. En la sección «Elipsis, Permutasi, dan Topikalisasi», el libro ofrece «Buku itu sudah kubaca → Sudah kubaca buku itu» como ejemplo de permutación del orden de constituyentes para cambiar el foco o ajustarse a la comunicación. Fuente: https://repository.umb.ac.id/1494/1/EBOOK%20BAHASA%20INDONESIA%20PEMAHAMAN%2C%20PENGGUNAAN%2C%20DAN%20PENGEMBANGAN%20DI%20ERA%20MODERN.pdf
+
+**Alcance:** es un ejemplo didáctico en una sección que trata estrategias sintácticas del uso cotidiano; no es una transcripción ni una muestra de corpus espontáneo. Corrobora que `kubaca` se utiliza como ejemplo gramatical contemporáneo en indonesio y encaja con el análisis de foco/orden, pero no demuestra frecuencia conversacional. No cambia el estatus candidato de `kubaca` ni aprueba la forma, glosa o una oración para B2 U2.

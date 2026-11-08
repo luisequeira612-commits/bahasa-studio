@@ -1564,3 +1564,65 @@ test('priority 3 adds written sentence completion and tap-to-match practice with
     await new Promise(resolve => server.close(resolve));
   }
 });
+
+
+test('learning path keeps the real A1 one-of-two lesson state visible at a 360px viewport', async () => {
+  const { server, url } = await startServer();
+  const context = await browser.newContext({
+    viewport: { width: 360, height: 800 },
+    serviceWorkers: 'block'
+  });
+  const page = await context.newPage();
+  const pageErrors = [];
+  page.on('pageerror', error => pageErrors.push(error.message));
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' && App.completedUnits && document.querySelector('.learning-unit-node'));
+    const initial = await page.evaluate(() => ({
+      viewport: window.innerWidth,
+      documentWidth: document.documentElement.scrollWidth,
+      selectedLevel: document.querySelector('.learning-level-button.active')?.dataset.level,
+      currentUnit: document.querySelector('.learning-unit-node[data-path-state="current"]')?.dataset.unitId
+    }));
+    assert.equal(initial.viewport, 360);
+    assert.ok(initial.documentWidth <= 360, 'learning screen should not overflow horizontally at 360px');
+    assert.equal(initial.selectedLevel, 'A1');
+    assert.equal(initial.currentUnit, 'a1_u1', 'a new learner should start at A1 Unit 1');
+
+    await page.evaluate(async () => {
+      await DB.set('settings', 'completedUnits', ['a1_u1', 'a1_u2']);
+      await DB.set('settings', 'completedLessons', ['a1_u3::0']);
+    });
+    await page.reload({ waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() =>
+      App.completedUnits.includes('a1_u2') &&
+      App.completedLessons.includes('a1_u3::0') &&
+      document.querySelector('.learning-unit-node[data-unit-id="a1_u3"][data-path-state="current"]')
+    );
+
+    const progress = await page.evaluate(() => ({
+      current: document.querySelector('.learning-unit-node[data-unit-id="a1_u3"]')?.dataset.pathState,
+      previous: [
+        document.querySelector('.learning-unit-node[data-unit-id="a1_u1"]')?.dataset.pathState,
+        document.querySelector('.learning-unit-node[data-unit-id="a1_u2"]')?.dataset.pathState
+      ],
+      next: document.querySelector('.learning-unit-node[data-unit-id="a1_u4"]')?.dataset.pathState,
+      width: document.documentElement.scrollWidth
+    }));
+    assert.equal(progress.current, 'current');
+    assert.deepEqual(progress.previous, ['completed', 'completed']);
+    assert.equal(progress.next, 'locked');
+    assert.ok(progress.width <= 360, 'partially completed path should fit a 360px viewport');
+
+    await page.locator('.learning-unit-node[data-unit-id="a1_u3"]').click();
+    await page.locator('#unitBottomSheet').waitFor({ state: 'visible' });
+    const sheet = await page.locator('#unitSheetContent').innerText();
+    assert.match(sheet, /1\\/2/);
+    assert.match(sheet, /Empezar lección 2/);
+    assert.ok(pageErrors.length === 0, pageErrors.join('\\n'));
+  } finally {
+    await context.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});

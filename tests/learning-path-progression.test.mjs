@@ -24,7 +24,7 @@ async function loadProgressionApi() {
     localStorage: { getItem() { return null; } }
   };
   return vm.runInNewContext(source.slice(start, end) +
-    '\n({ CourseData, buildUnitLessons, buildUnitAssessmentItems, getUnitProgressState, isUnitUnlocked, hasUnitFinalAssessment })',
+    '\nconst A2_RELEASE_ENABLED = true; ({ CourseData, buildUnitLessons, buildUnitAssessmentItems, getUnitProgressState, isUnitUnlocked, hasUnitFinalAssessment })',
     context, { timeout: 5000 });
 }
 

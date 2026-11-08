@@ -384,3 +384,13 @@
 ## PR #460 y propuesta B2 U9 — 8 nov 2026
 - PR [#460](https://github.com/luisequeira612-commits/bahasa-studio/pull/460) fusionado mediante squash en `f26b5b527d6d7c7554d2870620a26c02e321265c`, con `test` y `Offline quality reports` en éxito sobre el head exacto `dbe24c73f1a3d93d0a6f27dac47fe47720587e3c`, sin revisiones, hilos ni comentarios pendientes. Conserva el diseño documental preliminar B2 U8 sobre nominalización abstracta y predicados complejos con `ke-...-an`; sin vocabulario, IDs ni contenido ejecutable.
 - Se prepara propuesta documental reversible B2 U9 sobre el patrón verbal `-nya`, basada en Grangé (2015), que discute el análisis como nominalización frente a subordinación. Debe distinguirse de -nya posesivo/pronominal, determinativo y discursivo; no traducir -nya como “porque” ni convertir la hipótesis de Grangé en regla universal. No añade vocabulario/IDs ni modifica unidades ejecutables, A1/A2/B1, IndexedDB, backup JSON v3, trackers, dependencias o visibilidad de B2.
+
+
+## PR #463 — B2 U11 reduplicación (8 nov 2026)
+- Fusionada mediante squash: https://github.com/luisequeira612-commits/bahasa-studio/pull/463; merge commit `78e009f22d254ea2bb907baa109d6400c2285066`. `test` y `Offline quality reports` pasaron sobre el head exacto `c0724e3c88bd9d958a9ca3328b1d09b2e5eda853`; sin revisiones, hilos ni comentarios pendientes.
+- Añade el diseño documental reversible `docs/B2_U11_DESIGN.md` sobre reduplicación nominal, verbal, afijada, parcial e imitativa. No añade vocabulario/IDs, glosas definitivas ni ejercicios ejecutables; U11 sigue sin aprobación específica para implementación.
+
+## Diseño preliminar B2 U12 — 8 nov 2026
+- Se prepara `docs/B2_U12_DESIGN.md` para estudiar compuestos, frases, idioms y semiidioms con diagnósticos morfosintácticos y grados de transparencia semántica. La frontera entre compuestos y frases fijas puede ser discutida; inserción, expansión/modificación y permutación son indicios, no pruebas mecánicas.
+- Se contrasta el diseño con vocabulario de A1–B1: varias expresiones multi-palabra ya aparecen, pero no se clasifican automáticamente como compuestos. No se proponen vocabulario, IDs, glosas definitivas ni ejercicios ejecutables. El eje U11–U12 está aprobado, no este desglose ni sus ejemplos.
+- Fuentes: Denistia & Baayen (2021), sección 2.6; Darnis (2022), Badan Bahasa; Ariyanto (1989), Humaniora UGM; Widayanti et al. (2025), E-Journal of Linguistics. Sin cambios curriculares ejecutables, IndexedDB, backup JSON v3, dependencias ni visibilidad de B2.

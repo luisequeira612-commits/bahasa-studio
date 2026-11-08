@@ -5340,16 +5340,26 @@
         }
 
         function getCurrentLearningLevelId(completedUnits = App.completedUnits, completedLessons = App.completedLessons) {
-            for (const level of CourseData.levels) {
+            let lastCompletedLevel = 'A1';
+            for (let index = 0; index < CourseData.levels.length; index++) {
+                const level = CourseData.levels[index];
                 if (level.id === 'A2' && !A2_RELEASE_ENABLED) continue;
-                if (level.id === 'B2') continue;
+                if (level.id === 'B2') {
+                    const previousLevel = CourseData.levels[index - 1];
+                    const previousUnit = previousLevel && previousLevel.units[previousLevel.units.length - 1];
+                    return previousUnit && getUnitProgressState(previousLevel, previousUnit, completedUnits, completedLessons).completed
+                        ? 'B2' : lastCompletedLevel;
+                }
                 const current = level.units.find(unit =>
                     isUnitUnlocked(level, unit, completedUnits, completedLessons) &&
                     !getUnitProgressState(level, unit, completedUnits, completedLessons).completed
                 );
                 if (current) return level.id;
+                if (level.units.length && level.units.every(unit =>
+                    getUnitProgressState(level, unit, completedUnits, completedLessons).completed
+                )) lastCompletedLevel = level.id;
             }
-            return 'A1';
+            return lastCompletedLevel;
         }
 
 

@@ -3,7 +3,7 @@
 > Memoria operativa. Mantener por debajo de ~150 líneas; los detalles históricos y la evidencia extensa viven en los documentos enlazados. Última actualización: 8 nov 2026.
 
 ## Estado vigente
-- A1 32/32, A2 40/40 y B1 50/50 unidades completas. B2 1/60 implementada (U1); total 123/182, quedan 59 unidades B2. B2 permanece oculta/no publicada.
+- A1 32/32, A2 40/40 y B1 50/50 unidades completas. B2 1/60 implementada (U1); total 123/182, quedan 59 unidades B2. En la Fase 1 U1 y un único nodo «Próximamente» se muestran en el camino; la guarda de acceso a B2 sigue vigente y el PR #472 continúa separado y sin fusionar.
 - Fase actual: desarrollo progresivo de B2, sin certificación lingüística ni MCER/BIPA. A1/A2/B1 están en beta; no hay hablante nativo disponible.
 - B2 U1: implementada, 3 lecciones, 16 ejercicios, 5 tipos; reutiliza 9 IDs existentes y no añade vocabulario.
 - B2 U2 y U3: diseños preliminares en `docs/B2_U2_DESIGN.md` y `docs/B2_U3_DESIGN.md`. U2 espera aprobación explícita de `kubaca`, `kaubaca`, `kutulis`, `kautulis`; no asignar IDs ni incorporarlas a ejercicios evaluados antes de aprobarlas. U3 integra U1+U2 y no debe cerrarse/implementarse antes de aprobar e implementar U2.
@@ -41,7 +41,7 @@
 ## Herramientas y calidad
 - ChatGPT puede programar y preparar PRs; Codex puede usarse después como auditor independiente, pero no afirmar que auditó si no se ejecutó.
 - Preferir auditorías locales/offline y pruebas existentes; no añadir servicios externos ni dependencias por conveniencia.
-- Pruebas B2 en `tests/load-inline-b2-curriculum.test.mjs`: contrato U1, IDs, producción guiada, formas candidatas ausentes, borradores archivados y protección de `startUnitById()`, `startUnitAssessment()`, `startUnit()` y la ruta del curso. `startUnit()` bloquea unidades B2 registradas y conserva el acceso directo usado por lecciones personalizadas no registradas. El fallback de traducción por selección también excluye ejercicios authored de B2. El nivel inferido para el prompt del tutor ignora posibles completados B2 residuales.
+- Pruebas B2 en `tests/load-inline-b2-curriculum.test.mjs`: contrato U1, IDs, producción guiada, formas candidatas ausentes, borradores archivados y protección de `startUnitById()`, `startUnitAssessment()` y `startUnit()`. La ruta muestra solo U1 y un nodo «Próximamente», pero el motor mantiene el bloqueo B2. El fallback de traducción por selección excluye ejercicios authored de B2. El nivel inferido para el prompt del tutor ignora posibles completados B2 residuales.
 - Scripts e informes de calidad son evidencia estructural/editorial, no validación nativa.
 
 ## Decisiones de producto y currículo
@@ -65,3 +65,12 @@
 - Archivo de borradores retirados: `docs/B2_LEGACY_DRAFT_ARCHIVE.md`.
 - Pruebas de carga/guardas B2: `tests/load-inline-b2-curriculum.test.mjs`.
 - Para el estado de una PR concreta, usar su historial, CI y revisiones en GitHub; esta memoria resume hitos y decisiones, no sustituye esos registros.
+
+
+## Rediseño de Aprender — Fase 1 (8 nov 2026)
+- Decisión del dueño: registrar cada clave unidad::índiceDeLección en A2/B1/B2 al completar todos los ejercicios de esa lección; salir antes no registra la lección. No modificar IndexedDB ni backup JSON v3.
+- Una función derivada calcula avance, finalización y desbloqueo desde completedLessons y completedUnits; los IDs ya aprobados conservan el estado aunque falten claves de lección.
+- Evaluación final en la ruta actual: A1 y B1 (umbral existente 80 %); A2 y B2 no muestran evaluación final en la ruta actual. A2/B2 se completan al terminar todas las lecciones.
+- Desbloqueo secuencial uniforme en A1–B2; A2_RELEASE_ENABLED solo controla la apertura del nivel. La guarda de acceso B2 se conserva en esta fase.
+- Agrupación visual por orden, secciones de 8; B2 muestra U1 implementada y un solo nodo «Próximamente». El salto de emergencia usa localStorage (bahasaStudioUnitSkipId) y no altera aprobación.
+- La Fase 1 va en una rama/PR independiente; no fusionar sin autorización. PR #472 (fix/restore-b1-b2-access) sigue abierto y sin fusionar; se solapa con index.html y deberá reconciliarse si se fusiona más adelante.

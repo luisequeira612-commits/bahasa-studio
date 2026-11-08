@@ -5681,7 +5681,7 @@
                 for (const level of getLevels()) {
                     const unit = level.units.find(entry => entry.id === id);
                     if (!unit) continue;
-                    if (level.id === 'B2' || !isUnitUnlocked(level, unit)) return;
+                    if ((level.id === 'B2' && !App.completedUnits.includes(id) && !getEmergencyUnitSkips().includes(id)) || !isUnitUnlocked(level, unit)) return;
                     const lessons = buildUnitLessons(unit);
                     const nextIndex = lessons.findIndex(lesson => !App.completedLessons.includes(unitLessonProgressKey(id, lesson.index)));
                     const firstIncomplete = nextIndex < 0 ? lessons.length : nextIndex;
@@ -5699,7 +5699,7 @@
             },
             startUnit(unit, lessonIndex = 0) {
                 const level = getLevels().find(entry => entry.units.some(candidate => candidate.id === unit.id));
-                if (level && (level.id === 'B2' || !isUnitUnlocked(level, unit))) return;
+                if (level && ((level.id === 'B2' && !App.completedUnits.includes(unit.id) && !getEmergencyUnitSkips().includes(unit.id)) || !isUnitUnlocked(level, unit))) return;
                 const lessons = buildUnitLessons(unit);
                 const nextIndex = lessons.findIndex(item => !App.completedLessons.includes(unitLessonProgressKey(unit.id, item.index)));
                 const firstIncomplete = nextIndex < 0 ? lessons.length : nextIndex;
@@ -6875,7 +6875,10 @@ Requisitos:
                     this.completedUnits.push(unitId);
                     await DB.set('settings', 'completedUnits', this.completedUnits);
                     try {
-                        if (localStorage.getItem('bahasaStudioUnitSkipId') === unitId) localStorage.removeItem('bahasaStudioUnitSkipId');
+                        const completedLevel = this.findCourseUnit(unitId);
+                        if ((!completedLevel || completedLevel.level.id !== 'B2') && localStorage.getItem('bahasaStudioUnitSkipId') === unitId) {
+                            localStorage.removeItem('bahasaStudioUnitSkipId');
+                        }
                     } catch (error) {}
                     this.addXp(50);
                     this.renderCourseRoute();
@@ -7011,7 +7014,6 @@ Requisitos:
                     const option = document.createElement('option');
                     option.value = unit.id;
                     option.textContent = level.id + ' · Unidad ' + (index + 1) + ' — ' + unit.title;
-                    if (level.id === 'B2') option.disabled = true;
                     if (level.id === 'A2' && !A2_RELEASE_ENABLED) option.disabled = true;
                     select.appendChild(option);
                 }));
@@ -7022,10 +7024,6 @@ Requisitos:
                 const found = select && this.findCourseUnit(select.value);
                 if (!found) {
                     this.showUnitPathNotice('Selecciona una unidad primero.');
-                    return;
-                }
-                if (found.level.id === 'B2') {
-                    this.showUnitPathNotice('B2 continúa en desarrollo y conserva su bloqueo actual.');
                     return;
                 }
                 if (found.level.id === 'A2' && !A2_RELEASE_ENABLED) {

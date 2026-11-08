@@ -395,14 +395,32 @@ test('B1 U10-U12 follow the approved nominalization and ke-an sequence without d
   assert.match(archive, /Objetos originales preservados/);
 });
 
-test('B1 is visible and accessible independently of A1 completion', () => {
+test('B1 follows A2 sequential progression while B2 remains development-gated', () => {
   assert.match(html, /level\.id !== 'B2'/);
   assert.doesNotMatch(html, /!\['B1', 'B2'\]\.includes\(level\.id\)/);
   assert.doesNotMatch(html, /if \(\['B1', 'B2'\]\.includes\(level\.id\)/);
-  assert.match(html, /const isAdvanced = lvl\.id === 'B2'/);
-  assert.match(html, /if \(!isB1Complete\(this\.completedUnits\)\) return;/);
-});
+  assert.match(html, /function isUnitUnlocked\(level, unit/);
+  assert.match(html, /const previousLevel = levels\[levelIndex - 1\]/);
+  assert.doesNotMatch(html, /const isAdvanced = lvl\.id === 'B2'/);
+  assert.doesNotMatch(html, /if \(!isB1Complete\(this\.completedUnits\)\) return;/);
+  assert.match(html, /level\.id === 'B2' \? level\.units\.slice\(0, 1\) : level\.units/);
+  assert.match(html, /unit-path-coming-soon/);
 
+  const start = html.indexOf('const CourseData =');
+  const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
+  const api = vm.runInNewContext(html.slice(start, end) +
+    '\nconst A2_RELEASE_ENABLED = true; ({ CourseData, isUnitUnlocked })');
+  const levels = api.CourseData.levels;
+  const a1 = levels.find(level => level.id === 'A1');
+  const a2 = levels.find(level => level.id === 'A2');
+  const b1 = levels.find(level => level.id === 'B1');
+  const b2 = levels.find(level => level.id === 'B2');
+  const completedA1 = a1.units.map(unit => unit.id);
+  const completedA1A2 = completedA1.concat(a2.units.map(unit => unit.id));
+  assert.equal(api.isUnitUnlocked(b1, b1.units[0], completedA1, [], []), false);
+  assert.equal(api.isUnitUnlocked(b1, b1.units[0], completedA1A2, [], []), true);
+  assert.equal(api.isUnitUnlocked(b2, b2.units[0], completedA1A2.concat(b1.units.map(unit => unit.id)), [], []), false);
+});
 test('B1 U13-U14 consolidate the ke-an family using canonical earlier vocabulary IDs', () => {
   const b1 = course.levels.find(level => level.id === 'B1');
   const u13 = b1.units.find(unit => unit.id === 'b1_u13');

@@ -71,7 +71,7 @@
 - Decisión del dueño: registrar cada clave unidad::índiceDeLección en A2/B1/B2 al completar todos los ejercicios de esa lección; salir antes no registra la lección. No modificar IndexedDB ni backup JSON v3.
 - Una función derivada calcula avance, finalización y desbloqueo desde completedLessons y completedUnits; los IDs ya aprobados conservan el estado aunque falten claves de lección.
 - Evaluación final en la ruta actual: A1 y B1 (umbral existente 80 %); A2 y B2 no muestran evaluación final en la ruta actual. A2/B2 se completan al terminar todas las lecciones.
-- Desbloqueo secuencial en A1/A2/B1; A2_RELEASE_ENABLED solo controla la apertura del nivel. La guarda normal de B2 se conserva, con excepción del salto de emergencia local a U1 implementada.
+- Desbloqueo secuencial en A1/A2/B1 y B2 U1: B2 U1 se abre al completar la última unidad B1; B2 U2+ siguen sin contenido ejecutable y protegidas. Se conserva la etiqueta «En desarrollo» y el salto de emergencia local permite acceder a U1 antes de cumplir el requisito.
 - Agrupación visual por orden, secciones de 8; B2 muestra U1 implementada y un solo nodo «Próximamente». El salto de emergencia usa localStorage (bahasaStudioUnitSkipId) y no altera aprobación.
 - La Fase 1 va en una rama/PR independiente; no fusionar sin autorización. PR #472 (fix/restore-b1-b2-access) sigue abierto y sin fusionar; se solapa con index.html y deberá reconciliarse si se fusiona más adelante.
 
@@ -79,3 +79,5 @@
 - CI run #42522755681 en ese head: `test` 72 pasos y `Offline quality reports` 10 pasos, ambos en éxito; incluye pruebas de progreso A1 1/2, A2 legacy completada sin claves de lección, A2 multilección, B1 evaluación, salida anticipada, 360 px, navegador real, importación/exportación JSON v3 y disponibilidad offline del service worker. Sin revisiones, comentarios ni hilos pendientes. PR permanece abierto; no fusionar sin autorización.
 - No se modifican IndexedDB, backup JSON v3, manifest ni service worker; no se añaden dependencias. Fases 2 y 3 no iniciadas. La interfaz nueva queda limitada a Aprender y Perfil.
 - PR #472 sigue abierto y separado. Su restauración completa de acceso B2 contradice el límite actual de mostrar solo U1 implementada más «Próximamente»; además ambos PR modifican `index.html`. Reconciliar la intención antes de fusionarlo, sin incorporar sus cambios automáticamente.
+
+- Revisión de integración B2 (8 nov 2026): la guarda previa impedía acceder a U1 incluso después de completar B1. Se ajustó de forma mínima: la función derivada abre solo B2 U1 tras B1 U50; U2+ permanecen no implementadas/protegidas, la etiqueta «En desarrollo» se conserva y el salto local puede abrir U1 antes de tiempo. CI run #42523643502: `test` 72 pasos y `Offline quality reports` 10 pasos, ambos verdes en el head de implementación `1a90da716627ec7bff5eb61392d994b88fca230b`. La actualización documental actual de `MEMORY.md` requiere su propio CI exacto.

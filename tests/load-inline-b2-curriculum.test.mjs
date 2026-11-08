@@ -112,3 +112,9 @@ test('only implemented B2 U1 remains executable while legacy draft units stay ar
       id + ' belongs only to the archived legacy draft until approved for reuse');
   }
 });
+
+
+test('B2 direct lesson entry fails closed when the unit is not registered in a learning level', async () => {
+  const { indexSource } = await loadCurricula();
+  assert.match(indexSource, /startUnit\\(unit, lessonIndex = 0\\) \\{[\\s\\S]{0,450}if \\(!level \\|\\| level\\.id === 'B2' \\|\\|/);
+});

@@ -34,14 +34,20 @@ test('compact top bar keeps the existing study activity values and live goal rin
     assert.match(html, /id="totalExpBadge"/);
 });
 
-test('learning route keeps optional tools in collapsible drawers', () => {
+test('learning route exposes compact access buttons for the three original tool drawers', () => {
     const route = html.match(/<main id="view-route"[\s\S]*?<\/main>/);
     assert.ok(route);
+    const targets = ['aiGeneratorDrawer', 'writingPracticeDrawer', 'conversationPracticeDrawer'];
+    for (const target of targets) {
+        assert.ok(route[0].includes('data-tool-target="' + target + '"'), target + ' has a compact entry');
+        assert.ok(route[0].includes('id="' + target + '"'), target + ' keeps its original panel');
+    }
     for (const label of ['Generador de lecciones con IA', 'Cuaderno de escritura', 'Conversaciones prácticas']) {
         assert.ok(route[0].includes(label), label + ' remains available');
     }
-    assert.equal((route[0].match(/<details class="feature-drawer">/g) || []).length, 3);
+    assert.equal((route[0].match(/<details class="feature-drawer learning-tool-panel"/g) || []).length, 3);
     assert.match(route[0], /id="courseContainer"/);
+    assert.match(html, /toggleLearningTool\(id\)/);
 });
 
 test('fixed level selector exposes A1, A2, B1 and B2 and defaults from the current course progress', () => {
@@ -125,7 +131,7 @@ test('lesson progress and JSON v3 import/export fields remain unchanged', () => 
 
 test('daily goal ring remains accessible and the 14-day study history remains available', () => {
     assert.match(html, /id="dailyGoalRing"[^>]*aria-controls="dailyGoalHelp"/);
-    assert.match(html, /id="dailyGoalHelp"[^>]*>Este anillo mide cuánto XP/);
+    assert.match(html, /id="dailyGoalHelp"[^>]*>El anillo muestra el porcentaje de tu meta diaria de XP/);
     assert.match(html, /id="studyHistoryDashboard"/);
     assert.match(html, /id="studyHistoryChart"/);
     assert.match(css, /\.study-history-chart/);

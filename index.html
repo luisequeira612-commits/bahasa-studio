@@ -15,30 +15,31 @@
         <div class="logo"><span aria-hidden="true">🇮🇩</span><span>Bahasa Studio</span></div>
         <div class="topbar-metrics" aria-label="Tu actividad">
             <span class="topbar-streak" title="Racha actual">🔥 <strong id="studyStreakText">0 días</strong></span>
-            <span class="topbar-xp" title="Experiencia ganada hoy">⚡ <strong id="studyDailyXpText">0 / 30 XP</strong></span>
-            <button class="daily-goal-ring" id="dailyGoalRing" type="button" aria-label="Objetivo diario: 0 de 30 XP" aria-expanded="false" aria-controls="dailyGoalHelp" aria-describedby="dailyGoalHelp" onclick="App.toggleDailyGoalHelp()">
+            <span class="topbar-xp" title="Meta diaria de XP">⚡ <strong id="studyDailyXpText">Meta: 0/30 XP</strong></span>
+            <button class="daily-goal-ring" id="dailyGoalRing" type="button" title="Meta diaria de XP" aria-label="Meta diaria: 0 de 30 XP" aria-expanded="false" aria-controls="dailyGoalHelp" aria-describedby="dailyGoalHelp" onclick="App.toggleDailyGoalHelp()">
                 <span class="daily-goal-ring-inner"><span id="dailyGoalPercent">0%</span></span>
                 <span id="studyDailyXpFill" class="progress-fill" aria-hidden="true"></span>
             </button>
-        <p id="dailyGoalHelp" class="daily-goal-help" hidden>Este anillo mide cuánto XP has ganado hoy frente a tu objetivo diario.</p>
+        <p id="dailyGoalHelp" class="daily-goal-help" hidden>El anillo muestra el porcentaje de tu meta diaria de XP completado hoy. La cifra junto al rayo indica tus XP de hoy frente a la meta.</p>
         </div>
     </header>
 
     <!-- CURSO / RUTA -->
     <main id="view-route" class="app-view active">
-        <div id="backupReminderBanner" class="backup-reminder-banner" role="status" aria-live="polite" hidden>
-            <span>Recuerda exportar tu copia JSON para proteger tu progreso.</span>
-            <button type="button" onclick="App.exportProgress()">Exportar JSON</button>
-            <button type="button" class="backup-reminder-dismiss" aria-label="Recordar en una semana" title="Recordar en una semana" onclick="App.dismissBackupReminder()">×</button>
+        <div id="learningLevelSelector" class="learning-level-selector" role="group" aria-label="Seleccionar nivel">
+            <button type="button" class="learning-level-button" data-level="A1" onclick="App.selectLearningLevel('A1')">A1</button>
+            <button type="button" class="learning-level-button" data-level="A2" onclick="App.selectLearningLevel('A2')">A2</button>
+            <button type="button" class="learning-level-button" data-level="B1" onclick="App.selectLearningLevel('B1')">B1</button>
+            <button type="button" class="learning-level-button" data-level="B2" onclick="App.selectLearningLevel('B2')">B2</button>
         </div>
-        <section class="learning-intro">
-            <p class="eyebrow">TU CAMINO DE APRENDIZAJE</p>
-            <h1>Aprende indonesio paso a paso</h1>
-            <p>Completa cada unidad para desbloquear la siguiente. Tu avance se guarda en este dispositivo.</p>
-        </section>
+        <div class="learning-tools-row" role="group" aria-label="Herramientas de aprendizaje">
+            <button class="learning-tool-button" type="button" data-tool-target="aiGeneratorDrawer" aria-controls="aiGeneratorDrawer" aria-expanded="false" onclick="App.toggleLearningTool('aiGeneratorDrawer')"><span aria-hidden="true">✨</span><span>Generador</span></button>
+            <button class="learning-tool-button" type="button" data-tool-target="writingPracticeDrawer" aria-controls="writingPracticeDrawer" aria-expanded="false" onclick="App.toggleLearningTool('writingPracticeDrawer')"><span aria-hidden="true">📓</span><span>Cuaderno</span></button>
+            <button class="learning-tool-button" type="button" data-tool-target="conversationPracticeDrawer" aria-controls="conversationPracticeDrawer" aria-expanded="false" onclick="App.toggleLearningTool('conversationPracticeDrawer')"><span aria-hidden="true">💬</span><span>Conversar</span></button>
+        </div>
 
-        <details class="feature-drawer">
-            <summary>✨ Generador de lecciones con IA <span>Opcional</span></summary>
+        <details class="feature-drawer learning-tool-panel" id="aiGeneratorDrawer">
+            <summary>Generador de lecciones con IA</summary>
             <div class="feature-drawer-content">
         <div class="card" style="margin-bottom:12px; padding:12px;">
             <div id="nextTopicLine" style="font-size:0.9rem; margin-bottom:8px;"></div>
@@ -61,28 +62,22 @@
             </div>
         </details>
 
-        <details class="feature-drawer">
-            <summary>📓 Cuaderno de escritura <span>Práctica libre</span></summary>
+        <details class="feature-drawer learning-tool-panel" id="writingPracticeDrawer">
+            <summary>Cuaderno de escritura</summary>
             <div class="feature-drawer-content">        <div class="card" style="margin:12px 0; padding:12px;">
             <h3 style="margin-top:0;">Cuaderno de escritura libre A1</h3>
             <p style="font-size:0.9rem;color:var(--text-muted);">Escribe mensajes y textos breves con vocabulario de A1. Sin nota, XP ni repasos registrados.</p>
             <button class="btn btn-outline" type="button" onclick="WritingPractice.open()">Abrir cuaderno de escritura</button>
         </div></div>
         </details>
-        <details class="feature-drawer">
-            <summary>💬 Conversaciones prácticas <span>Situaciones cotidianas</span></summary>
+        <details class="feature-drawer learning-tool-panel" id="conversationPracticeDrawer">
+            <summary>Conversaciones prácticas</summary>
             <div class="feature-drawer-content">        <div class="card" style="margin:12px 0; padding:12px;">
             <h3 style="margin-top:0;">Conversaciones prácticas</h3>
             <p style="font-size:0.9rem;color:var(--text-muted);">Practica respuestas útiles en situaciones cotidianas: presentaciones, restaurantes, compras, viajes, amistades y ayuda.</p>
             <button class="btn" type="button" onclick="ConversationEngine.open()">Practicar conversaciones</button>
         </div></div>
         </details>
-        <div id="learningLevelSelector" class="learning-level-selector" role="group" aria-label="Seleccionar nivel">
-            <button type="button" class="learning-level-button" data-level="A1" onclick="App.selectLearningLevel('A1')">A1</button>
-            <button type="button" class="learning-level-button" data-level="A2" onclick="App.selectLearningLevel('A2')">A2</button>
-            <button type="button" class="learning-level-button" data-level="B1" onclick="App.selectLearningLevel('B1')">B1</button>
-            <button type="button" class="learning-level-button" data-level="B2" onclick="App.selectLearningLevel('B2')">B2</button>
-        </div>
         <p id="unitPathNotice" class="unit-path-notice" role="status" aria-live="polite" hidden></p>
         <div id="courseContainer"></div>
         <button id="jumpToCurrentUnitBtn" class="jump-current-unit-button" type="button" onclick="App.scrollToCurrentUnit(true)" hidden>↑ Ir a mi unidad</button>
@@ -195,15 +190,7 @@
             <p style="font-size:0.8rem;color:var(--text-muted);">La persistencia depende del navegador. Mantén también una copia JSON fuera del dispositivo.</p>
         </div>
 
-        <div class="card">
-            <h3>Copia de Seguridad</h3>
-            <p style="font-size: 0.85rem; color: var(--text-muted); margin: 8px 0;">Exporta o restaura tu progreso en un archivo JSON validado.</p>
-            <div style="display:flex; gap: 8px; margin-top: 8px;">
-                <button class="btn btn-outline" onclick="App.exportProgress()">Exportar JSON</button>
-                <button class="btn btn-outline" onclick="document.getElementById('importFile').click()">Importar JSON</button>
-                <input type="file" id="importFile" style="display:none;" accept=".json" onchange="App.importProgress(event)">
-            </div>
-        </div>
+
 
         <div class="card">
             <h3>Registro de respuestas y errores</h3>
@@ -243,6 +230,16 @@
     <main id="view-profile" class="app-view">
         <p class="eyebrow">TU ESPACIO PERSONAL</p>
         <h1>Perfil</h1>
+        <section class="card profile-backup-card">
+            <h2>Copia de seguridad</h2>
+            <p id="backupReminderBanner" role="status" aria-live="polite">Recuerda exportar tu copia JSON para proteger tu progreso.</p>
+            <p>Exporta o restaura tu progreso en un archivo JSON validado.</p>
+            <div class="profile-backup-actions">
+                <button class="btn btn-outline" type="button" onclick="App.exportProgress()">Exportar JSON</button>
+                <button class="btn btn-outline" type="button" onclick="document.getElementById('importFile').click()">Importar JSON</button>
+                <input type="file" id="importFile" style="display:none;" accept=".json" onchange="App.importProgress(event)">
+            </div>
+        </section>
         <section class="card profile-progress-card">
             <h2>Tu progreso</h2>
             <div class="profile-xp-row"><span>Experiencia total</span><strong id="totalExpBadge" class="badge">0 XP</strong></div>
@@ -6606,7 +6603,6 @@ Requisitos:
                     console.warn('El navegador no concedió almacenamiento persistente:', error);
                 }
                 await this.updateStoragePersistenceStatus();
-                this.updateBackupReminder();
 
                 if (this.apiKey) document.getElementById('apiKeyInput').value = this.apiKey;
 
@@ -6673,7 +6669,6 @@ Requisitos:
                 if (viewId === 'route') {
                     this.renderCourseRoute();
                     this.scrollToCurrentUnit(true);
-                    this.updateBackupReminder();
                 }
             },
             async updateStoragePersistenceStatus() {
@@ -6695,22 +6690,15 @@ Requisitos:
                     status.textContent = 'No se pudo consultar la persistencia. Exporta tu copia JSON con regularidad.';
                 }
             },
-            updateBackupReminder() {
-                const banner = document.getElementById('backupReminderBanner');
-                if (!banner) return;
-                try {
-                    const lastDismissed = Number(localStorage.getItem('bahasaStudioBackupReminderLastDismissedAt')) || 0;
-                    const week = 7 * 24 * 60 * 60 * 1000;
-                    banner.hidden = lastDismissed > 0 && Date.now() - lastDismissed < week;
-                } catch (error) {
-                    banner.hidden = true;
-                }
-            },
-            dismissBackupReminder() {
-                try {
-                    localStorage.setItem('bahasaStudioBackupReminderLastDismissedAt', String(Date.now()));
-                } catch (error) {}
-                this.updateBackupReminder();
+            toggleLearningTool(id) {
+                const panel = document.getElementById(id);
+                if (!panel) return;
+                const shouldOpen = !panel.open;
+                document.querySelectorAll('.learning-tool-panel').forEach(item => { item.open = false; });
+                document.querySelectorAll('.learning-tool-button').forEach(button => {
+                    button.setAttribute('aria-expanded', String(button.dataset.toolTarget === id && shouldOpen));
+                });
+                panel.open = shouldOpen;
             },
             toggleDailyGoalHelp() {
                 const ring = document.getElementById('dailyGoalRing');
@@ -6840,12 +6828,12 @@ Requisitos:
                 if (streakNode) streakNode.textContent = streak + (streak === 1 ? ' día' : ' días');
                 if (recordNode) recordNode.textContent = 'Récord: ' + this.studyActivity.longestStreak + (this.studyActivity.longestStreak === 1 ? ' día' : ' días');
                 if (goalSelect && goalSelect.value !== String(goal)) goalSelect.value = String(goal);
-                if (xpText) xpText.textContent = earned >= goal ? earned + ' XP hoy' : earned + ' / ' + goal + ' XP';
+                if (xpText) xpText.textContent = earned >= goal ? 'Meta: ' + earned + ' XP hoy' : 'Meta: ' + earned + '/' + goal + ' XP';
                 if (xpFill) xpFill.style.width = percent + '%';
                 const goalRing = document.getElementById('dailyGoalRing');
                 const goalPercent = document.getElementById('dailyGoalPercent');
                 if (goalRing) {
-                    goalRing.setAttribute('aria-label', 'Objetivo diario: ' + earned + ' de ' + goal + ' XP, ' + percent + '% completado');
+                    goalRing.setAttribute('aria-label', 'Meta diaria: ' + earned + ' de ' + goal + ' XP, ' + percent + '% completado');
                     goalRing.style.setProperty('--goal-progress', percent + '%');
                 }
                 if (goalPercent) {
@@ -7496,7 +7484,6 @@ Requisitos:
                 a.href = URL.createObjectURL(blob);
                 a.download = `bahasa_studio_backup.json`;
                 a.click();
-                this.dismissBackupReminder();
             },
             validateBackup(parsed) {
                 const fail = () => { throw new Error('Formato de copia no válido.'); };

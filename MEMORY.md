@@ -303,3 +303,6 @@
 - Actualiza el resumen principal y la lista de pendientes para reflejar A1 32/32, A2 40/40, B1 50/50 y B2 1/60 (123/182; 59 pendientes), con B2 como fase actual.
 - Corrige referencias obsoletas que presentaban A2 U5–U8 y B1 como pendientes de consolidación; conserva las métricas históricas como snapshots y no como certificación lingüística.
 - Registra la retirada del borrador ejecutable B2 U2–U5 en PR #443 y mantiene explícita la aprobación pendiente de las cuatro formas candidatas de U2. Solo documentación; sin cambios de currículo, IndexedDB, backup JSON v3 ni dependencias.
+
+
+- 8 nov 2026: evidencia adicional para B2 U2: el manual oficial de Badan Bahasa _Penyuluhan Bahasa Indonesia untuk Pewara_ (2016, pp. 25–26 PDF) presenta `kautulis`, `kaubaca` y `kausampaikan` como grafías unidas correctas; el artículo académico de Jumiati, Erni y Hidayat (2022, _SAJAK_ 1(2), pp. 23–24) clasifica `kutulis` y `kautulis` como ejemplos de formas ligadas `ku-`/`kau-`. Esto fortalece la evidencia ortográfica/morfológica de `kautulis`, pero aún no aporta una oración contextual completa con esa forma. Las cuatro formas siguen pendientes de aprobación; sin IDs ni implementación de U2. Ver `docs/B2_U2_DESIGN.md`.

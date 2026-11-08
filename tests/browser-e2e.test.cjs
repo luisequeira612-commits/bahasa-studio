@@ -16,7 +16,7 @@ after(async () => {
   if (browser) await browser.close();
 });
 
-function startServer() {
+function startServer(overrides = {}) {
   const server = http.createServer((req, res) => {
     const pathname = new URL(req.url, 'http://127.0.0.1').pathname;
     const requested = pathname === '/' ? 'index.html' : decodeURIComponent(pathname.slice(1));
@@ -30,6 +30,8 @@ function startServer() {
         res.writeHead(404).end('Not found');
         return;
       }
+      const override = overrides[pathname];
+      const responseContent = typeof override === 'function' ? override(content) : (override ?? content);
       const ext = path.extname(filename);
       const types = {
         '.html': 'text/html; charset=utf-8',
@@ -39,7 +41,7 @@ function startServer() {
         '.svg': 'image/svg+xml'
       };
       res.writeHead(200, { 'Content-Type': types[ext] || 'application/octet-stream' });
-      res.end(content);
+      res.end(responseContent);
     });
   });
   return new Promise((resolve, reject) => {
@@ -446,6 +448,56 @@ test('lesson translation hints are tappable, contextual, and stay within a mobil
     await bubble.waitFor({ state: 'visible' });
     await page.locator('#actionArea').tap();
     await page.waitForFunction(() => document.querySelector('#tapTranslationBubble').hidden);
+  } finally {
+    await context.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});
+
+test('service worker upgrades an old installed cache without clearing local progress', async () => {
+  const currentIndex = fs.readFileSync(path.join(root, 'index.html'));
+  const currentWorker = fs.readFileSync(path.join(root, 'service-worker.js'));
+  const oldIndex = Buffer.from(currentIndex.toString().replace('<head>', '<head>\\n<!-- legacy-app-shell -->'));
+  const oldWorker = Buffer.from(currentWorker.toString().replace('bahasa-studio-v3.8.70', 'bahasa-studio-v3.8.69'));
+  let servedVersion = 'old';
+  const { server, url } = await startServer({
+    '/': () => servedVersion === 'old' ? oldIndex : currentIndex,
+    '/index.html': () => servedVersion === 'old' ? oldIndex : currentIndex,
+    '/service-worker.js': () => servedVersion === 'old' ? oldWorker : currentWorker
+  });
+  const context = await browser.newContext();
+  const page = await context.newPage();
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
+    await page.waitForFunction(() => Boolean(navigator.serviceWorker.controller), { timeout: 10000 });
+    await page.evaluate(async () => {
+      await DB.set('settings', 'completedUnits', ['a2_u1']);
+      await DB.set('settings', 'completedLessons', ['a2_u1::0']);
+      await navigator.serviceWorker.ready;
+    });
+    await page.waitForFunction(async () => (await caches.keys()).includes('bahasa-studio-v3.8.69'));
+    assert.equal(await page.locator('html').evaluate(node => node.innerHTML.includes('legacy-app-shell')), true,
+      'the first launch should use the simulated older installed shell');
+
+    servedVersion = 'new';
+    await page.evaluate(async () => {
+      const registration = await navigator.serviceWorker.getRegistration();
+      await registration.update();
+    });
+    await page.waitForFunction(async () => {
+      const keys = await caches.keys();
+      return keys.includes('bahasa-studio-v3.8.70') && !keys.includes('bahasa-studio-v3.8.69');
+    }, { timeout: 15000 });
+
+    await page.reload({ waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined');
+    assert.equal(await page.locator('html').evaluate(node => node.innerHTML.includes('legacy-app-shell')), false,
+      'the next launch should use the new app shell');
+    assert.deepEqual(await page.evaluate(() => DB.get('settings', 'completedUnits')), ['a2_u1']);
+    assert.deepEqual(await page.evaluate(() => DB.get('settings', 'completedLessons')), ['a2_u1::0']);
+    assert.equal(await page.evaluate(() => navigator.serviceWorker.controller !== null), true);
   } finally {
     await context.close();
     await new Promise(resolve => server.close(resolve));
@@ -1576,6 +1628,78 @@ test('priority 3 adds written sentence completion and tap-to-match practice with
   }
 });
 
+
+test('emergency jump opens locked A2/B1 units without recording progress and cannot bypass B2', async () => {
+  const { server, url } = await startServer();
+  const context = await browser.newContext({ serviceWorkers: 'block' });
+  const page = await context.newPage();
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' && typeof LessonEngine !== 'undefined' && DB.db);
+    const before = await page.evaluate(() => ({
+      units: [...App.completedUnits],
+      lessons: [...App.completedLessons]
+    }));
+    await page.evaluate(() => {
+      App.populateEmergencyUnitSelect();
+      const select = document.getElementById('emergencyUnitSelect');
+      select.value = 'a2_u1';
+      window.confirm = () => true;
+      App.confirmUnitJump();
+    });
+    await page.locator('#unitBottomSheet').waitFor({ state: 'visible' });
+    await page.getByRole('button', { name: /Empezar lección 1/ }).click();
+    await page.waitForFunction(() => LessonEngine.currentUnit && LessonEngine.currentUnit.id === 'a2_u1');
+    const afterA2 = await page.evaluate(() => ({
+      units: [...App.completedUnits],
+      lessons: [...App.completedLessons]
+    }));
+    assert.deepEqual(afterA2, before, 'opening an emergency A2 lesson must not complete anything');
+
+    await page.evaluate(() => {
+      App.populateEmergencyUnitSelect();
+      const select = document.getElementById('emergencyUnitSelect');
+      select.value = 'b1_u1';
+      App.confirmUnitJump();
+    });
+    await page.locator('#unitBottomSheet').waitFor({ state: 'visible' });
+    await page.getByRole('button', { name: /Empezar lección 1/ }).click();
+    await page.waitForFunction(() => LessonEngine.currentUnit && LessonEngine.currentUnit.id === 'b1_u1');
+    const afterB1 = await page.evaluate(() => ({
+      units: [...App.completedUnits],
+      lessons: [...App.completedLessons]
+    }));
+    assert.deepEqual(afterB1, before, 'opening an emergency B1 lesson must not complete anything');
+
+    const b2Guard = await page.evaluate(() => {
+      App.populateEmergencyUnitSelect();
+      const select = document.getElementById('emergencyUnitSelect');
+      const option = select.querySelector('option[value="b2_u1"]');
+      const optionDisabled = Boolean(option && option.disabled);
+      select.value = 'b2_u1';
+      App.confirmUnitJump();
+      const skipAfterAttempt = localStorage.getItem('bahasaStudioUnitSkipId');
+      localStorage.setItem('bahasaStudioUnitSkipId', 'b2_u1');
+      LessonEngine.currentUnit = null;
+      LessonEngine.startUnitById('b2_u1');
+      return {
+        optionDisabled,
+        skipAfterAttempt,
+        currentUnit: LessonEngine.currentUnit && LessonEngine.currentUnit.id,
+        units: [...App.completedUnits],
+        lessons: [...App.completedLessons]
+      };
+    });
+    assert.equal(b2Guard.optionDisabled, true, 'B2 must not be selectable through the emergency jump');
+    assert.equal(b2Guard.skipAfterAttempt, 'b1_u1', 'attempting a B2 jump must not replace the valid B1 emergency jump');
+    assert.equal(b2Guard.currentUnit, null, 'a stale B2 localStorage skip must not bypass the B2 guard');
+    assert.deepEqual({ units: b2Guard.units, lessons: b2Guard.lessons }, before);
+  } finally {
+    await context.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});
 
 test('learning path keeps the real A1 one-of-two lesson state visible at a 360px viewport', async () => {
   const { server, url } = await startServer();

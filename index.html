@@ -6303,7 +6303,7 @@
                 const srs = await DB.getAll('srs');
                 const weak = srs.filter(i => i.val && i.val.efactor < 2.3)
                     .map(i => known.find(v => v.id === i.key)).filter(Boolean).slice(0, 10).map(v => v.idn);
-                const lvl = CourseData.levels.filter(l => l.units.some(u => App.completedUnits.includes(u.id))).map(l => l.id).pop() || 'A1';
+                const lvl = CourseData.levels.filter(l => l.id !== 'B2' && l.units.some(u => App.completedUnits.includes(u.id))).map(l => l.id).pop() || 'A1';
                 return `Eres un profesor de indonesio estándar (bahasa baku) para hispanohablantes. Crea UNA unidad sobre el tema: "${topic}".
 Nivel del alumno: ${lvl}, empezó de cero absoluto (unidades completadas: ${App.completedUnits.length}). Sé gradual y no asumas conocimientos previos.
 Palabras que el alumno ya conoce (no las uses como vocabulario nuevo, pero sí puedes usarlas en frases): ${known.slice(-200).map(v => v.idn).join(', ') || 'ninguna'}.

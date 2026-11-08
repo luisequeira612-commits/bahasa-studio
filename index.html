@@ -5564,8 +5564,7 @@
 
             startUnitAssessment(unitId) {
                 const level = getLevels().find(entry => entry.units.some(unit => unit.id === unitId));
-                if (level && (level.id === 'B2' ||
-                    (level.id === 'A2' && !A2_RELEASE_ENABLED))) return;
+                if (level && level.id === 'A2' && !A2_RELEASE_ENABLED) return;
                 const unit = level.units.find(entry => entry.id === unitId);
                 if (!unit) return;
                 const lessons = buildUnitLessons(unit);
@@ -5596,8 +5595,7 @@
                 for (const level of getLevels()) {
                     const unit = level.units.find(entry => entry.id === id);
                     if (!unit) continue;
-                    if (level.id === 'B2' ||
-                        (level.id === 'A2' && !A2_RELEASE_ENABLED)) return;
+                    if (level.id === 'A2' && !A2_RELEASE_ENABLED) return;
                     const lessons = buildUnitLessons(unit);
                     const nextIndex = lessons.findIndex(lesson => !App.completedLessons.includes(unitLessonProgressKey(id, lesson.index)));
                     const firstIncomplete = nextIndex < 0 ? lessons.length : nextIndex;
@@ -6162,8 +6160,7 @@
         }
         function getLearningLevels() {
             return getLevels().filter(level =>
-                level.id !== 'B2' &&
-                (level.id !== 'A2' || A2_RELEASE_ENABLED)
+                level.id !== 'A2' || A2_RELEASE_ENABLED
             );
         }
         function getUniqueLearningVocabulary() {
@@ -6303,7 +6300,7 @@
                 const srs = await DB.getAll('srs');
                 const weak = srs.filter(i => i.val && i.val.efactor < 2.3)
                     .map(i => known.find(v => v.id === i.key)).filter(Boolean).slice(0, 10).map(v => v.idn);
-                const lvl = CourseData.levels.filter(l => l.id !== 'B2' && l.units.some(u => App.completedUnits.includes(u.id))).map(l => l.id).pop() || 'A1';
+                const lvl = CourseData.levels.filter(l => l.units.some(u => App.completedUnits.includes(u.id))).map(l => l.id).pop() || 'A1';
                 return `Eres un profesor de indonesio estándar (bahasa baku) para hispanohablantes. Crea UNA unidad sobre el tema: "${topic}".
 Nivel del alumno: ${lvl}, empezó de cero absoluto (unidades completadas: ${App.completedUnits.length}). Sé gradual y no asumas conocimientos previos.
 Palabras que el alumno ya conoce (no las uses como vocabulario nuevo, pero sí puedes usarlas en frases): ${known.slice(-200).map(v => v.idn).join(', ') || 'ninguna'}.
@@ -6780,13 +6777,7 @@ Requisitos:
 
                 getLevels().forEach(lvl => {
                     const levelEl = document.createElement('div');
-                    const isAdvanced = lvl.id === 'B2';
-                    if (isAdvanced) {
-                        if (!isB1Complete(this.completedUnits)) return;
-                        levelEl.innerHTML = `<details style="margin:16px 0; padding:12px; border:1px solid var(--border); border-radius:12px;"><summary style="cursor:pointer; font-weight:700;">${lvl.title} — En desarrollo</summary><p style="margin-top:10px; color:var(--text-muted); font-size:0.9rem;">Este nivel todavía no está disponible para estudiar.</p></details>`;
-                        container.appendChild(levelEl);
-                        return;
-                    }
+                    const isAdvanced = false;
                     if (lvl.id === 'A2') {
                         if (!A2_RELEASE_ENABLED) return;
                         levelEl.innerHTML = `<h2 style="margin:20px 0 8px 0;">${App.escapeHtml(lvl.title)} <span class="badge" style="vertical-align:middle;">Beta · en revisión</span></h2><p class="text-muted" style="margin:0 0 12px;">Disponible en beta sin requisito de completar A1. El contenido A2 está en revisión interna; puede contener errores y no ha sido validado por hablantes nativos. Tus comentarios ayudan a mejorarlo.</p>`;
@@ -7313,7 +7304,6 @@ Requisitos:
             // that are not represented as standalone vocabulary entries.
             if (language === 'es' && typeof CourseData !== 'undefined' && Array.isArray(CourseData.levels)) {
                 for (const level of CourseData.levels) {
-                    if (level.id === 'B2') continue;
                     for (const unit of level.units || []) {
                         const authoredExercises = [
                             ...(unit.exercises || []),

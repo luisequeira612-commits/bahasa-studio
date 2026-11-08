@@ -147,6 +147,15 @@ test('only implemented B2 U1 remains executable while legacy draft units stay ar
 });
 
 
+test('tutor prompt never labels the learner as hidden B2 from stale completion data', async () => {
+  const { indexSource } = await loadCurricula();
+  const promptStart = indexSource.indexOf('async buildPrompt(topic) {');
+  assert.notEqual(promptStart, -1, 'tutor prompt builder must remain present');
+  const promptSource = indexSource.slice(promptStart, promptStart + 850);
+  assert.ok(promptSource.includes("l.id !== 'B2' &&"),
+    'hidden B2 must not influence the tutor prompt level inferred from saved completions');
+});
+
 test('direct lesson entry blocks registered B2 units while preserving custom lessons', async () => {
   const { indexSource } = await loadCurricula();
   const start = indexSource.indexOf('startUnit(unit, lessonIndex = 0) {');

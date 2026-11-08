@@ -835,3 +835,10 @@ body.unit-sheet-open { overflow: hidden; }
     background: #f3f4f6;
     color: #374151;
 }
+
+.learning-level-note {
+    margin: -7px 0 16px;
+    color: var(--text-muted);
+    font-size: .82rem;
+    line-height: 1.45;
+}

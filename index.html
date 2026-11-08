@@ -5322,7 +5322,7 @@
             if (!level) return false;
             if (level.id === 'A2' && !A2_RELEASE_ENABLED) return false;
             const progress = getUnitProgressState(level, unit, completedUnits, completedLessons);
-            if (progress.completed || (Array.isArray(skipIds) && skipIds.includes(unit.id))) return true;
+            if (progress.completed || (level.id !== 'B2' && Array.isArray(skipIds) && skipIds.includes(unit.id))) return true;
             if (level.id === 'IA') return true;
             const levels = CourseData.levels;
             const levelIndex = levels.findIndex(entry => entry.id === level.id);
@@ -5345,7 +5345,7 @@
 
         function getCurrentLearningLevelId(completedUnits = App.completedUnits, completedLessons = App.completedLessons, skipIds = getEmergencyUnitSkips()) {
             const skippedUnit = Array.isArray(skipIds) && skipIds.length ? CourseData.levels.find(level => level.units.some(unit => unit.id === skipIds[0])) : null;
-            if (skippedUnit && (skippedUnit.id !== 'A2' || A2_RELEASE_ENABLED)) return skippedUnit.id;
+            if (skippedUnit && skippedUnit.id !== 'B2' && (skippedUnit.id !== 'A2' || A2_RELEASE_ENABLED)) return skippedUnit.id;
             let lastCompletedLevel = 'A1';
             for (let index = 0; index < CourseData.levels.length; index++) {
                 const level = CourseData.levels[index];
@@ -7053,7 +7053,8 @@ Requisitos:
                     const option = document.createElement('option');
                     option.value = unit.id;
                     option.textContent = level.id + ' · Unidad ' + (index + 1) + ' — ' + unit.title;
-                    if (level.id === 'A2' && !A2_RELEASE_ENABLED) option.disabled = true;
+                    if ((level.id === 'A2' && !A2_RELEASE_ENABLED) || level.id === 'B2') option.disabled = true;
+                    if (level.id === 'B2') option.textContent += ' — En desarrollo';
                     select.appendChild(option);
                     });
                 });
@@ -7064,6 +7065,10 @@ Requisitos:
                 const found = select && this.findCourseUnit(select.value);
                 if (!found) {
                     this.showUnitPathNotice('Selecciona una unidad primero.');
+                    return;
+                }
+                if (found.level.id === 'B2') {
+                    this.showUnitPathNotice('B2 sigue en desarrollo y no se puede saltar a sus unidades.');
                     return;
                 }
                 if (found.level.id === 'A2' && !A2_RELEASE_ENABLED) {

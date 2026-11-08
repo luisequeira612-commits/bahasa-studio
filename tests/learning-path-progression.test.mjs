@@ -143,4 +143,6 @@ test('default level follows the first unfinished level and keeps B2 visible afte
   assert.equal(api.getCurrentLearningLevelId(completedA1A2, []), 'B1');
   const completedThroughB1 = completedA1A2.concat(b1.units.map(unit => unit.id));
   assert.equal(api.getCurrentLearningLevelId(completedThroughB1, []), 'B2');
+  assert.equal(api.getCurrentLearningLevelId([], [], ['b1_u10']), 'B1', 'an emergency jump should restore its selected level after reload');
+  assert.equal(api.getCurrentLearningLevelId([], [], ['b2_u1']), 'B2', 'the implemented B2 emergency jump should remain selected after reload');
 });

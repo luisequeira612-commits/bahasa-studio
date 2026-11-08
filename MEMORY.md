@@ -290,3 +290,10 @@
 ## PR B2 U2 approval guard — 7 nov 2026
 - Preparación técnica: añade una prueba de regresión que impide que las cuatro formas candidatas de B2 U2 (kubaca, kaubaca, kutulis, kautulis) entren en el currículo ejecutable antes de aprobación explícita.
 - No añade contenido, vocabulario, IDs ni ejemplos; U2 y U3 siguen pendientes de aprobación/implementación. B2 permanece en 1/60; quedan 59 unidades B2. Sin cambios en IndexedDB, backup v3 ni dependencias.
+
+
+## PR — retirar unidades B2 heredadas del currículo ejecutable (7 nov 2026)
+- Se detectó que el antiguo borrador B2 U2–U5 seguía dentro de `CourseData` en `index.html`, aunque ya estaba conservado en `docs/B2_LEGACY_DRAFT_ARCHIVE.md` y no formaba parte del plan activo. Esto contradecía el estado B2 1/60.
+- Se retiran las unidades heredadas U2–U5 del bloque ejecutable; B2 contiene ahora únicamente la U1 implementada. El borrador antiguo permanece preservado en el archivo histórico.
+- Se añade una regresión que exige exactamente `b2_u1` en el currículo B2 cargado, comprueba que U2–U5 sigan en el archivo y evita que los IDs antiguos v231–v246 reaparezcan en el contenido ejecutable.
+- No se altera A1/A2/B1, la U1, IndexedDB, backup JSON v3 ni dependencias. B2 sigue oculta/no publicada; 1/60 implementada y 59 pendientes.

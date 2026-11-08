@@ -97,3 +97,18 @@ test('B2 U2 candidate forms stay out of executable curriculum until explicit app
     assert.equal(indexSource.includes(form), false, form + ' must not be authored in index.html before approval');
   }
 });
+
+
+test('only implemented B2 U1 remains executable while legacy draft units stay archived', async () => {
+  const { b2 } = await loadCurricula();
+  const legacyArchive = await readFile(new URL('../docs/B2_LEGACY_DRAFT_ARCHIVE.md', import.meta.url), 'utf8');
+  assert.deepEqual(b2.units.map((unit) => unit.id), ['b2_u1']);
+  for (const id of ['b2_u2', 'b2_u3', 'b2_u4', 'b2_u5']) {
+    assert.ok(legacyArchive.includes('"id": "' + id + '"'), id + ' must remain in the historical archive');
+  }
+  for (const id of ['v231', 'v232', 'v233', 'v234', 'v235', 'v236', 'v237', 'v238',
+    'v239', 'v240', 'v241', 'v242', 'v243', 'v244', 'v245', 'v246']) {
+    assert.equal(b2.units.flatMap((unit) => unit.vocab || []).some((word) => word.id === id), false,
+      id + ' belongs only to the archived legacy draft until approved for reuse');
+  }
+});

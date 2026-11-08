@@ -458,7 +458,7 @@ test('service worker upgrades an old installed cache without clearing local prog
   const currentIndex = fs.readFileSync(path.join(root, 'index.html'));
   const currentWorker = fs.readFileSync(path.join(root, 'service-worker.js'));
   const oldIndex = Buffer.from(currentIndex.toString().replace('<head>', '<head>\\n<!-- legacy-app-shell -->'));
-  const oldWorker = Buffer.from(currentWorker.toString().replace('bahasa-studio-v3.8.70', 'bahasa-studio-v3.8.69'));
+  const oldWorker = Buffer.from(currentWorker.toString().replace('bahasa-studio-v3.8.71', 'bahasa-studio-v3.8.70'));
   let servedVersion = 'old';
   const { server, url } = await startServer({
     '/': () => servedVersion === 'old' ? oldIndex : currentIndex,
@@ -492,7 +492,7 @@ test('service worker upgrades an old installed cache without clearing local prog
     });
     await page.waitForFunction(async () => {
       const keys = await caches.keys();
-      return keys.includes('bahasa-studio-v3.8.70') && !keys.includes('bahasa-studio-v3.8.69');
+      return keys.includes('bahasa-studio-v3.8.71') && !keys.includes('bahasa-studio-v3.8.70');
     }, { timeout: 15000 });
 
     await page.reload({ waitUntil: 'domcontentloaded' });
@@ -612,7 +612,7 @@ test('daily XP goals and study streaks persist across reloads', async () => {
       return activity && activity.todayXp === 10 && activity.currentStreak === 1;
     });
     assert.equal(await page.locator('#studyStreakText').innerText(), '1 día');
-    assert.equal(await page.locator('#studyDailyXpText').innerText(), '10 / 30 XP');
+    assert.equal(await page.locator('#studyDailyXpText').innerText(), 'Meta: 10/30 XP');
 
     await page.locator('.nav-btn').filter({ hasText: 'Perfil' }).click();
     await page.locator('#dailyXpGoal').selectOption('50');
@@ -630,15 +630,53 @@ test('daily XP goals and study streaks persist across reloads', async () => {
     await page.waitForFunction(() => typeof App !== 'undefined' && App.studyActivity && App.studyActivity.dailyGoal === 50);
     await page.locator('.nav-btn').filter({ hasText: 'Perfil' }).click();
     assert.equal(await page.locator('#dailyXpGoal').inputValue(), '50');
-    assert.equal(await page.locator('#studyDailyXpText').innerText(), '10 / 50 XP');
+    assert.equal(await page.locator('#studyDailyXpText').innerText(), 'Meta: 10/50 XP');
     await page.evaluate(() => App.addXp(45));
     await page.waitForFunction(() => App.studyActivity && App.studyActivity.todayXp === 55);
-    assert.equal(await page.locator('#studyDailyXpText').innerText(), '55 XP hoy');
+    assert.equal(await page.locator('#studyDailyXpText').innerText(), 'Meta: 55 XP hoy');
     assert.equal(await page.locator('#dailyGoalPercent').innerText(), '✓');
     assert.match(await page.locator('#dailyGoalRing').getAttribute('aria-label'), /100% completado/);
     assert.equal(await page.locator('#studyStreakText').innerText(), '1 día');
     assert.equal(await page.locator('#studyLessonsTodayText').innerText(), '1 lección hoy');
     assert.equal(await page.locator('#studyReviewsTodayText').innerText(), '1 tarjeta repasada hoy');
+  } finally {
+    await context.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});
+
+test('learning screen keeps level selector and current unit visible at 360px and opens all three tools', async () => {
+  const { server, url } = await startServer();
+  const context = await browser.newContext({ serviceWorkers: 'block', viewport: { width: 360, height: 780 } });
+  const page = await context.newPage();
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' && DB && DB.db &&
+      document.querySelector('#courseContainer .learning-unit-node[data-path-state="current"]'));
+    const layout = await page.evaluate(() => {
+      const selector = document.getElementById('learningLevelSelector').getBoundingClientRect();
+      const current = document.querySelector('#courseContainer .learning-unit-node[data-path-state="current"]').getBoundingClientRect();
+      return { height: innerHeight, selector: { top: selector.top, bottom: selector.bottom },
+        current: { top: current.top, bottom: current.bottom }, scrollY };
+    });
+    assert.ok(layout.selector.top >= 0 && layout.selector.bottom <= layout.height,
+      'the A1–B2 selector should fit in the first 360px-wide viewport');
+    assert.ok(layout.current.top >= 0 && layout.current.bottom <= layout.height,
+      'the current unit should be visible without a manual scroll');
+
+    await page.locator('.learning-tool-button[data-tool-target="aiGeneratorDrawer"]').click();
+    assert.equal(await page.locator('#aiGeneratorDrawer').evaluate(node => node.open), true);
+    await page.locator('#aiGenBtn').waitFor({ state: 'visible' });
+
+    await page.locator('.learning-tool-button[data-tool-target="writingPracticeDrawer"]').click();
+    await page.getByRole('button', { name: 'Abrir cuaderno de escritura' }).click();
+    await page.waitForFunction(() => document.getElementById('view-writing-practice').classList.contains('active'));
+    await page.getByRole('button', { name: 'Volver al curso' }).click();
+    await page.waitForFunction(() => document.getElementById('view-route').classList.contains('active'));
+
+    await page.locator('.learning-tool-button[data-tool-target="conversationPracticeDrawer"]').click();
+    await page.getByRole('button', { name: 'Practicar conversaciones' }).waitFor({ state: 'visible' });
+    assert.equal(await page.locator('#conversationPracticeDrawer').evaluate(node => node.open), true);
   } finally {
     await context.close();
     await new Promise(resolve => server.close(resolve));
@@ -657,7 +695,7 @@ test('all A1 and A2 practical conversations support guided replies without chang
     const xpBefore = await page.evaluate(() => App.xp);
     const srsBefore = await page.evaluate(async () => (await DB.getAll('srs')).length);
 
-    await page.locator('#view-route details.feature-drawer').filter({ hasText: 'Conversaciones prácticas' }).locator('summary').click();
+    await page.locator('.learning-tool-button[data-tool-target="conversationPracticeDrawer"]').click();
     await page.getByRole('button', { name: 'Practicar conversaciones' }).click();
     assert.equal(await page.locator('[data-conversation-start]').count(), 9,
       'all six A1 and three A2 everyday situations should be available');
@@ -1281,7 +1319,7 @@ test('free-writing notebook shows an example after a draft and never changes XP 
       xp: await DB.get('settings', 'userXp') || 0,
       srs: (await DB.getAll('srs')).length
     }));
-    await page.locator('#view-route details.feature-drawer').filter({ hasText: 'Cuaderno de escritura' }).locator('summary').click();
+    await page.locator('.learning-tool-button[data-tool-target="writingPracticeDrawer"]').click();
     await page.getByRole('button', { name: 'Abrir cuaderno de escritura' }).click();
     await page.getByRole('button', { name: 'Empezar a escribir' }).nth(1).click();
     await page.locator('#freeWritingDraft').fill('Hari ini saya di hotel. Besok saya pergi ke pantai.');
@@ -1301,7 +1339,7 @@ test('free-writing notebook shows an example after a draft and never changes XP 
 });
 
 
-test('storage persistence status is honest and the weekly backup reminder can be deferred', async () => {
+test('storage persistence status is honest and the backup reminder stays available in profile', async () => {
   const { server, url } = await startServer();
   const context = await browser.newContext({ serviceWorkers: 'block' });
   const page = await context.newPage();
@@ -1324,20 +1362,19 @@ test('storage persistence status is honest and the weekly backup reminder can be
     assert.equal(await page.evaluate(() => window.__persistCalls), 1,
       'the app should request persistence once during startup, without failing if denied');
     assert.match(await page.locator('#storagePersistenceStatus').innerText(), /no ha concedido persistencia/i);
+    assert.equal(await page.locator('#view-route #backupReminderBanner').count(), 0,
+      'the backup reminder should no longer take space in Aprender');
 
-    await page.evaluate(() => {
-      localStorage.removeItem('bahasaStudioBackupReminderLastDismissedAt');
-      App.updateBackupReminder();
-    });
+    await page.locator('.nav-btn').filter({ hasText: 'Perfil' }).click();
     await page.locator('#backupReminderBanner').waitFor({ state: 'visible' });
-    await page.getByRole('button', { name: 'Recordar en una semana' }).click();
-    await page.locator('#backupReminderBanner').waitFor({ state: 'hidden' });
-
-    await page.evaluate(() => {
-      localStorage.setItem('bahasaStudioBackupReminderLastDismissedAt',
-        String(Date.now() - 8 * 24 * 60 * 60 * 1000));
-      App.updateBackupReminder();
-    });
+    assert.match(await page.locator('#backupReminderBanner').innerText(), /Recuerda exportar tu copia JSON/);
+    assert.equal(await page.getByRole('button', { name: 'Exportar JSON' }).count(), 1);
+    assert.equal(await page.getByRole('button', { name: 'Importar JSON' }).count(), 1);
+    assert.equal(await page.getByRole('button', { name: 'Recordar en una semana' }).count(), 0);
+    const downloadPromise = page.waitForEvent('download');
+    await page.getByRole('button', { name: 'Exportar JSON' }).click();
+    const download = await downloadPromise;
+    assert.match(download.suggestedFilename(), /bahasa_studio_backup\.json/);
     await page.locator('#backupReminderBanner').waitFor({ state: 'visible' });
   } finally {
     await context.close();

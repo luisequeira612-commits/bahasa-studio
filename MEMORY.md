@@ -317,3 +317,8 @@
 ## Evidencia contextual adicional de B2 U2 — 8 nov 2026
 - La revista literaria **PUSAT**, núm. 06/2014, publicada por Badan Pengembangan dan Pembinaan Bahasa (ISSN 2086-3934), contiene en el poema «Ada Banyak Hal» de Alex R. Nainggolan la secuencia «ada banyak hal, yang ingin kautulis» (p. 18 impresa; PDF líneas 470–503). Es un testimonio contextual escrito de `kautulis` en una relativa, no una simple lista morfológica. Fuente: https://repositori.kemendikdasmen.go.id/4285/1/Majalah%20Pusat%20edisi%206.pdf
 - El ejemplo sigue siendo poético: demuestra uso literario indonesio, pero no establece frecuencia ni registro conversacional/neutro. Complementa el testimonio de la antología oficial de 2017 ya documentado; no cambia la decisión de aprobación. Las cuatro formas candidatas siguen sin aprobación explícita, sin IDs ni implementación.
+
+
+## Evidencia didáctica complementaria B2 U2 — 8 nov 2026
+- Hasbul et al., *Bahasa Indonesia: Pemahaman, Penggunaan, dan Pengembangan di Era Modern* (CV Pustaka Inspirasi Minang, agosto de 2025), p. 51 impresa, usa «Buku itu sudah kubaca → Sudah kubaca buku itu» como ejemplo de permutación del orden de constituyentes en una sección sobre estrategias sintácticas de uso cotidiano. Fuente: https://repository.umb.ac.id/1494/1/EBOOK%20BAHASA%20INDONESIA%20PEMAHAMAN%2C%20PENGGUNAAN%20DAN%20PENGEMBANGAN%20DI%20ERA%20MODERN.pdf
+- Se clasifica como ejemplo didáctico contemporáneo, no como transcripción ni dato de corpus espontáneo. Refuerza el respaldo de `kubaca` en un contexto de foco/orden, sin probar frecuencia conversacional ni modificar la aprobación pendiente de las cuatro formas U2. Ver `docs/B2_U2_DESIGN.md`.

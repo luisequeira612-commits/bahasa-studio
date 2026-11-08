@@ -1,5 +1,15 @@
 # MEMORY.md — Estado de Bahasa Studio
 
+
+## Estado vigente verificado — 7 nov 2026 (prevalece sobre notas históricas anteriores)
+- A1 32/32, A2 40/40 y B1 50/50 unidades; B2 1/60 implementada y fusionada (#437), pero oculta/no publicada. Total: 123/182; quedan 59 unidades, todas B2. B1 sigue en beta, sin validación nativa ni certificación MCER/BIPA.
+- B2 U1: 3 lecciones, 16 ejercicios escritos, reutiliza nueve IDs previos y no añade vocabulario. PR #438 corrigió su estado documental; no se debe contar como liberada.
+- B2 U2: diseño pendiente de aprobación de cuatro formas propuestas: kubaca, kaubaca, kutulis y kautulis. La palabra «Continúa» no constituye aprobación. No incorporarlas a currículo ni ejemplos evaluados hasta aprobación explícita.
+- B2 U3: diseño preliminar en docs/B2_U3_DESIGN.md; integra U1 y U2, sin vocabulario nuevo. No finalizar claves ni implementarla antes de aprobar e implementar U2.
+- Secuencia B2 aprobada: U1–U3 contrastes avanzados de voz/afijos; U4–U6 -kan/-i/memper-; U7–U10 nominalizaciones; U11–U12 reduplicación/compuestos; U13–U60 sin desglose temático aprobado.
+- Reglas vigentes: 14–22 ejercicios por unidad, al menos cuatro tipos, cinco ejercicios con oraciones completas, una producción guiada y repaso acumulativo cada 4–5 unidades. B2 permanece oculta hasta completar contenido y flujo de liberación. No tocar IndexedDB ni backup JSON v3; no añadir dependencias ni vocabulario sin aprobación.
+- Métricas estructurales históricas y revisiones editoriales anteriores deben leerse como snapshots de sus fechas, no como certificación lingüística actual. No hay hablante nativo disponible; no bloquear el proyecto por KBBI.
+
 > Se actualiza en CADA PR. Mantener corto (unas 150 líneas como máximo). Última actualización: 7 nov 2026.
 
 ## Visión

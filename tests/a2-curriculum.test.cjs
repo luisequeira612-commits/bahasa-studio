@@ -532,30 +532,45 @@ test('A2 units 37-40 teach emergency readiness, tourism, remote work, and integr
   }
 });
 
-test('A2 beta and B1 release are independent; B2 remains sequenced after B1', () => {
+test('A2 level release is independent, while A2/B1 unit entry follows sequential progression and B2 stays guarded', () => {
   const newIds = a2.units.flatMap(unit => unit.vocab.map(word => word.id));
   assert.equal(new Set(newIds).size, newIds.length, 'new A2 vocabulary identifiers must be unique');
-  assert.match(html, /function getLearningLevels\(\)[\s\S]*?level\.id !== 'A2' \|\| A2_RELEASE_ENABLED/,
-    'A2 learner-facing vocabulary and SRS must include beta content independently of A1 completion');
-  assert.doesNotMatch(html, /level\.id !== 'A2'[^\n]*isA1Complete/);
-  assert.match(html, /const isAdvanced = lvl\.id === 'B2';[\s\S]*?if \(!isB1Complete\(this\.completedUnits\)\) return;/,
-    'B2 should remain sequenced after B1 completion');
+  assert.match(html, /function getLearningLevels\(\)[\s\S]*?level\.id !== 'A2' \|\| A2_RELEASE_ENABLED/);
   assert.match(html, /level\.id !== 'B2'/,
-    'B1 should remain in the learner-facing levels and review pool');
-  assert.doesNotMatch(html, /!\['B1', 'B2'\]\.includes\(level\.id\)/);
+    'B2 remains outside the ordinary learner-facing vocabulary and review pool');
+
+  const start = html.indexOf('const CourseData =');
+  const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
+  const api = vm.runInNewContext(html.slice(start, end) +
+    '\\nconst A2_RELEASE_ENABLED = true; ({ CourseData, isUnitUnlocked })');
+  const levels = api.CourseData.levels;
+  const a1Level = levels.find(level => level.id === 'A1');
+  const a2Level = levels.find(level => level.id === 'A2');
+  const b1Level = levels.find(level => level.id === 'B1');
+  const b2Level = levels.find(level => level.id === 'B2');
+  const allA1 = a1Level.units.map(unit => unit.id);
+  const allA1A2 = allA1.concat(a2Level.units.map(unit => unit.id));
+  const allA1A2B1 = allA1A2.concat(b1Level.units.map(unit => unit.id));
+  assert.equal(api.isUnitUnlocked(a2Level, a2Level.units[0], [], [], []), false);
+  assert.equal(api.isUnitUnlocked(a2Level, a2Level.units[0], allA1, [], []), true);
+  assert.equal(api.isUnitUnlocked(b1Level, b1Level.units[0], allA1, [], []), false);
+  assert.equal(api.isUnitUnlocked(b1Level, b1Level.units[0], allA1A2, [], []), true);
+  assert.equal(api.isUnitUnlocked(b2Level, b2Level.units[0], allA1A2B1, [], []), false);
+  assert.equal(api.isUnitUnlocked(b2Level, b2Level.units[0], allA1A2B1, [], [b2Level.units[0].id]), true);
+  assert.doesNotMatch(html, /!\\['B1', 'B2'\\]\\.includes\\(level\\.id\\)/);
 });
 
-
-test('A2 is available in beta independently of A1 completion', () => {
+test('A2 beta disclosure and level release switch remain visible without bypassing unit sequence', () => {
   assert.match(htmlSource, /const A2_RELEASE_ENABLED = true;/);
   assert.match(htmlSource, /return getLevels\(\)\.filter\(level =>[\s\S]*?level\.id !== 'A2' \|\| A2_RELEASE_ENABLED/);
-  assert.match(htmlSource, /if \(lvl\.id === 'A2'\)/);
+  assert.match(htmlSource, /if \(level\.id === 'A2'\)/);
   assert.match(htmlSource, /Beta · en revisión/);
   assert.match(htmlSource, /Disponible en beta sin requisito de completar A1/);
-  assert.match(htmlSource, /if \(!A2_RELEASE_ENABLED\) return;/);
-  assert.match(htmlSource, /const isAdvanced = lvl\.id === 'B2'/);
-  assert.match(htmlSource, /function isB1Complete\(completedUnits\)/);
-  assert.match(htmlSource, /const unitAccessible = lvl\.id === 'A1'[\s\S]*?lvl\.id === 'A2' \? A2_RELEASE_ENABLED/);
+  assert.match(htmlSource, /if \(levelId === 'A2' && !A2_RELEASE_ENABLED\) return;/);
+  assert.match(htmlSource, /if \(level\.id === 'A2' && !A2_RELEASE_ENABLED\) return false;/);
+  assert.match(htmlSource, /function isUnitUnlocked\(level, unit/);
+  assert.match(htmlSource, /const previousLevel = levels\[levelIndex - 1\]/);
+  assert.match(htmlSource, /!isUnitUnlocked\(level, unit\)/);
 });
 
 test('A2 date production and sequence context practice are explicitly taught', () => {

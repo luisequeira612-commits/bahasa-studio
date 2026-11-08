@@ -1,66 +1,75 @@
-# Diseño preliminar B2 U7 — nominalización de participantes con PEN- y PE-
+# Diseño preliminar B2 U7 — nominalizaciones peN-an y per-an en contexto
 
 **Estado:** propuesta documental; no implementada ni publicada.  
 **Fecha:** 8 nov 2026.  
-**Ubicación:** primera unidad del bloque B2 U7–U10, cuyo eje general aprobado es la nominalización.  
-**Dependencias:** progresión prevista después de B2 U1–U6. Este documento no da por aprobadas ni implementadas las propuestas U2–U6.
+**Ubicación:** primera unidad del bloque B2 U7–U10, cuyo eje aprobado es nominalizaciones.  
+**Dependencias:** B1 completo; B2 U1–U6 como progresión prevista, sin presuponer que todos sus diseños estén aprobados o implementados.
 
 ## Propósito y alcance
 
-U7 propone introducir un conjunto pequeño de nombres derivados con los prefijos nominalizadores PEN- y PE-. El objetivo no es enseñar una traducción fija equivalente a «-dor», sino reconocer relaciones entre familias verbales y nominales e interpretar el papel semántico de cada forma en contexto.
+U7 propone profundizar en nombres de proceso, acción, evento y resultado con los patrones peN-an y per-an, especialmente en textos informativos y formales. La meta no es enseñar una traducción fija para cada circumfijo, sino comparar familias léxicas, bases verbales y el significado de palabras completas dentro de su contexto.
 
-La distinción tipográfica es importante: **PEN-** representa el prefijo nasalizador con varios alomorfos, entre ellos una realización superficial *pe-*; **PE-** representa otro prefijo nominalizador, formalmente parecido pero no necesariamente el mismo morfema. La bibliografía corpus-based respalda tratarlos como dos prefijos distintos, no como variantes automáticamente intercambiables.
+El alcance se limita a las nominalizaciones peN-an y per-an. No pretende enseñar todos los derivados posibles ni generar palabras por analogía. Las fuentes describen tendencias y familias, no reglas libres aplicables a cualquier base.
 
-El alcance se limita a PEN-/PE-. No incluye todavía peN-an, per-an, ke-an ni el sufijo -an; esos patrones deben recibir tratamiento separado en el resto del bloque U7–U10.
+## Revisión de solapamiento con B1
+
+La lectura de `index.html` en `main` confirma que B1 ya cubre:
+- U7–U9: nombres de agente con pe-/peN- (`penjual`, `pembeli`, `pemain`, `penulis`, `pengajar`, `pekerja`, `pemimpin`, `penduduk`, `pembaca`). U7 menciona además `pembelian` y `pengiriman` solo como reconocimiento.
+- U10: nominalizaciones con `-an` y `pe-an`, mediante `pelajaran` y `pekerjaan`.
+- U11: nominalizaciones con `per-an`, mediante `pertanyaan`, `percakapan` y `perkenalan`.
+- U12–U14: `ke-an) en estados, cualidades y conceptos (`kesehatan`, `kecelakaan`, `keadaan`, `kebudayaan), y contraste con adjetivos conocidos.
+
+Por tanto, U7 no debe volver a enseñar PEN-/PE- como nombres de agente, ni repetir las unidades básicas de B1. Su valor B2 debe estar en comparar peN-an y per-an en textos más largos, reconocer relaciones de proceso/resultado y analizar el papel de la nominalización en la oración. Los ejemplos B1 se pueden reutilizar solo como conocimiento previo, no como vocabulario nuevo ni como objetivo central.
 
 ## Base documental y límites
 
-- **Denistia, Karlina & R. Harald Baayen (2019), “The Indonesian prefixes PE- and PEN-: A study in productivity and allomorphy”, *Morphology* 29, 385–407.** Estudio de corpus sobre 36 millones de tokens escritos (Leipzig, 2008–2012), con comprobación morfológica frente a MorphInd y KBBI. Describe seis alomorfos de PEN- condicionados fonológicamente y una relación paradigmática frecuente con verbos MEN-; PE- es invariante y se relaciona en muchos casos con verbos BER-. En ese corpus, PEN- es más productivo y forma principalmente nombres de agente e instrumento; PE- forma nombres de agente y paciente y admite bases verbales, nominales y adjetivales. Los autores justifican analizarlos como prefijos distintos. https://doi.org/10.1007/s11525-019-09340-7
-- **Denistia, Karlina; Elnaz Shafaei-Bajestan & R. Harald Baayen (2021), “Exploring semantic differences between the Indonesian prefixes PE- and PEN- using a vector space model”, *Corpus Linguistics and Linguistic Theory*.** El estudio encuentra diferencias semánticas cuantificables entre los grupos PE- y PEN- y aporta apoyo adicional a su estatus independiente. Identifica tendencias de especialización, no reglas sin excepciones: PEN- se asocia más con instrumentos y PE- con agentes en determinados subconjuntos; la interpretación depende del léxico y del contexto. https://doi.org/10.1515/cllt-2020-0023
-- **Denistia, Karlina (2018; publicado en 2019), “Revisiting the Indonesian prefixes peN-, pe2- and per-”, *Linguistik Indonesia* 36(2), 144–160.** Revisión de las propuestas sobre PEN-, PE- y per-; expone que no existe consenso histórico sobre cómo clasificar algunas formas parecidas y describe PEN- como el prefijo más productivo de los tres. https://doi.org/10.26499/li.v36i2.80
-- **Dardjowidjojo, Soenjono (1978), “Nominal Derivation in Indonesian”, *Proceedings of the Second International Conference on Austronesian Linguistics*, Pacific Linguistics C-61, pp. 503–528.** Documenta contrastes léxicos entre familias nominales y advierte que una forma morfológicamente imaginable no necesariamente existe o es aceptada. Se usará como evidencia histórica de cautela léxica, no como certificación del uso contemporáneo. https://openresearch-repository.anu.edu.au/bitstreams/7d35fdf4-4618-4cc8-9983-3ade511727fd/download
+- **Michigan State University, Advanced Indonesian, “3.4 Grammar Focus: Circumfix pe(N)-an vs per-an”.** Resume que muchas formas pe(N)-an se relacionan con verbos me(N)- y designan la acción/proceso; muchas formas per-an se relacionan con verbos ber-, aunque existen otras bases y lecturas. Ilustra el contraste léxico `pertemuan` (relacionado con `bertemu`) frente a `penemuan` (relacionado con `menemukan`). Es material didáctico universitario, útil como guía de contraste, no una descripción exhaustiva sin excepciones. https://openbooks.lib.msu.edu/advancedindonesian/chapter/3-4-grammar-focus/
+- **Northern Illinois University, SEAsite, “Circumfix per-...-an”.** Describe lecturas de proceso/resultado, lugar donde ocurre una acción y relaciones con bases nominales; ofrece ejemplos como `pergerakan`, `perbudakan`, `permusuhan` y `persaudaraan`. Confirma que las funciones dependen de la familia léxica y no se reducen a una sola glosa. https://seasite.niu.edu/Indonesian/new_indonesian/tatabahasa/circumfix/Circumfiks_per--an_new.html
+- **Mukhibun & Saddhono (2024), “The Indonesian Confix /Pe-+-an/ in Thammasat University Student Descriptive Text: Allomorph, Usage, and Grammatical Meaning”.** Analiza textos descriptivos de estudiantes BIPA y registra seis variantes de pe(N)-an, además de funciones como acciones, procesos, maneras de hablar y organizaciones. El corpus es pequeño y de aprendientes; no se usa como prueba de frecuencia nativa ni como regla general para todas las bases. https://journal.unj.ac.id/unj/index.php/aksis/article/view/39924
+- **Zainuddin (2016), “A Study on Derivational Affixes of Indonesian Noun-Formation in Newspaper Editorial: A Semantic Perspective”.** Estudia nominalizaciones en editoriales de *Kompas* e incluye per-an, ke-an, pe-an y pen-an entre los patrones observados. Su utilidad aquí es contextualizar la presencia de estas formas en prosa editorial, no atribuir un significado uniforme a cada afijo. https://doi.org/10.5539/ijel.v6n3p148
+- **Suhardi (1984; publicación digital 2015), “Transformasi Nominalisasi Bentuk Verbal Bahasa Indonesia dalam Pengajaran Bahasa”.** Revisión de transformaciones nominalizadoras en indonesio, con peN-, pe-, per-an, pen-an y ke-an; advierte que nominalización y subordinación/embedding no deben confundirse. Se toma como referencia teórica histórica, no como validación del uso actual. https://doi.org/10.21831/cp.v2i2.7476
 
 ### Síntesis prudente
 
-- PEN- presenta seis alomorfos descritos como condicionados fonológicamente: peng-, pen-, pem-, pe-, peny- y penge-. La variante superficial *pe-* de PEN- no debe confundirse con el prefijo independiente PE-.
-- PEN- se relaciona frecuentemente con familias verbales MEN- (por ejemplo, *menari → penari*; *menulis → penulis*). PE- se relaciona en muchos casos con BER- (por ejemplo, *bertani → petani*).
-- PEN- tiende a formar nombres de agente e instrumento; PE- puede formar nombres de agente y paciente. Son tendencias de corpus, no equivalencias universales.
-- Hay pares con una misma base cuya lectura no coincide de manera automática. La fuente de 2019 registra, entre otros, *penembak/petembak* con especialización léxica, y *penyapa/pesapa* con papeles semánticos distintos. Deben presentarse como palabras concretas documentadas, no como una receta productiva.
-- La productividad medida en un corpus escrito de 2008–2012 no equivale a frecuencia conversacional actual ni permite generar palabras nuevas libremente.
+- peN-an suele relacionarse con verbos meN- y puede nombrar una acción o proceso; per-an a menudo se relaciona con verbos ber-, pero también aparece con otras bases y sentidos.
+- Hay pares relacionados con una misma raíz que no son intercambiables: `pertemuan` y `penemuan` ilustran distintas familias verbales y significados.
+- per-an puede expresar proceso, resultado, lugar o relación con una base nominal; estas lecturas deben aprenderse a partir de palabras documentadas.
+- Las formas escritas como pe-an pueden presentar alomorfos condicionados por la base. No se debe confundir la notación general peN-an con el prefijo independiente PE- usado en nombres de agente.
+- La relación morfológica no basta para predecir existencia, frecuencia o traducción de una palabra.
 
 ## Objetivos propuestos
 
 Al completar U7, el estudiante podrá:
 
-1. Reconocer nombres convencionales con PEN- y PE- en oraciones completas.
-2. Relacionar una forma PEN- con su familia MEN- cuando la relación esté documentada.
-3. Reconocer PE- como prefijo nominalizador distinto de PEN-, sin confundirlo con el alomorfo superficial *pe-* de PEN-.
-4. Interpretar en contexto si el nombre designa a quien realiza una acción, un instrumento o un participante afectado.
-5. Comparar dos formas de una misma base únicamente cuando la fuente documente ambas y sus diferencias léxicas.
-6. Evitar crear nombres por analogía cuando no exista evidencia de que la forma sea una palabra establecida.
+1. Reconocer nombres convencionales peN-an y per-an en oraciones y textos informativos.
+2. Relacionar una nominalización con su familia verbal cuando la relación esté documentada.
+3. Interpretar si una palabra concreta designa acción, proceso, resultado, evento, lugar o relación, sin convertir estas lecturas en reglas universales.
+4. Comparar nominalizaciones de una misma raíz solo cuando las fuentes documenten el contraste.
+5. Comprender cómo una nominalización compacta información que también puede expresarse mediante una cláusula verbal.
+6. Evitar formar o traducir palabras nuevas por analogía sin evidencia léxica.
 
 ## Lecciones propuestas
 
-### Lección 1 — Nombres relacionados con verbos MEN-
+### Lección 1 — peN-an y nombres de acción/proceso
 
-- Presentar pocas familias convencionales, por ejemplo *menari → penari* y *menulis → penulis*, después de comprobar cada entrada en el inventario global.
-- Reconocer los alomorfos PEN- dentro de palabras completas; no exigir al estudiante que reconstruya todas las alternancias fonológicas desde cero.
-- Identificar si la forma designa a una persona que realiza la acción o un instrumento relacionado con ella.
-- No traducir automáticamente PEN- como «persona que…»; el papel semántico debe confirmarse en cada palabra.
+- Reconocer familias convencionales derivadas de verbos meN-.
+- Comparar la nominalización con una oración verbal equivalente para identificar qué información se mantiene y cuál queda implícita.
+- Reutilizar `pembelian` y `pengiriman` solo como puente de reconocimiento desde B1 si permanecen en el inventario; no volver a enseñarlas como palabras nuevas.
+- No asumir que todas las bases verbales forman una nominalización peN-an aceptada.
 
-### Lección 2 — PE- como prefijo independiente
+### Lección 2 — per-an y eventos/relaciones
 
-- Presentar PE- con ejemplos convencionales, por ejemplo *bertani → petani*, tras comprobar su presencia y glosa en el inventario.
-- Distinguir la relación PE-/BER- de la relación PEN-/MEN- sin convertirla en una regla que prediga todas las palabras.
-- Explicar visualmente la diferencia entre PEN- con alomorfo *pe-* y el prefijo PE- independiente.
-- No enseñar que PE- es simplemente una variante libre de PEN-.
+- Reconocer palabras convencionales relacionadas con verbos ber- y otras bases cuando la fuente lo documente.
+- Contrastar ejemplos como `pertemuan` y `penemuan` para mostrar que una misma raíz no implica el mismo significado ni la misma familia verbal.
+- Interpretar en contexto las lecturas de evento, resultado, lugar o relación nominal.
+- No presentar per-an como equivalente universal de «-ción» o «re-».
 
-### Lección 3 — Papel semántico y convencionalidad
+### Lección 3 — Nominalización en textos formales
 
-- Interpretar nombres de agente, instrumento y paciente en oraciones completas.
-- Comparar pares documentados solo cuando su diferencia sea relevante y esté explicada por la fuente.
-- Tratar las formas con significados profesionales, especializados o lexicalizados como unidades léxicas, no como resultados de una regla productiva.
-- Cerrar con una producción guiada usando únicamente nombres que ya hayan sido seleccionados y auditados.
+- Localizar nombres de proceso y evento en fragmentos informativos o editoriales.
+- Reconstruir de forma guiada la relación con una cláusula verbal sin exigir que cada nominalización tenga una paráfrasis única.
+- Comparar el estilo más compacto de la nominalización con una formulación verbal explícita.
+- Cerrar con producción guiada a partir de palabras previamente seleccionadas y auditadas.
 
 ## Banco de ejercicios previsto
 
@@ -73,34 +82,34 @@ Propuesta de **16 ejercicios combinados**, aún sin consignas ni claves definiti
 | 3 | 1 | 1 | 0 | 1 | 3 | 6 |
 | **Total** | **5** | **3** | **2** | **3** | **3** | **16** |
 
-Al menos cinco ejercicios deben trabajar oraciones completas y al menos uno debe ser una producción guiada. La escucha utilizará exclusivamente el mecanismo local ya existente.
+Al menos cinco ejercicios deben trabajar oraciones completas y al menos uno debe incluir producción guiada. La escucha utilizará únicamente el mecanismo local existente.
 
 ## Vocabulario y dependencias
 
-- No se añaden entradas nuevas ni IDs en este documento.
-- *Penari*, *penulis*, *pengajar*, *petani*, *petinju*, *penyapa*, *pesapa*, *penembak* y *petembak* son ejemplos/candidatos documentales, no vocabulario aprobado para el curso.
-- Antes de elegir el inventario final, comparar cada forma con el vocabulario global A1–B2 y comprobar ID, glosa, categoría, ejemplo, nivel y prerrequisitos.
-- Cada forma derivada que se apruebe conservará su propio ID canónico; no duplicar una forma con IDs distintos.
+- No se añaden entradas ni IDs en este documento.
+- `pembuatan`, `pengiriman`, `pembelian`, `pertemuan`, `penemuan`, `pergerakan`, `perjalanan` y `peraturan` son ejemplos/candidatos documentales, no vocabulario aprobado para U7.
+- Antes de elegir el inventario final, comparar cada forma con todo el vocabulario A1–B2 y comprobar ID, glosa, categoría, ejemplo, nivel y prerrequisitos.
+- No volver a contar como nuevas las palabras ya enseñadas en B1 o A1/A2.
 - Si hace falta vocabulario nuevo, presentar primero forma, glosa, ejemplo contextual y motivo al dueño.
 
 ## Guardarraíles
 
-- No enseñar «PEN- = agente» ni «PE- = paciente» como reglas absolutas.
-- No confundir PE- independiente con el alomorfo *pe-* de PEN-.
-- No tratar PEN- y PE- como alomorfos intercambiables.
-- No convertir las tendencias de corpus en reglas productivas universales.
+- No repetir en B2 U7 el contenido básico de PE-/PEN- agente de B1 U7–U9.
+- No repetir como objetivo nuevo `pelajaran`, `pekerjaan`, `pertanyaan`, `percakapan` o `perkenalan`; ya aparecen en B1 U10–U11.
+- No tratar peN-an y per-an como intercambiables ni asignarles traducciones fijas.
+- No asumir que una base admite ambas formas.
+- No confundir el prefijo independiente PE- con la notación peN- de los circumfijos.
 - No deducir que una palabra existe solo porque su formación parece posible.
-- No mezclar en U7 los objetivos de peN-an, per-an, ke-an o -an.
 - Mantener B2 oculta/no publicada hasta completar el contenido y el flujo de liberación.
 - No modificar A1/A2/B1, IndexedDB, backup JSON v3, trackers ni dependencias.
 - No afirmar validación nativa ni certificación MCER/BIPA.
 
 ## Condiciones para pasar a implementación
 
-1. Las unidades B2 anteriores se cierran conforme a sus dependencias; los diseños documentales no equivalen a aprobación ni implementación.
-2. Se selecciona un inventario pequeño de palabras convencionales y se comprueba cada forma frente al inventario global.
-3. Se verifica la relación paradigmática de cada candidato con su base verbal; no se deduce por semejanza ortográfica.
-4. Los ejercicios distinguen agente, instrumento y paciente mediante contexto, sin asignar un rol fijo al prefijo.
-5. Se prueban referencias de vocabulario, coherencia consigna-respuesta, progresión y ausencia de exposición anticipada.
+1. U7–U10 se mantienen dentro del eje aprobado de nominalizaciones; el desglose específico sigue siendo propuesta reversible.
+2. Se selecciona un inventario pequeño que amplíe B1 sin duplicarlo y se compara con el inventario global.
+3. Cada relación base-derivado tiene evidencia contextual y una glosa que no dependa de traducir el afijo de forma mecánica.
+4. Los ejercicios distinguen acción/proceso/evento/resultado solo donde la palabra y el contexto lo respalden.
+5. Las pruebas verifican referencias de vocabulario, coherencia consigna-respuesta, progresión y ausencia de exposición anticipada.
 
-**Estatus de decisión:** el dueño aprobó el eje general de nominalizaciones para B2 U7–U10, no este desglose de U7 ni sus ejemplos. Esta propuesta es reversible y documental; no autoriza vocabulario nuevo ni contenido ejecutable.
+**Estatus de decisión:** el dueño aprobó el eje general de nominalizaciones para B2 U7–U10, no este desglose ni sus ejemplos. Esta propuesta es documental y reversible; no autoriza vocabulario nuevo ni contenido ejecutable.

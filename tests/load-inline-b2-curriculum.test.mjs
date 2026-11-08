@@ -81,44 +81,43 @@ test('B2 U1 has at least five sentence-level targets and a guided original-writi
   assert.ok(exercises.some((exercise) => exercise.type === 'write' && exercise.hint?.trim() && /mini texto|tres o cuatro oraciones/i.test(exercise.prompt)));
 });
 
-test('B2 stays inaccessible through every lesson entry point and the course route', async () => {
+test('B1 and B2 remain accessible through lesson entry points and the course route', async () => {
   const { indexSource } = await loadCurricula();
-  const assertGuard = (method, expected, width = 650) => {
+  for (const method of [
+    'startUnitById(id, requestedLessonIndex) {',
+    'startUnitAssessment(unitId) {',
+    'startUnit(unit, lessonIndex = 0) {',
+  ]) {
     const start = indexSource.indexOf(method);
     assert.notEqual(start, -1, method + ' must remain present');
-    assert.ok(indexSource.slice(start, start + width).includes(expected),
-      method + ' must reject registered B2 units');
-  };
-
-  assertGuard('startUnitById(id, requestedLessonIndex) {', "if (level.id === 'B2' ||");
-  assertGuard('startUnitAssessment(unitId) {', "if (level && (level.id === 'B2' ||");
-  assertGuard('startUnit(unit, lessonIndex = 0) {', "if (level && (level.id === 'B2' ||");
+    const source = indexSource.slice(start, start + 700);
+    assert.equal(source.includes("level.id === 'B2' ||"), false,
+      method + ' must not block registered B2 units');
+  }
 
   const learningLevels = indexSource.indexOf('function getLearningLevels() {');
   assert.notEqual(learningLevels, -1);
-  assert.ok(indexSource.slice(learningLevels, learningLevels + 260).includes("level.id !== 'B2'"),
-    'B2 must stay out of learning and review collections');
+  const learningSource = indexSource.slice(learningLevels, learningLevels + 220);
+  assert.equal(learningSource.includes("level.id !== 'B2'"), false,
+    'B2 must remain in learning and review collections');
 
-  const routeStart = indexSource.indexOf("const isAdvanced = lvl.id === 'B2';");
+  const routeStart = indexSource.indexOf("const isAdvanced = false;");
   const routeEnd = indexSource.indexOf('lvl.units.forEach(unit => {', routeStart);
   assert.notEqual(routeStart, -1);
-  assert.ok(routeEnd > routeStart, 'B2 route gate must precede unit-card rendering');
-  const routeGate = indexSource.slice(routeStart, routeEnd);
-  assert.ok(routeGate.includes('if (!isB1Complete(this.completedUnits)) return;'));
-  assert.ok(routeGate.includes('Este nivel todavía no está disponible para estudiar.'));
-  assert.ok(routeGate.includes('container.appendChild(levelEl);'));
-  assert.match(routeGate, /return;\s*}/);
+  assert.ok(routeEnd > routeStart, 'course route must render level cards normally');
+  const routeSource = indexSource.slice(routeStart, routeEnd);
+  assert.equal(routeSource.includes('Este nivel todavía no está disponible para estudiar.'), false);
 });
 
-test('tap translation fallback excludes hidden B2 authored exercises', async () => {
+test('tap translation fallback includes B2 authored exercises', async () => {
   const { indexSource } = await loadCurricula();
   const fallbackStart = indexSource.indexOf('// Existing authored translation exercises are a fallback source');
   assert.notEqual(fallbackStart, -1, 'tap translation fallback must remain present');
   const levelLoop = indexSource.indexOf('for (const level of CourseData.levels) {', fallbackStart);
   const unitLoop = indexSource.indexOf('for (const unit of level.units || []) {', levelLoop);
   assert.ok(levelLoop > fallbackStart && unitLoop > levelLoop, 'fallback must iterate authored levels and units');
-  assert.ok(indexSource.slice(levelLoop, unitLoop).includes("if (level.id === 'B2') continue;"),
-    'hidden B2 translation exercises must not leak into the tap-translation helper');
+  assert.equal(indexSource.slice(levelLoop, unitLoop).includes("if (level.id === 'B2') continue;"), false,
+    'B2 authored exercises must remain available to the tap-translation helper');
 });
 
 test('B2 U2 candidate forms stay out of executable curriculum until explicit approval', async () => {
@@ -147,19 +146,19 @@ test('only implemented B2 U1 remains executable while legacy draft units stay ar
 });
 
 
-test('tutor prompt never labels the learner as hidden B2 from stale completion data', async () => {
+test('tutor prompt can infer B2 from saved completion data', async () => {
   const { indexSource } = await loadCurricula();
   const promptStart = indexSource.indexOf('async buildPrompt(topic) {');
   assert.notEqual(promptStart, -1, 'tutor prompt builder must remain present');
   const promptSource = indexSource.slice(promptStart, promptStart + 850);
-  assert.ok(promptSource.includes("l.id !== 'B2' &&"),
-    'hidden B2 must not influence the tutor prompt level inferred from saved completions');
+  assert.equal(promptSource.includes("l.id !== 'B2' &&"), false,
+    'B2 must remain eligible when inferring the tutor level from saved completions');
 });
 
-test('direct lesson entry blocks registered B2 units while preserving custom lessons', async () => {
+test('direct lesson entry preserves registered B2 units and custom lessons', async () => {
   const { indexSource } = await loadCurricula();
   const start = indexSource.indexOf('startUnit(unit, lessonIndex = 0) {');
   assert.notEqual(start, -1, 'startUnit must remain present');
-  assert.ok(indexSource.slice(start, start + 450).includes("if (level && (level.id === 'B2' ||"),
-    'startUnit must block registered B2 units without rejecting unregistered custom lessons');
+  assert.equal(indexSource.slice(start, start + 450).includes("if (level && (level.id === 'B2' ||"), false,
+    'startUnit must not block registered B2 units');
 });

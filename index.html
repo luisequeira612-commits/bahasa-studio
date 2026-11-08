@@ -6874,6 +6874,9 @@ Requisitos:
                 if (!this.completedUnits.includes(unitId)) {
                     this.completedUnits.push(unitId);
                     await DB.set('settings', 'completedUnits', this.completedUnits);
+                    try {
+                        if (localStorage.getItem('bahasaStudioUnitSkipId') === unitId) localStorage.removeItem('bahasaStudioUnitSkipId');
+                    } catch (error) {}
                     this.addXp(50);
                     this.renderCourseRoute();
                 }
@@ -6934,7 +6937,7 @@ Requisitos:
                     levelIndex > 0 ? CourseData.levels[levelIndex - 1].units.slice(-1)[0] : null;
                 const previousLevel = unitIndex > 0 ? level : levelIndex > 0 ? CourseData.levels[levelIndex - 1] : null;
                 const previousNumber = previousLevel ? previousLevel.units.findIndex(entry => entry.id === previousUnit.id) + 1 : 1;
-                return previousUnit ? 'Completa la Unidad ' + previousNumber + ' para desbloquear esta.' : 'Esta unidad todavía está bloqueada.';
+                return previousUnit ? 'Completa la Unidad ' + previousNumber + ' para desbloquear esta' : 'Esta unidad todavía está bloqueada.';
             },
             openUnitSheet(unitId) {
                 const found = this.findCourseUnit(unitId);
@@ -7128,7 +7131,7 @@ Requisitos:
                         node.dataset.unitId = unit.id;
                         node.style.left = positions[index] + '%';
                         node.style.top = (38 + index * 82) + 'px';
-                        node.textContent = progress.completed ? '✓' : String(offset + index + 1);
+                        node.textContent = progress.completed ? '✓' : isCurrent ? String(offset + index + 1) : '🔒';
                         node.setAttribute('aria-label', unit.title + (progress.completed ? ', completada' : isCurrent ? ', unidad actual' : ', bloqueada'));
                         node.addEventListener('click', () => this.openUnitSheet(unit.id));
                         stage.appendChild(node);

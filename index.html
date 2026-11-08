@@ -7030,13 +7030,16 @@ Requisitos:
                 placeholder.value = '';
                 placeholder.textContent = 'Selecciona una unidad';
                 select.appendChild(placeholder);
-                CourseData.levels.forEach(level => level.units.forEach((unit, index) => {
+                CourseData.levels.forEach(level => {
+                    const availableUnits = level.id === 'B2' ? level.units.slice(0, 1) : level.units;
+                    availableUnits.forEach((unit, index) => {
                     const option = document.createElement('option');
                     option.value = unit.id;
                     option.textContent = level.id + ' · Unidad ' + (index + 1) + ' — ' + unit.title;
                     if (level.id === 'A2' && !A2_RELEASE_ENABLED) option.disabled = true;
                     select.appendChild(option);
-                }));
+                    });
+                });
                 if (previous) select.value = previous;
             },
             confirmUnitJump() {

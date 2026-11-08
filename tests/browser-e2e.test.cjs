@@ -483,8 +483,12 @@ test('service worker upgrades an old installed cache without clearing local prog
 
     servedVersion = 'new';
     await page.evaluate(async () => {
+      const controllerChanged = new Promise(resolve => {
+        navigator.serviceWorker.addEventListener('controllerchange', resolve, { once: true });
+      });
       const registration = await navigator.serviceWorker.getRegistration();
       await registration.update();
+      await controllerChanged;
     });
     await page.waitForFunction(async () => {
       const keys = await caches.keys();

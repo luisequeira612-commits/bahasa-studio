@@ -116,5 +116,8 @@ test('only implemented B2 U1 remains executable while legacy draft units stay ar
 
 test('B2 direct lesson entry fails closed when the unit is not registered in a learning level', async () => {
   const { indexSource } = await loadCurricula();
-  assert.match(indexSource, /startUnit\\(unit, lessonIndex = 0\\) \\{[\\s\\S]{0,450}if \\(!level \\|\\| level\\.id === 'B2' \\|\\|/);
+  const start = indexSource.indexOf('startUnit(unit, lessonIndex = 0) {');
+  assert.notEqual(start, -1, 'startUnit must remain present');
+  assert.ok(indexSource.slice(start, start + 450).includes("if (!level || level.id === 'B2' ||"),
+    'startUnit must reject unregistered units and B2 before building a lesson');
 });

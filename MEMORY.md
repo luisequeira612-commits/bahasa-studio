@@ -394,3 +394,9 @@
 - Se prepara `docs/B2_U12_DESIGN.md` para estudiar compuestos, frases, idioms y semiidioms con diagnósticos morfosintácticos y grados de transparencia semántica. La frontera entre compuestos y frases fijas puede ser discutida; inserción, expansión/modificación y permutación son indicios, no pruebas mecánicas.
 - Se contrasta el diseño con vocabulario de A1–B1: varias expresiones multi-palabra ya aparecen, pero no se clasifican automáticamente como compuestos. No se proponen vocabulario, IDs, glosas definitivas ni ejercicios ejecutables. El eje U11–U12 está aprobado, no este desglose ni sus ejemplos.
 - Fuentes: Denistia & Baayen (2021), sección 2.6; Darnis (2022), Badan Bahasa; Ariyanto (1989), Humaniora UGM; Widayanti et al. (2025), E-Journal of Linguistics. Sin cambios curriculares ejecutables, IndexedDB, backup JSON v3, dependencias ni visibilidad de B2.
+
+
+## PR #464 fusionada — 8 nov 2026
+- PR [#464](https://github.com/luisequeira612-commits/bahasa-studio/pull/464) fusionada mediante squash (merge commit `f89b9533e40577337722c213f695c49a547101d9`). `test` y `Offline quality reports` finalizaron en éxito sobre el head exacto `cfd6f59116ab5655f273f102a5a7048172eed046` (CI run #42464583179); sin revisiones, hilos ni comentarios pendientes.
+- Añade `docs/B2_U12_DESIGN.md`, propuesta documental reversible sobre compuestos, frases, idioms y semiidioms. Los diagnósticos morfosintácticos se presentan como indicios, no reglas absolutas, y se revisa el solapamiento con expresiones multi-palabra A1–B1 sin clasificarlas automáticamente.
+- No añade vocabulario/IDs, glosas definitivas ni ejercicios ejecutables. La aprobación general del eje U11–U12 no autoriza este desglose, sus ejemplos ni su implementación. B2 sigue 1/60 y oculta/no publicada; U13–U60 carecen de mapa aprobado. Sin cambios en A1/A2/B1, IndexedDB, backup JSON v3, dependencias ni visibilidad de B2.

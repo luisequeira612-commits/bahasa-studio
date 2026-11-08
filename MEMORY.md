@@ -1,20 +1,21 @@
 # MEMORY.md — Estado de Bahasa Studio
 
 
-## Estado vigente verificado — 7 nov 2026 (prevalece sobre notas históricas anteriores)
-- A1 32/32, A2 40/40 y B1 50/50 unidades; B2 1/60 implementada y fusionada (#437), pero oculta/no publicada. Total: 123/182; quedan 59 unidades, todas B2. B1 sigue en beta, sin validación nativa ni certificación MCER/BIPA.
-- B2 U1: 3 lecciones, 16 ejercicios escritos, reutiliza nueve IDs previos y no añade vocabulario. PR #438 corrigió su estado documental; no se debe contar como liberada.
-- B2 U2: diseño preliminar en docs/B2_U2_DESIGN.md; las cuatro formas candidatas kubaca, kaubaca, kutulis y kautulis siguen pendientes de aprobación. No asignarles IDs ni incorporarlas al currículo o a ejercicios evaluados sin aprobación explícita.
-- B2 U3: diseño preliminar en docs/B2_U3_DESIGN.md; integra U1 y U2, sin vocabulario nuevo. No finalizar claves ni implementarla antes de aprobar e implementar U2.
-- Secuencia B2 aprobada: U1–U3 contrastes avanzados de voz/afijos; U4–U6 -kan/-i/memper-; U7–U10 nominalizaciones; U11–U12 reduplicación/compuestos; U13–U60 sin desglose temático aprobado.
+## Estado vigente verificado — 8 nov 2026 (prevalece sobre notas históricas anteriores)
+- A1 32/32, A2 40/40 y B1 50/50 unidades completas; B2 1/60 implementada (U1), oculta/no publicada. Total: 123/182; quedan 59 unidades, todas B2. B1 sigue en beta, sin validación nativa ni certificación MCER/BIPA.
+- Fase actual: implementación de B2. U1 tiene 3 lecciones y 16 ejercicios de cinco tipos, reutiliza nueve IDs existentes y no añade vocabulario.
+- B2 U2: diseño preliminar en `docs/B2_U2_DESIGN.md`; `kubaca`, `kaubaca`, `kutulis` y `kautulis` siguen siendo candidatas pendientes de aprobación explícita. No asignarles IDs ni incorporarlas al currículo o a ejercicios evaluados sin aprobación.
+- B2 U3: diseño preliminar en `docs/B2_U3_DESIGN.md`; integra U1 y U2, sin vocabulario nuevo. No finalizar claves ni implementarla antes de aprobar e implementar U2.
+- Secuencia B2 aprobada: U1–U3 contrastes avanzados de voz/afijos; U4–U6 `-kan`/`-i`/`memper-`; U7–U10 nominalizaciones; U11–U12 reduplicación/compuestos; U13–U60 sin desglose temático aprobado.
+- PR #443 retiró del currículo ejecutable los borradores heredados U2–U5 y los conservó en `docs/B2_LEGACY_DRAFT_ARCHIVE.md`; una regresión exige que solo U1 permanezca activa.
 - Reglas vigentes: 14–22 ejercicios por unidad, al menos cuatro tipos, cinco ejercicios con oraciones completas, una producción guiada y repaso acumulativo cada 4–5 unidades. B2 permanece oculta hasta completar contenido y flujo de liberación. No tocar IndexedDB ni backup JSON v3; no añadir dependencias ni vocabulario sin aprobación.
-- Métricas estructurales históricas y revisiones editoriales anteriores deben leerse como snapshots de sus fechas, no como certificación lingüística actual. No hay hablante nativo disponible; no bloquear el proyecto por KBBI.
+- Métricas estructurales y revisiones editoriales anteriores son snapshots de sus fechas, no certificación lingüística. No hay hablante nativo disponible; no bloquear el proyecto por KBBI.
 
-> Se actualiza en CADA PR. Mantener corto (unas 150 líneas como máximo). Última actualización: 7 nov 2026.
+> Se actualiza en CADA PR. Mantener corto (unas 150 líneas como máximo). Última actualización: 8 nov 2026.
 
 ## Visión
 - App para aprender idiomas, estilo Duolingo, en rojo y blanco.
-- Hoja de ruta decidida por el dueño el 5 nov 2026: completar indonesio hasta B2 (A1 completo; A2 y B1 pendientes de consolidar; B2 después) → inglés desde cero/A1 para hispanohablantes.
+- Hoja de ruta decidida por el dueño el 5 nov 2026: completar indonesio hasta B2 (A1, A2 y B1 completos; B2 en curso) → inglés desde cero/A1 para hispanohablantes.
 - El curso de inglés incluirá pronunciación con audio o transcripción sencilla, falsos amigos y verbos frasales. No hay ningún otro idioma planificado; cualquier idioma adicional lo decidirá el dueño más adelante.
 - Todo código y estructura de datos nuevos deben ser independientes del idioma. No hacer ahora una refactorización general; solo evitar nuevas dependencias fijas del indonesio para que añadir inglés no exija una reestructuración grande.
 - Uso personal; posible futuro: compartirla gratis con amigos o una comunidad de nicho.
@@ -22,10 +23,10 @@
 - Completar todo el indonesio hasta B2 antes de abrir inglés; no hay otros idiomas planificados.
 
 ## Estado actual del currículo
-- **Actualización 7 nov 2026:** B1 cerrado en 50/50. B2 U1 implementada y fusionada en PR [#437](https://github.com/luisequeira612-commits/bahasa-studio/pull/437) (1/60); el nivel permanece oculto/no publicado hasta completar el currículo. Plan aprobado: U1–U3 voz/afijos, U4–U6 `-kan/-i/memper-`, U7–U10 nominalizaciones, U11–U12 reduplicación/compuestos; U13–U60 sin desglose temático. Se conserva el borrador anterior de cinco unidades en `docs/B2_LEGACY_DRAFT_ARCHIVE.md`; reglas y mapa en `docs/B2_CURRICULUM_REORGANIZATION.md`. No añadir vocabulario nuevo sin aprobación.
+- **Actualización 8 nov 2026:** B1 cerrado en 50/50. B2 U1 implementada y fusionada en PR [#437](https://github.com/luisequeira612-commits/bahasa-studio/pull/437) (1/60); el nivel permanece oculto/no publicado hasta completar el currículo. Plan aprobado: U1–U3 voz/afijos, U4–U6 `-kan/-i/memper-`, U7–U10 nominalizaciones, U11–U12 reduplicación/compuestos; U13–U60 sin desglose temático. Se conserva el borrador anterior de cinco unidades en `docs/B2_LEGACY_DRAFT_ARCHIVE.md`; reglas y mapa en `docs/B2_CURRICULUM_REORGANIZATION.md`. No añadir vocabulario nuevo sin aprobación.
 - A1: 32 de 32 unidades hechas.
-- A2: 40 de 40 unidades hechas y habilitadas en beta (`A2_RELEASE_ENABLED = true`). U5–U8 siguen en consolidación; PR #337 aclara el vocabulario objetivo de 16 prompts de traducción.
-- B1: 50/50 unidades redactadas en la rama del bloque actual (0 pendientes); 224 IDs únicos en sus unidades, incluidos 31 IDs canónicos reutilizados desde A1/A2, y 727 ejercicios combinados tras consolidar U1–U12. Repasos acumulativos explícitos en U4, U8, U12, U17, U22, U27, U32, U37, U42 y U47. U13–U14: ke-an; U15–U17: cláusulas relativas con yang; U18–U20: condiciones, concesiones y contraste; U21: causa/consecuencia; U22: finalidad; U23: experiencias pasadas; U24: narración temporal; U25: carácter y personalidad; U26: descripción de lugares y ambientes; U27: opiniones y desacuerdo; U28: posibilidad y certeza; U29: consejos, obligación y recomendaciones; U30–U31: planes, metas, pasos, preparación y decisiones; U32–U34: prioridades/horarios, problemas/soluciones, opciones/riesgos/consecuencias; U35–U37: negociación/acuerdos, comunicación/confirmación, progreso/logros/mejora; U38–U40: retroalimentación/crítica, hechos/evidencia/conclusiones, cambios/adaptación/impacto; U41–U43: declaraciones/reconocimiento, comparación/contraste, condiciones/relaciones/influencia; U44–U46: estimaciones/posibilidades, prevención/precauciones, recursos/ahorro/eficiencia; U47–U49: reglamentos/procedimientos, participación comunitaria, conservación/sostenibilidad; U50: proyecto integrador, viabilidad, ejecución, presentación y seguimiento. U50 añade 5 formas nuevas y 14 ejercicios. B2: 1/60 unidades implementadas (U1, PR #437); quedan 59. U2 y U3 tienen diseños documentales preliminares; U2 espera aprobación explícita de las cuatro formas candidatas. Escucha con síntesis de voz local.
+- A2: 40/40 unidades completas y habilitadas en beta (`A2_RELEASE_ENABLED = true`). La consolidación A2 U5–U8 quedó documentada y revisada; los avisos históricos no equivalen a errores lingüísticos confirmados.
+- B1: 50/50 unidades completas, 241 entradas de vocabulario y 144 lecciones; 727 ejercicios combinados tras consolidar U1–U12. Repasos acumulativos explícitos en U4, U8, U12, U17, U22, U27, U32, U37, U42 y U47. El contenido sigue en beta, sin validación nativa ni certificación MCER/BIPA. B2: 1/60 unidades implementadas (U1, PR #437); quedan 59. U2 y U3 tienen diseños documentales preliminares; U2 espera aprobación explícita de las cuatro formas candidatas. La escucha usa síntesis local.
 - PR #409 fusionado tras CI completamente verde; U47–U49 quedan en main. Caché `v3.8.68`.
 - PR #410 fusionado: B1 U50 cierra el currículo con 3 lecciones, 5 formas nuevas y 14 ejercicios; B1 queda en main con 50 unidades, 224 IDs únicos y 605 ejercicios antes de la consolidación posterior de U1–U12. B1 sigue en beta, sin validación nativa ni certificación MCER/BIPA.
 ## Aclaración de métricas de Perfil (PR pendiente)
@@ -64,15 +65,14 @@
 - PR #347 fusionado en `08815997322a85bbe8b8c1ed85703fdc13d7da27`: añade desglose de carga editorial por unidad (totales, tipos, prioridades, candidatos y estados); PR #346 quedó obsoleto por conflictos y su cambio fue reconciliado en #347.
 - La cola editorial se mantiene en `pending` / `not_reviewed`; la certificación lingüística sigue en `not_certified`.
 
-## Pendiente (en este orden)
-1. Consolidar A1 U24–U32 y A2 U5–U8: revisar respuestas, alternativas y consignas con evidencia interna, sin declarar validación nativa.
-2. Revisar la cola editorial por tandas de nivel/unidad; último informe: 1.989 entradas pendientes, todas sin revisión editorial ni certificación lingüística. PR #342 permite exportaciones acotadas y PR #343 genera paquetes por unidad/prioridad.
-3. Consolidar el resto de A2.
-4. Mejorar el tutor conversacional.
-5. Aprendizaje adaptativo y repaso con repetición espaciada.
-6. Pronunciación y escucha.
-7. Lección a pantalla completa con hoja de feedback y pulido visual.
-8. Desarrollar y consolidar B1 y luego B2; completar indonesio hasta B2 antes de crear inglés A1 para hispanohablantes (pronunciación, falsos amigos y verbos frasales). No planificar otros idiomas salvo decisión futura del dueño. La independencia del idioma se aplica preventivamente a todo código/dato nuevo, sin refactor general ahora.
+## Pendiente (fase B2)
+
+1. Obtener aprobación explícita del dueño para las cuatro formas candidatas de B2 U2 y sus ejemplos; mientras tanto, no asignar IDs ni incorporarlas al currículo ejecutable.
+2. Tras la aprobación, implementar B2 U2 con el contrato de unidad y pruebas de progresión, referencias, roles semánticos y exposición anticipada.
+3. Finalizar e implementar B2 U3 solo después de que U2 esté aprobada e implementada.
+4. Continuar con los bloques aprobados U4–U6 (`-kan`, `-i`, `memper-`), U7–U10 (nominalizaciones) y U11–U12 (reduplicación/compuestos), revisando vocabulario y evidencia antes de cada incorporación.
+5. Definir con el dueño el mapa de U13–U60 antes de asignarles títulos, objetivos o contenido.
+6. Mantener B2 oculta/no publicada hasta completar las 60 unidades y el flujo de liberación; después completar el indonesio hasta B2 antes de iniciar inglés A1 para hispanohablantes.
 
 ## Decisiones tomadas
 - No añadir capa de IA extra dentro de la app por ahora.
@@ -297,3 +297,9 @@
 - Se retiran las unidades heredadas U2–U5 del bloque ejecutable; B2 contiene ahora únicamente la U1 implementada. El borrador antiguo permanece preservado en el archivo histórico.
 - Se añade una regresión que exige exactamente `b2_u1` en el currículo B2 cargado, comprueba que U2–U5 sigan en el archivo y evita que los IDs antiguos v231–v246 reaparezcan en el contenido ejecutable.
 - No se altera A1/A2/B1, la U1, IndexedDB, backup JSON v3 ni dependencias. B2 sigue oculta/no publicada; 1/60 implementada y 59 pendientes.
+
+
+## PR — actualización del estado vigente B2 (8 nov 2026)
+- Actualiza el resumen principal y la lista de pendientes para reflejar A1 32/32, A2 40/40, B1 50/50 y B2 1/60 (123/182; 59 pendientes), con B2 como fase actual.
+- Corrige referencias obsoletas que presentaban A2 U5–U8 y B1 como pendientes de consolidación; conserva las métricas históricas como snapshots y no como certificación lingüística.
+- Registra la retirada del borrador ejecutable B2 U2–U5 en PR #443 y mantiene explícita la aprobación pendiente de las cuatro formas candidatas de U2. Solo documentación; sin cambios de currículo, IndexedDB, backup JSON v3 ni dependencias.

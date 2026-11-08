@@ -829,3 +829,9 @@ body.unit-sheet-open { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) {
     .unit-complete-celebration { animation: none; }
 }
+
+.learning-unit-node.node-available {
+    border-color: #9ca3af;
+    background: #f3f4f6;
+    color: #374151;
+}

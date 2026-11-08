@@ -97,8 +97,12 @@ test('B2 U1 has no final assessment in the current course route', async () => {
   const api = await loadProgressionApi();
   const b2 = api.CourseData.levels.find(level => level.id === 'B2');
   assert.equal(api.hasUnitFinalAssessment(b2, b2.units[0]), false);
+  const b1 = api.CourseData.levels.find(level => level.id === 'B1');
+  const completedB1 = b1.units.map(unit => unit.id);
   assert.equal(api.isUnitUnlocked(b2, b2.units[0], [], [], []), false,
-    'the existing B2 guard keeps normal access closed');
+    'B2 U1 remains locked until B1 is complete');
+  assert.equal(api.isUnitUnlocked(b2, b2.units[0], completedB1, [], []), true,
+    'implemented B2 U1 unlocks after the last B1 unit is complete');
   assert.equal(api.isUnitUnlocked(b2, b2.units[0], [], [], ['b2_u1']), true,
     'the explicit emergency skip can open the implemented U1 locally');
 });

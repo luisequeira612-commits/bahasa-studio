@@ -24,7 +24,7 @@ async function loadProgressionApi() {
     localStorage: { getItem() { return null; } }
   };
   return vm.runInNewContext(source.slice(start, end) +
-    '\nconst A2_RELEASE_ENABLED = true; ({ CourseData, buildUnitLessons, buildUnitAssessmentItems, getUnitProgressState, isUnitUnlocked, hasUnitFinalAssessment, getCurrentLearningLevelId })',
+    '\nconst A2_RELEASE_ENABLED = true; ({ CourseData, buildUnitLessons, buildUnitAssessmentItems, getUnitProgressState, isUnitUnlocked, hasUnitFinalAssessment, getCurrentLearningLevelId, syncLearningLevelAfterUnitCompletion, App })',
     context, { timeout: 5000 });
 }
 
@@ -105,6 +105,19 @@ test('B2 U1 has no final assessment in the current course route', async () => {
     'implemented B2 U1 unlocks after the last B1 unit is complete');
   assert.equal(api.isUnitUnlocked(b2, b2.units[0], [], [], ['b2_u1']), true,
     'the explicit emergency skip can open the implemented U1 locally');
+});
+
+test('completing the last B1 unit selects B2 so the next current node can be shown', async () => {
+  const api = await loadProgressionApi();
+  const a1 = api.CourseData.levels.find(level => level.id === 'A1');
+  const a2 = api.CourseData.levels.find(level => level.id === 'A2');
+  const b1 = api.CourseData.levels.find(level => level.id === 'B1');
+  api.App.completedUnits = a1.units.map(unit => unit.id)
+    .concat(a2.units.map(unit => unit.id), b1.units.map(unit => unit.id));
+  api.App.completedLessons = [];
+  api.App.selectedLearningLevel = 'B1';
+  assert.equal(api.syncLearningLevelAfterUnitCompletion(b1.units[b1.units.length - 1].id), true);
+  assert.equal(api.App.selectedLearningLevel, 'B2');
 });
 
 test('leaving a lesson early does not write a completed lesson key', async () => {

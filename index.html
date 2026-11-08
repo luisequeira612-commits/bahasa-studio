@@ -5588,7 +5588,7 @@
                 const level = getLevels().find(entry => entry.units.some(unit => unit.id === unitId));
                 if (!level) return;
                 const unit = level.units.find(entry => entry.id === unitId);
-                if (!unit || !isUnitUnlocked(level, unit)) return;
+                if (!unit || level.id === 'B2' || !isUnitUnlocked(level, unit)) return;
                 const progress = getUnitProgressState(level, unit);
                 if (!progress.requiresAssessment || (!progress.allLessonsComplete && !progress.approved)) return;
                 const questions = buildUnitAssessmentItems(unit);
@@ -5616,7 +5616,7 @@
                 for (const level of getLevels()) {
                     const unit = level.units.find(entry => entry.id === id);
                     if (!unit) continue;
-                    if (!isUnitUnlocked(level, unit)) return;
+                    if (level.id === 'B2' || !isUnitUnlocked(level, unit)) return;
                     const lessons = buildUnitLessons(unit);
                     const nextIndex = lessons.findIndex(lesson => !App.completedLessons.includes(unitLessonProgressKey(id, lesson.index)));
                     const firstIncomplete = nextIndex < 0 ? lessons.length : nextIndex;
@@ -5630,7 +5630,7 @@
             },
             startUnit(unit, lessonIndex = 0) {
                 const level = getLevels().find(entry => entry.units.some(candidate => candidate.id === unit.id));
-                if (level && !isUnitUnlocked(level, unit)) return;
+                if (level && (level.id === 'B2' || !isUnitUnlocked(level, unit))) return;
                 const lessons = buildUnitLessons(unit);
                 const lesson = lessons[lessonIndex];
                 if (!lesson) return;

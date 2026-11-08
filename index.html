@@ -7095,8 +7095,10 @@ Requisitos:
                 container.appendChild(heading);
 
                 const positions = [50, 78, 50, 22, 50, 78, 50, 22];
-                let currentAssigned = false;
                 const visibleUnits = level.id === 'B2' ? level.units.slice(0, 1) : level.units;
+                const emergencySkipId = getEmergencyUnitSkips()[0];
+                const currentUnit = visibleUnits.find(unit => unit.id === emergencySkipId && !getUnitProgressState(level, unit).completed) ||
+                    visibleUnits.find(unit => isUnitUnlocked(level, unit) && !getUnitProgressState(level, unit).completed);
                 for (let offset = 0; offset < visibleUnits.length; offset += 8) {
                     const units = visibleUnits.slice(offset, offset + 8);
                     const section = document.createElement('section');
@@ -7127,9 +7129,8 @@ Requisitos:
                     units.forEach((unit, index) => {
                         const progress = getUnitProgressState(level, unit);
                         const unlocked = isUnitUnlocked(level, unit);
-                        const isCurrent = !currentAssigned && unlocked && !progress.completed;
-                        if (isCurrent) currentAssigned = true;
-                        const state = progress.completed ? 'completed' : isCurrent ? 'current' : 'locked';
+                        const isCurrent = Boolean(currentUnit && unit.id === currentUnit.id);
+                        const state = progress.completed ? 'completed' : isCurrent ? 'current' : unlocked ? 'available' : 'locked';
                         const node = document.createElement('button');
                         node.type = 'button';
                         node.className = 'learning-unit-node node-' + state;
@@ -7137,8 +7138,8 @@ Requisitos:
                         node.dataset.unitId = unit.id;
                         node.style.left = positions[index] + '%';
                         node.style.top = (38 + index * 82) + 'px';
-                        node.textContent = progress.completed ? '✓' : isCurrent ? String(offset + index + 1) : '🔒';
-                        node.setAttribute('aria-label', unit.title + (progress.completed ? ', completada' : isCurrent ? ', unidad actual' : ', bloqueada'));
+                        node.textContent = progress.completed ? '✓' : state === 'locked' ? '🔒' : String(offset + index + 1);
+                        node.setAttribute('aria-label', unit.title + (progress.completed ? ', completada' : isCurrent ? ', unidad actual' : unlocked ? ', disponible por salto de emergencia' : ', bloqueada'));
                         node.addEventListener('click', () => this.openUnitSheet(unit.id));
                         stage.appendChild(node);
                     });

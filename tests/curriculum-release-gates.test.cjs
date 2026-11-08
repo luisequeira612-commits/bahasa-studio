@@ -13,16 +13,18 @@ test('A2 is enabled in beta independently of A1 completion', () => {
   assert.doesNotMatch(html, /A2[^\n]{0,100}isA1Complete|isA1Complete[^\n]{0,100}A2/);
 });
 
-test('A2 course visibility and lesson entry points only honor the release flag', () => {
-  assert.match(html, /if \(!A2_RELEASE_ENABLED\) return;/);
-  assert.match(html, /: lvl\.id === 'A2' \? A2_RELEASE_ENABLED : true/);
+test('A2 level visibility honors the release flag while unit entry remains sequential', () => {
+  assert.match(html, /if \(levelId === 'A2' && !A2_RELEASE_ENABLED\) return;/);
+  assert.match(html, /if \(level\.id === 'A2' && !A2_RELEASE_ENABLED\) return false;/);
   const assessmentEntry = html.slice(html.indexOf('startUnitAssessment(unitId)'), html.indexOf('startUnitById(id, requestedLessonIndex)'));
   const lessonEntry = html.slice(html.indexOf('startUnitById(id, requestedLessonIndex)'), html.indexOf('startUnit(unit, lessonIndex = 0)'));
   const unitEntry = html.slice(html.indexOf('startUnit(unit, lessonIndex = 0)'), html.indexOf('function getLevels()'));
   for (const entry of [assessmentEntry, lessonEntry, unitEntry]) {
-    assert.match(entry, /level\.id === 'A2' && !A2_RELEASE_ENABLED/);
+    assert.match(entry, /!isUnitUnlocked\(level, unit\)/);
     assert.doesNotMatch(entry, /isA1Complete/);
   }
+  assert.match(html, /function isUnitUnlocked\(level, unit/);
+  assert.match(html, /const previousLevel = levels\[levelIndex - 1\]/);
 });
 
 test('A1 completion helper remains available for the separate advanced-level gate', () => {
@@ -38,7 +40,7 @@ test('A2 beta policy documentation matches the enabled release gate', () => {
 });
 
 
-test('B1 is released immediately; B2 remains sequenced after B1 completion', () => {
+test('B1 unlocks after A2; B2 U1 unlocks after B1 while the rest stays in development', () => {
   const learningLevels = html.slice(html.indexOf('function getLearningLevels()'), html.indexOf('function getUniqueLearningVocabulary()'));
   assert.match(learningLevels, /level\.id !== 'B2'/);
   assert.doesNotMatch(learningLevels, /B1/);
@@ -46,13 +48,18 @@ test('B1 is released immediately; B2 remains sequenced after B1 completion', () 
   const assessmentEntry = html.slice(html.indexOf('startUnitAssessment(unitId)'), html.indexOf('startUnitById(id, requestedLessonIndex)'));
   const lessonEntry = html.slice(html.indexOf('startUnitById(id, requestedLessonIndex)'), html.indexOf('startUnit(unit, lessonIndex = 0)'));
   const unitEntry = html.slice(html.indexOf('startUnit(unit, lessonIndex = 0)'), html.indexOf('function getLevels()'));
+  assert.match(assessmentEntry, /level\.id === 'B2'/);
+  assert.match(lessonEntry, /!isUnitUnlocked\(level, unit\)/);
+  assert.match(unitEntry, /!isUnitUnlocked\(level, unit\)/);
   for (const entry of [assessmentEntry, lessonEntry, unitEntry]) {
-    assert.match(entry, /level\.id === 'B2'/);
     assert.doesNotMatch(entry, /level\.id === 'B1'/);
   }
 
-  assert.match(html, /function isB1Complete\(completedUnits\)/);
-  assert.match(html, /const isAdvanced = lvl\.id === 'B2'/);
-  assert.match(html, /if \(!isB1Complete\(this\.completedUnits\)\) return;/);
-  assert.match(html, /const examButton = \['A1', 'B1'\]\.includes\(lvl\.id\)/);
+  assert.match(html, /function isUnitUnlocked\(level, unit/);
+  assert.match(html, /const previousLevel = levels\[levelIndex - 1\]/);
+  assert.match(html, /if \(level\.id === 'B2'\) \{/);
+  assert.match(html, /return unitIndex === 0 && Boolean\(previousUnit/);
+  assert.match(html, /level\.id === 'B2' \? level\.units\.slice\(0, 1\) : level\.units/);
+  assert.match(html, /unit-path-coming-soon/);
+  assert.ok(html.includes("['A1', 'B1'].includes(level.id)"));
 });

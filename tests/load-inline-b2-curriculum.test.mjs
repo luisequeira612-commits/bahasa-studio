@@ -81,33 +81,36 @@ test('B2 U1 has at least five sentence-level targets and a guided original-writi
   assert.ok(exercises.some((exercise) => exercise.type === 'write' && exercise.hint?.trim() && /mini texto|tres o cuatro oraciones/i.test(exercise.prompt)));
 });
 
-test('B2 stays inaccessible through every lesson entry point and the course route', async () => {
+test('B2 keeps its development gate while implemented U1 unlocks sequentially after B1', async () => {
   const { indexSource } = await loadCurricula();
-  const assertGuard = (method, expected, width = 650) => {
-    const start = indexSource.indexOf(method);
-    assert.notEqual(start, -1, method + ' must remain present');
-    assert.ok(indexSource.slice(start, start + width).includes(expected),
-      method + ' must reject registered B2 units');
-  };
-
-  assertGuard('startUnitById(id, requestedLessonIndex) {', "if (level.id === 'B2' ||");
-  assertGuard('startUnitAssessment(unitId) {', "if (level && (level.id === 'B2' ||");
-  assertGuard('startUnit(unit, lessonIndex = 0) {', "if (level && (level.id === 'B2' ||");
+  const assessmentStart = indexSource.indexOf('startUnitAssessment(unitId) {');
+  assert.notEqual(assessmentStart, -1);
+  assert.ok(indexSource.slice(assessmentStart, assessmentStart + 700).includes("level.id === 'B2'"),
+    'B2 does not expose a final assessment');
+  const byIdStart = indexSource.indexOf('startUnitById(id, requestedLessonIndex) {');
+  const startUnitStart = indexSource.indexOf('startUnit(unit, lessonIndex = 0) {');
+  assert.ok(indexSource.slice(byIdStart, byIdStart + 700).includes('!isUnitUnlocked(level, unit)'),
+    'direct lesson entry must use the derived unit gate');
+  assert.ok(indexSource.slice(startUnitStart, startUnitStart + 700).includes('!isUnitUnlocked(level, unit)'),
+    'direct engine entry must use the same derived unit gate');
+  const unlockStart = indexSource.indexOf('function isUnitUnlocked(level, unit');
+  assert.ok(indexSource.slice(unlockStart, unlockStart + 1300).includes('return unitIndex === 0 && Boolean(previousUnit'),
+    'only implemented B2 U1 opens after the final B1 unit');
 
   const learningLevels = indexSource.indexOf('function getLearningLevels() {');
   assert.notEqual(learningLevels, -1);
   assert.ok(indexSource.slice(learningLevels, learningLevels + 260).includes("level.id !== 'B2'"),
-    'B2 must stay out of learning and review collections');
+    'B2 must stay out of learning and review collections while its guard remains');
 
-  const routeStart = indexSource.indexOf("const isAdvanced = lvl.id === 'B2';");
-  const routeEnd = indexSource.indexOf('lvl.units.forEach(unit => {', routeStart);
-  assert.notEqual(routeStart, -1);
-  assert.ok(routeEnd > routeStart, 'B2 route gate must precede unit-card rendering');
-  const routeGate = indexSource.slice(routeStart, routeEnd);
-  assert.ok(routeGate.includes('if (!isB1Complete(this.completedUnits)) return;'));
-  assert.ok(routeGate.includes('Este nivel todavía no está disponible para estudiar.'));
-  assert.ok(routeGate.includes('container.appendChild(levelEl);'));
-  assert.match(routeGate, /return;\s*}/);
+  const routeStart = indexSource.indexOf('renderCourseRoute() {');
+  const routeEnd = indexSource.indexOf('async updateSrsView() {', routeStart);
+  assert.ok(routeEnd > routeStart, 'learning route renderer must exist');
+  const route = indexSource.slice(routeStart, routeEnd);
+  assert.ok(route.includes("level.id === 'B2' ? level.units.slice(0, 1) : level.units"));
+  assert.ok(route.includes('unit-path-coming-soon'));
+  assert.ok(route.includes('Las demás unidades B2 todavía no están implementadas'));
+  assert.doesNotMatch(route, /isB1Complete\(this\.completedUnits\)/,
+    'B2 path visibility must not depend on the old hidden route gate');
 });
 
 test('tap translation fallback excludes hidden B2 authored exercises', async () => {
@@ -156,10 +159,10 @@ test('tutor prompt never labels the learner as hidden B2 from stale completion d
     'hidden B2 must not influence the tutor prompt level inferred from saved completions');
 });
 
-test('direct lesson entry blocks registered B2 units while preserving custom lessons', async () => {
+test('direct lesson entry uses the shared B2 U1 sequential gate and emergency skip', async () => {
   const { indexSource } = await loadCurricula();
   const start = indexSource.indexOf('startUnit(unit, lessonIndex = 0) {');
   assert.notEqual(start, -1, 'startUnit must remain present');
-  assert.ok(indexSource.slice(start, start + 450).includes("if (level && (level.id === 'B2' ||"),
-    'startUnit must block registered B2 units without rejecting unregistered custom lessons');
+  assert.ok(indexSource.slice(start, start + 550).includes('!isUnitUnlocked(level, unit)'),
+    'startUnit must enforce the shared derived progression gate');
 });

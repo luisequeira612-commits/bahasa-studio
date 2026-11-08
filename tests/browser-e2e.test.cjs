@@ -16,7 +16,7 @@ after(async () => {
   if (browser) await browser.close();
 });
 
-function startServer() {
+function startServer(overrides = {}) {
   const server = http.createServer((req, res) => {
     const pathname = new URL(req.url, 'http://127.0.0.1').pathname;
     const requested = pathname === '/' ? 'index.html' : decodeURIComponent(pathname.slice(1));
@@ -30,6 +30,8 @@ function startServer() {
         res.writeHead(404).end('Not found');
         return;
       }
+      const override = overrides[pathname];
+      const responseContent = typeof override === 'function' ? override(content) : (override ?? content);
       const ext = path.extname(filename);
       const types = {
         '.html': 'text/html; charset=utf-8',
@@ -39,7 +41,7 @@ function startServer() {
         '.svg': 'image/svg+xml'
       };
       res.writeHead(200, { 'Content-Type': types[ext] || 'application/octet-stream' });
-      res.end(content);
+      res.end(responseContent);
     });
   });
   return new Promise((resolve, reject) => {
@@ -446,6 +448,60 @@ test('lesson translation hints are tappable, contextual, and stay within a mobil
     await bubble.waitFor({ state: 'visible' });
     await page.locator('#actionArea').tap();
     await page.waitForFunction(() => document.querySelector('#tapTranslationBubble').hidden);
+  } finally {
+    await context.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});
+
+test('service worker upgrades an old installed cache without clearing local progress', async () => {
+  const currentIndex = fs.readFileSync(path.join(root, 'index.html'));
+  const currentWorker = fs.readFileSync(path.join(root, 'service-worker.js'));
+  const oldIndex = Buffer.from(currentIndex.toString().replace('<head>', '<head>\\n<!-- legacy-app-shell -->'));
+  const oldWorker = Buffer.from(currentWorker.toString().replace('bahasa-studio-v3.8.70', 'bahasa-studio-v3.8.69'));
+  let servedVersion = 'old';
+  const { server, url } = await startServer({
+    '/': () => servedVersion === 'old' ? oldIndex : currentIndex,
+    '/index.html': () => servedVersion === 'old' ? oldIndex : currentIndex,
+    '/service-worker.js': () => servedVersion === 'old' ? oldWorker : currentWorker
+  });
+  const context = await browser.newContext();
+  const page = await context.newPage();
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
+    await page.waitForFunction(() => Boolean(navigator.serviceWorker.controller), { timeout: 10000 });
+    await page.evaluate(async () => {
+      await DB.set('settings', 'completedUnits', ['a2_u1']);
+      await DB.set('settings', 'completedLessons', ['a2_u1::0']);
+      await navigator.serviceWorker.ready;
+    });
+    await page.waitForFunction(async () => (await caches.keys()).includes('bahasa-studio-v3.8.69'));
+    assert.equal(await page.locator('html').evaluate(node => node.innerHTML.includes('legacy-app-shell')), true,
+      'the first launch should use the simulated older installed shell');
+
+    servedVersion = 'new';
+    await page.evaluate(async () => {
+      const controllerChanged = new Promise(resolve => {
+        navigator.serviceWorker.addEventListener('controllerchange', resolve, { once: true });
+      });
+      const registration = await navigator.serviceWorker.getRegistration();
+      await registration.update();
+      await controllerChanged;
+    });
+    await page.waitForFunction(async () => {
+      const keys = await caches.keys();
+      return keys.includes('bahasa-studio-v3.8.70') && !keys.includes('bahasa-studio-v3.8.69');
+    }, { timeout: 15000 });
+
+    await page.reload({ waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined');
+    assert.equal(await page.locator('html').evaluate(node => node.innerHTML.includes('legacy-app-shell')), false,
+      'the next launch should use the new app shell');
+    assert.deepEqual(await page.evaluate(() => DB.get('settings', 'completedUnits')), ['a2_u1']);
+    assert.deepEqual(await page.evaluate(() => DB.get('settings', 'completedLessons')), ['a2_u1::0']);
+    assert.equal(await page.evaluate(() => navigator.serviceWorker.controller !== null), true);
   } finally {
     await context.close();
     await new Promise(resolve => server.close(resolve));
@@ -949,7 +1005,7 @@ test('voice test speaks using the system fallback when no Indonesian voice is in
 });
 
 
-test('A1 unit lessons unlock sequentially and the final exam gates the next unit at 80 percent', async () => {
+test('A1 lesson progress is sequential and the final exam gates the next unit at 80 percent', async () => {
   const { server, url } = await startServer();
   const context = await browser.newContext({ serviceWorkers: 'block' });
   const page = await context.newPage();
@@ -958,40 +1014,40 @@ test('A1 unit lessons unlock sequentially and the final exam gates the next unit
     await page.goto(url, { waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db &&
       Array.isArray(App.completedLessons) && Array.isArray(App.completedUnits) &&
-      document.querySelectorAll('[data-unit-id="a1_u1"][data-lesson-index]').length === 3);
+      document.querySelector('.learning-unit-node[data-unit-id="a1_u1"]'));
 
-    const firstUnitButtons = page.locator('[data-unit-id="a1_u1"][data-lesson-index]');
-    assert.equal(await firstUnitButtons.count(), 3, 'Unit 1 should contain three short lessons');
-    assert.equal(await firstUnitButtons.nth(0).isEnabled(), true);
-    assert.equal(await firstUnitButtons.nth(1).isEnabled(), false);
-    assert.equal(await firstUnitButtons.nth(2).isEnabled(), false);
+    const firstNode = page.locator('.learning-unit-node[data-unit-id="a1_u1"]');
+    const secondNode = page.locator('.learning-unit-node[data-unit-id="a1_u2"]');
+    assert.equal(await firstNode.getAttribute('data-path-state'), 'current');
+    assert.equal(await secondNode.getAttribute('data-path-state'), 'locked');
 
-    await firstUnitButtons.nth(0).click();
+    await firstNode.click();
+    await page.locator('#unitBottomSheet').waitFor({ state: 'visible' });
+    assert.ok((await page.locator('#unitSheetContent').innerText()).includes('0/3'));
+    await page.getByRole('button', { name: 'Empezar lección 1' }).click();
     await page.evaluate(() => { window.confirm = () => true; });
     await page.getByRole('button', { name: 'Salir de la lección' }).click();
+    assert.equal(await page.evaluate(() => App.completedLessons.includes('a1_u1::0')), false,
+      'leaving a lesson early must not record it as completed');
+
     await page.evaluate(async () => {
       App.completedLessons = ['a1_u1::0'];
       await DB.set('settings', 'completedLessons', App.completedLessons);
+      App.closeUnitSheet();
       App.renderCourseRoute();
     });
-    const refreshedButtons = page.locator('[data-unit-id="a1_u1"][data-lesson-index]');
-    assert.equal(await refreshedButtons.nth(1).isEnabled(), true);
-    assert.equal(await refreshedButtons.nth(2).isEnabled(), false);
-
-    await page.evaluate(async () => {
-      App.completedLessons = ['a1_u1::0', 'a1_u1::1'];
-      await DB.set('settings', 'completedLessons', App.completedLessons);
-      App.renderCourseRoute();
-    });
-    assert.equal(await refreshedButtons.nth(2).isEnabled(), true);
-    assert.equal(await page.locator('[data-unit-id="a1_u2"][data-lesson-index="0"]').isEnabled(), false);
+    await firstNode.click();
+    assert.ok((await page.locator('#unitSheetContent').innerText()).includes('1/3'));
+    assert.ok(await page.getByRole('button', { name: 'Empezar lección 2' }).isVisible());
 
     await page.evaluate(async () => {
       App.completedLessons = ['a1_u1::0', 'a1_u1::1', 'a1_u1::2'];
       await DB.set('settings', 'completedLessons', App.completedLessons);
+      App.closeUnitSheet();
       App.renderCourseRoute();
     });
-    await page.getByRole('button', { name: 'Prueba final · Desbloquear siguiente unidad' }).click();
+    await firstNode.click();
+    await page.getByRole('button', { name: 'Hacer evaluación final' }).click();
 
     const answerCurrentQuestion = async correct => {
       const details = await page.evaluate(() => {
@@ -1009,7 +1065,7 @@ test('A1 unit lessons unlock sequentially and the final exam gates the next unit
     for (let i = 0; i < questionCount; i++) await answerCurrentQuestion(i >= wrongCount);
     await page.waitForFunction(() => document.getElementById('exerciseArea').innerText.includes('Sigue practicando'));
     assert.equal(await page.evaluate(() => App.completedUnits.includes('a1_u1')), false);
-    assert.equal(await page.locator('[data-unit-id="a1_u2"][data-lesson-index="0"]').isEnabled(), false);
+    assert.equal(await secondNode.getAttribute('data-path-state'), 'locked');
 
     await page.getByRole('button', { name: 'Repetir prueba' }).click();
     const retryQuestionCount = await page.evaluate(() => LessonEngine.queue.length);
@@ -1017,7 +1073,9 @@ test('A1 unit lessons unlock sequentially and the final exam gates the next unit
     await page.waitForFunction(() => document.getElementById('exerciseArea').innerText.includes('Prueba superada'));
     assert.match(await page.locator('#exerciseArea').innerText(), /Prueba superada/);
     assert.equal(await page.evaluate(() => App.completedUnits.includes('a1_u1')), true);
-    assert.equal(await page.locator('[data-unit-id="a1_u2"][data-lesson-index="0"]').isEnabled(), true);
+    await page.getByRole('button', { name: 'Continuar al camino' }).click();
+    await page.waitForFunction(() => document.querySelector('.learning-unit-node[data-unit-id="a1_u2"]')?.dataset.pathState === 'current');
+    assert.equal(await secondNode.getAttribute('data-path-state'), 'current');
   } finally {
     await context.close();
     await new Promise(resolve => server.close(resolve));
@@ -1160,6 +1218,13 @@ test('guided A1 writing shows task-specific review criteria and records progress
     await page.goto(url, { waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => typeof LessonEngine !== 'undefined' && typeof DB !== 'undefined' && DB.db && App);
 
+    await page.evaluate(async () => {
+      const level = CourseData.levels.find(entry => entry.id === 'A1');
+      App.completedUnits = level.units.slice(0, 7).map(unit => unit.id);
+      await DB.set('settings', 'completedUnits', App.completedUnits);
+      App.renderCourseRoute();
+    });
+
     await page.evaluate(() => {
       const unit = CourseData.levels.find(level => level.id === 'A1').units.find(entry => entry.id === 'a1_u8');
       const lessons = buildUnitLessons(unit);
@@ -1167,6 +1232,8 @@ test('guided A1 writing shows task-specific review criteria and records progress
         exercise => exercise.prompt === 'Escribe dos frases sobre tu rutina.'
       ));
       if (lessonIndex < 0) throw new Error('The existing A1 routine-writing activity was not assigned to a lesson');
+      App.completedLessons = lessons.slice(0, lessonIndex).map(lesson => unit.id + '::' + lesson.index);
+      DB.set('settings', 'completedLessons', App.completedLessons);
       LessonEngine.startUnit(unit, lessonIndex);
       const index = LessonEngine.queue.findIndex(exercise => exercise.prompt === 'Escribe dos frases sobre tu rutina.');
       if (index < 0) throw new Error('The existing A1 routine-writing activity was not found in its lesson');
@@ -1559,6 +1626,140 @@ test('priority 3 adds written sentence completion and tap-to-match practice with
     await page.locator('#actionArea.lesson-feedback-sheet.correct').waitFor();
     assert.equal(await page.locator('.match-option-btn.solved').count(), 6);
     assert.deepEqual(pageErrors, [], 'new exercise types should not throw browser errors');
+  } finally {
+    await context.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});
+
+
+test('emergency jump opens locked A2/B1 units without recording progress and cannot bypass B2', async () => {
+  const { server, url } = await startServer();
+  const context = await browser.newContext({ serviceWorkers: 'block' });
+  const page = await context.newPage();
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' && typeof LessonEngine !== 'undefined' && DB.db);
+    const before = await page.evaluate(() => ({
+      units: [...App.completedUnits],
+      lessons: [...App.completedLessons]
+    }));
+    await page.evaluate(() => {
+      App.populateEmergencyUnitSelect();
+      const select = document.getElementById('emergencyUnitSelect');
+      select.value = 'a2_u1';
+      window.confirm = () => true;
+      App.confirmUnitJump();
+    });
+    await page.locator('#unitBottomSheet').waitFor({ state: 'visible' });
+    await page.getByRole('button', { name: /Empezar lección 1/ }).click();
+    await page.waitForFunction(() => LessonEngine.currentUnit && LessonEngine.currentUnit.id === 'a2_u1');
+    const afterA2 = await page.evaluate(() => ({
+      units: [...App.completedUnits],
+      lessons: [...App.completedLessons]
+    }));
+    assert.deepEqual(afterA2, before, 'opening an emergency A2 lesson must not complete anything');
+
+    await page.evaluate(() => {
+      App.populateEmergencyUnitSelect();
+      const select = document.getElementById('emergencyUnitSelect');
+      select.value = 'b1_u1';
+      App.confirmUnitJump();
+    });
+    await page.locator('#unitBottomSheet').waitFor({ state: 'visible' });
+    await page.getByRole('button', { name: /Empezar lección 1/ }).click();
+    await page.waitForFunction(() => LessonEngine.currentUnit && LessonEngine.currentUnit.id === 'b1_u1');
+    const afterB1 = await page.evaluate(() => ({
+      units: [...App.completedUnits],
+      lessons: [...App.completedLessons]
+    }));
+    assert.deepEqual(afterB1, before, 'opening an emergency B1 lesson must not complete anything');
+
+    const b2Guard = await page.evaluate(() => {
+      App.populateEmergencyUnitSelect();
+      const select = document.getElementById('emergencyUnitSelect');
+      const option = select.querySelector('option[value="b2_u1"]');
+      const optionDisabled = Boolean(option && option.disabled);
+      select.value = 'b2_u1';
+      App.confirmUnitJump();
+      const skipAfterAttempt = localStorage.getItem('bahasaStudioUnitSkipId');
+      localStorage.setItem('bahasaStudioUnitSkipId', 'b2_u1');
+      LessonEngine.currentUnit = null;
+      LessonEngine.startUnitById('b2_u1');
+      return {
+        optionDisabled,
+        skipAfterAttempt,
+        currentUnit: LessonEngine.currentUnit && LessonEngine.currentUnit.id,
+        units: [...App.completedUnits],
+        lessons: [...App.completedLessons]
+      };
+    });
+    assert.equal(b2Guard.optionDisabled, true, 'B2 must not be selectable through the emergency jump');
+    assert.equal(b2Guard.skipAfterAttempt, 'b1_u1', 'attempting a B2 jump must not replace the valid B1 emergency jump');
+    assert.equal(b2Guard.currentUnit, null, 'a stale B2 localStorage skip must not bypass the B2 guard');
+    assert.deepEqual({ units: b2Guard.units, lessons: b2Guard.lessons }, before);
+  } finally {
+    await context.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});
+
+test('learning path keeps the real A1 one-of-two lesson state visible at a 360px viewport', async () => {
+  const { server, url } = await startServer();
+  const context = await browser.newContext({
+    viewport: { width: 360, height: 800 },
+    serviceWorkers: 'block'
+  });
+  const page = await context.newPage();
+  const pageErrors = [];
+  page.on('pageerror', error => pageErrors.push(error.message));
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' && App.completedUnits && document.querySelector('.learning-unit-node'));
+    const initial = await page.evaluate(() => ({
+      viewport: window.innerWidth,
+      documentWidth: document.documentElement.scrollWidth,
+      selectedLevel: document.querySelector('.learning-level-button.active')?.dataset.level,
+      currentUnit: document.querySelector('.learning-unit-node[data-path-state="current"]')?.dataset.unitId
+    }));
+    assert.equal(initial.viewport, 360);
+    assert.ok(initial.documentWidth <= 360, 'learning screen should not overflow horizontally at 360px');
+    assert.equal(initial.selectedLevel, 'A1');
+    assert.equal(initial.currentUnit, 'a1_u1', 'a new learner should start at A1 Unit 1');
+
+    await page.evaluate(async () => {
+      await DB.set('settings', 'completedUnits', ['a1_u1', 'a1_u2']);
+      await DB.set('settings', 'completedLessons', ['a1_u3::0']);
+    });
+    await page.reload({ waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() =>
+      App.completedUnits.includes('a1_u2') &&
+      App.completedLessons.includes('a1_u3::0') &&
+      document.querySelector('.learning-unit-node[data-unit-id="a1_u3"][data-path-state="current"]')
+    );
+
+    const progress = await page.evaluate(() => ({
+      current: document.querySelector('.learning-unit-node[data-unit-id="a1_u3"]')?.dataset.pathState,
+      previous: [
+        document.querySelector('.learning-unit-node[data-unit-id="a1_u1"]')?.dataset.pathState,
+        document.querySelector('.learning-unit-node[data-unit-id="a1_u2"]')?.dataset.pathState
+      ],
+      next: document.querySelector('.learning-unit-node[data-unit-id="a1_u4"]')?.dataset.pathState,
+      width: document.documentElement.scrollWidth
+    }));
+    assert.equal(progress.current, 'current');
+    assert.deepEqual(progress.previous, ['completed', 'completed']);
+    assert.equal(progress.next, 'locked');
+    assert.ok(progress.width <= 360, 'partially completed path should fit a 360px viewport');
+
+    await page.locator('.learning-unit-node[data-unit-id="a1_u3"]').click();
+    await page.locator('#unitBottomSheet').waitFor({ state: 'visible' });
+    const sheet = await page.locator('#unitSheetContent').innerText();
+    assert.match(sheet, /1\/2/);
+    assert.match(sheet, /Empezar lección 2/);
+    assert.ok(pageErrors.length === 0, pageErrors.join('\\n'));
   } finally {
     await context.close();
     await new Promise(resolve => server.close(resolve));

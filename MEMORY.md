@@ -3,7 +3,7 @@
 > Memoria operativa. Mantener por debajo de ~150 líneas; los detalles históricos y la evidencia extensa viven en los documentos enlazados. Última actualización: 8 nov 2026.
 
 ## Estado vigente
-- A1 32/32, A2 40/40 y B1 50/50 unidades completas. B2 1/60 implementada (U1); total 123/182, quedan 59 unidades B2. B2 permanece oculta/no publicada.
+- A1 32/32, A2 40/40 y B1 50/50 unidades completas. B2 1/60 implementada (U1); total 123/182, quedan 59 unidades B2. En la Fase 1 U1 y un único nodo «Próximamente» se muestran en el camino; la guarda de acceso a B2 sigue vigente y el PR #472 continúa separado y sin fusionar.
 - Fase actual: desarrollo progresivo de B2, sin certificación lingüística ni MCER/BIPA. A1/A2/B1 están en beta; no hay hablante nativo disponible.
 - B2 U1: implementada, 3 lecciones, 16 ejercicios, 5 tipos; reutiliza 9 IDs existentes y no añade vocabulario.
 - B2 U2 y U3: diseños preliminares en `docs/B2_U2_DESIGN.md` y `docs/B2_U3_DESIGN.md`. U2 espera aprobación explícita de `kubaca`, `kaubaca`, `kutulis`, `kautulis`; no asignar IDs ni incorporarlas a ejercicios evaluados antes de aprobarlas. U3 integra U1+U2 y no debe cerrarse/implementarse antes de aprobar e implementar U2.
@@ -41,7 +41,7 @@
 ## Herramientas y calidad
 - ChatGPT puede programar y preparar PRs; Codex puede usarse después como auditor independiente, pero no afirmar que auditó si no se ejecutó.
 - Preferir auditorías locales/offline y pruebas existentes; no añadir servicios externos ni dependencias por conveniencia.
-- Pruebas B2 en `tests/load-inline-b2-curriculum.test.mjs`: contrato U1, IDs, producción guiada, formas candidatas ausentes, borradores archivados y protección de `startUnitById()`, `startUnitAssessment()`, `startUnit()` y la ruta del curso. `startUnit()` bloquea unidades B2 registradas y conserva el acceso directo usado por lecciones personalizadas no registradas. El fallback de traducción por selección también excluye ejercicios authored de B2. El nivel inferido para el prompt del tutor ignora posibles completados B2 residuales.
+- Pruebas B2 en `tests/load-inline-b2-curriculum.test.mjs`: contrato U1, IDs, producción guiada, formas candidatas ausentes, borradores archivados y protección de `startUnitById()`, `startUnitAssessment()` y `startUnit()`. La ruta muestra solo U1 y un nodo «Próximamente», pero el motor mantiene el bloqueo B2. El fallback de traducción por selección excluye ejercicios authored de B2. El nivel inferido para el prompt del tutor ignora posibles completados B2 residuales.
 - Scripts e informes de calidad son evidencia estructural/editorial, no validación nativa.
 
 ## Decisiones de producto y currículo
@@ -65,3 +65,23 @@
 - Archivo de borradores retirados: `docs/B2_LEGACY_DRAFT_ARCHIVE.md`.
 - Pruebas de carga/guardas B2: `tests/load-inline-b2-curriculum.test.mjs`.
 - Para el estado de una PR concreta, usar su historial, CI y revisiones en GitHub; esta memoria resume hitos y decisiones, no sustituye esos registros.
+
+
+## Rediseño de Aprender — Fase 1 (8 nov 2026)
+- Decisión del dueño: registrar cada clave unidad::índiceDeLección en A2/B1/B2 al completar todos los ejercicios de esa lección; salir antes no registra la lección. No modificar IndexedDB ni backup JSON v3.
+- Una función derivada calcula avance, finalización y desbloqueo desde completedLessons y completedUnits; los IDs ya aprobados conservan el estado aunque falten claves de lección.
+- Evaluación final en la ruta actual: A1 y B1 (umbral existente 80 %); A2 y B2 no muestran evaluación final en la ruta actual. A2/B2 se completan al terminar todas las lecciones.
+- Desbloqueo secuencial en A1/A2/B1 y B2 U1: B2 U1 se abre al completar la última unidad B1; B2 U2+ siguen sin contenido ejecutable y protegidas. Se conserva la etiqueta «En desarrollo»; el salto de emergencia no puede saltarse la guarda secuencial de B2.
+- Agrupación visual por orden, secciones de 8; B2 muestra U1 implementada y un solo nodo «Próximamente». El salto de emergencia usa localStorage (bahasaStudioUnitSkipId) y no altera aprobación.
+- La Fase 1 va en una rama/PR independiente; no fusionar sin autorización. PR #472 (fix/restore-b1-b2-access) sigue abierto y sin fusionar; se solapa con index.html y deberá reconciliarse si se fusiona más adelante.
+
+- PR #473 (Fase 1) — estado al 8 nov 2026: rama `feat/learning-path-phase-1`, head `cc3c8d05f5594cac0d9e385d0b827f4dce34220a`. Implementa selector de nivel, secciones de 8, camino zigzag, estados y hoja inferior; desbloqueo secuencial derivado desde `completedLessons`/`completedUnits`; registro al terminar cada lección; evaluación final A1/B1 al 80 %; salto de emergencia local con confirmación; B2 limitado a U1 y un nodo «Próximamente». Agrupación por orden, sin inventar temas.
+- CI run #42522755681 en ese head: `test` 72 pasos y `Offline quality reports` 10 pasos, ambos en éxito; incluye pruebas de progreso A1 1/2, A2 legacy completada sin claves de lección, A2 multilección, B1 evaluación, salida anticipada, 360 px, navegador real, importación/exportación JSON v3 y disponibilidad offline del service worker. Sin revisiones, comentarios ni hilos pendientes. PR permanece abierto; no fusionar sin autorización.
+- No se modifican IndexedDB, backup JSON v3 ni manifest (display standalone ya estaba configurado); se actualiza la versión del caché del service worker para forzar la descarga de la app nueva. No se añaden dependencias. Fases 2 y 3 no iniciadas. La interfaz nueva queda limitada a Aprender y Perfil.
+- PR #472 sigue abierto y separado. Su restauración completa de acceso B2 contradice el límite actual de mostrar solo U1 implementada más «Próximamente»; además ambos PR modifican `index.html`. Reconciliar la intención antes de fusionarlo, sin incorporar sus cambios automáticamente.
+- Actualización de compatibilidad (8 nov 2026): `service-worker.js` sube el caché de `bahasa-studio-v3.8.69` a `v3.8.70`; el SW elimina la caché anterior al activar la nueva. Se añadieron pruebas de actualización desde una instalación vieja preservando `completedUnits`/`completedLessons`, y de salto de emergencia A2/B1 sin modificar progreso; B2 no puede saltarse por una clave local obsoleta.
+
+- Revisión de integración B2 (8 nov 2026): la guarda previa impedía acceder a U1 incluso después de completar B1. Se ajustó de forma mínima: la función derivada abre solo B2 U1 tras B1 U50; U2+ permanecen no implementadas/protegidas, la etiqueta «En desarrollo» se conserva y el salto local no puede saltarse la guarda de B2. CI run #42523643502: `test` 72 pasos y `Offline quality reports` 10 pasos, ambos verdes en el head de implementación `1a90da716627ec7bff5eb61392d994b88fca230b`. La actualización documental actual de `MEMORY.md` requiere su propio CI exacto.
+- Corrección de regresión de integración (8 nov 2026): CI del commit `57bfbc387b96048483e7f299c5f84747ec90f7c9` detectó una aserción contradictoria en `tests/learning-path-progression.test.mjs`: esperaba que un salto de emergencia abriera B2 U1, aunque la regla vigente exige completar B1 y bloquea cualquier salto local a B2. Se corrigió la prueba para exigir que el salto no omita esa guarda; la lógica de la app no necesitó cambios. Commit de prueba `fff35d7230cb26df83f73d548e08a6eae70dc5ab`; CI del nuevo head pendiente.
+
+- Actualización del service worker (8 nov 2026): el primer CI de la prueba de migración desde caché v3.8.69 confirmó que la caché nueva se instala y la antigua se elimina, pero detectó una carrera: el test recargaba antes de que terminara `clients.claim()`. Se ajustó la activación para esperar tanto la limpieza como la reclamación de clientes y la prueba espera el evento `controllerchange` antes del siguiente lanzamiento. La verificación debe repetirse en CI sobre el nuevo head; IndexedDB y backup v3 permanecen intactos.

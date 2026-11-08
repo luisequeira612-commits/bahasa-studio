@@ -77,7 +77,22 @@
             <button class="btn" type="button" onclick="ConversationEngine.open()">Practicar conversaciones</button>
         </div></div>
         </details>
+        <div id="learningLevelSelector" class="learning-level-selector" role="group" aria-label="Seleccionar nivel">
+            <button type="button" class="learning-level-button" data-level="A1" onclick="App.selectLearningLevel('A1')">A1</button>
+            <button type="button" class="learning-level-button" data-level="A2" onclick="App.selectLearningLevel('A2')">A2</button>
+            <button type="button" class="learning-level-button" data-level="B1" onclick="App.selectLearningLevel('B1')">B1</button>
+            <button type="button" class="learning-level-button" data-level="B2" onclick="App.selectLearningLevel('B2')">B2</button>
+        </div>
+        <p id="unitPathNotice" class="unit-path-notice" role="status" aria-live="polite" hidden></p>
         <div id="courseContainer"></div>
+        <button id="jumpToCurrentUnitBtn" class="jump-current-unit-button" type="button" onclick="App.scrollToCurrentUnit(true)" hidden>↑ Ir a mi unidad</button>
+        <div id="unitSheetOverlay" class="unit-sheet-overlay" hidden onclick="App.handleUnitSheetBackdrop(event)">
+            <section id="unitBottomSheet" class="unit-bottom-sheet" role="dialog" aria-modal="true" aria-labelledby="unitSheetTitle">
+                <div class="unit-sheet-grabber" aria-hidden="true"></div>
+                <button class="unit-sheet-close" type="button" aria-label="Cerrar" onclick="App.closeUnitSheet()">×</button>
+                <div id="unitSheetContent"></div>
+            </section>
+        </div>
     </main>
 
     <!-- CONVERSACIONES PRÁCTICAS -->
@@ -235,6 +250,13 @@
             <div class="progress-bar" role="progressbar" aria-label="Progreso del nivel A1" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="courseProgressFill" class="progress-fill" style="width:0%;"></div></div>
             <div class="profile-xp-row"><span>Avance de A2 <span class="profile-muted">(beta)</span></span><strong id="a2CourseProgressText">0% · 0/40 unidades</strong></div>
             <div class="progress-bar" role="progressbar" aria-label="Progreso del nivel A2 en beta" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="a2CourseProgressFill" class="progress-fill" style="width:0%;"></div></div>
+        </section>
+        <section class="card emergency-unit-jump-card" id="emergencyUnitJump">
+            <h2>Saltar a una unidad</h2>
+            <p class="profile-muted">Acceso de emergencia para estudiar una unidad sin completar las anteriores. No la marca como aprobada.</p>
+            <label for="emergencyUnitSelect">Unidad</label>
+            <select id="emergencyUnitSelect" class="input-field" aria-label="Elegir unidad para saltar"></select>
+            <button class="btn btn-outline" type="button" onclick="App.confirmUnitJump()">Saltar a una unidad</button>
         </section>
         <section class="card" id="studyActivityDashboard">
             <h2>Actividad de estudio</h2>
@@ -5265,6 +5287,96 @@
             return total > 0 && correct / total >= 0.8;
         }
 
+        function hasUnitFinalAssessment(level, unit) {
+            return Boolean(level && ['A1', 'B1'].includes(level.id) && buildUnitAssessmentItems(unit).length);
+        }
+
+        function getUnitProgressState(level, unit, completedUnits = App.completedUnits, completedLessons = App.completedLessons) {
+            const lessons = buildUnitLessons(unit);
+            const approved = Array.isArray(completedUnits) && completedUnits.includes(unit.id);
+            const completedLessonCount = approved ? lessons.length : lessons.filter(lesson =>
+                Array.isArray(completedLessons) && completedLessons.includes(unitLessonProgressKey(unit.id, lesson.index))
+            ).length;
+            const allLessonsComplete = lessons.length > 0 && completedLessonCount === lessons.length;
+            const requiresAssessment = hasUnitFinalAssessment(level, unit);
+            return {
+                lessons,
+                completedLessonCount,
+                allLessonsComplete,
+                requiresAssessment,
+                completed: approved || (allLessonsComplete && !requiresAssessment),
+                approved
+            };
+        }
+
+        function getEmergencyUnitSkips() {
+            try {
+                const id = localStorage.getItem('bahasaStudioUnitSkipId');
+                return id ? [id] : [];
+            } catch (error) {
+                return [];
+            }
+        }
+
+        function isUnitUnlocked(level, unit, completedUnits = App.completedUnits, completedLessons = App.completedLessons, skipIds = getEmergencyUnitSkips()) {
+            if (!level) return false;
+            if (level.id === 'A2' && !A2_RELEASE_ENABLED) return false;
+            const progress = getUnitProgressState(level, unit, completedUnits, completedLessons);
+            if (progress.completed || (level.id !== 'B2' && Array.isArray(skipIds) && skipIds.includes(unit.id))) return true;
+            if (level.id === 'IA') return true;
+            const levels = CourseData.levels;
+            const levelIndex = levels.findIndex(entry => entry.id === level.id);
+            const unitIndex = level.units.findIndex(entry => entry.id === unit.id);
+            if (levelIndex < 0 || unitIndex < 0) return false;
+            if (level.id === 'B2') {
+                const previousLevel = levels[levelIndex - 1];
+                const previousUnit = previousLevel && previousLevel.units[previousLevel.units.length - 1];
+                return unitIndex === 0 && Boolean(previousUnit &&
+                    getUnitProgressState(previousLevel, previousUnit, completedUnits, completedLessons).completed);
+            }
+            if (unitIndex > 0) {
+                return getUnitProgressState(level, level.units[unitIndex - 1], completedUnits, completedLessons).completed;
+            }
+            if (levelIndex === 0) return true;
+            const previousLevel = levels[levelIndex - 1];
+            const previousUnit = previousLevel.units[previousLevel.units.length - 1];
+            return Boolean(previousUnit && getUnitProgressState(previousLevel, previousUnit, completedUnits, completedLessons).completed);
+        }
+
+        function getCurrentLearningLevelId(completedUnits = App.completedUnits, completedLessons = App.completedLessons, skipIds = getEmergencyUnitSkips()) {
+            const skippedUnit = Array.isArray(skipIds) && skipIds.length ? CourseData.levels.find(level => level.units.some(unit => unit.id === skipIds[0])) : null;
+            if (skippedUnit && skippedUnit.id !== 'B2' && (skippedUnit.id !== 'A2' || A2_RELEASE_ENABLED)) return skippedUnit.id;
+            let lastCompletedLevel = 'A1';
+            for (let index = 0; index < CourseData.levels.length; index++) {
+                const level = CourseData.levels[index];
+                if (level.id === 'A2' && !A2_RELEASE_ENABLED) continue;
+                if (level.id === 'B2') {
+                    const previousLevel = CourseData.levels[index - 1];
+                    const previousUnit = previousLevel && previousLevel.units[previousLevel.units.length - 1];
+                    return previousUnit && getUnitProgressState(previousLevel, previousUnit, completedUnits, completedLessons).completed
+                        ? 'B2' : lastCompletedLevel;
+                }
+                const current = level.units.find(unit =>
+                    isUnitUnlocked(level, unit, completedUnits, completedLessons) &&
+                    !getUnitProgressState(level, unit, completedUnits, completedLessons).completed
+                );
+                if (current) return level.id;
+                if (level.units.length && level.units.every(unit =>
+                    getUnitProgressState(level, unit, completedUnits, completedLessons).completed
+                )) lastCompletedLevel = level.id;
+            }
+            return lastCompletedLevel;
+        }
+
+        function syncLearningLevelAfterUnitCompletion(unitId) {
+            const level = CourseData.levels.find(entry => entry.units.some(unit => unit.id === unitId));
+            if (!level || !level.units.length || level.units[level.units.length - 1].id !== unitId) return false;
+            const nextLevelId = getCurrentLearningLevelId();
+            if (nextLevelId === level.id) return false;
+            App.selectedLearningLevel = nextLevelId;
+            return true;
+        }
+
 
         /* 3. AUDIO Y AUDIO FALLBACK */
         // Legacy vocabulary IDs retained in SRS/backup records after curriculum deduplication.
@@ -5564,13 +5676,11 @@
 
             startUnitAssessment(unitId) {
                 const level = getLevels().find(entry => entry.units.some(unit => unit.id === unitId));
-                if (level && (level.id === 'B2' ||
-                    (level.id === 'A2' && !A2_RELEASE_ENABLED))) return;
+                if (!level) return;
                 const unit = level.units.find(entry => entry.id === unitId);
-                if (!unit) return;
-                const lessons = buildUnitLessons(unit);
-                const completedCount = lessons.filter(lesson => App.completedLessons.includes(unitLessonProgressKey(unitId, lesson.index))).length;
-                if (!App.completedUnits.includes(unitId) && completedCount < lessons.length) return;
+                if (!unit || level.id === 'B2' || !isUnitUnlocked(level, unit)) return;
+                const progress = getUnitProgressState(level, unit);
+                if (!progress.requiresAssessment || (!progress.allLessonsComplete && !progress.approved)) return;
                 const questions = buildUnitAssessmentItems(unit);
                 if (!questions.length) return;
                 this.currentUnit = unit;
@@ -5596,27 +5706,31 @@
                 for (const level of getLevels()) {
                     const unit = level.units.find(entry => entry.id === id);
                     if (!unit) continue;
-                    if (level.id === 'B2' ||
-                        (level.id === 'A2' && !A2_RELEASE_ENABLED)) return;
+                    // B2 U1 opens after B1 is complete; an explicit local skip remains the escape hatch.
+                    if (!isUnitUnlocked(level, unit)) return;
                     const lessons = buildUnitLessons(unit);
                     const nextIndex = lessons.findIndex(lesson => !App.completedLessons.includes(unitLessonProgressKey(id, lesson.index)));
                     const firstIncomplete = nextIndex < 0 ? lessons.length : nextIndex;
-                    const lessonIndex = Number.isInteger(requestedLessonIndex) ? requestedLessonIndex : firstIncomplete;
-                    if (level.id === 'A1') {
-                        const a1 = CourseData.levels.find(entry => entry.id === 'A1');
-                        const nextUnit = a1.units.find(entry => !App.completedUnits.includes(entry.id));
-                        if (nextUnit && unit.id !== nextUnit.id && !App.completedUnits.includes(unit.id)) return;
-                    }
+                    const lessonIndex = Number.isInteger(requestedLessonIndex)
+                        ? requestedLessonIndex
+                        : (App.completedUnits.includes(id) ? 0 : firstIncomplete);
                     if (!App.completedUnits.includes(id) && lessonIndex > firstIncomplete) return;
-                    if (lessonIndex >= lessons.length) return this.startUnitAssessment(id);
+                    if (lessonIndex >= lessons.length) {
+                        const progress = getUnitProgressState(level, unit);
+                        if (progress.requiresAssessment && !progress.completed) return this.startUnitAssessment(id);
+                        return this.startUnit(unit, 0);
+                    }
                     return this.startUnit(unit, lessonIndex);
                 }
             },
             startUnit(unit, lessonIndex = 0) {
                 const level = getLevels().find(entry => entry.units.some(candidate => candidate.id === unit.id));
-                if (level && (level.id === 'B2' ||
-                    (level.id === 'A2' && !A2_RELEASE_ENABLED))) return;
+                // isUnitUnlocked preserves B2's development guard while allowing U1 after B1 completion.
+                if (level && !isUnitUnlocked(level, unit)) return;
                 const lessons = buildUnitLessons(unit);
+                const nextIndex = lessons.findIndex(item => !App.completedLessons.includes(unitLessonProgressKey(unit.id, item.index)));
+                const firstIncomplete = nextIndex < 0 ? lessons.length : nextIndex;
+                if (!App.completedUnits.includes(unit.id) && lessonIndex > firstIncomplete) return;
                 const lesson = lessons[lessonIndex];
                 if (!lesson) return;
                 this.currentUnit = unit;
@@ -6083,63 +6197,90 @@
                     const correct = this.assessmentCorrect;
                     const passed = isUnitAssessmentPassed(correct, total);
                     this.assessmentMode = false;
-                    if (passed) await App.markUnitCompleted(this.currentUnit.id);
+                    if (passed) {
+                        await App.markUnitCompleted(this.currentUnit.id);
+                        syncLearningLevelAfterUnitCompletion(this.currentUnit.id);
+                    }
                     const unitId = this.currentUnit.id;
                     document.getElementById('exerciseArea').classList.add('lesson-results-screen');
                     document.getElementById('exerciseArea').innerHTML = `
-                        <div class="lesson-results-card card">
-                            <h2>${passed ? '🎉 ¡Prueba superada!' : '📝 Sigue practicando'}</h2>
-                            <p>${passed ? 'Has desbloqueado la siguiente unidad.' : 'Necesitas al menos un 80 % para avanzar. Repasa las lecciones y vuelve a intentarlo.'}</p>
+                        <div class="lesson-results-card card ${passed ? 'unit-complete-celebration' : ''}">
+                            <h2>${passed ? '🎉 ¡Unidad completada!' : '📝 Sigue practicando'}</h2>
+                            <p>${passed ? 'Prueba superada. La siguiente unidad ya está desbloqueada.' : 'Necesitas al menos un 80 % para avanzar. Repasa las lecciones y vuelve a intentarlo.'}</p>
                             <p>Resultado: <strong>${correct} de ${total}</strong> respuestas correctas.</p>
                             ${this.sessionSummaryMarkup()}
-                            ${passed ? '<button class="btn" onclick="LessonEngine.exit()">Continuar al curso</button>' : `<button class="btn" onclick="LessonEngine.startUnitAssessment('${unitId}')">Repetir prueba</button><button class="btn btn-outline" onclick="LessonEngine.exit()">Volver a las lecciones</button>`}
+                            ${passed ? '<button class="btn" onclick="LessonEngine.exit()">Continuar al camino</button>' : `<button class="btn" onclick="LessonEngine.startUnitAssessment('${unitId}')">Repetir prueba</button><button class="btn btn-outline" onclick="LessonEngine.exit()">Volver a las lecciones</button>`}
                         </div>
                     `;
                     document.getElementById('lessonProgressFill').style.width = '100%';
                     return;
                 }
+
                 const unit = this.currentUnit;
-                const a1 = CourseData.levels.find(level => level.id === 'A1');
-                const isProgressiveA1Unit = Boolean(a1 && a1.units.some(entry => entry.id === unit.id));
-                if (!isProgressiveA1Unit) {
+                const level = getLevels().find(entry => entry.units.some(candidate => candidate.id === unit.id));
+                if (!level || level.id === 'IA') {
                     await App.markUnitCompleted(unit.id);
-                    for (const word of unit.vocab) {
+                    for (const word of unit.vocab || []) {
                         if (!(await DB.get('srs', word.id))) await SRSEngine.recordAttempt(word.id, 4);
                     }
                     document.getElementById('exerciseArea').classList.add('lesson-results-screen');
                     document.getElementById('exerciseArea').innerHTML = `
-                        <div class="lesson-results-card card">
+                        <div class="lesson-results-card card unit-complete-celebration">
                             <h2>🎉 Unidad completada</h2>
                             <p>Progreso y repetición espaciada guardados.</p>
                             ${this.sessionSummaryMarkup()}
-                            <button class="btn" onclick="LessonEngine.exit()">Volver al curso</button>
+                            <button class="btn" onclick="LessonEngine.exit()">Volver al camino</button>
                         </div>
                     `;
                     document.getElementById('lessonProgressFill').style.width = '100%';
                     return;
                 }
+
                 const lesson = this.currentLesson;
+                if (!lesson) return;
                 const lessonKey = unitLessonProgressKey(unit.id, lesson.index);
                 if (!App.completedLessons.includes(lessonKey)) {
                     App.completedLessons.push(lessonKey);
                     await DB.set('settings', 'completedLessons', App.completedLessons);
                     App.recordStudyActivity('lesson', 0).catch(err => console.error('No se pudo guardar la actividad diaria:', err));
                 }
-                const lessons = buildUnitLessons(unit);
-                const isLastLesson = lesson.index === lessons.length - 1;
+
+                const progress = getUnitProgressState(level, unit);
+                const unitCompletedNow = progress.allLessonsComplete && !progress.requiresAssessment;
+                if (unitCompletedNow) {
+                    await App.markUnitCompleted(unit.id);
+                    syncLearningLevelAfterUnitCompletion(unit.id);
+                    for (const word of unit.vocab || []) {
+                        if (!(await DB.get('srs', word.id))) await SRSEngine.recordAttempt(word.id, 4);
+                    }
+                }
+
+                const nextLesson = progress.lessons.find(item =>
+                    !App.completedLessons.includes(unitLessonProgressKey(unit.id, item.index))
+                );
+                const lessonCount = progress.completedLessonCount;
+                let nextAction = '';
+                if (unitCompletedNow) {
+                    nextAction = '<p>Has terminado todas las lecciones. La siguiente unidad ya está desbloqueada.</p>';
+                } else if (progress.allLessonsComplete && progress.requiresAssessment) {
+                    nextAction = '<p>Has terminado todas las lecciones. Supera la evaluación con al menos un 80 % para desbloquear la siguiente unidad.</p><button class="btn" onclick="LessonEngine.startUnitAssessment(\'' + App.escapeHtml(unit.id) + '\')">Hacer prueba final de unidad</button>';
+                } else {
+                    nextAction = '<button class="btn" onclick="LessonEngine.startUnitById(\'' + App.escapeHtml(unit.id) + '\', ' + nextLesson.index + ')">Siguiente lección</button>';
+                }
+
                 document.getElementById('exerciseArea').classList.add('lesson-results-screen');
                 document.getElementById('exerciseArea').innerHTML = `
-                    <div class="lesson-results-card card">
-                        <h2>🎉 ¡Lección completada!</h2>
-                        <p>${App.completedLessons.filter(key => key.startsWith(unit.id + '::')).length} de ${lessons.length} lecciones terminadas en esta unidad.</p>
+                    <div class="lesson-results-card card ${unitCompletedNow ? 'unit-complete-celebration' : ''}">
+                        <h2>${unitCompletedNow ? '🎉 ¡Unidad completada!' : '🎉 ¡Lección completada!'}</h2>
+                        <p>${lessonCount} de ${progress.lessons.length} lecciones terminadas en esta unidad.</p>
                         ${this.sessionSummaryMarkup()}
-                        ${isLastLesson ? `<p>Has terminado todas las lecciones. Ahora puedes hacer la prueba final para desbloquear la siguiente unidad.</p><button class="btn" onclick="LessonEngine.startUnitAssessment('${unit.id}')">Hacer prueba final de unidad</button>` : `<button class="btn" onclick="LessonEngine.startUnitById('${unit.id}', ${lesson.index + 1})">Siguiente lección</button>`}
-                        <button class="btn btn-outline" onclick="LessonEngine.exit()">Volver al curso</button>
+                        ${nextAction}
+                        <button class="btn btn-outline" onclick="LessonEngine.exit()">Volver al camino</button>
                     </div>
                 `;
                 document.getElementById('lessonProgressFill').style.width = '100%';
                 App.renderCourseRoute();
-            }
+            },
         };
 
         /* 5b. LECCIONES GENERADAS CON IA */
@@ -6433,6 +6574,9 @@ Requisitos:
         /* 6. CONTROLADOR PRINCIPAL Y TUTOR SECUNDARIO */
         const App = {
             xp: 0,
+            selectedLearningLevel: null,
+            unitSheetTouchStart: 0,
+            unitPathNoticeTimer: null,
             completedUnits: [],
             completedLessons: [],
             studyActivity: null,
@@ -6470,6 +6614,20 @@ Requisitos:
                 this.renderCourseRoute();
                 this.renderDict();
                 this.scrollToCurrentUnit(false);
+                const unitSheet = document.getElementById('unitBottomSheet');
+                if (unitSheet) {
+                    unitSheet.addEventListener('touchstart', event => {
+                        this.unitSheetTouchStart = event.touches[0].clientY;
+                    }, { passive: true });
+                    unitSheet.addEventListener('touchend', event => {
+                        if (event.changedTouches[0].clientY - this.unitSheetTouchStart > 80) this.closeUnitSheet();
+                    }, { passive: true });
+                }
+                document.addEventListener('keydown', event => {
+                    if (event.key === 'Escape') this.closeUnitSheet();
+                });
+                window.addEventListener('scroll', () => this.updateJumpToCurrentVisibility(), { passive: true });
+                window.addEventListener('resize', () => this.updateJumpToCurrentVisibility());
 
                 window.addEventListener('online', () => this.checkNetwork());
                 window.addEventListener('offline', () => this.checkNetwork());
@@ -6513,6 +6671,7 @@ Requisitos:
                 });
                 if (viewId === 'srs' || viewId === 'profile') this.updateSrsView();
                 if (viewId === 'route') {
+                    this.renderCourseRoute();
                     this.scrollToCurrentUnit(true);
                     this.updateBackupReminder();
                 }
@@ -6562,9 +6721,13 @@ Requisitos:
                 help.hidden = expanded;
             },
             scrollToCurrentUnit(smooth = true) {
-                const current = document.querySelector('#courseContainer [data-path-state="current"]');
-                if (!current || !document.getElementById('view-route').classList.contains('active')) return;
+                const current = document.querySelector('#courseContainer .learning-unit-node[data-path-state="current"]');
+                if (!current || !document.getElementById('view-route').classList.contains('active')) {
+                    this.updateJumpToCurrentVisibility();
+                    return;
+                }
                 current.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', block: 'center' });
+                this.updateJumpToCurrentVisibility();
             },
             addXp(amount) {
                 this.xp += amount;
@@ -6742,7 +6905,19 @@ Requisitos:
                 if (!this.completedUnits.includes(unitId)) {
                     this.completedUnits.push(unitId);
                     await DB.set('settings', 'completedUnits', this.completedUnits);
+                    try {
+                        const completedLevel = this.findCourseUnit(unitId);
+                        if ((!completedLevel || completedLevel.level.id !== 'B2') && localStorage.getItem('bahasaStudioUnitSkipId') === unitId) {
+                            localStorage.removeItem('bahasaStudioUnitSkipId');
+                        }
+                    } catch (error) {}
                     this.addXp(50);
+                    const selectedLevel = CourseData.levels.find(level => level.id === this.selectedLearningLevel);
+                    if (selectedLevel && selectedLevel.id !== 'B2' && !selectedLevel.units.some(unit =>
+                        isUnitUnlocked(selectedLevel, unit) && !getUnitProgressState(selectedLevel, unit).completed
+                    )) {
+                        this.selectedLearningLevel = getCurrentLearningLevelId();
+                    }
                     this.renderCourseRoute();
                 }
             },
@@ -6772,84 +6947,276 @@ Requisitos:
 
                 this.updateStudyDashboard();
             },
+            selectLearningLevel(levelId) {
+                if (!CourseData.levels.some(level => level.id === levelId)) return;
+                if (levelId === 'A2' && !A2_RELEASE_ENABLED) return;
+                this.selectedLearningLevel = levelId;
+                this.renderCourseRoute();
+                this.scrollToCurrentUnit(false);
+            },
+            showUnitPathNotice(message) {
+                const notice = document.getElementById('unitPathNotice');
+                if (!notice) return;
+                notice.textContent = message;
+                notice.hidden = false;
+                window.clearTimeout(this.unitPathNoticeTimer);
+                this.unitPathNoticeTimer = window.setTimeout(() => { notice.hidden = true; }, 3200);
+            },
+            findCourseUnit(unitId) {
+                for (const level of getLevels()) {
+                    const unit = level.units.find(entry => entry.id === unitId);
+                    if (unit) return { level, unit };
+                }
+                return null;
+            },
+            getUnitUnlockMessage(level, unit) {
+                if (level.id === 'B2') return 'B2 continúa en desarrollo.';
+                const levelIndex = CourseData.levels.findIndex(entry => entry.id === level.id);
+                const unitIndex = level.units.findIndex(entry => entry.id === unit.id);
+                const previousUnit = unitIndex > 0 ? level.units[unitIndex - 1] :
+                    levelIndex > 0 ? CourseData.levels[levelIndex - 1].units.slice(-1)[0] : null;
+                const previousLevel = unitIndex > 0 ? level : levelIndex > 0 ? CourseData.levels[levelIndex - 1] : null;
+                const previousNumber = previousLevel ? previousLevel.units.findIndex(entry => entry.id === previousUnit.id) + 1 : 1;
+                return previousUnit ? 'Completa la Unidad ' + previousNumber + ' para desbloquear esta' : 'Esta unidad todavía está bloqueada.';
+            },
+            openUnitSheet(unitId) {
+                const found = this.findCourseUnit(unitId);
+                if (!found) return;
+                const level = found.level;
+                const unit = found.unit;
+                if (!isUnitUnlocked(level, unit)) {
+                    this.showUnitPathNotice(this.getUnitUnlockMessage(level, unit));
+                    return;
+                }
+                const progress = getUnitProgressState(level, unit);
+                const nextLesson = progress.lessons.find(lesson =>
+                    !this.completedLessons.includes(unitLessonProgressKey(unit.id, lesson.index))
+                );
+                const lessonIndex = nextLesson ? nextLesson.index : 0;
+                const actionLabel = progress.allLessonsComplete && progress.requiresAssessment && !progress.completed
+                    ? 'Hacer evaluación final'
+                    : progress.completed ? 'Repasar lección 1' : 'Empezar lección ' + (lessonIndex + 1);
+                const content = document.getElementById('unitSheetContent');
+                content.innerHTML = '<p class="eyebrow">' + App.escapeHtml(level.title) + '</p>' +
+                    '<h2 id="unitSheetTitle">' + App.escapeHtml(unit.title) + '</h2>' +
+                    '<p class="unit-sheet-description">' + App.escapeHtml(unit.desc || '') + '</p>' +
+                    '<div class="unit-sheet-progress"><span>Lecciones</span><strong>' + progress.completedLessonCount + '/' + progress.lessons.length + '</strong></div>' +
+                    '<div class="progress-bar"><div class="progress-fill" style="width:' + (progress.lessons.length ? progress.completedLessonCount / progress.lessons.length * 100 : 0) + '%"></div></div>' +
+                    '<button class="btn unit-sheet-primary" type="button" onclick="App.startUnitFromSheet(\'' + App.escapeHtml(unit.id) + '\')">' + actionLabel + '</button>' +
+                    '<button class="btn btn-outline unit-sheet-grammar-toggle" type="button" onclick="App.toggleUnitGrammar()">Ver gramática</button>' +
+                    '<div id="unitSheetGrammar" class="unit-sheet-grammar" hidden>' + App.escapeHtml(unit.grammar || 'No hay notas gramaticales para esta unidad.') + '</div>';
+                const overlay = document.getElementById('unitSheetOverlay');
+                overlay.hidden = false;
+                document.body.classList.add('unit-sheet-open');
+                const close = overlay.querySelector('.unit-sheet-close');
+                if (close) close.focus();
+            },
+            startUnitFromSheet(unitId) {
+                const found = this.findCourseUnit(unitId);
+                if (!found || !isUnitUnlocked(found.level, found.unit)) return;
+                const progress = getUnitProgressState(found.level, found.unit);
+                this.closeUnitSheet();
+                if (progress.allLessonsComplete && progress.requiresAssessment && !progress.completed) {
+                    LessonEngine.startUnitAssessment(unitId);
+                } else {
+                    const nextLesson = progress.lessons.find(lesson =>
+                        !this.completedLessons.includes(unitLessonProgressKey(unitId, lesson.index))
+                    );
+                    LessonEngine.startUnitById(unitId, nextLesson ? nextLesson.index : 0);
+                }
+            },
+            toggleUnitGrammar() {
+                const grammar = document.getElementById('unitSheetGrammar');
+                if (!grammar) return;
+                grammar.hidden = !grammar.hidden;
+            },
+            closeUnitSheet() {
+                const overlay = document.getElementById('unitSheetOverlay');
+                if (overlay) overlay.hidden = true;
+                document.body.classList.remove('unit-sheet-open');
+            },
+            handleUnitSheetBackdrop(event) {
+                if (event.target && event.target.id === 'unitSheetOverlay') this.closeUnitSheet();
+            },
+            populateEmergencyUnitSelect() {
+                const select = document.getElementById('emergencyUnitSelect');
+                if (!select) return;
+                const previous = select.value;
+                select.replaceChildren();
+                const placeholder = document.createElement('option');
+                placeholder.value = '';
+                placeholder.textContent = 'Selecciona una unidad';
+                select.appendChild(placeholder);
+                CourseData.levels.forEach(level => {
+                    const availableUnits = level.id === 'B2' ? level.units.slice(0, 1) : level.units;
+                    availableUnits.forEach((unit, index) => {
+                    const option = document.createElement('option');
+                    option.value = unit.id;
+                    option.textContent = level.id + ' · Unidad ' + (index + 1) + ' — ' + unit.title;
+                    if ((level.id === 'A2' && !A2_RELEASE_ENABLED) || level.id === 'B2') option.disabled = true;
+                    if (level.id === 'B2') option.textContent += ' — En desarrollo';
+                    select.appendChild(option);
+                    });
+                });
+                if (previous) select.value = previous;
+            },
+            confirmUnitJump() {
+                const select = document.getElementById('emergencyUnitSelect');
+                const found = select && this.findCourseUnit(select.value);
+                if (!found) {
+                    this.showUnitPathNotice('Selecciona una unidad primero.');
+                    return;
+                }
+                if (found.level.id === 'B2') {
+                    this.showUnitPathNotice('B2 sigue en desarrollo y no se puede saltar a sus unidades.');
+                    return;
+                }
+                if (found.level.id === 'A2' && !A2_RELEASE_ENABLED) {
+                    this.showUnitPathNotice('Este nivel todavía no está abierto.');
+                    return;
+                }
+                if (!window.confirm('¿Saltar a ' + found.unit.title + '? Esto solo habilita el acceso local; no marca la unidad como completada ni aprobada.')) return;
+                try {
+                    localStorage.setItem('bahasaStudioUnitSkipId', found.unit.id);
+                } catch (error) {
+                    this.showUnitPathNotice('No se pudo guardar el salto en este dispositivo.');
+                    return;
+                }
+                this.selectedLearningLevel = found.level.id;
+                this.switchView('route');
+                this.renderCourseRoute();
+                this.openUnitSheet(found.unit.id);
+            },
+            updateJumpToCurrentVisibility() {
+                const button = document.getElementById('jumpToCurrentUnitBtn');
+                const current = document.querySelector('#courseContainer .learning-unit-node[data-path-state="current"]');
+                const route = document.getElementById('view-route');
+                if (!button || !route || !route.classList.contains('active') || !current) {
+                    if (button) button.hidden = true;
+                    return;
+                }
+                const rect = current.getBoundingClientRect();
+                button.hidden = rect.top >= 0 && rect.bottom <= window.innerHeight;
+            },
             renderCourseRoute() {
                 const container = document.getElementById('courseContainer');
-                container.innerHTML = '';
-                const a1 = CourseData.levels.find(level => level.id === 'A1');
-                const nextA1Unit = a1 ? a1.units.find(unit => !this.completedUnits.includes(unit.id)) : null;
-
-                getLevels().forEach(lvl => {
-                    const levelEl = document.createElement('div');
-                    const isAdvanced = lvl.id === 'B2';
-                    if (isAdvanced) {
-                        if (!isB1Complete(this.completedUnits)) return;
-                        levelEl.innerHTML = `<details style="margin:16px 0; padding:12px; border:1px solid var(--border); border-radius:12px;"><summary style="cursor:pointer; font-weight:700;">${lvl.title} — En desarrollo</summary><p style="margin-top:10px; color:var(--text-muted); font-size:0.9rem;">Este nivel todavía no está disponible para estudiar.</p></details>`;
-                        container.appendChild(levelEl);
-                        return;
-                    }
-                    if (lvl.id === 'A2') {
-                        if (!A2_RELEASE_ENABLED) return;
-                        levelEl.innerHTML = `<h2 style="margin:20px 0 8px 0;">${App.escapeHtml(lvl.title)} <span class="badge" style="vertical-align:middle;">Beta · en revisión</span></h2><p class="text-muted" style="margin:0 0 12px;">Disponible en beta sin requisito de completar A1. El contenido A2 está en revisión interna; puede contener errores y no ha sido validado por hablantes nativos. Tus comentarios ayudan a mejorarlo.</p>`;
-                    } else {
-                        levelEl.innerHTML = `<h2 style="margin:16px 0 8px 0;">${App.escapeHtml(lvl.title)}</h2>`;
-                    }
-
-                    lvl.units.forEach(unit => {
-                        const isDone = this.completedUnits.includes(unit.id);
-                        const isNext = lvl.id === 'A1' && nextA1Unit && unit.id === nextA1Unit.id;
-                        const lessons = buildUnitLessons(unit);
-                        const completedCount = isDone ? lessons.length : lessons.filter(lesson => this.completedLessons.includes(unitLessonProgressKey(unit.id, lesson.index))).length;
-                        const nextLesson = lessons.findIndex(lesson => !this.completedLessons.includes(unitLessonProgressKey(unit.id, lesson.index)));
-                        const unitAccessible = lvl.id === 'A1'
-                            ? isDone || isNext
-                            : lvl.id === 'A2' ? A2_RELEASE_ENABLED : true;
-                        const card = document.createElement('details');
-                        card.className = `unit-card ${isDone ? 'completed' : ''} ${lvl.id === 'A1' ? 'path-node ' + (isDone ? 'path-node-completed' : isNext ? 'path-node-current' : 'path-node-locked') : ''}`;
-                        if (lvl.id === 'A1') card.dataset.pathState = isDone ? 'completed' : isNext ? 'current' : 'locked';
-                        if (isNext) card.open = true;
-                        const currentLessonIndex = nextLesson < 0 ? lessons.length : nextLesson;
-                        const lessonButtons = lessons.map(lesson => {
-                            const lessonDone = isDone || this.completedLessons.includes(unitLessonProgressKey(unit.id, lesson.index));
-                            const isPrimaryLesson = isNext && lesson.index === currentLessonIndex && currentLessonIndex < lessons.length;
-                            const lessonUnlocked = unitAccessible && (lessonDone || lesson.index === currentLessonIndex);
-                            if (isPrimaryLesson) return '';
-                            return `<button class="btn btn-outline btn-sm" style="flex:1; min-width:135px;" data-unit-id="${App.escapeHtml(unit.id)}" data-lesson-index="${lesson.index}" ${lessonUnlocked ? '' : 'disabled'} onclick="LessonEngine.startUnitById(this.dataset.unitId, Number(this.dataset.lessonIndex))">${lessonDone ? '✓ ' : ''}Lección ${lesson.index + 1}${lessonDone ? ' · Repasar' : ''}</button>`;
-                        }).join('');
-                        const primaryLessonButton = isNext && currentLessonIndex < lessons.length
-                            ? `<button class="btn lesson-start-btn" data-unit-id="${App.escapeHtml(unit.id)}" data-lesson-index="${currentLessonIndex}" onclick="LessonEngine.startUnitById(this.dataset.unitId, Number(this.dataset.lessonIndex))">Empezar lección ${currentLessonIndex + 1}</button>`
-                            : '';
-                        const examButton = ['A1', 'B1'].includes(lvl.id) && !isDone && unitAccessible && completedCount === lessons.length
-                            ? `<button class="btn" data-unit-id="${App.escapeHtml(unit.id)}" onclick="LessonEngine.startUnitAssessment(this.dataset.unitId)">${lvl.id === 'A1' ? 'Prueba final · Desbloquear siguiente unidad' : 'Prueba de unidad'}</button>`
-                            : '';
-                        const statusLabel = isDone ? (lvl.id === 'A1' ? 'Aprobada' : 'Completada')
-                            : lvl.id === 'A1' ? (isNext ? 'En curso' : 'Bloqueada') : 'Disponible';
-                        card.innerHTML = `
-                            <summary>
-                                <span class="unit-title">${App.escapeHtml(unit.title)} ${isDone ? '<span class="unit-complete-check" aria-label="Completada">✓</span>' : ''}${unit.custom ? ' ✨' : ''}</span>
-                                <span class="badge ${isDone ? 'badge-completed' : ''}">${statusLabel}</span>
-                            </summary>
-                            <div class="unit-body">
-                                <p style="font-size:0.85rem; color:var(--text-muted);">${App.escapeHtml(unit.desc)}</p>
-                                <p style="font-size:0.85rem; color:var(--text-muted); margin:8px 0;">Lecciones: ${completedCount}/${lessons.length}</p>
-                                <div class="progress-bar" style="margin-bottom:10px;"><div class="progress-fill" style="width:${lessons.length ? completedCount / lessons.length * 100 : 0}%;"></div></div>
-                                ${primaryLessonButton}
-                                <details class="unit-grammar">
-                                    <summary>Ver gramática</summary>
-                                    <div class="unit-grammar-content">💡 <strong>Gramática:</strong> ${App.escapeHtml(unit.grammar)}</div>
-                                </details>
-                                <div class="unit-secondary-actions">
-                                    <button class="btn btn-outline btn-sm" data-word="${App.escapeHtml(unit.vocab[0]?.idn || '')}" onclick="AudioEngine.speak(this.dataset.word)">🔊 Pronunciación</button>
-                                    ${unit.custom ? `<button class="btn btn-outline btn-sm" data-unit-id="${App.escapeHtml(unit.id)}" onclick="AIGen.remove(this.dataset.unitId)">Eliminar</button>` : ''}
-                                </div>
-                                <div class="unit-lesson-actions">${lessonButtons}</div>
-                                ${examButton}
-                                ${isDone ? `<p style="font-size:0.85rem;color:var(--success);margin-top:8px;">${lvl.id === 'A1' ? 'Prueba final superada · siguiente unidad desbloqueada' : 'Unidad completada'}</p>` : ''}
-                            </div>
-                        `;
-                        levelEl.appendChild(card);
-                    });
-                    container.appendChild(levelEl);
+                const selector = document.getElementById('learningLevelSelector');
+                if (!this.selectedLearningLevel) this.selectedLearningLevel = getCurrentLearningLevelId();
+                if (selector) selector.querySelectorAll('[data-level]').forEach(button => {
+                    const active = button.dataset.level === this.selectedLearningLevel;
+                    button.classList.toggle('active', active);
+                    button.setAttribute('aria-pressed', String(active));
+                    const level = CourseData.levels.find(entry => entry.id === button.dataset.level);
+                    button.disabled = !level || (level.id === 'A2' && !A2_RELEASE_ENABLED);
+                    button.classList.toggle('level-in-development', level && level.id === 'B2');
                 });
+                if (!container) return;
+                container.replaceChildren();
+                const level = CourseData.levels.find(entry => entry.id === this.selectedLearningLevel);
+                if (!level || !level.units.length) {
+                    container.innerHTML = '<section class="learning-empty-state"><strong>Próximamente</strong><p>Este nivel todavía no tiene unidades disponibles.</p></section>';
+                    this.populateEmergencyUnitSelect();
+                    return;
+                }
+                if (level.id === 'A2' && !A2_RELEASE_ENABLED) {
+                    container.innerHTML = '<section class="learning-empty-state"><strong>Próximamente</strong><p>Este nivel todavía no está abierto.</p></section>';
+                    this.populateEmergencyUnitSelect();
+                    return;
+                }
+
+                const heading = document.createElement('div');
+                heading.className = 'learning-level-heading';
+                heading.innerHTML = '<div><p class="eyebrow">TU CAMINO</p><h2>' + App.escapeHtml(level.title) + '</h2></div>' +
+                    (level.id === 'A2' ? '<span class="badge">Beta · en revisión</span>' : '') +
+                    (level.id === 'B2' ? '<span class="badge">En desarrollo</span>' : '');
+                container.appendChild(heading);
+                if (level.id === 'A2') {
+                    const betaNote = document.createElement('p');
+                    betaNote.className = 'learning-level-note';
+                    betaNote.textContent = 'Disponible en beta sin requisito de completar A1. El contenido A2 está en revisión interna; puede contener errores y no ha sido validado por hablantes nativos. Tus comentarios ayudan a mejorarlo.';
+                    container.appendChild(betaNote);
+                }
+
+                const positions = [50, 78, 50, 22, 50, 78, 50, 22];
+                const visibleUnits = level.id === 'B2' ? level.units.slice(0, 1) : level.units;
+                const emergencySkipId = getEmergencyUnitSkips()[0];
+                const currentUnit = visibleUnits.find(unit => unit.id === emergencySkipId && !getUnitProgressState(level, unit).completed) ||
+                    visibleUnits.find(unit => isUnitUnlocked(level, unit) && !getUnitProgressState(level, unit).completed);
+                for (let offset = 0; offset < visibleUnits.length; offset += 8) {
+                    const units = visibleUnits.slice(offset, offset + 8);
+                    const section = document.createElement('section');
+                    section.className = 'unit-path-section';
+                    const completed = units.filter(unit => getUnitProgressState(level, unit).completed).length;
+                    const firstNumber = offset + 1;
+                    const lastNumber = offset + units.length;
+                    section.innerHTML = '<div class="unit-path-section-banner"><div><h3>Unidades ' + firstNumber + '–' + lastNumber + '</h3><p>Avanza unidad por unidad</p></div><strong>' + completed + '/' + units.length + '</strong></div>';
+                    const stage = document.createElement('div');
+                    stage.className = 'unit-path-stage';
+                    const stageHeight = units.length * 82 + 28;
+                    stage.style.height = stageHeight + 'px';
+                    const pathPoints = units.map((unit, index) => positions[index] + ',' + (38 + index * 82)).join(' ');
+                    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                    svg.setAttribute('class', 'unit-path-line');
+                    svg.setAttribute('viewBox', '0 0 100 ' + stageHeight);
+                    svg.setAttribute('preserveAspectRatio', 'none');
+                    const polyline = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
+                    polyline.setAttribute('points', pathPoints);
+                    polyline.setAttribute('fill', 'none');
+                    polyline.setAttribute('stroke', 'currentColor');
+                    polyline.setAttribute('stroke-width', '2.4');
+                    polyline.setAttribute('stroke-linecap', 'round');
+                    polyline.setAttribute('stroke-linejoin', 'round');
+                    svg.appendChild(polyline);
+                    stage.appendChild(svg);
+
+                    units.forEach((unit, index) => {
+                        const progress = getUnitProgressState(level, unit);
+                        const unlocked = isUnitUnlocked(level, unit);
+                        const isCurrent = Boolean(currentUnit && unit.id === currentUnit.id);
+                        const state = progress.completed ? 'completed' : isCurrent ? 'current' : unlocked ? 'available' : 'locked';
+                        const node = document.createElement('button');
+                        node.type = 'button';
+                        node.className = 'learning-unit-node node-' + state;
+                        node.dataset.pathState = state;
+                        node.dataset.unitId = unit.id;
+                        node.style.left = positions[index] + '%';
+                        node.style.top = (38 + index * 82) + 'px';
+                        node.textContent = progress.completed ? '✓' : state === 'locked' ? '🔒' : String(offset + index + 1);
+                        node.setAttribute('aria-label', unit.title + (progress.completed ? ', completada' : isCurrent ? ', unidad actual' : unlocked ? ', disponible por salto de emergencia' : ', bloqueada'));
+                        node.addEventListener('click', () => this.openUnitSheet(unit.id));
+                        stage.appendChild(node);
+                    });
+                    section.appendChild(stage);
+                    container.appendChild(section);
+                }
+
+                if (level.id === 'B2') {
+                    const placeholder = document.createElement('div');
+                    placeholder.className = 'unit-path-coming-soon';
+                    placeholder.innerHTML = '<span class="unit-path-coming-soon-circle" aria-hidden="true">···</span><strong>Próximamente</strong><p>Las demás unidades B2 todavía no están implementadas.</p>';
+                    container.appendChild(placeholder);
+                }
+
+                if (level.id === 'A1' && CustomLessons.units.length) {
+                    const customSection = document.createElement('section');
+                    customSection.className = 'unit-path-section custom-lessons-path';
+                    customSection.innerHTML = '<div class="unit-path-section-banner"><div><h3>Mis lecciones IA</h3><p>Práctica personalizada, separada del currículo oficial</p></div><strong>' + CustomLessons.units.filter(unit => getUnitProgressState({ id: 'IA' }, unit).completed).length + '/' + CustomLessons.units.length + '</strong></div>';
+                    const customList = document.createElement('div');
+                    customList.className = 'custom-unit-list';
+                    CustomLessons.units.forEach((unit, index) => {
+                        const progress = getUnitProgressState({ id: 'IA' }, unit);
+                        const node = document.createElement('button');
+                        node.type = 'button';
+                        node.className = 'custom-unit-open-button';
+                        node.textContent = (progress.completed ? '✓ ' : '') + unit.title;
+                        node.addEventListener('click', () => this.openUnitSheet(unit.id));
+                        customList.appendChild(node);
+                    });
+                    customSection.appendChild(customList);
+                    container.appendChild(customSection);
+                }
+                this.populateEmergencyUnitSelect();
+                this.updateJumpToCurrentVisibility();
             },
             async updateSrsView() {
                 const due = await SRSEngine.getDueItems();

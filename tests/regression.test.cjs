@@ -42,7 +42,7 @@ test('PWA version is consistent across HTML, manifest and cache', () => {
   assert.equal(manifest.icons[0].src, './icon.svg');
   assert.equal(manifest.background_color, '#0f172a');
   assert.match(fs.readFileSync(path.join(root, 'icon.svg'), 'utf8'), /<svg[^>]+viewBox="0 0 512 512"/);
-  assert.match(serviceWorker, /bahasa-studio-v3.8.69/);
+  assert.match(serviceWorker, /bahasa-studio-v3.8.70/);
   for (const asset of ['./', './index.html', './manifest.json', './assessment.html', './assessment-engine.js', './conversation-engine.js', './study-history.js', './study-activity.js', './adaptive-learning.js', './curriculum-a1.js', './curriculum-a2.js', './styles.css', './icon.svg', './audio-engine.js', './pronunciation-engine.js', './writing-practice.js']) {
     assert.ok(serviceWorker.includes("'" + asset + "'"), asset + ' must be precached for offline use');
   }
@@ -59,37 +59,40 @@ test('word meaning popup renders only the example and its translation', () => {
   assert.doesNotMatch(expression, /vocabId|audioText|type:\s*['"]mc/);
 });
 
-test('A2 is available in beta independently of A1 completion', () => {
+test('A2 remains a released beta level, but its first unit waits for A1 completion', () => {
   const start = html.indexOf('const CourseData =');
   const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
-  assert.ok(start >= 0 && end > start, 'CourseData block must exist');
-  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
-  const helper = html.match(/function isA1Complete\(completedUnits\) \{[\s\S]*?\n        \}/);
-  assert.ok(helper, 'the A1 completion rule must remain centralized for advanced levels');
-  const isA1Complete = vm.runInNewContext(helper[0] + '\nisA1Complete', { CourseData: course });
-  const a1 = course.levels.find(level => level.id === 'A1');
-  const allIds = a1.units.map(unit => unit.id);
-  assert.equal(isA1Complete([]), false);
-  assert.equal(isA1Complete(allIds.slice(0, -1)), false);
-  assert.equal(isA1Complete(allIds), true);
+  assert.ok(start >= 0 && end > start, 'CourseData and progression helpers must exist');
+  const source = html.slice(start, end) +
+    '\nconst A2_RELEASE_ENABLED = true; ({ CourseData, getUnitProgressState, isUnitUnlocked })';
+  const api = vm.runInNewContext(source);
+  const a1 = api.CourseData.levels.find(level => level.id === 'A1');
+  const a2 = api.CourseData.levels.find(level => level.id === 'A2');
+  const b1 = api.CourseData.levels.find(level => level.id === 'B1');
+  const b2 = api.CourseData.levels.find(level => level.id === 'B2');
+  const allA1 = a1.units.map(unit => unit.id);
+  const allA1A2 = allA1.concat(a2.units.map(unit => unit.id));
+  assert.equal(api.isUnitUnlocked(a2, a2.units[0], [], [], []), false,
+    'A2 U1 must wait for A1 last unit completion');
+  assert.equal(api.isUnitUnlocked(a2, a2.units[0], allA1, [], []), true,
+    'A2 U1 unlocks after A1 is complete');
+  assert.equal(api.isUnitUnlocked(b1, b1.units[0], allA1, [], []), false,
+    'B1 U1 must wait for A2 last unit completion');
+  assert.equal(api.isUnitUnlocked(b1, b1.units[0], allA1A2, [], []), true,
+    'B1 U1 unlocks after A2 is complete');
+  assert.equal(api.isUnitUnlocked(b2, b2.units[0], allA1A2.concat(b1.units.map(unit => unit.id)), [], []), true,
+    'implemented B2 U1 unlocks after B1 completion');
   assert.match(html, /const A2_RELEASE_ENABLED = true;/);
-  assert.match(html, /level\.id !== 'A2' \|\| A2_RELEASE_ENABLED/,
-    'A2 learning and review pools must include beta content without A1 completion');
+  assert.match(html, /level\.id !== 'A2' \|\| A2_RELEASE_ENABLED/);
+  assert.match(html, /Disponible en beta sin requisito de completar A1/);
   const lessonEntry = html.slice(html.indexOf('startUnitById(id, requestedLessonIndex)'), html.indexOf('startUnit(unit, lessonIndex = 0)'));
   const assessmentEntry = html.slice(html.indexOf('startUnitAssessment(unitId)'), html.indexOf('startUnitById(id, requestedLessonIndex)'));
-  assert.match(lessonEntry, /level\.id === 'A2' && !A2_RELEASE_ENABLED/,
-    'direct lesson entry must honor only the A2 release switch');
-  assert.match(assessmentEntry, /level\.id === 'A2' && !A2_RELEASE_ENABLED/,
-    'direct assessment entry must honor only the A2 release switch');
-  assert.doesNotMatch(lessonEntry + assessmentEntry, /A2[^\n]*isA1Complete|isA1Complete[^\n]*A2/,
-    'A1 completion must not gate A2 lesson or assessment access');
-  assert.match(html, /Beta · en revisión/);
-  assert.match(html, /no ha sido validado por hablantes nativos/);
-  assert.match(html, /const unitAccessible = lvl\.id === 'A1'[\s\S]*?lvl\.id === 'A2' \? A2_RELEASE_ENABLED/);
-  assert.doesNotMatch(lessonEntry + assessmentEntry, /level\.id === 'B1'/,
-    'B1 must be directly accessible after release');
-  assert.match(lessonEntry + assessmentEntry, /level\.id === 'B2'/,
-    'B2 must remain sequenced after B1');
+  assert.match(lessonEntry, /!isUnitUnlocked\(level, unit\)/,
+    'direct lesson entry must enforce sequential unit unlocking');
+  assert.match(assessmentEntry, /!isUnitUnlocked\(level, unit\)/,
+    'direct assessment entry must enforce sequential unit unlocking');
+  assert.doesNotMatch(lessonEntry + assessmentEntry, /isA1Complete/,
+    'progression is derived from previous units, not a separate A1-only shortcut');
 });
 
 test('A1 units 1 and 2 teach vocabulary and provide varied practice', () => {
@@ -869,14 +872,20 @@ test('A1 units 9–11 cover numbers, prices, and time with linked exercises', ()
   }
 });
 
-test('B1 is released immediately and B2 follows completion of B1', () => {
-  assert.match(html, /const isAdvanced = lvl\.id === 'B2'/);
-  assert.match(html, /if \(!isB1Complete\(this\.completedUnits\)\) return;/);
-  assert.doesNotMatch(html, /if \(!a1Complete\) return;/);
-  assert.match(html, /\$\{lvl\.title\} — En desarrollo/);
-  assert.doesNotMatch(html, /\['B1', 'B2'\]\.includes\(level\.id\)/);
+test('B1 follows A2 progression and B2 keeps its development presentation and emergency-only path', () => {
+  assert.match(html, /function isUnitUnlocked\(level, unit/);
+  assert.match(html, /const previousLevel = levels\[levelIndex - 1\]/);
+  assert.match(html, /if \(level\.id === 'B2'\) \{/);
+  assert.match(html, /return unitIndex === 0 && Boolean\(previousUnit/);
+  assert.match(html, /level\.id === 'B2' \? level\.units\.slice\(0, 1\) : level\.units/);
+  assert.match(html, /unit-path-coming-soon/);
+  assert.match(html, /Las demás unidades B2 todavía no están implementadas/);
+  assert.match(html, /B2 U1 opens after B1 is complete/);
+  assert.match(html, /<span class="badge">En desarrollo<\/span>/);
+  assert.doesNotMatch(html, /if \(!isB1Complete\(this\.completedUnits\)\) return;/);
+  assert.doesNotMatch(html, /: 'Disponible'/,
+    'B1 units must no longer be shown as unconditionally available');
 });
-
 
 test('A1 units 12–14 add routine, weather, and transport without duplicate vocabulary', () => {
   const courseStart = html.indexOf('const CourseData =');

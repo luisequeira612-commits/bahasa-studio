@@ -89,9 +89,11 @@ test('B2 keeps its engine guard while the path shows only implemented U1 and one
     assert.ok(indexSource.slice(start, start + width).includes("level.id === 'B2' ||"),
       method + ' must preserve the B2 development guard');
   };
-  assertGuard('startUnitById(id, requestedLessonIndex) {');
   assertGuard('startUnitAssessment(unitId) {');
-  assertGuard('startUnit(unit, lessonIndex = 0) {');
+  const byIdStart = indexSource.indexOf('startUnitById(id, requestedLessonIndex) {');
+  const startUnitStart = indexSource.indexOf('startUnit(unit, lessonIndex = 0) {');
+  assert.ok(indexSource.slice(byIdStart, byIdStart + 700).includes("level.id === 'B2' && !App.completedUnits.includes(id)"));
+  assert.ok(indexSource.slice(startUnitStart, startUnitStart + 700).includes("level.id === 'B2' && !App.completedUnits.includes(unit.id)"));
 
   const learningLevels = indexSource.indexOf('function getLearningLevels() {');
   assert.notEqual(learningLevels, -1);
@@ -159,6 +161,6 @@ test('direct lesson entry blocks registered B2 units while preserving custom les
   const { indexSource } = await loadCurricula();
   const start = indexSource.indexOf('startUnit(unit, lessonIndex = 0) {');
   assert.notEqual(start, -1, 'startUnit must remain present');
-  assert.ok(indexSource.slice(start, start + 450).includes("if (level && (level.id === 'B2' ||"),
+  assert.ok(indexSource.slice(start, start + 550).includes("level.id === 'B2' && !App.completedUnits.includes(unit.id)"),
     'startUnit must block registered B2 units without rejecting unregistered custom lessons');
 });

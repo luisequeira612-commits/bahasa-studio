@@ -6519,6 +6519,9 @@ Requisitos:
         /* 6. CONTROLADOR PRINCIPAL Y TUTOR SECUNDARIO */
         const App = {
             xp: 0,
+            selectedLearningLevel: null,
+            unitSheetTouchStart: 0,
+            unitPathNoticeTimer: null,
             completedUnits: [],
             completedLessons: [],
             studyActivity: null,
@@ -6556,6 +6559,20 @@ Requisitos:
                 this.renderCourseRoute();
                 this.renderDict();
                 this.scrollToCurrentUnit(false);
+                const unitSheet = document.getElementById('unitBottomSheet');
+                if (unitSheet) {
+                    unitSheet.addEventListener('touchstart', event => {
+                        this.unitSheetTouchStart = event.touches[0].clientY;
+                    }, { passive: true });
+                    unitSheet.addEventListener('touchend', event => {
+                        if (event.changedTouches[0].clientY - this.unitSheetTouchStart > 80) this.closeUnitSheet();
+                    }, { passive: true });
+                }
+                document.addEventListener('keydown', event => {
+                    if (event.key === 'Escape') this.closeUnitSheet();
+                });
+                window.addEventListener('scroll', () => this.updateJumpToCurrentVisibility(), { passive: true });
+                window.addEventListener('resize', () => this.updateJumpToCurrentVisibility());
 
                 window.addEventListener('online', () => this.checkNetwork());
                 window.addEventListener('offline', () => this.checkNetwork());
@@ -6599,6 +6616,7 @@ Requisitos:
                 });
                 if (viewId === 'srs' || viewId === 'profile') this.updateSrsView();
                 if (viewId === 'route') {
+                    this.renderCourseRoute();
                     this.scrollToCurrentUnit(true);
                     this.updateBackupReminder();
                 }
@@ -6648,9 +6666,13 @@ Requisitos:
                 help.hidden = expanded;
             },
             scrollToCurrentUnit(smooth = true) {
-                const current = document.querySelector('#courseContainer [data-path-state="current"]');
-                if (!current || !document.getElementById('view-route').classList.contains('active')) return;
+                const current = document.querySelector('#courseContainer .learning-unit-node[data-path-state="current"]');
+                if (!current || !document.getElementById('view-route').classList.contains('active')) {
+                    this.updateJumpToCurrentVisibility();
+                    return;
+                }
                 current.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', block: 'center' });
+                this.updateJumpToCurrentVisibility();
             },
             addXp(amount) {
                 this.xp += amount;
@@ -6858,84 +6880,266 @@ Requisitos:
 
                 this.updateStudyDashboard();
             },
+            selectLearningLevel(levelId) {
+                if (!CourseData.levels.some(level => level.id === levelId)) return;
+                if (levelId === 'A2' && !A2_RELEASE_ENABLED) return;
+                this.selectedLearningLevel = levelId;
+                this.renderCourseRoute();
+                this.scrollToCurrentUnit(false);
+            },
+            showUnitPathNotice(message) {
+                const notice = document.getElementById('unitPathNotice');
+                if (!notice) return;
+                notice.textContent = message;
+                notice.hidden = false;
+                window.clearTimeout(this.unitPathNoticeTimer);
+                this.unitPathNoticeTimer = window.setTimeout(() => { notice.hidden = true; }, 3200);
+            },
+            findCourseUnit(unitId) {
+                for (const level of getLevels()) {
+                    const unit = level.units.find(entry => entry.id === unitId);
+                    if (unit) return { level, unit };
+                }
+                return null;
+            },
+            getUnitUnlockMessage(level, unit) {
+                if (level.id === 'B2') return 'B2 continúa en desarrollo.';
+                const levelIndex = CourseData.levels.findIndex(entry => entry.id === level.id);
+                const unitIndex = level.units.findIndex(entry => entry.id === unit.id);
+                const previousUnit = unitIndex > 0 ? level.units[unitIndex - 1] :
+                    levelIndex > 0 ? CourseData.levels[levelIndex - 1].units.slice(-1)[0] : null;
+                const previousLevel = unitIndex > 0 ? level : levelIndex > 0 ? CourseData.levels[levelIndex - 1] : null;
+                const previousNumber = previousLevel ? previousLevel.units.findIndex(entry => entry.id === previousUnit.id) + 1 : 1;
+                return previousUnit ? 'Completa la Unidad ' + previousNumber + ' para desbloquear esta.' : 'Esta unidad todavía está bloqueada.';
+            },
+            openUnitSheet(unitId) {
+                const found = this.findCourseUnit(unitId);
+                if (!found) return;
+                const level = found.level;
+                const unit = found.unit;
+                if (!isUnitUnlocked(level, unit)) {
+                    this.showUnitPathNotice(this.getUnitUnlockMessage(level, unit));
+                    return;
+                }
+                const progress = getUnitProgressState(level, unit);
+                const nextLesson = progress.lessons.find(lesson =>
+                    !this.completedLessons.includes(unitLessonProgressKey(unit.id, lesson.index))
+                );
+                const lessonIndex = nextLesson ? nextLesson.index : 0;
+                const actionLabel = progress.allLessonsComplete && progress.requiresAssessment && !progress.completed
+                    ? 'Hacer evaluación final'
+                    : progress.completed ? 'Repasar lección 1' : 'Empezar lección ' + (lessonIndex + 1);
+                const content = document.getElementById('unitSheetContent');
+                content.innerHTML = '<p class="eyebrow">' + App.escapeHtml(level.title) + '</p>' +
+                    '<h2 id="unitSheetTitle">' + App.escapeHtml(unit.title) + '</h2>' +
+                    '<p class="unit-sheet-description">' + App.escapeHtml(unit.desc || '') + '</p>' +
+                    '<div class="unit-sheet-progress"><span>Lecciones</span><strong>' + progress.completedLessonCount + '/' + progress.lessons.length + '</strong></div>' +
+                    '<div class="progress-bar"><div class="progress-fill" style="width:' + (progress.lessons.length ? progress.completedLessonCount / progress.lessons.length * 100 : 0) + '%"></div></div>' +
+                    '<button class="btn unit-sheet-primary" type="button" onclick="App.startUnitFromSheet(\'' + App.escapeHtml(unit.id) + '\')">' + actionLabel + '</button>' +
+                    '<button class="btn btn-outline unit-sheet-grammar-toggle" type="button" onclick="App.toggleUnitGrammar()">Ver gramática</button>' +
+                    '<div id="unitSheetGrammar" class="unit-sheet-grammar" hidden>' + App.escapeHtml(unit.grammar || 'No hay notas gramaticales para esta unidad.') + '</div>';
+                const overlay = document.getElementById('unitSheetOverlay');
+                overlay.hidden = false;
+                document.body.classList.add('unit-sheet-open');
+                const close = overlay.querySelector('.unit-sheet-close');
+                if (close) close.focus();
+            },
+            startUnitFromSheet(unitId) {
+                const found = this.findCourseUnit(unitId);
+                if (!found || !isUnitUnlocked(found.level, found.unit)) return;
+                const progress = getUnitProgressState(found.level, found.unit);
+                this.closeUnitSheet();
+                if (progress.allLessonsComplete && progress.requiresAssessment && !progress.completed) {
+                    LessonEngine.startUnitAssessment(unitId);
+                } else {
+                    const nextLesson = progress.lessons.find(lesson =>
+                        !this.completedLessons.includes(unitLessonProgressKey(unitId, lesson.index))
+                    );
+                    LessonEngine.startUnitById(unitId, nextLesson ? nextLesson.index : 0);
+                }
+            },
+            toggleUnitGrammar() {
+                const grammar = document.getElementById('unitSheetGrammar');
+                if (!grammar) return;
+                grammar.hidden = !grammar.hidden;
+            },
+            closeUnitSheet() {
+                const overlay = document.getElementById('unitSheetOverlay');
+                if (overlay) overlay.hidden = true;
+                document.body.classList.remove('unit-sheet-open');
+            },
+            handleUnitSheetBackdrop(event) {
+                if (event.target && event.target.id === 'unitSheetOverlay') this.closeUnitSheet();
+            },
+            populateEmergencyUnitSelect() {
+                const select = document.getElementById('emergencyUnitSelect');
+                if (!select) return;
+                const previous = select.value;
+                select.replaceChildren();
+                const placeholder = document.createElement('option');
+                placeholder.value = '';
+                placeholder.textContent = 'Selecciona una unidad';
+                select.appendChild(placeholder);
+                CourseData.levels.forEach(level => level.units.forEach((unit, index) => {
+                    const option = document.createElement('option');
+                    option.value = unit.id;
+                    option.textContent = level.id + ' · Unidad ' + (index + 1) + ' — ' + unit.title;
+                    if (level.id === 'B2') option.disabled = true;
+                    if (level.id === 'A2' && !A2_RELEASE_ENABLED) option.disabled = true;
+                    select.appendChild(option);
+                }));
+                if (previous) select.value = previous;
+            },
+            confirmUnitJump() {
+                const select = document.getElementById('emergencyUnitSelect');
+                const found = select && this.findCourseUnit(select.value);
+                if (!found) {
+                    this.showUnitPathNotice('Selecciona una unidad primero.');
+                    return;
+                }
+                if (found.level.id === 'B2') {
+                    this.showUnitPathNotice('B2 continúa en desarrollo y conserva su bloqueo actual.');
+                    return;
+                }
+                if (found.level.id === 'A2' && !A2_RELEASE_ENABLED) {
+                    this.showUnitPathNotice('Este nivel todavía no está abierto.');
+                    return;
+                }
+                if (!window.confirm('¿Saltar a ' + found.unit.title + '? Esto solo habilita el acceso local; no marca la unidad como completada ni aprobada.')) return;
+                try {
+                    localStorage.setItem('bahasaStudioUnitSkipId', found.unit.id);
+                } catch (error) {
+                    this.showUnitPathNotice('No se pudo guardar el salto en este dispositivo.');
+                    return;
+                }
+                this.selectedLearningLevel = found.level.id;
+                this.switchView('route');
+                this.renderCourseRoute();
+                this.openUnitSheet(found.unit.id);
+            },
+            updateJumpToCurrentVisibility() {
+                const button = document.getElementById('jumpToCurrentUnitBtn');
+                const current = document.querySelector('#courseContainer .learning-unit-node[data-path-state="current"]');
+                const route = document.getElementById('view-route');
+                if (!button || !route || !route.classList.contains('active') || !current) {
+                    if (button) button.hidden = true;
+                    return;
+                }
+                const rect = current.getBoundingClientRect();
+                button.hidden = rect.top >= 0 && rect.bottom <= window.innerHeight;
+            },
             renderCourseRoute() {
                 const container = document.getElementById('courseContainer');
-                container.innerHTML = '';
-                const a1 = CourseData.levels.find(level => level.id === 'A1');
-                const nextA1Unit = a1 ? a1.units.find(unit => !this.completedUnits.includes(unit.id)) : null;
-
-                getLevels().forEach(lvl => {
-                    const levelEl = document.createElement('div');
-                    const isAdvanced = lvl.id === 'B2';
-                    if (isAdvanced) {
-                        if (!isB1Complete(this.completedUnits)) return;
-                        levelEl.innerHTML = `<details style="margin:16px 0; padding:12px; border:1px solid var(--border); border-radius:12px;"><summary style="cursor:pointer; font-weight:700;">${lvl.title} — En desarrollo</summary><p style="margin-top:10px; color:var(--text-muted); font-size:0.9rem;">Este nivel todavía no está disponible para estudiar.</p></details>`;
-                        container.appendChild(levelEl);
-                        return;
-                    }
-                    if (lvl.id === 'A2') {
-                        if (!A2_RELEASE_ENABLED) return;
-                        levelEl.innerHTML = `<h2 style="margin:20px 0 8px 0;">${App.escapeHtml(lvl.title)} <span class="badge" style="vertical-align:middle;">Beta · en revisión</span></h2><p class="text-muted" style="margin:0 0 12px;">Disponible en beta sin requisito de completar A1. El contenido A2 está en revisión interna; puede contener errores y no ha sido validado por hablantes nativos. Tus comentarios ayudan a mejorarlo.</p>`;
-                    } else {
-                        levelEl.innerHTML = `<h2 style="margin:16px 0 8px 0;">${App.escapeHtml(lvl.title)}</h2>`;
-                    }
-
-                    lvl.units.forEach(unit => {
-                        const isDone = this.completedUnits.includes(unit.id);
-                        const isNext = lvl.id === 'A1' && nextA1Unit && unit.id === nextA1Unit.id;
-                        const lessons = buildUnitLessons(unit);
-                        const completedCount = isDone ? lessons.length : lessons.filter(lesson => this.completedLessons.includes(unitLessonProgressKey(unit.id, lesson.index))).length;
-                        const nextLesson = lessons.findIndex(lesson => !this.completedLessons.includes(unitLessonProgressKey(unit.id, lesson.index)));
-                        const unitAccessible = lvl.id === 'A1'
-                            ? isDone || isNext
-                            : lvl.id === 'A2' ? A2_RELEASE_ENABLED : true;
-                        const card = document.createElement('details');
-                        card.className = `unit-card ${isDone ? 'completed' : ''} ${lvl.id === 'A1' ? 'path-node ' + (isDone ? 'path-node-completed' : isNext ? 'path-node-current' : 'path-node-locked') : ''}`;
-                        if (lvl.id === 'A1') card.dataset.pathState = isDone ? 'completed' : isNext ? 'current' : 'locked';
-                        if (isNext) card.open = true;
-                        const currentLessonIndex = nextLesson < 0 ? lessons.length : nextLesson;
-                        const lessonButtons = lessons.map(lesson => {
-                            const lessonDone = isDone || this.completedLessons.includes(unitLessonProgressKey(unit.id, lesson.index));
-                            const isPrimaryLesson = isNext && lesson.index === currentLessonIndex && currentLessonIndex < lessons.length;
-                            const lessonUnlocked = unitAccessible && (lessonDone || lesson.index === currentLessonIndex);
-                            if (isPrimaryLesson) return '';
-                            return `<button class="btn btn-outline btn-sm" style="flex:1; min-width:135px;" data-unit-id="${App.escapeHtml(unit.id)}" data-lesson-index="${lesson.index}" ${lessonUnlocked ? '' : 'disabled'} onclick="LessonEngine.startUnitById(this.dataset.unitId, Number(this.dataset.lessonIndex))">${lessonDone ? '✓ ' : ''}Lección ${lesson.index + 1}${lessonDone ? ' · Repasar' : ''}</button>`;
-                        }).join('');
-                        const primaryLessonButton = isNext && currentLessonIndex < lessons.length
-                            ? `<button class="btn lesson-start-btn" data-unit-id="${App.escapeHtml(unit.id)}" data-lesson-index="${currentLessonIndex}" onclick="LessonEngine.startUnitById(this.dataset.unitId, Number(this.dataset.lessonIndex))">Empezar lección ${currentLessonIndex + 1}</button>`
-                            : '';
-                        const examButton = ['A1', 'B1'].includes(lvl.id) && !isDone && unitAccessible && completedCount === lessons.length
-                            ? `<button class="btn" data-unit-id="${App.escapeHtml(unit.id)}" onclick="LessonEngine.startUnitAssessment(this.dataset.unitId)">${lvl.id === 'A1' ? 'Prueba final · Desbloquear siguiente unidad' : 'Prueba de unidad'}</button>`
-                            : '';
-                        const statusLabel = isDone ? (lvl.id === 'A1' ? 'Aprobada' : 'Completada')
-                            : lvl.id === 'A1' ? (isNext ? 'En curso' : 'Bloqueada') : 'Disponible';
-                        card.innerHTML = `
-                            <summary>
-                                <span class="unit-title">${App.escapeHtml(unit.title)} ${isDone ? '<span class="unit-complete-check" aria-label="Completada">✓</span>' : ''}${unit.custom ? ' ✨' : ''}</span>
-                                <span class="badge ${isDone ? 'badge-completed' : ''}">${statusLabel}</span>
-                            </summary>
-                            <div class="unit-body">
-                                <p style="font-size:0.85rem; color:var(--text-muted);">${App.escapeHtml(unit.desc)}</p>
-                                <p style="font-size:0.85rem; color:var(--text-muted); margin:8px 0;">Lecciones: ${completedCount}/${lessons.length}</p>
-                                <div class="progress-bar" style="margin-bottom:10px;"><div class="progress-fill" style="width:${lessons.length ? completedCount / lessons.length * 100 : 0}%;"></div></div>
-                                ${primaryLessonButton}
-                                <details class="unit-grammar">
-                                    <summary>Ver gramática</summary>
-                                    <div class="unit-grammar-content">💡 <strong>Gramática:</strong> ${App.escapeHtml(unit.grammar)}</div>
-                                </details>
-                                <div class="unit-secondary-actions">
-                                    <button class="btn btn-outline btn-sm" data-word="${App.escapeHtml(unit.vocab[0]?.idn || '')}" onclick="AudioEngine.speak(this.dataset.word)">🔊 Pronunciación</button>
-                                    ${unit.custom ? `<button class="btn btn-outline btn-sm" data-unit-id="${App.escapeHtml(unit.id)}" onclick="AIGen.remove(this.dataset.unitId)">Eliminar</button>` : ''}
-                                </div>
-                                <div class="unit-lesson-actions">${lessonButtons}</div>
-                                ${examButton}
-                                ${isDone ? `<p style="font-size:0.85rem;color:var(--success);margin-top:8px;">${lvl.id === 'A1' ? 'Prueba final superada · siguiente unidad desbloqueada' : 'Unidad completada'}</p>` : ''}
-                            </div>
-                        `;
-                        levelEl.appendChild(card);
-                    });
-                    container.appendChild(levelEl);
+                const selector = document.getElementById('learningLevelSelector');
+                if (!this.selectedLearningLevel) this.selectedLearningLevel = getCurrentLearningLevelId();
+                if (selector) selector.querySelectorAll('[data-level]').forEach(button => {
+                    const active = button.dataset.level === this.selectedLearningLevel;
+                    button.classList.toggle('active', active);
+                    button.setAttribute('aria-pressed', String(active));
+                    const level = CourseData.levels.find(entry => entry.id === button.dataset.level);
+                    button.disabled = !level || (level.id === 'A2' && !A2_RELEASE_ENABLED);
+                    button.classList.toggle('level-in-development', level && level.id === 'B2');
                 });
+                if (!container) return;
+                container.replaceChildren();
+                const level = CourseData.levels.find(entry => entry.id === this.selectedLearningLevel);
+                if (!level || !level.units.length) {
+                    container.innerHTML = '<section class="learning-empty-state"><strong>Próximamente</strong><p>Este nivel todavía no tiene unidades disponibles.</p></section>';
+                    this.populateEmergencyUnitSelect();
+                    return;
+                }
+                if (level.id === 'A2' && !A2_RELEASE_ENABLED) {
+                    container.innerHTML = '<section class="learning-empty-state"><strong>Próximamente</strong><p>Este nivel todavía no está abierto.</p></section>';
+                    this.populateEmergencyUnitSelect();
+                    return;
+                }
+
+                const heading = document.createElement('div');
+                heading.className = 'learning-level-heading';
+                heading.innerHTML = '<div><p class="eyebrow">TU CAMINO</p><h2>' + App.escapeHtml(level.title) + '</h2></div>' +
+                    (level.id === 'A2' ? '<span class="badge">Beta · en revisión</span>' : '') +
+                    (level.id === 'B2' ? '<span class="badge">En desarrollo</span>' : '');
+                container.appendChild(heading);
+
+                const positions = [50, 78, 50, 22, 50, 78, 50, 22];
+                let currentAssigned = false;
+                const visibleUnits = level.id === 'B2' ? level.units.slice(0, 1) : level.units;
+                for (let offset = 0; offset < visibleUnits.length; offset += 8) {
+                    const units = visibleUnits.slice(offset, offset + 8);
+                    const section = document.createElement('section');
+                    section.className = 'unit-path-section';
+                    const completed = units.filter(unit => getUnitProgressState(level, unit).completed).length;
+                    const firstNumber = offset + 1;
+                    const lastNumber = offset + units.length;
+                    section.innerHTML = '<div class="unit-path-section-banner"><div><h3>Unidades ' + firstNumber + '–' + lastNumber + '</h3><p>Avanza unidad por unidad</p></div><strong>' + completed + '/' + units.length + '</strong></div>';
+                    const stage = document.createElement('div');
+                    stage.className = 'unit-path-stage';
+                    const stageHeight = units.length * 82 + 28;
+                    stage.style.height = stageHeight + 'px';
+                    const pathPoints = units.map((unit, index) => positions[index] + ',' + (38 + index * 82)).join(' ');
+                    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                    svg.setAttribute('class', 'unit-path-line');
+                    svg.setAttribute('viewBox', '0 0 100 ' + stageHeight);
+                    svg.setAttribute('preserveAspectRatio', 'none');
+                    const polyline = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
+                    polyline.setAttribute('points', pathPoints);
+                    polyline.setAttribute('fill', 'none');
+                    polyline.setAttribute('stroke', 'currentColor');
+                    polyline.setAttribute('stroke-width', '2.4');
+                    polyline.setAttribute('stroke-linecap', 'round');
+                    polyline.setAttribute('stroke-linejoin', 'round');
+                    svg.appendChild(polyline);
+                    stage.appendChild(svg);
+
+                    units.forEach((unit, index) => {
+                        const progress = getUnitProgressState(level, unit);
+                        const unlocked = isUnitUnlocked(level, unit);
+                        const isCurrent = !currentAssigned && unlocked && !progress.completed;
+                        if (isCurrent) currentAssigned = true;
+                        const state = progress.completed ? 'completed' : isCurrent ? 'current' : 'locked';
+                        const node = document.createElement('button');
+                        node.type = 'button';
+                        node.className = 'learning-unit-node node-' + state;
+                        node.dataset.pathState = state;
+                        node.dataset.unitId = unit.id;
+                        node.style.left = positions[index] + '%';
+                        node.style.top = (38 + index * 82) + 'px';
+                        node.textContent = progress.completed ? '✓' : String(offset + index + 1);
+                        node.setAttribute('aria-label', unit.title + (progress.completed ? ', completada' : isCurrent ? ', unidad actual' : ', bloqueada'));
+                        node.addEventListener('click', () => this.openUnitSheet(unit.id));
+                        stage.appendChild(node);
+                    });
+                    section.appendChild(stage);
+                    container.appendChild(section);
+                }
+
+                if (level.id === 'B2') {
+                    const placeholder = document.createElement('div');
+                    placeholder.className = 'unit-path-coming-soon';
+                    placeholder.innerHTML = '<span aria-hidden="true">···</span><strong>Próximamente</strong><p>Las demás unidades B2 todavía no están implementadas.</p>';
+                    container.appendChild(placeholder);
+                }
+
+                if (level.id === 'A1' && CustomLessons.units.length) {
+                    const customSection = document.createElement('section');
+                    customSection.className = 'unit-path-section custom-lessons-path';
+                    customSection.innerHTML = '<div class="unit-path-section-banner"><div><h3>Mis lecciones IA</h3><p>Práctica personalizada, separada del currículo oficial</p></div><strong>' + CustomLessons.units.filter(unit => getUnitProgressState({ id: 'IA' }, unit).completed).length + '/' + CustomLessons.units.length + '</strong></div>';
+                    const customList = document.createElement('div');
+                    customList.className = 'custom-unit-list';
+                    CustomLessons.units.forEach((unit, index) => {
+                        const progress = getUnitProgressState({ id: 'IA' }, unit);
+                        const node = document.createElement('button');
+                        node.type = 'button';
+                        node.className = 'custom-unit-open-button';
+                        node.textContent = (progress.completed ? '✓ ' : '') + unit.title;
+                        node.addEventListener('click', () => this.openUnitSheet(unit.id));
+                        customList.appendChild(node);
+                    });
+                    customSection.appendChild(customList);
+                    container.appendChild(customSection);
+                }
+                this.populateEmergencyUnitSelect();
+                this.updateJumpToCurrentVisibility();
             },
             async updateSrsView() {
                 const due = await SRSEngine.getDueItems();

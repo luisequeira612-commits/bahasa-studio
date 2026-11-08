@@ -81,19 +81,21 @@ test('B2 U1 has at least five sentence-level targets and a guided original-writi
   assert.ok(exercises.some((exercise) => exercise.type === 'write' && exercise.hint?.trim() && /mini texto|tres o cuatro oraciones/i.test(exercise.prompt)));
 });
 
-test('B2 keeps its engine guard while the path shows only implemented U1 and one upcoming node', async () => {
+test('B2 keeps its development gate while implemented U1 unlocks sequentially after B1', async () => {
   const { indexSource } = await loadCurricula();
-  const assertGuard = (method, width = 700) => {
-    const start = indexSource.indexOf(method);
-    assert.notEqual(start, -1, method + ' must remain present');
-    assert.ok(indexSource.slice(start, start + width).includes("level.id === 'B2' ||"),
-      method + ' must preserve the B2 development guard');
-  };
-  assertGuard('startUnitAssessment(unitId) {');
+  const assessmentStart = indexSource.indexOf('startUnitAssessment(unitId) {');
+  assert.notEqual(assessmentStart, -1);
+  assert.ok(indexSource.slice(assessmentStart, assessmentStart + 700).includes("level.id === 'B2'"),
+    'B2 does not expose a final assessment');
   const byIdStart = indexSource.indexOf('startUnitById(id, requestedLessonIndex) {');
   const startUnitStart = indexSource.indexOf('startUnit(unit, lessonIndex = 0) {');
-  assert.ok(indexSource.slice(byIdStart, byIdStart + 700).includes("level.id === 'B2' && !getUnitProgressState(level, unit).completed"));
-  assert.ok(indexSource.slice(startUnitStart, startUnitStart + 700).includes("level.id === 'B2' && !getUnitProgressState(level, unit).completed"));
+  assert.ok(indexSource.slice(byIdStart, byIdStart + 700).includes('!isUnitUnlocked(level, unit)'),
+    'direct lesson entry must use the derived unit gate');
+  assert.ok(indexSource.slice(startUnitStart, startUnitStart + 700).includes('!isUnitUnlocked(level, unit)'),
+    'direct engine entry must use the same derived unit gate');
+  const unlockStart = indexSource.indexOf('function isUnitUnlocked(level, unit');
+  assert.ok(indexSource.slice(unlockStart, unlockStart + 1300).includes('return unitIndex === 0 && Boolean(previousUnit'),
+    'only implemented B2 U1 opens after the final B1 unit');
 
   const learningLevels = indexSource.indexOf('function getLearningLevels() {');
   assert.notEqual(learningLevels, -1);
@@ -157,10 +159,10 @@ test('tutor prompt never labels the learner as hidden B2 from stale completion d
     'hidden B2 must not influence the tutor prompt level inferred from saved completions');
 });
 
-test('direct lesson entry keeps the B2 guard except approved units and confirmed emergency skips', async () => {
+test('direct lesson entry uses the shared B2 U1 sequential gate and emergency skip', async () => {
   const { indexSource } = await loadCurricula();
   const start = indexSource.indexOf('startUnit(unit, lessonIndex = 0) {');
   assert.notEqual(start, -1, 'startUnit must remain present');
-  assert.ok(indexSource.slice(start, start + 550).includes("level.id === 'B2' && !getUnitProgressState(level, unit).completed"),
-    'startUnit must block registered B2 units without rejecting unregistered custom lessons');
+  assert.ok(indexSource.slice(start, start + 550).includes('!isUnitUnlocked(level, unit)'),
+    'startUnit must enforce the shared derived progression gate');
 });

@@ -6828,11 +6828,10 @@ Requisitos:
                 if (streakNode) streakNode.textContent = streak + (streak === 1 ? ' día' : ' días');
                 if (recordNode) recordNode.textContent = 'Récord: ' + this.studyActivity.longestStreak + (this.studyActivity.longestStreak === 1 ? ' día' : ' días');
                 if (goalSelect && goalSelect.value !== String(goal)) goalSelect.value = String(goal);
-                if (xpText) xpText.textContent = earned >= goal ? earned + ' XP hoy' : earned + ' / ' + goal + ' XP';
+                if (xpText) xpText.textContent = earned >= goal ? 'Meta: ' + earned + ' XP hoy' : 'Meta: ' + earned + '/' + goal + ' XP';
                 if (xpFill) xpFill.style.width = percent + '%';
                 const goalRing = document.getElementById('dailyGoalRing');
                 const goalPercent = document.getElementById('dailyGoalPercent');
-                if (xpText) xpText.textContent = earned >= goal ? 'Meta: ' + earned + ' XP hoy' : 'Meta: ' + earned + '/' + goal + ' XP';
                 if (goalRing) {
                     goalRing.setAttribute('aria-label', 'Meta diaria: ' + earned + ' de ' + goal + ' XP, ' + percent + '% completado');
                     goalRing.style.setProperty('--goal-progress', percent + '%');

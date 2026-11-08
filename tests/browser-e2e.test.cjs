@@ -949,7 +949,7 @@ test('voice test speaks using the system fallback when no Indonesian voice is in
 });
 
 
-test('A1 unit lessons unlock sequentially and the final exam gates the next unit at 80 percent', async () => {
+test('A1 lesson progress is sequential and the final exam gates the next unit at 80 percent', async () => {
   const { server, url } = await startServer();
   const context = await browser.newContext({ serviceWorkers: 'block' });
   const page = await context.newPage();
@@ -958,40 +958,38 @@ test('A1 unit lessons unlock sequentially and the final exam gates the next unit
     await page.goto(url, { waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db &&
       Array.isArray(App.completedLessons) && Array.isArray(App.completedUnits) &&
-      document.querySelectorAll('[data-unit-id="a1_u1"][data-lesson-index]').length === 3);
+      document.querySelector('.learning-unit-node[data-unit-id="a1_u1"]'));
 
-    const firstUnitButtons = page.locator('[data-unit-id="a1_u1"][data-lesson-index]');
-    assert.equal(await firstUnitButtons.count(), 3, 'Unit 1 should contain three short lessons');
-    assert.equal(await firstUnitButtons.nth(0).isEnabled(), true);
-    assert.equal(await firstUnitButtons.nth(1).isEnabled(), false);
-    assert.equal(await firstUnitButtons.nth(2).isEnabled(), false);
+    const firstNode = page.locator('.learning-unit-node[data-unit-id="a1_u1"]');
+    const secondNode = page.locator('.learning-unit-node[data-unit-id="a1_u2"]');
+    assert.equal(await firstNode.getAttribute('data-path-state'), 'current');
+    assert.equal(await secondNode.getAttribute('data-path-state'), 'locked');
 
-    await firstUnitButtons.nth(0).click();
+    await firstNode.click();
+    await page.locator('#unitBottomSheet').waitFor({ state: 'visible' });
+    assert.match(await page.locator('#unitSheetContent').innerText(), /0\\/3/);
+    await page.getByRole('button', { name: 'Empezar lección 1' }).click();
     await page.evaluate(() => { window.confirm = () => true; });
     await page.getByRole('button', { name: 'Salir de la lección' }).click();
+    assert.equal(await page.evaluate(() => App.completedLessons.includes('a1_u1::0')), false,
+      'leaving a lesson early must not record it as completed');
+
     await page.evaluate(async () => {
       App.completedLessons = ['a1_u1::0'];
       await DB.set('settings', 'completedLessons', App.completedLessons);
       App.renderCourseRoute();
     });
-    const refreshedButtons = page.locator('[data-unit-id="a1_u1"][data-lesson-index]');
-    assert.equal(await refreshedButtons.nth(1).isEnabled(), true);
-    assert.equal(await refreshedButtons.nth(2).isEnabled(), false);
-
-    await page.evaluate(async () => {
-      App.completedLessons = ['a1_u1::0', 'a1_u1::1'];
-      await DB.set('settings', 'completedLessons', App.completedLessons);
-      App.renderCourseRoute();
-    });
-    assert.equal(await refreshedButtons.nth(2).isEnabled(), true);
-    assert.equal(await page.locator('[data-unit-id="a1_u2"][data-lesson-index="0"]').isEnabled(), false);
+    await firstNode.click();
+    assert.match(await page.locator('#unitSheetContent').innerText(), /1\\/3/);
+    assert.ok(await page.getByRole('button', { name: 'Empezar lección 2' }).isVisible());
 
     await page.evaluate(async () => {
       App.completedLessons = ['a1_u1::0', 'a1_u1::1', 'a1_u1::2'];
       await DB.set('settings', 'completedLessons', App.completedLessons);
       App.renderCourseRoute();
     });
-    await page.getByRole('button', { name: 'Prueba final · Desbloquear siguiente unidad' }).click();
+    await firstNode.click();
+    await page.getByRole('button', { name: 'Hacer evaluación final' }).click();
 
     const answerCurrentQuestion = async correct => {
       const details = await page.evaluate(() => {
@@ -1009,7 +1007,7 @@ test('A1 unit lessons unlock sequentially and the final exam gates the next unit
     for (let i = 0; i < questionCount; i++) await answerCurrentQuestion(i >= wrongCount);
     await page.waitForFunction(() => document.getElementById('exerciseArea').innerText.includes('Sigue practicando'));
     assert.equal(await page.evaluate(() => App.completedUnits.includes('a1_u1')), false);
-    assert.equal(await page.locator('[data-unit-id="a1_u2"][data-lesson-index="0"]').isEnabled(), false);
+    assert.equal(await secondNode.getAttribute('data-path-state'), 'locked');
 
     await page.getByRole('button', { name: 'Repetir prueba' }).click();
     const retryQuestionCount = await page.evaluate(() => LessonEngine.queue.length);
@@ -1017,7 +1015,9 @@ test('A1 unit lessons unlock sequentially and the final exam gates the next unit
     await page.waitForFunction(() => document.getElementById('exerciseArea').innerText.includes('Prueba superada'));
     assert.match(await page.locator('#exerciseArea').innerText(), /Prueba superada/);
     assert.equal(await page.evaluate(() => App.completedUnits.includes('a1_u1')), true);
-    assert.equal(await page.locator('[data-unit-id="a1_u2"][data-lesson-index="0"]').isEnabled(), true);
+    await page.getByRole('button', { name: 'Continuar al camino' }).click();
+    await page.waitForFunction(() => document.querySelector('.learning-unit-node[data-unit-id="a1_u2"]')?.dataset.pathState === 'current');
+    assert.equal(await secondNode.getAttribute('data-path-state'), 'current');
   } finally {
     await context.close();
     await new Promise(resolve => server.close(resolve));
@@ -1159,6 +1159,13 @@ test('guided A1 writing shows task-specific review criteria and records progress
   try {
     await page.goto(url, { waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => typeof LessonEngine !== 'undefined' && typeof DB !== 'undefined' && DB.db && App);
+
+    await page.evaluate(async () => {
+      const level = CourseData.levels.find(entry => entry.id === 'A1');
+      App.completedUnits = level.units.slice(0, 7).map(unit => unit.id);
+      await DB.set('settings', 'completedUnits', App.completedUnits);
+      App.renderCourseRoute();
+    });
 
     await page.evaluate(() => {
       const unit = CourseData.levels.find(level => level.id === 'A1').units.find(entry => entry.id === 'a1_u8');

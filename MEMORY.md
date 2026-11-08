@@ -41,7 +41,7 @@
 ## Herramientas y calidad
 - ChatGPT puede programar y preparar PRs; Codex puede usarse después como auditor independiente, pero no afirmar que auditó si no se ejecutó.
 - Preferir auditorías locales/offline y pruebas existentes; no añadir servicios externos ni dependencias por conveniencia.
-- Pruebas B2 en `tests/load-inline-b2-curriculum.test.mjs`: contrato U1, IDs, producción guiada, formas candidatas ausentes, borradores archivados y protección de `startUnitById()`, `startUnitAssessment()`, `startUnit()` y la ruta del curso. `startUnit()` bloquea unidades B2 registradas y conserva el acceso directo usado por lecciones personalizadas no registradas. El fallback de traducción por selección también excluye ejercicios authored de B2.
+- Pruebas B2 en `tests/load-inline-b2-curriculum.test.mjs`: contrato U1, IDs, producción guiada, formas candidatas ausentes, borradores archivados y protección de `startUnitById()`, `startUnitAssessment()`, `startUnit()` y la ruta del curso. `startUnit()` bloquea unidades B2 registradas y conserva el acceso directo usado por lecciones personalizadas no registradas. El fallback de traducción por selección también excluye ejercicios authored de B2. El nivel inferido para el prompt del tutor ignora posibles completados B2 residuales.
 - Scripts e informes de calidad son evidencia estructural/editorial, no validación nativa.
 
 ## Decisiones de producto y currículo

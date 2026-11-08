@@ -5632,6 +5632,9 @@
                 const level = getLevels().find(entry => entry.units.some(candidate => candidate.id === unit.id));
                 if (level && (level.id === 'B2' || !isUnitUnlocked(level, unit))) return;
                 const lessons = buildUnitLessons(unit);
+                const nextIndex = lessons.findIndex(item => !App.completedLessons.includes(unitLessonProgressKey(unit.id, item.index)));
+                const firstIncomplete = nextIndex < 0 ? lessons.length : nextIndex;
+                if (!App.completedUnits.includes(unit.id) && lessonIndex > firstIncomplete) return;
                 const lesson = lessons[lessonIndex];
                 if (!lesson) return;
                 this.currentUnit = unit;

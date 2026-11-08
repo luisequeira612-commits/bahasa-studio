@@ -49,8 +49,8 @@ test('B1 unlocks after A2; B2 keeps its development guard with an emergency-only
   const lessonEntry = html.slice(html.indexOf('startUnitById(id, requestedLessonIndex)'), html.indexOf('startUnit(unit, lessonIndex = 0)'));
   const unitEntry = html.slice(html.indexOf('startUnit(unit, lessonIndex = 0)'), html.indexOf('function getLevels()'));
   assert.match(assessmentEntry, /level\.id === 'B2'/);
-  assert.match(lessonEntry, /level\.id === 'B2' && !App\.completedUnits\.includes\(id\)/);
-  assert.match(unitEntry, /level\.id === 'B2' && !App\.completedUnits\.includes\(unit\.id\)/);
+  assert.match(lessonEntry, /level\.id === 'B2' && !getUnitProgressState\(level, unit\)\.completed/);
+  assert.match(unitEntry, /level\.id === 'B2' && !getUnitProgressState\(level, unit\)\.completed/);
   for (const entry of [assessmentEntry, lessonEntry, unitEntry]) {
     assert.doesNotMatch(entry, /level\.id === 'B1'/);
   }

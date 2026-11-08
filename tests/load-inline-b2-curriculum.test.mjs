@@ -87,3 +87,13 @@ test('B2 remains inaccessible in the lesson engine until the release gate is cha
   assert.match(indexSource, /if \(level\.id === 'B2' \|\|/);
   assert.match(indexSource, /if \(level && \(level\.id === 'B2' \|\|/);
 });
+
+test('B2 U2 candidate forms stay out of executable curriculum until explicit approval', async () => {
+  const { b2, indexSource } = await loadCurricula();
+  const candidateForms = ['kubaca', 'kaubaca', 'kutulis', 'kautulis'];
+  const executableText = JSON.stringify(b2);
+  for (const form of candidateForms) {
+    assert.equal(executableText.includes(form), false, form + ' must not be executable before approval');
+    assert.equal(indexSource.includes(form), false, form + ' must not be authored in index.html before approval');
+  }
+});

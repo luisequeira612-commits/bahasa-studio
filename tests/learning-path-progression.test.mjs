@@ -14,8 +14,8 @@ async function loadProgressionApi() {
   const a1 = a1Source.slice(a1Source.indexOf(' = ') + 3).trim().replace(/;$/, '');
   const a2 = a2Source.slice(a2Source.indexOf(' = ') + 3).trim().replace(/;$/, '');
   const source = indexSource
-    .replace('window.BAHASA_CURRICULUM_A1', a1)
-    .replace('window.BAHASA_CURRICULUM_A2', a2);
+    .replaceAll('window.BAHASA_CURRICULUM_A1', a1)
+    .replaceAll('window.BAHASA_CURRICULUM_A2', a2);
   const start = source.indexOf('const CourseData =');
   const end = source.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
   assert.ok(start >= 0 && end > start, 'course data and progression helpers must exist');

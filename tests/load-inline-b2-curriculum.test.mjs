@@ -83,9 +83,11 @@ test('B2 U1 has at least five sentence-level targets and a guided original-writi
 
 test('B2 remains inaccessible in the lesson engine until the release gate is changed separately', async () => {
   const { indexSource } = await loadCurricula();
-  assert.match(indexSource, /if \(!level \|\| level\.id === 'B2' \|\|/);
-  assert.match(indexSource, /if \(level\.id === 'B2' \|\|/);
   assert.match(indexSource, /if \(level && \(level\.id === 'B2' \|\|/);
+  assert.match(indexSource, /if \(level\.id === 'B2' \|\|/);
+  const directStart = indexSource.indexOf('startUnit(unit, lessonIndex = 0) {');
+  assert.notEqual(directStart, -1);
+  assert.ok(indexSource.slice(directStart, directStart + 900).includes("if (level && (level.id === 'B2' ||"));
 });
 
 test('B2 U2 candidate forms stay out of executable curriculum until explicit approval', async () => {
@@ -111,4 +113,13 @@ test('only implemented B2 U1 remains executable while legacy draft units stay ar
     assert.equal(b2.units.flatMap((unit) => unit.vocab || []).some((word) => word.id === id), false,
       id + ' belongs only to the archived legacy draft until approved for reuse');
   }
+});
+
+
+test('direct lesson entry blocks registered B2 units while preserving custom lessons', async () => {
+  const { indexSource } = await loadCurricula();
+  const start = indexSource.indexOf('startUnit(unit, lessonIndex = 0) {');
+  assert.notEqual(start, -1, 'startUnit must remain present');
+  assert.ok(indexSource.slice(start, start + 450).includes("if (level && (level.id === 'B2' ||"),
+    'startUnit must block registered B2 units without rejecting unregistered custom lessons');
 });

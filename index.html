@@ -5564,8 +5564,8 @@
 
             startUnitAssessment(unitId) {
                 const level = getLevels().find(entry => entry.units.some(unit => unit.id === unitId));
-                if (!level || level.id === 'B2' ||
-                    (level.id === 'A2' && !A2_RELEASE_ENABLED)) return;
+                if (level && (level.id === 'B2' ||
+                    (level.id === 'A2' && !A2_RELEASE_ENABLED))) return;
                 const unit = level.units.find(entry => entry.id === unitId);
                 if (!unit) return;
                 const lessons = buildUnitLessons(unit);

@@ -880,7 +880,8 @@ test('B1 follows A2 progression and B2 keeps its development presentation and em
   assert.match(html, /level\.id === 'B2' \? level\.units\.slice\(0, 1\) : level\.units/);
   assert.match(html, /unit-path-coming-soon/);
   assert.match(html, /Las demás unidades B2 todavía no están implementadas/);
-  assert.match(html, /B2 stays in development/);
+  assert.match(html, /B2 U1 opens after B1 is complete/);
+  assert.match(html, /<span class="badge">En desarrollo<\/span>/);
   assert.doesNotMatch(html, /if \(!isB1Complete\(this\.completedUnits\)\) return;/);
   assert.doesNotMatch(html, /: 'Disponible'/,
     'B1 units must no longer be shown as unconditionally available');

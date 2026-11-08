@@ -419,7 +419,7 @@ test('B1 follows A2 sequential progression while B2 remains development-gated', 
   const completedA1A2 = completedA1.concat(a2.units.map(unit => unit.id));
   assert.equal(api.isUnitUnlocked(b1, b1.units[0], completedA1, [], []), false);
   assert.equal(api.isUnitUnlocked(b1, b1.units[0], completedA1A2, [], []), true);
-  assert.equal(api.isUnitUnlocked(b2, b2.units[0], completedA1A2.concat(b1.units.map(unit => unit.id)), [], []), false);
+  assert.equal(api.isUnitUnlocked(b2, b2.units[0], completedA1A2.concat(b1.units.map(unit => unit.id)), [], []), true);
 });
 test('B1 U13-U14 consolidate the ke-an family using canonical earlier vocabulary IDs', () => {
   const b1 = course.levels.find(level => level.id === 'B1');

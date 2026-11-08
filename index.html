@@ -5624,7 +5624,11 @@
                         ? requestedLessonIndex
                         : (App.completedUnits.includes(id) ? 0 : firstIncomplete);
                     if (!App.completedUnits.includes(id) && lessonIndex > firstIncomplete) return;
-                    if (lessonIndex >= lessons.length) return this.startUnitAssessment(id);
+                    if (lessonIndex >= lessons.length) {
+                        const progress = getUnitProgressState(level, unit);
+                        if (progress.requiresAssessment && !progress.completed) return this.startUnitAssessment(id);
+                        return this.startUnit(unit, 0);
+                    }
                     return this.startUnit(unit, lessonIndex);
                 }
             },
@@ -6239,10 +6243,11 @@
         }
 
         function isUnitUnlocked(level, unit, completedUnits = App.completedUnits, completedLessons = App.completedLessons, skipIds = getEmergencyUnitSkips()) {
+            if (!level) return false;
+            if (level.id === 'A2' && !A2_RELEASE_ENABLED) return false;
             const progress = getUnitProgressState(level, unit, completedUnits, completedLessons);
             if (progress.completed || (Array.isArray(skipIds) && skipIds.includes(unit.id))) return true;
-            if (!level || level.id === 'IA') return true;
-            if (level.id === 'A2' && !A2_RELEASE_ENABLED) return false;
+            if (level.id === 'IA') return true;
             if (level.id === 'B2') return false;
 
             const levels = CourseData.levels;

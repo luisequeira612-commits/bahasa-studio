@@ -92,8 +92,8 @@ test('B2 keeps its engine guard while the path shows only implemented U1 and one
   assertGuard('startUnitAssessment(unitId) {');
   const byIdStart = indexSource.indexOf('startUnitById(id, requestedLessonIndex) {');
   const startUnitStart = indexSource.indexOf('startUnit(unit, lessonIndex = 0) {');
-  assert.ok(indexSource.slice(byIdStart, byIdStart + 700).includes("level.id === 'B2' && !App.completedUnits.includes(id)"));
-  assert.ok(indexSource.slice(startUnitStart, startUnitStart + 700).includes("level.id === 'B2' && !App.completedUnits.includes(unit.id)"));
+  assert.ok(indexSource.slice(byIdStart, byIdStart + 700).includes("level.id === 'B2' && !getUnitProgressState(level, unit).completed"));
+  assert.ok(indexSource.slice(startUnitStart, startUnitStart + 700).includes("level.id === 'B2' && !getUnitProgressState(level, unit).completed"));
 
   const learningLevels = indexSource.indexOf('function getLearningLevels() {');
   assert.notEqual(learningLevels, -1);

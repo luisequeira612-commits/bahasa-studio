@@ -408,7 +408,7 @@ test('B1 follows A2 sequential progression while B2 remains development-gated', 
 
   const start = html.indexOf('const CourseData =');
   const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
-  const api = vm.runInNewContext(html.slice(start, end) +
+  const api = vm.runInNewContext(courseSource +
     '\nconst A2_RELEASE_ENABLED = true; ({ CourseData, isUnitUnlocked })');
   const levels = api.CourseData.levels;
   const a1 = levels.find(level => level.id === 'A1');

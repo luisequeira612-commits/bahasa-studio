@@ -5287,6 +5287,71 @@
             return total > 0 && correct / total >= 0.8;
         }
 
+        function hasUnitFinalAssessment(level, unit) {
+            return Boolean(level && ['A1', 'B1'].includes(level.id) && buildUnitAssessmentItems(unit).length);
+        }
+
+        function getUnitProgressState(level, unit, completedUnits = App.completedUnits, completedLessons = App.completedLessons) {
+            const lessons = buildUnitLessons(unit);
+            const approved = Array.isArray(completedUnits) && completedUnits.includes(unit.id);
+            const completedLessonCount = approved ? lessons.length : lessons.filter(lesson =>
+                Array.isArray(completedLessons) && completedLessons.includes(unitLessonProgressKey(unit.id, lesson.index))
+            ).length;
+            const allLessonsComplete = lessons.length > 0 && completedLessonCount === lessons.length;
+            const requiresAssessment = hasUnitFinalAssessment(level, unit);
+            return {
+                lessons,
+                completedLessonCount,
+                allLessonsComplete,
+                requiresAssessment,
+                completed: approved || (allLessonsComplete && !requiresAssessment),
+                approved
+            };
+        }
+
+        function getEmergencyUnitSkips() {
+            try {
+                const id = localStorage.getItem('bahasaStudioUnitSkipId');
+                return id ? [id] : [];
+            } catch (error) {
+                return [];
+            }
+        }
+
+        function isUnitUnlocked(level, unit, completedUnits = App.completedUnits, completedLessons = App.completedLessons, skipIds = getEmergencyUnitSkips()) {
+            if (!level) return false;
+            if (level.id === 'A2' && !A2_RELEASE_ENABLED) return false;
+            const progress = getUnitProgressState(level, unit, completedUnits, completedLessons);
+            if (progress.completed || (Array.isArray(skipIds) && skipIds.includes(unit.id))) return true;
+            if (level.id === 'IA') return true;
+            if (level.id === 'B2') return false;
+
+            const levels = CourseData.levels;
+            const levelIndex = levels.findIndex(entry => entry.id === level.id);
+            const unitIndex = level.units.findIndex(entry => entry.id === unit.id);
+            if (levelIndex < 0 || unitIndex < 0) return false;
+            if (unitIndex > 0) {
+                return getUnitProgressState(level, level.units[unitIndex - 1], completedUnits, completedLessons).completed;
+            }
+            if (levelIndex === 0) return true;
+            const previousLevel = levels[levelIndex - 1];
+            const previousUnit = previousLevel.units[previousLevel.units.length - 1];
+            return Boolean(previousUnit && getUnitProgressState(previousLevel, previousUnit, completedUnits, completedLessons).completed);
+        }
+
+        function getCurrentLearningLevelId(completedUnits = App.completedUnits, completedLessons = App.completedLessons) {
+            for (const level of CourseData.levels) {
+                if (level.id === 'A2' && !A2_RELEASE_ENABLED) continue;
+                if (level.id === 'B2') continue;
+                const current = level.units.find(unit =>
+                    isUnitUnlocked(level, unit, completedUnits, completedLessons) &&
+                    !getUnitProgressState(level, unit, completedUnits, completedLessons).completed
+                );
+                if (current) return level.id;
+            }
+            return 'A1';
+        }
+
 
         /* 3. AUDIO Y AUDIO FALLBACK */
         // Legacy vocabulary IDs retained in SRS/backup records after curriculum deduplication.
@@ -6211,71 +6276,6 @@
                 (level.id !== 'A2' || A2_RELEASE_ENABLED)
             );
         }
-        function hasUnitFinalAssessment(level, unit) {
-            return Boolean(level && ['A1', 'B1'].includes(level.id) && buildUnitAssessmentItems(unit).length);
-        }
-
-        function getUnitProgressState(level, unit, completedUnits = App.completedUnits, completedLessons = App.completedLessons) {
-            const lessons = buildUnitLessons(unit);
-            const approved = Array.isArray(completedUnits) && completedUnits.includes(unit.id);
-            const completedLessonCount = approved ? lessons.length : lessons.filter(lesson =>
-                Array.isArray(completedLessons) && completedLessons.includes(unitLessonProgressKey(unit.id, lesson.index))
-            ).length;
-            const allLessonsComplete = lessons.length > 0 && completedLessonCount === lessons.length;
-            const requiresAssessment = hasUnitFinalAssessment(level, unit);
-            return {
-                lessons,
-                completedLessonCount,
-                allLessonsComplete,
-                requiresAssessment,
-                completed: approved || (allLessonsComplete && !requiresAssessment),
-                approved
-            };
-        }
-
-        function getEmergencyUnitSkips() {
-            try {
-                const id = localStorage.getItem('bahasaStudioUnitSkipId');
-                return id ? [id] : [];
-            } catch (error) {
-                return [];
-            }
-        }
-
-        function isUnitUnlocked(level, unit, completedUnits = App.completedUnits, completedLessons = App.completedLessons, skipIds = getEmergencyUnitSkips()) {
-            if (!level) return false;
-            if (level.id === 'A2' && !A2_RELEASE_ENABLED) return false;
-            const progress = getUnitProgressState(level, unit, completedUnits, completedLessons);
-            if (progress.completed || (Array.isArray(skipIds) && skipIds.includes(unit.id))) return true;
-            if (level.id === 'IA') return true;
-            if (level.id === 'B2') return false;
-
-            const levels = CourseData.levels;
-            const levelIndex = levels.findIndex(entry => entry.id === level.id);
-            const unitIndex = level.units.findIndex(entry => entry.id === unit.id);
-            if (levelIndex < 0 || unitIndex < 0) return false;
-            if (unitIndex > 0) {
-                return getUnitProgressState(level, level.units[unitIndex - 1], completedUnits, completedLessons).completed;
-            }
-            if (levelIndex === 0) return true;
-            const previousLevel = levels[levelIndex - 1];
-            const previousUnit = previousLevel.units[previousLevel.units.length - 1];
-            return Boolean(previousUnit && getUnitProgressState(previousLevel, previousUnit, completedUnits, completedLessons).completed);
-        }
-
-        function getCurrentLearningLevelId(completedUnits = App.completedUnits, completedLessons = App.completedLessons) {
-            for (const level of CourseData.levels) {
-                if (level.id === 'A2' && !A2_RELEASE_ENABLED) continue;
-                if (level.id === 'B2') continue;
-                const current = level.units.find(unit =>
-                    isUnitUnlocked(level, unit, completedUnits, completedLessons) &&
-                    !getUnitProgressState(level, unit, completedUnits, completedLessons).completed
-                );
-                if (current) return level.id;
-            }
-            return 'A1';
-        }
-
         function getUniqueLearningVocabulary() {
             const seen = new Set();
             return getLearningLevels().flatMap(level => level.units.flatMap(unit => unit.vocab || []))

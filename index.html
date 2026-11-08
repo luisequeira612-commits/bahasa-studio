@@ -6380,7 +6380,7 @@ Requisitos:
                 }
                 if (exercises.length < 8) throw new Error('la IA devolvió pocos ejercicios válidos, intenta de nuevo');
                 const known = new Set();
-                getLevels().forEach(l => l.units.forEach(u => u.vocab.forEach(v => known.add(v.idn.toLowerCase()))));
+                getLearningLevels().forEach(l => l.units.forEach(u => u.vocab.forEach(v => known.add(v.idn.toLowerCase()))));
                 return {
                     id, custom: true, title: c(d.title) || 'Lección IA', desc: c(d.desc), grammar: c(d.grammar), vocab, exercises,
                     skipped: (d.exercises || []).length - exercises.length,

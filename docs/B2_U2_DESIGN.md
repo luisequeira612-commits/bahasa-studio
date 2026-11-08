@@ -141,3 +141,14 @@ Se localizó un ejemplo en una fuente literaria indonesia alojada en el reposito
 - Se excluye como evidencia para el indonesio una fuente de morfología de **bahasa Melayu** de Dewan Bahasa dan Pustaka (Abdullah Hassan, 2023), que considera janggal las formas `kutulis` y `kautulis` en su análisis del malayo. Es una advertencia útil contra la transferencia entre lenguas cercanas, pero no demuestra que las formas sean extrañas o incorrectas en indonesio: https://jendeladbp.my/app/uploads/woocommerce_uploads/2025/04/eDigital_Morfologi-qnsczr.pdf (pp. 177–178).
 
 **Ajuste de confianza:** `kautulis` ahora cuenta con evidencia ortográfica oficial (2016), análisis morfológico académico (2022) y al menos un uso contextual literario indonesio (antología oficial, p. 88). La evidencia literaria no resuelve si conviene enseñarla como forma productiva de registro neutro. Las cuatro formas siguen pendientes de aprobación; no se asignan IDs ni se implementa U2.
+
+
+## Segundo testimonio contextual oficial de `kautulis` (8 nov 2026)
+
+Se encontró un testimonio independiente en la revista literaria **PUSAT**, publicada por Badan Pengembangan dan Pembinaan Bahasa:
+
+- En el poema «Ada Banyak Hal», de Alex R. Nainggolan, la revista incluye «ada banyak hal, yang ingin kautulis» (PUSAT, núm. 06/2014, p. 18 impresa; PDF, líneas 470–503). La publicación identifica al organismo editor en la portada y acredita ISSN 2086-3934. Fuente primaria: https://repositori.kemendikdasmen.go.id/4285/1/Majalah%20Pusat%20edisi%206.pdf
+- El ejemplo aporta un contexto sintáctico más informativo que una lista de formas: `kautulis` aparece en una relativa con el elemento escrito recuperable como `yang` («muchas cosas que quieres escribir»). Sigue siendo poesía y no permite concluir que sea la opción neutra o más frecuente en conversación.
+- La fuente complementa, sin sustituir, el ejemplo de la antología de 2017 ya registrado arriba. Ambas publicaciones proceden del repositorio oficial de Kemendikdasmen; la revista PUSAT declara expresamente como editor a Badan Pengembangan dan Pembinaan Bahasa.
+
+**Ajuste de confianza:** hay ahora dos testimonios literarios contextuales independientes de `kautulis` en publicaciones alojadas en el repositorio oficial, además del respaldo ortográfico (2016) y morfológico académico (2022). Esto confirma uso escrito literario en indonesio; no resuelve registro neutro, frecuencia conversacional ni si debe exigirse como producción activa en B2. Las cuatro formas siguen pendientes de aprobación.

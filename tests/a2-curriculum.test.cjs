@@ -532,7 +532,7 @@ test('A2 units 37-40 teach emergency readiness, tourism, remote work, and integr
   }
 });
 
-test('A2 level release is independent, while A2/B1 unit entry follows sequential progression and B2 stays guarded', () => {
+test('A2 level release is independent and A2/B1/B2 unit entry follows sequential progression', () => {
   const newIds = a2.units.flatMap(unit => unit.vocab.map(word => word.id));
   assert.equal(new Set(newIds).size, newIds.length, 'new A2 vocabulary identifiers must be unique');
   assert.match(html, /function getLearningLevels\(\)[\s\S]*?level\.id !== 'A2' \|\| A2_RELEASE_ENABLED/);
@@ -555,7 +555,7 @@ test('A2 level release is independent, while A2/B1 unit entry follows sequential
   assert.equal(api.isUnitUnlocked(a2Level, a2Level.units[0], allA1, [], []), true);
   assert.equal(api.isUnitUnlocked(b1Level, b1Level.units[0], allA1, [], []), false);
   assert.equal(api.isUnitUnlocked(b1Level, b1Level.units[0], allA1A2, [], []), true);
-  assert.equal(api.isUnitUnlocked(b2Level, b2Level.units[0], allA1A2B1, [], []), false);
+  assert.equal(api.isUnitUnlocked(b2Level, b2Level.units[0], allA1A2B1, [], []), true);
   assert.equal(api.isUnitUnlocked(b2Level, b2Level.units[0], allA1A2B1, [], [b2Level.units[0].id]), true);
   assert.doesNotMatch(html, /!\['B1', 'B2'\]\.includes\(level\.id\)/);
 });

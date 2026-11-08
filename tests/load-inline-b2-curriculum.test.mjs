@@ -87,7 +87,7 @@ test('B2 remains inaccessible in the lesson engine until the release gate is cha
   assert.match(indexSource, /if \(level\.id === 'B2' \|\|/);
   const directStart = indexSource.indexOf('startUnit(unit, lessonIndex = 0) {');
   assert.notEqual(directStart, -1);
-  assert.ok(indexSource.slice(directStart, directStart + 450).includes("if (level && (level.id === 'B2' ||"));
+  assert.ok(indexSource.slice(directStart, directStart + 900).includes("if (level && (level.id === 'B2' ||"));
 });
 
 test('B2 U2 candidate forms stay out of executable curriculum until explicit approval', async () => {

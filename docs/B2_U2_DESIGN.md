@@ -159,3 +159,15 @@ Se encontró un testimonio independiente en la revista literaria **PUSAT**, publ
 Se localizó una referencia reciente en Hasbul, Wahyuni; Roni Juliansyah; Reni Kusmiarti; Apriyanto; Dian Septikasari; Amelia Warikar; y Jasmari, *Bahasa Indonesia: Pemahaman, Penggunaan, dan Pengembangan di Era Modern* (CV Pustaka Inspirasi Minang, primera edición, agosto de 2025, ISBN 978-634-96236-2-9), p. 51 impresa / p. 52 del PDF. En la sección «Elipsis, Permutasi, dan Topikalisasi», el libro ofrece «Buku itu sudah kubaca → Sudah kubaca buku itu» como ejemplo de permutación del orden de constituyentes para cambiar el foco o ajustarse a la comunicación. Fuente: https://repository.umb.ac.id/1494/1/EBOOK%20BAHASA%20INDONESIA%20PEMAHAMAN%2C%20PENGGUNAAN%2C%20DAN%20PENGEMBANGAN%20DI%20ERA%20MODERN.pdf
 
 **Alcance:** es un ejemplo didáctico en una sección que trata estrategias sintácticas del uso cotidiano; no es una transcripción ni una muestra de corpus espontáneo. Corrobora que `kubaca` se utiliza como ejemplo gramatical contemporáneo en indonesio y encaja con el análisis de foco/orden, pero no demuestra frecuencia conversacional. No cambia el estatus candidato de `kubaca` ni aprueba la forma, glosa o una oración para B2 U2.
+
+
+## Referencia académica sobre `kubaca`/`kaubaca` y foco discursivo (8 nov 2026)
+
+Akihisa Matsuno, «テーマ・レーマとインドネシア語における受動の問題» [Theme/Rheme and the Problem of Passive in Bahasa Indonesia], *大阪外国語大学論集* (Osaka University of Foreign Studies), núm. 3 (1990), pp. 35–53, ofrece en p. 36 los pares:
+
+- `Buku itu kubaca` / `Aku membaca buku itu` (primera persona).
+- `Buku itu kaubaca` / `Engkau membaca buku itu` (segunda persona).
+
+El artículo explica que `ku-`/`kau-` son formas ligadas del agente y que la elección y el orden se relacionan con el foco discursivo. También señala que clasificar estas construcciones de primera y segunda persona como pasivas puede ser discutible: propone analizar patrones y funciones informativas, no imponer una etiqueta única. Más adelante distingue construcciones con el objeto antepuesto de patrones con el verbo al inicio (`Kubaca buku itu`, `Kaubaca buku itu`). Fuente académica alojada por el repositorio institucional de Osaka University: https://ir.library.osaka-u.ac.jp/repo/ouka/all/79494/joufsns_03_035.pdf
+
+**Alcance y cautelas:** la fuente es un artículo académico de 1990, útil para la descripción estructural y discursiva, pero no una medición actual de frecuencia ni una guía de registro conversacional. Aunque el autor comenta la frecuencia de patrones invertidos, el pasaje textual que usa para ilustrarla procede de una fuente malaya; no se debe convertir esa observación en una afirmación cuantitativa sobre el indonesio actual. La fuente respalda directamente `kubaca` y `kaubaca`, no `kutulis` ni `kautulis`. No se aprueban formas, glosas ni ejemplos didácticos por añadir esta referencia.

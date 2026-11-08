@@ -110,6 +110,17 @@ test('B2 stays inaccessible through every lesson entry point and the course rout
   assert.match(routeGate, /return;\s*}/);
 });
 
+test('tap translation fallback excludes hidden B2 authored exercises', async () => {
+  const { indexSource } = await loadCurricula();
+  const fallbackStart = indexSource.indexOf('// Existing authored translation exercises are a fallback source');
+  assert.notEqual(fallbackStart, -1, 'tap translation fallback must remain present');
+  const levelLoop = indexSource.indexOf('for (const level of CourseData.levels) {', fallbackStart);
+  const unitLoop = indexSource.indexOf('for (const unit of level.units || []) {', levelLoop);
+  assert.ok(levelLoop > fallbackStart && unitLoop > levelLoop, 'fallback must iterate authored levels and units');
+  assert.ok(indexSource.slice(levelLoop, unitLoop).includes("if (level.id === 'B2') continue;"),
+    'hidden B2 translation exercises must not leak into the tap-translation helper');
+});
+
 test('B2 U2 candidate forms stay out of executable curriculum until explicit approval', async () => {
   const { b2, indexSource } = await loadCurricula();
   const candidateForms = ['kubaca', 'kaubaca', 'kutulis', 'kautulis'];

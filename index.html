@@ -15,7 +15,7 @@
         <div class="logo"><span aria-hidden="true">🇮🇩</span><span>Bahasa Studio</span></div>
         <div class="topbar-metrics" aria-label="Tu actividad">
             <span class="topbar-streak" title="Racha actual">🔥 <strong id="studyStreakText">0 días</strong></span>
-            <span class="topbar-xp" title="Experiencia ganada hoy">⚡ <strong id="studyDailyXpText">0 / 30 XP</strong></span>
+            <span class="topbar-xp" title="Meta diaria de XP">⚡ <strong id="studyDailyXpText">Meta: 0/30 XP</strong></span>
             <button class="daily-goal-ring" id="dailyGoalRing" type="button" title="Meta diaria de XP" aria-label="Meta diaria: 0 de 30 XP" aria-expanded="false" aria-controls="dailyGoalHelp" aria-describedby="dailyGoalHelp" onclick="App.toggleDailyGoalHelp()">
                 <span class="daily-goal-ring-inner"><span id="dailyGoalPercent">0%</span></span>
                 <span id="studyDailyXpFill" class="progress-fill" aria-hidden="true"></span>
@@ -26,6 +26,12 @@
 
     <!-- CURSO / RUTA -->
     <main id="view-route" class="app-view active">
+        <div id="learningLevelSelector" class="learning-level-selector" role="group" aria-label="Seleccionar nivel">
+            <button type="button" class="learning-level-button" data-level="A1" onclick="App.selectLearningLevel('A1')">A1</button>
+            <button type="button" class="learning-level-button" data-level="A2" onclick="App.selectLearningLevel('A2')">A2</button>
+            <button type="button" class="learning-level-button" data-level="B1" onclick="App.selectLearningLevel('B1')">B1</button>
+            <button type="button" class="learning-level-button" data-level="B2" onclick="App.selectLearningLevel('B2')">B2</button>
+        </div>
         <div class="learning-tools-row" role="group" aria-label="Herramientas de aprendizaje">
             <button class="learning-tool-button" type="button" data-tool-target="aiGeneratorDrawer" aria-controls="aiGeneratorDrawer" aria-expanded="false" onclick="App.toggleLearningTool('aiGeneratorDrawer')"><span aria-hidden="true">✨</span><span>Generador</span></button>
             <button class="learning-tool-button" type="button" data-tool-target="writingPracticeDrawer" aria-controls="writingPracticeDrawer" aria-expanded="false" onclick="App.toggleLearningTool('writingPracticeDrawer')"><span aria-hidden="true">📓</span><span>Cuaderno</span></button>
@@ -72,12 +78,6 @@
             <button class="btn" type="button" onclick="ConversationEngine.open()">Practicar conversaciones</button>
         </div></div>
         </details>
-        <div id="learningLevelSelector" class="learning-level-selector" role="group" aria-label="Seleccionar nivel">
-            <button type="button" class="learning-level-button" data-level="A1" onclick="App.selectLearningLevel('A1')">A1</button>
-            <button type="button" class="learning-level-button" data-level="A2" onclick="App.selectLearningLevel('A2')">A2</button>
-            <button type="button" class="learning-level-button" data-level="B1" onclick="App.selectLearningLevel('B1')">B1</button>
-            <button type="button" class="learning-level-button" data-level="B2" onclick="App.selectLearningLevel('B2')">B2</button>
-        </div>
         <p id="unitPathNotice" class="unit-path-notice" role="status" aria-live="polite" hidden></p>
         <div id="courseContainer"></div>
         <button id="jumpToCurrentUnitBtn" class="jump-current-unit-button" type="button" onclick="App.scrollToCurrentUnit(true)" hidden>↑ Ir a mi unidad</button>

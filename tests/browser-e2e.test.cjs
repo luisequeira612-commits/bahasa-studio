@@ -967,7 +967,7 @@ test('A1 lesson progress is sequential and the final exam gates the next unit at
 
     await firstNode.click();
     await page.locator('#unitBottomSheet').waitFor({ state: 'visible' });
-    assert.match(await page.locator('#unitSheetContent').innerText(), /0\\/3/);
+    assert.ok((await page.locator('#unitSheetContent').innerText()).includes('0/3'));
     await page.getByRole('button', { name: 'Empezar lección 1' }).click();
     await page.evaluate(() => { window.confirm = () => true; });
     await page.getByRole('button', { name: 'Salir de la lección' }).click();
@@ -980,7 +980,7 @@ test('A1 lesson progress is sequential and the final exam gates the next unit at
       App.renderCourseRoute();
     });
     await firstNode.click();
-    assert.match(await page.locator('#unitSheetContent').innerText(), /1\\/3/);
+    assert.ok((await page.locator('#unitSheetContent').innerText()).includes('1/3'));
     assert.ok(await page.getByRole('button', { name: 'Empezar lección 2' }).isVisible());
 
     await page.evaluate(async () => {

@@ -112,7 +112,7 @@ test('lesson progress and JSON v3 import/export fields remain unchanged', () => 
     assert.match(html, /DB\.set\('settings', 'completedLessons', App\.completedLessons\)/);
     assert.match(html, /completedLessons: this\.completedLessons/);
     assert.match(html, /putSetting\('completedLessons', data\.completedLessons \|\| \[\]\)/);
-    assert.match(html, /unitSkipId/);
+    assert.match(html, /bahasaStudioUnitSkipId/);
     const manifest = fs.readFileSync(path.join(root, 'manifest.json'), 'utf8');
     const serviceWorker = fs.readFileSync(path.join(root, 'service-worker.js'), 'utf8');
     assert.match(manifest, /"display":\s*"standalone"/);

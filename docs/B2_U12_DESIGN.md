@@ -11,7 +11,7 @@ U12 propone estudiar cómo se combinan lexemas en indonesio y cómo distinguir, 
 
 La revisión del currículo activo detecta expresiones de varias palabras ya presentes en niveles previos, entre ellas:
 - A1: `kamar mandi`, `nasi goreng`, `terima kasih`, `tempat tidur`, `sepak bola`.
-- A2: `ruang tamu`, `rumah tangga`, `pusat belanja`, `taman kota`, `rambu lalu lintas`, `ucapan terima kasih`, `rumah tangga`.
+- A2: `ruang tamu`, `rumah tangga`, `pusat belanja`, `taman kota`, `rambu lalu lintas`, `ucapan terima kasih`.
 - B1: `umpan balik`, `sumber daya`, `tanggung jawab`.
 
 Esta lista es un control de solapamiento, no una clasificación lingüística de cada expresión. Algunas pueden funcionar como unidades léxicas, otras como frases o colocaciones; su clasificación requiere contexto y evidencia. No se añadirán IDs ni se presentarán como vocabulario nuevo.

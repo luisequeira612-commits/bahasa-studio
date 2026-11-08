@@ -370,3 +370,7 @@
 
 ## PR #455 — 8 nov 2026
 - Fusionado mediante squash en `31c8afc1cada243bb40bae0bcebc4b38c156d744` tras CI verde en ambos jobs y sin revisiones/comentarios/hilos pendientes. Añade el diseño documental preliminar de B2 U5 (`-i`) y actualiza esta memoria. Sin cambios curriculares ejecutables ni vocabulario.
+
+## Diseño preliminar B2 U8 — 8 nov 2026
+- Se prepara una propuesta documental sobre ke-...-an como nominalizador abstracto y de predicados complejos, evitando repetir las palabras básicas de B1 U12–U14. Tebay (2024) documenta nominalizaciones de bases adjetivales, nominales y verbales y dominios complejos con negación/adverbios; Denistia & Baayen (2021) distingue el uso nominalizador de ke-...-an de verbos adversativos/perfectivos como `kejatuhan` y `kebakaran`, y documenta la ambigüedad contextual de `ketinggian`. Fuentes: https://home.uni-leipzig.de/tebay/tebay2024keandgfs.pdf; https://www.sfs.uni-tuebingen.de/~hbaayen/publications/DenistiaBaayen2021.pdf; https://doi.org/10.21831/cp.v2i2.7476.
+- El desglose U8 es propuesta documental reversible dentro del eje U7–U10; no añade vocabulario, IDs, glosas definitivas ni ejercicios ejecutables. No modifica A1/A2/B1, IndexedDB, backup JSON v3, trackers, dependencias ni visibilidad de B2.

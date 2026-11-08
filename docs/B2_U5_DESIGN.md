@@ -7,7 +7,7 @@
 
 ## Propósito y alcance
 
-U5 propone estudiar el sufijo `-i) mediante la relación entre la base, los participantes del evento y la construcción completa. No debe enseñarse una equivalencia fija como «`-i` = en/a» ni una regla universal de valencia.
+U5 propone estudiar el sufijo `-i` mediante la relación entre la base, los participantes del evento y la construcción completa. No debe enseñarse una equivalencia fija como «`-i` = en/a» ni una regla universal de valencia.
 
 La investigación describe varios comportamientos: usos aplicativos asociados a participantes de meta o lugar, usos causativos y casos cuya estructura no se reduce a una sola alternancia. La interpretación depende del tipo semántico de la raíz, de los participantes que ya selecciona y de cómo la voz organiza la oración.
 

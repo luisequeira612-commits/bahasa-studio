@@ -5339,7 +5339,9 @@
             return Boolean(previousUnit && getUnitProgressState(previousLevel, previousUnit, completedUnits, completedLessons).completed);
         }
 
-        function getCurrentLearningLevelId(completedUnits = App.completedUnits, completedLessons = App.completedLessons) {
+        function getCurrentLearningLevelId(completedUnits = App.completedUnits, completedLessons = App.completedLessons, skipIds = getEmergencyUnitSkips()) {
+            const skippedUnit = Array.isArray(skipIds) && skipIds.length ? CourseData.levels.find(level => level.units.some(unit => unit.id === skipIds[0])) : null;
+            if (skippedUnit && (skippedUnit.id !== 'A2' || A2_RELEASE_ENABLED)) return skippedUnit.id;
             let lastCompletedLevel = 'A1';
             for (let index = 0; index < CourseData.levels.length; index++) {
                 const level = CourseData.levels[index];

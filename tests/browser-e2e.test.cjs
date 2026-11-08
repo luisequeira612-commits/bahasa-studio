@@ -1618,7 +1618,7 @@ test('learning path keeps the real A1 one-of-two lesson state visible at a 360px
     await page.locator('.learning-unit-node[data-unit-id="a1_u3"]').click();
     await page.locator('#unitBottomSheet').waitFor({ state: 'visible' });
     const sheet = await page.locator('#unitSheetContent').innerText();
-    assert.match(sheet, /1\\/2/);
+    assert.match(sheet, /1\/2/);
     assert.match(sheet, /Empezar lección 2/);
     assert.ok(pageErrors.length === 0, pageErrors.join('\\n'));
   } finally {

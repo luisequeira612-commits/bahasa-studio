@@ -96,7 +96,7 @@ test('course progression persists lesson completion separately from unit approva
   assert.match(html, /progress\.allLessonsComplete && progress\.requiresAssessment && !progress\.completed/);
   assert.match(html, /const unitCompletedNow = progress\.allLessonsComplete && !progress\.requiresAssessment/);
   assert.match(html, /App\.completedLessons\.push\(lessonKey\)/);
-  assert.match(html, /if \(passed\) await App\.markUnitCompleted\(this\.currentUnit\.id\)/);
+  assert.match(html, /if \(passed\) \{[\s\S]*?await App\.markUnitCompleted\(this\.currentUnit\.id\);[\s\S]*?syncLearningLevelAfterUnitCompletion\(this\.currentUnit\.id\);/);
   assert.match(html, /completedLessons: this\.completedLessons/);
   assert.match(html, /putSetting\('completedLessons', data\.completedLessons \|\| \[\]\)/);
 });

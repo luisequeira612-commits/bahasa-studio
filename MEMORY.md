@@ -71,6 +71,6 @@
 - Decisión del dueño: registrar cada clave unidad::índiceDeLección en A2/B1/B2 al completar todos los ejercicios de esa lección; salir antes no registra la lección. No modificar IndexedDB ni backup JSON v3.
 - Una función derivada calcula avance, finalización y desbloqueo desde completedLessons y completedUnits; los IDs ya aprobados conservan el estado aunque falten claves de lección.
 - Evaluación final en la ruta actual: A1 y B1 (umbral existente 80 %); A2 y B2 no muestran evaluación final en la ruta actual. A2/B2 se completan al terminar todas las lecciones.
-- Desbloqueo secuencial uniforme en A1–B2; A2_RELEASE_ENABLED solo controla la apertura del nivel. La guarda de acceso B2 se conserva en esta fase.
+- Desbloqueo secuencial en A1/A2/B1; A2_RELEASE_ENABLED solo controla la apertura del nivel. La guarda normal de B2 se conserva, con excepción del salto de emergencia local a U1 implementada.
 - Agrupación visual por orden, secciones de 8; B2 muestra U1 implementada y un solo nodo «Próximamente». El salto de emergencia usa localStorage (bahasaStudioUnitSkipId) y no altera aprobación.
 - La Fase 1 va en una rama/PR independiente; no fusionar sin autorización. PR #472 (fix/restore-b1-b2-access) sigue abierto y sin fusionar; se solapa con index.html y deberá reconciliarse si se fusiona más adelante.

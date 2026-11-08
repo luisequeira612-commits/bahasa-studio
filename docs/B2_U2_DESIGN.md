@@ -100,3 +100,23 @@ Al implementar, al menos cinco ejercicios deben evaluar oraciones completas y al
 6. U2 se implementa y supera CI antes de cerrar los ejemplos integradores de U3.
 
 **Decisión pendiente del dueño:** aprobar o modificar las cuatro formas propuestas. «Continúa» significa continuar el trabajo permitido, no aprobar el inventario.
+
+
+## Evidencia lingüística adicional (8 nov 2026)
+
+Se realizó una comprobación documental para evaluar si las cuatro formas candidatas merecen seguir en el inventario propuesto. El resultado apoya conservarlas como **candidatas**, no aprobar automáticamente sus ejemplos ni afirmar naturalidad universal:
+
+- Un artículo de Ni Luh Yaniasti y Kadek Yati Fitria Dewi, publicado en *Daiwi Widya: Jurnal Pendidikan* 11(1), junio de 2024, presenta explícitamente los ejemplos indonesios `Buku itu kubaca`, `Surat itu kutulis` y `Buku itu kaubaca`, y analiza `ku-` / `kau-` como formas ligadas al agente en una construcción con el objeto antepuesto. Esto respalda directamente tres de las cuatro combinaciones candidatas y el contraste de persona: https://ejournal.unipas.ac.id/index.php/DW/article/download/2017/1176 (págs. 101–102 del PDF).
+- Una publicación lingüística del Pusat Bahasa / Balai Bahasa Yogyakarta (Sri Nardiati, 2007) enumera `kautulis` y `kutulis` como ejemplos de proclíticos en indonesio. Su objeto principal es el habla ceremonial javanesa y no aporta una oración contextual completa con `kautulis`; por tanto, se usa solo como corroboración limitada de la forma escrita, no como prueba de naturalidad del ejemplo didáctico: https://repositori.kemendikdasmen.go.id/3634/1/Struktur%20Frasa%20Nominal%20Pada%20Wicara%20Pernikahan%20Jawa.pdf (p. 14 del PDF).
+- EYD V establece que `ku-` y `kau-` se escriben unidos a la palabra siguiente; su ejemplo incluye `kaubaca`. La regla ortográfica no demuestra por sí sola la distribución sintáctica ni la naturalidad de cada oración: https://ejaan.kemendikdasmen.go.id/eyd/penulisan-kata/kata-ganti/.
+
+### Evaluación y límites
+
+- `kubaca`: forma y patrón respaldados directamente por el artículo de 2024 y por EYD V.
+- `kutulis`: forma y patrón respaldados directamente por el artículo de 2024.
+- `kaubaca`: forma y patrón respaldados directamente por el artículo de 2024 y EYD V.
+- `kautulis`: forma escrita corroborada en la publicación del Pusat Bahasa de 2007, pero sin ejemplo contextual completo en esa fuente. Mantenerla como candidata de menor confianza hasta revisar un ejemplo contextual independiente.
+
+La fuente de 2024 describe el patrón como pasivo, mientras que otros análisis pueden tratar la construcción desde la voz, el clítico o la estructura informativa. Se conserva por eso la cautela del diseño: enseñar primero agente, participante afectado y foco; no imponer una etiqueta sintáctica universal. Tampoco se deduce tiempo verbal de la forma aislada.
+
+**Decisión del dueño sin cambios:** ninguna de las cuatro formas, glosas ni ejemplos queda aprobada por esta investigación. No se asignan IDs ni se implementa U2. La revisión documental reduce la incertidumbre sobre las formas, pero no sustituye la aprobación del inventario y de ejemplos concretos.

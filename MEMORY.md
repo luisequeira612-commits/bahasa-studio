@@ -285,3 +285,5 @@
 
 ## Revisión editorial contextual B1 U48–U50 (7 nov 2026)
 - Lectura manual de las tres unidades finales: 0 errores confirmados y 0 candidatos que justifiquen corrección curricular. U48–U50 mantienen coherencia entre vocabulario, glosas, ejemplos, explicaciones y ejercicios; U50 funciona como cierre integrador. No se modificó el currículo ni datos persistentes. Ver `docs/EDITORIAL_AUDIT_B1_U48_U50.md`.
+
+- 8 nov 2026: revisión documental de B2 U2 en la rama `docs/b2-u2-evidence-review`: un artículo académico de 2024 respalda directamente `kubaca`, `kutulis` y `kaubaca`; una publicación del Pusat Bahasa de 2007 solo corrobora de forma limitada la forma `kautulis`; EYD V confirma la unión ortográfica de `ku-`/`kau-`. Se mantienen las cuatro como candidatas, con menor confianza para `kautulis`; ninguna forma/glosa/ejemplo se considera aprobada. Solo documentación; sin currículo ejecutable, IndexedDB, backup v3 ni dependencias.

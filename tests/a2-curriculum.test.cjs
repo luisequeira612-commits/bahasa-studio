@@ -542,7 +542,7 @@ test('A2 level release is independent, while A2/B1 unit entry follows sequential
   const start = html.indexOf('const CourseData =');
   const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
   const api = vm.runInNewContext(html.slice(start, end) +
-    '\\nconst A2_RELEASE_ENABLED = true; ({ CourseData, isUnitUnlocked })');
+    '\nconst A2_RELEASE_ENABLED = true; ({ CourseData, isUnitUnlocked })');
   const levels = api.CourseData.levels;
   const a1Level = levels.find(level => level.id === 'A1');
   const a2Level = levels.find(level => level.id === 'A2');
@@ -557,7 +557,7 @@ test('A2 level release is independent, while A2/B1 unit entry follows sequential
   assert.equal(api.isUnitUnlocked(b1Level, b1Level.units[0], allA1A2, [], []), true);
   assert.equal(api.isUnitUnlocked(b2Level, b2Level.units[0], allA1A2B1, [], []), false);
   assert.equal(api.isUnitUnlocked(b2Level, b2Level.units[0], allA1A2B1, [], [b2Level.units[0].id]), true);
-  assert.doesNotMatch(html, /!\\['B1', 'B2'\\]\\.includes\\(level\\.id\\)/);
+  assert.doesNotMatch(html, /!\['B1', 'B2'\]\.includes\(level\.id\)/);
 });
 
 test('A2 beta disclosure and level release switch remain visible without bypassing unit sequence', () => {

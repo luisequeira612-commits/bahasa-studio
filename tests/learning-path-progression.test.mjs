@@ -24,7 +24,7 @@ async function loadProgressionApi() {
     localStorage: { getItem() { return null; } }
   };
   return vm.runInNewContext(source.slice(start, end) +
-    '\nconst A2_RELEASE_ENABLED = true; ({ CourseData, buildUnitLessons, buildUnitAssessmentItems, getUnitProgressState, isUnitUnlocked, hasUnitFinalAssessment })',
+    '\nconst A2_RELEASE_ENABLED = true; ({ CourseData, buildUnitLessons, buildUnitAssessmentItems, getUnitProgressState, isUnitUnlocked, hasUnitFinalAssessment, getCurrentLearningLevelId })',
     context, { timeout: 5000 });
 }
 
@@ -131,4 +131,16 @@ test('the new path is mobile-first and keeps the backup format and offline worke
   assert.match(indexSource, /putSetting\('completedLessons', data\.completedLessons \|\| \[\]\)/);
   assert.match(manifest, /"display":\s*"standalone"/);
   assert.match(worker, /bahasa-studio-v3\.8\./);
+});
+
+test('default level follows the first unfinished level and keeps B2 visible after B1 completion', async () => {
+  const api = await loadProgressionApi();
+  const [a1, a2, b1] = ['A1', 'A2', 'B1'].map(id => api.CourseData.levels.find(level => level.id === id));
+  assert.equal(api.getCurrentLearningLevelId([], []), 'A1');
+  const completedA1 = a1.units.map(unit => unit.id);
+  assert.equal(api.getCurrentLearningLevelId(completedA1, []), 'A2');
+  const completedA1A2 = completedA1.concat(a2.units.map(unit => unit.id));
+  assert.equal(api.getCurrentLearningLevelId(completedA1A2, []), 'B1');
+  const completedThroughB1 = completedA1A2.concat(b1.units.map(unit => unit.id));
+  assert.equal(api.getCurrentLearningLevelId(completedThroughB1, []), 'B2');
 });

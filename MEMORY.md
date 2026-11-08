@@ -59,6 +59,11 @@
 - #465: registra en esta memoria la fusión de #464; no es un cambio curricular. #465 fusionada en `0f0c6ed6a0c9aba46c436c1838e49a6f00a2852c`; #464 en `f89b9533e40577337722c213f695c49a547101d9`.
 - #458–#465 fueron fusionadas tras CI verde en el head correspondiente y sin revisiones/comentarios/hilos pendientes; detalles y commits de cada PR están en el historial de GitHub.
 
+## Cambio de dirección de acceso (8 nov 2026)
+- B1 y B2 dejan de ocultarse: el flujo de aprendizaje, las colecciones de aprendizaje/revisión, el tutor y la ruta del curso deben tratar B2 como nivel disponible.
+- Se cerró sin fusionar el PR #471 porque su objetivo era mantener una exclusión de vocabulario B2 que ya no corresponde al nuevo rumbo.
+- El siguiente trabajo de interfaz queda separado del acceso: primero se estabiliza B1/B2 visible; después se rediseñará la interfaz con una experiencia inspirada en Duolingo según las indicaciones concretas del dueño.
+
 ## Referencias de estado
 - Reorganización y secuencia B2: `docs/B2_CURRICULUM_REORGANIZATION.md`.
 - Diseños B2: `docs/B2_U1_DESIGN.md` a `docs/B2_U12_DESIGN.md` (U1 es implementada; U2–U12 son propuestas con el alcance descrito arriba).

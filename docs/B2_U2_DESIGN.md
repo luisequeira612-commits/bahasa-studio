@@ -130,3 +130,14 @@ Se localizaron dos fuentes indonesias adicionales:
 - **Jumiati, Erni y Rian Hidayat, “Analisis Referensi pada Kumpulan Cerpen Menghardik Gerimis Karya Sapardi Djoko Damono”, _SAJAK_ 1(2), junio de 2022, pp. 23–24.** El artículo identifica `ku-` (como en `kutulis`) y `kau-` (como en `kautulis`) como formas pronominales ligadas a la izquierda; su corpus también contiene usos contextuales de `ku-`, aunque no ofrece una oración completa con `kautulis`. https://journal.uir.ac.id/index.php/sajak/article/download/8345/4008/30937
 
 **Ajuste de evaluación:** la forma `kautulis` ya no depende únicamente de la mención de 2007: tiene corroboración ortográfica oficial (2016) y morfológica académica (2022). Sigue teniendo menos evidencia de uso en una oración contextual completa que `kubaca`, `kutulis` y `kaubaca`, respaldadas por los ejemplos de 2024. Las cuatro siguen siendo candidatas; no se aprueban automáticamente glosas ni ejemplos y no se asignan IDs.
+
+
+## Ejemplo contextual adicional de `kautulis` (8 nov 2026)
+
+Se localizó un ejemplo en una fuente literaria indonesia alojada en el repositorio oficial del Ministerio de Educación:
+
+- La antología *Puisi-Puisi Kenabian dalam Perkembangan Sastra Indonesia Modern* (repositorio Kemendikdasmen, p. 88 del PDF) incluye los versos «Kautulis kau paparkan / Kausampaikan dengan lisan». El contexto confirma que `kautulis` aparece en uso escrito literario indonesio, no solo en listas morfológicas u ortográficas: https://repositori.kemendikdasmen.go.id/16050/1/Puisi-Puisi%20Kenabian%20Dalam%20Perkembangan%20Sastra%20Indonesia%20Modern.pdf
+- Alcance: es poesía, con paralelismo y sintaxis literaria; no constituye por sí sola un modelo neutral de conversación ni una oración didáctica de objeto antepuesto como «Surat itu kautulis». Aumenta la evidencia de uso contextual de la forma, pero no determina su frecuencia ni su registro cotidiano.
+- Se excluye como evidencia para el indonesio una fuente de morfología de **bahasa Melayu** de Dewan Bahasa dan Pustaka (Abdullah Hassan, 2023), que considera janggal las formas `kutulis` y `kautulis` en su análisis del malayo. Es una advertencia útil contra la transferencia entre lenguas cercanas, pero no demuestra que las formas sean extrañas o incorrectas en indonesio: https://jendeladbp.my/app/uploads/woocommerce_uploads/2025/04/eDigital_Morfologi-qnsczr.pdf (pp. 177–178).
+
+**Ajuste de confianza:** `kautulis` ahora cuenta con evidencia ortográfica oficial (2016), análisis morfológico académico (2022) y al menos un uso contextual literario indonesio (antología oficial, p. 88). La evidencia literaria no resuelve si conviene enseñarla como forma productiva de registro neutro. Las cuatro formas siguen pendientes de aprobación; no se asignan IDs ni se implementa U2.

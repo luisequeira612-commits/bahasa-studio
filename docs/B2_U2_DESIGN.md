@@ -115,8 +115,18 @@ Se realizó una comprobación documental para evaluar si las cuatro formas candi
 - `kubaca`: forma y patrón respaldados directamente por el artículo de 2024 y por EYD V.
 - `kutulis`: forma y patrón respaldados directamente por el artículo de 2024.
 - `kaubaca`: forma y patrón respaldados directamente por el artículo de 2024 y EYD V.
-- `kautulis`: forma escrita corroborada en la publicación del Pusat Bahasa de 2007, pero sin ejemplo contextual completo en esa fuente. Mantenerla como candidata de menor confianza hasta revisar un ejemplo contextual independiente.
+- `kautulis`: forma escrita corroborada por la publicación del Pusat Bahasa de 2007 y por el manual oficial de Badan Bahasa de 2016; un artículo académico de 2022 también la identifica como ejemplo de forma ligada `kau-`. Aun así, las dos fuentes más recientes no aportan una oración didáctica contextual completa. Mantenerla como candidata con evidencia morfológica/ortográfica mejorada, pero con menor confianza contextual.
 
 La fuente de 2024 describe el patrón como pasivo, mientras que otros análisis pueden tratar la construcción desde la voz, el clítico o la estructura informativa. Se conserva por eso la cautela del diseño: enseñar primero agente, participante afectado y foco; no imponer una etiqueta sintáctica universal. Tampoco se deduce tiempo verbal de la forma aislada.
 
 **Decisión del dueño sin cambios:** ninguna de las cuatro formas, glosas ni ejemplos queda aprobada por esta investigación. No se asignan IDs ni se implementa U2. La revisión documental reduce la incertidumbre sobre las formas, pero no sustituye la aprobación del inventario y de ejemplos concretos.
+
+
+## Evidencia documental complementaria (8 nov 2026)
+
+Se localizaron dos fuentes indonesias adicionales:
+
+- **Badan Pengembangan dan Pembinaan Bahasa, _Penyuluhan Bahasa Indonesia untuk Pewara_ (2016), pp. 25–26 del PDF.** El manual oficial explica que el pronombre ligado `kau` se escribe unido al verbo y contrasta expresamente las grafías separadas `kau tulis`, `kau baca`, `kau sampaikan` con las formas correctas `kautulis`, `kaubaca`, `kausampaikan`. Es evidencia oficial de la convención ortográfica y de que `kautulis` es una forma escrita reconocida; no es un ejemplo discursivo completo. https://repositori.kemendikdasmen.go.id/15989/1/Penyuluhan%20Bahasa%20Indonesia%20Untuk%20Pewara.pdf
+- **Jumiati, Erni y Rian Hidayat, “Analisis Referensi pada Kumpulan Cerpen Menghardik Gerimis Karya Sapardi Djoko Damono”, _SAJAK_ 1(2), junio de 2022, pp. 23–24.** El artículo identifica `ku-` (como en `kutulis`) y `kau-` (como en `kautulis`) como formas pronominales ligadas a la izquierda; su corpus también contiene usos contextuales de `ku-`, aunque no ofrece una oración completa con `kautulis`. https://journal.uir.ac.id/index.php/sajak/article/download/8345/4008/30937
+
+**Ajuste de evaluación:** la forma `kautulis` ya no depende únicamente de la mención de 2007: tiene corroboración ortográfica oficial (2016) y morfológica académica (2022). Sigue teniendo menos evidencia de uso en una oración contextual completa que `kubaca`, `kutulis` y `kaubaca`, respaldadas por los ejemplos de 2024. Las cuatro siguen siendo candidatas; no se aprueban automáticamente glosas ni ejemplos y no se asignan IDs.

@@ -5368,6 +5368,15 @@
             return lastCompletedLevel;
         }
 
+        function syncLearningLevelAfterUnitCompletion(unitId) {
+            const level = CourseData.levels.find(entry => entry.units.some(unit => unit.id === unitId));
+            if (!level || !level.units.length || level.units[level.units.length - 1].id !== unitId) return false;
+            const nextLevelId = getCurrentLearningLevelId();
+            if (nextLevelId === level.id) return false;
+            App.selectedLearningLevel = nextLevelId;
+            return true;
+        }
+
 
         /* 3. AUDIO Y AUDIO FALLBACK */
         // Legacy vocabulary IDs retained in SRS/backup records after curriculum deduplication.
@@ -6188,7 +6197,10 @@
                     const correct = this.assessmentCorrect;
                     const passed = isUnitAssessmentPassed(correct, total);
                     this.assessmentMode = false;
-                    if (passed) await App.markUnitCompleted(this.currentUnit.id);
+                    if (passed) {
+                        await App.markUnitCompleted(this.currentUnit.id);
+                        syncLearningLevelAfterUnitCompletion(this.currentUnit.id);
+                    }
                     const unitId = this.currentUnit.id;
                     document.getElementById('exerciseArea').classList.add('lesson-results-screen');
                     document.getElementById('exerciseArea').innerHTML = `
@@ -6237,6 +6249,7 @@
                 const unitCompletedNow = progress.allLessonsComplete && !progress.requiresAssessment;
                 if (unitCompletedNow) {
                     await App.markUnitCompleted(unit.id);
+                    syncLearningLevelAfterUnitCompletion(unit.id);
                     for (const word of unit.vocab || []) {
                         if (!(await DB.get('srs', word.id))) await SRSEngine.recordAttempt(word.id, 4);
                     }

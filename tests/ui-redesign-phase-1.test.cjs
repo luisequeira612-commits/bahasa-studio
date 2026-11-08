@@ -73,6 +73,7 @@ test('B2 shows only its implemented U1 and one upcoming placeholder without remo
     assert.ok(css.includes('.unit-path-coming-soon .unit-path-coming-soon-circle'));
     assert.match(html, /B2 stays in development/);
     assert.match(html, /getEmergencyUnitSkips\(\)\.includes\(id\)/);
+    assert.match(html, /const availableUnits = level\.id === 'B2' \? level\.units\.slice\(0, 1\) : level\.units/);
 });
 
 test('unit bottom sheet includes title, description, lesson progress, lesson CTA and grammar', () => {

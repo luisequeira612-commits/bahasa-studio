@@ -81,33 +81,32 @@ test('B2 U1 has at least five sentence-level targets and a guided original-writi
   assert.ok(exercises.some((exercise) => exercise.type === 'write' && exercise.hint?.trim() && /mini texto|tres o cuatro oraciones/i.test(exercise.prompt)));
 });
 
-test('B2 stays inaccessible through every lesson entry point and the course route', async () => {
+test('B2 keeps its engine guard while the path shows only implemented U1 and one upcoming node', async () => {
   const { indexSource } = await loadCurricula();
-  const assertGuard = (method, expected, width = 650) => {
+  const assertGuard = (method, width = 700) => {
     const start = indexSource.indexOf(method);
     assert.notEqual(start, -1, method + ' must remain present');
-    assert.ok(indexSource.slice(start, start + width).includes(expected),
-      method + ' must reject registered B2 units');
+    assert.ok(indexSource.slice(start, start + width).includes("level.id === 'B2' ||"),
+      method + ' must preserve the B2 development guard');
   };
-
-  assertGuard('startUnitById(id, requestedLessonIndex) {', "if (level.id === 'B2' ||");
-  assertGuard('startUnitAssessment(unitId) {', "if (level && (level.id === 'B2' ||");
-  assertGuard('startUnit(unit, lessonIndex = 0) {', "if (level && (level.id === 'B2' ||");
+  assertGuard('startUnitById(id, requestedLessonIndex) {');
+  assertGuard('startUnitAssessment(unitId) {');
+  assertGuard('startUnit(unit, lessonIndex = 0) {');
 
   const learningLevels = indexSource.indexOf('function getLearningLevels() {');
   assert.notEqual(learningLevels, -1);
   assert.ok(indexSource.slice(learningLevels, learningLevels + 260).includes("level.id !== 'B2'"),
-    'B2 must stay out of learning and review collections');
+    'B2 must stay out of learning and review collections while its guard remains');
 
-  const routeStart = indexSource.indexOf("const isAdvanced = lvl.id === 'B2';");
-  const routeEnd = indexSource.indexOf('lvl.units.forEach(unit => {', routeStart);
-  assert.notEqual(routeStart, -1);
-  assert.ok(routeEnd > routeStart, 'B2 route gate must precede unit-card rendering');
-  const routeGate = indexSource.slice(routeStart, routeEnd);
-  assert.ok(routeGate.includes('if (!isB1Complete(this.completedUnits)) return;'));
-  assert.ok(routeGate.includes('Este nivel todavía no está disponible para estudiar.'));
-  assert.ok(routeGate.includes('container.appendChild(levelEl);'));
-  assert.match(routeGate, /return;\s*}/);
+  const routeStart = indexSource.indexOf('renderCourseRoute() {');
+  const routeEnd = indexSource.indexOf('async updateSrsView() {', routeStart);
+  assert.ok(routeEnd > routeStart, 'learning route renderer must exist');
+  const route = indexSource.slice(routeStart, routeEnd);
+  assert.ok(route.includes("level.id === 'B2' ? level.units.slice(0, 1) : level.units"));
+  assert.ok(route.includes('unit-path-coming-soon'));
+  assert.ok(route.includes('Las demás unidades B2 todavía no están implementadas'));
+  assert.doesNotMatch(route, /isB1Complete\(this\.completedUnits\)/,
+    'B2 path visibility must not depend on the old hidden route gate');
 });
 
 test('tap translation fallback excludes hidden B2 authored exercises', async () => {

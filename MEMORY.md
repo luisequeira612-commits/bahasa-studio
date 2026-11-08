@@ -341,3 +341,8 @@
 ## Referencia morfológica académica complementaria B2 U2 — 8 nov 2026
 - Imamul Mutaqin, tesis *Proses Pembentukan Derivasi dan Infleksi pada Rubrik Edukasi Kompas.com* (Universitas Tidar, 2022), pp. 28–29 impresas, presenta `kubaca`, `kaubaca`, `kutulis` y `kautulis` en un paradigma de flexión verbal y distingue los proclíticos de primera y segunda persona. Fuente: https://repositori.untidar.ac.id/index.php?bid=11351&fid=25888&p=fstream-pdf (PDF, líneas 1158–1200).
 - Cautela: la tabla es teórica/ilustrativa y remite a trabajos gramaticales previos; no demuestra que esas formas aparezcan en el corpus de Kompas.com ni mide frecuencia, naturalidad espontánea o registro conversacional. Añade respaldo académico para el paradigma morfológico, no aprobación de las cuatro formas candidatas. Sin IDs ni implementación de U2. Ver `docs/B2_U2_DESIGN.md`.
+
+
+## Ejemplo contextual adicional B2 U2 — 8 nov 2026
+- Reno Wulan Sari, docente de Sastra Indonesia en Universitas Andalas y profesora invitada en Busan University of Foreign Studies, «Penggunaan Kata Ganti Engkau, Kau, Dia, dan Ia», *Scientia Indonesia*, 14 feb 2021: presenta «Buku yang kautulis sudah selesai kubaca» como ejemplo del uso ligado de `kau-`. Fuente: https://scientia.id/2021/02/14/penggunaan-kata-ganti-engkau-kau-dia-dan-ia/ (sección sobre `engkau` y `kau`).
+- Alcance: ejemplo didáctico completo y contextual, escrito por una docente universitaria; no es evidencia de corpus espontáneo ni mide frecuencia o registro conversacional. Complementa, pero no resuelve, la duda sobre registro neutro de `kautulis`. Las cuatro candidatas de U2 siguen pendientes de aprobación; sin IDs ni implementación. Ver `docs/B2_U2_DESIGN.md`.

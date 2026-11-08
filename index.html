@@ -5694,7 +5694,7 @@
                     const unit = level.units.find(entry => entry.id === id);
                     if (!unit) continue;
                     // B2 stays in development; only an explicitly confirmed local skip may enter its implemented U1.
-                    if ((level.id === 'B2' && !App.completedUnits.includes(id) && !getEmergencyUnitSkips().includes(id)) || !isUnitUnlocked(level, unit)) return;
+                    if ((level.id === 'B2' && !getUnitProgressState(level, unit).completed && !getEmergencyUnitSkips().includes(id)) || !isUnitUnlocked(level, unit)) return;
                     const lessons = buildUnitLessons(unit);
                     const nextIndex = lessons.findIndex(lesson => !App.completedLessons.includes(unitLessonProgressKey(id, lesson.index)));
                     const firstIncomplete = nextIndex < 0 ? lessons.length : nextIndex;
@@ -5713,7 +5713,7 @@
             startUnit(unit, lessonIndex = 0) {
                 const level = getLevels().find(entry => entry.units.some(candidate => candidate.id === unit.id));
                 // Keep the B2 development guard except for its explicit emergency skip.
-                if (level && ((level.id === 'B2' && !App.completedUnits.includes(unit.id) && !getEmergencyUnitSkips().includes(unit.id)) || !isUnitUnlocked(level, unit))) return;
+                if (level && ((level.id === 'B2' && !getUnitProgressState(level, unit).completed && !getEmergencyUnitSkips().includes(unit.id)) || !isUnitUnlocked(level, unit))) return;
                 const lessons = buildUnitLessons(unit);
                 const nextIndex = lessons.findIndex(item => !App.completedLessons.includes(unitLessonProgressKey(unit.id, item.index)));
                 const firstIncomplete = nextIndex < 0 ? lessons.length : nextIndex;

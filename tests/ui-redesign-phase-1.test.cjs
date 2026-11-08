@@ -73,7 +73,7 @@ test('B2 shows only its implemented U1 and one upcoming placeholder without remo
     assert.ok(css.includes('.unit-path-coming-soon .unit-path-coming-soon-circle'));
     assert.match(html, /B2 U1 opens after B1 is complete/);
     assert.match(html, /<span class="badge">En desarrollo<\/span>/);
-    assert.match(html, /getEmergencyUnitSkips\(\)\.includes\(id\)/);
+    assert.match(html, /skipIds\.includes\(unit\.id\)/);
     assert.match(html, /const availableUnits = level\.id === 'B2' \? level\.units\.slice\(0, 1\) : level\.units/);
 });
 

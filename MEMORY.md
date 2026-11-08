@@ -346,3 +346,8 @@
 ## Ejemplo contextual adicional B2 U2 — 8 nov 2026
 - Reno Wulan Sari, docente de Sastra Indonesia en Universitas Andalas y profesora invitada en Busan University of Foreign Studies, «Penggunaan Kata Ganti Engkau, Kau, Dia, dan Ia», *Scientia Indonesia*, 14 feb 2021: presenta «Buku yang kautulis sudah selesai kubaca» como ejemplo del uso ligado de `kau-`. Fuente: https://scientia.id/2021/02/14/penggunaan-kata-ganti-engkau-kau-dia-dan-ia/ (sección sobre `engkau` y `kau`).
 - Alcance: ejemplo didáctico completo y contextual, escrito por una docente universitaria; no es evidencia de corpus espontáneo ni mide frecuencia o registro conversacional. Complementa, pero no resuelve, la duda sobre registro neutro de `kautulis`. Las cuatro candidatas de U2 siguen pendientes de aprobación; sin IDs ni implementación. Ver `docs/B2_U2_DESIGN.md`.
+
+
+## Diseño preliminar B2 U4 — 8 nov 2026
+- Se prepara una propuesta documental para U4 sobre funciones de `-kan` y estructura de participantes, dentro del bloque U4–U6 aprobado (`-kan`, `-i`, `memper-`). Las fuentes académicas consultadas describen funciones causativas y aplicativas/benefactivas; no respaldan una equivalencia fija ni una regla universal de valencia. Referencias: Musgrave, Arka y Rajeg (2024), Jeong (2019), Dwijatmoko (2021) y Sedeng (2011). Ver `docs/B2_U4_DESIGN.md`.
+- El diseño no incorpora vocabulario ni IDs. Las formas del borrador antiguo son solo pistas y requieren auditoría global antes de reutilizarse. El eje U4–U6 está aprobado, pero este desglose, ejemplos y ejercicios siguen siendo propuesta documental; no hay autorización para contenido ejecutable. Sin cambios a IndexedDB, backup JSON v3, A1/A2/B1, trackers ni dependencias.

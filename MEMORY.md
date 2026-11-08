@@ -306,3 +306,9 @@
 
 
 - 8 nov 2026: evidencia adicional para B2 U2: el manual oficial de Badan Bahasa _Penyuluhan Bahasa Indonesia untuk Pewara_ (2016, pp. 25–26 PDF) presenta `kautulis`, `kaubaca` y `kausampaikan` como grafías unidas correctas; el artículo académico de Jumiati, Erni y Hidayat (2022, _SAJAK_ 1(2), pp. 23–24) clasifica `kutulis` y `kautulis` como ejemplos de formas ligadas `ku-`/`kau-`. Esto fortalece la evidencia ortográfica/morfológica de `kautulis`, pero aún no aporta una oración contextual completa con esa forma. Las cuatro formas siguen pendientes de aprobación; sin IDs ni implementación de U2. Ver `docs/B2_U2_DESIGN.md`.
+
+
+## Evidencia contextual adicional B2 U2 — 8 nov 2026
+- La antología oficial alojada en el repositorio Kemendikdasmen *Puisi-Puisi Kenabian dalam Perkembangan Sastra Indonesia Modern* (p. 88 PDF) contiene los versos «Kautulis kau paparkan / Kausampaikan dengan lisan». Es un uso contextual escrito de `kautulis` en poesía indonesia; no prueba por sí solo frecuencia ni registro conversacional/neutro. Fuente: https://repositori.kemendikdasmen.go.id/16050/1/Puisi-Puisi%20Kenabian%20Dalam%20Perkembangan%20Sastra%20Indonesia%20Modern.pdf
+- Se revisó también Abdullah Hassan, *Morfologi* (Dewan Bahasa dan Pustaka, 2023), pp. 177–178: considera janggal `kutulis` y `kautulis` en **bahasa Melayu** y prefiere `saya tulis` / `engkau tulis`. No se usa como evidencia contra el indonesio; se registra como advertencia de no transferir juicios de naturalidad entre malayo e indonesio. Fuente: https://jendeladbp.my/app/uploads/woocommerce_uploads/2025/04/eDigital_Morfologi-qnsczr.pdf
+- Evaluación actualizada: `kautulis` tiene respaldo ortográfico oficial (2016), morfológico académico (2022) y un uso contextual literario indonesio (antología oficial, 2017); queda sin resolver si debe enseñarse como opción productiva en registro neutro. Las cuatro formas de U2 siguen pendientes de aprobación explícita; sin IDs ni implementación.

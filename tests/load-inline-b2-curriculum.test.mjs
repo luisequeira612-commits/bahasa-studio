@@ -157,10 +157,10 @@ test('tutor prompt never labels the learner as hidden B2 from stale completion d
     'hidden B2 must not influence the tutor prompt level inferred from saved completions');
 });
 
-test('direct lesson entry blocks registered B2 units while preserving custom lessons', async () => {
+test('direct lesson entry keeps the B2 guard except approved units and confirmed emergency skips', async () => {
   const { indexSource } = await loadCurricula();
   const start = indexSource.indexOf('startUnit(unit, lessonIndex = 0) {');
   assert.notEqual(start, -1, 'startUnit must remain present');
-  assert.ok(indexSource.slice(start, start + 550).includes("level.id === 'B2' && !App.completedUnits.includes(unit.id)"),
+  assert.ok(indexSource.slice(start, start + 550).includes("level.id === 'B2' && !getUnitProgressState(level, unit).completed"),
     'startUnit must block registered B2 units without rejecting unregistered custom lessons');
 });

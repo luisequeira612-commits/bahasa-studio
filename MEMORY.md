@@ -8,6 +8,7 @@
 - B2 U3: diseño preliminar en `docs/B2_U3_DESIGN.md`; integra U1 y U2, sin vocabulario nuevo. No finalizar claves ni implementarla antes de aprobar e implementar U2.
 - B2 U4: diseño preliminar en `docs/B2_U4_DESIGN.md` sobre la polisemia de `-kan`; PR #454 fusionado. No hay contenido ejecutable ni vocabulario nuevo.
 - B2 U5: diseño preliminar en `docs/B2_U5_DESIGN.md` sobre usos aplicativos/causativos de `-i`; los ejemplos y el desglose son propuestas documentales, no contenido aprobado. No hay vocabulario ni IDs nuevos.
+- B2 U6: diseño preliminar en `docs/B2_U6_DESIGN.md` sobre `memper-` con bases adjetivales y verbos causativos convencionales. La productividad es limitada y el contraste con `meN-kan` varía; el diseño no autoriza implementación ni vocabulario nuevo.
 - Secuencia B2 aprobada: U1–U3 contrastes avanzados de voz/afijos; U4–U6 `-kan`/`-i`/`memper-`; U7–U10 nominalizaciones; U11–U12 reduplicación/compuestos; U13–U60 sin desglose temático aprobado.
 - PR #443 retiró del currículo ejecutable los borradores heredados U2–U5 y los conservó en `docs/B2_LEGACY_DRAFT_ARCHIVE.md`; una regresión exige que solo U1 permanezca activa.
 - Reglas vigentes: 14–22 ejercicios por unidad, al menos cuatro tipos, cinco ejercicios con oraciones completas, una producción guiada y repaso acumulativo cada 4–5 unidades. B2 permanece oculta hasta completar contenido y flujo de liberación. No tocar IndexedDB ni backup JSON v3; no añadir dependencias ni vocabulario sin aprobación.
@@ -361,3 +362,11 @@
 
 ## PR #454 — 8 nov 2026
 - Fusionado mediante squash en `39f1aa20cee1a5be03871729754ee430f2c510a8` tras CI verde en ambos jobs y sin revisiones/comentarios/hilos pendientes. Añade el diseño documental preliminar de B2 U4 (`-kan`) y actualiza esta memoria. Sin cambios curriculares ejecutables ni vocabulario.
+
+
+## Diseño preliminar B2 U6 — 8 nov 2026
+- Se prepara `docs/B2_U6_DESIGN.md` para `memper-`: la gramática de Sneddon et al. (2010, §§1.234–1.238) describe verbos causativos con bases adjetivales, con lectura de aumento de grado en algunos análisis, y variación frente a `meN-kan`; Rajeg & Rajeg (2017) encuentran baja productividad realizada para el esquema [per- + adjetivo]. No se enseña como regla libre ni como patrón universal. Fuentes: https://fieldarchive.iias.tsinghua.edu.cn/_upload/article/files/1e/0d/2065604f462fb446c2b83863ec7c/0c557e73-3eb2-4a24-8d08-5268fddcefc0.pdf y https://doi.org/10.4225/03/5a0627de02453.
+- No añade vocabulario, IDs, glosas ni ejercicios ejecutables. El desglose y los ejemplos siguen pendientes de revisión; el eje U4–U6 está aprobado, no esta propuesta específica. Sin cambios a A1/A2/B1, IndexedDB, backup JSON v3, trackers ni dependencias.
+
+## PR #455 — 8 nov 2026
+- Fusionado mediante squash en `31c8afc1cada243bb40bae0bcebc4b38c156d744` tras CI verde en ambos jobs y sin revisiones/comentarios/hilos pendientes. Añade el diseño documental preliminar de B2 U5 (`-i`) y actualiza esta memoria. Sin cambios curriculares ejecutables ni vocabulario.

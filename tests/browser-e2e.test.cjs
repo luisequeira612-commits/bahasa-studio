@@ -666,7 +666,8 @@ test('learning screen keeps level selector and current unit visible at 360px and
 
     await page.locator('.learning-tool-button[data-tool-target="aiGeneratorDrawer"]').click();
     assert.equal(await page.locator('#aiGeneratorDrawer').evaluate(node => node.open), true);
-    await page.locator('#aiGenBtn').waitFor({ state: 'visible' });
+    await page.locator('#syllabusSelector').waitFor({ state: 'visible' });
+    await page.getByRole('button', { name: 'Generar siguiente lección' }).waitFor({ state: 'visible' });
 
     await page.locator('.learning-tool-button[data-tool-target="writingPracticeDrawer"]').click();
     await page.getByRole('button', { name: 'Abrir cuaderno de escritura' }).click();

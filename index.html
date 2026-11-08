@@ -7313,6 +7313,7 @@ Requisitos:
             // that are not represented as standalone vocabulary entries.
             if (language === 'es' && typeof CourseData !== 'undefined' && Array.isArray(CourseData.levels)) {
                 for (const level of CourseData.levels) {
+                    if (level.id === 'B2') continue;
                     for (const unit of level.units || []) {
                         const authoredExercises = [
                             ...(unit.exercises || []),

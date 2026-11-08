@@ -80,8 +80,8 @@ test('A2 remains a released beta level, but its first unit waits for A1 completi
     'B1 U1 must wait for A2 last unit completion');
   assert.equal(api.isUnitUnlocked(b1, b1.units[0], allA1A2, [], []), true,
     'B1 U1 unlocks after A2 is complete');
-  assert.equal(api.isUnitUnlocked(b2, b2.units[0], allA1A2.concat(b1.units.map(unit => unit.id)), [], []), false,
-    'normal B2 access remains gated by the development guard');
+  assert.equal(api.isUnitUnlocked(b2, b2.units[0], allA1A2.concat(b1.units.map(unit => unit.id)), [], []), true,
+    'implemented B2 U1 unlocks after B1 completion');
   assert.match(html, /const A2_RELEASE_ENABLED = true;/);
   assert.match(html, /level\.id !== 'A2' \|\| A2_RELEASE_ENABLED/);
   assert.match(html, /Disponible en beta sin requisito de completar A1/);
@@ -875,7 +875,8 @@ test('A1 units 9–11 cover numbers, prices, and time with linked exercises', ()
 test('B1 follows A2 progression and B2 keeps its development presentation and emergency-only path', () => {
   assert.match(html, /function isUnitUnlocked\(level, unit/);
   assert.match(html, /const previousLevel = levels\[levelIndex - 1\]/);
-  assert.match(html, /if \(level\.id === 'B2'\) return false/);
+  assert.match(html, /if \(level\.id === 'B2'\) \{/);
+  assert.match(html, /return unitIndex === 0 && Boolean\(previousUnit/);
   assert.match(html, /level\.id === 'B2' \? level\.units\.slice\(0, 1\) : level\.units/);
   assert.match(html, /unit-path-coming-soon/);
   assert.match(html, /Las demás unidades B2 todavía no están implementadas/);

@@ -5324,12 +5324,16 @@
             const progress = getUnitProgressState(level, unit, completedUnits, completedLessons);
             if (progress.completed || (Array.isArray(skipIds) && skipIds.includes(unit.id))) return true;
             if (level.id === 'IA') return true;
-            if (level.id === 'B2') return false;
-
             const levels = CourseData.levels;
             const levelIndex = levels.findIndex(entry => entry.id === level.id);
             const unitIndex = level.units.findIndex(entry => entry.id === unit.id);
             if (levelIndex < 0 || unitIndex < 0) return false;
+            if (level.id === 'B2') {
+                const previousLevel = levels[levelIndex - 1];
+                const previousUnit = previousLevel && previousLevel.units[previousLevel.units.length - 1];
+                return unitIndex === 0 && Boolean(previousUnit &&
+                    getUnitProgressState(previousLevel, previousUnit, completedUnits, completedLessons).completed);
+            }
             if (unitIndex > 0) {
                 return getUnitProgressState(level, level.units[unitIndex - 1], completedUnits, completedLessons).completed;
             }
@@ -5693,8 +5697,8 @@
                 for (const level of getLevels()) {
                     const unit = level.units.find(entry => entry.id === id);
                     if (!unit) continue;
-                    // B2 stays in development; only an explicitly confirmed local skip may enter its implemented U1.
-                    if ((level.id === 'B2' && !getUnitProgressState(level, unit).completed && !getEmergencyUnitSkips().includes(id)) || !isUnitUnlocked(level, unit)) return;
+                    // B2 U1 opens after B1 is complete; an explicit local skip remains the escape hatch.
+                    if (!isUnitUnlocked(level, unit)) return;
                     const lessons = buildUnitLessons(unit);
                     const nextIndex = lessons.findIndex(lesson => !App.completedLessons.includes(unitLessonProgressKey(id, lesson.index)));
                     const firstIncomplete = nextIndex < 0 ? lessons.length : nextIndex;
@@ -5712,8 +5716,8 @@
             },
             startUnit(unit, lessonIndex = 0) {
                 const level = getLevels().find(entry => entry.units.some(candidate => candidate.id === unit.id));
-                // Keep the B2 development guard except for its explicit emergency skip.
-                if (level && ((level.id === 'B2' && !getUnitProgressState(level, unit).completed && !getEmergencyUnitSkips().includes(unit.id)) || !isUnitUnlocked(level, unit))) return;
+                // isUnitUnlocked preserves B2's development guard while allowing U1 after B1 completion.
+                if (level && !isUnitUnlocked(level, unit)) return;
                 const lessons = buildUnitLessons(unit);
                 const nextIndex = lessons.findIndex(item => !App.completedLessons.includes(unitLessonProgressKey(unit.id, item.index)));
                 const firstIncomplete = nextIndex < 0 ? lessons.length : nextIndex;

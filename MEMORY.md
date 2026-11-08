@@ -297,3 +297,9 @@
 - Se retiran las unidades heredadas U2–U5 del bloque ejecutable; B2 contiene ahora únicamente la U1 implementada. El borrador antiguo permanece preservado en el archivo histórico.
 - Se añade una regresión que exige exactamente `b2_u1` en el currículo B2 cargado, comprueba que U2–U5 sigan en el archivo y evita que los IDs antiguos v231–v246 reaparezcan en el contenido ejecutable.
 - No se altera A1/A2/B1, la U1, IndexedDB, backup JSON v3 ni dependencias. B2 sigue oculta/no publicada; 1/60 implementada y 59 pendientes.
+
+
+## PR — actualización del estado vigente B2 (8 nov 2026)
+- Actualiza el resumen principal y la lista de pendientes para reflejar A1 32/32, A2 40/40, B1 50/50 y B2 1/60 (123/182; 59 pendientes), con B2 como fase actual.
+- Corrige referencias obsoletas que presentaban A2 U5–U8 y B1 como pendientes de consolidación; conserva las métricas históricas como snapshots y no como certificación lingüística.
+- Registra la retirada del borrador ejecutable B2 U2–U5 en PR #443 y mantiene explícita la aprobación pendiente de las cuatro formas candidatas de U2. Solo documentación; sin cambios de currículo, IndexedDB, backup JSON v3 ni dependencias.

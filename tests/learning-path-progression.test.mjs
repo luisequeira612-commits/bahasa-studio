@@ -47,7 +47,7 @@ test('an already approved A2 unit remains completed and unlocks the following un
   const a1 = api.CourseData.levels.find(level => level.id === 'A1');
   const a2 = api.CourseData.levels.find(level => level.id === 'A2');
   const completedUnits = a1.units.map(unit => unit.id).concat(a2.units[0].id);
-  const progress = api.getUnitProgressState(a2, a2.units[0], completedUnits, []);
+  const progress = api.getUnitProgressState(a2, a2.units[0], completedUnits, [a2.units[0].id + '::0']);
   assert.equal(progress.approved, true);
   assert.equal(progress.completed, true);
   assert.equal(progress.completedLessonCount, progress.lessons.length);
@@ -150,6 +150,22 @@ test('the new path is mobile-first and keeps the backup format and offline worke
   assert.match(worker, /bahasa-studio-v3\.8\./);
 });
 
+test('emergency skips unlock A2 and B1 but never bypass the B2 development guard', async () => {
+  const api = await loadProgressionApi();
+  const a2 = api.CourseData.levels.find(level => level.id === 'A2');
+  const b1 = api.CourseData.levels.find(level => level.id === 'B1');
+  const b2 = api.CourseData.levels.find(level => level.id === 'B2');
+  assert.equal(api.isUnitUnlocked(a2, a2.units[0], [], [], [a2.units[0].id]), true);
+  assert.equal(api.isUnitUnlocked(b1, b1.units[0], [], [], [b1.units[0].id]), true);
+  assert.equal(api.isUnitUnlocked(b2, b2.units[0], [], [], [b2.units[0].id]), false,
+    'an emergency skip cannot bypass B2 sequential access');
+  const completedThroughB1 = api.CourseData.levels
+    .filter(level => ['A1', 'A2', 'B1'].includes(level.id))
+    .flatMap(level => level.units.map(unit => unit.id));
+  assert.equal(api.isUnitUnlocked(b2, b2.units[0], completedThroughB1, [], []), true,
+    'B2 retains its existing B1-completion guard');
+});
+
 test('default level follows the first unfinished level and keeps B2 visible after B1 completion', async () => {
   const api = await loadProgressionApi();
   const [a1, a2, b1] = ['A1', 'A2', 'B1'].map(id => api.CourseData.levels.find(level => level.id === id));
@@ -161,5 +177,6 @@ test('default level follows the first unfinished level and keeps B2 visible afte
   const completedThroughB1 = completedA1A2.concat(b1.units.map(unit => unit.id));
   assert.equal(api.getCurrentLearningLevelId(completedThroughB1, []), 'B2');
   assert.equal(api.getCurrentLearningLevelId([], [], ['b1_u10']), 'B1', 'an emergency jump should restore its selected level after reload');
-  assert.equal(api.getCurrentLearningLevelId([], [], ['b2_u1']), 'B2', 'the implemented B2 emergency jump should remain selected after reload');
+  assert.equal(api.getCurrentLearningLevelId([], [], ['b2_u1']), 'A1', 'a stale B2 skip must not bypass the development guard');
+  assert.equal(api.getCurrentLearningLevelId(completedThroughB1, [], ['b2_u1']), 'B2', 'B2 becomes the current level only through normal B1 completion');
 });

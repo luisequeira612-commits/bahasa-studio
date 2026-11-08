@@ -163,3 +163,18 @@ test('direct lesson entry blocks registered B2 units while preserving custom les
   assert.ok(indexSource.slice(start, start + 450).includes("if (level && (level.id === 'B2' ||"),
     'startUnit must block registered B2 units without rejecting unregistered custom lessons');
 });
+
+
+test('AI generated-lesson repetition check excludes hidden B2 vocabulary', async () => {
+  const { indexSource } = await loadCurricula();
+  const validateStart = indexSource.indexOf('async validate(d) {');
+  assert.notEqual(validateStart, -1, 'AI lesson validator must remain present');
+  const knownStart = indexSource.indexOf('const known = new Set();', validateStart);
+  const knownEnd = indexSource.indexOf('return {', knownStart);
+  assert.ok(knownStart > validateStart && knownEnd > knownStart, 'AI repetition check must remain in the validator');
+  const knownSource = indexSource.slice(knownStart, knownEnd);
+  assert.ok(knownSource.includes('getLearningLevels().forEach('),
+    'AI repetition check must use learning-visible levels only');
+  assert.equal(knownSource.includes('getLevels().forEach('), false,
+    'AI repetition check must not include hidden B2 through getLevels()');
+});

@@ -6969,10 +6969,10 @@ Requisitos:
                 const goal = this.studyActivity.dailyGoal;
                 const earned = this.studyActivity.todayXp;
                 const percent = goal > 0 ? Math.min(100, Math.round(earned / goal * 100)) : 0;
-                if (streakNode) streakNode.textContent = streak + (streak === 1 ? ' día' : ' días');
+                if (streakNode) { const label = streak + (streak === 1 ? ' día' : ' días'); streakNode.dataset.fullLabel = label; streakNode.textContent = label; }
                 if (recordNode) recordNode.textContent = 'Récord: ' + this.studyActivity.longestStreak + (this.studyActivity.longestStreak === 1 ? ' día' : ' días');
                 if (goalSelect && goalSelect.value !== String(goal)) goalSelect.value = String(goal);
-                if (xpText) xpText.textContent = earned >= goal ? 'Meta: ' + earned + ' XP hoy' : 'Meta: ' + earned + '/' + goal + ' XP';
+                if (xpText) { const label = earned >= goal ? 'Meta: ' + earned + ' XP hoy' : 'Meta: ' + earned + '/' + goal + ' XP'; xpText.dataset.fullLabel = label; xpText.textContent = label; }
                 this.applyTopbarChipLabels();
                 if (xpFill) xpFill.style.width = percent + '%';
                 if (xpBar) xpBar.setAttribute('aria-valuenow', String(percent));

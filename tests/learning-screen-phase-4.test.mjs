@@ -25,8 +25,8 @@ test('phase four section banner, chips and active tab preserve readable contrast
   assert.ok(contrast('#f8fafc', '#334155') >= 4.5, 'dark-theme activity chips must meet AA');
   assert.ok(contrast('#0f172a', '#e2e8f0') >= 4.5, 'light-theme activity chips must meet AA');
   assert.ok(contrast('#004A91', '#E6F1FB') >= 4.5, 'active navigation pill text must meet AA on the Phase 5B blue tint');
-  assert.match(css, /\.unit-path-section-banner\s*\{[^}]*background:#004E9A[^}]*color:#ffffff/s);
   const html = await read('index.html');
+  assert.match(html, /\.unit-path-section-banner\s*\{[^}]*background:#004E9A !important[^}]*color:#ffffff/s);
   assert.match(html, /background: active \? '#E6F1FB' : 'transparent'/);
   assert.match(html, /color: active \? '#004A91' : ''/);
   assert.match(html, /metrics\.style\.gap = compact && compact\.matches \? '5px' : '8px'/);

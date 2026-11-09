@@ -6762,7 +6762,17 @@ Requisitos:
                     this.updateJumpToCurrentVisibility();
                     return;
                 }
-                current.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', block: 'center' });
+                const section = current.closest('.unit-path-section');
+                const banner = section && section.querySelector('.unit-path-section-banner');
+                const bubble = section && section.querySelector('.current-unit-start-bubble');
+                if (banner && bubble) {
+                    const stickyTop = parseFloat(getComputedStyle(banner).top) || 112;
+                    const targetTop = stickyTop + banner.getBoundingClientRect().height + 12;
+                    const bubbleTop = bubble.getBoundingClientRect().top;
+                    window.scrollTo({ top: Math.max(0, window.scrollY + bubbleTop - targetTop), behavior: smooth ? 'smooth' : 'auto' });
+                } else {
+                    current.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', block: 'center' });
+                }
                 this.updateJumpToCurrentVisibility();
             },
             addXp(amount) {
@@ -7028,10 +7038,15 @@ Requisitos:
                     '<h2 id="unitSheetTitle">' + App.escapeHtml(unit.title) + '</h2>' +
                     '<p class="unit-sheet-description">' + App.escapeHtml(unit.desc || '') + '</p>' +
                     '<div class="unit-sheet-progress"><span>Lecciones</span><strong>' + progress.completedLessonCount + '/' + progress.lessons.length + '</strong></div>' +
-                    '<div class="progress-bar"><div class="progress-fill" style="width:' + (progress.lessons.length ? progress.completedLessonCount / progress.lessons.length * 100 : 0) + '%"></div></div>' +
+                    '<div class="progress-bar unit-sheet-lesson-track" role="progressbar" aria-label="Progreso de lecciones" aria-valuemin="0" aria-valuemax="' + progress.lessons.length + '" aria-valuenow="' + progress.completedLessonCount + '" style="height:8px;min-height:8px;border-radius:999px;overflow:hidden;background:#d1d5db"><div class="progress-fill" style="height:100%;min-height:8px;border-radius:999px;background:#c92a40;width:' + (progress.lessons.length ? progress.completedLessonCount / progress.lessons.length * 100 : 0) + '%"></div></div>' +
                     '<button class="btn unit-sheet-primary" type="button" onclick="App.startUnitFromSheet(\'' + App.escapeHtml(unit.id) + '\')">' + actionLabel + '</button>' +
                     '<button class="btn btn-outline unit-sheet-grammar-toggle" type="button" onclick="App.toggleUnitGrammar()">Ver gramática</button>' +
                     '<div id="unitSheetGrammar" class="unit-sheet-grammar" hidden>' + App.escapeHtml(unit.grammar || 'No hay notas gramaticales para esta unidad.') + '</div>';
+                const sheet = document.getElementById('unitBottomSheet');
+                sheet.style.backgroundColor = '#ffffff';
+                sheet.style.color = '#1f2937';
+                sheet.style.borderTop = '1px solid #d1d5db';
+                sheet.style.paddingBottom = 'calc(22px + env(safe-area-inset-bottom))';
                 const overlay = document.getElementById('unitSheetOverlay');
                 overlay.classList.remove('is-closing');
                 overlay.hidden = false;
@@ -7211,14 +7226,16 @@ Requisitos:
                     const nodeRadius = nodeDiameter / 2;
                     const nodeStep = nodeDiameter + 18;
                     const currentTitleExtra = 22;
+                    const currentBubbleClearance = 56;
                     let nextNodeTop = nodeRadius + 24;
-                    if (currentUnit && units[0] && units[0].id === currentUnit.id) nextNodeTop = 24 + 90;
+                    if (currentUnit && units[0] && units[0].id === currentUnit.id) nextNodeTop += currentBubbleClearance;
                     let stageBottom = 0;
 
                     units.forEach((unit, index) => {
                         const progress = getUnitProgressState(level, unit);
                         const unlocked = isUnitUnlocked(level, unit);
                         const isCurrent = Boolean(currentUnit && unit.id === currentUnit.id);
+                        if (isCurrent && index > 0) nextNodeTop += currentBubbleClearance;
                         const state = progress.completed ? 'completed' : isCurrent ? 'current' : unlocked ? 'available' : 'locked';
                         const node = document.createElement('button');
                         node.type = 'button';
@@ -7229,7 +7246,7 @@ Requisitos:
                         node.dataset.pathState = state;
                         node.dataset.unitId = unit.id;
                         const nodeTop = nextNodeTop;
-                        stageBottom = Math.max(stageBottom, nodeTop + (isCurrent ? 52 : nodeRadius));
+                        stageBottom = Math.max(stageBottom, nodeTop + (isCurrent ? 72 : nodeRadius));
                         node.style.left = positions[index] + '%';
                         node.style.top = nodeTop + 'px';
                         if (isCurrent) {
@@ -7278,11 +7295,15 @@ Requisitos:
                             currentTitle.style.top = (nodeTop + 38) + 'px';
                             currentTitle.style.width = 'min(106px, 34%)';
                             currentTitle.style.maxWidth = '106px';
-                            currentTitle.style.whiteSpace = 'nowrap';
+                            currentTitle.style.whiteSpace = 'normal';
+                            currentTitle.style.display = '-webkit-box';
+                            currentTitle.style.webkitBoxOrient = 'vertical';
+                            currentTitle.style.webkitLineClamp = '2';
+                            currentTitle.style.maxHeight = '30px';
                             currentTitle.style.overflow = 'hidden';
                             currentTitle.style.textOverflow = 'ellipsis';
                             currentTitle.style.overflowWrap = 'normal';
-                            currentTitle.style.lineHeight = '14px';
+                            currentTitle.style.lineHeight = '15px';
                             currentTitle.textContent = String(unit.title || '').replace(/^Unidad\s+\d+\s*:\s*/i, '').trim();
                             stage.appendChild(currentTitle);
                         }

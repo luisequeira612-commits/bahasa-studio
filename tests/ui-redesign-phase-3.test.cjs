@@ -14,7 +14,8 @@ test('all buttons have at least 48px touch height and a press-down border treatm
     assert.match(css, /button\s*\{[\s\S]*?border-bottom-width:4px/);
     assert.match(css, /button:active\s*\{[\s\S]*?transform:translateY\(2px\)/);
     assert.match(css, /button:active\s*\{[\s\S]*?border-bottom-width:2px/);
-    assert.match(css, /\.btn-sm\s*\{\s*min-height:48px/);
+    assert.match(css, /#view-route \.btn-sm,\s*#unitBottomSheet \.btn-sm\s*\{\s*min-height:48px/);
+    assert.doesNotMatch(css, /(?<!#view-route )(?<!#unitBottomSheet )\.btn-sm\s*\{\s*min-height:48px/);
     assert.match(css, /\.nav-btn\s*\{\s*min-height:48px/);
 });
 

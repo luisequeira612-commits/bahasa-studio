@@ -40,9 +40,8 @@ test('phase 5B learning screen is compact, blue and preserves all level/tool ent
     await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
     await page.waitForSelector('.learning-unit-node.node-current');
 
-    assert.equal(await page.locator('#learningLevelSelector').count(), 1, 'selector DOM may remain for compatibility but must be hidden');
-    assert.equal(await page.locator('#learningLevelSelector').evaluate(el => getComputedStyle(el).display), 'none');
-    assert.equal(await page.locator('.learning-tools-row').evaluate(el => getComputedStyle(el).display), 'none');
+    assert.equal(await page.locator('#learningLevelSelector').count(), 0, 'legacy level selector should be removed from the compact Phase 5B DOM');
+    assert.equal(await page.locator('.learning-tools-row').count(), 0, 'legacy tools row should be removed from the compact Phase 5B DOM');
     assert.equal(await page.locator('.level-progress-trigger').getAttribute('aria-haspopup'), 'dialog');
     assert.ok((await page.locator('.level-progress-trigger').boundingBox()).height >= 44);
     assert.equal(await page.locator('.unit-tools-trigger').count(), 1);
@@ -62,7 +61,7 @@ test('phase 5B learning screen is compact, blue and preserves all level/tool ent
     for (let i = 0; i < 4; i++) assert.ok((await levelRows.nth(i).boundingBox()).height >= 44);
     assert.ok((await page.locator('.learning-level-sheet-row.selected').count()) === 1);
     const a2Progress = await page.locator('.learning-level-sheet-row').nth(1).locator('small').innerText();
-    assert.match(a2Progress, /^\d+ de 40 unidades$/);
+    assert.match(a2Progress, /^\\d+ de 40 unidades$/);
     await page.locator('.learning-level-sheet-row').nth(1).click();
     await page.waitForFunction(() => document.getElementById('learningLevelSheetOverlay').hidden);
     await page.waitForSelector('.learning-unit-node.node-current');

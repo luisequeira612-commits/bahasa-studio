@@ -6708,14 +6708,7 @@ Requisitos:
                 });
                 panel.open = shouldOpen;
             },
-            toggleDailyGoalHelp() {
-                const ring = document.getElementById('dailyGoalRing');
-                const help = document.getElementById('dailyGoalHelp');
-                if (!ring || !help) return;
-                const expanded = ring.getAttribute('aria-expanded') === 'true';
-                ring.setAttribute('aria-expanded', String(!expanded));
-                help.hidden = expanded;
-            },
+
             scrollToCurrentUnit(smooth = true) {
                 const current = document.querySelector('#courseContainer .learning-unit-node[data-path-state="current"]');
                 if (!current || !document.getElementById('view-route').classList.contains('active')) {
@@ -7217,6 +7210,7 @@ Requisitos:
                     section.appendChild(stage);
                     container.appendChild(section);
                 }
+                if (this.recentlyCompletedUnitId) this.recentlyCompletedUnitId = null;
 
                 if (level.id === 'B2') {
                     const placeholder = document.createElement('div');

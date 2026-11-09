@@ -875,15 +875,16 @@ test('A1 units 9–11 cover numbers, prices, and time with linked exercises', ()
   }
 });
 
-test('B1 follows A2 progression and B2 keeps its development presentation and emergency-only path', () => {
+test('B1 follows A2 progression and implemented B2 units keep sequential access', () => {
   assert.match(html, /function isUnitUnlocked\(level, unit/);
   assert.match(html, /const previousLevel = levels\[levelIndex - 1\]/);
   assert.match(html, /if \(level\.id === 'B2'\) \{/);
-  assert.match(html, /return unitIndex === 0 && Boolean\(previousUnit/);
-  assert.match(html, /level\.id === 'B2' \? level\.units\.slice\(0, 1\) : level\.units/);
+  assert.match(html, /if \(unitIndex === 0\) return Boolean\(previousUnit/);
+  assert.match(html, /return unitIndex > 0 && getUnitProgressState\(level, level\.units\[unitIndex - 1\]/);
+  assert.match(html, /level\.id === 'B2' \? level\.units\.slice\(0, 2\) : level\.units/);
   assert.match(html, /unit-path-coming-soon/);
   assert.match(html, /Las demás unidades B2 todavía no están implementadas/);
-  assert.match(html, /B2 U1 opens after B1 is complete/);
+  assert.match(html, /B2 units open sequentially after B1 is complete/);
   assert.match(html, /<span class="badge">En desarrollo<\/span>/);
   assert.doesNotMatch(html, /if \(!isB1Complete\(this\.completedUnits\)\) return;/);
   assert.doesNotMatch(html, /: 'Disponible'/,

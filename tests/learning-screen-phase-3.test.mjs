@@ -75,7 +75,7 @@ test('normal text and informative icons meet contrast on the learning screen tin
   }
   assert.match(css, /\.unit-bottom-sheet\s*\{[^}]*background:\s*var\(--bg-card\)/);
   assert.match(css, /\.unit-sheet-description\s*\{\s*color:\s*var\(--text-muted\)/);
-  assert.match(css, /\.learning-tool-button\[aria-expanded="true"\]\s*\{[^}]*background:var\(--bg-card\)[^}]*color:var\(--text-main\)/);
+  assert.match(css, /\.learning-tool-button\[aria-expanded="true"\]\s*\{[^}]*color:var\(--text-main\)[^}]*background:var\(--bg-card\)/);
   assert.match(css, /\.path-node-locked\s*\{[^}]*opacity:\s*1/);
   assert.doesNotMatch(css, /\.path-node-locked\s*\{[^}]*opacity:\s*\.72/);
   assert.match(css, /\.learning-unit-node\.node-locked\s*\{[^}]*background:\s*#e5e7eb[^}]*color:\s*#374151/);

@@ -163,5 +163,5 @@ test('service worker installs v3.8.84, removes only older app caches and claims 
   assert.ok(deleted.includes('bahasa-studio-v3.8.71'));
   assert.ok(deleted.includes('bahasa-studio-other'));
   assert.equal(claimed, true);
-  assert.ok(cacheStore.has('bahasa-studio-v3.8.83'));
+  assert.ok(cacheStore.has('bahasa-studio-v3.8.85'));
 });

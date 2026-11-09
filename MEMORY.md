@@ -122,3 +122,5 @@
 - 9 nov 2026: el E2E de Fase 5B aísla ahora la comprobación de color del nodo completado mediante un elemento temporal, sin alterar el progreso en memoria ni depender de reglas de finalización de unidades. CI del head actualizado pendiente.
 
 - 9 nov 2026: el CI identificó dos ajustes finales de pruebas: la aserción del callback de herramientas debe usar el parámetro real `id`, y el E2E vuelve a A1 antes de medir el nodo actual, pues A2 puede mostrar nodos bloqueados por progresión sin alterar el desbloqueo existente. Se corrigieron solo pruebas; nuevo CI pendiente.
+
+- 9 nov 2026: CI de PR #480 llegó a las pruebas E2E de Fase 4: 78 regresiones, 13 pruebas de Fase 1, 5 de Fase 2 y 5 de Fase 3 pasaron. La prueba de navegador usaba botones `data-tool-target` ocultos, ya sustituidos por la hoja de herramientas compacta. Se añadió diagnóstico de elementos que exceden los 360 px para localizar el overflow detectado en la ruta A1; no se reduce la exigencia de no-desbordamiento. CI pendiente.

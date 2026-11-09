@@ -45,7 +45,7 @@ test('Fase 3 uses one brand red across CSS, manifest, browser chrome and icon', 
 });
 
 test('normal text and informative icons meet contrast on the learning screen tinted backgrounds', async () => {
-  const css = await read('styles.css');
+  const [css, html] = await Promise.all([read('styles.css'), read('index.html')]);
   const red = '#c92a40';
   const main = '#3b2427';
   const muted = '#69474d';
@@ -59,8 +59,9 @@ test('normal text and informative icons meet contrast on the learning screen tin
   const measurements = [
     ['primary button and current node: white on brand red', contrast(white, red), 4.5],
     ['course status badge on tinted card', contrast(main, cardTint), 4.5],
-    ['main text on white tool row', contrast(main, white), 4.5],
-    ['secondary text on white tool row', contrast(muted, white), 4.5],
+    ['tool-row label on white access button', contrast(main, white), 4.5],
+    ['expanded access-button label on tinted background', contrast(main, cardTint), 4.5],
+    ['secondary text on white section banner', contrast(muted, white), 4.5],
     ['main text on tinted cards', contrast(main, cardTint), 4.5],
     ['secondary text on tinted unit sheet', contrast(muted, cardTint), 4.5],
     ['main text on completed card', contrast(main, completedCard), 4.5],
@@ -72,6 +73,9 @@ test('normal text and informative icons meet contrast on the learning screen tin
   for (const [label, ratio, minimum] of measurements) {
     assert.ok(ratio >= minimum, label + ': ' + ratio.toFixed(2) + ':1 < ' + minimum + ':1');
   }
+  assert.match(css, /\.unit-bottom-sheet\s*\{[^}]*background:\s*var\(--bg-card\)/);
+  assert.match(css, /\.unit-sheet-description\s*\{\s*color:\s*var\(--text-muted\)/);
+  assert.match(css, /\.learning-tool-button\[aria-expanded="true"\]\s*\{[^}]*background:var\(--bg-card\)[^}]*color:var\(--text-main\)/);
   assert.match(css, /\.path-node-locked\s*\{[^}]*opacity:\s*1/);
   assert.doesNotMatch(css, /\.path-node-locked\s*\{[^}]*opacity:\s*\.72/);
   assert.match(css, /\.learning-unit-node\.node-locked\s*\{[^}]*background:\s*#e5e7eb[^}]*color:\s*#374151/);

@@ -1,6 +1,6 @@
 # B2 U3 — integración de voz y foco
 
-**Estado:** implementada en la rama `feat/b2-u3-voice-focus-integration`; pendiente de CI y fusión.  
+**Estado:** implementada y fusionada en `main` mediante PR [#487](https://github.com/luisequeira612-commits/bahasa-studio/pull/487), commit `43feb963f2a119d1100862e1afd0be21ef65f27e`. CI completo verde en el head `93d4c37d715302b184370a53c35214aa17265d18`, run [#2073](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/42684943203).  
 **Fecha de implementación:** 9 nov 2026.  
 **Dependencias:** B2 U1 y U2 implementadas; las cuatro formas de U2 fueron aprobadas expresamente por el dueño el 9 nov 2026.
 

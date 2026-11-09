@@ -7126,6 +7126,11 @@ Requisitos:
                     return;
                 }
 
+                if (level.id === 'B2') {
+                    const developmentStatus = document.createElement('div');
+                    developmentStatus.innerHTML = '<span class="badge">En desarrollo</span>';
+                    container.appendChild(developmentStatus);
+                }
                 if (level.id === 'A2') {
                     const betaNote = document.createElement('p');
                     betaNote.className = 'learning-level-note';

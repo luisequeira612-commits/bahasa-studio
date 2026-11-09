@@ -7397,7 +7397,7 @@ Requisitos:
                 placeholder.textContent = 'Selecciona una unidad';
                 select.appendChild(placeholder);
                 CourseData.levels.forEach(level => {
-                    const availableUnits = level.id === 'B2' ? level.units.slice(0, 1) : level.units;
+                    const availableUnits = level.id === 'B2' ? level.units.slice(0, 3) : level.units;
                     availableUnits.forEach((unit, index) => {
                     const option = document.createElement('option');
                     option.value = unit.id;

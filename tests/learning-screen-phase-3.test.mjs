@@ -40,7 +40,9 @@ test('Phase 5B uses the approved blue brand across CSS, manifest, browser chrome
   assert.equal(manifest.theme_color, '#0067C6');
   assert.equal(manifest.background_color, '#ffffff');
   assert.match(html, /<meta name="theme-color" content="#0067C6">/);
-  assert.match(icon, /#c92a40/i, 'the Indonesian flag remains red; the app chrome uses the approved blue');
+  assert.match(icon, /#0067C6/i, 'the Guardi app icon uses the approved blue brand');
+  assert.match(icon, /viewBox="0 0 120 120"/);
+  assert.match(icon, /circle cx="60" cy="60" r="48"/);
   assert.doesNotMatch(icon, /#e8384f/i);
 });
 
@@ -110,13 +112,13 @@ test('PWA manifest keeps standalone routing, explicit scope and the maskable ico
   assert.equal(manifest.start_url, './index.html');
   assert.equal(manifest.scope, './');
   assert.ok(manifest.icons.some(icon =>
-    icon.src === './icon.svg' && icon.type === 'image/svg+xml' &&
-    icon.sizes === 'any' && icon.purpose.split(/\s+/).includes('maskable')));
+    icon.src === './icon-512-maskable.png' && icon.type === 'image/png' &&
+    icon.sizes === '512x512' && icon.purpose === 'maskable'));
 });
 
-test('service worker installs v3.8.83, removes only older app caches and claims clients', async () => {
+test('service worker installs v3.8.85, removes only older app caches and claims clients', async () => {
   const source = await read('service-worker.js');
-  assert.match(source, /CACHE_NAME\s*=\s*'bahasa-studio-v3\.8\.83'/);
+  assert.match(source, /CACHE_NAME\s*=\s*'bahasa-studio-v3\.8\.85'/);
   assert.match(source, /'\.\/index\.html'/);
   assert.match(source, /'\.\/manifest\.json'/);
   assert.match(source, /'\.\/styles\.css'/);
@@ -161,5 +163,5 @@ test('service worker installs v3.8.83, removes only older app caches and claims 
   assert.ok(deleted.includes('bahasa-studio-v3.8.71'));
   assert.ok(deleted.includes('bahasa-studio-other'));
   assert.equal(claimed, true);
-  assert.ok(cacheStore.has('bahasa-studio-v3.8.83'));
+  assert.ok(cacheStore.has('bahasa-studio-v3.8.85'));
 });

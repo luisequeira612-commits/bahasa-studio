@@ -65,7 +65,7 @@ test('real Chromium preserves progress on reload and safely imports valid/invali
 
   try {
     await page.goto(url, { waitUntil: 'domcontentloaded' });
-    await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
+    await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db, null, { timeout: 15000 });
 
     await page.evaluate(async () => {
       await DB.set('settings', 'userXp', 12);
@@ -471,20 +471,24 @@ test('service worker upgrades an old installed cache without clearing local prog
   try {
     await page.goto(url, { waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
-    await page.waitForFunction(() => Boolean(navigator.serviceWorker.controller), { timeout: 10000 });
+    await page.waitForFunction(() => Boolean(navigator.serviceWorker.controller), null, { timeout: 15000 });
     await page.evaluate(async () => {
       await DB.set('settings', 'completedUnits', ['a2_u1']);
       await DB.set('settings', 'completedLessons', ['a2_u1::0']);
       await navigator.serviceWorker.ready;
     });
-    await page.waitForFunction(async () => (await caches.keys()).includes('bahasa-studio-v3.8.71'));
+    await page.waitForFunction(async () => (await caches.keys()).includes('bahasa-studio-v3.8.71'), null, { timeout: 15000 });
     assert.equal(await page.locator('html').evaluate(node => node.innerHTML.includes('legacy-app-shell')), true,
       'the first launch should use the simulated older installed shell');
 
     servedVersion = 'new';
     await page.evaluate(async () => {
-      const controllerChanged = new Promise(resolve => {
-        navigator.serviceWorker.addEventListener('controllerchange', resolve, { once: true });
+      const controllerChanged = new Promise((resolve, reject) => {
+        const timeout = setTimeout(() => reject(new Error('Service worker update did not claim the page within 15 seconds')), 15000);
+        navigator.serviceWorker.addEventListener('controllerchange', () => {
+          clearTimeout(timeout);
+          resolve();
+        }, { once: true });
       });
       const registration = await navigator.serviceWorker.getRegistration();
       await registration.update();
@@ -493,7 +497,7 @@ test('service worker upgrades an old installed cache without clearing local prog
     await page.waitForFunction(async () => {
       const keys = await caches.keys();
       return keys.includes('bahasa-studio-v3.8.73') && !keys.includes('bahasa-studio-v3.8.71');
-    }, { timeout: 15000 });
+    }, null, { timeout: 15000 });
 
     await page.reload({ waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined');

@@ -5224,6 +5224,64 @@
                                 }
                             ]
                         },
+                        {
+                            id: 'b2_u3',
+                            title: 'Unidad 3: Integrar voz y foco en contexto',
+                            desc: 'Compara activa, pasiva y agente pronominal ligado para seguir el foco sin cambiar los roles de los participantes.',
+                            grammar: 'La activa con meN-, la pasiva con di- y las construcciones con ku-/kau- permiten organizar de manera distinta la información. Para interpretarlas, identifica quién realiza la acción, qué participante resulta afectado y qué elemento conecta con el contexto anterior. No son transformaciones mecánicas ni intercambiables en todos los contextos; ku-/kau- tampoco determina por sí solo el tiempo o el aspecto.',
+                            vocab: [
+                                { id: 'b2u2_kubaca', idn: 'Kubaca', esp: 'Lo leo / lo leí (según el contexto)', ex: 'Buku itu kubaca.', exEsp: 'Ese libro lo leo / lo leí, según el contexto.' },
+                                { id: 'b2u2_kaubaca', idn: 'Kaubaca', esp: 'Lo lees / lo leíste (según el contexto)', ex: 'Buku itu kaubaca.', exEsp: 'Ese libro lo lees / lo leíste, según el contexto.' },
+                                { id: 'b2u2_kutulis', idn: 'Kutulis', esp: 'Lo escribo / lo escribí (según el contexto)', ex: 'Surat itu kutulis.', exEsp: 'Esa carta la escribo / la escribí, según el contexto.' },
+                                { id: 'b2u2_kautulis', idn: 'Kautulis', esp: 'Lo escribes / lo escribiste (según el contexto)', ex: 'Surat itu kautulis.', exEsp: 'Esa carta la escribes / la escribiste, según el contexto.' }
+                            ],
+                            exercises: [],
+                            lessons: [
+                                {
+                                    title: 'Reconocer quién actúa y qué queda en primer plano',
+                                    objective: 'Compara las construcciones de U1 y U2, identifica agente y participante afectado y conserva el acontecimiento al cambiar el punto de partida.',
+                                    grammar: 'En una activa como «Ana membaca buku itu», Ana es el agente. En «Buku itu dibaca oleh Ana», el libro queda en primer plano y Ana sigue siendo el agente. En «Buku itu kubaca», el agente es quien habla. La elección depende del contexto.',
+                                    vocabIds: ['b2u2_kubaca', 'b2u2_kaubaca', 'b2u2_kutulis', 'b2u2_kautulis'],
+                                    reviewVocabIds: ['v211', 'v212', 'v213', 'v214', 'v8', 'b1v001', 'b1v002', 'b1v003', 'b1v004'],
+                                    exercises: [
+                                        { vocabId: 'v8', type: 'mc', prompt: '¿Qué oración expresa el mismo acontecimiento que «Buku itu dibaca oleh Ana»?', options: ['Ana membaca buku itu.', 'Buku membaca Ana.', 'Ana dibaca buku itu.'], answer: 0, explanation: 'Ana sigue siendo quien lee y buku itu lo que recibe la acción; cambia el punto de partida, no los participantes.' },
+                                        { vocabId: 'b2u2_kubaca', type: 'mc', prompt: 'En «Buku itu kubaca», ¿quién realiza la acción?', options: ['La persona que habla', 'La persona a la que se habla', 'El libro'], answer: 0, explanation: 'Ku- identifica al agente de primera persona; buku itu es el participante afectado.' },
+                                        { vocabId: 'b1v001', type: 'translate_es_id', prompt: 'Traduce al indonesio: «La carta la escribe Rina».', answer: 'Surat itu ditulis oleh Rina.', explanation: 'La pasiva mantiene surat itu en primer plano y oleh Rina identifica al agente.' },
+                                        { vocabId: 'b1v001', type: 'order', prompt: 'Ordena la oración: «La carta es escrita por Rina».', words: ['oleh', 'Surat', 'Rina.', 'itu', 'ditulis'], correctOrder: ['Surat', 'itu', 'ditulis', 'oleh', 'Rina.'], explanation: 'Surat itu aparece como punto de partida y Rina es el agente introducido por oleh.' },
+                                        { vocabId: 'b2u2_kaubaca', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Buku itu kaubaca.', explanation: 'Kau- identifica al agente de segunda persona; buku itu aparece antepuesto.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Seguir el foco cuando cambia el contexto',
+                                    objective: 'Sigue el tema de un diálogo breve y distingue cuándo cambia el agente o el punto de partida sin confundir los roles.',
+                                    grammar: 'El elemento inicial suele enlazar con lo que ya se está tratando. La activa puede volver a poner al agente en primer plano; la pasiva o la construcción con ku-/kau- pueden mantener al participante afectado al inicio. La interpretación temporal procede del contexto, no de ku-/kau- por sí solo.',
+                                    vocabIds: ['b2u2_kubaca', 'b2u2_kaubaca', 'b2u2_kutulis', 'b2u2_kautulis'],
+                                    reviewVocabIds: ['v211', 'v212', 'v213', 'v214', 'v8', 'b1v001', 'b1v002', 'b1v003', 'b1v004'],
+                                    exercises: [
+                                        { vocabId: 'b2u2_kutulis', type: 'mc', prompt: 'El diálogo ya trata sobre «surat itu». ¿Qué oración mantiene la carta como punto de partida?', options: ['Surat itu kutulis.', 'Aku menulis surat itu.', 'Mereka menjual buah.'], answer: 0, explanation: 'Surat itu ocupa el inicio y ku- identifica al agente de primera persona.' },
+                                        { vocabId: 'b2u2_kaubaca', type: 'translate_es_id', prompt: 'Traduce al indonesio: «Ese libro lo lees tú, según el contexto».', answer: 'Buku itu kaubaca.', explanation: 'Kau- representa al agente de segunda persona; el contexto permite elegir la traducción temporal.' },
+                                        { vocabId: 'v8', type: 'order', prompt: 'Ordena la oración: «El libro es leído por Ana».', words: ['dibaca', 'Ana.', 'Buku', 'oleh', 'itu'], correctOrder: ['Buku', 'itu', 'dibaca', 'oleh', 'Ana.'], explanation: 'La oración mantiene buku itu como punto de partida y expresa a Ana como agente.' },
+                                        { vocabId: 'b2u2_kautulis', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Surat itu kautulis.', explanation: 'Kau- identifica a la persona a la que se habla como agente de la escritura.' },
+                                        { vocabId: 'b2u2_kubaca', type: 'write', prompt: 'Explica qué cambia entre «Buku itu kubaca» y «Aku membaca buku itu» y qué participantes se mantienen.', hint: 'Identifica al agente en ambas oraciones y explica qué elemento aparece primero.', modelAnswer: 'En las dos oraciones yo leo el libro. En la primera, buku itu aparece primero y ku- identifica al agente; en la segunda, aku aparece como sujeto.', explanation: 'La respuesta distingue el cambio de organización informativa de los roles semánticos.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Reescribir sin cambiar los participantes',
+                                    objective: 'Integra los patrones de U1 y U2 en un texto breve y justifica una elección de perspectiva.',
+                                    grammar: 'Antes de reescribir, localiza el agente y el participante afectado. Después elige una construcción que encaje con el contexto y comprueba que no has invertido los papeles. No conviertas las tres construcciones en equivalencias universales.',
+                                    vocabIds: ['b2u2_kubaca', 'b2u2_kaubaca', 'b2u2_kutulis', 'b2u2_kautulis'],
+                                    reviewVocabIds: ['v211', 'v212', 'v213', 'v214', 'v8', 'b1v001', 'b1v002', 'b1v003', 'b1v004'],
+                                    exercises: [
+                                        { vocabId: 'b2u2_kautulis', type: 'mc', prompt: 'En «Surat itu kautulis», ¿quién es el agente?', options: ['La persona a la que se habla', 'La persona que habla', 'La carta'], answer: 0, explanation: 'Kau- identifica al agente de segunda persona; surat itu es el participante afectado.' },
+                                        { vocabId: 'b1v001', type: 'mc', prompt: 'En «Surat itu ditulis oleh Rina», ¿quién realiza la acción?', options: ['Rina', 'Surat itu', 'La persona a la que se habla'], answer: 0, explanation: 'Oleh Rina introduce al agente; surat itu recibe la acción.' },
+                                        { vocabId: 'b2u2_kubaca', type: 'translate_es_id', prompt: 'Traduce al indonesio: «Ese libro lo leí yo, según el contexto».', answer: 'Buku itu kubaca.', explanation: 'Ku- identifica al agente de primera persona; el contexto permite interpretar el tiempo.' },
+                                        { vocabId: 'b2u2_kutulis', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Surat itu kutulis.', explanation: 'Ku- identifica al agente de primera persona y surat itu aparece en primer plano.' },
+                                        { vocabId: 'b2u2_kaubaca', type: 'write', prompt: 'Escribe un mini texto de tres o cuatro oraciones que mantenga un libro como tema y use una forma de U2 y una construcción de U1.', hint: 'Puedes usar «Buku itu kubaca», «Buku itu dibaca oleh Ana» y una activa. Aclara quién realiza cada acción.', modelAnswer: 'Buku itu kubaca kemarin. Buku itu dibaca oleh Ana setelah itu. Ana membaca surat di rumah.', explanation: 'El texto integra los patrones y mantiene claros los agentes de cada oración.' },
+                                        { vocabId: 'v212', type: 'write', prompt: 'Reescribe «Rina menulis surat» para poner la carta en primer plano y justifica brevemente la elección.', hint: 'Usa la pasiva con ditulis y conserva a Rina como agente explícito.', modelAnswer: 'Surat itu ditulis oleh Rina. La carta queda como punto de partida y Rina sigue siendo quien escribe.', explanation: 'La transformación conserva los roles semánticos y cambia el punto de partida.' }
+                                    ]
+                                }
+                            ]
+                        },
                     ]
                 }
             ]
@@ -6405,10 +6463,10 @@
         }
         function getLearningLevels() {
             return getLevels().filter(level =>
-                (level.id !== 'B2' || level.units.some(unit => unit.id === 'b2_u1' || unit.id === 'b2_u2')) &&
+                (level.id !== 'B2' || level.units.some(unit => unit.id === 'b2_u1' || unit.id === 'b2_u2' || unit.id === 'b2_u3')) &&
                 (level.id !== 'A2' || A2_RELEASE_ENABLED)
             ).map(level => level.id === 'B2'
-                ? { ...level, units: level.units.filter(unit => unit.id === 'b2_u1' || unit.id === 'b2_u2') }
+                ? { ...level, units: level.units.filter(unit => unit.id === 'b2_u1' || unit.id === 'b2_u2' || unit.id === 'b2_u3') }
                 : level);
         }
         function getUniqueLearningVocabulary() {
@@ -6549,7 +6607,7 @@
                 const weak = srs.filter(i => i.val && i.val.efactor < 2.3)
                     .map(i => known.find(v => v.id === i.key)).filter(Boolean).slice(0, 10).map(v => v.idn);
                 const lvl = CourseData.levels.filter(l => l.units.some(u =>
-                    (l.id !== 'B2' || u.id === 'b2_u1' || u.id === 'b2_u2') && App.completedUnits.includes(u.id)
+                    (l.id !== 'B2' || u.id === 'b2_u1' || u.id === 'b2_u2' || u.id === 'b2_u3') && App.completedUnits.includes(u.id)
                 )).map(l => l.id).pop() || 'A1';
                 return `Eres un profesor de indonesio estándar (bahasa baku) para hispanohablantes. Crea UNA unidad sobre el tema: "${topic}".
 Nivel del alumno: ${lvl}, empezó de cero absoluto (unidades completadas: ${App.completedUnits.length}). Sé gradual y no asumas conocimientos previos.
@@ -7146,7 +7204,7 @@ Requisitos:
             },
             getVisibleLearningUnits(level) {
                 if (!level) return [];
-                return level.id === 'B2' ? level.units.slice(0, 2) : level.units;
+                return level.id === 'B2' ? level.units.slice(0, 3) : level.units;
             },
             getLearningLevelProgress(level) {
                 const units = this.getVisibleLearningUnits(level);
@@ -7339,7 +7397,7 @@ Requisitos:
                 placeholder.textContent = 'Selecciona una unidad';
                 select.appendChild(placeholder);
                 CourseData.levels.forEach(level => {
-                    const availableUnits = level.id === 'B2' ? level.units.slice(0, 1) : level.units;
+                    const availableUnits = level.id === 'B2' ? level.units.slice(0, 3) : level.units;
                     availableUnits.forEach((unit, index) => {
                     const option = document.createElement('option');
                     option.value = unit.id;
@@ -8046,7 +8104,7 @@ Requisitos:
             if (language === 'es' && typeof CourseData !== 'undefined' && Array.isArray(CourseData.levels)) {
                 for (const level of CourseData.levels) {
                     for (const unit of level.units || []) {
-                        if (level.id === 'B2' && !['b2_u1', 'b2_u2'].includes(unit.id)) continue;
+                        if (level.id === 'B2' && !['b2_u1', 'b2_u2', 'b2_u3'].includes(unit.id)) continue;
                         const authoredExercises = [
                             ...(unit.exercises || []),
                             ...(unit.lessons || []).flatMap(lesson => lesson.exercises || [])

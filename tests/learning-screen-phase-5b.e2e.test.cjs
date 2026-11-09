@@ -44,8 +44,9 @@ test('phase 5B learning screen is compact, blue and preserves all level/tool ent
     assert.equal(await page.locator('.learning-tools-row').count(), 0, 'legacy tools row should be removed from the compact Phase 5B DOM');
     assert.equal(await page.locator('.level-progress-trigger').getAttribute('aria-haspopup'), 'dialog');
     assert.ok((await page.locator('.level-progress-trigger').boundingBox()).height >= 44);
-    assert.equal(await page.locator('.unit-tools-trigger').count(), 1);
-    assert.ok((await page.locator('.unit-tools-trigger').boundingBox()).height >= 44);
+    const toolTriggers = page.locator('.unit-tools-trigger');
+    assert.equal(await toolTriggers.count(), await page.locator('.unit-path-section-banner').count(), 'each section banner should expose its own tools trigger');
+    for (const trigger of await toolTriggers.all()) assert.ok((await trigger.boundingBox()).height >= 44);
 
     const banner = page.locator('.unit-path-section-banner').first();
     const current = page.locator('.learning-unit-node.node-current').first();

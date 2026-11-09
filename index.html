@@ -7315,6 +7315,8 @@ Requisitos:
                 }
                 if (levelProgressPercent) levelProgressPercent.textContent = levelPercent + '%';
                 if (levelProgressLevel) levelProgressLevel.textContent = level ? level.id : '—';
+                const levelTrigger = document.getElementById('learningLevelTrigger');
+                if (levelTrigger) levelTrigger.setAttribute('aria-label', 'Cambiar nivel. ' + (level ? level.id : 'seleccionado') + ' seleccionado, ' + levelCompleted + ' de ' + levelTotal + ' unidades completadas (' + levelPercent + '%)');
                 if (!level || !level.units.length) {
                     container.innerHTML = '<section class="learning-empty-state"><strong>Próximamente</strong><p>Este nivel todavía no tiene unidades disponibles.</p></section>';
                     this.populateEmergencyUnitSelect();

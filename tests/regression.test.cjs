@@ -45,7 +45,7 @@ assert.equal(manifest.description, 'Aprende idiomas');
   assert.equal(manifest.icons[0].src, './icon.svg');
   assert.equal(manifest.background_color, '#ffffff');
   assert.match(fs.readFileSync(path.join(root, 'icon.svg'), 'utf8'), /<svg[^>]+viewBox="0 0 512 512"/);
-  assert.match(serviceWorker, /bahasa-studio-v3.8.81/);
+  assert.match(serviceWorker, /bahasa-studio-v3.8.82/);
   for (const asset of ['./', './index.html', './manifest.json', './assessment.html', './assessment-engine.js', './conversation-engine.js', './study-history.js', './study-activity.js', './adaptive-learning.js', './curriculum-a1.js', './curriculum-a2.js', './styles.css', './icon.svg', './audio-engine.js', './pronunciation-engine.js', './writing-practice.js']) {
     assert.ok(serviceWorker.includes("'" + asset + "'"), asset + ' must be precached for offline use');
   }

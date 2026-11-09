@@ -84,7 +84,7 @@ Al menos cinco ejercicios deben evaluar oraciones completas y al menos uno debe 
 - No inferir automáticamente la valencia a partir del sufijo.
 - No forzar una equivalencia con objetos directos/indirectos del español.
 - No reutilizar los ejercicios ni IDs del borrador archivado sin auditoría.
-- Mantener B2 oculta/no publicada.
+- Mantener B2 en desarrollo: solo U1–U3 están implementadas y visibles con desbloqueo secuencial; U4–U60 no deben exponerse hasta su implementación y pruebas.
 - No modificar A1/A2/B1, IndexedDB, backup JSON v3, trackers ni dependencias.
 - No afirmar validación nativa ni certificación MCER/BIPA.
 

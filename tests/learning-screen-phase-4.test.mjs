@@ -29,7 +29,7 @@ test('phase four section banner, chips and active tab preserve readable contrast
   assert.match(html, /\.unit-path-section-banner\s*\{[^}]*background:#004E9A !important[^}]*color:#ffffff/s);
   assert.match(html, /background: active \? '#E6F1FB' : 'transparent'/);
   assert.match(html, /color: active \? '#004A91' : ''/);
-  assert.match(html, /metrics\.style\.gap = compact && compact\.matches \? '5px' : '8px'/);
+  assert.match(html, /metrics\.style\.gap = compact && compact\.matches \? '4px' : '8px'/);
 });
 
 test('the selected-level ring is derived from unit completion and does not persist progress', async () => {

@@ -32,15 +32,17 @@ test('phase four section banner, chips and active tab preserve readable contrast
 test('the selected-level ring is derived from unit completion and does not persist progress', async () => {
   const html = await read('index.html');
   assert.match(html, /id="levelProgressRing"[^>]*aria-label="Progreso del nivel A1 seleccionado/);
-  assert.match(html, /visibleUnits\\.filter\\(unit => getUnitProgressState\\(level, unit\\)\\.completed\\)/);
-  assert.match(html, /levelProgressRing\\.style\\.setProperty\\('--level-progress'/);
   const routeStart = html.indexOf('renderCourseRoute() {');
   const ringStart = html.indexOf('const levelProgressRing =', routeStart);
   const emptyStart = html.indexOf('if (!level || !level.units.length)', ringStart);
   const ringBlock = html.slice(ringStart, emptyStart);
-  assert.doesNotMatch(ringBlock, /DB\\.set|completedLessons\\.push|completedUnits\\.push/);
+  assert.ok(ringBlock.includes('visibleUnits.filter(unit => getUnitProgressState(level, unit).completed)'));
+  assert.ok(ringBlock.includes("levelProgressRing.style.setProperty('--level-progress'"));
+  assert.equal(ringBlock.includes('DB.set'), false);
+  assert.equal(ringBlock.includes('completedLessons.push'), false);
+  assert.equal(ringBlock.includes('completedUnits.push'), false);
 });
-
+ 
 test('the current node ring is empty until lessons are completed and uses completedLessons counts', async () => {
   const html = await read('index.html');
   assert.match(html, /progress\.completedLessonCount \/ progress\.lessons\.length/);

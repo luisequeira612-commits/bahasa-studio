@@ -7132,6 +7132,10 @@ Requisitos:
                     container.appendChild(developmentStatus);
                 }
                 if (level.id === 'A2') {
+                    const betaBadge = document.createElement('span');
+                    betaBadge.className = 'badge';
+                    betaBadge.textContent = 'Beta · en revisión';
+                    container.appendChild(betaBadge);
                     const betaNote = document.createElement('p');
                     betaNote.className = 'learning-level-note';
                     betaNote.textContent = 'Disponible en beta sin requisito de completar A1. El contenido A2 está en revisión interna; puede contener errores y no ha sido validado por hablantes nativos. Tus comentarios ayudan a mejorarlo.';

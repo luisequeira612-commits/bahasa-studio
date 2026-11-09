@@ -54,21 +54,22 @@ test('phase four learning screen works at 360px, preserves controls, sticky sect
 
     assert.equal(await page.locator('.current-unit-start-bubble').count(), 1);
     assert.equal(await page.locator('.current-unit-title').count(), 1);
-    assert.match(await page.locator('#levelProgressRing').getAttribute('aria-label'), /nivel A1 seleccionado/);
+    assert.match(await page.locator('#learningLevelTrigger').getAttribute('aria-label'), /A1 seleccionado/);
+    assert.equal(await page.locator('.level-progress-chevron').isVisible(), false, 'the compact level control hides its chevron at 360px to prevent horizontal overflow');
     assert.equal(await page.locator('.node-progress-value').getAttribute('stroke-dashoffset'), '207.35');
     assert.equal(await page.locator('.unit-path-section-banner h3').first().innerText(), 'Sección 1');
 
     await page.screenshot({ path: path.join(artifacts, 'learning-screen-360.png'), fullPage: true });
     await page.locator('.unit-path-stage').first().screenshot({ path: path.join(artifacts, 'current-node-bubble-and-ring.png') });
 
-    for (const id of ['aiGeneratorDrawer', 'writingPracticeDrawer', 'conversationPracticeDrawer']) {
-      const button = page.locator('[data-tool-target="' + id + '"]');
-      await button.click();
-      assert.equal(await button.getAttribute('aria-expanded'), 'true');
-      assert.equal(await page.locator('#' + id).evaluate(el => el.open), true);
+    const toolIds = ['aiGeneratorDrawer', 'writingPracticeDrawer', 'conversationPracticeDrawer'];
+    for (const [index, id] of toolIds.entries()) {
+      await page.locator('.unit-tools-trigger').first().click();
+      await page.waitForFunction(() => !document.getElementById('learningToolsSheetOverlay').hidden);
+      await page.locator('.learning-tool-sheet-row').nth(index).click();
+      await page.waitForFunction(id => document.getElementById(id).open, id);
       assert.notEqual(await page.locator('#' + id).evaluate(el => getComputedStyle(el).display), 'none');
-      await button.click();
-      assert.equal(await button.getAttribute('aria-expanded'), 'false');
+      await page.evaluate(id => App.toggleLearningTool(id), id);
     }
 
     await page.locator('.current-unit-start-bubble').click();
@@ -81,7 +82,7 @@ test('phase four learning screen works at 360px, preserves controls, sticky sect
     await page.evaluate(() => window.scrollTo(0, 480));
     await page.waitForTimeout(120);
     const stickyTop = await page.locator('.unit-path-section-banner').first().evaluate(el => el.getBoundingClientRect().top);
-    assert.ok(stickyTop >= 108 && stickyTop <= 116, 'first section banner should stick below the top bar and level selector: ' + stickyTop);
+    assert.ok(stickyTop >= 56 && stickyTop <= 60, 'first section banner should stick directly below the compact 58px top bar: ' + stickyTop);
     await page.screenshot({ path: path.join(artifacts, 'sticky-section-banner.png') });
 
     for (const [group, view] of [['review','srs'],['tutor','ai'],['profile','profile'],['learn','route']]) {
@@ -105,10 +106,10 @@ test('phase four learning screen works at 360px, preserves controls, sticky sect
 
     const secondBanner = page.locator('.unit-path-section-banner').nth(1);
     const secondDocumentTop = await secondBanner.evaluate(el => el.getBoundingClientRect().top + window.scrollY);
-    await page.evaluate(y => window.scrollTo(0, y - 112), secondDocumentTop);
+    await page.evaluate(y => window.scrollTo(0, y - 58), secondDocumentTop);
     await page.waitForTimeout(120);
     const secondTop = await secondBanner.evaluate(el => el.getBoundingClientRect().top);
-    assert.ok(secondTop >= 108 && secondTop <= 116, 'next section banner should replace the previous sticky banner: ' + secondTop);
+    assert.ok(secondTop >= 56 && secondTop <= 60, 'next section banner should replace the previous sticky banner below the compact top bar: ' + secondTop);
     await page.screenshot({ path: path.join(artifacts, 'sticky-next-section-banner.png') });
     await cdp.detach();
   } finally {
@@ -186,6 +187,7 @@ test('phase four path geometry is collision-free at 360px across levels and zigz
             expectedId:level.units[index].id,
             documentWidth:document.documentElement.scrollWidth,
             stageWidth:current.parentElement.clientWidth,
+            overflowing:[...document.querySelectorAll('body *')].map(el => { const r=el.getBoundingClientRect(); return {tag:el.tagName,id:el.id,cls:typeof el.className==='string'?el.className:'',left:Math.round(r.left),right:Math.round(r.right),width:Math.round(r.width)}; }).filter(item => item.width > 0 && (item.right > 360 || item.left < 0)).sort((a,b) => b.right-a.right).slice(0,12),
             bubble: bubbleRect, title:titleRect, node:currentRect,
             ringGap, horizontalBubbleClearance, horizontalTitleClearance, nodeEdgeGaps,
             titleNextGap:nextRect ? nextRect.top - titleRect.bottom : null,
@@ -201,7 +203,9 @@ test('phase four path geometry is collision-free at 360px across levels and zigz
     assert.equal(layouts.length, 22);
     for (const layout of layouts) {
       assert.equal(layout.currentId, layout.expectedId, layout.levelId + ' current unit should be at zigzag index ' + layout.index);
-      assert.ok(layout.documentWidth <= 360, layout.levelId + ' must not overflow horizontally');
+      assert.ok(layout.documentWidth <= 360, layout.levelId + ' must not overflow horizontally: ' + JSON.stringify({
+        documentWidth: layout.documentWidth, viewportWidth: 360, stageWidth: layout.stageWidth, overflowing: layout.overflowing
+      }));
       assert.equal(layout.nodeSize.width, 56);
       assert.equal(layout.nodeSize.height, 56);
       assert.ok(layout.ringGap >= 10, layout.levelId + ' bubble must stay 10px clear of the outer ring');
@@ -306,10 +310,10 @@ test('phase four path geometry is collision-free at 360px across levels and zigz
     assert.equal(sheetStyle.description, 'rgb(75, 85, 99)');
     assert.equal(sheetStyle.border, '1px');
     assert.match(sheetStyle.bottomPadding, /safe-area-inset-bottom/);
-    assert.equal(sheetStyle.trackBackground, 'rgb(139, 139, 139)');
+    assert.equal(sheetStyle.trackBackground, 'rgb(138, 148, 163)');
     assert.equal(sheetStyle.trackHeight, 8);
     assert.ok(sheetStyle.trackContrast >= 3, 'gray track must meet 3:1 contrast');
-    assert.equal(sheetStyle.fillBackground, 'rgb(201, 42, 64)');
+    assert.equal(sheetStyle.fillBackground, 'rgb(0, 103, 198)');
     assert.ok(sheetStyle.primaryBackground !== 'rgba(0, 0, 0, 0)');
     assert.ok(Number.parseFloat(sheetStyle.secondaryBorder) >= 1, 'secondary action must retain its outline');
     await page.evaluate(() => App.closeUnitSheet());

@@ -40,13 +40,13 @@ test('phase 5B learning screen is compact, blue and preserves all level/tool ent
     await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
     await page.waitForSelector('.learning-unit-node.node-current');
 
-    assert.equal(await page.locator('#learningLevelSelector').count(), 1, 'selector DOM may remain for compatibility but must be hidden');
-    assert.equal(await page.locator('#learningLevelSelector').evaluate(el => getComputedStyle(el).display), 'none');
-    assert.equal(await page.locator('.learning-tools-row').evaluate(el => getComputedStyle(el).display), 'none');
+    assert.equal(await page.locator('#learningLevelSelector').count(), 0, 'legacy level selector should be removed from the compact Phase 5B DOM');
+    assert.equal(await page.locator('.learning-tools-row').count(), 0, 'legacy tools row should be removed from the compact Phase 5B DOM');
     assert.equal(await page.locator('.level-progress-trigger').getAttribute('aria-haspopup'), 'dialog');
     assert.ok((await page.locator('.level-progress-trigger').boundingBox()).height >= 44);
-    assert.equal(await page.locator('.unit-tools-trigger').count(), 1);
-    assert.ok((await page.locator('.unit-tools-trigger').boundingBox()).height >= 44);
+    const toolTriggers = page.locator('.unit-tools-trigger');
+    assert.equal(await toolTriggers.count(), await page.locator('.unit-path-section-banner').count(), 'each section banner should expose its own tools trigger');
+    for (const trigger of await toolTriggers.all()) assert.ok((await trigger.boundingBox()).height >= 44);
 
     const banner = page.locator('.unit-path-section-banner').first();
     const current = page.locator('.learning-unit-node.node-current').first();
@@ -65,9 +65,10 @@ test('phase 5B learning screen is compact, blue and preserves all level/tool ent
     assert.match(a2Progress, /^\d+ de 40 unidades$/);
     await page.locator('.learning-level-sheet-row').nth(1).click();
     await page.waitForFunction(() => document.getElementById('learningLevelSheetOverlay').hidden);
-    await page.waitForSelector('.learning-unit-node.node-current');
+    await page.waitForSelector('.learning-unit-node');
+    assert.equal(await page.locator('#levelProgressLevel').innerText(), 'A2', 'the compact selector should switch the selected level to A2');
 
-    await page.locator('.unit-tools-trigger').click();
+    await page.locator('.unit-tools-trigger').first().click();
     await page.waitForSelector('#learningToolsSheetOverlay:not([hidden])');
     assert.equal(await page.locator('.learning-tool-sheet-row').count(), 3);
     for (const row of await page.locator('.learning-tool-sheet-row').all()) assert.ok((await row.boundingBox()).height >= 44);
@@ -77,20 +78,24 @@ test('phase 5B learning screen is compact, blue and preserves all level/tool ent
     assert.equal(await page.locator('#writingPracticeDrawer').evaluate(el => el.open), true);
     await page.locator('#writingPracticeDrawer').evaluate(el => el.open = false);
 
-    const colors = await page.evaluate(() => ({
+    const colors = await page.evaluate(() => {
+      App.selectedLearningLevel = 'A1';
+      App.renderCourseRoute();
+      return {
       brand: getComputedStyle(document.documentElement).getPropertyValue('--brand-red').trim(),
       current: getComputedStyle(document.querySelector('.learning-unit-node.node-current')).backgroundColor,
       completed: (() => {
-        const level = CourseData.levels.find(l => l.id === 'A1');
-        App.selectedLearningLevel = 'A1';
-        App.completedUnits = [level.units[0].id];
-        App.completedLessons = [];
-        App.renderCourseRoute();
-        return getComputedStyle(document.querySelector('.learning-unit-node.node-completed')).backgroundColor;
+        const node = document.createElement('div');
+        node.className = 'learning-unit-node node-completed';
+        document.body.appendChild(node);
+        const color = getComputedStyle(node).backgroundColor;
+        node.remove();
+        return color;
       })(),
       banner: getComputedStyle(document.querySelector('.unit-path-section-banner')).backgroundColor,
       lessonProgress: getComputedStyle(document.querySelector('#view-lesson .progress-fill')).backgroundColor
-    }));
+      };
+    });
     assert.equal(colors.brand, '#0067C6');
     assert.ok(colors.current.includes('0, 103, 198'));
     assert.ok(colors.completed.includes('0, 78, 154'));

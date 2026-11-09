@@ -24,7 +24,7 @@ test('dictionary, pilot assessment and settings remain reachable from their pare
     assert.match(html, /id="view-profile"[\s\S]*?switchView\('settings'\)[\s\S]*?Ajustes y datos/);
 });
 
-test('compact top bar keeps the existing study activity values and live goal ring', () => {
+test('compact top bar keeps study activity values and selected-level progress ring', () => {
     assert.match(html, /class="app-topbar"/);
     assert.match(html, /id="studyStreakText"/);
     assert.match(html, /id="studyDailyXpText"/);

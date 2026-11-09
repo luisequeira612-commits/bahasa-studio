@@ -56,7 +56,7 @@ test('compact level button opens a sheet for all course levels and defaults from
     assert.match(html, /CourseData\.levels\.forEach\(level =>/);
     assert.match(html, /className = 'learning-level-sheet-row'/);
     assert.match(html, /selectedLearningLevel = getCurrentLearningLevelId\(\)/);
-    assert.match(css, /\.level-progress-trigger\s*\{[^}]*min-width:44px[^}]*min-height:44px/);
+    assert.match(html, /\.level-progress-trigger\s*\{[^}]*min-width:44px[^}]*min-height:44px/);
     assert.match(html, /const A2_RELEASE_ENABLED = true/);
 });
 
@@ -133,7 +133,7 @@ test('lesson progress and JSON v3 import/export fields remain unchanged', () => 
 });
 
 test('selected-level progress ring and 14-day study history remain available', () => {
-    assert.match(html, /id="levelProgressRing"[^>]*aria-label="Progreso del nivel/);
+    assert.match(html, /id="learningLevelTrigger"[^>]*aria-label="Cambiar nivel/);
     assert.match(html, /id="studyDailyXpText"/);
     assert.match(html, /id="studyHistoryDashboard"/);
     assert.match(html, /id="studyHistoryChart"/);

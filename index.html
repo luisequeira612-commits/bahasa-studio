@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bahasa Studio 3.8.15</title>
-    <meta name="description" content="Curso de indonesio PWA para hispanohablantes sin costo ni penalizaciones.">
+    <title>Guardi</title>
+    <meta name="description" content="Aprende idiomas con lecciones y repaso, gratis y sin cuentas.">
+    <meta name="apple-mobile-web-app-title" content="Guardi">
     <meta name="theme-color" content="#0067C6">
     <link rel="manifest" href="./manifest.json">
     <link rel="stylesheet" href="./styles.css">
@@ -49,7 +50,7 @@
 <body>
 
     <header class="app-topbar">
-        <div class="logo"><svg class="brand-mark ui-icon" viewBox="0 0 24 24" aria-hidden="true"><defs><clipPath id="bahasa-flag-clip"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/></clipPath></defs><g clip-path="url(#bahasa-flag-clip)"><rect x="3.5" y="5.5" width="17" height="13" fill="#fff"/><path d="M3.5 5.5h17V12h-17z" fill="#c92a40"/></g><rect x="3.5" y="5.5" width="17" height="13" rx="2" fill="none" stroke="#9ca3af" stroke-width="1"/></svg><span>Bahasa Studio</span></div>
+        <div class="logo"><svg class="brand-mark ui-icon" viewBox="0 0 24 24" aria-hidden="true"><defs><clipPath id="bahasa-flag-clip"><rect x="2" y="2" width="20" height="20" rx="5"/></clipPath></defs><rect x="2" y="2" width="20" height="20" rx="5" fill="#0067C6" clip-path="url(#bahasa-flag-clip)"/><text x="12" y="17" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" font-weight="800" fill="#ffffff">G</text></svg><span>Guardi</span></div>
         <div class="topbar-metrics" aria-label="Tu actividad y progreso">
             <span class="topbar-chip topbar-streak" title="Racha actual"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22c-4.1 0-7-2.8-7-6.7 0-2.8 1.4-5 3.5-6.9.1 2.4.9 3.8 2.2 4.6-.2-4 1.2-7.1 4.3-10.2.2 3.3 1.4 5.1 3.1 6.8 1.4 1.5 2.4 3.2 2.4 5.7 0 3.8-2.8 6.7-6.5 6.7Z"/><path d="M12.2 18.7c-1.5 0-2.5-1-2.5-2.4 0-1.1.7-2.1 1.8-3.1.2 1.1.7 1.7 1.4 2.1.7.5 1.1 1 1.1 1.8 0 .9-.8 1.6-1.8 1.6Z"/></svg><strong id="studyStreakText">0 días</strong></span>
             <span class="topbar-chip topbar-xp" title="XP de hoy frente a tu meta"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m13.2 2.5-8 11h5.6l-.5 8 8.5-12h-5.7l.1-7Z"/></svg><strong id="studyDailyXpText">Meta: 0/30 XP</strong></span>
@@ -208,7 +209,7 @@
         </div>
 
         <div class="chat-box" id="chatBox">
-            <div class="msg ai">Selamat datang! Soy tu asistente de indonesio. Puedes hacerme preguntas gramaticales como "¿Cómo funciona tidak y bukan?" o pedirme ejercicios.</div>
+            <div class="msg ai">Selamat datang! Soy tu asistente de idiomas. Puedes hacerme preguntas sobre lo que estás estudiando o pedirme ejercicios.</div>
         </div>
 
         <div style="display:flex; gap: 8px;">
@@ -444,7 +445,7 @@
     <script src="./curriculum-a2.js"></script>
     <script>
         if (!window.BAHASA_CURRICULUM_A1 || !window.BAHASA_CURRICULUM_A2) {
-            document.body.innerHTML = '<main style="max-width:680px;margin:12vh auto;padding:24px;font:16px system-ui;color:#1f2937"><h1>No se pudo cargar el currículo</h1><p>Falta un archivo de datos del curso (A1 o A2). Comprueba tu conexión, recarga la página y, si el problema continúa, borra la caché de Bahasa Studio desde los ajustes del navegador.</p></main>';
+            document.body.innerHTML = '<main style="max-width:680px;margin:12vh auto;padding:24px;font:16px system-ui;color:#1f2937"><h1>No se pudo cargar el currículo</h1><p>Falta un archivo de datos del curso (A1 o A2). Comprueba tu conexión, recarga la página y, si el problema continúa, borra la caché de Guardi desde los ajustes del navegador.</p></main>';
             window.stop();
         }
     </script>
@@ -7794,7 +7795,7 @@ Requisitos:
                 const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
                 const a = document.createElement('a');
                 a.href = URL.createObjectURL(blob);
-                a.download = `bahasa_studio_backup.json`;
+                a.download = `guardi-backup.json`;
                 a.click();
             },
             validateBackup(parsed) {

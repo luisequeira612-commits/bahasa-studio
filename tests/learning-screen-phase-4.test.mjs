@@ -21,20 +21,20 @@ function contrast(foreground, background) {
 
 test('phase four section banner, chips and active tab preserve readable contrast', async () => {
   const css = await read('styles.css');
-  assert.ok(contrast('#ffffff', '#285a78') >= 4.5, 'white banner text must meet AA');
+  assert.ok(contrast('#ffffff', '#004E9A') >= 4.5, 'white banner text must meet AA on the Phase 5B blue banner');
   assert.ok(contrast('#f8fafc', '#334155') >= 4.5, 'dark-theme activity chips must meet AA');
   assert.ok(contrast('#0f172a', '#e2e8f0') >= 4.5, 'light-theme activity chips must meet AA');
-  assert.ok(contrast('#7f1d2d', '#fdecef') >= 4.5, 'active navigation pill text must meet AA');
-  assert.match(css, /\.unit-path-section-banner\s*\{[^}]*background:#285a78[^}]*color:#fff/s);
+  assert.ok(contrast('#004A91', '#E6F1FB') >= 4.5, 'active navigation pill text must meet AA on the Phase 5B blue tint');
   const html = await read('index.html');
-  assert.match(html, /background: active \? '#fdecef' : 'transparent'/);
-  assert.match(html, /color: active \? '#7f1d2d' : ''/);
+  assert.match(html, /\.unit-path-section-banner\s*\{[^}]*background:#004E9A !important[^}]*color:#ffffff/s);
+  assert.match(html, /background: active \? '#E6F1FB' : 'transparent'/);
+  assert.match(html, /color: active \? '#004A91' : ''/);
   assert.match(html, /metrics\.style\.gap = compact && compact\.matches \? '5px' : '8px'/);
 });
 
 test('the selected-level ring is derived from unit completion and does not persist progress', async () => {
   const html = await read('index.html');
-  assert.match(html, /id="levelProgressRing"[^>]*aria-label="Progreso del nivel A1 seleccionado/);
+  assert.match(html, /id="learningLevelTrigger"[^>]*aria-label="Cambiar nivel\. A1 seleccionado/);
   const routeStart = html.indexOf('renderCourseRoute() {');
   const ringStart = html.indexOf('const levelProgressRing =', routeStart);
   const emptyStart = html.indexOf('if (!level || !level.units.length)', ringStart);
@@ -71,7 +71,9 @@ test('closed learning tools leave no residual drawers and iconography is inline 
   const tools = html.slice(html.indexOf('<div class="learning-tools-row"'), html.indexOf('<details class="feature-drawer learning-tool-panel"'));
   const nav = html.slice(html.indexOf('<nav class="nav-bottom"'), html.indexOf('</nav>'));
   assert.doesNotMatch(header + tools + nav, /[🇮🇩🔥⚡✨📓💬🔒]/u);
-  assert.match(tools, /<svg class="ui-icon"/);
+  assert.equal((html.match(/class="learning-tools-row"/g) || []).length, 0, 'legacy tools row is removed in Phase 5B');
+  const toolsSheet = html.slice(html.indexOf('id="learningToolsSheetOverlay"'), html.indexOf('id="unitSheetOverlay"'));
+  assert.match(toolsSheet, /<svg class="ui-icon"/);
   assert.match(nav, /<svg viewBox="0 0 24 24"/);
   assert.match(css, /\.learning-tool-panel:not\(\[open\]\)\s*\{\s*display:none;\s*\}/);
   assert.match(css, /\.ui-icon\s*\{[^}]*stroke-linecap:round[^}]*stroke-linejoin:round/s);
@@ -93,7 +95,7 @@ test('nodes, bubble and sheet have 44px targets and motion respects reduced-moti
 
 test('phase four increments the offline cache without changing the storage schema', async () => {
   const [sw, html] = await Promise.all([read('service-worker.js'), read('index.html')]);
-  assert.match(sw, /bahasa-studio-v3\.8\.75/);
+  assert.match(sw, /bahasa-studio-v3\.8\.77/);
   assert.match(html, /completedLessons: this\.completedLessons/);
   assert.match(html, /putSetting\('completedLessons', data\.completedLessons \|\| \[\]\)/);
 });
@@ -114,7 +116,7 @@ test('phase four layout uses one spacing rule, a separated red progress ring and
   assert.match(route, /const circumference = 207\.35/);
   assert.match(route, /cx="38" cy="38" r="33"/);
   assert.match(route, /stroke:#d1d5db/);
-  assert.match(route, /stroke:#c92a40/);
+  assert.match(route, /stroke:#0067C6/);
   assert.match(route, /stroke-width:5/);
   assert.match(route, /top:calc\(50% \+ 2\.5px\)/);
   assert.match(route, /startBubble\.style\.top = \(nodeTop - 46\)/);
@@ -138,8 +140,8 @@ test('topbar uses an Indonesian flag and flame SVG; navigation pill keeps one la
   assert.match(header, /stroke="#9ca3af"/);
   assert.match(header, /M12 22c-4\.1 0-7-2\.8/);
   assert.match(html, /nav-pill-content/);
-  assert.match(html, /background: active \? '#fdecef' : 'transparent'/);
-  assert.match(html, /color: active \? '#7f1d2d' : ''/);
+  assert.match(html, /background: active \? '#E6F1FB' : 'transparent'/);
+  assert.match(html, /color: active \? '#004A91' : ''/);
   assert.match(html, /height: '100%'/);
   assert.match(html, /padding: '0'/);
   assert.match(html, /metrics\.style\.gap = compact && compact\.matches \? '5px' : '8px'/);
@@ -150,7 +152,7 @@ test('bottom sheet uses a gray lesson track, light surface and safe-area padding
   const html = await read('index.html');
   assert.match(html, /unit-sheet-lesson-track/);
   assert.match(html, /background:#8b8b8b/);
-  assert.match(html, /background:#c92a40/);
+  assert.match(html, /background:#0067C6/);
   assert.match(html, /height:8px;min-height:8px/);
   assert.ok(html.includes("sheet.style.backgroundColor = '#ffffff'"));
   assert.ok(html.includes("sheet.style.borderTop = '1px solid #d1d5db'"));

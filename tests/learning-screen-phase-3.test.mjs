@@ -27,20 +27,20 @@ function mix(foreground, background, amount) {
   }).join('');
 }
 
-test('Fase 3 uses one brand red across CSS, manifest, browser chrome and icon', async () => {
+test('Phase 5B uses the approved blue brand across CSS, manifest, browser chrome and icon', async () => {
   const [css, html, manifestText, icon] = await Promise.all([
     read('styles.css'), read('index.html'), read('manifest.json'), read('icon.svg')
   ]);
   const manifest = JSON.parse(manifestText);
   assert.equal((css.match(/--brand-red\s*:/g) || []).length, 1);
-  assert.match(css, /--brand-red:\s*#c92a40/i);
+  assert.match(html, /--brand-red:\s*#0067C6/i);
   assert.doesNotMatch(css, /#e8384f|#bd263b/i);
   assert.match(css, /--accent:\s*var\(--brand-red\)/);
   assert.match(css, /--accent-hover:\s*var\(--brand-red\)/);
-  assert.equal(manifest.theme_color, '#c92a40');
+  assert.equal(manifest.theme_color, '#0067C6');
   assert.equal(manifest.background_color, '#ffffff');
-  assert.match(html, /<meta name="theme-color" content="#c92a40">/);
-  assert.match(icon, /#c92a40/);
+  assert.match(html, /<meta name="theme-color" content="#0067C6">/);
+  assert.match(icon, /#c92a40/i, 'the Indonesian flag remains red; the app chrome uses the approved blue');
   assert.doesNotMatch(icon, /#e8384f/i);
 });
 
@@ -114,9 +114,9 @@ test('PWA manifest keeps standalone routing, explicit scope and the maskable ico
     icon.sizes === 'any' && icon.purpose.split(/\s+/).includes('maskable')));
 });
 
-test('service worker installs v3.8.75, removes only older app caches and claims clients', async () => {
+test('service worker installs v3.8.77, removes only older app caches and claims clients', async () => {
   const source = await read('service-worker.js');
-  assert.match(source, /CACHE_NAME\s*=\s*'bahasa-studio-v3\.8\.75'/);
+  assert.match(source, /CACHE_NAME\s*=\s*'bahasa-studio-v3\.8\.77'/);
   assert.match(source, /'\.\/index\.html'/);
   assert.match(source, /'\.\/manifest\.json'/);
   assert.match(source, /'\.\/styles\.css'/);
@@ -161,5 +161,5 @@ test('service worker installs v3.8.75, removes only older app caches and claims 
   assert.ok(deleted.includes('bahasa-studio-v3.8.71'));
   assert.ok(deleted.includes('bahasa-studio-other'));
   assert.equal(claimed, true);
-  assert.ok(cacheStore.has('bahasa-studio-v3.8.75'));
+  assert.ok(cacheStore.has('bahasa-studio-v3.8.77'));
 });

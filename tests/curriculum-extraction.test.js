@@ -76,7 +76,7 @@ test('classic curriculum scripts load synchronously before the main app script',
 
 test('service worker precaches both data files and invalidates the previous cache', async () => {
   const source = fs.readFileSync(require.resolve('../service-worker.js'), 'utf8');
-  assert.match(source, /bahasa-studio-v3\.8\.75/);
+  assert.match(source, /bahasa-studio-v3\.8\.77/);
   assert.match(source, /'\.\/curriculum-a1\.js'/);
   assert.match(source, /'\.\/curriculum-a2\.js'/);
   assert.match(source, /'\.\/styles\.css'/);
@@ -147,7 +147,9 @@ test('service worker precaches both data files and invalidates the previous cach
 test('the extracted stylesheet stays linked and its canonical content hash remains pinned', () => {
   const css = fs.readFileSync(require.resolve('../styles.css'), 'utf8');
   assert.match(html, /<link rel="stylesheet" href="\.\/styles\.css">/);
-  assert.doesNotMatch(html, /<style[\s>]/i);
+  const inlineStyleTags = [...html.matchAll(/<style\b([^>]*)>/gi)];
+  assert.equal(inlineStyleTags.length, 1, 'only the scoped Phase 5B override may remain inline');
+  assert.match(inlineStyleTags[0][1], /id=["']learning-phase-5b-overrides["']/);
   assert.equal(fnv1a(css), 'aaf0af08', 'canonical extracted CSS content changed');
 });
 

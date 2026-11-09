@@ -5,10 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bahasa Studio 3.8.15</title>
     <meta name="description" content="Curso de indonesio PWA para hispanohablantes sin costo ni penalizaciones.">
-    <meta name="theme-color" content="#c92a40">
+    <meta name="theme-color" content="#0067C6">
     <link rel="manifest" href="./manifest.json">
     <link rel="stylesheet" href="./styles.css">
 
+<style id="learning-phase-5b-overrides">
+:root, .light-mode { --brand-red:#0067C6; --accent:#0067C6; --accent-hover:#0067C6; --bg-primary:#ffffff; --bg-secondary:#ffffff; --bg-card:#F4F5F7; --text-main:#1F2937; --text-muted:#5B6472; --border:#E5E7EB; }
+.app-topbar .logo { color:#0067C6; } .app-topbar { background:#ffffff; }
+.level-progress-trigger { min-width:44px; min-height:44px; padding:0 3px; border:0; background:transparent; color:#1F2937; display:inline-flex; align-items:center; justify-content:center; gap:4px; border-radius:999px; cursor:pointer; touch-action:manipulation; }
+.level-progress-trigger:focus-visible { outline:3px solid #004A91; outline-offset:2px; }
+.level-progress-chevron { width:13px; height:13px; color:#004A91; }
+@media (max-width:360px) { .level-progress-trigger { gap:0; padding-inline:0; } .level-progress-chevron { display:none; } } .level-progress-ring { background:conic-gradient(#0067C6 var(--level-progress),#E5E7EB 0); } .level-progress-ring-inner { background:#ffffff; color:#1F2937; }
+.learning-level-selector,.learning-tools-row { display:none !important; }
+.unit-path-section-banner { top:58px !important; max-height:72px; min-height:64px; padding:9px 10px 8px 12px; background:#004E9A !important; border:0; border-bottom:3px solid #00386D; border-radius:0 0 14px 14px; color:#ffffff; grid-template-columns:minmax(0,1fr) auto auto; align-items:center; gap:4px 8px; }
+.unit-path-section-banner h3,.unit-path-section-banner p,.unit-section-count { color:#ffffff !important; } .unit-path-section-banner p { white-space:nowrap; }
+.unit-section-progress { grid-column:1 / -1; background:rgba(255,255,255,.34); height:5px; } .unit-section-progress span { background:#ffffff; }
+.unit-tools-trigger { width:44px; height:44px; min-width:44px; min-height:44px; border:1px solid rgba(255,255,255,.55); border-radius:12px; background:#004E9A; color:#ffffff; display:grid; place-items:center; touch-action:manipulation; } .unit-tools-trigger .ui-icon { width:20px; height:20px; } .unit-tools-trigger:focus-visible { outline:3px solid #ffffff; outline-offset:2px; }
+.learning-unit-node.node-completed { background:#004E9A !important; border-bottom:5px solid #00386D !important; color:#ffffff !important; } .learning-unit-node.node-current { background:#0067C6 !important; outline-color:#0067C6 !important; border-bottom-color:#004A91 !important; color:#ffffff !important; } .current-unit-start-bubble { background:#0067C6 !important; border-bottom-color:#004A91 !important; color:#ffffff !important; } .node-progress-value { stroke:#0067C6 !important; }
+#unitBottomSheet .progress-fill,#view-lesson .progress-fill { background:#0067C6 !important; } #view-lesson .progress-bar { background:#E5E7EB !important; } .unit-sheet-lesson-track { background:#8A94A3 !important; } .unit-sheet-lesson-track .progress-fill { background:#0067C6 !important; }
+#view-route .btn:not(.btn-outline) { background:#0067C6; border-bottom-color:#004A91; } #view-route .btn-outline { background:#ffffff; color:#004A91; border-color:#8A94A3; } #view-route .badge { color:#004A91; background:#E6F1FB; border-color:#8A94A3; }
+.nav-btn.active svg { background:#0067C6 !important; }
+.learning-action-sheet-overlay { position:fixed; inset:0; z-index:5100; display:flex; align-items:flex-end; justify-content:center; padding:12px 0 0; background:rgba(15,23,42,.58); } .learning-action-sheet-overlay[hidden] { display:none; }
+.learning-action-sheet { width:min(100%,560px); max-height:min(82dvh,760px); overflow-y:auto; overscroll-behavior:contain; padding:13px 16px calc(22px + env(safe-area-inset-bottom)); border-radius:24px 24px 0 0; background:#ffffff; color:#1F2937; box-shadow:0 -8px 32px rgba(0,0,0,.2); touch-action:pan-y; animation:learning-sheet-in .24s cubic-bezier(.2,.75,.25,1) both; }
+.learning-action-sheet-overlay.is-closing { animation:learning-sheet-overlay-out .18s ease-in both; } .learning-action-sheet-overlay.is-closing .learning-action-sheet { animation:learning-sheet-out .18s ease-in both; }
+.learning-sheet-grabber { width:42px; height:5px; margin:0 auto 16px; border-radius:99px; background:#8A94A3; } .learning-sheet-close { position:absolute; top:12px; right:15px; width:44px; height:44px; border:0; border-radius:50%; background:#F4F5F7; color:#1F2937; font-size:1.6rem; touch-action:manipulation; }
+.learning-action-sheet h2 { max-width:calc(100% - 48px); margin:4px 0 12px; font-size:1.2rem; } .learning-level-sheet-list,.learning-tools-sheet-list { display:grid; gap:8px; }
+.learning-level-sheet-row,.learning-tool-sheet-row { width:100%; min-height:44px; padding:10px 12px; border:1px solid #8A94A3; border-bottom:3px solid #E5E7EB; border-radius:12px; background:#ffffff; color:#1F2937; display:flex; align-items:center; gap:12px; text-align:left; touch-action:manipulation; }
+.learning-level-sheet-row { justify-content:space-between; } .learning-level-sheet-row strong { display:block; color:#004A91; font-size:.98rem; } .learning-level-sheet-row small,.learning-tool-sheet-row small { display:block; margin-top:2px; color:#5B6472; font-size:.78rem; line-height:1.3; }
+.learning-level-sheet-row.selected { border-color:#0067C6; background:#E6F1FB; } .learning-level-sheet-row.selected strong { color:#004A91; } .learning-level-sheet-row:disabled { opacity:.55; } .learning-level-sheet-check { width:24px; color:#004A91; font-size:1.15rem; font-weight:900; text-align:center; }
+.learning-tool-sheet-row { min-height:64px; } .learning-tool-sheet-row > .ui-icon { width:24px; height:24px; flex:0 0 24px; color:#004A91; } .learning-tool-sheet-row strong { display:block; color:#1F2937; }
+.learning-tool-sheet-row:focus-visible,.learning-level-sheet-row:focus-visible,.learning-sheet-close:focus-visible { outline:3px solid #0067C6; outline-offset:2px; } .learning-tool-sheet-row:active,.learning-level-sheet-row:active { background:#E6F1FB; }
+.lesson-speaker-icon { width:20px; height:20px; color:currentColor; vertical-align:middle; } .lesson-audio-settings > summary { display:grid; place-items:center; min-width:44px; min-height:44px; } .lesson-word-audio { display:inline-flex; align-items:center; justify-content:center; gap:6px; }
+@keyframes learning-sheet-in { from { transform:translateY(100%); } to { transform:translateY(0); } } @keyframes learning-sheet-out { from { transform:translateY(0); } to { transform:translateY(100%); } } @keyframes learning-sheet-overlay-out { from { opacity:1; } to { opacity:0; } }
+@media (max-width:380px) { .level-progress-chevron { display:none; } .unit-path-section-banner { padding-left:10px; padding-right:8px; gap:4px 6px; } .unit-path-section-banner h3 { font-size:.9rem; } .unit-path-section-banner p { font-size:.7rem; } .unit-section-count { font-size:.78rem; } .unit-tools-trigger { border-radius:10px; } .learning-action-sheet { padding-inline:14px; } }
+@media (prefers-reduced-motion:reduce) { .learning-action-sheet,.learning-action-sheet-overlay,.learning-action-sheet-overlay.is-closing,.learning-action-sheet-overlay.is-closing .learning-action-sheet { animation:none !important; } }
+</style>
 </head>
 <body>
 
@@ -17,26 +48,16 @@
         <div class="topbar-metrics" aria-label="Tu actividad y progreso">
             <span class="topbar-chip topbar-streak" title="Racha actual"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22c-4.1 0-7-2.8-7-6.7 0-2.8 1.4-5 3.5-6.9.1 2.4.9 3.8 2.2 4.6-.2-4 1.2-7.1 4.3-10.2.2 3.3 1.4 5.1 3.1 6.8 1.4 1.5 2.4 3.2 2.4 5.7 0 3.8-2.8 6.7-6.5 6.7Z"/><path d="M12.2 18.7c-1.5 0-2.5-1-2.5-2.4 0-1.1.7-2.1 1.8-3.1.2 1.1.7 1.7 1.4 2.1.7.5 1.1 1 1.1 1.8 0 .9-.8 1.6-1.8 1.6Z"/></svg><strong id="studyStreakText">0 días</strong></span>
             <span class="topbar-chip topbar-xp" title="XP de hoy frente a tu meta"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m13.2 2.5-8 11h5.6l-.5 8 8.5-12h-5.7l.1-7Z"/></svg><strong id="studyDailyXpText">Meta: 0/30 XP</strong></span>
-            <span class="level-progress-wrap" title="Progreso del nivel seleccionado">
-                <span class="level-progress-ring" id="levelProgressRing" role="img" aria-label="Progreso del nivel A1 seleccionado: 0 de 32 unidades completadas (0%)"><span class="level-progress-ring-inner" id="levelProgressPercent">0%</span></span>
+            <button class="level-progress-wrap level-progress-trigger" id="learningLevelTrigger" type="button" title="Cambiar nivel" aria-label="Cambiar nivel. A1 seleccionado, 0 de 32 unidades completadas" aria-haspopup="dialog" aria-controls="learningLevelSheetOverlay" onclick="App.openLearningLevelSheet()">
+                <span class="level-progress-ring" id="levelProgressRing" role="img" aria-hidden="true"><span class="level-progress-ring-inner" id="levelProgressPercent">0%</span></span>
                 <span class="level-progress-level" id="levelProgressLevel">A1</span>
-            </span>
+                <svg class="level-progress-chevron ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 9 5 6 5-6"/></svg>
+            </button>
         </div>
     </header>
 
     <!-- CURSO / RUTA -->
     <main id="view-route" class="app-view active">
-        <div id="learningLevelSelector" class="learning-level-selector" role="group" aria-label="Seleccionar nivel">
-            <button type="button" class="learning-level-button" data-level="A1" onclick="App.selectLearningLevel('A1')">A1</button>
-            <button type="button" class="learning-level-button" data-level="A2" onclick="App.selectLearningLevel('A2')">A2</button>
-            <button type="button" class="learning-level-button" data-level="B1" onclick="App.selectLearningLevel('B1')">B1</button>
-            <button type="button" class="learning-level-button" data-level="B2" onclick="App.selectLearningLevel('B2')">B2</button>
-        </div>
-        <div class="learning-tools-row" role="group" aria-label="Herramientas de aprendizaje">
-            <button class="learning-tool-button" type="button" data-tool-target="aiGeneratorDrawer" aria-controls="aiGeneratorDrawer" aria-expanded="false" onclick="App.toggleLearningTool('aiGeneratorDrawer')"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 1.8 7.2L21 11l-7.2 1.8L12 20l-1.8-7.2L3 11l7.2-1.8L12 2Z"/><path d="m19 16 .8 2.2L22 19l-2.2.8L19 16Z"/></svg><span>Generador</span></button>
-            <button class="learning-tool-button" type="button" data-tool-target="writingPracticeDrawer" aria-controls="writingPracticeDrawer" aria-expanded="false" onclick="App.toggleLearningTool('writingPracticeDrawer')"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3.5h11l3 3V21H5z"/><path d="M15.5 3.5V7H19M8 11h8M8 15h8M8 18h5"/></svg><span>Cuaderno</span></button>
-            <button class="learning-tool-button" type="button" data-tool-target="conversationPracticeDrawer" aria-controls="conversationPracticeDrawer" aria-expanded="false" onclick="App.toggleLearningTool('conversationPracticeDrawer')"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5H7l-4 2v-5.5A7.5 7.5 0 1 1 20 11.5Z"/><path d="M8 11.5h.01M12.5 11.5h.01M17 11.5h.01"/></svg><span>Conversar</span></button>
-        </div>
 
         <details class="feature-drawer learning-tool-panel" id="aiGeneratorDrawer">
             <summary>Generador de lecciones con IA</summary>
@@ -81,6 +102,26 @@
         <p id="unitPathNotice" class="unit-path-notice" role="status" aria-live="polite" hidden></p>
         <div id="courseContainer"></div>
         <button id="jumpToCurrentUnitBtn" class="jump-current-unit-button" type="button" onclick="App.scrollToCurrentUnit(true)" hidden>↑ Ir a mi unidad</button>
+        <div id="learningLevelSheetOverlay" class="learning-action-sheet-overlay" hidden onclick="App.handleLearningSheetBackdrop(event)">
+            <section id="learningLevelSheet" class="learning-action-sheet" role="dialog" aria-modal="true" aria-labelledby="learningLevelSheetTitle">
+                <div class="learning-sheet-grabber" aria-hidden="true"></div>
+                <button class="learning-sheet-close" type="button" aria-label="Cerrar selector de nivel" onclick="App.closeLearningActionSheet('learningLevelSheetOverlay')">×</button>
+                <h2 id="learningLevelSheetTitle">Elegir nivel</h2>
+                <div id="learningLevelSheetContent" class="learning-level-sheet-list"></div>
+            </section>
+        </div>
+        <div id="learningToolsSheetOverlay" class="learning-action-sheet-overlay" hidden onclick="App.handleLearningSheetBackdrop(event)">
+            <section id="learningToolsSheet" class="learning-action-sheet" role="dialog" aria-modal="true" aria-labelledby="learningToolsSheetTitle">
+                <div class="learning-sheet-grabber" aria-hidden="true"></div>
+                <button class="learning-sheet-close" type="button" aria-label="Cerrar herramientas" onclick="App.closeLearningActionSheet('learningToolsSheetOverlay')">×</button>
+                <h2 id="learningToolsSheetTitle">Herramientas</h2>
+                <div class="learning-tools-sheet-list">
+                    <button type="button" class="learning-tool-sheet-row" onclick="App.openLearningToolFromSheet('aiGeneratorDrawer')"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 1.8 7.2L21 11l-7.2 1.8L12 20l-1.8-7.2L3 11l7.2-1.8L12 2Z"/><path d="m19 16 .8 2.2L22 19l-2.2.8L19 16Z"/></svg><span><strong>Generador</strong><small>Genera lecciones desde un tema del temario.</small></span></button>
+                    <button type="button" class="learning-tool-sheet-row" onclick="App.openLearningToolFromSheet('writingPracticeDrawer')"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3.5h11l3 3V21H5z"/><path d="M15.5 3.5V7H19M8 11h8M8 15h8M8 18h5"/></svg><span><strong>Cuaderno</strong><small>Escribe mensajes y textos breves con vocabulario de A1.</small></span></button>
+                    <button type="button" class="learning-tool-sheet-row" onclick="App.openLearningToolFromSheet('conversationPracticeDrawer')"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5H7l-4 2v-5.5A7.5 7.5 0 1 1 20 11.5Z"/><path d="M8 11.5h.01M12.5 11.5h.01M17 11.5h.01"/></svg><span><strong>Conversar</strong><small>Practica respuestas útiles en situaciones cotidianas.</small></span></button>
+                </div>
+            </section>
+        </div>
         <div id="unitSheetOverlay" class="unit-sheet-overlay" hidden onclick="App.handleUnitSheetBackdrop(event)">
             <section id="unitBottomSheet" class="unit-bottom-sheet" role="dialog" aria-modal="true" aria-labelledby="unitSheetTitle">
                 <div class="unit-sheet-grabber" aria-hidden="true"></div>
@@ -355,7 +396,7 @@
             </div>
             <span id="lessonStepCount" class="lesson-step-count" aria-live="polite">1/1</span>
             <details class="lesson-audio-settings">
-                <summary aria-label="Velocidad del audio">🔊</summary>
+                <summary aria-label="Velocidad del audio"><svg class="ui-icon lesson-speaker-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4h4l5 4V6l-5 4H4Z"/><path d="M16 9.5a4 4 0 0 1 0 5M18.5 7a7 7 0 0 1 0 10"/></svg></summary>
                 <label for="lessonAudioPlaybackRate">Velocidad del audio</label>
                 <select id="lessonAudioPlaybackRate" class="input-field" onchange="AudioEngine.setRate(this.value)" aria-label="Velocidad del audio de la lección">
                     <option value="0.5">Muy lento (0,5×)</option>
@@ -5848,7 +5889,7 @@
                 document.getElementById('lessonProgressFill').style.width = '0%';
                 const wordCard = v => `<div class="card lesson-word-card">
                     <div class="lesson-word-card-main"><strong>${App.escapeHtml(v.idn)}</strong> — ${App.escapeHtml(v.esp)}<br><small>${App.escapeHtml(v.ex)} (${App.escapeHtml(v.exEsp)})</small></div>
-                    <button class="btn btn-outline btn-sm lesson-word-audio" type="button" data-word="${App.escapeHtml(v.idn)}" onclick="AudioEngine.speak(this.dataset.word)" aria-label="Escuchar ${App.escapeHtml(v.idn)}">🔊</button></div>`;
+                    <button class="btn btn-outline btn-sm lesson-word-audio" type="button" data-word="${App.escapeHtml(v.idn)}" onclick="AudioEngine.speak(this.dataset.word)" aria-label="Escuchar ${App.escapeHtml(v.idn)}"><svg class="ui-icon lesson-speaker-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4h4l5 4V6l-5 4H4Z"/><path d="M16 9.5a4 4 0 0 1 0 5M18.5 7a7 7 0 0 1 0 10"/></svg></button></div>`;
                 document.getElementById('exerciseArea').innerHTML = `<div>
                     <h3>${App.escapeHtml(u.title)}</h3>
                     <p style="margin:6px 0 12px;color:var(--text-muted);">Lección ${lesson.index + 1} de ${buildUnitLessons(u).length} · ${lesson.newVocab.length} palabras nuevas</p>
@@ -5882,7 +5923,7 @@
                         ? `<h3>${App.escapeHtml(tapPrompt.label)}</h3>${window.renderTapTranslationSentence(tapPrompt.phrase, 'idn')}`
                         : `<h3>${App.escapeHtml(ex.prompt)}</h3>`;
                     const listenMarkup = ex.audioText
-                        ? `<button class="btn btn-outline" style="margin-top:12px;" data-audio-text="${App.escapeHtml(ex.audioText)}" onclick="AudioEngine.speak(this.dataset.audioText)" aria-label="Repetir audio">🔊 Repetir audio</button>
+                        ? `<button class="btn btn-outline" style="margin-top:12px;" data-audio-text="${App.escapeHtml(ex.audioText)}" onclick="AudioEngine.speak(this.dataset.audioText)" aria-label="Repetir audio"><svg class="ui-icon lesson-speaker-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4h4l5 4V6l-5 4H4Z"/><path d="M16 9.5a4 4 0 0 1 0 5M18.5 7a7 7 0 0 1 0 10"/></svg><span>Repetir audio</span></button>
                             <button class="btn btn-outline pronunciation-practice-btn" type="button" title="Practicar pronunciación" onclick="LessonEngine.startPronunciationPractice()" aria-label="Practicar pronunciación">🎙️</button>
                             <p id="pronunciationStatus" role="status" aria-live="polite" style="font-size:0.85rem;color:var(--text-muted);margin-top:8px;">El micrófono solo se activa al pulsar. El navegador puede enviar audio a su proveedor de reconocimiento.</p>`
                         : '';
@@ -5928,7 +5969,7 @@
                     container.innerHTML = `
                         <div>
                             <h3>${App.escapeHtml(ex.prompt)}</h3>
-                            <button class="btn btn-outline" style="margin-top:12px;" data-answer="${App.escapeHtml(ex.answer)}" onclick="AudioEngine.speak(this.dataset.answer)">🔊 Escuchar de nuevo</button>
+                            <button class="btn btn-outline" style="margin-top:12px;" data-answer="${App.escapeHtml(ex.answer)}" onclick="AudioEngine.speak(this.dataset.answer)"><svg class="ui-icon lesson-speaker-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4h4l5 4V6l-5 4H4Z"/><path d="M16 9.5a4 4 0 0 1 0 5M18.5 7a7 7 0 0 1 0 10"/></svg> Escuchar de nuevo</button>
                             <button class="btn btn-outline pronunciation-practice-btn" type="button" title="Practicar pronunciación" onclick="LessonEngine.startPronunciationPractice()" aria-label="Practicar pronunciación">🎙️</button>
                             <p id="pronunciationStatus" role="status" aria-live="polite" style="font-size:0.85rem;color:var(--text-muted);margin-top:8px;">El micrófono solo se activa al pulsar. El navegador puede enviar audio a su proveedor de reconocimiento.</p>
                             <input type="text" id="textAnswer" class="input-field" placeholder="Escribe lo que escuchas..." style="margin-top:20px;">
@@ -6573,6 +6614,8 @@ Requisitos:
             xp: 0,
             selectedLearningLevel: null,
             unitSheetTouchStart: 0,
+            learningSheetReturnFocus: null,
+            learningSheetTouchStart: 0,
             unitPathNoticeTimer: null,
             completedUnits: [],
             completedLessons: [],
@@ -6612,6 +6655,14 @@ Requisitos:
                 this.renderCourseRoute();
                 this.renderDict();
                 this.scrollToCurrentUnit(false);
+                document.querySelectorAll('.learning-action-sheet').forEach(sheet => {
+                    sheet.addEventListener('touchstart', event => { this.learningSheetTouchStart = event.touches[0].clientY; }, { passive: true });
+                    sheet.addEventListener('touchend', event => {
+                        if (event.changedTouches[0].clientY - this.learningSheetTouchStart > 80) {
+                            this.closeLearningActionSheet(sheet.closest('.learning-action-sheet-overlay').id);
+                        }
+                    }, { passive: true });
+                });
                 const unitSheet = document.getElementById('unitBottomSheet');
                 if (unitSheet) {
                     const unitOverlay = document.getElementById('unitSheetOverlay');
@@ -6630,7 +6681,11 @@ Requisitos:
                     }, { passive: true });
                 }
                 document.addEventListener('keydown', event => {
-                    if (event.key === 'Escape') this.closeUnitSheet();
+                    if (event.key === 'Escape') {
+                        this.closeUnitSheet();
+                        this.closeLearningActionSheet('learningLevelSheetOverlay');
+                        this.closeLearningActionSheet('learningToolsSheetOverlay');
+                    }
                 });
                 window.addEventListener('scroll', () => this.updateJumpToCurrentVisibility(), { passive: true });
                 window.addEventListener('resize', () => this.updateJumpToCurrentVisibility());
@@ -6681,14 +6736,14 @@ Requisitos:
                         justifyContent: 'center', gap: '3px', width: 'calc(100% - 10px)',
                         maxWidth: '104px', minHeight: '48px', padding: '5px 8px',
                         boxSizing: 'border-box', borderRadius: '16px',
-                        background: active ? '#fdecef' : 'transparent',
-                        color: active ? '#7f1d2d' : ''
+                        background: active ? '#E6F1FB' : 'transparent',
+                        color: active ? '#004A91' : ''
                     });
                     const icon = pill.querySelector('svg');
                     if (icon) Object.assign(icon.style, {
                         width: '21px', height: '21px', padding: '0',
                         background: 'transparent', borderRadius: '0',
-                        boxSizing: 'border-box', color: active ? '#7f1d2d' : '',
+                        boxSizing: 'border-box', color: active ? '#004A91' : '',
                         stroke: 'currentColor'
                     });
                     const label = pill.querySelector('span');
@@ -6757,8 +6812,10 @@ Requisitos:
             },
 
             scrollToCurrentUnit(smooth = true) {
-                const current = document.querySelector('#courseContainer .learning-unit-node[data-path-state="current"]');
-                if (!current || !document.getElementById('view-route').classList.contains('active')) {
+                const route = document.getElementById('view-route');
+                const current = document.querySelector('#courseContainer .learning-unit-node[data-path-state="current"]') ||
+                    document.querySelector('#courseContainer .learning-unit-node');
+                if (!current || !route || !route.classList.contains('active')) {
                     this.updateJumpToCurrentVisibility();
                     return;
                 }
@@ -6767,10 +6824,15 @@ Requisitos:
                 const banner = section && section.querySelector('.unit-path-section-banner');
                 const bubble = section && section.querySelector('.current-unit-start-bubble');
                 if (banner && bubble) {
-                    const stickyTop = parseFloat(getComputedStyle(banner).top) || 112;
+                    const stickyTop = parseFloat(getComputedStyle(banner).top) || 58;
                     const targetTop = stickyTop + banner.getBoundingClientRect().height + 12;
                     const bubbleTop = bubble.getBoundingClientRect().top;
                     window.scrollTo({ top: Math.max(0, window.scrollY + bubbleTop - targetTop), behavior });
+                } else if (banner) {
+                    const stickyTop = parseFloat(getComputedStyle(banner).top) || 58;
+                    const targetTop = stickyTop + banner.getBoundingClientRect().height + 12;
+                    const nodeTop = current.getBoundingClientRect().top;
+                    window.scrollTo({ top: Math.max(0, window.scrollY + nodeTop - targetTop), behavior });
                 } else {
                     current.scrollIntoView({ behavior, block: 'center' });
                 }
@@ -6989,8 +7051,87 @@ Requisitos:
                 if (!CourseData.levels.some(level => level.id === levelId)) return;
                 if (levelId === 'A2' && !A2_RELEASE_ENABLED) return;
                 this.selectedLearningLevel = levelId;
+                this.closeLearningActionSheet('learningLevelSheetOverlay');
                 this.renderCourseRoute();
                 this.scrollToCurrentUnit(false);
+            },
+            getVisibleLearningUnits(level) {
+                if (!level) return [];
+                return level.id === 'B2' ? level.units.slice(0, 1) : level.units;
+            },
+            getLearningLevelProgress(level) {
+                const units = this.getVisibleLearningUnits(level);
+                const completed = units.filter(unit => getUnitProgressState(level, unit).completed).length;
+                return { total: units.length, completed, percent: units.length ? Math.round(completed / units.length * 100) : 0 };
+            },
+            renderLearningLevelSheet() {
+                const content = document.getElementById('learningLevelSheetContent');
+                if (!content) return;
+                content.replaceChildren();
+                CourseData.levels.forEach(level => {
+                    const progress = this.getLearningLevelProgress(level);
+                    const row = document.createElement('button');
+                    row.type = 'button';
+                    row.className = 'learning-level-sheet-row' + (level.id === this.selectedLearningLevel ? ' selected' : '');
+                    row.setAttribute('aria-current', level.id === this.selectedLearningLevel ? 'true' : 'false');
+                    row.disabled = level.id === 'A2' && !A2_RELEASE_ENABLED;
+                    row.innerHTML = '<span><strong>' + App.escapeHtml(level.id) + '</strong><small>' + progress.completed + ' de ' + progress.total + ' unidades</small></span><span class="learning-level-sheet-check" aria-hidden="true">' + (level.id === this.selectedLearningLevel ? '✓' : '') + '</span>';
+                    row.addEventListener('click', () => this.selectLearningLevel(level.id));
+                    content.appendChild(row);
+                });
+            },
+            openLearningLevelSheet() {
+                const overlay = document.getElementById('learningLevelSheetOverlay');
+                const trigger = document.getElementById('learningLevelTrigger');
+                if (!overlay) return;
+                this.learningSheetReturnFocus = trigger;
+                this.renderLearningLevelSheet();
+                this.openLearningActionSheet('learningLevelSheetOverlay');
+            },
+            openLearningToolsSheet(event) {
+                if (event) event.stopPropagation();
+                this.learningSheetReturnFocus = event && event.currentTarget ? event.currentTarget : null;
+                this.openLearningActionSheet('learningToolsSheetOverlay');
+            },
+            openLearningToolFromSheet(id) {
+                this.closeLearningActionSheet('learningToolsSheetOverlay');
+                window.setTimeout(() => this.toggleLearningTool(id), 0);
+            },
+            openLearningActionSheet(overlayId) {
+                const overlay = document.getElementById(overlayId);
+                const sheet = overlay && overlay.querySelector('.learning-action-sheet');
+                if (!overlay || !sheet) return;
+                overlay.classList.remove('is-closing');
+                overlay.hidden = false;
+                document.body.classList.add('learning-action-sheet-open');
+                const close = sheet.querySelector('.learning-sheet-close');
+                if (close) close.focus();
+            },
+            closeLearningActionSheet(overlayId) {
+                const overlay = document.getElementById(overlayId);
+                if (!overlay || overlay.hidden) {
+                    if (this.learningSheetReturnFocus && typeof this.learningSheetReturnFocus.focus === 'function') this.learningSheetReturnFocus.focus();
+                    return;
+                }
+                const finish = () => {
+                    overlay.hidden = true;
+                    overlay.classList.remove('is-closing');
+                    document.body.classList.remove('learning-action-sheet-open');
+                    const returnFocus = this.learningSheetReturnFocus;
+                    this.learningSheetReturnFocus = null;
+                    if (returnFocus && typeof returnFocus.focus === 'function') returnFocus.focus();
+                };
+                if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                    finish();
+                    return;
+                }
+                overlay.classList.add('is-closing');
+                window.setTimeout(finish, 180);
+            },
+            handleLearningSheetBackdrop(event) {
+                if (event.target && event.target.classList.contains('learning-action-sheet-overlay')) {
+                    this.closeLearningActionSheet(event.currentTarget.id);
+                }
             },
             showUnitPathNotice(message) {
                 const notice = document.getElementById('unitPathNotice');
@@ -7039,7 +7180,7 @@ Requisitos:
                     '<h2 id="unitSheetTitle">' + App.escapeHtml(unit.title) + '</h2>' +
                     '<p class="unit-sheet-description">' + App.escapeHtml(unit.desc || '') + '</p>' +
                     '<div class="unit-sheet-progress"><span>Lecciones</span><strong>' + progress.completedLessonCount + '/' + progress.lessons.length + '</strong></div>' +
-                    '<div class="progress-bar unit-sheet-lesson-track" role="progressbar" aria-label="Progreso de lecciones" aria-valuemin="0" aria-valuemax="' + progress.lessons.length + '" aria-valuenow="' + progress.completedLessonCount + '" style="height:8px;min-height:8px;border-radius:999px;overflow:hidden;background:#8b8b8b"><div class="progress-fill" style="height:100%;min-height:8px;border-radius:999px;background:#c92a40;width:' + (progress.lessons.length ? progress.completedLessonCount / progress.lessons.length * 100 : 0) + '%"></div></div>' +
+                    '<div class="progress-bar unit-sheet-lesson-track" role="progressbar" aria-label="Progreso de lecciones" aria-valuemin="0" aria-valuemax="' + progress.lessons.length + '" aria-valuenow="' + progress.completedLessonCount + '" style="height:8px;min-height:8px;border-radius:999px;overflow:hidden;background:#8b8b8b"><div class="progress-fill" style="height:100%;min-height:8px;border-radius:999px;background:#0067C6;width:' + (progress.lessons.length ? progress.completedLessonCount / progress.lessons.length * 100 : 0) + '%"></div></div>' +
                     '<button class="btn unit-sheet-primary" type="button" onclick="App.startUnitFromSheet(\'' + App.escapeHtml(unit.id) + '\')">' + actionLabel + '</button>' +
                     '<button class="btn btn-outline unit-sheet-grammar-toggle" type="button" onclick="App.toggleUnitGrammar()">Ver gramática</button>' +
                     '<div id="unitSheetGrammar" class="unit-sheet-grammar" hidden>' + App.escapeHtml(unit.grammar || 'No hay notas gramaticales para esta unidad.') + '</div>';
@@ -7182,6 +7323,8 @@ Requisitos:
                 }
                 if (levelProgressPercent) levelProgressPercent.textContent = levelPercent + '%';
                 if (levelProgressLevel) levelProgressLevel.textContent = level ? level.id : '—';
+                const levelTrigger = document.getElementById('learningLevelTrigger');
+                if (levelTrigger) levelTrigger.setAttribute('aria-label', 'Cambiar nivel. ' + (level ? level.id : 'seleccionado') + ' seleccionado, ' + levelCompleted + ' de ' + levelTotal + ' unidades completadas (' + levelPercent + '%)');
                 if (!level || !level.units.length) {
                     container.innerHTML = '<section class="learning-empty-state"><strong>Próximamente</strong><p>Este nivel todavía no tiene unidades disponibles.</p></section>';
                     this.populateEmergencyUnitSelect();
@@ -7222,7 +7365,7 @@ Requisitos:
                     const lastNumber = offset + units.length;
                     const sectionNumber = Math.floor(offset / 8) + 1;
                     const sectionPercent = units.length ? Math.round(completed / units.length * 100) : 0;
-                    section.innerHTML = '<div class="unit-path-section-banner"><div class="unit-path-section-heading"><h3>Sección ' + sectionNumber + '</h3><p>Unidades ' + firstNumber + '–' + lastNumber + '</p></div><strong class="unit-section-count">' + completed + '/' + units.length + '</strong><div class="unit-section-progress" role="progressbar" aria-label="Progreso de Sección ' + sectionNumber + '" aria-valuemin="0" aria-valuemax="' + units.length + '" aria-valuenow="' + completed + '"><span style="width:' + sectionPercent + '%"></span></div></div>';
+                    section.innerHTML = '<div class="unit-path-section-banner"><div class="unit-path-section-heading"><h3>Sección ' + sectionNumber + '</h3><p>Unidades ' + firstNumber + '–' + lastNumber + '</p></div><strong class="unit-section-count">' + completed + '/' + units.length + '</strong><button type="button" class="unit-tools-trigger" aria-label="Abrir herramientas" aria-haspopup="dialog" aria-controls="learningToolsSheetOverlay" onclick="App.openLearningToolsSheet(event)"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M3 12h18M6.5 6.5l11 11M17.5 6.5l-11 11"/></svg></button><div class="unit-section-progress" role="progressbar" aria-label="Progreso de Sección ' + sectionNumber + '" aria-valuemin="0" aria-valuemax="' + units.length + '" aria-valuenow="' + completed + '"><span style="width:' + sectionPercent + '%"></span></div></div>';
                     const stage = document.createElement('div');
                     stage.className = 'unit-path-stage';
                     stage.style.marginTop = '0px';
@@ -7259,7 +7402,7 @@ Requisitos:
                             const lessonPercent = progress.lessons.length ? Math.round(progress.completedLessonCount / progress.lessons.length * 100) : 0;
                             const circumference = 207.35;
                             const dashOffset = (circumference * (1 - lessonPercent / 100)).toFixed(2);
-                            node.innerHTML = '<svg class="node-progress-ring" viewBox="0 0 76 76" aria-hidden="true" style="position:absolute;left:50%;top:calc(50% + 2.5px);width:76px;height:76px;right:auto;bottom:auto;overflow:visible;transform:translate(-50%,-50%) rotate(-90deg);pointer-events:none"><circle class="node-progress-track" cx="38" cy="38" r="33" style="fill:none;stroke:#d1d5db;stroke-width:5"/><circle class="node-progress-value" cx="38" cy="38" r="33" stroke-dasharray="' + circumference + '" stroke-dashoffset="' + dashOffset + '" style="fill:none;stroke:#c92a40;stroke-width:5;stroke-linecap:round"/></svg><span class="node-number" style="position:relative;z-index:1">' + (offset + index + 1) + '</span>';
+                            node.innerHTML = '<svg class="node-progress-ring" viewBox="0 0 76 76" aria-hidden="true" style="position:absolute;left:50%;top:calc(50% + 2.5px);width:76px;height:76px;right:auto;bottom:auto;overflow:visible;transform:translate(-50%,-50%) rotate(-90deg);pointer-events:none"><circle class="node-progress-track" cx="38" cy="38" r="33" style="fill:none;stroke:#d1d5db;stroke-width:5"/><circle class="node-progress-value" cx="38" cy="38" r="33" stroke-dasharray="' + circumference + '" stroke-dashoffset="' + dashOffset + '" style="fill:none;stroke:#0067C6;stroke-width:5;stroke-linecap:round"/></svg><span class="node-number" style="position:relative;z-index:1">' + (offset + index + 1) + '</span>';
                         } else if (progress.completed) {
                             node.innerHTML = '<svg class="node-state-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>';
                         } else if (state === 'locked') {
@@ -7528,7 +7671,7 @@ Requisitos:
                         <div class="card" style="margin-bottom:8px; padding:12px;">
                             <div style="display:flex; justify-content:space-between; align-items:center;">
                                 <strong>${App.escapeHtml(v.idn)}</strong>
-                                <button class="btn btn-outline btn-sm" data-word="${App.escapeHtml(v.idn)}" onclick="AudioEngine.speak(this.dataset.word)">🔊</button>
+                                <button class="btn btn-outline btn-sm" data-word="${App.escapeHtml(v.idn)}" onclick="AudioEngine.speak(this.dataset.word)"><svg class="ui-icon lesson-speaker-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4h4l5 4V6l-5 4H4Z"/><path d="M16 9.5a4 4 0 0 1 0 5M18.5 7a7 7 0 0 1 0 10"/></svg></button>
                             </div>
                             <p style="color:var(--accent); font-size:0.9rem;">${App.escapeHtml(v.esp)}</p>
                             <p style="font-size:0.8rem; color:var(--text-muted); margin-top:4px;">Ejemplo: ${App.escapeHtml(v.ex)} (${App.escapeHtml(v.exEsp)})</p>
@@ -7872,7 +8015,7 @@ Requisitos:
             output += escapeHtml(text.slice(cursor));
             const speaker = language === 'idn'
                 ? '<button type="button" class="tap-translation-speaker" aria-label="Escuchar frase" data-audio="' + escapeHtml(text) +
-                    '" onclick="AudioEngine.speak(this.dataset.audio)">🔊</button>' : '';
+                    '" onclick="AudioEngine.speak(this.dataset.audio)"><svg class="ui-icon lesson-speaker-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4h4l5 4V6l-5 4H4Z"/><path d="M16 9.5a4 4 0 0 1 0 5M18.5 7a7 7 0 0 1 0 10"/></svg></button>' : '';
             return '<div class="tap-translation-sentence">' + speaker + '<span class="tap-translation-phrase">' + output + '</span></div>';
         };
 

@@ -7047,6 +7047,9 @@ Requisitos:
                 sheet.style.color = '#1f2937';
                 sheet.style.borderTop = '1px solid #d1d5db';
                 sheet.style.paddingBottom = 'calc(22px + env(safe-area-inset-bottom))';
+                content.querySelectorAll('.eyebrow, .unit-sheet-description').forEach(element => { element.style.color = '#4b5563'; });
+                const grammar = content.querySelector('.unit-sheet-grammar');
+                if (grammar) grammar.style.color = '#1f2937';
                 const overlay = document.getElementById('unitSheetOverlay');
                 overlay.classList.remove('is-closing');
                 overlay.hidden = false;
@@ -7225,7 +7228,7 @@ Requisitos:
                     const nodeDiameter = 56;
                     const nodeRadius = nodeDiameter / 2;
                     const nodeStep = nodeDiameter + 18;
-                    const currentTitleExtra = 22;
+                    const currentTitleExtra = 38;
                     const currentBubbleClearance = 56;
                     let nextNodeTop = nodeRadius + 24;
                     if (currentUnit && units[0] && units[0].id === currentUnit.id) nextNodeTop += currentBubbleClearance;

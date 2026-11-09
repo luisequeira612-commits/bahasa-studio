@@ -112,7 +112,10 @@ test('B2 keeps its development gate while implemented U1 unlocks sequentially af
   const routeEnd = indexSource.indexOf('async updateSrsView() {', routeStart);
   assert.ok(routeEnd > routeStart, 'learning route renderer must exist');
   const route = indexSource.slice(routeStart, routeEnd);
-  assert.ok(route.includes("level.id === 'B2' ? level.units.slice(0, 2) : level.units"));
+  const visibleUnitsStart = indexSource.indexOf('getVisibleLearningUnits(level) {');
+  assert.notEqual(visibleUnitsStart, -1);
+  assert.ok(indexSource.slice(visibleUnitsStart, visibleUnitsStart + 250).includes("level.units.slice(0, 2)"),
+    'the route exposes only implemented B2 U1/U2');
   assert.ok(route.includes('unit-path-coming-soon'));
   assert.ok(route.includes('Las demás unidades B2 todavía no están implementadas'));
   assert.doesNotMatch(route, /isB1Complete\(this\.completedUnits\)/,

@@ -6345,12 +6345,12 @@
             return Boolean(b1 && b1.units.length > 0 && b1.units.every(unit => completed.includes(unit.id)));
         }
         function getLearningLevels() {
-            return getLevels()
-                .filter(level => level.id !== 'B2' || level.units.some(unit => unit.id === 'b2_u1'))
-                .map(level => level.id === 'B2'
-                    ? { ...level, units: level.units.filter(unit => unit.id === 'b2_u1') }
-                    : level)
-                .filter(level => level.id !== 'A2' || A2_RELEASE_ENABLED);
+            return getLevels().filter(level =>
+                (level.id !== 'B2' || level.units.some(unit => unit.id === 'b2_u1')) &&
+                (level.id !== 'A2' || A2_RELEASE_ENABLED)
+            ).map(level => level.id === 'B2'
+                ? { ...level, units: level.units.filter(unit => unit.id === 'b2_u1') }
+                : level);
         }
         function getUniqueLearningVocabulary() {
             const seen = new Set();

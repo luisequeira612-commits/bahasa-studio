@@ -55,7 +55,7 @@ test('phase four learning screen works at 360px, preserves controls, sticky sect
     assert.equal(await page.locator('.current-unit-start-bubble').count(), 1);
     assert.equal(await page.locator('.current-unit-title').count(), 1);
     assert.match(await page.locator('#levelProgressRing').getAttribute('aria-label'), /nivel A1 seleccionado/);
-    assert.equal(await page.locator('.node-progress-value').getAttribute('stroke-dashoffset'), '179.07');
+    assert.equal(await page.locator('.node-progress-value').getAttribute('stroke-dashoffset'), '207.35');
     assert.equal(await page.locator('.unit-path-section-banner h3').first().innerText(), 'Sección 1');
 
     await page.screenshot({ path: path.join(artifacts, 'learning-screen-360.png'), fullPage: true });
@@ -111,6 +111,208 @@ test('phase four learning screen works at 360px, preserves controls, sticky sect
     assert.ok(secondTop >= 108 && secondTop <= 116, 'next section banner should replace the previous sticky banner: ' + secondTop);
     await page.screenshot({ path: path.join(artifacts, 'sticky-next-section-banner.png') });
     await cdp.detach();
+  } finally {
+    await context.close();
+    await browser.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});
+
+
+test('phase four path geometry is collision-free at 360px across levels and zigzag positions', async () => {
+  const { server, url } = await startServer();
+  const browser = await chromium.launch({ headless: true });
+  const context = await browser.newContext({
+    viewport: { width: 360, height: 800 },
+    serviceWorkers: 'block',
+    reducedMotion: 'reduce'
+  });
+  const page = await context.newPage();
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
+    await page.waitForSelector('.learning-unit-node');
+    const layouts = await page.evaluate(() => {
+      const levels = CourseData.levels;
+      const prerequisite = {
+        A2: levels.find(level => level.id === 'A1').units.at(-1).id,
+        B1: levels.find(level => level.id === 'A2').units.at(-1).id,
+        B2: levels.find(level => level.id === 'B1').units.at(-1).id
+      };
+      const scenarios = [];
+      for (const levelId of ['A1', 'A2', 'B1', 'B2']) {
+        const level = levels.find(entry => entry.id === levelId);
+        const indices = levelId === 'B2' ? [0] : [0, 1, 2, 3, 7];
+        for (const index of indices) {
+          App.selectedLearningLevel = levelId;
+          App.completedUnits = [
+            ...(prerequisite[levelId] ? [prerequisite[levelId]] : []),
+            ...level.units.slice(0, index).map(unit => unit.id)
+          ];
+          App.completedLessons = [];
+          App.renderCourseRoute();
+          const stage = document.querySelector('#courseContainer .unit-path-stage');
+          const nodes = [...stage.querySelectorAll('.learning-unit-node')];
+          const current = nodes.find(node => node.dataset.pathState === 'current');
+          const bubble = document.querySelector('#courseContainer .current-unit-start-bubble');
+          const title = document.querySelector('#courseContainer .current-unit-title');
+          const banner = document.querySelector('#courseContainer .unit-path-section-banner');
+          const rect = node => {
+            const r = node.getBoundingClientRect();
+            return { left:r.left, right:r.right, top:r.top, bottom:r.bottom, width:r.width, height:r.height };
+          };
+          const currentIndex = nodes.indexOf(current);
+          const neighbors = [nodes[currentIndex - 1], nodes[currentIndex + 1]].filter(Boolean);
+          const bubbleRect = rect(bubble);
+          const titleRect = rect(title);
+          const currentRect = rect(current);
+          const ringRect = rect(current.querySelector('.node-progress-ring'));
+          const ringGap = ringRect.top + 2.5 - bubbleRect.bottom;
+          const horizontalBubbleClearance = neighbors.map(node => {
+            const r = rect(node);
+            return Math.max(r.left - bubbleRect.right, bubbleRect.left - r.right);
+          });
+          const horizontalTitleClearance = neighbors.map(node => {
+            const r = rect(node);
+            return Math.max(r.left - titleRect.right, titleRect.left - r.right);
+          });
+          const next = nodes[currentIndex + 1];
+          const nextRect = next ? rect(next) : null;
+          const nodeEdgeGaps = nodes.slice(1).map((node, i) => rect(node).top - rect(nodes[i]).bottom);
+          scenarios.push({
+            levelId, index, currentId:current.dataset.unitId,
+            expectedId:level.units[index].id,
+            documentWidth:document.documentElement.scrollWidth,
+            stageWidth:current.parentElement.clientWidth,
+            bubble: bubbleRect, title:titleRect, node:currentRect,
+            ringGap, horizontalBubbleClearance, horizontalTitleClearance, nodeEdgeGaps,
+            titleNextGap:nextRect ? nextRect.top - titleRect.bottom : null,
+            firstNodeGap:rect(nodes[0]).top - rect(banner).bottom,
+            bannerGap:index === 0 ? bubbleRect.top - rect(banner).bottom : null,
+            nodeSize:{width:currentRect.width,height:currentRect.height}
+          });
+        }
+      }
+      return scenarios;
+    });
+
+    assert.equal(layouts.length, 16);
+    for (const layout of layouts) {
+      assert.equal(layout.currentId, layout.expectedId, layout.levelId + ' current unit should be at zigzag index ' + layout.index);
+      assert.ok(layout.documentWidth <= 360, layout.levelId + ' must not overflow horizontally');
+      assert.equal(layout.nodeSize.width, 56);
+      assert.equal(layout.nodeSize.height, 56);
+      assert.ok(layout.ringGap >= 10, layout.levelId + ' bubble must stay 10px clear of the outer ring');
+      assert.ok(layout.horizontalBubbleClearance.every(gap => gap >= 9),
+        layout.levelId + ' bubble must not overlap adjacent zigzag nodes: ' + JSON.stringify(layout.horizontalBubbleClearance));
+      assert.ok(layout.horizontalTitleClearance.every(gap => gap >= 9),
+        layout.levelId + ' title must not invade adjacent zigzag columns: ' + JSON.stringify(layout.horizontalTitleClearance));
+      for (const [gapIndex, gap] of layout.nodeEdgeGaps.entries()) {
+        const expectedGap = gapIndex === layout.index ? 40 : 18;
+        assert.ok(Math.abs(gap - expectedGap) <= 1,
+          layout.levelId + ' node edge gap should be 18px, with only the current-title allowance: ' + gap);
+      }
+      if (layout.titleNextGap !== null) assert.ok(layout.titleNextGap >= 15,
+        layout.levelId + ' next node must leave space below the one-line title');
+      if (layout.index > 0) assert.ok(Math.abs(layout.firstNodeGap - 24) <= 1,
+        layout.levelId + ' first node should begin 24px after the section banner');
+      if (layout.bannerGap !== null) assert.ok(Math.abs(layout.bannerGap - 24) <= 1,
+        layout.levelId + ' first bubble should begin 24px after the section banner');
+    }
+
+    const progress = await page.evaluate(() => {
+      const level = CourseData.levels.find(entry => entry.id === 'A1');
+      const current = level.units[2];
+      App.selectedLearningLevel = 'A1';
+      App.completedUnits = level.units.slice(0, 2).map(unit => unit.id);
+      App.completedLessons = [current.id + '::0'];
+      App.renderCourseRoute();
+      const node = document.querySelector('.learning-unit-node.node-current');
+      const ring = node.querySelector('.node-progress-value');
+      const longest = CourseData.levels.flatMap(entry => entry.units).reduce((best, unit) =>
+        String(unit.title || '').length > String(best.title || '').length ? unit : best);
+      const originalTitle = current.title;
+      current.title = longest.title;
+      App.renderCourseRoute();
+      const title = document.querySelector('.current-unit-title');
+      const titleResult = {
+        text:title.textContent,
+        width:title.clientWidth,
+        scrollWidth:title.scrollWidth,
+        oneLine:getComputedStyle(title).whiteSpace,
+        overflow:getComputedStyle(title).overflow,
+        textOverflow:getComputedStyle(title).textOverflow
+      };
+      current.title = originalTitle;
+      App.renderCourseRoute();
+      return {
+        dashOffset:ring.getAttribute('stroke-dashoffset'),
+        circumference:ring.getAttribute('stroke-dasharray'),
+        titleResult,
+        fullTitle:originalTitle
+      };
+    });
+    assert.equal(progress.circumference, '207.35');
+    assert.ok(Math.abs(Number(progress.dashOffset) - 103.68) < 0.02,
+      'one of two completed lessons should fill exactly half the ring from the top');
+    assert.equal(progress.titleResult.oneLine, 'nowrap');
+    assert.ok(progress.titleResult.width <= 106, 'the longest title must fit within the 106px column limit');
+    assert.equal(progress.titleResult.overflow, 'hidden');
+    assert.equal(progress.titleResult.textOverflow, 'ellipsis');
+    assert.doesNotMatch(progress.titleResult.text, /^Unidad\s+\d+\s*:/i);
+    const sheetTitle = await page.evaluate(id => {
+      App.openUnitSheet(id);
+      return document.getElementById('unitSheetTitle').textContent;
+    }, 'a1_u3');
+    assert.equal(sheetTitle, progress.fullTitle,
+      'the bottom sheet must retain the complete unit title');
+    await page.evaluate(() => App.closeUnitSheet());
+
+    const contrast = await page.evaluate(() => {
+      const rgb = value => value.match(/[\d.]+/g).slice(0, 3).map(Number);
+      const lum = color => {
+        const channels = rgb(color).map(v => {
+          const c = v / 255;
+          return c <= .04045 ? c / 12.92 : ((c + .055) / 1.055) ** 2.4;
+        });
+        return channels[0] * .2126 + channels[1] * .7152 + channels[2] * .0722;
+      };
+      const ratio = (a,b) => {
+        const x=lum(a), y=lum(b);
+        return (Math.max(x,y)+.05)/(Math.min(x,y)+.05);
+      };
+      const banner=document.querySelector('.unit-path-section-banner');
+      const chip=document.querySelector('.topbar-chip');
+      const active=document.querySelector('.nav-btn.active');
+      const bannerStyle=getComputedStyle(banner);
+      const chipStyle=getComputedStyle(chip);
+      const pill=active.querySelector('.nav-pill-content');
+      const pillStyle=getComputedStyle(pill);
+      const result={
+        banner:ratio(bannerStyle.color,bannerStyle.backgroundColor),
+        chip:ratio(chipStyle.color,chipStyle.backgroundColor),
+        activePill:ratio(pillStyle.color,pillStyle.backgroundColor),
+        activeIcon:ratio(getComputedStyle(pill.querySelector('svg')).color,pillStyle.backgroundColor),
+        navHeight:active.getBoundingClientRect().height,
+        navHeights:[...document.querySelectorAll('.nav-btn')].map(button => button.getBoundingClientRect().height),
+        chipIcon:ratio(getComputedStyle(chip.querySelector('svg')).color,chipStyle.backgroundColor),
+        chipGap:getComputedStyle(document.querySelector('.topbar-metrics')).gap
+      };
+      document.body.classList.add('dark-mode');
+      const darkChip=getComputedStyle(chip);
+      result.darkChip=ratio(darkChip.color,darkChip.backgroundColor);
+      result.darkChipIcon=ratio(getComputedStyle(chip.querySelector('svg')).color,darkChip.backgroundColor);
+      document.body.classList.remove('dark-mode');
+      return result;
+    });
+    assert.ok(contrast.banner >= 4.5, 'petroleum banner text contrast: ' + contrast.banner);
+    assert.ok(contrast.chip >= 4.5 && contrast.darkChip >= 4.5, 'topbar chip text contrast in both themes: ' + JSON.stringify(contrast));
+    assert.ok(contrast.chipIcon >= 3 && contrast.darkChipIcon >= 3, 'topbar chip icons need 3:1 contrast: ' + JSON.stringify(contrast));
+    assert.ok(contrast.activePill >= 4.5 && contrast.activeIcon >= 3, 'active tab pill contrast: ' + JSON.stringify(contrast));
+    assert.equal(contrast.chipGap, '5px', 'topbar chips should have 5px separation at 360px');
+    assert.ok(contrast.navHeight >= 44, 'bottom navigation touch target must be at least 44px high');
+    assert.ok(contrast.navHeights.every(height => height === contrast.navHeights[0]), 'all bottom tabs must have the same height');
   } finally {
     await context.close();
     await browser.close();

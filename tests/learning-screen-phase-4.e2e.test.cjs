@@ -81,7 +81,7 @@ test('phase four learning screen works at 360px, preserves controls, sticky sect
     await page.evaluate(() => window.scrollTo(0, 480));
     await page.waitForTimeout(120);
     const stickyTop = await page.locator('.unit-path-section-banner').first().evaluate(el => el.getBoundingClientRect().top);
-    assert.ok(stickyTop >= 108 && stickyTop <= 116, 'first section banner should stick below the top bar and level selector: ' + stickyTop);
+    assert.ok(stickyTop >= 56 && stickyTop <= 60, 'first section banner should stick directly below the compact 58px top bar: ' + stickyTop);
     await page.screenshot({ path: path.join(artifacts, 'sticky-section-banner.png') });
 
     for (const [group, view] of [['review','srs'],['tutor','ai'],['profile','profile'],['learn','route']]) {
@@ -108,7 +108,7 @@ test('phase four learning screen works at 360px, preserves controls, sticky sect
     await page.evaluate(y => window.scrollTo(0, y - 112), secondDocumentTop);
     await page.waitForTimeout(120);
     const secondTop = await secondBanner.evaluate(el => el.getBoundingClientRect().top);
-    assert.ok(secondTop >= 108 && secondTop <= 116, 'next section banner should replace the previous sticky banner: ' + secondTop);
+    assert.ok(secondTop >= 56 && secondTop <= 60, 'next section banner should replace the previous sticky banner below the compact top bar: ' + secondTop);
     await page.screenshot({ path: path.join(artifacts, 'sticky-next-section-banner.png') });
     await cdp.detach();
   } finally {

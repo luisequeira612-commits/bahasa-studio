@@ -27,6 +27,16 @@ jobs:
         run: node --test tests/ui-redesign-phase-2.test.cjs
       - name: Run phase 3 touch and theme tests
         run: node --test tests/ui-redesign-phase-3.test.cjs
+      - name: Run phase 4 learning screen browser tests
+        run: node --test tests/learning-screen-phase-4.e2e.test.cjs
+      - name: Upload phase 4 mobile screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: learning-screen-phase-4-mobile-captures
+          path: artifacts/phase-4/*.png
+          if-no-files-found: ignore
+          retention-days: 14
       - name: Run preview artifact coverage tests
         run: node --test tests/preview-artifact.test.cjs
       - name: Run vocabulary review browser tests

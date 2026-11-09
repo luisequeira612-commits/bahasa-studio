@@ -136,3 +136,5 @@
 - 9 nov 2026: tras pasar las dos pruebas E2E de Fase 4 (incluido el overflow real y sticky), el CI encontró una única aserción heredada adicional en `study-history.test.cjs` que aún esperaba la caché v3.8.75. Se actualizó a v3.8.76, versión ya usada por el service worker de Fase 5B. No cambia el módulo de historial ni IndexedDB. Nuevo CI pendiente.
 
 - 9 nov 2026: la ejecución tras el ajuste móvil confirmó que el E2E de Fase 4 ya pasa a 360px: el chevron dejó de provocar overflow y los banners sticky quedan en el offset compacto esperado. El CI solo falló por dos aserciones de versión v3.8.76 en `tests/regression.test.cjs` y `tests/learning-screen-phase-4.test.mjs`; ambas se actualizaron a v3.8.77. Nuevo CI pendiente.
+
+- 9 nov 2026: la suite E2E de Fase 4 pasa completa (2/2) a 360px y la prueba de overflow confirma que el control compacto ya no amplía el documento. El CI posterior encontró una última aserción de caché v3.8.76 en `tests/study-history.test.cjs`; se actualizó a v3.8.77. El resto de pruebas de datos/historial y calidad pasó. CI final pendiente.

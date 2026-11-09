@@ -40,7 +40,7 @@ test('Phase 5B uses the approved blue brand across CSS, manifest, browser chrome
   assert.equal(manifest.theme_color, '#0067C6');
   assert.equal(manifest.background_color, '#ffffff');
   assert.match(html, /<meta name="theme-color" content="#0067C6">/);
-  assert.match(icon, /#0067C6/i);
+  assert.match(icon, /#c92a40/i, 'the Indonesian flag remains red; the app chrome uses the approved blue');
   assert.doesNotMatch(icon, /#e8384f/i);
 });
 

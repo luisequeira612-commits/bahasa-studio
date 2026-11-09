@@ -24,9 +24,12 @@ test('phase four section banner, chips and active tab preserve readable contrast
   assert.ok(contrast('#ffffff', '#285a78') >= 4.5, 'white banner text must meet AA');
   assert.ok(contrast('#f8fafc', '#334155') >= 4.5, 'dark-theme activity chips must meet AA');
   assert.ok(contrast('#0f172a', '#e2e8f0') >= 4.5, 'light-theme activity chips must meet AA');
-  assert.ok(contrast('#ffffff', '#c92a40') >= 4.5, 'active tab icon pill must meet AA');
+  assert.ok(contrast('#7f1d2d', '#fdecef') >= 4.5, 'active navigation pill text must meet AA');
   assert.match(css, /\.unit-path-section-banner\s*\{[^}]*background:#285a78[^}]*color:#fff/s);
-  assert.match(css, /\.nav-btn\.active svg\s*\{[^}]*background:var\(--brand-red\)[^}]*color:#fff/s);
+  const html = await read('index.html');
+  assert.match(html, /background: active \? '#fdecef' : 'transparent'/);
+  assert.match(html, /color: active \? '#7f1d2d' : ''/);
+  assert.match(html, /metrics\.style\.gap = compact && compact\.matches \? '5px' : '8px'/);
 });
 
 test('the selected-level ring is derived from unit completion and does not persist progress', async () => {
@@ -50,7 +53,7 @@ test('the current node ring is empty until lessons are completed and uses comple
   assert.match(html, /current-unit-start-bubble/);
   assert.match(html, /startBubble\.addEventListener\('click', \(\) => this\.openUnitSheet\(unit\.id\)\)/);
   assert.match(html, /node\.addEventListener\('click', \(\) => this\.openUnitSheet\(unit\.id\)\)/);
-  assert.match(html, /currentTitle\.textContent = unit\.title/);
+  assert.ok(html.includes("currentTitle.textContent = String(unit.title || '').replace(/^Unidad\\s+\\d+\\s*:\\s*/i, '').trim();"));
   assert.doesNotMatch(html.slice(html.indexOf('renderCourseRoute() {'), html.indexOf('async updateSrsView()')), /polyline|pathPoints/);
 });
 
@@ -90,7 +93,48 @@ test('nodes, bubble and sheet have 44px targets and motion respects reduced-moti
 
 test('phase four increments the offline cache without changing the storage schema', async () => {
   const [sw, html] = await Promise.all([read('service-worker.js'), read('index.html')]);
-  assert.match(sw, /bahasa-studio-v3\.8\.73/);
+  assert.match(sw, /bahasa-studio-v3\.8\.74/);
   assert.match(html, /completedLessons: this\.completedLessons/);
   assert.match(html, /putSetting\('completedLessons', data\.completedLessons \|\| \[\]\)/);
+});
+
+test('phase four layout uses one spacing rule, a separated red progress ring and bounded title', async () => {
+  const html = await read('index.html');
+  const route = html.slice(html.indexOf('renderCourseRoute() {'), html.indexOf('async updateSrsView()'));
+  assert.match(route, /stage\.style\.marginTop = '0px'/);
+  assert.match(route, /const nodeStep = nodeDiameter \+ 18/);
+  assert.match(route, /const currentTitleExtra = 22/);
+  assert.match(route, /let nextNodeTop = nodeRadius \+ 24/);
+  assert.match(route, /nextNodeTop = 24 \+ 90/);
+  assert.match(route, /node\.style\.width = '56px'/);
+  assert.match(route, /node\.style\.height = '56px'/);
+  assert.match(route, /node\.style\.outline = 'none'/);
+  assert.match(route, /const circumference = 207\.35/);
+  assert.match(route, /cx="38" cy="38" r="33"/);
+  assert.match(route, /stroke:#d1d5db/);
+  assert.match(route, /stroke:#c92a40/);
+  assert.match(route, /stroke-width:5/);
+  assert.match(route, /top:calc\(50% \+ 2\.5px\)/);
+  assert.match(route, /startBubble\.style\.top = \(nodeTop - 46\)/);
+  assert.match(route, /startBubble\.style\.width = '106px'/);
+  assert.match(route, /currentTitle\.style\.top = \(nodeTop \+ 38\)/);
+  assert.match(route, /currentTitle\.style\.width = 'min\(106px, 34%\)'/);
+  assert.match(route, /currentTitle\.style\.textOverflow = 'ellipsis'/);
+  assert.match(route, /currentTitle\.style\.whiteSpace = 'nowrap'/);
+  const css = await read('styles.css');
+  assert.match(css, /prefers-reduced-motion:reduce/);
+});
+
+test('topbar uses an Indonesian flag and flame SVG; navigation pill keeps one label baseline', async () => {
+  const html = await read('index.html');
+  const header = html.slice(html.indexOf('<header class="app-topbar">'), html.indexOf('<!-- CURSO / RUTA -->'));
+  assert.match(header, /bahasa-flag-clip/);
+  assert.match(header, /stroke="#9ca3af"/);
+  assert.match(header, /M12 22c-4\.1 0-7-2\.8/);
+  assert.match(html, /nav-pill-content/);
+  assert.match(html, /background: active \? '#fdecef' : 'transparent'/);
+  assert.match(html, /color: active \? '#7f1d2d' : ''/);
+  assert.match(html, /height: '100%'/);
+  assert.match(html, /padding: '0'/);
+  assert.match(html, /metrics\.style\.gap = compact && compact\.matches \? '5px' : '8px'/);
 });

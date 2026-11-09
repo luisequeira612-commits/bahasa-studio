@@ -8,13 +8,14 @@
     <meta name="theme-color" content="#c92a40">
     <link rel="manifest" href="./manifest.json">
     <link rel="stylesheet" href="./styles.css">
+
 </head>
 <body>
 
     <header class="app-topbar">
-        <div class="logo"><svg class="brand-mark ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v6H4z" fill="#c92a40" stroke="none"/><path d="M4 12h16v6H4z" fill="#fff" stroke="none"/><rect x="3.5" y="5.5" width="17" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="1.2"/></svg><span>Bahasa Studio</span></div>
+        <div class="logo"><svg class="brand-mark ui-icon" viewBox="0 0 24 24" aria-hidden="true"><defs><clipPath id="bahasa-flag-clip"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/></clipPath></defs><g clip-path="url(#bahasa-flag-clip)"><rect x="3.5" y="5.5" width="17" height="13" fill="#fff"/><path d="M3.5 5.5h17V12h-17z" fill="#c92a40"/></g><rect x="3.5" y="5.5" width="17" height="13" rx="2" fill="none" stroke="#9ca3af" stroke-width="1"/></svg><span>Bahasa Studio</span></div>
         <div class="topbar-metrics" aria-label="Tu actividad y progreso">
-            <span class="topbar-chip topbar-streak" title="Racha actual"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.2 2.8c.7 3.1-.6 4.8-2.2 6.2-1.4 1.2-2.8 2.5-2.8 5a4.8 4.8 0 0 0 9.6 0c0-2.1-.8-4.1-2.7-6.2.1 2.1-.7 3.1-1.6 3.8.1-3.4-.7-6.1-3.2-8.8Z"/><path d="M12 13.2c-1.1 1-1.7 1.9-1.7 3a1.7 1.7 0 0 0 3.4 0c0-1.1-.6-2-1.7-3Z"/></svg><strong id="studyStreakText">0 días</strong></span>
+            <span class="topbar-chip topbar-streak" title="Racha actual"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22c-4.1 0-7-2.8-7-6.7 0-2.8 1.4-5 3.5-6.9.1 2.4.9 3.8 2.2 4.6-.2-4 1.2-7.1 4.3-10.2.2 3.3 1.4 5.1 3.1 6.8 1.4 1.5 2.4 3.2 2.4 5.7 0 3.8-2.8 6.7-6.5 6.7Z"/><path d="M12.2 18.7c-1.5 0-2.5-1-2.5-2.4 0-1.1.7-2.1 1.8-3.1.2 1.1.7 1.7 1.4 2.1.7.5 1.1 1 1.1 1.8 0 .9-.8 1.6-1.8 1.6Z"/></svg><strong id="studyStreakText">0 días</strong></span>
             <span class="topbar-chip topbar-xp" title="XP de hoy frente a tu meta"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m13.2 2.5-8 11h5.6l-.5 8 8.5-12h-5.7l.1-7Z"/></svg><strong id="studyDailyXpText">Meta: 0/30 XP</strong></span>
             <span class="level-progress-wrap" title="Progreso del nivel seleccionado">
                 <span class="level-progress-ring" id="levelProgressRing" role="img" aria-label="Progreso del nivel A1 seleccionado: 0 de 32 unidades completadas (0%)"><span class="level-progress-ring-inner" id="levelProgressPercent">0%</span></span>
@@ -6606,6 +6607,8 @@ Requisitos:
                 if (this.apiKey) document.getElementById('apiKeyInput').value = this.apiKey;
 
                 this.updateUI();
+                this.syncNavigationPills();
+                this.updateTopbarChipSpacing();
                 this.renderCourseRoute();
                 this.renderDict();
                 this.scrollToCurrentUnit(false);
@@ -6659,6 +6662,50 @@ Requisitos:
                 local.title = 'Lecciones generadas guardadas en este dispositivo; no indica el estado de la conexión.';
             },
             toggleTheme() { document.body.classList.toggle('dark-mode'); try { localStorage.setItem('bs_dark', document.body.classList.contains('dark-mode') ? '1' : '0'); } catch (e) {} },
+            syncNavigationPills() {
+                document.querySelectorAll('.nav-bottom .nav-btn').forEach(button => {
+                    let pill = button.querySelector('.nav-pill-content');
+                    if (!pill) {
+                        pill = document.createElement('span');
+                        pill.className = 'nav-pill-content';
+                        while (button.firstChild) pill.appendChild(button.firstChild);
+                        button.appendChild(pill);
+                    }
+                    const active = button.classList.contains('active');
+                    Object.assign(button.style, {
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        height: '100%', minHeight: '44px', padding: '0'
+                    });
+                    Object.assign(pill.style, {
+                        display: 'flex', flexDirection: 'column', alignItems: 'center',
+                        justifyContent: 'center', gap: '3px', width: 'calc(100% - 10px)',
+                        maxWidth: '104px', minHeight: '48px', padding: '5px 8px',
+                        boxSizing: 'border-box', borderRadius: '16px',
+                        background: active ? '#fdecef' : 'transparent',
+                        color: active ? '#7f1d2d' : ''
+                    });
+                    const icon = pill.querySelector('svg');
+                    if (icon) Object.assign(icon.style, {
+                        width: '21px', height: '21px', padding: '0',
+                        background: 'transparent', borderRadius: '0',
+                        boxSizing: 'border-box', color: active ? '#7f1d2d' : '',
+                        stroke: 'currentColor'
+                    });
+                    const label = pill.querySelector('span');
+                    if (label) label.style.lineHeight = '1.1';
+                });
+            },
+            updateTopbarChipSpacing() {
+                const metrics = document.querySelector('.topbar-metrics');
+                if (!metrics) return;
+                const compact = window.matchMedia ? window.matchMedia('(max-width: 380px)') : null;
+                const apply = () => { metrics.style.gap = compact && compact.matches ? '5px' : '8px'; };
+                apply();
+                if (compact && compact.addEventListener) compact.addEventListener('change', apply);
+                else if (compact && compact.addListener) compact.addListener(apply);
+                const flag = document.querySelector('.app-topbar .brand-mark');
+                if (flag) { flag.style.width = '22px'; flag.style.height = '22px'; }
+            },
             switchView(viewId, btn) {
                 document.querySelectorAll('.app-view').forEach(el => el.classList.remove('active'));
                 const targetView = document.getElementById(`view-${viewId}`);
@@ -6672,6 +6719,7 @@ Requisitos:
                     if (active) el.setAttribute('aria-current', 'page');
                     else el.removeAttribute('aria-current');
                 });
+                this.syncNavigationPills();
                 if (viewId === 'srs' || viewId === 'profile') this.updateSrsView();
                 if (viewId === 'route') {
                     this.renderCourseRoute();
@@ -7158,8 +7206,14 @@ Requisitos:
                     section.innerHTML = '<div class="unit-path-section-banner"><div class="unit-path-section-heading"><h3>Sección ' + sectionNumber + '</h3><p>Unidades ' + firstNumber + '–' + lastNumber + '</p></div><strong class="unit-section-count">' + completed + '/' + units.length + '</strong><div class="unit-section-progress" role="progressbar" aria-label="Progreso de Sección ' + sectionNumber + '" aria-valuemin="0" aria-valuemax="' + units.length + '" aria-valuenow="' + completed + '"><span style="width:' + sectionPercent + '%"></span></div></div>';
                     const stage = document.createElement('div');
                     stage.className = 'unit-path-stage';
-                    const stageHeight = units.length * 82 + 92;
-                    stage.style.height = stageHeight + 'px';
+                    stage.style.marginTop = '0px';
+                    const nodeDiameter = 56;
+                    const nodeRadius = nodeDiameter / 2;
+                    const nodeStep = nodeDiameter + 18;
+                    const currentTitleExtra = 22;
+                    let nextNodeTop = nodeRadius + 24;
+                    if (currentUnit && units[0] && units[0].id === currentUnit.id) nextNodeTop = 24 + 90;
+                    let stageBottom = 0;
 
                     units.forEach((unit, index) => {
                         const progress = getUnitProgressState(level, unit);
@@ -7169,16 +7223,22 @@ Requisitos:
                         const node = document.createElement('button');
                         node.type = 'button';
                         node.className = 'learning-unit-node node-' + state;
+                        node.style.width = '56px';
+                        node.style.height = '56px';
+                        node.style.boxSizing = 'border-box';
                         node.dataset.pathState = state;
                         node.dataset.unitId = unit.id;
-                        const nodeTop = 84 + index * 82;
+                        const nodeTop = nextNodeTop;
+                        stageBottom = Math.max(stageBottom, nodeTop + (isCurrent ? 52 : nodeRadius));
                         node.style.left = positions[index] + '%';
                         node.style.top = nodeTop + 'px';
                         if (isCurrent) {
+                            node.style.outline = 'none';
+                            node.style.outlineOffset = '0';
                             const lessonPercent = progress.lessons.length ? Math.round(progress.completedLessonCount / progress.lessons.length * 100) : 0;
-                            const circumference = 179.07;
+                            const circumference = 207.35;
                             const dashOffset = (circumference * (1 - lessonPercent / 100)).toFixed(2);
-                            node.innerHTML = '<svg class="node-progress-ring" viewBox="0 0 68 68" aria-hidden="true"><circle class="node-progress-track" cx="34" cy="34" r="28.5"/><circle class="node-progress-value" cx="34" cy="34" r="28.5" stroke-dasharray="' + circumference + '" stroke-dashoffset="' + dashOffset + '"/></svg><span class="node-number">' + (offset + index + 1) + '</span>';
+                            node.innerHTML = '<svg class="node-progress-ring" viewBox="0 0 76 76" aria-hidden="true" style="position:absolute;left:50%;top:calc(50% + 2.5px);width:76px;height:76px;right:auto;bottom:auto;overflow:visible;transform:translate(-50%,-50%) rotate(-90deg);pointer-events:none"><circle class="node-progress-track" cx="38" cy="38" r="33" style="fill:none;stroke:#d1d5db;stroke-width:5"/><circle class="node-progress-value" cx="38" cy="38" r="33" stroke-dasharray="' + circumference + '" stroke-dashoffset="' + dashOffset + '" style="fill:none;stroke:#c92a40;stroke-width:5;stroke-linecap:round"/></svg><span class="node-number" style="position:relative;z-index:1">' + (offset + index + 1) + '</span>';
                         } else if (progress.completed) {
                             node.innerHTML = '<svg class="node-state-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>';
                         } else if (state === 'locked') {
@@ -7198,8 +7258,16 @@ Requisitos:
                             const startBubble = document.createElement('button');
                             startBubble.type = 'button';
                             startBubble.className = 'current-unit-start-bubble';
+                            startBubble.style.width = '106px';
+                            startBubble.style.minWidth = '106px';
+                            startBubble.style.maxWidth = '106px';
+                            startBubble.style.height = '44px';
+                            startBubble.style.minHeight = '44px';
+                            startBubble.style.boxSizing = 'border-box';
+                            startBubble.style.padding = '0 8px';
+                            startBubble.style.whiteSpace = 'nowrap';
                             startBubble.style.left = positions[index] + '%';
-                            startBubble.style.top = (nodeTop - 36) + 'px';
+                            startBubble.style.top = (nodeTop - 46) + 'px';
                             startBubble.innerHTML = 'EMPEZAR <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v15m-6-6 6 6 6-6"/></svg>';
                             startBubble.setAttribute('aria-label', 'Empezar ' + unit.title + '; abrir detalles de la unidad');
                             startBubble.addEventListener('click', () => this.openUnitSheet(unit.id));
@@ -7207,11 +7275,20 @@ Requisitos:
                             const currentTitle = document.createElement('div');
                             currentTitle.className = 'current-unit-title';
                             currentTitle.style.left = positions[index] + '%';
-                            currentTitle.style.top = (nodeTop + 43) + 'px';
-                            currentTitle.textContent = unit.title;
+                            currentTitle.style.top = (nodeTop + 38) + 'px';
+                            currentTitle.style.width = 'min(106px, 34%)';
+                            currentTitle.style.maxWidth = '106px';
+                            currentTitle.style.whiteSpace = 'nowrap';
+                            currentTitle.style.overflow = 'hidden';
+                            currentTitle.style.textOverflow = 'ellipsis';
+                            currentTitle.style.overflowWrap = 'normal';
+                            currentTitle.style.lineHeight = '14px';
+                            currentTitle.textContent = String(unit.title || '').replace(/^Unidad\s+\d+\s*:\s*/i, '').trim();
                             stage.appendChild(currentTitle);
                         }
+                        nextNodeTop += nodeStep + (isCurrent && index < units.length - 1 ? currentTitleExtra : 0);
                     });
+                    stage.style.height = (stageBottom + 16) + 'px';
                     section.appendChild(stage);
                     container.appendChild(section);
                 }

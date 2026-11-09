@@ -83,7 +83,7 @@ Al menos cinco ejercicios deben evaluar oraciones completas y al menos uno debe 
 - No asumir que las dos formas son intercambiables ni que toda base permite ambas.
 - No extender la regla causativa descrita a bases verbales intransitivas.
 - No mezclar el foco de esta unidad con `memper-…-kan` o `memper-…-i`.
-- Mantener B2 oculta/no publicada.
+- Mantener B2 en desarrollo: solo U1–U3 están implementadas y visibles con desbloqueo secuencial; U4–U60 no deben exponerse hasta su implementación y pruebas.
 - No modificar A1/A2/B1, IndexedDB, backup JSON v3, trackers ni dependencias.
 - No afirmar validación nativa ni certificación MCER/BIPA.
 

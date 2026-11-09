@@ -28,7 +28,7 @@ test('compact top bar keeps study activity values and selected-level progress ri
     assert.match(html, /class="app-topbar"/);
     assert.match(html, /id="studyStreakText"/);
     assert.match(html, /id="studyDailyXpText"/);
-    assert.match(html, /id="levelProgressRing"[^>]*aria-label="Progreso del nivel/);
+    assert.match(html, /id="learningLevelTrigger"[^>]*aria-label="Cambiar nivel/);
     assert.match(html, /levelProgressRing\.style\.setProperty\(/);
     assert.match(html, /id="studyLongestStreakText"/);
     assert.match(html, /id="totalExpBadge"/);
@@ -39,7 +39,7 @@ test('learning route exposes compact access buttons for the three original tool 
     assert.ok(route);
     const targets = ['aiGeneratorDrawer', 'writingPracticeDrawer', 'conversationPracticeDrawer'];
     for (const target of targets) {
-        assert.ok(route[0].includes('data-tool-target="' + target + '"'), target + ' has a compact entry');
+        assert.ok(html.includes("App.openLearningToolFromSheet('" + target + "')"), target + ' has a compact sheet entry');
         assert.ok(route[0].includes('id="' + target + '"'), target + ' keeps its original panel');
     }
     for (const label of ['Generador de lecciones con IA', 'Cuaderno de escritura', 'Conversaciones prácticas']) {
@@ -47,15 +47,17 @@ test('learning route exposes compact access buttons for the three original tool 
     }
     assert.equal((route[0].match(/<details class="feature-drawer learning-tool-panel"/g) || []).length, 3);
     assert.match(route[0], /id="courseContainer"/);
-    assert.match(html, /toggleLearningTool\(id\)/);
+    assert.match(html, /openLearningToolFromSheet\(targetId\)/);
 });
 
-test('fixed level selector exposes A1, A2, B1 and B2 and defaults from the current course progress', () => {
-    const selector = html.match(/<div id="learningLevelSelector"[\s\S]*?<\/div>/);
-    assert.ok(selector);
-    assert.deepEqual([...selector[0].matchAll(/data-level="(A1|A2|B1|B2)"/g)].map(match => match[1]), ['A1', 'A2', 'B1', 'B2']);
+test('compact level button opens a sheet for all course levels and defaults from current progress', () => {
+    assert.match(html, /id="learningLevelTrigger"[^>]*aria-haspopup="dialog"[^>]*aria-controls="learningLevelSheetOverlay"/);
+    assert.match(html, /id="learningLevelSheetOverlay"/);
+    assert.match(html, /CourseData\.levels\.forEach\(level =>/);
+    assert.match(html, /className = 'learning-level-sheet-row'/);
     assert.match(html, /selectedLearningLevel = getCurrentLearningLevelId\(\)/);
-    assert.match(css, /\.learning-level-selector[\s\S]*?position: sticky/);
+    assert.match(css, /\.level-progress-trigger\s*\{[^}]*min-width:44px[^}]*min-height:44px/);
+    assert.match(html, /const A2_RELEASE_ENABLED = true/);
 });
 
 test('unit path groups official levels in sections of eight and draws numbered, completed and locked nodes', () => {

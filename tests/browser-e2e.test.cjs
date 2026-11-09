@@ -1803,3 +1803,91 @@ test('learning path keeps the real A1 one-of-two lesson state visible at a 360px
     await new Promise(resolve => server.close(resolve));
   }
 });
+
+
+test('learning route and unit sheet controls meet 44px touch targets at 360px', async () => {
+  const { server, url } = await startServer();
+  const context = await browser.newContext({
+    viewport: { width: 360, height: 780 },
+    serviceWorkers: 'block'
+  });
+  const page = await context.newPage();
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
+    await page.waitForSelector('#courseContainer .learning-unit-node.node-current');
+
+    const routeTargets = await page.evaluate(() => {
+      const size = selector => {
+        const element = document.querySelector(selector);
+        if (!element) return null;
+        const rect = element.getBoundingClientRect();
+        return { width: rect.width, height: rect.height };
+      };
+      return {
+        level: size('.learning-level-button'),
+        tool: size('.learning-tool-button'),
+        currentNode: size('.learning-unit-node.node-current')
+      };
+    });
+    for (const [name, size] of Object.entries(routeTargets)) {
+      assert.ok(size && size.width >= 44 && size.height >= 44,
+        name + ' must be at least 44x44px; got ' + JSON.stringify(size));
+    }
+
+    await page.locator('#aiGeneratorDrawer').evaluate(element => { element.open = true; });
+    const generatorButton = await page.locator('#aiGeneratorDrawer .btn-sm').boundingBox();
+    assert.ok(generatorButton && generatorButton.height >= 44,
+      'the Aprender .btn-sm control must be at least 44px tall');
+
+    await page.locator('#courseContainer .learning-unit-node.node-current').click();
+    await page.waitForSelector('#unitSheetOverlay:not([hidden])');
+    const sheetTargets = await page.evaluate(() => {
+      const size = selector => {
+        const element = document.querySelector(selector);
+        if (!element) return null;
+        const rect = element.getBoundingClientRect();
+        return { width: rect.width, height: rect.height };
+      };
+      return {
+        close: size('.unit-sheet-close'),
+        primary: size('.unit-sheet-primary'),
+        grammar: size('.unit-sheet-grammar-toggle')
+      };
+    });
+    for (const [name, size] of Object.entries(sheetTargets)) {
+      assert.ok(size && size.width >= 44 && size.height >= 44,
+        'unit sheet ' + name + ' must be at least 44x44px; got ' + JSON.stringify(size));
+    }
+
+    const palette = await page.evaluate(() => {
+      const read = className => {
+        const node = document.createElement('button');
+        node.className = className;
+        node.textContent = '1';
+        document.body.appendChild(node);
+        const style = getComputedStyle(node);
+        const result = { background: style.backgroundColor, color: style.color };
+        node.remove();
+        return result;
+      };
+      return {
+        brandRed: getComputedStyle(document.documentElement).getPropertyValue('--brand-red').trim(),
+        current: read('learning-unit-node node-current'),
+        completed: read('learning-unit-node node-completed'),
+        locked: read('learning-unit-node node-locked')
+      };
+    });
+    assert.equal(palette.brandRed, '#c92a40');
+    assert.equal(palette.current.background, 'rgb(201, 42, 64)');
+    assert.equal(palette.current.color, 'rgb(255, 255, 255)');
+    assert.equal(palette.completed.background, 'rgb(22, 131, 75)');
+    assert.equal(palette.completed.color, 'rgb(255, 255, 255)');
+    assert.equal(palette.locked.background, 'rgb(229, 231, 235)');
+    assert.equal(palette.locked.color, 'rgb(55, 65, 81)');
+  } finally {
+    await context.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});

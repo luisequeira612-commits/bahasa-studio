@@ -186,6 +186,7 @@ test('phase four path geometry is collision-free at 360px across levels and zigz
             expectedId:level.units[index].id,
             documentWidth:document.documentElement.scrollWidth,
             stageWidth:current.parentElement.clientWidth,
+            overflowing:[...document.querySelectorAll('body *')].map(el => { const r=el.getBoundingClientRect(); return {tag:el.tagName,id:el.id,cls:typeof el.className==='string'?el.className:'',left:Math.round(r.left),right:Math.round(r.right),width:Math.round(r.width)}; }).filter(item => item.width > 0 && (item.right > 360 || item.left < 0)).sort((a,b) => b.right-a.right).slice(0,12),
             bubble: bubbleRect, title:titleRect, node:currentRect,
             ringGap, horizontalBubbleClearance, horizontalTitleClearance, nodeEdgeGaps,
             titleNextGap:nextRect ? nextRect.top - titleRect.bottom : null,
@@ -202,12 +203,7 @@ test('phase four path geometry is collision-free at 360px across levels and zigz
     for (const layout of layouts) {
       assert.equal(layout.currentId, layout.expectedId, layout.levelId + ' current unit should be at zigzag index ' + layout.index);
       assert.ok(layout.documentWidth <= 360, layout.levelId + ' must not overflow horizontally: ' + JSON.stringify({
-        documentWidth: layout.documentWidth,
-        viewportWidth: 360,
-        offenders: [...document.querySelectorAll('body *')].map(el => {
-          const r = el.getBoundingClientRect();
-          return { tag: el.tagName, id: el.id, className: typeof el.className === 'string' ? el.className : '', left: Math.round(r.left), right: Math.round(r.right), width: Math.round(r.width) };
-        }).filter(item => item.width > 0 && (item.right > 360 || item.left < 0)).sort((a,b) => b.right - a.right).slice(0, 12)
+        documentWidth: layout.documentWidth, viewportWidth: 360, stageWidth: layout.stageWidth, overflowing: layout.overflowing
       }));
       assert.equal(layout.nodeSize.width, 56);
       assert.equal(layout.nodeSize.height, 56);
@@ -313,10 +309,10 @@ test('phase four path geometry is collision-free at 360px across levels and zigz
     assert.equal(sheetStyle.description, 'rgb(75, 85, 99)');
     assert.equal(sheetStyle.border, '1px');
     assert.match(sheetStyle.bottomPadding, /safe-area-inset-bottom/);
-    assert.equal(sheetStyle.trackBackground, 'rgb(139, 139, 139)');
+    assert.equal(sheetStyle.trackBackground, 'rgb(138, 148, 163)');
     assert.equal(sheetStyle.trackHeight, 8);
     assert.ok(sheetStyle.trackContrast >= 3, 'gray track must meet 3:1 contrast');
-    assert.equal(sheetStyle.fillBackground, 'rgb(201, 42, 64)');
+    assert.equal(sheetStyle.fillBackground, 'rgb(0, 103, 198)');
     assert.ok(sheetStyle.primaryBackground !== 'rgba(0, 0, 0, 0)');
     assert.ok(Number.parseFloat(sheetStyle.secondaryBorder) >= 1, 'secondary action must retain its outline');
     await page.evaluate(() => App.closeUnitSheet());

@@ -709,7 +709,7 @@ test('all A1 and A2 practical conversations support guided replies without chang
     const xpBefore = await page.evaluate(() => App.xp);
     const srsBefore = await page.evaluate(async () => (await DB.getAll('srs')).length);
 
-    await page.locator('.learning-tool-button[data-tool-target="conversationPracticeDrawer"]').click();
+    await openLearningTool(page, 'conversationPracticeDrawer');
     await page.getByRole('button', { name: 'Practicar conversaciones' }).click();
     assert.equal(await page.locator('[data-conversation-start]').count(), 9,
       'all six A1 and three A2 everyday situations should be available');
@@ -1333,7 +1333,7 @@ test('free-writing notebook shows an example after a draft and never changes XP 
       xp: await DB.get('settings', 'userXp') || 0,
       srs: (await DB.getAll('srs')).length
     }));
-    await page.locator('.learning-tool-button[data-tool-target="writingPracticeDrawer"]').click();
+    await openLearningTool(page, 'writingPracticeDrawer');
     await page.getByRole('button', { name: 'Abrir cuaderno de escritura' }).click();
     await page.getByRole('button', { name: 'Empezar a escribir' }).nth(1).click();
     await page.locator('#freeWritingDraft').fill('Hari ini saya di hotel. Besok saya pergi ke pantai.');

@@ -28,9 +28,10 @@ test('short lesson viewports do not reduce answer targets below 48px', () => {
 });
 
 test('light and dark themes use the same requested red accent', () => {
-    assert.match(css, /:root, \.light-mode\s*\{[^}]*--bg-primary:#ffffff[^}]*--accent:#e8384f/);
-    assert.match(css, /\.dark-mode\s*\{[^}]*--accent:#e8384f/);
-    assert.doesNotMatch(css, /--accent:#ff5a6e/);
+    assert.match(css, /:root, \.light-mode\s*\{[^}]*--bg-primary:#ffffff[^}]*--accent:var\(--brand-red\)/);
+    assert.match(css, /\.dark-mode\s*\{[^}]*--accent:var\(--brand-red\)/);
+    assert.match(css, /--brand-red:\s*#c92a40/);
+    assert.doesNotMatch(css, /--accent:#ff5a6e|#e8384f/);
     assert.match(html, /toggleTheme\(\)/);
     assert.match(html, /localStorage\.setItem\('bs_dark'/);
 });

@@ -29,7 +29,7 @@ test('phase four section banner, chips and active tab preserve readable contrast
   assert.match(html, /\.unit-path-section-banner\s*\{[^}]*background:#004E9A !important[^}]*color:#ffffff/s);
   assert.match(html, /background: active \? '#E6F1FB' : 'transparent'/);
   assert.match(html, /color: active \? '#004A91' : ''/);
-  assert.match(html, /metrics\.style\.gap = compact && compact\.matches \? '5px' : '8px'/);
+  assert.match(html, /metrics\.style\.gap = compact && compact\.matches \? '4px' : '8px'/);
 });
 
 test('the selected-level ring is derived from unit completion and does not persist progress', async () => {
@@ -95,7 +95,7 @@ test('nodes, bubble and sheet have 44px targets and motion respects reduced-moti
 
 test('phase four increments the offline cache without changing the storage schema', async () => {
   const [sw, html] = await Promise.all([read('service-worker.js'), read('index.html')]);
-  assert.match(sw, /bahasa-studio-v3\.8\.77/);
+  assert.match(sw, /bahasa-studio-v3\.8\.78/);
   assert.match(html, /completedLessons: this\.completedLessons/);
   assert.match(html, /putSetting\('completedLessons', data\.completedLessons \|\| \[\]\)/);
 });
@@ -144,7 +144,7 @@ test('topbar uses an Indonesian flag and flame SVG; navigation pill keeps one la
   assert.match(html, /color: active \? '#004A91' : ''/);
   assert.match(html, /height: '100%'/);
   assert.match(html, /padding: '0'/);
-  assert.match(html, /metrics\.style\.gap = compact && compact\.matches \? '5px' : '8px'/);
+  assert.match(html, /metrics\.style\.gap = compact && compact\.matches \? '4px' : '8px'/);
 });
 
 

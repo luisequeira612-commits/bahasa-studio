@@ -55,7 +55,7 @@ test('phase four learning screen works at 360px, preserves controls, sticky sect
     assert.equal(await page.locator('.current-unit-start-bubble').count(), 1);
     assert.equal(await page.locator('.current-unit-title').count(), 1);
     assert.match(await page.locator('#learningLevelTrigger').getAttribute('aria-label'), /A1 seleccionado/);
-    assert.equal(await page.locator('.level-progress-chevron').isVisible(), false, 'the compact level control hides its chevron at 360px to prevent horizontal overflow');
+    assert.equal(await page.locator('.level-progress-chevron').isVisible(), true, 'the compact level chip keeps its chevron visible at 360px');
     assert.equal(await page.locator('.node-progress-value').getAttribute('stroke-dashoffset'), '207.35');
     assert.equal(await page.locator('.unit-path-section-banner h3').first().innerText(), 'Sección 1');
 
@@ -374,7 +374,7 @@ test('phase four path geometry is collision-free at 360px across levels and zigz
     assert.ok(contrast.chip >= 4.5 && contrast.darkChip >= 4.5, 'topbar chip text contrast in both themes: ' + JSON.stringify(contrast));
     assert.ok(contrast.chipIcon >= 3 && contrast.darkChipIcon >= 3, 'topbar chip icons need 3:1 contrast: ' + JSON.stringify(contrast));
     assert.ok(contrast.activePill >= 4.5 && contrast.activeIcon >= 3, 'active tab pill contrast: ' + JSON.stringify(contrast));
-    assert.equal(contrast.chipGap, '5px', 'topbar chips should have 5px separation at 360px');
+    assert.equal(contrast.chipGap, '4px', 'topbar chips should have 4px separation at 360px');
     assert.ok(contrast.navHeight >= 44, 'bottom navigation touch target must be at least 44px high');
     assert.ok(contrast.navHeights.every(height => height === contrast.navHeights[0]), 'all bottom tabs must have the same height');
   } finally {

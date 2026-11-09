@@ -52,6 +52,7 @@ test('phase 5B learning screen is compact, blue and preserves all level/tool ent
     const current = page.locator('.learning-unit-node.node-current').first();
     const before = await current.boundingBox();
     const bannerBox = await banner.boundingBox();
+    console.log('[phase5B 360x740] first current node y=' + before.y.toFixed(1) + 'px (' + (before.y / 740 * 100).toFixed(1) + '% viewport height); banner=' + bannerBox.height.toFixed(1) + 'px');
     assert.ok(before.y < 0.35 * 740, 'first current node should begin above 35% of viewport: ' + before.y);
     assert.ok(bannerBox.height <= 72, 'section banner must stay within 72px');
 
@@ -59,6 +60,7 @@ test('phase 5B learning screen is compact, blue and preserves all level/tool ent
     await page.locator('.level-progress-trigger').click();
     await page.waitForSelector('#learningLevelSheetOverlay:not([hidden])');
     assert.equal(await levelRows.count(), 4);
+    console.log('[phase5B 360x740] levels: ' + JSON.stringify(await levelRows.allInnerTexts()));
     for (let i = 0; i < 4; i++) assert.ok((await levelRows.nth(i).boundingBox()).height >= 44);
     assert.ok((await page.locator('.learning-level-sheet-row.selected').count()) === 1);
     const a2Progress = await page.locator('.learning-level-sheet-row').nth(1).locator('small').innerText();
@@ -71,6 +73,7 @@ test('phase 5B learning screen is compact, blue and preserves all level/tool ent
     await page.locator('.unit-tools-trigger').first().click();
     await page.waitForSelector('#learningToolsSheetOverlay:not([hidden])');
     assert.equal(await page.locator('.learning-tool-sheet-row').count(), 3);
+    console.log('[phase5B 360x740] tools: ' + JSON.stringify(await page.locator('.learning-tool-sheet-row strong').allInnerTexts()));
     for (const row of await page.locator('.learning-tool-sheet-row').all()) assert.ok((await row.boundingBox()).height >= 44);
     await page.locator('.learning-tool-sheet-row').nth(1).click();
     await page.waitForFunction(() => document.getElementById('learningToolsSheetOverlay').hidden);
@@ -105,6 +108,72 @@ test('phase 5B learning screen is compact, blue and preserves all level/tool ent
     assert.ok(speakerCount >= 2, 'lesson speaker controls should use inline SVG icons');
     assert.equal(await page.locator('text=🔊').count(), 0);
     assert.equal(await page.locator('.nav-btn.active').getAttribute('data-nav-group'), 'learn');
+    for (const group of ['learn','review','tutor','profile']) {
+      const button = page.locator('.nav-btn[data-nav-group="' + group + '"]');
+      await button.click();
+      assert.equal(await button.evaluate(el => el.classList.contains('active')), true);
+      const activeIcon = button.locator('svg');
+      const activeStyle = await activeIcon.evaluate(el => ({ background:getComputedStyle(el).backgroundColor, fill:getComputedStyle(el).fill, stroke:getComputedStyle(el).stroke, color:getComputedStyle(el).color }));
+      assert.equal(activeStyle.background, 'rgba(0, 0, 0, 0)', group + ' active icon must not have its own background');
+      assert.equal(activeStyle.fill, 'none', group + ' active icon must remain outline-only');
+      assert.equal(activeStyle.stroke, 'rgb(0, 74, 145)');
+      for (const nav of await page.locator('.nav-btn:not(.active)').all()) {
+        const inactiveBackground = await nav.locator('svg').evaluate(el => getComputedStyle(el).backgroundColor);
+        assert.equal(inactiveBackground, 'rgba(0, 0, 0, 0)', 'inactive icons must not have their own background');
+      }
+    }
+    await page.locator('.nav-btn[data-nav-group="learn"]').click();
+    const compactTopbar = await page.evaluate(() => ({
+      right: document.querySelector('.app-topbar').getBoundingClientRect().right,
+      logoRight: document.querySelector('.app-topbar .logo').getBoundingClientRect().right,
+      leftPadding: document.querySelector('.app-topbar .logo').getBoundingClientRect().left - document.querySelector('.app-topbar').getBoundingClientRect().left,
+      trigger: (() => { const r=document.querySelector('#learningLevelTrigger').getBoundingClientRect(); return {left:r.left,right:r.right,width:r.width,height:r.height}; })(),
+      streak: document.getElementById('studyStreakText').textContent,
+      xp: document.getElementById('studyDailyXpText').textContent,
+      ariaStreak: document.querySelector('.topbar-streak').getAttribute('aria-label'),
+      ariaXp: document.querySelector('.topbar-xp').getAttribute('aria-label'),
+      levelChevron: getComputedStyle(document.querySelector('.level-progress-chevron')).display,
+      levelBorder: getComputedStyle(document.querySelector('#learningLevelTrigger')).borderTopWidth,
+      levelBorderColor: getComputedStyle(document.querySelector('#learningLevelTrigger')).borderTopColor,
+      ringTrack: getComputedStyle(document.querySelector('#levelProgressRing')).backgroundImage
+    }));
+    assert.equal(compactTopbar.streak, '0');
+    assert.equal(compactTopbar.xp, '0/30 XP');
+    assert.equal(compactTopbar.levelChevron, 'block');
+    assert.ok(compactTopbar.trigger.height >= 44);
+    assert.ok(compactTopbar.logoRight <= compactTopbar.trigger.left, 'Bahasa Studio brand must fit beside the level chip at 360px');
+    assert.equal(compactTopbar.levelBorderColor, 'rgb(138, 148, 163)', 'chip border must reach at least 3:1 against white');
+    assert.ok(compactTopbar.ringTrack.includes('138, 148, 163'), 'progress ring track must reach at least 3:1 against white');
+    assert.ok(compactTopbar.trigger.right <= 346, 'level chip must keep 14px right margin: ' + compactTopbar.trigger.right);
+    assert.equal(compactTopbar.ariaStreak, 'Racha actual: 0 días');
+    assert.equal(compactTopbar.ariaXp, 'XP de hoy frente a tu meta: Meta: 0/30 XP');
+    await page.evaluate(() => App.addXp(10));
+    await page.waitForFunction(async () => {
+      const activity = await DB.get('settings', 'studyActivity');
+      return activity && activity.todayXp === 10 && activity.currentStreak === 1;
+    });
+    assert.equal(await page.locator('#studyStreakText').innerText(), '1');
+    assert.equal(await page.locator('#studyDailyXpText').innerText(), '10/30 XP');
+    assert.equal(await page.locator('.topbar-streak').getAttribute('aria-label'), 'Racha actual: 1 día');
+    assert.equal(await page.locator('.topbar-xp').getAttribute('aria-label'), 'XP de hoy frente a tu meta: Meta: 10/30 XP');
+    const brandFit = await page.evaluate(() => {
+      const logo = document.querySelector('.app-topbar .logo span');
+      logo.textContent = 'Guardi';
+      const chip = document.querySelector('#learningLevelTrigger').getBoundingClientRect();
+      const logoBox = document.querySelector('.app-topbar .logo').getBoundingClientRect();
+      const rightEdge = document.querySelector('.app-topbar').getBoundingClientRect().right;
+      const leftEdge = document.querySelector('.app-topbar').getBoundingClientRect().left;
+      return { logoRight:logoBox.right, chipLeft:chip.left, chipRight:chip.right, rightMargin:rightEdge-chip.right, leftMargin:logoBox.left-leftEdge };
+    });
+    assert.ok(brandFit.logoRight <= brandFit.chipLeft, 'Guardi brand and level chip must not overlap at 360px');
+    assert.ok(Math.abs(brandFit.rightMargin - 14) <= 1, 'right margin must match 14px logo margin: ' + brandFit.rightMargin);
+    assert.ok(Math.abs(brandFit.leftMargin - 14) <= 1);
+    assert.equal(await page.locator('.unit-tools-trigger').first().getAttribute('aria-label'), 'Herramientas');
+    assert.ok((await page.locator('.unit-tools-trigger').first().boundingBox()).width >= 44);
+    const toolsIcon = page.locator('.unit-tools-trigger').first().locator('svg');
+    assert.equal(await toolsIcon.locator('rect').count(), 4, 'tools icon must be a 2×2 grid');
+    assert.equal(await toolsIcon.evaluate(el => getComputedStyle(el).fill), 'none');
+    assert.equal(await toolsIcon.evaluate(el => getComputedStyle(el).stroke), 'rgb(255, 255, 255)');
   } finally {
     await context.close();
     await browser.close();

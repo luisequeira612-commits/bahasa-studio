@@ -99,8 +99,12 @@ test('B2 keeps its development gate while implemented U1 unlocks sequentially af
 
   const learningLevels = indexSource.indexOf('function getLearningLevels() {');
   assert.notEqual(learningLevels, -1);
-  assert.ok(indexSource.slice(learningLevels, learningLevels + 260).includes("level.id !== 'B2'"),
-    'B2 must stay out of learning and review collections while its guard remains');
+  const learningSource = indexSource.slice(learningLevels, learningLevels + 650);
+  assert.ok(learningSource.includes("level.id !== 'B2'"), 'non-B2 learning levels remain available');
+  assert.ok(learningSource.includes("unit.id === 'b2_u1'"),
+    'only implemented B2 U1 may enter learning and review collections');
+  assert.ok(learningSource.includes("level.id !== 'A2' || A2_RELEASE_ENABLED"),
+    'the existing A2 release condition remains intact');
 
   const routeStart = indexSource.indexOf('renderCourseRoute() {');
   const routeEnd = indexSource.indexOf('async updateSrsView() {', routeStart);
@@ -113,15 +117,16 @@ test('B2 keeps its development gate while implemented U1 unlocks sequentially af
     'B2 path visibility must not depend on the old hidden route gate');
 });
 
-test('tap translation fallback excludes hidden B2 authored exercises', async () => {
+test('tap translation fallback includes only B2 U1 authored exercises', async () => {
   const { indexSource } = await loadCurricula();
   const fallbackStart = indexSource.indexOf('// Existing authored translation exercises are a fallback source');
   assert.notEqual(fallbackStart, -1, 'tap translation fallback must remain present');
   const levelLoop = indexSource.indexOf('for (const level of CourseData.levels) {', fallbackStart);
   const unitLoop = indexSource.indexOf('for (const unit of level.units || []) {', levelLoop);
   assert.ok(levelLoop > fallbackStart && unitLoop > levelLoop, 'fallback must iterate authored levels and units');
-  assert.ok(indexSource.slice(levelLoop, unitLoop).includes("if (level.id === 'B2') continue;"),
-    'hidden B2 translation exercises must not leak into the tap-translation helper');
+  const fallbackSource = indexSource.slice(unitLoop, unitLoop + 260);
+  assert.ok(fallbackSource.includes("level.id === 'B2' && unit.id !== 'b2_u1'"),
+    'only B2 U1 translation exercises may be used; future B2 units remain excluded');
 });
 
 test('B2 U2 candidate forms stay out of executable curriculum until explicit approval', async () => {
@@ -150,13 +155,15 @@ test('only implemented B2 U1 remains executable while legacy draft units stay ar
 });
 
 
-test('tutor prompt never labels the learner as hidden B2 from stale completion data', async () => {
+test('tutor prompt infers B2 only from completed implemented U1', async () => {
   const { indexSource } = await loadCurricula();
   const promptStart = indexSource.indexOf('async buildPrompt(topic) {');
   assert.notEqual(promptStart, -1, 'tutor prompt builder must remain present');
-  const promptSource = indexSource.slice(promptStart, promptStart + 850);
-  assert.ok(promptSource.includes("l.id !== 'B2' &&"),
-    'hidden B2 must not influence the tutor prompt level inferred from saved completions');
+  const promptSource = indexSource.slice(promptStart, promptStart + 950);
+  assert.ok(promptSource.includes("(l.id !== 'B2' || u.id === 'b2_u1')"),
+    'only B2 U1 may affect the inferred tutor level');
+  assert.ok(promptSource.includes('App.completedUnits.includes(u.id)'),
+    'the tutor level still depends on saved unit completion');
 });
 
 test('direct lesson entry uses the shared B2 U1 sequential gate and emergency skip', async () => {

@@ -6346,9 +6346,11 @@
         }
         function getLearningLevels() {
             return getLevels().filter(level =>
-                level.id !== 'B2' &&
+                (level.id !== 'B2' || level.units.some(unit => unit.id === 'b2_u1')) &&
                 (level.id !== 'A2' || A2_RELEASE_ENABLED)
-            );
+            ).map(level => level.id === 'B2'
+                ? { ...level, units: level.units.filter(unit => unit.id === 'b2_u1') }
+                : level);
         }
         function getUniqueLearningVocabulary() {
             const seen = new Set();
@@ -6487,7 +6489,9 @@
                 const srs = await DB.getAll('srs');
                 const weak = srs.filter(i => i.val && i.val.efactor < 2.3)
                     .map(i => known.find(v => v.id === i.key)).filter(Boolean).slice(0, 10).map(v => v.idn);
-                const lvl = CourseData.levels.filter(l => l.id !== 'B2' && l.units.some(u => App.completedUnits.includes(u.id))).map(l => l.id).pop() || 'A1';
+                const lvl = CourseData.levels.filter(l => l.units.some(u =>
+                    (l.id !== 'B2' || u.id === 'b2_u1') && App.completedUnits.includes(u.id)
+                )).map(l => l.id).pop() || 'A1';
                 return `Eres un profesor de indonesio estándar (bahasa baku) para hispanohablantes. Crea UNA unidad sobre el tema: "${topic}".
 Nivel del alumno: ${lvl}, empezó de cero absoluto (unidades completadas: ${App.completedUnits.length}). Sé gradual y no asumas conocimientos previos.
 Palabras que el alumno ya conoce (no las uses como vocabulario nuevo, pero sí puedes usarlas en frases): ${known.slice(-200).map(v => v.idn).join(', ') || 'ninguna'}.
@@ -7975,8 +7979,8 @@ Requisitos:
             // that are not represented as standalone vocabulary entries.
             if (language === 'es' && typeof CourseData !== 'undefined' && Array.isArray(CourseData.levels)) {
                 for (const level of CourseData.levels) {
-                    if (level.id === 'B2') continue;
                     for (const unit of level.units || []) {
+                        if (level.id === 'B2' && unit.id !== 'b2_u1') continue;
                         const authoredExercises = [
                             ...(unit.exercises || []),
                             ...(unit.lessons || []).flatMap(lesson => lesson.exercises || [])

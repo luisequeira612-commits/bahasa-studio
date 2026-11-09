@@ -105,9 +105,9 @@ test('phase four layout uses one spacing rule, a separated red progress ring and
   assert.match(route, /const nodeStep = nodeDiameter \+ 18/);
   assert.match(route, /const currentTitleExtra = 38/);
   assert.match(route, /const currentBubbleClearance = 56/);
-  assert.match(route, /if \\(isCurrent && index > 0\\) nextNodeTop \\+= currentBubbleClearance/);
+  assert.ok(route.includes('if (isCurrent && index > 0) nextNodeTop += currentBubbleClearance'));
   assert.match(route, /let nextNodeTop = nodeRadius \+ 24/);
-  assert.match(route, /nextNodeTop \\+= currentBubbleClearance/);
+  assert.ok(route.includes('nextNodeTop += currentBubbleClearance'));
   assert.match(route, /node\.style\.width = '56px'/);
   assert.match(route, /node\.style\.height = '56px'/);
   assert.match(route, /node\.style\.outline = 'none'/);
@@ -125,7 +125,7 @@ test('phase four layout uses one spacing rule, a separated red progress ring and
   assert.ok(route.includes("currentTitle.style.whiteSpace = 'normal'"));
   assert.ok(route.includes("currentTitle.style.webkitLineClamp = '2'"));
   assert.ok(route.includes("currentTitle.style.maxHeight = '30px'"));
-  assert.match(route, /const targetTop = stickyTop \+ banner\.getBoundingClientRect\(\)\.height \+ 12/);
+  assert.ok(route.includes('const targetTop = stickyTop + banner.getBoundingClientRect().height + 12'));
   const css = await read('styles.css');
   assert.match(css, /prefers-reduced-motion:reduce/);
 });

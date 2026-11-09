@@ -93,7 +93,7 @@ test('nodes, bubble and sheet have 44px targets and motion respects reduced-moti
 
 test('phase four increments the offline cache without changing the storage schema', async () => {
   const [sw, html] = await Promise.all([read('service-worker.js'), read('index.html')]);
-  assert.match(sw, /bahasa-studio-v3\.8\.74/);
+  assert.match(sw, /bahasa-studio-v3\.8\.75/);
   assert.match(html, /completedLessons: this\.completedLessons/);
   assert.match(html, /putSetting\('completedLessons', data\.completedLessons \|\| \[\]\)/);
 });
@@ -125,7 +125,7 @@ test('phase four layout uses one spacing rule, a separated red progress ring and
   assert.match(route, /currentTitle\\.style\\.whiteSpace = 'normal'/);
   assert.match(route, /currentTitle\\.style\\.webkitLineClamp = '2'/);
   assert.match(route, /currentTitle\\.style\\.maxHeight = '30px'/);
-  assert.match(route, /const targetTop = stickyTop \\+ banner\\.getBoundingClientRect\\(\\)\\.height \\+ 12/);
+  assert.match(route, /const targetTop = stickyTop \+ banner\.getBoundingClientRect\(\)\.height \+ 12/);
   const css = await read('styles.css');
   assert.match(css, /prefers-reduced-motion:reduce/);
 });

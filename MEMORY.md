@@ -4,7 +4,7 @@
 
 ## Estado vigente
 - A1 32/32, A2 40/40 y B1 50/50 unidades completas. B2 1/60 implementada (U1); total 123/182, quedan 59 unidades B2. En la Fase 1 U1 y un único nodo «Próximamente» se muestran en el camino; la guarda de acceso a B2 sigue vigente y el PR #472 continúa separado y sin fusionar.
-- Fase actual: pulido visual de Aprender (Fase 4); desarrollo progresivo de B2 queda en pausa, sin certificación lingüística ni MCER/BIPA. A1/A2/B1 están en beta; no hay hablante nativo disponible.
+- Fase actual: Fase 5B de Aprender; PR #479 abierto, pendiente de CI y revisión antes de merge; desarrollo progresivo de B2 queda en pausa, sin certificación lingüística ni MCER/BIPA. A1/A2/B1 están en beta; no hay hablante nativo disponible.
 - B2 U1: implementada, 3 lecciones, 16 ejercicios, 5 tipos; reutiliza 9 IDs existentes y no añade vocabulario.
 - B2 U2 y U3: diseños preliminares en `docs/B2_U2_DESIGN.md` y `docs/B2_U3_DESIGN.md`. U2 espera aprobación explícita de `kubaca`, `kaubaca`, `kutulis`, `kautulis`; no asignar IDs ni incorporarlas a ejercicios evaluados antes de aprobarlas. U3 integra U1+U2 y no debe cerrarse/implementarse antes de aprobar e implementar U2.
 - B2 U4–U6: propuestas documentales en `docs/B2_U4_DESIGN.md` (`-kan`), `docs/B2_U5_DESIGN.md` (`-i`) y `docs/B2_U6_DESIGN.md` (`memper-`). El bloque temático está aprobado, pero no los ejemplos, desglose ni implementación específicos.
@@ -31,7 +31,7 @@
 - En B2, enseñar agente, participante afectado, foco y contexto. No etiquetar universalmente `ku-/kau-` como pasiva ni inferir tiempo/aspecto solo por la forma. No tratar estos clíticos como contracciones simples ni duplicar el agente (p. ej., evitar `Buku itu saya kubaca`). Glosas españolas neutrales en tiempo: «Ese libro lo leo / lo leí, según el contexto».
 - Investigación extensa de las cuatro formas de U2 (fuentes oficiales, académicas, literarias y didácticas; alcances y cautelas) está en `docs/B2_U2_DESIGN.md`. Respalda morfología/uso escrito, pero no resuelve frecuencia ni registro conversacional neutro; no sustituye la aprobación del dueño.
 
-- 9 nov 2026: Fase 5B en implementación: paleta de marca azul/blanco, cabecera Aprender compactada con chip de nivel y hoja de herramientas, sin cambios de lógica/progreso/IndexedDB/backup v3; SW previsto v3.8.76. PR #472 sigue abierto.
+- 9 nov 2026: PR #479 abierto para Fase 5B: paleta azul/blanco, cabecera compacta con chip de nivel y hoja de herramientas, SVG de altavoces y SW v3.8.76; sin cambios de lógica/progreso/IndexedDB/backup v3. PR #472 sigue abierto.
 
 ## Git y flujo de trabajo
 - Nunca trabajar directamente en `main`. Una rama por cambio y PR.

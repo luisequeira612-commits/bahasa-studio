@@ -41,6 +41,8 @@ test('assessment page renders questions, scores closed answers and flags open re
   page.on('pageerror', error => errors.push(error.message));
   try {
     await page.goto(url);
+    assert.equal(await page.title(), 'Evaluación de dominio · Guardi');
+    assert.equal(await page.locator('header a').innerText(), '← Guardi');
     assert.deepEqual(await page.locator('#level option').evaluateAll(options => options.map(option => option.value)), ['A1'],
       'the student-facing selector must expose A1 only until A1 is validated');
     await page.getByRole('button', { name: 'Comenzar evaluación' }).click();

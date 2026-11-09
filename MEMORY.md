@@ -145,3 +145,10 @@
 - 9 nov 2026: se corrigió el matcher de la etiqueta `<style>` en la prueba de extracción para que use el límite de palabra correcto; sigue exigiendo exactamente un bloque con id `learning-phase-5b-overrides`.
 
 - 9 nov 2026: el CI del head `0161c78` pasó las pruebas unitarias/regresión (78/78) y los informes offline, pero el navegador detectó E2E heredados que aún buscaban selectores y accesos a herramientas eliminados en Fase 5B, fijaban el acento rojo y simulaban la caché antigua con la versión equivocada. Se actualizaron para usar el botón compacto, la hoja de herramientas, la paleta azul y una migración real v3.8.71 → v3.8.77; no se modificó código de producto, progreso, IndexedDB ni backup v3. El nuevo CI debe confirmar todos los escenarios antes de integrar #480 en #479.
+
+
+## Ajustes puntuales posteriores a Fase 5B — PR en revisión (9 nov 2026)
+- PR de corrección creado desde `main` después de fusionar #479/#481; no fusionar sin autorización explícita del dueño.
+- Alcance limitado a tres defectos reportados a 360 px: eliminar cualquier fondo propio de los SVG de las cuatro pestañas (activa/inactiva); sustituir el icono tipo copo del botón por cuadrícula 2×2 conservando `aria-label="Herramientas"` y objetivo 44×44; y convertir el selector de nivel en chip único con borde/relieve, anillo, A1 y chevron visible a 360 px. En pantallas estrechas, la racha se muestra como número y XP como `0/30 XP`, conservando el texto completo en title/aria-label; el topbar mantiene 14 px de margen lateral y debe ajustarse con «Bahasa Studio» y «Guardi».
+- Service worker actualizado de caché `v3.8.77` a `v3.8.78`. Sin cambios de lógica de progreso, XP, desbloqueos, salto de emergencia, IndexedDB, backup JSON v3, dependencias o currículo.
+- Las pruebas Chromium específicas de 360×740 se amplían para comprobar los cuatro estados activos/inactivos, el chip con chevron y márgenes, etiquetas accesibles completas, el botón Herramientas y las cuatro hojas/niveles. Capturas y validación final quedan sujetas al CI del head de esta PR; la prueba física offline/actualización en el teléfono no se considera realizada.

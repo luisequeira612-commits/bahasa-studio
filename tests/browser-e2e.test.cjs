@@ -65,7 +65,7 @@ test('real Chromium preserves progress on reload and safely imports valid/invali
 
   try {
     await page.goto(url, { waitUntil: 'domcontentloaded' });
-    await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
+    await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db, null, { timeout: 15000 });
 
     await page.evaluate(async () => {
       await DB.set('settings', 'userXp', 12);
@@ -458,7 +458,7 @@ test('service worker upgrades an old installed cache without clearing local prog
   const currentIndex = fs.readFileSync(path.join(root, 'index.html'));
   const currentWorker = fs.readFileSync(path.join(root, 'service-worker.js'));
   const oldIndex = Buffer.from(currentIndex.toString().replace('<head>', '<head>\\n<!-- legacy-app-shell -->'));
-  const oldWorker = Buffer.from(currentWorker.toString().replace('bahasa-studio-v3.8.72', 'bahasa-studio-v3.8.71'));
+  const oldWorker = Buffer.from(currentWorker.toString().replace('bahasa-studio-v3.8.73', 'bahasa-studio-v3.8.71'));
   let servedVersion = 'old';
   const { server, url } = await startServer({
     '/': () => servedVersion === 'old' ? oldIndex : currentIndex,
@@ -471,20 +471,24 @@ test('service worker upgrades an old installed cache without clearing local prog
   try {
     await page.goto(url, { waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
-    await page.waitForFunction(() => Boolean(navigator.serviceWorker.controller), { timeout: 10000 });
+    await page.waitForFunction(() => Boolean(navigator.serviceWorker.controller), null, { timeout: 15000 });
     await page.evaluate(async () => {
       await DB.set('settings', 'completedUnits', ['a2_u1']);
       await DB.set('settings', 'completedLessons', ['a2_u1::0']);
       await navigator.serviceWorker.ready;
     });
-    await page.waitForFunction(async () => (await caches.keys()).includes('bahasa-studio-v3.8.71'));
+    await page.waitForFunction(async () => (await caches.keys()).includes('bahasa-studio-v3.8.71'), null, { timeout: 15000 });
     assert.equal(await page.locator('html').evaluate(node => node.innerHTML.includes('legacy-app-shell')), true,
       'the first launch should use the simulated older installed shell');
 
     servedVersion = 'new';
     await page.evaluate(async () => {
-      const controllerChanged = new Promise(resolve => {
-        navigator.serviceWorker.addEventListener('controllerchange', resolve, { once: true });
+      const controllerChanged = new Promise((resolve, reject) => {
+        const timeout = setTimeout(() => reject(new Error('Service worker update did not claim the page within 15 seconds')), 15000);
+        navigator.serviceWorker.addEventListener('controllerchange', () => {
+          clearTimeout(timeout);
+          resolve();
+        }, { once: true });
       });
       const registration = await navigator.serviceWorker.getRegistration();
       await registration.update();
@@ -492,8 +496,8 @@ test('service worker upgrades an old installed cache without clearing local prog
     });
     await page.waitForFunction(async () => {
       const keys = await caches.keys();
-      return keys.includes('bahasa-studio-v3.8.72') && !keys.includes('bahasa-studio-v3.8.71');
-    }, { timeout: 15000 });
+      return keys.includes('bahasa-studio-v3.8.73') && !keys.includes('bahasa-studio-v3.8.71');
+    }, null, { timeout: 15000 });
 
     await page.reload({ waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined');
@@ -634,8 +638,7 @@ test('daily XP goals and study streaks persist across reloads', async () => {
     await page.evaluate(() => App.addXp(45));
     await page.waitForFunction(() => App.studyActivity && App.studyActivity.todayXp === 55);
     assert.equal(await page.locator('#studyDailyXpText').innerText(), 'Meta: 55 XP hoy');
-    assert.equal(await page.locator('#dailyGoalPercent').innerText(), '✓');
-    assert.match(await page.locator('#dailyGoalRing').getAttribute('aria-label'), /100% completado/);
+    assert.match(await page.locator('#levelProgressRing').getAttribute('aria-label'), /nivel A1 seleccionado/);
     assert.equal(await page.locator('#studyStreakText').innerText(), '1 día');
     assert.equal(await page.locator('#studyLessonsTodayText').innerText(), '1 lección hoy');
     assert.equal(await page.locator('#studyReviewsTodayText').innerText(), '1 tarjeta repasada hoy');

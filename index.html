@@ -12,15 +12,14 @@
 <body>
 
     <header class="app-topbar">
-        <div class="logo"><span aria-hidden="true">🇮🇩</span><span>Bahasa Studio</span></div>
-        <div class="topbar-metrics" aria-label="Tu actividad">
-            <span class="topbar-streak" title="Racha actual">🔥 <strong id="studyStreakText">0 días</strong></span>
-            <span class="topbar-xp" title="Meta diaria de XP">⚡ <strong id="studyDailyXpText">Meta: 0/30 XP</strong></span>
-            <button class="daily-goal-ring" id="dailyGoalRing" type="button" title="Meta diaria de XP" aria-label="Meta diaria: 0 de 30 XP" aria-expanded="false" aria-controls="dailyGoalHelp" aria-describedby="dailyGoalHelp" onclick="App.toggleDailyGoalHelp()">
-                <span class="daily-goal-ring-inner"><span id="dailyGoalPercent">0%</span></span>
-                <span id="studyDailyXpFill" class="progress-fill" aria-hidden="true"></span>
-            </button>
-        <p id="dailyGoalHelp" class="daily-goal-help" hidden>El anillo muestra el porcentaje de tu meta diaria de XP completado hoy. La cifra junto al rayo indica tus XP de hoy frente a la meta.</p>
+        <div class="logo"><svg class="brand-mark ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v6H4z" fill="#c92a40" stroke="none"/><path d="M4 12h16v6H4z" fill="#fff" stroke="none"/><rect x="3.5" y="5.5" width="17" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="1.2"/></svg><span>Bahasa Studio</span></div>
+        <div class="topbar-metrics" aria-label="Tu actividad y progreso">
+            <span class="topbar-chip topbar-streak" title="Racha actual"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.2 2.8c.7 3.1-.6 4.8-2.2 6.2-1.4 1.2-2.8 2.5-2.8 5a4.8 4.8 0 0 0 9.6 0c0-2.1-.8-4.1-2.7-6.2.1 2.1-.7 3.1-1.6 3.8.1-3.4-.7-6.1-3.2-8.8Z"/><path d="M12 13.2c-1.1 1-1.7 1.9-1.7 3a1.7 1.7 0 0 0 3.4 0c0-1.1-.6-2-1.7-3Z"/></svg><strong id="studyStreakText">0 días</strong></span>
+            <span class="topbar-chip topbar-xp" title="XP de hoy frente a tu meta"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m13.2 2.5-8 11h5.6l-.5 8 8.5-12h-5.7l.1-7Z"/></svg><strong id="studyDailyXpText">Meta: 0/30 XP</strong></span>
+            <span class="level-progress-wrap" title="Progreso del nivel seleccionado">
+                <span class="level-progress-ring" id="levelProgressRing" role="img" aria-label="Progreso del nivel A1 seleccionado: 0 de 32 unidades completadas (0%)"><span class="level-progress-ring-inner" id="levelProgressPercent">0%</span></span>
+                <span class="level-progress-level" id="levelProgressLevel">A1</span>
+            </span>
         </div>
     </header>
 
@@ -33,9 +32,9 @@
             <button type="button" class="learning-level-button" data-level="B2" onclick="App.selectLearningLevel('B2')">B2</button>
         </div>
         <div class="learning-tools-row" role="group" aria-label="Herramientas de aprendizaje">
-            <button class="learning-tool-button" type="button" data-tool-target="aiGeneratorDrawer" aria-controls="aiGeneratorDrawer" aria-expanded="false" onclick="App.toggleLearningTool('aiGeneratorDrawer')"><span aria-hidden="true">✨</span><span>Generador</span></button>
-            <button class="learning-tool-button" type="button" data-tool-target="writingPracticeDrawer" aria-controls="writingPracticeDrawer" aria-expanded="false" onclick="App.toggleLearningTool('writingPracticeDrawer')"><span aria-hidden="true">📓</span><span>Cuaderno</span></button>
-            <button class="learning-tool-button" type="button" data-tool-target="conversationPracticeDrawer" aria-controls="conversationPracticeDrawer" aria-expanded="false" onclick="App.toggleLearningTool('conversationPracticeDrawer')"><span aria-hidden="true">💬</span><span>Conversar</span></button>
+            <button class="learning-tool-button" type="button" data-tool-target="aiGeneratorDrawer" aria-controls="aiGeneratorDrawer" aria-expanded="false" onclick="App.toggleLearningTool('aiGeneratorDrawer')"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 1.8 7.2L21 11l-7.2 1.8L12 20l-1.8-7.2L3 11l7.2-1.8L12 2Z"/><path d="m19 16 .8 2.2L22 19l-2.2.8L19 16Z"/></svg><span>Generador</span></button>
+            <button class="learning-tool-button" type="button" data-tool-target="writingPracticeDrawer" aria-controls="writingPracticeDrawer" aria-expanded="false" onclick="App.toggleLearningTool('writingPracticeDrawer')"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3.5h11l3 3V21H5z"/><path d="M15.5 3.5V7H19M8 11h8M8 15h8M8 18h5"/></svg><span>Cuaderno</span></button>
+            <button class="learning-tool-button" type="button" data-tool-target="conversationPracticeDrawer" aria-controls="conversationPracticeDrawer" aria-expanded="false" onclick="App.toggleLearningTool('conversationPracticeDrawer')"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5H7l-4 2v-5.5A7.5 7.5 0 1 1 20 11.5Z"/><path d="M8 11.5h.01M12.5 11.5h.01M17 11.5h.01"/></svg><span>Conversar</span></button>
         </div>
 
         <details class="feature-drawer learning-tool-panel" id="aiGeneratorDrawer">
@@ -381,16 +380,16 @@
     <!-- NAVEGACIÓN PRINCIPAL: cuatro destinos -->
     <nav class="nav-bottom" aria-label="Navegación principal">
         <button class="nav-btn active" data-nav-group="learn" aria-current="page" onclick="App.switchView('route', this)">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/></svg><span>Aprender</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1V10Z"/></svg><span>Aprender</span>
         </button>
         <button class="nav-btn" data-nav-group="review" onclick="App.switchView('srs', this)">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg><span>Repasar</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v17H6.5A2.5 2.5 0 0 1 4 17.5z"/><path d="M4 6h12M8 8.5h8M8 12h7M8 15.5h6"/></svg><span>Repasar</span>
         </button>
         <button class="nav-btn" data-nav-group="tutor" onclick="App.switchView('ai', this)">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM9 11H7V9h2v2zm4 0h-2V9h2v2zm4 0h-2V9h2v2z"/></svg><span>Tutor</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5H7l-4 2v-5.5A7.5 7.5 0 1 1 20 11.5Z"/><path d="M8 11.5h.01M12.5 11.5h.01M17 11.5h.01"/></svg><span>Tutor</span>
         </button>
         <button class="nav-btn" data-nav-group="profile" onclick="App.switchView('profile', this)">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0 2c-4.42 0-8 2.24-8 5v1h16v-1c0-2.76-3.58-5-8-5z"/></svg><span>Perfil</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>Perfil</span>
         </button>
     </nav>
 
@@ -6612,6 +6611,14 @@ Requisitos:
                 this.scrollToCurrentUnit(false);
                 const unitSheet = document.getElementById('unitBottomSheet');
                 if (unitSheet) {
+                    const unitOverlay = document.getElementById('unitSheetOverlay');
+                    if (unitOverlay) unitOverlay.addEventListener('animationend', event => {
+                        if (event.target === unitSheet && event.animationName === 'unit-sheet-slide-out' && unitOverlay.classList.contains('is-closing')) {
+                            unitOverlay.hidden = true;
+                            unitOverlay.classList.remove('is-closing');
+                            document.body.classList.remove('unit-sheet-open');
+                        }
+                    });
                     unitSheet.addEventListener('touchstart', event => {
                         this.unitSheetTouchStart = event.touches[0].clientY;
                     }, { passive: true });
@@ -6700,14 +6707,7 @@ Requisitos:
                 });
                 panel.open = shouldOpen;
             },
-            toggleDailyGoalHelp() {
-                const ring = document.getElementById('dailyGoalRing');
-                const help = document.getElementById('dailyGoalHelp');
-                if (!ring || !help) return;
-                const expanded = ring.getAttribute('aria-expanded') === 'true';
-                ring.setAttribute('aria-expanded', String(!expanded));
-                help.hidden = expanded;
-            },
+
             scrollToCurrentUnit(smooth = true) {
                 const current = document.querySelector('#courseContainer .learning-unit-node[data-path-state="current"]');
                 if (!current || !document.getElementById('view-route').classList.contains('active')) {
@@ -6830,16 +6830,6 @@ Requisitos:
                 if (goalSelect && goalSelect.value !== String(goal)) goalSelect.value = String(goal);
                 if (xpText) xpText.textContent = earned >= goal ? 'Meta: ' + earned + ' XP hoy' : 'Meta: ' + earned + '/' + goal + ' XP';
                 if (xpFill) xpFill.style.width = percent + '%';
-                const goalRing = document.getElementById('dailyGoalRing');
-                const goalPercent = document.getElementById('dailyGoalPercent');
-                if (goalRing) {
-                    goalRing.setAttribute('aria-label', 'Meta diaria: ' + earned + ' de ' + goal + ' XP, ' + percent + '% completado');
-                    goalRing.style.setProperty('--goal-progress', percent + '%');
-                }
-                if (goalPercent) {
-                    goalPercent.textContent = percent >= 100 ? '✓' : percent + '%';
-                    goalPercent.classList.toggle('is-complete', percent >= 100);
-                }
                 if (xpBar) xpBar.setAttribute('aria-valuenow', String(percent));
                 if (status) status.textContent = earned >= goal ? '¡Objetivo diario cumplido!' : 'Te faltan ' + (goal - earned) + ' XP para alcanzar tu objetivo.';
                 if (lessons) lessons.textContent = this.studyActivity.todayLessons + (this.studyActivity.todayLessons === 1 ? ' lección hoy' : ' lecciones hoy');
@@ -6906,6 +6896,7 @@ Requisitos:
                     )) {
                         this.selectedLearningLevel = getCurrentLearningLevelId();
                     }
+                    this.recentlyCompletedUnitId = unitId;
                     this.renderCourseRoute();
                 }
             },
@@ -6994,6 +6985,7 @@ Requisitos:
                     '<button class="btn btn-outline unit-sheet-grammar-toggle" type="button" onclick="App.toggleUnitGrammar()">Ver gramática</button>' +
                     '<div id="unitSheetGrammar" class="unit-sheet-grammar" hidden>' + App.escapeHtml(unit.grammar || 'No hay notas gramaticales para esta unidad.') + '</div>';
                 const overlay = document.getElementById('unitSheetOverlay');
+                overlay.classList.remove('is-closing');
                 overlay.hidden = false;
                 document.body.classList.add('unit-sheet-open');
                 const close = overlay.querySelector('.unit-sheet-close');
@@ -7020,8 +7012,17 @@ Requisitos:
             },
             closeUnitSheet() {
                 const overlay = document.getElementById('unitSheetOverlay');
-                if (overlay) overlay.hidden = true;
-                document.body.classList.remove('unit-sheet-open');
+                if (!overlay || overlay.hidden) {
+                    document.body.classList.remove('unit-sheet-open');
+                    return;
+                }
+                if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                    overlay.hidden = true;
+                    overlay.classList.remove('is-closing');
+                    document.body.classList.remove('unit-sheet-open');
+                    return;
+                }
+                overlay.classList.add('is-closing');
             },
             handleUnitSheetBackdrop(event) {
                 if (event.target && event.target.id === 'unitSheetOverlay') this.closeUnitSheet();
@@ -7101,6 +7102,19 @@ Requisitos:
                 if (!container) return;
                 container.replaceChildren();
                 const level = CourseData.levels.find(entry => entry.id === this.selectedLearningLevel);
+                const visibleUnits = level ? (level.id === 'B2' ? level.units.slice(0, 1) : level.units) : [];
+                const levelProgressRing = document.getElementById('levelProgressRing');
+                const levelProgressPercent = document.getElementById('levelProgressPercent');
+                const levelProgressLevel = document.getElementById('levelProgressLevel');
+                const levelTotal = visibleUnits.length;
+                const levelCompleted = levelTotal ? visibleUnits.filter(unit => getUnitProgressState(level, unit).completed).length : 0;
+                const levelPercent = levelTotal ? Math.round(levelCompleted / levelTotal * 100) : 0;
+                if (levelProgressRing) {
+                    levelProgressRing.style.setProperty('--level-progress', levelPercent + '%');
+                    levelProgressRing.setAttribute('aria-label', 'Progreso del nivel ' + (level ? level.id : 'seleccionado') + ' seleccionado: ' + levelCompleted + ' de ' + levelTotal + ' unidades completadas (' + levelPercent + '%)');
+                }
+                if (levelProgressPercent) levelProgressPercent.textContent = levelPercent + '%';
+                if (levelProgressLevel) levelProgressLevel.textContent = level ? level.id : '—';
                 if (!level || !level.units.length) {
                     container.innerHTML = '<section class="learning-empty-state"><strong>Próximamente</strong><p>Este nivel todavía no tiene unidades disponibles.</p></section>';
                     this.populateEmergencyUnitSelect();
@@ -7112,13 +7126,16 @@ Requisitos:
                     return;
                 }
 
-                const heading = document.createElement('div');
-                heading.className = 'learning-level-heading';
-                heading.innerHTML = '<div><p class="eyebrow">TU CAMINO</p><h2>' + App.escapeHtml(level.title) + '</h2></div>' +
-                    (level.id === 'A2' ? '<span class="badge">Beta · en revisión</span>' : '') +
-                    (level.id === 'B2' ? '<span class="badge">En desarrollo</span>' : '');
-                container.appendChild(heading);
+                if (level.id === 'B2') {
+                    const developmentStatus = document.createElement('div');
+                    developmentStatus.innerHTML = '<span class="badge">En desarrollo</span>';
+                    container.appendChild(developmentStatus);
+                }
                 if (level.id === 'A2') {
+                    const betaBadge = document.createElement('span');
+                    betaBadge.className = 'badge';
+                    betaBadge.textContent = 'Beta · en revisión';
+                    container.appendChild(betaBadge);
                     const betaNote = document.createElement('p');
                     betaNote.className = 'learning-level-note';
                     betaNote.textContent = 'Disponible en beta sin requisito de completar A1. El contenido A2 está en revisión interna; puede contener errores y no ha sido validado por hablantes nativos. Tus comentarios ayudan a mejorarlo.';
@@ -7126,7 +7143,6 @@ Requisitos:
                 }
 
                 const positions = [50, 78, 50, 22, 50, 78, 50, 22];
-                const visibleUnits = level.id === 'B2' ? level.units.slice(0, 1) : level.units;
                 const emergencySkipId = getEmergencyUnitSkips()[0];
                 const currentUnit = visibleUnits.find(unit => unit.id === emergencySkipId && !getUnitProgressState(level, unit).completed) ||
                     visibleUnits.find(unit => isUnitUnlocked(level, unit) && !getUnitProgressState(level, unit).completed);
@@ -7137,25 +7153,13 @@ Requisitos:
                     const completed = units.filter(unit => getUnitProgressState(level, unit).completed).length;
                     const firstNumber = offset + 1;
                     const lastNumber = offset + units.length;
-                    section.innerHTML = '<div class="unit-path-section-banner"><div><h3>Unidades ' + firstNumber + '–' + lastNumber + '</h3><p>Avanza unidad por unidad</p></div><strong>' + completed + '/' + units.length + '</strong></div>';
+                    const sectionNumber = Math.floor(offset / 8) + 1;
+                    const sectionPercent = units.length ? Math.round(completed / units.length * 100) : 0;
+                    section.innerHTML = '<div class="unit-path-section-banner"><div class="unit-path-section-heading"><h3>Sección ' + sectionNumber + '</h3><p>Unidades ' + firstNumber + '–' + lastNumber + '</p></div><strong class="unit-section-count">' + completed + '/' + units.length + '</strong><div class="unit-section-progress" role="progressbar" aria-label="Progreso de Sección ' + sectionNumber + '" aria-valuemin="0" aria-valuemax="' + units.length + '" aria-valuenow="' + completed + '"><span style="width:' + sectionPercent + '%"></span></div></div>';
                     const stage = document.createElement('div');
                     stage.className = 'unit-path-stage';
-                    const stageHeight = units.length * 82 + 28;
+                    const stageHeight = units.length * 82 + 92;
                     stage.style.height = stageHeight + 'px';
-                    const pathPoints = units.map((unit, index) => positions[index] + ',' + (38 + index * 82)).join(' ');
-                    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-                    svg.setAttribute('class', 'unit-path-line');
-                    svg.setAttribute('viewBox', '0 0 100 ' + stageHeight);
-                    svg.setAttribute('preserveAspectRatio', 'none');
-                    const polyline = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
-                    polyline.setAttribute('points', pathPoints);
-                    polyline.setAttribute('fill', 'none');
-                    polyline.setAttribute('stroke', 'currentColor');
-                    polyline.setAttribute('stroke-width', '2.4');
-                    polyline.setAttribute('stroke-linecap', 'round');
-                    polyline.setAttribute('stroke-linejoin', 'round');
-                    svg.appendChild(polyline);
-                    stage.appendChild(svg);
 
                     units.forEach((unit, index) => {
                         const progress = getUnitProgressState(level, unit);
@@ -7167,16 +7171,51 @@ Requisitos:
                         node.className = 'learning-unit-node node-' + state;
                         node.dataset.pathState = state;
                         node.dataset.unitId = unit.id;
+                        const nodeTop = 84 + index * 82;
                         node.style.left = positions[index] + '%';
-                        node.style.top = (38 + index * 82) + 'px';
-                        node.textContent = progress.completed ? '✓' : state === 'locked' ? '🔒' : String(offset + index + 1);
-                        node.setAttribute('aria-label', unit.title + (progress.completed ? ', completada' : isCurrent ? ', unidad actual' : unlocked ? ', disponible por salto de emergencia' : ', bloqueada'));
+                        node.style.top = nodeTop + 'px';
+                        if (isCurrent) {
+                            const lessonPercent = progress.lessons.length ? Math.round(progress.completedLessonCount / progress.lessons.length * 100) : 0;
+                            const circumference = 179.07;
+                            const dashOffset = (circumference * (1 - lessonPercent / 100)).toFixed(2);
+                            node.innerHTML = '<svg class="node-progress-ring" viewBox="0 0 68 68" aria-hidden="true"><circle class="node-progress-track" cx="34" cy="34" r="28.5"/><circle class="node-progress-value" cx="34" cy="34" r="28.5" stroke-dasharray="' + circumference + '" stroke-dashoffset="' + dashOffset + '"/></svg><span class="node-number">' + (offset + index + 1) + '</span>';
+                        } else if (progress.completed) {
+                            node.innerHTML = '<svg class="node-state-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>';
+                        } else if (state === 'locked') {
+                            node.innerHTML = '<svg class="node-state-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>';
+                        } else {
+                            node.textContent = String(offset + index + 1);
+                        }
+                        const progressLabel = progress.completedLessonCount + ' de ' + progress.lessons.length + ' lecciones';
+                        node.setAttribute('aria-label', unit.title + (progress.completed ? ', completada' : isCurrent ? ', unidad actual, ' + progressLabel + ' completadas' : unlocked ? ', disponible por salto de emergencia' : ', bloqueada'));
+                        if (this.recentlyCompletedUnitId === unit.id) {
+                            node.classList.add('just-completed', 'unit-complete-celebration');
+                            this.recentlyCompletedUnitId = null;
+                        }
                         node.addEventListener('click', () => this.openUnitSheet(unit.id));
                         stage.appendChild(node);
+                        if (isCurrent) {
+                            const startBubble = document.createElement('button');
+                            startBubble.type = 'button';
+                            startBubble.className = 'current-unit-start-bubble';
+                            startBubble.style.left = positions[index] + '%';
+                            startBubble.style.top = (nodeTop - 36) + 'px';
+                            startBubble.innerHTML = 'EMPEZAR <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v15m-6-6 6 6 6-6"/></svg>';
+                            startBubble.setAttribute('aria-label', 'Empezar ' + unit.title + '; abrir detalles de la unidad');
+                            startBubble.addEventListener('click', () => this.openUnitSheet(unit.id));
+                            stage.appendChild(startBubble);
+                            const currentTitle = document.createElement('div');
+                            currentTitle.className = 'current-unit-title';
+                            currentTitle.style.left = positions[index] + '%';
+                            currentTitle.style.top = (nodeTop + 43) + 'px';
+                            currentTitle.textContent = unit.title;
+                            stage.appendChild(currentTitle);
+                        }
                     });
                     section.appendChild(stage);
                     container.appendChild(section);
                 }
+                if (this.recentlyCompletedUnitId) this.recentlyCompletedUnitId = null;
 
                 if (level.id === 'B2') {
                     const placeholder = document.createElement('div');

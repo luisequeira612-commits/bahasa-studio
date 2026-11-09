@@ -939,3 +939,79 @@ body.unit-sheet-open { overflow: hidden; }
     .learning-tools-row { gap:6px; margin-bottom:8px; }
     .learning-tool-button { min-height:46px; font-size:.68rem; }
 }
+
+/* Fase 4 — pulido visual de Aprender: iconografía, progreso y camino. */
+.ui-icon { width:18px; height:18px; flex:0 0 auto; fill:none; stroke:currentColor; stroke-width:1.9; stroke-linecap:round; stroke-linejoin:round; }
+.brand-mark { width:23px; height:23px; stroke:none; }
+.app-topbar { min-height:58px; flex-wrap:nowrap; }
+.app-topbar .logo { gap:6px; }
+.topbar-metrics { gap:6px; }
+.topbar-chip { display:inline-flex; align-items:center; justify-content:center; gap:4px; min-height:34px; padding:5px 7px; border:1px solid var(--border); border-radius:999px; background:var(--bg-card); color:var(--text-main); font-size:.72rem; line-height:1; white-space:nowrap; }
+.topbar-chip .ui-icon { width:15px; height:15px; }
+.level-progress-wrap { display:flex; align-items:center; gap:4px; min-height:36px; color:var(--text-main); font-size:.7rem; font-weight:800; }
+.level-progress-ring { --level-progress:0%; display:grid; place-items:center; flex:0 0 36px; width:36px; height:36px; border-radius:50%; background:conic-gradient(var(--brand-red) var(--level-progress),var(--bg-card) 0); }
+.level-progress-ring-inner { display:grid; place-items:center; width:27px; height:27px; border-radius:50%; background:var(--bg-secondary); color:var(--text-main); font-size:.58rem; font-weight:900; font-variant-numeric:tabular-nums; }
+.level-progress-level { min-width:18px; }
+@media (max-width:380px) {
+    .app-topbar { padding-inline:8px; gap:5px; }
+    .app-topbar .logo { gap:4px; font-size:.82rem; }
+    .topbar-metrics { gap:3px; font-size:.64rem; }
+    .topbar-chip { gap:3px; min-height:31px; padding:4px 5px; font-size:.62rem; }
+    .topbar-chip .ui-icon { width:13px; height:13px; }
+    .level-progress-wrap { gap:3px; font-size:.62rem; }
+    .level-progress-ring { flex-basis:32px; width:32px; height:32px; }
+    .level-progress-ring-inner { width:24px; height:24px; font-size:.55rem; }
+}
+.learning-level-selector { top:58px; }
+.unit-path-section-banner { position:sticky; top:118px; z-index:24; display:grid; grid-template-columns:minmax(0,1fr) auto; gap:4px 12px; padding:12px 14px 10px; border:0; border-radius:14px; background:#285a78; color:#fff; box-shadow:0 3px 0 rgba(0,0,0,.12); }
+.unit-path-section-banner h3 { color:#fff; font-size:.98rem; font-weight:850; }
+.unit-path-section-banner p { margin:2px 0 0; color:#fff; font-size:.76rem; }
+.unit-section-count { color:#fff; font-size:.9rem; font-variant-numeric:tabular-nums; }
+.unit-section-progress { grid-column:1 / -1; height:5px; overflow:hidden; border-radius:99px; background:rgba(255,255,255,.24); }
+.unit-section-progress span { display:block; height:100%; border-radius:inherit; background:#fff; }
+.unit-path-stage { margin-top:8px; }
+.unit-path-line { display:none; }
+.learning-unit-node { border:0; border-bottom:5px solid #9ca3af; box-shadow:0 2px 0 rgba(0,0,0,.1); transition:transform .12s ease,border-bottom-width .12s ease,box-shadow .12s ease; }
+.learning-unit-node.node-completed { border:0; border-bottom:5px solid #0d6036; background:#16834b; color:#fff; }
+.learning-unit-node.node-current { border:0; border-bottom:5px solid #8f1e31; outline:3px solid var(--brand-red); outline-offset:1px; background:var(--brand-red); color:#fff; box-shadow:0 3px 0 rgba(0,0,0,.14); }
+.learning-unit-node.node-locked { border:0; border-bottom:5px solid #7b8492; background:#e5e7eb; color:#374151; filter:none; }
+.learning-unit-node.node-available { border:0; border-bottom:5px solid #8d98a7; background:#f3f4f6; color:#374151; }
+.learning-unit-node:active { transform:translate(-50%,-50%) translateY(4px); border-bottom-width:2px; }
+.node-progress-ring { position:absolute; inset:0; width:100%; height:100%; overflow:visible; transform:rotate(-90deg); pointer-events:none; }
+.node-progress-track,.node-progress-value { fill:none; stroke-width:4; }
+.node-progress-track { stroke:rgba(255,255,255,.3); }
+.node-progress-value { stroke:#fff; stroke-linecap:round; }
+.node-number { position:relative; z-index:1; }
+.node-state-icon { width:24px; height:24px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+.current-unit-start-bubble { position:absolute; z-index:3; display:inline-flex; align-items:center; justify-content:center; gap:5px; min-width:112px; min-height:44px; padding:0 12px; border:0; border-bottom:4px solid #8f1e31; border-radius:999px; background:var(--brand-red); color:#fff; font-size:.72rem; font-weight:900; letter-spacing:.04em; box-shadow:0 3px 10px rgba(0,0,0,.14); transform:translate(-50%,-100%); animation:current-unit-bubble-bob 2.2s ease-in-out infinite; touch-action:manipulation; }
+.current-unit-start-bubble .ui-icon { width:15px; height:15px; }
+.current-unit-start-bubble:active { transform:translate(-50%,-100%) translateY(3px); border-bottom-width:2px; }
+@keyframes current-unit-bubble-bob { 0%,100% { margin-top:0; } 50% { margin-top:-4px; } }
+.current-unit-title { position:absolute; z-index:2; width:min(180px,48%); transform:translateX(-50%); color:var(--text-main); font-size:.76rem; font-weight:800; line-height:1.2; text-align:center; overflow-wrap:anywhere; pointer-events:none; }
+.learning-tool-panel:not([open]) { display:none; }
+.learning-tool-panel[open] { display:block; margin:0 0 12px; }
+.learning-tool-button > .ui-icon { width:20px; height:20px; }
+.learning-tool-button { gap:3px; }
+.nav-btn { color:var(--text-muted); }
+.nav-btn svg { fill:none; stroke:currentColor; stroke-width:1.9; stroke-linecap:round; stroke-linejoin:round; padding:0; }
+.nav-btn.active { color:var(--text-main); }
+.nav-btn.active svg { padding:6px; box-sizing:content-box; border-radius:12px; background:var(--brand-red); color:#fff; stroke:#fff; }
+.unit-bottom-sheet { animation:unit-sheet-slide-in .24s cubic-bezier(.2,.75,.25,1) both; }
+.unit-sheet-overlay:not([hidden]) { animation:unit-sheet-overlay-in .2s ease-out both; }
+.unit-sheet-overlay.is-closing { animation:unit-sheet-overlay-out .18s ease-in both; }
+.unit-sheet-overlay.is-closing .unit-bottom-sheet { animation:unit-sheet-slide-out .18s ease-in both; }
+@keyframes unit-sheet-overlay-in { from { opacity:0; } to { opacity:1; } }
+@keyframes unit-sheet-overlay-out { from { opacity:1; } to { opacity:0; } }
+@keyframes unit-sheet-slide-in { from { transform:translateY(100%); } to { transform:translateY(0); } }
+@keyframes unit-sheet-slide-out { from { transform:translateY(0); } to { transform:translateY(100%); } }
+.learning-unit-node.just-completed::after { content:"✦"; position:absolute; top:-8px; right:-7px; color:#fff; font-size:1.05rem; line-height:1; text-shadow:0 1px 3px rgba(0,0,0,.3); animation:unit-complete-pop .55s ease-out both; }
+@media (max-width:380px) {
+    .unit-path-section-banner { top:112px; padding:10px 12px 9px; }
+    .current-unit-title { width:min(160px,52%); font-size:.72rem; }
+    .current-unit-start-bubble { min-width:106px; font-size:.68rem; }
+}
+@media (prefers-reduced-motion:reduce) {
+    .learning-unit-node,.current-unit-start-bubble,.nav-btn,.learning-tool-button,.unit-bottom-sheet,.unit-sheet-overlay,.unit-sheet-overlay.is-closing,.unit-sheet-overlay.is-closing .unit-bottom-sheet,.learning-unit-node.just-completed::after {
+        transition:none !important; animation:none !important;
+    }
+}

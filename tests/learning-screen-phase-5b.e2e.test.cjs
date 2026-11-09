@@ -78,7 +78,10 @@ test('phase 5B learning screen is compact, blue and preserves all level/tool ent
     assert.equal(await page.locator('#writingPracticeDrawer').evaluate(el => el.open), true);
     await page.locator('#writingPracticeDrawer').evaluate(el => el.open = false);
 
-    const colors = await page.evaluate(() => ({
+    const colors = await page.evaluate(() => {
+      App.selectedLearningLevel = 'A1';
+      App.renderCourseRoute();
+      return {
       brand: getComputedStyle(document.documentElement).getPropertyValue('--brand-red').trim(),
       current: getComputedStyle(document.querySelector('.learning-unit-node.node-current')).backgroundColor,
       completed: (() => {
@@ -91,7 +94,8 @@ test('phase 5B learning screen is compact, blue and preserves all level/tool ent
       })(),
       banner: getComputedStyle(document.querySelector('.unit-path-section-banner')).backgroundColor,
       lessonProgress: getComputedStyle(document.querySelector('#view-lesson .progress-fill')).backgroundColor
-    }));
+      };
+    });
     assert.equal(colors.brand, '#0067C6');
     assert.ok(colors.current.includes('0, 103, 198'));
     assert.ok(colors.completed.includes('0, 78, 154'));

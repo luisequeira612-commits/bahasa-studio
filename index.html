@@ -31,7 +31,7 @@
 .nav-bottom .nav-btn.active svg { background:transparent !important; color:#004A91 !important; fill:none !important; stroke:#004A91 !important; }
 .nav-bottom .nav-btn:not(.active) svg { background:transparent !important; box-shadow:none !important; }
 .learning-action-sheet-overlay { position:fixed; inset:0; z-index:5100; display:flex; align-items:flex-end; justify-content:center; padding:12px 0 0; background:rgba(15,23,42,.58); } .learning-action-sheet-overlay[hidden] { display:none; }
-.learning-action-sheet { width:min(100%,560px); max-height:min(82dvh,760px); overflow-y:auto; overscroll-behavior:contain; padding:13px 16px calc(22px + env(safe-area-inset-bottom)); border-radius:24px 24px 0 0; background:#ffffff; color:#1F2937; box-shadow:0 -8px 32px rgba(0,0,0,.2); touch-action:pan-y; animation:learning-sheet-in .24s cubic-bezier(.2,.75,.25,1) both; }
+.learning-action-sheet { position:relative; width:min(100%,560px); max-height:min(82dvh,760px); overflow-y:auto; overscroll-behavior:contain; padding:13px 16px calc(22px + env(safe-area-inset-bottom)); border-radius:24px 24px 0 0; background:#ffffff; color:#1F2937; box-shadow:0 -8px 32px rgba(0,0,0,.2); touch-action:pan-y; animation:learning-sheet-in .24s cubic-bezier(.2,.75,.25,1) both; }
 .learning-action-sheet-overlay.is-closing { animation:learning-sheet-overlay-out .18s ease-in both; } .learning-action-sheet-overlay.is-closing .learning-action-sheet { animation:learning-sheet-out .18s ease-in both; }
 .learning-sheet-grabber { width:42px; height:5px; margin:0 auto 16px; border-radius:99px; background:#8A94A3; } .learning-sheet-close { position:absolute; top:12px; right:15px; width:44px; height:44px; border:0; border-radius:50%; background:#F4F5F7; color:#1F2937; font-size:1.6rem; touch-action:manipulation; }
 .learning-action-sheet h2 { max-width:calc(100% - 48px); margin:4px 0 12px; font-size:1.2rem; } .learning-level-sheet-list,.learning-tools-sheet-list { display:grid; gap:8px; }
@@ -7099,7 +7099,8 @@ Requisitos:
                     row.className = 'learning-level-sheet-row' + (level.id === this.selectedLearningLevel ? ' selected' : '');
                     row.setAttribute('aria-current', level.id === this.selectedLearningLevel ? 'true' : 'false');
                     row.disabled = level.id === 'A2' && !A2_RELEASE_ENABLED;
-                    row.innerHTML = '<span><strong>' + App.escapeHtml(level.id) + '</strong><small>' + progress.completed + ' de ' + progress.total + ' unidades</small></span><span class="learning-level-sheet-check" aria-hidden="true">' + (level.id === this.selectedLearningLevel ? '✓' : '') + '</span>';
+                    const progressLabel = level.id === 'B2' ? 'En desarrollo' : progress.completed + ' de ' + progress.total + ' ' + (progress.total === 1 ? 'unidad' : 'unidades');
+                    row.innerHTML = '<span><strong>' + App.escapeHtml(level.id) + '</strong><small>' + progressLabel + '</small></span><span class="learning-level-sheet-check" aria-hidden="true">' + (level.id === this.selectedLearningLevel ? '✓' : '') + '</span>';
                     row.addEventListener('click', () => this.selectLearningLevel(level.id));
                     content.appendChild(row);
                 });

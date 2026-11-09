@@ -6762,6 +6762,7 @@ Requisitos:
                     this.updateJumpToCurrentVisibility();
                     return;
                 }
+                const behavior = smooth && !window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'smooth' : 'auto';
                 const section = current.closest('.unit-path-section');
                 const banner = section && section.querySelector('.unit-path-section-banner');
                 const bubble = section && section.querySelector('.current-unit-start-bubble');
@@ -6769,9 +6770,9 @@ Requisitos:
                     const stickyTop = parseFloat(getComputedStyle(banner).top) || 112;
                     const targetTop = stickyTop + banner.getBoundingClientRect().height + 12;
                     const bubbleTop = bubble.getBoundingClientRect().top;
-                    window.scrollTo({ top: Math.max(0, window.scrollY + bubbleTop - targetTop), behavior: smooth ? 'smooth' : 'auto' });
+                    window.scrollTo({ top: Math.max(0, window.scrollY + bubbleTop - targetTop), behavior });
                 } else {
-                    current.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', block: 'center' });
+                    current.scrollIntoView({ behavior, block: 'center' });
                 }
                 this.updateJumpToCurrentVisibility();
             },

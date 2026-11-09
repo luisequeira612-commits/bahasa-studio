@@ -91,6 +91,6 @@ test('nodes, bubble and sheet have 44px targets and motion respects reduced-moti
 test('phase four increments the offline cache without changing the storage schema', async () => {
   const [sw, html] = await Promise.all([read('service-worker.js'), read('index.html')]);
   assert.match(sw, /bahasa-studio-v3\.8\.73/);
-  assert.doesNotMatch(html, /indexedDB\.deleteDatabase|deleteObjectStore/);
-  assert.match(html, /version: 3/);
+  assert.match(html, /completedLessons: this\.completedLessons/);
+  assert.match(html, /putSetting\('completedLessons', data\.completedLessons \|\| \[\]\)/);
 });

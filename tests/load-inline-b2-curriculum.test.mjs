@@ -122,7 +122,7 @@ test('B2 keeps its development gate while implemented U1 unlocks sequentially af
     'B2 path visibility must not depend on the old hidden route gate');
 });
 
-test('tap translation fallback includes only implemented B2 U1/U2 authored exercises', async () => {
+test('tap translation fallback includes only implemented B2 U1/U2/U3 authored exercises', async () => {
   const { indexSource } = await loadCurricula();
   const fallbackStart = indexSource.indexOf('// Existing authored translation exercises are a fallback source');
   assert.notEqual(fallbackStart, -1, 'tap translation fallback must remain present');

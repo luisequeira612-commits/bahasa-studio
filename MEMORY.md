@@ -1,10 +1,10 @@
 # MEMORY.md — Estado de Bahasa Studio
 
-> Memoria operativa. Mantener por debajo de ~150 líneas; los detalles históricos y la evidencia extensa viven en los documentos enlazados. Última actualización: 8 nov 2026.
+> Memoria operativa. Mantener por debajo de ~150 líneas; los detalles históricos y la evidencia extensa viven en los documentos enlazados. Última actualización: 9 nov 2026.
 
 ## Estado vigente
 - A1 32/32, A2 40/40 y B1 50/50 unidades completas. B2 1/60 implementada (U1); total 123/182, quedan 59 unidades B2. En la Fase 1 U1 y un único nodo «Próximamente» se muestran en el camino; la guarda de acceso a B2 sigue vigente y el PR #472 continúa separado y sin fusionar.
-- Fase actual: desarrollo progresivo de B2, sin certificación lingüística ni MCER/BIPA. A1/A2/B1 están en beta; no hay hablante nativo disponible.
+- Fase actual: pulido visual de Aprender (Fase 4); desarrollo progresivo de B2 queda en pausa, sin certificación lingüística ni MCER/BIPA. A1/A2/B1 están en beta; no hay hablante nativo disponible.
 - B2 U1: implementada, 3 lecciones, 16 ejercicios, 5 tipos; reutiliza 9 IDs existentes y no añade vocabulario.
 - B2 U2 y U3: diseños preliminares en `docs/B2_U2_DESIGN.md` y `docs/B2_U3_DESIGN.md`. U2 espera aprobación explícita de `kubaca`, `kaubaca`, `kutulis`, `kautulis`; no asignar IDs ni incorporarlas a ejercicios evaluados antes de aprobarlas. U3 integra U1+U2 y no debe cerrarse/implementarse antes de aprobar e implementar U2.
 - B2 U4–U6: propuestas documentales en `docs/B2_U4_DESIGN.md` (`-kan`), `docs/B2_U5_DESIGN.md` (`-i`) y `docs/B2_U6_DESIGN.md` (`memper-`). El bloque temático está aprobado, pero no los ejemplos, desglose ni implementación específicos.
@@ -92,9 +92,14 @@
 
 ## Rediseño de Aprender — Fase 3 (8 nov 2026)
 - Alcance aprobado: paleta con un único rojo de marca `--brand-red:#c92a40`, contraste AA sobre fondos tintados, estados sólidos rojo/verde/gris, controles táctiles de Aprender/hoja de unidad, manifest/PWA y etiquetas duplicadas solo si existen. No tocar progreso, desbloqueos, salto de emergencia, IndexedDB ni backup v3; no tocar colores de acierto/error.
-- Rama `feat/learning-screen-phase-3`, creada desde `main` posterior a #474. PR [#475](https://github.com/luisequeira612-commits/bahasa-studio/pull/475) sigue abierto y sin merge. Head vigente `73a2cbba1b983fc3825383af9699fba1c2264b16`. CI run #1882 / #42541329842 verde sobre ese head: `test` y `Offline quality reports` completados en éxito.
+- Rama `feat/learning-screen-phase-3`, creada desde `main` posterior a #474. PR [#475](https://github.com/luisequeira612-commits/bahasa-studio/pull/475) fusionado en `main` mediante squash `4ccf3587d374d54a32c03f4fc0bd6b0e5b647281` el 9 nov 2026. Head vigente `73a2cbba1b983fc3825383af9699fba1c2264b16`. CI run #1882 / #42541329842 verde sobre ese head: `test` y `Offline quality reports` completados en éxito.
 - Cambios: `styles.css`, `manifest.json`, `index.html` (solo meta theme-color), `icon.svg`, `service-worker.js` (`v3.8.72`), `package.json`, pruebas `tests/learning-screen-phase-3.test.mjs`, `tests/ui-redesign-phase-3.test.cjs`, `tests/browser-e2e.test.cjs`, `tests/curriculum-extraction.test.js`, `tests/regression.test.cjs`, `tests/study-history.test.cjs` y esta memoria. Sin dependencias nuevas.
 - Paleta: un único rojo `--brand-red:#c92a40`; texto secundario `#69474d`; etiquetas, títulos y adornos del camino pasan a neutros; actual rojo, completado verde, bloqueado gris sólido sin opacidad global y candado monocromático. Se conservan colores de acierto/error de ejercicios.
 - Manifest: `standalone`, `./index.html`, `scope:./`, SVG `any maskable` con zona segura revisada, `theme_color:#c92a40`, `background_color:#ffffff`. Caché SW `v3.8.72`. Chromium verifica migración `v3.8.71` → `v3.8.72` y preserva `completedUnits`/`completedLessons`; también pasa offline, backup JSON v3 y regresiones de progreso/desbloqueos/salto. Prueba de controles táctiles a 360 px pasa.
 - `.btn-sm` se eleva a 48 px solo con `#view-route .btn-sm` y `#unitBottomSheet .btn-sm`; actualmente «Elegir tema propio» es el control afectado en Aprender y no hay `.btn-sm` en la hoja. Los `.btn-sm` de Repasar, Tutor, Diccionario, Ajustes, Evaluación, Cuaderno, ejercicios y popup de vocabulario conservan los 36 px originales. Instalación Add to Home Screen/pantalla completa en Chrome Android no verificada físicamente.
 - PR #472 permanece abierto e intacto. Podrían rescatarse, si se limitan expresamente a B2 U1, la inclusión de su vocabulario en repaso/traducción y la inferencia B2 del tutor. Chocan su exposición general de B2, la eliminación de límites para todas las unidades y sus pruebas/documentación que afirman acceso completo; la regla vigente sigue siendo B2 U1 y un único nodo «Próximamente».
+
+## Rediseño de Aprender — Fase 4 (9 nov 2026)
+- Alcance: quitar bordes residuales de herramientas cerradas y encabezado duplicado; camino zigzag sin conectores; nodos 3D con progreso de lecciones de la unidad actual, burbuja «EMPEZAR» y título solo para la unidad actual; secciones sticky; iconografía SVG uniforme; métricas superiores y pestaña activa; microinteracciones con respeto a `prefers-reduced-motion`.
+- Decisiones: banner sólido azul petróleo `#285A78` (blanco 7.44:1); bloques «Sección 1», «Sección 2», etc.; tipografía del sistema (Nunito no se descarga, sin dependencias nuevas). Caché SW `v3.8.73`.
+- Rama `feat/learning-screen-phase-4`; alcance visual limitado a Aprender. No cambiar progreso, desbloqueos, salto de emergencia, IndexedDB ni backup JSON v3. CI y evidencias se actualizarán tras validación.

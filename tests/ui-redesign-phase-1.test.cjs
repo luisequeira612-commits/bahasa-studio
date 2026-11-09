@@ -74,8 +74,8 @@ test('unit path groups official levels in sections of eight and draws numbered, 
     assert.match(css, /\.learning-unit-node\.node-available/);
 });
 
-test('B2 shows only its implemented U1 and one upcoming placeholder without removing the development guard', () => {
-    assert.match(html, /level\.id === 'B2' \? level\.units\.slice\(0, 1\) : level\.units/);
+test('B2 shows implemented U1 and U2, keeps later units as placeholders and preserves development restrictions', () => {
+    assert.match(html, /getVisibleLearningUnits\(level\)[\s\S]*?level\.id === 'B2' \? level\.units\.slice\(0, 2\) : level\.units/);
     assert.match(html, /unit-path-coming-soon/);
     assert.match(html, /Las demás unidades B2 todavía no están implementadas/);
     assert.match(html, /unit-path-coming-soon-circle/);

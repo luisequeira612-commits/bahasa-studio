@@ -129,12 +129,16 @@ test('phase 5B learning screen is compact, blue and preserves all level/tool ent
       ariaStreak: document.querySelector('.topbar-streak').getAttribute('aria-label'),
       ariaXp: document.querySelector('.topbar-xp').getAttribute('aria-label'),
       levelChevron: getComputedStyle(document.querySelector('.level-progress-chevron')).display,
-      levelBorder: getComputedStyle(document.querySelector('#learningLevelTrigger')).borderTopWidth
+      levelBorder: getComputedStyle(document.querySelector('#learningLevelTrigger')).borderTopWidth,
+      levelBorderColor: getComputedStyle(document.querySelector('#learningLevelTrigger')).borderTopColor,
+      ringTrack: getComputedStyle(document.querySelector('#levelProgressRing')).backgroundImage
     }));
     assert.equal(compactTopbar.streak, '0');
     assert.equal(compactTopbar.xp, '0/30 XP');
     assert.equal(compactTopbar.levelChevron, 'block');
     assert.ok(compactTopbar.trigger.height >= 44);
+    assert.equal(compactTopbar.levelBorderColor, 'rgb(138, 148, 163)', 'chip border must reach at least 3:1 against white');
+    assert.ok(compactTopbar.ringTrack.includes('138, 148, 163'), 'progress ring track must reach at least 3:1 against white');
     assert.ok(compactTopbar.trigger.right <= 346, 'level chip must keep 14px right margin: ' + compactTopbar.trigger.right);
     assert.equal(compactTopbar.ariaStreak, 'Racha actual: 0 días');
     assert.equal(compactTopbar.ariaXp, 'XP de hoy frente a tu meta: Meta: 0/30 XP');

@@ -28,8 +28,8 @@ test('compact top bar keeps study activity values and selected-level progress ri
     assert.match(html, /class="app-topbar"/);
     assert.match(html, /id="studyStreakText"/);
     assert.match(html, /id="studyDailyXpText"/);
-    assert.match(html, /id="dailyGoalRing"[^>]*type="button"[^>]*aria-controls="dailyGoalHelp"/);
-    assert.match(html, /goalRing\.style\.setProperty\('--goal-progress'/);
+    assert.match(html, /id="levelProgressRing"[^>]*aria-label="Progreso del nivel/);
+    assert.match(html, /levelProgressRing\.style\.setProperty\(/);
     assert.match(html, /id="studyLongestStreakText"/);
     assert.match(html, /id="totalExpBadge"/);
 });
@@ -62,7 +62,8 @@ test('unit path groups official levels in sections of eight and draws numbered, 
     assert.match(html, /offset \+= 8/);
     assert.match(html, /visibleUnits\.slice\(offset, offset \+ 8\)/);
     assert.match(html, /node\.dataset\.pathState = state/);
-    assert.match(html, /state === 'locked' \? '🔒' : String\(offset \+ index \+ 1\)/);
+    assert.match(html, /node\.innerHTML = '<svg class="node-state-icon"/);
+    assert.match(html, /node\.innerHTML = '<svg class="node-progress-ring"/);
     assert.match(html, /function getUnitProgressState/);
     assert.match(html, /function isUnitUnlocked/);
     assert.match(css, /\.learning-unit-node\.node-completed[\s\S]*?background: #16834b/);
@@ -129,9 +130,9 @@ test('lesson progress and JSON v3 import/export fields remain unchanged', () => 
     assert.match(serviceWorker, /bahasa-studio-v3\.8\./);
 });
 
-test('daily goal ring remains accessible and the 14-day study history remains available', () => {
-    assert.match(html, /id="dailyGoalRing"[^>]*aria-controls="dailyGoalHelp"/);
-    assert.match(html, /id="dailyGoalHelp"[^>]*>El anillo muestra el porcentaje de tu meta diaria de XP/);
+test('selected-level progress ring and 14-day study history remain available', () => {
+    assert.match(html, /id="levelProgressRing"[^>]*aria-label="Progreso del nivel/);
+    assert.match(html, /id="studyDailyXpText"/);
     assert.match(html, /id="studyHistoryDashboard"/);
     assert.match(html, /id="studyHistoryChart"/);
     assert.match(css, /\.study-history-chart/);

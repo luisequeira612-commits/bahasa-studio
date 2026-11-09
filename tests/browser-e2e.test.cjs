@@ -468,7 +468,7 @@ test('service worker upgrades an old installed cache without clearing local prog
   const currentIndex = fs.readFileSync(path.join(root, 'index.html'));
   const currentWorker = fs.readFileSync(path.join(root, 'service-worker.js'));
   const oldIndex = Buffer.from(currentIndex.toString().replace('<head>', '<head>\\n<!-- legacy-app-shell -->'));
-  const oldWorker = Buffer.from(currentWorker.toString().replace('bahasa-studio-v3.8.82', 'bahasa-studio-v3.8.81'));
+  const oldWorker = Buffer.from(currentWorker.toString().replace('bahasa-studio-v3.8.83', 'bahasa-studio-v3.8.82'));
   let servedVersion = 'old';
   const { server, url } = await startServer({
     '/': () => servedVersion === 'old' ? oldIndex : currentIndex,

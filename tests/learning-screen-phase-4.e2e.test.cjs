@@ -55,7 +55,7 @@ test('phase four learning screen works at 360px, preserves controls, sticky sect
     assert.equal(await page.locator('.current-unit-start-bubble').count(), 1);
     assert.equal(await page.locator('.current-unit-title').count(), 1);
     assert.match(await page.locator('#learningLevelTrigger').getAttribute('aria-label'), /A1 seleccionado/);
-    assert.equal(await page.locator('.level-progress-chevron').isVisible(), false, 'the compact level control hides its chevron at 360px to prevent horizontal overflow');
+    assert.equal(await page.locator('.level-progress-chevron').isVisible(), true, 'the compact level chip keeps its chevron visible at 360px');
     assert.equal(await page.locator('.node-progress-value').getAttribute('stroke-dashoffset'), '207.35');
     assert.equal(await page.locator('.unit-path-section-banner h3').first().innerText(), 'Sección 1');
 

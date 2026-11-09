@@ -487,7 +487,7 @@ test('service worker upgrades an old installed cache without clearing local prog
       await DB.set('settings', 'completedLessons', ['a2_u1::0']);
       await navigator.serviceWorker.ready;
     });
-    await page.waitForFunction(async () => (await caches.keys()).includes('bahasa-studio-v3.8.80'), null, { timeout: 15000 });
+    await page.waitForFunction(async () => (await caches.keys()).includes('bahasa-studio-v3.8.83'), null, { timeout: 15000 });
     assert.equal(await page.locator('html').evaluate(node => node.innerHTML.includes('legacy-app-shell')), true,
       'the first launch should use the simulated older installed shell');
 

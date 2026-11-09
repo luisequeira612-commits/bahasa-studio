@@ -31,6 +31,8 @@
 - En B2, enseñar agente, participante afectado, foco y contexto. No etiquetar universalmente `ku-/kau-` como pasiva ni inferir tiempo/aspecto solo por la forma. No tratar estos clíticos como contracciones simples ni duplicar el agente (p. ej., evitar `Buku itu saya kubaca`). Glosas españolas neutrales en tiempo: «Ese libro lo leo / lo leí, según el contexto».
 - Investigación extensa de las cuatro formas de U2 (fuentes oficiales, académicas, literarias y didácticas; alcances y cautelas) está en `docs/B2_U2_DESIGN.md`. Respalda morfología/uso escrito, pero no resuelve frecuencia ni registro conversacional neutro; no sustituye la aprobación del dueño.
 
+- 9 nov 2026: Fase 5B en implementación: paleta de marca azul/blanco, cabecera Aprender compactada con chip de nivel y hoja de herramientas, sin cambios de lógica/progreso/IndexedDB/backup v3; SW previsto v3.8.76. PR #472 sigue abierto.
+
 ## Git y flujo de trabajo
 - Nunca trabajar directamente en `main`. Una rama por cambio y PR.
 - El dueño autorizó crear y fusionar PRs cuando estén listos. Fusionar solo si CI está completamente verde en el head exacto y no hay revisiones, comentarios, hilos ni problemas pendientes. Informar cada fusión.

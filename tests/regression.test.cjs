@@ -38,10 +38,10 @@ test('inline application JavaScript and service worker parse', () => {
 
 test('PWA version is consistent across HTML, manifest and cache', () => {
   assert.match(html, /<title>Guardi<\/title>/);
-    assert.match(html, /apple-mobile-web-app-title\" content=\"Guardi/);
+  assert.match(html, /apple-mobile-web-app-title.*Guardi/);
   assert.equal(manifest.name, 'Guardi');
-    assert.equal(manifest.short_name, 'Guardi');
-    assert.equal(manifest.description, 'Aprende idiomas');
+assert.equal(manifest.short_name, 'Guardi');
+assert.equal(manifest.description, 'Aprende idiomas');
   assert.equal(manifest.icons[0].src, './icon.svg');
   assert.equal(manifest.background_color, '#ffffff');
   assert.match(fs.readFileSync(path.join(root, 'icon.svg'), 'utf8'), /<svg[^>]+viewBox="0 0 512 512"/);

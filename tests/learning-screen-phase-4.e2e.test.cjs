@@ -197,7 +197,7 @@ test('phase four path geometry is collision-free at 360px across levels and zigz
       return scenarios;
     });
 
-    assert.equal(layouts.length, 16);
+    assert.equal(layouts.length, 22);
     for (const layout of layouts) {
       assert.equal(layout.currentId, layout.expectedId, layout.levelId + ' current unit should be at zigzag index ' + layout.index);
       assert.ok(layout.documentWidth <= 360, layout.levelId + ' must not overflow horizontally');
@@ -293,7 +293,7 @@ test('phase four path geometry is collision-free at 360px across levels and zigz
         secondaryBorder:getComputedStyle(secondary).borderTopWidth,
         trackContrast:(() => {
           const c=track.getBoundingClientRect();
-          const color=getComputedStyle(track).backgroundColor.match(/[\\d.]+/g).slice(0,3).map(Number);
+          const color=getComputedStyle(track).backgroundColor.match(/[\d.]+/g).slice(0,3).map(Number);
           const lum=color.map(v=>{const x=v/255;return x<=.04045?x/12.92:((x+.055)/1.055)**2.4;});
           const l=lum[0]*.2126+lum[1]*.7152+lum[2]*.0722;
           return 1.05/(l+.05);

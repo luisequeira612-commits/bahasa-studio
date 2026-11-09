@@ -143,7 +143,7 @@ test('phase four path geometry is collision-free at 360px across levels and zigz
       const scenarios = [];
       for (const levelId of ['A1', 'A2', 'B1', 'B2']) {
         const level = levels.find(entry => entry.id === levelId);
-        const indices = levelId === 'B2' ? [0] : [0, 1, 2, 3, 7];
+        const indices = levelId === 'B2' ? [0] : level.units.length > 15 ? [0, 1, 2, 3, 7, 8, 15] : [0, 1, 2, 3, 7];
         for (const index of indices) {
           App.selectedLearningLevel = levelId;
           App.completedUnits = [
@@ -151,13 +151,14 @@ test('phase four path geometry is collision-free at 360px across levels and zigz
             ...level.units.slice(0, index).map(unit => unit.id)
           ];
           App.completedLessons = [];
+          window.scrollTo(0, 0);
           App.renderCourseRoute();
-          const stage = document.querySelector('#courseContainer .unit-path-stage');
+          const current = [...document.querySelectorAll('#courseContainer .learning-unit-node')].find(node => node.dataset.pathState === 'current');
+          const stage = current.closest('.unit-path-stage');
           const nodes = [...stage.querySelectorAll('.learning-unit-node')];
-          const current = nodes.find(node => node.dataset.pathState === 'current');
-          const bubble = document.querySelector('#courseContainer .current-unit-start-bubble');
-          const title = document.querySelector('#courseContainer .current-unit-title');
-          const banner = document.querySelector('#courseContainer .unit-path-section-banner');
+          const bubble = stage.querySelector('.current-unit-start-bubble');
+          const title = stage.querySelector('.current-unit-title');
+          const banner = current.closest('.unit-path-section').querySelector('.unit-path-section-banner');
           const rect = node => {
             const r = node.getBoundingClientRect();
             return { left:r.left, right:r.right, top:r.top, bottom:r.bottom, width:r.width, height:r.height };
@@ -181,7 +182,7 @@ test('phase four path geometry is collision-free at 360px across levels and zigz
           const nextRect = next ? rect(next) : null;
           const nodeEdgeGaps = nodes.slice(1).map((node, i) => rect(node).top - rect(nodes[i]).bottom);
           scenarios.push({
-            levelId, index, currentId:current.dataset.unitId,
+            levelId, index, currentIndex, currentId:current.dataset.unitId,
             expectedId:level.units[index].id,
             documentWidth:document.documentElement.scrollWidth,
             stageWidth:current.parentElement.clientWidth,
@@ -197,7 +198,7 @@ test('phase four path geometry is collision-free at 360px across levels and zigz
       return scenarios;
     });
 
-    assert.equal(layouts.length, 16);
+    assert.equal(layouts.length, 22);
     for (const layout of layouts) {
       assert.equal(layout.currentId, layout.expectedId, layout.levelId + ' current unit should be at zigzag index ' + layout.index);
       assert.ok(layout.documentWidth <= 360, layout.levelId + ' must not overflow horizontally');
@@ -209,16 +210,17 @@ test('phase four path geometry is collision-free at 360px across levels and zigz
       assert.ok(layout.horizontalTitleClearance.every(gap => gap >= 9),
         layout.levelId + ' title must not invade adjacent zigzag columns: ' + JSON.stringify(layout.horizontalTitleClearance));
       for (const [gapIndex, gap] of layout.nodeEdgeGaps.entries()) {
-        const expectedGap = gapIndex === layout.index ? 40 : 18;
+        const expectedGap = gapIndex === layout.currentIndex - 1 ? 74 : gapIndex === layout.currentIndex ? 56 : 18;
         assert.ok(Math.abs(gap - expectedGap) <= 1,
           layout.levelId + ' node edge gap should be 18px, with only the current-title allowance: ' + gap);
       }
       if (layout.titleNextGap !== null) assert.ok(layout.titleNextGap >= 15,
         layout.levelId + ' next node must leave space below the one-line title');
-      if (layout.index > 0) assert.ok(Math.abs(layout.firstNodeGap - 24) <= 1,
-        layout.levelId + ' first node should begin 24px after the section banner');
-      if (layout.bannerGap !== null) assert.ok(Math.abs(layout.bannerGap - 24) <= 1,
-        layout.levelId + ' first bubble should begin 24px after the section banner');
+      const expectedFirstNodeGap = layout.currentIndex === 0 ? 80 : 24;
+      assert.ok(Math.abs(layout.firstNodeGap - expectedFirstNodeGap) <= 1,
+        layout.levelId + ' first node should reserve the bubble clearance only when it is current');
+      if (layout.bannerGap !== null) assert.ok(Math.abs(layout.bannerGap - 18) <= 1,
+        layout.levelId + ' first bubble should have a visible 18px gap after the section banner');
     }
 
     const progress = await page.evaluate(() => {
@@ -240,7 +242,9 @@ test('phase four path geometry is collision-free at 360px across levels and zigz
         text:title.textContent,
         width:title.clientWidth,
         scrollWidth:title.scrollWidth,
-        oneLine:getComputedStyle(title).whiteSpace,
+        whiteSpace:getComputedStyle(title).whiteSpace,
+        lineClamp:getComputedStyle(title).webkitLineClamp,
+        height:title.getBoundingClientRect().height,
         overflow:getComputedStyle(title).overflow,
         textOverflow:getComputedStyle(title).textOverflow
       };
@@ -256,7 +260,9 @@ test('phase four path geometry is collision-free at 360px across levels and zigz
     assert.equal(progress.circumference, '207.35');
     assert.ok(Math.abs(Number(progress.dashOffset) - 103.68) < 0.02,
       'one of two completed lessons should fill exactly half the ring from the top');
-    assert.equal(progress.titleResult.oneLine, 'nowrap');
+    assert.equal(progress.titleResult.whiteSpace, 'normal');
+    assert.equal(progress.titleResult.lineClamp, '2');
+    assert.ok(progress.titleResult.height <= 30, 'longest curriculum title must be clamped to two lines');
     assert.ok(progress.titleResult.width <= 106, 'the longest title must fit within the 106px column limit');
     assert.equal(progress.titleResult.overflow, 'hidden');
     assert.equal(progress.titleResult.textOverflow, 'ellipsis');
@@ -267,7 +273,61 @@ test('phase four path geometry is collision-free at 360px across levels and zigz
     }, 'a1_u3');
     assert.equal(sheetTitle, progress.fullTitle,
       'the bottom sheet must retain the complete unit title');
+    const sheetStyle = await page.evaluate(id => {
+      App.openUnitSheet(id);
+      const sheet = document.getElementById('unitBottomSheet');
+      const track = document.querySelector('.unit-sheet-lesson-track');
+      const fill = track.querySelector('.progress-fill');
+      const description = document.querySelector('.unit-sheet-description');
+      const primary = document.querySelector('.unit-sheet-primary');
+      const secondary = document.querySelector('.unit-sheet-grammar-toggle');
+      return {
+        background:getComputedStyle(sheet).backgroundColor,
+        text:getComputedStyle(sheet).color,
+        description:getComputedStyle(description).color,
+        border:getComputedStyle(sheet).borderTopWidth,
+        bottomPadding:sheet.style.paddingBottom,
+        trackBackground:getComputedStyle(track).backgroundColor,
+        trackHeight:track.getBoundingClientRect().height,
+        fillBackground:getComputedStyle(fill).backgroundColor,
+        primaryBackground:getComputedStyle(primary).backgroundColor,
+        secondaryBorder:getComputedStyle(secondary).borderTopWidth,
+        trackContrast:(() => {
+          const c=track.getBoundingClientRect();
+          const color=getComputedStyle(track).backgroundColor.match(/[\d.]+/g).slice(0,3).map(Number);
+          const lum=color.map(v=>{const x=v/255;return x<=.04045?x/12.92:((x+.055)/1.055)**2.4;});
+          const l=lum[0]*.2126+lum[1]*.7152+lum[2]*.0722;
+          return 1.05/(l+.05);
+        })()
+      };
+    }, 'a1_u3');
+    assert.equal(sheetStyle.background, 'rgb(255, 255, 255)');
+    assert.equal(sheetStyle.text, 'rgb(31, 41, 55)');
+    assert.equal(sheetStyle.description, 'rgb(75, 85, 99)');
+    assert.equal(sheetStyle.border, '1px');
+    assert.match(sheetStyle.bottomPadding, /safe-area-inset-bottom/);
+    assert.equal(sheetStyle.trackBackground, 'rgb(139, 139, 139)');
+    assert.equal(sheetStyle.trackHeight, 8);
+    assert.ok(sheetStyle.trackContrast >= 3, 'gray track must meet 3:1 contrast');
+    assert.equal(sheetStyle.fillBackground, 'rgb(201, 42, 64)');
+    assert.ok(sheetStyle.primaryBackground !== 'rgba(0, 0, 0, 0)');
+    assert.ok(Number.parseFloat(sheetStyle.secondaryBorder) >= 1, 'secondary action must retain its outline');
     await page.evaluate(() => App.closeUnitSheet());
+
+    const scrollCheck = await page.evaluate(() => {
+      App.selectLearningLevel('A1');
+      App.scrollToCurrentUnit(false);
+      const current=document.querySelector('.learning-unit-node.node-current');
+      const bubble=document.querySelector('.current-unit-start-bubble');
+      const banner=current.closest('.unit-path-section').querySelector('.unit-path-section-banner');
+      return { bubbleTop:bubble.getBoundingClientRect().top, bannerBottom:banner.getBoundingClientRect().bottom,
+        nodeTop:current.getBoundingClientRect().top, nodeBottom:current.getBoundingClientRect().bottom,
+        stickyTop:parseFloat(getComputedStyle(banner).top) };
+    });
+    assert.ok(scrollCheck.bubbleTop >= scrollCheck.bannerBottom + 10,
+      'automatic scroll must leave the complete start bubble below the sticky banner: ' + JSON.stringify(scrollCheck));
+    assert.ok(scrollCheck.nodeTop >= scrollCheck.bannerBottom + 50,
+      'automatic scroll must leave the current node below the sticky banner: ' + JSON.stringify(scrollCheck));
 
     const contrast = await page.evaluate(() => {
       const rgb = value => value.match(/[\d.]+/g).slice(0, 3).map(Number);

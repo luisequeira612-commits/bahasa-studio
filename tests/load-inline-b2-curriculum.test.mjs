@@ -103,8 +103,8 @@ test('B2 keeps its development gate while implemented U1 unlocks sequentially af
   assert.notEqual(learningLevels, -1);
   const learningSource = indexSource.slice(learningLevels, learningLevels + 650);
   assert.ok(learningSource.includes("level.id !== 'B2'"), 'non-B2 learning levels remain available');
-  assert.ok(learningSource.includes("unit.id === 'b2_u1' || unit.id === 'b2_u2' || unit.id === 'b2_u3'"),
-    'only implemented B2 U1/U2/U3 may enter learning and review collections');
+  assert.ok(learningSource.includes("unit.id === 'b2_u1' || unit.id === 'b2_u2' || unit.id === 'b2_u3' || unit.id === 'b2_u4'"),
+    'only implemented B2 U1/U2/U3/U4 may enter learning and review collections');
   assert.ok(learningSource.includes("level.id !== 'A2' || A2_RELEASE_ENABLED"),
     'the existing A2 release condition remains intact');
 
@@ -114,15 +114,15 @@ test('B2 keeps its development gate while implemented U1 unlocks sequentially af
   const route = indexSource.slice(routeStart, routeEnd);
   const visibleUnitsStart = indexSource.indexOf('getVisibleLearningUnits(level) {');
   assert.notEqual(visibleUnitsStart, -1);
-  assert.ok(indexSource.slice(visibleUnitsStart, visibleUnitsStart + 250).includes("level.units.slice(0, 3)"),
-    'the route exposes only implemented B2 U1/U2/U3');
+  assert.ok(indexSource.slice(visibleUnitsStart, visibleUnitsStart + 250).includes("level.units.slice(0, 4)"),
+    'the route exposes only implemented B2 U1/U2/U3/U4');
   assert.ok(route.includes('unit-path-coming-soon'));
   assert.ok(route.includes('Las demás unidades B2 todavía no están implementadas'));
   assert.doesNotMatch(route, /isB1Complete\(this\.completedUnits\)/,
     'B2 path visibility must not depend on the old hidden route gate');
 });
 
-test('tap translation fallback includes only implemented B2 U1/U2/U3 authored exercises', async () => {
+test('tap translation fallback includes only implemented B2 U1/U2/U3/U4 authored exercises', async () => {
   const { indexSource } = await loadCurricula();
   const fallbackStart = indexSource.indexOf('// Existing authored translation exercises are a fallback source');
   assert.notEqual(fallbackStart, -1, 'tap translation fallback must remain present');
@@ -130,8 +130,8 @@ test('tap translation fallback includes only implemented B2 U1/U2/U3 authored ex
   const unitLoop = indexSource.indexOf('for (const unit of level.units || []) {', levelLoop);
   assert.ok(levelLoop > fallbackStart && unitLoop > levelLoop, 'fallback must iterate authored levels and units');
   const fallbackSource = indexSource.slice(unitLoop, unitLoop + 260);
-  assert.ok(fallbackSource.includes("level.id === 'B2' && !['b2_u1', 'b2_u2', 'b2_u3'].includes(unit.id)"),
-    'only implemented B2 U1/U2/U3 translation exercises may be used; future B2 units remain excluded');
+  assert.ok(fallbackSource.includes("level.id === 'B2' && !['b2_u1', 'b2_u2', 'b2_u3', 'b2_u4'].includes(unit.id)"),
+    'only implemented B2 U1/U2/U3/U4 translation exercises may be used; future B2 units remain excluded');
 });
 
 test('B2 U2 implements the approved ku-/kau- design with 16 exercises and five types', async () => {
@@ -203,10 +203,58 @@ test('B2 U3 integrates U1/U2 with 16 exercises, five types and no new vocabulary
 });
 
 
-test('only implemented B2 U1/U2/U3 remain executable while later legacy draft units stay archived', async () => {
+
+test('B2 U4 distinguishes causative membersihkan from transfer verbs with 16 exercises and existing vocabulary only', async () => {
+  const { b1, b2 } = await loadCurricula();
+  const unit = b2.units.find((item) => item.id === 'b2_u4');
+  assert.ok(unit, 'B2 U4 must exist');
+  assert.equal(unit.lessons.length, 3);
+  assert.deepEqual(unit.lessons.map((lesson) => lesson.exercises.length), [5, 5, 6]);
+  const exercises = allExercises(unit);
+  assert.equal(exercises.length, 16);
+  assert.deepEqual([...new Set(exercises.map((exercise) => exercise.type))].sort(),
+    ['listen', 'mc', 'order', 'translate_es_id', 'write']);
+  const expectedIds = [
+    'b1u4_memberikan', 'b1u4_mengirimkan', 'b1u4_menjelaskan', 'b1u4_membersihkan'
+  ];
+  assert.deepEqual(unit.vocab.map((word) => word.id), expectedIds);
+  const previousVocabulary = new Map(b1.units.flatMap((entry) => entry.vocab || []).concat(
+    b2.units.filter((entry) => entry.id !== 'b2_u4').flatMap((entry) => entry.vocab || [])
+  ).map((word) => [word.id, word]));
+  for (const word of unit.vocab) {
+    const existing = previousVocabulary.get(word.id);
+    assert.ok(existing, word.id + ' must already exist in an earlier unit');
+    assert.equal(word.idn, existing.idn, word.id + ' form must remain canonical');
+    assert.equal(word.esp, existing.esp, word.id + ' gloss must remain canonical');
+    assert.equal(word.ex, existing.ex, word.id + ' example must remain canonical');
+  }
+  const allowed = new Set(expectedIds);
+  for (const lesson of unit.lessons) {
+    for (const id of [...lesson.vocabIds, ...lesson.reviewVocabIds]) {
+      assert.ok(allowed.has(id), 'U4 may only reuse existing vocabulary IDs: ' + id);
+    }
+    for (const exercise of lesson.exercises) {
+      assert.ok(allowed.has(exercise.vocabId), 'U4 exercise may only reference existing IDs: ' + exercise.vocabId);
+    }
+  }
+  const sentenceTargets = exercises.filter((exercise) => {
+    const target = Array.isArray(exercise.correctOrder) ? exercise.correctOrder.join(' ')
+      : typeof exercise.modelAnswer === 'string' ? exercise.modelAnswer
+      : typeof exercise.answer === 'string' ? exercise.answer
+      : Number.isInteger(exercise.answer) && Array.isArray(exercise.options) ? exercise.options[exercise.answer] || ''
+      : '';
+    return target.trim().split(/\s+/).filter(Boolean).length >= 2;
+  });
+  assert.ok(sentenceTargets.length >= 5, 'U4 must include at least five complete-sentence targets');
+  assert.ok(exercises.some((exercise) => exercise.type === 'write' && exercise.hint?.trim()
+    && /tres oraciones|dos o tres oraciones/i.test(exercise.prompt)), 'U4 must include guided original writing');
+});
+
+
+test('only implemented B2 U1/U2/U3/U4 remain executable while later legacy draft units stay archived', async () => {
   const { b2 } = await loadCurricula();
   const legacyArchive = await readFile(new URL('../docs/B2_LEGACY_DRAFT_ARCHIVE.md', import.meta.url), 'utf8');
-  assert.deepEqual(b2.units.map((unit) => unit.id), ['b2_u1', 'b2_u2', 'b2_u3']);
+  assert.deepEqual(b2.units.map((unit) => unit.id), ['b2_u1', 'b2_u2', 'b2_u3', 'b2_u4']);
   for (const id of ['b2_u4', 'b2_u5']) {
     assert.ok(legacyArchive.includes('"id": "' + id + '"'), id + ' must remain in the historical archive');
   }
@@ -223,8 +271,8 @@ test('tutor prompt infers B2 only from completed implemented U1/U2', async () =>
   const promptStart = indexSource.indexOf('async buildPrompt(topic) {');
   assert.notEqual(promptStart, -1, 'tutor prompt builder must remain present');
   const promptSource = indexSource.slice(promptStart, promptStart + 950);
-  assert.ok(promptSource.includes("(l.id !== 'B2' || u.id === 'b2_u1' || u.id === 'b2_u2' || u.id === 'b2_u3')"),
-    'only implemented B2 U1/U2/U3 may affect the inferred tutor level');
+  assert.ok(promptSource.includes("(l.id !== 'B2' || u.id === 'b2_u1' || u.id === 'b2_u2' || u.id === 'b2_u3' || u.id === 'b2_u4')"),
+    'only implemented B2 U1/U2/U3/U4 may affect the inferred tutor level');
   assert.ok(promptSource.includes('App.completedUnits.includes(u.id)'),
     'the tutor level still depends on saved unit completion');
 });

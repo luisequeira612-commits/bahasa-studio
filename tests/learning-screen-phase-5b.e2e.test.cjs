@@ -141,7 +141,7 @@ test('phase 5B learning screen is compact, blue and preserves all level/tool ent
     assert.equal(compactTopbar.xp, '0/30 XP');
     assert.equal(compactTopbar.levelChevron, 'block');
     assert.ok(compactTopbar.trigger.height >= 44);
-    assert.ok(compactTopbar.logoRight <= compactTopbar.trigger.left, 'Bahasa Studio brand must fit beside the level chip at 360px');
+    assert.ok(compactTopbar.logoRight <= compactTopbar.trigger.left, 'Guardi brand must fit beside the level chip at 360px');
     assert.equal(compactTopbar.levelBorderColor, 'rgb(138, 148, 163)', 'chip border must reach at least 3:1 against white');
     assert.ok(compactTopbar.ringTrack.includes('138, 148, 163'), 'progress ring track must reach at least 3:1 against white');
     assert.ok(compactTopbar.trigger.right <= 346, 'level chip must keep 14px right margin: ' + compactTopbar.trigger.right);

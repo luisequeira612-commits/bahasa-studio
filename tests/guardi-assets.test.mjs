@@ -18,6 +18,14 @@ test('Guardi SVG assets retain valid boundaries and approved viewBoxes',()=>{
 test('PWA icon purposes are separated and mascot assets are precached',()=>{
  const m=JSON.parse(fs.readFileSync(path.join(root,'manifest.json'),'utf8'));
  for(const [src,size,purpose] of [['icon-192.png','192x192','any'],['icon-512-any.png','512x512','any'],['icon-512-maskable.png','512x512','maskable']]) assert.ok(m.icons.some(i=>i.src==='./'+src&&i.sizes===size&&i.purpose===purpose));
+ const dimensions={'icon-192.png':[192,192],'icon-512-any.png':[512,512],'icon-512-maskable.png':[512,512],'apple-touch-icon.png':[180,180]};
+ for(const [name,[width,height]] of Object.entries(dimensions)){
+  const png=fs.readFileSync(path.join(root,name));
+  assert.equal(png.toString('hex',0,8),'89504e470d0a1a0a',name+' must be a PNG');
+  assert.equal(png.readUInt32BE(16),width,name+' width');
+  assert.equal(png.readUInt32BE(20),height,name+' height');
+ }
+ assert.equal(fs.readFileSync(path.join(root,'icon.svg'),'utf8'),fs.readFileSync(path.join(root,'assets/guardi/guardi-icon.svg'),'utf8'));
  const sw=fs.readFileSync(path.join(root,'service-worker.js'),'utf8');
  for(const name of assets) assert.ok(sw.includes('./assets/guardi/'+name),name+' absent from precache');
  for(const name of ['icon-192.png','icon-512-any.png','icon-512-maskable.png','apple-touch-icon.png']) assert.ok(sw.includes('./'+name),name+' absent from precache');

@@ -86,5 +86,11 @@
 
 - Actualización del service worker (8 nov 2026): el primer CI de la prueba de migración desde caché v3.8.69 confirmó que la caché nueva se instala y la antigua se elimina, pero detectó una carrera: el test recargaba antes de que terminara `clients.claim()`. Se ajustó la activación para esperar tanto la limpieza como la reclamación de clientes y la prueba espera el evento `controllerchange` antes del siguiente lanzamiento. La verificación debe repetirse en CI sobre el nuevo head; IndexedDB y backup v3 permanecen intactos.
 ## Rediseño de Aprender — Fase 2 (8 nov 2026)
-- Fase 2 autorizada con alcance cerrado: limpieza de cabecera en Aprender, herramientas en fila compacta, recordatorio fijo de backup en Perfil y etiqueta clara de meta diaria; sin cambios de progreso, desbloqueo, salto, IndexedDB ni backup JSON v3. PR pendiente en `feat/learning-screen-cleanup-phase-2`; no fusionar sin autorización explícita.
-- Cambios en `index.html`, `styles.css`, `service-worker.js` y pruebas E2E; caché SW pasa de v3.8.70 a v3.8.71. Validación de CI y viewport 360 px pendiente; Fase 3 sigue excluyendo paleta/contraste/tamaños táctiles y manifest/display.
+- Fase 2 (#474) fusionada el 8 nov 2026 en `main`, squash `6ff13ab4a8f78b09af38f5877bac800f5d729def`. Compacta Aprender, mueve el recordatorio de backup a Perfil y aclara la meta diaria; preserva progreso, desbloqueos, salto, IndexedDB y backup JSON v3. SW `v3.8.71`.
+- Archivos #474: `index.html`, `styles.css`, `service-worker.js`, pruebas E2E y `MEMORY.md`; no añade dependencias.
+
+
+## Rediseño de Aprender — Fase 3 (8 nov 2026)
+- Alcance aprobado: paleta con un único rojo de marca `--brand-red:#c92a40`, contraste AA sobre fondos tintados, estados sólidos rojo/verde/gris, controles táctiles de Aprender/hoja de unidad, manifest/PWA y etiquetas duplicadas solo si existen. No tocar progreso, desbloqueos, salto de emergencia, IndexedDB ni backup v3; no tocar colores de acierto/error.
+- Rama `feat/learning-screen-phase-3`, creada desde `main` posterior a #474. Cambios en curso: `styles.css`, `manifest.json`, `index.html` (meta theme-color), `icon.svg`, `service-worker.js` (caché `v3.8.72`), `package.json`, prueba `tests/learning-screen-phase-3.test.mjs` y esta memoria. CI y pruebas de navegador pendientes; sin merge.
+- Manifest: `standalone`, `./index.html`, `scope:./`, icono SVG `any maskable`, `theme_color:#c92a40`, `background_color:#ffffff`. #472 permanece abierto e intacto; su restauración de acceso B2 contradice la regla vigente de U1 + un único nodo «Próximamente».

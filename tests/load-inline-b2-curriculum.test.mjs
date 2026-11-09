@@ -119,7 +119,7 @@ test('B2 keeps its development gate while implemented U1 unlocks sequentially af
     'B2 path visibility must not depend on the old hidden route gate');
 });
 
-test('tap translation fallback includes only B2 U1 authored exercises', async () => {
+test('tap translation fallback includes only implemented B2 U1/U2 authored exercises', async () => {
   const { indexSource } = await loadCurricula();
   const fallbackStart = indexSource.indexOf('// Existing authored translation exercises are a fallback source');
   assert.notEqual(fallbackStart, -1, 'tap translation fallback must remain present');
@@ -149,7 +149,7 @@ test('B2 U2 implements the approved ku-/kau- design with 16 exercises and five t
       : typeof exercise.modelAnswer === 'string' ? exercise.modelAnswer
       : typeof exercise.answer === 'string' ? exercise.answer
       : '';
-    return target.trim().split(/\\s+/).filter(Boolean).length >= 2;
+    return target.trim().split(/\s+/).filter(Boolean).length >= 2;
   }).length >= 5);
   for (const form of ['kubaca', 'kaubaca', 'kutulis', 'kautulis']) assert.ok(indexSource.includes(form), form + ' must be authored in U2');
 });
@@ -176,7 +176,7 @@ test('tutor prompt infers B2 only from completed implemented U1/U2', async () =>
   assert.notEqual(promptStart, -1, 'tutor prompt builder must remain present');
   const promptSource = indexSource.slice(promptStart, promptStart + 950);
   assert.ok(promptSource.includes("(l.id !== 'B2' || u.id === 'b2_u1' || u.id === 'b2_u2')"),
-    'only B2 U1 may affect the inferred tutor level');
+    'only implemented B2 U1/U2 may affect the inferred tutor level');
   assert.ok(promptSource.includes('App.completedUnits.includes(u.id)'),
     'the tutor level still depends on saved unit completion');
 });

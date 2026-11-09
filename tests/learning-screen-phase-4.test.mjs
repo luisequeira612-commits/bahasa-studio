@@ -103,9 +103,11 @@ test('phase four layout uses one spacing rule, a separated red progress ring and
   const route = html.slice(html.indexOf('renderCourseRoute() {'), html.indexOf('async updateSrsView()'));
   assert.match(route, /stage\.style\.marginTop = '0px'/);
   assert.match(route, /const nodeStep = nodeDiameter \+ 18/);
-  assert.match(route, /const currentTitleExtra = 22/);
+  assert.match(route, /const currentTitleExtra = 38/);
+  assert.match(route, /const currentBubbleClearance = 56/);
+  assert.match(route, /if \\(isCurrent && index > 0\\) nextNodeTop \\+= currentBubbleClearance/);
   assert.match(route, /let nextNodeTop = nodeRadius \+ 24/);
-  assert.match(route, /nextNodeTop = 24 \+ 90/);
+  assert.match(route, /nextNodeTop \\+= currentBubbleClearance/);
   assert.match(route, /node\.style\.width = '56px'/);
   assert.match(route, /node\.style\.height = '56px'/);
   assert.match(route, /node\.style\.outline = 'none'/);
@@ -120,7 +122,10 @@ test('phase four layout uses one spacing rule, a separated red progress ring and
   assert.match(route, /currentTitle\.style\.top = \(nodeTop \+ 38\)/);
   assert.match(route, /currentTitle\.style\.width = 'min\(106px, 34%\)'/);
   assert.match(route, /currentTitle\.style\.textOverflow = 'ellipsis'/);
-  assert.match(route, /currentTitle\.style\.whiteSpace = 'nowrap'/);
+  assert.match(route, /currentTitle\\.style\\.whiteSpace = 'normal'/);
+  assert.match(route, /currentTitle\\.style\\.webkitLineClamp = '2'/);
+  assert.match(route, /currentTitle\\.style\\.maxHeight = '30px'/);
+  assert.match(route, /const targetTop = stickyTop \\+ banner\\.getBoundingClientRect\\(\\)\\.height \\+ 12/);
   const css = await read('styles.css');
   assert.match(css, /prefers-reduced-motion:reduce/);
 });
@@ -137,4 +142,20 @@ test('topbar uses an Indonesian flag and flame SVG; navigation pill keeps one la
   assert.match(html, /height: '100%'/);
   assert.match(html, /padding: '0'/);
   assert.match(html, /metrics\.style\.gap = compact && compact\.matches \? '5px' : '8px'/);
+});
+
+
+test('bottom sheet uses a gray lesson track, light surface and safe-area padding', async () => {
+  const html = await read('index.html');
+  assert.match(html, /unit-sheet-lesson-track/);
+  assert.match(html, /background:#d1d5db/);
+  assert.match(html, /background:#c92a40/);
+  assert.match(html, /height:8px;min-height:8px/);
+  assert.match(html, /sheet\\.style\\.backgroundColor = '#ffffff'/);
+  assert.match(html, /sheet\\.style\\.borderTop = '1px solid #d1d5db'/);
+  assert.match(html, /safe-area-inset-bottom/);
+  assert.match(html, /element\\.style\\.color = '#4b5563'/);
+  assert.ok(contrast('#1f2937', '#ffffff') >= 4.5);
+  assert.ok(contrast('#4b5563', '#ffffff') >= 4.5);
+  assert.ok(contrast('#d1d5db', '#ffffff') > 1);
 });

@@ -54,21 +54,21 @@ test('phase four learning screen works at 360px, preserves controls, sticky sect
 
     assert.equal(await page.locator('.current-unit-start-bubble').count(), 1);
     assert.equal(await page.locator('.current-unit-title').count(), 1);
-    assert.match(await page.locator('#levelProgressRing').getAttribute('aria-label'), /nivel A1 seleccionado/);
+    assert.match(await page.locator('#learningLevelTrigger').getAttribute('aria-label'), /A1 seleccionado/);
     assert.equal(await page.locator('.node-progress-value').getAttribute('stroke-dashoffset'), '207.35');
     assert.equal(await page.locator('.unit-path-section-banner h3').first().innerText(), 'Sección 1');
 
     await page.screenshot({ path: path.join(artifacts, 'learning-screen-360.png'), fullPage: true });
     await page.locator('.unit-path-stage').first().screenshot({ path: path.join(artifacts, 'current-node-bubble-and-ring.png') });
 
-    for (const id of ['aiGeneratorDrawer', 'writingPracticeDrawer', 'conversationPracticeDrawer']) {
-      const button = page.locator('[data-tool-target="' + id + '"]');
-      await button.click();
-      assert.equal(await button.getAttribute('aria-expanded'), 'true');
-      assert.equal(await page.locator('#' + id).evaluate(el => el.open), true);
+    const toolIds = ['aiGeneratorDrawer', 'writingPracticeDrawer', 'conversationPracticeDrawer'];
+    for (const [index, id] of toolIds.entries()) {
+      await page.locator('.unit-tools-trigger').first().click();
+      await page.waitForFunction(() => !document.getElementById('learningToolsSheetOverlay').hidden);
+      await page.locator('.learning-tool-sheet-row').nth(index).click();
+      await page.waitForFunction(id => document.getElementById(id).open, id);
       assert.notEqual(await page.locator('#' + id).evaluate(el => getComputedStyle(el).display), 'none');
-      await button.click();
-      assert.equal(await button.getAttribute('aria-expanded'), 'false');
+      await page.evaluate(id => App.toggleLearningTool(id), id);
     }
 
     await page.locator('.current-unit-start-bubble').click();
@@ -201,7 +201,14 @@ test('phase four path geometry is collision-free at 360px across levels and zigz
     assert.equal(layouts.length, 22);
     for (const layout of layouts) {
       assert.equal(layout.currentId, layout.expectedId, layout.levelId + ' current unit should be at zigzag index ' + layout.index);
-      assert.ok(layout.documentWidth <= 360, layout.levelId + ' must not overflow horizontally');
+      assert.ok(layout.documentWidth <= 360, layout.levelId + ' must not overflow horizontally: ' + JSON.stringify({
+        documentWidth: layout.documentWidth,
+        viewportWidth: 360,
+        offenders: [...document.querySelectorAll('body *')].map(el => {
+          const r = el.getBoundingClientRect();
+          return { tag: el.tagName, id: el.id, className: typeof el.className === 'string' ? el.className : '', left: Math.round(r.left), right: Math.round(r.right), width: Math.round(r.width) };
+        }).filter(item => item.width > 0 && (item.right > 360 || item.left < 0)).sort((a,b) => b.right - a.right).slice(0, 12)
+      }));
       assert.equal(layout.nodeSize.width, 56);
       assert.equal(layout.nodeSize.height, 56);
       assert.ok(layout.ringGap >= 10, layout.levelId + ' bubble must stay 10px clear of the outer ring');

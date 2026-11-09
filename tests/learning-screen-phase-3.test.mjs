@@ -87,7 +87,7 @@ test('normal text and informative icons meet contrast on the learning screen tin
 test('learning controls retain 44px minimum targets without changing unrelated btn-sm screens', async () => {
   const css = await read('styles.css');
   assert.match(css, /\.learning-level-button\s*\{[^}]*min-height:\s*46px/);
-  assert.match(css, /\\.learning-level-button\\s*\\{\\s*min-height:\\s*44px/);
+  assert.match(css, /\.learning-level-button\s*\{\s*min-height:\s*44px/);
   assert.match(css, /\.learning-unit-node\s*\{[^}]*min-width:\s*44px[^}]*min-height:\s*44px/s);
   assert.match(css, /\.unit-sheet-close\s*\{[^}]*width:\s*44px[^}]*height:\s*44px/s);
   assert.match(css, /\.unit-sheet-primary,[\s\S]*?min-height:\s*48px/);

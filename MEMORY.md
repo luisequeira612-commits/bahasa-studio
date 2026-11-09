@@ -140,3 +140,5 @@
 - 9 nov 2026: la suite E2E de Fase 4 pasa completa (2/2) a 360px y la prueba de overflow confirma que el control compacto ya no amplía el documento. El CI posterior encontró una última aserción de caché v3.8.76 en `tests/study-history.test.cjs`; se actualizó a v3.8.77. El resto de pruebas de datos/historial y calidad pasó. CI final pendiente.
 
 - 9 nov 2026: CI posterior pasó la suite E2E de Fase 4 y el historial local; detectó dos expectativas heredadas en `curriculum-extraction.test.js`: caché v3.8.75 y prohibición absoluta de `<style>`. Se actualizó la versión a v3.8.77 y la prueba ahora permite exactamente el único bloque inline identificado `learning-phase-5b-overrides`, manteniendo el enlace a `styles.css` y el hash canónico de esa hoja. No se cambia IndexedDB, backup ni la hoja canónica.
+
+- 9 nov 2026: se corrigió el matcher de la etiqueta `<style>` en la prueba de extracción para que use el límite de palabra correcto; sigue exigiendo exactamente un bloque con id `learning-phase-5b-overrides`.

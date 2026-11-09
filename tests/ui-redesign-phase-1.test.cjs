@@ -47,7 +47,7 @@ test('learning route exposes compact access buttons for the three original tool 
     }
     assert.equal((route[0].match(/<details class="feature-drawer learning-tool-panel"/g) || []).length, 3);
     assert.match(route[0], /id="courseContainer"/);
-    assert.match(html, /openLearningToolFromSheet\(targetId\)/);
+    assert.match(html, /openLearningToolFromSheet\(id\)/);
 });
 
 test('compact level button opens a sheet for all course levels and defaults from current progress', () => {

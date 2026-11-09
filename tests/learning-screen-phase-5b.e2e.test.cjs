@@ -65,9 +65,10 @@ test('phase 5B learning screen is compact, blue and preserves all level/tool ent
     assert.match(a2Progress, /^\d+ de 40 unidades$/);
     await page.locator('.learning-level-sheet-row').nth(1).click();
     await page.waitForFunction(() => document.getElementById('learningLevelSheetOverlay').hidden);
-    await page.waitForSelector('.learning-unit-node.node-current');
+    await page.waitForSelector('.learning-unit-node');
+    assert.equal(await page.locator('#levelProgressLevel').innerText(), 'A2', 'the compact selector should switch the selected level to A2');
 
-    await page.locator('.unit-tools-trigger').click();
+    await page.locator('.unit-tools-trigger').first().click();
     await page.waitForSelector('#learningToolsSheetOverlay:not([hidden])');
     assert.equal(await page.locator('.learning-tool-sheet-row').count(), 3);
     for (const row of await page.locator('.learning-tool-sheet-row').all()) assert.ok((await row.boundingBox()).height >= 44);

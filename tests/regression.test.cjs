@@ -881,7 +881,7 @@ test('B1 follows A2 progression and implemented B2 units keep sequential access'
   assert.match(html, /if \(level\.id === 'B2'\) \{/);
   assert.match(html, /if \(unitIndex === 0\) return Boolean\(previousUnit/);
   assert.match(html, /return unitIndex > 0 && getUnitProgressState\(level, level\.units\[unitIndex - 1\]/);
-  assert.match(html, /level\.id === 'B2' \? level\.units\.slice\(0, 3\) : level\.units/);
+  assert.match(html, /level\.id === 'B2' \? level\.units\.slice\(0, 4\) : level\.units/);
   assert.match(html, /unit-path-coming-soon/);
   assert.match(html, /Las demás unidades B2 todavía no están implementadas/);
   assert.match(html, /B2 units open sequentially after B1 is complete/);

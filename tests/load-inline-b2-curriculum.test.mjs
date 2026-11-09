@@ -103,7 +103,7 @@ test('B2 keeps its development gate while implemented U1 unlocks sequentially af
   assert.ok(learningSource.includes("level.id !== 'B2'"), 'non-B2 learning levels remain available');
   assert.ok(learningSource.includes("unit.id === 'b2_u1'"),
     'only implemented B2 U1 may enter learning and review collections');
-  assert.ok(learningSource.includes("level.id === 'A2' && !A2_RELEASE_ENABLED"),
+  assert.ok(learningSource.includes("level.id !== 'A2' || A2_RELEASE_ENABLED"),
     'the existing A2 release condition remains intact');
 
   const routeStart = indexSource.indexOf('renderCourseRoute() {');

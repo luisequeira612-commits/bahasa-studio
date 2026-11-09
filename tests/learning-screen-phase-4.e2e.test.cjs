@@ -151,6 +151,7 @@ test('phase four path geometry is collision-free at 360px across levels and zigz
             ...level.units.slice(0, index).map(unit => unit.id)
           ];
           App.completedLessons = [];
+          window.scrollTo(0, 0);
           App.renderCourseRoute();
           const current = [...document.querySelectorAll('#courseContainer .learning-unit-node')].find(node => node.dataset.pathState === 'current');
           const stage = current.closest('.unit-path-stage');

@@ -133,11 +133,13 @@ test('phase four layout uses one spacing rule, a separated red progress ring and
   assert.match(css, /prefers-reduced-motion:reduce/);
 });
 
-test('topbar uses an Indonesian flag and flame SVG; navigation pill keeps one label baseline', async () => {
+test('topbar uses the neutral Guardi G mark and flame SVG; navigation pill keeps one label baseline', async () => {
   const html = await read('index.html');
   const header = html.slice(html.indexOf('<header class="app-topbar">'), html.indexOf('<!-- CURSO / RUTA -->'));
   assert.match(header, /bahasa-flag-clip/);
-  assert.match(header, /stroke="#9ca3af"/);
+  assert.match(header, /fill="#0067C6"/);
+  assert.match(header, />G<\/text>/);
+  assert.match(header, /id="bahasa-flag-clip"/);
   assert.match(header, /M12 22c-4\.1 0-7-2\.8/);
   assert.match(html, /nav-pill-content/);
   assert.match(html, /background: active \? '#E6F1FB' : 'transparent'/);

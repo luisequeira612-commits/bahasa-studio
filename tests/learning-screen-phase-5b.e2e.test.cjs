@@ -138,6 +138,18 @@ test('phase 5B learning screen is compact, blue and preserves all level/tool ent
     assert.ok(compactTopbar.trigger.right <= 346, 'level chip must keep 14px right margin: ' + compactTopbar.trigger.right);
     assert.equal(compactTopbar.ariaStreak, 'Racha actual: 0 días');
     assert.equal(compactTopbar.ariaXp, 'XP de hoy frente a tu meta: Meta: 0/30 XP');
+    const brandFit = await page.evaluate(() => {
+      const logo = document.querySelector('.app-topbar .logo span');
+      logo.textContent = 'Guardi';
+      const chip = document.querySelector('#learningLevelTrigger').getBoundingClientRect();
+      const logoBox = document.querySelector('.app-topbar .logo').getBoundingClientRect();
+      const rightEdge = document.querySelector('.app-topbar').getBoundingClientRect().right;
+      const leftEdge = document.querySelector('.app-topbar').getBoundingClientRect().left;
+      return { logoRight:logoBox.right, chipLeft:chip.left, chipRight:chip.right, rightMargin:rightEdge-chip.right, leftMargin:logoBox.left-leftEdge };
+    });
+    assert.ok(brandFit.logoRight <= brandFit.chipLeft, 'Guardi brand and level chip must not overlap at 360px');
+    assert.ok(Math.abs(brandFit.rightMargin - 14) <= 1, 'right margin must match 14px logo margin: ' + brandFit.rightMargin);
+    assert.ok(Math.abs(brandFit.leftMargin - 14) <= 1);
     assert.equal(await page.locator('.unit-tools-trigger').first().getAttribute('aria-label'), 'Herramientas');
     assert.ok((await page.locator('.unit-tools-trigger').first().boundingBox()).width >= 44);
   } finally {

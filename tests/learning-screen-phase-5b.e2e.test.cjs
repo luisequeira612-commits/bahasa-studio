@@ -105,6 +105,41 @@ test('phase 5B learning screen is compact, blue and preserves all level/tool ent
     assert.ok(speakerCount >= 2, 'lesson speaker controls should use inline SVG icons');
     assert.equal(await page.locator('text=🔊').count(), 0);
     assert.equal(await page.locator('.nav-btn.active').getAttribute('data-nav-group'), 'learn');
+    for (const group of ['learn','review','tutor','profile']) {
+      const button = page.locator('.nav-btn[data-nav-group="' + group + '"]');
+      await button.click();
+      assert.equal(await button.evaluate(el => el.classList.contains('active')), true);
+      const activeIcon = button.locator('svg');
+      const activeStyle = await activeIcon.evaluate(el => ({ background:getComputedStyle(el).backgroundColor, fill:getComputedStyle(el).fill, stroke:getComputedStyle(el).stroke, color:getComputedStyle(el).color }));
+      assert.equal(activeStyle.background, 'rgba(0, 0, 0, 0)', group + ' active icon must not have its own background');
+      assert.equal(activeStyle.fill, 'none', group + ' active icon must remain outline-only');
+      assert.equal(activeStyle.stroke, 'rgb(0, 74, 145)');
+      for (const nav of await page.locator('.nav-btn:not(.active)').all()) {
+        const inactiveBackground = await nav.locator('svg').evaluate(el => getComputedStyle(el).backgroundColor);
+        assert.equal(inactiveBackground, 'rgba(0, 0, 0, 0)', 'inactive icons must not have their own background');
+      }
+    }
+    await page.locator('.nav-btn[data-nav-group="learn"]').click();
+    const compactTopbar = await page.evaluate(() => ({
+      right: document.querySelector('.app-topbar').getBoundingClientRect().right,
+      leftPadding: document.querySelector('.app-topbar .logo').getBoundingClientRect().left - document.querySelector('.app-topbar').getBoundingClientRect().left,
+      trigger: (() => { const r=document.querySelector('#learningLevelTrigger').getBoundingClientRect(); return {left:r.left,right:r.right,width:r.width,height:r.height}; })(),
+      streak: document.getElementById('studyStreakText').textContent,
+      xp: document.getElementById('studyDailyXpText').textContent,
+      ariaStreak: document.querySelector('.topbar-streak').getAttribute('aria-label'),
+      ariaXp: document.querySelector('.topbar-xp').getAttribute('aria-label'),
+      levelChevron: getComputedStyle(document.querySelector('.level-progress-chevron')).display,
+      levelBorder: getComputedStyle(document.querySelector('#learningLevelTrigger')).borderTopWidth
+    }));
+    assert.equal(compactTopbar.streak, '0');
+    assert.equal(compactTopbar.xp, '0/30 XP');
+    assert.equal(compactTopbar.levelChevron, 'block');
+    assert.ok(compactTopbar.trigger.height >= 44);
+    assert.ok(compactTopbar.trigger.right <= 346, 'level chip must keep 14px right margin: ' + compactTopbar.trigger.right);
+    assert.equal(compactTopbar.ariaStreak, 'Racha actual: 0 días');
+    assert.equal(compactTopbar.ariaXp, 'XP de hoy frente a tu meta: Meta: 0/30 XP');
+    assert.equal(await page.locator('.unit-tools-trigger').first().getAttribute('aria-label'), 'Herramientas');
+    assert.ok((await page.locator('.unit-tools-trigger').first().boundingBox()).width >= 44);
   } finally {
     await context.close();
     await browser.close();

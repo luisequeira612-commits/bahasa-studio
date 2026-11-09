@@ -5282,6 +5282,66 @@
                                 }
                             ]
                         },
+
+                        {
+                            id: 'b2_u4',
+                            title: 'Unidad 4: Interpretar las funciones de -kan',
+                            desc: 'Distingue el cambio de estado causado de los usos de transferencia y explica quién actúa y qué participante resulta afectado.',
+                            grammar: 'El sufijo -kan no tiene una sola función. En «membersihkan», la base bersih expresa un estado y el verbo presenta a alguien que causa que algo quede limpio. En verbos convencionales como «memberikan» y «mengirimkan», la oración expresa transferencia. No deduzcas una lectura causativa ni un participante añadido por la terminación aislada: comprueba la base, el verbo completo y el contexto.',
+                            vocab: [
+                                { id: 'b1u4_memberikan', idn: 'Memberikan', esp: 'Dar; entregar algo a alguien', ex: 'Saya memberikan buku kepada Rina.', exEsp: 'Le doy un libro a Rina.' },
+                                { id: 'b1u4_mengirimkan', idn: 'Mengirimkan', esp: 'Enviar algo a alguien; hacer llegar', ex: 'Saya mengirimkan dokumen kepada Rina.', exEsp: 'Le envío el documento a Rina.' },
+                                { id: 'b1u4_menjelaskan', idn: 'Menjelaskan', esp: 'Explicar algo a alguien', ex: 'Guru menjelaskan cara membaca kepada siswa.', exEsp: 'El profesor explica la lección a los estudiantes.' },
+                                { id: 'b1u4_membersihkan', idn: 'Membersihkan', esp: 'Limpiar algo', ex: 'Saya membersihkan rumah setiap pagi.', exEsp: 'Limpio la casa cada mañana.' }
+                            ],
+                            exercises: [],
+                            lessons: [
+                                {
+                                    title: 'De un estado a un cambio causado',
+                                    objective: 'Distingue una propiedad o estado de la acción que hace que una entidad adquiera esa propiedad.',
+                                    grammar: '«Kamar ini sudah bersih» describe el estado de la habitación. «Siti sudah membersihkan kamar ini» presenta una acción de Siti que causa que la habitación quede limpia. En este ejemplo, Siti es quien causa el cambio y kamar ini es la entidad afectada.',
+                                    vocabIds: ['b1u4_membersihkan'],
+                                    reviewVocabIds: ['b1u4_memberikan', 'b1u4_mengirimkan', 'b1u4_menjelaskan'],
+                                    exercises: [
+                                        { vocabId: 'b1u4_membersihkan', type: 'mc', prompt: '¿Qué oración describe un estado, no la acción que lo causa?', options: ['Kamar ini sudah bersih.', 'Siti sudah membersihkan kamar ini.', 'Saya membersihkan rumah setiap pagi.'], answer: 0, explanation: '«Kamar ini sudah bersih» dice que la habitación está limpia; no expresa quién produjo ese estado.' },
+                                        { vocabId: 'b1u4_membersihkan', type: 'mc', prompt: 'En «Siti sudah membersihkan kamar ini», ¿quién causa que la habitación quede limpia?', options: ['Siti', 'Kamar ini', 'La persona que escucha'], answer: 0, explanation: 'Siti realiza la acción causante y kamar ini es la entidad que queda limpia.' },
+                                        { vocabId: 'b1u4_membersihkan', type: 'translate_es_id', prompt: 'Traduce al indonesio: «Siti ya ha limpiado esta habitación».', answer: 'Siti sudah membersihkan kamar ini.', explanation: 'La oración expresa la acción de Siti y el cambio de estado de la habitación.' },
+                                        { vocabId: 'b1u4_membersihkan', type: 'order', prompt: 'Ordena la oración: «Esta habitación ya está limpia».', words: ['sudah', 'Kamar', 'bersih.', 'ini'], correctOrder: ['Kamar', 'ini', 'sudah', 'bersih.'], explanation: 'La oración describe el estado de la habitación; no incluye un agente que cause el cambio.' },
+                                        { vocabId: 'b1u4_membersihkan', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Siti sudah membersihkan kamar ini.', explanation: 'Identifica a Siti como agente causante y a kamar ini como entidad afectada.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Transferencia y participantes',
+                                    objective: 'Interpreta verbos convencionales de transferencia o explicación sin convertir -kan en una regla causativa universal.',
+                                    grammar: 'En «Saya memberikan buku kepada Rina» y «Saya mengirimkan dokumen kepada Rina», hay una acción, un contenido transferido y una destinataria. En «Guru menjelaskan cara membaca kepada siswa», se expresa qué se explica y a quién. Estos patrones se aprenden con el verbo y sus participantes; no significan que todo -kan añada siempre una persona.',
+                                    vocabIds: ['b1u4_memberikan', 'b1u4_mengirimkan', 'b1u4_menjelaskan'],
+                                    reviewVocabIds: ['b1u4_membersihkan'],
+                                    exercises: [
+                                        { vocabId: 'b1u4_memberikan', type: 'mc', prompt: 'En «Saya memberikan buku kepada Rina», ¿qué papel tiene Rina?', options: ['Destinataria del libro', 'Persona que limpia la habitación', 'Objeto que se entrega'], answer: 0, explanation: 'Buku es lo que se entrega y kepada Rina identifica a la destinataria.' },
+                                        { vocabId: 'b1u4_mengirimkan', type: 'translate_es_id', prompt: 'Traduce al indonesio: «Le envío el documento a Rina».', answer: 'Saya mengirimkan dokumen kepada Rina.', explanation: 'Dokumen es lo enviado y kepada Rina indica la destinataria.' },
+                                        { vocabId: 'b1u4_menjelaskan', type: 'order', prompt: 'Ordena la oración: «El profesor explica cómo leer a los estudiantes».', words: ['kepada', 'Guru', 'siswa.', 'cara', 'membaca', 'menjelaskan'], correctOrder: ['Guru', 'menjelaskan', 'cara', 'membaca', 'kepada', 'siswa.'], explanation: 'Cara membaca es el contenido explicado y kepada siswa señala a quién se explica.' },
+                                        { vocabId: 'b1u4_memberikan', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Saya memberikan buku kepada Rina.', explanation: 'La oración contiene quien entrega, el objeto transferido y la destinataria.' },
+                                        { vocabId: 'b1u4_membersihkan', type: 'mc', prompt: '¿Cuál de estas oraciones presenta claramente un cambio de estado causado?', options: ['Siti sudah membersihkan kamar ini.', 'Saya memberikan buku kepada Rina.', 'Saya mengirimkan dokumen kepada Rina.'], answer: 0, explanation: 'Membersihkan se relaciona aquí con bersih, el estado de limpieza; las otras oraciones expresan transferencia.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Interpretar sin generalizar',
+                                    objective: 'Compara los participantes de varias construcciones y produce un texto breve con formas ya conocidas.',
+                                    grammar: 'No clasifiques un verbo solo por sus últimas letras. Comprueba qué expresa su base, qué evento presenta el verbo completo y qué participantes aparecen en la oración. La interpretación de -kan depende de la construcción y del verbo concreto.',
+                                    vocabIds: ['b1u4_memberikan', 'b1u4_mengirimkan', 'b1u4_menjelaskan', 'b1u4_membersihkan'],
+                                    reviewVocabIds: ['b1u4_memberikan', 'b1u4_mengirimkan', 'b1u4_menjelaskan', 'b1u4_membersihkan'],
+                                    exercises: [
+                                        { vocabId: 'b1u4_membersihkan', type: 'mc', prompt: '¿Qué diferencia hay entre «Kamar ini sudah bersih» y «Siti sudah membersihkan kamar ini»?', options: ['La primera describe un estado; la segunda expresa una acción que causa ese estado.', 'Las dos identifican a Siti como destinataria.', 'La primera expresa una transferencia de un objeto.'], answer: 0, explanation: 'La segunda incluye a quien causa el cambio; la primera solo describe que la habitación está limpia.' },
+                                        { vocabId: 'b1u4_membersihkan', type: 'translate_es_id', prompt: 'Traduce al indonesio: «Limpio la casa cada mañana».', answer: 'Saya membersihkan rumah setiap pagi.', explanation: 'Es la oración modelo de la entrada membersihkan.' },
+                                        { vocabId: 'b1u4_menjelaskan', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Guru menjelaskan cara membaca kepada siswa.', explanation: 'Identifica el contenido explicado y la persona destinataria de la explicación.' },
+                                        { vocabId: 'b1u4_membersihkan', type: 'write', prompt: 'Explica en dos o tres oraciones la diferencia entre «Kamar ini sudah bersih» y «Siti sudah membersihkan kamar ini».', hint: 'Señala cuál describe un estado, quién causa el cambio y qué entidad resulta afectada.', modelAnswer: '«Kamar ini sudah bersih» describe el estado de la habitación. «Siti sudah membersihkan kamar ini» presenta a Siti como quien causa que la habitación quede limpia.', explanation: 'La respuesta diferencia el estado del evento causante y mantiene claros los participantes.' },
+                                        { vocabId: 'b1u4_memberikan', type: 'write', prompt: 'Escribe tres oraciones breves que describan una transferencia o explicación con una forma conocida de U4. Identifica quién actúa, qué contenido se transfiere o explica y a quién.', hint: 'Puedes usar memberikan, mengirimkan o menjelaskan y las estructuras con kepada.', modelAnswer: 'Saya memberikan buku kepada Rina. Saya mengirimkan dokumen kepada Rina. Guru menjelaskan cara membaca kepada siswa.', explanation: 'El texto mantiene diferenciados al agente, el contenido y la persona destinataria.' },
+                                        { vocabId: 'b1u4_membersihkan', type: 'write', prompt: 'Escribe una oración con «membersihkan» y explica qué participante cambia de estado.', hint: 'Usa una entidad concreta como objeto y menciona quién realiza la acción.', modelAnswer: 'Siti sudah membersihkan kamar ini. Kamar ini es la entidad que queda limpia.', explanation: 'La producción usa una forma ya conocida y explica la relación causativa del ejemplo.' }
+                                    ]
+                                }
+                            ]
+                        },
+
                     ]
                 }
             ]
@@ -6463,10 +6523,10 @@
         }
         function getLearningLevels() {
             return getLevels().filter(level =>
-                (level.id !== 'B2' || level.units.some(unit => unit.id === 'b2_u1' || unit.id === 'b2_u2' || unit.id === 'b2_u3')) &&
+                (level.id !== 'B2' || level.units.some(unit => unit.id === 'b2_u1' || unit.id === 'b2_u2' || unit.id === 'b2_u3' || unit.id === 'b2_u4')) &&
                 (level.id !== 'A2' || A2_RELEASE_ENABLED)
             ).map(level => level.id === 'B2'
-                ? { ...level, units: level.units.filter(unit => unit.id === 'b2_u1' || unit.id === 'b2_u2' || unit.id === 'b2_u3') }
+                ? { ...level, units: level.units.filter(unit => unit.id === 'b2_u1' || unit.id === 'b2_u2' || unit.id === 'b2_u3' || unit.id === 'b2_u4') }
                 : level);
         }
         function getUniqueLearningVocabulary() {
@@ -6607,7 +6667,7 @@
                 const weak = srs.filter(i => i.val && i.val.efactor < 2.3)
                     .map(i => known.find(v => v.id === i.key)).filter(Boolean).slice(0, 10).map(v => v.idn);
                 const lvl = CourseData.levels.filter(l => l.units.some(u =>
-                    (l.id !== 'B2' || u.id === 'b2_u1' || u.id === 'b2_u2' || u.id === 'b2_u3') && App.completedUnits.includes(u.id)
+                    (l.id !== 'B2' || u.id === 'b2_u1' || u.id === 'b2_u2' || u.id === 'b2_u3' || u.id === 'b2_u4') && App.completedUnits.includes(u.id)
                 )).map(l => l.id).pop() || 'A1';
                 return `Eres un profesor de indonesio estándar (bahasa baku) para hispanohablantes. Crea UNA unidad sobre el tema: "${topic}".
 Nivel del alumno: ${lvl}, empezó de cero absoluto (unidades completadas: ${App.completedUnits.length}). Sé gradual y no asumas conocimientos previos.
@@ -7204,7 +7264,7 @@ Requisitos:
             },
             getVisibleLearningUnits(level) {
                 if (!level) return [];
-                return level.id === 'B2' ? level.units.slice(0, 3) : level.units;
+                return level.id === 'B2' ? level.units.slice(0, 4) : level.units;
             },
             getLearningLevelProgress(level) {
                 const units = this.getVisibleLearningUnits(level);
@@ -7397,7 +7457,7 @@ Requisitos:
                 placeholder.textContent = 'Selecciona una unidad';
                 select.appendChild(placeholder);
                 CourseData.levels.forEach(level => {
-                    const availableUnits = level.id === 'B2' ? level.units.slice(0, 3) : level.units;
+                    const availableUnits = level.id === 'B2' ? level.units.slice(0, 4) : level.units;
                     availableUnits.forEach((unit, index) => {
                     const option = document.createElement('option');
                     option.value = unit.id;
@@ -8104,7 +8164,7 @@ Requisitos:
             if (language === 'es' && typeof CourseData !== 'undefined' && Array.isArray(CourseData.levels)) {
                 for (const level of CourseData.levels) {
                     for (const unit of level.units || []) {
-                        if (level.id === 'B2' && !['b2_u1', 'b2_u2', 'b2_u3'].includes(unit.id)) continue;
+                        if (level.id === 'B2' && !['b2_u1', 'b2_u2', 'b2_u3', 'b2_u4'].includes(unit.id)) continue;
                         const authoredExercises = [
                             ...(unit.exercises || []),
                             ...(unit.lessons || []).flatMap(lesson => lesson.exercises || [])

@@ -1,6 +1,6 @@
 # Diseño preliminar B2 U2 — agente pronominal ligado y foco
 
-**Estado:** diseño pedagógico preliminar; no implementado.  
+**Estado:** aprobado e implementado en B2 U2; 9 nov 2026.  
 **Fecha:** 7 nov 2026 (hora local).  
 **Dependencia:** B2 U1 implementada (PR #437); U2 debe preceder a la integración prevista en U3.
 
@@ -198,3 +198,10 @@ Imamul Mutaqin, *Proses Pembentukan Derivasi dan Infleksi pada Rubrik Edukasi Ko
 Reno Wulan Sari, docente de Sastra Indonesia en Universitas Andalas y profesora invitada en Busan University of Foreign Studies, en el artículo de divulgación lingüística «Penggunaan Kata Ganti Engkau, Kau, Dia, dan Ia» (*Scientia Indonesia*, 14 feb 2021), explica `kau` como forma ligada y ofrece el par de ejemplos: «Buku yang engkau tulis sudah selesai aku baca» / «Buku yang kautulis sudah selesai kubaca». La segunda oración aporta un contexto sintáctico completo con `kautulis` y `kubaca` en una misma oración. La autora vincula la explicación a la entrada de `kau` en KBBI y a la descripción de Abdul Chaer. Fuente: https://scientia.id/2021/02/14/penggunaan-kata-ganti-engkau-kau-dia-dan-ia/ (14 feb 2021; sección sobre `engkau` y `kau`).
 
 **Alcance y cautelas:** fuente divulgativa escrita por una docente universitaria, con un ejemplo contextual claro y una explicación explícita de la forma ligada. La oración es un ejemplo didáctico construido por la autora, no una cita de corpus ni una medición de frecuencia; tampoco basta para establecer que `kautulis` sea frecuente o preferible en conversación informal. Complementa la evidencia morfológica y literaria, sin certificar registro actual. Las cuatro formas candidatas de U2 siguen pendientes de aprobación explícita; no se asignan IDs ni se implementa U2.
+
+
+## Implementación aprobada — 9 nov 2026
+
+El dueño aprobó explícitamente las cuatro formas propuestas: `kubaca`, `kaubaca`, `kutulis` y `kautulis`. U2 se implementa con 3 lecciones y 16 ejercicios, usando las cuatro formas como vocabulario canónico propio de la unidad y reutilizando vocabulario previo para los ejemplos. Las glosas mantienen una interpretación temporal neutral y la explicación prioriza agente, participante afectado y foco, sin imponer una etiqueta universal de voz.
+
+No se modifica IndexedDB, backup JSON v3 ni A1/A2/B1. B2 sigue en desarrollo y las unidades posteriores continúan sin implementación.

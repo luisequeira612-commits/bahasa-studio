@@ -85,7 +85,7 @@ test('phase 5B learning screen is compact, blue and preserves all level/tool ent
     });
     const contrast = (foreground, background) => {
       const luminance = value => {
-        const channels = value.match(/[\\d.]+/g).slice(0,3).map(Number).map(channel => {
+        const channels = value.match(/[\d.]+/g).slice(0,3).map(Number).map(channel => {
           const normalized = channel / 255;
           return normalized <= .04045 ? normalized / 12.92 : ((normalized + .055) / 1.055) ** 2.4;
         });

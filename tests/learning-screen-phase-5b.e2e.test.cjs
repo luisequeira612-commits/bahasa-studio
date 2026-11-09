@@ -147,6 +147,15 @@ test('phase 5B learning screen is compact, blue and preserves all level/tool ent
     assert.ok(compactTopbar.trigger.right <= 346, 'level chip must keep 14px right margin: ' + compactTopbar.trigger.right);
     assert.equal(compactTopbar.ariaStreak, 'Racha actual: 0 días');
     assert.equal(compactTopbar.ariaXp, 'XP de hoy frente a tu meta: Meta: 0/30 XP');
+    await page.evaluate(() => App.addXp(10));
+    await page.waitForFunction(async () => {
+      const activity = await DB.get('settings', 'studyActivity');
+      return activity && activity.todayXp === 10 && activity.currentStreak === 1;
+    });
+    assert.equal(await page.locator('#studyStreakText').innerText(), '1');
+    assert.equal(await page.locator('#studyDailyXpText').innerText(), '10/30 XP');
+    assert.equal(await page.locator('.topbar-streak').getAttribute('aria-label'), 'Racha actual: 1 día');
+    assert.equal(await page.locator('.topbar-xp').getAttribute('aria-label'), 'XP de hoy frente a tu meta: Meta: 10/30 XP');
     const brandFit = await page.evaluate(() => {
       const logo = document.querySelector('.app-topbar .logo span');
       logo.textContent = 'Guardi';

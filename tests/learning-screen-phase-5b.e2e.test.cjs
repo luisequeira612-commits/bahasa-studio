@@ -61,7 +61,7 @@ test('phase 5B learning screen is compact, blue and preserves all level/tool ent
     for (let i = 0; i < 4; i++) assert.ok((await levelRows.nth(i).boundingBox()).height >= 44);
     assert.ok((await page.locator('.learning-level-sheet-row.selected').count()) === 1);
     const a2Progress = await page.locator('.learning-level-sheet-row').nth(1).locator('small').innerText();
-    assert.match(a2Progress, /^\\d+ de 40 unidades$/);
+    assert.match(a2Progress, /^\d+ de 40 unidades$/);
     await page.locator('.learning-level-sheet-row').nth(1).click();
     await page.waitForFunction(() => document.getElementById('learningLevelSheetOverlay').hidden);
     await page.waitForSelector('.learning-unit-node.node-current');

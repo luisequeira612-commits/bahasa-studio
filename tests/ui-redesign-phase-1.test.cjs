@@ -56,7 +56,7 @@ test('compact level button opens a sheet for all course levels and defaults from
     assert.match(html, /CourseData\.levels\.forEach\(level =>/);
     assert.match(html, /className = 'learning-level-sheet-row'/);
     assert.match(html, /selectedLearningLevel = getCurrentLearningLevelId\(\)/);
-    assert.match(html, /\.level-progress-trigger\s*\{[^}]*min-width:44px[^}]*min-height:44px/);
+    assert.match(html, /\.level-progress-trigger\s*\{[^}]*min-width:78px[^}]*min-height:44px/);
     assert.match(html, /const A2_RELEASE_ENABLED = true/);
 });
 

@@ -52,6 +52,7 @@ test('phase 5B learning screen is compact, blue and preserves all level/tool ent
     const current = page.locator('.learning-unit-node.node-current').first();
     const before = await current.boundingBox();
     const bannerBox = await banner.boundingBox();
+    console.log('[phase5B 360x740] first current node y=' + before.y.toFixed(1) + 'px (' + (before.y / 740 * 100).toFixed(1) + '% viewport height); banner=' + bannerBox.height.toFixed(1) + 'px');
     assert.ok(before.y < 0.35 * 740, 'first current node should begin above 35% of viewport: ' + before.y);
     assert.ok(bannerBox.height <= 72, 'section banner must stay within 72px');
 
@@ -59,6 +60,7 @@ test('phase 5B learning screen is compact, blue and preserves all level/tool ent
     await page.locator('.level-progress-trigger').click();
     await page.waitForSelector('#learningLevelSheetOverlay:not([hidden])');
     assert.equal(await levelRows.count(), 4);
+    console.log('[phase5B 360x740] levels: ' + JSON.stringify(await levelRows.allInnerTexts()));
     for (let i = 0; i < 4; i++) assert.ok((await levelRows.nth(i).boundingBox()).height >= 44);
     assert.ok((await page.locator('.learning-level-sheet-row.selected').count()) === 1);
     const a2Progress = await page.locator('.learning-level-sheet-row').nth(1).locator('small').innerText();
@@ -71,6 +73,7 @@ test('phase 5B learning screen is compact, blue and preserves all level/tool ent
     await page.locator('.unit-tools-trigger').first().click();
     await page.waitForSelector('#learningToolsSheetOverlay:not([hidden])');
     assert.equal(await page.locator('.learning-tool-sheet-row').count(), 3);
+    console.log('[phase5B 360x740] tools: ' + JSON.stringify(await page.locator('.learning-tool-sheet-row strong').allInnerTexts()));
     for (const row of await page.locator('.learning-tool-sheet-row').all()) assert.ok((await row.boundingBox()).height >= 44);
     await page.locator('.learning-tool-sheet-row').nth(1).click();
     await page.waitForFunction(() => document.getElementById('learningToolsSheetOverlay').hidden);
@@ -122,6 +125,7 @@ test('phase 5B learning screen is compact, blue and preserves all level/tool ent
     await page.locator('.nav-btn[data-nav-group="learn"]').click();
     const compactTopbar = await page.evaluate(() => ({
       right: document.querySelector('.app-topbar').getBoundingClientRect().right,
+      logoRight: document.querySelector('.app-topbar .logo').getBoundingClientRect().right,
       leftPadding: document.querySelector('.app-topbar .logo').getBoundingClientRect().left - document.querySelector('.app-topbar').getBoundingClientRect().left,
       trigger: (() => { const r=document.querySelector('#learningLevelTrigger').getBoundingClientRect(); return {left:r.left,right:r.right,width:r.width,height:r.height}; })(),
       streak: document.getElementById('studyStreakText').textContent,
@@ -137,6 +141,7 @@ test('phase 5B learning screen is compact, blue and preserves all level/tool ent
     assert.equal(compactTopbar.xp, '0/30 XP');
     assert.equal(compactTopbar.levelChevron, 'block');
     assert.ok(compactTopbar.trigger.height >= 44);
+    assert.ok(compactTopbar.logoRight <= compactTopbar.trigger.left, 'Bahasa Studio brand must fit beside the level chip at 360px');
     assert.equal(compactTopbar.levelBorderColor, 'rgb(138, 148, 163)', 'chip border must reach at least 3:1 against white');
     assert.ok(compactTopbar.ringTrack.includes('138, 148, 163'), 'progress ring track must reach at least 3:1 against white');
     assert.ok(compactTopbar.trigger.right <= 346, 'level chip must keep 14px right margin: ' + compactTopbar.trigger.right);

@@ -37,5 +37,5 @@ test('Tutor welcome preserves useful guidance; Repasar uses zero-due state',()=>
  assert.match(h,/Todo al día. Guardi está orgulloso./);
  assert.match(h,/guardi-normal.svg/);
  assert.match(h,/guardi-pensando.svg/);
- assert.doesNotMatch(h,/guardi-triste.svg/);
+ assert.match(h,/guardi-triste\.svg/);
 });

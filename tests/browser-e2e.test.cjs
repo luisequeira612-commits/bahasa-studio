@@ -470,7 +470,7 @@ test('service worker upgrades an old installed cache without clearing local prog
   const currentCacheMatch = currentWorker.toString().match(/const CACHE_NAME = '([^']+)'/);
   assert.ok(currentCacheMatch, 'the current service worker should declare its cache version');
   const currentCacheName = currentCacheMatch[1];
-  const oldCacheName = currentCacheName.replace(/-v(\\d+)\\.(\\d+)\\.(\\d+)$/, (_, major, minor, patch) =>
+  const oldCacheName = currentCacheName.replace(/-v(\d+)\.(\d+)\.(\d+)$/, (_, major, minor, patch) =>
     `-v${major}.${minor}.${Number(patch) - 1}`);
   assert.notEqual(oldCacheName, currentCacheName, 'the simulated installed worker must use an older cache');
   const oldIndex = Buffer.from(currentIndex.toString().replace('<head>', '<head>\\n<!-- legacy-app-shell -->'));

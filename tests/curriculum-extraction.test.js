@@ -147,7 +147,7 @@ test('service worker precaches both data files and invalidates the previous cach
 test('the extracted stylesheet stays linked and its canonical content hash remains pinned', () => {
   const css = fs.readFileSync(require.resolve('../styles.css'), 'utf8');
   assert.match(html, /<link rel="stylesheet" href="\.\/styles\.css">/);
-  const inlineStyleTags = [...html.matchAll(/<style\\b([^>]*)>/gi)];
+  const inlineStyleTags = [...html.matchAll(/<style\b([^>]*)>/gi)];
   assert.equal(inlineStyleTags.length, 1, 'only the scoped Phase 5B override may remain inline');
   assert.match(inlineStyleTags[0][1], /id=["']learning-phase-5b-overrides["']/);
   assert.equal(fnv1a(css), 'aaf0af08', 'canonical extracted CSS content changed');

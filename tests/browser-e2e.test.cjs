@@ -52,6 +52,16 @@ function startServer(overrides = {}) {
     });
   });
 }
+async function openLearningTool(page, drawerId) {
+  const toolIds = ['aiGeneratorDrawer', 'writingPracticeDrawer', 'conversationPracticeDrawer'];
+  const index = toolIds.indexOf(drawerId);
+  if (index < 0) throw new Error('Unknown learning tool drawer: ' + drawerId);
+  await page.locator('.unit-tools-trigger').first().click();
+  await page.waitForFunction(() => !document.getElementById('learningToolsSheetOverlay').hidden);
+  await page.locator('.learning-tool-sheet-row').nth(index).click();
+  await page.waitForFunction(id => document.getElementById(id).open, drawerId);
+}
+
 
 test('real Chromium preserves progress on reload and safely imports valid/invalid backups', async () => {
   const { server, url } = await startServer();
@@ -458,7 +468,7 @@ test('service worker upgrades an old installed cache without clearing local prog
   const currentIndex = fs.readFileSync(path.join(root, 'index.html'));
   const currentWorker = fs.readFileSync(path.join(root, 'service-worker.js'));
   const oldIndex = Buffer.from(currentIndex.toString().replace('<head>', '<head>\\n<!-- legacy-app-shell -->'));
-  const oldWorker = Buffer.from(currentWorker.toString().replace('bahasa-studio-v3.8.75', 'bahasa-studio-v3.8.71'));
+  const oldWorker = Buffer.from(currentWorker.toString().replace('bahasa-studio-v3.8.77', 'bahasa-studio-v3.8.71'));
   let servedVersion = 'old';
   const { server, url } = await startServer({
     '/': () => servedVersion === 'old' ? oldIndex : currentIndex,
@@ -657,7 +667,7 @@ test('learning screen keeps level selector and current unit visible at 360px and
     await page.waitForFunction(() => typeof App !== 'undefined' && DB && DB.db &&
       document.querySelector('#courseContainer .learning-unit-node[data-path-state="current"]'));
     const layout = await page.evaluate(() => {
-      const selector = document.getElementById('learningLevelSelector').getBoundingClientRect();
+      const selector = document.getElementById('learningLevelTrigger').getBoundingClientRect();
       const current = document.querySelector('#courseContainer .learning-unit-node[data-path-state="current"]').getBoundingClientRect();
       return { height: innerHeight, selector: { top: selector.top, bottom: selector.bottom },
         current: { top: current.top, bottom: current.bottom }, scrollY };
@@ -667,18 +677,18 @@ test('learning screen keeps level selector and current unit visible at 360px and
     assert.ok(layout.current.top >= 0 && layout.current.bottom <= layout.height,
       'the current unit should be visible without a manual scroll');
 
-    await page.locator('.learning-tool-button[data-tool-target="aiGeneratorDrawer"]').click();
+    await openLearningTool(page, 'aiGeneratorDrawer');
     assert.equal(await page.locator('#aiGeneratorDrawer').evaluate(node => node.open), true);
     await page.locator('#syllabusSelector').waitFor({ state: 'visible' });
     await page.getByRole('button', { name: 'Generar siguiente lección' }).waitFor({ state: 'visible' });
 
-    await page.locator('.learning-tool-button[data-tool-target="writingPracticeDrawer"]').click();
+    await openLearningTool(page, 'writingPracticeDrawer');
     await page.getByRole('button', { name: 'Abrir cuaderno de escritura' }).click();
     await page.waitForFunction(() => document.getElementById('view-writing-practice').classList.contains('active'));
     await page.getByRole('button', { name: 'Volver al curso' }).click();
     await page.waitForFunction(() => document.getElementById('view-route').classList.contains('active'));
 
-    await page.locator('.learning-tool-button[data-tool-target="conversationPracticeDrawer"]').click();
+    await openLearningTool(page, 'conversationPracticeDrawer');
     await page.getByRole('button', { name: 'Practicar conversaciones' }).waitFor({ state: 'visible' });
     assert.equal(await page.locator('#conversationPracticeDrawer').evaluate(node => node.open), true);
   } finally {
@@ -1448,7 +1458,7 @@ test('dark lesson theme keeps red accents, readable feedback and smooth progress
     });
     const accent = await page.evaluate(() =>
       getComputedStyle(document.body).getPropertyValue('--accent').trim());
-    assert.equal(accent, '#c92a40', 'the dark theme should keep the app red accent');
+    assert.equal(accent, '#0067C6', 'the dark lesson theme should retain the approved blue brand accent');
 
     await page.locator('#view-lesson .option-btn').first().click();
     await page.locator('#view-lesson .option-btn.selected').waitFor();
@@ -1577,7 +1587,7 @@ test('lesson uses a full-screen flow, confirmation, feedback sheet and session s
     });
     assert.notEqual(selectedOptionStyle.background, defaultOptionStyle.background,
       'the selected option must use a distinct tinted background');
-    assert.equal(selectedOptionStyle.border, 'rgb(201, 42, 64)');
+    assert.equal(selectedOptionStyle.border, 'rgb(0, 103, 198)');
     assert.equal(await checkButton.isEnabled(), true,
       'selecting an option enables the check action');
     await checkButton.click();
@@ -1758,7 +1768,7 @@ test('learning path keeps the real A1 one-of-two lesson state visible at a 360px
     const initial = await page.evaluate(() => ({
       viewport: window.innerWidth,
       documentWidth: document.documentElement.scrollWidth,
-      selectedLevel: document.querySelector('.learning-level-button.active')?.dataset.level,
+      selectedLevel: document.getElementById('levelProgressLevel')?.textContent.trim(),
       currentUnit: document.querySelector('.learning-unit-node[data-path-state="current"]')?.dataset.unitId
     }));
     assert.equal(initial.viewport, 360);
@@ -1825,8 +1835,8 @@ test('learning route and unit sheet controls meet 44px touch targets at 360px', 
         return { width: rect.width, height: rect.height };
       };
       return {
-        level: size('.learning-level-button'),
-        tool: size('.learning-tool-button'),
+        level: size('#learningLevelTrigger'),
+        tool: size('.unit-tools-trigger'),
         currentNode: size('.learning-unit-node.node-current')
       };
     });
@@ -1878,10 +1888,10 @@ test('learning route and unit sheet controls meet 44px touch targets at 360px', 
         locked: read('learning-unit-node node-locked')
       };
     });
-    assert.equal(palette.brandRed, '#c92a40');
-    assert.equal(palette.current.background, 'rgb(201, 42, 64)');
+    assert.equal(palette.brandRed, '#0067C6');
+    assert.equal(palette.current.background, 'rgb(0, 103, 198)');
     assert.equal(palette.current.color, 'rgb(255, 255, 255)');
-    assert.equal(palette.completed.background, 'rgb(22, 131, 75)');
+    assert.equal(palette.completed.background, 'rgb(0, 78, 154)');
     assert.equal(palette.completed.color, 'rgb(255, 255, 255)');
     assert.equal(palette.locked.background, 'rgb(229, 231, 235)');
     assert.equal(palette.locked.color, 'rgb(55, 65, 81)');

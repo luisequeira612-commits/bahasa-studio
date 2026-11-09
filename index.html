@@ -6345,13 +6345,12 @@
             return Boolean(b1 && b1.units.length > 0 && b1.units.every(unit => completed.includes(unit.id)));
         }
         function getLearningLevels() {
-            return getLevels().flatMap(level => {
-                if (level.id === 'A2' && !A2_RELEASE_ENABLED) return [];
-                if (level.id !== 'B2') return [level];
-                // Only implemented B2 U1 participates in review; future units stay excluded.
-                const implementedUnits = level.units.filter(unit => unit.id === 'b2_u1');
-                return implementedUnits.length ? [{ ...level, units: implementedUnits }] : [];
-            });
+            return getLevels()
+                .filter(level => level.id !== 'B2' || level.units.some(unit => unit.id === 'b2_u1'))
+                .map(level => level.id === 'B2'
+                    ? { ...level, units: level.units.filter(unit => unit.id === 'b2_u1') }
+                    : level)
+                .filter(level => level.id !== 'A2' || A2_RELEASE_ENABLED);
         }
         function getUniqueLearningVocabulary() {
             const seen = new Set();

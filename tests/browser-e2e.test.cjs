@@ -1445,12 +1445,12 @@ test('dark lesson theme keeps red accents, readable feedback and smooth progress
     });
     const accent = await page.evaluate(() =>
       getComputedStyle(document.body).getPropertyValue('--accent').trim());
-    assert.equal(accent, '#e8384f', 'the dark theme should keep the app red accent');
+    assert.equal(accent, '#c92a40', 'the dark theme should keep the app red accent');
 
     await page.locator('#view-lesson .option-btn').first().click();
     await page.waitForFunction(() => {
       const selected = document.querySelector('#view-lesson .option-btn.selected');
-      return selected && getComputedStyle(selected).backgroundColor === 'rgb(74, 32, 40)';
+      return selected && getComputedStyle(selected).backgroundColor === 'rgb(71, 29, 35)';
     });
     const selectedText = await page.locator('#view-lesson .option-btn.selected').evaluate(node =>
       getComputedStyle(node).color);
@@ -1572,13 +1572,13 @@ test('lesson uses a full-screen flow, confirmation, feedback sheet and session s
     await page.locator('.option-btn').nth(correctOption).click();
     await page.waitForFunction(() => {
       const selected = document.querySelector('#view-lesson .option-btn.selected');
-      return selected && getComputedStyle(selected).backgroundColor === 'rgb(255, 240, 242)';
+      return selected && getComputedStyle(selected).backgroundColor === 'rgb(251, 238, 240)';
     });
     const selectedOptionStyle = await page.locator('#view-lesson .option-btn.selected').evaluate(node => {
       const style = getComputedStyle(node);
       return { background: style.backgroundColor, border: style.borderTopColor };
     });
-    assert.deepEqual(selectedOptionStyle, { background: 'rgb(255, 240, 242)', border: 'rgb(232, 56, 79)' });
+    assert.deepEqual(selectedOptionStyle, { background: 'rgb(251, 238, 240)', border: 'rgb(201, 42, 64)' });
     assert.equal(await checkButton.isEnabled(), true,
       'selecting an option enables the check action');
     await checkButton.click();

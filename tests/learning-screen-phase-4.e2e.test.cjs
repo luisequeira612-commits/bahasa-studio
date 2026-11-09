@@ -105,7 +105,7 @@ test('phase four learning screen works at 360px, preserves controls, sticky sect
 
     const secondBanner = page.locator('.unit-path-section-banner').nth(1);
     const secondDocumentTop = await secondBanner.evaluate(el => el.getBoundingClientRect().top + window.scrollY);
-    await page.evaluate(y => window.scrollTo(0, y - 112), secondDocumentTop);
+    await page.evaluate(y => window.scrollTo(0, y - 58), secondDocumentTop);
     await page.waitForTimeout(120);
     const secondTop = await secondBanner.evaluate(el => el.getBoundingClientRect().top);
     assert.ok(secondTop >= 56 && secondTop <= 60, 'next section banner should replace the previous sticky banner below the compact top bar: ' + secondTop);

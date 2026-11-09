@@ -634,8 +634,7 @@ test('daily XP goals and study streaks persist across reloads', async () => {
     await page.evaluate(() => App.addXp(45));
     await page.waitForFunction(() => App.studyActivity && App.studyActivity.todayXp === 55);
     assert.equal(await page.locator('#studyDailyXpText').innerText(), 'Meta: 55 XP hoy');
-    assert.equal(await page.locator('#dailyGoalPercent').innerText(), '✓');
-    assert.match(await page.locator('#dailyGoalRing').getAttribute('aria-label'), /100% completado/);
+    assert.match(await page.locator('#levelProgressRing').getAttribute('aria-label'), /nivel A1 seleccionado/);
     assert.equal(await page.locator('#studyStreakText').innerText(), '1 día');
     assert.equal(await page.locator('#studyLessonsTodayText').innerText(), '1 lección hoy');
     assert.equal(await page.locator('#studyReviewsTodayText').innerText(), '1 tarjeta repasada hoy');

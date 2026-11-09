@@ -122,9 +122,9 @@ test('phase four layout uses one spacing rule, a separated red progress ring and
   assert.match(route, /currentTitle\.style\.top = \(nodeTop \+ 38\)/);
   assert.match(route, /currentTitle\.style\.width = 'min\(106px, 34%\)'/);
   assert.match(route, /currentTitle\.style\.textOverflow = 'ellipsis'/);
-  assert.match(route, /currentTitle\\.style\\.whiteSpace = 'normal'/);
-  assert.match(route, /currentTitle\\.style\\.webkitLineClamp = '2'/);
-  assert.match(route, /currentTitle\\.style\\.maxHeight = '30px'/);
+  assert.ok(route.includes("currentTitle.style.whiteSpace = 'normal'"));
+  assert.ok(route.includes("currentTitle.style.webkitLineClamp = '2'"));
+  assert.ok(route.includes("currentTitle.style.maxHeight = '30px'"));
   assert.match(route, /const targetTop = stickyTop \+ banner\.getBoundingClientRect\(\)\.height \+ 12/);
   const css = await read('styles.css');
   assert.match(css, /prefers-reduced-motion:reduce/);
@@ -148,14 +148,14 @@ test('topbar uses an Indonesian flag and flame SVG; navigation pill keeps one la
 test('bottom sheet uses a gray lesson track, light surface and safe-area padding', async () => {
   const html = await read('index.html');
   assert.match(html, /unit-sheet-lesson-track/);
-  assert.match(html, /background:#d1d5db/);
+  assert.match(html, /background:#8b8b8b/);
   assert.match(html, /background:#c92a40/);
   assert.match(html, /height:8px;min-height:8px/);
-  assert.match(html, /sheet\\.style\\.backgroundColor = '#ffffff'/);
-  assert.match(html, /sheet\\.style\\.borderTop = '1px solid #d1d5db'/);
+  assert.ok(html.includes("sheet.style.backgroundColor = '#ffffff'"));
+  assert.ok(html.includes("sheet.style.borderTop = '1px solid #d1d5db'"));
   assert.match(html, /safe-area-inset-bottom/);
-  assert.match(html, /element\\.style\\.color = '#4b5563'/);
+  assert.ok(html.includes("element.style.color = '#4b5563'"));
   assert.ok(contrast('#1f2937', '#ffffff') >= 4.5);
   assert.ok(contrast('#4b5563', '#ffffff') >= 4.5);
-  assert.ok(contrast('#d1d5db', '#ffffff') > 1);
+  assert.ok(contrast('#8b8b8b', '#ffffff') >= 3, 'gray progress track must meet 3:1 graphic contrast');
 });

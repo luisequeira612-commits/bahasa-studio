@@ -95,8 +95,9 @@ test('learning controls retain 44px minimum targets without changing unrelated b
   assert.match(css, /\.unit-sheet-close\s*\{[^}]*width:\s*44px[^}]*height:\s*44px/s);
   assert.match(css, /\.unit-sheet-primary,[\s\S]*?min-height:\s*48px/);
   assert.match(css, /\.learning-tool-button\s*\{[^}]*min-height:\s*48px/);
-  assert.match(css, /\.btn-sm\s*\{\s*min-height:\s*48px/);
-  assert.match(css, /\.backup-reminder-banner button\s*\{[^}]*min-height:36px/);
+  assert.match(css, /#view-route \.btn-sm,\s*#unitBottomSheet \.btn-sm\s*\{\s*min-height:\s*48px/);
+  assert.doesNotMatch(css, /(?<!#view-route )(?<!#unitBottomSheet )\.btn-sm\s*\{\s*min-height:\s*48px/);
+  assert.match(css, /\.btn-sm\s*\{[^}]*min-height:\s*36px/);
 });
 
 test('PWA manifest keeps standalone routing, explicit scope and the maskable icon', async () => {

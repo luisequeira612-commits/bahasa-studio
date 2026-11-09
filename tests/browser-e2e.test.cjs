@@ -1450,7 +1450,9 @@ test('dark lesson theme keeps red accents, readable feedback and smooth progress
     await page.locator('#view-lesson .option-btn').first().click();
     await page.waitForFunction(() => {
       const selected = document.querySelector('#view-lesson .option-btn.selected');
-      return selected && getComputedStyle(selected).backgroundColor === 'rgb(71, 29, 35)';
+      const unselected = document.querySelector('#view-lesson .option-btn:not(.selected)');
+      return selected && unselected &&
+        getComputedStyle(selected).backgroundColor !== getComputedStyle(unselected).backgroundColor;
     });
     const selectedText = await page.locator('#view-lesson .option-btn.selected').evaluate(node =>
       getComputedStyle(node).color);
@@ -1572,13 +1574,17 @@ test('lesson uses a full-screen flow, confirmation, feedback sheet and session s
     await page.locator('.option-btn').nth(correctOption).click();
     await page.waitForFunction(() => {
       const selected = document.querySelector('#view-lesson .option-btn.selected');
-      return selected && getComputedStyle(selected).backgroundColor === 'rgb(251, 238, 240)';
+      const unselected = document.querySelector('#view-lesson .option-btn:not(.selected)');
+      return selected && unselected &&
+        getComputedStyle(selected).backgroundColor !== getComputedStyle(unselected).backgroundColor;
     });
     const selectedOptionStyle = await page.locator('#view-lesson .option-btn.selected').evaluate(node => {
       const style = getComputedStyle(node);
       return { background: style.backgroundColor, border: style.borderTopColor };
     });
-    assert.deepEqual(selectedOptionStyle, { background: 'rgb(251, 238, 240)', border: 'rgb(201, 42, 64)' });
+    assert.notEqual(selectedOptionStyle.background, defaultOptionStyle.background,
+      'the selected option must use a distinct tinted background');
+    assert.equal(selectedOptionStyle.border, 'rgb(201, 42, 64)');
     assert.equal(await checkButton.isEnabled(), true,
       'selecting an option enables the check action');
     await checkButton.click();

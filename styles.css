@@ -1013,7 +1013,8 @@ body.unit-sheet-open { overflow: hidden; }
 @media (prefers-reduced-motion:reduce) {
     .learning-unit-node,.current-unit-start-bubble,.nav-btn,.learning-tool-button,.unit-bottom-sheet,.unit-sheet-overlay,.unit-sheet-overlay.is-closing,.unit-sheet-overlay.is-closing .unit-bottom-sheet,.learning-unit-node.just-completed::after {
         transition:none !important; animation:none !important;
-    }
+    } 
+    .guardi-celebration { animation:none !important; }
 }
 
 /* Guardi — ilustraciones locales, sin dependencias ni cambios de estado. */
@@ -1026,4 +1027,3 @@ body.unit-sheet-open { overflow: hidden; }
 .tutor-welcome img { width:100px; height:100px; object-fit:contain; align-self:center; pointer-events:none; }
 .guardi-celebration { width:152px; height:152px; animation:guardi-celebrate 600ms ease-in-out 2; }
 @keyframes guardi-celebrate { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-6px); } }
-@media (prefers-reduced-motion:reduce) { .guardi-celebration { animation:none !important; } }

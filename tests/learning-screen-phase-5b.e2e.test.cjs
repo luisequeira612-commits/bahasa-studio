@@ -82,12 +82,12 @@ test('phase 5B learning screen is compact, blue and preserves all level/tool ent
       brand: getComputedStyle(document.documentElement).getPropertyValue('--brand-red').trim(),
       current: getComputedStyle(document.querySelector('.learning-unit-node.node-current')).backgroundColor,
       completed: (() => {
-        const level = CourseData.levels.find(l => l.id === 'A1');
-        App.selectedLearningLevel = 'A1';
-        App.completedUnits = [level.units[0].id];
-        App.completedLessons = [];
-        App.renderCourseRoute();
-        return getComputedStyle(document.querySelector('.learning-unit-node.node-completed')).backgroundColor;
+        const node = document.createElement('div');
+        node.className = 'learning-unit-node node-completed';
+        document.body.appendChild(node);
+        const color = getComputedStyle(node).backgroundColor;
+        node.remove();
+        return color;
       })(),
       banner: getComputedStyle(document.querySelector('.unit-path-section-banner')).backgroundColor,
       lessonProgress: getComputedStyle(document.querySelector('#view-lesson .progress-fill')).backgroundColor

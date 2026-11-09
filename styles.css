@@ -196,7 +196,7 @@
 .path-node-locked { opacity:1; background:#f3f4f6; color:#374151; border-color:#9ca3af; }
 .path-node-locked .unit-title { color:#374151; }
 .path-node-locked .badge { background:#e5e7eb; color:#374151; border-color:#9ca3af; }
-.path-node-locked > summary::before { background:var(--bg-card); }
+.path-node-locked > summary::before { background:#e5e7eb; box-shadow:0 0 0 2px #9ca3af; }
 .path-node .unit-title { font-size:.96rem; }
 .path-node-current .unit-title { color:var(--accent); }
 .path-node .unit-body { padding-left:2px; }

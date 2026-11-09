@@ -374,7 +374,7 @@ test('phase four path geometry is collision-free at 360px across levels and zigz
     assert.ok(contrast.chip >= 4.5 && contrast.darkChip >= 4.5, 'topbar chip text contrast in both themes: ' + JSON.stringify(contrast));
     assert.ok(contrast.chipIcon >= 3 && contrast.darkChipIcon >= 3, 'topbar chip icons need 3:1 contrast: ' + JSON.stringify(contrast));
     assert.ok(contrast.activePill >= 4.5 && contrast.activeIcon >= 3, 'active tab pill contrast: ' + JSON.stringify(contrast));
-    assert.equal(contrast.chipGap, '5px', 'topbar chips should have 5px separation at 360px');
+    assert.equal(contrast.chipGap, '4px', 'topbar chips should have 4px separation at 360px');
     assert.ok(contrast.navHeight >= 44, 'bottom navigation touch target must be at least 44px high');
     assert.ok(contrast.navHeights.every(height => height === contrast.navHeights[0]), 'all bottom tabs must have the same height');
   } finally {

@@ -60,6 +60,50 @@ test('phase 5B learning screen is compact, blue and preserves all level/tool ent
     await page.locator('.level-progress-trigger').click();
     await page.waitForSelector('#learningLevelSheetOverlay:not([hidden])');
     assert.equal(await levelRows.count(), 4);
+    const languageBadge = page.locator('#learningLevelLanguageLabel');
+    assert.equal(await languageBadge.innerText(), 'Indonesio');
+    assert.equal(await languageBadge.getAttribute('aria-label'), 'Idioma: Indonesio');
+    assert.equal(await languageBadge.evaluate(el => el.tagName), 'SPAN', 'the language label must be informational, not a control');
+    assert.equal(await languageBadge.getAttribute('role'), null);
+    assert.equal(await languageBadge.getAttribute('tabindex'), null);
+    const labelLayout = await page.evaluate(() => {
+      const heading = document.getElementById('learningLevelSheetTitle').getBoundingClientRect();
+      const title = document.createRange();
+      title.selectNodeContents(document.getElementById('learningLevelSheetTitle').firstChild);
+      const titleBox = title.getBoundingClientRect();
+      const badge = document.getElementById('learningLevelLanguageLabel').getBoundingClientRect();
+      const close = document.querySelector('#learningLevelSheet .learning-sheet-close').getBoundingClientRect();
+      const style = getComputedStyle(document.getElementById('learningLevelLanguageLabel'));
+      return {
+        heading: { x:heading.x, y:heading.y, width:heading.width, right:heading.right },
+        title: { x:titleBox.x, y:titleBox.y, right:titleBox.right },
+        badge: { x:badge.x, y:badge.y, right:badge.right, height:badge.height },
+        close: { x:close.x, y:close.y, right:close.right },
+        background: style.backgroundColor, color: style.color, border: style.borderWidth,
+        shadow: style.boxShadow, radius: style.borderRadius
+      };
+    });
+    const contrast = (foreground, background) => {
+      const luminance = value => {
+        const channels = value.match(/[\d.]+/g).slice(0,3).map(Number).map(channel => {
+          const normalized = channel / 255;
+          return normalized <= .04045 ? normalized / 12.92 : ((normalized + .055) / 1.055) ** 2.4;
+        });
+        return .2126 * channels[0] + .7152 * channels[1] + .0722 * channels[2];
+      };
+      const values = [luminance(foreground), luminance(background)].sort((a,b) => b-a);
+      return (values[0] + .05) / (values[1] + .05);
+    };
+    const labelContrast = contrast(labelLayout.color, labelLayout.background);
+    console.log('[phase5B language label 360x740] ' + JSON.stringify({ ...labelLayout, contrast:labelContrast.toFixed(2) + ':1' }));
+    assert.equal(labelLayout.background, 'rgb(244, 245, 247)');
+    assert.equal(labelLayout.color, 'rgb(91, 100, 114)');
+    assert.equal(labelLayout.border, '0px');
+    assert.equal(labelLayout.shadow, 'none');
+    assert.ok(labelContrast >= 4.5, 'language label text contrast must be at least 4.5:1');
+    assert.ok(labelLayout.badge.x >= labelLayout.title.right + 7, 'badge must not collide with title text');
+    assert.ok(labelLayout.badge.right <= labelLayout.close.x - 2, 'badge must not collide with close button');
+    assert.ok(Math.abs(labelLayout.badge.y - labelLayout.title.y) < 8, 'badge should share the title line at 360px');
     console.log('[phase5B 360x740] levels: ' + JSON.stringify(await levelRows.allInnerTexts()));
     for (let i = 0; i < 4; i++) assert.ok((await levelRows.nth(i).boundingBox()).height >= 44);
     assert.ok((await page.locator('.learning-level-sheet-row.selected').count()) === 1);
@@ -141,7 +185,7 @@ test('phase 5B learning screen is compact, blue and preserves all level/tool ent
     assert.equal(compactTopbar.xp, '0/30 XP');
     assert.equal(compactTopbar.levelChevron, 'block');
     assert.ok(compactTopbar.trigger.height >= 44);
-    assert.ok(compactTopbar.logoRight <= compactTopbar.trigger.left, 'Bahasa Studio brand must fit beside the level chip at 360px');
+    assert.ok(compactTopbar.logoRight <= compactTopbar.trigger.left, 'Guardi brand must fit beside the level chip at 360px');
     assert.equal(compactTopbar.levelBorderColor, 'rgb(138, 148, 163)', 'chip border must reach at least 3:1 against white');
     assert.ok(compactTopbar.ringTrack.includes('138, 148, 163'), 'progress ring track must reach at least 3:1 against white');
     assert.ok(compactTopbar.trigger.right <= 346, 'level chip must keep 14px right margin: ' + compactTopbar.trigger.right);

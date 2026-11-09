@@ -1,7 +1,7 @@
 {
-  "short_name": "Bahasa Studio",
-  "name": "Bahasa Studio 3.8.15",
-  "description": "Aprende indonesio con lecciones, repaso y funciones disponibles sin conexión.",
+  "short_name": "Guardi",
+  "name": "Guardi",
+  "description": "Aprende idiomas",
   "icons": [
     {
       "src": "./icon.svg",

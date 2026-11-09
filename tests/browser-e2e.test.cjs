@@ -119,7 +119,7 @@ test('real Chromium preserves progress on reload and safely imports valid/invali
     };
     const navigation = page.waitForNavigation({ waitUntil: 'domcontentloaded' });
     await page.locator('#importFile').setInputFiles({
-      name: 'valid-backup.json',
+      name: 'bahasa_studio_backup.json', // legacy filename remains importable; validation uses JSON contents
       mimeType: 'application/json',
       buffer: Buffer.from(JSON.stringify(validBackup))
     });
@@ -468,7 +468,7 @@ test('service worker upgrades an old installed cache without clearing local prog
   const currentIndex = fs.readFileSync(path.join(root, 'index.html'));
   const currentWorker = fs.readFileSync(path.join(root, 'service-worker.js'));
   const oldIndex = Buffer.from(currentIndex.toString().replace('<head>', '<head>\\n<!-- legacy-app-shell -->'));
-  const oldWorker = Buffer.from(currentWorker.toString().replace('bahasa-studio-v3.8.79', 'bahasa-studio-v3.8.71'));
+  const oldWorker = Buffer.from(currentWorker.toString().replace('bahasa-studio-v3.8.81', 'bahasa-studio-v3.8.80'));
   let servedVersion = 'old';
   const { server, url } = await startServer({
     '/': () => servedVersion === 'old' ? oldIndex : currentIndex,
@@ -487,7 +487,7 @@ test('service worker upgrades an old installed cache without clearing local prog
       await DB.set('settings', 'completedLessons', ['a2_u1::0']);
       await navigator.serviceWorker.ready;
     });
-    await page.waitForFunction(async () => (await caches.keys()).includes('bahasa-studio-v3.8.71'), null, { timeout: 15000 });
+    await page.waitForFunction(async () => (await caches.keys()).includes('bahasa-studio-v3.8.80'), null, { timeout: 15000 });
     assert.equal(await page.locator('html').evaluate(node => node.innerHTML.includes('legacy-app-shell')), true,
       'the first launch should use the simulated older installed shell');
 
@@ -506,7 +506,7 @@ test('service worker upgrades an old installed cache without clearing local prog
     });
     await page.waitForFunction(async () => {
       const keys = await caches.keys();
-      return keys.includes('bahasa-studio-v3.8.79') && !keys.includes('bahasa-studio-v3.8.71');
+      return keys.includes('bahasa-studio-v3.8.81') && !keys.includes('bahasa-studio-v3.8.80');
     }, null, { timeout: 15000 });
 
     await page.reload({ waitUntil: 'domcontentloaded' });
@@ -540,7 +540,7 @@ test('service worker serves the app after the network is disconnected', async ()
     await context.setOffline(true);
     await page.reload({ waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined');
-    assert.match(await page.title(), /Bahasa Studio 3\.8\.15/);
+    assert.equal(await page.title(), 'Guardi');
     assert.equal(await page.locator('body').isVisible(), true);
     assert.equal(await page.evaluate(() => typeof ConversationEngine !== 'undefined' && typeof StudyActivity !== 'undefined'), true,
       'the conversation and study activity modules must be available from the service-worker cache offline');
@@ -1388,7 +1388,7 @@ test('storage persistence status is honest and the backup reminder stays availab
     const downloadPromise = page.waitForEvent('download');
     await page.getByRole('button', { name: 'Exportar JSON' }).click();
     const download = await downloadPromise;
-    assert.match(download.suggestedFilename(), /bahasa_studio_backup\.json/);
+    assert.match(download.suggestedFilename(), /guardi-backup\.json/);
     await page.locator('#backupReminderBanner').waitFor({ state: 'visible' });
   } finally {
     await context.close();

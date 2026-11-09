@@ -14,7 +14,8 @@ test('all buttons have at least 48px touch height and a press-down border treatm
     assert.match(css, /button\s*\{[\s\S]*?border-bottom-width:4px/);
     assert.match(css, /button:active\s*\{[\s\S]*?transform:translateY\(2px\)/);
     assert.match(css, /button:active\s*\{[\s\S]*?border-bottom-width:2px/);
-    assert.match(css, /\.btn-sm\s*\{\s*min-height:48px/);
+    assert.match(css, /#view-route \.btn-sm,\s*#unitBottomSheet \.btn-sm\s*\{\s*min-height:48px/);
+    assert.doesNotMatch(css, /(?<!#view-route )(?<!#unitBottomSheet )\.btn-sm\s*\{\s*min-height:48px/);
     assert.match(css, /\.nav-btn\s*\{\s*min-height:48px/);
 });
 
@@ -28,9 +29,10 @@ test('short lesson viewports do not reduce answer targets below 48px', () => {
 });
 
 test('light and dark themes use the same requested red accent', () => {
-    assert.match(css, /:root, \.light-mode\s*\{[^}]*--bg-primary:#ffffff[^}]*--accent:#e8384f/);
-    assert.match(css, /\.dark-mode\s*\{[^}]*--accent:#e8384f/);
-    assert.doesNotMatch(css, /--accent:#ff5a6e/);
+    assert.match(css, /:root, \.light-mode\s*\{[^}]*--bg-primary:#ffffff[^}]*--accent:var\(--brand-red\)/);
+    assert.match(css, /\.dark-mode\s*\{[^}]*--accent:var\(--brand-red\)/);
+    assert.match(css, /--brand-red:\s*#c92a40/);
+    assert.doesNotMatch(css, /--accent:#ff5a6e|#e8384f/);
     assert.match(html, /toggleTheme\(\)/);
     assert.match(html, /localStorage\.setItem\('bs_dark'/);
 });

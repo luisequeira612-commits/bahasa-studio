@@ -11,9 +11,10 @@
     }
   ],
   "start_url": "./index.html",
-  "background_color": "#0f172a",
-  "theme_color": "#e8384f",
+  "background_color": "#ffffff",
+  "theme_color": "#c92a40",
   "display": "standalone",
   "orientation": "portrait",
-  "lang": "es"
+  "lang": "es",
+  "scope": "./"
 }

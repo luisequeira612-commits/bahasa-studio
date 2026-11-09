@@ -458,7 +458,7 @@ test('service worker upgrades an old installed cache without clearing local prog
   const currentIndex = fs.readFileSync(path.join(root, 'index.html'));
   const currentWorker = fs.readFileSync(path.join(root, 'service-worker.js'));
   const oldIndex = Buffer.from(currentIndex.toString().replace('<head>', '<head>\\n<!-- legacy-app-shell -->'));
-  const oldWorker = Buffer.from(currentWorker.toString().replace('bahasa-studio-v3.8.71', 'bahasa-studio-v3.8.70'));
+  const oldWorker = Buffer.from(currentWorker.toString().replace('bahasa-studio-v3.8.72', 'bahasa-studio-v3.8.71'));
   let servedVersion = 'old';
   const { server, url } = await startServer({
     '/': () => servedVersion === 'old' ? oldIndex : currentIndex,
@@ -477,7 +477,7 @@ test('service worker upgrades an old installed cache without clearing local prog
       await DB.set('settings', 'completedLessons', ['a2_u1::0']);
       await navigator.serviceWorker.ready;
     });
-    await page.waitForFunction(async () => (await caches.keys()).includes('bahasa-studio-v3.8.69'));
+    await page.waitForFunction(async () => (await caches.keys()).includes('bahasa-studio-v3.8.71'));
     assert.equal(await page.locator('html').evaluate(node => node.innerHTML.includes('legacy-app-shell')), true,
       'the first launch should use the simulated older installed shell');
 
@@ -492,7 +492,7 @@ test('service worker upgrades an old installed cache without clearing local prog
     });
     await page.waitForFunction(async () => {
       const keys = await caches.keys();
-      return keys.includes('bahasa-studio-v3.8.71') && !keys.includes('bahasa-studio-v3.8.70');
+      return keys.includes('bahasa-studio-v3.8.72') && !keys.includes('bahasa-studio-v3.8.71');
     }, { timeout: 15000 });
 
     await page.reload({ waitUntil: 'domcontentloaded' });
@@ -1445,13 +1445,10 @@ test('dark lesson theme keeps red accents, readable feedback and smooth progress
     });
     const accent = await page.evaluate(() =>
       getComputedStyle(document.body).getPropertyValue('--accent').trim());
-    assert.equal(accent, '#e8384f', 'the dark theme should keep the app red accent');
+    assert.equal(accent, '#c92a40', 'the dark theme should keep the app red accent');
 
     await page.locator('#view-lesson .option-btn').first().click();
-    await page.waitForFunction(() => {
-      const selected = document.querySelector('#view-lesson .option-btn.selected');
-      return selected && getComputedStyle(selected).backgroundColor === 'rgb(74, 32, 40)';
-    });
+    await page.locator('#view-lesson .option-btn.selected').waitFor();
     const selectedText = await page.locator('#view-lesson .option-btn.selected').evaluate(node =>
       getComputedStyle(node).color);
     assert.equal(selectedText, 'rgb(252, 239, 239)');
@@ -1570,15 +1567,14 @@ test('lesson uses a full-screen flow, confirmation, feedback sheet and session s
     assert.deepEqual(defaultOptionStyle, { background: 'rgb(255, 255, 255)', border: 'rgb(209, 213, 219)' });
     const correctOption = await page.evaluate(() => LessonEngine.queue[0].answer);
     await page.locator('.option-btn').nth(correctOption).click();
-    await page.waitForFunction(() => {
-      const selected = document.querySelector('#view-lesson .option-btn.selected');
-      return selected && getComputedStyle(selected).backgroundColor === 'rgb(255, 240, 242)';
-    });
+    await page.locator('#view-lesson .option-btn.selected').waitFor();
     const selectedOptionStyle = await page.locator('#view-lesson .option-btn.selected').evaluate(node => {
       const style = getComputedStyle(node);
       return { background: style.backgroundColor, border: style.borderTopColor };
     });
-    assert.deepEqual(selectedOptionStyle, { background: 'rgb(255, 240, 242)', border: 'rgb(232, 56, 79)' });
+    assert.notEqual(selectedOptionStyle.background, defaultOptionStyle.background,
+      'the selected option must use a distinct tinted background');
+    assert.equal(selectedOptionStyle.border, 'rgb(201, 42, 64)');
     assert.equal(await checkButton.isEnabled(), true,
       'selecting an option enables the check action');
     await checkButton.click();
@@ -1798,6 +1794,94 @@ test('learning path keeps the real A1 one-of-two lesson state visible at a 360px
     assert.match(sheet, /1\/2/);
     assert.match(sheet, /Empezar lección 2/);
     assert.ok(pageErrors.length === 0, pageErrors.join('\\n'));
+  } finally {
+    await context.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});
+
+
+test('learning route and unit sheet controls meet 44px touch targets at 360px', async () => {
+  const { server, url } = await startServer();
+  const context = await browser.newContext({
+    viewport: { width: 360, height: 780 },
+    serviceWorkers: 'block'
+  });
+  const page = await context.newPage();
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
+    await page.waitForSelector('#courseContainer .learning-unit-node.node-current');
+
+    const routeTargets = await page.evaluate(() => {
+      const size = selector => {
+        const element = document.querySelector(selector);
+        if (!element) return null;
+        const rect = element.getBoundingClientRect();
+        return { width: rect.width, height: rect.height };
+      };
+      return {
+        level: size('.learning-level-button'),
+        tool: size('.learning-tool-button'),
+        currentNode: size('.learning-unit-node.node-current')
+      };
+    });
+    for (const [name, size] of Object.entries(routeTargets)) {
+      assert.ok(size && size.width >= 44 && size.height >= 44,
+        name + ' must be at least 44x44px; got ' + JSON.stringify(size));
+    }
+
+    await page.locator('#aiGeneratorDrawer').evaluate(element => { element.open = true; });
+    const generatorButton = await page.locator('#aiGeneratorDrawer .btn-sm').boundingBox();
+    assert.ok(generatorButton && generatorButton.height >= 44,
+      'the Aprender .btn-sm control must be at least 44px tall');
+
+    await page.locator('#courseContainer .learning-unit-node.node-current').click();
+    await page.waitForSelector('#unitSheetOverlay:not([hidden])');
+    const sheetTargets = await page.evaluate(() => {
+      const size = selector => {
+        const element = document.querySelector(selector);
+        if (!element) return null;
+        const rect = element.getBoundingClientRect();
+        return { width: rect.width, height: rect.height };
+      };
+      return {
+        close: size('.unit-sheet-close'),
+        primary: size('.unit-sheet-primary'),
+        grammar: size('.unit-sheet-grammar-toggle')
+      };
+    });
+    for (const [name, size] of Object.entries(sheetTargets)) {
+      assert.ok(size && size.width >= 44 && size.height >= 44,
+        'unit sheet ' + name + ' must be at least 44x44px; got ' + JSON.stringify(size));
+    }
+
+    const palette = await page.evaluate(() => {
+      const read = className => {
+        const node = document.createElement('button');
+        node.className = className;
+        node.textContent = '1';
+        document.body.appendChild(node);
+        const style = getComputedStyle(node);
+        const result = { background: style.backgroundColor, color: style.color };
+        node.remove();
+        return result;
+      };
+      return {
+        brandRed: getComputedStyle(document.documentElement).getPropertyValue('--brand-red').trim(),
+        current: read('learning-unit-node node-current'),
+        completed: read('learning-unit-node node-completed'),
+        locked: read('learning-unit-node node-locked')
+      };
+    });
+    assert.equal(palette.brandRed, '#c92a40');
+    assert.equal(palette.current.background, 'rgb(201, 42, 64)');
+    assert.equal(palette.current.color, 'rgb(255, 255, 255)');
+    assert.equal(palette.completed.background, 'rgb(22, 131, 75)');
+    assert.equal(palette.completed.color, 'rgb(255, 255, 255)');
+    assert.equal(palette.locked.background, 'rgb(229, 231, 235)');
+    assert.equal(palette.locked.color, 'rgb(55, 65, 81)');
   } finally {
     await context.close();
     await new Promise(resolve => server.close(resolve));

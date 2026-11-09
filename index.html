@@ -6811,8 +6811,10 @@ Requisitos:
             },
 
             scrollToCurrentUnit(smooth = true) {
-                const current = document.querySelector('#courseContainer .learning-unit-node[data-path-state="current"]');
-                if (!current || !document.getElementById('view-route').classList.contains('active')) {
+                const route = document.getElementById('view-route');
+                const current = document.querySelector('#courseContainer .learning-unit-node[data-path-state="current"]') ||
+                    document.querySelector('#courseContainer .learning-unit-node');
+                if (!current || !route || !route.classList.contains('active')) {
                     this.updateJumpToCurrentVisibility();
                     return;
                 }
@@ -6821,10 +6823,15 @@ Requisitos:
                 const banner = section && section.querySelector('.unit-path-section-banner');
                 const bubble = section && section.querySelector('.current-unit-start-bubble');
                 if (banner && bubble) {
-                    const stickyTop = parseFloat(getComputedStyle(banner).top) || 112;
+                    const stickyTop = parseFloat(getComputedStyle(banner).top) || 58;
                     const targetTop = stickyTop + banner.getBoundingClientRect().height + 12;
                     const bubbleTop = bubble.getBoundingClientRect().top;
                     window.scrollTo({ top: Math.max(0, window.scrollY + bubbleTop - targetTop), behavior });
+                } else if (banner) {
+                    const stickyTop = parseFloat(getComputedStyle(banner).top) || 58;
+                    const targetTop = stickyTop + banner.getBoundingClientRect().height + 12;
+                    const nodeTop = current.getBoundingClientRect().top;
+                    window.scrollTo({ top: Math.max(0, window.scrollY + nodeTop - targetTop), behavior });
                 } else {
                     current.scrollIntoView({ behavior, block: 'center' });
                 }

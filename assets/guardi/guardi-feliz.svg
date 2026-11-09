@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-90 -80 180 180" width="180" height="180" role="img" aria-label="Guardi feliz">
+<path d="M-6 38Q-14 62-30 76" fill="none" stroke="#0E8FA8" stroke-width="4" stroke-linecap="round"/>
+<ellipse cx="-36" cy="81" rx="6.5" ry="11" transform="rotate(49 -36 81)" fill="#1B3A5C" stroke="#2EC4D6" stroke-width="2"/>
+<path d="M6 38Q14 62 30 76" fill="none" stroke="#0E8FA8" stroke-width="4" stroke-linecap="round"/>
+<ellipse cx="36" cy="81" rx="6.5" ry="11" transform="rotate(-49 36 81)" fill="#1B3A5C" stroke="#2EC4D6" stroke-width="2"/>
+<ellipse cx="0" cy="2" rx="44" ry="50" fill="#136F8E"/>
+<ellipse cx="0" cy="-4" rx="44" ry="50" fill="#1F96BA"/>
+<ellipse cx="0" cy="25" rx="26" ry="19" fill="#F0A868"/>
+<ellipse cx="43" cy="14" rx="10" ry="25" transform="rotate(-10 43 14)" fill="#177C9C"/>
+<ellipse cx="-43" cy="14" rx="10" ry="25" transform="rotate(10 -43 14)" fill="#177C9C"/>
+<ellipse cx="-14" cy="50" rx="11" ry="4.5" fill="#D97706"/>
+<ellipse cx="14" cy="50" rx="11" ry="4.5" fill="#D97706"/>
+<circle cx="-31" cy="10" r="6" fill="#F4A3A3"/>
+<circle cx="31" cy="10" r="6" fill="#F4A3A3"/>
+<rect x="-38" y="-24" width="76" height="30" rx="15" fill="#1F2937"/>
+<path d="M-30 -31Q0 -42 30 -31" fill="none" stroke="#4FD0E8" stroke-width="8" stroke-linecap="round"/>
+<path d="M-27 -4Q-17 -20 -7 -4" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
+<path d="M7 -4Q17 -20 27 -4" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
+<ellipse cx="0" cy="24" rx="10" ry="7" fill="#2D3748"/>
+<ellipse cx="0" cy="22.5" rx="6.5" ry="4" fill="#B91C1C"/>
+<path d="M-13 5Q0 -1 13 5Q9 15 0 17Q-9 15-13 5Z" fill="#2D3748"/>
+<path d="M0 -6L1.8 -1.8L6 0L1.8 1.8L0 6L-1.8 1.8L-6 0L-1.8 -1.8Z" fill="#F5B301" transform="translate(-64 -38)"/>
+<path d="M0 -6L1.8 -1.8L6 0L1.8 1.8L0 6L-1.8 1.8L-6 0L-1.8 -1.8Z" fill="#F5B301" transform="translate(66 -30) scale(0.7)"/>
+</svg>

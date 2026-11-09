@@ -54,12 +54,11 @@ test('normal text and informative icons meet contrast on the learning screen tin
   const completedGreen = '#16834b';
   const completedCard = mix('#2e9e4f', white, 0.07);
   const completedBadge = mix('#2e9e4f', white, 0.13);
-  const currentBadge = mix(red, white, 0.08);
   const lockedBg = '#e5e7eb';
 
   const measurements = [
     ['primary button and current node: white on brand red', contrast(white, red), 4.5],
-    ['current-state badge: brand red on pale red tint', contrast(red, currentBadge), 4.5],
+    ['course status badge on tinted card', contrast(main, cardTint), 4.5],
     ['main text on white tool row', contrast(main, white), 4.5],
     ['secondary text on white tool row', contrast(muted, white), 4.5],
     ['main text on tinted cards', contrast(main, cardTint), 4.5],
@@ -78,6 +77,10 @@ test('normal text and informative icons meet contrast on the learning screen tin
   assert.match(css, /\.learning-unit-node\.node-locked\s*\{[^}]*background:\s*#e5e7eb[^}]*color:\s*#374151/);
   assert.match(css, /\.learning-unit-node\.node-completed/);
   assert.match(css, /\.learning-unit-node\.node-current/);
+  assert.match(css, /#view-route \.badge \{ background:var\(--bg-card\); color:var\(--text-main\); border-color:var\(--border\); \}/);
+  assert.match(css, /\.path-node \.unit-title \{ font-size:\.96rem; color:var\(--text-main\); \}/);
+  assert.match(css, /#view-route \.eyebrow \{ color:var\(--text-muted\); \}/);
+  assert.match(css, /\.learning-tool-button\[aria-expanded=\"true\"\] \{ border-color:var\(--border\); color:var\(--text-main\); background:var\(--bg-card\); \}/);
   assert.match(css, /\.path-node-completed \.badge-completed\s*\{[^}]*color:#176b3a/);
   // Exercise correctness/error feedback is intentionally preserved.
   assert.match(css, /--lesson-feedback-correct-bg:#e8f7ec/);

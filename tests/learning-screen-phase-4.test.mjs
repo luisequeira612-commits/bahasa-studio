@@ -144,7 +144,7 @@ test('topbar uses an Indonesian flag and flame SVG; navigation pill keeps one la
   assert.match(html, /color: active \? '#004A91' : ''/);
   assert.match(html, /height: '100%'/);
   assert.match(html, /padding: '0'/);
-  assert.match(html, /metrics\.style\.gap = compact && compact\.matches \? '5px' : '8px'/);
+  assert.match(html, /metrics\.style\.gap = compact && compact\.matches \? '4px' : '8px'/);
 });
 
 

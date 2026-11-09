@@ -125,7 +125,7 @@ test('phase four layout uses one spacing rule, a separated red progress ring and
   assert.ok(route.includes("currentTitle.style.whiteSpace = 'normal'"));
   assert.ok(route.includes("currentTitle.style.webkitLineClamp = '2'"));
   assert.ok(route.includes("currentTitle.style.maxHeight = '30px'"));
-  assert.ok(route.includes('const targetTop = stickyTop + banner.getBoundingClientRect().height + 12'));
+  assert.ok(html.includes('const targetTop = stickyTop + banner.getBoundingClientRect().height + 12'));
   const css = await read('styles.css');
   assert.match(css, /prefers-reduced-motion:reduce/);
 });

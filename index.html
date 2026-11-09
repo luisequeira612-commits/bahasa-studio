@@ -6781,8 +6781,8 @@ Requisitos:
                     }
                     node.textContent = compact ? transform(full) : full;
                 };
-                update(streak, '', 'Racha actual: ', value => value.replace(/\\s+d[ií]as?$/i, ''));
-                update(xp, '', 'XP de hoy frente a tu meta: ', value => value.replace(/^Meta:\\s*/i, ''));
+                update(streak, '', 'Racha actual: ', value => value.replace(/\s+d[ií]as?$/i, ''));
+                update(xp, '', 'XP de hoy frente a tu meta: ', value => value.replace(/^Meta:\s*/i, ''));
             },
             switchView(viewId, btn) {
                 document.querySelectorAll('.app-view').forEach(el => el.classList.remove('active'));

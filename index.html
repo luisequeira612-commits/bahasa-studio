@@ -6366,7 +6366,7 @@
                     document.getElementById('exerciseArea').classList.add('lesson-results-screen');
                     document.getElementById('exerciseArea').innerHTML = `
                         <div class="lesson-results-card card ${passed ? 'unit-complete-celebration' : ''}">
-                            ${passed ? '<img class="guardi-result-illustration guardi-celebration" src="./assets/guardi/guardi-celebrando.svg" width="152" height="152" alt="Guardi celebrando">' : '<img class="guardi-result-illustration" src="./assets/guardi/guardi-pensando.svg" width="120" height="120" alt="">'}
+                            ${passed ? '<img class="guardi-result-illustration guardi-celebration" src="./assets/guardi/guardi-celebrando.svg" width="152" height="152" alt="Guardi celebrando">' : '<img class="guardi-result-illustration" src="./assets/guardi/guardi-triste.svg" width="120" height="120" alt="">'}
                             <h2>${passed ? '🎉 ¡Unidad completada!' : '📝 Sigue practicando'}</h2>
                             <p>${passed ? 'Prueba superada. La siguiente unidad ya está desbloqueada.' : 'Necesitas al menos un 80 % para avanzar. Repasa las lecciones y vuelve a intentarlo.'}</p>
                             <p>Resultado: <strong>${correct} de ${total}</strong> respuestas correctas.</p>

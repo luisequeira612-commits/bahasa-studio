@@ -82,9 +82,9 @@ test('phase 5B learning screen is compact, blue and preserves all level/tool ent
     const sheetCss = await page.locator('style#learning-phase-5b-overrides').textContent();
     assert.ok(sheetCss.includes('env(safe-area-inset-bottom)'), 'sheet padding must include the device safe area');
     const htmlSource = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
-    assert.match(htmlSource, /progress\\.total === 1 \\? 'unidad' : 'unidades'/, 'singular/plural must follow the unit count');
-    assert.match(htmlSource, /row\\.disabled = level\\.id === 'A2' && !A2_RELEASE_ENABLED;/, 'the existing level selector access guard must remain unchanged');
-    assert.match(htmlSource, /return level\\.id === 'B2' \\? level\\.units\\.slice\\(0, 1\\) : level\\.units;/, 'B2 must continue exposing only its existing first unit in this sheet');
+    assert.ok(htmlSource.includes("progress.total === 1 ? 'unidad' : 'unidades'"), 'singular/plural must follow the unit count');
+    assert.ok(htmlSource.includes("row.disabled = level.id === 'A2' && !A2_RELEASE_ENABLED;"), 'the existing level selector access guard must remain unchanged');
+    assert.ok(htmlSource.includes("return level.id === 'B2' ? level.units.slice(0, 1) : level.units;"), 'B2 must continue exposing only its existing first unit in this sheet');
     console.log('[phase5B 360x740] levels: ' + JSON.stringify(await levelRows.allInnerTexts()));
     for (let i = 0; i < 4; i++) assert.ok((await levelRows.nth(i).boundingBox()).height >= 44);
     assert.ok((await page.locator('.learning-level-sheet-row.selected').count()) === 1);

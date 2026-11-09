@@ -506,7 +506,7 @@ test('service worker upgrades an old installed cache without clearing local prog
     });
     await page.waitForFunction(async () => {
       const keys = await caches.keys();
-      return keys.includes('bahasa-studio-v3.8.82') && !keys.includes('bahasa-studio-v3.8.81');
+      return keys.includes('bahasa-studio-v3.8.83') && !keys.includes('bahasa-studio-v3.8.82');
     }, null, { timeout: 15000 });
 
     await page.reload({ waitUntil: 'domcontentloaded' });

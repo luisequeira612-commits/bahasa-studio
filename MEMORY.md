@@ -4,7 +4,8 @@
 
 ## Estado vigente
 - A1 32/32, A2 40/40 y B1 50/50 unidades completas. B2 1/60 implementada (U1); total 123/182, quedan 59 unidades B2. En la Fase 1 U1 y un único nodo «Próximamente» se muestran en el camino; la guarda de acceso a B2 sigue vigente y el PR #472 continúa separado y sin fusionar.
-- Fase actual: Fase 5B de Aprender; PR #479 abierto, pendiente de CI y revisión antes de merge; desarrollo progresivo de B2 queda en pausa, sin certificación lingüística ni MCER/BIPA. A1/A2/B1 están en beta; no hay hablante nativo disponible.
+- Fase actual: Fase 5B de Aprender completada y fusionada en `main`; la siguiente fase de implementación aún no está seleccionada. B2 queda en pausa, sin certificación lingüística ni MCER/BIPA. A1/A2/B1 están en beta; no hay hablante nativo disponible.
+- Fase 5B (9 nov 2026): PR #480 (correcciones E2E) se fusionó en la rama de Fase 5B; PR [#479](https://github.com/luisequeira612-commits/bahasa-studio/pull/479) se fusionó en `main` por squash (`73d7359d98ba743576278f6333936bcbe984f4b5`). CI del head final `7e137ba5c5d16f3b86842c9ddd5f4de9265a92b4` verde: `test` y `Offline quality reports` (run `42570049028`). Tema azul `#0067C6`, selector compacto, hoja de herramientas y SW `v3.8.77`; sin cambios a IndexedDB/backup v3 ni dependencias. Pages y prueba física en Tecno Pova 4 pendientes de verificación.
 - B2 U1: implementada, 3 lecciones, 16 ejercicios, 5 tipos; reutiliza 9 IDs existentes y no añade vocabulario.
 - B2 U2 y U3: diseños preliminares en `docs/B2_U2_DESIGN.md` y `docs/B2_U3_DESIGN.md`. U2 espera aprobación explícita de `kubaca`, `kaubaca`, `kutulis`, `kautulis`; no asignar IDs ni incorporarlas a ejercicios evaluados antes de aprobarlas. U3 integra U1+U2 y no debe cerrarse/implementarse antes de aprobar e implementar U2.
 - B2 U4–U6: propuestas documentales en `docs/B2_U4_DESIGN.md` (`-kan`), `docs/B2_U5_DESIGN.md` (`-i`) y `docs/B2_U6_DESIGN.md` (`memper-`). El bloque temático está aprobado, pero no los ejemplos, desglose ni implementación específicos.
@@ -21,7 +22,7 @@
 - No añadir dependencias sin aprobación. No hacer reescrituras grandes ni refactorización multiidioma general ahora.
 - Código y estructuras de datos nuevos deben evitar acoplamiento innecesario al indonesio; esto no autoriza empezar inglés antes de terminar B2.
 - Progreso local por dispositivo; conservar importación/exportación compatible con backup JSON v3. No modificar esquema IndexedDB ni backup v3.
-- Interfaz móvil-first, en español, rojo/blanco; el dueño trabaja principalmente desde teléfono.
+- Interfaz móvil-first y en español; paleta vigente de Aprender azul/blanco (`#0067C6`) desde Fase 5B; la bandera de Indonesia conserva su rojo. El dueño trabaja principalmente desde teléfono.
 
 ## Contenido y verificación lingüística
 - No hay hablante nativo disponible y KBBI/API secundaria puede fallar. Esto no detiene el proyecto. No presentar auditorías automáticas, fuentes secundarias ni revisión documental como certificación lingüística.
@@ -31,7 +32,7 @@
 - En B2, enseñar agente, participante afectado, foco y contexto. No etiquetar universalmente `ku-/kau-` como pasiva ni inferir tiempo/aspecto solo por la forma. No tratar estos clíticos como contracciones simples ni duplicar el agente (p. ej., evitar `Buku itu saya kubaca`). Glosas españolas neutrales en tiempo: «Ese libro lo leo / lo leí, según el contexto».
 - Investigación extensa de las cuatro formas de U2 (fuentes oficiales, académicas, literarias y didácticas; alcances y cautelas) está en `docs/B2_U2_DESIGN.md`. Respalda morfología/uso escrito, pero no resuelve frecuencia ni registro conversacional neutro; no sustituye la aprobación del dueño.
 
-- 9 nov 2026: PR #479 abierto para Fase 5B: paleta azul/blanco, cabecera compacta con chip de nivel y hoja de herramientas, SVG de altavoces y SW v3.8.76; sin cambios de lógica/progreso/IndexedDB/backup v3. PR #472 sigue abierto.
+- 9 nov 2026: PR #479 quedó fusionado en `main` tras integrar PR #480 y validar el head final. PR #472 sigue abierto e independiente.
 
 ## Git y flujo de trabajo
 - Nunca trabajar directamente en `main`. Una rama por cambio y PR.

@@ -28,7 +28,7 @@ Cualquier tarea sobre el repo: lecciones nuevas, correcciones de vocabulario, ca
 - Contenido separado del código, organizado por idioma, nivel y unidad.
 
 ## Reglas para interfaz
-- Estilo Duolingo en rojo y blanco, pensado para pantalla de celular.
+- Estilo Duolingo, móvil-first y en español. La paleta vigente de Aprender es azul/blanco (`#0067C6`) desde la Fase 5B aprobada; no revertirla a rojo sin una nueva decisión del dueño. La bandera de Indonesia conserva su rojo cultural.
 - Sin animaciones ni efectos pesados: el teléfono es de gama media.
 - Mantener barra inferior y barra superior (racha y XP).
 

@@ -14,7 +14,8 @@
 .app-topbar .logo { color:#0067C6; } .app-topbar { background:#ffffff; }
 .level-progress-trigger { min-width:44px; min-height:44px; padding:0 3px; border:0; background:transparent; color:#1F2937; display:inline-flex; align-items:center; justify-content:center; gap:4px; border-radius:999px; cursor:pointer; touch-action:manipulation; }
 .level-progress-trigger:focus-visible { outline:3px solid #004A91; outline-offset:2px; }
-.level-progress-chevron { width:13px; height:13px; color:#004A91; } .level-progress-ring { background:conic-gradient(#0067C6 var(--level-progress),#E5E7EB 0); } .level-progress-ring-inner { background:#ffffff; color:#1F2937; }
+.level-progress-chevron { width:13px; height:13px; color:#004A91; }
+@media (max-width:360px) { .level-progress-trigger { gap:0; padding-inline:0; } .level-progress-chevron { display:none; } } .level-progress-ring { background:conic-gradient(#0067C6 var(--level-progress),#E5E7EB 0); } .level-progress-ring-inner { background:#ffffff; color:#1F2937; }
 .learning-level-selector,.learning-tools-row { display:none !important; }
 .unit-path-section-banner { top:58px !important; max-height:72px; min-height:64px; padding:9px 10px 8px 12px; background:#004E9A !important; border:0; border-bottom:3px solid #00386D; border-radius:0 0 14px 14px; color:#ffffff; grid-template-columns:minmax(0,1fr) auto auto; align-items:center; gap:4px 8px; }
 .unit-path-section-banner h3,.unit-path-section-banner p,.unit-section-count { color:#ffffff !important; } .unit-path-section-banner p { white-space:nowrap; }

@@ -161,6 +161,10 @@ test('phase 5B learning screen is compact, blue and preserves all level/tool ent
     assert.ok(Math.abs(brandFit.leftMargin - 14) <= 1);
     assert.equal(await page.locator('.unit-tools-trigger').first().getAttribute('aria-label'), 'Herramientas');
     assert.ok((await page.locator('.unit-tools-trigger').first().boundingBox()).width >= 44);
+    const toolsIcon = page.locator('.unit-tools-trigger').first().locator('svg');
+    assert.equal(await toolsIcon.locator('rect').count(), 4, 'tools icon must be a 2×2 grid');
+    assert.equal(await toolsIcon.evaluate(el => getComputedStyle(el).fill), 'none');
+    assert.equal(await toolsIcon.evaluate(el => getComputedStyle(el).stroke), 'rgb(255, 255, 255)');
   } finally {
     await context.close();
     await browser.close();

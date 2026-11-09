@@ -5968,7 +5968,7 @@
                     container.innerHTML = `
                         <div>
                             <h3>${App.escapeHtml(ex.prompt)}</h3>
-                            <button class="btn btn-outline" style="margin-top:12px;" data-answer="${App.escapeHtml(ex.answer)}" onclick="AudioEngine.speak(this.dataset.answer)">🔊 Escuchar de nuevo</button>
+                            <button class="btn btn-outline" style="margin-top:12px;" data-answer="${App.escapeHtml(ex.answer)}" onclick="AudioEngine.speak(this.dataset.answer)"><svg class="ui-icon lesson-speaker-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4h4l5 4V6l-5 4H4Z"/><path d="M16 9.5a4 4 0 0 1 0 5M18.5 7a7 7 0 0 1 0 10"/></svg> Escuchar de nuevo</button>
                             <button class="btn btn-outline pronunciation-practice-btn" type="button" title="Practicar pronunciación" onclick="LessonEngine.startPronunciationPractice()" aria-label="Practicar pronunciación">🎙️</button>
                             <p id="pronunciationStatus" role="status" aria-live="polite" style="font-size:0.85rem;color:var(--text-muted);margin-top:8px;">El micrófono solo se activa al pulsar. El navegador puede enviar audio a su proveedor de reconocimiento.</p>
                             <input type="text" id="textAnswer" class="input-field" placeholder="Escribe lo que escuchas..." style="margin-top:20px;">
@@ -6735,14 +6735,14 @@ Requisitos:
                         justifyContent: 'center', gap: '3px', width: 'calc(100% - 10px)',
                         maxWidth: '104px', minHeight: '48px', padding: '5px 8px',
                         boxSizing: 'border-box', borderRadius: '16px',
-                        background: active ? '#fdecef' : 'transparent',
-                        color: active ? '#7f1d2d' : ''
+                        background: active ? '#E6F1FB' : 'transparent',
+                        color: active ? '#004A91' : ''
                     });
                     const icon = pill.querySelector('svg');
                     if (icon) Object.assign(icon.style, {
                         width: '21px', height: '21px', padding: '0',
                         background: 'transparent', borderRadius: '0',
-                        boxSizing: 'border-box', color: active ? '#7f1d2d' : '',
+                        boxSizing: 'border-box', color: active ? '#004A91' : '',
                         stroke: 'currentColor'
                     });
                     const label = pill.querySelector('span');
@@ -7172,7 +7172,7 @@ Requisitos:
                     '<h2 id="unitSheetTitle">' + App.escapeHtml(unit.title) + '</h2>' +
                     '<p class="unit-sheet-description">' + App.escapeHtml(unit.desc || '') + '</p>' +
                     '<div class="unit-sheet-progress"><span>Lecciones</span><strong>' + progress.completedLessonCount + '/' + progress.lessons.length + '</strong></div>' +
-                    '<div class="progress-bar unit-sheet-lesson-track" role="progressbar" aria-label="Progreso de lecciones" aria-valuemin="0" aria-valuemax="' + progress.lessons.length + '" aria-valuenow="' + progress.completedLessonCount + '" style="height:8px;min-height:8px;border-radius:999px;overflow:hidden;background:#8b8b8b"><div class="progress-fill" style="height:100%;min-height:8px;border-radius:999px;background:#c92a40;width:' + (progress.lessons.length ? progress.completedLessonCount / progress.lessons.length * 100 : 0) + '%"></div></div>' +
+                    '<div class="progress-bar unit-sheet-lesson-track" role="progressbar" aria-label="Progreso de lecciones" aria-valuemin="0" aria-valuemax="' + progress.lessons.length + '" aria-valuenow="' + progress.completedLessonCount + '" style="height:8px;min-height:8px;border-radius:999px;overflow:hidden;background:#8b8b8b"><div class="progress-fill" style="height:100%;min-height:8px;border-radius:999px;background:#0067C6;width:' + (progress.lessons.length ? progress.completedLessonCount / progress.lessons.length * 100 : 0) + '%"></div></div>' +
                     '<button class="btn unit-sheet-primary" type="button" onclick="App.startUnitFromSheet(\'' + App.escapeHtml(unit.id) + '\')">' + actionLabel + '</button>' +
                     '<button class="btn btn-outline unit-sheet-grammar-toggle" type="button" onclick="App.toggleUnitGrammar()">Ver gramática</button>' +
                     '<div id="unitSheetGrammar" class="unit-sheet-grammar" hidden>' + App.escapeHtml(unit.grammar || 'No hay notas gramaticales para esta unidad.') + '</div>';
@@ -7394,7 +7394,7 @@ Requisitos:
                             const lessonPercent = progress.lessons.length ? Math.round(progress.completedLessonCount / progress.lessons.length * 100) : 0;
                             const circumference = 207.35;
                             const dashOffset = (circumference * (1 - lessonPercent / 100)).toFixed(2);
-                            node.innerHTML = '<svg class="node-progress-ring" viewBox="0 0 76 76" aria-hidden="true" style="position:absolute;left:50%;top:calc(50% + 2.5px);width:76px;height:76px;right:auto;bottom:auto;overflow:visible;transform:translate(-50%,-50%) rotate(-90deg);pointer-events:none"><circle class="node-progress-track" cx="38" cy="38" r="33" style="fill:none;stroke:#d1d5db;stroke-width:5"/><circle class="node-progress-value" cx="38" cy="38" r="33" stroke-dasharray="' + circumference + '" stroke-dashoffset="' + dashOffset + '" style="fill:none;stroke:#c92a40;stroke-width:5;stroke-linecap:round"/></svg><span class="node-number" style="position:relative;z-index:1">' + (offset + index + 1) + '</span>';
+                            node.innerHTML = '<svg class="node-progress-ring" viewBox="0 0 76 76" aria-hidden="true" style="position:absolute;left:50%;top:calc(50% + 2.5px);width:76px;height:76px;right:auto;bottom:auto;overflow:visible;transform:translate(-50%,-50%) rotate(-90deg);pointer-events:none"><circle class="node-progress-track" cx="38" cy="38" r="33" style="fill:none;stroke:#d1d5db;stroke-width:5"/><circle class="node-progress-value" cx="38" cy="38" r="33" stroke-dasharray="' + circumference + '" stroke-dashoffset="' + dashOffset + '" style="fill:none;stroke:#0067C6;stroke-width:5;stroke-linecap:round"/></svg><span class="node-number" style="position:relative;z-index:1">' + (offset + index + 1) + '</span>';
                         } else if (progress.completed) {
                             node.innerHTML = '<svg class="node-state-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>';
                         } else if (state === 'locked') {
@@ -7663,7 +7663,7 @@ Requisitos:
                         <div class="card" style="margin-bottom:8px; padding:12px;">
                             <div style="display:flex; justify-content:space-between; align-items:center;">
                                 <strong>${App.escapeHtml(v.idn)}</strong>
-                                <button class="btn btn-outline btn-sm" data-word="${App.escapeHtml(v.idn)}" onclick="AudioEngine.speak(this.dataset.word)">🔊</button>
+                                <button class="btn btn-outline btn-sm" data-word="${App.escapeHtml(v.idn)}" onclick="AudioEngine.speak(this.dataset.word)"><svg class="ui-icon lesson-speaker-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4h4l5 4V6l-5 4H4Z"/><path d="M16 9.5a4 4 0 0 1 0 5M18.5 7a7 7 0 0 1 0 10"/></svg></button>
                             </div>
                             <p style="color:var(--accent); font-size:0.9rem;">${App.escapeHtml(v.esp)}</p>
                             <p style="font-size:0.8rem; color:var(--text-muted); margin-top:4px;">Ejemplo: ${App.escapeHtml(v.ex)} (${App.escapeHtml(v.exEsp)})</p>
@@ -8007,7 +8007,7 @@ Requisitos:
             output += escapeHtml(text.slice(cursor));
             const speaker = language === 'idn'
                 ? '<button type="button" class="tap-translation-speaker" aria-label="Escuchar frase" data-audio="' + escapeHtml(text) +
-                    '" onclick="AudioEngine.speak(this.dataset.audio)">🔊</button>' : '';
+                    '" onclick="AudioEngine.speak(this.dataset.audio)"><svg class="ui-icon lesson-speaker-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4h4l5 4V6l-5 4H4Z"/><path d="M16 9.5a4 4 0 0 1 0 5M18.5 7a7 7 0 0 1 0 10"/></svg></button>' : '';
             return '<div class="tap-translation-sentence">' + speaker + '<span class="tap-translation-phrase">' + output + '</span></div>';
         };
 

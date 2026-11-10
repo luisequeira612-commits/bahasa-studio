@@ -37,4 +37,4 @@ La prueba `tests/multi-lesson-progression.test.cjs` confirma que `buildUnitLesso
 
 ## Estado
 
-Documento de planificación y compatibilidad; todavía no modifica el motor ni las lecciones ejecutables. La implementación empieza en A1 y seguirá en tandas pequeñas antes de pasar a A2, B1 y B2.
+La implementación A1 está en curso en el PR #493: el motor añade las sesiones de refuerzo después de las lecciones originales, sin cambiar sus índices. Cada sesión nueva reutiliza el vocabulario existente con opción múltiple, escucha y traducción; no introduce palabras, ejemplos ni respuestas léxicas nuevas. La regla actual apunta a 5 lecciones, o 6 si la unidad tiene 18 o más entradas. CI y compatibilidad de progreso pendientes de verificación final.

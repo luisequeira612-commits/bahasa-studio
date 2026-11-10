@@ -97,3 +97,21 @@ Al menos cinco ejercicios deben evaluar oraciones completas y al menos uno debe 
 5. Las pruebas verifican referencias de vocabulario, roles semánticos, coherencia consigna-respuesta, progresión y ausencia de exposición anticipada.
 
 **Estatus de decisión:** el dueño aprobó el eje general U4–U6 (`-kan`, `-i`, `memper-`), no este desglose ni sus ejemplos. Es una propuesta reversible, no autorización para añadir contenido ejecutable.
+
+
+## Revisión de evidencia y propuesta concreta (9 nov 2026)
+
+### Evidencia consultada
+- Arka et al. (2009), *A linguistic and computational morphosyntactic analysis for the applicative -i in Indonesian*, LFG09, pp. 86–104. El artículo presenta tres cautelas útiles: `datang` → `datangi` como ejemplo aplicativo de meta; `panas` → `panasi` como ejemplo causativo; y otros usos de `-i` que pueden preservar la valencia o tener análisis menos claros. También ofrece `menduduki kursi` (‘ocupar un asiento’) como análisis de una forma en contexto. No respalda una regla única para todas las raíces. DOI/actas: https://web.stanford.edu/group/cslipublications/cslipublications/LFG/14/papers/lfg09arkaetal.pdf
+- Rajeg (2023), *Penonjolan Peran Semantis dan Konstruksi Gramatikal Pasangan Verba -i dan -kan…*, Linguistik Indonesia 41(2), 187–205. El estudio de corpus compara específicamente `menawari` y `menawarkan`: `menawari` perfila con frecuencia oferente, destinatario potencial y tema en una construcción ditransitiva; `menawarkan` perfila oferente y tema en una construcción monotransitiva. El propio estudio detecta variación en `menawari`, por lo que el par sirve como caso léxico acotado, no como fórmula general. Texto completo: https://ojs.linguistik-indonesia.org/index.php/linguistik_indonesia/article/download/482/209/1883
+- Arka (2012), *Developing a Deep Grammar of Indonesian within the ParGram Framework*, PACLIC 26. Complementa la descripción de la polisemia y de la interacción entre raíz y sufijo; no convierte los ejemplos en una lista productiva de verbos para estudiantes. https://aclanthology.org/Y12-1002.pdf
+
+### Propuesta didáctica más segura
+1. Usar `menawari/menawarkan` como contraste léxico central de la lección 3, con el aviso explícito de que las preferencias construccionales son propias de este par y admiten variación.
+2. Reservar `datangi` y `panasi` para una breve lectura de reconocimiento sobre la polisemia (aplicativa frente a causativa), no para producción libre ni para afirmar que cualquier raíz admite `-i`.
+3. Evitar por ahora `tanami`, `garami` y `kantongi` como vocabulario activo: el artículo de 2009 los usa para ilustrar derivación desde nombres, pero eso no prueba que sean las opciones más frecuentes o transparentes para este curso.
+4. No enseñar una equivalencia «-i = lugar», «-i = a» ni «-i añade siempre un participante». En cada ejercicio se identifica el verbo completo, la base cuando sea transparente y los papeles confirmados por el contexto.
+5. No introducir comparación evaluable con U4 hasta que U4 esté integrada; cuando se compare `menawari/menawarkan`, presentarlo como par léxico y no como sustitución libre de sufijos.
+
+### Límites de aprobación
+Esta revisión respalda el enfoque y los ejemplos académicos citados, pero no certifica frecuencia general, registro conversacional ni adecuación de cada oración didáctica. Los ejemplos nuevos del curso, las glosas finales y las claves deben pasar revisión de coherencia interna y quedar como `not_checked` salvo coincidencia de dos fuentes secundarias independientes. No se marca nada como `verified_primary`.

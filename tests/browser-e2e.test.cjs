@@ -1099,7 +1099,8 @@ test('A1 lesson progress is sequential and the final exam gates the next unit at
     assert.ok(await page.getByRole('button', { name: 'Empezar lección 2' }).isVisible());
 
     await page.evaluate(async () => {
-      App.completedLessons = ['a1_u1::0', 'a1_u1::1', 'a1_u1::2'];
+      const lessons = buildUnitLessons(CourseData.levels.find(level => level.id === 'A1').units[0]);
+      App.completedLessons = lessons.map(lesson => 'a1_u1::' + lesson.index);
       await DB.set('settings', 'completedLessons', App.completedLessons);
       App.closeUnitSheet();
       App.renderCourseRoute();

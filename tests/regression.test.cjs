@@ -1929,12 +1929,12 @@ test('implemented B2 units expose five lessons with distinct active recall cover
   const start = html.indexOf('const CourseData =');
   const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
   assert.ok(start >= 0 && end > start, 'CourseData block must exist');
-  const course = vm.runInNewContext(html.slice(start, end) + '\\nCourseData');
+  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
   const engineStart = html.indexOf('function buildUnitAssessmentItems');
   const engineEnd = html.indexOf('function unitLessonProgressKey', engineStart);
   assert.ok(engineStart >= 0 && engineEnd > engineStart, 'unit lesson builders must exist');
   const engine = vm.runInNewContext(
-    html.slice(engineStart, engineEnd) + '\\n({ buildUnitLessons })',
+    html.slice(engineStart, engineEnd) + '\n({ buildUnitLessons })',
     { CourseData: course, Map, Set, Math }
   );
   const b2 = course.levels.find(level => level.id === 'B2');

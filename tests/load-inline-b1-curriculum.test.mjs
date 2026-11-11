@@ -33,7 +33,7 @@ test('B1 U27-U49 provide five lessons with five exercise types after active-reca
   const end = html.indexOf("id: 'b1_u50'", start);
   assert.ok(start >= 0 && end > start, 'B1 U27-U49 block must exist');
   const source = html.slice(start, end);
-  const unitMatches = [...source.matchAll(/id: 'b1_u(2[7-9]|[34]\\d)'/g)];
+  const unitMatches = [...source.matchAll(/id: 'b1_u(?:2[7-9]|3[0-9]|4[0-9])'/g)];
   assert.equal(unitMatches.length, 23);
   for (const match of unitMatches) {
     const unitStart = match.index;

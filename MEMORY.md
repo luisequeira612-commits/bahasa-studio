@@ -1,3 +1,9 @@
+## Auditoría de inventario B2 U5 — 11 nov 2026
+
+- PR #505 fusionada por squash (ba386a31663bb7b57bf23aab67e3682c76f44380) tras CI run #2163 completamente verde: `test` y `Offline quality reports`; sin reviews ni hilos pendientes.
+- Auditoría de presencia en el currículo activo (`curriculum-a1.js`, `curriculum-a2.js`, `index.html` con B1/B2): `menawari` y `menawarkan` no existen como entradas; si se aprueban, serán vocabulario nuevo. `datangi` no aparece como forma independiente, pero `mendatangi` ya existe en A2 U16 (`a2u16_mendatangi`) y B1 U5 (`b1u5_mendatangi`), con dos ejemplos y dos IDs existentes; no crear un tercer ID ni añadir `datangi` como entrada separada. `panasi`, `tanami`, `garami` y `kantongi` no aparecen como entradas curriculares.
+- Detalles y ejemplos existentes en `docs/B2_U5_APPROVAL_PACKET.md`. La auditoría es estructural, no valida frecuencia, registro ni corrección lingüística. No se copian ejemplos a B2 ni se crea vocabulario sin aprobación.
+
 ## Estado vigente — 11 nov 2026 (actualización de U5)
 
 - PR #502, #503 y #504 están fusionadas. #502 corrigió las hojas móviles; #503 actualizó la documentación B2; #504 alineó las etiquetas de pruebas con la cobertura U1–U4. Para detalles de commits y CI, consultar el historial de cada PR en GitHub.

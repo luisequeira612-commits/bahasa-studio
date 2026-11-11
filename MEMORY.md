@@ -170,3 +170,7 @@
 - U4 entra en la ruta secuencial tras U3; Aprender, repaso, fallback de traducción y nivel inferido del tutor incluyen solo U1–U4. U5–U60 siguen ocultas. Caché SW `v3.8.91`.
 - CI pre-merge del head final `64cb3f2ec5a53340096d1dc12080fc922be954f6`: run #2149 con `test` y `Offline quality reports` verdes. Regresión post-merge del commit final: run [42956369926](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/42956369926) verde; Pages build/deploy [42956369210](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/42956369210) correcto.
 - Sin cambios a A1/A2/B1, IndexedDB, backup JSON v3, progreso guardado ni dependencias. No se afirma validación nativa ni certificación MCER/BIPA.
+
+## Regresión de lecciones A1 — estándar 5–6 (11 nov 2026)
+- La regla activa de `buildUnitLessons()` fija cinco lecciones para unidades A1 con menos de 18 entradas de vocabulario y seis para unidades con 18 o más. Esto incluye A1 U3 (5) y U9 (6); el contenido de repaso añadido reutiliza el vocabulario existente y no crea entradas curriculares.
+- Se refuerza `tests/multi-lesson-progression.test.cjs` para exigir el número exacto en las 32 unidades A1, además de comprobar secuencia, vocabulario introducido una sola vez y ejercicios de repaso. Cambio de pruebas/documentación solamente; no modifica contenido, IndexedDB, backup JSON v3 ni dependencias.

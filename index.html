@@ -5283,6 +5283,83 @@
                                 }
                             ]
                         },
+
+                        {
+                            id: 'b2_u4',
+                            title: 'Unidad 4: Interpretar las funciones de -kan',
+                            desc: 'Distingue el cambio de estado causado de los usos léxicos de transferencia y explicación; identifica los participantes en contexto.',
+                            grammar: 'El sufijo -kan no tiene una sola función. En «membersihkan», la base bersih expresa el estado limpio y el verbo presenta una acción que causa que algo quede limpio. En «memberikan», «mengirimkan» y «menjelaskan» se estudian patrones léxicos concretos. No deduzcas una lectura ni un participante nuevo por la terminación aislada: interpreta el verbo completo y la oración.',
+                            vocab: [
+                                { id: 'b1u4_memberikan', idn: 'Memberikan', esp: 'Dar; entregar algo a alguien', ex: 'Saya memberikan buku kepada Rina.', exEsp: 'Le doy un libro a Rina.' },
+                                { id: 'b1u4_mengirimkan', idn: 'Mengirimkan', esp: 'Enviar algo a alguien; hacer llegar', ex: 'Saya mengirimkan dokumen kepada Rina.', exEsp: 'Le envío el documento a Rina.' },
+                                { id: 'b1u4_menjelaskan', idn: 'Menjelaskan', esp: 'Explicar algo a alguien', ex: 'Guru menjelaskan cara membaca kepada siswa.', exEsp: 'El profesor explica cómo leer a los estudiantes.' },
+                                { id: 'b1u4_membersihkan', idn: 'Membersihkan', esp: 'Limpiar algo', ex: 'Saya membersihkan rumah setiap pagi.', exEsp: 'Limpio la casa cada mañana.' }
+                            ],
+                            exercises: [],
+                            lessons: [
+                                {
+                                    title: '1. Del estado al cambio causado',
+                                    objective: 'Distingue una propiedad o estado de la acción que causa ese estado.',
+                                    grammar: '«Kamar ini sudah bersih» describe el estado: esta habitación ya está limpia. «Siti sudah membersihkan kamar ini» presenta a Siti como agente de una acción que causa que la habitación quede limpia. No confundas bersih (estado) con membersihkan (acción).',
+                                    vocabIds: ['b1u4_membersihkan'],
+                                    reviewVocabIds: ['b1u4_memberikan', 'b1u4_mengirimkan', 'b1u4_menjelaskan'],
+                                    exercises: [
+                                        { vocabId: 'b1u4_membersihkan', type: 'mc', prompt: '¿Qué oración describe el estado de limpieza, sin expresar quién lo causó?', options: ['Kamar ini sudah bersih.', 'Siti sudah membersihkan kamar ini.', 'Saya membersihkan rumah setiap pagi.'], answer: 0, explanation: 'La primera oración describe cómo está la habitación; no presenta una acción causante.' },
+                                        { vocabId: 'b1u4_membersihkan', type: 'translate_es_id', prompt: 'Traduce al indonesio: «Siti ya ha limpiado esta habitación».', answer: 'Siti sudah membersihkan kamar ini.', explanation: 'Membersihkan expresa la acción de limpiar; kamar ini es la entidad afectada.' },
+                                        { vocabId: 'b1u4_membersihkan', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Kamar ini sudah bersih.', explanation: 'Reconoce la descripción del estado, no una acción de limpieza.' }
+                                    ]
+                                },
+                                {
+                                    title: '2. Quién causa y qué resulta afectado',
+                                    objective: 'Identifica al agente causante y a la entidad cuyo estado cambia.',
+                                    grammar: 'En «Siti sudah membersihkan kamar ini», Siti inicia y realiza la acción; kamar ini es la entidad que queda limpia. La oración no obliga a expresar quién ensució la habitación ni describe el proceso paso a paso. Esta lectura causativa está documentada para membersihkan a partir de bersih; no debe extenderse automáticamente a cualquier palabra terminada en -kan.',
+                                    vocabIds: ['b1u4_membersihkan'],
+                                    reviewVocabIds: ['b1u4_memberikan', 'b1u4_mengirimkan', 'b1u4_menjelaskan'],
+                                    exercises: [
+                                        { vocabId: 'b1u4_membersihkan', type: 'mc', prompt: 'En «Siti sudah membersihkan kamar ini», ¿qué participante resulta afectado por la acción?', options: ['Kamar ini', 'Siti', 'La persona que escucha'], answer: 0, explanation: 'La habitación es la entidad que queda limpia; Siti es quien causa el cambio.' },
+                                        { vocabId: 'b1u4_membersihkan', type: 'order', prompt: 'Ordena: «Siti ya ha limpiado esta habitación».', words: ['kamar', 'Siti', 'sudah', 'membersihkan', 'ini.'], correctOrder: ['Siti', 'sudah', 'membersihkan', 'kamar', 'ini.'], explanation: 'Siti es el agente y kamar ini la entidad afectada.' },
+                                        { vocabId: 'b1u4_membersihkan', type: 'write', prompt: 'Escribe una oración breve con «membersihkan» e identifica quién realiza la acción y qué se limpia.', hint: 'Usa el modelo «Saya membersihkan rumah setiap pagi» o cambia solo el lugar por otro que ya conozcas.', modelAnswer: 'Saya membersihkan rumah setiap pagi. Saya realiza la acción y rumah es lo que queda limpio.', explanation: 'La respuesta debe conservar el agente y la entidad afectada sin atribuir una función universal a -kan.' }
+                                    ]
+                                },
+                                {
+                                    title: '3. Dar y enviar: contenido y destinatario',
+                                    objective: 'Reconoce el contenido transferido y la persona destinataria en dos verbos concretos.',
+                                    grammar: 'En «Saya memberikan buku kepada Rina», buku es lo que se entrega y kepada Rina identifica a la destinataria. En «Saya mengirimkan dokumen kepada Rina», dokumen es lo enviado. Aprende estas relaciones con cada verbo y su contexto: no significan que todo -kan añada siempre un destinatario.',
+                                    vocabIds: ['b1u4_memberikan', 'b1u4_mengirimkan'],
+                                    reviewVocabIds: ['b1u4_menjelaskan', 'b1u4_membersihkan'],
+                                    exercises: [
+                                        { vocabId: 'b1u4_memberikan', type: 'mc', prompt: 'En «Saya memberikan buku kepada Rina», ¿qué se entrega?', options: ['Un libro', 'Un documento', 'Una habitación limpia'], answer: 0, explanation: 'Buku es el contenido que se entrega; kepada Rina identifica a la destinataria.' },
+                                        { vocabId: 'b1u4_mengirimkan', type: 'translate_es_id', prompt: 'Traduce al indonesio: «Le envío el documento a Rina».', answer: 'Saya mengirimkan dokumen kepada Rina.', explanation: 'Dokumen es lo enviado y kepada Rina señala a la destinataria.' },
+                                        { vocabId: 'b1u4_mengirimkan', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Saya mengirimkan dokumen kepada Rina.', explanation: 'Identifica quién envía, qué se envía y a quién llega.' }
+                                    ]
+                                },
+                                {
+                                    title: '4. Explicar: contenido y persona destinataria',
+                                    objective: 'Distingue lo que se explica de la persona a quien se dirige la explicación.',
+                                    grammar: 'En «Guru menjelaskan cara membaca kepada siswa», cara membaca es el contenido (cómo leer) y kepada siswa indica a quién se explica. La estructura se aprende con el verbo menjelaskan y el ejemplo completo; no se usa como prueba de que todo -kan tenga la misma valencia.',
+                                    vocabIds: ['b1u4_menjelaskan'],
+                                    reviewVocabIds: ['b1u4_memberikan', 'b1u4_mengirimkan', 'b1u4_membersihkan'],
+                                    exercises: [
+                                        { vocabId: 'b1u4_menjelaskan', type: 'mc', prompt: 'En «Guru menjelaskan cara membaca kepada siswa», ¿qué se explica?', options: ['Cómo leer', 'Cómo limpiar la habitación', 'Cómo enviar un documento'], answer: 0, explanation: 'Cara membaca expresa el contenido explicado; kepada siswa indica a quién se explica.' },
+                                        { vocabId: 'b1u4_menjelaskan', type: 'order', prompt: 'Ordena: «El profesor explica cómo leer a los estudiantes».', words: ['siswa.', 'Guru', 'kepada', 'menjelaskan', 'cara', 'membaca'], correctOrder: ['Guru', 'menjelaskan', 'cara', 'membaca', 'kepada', 'siswa.'], explanation: 'El contenido explicado sigue a menjelaskan; kepada siswa identifica a los destinatarios.' },
+                                        { vocabId: 'b1u4_menjelaskan', type: 'translate_es_id', prompt: 'Traduce al indonesio: «El profesor explica cómo leer a los estudiantes».', answer: 'Guru menjelaskan cara membaca kepada siswa.', explanation: 'Cara membaca es el contenido de la explicación y kepada siswa señala a los destinatarios.' }
+                                    ]
+                                },
+                                {
+                                    title: '5. Integrar las funciones en contexto',
+                                    objective: 'Interpreta oraciones completas, compara participantes y produce un texto breve sin generalizar el significado de -kan.',
+                                    grammar: 'Antes de interpretar una forma con -kan, observa el verbo completo y los participantes de la oración. Membersihkan presenta aquí un cambio de estado causado; memberikan, mengirimkan y menjelaskan se trabajan como patrones léxicos concretos. El sufijo aislado no basta para decidir la función.',
+                                    vocabIds: ['b1u4_memberikan', 'b1u4_mengirimkan', 'b1u4_menjelaskan', 'b1u4_membersihkan'],
+                                    reviewVocabIds: [],
+                                    exercises: [
+                                        { vocabId: 'b1u4_membersihkan', type: 'mc', prompt: '¿Qué conclusión es segura a partir de estos ejemplos?', options: ['-kan siempre significa «hacer que».', 'Hay que interpretar el verbo completo y su contexto.', 'Todo verbo con -kan añade siempre un destinatario.'], answer: 1, explanation: 'Los ejemplos muestran patrones distintos; la terminación aislada no determina una única función.' },
+                                        { vocabId: 'b1u4_memberikan', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Saya memberikan buku kepada Rina.', explanation: 'Buku es lo entregado y kepada Rina identifica a la destinataria.' },
+                                        { vocabId: 'b1u4_menjelaskan', type: 'write', prompt: 'Escribe un mini texto de tres o cuatro oraciones usando al menos dos de los verbos de U4. Explica quién actúa y qué participante recibe o experimenta la acción.', hint: 'Puedes combinar «Saya memberikan buku kepada Rina», «Saya mengirimkan dokumen kepada Rina» y «Siti sudah membersihkan kamar ini». No inventes una regla general para -kan.', modelAnswer: 'Saya memberikan buku kepada Rina. Saya mengirimkan dokumen kepada Rina. Siti sudah membersihkan kamar ini.', explanation: 'La producción integra patrones ya presentados y conserva claros los participantes de cada oración.' },
+                                        { vocabId: 'b1u4_membersihkan', type: 'write', prompt: 'Compara «Kamar ini sudah bersih» y «Siti sudah membersihkan kamar ini». ¿Cuál describe un estado y cuál presenta una acción causante?', hint: 'Nombra la entidad afectada y el agente cuando aparece.', modelAnswer: 'La primera describe el estado de la habitación. La segunda presenta a Siti como agente que causa que la habitación quede limpia.', explanation: 'La comparación distingue estado y causación sin afirmar que -kan siempre tenga esa lectura.' }
+                                    ]
+                                }
+                            ]
+                        },
                     ]
                 }
             ]
@@ -6521,10 +6598,10 @@
         }
         function getLearningLevels() {
             return getLevels().filter(level =>
-                (level.id !== 'B2' || level.units.some(unit => unit.id === 'b2_u1' || unit.id === 'b2_u2' || unit.id === 'b2_u3')) &&
+                (level.id !== 'B2' || level.units.some(unit => unit.id === 'b2_u1' || unit.id === 'b2_u2' || unit.id === 'b2_u3' || unit.id === 'b2_u4')) &&
                 (level.id !== 'A2' || A2_RELEASE_ENABLED)
             ).map(level => level.id === 'B2'
-                ? { ...level, units: level.units.filter(unit => unit.id === 'b2_u1' || unit.id === 'b2_u2' || unit.id === 'b2_u3') }
+                ? { ...level, units: level.units.filter(unit => unit.id === 'b2_u1' || unit.id === 'b2_u2' || unit.id === 'b2_u3' || unit.id === 'b2_u4') }
                 : level);
         }
         function getUniqueLearningVocabulary() {
@@ -6665,7 +6742,7 @@
                 const weak = srs.filter(i => i.val && i.val.efactor < 2.3)
                     .map(i => known.find(v => v.id === i.key)).filter(Boolean).slice(0, 10).map(v => v.idn);
                 const lvl = CourseData.levels.filter(l => l.units.some(u =>
-                    (l.id !== 'B2' || u.id === 'b2_u1' || u.id === 'b2_u2' || u.id === 'b2_u3') && App.completedUnits.includes(u.id)
+                    (l.id !== 'B2' || u.id === 'b2_u1' || u.id === 'b2_u2' || u.id === 'b2_u3' || u.id === 'b2_u4') && App.completedUnits.includes(u.id)
                 )).map(l => l.id).pop() || 'A1';
                 return `Eres un profesor de indonesio estándar (bahasa baku) para hispanohablantes. Crea UNA unidad sobre el tema: "${topic}".
 Nivel del alumno: ${lvl}, empezó de cero absoluto (unidades completadas: ${App.completedUnits.length}). Sé gradual y no asumas conocimientos previos.
@@ -7262,7 +7339,7 @@ Requisitos:
             },
             getVisibleLearningUnits(level) {
                 if (!level) return [];
-                return level.id === 'B2' ? level.units.slice(0, 3) : level.units;
+                return level.id === 'B2' ? level.units.slice(0, 4) : level.units;
             },
             getLearningLevelProgress(level) {
                 const units = this.getVisibleLearningUnits(level);
@@ -7455,7 +7532,7 @@ Requisitos:
                 placeholder.textContent = 'Selecciona una unidad';
                 select.appendChild(placeholder);
                 CourseData.levels.forEach(level => {
-                    const availableUnits = level.id === 'B2' ? level.units.slice(0, 3) : level.units;
+                    const availableUnits = level.id === 'B2' ? level.units.slice(0, 4) : level.units;
                     availableUnits.forEach((unit, index) => {
                     const option = document.createElement('option');
                     option.value = unit.id;
@@ -8174,7 +8251,7 @@ Requisitos:
             if (language === 'es' && typeof CourseData !== 'undefined' && Array.isArray(CourseData.levels)) {
                 for (const level of CourseData.levels) {
                     for (const unit of level.units || []) {
-                        if (level.id === 'B2' && !['b2_u1', 'b2_u2', 'b2_u3'].includes(unit.id)) continue;
+                        if (level.id === 'B2' && !['b2_u1', 'b2_u2', 'b2_u3', 'b2_u4'].includes(unit.id)) continue;
                         const authoredExercises = [
                             ...(unit.exercises || []),
                             ...(unit.lessons || []).flatMap(lesson => lesson.exercises || [])

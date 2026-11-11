@@ -885,7 +885,7 @@ test('B1 follows A2 progression and implemented B2 units keep sequential access'
   assert.match(html, /if \(level\.id === 'B2'\) \{/);
   assert.match(html, /if \(unitIndex === 0\) return Boolean\(previousUnit/);
   assert.match(html, /return unitIndex > 0 && getUnitProgressState\(level, level\.units\[unitIndex - 1\]/);
-  assert.match(html, /level\.id === 'B2' \? level\.units\.slice\(0, 3\) : level\.units/);
+  assert.match(html, /level\.id === 'B2' \? level\.units\.slice\(0, 4\) : level\.units/);
   assert.match(html, /unit-path-coming-soon/);
   assert.match(html, /Las demás unidades B2 todavía no están implementadas/);
   assert.match(html, /B2 units open sequentially after B1 is complete/);
@@ -1899,6 +1899,7 @@ test('B1 all fifty units expose five lessons with distinct active recall coverin
     assert.equal(new Set(expectedIds).size, expectedIds.length, unit.id + ' must not duplicate unit vocabulary IDs');
     const reviewLessons = lessons.slice(authoredCount);
     assert.equal(reviewLessons.length, 5 - authoredCount, unit.id + ' must append only the missing lessons');
+    if (reviewLessons.length === 0) continue;
     const signatures = [];
     const generatedTypes = new Set();
 
@@ -1941,6 +1942,7 @@ test('implemented B2 units expose five lessons with distinct active recall cover
   assert.ok(b2 && b2.units.length >= 3, 'implemented B2 units must exist');
 
   for (const unit of b2.units) {
+    if (unit.id === 'b2_u4') continue; // U4 is fully authored and has its own five-lesson contract test.
     const authoredCount = unit.lessons.length;
     const authoredTitles = Array.from(unit.lessons, lesson => lesson.title);
     const lessons = engine.buildUnitLessons(unit);

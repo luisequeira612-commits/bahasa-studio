@@ -93,7 +93,7 @@ Respuesta: Falso.
 **12. Interpretación de evidencia.** El estudio encuentra variación construccional para `menawari`. ¿Qué conclusión es más prudente?  
 Respuesta: la construcción de objeto doble es una preferencia/tendencia documentada, pero no una regla absoluta sin variación.
 
-### Lección 5 — Síntesis y producción guiada (4)
+### Lección 5 — Síntesis, voz y producción guiada (4)
 
 **13. Clasificación.** Clasifica A: agente, destinatario potencial, tema y tipo de construcción.  
 Respuesta: `Mereka` = agente; `saya` = destinatario potencial; `bantuan` = tema; objeto doble.
@@ -104,8 +104,8 @@ Respuesta: `Mereka` = agente; `kepada saya` = destinatario potencial oblicuo; `b
 **15. Traducción contextual.** Traduce A y conserva la relación de oferta y destinatario.  
 Respuesta de referencia: «Ellos me ofrecieron ayuda».
 
-**16. Producción guiada no libre.** A partir de la oración A, explica en español qué cambia en la organización gramatical de B, sin crear una oración nueva en indonesio.  
-Respuesta de referencia: en B, `bantuan` pasa a ser el objeto directo y el destinatario se expresa con `kepada saya`; el evento de ofrecer se mantiene.
+**16. Voz de paciente (reconocimiento).** Compara el par documentado en el tutorial gramatical INDRA/DELPH-IN: `Mangga menjatuhi rumah.` («Un mango cae sobre la casa») y `Rumah itu dijatuhi mangga.` («La casa recibe la caída de un mango»). Identifica qué participante pasa a sujeto en la segunda oración.  
+Respuesta de referencia: `rumah itu` (la casa), que corresponde al participante-meta/locativo; `mangga` (el mango) aparece después del verbo como participante que cae. Es un ejemplo de voz de paciente/undergoer voice con `-i`, no una transformación libre que el estudiante deba producir. `menjatuhi`/`dijatuhi` quedan solo como formas de reconocimiento en este paquete, sin IDs ni vocabulario activo.
 
 ## 4. Formas de reconocimiento de la polisemia de `-i`
 
@@ -117,12 +117,13 @@ Para evitar inventar oraciones o dar una falsa impresión de productividad, esta
 
 ## 5. Voz gramatical: decisión de prudencia
 
-El objetivo general incluye seguir los participantes cuando cambia la voz. Sin embargo, las dos oraciones fuente seleccionadas aquí son activas. No añado una transformación pasiva/voz de paciente inventada: requeriría validar la forma verbal, la naturalidad, el registro y la correspondencia de roles. Por tanto, la lección 5 comprueba roles y construcción en los ejemplos activos; el objetivo de contraste de voz queda pendiente de un ejemplo documentado y de tu aprobación. No se presentará como si ya estuviera cubierto.
+El contraste de voz se cubre ahora solo a nivel de reconocimiento con un ejemplo completo publicado en el tutorial INDRA/DELPH-IN, que cita y desarrolla construcciones aplicativas de Arka et al. El par muestra la diferencia entre voz de actor (`Mangga menjatuhi rumah`) y voz de paciente (`Rumah itu dijatuhi mangga`). No se pedirá al estudiante que genere la forma pasiva ni se incorporarán `menjatuhi`/`dijatuhi` al inventario. La validez didáctica y adecuación de nivel de este ejemplo siguen `not_checked`; se usa como evidencia de reconocimiento, no como certificado de uso.
 
 ## 6. Evidencia y límites
 
 - Rajeg, Gede Primahadi Wijaya (2023), «Penonjolan Peran Semantis dan Konstruksi Gramatikal Pasangan Verba -i dan -kan: Kajian Gramatika Konstruksional Berbasis Korpus atas Menawari/Menawarkan», *Linguistik Indonesia* 41(2), 187–205, especialmente pp. 188–189 y análisis posterior. DOI: https://doi.org/10.26499/li.v41i2.482. Texto completo: https://ojs.linguistik-indonesia.org/index.php/linguistik_indonesia/article/download/482/209/1883
-- Arka, I Wayan; Avery Andrews; Mary Dalrymple; Meladel Mistica; Jane Simpson (2009), «A Linguistic and Computational Morphosyntactic Analysis for the Applicative -i in Indonesian», *Proceedings of LFG09*, p. 86. https://web.stanford.edu/group/cslipublications/cslipublications/LFG/14/papers/lfg09arkaetal.pdf
+- Arka, I Wayan; Avery Andrews; Mary Dalrymple; Meladel Mistica; Jane Simpson (2009), «A Linguistic and Computational Morphosyntactic Analysis for the Applicative -i in Indonesian», *Proceedings of LFG09*, pp. 86–90. https://web.stanford.edu/group/cslipublications/cslipublications/LFG/14/papers/lfg09arkaetal.pdf
+- INDRA/DELPH-IN, «Applicative constructions in Indonesian», tutorial gramatical que presenta el par `Mangga menjatuhi rumah` / `Rumah itu dijatuhi mangga` como contraste de voz. https://delph-in.github.io/docs/garage/LADIndonesianMorphology/
 
 Las fuentes son estudios lingüísticos y de corpus, no validación de cada consigna para estudiantes. Estado de naturalidad, nivel y aceptación didáctica: `not_checked`. No afirmar revisión nativa ni certificación MCER/BIPA. La falta de KBBI o hablante nativo no bloquea el trabajo.
 
@@ -131,6 +132,6 @@ Las fuentes son estudios lingüísticos y de corpus, no validación de cada cons
 1. ¿Apruebas incorporar `menawari` y `menawarkan` como dos entradas nuevas con las glosas «ofrecer a alguien» y «ofrecer algo», respectivamente, limitadas a los patrones documentados en los ejemplos A y B?
 2. ¿Apruebas las dos oraciones fuente A y B y sus traducciones de trabajo?
 3. ¿Apruebas mantener `datangi` y `panasi` solo en una nota de reconocimiento sin oraciones nuevas, y mantener excluidas `tanami`, `garami` y `kantongi`?
-4. ¿Aceptas que la parte de voz quede pendiente hasta encontrar un ejemplo documentado completo, en lugar de inventar una transformación?
+4. ¿Apruebas usar `menjatuhi`/`dijatuhi` únicamente como ejemplo de reconocimiento de voz, sin IDs ni vocabulario activo?
 
-Hasta que se aprueben estas decisiones, U5 permanece documental, oculta y no ejecutable. No se crean IDs ni se modifica el currículo, la app, IndexedDB, backup JSON v3 o dependencias.
+Este paquete documental no activa U5. Antes de añadir vocabulario o convertir actividades en contenido ejecutable, las formas nuevas y sus glosas deberán quedar aprobadas. U5 permanece oculta y no ejecutable. No se crean IDs ni se modifica el currículo, la app, IndexedDB, backup JSON v3 o dependencias.

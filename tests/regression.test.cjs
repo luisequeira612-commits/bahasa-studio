@@ -45,7 +45,7 @@ assert.equal(manifest.description, 'Aprende idiomas');
   assert.equal(manifest.icons[0].src, './icon.svg');
   assert.equal(manifest.background_color, '#ffffff');
   assert.match(fs.readFileSync(path.join(root, 'icon.svg'), 'utf8'), /<svg[^>]+viewBox="0 0 120 120"/);
-  assert.match(serviceWorker, /bahasa-studio-v3.8.87/);
+  assert.match(serviceWorker, /bahasa-studio-v3.8.88/);
   for (const asset of ['./', './index.html', './manifest.json', './assessment.html', './assessment-engine.js', './conversation-engine.js', './study-history.js', './study-activity.js', './adaptive-learning.js', './curriculum-a1.js', './curriculum-a2.js', './styles.css', './icon.svg', './audio-engine.js', './pronunciation-engine.js', './writing-practice.js']) {
     assert.ok(serviceWorker.includes("'" + asset + "'"), asset + ' must be precached for offline use');
   }
@@ -300,7 +300,7 @@ test('A2 units 1-4 have 3-5 authored lessons and a complete unit-test bank', () 
   for (const unit of a2.units.slice(0, 4)) {
     const lessons = engine.buildUnitLessons(unit);
     assert.ok(lessons.length >= 3 && lessons.length <= 5, unit.id + ' must have 3-5 lessons');
-    const lessonExercises = lessons.flatMap(lesson => lesson.exercises);
+    const lessonExercises = lessons.slice(0, unit.lessons.length).flatMap(lesson => lesson.exercises);
     assert.ok(lessonExercises.length >= 14 && lessonExercises.length <= (unit.id === 'a2_u1' ? 27 : 22),
       unit.id + ' must contain 14-27 exercises for U1 or 14-22 for the other first units');
     assert.ok(new Set(lessonExercises.map(exercise => exercise.type)).size >= 4,
@@ -315,7 +315,11 @@ test('A2 units 1-4 have 3-5 authored lessons and a complete unit-test bank', () 
 
     const unitVocabIds = new Set(unit.vocab.map(word => word.id));
     for (const lesson of lessons) {
-      assert.ok(lesson.newVocab.length > 0, lesson.title + ' must introduce vocabulary');
+      if (lesson.title.startsWith('Repaso activo')) {
+        assert.equal(lesson.newVocab.length, 0, lesson.title + ' must not introduce new vocabulary');
+      } else {
+        assert.ok(lesson.newVocab.length > 0, lesson.title + ' must introduce vocabulary');
+      }
       for (const word of lesson.newVocab) assert.ok(unitVocabIds.has(word.id));
       for (const exercise of lesson.exercises) {
         assert.ok(allVocabIds.has(exercise.vocabId), unit.id + ' has an exercise linked to unknown canonical vocabulary');

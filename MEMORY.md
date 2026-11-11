@@ -179,3 +179,8 @@
 - Se añade `tests/a1-language-audit-tracker.test.cjs` al conjunto `quality:tests`. Compara cada ocurrencia de vocabulario de las 32 unidades A1 con sus dos trackers (U1–U23 y U24–U32), incluyendo forma indonesia, glosa española y ambos ejemplos; detecta filas ausentes, sobrantes o duplicadas por unidad+ID.
 - La prueba mantiene `grammar_naturalness_review`, `level_fit_review` y `accepted_answers_review` en `not_checked`; no convierte la sincronía de datos en validación lingüística. Alcance: pruebas/configuración/memoria solamente; no cambia currículo, trackers, IDs, IndexedDB, backup JSON v3 ni dependencias.
 - Durante la primera ejecución se detectó que el tracker U1–U23 omitía la ocurrencia `U1:v465` (`Apa kabar?`) aunque sí existía en U32. Se añadió únicamente la fila de auditoría U1 con la forma, glosa y ejemplo exactos del currículo; el currículo no se modificó. El inventario A1 contiene 329 ocurrencias, no 328. La prueba debe validar las 329 ocurrencias por clave unidad+ID.
+ 
+## Regresión de lecciones B2 — estándar de cinco (11 nov 2026)
+- `buildUnitLessons()` ya completa B2 U1–U3 (tres lecciones authored) con dos repasos activos; B2 U4 conserva sus cinco lecciones authored. La app expone cinco lecciones para cada una de las cuatro unidades implementadas.
+- Se añade una prueba de regresión para las lecciones construidas de B2 U1–U4: conserva orden e índices authored, comprueba que el repaso cubra todo el vocabulario de la unidad y que no introduzca palabras ni IDs nuevos. Solo prueba/documentación; no cambia currículo, ejercicios authored, desbloqueos, IndexedDB, backup JSON v3 ni dependencias.
+- U5–U60 siguen sin implementación ni exposición. La prueba no aprueba ni añade contenido curricular futuro.

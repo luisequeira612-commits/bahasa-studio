@@ -5302,8 +5302,7 @@
             });
         }
 
-        function appendA1ReinforcementLessons(unit, lessons) {
-            const targetLessonCount = unit.vocab.length >= 18 ? 6 : 5;
+        function appendActiveRecallLessons(unit, lessons, targetLessonCount) {
     const reinforcementCount = Math.max(0, targetLessonCount - lessons.length);
     const meanings = [...new Set(unit.vocab.map(word => String(word.esp || '').trim()).filter(Boolean))];
     for (let reinforcementIndex = 0; reinforcementIndex < reinforcementCount; reinforcementIndex++) {
@@ -5353,6 +5352,9 @@
             if (!unit || !Array.isArray(unit.vocab) || !unit.vocab.length) return [];
             const a1Course = CourseData.levels.find(level => level.id === 'A1');
             const isOfficialA1Unit = Boolean(a1Course && a1Course.units.some(entry => entry.id === unit.id));
+            const a2Course = CourseData.levels.find(level => level.id === 'A2');
+            const isOfficialA2Unit = Boolean(a2Course && a2Course.units.some(entry => entry.id === unit.id));
+            const activeRecallTarget = isOfficialA1Unit ? (unit.vocab.length >= 18 ? 6 : 5) : isOfficialA2Unit ? 5 : 0;
             if (Array.isArray(unit.lessons) && unit.lessons.length) {
                 const vocabularyById = new Map(CourseData.levels.flatMap(level => level.units).flatMap(entry => entry.vocab || []).map(word => [word.id, word]));
                 const authoredLessons = unit.lessons.map((lesson, index) => {
@@ -5368,7 +5370,7 @@
                         exercises: Array.isArray(lesson.exercises) ? lesson.exercises : []
                     };
                 });
-                return isOfficialA1Unit ? appendA1ReinforcementLessons(unit, authoredLessons) : authoredLessons;
+                return activeRecallTarget ? appendActiveRecallLessons(unit, authoredLessons, activeRecallTarget) : authoredLessons;
             }
             if (unit.custom || !isOfficialA1Unit) {
                 const authoredExercises = unit.exercises || [];
@@ -5485,7 +5487,7 @@
                     exercises
                 });
             }
-            return isOfficialA1Unit ? appendA1ReinforcementLessons(unit, lessons) : lessons;
+            return activeRecallTarget ? appendActiveRecallLessons(unit, lessons, activeRecallTarget) : lessons;
         }
 
         function unitLessonProgressKey(unitId, lessonIndex) {

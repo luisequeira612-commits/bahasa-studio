@@ -59,6 +59,21 @@ test('phase 5B learning screen is compact, blue and preserves all level/tool ent
     const levelRows = page.locator('.learning-level-sheet-row');
     await page.locator('.level-progress-trigger').click();
     await page.waitForSelector('#learningLevelSheetOverlay:not([hidden])');
+    const levelSheet = page.locator('#learningLevelSheet');
+    const levelClose = levelSheet.locator('.learning-sheet-close');
+    const levelSheetBox = await levelSheet.boundingBox();
+    const levelCloseBox = await levelClose.boundingBox();
+    const chipBox = await page.locator('#learningLevelTrigger').boundingBox();
+    const levelBannerBox = await page.locator('.unit-path-section-banner').first().boundingBox();
+    assert.ok(levelCloseBox.width >= 44 && levelCloseBox.height >= 44, 'level-sheet close target must be at least 44×44px');
+    assert.ok(levelCloseBox.x >= levelSheetBox.x && levelCloseBox.y >= levelSheetBox.y && levelCloseBox.x + levelCloseBox.width <= levelSheetBox.x + levelSheetBox.width && levelCloseBox.y + levelCloseBox.height <= levelSheetBox.y + levelSheetBox.height, 'level-sheet close button must stay inside the sheet');
+    assert.ok(levelSheetBox.y > Math.max(chipBox.y + chipBox.height, levelBannerBox.y + levelBannerBox.height), 'level sheet must not cover the topbar chip or section banner');
+    const safeBottom = await levelSheet.evaluate(el => ({ padding:parseFloat(getComputedStyle(el).paddingBottom), bottom:el.getBoundingClientRect().bottom }));
+    const lastLevelRowBox = await levelRows.nth(3).boundingBox();
+    assert.ok(safeBottom.padding >= 22, 'level sheet must retain bottom breathing room');
+    assert.ok(safeBottom.bottom - (lastLevelRowBox.y + lastLevelRowBox.height) >= safeBottom.padding - 1, 'last level row must remain above safe bottom padding');
+    const progressLabels = await Promise.all([0,1,2,3].map(i => levelRows.nth(i).locator('small').innerText()));
+    assert.deepEqual(progressLabels, ['0 de 32 unidades', '0 de 40 unidades', '0 de 50 unidades', 'En desarrollo']);
     assert.equal(await levelRows.count(), 4);
     const languageBadge = page.locator('#learningLevelLanguageLabel');
     assert.equal(await languageBadge.innerText(), 'Indonesio');
@@ -116,6 +131,14 @@ test('phase 5B learning screen is compact, blue and preserves all level/tool ent
 
     await page.locator('.unit-tools-trigger').first().click();
     await page.waitForSelector('#learningToolsSheetOverlay:not([hidden])');
+    const toolsSheet = page.locator('#learningToolsSheet');
+    const toolsClose = toolsSheet.locator('.learning-sheet-close');
+    const toolsSheetBox = await toolsSheet.boundingBox();
+    const toolsCloseBox = await toolsClose.boundingBox();
+    const toolsBannerBox = await page.locator('.unit-path-section-banner').first().boundingBox();
+    assert.ok(toolsCloseBox.width >= 44 && toolsCloseBox.height >= 44, 'tools-sheet close target must be at least 44×44px');
+    assert.ok(toolsCloseBox.x >= toolsSheetBox.x && toolsCloseBox.y >= toolsSheetBox.y && toolsCloseBox.x + toolsCloseBox.width <= toolsSheetBox.x + toolsSheetBox.width && toolsCloseBox.y + toolsCloseBox.height <= toolsSheetBox.y + toolsSheetBox.height, 'tools-sheet close button must stay inside the sheet');
+    assert.ok(toolsSheetBox.y > Math.max(chipBox.y + chipBox.height, toolsBannerBox.y + toolsBannerBox.height), 'tools sheet must not cover the topbar chip or section banner');
     assert.equal(await page.locator('.learning-tool-sheet-row').count(), 3);
     console.log('[phase5B 360x740] tools: ' + JSON.stringify(await page.locator('.learning-tool-sheet-row strong').allInnerTexts()));
     for (const row of await page.locator('.learning-tool-sheet-row').all()) assert.ok((await row.boundingBox()).height >= 44);

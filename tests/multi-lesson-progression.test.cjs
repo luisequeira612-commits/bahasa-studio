@@ -274,6 +274,32 @@ test('A1 appends five or six active-recall lessons without shifting legacy lesso
   }
 });
 
+test('all A2 units expose five lessons and preserve their authored lesson indexes', () => {
+  const a2 = app.CourseData.levels.find(level => level.id === 'A2');
+  assert.equal(a2.units.length, 40, 'A2 should contain all forty planned units');
+  for (const unit of a2.units) {
+    const lessons = app.buildUnitLessons(unit);
+    assert.equal(lessons.length, 5, unit.id + ' should expose five lessons');
+    const authoredCount = unit.lessons.length;
+    assert.ok(authoredCount === 4 || authoredCount === 5, unit.id + ' should retain its four or five authored lessons');
+    assert.deepEqual(Array.from(lessons.slice(0, authoredCount), lesson => lesson.index),
+      Array.from({ length: authoredCount }, (_, index) => index),
+      unit.id + ' authored lesson indexes must remain unchanged');
+    assert.deepEqual(Array.from(lessons.slice(0, authoredCount), lesson => lesson.title),
+      unit.lessons.map(lesson => lesson.title),
+      unit.id + ' authored lesson order and titles must remain unchanged');
+    for (const lesson of lessons.slice(authoredCount)) {
+      assert.equal(lesson.index, lessons.indexOf(lesson), unit.id + ' reinforcement index must be appended');
+      assert.deepEqual(Array.from(lesson.newVocab, word => word.id), []);
+      assert.deepEqual(Array.from(lesson.reviewVocab, word => word.id), Array.from(unit.vocab, word => word.id));
+      assert.deepEqual(Array.from(lesson.vocab, word => word.id), Array.from(unit.vocab, word => word.id));
+      assert.equal(lesson.exercises.length, unit.vocab.length, unit.id + ' reinforcement must practise every unit word');
+      assert.ok(lesson.exercises.every(exercise => unit.vocab.some(word => word.id === exercise.vocabId)));
+      assert.ok(lesson.exercises.every(exercise => ['mc', 'listen', 'translate_es_id'].includes(exercise.type)));
+    }
+  }
+});
+
 test('A1 completed units stay completed and existing in-progress lesson keys retain their indexes', () => {
   const a1 = app.CourseData.levels.find(level => level.id === 'A1');
   const unit = a1.units[0];

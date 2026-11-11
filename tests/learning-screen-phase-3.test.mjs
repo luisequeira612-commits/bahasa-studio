@@ -93,7 +93,7 @@ test('normal text and informative icons meet contrast on the learning screen tin
   assert.match(css, /--lesson-feedback-wrong-bg:#fff0f0/);
 });
 
-test('learning controls retain 44px minimum targets without changing unrelated btn-sm screens', async () => {
+test('learning and core study controls meet 44px targets while other btn-sm screens stay scoped', async () => {
   const css = await read('styles.css');
   assert.match(css, /\.learning-level-button\s*\{[^}]*min-height:\s*46px/);
   assert.match(css, /\.learning-level-button\s*\{\s*min-height:\s*44px/);
@@ -102,7 +102,8 @@ test('learning controls retain 44px minimum targets without changing unrelated b
   assert.match(css, /\.unit-sheet-primary,[\s\S]*?min-height:\s*48px/);
   assert.match(css, /\.learning-tool-button\s*\{[^}]*min-height:\s*48px/);
   assert.match(css, /#view-route \.btn-sm,\s*#unitBottomSheet \.btn-sm\s*\{\s*min-height:\s*48px/);
-  assert.doesNotMatch(css, /(?<!#view-route )(?<!#unitBottomSheet )\.btn-sm\s*\{\s*min-height:\s*48px/);
+  assert.match(css, /#view-srs \.btn-sm,\s*#view-ai \.btn-sm,\s*#view-dict \.btn-sm\s*\{\s*min-width:\s*44px;\s*min-height:\s*44px/);
+  assert.doesNotMatch(css, /(?<!#view-route )(?<!#unitBottomSheet )(?<!#view-srs )(?<!#view-ai )(?<!#view-dict )\.btn-sm\s*\{\s*min-height:\s*48px/);
   assert.match(css, /\.btn-sm\s*\{[^}]*min-height:\s*36px/);
 });
 

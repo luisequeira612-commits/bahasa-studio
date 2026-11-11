@@ -39,7 +39,7 @@ El contenido íntegro del borrador anterior está en `docs/B2_LEGACY_DRAFT_ARCHI
 - Cada forma derivada nueva debe tener un ID canónico único. Antes de reutilizar IDs antiguos, comprobar colisiones en A1/A2/B1 y dentro de B2.
 - No exigir producción de una forma antes de su unidad prevista.
 - A1/A2/B1 quedan intactos. No modificar IndexedDB ni el backup JSON v3; sin dependencias ni servicios externos.
-- B2 permanece en desarrollo. El recorrido expone únicamente las unidades implementadas U1–U3, con desbloqueo secuencial tras B1 y la unidad anterior; U4–U60 siguen sin contenido ejecutable y no se exponen como unidades disponibles.
+- B2 permanece en desarrollo. U1–U4 están implementadas; el recorrido las expone con desbloqueo secuencial tras B1 y la unidad anterior. U5–U60 siguen sin contenido ejecutable y no se exponen como unidades disponibles.
 
 ## Vocabulario y evidencia
 

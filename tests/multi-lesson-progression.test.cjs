@@ -24,7 +24,9 @@ test('every A1 unit is divided into sequential lessons that introduce all vocabu
   const a1 = app.CourseData.levels.find(level => level.id === 'A1');
   for (const unit of a1.units) {
     const lessons = app.buildUnitLessons(unit);
-    assert.ok(lessons.length >= 2, unit.id + ' should have multiple lessons');
+    const expectedLessonCount = unit.vocab.length >= 18 ? 6 : 5;
+    assert.equal(lessons.length, expectedLessonCount,
+      unit.id + ' should expose ' + expectedLessonCount + ' lessons under the A1 standard');
     const introduced = lessons.flatMap(lesson => lesson.newVocab.map(word => word.id));
     assert.deepEqual(introduced, unit.vocab.map(word => word.id), unit.id + ' should introduce every vocabulary item exactly once and in order');
     lessons.forEach((lesson, index) => {

@@ -174,3 +174,8 @@
 ## Regresión de lecciones A1 — estándar 5–6 (11 nov 2026)
 - La regla activa de `buildUnitLessons()` fija cinco lecciones para unidades A1 con menos de 18 entradas de vocabulario y seis para unidades con 18 o más. Esto incluye A1 U3 (5) y U9 (6); el contenido de repaso añadido reutiliza el vocabulario existente y no crea entradas curriculares.
 - Se refuerza `tests/multi-lesson-progression.test.cjs` para exigir el número exacto en las 32 unidades A1, además de comprobar secuencia, vocabulario introducido una sola vez y ejercicios de repaso. Cambio de pruebas/documentación solamente; no modifica contenido, IndexedDB, backup JSON v3 ni dependencias.
+
+## Regresión de sincronía del tracker A1 (11 nov 2026)
+- Se añade `tests/a1-language-audit-tracker.test.cjs` al conjunto `quality:tests`. Compara cada ocurrencia de vocabulario de las 32 unidades A1 con sus dos trackers (U1–U23 y U24–U32), incluyendo forma indonesia, glosa española y ambos ejemplos; detecta filas ausentes, sobrantes o duplicadas por unidad+ID.
+- La prueba mantiene `grammar_naturalness_review`, `level_fit_review` y `accepted_answers_review` en `not_checked`; no convierte la sincronía de datos en validación lingüística. Alcance: pruebas/configuración/memoria solamente; no cambia currículo, trackers, IDs, IndexedDB, backup JSON v3 ni dependencias.
+- Durante la primera ejecución se detectó que el tracker U1–U23 omitía la ocurrencia `U1:v465` (`Apa kabar?`) aunque sí existía en U32. Se añadió únicamente la fila de auditoría U1 con la forma, glosa y ejemplo exactos del currículo; el currículo no se modificó. El inventario A1 contiene 329 ocurrencias, no 328. La prueba debe validar las 329 ocurrencias por clave unidad+ID.

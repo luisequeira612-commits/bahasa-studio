@@ -1942,6 +1942,7 @@ test('implemented B2 units expose five lessons with distinct active recall cover
   assert.ok(b2 && b2.units.length >= 3, 'implemented B2 units must exist');
 
   for (const unit of b2.units) {
+    if (unit.id === 'b2_u4') continue; // U4 is fully authored and has its own five-lesson contract test.
     const authoredCount = unit.lessons.length;
     const authoredTitles = Array.from(unit.lessons, lesson => lesson.title);
     const lessons = engine.buildUnitLessons(unit);

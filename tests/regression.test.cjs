@@ -45,7 +45,7 @@ assert.equal(manifest.description, 'Aprende idiomas');
   assert.equal(manifest.icons[0].src, './icon.svg');
   assert.equal(manifest.background_color, '#ffffff');
   assert.match(fs.readFileSync(path.join(root, 'icon.svg'), 'utf8'), /<svg[^>]+viewBox="0 0 120 120"/);
-  assert.match(serviceWorker, /bahasa-studio-v3.8.88/);
+  assert.match(serviceWorker, /CACHE_NAME\s*=\s*'bahasa-studio-v\d+\.\d+\.\d+'/);
   for (const asset of ['./', './index.html', './manifest.json', './assessment.html', './assessment-engine.js', './conversation-engine.js', './study-history.js', './study-activity.js', './adaptive-learning.js', './curriculum-a1.js', './curriculum-a2.js', './styles.css', './icon.svg', './audio-engine.js', './pronunciation-engine.js', './writing-practice.js']) {
     assert.ok(serviceWorker.includes("'" + asset + "'"), asset + ' must be precached for offline use');
   }
@@ -1868,4 +1868,58 @@ test('free-writing completion records a session but never stores the draft', () 
   assert.match(writingPracticeSource, /practiceRecorded/);
   assert.match(writingPracticeSource, /el texto no se guarda/);
   assert.doesNotMatch(writingPracticeSource, /DB\.set|DB\.get|localStorage|indexedDB|innerHTML/);
+});
+
+
+test('B1 all fifty units expose five lessons with distinct active recall covering their full unit vocabulary', () => {
+  const start = html.indexOf('const CourseData =');
+  const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
+  assert.ok(start >= 0 && end > start, 'CourseData block must exist');
+  const course = vm.runInNewContext(html.slice(start, end) + '\\nCourseData');
+  const engineStart = html.indexOf('function buildUnitAssessmentItems');
+  const engineEnd = html.indexOf('function unitLessonProgressKey', engineStart);
+  assert.ok(engineStart >= 0 && engineEnd > engineStart, 'unit lesson builders must exist');
+  const engine = vm.runInNewContext(
+    html.slice(engineStart, engineEnd) + '\\n({ buildUnitLessons })',
+    { CourseData: course, Map, Set, Math }
+  );
+  const b1 = course.levels.find(level => level.id === 'B1');
+  assert.ok(b1);
+  assert.equal(b1.units.length, 50);
+
+  for (const unit of b1.units) {
+    const authoredCount = unit.lessons.length;
+    const authoredTitles = unit.lessons.map(lesson => lesson.title);
+    const lessons = engine.buildUnitLessons(unit);
+    assert.equal(lessons.length, 5, unit.id + ' must expose exactly five lessons');
+    assert.deepEqual(lessons.slice(0, authoredCount).map(lesson => lesson.title), authoredTitles,
+      unit.id + ' must preserve the authored lesson prefix and order');
+
+    const expectedIds = unit.vocab.map(word => word.id).sort();
+    assert.equal(new Set(expectedIds).size, expectedIds.length, unit.id + ' must not duplicate unit vocabulary IDs');
+    const reviewLessons = lessons.slice(authoredCount);
+    assert.equal(reviewLessons.length, 5 - authoredCount, unit.id + ' must append only the missing lessons');
+    const signatures = [];
+    const generatedTypes = new Set();
+
+    for (const lesson of reviewLessons) {
+      assert.equal(lesson.newVocab.length, 0, lesson.title + ' must not introduce vocabulary');
+      assert.deepEqual(Array.from(new Set(lesson.reviewVocab.map(word => word.id))).sort(), expectedIds,
+        lesson.title + ' must review every vocabulary item in its unit');
+      assert.deepEqual(Array.from(new Set(lesson.exercises.map(exercise => exercise.vocabId))).sort(), expectedIds,
+        lesson.title + ' must exercise every vocabulary item in its unit');
+      assert.equal(lesson.exercises.length, unit.vocab.length,
+        lesson.title + ' must provide one targeted exercise per vocabulary item');
+      for (const exercise of lesson.exercises) {
+        assert.ok(['mc', 'listen', 'translate_es_id'].includes(exercise.type),
+          lesson.title + ' must use a supported active-recall exercise type');
+        generatedTypes.add(exercise.type);
+      }
+      signatures.push(lesson.exercises.map(exercise => exercise.vocabId + ':' + exercise.type).join('|'));
+    }
+
+    assert.equal(new Set(signatures).size, signatures.length,
+      unit.id + ' must not repeat the same exercise pattern across its generated lessons');
+    assert.ok(generatedTypes.size >= 2, unit.id + ' generated lessons must vary exercise types');
+  }
 });

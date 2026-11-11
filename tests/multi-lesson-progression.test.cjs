@@ -187,7 +187,7 @@ test('authored lesson vocabulary references resolve unambiguously within their i
 });
 
 
-test('B1 U13-U26 introduce new vocabulary in the correct lesson and review only learned words', () => {
+test('B1 U13-U26 expose five lessons while preserving authored vocabulary order and adding full-unit review', () => {
   const levels = app.CourseData.levels;
   const a1 = levels.find(level => level.id === 'A1');
   const a2 = levels.find(level => level.id === 'A2');
@@ -200,25 +200,46 @@ test('B1 U13-U26 introduce new vocabulary in the correct lesson and review only 
   assert.equal(targetUnits.length, 14);
   for (const unit of targetUnits) {
     const lessons = app.buildUnitLessons(unit);
-    assert.equal(lessons.length, unit.id === 'b1_u22' ? 4 : 3, unit.id + ' should preserve its authored lesson count');
+    const authoredCount = unit.lessons.length;
+    assert.ok(authoredCount === 3 || authoredCount === 4, unit.id + ' should retain its three or four authored lessons');
+    assert.equal(lessons.length, 5, unit.id + ' should expose five lessons');
+    assert.deepEqual(
+      Array.from(lessons.slice(0, authoredCount), lesson => lesson.title),
+      Array.from(unit.lessons, lesson => lesson.title),
+      unit.id + ' must preserve the authored lesson prefix'
+    );
     const expectedNewIds = unit.vocab.filter(word => !known.has(word.id)).map(word => word.id).sort();
     const declaredNewIds = unit.lessons.flatMap(lesson => lesson.vocabIds || []);
     assert.equal(new Set(declaredNewIds).size, declaredNewIds.length, unit.id + ' must not introduce a word twice');
     assert.deepEqual(declaredNewIds.slice().sort(), expectedNewIds, unit.id + ' must introduce every new B1 word exactly once');
+
     let learned = new Set(known);
     for (const [index, lesson] of lessons.entries()) {
-      const authored = unit.lessons[index];
-      for (const id of authored.reviewVocabIds || []) {
-        assert.ok(learned.has(id), unit.id + ' lesson ' + index + ' reviews an unknown word: ' + id);
-      }
-      for (const id of authored.vocabIds || []) {
-        assert.ok(!learned.has(id), unit.id + ' lesson ' + index + ' reintroduces an already learned word: ' + id);
-      }
       const lessonIds = new Set(lesson.vocab.map(word => word.id));
-      for (const exercise of lesson.exercises) {
-        assert.ok(lessonIds.has(exercise.vocabId), unit.id + ' lesson ' + index + ' exercises vocabulary not yet taught or reviewed: ' + exercise.vocabId);
+      if (index < authoredCount) {
+        const authored = unit.lessons[index];
+        assert.equal(lesson.index, index, unit.id + ' authored lesson indexes must remain stable');
+        for (const id of authored.reviewVocabIds || []) {
+          assert.ok(learned.has(id), unit.id + ' lesson ' + index + ' reviews an unknown word: ' + id);
+        }
+        for (const id of authored.vocabIds || []) {
+          assert.ok(!learned.has(id), unit.id + ' lesson ' + index + ' reintroduces an already learned word: ' + id);
+        }
+        for (const exercise of lesson.exercises) {
+          assert.ok(lessonIds.has(exercise.vocabId), unit.id + ' lesson ' + index + ' exercises vocabulary not yet taught or reviewed: ' + exercise.vocabId);
+        }
+        for (const id of authored.vocabIds || []) learned.add(id);
+      } else {
+        assert.equal(lesson.index, index, unit.id + ' generated lesson indexes must be appended');
+        assert.equal(lesson.title, 'Repaso activo ' + (index - authoredCount + 1));
+        assert.deepEqual(Array.from(lesson.newVocab), []);
+        assert.deepEqual(Array.from(lesson.reviewVocab, word => word.id), Array.from(unit.vocab, word => word.id));
+        assert.equal(lesson.exercises.length, unit.vocab.length);
+        assert.ok(lesson.exercises.every(exercise => exercise.generated));
+        for (const exercise of lesson.exercises) {
+          assert.ok(lessonIds.has(exercise.vocabId), unit.id + ' active recall must target vocabulary from its own unit');
+        }
       }
-      for (const id of authored.vocabIds || []) learned.add(id);
     }
     for (const word of unit.vocab) { learned.add(word.id); known.add(word.id); }
     for (const word of unit.vocab) assert.ok(learned.has(word.id), unit.id + ' vocabulary should be available by unit end: ' + word.id);

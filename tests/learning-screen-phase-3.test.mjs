@@ -116,9 +116,12 @@ test('PWA manifest keeps standalone routing, explicit scope and the maskable ico
     icon.sizes === '512x512' && icon.purpose === 'maskable'));
 });
 
-test('service worker installs v3.8.88, removes only older app caches and claims clients', async () => {
+test('service worker installs its declared cache, removes only older app caches and claims clients', async () => {
   const source = await read('service-worker.js');
-  assert.match(source, /CACHE_NAME\s*=\s*'bahasa-studio-v3\.8\.88'/);
+  const cacheNameMatch = source.match(/CACHE_NAME\s*=\s*'([^']+)'/);
+  assert.ok(cacheNameMatch, 'service worker must declare its cache name');
+  const cacheName = cacheNameMatch[1];
+  assert.match(cacheName, /^bahasa-studio-v\d+\.\d+\.\d+$/);
   assert.match(source, /'\.\/index\.html'/);
   assert.match(source, /'\.\/manifest\.json'/);
   assert.match(source, /'\.\/styles\.css'/);
@@ -163,5 +166,5 @@ test('service worker installs v3.8.88, removes only older app caches and claims 
   assert.ok(deleted.includes('bahasa-studio-v3.8.71'));
   assert.ok(deleted.includes('bahasa-studio-other'));
   assert.equal(claimed, true);
-  assert.ok(cacheStore.has('bahasa-studio-v3.8.88'));
+  assert.ok(cacheStore.has(cacheName));
 });

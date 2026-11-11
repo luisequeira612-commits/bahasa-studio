@@ -5354,7 +5354,9 @@
             const isOfficialA1Unit = Boolean(a1Course && a1Course.units.some(entry => entry.id === unit.id));
             const a2Course = CourseData.levels.find(level => level.id === 'A2');
             const isOfficialA2Unit = Boolean(a2Course && a2Course.units.some(entry => entry.id === unit.id));
-            const activeRecallTarget = isOfficialA1Unit ? (unit.vocab.length >= 18 ? 6 : 5) : isOfficialA2Unit ? 5 : 0;
+            const b1Course = CourseData.levels.find(level => level.id === 'B1');
+            const isOfficialB1Unit = Boolean(b1Course && b1Course.units.some(entry => entry.id === unit.id));
+            const activeRecallTarget = isOfficialA1Unit ? (unit.vocab.length >= 18 ? 6 : 5) : isOfficialA2Unit ? 5 : isOfficialB1Unit ? 5 : 0;
             if (Array.isArray(unit.lessons) && unit.lessons.length) {
                 const vocabularyById = new Map(CourseData.levels.flatMap(level => level.units).flatMap(entry => entry.vocab || []).map(word => [word.id, word]));
                 const authoredLessons = unit.lessons.map((lesson, index) => {

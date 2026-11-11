@@ -1905,6 +1905,14 @@ test('learning route and unit sheet controls meet 44px touch targets at 360px', 
 
     for (const view of ['srs', 'ai', 'dict']) {
       await page.evaluate(viewId => App.switchView(viewId), view);
+      if (view === 'srs') {
+        await page.evaluate(async () => {
+          const word = getUniqueLearningVocabulary()[0];
+          await SRSEngine.markForReview(word.id);
+          await SRSEngine.startSession();
+        });
+        await page.locator('#srsPracticeArea').waitFor({ state: 'visible' });
+      }
       const sizes = await page.locator(`#view-${view} button.btn-sm`).evaluateAll(buttons =>
         buttons.map(button => {
           const rect = button.getBoundingClientRect();

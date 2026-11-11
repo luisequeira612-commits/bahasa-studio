@@ -1899,6 +1899,7 @@ test('B1 all fifty units expose five lessons with distinct active recall coverin
     assert.equal(new Set(expectedIds).size, expectedIds.length, unit.id + ' must not duplicate unit vocabulary IDs');
     const reviewLessons = lessons.slice(authoredCount);
     assert.equal(reviewLessons.length, 5 - authoredCount, unit.id + ' must append only the missing lessons');
+    if (reviewLessons.length === 0) continue;
     const signatures = [];
     const generatedTypes = new Set();
 

@@ -1,3 +1,13 @@
+## Estado vigente — 11 nov 2026 (actualización de U5)
+
+- PR #502, #503 y #504 están fusionadas. #502 corrigió las hojas móviles; #503 actualizó la documentación B2; #504 alineó las etiquetas de pruebas con la cobertura U1–U4. Para detalles de commits y CI, consultar el historial de cada PR en GitHub.
+- B2 U1–U4 están implementadas y visibles con desbloqueo secuencial (4/60); U5–U60 siguen ocultas/no ejecutables. A1 32/32, A2 40/40 y B1 50/50.
+- U5 sigue sin aprobación específica. El eje U4–U6 (`-kan`, `-i`, `memper-`) está aprobado, pero no su desglose, ejemplos, consignas, respuestas, claves ni vocabulario activo.
+- Se preparó `docs/B2_U5_APPROVAL_PACKET.md` como propuesta de decisión. Propone revisar el diseño preliminar de tres lecciones frente al estándar vigente de cinco lecciones por unidad; distribución de ejercicios sugerida 3/3/3/3/4 (16 total), todavía no aprobada.
+- Tratamiento candidato: `menawari/menawarkan` como contraste léxico acotado sujeto a auditoría del inventario; `datangi` y `panasi` solo reconocimiento; `tanami`, `garami` y `kantongi` fuera del vocabulario activo por ahora. No se crean IDs ni contenido ejecutable.
+- «Continúa» no aprueba vocabulario, ejemplos, claves, ejercicios o nuevas unidades. Tras aprobación del alcance, presentar formas/glosas y ejemplos completos antes de implementar. No bloquear por falta de KBBI/hablante nativo ni afirmar validación nativa/MCER/BIPA.
+- Sin cambios a currículo ejecutable, A1/A2/B1, progreso, IndexedDB, backup JSON v3 ni dependencias.
+
 # MEMORY.md — Estado de Bahasa Studio
 
 > Memoria operativa. Mantener por debajo de ~150 líneas; los detalles históricos y la evidencia extensa viven en los documentos enlazados. Última actualización: 11 nov 2026.

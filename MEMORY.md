@@ -137,3 +137,11 @@
 ## B2 U4–U5 — seguimiento (9 nov 2026)
 - B2 U4 está implementada en PR #490 (rama feat/b2-u4-kan-functions), 3 lecciones/16 ejercicios/5 tipos, reutiliza cuatro IDs B1 y no añade vocabulario. CI del head 12696047bcb09f4039b45ce488b0557f06869324 quedó verde; la rama está 1 commit detrás de main tras Fase 6 Guardi y GitHub la marca temporalmente no fusionable. No se ha integrado ni se debe declarar publicada hasta actualizar la rama y validar el nuevo head.
 - B2 U5 continúa como propuesta documental. El 9 nov se amplió docs/B2_U5_DESIGN.md con evidencia de Arka et al. (2009), Arka (2012) y Rajeg (2023), y una propuesta prudente centrada en el par léxico menawari/menawarkan; datangi/panasi quedan como reconocimiento, no producción libre. Ningún vocabulario nuevo ni ejercicio ejecutable aprobado o añadido.
+
+
+## B1 U27-U49 — expansión a cinco lecciones (10 nov 2026)
+- Se amplían las unidades B1 U27–U49, que ya existían con 3 lecciones, a 5 lecciones cada una mediante dos sesiones aditivas: «Recuperación activa» y «Producción guiada».
+- Las sesiones nuevas reutilizan únicamente vocabulario ya canónico de cada unidad y conservan los tipos de ejercicio existentes: mc, translate_es_id, order, listen y write. No se añaden dependencias ni se modifica IndexedDB, backup JSON v3 o el esquema de progreso.
+- La ampliación se implementa en la rama feat/b1-u27-u49-active-recall; el service worker pasa de v3.8.86 a v3.8.87 para invalidar la caché de la app.
+- Se añade una regresión que exige 5 lecciones y presencia de los cinco tipos de ejercicio en U27–U49.
+- Objetivo siguiente: validar CI completo y revisar editorialmente los ejercicios añadidos antes de fusionar. No se debe interpretar la ampliación como certificación lingüística por hablante nativo.

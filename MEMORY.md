@@ -3,11 +3,12 @@
 > Memoria operativa; mantenerla por debajo de unas 150 líneas. Detalles extensos y evidencia histórica viven en documentos y PR enlazados. Última actualización: 11 nov 2026.
 
 ## Estado vigente
-- `main` está en `dfe5bf4b24b48d8b4cb1a99789bc68fc94ec3437`, tras fusionar PR [#511](https://github.com/luisequeira612-commits/bahasa-studio/pull/511) por squash. El PR añadió `docs/B2_U5_EXAMPLE_REVIEW.md`, paquete documental para revisión; no añade currículo ejecutable, IDs ni vocabulario activo. Checks `test` y `Offline quality reports` verdes en el head exacto `b3634bc2766c1fa5b422fd6ff5973c058f332efe`, sin revisiones, comentarios ni hilos pendientes antes del merge.
+- `main` está en `7bb78932df8792a0dcdecf1ac98f306555b1387b`, tras fusionar PR #513 y su registro documental #514. #513 eleva a 44×44 px los controles compactos de Repasar, Tutor y Diccionario; #514 registra el merge.
 - Estado curricular comprobado en `main`: A1 32/32, A2 40/40, B1 50/50; B2 U1–U4 implementadas (4/60), U5–U60 ocultas/no ejecutables. Todas las unidades expuestas cumplen cinco o seis lecciones. No se cambiaron datos curriculares en esta tarea.
-- Auditoría local completa: 122 unidades, 1.062 registros de vocabulario, 1.025 IDs únicos, 0 errores estructurales, 41 avisos heurísticos y 70 informativos. No certifica lingüística.
-- Pruebas locales de progresión, contratos curriculares, liberación y B2: 75/75 correctas. La suite `quality:tests` tuvo 128 pruebas correctas, pero el proceso completo no pudo finalizar: Playwright 1.55 no admite `process.platform === android` en este terminal. CI Linux del PR #511 sí pasó.
-- PR #513 se fusionó por squash en `main` como `46e6b1bc07cbda92e266587f94553822b419f4da`. Eleva a 44×44 px los controles compactos de Repasar, Tutor y Diccionario, añade cobertura estática/E2E a 360 px y actualiza la caché offline a `v3.8.93`. CI pre-merge verde en el head `129fb449df9e1462288bf05e040b956263c032bc`; no cambia progreso ni datos. El CI post-merge, Pages y prueba física no se pudieron verificar aquí.
+- Auditoría local documentada: 122 unidades, 1.062 registros de vocabulario, 1.025 IDs únicos, 0 errores estructurales, 41 avisos heurísticos y 70 informativos. No certifica lingüística.
+- Pruebas locales de progresión, contratos curriculares, liberación y B2: 75/75 correctas. La suite `quality:tests` tuvo 128 pruebas correctas, pero Playwright 1.55 no admite `process.platform === android` en este terminal. CI Linux del PR #511 pasó en su head exacto.
+- PR #513 se fusionó por squash en `main` como `46e6b1bc07cbda92e266587f94553822b419f4da`. El CI pre-merge fue verde en `129fb449df9e1462288bf05e040b956263c032bc`; Pages, CI post-merge y prueba física siguen sin verificar.
+- No hay PR abiertas actualmente. No se detectó una ejecución de GitHub Actions asociada al commit final #514 mediante el endpoint de ejecuciones por commit; no se debe afirmar CI post-merge verde.
 
 ## B2 U5 y decisiones pendientes
 - PR #511 documenta el par `menawari/menawarkan`, fuentes y 16 prototipos. Glosas, naturalidad, adecuación didáctica y vocabulario nuevo siguen pendientes de aprobación del dueño; todo sigue `not_checked` para esos juicios. No implementar ni activar U5 por “continúa”.
@@ -27,10 +28,11 @@
 - Fase 2: cobertura estructural A1–B2 revisada con pruebas de progreso y cinco/seis lecciones. La revisión editorial/lingüística de A1/A2 no está terminada.
 - Fase 3: auditoría ejecutada; 41 avisos son candidatos editoriales y requieren revisión contextual. No hay errores bloqueantes estructurales.
 - Fase 4: U5 sigue pendiente de aprobación específica; no inventar mapa U13–U60.
-- Fase 5: mejoras mobile-first de Aprender/Guardi integradas (PR #502) y objetivos táctiles de Repasar/Tutor/Diccionario de 44×44 px (PR #513). CI pre-merge verde; prueba física y Pages sin verificar.
-- Fase 6: PR #511, #512 y #513 integradas; no se obtuvo un resultado de Actions posterior al merge final ni se verificó Pages.
+- Fase 5: mejoras mobile-first de Aprender/Guardi integradas (#502) y objetivos táctiles de Repasar/Tutor/Diccionario de 44×44 px (#513). CI pre-merge verde; prueba física y Pages sin verificar.
+- Fase 6: integración documental actualizada con #514 y checklist post-merge añadido. Falta evidencia de CI post-merge y Pages; por ello Fase 6 aún no se declara completamente cerrada. Las tareas técnicas independientes pueden continuar.
 
 ## Flujo Git
 - Trabajar en ramas descriptivas y PR pequeñas; nunca modificar `main` directamente. Cada PR debe incluir objetivo, archivos, pruebas, riesgos/limitaciones y actualizar este archivo.
 - Crear commits, PR y fusionar está autorizado por la misión cuando el diff esté revisado, CI verde en el head exacto, informes sin errores bloqueantes y no haya comentarios/revisiones/hilos pendientes. No fusionar con CI pendiente o fallido.
 - No afirmar pruebas de dispositivo físico si solo se ejecutó navegador. Distinguir probado, revisado por lectura y no verificado.
+- El detalle de la verificación post-merge está en `docs/PHASE_6_POSTMERGE_VERIFICATION.md`.

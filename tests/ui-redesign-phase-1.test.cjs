@@ -74,8 +74,8 @@ test('unit path groups official levels in sections of eight and draws numbered, 
     assert.match(css, /\.learning-unit-node\.node-available/);
 });
 
-test('B2 shows implemented U1–U3, keeps later units as placeholders and preserves development restrictions', () => {
-    assert.match(html, /getVisibleLearningUnits\(level\)[\s\S]*?level\.id === 'B2' \? level\.units\.slice\(0, 3\) : level\.units/);
+test('B2 shows implemented U1–U4, keeps later units as placeholders and preserves development restrictions', () => {
+    assert.match(html, /getVisibleLearningUnits\(level\)[\s\S]*?level\.id === 'B2' \? level\.units\.slice\(0, 4\) : level\.units/);
     assert.match(html, /unit-path-coming-soon/);
     assert.match(html, /Las demás unidades B2 todavía no están implementadas/);
     assert.match(html, /unit-path-coming-soon-circle/);
@@ -83,7 +83,7 @@ test('B2 shows implemented U1–U3, keeps later units as placeholders and preser
     assert.match(html, /if \(level\.id === 'B2'\) \{[\s\S]*?const previousLevel = levels\[levelIndex - 1\]/);
     assert.match(html, /<span class="badge">En desarrollo<\/span>/);
     assert.match(html, /skipIds\.includes\(unit\.id\)/);
-    assert.match(html, /const availableUnits = level\.id === 'B2' \? level\.units\.slice\(0, 3\) : level\.units/);
+    assert.match(html, /const availableUnits = level\.id === 'B2' \? level\.units\.slice\(0, 4\) : level\.units/);
 });
 
 test('unit bottom sheet includes title, description, lesson progress, lesson CTA and grammar', () => {

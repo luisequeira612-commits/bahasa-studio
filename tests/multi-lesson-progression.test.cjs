@@ -226,6 +226,33 @@ test('B1 U13-U26 introduce new vocabulary in the correct lesson and review only 
 });
 
 
+test('A1 explicit authored lessons also receive additive reinforcement without changing their original indexes', () => {
+  const a1 = app.CourseData.levels.find(level => level.id === 'A1');
+  const unit = a1.units.find(entry => entry.id === 'a1_u3');
+  const authoredUnit = {
+    ...unit,
+    lessons: [
+      { title: 'Lección manual 1', vocabIds: [unit.vocab[0].id], reviewVocabIds: [], exercises: [] },
+      { title: 'Lección manual 2', vocabIds: unit.vocab.slice(1).map(word => word.id), reviewVocabIds: [unit.vocab[0].id], exercises: [] }
+    ]
+  };
+  const lessons = app.buildUnitLessons(authoredUnit);
+  assert.equal(lessons.length, 5);
+  assert.deepEqual(Array.from(lessons.slice(0, 2), lesson => lesson.title), ['Lección manual 1', 'Lección manual 2']);
+  assert.deepEqual(Array.from(lessons.slice(0, 2), lesson => lesson.index), [0, 1]);
+  assert.deepEqual(Array.from(lessons.slice(2), lesson => lesson.title), ['Repaso activo 1', 'Repaso activo 2', 'Repaso activo 3']);
+  assert.ok(lessons.slice(2).every(lesson => lesson.index >= 2 && lesson.exercises.length === unit.vocab.length));
+});
+
+test('A1 Unit 3 exposes five lessons including additive active recall', () => {
+  const a1 = app.CourseData.levels.find(level => level.id === 'A1');
+  const unit = a1.units.find(entry => entry.id === 'a1_u3');
+  const lessons = app.buildUnitLessons(unit);
+  assert.equal(lessons.length, 5);
+  assert.deepEqual(Array.from(lessons.slice(-3), lesson => lesson.title),
+    ['Repaso activo 1', 'Repaso activo 2', 'Repaso activo 3']);
+});
+
 test('A1 appends five or six active-recall lessons without shifting legacy lesson indexes', () => {
   const a1 = app.CourseData.levels.find(level => level.id === 'A1');
   for (const unit of a1.units) {

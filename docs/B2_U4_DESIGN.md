@@ -1,6 +1,6 @@
 # B2 U4 — funciones de -kan y estructura de participantes
 
-**Estado:** diseño didáctico aprobado por el dueño el 11 nov 2026; implementación en PR nueva desde `main`.  
+**Estado:** implementada y fusionada en `main` el 11 nov 2026 mediante PR #500 (`6a71bb67d25d1f4a28a8399de8e55b1f8b702947`). CI pre-merge, regresión post-merge y Pages deployment completados correctamente.  
 **Eje:** `-kan`, sin comparación sistemática con `-i` ni anticipación de `memper-`.  
 **Dependencias:** B2 U1–U3.
 

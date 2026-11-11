@@ -361,6 +361,9 @@ button:active {
 button:disabled, button:disabled:active { transform:none; border-bottom-width:4px; }
 #view-route .btn-sm,
 #unitBottomSheet .btn-sm { min-height:48px; }
+#view-srs .btn-sm,
+#view-ai .btn-sm,
+#view-dict .btn-sm { min-width:44px; min-height:44px; }
 .nav-btn { min-height:48px; border-bottom:0; transition:color .15s ease, background-color .15s ease; }
 .nav-btn:active { transform:none; border-bottom:0; background:color-mix(in srgb,var(--accent) 9%,transparent); }
 .lesson-exit-button { width:48px; height:48px; min-height:48px; border-bottom:4px solid var(--border); }

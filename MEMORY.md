@@ -7,7 +7,7 @@
 - Estado curricular comprobado en `main`: A1 32/32, A2 40/40, B1 50/50; B2 U1–U4 implementadas (4/60), U5–U60 ocultas/no ejecutables. Todas las unidades expuestas cumplen cinco o seis lecciones. No se cambiaron datos curriculares en esta tarea.
 - Auditoría local completa: 122 unidades, 1.062 registros de vocabulario, 1.025 IDs únicos, 0 errores estructurales, 41 avisos heurísticos y 70 informativos. No certifica lingüística.
 - Pruebas locales de progresión, contratos curriculares, liberación y B2: 75/75 correctas. La suite `quality:tests` tuvo 128 pruebas correctas, pero el proceso completo no pudo finalizar: Playwright 1.55 no admite `process.platform === android` en este terminal. CI Linux del PR #511 sí pasó.
-- La revisión de interfaz y pruebas existentes no confirmó un defecto reproducible que justificara cambiar la app en esta sesión. El sitio publicado, el despliegue posterior al merge, el CI post-merge y un dispositivo físico no se pudieron verificar aquí.
+- La revisión detectó botones compactos de 36 px en Repasar, Tutor y Diccionario. La rama `fix/mobile-review-touch-targets` los eleva a 44×44 px, añade cobertura estática y E2E, y actualiza el caché offline a `v3.8.93`; CI pendiente. No toca datos ni progreso. El sitio publicado, el despliegue posterior al merge, el CI post-merge y un dispositivo físico no se pudieron verificar aquí.
 
 ## B2 U5 y decisiones pendientes
 - PR #511 documenta el par `menawari/menawarkan`, fuentes y 16 prototipos. Glosas, naturalidad, adecuación didáctica y vocabulario nuevo siguen pendientes de aprobación del dueño; todo sigue `not_checked` para esos juicios. No implementar ni activar U5 por “continúa”.
@@ -27,7 +27,7 @@
 - Fase 2: cobertura estructural A1–B2 revisada con pruebas de progreso y cinco/seis lecciones. La revisión editorial/lingüística de A1/A2 no está terminada.
 - Fase 3: auditoría ejecutada; 41 avisos son candidatos editoriales y requieren revisión contextual. No hay errores bloqueantes estructurales.
 - Fase 4: U5 sigue pendiente de aprobación específica; no inventar mapa U13–U60.
-- Fase 5: mejoras mobile-first de Aprender/Guardi están integradas (incluida PR #502); en esta revisión no surgió un defecto de producto reproducible. La prueba física y Pages quedan sin verificar.
+- Fase 5: mejoras mobile-first de Aprender/Guardi están integradas (incluida PR #502); PR en curso mejora los objetivos táctiles de Repasar, Tutor y Diccionario. La prueba física y Pages quedan sin verificar.
 - Fase 6: PR #511 integrada; falta confirmar CI posterior al merge, estado final de workflows de `main` y despliegue de Pages.
 
 ## Flujo Git

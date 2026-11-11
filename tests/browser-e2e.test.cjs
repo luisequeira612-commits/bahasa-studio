@@ -1902,6 +1902,29 @@ test('learning route and unit sheet controls meet 44px touch targets at 360px', 
     assert.equal(palette.completed.color, 'rgb(255, 255, 255)');
     assert.equal(palette.locked.background, 'rgb(229, 231, 235)');
     assert.equal(palette.locked.color, 'rgb(55, 65, 81)');
+
+    for (const view of ['srs', 'ai', 'dict']) {
+      await page.evaluate(viewId => App.switchView(viewId), view);
+      if (view === 'srs') {
+        await page.evaluate(async () => {
+          const word = getUniqueLearningVocabulary()[0];
+          await SRSEngine.markForReview(word.id);
+          await SRSEngine.startSession();
+        });
+        await page.locator('#srsPracticeArea').waitFor({ state: 'visible' });
+      }
+      const sizes = await page.locator(`#view-${view} button.btn-sm`).evaluateAll(buttons =>
+        buttons.map(button => {
+          const rect = button.getBoundingClientRect();
+          return { width: rect.width, height: rect.height };
+        })
+      );
+      assert.ok(sizes.length > 0, `${view} should expose compact controls`);
+      for (const size of sizes) {
+        assert.ok(size.width >= 44 && size.height >= 44,
+          `${view} control must be at least 44x44px; got ${JSON.stringify(size)}`);
+      }
+    }
   } finally {
     await context.close();
     await new Promise(resolve => server.close(resolve));

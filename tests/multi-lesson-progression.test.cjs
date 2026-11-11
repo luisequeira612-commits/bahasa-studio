@@ -334,3 +334,37 @@ test('A1 completed units stay completed and existing in-progress lesson keys ret
   assert.equal(completed.approved, true);
   assert.equal(completed.completed, true);
 });
+ 
+test('all implemented B2 units expose five lessons with full-unit active recall and stable authored lessons', () => {
+  const b2 = app.CourseData.levels.find(level => level.id === 'B2');
+  const implemented = b2.units.filter(unit => Array.isArray(unit.lessons) && unit.lessons.length > 0);
+  assert.deepEqual(Array.from(implemented, unit => unit.id), ['b2_u1', 'b2_u2', 'b2_u3', 'b2_u4']);
+
+  for (const unit of implemented) {
+    const lessons = app.buildUnitLessons(unit);
+    assert.equal(lessons.length, 5, unit.id + ' should expose five lessons in the app');
+    assert.deepEqual(
+      Array.from(lessons.slice(0, unit.lessons.length), lesson => lesson.title),
+      Array.from(unit.lessons, lesson => lesson.title),
+      unit.id + ' must preserve every authored lesson and its order'
+    );
+
+    for (const [index, lesson] of lessons.entries()) {
+      assert.equal(lesson.index, index, unit.id + ' lesson indexes must remain stable');
+      if (index < unit.lessons.length) continue;
+
+      const recallIndex = index - unit.lessons.length;
+      assert.equal(lesson.title, 'Repaso activo ' + (recallIndex + 1));
+      assert.deepEqual(Array.from(lesson.newVocab, word => word.id), [],
+        unit.id + ' active recall must not introduce vocabulary');
+      assert.deepEqual(Array.from(lesson.reviewVocab, word => word.id), Array.from(unit.vocab, word => word.id));
+      assert.deepEqual(Array.from(lesson.vocab, word => word.id), Array.from(unit.vocab, word => word.id));
+      assert.equal(lesson.exercises.length, unit.vocab.length,
+        unit.id + ' active recall must practise every unit vocabulary item');
+      assert.ok(lesson.exercises.every(exercise => exercise.generated));
+      assert.ok(lesson.exercises.every(exercise => unit.vocab.some(word => word.id === exercise.vocabId)),
+        unit.id + ' active recall must reference only its own vocabulary');
+      assert.ok(lesson.exercises.every(exercise => ['mc', 'listen', 'translate_es_id'].includes(exercise.type)));
+    }
+  }
+});

@@ -286,7 +286,7 @@ test('all A2 units expose five lessons and preserve their authored lesson indexe
       Array.from({ length: authoredCount }, (_, index) => index),
       unit.id + ' authored lesson indexes must remain unchanged');
     assert.deepEqual(Array.from(lessons.slice(0, authoredCount), lesson => lesson.title),
-      unit.lessons.map(lesson => lesson.title),
+      Array.from(unit.lessons, lesson => lesson.title),
       unit.id + ' authored lesson order and titles must remain unchanged');
     for (const lesson of lessons.slice(authoredCount)) {
       assert.equal(lesson.index, lessons.indexOf(lesson), unit.id + ' reinforcement index must be appended');

@@ -315,7 +315,11 @@ test('A2 units 1-4 have 3-5 authored lessons and a complete unit-test bank', () 
 
     const unitVocabIds = new Set(unit.vocab.map(word => word.id));
     for (const lesson of lessons) {
-      assert.ok(lesson.newVocab.length > 0, lesson.title + ' must introduce vocabulary');
+      if (lesson.title.startsWith('Repaso activo')) {
+        assert.equal(lesson.newVocab.length, 0, lesson.title + ' must not introduce new vocabulary');
+      } else {
+        assert.ok(lesson.newVocab.length > 0, lesson.title + ' must introduce vocabulary');
+      }
       for (const word of lesson.newVocab) assert.ok(unitVocabIds.has(word.id));
       for (const exercise of lesson.exercises) {
         assert.ok(allVocabIds.has(exercise.vocabId), unit.id + ' has an exercise linked to unknown canonical vocabulary');

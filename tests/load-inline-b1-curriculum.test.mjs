@@ -39,7 +39,7 @@ test('B1 U27-U49 provide five lessons with five exercise types after active-reca
     const unitStart = match.index;
     const next = source.indexOf("id: 'b1_u", unitStart + match[0].length);
     const unit = source.slice(unitStart, next < 0 ? source.length : next);
-    assert.equal((unit.match(/objective\\s*:/g) || []).length, 5, 'U' + match[1] + ' must have five lessons');
+    assert.equal((unit.match(/objective\s*:/g) || []).length, 5, 'U' + match[1] + ' must have five lessons');
     for (const type of ['mc', 'translate_es_id', 'order', 'listen', 'write']) {
       assert.ok((unit.match(new RegExp('type: [\\\"\\\']' + type + '[\\\"\\\']', 'g')) || []).length >= 1, 'U' + match[1] + ' must retain ' + type);
     }

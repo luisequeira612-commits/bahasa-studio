@@ -3,7 +3,7 @@
 **Estado:** propuesta documental; no implementada ni publicada.  
 **Fecha:** 8 nov 2026.  
 **Ubicación:** segundo diseño del bloque aprobado U4–U6 (`-kan`, `-i`, `memper-`).  
-**Dependencias:** U1–U3 y el diseño U4; este documento no presupone que U4 esté implementada.
+**Dependencias:** U1–U4. U1–U3 y U4 están implementadas; U5 continúa siendo una propuesta documental y depende de la progresión secuencial. La integración de U4 no aprueba por sí misma este diseño ni sus ejemplos.
 
 ## Propósito y alcance
 
@@ -84,13 +84,13 @@ Al menos cinco ejercicios deben evaluar oraciones completas y al menos uno debe 
 - No inferir el papel semántico solo por la terminación o por la posición lineal.
 - No presentar `-i` y `-kan` como sufijos sustituibles en cualquier raíz.
 - No trasladar automáticamente al indonesio las preposiciones ni la valencia del español.
-- Mantener B2 en desarrollo: solo U1–U3 están implementadas y visibles con desbloqueo secuencial; U4–U60 no deben exponerse hasta su implementación y pruebas.
+- Mantener B2 en desarrollo: U1–U4 están implementadas y visibles con desbloqueo secuencial; U5–U60 deben permanecer ocultas hasta que cada unidad tenga contenido aprobado, implementación y pruebas.
 - No modificar A1/A2/B1, IndexedDB, backup JSON v3, trackers ni dependencias.
 - No afirmar validación nativa ni certificación MCER/BIPA.
 
 ## Condiciones para pasar a implementación
 
-1. U1–U3 están cerradas conforme a sus dependencias; las formas pendientes de U2 no se dan por aprobadas por este diseño.
+1. U1–U4 están implementadas; las formas pendientes de U2 no se dan por aprobadas por este diseño. U5 sigue sin autorización de implementación.
 2. Se revisan las fuentes completas y se seleccionan ejemplos concretos con contexto suficiente.
 3. Cada forma y glosa se coteja con el inventario global; cualquier palabra nueva se propone al dueño antes de añadirla.
 4. Las actividades separan con claridad lecturas aplicativas y causativas sin imponer una regla universal.
@@ -111,7 +111,7 @@ Al menos cinco ejercicios deben evaluar oraciones completas y al menos uno debe 
 2. Reservar `datangi` y `panasi` para una breve lectura de reconocimiento sobre la polisemia (aplicativa frente a causativa), no para producción libre ni para afirmar que cualquier raíz admite `-i`.
 3. Evitar por ahora `tanami`, `garami` y `kantongi` como vocabulario activo: el artículo de 2009 los usa para ilustrar derivación desde nombres, pero eso no prueba que sean las opciones más frecuentes o transparentes para este curso.
 4. No enseñar una equivalencia «-i = lugar», «-i = a» ni «-i añade siempre un participante». En cada ejercicio se identifica el verbo completo, la base cuando sea transparente y los papeles confirmados por el contexto.
-5. No introducir comparación evaluable con U4 hasta que U4 esté integrada; cuando se compare `menawari/menawarkan`, presentarlo como par léxico y no como sustitución libre de sufijos.
+5. U4 ya está integrada, pero no enseña el par `menawari/menawarkan`; cualquier comparación con ese par debe presentarlo como contraste léxico acotado y no como sustitución libre de sufijos ni como generalización de los ejemplos de U4.
 
 ### Límites de aprobación
 Esta revisión respalda el enfoque y los ejemplos académicos citados, pero no certifica frecuencia general, registro conversacional ni adecuación de cada oración didáctica. Los ejemplos nuevos del curso, las glosas finales y las claves deben pasar revisión de coherencia interna y quedar como `not_checked` salvo coincidencia de dos fuentes secundarias independientes. No se marca nada como `verified_primary`.

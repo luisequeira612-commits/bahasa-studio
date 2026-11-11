@@ -47,7 +47,7 @@ No se asignan IDs ni se incorporan entradas nuevas en este documento.
 
 ## 3. Cinco lecciones y banco de revisión (16 actividades)
 
-Las actividades siguientes son prototipos de evaluación basados en los dos ejemplos documentados. Las traducciones son glosas didácticas de trabajo, no certificación lingüística. No se añaden oraciones indonesias nuevas ni distractores que dependan de juicios de gramaticalidad no documentados.
+Las actividades siguientes son prototipos de evaluación basados en los ejemplos documentados. Las traducciones son glosas didácticas de trabajo, no certificación lingüística. No se añaden oraciones indonesias nuevas ni distractores que dependan de juicios de gramaticalidad no documentados. La lección 5 no contiene producción en indonesio: esa práctica queda pendiente de aprobar vocabulario y ejemplos adicionales.
 
 ### Lección 1 — Reconocer la forma y la construcción (3)
 
@@ -93,7 +93,7 @@ Respuesta: Falso.
 **12. Interpretación de evidencia.** El estudio encuentra variación construccional para `menawari`. ¿Qué conclusión es más prudente?  
 Respuesta: la construcción de objeto doble es una preferencia/tendencia documentada, pero no una regla absoluta sin variación.
 
-### Lección 5 — Síntesis, voz y producción guiada (4)
+### Lección 5 — Síntesis y reconocimiento de voz (4)
 
 **13. Clasificación.** Clasifica A: agente, destinatario potencial, tema y tipo de construcción.  
 Respuesta: `Mereka` = agente; `saya` = destinatario potencial; `bantuan` = tema; objeto doble.
@@ -101,8 +101,8 @@ Respuesta: `Mereka` = agente; `saya` = destinatario potencial; `bantuan` = tema;
 **14. Clasificación.** Clasifica B: agente, destinatario potencial, tema y tipo de construcción.  
 Respuesta: `Mereka` = agente; `kepada saya` = destinatario potencial oblicuo; `bantuan` = tema; monotransitiva-oblicua.
 
-**15. Traducción contextual.** Traduce A y conserva la relación de oferta y destinatario.  
-Respuesta de referencia: «Ellos me ofrecieron ayuda».
+**15. Justificación breve (en español).** Explica por qué el ejemplo A no demuestra que todos los verbos terminados en `-i` admitan la misma construcción.  
+Respuesta de referencia: porque el estudio describe un patrón y también registra variación; no autoriza una regla universal para todos los verbos con `-i`.
 
 **16. Voz de paciente (reconocimiento).** Compara el par documentado en el tutorial gramatical INDRA/DELPH-IN: `Mangga menjatuhi rumah.` («Un mango cae sobre la casa») y `Rumah itu dijatuhi mangga.` («La casa recibe la caída de un mango»). Identifica qué participante pasa a sujeto en la segunda oración.  
 Respuesta de referencia: `rumah itu` (la casa), que corresponde al participante-meta/locativo; `mangga` (el mango) aparece después del verbo como participante que cae. Es un ejemplo de voz de paciente/undergoer voice con `-i`, no una transformación libre que el estudiante deba producir. `menjatuhi`/`dijatuhi` quedan solo como formas de reconocimiento en este paquete, sin IDs ni vocabulario activo.

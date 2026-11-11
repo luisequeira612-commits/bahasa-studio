@@ -69,7 +69,7 @@ Respuesta: `Mereka`.
 Respuesta: `bantuan` («ayuda»).
 
 **6. Destinatario potencial.** ¿Qué expresión identifica a quien recibe la oferta potencialmente en cada ejemplo?  
-Respuesta: `saya) en A; `kepada saya` en B.
+Respuesta: `saya` en A; `kepada saya` en B.
 
 ### Lección 3 — Contraste léxico acotado (3)
 

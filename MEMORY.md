@@ -1,186 +1,36 @@
-## Auditoría de inventario B2 U5 — 11 nov 2026
-
-- PR #505 fusionada por squash (ba386a31663bb7b57bf23aab67e3682c76f44380) tras CI run #2163 completamente verde: `test` y `Offline quality reports`; sin reviews ni hilos pendientes.
-- Auditoría de presencia en el currículo activo (`curriculum-a1.js`, `curriculum-a2.js`, `index.html` con B1/B2): `menawari` y `menawarkan` no existen como entradas; si se aprueban, serán vocabulario nuevo. `datangi` no aparece como forma independiente, pero `mendatangi` ya existe en A2 U16 (`a2u16_mendatangi`) y B1 U5 (`b1u5_mendatangi`), con dos ejemplos y dos IDs existentes; no crear un tercer ID ni añadir `datangi` como entrada separada. `panasi`, `tanami`, `garami` y `kantongi` no aparecen como entradas curriculares.
-- Detalles y ejemplos existentes en `docs/B2_U5_APPROVAL_PACKET.md`. La auditoría es estructural, no valida frecuencia, registro ni corrección lingüística. No se copian ejemplos a B2 ni se crea vocabulario sin aprobación.
-
-## Estado vigente — 11 nov 2026 (actualización de U5)
-
-- PR #502, #503 y #504 están fusionadas. #502 corrigió las hojas móviles; #503 actualizó la documentación B2; #504 alineó las etiquetas de pruebas con la cobertura U1–U4. Para detalles de commits y CI, consultar el historial de cada PR en GitHub.
-- B2 U1–U4 están implementadas y visibles con desbloqueo secuencial (4/60); U5–U60 siguen ocultas/no ejecutables. A1 32/32, A2 40/40 y B1 50/50.
-- U5 sigue sin aprobación específica. El eje U4–U6 (`-kan`, `-i`, `memper-`) está aprobado, pero no su desglose, ejemplos, consignas, respuestas, claves ni vocabulario activo.
-- Se preparó `docs/B2_U5_APPROVAL_PACKET.md` como propuesta de decisión. Propone revisar el diseño preliminar de tres lecciones frente al estándar vigente de cinco lecciones por unidad; distribución de ejercicios sugerida 3/3/3/3/4 (16 total), todavía no aprobada.
-- Tratamiento candidato: `menawari/menawarkan` como contraste léxico acotado sujeto a auditoría del inventario; `datangi` y `panasi` solo reconocimiento; `tanami`, `garami` y `kantongi` fuera del vocabulario activo por ahora. No se crean IDs ni contenido ejecutable.
-- «Continúa» no aprueba vocabulario, ejemplos, claves, ejercicios o nuevas unidades. Tras aprobación del alcance, presentar formas/glosas y ejemplos completos antes de implementar. No bloquear por falta de KBBI/hablante nativo ni afirmar validación nativa/MCER/BIPA.
-- Sin cambios a currículo ejecutable, A1/A2/B1, progreso, IndexedDB, backup JSON v3 ni dependencias.
-
 # MEMORY.md — Estado de Bahasa Studio
 
-> Memoria operativa. Mantener por debajo de ~150 líneas; los detalles históricos y la evidencia extensa viven en los documentos enlazados. Última actualización: 11 nov 2026.
+> Memoria operativa; mantenerla por debajo de unas 150 líneas. Detalles extensos y evidencia histórica viven en documentos y PR enlazados. Última actualización: 11 nov 2026.
 
 ## Estado vigente
-- 11 nov 2026 — Se inició `fix/align-b2-u4-test-labels`: corrección documental en `tests/load-inline-b2-curriculum.test.mjs` para que títulos/mensajes que ya cubren B2 U4 no sigan diciendo U1–U3 o U1/U2. No cambia comportamiento, currículo, vocabulario, progreso, IndexedDB, backup JSON v3 ni dependencias; CI completo requerido antes de fusionar.
-- 11 nov 2026 — PR [#502](https://github.com/luisequeira612-commits/bahasa-studio/pull/502) fusionada por squash en `main`: `f8aad77f6a6e3b76e4ab909d8bee5bb9d4eb97fc`. Hojas de nivel/herramientas con botón de cierre contenido, progreso singular/plural y B2 «En desarrollo»; E2E 360×740 ampliado; SW `v3.8.92`. CI pre-merge run #2154: `test` y `Offline quality reports` completamente verdes. PR #483 cerrada como sustituida por #502; PR #472 cerrada como obsoleta porque exponía B2 de forma general y contradecía las guardas secuenciales vigentes. Prueba física en Tecno Pova 4 y despliegue Pages posteriores pendientes de verificación.
-- 11 nov 2026 — A1 (32/32), A2 (40/40), B1 (50/50) y B2 U1–U4 (4/60) tienen cinco lecciones por unidad. PR #495–#499 y #500 están fusionadas; PR #500 merge `6a71bb67d25d1f4a28a8399de8e55b1f8b702947`. CI pre-merge de #500: run #2149, `test` y `Offline quality reports` verdes. Regresión post-merge: run `42956369926` verde; Pages build/deploy: run `42956369210` verde. Caché SW `v3.8.91`. PR #490 cerrada como sustituida. B2 U4 reutiliza cuatro IDs canónicos B1 U4, sin vocabulario nuevo. No tocar IndexedDB ni backup JSON v3.
-- 9 nov 2026 — Decisión nueva del dueño: ampliar todas las unidades A1–B2 a 5–6 lecciones, empezando por A1; sustituye la congelación anterior de A1/A2. Plan inicial en `docs/A1_LESSON_EXPANSION_PLAN.md`. A1 conserva 32 unidades, 91 lecciones actuales (11×2, 16×3, 4×4, 1×5), 477 ejercicios y 329 registros de vocabulario; hash canónico fijado. La ampliación debe añadirse después de las lecciones actuales para preservar `unitId::lessonIndex`, mantener completadas las unidades antiguas y no tocar IndexedDB/backup v3 ni introducir vocabulario o ejemplos nuevos sin aprobación. La rama `feat/a1-five-six-lessons-plan` ya implementa refuerzos A1 aditivos en `index.html`: conserva las lecciones antiguas y añade hasta 5/6 sesiones; cada sesión nueva reutiliza todas las palabras de la unidad con recuperación MC, escucha y traducción. No añade vocabulario ni frases nuevas. Pruebas específicas añadidas para prefijo de lecciones, cinco/seis sesiones y progreso anterior; CI corrigió tres expectativas de caché `v3.8.85`, el cálculo del anillo y expectativas antiguas de conteo de lecciones en pruebas unitarias/E2E. La última ejecución confirmó 0/5, 1/5 y el bloqueo de U4 tras una lección; también mostró que la prueba del examen intentaba abrirlo tras solo 3/5, así que el fixture ahora completa las cinco lecciones existentes antes de verificar el 80 %. Auditoría offline verde; CI final pendiente.
-- 9 nov 2026 — Fase 6 Guardi: PR [#491](https://github.com/luisequeira612-commits/bahasa-studio/pull/491) abierto desde `feat/guardi-mascot-phase-6`; siete SVG aprobados, iconos PWA/manifest, precaché SW `v3.8.85`, marca y ubicaciones aprobadas en Repasar/Tutor/resultados. CI #2091 detectó un test E2E de actualización SW con versiones de caché hardcodeadas obsoletas; el fixture ahora deriva la versión actual de `service-worker.js` y simula una anterior. CI #2094 verde. La revisión final corrigió la pose de la evaluación no superada: ahora usa `guardi-triste.svg`, con prueba específica; CI #2095 verde en el head `837bc88305b1cb2e441df59de7554924727e58ac`. Revisión de PR: sin reviews, comentarios ni hilos pendientes; mergeable y abierto, sin fusionar por el límite explícito de Fase 6. Sin cambios a IndexedDB, backup v3 ni progreso.
-- A1 32/32, A2 40/40 y B1 50/50 unidades completas. B2 3/60 implementadas (U1–U3); total 125/182, quedan 57 unidades B2. El camino muestra U1–U3 y un nodo «Próximamente»; el acceso B2 sigue secuencial tras B1 y la unidad anterior. PR #472 continúa separado y sin fusionar.
-- PR #484 (9 nov 2026): rescata solo B2 U1 en colecciones SRS/revisión, fallback de traducción al toque y nivel inferido del tutor; limita cada integración explícitamente a `b2_u1`. Conserva la guarda de evaluación/acceso secuencial, la ruta U1 + «Próximamente» y excluye B2 U2–U60. Sin cambios de progreso, IndexedDB, backup v3 ni dependencias.
-- 9 nov 2026: PR [#485](https://github.com/luisequeira612-commits/bahasa-studio/pull/485) en `feat/guardi-visible-brand` incluye marca visible Guardi y etiqueta informativa «Indonesio» junto a «Elegir nivel»; constante única `STUDY_LANGUAGE_LABEL`, aria-label «Idioma: Indonesio», sin interacción. Cache SW `v3.8.81`; CI final run `42582773461` verde (`test` + `Offline quality reports`). Sin cambios a lógica de niveles/B2, progreso, salto, IndexedDB ni backup v3. Fusionado por squash en `main` mediante `7e49a0f4bf8bdb3091eb8a02e2a50262e738bdd3`; el usuario confirmó el 9 nov 2026 que probó la app desplegada en su Tecno Pova 4 y que todo funciona correctamente; no confirmó una prueba de su backup personal.
-- Fase actual: desarrollo curricular B2, tras completar la Fase 5B de Aprender y la marca Guardi. U1–U3 están implementadas; U4–U12 tienen solo diseños documentales y U13–U60 no tienen mapa aprobado. Sin certificación lingüística ni MCER/BIPA; no hay hablante nativo disponible.
-- Fase 5B (9 nov 2026): PR #480 (correcciones E2E) se fusionó en la rama de Fase 5B; PR [#479](https://github.com/luisequeira612-commits/bahasa-studio/pull/479) se fusionó en `main` por squash (`73d7359d98ba743576278f6333936bcbe984f4b5`). CI del head final `7e137ba5c5d16f3b86842c9ddd5f4de9265a92b4` verde: `test` y `Offline quality reports` (run `42570049028`). Tema azul `#0067C6`, selector compacto, hoja de herramientas y SW `v3.8.77`; sin cambios a IndexedDB/backup v3 ni dependencias. Pages y prueba física en Tecno Pova 4 pendientes de verificación.
-- B2 U1: implementada, 3 lecciones, 16 ejercicios, 5 tipos; reutiliza 9 IDs existentes y no añade vocabulario.
-- B2 U2: aprobada e implementada el 9 nov 2026 con `kubaca`, `kaubaca`, `kutulis` y `kautulis`; 3 lecciones y 16 ejercicios/5 tipos, glosas temporales neutrales y foco en agente, participante afectado y contexto. IDs canónicos `b2u2_kubaca`, `b2u2_kaubaca`, `b2u2_kutulis`, `b2u2_kautulis`. PR #486 fusionada por squash (`c66109687d9038d53f21021f3dbe7871e7cd26c3`) tras CI verde en el head `661076f50ce8c9ca7d33b61bde9ad3e29ef0531a`.
-- B2 U3: fusionada el 9 nov 2026 mediante PR #487 (squash commit `43feb963f2a119d1100862e1afd0be21ef65f27e`); integra U1/U2 sin vocabulario ni IDs nuevos, 3 lecciones y 16 ejercicios/5 tipos. Reutiliza los cuatro IDs de U2 y los nueve de U1, mantiene el acceso secuencial y sube el caché del service worker a `v3.8.83`. CI completo verde en el head `93d4c37d715302b184370a53c35214aa17265d18`, run #2073.
-- B2 U4–U6: propuestas documentales en `docs/B2_U4_DESIGN.md` (`-kan`), `docs/B2_U5_DESIGN.md` (`-i`) y `docs/B2_U6_DESIGN.md` (`memper-`). El bloque temático está aprobado, pero no los ejemplos, desglose ni implementación específicos.
-- B2 U7–U10: propuestas documentales en `docs/B2_U7_DESIGN.md` a `docs/B2_U10_DESIGN.md`, sobre nominalizaciones. No son autorización de implementación ni de vocabulario.
-- B2 U11–U12: propuestas documentales en `docs/B2_U11_DESIGN.md` (reduplicación) y `docs/B2_U12_DESIGN.md` (compuestos/frases/idioms). El eje está aprobado, no los diseños específicos ni su implementación.
-- U13–U60 no tienen mapa temático aprobado. No inventar títulos, objetivos ni contenidos.
-- PR #443 retiró los borradores B2 U2–U5 heredados del currículo ejecutable y los archivó en `docs/B2_LEGACY_DRAFT_ARCHIVE.md`. Una prueba de regresión exige que solo U1 permanezca ejecutable y bloquea las cuatro formas candidatas de U2.
-- Unidad estándar: 14–22 ejercicios, al menos 4 tipos, al menos 5 ejercicios con oraciones completas, 1 producción original guiada y repaso acumulativo cada 4–5 unidades.
-- No tocar A1/A2 ya completos salvo corrección real autorizada por el flujo normal. No modificar IndexedDB ni backup JSON v3.
+- `main` está en `dfe5bf4b24b48d8b4cb1a99789bc68fc94ec3437`, tras fusionar PR [#511](https://github.com/luisequeira612-commits/bahasa-studio/pull/511) por squash. El PR añadió `docs/B2_U5_EXAMPLE_REVIEW.md`, paquete documental para revisión; no añade currículo ejecutable, IDs ni vocabulario activo. Checks `test` y `Offline quality reports` verdes en el head exacto `b3634bc2766c1fa5b422fd6ff5973c058f332efe`, sin revisiones, comentarios ni hilos pendientes antes del merge.
+- Estado curricular comprobado en `main`: A1 32/32, A2 40/40, B1 50/50; B2 U1–U4 implementadas (4/60), U5–U60 ocultas/no ejecutables. Todas las unidades expuestas cumplen cinco o seis lecciones. No se cambiaron datos curriculares en esta tarea.
+- Auditoría local completa: 122 unidades, 1.062 registros de vocabulario, 1.025 IDs únicos, 0 errores estructurales, 41 avisos heurísticos y 70 informativos. No certifica lingüística.
+- Pruebas locales de progresión, contratos curriculares, liberación y B2: 75/75 correctas. La suite `quality:tests` tuvo 128 pruebas correctas, pero el proceso completo no pudo finalizar: Playwright 1.55 no admite `process.platform === android` en este terminal. CI Linux del PR #511 sí pasó.
+- La revisión de interfaz y pruebas existentes no confirmó un defecto reproducible que justificara cambiar la app en esta sesión. El sitio publicado, el despliegue posterior al merge, el CI post-merge y un dispositivo físico no se pudieron verificar aquí.
 
-## Visión y restricciones permanentes
-- Hoja de ruta decidida 5 nov 2026: completar indonesio hasta B2; después inglés desde cero/A1 para hispanohablantes (pronunciación con audio/transcripción sencilla, falsos amigos y phrasal verbs). Ningún otro idioma planificado.
-- App personal, gratis, local y offline; quizá compartida gratis. Sin monetización, Play Store, cuentas, backend, costos, anuncios, vidas ni funciones sociales. No integrar agentes externos de IA dentro de la app.
-- No añadir dependencias sin aprobación. No hacer reescrituras grandes ni refactorización multiidioma general ahora.
-- Código y estructuras de datos nuevos deben evitar acoplamiento innecesario al indonesio; esto no autoriza empezar inglés antes de terminar B2.
-- Progreso local por dispositivo; conservar importación/exportación compatible con backup JSON v3. No modificar esquema IndexedDB ni backup v3.
-- Interfaz móvil-first y en español; paleta vigente de Aprender azul/blanco (`#0067C6`) desde Fase 5B; la bandera de Indonesia conserva su rojo. El dueño trabaja principalmente desde teléfono.
+## B2 U5 y decisiones pendientes
+- PR #511 documenta el par `menawari/menawarkan`, fuentes y 16 prototipos. Glosas, naturalidad, adecuación didáctica y vocabulario nuevo siguen pendientes de aprobación del dueño; todo sigue `not_checked` para esos juicios. No implementar ni activar U5 por “continúa”.
+- `datangi`/`panasi` solo reconocimiento en el documento; `tanami`, `garami`, `kantongi` excluidas. `mendatangi` ya tiene IDs en A2 U16 y B1 U5; no duplicar.
+- Eje aprobado: U1–U3 voz/afijos; U4–U6 `-kan`, `-i`, `memper-`; U7–U10 nominalizaciones; U11–U12 reduplicación/compuestos. El eje no aprueba ejemplos ni implementación. U13–U60 sin mapa aprobado.
+- B2 U4 usa cinco lecciones, 16 ejercicios y IDs canónicos B1; no añade vocabulario. U5 continúa protegida por desbloqueo secuencial.
 
-## Contenido y verificación lingüística
-- No hay hablante nativo disponible y KBBI/API secundaria puede fallar. Esto no detiene el proyecto. No presentar auditorías automáticas, fuentes secundarias ni revisión documental como certificación lingüística.
-- Estados: `verified_primary` solo lo asigna el dueño; `cross_checked` requiere coincidencia en 2+ fuentes secundarias independientes y registrar fuentes en tracker; lo demás `not_checked`. No cambiar IndexedDB para añadir estados.
-- Si hay duda, usar la forma simple y común, marcar `not_checked` y explicitar la incertidumbre. No inventar ejemplos ni fuentes. No bloquear avance por KBBI o falta de hablante nativo.
-- Priorizar vocabulario frecuente, reutilizar IDs canónicos existentes y no duplicar una forma con IDs distintos. Cada forma derivada nueva conserva su propio ID cuando se apruebe.
-- En B2, enseñar agente, participante afectado, foco y contexto. No etiquetar universalmente `ku-/kau-` como pasiva ni inferir tiempo/aspecto solo por la forma. No tratar estos clíticos como contracciones simples ni duplicar el agente (p. ej., evitar `Buku itu saya kubaca`). Glosas españolas neutrales en tiempo: «Ese libro lo leo / lo leí, según el contexto».
-- Investigación extensa de las cuatro formas de U2 (fuentes oficiales, académicas, literarias y didácticas; alcances y cautelas) está en `docs/B2_U2_DESIGN.md`. Respalda morfología/uso escrito, pero no resuelve frecuencia ni registro conversacional neutro; no sustituye la aprobación del dueño.
+## Producto y restricciones permanentes
+- Aplicación gratuita, local, en español, mobile-first y offline; sin backend, cuentas, monetización, servicios pagados, anuncios, vidas, presión social ni publicación en tiendas. No integrar agentes externos de IA.
+- Completar indonesio hasta B2 antes de iniciar inglés A1 para hispanohablantes. No hay otros idiomas aprobados. Código y datos nuevos deben evitar acoplamiento innecesario al indonesio, sin refactor general.
+- No modificar el esquema de IndexedDB ni romper la compatibilidad del backup JSON v3; preservar progreso. No añadir dependencias sin autorización.
+- `verified_primary` solo lo asigna el dueño; `cross_checked` exige dos fuentes secundarias independientes anotadas; el resto es `not_checked`. Auditorías automáticas no certifican uso nativo, MCER/BIPA ni naturalidad.
+- Reutilizar IDs canónicos, no inventar vocabulario, ejemplos ni fuentes, y no activar unidades sin contenido aprobado y pruebas de desbloqueo.
 
-- 9 nov 2026: B2 U2 pasa a 2/60 tras aprobación e implementación; PR en curso en rama `feat/b2-u2-ku-kau`.
-- 9 nov 2026: PR #479 quedó fusionado en `main` tras integrar PR #480 y validar el head final. PR #472 sigue abierto e independiente.
+## Fases y próximos pasos
+- Fase 1: CI y calidad estructural revisados; queda repetir Playwright en CI compatible y verificar ejecuciones post-merge.
+- Fase 2: cobertura estructural A1–B2 revisada con pruebas de progreso y cinco/seis lecciones. La revisión editorial/lingüística de A1/A2 no está terminada.
+- Fase 3: auditoría ejecutada; 41 avisos son candidatos editoriales y requieren revisión contextual. No hay errores bloqueantes estructurales.
+- Fase 4: U5 sigue pendiente de aprobación específica; no inventar mapa U13–U60.
+- Fase 5: mejoras mobile-first de Aprender/Guardi están integradas (incluida PR #502); en esta revisión no surgió un defecto de producto reproducible. La prueba física y Pages quedan sin verificar.
+- Fase 6: PR #511 integrada; falta confirmar CI posterior al merge, estado final de workflows de `main` y despliegue de Pages.
 
-## Git y flujo de trabajo
-- Nunca trabajar directamente en `main`. Una rama por cambio y PR.
-- El dueño autorizó crear y fusionar PRs cuando estén listos. Fusionar solo si CI está completamente verde en el head exacto y no hay revisiones, comentarios, hilos ni problemas pendientes. Informar cada fusión.
-- Cada PR debe explicar alcance, archivos, pruebas y riesgos, y actualizar `MEMORY.md`. Usar el cambio mínimo.
-- Si CI falla o está pendiente, no fusionar; diagnosticar y corregir en la misma rama.
-- Informe final breve en español: resultado primero; distinguir probado, revisado por lectura y no verificado. Para cambios de vocabulario, informar estados de verificación y cantidades.
-
-## Herramientas y calidad
-- ChatGPT puede programar y preparar PRs; Codex puede usarse después como auditor independiente, pero no afirmar que auditó si no se ejecutó.
-- Preferir auditorías locales/offline y pruebas existentes; no añadir servicios externos ni dependencias por conveniencia.
-- Pruebas B2 en `tests/load-inline-b2-curriculum.test.mjs`: contratos U1–U3, reutilización de IDs canónicos, cinco tipos, oraciones completas, producción guiada, archivo de borradores heredados y protección de `startUnitById()`, `startUnitAssessment()` y `startUnit()`. La ruta expone solo U1–U3; U4+ siguen como «Próximamente». El fallback de traducción y el nivel inferido del tutor incluyen únicamente unidades B2 implementadas.
-- Scripts e informes de calidad son evidencia estructural/editorial, no validación nativa.
-
-## Decisiones de producto y currículo
-- A1: 32 unidades; A2: 40 unidades, 2–5 lecciones por unidad y examen como A1; B1: 50 unidades.
-- Secuencia B2 aprobada: U1–U3 voz/afijos; U4–U6 `-kan/-i/memper-`; U7–U10 nominalizaciones; U11–U12 reduplicación/compuestos. Solo el eje general está aprobado en las unidades aún no implementadas.
-- Los diseños preliminares son reversibles y documentales. «Continúa» autoriza seguir trabajando con seguridad, no aprobar vocabulario, ejemplos, claves, ejercicios o nuevas unidades.
-
-## Hitos recientes de B2 (8 nov 2026)
-- #435–#438: limpieza de documentación B2, diseño/implementación U1 y corrección de memoria; U1 sigue oculta.
-- #439–#443: diseños preliminares U2/U3, revisión de evidencia, guardas de candidatas y retirada de borradores heredados del currículo activo.
-- #444–#453: correcciones de estado y evidencia morfológica/contextual para U2; los testimonios no resuelven registro neutro ni aprueban las formas.
-- #454–#456: diseños documentales U4–U6 (`-kan`, `-i`, `memper-`).
-- #458 y #460–#462: diseños U7–U10; #457 y #459 se cerraron/sustituyeron sin perder el trabajo reconciliado.
-- #463: diseño documental U11; #464: diseño documental U12. Ambos sin vocabulario ni ejercicios ejecutables.
-- #465: registra en esta memoria la fusión de #464; no es un cambio curricular. #465 fusionada en `0f0c6ed6a0c9aba46c436c1838e49a6f00a2852c`; #464 en `f89b9533e40577337722c213f695c49a547101d9`.
-- #458–#465 fueron fusionadas tras CI verde en el head correspondiente y sin revisiones/comentarios/hilos pendientes; detalles y commits de cada PR están en el historial de GitHub.
-
-## Referencias de estado
-- Reorganización y secuencia B2: `docs/B2_CURRICULUM_REORGANIZATION.md`.
-- Diseños B2: `docs/B2_U1_DESIGN.md` a `docs/B2_U12_DESIGN.md` (U1 es implementada; U2–U12 son propuestas con el alcance descrito arriba).
-- Archivo de borradores retirados: `docs/B2_LEGACY_DRAFT_ARCHIVE.md`.
-- Pruebas de carga/guardas B2: `tests/load-inline-b2-curriculum.test.mjs`.
-- Para el estado de una PR concreta, usar su historial, CI y revisiones en GitHub; esta memoria resume hitos y decisiones, no sustituye esos registros.
-
-
-## Rediseño de Aprender — Fase 1 (8 nov 2026)
-- Decisión del dueño: registrar cada clave unidad::índiceDeLección en A2/B1/B2 al completar todos los ejercicios de esa lección; salir antes no registra la lección. No modificar IndexedDB ni backup JSON v3.
-- Una función derivada calcula avance, finalización y desbloqueo desde completedLessons y completedUnits; los IDs ya aprobados conservan el estado aunque falten claves de lección.
-- Evaluación final en la ruta actual: A1 y B1 (umbral existente 80 %); A2 y B2 no muestran evaluación final en la ruta actual. A2/B2 se completan al terminar todas las lecciones.
-- Desbloqueo secuencial en A1/A2/B1 y B2 U1: B2 U1 se abre al completar la última unidad B1; B2 U2+ siguen sin contenido ejecutable y protegidas. Se conserva la etiqueta «En desarrollo»; el salto de emergencia no puede saltarse la guarda secuencial de B2.
-- Agrupación visual por orden, secciones de 8; B2 muestra U1 implementada y un solo nodo «Próximamente». El salto de emergencia usa localStorage (bahasaStudioUnitSkipId) y no altera aprobación.
-- La Fase 1 va en una rama/PR independiente; no fusionar sin autorización. PR #472 (fix/restore-b1-b2-access) sigue abierto y sin fusionar; se solapa con index.html y deberá reconciliarse si se fusiona más adelante.
-
-- PR #473 (Fase 1) — estado al 8 nov 2026: rama `feat/learning-path-phase-1`, head `cc3c8d05f5594cac0d9e385d0b827f4dce34220a`. Implementa selector de nivel, secciones de 8, camino zigzag, estados y hoja inferior; desbloqueo secuencial derivado desde `completedLessons`/`completedUnits`; registro al terminar cada lección; evaluación final A1/B1 al 80 %; salto de emergencia local con confirmación; B2 limitado a U1 y un nodo «Próximamente». Agrupación por orden, sin inventar temas.
-- CI run #42522755681 en ese head: `test` 72 pasos y `Offline quality reports` 10 pasos, ambos en éxito; incluye pruebas de progreso A1 1/2, A2 legacy completada sin claves de lección, A2 multilección, B1 evaluación, salida anticipada, 360 px, navegador real, importación/exportación JSON v3 y disponibilidad offline del service worker. Sin revisiones, comentarios ni hilos pendientes. PR permanece abierto; no fusionar sin autorización.
-- No se modifican IndexedDB, backup JSON v3 ni manifest (display standalone ya estaba configurado); se actualiza la versión del caché del service worker para forzar la descarga de la app nueva. No se añaden dependencias. Fases 2 y 3 no iniciadas. La interfaz nueva queda limitada a Aprender y Perfil.
-- PR #472 sigue abierto y separado. Su restauración completa de acceso B2 contradice el límite vigente de exponer solo las unidades implementadas U1–U3 y dejar U4+ como «Próximamente»; además modifica `index.html`. Reconciliar la intención antes de fusionarlo, sin incorporar sus cambios automáticamente.
-- Actualización de compatibilidad (8 nov 2026): `service-worker.js` sube el caché de `bahasa-studio-v3.8.69` a `v3.8.70`; el SW elimina la caché anterior al activar la nueva. Se añadieron pruebas de actualización desde una instalación vieja preservando `completedUnits`/`completedLessons`, y de salto de emergencia A2/B1 sin modificar progreso; B2 no puede saltarse por una clave local obsoleta.
-
-- Revisión de integración B2 (8 nov 2026): la guarda previa impedía acceder a U1 incluso después de completar B1. Se ajustó de forma mínima: la función derivada abre solo B2 U1 tras B1 U50; U2+ permanecen no implementadas/protegidas, la etiqueta «En desarrollo» se conserva y el salto local no puede saltarse la guarda de B2. CI run #42523643502: `test` 72 pasos y `Offline quality reports` 10 pasos, ambos verdes en el head de implementación `1a90da716627ec7bff5eb61392d994b88fca230b`. La actualización documental actual de `MEMORY.md` requiere su propio CI exacto.
-- Corrección de regresión de integración (8 nov 2026): CI del commit `57bfbc387b96048483e7f299c5f84747ec90f7c9` detectó una aserción contradictoria en `tests/learning-path-progression.test.mjs`: esperaba que un salto de emergencia abriera B2 U1, aunque la regla vigente exige completar B1 y bloquea cualquier salto local a B2. Se corrigió la prueba para exigir que el salto no omita esa guarda; la lógica de la app no necesitó cambios. Commit de prueba `fff35d7230cb26df83f73d548e08a6eae70dc5ab`; CI del nuevo head pendiente.
-
-- Actualización del service worker (8 nov 2026): el primer CI de la prueba de migración desde caché v3.8.69 confirmó que la caché nueva se instala y la antigua se elimina, pero detectó una carrera: el test recargaba antes de que terminara `clients.claim()`. Se ajustó la activación para esperar tanto la limpieza como la reclamación de clientes y la prueba espera el evento `controllerchange` antes del siguiente lanzamiento. La verificación debe repetirse en CI sobre el nuevo head; IndexedDB y backup v3 permanecen intactos.
-## Rediseño de Aprender — Fase 2 (8 nov 2026)
-- Fase 2 (#474) fusionada el 8 nov 2026 en `main`, squash `6ff13ab4a8f78b09af38f5877bac800f5d729def`. Compacta Aprender, mueve el recordatorio de backup a Perfil y aclara la meta diaria; preserva progreso, desbloqueos, salto, IndexedDB y backup JSON v3. SW `v3.8.71`.
-- Archivos #474: `index.html`, `styles.css`, `service-worker.js`, pruebas E2E y `MEMORY.md`; no añade dependencias.
-
-
-## Rediseño de Aprender — Fase 3 (8 nov 2026)
-- Alcance aprobado: paleta con un único rojo de marca `--brand-red:#c92a40`, contraste AA sobre fondos tintados, estados sólidos rojo/verde/gris, controles táctiles de Aprender/hoja de unidad, manifest/PWA y etiquetas duplicadas solo si existen. No tocar progreso, desbloqueos, salto de emergencia, IndexedDB ni backup v3; no tocar colores de acierto/error.
-- Rama `feat/learning-screen-phase-3`, creada desde `main` posterior a #474. PR [#475](https://github.com/luisequeira612-commits/bahasa-studio/pull/475) fusionado en `main` mediante squash `4ccf3587d374d54a32c03f4fc0bd6b0e5b647281` el 9 nov 2026. Head final `576d2af7691cf7d7d8313d627be39fc7b7c16d35`. CI run #1883 / #42541616866 verde sobre ese head: `test` y `Offline quality reports` completados en éxito.
-- Cambios: `styles.css`, `manifest.json`, `index.html` (solo meta theme-color), `icon.svg`, `service-worker.js` (`v3.8.72`), `package.json`, pruebas `tests/learning-screen-phase-3.test.mjs`, `tests/ui-redesign-phase-3.test.cjs`, `tests/browser-e2e.test.cjs`, `tests/curriculum-extraction.test.js`, `tests/regression.test.cjs`, `tests/study-history.test.cjs` y esta memoria. Sin dependencias nuevas.
-- Paleta: un único rojo `--brand-red:#c92a40`; texto secundario `#69474d`; etiquetas, títulos y adornos del camino pasan a neutros; actual rojo, completado verde, bloqueado gris sólido sin opacidad global y candado monocromático. Se conservan colores de acierto/error de ejercicios.
-- Manifest: `standalone`, `./index.html`, `scope:./`, SVG `any maskable` con zona segura revisada, `theme_color:#c92a40`, `background_color:#ffffff`. Caché SW `v3.8.72`. Chromium verifica migración `v3.8.71` → `v3.8.72` y preserva `completedUnits`/`completedLessons`; también pasa offline, backup JSON v3 y regresiones de progreso/desbloqueos/salto. Prueba de controles táctiles a 360 px pasa.
-- `.btn-sm` se eleva a 48 px solo con `#view-route .btn-sm` y `#unitBottomSheet .btn-sm`; actualmente «Elegir tema propio» es el control afectado en Aprender y no hay `.btn-sm` en la hoja. Los `.btn-sm` de Repasar, Tutor, Diccionario, Ajustes, Evaluación, Cuaderno, ejercicios y popup de vocabulario conservan los 36 px originales. Instalación Add to Home Screen/pantalla completa en Chrome Android no verificada físicamente.
-- PR #472 permanece abierto e intacto. Podrían rescatarse, si se limitan expresamente a B2 U1, la inclusión de su vocabulario en repaso/traducción y la inferencia B2 del tutor. Chocan su exposición general de B2, la eliminación de límites para todas las unidades y sus pruebas/documentación que afirman acceso completo; la regla vigente sigue siendo B2 U1 y un único nodo «Próximamente».
-
-## Rediseño de Aprender — Fase 4 y ajustes posteriores (8 nov 2026)
-
-- PR [#476](https://github.com/luisequeira612-commits/bahasa-studio/pull/476) fusionado mediante squash el 8 nov 2026 (hora de Nicaragua): merge commit `12613ff34246fe5ec182bb5b375b7ad81a460a52`, head `44e93b0cac07748982e9425b98c5f4640572bdab`. CI del head completo verde: `test` y `Offline quality reports`. El banner azul petróleo `#285A78` se mantiene y no se modifica en los ajustes siguientes.
-- PR [#477](https://github.com/luisequeira612-commits/bahasa-studio/pull/477) fusionado por squash el 9 nov 2026 (hora UTC 03:21; hora de Managua 21:21 del 8 nov). Head `75427a40208c80ad92aa32871a8e0e25c5233705`; merge commit en `main` `e6e4c2d1f27d6774469c84276df727a067d186b5`. CI pre-merge #1926 y post-merge #1927 verdes; despliegue Pages #457 exitoso. En `index.html`: nodos de 56 px con una regla de separación de 18 px; primer nodo a 24 px del banner cuando no requiere el globo; espacio vertical extra únicamente para el título del nodo actual; globo de 106×44 px separado 10 px del anillo; título sin prefijo, una línea y elipsis con ancho máximo de 106 px; anillo exterior con pista `#d1d5db`, progreso `#c92a40`, trazo de 5 px y circunferencia recalculada para 50 % desde arriba. Pestaña activa en píldora suave `#fdecef` con texto/icono `#7f1d2d`; bandera indonesia y llama en SVG; chips superiores con más separación. Los estilos puntuales se aplican desde el renderizado de `index.html` (sin bloque `<style>`); `styles.css` y su hash canónico permanecen intactos.
-- `service-worker.js` incrementa la caché a `v3.8.74`. Pruebas actualizadas en `tests/learning-screen-phase-3.test.mjs`, `tests/learning-screen-phase-4.test.mjs`, `tests/learning-screen-phase-4.e2e.test.cjs`, `tests/curriculum-extraction.test.js`, `tests/regression.test.cjs`, `tests/browser-e2e.test.cjs` y `tests/study-history.test.cjs`: 16 escenarios de 360 px para A1/A2/B1/B2, posiciones izquierda/centro/derecha y extremos de sección, título curricular más largo, progreso 1/2, contraste, áreas táctiles, sticky y actualización offline preservando datos. CI completo verde en el run #1925.
-- Límites: PR #472 sigue abierto e intacto. No cambiar progreso, desbloqueos, salto de emergencia, IndexedDB ni backup JSON v3; no añadir dependencias. El PR de ajustes no se fusionará sin autorización explícita. Prueba física en Tecno Pova 4 pendiente.
-
-
-## Último pulido de Fase 4 — PR #478 (9 nov 2026)
-
-- PR [#478](https://github.com/luisequeira612-commits/bahasa-studio/pull/478) abierto desde `fix/learning-screen-final-spacing-sheet`, basado en `main` (`e6e4c2d1f27d6774469c84276df727a067d186b5`). Head actual `10314e3660f8d5dfb2a7e5e03cb63fb1f5eaa1a7`. No fusionar sin autorización explícita.
-- Alcance cerrado a los cuatro puntos solicitados: reserva 56 px antes del nodo actual para dejar el globo 12 px por debajo del nodo anterior; título sin prefijo, hasta dos líneas, máximo 106 px y altura reservada con 38 px extra antes del siguiente nodo; hoja inferior blanca con borde superior, pista gris `#8b8b8b` (≥3:1), progreso rojo `#c92a40` de 8 px, texto oscuro (≥4.5:1) y padding seguro `env(safe-area-inset-bottom)`; scroll automático que deja globo y nodo actuales debajo del banner sticky y respeta `prefers-reduced-motion`.
-- `service-worker.js` pasa a caché `v3.8.75`. Se mantienen las columnas del zigzag. No se modifica `styles.css` ni se añaden dependencias.
-- Pruebas actualizadas: `tests/learning-screen-phase-4.test.mjs`, `tests/learning-screen-phase-4.e2e.test.cjs`, `tests/learning-screen-phase-3.test.mjs`, `tests/regression.test.cjs`, `tests/study-history.test.cjs`, `tests/curriculum-extraction.test.js` y `tests/browser-e2e.test.cjs`. Chromium 360 px: 22 escenarios de posiciones/índices, inicios y finales de sección, títulos largos, colisiones, scroll sticky, contraste de hoja y safe area. El test de actualización del service worker simula correctamente la caché anterior `v3.8.71` y espera `v3.8.75`. CI final del head registrado: [run #1936](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/42559667632), completada con éxito; jobs `test` y `Offline quality reports` verdes.
-- Restricciones: PR #472 sigue abierto e intacto. No tocar progreso, desbloqueos, salto de emergencia, IndexedDB ni backup JSON v3. Sin cambios visuales fuera de esta lista. La comprobación física final en el Tecno Pova 4 corresponde al usuario.
-
-- 9 nov 2026: durante la integración de #480 se alinearon las pruebas heredadas de Fases 1–4 con Fase 5B (paleta azul, hojas compactas, sticky a 58 px, overflow a 360 px, chevron móvil y caché v3.8.77). Solo se cambió la interfaz para ocultar el chevron en ≤380 px; el resto fueron pruebas. El head final de #479 quedó verde antes de fusionarse en `main`.
-
-
-## Ajustes puntuales posteriores a Fase 5B — PR #502 fusionada (11 nov 2026)
-- PR [#502](https://github.com/luisequeira612-commits/bahasa-studio/pull/502) fusionada por squash en `main` el 11 nov 2026: `f8aad77f6a6e3b76e4ab909d8bee5bb9d4eb97fc`. Rescata sobre la base actual el posicionamiento relativo de las hojas de nivel/herramientas, progreso singular/plural y etiqueta B2 «En desarrollo».
-- E2E Chromium 360×740 comprueba que los cierres sean táctiles y queden dentro de sus hojas, que estas no tapen el chip/banner, el margen inferior seguro y las etiquetas A1–B2. CI pre-merge run #2154: `test` (suite completa, incluidas regresiones y navegador real) y `Offline quality reports` completados en éxito.
-- Service worker actualizado a `v3.8.92`. Sin cambios a progreso, desbloqueos, IndexedDB, backup JSON v3, currículo, vocabulario ni dependencias.
-- PR #483 cerrada como sustituida; se documentó en su conversación que #502 integró las correcciones necesarias. Verificación física en Tecno Pova 4 y Pages posterior al merge pendientes.
-
-## B2 U4–U5 — seguimiento (9 nov 2026)
-- B2 U4 está implementada en PR #490 (rama feat/b2-u4-kan-functions), 3 lecciones/16 ejercicios/5 tipos, reutiliza cuatro IDs B1 y no añade vocabulario. CI del head 12696047bcb09f4039b45ce488b0557f06869324 quedó verde; la rama está 1 commit detrás de main tras Fase 6 Guardi y GitHub la marca temporalmente no fusionable. No se ha integrado ni se debe declarar publicada hasta actualizar la rama y validar el nuevo head.
-- B2 U5 continúa como propuesta documental. El 9 nov se amplió docs/B2_U5_DESIGN.md con evidencia de Arka et al. (2009), Arka (2012) y Rajeg (2023), y una propuesta prudente centrada en el par léxico menawari/menawarkan; datangi/panasi quedan como reconocimiento, no producción libre. Ningún vocabulario nuevo ni ejercicio ejecutable aprobado o añadido.
-
-## Ampliación de lecciones A2 — PR en preparación (10 nov 2026)
-- Tras fusionar PR #495, la regresión posterior a la fusión terminó verde (73 pasos); GitHub Pages desplegó el commit `9818a01834f8914179f1603a377381717d0de353`. La prueba de progresión comprueba que todas las unidades A1 ofrecen cinco o seis lecciones y que U3 ofrece cinco. La verificación física en el Tecno Pova 4 sigue pendiente del usuario.
-- Auditoría estática de `curriculum-a2.js`: 40 unidades; U1 tiene cinco lecciones authored y U2–U40 tienen cuatro cada una. La siguiente ampliación añade una lección de repaso activo a U2–U40 para que las 40 unidades ofrezcan cinco lecciones. Las lecciones authored conservan orden e índices; la nueva lección no introduce vocabulario, repasa todos los términos de su unidad y usa ejercicios MC/listen/translate.
-- Rama `feat/a2-five-lessons-all-units`: generaliza el helper de repaso activo sin acoplarlo al idioma, aplica objetivo 5 a A2 y conserva la regla A1 (5 o 6 según vocabulario). Se añade regresión para las 40 unidades A2 y se incrementa la caché del service worker de v3.8.87 a v3.8.88. No se modifican los datos curriculares, IndexedDB, backup JSON v3 ni dependencias.
-- Orden de trabajo confirmado: terminar y auditar A1, después A2, y solo entonces continuar B1/B2. La validación lingüística externa no bloquea el avance; no presentar coherencia interna como certificación nativa.
-
-
-## B2 U4 — aprobación, implementación y publicación (11 nov 2026)
-- El dueño aprobó expresamente el desglose y los ejemplos de cinco lecciones dentro del eje `-kan`. PR [#500](https://github.com/luisequeira612-commits/bahasa-studio/pull/500) fusionada por squash en `main`: `6a71bb67d25d1f4a28a8399de8e55b1f8b702947`. PR #490, que contenía la versión antigua de tres lecciones, se cerró como sustituida.
-- U4 ofrece cinco lecciones y 16 ejercicios (3/3/3/3/4), con opción múltiple, traducción, ordenación, escucha y escritura guiada. Reutiliza únicamente `b1u4_memberikan`, `b1u4_mengirimkan`, `b1u4_menjelaskan`, `b1u4_membersihkan`; no crea vocabulario ni IDs.
-- La enseñanza limita la lectura causativa al contraste documentado `bersih` / `membersihkan`; los demás verbos se tratan como patrones léxicos contextuales. No se enseña una equivalencia universal de `-kan` ni una regla productiva benefactiva.
-- U4 entra en la ruta secuencial tras U3; Aprender, repaso, fallback de traducción y nivel inferido del tutor incluyen solo U1–U4. U5–U60 siguen ocultas. Caché SW `v3.8.91`.
-- CI pre-merge del head final `64cb3f2ec5a53340096d1dc12080fc922be954f6`: run #2149 con `test` y `Offline quality reports` verdes. Regresión post-merge del commit final: run [42956369926](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/42956369926) verde; Pages build/deploy [42956369210](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/42956369210) correcto.
-- Sin cambios a A1/A2/B1, IndexedDB, backup JSON v3, progreso guardado ni dependencias. No se afirma validación nativa ni certificación MCER/BIPA.
-
-## Regresión de lecciones A1 — estándar 5–6 (11 nov 2026)
-- La regla activa de `buildUnitLessons()` fija cinco lecciones para unidades A1 con menos de 18 entradas de vocabulario y seis para unidades con 18 o más. Esto incluye A1 U3 (5) y U9 (6); el contenido de repaso añadido reutiliza el vocabulario existente y no crea entradas curriculares.
-- Se refuerza `tests/multi-lesson-progression.test.cjs` para exigir el número exacto en las 32 unidades A1, además de comprobar secuencia, vocabulario introducido una sola vez y ejercicios de repaso. Cambio de pruebas/documentación solamente; no modifica contenido, IndexedDB, backup JSON v3 ni dependencias.
-
-## Regresión de sincronía del tracker A1 (11 nov 2026)
-- Se añade `tests/a1-language-audit-tracker.test.cjs` al conjunto `quality:tests`. Compara cada ocurrencia de vocabulario de las 32 unidades A1 con sus dos trackers (U1–U23 y U24–U32), incluyendo forma indonesia, glosa española y ambos ejemplos; detecta filas ausentes, sobrantes o duplicadas por unidad+ID.
-- La prueba mantiene `grammar_naturalness_review`, `level_fit_review` y `accepted_answers_review` en `not_checked`; no convierte la sincronía de datos en validación lingüística. Alcance: pruebas/configuración/memoria solamente; no cambia currículo, trackers, IDs, IndexedDB, backup JSON v3 ni dependencias.
-- Durante la primera ejecución se detectó que el tracker U1–U23 omitía la ocurrencia `U1:v465` (`Apa kabar?`) aunque sí existía en U32. Se añadió únicamente la fila de auditoría U1 con la forma, glosa y ejemplo exactos del currículo; el currículo no se modificó. El inventario A1 contiene 329 ocurrencias, no 328. La prueba debe validar las 329 ocurrencias por clave unidad+ID.
- 
-## Regresión de lecciones B2 — estándar de cinco (11 nov 2026)
-- `buildUnitLessons()` ya completa B2 U1–U3 (tres lecciones authored) con dos repasos activos; B2 U4 conserva sus cinco lecciones authored. La app expone cinco lecciones para cada una de las cuatro unidades implementadas.
-- Se añade una prueba de regresión para las lecciones construidas de B2 U1–U4: conserva orden e índices authored, comprueba que el repaso cubra todo el vocabulario de la unidad y que no introduzca palabras ni IDs nuevos. Solo prueba/documentación; no cambia currículo, ejercicios authored, desbloqueos, IndexedDB, backup JSON v3 ni dependencias.
-- U5–U60 siguen sin implementación ni exposición. La prueba no aprueba ni añade contenido curricular futuro.
+## Flujo Git
+- Trabajar en ramas descriptivas y PR pequeñas; nunca modificar `main` directamente. Cada PR debe incluir objetivo, archivos, pruebas, riesgos/limitaciones y actualizar este archivo.
+- Crear commits, PR y fusionar está autorizado por la misión cuando el diff esté revisado, CI verde en el head exacto, informes sin errores bloqueantes y no haya comentarios/revisiones/hilos pendientes. No fusionar con CI pendiente o fallido.
+- No afirmar pruebas de dispositivo físico si solo se ejecutó navegador. Distinguir probado, revisado por lectura y no verificado.

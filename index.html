@@ -5302,11 +5302,62 @@
             });
         }
 
+        function appendA1ReinforcementLessons(unit, lessons) {
+            if (isOfficialA1Unit) {
+    const targetLessonCount = unit.vocab.length >= 18 ? 6 : 5;
+    const reinforcementCount = Math.max(0, targetLessonCount - lessons.length);
+    const meanings = [...new Set(unit.vocab.map(word => String(word.esp || '').trim()).filter(Boolean))];
+    for (let reinforcementIndex = 0; reinforcementIndex < reinforcementCount; reinforcementIndex++) {
+        const exercises = unit.vocab.map((word, wordIndex) => {
+            const mode = (reinforcementIndex + wordIndex) % 3;
+            if (mode === 0) {
+                const distractors = meanings.filter(meaning => meaning !== word.esp).slice(0, 3);
+                const options = distractors.slice();
+                const answer = (reinforcementIndex + wordIndex) % (options.length + 1);
+                options.splice(answer, 0, word.esp);
+                return {
+                    vocabId: word.id, type: 'mc', generated: true,
+                    prompt: 'Repaso: ¿qué significa «' + word.idn + '»?',
+                    options, answer,
+                    explanation: '«' + word.idn + '» significa «' + word.esp + '».'
+                };
+            }
+            if (mode === 1) {
+                return {
+                    vocabId: word.id, type: 'listen', generated: true,
+                    prompt: 'Repaso: escucha y escribe la palabra en indonesio',
+                    answer: word.idn,
+                    explanation: 'La palabra es «' + word.idn + '» («' + word.esp + '»).'
+                };
+            }
+            return {
+                vocabId: word.id, type: 'translate_es_id', generated: true,
+                prompt: 'Repaso: traduce al indonesio «' + word.esp + '»',
+                answer: word.idn,
+                explanation: '«' + word.idn + '» significa «' + word.esp + '».'
+            };
+        });
+        lessons.push({
+            index: lessons.length,
+            title: 'Repaso activo ' + (reinforcementIndex + 1),
+            newVocab: [],
+            reviewVocab: unit.vocab,
+            vocab: unit.vocab,
+            grammar: 'Recupera el vocabulario de esta unidad sin introducir palabras nuevas.',
+            exercises
+        });
+    }
+            }
+            return lessons;
+        }
+
         function buildUnitLessons(unit) {
             if (!unit || !Array.isArray(unit.vocab) || !unit.vocab.length) return [];
+            const a1Course = CourseData.levels.find(level => level.id === 'A1');
+            const isOfficialA1Unit = Boolean(a1Course && a1Course.units.some(entry => entry.id === unit.id));
             if (Array.isArray(unit.lessons) && unit.lessons.length) {
                 const vocabularyById = new Map(CourseData.levels.flatMap(level => level.units).flatMap(entry => entry.vocab || []).map(word => [word.id, word]));
-                return unit.lessons.map((lesson, index) => {
+                const authoredLessons = unit.lessons.map((lesson, index) => {
                     const lessonVocab = (lesson.vocabIds || []).map(id => vocabularyById.get(id)).filter(Boolean);
                     const reviewVocab = (lesson.reviewVocabIds || []).map(id => vocabularyById.get(id)).filter(Boolean);
                     return {
@@ -5319,9 +5370,8 @@
                         exercises: Array.isArray(lesson.exercises) ? lesson.exercises : []
                     };
                 });
+                return isOfficialA1Unit ? appendA1ReinforcementLessons(unit, authoredLessons) : authoredLessons;
             }
-            const a1Course = CourseData.levels.find(level => level.id === 'A1');
-            const isOfficialA1Unit = Boolean(a1Course && a1Course.units.some(entry => entry.id === unit.id));
             if (unit.custom || !isOfficialA1Unit) {
                 const authoredExercises = unit.exercises || [];
                 const practicedVocabIds = new Set(authoredExercises.map(exercise => exercise.vocabId));
@@ -5437,53 +5487,7 @@
                     exercises
                 });
             }
-            // A1 reinforcement is additive: keep every legacy lesson and index intact.
-            if (isOfficialA1Unit) {
-                const targetLessonCount = unit.vocab.length >= 18 ? 6 : 5;
-                const reinforcementCount = Math.max(0, targetLessonCount - lessons.length);
-                const meanings = [...new Set(unit.vocab.map(word => String(word.esp || '').trim()).filter(Boolean))];
-                for (let reinforcementIndex = 0; reinforcementIndex < reinforcementCount; reinforcementIndex++) {
-                    const exercises = unit.vocab.map((word, wordIndex) => {
-                        const mode = (reinforcementIndex + wordIndex) % 3;
-                        if (mode === 0) {
-                            const distractors = meanings.filter(meaning => meaning !== word.esp).slice(0, 3);
-                            const options = distractors.slice();
-                            const answer = (reinforcementIndex + wordIndex) % (options.length + 1);
-                            options.splice(answer, 0, word.esp);
-                            return {
-                                vocabId: word.id, type: 'mc', generated: true,
-                                prompt: 'Repaso: ¿qué significa «' + word.idn + '»?',
-                                options, answer,
-                                explanation: '«' + word.idn + '» significa «' + word.esp + '».'
-                            };
-                        }
-                        if (mode === 1) {
-                            return {
-                                vocabId: word.id, type: 'listen', generated: true,
-                                prompt: 'Repaso: escucha y escribe la palabra en indonesio',
-                                answer: word.idn,
-                                explanation: 'La palabra es «' + word.idn + '» («' + word.esp + '»).'
-                            };
-                        }
-                        return {
-                            vocabId: word.id, type: 'translate_es_id', generated: true,
-                            prompt: 'Repaso: traduce al indonesio «' + word.esp + '»',
-                            answer: word.idn,
-                            explanation: '«' + word.idn + '» significa «' + word.esp + '».'
-                        };
-                    });
-                    lessons.push({
-                        index: lessons.length,
-                        title: 'Repaso activo ' + (reinforcementIndex + 1),
-                        newVocab: [],
-                        reviewVocab: unit.vocab,
-                        vocab: unit.vocab,
-                        grammar: 'Recupera el vocabulario de esta unidad sin introducir palabras nuevas.',
-                        exercises
-                    });
-                }
-            }
-            return lessons;
+            return isOfficialA1Unit ? appendA1ReinforcementLessons(unit, lessons) : lessons;
         }
 
         function unitLessonProgressKey(unitId, lessonIndex) {

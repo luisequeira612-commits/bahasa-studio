@@ -1081,7 +1081,7 @@ test('A1 lesson progress is sequential and the final exam gates the next unit at
 
     await firstNode.click();
     await page.locator('#unitBottomSheet').waitFor({ state: 'visible' });
-    assert.ok((await page.locator('#unitSheetContent').innerText()).includes('0/3'));
+    assert.ok((await page.locator('#unitSheetContent').innerText()).includes('0/5'));
     await page.getByRole('button', { name: 'Empezar lección 1' }).click();
     await page.evaluate(() => { window.confirm = () => true; });
     await page.getByRole('button', { name: 'Salir de la lección' }).click();
@@ -1095,7 +1095,7 @@ test('A1 lesson progress is sequential and the final exam gates the next unit at
       App.renderCourseRoute();
     });
     await firstNode.click();
-    assert.ok((await page.locator('#unitSheetContent').innerText()).includes('1/3'));
+    assert.ok((await page.locator('#unitSheetContent').innerText()).includes('1/5'));
     assert.ok(await page.getByRole('button', { name: 'Empezar lección 2' }).isVisible());
 
     await page.evaluate(async () => {
@@ -1758,7 +1758,7 @@ test('emergency jump opens locked A2/B1 units without recording progress and can
   }
 });
 
-test('learning path keeps the real A1 one-of-two lesson state visible at a 360px viewport', async () => {
+test('learning path keeps the real A1 one-of-five lesson state visible at a 360px viewport', async () => {
   const { server, url } = await startServer();
   const context = await browser.newContext({
     viewport: { width: 360, height: 800 },
@@ -1810,7 +1810,7 @@ test('learning path keeps the real A1 one-of-two lesson state visible at a 360px
     await page.locator('.learning-unit-node[data-unit-id="a1_u3"]').click();
     await page.locator('#unitBottomSheet').waitFor({ state: 'visible' });
     const sheet = await page.locator('#unitSheetContent').innerText();
-    assert.match(sheet, /1\/2/);
+    assert.match(sheet, /1\/5/);
     assert.match(sheet, /Empezar lección 2/);
     assert.ok(pageErrors.length === 0, pageErrors.join('\\n'));
   } finally {

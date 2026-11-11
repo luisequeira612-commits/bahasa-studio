@@ -3,7 +3,7 @@
 **Estado:** propuesta documental; no implementada ni publicada.  
 **Fecha:** 8 nov 2026.  
 **Ubicación:** tercer diseño del bloque aprobado U4–U6 (`-kan`, `-i`, `memper-`).  
-**Dependencias:** U1–U5 como progresión prevista; este documento no presupone que U2–U5 estén aprobadas o implementadas.
+**Dependencias:** U1–U5 como progresión prevista. U1–U4 están implementadas; U5 sigue siendo propuesta documental, por lo que U6 no está lista para implementación ni evaluación.
 
 ## Propósito y alcance
 
@@ -83,7 +83,7 @@ Al menos cinco ejercicios deben evaluar oraciones completas y al menos uno debe 
 - No asumir que las dos formas son intercambiables ni que toda base permite ambas.
 - No extender la regla causativa descrita a bases verbales intransitivas.
 - No mezclar el foco de esta unidad con `memper-…-kan` o `memper-…-i`.
-- Mantener B2 en desarrollo: solo U1–U3 están implementadas y visibles con desbloqueo secuencial; U4–U60 no deben exponerse hasta su implementación y pruebas.
+- Mantener B2 en desarrollo: U1–U4 están implementadas y visibles con desbloqueo secuencial; U5–U60 deben permanecer ocultas hasta que cada unidad tenga contenido aprobado, implementación y pruebas.
 - No modificar A1/A2/B1, IndexedDB, backup JSON v3, trackers ni dependencias.
 - No afirmar validación nativa ni certificación MCER/BIPA.
 

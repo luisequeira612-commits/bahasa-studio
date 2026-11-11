@@ -1,99 +1,87 @@
-# Diseño preliminar B2 U4 — funciones de -kan y estructura de participantes
+# B2 U4 — funciones de -kan y estructura de participantes
 
-**Estado:** propuesta de diseño; no implementada ni publicada.  
-**Fecha:** 8 nov 2026.  
-**Ubicación:** primer diseño del bloque aprobado U4–U6 (`-kan`, `-i`, `memper-`).  
-**Dependencias:** bloque U1–U3; este documento no modifica ni sustituye sus prerrequisitos.
+**Estado:** diseño didáctico aprobado por el dueño el 11 nov 2026; implementación en PR nueva desde `main`.  
+**Eje:** `-kan`, sin comparación sistemática con `-i` ni anticipación de `memper-`.  
+**Dependencias:** B2 U1–U3.
 
-## Propósito y alcance
+## Propósito y límites
 
-U4 propone introducir el sufijo `-kan` desde la relación entre significado verbal y participantes de la oración. La unidad no debe enseñar una equivalencia fija «`-kan` = hacer que» ni una regla única de valencia: las fuentes describen más de una función, entre ellas construcciones causativas y aplicativas/benefactivas.
+La unidad enseña a interpretar el verbo completo y los participantes de la oración. No presenta `-kan` como una equivalencia fija de «hacer que», ni como una regla universal que añada un destinatario o benefactivo.
 
-El objetivo es que el estudiante reconozca qué relación expresa el verbo derivado en una oración completa: quién causa o inicia el evento, quién lo ejecuta o experimenta, qué entidad resulta afectada y si aparece un beneficiario/destinatario. No se debe asignar esos papeles por la terminación aislada.
+Se distinguen dos grupos concretos:
 
-Este diseño se limita a `-kan`. La comparación sistemática con `-i` corresponde al desarrollo coordinado de U5/U6, no a una tabla de sustitución mecánica.
+1. **Lectura causativa documentada:** `bersih` describe el estado «limpio»; `membersihkan` presenta a un agente que causa que una entidad quede limpia.
+2. **Patrones léxicos ya aprendidos:** `memberikan`, `mengirimkan` y `menjelaskan` se trabajan con sus participantes y contextos concretos. No se afirma que todos los verbos con `-kan` funcionen igual.
 
-## Base documental y límites
+No se enseña todavía una regla productiva de aplicación/benefactivo con `-kan`; los estudios describen varias funciones y advierten de la interacción con voz, sintaxis y pragmática. El contraste sistemático con `-i` queda para su unidad correspondiente.
 
-- **Musgrave, Simon; Wayan Arka; Gede Primahadi W. Rajeg (2024), “Applicative constructions in standard Indonesian (Bahasa Indonesia)”, pp. 279–303.** El resumen académico describe `-kan` y `-i` como sufijos que pueden formar construcciones aplicativas y modificar el conjunto de argumentos; ambos tienen además otras funciones, y `-kan` también aparece como morfema causativo. Los autores subrayan que la interacción con la voz y los factores sintácticos/pragmáticos impide reducir las construcciones a una regla simple. https://doi.org/10.1515/9783110730951
-- **Jeong, Hyun-Kyung (2019), “Decomposing vP and Its Empirical Consequences: Indonesian -Kan Revisited”, *Studies in Generative Grammar* 29(2), 177–210.** Propone que `-kan` puede funcionar como cabeza aplicativa alta o como cabeza causativa (`vCAUS`), dependiendo de si introduce un argumento nuevo; relaciona esos patrones con interpretaciones benefactivas o causativas. https://doi.org/10.15860/sigg.29.2.201905.177
-- **Dwijatmoko, Benedictus Bherman (2021), “The Causative in Indonesian”, *Journal of Language and Literature* 21(1).** Presenta un análisis de `-kan` como formador de relaciones causativas entre argumentos. Es una fuente sobre la lectura causativa, no prueba que toda aparición de `-kan` sea causativa. https://e-journal.usd.ac.id/index.php/JOLL/article/view/2961
-- **Sedeng, I Nyoman (2011), “Pembentukan Verba Bersufiks {-kan} Bahasa Indonesia: Struktur Argumen, Struktur Logis, dan Makna Sufiks {-kan}”, *Linguistika* 18.** Describe varios patrones de formación y funciones causativas y aplicativas (benefactivo, locativo e instrumental, entre otras), con datos de novelas indonesias. https://ojs.unud.ac.id/index.php/linguistika/article/view/9676
+## Base documental
 
-**Síntesis prudente:** existe respaldo académico para tratar `-kan` como polisémico y sensible a la estructura de argumentos. Las fuentes difieren en su marco teórico y no autorizan una traducción única ni una lista exhaustiva de significados. Los resúmenes consultados no bastan para aprobar ejemplos concretos del curso; antes de implementarlos hay que revisar las páginas completas, el contexto de cada ejemplo y la disponibilidad del vocabulario.
+- **Shiohara, Asako (2012), “Applicatives in Standard Indonesian”, *Senri Ethnological Studies* 77, pp. 59–76.** Presenta `membersihkan` como lectura causativa derivada de `bersih`, con el contraste `Kamar ini sudah bersih` / `Siti sudah membersihkan kamar ini` (pp. 66–67). También explica que formas como `berikan` y `kirimkan` no deben analizarse automáticamente como el mismo patrón causativo. https://doi.org/10.15021/00002529
+- **Musgrave, Simon; Wayan Arka; Gede Primahadi W. Rajeg (2024), “Applicative constructions in standard Indonesian (Bahasa Indonesia)”, pp. 279–303.** Resume la variedad de funciones de `-kan` y `-i` y la modificación de argumentos en construcciones aplicativas. https://doi.org/10.1515/9783110730951
+- **Jeong, Hyun-Kyung (2019), “Decomposing vP and Its Empirical Consequences: Indonesian -Kan Revisited”, *Studies in Generative Grammar* 29(2), 177–210.** Propone análisis causativos y aplicativos distintos según la estructura argumental. https://doi.org/10.15860/sigg.29.2.201905.177
+- **Dwijatmoko, Benedictus Bherman (2021), “The Causative in Indonesian”, *Journal of Language and Literature* 21(1).** Fuente complementaria para la lectura causativa. https://e-journal.usd.ac.id/index.php/JOLL/article/view/2961
 
-## Objetivos propuestos
+Las referencias respaldan la cautela morfosintáctica; no equivalen a certificación lingüística ni validación nativa. La unidad usa ejemplos limitados y explícitamente contextualizados.
+
+## Objetivos
 
 Al completar U4, el estudiante podrá:
 
-1. Reconocer una forma verbal con `-kan` en una oración y relacionarla con su base cuando esa relación esté documentada.
-2. Distinguir, en ejemplos aprobados, una lectura causativa de una lectura aplicativa/benefactiva.
-3. Identificar los participantes relevantes sin asumir que todos aparecen expresos.
-4. Explicar cómo cambia la estructura de participantes entre la base y la forma derivada.
-5. Interpretar el verbo a partir de la oración y del contexto, no de una glosa fija del sufijo.
-6. Evitar trasladar automáticamente al indonesio la valencia o las preposiciones del español.
+1. Diferenciar una descripción de estado de una acción causante.
+2. Identificar agente causante y entidad afectada en el ejemplo con `membersihkan`.
+3. Reconocer contenido transferido y destinatario en ejemplos con `memberikan` y `mengirimkan`.
+4. Identificar contenido explicado y destinatarios en el ejemplo con `menjelaskan`.
+5. Interpretar las funciones desde el verbo completo y el contexto, sin generalizar el sufijo.
 
-## Lecciones propuestas
+## Secuencia de cinco lecciones
 
-### Lección 1 — Causación y participantes
+### 1. Del estado al cambio causado
+- Contrastar `Kamar ini sudah bersih` (estado) con `Siti sudah membersihkan kamar ini` (acción causante).
+- Identificar `bersih` como estado y `membersihkan` como verbo de limpieza.
+- Ejercicios: comprensión, traducción contextual y escucha.
 
-- Presentar una relación causativa solo con verbos y ejemplos cuyo análisis esté documentado.
-- Distinguir causa/causante, participante que ejecuta o experimenta el evento y resultado.
-- Contrastar la base con la forma en `-kan` en contexto.
-- No enseñar que `-kan` siempre añade una persona ni que toda forma causativa tiene idéntica estructura.
+### 2. Quién causa y qué resulta afectado
+- Identificar a Siti como agente y `kamar ini` como entidad afectada.
+- Explicar la relación causativa sin inferir participantes que no aparecen.
+- Ejercicios: roles semánticos, ordenación y producción de una oración guiada.
 
-### Lección 2 — Aplicación, beneficiario y otros participantes
+### 3. Dar y enviar: contenido y destinatario
+- Trabajar `memberikan` y `mengirimkan` como patrones léxicos concretos.
+- Distinguir lo entregado/enviado de la persona indicada por `kepada`.
+- Ejercicios: comprensión, traducción y escucha.
 
-- Introducir lecturas aplicativas/benefactivas con ejemplos completos y fuentes verificables.
-- Identificar el participante añadido o destacado y su relación con el evento.
-- Distinguir beneficiario, destinatario, instrumento y lugar cuando el ejemplo realmente los exprese.
-- No generalizar una función a todos los verbos terminados en `-kan`.
+### 4. Explicar: contenido y destinatarios
+- Analizar `Guru menjelaskan cara membaca kepada siswa`.
+- Interpretar `cara membaca` como el contenido («cómo leer») y `kepada siswa` como los destinatarios.
+- Ejercicios: comprensión, ordenación y traducción contextual.
 
-### Lección 3 — Interpretar y producir en contexto
+### 5. Integrar las funciones en contexto
+- Clasificar los ejemplos sin asignar una única función a `-kan`.
+- Escuchar una oración completa.
+- Escribir un texto breve usando al menos dos verbos ya enseñados y explicar los participantes.
+- Comparar estado y causación en las dos oraciones con `bersih/membersihkan`.
 
-- Comparar dos oraciones con la misma base solo si la diferencia de estructura y significado está acreditada.
-- Resolver tareas de comprensión donde el contexto permita identificar la lectura.
-- Reescribir conservando los papeles semánticos y sin añadir participantes por traducción literal.
-- Producción guiada breve, limitada a patrones ya enseñados y con modelo contextual.
+## Vocabulario
 
-## Banco de ejercicios previsto
+No se crean palabras ni IDs nuevos. Se reutilizan exactamente cuatro entradas canónicas de B1 U4:
 
-Propuesta de **16 ejercicios combinados**, aún sin consignas ni claves definitivas:
+| ID | Forma | Glosa canónica |
+|---|---|---|
+| `b1u4_memberikan` | `memberikan` | Dar; entregar algo a alguien |
+| `b1u4_mengirimkan` | `mengirimkan` | Enviar algo a alguien; hacer llegar |
+| `b1u4_menjelaskan` | `menjelaskan` | Explicar algo a alguien |
+| `b1u4_membersihkan` | `membersihkan` | Limpiar algo |
 
-| Lección | Opción múltiple | Traducción contextual | Ordenación | Escucha | Escritura | Total |
-|---|---:|---:|---:|---:|---:|---:|
-| 1 | 2 | 1 | 1 | 1 | 0 | 5 |
-| 2 | 2 | 1 | 1 | 1 | 0 | 5 |
-| 3 | 1 | 1 | 0 | 1 | 3 | 6 |
-| **Total** | **5** | **3** | **2** | **3** | **3** | **16** |
+Las formas y glosas canónicas de B1 no se modifican. Los ejemplos de esta unidad no crean entradas de vocabulario adicionales.
 
-Al menos cinco ejercicios deben evaluar oraciones completas y al menos uno debe pedir producción original guiada. La escucha usará exclusivamente el mecanismo local existente.
+## Contrato de implementación y calidad
 
-## Vocabulario y dependencias
-
-- No se proponen todavía entradas nuevas ni IDs.
-- Las formas del antiguo borrador, por ejemplo `membangunkan` y `mengirimkan`, son solo pistas históricas; no se copian automáticamente.
-- Antes de redactar ejercicios, comparar cada candidato con el inventario actual A1–B2 y comprobar sus IDs, glosas, ejemplos y nivel de introducción.
-- Si hace falta vocabulario nuevo, presentar al dueño forma, glosa, ejemplo y motivo antes de incorporarlo.
-- U4 no debe anticipar `-i` ni `memper-` como contenido evaluable; el contraste se reservará para la secuencia aprobada.
-
-## Guardarraíles
-
-- No asignar una traducción fija a `-kan`.
-- No confundir causación y aplicación/beneficio.
-- No inferir automáticamente la valencia a partir del sufijo.
-- No forzar una equivalencia con objetos directos/indirectos del español.
-- No reutilizar los ejercicios ni IDs del borrador archivado sin auditoría.
-- Mantener B2 en desarrollo: solo U1–U3 están implementadas y visibles con desbloqueo secuencial; U4–U60 no deben exponerse hasta su implementación y pruebas.
-- No modificar A1/A2/B1, IndexedDB, backup JSON v3, trackers ni dependencias.
+- Cinco lecciones reales y secuenciadas; 16 ejercicios distribuidos `3/3/3/3/4`.
+- Cinco tipos: opción múltiple, traducción, ordenación, escucha y escritura.
+- Al menos cinco objetivos de oración completa y una producción original guiada.
+- Todos los ejercicios y referencias de lección usan únicamente los cuatro IDs existentes.
+- Sin nuevas dependencias ni servicios externos.
+- B2 U4 se desbloquea después de U3; U5–U60 siguen fuera del recorrido ejecutable.
+- No tocar A1/A2/B1, IndexedDB, backup JSON v3 ni progreso guardado.
 - No afirmar validación nativa ni certificación MCER/BIPA.
-
-## Condiciones para pasar a implementación
-
-1. U1–U3 están cerradas en el orden de prerrequisitos acordado.
-2. Se revisan las fuentes completas y se eligen ejemplos concretos con contexto suficiente.
-3. Cada forma y glosa se coteja con el inventario global; toda palabra nueva se propone al dueño antes de añadirla.
-4. Las actividades distinguen las lecturas causativa y aplicativa sin convertirlas en una regla universal.
-5. Pruebas de regresión comprueban papeles semánticos, referencias de vocabulario, progresión y ausencia de exposición anticipada.
-
-**Estatus de decisión:** el dueño aprobó el eje general U4–U6 (`-kan`, `-i`, `memper-`), no este desglose didáctico ni sus ejemplos. Este documento es una propuesta reversible, no autorización para añadir contenido ejecutable.

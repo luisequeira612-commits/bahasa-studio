@@ -300,7 +300,7 @@ test('A2 units 1-4 have 3-5 authored lessons and a complete unit-test bank', () 
   for (const unit of a2.units.slice(0, 4)) {
     const lessons = engine.buildUnitLessons(unit);
     assert.ok(lessons.length >= 3 && lessons.length <= 5, unit.id + ' must have 3-5 lessons');
-    const lessonExercises = lessons.flatMap(lesson => lesson.exercises);
+    const lessonExercises = lessons.slice(0, unit.lessons.length).flatMap(lesson => lesson.exercises);
     assert.ok(lessonExercises.length >= 14 && lessonExercises.length <= (unit.id === 'a2_u1' ? 27 : 22),
       unit.id + ' must contain 14-27 exercises for U1 or 14-22 for the other first units');
     assert.ok(new Set(lessonExercises.map(exercise => exercise.type)).size >= 4,

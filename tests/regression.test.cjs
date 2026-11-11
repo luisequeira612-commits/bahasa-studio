@@ -1875,12 +1875,12 @@ test('B1 all fifty units expose five lessons with distinct active recall coverin
   const start = html.indexOf('const CourseData =');
   const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
   assert.ok(start >= 0 && end > start, 'CourseData block must exist');
-  const course = vm.runInNewContext(html.slice(start, end) + '\\nCourseData');
+  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
   const engineStart = html.indexOf('function buildUnitAssessmentItems');
   const engineEnd = html.indexOf('function unitLessonProgressKey', engineStart);
   assert.ok(engineStart >= 0 && engineEnd > engineStart, 'unit lesson builders must exist');
   const engine = vm.runInNewContext(
-    html.slice(engineStart, engineEnd) + '\\n({ buildUnitLessons })',
+    html.slice(engineStart, engineEnd) + '\n({ buildUnitLessons })',
     { CourseData: course, Map, Set, Math }
   );
   const b1 = course.levels.find(level => level.id === 'B1');
@@ -1889,13 +1889,13 @@ test('B1 all fifty units expose five lessons with distinct active recall coverin
 
   for (const unit of b1.units) {
     const authoredCount = unit.lessons.length;
-    const authoredTitles = unit.lessons.map(lesson => lesson.title);
+    const authoredTitles = Array.from(unit.lessons, lesson => lesson.title);
     const lessons = engine.buildUnitLessons(unit);
     assert.equal(lessons.length, 5, unit.id + ' must expose exactly five lessons');
-    assert.deepEqual(lessons.slice(0, authoredCount).map(lesson => lesson.title), authoredTitles,
+    assert.deepEqual(Array.from(lessons.slice(0, authoredCount), lesson => lesson.title), authoredTitles,
       unit.id + ' must preserve the authored lesson prefix and order');
 
-    const expectedIds = unit.vocab.map(word => word.id).sort();
+    const expectedIds = Array.from(unit.vocab, word => word.id).sort();
     assert.equal(new Set(expectedIds).size, expectedIds.length, unit.id + ' must not duplicate unit vocabulary IDs');
     const reviewLessons = lessons.slice(authoredCount);
     assert.equal(reviewLessons.length, 5 - authoredCount, unit.id + ' must append only the missing lessons');

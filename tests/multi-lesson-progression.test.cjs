@@ -18,7 +18,7 @@ const html = htmlSource.slice(0, courseDataStart) + htmlSource.slice(courseDataS
 const start = html.indexOf('const CourseData =');
 const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
 assert.ok(start >= 0 && end > start, 'course data and lesson builders must exist');
-const app = vm.runInNewContext(html.slice(start, end) + '\n({ CourseData, buildUnitLessons, buildUnitAssessmentItems, isUnitAssessmentPassed })');
+const app = vm.runInNewContext(html.slice(start, end) + '\n({ CourseData, buildUnitLessons, buildUnitAssessmentItems, isUnitAssessmentPassed, getUnitProgressState, unitLessonProgressKey })');
 
 test('every A1 unit is divided into sequential lessons that introduce all vocabulary', () => {
   const a1 = app.CourseData.levels.find(level => level.id === 'A1');
@@ -125,13 +125,13 @@ test('A1 U24-U32 use focused authored lesson plans while retaining generated pra
   for (const unit of units) {
     assert.equal(unit.lessonPlans.length, 3, unit.id + ' should define three focused lesson plans');
     const lessons = app.buildUnitLessons(unit);
-    assert.equal(lessons.length, 3, unit.id + ' should keep three study lessons');
-    assert.deepEqual(Array.from(lessons, lesson => lesson.title), Array.from(unit.lessonPlans, plan => plan.title));
-    lessons.forEach((lesson, index) => {
+    assert.equal(lessons.length, unit.vocab.length >= 18 ? 6 : 5, unit.id + ' should meet the new A1 lesson standard');
+    assert.deepEqual(Array.from(lessons.slice(0, 3), lesson => lesson.title), Array.from(unit.lessonPlans, plan => plan.title));
+    lessons.slice(0, 3).forEach((lesson, index) => {
       const plan = unit.lessonPlans[index];
       assert.ok(plan.objective && plan.grammar, unit.id + ' lesson plan needs an objective and focused explanation');
       assert.equal(lesson.grammar, plan.objective + ' ' + plan.grammar);
-      assert.ok(lesson.newVocab.length > 0, unit.id + ' lesson should introduce new vocabulary');
+      assert.ok(lesson.newVocab.length > 0, unit.id + ' original lesson should introduce vocabulary');
       assert.ok(lesson.exercises.length >= lesson.newVocab.length,
         unit.id + ' must preserve active practice after adding lesson metadata');
       const available = new Set(lesson.vocab.map(word => word.id));
@@ -139,6 +139,14 @@ test('A1 U24-U32 use focused authored lesson plans while retaining generated pra
         assert.ok(available.has(exercise.vocabId),
           unit.id + ' ' + lesson.title + ' must not assess vocabulary before it is introduced');
       }
+    });
+    lessons.slice(3).forEach((lesson, index) => {
+      assert.equal(lesson.index, index + 3);
+      assert.equal(lesson.title, 'Repaso activo ' + (index + 1));
+      assert.deepEqual(Array.from(lesson.newVocab), []);
+      assert.deepEqual(Array.from(lesson.reviewVocab, word => word.id), Array.from(unit.vocab, word => word.id));
+      assert.equal(lesson.exercises.length, unit.vocab.length);
+      assert.ok(lesson.exercises.every(exercise => exercise.generated));
     });
   }
 });
@@ -215,4 +223,38 @@ test('B1 U13-U26 introduce new vocabulary in the correct lesson and review only 
     for (const word of unit.vocab) { learned.add(word.id); known.add(word.id); }
     for (const word of unit.vocab) assert.ok(learned.has(word.id), unit.id + ' vocabulary should be available by unit end: ' + word.id);
   }
+});
+
+
+test('A1 appends five or six active-recall lessons without shifting legacy lesson indexes', () => {
+  const a1 = app.CourseData.levels.find(level => level.id === 'A1');
+  for (const unit of a1.units) {
+    const lessons = app.buildUnitLessons(unit);
+    const legacyCount = Math.min(5, Math.max(2, Math.ceil(unit.vocab.length / 4)));
+    const targetCount = unit.vocab.length >= 18 ? 6 : 5;
+    assert.equal(lessons.length, targetCount, unit.id + ' should have five or six lessons');
+    assert.deepEqual(Array.from(lessons.slice(0, legacyCount), lesson => lesson.index),
+      Array.from({ length: legacyCount }, (_, index) => index),
+      unit.id + ' legacy lesson indexes must remain unchanged');
+    assert.ok(lessons.slice(0, legacyCount).every(lesson => !lesson.title.startsWith('Repaso activo')),
+      unit.id + ' reinforcement must be appended after legacy lessons');
+    for (const lesson of lessons.slice(legacyCount)) {
+      assert.deepEqual(Array.from(lesson.reviewVocab, word => word.id), Array.from(unit.vocab, word => word.id));
+      assert.equal(lesson.exercises.length, unit.vocab.length);
+      assert.ok(lesson.exercises.every(exercise => unit.vocab.some(word => word.id === exercise.vocabId)));
+      assert.ok(lesson.exercises.every(exercise => ['mc', 'listen', 'translate_es_id'].includes(exercise.type)));
+    }
+  }
+});
+
+test('A1 completed units stay completed and existing in-progress lesson keys retain their indexes', () => {
+  const a1 = app.CourseData.levels.find(level => level.id === 'A1');
+  const unit = a1.units[0];
+  const partial = app.getUnitProgressState(a1, unit, [], ['a1_u1::0', 'a1_u1::1']);
+  assert.equal(partial.completedLessonCount, 2);
+  assert.equal(partial.completed, false);
+  assert.equal(app.unitLessonProgressKey('a1_u1', 0), 'a1_u1::0');
+  const completed = app.getUnitProgressState(a1, unit, ['a1_u1'], []);
+  assert.equal(completed.approved, true);
+  assert.equal(completed.completed, true);
 });

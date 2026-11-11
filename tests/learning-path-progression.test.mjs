@@ -28,14 +28,14 @@ async function loadProgressionApi() {
     context, { timeout: 5000 });
 }
 
-test('A1 Unit 3 keeps its existing one-of-two lesson progress and does not unlock Unit 4', async () => {
+test('A1 Unit 3 retains one completed lesson of five and does not unlock Unit 4', async () => {
   const api = await loadProgressionApi();
   const a1 = api.CourseData.levels.find(level => level.id === 'A1');
   const unit3 = a1.units[2];
   const completedUnits = ['a1_u1', 'a1_u2'];
   const completedLessons = [unit3.id + '::0'];
   const progress = api.getUnitProgressState(a1, unit3, completedUnits, completedLessons);
-  assert.equal(progress.lessons.length, 2);
+  assert.equal(progress.lessons.length, 5);
   assert.equal(progress.completedLessonCount, 1);
   assert.equal(progress.completed, false);
   assert.equal(api.isUnitUnlocked(a1, unit3, completedUnits, completedLessons, []), true);

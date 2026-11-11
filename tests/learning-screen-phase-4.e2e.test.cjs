@@ -257,13 +257,16 @@ test('phase four path geometry is collision-free at 360px across levels and zigz
       return {
         dashOffset:ring.getAttribute('stroke-dashoffset'),
         circumference:ring.getAttribute('stroke-dasharray'),
+        lessonCount:buildUnitLessons(current).length,
         titleResult,
         fullTitle:originalTitle
       };
     });
     assert.equal(progress.circumference, '207.35');
-    assert.ok(Math.abs(Number(progress.dashOffset) - 103.68) < 0.02,
-      'one of two completed lessons should fill exactly half the ring from the top');
+    assert.ok(progress.lessonCount >= 2, 'the current unit should have multiple lessons');
+    const expectedOffset = Number(progress.circumference) * (1 - 1 / progress.lessonCount);
+    assert.ok(Math.abs(Number(progress.dashOffset) - expectedOffset) < 0.02,
+      'one completed lesson should fill exactly its share of the ring');
     assert.equal(progress.titleResult.whiteSpace, 'normal');
     assert.equal(progress.titleResult.lineClamp, '2');
     assert.ok(progress.titleResult.height <= 30, 'longest curriculum title must be clamped to two lines');

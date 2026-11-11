@@ -1923,3 +1923,57 @@ test('B1 all fifty units expose five lessons with distinct active recall coverin
     assert.ok(generatedTypes.size >= 2, unit.id + ' generated lessons must vary exercise types');
   }
 });
+
+
+test('implemented B2 units expose five lessons with distinct active recall covering their full unit vocabulary', () => {
+  const start = html.indexOf('const CourseData =');
+  const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
+  assert.ok(start >= 0 && end > start, 'CourseData block must exist');
+  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
+  const engineStart = html.indexOf('function buildUnitAssessmentItems');
+  const engineEnd = html.indexOf('function unitLessonProgressKey', engineStart);
+  assert.ok(engineStart >= 0 && engineEnd > engineStart, 'unit lesson builders must exist');
+  const engine = vm.runInNewContext(
+    html.slice(engineStart, engineEnd) + '\n({ buildUnitLessons })',
+    { CourseData: course, Map, Set, Math }
+  );
+  const b2 = course.levels.find(level => level.id === 'B2');
+  assert.ok(b2 && b2.units.length >= 3, 'implemented B2 units must exist');
+
+  for (const unit of b2.units) {
+    const authoredCount = unit.lessons.length;
+    const authoredTitles = Array.from(unit.lessons, lesson => lesson.title);
+    const lessons = engine.buildUnitLessons(unit);
+    assert.equal(lessons.length, 5, unit.id + ' must expose five lessons');
+    assert.deepEqual(Array.from(lessons.slice(0, authoredCount), lesson => lesson.title), authoredTitles,
+      unit.id + ' must preserve its authored lesson prefix and order');
+
+    const expectedIds = Array.from(unit.vocab, word => word.id).sort();
+    assert.equal(new Set(expectedIds).size, expectedIds.length, unit.id + ' must not duplicate unit vocabulary IDs');
+    const reviewLessons = lessons.slice(authoredCount);
+    assert.equal(reviewLessons.length, 5 - authoredCount, unit.id + ' must append only the missing lessons');
+    const signatures = [];
+    const generatedTypes = new Set();
+
+    for (const lesson of reviewLessons) {
+      assert.equal(lesson.newVocab.length, 0, lesson.title + ' must not introduce vocabulary');
+      assert.deepEqual(Array.from(new Set(lesson.reviewVocab.map(word => word.id))).sort(), expectedIds,
+        lesson.title + ' must review every vocabulary item in its unit');
+      assert.deepEqual(Array.from(new Set(lesson.exercises.map(exercise => exercise.vocabId))).sort(), expectedIds,
+        lesson.title + ' must exercise every vocabulary item in its unit');
+      assert.equal(lesson.exercises.length, unit.vocab.length,
+        lesson.title + ' must provide one targeted exercise per vocabulary item');
+      for (const exercise of lesson.exercises) {
+        assert.ok(exercise.generated, lesson.title + ' must use generated active-recall exercises');
+        assert.ok(['mc', 'listen', 'translate_es_id'].includes(exercise.type),
+          lesson.title + ' must use a supported active-recall exercise type');
+        generatedTypes.add(exercise.type);
+      }
+      signatures.push(lesson.exercises.map(exercise => exercise.vocabId + ':' + exercise.type).join('|'));
+    }
+
+    assert.equal(new Set(signatures).size, signatures.length,
+      unit.id + ' must not repeat the same exercise pattern across generated lessons');
+    assert.ok(generatedTypes.size >= 2, unit.id + ' generated lessons must vary exercise types');
+  }
+});

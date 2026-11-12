@@ -1,6 +1,6 @@
 # Diseño preliminar B2 U5 — funciones de -i y estructura de participantes
 
-**Estado:** propuesta documental; no implementada ni publicada.  
+**Estado:** aprobada explícitamente por el dueño el 12 nov 2026; implementación en curso en rama/PR. No exponer U5 hasta CI verde y fusión.  
 **Fecha:** 8 nov 2026.  
 **Ubicación:** segundo diseño del bloque aprobado U4–U6 (`-kan`, `-i`, `memper-`).  
 **Dependencias:** U1–U4. U1–U3 y U4 están implementadas; U5 continúa siendo una propuesta documental y depende de la progresión secuencial. La integración de U4 no aprueba por sí misma este diseño ni sus ejemplos.
@@ -115,3 +115,22 @@ Al menos cinco ejercicios deben evaluar oraciones completas y al menos uno debe 
 
 ### Límites de aprobación
 Esta revisión respalda el enfoque y los ejemplos académicos citados, pero no certifica frecuencia general, registro conversacional ni adecuación de cada oración didáctica. Los ejemplos nuevos del curso, las glosas finales y las claves deben pasar revisión de coherencia interna y quedar como `not_checked` salvo coincidencia de dos fuentes secundarias independientes. No se marca nada como `verified_primary`.
+
+## Aprobación explícita e implementación — 12 nov 2026
+
+El dueño aprobó U5 tras revisar el paquete documental de PR #511. La aprobación cubre el alcance concreto de esta unidad, no otras unidades:
+
+- Cinco lecciones y 16 actividades, distribuidas 3/3/3/3/4, con cinco tipos de ejercicio.
+- `menawari` y `menawarkan` como vocabulario nuevo con IDs canónicos propios y glosas contextuales; el contraste se limita a este par.
+- `datangi` y `panasi` solo reconocimiento; `menjatuhi`/`dijatuhi` solo reconocimiento de voz; `tanami`, `garami` y `kantongi` excluidas.
+- Se reutilizan los IDs canónicos A2/B1 de `bantuan` y `menerima` para construir producción guiada sin añadir más vocabulario.
+- Las frases nuevas de práctica se identifican como ejemplos didácticos construidos, no como citas de las fuentes; permanecen `not_checked` para naturalidad/adecuación.
+
+La implementación respeta la cautela de Rajeg (2023): `menawari` prefiere el patrón de objeto doble, `menawarkan` el patrón monotransitivo y hay variación, por lo que no se enseña una regla general de sustitución de `-i` y `-kan`. La documentación de Arka et al. (2009) solo respalda la nota de reconocimiento sobre lecturas distintas de `-i`; no convierte `datangi` o `panasi` en vocabulario productivo.
+
+Fuentes:
+- Rajeg (2023), *Linguistik Indonesia* 41(2), https://doi.org/10.26499/li.v41i2.482
+- Arka et al. (2009), LFG09, https://web.stanford.edu/group/cslipublications/cslipublications/LFG/14/papers/lfg09arkaetal.pdf
+- INDRA/DELPH-IN, https://delph-in.github.io/docs/garage/LADIndonesianMorphology/
+
+La aprobación del dueño no es validación nativa ni certificación MCER/BIPA. `verified_primary` no se asigna automáticamente. U6 y U13–U60 siguen sin aprobación de contenido.

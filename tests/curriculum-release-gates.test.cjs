@@ -40,7 +40,7 @@ test('A2 beta policy documentation matches the enabled release gate', () => {
 });
 
 
-test('B1 unlocks after A2; B2 U1 follows B1 and U2–U4 unlock sequentially while later units stay in development', () => {
+test('B1 unlocks after A2; B2 U1 follows B1 and U2–U5 unlock sequentially while later units stay in development', () => {
   const learningLevels = html.slice(html.indexOf('function getLearningLevels()'), html.indexOf('function getUniqueLearningVocabulary()'));
   assert.match(learningLevels, /level\.id !== 'B2'/);
   assert.doesNotMatch(learningLevels, /B1/);

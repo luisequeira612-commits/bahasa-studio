@@ -5360,6 +5360,82 @@
                                 }
                             ]
                         },
+                        {
+                            id: 'b2_u5',
+                            title: 'Unidad 5: Interpretar los usos de -i',
+                            desc: 'Analiza cómo se organizan los participantes en ejemplos concretos con -i, sin atribuir al sufijo una sola función.',
+                            grammar: 'El sufijo -i no tiene una traducción ni una función única. En el par estudiado, menawari perfila al oferente, al destinatario potencial y al tema ofrecido en una construcción de objeto doble; menawarkan perfila al oferente y al tema, y puede expresar el destinatario con kepada. Esta diferencia es propia de este par léxico y admite variación: no convierte -i y -kan en sufijos intercambiables. Datangi y panasi ilustran otras lecturas descritas para -i (aplicativa/meta y causativa), pero aquí solo se reconocen. Menjatuhi/dijatuhi se observan únicamente para reconocer el cambio de voz y de participante en primer plano.',
+                            vocab: [
+                                { id: 'b2u5_menawari', idn: 'Menawari', esp: 'Ofrecer algo a alguien (con el destinatario como objeto)', ex: 'Mereka menawari saya bantuan.', exEsp: 'Ellos me ofrecieron ayuda.' },
+                                { id: 'b2u5_menawarkan', idn: 'Menawarkan', esp: 'Ofrecer algo (el destinatario puede expresarse con kepada)', ex: 'Mereka menawarkan bantuan kepada saya.', exEsp: 'Ellos me ofrecieron ayuda.' },
+                                { id: 'v448', idn: 'Bantuan', esp: 'Ayuda / asistencia', ex: 'Saya perlu bantuan.', exEsp: 'Necesito ayuda.' },
+                                { id: 'b1v145', idn: 'Menerima', esp: 'Recibir', ex: 'Saya menerima umpan balik dari guru.', exEsp: 'Recibo comentarios del profesor.' }
+                            ],
+                            exercises: [],
+                            lessons: [
+                                {
+                                    title: '1. Dos formas de ofrecer',
+                                    objective: 'Reconoce las dos formas del par léxico y sus ejemplos completos.',
+                                    grammar: 'Compara los ejemplos fuente: «Mereka menawari saya bantuan» y «Mereka menawarkan bantuan kepada saya». El primer ejemplo presenta al destinatario saya como objeto junto al tema bantuan; el segundo presenta bantuan como objeto y kepada saya como destinatario oblicuo. Son preferencias documentadas para este par, no una regla universal.',
+                                    vocabIds: ['b2u5_menawari', 'b2u5_menawarkan'],
+                                    reviewVocabIds: ['v448'],
+                                    exercises: [
+                                        { vocabId: 'b2u5_menawari', type: 'mc', prompt: 'En «Mereka menawari saya bantuan», ¿qué forma verbal presenta la oferta?', options: ['menawari', 'menawarkan', 'menjatuhi'], answer: 0, explanation: 'La forma del ejemplo A es menawari; el estudio la analiza en una construcción de objeto doble.' },
+                                        { vocabId: 'b2u5_menawari', type: 'translate_es_id', prompt: 'Traduce al indonesio: «Ellos me ofrecieron ayuda».', answer: 'Mereka menawari saya bantuan.', explanation: 'La oración reproduce el ejemplo citado en el paquete de revisión; saya es el destinatario potencial y bantuan el tema.' },
+                                        { vocabId: 'b2u5_menawarkan', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Mereka menawarkan bantuan kepada saya.', explanation: 'Reconoce menawarkan y la expresión kepada saya para el destinatario.' }
+                                    ]
+                                },
+                                {
+                                    title: '2. Oferente, destinatario y tema',
+                                    objective: 'Identifica los participantes del evento de ofrecer sin confundir su papel semántico con su función gramatical.',
+                                    grammar: 'En ambos ejemplos, mereka es quien ofrece y bantuan es lo ofrecido. En A, saya es el destinatario potencial realizado como objeto; en B, kepada saya expresa al destinatario como oblicuo. La etiqueta «destinatario» describe el papel en el evento, no una traducción fija del sufijo.',
+                                    vocabIds: ['b2u5_menawari', 'b2u5_menawarkan'],
+                                    reviewVocabIds: ['v448'],
+                                    exercises: [
+                                        { vocabId: 'b2u5_menawari', type: 'mc', prompt: 'En el ejemplo A, ¿qué papel cumple «saya»?', options: ['Destinatario potencial', 'Oferente', 'Tema ofrecido'], answer: 0, explanation: 'Saya es la persona a quien se dirige la oferta; mereka es el oferente y bantuan el tema.' },
+                                        { vocabId: 'b2u5_menawari', type: 'order', prompt: 'Ordena la oración fuente: «Ellos me ofrecieron ayuda».', words: ['bantuan.', 'Mereka', 'saya', 'menawari'], correctOrder: ['Mereka', 'menawari', 'saya', 'bantuan.'], explanation: 'La secuencia conserva el destinatario saya y el tema bantuan en el ejemplo con menawari.' },
+                                        { vocabId: 'b2u5_menawarkan', type: 'translate_es_id', prompt: 'Escribe la oración en la que «ayuda» es el objeto y el destinatario aparece con kepada.', answer: 'Mereka menawarkan bantuan kepada saya.', explanation: 'Bantuan es el tema ofrecido; kepada saya expresa el destinatario.' }
+                                    ]
+                                },
+                                {
+                                    title: '3. Dos construcciones, no dos sufijos intercambiables',
+                                    objective: 'Compara el perfil construccional de menawari y menawarkan en el par documentado.',
+                                    grammar: 'El estudio de corpus describe una preferencia por la construcción de objeto doble con menawari y por la construcción monotransitiva con menawarkan. También informa variación para menawari. Por eso, memoriza el contraste de este par, no una fórmula que permita sustituir -i por -kan en cualquier verbo.',
+                                    vocabIds: ['b2u5_menawari', 'b2u5_menawarkan'],
+                                    reviewVocabIds: ['v448'],
+                                    exercises: [
+                                        { vocabId: 'b2u5_menawari', type: 'mc', prompt: '¿Qué ejemplo presenta dos objetos nominales, con el destinatario sin preposición?', options: ['Mereka menawari saya bantuan.', 'Mereka menawarkan bantuan kepada saya.', 'Rumah itu dijatuhi mangga.'], answer: 0, explanation: 'En el ejemplo A, saya y bantuan aparecen como objetos en el patrón de objeto doble descrito para menawari.' },
+                                        { vocabId: 'b2u5_menawarkan', type: 'order', prompt: 'Ordena la oración fuente: «Ellos ofrecieron ayuda y expresaron el destinatario con kepada».', words: ['saya.', 'Mereka', 'kepada', 'bantuan', 'menawarkan'], correctOrder: ['Mereka', 'menawarkan', 'bantuan', 'kepada', 'saya.'], explanation: 'El tema bantuan aparece como objeto y kepada saya expresa al destinatario.' },
+                                        { vocabId: 'b2u5_menawari', type: 'listen', prompt: 'Escucha y escribe el ejemplo completo con menawari.', answer: 'Mereka menawari saya bantuan.', explanation: 'Identifica el patrón concreto del ejemplo A; no lo generalices a todos los verbos con -i.' }
+                                    ]
+                                },
+                                {
+                                    title: '4. La polisemia de -i y los límites de la regla',
+                                    objective: 'Reconoce que -i aparece en lecturas diferentes y evita una equivalencia morfológica única.',
+                                    grammar: 'Arka et al. (2009) describen, entre otros, datangi con una lectura aplicativa/meta y panasi con una lectura causativa. Se presentan solo para reconocer la diversidad de patrones: no son vocabulario de producción ni autorizan a formar libremente nuevos verbos con -i. No enseñes «-i = lugar» ni «-i siempre añade un participante».',
+                                    vocabIds: ['b2u5_menawari'],
+                                    reviewVocabIds: ['b2u5_menawarkan', 'v448'],
+                                    exercises: [
+                                        { vocabId: 'b2u5_menawari', type: 'mc', prompt: '¿Qué afirmación resume mejor el uso de -i en esta unidad?', options: ['-i siempre significa «lugar».', '-i tiene lecturas distintas según la raíz y la construcción.', '-i y -kan siempre son intercambiables.'], answer: 1, explanation: 'La unidad presenta ejemplos acotados de lecturas distintas; el sufijo aislado no basta para predecir el significado.' },
+                                        { vocabId: 'b2u5_menawari', type: 'translate_es_id', prompt: 'Traduce al indonesio: «Le ofrezco ayuda a Rina».', answer: 'Saya menawari Rina bantuan.', explanation: 'Este es un ejemplo didáctico construido para practicar el patrón de menawari; no es una cita de la fuente académica y queda not_checked en naturalidad.' },
+                                        { vocabId: 'b2u5_menawarkan', type: 'mc', prompt: '¿Cómo se presentan «datangi» y «panasi» en esta unidad?', options: ['Como vocabulario nuevo de producción.', 'Como formas de reconocimiento de lecturas diferentes de -i.', 'Como formas intercambiables con menawari.'], answer: 1, explanation: 'Se reconocen como ejemplos de lecturas descritas en la fuente, sin añadirlos al inventario activo.' }
+                                    ]
+                                },
+                                {
+                                    title: '5. Integrar el patrón y reconocer la voz de paciente',
+                                    objective: 'Produce un texto guiado con el par léxico aprobado y reconoce un ejemplo documentado de voz de paciente.',
+                                    grammar: 'En «Mangga menjatuhi rumah» y «Rumah itu dijatuhi mangga», la entidad rumah pasa a sujeto en la segunda oración. El par se usa solo para reconocer el cambio de voz; menjatuhi y dijatuhi no se incorporan al vocabulario activo ni se pide producirlos. La producción guiada usa menawari/menawarkan y palabras ya conocidas.',
+                                    vocabIds: ['b2u5_menawari', 'b2u5_menawarkan'],
+                                    reviewVocabIds: ['v448', 'b1v145'],
+                                    exercises: [
+                                        { vocabId: 'b2u5_menawari', type: 'listen', prompt: 'Escucha y escribe la oración de voz de paciente.', answer: 'Rumah itu dijatuhi mangga.', explanation: 'Reconoce la oración del ejemplo documentado; dijatuhi se mantiene fuera del vocabulario activo.' },
+                                        { vocabId: 'b2u5_menawari', type: 'mc', prompt: 'En «Rumah itu dijatuhi mangga», ¿qué participante pasa a sujeto?', options: ['Rumah itu (la casa)', 'Mangga (el mango)', 'El oferente'], answer: 0, explanation: 'La casa aparece como sujeto en la oración de voz de paciente; el mango queda como el participante que cae.' },
+                                        { vocabId: 'b2u5_menawari', type: 'write', prompt: 'Escribe un mini texto de tres oraciones que use las dos formas aprobadas y cierre con una reacción. Usa solo vocabulario ya estudiado.', hint: 'Modelo: «Saya menawari Rina bantuan. Saya menawarkan bantuan kepada Rina. Rina menerima bantuan itu». Cambia el orden o los participantes solo si conservas el patrón de cada verbo.', modelAnswer: 'Saya menawari Rina bantuan. Saya menawarkan bantuan kepada Rina. Rina menerima bantuan itu.', explanation: 'La producción integra las dos construcciones del par y reutiliza menerima (B1) y bantuan (A2), sin añadir vocabulario nuevo.' },
+                                        { vocabId: 'b2u5_menawarkan', type: 'write', prompt: 'Explica brevemente en español por qué menawari y menawarkan no deben tratarse como sufijos intercambiables.', hint: 'Menciona el destinatario, el tema y la variación observada para menawari.', modelAnswer: 'En el par estudiado, menawari suele perfilar al oferente, al destinatario potencial y al tema en una construcción de objeto doble. Menawarkan perfila al oferente y al tema, y puede expresar el destinatario con kepada. El estudio también registra variación, así que no es una regla universal.', explanation: 'La respuesta resume el contraste léxico acotado y evita generalizarlo a todos los verbos con -i y -kan.' }
+                                    ]
+                                }
+                            ]
+                        },
                     ]
                 }
             ]
@@ -6598,10 +6674,10 @@
         }
         function getLearningLevels() {
             return getLevels().filter(level =>
-                (level.id !== 'B2' || level.units.some(unit => unit.id === 'b2_u1' || unit.id === 'b2_u2' || unit.id === 'b2_u3' || unit.id === 'b2_u4')) &&
+                (level.id !== 'B2' || level.units.some(unit => unit.id === 'b2_u1' || unit.id === 'b2_u2' || unit.id === 'b2_u3' || unit.id === 'b2_u4' || unit.id === 'b2_u5')) &&
                 (level.id !== 'A2' || A2_RELEASE_ENABLED)
             ).map(level => level.id === 'B2'
-                ? { ...level, units: level.units.filter(unit => unit.id === 'b2_u1' || unit.id === 'b2_u2' || unit.id === 'b2_u3' || unit.id === 'b2_u4') }
+                ? { ...level, units: level.units.filter(unit => unit.id === 'b2_u1' || unit.id === 'b2_u2' || unit.id === 'b2_u3' || unit.id === 'b2_u4' || unit.id === 'b2_u5') }
                 : level);
         }
         function getUniqueLearningVocabulary() {
@@ -6742,7 +6818,7 @@
                 const weak = srs.filter(i => i.val && i.val.efactor < 2.3)
                     .map(i => known.find(v => v.id === i.key)).filter(Boolean).slice(0, 10).map(v => v.idn);
                 const lvl = CourseData.levels.filter(l => l.units.some(u =>
-                    (l.id !== 'B2' || u.id === 'b2_u1' || u.id === 'b2_u2' || u.id === 'b2_u3' || u.id === 'b2_u4') && App.completedUnits.includes(u.id)
+                    (l.id !== 'B2' || u.id === 'b2_u1' || u.id === 'b2_u2' || u.id === 'b2_u3' || u.id === 'b2_u4' || u.id === 'b2_u5') && App.completedUnits.includes(u.id)
                 )).map(l => l.id).pop() || 'A1';
                 return `Eres un profesor de indonesio estándar (bahasa baku) para hispanohablantes. Crea UNA unidad sobre el tema: "${topic}".
 Nivel del alumno: ${lvl}, empezó de cero absoluto (unidades completadas: ${App.completedUnits.length}). Sé gradual y no asumas conocimientos previos.
@@ -7378,7 +7454,7 @@ Requisitos:
             },
             getVisibleLearningUnits(level) {
                 if (!level) return [];
-                return level.id === 'B2' ? level.units.slice(0, 4) : level.units;
+                return level.id === 'B2' ? level.units.slice(0, 5) : level.units;
             },
             getLearningLevelProgress(level) {
                 const units = this.getVisibleLearningUnits(level);
@@ -7583,7 +7659,7 @@ Requisitos:
                 placeholder.textContent = 'Selecciona una unidad';
                 select.appendChild(placeholder);
                 CourseData.levels.forEach(level => {
-                    const availableUnits = level.id === 'B2' ? level.units.slice(0, 4) : level.units;
+                    const availableUnits = level.id === 'B2' ? level.units.slice(0, 5) : level.units;
                     availableUnits.forEach((unit, index) => {
                     const option = document.createElement('option');
                     option.value = unit.id;
@@ -8304,7 +8380,7 @@ Requisitos:
             if (language === 'es' && typeof CourseData !== 'undefined' && Array.isArray(CourseData.levels)) {
                 for (const level of CourseData.levels) {
                     for (const unit of level.units || []) {
-                        if (level.id === 'B2' && !['b2_u1', 'b2_u2', 'b2_u3', 'b2_u4'].includes(unit.id)) continue;
+                        if (level.id === 'B2' && !['b2_u1', 'b2_u2', 'b2_u3', 'b2_u4', 'b2_u5'].includes(unit.id)) continue;
                         const authoredExercises = [
                             ...(unit.exercises || []),
                             ...(unit.lessons || []).flatMap(lesson => lesson.exercises || [])

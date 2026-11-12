@@ -36,3 +36,10 @@
 - Crear commits, PR y fusionar está autorizado por la misión cuando el diff esté revisado, CI verde en el head exacto, informes sin errores bloqueantes y no haya comentarios/revisiones/hilos pendientes. No fusionar con CI pendiente o fallido.
 - No afirmar pruebas de dispositivo físico si solo se ejecutó navegador. Distinguir probado, revisado por lectura y no verificado.
 - El detalle de la verificación post-merge está en `docs/PHASE_6_POSTMERGE_VERIFICATION.md`.
+
+## Accesibilidad de traducción contextual — PR en curso (12 nov 2026)
+
+- Se detectó que la burbuja de traducción de palabras (`tapTranslationBubble`) se cerraba con Escape sin devolver el foco al botón que la abrió. También el popup de significado (`wordMeaningPopup`) se comportaba como diálogo pero no movía el foco al abrirse ni restauraba el foco al texto de origen al cerrarse.
+- La rama `fix/translation-popup-focus` introduce restauración de foco en la burbuja y gestión de foco de entrada/salida en el popup de significado. El elemento de texto de origen recibe `tabindex="-1"` solo mientras el popup está abierto; se restaura su atributo previo al cerrar. Escape y el botón Cerrar devuelven el foco al origen. No se añade focus trap porque el popup de significado no es modal.
+- Se añadió una prueba Playwright a 360×740 para la navegación por teclado de ambos popups. Debe verificarse en CI que el fixture de vocabulario y el posicionamiento por coordenadas funcionen en Chromium.
+- Sin cambios al currículo, vocabulario, IndexedDB, backup JSON v3 ni dependencias. La prueba física en Tecno Pova 4 continúa pendiente; no inferirla de Playwright.

@@ -3,12 +3,12 @@
 > Memoria operativa; mantenerla por debajo de unas 150 líneas. Detalles extensos y evidencia histórica viven en documentos y PR enlazados. Última actualización: 12 nov 2026.
 
 ## Estado vigente
-- `main` incorpora PR #515–#518; #518 se fusionó por squash como `5b10a1e`. Su regresión post-merge (#43138303666: test 74/74 y calidad 10/10) y Pages (#43138301958: build, reporte y deploy) terminaron en éxito. #517 amplió la traducción contextual (palabras ≥44×44 px; audio 48×48 px); #518 protege los cuatro destinos de navegación ≥44×44 px a 360 px.
+- `main` incorpora PR #515–#519. #518 se fusionó por squash como `5b10a1e`; su regresión post-merge (#43138303666: test 74/74 y calidad 10/10) y Pages (#43138301958: build, reporte y deploy) terminaron en éxito. #519 se fusionó por squash como `ac771984`. Su regresión post-merge (#43138940547: test 74/74 y calidad 10/10) y Pages (#43138939223: build, reporte y deploy) también terminaron en éxito. #517 amplió la traducción contextual (palabras ≥44×44 px; audio 48×48 px); #518 protege los cuatro destinos de navegación ≥44×44 px a 360 px; #519 contiene Tab/Shift+Tab en los diálogos móviles de nivel/herramientas, cierra con Escape y restaura el foco al control de origen.
 - Estado curricular comprobado en `main`: A1 32/32, A2 40/40, B1 50/50; B2 U1–U4 implementadas (4/60), U5–U60 ocultas/no ejecutables. Todas las unidades expuestas cumplen cinco o seis lecciones. No se cambiaron datos curriculares en esta tarea.
 - Auditoría local documentada: 122 unidades, 1.062 registros de vocabulario, 1.025 IDs únicos, 0 errores estructurales, 41 avisos heurísticos y 70 informativos. No certifica lingüística.
 - Pruebas locales de progresión, contratos curriculares, liberación y B2: 75/75 correctas. La suite `quality:tests` tuvo 128 pruebas correctas, pero Playwright 1.55 no admite `process.platform === android` en este terminal. CI Linux del PR #511 pasó en su head exacto.
 - PR #513 se fusionó por squash (`46e6b1b`). CI y Pages post-merge se verificaron en los SHA posteriores; sigue pendiente una prueba física específica de los controles de #513 en Android.
-- La lista de PR abiertas debe comprobarse de nuevo antes de cerrar Fase 6. CI post-merge y despliegue de Pages sí están verificados en el SHA exacto de `main` indicado arriba.
+- La verificación post-merge de #519 corresponde al SHA exacto `ac77198400c7ac71ec4eaab85414f56cb3b01f2a`; Regression 74/74, calidad 10/10 y Pages build/reporte/deploy en éxito.
 
 ## B2 U5 y decisiones pendientes
 - PR #511 documenta el par `menawari/menawarkan`, fuentes y 16 prototipos. Glosas, naturalidad, adecuación didáctica y vocabulario nuevo siguen pendientes de aprobación del dueño; todo sigue `not_checked` para esos juicios. No implementar ni activar U5 por “continúa”.
@@ -28,8 +28,8 @@
 - Fase 2: cobertura estructural A1–B2 revisada con pruebas de progreso y cinco/seis lecciones. La revisión editorial/lingüística de A1/A2 no está terminada.
 - Fase 3: auditoría ejecutada; 41 avisos son candidatos editoriales y requieren revisión contextual. No hay errores bloqueantes estructurales.
 - Fase 4: U5 sigue pendiente de aprobación específica; no inventar mapa U13–U60.
-- Fase 5–7: mejoras mobile-first y objetivos táctiles de #502, #513 y #517 integrados; #518 añade regresión de navegación. CI y Pages post-merge verificados. Sigue pendiente prueba física Android de #513, #517 y #518.
-- Siguiente mejora en curso: PR de focus trap por teclado para los diálogos móviles de nivel/herramientas; debe comprobar Tab/Shift+Tab, Escape y restauración del foco. No afecta currículo ni persistencia.
+- Fase 5–8: mejoras mobile-first y objetivos táctiles de #502, #513 y #517 integrados; #518 añade regresión de navegación; #519 añade contención y restauración del foco en diálogos móviles. CI y Pages post-merge verificados para #518 y #519. Sigue pendiente prueba física Android de #513, #517, #518 y #519.
+- Siguiente paso: continuar la auditoría de accesibilidad móvil sobre controles y diálogos existentes, priorizando hallazgos reproducibles y pruebas automatizadas. No iniciar B2 U5 ni cambiar currículo, IndexedDB o backup JSON v3. La verificación física de accesibilidad en Android sigue pendiente.
 
 ## Flujo Git
 - Trabajar en ramas descriptivas y PR pequeñas; nunca modificar `main` directamente. Cada PR debe incluir objetivo, archivos, pruebas, riesgos/limitaciones y actualizar este archivo.

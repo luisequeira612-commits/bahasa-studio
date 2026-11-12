@@ -8254,7 +8254,7 @@ Requisitos:
         window.addEventListener('DOMContentLoaded', () => App.init());
     </script>
 
-    <div id="tapTranslationBubble" class="tap-translation-bubble" role="group" aria-label="Traducción y repaso" hidden><span id="tapTranslationText"></span><button type="button" id="tapTranslationSave" class="tap-translation-save" hidden>＋ Guardar</button></div>
+    <div id="tapTranslationBubble" class="tap-translation-bubble" role="group" aria-label="Traducción y repaso" hidden><span id="tapTranslationText" aria-live="polite"></span><button type="button" id="tapTranslationSave" class="tap-translation-save" hidden>＋ Guardar</button></div>
     <div id="wordMeaningPopup" class="word-meaning-popup" role="dialog" aria-label="Significado de la palabra" aria-live="polite" hidden>
         <div class="word-meaning-popup-head">
             <div>
@@ -8353,7 +8353,7 @@ Requisitos:
                     const visible = text.slice(current.index, end);
                     output += '<button type="button" class="tap-translation-word" data-translation="' +
                         escapeHtml(found.target) + '"' + (found.vocabId ? ' data-vocab-id="' + escapeHtml(found.vocabId) + '"' : '') +
-                        ' aria-label="Ver traducción de ' + escapeHtml(visible) + '">' +
+                        ' aria-label="Ver traducción de ' + escapeHtml(visible) + '" aria-controls="tapTranslationBubble" aria-expanded="false">' +
                         escapeHtml(visible) + '</button>';
                     cursor = end;
                     i += found.tokens.length;
@@ -8392,10 +8392,18 @@ Requisitos:
             let activeButton = null;
             const translationText = document.getElementById('tapTranslationText');
             const saveButton = document.getElementById('tapTranslationSave');
-            function close() { bubble.hidden = true; activeButton = null; bubble.classList.remove('above'); }
+            function close() {
+                if (activeButton) activeButton.setAttribute('aria-expanded', 'false');
+                bubble.hidden = true;
+                activeButton = null;
+                bubble.classList.remove('above');
+            }
             function open(button) {
                 if (activeButton === button && !bubble.hidden) { close(); return; }
+                if (activeButton) activeButton.setAttribute('aria-expanded', 'false');
                 activeButton = button;
+                button.setAttribute('aria-controls', 'tapTranslationBubble');
+                button.setAttribute('aria-expanded', 'true');
                 translationText.textContent = button.dataset.translation || '';
                 saveButton.dataset.vocabId = button.dataset.vocabId || '';
                 saveButton.hidden = !saveButton.dataset.vocabId;

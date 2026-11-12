@@ -17,8 +17,8 @@ App web para aprender idiomas, estilo Duolingo, alojada en GitHub Pages. Hoy tie
 - Sin agentes de IA externos dentro de la app por ahora.
 - No se publica en tiendas de apps.
 
-## Hoja de ruta de idiomas (decisión del dueño: 5 nov 2026)
-1. **Indonesio:** completar todo el material hasta B2. A1 está completo; A2 y B1 están pendientes de consolidación; B2 se desarrollará después. No añadir ningún otro idioma hasta completar el indonesio hasta B2.
+## Hoja de ruta de idiomas (estado vigente: 11 nov 2026)
+1. **Indonesio:** completar todo el material hasta B2. A1, A2 y B1 están completos; B2 U1–U4 están implementadas y U5–U60 siguen pendientes. No añadir ningún otro idioma hasta completar el indonesio hasta B2.
 2. **Inglés:** se añadirá después del indonesio, desde nivel cero (A1), pensado para hispanohablantes. Incluir pronunciación con audio o transcripción sencilla, falsos amigos y verbos frasales.
 3. **Otros idiomas:** no hay ningún otro idioma planificado por ahora. Cualquier idioma adicional lo decidirá el dueño más adelante.
 
@@ -35,14 +35,16 @@ App web para aprender idiomas, estilo Duolingo, alojada en GitHub Pages. Hoy tie
 - Cualquier decisión de escalabilidad debe mantener cero backend y cero costo. Si una idea requiere servidor, cuentas o pago, no se implementa: me la propones aparte.
 - Antes de compartir la app con otras personas, revisar: licencias y fuentes del vocabulario, que no haya datos personales ni claves expuestas en el repo, y que las instrucciones de uso estén claras.
 
-## Reglas curriculares B1/B2 (decisión del dueño: 6 nov 2026)
-- A1 (32 unidades) y A2 (40 unidades) están completos: no modificar sus unidades, vocabulario, ejercicios, glosas, explicaciones ni datos de seguimiento.
-- Completar B1 U1–U50 antes de desarrollar B2 U1–U60. No añadir nuevas unidades B2 antes de completar B1.
+## Reglas curriculares B1/B2 (estado vigente: 11 nov 2026)
+- A1 (32 unidades), A2 (40 unidades) y B1 (50 unidades) están completos. No modificar sus unidades, vocabulario, ejercicios, glosas, explicaciones ni datos de seguimiento salvo corrección demostrable mediante un PR acotado.
+- B2 U1–U4 están implementadas y expuestas secuencialmente. U5–U60 no son ejecutables hasta contar con contenido aprobado e implementado; U5 es la siguiente unidad de trabajo.
 - Las unidades B1 se muestran y se pueden estudiar en cuanto su PR se fusiona; no ocultarlas mediante flags o bloqueos ligados a A1.
+- No asumir que todas las unidades B2 están diseñadas: U13–U60 aún no tienen mapa aprobado.
 - Cada unidad nueva: 14–22 ejercicios, al menos cuatro tipos entre opción múltiple, traducción, ordenación, escucha con audio reproducible y escritura; al menos cinco ejercicios con frases completas y una producción original guiada. Añadir repaso acumulativo cada 4–5 unidades.
 - Desde A2 en adelante, enseñar mediante textos, diálogos y familias léxicas, no listas aisladas.
 - Enseñar afijos mediante familias (raíz + derivados en ejemplos completos); no asignar una traducción fija al afijo. Cada forma derivada nueva conserva su propio ID canónico; nunca duplicar una forma con IDs distintos. No exigir producción antes del nivel previsto.
 - En B1, memper- y ber-kan son solo de reconocimiento. Consultar KBBI cuando esté disponible; marcar dudas y no afirmar validación nativa.
+- En B2 U4 el eje es exclusivamente `-kan`; U5–U6 continúan con `-i` y `memper-` según el eje aprobado, pero el eje no autoriza por sí solo ejemplos, glosas, claves ni vocabulario nuevo.
 - No cambiar IndexedDB, el formato de backup JSON v3 ni añadir dependencias/servicios externos.
 
 ## Git

@@ -3,7 +3,7 @@
 > Memoria operativa; mantenerla por debajo de unas 150 líneas. Detalles extensos y evidencia histórica viven en documentos y PR enlazados. Última actualización: 11 nov 2026.
 
 ## Estado vigente
-- `main` está en `7bb78932df8792a0dcdecf1ac98f306555b1387b`, tras fusionar PR #513 y su registro documental #514. #513 eleva a 44×44 px los controles compactos de Repasar, Tutor y Diccionario; #514 registra el merge.
+- `main` está en `b8376c620312ff5594f3c266a3d8ec66eba40b78`, tras fusionar PR #515 (verificación documental de Fase 6). La regresión post-merge (#43117538921) y Pages (#43117537648) finalizaron en éxito sobre el SHA previo `7bb78932df8792a0dcdecf1ac98f306555b1387b`; #513 elevó a 44×44 px los controles compactos de Repasar, Tutor y Diccionario.
 - Estado curricular comprobado en `main`: A1 32/32, A2 40/40, B1 50/50; B2 U1–U4 implementadas (4/60), U5–U60 ocultas/no ejecutables. Todas las unidades expuestas cumplen cinco o seis lecciones. No se cambiaron datos curriculares en esta tarea.
 - Auditoría local documentada: 122 unidades, 1.062 registros de vocabulario, 1.025 IDs únicos, 0 errores estructurales, 41 avisos heurísticos y 70 informativos. No certifica lingüística.
 - Pruebas locales de progresión, contratos curriculares, liberación y B2: 75/75 correctas. La suite `quality:tests` tuvo 128 pruebas correctas, pero Playwright 1.55 no admite `process.platform === android` en este terminal. CI Linux del PR #511 pasó en su head exacto.
@@ -29,7 +29,7 @@
 - Fase 3: auditoría ejecutada; 41 avisos son candidatos editoriales y requieren revisión contextual. No hay errores bloqueantes estructurales.
 - Fase 4: U5 sigue pendiente de aprobación específica; no inventar mapa U13–U60.
 - Fase 5: mejoras mobile-first de Aprender/Guardi integradas (#502) y objetivos táctiles de Repasar/Tutor/Diccionario de 44×44 px (#513). CI pre-merge verde; prueba física y Pages sin verificar.
-- Fase 6: integración documental #514, regresión post-merge y Pages verificadas en `7bb7893`; queda solo una prueba física específica de los controles #513. Las tareas técnicas independientes pueden continuar.
+- Fase 6: PR #515 documenta la verificación post-merge: Regression tests y Pages en éxito sobre `7bb7893`. PR #516 reconcilia `AGENTS.md` con el currículo vigente; queda solo una prueba física específica de los controles #513. Las tareas técnicas independientes pueden continuar.
 
 ## Flujo Git
 - Trabajar en ramas descriptivas y PR pequeñas; nunca modificar `main` directamente. Cada PR debe incluir objetivo, archivos, pruebas, riesgos/limitaciones y actualizar este archivo.

@@ -320,7 +320,7 @@ test('primary bottom navigation exposes four accessible touch targets at 360px',
     const buttons = navigation.locator('button.nav-btn');
     assert.equal(await navigation.getAttribute('aria-label'), 'Navegación principal');
     assert.equal(await buttons.count(), 4, 'main navigation should keep its four destinations');
-    assert.deepEqual(await buttons.locator('span').allInnerTexts(), ['Aprender', 'Repasar', 'Tutor', 'Perfil']);
+    assert.deepEqual((await buttons.allInnerTexts()).map(label => label.trim()), ['Aprender', 'Repasar', 'Tutor', 'Perfil']);
 
     const layout = await page.evaluate(() => {
       const nav = document.querySelector('nav.nav-bottom');

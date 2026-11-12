@@ -247,3 +247,60 @@ test('phase 5B learning screen is compact, blue and preserves all level/tool ent
     await new Promise(resolve => server.close(resolve));
   }
 });
+
+
+test('tap translation controls meet touch target sizes at 360px', async () => {
+  const { server, url } = await startServer();
+  const browser = await chromium.launch({ headless: true });
+  const context = await browser.newContext({ viewport: { width: 360, height: 740 }, serviceWorkers: 'block', reducedMotion: 'reduce' });
+  const page = await context.newPage();
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
+    const sizes = await page.evaluate(() => {
+      const previousUnit = LessonEngine.currentUnit;
+      LessonEngine.currentUnit = {
+        vocab: [
+          { id: 'touch-saya', idn: 'Saya', esp: 'Yo' },
+          { id: 'touch-makan', idn: 'makan', esp: 'comer' }
+        ]
+      };
+      const host = document.createElement('div');
+      host.style.cssText = 'position:fixed;left:10px;top:10px;width:340px;visibility:hidden;';
+      host.innerHTML = window.renderTapTranslationSentence('Saya makan', 'idn');
+      document.body.append(host);
+      LessonEngine.currentUnit = previousUnit;
+
+      const box = element => {
+        const rect = element.getBoundingClientRect();
+        return { width: rect.width, height: rect.height };
+      };
+      const speaker = host.querySelector('.tap-translation-speaker');
+      const words = Array.from(host.querySelectorAll('.tap-translation-word'));
+      const phrase = host.querySelector('.tap-translation-phrase');
+      return {
+        speaker: speaker ? box(speaker) : null,
+        words: words.map(box),
+        phraseWidth: phrase ? phrase.getBoundingClientRect().width : 0,
+        hostWidth: host.getBoundingClientRect().width,
+        horizontalOverflow: host.scrollWidth > host.clientWidth
+      };
+    });
+
+    assert.ok(sizes.speaker, 'Indonesian sentence should include its audio button');
+    assert.ok(sizes.speaker.width >= 48 && sizes.speaker.height >= 48,
+      'sentence audio target must be at least 48×48px: ' + JSON.stringify(sizes.speaker));
+    assert.equal(sizes.words.length, 2, 'both known words should expose translation controls');
+    for (const word of sizes.words) {
+      assert.ok(word.width >= 44 && word.height >= 44,
+        'each word translation target must be at least 44×44px: ' + JSON.stringify(word));
+    }
+    assert.ok(sizes.phraseWidth <= sizes.hostWidth, 'translation phrase must fit the 340px mobile container');
+    assert.equal(sizes.horizontalOverflow, false, 'translation sentence must not create horizontal overflow');
+  } finally {
+    await context.close();
+    await browser.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});

@@ -433,3 +433,46 @@ test('unit detail sheet contains keyboard focus and restores its trigger on Esca
     await new Promise(resolve => server.close(resolve));
   }
 });
+
+test('translation bubble exposes expanded state and supports keyboard open and Escape close', async () => {
+  const { server, url } = await startServer();
+  const browser = await chromium.launch({ headless: true });
+  const context = await browser.newContext({ viewport: { width: 360, height: 740 }, serviceWorkers: 'block', reducedMotion: 'reduce' });
+  const page = await context.newPage();
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
+    await page.evaluate(() => {
+      const host = document.querySelector('#actionArea') || document.body;
+      const trigger = document.createElement('button');
+      trigger.type = 'button';
+      trigger.className = 'tap-translation-word';
+      trigger.dataset.translation = 'casa';
+      trigger.dataset.vocabId = 'keyboard-a11y-test';
+      trigger.textContent = 'rumah';
+      host.appendChild(trigger);
+      trigger.focus();
+    });
+
+    const trigger = page.locator('.tap-translation-word').last();
+    await page.keyboard.press('Enter');
+    const bubble = page.locator('#tapTranslationBubble');
+    await page.waitForFunction(() => document.getElementById('tapTranslationBubble')?.hidden === false);
+    assert.equal(await trigger.getAttribute('aria-expanded'), 'true');
+    assert.equal(await trigger.getAttribute('aria-controls'), 'tapTranslationBubble');
+    assert.equal(await bubble.getAttribute('aria-label'), 'Traducción y repaso');
+    assert.equal(await page.locator('#tapTranslationText').getAttribute('aria-live'), 'polite');
+
+    await page.keyboard.press('Escape');
+    await page.waitForFunction(() => document.getElementById('tapTranslationBubble')?.hidden === true);
+    assert.equal(await trigger.getAttribute('aria-expanded'), 'false');
+    assert.equal(await page.evaluate(() => document.activeElement?.classList.contains('tap-translation-word')), true,
+      'Escape should leave keyboard focus on the word that opened the bubble');
+  } finally {
+    await context.close();
+    await browser.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});
+

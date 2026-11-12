@@ -453,7 +453,7 @@ test('translation popups restore keyboard focus to their originating content', a
       trigger.dataset.vocabId = 'fixture-word';
       trigger.textContent = 'makan';
       trigger.style.cssText = 'position:fixed;left:12px;top:100px;z-index:9999;';
-      document.body.appendChild(trigger);
+      document.body.insertBefore(trigger, document.getElementById('tapTranslationBubble'));
     });
 
     const translationTrigger = page.locator('#fixtureTranslationTrigger');

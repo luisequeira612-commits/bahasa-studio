@@ -304,3 +304,52 @@ test('tap translation controls meet touch target sizes at 360px', async () => {
     await new Promise(resolve => server.close(resolve));
   }
 });
+
+
+test('primary bottom navigation exposes four accessible touch targets at 360px', async () => {
+  const { server, url } = await startServer();
+  const browser = await chromium.launch({ headless: true });
+  const context = await browser.newContext({ viewport: { width: 360, height: 740 }, serviceWorkers: 'block', reducedMotion: 'reduce' });
+  const page = await context.newPage();
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
+
+    const navigation = page.locator('nav.nav-bottom');
+    const buttons = navigation.locator('button.nav-btn');
+    assert.equal(await navigation.getAttribute('aria-label'), 'Navegación principal');
+    assert.equal(await buttons.count(), 4, 'main navigation should keep its four destinations');
+    assert.deepEqual((await buttons.allInnerTexts()).map(label => label.trim()), ['Aprender', 'Repasar', 'Tutor', 'Perfil']);
+
+    const layout = await page.evaluate(() => {
+      const nav = document.querySelector('nav.nav-bottom');
+      const navRect = nav.getBoundingClientRect();
+      const buttons = Array.from(nav.querySelectorAll('button.nav-btn'));
+      return {
+        viewportWidth: window.innerWidth,
+        nav: { left: navRect.left, right: navRect.right, top: navRect.top, bottom: navRect.bottom, height: navRect.height },
+        buttons: buttons.map(button => {
+          const rect = button.getBoundingClientRect();
+          return { width: rect.width, height: rect.height, left: rect.left, right: rect.right, bottom: rect.bottom };
+        }),
+        horizontalOverflow: document.documentElement.scrollWidth > window.innerWidth
+      };
+    });
+
+    assert.equal(layout.nav.left, 0, 'navigation should align with the left viewport edge');
+    assert.equal(layout.nav.right, layout.viewportWidth, 'navigation should span the viewport');
+    assert.ok(layout.nav.height >= 48, 'navigation bar should remain at least 48px tall');
+    for (const [index, button] of layout.buttons.entries()) {
+      assert.ok(button.width >= 44 && button.height >= 44,
+        'navigation target ' + index + ' must be at least 44×44px: ' + JSON.stringify(button));
+      assert.ok(button.left >= 0 && button.right <= layout.viewportWidth,
+        'navigation target ' + index + ' must stay inside the viewport');
+    }
+    assert.equal(layout.horizontalOverflow, false, 'bottom navigation must not create horizontal overflow');
+  } finally {
+    await context.close();
+    await browser.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});

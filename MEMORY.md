@@ -3,7 +3,7 @@
 > Memoria operativa; mantenerla por debajo de unas 150 líneas. Detalles extensos y evidencia histórica viven en documentos y PR enlazados. Última actualización: 11 nov 2026.
 
 ## Estado vigente
-- `main` incorpora PR #515 (merge `b8376c6`) y #516 (merge `61dd0a1`). La regresión post-merge y Pages finalizaron en éxito sobre el SHA exacto `61dd0a18ec829f8e2ad99acf7ff280b40c46d4f2` (runs #43135833188 y #43135832703). #513 elevó a 44×44 px los controles de Repasar, Tutor y Diccionario.
+- `main` incorpora PR #515–#517; #517 se fusionó por squash como `40f8f1f`. La regresión post-merge (#43137605348, 74/74 pasos) y Pages (#43137604318) terminaron en éxito sobre el SHA exacto `40f8f1f9bab8a751ce069be8f57bcdb9272f4f3b`. #517 amplió la traducción contextual: palabras ≥44×44 px y audio 48×48 px.
 - Estado curricular comprobado en `main`: A1 32/32, A2 40/40, B1 50/50; B2 U1–U4 implementadas (4/60), U5–U60 ocultas/no ejecutables. Todas las unidades expuestas cumplen cinco o seis lecciones. No se cambiaron datos curriculares en esta tarea.
 - Auditoría local documentada: 122 unidades, 1.062 registros de vocabulario, 1.025 IDs únicos, 0 errores estructurales, 41 avisos heurísticos y 70 informativos. No certifica lingüística.
 - Pruebas locales de progresión, contratos curriculares, liberación y B2: 75/75 correctas. La suite `quality:tests` tuvo 128 pruebas correctas, pero Playwright 1.55 no admite `process.platform === android` en este terminal. CI Linux del PR #511 pasó en su head exacto.
@@ -29,7 +29,7 @@
 - Fase 3: auditoría ejecutada; 41 avisos son candidatos editoriales y requieren revisión contextual. No hay errores bloqueantes estructurales.
 - Fase 4: U5 sigue pendiente de aprobación específica; no inventar mapa U13–U60.
 - Fase 5: mejoras mobile-first de Aprender/Guardi (#502) y objetivos táctiles de Repasar/Tutor/Diccionario (#513) integrados. Pages y CI post-merge verificados; prueba física específica de #513 pendiente.
-- Fase 6: PR #515 y #516 fusionadas; `AGENTS.md` ya refleja A1/A2/B1 completos y B2 U1–U4 implementadas. Regression tests y Pages post-merge en éxito sobre `61dd0a1`. La prueba física específica de #513 sigue pendiente. Fase 7 amplía los objetivos táctiles de la traducción en ejercicios (PR #517).
+- Fase 6: PR #515/#516 integradas; CI y Pages post-merge correctos. Fase 7: PR #517 integrada; CI post-merge 74/74 y Pages correctos. Sigue pendiente prueba física Android de #513/#517. Nueva regresión en curso: PR #518 comprueba cuatro destinos de navegación y objetivos ≥44×44 px a 360 px.
 
 ## Flujo Git
 - Trabajar en ramas descriptivas y PR pequeñas; nunca modificar `main` directamente. Cada PR debe incluir objetivo, archivos, pruebas, riesgos/limitaciones y actualizar este archivo.

@@ -39,5 +39,6 @@
 
 
 ## Accesibilidad de traducción contextual — 12 nov 2026
-- PR en curso: la burbuja de traducción anuncia el texto con `aria-live="polite"`, cada palabra informa `aria-controls` y `aria-expanded`, y Escape restablece el estado expandido sin desplazar el foco del botón activador. Incluye regresión Playwright para Enter/Escape a 360×740. El popup de significado queda como siguiente auditoría; no se ha modificado todavía.
+- PR en curso: la burbuja de traducción anuncia el texto con `aria-live="polite"`, cada palabra informa `aria-controls` y `aria-expanded`, y Escape restablece el estado expandido sin desplazar el foco del botón activador. Incluye regresión Playwright para Enter/Escape a 360×740. El popup de significado se audita en PR #526: mueve el foco a Cerrar y lo restaura al texto de origen al cerrar con Escape o Cerrar. La prueba Playwright detectó y corrigió el orden de restauración de tabindex/foco.
 - Sin cambios al currículo, IndexedDB, backup JSON v3 ni dependencias. La prueba física Android sigue pendiente.
+- PR #526 continúa la accesibilidad contextual con restauración del foco en la burbuja y en el popup de significado; el texto de origen conserva `tabindex="-1"` para mantener el foco programático sin entrar en el orden normal de Tab; si ya tenía otro valor, se restaura ese valor. Añade regresión Playwright a 360×740. Sin cambios curriculares, IndexedDB, backup JSON v3 ni dependencias; prueba física Android pendiente.

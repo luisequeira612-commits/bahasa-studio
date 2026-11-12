@@ -8392,14 +8392,17 @@ Requisitos:
             let activeButton = null;
             const translationText = document.getElementById('tapTranslationText');
             const saveButton = document.getElementById('tapTranslationSave');
-            function close() {
+            function close(restoreFocus = false) {
+                const trigger = activeButton;
+                const shouldRestoreFocus = restoreFocus || bubble.contains(document.activeElement);
                 if (activeButton) activeButton.setAttribute('aria-expanded', 'false');
                 bubble.hidden = true;
                 activeButton = null;
                 bubble.classList.remove('above');
+                if (shouldRestoreFocus && trigger && trigger.isConnected) trigger.focus();
             }
             function open(button) {
-                if (activeButton === button && !bubble.hidden) { close(); return; }
+                if (activeButton === button && !bubble.hidden) { close(true); return; }
                 if (activeButton) activeButton.setAttribute('aria-expanded', 'false');
                 activeButton = button;
                 button.setAttribute('aria-controls', 'tapTranslationBubble');
@@ -8467,7 +8470,12 @@ Requisitos:
                 if (event.target === bubble) return;
                 if (!bubble.hidden && !bubble.contains(event.target)) close();
             });
-            document.addEventListener('keydown', event => { if (event.key === 'Escape') close(); });
+            document.addEventListener('keydown', event => {
+                if (event.key === 'Escape' && !bubble.hidden) {
+                    event.preventDefault();
+                    close(true);
+                }
+            });
             window.addEventListener('resize', close);
             window.addEventListener('scroll', close, true);
         }
@@ -8538,15 +8546,37 @@ Requisitos:
             const closeButton = document.getElementById('wordMeaningClose');
             const saveButton = document.getElementById('wordMeaningSave');
             let index = buildTapTranslationIndex();
+            let activeTrigger = null;
+            let activeTriggerTabIndex = null;
 
-            function closePopup() { popup.hidden = true; }
-            function showMeaning(token) {
+            function closePopup(restoreFocus = false) {
+                if (popup.hidden) return;
+                const trigger = activeTrigger;
+                const shouldRestoreFocus = restoreFocus || popup.contains(document.activeElement);
+                popup.hidden = true;
+                if (shouldRestoreFocus && trigger && trigger.isConnected) trigger.focus();
+                if (trigger && activeTriggerTabIndex !== null) {
+                    trigger.setAttribute('tabindex', activeTriggerTabIndex);
+                }
+                activeTrigger = null;
+                activeTriggerTabIndex = null;
+            }
+            function showMeaning(token, trigger) {
                 const matches = index.get(normalizeTapWord(token));
                 if (!matches || !matches.length) {
                     closePopup();
                     return;
                 }
                 termNode.textContent = matches[0].idn;
+                if (trigger && trigger !== activeTrigger) {
+                    if (activeTrigger) {
+                        if (activeTriggerTabIndex === null) activeTrigger.removeAttribute('tabindex');
+                        else activeTrigger.setAttribute('tabindex', activeTriggerTabIndex);
+                    }
+                    activeTrigger = trigger;
+                    activeTriggerTabIndex = trigger.getAttribute('tabindex');
+                    if (activeTriggerTabIndex === null) trigger.setAttribute('tabindex', '-1');
+                }
                 saveButton.dataset.vocabId = matches[0].id || '';
                 saveButton.disabled = false;
                 saveButton.textContent = '＋ Guardar para repasar';
@@ -8562,9 +8592,16 @@ Requisitos:
                     exampleNode.hidden = true;
                 }
                 popup.hidden = false;
+                closeButton.focus();
             }
 
-            closeButton.addEventListener('click', closePopup);
+            closeButton.addEventListener('click', () => closePopup(true));
+            document.addEventListener('keydown', event => {
+                if (event.key === 'Escape' && !popup.hidden) {
+                    event.preventDefault();
+                    closePopup(true);
+                }
+            });
             saveButton.addEventListener('click', async event => {
                 event.preventDefault();
                 event.stopPropagation();
@@ -8582,7 +8619,6 @@ Requisitos:
                     saveButton.textContent = 'Reintentar';
                 }
             });
-            document.addEventListener('keydown', event => { if (event.key === 'Escape') closePopup(); });
             document.addEventListener('click', event => {
                 if (popup.contains(event.target)) return;
                 if (event.target.closest && event.target.closest('button, input, textarea, select, a, label')) return;
@@ -8592,7 +8628,7 @@ Requisitos:
                 if (!textTarget) return;
                 index = buildTapTranslationIndex();
                 const token = tokenAtPoint(event);
-                if (token) showMeaning(token);
+                if (token) showMeaning(token, textTarget);
             });
 
             // Expose a refresh hook for vocabulary added by generated lessons.

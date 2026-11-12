@@ -51,8 +51,8 @@ test('the current node ring is empty until lessons are completed and uses comple
   assert.match(html, /progress\.completedLessonCount \/ progress\.lessons\.length/);
   assert.match(html, /stroke-dashoffset="?' \+ dashOffset/);
   assert.match(html, /current-unit-start-bubble/);
-  assert.match(html, /startBubble\.addEventListener\('click', \(\) => this\.openUnitSheet\(unit\.id\)\)/);
-  assert.match(html, /node\.addEventListener\('click', \(\) => this\.openUnitSheet\(unit\.id\)\)/);
+  assert.match(html, /startBubble\.addEventListener\('click', event => this\.openUnitSheet\(unit\.id, event\.currentTarget\)\)/);
+  assert.match(html, /node\.addEventListener\('click', event => this\.openUnitSheet\(unit\.id, event\.currentTarget\)\)/);
   assert.ok(html.includes("currentTitle.textContent = String(unit.title || '').replace(/^Unidad\\s+\\d+\\s*:\\s*/i, '').trim();"));
   assert.doesNotMatch(html.slice(html.indexOf('renderCourseRoute() {'), html.indexOf('async updateSrsView()')), /polyline|pathPoints/);
 });

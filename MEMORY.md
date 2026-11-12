@@ -38,7 +38,8 @@
 - El detalle de la verificación post-merge está en `docs/PHASE_6_POSTMERGE_VERIFICATION.md`.
 
 
-## Accesibilidad de traducción contextual — 12 nov 2026
-- PR en curso: la burbuja de traducción anuncia el texto con `aria-live="polite"`, cada palabra informa `aria-controls` y `aria-expanded`, y Escape restablece el estado expandido sin desplazar el foco del botón activador. Incluye regresión Playwright para Enter/Escape a 360×740. El popup de significado se audita en PR #526: mueve el foco a Cerrar y lo restaura al texto de origen al cerrar con Escape o Cerrar. La prueba Playwright detectó y corrigió el orden de restauración de tabindex/foco.
-- Sin cambios al currículo, IndexedDB, backup JSON v3 ni dependencias. La prueba física Android sigue pendiente.
-- PR #526 continúa la accesibilidad contextual con restauración del foco en la burbuja y en el popup de significado; el texto de origen conserva `tabindex="-1"` para mantener el foco programático sin entrar en el orden normal de Tab; si ya tenía otro valor, se restaura ese valor. Añade regresión Playwright a 360×740. Sin cambios curriculares, IndexedDB, backup JSON v3 ni dependencias; prueba física Android pendiente.
+## Accesibilidad contextual y Tutor — 12 nov 2026
+- PR #524 fusionada en `main` (`e0a1593`): la burbuja de traducción anuncia el texto con `aria-live="polite"`, cada palabra informa `aria-controls` y `aria-expanded`, y Escape restablece el estado expandido sin desplazar el foco del botón activador.
+- PR #526 fusionada por squash (`2a1dd2710c06b091d4bbbd75f060a0d449772132`): restaura el foco desde la burbuja y el popup de significado; el texto de origen conserva `tabindex="-1"` para mantener el foco programático fuera del orden normal de Tab. CI del PR: Regression 74/74 y calidad offline 10/10; Pages post-merge en éxito. Regresión post-merge de `main` en ejecución al preparar PR #527.
+- PR #527 en curso: el chat del Tutor usa una región `role="log"` con anuncios `aria-live="polite"`; los campos de Tutor, clave opcional y Diccionario reciben nombres accesibles explícitos. Incluye prueba Playwright del anuncio del fallback local. Sin cambios curriculares, IndexedDB, backup JSON v3 ni dependencias.
+- La prueba física Android de los controles táctiles y de foco sigue pendiente.

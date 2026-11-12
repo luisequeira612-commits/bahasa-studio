@@ -550,3 +550,43 @@ test('translation popups restore keyboard focus to their originating content', a
     await new Promise(resolve => server.close(resolve));
   }
 });
+
+test('Tutor and dictionary controls expose accessible names and announce new chat messages', async () => {
+  const { server, url } = await startServer();
+  const browser = await chromium.launch({ headless: true });
+  const context = await browser.newContext({ viewport: { width: 360, height: 740 }, serviceWorkers: 'block', reducedMotion: 'reduce' });
+  const page = await context.newPage();
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
+
+    assert.equal(await page.locator('#chatInput').getAttribute('aria-label'), 'Escribe tu consulta al tutor');
+    assert.equal(await page.locator('#apiKeyInput').getAttribute('aria-label'), 'Clave opcional de Gemini API');
+    assert.equal(await page.locator('#dictSearch').getAttribute('aria-label'), 'Buscar en el diccionario indonesio y español');
+
+    const chatLog = page.locator('#chatBox');
+    assert.equal(await chatLog.getAttribute('role'), 'log');
+    assert.equal(await chatLog.getAttribute('aria-live'), 'polite');
+    assert.equal(await chatLog.getAttribute('aria-relevant'), 'additions');
+    assert.equal(await chatLog.getAttribute('aria-label'), 'Conversación con el tutor');
+
+    await page.evaluate(async () => {
+      App.apiKey = '';
+      const input = document.getElementById('chatInput');
+      input.value = 'pagi';
+      await App.sendAiMessage();
+    });
+    await page.waitForFunction(() => {
+      const messages = document.querySelectorAll('#chatBox .msg.ai');
+      return messages.length > 1 && messages[messages.length - 1].textContent.includes('Selamat pagi');
+    });
+    assert.match(await chatLog.innerText(), /Modo Tutor Local/);
+    assert.match(await chatLog.innerText(), /Selamat pagi/);
+  } finally {
+    await context.close();
+    await browser.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});
+

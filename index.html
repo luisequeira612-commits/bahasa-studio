@@ -203,18 +203,18 @@
                 <p style="font-size: 0.75rem; margin: 8px 0; color: var(--text-muted);">Si agregas tu clave propia de Google AI Studio, las respuestas serán generadas por IA. Sin clave, solo tendrás respuestas locales básicas; el curso y sus ejercicios funcionan sin IA.</p>
                 <p style="font-size: 0.75rem; margin: 8px 0; color: var(--text-muted);"><strong>Para mantener el coste en $0, deja la clave vacía.</strong> Si configuras Gemini, tus consultas se enviarán a Google. Las cuotas y condiciones gratuitas pueden cambiar; si tu cuenta tiene facturación habilitada, no puedo garantizar que las llamadas sean siempre gratuitas. No necesitas una clave para estudiar las lecciones del curso.</p>
                 <div style="display:flex; gap: 8px;">
-                    <input type="password" id="apiKeyInput" class="input-field" placeholder="AIzaSy..." style="padding: 6px 10px; font-size:0.85rem;">
+                    <input type="password" id="apiKeyInput" class="input-field" placeholder="AIzaSy..." aria-label="Clave opcional de Gemini API" style="padding: 6px 10px; font-size:0.85rem;">
                     <button class="btn btn-sm" onclick="App.saveApiKey()">Guardar</button>
                 </div>
             </details>
         </div>
 
-        <div class="chat-box" id="chatBox">
+        <div class="chat-box" id="chatBox" role="log" aria-live="polite" aria-relevant="additions" aria-label="Conversación con el tutor">
             <div class="msg ai tutor-welcome"><img src="./assets/guardi/guardi-pensando.svg" width="100" height="100" alt=""><p>¿Qué quieres practicar hoy?</p><p>Soy tu asistente de idiomas. Puedes hacerme preguntas sobre lo que estás estudiando o pedirme ejercicios.</p></div>
         </div>
 
         <div style="display:flex; gap: 8px;">
-            <input type="text" id="chatInput" class="input-field" placeholder="Escribe tu consulta..." onkeydown="if(event.key==='Enter') App.sendAiMessage()">
+            <input type="text" id="chatInput" class="input-field" placeholder="Escribe tu consulta..." aria-label="Escribe tu consulta al tutor" onkeydown="if(event.key==='Enter') App.sendAiMessage()">
             <button class="btn btn-sm" onclick="App.sendAiMessage()">Enviar</button>
         </div>
     </main>
@@ -223,7 +223,7 @@
     <main id="view-dict" class="app-view">
         <button class="btn btn-outline btn-sm" type="button" onclick="App.switchView('ai')">← Tutor</button>
         <h2>Diccionario General</h2>
-        <input type="text" id="dictSearch" class="input-field" placeholder="Buscar indonesio o español..." oninput="App.filterDict()" style="margin: 12px 0;">
+        <input type="text" id="dictSearch" class="input-field" placeholder="Buscar indonesio o español..." aria-label="Buscar en el diccionario indonesio y español" oninput="App.filterDict()" style="margin: 12px 0;">
         <div id="dictContainer"></div>
     </main>
 

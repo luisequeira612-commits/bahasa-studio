@@ -412,7 +412,6 @@ test('unit detail sheet contains keyboard focus and restores its trigger on Esca
 
     const unitTrigger = page.locator('#courseContainer .learning-unit-node[data-path-state="current"]').first();
     await unitTrigger.click();
-    const sheet = page.locator('#unitBottomSheet');
 
     await page.waitForFunction(() => document.activeElement?.classList.contains('unit-sheet-close'));
     await page.keyboard.press('Shift+Tab');

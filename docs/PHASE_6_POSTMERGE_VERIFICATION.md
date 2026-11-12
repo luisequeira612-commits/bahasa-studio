@@ -7,7 +7,7 @@ Fecha: 11 nov 2026
 - `main` incorpora PR #513 (objetivos táctiles de 44×44 px en Repasar, Tutor y Diccionario) y PR #514 (registro documental).
 - El último `main` es `7bb78932df8792a0dcdecf1ac98f306555b1387b`.
 - PR #514 quedó fusionada correctamente.
-- No hay PR abiertas actualmente.
+- El estado de PR abiertas debe comprobarse de nuevo antes de cerrar Fase 6.
 - No se detectó una ejecución de GitHub Actions asociada al commit final #514 mediante el endpoint de ejecuciones por commit; por tanto, no se declara CI post-merge verde.
 - La prueba física en Android sigue sin realizarse desde este entorno.
 

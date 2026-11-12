@@ -500,7 +500,8 @@ test('translation popups restore keyboard focus to their originating content', a
     assert.equal(await meaningTrigger.getAttribute('tabindex'), null,
       'temporary programmatic focusability should be removed after closing');
     assert.equal(await bubble.isHidden(), true);
-    assert.equal(await saveTranslation.isHidden(), false);
+    assert.equal(await saveTranslation.getAttribute('hidden'), null,
+      'the save action should remain configured for the next opening');
   } finally {
     await context.close();
     await browser.close();

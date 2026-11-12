@@ -1,9 +1,9 @@
-# Diseño preliminar B2 U5 — funciones de -i y estructura de participantes
+# B2 U5 — funciones de -i y estructura de participantes
 
-**Estado:** aprobada explícitamente por el dueño el 12 nov 2026; implementación en curso en rama/PR. No exponer U5 hasta CI verde y fusión.  
+**Estado:** implementada y fusionada en `main` mediante PR #529 (`0c5899c9`); CI del PR y post-merge verde (74/74; calidad offline 10/10) y GitHub Pages publicado. Cinco lecciones y 16 ejercicios.  
 **Fecha:** 8 nov 2026.  
 **Ubicación:** segundo diseño del bloque aprobado U4–U6 (`-kan`, `-i`, `memper-`).  
-**Dependencias:** U1–U4. U1–U3 y U4 están implementadas; U5 continúa siendo una propuesta documental y depende de la progresión secuencial. La integración de U4 no aprueba por sí misma este diseño ni sus ejemplos.
+**Dependencias:** U1–U4. U1–U5 están implementadas; U5 se expone después de U4 mediante desbloqueo secuencial. La aprobación específica de U5 no se extiende a U6 ni a unidades posteriores.
 
 ## Propósito y alcance
 
@@ -84,19 +84,19 @@ Al menos cinco ejercicios deben evaluar oraciones completas y al menos uno debe 
 - No inferir el papel semántico solo por la terminación o por la posición lineal.
 - No presentar `-i` y `-kan` como sufijos sustituibles en cualquier raíz.
 - No trasladar automáticamente al indonesio las preposiciones ni la valencia del español.
-- Mantener B2 en desarrollo: U1–U4 están implementadas y visibles con desbloqueo secuencial; U5–U60 deben permanecer ocultas hasta que cada unidad tenga contenido aprobado, implementación y pruebas.
+- Mantener B2 en desarrollo: U1–U5 están implementadas y visibles con desbloqueo secuencial; U6–U60 deben permanecer ocultas hasta que cada unidad tenga contenido aprobado, implementación y pruebas.
 - No modificar A1/A2/B1, IndexedDB, backup JSON v3, trackers ni dependencias.
 - No afirmar validación nativa ni certificación MCER/BIPA.
 
-## Condiciones para pasar a implementación
+## Criterios aplicados y verificación de implementación
 
-1. U1–U4 están implementadas; las formas pendientes de U2 no se dan por aprobadas por este diseño. U5 sigue sin autorización de implementación.
-2. Se revisan las fuentes completas y se seleccionan ejemplos concretos con contexto suficiente.
-3. Cada forma y glosa se coteja con el inventario global; cualquier palabra nueva se propone al dueño antes de añadirla.
-4. Las actividades separan con claridad lecturas aplicativas y causativas sin imponer una regla universal.
-5. Las pruebas verifican referencias de vocabulario, roles semánticos, coherencia consigna-respuesta, progresión y ausencia de exposición anticipada.
+1. U1–U4 son prerrequisitos implementados; U5 se incorporó después de la aprobación explícita del dueño.
+2. Se revisaron las fuentes citadas y se limitaron los ejemplos fuente al contexto documentado.
+3. Se cotejaron las formas con el inventario global, se añadieron solo `menawari` y `menawarkan` con IDs propios y se reutilizaron los IDs canónicos disponibles.
+4. Las actividades separan las lecturas aplicativas y causativas sin imponer una regla universal ni generalizar el contraste `-i`/`-kan`.
+5. CI del PR y post-merge verificó las referencias de vocabulario, ejercicios, progresión y exposición secuencial; ambos finalizaron 74/74 y calidad offline 10/10.
 
-**Estatus de decisión:** el dueño aprobó el eje general U4–U6 (`-kan`, `-i`, `memper-`), no este desglose ni sus ejemplos. Es una propuesta reversible, no autorización para añadir contenido ejecutable.
+**Estatus de decisión:** el dueño aprobó el contenido específico de U5 el 12 nov 2026; la implementación se fusionó mediante PR #529. Esta aprobación no se extiende a U6 ni a otras unidades. La naturalidad/adecuación de los ejemplos construidos permanece `not_checked`.
 
 
 ## Revisión de evidencia y propuesta concreta (9 nov 2026)

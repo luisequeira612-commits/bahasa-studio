@@ -8555,9 +8555,8 @@ Requisitos:
                 const shouldRestoreFocus = restoreFocus || popup.contains(document.activeElement);
                 popup.hidden = true;
                 if (shouldRestoreFocus && trigger && trigger.isConnected) trigger.focus();
-                if (trigger) {
-                    if (activeTriggerTabIndex === null) trigger.removeAttribute('tabindex');
-                    else trigger.setAttribute('tabindex', activeTriggerTabIndex);
+                if (trigger && activeTriggerTabIndex !== null) {
+                    trigger.setAttribute('tabindex', activeTriggerTabIndex);
                 }
                 activeTrigger = null;
                 activeTriggerTabIndex = null;
@@ -8620,7 +8619,6 @@ Requisitos:
                     saveButton.textContent = 'Reintentar';
                 }
             });
-            document.addEventListener('keydown', event => { if (event.key === 'Escape') closePopup(); });
             document.addEventListener('click', event => {
                 if (popup.contains(event.target)) return;
                 if (event.target.closest && event.target.closest('button, input, textarea, select, a, label')) return;

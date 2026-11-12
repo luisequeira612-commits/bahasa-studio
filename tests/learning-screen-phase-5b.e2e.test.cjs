@@ -539,8 +539,8 @@ test('translation popups restore keyboard focus to their originating content', a
     await page.waitForFunction(() => document.getElementById('wordMeaningPopup').hidden);
     assert.equal(await page.evaluate(() => document.activeElement?.id), 'fixtureMeaningTrigger',
       'Escape should restore focus to the text that opened the meaning dialog');
-    assert.equal(await meaningTrigger.getAttribute('tabindex'), null,
-      'temporary programmatic focusability should be removed after closing');
+    assert.equal(await meaningTrigger.getAttribute('tabindex'), '-1',
+      'the text should remain programmatically focusable so restored focus is retained');
     assert.equal(await bubble.isHidden(), true);
     assert.equal(await saveTranslation.getAttribute('hidden'), null,
       'the save action should remain configured for the next opening');

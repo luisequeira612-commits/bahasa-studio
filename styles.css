@@ -1030,3 +1030,18 @@ body.unit-sheet-open { overflow: hidden; }
 .tutor-welcome img { width:100px; height:100px; object-fit:contain; align-self:center; pointer-events:none; }
 .guardi-celebration { width:152px; height:152px; animation:guardi-celebrate 600ms ease-in-out 2; }
 @keyframes guardi-celebrate { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-6px); } }
+
+
+/* Fase 7: objetivos táctiles cómodos para la traducción dentro de ejercicios. */
+.tap-translation-word {
+    min-width:44px;
+    min-height:44px;
+    padding:5px 6px;
+}
+.tap-translation-speaker {
+    flex:0 0 48px;
+    width:48px;
+    height:48px;
+    min-width:48px;
+    min-height:48px;
+}

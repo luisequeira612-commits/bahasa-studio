@@ -272,7 +272,7 @@ test('B2 U5 implements the approved -i design with five lessons, 16 exercises an
     : typeof exercise.answer === 'string' ? exercise.answer
     : Number.isInteger(exercise.answer) && Array.isArray(exercise.options) ? exercise.options[exercise.answer] || ''
     : '';
-  assert.ok(exercises.filter((exercise) => target(exercise).trim().split(/\\s+/).filter(Boolean).length >= 2).length >= 5,
+  assert.ok(exercises.filter((exercise) => target(exercise).trim().split(/\s+/).filter(Boolean).length >= 2).length >= 5,
     'U5 must include at least five complete-sentence targets');
   assert.ok(exercises.some((exercise) => exercise.type === 'write' && exercise.hint?.trim()
     && /mini texto|tres oraciones/i.test(exercise.prompt)), 'U5 must include guided original writing');

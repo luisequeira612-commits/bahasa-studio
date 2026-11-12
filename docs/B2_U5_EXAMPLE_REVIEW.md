@@ -47,7 +47,7 @@ No se asignan IDs ni se incorporan entradas nuevas en este documento.
 
 ## 3. Cinco lecciones y banco de revisión (16 actividades)
 
-Las actividades siguientes son prototipos de evaluación basados en los ejemplos documentados. Las traducciones son glosas didácticas de trabajo, no certificación lingüística. No se añaden oraciones indonesias nuevas ni distractores que dependan de juicios de gramaticalidad no documentados. La lección 5 no contiene producción en indonesio: esa práctica queda pendiente de aprobar vocabulario y ejemplos adicionales.
+Las actividades iniciales se basan en los ejemplos documentados; tras la aprobación del dueño se añadieron dos ejemplos didácticos construidos para la práctica y una producción guiada con vocabulario ya estudiado. Las traducciones son glosas de trabajo, no certificación lingüística. Los ejemplos construidos no se presentan como citas y permanecen `not_checked` en naturalidad/adecuación.
 
 ### Lección 1 — Reconocer la forma y la construcción (3)
 
@@ -138,4 +138,4 @@ La aprobación permite implementar U5 dentro de estos límites. Los ejemplos adi
 
 ## Producción guiada autorizada — 12 nov 2026
 
-Para cumplir el contrato de producción de B2 sin ampliar el vocabulario activo, la implementación usa los IDs ya existentes de `bantuan` (A2, `v448`) y `menerima` (B1, `b1v145`). Ejemplo didáctico construido (no cita): `Saya menawari Rina bantuan. Saya menawarkan bantuan kepada Rina. Rina menerima bantuan itu.`. Se etiqueta `not_checked` en naturalidad/adecuación y no se marca `verified_primary`.
+Para cumplir el contrato de producción de B2 sin ampliar el vocabulario activo, la implementación usa los IDs ya existentes de `bantuan` (A2, `v448`) y `umpan balik` (B1, `b1v145`); el verbo `menerima` se reutiliza desde el ejemplo canónico y no se añade como entrada. Ejemplo didáctico construido (no cita): `Saya menawari Rina bantuan. Saya menawarkan bantuan kepada Rina. Rina menerima bantuan itu.`. Se etiqueta `not_checked` en naturalidad/adecuación y no se marca `verified_primary`.

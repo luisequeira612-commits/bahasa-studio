@@ -123,7 +123,7 @@ El dueño aprobó U5 tras revisar el paquete documental de PR #511. La aprobaci�
 - Cinco lecciones y 16 actividades, distribuidas 3/3/3/3/4, con cinco tipos de ejercicio.
 - `menawari` y `menawarkan` como vocabulario nuevo con IDs canónicos propios y glosas contextuales; el contraste se limita a este par.
 - `datangi` y `panasi` solo reconocimiento; `menjatuhi`/`dijatuhi` solo reconocimiento de voz; `tanami`, `garami` y `kantongi` excluidas.
-- Se reutilizan los IDs canónicos A2/B1 de `bantuan` y `menerima` para construir producción guiada sin añadir más vocabulario.
+- Se reutilizan los IDs canónicos A2/B1 de `bantuan` (`v448`) y `umpan balik` (`b1v145`); `menerima` se reutiliza desde el ejemplo canónico de `umpan balik`, sin crear una entrada nueva.
 - Las frases nuevas de práctica se identifican como ejemplos didácticos construidos, no como citas de las fuentes; permanecen `not_checked` para naturalidad/adecuación.
 
 La implementación respeta la cautela de Rajeg (2023): `menawari` prefiere el patrón de objeto doble, `menawarkan` el patrón monotransitivo y hay variación, por lo que no se enseña una regla general de sustitución de `-i` y `-kan`. La documentación de Arka et al. (2009) solo respalda la nota de reconocimiento sobre lecturas distintas de `-i`; no convierte `datangi` o `panasi` en vocabulario productivo.

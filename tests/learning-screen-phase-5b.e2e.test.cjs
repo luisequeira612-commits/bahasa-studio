@@ -568,7 +568,7 @@ test('Tutor and dictionary controls expose accessible names and announce new cha
     const chatLog = page.locator('#chatBox');
     assert.equal(await chatLog.getAttribute('role'), 'log');
     assert.equal(await chatLog.getAttribute('aria-live'), 'polite');
-    assert.equal(await chatLog.getAttribute('aria-relevant'), 'additions');
+    assert.equal(await chatLog.getAttribute('aria-relevant'), 'additions text');
     assert.equal(await chatLog.getAttribute('aria-label'), 'Conversación con el tutor');
 
     await page.evaluate(async () => {

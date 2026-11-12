@@ -6944,11 +6944,29 @@ Requisitos:
                     }, { passive: true });
                 }
                 document.addEventListener('keydown', event => {
-                    if (event.key === 'Escape') {
-                        this.closeUnitSheet();
-                        this.closeLearningActionSheet('learningLevelSheetOverlay');
-                        this.closeLearningActionSheet('learningToolsSheetOverlay');
+                    const activeLearningOverlay = document.querySelector('.learning-action-sheet-overlay:not([hidden])');
+                    if (activeLearningOverlay) {
+                        const focusable = Array.from(activeLearningOverlay.querySelectorAll(
+                            'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+                        )).filter(element => element.getClientRects().length && getComputedStyle(element).visibility !== 'hidden');
+                        if (event.key === 'Tab' && focusable.length) {
+                            const first = focusable[0];
+                            const last = focusable[focusable.length - 1];
+                            if (event.shiftKey && (document.activeElement === first || !activeLearningOverlay.contains(document.activeElement))) {
+                                event.preventDefault();
+                                last.focus();
+                            } else if (!event.shiftKey && (document.activeElement === last || !activeLearningOverlay.contains(document.activeElement))) {
+                                event.preventDefault();
+                                first.focus();
+                            }
+                        }
+                        if (event.key === 'Escape') {
+                            event.preventDefault();
+                            this.closeLearningActionSheet(activeLearningOverlay.id);
+                            return;
+                        }
                     }
+                    if (event.key === 'Escape') this.closeUnitSheet();
                 });
                 window.addEventListener('scroll', () => this.updateJumpToCurrentVisibility(), { passive: true });
                 window.addEventListener('resize', () => this.updateJumpToCurrentVisibility());

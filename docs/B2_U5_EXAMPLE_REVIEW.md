@@ -1,6 +1,6 @@
 # Revisión de ejemplos — B2 U5 (`-i`)
 
-**Estado:** borrador para revisión del dueño; no es contenido curricular ejecutable.  
+**Estado:** paquete aprobado explícitamente por el dueño el 12 nov 2026; su implementación se registra en `docs/B2_U5_DESIGN.md`.  
 **Fecha:** 11 nov 2026.  
 **Alcance autorizado:** cinco lecciones, 16 actividades (3/3/3/3/4), par léxico `menawari/menawarkan`; `datangi` y `panasi` solo reconocimiento; `tanami`, `garami`, `kantongi` excluidas.
 
@@ -47,7 +47,7 @@ No se asignan IDs ni se incorporan entradas nuevas en este documento.
 
 ## 3. Cinco lecciones y banco de revisión (16 actividades)
 
-Las actividades siguientes son prototipos de evaluación basados en los ejemplos documentados. Las traducciones son glosas didácticas de trabajo, no certificación lingüística. No se añaden oraciones indonesias nuevas ni distractores que dependan de juicios de gramaticalidad no documentados. La lección 5 no contiene producción en indonesio: esa práctica queda pendiente de aprobar vocabulario y ejemplos adicionales.
+Las actividades iniciales se basan en los ejemplos documentados; tras la aprobación del dueño se añadieron dos ejemplos didácticos construidos para la práctica y una producción guiada con vocabulario ya estudiado. Las traducciones son glosas de trabajo, no certificación lingüística. Los ejemplos construidos no se presentan como citas y permanecen `not_checked` en naturalidad/adecuación.
 
 ### Lección 1 — Reconocer la forma y la construcción (3)
 
@@ -127,11 +127,15 @@ El contraste de voz se cubre ahora solo a nivel de reconocimiento con un ejemplo
 
 Las fuentes son estudios lingüísticos y de corpus, no validación de cada consigna para estudiantes. Estado de naturalidad, nivel y aceptación didáctica: `not_checked`. No afirmar revisión nativa ni certificación MCER/BIPA. La falta de KBBI o hablante nativo no bloquea el trabajo.
 
-## 7. Decisiones pendientes del dueño
+## 7. Decisiones aprobadas por el dueño — 12 nov 2026
 
-1. ¿Apruebas incorporar `menawari` y `menawarkan` como dos entradas nuevas con las glosas «ofrecer a alguien» y «ofrecer algo», respectivamente, limitadas a los patrones documentados en los ejemplos A y B?
-2. ¿Apruebas las dos oraciones fuente A y B y sus traducciones de trabajo?
-3. ¿Apruebas mantener `datangi` y `panasi` solo en una nota de reconocimiento sin oraciones nuevas, y mantener excluidas `tanami`, `garami` y `kantongi`?
-4. ¿Apruebas usar `menjatuhi`/`dijatuhi` únicamente como ejemplo de reconocimiento de voz, sin IDs ni vocabulario activo?
+1. Aprobado: incorporar `menawari` y `menawarkan` como dos entradas nuevas con glosas contextuales, limitadas a los patrones documentados en A y B.
+2. Aprobados los dos ejemplos fuente A y B y sus traducciones de trabajo.
+3. Aprobado: `datangi` y `panasi` solo para reconocimiento; `tanami`, `garami` y `kantongi` excluidas.
+4. Aprobado: `menjatuhi`/`dijatuhi` únicamente como ejemplo de reconocimiento de voz, sin IDs ni vocabulario activo.
 
-Este paquete documental no activa U5. Antes de añadir vocabulario o convertir actividades en contenido ejecutable, las formas nuevas y sus glosas deberán quedar aprobadas. U5 permanece oculta y no ejecutable. No se crean IDs ni se modifica el currículo, la app, IndexedDB, backup JSON v3 o dependencias.
+La aprobación permite implementar U5 dentro de estos límites. Los ejemplos adicionales de práctica se identifican como construidos y siguen `not_checked`; no se afirma validación nativa. No extender la aprobación a U6 ni a U13–U60. No modificar IndexedDB ni backup JSON v3.
+
+## Producción guiada autorizada — 12 nov 2026
+
+Para cumplir el contrato de producción de B2 sin ampliar el vocabulario activo, la implementación usa los IDs ya existentes de `bantuan` (A2, `v448`) y `umpan balik` (B1, `b1v145`); el verbo `menerima` se reutiliza desde el ejemplo canónico y no se añade como entrada. Ejemplo didáctico construido (no cita): `Saya menawari Rina bantuan. Saya menawarkan bantuan kepada Rina. Rina menerima bantuan itu.`. Se etiqueta `not_checked` en naturalidad/adecuación y no se marca `verified_primary`.

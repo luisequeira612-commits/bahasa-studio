@@ -338,7 +338,7 @@ test('A1 completed units stay completed and existing in-progress lesson keys ret
 test('all implemented B2 units expose five lessons with full-unit active recall and stable authored lessons', () => {
   const b2 = app.CourseData.levels.find(level => level.id === 'B2');
   const implemented = b2.units.filter(unit => Array.isArray(unit.lessons) && unit.lessons.length > 0);
-  assert.deepEqual(Array.from(implemented, unit => unit.id), ['b2_u1', 'b2_u2', 'b2_u3', 'b2_u4']);
+  assert.deepEqual(Array.from(implemented, unit => unit.id), ['b2_u1', 'b2_u2', 'b2_u3', 'b2_u4', 'b2_u5']);
 
   for (const unit of implemented) {
     const lessons = app.buildUnitLessons(unit);

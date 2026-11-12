@@ -8,7 +8,7 @@
 - Auditoría local documentada: 122 unidades, 1.062 registros de vocabulario, 1.025 IDs únicos, 0 errores estructurales, 41 avisos heurísticos y 70 informativos. No certifica lingüística.
 - Pruebas locales de progresión, contratos curriculares, liberación y B2: 75/75 correctas. La suite `quality:tests` tuvo 128 pruebas correctas, pero Playwright 1.55 no admite `process.platform === android` en este terminal. CI Linux del PR #511 pasó en su head exacto.
 - PR #513 se fusionó por squash en `main` como `46e6b1bc07cbda92e266587f94553822b419f4da`. El CI pre-merge fue verde en `129fb449df9e1462288bf05e040b956263c032bc`; Pages, CI post-merge y prueba física siguen sin verificar.
-- No hay PR abiertas actualmente. No se detectó una ejecución de GitHub Actions asociada al commit final #514 mediante el endpoint de ejecuciones por commit; no se debe afirmar CI post-merge verde.
+- La lista de PR abiertas debe comprobarse de nuevo antes de cerrar Fase 6. No se detectó una ejecución de GitHub Actions asociada al commit final #514 mediante el endpoint de ejecuciones por commit; no se debe afirmar CI post-merge verde.
 
 ## B2 U5 y decisiones pendientes
 - PR #511 documenta el par `menawari/menawarkan`, fuentes y 16 prototipos. Glosas, naturalidad, adecuación didáctica y vocabulario nuevo siguen pendientes de aprobación del dueño; todo sigue `not_checked` para esos juicios. No implementar ni activar U5 por “continúa”.

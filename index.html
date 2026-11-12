@@ -301,7 +301,7 @@
             <p class="profile-muted">Acceso de emergencia para estudiar una unidad sin completar las anteriores. No la marca como aprobada.</p>
             <label for="emergencyUnitSelect">Unidad</label>
             <select id="emergencyUnitSelect" class="input-field" aria-label="Elegir unidad para saltar"></select>
-            <button class="btn btn-outline" type="button" onclick="App.confirmUnitJump()">Saltar a una unidad</button>
+            <button class="btn btn-outline" type="button" onclick="App.confirmUnitJump(event.currentTarget)">Saltar a una unidad</button>
         </section>
         <section class="card" id="studyActivityDashboard">
             <h2>Actividad de estudio</h2>
@@ -6877,6 +6877,7 @@ Requisitos:
             xp: 0,
             selectedLearningLevel: null,
             unitSheetTouchStart: 0,
+            unitSheetReturnFocus: null,
             learningSheetReturnFocus: null,
             learningSheetTouchStart: 0,
             unitPathNoticeTimer: null,
@@ -6931,9 +6932,7 @@ Requisitos:
                     const unitOverlay = document.getElementById('unitSheetOverlay');
                     if (unitOverlay) unitOverlay.addEventListener('animationend', event => {
                         if (event.target === unitSheet && event.animationName === 'unit-sheet-slide-out' && unitOverlay.classList.contains('is-closing')) {
-                            unitOverlay.hidden = true;
-                            unitOverlay.classList.remove('is-closing');
-                            document.body.classList.remove('unit-sheet-open');
+                            this.finishUnitSheetClose();
                         }
                     });
                     unitSheet.addEventListener('touchstart', event => {
@@ -6963,6 +6962,28 @@ Requisitos:
                         if (event.key === 'Escape') {
                             event.preventDefault();
                             this.closeLearningActionSheet(activeLearningOverlay.id);
+                            return;
+                        }
+                    }
+                    const activeUnitOverlay = document.getElementById('unitSheetOverlay');
+                    if (activeUnitOverlay && !activeUnitOverlay.hidden) {
+                        const focusable = Array.from(activeUnitOverlay.querySelectorAll(
+                            'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+                        )).filter(element => element.getClientRects().length && getComputedStyle(element).visibility !== 'hidden');
+                        if (event.key === 'Tab' && focusable.length) {
+                            const first = focusable[0];
+                            const last = focusable[focusable.length - 1];
+                            if (event.shiftKey && (document.activeElement === first || !activeUnitOverlay.contains(document.activeElement))) {
+                                event.preventDefault();
+                                last.focus();
+                            } else if (!event.shiftKey && (document.activeElement === last || !activeUnitOverlay.contains(document.activeElement))) {
+                                event.preventDefault();
+                                first.focus();
+                            }
+                        }
+                        if (event.key === 'Escape') {
+                            event.preventDefault();
+                            this.closeUnitSheet();
                             return;
                         }
                     }
@@ -7464,7 +7485,7 @@ Requisitos:
                 const previousNumber = previousLevel ? previousLevel.units.findIndex(entry => entry.id === previousUnit.id) + 1 : 1;
                 return previousUnit ? 'Completa la Unidad ' + previousNumber + ' para desbloquear esta' : 'Esta unidad todavía está bloqueada.';
             },
-            openUnitSheet(unitId) {
+            openUnitSheet(unitId, trigger) {
                 const found = this.findCourseUnit(unitId);
                 if (!found) return;
                 const level = found.level;
@@ -7499,6 +7520,8 @@ Requisitos:
                 const grammar = content.querySelector('.unit-sheet-grammar');
                 if (grammar) grammar.style.color = '#1f2937';
                 const overlay = document.getElementById('unitSheetOverlay');
+                const returnFocus = trigger && trigger.isConnected ? trigger : document.activeElement;
+                this.unitSheetReturnFocus = returnFocus && returnFocus !== document.body ? returnFocus : null;
                 overlay.classList.remove('is-closing');
                 overlay.hidden = false;
                 document.body.classList.add('unit-sheet-open');
@@ -7524,6 +7547,17 @@ Requisitos:
                 if (!grammar) return;
                 grammar.hidden = !grammar.hidden;
             },
+            finishUnitSheetClose() {
+                const overlay = document.getElementById('unitSheetOverlay');
+                if (overlay) {
+                    overlay.hidden = true;
+                    overlay.classList.remove('is-closing');
+                }
+                document.body.classList.remove('unit-sheet-open');
+                const returnFocus = this.unitSheetReturnFocus;
+                this.unitSheetReturnFocus = null;
+                if (returnFocus && returnFocus.isConnected && returnFocus.getClientRects().length) returnFocus.focus();
+            },
             closeUnitSheet() {
                 const overlay = document.getElementById('unitSheetOverlay');
                 if (!overlay || overlay.hidden) {
@@ -7531,9 +7565,7 @@ Requisitos:
                     return;
                 }
                 if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                    overlay.hidden = true;
-                    overlay.classList.remove('is-closing');
-                    document.body.classList.remove('unit-sheet-open');
+                    this.finishUnitSheetClose();
                     return;
                 }
                 overlay.classList.add('is-closing');
@@ -7563,7 +7595,7 @@ Requisitos:
                 });
                 if (previous) select.value = previous;
             },
-            confirmUnitJump() {
+            confirmUnitJump(trigger) {
                 const select = document.getElementById('emergencyUnitSelect');
                 const found = select && this.findCourseUnit(select.value);
                 if (!found) {
@@ -7588,7 +7620,9 @@ Requisitos:
                 this.selectedLearningLevel = found.level.id;
                 this.switchView('route');
                 this.renderCourseRoute();
-                this.openUnitSheet(found.unit.id);
+                const returnTrigger = Array.from(document.querySelectorAll('#courseContainer .learning-unit-node'))
+                    .find(node => node.dataset.unitId === found.unit.id);
+                this.openUnitSheet(found.unit.id, returnTrigger || trigger);
             },
             updateJumpToCurrentVisibility() {
                 const button = document.getElementById('jumpToCurrentUnitBtn');
@@ -7722,7 +7756,7 @@ Requisitos:
                             node.classList.add('just-completed', 'unit-complete-celebration');
                             this.recentlyCompletedUnitId = null;
                         }
-                        node.addEventListener('click', () => this.openUnitSheet(unit.id));
+                        node.addEventListener('click', event => this.openUnitSheet(unit.id, event.currentTarget));
                         stage.appendChild(node);
                         if (isCurrent) {
                             const startBubble = document.createElement('button');
@@ -7740,7 +7774,7 @@ Requisitos:
                             startBubble.style.top = (nodeTop - 46) + 'px';
                             startBubble.innerHTML = 'EMPEZAR <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v15m-6-6 6 6 6-6"/></svg>';
                             startBubble.setAttribute('aria-label', 'Empezar ' + unit.title + '; abrir detalles de la unidad');
-                            startBubble.addEventListener('click', () => this.openUnitSheet(unit.id));
+                            startBubble.addEventListener('click', event => this.openUnitSheet(unit.id, event.currentTarget));
                             stage.appendChild(startBubble);
                             const currentTitle = document.createElement('div');
                             currentTitle.className = 'current-unit-title';
@@ -7787,7 +7821,7 @@ Requisitos:
                         node.type = 'button';
                         node.className = 'custom-unit-open-button';
                         node.textContent = (progress.completed ? '✓ ' : '') + unit.title;
-                        node.addEventListener('click', () => this.openUnitSheet(unit.id));
+                        node.addEventListener('click', event => this.openUnitSheet(unit.id, event.currentTarget));
                         customList.appendChild(node);
                     });
                     customSection.appendChild(customList);

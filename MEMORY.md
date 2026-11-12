@@ -29,7 +29,7 @@
 - Fase 3: auditoría ejecutada; 41 avisos son candidatos editoriales y requieren revisión contextual. No hay errores bloqueantes estructurales.
 - Fase 4: U5 sigue pendiente de aprobación específica; no inventar mapa U13–U60.
 - Fase 5–8: mejoras mobile-first y objetivos táctiles de #502, #513 y #517 integrados; #518 añade regresión de navegación; #519 añade contención y restauración del foco en diálogos móviles. CI y Pages post-merge verificados para #518 y #519. Sigue pendiente prueba física Android de #513, #517, #518 y #519.
-- Siguiente paso: continuar la auditoría de accesibilidad móvil sobre controles y diálogos existentes, priorizando hallazgos reproducibles y pruebas automatizadas. No iniciar B2 U5 ni cambiar currículo, IndexedDB o backup JSON v3. La verificación física de accesibilidad en Android sigue pendiente.
+- PR #520 se fusionó por squash (`6952389`) y documenta la verificación post-merge de #519. PR #521 extiende el focus trap y la restauración al diálogo de detalles de unidad (`unitBottomSheet`), también modal. No iniciar B2 U5 ni cambiar currículo, IndexedDB o backup JSON v3. La verificación física de accesibilidad en Android sigue pendiente.
 
 ## Flujo Git
 - Trabajar en ramas descriptivas y PR pequeñas; nunca modificar `main` directamente. Cada PR debe incluir objetivo, archivos, pruebas, riesgos/limitaciones y actualizar este archivo.

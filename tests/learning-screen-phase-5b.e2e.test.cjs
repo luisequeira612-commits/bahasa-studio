@@ -398,3 +398,39 @@ test('learning action sheets keep keyboard focus inside and restore it on Escape
     await new Promise(resolve => server.close(resolve));
   }
 });
+
+
+test('unit detail sheet contains keyboard focus and restores its trigger on Escape', async () => {
+  const { server, url } = await startServer();
+  const browser = await chromium.launch({ headless: true });
+  const context = await browser.newContext({ viewport: { width: 360, height: 740 }, serviceWorkers: 'block', reducedMotion: 'reduce' });
+  const page = await context.newPage();
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
+
+    const unitTrigger = page.locator('#courseContainer .learning-unit-node[data-path-state="current"]').first();
+    await unitTrigger.click();
+    const sheet = page.locator('#unitBottomSheet');
+
+    await page.waitForFunction(() => document.activeElement?.classList.contains('unit-sheet-close'));
+    await page.keyboard.press('Shift+Tab');
+    assert.equal(await page.evaluate(() => document.activeElement?.className), 'btn btn-outline unit-sheet-grammar-toggle',
+      'Shift+Tab from close should wrap to the last unit-sheet action');
+    await page.keyboard.press('Tab');
+    assert.equal(await page.evaluate(() => document.activeElement?.className), 'unit-sheet-close',
+      'Tab from the last action should wrap to close');
+    await page.keyboard.press('Tab');
+    assert.equal(await page.evaluate(() => document.activeElement?.className), 'btn unit-sheet-primary',
+      'Tab from close should reach the primary unit action');
+    await page.keyboard.press('Escape');
+    await page.waitForFunction(() => document.getElementById('unitSheetOverlay').hidden);
+    assert.equal(await page.evaluate(() => document.activeElement?.dataset.unitId), await unitTrigger.getAttribute('data-unit-id'),
+      'Escape should restore focus to the unit that opened the sheet');
+  } finally {
+    await context.close();
+    await browser.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});

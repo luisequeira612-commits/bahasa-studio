@@ -433,3 +433,77 @@ test('unit detail sheet contains keyboard focus and restores its trigger on Esca
     await new Promise(resolve => server.close(resolve));
   }
 });
+
+test('translation popups restore keyboard focus to their originating content', async () => {
+  const { server, url } = await startServer();
+  const browser = await chromium.launch({ headless: true });
+  const context = await browser.newContext({ viewport: { width: 360, height: 740 }, serviceWorkers: 'block', reducedMotion: 'reduce' });
+  const page = await context.newPage();
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
+
+    await page.evaluate(() => {
+      const trigger = document.createElement('button');
+      trigger.type = 'button';
+      trigger.id = 'fixtureTranslationTrigger';
+      trigger.className = 'tap-translation-word';
+      trigger.dataset.translation = 'comer';
+      trigger.dataset.vocabId = 'fixture-word';
+      trigger.textContent = 'makan';
+      trigger.style.cssText = 'position:fixed;left:12px;top:100px;z-index:9999;';
+      document.body.appendChild(trigger);
+    });
+
+    const translationTrigger = page.locator('#fixtureTranslationTrigger');
+    await translationTrigger.click();
+    const bubble = page.locator('#tapTranslationBubble');
+    const saveTranslation = page.locator('#tapTranslationSave');
+    await page.waitForFunction(() => !document.getElementById('tapTranslationBubble').hidden);
+    await page.keyboard.press('Tab');
+    assert.equal(await page.evaluate(() => document.activeElement?.id), 'tapTranslationSave',
+      'Tab should move from the translation trigger into its save action');
+    await page.keyboard.press('Escape');
+    await page.waitForFunction(() => document.getElementById('tapTranslationBubble').hidden);
+    assert.equal(await page.evaluate(() => document.activeElement?.id), 'fixtureTranslationTrigger',
+      'Escape should restore focus to the translation word that opened the bubble');
+
+    const meaningFixture = await page.evaluate(() => {
+      const vocabulary = getUniqueLearningVocabulary().find(word =>
+        word && word.id && word.idn && word.esp && !String(word.idn).trim().includes(' ')
+      );
+      if (!vocabulary) return null;
+      const card = document.createElement('div');
+      card.className = 'flashcard';
+      card.style.cssText = 'position:fixed;left:12px;top:160px;width:300px;min-height:60px;z-index:9999;';
+      const paragraph = document.createElement('p');
+      paragraph.id = 'fixtureMeaningTrigger';
+      paragraph.textContent = vocabulary.idn;
+      card.appendChild(paragraph);
+      document.body.appendChild(card);
+      window.refreshWordTranslationIndex();
+      return { term: vocabulary.idn };
+    });
+    assert.ok(meaningFixture, 'the local vocabulary should provide a single-word meaning fixture');
+
+    const meaningTrigger = page.locator('#fixtureMeaningTrigger');
+    await meaningTrigger.click({ position: { x: 12, y: 10 } });
+    const meaningPopup = page.locator('#wordMeaningPopup');
+    await page.waitForFunction(() => !document.getElementById('wordMeaningPopup').hidden);
+    assert.equal(await page.evaluate(() => document.activeElement?.id), 'wordMeaningClose',
+      'opening a word meaning should move focus into the dialog');
+    await page.keyboard.press('Escape');
+    await page.waitForFunction(() => document.getElementById('wordMeaningPopup').hidden);
+    assert.equal(await page.evaluate(() => document.activeElement?.id), 'fixtureMeaningTrigger',
+      'Escape should restore focus to the text that opened the meaning dialog');
+    assert.equal(await meaningTrigger.getAttribute('tabindex'), null,
+      'temporary programmatic focusability should be removed after closing');
+    assert.equal(await bubble.isHidden(), true);
+    assert.equal(await saveTranslation.isHidden(), false);
+  } finally {
+    await context.close();
+    await browser.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});

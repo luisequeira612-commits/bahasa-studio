@@ -36,3 +36,8 @@
 - Crear commits, PR y fusionar está autorizado por la misión cuando el diff esté revisado, CI verde en el head exacto, informes sin errores bloqueantes y no haya comentarios/revisiones/hilos pendientes. No fusionar con CI pendiente o fallido.
 - No afirmar pruebas de dispositivo físico si solo se ejecutó navegador. Distinguir probado, revisado por lectura y no verificado.
 - El detalle de la verificación post-merge está en `docs/PHASE_6_POSTMERGE_VERIFICATION.md`.
+
+
+## Accesibilidad de traducción contextual — 12 nov 2026
+- PR en curso: la burbuja de traducción anuncia el texto con `aria-live="polite"`, cada palabra informa `aria-controls` y `aria-expanded`, y Escape restablece el estado expandido sin desplazar el foco del botón activador. Incluye regresión Playwright para Enter/Escape a 360×740. El popup de significado queda como siguiente auditoría; no se ha modificado todavía.
+- Sin cambios al currículo, IndexedDB, backup JSON v3 ni dependencias. La prueba física Android sigue pendiente.

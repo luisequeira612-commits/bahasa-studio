@@ -353,3 +353,48 @@ test('primary bottom navigation exposes four accessible touch targets at 360px',
     await new Promise(resolve => server.close(resolve));
   }
 });
+
+
+test('learning action sheets keep keyboard focus inside and restore it on Escape', async () => {
+  const { server, url } = await startServer();
+  const browser = await chromium.launch({ headless: true });
+  const context = await browser.newContext({ viewport: { width: 360, height: 740 }, serviceWorkers: 'block', reducedMotion: 'reduce' });
+  const page = await context.newPage();
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
+
+    const levelTrigger = page.locator('#learningLevelTrigger');
+    await levelTrigger.click();
+    const levelSheet = page.locator('#learningLevelSheet');
+    const levelClose = levelSheet.locator('.learning-sheet-close');
+    const levelRows = levelSheet.locator('.learning-level-sheet-row');
+    await page.waitForFunction(() => document.activeElement?.classList.contains('learning-sheet-close'));
+    await page.keyboard.press('Shift+Tab');
+    assert.equal(await page.evaluate(() => document.activeElement?.className), 'learning-level-sheet-row', 'Shift+Tab from the close button should wrap to the last level');
+    assert.equal(await page.evaluate(() => document.activeElement?.textContent.includes('B2')), true);
+    await page.keyboard.press('Tab');
+    assert.equal(await page.evaluate(() => document.activeElement?.getAttribute('aria-label')), 'Cerrar selector de nivel', 'Tab from the last level should wrap to close');
+    await page.keyboard.press('Escape');
+    await page.waitForFunction(() => document.getElementById('learningLevelSheetOverlay').hidden);
+    assert.equal(await page.evaluate(() => document.activeElement?.id), 'learningLevelTrigger', 'Escape should restore focus to the level trigger');
+
+    const toolsTrigger = page.locator('.unit-tools-trigger').first();
+    await toolsTrigger.click();
+    const toolsSheet = page.locator('#learningToolsSheet');
+    await page.waitForFunction(() => document.activeElement?.classList.contains('learning-sheet-close'));
+    await page.keyboard.press('Shift+Tab');
+    assert.equal(await page.evaluate(() => document.activeElement?.className), 'learning-tool-sheet-row', 'Shift+Tab from tools close should wrap to the last tool');
+    assert.equal(await page.evaluate(() => document.activeElement?.textContent.includes('Conversar')), true);
+    await page.keyboard.press('Tab');
+    assert.equal(await page.evaluate(() => document.activeElement?.getAttribute('aria-label')), 'Cerrar herramientas');
+    await page.keyboard.press('Escape');
+    await page.waitForFunction(() => document.getElementById('learningToolsSheetOverlay').hidden);
+    assert.equal(await page.evaluate(() => document.activeElement?.classList.contains('unit-tools-trigger')), true, 'Escape should restore focus to the originating tools trigger');
+  } finally {
+    await context.close();
+    await browser.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});

@@ -33,7 +33,7 @@ test('A2 U12 has five lessons and its retrieval lesson reviews all vocabulary af
   });
   const retrieval = unit.lessons[4];
   assert.deepEqual([...(retrieval.vocabIds || [])], []);
-  assert.deepEqual([...new Set(retrieval.reviewVocabIds || [])].sort(), unit.vocab.map(word => word.id).sort());
+  assert.deepEqual([...new Set(retrieval.reviewVocabIds || [])].sort(), Array.from(unit.vocab, word => word.id).sort());
   assert.equal(retrieval.exercises.length, 5);
   for (const exercise of retrieval.exercises) assert.ok(retrieval.reviewVocabIds.includes(exercise.vocabId));
 });

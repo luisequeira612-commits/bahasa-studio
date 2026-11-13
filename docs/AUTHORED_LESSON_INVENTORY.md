@@ -8,19 +8,19 @@
 
 | Nivel | Unidades implementadas | Lecciones explícitas | Distribución por unidad | Unidades bajo el mínimo |
 |---|---:|---:|---|---:|
-| A1 | 32 | 40 | 24 sin `lessons[]`; 8 con 5 | 24 |
+| A1 | 32 | 61 | 20 sin `lessons[]`; 11 con 5; 1 con 6 | 20 |
 | A2 | 40 | 200 | 40 con 5 | 0 |
 | B1 | 50 | 144 | 12 con 2; 32 con 3; 6 con 4 | 50 |
 | B2 | 5 | 25 | 5 con 5 | 0 |
-| **Total implementado** | **127** | **409** | — | **74** |
+| **Total implementado** | **127** | **430** | — | **70** |
 
-El mínimo para las 127 unidades ya implementadas es 635 lecciones. Faltan **226 lecciones explícitas** para llegar a cinco por unidad. Este cálculo no incluye B2 U6–U60, que todavía no están implementadas: esas 55 unidades deben diseñarse desde el principio con cinco o seis lecciones cada una.
+El mínimo para las 127 unidades ya implementadas es 635 lecciones. Faltan **206 lecciones explícitas** para llegar a cinco por unidad. Este cálculo no incluye B2 U6–U60, que todavía no están implementadas: esas 55 unidades deben diseñarse desde el principio con cinco o seis lecciones cada una.
 
 ## Interpretación por nivel
 
 ### A1
 
-U1–U8 ya tienen cinco lecciones explícitas cada una (40 en total). U9–U32 todavía carecen de `lessons[]`; el motor crea lecciones en tiempo de ejecución, pero ese refuerzo no cuenta como autoría curricular. La experiencia visible no equivale a cinco o seis lecciones pedagógicas autorales. A1 requiere autoría explícita en las 24 unidades restantes.
+U1–U12 ya tienen cinco o seis lecciones explícitas cada una (61 en total). U9 tiene seis; U10–U12 tienen cinco. U13–U32 todavía carecen de `lessons[]`; el motor crea lecciones en tiempo de ejecución, pero ese refuerzo no cuenta como autoría curricular. A1 requiere autoría explícita en las 20 unidades restantes.
 
 ### A2
 

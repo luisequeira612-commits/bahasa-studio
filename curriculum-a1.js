@@ -4078,7 +4078,1097 @@ window.BAHASA_CURRICULUM_A1 = {
                                                 "answer": 1,
                                                 "explanation": "Sembilan puluh sembilan significa noventa y nueve."
                                             }
-]
+],
+                            lessons: [
+                                {
+                                    "title": "Lección 1: Números del 11 al 14",
+                                    "objective": "Aprende a números del 11 al 14 y aplica las formas nuevas en frases sencillas, recuperando lo estudiado anteriormente.",
+                                    "grammar": "Las formas del 11 al 19 se forman con el número seguido de belas: sebelas, dua belas, tiga belas y empat belas. En cantidades sencillas, el número va antes del sustantivo: sebelas teman.",
+                                    "vocabIds": [
+                                        "v124",
+                                        "v125",
+                                        "v126",
+                                        "v127"
+                                    ],
+                                    "reviewVocabIds": [],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v124",
+                                            "type": "mc",
+                                            "prompt": "¿Qué número significa sebelas?",
+                                            "options": [
+                                                "11",
+                                                "12",
+                                                "20"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Sebelas significa once."
+                                        },
+                                        {
+                                            "vocabId": "v125",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce al indonesio: doce",
+                                            "answer": "Dua belas",
+                                            "explanation": "Dua belas significa doce."
+                                        },
+                                        {
+                                            "vocabId": "v126",
+                                            "type": "mc",
+                                            "prompt": "Escucha el número y elige su valor",
+                                            "audioText": "Tiga belas",
+                                            "options": [
+                                                "3",
+                                                "13",
+                                                "30"
+                                            ],
+                                            "answer": 1,
+                                            "explanation": "Tiga belas significa trece."
+                                        },
+                                        {
+                                            "vocabId": "v127",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa empat belas?",
+                                            "options": [
+                                                "Cuatro",
+                                                "Catorce",
+                                                "Cuarenta"
+                                            ],
+                                            "answer": 1,
+                                            "explanation": "Empat belas significa catorce."
+                                        },
+                                        {
+                                            "vocabId": "v124",
+                                            "type": "order",
+                                            "prompt": "Ordena para decir “once amigos”",
+                                            "words": [
+                                                "teman",
+                                                "Sebelas"
+                                            ],
+                                            "correctOrder": [
+                                                "Sebelas",
+                                                "teman"
+                                            ],
+                                            "explanation": "En una cantidad simple, el número precede al sustantivo."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Lección 2: Números del 15 al 18",
+                                    "objective": "Aprende a números del 15 al 18 y aplica las formas nuevas en frases sencillas, recuperando lo estudiado anteriormente.",
+                                    "grammar": "Continúa la serie del 15 al 18 con lima belas, enam belas, tujuh belas y delapan belas. Conserva el orden número + sustantivo al contar objetos o personas.",
+                                    "vocabIds": [
+                                        "v128",
+                                        "v129",
+                                        "v130",
+                                        "v131"
+                                    ],
+                                    "reviewVocabIds": [
+                                        "v124",
+                                        "v125",
+                                        "v126",
+                                        "v127"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v128",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: quince",
+                                            "answer": "Lima belas",
+                                            "explanation": "Lima belas significa quince."
+                                        },
+                                        {
+                                            "vocabId": "v129",
+                                            "type": "order",
+                                            "prompt": "Ordena las palabras para formar “dieciséis libros”",
+                                            "words": [
+                                                "buku",
+                                                "Enam",
+                                                "belas"
+                                            ],
+                                            "correctOrder": [
+                                                "Enam",
+                                                "belas",
+                                                "buku"
+                                            ],
+                                            "explanation": "El número va antes del sustantivo: Enam belas buku."
+                                        },
+                                        {
+                                            "vocabId": "v130",
+                                            "type": "mc",
+                                            "prompt": "Tujuh belas equivale a…",
+                                            "options": [
+                                                "7",
+                                                "17",
+                                                "70"
+                                            ],
+                                            "answer": 1,
+                                            "explanation": "Tujuh belas significa diecisiete."
+                                        },
+                                        {
+                                            "vocabId": "v131",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: dieciocho",
+                                            "answer": "Delapan belas",
+                                            "explanation": "Delapan belas significa dieciocho."
+                                        },
+                                        {
+                                            "vocabId": "v124",
+                                            "type": "order",
+                                            "prompt": "Ordena: Once amigos.",
+                                            "words": [
+                                                "teman",
+                                                "Sebelas"
+                                            ],
+                                            "correctOrder": [
+                                                "Sebelas",
+                                                "teman"
+                                            ],
+                                            "explanation": "Sebelas teman. significa «Once amigos.»."
+                                        },
+                                        {
+                                            "vocabId": "v125",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la palabra o expresión.",
+                                            "audioText": "Dua belas",
+                                            "answer": "Dua belas",
+                                            "explanation": "Dua belas significa Doce."
+                                        },
+                                        {
+                                            "vocabId": "v126",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase con «Tiga belas».",
+                                            "hint": "Puedes tomar como referencia: Tiga belas tahun.",
+                                            "modelAnswer": "Tiga belas tahun.",
+                                            "explanation": "Tiga belas tahun. significa «Trece años.»."
+                                        },
+                                        {
+                                            "vocabId": "v127",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Empat belas»?",
+                                            "options": [
+                                                "Catorce",
+                                                "Dieciocho",
+                                                "Veinte"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Empat belas significa Catorce."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Lección 3: Del 19 al 100",
+                                    "objective": "Aprende a del 19 al 100 y aplica las formas nuevas en frases sencillas, recuperando lo estudiado anteriormente.",
+                                    "grammar": "Sembilan belas es 19. Para las decenas se usa puluh: dua puluh es 20 y tiga puluh es 30; seratus es 100.",
+                                    "vocabIds": [
+                                        "v132",
+                                        "v133",
+                                        "v134",
+                                        "v135"
+                                    ],
+                                    "reviewVocabIds": [
+                                        "v124",
+                                        "v125",
+                                        "v126",
+                                        "v127",
+                                        "v128",
+                                        "v129",
+                                        "v130",
+                                        "v131"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v132",
+                                            "type": "mc",
+                                            "prompt": "Escucha el número y elige su valor",
+                                            "audioText": "Sembilan belas",
+                                            "options": [
+                                                "9",
+                                                "19",
+                                                "90"
+                                            ],
+                                            "answer": 1,
+                                            "explanation": "Sembilan belas significa diecinueve."
+                                        },
+                                        {
+                                            "vocabId": "v133",
+                                            "type": "mc",
+                                            "prompt": "¿Qué número significa dua puluh?",
+                                            "options": [
+                                                "12",
+                                                "20",
+                                                "30"
+                                            ],
+                                            "answer": 1,
+                                            "explanation": "Dua puluh significa veinte."
+                                        },
+                                        {
+                                            "vocabId": "v134",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: treinta",
+                                            "answer": "Tiga puluh",
+                                            "explanation": "Tiga puluh significa treinta."
+                                        },
+                                        {
+                                            "vocabId": "v135",
+                                            "type": "mc",
+                                            "prompt": "Seratus significa…",
+                                            "options": [
+                                                "100",
+                                                "13",
+                                                "30"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Seratus significa cien."
+                                        },
+                                        {
+                                            "vocabId": "v133",
+                                            "type": "mc",
+                                            "prompt": "Escucha el número y elige su valor",
+                                            "audioText": "Dua puluh",
+                                            "options": [
+                                                "12",
+                                                "20",
+                                                "22"
+                                            ],
+                                            "answer": 1,
+                                            "explanation": "Dua puluh significa veinte."
+                                        },
+                                        {
+                                            "vocabId": "v135",
+                                            "type": "write",
+                                            "prompt": "Escribe en indonesio un número entre 11 y 100 que hayas aprendido.",
+                                            "hint": "Puedes elegir doce, veinte, cuarenta, setenta o cien.",
+                                            "modelAnswer": "Dua puluh.",
+                                            "explanation": "Hay varias respuestas correctas; revisa que la forma del número sea correcta."
+                                        },
+                                        {
+                                            "vocabId": "v124",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la palabra o expresión.",
+                                            "audioText": "Sebelas",
+                                            "answer": "Sebelas",
+                                            "explanation": "Sebelas significa Once."
+                                        },
+                                        {
+                                            "vocabId": "v125",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase con «Dua belas».",
+                                            "hint": "Puedes tomar como referencia: Dua belas buku.",
+                                            "modelAnswer": "Dua belas buku.",
+                                            "explanation": "Dua belas buku. significa «Doce libros.»."
+                                        },
+                                        {
+                                            "vocabId": "v126",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Tiga belas»?",
+                                            "options": [
+                                                "Trece",
+                                                "Dieciocho",
+                                                "Veinte"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Tiga belas significa Trece."
+                                        },
+                                        {
+                                            "vocabId": "v127",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Catorce",
+                                            "answer": "Empat belas",
+                                            "explanation": "Empat belas significa Catorce."
+                                        },
+                                        {
+                                            "vocabId": "v128",
+                                            "type": "order",
+                                            "prompt": "Ordena: Quince libros.",
+                                            "words": [
+                                                "buku",
+                                                "belas",
+                                                "Lima"
+                                            ],
+                                            "correctOrder": [
+                                                "Lima",
+                                                "belas",
+                                                "buku"
+                                            ],
+                                            "explanation": "Lima belas buku. significa «Quince libros.»."
+                                        },
+                                        {
+                                            "vocabId": "v129",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la palabra o expresión.",
+                                            "audioText": "Enam belas",
+                                            "answer": "Enam belas",
+                                            "explanation": "Enam belas significa Dieciséis."
+                                        },
+                                        {
+                                            "vocabId": "v130",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase con «Tujuh belas».",
+                                            "hint": "Puedes tomar como referencia: Tujuh belas buku.",
+                                            "modelAnswer": "Tujuh belas buku.",
+                                            "explanation": "Tujuh belas buku. significa «Diecisiete libros.»."
+                                        },
+                                        {
+                                            "vocabId": "v131",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Delapan belas»?",
+                                            "options": [
+                                                "Dieciocho",
+                                                "Decenas; elemento para formar 20, 30, etc.",
+                                                "Veinticinco"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Delapan belas significa Dieciocho."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Lección 4: Decenas y números compuestos",
+                                    "objective": "Aprende a decenas y números compuestos y aplica las formas nuevas en frases sencillas, recuperando lo estudiado anteriormente.",
+                                    "grammar": "Para formar números entre 21 y 99, combina la decena y la unidad en ese orden: dua puluh lima, tiga puluh dua y empat puluh tujuh.",
+                                    "vocabIds": [
+                                        "v158",
+                                        "v271",
+                                        "v272",
+                                        "v273",
+                                        "v274"
+                                    ],
+                                    "reviewVocabIds": [
+                                        "v124",
+                                        "v125",
+                                        "v126",
+                                        "v127",
+                                        "v128",
+                                        "v129",
+                                        "v130",
+                                        "v131",
+                                        "v132",
+                                        "v133",
+                                        "v134",
+                                        "v135"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v158",
+                                            "type": "mc",
+                                            "prompt": "¿Cómo se dice cuarenta?",
+                                            "options": [
+                                                "Empat puluh",
+                                                "Empat belas",
+                                                "Empat tahun"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Empat puluh significa cuarenta; puluh forma decenas."
+                                        },
+                                        {
+                                            "vocabId": "v158",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: setenta",
+                                            "answer": "Tujuh puluh",
+                                            "explanation": "Tujuh puluh significa setenta."
+                                        },
+                                        {
+                                            "vocabId": "v158",
+                                            "type": "mc",
+                                            "prompt": "Sembilan puluh significa…",
+                                            "options": [
+                                                "19",
+                                                "90",
+                                                "100"
+                                            ],
+                                            "answer": 1,
+                                            "explanation": "Sembilan puluh significa noventa."
+                                        },
+                                        {
+                                            "vocabId": "v271",
+                                            "type": "mc",
+                                            "prompt": "Dua puluh satu equivale a…",
+                                            "options": [
+                                                "21",
+                                                "12",
+                                                "31"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Dua puluh satu significa veintiuno: dos decenas y uno."
+                                        },
+                                        {
+                                            "vocabId": "v272",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce al indonesio: veinticinco",
+                                            "answer": "Dua puluh lima",
+                                            "explanation": "Para formar veinticinco se dice dua puluh lima."
+                                        },
+                                        {
+                                            "vocabId": "v274",
+                                            "type": "order",
+                                            "prompt": "Ordena para decir “cuarenta y siete”",
+                                            "words": [
+                                                "tujuh",
+                                                "Empat",
+                                                "puluh"
+                                            ],
+                                            "correctOrder": [
+                                                "Empat",
+                                                "puluh",
+                                                "tujuh"
+                                            ],
+                                            "explanation": "En los números compuestos, la unidad va después de la decena: empat puluh tujuh."
+                                        },
+                                        {
+                                            "vocabId": "v273",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «tiga puluh dua»?",
+                                            "options": [
+                                                "Treinta y dos",
+                                                "Treinta y ocho",
+                                                "Treinta y cuatro"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Tiga puluh dua significa treinta y dos."
+                                        },
+                                        {
+                                            "vocabId": "v124",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase con «Sebelas».",
+                                            "hint": "Puedes tomar como referencia: Sebelas teman.",
+                                            "modelAnswer": "Sebelas teman.",
+                                            "explanation": "Sebelas teman. significa «Once amigos.»."
+                                        },
+                                        {
+                                            "vocabId": "v125",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Dua belas»?",
+                                            "options": [
+                                                "Doce",
+                                                "Dieciocho",
+                                                "Veinte"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Dua belas significa Doce."
+                                        },
+                                        {
+                                            "vocabId": "v126",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Trece",
+                                            "answer": "Tiga belas",
+                                            "explanation": "Tiga belas significa Trece."
+                                        },
+                                        {
+                                            "vocabId": "v127",
+                                            "type": "order",
+                                            "prompt": "Ordena: Catorce amigos.",
+                                            "words": [
+                                                "teman",
+                                                "belas",
+                                                "Empat"
+                                            ],
+                                            "correctOrder": [
+                                                "Empat",
+                                                "belas",
+                                                "teman"
+                                            ],
+                                            "explanation": "Empat belas teman. significa «Catorce amigos.»."
+                                        },
+                                        {
+                                            "vocabId": "v128",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la palabra o expresión.",
+                                            "audioText": "Lima belas",
+                                            "answer": "Lima belas",
+                                            "explanation": "Lima belas significa Quince."
+                                        },
+                                        {
+                                            "vocabId": "v129",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase con «Enam belas».",
+                                            "hint": "Puedes tomar como referencia: Enam belas tahun.",
+                                            "modelAnswer": "Enam belas tahun.",
+                                            "explanation": "Enam belas tahun. significa «Dieciséis años.»."
+                                        },
+                                        {
+                                            "vocabId": "v130",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Tujuh belas»?",
+                                            "options": [
+                                                "Diecisiete",
+                                                "Decenas; elemento para formar 20, 30, etc.",
+                                                "Veinticinco"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Tujuh belas significa Diecisiete."
+                                        },
+                                        {
+                                            "vocabId": "v131",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Dieciocho",
+                                            "answer": "Delapan belas",
+                                            "explanation": "Delapan belas significa Dieciocho."
+                                        },
+                                        {
+                                            "vocabId": "v132",
+                                            "type": "order",
+                                            "prompt": "Ordena: Diecinueve años.",
+                                            "words": [
+                                                "tahun",
+                                                "belas",
+                                                "Sembilan"
+                                            ],
+                                            "correctOrder": [
+                                                "Sembilan",
+                                                "belas",
+                                                "tahun"
+                                            ],
+                                            "explanation": "Sembilan belas tahun. significa «Diecinueve años.»."
+                                        },
+                                        {
+                                            "vocabId": "v133",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la palabra o expresión.",
+                                            "audioText": "Dua puluh",
+                                            "answer": "Dua puluh",
+                                            "explanation": "Dua puluh significa Veinte."
+                                        },
+                                        {
+                                            "vocabId": "v134",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase con «Tiga puluh».",
+                                            "hint": "Puedes tomar como referencia: Tiga puluh tahun.",
+                                            "modelAnswer": "Tiga puluh tahun.",
+                                            "explanation": "Tiga puluh tahun. significa «Treinta años.»."
+                                        },
+                                        {
+                                            "vocabId": "v135",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Seratus»?",
+                                            "options": [
+                                                "Cien",
+                                                "Cincuenta y ocho",
+                                                "Setenta y seis"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Seratus significa Cien."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Lección 5: Leer cantidades en contexto",
+                                    "objective": "Aprende a leer cantidades en contexto y aplica las formas nuevas en frases sencillas, recuperando lo estudiado anteriormente.",
+                                    "grammar": "Lee números compuestos completos y colócalos antes del sustantivo: lima puluh delapan buku y sembilan puluh sembilan buku.",
+                                    "vocabIds": [
+                                        "v275",
+                                        "v276",
+                                        "v277",
+                                        "v278",
+                                        "v279"
+                                    ],
+                                    "reviewVocabIds": [
+                                        "v124",
+                                        "v125",
+                                        "v126",
+                                        "v127",
+                                        "v128",
+                                        "v129",
+                                        "v130",
+                                        "v131",
+                                        "v132",
+                                        "v133",
+                                        "v134",
+                                        "v135",
+                                        "v158",
+                                        "v271",
+                                        "v272",
+                                        "v273",
+                                        "v274"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v278",
+                                            "type": "mc",
+                                            "prompt": "Delapan puluh sembilan equivale a…",
+                                            "options": [
+                                                "19",
+                                                "80",
+                                                "89"
+                                            ],
+                                            "answer": 2,
+                                            "explanation": "Delapan puluh sembilan significa ochenta y nueve."
+                                        },
+                                        {
+                                            "vocabId": "v275",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «lima puluh delapan»?",
+                                            "options": [
+                                                "Cincuenta y seis",
+                                                "Cincuenta y ocho",
+                                                "Cincuenta y nueve"
+                                            ],
+                                            "answer": 1,
+                                            "explanation": "Lima puluh delapan significa cincuenta y ocho."
+                                        },
+                                        {
+                                            "vocabId": "v276",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «enam puluh empat»?",
+                                            "options": [
+                                                "Sesenta y cuatro",
+                                                "Sesenta y seis",
+                                                "Cuarenta y seis"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Enam puluh empat significa sesenta y cuatro."
+                                        },
+                                        {
+                                            "vocabId": "v277",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «tujuh puluh enam»?",
+                                            "options": [
+                                                "Setenta y cinco",
+                                                "Setenta y seis",
+                                                "Setenta y ocho"
+                                            ],
+                                            "answer": 1,
+                                            "explanation": "Tujuh puluh enam significa setenta y seis."
+                                        },
+                                        {
+                                            "vocabId": "v279",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «sembilan puluh sembilan»?",
+                                            "options": [
+                                                "Noventa y ocho",
+                                                "Noventa y nueve",
+                                                "Ochenta y nueve"
+                                            ],
+                                            "answer": 1,
+                                            "explanation": "Sembilan puluh sembilan significa noventa y nueve."
+                                        },
+                                        {
+                                            "vocabId": "v124",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Sebelas»?",
+                                            "options": [
+                                                "Once",
+                                                "Dieciocho",
+                                                "Veinte"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Sebelas significa Once."
+                                        },
+                                        {
+                                            "vocabId": "v125",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Doce",
+                                            "answer": "Dua belas",
+                                            "explanation": "Dua belas significa Doce."
+                                        },
+                                        {
+                                            "vocabId": "v126",
+                                            "type": "order",
+                                            "prompt": "Ordena: Trece años.",
+                                            "words": [
+                                                "tahun",
+                                                "belas",
+                                                "Tiga"
+                                            ],
+                                            "correctOrder": [
+                                                "Tiga",
+                                                "belas",
+                                                "tahun"
+                                            ],
+                                            "explanation": "Tiga belas tahun. significa «Trece años.»."
+                                        },
+                                        {
+                                            "vocabId": "v127",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la palabra o expresión.",
+                                            "audioText": "Empat belas",
+                                            "answer": "Empat belas",
+                                            "explanation": "Empat belas significa Catorce."
+                                        },
+                                        {
+                                            "vocabId": "v128",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase con «Lima belas».",
+                                            "hint": "Puedes tomar como referencia: Lima belas buku.",
+                                            "modelAnswer": "Lima belas buku.",
+                                            "explanation": "Lima belas buku. significa «Quince libros.»."
+                                        },
+                                        {
+                                            "vocabId": "v129",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Enam belas»?",
+                                            "options": [
+                                                "Dieciséis",
+                                                "Decenas; elemento para formar 20, 30, etc.",
+                                                "Veinticinco"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Enam belas significa Dieciséis."
+                                        },
+                                        {
+                                            "vocabId": "v130",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Diecisiete",
+                                            "answer": "Tujuh belas",
+                                            "explanation": "Tujuh belas significa Diecisiete."
+                                        },
+                                        {
+                                            "vocabId": "v131",
+                                            "type": "order",
+                                            "prompt": "Ordena: Dieciocho amigos.",
+                                            "words": [
+                                                "teman",
+                                                "belas",
+                                                "Delapan"
+                                            ],
+                                            "correctOrder": [
+                                                "Delapan",
+                                                "belas",
+                                                "teman"
+                                            ],
+                                            "explanation": "Delapan belas teman. significa «Dieciocho amigos.»."
+                                        },
+                                        {
+                                            "vocabId": "v132",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la palabra o expresión.",
+                                            "audioText": "Sembilan belas",
+                                            "answer": "Sembilan belas",
+                                            "explanation": "Sembilan belas significa Diecinueve."
+                                        },
+                                        {
+                                            "vocabId": "v133",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase con «Dua puluh».",
+                                            "hint": "Puedes tomar como referencia: Dua puluh buku.",
+                                            "modelAnswer": "Dua puluh buku.",
+                                            "explanation": "Dua puluh buku. significa «Veinte libros.»."
+                                        },
+                                        {
+                                            "vocabId": "v134",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Tiga puluh»?",
+                                            "options": [
+                                                "Treinta",
+                                                "Cincuenta y ocho",
+                                                "Setenta y seis"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Tiga puluh significa Treinta."
+                                        },
+                                        {
+                                            "vocabId": "v135",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Cien",
+                                            "answer": "Seratus",
+                                            "explanation": "Seratus significa Cien."
+                                        },
+                                        {
+                                            "vocabId": "v158",
+                                            "type": "order",
+                                            "prompt": "Ordena: Veinte.",
+                                            "words": [
+                                                "puluh",
+                                                "Dua"
+                                            ],
+                                            "correctOrder": [
+                                                "Dua",
+                                                "puluh"
+                                            ],
+                                            "explanation": "Dua puluh. significa «Veinte.»."
+                                        },
+                                        {
+                                            "vocabId": "v271",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la palabra o expresión.",
+                                            "audioText": "Dua puluh satu",
+                                            "answer": "Dua puluh satu",
+                                            "explanation": "Dua puluh satu significa Veintiuno."
+                                        },
+                                        {
+                                            "vocabId": "v272",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase con «Dua puluh lima».",
+                                            "hint": "Puedes tomar como referencia: Dua puluh lima teman.",
+                                            "modelAnswer": "Dua puluh lima teman.",
+                                            "explanation": "Dua puluh lima teman. significa «Veinticinco amigos.»."
+                                        },
+                                        {
+                                            "vocabId": "v273",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Tiga puluh dua»?",
+                                            "options": [
+                                                "Treinta y dos",
+                                                "Once",
+                                                "Trece"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Tiga puluh dua significa Treinta y dos."
+                                        },
+                                        {
+                                            "vocabId": "v274",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Cuarenta y siete",
+                                            "answer": "Empat puluh tujuh",
+                                            "explanation": "Empat puluh tujuh significa Cuarenta y siete."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Lección 6: Recuperación espaciada",
+                                    "objective": "Recupera el vocabulario completo de la unidad y aplícalo sin consultar la lista.",
+                                    "grammar": "Practica el vocabulario en cinco formatos: reconocimiento, traducción, ordenación, escucha y escritura. Recupera las formas dentro de los ejemplos de la unidad.",
+                                    "vocabIds": [],
+                                    "reviewVocabIds": [
+                                        "v124",
+                                        "v125",
+                                        "v126",
+                                        "v127",
+                                        "v128",
+                                        "v129",
+                                        "v130",
+                                        "v131",
+                                        "v132",
+                                        "v133",
+                                        "v134",
+                                        "v135",
+                                        "v158",
+                                        "v271",
+                                        "v272",
+                                        "v273",
+                                        "v274",
+                                        "v275",
+                                        "v276",
+                                        "v277",
+                                        "v278",
+                                        "v279"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v124",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Sebelas»?",
+                                            "options": [
+                                                "Once",
+                                                "Trece",
+                                                "Quince"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Sebelas significa Once."
+                                        },
+                                        {
+                                            "vocabId": "v125",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Doce",
+                                            "answer": "Dua belas",
+                                            "explanation": "Dua belas significa Doce."
+                                        },
+                                        {
+                                            "vocabId": "v126",
+                                            "type": "order",
+                                            "prompt": "Ordena: Trece años.",
+                                            "words": [
+                                                "tahun",
+                                                "belas",
+                                                "Tiga"
+                                            ],
+                                            "correctOrder": [
+                                                "Tiga",
+                                                "belas",
+                                                "tahun"
+                                            ],
+                                            "explanation": "Tiga belas tahun. significa «Trece años.»."
+                                        },
+                                        {
+                                            "vocabId": "v127",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la palabra o expresión.",
+                                            "audioText": "Empat belas",
+                                            "answer": "Empat belas",
+                                            "explanation": "Empat belas significa Catorce."
+                                        },
+                                        {
+                                            "vocabId": "v128",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase con «Lima belas».",
+                                            "hint": "Puedes tomar como referencia: Lima belas buku.",
+                                            "modelAnswer": "Lima belas buku.",
+                                            "explanation": "Lima belas buku. significa «Quince libros.»."
+                                        },
+                                        {
+                                            "vocabId": "v129",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Enam belas»?",
+                                            "options": [
+                                                "Dieciséis",
+                                                "Dieciocho",
+                                                "Veinte"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Enam belas significa Dieciséis."
+                                        },
+                                        {
+                                            "vocabId": "v130",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Diecisiete",
+                                            "answer": "Tujuh belas",
+                                            "explanation": "Tujuh belas significa Diecisiete."
+                                        },
+                                        {
+                                            "vocabId": "v131",
+                                            "type": "order",
+                                            "prompt": "Ordena: Dieciocho amigos.",
+                                            "words": [
+                                                "teman",
+                                                "belas",
+                                                "Delapan"
+                                            ],
+                                            "correctOrder": [
+                                                "Delapan",
+                                                "belas",
+                                                "teman"
+                                            ],
+                                            "explanation": "Delapan belas teman. significa «Dieciocho amigos.»."
+                                        },
+                                        {
+                                            "vocabId": "v132",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la palabra o expresión.",
+                                            "audioText": "Sembilan belas",
+                                            "answer": "Sembilan belas",
+                                            "explanation": "Sembilan belas significa Diecinueve."
+                                        },
+                                        {
+                                            "vocabId": "v133",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase con «Dua puluh».",
+                                            "hint": "Puedes tomar como referencia: Dua puluh buku.",
+                                            "modelAnswer": "Dua puluh buku.",
+                                            "explanation": "Dua puluh buku. significa «Veinte libros.»."
+                                        },
+                                        {
+                                            "vocabId": "v134",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Tiga puluh»?",
+                                            "options": [
+                                                "Treinta",
+                                                "Decenas; elemento para formar 20, 30, etc.",
+                                                "Veinticinco"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Tiga puluh significa Treinta."
+                                        },
+                                        {
+                                            "vocabId": "v135",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Cien",
+                                            "answer": "Seratus",
+                                            "explanation": "Seratus significa Cien."
+                                        },
+                                        {
+                                            "vocabId": "v158",
+                                            "type": "order",
+                                            "prompt": "Ordena: Veinte.",
+                                            "words": [
+                                                "puluh",
+                                                "Dua"
+                                            ],
+                                            "correctOrder": [
+                                                "Dua",
+                                                "puluh"
+                                            ],
+                                            "explanation": "Dua puluh. significa «Veinte.»."
+                                        },
+                                        {
+                                            "vocabId": "v271",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la palabra o expresión.",
+                                            "audioText": "Dua puluh satu",
+                                            "answer": "Dua puluh satu",
+                                            "explanation": "Dua puluh satu significa Veintiuno."
+                                        },
+                                        {
+                                            "vocabId": "v272",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase con «Dua puluh lima».",
+                                            "hint": "Puedes tomar como referencia: Dua puluh lima teman.",
+                                            "modelAnswer": "Dua puluh lima teman.",
+                                            "explanation": "Dua puluh lima teman. significa «Veinticinco amigos.»."
+                                        },
+                                        {
+                                            "vocabId": "v273",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Tiga puluh dua»?",
+                                            "options": [
+                                                "Treinta y dos",
+                                                "Cincuenta y ocho",
+                                                "Setenta y seis"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Tiga puluh dua significa Treinta y dos."
+                                        },
+                                        {
+                                            "vocabId": "v274",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Cuarenta y siete",
+                                            "answer": "Empat puluh tujuh",
+                                            "explanation": "Empat puluh tujuh significa Cuarenta y siete."
+                                        },
+                                        {
+                                            "vocabId": "v275",
+                                            "type": "order",
+                                            "prompt": "Ordena: Cincuenta y ocho libros.",
+                                            "words": [
+                                                "buku",
+                                                "delapan",
+                                                "puluh",
+                                                "Lima"
+                                            ],
+                                            "correctOrder": [
+                                                "Lima",
+                                                "puluh",
+                                                "delapan",
+                                                "buku"
+                                            ],
+                                            "explanation": "Lima puluh delapan buku. significa «Cincuenta y ocho libros.»."
+                                        },
+                                        {
+                                            "vocabId": "v276",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la palabra o expresión.",
+                                            "audioText": "Enam puluh empat",
+                                            "answer": "Enam puluh empat",
+                                            "explanation": "Enam puluh empat significa Sesenta y cuatro."
+                                        },
+                                        {
+                                            "vocabId": "v277",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase con «Tujuh puluh enam».",
+                                            "hint": "Puedes tomar como referencia: Tujuh puluh enam buku.",
+                                            "modelAnswer": "Tujuh puluh enam buku.",
+                                            "explanation": "Tujuh puluh enam buku. significa «Setenta y seis libros.»."
+                                        },
+                                        {
+                                            "vocabId": "v278",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Delapan puluh sembilan»?",
+                                            "options": [
+                                                "Ochenta y nueve",
+                                                "Once",
+                                                "Trece"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Delapan puluh sembilan significa Ochenta y nueve."
+                                        },
+                                        {
+                                            "vocabId": "v279",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Noventa y nueve",
+                                            "answer": "Sembilan puluh sembilan",
+                                            "explanation": "Sembilan puluh sembilan significa Noventa y nueve."
+                                        }
+                                    ]
+                                }
+                            ]
                         },
                         {
                             id: 'a1_u10',
@@ -4119,6 +5209,599 @@ window.BAHASA_CURRICULUM_A1 = {
                                 { vocabId: 'v115', type: 'write', prompt: 'Escribe un diálogo completo: pide té, pregunta el precio, recibe la respuesta y paga en efectivo.', hint: 'Usa Berapa harganya?, un precio con ribu/rupiah, Saya bayar tunai y Terima kasih.', modelAnswer: 'Cliente: Saya mau teh, tolong. Cliente: Berapa harganya? Vendedor: Dua puluh satu ribu rupiah. Cliente: Saya bayar tunai. Vendedor: Terima kasih.', explanation: 'El diálogo combina el pedido, la pregunta por el precio, una respuesta con número compuesto y el pago.' },
                                 { vocabId: 'v144', type: 'write', prompt: 'Completa un diálogo de compra con precio, pago de diez mil rupias y devolución del cambio.', hint: 'Incluye lima ribu rupiah, Saya bayar sepuluh ribu rupiah e Ini kembaliannya.', modelAnswer: 'Vendedor: Harganya lima ribu rupiah. Cliente: Saya bayar sepuluh ribu rupiah. Vendedor: Ini kembaliannya, lima ribu rupiah. Cliente: Terima kasih.', explanation: 'El precio es cinco mil y el pago diez mil, por lo que corresponde devolver el cambio.' },
                                 { vocabId: 'v113', type: 'write', prompt: 'Escribe otro diálogo breve para comprar té. Incluye una pregunta por el precio y una respuesta de treinta y dos mil rupias.', hint: 'Puedes usar Saya mau teh, tolong; Berapa harganya?; Tiga puluh dua ribu rupiah; Saya beli teh.', modelAnswer: 'Cliente: Saya mau teh, tolong. Cliente: Berapa harganya? Vendedor: Tiga puluh dua ribu rupiah. Cliente: Saya beli teh. Vendedor: Terima kasih.', explanation: 'Practica un segundo precio y las expresiones de compra ya presentadas.' }
+                            ],
+                            lessons: [
+                                {
+                                    "title": "Lección 1: Dinero y moneda",
+                                    "objective": "Aprende a dinero y moneda y aplica las formas nuevas en frases sencillas, recuperando lo estudiado anteriormente.",
+                                    "grammar": "Uang significa dinero, harga significa precio y rupiah es la moneda de Indonesia. Usa estas palabras al identificar el dinero y el precio de un producto.",
+                                    "vocabIds": [
+                                        "v136",
+                                        "v137",
+                                        "v138"
+                                    ],
+                                    "reviewVocabIds": [],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v136",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa uang?",
+                                            "options": [
+                                                "Dinero",
+                                                "Precio",
+                                                "Cambio"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Uang significa dinero."
+                                        },
+                                        {
+                                            "vocabId": "v137",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: precio",
+                                            "answer": "Harga",
+                                            "explanation": "Harga significa precio."
+                                        },
+                                        {
+                                            "vocabId": "v138",
+                                            "type": "mc",
+                                            "prompt": "Escucha la palabra y elige su significado",
+                                            "audioText": "Rupiah",
+                                            "options": [
+                                                "La moneda de Indonesia",
+                                                "El precio",
+                                                "El dinero en efectivo"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Rupiah es la moneda de Indonesia."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Lección 2: Miles y comparación de precios",
+                                    "objective": "Aprende a miles y comparación de precios y aplica las formas nuevas en frases sencillas, recuperando lo estudiado anteriormente.",
+                                    "grammar": "Ribu indica miles y se combina después del número: lima ribu rupiah. Murah y mahal permiten describir un precio como barato o caro.",
+                                    "vocabIds": [
+                                        "v139",
+                                        "v140",
+                                        "v141"
+                                    ],
+                                    "reviewVocabIds": [
+                                        "v136",
+                                        "v137",
+                                        "v138"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v139",
+                                            "type": "mc",
+                                            "prompt": "Lima ribu rupiah significa…",
+                                            "options": [
+                                                "Cinco rupias",
+                                                "Cinco mil rupias",
+                                                "Cincuenta rupias"
+                                            ],
+                                            "answer": 1,
+                                            "explanation": "Ribu significa mil."
+                                        },
+                                        {
+                                            "vocabId": "v140",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: barato/a",
+                                            "answer": "Murah",
+                                            "explanation": "Murah significa barato o barata."
+                                        },
+                                        {
+                                            "vocabId": "v141",
+                                            "type": "mc",
+                                            "prompt": "¿Qué palabra significa caro/a?",
+                                            "options": [
+                                                "Murah",
+                                                "Mahal",
+                                                "Tunai"
+                                            ],
+                                            "answer": 1,
+                                            "explanation": "Mahal significa caro o cara."
+                                        },
+                                        {
+                                            "vocabId": "v140",
+                                            "type": "order",
+                                            "prompt": "Ordena: Es barato",
+                                            "words": [
+                                                "murah",
+                                                "Harganya"
+                                            ],
+                                            "correctOrder": [
+                                                "Harganya",
+                                                "murah"
+                                            ],
+                                            "explanation": "Harganya murah significa es barato."
+                                        },
+                                        {
+                                            "vocabId": "v136",
+                                            "type": "order",
+                                            "prompt": "Ordena: Esto es dinero.",
+                                            "words": [
+                                                "uang",
+                                                "Ini"
+                                            ],
+                                            "correctOrder": [
+                                                "Ini",
+                                                "uang"
+                                            ],
+                                            "explanation": "Ini uang. significa «Esto es dinero.»."
+                                        },
+                                        {
+                                            "vocabId": "v137",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la palabra o expresión.",
+                                            "audioText": "Harga",
+                                            "answer": "Harga",
+                                            "explanation": "Harga significa Precio."
+                                        },
+                                        {
+                                            "vocabId": "v138",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase con «Rupiah».",
+                                            "hint": "Puedes tomar como referencia: Lima ribu rupiah.",
+                                            "modelAnswer": "Lima ribu rupiah.",
+                                            "explanation": "Lima ribu rupiah. significa «Cinco mil rupias.»."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Lección 3: Comprar y pagar",
+                                    "objective": "Aprende a comprar y pagar y aplica las formas nuevas en frases sencillas, recuperando lo estudiado anteriormente.",
+                                    "grammar": "Beli expresa comprar y bayar expresa pagar. Kembalian es el dinero que devuelve el vendedor; interpreta estas palabras dentro de un intercambio breve.",
+                                    "vocabIds": [
+                                        "v142",
+                                        "v143",
+                                        "v144"
+                                    ],
+                                    "reviewVocabIds": [
+                                        "v136",
+                                        "v137",
+                                        "v138",
+                                        "v139",
+                                        "v140",
+                                        "v141"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v142",
+                                            "type": "order",
+                                            "prompt": "Ordena: Compro té",
+                                            "words": [
+                                                "teh",
+                                                "beli",
+                                                "Saya"
+                                            ],
+                                            "correctOrder": [
+                                                "Saya",
+                                                "beli",
+                                                "teh"
+                                            ],
+                                            "explanation": "Saya beli teh significa compro té."
+                                        },
+                                        {
+                                            "vocabId": "v143",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: pagar",
+                                            "answer": "Bayar",
+                                            "explanation": "Bayar significa pagar."
+                                        },
+                                        {
+                                            "vocabId": "v144",
+                                            "type": "mc",
+                                            "prompt": "Kembalian es…",
+                                            "options": [
+                                                "El precio",
+                                                "El cambio que devuelven",
+                                                "Dinero en efectivo"
+                                            ],
+                                            "answer": 1,
+                                            "explanation": "Kembalian es el cambio que devuelve el vendedor."
+                                        },
+                                        {
+                                            "vocabId": "v142",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase breve sobre comprar algo.",
+                                            "hint": "Puedes usar Saya beli teh.",
+                                            "modelAnswer": "Saya beli teh.",
+                                            "explanation": "Usa beli para decir comprar; también son válidas otras frases correctas."
+                                        },
+                                        {
+                                            "vocabId": "v144",
+                                            "type": "write",
+                                            "prompt": "Completa un diálogo de compra con precio, pago de diez mil rupias y devolución del cambio.",
+                                            "hint": "Incluye lima ribu rupiah, Saya bayar sepuluh ribu rupiah e Ini kembaliannya.",
+                                            "modelAnswer": "Vendedor: Harganya lima ribu rupiah. Cliente: Saya bayar sepuluh ribu rupiah. Vendedor: Ini kembaliannya, lima ribu rupiah. Cliente: Terima kasih.",
+                                            "explanation": "El precio es cinco mil y el pago diez mil, por lo que corresponde devolver el cambio."
+                                        },
+                                        {
+                                            "vocabId": "v136",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la palabra o expresión.",
+                                            "audioText": "Uang",
+                                            "answer": "Uang",
+                                            "explanation": "Uang significa Dinero."
+                                        },
+                                        {
+                                            "vocabId": "v137",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase con «Harga».",
+                                            "hint": "Puedes tomar como referencia: Harga buku.",
+                                            "modelAnswer": "Harga buku.",
+                                            "explanation": "Harga buku. significa «El precio del libro.»."
+                                        },
+                                        {
+                                            "vocabId": "v138",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Rupiah»?",
+                                            "options": [
+                                                "Rupia indonesia",
+                                                "Pagar",
+                                                "En efectivo"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Rupiah significa Rupia indonesia."
+                                        },
+                                        {
+                                            "vocabId": "v139",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Mil (en cantidades)",
+                                            "answer": "Ribu",
+                                            "explanation": "Ribu significa Mil (en cantidades)."
+                                        },
+                                        {
+                                            "vocabId": "v140",
+                                            "type": "order",
+                                            "prompt": "Ordena: Este precio es barato.",
+                                            "words": [
+                                                "murah",
+                                                "ini",
+                                                "Harga"
+                                            ],
+                                            "correctOrder": [
+                                                "Harga",
+                                                "ini",
+                                                "murah"
+                                            ],
+                                            "explanation": "Harga ini murah. significa «Este precio es barato.»."
+                                        },
+                                        {
+                                            "vocabId": "v141",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la palabra o expresión.",
+                                            "audioText": "Mahal",
+                                            "answer": "Mahal",
+                                            "explanation": "Mahal significa Caro/a."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Lección 4: Preguntar y responder precios",
+                                    "objective": "Aprende a preguntar y responder precios y aplica las formas nuevas en frases sencillas, recuperando lo estudiado anteriormente.",
+                                    "grammar": "Berapa harganya? sirve para preguntar cuánto cuesta. Tunai indica pago en efectivo; combina pregunta, precio y forma de pago en un diálogo.",
+                                    "vocabIds": [
+                                        "v145",
+                                        "v18",
+                                        "v115",
+                                        "v113"
+                                    ],
+                                    "reviewVocabIds": [
+                                        "v136",
+                                        "v137",
+                                        "v138",
+                                        "v139",
+                                        "v140",
+                                        "v141",
+                                        "v142",
+                                        "v143",
+                                        "v144"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v145",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: en efectivo",
+                                            "answer": "Tunai",
+                                            "explanation": "Tunai significa en efectivo."
+                                        },
+                                        {
+                                            "vocabId": "v18",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa berapa?",
+                                            "options": [
+                                                "Cuánto",
+                                                "Caro",
+                                                "Dinero"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Berapa se usa para preguntar cantidades o precios."
+                                        },
+                                        {
+                                            "vocabId": "v115",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la pregunta por el precio",
+                                            "answer": "Berapa harganya?",
+                                            "explanation": "Berapa harganya? significa ¿Cuánto cuesta?"
+                                        },
+                                        {
+                                            "vocabId": "v113",
+                                            "type": "write",
+                                            "prompt": "Escribe una pregunta para saber el precio de algo.",
+                                            "hint": "Usa la expresión Berapa harganya?",
+                                            "modelAnswer": "Berapa harganya?",
+                                            "explanation": "Esta pregunta sirve para preguntar cuánto cuesta algo."
+                                        },
+                                        {
+                                            "vocabId": "v115",
+                                            "type": "write",
+                                            "prompt": "Escribe un diálogo completo: pide té, pregunta el precio, recibe la respuesta y paga en efectivo.",
+                                            "hint": "Usa Berapa harganya?, un precio con ribu/rupiah, Saya bayar tunai y Terima kasih.",
+                                            "modelAnswer": "Cliente: Saya mau teh, tolong. Cliente: Berapa harganya? Vendedor: Dua puluh satu ribu rupiah. Cliente: Saya bayar tunai. Vendedor: Terima kasih.",
+                                            "explanation": "El diálogo combina el pedido, la pregunta por el precio, una respuesta con número compuesto y el pago."
+                                        },
+                                        {
+                                            "vocabId": "v113",
+                                            "type": "write",
+                                            "prompt": "Escribe otro diálogo breve para comprar té. Incluye una pregunta por el precio y una respuesta de treinta y dos mil rupias.",
+                                            "hint": "Puedes usar Saya mau teh, tolong; Berapa harganya?; Tiga puluh dua ribu rupiah; Saya beli teh.",
+                                            "modelAnswer": "Cliente: Saya mau teh, tolong. Cliente: Berapa harganya? Vendedor: Tiga puluh dua ribu rupiah. Cliente: Saya beli teh. Vendedor: Terima kasih.",
+                                            "explanation": "Practica un segundo precio y las expresiones de compra ya presentadas."
+                                        },
+                                        {
+                                            "vocabId": "v136",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase con «Uang».",
+                                            "hint": "Puedes tomar como referencia: Ini uang.",
+                                            "modelAnswer": "Ini uang.",
+                                            "explanation": "Ini uang. significa «Esto es dinero.»."
+                                        },
+                                        {
+                                            "vocabId": "v137",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Harga»?",
+                                            "options": [
+                                                "Precio",
+                                                "Pagar",
+                                                "En efectivo"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Harga significa Precio."
+                                        },
+                                        {
+                                            "vocabId": "v138",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Rupia indonesia",
+                                            "answer": "Rupiah",
+                                            "explanation": "Rupiah significa Rupia indonesia."
+                                        },
+                                        {
+                                            "vocabId": "v139",
+                                            "type": "order",
+                                            "prompt": "Ordena: Cinco mil rupias.",
+                                            "words": [
+                                                "rupiah",
+                                                "ribu",
+                                                "Lima"
+                                            ],
+                                            "correctOrder": [
+                                                "Lima",
+                                                "ribu",
+                                                "rupiah"
+                                            ],
+                                            "explanation": "Lima ribu rupiah. significa «Cinco mil rupias.»."
+                                        },
+                                        {
+                                            "vocabId": "v140",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la palabra o expresión.",
+                                            "audioText": "Murah",
+                                            "answer": "Murah",
+                                            "explanation": "Murah significa Barato/a."
+                                        },
+                                        {
+                                            "vocabId": "v141",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase con «Mahal».",
+                                            "hint": "Puedes tomar como referencia: Harganya mahal.",
+                                            "modelAnswer": "Harganya mahal.",
+                                            "explanation": "Harganya mahal. significa «Es caro.»."
+                                        },
+                                        {
+                                            "vocabId": "v142",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Beli»?",
+                                            "options": [
+                                                "Comprar",
+                                                "Té",
+                                                "Precio"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Beli significa Comprar."
+                                        },
+                                        {
+                                            "vocabId": "v143",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Pagar",
+                                            "answer": "Bayar",
+                                            "explanation": "Bayar significa Pagar."
+                                        },
+                                        {
+                                            "vocabId": "v144",
+                                            "type": "order",
+                                            "prompt": "Ordena: Aquí tiene su cambio.",
+                                            "words": [
+                                                "kembaliannya",
+                                                "Ini"
+                                            ],
+                                            "correctOrder": [
+                                                "Ini",
+                                                "kembaliannya"
+                                            ],
+                                            "explanation": "Ini kembaliannya. significa «Aquí tiene su cambio.»."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Lección 5: Recuperación espaciada",
+                                    "objective": "Recupera el vocabulario completo de la unidad y aplícalo sin consultar la lista.",
+                                    "grammar": "Practica el vocabulario en cinco formatos: reconocimiento, traducción, ordenación, escucha y escritura. Recupera las formas dentro de los ejemplos de la unidad.",
+                                    "vocabIds": [],
+                                    "reviewVocabIds": [
+                                        "v136",
+                                        "v137",
+                                        "v138",
+                                        "v139",
+                                        "v140",
+                                        "v141",
+                                        "v142",
+                                        "v143",
+                                        "v144",
+                                        "v145",
+                                        "v18",
+                                        "v115",
+                                        "v113"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v136",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Uang»?",
+                                            "options": [
+                                                "Dinero",
+                                                "Rupia indonesia",
+                                                "Barato/a"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Uang significa Dinero."
+                                        },
+                                        {
+                                            "vocabId": "v137",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Precio",
+                                            "answer": "Harga",
+                                            "explanation": "Harga significa Precio."
+                                        },
+                                        {
+                                            "vocabId": "v138",
+                                            "type": "order",
+                                            "prompt": "Ordena: Cinco mil rupias.",
+                                            "words": [
+                                                "rupiah",
+                                                "ribu",
+                                                "Lima"
+                                            ],
+                                            "correctOrder": [
+                                                "Lima",
+                                                "ribu",
+                                                "rupiah"
+                                            ],
+                                            "explanation": "Lima ribu rupiah. significa «Cinco mil rupias.»."
+                                        },
+                                        {
+                                            "vocabId": "v139",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la palabra o expresión.",
+                                            "audioText": "Ribu",
+                                            "answer": "Ribu",
+                                            "explanation": "Ribu significa Mil (en cantidades)."
+                                        },
+                                        {
+                                            "vocabId": "v140",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase con «Murah».",
+                                            "hint": "Puedes tomar como referencia: Harga ini murah.",
+                                            "modelAnswer": "Harga ini murah.",
+                                            "explanation": "Harga ini murah. significa «Este precio es barato.»."
+                                        },
+                                        {
+                                            "vocabId": "v141",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Mahal»?",
+                                            "options": [
+                                                "Caro/a",
+                                                "Pagar",
+                                                "En efectivo"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Mahal significa Caro/a."
+                                        },
+                                        {
+                                            "vocabId": "v142",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Comprar",
+                                            "answer": "Beli",
+                                            "explanation": "Beli significa Comprar."
+                                        },
+                                        {
+                                            "vocabId": "v143",
+                                            "type": "order",
+                                            "prompt": "Ordena: Pago.",
+                                            "words": [
+                                                "bayar",
+                                                "Saya"
+                                            ],
+                                            "correctOrder": [
+                                                "Saya",
+                                                "bayar"
+                                            ],
+                                            "explanation": "Saya bayar. significa «Pago.»."
+                                        },
+                                        {
+                                            "vocabId": "v144",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la palabra o expresión.",
+                                            "audioText": "Kembalian",
+                                            "answer": "Kembalian",
+                                            "explanation": "Kembalian significa Cambio (dinero que devuelven)."
+                                        },
+                                        {
+                                            "vocabId": "v145",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase con «Tunai».",
+                                            "hint": "Puedes tomar como referencia: Saya bayar tunai.",
+                                            "modelAnswer": "Saya bayar tunai.",
+                                            "explanation": "Saya bayar tunai. significa «Pago en efectivo.»."
+                                        },
+                                        {
+                                            "vocabId": "v18",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Berapa»?",
+                                            "options": [
+                                                "Cuánto / cuántos",
+                                                "Té",
+                                                "Precio"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Berapa significa Cuánto / cuántos."
+                                        },
+                                        {
+                                            "vocabId": "v115",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: ¿Cuánto cuesta?",
+                                            "answer": "Berapa harganya?",
+                                            "explanation": "Berapa harganya? significa ¿Cuánto cuesta?."
+                                        },
+                                        {
+                                            "vocabId": "v113",
+                                            "type": "order",
+                                            "prompt": "Ordena: Compro té.",
+                                            "words": [
+                                                "teh",
+                                                "beli",
+                                                "Saya"
+                                            ],
+                                            "correctOrder": [
+                                                "Saya",
+                                                "beli",
+                                                "teh"
+                                            ],
+                                            "explanation": "Saya beli teh. significa «Compro té.»."
+                                        }
+                                    ]
+                                }
                             ]
                         },
                         {
@@ -4196,7 +5879,699 @@ window.BAHASA_CURRICULUM_A1 = {
                                                 "answer": 1,
                                                 "explanation": "Besok significa mañana."
                                             }
-]
+],
+                            lessons: [
+                                {
+                                    "title": "Lección 1: Partes del día",
+                                    "objective": "Aprende a partes del día y aplica las formas nuevas en frases sencillas, recuperando lo estudiado anteriormente.",
+                                    "grammar": "Pagi es la mañana, siang el mediodía o primeras horas de la tarde, sore el final de la tarde y malam la noche. Para situar una actividad puedes usar pada + momento + hari.",
+                                    "vocabIds": [
+                                        "v146",
+                                        "v147",
+                                        "v148",
+                                        "v149"
+                                    ],
+                                    "reviewVocabIds": [],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v146",
+                                            "type": "mc",
+                                            "prompt": "¿Qué parte del día significa pagi?",
+                                            "options": [
+                                                "Mañana",
+                                                "Noche",
+                                                "Mediodía"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Pagi es la mañana."
+                                        },
+                                        {
+                                            "vocabId": "v147",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: mediodía / primeras horas de la tarde",
+                                            "answer": "Siang",
+                                            "explanation": "Siang suele referirse al mediodía y primeras horas de la tarde."
+                                        },
+                                        {
+                                            "vocabId": "v148",
+                                            "type": "mc",
+                                            "prompt": "¿Qué palabra significa tarde, al final de la tarde?",
+                                            "options": [
+                                                "Sore",
+                                                "Pagi",
+                                                "Malam"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Sore es el final de la tarde."
+                                        },
+                                        {
+                                            "vocabId": "v149",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: noche",
+                                            "answer": "Malam",
+                                            "explanation": "Malam significa noche."
+                                        },
+                                        {
+                                            "vocabId": "v146",
+                                            "type": "listen",
+                                            "prompt": "Escribe la expresión “esta mañana”",
+                                            "answer": "Pagi ini",
+                                            "explanation": "Pagi ini significa esta mañana."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Lección 2: Decir la hora",
+                                    "objective": "Aprende a decir la hora y aplica las formas nuevas en frases sencillas, recuperando lo estudiado anteriormente.",
+                                    "grammar": "Jam y pukul sirven para expresar la hora. Pukul tujuh indica las siete; jam tujuh tepat expresa las siete en punto.",
+                                    "vocabIds": [
+                                        "v150",
+                                        "v151",
+                                        "v152",
+                                        "v153"
+                                    ],
+                                    "reviewVocabIds": [
+                                        "v146",
+                                        "v147",
+                                        "v148",
+                                        "v149"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v150",
+                                            "type": "mc",
+                                            "prompt": "En la expresión jam tujuh, jam significa…",
+                                            "options": [
+                                                "Hora",
+                                                "Minuto",
+                                                "Mañana"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Jam se usa para expresar la hora y también significa reloj."
+                                        },
+                                        {
+                                            "vocabId": "v151",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: a las (para indicar una hora)",
+                                            "answer": "Pukul",
+                                            "explanation": "Pukul se usa para indicar una hora concreta."
+                                        },
+                                        {
+                                            "vocabId": "v152",
+                                            "type": "listen",
+                                            "prompt": "Escribe la palabra que significa minuto",
+                                            "answer": "Menit",
+                                            "explanation": "Menit significa minuto."
+                                        },
+                                        {
+                                            "vocabId": "v153",
+                                            "type": "mc",
+                                            "prompt": "¿Qué hora significa setengah delapan?",
+                                            "options": [
+                                                "7:30",
+                                                "8:30",
+                                                "7:00"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Setengah delapan significa siete y media."
+                                        },
+                                        {
+                                            "vocabId": "v151",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase para decir que son las siete en punto.",
+                                            "hint": "Usa jam, tujuh y tepat.",
+                                            "modelAnswer": "Jam tujuh tepat.",
+                                            "explanation": "La frase significa las siete en punto."
+                                        },
+                                        {
+                                            "vocabId": "v146",
+                                            "type": "order",
+                                            "prompt": "Ordena: Esta mañana estudio.",
+                                            "words": [
+                                                "belajar",
+                                                "saya",
+                                                "ini",
+                                                "Pagi"
+                                            ],
+                                            "correctOrder": [
+                                                "Pagi",
+                                                "ini",
+                                                "saya",
+                                                "belajar"
+                                            ],
+                                            "explanation": "Pagi ini saya belajar. significa «Esta mañana estudio.»."
+                                        },
+                                        {
+                                            "vocabId": "v147",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la palabra o expresión.",
+                                            "audioText": "Siang",
+                                            "answer": "Siang",
+                                            "explanation": "Siang significa Mediodía / primeras horas de la tarde."
+                                        },
+                                        {
+                                            "vocabId": "v148",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase con «Sore».",
+                                            "hint": "Puedes tomar como referencia: Saya bekerja pada sore hari.",
+                                            "modelAnswer": "Saya bekerja pada sore hari.",
+                                            "explanation": "Saya bekerja pada sore hari. significa «Trabajo por la tarde.»."
+                                        },
+                                        {
+                                            "vocabId": "v149",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Malam»?",
+                                            "options": [
+                                                "Noche",
+                                                "Media / mitad",
+                                                "Más tarde"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Malam significa Noche."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Lección 3: Minutos y momentos",
+                                    "objective": "Aprende a minutos y momentos y aplica las formas nuevas en frases sencillas, recuperando lo estudiado anteriormente.",
+                                    "grammar": "Menit significa minuto y lewat indica los minutos que pasan de la hora. Setengah delapan significa las siete y media, media hora antes de las ocho.",
+                                    "vocabIds": [
+                                        "v154",
+                                        "v155",
+                                        "v156",
+                                        "v157"
+                                    ],
+                                    "reviewVocabIds": [
+                                        "v146",
+                                        "v147",
+                                        "v148",
+                                        "v149",
+                                        "v150",
+                                        "v151",
+                                        "v152",
+                                        "v153"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v154",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: ahora",
+                                            "answer": "Sekarang",
+                                            "explanation": "Sekarang significa ahora."
+                                        },
+                                        {
+                                            "vocabId": "v155",
+                                            "type": "mc",
+                                            "prompt": "Nanti significa…",
+                                            "options": [
+                                                "Ayer",
+                                                "Más tarde",
+                                                "Ahora"
+                                            ],
+                                            "answer": 1,
+                                            "explanation": "Nanti significa más tarde."
+                                        },
+                                        {
+                                            "vocabId": "v156",
+                                            "type": "order",
+                                            "prompt": "Ordena: Las siete en punto",
+                                            "words": [
+                                                "tepat",
+                                                "tujuh",
+                                                "Jam"
+                                            ],
+                                            "correctOrder": [
+                                                "Jam",
+                                                "tujuh",
+                                                "tepat"
+                                            ],
+                                            "explanation": "Jam tujuh tepat significa las siete en punto."
+                                        },
+                                        {
+                                            "vocabId": "v157",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: las siete y cinco",
+                                            "answer": "Jam tujuh lewat lima menit",
+                                            "explanation": "Lewat indica los minutos que pasan de la hora."
+                                        },
+                                        {
+                                            "vocabId": "v155",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase sencilla con nanti.",
+                                            "hint": "Puedes hablar de estudiar más tarde.",
+                                            "modelAnswer": "Saya belajar nanti.",
+                                            "explanation": "Nanti significa más tarde; otras frases correctas también valen."
+                                        },
+                                        {
+                                            "vocabId": "v146",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la palabra o expresión.",
+                                            "audioText": "Pagi",
+                                            "answer": "Pagi",
+                                            "explanation": "Pagi significa Mañana (parte del día)."
+                                        },
+                                        {
+                                            "vocabId": "v147",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase con «Siang».",
+                                            "hint": "Puedes tomar como referencia: Saya belajar pada siang hari.",
+                                            "modelAnswer": "Saya belajar pada siang hari.",
+                                            "explanation": "Saya belajar pada siang hari. significa «Estudio durante el día.»."
+                                        },
+                                        {
+                                            "vocabId": "v148",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Sore»?",
+                                            "options": [
+                                                "Tarde (final de la tarde)",
+                                                "Media / mitad",
+                                                "Más tarde"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Sore significa Tarde (final de la tarde)."
+                                        },
+                                        {
+                                            "vocabId": "v149",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Noche",
+                                            "answer": "Malam",
+                                            "explanation": "Malam significa Noche."
+                                        },
+                                        {
+                                            "vocabId": "v150",
+                                            "type": "order",
+                                            "prompt": "Ordena: Las siete.",
+                                            "words": [
+                                                "tujuh",
+                                                "Jam"
+                                            ],
+                                            "correctOrder": [
+                                                "Jam",
+                                                "tujuh"
+                                            ],
+                                            "explanation": "Jam tujuh. significa «Las siete.»."
+                                        },
+                                        {
+                                            "vocabId": "v151",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la palabra o expresión.",
+                                            "audioText": "Pukul",
+                                            "answer": "Pukul",
+                                            "explanation": "Pukul significa A las (indica la hora)."
+                                        },
+                                        {
+                                            "vocabId": "v152",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase con «Menit».",
+                                            "hint": "Puedes tomar como referencia: Lima menit.",
+                                            "modelAnswer": "Lima menit.",
+                                            "explanation": "Lima menit. significa «Cinco minutos.»."
+                                        },
+                                        {
+                                            "vocabId": "v153",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Setengah»?",
+                                            "options": [
+                                                "Media / mitad",
+                                                "Día",
+                                                "Mañana"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Setengah significa Media / mitad."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Lección 4: Ubicar actividades en el tiempo",
+                                    "objective": "Aprende a ubicar actividades en el tiempo y aplica las formas nuevas en frases sencillas, recuperando lo estudiado anteriormente.",
+                                    "grammar": "Sekarang significa ahora y nanti más tarde. Hari ini es hoy y besok mañana; combina estas referencias con horas y actividades.",
+                                    "vocabIds": [
+                                        "v35",
+                                        "v36",
+                                        "v122"
+                                    ],
+                                    "reviewVocabIds": [
+                                        "v146",
+                                        "v147",
+                                        "v148",
+                                        "v149",
+                                        "v150",
+                                        "v151",
+                                        "v152",
+                                        "v153",
+                                        "v154",
+                                        "v155",
+                                        "v156",
+                                        "v157"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v35",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «hari»?",
+                                            "options": [
+                                                "Día",
+                                                "Mes",
+                                                "Mañana"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Hari significa día."
+                                        },
+                                        {
+                                            "vocabId": "v36",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «hari ini»?",
+                                            "options": [
+                                                "Ayer",
+                                                "Hoy / este día",
+                                                "Mañana"
+                                            ],
+                                            "answer": 1,
+                                            "explanation": "Hari ini significa hoy o este día."
+                                        },
+                                        {
+                                            "vocabId": "v122",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «besok»?",
+                                            "options": [
+                                                "Ayer",
+                                                "Mañana",
+                                                "Hoy"
+                                            ],
+                                            "answer": 1,
+                                            "explanation": "Besok significa mañana."
+                                        },
+                                        {
+                                            "vocabId": "v146",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase con «Pagi».",
+                                            "hint": "Puedes tomar como referencia: Pagi ini saya belajar.",
+                                            "modelAnswer": "Pagi ini saya belajar.",
+                                            "explanation": "Pagi ini saya belajar. significa «Esta mañana estudio.»."
+                                        },
+                                        {
+                                            "vocabId": "v147",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Siang»?",
+                                            "options": [
+                                                "Mediodía / primeras horas de la tarde",
+                                                "Media / mitad",
+                                                "Más tarde"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Siang significa Mediodía / primeras horas de la tarde."
+                                        },
+                                        {
+                                            "vocabId": "v148",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Tarde (final de la tarde)",
+                                            "answer": "Sore",
+                                            "explanation": "Sore significa Tarde (final de la tarde)."
+                                        },
+                                        {
+                                            "vocabId": "v149",
+                                            "type": "order",
+                                            "prompt": "Ordena: Duermo por la noche.",
+                                            "words": [
+                                                "hari",
+                                                "malam",
+                                                "pada",
+                                                "tidur",
+                                                "Saya"
+                                            ],
+                                            "correctOrder": [
+                                                "Saya",
+                                                "tidur",
+                                                "pada",
+                                                "malam",
+                                                "hari"
+                                            ],
+                                            "explanation": "Saya tidur pada malam hari. significa «Duermo por la noche.»."
+                                        },
+                                        {
+                                            "vocabId": "v150",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la palabra o expresión.",
+                                            "audioText": "Jam",
+                                            "answer": "Jam",
+                                            "explanation": "Jam significa Hora / reloj."
+                                        },
+                                        {
+                                            "vocabId": "v151",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase con «Pukul».",
+                                            "hint": "Puedes tomar como referencia: Pukul tujuh.",
+                                            "modelAnswer": "Pukul tujuh.",
+                                            "explanation": "Pukul tujuh. significa «A las siete.»."
+                                        },
+                                        {
+                                            "vocabId": "v152",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Menit»?",
+                                            "options": [
+                                                "Minuto",
+                                                "Día",
+                                                "Mañana"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Menit significa Minuto."
+                                        },
+                                        {
+                                            "vocabId": "v153",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Media / mitad",
+                                            "answer": "Setengah",
+                                            "explanation": "Setengah significa Media / mitad."
+                                        },
+                                        {
+                                            "vocabId": "v154",
+                                            "type": "order",
+                                            "prompt": "Ordena: Ahora son las siete.",
+                                            "words": [
+                                                "tujuh",
+                                                "pukul",
+                                                "Sekarang"
+                                            ],
+                                            "correctOrder": [
+                                                "Sekarang",
+                                                "pukul",
+                                                "tujuh"
+                                            ],
+                                            "explanation": "Sekarang pukul tujuh. significa «Ahora son las siete.»."
+                                        },
+                                        {
+                                            "vocabId": "v155",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la palabra o expresión.",
+                                            "audioText": "Nanti",
+                                            "answer": "Nanti",
+                                            "explanation": "Nanti significa Más tarde."
+                                        },
+                                        {
+                                            "vocabId": "v156",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase con «Tepat».",
+                                            "hint": "Puedes tomar como referencia: Jam tujuh tepat.",
+                                            "modelAnswer": "Jam tujuh tepat.",
+                                            "explanation": "Jam tujuh tepat. significa «Las siete en punto.»."
+                                        },
+                                        {
+                                            "vocabId": "v157",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Lewat»?",
+                                            "options": [
+                                                "Pasadas / después de",
+                                                "Tarde (final de la tarde)",
+                                                "Hora / reloj"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Lewat significa Pasadas / después de."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Lección 5: Recuperación espaciada",
+                                    "objective": "Recupera el vocabulario completo de la unidad y aplícalo sin consultar la lista.",
+                                    "grammar": "Practica el vocabulario en cinco formatos: reconocimiento, traducción, ordenación, escucha y escritura. Recupera las formas dentro de los ejemplos de la unidad.",
+                                    "vocabIds": [],
+                                    "reviewVocabIds": [
+                                        "v146",
+                                        "v147",
+                                        "v148",
+                                        "v149",
+                                        "v150",
+                                        "v151",
+                                        "v152",
+                                        "v153",
+                                        "v154",
+                                        "v155",
+                                        "v156",
+                                        "v157",
+                                        "v35",
+                                        "v36",
+                                        "v122"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v146",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Pagi»?",
+                                            "options": [
+                                                "Mañana (parte del día)",
+                                                "Tarde (final de la tarde)",
+                                                "Hora / reloj"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Pagi significa Mañana (parte del día)."
+                                        },
+                                        {
+                                            "vocabId": "v147",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Mediodía / primeras horas de la tarde",
+                                            "answer": "Siang",
+                                            "explanation": "Siang significa Mediodía / primeras horas de la tarde."
+                                        },
+                                        {
+                                            "vocabId": "v148",
+                                            "type": "order",
+                                            "prompt": "Ordena: Trabajo por la tarde.",
+                                            "words": [
+                                                "hari",
+                                                "sore",
+                                                "pada",
+                                                "bekerja",
+                                                "Saya"
+                                            ],
+                                            "correctOrder": [
+                                                "Saya",
+                                                "bekerja",
+                                                "pada",
+                                                "sore",
+                                                "hari"
+                                            ],
+                                            "explanation": "Saya bekerja pada sore hari. significa «Trabajo por la tarde.»."
+                                        },
+                                        {
+                                            "vocabId": "v149",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la palabra o expresión.",
+                                            "audioText": "Malam",
+                                            "answer": "Malam",
+                                            "explanation": "Malam significa Noche."
+                                        },
+                                        {
+                                            "vocabId": "v150",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase con «Jam».",
+                                            "hint": "Puedes tomar como referencia: Jam tujuh.",
+                                            "modelAnswer": "Jam tujuh.",
+                                            "explanation": "Jam tujuh. significa «Las siete.»."
+                                        },
+                                        {
+                                            "vocabId": "v151",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Pukul»?",
+                                            "options": [
+                                                "A las (indica la hora)",
+                                                "Media / mitad",
+                                                "Más tarde"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Pukul significa A las (indica la hora)."
+                                        },
+                                        {
+                                            "vocabId": "v152",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Minuto",
+                                            "answer": "Menit",
+                                            "explanation": "Menit significa Minuto."
+                                        },
+                                        {
+                                            "vocabId": "v153",
+                                            "type": "order",
+                                            "prompt": "Ordena: Las siete y media.",
+                                            "words": [
+                                                "delapan",
+                                                "Setengah"
+                                            ],
+                                            "correctOrder": [
+                                                "Setengah",
+                                                "delapan"
+                                            ],
+                                            "explanation": "Setengah delapan. significa «Las siete y media.»."
+                                        },
+                                        {
+                                            "vocabId": "v154",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la palabra o expresión.",
+                                            "audioText": "Sekarang",
+                                            "answer": "Sekarang",
+                                            "explanation": "Sekarang significa Ahora."
+                                        },
+                                        {
+                                            "vocabId": "v155",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase con «Nanti».",
+                                            "hint": "Puedes tomar como referencia: Saya belajar nanti.",
+                                            "modelAnswer": "Saya belajar nanti.",
+                                            "explanation": "Saya belajar nanti. significa «Estudio más tarde.»."
+                                        },
+                                        {
+                                            "vocabId": "v156",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Tepat»?",
+                                            "options": [
+                                                "En punto / exacto",
+                                                "Día",
+                                                "Mañana"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Tepat significa En punto / exacto."
+                                        },
+                                        {
+                                            "vocabId": "v157",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Pasadas / después de",
+                                            "answer": "Lewat",
+                                            "explanation": "Lewat significa Pasadas / después de."
+                                        },
+                                        {
+                                            "vocabId": "v35",
+                                            "type": "order",
+                                            "prompt": "Ordena: Hoy estudio.",
+                                            "words": [
+                                                "belajar",
+                                                "saya",
+                                                "ini",
+                                                "Hari"
+                                            ],
+                                            "correctOrder": [
+                                                "Hari",
+                                                "ini",
+                                                "saya",
+                                                "belajar"
+                                            ],
+                                            "explanation": "Hari ini saya belajar. significa «Hoy estudio.»."
+                                        },
+                                        {
+                                            "vocabId": "v36",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la palabra o expresión.",
+                                            "audioText": "Hari ini",
+                                            "answer": "Hari ini",
+                                            "explanation": "Hari ini significa Hoy / este día."
+                                        },
+                                        {
+                                            "vocabId": "v122",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase con «Besok».",
+                                            "hint": "Puedes tomar como referencia: Besok saya bekerja.",
+                                            "modelAnswer": "Besok saya bekerja.",
+                                            "explanation": "Besok saya bekerja. significa «Mañana trabajo.»."
+                                        }
+                                    ]
+                                }
+                            ]
                         },
                         {
                             "id": "a1_u12",
@@ -4433,7 +6808,476 @@ window.BAHASA_CURRICULUM_A1 = {
                                                 "answer": 0,
                                                 "explanation": "Baju significa ropa o prenda de vestir."
                                             }
-]
+],
+                            lessons: [
+                                {
+                                    "title": "Lección 1: Despertarse y asearse",
+                                    "objective": "Aprende a despertarse y asearse y aplica las formas nuevas en frases sencillas, recuperando lo estudiado anteriormente.",
+                                    "grammar": "Para describir una rutina, coloca el sujeto antes del verbo: Saya bangun y Saya mandi. El verbo no cambia según la persona.",
+                                    "vocabIds": [
+                                        "v247",
+                                        "v248"
+                                    ],
+                                    "reviewVocabIds": [],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v247",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Bangun»?",
+                                            "options": [
+                                                "Levantarse",
+                                                "Bañarse / ducharse",
+                                                "Desayunar"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Bangun significa «Levantarse»."
+                                        },
+                                        {
+                                            "vocabId": "v248",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Mandi»?",
+                                            "options": [
+                                                "Bañarse / ducharse",
+                                                "Desayunar",
+                                                "Salir / partir"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Mandi significa «Bañarse / ducharse»."
+                                        },
+                                        {
+                                            "vocabId": "v247",
+                                            "type": "order",
+                                            "prompt": "Ordena la frase en indonesio: Me levanto por la mañana.",
+                                            "words": [
+                                                "pagi",
+                                                "bangun",
+                                                "Saya"
+                                            ],
+                                            "correctOrder": [
+                                                "Saya",
+                                                "bangun",
+                                                "pagi"
+                                            ],
+                                            "explanation": "La frase es «Saya bangun pagi»."
+                                        },
+                                        {
+                                            "vocabId": "v247",
+                                            "type": "mc",
+                                            "prompt": "Escucha la rutina y elige qué hace la persona",
+                                            "audioText": "Saya bangun pagi.",
+                                            "options": [
+                                                "Me levanto por la mañana",
+                                                "Se acuesta por la noche",
+                                                "Cena por la tarde"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Bangun significa levantarse; pagi indica la mañana."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Lección 2: Desayunar y salir",
+                                    "objective": "Aprende a desayunar y salir y aplica las formas nuevas en frases sencillas, recuperando lo estudiado anteriormente.",
+                                    "grammar": "Sarapan significa desayunar y berangkat salir o partir. Puedes presentar acciones cotidianas en frases breves con el sujeto antes del verbo.",
+                                    "vocabIds": [
+                                        "v249",
+                                        "v250"
+                                    ],
+                                    "reviewVocabIds": [
+                                        "v247",
+                                        "v248"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v249",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Sarapan»?",
+                                            "options": [
+                                                "Desayunar",
+                                                "Salir / partir",
+                                                "Volver a casa"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Sarapan significa «Desayunar»."
+                                        },
+                                        {
+                                            "vocabId": "v250",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Berangkat»?",
+                                            "options": [
+                                                "Salir / partir",
+                                                "Volver a casa",
+                                                "Descansar"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Berangkat significa «Salir / partir»."
+                                        },
+                                        {
+                                            "vocabId": "v250",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce al indonesio: Salir / partir",
+                                            "answer": "Berangkat",
+                                            "explanation": "Berangkat significa «Salir / partir»."
+                                        },
+                                        {
+                                            "vocabId": "v247",
+                                            "type": "order",
+                                            "prompt": "Ordena: Me levanto por la mañana.",
+                                            "words": [
+                                                "pagi",
+                                                "bangun",
+                                                "Saya"
+                                            ],
+                                            "correctOrder": [
+                                                "Saya",
+                                                "bangun",
+                                                "pagi"
+                                            ],
+                                            "explanation": "Saya bangun pagi. significa «Me levanto por la mañana.»."
+                                        },
+                                        {
+                                            "vocabId": "v248",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la palabra o expresión.",
+                                            "audioText": "Mandi",
+                                            "answer": "Mandi",
+                                            "explanation": "Mandi significa Bañarse / ducharse."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Lección 3: Volver y descansar",
+                                    "objective": "Aprende a volver y descansar y aplica las formas nuevas en frases sencillas, recuperando lo estudiado anteriormente.",
+                                    "grammar": "Pulang significa volver a casa y istirahat descansar. Mantén el orden sujeto + verbo al describir lo que haces durante el día.",
+                                    "vocabIds": [
+                                        "v251",
+                                        "v252"
+                                    ],
+                                    "reviewVocabIds": [
+                                        "v247",
+                                        "v248",
+                                        "v249",
+                                        "v250"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v251",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Pulang»?",
+                                            "options": [
+                                                "Volver a casa",
+                                                "Descansar",
+                                                "Cocinar"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Pulang significa «Volver a casa»."
+                                        },
+                                        {
+                                            "vocabId": "v252",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Istirahat»?",
+                                            "options": [
+                                                "Descansar",
+                                                "Cocinar",
+                                                "Lavar"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Istirahat significa «Descansar»."
+                                        },
+                                        {
+                                            "vocabId": "v251",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce al indonesio: Volver a casa",
+                                            "answer": "Pulang",
+                                            "explanation": "Pulang significa «Volver a casa»."
+                                        },
+                                        {
+                                            "vocabId": "v252",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce al indonesio: Descansar",
+                                            "answer": "Istirahat",
+                                            "explanation": "Istirahat significa «Descansar»."
+                                        },
+                                        {
+                                            "vocabId": "v251",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase sencilla con «Pulang».",
+                                            "hint": "Usa el ejemplo de vocabulario como modelo y cambia lo que puedas con palabras ya aprendidas.",
+                                            "modelAnswer": "Saya pulang.",
+                                            "explanation": "Ejemplo: Saya pulang. — Vuelvo a casa."
+                                        },
+                                        {
+                                            "vocabId": "v247",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la palabra o expresión.",
+                                            "audioText": "Bangun",
+                                            "answer": "Bangun",
+                                            "explanation": "Bangun significa Levantarse."
+                                        },
+                                        {
+                                            "vocabId": "v248",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase con «Mandi».",
+                                            "hint": "Puedes tomar como referencia: Saya mandi.",
+                                            "modelAnswer": "Saya mandi.",
+                                            "explanation": "Saya mandi. significa «Me baño.»."
+                                        },
+                                        {
+                                            "vocabId": "v249",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Sarapan»?",
+                                            "options": [
+                                                "Desayunar",
+                                                "Lavar",
+                                                "Levantarse"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Sarapan significa Desayunar."
+                                        },
+                                        {
+                                            "vocabId": "v250",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Salir / partir",
+                                            "answer": "Berangkat",
+                                            "explanation": "Berangkat significa Salir / partir."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Lección 4: Tareas del hogar",
+                                    "objective": "Aprende a tareas del hogar y aplica las formas nuevas en frases sencillas, recuperando lo estudiado anteriormente.",
+                                    "grammar": "Memasak significa cocinar y mencuci lavar; baju es ropa. Para expresar la acción y su objeto, coloca el verbo antes del sustantivo: mencuci baju.",
+                                    "vocabIds": [
+                                        "v253",
+                                        "v254",
+                                        "v304"
+                                    ],
+                                    "reviewVocabIds": [
+                                        "v247",
+                                        "v248",
+                                        "v249",
+                                        "v250",
+                                        "v251",
+                                        "v252"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v253",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Memasak»?",
+                                            "options": [
+                                                "Cocinar",
+                                                "Lavar",
+                                                "Levantarse"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Memasak significa «Cocinar»."
+                                        },
+                                        {
+                                            "vocabId": "v254",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Mencuci»?",
+                                            "options": [
+                                                "Lavar",
+                                                "Levantarse",
+                                                "Bañarse / ducharse"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Mencuci significa «Lavar»."
+                                        },
+                                        {
+                                            "vocabId": "v254",
+                                            "type": "mc",
+                                            "prompt": "¿Qué frase significa «Lavo la ropa»?",
+                                            "options": [
+                                                "Saya mencuci baju.",
+                                                "Saya bangun.",
+                                                "Saya mandi."
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Saya mencuci baju significa «Lavo la ropa»; baju significa ropa o prenda de vestir."
+                                        },
+                                        {
+                                            "vocabId": "v304",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «baju»?",
+                                            "options": [
+                                                "Ropa / prenda de vestir",
+                                                "Zapato",
+                                                "Comida"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Baju significa ropa o prenda de vestir."
+                                        },
+                                        {
+                                            "vocabId": "v247",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase con «Bangun».",
+                                            "hint": "Puedes tomar como referencia: Saya bangun pagi.",
+                                            "modelAnswer": "Saya bangun pagi.",
+                                            "explanation": "Saya bangun pagi. significa «Me levanto por la mañana.»."
+                                        },
+                                        {
+                                            "vocabId": "v248",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Mandi»?",
+                                            "options": [
+                                                "Bañarse / ducharse",
+                                                "Lavar",
+                                                "Levantarse"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Mandi significa Bañarse / ducharse."
+                                        },
+                                        {
+                                            "vocabId": "v249",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Desayunar",
+                                            "answer": "Sarapan",
+                                            "explanation": "Sarapan significa Desayunar."
+                                        },
+                                        {
+                                            "vocabId": "v250",
+                                            "type": "order",
+                                            "prompt": "Ordena: Salgo.",
+                                            "words": [
+                                                "berangkat",
+                                                "Saya"
+                                            ],
+                                            "correctOrder": [
+                                                "Saya",
+                                                "berangkat"
+                                            ],
+                                            "explanation": "Saya berangkat. significa «Salgo.»."
+                                        },
+                                        {
+                                            "vocabId": "v251",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la palabra o expresión.",
+                                            "audioText": "Pulang",
+                                            "answer": "Pulang",
+                                            "explanation": "Pulang significa Volver a casa."
+                                        },
+                                        {
+                                            "vocabId": "v252",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase con «Istirahat».",
+                                            "hint": "Puedes tomar como referencia: Saya istirahat.",
+                                            "modelAnswer": "Saya istirahat.",
+                                            "explanation": "Saya istirahat. significa «Descanso.»."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Lección 5: Recuperación espaciada",
+                                    "objective": "Recupera el vocabulario completo de la unidad y aplícalo sin consultar la lista.",
+                                    "grammar": "Practica el vocabulario en cinco formatos: reconocimiento, traducción, ordenación, escucha y escritura. Recupera las formas dentro de los ejemplos de la unidad.",
+                                    "vocabIds": [],
+                                    "reviewVocabIds": [
+                                        "v247",
+                                        "v248",
+                                        "v249",
+                                        "v250",
+                                        "v251",
+                                        "v252",
+                                        "v253",
+                                        "v254",
+                                        "v304"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v247",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Bangun»?",
+                                            "options": [
+                                                "Levantarse",
+                                                "Desayunar",
+                                                "Volver a casa"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Bangun significa Levantarse."
+                                        },
+                                        {
+                                            "vocabId": "v248",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Bañarse / ducharse",
+                                            "answer": "Mandi",
+                                            "explanation": "Mandi significa Bañarse / ducharse."
+                                        },
+                                        {
+                                            "vocabId": "v249",
+                                            "type": "order",
+                                            "prompt": "Ordena: Desayuno.",
+                                            "words": [
+                                                "sarapan",
+                                                "Saya"
+                                            ],
+                                            "correctOrder": [
+                                                "Saya",
+                                                "sarapan"
+                                            ],
+                                            "explanation": "Saya sarapan. significa «Desayuno.»."
+                                        },
+                                        {
+                                            "vocabId": "v250",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la palabra o expresión.",
+                                            "audioText": "Berangkat",
+                                            "answer": "Berangkat",
+                                            "explanation": "Berangkat significa Salir / partir."
+                                        },
+                                        {
+                                            "vocabId": "v251",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase con «Pulang».",
+                                            "hint": "Puedes tomar como referencia: Saya pulang.",
+                                            "modelAnswer": "Saya pulang.",
+                                            "explanation": "Saya pulang. significa «Vuelvo a casa.»."
+                                        },
+                                        {
+                                            "vocabId": "v252",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Istirahat»?",
+                                            "options": [
+                                                "Descansar",
+                                                "Lavar",
+                                                "Levantarse"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Istirahat significa Descansar."
+                                        },
+                                        {
+                                            "vocabId": "v253",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Cocinar",
+                                            "answer": "Memasak",
+                                            "explanation": "Memasak significa Cocinar."
+                                        },
+                                        {
+                                            "vocabId": "v254",
+                                            "type": "order",
+                                            "prompt": "Ordena: Lavo.",
+                                            "words": [
+                                                "mencuci",
+                                                "Saya"
+                                            ],
+                                            "correctOrder": [
+                                                "Saya",
+                                                "mencuci"
+                                            ],
+                                            "explanation": "Saya mencuci. significa «Lavo.»."
+                                        },
+                                        {
+                                            "vocabId": "v304",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la palabra o expresión.",
+                                            "audioText": "Baju",
+                                            "answer": "Baju",
+                                            "explanation": "Baju significa Ropa / prenda de vestir."
+                                        }
+                                    ]
+                                }
+                            ]
                         },
                         {
                             "id": "a1_u13",

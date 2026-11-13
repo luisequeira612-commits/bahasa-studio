@@ -2045,3 +2045,23 @@ test('A1 U5-U8 runtime uses five authored lessons without generated padding', ()
       unit.id + ' must not count generated exercises as authored practice');
   }
 });
+
+test('A1 U9-U12 runtime uses authored five-or-six lesson sequences without generated padding', () => {
+  const start = html.indexOf('const CourseData =');
+  const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
+  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
+  const engineStart = html.indexOf('function buildUnitAssessmentItems');
+  const engineEnd = html.indexOf('function unitLessonProgressKey', engineStart);
+  assert.ok(engineStart >= 0 && engineEnd > engineStart, 'unit lesson builder must exist');
+  const engine = vm.runInNewContext(html.slice(engineStart, engineEnd) + '\n({ buildUnitLessons })', { CourseData: course, Map, Set, Math });
+  const a1 = course.levels.find(level => level.id === 'A1');
+  const expected = [90, 49, 57, 37];
+  for (const [index, unit] of a1.units.slice(8, 12).entries()) {
+    const lessons = engine.buildUnitLessons(unit);
+    assert.equal(unit.lessons.length, index === 0 ? 6 : 5, unit.id + ' must have five or six authored lesson records');
+    assert.equal(lessons.length, unit.lessons.length, unit.id + ' must not use runtime padding');
+    assert.deepEqual(Array.from(lessons, lesson => lesson.title), Array.from(unit.lessons, lesson => lesson.title));
+    assert.equal(lessons.reduce((total, lesson) => total + lesson.exercises.length, 0), expected[index]);
+    assert.ok(lessons.every(lesson => lesson.exercises.every(exercise => exercise.generated !== true)));
+  }
+});

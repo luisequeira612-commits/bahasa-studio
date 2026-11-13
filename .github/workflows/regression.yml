@@ -29,6 +29,8 @@ jobs:
         run: node --test tests/indonesian-language-markup.test.cjs
       - name: Run resilient service worker install tests
         run: node --test tests/service-worker-install.test.cjs
+      - name: Run API key management tests
+        run: node --test tests/api-key-management.test.cjs
       - name: Run phase 1 UI navigation tests
         run: node --test tests/ui-redesign-phase-1.test.cjs
       - name: Run phase 2 lesson flow tests

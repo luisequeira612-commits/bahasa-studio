@@ -203,10 +203,12 @@
                 <summary style="font-size:0.85rem; cursor:pointer; font-weight:bold;">Configuración Gemini API (Opcional)</summary>
                 <p style="font-size: 0.75rem; margin: 8px 0; color: var(--text-muted);">Si agregas tu clave propia de Google AI Studio, las respuestas serán generadas por IA. Sin clave, solo tendrás respuestas locales básicas; el curso y sus ejercicios funcionan sin IA.</p>
                 <p style="font-size: 0.75rem; margin: 8px 0; color: var(--text-muted);"><strong>Para mantener el coste en $0, deja la clave vacía.</strong> Si configuras Gemini, tus consultas se enviarán a Google. Las cuotas y condiciones gratuitas pueden cambiar; si tu cuenta tiene facturación habilitada, no puedo garantizar que las llamadas sean siempre gratuitas. No necesitas una clave para estudiar las lecciones del curso.</p>
-                <div style="display:flex; gap: 8px;">
+                <div style="display:flex; gap: 8px; flex-wrap:wrap;">
                     <input type="password" id="apiKeyInput" class="input-field" placeholder="AIzaSy..." aria-label="Clave opcional de Gemini API" style="padding: 6px 10px; font-size:0.85rem;">
-                    <button class="btn btn-sm" onclick="App.saveApiKey()">Guardar</button>
+                    <button class="btn btn-sm" type="button" onclick="App.saveApiKey()">Guardar</button>
+                    <button class="btn btn-outline btn-sm" type="button" onclick="App.forgetApiKey()">Olvidar clave</button>
                 </div>
+                <p style="font-size:0.72rem;color:var(--text-muted);margin:8px 0 0;">La clave se guarda solo en este dispositivo y no se incluye en la copia JSON v3. Puedes eliminarla cuando quieras.</p>
             </details>
         </div>
 
@@ -630,6 +632,15 @@
                     tx.oncomplete = () => resolve();
                     tx.onerror = () => reject(tx.error || new Error('No se pudo guardar en IndexedDB.'));
                     tx.onabort = () => reject(tx.error || new Error('La transacción de guardado fue cancelada.'));
+                });
+            },
+            async delete(store, key) {
+                return new Promise((resolve, reject) => {
+                    const tx = this.db.transaction(store, 'readwrite');
+                    tx.objectStore(store).delete(key);
+                    tx.oncomplete = () => resolve();
+                    tx.onerror = () => reject(tx.error || new Error('No se pudo eliminar el dato.'));
+                    tx.onabort = () => reject(tx.error || new Error('Se canceló la eliminación.'));
                 });
             },
             async getAll(store) {
@@ -8217,6 +8228,18 @@ Requisitos:
                 this.apiKey = key;
                 DB.set('settings', 'geminiApiKey', key).catch(err => console.error('No se pudo guardar la clave de API:', err));
                 alert("API Key actualizada.");
+            },
+            async forgetApiKey() {
+                this.apiKey = '';
+                const input = document.getElementById('apiKeyInput');
+                if (input) input.value = '';
+                try {
+                    await DB.delete('settings', 'geminiApiKey');
+                    alert('Clave eliminada de este dispositivo. El Tutor seguirá funcionando en modo local.');
+                } catch (error) {
+                    console.error('No se pudo eliminar la clave de API:', error);
+                    alert('No se pudo borrar la clave guardada. Inténtalo de nuevo; si recargas, podría volver a aparecer.');
+                }
             },
             escapeHtml(str) {
                 return String(str == null ? '' : str).replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' })[m]);

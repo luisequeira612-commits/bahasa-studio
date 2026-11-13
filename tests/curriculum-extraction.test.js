@@ -60,7 +60,7 @@ test('A1/A2 canonical curriculum integrity hashes and structure remain pinned', 
   const repeat = u30.vocab.find(item => item.id === 'v449');
   assert.equal(repeat.esp, 'Repite / repita (imperativo)');
   assert.equal(repeat.exEsp, 'Por favor, repite.');
-  assert.deepEqual(counts(a2), { units: 40, lessons: 168, exercises: 724, vocabulary: 492 });
+  assert.deepEqual(counts(a2), { units: 40, lessons: 172, exercises: 744, vocabulary: 492 });
 });
 
 test('classic curriculum scripts load synchronously before the main app script', () => {

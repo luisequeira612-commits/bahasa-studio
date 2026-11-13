@@ -5643,7 +5643,7 @@
                 const reinforcement = unit.vocab.filter(word => !practicedVocabIds.has(word.id)).flatMap((word, index) => {
                     const distractors = unit.vocab.filter(other => other.id !== word.id).map(other => other.esp)
                         .filter((meaning, i, all) => meaning !== word.esp && all.indexOf(meaning) === i).slice(0, 3);
-                    const options = shuffleArray([word.esp, ...distractors);
+                    const options = shuffleArray([word.esp, ...distractors]);
                     const practice = index % 2 === 0
                         ? { vocabId: word.id, type: 'mc', prompt: '¿Qué significa «' + word.idn + '»?', options, answer: options.indexOf(word.esp), explanation: '«' + word.idn + '» significa «' + word.esp + '».' }
                         : { vocabId: word.id, type: 'translate_es_id', prompt: 'Traduce al indonesio: «' + word.esp + '»', answer: word.idn, explanation: '«' + word.idn + '» significa «' + word.esp + '».' };

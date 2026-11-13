@@ -38,21 +38,59 @@
  const questions=document.getElementById('questions');
  const results=document.getElementById('results');
  let activeItems=[];
+ let activeSpeechRecognition=null;
  const SKILL_LABELS={vocabulary:'Vocabulario',grammar:'Gramática',comprehension:'Comprensión',interaction:'Interacción',production:'Producción',context:'Contexto',meN:'Prefijo meN-',diPassive:'Pasiva con di-',diPreposition:'Preposición di',reading:'Lectura',voice:'Voz verbal',kanI:'Sufijos -kan/-i',derivation:'Derivación',register:'Registro',nominalization:'Nominalización',reference:'Referencias'};
  const RUBRIC_LABELS={'task-completion':'Cumplimiento de la tarea',intelligibility:'Claridad del mensaje','basic-grammar':'Gramática básica','relevant-vocabulary':'Vocabulario pertinente',cohesion:'Coherencia','grammar-in-context':'Gramática en contexto','lexical-appropriacy':'Uso adecuado del vocabulario','target-pattern':'Patrón objetivo',register:'Registro adecuado','grammar-and-lexis':'Gramática y vocabulario','greeting-appropriacy':'Adecuación del saludo','cumplimiento-de-la-tarea':'Cumplimiento de la tarea',claridad:'Claridad del mensaje','gramática-básica':'Gramática básica','vocabulario-relevante':'Vocabulario pertinente','adecuación-del-saludo':'Adecuación del saludo'};
  function labelSkill(skill){return SKILL_LABELS[skill]||skill;}
  function escapeText(value){return String(value).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));}
+ function stopSpeechCapture(){
+   const recognition=activeSpeechRecognition;
+   activeSpeechRecognition=null;
+   if(!recognition)return;
+   try{recognition.abort();}catch(error){}
+ }
  function startSpeechCapture(inputId,statusId,button){
    const Recognition=window.SpeechRecognition||window.webkitSpeechRecognition;
    const input=document.getElementById(inputId),status=document.getElementById(statusId);
+   if(!input||!status||!button)return;
    if(!Recognition){status.textContent='Este navegador no ofrece reconocimiento de voz. Puedes hablar en voz alta y escribir después un resumen de lo que dijiste.';return;}
+   stopSpeechCapture();
    const recognition=new Recognition();
+   activeSpeechRecognition=recognition;
    recognition.lang='id-ID';recognition.continuous=false;recognition.interimResults=false;recognition.maxAlternatives=1;
    button.disabled=true;status.textContent='Escuchando… habla en indonesio.';
-   recognition.onresult=event=>{const result=event.results&&event.results[0]&&event.results[0][0];if(result&&result.transcript){input.value=result.transcript;status.textContent='Transcripción provisional añadida. Revísala; no es una calificación de pronunciación.';}};
-   recognition.onerror=event=>{const messages={'not-allowed':'No se concedió permiso para usar el micrófono. Puedes escribir la transcripción manualmente.','no-speech':'No se detectó voz. Inténtalo otra vez.','audio-capture':'No se encontró un micrófono disponible.','service-not-allowed':'El servicio de reconocimiento no está disponible.'};status.textContent=messages[event.error]||'No se pudo reconocer la voz. Puedes escribir la transcripción manualmente.';};
-   recognition.onend=()=>{if(button.isConnected)button.disabled=false;};
-   try{recognition.start();}catch(error){button.disabled=false;status.textContent='No se pudo iniciar el micrófono. Comprueba los permisos del navegador.';}
+   const isCurrentCapture=()=>activeSpeechRecognition===recognition&&input.isConnected&&status.isConnected;
+   recognition.onresult=event=>{
+     if(!isCurrentCapture())return;
+     const result=event.results&&event.results[0]&&event.results[0][0];
+     if(result&&result.transcript){
+       input.value=result.transcript;
+       input.dispatchEvent(new Event('input',{bubbles:true}));
+       status.textContent='Transcripción provisional añadida. Revísala; no es una calificación de pronunciación.';
+     }
+   };
+   recognition.onerror=event=>{
+     if(!isCurrentCapture())return;
+     const messages={
+       'not-allowed':'No se concedió permiso para usar el micrófono. Puedes escribir la transcripción manualmente.',
+       'no-speech':'No se detectó voz. Inténtalo otra vez.',
+       'audio-capture':'No se encontró un micrófono disponible.',
+       'service-not-allowed':'El servicio de reconocimiento no está disponible.',
+       'network':'Falló la conexión del servicio de reconocimiento. Puedes escribir la transcripción manualmente.',
+       'language-not-supported':'El navegador no admite el reconocimiento en indonesio. Puedes escribir la transcripción manualmente.'
+     };
+     status.textContent=messages[event.error]||'No se pudo reconocer la voz. Puedes escribir la transcripción manualmente.';
+   };
+   recognition.onend=()=>{
+     if(activeSpeechRecognition===recognition)activeSpeechRecognition=null;
+     if(button.isConnected)button.disabled=false;
+   };
+   try{recognition.start();}
+   catch(error){
+     if(activeSpeechRecognition===recognition)activeSpeechRecognition=null;
+     button.disabled=false;
+     if(status.isConnected)status.textContent='No se pudo iniciar el micrófono. Comprueba los permisos del navegador.';
+   }
  }
  questions.addEventListener('input',event=>{
    const input=event.target;
@@ -76,6 +114,7 @@
    startSpeechCapture(id,'speech-status-'+id,button);
  });
  function begin(){
+   stopSpeechCapture();
    activeItems=BahasaAssessment.getAssessment(levelSelect.value);
    questions.innerHTML=activeItems.map((item,index)=>{
      const reading=item.readingText?'<div class="reading-passage" role="note">'+escapeText(item.readingText)+'</div>':'';

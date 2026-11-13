@@ -2061,8 +2061,8 @@ test('real JSON v3 import keeps untrusted custom lesson content inert across rou
     const studyActivity = await page.evaluate(() => StudyActivity.createDefault());
     const vocab = [
       { id: unitId + '_v0', idn: payload, esp: payload, ex: payload, exEsp: payload },
-      { id: unitId + '_v1', idn: 'makan', esp: 'comer', ex: 'Saya makan', exEsp: 'Yo como' },
-      { id: unitId + '_v2', idn: 'minum', esp: 'beber', ex: 'Saya minum', exEsp: 'Yo bebo' }
+      { id: unitId + '_v1', idn: payload + ' 2', esp: 'comer', ex: 'Saya makan', exEsp: 'Yo como' },
+      { id: unitId + '_v2', idn: payload + ' 3', esp: 'beber', ex: 'Saya minum', exEsp: 'Yo bebo' }
     ];
     const backup = {
       version: 3,
@@ -2161,7 +2161,8 @@ test('real JSON v3 import keeps untrusted custom lesson content inert across rou
       assert.equal(rendered.handlers, 0, queue[index] + ' must not create an injected event handler');
       assert.equal(rendered.executed, 0, queue[index] + ' must not execute the payload');
       if (queue[index] === 'listen') {
-        assert.equal(rendered.currentAnswer, payload, 'the imported listen answer should reach the renderer');
+        assert.ok(String(rendered.currentAnswer).startsWith(payload),
+          'the imported listen answer should reach the renderer');
         assert.ok(rendered.html.includes('data-answer='), 'listen should render its answer in a data attribute');
         assert.ok(rendered.html.includes('&lt;img'), 'listen answer markup should be HTML-escaped');
       } else {

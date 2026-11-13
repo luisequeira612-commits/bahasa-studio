@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { buildUnitContractRows, collectExercises } from '../scripts/unit-contract-report.mjs';
+import { buildUnitContractRows, collectExercises, getLessonStructure } from '../scripts/unit-contract-report.mjs';
 
 test('counts B1 direct and lesson exercises together for the unit contract', () => {
   const levels = [{
@@ -32,4 +32,34 @@ test('counts B1 direct and lesson exercises together for the unit contract', () 
   assert.equal(rows[0].review, true);
   assert.equal(rows[0].reviewVocab, 2);
   assert.equal(collectExercises(levels[0].units[0]).length, 5);
+});
+
+
+test('three authored B2 lessons are not mistaken for five because of automatic active-recall padding', () => {
+  const result = getLessonStructure({ vocab: [{ id: 'a' }], lessons: [{}, {}, {}] }, 'B2');
+  assert.deepEqual(result, {
+    authoredLessons: 3,
+    derivedLessons: 0,
+    activeRecallPadding: 2,
+    runtimeLessons: 5,
+    meetsAuthoredTarget: false,
+  });
+});
+
+test('five or six explicit lessons satisfy the authored lesson-count requirement', () => {
+  for (const count of [5, 6]) {
+    const result = getLessonStructure({ vocab: [], lessons: Array.from({ length: count }, () => ({})) }, 'B2');
+    assert.equal(result.authoredLessons, count);
+    assert.equal(result.meetsAuthoredTarget, true);
+    assert.equal(result.activeRecallPadding, 0);
+  }
+});
+
+test('A1 vocabulary-derived blocks and generic recall lessons remain separately reported', () => {
+  const result = getLessonStructure({ vocab: Array.from({ length: 12 }, (_, i) => ({ id: String(i) })) }, 'A1');
+  assert.equal(result.authoredLessons, 0);
+  assert.equal(result.derivedLessons, 3);
+  assert.equal(result.activeRecallPadding, 2);
+  assert.equal(result.runtimeLessons, 5);
+  assert.equal(result.meetsAuthoredTarget, false);
 });

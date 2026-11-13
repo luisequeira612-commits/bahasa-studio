@@ -3145,6 +3145,149 @@ window.BAHASA_CURRICULUM_A2 = {
                                         "explanation": "Usa el vocabulario en una oración completa."
                                     }
                                 ]
+                            },
+                            {
+                                "title": "Lección 5: Recuperación espaciada de una compra completa",
+                                "objective": "Recupera el vocabulario de precios, pagos, comparación y participantes para describir una compra de principio a fin.",
+                                "grammar": "Integra el costo, el descuento, el pago y el recibo; compara opciones y distingue al comprador del vendedor. Recupera las doce palabras de la unidad sin introducir vocabulario nuevo.",
+                                "vocabIds": [],
+                                "reviewVocabIds": [
+                                    "a2u13_biaya",
+                                    "a2u13_terjangkau",
+                                    "a2u13_diskon",
+                                    "a2u13_membayar",
+                                    "a2u13_kartu",
+                                    "a2u13_struk",
+                                    "a2u13_menawar",
+                                    "a2u13_membandingkan",
+                                    "a2u13_sesuai",
+                                    "a2u13_pusat_belanja",
+                                    "a2u13_penjual",
+                                    "a2u13_pembeli"
+                                ],
+                                "exercises": [
+                                    {
+                                        "vocabId": "a2u13_biaya",
+                                        "type": "mc",
+                                        "prompt": "En una situación de compra, ¿qué significa «biaya»?",
+                                        "options": [
+                                            "Costo",
+                                            "Asequible",
+                                            "Descuento"
+                                        ],
+                                        "answer": 0,
+                                        "explanation": "«biaya» significa «Costo» en el vocabulario de esta unidad."
+                                    },
+                                    {
+                                        "vocabId": "a2u13_terjangkau",
+                                        "type": "translate_es_id",
+                                        "prompt": "Traduce al indonesio: «Este bolso es asequible.»",
+                                        "answer": "Tas ini terjangkau.",
+                                        "explanation": "La oración recupera «terjangkau» en su ejemplo contextualizado."
+                                    },
+                                    {
+                                        "vocabId": "a2u13_diskon",
+                                        "type": "listen",
+                                        "prompt": "Escucha y escribe la oración completa.",
+                                        "answer": "Ada diskon hari ini.",
+                                        "explanation": "La oración permite recuperar «diskon» en contexto."
+                                    },
+                                    {
+                                        "vocabId": "a2u13_membayar",
+                                        "type": "write",
+                                        "prompt": "Escribe una oración propia usando «membayar».",
+                                        "hint": "Usa el ejemplo como referencia y cambia un dato para crear una frase propia: Saya membayar sekarang.",
+                                        "modelAnswer": "Saya membayar sekarang.",
+                                        "explanation": "La producción recupera «membayar» dentro de una oración completa."
+                                    },
+                                    {
+                                        "vocabId": "a2u13_kartu",
+                                        "type": "order",
+                                        "prompt": "Ordena las palabras para reconstruir el ejemplo de «kartu».",
+                                        "words": [
+                                            "kartu",
+                                            "memakai",
+                                            "Saya"
+                                        ],
+                                        "correctOrder": [
+                                            "Saya",
+                                            "memakai",
+                                            "kartu"
+                                        ],
+                                        "explanation": "La secuencia reconstruye el ejemplo de «kartu»."
+                                    },
+                                    {
+                                        "vocabId": "a2u13_struk",
+                                        "type": "mc",
+                                        "prompt": "En una situación de compra, ¿qué significa «struk»?",
+                                        "options": [
+                                            "Costo",
+                                            "Recibo",
+                                            "Asequible"
+                                        ],
+                                        "answer": 1,
+                                        "explanation": "«struk» significa «Recibo» en el vocabulario de esta unidad."
+                                    },
+                                    {
+                                        "vocabId": "a2u13_menawar",
+                                        "type": "translate_es_id",
+                                        "prompt": "Traduce al indonesio: «Regateo el precio del bolso.»",
+                                        "answer": "Saya menawar harga tas.",
+                                        "explanation": "La oración recupera «menawar» en su ejemplo contextualizado."
+                                    },
+                                    {
+                                        "vocabId": "a2u13_membandingkan",
+                                        "type": "listen",
+                                        "prompt": "Escucha y escribe la oración completa.",
+                                        "answer": "Saya membandingkan pakaian.",
+                                        "explanation": "La oración permite recuperar «membandingkan» en contexto."
+                                    },
+                                    {
+                                        "vocabId": "a2u13_sesuai",
+                                        "type": "write",
+                                        "prompt": "Escribe una oración propia usando «sesuai».",
+                                        "hint": "Usa el ejemplo como referencia y cambia un dato para crear una frase propia: Pilihan ini sesuai.",
+                                        "modelAnswer": "Pilihan ini sesuai.",
+                                        "explanation": "La producción recupera «sesuai» dentro de una oración completa."
+                                    },
+                                    {
+                                        "vocabId": "a2u13_pusat_belanja",
+                                        "type": "order",
+                                        "prompt": "Ordena las palabras para reconstruir el ejemplo de «pusat belanja».",
+                                        "words": [
+                                            "besar",
+                                            "itu",
+                                            "belanja",
+                                            "Pusat"
+                                        ],
+                                        "correctOrder": [
+                                            "Pusat",
+                                            "belanja",
+                                            "itu",
+                                            "besar"
+                                        ],
+                                        "explanation": "La secuencia reconstruye el ejemplo de «pusat belanja»."
+                                    },
+                                    {
+                                        "vocabId": "a2u13_penjual",
+                                        "type": "mc",
+                                        "prompt": "En una situación de compra, ¿qué significa «penjual»?",
+                                        "options": [
+                                            "Costo",
+                                            "Asequible",
+                                            "Vendedor"
+                                        ],
+                                        "answer": 2,
+                                        "explanation": "«penjual» significa «Vendedor» en el vocabulario de esta unidad."
+                                    },
+                                    {
+                                        "vocabId": "a2u13_pembeli",
+                                        "type": "translate_es_id",
+                                        "prompt": "Traduce al indonesio: «El comprador espera.»",
+                                        "answer": "Pembeli menunggu.",
+                                        "explanation": "La oración recupera «pembeli» en su ejemplo contextualizado."
+                                    }
+                                ]
                             }
                         ]
                     },
@@ -3437,6 +3580,149 @@ window.BAHASA_CURRICULUM_A2 = {
                                         "hint": "Puedes tomar como modelo: Keberangkatan angkutan pukul tujuh.",
                                         "modelAnswer": "Keberangkatan angkutan pukul tujuh.",
                                         "explanation": "Usa el vocabulario en una oración completa."
+                                    }
+                                ]
+                            },
+                            {
+                                "title": "Lección 5: Recuperación espaciada de un viaje",
+                                "objective": "Recupera las palabras necesarias para preparar un viaje, reconocer cambios de transporte y explicar retrasos y salidas.",
+                                "grammar": "Integra viaje, equipaje, puerto, billete, vehículo, transporte, retraso, salida, cambio y pasajero en un recorrido coherente. Recupera las doce palabras de la unidad sin introducir vocabulario nuevo.",
+                                "vocabIds": [],
+                                "reviewVocabIds": [
+                                    "a2u14_perjalanan",
+                                    "a2u14_bepergian",
+                                    "a2u14_mendarat",
+                                    "a2u14_bagasi",
+                                    "a2u14_pelabuhan",
+                                    "a2u14_karcis",
+                                    "a2u14_kendaraan",
+                                    "a2u14_angkutan",
+                                    "a2u14_tertunda",
+                                    "a2u14_keberangkatan",
+                                    "a2u14_pindah",
+                                    "a2u14_penumpang"
+                                ],
+                                "exercises": [
+                                    {
+                                        "vocabId": "a2u14_perjalanan",
+                                        "type": "mc",
+                                        "prompt": "Al organizar un viaje, ¿qué significa «perjalanan»?",
+                                        "options": [
+                                            "Viaje",
+                                            "Viajar",
+                                            "Aterrizar"
+                                        ],
+                                        "answer": 0,
+                                        "explanation": "«perjalanan» significa «Viaje» en el vocabulario de esta unidad."
+                                    },
+                                    {
+                                        "vocabId": "a2u14_bepergian",
+                                        "type": "translate_es_id",
+                                        "prompt": "Traduce al indonesio: «Viajo por la mañana.»",
+                                        "answer": "Saya bepergian pagi.",
+                                        "explanation": "La oración recupera «bepergian» en su ejemplo contextualizado."
+                                    },
+                                    {
+                                        "vocabId": "a2u14_mendarat",
+                                        "type": "listen",
+                                        "prompt": "Escucha y escribe la oración completa.",
+                                        "answer": "Pesawat mendarat pagi.",
+                                        "explanation": "La oración permite recuperar «mendarat» en contexto."
+                                    },
+                                    {
+                                        "vocabId": "a2u14_bagasi",
+                                        "type": "write",
+                                        "prompt": "Escribe una oración propia usando «bagasi».",
+                                        "hint": "Usa el ejemplo como referencia y cambia un dato para crear una frase propia: Bagasi saya berat.",
+                                        "modelAnswer": "Bagasi saya berat.",
+                                        "explanation": "La producción recupera «bagasi» dentro de una oración completa."
+                                    },
+                                    {
+                                        "vocabId": "a2u14_pelabuhan",
+                                        "type": "order",
+                                        "prompt": "Ordena las palabras para reconstruir el ejemplo de «pelabuhan».",
+                                        "words": [
+                                            "ramai",
+                                            "itu",
+                                            "Pelabuhan"
+                                        ],
+                                        "correctOrder": [
+                                            "Pelabuhan",
+                                            "itu",
+                                            "ramai"
+                                        ],
+                                        "explanation": "La secuencia reconstruye el ejemplo de «pelabuhan»."
+                                    },
+                                    {
+                                        "vocabId": "a2u14_karcis",
+                                        "type": "mc",
+                                        "prompt": "Al organizar un viaje, ¿qué significa «karcis»?",
+                                        "options": [
+                                            "Viaje",
+                                            "Billete",
+                                            "Viajar"
+                                        ],
+                                        "answer": 1,
+                                        "explanation": "«karcis» significa «Billete» en el vocabulario de esta unidad."
+                                    },
+                                    {
+                                        "vocabId": "a2u14_kendaraan",
+                                        "type": "translate_es_id",
+                                        "prompt": "Traduce al indonesio: «El vehículo llega.»",
+                                        "answer": "Kendaraan datang.",
+                                        "explanation": "La oración recupera «kendaraan» en su ejemplo contextualizado."
+                                    },
+                                    {
+                                        "vocabId": "a2u14_angkutan",
+                                        "type": "listen",
+                                        "prompt": "Escucha y escribe la oración completa.",
+                                        "answer": "Saya naik angkutan umum.",
+                                        "explanation": "La oración permite recuperar «angkutan» en contexto."
+                                    },
+                                    {
+                                        "vocabId": "a2u14_tertunda",
+                                        "type": "write",
+                                        "prompt": "Escribe una oración propia usando «tertunda».",
+                                        "hint": "Usa el ejemplo como referencia y cambia un dato para crear una frase propia: Perjalanan tertunda.",
+                                        "modelAnswer": "Perjalanan tertunda.",
+                                        "explanation": "La producción recupera «tertunda» dentro de una oración completa."
+                                    },
+                                    {
+                                        "vocabId": "a2u14_keberangkatan",
+                                        "type": "order",
+                                        "prompt": "Ordena las palabras para reconstruir el ejemplo de «keberangkatan».",
+                                        "words": [
+                                            "tujuh",
+                                            "pukul",
+                                            "angkutan",
+                                            "Keberangkatan"
+                                        ],
+                                        "correctOrder": [
+                                            "Keberangkatan",
+                                            "angkutan",
+                                            "pukul",
+                                            "tujuh"
+                                        ],
+                                        "explanation": "La secuencia reconstruye el ejemplo de «keberangkatan»."
+                                    },
+                                    {
+                                        "vocabId": "a2u14_pindah",
+                                        "type": "mc",
+                                        "prompt": "Al organizar un viaje, ¿qué significa «pindah»?",
+                                        "options": [
+                                            "Viaje",
+                                            "Viajar",
+                                            "Cambiar"
+                                        ],
+                                        "answer": 2,
+                                        "explanation": "«pindah» significa «Cambiar» en el vocabulario de esta unidad."
+                                    },
+                                    {
+                                        "vocabId": "a2u14_penumpang",
+                                        "type": "translate_es_id",
+                                        "prompt": "Traduce al indonesio: «Los pasajeros esperan.»",
+                                        "answer": "Penumpang menunggu.",
+                                        "explanation": "La oración recupera «penumpang» en su ejemplo contextualizado."
                                     }
                                 ]
                             }
@@ -3735,6 +4021,147 @@ window.BAHASA_CURRICULUM_A2 = {
                                         "explanation": "Usa el vocabulario en una oración completa."
                                     }
                                 ]
+                            },
+                            {
+                                "title": "Lección 5: Recuperación espaciada de planes y encuentros",
+                                "objective": "Recupera el vocabulario para proponer una actividad, invitar, confirmar asistencia y reorganizar un encuentro.",
+                                "grammar": "Relaciona propuesta, invitación, actividad, asistencia, imposibilidad, promesa, encuentro, planificación y cancelación. Recupera las doce palabras de la unidad sin introducir vocabulario nuevo.",
+                                "vocabIds": [],
+                                "reviewVocabIds": [
+                                    "a2u15_mengusulkan",
+                                    "a2u15_undangan",
+                                    "a2u15_aktivitas",
+                                    "a2u15_pesta",
+                                    "a2u15_hadir",
+                                    "a2u15_berhalangan",
+                                    "a2u15_berjanji",
+                                    "a2u15_berjumpa",
+                                    "a2u15_merencanakan",
+                                    "a2u15_membatalkan",
+                                    "a2u15_menemani",
+                                    "a2u15_pertemuan"
+                                ],
+                                "exercises": [
+                                    {
+                                        "vocabId": "a2u15_mengusulkan",
+                                        "type": "mc",
+                                        "prompt": "Al organizar un encuentro, ¿qué significa «mengusulkan»?",
+                                        "options": [
+                                            "Proponer",
+                                            "Invitación",
+                                            "Actividad"
+                                        ],
+                                        "answer": 0,
+                                        "explanation": "«mengusulkan» significa «Proponer» en el vocabulario de esta unidad."
+                                    },
+                                    {
+                                        "vocabId": "a2u15_undangan",
+                                        "type": "translate_es_id",
+                                        "prompt": "Traduce al indonesio: «Esta invitación es para ti.»",
+                                        "answer": "Ini undangan untuk kamu.",
+                                        "explanation": "La oración recupera «undangan» en su ejemplo contextualizado."
+                                    },
+                                    {
+                                        "vocabId": "a2u15_aktivitas",
+                                        "type": "listen",
+                                        "prompt": "Escucha y escribe la oración completa.",
+                                        "answer": "Aktivitas mulai pagi.",
+                                        "explanation": "La oración permite recuperar «aktivitas» en contexto."
+                                    },
+                                    {
+                                        "vocabId": "a2u15_pesta",
+                                        "type": "write",
+                                        "prompt": "Escribe una oración propia usando «pesta».",
+                                        "hint": "Usa el ejemplo como referencia y cambia un dato para crear una frase propia: Pesta itu ramai.",
+                                        "modelAnswer": "Pesta itu ramai.",
+                                        "explanation": "La producción recupera «pesta» dentro de una oración completa."
+                                    },
+                                    {
+                                        "vocabId": "a2u15_hadir",
+                                        "type": "order",
+                                        "prompt": "Ordena las palabras para reconstruir el ejemplo de «hadir».",
+                                        "words": [
+                                            "besok",
+                                            "hadir",
+                                            "Saya"
+                                        ],
+                                        "correctOrder": [
+                                            "Saya",
+                                            "hadir",
+                                            "besok"
+                                        ],
+                                        "explanation": "La secuencia reconstruye el ejemplo de «hadir»."
+                                    },
+                                    {
+                                        "vocabId": "a2u15_berhalangan",
+                                        "type": "mc",
+                                        "prompt": "Al organizar un encuentro, ¿qué significa «berhalangan»?",
+                                        "options": [
+                                            "Proponer",
+                                            "No poder asistir",
+                                            "Invitación"
+                                        ],
+                                        "answer": 1,
+                                        "explanation": "«berhalangan» significa «No poder asistir» en el vocabulario de esta unidad."
+                                    },
+                                    {
+                                        "vocabId": "a2u15_berjanji",
+                                        "type": "translate_es_id",
+                                        "prompt": "Traduce al indonesio: «Hemos quedado en vernos.»",
+                                        "answer": "Kami berjanji berjumpa.",
+                                        "explanation": "La oración recupera «berjanji» en su ejemplo contextualizado."
+                                    },
+                                    {
+                                        "vocabId": "a2u15_berjumpa",
+                                        "type": "listen",
+                                        "prompt": "Escucha y escribe la oración completa.",
+                                        "answer": "Kami berjumpa di rumah.",
+                                        "explanation": "La oración permite recuperar «berjumpa» en contexto."
+                                    },
+                                    {
+                                        "vocabId": "a2u15_merencanakan",
+                                        "type": "write",
+                                        "prompt": "Escribe una oración propia usando «merencanakan».",
+                                        "hint": "Usa el ejemplo como referencia y cambia un dato para crear una frase propia: Kami merencanakan pesta.",
+                                        "modelAnswer": "Kami merencanakan pesta.",
+                                        "explanation": "La producción recupera «merencanakan» dentro de una oración completa."
+                                    },
+                                    {
+                                        "vocabId": "a2u15_membatalkan",
+                                        "type": "order",
+                                        "prompt": "Ordena las palabras para reconstruir el ejemplo de «membatalkan».",
+                                        "words": [
+                                            "pesta",
+                                            "membatalkan",
+                                            "Kami"
+                                        ],
+                                        "correctOrder": [
+                                            "Kami",
+                                            "membatalkan",
+                                            "pesta"
+                                        ],
+                                        "explanation": "La secuencia reconstruye el ejemplo de «membatalkan»."
+                                    },
+                                    {
+                                        "vocabId": "a2u15_menemani",
+                                        "type": "mc",
+                                        "prompt": "Al organizar un encuentro, ¿qué significa «menemani»?",
+                                        "options": [
+                                            "Proponer",
+                                            "Invitación",
+                                            "Acompañar"
+                                        ],
+                                        "answer": 2,
+                                        "explanation": "«menemani» significa «Acompañar» en el vocabulario de esta unidad."
+                                    },
+                                    {
+                                        "vocabId": "a2u15_pertemuan",
+                                        "type": "translate_es_id",
+                                        "prompt": "Traduce al indonesio: «Esa reunión es importante.»",
+                                        "answer": "Pertemuan itu penting.",
+                                        "explanation": "La oración recupera «pertemuan» en su ejemplo contextualizado."
+                                    }
+                                ]
                             }
                         ]
                     },
@@ -4027,6 +4454,149 @@ window.BAHASA_CURRICULUM_A2 = {
                                         "hint": "Puedes tomar como modelo: Saya berfoto di pantai.",
                                         "modelAnswer": "Saya berfoto di pantai.",
                                         "explanation": "Usa el vocabulario en una oración completa."
+                                    }
+                                ]
+                            },
+                            {
+                                "title": "Lección 5: Recuperación espaciada de una experiencia",
+                                "objective": "Recupera las expresiones temporales y el vocabulario de vacaciones para narrar una experiencia en orden.",
+                                "grammar": "Integra expresiones de pasado y secuencia con visitas, alojamiento, fotografías y paisajes. Recupera las doce palabras de la unidad sin introducir vocabulario nuevo.",
+                                "vocabIds": [],
+                                "reviewVocabIds": [
+                                    "a2u16_kemarin",
+                                    "a2u16_semalam",
+                                    "a2u16_pernah",
+                                    "a2u16_mula_mula",
+                                    "a2u16_sesudahnya",
+                                    "a2u16_pada_akhirnya",
+                                    "a2u16_liburan",
+                                    "a2u16_mendatangi",
+                                    "a2u16_menginap",
+                                    "a2u16_berfoto",
+                                    "a2u16_pemandangan",
+                                    "a2u16_menyenangkan"
+                                ],
+                                "exercises": [
+                                    {
+                                        "vocabId": "a2u16_kemarin",
+                                        "type": "mc",
+                                        "prompt": "Al narrar una experiencia, ¿qué significa «kemarin»?",
+                                        "options": [
+                                            "Ayer",
+                                            "Anoche",
+                                            "Alguna vez"
+                                        ],
+                                        "answer": 0,
+                                        "explanation": "«kemarin» significa «Ayer» en el vocabulario de esta unidad."
+                                    },
+                                    {
+                                        "vocabId": "a2u16_semalam",
+                                        "type": "translate_es_id",
+                                        "prompt": "Traduce al indonesio: «Anoche dormí.»",
+                                        "answer": "Semalam saya tidur.",
+                                        "explanation": "La oración recupera «semalam» en su ejemplo contextualizado."
+                                    },
+                                    {
+                                        "vocabId": "a2u16_pernah",
+                                        "type": "listen",
+                                        "prompt": "Escucha y escribe la oración completa.",
+                                        "answer": "Saya pernah ke Bali.",
+                                        "explanation": "La oración permite recuperar «pernah» en contexto."
+                                    },
+                                    {
+                                        "vocabId": "a2u16_mula_mula",
+                                        "type": "write",
+                                        "prompt": "Escribe una oración propia usando «mula-mula».",
+                                        "hint": "Usa el ejemplo como referencia y cambia un dato para crear una frase propia: Mula-mula saya makan.",
+                                        "modelAnswer": "Mula-mula saya makan.",
+                                        "explanation": "La producción recupera «mula-mula» dentro de una oración completa."
+                                    },
+                                    {
+                                        "vocabId": "a2u16_sesudahnya",
+                                        "type": "order",
+                                        "prompt": "Ordena las palabras para reconstruir el ejemplo de «sesudahnya».",
+                                        "words": [
+                                            "makan",
+                                            "kami",
+                                            "Sesudahnya"
+                                        ],
+                                        "correctOrder": [
+                                            "Sesudahnya",
+                                            "kami",
+                                            "makan"
+                                        ],
+                                        "explanation": "La secuencia reconstruye el ejemplo de «sesudahnya»."
+                                    },
+                                    {
+                                        "vocabId": "a2u16_pada_akhirnya",
+                                        "type": "mc",
+                                        "prompt": "Al narrar una experiencia, ¿qué significa «pada akhirnya»?",
+                                        "options": [
+                                            "Ayer",
+                                            "Al final",
+                                            "Anoche"
+                                        ],
+                                        "answer": 1,
+                                        "explanation": "«pada akhirnya» significa «Al final» en el vocabulario de esta unidad."
+                                    },
+                                    {
+                                        "vocabId": "a2u16_liburan",
+                                        "type": "translate_es_id",
+                                        "prompt": "Traduce al indonesio: «Mis vacaciones son agradables.»",
+                                        "answer": "Liburan saya menyenangkan.",
+                                        "explanation": "La oración recupera «liburan» en su ejemplo contextualizado."
+                                    },
+                                    {
+                                        "vocabId": "a2u16_mendatangi",
+                                        "type": "listen",
+                                        "prompt": "Escucha y escribe la oración completa.",
+                                        "answer": "Saya mendatangi teman.",
+                                        "explanation": "La oración permite recuperar «mendatangi» en contexto."
+                                    },
+                                    {
+                                        "vocabId": "a2u16_menginap",
+                                        "type": "write",
+                                        "prompt": "Escribe una oración propia usando «menginap».",
+                                        "hint": "Usa el ejemplo como referencia y cambia un dato para crear una frase propia: Kami menginap di hotel.",
+                                        "modelAnswer": "Kami menginap di hotel.",
+                                        "explanation": "La producción recupera «menginap» dentro de una oración completa."
+                                    },
+                                    {
+                                        "vocabId": "a2u16_berfoto",
+                                        "type": "order",
+                                        "prompt": "Ordena las palabras para reconstruir el ejemplo de «berfoto».",
+                                        "words": [
+                                            "pantai",
+                                            "di",
+                                            "berfoto",
+                                            "Saya"
+                                        ],
+                                        "correctOrder": [
+                                            "Saya",
+                                            "berfoto",
+                                            "di",
+                                            "pantai"
+                                        ],
+                                        "explanation": "La secuencia reconstruye el ejemplo de «berfoto»."
+                                    },
+                                    {
+                                        "vocabId": "a2u16_pemandangan",
+                                        "type": "mc",
+                                        "prompt": "Al narrar una experiencia, ¿qué significa «pemandangan»?",
+                                        "options": [
+                                            "Ayer",
+                                            "Anoche",
+                                            "Paisaje"
+                                        ],
+                                        "answer": 2,
+                                        "explanation": "«pemandangan» significa «Paisaje» en el vocabulario de esta unidad."
+                                    },
+                                    {
+                                        "vocabId": "a2u16_menyenangkan",
+                                        "type": "translate_es_id",
+                                        "prompt": "Traduce al indonesio: «Esas vacaciones fueron agradables.»",
+                                        "answer": "Liburan itu menyenangkan.",
+                                        "explanation": "La oración recupera «menyenangkan» en su ejemplo contextualizado."
                                     }
                                 ]
                             }

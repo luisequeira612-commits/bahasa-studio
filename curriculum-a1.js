@@ -7494,6 +7494,463 @@ window.BAHASA_CURRICULUM_A1 = {
                                 }
                             
                                 , { vocabId: 'v258', type: 'mc', prompt: 'Escucha el parte del tiempo y elige qué ocurre', audioText: 'Hari ini hujan.', options: ["Hoy llueve","Hoy hace frío","Hoy hace calor"], answer: 0, explanation: 'Hujan significa lluvia o llover.' }
+                            ],
+                            lessons: [
+                                {
+                                    "title": "Lección 1: Identificar el clima",
+                                    "objective": "Aprende a reconocer y usar el vocabulario de esta lección en expresiones breves, recuperando lo estudiado anteriormente.",
+                                    "grammar": "Cuaca nombra el tiempo atmosférico y panas describe el calor: Cuaca panas. En indonesio, estas descripciones breves no necesitan añadir un equivalente de «ser» en cada frase.",
+                                    "vocabIds": [
+                                        "v255",
+                                        "v256"
+                                    ],
+                                    "reviewVocabIds": [],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v255",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Cuaca»?",
+                                            "options": [
+                                                "Tiempo atmosférico",
+                                                "Caliente / hace calor",
+                                                "Frío"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Cuaca significa «Tiempo atmosférico»."
+                                        },
+                                        {
+                                            "vocabId": "v256",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Panas»?",
+                                            "options": [
+                                                "Caliente / hace calor",
+                                                "Frío",
+                                                "Lluvia / llover"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Panas significa «Caliente / hace calor»."
+                                        },
+                                        {
+                                            "vocabId": "v255",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase con «Cuaca».",
+                                            "hint": "Puedes tomar como referencia: Cuaca panas.",
+                                            "modelAnswer": "Cuaca panas.",
+                                            "explanation": "Cuaca panas. significa «Hace calor.»."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Lección 2: Hablar del frío y la lluvia",
+                                    "objective": "Aprende a reconocer y usar el vocabulario de esta lección en expresiones breves, recuperando lo estudiado anteriormente.",
+                                    "grammar": "Dingin describe el frío y hujan expresa lluvia o llover. Para hablar de hoy, la frase Hari ini hujan coloca primero la referencia temporal.",
+                                    "vocabIds": [
+                                        "v257",
+                                        "v258"
+                                    ],
+                                    "reviewVocabIds": [
+                                        "v255",
+                                        "v256"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v257",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Dingin»?",
+                                            "options": [
+                                                "Frío",
+                                                "Lluvia / llover",
+                                                "Despejado / soleado"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Dingin significa «Frío»."
+                                        },
+                                        {
+                                            "vocabId": "v258",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Hujan»?",
+                                            "options": [
+                                                "Lluvia / llover",
+                                                "Despejado / soleado",
+                                                "Nublado"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Hujan significa «Lluvia / llover»."
+                                        },
+                                        {
+                                            "vocabId": "v258",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce al indonesio: Lluvia / llover",
+                                            "answer": "Hujan",
+                                            "explanation": "Hujan significa «Lluvia / llover»."
+                                        },
+                                        {
+                                            "vocabId": "v258",
+                                            "type": "order",
+                                            "prompt": "Ordena la frase en indonesio: Hoy llueve.",
+                                            "words": [
+                                                "hujan",
+                                                "ini",
+                                                "Hari"
+                                            ],
+                                            "correctOrder": [
+                                                "Hari",
+                                                "ini",
+                                                "hujan"
+                                            ],
+                                            "explanation": "La frase es «Hari ini hujan»."
+                                        },
+                                        {
+                                            "vocabId": "v258",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase sencilla con «Hujan».",
+                                            "hint": "Usa el ejemplo de vocabulario como modelo y cambia lo que puedas con palabras ya aprendidas.",
+                                            "modelAnswer": "Hari ini hujan.",
+                                            "explanation": "Ejemplo: Hari ini hujan. — Hoy llueve."
+                                        },
+                                        {
+                                            "vocabId": "v258",
+                                            "type": "mc",
+                                            "prompt": "Escucha el parte del tiempo y elige qué ocurre",
+                                            "audioText": "Hari ini hujan.",
+                                            "options": [
+                                                "Hoy llueve",
+                                                "Hoy hace frío",
+                                                "Hoy hace calor"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Hujan significa lluvia o llover."
+                                        },
+                                        {
+                                            "vocabId": "v255",
+                                            "type": "order",
+                                            "prompt": "Ordena: Hace calor.",
+                                            "words": [
+                                                "panas",
+                                                "Cuaca"
+                                            ],
+                                            "correctOrder": [
+                                                "Cuaca",
+                                                "panas"
+                                            ],
+                                            "explanation": "Cuaca panas. significa «Hace calor.»."
+                                        },
+                                        {
+                                            "vocabId": "v256",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la palabra o expresión.",
+                                            "audioText": "Panas",
+                                            "answer": "Panas",
+                                            "explanation": "Panas significa Caliente / hace calor."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Lección 3: Describir el cielo",
+                                    "objective": "Aprende a reconocer y usar el vocabulario de esta lección en expresiones breves, recuperando lo estudiado anteriormente.",
+                                    "grammar": "Cerah describe el cielo despejado o soleado y mendung indica que está nublado. Puedes combinar cada adjetivo con cuaca: Cuaca cerah y Cuaca mendung.",
+                                    "vocabIds": [
+                                        "v259",
+                                        "v260"
+                                    ],
+                                    "reviewVocabIds": [
+                                        "v255",
+                                        "v256",
+                                        "v257",
+                                        "v258"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v259",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Cerah»?",
+                                            "options": [
+                                                "Despejado / soleado",
+                                                "Nublado",
+                                                "Viento"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Cerah significa «Despejado / soleado»."
+                                        },
+                                        {
+                                            "vocabId": "v260",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Mendung»?",
+                                            "options": [
+                                                "Nublado",
+                                                "Viento",
+                                                "Paraguas"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Mendung significa «Nublado»."
+                                        },
+                                        {
+                                            "vocabId": "v259",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce al indonesio: Despejado / soleado",
+                                            "answer": "Cerah",
+                                            "explanation": "Cerah significa «Despejado / soleado»."
+                                        },
+                                        {
+                                            "vocabId": "v260",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce al indonesio: Nublado",
+                                            "answer": "Mendung",
+                                            "explanation": "Mendung significa «Nublado»."
+                                        },
+                                        {
+                                            "vocabId": "v255",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la palabra o expresión.",
+                                            "audioText": "Cuaca",
+                                            "answer": "Cuaca",
+                                            "explanation": "Cuaca significa Tiempo atmosférico."
+                                        },
+                                        {
+                                            "vocabId": "v256",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase con «Panas».",
+                                            "hint": "Puedes tomar como referencia: Cuaca panas.",
+                                            "modelAnswer": "Cuaca panas.",
+                                            "explanation": "Cuaca panas. significa «Hace calor.»."
+                                        },
+                                        {
+                                            "vocabId": "v257",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Dingin»?",
+                                            "options": [
+                                                "Frío",
+                                                "Paraguas",
+                                                "Caliente / hace calor"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Dingin significa Frío."
+                                        },
+                                        {
+                                            "vocabId": "v258",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Lluvia / llover",
+                                            "answer": "Hujan",
+                                            "explanation": "Hujan significa Lluvia / llover."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Lección 4: Viento y protección",
+                                    "objective": "Aprende a reconocer y usar el vocabulario de esta lección en expresiones breves, recuperando lo estudiado anteriormente.",
+                                    "grammar": "Angin significa viento y payung paraguas. Usa Ini payung saya para señalar un objeto propio; relaciona el paraguas con las condiciones del tiempo.",
+                                    "vocabIds": [
+                                        "v261",
+                                        "v262"
+                                    ],
+                                    "reviewVocabIds": [
+                                        "v255",
+                                        "v256",
+                                        "v257",
+                                        "v258",
+                                        "v259",
+                                        "v260"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v261",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Angin»?",
+                                            "options": [
+                                                "Viento",
+                                                "Paraguas",
+                                                "Tiempo atmosférico"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Angin significa «Viento»."
+                                        },
+                                        {
+                                            "vocabId": "v262",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Payung»?",
+                                            "options": [
+                                                "Paraguas",
+                                                "Tiempo atmosférico",
+                                                "Caliente / hace calor"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Payung significa «Paraguas»."
+                                        },
+                                        {
+                                            "vocabId": "v262",
+                                            "type": "mc",
+                                            "prompt": "¿Qué objeto puedes usar cuando llueve?",
+                                            "options": [
+                                                "Payung",
+                                                "Buku",
+                                                "Bola"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Payung significa «paraguas», un objeto que se usa cuando llueve."
+                                        },
+                                        {
+                                            "vocabId": "v255",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase con «Cuaca».",
+                                            "hint": "Puedes tomar como referencia: Cuaca panas.",
+                                            "modelAnswer": "Cuaca panas.",
+                                            "explanation": "Cuaca panas. significa «Hace calor.»."
+                                        },
+                                        {
+                                            "vocabId": "v256",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Panas»?",
+                                            "options": [
+                                                "Caliente / hace calor",
+                                                "Paraguas",
+                                                "Frío"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Panas significa Caliente / hace calor."
+                                        },
+                                        {
+                                            "vocabId": "v257",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Frío",
+                                            "answer": "Dingin",
+                                            "explanation": "Dingin significa Frío."
+                                        },
+                                        {
+                                            "vocabId": "v258",
+                                            "type": "order",
+                                            "prompt": "Ordena: Hoy llueve.",
+                                            "words": [
+                                                "hujan",
+                                                "ini",
+                                                "Hari"
+                                            ],
+                                            "correctOrder": [
+                                                "Hari",
+                                                "ini",
+                                                "hujan"
+                                            ],
+                                            "explanation": "Hari ini hujan. significa «Hoy llueve.»."
+                                        },
+                                        {
+                                            "vocabId": "v259",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la palabra o expresión.",
+                                            "audioText": "Cerah",
+                                            "answer": "Cerah",
+                                            "explanation": "Cerah significa Despejado / soleado."
+                                        },
+                                        {
+                                            "vocabId": "v260",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase con «Mendung».",
+                                            "hint": "Puedes tomar como referencia: Cuaca mendung.",
+                                            "modelAnswer": "Cuaca mendung.",
+                                            "explanation": "Cuaca mendung. significa «Está nublado.»."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Lección 5: Recuperación espaciada",
+                                    "objective": "Recupera todas las palabras de la unidad y aplícalas en distintos formatos sin consultar la lista.",
+                                    "grammar": "Recupera el vocabulario completo mediante reconocimiento, traducción, ordenación, escucha y escritura. Reutiliza las expresiones y ejemplos de la unidad.",
+                                    "vocabIds": [],
+                                    "reviewVocabIds": [
+                                        "v255",
+                                        "v256",
+                                        "v257",
+                                        "v258",
+                                        "v259",
+                                        "v260",
+                                        "v261",
+                                        "v262"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v255",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Cuaca»?",
+                                            "options": [
+                                                "Tiempo atmosférico",
+                                                "Frío",
+                                                "Despejado / soleado"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Cuaca significa Tiempo atmosférico."
+                                        },
+                                        {
+                                            "vocabId": "v256",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Caliente / hace calor",
+                                            "answer": "Panas",
+                                            "explanation": "Panas significa Caliente / hace calor."
+                                        },
+                                        {
+                                            "vocabId": "v257",
+                                            "type": "order",
+                                            "prompt": "Ordena: Agua fría.",
+                                            "words": [
+                                                "dingin",
+                                                "Air"
+                                            ],
+                                            "correctOrder": [
+                                                "Air",
+                                                "dingin"
+                                            ],
+                                            "explanation": "Air dingin. significa «Agua fría.»."
+                                        },
+                                        {
+                                            "vocabId": "v258",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la palabra o expresión.",
+                                            "audioText": "Hujan",
+                                            "answer": "Hujan",
+                                            "explanation": "Hujan significa Lluvia / llover."
+                                        },
+                                        {
+                                            "vocabId": "v259",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase con «Cerah».",
+                                            "hint": "Puedes tomar como referencia: Cuaca cerah.",
+                                            "modelAnswer": "Cuaca cerah.",
+                                            "explanation": "Cuaca cerah. significa «Hace buen tiempo.»."
+                                        },
+                                        {
+                                            "vocabId": "v260",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Mendung»?",
+                                            "options": [
+                                                "Nublado",
+                                                "Paraguas",
+                                                "Caliente / hace calor"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Mendung significa Nublado."
+                                        },
+                                        {
+                                            "vocabId": "v261",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Viento",
+                                            "answer": "Angin",
+                                            "explanation": "Angin significa Viento."
+                                        },
+                                        {
+                                            "vocabId": "v262",
+                                            "type": "order",
+                                            "prompt": "Ordena: Este es mi paraguas.",
+                                            "words": [
+                                                "saya",
+                                                "payung",
+                                                "Ini"
+                                            ],
+                                            "correctOrder": [
+                                                "Ini",
+                                                "payung",
+                                                "saya"
+                                            ],
+                                            "explanation": "Ini payung saya. significa «Este es mi paraguas.»."
+                                        }
+                                    ]
+                                }
                             ]
                         },
                         {
@@ -7711,6 +8168,457 @@ window.BAHASA_CURRICULUM_A1 = {
                                                                 }
                             
                                 , { vocabId: 'v263', type: 'mc', prompt: 'Escucha cómo viaja la persona', audioText: 'Saya naik bus.', options: ["Voy en autobús","Va en tren","Va en taxi"], answer: 0, explanation: 'Naik bus significa ir o viajar en autobús.' }
+                            ],
+                            lessons: [
+                                {
+                                    "title": "Lección 1: Autobús y tren",
+                                    "objective": "Aprende a reconocer y usar el vocabulario de esta lección en expresiones breves, recuperando lo estudiado anteriormente.",
+                                    "grammar": "Bus significa autobús y kereta tren. En los ejemplos aparece naik bus o naik kereta como expresión completa; naik se estudia de forma explícita en la cuarta lección.",
+                                    "vocabIds": [
+                                        "v263",
+                                        "v264"
+                                    ],
+                                    "reviewVocabIds": [],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v263",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Bus»?",
+                                            "options": [
+                                                "Autobús",
+                                                "Tren",
+                                                "Taxi"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Bus significa «Autobús»."
+                                        },
+                                        {
+                                            "vocabId": "v264",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Kereta»?",
+                                            "options": [
+                                                "Tren",
+                                                "Taxi",
+                                                "Estación de tren"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Kereta significa «Tren»."
+                                        },
+                                        {
+                                            "vocabId": "v263",
+                                            "type": "order",
+                                            "prompt": "Ordena la frase en indonesio: Voy en autobús.",
+                                            "words": [
+                                                "bus",
+                                                "naik",
+                                                "Saya"
+                                            ],
+                                            "correctOrder": [
+                                                "Saya",
+                                                "naik",
+                                                "bus"
+                                            ],
+                                            "explanation": "La frase es «Saya naik bus»."
+                                        },
+                                        {
+                                            "vocabId": "v264",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase sencilla con «Kereta».",
+                                            "hint": "Usa el ejemplo de vocabulario como modelo y cambia lo que puedas con palabras ya aprendidas.",
+                                            "modelAnswer": "Saya naik kereta.",
+                                            "explanation": "Ejemplo: Saya naik kereta. — Voy en tren."
+                                        },
+                                        {
+                                            "vocabId": "v263",
+                                            "type": "mc",
+                                            "prompt": "Escucha cómo viaja la persona",
+                                            "audioText": "Saya naik bus.",
+                                            "options": [
+                                                "Voy en autobús",
+                                                "Va en tren",
+                                                "Va en taxi"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Naik bus significa ir o viajar en autobús."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Lección 2: Taxi y estación",
+                                    "objective": "Aprende a reconocer y usar el vocabulario de esta lección en expresiones breves, recuperando lo estudiado anteriormente.",
+                                    "grammar": "Taksi es taxi y stasiun es estación de tren. Aprende a reconocer el medio de transporte y el lugar asociado en expresiones sencillas.",
+                                    "vocabIds": [
+                                        "v265",
+                                        "v266"
+                                    ],
+                                    "reviewVocabIds": [
+                                        "v263",
+                                        "v264"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v265",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Taksi»?",
+                                            "options": [
+                                                "Taxi",
+                                                "Estación de tren",
+                                                "Terminal de transporte"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Taksi significa «Taxi»."
+                                        },
+                                        {
+                                            "vocabId": "v266",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Stasiun»?",
+                                            "options": [
+                                                "Estación de tren",
+                                                "Terminal de transporte",
+                                                "Bicicleta"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Stasiun significa «Estación de tren»."
+                                        },
+                                        {
+                                            "vocabId": "v266",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce al indonesio: Estación de tren",
+                                            "answer": "Stasiun",
+                                            "explanation": "Stasiun significa «Estación de tren»."
+                                        },
+                                        {
+                                            "vocabId": "v263",
+                                            "type": "order",
+                                            "prompt": "Ordena: Voy en autobús.",
+                                            "words": [
+                                                "bus",
+                                                "naik",
+                                                "Saya"
+                                            ],
+                                            "correctOrder": [
+                                                "Saya",
+                                                "naik",
+                                                "bus"
+                                            ],
+                                            "explanation": "Saya naik bus. significa «Voy en autobús.»."
+                                        },
+                                        {
+                                            "vocabId": "v264",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la palabra o expresión.",
+                                            "audioText": "Kereta",
+                                            "answer": "Kereta",
+                                            "explanation": "Kereta significa Tren."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Lección 3: Terminal y bicicleta",
+                                    "objective": "Aprende a reconocer y usar el vocabulario de esta lección en expresiones breves, recuperando lo estudiado anteriormente.",
+                                    "grammar": "Terminal nombra una terminal de transporte y sepeda una bicicleta. Reutiliza las combinaciones vistas con los medios de transporte y los lugares.",
+                                    "vocabIds": [
+                                        "v267",
+                                        "v268"
+                                    ],
+                                    "reviewVocabIds": [
+                                        "v263",
+                                        "v264",
+                                        "v265",
+                                        "v266"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v267",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Terminal»?",
+                                            "options": [
+                                                "Terminal de transporte",
+                                                "Bicicleta",
+                                                "Subir / tomar transporte"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Terminal significa «Terminal de transporte»."
+                                        },
+                                        {
+                                            "vocabId": "v268",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Sepeda»?",
+                                            "options": [
+                                                "Bicicleta",
+                                                "Subir / tomar transporte",
+                                                "Bajar / apearse"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Sepeda significa «Bicicleta»."
+                                        },
+                                        {
+                                            "vocabId": "v267",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce al indonesio: Me bajo en la terminal.",
+                                            "answer": "Saya turun di terminal.",
+                                            "explanation": "Saya turun di terminal significa «Me bajo en la terminal»."
+                                        },
+                                        {
+                                            "vocabId": "v268",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce al indonesio: Bicicleta",
+                                            "answer": "Sepeda",
+                                            "explanation": "Sepeda significa «Bicicleta»."
+                                        },
+                                        {
+                                            "vocabId": "v263",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la palabra o expresión.",
+                                            "audioText": "Bus",
+                                            "answer": "Bus",
+                                            "explanation": "Bus significa Autobús."
+                                        },
+                                        {
+                                            "vocabId": "v264",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase con «Kereta».",
+                                            "hint": "Puedes tomar como referencia: Saya naik kereta.",
+                                            "modelAnswer": "Saya naik kereta.",
+                                            "explanation": "Saya naik kereta. significa «Voy en tren.»."
+                                        },
+                                        {
+                                            "vocabId": "v265",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Taksi»?",
+                                            "options": [
+                                                "Taxi",
+                                                "Bajar / apearse",
+                                                "Tren"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Taksi significa Taxi."
+                                        },
+                                        {
+                                            "vocabId": "v266",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Estación de tren",
+                                            "answer": "Stasiun",
+                                            "explanation": "Stasiun significa Estación de tren."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Lección 4: Subir y bajar del transporte",
+                                    "objective": "Aprende a reconocer y usar el vocabulario de esta lección en expresiones breves, recuperando lo estudiado anteriormente.",
+                                    "grammar": "Naik expresa subir o tomar un transporte; turun expresa bajar o apearse. Compara Saya naik bus y Saya turun para distinguir ambas acciones.",
+                                    "vocabIds": [
+                                        "v269",
+                                        "v270"
+                                    ],
+                                    "reviewVocabIds": [
+                                        "v263",
+                                        "v264",
+                                        "v265",
+                                        "v266",
+                                        "v267",
+                                        "v268"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v269",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Naik»?",
+                                            "options": [
+                                                "Subir / tomar transporte",
+                                                "Bajar / apearse",
+                                                "Autobús"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Naik significa «Subir / tomar transporte»."
+                                        },
+                                        {
+                                            "vocabId": "v270",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Turun»?",
+                                            "options": [
+                                                "Bajar / apearse",
+                                                "Autobús",
+                                                "Tren"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Turun significa «Bajar / apearse»."
+                                        },
+                                        {
+                                            "vocabId": "v270",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Saya turun»?",
+                                            "options": [
+                                                "Me bajo / desciendo",
+                                                "Subo al autobús",
+                                                "Me siento"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Saya turun significa «Me bajo» o «desciendo» según el contexto."
+                                        },
+                                        {
+                                            "vocabId": "v263",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase con «Bus».",
+                                            "hint": "Puedes tomar como referencia: Saya naik bus.",
+                                            "modelAnswer": "Saya naik bus.",
+                                            "explanation": "Saya naik bus. significa «Voy en autobús.»."
+                                        },
+                                        {
+                                            "vocabId": "v264",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Kereta»?",
+                                            "options": [
+                                                "Tren",
+                                                "Bajar / apearse",
+                                                "Taxi"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Kereta significa Tren."
+                                        },
+                                        {
+                                            "vocabId": "v265",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Taxi",
+                                            "answer": "Taksi",
+                                            "explanation": "Taksi significa Taxi."
+                                        },
+                                        {
+                                            "vocabId": "v266",
+                                            "type": "order",
+                                            "prompt": "Ordena: La estación está aquí.",
+                                            "words": [
+                                                "sini",
+                                                "di",
+                                                "Stasiun"
+                                            ],
+                                            "correctOrder": [
+                                                "Stasiun",
+                                                "di",
+                                                "sini"
+                                            ],
+                                            "explanation": "Stasiun di sini. significa «La estación está aquí.»."
+                                        },
+                                        {
+                                            "vocabId": "v267",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la palabra o expresión.",
+                                            "audioText": "Terminal",
+                                            "answer": "Terminal",
+                                            "explanation": "Terminal significa Terminal de transporte."
+                                        },
+                                        {
+                                            "vocabId": "v268",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase con «Sepeda».",
+                                            "hint": "Puedes tomar como referencia: Saya naik sepeda.",
+                                            "modelAnswer": "Saya naik sepeda.",
+                                            "explanation": "Saya naik sepeda. significa «Voy en bicicleta.»."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Lección 5: Recuperación espaciada",
+                                    "objective": "Recupera todas las palabras de la unidad y aplícalas en distintos formatos sin consultar la lista.",
+                                    "grammar": "Recupera el vocabulario completo mediante reconocimiento, traducción, ordenación, escucha y escritura. Reutiliza las expresiones y ejemplos de la unidad.",
+                                    "vocabIds": [],
+                                    "reviewVocabIds": [
+                                        "v263",
+                                        "v264",
+                                        "v265",
+                                        "v266",
+                                        "v267",
+                                        "v268",
+                                        "v269",
+                                        "v270"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v263",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Bus»?",
+                                            "options": [
+                                                "Autobús",
+                                                "Taxi",
+                                                "Terminal de transporte"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Bus significa Autobús."
+                                        },
+                                        {
+                                            "vocabId": "v264",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Tren",
+                                            "answer": "Kereta",
+                                            "explanation": "Kereta significa Tren."
+                                        },
+                                        {
+                                            "vocabId": "v265",
+                                            "type": "order",
+                                            "prompt": "Ordena: Voy en taxi.",
+                                            "words": [
+                                                "taksi",
+                                                "naik",
+                                                "Saya"
+                                            ],
+                                            "correctOrder": [
+                                                "Saya",
+                                                "naik",
+                                                "taksi"
+                                            ],
+                                            "explanation": "Saya naik taksi. significa «Voy en taxi.»."
+                                        },
+                                        {
+                                            "vocabId": "v266",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la palabra o expresión.",
+                                            "audioText": "Stasiun",
+                                            "answer": "Stasiun",
+                                            "explanation": "Stasiun significa Estación de tren."
+                                        },
+                                        {
+                                            "vocabId": "v267",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase con «Terminal».",
+                                            "hint": "Puedes tomar como referencia: Terminal di sini.",
+                                            "modelAnswer": "Terminal di sini.",
+                                            "explanation": "Terminal di sini. significa «La terminal de transporte está aquí.»."
+                                        },
+                                        {
+                                            "vocabId": "v268",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Sepeda»?",
+                                            "options": [
+                                                "Bicicleta",
+                                                "Bajar / apearse",
+                                                "Tren"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Sepeda significa Bicicleta."
+                                        },
+                                        {
+                                            "vocabId": "v269",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Subir / tomar transporte",
+                                            "answer": "Naik",
+                                            "explanation": "Naik significa Subir / tomar transporte."
+                                        },
+                                        {
+                                            "vocabId": "v270",
+                                            "type": "order",
+                                            "prompt": "Ordena: Me bajo.",
+                                            "words": [
+                                                "turun",
+                                                "Saya"
+                                            ],
+                                            "correctOrder": [
+                                                "Saya",
+                                                "turun"
+                                            ],
+                                            "explanation": "Saya turun. significa «Me bajo.»."
+                                        }
+                                    ]
+                                }
                             ]
                         },
                         {
@@ -7934,6 +8842,459 @@ window.BAHASA_CURRICULUM_A1 = {
                                 }
                             
                                 , { vocabId: 'v280', type: 'mc', prompt: 'Escucha adónde va la persona', audioText: 'Saya pergi ke pasar.', options: ["Voy al mercado","Viene de la escuela","Se queda en casa"], answer: 0, explanation: 'Pergi significa ir.' }
+                            ],
+                            lessons: [
+                                {
+                                    "title": "Lección 1: Ir y venir",
+                                    "objective": "Aprende a reconocer y usar el vocabulario de esta lección en expresiones breves, recuperando lo estudiado anteriormente.",
+                                    "grammar": "Pergi significa ir y datang venir. Puedes añadir una referencia temporal conocida: Saya datang hari ini.",
+                                    "vocabIds": [
+                                        "v280",
+                                        "v281"
+                                    ],
+                                    "reviewVocabIds": [],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v280",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Pergi»?",
+                                            "options": [
+                                                "Ir",
+                                                "Venir",
+                                                "Sentarse"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Pergi significa «Ir»."
+                                        },
+                                        {
+                                            "vocabId": "v281",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Datang»?",
+                                            "options": [
+                                                "Venir",
+                                                "Sentarse",
+                                                "Correr"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Datang significa «Venir»."
+                                        },
+                                        {
+                                            "vocabId": "v280",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce al indonesio: Ir",
+                                            "answer": "Pergi",
+                                            "explanation": "Pergi significa «Ir»."
+                                        },
+                                        {
+                                            "vocabId": "v281",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce al indonesio: Venir",
+                                            "answer": "Datang",
+                                            "explanation": "Datang significa «Venir»."
+                                        },
+                                        {
+                                            "vocabId": "v280",
+                                            "type": "order",
+                                            "prompt": "Ordena la frase en indonesio.",
+                                            "words": [
+                                                "pergi",
+                                                "Saya"
+                                            ],
+                                            "correctOrder": [
+                                                "Saya",
+                                                "pergi"
+                                            ],
+                                            "explanation": "Saya pergi significa «Voy»."
+                                        },
+                                        {
+                                            "vocabId": "v281",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase breve con un verbo de esta unidad.",
+                                            "hint": "Usa Saya y un verbo que ya hayas practicado.",
+                                            "modelAnswer": "Saya pergi.",
+                                            "explanation": "Ejemplo: Saya pergi. — Voy."
+                                        },
+                                        {
+                                            "vocabId": "v280",
+                                            "type": "mc",
+                                            "prompt": "Escucha adónde va la persona",
+                                            "audioText": "Saya pergi ke pasar.",
+                                            "options": [
+                                                "Voy al mercado",
+                                                "Viene de la escuela",
+                                                "Se queda en casa"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Pergi significa ir."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Lección 2: Sentarse y correr",
+                                    "objective": "Aprende a reconocer y usar el vocabulario de esta lección en expresiones breves, recuperando lo estudiado anteriormente.",
+                                    "grammar": "Duduk significa sentarse y lari correr. Para expresar una acción sencilla, coloca el sujeto antes del verbo: Saya duduk y Saya lari.",
+                                    "vocabIds": [
+                                        "v282",
+                                        "v283"
+                                    ],
+                                    "reviewVocabIds": [
+                                        "v280",
+                                        "v281"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v282",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Duduk»?",
+                                            "options": [
+                                                "Sentarse",
+                                                "Correr",
+                                                "Jugar"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Duduk significa «Sentarse»."
+                                        },
+                                        {
+                                            "vocabId": "v283",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Lari»?",
+                                            "options": [
+                                                "Correr",
+                                                "Jugar",
+                                                "Tomar / agarrar"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Lari significa «Correr»."
+                                        },
+                                        {
+                                            "vocabId": "v280",
+                                            "type": "order",
+                                            "prompt": "Ordena: Voy.",
+                                            "words": [
+                                                "pergi",
+                                                "Saya"
+                                            ],
+                                            "correctOrder": [
+                                                "Saya",
+                                                "pergi"
+                                            ],
+                                            "explanation": "Ejemplo: «Saya pergi.» — «Voy.»."
+                                        },
+                                        {
+                                            "vocabId": "v281",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la palabra o expresión.",
+                                            "audioText": "Datang",
+                                            "answer": "Datang",
+                                            "explanation": "Datang significa Venir."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Lección 3: Jugar y tomar",
+                                    "objective": "Aprende a reconocer y usar el vocabulario de esta lección en expresiones breves, recuperando lo estudiado anteriormente.",
+                                    "grammar": "Main es una forma coloquial de jugar y ambil significa tomar o agarrar. En ejemplos de la unidad aparece bola como objeto; se introduce formalmente en la siguiente lección.",
+                                    "vocabIds": [
+                                        "v284",
+                                        "v285"
+                                    ],
+                                    "reviewVocabIds": [
+                                        "v280",
+                                        "v281",
+                                        "v282",
+                                        "v283"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v284",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Main»?",
+                                            "options": [
+                                                "Jugar",
+                                                "Tomar / agarrar",
+                                                "Pelota"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Main significa «Jugar»."
+                                        },
+                                        {
+                                            "vocabId": "v285",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Ambil»?",
+                                            "options": [
+                                                "Tomar / agarrar",
+                                                "Pelota",
+                                                "Puerta"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Ambil significa «Tomar / agarrar»."
+                                        },
+                                        {
+                                            "vocabId": "v284",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce al indonesio: Jugar",
+                                            "answer": "Main",
+                                            "explanation": "Main significa «Jugar»."
+                                        },
+                                        {
+                                            "vocabId": "v284",
+                                            "type": "order",
+                                            "prompt": "Ordena la frase en indonesio.",
+                                            "words": [
+                                                "bola",
+                                                "main",
+                                                "Saya"
+                                            ],
+                                            "correctOrder": [
+                                                "Saya",
+                                                "main",
+                                                "bola"
+                                            ],
+                                            "explanation": "Saya main bola. significa «Juego a la pelota»."
+                                        },
+                                        {
+                                            "vocabId": "v280",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la palabra o expresión.",
+                                            "audioText": "Pergi",
+                                            "answer": "Pergi",
+                                            "explanation": "Pergi significa Ir."
+                                        },
+                                        {
+                                            "vocabId": "v281",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase con «Datang».",
+                                            "hint": "Puedes tomar como referencia: Saya datang hari ini.",
+                                            "modelAnswer": "Saya datang hari ini.",
+                                            "explanation": "Saya datang hari ini. significa «Vengo hoy.»."
+                                        },
+                                        {
+                                            "vocabId": "v282",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Duduk»?",
+                                            "options": [
+                                                "Sentarse",
+                                                "Puerta",
+                                                "Venir"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Duduk significa Sentarse."
+                                        },
+                                        {
+                                            "vocabId": "v283",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Correr",
+                                            "answer": "Lari",
+                                            "explanation": "Lari significa Correr."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Lección 4: Pelota y puerta",
+                                    "objective": "Aprende a reconocer y usar el vocabulario de esta lección en expresiones breves, recuperando lo estudiado anteriormente.",
+                                    "grammar": "Bola significa pelota y pintu puerta. Reconoce estas palabras como objetos y reutiliza las frases Saya main bola y Pintu di sini.",
+                                    "vocabIds": [
+                                        "v286",
+                                        "v287"
+                                    ],
+                                    "reviewVocabIds": [
+                                        "v280",
+                                        "v281",
+                                        "v282",
+                                        "v283",
+                                        "v284",
+                                        "v285"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v286",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Bola»?",
+                                            "options": [
+                                                "Pelota",
+                                                "Puerta",
+                                                "Ir"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Bola significa «Pelota»."
+                                        },
+                                        {
+                                            "vocabId": "v287",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Pintu»?",
+                                            "options": [
+                                                "Puerta",
+                                                "Ir",
+                                                "Venir"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Pintu significa «Puerta»."
+                                        },
+                                        {
+                                            "vocabId": "v280",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase con «Pergi».",
+                                            "hint": "Puedes tomar como referencia: Saya pergi.",
+                                            "modelAnswer": "Saya pergi.",
+                                            "explanation": "Ejemplo: «Saya pergi.» — «Voy.»."
+                                        },
+                                        {
+                                            "vocabId": "v281",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Datang»?",
+                                            "options": [
+                                                "Venir",
+                                                "Puerta",
+                                                "Sentarse"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Datang significa Venir."
+                                        },
+                                        {
+                                            "vocabId": "v282",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Sentarse",
+                                            "answer": "Duduk",
+                                            "explanation": "Duduk significa Sentarse."
+                                        },
+                                        {
+                                            "vocabId": "v283",
+                                            "type": "order",
+                                            "prompt": "Ordena: Corro.",
+                                            "words": [
+                                                "lari",
+                                                "Saya"
+                                            ],
+                                            "correctOrder": [
+                                                "Saya",
+                                                "lari"
+                                            ],
+                                            "explanation": "Saya lari. significa «Corro.»."
+                                        },
+                                        {
+                                            "vocabId": "v284",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la palabra o expresión.",
+                                            "audioText": "Main",
+                                            "answer": "Main",
+                                            "explanation": "Main significa Jugar."
+                                        },
+                                        {
+                                            "vocabId": "v285",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase con «Ambil».",
+                                            "hint": "Puedes tomar como referencia: Saya ambil bola.",
+                                            "modelAnswer": "Saya ambil bola.",
+                                            "explanation": "Saya ambil bola. significa «Agarro la pelota.»."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Lección 5: Recuperación espaciada",
+                                    "objective": "Recupera todas las palabras de la unidad y aplícalas en distintos formatos sin consultar la lista.",
+                                    "grammar": "Recupera el vocabulario completo mediante reconocimiento, traducción, ordenación, escucha y escritura. Reutiliza las expresiones y ejemplos de la unidad.",
+                                    "vocabIds": [],
+                                    "reviewVocabIds": [
+                                        "v280",
+                                        "v281",
+                                        "v282",
+                                        "v283",
+                                        "v284",
+                                        "v285",
+                                        "v286",
+                                        "v287"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v280",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Pergi»?",
+                                            "options": [
+                                                "Ir",
+                                                "Sentarse",
+                                                "Jugar"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Pergi significa Ir."
+                                        },
+                                        {
+                                            "vocabId": "v281",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Venir",
+                                            "answer": "Datang",
+                                            "explanation": "Datang significa Venir."
+                                        },
+                                        {
+                                            "vocabId": "v282",
+                                            "type": "order",
+                                            "prompt": "Ordena: Me siento aquí.",
+                                            "words": [
+                                                "sini",
+                                                "di",
+                                                "duduk",
+                                                "Saya"
+                                            ],
+                                            "correctOrder": [
+                                                "Saya",
+                                                "duduk",
+                                                "di",
+                                                "sini"
+                                            ],
+                                            "explanation": "Saya duduk di sini. significa «Me siento aquí.»."
+                                        },
+                                        {
+                                            "vocabId": "v283",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la palabra o expresión.",
+                                            "audioText": "Lari",
+                                            "answer": "Lari",
+                                            "explanation": "Lari significa Correr."
+                                        },
+                                        {
+                                            "vocabId": "v284",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase con «Main».",
+                                            "hint": "Puedes tomar como referencia: Saya main bola.",
+                                            "modelAnswer": "Saya main bola.",
+                                            "explanation": "Saya main bola. significa «Juego a la pelota.»."
+                                        },
+                                        {
+                                            "vocabId": "v285",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Ambil»?",
+                                            "options": [
+                                                "Tomar / agarrar",
+                                                "Puerta",
+                                                "Venir"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Ambil significa Tomar / agarrar."
+                                        },
+                                        {
+                                            "vocabId": "v286",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Pelota",
+                                            "answer": "Bola",
+                                            "explanation": "Bola significa Pelota."
+                                        },
+                                        {
+                                            "vocabId": "v287",
+                                            "type": "order",
+                                            "prompt": "Ordena: La puerta está aquí.",
+                                            "words": [
+                                                "sini",
+                                                "di",
+                                                "Pintu"
+                                            ],
+                                            "correctOrder": [
+                                                "Pintu",
+                                                "di",
+                                                "sini"
+                                            ],
+                                            "explanation": "Pintu di sini. significa «La puerta está aquí.»."
+                                        }
+                                    ]
+                                }
                             ]
                         },
                         {
@@ -8159,6 +9520,456 @@ window.BAHASA_CURRICULUM_A1 = {
                                 }
                             
                                 , { vocabId: 'v288', type: 'mc', prompt: 'Escucha qué puede hacer la persona', audioText: 'Saya bisa berenang.', options: ["Puedo nadar","Quiere dormir","No sabe leer"], answer: 0, explanation: 'Bisa expresa capacidad o posibilidad.' }
+                            ],
+                            lessons: [
+                                {
+                                    "title": "Lección 1: Capacidad y gustos",
+                                    "objective": "Aprende a reconocer y usar el vocabulario de esta lección en expresiones breves, recuperando lo estudiado anteriormente.",
+                                    "grammar": "Bisa expresa poder o saber hacer y suka expresa gustar. Aprende las combinaciones como bloques: Saya bisa pergi y Saya suka teh.",
+                                    "vocabIds": [
+                                        "v288",
+                                        "v289"
+                                    ],
+                                    "reviewVocabIds": [],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v288",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Bisa»?",
+                                            "options": [
+                                                "Poder / saber hacer",
+                                                "Gustar",
+                                                "Querer / desear"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Bisa significa «Poder / saber hacer»."
+                                        },
+                                        {
+                                            "vocabId": "v289",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Suka»?",
+                                            "options": [
+                                                "Gustar",
+                                                "Querer / desear",
+                                                "Poder / tener permiso"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Suka significa «Gustar»."
+                                        },
+                                        {
+                                            "vocabId": "v288",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce al indonesio: Poder / saber hacer",
+                                            "answer": "Bisa",
+                                            "explanation": "Bisa significa «Poder / saber hacer»."
+                                        },
+                                        {
+                                            "vocabId": "v289",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce al indonesio: Gustar",
+                                            "answer": "Suka",
+                                            "explanation": "Suka significa «Gustar»."
+                                        },
+                                        {
+                                            "vocabId": "v289",
+                                            "type": "order",
+                                            "prompt": "Ordena la frase en indonesio.",
+                                            "words": [
+                                                "teh",
+                                                "suka",
+                                                "Saya"
+                                            ],
+                                            "correctOrder": [
+                                                "Saya",
+                                                "suka",
+                                                "teh"
+                                            ],
+                                            "explanation": "Saya suka teh significa «Me gusta el té»."
+                                        },
+                                        {
+                                            "vocabId": "v288",
+                                            "type": "order",
+                                            "prompt": "Ordena la frase en indonesio.",
+                                            "words": [
+                                                "pergi",
+                                                "bisa",
+                                                "Saya"
+                                            ],
+                                            "correctOrder": [
+                                                "Saya",
+                                                "bisa",
+                                                "pergi"
+                                            ],
+                                            "explanation": "Saya bisa pergi significa «Puedo ir»."
+                                        },
+                                        {
+                                            "vocabId": "v288",
+                                            "type": "mc",
+                                            "prompt": "Escucha qué puede hacer la persona",
+                                            "audioText": "Saya bisa berenang.",
+                                            "options": [
+                                                "Puedo nadar",
+                                                "Quiere dormir",
+                                                "No sabe leer"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Bisa expresa capacidad o posibilidad."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Lección 2: Deseos y permiso",
+                                    "objective": "Aprende a reconocer y usar el vocabulario de esta lección en expresiones breves, recuperando lo estudiado anteriormente.",
+                                    "grammar": "Ingin expresa querer o desear y boleh pregunta por permiso o posibilidad: Saya ingin kopi y Boleh?",
+                                    "vocabIds": [
+                                        "v290",
+                                        "v291"
+                                    ],
+                                    "reviewVocabIds": [
+                                        "v288",
+                                        "v289"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v290",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Saya ingin kopi»?",
+                                            "options": [
+                                                "Quiero café",
+                                                "Puedo ir",
+                                                "Me gusta el té"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Saya ingin kopi significa «Quiero café»; aunque mau también puede expresar querer, aquí se evalúa la frase completa."
+                                        },
+                                        {
+                                            "vocabId": "v291",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Boleh»?",
+                                            "options": [
+                                                "Poder / tener permiso",
+                                                "Muy",
+                                                "Un poco"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Boleh significa «Poder / tener permiso»."
+                                        },
+                                        {
+                                            "vocabId": "v290",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce al indonesio: Querer / desear",
+                                            "answer": "Ingin",
+                                            "explanation": "Ingin significa «Querer / desear»."
+                                        },
+                                        {
+                                            "vocabId": "v290",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase para expresar algo que quieres o que te gusta.",
+                                            "hint": "Puedes usar ingin, suka o mau con comida ya conocida.",
+                                            "modelAnswer": "Saya ingin kopi.",
+                                            "explanation": "Ejemplo: Saya ingin kopi. — Quiero café."
+                                        },
+                                        {
+                                            "vocabId": "v288",
+                                            "type": "order",
+                                            "prompt": "Ordena: Puedo ir.",
+                                            "words": [
+                                                "pergi",
+                                                "bisa",
+                                                "Saya"
+                                            ],
+                                            "correctOrder": [
+                                                "Saya",
+                                                "bisa",
+                                                "pergi"
+                                            ],
+                                            "explanation": "Ejemplo: «Saya bisa pergi.» — «Puedo ir.»."
+                                        },
+                                        {
+                                            "vocabId": "v289",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la palabra o expresión.",
+                                            "audioText": "Suka",
+                                            "answer": "Suka",
+                                            "explanation": "Suka significa Gustar."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Lección 3: Intensidad y cantidad",
+                                    "objective": "Aprende a reconocer y usar el vocabulario de esta lección en expresiones breves, recuperando lo estudiado anteriormente.",
+                                    "grammar": "Sangat significa muy y sedikit un poco. Colócalos en la expresión para precisar intensidad o cantidad: Saya sangat suka teh y Saya mau sedikit teh.",
+                                    "vocabIds": [
+                                        "v292",
+                                        "v293"
+                                    ],
+                                    "reviewVocabIds": [
+                                        "v288",
+                                        "v289",
+                                        "v290",
+                                        "v291"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v292",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Sangat»?",
+                                            "options": [
+                                                "Muy",
+                                                "Un poco",
+                                                "Contento / alegrarse"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Sangat significa «Muy»."
+                                        },
+                                        {
+                                            "vocabId": "v293",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Sedikit»?",
+                                            "options": [
+                                                "Un poco",
+                                                "Contento / alegrarse",
+                                                "Con / junto con"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Sedikit significa «Un poco»."
+                                        },
+                                        {
+                                            "vocabId": "v288",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la palabra o expresión.",
+                                            "audioText": "Bisa",
+                                            "answer": "Bisa",
+                                            "explanation": "Bisa significa Poder / saber hacer."
+                                        },
+                                        {
+                                            "vocabId": "v289",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase con «Suka».",
+                                            "hint": "Puedes tomar como referencia: Saya suka teh.",
+                                            "modelAnswer": "Saya suka teh.",
+                                            "explanation": "Ejemplo: «Saya suka teh.» — «Me gusta el té.»."
+                                        },
+                                        {
+                                            "vocabId": "v290",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Ingin»?",
+                                            "options": [
+                                                "Querer / desear",
+                                                "Con / junto con",
+                                                "Gustar"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Ingin significa Querer / desear."
+                                        },
+                                        {
+                                            "vocabId": "v291",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Poder / tener permiso",
+                                            "answer": "Boleh",
+                                            "explanation": "Boleh significa Poder / tener permiso."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Lección 4: Sentimientos y compañía",
+                                    "objective": "Aprende a reconocer y usar el vocabulario de esta lección en expresiones breves, recuperando lo estudiado anteriormente.",
+                                    "grammar": "Senang expresa estar contento y bersama indica compañía: Saya senang y Saya belajar bersama ibu.",
+                                    "vocabIds": [
+                                        "v294",
+                                        "v295"
+                                    ],
+                                    "reviewVocabIds": [
+                                        "v288",
+                                        "v289",
+                                        "v290",
+                                        "v291",
+                                        "v292",
+                                        "v293"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v294",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Senang»?",
+                                            "options": [
+                                                "Contento / alegrarse",
+                                                "Con / junto con",
+                                                "Poder / saber hacer"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Senang significa «Contento / alegrarse»."
+                                        },
+                                        {
+                                            "vocabId": "v295",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Bersama»?",
+                                            "options": [
+                                                "Con / junto con",
+                                                "Poder / saber hacer",
+                                                "Gustar"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Bersama significa «Con / junto con»."
+                                        },
+                                        {
+                                            "vocabId": "v288",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase con «Bisa».",
+                                            "hint": "Puedes tomar como referencia: Saya bisa pergi.",
+                                            "modelAnswer": "Saya bisa pergi.",
+                                            "explanation": "Ejemplo: «Saya bisa pergi.» — «Puedo ir.»."
+                                        },
+                                        {
+                                            "vocabId": "v289",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Suka»?",
+                                            "options": [
+                                                "Gustar",
+                                                "Con / junto con",
+                                                "Querer / desear"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Suka significa Gustar."
+                                        },
+                                        {
+                                            "vocabId": "v290",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Querer / desear",
+                                            "answer": "Ingin",
+                                            "explanation": "Ingin significa Querer / desear."
+                                        },
+                                        {
+                                            "vocabId": "v291",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Poder / tener permiso",
+                                            "answer": "Boleh",
+                                            "explanation": "Boleh significa Poder / tener permiso."
+                                        },
+                                        {
+                                            "vocabId": "v292",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la palabra o expresión.",
+                                            "audioText": "Sangat",
+                                            "answer": "Sangat",
+                                            "explanation": "Sangat significa Muy."
+                                        },
+                                        {
+                                            "vocabId": "v293",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase con «Sedikit».",
+                                            "hint": "Puedes tomar como referencia: Saya mau sedikit teh.",
+                                            "modelAnswer": "Saya mau sedikit teh.",
+                                            "explanation": "Saya mau sedikit teh. significa «Quiero un poco de té.»."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Lección 5: Recuperación espaciada",
+                                    "objective": "Recupera todas las palabras de la unidad y aplícalas en distintos formatos sin consultar la lista.",
+                                    "grammar": "Recupera el vocabulario completo mediante reconocimiento, traducción, ordenación, escucha y escritura. Reutiliza las expresiones y ejemplos de la unidad.",
+                                    "vocabIds": [],
+                                    "reviewVocabIds": [
+                                        "v288",
+                                        "v289",
+                                        "v290",
+                                        "v291",
+                                        "v292",
+                                        "v293",
+                                        "v294",
+                                        "v295"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v288",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Bisa»?",
+                                            "options": [
+                                                "Poder / saber hacer",
+                                                "Querer / desear",
+                                                "Muy"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Bisa significa Poder / saber hacer."
+                                        },
+                                        {
+                                            "vocabId": "v289",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Gustar",
+                                            "answer": "Suka",
+                                            "explanation": "Suka significa Gustar."
+                                        },
+                                        {
+                                            "vocabId": "v290",
+                                            "type": "order",
+                                            "prompt": "Ordena: Quiero café.",
+                                            "words": [
+                                                "kopi",
+                                                "ingin",
+                                                "Saya"
+                                            ],
+                                            "correctOrder": [
+                                                "Saya",
+                                                "ingin",
+                                                "kopi"
+                                            ],
+                                            "explanation": "Saya ingin kopi. significa «Quiero café.»."
+                                        },
+                                        {
+                                            "vocabId": "v291",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la palabra o expresión.",
+                                            "audioText": "Boleh",
+                                            "answer": "Boleh",
+                                            "explanation": "Boleh significa Poder / tener permiso."
+                                        },
+                                        {
+                                            "vocabId": "v292",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase con «Sangat».",
+                                            "hint": "Puedes tomar como referencia: Saya sangat suka teh.",
+                                            "modelAnswer": "Saya sangat suka teh.",
+                                            "explanation": "Saya sangat suka teh. significa «Me gusta mucho el té.»."
+                                        },
+                                        {
+                                            "vocabId": "v293",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Sedikit»?",
+                                            "options": [
+                                                "Un poco",
+                                                "Con / junto con",
+                                                "Gustar"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Sedikit significa Un poco."
+                                        },
+                                        {
+                                            "vocabId": "v294",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Contento / alegrarse",
+                                            "answer": "Senang",
+                                            "explanation": "Senang significa Contento / alegrarse."
+                                        },
+                                        {
+                                            "vocabId": "v295",
+                                            "type": "order",
+                                            "prompt": "Ordena: Estudio con mamá.",
+                                            "words": [
+                                                "ibu",
+                                                "bersama",
+                                                "belajar",
+                                                "Saya"
+                                            ],
+                                            "correctOrder": [
+                                                "Saya",
+                                                "belajar",
+                                                "bersama",
+                                                "ibu"
+                                            ],
+                                            "explanation": "Saya belajar bersama ibu. significa «Estudio con mamá.»."
+                                        }
+                                    ]
+                                }
                             ]
                         },
                         {

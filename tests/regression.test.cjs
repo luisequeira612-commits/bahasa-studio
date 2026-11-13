@@ -2065,3 +2065,9 @@ test('A1 U9-U12 runtime uses authored five-or-six lesson sequences without gener
     assert.ok(lessons.every(lesson => lesson.exercises.every(exercise => exercise.generated !== true)));
   }
 });
+
+test('A1 U13-U16 runtime uses five authored lessons without generated padding',()=>{
+ const start=html.indexOf('const CourseData ='),end=html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */',start),course=vm.runInNewContext(html.slice(start,end)+'\nCourseData');
+ const a1=course.levels.find(l=>l.id==='A1'),s=html.indexOf('function buildUnitAssessmentItems'),e=html.indexOf('function unitLessonProgressKey',s),engine=vm.runInNewContext(html.slice(s,e)+'\n({buildUnitLessons})',{CourseData:course,Map,Set,Math}),expected=[36,35,35,35];
+ for(const [i,u] of a1.units.slice(12,16).entries()){const lessons=engine.buildUnitLessons(u);assert.equal(u.lessons.length,5);assert.equal(lessons.length,5);assert.deepEqual(Array.from(lessons,l=>l.title),Array.from(u.lessons,l=>l.title));assert.equal(lessons.reduce((n,l)=>n+l.exercises.length,0),expected[i]);assert.ok(lessons.every(l=>l.exercises.every(x=>x.generated!==true)));}
+});

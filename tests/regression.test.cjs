@@ -2022,12 +2022,12 @@ test('implemented B2 units expose five lessons with distinct active recall cover
 test('A1 U5-U8 runtime uses five authored lessons without generated padding', () => {
   const start = html.indexOf('const CourseData =');
   const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
-  const course = vm.runInNewContext(html.slice(start, end) + '\\nCourseData');
+  const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
   const engineStart = html.indexOf('function buildUnitAssessmentItems');
   const engineEnd = html.indexOf('function unitLessonProgressKey', engineStart);
   assert.ok(engineStart >= 0 && engineEnd > engineStart, 'unit lesson builder must exist');
   const engine = vm.runInNewContext(
-    html.slice(engineStart, engineEnd) + '\\n({ buildUnitLessons })',
+    html.slice(engineStart, engineEnd) + '\n({ buildUnitLessons })',
     { CourseData: course, Map, Set, Math }
   );
   const a1 = course.levels.find(level => level.id === 'A1');

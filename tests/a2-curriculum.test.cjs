@@ -232,11 +232,11 @@ test('A2 units 13-16 teach shopping, travel, invitations, and experiences in fiv
     assert.equal(exercises.length, 29, unit.id + ' should have 29 exercises across five authored lessons');
     const retrieval = unit.lessons[4];
     assert.deepEqual(Array.from(retrieval.vocabIds || []), [], unit.id + ' retrieval lesson must not introduce new vocabulary');
-    assert.deepEqual(Array.from(retrieval.reviewVocabIds || []).sort(), unit.vocab.map(word => word.id).sort(),
+    assert.deepEqual(Array.from(retrieval.reviewVocabIds || []).sort(), Array.from(unit.vocab, word => word.id).sort(),
       unit.id + ' retrieval lesson must review every unit vocabulary item');
     assert.equal(retrieval.exercises.length, 12, unit.id + ' retrieval lesson must practise all twelve words');
     assert.deepEqual([...new Set(retrieval.exercises.map(exercise => exercise.vocabId))].sort(),
-      unit.vocab.map(word => word.id).sort(), unit.id + ' retrieval exercises must cover every word');
+      Array.from(unit.vocab, word => word.id).sort(), unit.id + ' retrieval exercises must cover every word');
     assert.equal(new Set(retrieval.exercises.map(exercise => exercise.type)).size, 5,
       unit.id + ' retrieval lesson must vary exercise types');
     assert.ok(new Set(exercises.map(exercise => exercise.type)).size >= 4, unit.id + ' should use four exercise types');

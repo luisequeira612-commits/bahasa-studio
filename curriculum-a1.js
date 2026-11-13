@@ -1875,7 +1875,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                 {
                                     "title": "Lección 3: Contar cuatro y cinco; hablar de edad",
                                     "objective": "Amplía el conteo con cuatro, cinco y seis y los aplica a personas y objetos.",
-                                    "grammar": "Empat, lima y enam continúan la secuencia numérica. Repite cada número en frases cortas con teman y buku.",
+                                    "grammar": "Empat y lima continúan el conteo; sepuluh expresa diez y umur significa edad. Practica los números en frases cortas con teman y buku.",
                                     "vocabIds": [
                                         "v40",
                                         "v41",
@@ -1990,7 +1990,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                 {
                                     "title": "Lección 4: Contar seis, siete y ocho",
                                     "objective": "Reconoce siete, ocho y diez y pregunta o responde la edad de una persona.",
-                                    "grammar": "Tujuh, delapan y sepuluh permiten reconocer cantidades mayores. Umur significa edad; Berapa umur kamu? pregunta la edad y Saya berumur ... tahun responde.",
+                                    "grammar": "Enam, tujuh y delapan amplían el conteo. Practica cada número en frases cortas con buku, hari y orang.",
                                     "vocabIds": [
                                         "v105",
                                         "v106",

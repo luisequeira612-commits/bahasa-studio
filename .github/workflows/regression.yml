@@ -242,6 +242,7 @@ jobs:
           name: bahasa-studio-pr-${{ github.event.pull_request.number }}-preview
           path: |
             index.html
+            gemini-request.js
             assessment.html
             assessment-engine.js
             conversation-engine.js

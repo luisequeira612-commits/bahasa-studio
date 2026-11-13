@@ -2043,3 +2043,125 @@ test('imported custom lesson content cannot inject executable markup into the un
     await new Promise(resolve => server.close(resolve));
   }
 });
+
+test('real JSON v3 import keeps untrusted custom lesson content inert across route, unit sheet and exercise renderers', async () => {
+  const { server, url } = await startServer();
+  const context = await browser.newContext({ serviceWorkers: 'block' });
+  const page = await context.newPage();
+  page.on('dialog', dialog => dialog.accept());
+  await page.addInitScript(() => { window.__xssProbe = 0; });
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' &&
+      typeof StudyActivity !== 'undefined' && typeof DB !== 'undefined' && DB.db);
+
+    const unitId = 'ai_import_xss_probe';
+    const payload = '<img src=x onerror="window.__xssProbe=1">';
+    const studyActivity = await page.evaluate(() => StudyActivity.createDefault());
+    const vocab = [
+      { id: unitId + '_v0', idn: payload, esp: payload, ex: payload, exEsp: payload },
+      { id: unitId + '_v1', idn: 'makan', esp: 'comer', ex: 'Saya makan', exEsp: 'Yo como' },
+      { id: unitId + '_v2', idn: 'minum', esp: 'beber', ex: 'Saya minum', exEsp: 'Yo bebo' }
+    ];
+    const backup = {
+      version: 3,
+      xp: 0,
+      completedUnits: [],
+      completedLessons: [],
+      customUnits: [{
+        id: unitId,
+        custom: true,
+        title: payload,
+        desc: payload,
+        grammar: payload,
+        vocab,
+        exercises: [
+          { vocabId: vocab[0].id, type: 'mc', prompt: payload, explanation: payload,
+            options: [payload, 'comer', 'beber'], answer: 0 },
+          { vocabId: vocab[0].id, type: 'translate_es_id', prompt: payload,
+            explanation: payload, answer: payload },
+          { vocabId: vocab[0].id, type: 'listen', prompt: payload,
+            explanation: payload, answer: payload },
+          { vocabId: vocab[0].id, type: 'order', prompt: payload,
+            explanation: payload, words: [payload, 'makan'], correctOrder: [payload, 'makan'] }
+        ]
+      }],
+      syllabusPos: 0,
+      srs: [],
+      studyActivity
+    };
+
+    const navigation = page.waitForNavigation({ waitUntil: 'domcontentloaded' });
+    await page.locator('#importFile').setInputFiles({
+      name: 'xss-probe-backup.json',
+      mimeType: 'application/json',
+      buffer: Buffer.from(JSON.stringify(backup))
+    });
+    await navigation;
+    await page.waitForFunction(id => Array.isArray(CustomLessons.units) &&
+      CustomLessons.units.some(unit => unit.id === id), unitId);
+
+    const route = await page.evaluate(expectedTitle => {
+      App.renderCourseRoute();
+      const nodes = [...document.querySelectorAll('.custom-unit-open-button')];
+      return {
+        title: nodes.find(node => node.textContent === expectedTitle)?.textContent || '',
+        images: document.querySelectorAll('.custom-lessons-path img[src="x"]').length,
+        handlers: document.querySelectorAll('.custom-lessons-path [onerror]').length,
+        executed: window.__xssProbe
+      };
+    }, payload);
+    assert.ok(route.title.includes(payload), 'the imported custom-unit title should remain visible as text');
+    assert.equal(route.images, 0);
+    assert.equal(route.handlers, 0);
+    assert.equal(route.executed, 0);
+
+    const sheet = await page.evaluate(id => {
+      App.openUnitSheet(id);
+      return {
+        title: document.getElementById('unitSheetTitle').textContent,
+        description: document.querySelector('#unitSheetContent .unit-sheet-description').textContent,
+        grammar: document.getElementById('unitSheetGrammar').textContent,
+        images: document.querySelectorAll('#unitSheetContent img[src="x"]').length,
+        handlers: document.querySelectorAll('#unitSheetContent [onerror]').length,
+        executed: window.__xssProbe
+      };
+    }, unitId);
+    assert.equal(sheet.title, payload);
+    assert.equal(sheet.description, payload);
+    assert.equal(sheet.grammar, payload);
+    assert.equal(sheet.images, 0);
+    assert.equal(sheet.handlers, 0);
+    assert.equal(sheet.executed, 0);
+
+    await page.evaluate(id => LessonEngine.startUnitById(id, 0), unitId);
+    const queue = await page.evaluate(() => LessonEngine.queue.map(exercise => exercise.type));
+    for (let index = 0; index < queue.length; index++) {
+      await page.evaluate(step => {
+        LessonEngine.intro = false;
+        LessonEngine.stepIndex = step;
+        LessonEngine.renderStep();
+      }, index);
+      const rendered = await page.evaluate(() => {
+        const area = document.getElementById('exerciseArea');
+        return {
+          text: area.textContent,
+          attributes: [...area.querySelectorAll('[data-answer], [data-word], [data-audio]')]
+            .map(node => node.getAttribute('data-answer') || node.getAttribute('data-word') || node.getAttribute('data-audio')),
+          images: area.querySelectorAll('img[src="x"]').length,
+          handlers: area.querySelectorAll('[onerror]').length,
+          executed: window.__xssProbe
+        };
+      });
+      assert.equal(rendered.images, 0, queue[index] + ' must not create an injected image');
+      assert.equal(rendered.handlers, 0, queue[index] + ' must not create an injected event handler');
+      assert.equal(rendered.executed, 0, queue[index] + ' must not execute the payload');
+      assert.ok(rendered.text.includes(payload) || rendered.attributes.includes(payload),
+        queue[index] + ' should preserve the untrusted content as text or an escaped data value');
+    }
+  } finally {
+    await context.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});

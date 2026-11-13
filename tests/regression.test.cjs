@@ -283,7 +283,7 @@ test('A2 units 1-4 begin with the approved temporal and narrative progression', 
   assert.equal(b2.lessons.reduce((total, lesson) => total + lesson.exercises.length, 0), 26);
 });
 
-test('A2 units 1-4 have 3-5 authored lessons and a complete unit-test bank', () => {
+test('A2 units 1-4 have five authored lessons and a complete unit-test bank', () => {
   const start = html.indexOf('const CourseData =');
   const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
   const course = vm.runInNewContext(html.slice(start, end) + '\nCourseData');
@@ -299,7 +299,8 @@ test('A2 units 1-4 have 3-5 authored lessons and a complete unit-test bank', () 
   const a1Forms = new Set(course.levels.find(level => level.id === 'A1').units.flatMap(unit => unit.vocab).map(word => word.idn.trim().toLowerCase()));
   for (const unit of a2.units.slice(0, 4)) {
     const lessons = engine.buildUnitLessons(unit);
-    assert.ok(lessons.length >= 3 && lessons.length <= 5, unit.id + ' must have 3-5 lessons');
+    assert.equal(unit.lessons.length, 5, unit.id + ' must have five explicit didactic lessons');
+    assert.equal(lessons.length, 5, unit.id + ' must not rely on generated padding to reach five lessons');
     const lessonExercises = lessons.slice(0, unit.lessons.length).flatMap(lesson => lesson.exercises);
     assert.ok(lessonExercises.length >= 14 && lessonExercises.length <= (unit.id === 'a2_u1' ? 27 : 22),
       unit.id + ' must contain 14-27 exercises for U1 or 14-22 for the other first units');
@@ -314,9 +315,17 @@ test('A2 units 1-4 have 3-5 authored lessons and a complete unit-test bank', () 
     assert.ok(fullSentences.length >= 5, unit.id + ' must include at least five full-sentence tasks');
 
     const unitVocabIds = new Set(unit.vocab.map(word => word.id));
+    if (['a2_u2', 'a2_u3', 'a2_u4'].includes(unit.id)) {
+      const consolidation = unit.lessons[4];
+      assert.deepEqual([...consolidation.vocabIds || []], []);
+      assert.deepEqual([...new Set(consolidation.reviewVocabIds)].sort(), [...unitVocabIds].sort(),
+        unit.id + ' fifth lesson must retrieve all unit vocabulary without introducing duplicates');
+      assert.ok(consolidation.exercises.length >= 3, unit.id + ' fifth lesson must contain its own didactic exercises');
+    }
     for (const lesson of lessons) {
-      if (lesson.title.startsWith('Repaso activo')) {
-        assert.equal(lesson.newVocab.length, 0, lesson.title + ' must not introduce new vocabulary');
+      if (lesson.newVocab.length === 0) {
+        assert.ok(lesson.reviewVocab.length > 0, lesson.title + ' must have an explicit spaced-retrieval vocabulary set');
+        assert.match(lesson.title, /Recuperación espaciada/, lesson.title + ' must identify the authored consolidation lesson');
       } else {
         assert.ok(lesson.newVocab.length > 0, lesson.title + ' must introduce vocabulary');
       }

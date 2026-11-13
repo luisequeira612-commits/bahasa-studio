@@ -707,6 +707,7 @@ test('all A1 and A2 practical conversations support guided replies without chang
   const { server, url } = await startServer();
   const context = await browser.newContext({ serviceWorkers: 'block' });
   const page = await context.newPage();
+  await page.addInitScript(() => { window.__conversationXssProbe = 0; });
 
   try {
     await page.goto(url, { waitUntil: 'domcontentloaded' });
@@ -728,6 +729,26 @@ test('all A1 and A2 practical conversations support guided replies without chang
 
       for (let turnIndex = 0; turnIndex < 3; turnIndex++) {
         if (scenarioIndex === 0 && turnIndex === 0) {
+          const responsePayload = '<img src=x onerror="window.__conversationXssProbe=1">';
+          await page.locator('[data-conversation-free]').click();
+          await page.locator('#conversationFreeResponse').fill(responsePayload);
+          await page.locator('[data-conversation-free-example]').click();
+          const freeResponseProbe = await page.evaluate(() => {
+            const area = document.getElementById('conversationPracticeArea');
+            return {
+              text: area.textContent,
+              images: area.querySelectorAll('img[src="x"]').length,
+              handlers: area.querySelectorAll('[onerror]').length,
+              executed: window.__conversationXssProbe
+            };
+          });
+          assert.ok(freeResponseProbe.text.includes(responsePayload),
+            'the learner response should remain visible as text');
+          assert.equal(freeResponseProbe.images, 0);
+          assert.equal(freeResponseProbe.handlers, 0);
+          assert.equal(freeResponseProbe.executed, 0);
+          await page.locator('[data-conversation-guided]').click();
+
           await page.locator('[data-conversation-choice][data-correct="false"]').first().click();
           assert.match(await page.locator('#conversationFeedback').innerText(), /La respuesta adecuada es/,
             'an incorrect response should explain the better phrase');
@@ -738,9 +759,13 @@ test('all A1 and A2 practical conversations support guided replies without chang
       }
 
       await page.getByRole('heading', { name: 'Conversación completada' }).waitFor();
-      const expectedScore = scenarioIndex === 0 ? '2/3' : '3/3';
+      const expectedScore = scenarioIndex === 0 ? '2/2' : '3/3';
       assert.match(await page.locator('#conversationResultScore').innerText(), new RegExp(expectedScore),
         scenarioId + ' should calculate the correct conversation score');
+      if (scenarioIndex === 0) {
+        assert.match(await page.locator('#conversationPracticeArea').innerText(), /1 respuesta\(s\) libre\(s\) practicada\(s\)/,
+          'the free response should be counted separately from the guided score');
+      }
       if (scenarioIndex < scenarioIds.length - 1) {
         await page.locator('[data-conversation-back]').click();
       }

@@ -581,7 +581,7 @@
         },
 
         useGuidedResponse: function () {
-            if (!this.freeResponseMode || this.answered || !this.currentScenario) return;
+            if (!this.freeResponseMode || !this.currentScenario) return;
             const input = document.getElementById('conversationFreeResponse');
             if (input && typeof input.value === 'string') this.freeResponseText = input.value;
             this.stopFreeResponseRecognition();

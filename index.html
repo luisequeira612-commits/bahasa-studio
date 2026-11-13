@@ -5165,6 +5165,35 @@
                                         { vocabId: 'v212', type: 'write', prompt: 'Reescribe «Rina menulis surat» para poner la carta en primer plano y explica en una frase por qué elegiste esa voz.', hint: 'Usa «Surat ditulis oleh Rina». Después explica en español qué elemento quieres mantener como tema.', modelAnswer: 'Surat ditulis oleh Rina. Pongo la carta en primer plano para mantenerla como tema.', explanation: 'La pasiva coloca surat al inicio y mantiene a Rina como agente explícito.' }
                                     ]
                                 },
+,
+                                {
+                                    title: 'Elegir la voz según el foco',
+                                    objective: 'Selecciona activa o pasiva para mantener como punto de partida al agente o al participante afectado en un contexto breve.',
+                                    grammar: 'La activa con meN- presenta al agente como sujeto; la pasiva con di- permite mantener al participante afectado al inicio. Primero identifica qué elemento conecta con la oración anterior y después elige la voz.',
+                                    vocabIds: [],
+                                    reviewVocabIds: ['v211', 'v212', 'v213', 'v214', 'v8', 'b1v001', 'b1v002', 'b1v003', 'b1v004'],
+                                    exercises: [
+                                        { vocabId: 'v211', type: 'mc', prompt: 'El diálogo ya trata sobre Ana. ¿Qué opción vuelve a poner a Ana como punto de partida?', options: ['Ana membaca buku.', 'Buku dibaca oleh Ana.', 'Buku dibaca.'], answer: 0, explanation: 'La activa coloca a Ana como sujeto y, por tanto, como punto de partida.' },
+                                        { vocabId: 'v8', type: 'mc', prompt: 'El texto ya trata sobre buku. ¿Qué opción mantiene buku al inicio?', options: ['Buku dibaca oleh Ana.', 'Ana membaca buku.', 'Ana mengajar murid.'], answer: 0, explanation: 'La pasiva coloca buku al principio y mantiene ese participante como foco.' },
+                                        { vocabId: 'b1v002', type: 'translate_es_id', prompt: 'Traduce: «La fruta se vende en el mercado».', answer: 'Buah dijual di pasar.', explanation: 'Dijual mantiene buah como participante afectado y di pasar añade el lugar.' },
+                                        { vocabId: 'b1v001', type: 'order', prompt: 'Ordena: «La carta es escrita por Rina».', words: ['ditulis', 'Rina.', 'Surat', 'oleh'], correctOrder: ['Surat', 'ditulis', 'oleh', 'Rina.'], explanation: 'Surat aparece primero y oleh introduce al agente Rina.' },
+                                        { vocabId: 'v214', type: 'write', prompt: 'Escribe dos oraciones sobre un profesor y un alumno: una activa y una pasiva. Mantén el mismo acontecimiento.', hint: 'Puedes usar Guru mengajar murid y Murid diajar oleh guru.', modelAnswer: 'Guru mengajar murid. Murid diajar oleh guru.', explanation: 'Las dos oraciones conservan los mismos participantes y cambian el punto de partida.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Consolidar agente, paciente y foco',
+                                    objective: 'Recupera de memoria los roles de los participantes y justifica una elección de voz dentro de un mini texto.',
+                                    grammar: 'Antes de elegir la construcción, identifica agente, participante afectado y elemento que debe mantenerse conectado con el contexto. La voz organiza el foco; no cambia por sí sola quién realiza la acción.',
+                                    vocabIds: [],
+                                    reviewVocabIds: ['v211', 'v212', 'v213', 'v214', 'v8', 'b1v001', 'b1v002', 'b1v003', 'b1v004'],
+                                    exercises: [
+                                        { vocabId: 'b1v003', type: 'mc', prompt: 'En «Murid diajar oleh guru», ¿quién recibe la enseñanza?', options: ['Murid', 'Guru', 'Oleh'], answer: 0, explanation: 'Murid es el participante afectado; guru es el agente.' },
+                                        { vocabId: 'b1v004', type: 'mc', prompt: '¿Qué aporta «oleh» en una pasiva?', options: ['Introduce al agente', 'Marca el lugar', 'Marca el tiempo'], answer: 0, explanation: 'Oleh introduce al participante que realiza la acción.' },
+                                        { vocabId: 'v212', type: 'translate_es_id', prompt: 'Traduce: «Rina escribe una carta».', answer: 'Rina menulis surat.', explanation: 'La activa presenta a Rina como agente y surat como participante afectado.' },
+                                        { vocabId: 'v8', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Buku dibaca oleh Rina.', explanation: 'Buku recibe la acción y Rina aparece como agente introducido por oleh.' },
+                                        { vocabId: 'v213', type: 'write', prompt: 'Escribe un mini texto de tres oraciones sobre fruta. Usa una activa y una pasiva, y explica en español por qué una de ellas mantiene la fruta como foco.', hint: 'Usa menjual y dijual como base.', modelAnswer: 'Mereka menjual buah. Buah dijual di pasar. La segunda mantiene buah como foco.', explanation: 'La producción obliga a recuperar los roles y relacionarlos con la organización del discurso.' }
+                                    ]
+                                }
                             ]
                         },
                         {
@@ -5223,6 +5252,35 @@
                                         { vocabId: 'b2u2_kautulis', type: 'write', prompt: 'Escribe tres o cuatro oraciones breves sobre una carta que tú y otra persona escriben, usando al menos una forma con ku- y una con kau-.', hint: 'Puedes reutilizar Surat itu kutulis y Surat itu kautulis, pero cambia el contexto para que quede claro quién escribe.', modelAnswer: 'Surat itu kutulis. Surat itu kautulis setelah kamu membacanya. Kami membahas surat itu.', explanation: 'La producción guiada obliga a distinguir al agente de primera y segunda persona y mantiene el participante como tema.' }
                                     ]
                                 }
+,
+                                {
+                                    title: 'Contrastar ku- y kau- con las formas anteriores',
+                                    objective: 'Distingue el agente de primera y segunda persona y compáralo con activa y pasiva sin cambiar los roles del acontecimiento.',
+                                    grammar: 'Ku- y kau- incorporan al agente pronominal en el verbo. Frente a la activa con meN-, el agente no aparece como pronombre independiente en estas construcciones; frente a la pasiva con di-, el participante afectado puede aparecer antepuesto mientras el agente queda incorporado.',
+                                    vocabIds: ['b2u2_kubaca', 'b2u2_kaubaca', 'b2u2_kutulis', 'b2u2_kautulis'],
+                                    reviewVocabIds: ['v211', 'v212', 'v8', 'b1v001'],
+                                    exercises: [
+                                        { vocabId: 'b2u2_kubaca', type: 'mc', prompt: '¿Qué construcción expresa «yo» como agente dentro del verbo?', options: ['Buku itu kubaca.', 'Buku itu kaubaca.', 'Buku itu dibaca oleh Ana.'], answer: 0, explanation: 'Ku- identifica al agente de primera persona dentro de kubaca.' },
+                                        { vocabId: 'b2u2_kaubaca', type: 'mc', prompt: '¿Qué construcción expresa «tú» como agente dentro del verbo?', options: ['Buku itu kubaca.', 'Buku itu kaubaca.', 'Aku membaca buku itu.'], answer: 1, explanation: 'Kau- identifica al agente de segunda persona dentro de kaubaca.' },
+                                        { vocabId: 'b2u2_kutulis', type: 'translate_es_id', prompt: 'Traduce: «Esa carta la escribo yo».', answer: 'Surat itu kutulis.', explanation: 'Kutulis incorpora al agente de primera persona y surat itu queda antepuesto.' },
+                                        { vocabId: 'b2u2_kautulis', type: 'order', prompt: 'Ordena: «Esa carta la escribes tú».', words: ['kautulis.', 'itu', 'Surat'], correctOrder: ['Surat', 'itu', 'kautulis.'], explanation: 'Surat itu aparece primero y kautulis incorpora al agente de segunda persona.' },
+                                        { vocabId: 'b2u2_kubaca', type: 'write', prompt: 'Explica en español una diferencia entre «Aku membaca buku itu» y «Buku itu kubaca».', hint: 'Indica dónde aparece el agente y qué elemento aparece primero.', modelAnswer: 'En la primera, aku aparece como agente independiente; en la segunda, ku- está unido al verbo y buku itu aparece primero.', explanation: 'La comparación centra la atención en la forma del agente y en el foco.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Recuperación espaciada: agente y participante afectado',
+                                    objective: 'Recupera ku-/kau- desde el significado y produce la construcción adecuada sin depender de una traducción palabra por palabra.',
+                                    grammar: 'Para recuperar la forma, pregunta primero quién actúa y qué participante aparece en primer plano. Después selecciona ku- para primera persona o kau- para segunda persona y comprueba la forma verbal completa.',
+                                    vocabIds: ['b2u2_kubaca', 'b2u2_kaubaca', 'b2u2_kutulis', 'b2u2_kautulis'],
+                                    reviewVocabIds: ['v211', 'v212', 'v8', 'b1v001'],
+                                    exercises: [
+                                        { vocabId: 'b2u2_kubaca', type: 'mc', prompt: 'Quieres decir que tú lees el libro y el libro ya es el tema. ¿Qué opción corresponde?', options: ['Buku itu kubaca.', 'Buku itu kaubaca.', 'Buku itu dibaca oleh aku.'], answer: 0, explanation: 'El hablante es el agente: ku- aparece en kubaca.' },
+                                        { vocabId: 'b2u2_kaubaca', type: 'mc', prompt: 'Quieres decir que la persona a la que hablas lee el libro y el libro ya es el tema. ¿Qué opción corresponde?', options: ['Buku itu kubaca.', 'Buku itu kaubaca.', 'Aku membaca buku itu.'], answer: 1, explanation: 'La segunda persona se incorpora mediante kau-.' },
+                                        { vocabId: 'b2u2_kutulis', type: 'translate_es_id', prompt: 'Traduce: «Esa carta la escribí yo, según el contexto».', answer: 'Surat itu kutulis.', explanation: 'La forma kutulis identifica al agente de primera persona; el tiempo procede del contexto.' },
+                                        { vocabId: 'b2u2_kaubaca', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Buku itu kaubaca.', explanation: 'Buku itu es el participante antepuesto y kau- identifica al agente de segunda persona.' },
+                                        { vocabId: 'b2u2_kautulis', type: 'write', prompt: 'Escribe dos oraciones: una con ku- y otra con kau-, manteniendo «surat itu» como tema.', hint: 'Usa kutulis y kautulis y deja claro quién escribe en cada oración.', modelAnswer: 'Surat itu kutulis. Surat itu kautulis.', explanation: 'La práctica recupera ambas personas con el mismo participante como punto de partida.' }
+                                    ]
+                                }
                             ]
                         },
                         {
@@ -5279,6 +5337,35 @@
                                         { vocabId: 'b2u2_kutulis', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Surat itu kutulis.', explanation: 'Ku- identifica al agente de primera persona y surat itu aparece en primer plano.' },
                                         { vocabId: 'b2u2_kaubaca', type: 'write', prompt: 'Escribe un mini texto de tres o cuatro oraciones que mantenga un libro como tema y use una forma de U2 y una construcción de U1.', hint: 'Puedes usar «Buku itu kubaca», «Buku itu dibaca oleh Ana» y una activa. Aclara quién realiza cada acción.', modelAnswer: 'Buku itu kubaca kemarin. Buku itu dibaca oleh Ana setelah itu. Ana membaca surat di rumah.', explanation: 'El texto integra los patrones y mantiene claros los agentes de cada oración.' },
                                         { vocabId: 'v212', type: 'write', prompt: 'Reescribe «Rina menulis surat» para poner la carta en primer plano y justifica brevemente la elección.', hint: 'Usa la pasiva con ditulis y conserva a Rina como agente explícito.', modelAnswer: 'Surat itu ditulis oleh Rina. La carta queda como punto de partida y Rina sigue siendo quien escribe.', explanation: 'La transformación conserva los roles semánticos y cambia el punto de partida.' }
+                                    ]
+                                }
+,
+                                {
+                                    title: 'Elegir una construcción para mantener el tema',
+                                    objective: 'Integra activa, pasiva y ku-/kau- para continuar un texto breve sin invertir los roles de los participantes.',
+                                    grammar: 'La elección depende de qué elemento debe conectar con el contexto anterior. La activa puede destacar al agente; la pasiva y ku-/kau- pueden mantener un participante afectado al inicio, pero no son equivalentes en todos los contextos.',
+                                    vocabIds: ['b2u2_kubaca', 'b2u2_kaubaca', 'b2u2_kutulis', 'b2u2_kautulis'],
+                                    reviewVocabIds: ['v211', 'v212', 'v213', 'v214', 'v8', 'b1v001', 'b1v002', 'b1v003', 'b1v004'],
+                                    exercises: [
+                                        { vocabId: 'v211', type: 'mc', prompt: 'El texto ya trata sobre Ana. ¿Qué opción la mantiene como punto de partida?', options: ['Ana membaca buku itu.', 'Buku itu dibaca oleh Ana.', 'Buku itu kubaca.'], answer: 0, explanation: 'La activa coloca a Ana como sujeto y punto de partida.' },
+                                        { vocabId: 'v8', type: 'mc', prompt: 'El texto ya trata sobre buku itu y el agente es Ana. ¿Qué opción mantiene buku itu al inicio?', options: ['Buku itu dibaca oleh Ana.', 'Ana membaca buku itu.', 'Buku itu kubaca.'], answer: 0, explanation: 'La pasiva mantiene buku itu al inicio y conserva a Ana como agente.' },
+                                        { vocabId: 'b2u2_kubaca', type: 'mc', prompt: 'El texto ya trata sobre buku itu y el agente es quien habla. ¿Qué opción encaja?', options: ['Buku itu kubaca.', 'Buku itu kaubaca.', 'Ana membaca buku itu.'], answer: 0, explanation: 'Ku- identifica al agente de primera persona y buku itu queda antepuesto.' },
+                                        { vocabId: 'b2u2_kaubaca', type: 'translate_es_id', prompt: 'Traduce: «Ese libro lo lees tú».', answer: 'Buku itu kaubaca.', explanation: 'Kau- identifica al agente de segunda persona y buku itu queda en primer plano.' },
+                                        { vocabId: 'v212', type: 'write', prompt: 'Escribe tres oraciones sobre una carta usando una activa, una pasiva y una forma con ku- o kau-.', hint: 'Mantén claros el agente y la carta en cada oración.', modelAnswer: 'Rina menulis surat. Surat itu ditulis oleh Rina. Surat itu kutulis setelah itu.', explanation: 'El texto integra las tres organizaciones del foco sin invertir los roles.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Síntesis: mantener el foco sin invertir los roles',
+                                    objective: 'Combina las construcciones estudiadas en una producción guiada y explica por qué cada elección mantiene el sentido.',
+                                    grammar: 'La síntesis exige comprobar dos cosas: quién realiza la acción y qué elemento debe aparecer primero para enlazar con el contexto. Si cambia el foco, deben mantenerse constantes los roles semánticos del acontecimiento que se quiere expresar.',
+                                    vocabIds: ['b2u2_kubaca', 'b2u2_kaubaca', 'b2u2_kutulis', 'b2u2_kautulis'],
+                                    reviewVocabIds: ['v211', 'v212', 'v213', 'v214', 'v8', 'b1v001', 'b1v002', 'b1v003', 'b1v004'],
+                                    exercises: [
+                                        { vocabId: 'b1v001', type: 'mc', prompt: 'En «Surat itu ditulis oleh Rina», ¿quién es el agente?', options: ['Rina', 'Surat itu', 'La persona que habla'], answer: 0, explanation: 'Oleh Rina introduce al agente; surat itu recibe la acción.' },
+                                        { vocabId: 'b2u2_kautulis', type: 'mc', prompt: 'En «Surat itu kautulis», ¿quién es el agente?', options: ['La persona a la que se habla', 'La persona que habla', 'La carta'], answer: 0, explanation: 'Kau- representa al agente de segunda persona.' },
+                                        { vocabId: 'b2u2_kubaca', type: 'translate_es_id', prompt: 'Traduce: «Ese libro lo leo yo, según el contexto».', answer: 'Buku itu kubaca.', explanation: 'Ku- identifica al agente de primera persona y el contexto determina la interpretación temporal.' },
+                                        { vocabId: 'v8', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Buku dibaca oleh Ana.', explanation: 'La pasiva mantiene buku como participante afectado y Ana como agente.' },
+                                        { vocabId: 'b2u2_kaubaca', type: 'write', prompt: 'Escribe un mini diálogo de cuatro oraciones sobre un libro: usa una activa, una pasiva y al menos una forma con ku- o kau-.', hint: 'Haz que el libro sea el tema en varias respuestas y cambia el agente al menos una vez.', modelAnswer: 'Aku membaca buku itu. Buku itu dibaca oleh Ana. Buku itu kubaca lagi. Buku itu kaubaca juga.', explanation: 'La producción integra los tres patrones y obliga a recuperar quién actúa en cada oración.' }
                                     ]
                                 }
                             ]

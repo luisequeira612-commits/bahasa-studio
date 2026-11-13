@@ -1873,13 +1873,14 @@ window.BAHASA_CURRICULUM_A1 = {
                                         }]
                                 },
                                 {
-                                    "title": "Lección 3: Contar cuatro, cinco y seis",
+                                    "title": "Lección 3: Contar cuatro y cinco; hablar de edad",
                                     "objective": "Amplía el conteo con cuatro, cinco y seis y los aplica a personas y objetos.",
                                     "grammar": "Empat, lima y enam continúan la secuencia numérica. Repite cada número en frases cortas con teman y buku.",
                                     "vocabIds": [
                                         "v40",
                                         "v41",
-                                        "v105"
+                                        "v42",
+                                        "v43"
                                     ],
                                     "reviewVocabIds": [
                                         "v15",
@@ -1889,18 +1890,6 @@ window.BAHASA_CURRICULUM_A1 = {
                                         "v19"
                                     ],
                                     "exercises": [
-                                        {
-                                            "vocabId": "v105",
-                                            "type": "mc",
-                                            "prompt": "¿Cómo se dice seis?",
-                                            "options": [
-                                                "Enam",
-                                                "Tujuh",
-                                                "Delapan"
-                                            ],
-                                            "answer": 0,
-                                            "explanation": "Enam significa seis."
-                                        },
                                         {
                                             "vocabId": "v40",
                                             "type": "mc",
@@ -1931,6 +1920,22 @@ window.BAHASA_CURRICULUM_A1 = {
                                             "prompt": "Escucha y escribe la oración que corresponde a «Cinco».",
                                             "answer": "Lima teman.",
                                             "explanation": "La oración contiene «Lima»."
+                                        },
+                                        {
+                                            "vocabId": "v42",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Sepuluh»?",
+                                            "options": ["Diez", "Seis", "Ocho"],
+                                            "answer": 0,
+                                            "explanation": "Sepuluh significa diez."
+                                        },
+                                        {
+                                            "vocabId": "v43",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Umur»?",
+                                            "options": ["Edad", "Año", "Número"],
+                                            "answer": 0,
+                                            "explanation": "Umur significa edad."
                                         },
                                         {
                                             "vocabId": "v105",
@@ -1983,14 +1988,13 @@ window.BAHASA_CURRICULUM_A1 = {
                                         }]
                                 },
                                 {
-                                    "title": "Lección 4: Contar más y hablar de edad",
+                                    "title": "Lección 4: Contar seis, siete y ocho",
                                     "objective": "Reconoce siete, ocho y diez y pregunta o responde la edad de una persona.",
                                     "grammar": "Tujuh, delapan y sepuluh permiten reconocer cantidades mayores. Umur significa edad; Berapa umur kamu? pregunta la edad y Saya berumur ... tahun responde.",
                                     "vocabIds": [
+                                        "v105",
                                         "v106",
-                                        "v107",
-                                        "v42",
-                                        "v43"
+                                        "v107"
                                     ],
                                     "reviewVocabIds": [
                                         "v15",
@@ -2000,9 +2004,18 @@ window.BAHASA_CURRICULUM_A1 = {
                                         "v19",
                                         "v40",
                                         "v41",
-                                        "v105"
+                                        "v42",
+                                        "v43"
                                     ],
                                     "exercises": [
+                                        {
+                                            "vocabId": "v105",
+                                            "type": "mc",
+                                            "prompt": "¿Cómo se dice seis?",
+                                            "options": ["Enam", "Tujuh", "Delapan"],
+                                            "answer": 0,
+                                            "explanation": "Enam significa seis."
+                                        },
                                         {
                                             "vocabId": "v18",
                                             "type": "order",

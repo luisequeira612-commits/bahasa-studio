@@ -2439,7 +2439,265 @@ window.BAHASA_CURRICULUM_A1 = {
                                 {"vocabId":"v22","type":"translate_es_id","prompt":"Traduce: padre","answer":"Ayah","explanation":"Ayah significa padre."},
                                 {"vocabId":"v111","type":"write","prompt":"Escribe una frase sobre tu familia.","hint":"Intenta construir una frase nueva con el vocabulario de la unidad.","modelAnswer":"Ini adik saya.","explanation":"Ini adik saya significa «Este/a es mi hermano/a menor»."}
                             ]
+                        ,
+    lessons: [
+        {
+                    title: "Lección 1: Presentar a la familia",
+                    objective: "Presenta a tu familia con una frase sencilla.",
+                    grammar: "Usa Ini antes de un nombre para presentar a alguien; keluarga saya significa mi familia.",
+                    vocabIds: ["v20","v21"],
+                    reviewVocabIds: [],
+                    exercises: [
+                        {
+                                                                            "vocabId": "v20",
+                                                                            "type": "mc",
+                                                                            "prompt": "¿Qué significa keluarga?",
+                                                                            "options": [
+                                                                                "Familia",
+                                                                                "Amigo",
+                                                                                "Padre",
+                                                                                "Madre"
+                                                                            ],
+                                                                            "answer": 0,
+                                                                            "explanation": "Keluarga significa familia."
+                                                                        },
+                        {
+                                                                            "vocabId": "v21",
+                                                                            "type": "translate_es_id",
+                                                                            "prompt": "Traduce: madre",
+                                                                            "answer": "Ibu",
+                                                                            "explanation": "Ibu significa madre."
+                                                                        },
+                        {
+                                                                            "vocabId": "v20",
+                                                                            "type": "mc",
+                                                                            "prompt": "Escucha la frase y elige su significado",
+                                                                            "audioText": "Ini keluarga saya",
+                                                                            "options": ["Esta es mi familia", "Esta es mi madre", "Él es mi amigo"],
+                                                                            "answer": 0,
+                                                                            "explanation": "Ini keluarga saya significa «Esta es mi familia»."
+                                                                        },
+                        {
+                                                                            "vocabId": "v21",
+                                                                            "type": "mc",
+                                                                            "prompt": "Completa: ___ ibu saya (Esta es mi madre)",
+                                                                            "options": [
+                                                                                "Ini",
+                                                                                "Dia",
+                                                                                "Teman",
+                                                                                "Anak"
+                                                                            ],
+                                                                            "answer": 0,
+                                                                            "explanation": "Ini ibu saya significa «Esta es mi madre»."
+                                                                        },
+                        {
+                                                                            "vocabId": "v20",
+                                                                            "type": "mc",
+                                                                            "prompt": "Elige la frase que significa «Esta es mi familia»",
+                                                                            "options": [
+                                                                                "Ini keluarga saya",
+                                                                                "Ayah saya bekerja",
+                                                                                "Teman saya di sini",
+                                                                                "Ini ibu saya"
+                                                                            ],
+                                                                            "answer": 0,
+                                                                            "explanation": "Ini keluarga saya presenta a la familia."
+                                                                        },
+                        { vocabId: 'v20', type: 'write', prompt: "Escribe una frase sobre una persona de tu familia.", hint: "Usa una palabra de familia que hayas aprendido.", modelAnswer: "Ini ibu saya.", explanation: "Ini ibu saya significa «Esta es mi madre». Puedes cambiar ibu por otra palabra de familia." },
+                        {"vocabId":"v21","type":"mc","prompt":"¿Qué significa ibu?","options":["Madre / señora","Padre","Hermano menor"],"answer":0,"explanation":"Ibu significa madre y también es un tratamiento respetuoso."}
+                    ]
+                },
+        {
+                    title: "Lección 2: Hablar de madre y padre",
+                    objective: "Identifica y presenta a la madre y al padre.",
+                    grammar: "Ini ibu saya e Ini ayah saya presentan a la madre y al padre; saya indica posesión.",
+                    vocabIds: ["v22"],
+                    reviewVocabIds: ["v20","v21"],
+                    exercises: [
+                        {
+                                                                            "vocabId": "v22",
+                                                                            "type": "mc",
+                                                                            "prompt": "¿Qué palabra significa padre?",
+                                                                            "options": [
+                                                                                "Anak",
+                                                                                "Ayah",
+                                                                                "Teman",
+                                                                                "Ibu"
+                                                                            ],
+                                                                            "answer": 1,
+                                                                            "explanation": "Ayah significa padre."
+                                                                        },
+                        {
+                                                                            "vocabId": "v22",
+                                                                            "type": "mc",
+                                                                            "prompt": "Escucha la frase y elige su significado",
+                                                                            "audioText": "Ini ayah saya",
+                                                                            "options": ["Esta es mi madre", "Este es mi padre", "Este es mi hermano menor"],
+                                                                            "answer": 1,
+                                                                            "explanation": "Ini ayah saya significa «Este es mi padre»."
+                                                                        },
+                        {
+                                                                            "vocabId": "v22",
+                                                                            "type": "translate_es_id",
+                                                                            "prompt": "Traduce: Este es mi padre",
+                                                                            "answer": "Ini ayah saya",
+                                                                            "explanation": "Ini ayah saya significa Este es mi padre."
+                                                                        },
+                        {"vocabId":"v22","type":"translate_es_id","prompt":"Traduce: padre","answer":"Ayah","explanation":"Ayah significa padre."},
+                        {"vocabId":"v20","type":"mc","prompt":"Recupera «Keluarga»: ¿qué significa?","options":["Familia","Madre","Padre"],"answer":0,"explanation":"Keluarga significa Familia. Esta pregunta recupera una palabra de una lección anterior."},
+                        {"vocabId":"v21","type":"mc","prompt":"Recupera «Ibu»: ¿qué significa?","options":["Madre","Familia","Padre"],"answer":0,"explanation":"Ibu significa Madre. Esta pregunta recupera una palabra de una lección anterior."}
+                    ]
+                },
+        {
+                    title: "Lección 3: Hablar de hijos",
+                    objective: "Habla de hijos y de personas de la familia.",
+                    grammar: "Dia puede referirse a él o ella; anak saya significa mi hijo o hija.",
+                    vocabIds: ["v23"],
+                    reviewVocabIds: ["v20","v21","v22"],
+                    exercises: [
+                        {
+                                                                            "vocabId": "v23",
+                                                                            "type": "translate_es_id",
+                                                                            "prompt": "Traduce: Él es mi hijo",
+                                                                            "answer": "Dia anak saya",
+                                                                            "explanation": "Dia anak saya significa Él es mi hijo."
+                                                                        },
+                        {
+                                                                            "vocabId": "v20",
+                                                                            "type": "order",
+                                                                            "prompt": "Ordena: Esta es mi familia",
+                                                                            "words": [
+                                                                                "saya",
+                                                                                "Ini",
+                                                                                "keluarga"
+                                                                            ],
+                                                                            "correctOrder": [
+                                                                                "Ini",
+                                                                                "keluarga",
+                                                                                "saya"
+                                                                            ],
+                                                                            "explanation": "Ini keluarga saya significa Esta es mi familia."
+                                                                        },
+                        {
+                                                                            "vocabId": "v21",
+                                                                            "type": "listen",
+                                                                            "prompt": "Escribe lo que escuchas",
+                                                                            "answer": "Ini ibu saya",
+                                                                            "explanation": "La frase describe a la madre."
+                                                                        },
+                        {"vocabId":"v22","type":"mc","prompt":"Recupera «Ayah»: ¿qué significa?","options":["Padre","Familia","Madre"],"answer":0,"explanation":"Ayah significa Padre. Esta pregunta recupera una palabra de una lección anterior."}
+                    ]
+                },
+        {
+                    title: "Lección 4: Hablar de amistades y familia",
+                    objective: "Describe a un amigo y a un hermano o hermana menor.",
+                    grammar: "Teman saya significa mi amigo o amiga; adik se refiere a un hermano o hermana menor.",
+                    vocabIds: ["v53","v111"],
+                    reviewVocabIds: ["v20","v21","v22","v23"],
+                    exercises: [
+                        {
+                                                                            "vocabId": "v53",
+                                                                            "type": "translate_es_id",
+                                                                            "prompt": "Traduce: amigo o amiga",
+                                                                            "answer": "Teman",
+                                                                            "explanation": "Teman significa amigo o amiga."
+                                                                        },
+                        {
+                                                                            "vocabId": "v53",
+                                                                            "type": "order",
+                                                                            "prompt": "Ordena: Él es mi amigo",
+                                                                            "words": [
+                                                                                "saya",
+                                                                                "Dia",
+                                                                                "teman"
+                                                                            ],
+                                                                            "correctOrder": [
+                                                                                "Dia",
+                                                                                "teman",
+                                                                                "saya"
+                                                                            ],
+                                                                            "explanation": "Dia teman saya significa Él o ella es mi amigo."
+                                                                        },
+                        {"vocabId":"v111","type":"write","prompt":"Escribe una frase sobre tu familia.","hint":"Intenta construir una frase nueva con el vocabulario de la unidad.","modelAnswer":"Ini adik saya.","explanation":"Ini adik saya significa «Este/a es mi hermano/a menor»."},
+                        {"vocabId":"v20","type":"mc","prompt":"Recupera «Keluarga»: ¿qué significa?","options":["Familia","Madre","Padre"],"answer":0,"explanation":"Keluarga significa Familia. Esta pregunta recupera una palabra de una lección anterior."},
+                        {"vocabId":"v21","type":"mc","prompt":"Recupera «Ibu»: ¿qué significa?","options":["Madre","Familia","Padre"],"answer":0,"explanation":"Ibu significa Madre. Esta pregunta recupera una palabra de una lección anterior."},
+                        {"vocabId":"v22","type":"mc","prompt":"Recupera «Ayah»: ¿qué significa?","options":["Padre","Familia","Madre"],"answer":0,"explanation":"Ayah significa Padre. Esta pregunta recupera una palabra de una lección anterior."},
+                        {"vocabId":"v23","type":"mc","prompt":"Recupera «Anak»: ¿qué significa?","options":["Niño/a; hijo/a","Familia","Madre"],"answer":0,"explanation":"Anak significa Niño/a; hijo/a. Esta pregunta recupera una palabra de una lección anterior."}
+                    ]
+                },
+        {
+                    title: "Lección 5: Recuperación espaciada",
+                    objective: "Recupera el vocabulario de toda la unidad en tareas variadas, sin introducir palabras nuevas.",
+                    grammar: "Combina las estructuras y expresiones de las cuatro lecciones anteriores; intenta recordar primero y consulta la pista solo después.",
+                    vocabIds: [],
+                    reviewVocabIds: ["v20","v21","v22","v23","v53","v111"],
+                    exercises: [
+                        {
+                            "vocabId": "v20",
+                            "type": "mc",
+                            "prompt": "¿Qué significa «Keluarga»?",
+                            "options": [
+                                "Familia",
+                                "Madre",
+                                "Padre"
+                            ],
+                            "answer": 0,
+                            "explanation": "Keluarga significa Familia."
                         },
+                        {
+                            "vocabId": "v21",
+                            "type": "translate_es_id",
+                            "prompt": "Traduce: Madre",
+                            "answer": "Ibu",
+                            "explanation": "Ibu significa Madre."
+                        },
+                        {
+                            "vocabId": "v22",
+                            "type": "order",
+                            "prompt": "Ordena la frase relacionada con esta palabra.",
+                            "words": [
+                                "saya",
+                                "ayah",
+                                "Ini"
+                            ],
+                            "correctOrder": [
+                                "Ini",
+                                "ayah",
+                                "saya"
+                            ],
+                            "explanation": "La frase practica Ayah en contexto."
+                        },
+                        {
+                            "vocabId": "v23",
+                            "type": "listen",
+                            "prompt": "Escucha y escribe la expresión.",
+                            "answer": "Dia anak saya",
+                            "explanation": "La expresión practica Anak."
+                        },
+                        {
+                            "vocabId": "v53",
+                            "type": "write",
+                            "prompt": "Escribe una frase con «Teman».",
+                            "hint": "Usa la palabra en una frase breve y completa.",
+                            "modelAnswer": "Dia teman saya.",
+                            "explanation": "Él/ella es mi amigo/a."
+                        },
+                        {
+                            "vocabId": "v111",
+                            "type": "mc",
+                            "prompt": "¿Qué significa «Adik»?",
+                            "options": [
+                                "Hermano/a menor",
+                                "Familia",
+                                "Madre"
+                            ],
+                            "answer": 0,
+                            "explanation": "Adik significa Hermano/a menor."
+                        }
+                    ]
+                }
+    ]
+},
                         {
                             id: 'a1_u6',
                             title: 'Unidad 6: Comida y bebida',
@@ -2592,7 +2850,287 @@ window.BAHASA_CURRICULUM_A1 = {
                                 {"vocabId":"v114","type":"translate_es_id","prompt":"Traduce: café","answer":"Kopi","explanation":"Kopi significa café."},
                                 {"vocabId":"v115","type":"mc","prompt":"Escucha la pregunta y elige su significado","audioText":"Berapa harganya?","options":["¿Dónde está el agua?","¿Cuánto cuesta?","¿Cómo te llamas?"],"answer":1,"explanation":"Berapa harganya? significa «¿Cuánto cuesta?»"}
                             ]
+                        ,
+    lessons: [
+        {
+                    title: "Lección 1: Comer y beber",
+                    objective: "Distingue las acciones de comer y beber en frases cotidianas.",
+                    grammar: "Makan significa comer y minum significa beber; el verbo va después del sujeto.",
+                    vocabIds: ["v46","v47"],
+                    reviewVocabIds: [],
+                    exercises: [
+                        {
+                                                                            "vocabId": "v46",
+                                                                            "type": "mc",
+                                                                            "prompt": "¿Qué significa makan?",
+                                                                            "options": [
+                                                                                "Beber",
+                                                                                "Comer",
+                                                                                "Dormir",
+                                                                                "Vivir"
+                                                                            ],
+                                                                            "answer": 1,
+                                                                            "explanation": "Makan significa comer."
+                                                                        },
+                        {
+                                                                            "vocabId": "v47",
+                                                                            "type": "translate_es_id",
+                                                                            "prompt": "Traduce: beber",
+                                                                            "answer": "Minum",
+                                                                            "explanation": "Minum significa beber."
+                                                                        },
+                        {
+                                                                            "vocabId": "v46",
+                                                                            "type": "mc",
+                                                                            "prompt": "Escucha la frase y elige su significado",
+                                                                            "audioText": "Saya makan nasi",
+                                                                            "options": ["Bebo agua", "Como arroz", "Quiero té"],
+                                                                            "answer": 1,
+                                                                            "explanation": "Saya makan nasi significa «Como arroz»."
+                                                                        },
+                        {
+                                                                            "vocabId": "v47",
+                                                                            "type": "mc",
+                                                                            "prompt": "¿Qué verbo se usa para beber agua?",
+                                                                            "options": [
+                                                                                "Minum",
+                                                                                "Makan",
+                                                                                "Tinggal",
+                                                                                "Tidur"
+                                                                            ],
+                                                                            "answer": 0,
+                                                                            "explanation": "Minum es el verbo beber."
+                                                                        },
+                        {
+                                                                            "vocabId": "v46",
+                                                                            "type": "mc",
+                                                                            "prompt": "Completa: Saya ___ nasi (Como arroz)",
+                                                                            "options": [
+                                                                                "makan",
+                                                                                "minum",
+                                                                                "rumah",
+                                                                                "ibu"
+                                                                            ],
+                                                                            "answer": 0,
+                                                                            "explanation": "Makan va con la acción de comer."
+                                                                        },
+                        {
+                                                                            "vocabId": "v47",
+                                                                            "type": "mc",
+                                                                            "prompt": "Escucha la frase y elige su significado",
+                                                                            "audioText": "Saya minum air",
+                                                                            "options": ["Quiero agua", "Bebo agua", "Como arroz"],
+                                                                            "answer": 1,
+                                                                            "explanation": "Saya minum air significa «Bebo agua»."
+                                                                        },
+                        { vocabId: 'v46', type: 'write', prompt: "Escribe qué comida o bebida te gustaría mencionar.", hint: "Combina saya makan o saya minum con vocabulario de comida.", modelAnswer: "Saya makan nasi.", explanation: "La frase significa «Yo como arroz cocido». Hay otras respuestas posibles." }
+                    ]
+                },
+        {
+                    title: "Lección 2: Hablar de agua y arroz",
+                    objective: "Nombra agua y arroz y construye frases con makan y minum.",
+                    grammar: "Air significa agua y nasi arroz cocido; usa Saya minum air y Saya makan nasi como modelos.",
+                    vocabIds: ["v48","v49"],
+                    reviewVocabIds: ["v46","v47"],
+                    exercises: [
+                        {
+                                                                            "vocabId": "v48",
+                                                                            "type": "mc",
+                                                                            "prompt": "Completa: Saya minum ___ (Bebo agua)",
+                                                                            "options": [
+                                                                                "air",
+                                                                                "nasi",
+                                                                                "tidur",
+                                                                                "rumah"
+                                                                            ],
+                                                                            "answer": 0,
+                                                                            "explanation": "Air significa agua."
+                                                                        },
+                        {
+                                                                            "vocabId": "v49",
+                                                                            "type": "order",
+                                                                            "prompt": "Ordena: Como arroz",
+                                                                            "words": [
+                                                                                "nasi",
+                                                                                "Saya",
+                                                                                "makan"
+                                                                            ],
+                                                                            "correctOrder": [
+                                                                                "Saya",
+                                                                                "makan",
+                                                                                "nasi"
+                                                                            ],
+                                                                            "explanation": "Saya makan nasi significa Como arroz."
+                                                                        },
+                        {
+                                                                            "vocabId": "v48",
+                                                                            "type": "mc",
+                                                                            "prompt": "Escucha la frase y elige su significado",
+                                                                            "audioText": "Saya mau air",
+                                                                            "options": ["Quiero agua", "Como arroz", "Él bebe café"],
+                                                                            "answer": 0,
+                                                                            "explanation": "Saya mau air significa «Quiero agua»."
+                                                                        },
+                        {
+                                                                            "vocabId": "v49",
+                                                                            "type": "translate_es_id",
+                                                                            "prompt": "Traduce: arroz cocido",
+                                                                            "answer": "Nasi",
+                                                                            "explanation": "Nasi se refiere al arroz cocido."
+                                                                        },
+                        {
+                                                                            "vocabId": "v48",
+                                                                            "type": "translate_es_id",
+                                                                            "prompt": "Traduce: agua",
+                                                                            "answer": "Air",
+                                                                            "explanation": "Air significa agua."
+                                                                        },
+                        {"vocabId":"v46","type":"mc","prompt":"Recupera «Makan»: ¿qué significa?","options":["Comer","Beber","Agua"],"answer":0,"explanation":"Makan significa Comer. Esta pregunta recupera una palabra de una lección anterior."},
+                        {"vocabId":"v47","type":"mc","prompt":"Recupera «Minum»: ¿qué significa?","options":["Beber","Comer","Agua"],"answer":0,"explanation":"Minum significa Beber. Esta pregunta recupera una palabra de una lección anterior."}
+                    ]
+                },
+        {
+                    title: "Lección 3: Pedir algo con cortesía",
+                    objective: "Formula una petición cortés y reconoce la palabra para té.",
+                    grammar: "Tolong introduce una petición o una solicitud de ayuda.",
+                    vocabIds: ["v29","v113"],
+                    reviewVocabIds: ["v46","v47","v48","v49"],
+                    exercises: [
+                        {
+                                                                            "vocabId": "v29",
+                                                                            "type": "translate_es_id",
+                                                                            "prompt": "Traduce: por favor, para pedir algo",
+                                                                            "answer": "Tolong",
+                                                                            "explanation": "Tolong se usa al pedir ayuda o formular una petición."
+                                                                        },
+                        {
+                                                                            "vocabId": "v29",
+                                                                            "type": "order",
+                                                                            "prompt": "Ordena una petición: Por favor, quiero agua",
+                                                                            "words": ["air", "mau", "saya", "Tolong"],
+                                                                            "correctOrder": ["Tolong", "saya", "mau", "air"],
+                                                                            "explanation": "Tolong, saya mau air significa «Quiero agua, por favor»."
+                                                                        },
+                        {"vocabId":"v113","type":"mc","prompt":"¿Qué significa teh?","options":["Té","Café","Agua"],"answer":0,"explanation":"Teh significa té."},
+                        {"vocabId":"v46","type":"mc","prompt":"Recupera «Makan»: ¿qué significa?","options":["Comer","Beber","Agua"],"answer":0,"explanation":"Makan significa Comer. Esta pregunta recupera una palabra de una lección anterior."},
+                        {"vocabId":"v47","type":"mc","prompt":"Recupera «Minum»: ¿qué significa?","options":["Beber","Comer","Agua"],"answer":0,"explanation":"Minum significa Beber. Esta pregunta recupera una palabra de una lección anterior."},
+                        {"vocabId":"v48","type":"mc","prompt":"Recupera «Air»: ¿qué significa?","options":["Agua","Comer","Beber"],"answer":0,"explanation":"Air significa Agua. Esta pregunta recupera una palabra de una lección anterior."},
+                        {"vocabId":"v49","type":"mc","prompt":"Recupera «Nasi»: ¿qué significa?","options":["Arroz cocido","Comer","Beber"],"answer":0,"explanation":"Nasi significa Arroz cocido. Esta pregunta recupera una palabra de una lección anterior."}
+                    ]
+                },
+        {
+                    title: "Lección 4: Elegir bebidas y preguntar el precio",
+                    objective: "Nombra el café y pregunta cuánto cuesta algo.",
+                    grammar: "Kopi significa café y Berapa harganya? pregunta el precio de algo.",
+                    vocabIds: ["v114","v115"],
+                    reviewVocabIds: ["v46","v47","v48","v49","v29","v113"],
+                    exercises: [
+                        {"vocabId":"v114","type":"translate_es_id","prompt":"Traduce: café","answer":"Kopi","explanation":"Kopi significa café."},
+                        {"vocabId":"v115","type":"mc","prompt":"Escucha la pregunta y elige su significado","audioText":"Berapa harganya?","options":["¿Dónde está el agua?","¿Cuánto cuesta?","¿Cómo te llamas?"],"answer":1,"explanation":"Berapa harganya? significa «¿Cuánto cuesta?»"},
+                        {"vocabId":"v114","type":"listen","prompt":"Escucha y escribe la palabra para café.","answer":"Kopi","explanation":"Kopi significa café."},
+                        {"vocabId":"v115","type":"write","prompt":"Escribe la pregunta para saber cuánto cuesta algo.","hint":"Usa la expresión que acabas de aprender.","modelAnswer":"Berapa harganya?","explanation":"Berapa harganya? significa «¿Cuánto cuesta?»."},
+                        {"vocabId":"v46","type":"mc","prompt":"Recupera «Makan»: ¿qué significa?","options":["Comer","Beber","Agua"],"answer":0,"explanation":"Makan significa Comer. Esta pregunta recupera una palabra de una lección anterior."},
+                        {"vocabId":"v47","type":"mc","prompt":"Recupera «Minum»: ¿qué significa?","options":["Beber","Comer","Agua"],"answer":0,"explanation":"Minum significa Beber. Esta pregunta recupera una palabra de una lección anterior."},
+                        {"vocabId":"v48","type":"mc","prompt":"Recupera «Air»: ¿qué significa?","options":["Agua","Comer","Beber"],"answer":0,"explanation":"Air significa Agua. Esta pregunta recupera una palabra de una lección anterior."},
+                        {"vocabId":"v49","type":"mc","prompt":"Recupera «Nasi»: ¿qué significa?","options":["Arroz cocido","Comer","Beber"],"answer":0,"explanation":"Nasi significa Arroz cocido. Esta pregunta recupera una palabra de una lección anterior."},
+                        {"vocabId":"v29","type":"mc","prompt":"Recupera «Tolong»: ¿qué significa?","options":["Por favor (al pedir una acción) / ayudar","Comer","Beber"],"answer":0,"explanation":"Tolong significa Por favor (al pedir una acción) / ayudar. Esta pregunta recupera una palabra de una lección anterior."},
+                        {"vocabId":"v113","type":"mc","prompt":"Recupera «Teh»: ¿qué significa?","options":["Té","Comer","Beber"],"answer":0,"explanation":"Teh significa Té. Esta pregunta recupera una palabra de una lección anterior."}
+                    ]
+                },
+        {
+                    title: "Lección 5: Recuperación espaciada",
+                    objective: "Recupera el vocabulario de toda la unidad en tareas variadas, sin introducir palabras nuevas.",
+                    grammar: "Combina las estructuras y expresiones de las cuatro lecciones anteriores; intenta recordar primero y consulta la pista solo después.",
+                    vocabIds: [],
+                    reviewVocabIds: ["v46","v47","v48","v49","v29","v113","v114","v115"],
+                    exercises: [
+                        {
+                            "vocabId": "v46",
+                            "type": "mc",
+                            "prompt": "¿Qué significa «Makan»?",
+                            "options": [
+                                "Comer",
+                                "Beber",
+                                "Agua"
+                            ],
+                            "answer": 0,
+                            "explanation": "Makan significa Comer."
                         },
+                        {
+                            "vocabId": "v47",
+                            "type": "translate_es_id",
+                            "prompt": "Traduce: Beber",
+                            "answer": "Minum",
+                            "explanation": "Minum significa Beber."
+                        },
+                        {
+                            "vocabId": "v48",
+                            "type": "order",
+                            "prompt": "Ordena la frase relacionada con esta palabra.",
+                            "words": [
+                                "air",
+                                "minum",
+                                "Saya"
+                            ],
+                            "correctOrder": [
+                                "Saya",
+                                "minum",
+                                "air"
+                            ],
+                            "explanation": "La frase practica Air en contexto."
+                        },
+                        {
+                            "vocabId": "v49",
+                            "type": "listen",
+                            "prompt": "Escucha y escribe la expresión.",
+                            "answer": "Saya makan nasi",
+                            "explanation": "La expresión practica Nasi."
+                        },
+                        {
+                            "vocabId": "v29",
+                            "type": "write",
+                            "prompt": "Escribe una frase con «Tolong».",
+                            "hint": "Usa la palabra en una frase breve y completa.",
+                            "modelAnswer": "Tolong!",
+                            "explanation": "¡Ayuda, por favor!"
+                        },
+                        {
+                            "vocabId": "v113",
+                            "type": "mc",
+                            "prompt": "¿Qué significa «Teh»?",
+                            "options": [
+                                "Té",
+                                "Comer",
+                                "Beber"
+                            ],
+                            "answer": 0,
+                            "explanation": "Teh significa Té."
+                        },
+                        {
+                            "vocabId": "v114",
+                            "type": "translate_es_id",
+                            "prompt": "Traduce: Café",
+                            "answer": "Kopi",
+                            "explanation": "Kopi significa Café."
+                        },
+                        {
+                            "vocabId": "v115",
+                            "type": "order",
+                            "prompt": "Ordena la frase relacionada con esta palabra.",
+                            "words": [
+                                "harganya",
+                                "Berapa"
+                            ],
+                            "correctOrder": [
+                                "Berapa",
+                                "harganya"
+                            ],
+                            "explanation": "La frase practica Berapa harganya? en contexto."
+                        }
+                    ]
+                }
+    ]
+},
                         {
                             id: 'a1_u7',
                             title: 'Unidad 7: Lugares y ubicación',
@@ -2749,7 +3287,265 @@ window.BAHASA_CURRICULUM_A1 = {
                                 {"vocabId":"v31","type":"translate_es_id","prompt":"Traduce: escuela","answer":"Sekolah","explanation":"Sekolah significa escuela."},
                                 {"vocabId":"v119","type":"write","prompt":"Describe dónde está un lugar.","hint":"Intenta construir una frase nueva con el vocabulario de la unidad.","modelAnswer":"Sekolah dekat rumah saya.","explanation":"Usa dekat (cerca) o jauh (lejos)."}
                             ]
+                        ,
+    lessons: [
+        {
+                    title: "Lección 1: Nombrar casa y escuela",
+                    objective: "Reconoce y nombra dos lugares habituales: casa y escuela.",
+                    grammar: "Rumah significa casa y sekolah escuela; di indica ubicación en expresiones como di rumah.",
+                    vocabIds: ["v30","v31"],
+                    reviewVocabIds: [],
+                    exercises: [
+                        {
+                                                                            "vocabId": "v30",
+                                                                            "type": "mc",
+                                                                            "prompt": "¿Qué significa rumah?",
+                                                                            "options": [
+                                                                                "Casa",
+                                                                                "Ciudad",
+                                                                                "Escuela",
+                                                                                "Mercado"
+                                                                            ],
+                                                                            "answer": 0,
+                                                                            "explanation": "Rumah significa casa."
+                                                                        },
+                        {
+                                                                            "vocabId": "v31",
+                                                                            "type": "translate_es_id",
+                                                                            "prompt": "Traduce: escuela",
+                                                                            "answer": "Sekolah",
+                                                                            "explanation": "Sekolah significa escuela."
+                                                                        },
+                        {
+                                                                            "vocabId": "v30",
+                                                                            "type": "mc",
+                                                                            "prompt": "Escucha la frase y elige su significado",
+                                                                            "audioText": "Saya di rumah",
+                                                                            "options": ["Estoy en casa", "Estoy en la escuela", "Vivo en la ciudad"],
+                                                                            "answer": 0,
+                                                                            "explanation": "Saya di rumah significa «Estoy en casa»."
+                                                                        },
+                        {
+                                                                            "vocabId": "v31",
+                                                                            "type": "mc",
+                                                                            "prompt": "Completa: Dia di ___ (Él está en la escuela)",
+                                                                            "options": [
+                                                                                "sekolah",
+                                                                                "rumah",
+                                                                                "kota",
+                                                                                "sini"
+                                                                            ],
+                                                                            "answer": 0,
+                                                                            "explanation": "Dia di sekolah significa Él o ella está en la escuela."
+                                                                        },
+                        { vocabId: 'v30', type: 'write', prompt: "Escribe una frase que indique dónde está algo.", hint: "Intenta usar di y una palabra de lugar de la unidad.", modelAnswer: "Saya di rumah.", explanation: "La frase significa «Estoy en casa». Adapta la frase al vocabulario que conozcas." },
+                        {"vocabId":"v30","type":"mc","prompt":"¿Qué significa rumah?","options":["Casa","Escuela","Estación"],"answer":0,"explanation":"Rumah significa casa."},
+                        {"vocabId":"v31","type":"translate_es_id","prompt":"Traduce: escuela","answer":"Sekolah","explanation":"Sekolah significa escuela."}
+                    ]
+                },
+        {
+                    title: "Lección 2: Preguntar dónde está algo",
+                    objective: "Pregunta por la ubicación de un lugar con Di mana.",
+                    grammar: "Di mana se usa para preguntar dónde está algo; después se nombra el lugar.",
+                    vocabIds: ["v32"],
+                    reviewVocabIds: ["v30","v31"],
+                    exercises: [
+                        {
+                                                                            "vocabId": "v32",
+                                                                            "type": "order",
+                                                                            "prompt": "Ordena: ¿Dónde está la escuela?",
+                                                                            "words": [
+                                                                                "sekolah",
+                                                                                "Di",
+                                                                                "mana"
+                                                                            ],
+                                                                            "correctOrder": [
+                                                                                "Di",
+                                                                                "mana",
+                                                                                "sekolah"
+                                                                            ],
+                                                                            "explanation": "Di mana sekolah pregunta dónde está la escuela."
+                                                                        },
+                        {
+                                                                            "vocabId": "v32",
+                                                                            "type": "mc",
+                                                                            "prompt": "Escucha la pregunta y elige su significado",
+                                                                            "audioText": "Di mana sekolah?",
+                                                                            "options": ["¿Dónde está la escuela?", "¿Dónde está mi casa?", "¿Quién está en la ciudad?"],
+                                                                            "answer": 0,
+                                                                            "explanation": "Di mana sekolah? pregunta dónde está la escuela."
+                                                                        },
+                        {
+                                                                            "vocabId": "v32",
+                                                                            "type": "translate_es_id",
+                                                                            "prompt": "Traduce: ¿Dónde está la escuela?",
+                                                                            "answer": "Di mana sekolah",
+                                                                            "explanation": "Di mana sekolah pregunta dónde está la escuela."
+                                                                        },
+                        {"vocabId":"v30","type":"mc","prompt":"Recupera «Rumah»: ¿qué significa?","options":["Casa","Escuela","Dónde"],"answer":0,"explanation":"Rumah significa Casa. Esta pregunta recupera una palabra de una lección anterior."},
+                        {"vocabId":"v31","type":"mc","prompt":"Recupera «Sekolah»: ¿qué significa?","options":["Escuela","Casa","Dónde"],"answer":0,"explanation":"Sekolah significa Escuela. Esta pregunta recupera una palabra de una lección anterior."}
+                    ]
+                },
+        {
+                    title: "Lección 3: Hablar de la ciudad",
+                    objective: "Habla de la ciudad y de dónde vive alguien.",
+                    grammar: "Kota significa ciudad; Saya tinggal di kota expresa que vivo en la ciudad.",
+                    vocabIds: ["v101"],
+                    reviewVocabIds: ["v30","v31","v32"],
+                    exercises: [
+                        {
+                                                                            "vocabId": "v101",
+                                                                            "type": "mc",
+                                                                            "prompt": "Completa: Saya tinggal di ___ (Vivo en la ciudad)",
+                                                                            "options": [
+                                                                                "kota",
+                                                                                "rumah",
+                                                                                "sekolah",
+                                                                                "sini"
+                                                                            ],
+                                                                            "answer": 0,
+                                                                            "explanation": "Kota significa ciudad."
+                                                                        },
+                        {
+                                                                            "vocabId": "v101",
+                                                                            "type": "translate_es_id",
+                                                                            "prompt": "Traduce: Vivo en la ciudad",
+                                                                            "answer": "Saya tinggal di kota",
+                                                                            "explanation": "Kota significa ciudad."
+                                                                        },
+                        {
+                                                                            "vocabId": "v30",
+                                                                            "type": "mc",
+                                                                            "prompt": "Elige la frase que significa Estoy en casa",
+                                                                            "options": [
+                                                                                "Saya di rumah",
+                                                                                "Saya di sekolah",
+                                                                                "Saya di sini",
+                                                                                "Saya tinggal di kota"
+                                                                            ],
+                                                                            "answer": 0,
+                                                                            "explanation": "Rumah significa casa."
+                                                                        },
+                        {
+                                                                            "vocabId": "v31",
+                                                                            "type": "listen",
+                                                                            "prompt": "Escribe lo que escuchas",
+                                                                            "answer": "Dia di sekolah",
+                                                                            "explanation": "Dia di sekolah indica que alguien está en la escuela."
+                                                                        },
+                        {"vocabId":"v32","type":"mc","prompt":"Recupera «Di mana»: ¿qué significa?","options":["Dónde","Casa","Escuela"],"answer":0,"explanation":"Di mana significa Dónde. Esta pregunta recupera una palabra de una lección anterior."}
+                    ]
+                },
+        {
+                    title: "Lección 4: Indicar aquí y cerca",
+                    objective: "Indica que algo está aquí o cerca de otro lugar.",
+                    grammar: "Di sini significa aquí y dekat significa cerca; usa dekat para relacionar dos lugares.",
+                    vocabIds: ["v34","v119"],
+                    reviewVocabIds: ["v30","v31","v32","v101"],
+                    exercises: [
+                        {
+                                                                            "vocabId": "v34",
+                                                                            "type": "translate_es_id",
+                                                                            "prompt": "Traduce: aquí",
+                                                                            "answer": "Di sini",
+                                                                            "explanation": "Di sini significa aquí."
+                                                                        },
+                        {
+                                                                            "vocabId": "v34",
+                                                                            "type": "order",
+                                                                            "prompt": "Ordena: Estoy aquí",
+                                                                            "words": [
+                                                                                "sini",
+                                                                                "di",
+                                                                                "Saya"
+                                                                            ],
+                                                                            "correctOrder": [
+                                                                                "Saya",
+                                                                                "di",
+                                                                                "sini"
+                                                                            ],
+                                                                            "explanation": "Saya di sini significa Estoy aquí."
+                                                                        },
+                        {"vocabId":"v119","type":"write","prompt":"Describe dónde está un lugar.","hint":"Intenta construir una frase nueva con el vocabulario de la unidad.","modelAnswer":"Sekolah dekat rumah saya.","explanation":"Usa dekat (cerca) o jauh (lejos)."},
+                        {"vocabId":"v30","type":"mc","prompt":"Recupera «Rumah»: ¿qué significa?","options":["Casa","Escuela","Dónde"],"answer":0,"explanation":"Rumah significa Casa. Esta pregunta recupera una palabra de una lección anterior."},
+                        {"vocabId":"v31","type":"mc","prompt":"Recupera «Sekolah»: ¿qué significa?","options":["Escuela","Casa","Dónde"],"answer":0,"explanation":"Sekolah significa Escuela. Esta pregunta recupera una palabra de una lección anterior."},
+                        {"vocabId":"v32","type":"mc","prompt":"Recupera «Di mana»: ¿qué significa?","options":["Dónde","Casa","Escuela"],"answer":0,"explanation":"Di mana significa Dónde. Esta pregunta recupera una palabra de una lección anterior."},
+                        {"vocabId":"v101","type":"mc","prompt":"Recupera «Kota»: ¿qué significa?","options":["Ciudad","Casa","Escuela"],"answer":0,"explanation":"Kota significa Ciudad. Esta pregunta recupera una palabra de una lección anterior."}
+                    ]
+                },
+        {
+                    title: "Lección 5: Recuperación espaciada",
+                    objective: "Recupera el vocabulario de toda la unidad en tareas variadas, sin introducir palabras nuevas.",
+                    grammar: "Combina las estructuras y expresiones de las cuatro lecciones anteriores; intenta recordar primero y consulta la pista solo después.",
+                    vocabIds: [],
+                    reviewVocabIds: ["v30","v31","v32","v101","v34","v119"],
+                    exercises: [
+                        {
+                            "vocabId": "v30",
+                            "type": "mc",
+                            "prompt": "¿Qué significa «Rumah»?",
+                            "options": [
+                                "Casa",
+                                "Escuela",
+                                "Dónde"
+                            ],
+                            "answer": 0,
+                            "explanation": "Rumah significa Casa."
                         },
+                        {
+                            "vocabId": "v31",
+                            "type": "translate_es_id",
+                            "prompt": "Traduce: Escuela",
+                            "answer": "Sekolah",
+                            "explanation": "Sekolah significa Escuela."
+                        },
+                        {
+                            "vocabId": "v32",
+                            "type": "order",
+                            "prompt": "Ordena la frase relacionada con esta palabra.",
+                            "words": [
+                                "sekolah",
+                                "mana",
+                                "Di"
+                            ],
+                            "correctOrder": [
+                                "Di",
+                                "mana",
+                                "sekolah"
+                            ],
+                            "explanation": "La frase practica Di mana en contexto."
+                        },
+                        {
+                            "vocabId": "v101",
+                            "type": "listen",
+                            "prompt": "Escucha y escribe la expresión.",
+                            "answer": "Saya tinggal di kota",
+                            "explanation": "La expresión practica Kota."
+                        },
+                        {
+                            "vocabId": "v34",
+                            "type": "write",
+                            "prompt": "Escribe una frase con «Di sini».",
+                            "hint": "Usa la palabra en una frase breve y completa.",
+                            "modelAnswer": "Saya di sini.",
+                            "explanation": "Estoy aquí."
+                        },
+                        {
+                            "vocabId": "v119",
+                            "type": "mc",
+                            "prompt": "¿Qué significa «Dekat»?",
+                            "options": [
+                                "Cerca",
+                                "Casa",
+                                "Escuela"
+                            ],
+                            "answer": 0,
+                            "explanation": "Dekat significa Cerca."
+                        }
+                    ]
+                }
+    ]
+},
                         {
                             id: 'a1_u8',
                             title: 'Unidad 8: Tiempo, rutina e integración',
@@ -2904,7 +3700,270 @@ window.BAHASA_CURRICULUM_A1 = {
                                 {"vocabId":"v44","type":"write","prompt":"Escribe dos frases sobre tu rutina.","hint":"Intenta construir una frase nueva con el vocabulario de la unidad.","modelAnswer":"Hari ini saya belajar. Saya minum air setiap hari.","explanation":"Usa hari ini, besok o setiap hari."},
                                 { vocabId: 'v44', type: 'write', prompt: 'Tarea integradora: preséntate, pide una bebida, pregunta el precio y describe tu rutina.', hint: 'Combina presentación, cortesía, una pregunta y una expresión temporal.', modelAnswer: 'Nama saya Ana. Saya dari Nikaragua. Saya mau teh, tolong. Berapa harganya? Saya belajar setiap hari.', explanation: 'La respuesta modelo combina varios objetivos A1; puedes usar tus propios datos y otras frases correctas.' }
                             ]
+                        ,
+    lessons: [
+        {
+                            title: "Lección 1: Hablar de días y de hoy",
+                            objective: "Distingue día y hoy y los usa en expresiones breves.",
+                            grammar: "Hari significa día y Hari ini significa hoy; sitúan una acción en el tiempo.",
+                            vocabIds: ["v35","v36"],
+                            reviewVocabIds: [],
+                            exercises: [
+                        {
+                                                                                                    "vocabId": "v35",
+                                                                                                    "type": "mc",
+                                                                                                    "prompt": "¿Qué significa hari?",
+                                                                                                    "options": [
+                                                                                                        "Día",
+                                                                                                        "Agua",
+                                                                                                        "Dormir",
+                                                                                                        "Escuela"
+                                                                                                    ],
+                                                                                                    "answer": 0,
+                                                                                                    "explanation": "Hari significa día."
+                                                                                                },
+                        {
+                                                                                                    "vocabId": "v36",
+                                                                                                    "type": "translate_es_id",
+                                                                                                    "prompt": "Traduce: hoy",
+                                                                                                    "answer": "Hari ini",
+                                                                                                    "explanation": "Hari ini significa hoy."
+                                                                                                },
+                        {
+                                                                                                    "vocabId": "v35",
+                                                                                                    "type": "mc",
+                                                                                                    "prompt": "Escucha la frase y elige su significado",
+                                                                                                    "audioText": "Hari ini saya belajar",
+                                                                                                    "options": ["Hoy estudio", "Mañana trabajo", "Todos los días duermo"],
+                                                                                                    "answer": 0,
+                                                                                                    "explanation": "Hari ini saya belajar significa «Hoy estudio»."
+                                                                                                },
+                        {
+                                                                                                    "vocabId": "v36",
+                                                                                                    "type": "mc",
+                                                                                                    "prompt": "Completa: ___ saya belajar (Hoy estudio)",
+                                                                                                    "options": [
+                                                                                                        "Hari ini",
+                                                                                                        "Hari Senin",
+                                                                                                        "Hari Minggu",
+                                                                                                        "Hari libur"
+                                                                                                    ],
+                                                                                                    "answer": 0,
+                                                                                                    "explanation": "Hari ini se usa para hablar de hoy."
+                                                                                                }
+                    ]
+                        },
+        {
+                            title: "Lección 2: Decir qué estudias",
+                            objective: "Expresa que estudia o aprende algo.",
+                            grammar: "Belajar significa estudiar o aprender; Saya belajar expresa esa acción.",
+                            vocabIds: ["v37"],
+                            reviewVocabIds: ["v35","v36"],
+                            exercises: [
+                        {
+                                                                                                    "vocabId": "v37",
+                                                                                                    "type": "mc",
+                                                                                                    "prompt": "¿Qué significa belajar?",
+                                                                                                    "options": [
+                                                                                                        "Estudiar o aprender",
+                                                                                                        "Comer",
+                                                                                                        "Dormir",
+                                                                                                        "Beber"
+                                                                                                    ],
+                                                                                                    "answer": 0,
+                                                                                                    "explanation": "Belajar significa estudiar o aprender."
+                                                                                                },
+                        {
+                                                                                                    "vocabId": "v37",
+                                                                                                    "type": "listen",
+                                                                                                    "prompt": "Escribe lo que escuchas",
+                                                                                                    "answer": "Saya belajar bahasa Indonesia",
+                                                                                                    "explanation": "La frase significa Estudio indonesio."
+                                                                                                },
+                        {"vocabId":"v36","type":"mc","prompt":"¿Qué significa hari ini?","options":["Hoy","Mañana","Ayer"],"answer":0,"explanation":"Hari ini significa hoy."},
+                        {"vocabId":"v35","type":"mc","prompt":"Recupera «Hari»: ¿qué significa?","options":["Día","Hoy / este día","Estudiar / aprender"],"answer":0,"explanation":"Hari significa Día. Esta pregunta recupera una palabra de una lección anterior."}
+                    ]
+                        },
+        {
+                            title: "Lección 3: Hablar del trabajo",
+                            objective: "Habla del trabajo con una frase sencilla.",
+                            grammar: "Bekerja significa trabajar; Ayah saya bekerja significa mi padre trabaja.",
+                            vocabIds: ["v38"],
+                            reviewVocabIds: ["v35","v36","v37"],
+                            exercises: [
+                        {
+                                                                                                    "vocabId": "v38",
+                                                                                                    "type": "order",
+                                                                                                    "prompt": "Ordena: Mi padre trabaja",
+                                                                                                    "words": [
+                                                                                                        "bekerja",
+                                                                                                        "saya",
+                                                                                                        "Ayah"
+                                                                                                    ],
+                                                                                                    "correctOrder": [
+                                                                                                        "Ayah",
+                                                                                                        "saya",
+                                                                                                        "bekerja"
+                                                                                                    ],
+                                                                                                    "explanation": "Ayah saya bekerja significa «Mi padre trabaja»."
+                                                                                                },
+                        {
+                                                                                                    "vocabId": "v38",
+                                                                                                    "type": "translate_es_id",
+                                                                                                    "prompt": "Traduce: trabaja",
+                                                                                                    "answer": "Bekerja",
+                                                                                                    "explanation": "Bekerja significa trabajar."
+                                                                                                },
+                        { vocabId: 'v35', type: 'write', prompt: "Escribe una frase breve sobre tu rutina diaria.", hint: "Usa un día o una acción cotidiana que hayas aprendido.", modelAnswer: "Saya makan pagi.", explanation: "Saya makan pagi significa «Desayuno»; makan es comer y pagi es mañana." },
+                        {"vocabId":"v36","type":"mc","prompt":"Recupera «Hari ini»: ¿qué significa?","options":["Hoy / este día","Día","Estudiar / aprender"],"answer":0,"explanation":"Hari ini significa Hoy / este día. Esta pregunta recupera una palabra de una lección anterior."},
+                        {"vocabId":"v37","type":"mc","prompt":"Recupera «Belajar»: ¿qué significa?","options":["Estudiar / aprender","Día","Hoy / este día"],"answer":0,"explanation":"Belajar significa Estudiar / aprender. Esta pregunta recupera una palabra de una lección anterior."}
+                    ]
+                        },
+        {
+                            title: "Lección 4: Describir descanso y rutinas",
+                            objective: "Habla de dormir, de mañana y de acciones cotidianas.",
+                            grammar: "Tidur significa dormir, besok mañana y setiap hari todos los días; sitúan rutinas.",
+                            vocabIds: ["v50","v44","v122"],
+                            reviewVocabIds: ["v35","v36","v37","v38"],
+                            exercises: [
+                        {
+                                                                                                    "vocabId": "v50",
+                                                                                                    "type": "translate_es_id",
+                                                                                                    "prompt": "Traduce: dormir",
+                                                                                                    "answer": "Tidur",
+                                                                                                    "explanation": "Tidur significa dormir."
+                                                                                                },
+                        {
+                                                                                                    "vocabId": "v44",
+                                                                                                    "type": "mc",
+                                                                                                    "prompt": "Escucha la frase y elige su significado",
+                                                                                                    "audioText": "Saya belajar setiap hari",
+                                                                                                    "options": ["Estudio todos los días", "Trabajo todos los días", "Duermo hoy"],
+                                                                                                    "answer": 0,
+                                                                                                    "explanation": "Saya belajar setiap hari significa «Estudio todos los días»."
+                                                                                                },
+                        {
+                                                                                                    "vocabId": "v50",
+                                                                                                    "type": "mc",
+                                                                                                    "prompt": "¿Qué verbo significa dormir?",
+                                                                                                    "options": [
+                                                                                                        "Tidur",
+                                                                                                        "Belajar",
+                                                                                                        "Bekerja",
+                                                                                                        "Makan"
+                                                                                                    ],
+                                                                                                    "answer": 0,
+                                                                                                    "explanation": "Tidur significa dormir."
+                                                                                                },
+                        {"vocabId":"v122","type":"translate_es_id","prompt":"Traduce: mañana","answer":"Besok","explanation":"Besok significa mañana."},
+                        {"vocabId":"v44","type":"write","prompt":"Escribe dos frases sobre tu rutina.","hint":"Intenta construir una frase nueva con el vocabulario de la unidad.","modelAnswer":"Hari ini saya belajar. Saya minum air setiap hari.","explanation":"Usa hari ini, besok o setiap hari."},
+                        { vocabId: 'v44', type: 'write', prompt: 'Tarea integradora: preséntate, pide una bebida, pregunta el precio y describe tu rutina.', hint: 'Combina presentación, cortesía, una pregunta y una expresión temporal.', modelAnswer: 'Nama saya Ana. Saya dari Nikaragua. Saya mau teh, tolong. Berapa harganya? Saya belajar setiap hari.', explanation: 'La respuesta modelo combina varios objetivos A1; puedes usar tus propios datos y otras frases correctas.' },
+                        {
+                                                                                                    "vocabId": "v44",
+                                                                                                    "type": "order",
+                                                                                                    "prompt": "Ordena: Estudio todos los días",
+                                                                                                    "words": [
+                                                                                                        "hari",
+                                                                                                        "Saya",
+                                                                                                        "setiap",
+                                                                                                        "belajar"
+                                                                                                    ],
+                                                                                                    "correctOrder": [
+                                                                                                        "Saya",
+                                                                                                        "belajar",
+                                                                                                        "setiap",
+                                                                                                        "hari"
+                                                                                                    ],
+                                                                                                    "explanation": "Saya belajar setiap hari expresa una rutina."
+                                                                                                },
+                        {"vocabId":"v35","type":"mc","prompt":"Recupera «Hari»: ¿qué significa?","options":["Día","Hoy / este día","Estudiar / aprender"],"answer":0,"explanation":"Hari significa Día. Esta pregunta recupera una palabra de una lección anterior."},
+                        {"vocabId":"v36","type":"mc","prompt":"Recupera «Hari ini»: ¿qué significa?","options":["Hoy / este día","Día","Estudiar / aprender"],"answer":0,"explanation":"Hari ini significa Hoy / este día. Esta pregunta recupera una palabra de una lección anterior."},
+                        {"vocabId":"v37","type":"mc","prompt":"Recupera «Belajar»: ¿qué significa?","options":["Estudiar / aprender","Día","Hoy / este día"],"answer":0,"explanation":"Belajar significa Estudiar / aprender. Esta pregunta recupera una palabra de una lección anterior."},
+                        {"vocabId":"v38","type":"mc","prompt":"Recupera «Bekerja»: ¿qué significa?","options":["Trabajar","Día","Hoy / este día"],"answer":0,"explanation":"Bekerja significa Trabajar. Esta pregunta recupera una palabra de una lección anterior."}
+                    ]
+                        },
+        {
+                            title: "Lección 5: Recuperación espaciada",
+                            objective: "Recupera el vocabulario de toda la unidad en tareas variadas, sin introducir palabras nuevas.",
+                            grammar: "Combina las estructuras y expresiones de las cuatro lecciones anteriores; intenta recordar primero y consulta la pista solo después.",
+                            vocabIds: [],
+                            reviewVocabIds: ["v35","v36","v37","v38","v50","v44","v122"],
+                            exercises: [
+                                {
+                                                    "vocabId": "v35",
+                                                    "type": "mc",
+                                                    "prompt": "¿Qué significa «Hari»?",
+                                                    "options": [
+                                                        "Día",
+                                                        "Hoy / este día",
+                                                        "Estudiar / aprender"
+                                                    ],
+                                                    "answer": 0,
+                                                    "explanation": "Hari significa Día."
+                                                },
+                                {
+                                                    "vocabId": "v36",
+                                                    "type": "translate_es_id",
+                                                    "prompt": "Traduce: Hoy / este día",
+                                                    "answer": "Hari ini",
+                                                    "explanation": "Hari ini significa Hoy / este día."
+                                                },
+                                {
+                                                    "vocabId": "v37",
+                                                    "type": "order",
+                                                    "prompt": "Ordena la frase relacionada con esta palabra.",
+                                                    "words": [
+                                                        "Indonesia",
+                                                        "bahasa",
+                                                        "belajar",
+                                                        "Saya"
+                                                    ],
+                                                    "correctOrder": [
+                                                        "Saya",
+                                                        "belajar",
+                                                        "bahasa",
+                                                        "Indonesia"
+                                                    ],
+                                                    "explanation": "La frase practica Belajar en contexto."
+                                                },
+                                {
+                                                    "vocabId": "v38",
+                                                    "type": "listen",
+                                                    "prompt": "Escucha y escribe la expresión.",
+                                                    "answer": "Ayah saya bekerja",
+                                                    "explanation": "La expresión practica Bekerja."
+                                                },
+                                {
+                                                    "vocabId": "v50",
+                                                    "type": "write",
+                                                    "prompt": "Escribe una frase con «Tidur».",
+                                                    "hint": "Usa la palabra en una frase breve y completa.",
+                                                    "modelAnswer": "Saya tidur di malam hari.",
+                                                    "explanation": "Duermo por la noche."
+                                                },
+                                {
+                                                    "vocabId": "v44",
+                                                    "type": "mc",
+                                                    "prompt": "¿Qué significa «Setiap hari»?",
+                                                    "options": [
+                                                        "Todos los días",
+                                                        "Día",
+                                                        "Hoy / este día"
+                                                    ],
+                                                    "answer": 0,
+                                                    "explanation": "Setiap hari significa Todos los días."
+                                                },
+                                {
+                                                    "vocabId": "v122",
+                                                    "type": "translate_es_id",
+                                                    "prompt": "Traduce: Mañana",
+                                                    "answer": "Besok",
+                                                    "explanation": "Besok significa Mañana."
+                                                }
+                            ]
                         }
+    ]
+}
                         ,
                         {
                             id: 'a1_u9',

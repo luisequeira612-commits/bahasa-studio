@@ -13827,8 +13827,8 @@ window.BAHASA_CURRICULUM_A2 = {
                             ,
                                 {
                                     "title": "Lección 5: Recuperación espaciada y uso integrado",
-                                    "objective": "Recupera las doce expresiones de la unidad y aplícalas en comprensión, traducción y producción.",
-                                    "grammar": "Repasa las expresiones y estructuras de las cuatro lecciones anteriores. Recupera cada término desde su significado y úsalo en una oración completa; distingue las instrucciones, descripciones y situaciones comunicativas propias de esta unidad.",
+                                    "objective": "Recupera y aplica el vocabulario de fenómenos naturales, alertas, evacuación, refugios y ayuda comunitaria.",
+                                    "grammar": "Contrasta los fenómenos naturales con las medidas de respuesta. Repasa terjadi para describir sucesos, harus para expresar necesidad y las construcciones pasivas de los avisos y recursos.",
                                     "vocabIds": [],
                                     "reviewVocabIds": [
                                         "a2u37_gempa_bumi",
@@ -14272,8 +14272,8 @@ window.BAHASA_CURRICULUM_A2 = {
                             ,
                                 {
                                     "title": "Lección 5: Recuperación espaciada y uso integrado",
-                                    "objective": "Recupera las doce expresiones de la unidad y aplícalas en comprensión, traducción y producción.",
-                                    "grammar": "Repasa las expresiones y estructuras de las cuatro lecciones anteriores. Recupera cada término desde su significado y úsalo en una oración completa; distingue las instrucciones, descripciones y situaciones comunicativas propias de esta unidad.",
+                                    "objective": "Integra el vocabulario de viajeros, destinos, alojamiento, reservas, entradas y programas de visita.",
+                                    "grammar": "Distingue personas, lugares, servicios, reservas y documentos de acceso. Repasa mengunjungi para hablar de visitas y melalui para indicar el medio usado en una reserva.",
                                     "vocabIds": [],
                                     "reviewVocabIds": [
                                         "a2u38_wisatawan",
@@ -14725,8 +14725,8 @@ window.BAHASA_CURRICULUM_A2 = {
                             ,
                                 {
                                     "title": "Lección 5: Recuperación espaciada y uso integrado",
-                                    "objective": "Recupera las doce expresiones de la unidad y aplícalas en comprensión, traducción y producción.",
-                                    "grammar": "Repasa las expresiones y estructuras de las cuatro lecciones anteriores. Recupera cada término desde su significado y úsalo en una oración completa; distingue las instrucciones, descripciones y situaciones comunicativas propias de esta unidad.",
+                                    "objective": "Recupera expresiones para participar en reuniones remotas, compartir archivos y gestionar el acceso digital.",
+                                    "grammar": "Contrasta unduh y unggah como acciones de transferencia en direcciones opuestas. Repasa instrucciones con silakan y jangan y expresiones para compartir, actualizar y conceder acceso.",
                                     "vocabIds": [],
                                     "reviewVocabIds": [
                                         "a2u39_rapat_daring",
@@ -15168,8 +15168,8 @@ window.BAHASA_CURRICULUM_A2 = {
                             ,
                                 {
                                     "title": "Lección 5: Recuperación espaciada y uso integrado",
-                                    "objective": "Recupera las doce expresiones de la unidad y aplícalas en comprensión, traducción y producción.",
-                                    "grammar": "Repasa las expresiones y estructuras de las cuatro lecciones anteriores. Recupera cada término desde su significado y úsalo en una oración completa; distingue las instrucciones, descripciones y situaciones comunicativas propias de esta unidad.",
+                                    "objective": "Organiza una intervención breve: resume ideas, aclara información, responde y presenta una conclusión.",
+                                    "grammar": "Repasa menurut saya para expresar una opinión y meminta klarifikasi para pedir precisión. Practica cómo enlazar ringkasan, contoh tambahan, tanggapan y kesimpulan en una intervención coherente.",
                                     "vocabIds": [],
                                     "reviewVocabIds": [
                                         "a2u40_ringkasan",

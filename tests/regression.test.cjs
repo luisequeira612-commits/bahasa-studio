@@ -52,14 +52,12 @@ assert.equal(manifest.description, 'Aprende idiomas');
   assert.doesNotMatch(html + serviceWorker + JSON.stringify(manifest), /3\.5\.1/);
 });
 
-test('word meaning popup renders only the example and its translation', () => {
-  const start = html.indexOf("exampleNode.textContent = [");
-  const end = html.indexOf(".filter(Boolean).join(' — ');", start);
-  assert.ok(start >= 0 && end > start, 'example text builder must exist');
-  const expression = html.slice(start, end);
-  assert.match(expression, /example\.ex/);
-  assert.match(expression, /example\.exEsp/);
-  assert.doesNotMatch(expression, /vocabId|audioText|type:\s*['"]mc/);
+test('word meaning popup renders the Indonesian example and its Spanish translation separately', () => {
+  assert.match(html, /exampleNode\.replaceChildren\(\)/);
+  assert.match(html, /original\.lang = 'id'/);
+  assert.match(html, /original\.textContent = example\.ex/);
+  assert.match(html, /exampleNode\.append\('Traducción: ' \+ example\.exEsp\)/);
+  assert.doesNotMatch(html.slice(html.indexOf('function showMeaning'), html.indexOf('closeButton.addEventListener')), /innerHTML/);
 });
 
 test('A2 remains a released beta level, but its first unit waits for A1 completion', () => {
@@ -1506,9 +1504,11 @@ test('tap-to-translate lookup is wired into learning text and uses safe text ren
   assert.match(html, /caretRangeFromPoint/);
   assert.match(html, /window\.refreshWordTranslationIndex/);
   assert.match(html, /Toca una palabra en indonesio para consultar su significado/);
+  assert.match(html, /termNode\.lang = 'id'/);
   assert.match(html, /termNode\.textContent = matches\[0\]\.idn/);
   assert.match(html, /meaningNode\.textContent = matches\.slice\(0, 3\)/);
-  assert.match(html, /exampleNode\.textContent = \[/);
+  assert.match(html, /exampleNode\.replaceChildren\(\)/);
+  assert.match(html, /original\.lang = 'id'/);
 });
 
 
@@ -1680,9 +1680,11 @@ test('tap-to-translate lookup is wired into learning text and uses safe text ren
   assert.match(html, /caretRangeFromPoint/);
   assert.match(html, /window\.refreshWordTranslationIndex/);
   assert.match(html, /Toca una palabra en indonesio para consultar su significado/);
+  assert.match(html, /termNode\.lang = 'id'/);
   assert.match(html, /termNode\.textContent = matches\[0\]\.idn/);
   assert.match(html, /meaningNode\.textContent = matches\.slice\(0, 3\)/);
-  assert.match(html, /exampleNode\.textContent = \[/);
+  assert.match(html, /exampleNode\.replaceChildren\(\)/);
+  assert.match(html, /original\.lang = 'id'/);
 });
 
 

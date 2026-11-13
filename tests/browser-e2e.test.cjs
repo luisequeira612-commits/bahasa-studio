@@ -2148,6 +2148,8 @@ test('real JSON v3 import keeps untrusted custom lesson content inert across rou
         const area = document.getElementById('exerciseArea');
         return {
           text: area.textContent,
+          attributes: [...area.querySelectorAll('[data-answer], [data-word], [data-audio]')]
+            .map(node => node.getAttribute('data-answer') || node.getAttribute('data-word') || node.getAttribute('data-audio')),
           images: area.querySelectorAll('img[src="x"]').length,
           handlers: area.querySelectorAll('[onerror]').length,
           executed: window.__xssProbe
@@ -2156,7 +2158,8 @@ test('real JSON v3 import keeps untrusted custom lesson content inert across rou
       assert.equal(rendered.images, 0, queue[index] + ' must not create an injected image');
       assert.equal(rendered.handlers, 0, queue[index] + ' must not create an injected event handler');
       assert.equal(rendered.executed, 0, queue[index] + ' must not execute the payload');
-      assert.ok(rendered.text.includes(payload), queue[index] + ' should preserve the untrusted content as text');
+      assert.ok(rendered.text.includes(payload) || rendered.attributes.includes(payload),
+        queue[index] + ' should preserve the untrusted content as text or an escaped data value');
     }
   } finally {
     await context.close();

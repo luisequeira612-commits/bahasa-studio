@@ -9,12 +9,12 @@
 | Nivel | Unidades implementadas | Lecciones explícitas | Distribución por unidad | Unidades bajo el mínimo |
 |---|---:|---:|---|---:|
 | A1 | 32 | 0 | 32 sin `lessons[]` | 32 |
-| A2 | 40 | 188 | 28 con 5; 12 con 4 | 12 |
+| A2 | 40 | 192 | 32 con 5; 8 con 4 | 8 |
 | B1 | 50 | 144 | 12 con 2; 32 con 3; 6 con 4 | 50 |
 | B2 | 5 | 25 | 5 con 5 | 0 |
-| **Total implementado** | **127** | **357** | — | **94** |
+| **Total implementado** | **127** | **361** | — | **90** |
 
-El mínimo para las 127 unidades ya implementadas es 635 lecciones. Faltan **278 lecciones explícitas** para llegar a cinco por unidad. Este cálculo no incluye B2 U6–U60, que todavía no están implementadas: esas 55 unidades deben diseñarse desde el principio con cinco o seis lecciones cada una.
+El mínimo para las 127 unidades ya implementadas es 635 lecciones. Faltan **274 lecciones explícitas** para llegar a cinco por unidad. Este cálculo no incluye B2 U6–U60, que todavía no están implementadas: esas 55 unidades deben diseñarse desde el principio con cinco o seis lecciones cada una.
 
 ## Interpretación por nivel
 
@@ -24,7 +24,7 @@ Las 32 unidades carecen de un array curricular `lessons[]`. `buildUnitLessons()`
 
 ### A2
 
-U1–U28 ya tienen cinco lecciones explícitas. U29–U40 tienen cuatro; cada una necesita al menos una lección adicional, diseñada con su propio objetivo, vocabulario nuevo o repaso deliberado y ejercicios propios. U13–U28 incorporan una quinta lección de recuperación espaciada con doce ejercicios que revisan todas las palabras de cada unidad. No se debe crear una lección vacía para cumplir el número.
+U1–U32 ya tienen cinco lecciones explícitas. U33–U40 tienen cuatro; cada una necesita al menos una lección adicional, diseñada con su propio objetivo, vocabulario nuevo o repaso deliberado y ejercicios propios. U13–U32 incorporan una quinta lección de recuperación espaciada con doce ejercicios que revisan todas las palabras de cada unidad. No se debe crear una lección vacía para cumplir el número.
 
 ### B1
 

@@ -47,6 +47,7 @@
 @media (max-width:380px) { .level-progress-chevron { display:block !important; } .unit-path-section-banner { padding-left:10px; padding-right:8px; gap:4px 6px; } .unit-path-section-banner h3 { font-size:.9rem; } .unit-path-section-banner p { font-size:.7rem; } .unit-section-count { font-size:.78rem; } .unit-tools-trigger { border-radius:10px; } .learning-action-sheet { padding-inline:14px; } }
 @media (prefers-reduced-motion:reduce) { .learning-action-sheet,.learning-action-sheet-overlay,.learning-action-sheet-overlay.is-closing,.learning-action-sheet-overlay.is-closing .learning-action-sheet { animation:none !important; } }
 </style>
+    <script src="./gemini-request.js"></script>
 </head>
 <body>
 
@@ -6843,18 +6844,12 @@
                 p.style.display = p.style.display === 'none' ? 'block' : 'none';
             },
             async fetchUnit(topic) {
-                const res = await fetch(this.url, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json', 'x-goog-api-key': App.apiKey },
-                    body: JSON.stringify({
-                        contents: [{ parts: [{ text: await this.buildPrompt(topic) }] }],
-                        generationConfig: { responseMimeType: 'application/json', responseSchema: this.schema, temperature: 0.7 }
-                    })
-                });
-                const data = await res.json();
-                if (!res.ok) throw new Error((data.error && data.error.message) || res.status);
+                const data = await GeminiRequest.postJson(this.url, App.apiKey, {
+                    contents: [{ parts: [{ text: await this.buildPrompt(topic) }] }],
+                    generationConfig: { responseMimeType: 'application/json', responseSchema: this.schema, temperature: 0.7 }
+                }, { timeoutMs: 45000 });
                 const parts = data.candidates && data.candidates[0] && data.candidates[0].content.parts;
-                if (!parts) throw new Error('respuesta vacía');
+                if (!parts) throw new Error('Gemini no devolvió contenido utilizable.');
                 return this.validate(JSON.parse(parts.map(p => p.text || '').join('')));
             },
             showNext() {
@@ -6952,18 +6947,12 @@ Requisitos:
                 btn.disabled = true;
                 prev.innerText = 'Generando...';
                 try {
-                    const res = await fetch(this.url, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json', 'x-goog-api-key': App.apiKey },
-                        body: JSON.stringify({
-                            contents: [{ parts: [{ text: await this.buildPrompt(topic) }] }],
-                            generationConfig: { responseMimeType: 'application/json', responseSchema: this.schema, temperature: 0.7 }
-                        })
-                    });
-                    const data = await res.json();
-                    if (!res.ok) throw new Error((data.error && data.error.message) || res.status);
-                    const parts = data.candidates && data.candidates[0] && data.candidates[0].content.parts;
-                    if (!parts) throw new Error('respuesta vacía');
+                    const data = await GeminiRequest.postJson(this.url, App.apiKey, {
+                    contents: [{ parts: [{ text: await this.buildPrompt(topic) }] }],
+                    generationConfig: { responseMimeType: 'application/json', responseSchema: this.schema, temperature: 0.7 }
+                }, { timeoutMs: 45000 });
+                const parts = data.candidates && data.candidates[0] && data.candidates[0].content.parts;
+                if (!parts) throw new Error('Gemini no devolvió contenido utilizable.');
                     this.draft = this.validate(JSON.parse(parts.map(p => p.text || '').join('')));
                     this.renderPreview();
                 } catch (e) {
@@ -8269,21 +8258,19 @@ Requisitos:
                 box.scrollTop = box.scrollHeight;
 
                 try {
-                    const res = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json', 'x-goog-api-key': this.apiKey },
-                        body: JSON.stringify({
-                            contents: [{ parts: [{ text: `Tutor conciso de indonesio en español: ${text}` }] }]
-                        })
-                    });
-                    const data = await res.json();
+                    const data = await GeminiRequest.postJson(
+                        'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent',
+                        this.apiKey,
+                        { contents: [{ parts: [{ text: `Tutor conciso de indonesio en español: ${text}` }] }] },
+                        { timeoutMs: 20000 }
+                    );
                     if (data.candidates && data.candidates[0].content.parts[0].text) {
                         aiDiv.innerText = data.candidates[0].content.parts[0].text;
                     } else {
                         aiDiv.innerText = "No se obtuvo respuesta de la API.";
                     }
                 } catch (e) {
-                    aiDiv.innerText = "Error de conexión con la API.";
+                    aiDiv.innerText = 'No se pudo consultar Gemini: ' + e.message;
                 }
                 box.scrollTop = box.scrollHeight;
             },

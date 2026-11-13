@@ -12031,7 +12031,155 @@ window.BAHASA_CURRICULUM_A2 = {
                                         }
                                     ]
                                 }
-                            ]
+                            ,
+                            {
+                                "title": "Lección 5: Recuperación espaciada y uso integrado",
+                                "objective": "Recupera el vocabulario de toda la unidad y úsalo en comprensión, traducción y producción.",
+                                "grammar": "Repasa las expresiones y estructuras trabajadas en las cuatro lecciones anteriores. Recupera cada término desde su significado y úsalo dentro de una oración completa.",
+                                "vocabIds": [],
+                                "reviewVocabIds": [
+                                    "a2u33_provinsi",
+                                    "a2u33_kabupaten",
+                                    "a2u33_perbatasan",
+                                    "a2u33_penduduk",
+                                    "a2u33_wilayah",
+                                    "a2u33_pesisir",
+                                    "a2u33_pedalaman",
+                                    "a2u33_dataran",
+                                    "a2u33_pegunungan",
+                                    "a2u33_pulau",
+                                    "a2u33_selat",
+                                    "a2u33_teluk"
+                                ],
+                                "exercises": [
+                                    {
+                                        "vocabId": "a2u33_provinsi",
+                                        "type": "mc",
+                                        "explanation": "La oración practica «provinsi» (provincia).",
+                                        "prompt": "¿Qué significa «provinsi»?",
+                                        "options": [
+                                            "Provincia",
+                                            "Regencia",
+                                            "Frontera"
+                                        ],
+                                        "answer": 0
+                                    },
+                                    {
+                                        "vocabId": "a2u33_kabupaten",
+                                        "type": "translate_es_id",
+                                        "explanation": "La oración practica «kabupaten» (regencia).",
+                                        "prompt": "Traduce: Nuestra regencia está situada al norte.",
+                                        "answer": "Kabupaten kami terletak di utara."
+                                    },
+                                    {
+                                        "vocabId": "a2u33_perbatasan",
+                                        "type": "listen",
+                                        "explanation": "La oración practica «perbatasan» (frontera).",
+                                        "prompt": "Escucha y escribe la oración.",
+                                        "answer": "Desa itu dekat perbatasan."
+                                    },
+                                    {
+                                        "vocabId": "a2u33_penduduk",
+                                        "type": "write",
+                                        "explanation": "La oración practica «penduduk» (habitantes).",
+                                        "prompt": "Escribe una frase usando penduduk.",
+                                        "hint": "Puedes tomar como modelo: Penduduk wilayah ini ramah.",
+                                        "modelAnswer": "Penduduk wilayah ini ramah."
+                                    },
+                                    {
+                                        "vocabId": "a2u33_wilayah",
+                                        "type": "order",
+                                        "explanation": "La oración practica «wilayah» (región).",
+                                        "prompt": "Ordena: Esa región costera es bastante extensa.",
+                                        "words": [
+                                            "luas",
+                                            "cukup",
+                                            "itu",
+                                            "pesisir",
+                                            "Wilayah"
+                                        ],
+                                        "correctOrder": [
+                                            "Wilayah",
+                                            "pesisir",
+                                            "itu",
+                                            "cukup",
+                                            "luas"
+                                        ]
+                                    },
+                                    {
+                                        "vocabId": "a2u33_pesisir",
+                                        "type": "mc",
+                                        "explanation": "La oración practica «pesisir» (costa).",
+                                        "prompt": "¿Qué significa «pesisir»?",
+                                        "options": [
+                                            "Costa",
+                                            "Provincia",
+                                            "Regencia"
+                                        ],
+                                        "answer": 0
+                                    },
+                                    {
+                                        "vocabId": "a2u33_pedalaman",
+                                        "type": "translate_es_id",
+                                        "explanation": "La oración practica «pedalaman» (interior).",
+                                        "prompt": "Traduce: Es difícil llegar a ese pueblo del interior.",
+                                        "answer": "Desa pedalaman sulit dijangkau."
+                                    },
+                                    {
+                                        "vocabId": "a2u33_dataran",
+                                        "type": "listen",
+                                        "explanation": "La oración practica «dataran» (llanura).",
+                                        "prompt": "Escucha y escribe la oración.",
+                                        "answer": "Dataran itu cocok untuk pertanian."
+                                    },
+                                    {
+                                        "vocabId": "a2u33_pegunungan",
+                                        "type": "write",
+                                        "explanation": "La oración practica «pegunungan» (cordillera).",
+                                        "prompt": "Escribe una frase usando pegunungan.",
+                                        "hint": "Puedes tomar como modelo: Pegunungan itu tertutup kabut.",
+                                        "modelAnswer": "Pegunungan itu tertutup kabut."
+                                    },
+                                    {
+                                        "vocabId": "a2u33_pulau",
+                                        "type": "order",
+                                        "explanation": "La oración practica «pulau» (isla).",
+                                        "prompt": "Ordena: Esa isla pequeña es hermosa.",
+                                        "words": [
+                                            "indah",
+                                            "itu",
+                                            "kecil",
+                                            "Pulau"
+                                        ],
+                                        "correctOrder": [
+                                            "Pulau",
+                                            "kecil",
+                                            "itu",
+                                            "indah"
+                                        ]
+                                    },
+                                    {
+                                        "vocabId": "a2u33_selat",
+                                        "type": "mc",
+                                        "explanation": "La oración practica «selat» (estrecho).",
+                                        "prompt": "¿Qué significa «selat»?",
+                                        "options": [
+                                            "Estrecho",
+                                            "Provincia",
+                                            "Regencia"
+                                        ],
+                                        "answer": 0
+                                    },
+                                    {
+                                        "vocabId": "a2u33_teluk",
+                                        "type": "translate_es_id",
+                                        "explanation": "La oración practica «teluk» (bahía).",
+                                        "prompt": "Traduce: La embarcación está anclada en la bahía.",
+                                        "answer": "Perahu berlabuh di teluk."
+                                    }
+                                ]
+                            }
+]
                         },
                         {
                             "id": "a2_u34",
@@ -12327,7 +12475,159 @@ window.BAHASA_CURRICULUM_A2 = {
                                         }
                                     ]
                                 }
-                            ]
+                            ,
+                            {
+                                "title": "Lección 5: Recuperación espaciada y uso integrado",
+                                "objective": "Recupera el vocabulario de toda la unidad y úsalo en comprensión, traducción y producción.",
+                                "grammar": "Repasa las expresiones y estructuras trabajadas en las cuatro lecciones anteriores. Recupera cada término desde su significado y úsalo dentro de una oración completa.",
+                                "vocabIds": [],
+                                "reviewVocabIds": [
+                                    "a2u34_sopan_santun",
+                                    "a2u34_sapaan",
+                                    "a2u34_permintaan_maaf",
+                                    "a2u34_ucapan_terima_kasih",
+                                    "a2u34_kebiasaan",
+                                    "a2u34_perilaku",
+                                    "a2u34_formal",
+                                    "a2u34_informal",
+                                    "a2u34_menghormati",
+                                    "a2u34_menyela",
+                                    "a2u34_giliran_bicara",
+                                    "a2u34_kontak_mata"
+                                ],
+                                "exercises": [
+                                    {
+                                        "vocabId": "a2u34_sopan_santun",
+                                        "type": "mc",
+                                        "explanation": "La oración practica «sopan santun» (cortesía).",
+                                        "prompt": "¿Qué significa «sopan santun»?",
+                                        "options": [
+                                            "Cortesía",
+                                            "Saludo",
+                                            "Disculpa"
+                                        ],
+                                        "answer": 0
+                                    },
+                                    {
+                                        "vocabId": "a2u34_sapaan",
+                                        "type": "translate_es_id",
+                                        "explanation": "La oración practica «sapaan» (saludo).",
+                                        "prompt": "Traduce: Ese saludo suena amable.",
+                                        "answer": "Sapaan itu terdengar ramah."
+                                    },
+                                    {
+                                        "vocabId": "a2u34_permintaan_maaf",
+                                        "type": "listen",
+                                        "explanation": "La oración practica «permintaan maaf» (disculpa).",
+                                        "prompt": "Escucha y escribe la oración.",
+                                        "answer": "Saya menyampaikan permintaan maaf."
+                                    },
+                                    {
+                                        "vocabId": "a2u34_ucapan_terima_kasih",
+                                        "type": "write",
+                                        "explanation": "La oración practica «ucapan terima kasih» (agradecimiento).",
+                                        "prompt": "Escribe una frase usando ucapan terima kasih.",
+                                        "hint": "Puedes tomar como modelo: Dia mengirim ucapan terima kasih.",
+                                        "modelAnswer": "Dia mengirim ucapan terima kasih."
+                                    },
+                                    {
+                                        "vocabId": "a2u34_kebiasaan",
+                                        "type": "order",
+                                        "explanation": "La oración practica «kebiasaan» (costumbre).",
+                                        "prompt": "Ordena: Esa costumbre es diferente en cada región.",
+                                        "words": [
+                                            "daerah",
+                                            "setiap",
+                                            "di",
+                                            "berbeda",
+                                            "itu",
+                                            "Kebiasaan"
+                                        ],
+                                        "correctOrder": [
+                                            "Kebiasaan",
+                                            "itu",
+                                            "berbeda",
+                                            "di",
+                                            "setiap",
+                                            "daerah"
+                                        ]
+                                    },
+                                    {
+                                        "vocabId": "a2u34_perilaku",
+                                        "type": "mc",
+                                        "explanation": "La oración practica «perilaku» (comportamiento).",
+                                        "prompt": "¿Qué significa «perilaku»?",
+                                        "options": [
+                                            "Comportamiento",
+                                            "Cortesía",
+                                            "Saludo"
+                                        ],
+                                        "answer": 0
+                                    },
+                                    {
+                                        "vocabId": "a2u34_formal",
+                                        "type": "translate_es_id",
+                                        "explanation": "La oración practica «formal» (formal).",
+                                        "prompt": "Traduce: Esa reunión es formal.",
+                                        "answer": "Pertemuan itu bersifat formal."
+                                    },
+                                    {
+                                        "vocabId": "a2u34_informal",
+                                        "type": "listen",
+                                        "explanation": "La oración practica «informal» (informal).",
+                                        "prompt": "Escucha y escribe la oración.",
+                                        "answer": "Percakapan kami berlangsung informal."
+                                    },
+                                    {
+                                        "vocabId": "a2u34_menghormati",
+                                        "type": "write",
+                                        "explanation": "La oración practica «menghormati» (respetar).",
+                                        "prompt": "Escribe una frase usando menghormati.",
+                                        "hint": "Puedes tomar como modelo: Kita harus menghormati orang lain.",
+                                        "modelAnswer": "Kita harus menghormati orang lain."
+                                    },
+                                    {
+                                        "vocabId": "a2u34_menyela",
+                                        "type": "order",
+                                        "explanation": "La oración practica «menyela» (interrumpir).",
+                                        "prompt": "Ordena: No interrumpas la conversación de otra persona.",
+                                        "words": [
+                                            "lain",
+                                            "orang",
+                                            "pembicaraan",
+                                            "menyela",
+                                            "Jangan"
+                                        ],
+                                        "correctOrder": [
+                                            "Jangan",
+                                            "menyela",
+                                            "pembicaraan",
+                                            "orang",
+                                            "lain"
+                                        ]
+                                    },
+                                    {
+                                        "vocabId": "a2u34_giliran_bicara",
+                                        "type": "mc",
+                                        "explanation": "La oración practica «giliran bicara» (turno de palabra).",
+                                        "prompt": "¿Qué significa «giliran bicara»?",
+                                        "options": [
+                                            "Turno de palabra",
+                                            "Cortesía",
+                                            "Saludo"
+                                        ],
+                                        "answer": 0
+                                    },
+                                    {
+                                        "vocabId": "a2u34_kontak_mata",
+                                        "type": "translate_es_id",
+                                        "explanation": "La oración practica «kontak mata» (contacto visual).",
+                                        "prompt": "Traduce: El contacto visual demuestra atención.",
+                                        "answer": "Kontak mata menunjukkan perhatian."
+                                    }
+                                ]
+                            }
+]
                         },
                         {
                             "id": "a2_u35",
@@ -12623,7 +12923,159 @@ window.BAHASA_CURRICULUM_A2 = {
                                         }
                                     ]
                                 }
-                            ]
+                            ,
+                            {
+                                "title": "Lección 5: Recuperación espaciada y uso integrado",
+                                "objective": "Recupera el vocabulario de toda la unidad y úsalo en comprensión, traducción y producción.",
+                                "grammar": "Repasa las expresiones y estructuras trabajadas en las cuatro lecciones anteriores. Recupera cada término desde su significado y úsalo dentro de una oración completa.",
+                                "vocabIds": [],
+                                "reviewVocabIds": [
+                                    "a2u35_anggaran",
+                                    "a2u35_pengeluaran",
+                                    "a2u35_pemasukan",
+                                    "a2u35_menabung",
+                                    "a2u35_investasi",
+                                    "a2u35_cicilan",
+                                    "a2u35_prioritas",
+                                    "a2u35_kebutuhan",
+                                    "a2u35_keinginan",
+                                    "a2u35_biaya_tak_terduga",
+                                    "a2u35_dana_darurat",
+                                    "a2u35_pemborosan"
+                                ],
+                                "exercises": [
+                                    {
+                                        "vocabId": "a2u35_anggaran",
+                                        "type": "mc",
+                                        "explanation": "La oración practica «anggaran» (presupuesto).",
+                                        "prompt": "¿Qué significa «anggaran»?",
+                                        "options": [
+                                            "Presupuesto",
+                                            "Gastos",
+                                            "Ingresos"
+                                        ],
+                                        "answer": 0
+                                    },
+                                    {
+                                        "vocabId": "a2u35_pengeluaran",
+                                        "type": "translate_es_id",
+                                        "explanation": "La oración practica «pengeluaran» (gastos).",
+                                        "prompt": "Traduce: Los gastos del hogar aumentan.",
+                                        "answer": "Pengeluaran rumah tangga meningkat."
+                                    },
+                                    {
+                                        "vocabId": "a2u35_pemasukan",
+                                        "type": "listen",
+                                        "explanation": "La oración practica «pemasukan» (ingresos).",
+                                        "prompt": "Escucha y escribe la oración.",
+                                        "answer": "Pemasukan saya cukup untuk kebutuhan."
+                                    },
+                                    {
+                                        "vocabId": "a2u35_menabung",
+                                        "type": "write",
+                                        "explanation": "La oración practica «menabung» (ahorrar).",
+                                        "prompt": "Escribe una frase usando menabung.",
+                                        "hint": "Puedes tomar como modelo: Saya menabung untuk masa depan.",
+                                        "modelAnswer": "Saya menabung untuk masa depan."
+                                    },
+                                    {
+                                        "vocabId": "a2u35_investasi",
+                                        "type": "order",
+                                        "explanation": "La oración practica «investasi» (inversión).",
+                                        "prompt": "Ordena: Esa inversión tiene riesgos.",
+                                        "words": [
+                                            "risiko",
+                                            "memiliki",
+                                            "itu",
+                                            "Investasi"
+                                        ],
+                                        "correctOrder": [
+                                            "Investasi",
+                                            "itu",
+                                            "memiliki",
+                                            "risiko"
+                                        ]
+                                    },
+                                    {
+                                        "vocabId": "a2u35_cicilan",
+                                        "type": "mc",
+                                        "explanation": "La oración practica «cicilan» (cuota).",
+                                        "prompt": "¿Qué significa «cicilan»?",
+                                        "options": [
+                                            "Cuota",
+                                            "Presupuesto",
+                                            "Gastos"
+                                        ],
+                                        "answer": 0
+                                    },
+                                    {
+                                        "vocabId": "a2u35_prioritas",
+                                        "type": "translate_es_id",
+                                        "explanation": "La oración practica «prioritas» (prioridad).",
+                                        "prompt": "Traduce: La educación es una prioridad para la familia.",
+                                        "answer": "Pendidikan adalah prioritas keluarga."
+                                    },
+                                    {
+                                        "vocabId": "a2u35_kebutuhan",
+                                        "type": "listen",
+                                        "explanation": "La oración practica «kebutuhan» (necesidad).",
+                                        "prompt": "Escucha y escribe la oración.",
+                                        "answer": "Kebutuhan dasar harus dipenuhi."
+                                    },
+                                    {
+                                        "vocabId": "a2u35_keinginan",
+                                        "type": "write",
+                                        "explanation": "La oración practica «keinginan» (deseo).",
+                                        "prompt": "Escribe una frase usando keinginan.",
+                                        "hint": "Puedes tomar como modelo: Keinginan tidak selalu sama dengan kebutuhan.",
+                                        "modelAnswer": "Keinginan tidak selalu sama dengan kebutuhan."
+                                    },
+                                    {
+                                        "vocabId": "a2u35_biaya_tak_terduga",
+                                        "type": "order",
+                                        "explanation": "La oración practica «biaya tak terduga» (gasto imprevisto).",
+                                        "prompt": "Ordena: Preparamos dinero para gastos imprevistos.",
+                                        "words": [
+                                            "terduga",
+                                            "tak",
+                                            "biaya",
+                                            "untuk",
+                                            "uang",
+                                            "menyiapkan",
+                                            "Kami"
+                                        ],
+                                        "correctOrder": [
+                                            "Kami",
+                                            "menyiapkan",
+                                            "uang",
+                                            "untuk",
+                                            "biaya",
+                                            "tak",
+                                            "terduga"
+                                        ]
+                                    },
+                                    {
+                                        "vocabId": "a2u35_dana_darurat",
+                                        "type": "mc",
+                                        "explanation": "La oración practica «dana darurat» (fondo de emergencia).",
+                                        "prompt": "¿Qué significa «dana darurat»?",
+                                        "options": [
+                                            "Fondo de emergencia",
+                                            "Presupuesto",
+                                            "Gastos"
+                                        ],
+                                        "answer": 0
+                                    },
+                                    {
+                                        "vocabId": "a2u35_pemborosan",
+                                        "type": "translate_es_id",
+                                        "explanation": "La oración practica «pemborosan» (gasto innecesario).",
+                                        "prompt": "Traduce: El gasto innecesario puede afectar al presupuesto.",
+                                        "answer": "Pemborosan dapat mengganggu anggaran."
+                                    }
+                                ]
+                            }
+]
                         },
                         {
                             "id": "a2_u36",
@@ -12921,7 +13373,157 @@ window.BAHASA_CURRICULUM_A2 = {
                                         }
                                     ]
                                 }
-                            ]
+                            ,
+                            {
+                                "title": "Lección 5: Recuperación espaciada y uso integrado",
+                                "objective": "Recupera el vocabulario de toda la unidad y úsalo en comprensión, traducción y producción.",
+                                "grammar": "Repasa las expresiones y estructuras trabajadas en las cuatro lecciones anteriores. Recupera cada término desde su significado y úsalo dentro de una oración completa.",
+                                "vocabIds": [],
+                                "reviewVocabIds": [
+                                    "a2u36_pertimbangan",
+                                    "a2u36_risiko",
+                                    "a2u36_keuntungan",
+                                    "a2u36_kerugian",
+                                    "a2u36_alternatif",
+                                    "a2u36_konsekuensi",
+                                    "a2u36_kompromi",
+                                    "a2u36_kesepakatan",
+                                    "a2u36_rencana_cadangan",
+                                    "a2u36_langkah_berikutnya",
+                                    "a2u36_mengevaluasi",
+                                    "a2u36_mempertimbangkan"
+                                ],
+                                "exercises": [
+                                    {
+                                        "vocabId": "a2u36_pertimbangan",
+                                        "type": "mc",
+                                        "explanation": "La oración practica «pertimbangan» (consideración).",
+                                        "prompt": "¿Qué significa «pertimbangan»?",
+                                        "options": [
+                                            "Consideración",
+                                            "Riesgo",
+                                            "Ventaja"
+                                        ],
+                                        "answer": 0
+                                    },
+                                    {
+                                        "vocabId": "a2u36_risiko",
+                                        "type": "translate_es_id",
+                                        "explanation": "La oración practica «risiko» (riesgo).",
+                                        "prompt": "Traduce: Debemos comprender ese riesgo.",
+                                        "answer": "Kita harus memahami risiko itu."
+                                    },
+                                    {
+                                        "vocabId": "a2u36_keuntungan",
+                                        "type": "listen",
+                                        "explanation": "La oración practica «keuntungan» (ventaja).",
+                                        "prompt": "Escucha y escribe la oración.",
+                                        "answer": "Keuntungan pilihan ini cukup besar."
+                                    },
+                                    {
+                                        "vocabId": "a2u36_kerugian",
+                                        "type": "write",
+                                        "explanation": "La oración practica «kerugian» (pérdida).",
+                                        "prompt": "Escribe una frase usando kerugian.",
+                                        "hint": "Puedes tomar como modelo: Kerugian harus dihitung dengan teliti.",
+                                        "modelAnswer": "Kerugian harus dihitung dengan teliti."
+                                    },
+                                    {
+                                        "vocabId": "a2u36_alternatif",
+                                        "type": "order",
+                                        "explanation": "La oración practica «alternatif» (alternativa).",
+                                        "prompt": "Ordena: Necesitamos buscar otra alternativa.",
+                                        "words": [
+                                            "lain",
+                                            "alternatif",
+                                            "mencari",
+                                            "perlu",
+                                            "Kita"
+                                        ],
+                                        "correctOrder": [
+                                            "Kita",
+                                            "perlu",
+                                            "mencari",
+                                            "alternatif",
+                                            "lain"
+                                        ]
+                                    },
+                                    {
+                                        "vocabId": "a2u36_konsekuensi",
+                                        "type": "mc",
+                                        "explanation": "La oración practica «konsekuensi» (consecuencia).",
+                                        "prompt": "¿Qué significa «konsekuensi»?",
+                                        "options": [
+                                            "Consecuencia",
+                                            "Consideración",
+                                            "Riesgo"
+                                        ],
+                                        "answer": 0
+                                    },
+                                    {
+                                        "vocabId": "a2u36_kompromi",
+                                        "type": "translate_es_id",
+                                        "explanation": "La oración practica «kompromi» (compromiso).",
+                                        "prompt": "Traduce: Ellos llegan a un compromiso.",
+                                        "answer": "Mereka mencapai kompromi bersama."
+                                    },
+                                    {
+                                        "vocabId": "a2u36_kesepakatan",
+                                        "type": "listen",
+                                        "explanation": "La oración practica «kesepakatan» (acuerdo).",
+                                        "prompt": "Escucha y escribe la oración.",
+                                        "answer": "Kesepakatan dibuat kemarin."
+                                    },
+                                    {
+                                        "vocabId": "a2u36_rencana_cadangan",
+                                        "type": "write",
+                                        "explanation": "La oración practica «rencana cadangan» (plan alternativo).",
+                                        "prompt": "Escribe una frase usando rencana cadangan.",
+                                        "hint": "Puedes tomar como modelo: Kami menyiapkan rencana cadangan.",
+                                        "modelAnswer": "Kami menyiapkan rencana cadangan."
+                                    },
+                                    {
+                                        "vocabId": "a2u36_langkah_berikutnya",
+                                        "type": "order",
+                                        "explanation": "La oración practica «langkah berikutnya» (siguiente paso).",
+                                        "prompt": "Ordena: El siguiente paso es contactar al empleado.",
+                                        "words": [
+                                            "petugas",
+                                            "menghubungi",
+                                            "adalah",
+                                            "berikutnya",
+                                            "Langkah"
+                                        ],
+                                        "correctOrder": [
+                                            "Langkah",
+                                            "berikutnya",
+                                            "adalah",
+                                            "menghubungi",
+                                            "petugas"
+                                        ]
+                                    },
+                                    {
+                                        "vocabId": "a2u36_mengevaluasi",
+                                        "type": "mc",
+                                        "explanation": "La oración practica «mengevaluasi» (evaluar).",
+                                        "prompt": "¿Qué significa «mengevaluasi»?",
+                                        "options": [
+                                            "Evaluar",
+                                            "Consideración",
+                                            "Riesgo"
+                                        ],
+                                        "answer": 0
+                                    },
+                                    {
+                                        "vocabId": "a2u36_mempertimbangkan",
+                                        "type": "translate_es_id",
+                                        "explanation": "La oración practica «mempertimbangkan» (considerar).",
+                                        "prompt": "Traduce: Considero todas las opciones.",
+                                        "answer": "Saya mempertimbangkan semua pilihan."
+                                    }
+                                ]
+                            }
+]
                         }
 ,
                     {

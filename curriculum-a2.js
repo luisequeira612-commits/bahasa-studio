@@ -3145,8 +3145,22 @@ window.BAHASA_CURRICULUM_A2 = {
                                         "explanation": "Usa el vocabulario en una oración completa."
                                     }
                                 ]
-                            }
-                        ]
+                            },
+                        {
+                            "title": "Lección 5: Recuperación espaciada de compras y pagos",
+                            "objective": "Recupera el vocabulario de precios, pagos, comparación y participantes de una compra para resolver una situación comercial breve.",
+                            "grammar": "Integra biaya, terjangkau y diskon para hablar de precio y descuento; membayar, kartu y struk para completar el pago; menawar y membandingkan para negociar y comparar; sesuai para valorar una elección; pusat belanja, penjual y pembeli sitúan a las personas y el lugar de compra.",
+                            "vocabIds": [],
+                            "reviewVocabIds": ["a2u13_biaya", "a2u13_terjangkau", "a2u13_diskon", "a2u13_membayar", "a2u13_kartu", "a2u13_struk", "a2u13_menawar", "a2u13_membandingkan", "a2u13_sesuai", "a2u13_pusat_belanja", "a2u13_penjual", "a2u13_pembeli"],
+                            "exercises": [
+                                { "vocabId": "a2u13_terjangkau", "type": "mc", "prompt": "¿Qué significa «terjangkau»?", "options": ["Asequible", "Costo", "Vendedor"], "answer": 0, "explanation": "«Terjangkau» significa «Asequible»." },
+                                { "vocabId": "a2u13_membayar", "type": "translate_es_id", "prompt": "Traduce: «Pago ahora».", "answer": "Saya membayar sekarang.", "explanation": "Membayar expresa pagar." },
+                                { "vocabId": "a2u13_biaya", "type": "order", "prompt": "Ordena: «¿Cuánto cuesta este artículo?».", "words": ["berapa?", "ini", "barang", "Biaya"], "correctOrder": ["Biaya", "barang", "ini", "berapa?"], "explanation": "Biaya barang ini berapa? La pregunta consulta el costo del artículo." },
+                                { "vocabId": "a2u13_diskon", "type": "listen", "prompt": "Escucha y escribe la oración completa.", "answer": "Ada diskon hari ini.", "explanation": "Diskon significa descuento." },
+                                { "vocabId": "a2u13_membandingkan", "type": "write", "prompt": "Escribe una oración breve con «membandingkan» para explicar qué haces antes de elegir un producto.", "hint": "Puedes usar el modelo «Saya membandingkan pakaian».", "modelAnswer": "Saya membandingkan pakaian.", "explanation": "La producción recupera membandingkan dentro de una oración completa." }
+                            ]
+                        }
+]
                     },
                     {
                         "id": "a2_u14",
@@ -3439,8 +3453,22 @@ window.BAHASA_CURRICULUM_A2 = {
                                         "explanation": "Usa el vocabulario en una oración completa."
                                     }
                                 ]
-                            }
-                        ]
+                            },
+                        {
+                            "title": "Lección 5: Recuperación espaciada de viajes y transporte",
+                            "objective": "Integra el vocabulario de viajes, equipaje, transporte y cambios de ruta para describir un desplazamiento.",
+                            "grammar": "Recupera perjalanan y bepergian para hablar del viaje; mendarat, bagasi y pelabuhan para describir etapas y lugares; karcis, kendaraan y angkutan para identificar billetes y medios; tertunda, keberangkatan y pindah para explicar retrasos y cambios; penumpang identifica a quien viaja.",
+                            "vocabIds": [],
+                            "reviewVocabIds": ["a2u14_perjalanan", "a2u14_bepergian", "a2u14_mendarat", "a2u14_bagasi", "a2u14_pelabuhan", "a2u14_karcis", "a2u14_kendaraan", "a2u14_angkutan", "a2u14_tertunda", "a2u14_keberangkatan", "a2u14_pindah", "a2u14_penumpang"],
+                            "exercises": [
+                                { "vocabId": "a2u14_perjalanan", "type": "mc", "prompt": "¿Qué significa «perjalanan»?", "options": ["Viaje", "Equipaje", "Puerto"], "answer": 0, "explanation": "«Perjalanan» significa «Viaje»." },
+                                { "vocabId": "a2u14_karcis", "type": "translate_es_id", "prompt": "Traduce: «Compro un billete».", "answer": "Saya membeli karcis.", "explanation": "Karcis significa billete." },
+                                { "vocabId": "a2u14_perjalanan", "type": "order", "prompt": "Ordena: «Mi viaje es largo».", "words": ["jauh.", "saya", "Perjalanan"], "correctOrder": ["Perjalanan", "saya", "jauh."], "explanation": "Perjalanan saya jauh. Perjalanan significa viaje." },
+                                { "vocabId": "a2u14_bagasi", "type": "listen", "prompt": "Escucha y escribe la oración completa.", "answer": "Bagasi saya berat.", "explanation": "Bagasi significa equipaje." },
+                                { "vocabId": "a2u14_pindah", "type": "write", "prompt": "Escribe una oración breve con «pindah» para describir un cambio de transporte.", "hint": "Puedes usar el modelo «Saya pindah angkutan».", "modelAnswer": "Saya pindah angkutan.", "explanation": "La producción recupera pindah dentro de una oración completa." }
+                            ]
+                        }
+]
                     },
                     {
                         "id": "a2_u15",
@@ -3735,8 +3763,22 @@ window.BAHASA_CURRICULUM_A2 = {
                                         "explanation": "Usa el vocabulario en una oración completa."
                                     }
                                 ]
-                            }
-                        ]
+                            },
+                        {
+                            "title": "Lección 5: Recuperación espaciada de invitaciones y planes",
+                            "objective": "Recupera el vocabulario de propuestas, invitaciones, asistencia y organización para resumir un plan compartido.",
+                            "grammar": "Integra mengusulkan y undangan para proponer e invitar; aktivitas y pesta nombran eventos; hadir y berhalangan expresan asistencia o imposibilidad; berjanji y berjumpa organizan encuentros; merencanakan y membatalkan permiten hablar de cambios; menemani y pertemuan completan la situación.",
+                            "vocabIds": [],
+                            "reviewVocabIds": ["a2u15_mengusulkan", "a2u15_undangan", "a2u15_aktivitas", "a2u15_pesta", "a2u15_hadir", "a2u15_berhalangan", "a2u15_berjanji", "a2u15_berjumpa", "a2u15_merencanakan", "a2u15_membatalkan", "a2u15_menemani", "a2u15_pertemuan"],
+                            "exercises": [
+                                { "vocabId": "a2u15_berhalangan", "type": "mc", "prompt": "¿Qué significa «berhalangan»?", "options": ["No poder asistir", "Acompañar", "Proponer"], "answer": 0, "explanation": "«Berhalangan» significa «No poder asistir»." },
+                                { "vocabId": "a2u15_berjumpa", "type": "translate_es_id", "prompt": "Traduce: «Nos encontramos en casa».", "answer": "Kami berjumpa di rumah.", "explanation": "Berjumpa expresa encontrarse." },
+                                { "vocabId": "a2u15_undangan", "type": "order", "prompt": "Ordena: «Esta invitación es para ti».", "words": ["kamu.", "untuk", "undangan", "Ini"], "correctOrder": ["Ini", "undangan", "untuk", "kamu."], "explanation": "Ini undangan untuk kamu. Undangan significa invitación." },
+                                { "vocabId": "a2u15_pesta", "type": "listen", "prompt": "Escucha y escribe la oración completa.", "answer": "Pesta itu ramai.", "explanation": "Pesta significa fiesta." },
+                                { "vocabId": "a2u15_merencanakan", "type": "write", "prompt": "Escribe una oración breve con «merencanakan» para explicar qué evento organizas.", "hint": "Puedes usar el modelo «Kami merencanakan pesta».", "modelAnswer": "Kami merencanakan pesta.", "explanation": "La producción recupera merencanakan dentro de una oración completa." }
+                            ]
+                        }
+]
                     },
                     {
                         "id": "a2_u16",
@@ -4029,8 +4071,22 @@ window.BAHASA_CURRICULUM_A2 = {
                                         "explanation": "Usa el vocabulario en una oración completa."
                                     }
                                 ]
-                            }
-                        ]
+                            },
+                        {
+                            "title": "Lección 5: Recuperación espaciada de experiencias y vacaciones",
+                            "objective": "Integra las expresiones temporales y el vocabulario de visitas, alojamiento y recuerdos para relatar una experiencia.",
+                            "grammar": "Recupera kemarin y semalam para situar hechos; pernah para hablar de una experiencia alguna vez; mula-mula, sesudahnya y pada akhirnya para ordenar el relato. Liburan, mendatangi, menginap, berfoto, pemandangan y menyenangkan permiten describir el viaje y sus recuerdos.",
+                            "vocabIds": [],
+                            "reviewVocabIds": ["a2u16_kemarin", "a2u16_semalam", "a2u16_pernah", "a2u16_mula_mula", "a2u16_sesudahnya", "a2u16_pada_akhirnya", "a2u16_liburan", "a2u16_mendatangi", "a2u16_menginap", "a2u16_berfoto", "a2u16_pemandangan", "a2u16_menyenangkan"],
+                            "exercises": [
+                                { "vocabId": "a2u16_pernah", "type": "mc", "prompt": "¿Qué significa «pernah»?", "options": ["Alguna vez", "Anoche", "Al final"], "answer": 0, "explanation": "«Pernah» significa «Alguna vez»." },
+                                { "vocabId": "a2u16_menginap", "type": "translate_es_id", "prompt": "Traduce: «Nos alojamos en un hotel».", "answer": "Kami menginap di hotel.", "explanation": "Menginap expresa alojarse o pasar la noche." },
+                                { "vocabId": "a2u16_kemarin", "type": "order", "prompt": "Ordena: «Ayer estudié».", "words": ["belajar.", "saya", "Kemarin"], "correctOrder": ["Kemarin", "saya", "belajar."], "explanation": "Kemarin saya belajar. Kemarin sitúa la acción en el día anterior." },
+                                { "vocabId": "a2u16_liburan", "type": "listen", "prompt": "Escucha y escribe la oración completa.", "answer": "Liburan saya menyenangkan.", "explanation": "Menyenangkan describe algo agradable." },
+                                { "vocabId": "a2u16_berfoto", "type": "write", "prompt": "Escribe una oración breve con «berfoto» para contar un recuerdo de vacaciones.", "hint": "Puedes usar el modelo «Saya berfoto di pantai».", "modelAnswer": "Saya berfoto di pantai.", "explanation": "La producción recupera berfoto dentro de una oración completa." }
+                            ]
+                        }
+]
                     }
 ,
                         {

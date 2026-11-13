@@ -2147,8 +2147,11 @@ test('real JSON v3 import keeps untrusted custom lesson content inert across rou
         const area = document.getElementById('exerciseArea');
         return {
           text: area.textContent,
+          html: area.innerHTML,
           attributes: [...area.querySelectorAll('[data-answer], [data-word], [data-audio]')]
             .map(node => node.getAttribute('data-answer') || node.getAttribute('data-word') || node.getAttribute('data-audio')),
+          currentType: LessonEngine.queue[LessonEngine.stepIndex].type,
+          currentAnswer: LessonEngine.queue[LessonEngine.stepIndex].answer,
           images: area.querySelectorAll('img[src="x"]').length,
           handlers: area.querySelectorAll('[onerror]').length,
           executed: window.__xssProbe
@@ -2157,8 +2160,14 @@ test('real JSON v3 import keeps untrusted custom lesson content inert across rou
       assert.equal(rendered.images, 0, queue[index] + ' must not create an injected image');
       assert.equal(rendered.handlers, 0, queue[index] + ' must not create an injected event handler');
       assert.equal(rendered.executed, 0, queue[index] + ' must not execute the payload');
-      assert.ok(rendered.text.includes(payload) || rendered.attributes.includes(payload),
-        queue[index] + ' should preserve the untrusted content as text or an escaped data value');
+      if (queue[index] === 'listen') {
+        assert.equal(rendered.currentAnswer, payload, 'the imported listen answer should reach the renderer');
+        assert.ok(rendered.html.includes('data-answer='), 'listen should render its answer in a data attribute');
+        assert.ok(rendered.html.includes('&lt;img'), 'listen answer markup should be HTML-escaped');
+      } else {
+        assert.ok(rendered.text.includes(payload) || rendered.attributes.includes(payload),
+          queue[index] + ' should preserve the untrusted content as text or an escaped data value');
+      }
     }
   } finally {
     await context.close();

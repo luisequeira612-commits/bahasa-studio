@@ -1930,6 +1930,28 @@ test('imported custom lesson content cannot inject executable markup into the un
   try {
     await page.goto(url, { waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => typeof App !== 'undefined' && typeof StudyActivity !== 'undefined');
+    const invalidUnitId = 'ai_xss_probe" onclick="window.__xssProbe=2';
+    const invalidIdRejected = await page.evaluate(id => {
+      try {
+        App.validateBackup({
+          version: 3,
+          xp: 0,
+          customUnits: [{
+            id,
+            title: 'Invalid identifier probe',
+            desc: '',
+            grammar: '',
+            vocab: [],
+            exercises: []
+          }]
+        });
+        return false;
+      } catch (error) {
+        return /Formato de copia no válido/.test(error.message);
+      }
+    }, invalidUnitId);
+    assert.equal(invalidIdRejected, true, 'custom unit IDs containing HTML/JavaScript delimiters must be rejected');
+
     const unitId = 'ai_xss_probe';
     const payload = '<img src=x onerror="window.__xssProbe=1">';
     const sheet = await page.evaluate(({ unitId, payload }) => {

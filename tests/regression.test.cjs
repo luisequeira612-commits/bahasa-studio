@@ -317,7 +317,7 @@ test('A2 units 1-4 have five authored lessons and a complete unit-test bank', ()
     const unitVocabIds = new Set(unit.vocab.map(word => word.id));
     if (['a2_u2', 'a2_u3', 'a2_u4'].includes(unit.id)) {
       const consolidation = unit.lessons[4];
-      assert.deepEqual([...consolidation.vocabIds || []], []);
+      assert.deepEqual([...(consolidation.vocabIds || [])], []);
       assert.deepEqual([...new Set(consolidation.reviewVocabIds)].sort(), [...unitVocabIds].sort(),
         unit.id + ' fifth lesson must retrieve all unit vocabulary without introducing duplicates');
       assert.ok(consolidation.exercises.length >= 3, unit.id + ' fifth lesson must contain its own didactic exercises');

@@ -6327,7 +6327,7 @@
                 document.getElementById('lessonStepCount').innerText = '0/' + this.queue.length;
                 document.getElementById('lessonProgressFill').style.width = '0%';
                 const wordCard = v => `<div class="card lesson-word-card">
-                    <div class="lesson-word-card-main"><strong>${App.escapeHtml(v.idn)}</strong> — ${App.escapeHtml(v.esp)}<br><small>${App.escapeHtml(v.ex)} (${App.escapeHtml(v.exEsp)})</small></div>
+                    <div class="lesson-word-card-main"><strong lang="id">${App.escapeHtml(v.idn)}</strong> — ${App.escapeHtml(v.esp)}<br><small><span lang="id">${App.escapeHtml(v.ex)}</span> (${App.escapeHtml(v.exEsp)})</small></div>
                     <button class="btn btn-outline btn-sm lesson-word-audio" type="button" data-word="${App.escapeHtml(v.idn)}" onclick="AudioEngine.speak(this.dataset.word)" aria-label="Escuchar ${App.escapeHtml(v.idn)}"><svg class="ui-icon lesson-speaker-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4h4l5 4V6l-5 4H4Z"/><path d="M16 9.5a4 4 0 0 1 0 5M18.5 7a7 7 0 0 1 0 10"/></svg></button></div>`;
                 document.getElementById('exerciseArea').innerHTML = `<div>
                     <h3>${App.escapeHtml(u.title)}</h3>
@@ -6443,7 +6443,7 @@
                             <h3>${App.escapeHtml(ex.prompt)}</h3>
                             <div id="selectedBank" class="word-bank"></div>
                             <div id="availableBank" class="word-bank">
-                                ${shuffled.map(w => `<span class="word-chip" data-word="${App.escapeHtml(w)}" onclick="LessonEngine.pickWord(this.dataset.word, this)">${App.escapeHtml(w)}</span>`).join('')}
+                                ${shuffled.map(w => `<span class="word-chip" lang="id" data-word="${App.escapeHtml(w)}" onclick="LessonEngine.pickWord(this.dataset.word, this)">${App.escapeHtml(w)}</span>`).join('')}
                             </div>
                         </div>
                         <div id="actionArea">
@@ -6459,7 +6459,7 @@
                             <div class="matching-columns">
                                 <section id="matchIdn" aria-label="Palabras en indonesio">
                                     <h4>Indonesio</h4>
-                                    ${idnOptions.map(item => `<button type="button" class="match-option-btn" data-side="idn" data-pair-index="${item.index}" onclick="LessonEngine.selectMatch('idn', ${item.index}, this)">${App.escapeHtml(item.label)}</button>`).join('')}
+                                    ${idnOptions.map(item => `<button type="button" class="match-option-btn" lang="id" data-side="idn" data-pair-index="${item.index}" onclick="LessonEngine.selectMatch('idn', ${item.index}, this)">${App.escapeHtml(item.label)}</button>`).join('')}
                                 </section>
                                 <section id="matchEsp" aria-label="Significados en español">
                                     <h4>Español</h4>
@@ -6512,6 +6512,7 @@
                 const bank = document.getElementById('selectedBank');
                 const chip = document.createElement('span');
                 chip.className = 'word-chip';
+                chip.lang = 'id';
                 chip.innerText = word;
                 chip.onclick = () => {
                     const k = this.userOrder.lastIndexOf(word); if (k > -1) this.userOrder.splice(k, 1);
@@ -6601,7 +6602,7 @@
                 area.innerHTML = `
                     <div class="feedback-box">
                         <strong>Tu respuesta:</strong><p style="white-space:pre-wrap;">${App.escapeHtml(input)}</p>
-                        <strong>Un ejemplo posible:</strong><p style="white-space:pre-wrap;">${App.escapeHtml(ex.modelAnswer || '')}</p>
+                        <strong>Un ejemplo posible:</strong><p lang="id" style="white-space:pre-wrap;">${App.escapeHtml(ex.modelAnswer || '')}</p>
                         <small>${App.escapeHtml(ex.explanation || 'Compara el orden de las palabras y el vocabulario. Puede haber otras respuestas correctas.')}</small>
                     </div>
                     <section class="card" data-writing-review>
@@ -8195,11 +8196,11 @@ Requisitos:
                     html += `
                         <div class="card" style="margin-bottom:8px; padding:12px;">
                             <div style="display:flex; justify-content:space-between; align-items:center;">
-                                <strong>${App.escapeHtml(v.idn)}</strong>
+                                <strong lang="id">${App.escapeHtml(v.idn)}</strong>
                                 <button class="btn btn-outline btn-sm" data-word="${App.escapeHtml(v.idn)}" onclick="AudioEngine.speak(this.dataset.word)"><svg class="ui-icon lesson-speaker-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4h4l5 4V6l-5 4H4Z"/><path d="M16 9.5a4 4 0 0 1 0 5M18.5 7a7 7 0 0 1 0 10"/></svg></button>
                             </div>
                             <p style="color:var(--accent); font-size:0.9rem;">${App.escapeHtml(v.esp)}</p>
-                            <p style="font-size:0.8rem; color:var(--text-muted); margin-top:4px;">Ejemplo: ${App.escapeHtml(v.ex)} (${App.escapeHtml(v.exEsp)})</p>
+                            <p style="font-size:0.8rem; color:var(--text-muted); margin-top:4px;">Ejemplo: <span lang="id">${App.escapeHtml(v.ex)}</span> (${App.escapeHtml(v.exEsp)})</p>
                         </div>
                     `;
                 });
@@ -8539,7 +8540,7 @@ Requisitos:
             const speaker = language === 'idn'
                 ? '<button type="button" class="tap-translation-speaker" aria-label="Escuchar frase" data-audio="' + escapeHtml(text) +
                     '" onclick="AudioEngine.speak(this.dataset.audio)"><svg class="ui-icon lesson-speaker-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4h4l5 4V6l-5 4H4Z"/><path d="M16 9.5a4 4 0 0 1 0 5M18.5 7a7 7 0 0 1 0 10"/></svg></button>' : '';
-            return '<div class="tap-translation-sentence">' + speaker + '<span class="tap-translation-phrase">' + output + '</span></div>';
+            return '<div class="tap-translation-sentence">' + speaker + '<span class="tap-translation-phrase"' + (language === 'idn' ? ' lang="id"' : '') + '>' + output + '</span></div>';
         };
 
         window.parseTapTranslationPrompt = function (prompt, language) {
@@ -8738,6 +8739,7 @@ Requisitos:
                     closePopup();
                     return;
                 }
+                termNode.lang = 'id';
                 termNode.textContent = matches[0].idn;
                 if (trigger && trigger !== activeTrigger) {
                     if (activeTrigger) {
@@ -8755,8 +8757,18 @@ Requisitos:
                 meaningNode.textContent = matches.slice(0, 3).map(entry => entry.esp).join(' · ');
                 const example = matches.find(entry => entry.ex || entry.exEsp);
                 if (example) {
-                    exampleNode.textContent = [example.ex ? 'Ejemplo: ' + example.ex : '', example.exEsp ? 'Traducción: ' + example.exEsp : '']
-                        .filter(Boolean).join(' — ');
+                    exampleNode.replaceChildren();
+                    if (example.ex) {
+                        exampleNode.append('Ejemplo: ');
+                        const original = document.createElement('span');
+                        original.lang = 'id';
+                        original.textContent = example.ex;
+                        exampleNode.append(original);
+                    }
+                    if (example.exEsp) {
+                        if (example.ex) exampleNode.append(' — ');
+                        exampleNode.append('Traducción: ' + example.exEsp);
+                    }
                     exampleNode.hidden = false;
                 } else {
                     exampleNode.textContent = '';

@@ -165,6 +165,7 @@
  }
  form.addEventListener('submit',event=>{
    event.preventDefault();
+   stopSpeechCapture();
    const answers={};
    for(const item of activeItems){
      if(item.type==='choice'){

@@ -176,9 +176,15 @@ test('A2 units 9-12 teach opinions, rules, problems, and goals with complete les
   assert.match(units[3].title, /Experiencia/);
   for (const unit of units) {
     assert.equal(unit.vocab.length, 12, unit.id + ' should provide twelve assessment items');
-    assert.equal(unit.lessons.length, 4, unit.id + ' should have four authored lessons');
+    assert.equal(unit.lessons.length, 5, unit.id + ' should have five authored lessons');
+    const unitVocabIds = new Set(unit.vocab.map(word => word.id));
+    const retrieval = unit.lessons[4];
+    assert.deepEqual([...(retrieval.vocabIds || [])], [], unit.id + ' retrieval lesson must not introduce vocabulary again');
+    assert.deepEqual([...new Set(retrieval.reviewVocabIds || [])].sort(), [...unitVocabIds].sort(),
+      unit.id + ' retrieval lesson must review all twelve unit vocabulary items');
+    assert.equal((retrieval.exercises || []).length, 5, unit.id + ' retrieval lesson must contain five didactic exercises');
     const exercises = unit.lessons.flatMap(lesson => lesson.exercises || []);
-    assert.ok(exercises.length >= 14 && exercises.length <= 22, unit.id + ' should have 14-22 exercises');
+    assert.equal(exercises.length, 22, unit.id + ' should have 22 exercises across five lessons');
     assert.ok(new Set(exercises.map(exercise => exercise.type)).size >= 4, unit.id + ' should use four exercise types');
     assert.ok(exercises.some(exercise => exercise.type === 'listen'), unit.id + ' should include listening');
     assert.ok(exercises.some(exercise => exercise.type === 'write' && exercise.hint && exercise.modelAnswer),

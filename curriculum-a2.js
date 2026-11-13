@@ -1936,8 +1936,22 @@ window.BAHASA_CURRICULUM_A2 = {
                                             "explanation": "Usa el vocabulario en una oración completa."
                                         }
                                     ]
-                                }
+                                },
+                        {
+                            "title": "Lección 5: Recuperación espaciada de opiniones y reacciones",
+                            "objective": "Recupera el vocabulario de opiniones y preferencias para expresar acuerdo, justificar una postura y describir una reacción.",
+                            "grammar": "Integra las formas ya estudiadas: pendapat y menurut presentan una opinión; setuju y tidak setuju expresan acuerdo o desacuerdo; alasan y pilihan permiten justificar una postura; berbeda, menjelaskan y menyarankan comparan y desarrollan ideas; yakin, berharap y kecewa describen seguridad y reacción.",
+                            "vocabIds": [],
+                            "reviewVocabIds": ["a2u9_pendapat", "a2u9_menurut", "a2u9_setuju", "a2u9_tidak_setuju", "a2u9_alasan", "a2u9_pilihan", "a2u9_berbeda", "a2u9_menjelaskan", "a2u9_menyarankan", "a2u9_yakin", "a2u9_berharap", "a2u9_kecewa"],
+                            "exercises": [
+                                { "vocabId": "a2u9_kecewa", "type": "mc", "prompt": "¿Qué significa «kecewa»?", "options": ["Decepcionado", "Seguro; convencido", "Estar de acuerdo"], "answer": 0, "explanation": "«Kecewa» significa «Decepcionado»." },
+                                { "vocabId": "a2u9_setuju", "type": "translate_es_id", "prompt": "Traduce: «Estoy de acuerdo».", "answer": "Saya setuju.", "explanation": "Setuju expresa estar de acuerdo." },
+                                { "vocabId": "a2u9_pendapat", "type": "order", "prompt": "Ordena: «Tengo una opinión».", "words": ["pendapat.", "punya", "Saya"], "correctOrder": ["Saya", "punya", "pendapat."], "explanation": "Saya punya pendapat. Pendapat significa «opinión»." },
+                                { "vocabId": "a2u9_kecewa", "type": "listen", "prompt": "Escucha y escribe la oración completa.", "answer": "Dia kecewa.", "explanation": "Kecewa describe una reacción de decepción." },
+                                { "vocabId": "a2u9_menyarankan", "type": "write", "prompt": "Escribe una oración breve con «menyarankan» para expresar una sugerencia.", "hint": "Puedes usar el modelo «Saya menyarankan pilihan ini».", "modelAnswer": "Saya menyarankan pilihan ini.", "explanation": "La producción recupera menyarankan dentro de una oración completa." }
                             ]
+                        }
+]
                         },
                         {
                             "id": "a2_u10",
@@ -2222,8 +2236,22 @@ window.BAHASA_CURRICULUM_A2 = {
                                             "explanation": "Usa el vocabulario en una oración completa."
                                         }
                                     ]
-                                }
+                                },
+                        {
+                            "title": "Lección 5: Recuperación espaciada de normas y seguridad",
+                            "objective": "Integra el vocabulario de reglas, permisos, prohibiciones y seguridad para explicar qué está permitido y qué debe cumplirse.",
+                            "grammar": "Recupera las diferencias entre aturan y peraturan; wajib expresa obligación, dilarang prohibición y diizinkan permiso. Izin nombra el permiso; larangan y keselamatan se relacionan con normas y seguridad; aman y berbahaya describen condiciones; mematuhi y melanggar expresan cumplir e infringir.",
+                            "vocabIds": [],
+                            "reviewVocabIds": ["a2u10_aturan", "a2u10_peraturan", "a2u10_wajib", "a2u10_dilarang", "a2u10_diizinkan", "a2u10_izin", "a2u10_larangan", "a2u10_keselamatan", "a2u10_aman", "a2u10_berbahaya", "a2u10_mematuhi", "a2u10_melanggar"],
+                            "exercises": [
+                                { "vocabId": "a2u10_wajib", "type": "mc", "prompt": "¿Qué significa «wajib»?", "options": ["Obligatorio; tener que", "Prohibido", "Seguro"], "answer": 0, "explanation": "«Wajib» significa «Obligatorio; tener que»." },
+                                { "vocabId": "a2u10_izin", "type": "translate_es_id", "prompt": "Traduce: «Pido permiso».", "answer": "Saya meminta izin.", "explanation": "Izin significa permiso." },
+                                { "vocabId": "a2u10_aman", "type": "order", "prompt": "Ordena: «Esta casa es segura».", "words": ["aman.", "ini", "Rumah"], "correctOrder": ["Rumah", "ini", "aman."], "explanation": "Rumah ini aman. Aman describe una condición segura." },
+                                { "vocabId": "a2u10_berbahaya", "type": "listen", "prompt": "Escucha y escribe la oración completa.", "answer": "Ini berbahaya.", "explanation": "Berbahaya describe algo peligroso." },
+                                { "vocabId": "a2u10_mematuhi", "type": "write", "prompt": "Escribe una oración breve con «mematuhi» para decir que cumples una regla.", "hint": "Puedes usar el modelo «Saya mematuhi aturan».", "modelAnswer": "Saya mematuhi aturan.", "explanation": "La producción recupera mematuhi dentro de una oración completa." }
                             ]
+                        }
+]
                         },
                         {
                             "id": "a2_u11",
@@ -2508,8 +2536,22 @@ window.BAHASA_CURRICULUM_A2 = {
                                             "explanation": "Usa el vocabulario en una oración completa."
                                         }
                                     ]
-                                }
+                                },
+                        {
+                            "title": "Lección 5: Recuperación espaciada de problemas y soluciones",
+                            "objective": "Recupera el vocabulario de problemas, reparaciones, contactos y emergencias para describir una situación y su respuesta.",
+                            "grammar": "Integra masalah y solusi para identificar una dificultad; rusak y kerusakan describen averías; memperbaiki expresa reparar; macet describe congestión; kehilangan y menemukan expresan perder y encontrar; melaporkan y menghubungi sirven para informar y contactar; darurat y segera sitúan la respuesta urgente.",
+                            "vocabIds": [],
+                            "reviewVocabIds": ["a2u11_masalah", "a2u11_solusi", "a2u11_rusak", "a2u11_memperbaiki", "a2u11_macet", "a2u11_kehilangan", "a2u11_menemukan", "a2u11_melaporkan", "a2u11_menghubungi", "a2u11_darurat", "a2u11_segera", "a2u11_kerusakan"],
+                            "exercises": [
+                                { "vocabId": "a2u11_kerusakan", "type": "mc", "prompt": "¿Qué significa «kerusakan»?", "options": ["Daño; avería", "Encontrar", "Emergencia"], "answer": 0, "explanation": "«Kerusakan» significa «Daño; avería»." },
+                                { "vocabId": "a2u11_kehilangan", "type": "translate_es_id", "prompt": "Traduce: «He perdido el libro».", "answer": "Saya kehilangan buku.", "explanation": "Kehilangan expresa perder algo." },
+                                { "vocabId": "a2u11_rusak", "type": "order", "prompt": "Ordena: «Esa puerta está averiada».", "words": ["rusak.", "itu", "Pintu"], "correctOrder": ["Pintu", "itu", "rusak."], "explanation": "Pintu itu rusak. Rusak describe algo estropeado o averiado." },
+                                { "vocabId": "a2u11_darurat", "type": "listen", "prompt": "Escucha y escribe la oración completa.", "answer": "Ini darurat.", "explanation": "Darurat indica una emergencia." },
+                                { "vocabId": "a2u11_melaporkan", "type": "write", "prompt": "Escribe una oración breve con «melaporkan» para informar de un problema.", "hint": "Puedes usar el modelo «Saya melaporkan masalah».", "modelAnswer": "Saya melaporkan masalah.", "explanation": "La producción recupera melaporkan dentro de una oración completa." }
                             ]
+                        }
+]
                         },
                         {
                             "id": "a2_u12",
@@ -2794,8 +2836,22 @@ window.BAHASA_CURRICULUM_A2 = {
                                             "explanation": "Usa el vocabulario en una oración completa."
                                         }
                                     ]
-                                }
+                                },
+                        {
+                            "title": "Lección 5: Recuperación espaciada de metas y capacidades",
+                            "objective": "Integra el vocabulario de experiencias, capacidades, metas, resultados y desarrollo personal en una síntesis breve.",
+                            "grammar": "Recupera pengalaman, kemampuan y kesempatan para hablar de experiencia, capacidad y oportunidad; tujuan y cita-cita expresan metas y aspiraciones; berhasil y gagal describen resultados; memutuskan y melanjutkan expresan decisiones y continuidad; meningkatkan, mengembangkan y keterampilan permiten hablar de mejora y destrezas.",
+                            "vocabIds": [],
+                            "reviewVocabIds": ["a2u12_pengalaman", "a2u12_kemampuan", "a2u12_kesempatan", "a2u12_tujuan", "a2u12_cita_cita", "a2u12_berhasil", "a2u12_gagal", "a2u12_memutuskan", "a2u12_melanjutkan", "a2u12_meningkatkan", "a2u12_mengembangkan", "a2u12_keterampilan"],
+                            "exercises": [
+                                { "vocabId": "a2u12_kesempatan", "type": "mc", "prompt": "¿Qué significa «kesempatan»?", "options": ["Oportunidad", "Experiencia", "Objetivo; meta"], "answer": 0, "explanation": "«Kesempatan» significa «Oportunidad»." },
+                                { "vocabId": "a2u12_pengalaman", "type": "translate_es_id", "prompt": "Traduce: «Tengo experiencia».", "answer": "Saya punya pengalaman.", "explanation": "Pengalaman significa experiencia." },
+                                { "vocabId": "a2u12_tujuan", "type": "order", "prompt": "Ordena: «Mi objetivo es estudiar».", "words": ["belajar.", "saya", "Tujuan"], "correctOrder": ["Tujuan", "saya", "belajar."], "explanation": "Tujuan saya belajar. Tujuan expresa el objetivo que se quiere alcanzar." },
+                                { "vocabId": "a2u12_berhasil", "type": "listen", "prompt": "Escucha y escribe la oración completa.", "answer": "Saya berhasil.", "explanation": "Berhasil expresa tener éxito o lograrlo." },
+                                { "vocabId": "a2u12_meningkatkan", "type": "write", "prompt": "Escribe una oración breve con «meningkatkan» para explicar qué quieres mejorar.", "hint": "Puedes usar el modelo «Saya ingin meningkatkan kemampuan».", "modelAnswer": "Saya ingin meningkatkan kemampuan.", "explanation": "La producción recupera meningkatkan dentro de una oración completa." }
                             ]
+                        }
+]
                         }
 ,
                                         {

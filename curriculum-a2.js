@@ -12089,7 +12089,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                     {
                                         "vocabId": "a2u33_wilayah",
                                         "type": "order",
-                                        "explanation": "La oración practica «wilayah» (región).",
+                                        "explanation": "La frase completa es: Wilayah pesisir itu cukup luas.",
                                         "prompt": "Ordena: Esa región costera es bastante extensa.",
                                         "words": [
                                             "luas",
@@ -12143,7 +12143,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                     {
                                         "vocabId": "a2u33_pulau",
                                         "type": "order",
-                                        "explanation": "La oración practica «pulau» (isla).",
+                                        "explanation": "La frase completa es: Pulau kecil itu indah.",
                                         "prompt": "Ordena: Esa isla pequeña es hermosa.",
                                         "words": [
                                             "indah",
@@ -12533,7 +12533,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                     {
                                         "vocabId": "a2u34_kebiasaan",
                                         "type": "order",
-                                        "explanation": "La oración practica «kebiasaan» (costumbre).",
+                                        "explanation": "La frase completa es: Kebiasaan itu berbeda di setiap daerah.",
                                         "prompt": "Ordena: Esa costumbre es diferente en cada región.",
                                         "words": [
                                             "daerah",
@@ -12589,7 +12589,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                     {
                                         "vocabId": "a2u34_menyela",
                                         "type": "order",
-                                        "explanation": "La oración practica «menyela» (interrumpir).",
+                                        "explanation": "La frase completa es: Jangan menyela pembicaraan orang lain.",
                                         "prompt": "Ordena: No interrumpas la conversación de otra persona.",
                                         "words": [
                                             "lain",
@@ -12981,7 +12981,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                     {
                                         "vocabId": "a2u35_investasi",
                                         "type": "order",
-                                        "explanation": "La oración practica «investasi» (inversión).",
+                                        "explanation": "La frase completa es: Investasi itu memiliki risiko.",
                                         "prompt": "Ordena: Esa inversión tiene riesgos.",
                                         "words": [
                                             "risiko",
@@ -13033,7 +13033,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                     {
                                         "vocabId": "a2u35_biaya_tak_terduga",
                                         "type": "order",
-                                        "explanation": "La oración practica «biaya tak terduga» (gasto imprevisto).",
+                                        "explanation": "La frase completa es: Kami menyiapkan uang untuk biaya tak terduga.",
                                         "prompt": "Ordena: Preparamos dinero para gastos imprevistos.",
                                         "words": [
                                             "terduga",
@@ -13431,7 +13431,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                     {
                                         "vocabId": "a2u36_alternatif",
                                         "type": "order",
-                                        "explanation": "La oración practica «alternatif» (alternativa).",
+                                        "explanation": "La frase completa es: Kita perlu mencari alternatif lain.",
                                         "prompt": "Ordena: Necesitamos buscar otra alternativa.",
                                         "words": [
                                             "lain",
@@ -13485,7 +13485,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                     {
                                         "vocabId": "a2u36_langkah_berikutnya",
                                         "type": "order",
-                                        "explanation": "La oración practica «langkah berikutnya» (siguiente paso).",
+                                        "explanation": "La frase completa es: Langkah berikutnya adalah menghubungi petugas.",
                                         "prompt": "Ordena: El siguiente paso es contactar al empleado.",
                                         "words": [
                                             "petugas",

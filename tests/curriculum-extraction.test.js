@@ -90,7 +90,7 @@ test('service worker precaches both data files and invalidates the previous cach
   const listeners = {};
   const cached = new Map();
   const cache = {
-    async addAll(urls) { urls.forEach(url => cached.set(String(url.url || url), { url: String(url.url || url) })); },
+    async add(request) { cached.set(String(request.url || request), { url: String(request.url || request) }); },
     async match(request) { return cached.get(String(request.url || request)); },
     async put(request, response) { cached.set(String(request.url || request), response); }
   };

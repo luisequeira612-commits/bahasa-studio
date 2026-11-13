@@ -144,7 +144,7 @@ test('service worker installs its declared cache, removes only older app caches 
     caches: {
       async open(name) {
         if (!cacheStore.has(name)) cacheStore.set(name, {
-          async addAll(assets) { installedAssets = assets; }
+          async add(asset) { installedAssets.push(asset); }
         });
         return cacheStore.get(name);
       },

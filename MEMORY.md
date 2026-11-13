@@ -17,7 +17,7 @@
 - La verificación post-merge de #519 corresponde al SHA exacto `ac77198400c7ac71ec4eaab85414f56cb3b01f2a`; Regression 74/74, calidad 10/10 y Pages build/reporte/deploy en éxito.
 
 ## Remediación de lecciones — 13 nov 2026
-- PR de remediación en curso: B2 U1–U3 pasan de 3 a 5 lecciones explícitas cada una, sin añadir IDs de vocabulario nuevos. Las dos lecciones nuevas de cada unidad están orientadas a recuperación espaciada, contraste de construcciones e integración contextual. El objetivo no es inflar el contador: las lecciones tienen objetivos, gramática, vocabulario distribuido y ejercicios propios.
+- PR de remediación en curso: B2 U1–U3 pasan de 3 a 5 lecciones explícitas cada una (26 ejercicios por unidad), sin añadir IDs de vocabulario nuevos. Las dos lecciones nuevas de cada unidad están orientadas a recuperación espaciada, contraste de construcciones e integración contextual. El objetivo no es inflar el contador: las lecciones tienen objetivos, gramática, vocabulario distribuido y ejercicios propios.
 - B2 U1–U3 deben quedar verificadas con 5 lecciones explícitas en tests; no se cuentan los repasos automáticos del motor.
 
 ## B2 U5 y decisiones pendientes

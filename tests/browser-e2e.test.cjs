@@ -1013,7 +1013,7 @@ test('listen-and-type exercises support optional pronunciation practice against 
   }
 });
 
-test('voice test speaks using the system fallback when no Indonesian voice is installed', async () => {
+test('voice test does not use a system fallback when no Indonesian voice is installed', async () => {
   const { server, url } = await startServer();
   const context = await browser.newContext({ serviceWorkers: 'block' });
   const page = await context.newPage();
@@ -1025,14 +1025,7 @@ test('voice test speaks using the system fallback when no Indonesian voice is in
       value: {
         cancel() {},
         getVoices() { return []; },
-        speak(utterance) {
-          window.__spokenUtterances.push({
-            text: utterance.text,
-            lang: utterance.lang,
-            rate: utterance.rate,
-            voice: utterance.voice ? utterance.voice.name : null
-          });
-        },
+        speak(utterance) { window.__spokenUtterances.push(utterance); },
         onvoiceschanged: null
       }
     });
@@ -1050,12 +1043,8 @@ test('voice test speaks using the system fallback when no Indonesian voice is in
       utterances: window.__spokenUtterances,
       status: document.getElementById('voiceTestStatus').textContent
     }));
-    assert.equal(result.utterances.length, 1);
-    assert.equal(result.utterances[0].text, 'Halo! Bahasa Indonesia.');
-    assert.equal(result.utterances[0].lang, 'id-ID');
-    assert.equal(result.utterances[0].rate, 0.85);
-    assert.equal(result.utterances[0].voice, null);
-    assert.match(result.status, /voz predeterminada del sistema/);
+    assert.equal(result.utterances.length, 0);
+    assert.match(result.status, /no se reproducirá audio para evitar una pronunciación incorrecta/i);
   } finally {
     await context.close();
     await new Promise(resolve => server.close(resolve));

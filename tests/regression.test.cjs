@@ -1459,11 +1459,11 @@ test('U24–U32 audit tracker vocabulary and examples stay synchronized with the
 });
 
 
-test('voice test explains and attempts the system fallback when no Indonesian voice is installed', () => {
+test('voice test explains audio is disabled when no Indonesian voice is installed', () => {
   assert.match(html, /id="voiceTestStatus"/);
-  assert.match(html, /Se intentará usar la voz predeterminada del sistema con el idioma id-ID/);
-  assert.match(html, /testVoice\(\) \{[\s\S]*?this\.speak\("Halo! Bahasa Indonesia\."\);/);
-  assert.doesNotMatch(html, /emulador genérico del navegador/);
+  assert.match(audioEngineSource, /No se detectó una voz indonesia instalada\. No se reproducirá audio para evitar una pronunciación incorrecta/);
+  assert.match(audioEngineSource, /testVoice\(\) \{[\s\S]*?this\.speak\("Halo! Bahasa Indonesia\."\);/);
+  assert.doesNotMatch(audioEngineSource, /voz predeterminada del sistema con el idioma id-ID/);
 });
 
 test('listen-and-type exercises also offer optional pronunciation practice using the expected phrase', () => {

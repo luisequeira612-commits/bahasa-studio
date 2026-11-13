@@ -249,7 +249,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                         { vocabId: 'a2u2_tadi_pagi', type: 'write', prompt: 'Escribe tres oraciones breves: una sobre algo que hiciste esta mañana, otra sobre algo que sigue en curso y otra sobre la semana que viene.', hint: 'Puedes combinar tadi pagi, masih y akan ... minggu depan.', modelAnswer: 'Saya belajar tadi pagi. Saya masih belajar sekarang. Saya akan belajar lagi minggu depan.', explanation: 'La secuencia obliga a recuperar expresiones de pasado reciente, continuidad y futuro.' }
                                     ]
                                 }
-]
+                            ]
                         },
                         {
                             id: 'a2_u3',
@@ -334,7 +334,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                         { vocabId: 'a2u3_akhirnya', type: 'write', prompt: 'Escribe una secuencia de tres oraciones sobre tu mañana. Usa un conector para empezar, otro para continuar y akhirnya para cerrar.', hint: 'Puedes reutilizar pertama, setelah itu y akhirnya.', modelAnswer: 'Pertama, saya sarapan. Setelah itu, saya belajar. Akhirnya, saya pergi.', explanation: 'La producción recupera los conectores en un contexto propio y mantiene el orden temporal.' }
                                     ]
                                 }
-]
+                            ]
                         },
                         {
                             id: 'a2_u4',
@@ -421,7 +421,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                         { vocabId: 'a2u4_sibuk', type: 'write', prompt: 'Describe tu jornada con tres oraciones: presenta tu horario, indica cuándo termina una actividad y explica si tu día está ocupado o tranquilo.', hint: 'Puedes usar jadwal, mulai, selesai, sibuk o santai.', modelAnswer: 'Jadwal saya mulai pukul delapan. Kegiatan selesai pukul dua belas. Hari ini saya santai.', explanation: 'La producción integra horarios, actividades y una descripción personal.' }
                                     ]
                                 }
-]
+                            ]
                         },
                         {
                             "id": "a2_u5",

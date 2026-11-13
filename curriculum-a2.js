@@ -10244,6 +10244,156 @@ window.BAHASA_CURRICULUM_A2 = {
                                         }
                                     ]
                                 }
+                            ,
+                                {
+                                    "title": "Lección 5: Recuperación espaciada de compras y atención al cliente",
+                                    "objective": "Integra pedidos, envíos, garantías, devoluciones y calidad para resolver una consulta de compra.",
+                                    "grammar": "Recupera las doce palabras de la unidad mediante ejemplos completos y actividades variadas. No introduce vocabulario nuevo; refuerza las formas y los contextos ya trabajados.",
+                                    "vocabIds": [],
+                                    "reviewVocabIds": [
+                                        "a2u29_pelanggan",
+                                        "a2u29_keluhan",
+                                        "a2u29_pengembalian",
+                                        "a2u29_garansi",
+                                        "a2u29_kualitas",
+                                        "a2u29_model",
+                                        "a2u29_stok",
+                                        "a2u29_pesanan",
+                                        "a2u29_pengiriman",
+                                        "a2u29_kemasan",
+                                        "a2u29_penggantian",
+                                        "a2u29_layanan_pelanggan"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "a2u29_pelanggan",
+                                            "type": "mc",
+                                            "prompt": "En este contexto, ¿qué significa «pelanggan»?",
+                                            "options": [
+                                                "Cliente",
+                                                "Queja",
+                                                "Devolución"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "«pelanggan» corresponde a «Cliente» en el vocabulario de esta unidad."
+                                        },
+                                        {
+                                            "vocabId": "a2u29_keluhan",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce al indonesio: «Presento una queja al empleado.»",
+                                            "answer": "Saya menyampaikan keluhan kepada petugas.",
+                                            "explanation": "La respuesta recupera «keluhan» en una oración contextualizada."
+                                        },
+                                        {
+                                            "vocabId": "a2u29_pengembalian",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la oración completa.",
+                                            "answer": "Pengembalian barang harus disertai struk.",
+                                            "explanation": "La oración permite recuperar «pengembalian» en contexto."
+                                        },
+                                        {
+                                            "vocabId": "a2u29_garansi",
+                                            "type": "write",
+                                            "prompt": "Escribe una oración propia usando «garansi».",
+                                            "hint": "Usa el ejemplo de la unidad como modelo: Produk ini memiliki garansi satu tahun.",
+                                            "modelAnswer": "Produk ini memiliki garansi satu tahun.",
+                                            "explanation": "La producción recupera «garansi» en una oración completa."
+                                        },
+                                        {
+                                            "vocabId": "a2u29_kualitas",
+                                            "type": "order",
+                                            "prompt": "Ordena las palabras para reconstruir el ejemplo de «kualitas».",
+                                            "words": [
+                                                "baik",
+                                                "sangat",
+                                                "itu",
+                                                "produk",
+                                                "Kualitas"
+                                            ],
+                                            "correctOrder": [
+                                                "Kualitas",
+                                                "produk",
+                                                "itu",
+                                                "sangat",
+                                                "baik"
+                                            ],
+                                            "explanation": "La secuencia correcta es: Kualitas produk itu sangat baik."
+                                        },
+                                        {
+                                            "vocabId": "a2u29_model",
+                                            "type": "mc",
+                                            "prompt": "En este contexto, ¿qué significa «model»?",
+                                            "options": [
+                                                "Modelo",
+                                                "Existencias",
+                                                "Pedido"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "«model» corresponde a «Modelo» en el vocabulario de esta unidad."
+                                        },
+                                        {
+                                            "vocabId": "a2u29_stok",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce al indonesio: «Todavía hay existencias suficientes de ese producto.»",
+                                            "answer": "Stok barang itu masih cukup.",
+                                            "explanation": "La respuesta recupera «stok» en una oración contextualizada."
+                                        },
+                                        {
+                                            "vocabId": "a2u29_pesanan",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la oración completa.",
+                                            "answer": "Pesanan saya tiba hari ini.",
+                                            "explanation": "La oración permite recuperar «pesanan» en contexto."
+                                        },
+                                        {
+                                            "vocabId": "a2u29_pengiriman",
+                                            "type": "write",
+                                            "prompt": "Escribe una oración propia usando «pengiriman».",
+                                            "hint": "Usa el ejemplo de la unidad como modelo: Pengiriman membutuhkan dua hari.",
+                                            "modelAnswer": "Pengiriman membutuhkan dua hari.",
+                                            "explanation": "La producción recupera «pengiriman» en una oración completa."
+                                        },
+                                        {
+                                            "vocabId": "a2u29_kemasan",
+                                            "type": "order",
+                                            "prompt": "Ordena las palabras para reconstruir el ejemplo de «kemasan».",
+                                            "words": [
+                                                "lingkungan",
+                                                "ramah",
+                                                "ini",
+                                                "produk",
+                                                "Kemasan"
+                                            ],
+                                            "correctOrder": [
+                                                "Kemasan",
+                                                "produk",
+                                                "ini",
+                                                "ramah",
+                                                "lingkungan"
+                                            ],
+                                            "explanation": "La secuencia correcta es: Kemasan produk ini ramah lingkungan."
+                                        },
+                                        {
+                                            "vocabId": "a2u29_penggantian",
+                                            "type": "mc",
+                                            "prompt": "En este contexto, ¿qué significa «penggantian»?",
+                                            "options": [
+                                                "Sustitución",
+                                                "Atención al cliente",
+                                                "Cliente"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "«penggantian» corresponde a «Sustitución» en el vocabulario de esta unidad."
+                                        },
+                                        {
+                                            "vocabId": "a2u29_layanan_pelanggan",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce al indonesio: «La atención al cliente está abierta hasta las cinco.»",
+                                            "answer": "Layanan pelanggan buka sampai pukul lima.",
+                                            "explanation": "La respuesta recupera «layanan pelanggan» en una oración contextualizada."
+                                        }
+                                    ]
+                                }
                             ]
                         },
                         {
@@ -10539,6 +10689,154 @@ window.BAHASA_CURRICULUM_A2 = {
                                             "hint": "Puedes tomar como modelo: Saya membaca ulasan film itu.",
                                             "modelAnswer": "Saya membaca ulasan film itu.",
                                             "explanation": "Usa el vocabulario en una oración completa."
+                                        }
+                                    ]
+                                }
+                            ,
+                                {
+                                    "title": "Lección 5: Recuperación espaciada de arte y espectáculos",
+                                    "objective": "Relaciona obras, artistas, actuaciones, personajes y críticas para describir una producción artística.",
+                                    "grammar": "Recupera las doce palabras de la unidad mediante ejemplos completos y actividades variadas. No introduce vocabulario nuevo; refuerza las formas y los contextos ya trabajados.",
+                                    "vocabIds": [],
+                                    "reviewVocabIds": [
+                                        "a2u30_lukisan",
+                                        "a2u30_pelukis",
+                                        "a2u30_pementasan",
+                                        "a2u30_aktor",
+                                        "a2u30_sutradara",
+                                        "a2u30_penonton",
+                                        "a2u30_alur_cerita",
+                                        "a2u30_tokoh",
+                                        "a2u30_adegan",
+                                        "a2u30_ulasan",
+                                        "a2u30_karya_seni",
+                                        "a2u30_galeri"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "a2u30_lukisan",
+                                            "type": "mc",
+                                            "prompt": "En este contexto, ¿qué significa «lukisan»?",
+                                            "options": [
+                                                "Pintura",
+                                                "Pintor",
+                                                "Puesta en escena"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "«lukisan» corresponde a «Pintura» en el vocabulario de esta unidad."
+                                        },
+                                        {
+                                            "vocabId": "a2u30_pelukis",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce al indonesio: «Ese pintor vive en Yogyakarta.»",
+                                            "answer": "Pelukis itu tinggal di Yogyakarta.",
+                                            "explanation": "La respuesta recupera «pelukis» en una oración contextualizada."
+                                        },
+                                        {
+                                            "vocabId": "a2u30_pementasan",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la oración completa.",
+                                            "answer": "Pementasan dimulai pukul delapan.",
+                                            "explanation": "La oración permite recuperar «pementasan» en contexto."
+                                        },
+                                        {
+                                            "vocabId": "a2u30_aktor",
+                                            "type": "write",
+                                            "prompt": "Escribe una oración propia usando «aktor».",
+                                            "hint": "Usa el ejemplo de la unidad como modelo: Aktor itu sangat terkenal.",
+                                            "modelAnswer": "Aktor itu sangat terkenal.",
+                                            "explanation": "La producción recupera «aktor» en una oración completa."
+                                        },
+                                        {
+                                            "vocabId": "a2u30_sutradara",
+                                            "type": "order",
+                                            "prompt": "Ordena las palabras para reconstruir el ejemplo de «sutradara».",
+                                            "words": [
+                                                "filmnya",
+                                                "ide",
+                                                "menjelaskan",
+                                                "Sutradara"
+                                            ],
+                                            "correctOrder": [
+                                                "Sutradara",
+                                                "menjelaskan",
+                                                "ide",
+                                                "filmnya"
+                                            ],
+                                            "explanation": "La secuencia correcta es: Sutradara menjelaskan ide filmnya."
+                                        },
+                                        {
+                                            "vocabId": "a2u30_penonton",
+                                            "type": "mc",
+                                            "prompt": "En este contexto, ¿qué significa «penonton»?",
+                                            "options": [
+                                                "Espectador",
+                                                "Trama",
+                                                "Personaje"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "«penonton» corresponde a «Espectador» en el vocabulario de esta unidad."
+                                        },
+                                        {
+                                            "vocabId": "a2u30_alur_cerita",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce al indonesio: «La trama de esa película es fácil de entender.»",
+                                            "answer": "Alur cerita film itu mudah dipahami.",
+                                            "explanation": "La respuesta recupera «alur cerita» en una oración contextualizada."
+                                        },
+                                        {
+                                            "vocabId": "a2u30_tokoh",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la oración completa.",
+                                            "answer": "Tokoh utama sangat berani.",
+                                            "explanation": "La oración permite recuperar «tokoh» en contexto."
+                                        },
+                                        {
+                                            "vocabId": "a2u30_adegan",
+                                            "type": "write",
+                                            "prompt": "Escribe una oración propia usando «adegan».",
+                                            "hint": "Usa el ejemplo de la unidad como modelo: Adegan terakhir sangat menyentuh.",
+                                            "modelAnswer": "Adegan terakhir sangat menyentuh.",
+                                            "explanation": "La producción recupera «adegan» en una oración completa."
+                                        },
+                                        {
+                                            "vocabId": "a2u30_ulasan",
+                                            "type": "order",
+                                            "prompt": "Ordena las palabras para reconstruir el ejemplo de «ulasan».",
+                                            "words": [
+                                                "itu",
+                                                "film",
+                                                "ulasan",
+                                                "membaca",
+                                                "Saya"
+                                            ],
+                                            "correctOrder": [
+                                                "Saya",
+                                                "membaca",
+                                                "ulasan",
+                                                "film",
+                                                "itu"
+                                            ],
+                                            "explanation": "La secuencia correcta es: Saya membaca ulasan film itu."
+                                        },
+                                        {
+                                            "vocabId": "a2u30_karya_seni",
+                                            "type": "mc",
+                                            "prompt": "En este contexto, ¿qué significa «karya seni»?",
+                                            "options": [
+                                                "Obra de arte",
+                                                "Galería",
+                                                "Pintura"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "«karya seni» corresponde a «Obra de arte» en el vocabulario de esta unidad."
+                                        },
+                                        {
+                                            "vocabId": "a2u30_galeri",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce al indonesio: «Esa galería abre todos los días.»",
+                                            "answer": "Galeri itu buka setiap hari.",
+                                            "explanation": "La respuesta recupera «galeri» en una oración contextualizada."
                                         }
                                     ]
                                 }
@@ -10838,6 +11136,154 @@ window.BAHASA_CURRICULUM_A2 = {
                                         }
                                     ]
                                 }
+                            ,
+                                {
+                                    "title": "Lección 5: Recuperación espaciada de excursiones y campamentos",
+                                    "objective": "Integra rutas, equipo, provisiones, orientación y normas para describir una salida de montaña.",
+                                    "grammar": "Recupera las doce palabras de la unidad mediante ejemplos completos y actividades variadas. No introduce vocabulario nuevo; refuerza las formas y los contextos ya trabajados.",
+                                    "vocabIds": [],
+                                    "reviewVocabIds": [
+                                        "a2u31_pendakian",
+                                        "a2u31_jalur",
+                                        "a2u31_puncak",
+                                        "a2u31_lereng",
+                                        "a2u31_perkemahan",
+                                        "a2u31_tenda",
+                                        "a2u31_perlengkapan",
+                                        "a2u31_kompas",
+                                        "a2u31_persediaan",
+                                        "a2u31_jejak",
+                                        "a2u31_pemandu",
+                                        "a2u31_berkemah"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "a2u31_pendakian",
+                                            "type": "mc",
+                                            "prompt": "En este contexto, ¿qué significa «pendakian»?",
+                                            "options": [
+                                                "Excursión de montaña",
+                                                "Ruta",
+                                                "Cumbre"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "«pendakian» corresponde a «Excursión de montaña» en el vocabulario de esta unidad."
+                                        },
+                                        {
+                                            "vocabId": "a2u31_jalur",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce al indonesio: «Esta ruta es bastante exigente.»",
+                                            "answer": "Jalur ini cukup menantang.",
+                                            "explanation": "La respuesta recupera «jalur» en una oración contextualizada."
+                                        },
+                                        {
+                                            "vocabId": "a2u31_puncak",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la oración completa.",
+                                            "answer": "Kami tiba di puncak pukul sepuluh.",
+                                            "explanation": "La oración permite recuperar «puncak» en contexto."
+                                        },
+                                        {
+                                            "vocabId": "a2u31_lereng",
+                                            "type": "write",
+                                            "prompt": "Escribe una oración propia usando «lereng».",
+                                            "hint": "Usa el ejemplo de la unidad como modelo: Lereng gunung itu sangat curam.",
+                                            "modelAnswer": "Lereng gunung itu sangat curam.",
+                                            "explanation": "La producción recupera «lereng» en una oración completa."
+                                        },
+                                        {
+                                            "vocabId": "a2u31_perkemahan",
+                                            "type": "order",
+                                            "prompt": "Ordena las palabras para reconstruir el ejemplo de «perkemahan».",
+                                            "words": [
+                                                "sungai",
+                                                "dekat",
+                                                "berada",
+                                                "Perkemahan"
+                                            ],
+                                            "correctOrder": [
+                                                "Perkemahan",
+                                                "berada",
+                                                "dekat",
+                                                "sungai"
+                                            ],
+                                            "explanation": "La secuencia correcta es: Perkemahan berada dekat sungai."
+                                        },
+                                        {
+                                            "vocabId": "a2u31_tenda",
+                                            "type": "mc",
+                                            "prompt": "En este contexto, ¿qué significa «tenda»?",
+                                            "options": [
+                                                "Tienda de campaña",
+                                                "Equipo",
+                                                "Brújula"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "«tenda» corresponde a «Tienda de campaña» en el vocabulario de esta unidad."
+                                        },
+                                        {
+                                            "vocabId": "a2u31_perlengkapan",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce al indonesio: «El equipo de montaña debe estar completo.»",
+                                            "answer": "Perlengkapan pendakian harus lengkap.",
+                                            "explanation": "La respuesta recupera «perlengkapan» en una oración contextualizada."
+                                        },
+                                        {
+                                            "vocabId": "a2u31_kompas",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la oración completa.",
+                                            "answer": "Kompas membantu kami menemukan arah.",
+                                            "explanation": "La oración permite recuperar «kompas» en contexto."
+                                        },
+                                        {
+                                            "vocabId": "a2u31_persediaan",
+                                            "type": "write",
+                                            "prompt": "Escribe una oración propia usando «persediaan».",
+                                            "hint": "Usa el ejemplo de la unidad como modelo: Persediaan air harus cukup.",
+                                            "modelAnswer": "Persediaan air harus cukup.",
+                                            "explanation": "La producción recupera «persediaan» en una oración completa."
+                                        },
+                                        {
+                                            "vocabId": "a2u31_jejak",
+                                            "type": "order",
+                                            "prompt": "Ordena las palabras para reconstruir el ejemplo de «jejak».",
+                                            "words": [
+                                                "tanah",
+                                                "di",
+                                                "jejak",
+                                                "melihat",
+                                                "Kami"
+                                            ],
+                                            "correctOrder": [
+                                                "Kami",
+                                                "melihat",
+                                                "jejak",
+                                                "di",
+                                                "tanah"
+                                            ],
+                                            "explanation": "La secuencia correcta es: Kami melihat jejak di tanah."
+                                        },
+                                        {
+                                            "vocabId": "a2u31_pemandu",
+                                            "type": "mc",
+                                            "prompt": "En este contexto, ¿qué significa «pemandu»?",
+                                            "options": [
+                                                "Guía",
+                                                "Acampar",
+                                                "Excursión de montaña"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "«pemandu» corresponde a «Guía» en el vocabulario de esta unidad."
+                                        },
+                                        {
+                                            "vocabId": "a2u31_berkemah",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce al indonesio: «Esa familia acampa en el bosque.»",
+                                            "answer": "Keluarga itu berkemah di hutan.",
+                                            "explanation": "La respuesta recupera «berkemah» en una oración contextualizada."
+                                        }
+                                    ]
+                                }
                             ]
                         },
                         {
@@ -11133,6 +11579,156 @@ window.BAHASA_CURRICULUM_A2 = {
                                             "hint": "Puedes tomar como modelo: Persiapan acara dimulai pagi ini.",
                                             "modelAnswer": "Persiapan acara dimulai pagi ini.",
                                             "explanation": "Usa el vocabulario en una oración completa."
+                                        }
+                                    ]
+                                }
+                            ,
+                                {
+                                    "title": "Lección 5: Recuperación espaciada de celebraciones familiares",
+                                    "objective": "Relaciona bodas, nacimientos, compromisos, recuerdos, invitados y preparativos para describir una celebración familiar.",
+                                    "grammar": "Recupera las doce palabras de la unidad mediante ejemplos completos y actividades variadas. No introduce vocabulario nuevo; refuerza las formas y los contextos ya trabajados.",
+                                    "vocabIds": [],
+                                    "reviewVocabIds": [
+                                        "a2u32_pernikahan",
+                                        "a2u32_kelahiran",
+                                        "a2u32_pertunangan",
+                                        "a2u32_peresmian",
+                                        "a2u32_peringatan",
+                                        "a2u32_kenangan",
+                                        "a2u32_hadiah",
+                                        "a2u32_ucapan_selamat",
+                                        "a2u32_kehadiran",
+                                        "a2u32_persiapan",
+                                        "a2u32_tamu_undangan",
+                                        "a2u32_acara_keluarga"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "a2u32_pernikahan",
+                                            "type": "mc",
+                                            "prompt": "En este contexto, ¿qué significa «pernikahan»?",
+                                            "options": [
+                                                "Boda",
+                                                "Nacimiento",
+                                                "Compromiso"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "«pernikahan» corresponde a «Boda» en el vocabulario de esta unidad."
+                                        },
+                                        {
+                                            "vocabId": "a2u32_kelahiran",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce al indonesio: «La familia celebra el nacimiento de ese bebé.»",
+                                            "answer": "Kelahiran bayi itu dirayakan keluarga.",
+                                            "explanation": "La respuesta recupera «kelahiran» en una oración contextualizada."
+                                        },
+                                        {
+                                            "vocabId": "a2u32_pertunangan",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la oración completa.",
+                                            "answer": "Pertunangan mereka diadakan bulan lalu.",
+                                            "explanation": "La oración permite recuperar «pertunangan» en contexto."
+                                        },
+                                        {
+                                            "vocabId": "a2u32_peresmian",
+                                            "type": "write",
+                                            "prompt": "Escribe una oración propia usando «peresmian».",
+                                            "hint": "Usa el ejemplo de la unidad como modelo: Peresmian gedung baru dihadiri warga.",
+                                            "modelAnswer": "Peresmian gedung baru dihadiri warga.",
+                                            "explanation": "La producción recupera «peresmian» en una oración completa."
+                                        },
+                                        {
+                                            "vocabId": "a2u32_peringatan",
+                                            "type": "order",
+                                            "prompt": "Ordena las palabras para reconstruir el ejemplo de «peringatan».",
+                                            "words": [
+                                                "khidmat",
+                                                "berlangsung",
+                                                "itu",
+                                                "hari",
+                                                "Peringatan"
+                                            ],
+                                            "correctOrder": [
+                                                "Peringatan",
+                                                "hari",
+                                                "itu",
+                                                "berlangsung",
+                                                "khidmat"
+                                            ],
+                                            "explanation": "La secuencia correcta es: Peringatan hari itu berlangsung khidmat."
+                                        },
+                                        {
+                                            "vocabId": "a2u32_kenangan",
+                                            "type": "mc",
+                                            "prompt": "En este contexto, ¿qué significa «kenangan»?",
+                                            "options": [
+                                                "Recuerdo",
+                                                "Regalo",
+                                                "Felicitación"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "«kenangan» corresponde a «Recuerdo» en el vocabulario de esta unidad."
+                                        },
+                                        {
+                                            "vocabId": "a2u32_hadiah",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce al indonesio: «Le doy un regalo a un amigo.»",
+                                            "answer": "Saya memberi hadiah kepada teman.",
+                                            "explanation": "La respuesta recupera «hadiah» en una oración contextualizada."
+                                        },
+                                        {
+                                            "vocabId": "a2u32_ucapan_selamat",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la oración completa.",
+                                            "answer": "Kami mengirim ucapan selamat kepada pasangan itu.",
+                                            "explanation": "La oración permite recuperar «ucapan selamat» en contexto."
+                                        },
+                                        {
+                                            "vocabId": "a2u32_kehadiran",
+                                            "type": "write",
+                                            "prompt": "Escribe una oración propia usando «kehadiran».",
+                                            "hint": "Usa el ejemplo de la unidad como modelo: Kehadiran semua tamu sangat penting.",
+                                            "modelAnswer": "Kehadiran semua tamu sangat penting.",
+                                            "explanation": "La producción recupera «kehadiran» en una oración completa."
+                                        },
+                                        {
+                                            "vocabId": "a2u32_persiapan",
+                                            "type": "order",
+                                            "prompt": "Ordena las palabras para reconstruir el ejemplo de «persiapan».",
+                                            "words": [
+                                                "ini",
+                                                "pagi",
+                                                "dimulai",
+                                                "acara",
+                                                "Persiapan"
+                                            ],
+                                            "correctOrder": [
+                                                "Persiapan",
+                                                "acara",
+                                                "dimulai",
+                                                "pagi",
+                                                "ini"
+                                            ],
+                                            "explanation": "La secuencia correcta es: Persiapan acara dimulai pagi ini."
+                                        },
+                                        {
+                                            "vocabId": "a2u32_tamu_undangan",
+                                            "type": "mc",
+                                            "prompt": "En este contexto, ¿qué significa «tamu undangan»?",
+                                            "options": [
+                                                "Invitado",
+                                                "Evento familiar",
+                                                "Boda"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "«tamu undangan» corresponde a «Invitado» en el vocabulario de esta unidad."
+                                        },
+                                        {
+                                            "vocabId": "a2u32_acara_keluarga",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce al indonesio: «El evento familiar se celebra en casa.»",
+                                            "answer": "Acara keluarga berlangsung di rumah.",
+                                            "explanation": "La respuesta recupera «acara keluarga» en una oración contextualizada."
                                         }
                                     ]
                                 }

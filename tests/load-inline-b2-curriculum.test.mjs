@@ -31,19 +31,19 @@ function allExercises(unit) {
   return (unit.lessons || []).flatMap((lesson) => lesson.exercises || []);
 }
 
-test('B2 U1 implements the approved three-lesson design with 16 exercises and five types', async () => {
+test('B2 U1 implements five authored lessons with 26 exercises and five types', async () => {
   const { b2 } = await loadCurricula();
   const unit = b2.units.find((item) => item.id === 'b2_u1');
   assert.ok(unit, 'B2 U1 must exist');
   assert.match(unit.title, /voz.*agente.*foco/i);
-  assert.equal(unit.lessons.length, 3);
+  assert.equal(unit.lessons.length, 5);
   const exercises = allExercises(unit);
-  assert.equal(exercises.length, 16);
+  assert.equal(exercises.length, 26);
   assert.deepEqual([...new Set(exercises.map((exercise) => exercise.type))].sort(),
     ['listen', 'mc', 'order', 'translate_es_id', 'write']);
-  assert.deepEqual(unit.lessons.map((lesson) => lesson.exercises.length), [5, 5, 6]);
+  assert.deepEqual(unit.lessons.map((lesson) => lesson.exercises.length), [5, 5, 6, 5, 5]);
   assert.ok(exercises.filter((exercise) => exercise.type === 'write' && exercise.hint?.trim()).length >= 1);
-  assert.ok(unit.lessons.every((lesson) => lesson.vocabIds.length === 0));
+  assert.ok(unit.lessons.some((lesson) => lesson.vocabIds.length > 0), 'U1 must distribute its existing vocabulary across explicit lessons');
 });
 
 test('B2 U1 reuses only the nine canonical B1 vocabulary IDs without changing their forms or glosses', async () => {
@@ -134,16 +134,16 @@ test('tap translation fallback includes only implemented B2 U1/U2/U3/U4/U5 autho
     'only implemented B2 U1/U2/U3/U4/U5 translation exercises may be used; future B2 units remain excluded');
 });
 
-test('B2 U2 implements the approved ku-/kau- design with 16 exercises and five types', async () => {
+test('B2 U2 implements five authored lessons with 26 exercises and five types', async () => {
   const { b2, indexSource } = await loadCurricula();
   const unit = b2.units.find((item) => item.id === 'b2_u2');
   assert.ok(unit, 'B2 U2 must exist');
-  assert.equal(unit.lessons.length, 3);
+  assert.equal(unit.lessons.length, 5);
   assert.equal(unit.vocab.length, 4);
   assert.deepEqual(unit.vocab.map((word) => word.id), ['b2u2_kubaca', 'b2u2_kaubaca', 'b2u2_kutulis', 'b2u2_kautulis']);
-  assert.deepEqual(unit.lessons.map((lesson) => lesson.exercises.length), [5, 5, 6]);
+  assert.deepEqual(unit.lessons.map((lesson) => lesson.exercises.length), [5, 5, 6, 5, 5]);
   const exercises = allExercises(unit);
-  assert.equal(exercises.length, 16);
+  assert.equal(exercises.length, 26);
   assert.deepEqual([...new Set(exercises.map((exercise) => exercise.type))].sort(),
     ['listen', 'mc', 'order', 'translate_es_id', 'write']);
   assert.ok(exercises.filter((exercise) => exercise.type === 'write' && exercise.hint?.trim()).length >= 2);
@@ -159,14 +159,14 @@ test('B2 U2 implements the approved ku-/kau- design with 16 exercises and five t
 
 
 
-test('B2 U3 integrates U1/U2 with 16 exercises, five types and no new vocabulary IDs', async () => {
+test('B2 U3 integrates U1/U2 with five authored lessons, 26 exercises, five types and no new vocabulary IDs', async () => {
   const { b1, b2 } = await loadCurricula();
   const unit = b2.units.find((item) => item.id === 'b2_u3');
   assert.ok(unit, 'B2 U3 must exist');
-  assert.equal(unit.lessons.length, 3);
-  assert.deepEqual(unit.lessons.map((lesson) => lesson.exercises.length), [5, 5, 6]);
+  assert.equal(unit.lessons.length, 5);
+  assert.deepEqual(unit.lessons.map((lesson) => lesson.exercises.length), [5, 5, 6, 5, 5]);
   const exercises = allExercises(unit);
-  assert.equal(exercises.length, 16);
+  assert.equal(exercises.length, 26);
   assert.deepEqual([...new Set(exercises.map((exercise) => exercise.type))].sort(),
     ['listen', 'mc', 'order', 'translate_es_id', 'write']);
   const expectedIds = ['b2u2_kubaca', 'b2u2_kaubaca', 'b2u2_kutulis', 'b2u2_kautulis'];

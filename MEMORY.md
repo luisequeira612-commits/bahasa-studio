@@ -61,4 +61,6 @@
 - Rama `fix/b1-unbiased-exercise-shuffle`, basada en `main` `d3aa7ce93116727786a5ec9abae697dacc33b5b1`. Se confirmaron los cuatro usos sesgados de `sort(() => Math.random() - 0.5)` en `index.html`.
 - Sustituidos por Fisher–Yates; los ejercicios `order` usan `correctOrder` como referencia y evitan mostrar exactamente la solución cuando hay al menos dos tokens distintos.
 - Añadida `tests/exercise-shuffle.test.cjs` con comprobaciones deterministas de las seis permutaciones de tres elementos, no mutación de origen, protección de `order` y los cuatro puntos de uso; el workflow ejecuta esta prueba.
-- No se modifican datos curriculares, IndexedDB, backup JSON v3 ni dependencias. La suite local del repositorio no se ejecutó en este entorno; queda pendiente la verificación de CI sobre el SHA exacto del PR.
+- No se modifican datos curriculares, IndexedDB, backup JSON v3 ni dependencias. La suite local completa no se ejecutó; CI del head exacto `babc1019a5ccfc0b4260a965d520d266e7b891c6` y verificación post-merge en `main` terminaron con éxito, incluidos Regression tests y Pages.
+
+- 13 nov 2026: B4 en preparación en `fix/b4-gemini-request-errors`: cliente común para las tres llamadas opcionales a Gemini, errores HTTP/JSON/red claros y timeout con AbortController; sin reintentos automáticos, llamadas durante el estudio, dependencias nuevas ni cambios de IndexedDB/backup v3. Pendiente de CI y revisión de PR.

@@ -1442,7 +1442,8 @@ test('A2 U7 lesson titles and explanations describe their actual vocabulary grou
     'Lección 1: Enviar, dibujar y tomar',
     'Lección 2: Enseñar, cerrar con llave y freír',
     'Lección 3: Usar, llenar y organizar',
-    'Lección 4: Invitar, borrar y levantar'
+    'Lección 4: Invitar, borrar y levantar',
+    'Lección 5: Recuperación espaciada de verbos con meng-'
   ]);
   assert.match(unit.lessons[0].grammar, /mengirim.*menggambar y mengambil/);
   assert.match(unit.lessons[1].grammar, /mengunci.*mengajar y menggoreng/);

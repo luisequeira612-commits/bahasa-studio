@@ -8,7 +8,7 @@
 
 | Nivel | Unidades implementadas | Lecciones explícitas | Distribución por unidad | Unidades bajo el mínimo |
 |---|---:|---:|---|---:|
-| A1 | 32 | 81 | 16 sin `lessons[]`; 16 con 5; 1 con 6 | 16 |
+| A1 | 32 | 81 | 16 sin `lessons[]`; 15 con 5; 1 con 6 | 16 |
 | A2 | 40 | 200 | 40 con 5 | 0 |
 | B1 | 50 | 144 | 12 con 2; 32 con 3; 6 con 4 | 50 |
 | B2 | 5 | 25 | 5 con 5 | 0 |

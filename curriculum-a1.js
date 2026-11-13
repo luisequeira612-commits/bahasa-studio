@@ -7498,7 +7498,7 @@ window.BAHASA_CURRICULUM_A1 = {
                             lessons: [
                                 {
                                     "title": "Lección 1: Identificar el clima",
-                                    "objective": "Aprende a identificar el clima y usa las formas nuevas en expresiones breves, recuperando lo estudiado anteriormente.",
+                                    "objective": "Aprende a reconocer y usar el vocabulario de esta lección en expresiones breves, recuperando lo estudiado anteriormente.",
                                     "grammar": "Cuaca nombra el tiempo atmosférico y panas describe el calor: Cuaca panas. En indonesio, estas descripciones breves no necesitan añadir un equivalente de «ser» en cada frase.",
                                     "vocabIds": [
                                         "v255",
@@ -7542,7 +7542,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                 },
                                 {
                                     "title": "Lección 2: Hablar del frío y la lluvia",
-                                    "objective": "Aprende a hablar del frío y la lluvia y usa las formas nuevas en expresiones breves, recuperando lo estudiado anteriormente.",
+                                    "objective": "Aprende a reconocer y usar el vocabulario de esta lección en expresiones breves, recuperando lo estudiado anteriormente.",
                                     "grammar": "Dingin describe el frío y hujan expresa lluvia o llover. Para hablar de hoy, la frase Hari ini hujan coloca primero la referencia temporal.",
                                     "vocabIds": [
                                         "v257",
@@ -7647,7 +7647,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                 },
                                 {
                                     "title": "Lección 3: Describir el cielo",
-                                    "objective": "Aprende a describir el cielo y usa las formas nuevas en expresiones breves, recuperando lo estudiado anteriormente.",
+                                    "objective": "Aprende a reconocer y usar el vocabulario de esta lección en expresiones breves, recuperando lo estudiado anteriormente.",
                                     "grammar": "Cerah describe el cielo despejado o soleado y mendung indica que está nublado. Puedes combinar cada adjetivo con cuaca: Cuaca cerah y Cuaca mendung.",
                                     "vocabIds": [
                                         "v259",
@@ -7737,7 +7737,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                 },
                                 {
                                     "title": "Lección 4: Viento y protección",
-                                    "objective": "Aprende a viento y protección y usa las formas nuevas en expresiones breves, recuperando lo estudiado anteriormente.",
+                                    "objective": "Aprende a reconocer y usar el vocabulario de esta lección en expresiones breves, recuperando lo estudiado anteriormente.",
                                     "grammar": "Angin significa viento y payung paraguas. Usa Ini payung saya para señalar un objeto propio; relaciona el paraguas con las condiciones del tiempo.",
                                     "vocabIds": [
                                         "v261",
@@ -8172,7 +8172,7 @@ window.BAHASA_CURRICULUM_A1 = {
                             lessons: [
                                 {
                                     "title": "Lección 1: Autobús y tren",
-                                    "objective": "Aprende a autobús y tren y usa las formas nuevas en expresiones breves, recuperando lo estudiado anteriormente.",
+                                    "objective": "Aprende a reconocer y usar el vocabulario de esta lección en expresiones breves, recuperando lo estudiado anteriormente.",
                                     "grammar": "Bus significa autobús y kereta tren. En los ejemplos aparece naik bus o naik kereta como expresión completa; naik se estudia de forma explícita en la cuarta lección.",
                                     "vocabIds": [
                                         "v263",
@@ -8245,7 +8245,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                 },
                                 {
                                     "title": "Lección 2: Taxi y estación",
-                                    "objective": "Aprende a taxi y estación y usa las formas nuevas en expresiones breves, recuperando lo estudiado anteriormente.",
+                                    "objective": "Aprende a reconocer y usar el vocabulario de esta lección en expresiones breves, recuperando lo estudiado anteriormente.",
                                     "grammar": "Taksi es taxi y stasiun es estación de tren. Aprende a reconocer el medio de transporte y el lugar asociado en expresiones sencillas.",
                                     "vocabIds": [
                                         "v265",
@@ -8315,7 +8315,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                 },
                                 {
                                     "title": "Lección 3: Terminal y bicicleta",
-                                    "objective": "Aprende a terminal y bicicleta y usa las formas nuevas en expresiones breves, recuperando lo estudiado anteriormente.",
+                                    "objective": "Aprende a reconocer y usar el vocabulario de esta lección en expresiones breves, recuperando lo estudiado anteriormente.",
                                     "grammar": "Terminal nombra una terminal de transporte y sepeda una bicicleta. Reutiliza las combinaciones vistas con los medios de transporte y los lugares.",
                                     "vocabIds": [
                                         "v267",
@@ -8405,7 +8405,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                 },
                                 {
                                     "title": "Lección 4: Subir y bajar del transporte",
-                                    "objective": "Aprende a subir y bajar del transporte y usa las formas nuevas en expresiones breves, recuperando lo estudiado anteriormente.",
+                                    "objective": "Aprende a reconocer y usar el vocabulario de esta lección en expresiones breves, recuperando lo estudiado anteriormente.",
                                     "grammar": "Naik expresa subir o tomar un transporte; turun expresa bajar o apearse. Compara Saya naik bus y Saya turun para distinguir ambas acciones.",
                                     "vocabIds": [
                                         "v269",
@@ -8846,7 +8846,7 @@ window.BAHASA_CURRICULUM_A1 = {
                             lessons: [
                                 {
                                     "title": "Lección 1: Ir y venir",
-                                    "objective": "Aprende a ir y venir y usa las formas nuevas en expresiones breves, recuperando lo estudiado anteriormente.",
+                                    "objective": "Aprende a reconocer y usar el vocabulario de esta lección en expresiones breves, recuperando lo estudiado anteriormente.",
                                     "grammar": "Pergi significa ir y datang venir. Puedes añadir una referencia temporal conocida: Saya datang hari ini.",
                                     "vocabIds": [
                                         "v280",
@@ -8931,7 +8931,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                 },
                                 {
                                     "title": "Lección 2: Sentarse y correr",
-                                    "objective": "Aprende a sentarse y correr y usa las formas nuevas en expresiones breves, recuperando lo estudiado anteriormente.",
+                                    "objective": "Aprende a reconocer y usar el vocabulario de esta lección en expresiones breves, recuperando lo estudiado anteriormente.",
                                     "grammar": "Duduk significa sentarse y lari correr. Para expresar una acción sencilla, coloca el sujeto antes del verbo: Saya duduk y Saya lari.",
                                     "vocabIds": [
                                         "v282",
@@ -8992,7 +8992,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                 },
                                 {
                                     "title": "Lección 3: Jugar y tomar",
-                                    "objective": "Aprende a jugar y tomar y usa las formas nuevas en expresiones breves, recuperando lo estudiado anteriormente.",
+                                    "objective": "Aprende a reconocer y usar el vocabulario de esta lección en expresiones breves, recuperando lo estudiado anteriormente.",
                                     "grammar": "Main es una forma coloquial de jugar y ambil significa tomar o agarrar. En ejemplos de la unidad aparece bola como objeto; se introduce formalmente en la siguiente lección.",
                                     "vocabIds": [
                                         "v284",
@@ -9091,7 +9091,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                 },
                                 {
                                     "title": "Lección 4: Pelota y puerta",
-                                    "objective": "Aprende a pelota y puerta y usa las formas nuevas en expresiones breves, recuperando lo estudiado anteriormente.",
+                                    "objective": "Aprende a reconocer y usar el vocabulario de esta lección en expresiones breves, recuperando lo estudiado anteriormente.",
                                     "grammar": "Bola significa pelota y pintu puerta. Reconoce estas palabras como objetos y reutiliza las frases Saya main bola y Pintu di sini.",
                                     "vocabIds": [
                                         "v286",
@@ -9524,7 +9524,7 @@ window.BAHASA_CURRICULUM_A1 = {
                             lessons: [
                                 {
                                     "title": "Lección 1: Capacidad y gustos",
-                                    "objective": "Aprende a capacidad y gustos y usa las formas nuevas en expresiones breves, recuperando lo estudiado anteriormente.",
+                                    "objective": "Aprende a reconocer y usar el vocabulario de esta lección en expresiones breves, recuperando lo estudiado anteriormente.",
                                     "grammar": "Bisa expresa poder o saber hacer y suka expresa gustar. Aprende las combinaciones como bloques: Saya bisa pergi y Saya suka teh.",
                                     "vocabIds": [
                                         "v288",
@@ -9619,7 +9619,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                 },
                                 {
                                     "title": "Lección 2: Deseos y permiso",
-                                    "objective": "Aprende a deseos y permiso y usa las formas nuevas en expresiones breves, recuperando lo estudiado anteriormente.",
+                                    "objective": "Aprende a reconocer y usar el vocabulario de esta lección en expresiones breves, recuperando lo estudiado anteriormente.",
                                     "grammar": "Ingin expresa querer o desear y boleh pregunta por permiso o posibilidad: Saya ingin kopi y Boleh?",
                                     "vocabIds": [
                                         "v290",
@@ -9697,7 +9697,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                 },
                                 {
                                     "title": "Lección 3: Intensidad y cantidad",
-                                    "objective": "Aprende a intensidad y cantidad y usa las formas nuevas en expresiones breves, recuperando lo estudiado anteriormente.",
+                                    "objective": "Aprende a reconocer y usar el vocabulario de esta lección en expresiones breves, recuperando lo estudiado anteriormente.",
                                     "grammar": "Sangat significa muy y sedikit un poco. Colócalos en la expresión para precisar intensidad o cantidad: Saya sangat suka teh y Saya mau sedikit teh.",
                                     "vocabIds": [
                                         "v292",
@@ -9773,7 +9773,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                 },
                                 {
                                     "title": "Lección 4: Sentimientos y compañía",
-                                    "objective": "Aprende a sentimientos y compañía y usa las formas nuevas en expresiones breves, recuperando lo estudiado anteriormente.",
+                                    "objective": "Aprende a reconocer y usar el vocabulario de esta lección en expresiones breves, recuperando lo estudiado anteriormente.",
                                     "grammar": "Senang expresa estar contento y bersama indica compañía: Saya senang y Saya belajar bersama ibu.",
                                     "vocabIds": [
                                         "v294",

@@ -5541,6 +5541,28 @@
             });
         }
 
+        function shuffleArray(items, random = Math.random) {
+            const shuffled = Array.from(items || []);
+            for (let index = shuffled.length - 1; index > 0; index--) {
+                const swapIndex = Math.floor(random() * (index + 1));
+                [shuffled[index], shuffled[swapIndex]] = [shuffled[swapIndex], shuffled[index]];
+            }
+            return shuffled;
+        }
+
+        function shuffleOrderWords(words, correctOrder, random = Math.random) {
+            const shuffled = shuffleArray(words, random);
+            const expected = Array.isArray(correctOrder) ? correctOrder : words;
+            if (shuffled.length > 1 && shuffled.length === expected.length &&
+                shuffled.every((word, index) => word === expected[index])) {
+                const swapIndex = shuffled.findIndex((word, index) => index > 0 && word !== shuffled[0]);
+                if (swapIndex > 0) {
+                    [shuffled[0], shuffled[swapIndex]] = [shuffled[swapIndex], shuffled[0]];
+                }
+            }
+            return shuffled;
+        }
+
         function appendActiveRecallLessons(unit, lessons, targetLessonCount) {
     const reinforcementCount = Math.max(0, targetLessonCount - lessons.length);
     const meanings = [...new Set(unit.vocab.map(word => String(word.esp || '').trim()).filter(Boolean))];
@@ -5621,7 +5643,7 @@
                 const reinforcement = unit.vocab.filter(word => !practicedVocabIds.has(word.id)).flatMap((word, index) => {
                     const distractors = unit.vocab.filter(other => other.id !== word.id).map(other => other.esp)
                         .filter((meaning, i, all) => meaning !== word.esp && all.indexOf(meaning) === i).slice(0, 3);
-                    const options = [word.esp, ...distractors].sort(() => Math.random() - 0.5);
+                    const options = shuffleArray([word.esp, ...distractors);
                     const practice = index % 2 === 0
                         ? { vocabId: word.id, type: 'mc', prompt: '¿Qué significa «' + word.idn + '»?', options, answer: options.indexOf(word.esp), explanation: '«' + word.idn + '» significa «' + word.esp + '».' }
                         : { vocabId: word.id, type: 'translate_es_id', prompt: 'Traduce al indonesio: «' + word.esp + '»', answer: word.idn, explanation: '«' + word.idn + '» significa «' + word.esp + '».' };
@@ -6414,7 +6436,7 @@
                         </div>
                     `;
                 } else if (ex.type === 'order') {
-                    const shuffled = [...ex.words].sort(() => Math.random() - 0.5);
+                    const shuffled = shuffleOrderWords(ex.words, ex.correctOrder);
                     container.innerHTML = `
                         <div>
                             <h3>${App.escapeHtml(ex.prompt)}</h3>
@@ -6428,8 +6450,8 @@
                         </div>
                     `;
                 } else if (ex.type === 'match') {
-                    const idnOptions = ex.pairs.map((pair, index) => ({ label: pair.idn, index })).sort(() => Math.random() - 0.5);
-                    const espOptions = ex.pairs.map((pair, index) => ({ label: pair.esp, index })).sort(() => Math.random() - 0.5);
+                    const idnOptions = shuffleArray(ex.pairs.map((pair, index) => ({ label: pair.idn, index })));
+                    const espOptions = shuffleArray(ex.pairs.map((pair, index) => ({ label: pair.esp, index })));
                     container.innerHTML = `
                         <div class="matching-exercise">
                             <h3>${App.escapeHtml(ex.prompt)}</h3>

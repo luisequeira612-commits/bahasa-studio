@@ -68,4 +68,7 @@
 
 - 13 nov 2026: B3 completado en PR #541, fusionada en `main` (`c6840d029b37f8f9ea48dd99912f60538c727406`). El service worker precarga recursos individualmente; un fallo HTTP/red no cancela los demás ni se guarda como recurso válido. CI pre-merge y post-merge, build, regresión, informes offline y Pages en éxito. Sin cambios curriculares, IndexedDB, backup v3 ni dependencias.
 
-- 13 nov 2026: B5 en `feat/b5-forget-gemini-api-key`: añade acción para olvidar la clave Gemini, limpiándola del estado en memoria, del campo de entrada y de IndexedDB mediante una operación `delete` sin alterar el esquema. Explica almacenamiento local y confirma que la clave no se incluye en el backup JSON v3. Pendiente de CI y revisión.
+- 13 nov 2026: B5 completado en PR #542, fusionada en `main` (`97bdafca8fe3299dc50e35e9ba28337fb5be1a98`). La acción «Olvidar clave» limpia estado en memoria, campo e IndexedDB mediante `DB.delete`, sin cambiar el esquema; la clave no se exporta en JSON v3. CI pre-merge y post-merge, regresión, informes offline y Pages en éxito.
+
+- 13 nov 2026: B10 cerrado como no aplicable: `exportProgress`, `validateBackup` y `DB.replaceBackupData` ya implementan exportación/importación JSON v3; no se reimplementa ni modifica el formato.
+- 13 nov 2026: B16 en `docs/b16-add-project-readme`: añade README en español con instalación PWA, funciones, privacidad, backup v3, servicios opcionales, limitaciones lingüísticas, desarrollo y estructura. No asigna licencia ni crea LICENSE/NOTICE. Pendiente de CI y revisión.

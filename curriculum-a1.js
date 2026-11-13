@@ -58,7 +58,499 @@ window.BAHASA_CURRICULUM_A1 = {
                                                 "answer": 0,
                                                 "explanation": "Baik significa bien."
                                             }
-]
+],
+                            lessons:                                                         [
+                                {
+                                    "title": "Lección 1: Pronombres para hablar de personas",
+                                    "objective": "Identifica quién habla y quién realiza una acción usando saya, kamu y dia.",
+                                    "grammar": "Saya significa yo, kamu significa tú y dia significa él o ella. Los pronombres cambian según la persona, pero el verbo no cambia.",
+                                    "vocabIds": [
+                                        "v1",
+                                        "v2",
+                                        "v3"
+                                    ],
+                                    "reviewVocabIds": [],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v1",
+                                            "type": "mc",
+                                            "prompt": "¿Qué palabra significa «yo»?",
+                                            "options": [
+                                                "Kamu",
+                                                "Saya",
+                                                "Dia"
+                                            ],
+                                            "answer": 1,
+                                            "explanation": "Saya significa «yo» y es una forma estándar y respetuosa."
+                                        },
+                                        {
+                                            "vocabId": "v2",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce al indonesio: «tú»",
+                                            "answer": "Kamu",
+                                            "explanation": "Kamu significa «tú» en contextos informales."
+                                        },
+                                        {
+                                            "vocabId": "v3",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «dia»?",
+                                            "options": [
+                                                "Yo",
+                                                "Tú",
+                                                "Él / ella"
+                                            ],
+                                            "answer": 2,
+                                            "explanation": "Dia puede significar él o ella; el pronombre no indica género."
+                                        },
+                                        {
+                                            "vocabId": "v3",
+                                            "type": "mc",
+                                            "prompt": "Escucha la palabra y elige su significado",
+                                            "audioText": "Dia",
+                                            "options": [
+                                                "Yo",
+                                                "Tú",
+                                                "Él / ella"
+                                            ],
+                                            "answer": 2,
+                                            "explanation": "Dia puede significar él o ella; el pronombre no indica género."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Lección 2: Saludos y cortesía",
+                                    "objective": "Saluda de forma breve y reconoce el saludo apropiado para la mañana; añade una expresión sencilla de cortesía.",
+                                    "grammar": "Halo funciona como saludo general, Selamat pagi se usa por la mañana y terima kasih expresa agradecimiento.",
+                                    "vocabIds": [
+                                        "v4",
+                                        "v60",
+                                        "v45"
+                                    ],
+                                    "reviewVocabIds": [
+                                        "v1",
+                                        "v2",
+                                        "v3"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v4",
+                                            "type": "mc",
+                                            "prompt": "Escucha el saludo y elige su significado",
+                                            "audioText": "Selamat pagi",
+                                            "options": [
+                                                "Buenos días",
+                                                "Buenas noches",
+                                                "Hasta luego"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Selamat pagi significa «buenos días»."
+                                        },
+                                        {
+                                            "vocabId": "v60",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: «hola»",
+                                            "answer": "Halo",
+                                            "explanation": "Halo es un saludo común."
+                                        },
+                                        {
+                                            "vocabId": "v45",
+                                            "type": "mc",
+                                            "prompt": "Alguien te ayuda. ¿Qué dices para dar las gracias?",
+                                            "options": [
+                                                "Halo",
+                                                "Terima kasih",
+                                                "Selamat pagi"
+                                            ],
+                                            "answer": 1,
+                                            "explanation": "Terima kasih significa «gracias»."
+                                        },
+                                        {
+                                            "vocabId": "v60",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la oración que corresponde a «Hola».",
+                                            "answer": "Halo, Ana!",
+                                            "explanation": "La oración contiene «Halo»."
+                                        },
+                                        {
+                                            "vocabId": "v4",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase usando Selamat pagi.",
+                                            "hint": "Puedes tomar como modelo: Selamat pagi!",
+                                            "modelAnswer": "Selamat pagi!",
+                                            "explanation": "Usa el vocabulario en una oración completa."
+                                        }
+                                    ,
+                                        {
+                                            "vocabId": "v1",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Saya»?",
+                                            "options": ["Yo","Tú","Él / ella"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «Yo»."
+                                        },
+                                        {
+                                            "vocabId": "v2",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Kamu»?",
+                                            "options": ["Tú","Yo","Él / ella"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «Tú»."
+                                        },
+                                        {
+                                            "vocabId": "v3",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Dia»?",
+                                            "options": ["Él / ella","Yo","Tú"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «Él / ella»."
+                                        }]
+                                },
+                                {
+                                    "title": "Lección 3: Acciones cotidianas: comer y beber",
+                                    "objective": "Nombra y comprende dos acciones básicas y construye frases sencillas con sujeto y verbo.",
+                                    "grammar": "Makan significa comer y minum significa beber. En frases básicas se coloca primero el sujeto y después el verbo; el verbo mantiene la misma forma con saya, kamu y dia.",
+                                    "vocabIds": [
+                                        "v46",
+                                        "v47"
+                                    ],
+                                    "reviewVocabIds": [
+                                        "v1",
+                                        "v2",
+                                        "v3",
+                                        "v4",
+                                        "v60",
+                                        "v45"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v46",
+                                            "type": "order",
+                                            "prompt": "Ordena: «Yo como»",
+                                            "words": [
+                                                "makan",
+                                                "Saya"
+                                            ],
+                                            "correctOrder": [
+                                                "Saya",
+                                                "makan"
+                                            ],
+                                            "explanation": "El orden básico es sujeto + verbo: Saya makan."
+                                        },
+                                        {
+                                            "vocabId": "v47",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: «beber»",
+                                            "answer": "Minum",
+                                            "explanation": "Minum significa «beber»."
+                                        },
+                                        {
+                                            "vocabId": "v46",
+                                            "type": "mc",
+                                            "prompt": "Completa: «Dia ___» (Él / ella come)",
+                                            "options": [
+                                                "makan",
+                                                "minum",
+                                                "kamu"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Makan significa «comer» y no cambia con dia."
+                                        },
+                                        {
+                                            "vocabId": "v1",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase propia con «saya» y un verbo de la unidad.",
+                                            "hint": "Por ejemplo, habla de algo que tú haces; no copies literalmente un ejercicio anterior.",
+                                            "modelAnswer": "Saya makan.",
+                                            "explanation": "Saya significa «yo» y makan significa «comer». Puedes crear otras frases correctas con el vocabulario aprendido."
+                                        },
+                                        {
+                                            "vocabId": "v47",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la oración que corresponde a «Beber».",
+                                            "answer": "Dia minum.",
+                                            "explanation": "La oración contiene «Minum»."
+                                        }
+                                    ,
+                                        {
+                                            "vocabId": "v2",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Kamu»?",
+                                            "options": ["Tú","Yo","Él / ella"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «Tú»."
+                                        },
+                                        {
+                                            "vocabId": "v3",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Dia»?",
+                                            "options": ["Él / ella","Yo","Tú"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «Él / ella»."
+                                        },
+                                        {
+                                            "vocabId": "v4",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Selamat pagi»?",
+                                            "options": ["Buenos días","Yo","Tú"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «Buenos días»."
+                                        },
+                                        {
+                                            "vocabId": "v60",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Halo»?",
+                                            "options": ["Hola","Yo","Tú"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «Hola»."
+                                        },
+                                        {
+                                            "vocabId": "v45",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Terima kasih»?",
+                                            "options": ["Gracias","Yo","Tú"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «Gracias»."
+                                        }]
+                                },
+                                {
+                                    "title": "Lección 4: Preguntar cómo está alguien",
+                                    "objective": "Pregunta cómo está otra persona y responde con baik; integra el intercambio de saludos y agradecimientos.",
+                                    "grammar": "Apa kabar? pregunta cómo está alguien y baik es una respuesta positiva. Practica el diálogo completo y recupera los saludos y expresiones de cortesía anteriores.",
+                                    "vocabIds": [
+                                        "v465",
+                                        "v1002"
+                                    ],
+                                    "reviewVocabIds": [
+                                        "v1",
+                                        "v2",
+                                        "v3",
+                                        "v4",
+                                        "v60",
+                                        "v45",
+                                        "v46",
+                                        "v47"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v4",
+                                            "type": "mc",
+                                            "prompt": "Escucha el diálogo y elige de qué hablan",
+                                            "audioText": "Selamat pagi. Apa kabar? Baik, terima kasih.",
+                                            "options": [
+                                                "Dos personas se saludan y preguntan cómo están",
+                                                "Una persona pide comida",
+                                                "Dos personas se despiden"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "El diálogo combina un saludo matutino con una pregunta por el estado de la otra persona y una respuesta cortés."
+                                        },
+                                        {
+                                            "vocabId": "v465",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «apa kabar»?",
+                                            "options": [
+                                                "Gracias",
+                                                "¿Cómo estás? / ¿Qué tal?",
+                                                "¿Dónde estás?"
+                                            ],
+                                            "answer": 1,
+                                            "explanation": "Apa kabar? pregunta cómo está alguien."
+                                        },
+                                        {
+                                            "vocabId": "v1002",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «baik»?",
+                                            "options": [
+                                                "Bien",
+                                                "Mal",
+                                                "Mañana"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Baik significa bien."
+                                        },
+                                        {
+                                            "vocabId": "v1002",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase usando Baik.",
+                                            "hint": "Puedes tomar como modelo: Saya baik.",
+                                            "modelAnswer": "Saya baik.",
+                                            "explanation": "Usa el vocabulario en una oración completa."
+                                        }
+                                    ,
+                                        {
+                                            "vocabId": "v1",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Saya»?",
+                                            "options": ["Yo","Tú","Él / ella"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «Yo»."
+                                        },
+                                        {
+                                            "vocabId": "v2",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Kamu»?",
+                                            "options": ["Tú","Yo","Él / ella"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «Tú»."
+                                        },
+                                        {
+                                            "vocabId": "v3",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Dia»?",
+                                            "options": ["Él / ella","Yo","Tú"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «Él / ella»."
+                                        },
+                                        {
+                                            "vocabId": "v60",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Halo»?",
+                                            "options": ["Hola","Yo","Tú"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «Hola»."
+                                        },
+                                        {
+                                            "vocabId": "v45",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Terima kasih»?",
+                                            "options": ["Gracias","Yo","Tú"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «Gracias»."
+                                        },
+                                        {
+                                            "vocabId": "v46",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Makan»?",
+                                            "options": ["Comer","Yo","Tú"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «Comer»."
+                                        },
+                                        {
+                                            "vocabId": "v47",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Minum»?",
+                                            "options": ["Beber","Yo","Tú"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «Beber»."
+                                        }]
+                                },
+                                {
+                                    "title": "Lección 5: Recuperación espaciada y uso integrado",
+                                    "objective": "Recupera el vocabulario de toda la unidad y úsalo en comprensión, traducción y producción.",
+                                    "grammar": "Repasa las expresiones y estructuras de las cuatro lecciones anteriores. Recupera cada término desde su significado y úsalo dentro de una oración completa.",
+                                    "vocabIds": [],
+                                    "reviewVocabIds": [
+                                        "v1",
+                                        "v2",
+                                        "v3",
+                                        "v4",
+                                        "v60",
+                                        "v45",
+                                        "v46",
+                                        "v47",
+                                        "v465",
+                                        "v1002"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v1",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Saya»?",
+                                            "options": [
+                                                "Yo",
+                                                "Tú",
+                                                "Él / ella"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "«Saya» significa «Yo»."
+                                        },
+                                        {
+                                            "vocabId": "v2",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Tú bebes.",
+                                            "answer": "Kamu minum.",
+                                            "explanation": "La frase utiliza «Kamu»."
+                                        },
+                                        {
+                                            "vocabId": "v3",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la oración que corresponde a «Él / ella».",
+                                            "answer": "Dia makan.",
+                                            "explanation": "La oración contiene «Dia»."
+                                        },
+                                        {
+                                            "vocabId": "v4",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase usando Selamat pagi.",
+                                            "hint": "Puedes tomar como modelo: Selamat pagi!",
+                                            "modelAnswer": "Selamat pagi!",
+                                            "explanation": "Usa el vocabulario en una oración completa."
+                                        },
+                                        {
+                                            "vocabId": "v60",
+                                            "type": "order",
+                                            "prompt": "Ordena: ¡Hola, Ana!",
+                                            "words": [
+                                                "Ana",
+                                                "Halo,"
+                                            ],
+                                            "correctOrder": [
+                                                "Halo,",
+                                                "Ana"
+                                            ],
+                                            "explanation": "La frase completa es: Halo, Ana!"
+                                        },
+                                        {
+                                            "vocabId": "v45",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Terima kasih»?",
+                                            "options": [
+                                                "Gracias",
+                                                "Yo",
+                                                "Tú"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "«Terima kasih» significa «Gracias»."
+                                        },
+                                        {
+                                            "vocabId": "v46",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Yo como.",
+                                            "answer": "Saya makan.",
+                                            "explanation": "La frase utiliza «Makan»."
+                                        },
+                                        {
+                                            "vocabId": "v47",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la oración que corresponde a «Beber».",
+                                            "answer": "Dia minum.",
+                                            "explanation": "La oración contiene «Minum»."
+                                        },
+                                        {
+                                            "vocabId": "v465",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase usando Apa kabar?.",
+                                            "hint": "Puedes tomar como modelo: Apa kabar?",
+                                            "modelAnswer": "Apa kabar?",
+                                            "explanation": "Usa el vocabulario en una oración completa."
+                                        },
+                                        {
+                                            "vocabId": "v1002",
+                                            "type": "order",
+                                            "prompt": "Ordena: Estoy bien.",
+                                            "words": [
+                                                "baik",
+                                                "Saya"
+                                            ],
+                                            "correctOrder": [
+                                                "Saya",
+                                                "baik"
+                                            ],
+                                            "explanation": "La frase completa es: Saya baik."
+                                        }
+                                    ]
+                                }
+                            ]
                         },
                         {
                             id: 'a1_u2',
@@ -86,6 +578,424 @@ window.BAHASA_CURRICULUM_A1 = {
                                 { vocabId: 'v53', type: 'translate_es_id', prompt: 'Traduce: «amigo / amiga»', answer: 'Teman', explanation: 'Teman significa amigo o amiga.' },
                                 { vocabId: 'v5', type: 'order', prompt: 'Ordena: «Yo no como»', words: ['makan', 'tidak', 'Saya'], correctOrder: ['Saya', 'tidak', 'makan'], explanation: 'Tidak se coloca antes de la acción: Saya tidak makan.' },
                                 { vocabId: 'v48', type: 'write', prompt: "Escribe una frase propia con «air».", hint: "Intenta decir qué haces con el agua usando palabras de esta unidad.", modelAnswer: "Saya minum air.", explanation: "Air significa «agua». La frase de ejemplo significa «Yo bebo agua»." }
+                            ],
+                            lessons:                                                         [
+                                {
+                                    "title": "Lección 1: Dos formas de negar: tidak y bukan",
+                                    "objective": "Distingue la negación de acciones y cualidades de la negación de una identificación.",
+                                    "grammar": "Tidak niega acciones o cualidades y se coloca antes del verbo o adjetivo. Bukan niega una identificación con un sustantivo.",
+                                    "vocabIds": [
+                                        "v5",
+                                        "v6"
+                                    ],
+                                    "reviewVocabIds": [],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v5",
+                                            "type": "mc",
+                                            "prompt": "Completa: «Saya ___ makan» (Yo no como)",
+                                            "options": [
+                                                "bukan",
+                                                "tidak",
+                                                "ini"
+                                            ],
+                                            "answer": 1,
+                                            "explanation": "Makan es una acción; se niega con tidak."
+                                        },
+                                        {
+                                            "vocabId": "v5",
+                                            "type": "order",
+                                            "prompt": "Ordena: «Yo no como»",
+                                            "words": [
+                                                "makan",
+                                                "tidak",
+                                                "Saya"
+                                            ],
+                                            "correctOrder": [
+                                                "Saya",
+                                                "tidak",
+                                                "makan"
+                                            ],
+                                            "explanation": "Tidak se coloca antes de la acción: Saya tidak makan."
+                                        },
+                                        {
+                                            "vocabId": "v5",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la oración que corresponde a «No (niega acciones o cualidades)».",
+                                            "answer": "Saya tidak tidur.",
+                                            "explanation": "La oración contiene «Tidak»."
+                                        },
+                                        {
+                                            "vocabId": "v6",
+                                            "type": "mc",
+                                            "prompt": "¿Qué forma niega una identificación con un sustantivo?",
+                                            "options": [
+                                                "bukan",
+                                                "tidak",
+                                                "baik"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Bukan niega una identificación con un sustantivo; tidak niega acciones o cualidades."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Lección 2: Agua y arroz en frases sencillas",
+                                    "objective": "Reconoce y usa vocabulario básico de agua y arroz en frases de comer y beber.",
+                                    "grammar": "Air significa agua y nasi arroz cocido. Combina los sustantivos con minum y makan sin cambiar la forma de los verbos.",
+                                    "vocabIds": [
+                                        "v48",
+                                        "v49"
+                                    ],
+                                    "reviewVocabIds": [
+                                        "v5",
+                                        "v6"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v48",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: «agua»",
+                                            "answer": "Air",
+                                            "explanation": "Air significa «agua»."
+                                        },
+                                        {
+                                            "vocabId": "v49",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «nasi»?",
+                                            "options": [
+                                                "Agua",
+                                                "Arroz cocido",
+                                                "Libro"
+                                            ],
+                                            "answer": 1,
+                                            "explanation": "Nasi es arroz cocido, un alimento básico en Indonesia."
+                                        },
+                                        {
+                                            "vocabId": "v48",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase propia con «air».",
+                                            "hint": "Intenta decir qué haces con el agua usando palabras de esta unidad.",
+                                            "modelAnswer": "Saya minum air.",
+                                            "explanation": "Air significa «agua». La frase de ejemplo significa «Yo bebo agua»."
+                                        },
+                                        {
+                                            "vocabId": "v49",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la oración que corresponde a «Arroz cocido».",
+                                            "answer": "Saya makan nasi.",
+                                            "explanation": "La oración contiene «Nasi»."
+                                        }
+                                    ,
+                                        {
+                                            "vocabId": "v5",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Tidak»?",
+                                            "options": ["No (niega acciones o cualidades)","No es / no (niega una identificación)","Agua"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «No (niega acciones o cualidades)»."
+                                        },
+                                        {
+                                            "vocabId": "v6",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Bukan»?",
+                                            "options": ["No es / no (niega una identificación)","No (niega acciones o cualidades)","Agua"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «No es / no (niega una identificación)»."
+                                        }]
+                                },
+                                {
+                                    "title": "Lección 3: Rutina y objetos cercanos",
+                                    "objective": "Describe una rutina sencilla y señala un objeto cercano con una frase nominal.",
+                                    "grammar": "Tidur significa dormir. Ini señala algo cercano y aparece antes del sustantivo en expresiones como ini buku.",
+                                    "vocabIds": [
+                                        "v50",
+                                        "v51",
+                                        "v52"
+                                    ],
+                                    "reviewVocabIds": [
+                                        "v5",
+                                        "v6",
+                                        "v48",
+                                        "v49"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v6",
+                                            "type": "mc",
+                                            "prompt": "Completa: «Ini ___ air» (Esto no es agua)",
+                                            "options": [
+                                                "tidak",
+                                                "bukan",
+                                                "tidur"
+                                            ],
+                                            "answer": 1,
+                                            "explanation": "Air es un sustantivo; para negar la identificación se usa bukan."
+                                        },
+                                        {
+                                            "vocabId": "v50",
+                                            "type": "mc",
+                                            "prompt": "Escucha la frase y elige su significado",
+                                            "audioText": "Dia tidur",
+                                            "options": [
+                                                "Él / ella duerme",
+                                                "Yo como",
+                                                "Tú bebes"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Dia tidur significa «él / ella duerme»."
+                                        },
+                                        {
+                                            "vocabId": "v51",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: «esto»",
+                                            "answer": "Ini",
+                                            "explanation": "Ini señala algo cercano: esto, este o esta. Si acompaña a un sustantivo, normalmente va después: buku ini (este libro); al presentar algo, puede ir al inicio: Ini buku (esto es un libro)."
+                                        },
+                                        {
+                                            "vocabId": "v52",
+                                            "type": "order",
+                                            "prompt": "Ordena: «Esto es un libro»",
+                                            "words": [
+                                                "buku",
+                                                "Ini"
+                                            ],
+                                            "correctOrder": [
+                                                "Ini",
+                                                "buku"
+                                            ],
+                                            "explanation": "En esta frase básica, ini va antes del sustantivo: Ini buku."
+                                        },
+                                        {
+                                            "vocabId": "v52",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la oración que corresponde a «Libro».",
+                                            "answer": "Ini buku.",
+                                            "explanation": "La oración contiene «Buku»."
+                                        },
+                                        {
+                                            "vocabId": "v51",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase usando Ini.",
+                                            "hint": "Puedes tomar como modelo: Ini nasi.",
+                                            "modelAnswer": "Ini nasi.",
+                                            "explanation": "Usa el vocabulario en una oración completa."
+                                        }
+                                    ,
+                                        {
+                                            "vocabId": "v5",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Tidak»?",
+                                            "options": ["No (niega acciones o cualidades)","No es / no (niega una identificación)","Agua"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «No (niega acciones o cualidades)»."
+                                        },
+                                        {
+                                            "vocabId": "v48",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Air»?",
+                                            "options": ["Agua","No (niega acciones o cualidades)","No es / no (niega una identificación)"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «Agua»."
+                                        },
+                                        {
+                                            "vocabId": "v49",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Nasi»?",
+                                            "options": ["Arroz cocido","No (niega acciones o cualidades)","No es / no (niega una identificación)"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «Arroz cocido»."
+                                        }]
+                                },
+                                {
+                                    "title": "Lección 4: Hablar de un amigo",
+                                    "objective": "Presenta a una persona como amigo o amiga y recupera vocabulario de las lecciones anteriores.",
+                                    "grammar": "Teman significa amigo o amiga. Practica frases de identificación como Dia teman saya y recupera la negación y los objetos ya estudiados.",
+                                    "vocabIds": [
+                                        "v53"
+                                    ],
+                                    "reviewVocabIds": [
+                                        "v5",
+                                        "v6",
+                                        "v48",
+                                        "v49",
+                                        "v50",
+                                        "v51",
+                                        "v52"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v53",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: «amigo / amiga»",
+                                            "answer": "Teman",
+                                            "explanation": "Teman significa amigo o amiga."
+                                        },
+                                        {
+                                            "vocabId": "v53",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la oración que corresponde a «Amigo/a».",
+                                            "answer": "Dia teman saya.",
+                                            "explanation": "La oración contiene «Teman»."
+                                        },
+                                        {
+                                            "vocabId": "v53",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase usando Teman.",
+                                            "hint": "Puedes tomar como modelo: Dia teman saya.",
+                                            "modelAnswer": "Dia teman saya.",
+                                            "explanation": "Usa el vocabulario en una oración completa."
+                                        }
+                                    ,
+                                        {
+                                            "vocabId": "v5",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Tidak»?",
+                                            "options": ["No (niega acciones o cualidades)","No es / no (niega una identificación)","Agua"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «No (niega acciones o cualidades)»."
+                                        },
+                                        {
+                                            "vocabId": "v6",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Bukan»?",
+                                            "options": ["No es / no (niega una identificación)","No (niega acciones o cualidades)","Agua"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «No es / no (niega una identificación)»."
+                                        },
+                                        {
+                                            "vocabId": "v48",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Air»?",
+                                            "options": ["Agua","No (niega acciones o cualidades)","No es / no (niega una identificación)"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «Agua»."
+                                        },
+                                        {
+                                            "vocabId": "v49",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Nasi»?",
+                                            "options": ["Arroz cocido","No (niega acciones o cualidades)","No es / no (niega una identificación)"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «Arroz cocido»."
+                                        },
+                                        {
+                                            "vocabId": "v50",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Tidur»?",
+                                            "options": ["Dormir","No (niega acciones o cualidades)","No es / no (niega una identificación)"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «Dormir»."
+                                        },
+                                        {
+                                            "vocabId": "v51",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Ini»?",
+                                            "options": ["Este / esta / esto","No (niega acciones o cualidades)","No es / no (niega una identificación)"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «Este / esta / esto»."
+                                        },
+                                        {
+                                            "vocabId": "v52",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Buku»?",
+                                            "options": ["Libro","No (niega acciones o cualidades)","No es / no (niega una identificación)"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «Libro»."
+                                        }]
+                                },
+                                {
+                                    "title": "Lección 5: Recuperación espaciada y uso integrado",
+                                    "objective": "Recupera el vocabulario de toda la unidad y úsalo en comprensión, traducción y producción.",
+                                    "grammar": "Repasa las expresiones y estructuras de las cuatro lecciones anteriores. Recupera cada término desde su significado y úsalo dentro de una oración completa.",
+                                    "vocabIds": [],
+                                    "reviewVocabIds": [
+                                        "v5",
+                                        "v6",
+                                        "v48",
+                                        "v49",
+                                        "v50",
+                                        "v51",
+                                        "v52",
+                                        "v53"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v5",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Tidak»?",
+                                            "options": [
+                                                "No (niega acciones o cualidades)",
+                                                "No es / no (niega una identificación)",
+                                                "Agua"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "«Tidak» significa «No (niega acciones o cualidades)»."
+                                        },
+                                        {
+                                            "vocabId": "v6",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Esto no es agua.",
+                                            "answer": "Ini bukan air.",
+                                            "explanation": "La frase utiliza «Bukan»."
+                                        },
+                                        {
+                                            "vocabId": "v48",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la oración que corresponde a «Agua».",
+                                            "answer": "Saya minum air.",
+                                            "explanation": "La oración contiene «Air»."
+                                        },
+                                        {
+                                            "vocabId": "v49",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase usando Nasi.",
+                                            "hint": "Puedes tomar como modelo: Saya makan nasi.",
+                                            "modelAnswer": "Saya makan nasi.",
+                                            "explanation": "Usa el vocabulario en una oración completa."
+                                        },
+                                        {
+                                            "vocabId": "v50",
+                                            "type": "order",
+                                            "prompt": "Ordena: Él / ella duerme.",
+                                            "words": [
+                                                "tidur",
+                                                "Dia"
+                                            ],
+                                            "correctOrder": [
+                                                "Dia",
+                                                "tidur"
+                                            ],
+                                            "explanation": "La frase completa es: Dia tidur."
+                                        },
+                                        {
+                                            "vocabId": "v51",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Ini»?",
+                                            "options": [
+                                                "Este / esta / esto",
+                                                "No (niega acciones o cualidades)",
+                                                "No es / no (niega una identificación)"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "«Ini» significa «Este / esta / esto»."
+                                        },
+                                        {
+                                            "vocabId": "v52",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Esto es un libro.",
+                                            "answer": "Ini buku.",
+                                            "explanation": "La frase utiliza «Buku»."
+                                        },
+                                        {
+                                            "vocabId": "v53",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la oración que corresponde a «Amigo/a».",
+                                            "answer": "Dia teman saya.",
+                                            "explanation": "La oración contiene «Teman»."
+                                        }
+                                    ]
+                                }
                             ]
                         }
                         ,
@@ -244,6 +1154,450 @@ window.BAHASA_CURRICULUM_A1 = {
                                 {"vocabId":"v101","type":"mc","prompt":"¿Qué significa kota?","options":["Ciudad","País","Dirección"],"answer":0,"explanation":"Kota significa ciudad."},
                                 {"vocabId":"v102","type":"translate_es_id","prompt":"Traduce: país","answer":"Negara","explanation":"Negara significa país."},
                                 {"vocabId":"v103","type":"write","prompt":"Escribe una frase sobre dónde vives.","hint":"Intenta construir una frase nueva con el vocabulario de la unidad.","modelAnswer":"Saya tinggal di Managua.","explanation":"Usa Saya tinggal di... para decir dónde vives."}
+                            ],
+                            lessons:                                                         [
+                                {
+                                    "title": "Lección 1: Nombre y preguntas personales",
+                                    "objective": "Pregunta el nombre de otra persona y presenta el propio con una estructura sencilla.",
+                                    "grammar": "Nama saya ... presenta el nombre propio. Siapa pregunta quién y aparece en Siapa nama kamu? para preguntar cómo se llama alguien.",
+                                    "vocabIds": [
+                                        "v10",
+                                        "v11"
+                                    ],
+                                    "reviewVocabIds": [],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v10",
+                                            "type": "mc",
+                                            "prompt": "¿Qué palabra significa nombre?",
+                                            "options": [
+                                                "Nama",
+                                                "Umur",
+                                                "Alamat",
+                                                "Usia"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Nama significa nombre."
+                                        },
+                                        {
+                                            "vocabId": "v11",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce al indonesio: quién",
+                                            "answer": "Siapa",
+                                            "explanation": "Siapa sirve para preguntar por una persona."
+                                        },
+                                        {
+                                            "vocabId": "v10",
+                                            "type": "mc",
+                                            "prompt": "Escucha la frase y elige su significado",
+                                            "audioText": "Nama saya Ana",
+                                            "options": [
+                                                "Me llamo Ana",
+                                                "Vivo en Perú",
+                                                "¿Cómo te llamas?"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Nama saya Ana significa Me llamo Ana."
+                                        },
+                                        {
+                                            "vocabId": "v11",
+                                            "type": "listen",
+                                            "prompt": "Escribe lo que escuchas",
+                                            "answer": "Siapa nama kamu",
+                                            "explanation": "Esta pregunta significa Cómo te llamas."
+                                        },
+                                        {
+                                            "vocabId": "v10",
+                                            "type": "order",
+                                            "prompt": "Ordena: Mi nombre es Ana",
+                                            "words": [
+                                                "Ana",
+                                                "saya",
+                                                "Nama"
+                                            ],
+                                            "correctOrder": [
+                                                "Nama",
+                                                "saya",
+                                                "Ana"
+                                            ],
+                                            "explanation": "Nama saya Ana es una forma básica de presentarse."
+                                        },
+                                        {
+                                            "vocabId": "v11",
+                                            "type": "mc",
+                                            "prompt": "Elige la pregunta para saber el nombre de alguien",
+                                            "options": [
+                                                "Siapa nama kamu",
+                                                "Saya dari Peru",
+                                                "Saya tinggal di kota",
+                                                "Nama saya Ana"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Siapa nama kamu pregunta el nombre."
+                                        },
+                                        {
+                                            "vocabId": "v10",
+                                            "type": "write",
+                                            "prompt": "Preséntate en indonesio escribiendo tu nombre.",
+                                            "hint": "Usa la estructura Nama saya ...",
+                                            "modelAnswer": "Nama saya Ana.",
+                                            "explanation": "Nama saya significa «mi nombre». Sustituye Ana por tu propio nombre."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Lección 2: Origen y residencia",
+                                    "objective": "Expresa de dónde es alguien y dice dónde vive con estructuras básicas.",
+                                    "grammar": "Dari indica origen o procedencia y tinggal significa vivir o residir. Combina Saya dari ... con Saya tinggal di ...",
+                                    "vocabIds": [
+                                        "v12",
+                                        "v13"
+                                    ],
+                                    "reviewVocabIds": [
+                                        "v10",
+                                        "v11"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v12",
+                                            "type": "order",
+                                            "prompt": "Ordena la frase: Soy de Perú",
+                                            "words": [
+                                                "Peru",
+                                                "Saya",
+                                                "dari"
+                                            ],
+                                            "correctOrder": [
+                                                "Saya",
+                                                "dari",
+                                                "Peru"
+                                            ],
+                                            "explanation": "Para decir el origen se usa Saya dari y el lugar."
+                                        },
+                                        {
+                                            "vocabId": "v13",
+                                            "type": "mc",
+                                            "prompt": "Completa: Saya ___ di Managua (Vivo en Managua)",
+                                            "options": [
+                                                "tinggal",
+                                                "makan",
+                                                "minum",
+                                                "tidur"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Tinggal significa vivir o residir."
+                                        },
+                                        {
+                                            "vocabId": "v12",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa dari en la frase Saya dari Peru?",
+                                            "options": [
+                                                "De",
+                                                "Quién",
+                                                "Vivir",
+                                                "Nombre"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Dari indica origen en esta frase."
+                                        },
+                                        {
+                                            "vocabId": "v13",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Vivo en Managua",
+                                            "answer": "Saya tinggal di Managua",
+                                            "explanation": "Saya tinggal di indica dónde vive una persona."
+                                        },
+                                        {
+                                            "vocabId": "v12",
+                                            "type": "listen",
+                                            "prompt": "Escribe lo que escuchas",
+                                            "answer": "Saya dari Peru",
+                                            "explanation": "Saya dari Peru indica el país de origen."
+                                        }
+                                    ,
+                                        {
+                                            "vocabId": "v10",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Nama»?",
+                                            "options": ["Nombre","Quién","De / desde"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «Nombre»."
+                                        },
+                                        {
+                                            "vocabId": "v11",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Siapa»?",
+                                            "options": ["Quién","Nombre","De / desde"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «Quién»."
+                                        }]
+                                },
+                                {
+                                    "title": "Lección 3: Dirección y ciudad",
+                                    "objective": "Pregunta o da una dirección y reconoce el vocabulario para hablar de una ciudad.",
+                                    "grammar": "Alamat significa dirección y kota significa ciudad. Practica preguntas y respuestas sobre dónde vive una persona.",
+                                    "vocabIds": [
+                                        "v14",
+                                        "v101"
+                                    ],
+                                    "reviewVocabIds": [
+                                        "v10",
+                                        "v11",
+                                        "v12",
+                                        "v13"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v14",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Encantado de conocerte",
+                                            "answer": "Senang bertemu denganmu",
+                                            "explanation": "Es una expresión amistosa para conocer a alguien."
+                                        },
+                                        {
+                                            "vocabId": "v14",
+                                            "type": "listen",
+                                            "prompt": "Escribe lo que escuchas",
+                                            "answer": "Senang bertemu denganmu",
+                                            "explanation": "Escucha la expresión completa y escríbela."
+                                        },
+                                        {
+                                            "vocabId": "v101",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa kota?",
+                                            "options": [
+                                                "Ciudad",
+                                                "País",
+                                                "Dirección"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Kota significa ciudad."
+                                        },
+                                        {
+                                            "vocabId": "v101",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase usando Kota.",
+                                            "hint": "Puedes tomar como modelo: Saya tinggal di kota ini.",
+                                            "modelAnswer": "Saya tinggal di kota ini.",
+                                            "explanation": "Usa el vocabulario en una oración completa."
+                                        }
+                                    ,
+                                        {
+                                            "vocabId": "v10",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Nama»?",
+                                            "options": ["Nombre","Quién","De / desde"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «Nombre»."
+                                        },
+                                        {
+                                            "vocabId": "v11",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Siapa»?",
+                                            "options": ["Quién","Nombre","De / desde"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «Quién»."
+                                        },
+                                        {
+                                            "vocabId": "v12",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Dari»?",
+                                            "options": ["De / desde","Nombre","Quién"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «De / desde»."
+                                        },
+                                        {
+                                            "vocabId": "v13",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Tinggal»?",
+                                            "options": ["Vivir / residir","Nombre","Quién"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «Vivir / residir»."
+                                        }]
+                                },
+                                {
+                                    "title": "Lección 4: País y primer encuentro",
+                                    "objective": "Nombra un país y usa una expresión amistosa al conocer a alguien.",
+                                    "grammar": "Negara significa país. Senang bertemu denganmu es una expresión amistosa para decir que te alegra conocer a alguien.",
+                                    "vocabIds": [
+                                        "v102",
+                                        "v103"
+                                    ],
+                                    "reviewVocabIds": [
+                                        "v10",
+                                        "v11",
+                                        "v12",
+                                        "v13",
+                                        "v14",
+                                        "v101"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v102",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: país",
+                                            "answer": "Negara",
+                                            "explanation": "Negara significa país."
+                                        },
+                                        {
+                                            "vocabId": "v103",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase sobre dónde vives.",
+                                            "hint": "Intenta construir una frase nueva con el vocabulario de la unidad.",
+                                            "modelAnswer": "Saya tinggal di Managua.",
+                                            "explanation": "Usa Saya tinggal di... para decir dónde vives."
+                                        },
+                                        {
+                                            "vocabId": "v103",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la oración que corresponde a «Dirección».",
+                                            "answer": "Apa alamatmu?",
+                                            "explanation": "La oración contiene «Alamat»."
+                                        }
+                                    ,
+                                        {
+                                            "vocabId": "v10",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Nama»?",
+                                            "options": ["Nombre","Quién","De / desde"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «Nombre»."
+                                        },
+                                        {
+                                            "vocabId": "v11",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Siapa»?",
+                                            "options": ["Quién","Nombre","De / desde"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «Quién»."
+                                        },
+                                        {
+                                            "vocabId": "v12",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Dari»?",
+                                            "options": ["De / desde","Nombre","Quién"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «De / desde»."
+                                        },
+                                        {
+                                            "vocabId": "v13",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Tinggal»?",
+                                            "options": ["Vivir / residir","Nombre","Quién"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «Vivir / residir»."
+                                        },
+                                        {
+                                            "vocabId": "v14",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Senang bertemu denganmu»?",
+                                            "options": ["Encantado/a de conocerte","Nombre","Quién"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «Encantado/a de conocerte»."
+                                        },
+                                        {
+                                            "vocabId": "v101",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Kota»?",
+                                            "options": ["Ciudad","Nombre","Quién"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «Ciudad»."
+                                        }]
+                                },
+                                {
+                                    "title": "Lección 5: Recuperación espaciada y uso integrado",
+                                    "objective": "Recupera el vocabulario de toda la unidad y úsalo en comprensión, traducción y producción.",
+                                    "grammar": "Repasa las expresiones y estructuras de las cuatro lecciones anteriores. Recupera cada término desde su significado y úsalo dentro de una oración completa.",
+                                    "vocabIds": [],
+                                    "reviewVocabIds": [
+                                        "v10",
+                                        "v11",
+                                        "v12",
+                                        "v13",
+                                        "v14",
+                                        "v101",
+                                        "v102",
+                                        "v103"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v10",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Nama»?",
+                                            "options": [
+                                                "Nombre",
+                                                "Quién",
+                                                "De / desde"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "«Nama» significa «Nombre»."
+                                        },
+                                        {
+                                            "vocabId": "v11",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: ¿Cómo te llamas?",
+                                            "answer": "Siapa nama kamu?",
+                                            "explanation": "La frase utiliza «Siapa»."
+                                        },
+                                        {
+                                            "vocabId": "v12",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la oración que corresponde a «De / desde».",
+                                            "answer": "Saya dari Peru.",
+                                            "explanation": "La oración contiene «Dari»."
+                                        },
+                                        {
+                                            "vocabId": "v13",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase usando Tinggal.",
+                                            "hint": "Puedes tomar como modelo: Saya tinggal di Managua.",
+                                            "modelAnswer": "Saya tinggal di Managua.",
+                                            "explanation": "Usa el vocabulario en una oración completa."
+                                        },
+                                        {
+                                            "vocabId": "v14",
+                                            "type": "order",
+                                            "prompt": "Ordena: ¡Encantado/a de conocerte!",
+                                            "words": [
+                                                "denganmu",
+                                                "bertemu",
+                                                "Senang"
+                                            ],
+                                            "correctOrder": [
+                                                "Senang",
+                                                "bertemu",
+                                                "denganmu"
+                                            ],
+                                            "explanation": "La frase completa es: Senang bertemu denganmu!"
+                                        },
+                                        {
+                                            "vocabId": "v101",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Kota»?",
+                                            "options": [
+                                                "Ciudad",
+                                                "Nombre",
+                                                "Quién"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "«Kota» significa «Ciudad»."
+                                        },
+                                        {
+                                            "vocabId": "v102",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Indonesia es un país grande.",
+                                            "answer": "Indonesia adalah negara besar.",
+                                            "explanation": "La frase utiliza «Negara»."
+                                        },
+                                        {
+                                            "vocabId": "v103",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la oración que corresponde a «Dirección».",
+                                            "answer": "Apa alamatmu?",
+                                            "explanation": "La oración contiene «Alamat»."
+                                        }
+                                    ]
+                                }
                             ]
                         },
                         {
@@ -387,7 +1741,534 @@ window.BAHASA_CURRICULUM_A1 = {
                                                 "answer": 1,
                                                 "explanation": "Lima significa cinco."
                                             }
-]
+],
+                            lessons:                                                         [
+                                {
+                                    "title": "Lección 1: Contar del uno al tres",
+                                    "objective": "Reconoce y usa los números del uno al tres en cantidades sencillas.",
+                                    "grammar": "Satu, dua y tiga expresan cantidades. Practica el número antes del sustantivo en grupos nominales sencillos.",
+                                    "vocabIds": [
+                                        "v15",
+                                        "v16",
+                                        "v17"
+                                    ],
+                                    "reviewVocabIds": [],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v15",
+                                            "type": "mc",
+                                            "prompt": "¿Cómo se dice uno?",
+                                            "options": [
+                                                "Dua",
+                                                "Satu",
+                                                "Tiga",
+                                                "Empat"
+                                            ],
+                                            "answer": 1,
+                                            "explanation": "Satu significa uno."
+                                        },
+                                        {
+                                            "vocabId": "v16",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: dos",
+                                            "answer": "Dua",
+                                            "explanation": "Dua significa dos."
+                                        },
+                                        {
+                                            "vocabId": "v17",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: tres años",
+                                            "answer": "Tiga tahun",
+                                            "explanation": "Tiga tahun significa tres años."
+                                        },
+                                        {
+                                            "vocabId": "v15",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase con un número o una edad que hayas aprendido.",
+                                            "hint": "Escribe una oración completa y revisa el orden de las palabras.",
+                                            "modelAnswer": "Saya berumur lima tahun.",
+                                            "explanation": "Este ejemplo significa «Tengo cinco años». Usa un número que conozcas de la unidad."
+                                        },
+                                        {
+                                            "vocabId": "v17",
+                                            "type": "order",
+                                            "prompt": "Ordena: Tres",
+                                            "words": [
+                                                "buku",
+                                                "Tiga"
+                                            ],
+                                            "correctOrder": [
+                                                "Tiga",
+                                                "buku"
+                                            ],
+                                            "explanation": "La frase completa es: Tiga buku."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Lección 2: Preguntar cantidades y años",
+                                    "objective": "Pregunta cuántos o cuántos años y comprende tahun en respuestas breves.",
+                                    "grammar": "Berapa pregunta cuánto o cuántos y tahun significa año. Puedes preguntar Berapa tahun? y responder con una cantidad ya conocida.",
+                                    "vocabIds": [
+                                        "v18",
+                                        "v19"
+                                    ],
+                                    "reviewVocabIds": [
+                                        "v15",
+                                        "v16",
+                                        "v17"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v18",
+                                            "type": "mc",
+                                            "prompt": "¿Qué pregunta berapa?",
+                                            "options": [
+                                                "cuánto o cuántos",
+                                                "dónde",
+                                                "quién"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Berapa pregunta por una cantidad o un número."
+                                        },
+                                        {
+                                            "vocabId": "v19",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase usando Tahun.",
+                                            "hint": "Puedes tomar como modelo: Tiga tahun.",
+                                            "modelAnswer": "Tiga tahun.",
+                                            "explanation": "Usa el vocabulario en una oración completa."
+                                        },
+                                        {
+                                            "vocabId": "v19",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la oración que corresponde a «Año».",
+                                            "answer": "Tiga tahun.",
+                                            "explanation": "La oración contiene «Tahun»."
+                                        }
+                                    ,
+                                        {
+                                            "vocabId": "v15",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Satu»?",
+                                            "options": ["Uno","Dos","Tres"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «Uno»."
+                                        },
+                                        {
+                                            "vocabId": "v16",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Dua»?",
+                                            "options": ["Dos","Uno","Tres"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «Dos»."
+                                        },
+                                        {
+                                            "vocabId": "v17",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Tiga»?",
+                                            "options": ["Tres","Uno","Dos"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «Tres»."
+                                        }]
+                                },
+                                {
+                                    "title": "Lección 3: Contar cuatro, cinco y seis",
+                                    "objective": "Amplía el conteo con cuatro, cinco y seis y los aplica a personas y objetos.",
+                                    "grammar": "Empat, lima y enam continúan la secuencia numérica. Repite cada número en frases cortas con teman y buku.",
+                                    "vocabIds": [
+                                        "v40",
+                                        "v41",
+                                        "v105"
+                                    ],
+                                    "reviewVocabIds": [
+                                        "v15",
+                                        "v16",
+                                        "v17",
+                                        "v18",
+                                        "v19"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v105",
+                                            "type": "mc",
+                                            "prompt": "¿Cómo se dice seis?",
+                                            "options": [
+                                                "Enam",
+                                                "Tujuh",
+                                                "Delapan"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Enam significa seis."
+                                        },
+                                        {
+                                            "vocabId": "v40",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «empat»?",
+                                            "options": [
+                                                "Cuatro",
+                                                "Cinco",
+                                                "Seis"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Empat significa cuatro."
+                                        },
+                                        {
+                                            "vocabId": "v41",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «lima»?",
+                                            "options": [
+                                                "Cuatro",
+                                                "Cinco",
+                                                "Siete"
+                                            ],
+                                            "answer": 1,
+                                            "explanation": "Lima significa cinco."
+                                        },
+                                        {
+                                            "vocabId": "v41",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la oración que corresponde a «Cinco».",
+                                            "answer": "Lima teman.",
+                                            "explanation": "La oración contiene «Lima»."
+                                        },
+                                        {
+                                            "vocabId": "v105",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase usando Enam.",
+                                            "hint": "Puedes tomar como modelo: Enam buku.",
+                                            "modelAnswer": "Enam buku.",
+                                            "explanation": "Usa el vocabulario en una oración completa."
+                                        }
+                                    ,
+                                        {
+                                            "vocabId": "v15",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Satu»?",
+                                            "options": ["Uno","Dos","Tres"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «Uno»."
+                                        },
+                                        {
+                                            "vocabId": "v16",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Dua»?",
+                                            "options": ["Dos","Uno","Tres"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «Dos»."
+                                        },
+                                        {
+                                            "vocabId": "v17",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Tiga»?",
+                                            "options": ["Tres","Uno","Dos"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «Tres»."
+                                        },
+                                        {
+                                            "vocabId": "v18",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Berapa»?",
+                                            "options": ["Cuánto / cuántos","Uno","Dos"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «Cuánto / cuántos»."
+                                        },
+                                        {
+                                            "vocabId": "v19",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Tahun»?",
+                                            "options": ["Año","Uno","Dos"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «Año»."
+                                        }]
+                                },
+                                {
+                                    "title": "Lección 4: Contar más y hablar de edad",
+                                    "objective": "Reconoce siete, ocho y diez y pregunta o responde la edad de una persona.",
+                                    "grammar": "Tujuh, delapan y sepuluh permiten reconocer cantidades mayores. Umur significa edad; Berapa umur kamu? pregunta la edad y Saya berumur ... tahun responde.",
+                                    "vocabIds": [
+                                        "v106",
+                                        "v107",
+                                        "v42",
+                                        "v43"
+                                    ],
+                                    "reviewVocabIds": [
+                                        "v15",
+                                        "v16",
+                                        "v17",
+                                        "v18",
+                                        "v19",
+                                        "v40",
+                                        "v41",
+                                        "v105"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v18",
+                                            "type": "order",
+                                            "prompt": "Ordena la pregunta: ¿Cuántos años tienes?",
+                                            "words": [
+                                                "umur",
+                                                "kamu",
+                                                "Berapa"
+                                            ],
+                                            "correctOrder": [
+                                                "Berapa",
+                                                "umur",
+                                                "kamu"
+                                            ],
+                                            "explanation": "Berapa umur kamu pregunta la edad."
+                                        },
+                                        {
+                                            "vocabId": "v42",
+                                            "type": "mc",
+                                            "prompt": "Escucha la frase y elige su significado",
+                                            "audioText": "Sepuluh tahun",
+                                            "options": [
+                                                "Diez años",
+                                                "Siete días",
+                                                "Ocho personas"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Sepuluh tahun significa diez años."
+                                        },
+                                        {
+                                            "vocabId": "v43",
+                                            "type": "mc",
+                                            "prompt": "¿Qué palabra significa edad?",
+                                            "options": [
+                                                "Tahun",
+                                                "Umur",
+                                                "Bulan",
+                                                "Hari"
+                                            ],
+                                            "answer": 1,
+                                            "explanation": "Umur significa edad."
+                                        },
+                                        {
+                                            "vocabId": "v19",
+                                            "type": "order",
+                                            "prompt": "Ordena: Tengo cinco años",
+                                            "words": [
+                                                "tahun",
+                                                "Saya",
+                                                "berumur",
+                                                "lima"
+                                            ],
+                                            "correctOrder": [
+                                                "Saya",
+                                                "berumur",
+                                                "lima",
+                                                "tahun"
+                                            ],
+                                            "explanation": "Saya berumur lima tahun expresa la edad."
+                                        },
+                                        {
+                                            "vocabId": "v106",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: siete",
+                                            "answer": "Tujuh",
+                                            "explanation": "Tujuh significa siete."
+                                        },
+                                        {
+                                            "vocabId": "v107",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe el número",
+                                            "answer": "Delapan",
+                                            "explanation": "Delapan significa ocho."
+                                        }
+                                    ,
+                                        {
+                                            "vocabId": "v15",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Satu»?",
+                                            "options": ["Uno","Dos","Tres"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «Uno»."
+                                        },
+                                        {
+                                            "vocabId": "v16",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Dua»?",
+                                            "options": ["Dos","Uno","Tres"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «Dos»."
+                                        },
+                                        {
+                                            "vocabId": "v17",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Tiga»?",
+                                            "options": ["Tres","Uno","Dos"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «Tres»."
+                                        },
+                                        {
+                                            "vocabId": "v40",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Empat»?",
+                                            "options": ["Cuatro","Uno","Dos"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «Cuatro»."
+                                        },
+                                        {
+                                            "vocabId": "v41",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Lima»?",
+                                            "options": ["Cinco","Uno","Dos"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «Cinco»."
+                                        },
+                                        {
+                                            "vocabId": "v105",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Enam»?",
+                                            "options": ["Seis","Uno","Dos"],
+                                            "answer": 0,
+                                            "explanation": "La respuesta correcta es «Seis»."
+                                        }]
+                                },
+                                {
+                                    "title": "Lección 5: Recuperación espaciada y uso integrado",
+                                    "objective": "Recupera el vocabulario de toda la unidad y úsalo en comprensión, traducción y producción.",
+                                    "grammar": "Repasa las expresiones y estructuras de las cuatro lecciones anteriores. Recupera cada término desde su significado y úsalo dentro de una oración completa.",
+                                    "vocabIds": [],
+                                    "reviewVocabIds": [
+                                        "v15",
+                                        "v16",
+                                        "v17",
+                                        "v18",
+                                        "v19",
+                                        "v40",
+                                        "v41",
+                                        "v42",
+                                        "v43",
+                                        "v105",
+                                        "v106",
+                                        "v107"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v15",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Satu»?",
+                                            "options": [
+                                                "Uno",
+                                                "Dos",
+                                                "Tres"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "«Satu» significa «Uno»."
+                                        },
+                                        {
+                                            "vocabId": "v16",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Dos amigos.",
+                                            "answer": "Dua teman.",
+                                            "explanation": "La frase utiliza «Dua»."
+                                        },
+                                        {
+                                            "vocabId": "v17",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la oración que corresponde a «Tres».",
+                                            "answer": "Tiga tahun.",
+                                            "explanation": "La oración contiene «Tiga»."
+                                        },
+                                        {
+                                            "vocabId": "v18",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase usando Berapa.",
+                                            "hint": "Puedes tomar como modelo: Berapa umur kamu?",
+                                            "modelAnswer": "Berapa umur kamu?",
+                                            "explanation": "Usa el vocabulario en una oración completa."
+                                        },
+                                        {
+                                            "vocabId": "v19",
+                                            "type": "order",
+                                            "prompt": "Ordena: Tengo cinco años.",
+                                            "words": [
+                                                "tahun",
+                                                "lima",
+                                                "berumur",
+                                                "Saya"
+                                            ],
+                                            "correctOrder": [
+                                                "Saya",
+                                                "berumur",
+                                                "lima",
+                                                "tahun"
+                                            ],
+                                            "explanation": "La frase completa es: Saya berumur lima tahun."
+                                        },
+                                        {
+                                            "vocabId": "v40",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Empat»?",
+                                            "options": [
+                                                "Cuatro",
+                                                "Uno",
+                                                "Dos"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "«Empat» significa «Cuatro»."
+                                        },
+                                        {
+                                            "vocabId": "v41",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Cinco amigos.",
+                                            "answer": "Lima teman.",
+                                            "explanation": "La frase utiliza «Lima»."
+                                        },
+                                        {
+                                            "vocabId": "v42",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la oración que corresponde a «Diez».",
+                                            "answer": "Sepuluh tahun.",
+                                            "explanation": "La oración contiene «Sepuluh»."
+                                        },
+                                        {
+                                            "vocabId": "v43",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase usando Umur.",
+                                            "hint": "Puedes tomar como modelo: Berapa umur kamu?",
+                                            "modelAnswer": "Berapa umur kamu?",
+                                            "explanation": "Usa el vocabulario en una oración completa."
+                                        },
+                                        {
+                                            "vocabId": "v105",
+                                            "type": "order",
+                                            "prompt": "Ordena: Seis libros.",
+                                            "words": [
+                                                "buku",
+                                                "Enam"
+                                            ],
+                                            "correctOrder": [
+                                                "Enam",
+                                                "buku"
+                                            ],
+                                            "explanation": "La frase completa es: Enam buku."
+                                        },
+                                        {
+                                            "vocabId": "v106",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Tujuh»?",
+                                            "options": [
+                                                "Siete",
+                                                "Uno",
+                                                "Dos"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "«Tujuh» significa «Siete»."
+                                        },
+                                        {
+                                            "vocabId": "v107",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Ocho personas.",
+                                            "answer": "Delapan orang.",
+                                            "explanation": "La frase utiliza «Delapan»."
+                                        }
+                                    ]
+                                }
+                            ]
                         },
                         {
                             id: 'a1_u5',

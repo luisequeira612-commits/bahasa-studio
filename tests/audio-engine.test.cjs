@@ -66,7 +66,7 @@ test('rechaza explícitamente una voz seleccionada que no sea indonesia', () => 
 
     assert.equal(setup.spoken.length, 0);
     assert.equal(setup.cancelCalls, 0);
-    assert.match(setup.statuses.audioVoiceStatus.textContent, /No se detectó una voz indonesia instalada/i);
+    assert.match(setup.statuses.audioVoiceStatus.textContent, /No hay una voz indonesia disponible/i);
 });
 
 test('usa una voz indonesia disponible y fija el idioma de la utterance', () => {

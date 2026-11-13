@@ -94,7 +94,7 @@ test('the first four A2 units have five authored lessons, varied practice, liste
 });
 
 
-test('A2 units 5-8 teach ber- and meN- forms in structured multi-lesson units', () => {
+test('A2 units 5-8 teach ber- and meN- forms in five authored lessons', () => {
   const a1Forms = new Set(courseData.levels.find(level => level.id === 'A1').units
     .flatMap(unit => unit.vocab).map(word => word.idn.trim().toLowerCase()));
   const units = a2.units.slice(4, 8);
@@ -112,9 +112,15 @@ test('A2 units 5-8 teach ber- and meN- forms in structured multi-lesson units', 
   });
   for (const unit of units) {
     assert.ok(unit.vocab.length >= 10, unit.id + ' should provide at least ten assessment items');
-    assert.ok(unit.lessons.length >= 3 && unit.lessons.length <= 5, unit.id + ' should have 3-5 lessons');
+    assert.equal(unit.lessons.length, 5, unit.id + ' should have five authored lessons');
+    const unitVocabIds = new Set(unit.vocab.map(word => word.id));
+    const retrieval = unit.lessons[4];
+    assert.deepEqual([...(retrieval.vocabIds || [])], [], unit.id + ' retrieval lesson must not reintroduce new vocabulary');
+    assert.deepEqual([...new Set(retrieval.reviewVocabIds || [])].sort(), [...unitVocabIds].sort(),
+      unit.id + ' retrieval lesson must review all vocabulary already taught');
+    assert.equal((retrieval.exercises || []).length, 5, unit.id + ' retrieval lesson must contain five didactic exercises');
     const exercises = unit.lessons.flatMap(lesson => lesson.exercises || []);
-    assert.ok(exercises.length >= 14 && exercises.length <= 22, unit.id + ' should have 14-22 exercises');
+    assert.equal(exercises.length, 22, unit.id + ' should have 22 exercises across five authored lessons');
     assert.ok(new Set(exercises.map(exercise => exercise.type)).size >= 4, unit.id + ' should use four exercise types');
     assert.ok(exercises.some(exercise => exercise.type === 'listen'), unit.id + ' should include listening');
     assert.ok(exercises.some(exercise => exercise.type === 'write' && exercise.hint && exercise.modelAnswer),
@@ -1436,7 +1442,8 @@ test('A2 U7 lesson titles and explanations describe their actual vocabulary grou
     'Lección 1: Enviar, dibujar y tomar',
     'Lección 2: Enseñar, cerrar con llave y freír',
     'Lección 3: Usar, llenar y organizar',
-    'Lección 4: Invitar, borrar y levantar'
+    'Lección 4: Invitar, borrar y levantar',
+    'Lección 5: Recuperación espaciada de verbos con meng-'
   ]);
   assert.match(unit.lessons[0].grammar, /mengirim.*menggambar y mengambil/);
   assert.match(unit.lessons[1].grammar, /mengunci.*mengajar y menggoreng/);
@@ -1925,7 +1932,12 @@ test('A2 units 5-8 align each lesson explanation and exercise with vocabulary in
 
     for (const lesson of unit.lessons) {
       const introducedHere = Array.isArray(lesson.vocabIds) ? lesson.vocabIds : [];
-      assert.ok(introducedHere.length > 0, unit.id + ' ' + lesson.title + ' should introduce vocabulary');
+      const reviewHere = Array.isArray(lesson.reviewVocabIds) ? lesson.reviewVocabIds : [];
+      if (introducedHere.length === 0) {
+        assert.match(lesson.title, /Recuperación espaciada/, unit.id + ' ' + lesson.title + ' should be an authored retrieval lesson');
+        assert.deepEqual([...new Set(reviewHere)].sort(), [...vocabularyById.keys()].sort(),
+          unit.id + ' retrieval lesson should cover every unit vocabulary item');
+      }
       const explanation = String(lesson.grammar || '').toLocaleLowerCase();
 
       for (const id of introducedHere) {
@@ -1936,7 +1948,7 @@ test('A2 units 5-8 align each lesson explanation and exercise with vocabulary in
         assert.ok(!introducedSoFar.has(id), unit.id + ' should not introduce ' + id + ' more than once');
       }
 
-      const availableInLesson = new Set([...introducedSoFar, ...introducedHere]);
+      const availableInLesson = new Set([...introducedSoFar, ...introducedHere, ...reviewHere]);
       for (const exercise of lesson.exercises || []) {
         assert.ok(exercise.vocabId && vocabularyById.has(exercise.vocabId),
           unit.id + ' ' + lesson.title + ' exercise must reference vocabulary from its unit');

@@ -279,8 +279,8 @@ test('A2 units 1-4 begin with the approved temporal and narrative progression', 
   assert.equal(b2.vocab[0].id, 'v211');
   assert.equal(b2.vocab[0].idn, 'Membaca');
   assert.match(b2.grammar, /continuidad del discurso/);
-  assert.equal(b2.lessons.length, 3);
-  assert.equal(b2.lessons.reduce((total, lesson) => total + lesson.exercises.length, 0), 16);
+  assert.equal(b2.lessons.length, 5);
+  assert.equal(b2.lessons.reduce((total, lesson) => total + lesson.exercises.length, 0), 26);
 });
 
 test('A2 units 1-4 have 3-5 authored lessons and a complete unit-test bank', () => {
@@ -1942,7 +1942,7 @@ test('implemented B2 units expose five lessons with distinct active recall cover
   assert.ok(b2 && b2.units.length >= 3, 'implemented B2 units must exist');
 
   for (const unit of b2.units) {
-    if (unit.id === 'b2_u4' || unit.id === 'b2_u5') continue; // U4/U5 are fully authored and have dedicated five-lesson contract tests.
+    if (unit.lessons.length === 5) continue; // Fully authored units have dedicated contract tests; this test covers generated fallback only.
     const authoredCount = unit.lessons.length;
     const authoredTitles = Array.from(unit.lessons, lesson => lesson.title);
     const lessons = engine.buildUnitLessons(unit);

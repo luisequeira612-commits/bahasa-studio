@@ -518,13 +518,22 @@ test('A2 units 33-36 teach geography, etiquette, personal finance, and decision-
   assert.match(units[3].title, /decisiones/i);
   for (const unit of units) {
     assert.equal(unit.vocab.length, 12, unit.id + ' should provide twelve assessment items');
-    assert.equal(unit.lessons.length, 4, unit.id + ' should have four authored lessons');
+    assert.equal(unit.lessons.length, 5, unit.id + ' should have four authored lessons');
     const exercises = unit.lessons.flatMap(lesson => lesson.exercises || []);
-    assert.equal(exercises.length, 17, unit.id + ' should have 17 exercises');
+    assert.equal(exercises.length, 29, unit.id + ' should have 17 exercises');
     assert.ok(new Set(exercises.map(exercise => exercise.type)).size >= 4, unit.id + ' should use four exercise types');
     assert.ok(exercises.some(exercise => exercise.type === 'listen'), unit.id + ' should include listening');
     assert.ok(exercises.some(exercise => exercise.type === 'write' && exercise.hint && exercise.modelAnswer),
       unit.id + ' should include guided writing');
+    const retrieval = unit.lessons[4];
+    assert.deepEqual(Array.from(retrieval.vocabIds || []), [], unit.id + ' retrieval lesson must not introduce new vocabulary');
+    assert.deepEqual(Array.from(retrieval.reviewVocabIds || []).sort(), Array.from(unit.vocab, word => word.id).sort(),
+      unit.id + ' retrieval lesson must review every unit vocabulary item');
+    assert.equal(retrieval.exercises.length, 12, unit.id + ' retrieval lesson must practise all twelve words');
+    assert.equal(new Set(retrieval.exercises.map(exercise => exercise.vocabId)).size, 12,
+      unit.id + ' retrieval lesson must cover every word exactly once');
+    assert.equal(new Set(retrieval.exercises.map(exercise => exercise.type)).size, 5,
+      unit.id + ' retrieval lesson must vary five exercise types');
     assert.ok(exercises.filter(exercise => exercise.answer && /[.!?]$/.test(exercise.answer)).length >= 5,
       unit.id + ' should include at least five complete sentence answers');
     const introduced = unit.lessons.flatMap(lesson => lesson.vocabIds || []);

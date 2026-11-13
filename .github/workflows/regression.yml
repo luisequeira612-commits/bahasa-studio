@@ -37,6 +37,8 @@ jobs:
         run: node --test tests/api-key-management.test.cjs
       - name: Run audio engine fallback tests
         run: node --test tests/audio-engine.test.cjs
+      - name: Run assessment speech recognition lifecycle tests
+        run: node --test tests/assessment-speech-recognition.test.cjs
       - name: Run phase 1 UI navigation tests
         run: node --test tests/ui-redesign-phase-1.test.cjs
       - name: Run phase 2 lesson flow tests

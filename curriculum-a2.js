@@ -11435,7 +11435,149 @@ window.BAHASA_CURRICULUM_A2 = {
                                         }
                                     ]
                                 }
-                            ]
+                            ,
+                                {
+                                  "title": "Recuperación y descripción de regiones",
+                                  "objective": "Recupera el vocabulario geográfico y úsalo para describir ubicación, paisajes y límites.",
+                                  "grammar": "Integra terletak di, daerah y expresiones de ubicación con el vocabulario de regiones.",
+                                  "vocabIds": [],
+                                  "reviewVocabIds": [
+                                    "a2u33_provinsi",
+                                    "a2u33_kabupaten",
+                                    "a2u33_perbatasan",
+                                    "a2u33_penduduk",
+                                    "a2u33_wilayah",
+                                    "a2u33_pesisir",
+                                    "a2u33_pedalaman",
+                                    "a2u33_dataran",
+                                    "a2u33_pegunungan",
+                                    "a2u33_pulau",
+                                    "a2u33_selat",
+                                    "a2u33_teluk"
+                                  ],
+                                  "exercises": [
+                                    {
+                                      "vocabId": "a2u33_provinsi",
+                                      "type": "translate_es_id",
+                                      "prompt": "Traduce al indonesio: Esa provincia tiene muchas islas.",
+                                      "answer": "Provinsi itu memiliki banyak pulau.",
+                                      "explanation": "Recupera «provinsi» en una oración completa."
+                                    },
+                                    {
+                                      "vocabId": "a2u33_kabupaten",
+                                      "type": "translate_es_id",
+                                      "prompt": "Traduce al indonesio: Nuestra regencia está situada al norte.",
+                                      "answer": "Kabupaten kami terletak di utara.",
+                                      "explanation": "Recupera «kabupaten» en una oración completa."
+                                    },
+                                    {
+                                      "vocabId": "a2u33_perbatasan",
+                                      "type": "listen",
+                                      "prompt": "Escucha y escribe: «perbatasan».",
+                                      "answer": "perbatasan",
+                                      "explanation": "La forma practicada es «perbatasan»."
+                                    },
+                                    {
+                                      "vocabId": "a2u33_penduduk",
+                                      "type": "listen",
+                                      "prompt": "Escucha y escribe la expresión: Los habitantes de esta región son amables.",
+                                      "answer": "Penduduk wilayah ini ramah.",
+                                      "explanation": "La oración de referencia es «Penduduk wilayah ini ramah.»."
+                                    },
+                                    {
+                                      "vocabId": "a2u33_wilayah",
+                                      "type": "write",
+                                      "prompt": "Escribe una oración usando «wilayah».",
+                                      "hint": "Puedes tomar como modelo: Wilayah pesisir itu cukup luas.",
+                                      "modelAnswer": "Wilayah pesisir itu cukup luas.",
+                                      "explanation": "La producción guiada reutiliza el ejemplo curricular."
+                                    },
+                                    {
+                                      "vocabId": "a2u33_pesisir",
+                                      "type": "mc",
+                                      "prompt": "¿Qué significa «pesisir»?",
+                                      "options": [
+                                        "Costa",
+                                        "Interior",
+                                        "Llanura"
+                                      ],
+                                      "answer": 0,
+                                      "explanation": "«pesisir» significa «Costa»."
+                                    },
+                                    {
+                                      "vocabId": "a2u33_pedalaman",
+                                      "type": "translate_es_id",
+                                      "prompt": "Traduce al indonesio: Es difícil llegar a ese pueblo del interior.",
+                                      "answer": "Desa pedalaman sulit dijangkau.",
+                                      "explanation": "Recupera «pedalaman» en una oración completa."
+                                    },
+                                    {
+                                      "vocabId": "a2u33_dataran",
+                                      "type": "order",
+                                      "prompt": "Ordena: «Esa llanura es adecuada para la agricultura.».",
+                                      "words": [
+                                        "pertanian",
+                                        "untuk",
+                                        "cocok",
+                                        "itu",
+                                        "Dataran"
+                                      ],
+                                      "correctOrder": [
+                                        "Dataran",
+                                        "itu",
+                                        "cocok",
+                                        "untuk",
+                                        "pertanian"
+                                      ],
+                                      "explanation": "La oración correcta es «Dataran itu cocok untuk pertanian.»."
+                                    },
+                                    {
+                                      "vocabId": "a2u33_pegunungan",
+                                      "type": "listen",
+                                      "prompt": "Escucha y escribe la expresión: Esa cordillera está cubierta de niebla.",
+                                      "answer": "Pegunungan itu tertutup kabut.",
+                                      "explanation": "La oración de referencia es «Pegunungan itu tertutup kabut.»."
+                                    },
+                                    {
+                                      "vocabId": "a2u33_pulau",
+                                      "type": "mc",
+                                      "prompt": "¿Qué significa «pulau»?",
+                                      "options": [
+                                        "Isla",
+                                        "Estrecho",
+                                        "Bahía"
+                                      ],
+                                      "answer": 0,
+                                      "explanation": "«pulau» significa «Isla»."
+                                    },
+                                    {
+                                      "vocabId": "a2u33_selat",
+                                      "type": "order",
+                                      "prompt": "Ordena: «El barco atraviesa ese estrecho.».",
+                                      "words": [
+                                        "itu",
+                                        "selat",
+                                        "melewati",
+                                        "Kapal"
+                                      ],
+                                      "correctOrder": [
+                                        "Kapal",
+                                        "melewati",
+                                        "selat",
+                                        "itu"
+                                      ],
+                                      "explanation": "La oración correcta es «Kapal melewati selat itu.»."
+                                    },
+                                    {
+                                      "vocabId": "a2u33_teluk",
+                                      "type": "write",
+                                      "prompt": "Produce una frase breve con «teluk».",
+                                      "hint": "Puedes adaptar: Perahu berlabuh di teluk.",
+                                      "modelAnswer": "Perahu berlabuh di teluk.",
+                                      "explanation": "La respuesta modelo muestra el uso contextual."
+                                    }
+                                  ]
+                                }]
                         },
                         {
                             "id": "a2_u34",
@@ -11731,7 +11873,149 @@ window.BAHASA_CURRICULUM_A2 = {
                                         }
                                     ]
                                 }
-                            ]
+                            ,
+                                {
+                                  "title": "Recuperación y comunicación cortés",
+                                  "objective": "Recupera expresiones de cortesía y aplícalas al comparar situaciones formales e informales.",
+                                  "grammar": "Integra disculpa, agradecimiento, respeto y turnos de palabra para elegir un registro adecuado.",
+                                  "vocabIds": [],
+                                  "reviewVocabIds": [
+                                    "a2u34_sopan_santun",
+                                    "a2u34_sapaan",
+                                    "a2u34_permintaan_maaf",
+                                    "a2u34_ucapan_terima_kasih",
+                                    "a2u34_kebiasaan",
+                                    "a2u34_perilaku",
+                                    "a2u34_formal",
+                                    "a2u34_informal",
+                                    "a2u34_menghormati",
+                                    "a2u34_menyela",
+                                    "a2u34_giliran_bicara",
+                                    "a2u34_kontak_mata"
+                                  ],
+                                  "exercises": [
+                                    {
+                                      "vocabId": "a2u34_sopan_santun",
+                                      "type": "translate_es_id",
+                                      "prompt": "Traduce al indonesio: La cortesía es importante en una conversación.",
+                                      "answer": "Sopan santun penting dalam percakapan.",
+                                      "explanation": "Recupera «sopan santun» en una oración completa."
+                                    },
+                                    {
+                                      "vocabId": "a2u34_sapaan",
+                                      "type": "translate_es_id",
+                                      "prompt": "Traduce al indonesio: Ese saludo suena amable.",
+                                      "answer": "Sapaan itu terdengar ramah.",
+                                      "explanation": "Recupera «sapaan» en una oración completa."
+                                    },
+                                    {
+                                      "vocabId": "a2u34_permintaan_maaf",
+                                      "type": "listen",
+                                      "prompt": "Escucha y escribe: «permintaan maaf».",
+                                      "answer": "permintaan maaf",
+                                      "explanation": "La forma practicada es «permintaan maaf»."
+                                    },
+                                    {
+                                      "vocabId": "a2u34_ucapan_terima_kasih",
+                                      "type": "listen",
+                                      "prompt": "Escucha y escribe la expresión: Él envía un agradecimiento.",
+                                      "answer": "Dia mengirim ucapan terima kasih.",
+                                      "explanation": "La oración de referencia es «Dia mengirim ucapan terima kasih.»."
+                                    },
+                                    {
+                                      "vocabId": "a2u34_kebiasaan",
+                                      "type": "write",
+                                      "prompt": "Escribe una oración usando «kebiasaan».",
+                                      "hint": "Puedes tomar como modelo: Kebiasaan itu berbeda di setiap daerah.",
+                                      "modelAnswer": "Kebiasaan itu berbeda di setiap daerah.",
+                                      "explanation": "La producción guiada reutiliza el ejemplo curricular."
+                                    },
+                                    {
+                                      "vocabId": "a2u34_perilaku",
+                                      "type": "mc",
+                                      "prompt": "¿Qué significa «perilaku»?",
+                                      "options": [
+                                        "Comportamiento",
+                                        "Formal",
+                                        "Informal"
+                                      ],
+                                      "answer": 0,
+                                      "explanation": "«perilaku» significa «Comportamiento»."
+                                    },
+                                    {
+                                      "vocabId": "a2u34_formal",
+                                      "type": "translate_es_id",
+                                      "prompt": "Traduce al indonesio: Esa reunión es formal.",
+                                      "answer": "Pertemuan itu bersifat formal.",
+                                      "explanation": "Recupera «formal» en una oración completa."
+                                    },
+                                    {
+                                      "vocabId": "a2u34_informal",
+                                      "type": "order",
+                                      "prompt": "Ordena: «Nuestra conversación transcurre de manera informal.».",
+                                      "words": [
+                                        "informal",
+                                        "berlangsung",
+                                        "kami",
+                                        "Percakapan"
+                                      ],
+                                      "correctOrder": [
+                                        "Percakapan",
+                                        "kami",
+                                        "berlangsung",
+                                        "informal"
+                                      ],
+                                      "explanation": "La oración correcta es «Percakapan kami berlangsung informal.»."
+                                    },
+                                    {
+                                      "vocabId": "a2u34_menghormati",
+                                      "type": "listen",
+                                      "prompt": "Escucha y escribe la expresión: Debemos respetar a los demás.",
+                                      "answer": "Kita harus menghormati orang lain.",
+                                      "explanation": "La oración de referencia es «Kita harus menghormati orang lain.»."
+                                    },
+                                    {
+                                      "vocabId": "a2u34_menyela",
+                                      "type": "mc",
+                                      "prompt": "¿Qué significa «menyela»?",
+                                      "options": [
+                                        "Interrumpir",
+                                        "Turno de palabra",
+                                        "Contacto visual"
+                                      ],
+                                      "answer": 0,
+                                      "explanation": "«menyela» significa «Interrumpir»."
+                                    },
+                                    {
+                                      "vocabId": "a2u34_giliran_bicara",
+                                      "type": "order",
+                                      "prompt": "Ordena: «Cada participante recibe un turno de palabra.».",
+                                      "words": [
+                                        "bicara",
+                                        "giliran",
+                                        "mendapat",
+                                        "peserta",
+                                        "Setiap"
+                                      ],
+                                      "correctOrder": [
+                                        "Setiap",
+                                        "peserta",
+                                        "mendapat",
+                                        "giliran",
+                                        "bicara"
+                                      ],
+                                      "explanation": "La oración correcta es «Setiap peserta mendapat giliran bicara.»."
+                                    },
+                                    {
+                                      "vocabId": "a2u34_kontak_mata",
+                                      "type": "write",
+                                      "prompt": "Produce una frase breve con «kontak mata».",
+                                      "hint": "Puedes adaptar: Kontak mata menunjukkan perhatian.",
+                                      "modelAnswer": "Kontak mata menunjukkan perhatian.",
+                                      "explanation": "La respuesta modelo muestra el uso contextual."
+                                    }
+                                  ]
+                                }]
                         },
                         {
                             "id": "a2_u35",
@@ -12027,7 +12311,149 @@ window.BAHASA_CURRICULUM_A2 = {
                                         }
                                     ]
                                 }
-                            ]
+                            ,
+                                {
+                                  "title": "Recuperación y planificación financiera",
+                                  "objective": "Recupera el vocabulario financiero y úsalo para explicar ingresos, gastos, necesidades y decisiones de ahorro.",
+                                  "grammar": "Integra anggaran, pemasukan y pengeluaran para explicar cómo organizar un presupuesto y responder a gastos imprevistos.",
+                                  "vocabIds": [],
+                                  "reviewVocabIds": [
+                                    "a2u35_anggaran",
+                                    "a2u35_pengeluaran",
+                                    "a2u35_pemasukan",
+                                    "a2u35_menabung",
+                                    "a2u35_investasi",
+                                    "a2u35_cicilan",
+                                    "a2u35_prioritas",
+                                    "a2u35_kebutuhan",
+                                    "a2u35_keinginan",
+                                    "a2u35_biaya_tak_terduga",
+                                    "a2u35_dana_darurat",
+                                    "a2u35_pemborosan"
+                                  ],
+                                  "exercises": [
+                                    {
+                                      "vocabId": "a2u35_anggaran",
+                                      "type": "translate_es_id",
+                                      "prompt": "Traduce al indonesio: Hacemos un presupuesto mensual.",
+                                      "answer": "Kami membuat anggaran bulanan.",
+                                      "explanation": "Recupera «anggaran» en una oración completa."
+                                    },
+                                    {
+                                      "vocabId": "a2u35_pengeluaran",
+                                      "type": "translate_es_id",
+                                      "prompt": "Traduce al indonesio: Los gastos del hogar aumentan.",
+                                      "answer": "Pengeluaran rumah tangga meningkat.",
+                                      "explanation": "Recupera «pengeluaran» en una oración completa."
+                                    },
+                                    {
+                                      "vocabId": "a2u35_pemasukan",
+                                      "type": "listen",
+                                      "prompt": "Escucha y escribe: «pemasukan».",
+                                      "answer": "pemasukan",
+                                      "explanation": "La forma practicada es «pemasukan»."
+                                    },
+                                    {
+                                      "vocabId": "a2u35_menabung",
+                                      "type": "listen",
+                                      "prompt": "Escucha y escribe la expresión: Ahorro para el futuro.",
+                                      "answer": "Saya menabung untuk masa depan.",
+                                      "explanation": "La oración de referencia es «Saya menabung untuk masa depan.»."
+                                    },
+                                    {
+                                      "vocabId": "a2u35_investasi",
+                                      "type": "write",
+                                      "prompt": "Escribe una oración usando «investasi».",
+                                      "hint": "Puedes tomar como modelo: Investasi itu memiliki risiko.",
+                                      "modelAnswer": "Investasi itu memiliki risiko.",
+                                      "explanation": "La producción guiada reutiliza el ejemplo curricular."
+                                    },
+                                    {
+                                      "vocabId": "a2u35_cicilan",
+                                      "type": "mc",
+                                      "prompt": "¿Qué significa «cicilan»?",
+                                      "options": [
+                                        "Cuota",
+                                        "Prioridad",
+                                        "Necesidad"
+                                      ],
+                                      "answer": 0,
+                                      "explanation": "«cicilan» significa «Cuota»."
+                                    },
+                                    {
+                                      "vocabId": "a2u35_prioritas",
+                                      "type": "translate_es_id",
+                                      "prompt": "Traduce al indonesio: La educación es una prioridad para la familia.",
+                                      "answer": "Pendidikan adalah prioritas keluarga.",
+                                      "explanation": "Recupera «prioritas» en una oración completa."
+                                    },
+                                    {
+                                      "vocabId": "a2u35_kebutuhan",
+                                      "type": "order",
+                                      "prompt": "Ordena: «Las necesidades básicas deben satisfacerse.».",
+                                      "words": [
+                                        "dipenuhi",
+                                        "harus",
+                                        "dasar",
+                                        "Kebutuhan"
+                                      ],
+                                      "correctOrder": [
+                                        "Kebutuhan",
+                                        "dasar",
+                                        "harus",
+                                        "dipenuhi"
+                                      ],
+                                      "explanation": "La oración correcta es «Kebutuhan dasar harus dipenuhi.»."
+                                    },
+                                    {
+                                      "vocabId": "a2u35_keinginan",
+                                      "type": "listen",
+                                      "prompt": "Escucha y escribe la expresión: Los deseos no siempre son iguales a las necesidades.",
+                                      "answer": "Keinginan tidak selalu sama dengan kebutuhan.",
+                                      "explanation": "La oración de referencia es «Keinginan tidak selalu sama dengan kebutuhan.»."
+                                    },
+                                    {
+                                      "vocabId": "a2u35_biaya_tak_terduga",
+                                      "type": "mc",
+                                      "prompt": "¿Qué significa «biaya tak terduga»?",
+                                      "options": [
+                                        "Gasto imprevisto",
+                                        "Fondo de emergencia",
+                                        "Gasto innecesario"
+                                      ],
+                                      "answer": 0,
+                                      "explanation": "«biaya tak terduga» significa «Gasto imprevisto»."
+                                    },
+                                    {
+                                      "vocabId": "a2u35_dana_darurat",
+                                      "type": "order",
+                                      "prompt": "Ordena: «Un fondo de emergencia ayuda durante una crisis.».",
+                                      "words": [
+                                        "krisis",
+                                        "saat",
+                                        "membantu",
+                                        "darurat",
+                                        "Dana"
+                                      ],
+                                      "correctOrder": [
+                                        "Dana",
+                                        "darurat",
+                                        "membantu",
+                                        "saat",
+                                        "krisis"
+                                      ],
+                                      "explanation": "La oración correcta es «Dana darurat membantu saat krisis.»."
+                                    },
+                                    {
+                                      "vocabId": "a2u35_pemborosan",
+                                      "type": "write",
+                                      "prompt": "Produce una frase breve con «pemborosan».",
+                                      "hint": "Puedes adaptar: Pemborosan dapat mengganggu anggaran.",
+                                      "modelAnswer": "Pemborosan dapat mengganggu anggaran.",
+                                      "explanation": "La respuesta modelo muestra el uso contextual."
+                                    }
+                                  ]
+                                }]
                         },
                         {
                             "id": "a2_u36",
@@ -12325,7 +12751,145 @@ window.BAHASA_CURRICULUM_A2 = {
                                         }
                                     ]
                                 }
-                            ]
+                            ,
+                                {
+                                  "title": "Recuperación y toma de decisiones",
+                                  "objective": "Recupera el vocabulario de evaluación y úsalo para comparar alternativas, riesgos, ventajas y próximos pasos.",
+                                  "grammar": "Integra mempertimbangkan, alternatif, risiko y kesepakatan para explicar cómo se evalúan opciones y cómo se llega a una decisión.",
+                                  "vocabIds": [],
+                                  "reviewVocabIds": [
+                                    "a2u36_pertimbangan",
+                                    "a2u36_risiko",
+                                    "a2u36_keuntungan",
+                                    "a2u36_kerugian",
+                                    "a2u36_alternatif",
+                                    "a2u36_konsekuensi",
+                                    "a2u36_kompromi",
+                                    "a2u36_kesepakatan",
+                                    "a2u36_rencana_cadangan",
+                                    "a2u36_langkah_berikutnya",
+                                    "a2u36_mengevaluasi",
+                                    "a2u36_mempertimbangkan"
+                                  ],
+                                  "exercises": [
+                                    {
+                                      "vocabId": "a2u36_pertimbangan",
+                                      "type": "translate_es_id",
+                                      "prompt": "Traduce al indonesio: Hay varias consideraciones importantes.",
+                                      "answer": "Ada beberapa pertimbangan penting.",
+                                      "explanation": "Recupera «pertimbangan» en una oración completa."
+                                    },
+                                    {
+                                      "vocabId": "a2u36_risiko",
+                                      "type": "translate_es_id",
+                                      "prompt": "Traduce al indonesio: Debemos comprender ese riesgo.",
+                                      "answer": "Kita harus memahami risiko itu.",
+                                      "explanation": "Recupera «risiko» en una oración completa."
+                                    },
+                                    {
+                                      "vocabId": "a2u36_keuntungan",
+                                      "type": "listen",
+                                      "prompt": "Escucha y escribe: «keuntungan».",
+                                      "answer": "keuntungan",
+                                      "explanation": "La forma practicada es «keuntungan»."
+                                    },
+                                    {
+                                      "vocabId": "a2u36_kerugian",
+                                      "type": "listen",
+                                      "prompt": "Escucha y escribe la expresión: La pérdida debe calcularse cuidadosamente.",
+                                      "answer": "Kerugian harus dihitung dengan teliti.",
+                                      "explanation": "La oración de referencia es «Kerugian harus dihitung dengan teliti.»."
+                                    },
+                                    {
+                                      "vocabId": "a2u36_alternatif",
+                                      "type": "write",
+                                      "prompt": "Escribe una oración usando «alternatif».",
+                                      "hint": "Puedes tomar como modelo: Kita perlu mencari alternatif lain.",
+                                      "modelAnswer": "Kita perlu mencari alternatif lain.",
+                                      "explanation": "La producción guiada reutiliza el ejemplo curricular."
+                                    },
+                                    {
+                                      "vocabId": "a2u36_konsekuensi",
+                                      "type": "mc",
+                                      "prompt": "¿Qué significa «konsekuensi»?",
+                                      "options": [
+                                        "Consecuencia",
+                                        "Compromiso",
+                                        "Acuerdo"
+                                      ],
+                                      "answer": 0,
+                                      "explanation": "«konsekuensi» significa «Consecuencia»."
+                                    },
+                                    {
+                                      "vocabId": "a2u36_kompromi",
+                                      "type": "translate_es_id",
+                                      "prompt": "Traduce al indonesio: Ellos llegan a un compromiso.",
+                                      "answer": "Mereka mencapai kompromi bersama.",
+                                      "explanation": "Recupera «kompromi» en una oración completa."
+                                    },
+                                    {
+                                      "vocabId": "a2u36_kesepakatan",
+                                      "type": "order",
+                                      "prompt": "Ordena: «El acuerdo se hizo ayer.».",
+                                      "words": [
+                                        "kemarin",
+                                        "dibuat",
+                                        "Kesepakatan"
+                                      ],
+                                      "correctOrder": [
+                                        "Kesepakatan",
+                                        "dibuat",
+                                        "kemarin"
+                                      ],
+                                      "explanation": "La oración correcta es «Kesepakatan dibuat kemarin.»."
+                                    },
+                                    {
+                                      "vocabId": "a2u36_rencana_cadangan",
+                                      "type": "listen",
+                                      "prompt": "Escucha y escribe la expresión: Preparamos un plan alternativo.",
+                                      "answer": "Kami menyiapkan rencana cadangan.",
+                                      "explanation": "La oración de referencia es «Kami menyiapkan rencana cadangan.»."
+                                    },
+                                    {
+                                      "vocabId": "a2u36_langkah_berikutnya",
+                                      "type": "mc",
+                                      "prompt": "¿Qué significa «langkah berikutnya»?",
+                                      "options": [
+                                        "Siguiente paso",
+                                        "Evaluar",
+                                        "Considerar"
+                                      ],
+                                      "answer": 0,
+                                      "explanation": "«langkah berikutnya» significa «Siguiente paso»."
+                                    },
+                                    {
+                                      "vocabId": "a2u36_mengevaluasi",
+                                      "type": "order",
+                                      "prompt": "Ordena: «Evaluamos el resultado del proyecto.».",
+                                      "words": [
+                                        "proyek",
+                                        "hasil",
+                                        "mengevaluasi",
+                                        "Kami"
+                                      ],
+                                      "correctOrder": [
+                                        "Kami",
+                                        "mengevaluasi",
+                                        "hasil",
+                                        "proyek"
+                                      ],
+                                      "explanation": "La oración correcta es «Kami mengevaluasi hasil proyek.»."
+                                    },
+                                    {
+                                      "vocabId": "a2u36_mempertimbangkan",
+                                      "type": "write",
+                                      "prompt": "Produce una frase breve con «mempertimbangkan».",
+                                      "hint": "Puedes adaptar: Saya mempertimbangkan semua pilihan.",
+                                      "modelAnswer": "Saya mempertimbangkan semua pilihan.",
+                                      "explanation": "La respuesta modelo muestra el uso contextual."
+                                    }
+                                  ]
+                                }]
                         }
 ,
                     {

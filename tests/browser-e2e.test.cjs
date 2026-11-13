@@ -1919,3 +1919,80 @@ test('learning route and unit sheet controls meet 44px touch targets at 360px', 
     await new Promise(resolve => server.close(resolve));
   }
 });
+
+
+test('imported custom lesson content cannot inject executable markup into the unit sheet or lesson view', async () => {
+  const { server, url } = await startServer();
+  const context = await browser.newContext({ serviceWorkers: 'block' });
+  const page = await context.newPage();
+  await page.addInitScript(() => { window.__xssProbe = 0; });
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' && typeof StudyActivity !== 'undefined');
+    const unitId = 'ai_xss_probe';
+    const payload = '<img src=x onerror="window.__xssProbe=1">';
+    const sheet = await page.evaluate(({ unitId, payload }) => {
+      const vocab = [
+        { id: unitId + '_v0', idn: payload, esp: payload, ex: payload, exEsp: payload },
+        { id: unitId + '_v1', idn: 'makan', esp: 'comer', ex: 'Saya makan', exEsp: 'Yo como' },
+        { id: unitId + '_v2', idn: 'minum', esp: 'beber', ex: 'Saya minum', exEsp: 'Yo bebo' }
+      ];
+      const backup = App.validateBackup({
+        version: 3,
+        xp: 0,
+        completedUnits: [],
+        completedLessons: [],
+        customUnits: [{
+          id: unitId,
+          custom: true,
+          title: payload,
+          desc: payload,
+          grammar: payload,
+          vocab,
+          exercises: [{
+            vocabId: vocab[0].id,
+            type: 'translate_es_id',
+            prompt: payload,
+            explanation: payload,
+            answer: payload
+          }]
+        }],
+        syllabusPos: 0,
+        srs: [],
+        studyActivity: StudyActivity.createDefault()
+      });
+      CustomLessons.units = backup.customUnits;
+      App.openUnitSheet(unitId);
+      return {
+        title: document.getElementById('unitSheetTitle').textContent,
+        description: document.querySelector('#unitSheetContent .unit-sheet-description').textContent,
+        images: document.querySelectorAll('#unitSheetContent img[src="x"]').length,
+        handlers: document.querySelectorAll('#unitSheetContent [onerror]').length,
+        executed: window.__xssProbe
+      };
+    }, { unitId, payload });
+
+    assert.equal(sheet.title, payload);
+    assert.equal(sheet.description, payload);
+    assert.equal(sheet.images, 0);
+    assert.equal(sheet.handlers, 0);
+    assert.equal(sheet.executed, 0);
+
+    await page.evaluate(unitId => LessonEngine.startUnitById(unitId, 0), unitId);
+    await page.waitForTimeout(100);
+    const lesson = await page.evaluate(() => ({
+      images: document.querySelectorAll('#exerciseArea img[src="x"]').length,
+      handlers: document.querySelectorAll('#exerciseArea [onerror]').length,
+      executed: window.__xssProbe,
+      text: document.getElementById('exerciseArea').textContent
+    }));
+    assert.equal(lesson.images, 0);
+    assert.equal(lesson.handlers, 0);
+    assert.equal(lesson.executed, 0);
+    assert.ok(lesson.text.includes(payload), 'the untrusted string should remain visible as text');
+  } finally {
+    await context.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});

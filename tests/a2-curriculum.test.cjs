@@ -120,7 +120,7 @@ test('A2 units 5-8 teach ber- and meN- forms in five authored lessons', () => {
       unit.id + ' retrieval lesson must review all vocabulary already taught');
     assert.equal((retrieval.exercises || []).length, 5, unit.id + ' retrieval lesson must contain five didactic exercises');
     const exercises = unit.lessons.flatMap(lesson => lesson.exercises || []);
-    assert.ok(exercises.length >= 14 && exercises.length <= 22, unit.id + ' should have 14-22 exercises');
+    assert.equal(exercises.length, 22, unit.id + ' should have 22 exercises across five authored lessons');
     assert.ok(new Set(exercises.map(exercise => exercise.type)).size >= 4, unit.id + ' should use four exercise types');
     assert.ok(exercises.some(exercise => exercise.type === 'listen'), unit.id + ' should include listening');
     assert.ok(exercises.some(exercise => exercise.type === 'write' && exercise.hint && exercise.modelAnswer),

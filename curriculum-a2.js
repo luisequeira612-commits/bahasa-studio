@@ -2240,13 +2240,13 @@ window.BAHASA_CURRICULUM_A2 = {
                         {
                             "title": "Lección 5: Recuperación espaciada de normas y seguridad",
                             "objective": "Integra el vocabulario de reglas, permisos, prohibiciones y seguridad para explicar qué está permitido y qué debe cumplirse.",
-                            "grammar": "Recupera las diferencias entre aturan y peraturan; wajib expresa obligación, dilarang prohibición y diizinkan permiso. Izin nombra el permiso; larangan, kesalahan y keselamatan se relacionan con normas y seguridad; aman y berbahaya describen condiciones; mematuhi y melanggar expresan cumplir e infringir.",
+                            "grammar": "Recupera las diferencias entre aturan y peraturan; wajib expresa obligación, dilarang prohibición y diizinkan permiso. Izin nombra el permiso; larangan y keselamatan se relacionan con normas y seguridad; aman y berbahaya describen condiciones; mematuhi y melanggar expresan cumplir e infringir.",
                             "vocabIds": [],
                             "reviewVocabIds": ["a2u10_aturan", "a2u10_peraturan", "a2u10_wajib", "a2u10_dilarang", "a2u10_diizinkan", "a2u10_izin", "a2u10_larangan", "a2u10_keselamatan", "a2u10_aman", "a2u10_berbahaya", "a2u10_mematuhi", "a2u10_melanggar"],
                             "exercises": [
                                 { "vocabId": "a2u10_wajib", "type": "mc", "prompt": "¿Qué significa «wajib»?", "options": ["Obligatorio; tener que", "Prohibido", "Seguro"], "answer": 0, "explanation": "«Wajib» significa «Obligatorio; tener que»." },
                                 { "vocabId": "a2u10_izin", "type": "translate_es_id", "prompt": "Traduce: «Pido permiso».", "answer": "Saya meminta izin.", "explanation": "Izin significa permiso." },
-                                { "vocabId": "a2u10_aman", "type": "order", "prompt": "Ordena: «Esta casa es segura».", "words": ["aman.", "Rumah", "ini"], "correctOrder": ["Rumah", "ini", "aman."], "explanation": "Rumah ini aman. Aman describe una condición segura." },
+                                { "vocabId": "a2u10_aman", "type": "order", "prompt": "Ordena: «Esta casa es segura».", "words": ["aman.", "ini", "Rumah"], "correctOrder": ["Rumah", "ini", "aman."], "explanation": "Rumah ini aman. Aman describe una condición segura." },
                                 { "vocabId": "a2u10_berbahaya", "type": "listen", "prompt": "Escucha y escribe la oración completa.", "answer": "Ini berbahaya.", "explanation": "Berbahaya describe algo peligroso." },
                                 { "vocabId": "a2u10_mematuhi", "type": "write", "prompt": "Escribe una oración breve con «mematuhi» para decir que cumples una regla.", "hint": "Puedes usar el modelo «Saya mematuhi aturan».", "modelAnswer": "Saya mematuhi aturan.", "explanation": "La producción recupera mematuhi dentro de una oración completa." }
                             ]
@@ -2546,7 +2546,7 @@ window.BAHASA_CURRICULUM_A2 = {
                             "exercises": [
                                 { "vocabId": "a2u11_kerusakan", "type": "mc", "prompt": "¿Qué significa «kerusakan»?", "options": ["Daño; avería", "Encontrar", "Emergencia"], "answer": 0, "explanation": "«Kerusakan» significa «Daño; avería»." },
                                 { "vocabId": "a2u11_kehilangan", "type": "translate_es_id", "prompt": "Traduce: «He perdido el libro».", "answer": "Saya kehilangan buku.", "explanation": "Kehilangan expresa perder algo." },
-                                { "vocabId": "a2u11_rusak", "type": "order", "prompt": "Ordena: «Esa puerta está averiada».", "words": ["rusak.", "Pintu", "itu"], "correctOrder": ["Pintu", "itu", "rusak."], "explanation": "Pintu itu rusak. Rusak describe algo estropeado o averiado." },
+                                { "vocabId": "a2u11_rusak", "type": "order", "prompt": "Ordena: «Esa puerta está averiada».", "words": ["rusak.", "itu", "Pintu"], "correctOrder": ["Pintu", "itu", "rusak."], "explanation": "Pintu itu rusak. Rusak describe algo estropeado o averiado." },
                                 { "vocabId": "a2u11_darurat", "type": "listen", "prompt": "Escucha y escribe la oración completa.", "answer": "Ini darurat.", "explanation": "Darurat indica una emergencia." },
                                 { "vocabId": "a2u11_melaporkan", "type": "write", "prompt": "Escribe una oración breve con «melaporkan» para informar de un problema.", "hint": "Puedes usar el modelo «Saya melaporkan masalah».", "modelAnswer": "Saya melaporkan masalah.", "explanation": "La producción recupera melaporkan dentro de una oración completa." }
                             ]

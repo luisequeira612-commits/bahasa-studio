@@ -21,6 +21,8 @@ jobs:
         run: npx playwright install --with-deps chromium
       - name: Check JavaScript syntax
         run: find . -type f -name '*.js' -not -path './node_modules/*' -print0 | xargs -0 -n1 node --check
+      - name: Report authored lesson inventory (generated lessons excluded)
+        run: npm run curriculum:lesson-inventory
       - name: Run regression tests
         run: node --test tests/regression.test.cjs
       - name: Run unbiased exercise shuffle tests

@@ -1209,8 +1209,8 @@ test('A2 U9-U12 editorial audit records bounded findings without claiming lingui
   const audit = fs.readFileSync(path.join(__dirname, '..', 'docs/A2-UNITS-09-12-AUDIT.md'), 'utf8');
   for (const unit of ['U9', 'U10', 'U11', 'U12']) assert.match(audit, new RegExp('\\b' + unit + '\\b'));
   assert.match(audit, /48 entradas/);
-  assert.match(audit, /16 lecciones/);
-  assert.match(audit, /68 ejercicios/);
+  assert.match(audit, /20 lecciones explícitas/);
+  assert.match(audit, /116 ejercicios/);
   assert.match(audit, /revisión lingüística independiente pendiente/);
   assert.match(audit, /No hubo hablante nativo disponible/);
   assert.match(audit, /KBBI no es requisito/);

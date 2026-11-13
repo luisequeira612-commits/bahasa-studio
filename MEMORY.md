@@ -5,7 +5,7 @@
 ## Corrección pedagógica obligatoria — 12 nov 2026
 - Decisión explícita del dueño: todas las unidades A1–B2 deben tener 5–6 lecciones didácticas reales. Los ejercicios, bloques derivados de vocabulario y repasos automáticos genéricos no sustituyen lecciones planificadas. Distribuir vocabulario y recuperarlo espaciadamente en contextos diferentes.
 - Hallazgo en `main` `236537f`: B2 U1–U3 tienen tres lecciones explícitas, aunque `buildUnitLessons()` añade dos repasos activos genéricos y la app puede mostrar cinco. A1 genera bloques de vocabulario y repaso automáticamente; A2/B1/B2 también pueden completar por relleno. Las pruebas previas contaban solo algunos niveles/contratos y podían ocultar la diferencia.
-- PR de auditoría en curso: ampliar `unit-contract-report` para A1–B2 y separar lecciones explícitas, bloques derivados, repasos automáticos y total runtime. No declarar unidades conformes por el total runtime. La auditoría es diagnóstica; falta ejecutar CI y completar el inventario de incumplimientos antes de corregir unidades. No ampliar B2 hasta cerrar la auditoría y definir el plan de remediación.
+- PR #532 ya está fusionada en `main` (`9798a47e`): la auditoría A1–B2 separa lecciones explícitas, bloques derivados, repasos automáticos y total runtime. Detectó 3/127 unidades con 5–6 lecciones explícitas; 124 incumplen. Por nivel: A1 0/32, A2 1/40, B1 0/50, B2 2/5. La siguiente remediación empieza por B2 U1–U3.
 - No modificar IndexedDB, backup JSON v3 ni añadir vocabulario/ejemplos no aprobados. La corrección debe reutilizar y redistribuir contenido existente cuando sea pedagógicamente válido; no inflar recuentos con contenido artificial.
 
 ## Estado vigente
@@ -15,6 +15,10 @@
 - Pruebas locales de progresión, contratos curriculares, liberación y B2: 75/75 correctas. La suite `quality:tests` tuvo 128 pruebas correctas, pero Playwright 1.55 no admite `process.platform === android` en este terminal. CI Linux del PR #511 pasó en su head exacto.
 - PR #513 se fusionó por squash (`46e6b1b`). CI y Pages post-merge se verificaron en los SHA posteriores; sigue pendiente una prueba física específica de los controles de #513 en Android.
 - La verificación post-merge de #519 corresponde al SHA exacto `ac77198400c7ac71ec4eaab85414f56cb3b01f2a`; Regression 74/74, calidad 10/10 y Pages build/reporte/deploy en éxito.
+
+## Remediación de lecciones — 13 nov 2026
+- PR de remediación en curso: B2 U1–U3 pasan de 3 a 5 lecciones explícitas cada una, sin añadir IDs de vocabulario nuevos. Las dos lecciones nuevas de cada unidad están orientadas a recuperación espaciada, contraste de construcciones e integración contextual. El objetivo no es inflar el contador: las lecciones tienen objetivos, gramática, vocabulario distribuido y ejercicios propios.
+- B2 U1–U3 deben quedar verificadas con 5 lecciones explícitas en tests; no se cuentan los repasos automáticos del motor.
 
 ## B2 U5 y decisiones pendientes
 - U5 implementada y fusionada en PR #529 (`0c5899c9`): cinco lecciones/16 ejercicios; añade `menawari` y `menawarkan` con IDs propios y glosas contextuales; reutiliza `v448` (`bantuan`) y `b1v145` (`umpan balik`); `datangi`/`panasi` y `menjatuhi`/`dijatuhi` solo reconocimiento; excluye `tanami`/`garami`/`kantongi`. CI del PR y post-merge: test 74/74 y calidad offline 10/10; Pages correcto. Naturalidad/adecuación de ejemplos didácticos sigue `not_checked`.
@@ -31,7 +35,7 @@
 
 ## Fases y próximos pasos
 - Fase 1: CI y calidad estructural revisados; Playwright se ejecuta en CI compatible y las regresiones post-merge #518, #519 y #521 finalizaron correctamente.
-- Fase 2: cobertura curricular A1–B2 requiere nueva auditoría del requisito obligatorio de 5–6 lecciones explícitas por unidad; la revisión editorial/lingüística de A1/A2 tampoco está terminada.
+- Fase 2: auditoría estructural completada y regla obligatoria de 5–6 lecciones explícitas establecida. Remediación en curso por lotes; esta PR corrige B2 U1–U3. La revisión editorial/lingüística de A1/A2 tampoco está terminada.
 - Fase 3: auditoría ejecutada; 41 avisos son candidatos editoriales y requieren revisión contextual. No hay errores bloqueantes estructurales.
 - Fase 4: U5 implementada, fusionada y verificada; siguiente preparación: diseñar U6 (`memper-`) sin activar contenido hasta aprobación explícita. U13–U60 carecen de mapa aprobado.
 - Fase 5–8: mejoras mobile-first y objetivos táctiles de #502, #513 y #517 integrados; #518 añade regresión de navegación; #519 y #521 añaden contención del foco, Escape y restauración del foco en diálogos móviles; #524 y #526 completan accesibilidad de traducción contextual y restauración del foco; #527 añade anuncios accesibles al Tutor y etiquetas explícitas a Tutor/Diccionario. CI y Pages post-merge verificados para #518, #519, #521, #524, #526 y #527. Sigue pendiente prueba física Android de estos controles.

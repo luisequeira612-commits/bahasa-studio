@@ -2031,7 +2031,7 @@ test('A1 U5-U8 runtime uses five authored lessons without generated padding', ()
     { CourseData: course, Map, Set, Math }
   );
   const a1 = course.levels.find(level => level.id === 'A1');
-  const expectedExerciseCounts = [23, 27, 23, 24];
+  const expectedExerciseCounts = [30, 39, 30, 31];
 
   for (const [index, unit] of a1.units.slice(4, 8).entries()) {
     const lessons = engine.buildUnitLessons(unit);

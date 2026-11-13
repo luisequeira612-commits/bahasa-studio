@@ -3214,7 +3214,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                             "memakai",
                                             "kartu"
                                         ],
-                                        "explanation": "La secuencia reconstruye el ejemplo de «kartu»."
+                                        "explanation": "La secuencia correcta es: Saya memakai kartu."
                                     },
                                     {
                                         "vocabId": "a2u13_struk",
@@ -3266,7 +3266,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                             "itu",
                                             "besar"
                                         ],
-                                        "explanation": "La secuencia reconstruye el ejemplo de «pusat belanja»."
+                                        "explanation": "La secuencia correcta es: Pusat belanja itu besar."
                                     },
                                     {
                                         "vocabId": "a2u13_penjual",
@@ -3651,7 +3651,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                             "itu",
                                             "ramai"
                                         ],
-                                        "explanation": "La secuencia reconstruye el ejemplo de «pelabuhan»."
+                                        "explanation": "La secuencia correcta es: Pelabuhan itu ramai."
                                     },
                                     {
                                         "vocabId": "a2u14_karcis",
@@ -3703,7 +3703,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                             "pukul",
                                             "tujuh"
                                         ],
-                                        "explanation": "La secuencia reconstruye el ejemplo de «keberangkatan»."
+                                        "explanation": "La secuencia correcta es: Keberangkatan angkutan pukul tujuh."
                                     },
                                     {
                                         "vocabId": "a2u14_pindah",
@@ -4090,7 +4090,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                             "hadir",
                                             "besok"
                                         ],
-                                        "explanation": "La secuencia reconstruye el ejemplo de «hadir»."
+                                        "explanation": "La secuencia correcta es: Saya hadir besok."
                                     },
                                     {
                                         "vocabId": "a2u15_berhalangan",
@@ -4140,7 +4140,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                             "membatalkan",
                                             "pesta"
                                         ],
-                                        "explanation": "La secuencia reconstruye el ejemplo de «membatalkan»."
+                                        "explanation": "La secuencia correcta es: Kami membatalkan pesta."
                                     },
                                     {
                                         "vocabId": "a2u15_menemani",
@@ -4525,7 +4525,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                             "kami",
                                             "makan"
                                         ],
-                                        "explanation": "La secuencia reconstruye el ejemplo de «sesudahnya»."
+                                        "explanation": "La secuencia correcta es: Sesudahnya kami makan."
                                     },
                                     {
                                         "vocabId": "a2u16_pada_akhirnya",
@@ -4577,7 +4577,7 @@ window.BAHASA_CURRICULUM_A2 = {
                                             "di",
                                             "pantai"
                                         ],
-                                        "explanation": "La secuencia reconstruye el ejemplo de «berfoto»."
+                                        "explanation": "La secuencia correcta es: Saya berfoto di pantai."
                                     },
                                     {
                                         "vocabId": "a2u16_pemandangan",

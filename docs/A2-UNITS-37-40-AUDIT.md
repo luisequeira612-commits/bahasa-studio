@@ -13,12 +13,12 @@ Las 48 entradas mantienen su estado lingüístico pendiente. No se elevan a veri
 
 | Unidad | Foco | Vocabulario | Lecciones | Ejercicios |
 |---|---|---:|---:|---:|
-| U37 | Emergencias y preparación ante desastres | 12 | 4 | 17 |
-| U38 | Turismo y alojamiento | 12 | 4 | 17 |
-| U39 | Trabajo remoto y colaboración digital | 12 | 4 | 17 |
-| U40 | Resumir, aclarar y responder | 12 | 4 | 17 |
+| U37 | Emergencias y preparación ante desastres | 12 | 5 | 29 |
+| U38 | Turismo y alojamiento | 12 | 5 | 29 |
+| U39 | Trabajo remoto y colaboración digital | 12 | 5 | 29 |
+| U40 | Resumir, aclarar y responder | 12 | 5 | 29 |
 
-Total: **48 entradas, 16 lecciones y 68 ejercicios**.
+Total tras la ampliación: **48 entradas, 20 lecciones explícitas y 116 ejercicios**. Cada unidad incorpora una quinta lección de recuperación espaciada con 12 ejercicios, que cubren cada entrada una vez y no añaden vocabulario. Esta ampliación es estructural; no modifica el estado `not_checked` de la revisión lingüística.
 
 ## Observaciones editoriales y riesgos
 

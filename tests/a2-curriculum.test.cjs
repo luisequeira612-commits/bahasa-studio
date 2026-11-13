@@ -572,9 +572,18 @@ test('A2 units 37-40 teach emergency readiness, tourism, remote work, and integr
   assert.match(units[3].title, /Resumir/);
   for (const unit of units) {
     assert.equal(unit.vocab.length, 12, unit.id + ' should provide twelve assessment items');
-    assert.equal(unit.lessons.length, 4, unit.id + ' should have four authored lessons');
+    assert.equal(unit.lessons.length, 5, unit.id + ' should have five authored lessons');
+    const retrieval = unit.lessons[4];
+    assert.deepEqual(Array.from(retrieval.vocabIds || []), [], unit.id + ' retrieval lesson must not introduce vocabulary again');
+    assert.deepEqual(Array.from(retrieval.reviewVocabIds || []).sort(), Array.from(unit.vocab, word => word.id).sort(),
+      unit.id + ' retrieval lesson must review every unit vocabulary item');
+    assert.equal(retrieval.exercises.length, 12, unit.id + ' retrieval lesson must practise all twelve words');
+    assert.deepEqual([...new Set(retrieval.exercises.map(exercise => exercise.vocabId))].sort(),
+      Array.from(unit.vocab, word => word.id).sort(), unit.id + ' retrieval exercises must cover every word');
+    assert.equal(new Set(retrieval.exercises.map(exercise => exercise.type)).size, 5,
+      unit.id + ' retrieval lesson must use five exercise types');
     const exercises = unit.lessons.flatMap(lesson => lesson.exercises || []);
-    assert.equal(exercises.length, 17, unit.id + ' should have 17 exercises');
+    assert.equal(exercises.length, 29, unit.id + ' should have 29 exercises');
     assert.ok(new Set(exercises.map(exercise => exercise.type)).size >= 4, unit.id + ' should use four exercise types');
     assert.ok(exercises.some(exercise => exercise.type === 'listen'), unit.id + ' should include listening');
     assert.ok(exercises.some(exercise => exercise.type === 'write' && exercise.hint && exercise.modelAnswer),
@@ -1452,8 +1461,8 @@ test('A2 U37-U40 editorial audit records bounded findings without claiming lingu
   const audit = fs.readFileSync(path.join(__dirname, '..', 'docs/A2-UNITS-37-40-AUDIT.md'), 'utf8');
   for (const unit of ['U37', 'U38', 'U39', 'U40']) assert.match(audit, new RegExp('\\b' + unit + '\\b'));
   assert.match(audit, /48 entradas/);
-  assert.match(audit, /16 lecciones/);
-  assert.match(audit, /68 ejercicios/);
+  assert.match(audit, /20 lecciones explícitas/);
+  assert.match(audit, /116 ejercicios/);
   assert.match(audit, /revisión lingüística independiente pendiente/);
   assert.match(audit, /No hubo hablante nativo disponible/);
   assert.match(audit, /KBBI no es requisito/);

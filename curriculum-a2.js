@@ -13824,7 +13824,156 @@ window.BAHASA_CURRICULUM_A2 = {
                                         }
                                     ]
                                 }
-                            ]
+                            ,
+                                {
+                                    "title": "Lección 5: Recuperación espaciada y uso integrado",
+                                    "objective": "Recupera y aplica el vocabulario de fenómenos naturales, alertas, evacuación, refugios y ayuda comunitaria.",
+                                    "grammar": "Contrasta los fenómenos naturales con las medidas de respuesta. Repasa terjadi para describir sucesos, harus para expresar necesidad y las construcciones pasivas de los avisos y recursos.",
+                                    "vocabIds": [],
+                                    "reviewVocabIds": [
+                                        "a2u37_gempa_bumi",
+                                        "a2u37_letusan_gunung",
+                                        "a2u37_tanah_longsor",
+                                        "a2u37_gelombang_tinggi",
+                                        "a2u37_peringatan_dini",
+                                        "a2u37_evakuasi",
+                                        "a2u37_tempat_pengungsian",
+                                        "a2u37_persediaan_makanan",
+                                        "a2u37_pertolongan_pertama",
+                                        "a2u37_jalur_evakuasi",
+                                        "a2u37_relawan_bencana",
+                                        "a2u37_pusat_bantuan"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "a2u37_gempa_bumi",
+                                            "type": "mc",
+                                            "explanation": "«gempa bumi» significa «Terremoto».",
+                                            "prompt": "¿Qué significa «gempa bumi»?",
+                                            "options": [
+                                                "Terremoto",
+                                                "Erupción volcánica",
+                                                "Deslizamiento de tierra"
+                                            ],
+                                            "answer": 0
+                                        },
+                                        {
+                                            "vocabId": "a2u37_letusan_gunung",
+                                            "type": "translate_es_id",
+                                            "explanation": "La frase utiliza «letusan gunung».",
+                                            "prompt": "Traduce: La erupción volcánica se veía desde el pueblo.",
+                                            "answer": "Letusan gunung itu terlihat dari desa."
+                                        },
+                                        {
+                                            "vocabId": "a2u37_tanah_longsor",
+                                            "type": "listen",
+                                            "explanation": "La oración contiene «tanah longsor».",
+                                            "prompt": "Escucha y escribe la oración.",
+                                            "answer": "Tanah longsor menutup jalan utama."
+                                        },
+                                        {
+                                            "vocabId": "a2u37_gelombang_tinggi",
+                                            "type": "write",
+                                            "explanation": "Usa «gelombang tinggi» en una oración completa.",
+                                            "prompt": "Escribe una frase usando gelombang tinggi.",
+                                            "hint": "Puedes tomar como modelo: Gelombang tinggi mengganggu perjalanan kapal.",
+                                            "modelAnswer": "Gelombang tinggi mengganggu perjalanan kapal."
+                                        },
+                                        {
+                                            "vocabId": "a2u37_peringatan_dini",
+                                            "type": "order",
+                                            "explanation": "La frase completa es: Peringatan dini dikirim melalui radio.",
+                                            "prompt": "Ordena: La alerta temprana se envía por radio.",
+                                            "words": [
+                                                "radio",
+                                                "melalui",
+                                                "dikirim",
+                                                "dini",
+                                                "Peringatan"
+                                            ],
+                                            "correctOrder": [
+                                                "Peringatan",
+                                                "dini",
+                                                "dikirim",
+                                                "melalui",
+                                                "radio"
+                                            ]
+                                        },
+                                        {
+                                            "vocabId": "a2u37_evakuasi",
+                                            "type": "mc",
+                                            "explanation": "«evakuasi» significa «Evacuación».",
+                                            "prompt": "¿Qué significa «evakuasi»?",
+                                            "options": [
+                                                "Evacuación",
+                                                "Terremoto",
+                                                "Erupción volcánica"
+                                            ],
+                                            "answer": 0
+                                        },
+                                        {
+                                            "vocabId": "a2u37_tempat_pengungsian",
+                                            "type": "translate_es_id",
+                                            "explanation": "La frase utiliza «tempat pengungsian».",
+                                            "prompt": "Traduce: El refugio está cerca de la escuela.",
+                                            "answer": "Tempat pengungsian berada dekat sekolah."
+                                        },
+                                        {
+                                            "vocabId": "a2u37_persediaan_makanan",
+                                            "type": "listen",
+                                            "explanation": "La oración contiene «persediaan makanan».",
+                                            "prompt": "Escucha y escribe la oración.",
+                                            "answer": "Persediaan makanan cukup untuk tiga hari."
+                                        },
+                                        {
+                                            "vocabId": "a2u37_pertolongan_pertama",
+                                            "type": "write",
+                                            "explanation": "Usa «pertolongan pertama» en una oración completa.",
+                                            "prompt": "Escribe una frase usando pertolongan pertama.",
+                                            "hint": "Puedes tomar como modelo: Pertolongan pertama harus diberikan segera.",
+                                            "modelAnswer": "Pertolongan pertama harus diberikan segera."
+                                        },
+                                        {
+                                            "vocabId": "a2u37_jalur_evakuasi",
+                                            "type": "order",
+                                            "explanation": "La frase completa es: Jalur evakuasi harus tetap terbuka.",
+                                            "prompt": "Ordena: La ruta de evacuación debe permanecer abierta.",
+                                            "words": [
+                                                "terbuka",
+                                                "tetap",
+                                                "harus",
+                                                "evakuasi",
+                                                "Jalur"
+                                            ],
+                                            "correctOrder": [
+                                                "Jalur",
+                                                "evakuasi",
+                                                "harus",
+                                                "tetap",
+                                                "terbuka"
+                                            ]
+                                        },
+                                        {
+                                            "vocabId": "a2u37_relawan_bencana",
+                                            "type": "mc",
+                                            "explanation": "«relawan bencana» significa «Voluntario de desastres».",
+                                            "prompt": "¿Qué significa «relawan bencana»?",
+                                            "options": [
+                                                "Voluntario de desastres",
+                                                "Terremoto",
+                                                "Erupción volcánica"
+                                            ],
+                                            "answer": 0
+                                        },
+                                        {
+                                            "vocabId": "a2u37_pusat_bantuan",
+                                            "type": "translate_es_id",
+                                            "explanation": "La frase utiliza «pusat bantuan».",
+                                            "prompt": "Traduce: El centro de ayuda abre en el ayuntamiento.",
+                                            "answer": "Pusat bantuan dibuka di balai kota."
+                                        }
+                                    ]
+                                }]
                         },
                         {
                             "id": "a2_u38",
@@ -14120,7 +14269,160 @@ window.BAHASA_CURRICULUM_A2 = {
                                         }
                                     ]
                                 }
-                            ]
+                            ,
+                                {
+                                    "title": "Lección 5: Recuperación espaciada y uso integrado",
+                                    "objective": "Integra el vocabulario de viajeros, destinos, alojamiento, reservas, entradas y programas de visita.",
+                                    "grammar": "Distingue personas, lugares, servicios, reservas y documentos de acceso. Repasa mengunjungi para hablar de visitas y melalui para indicar el medio usado en una reserva.",
+                                    "vocabIds": [],
+                                    "reviewVocabIds": [
+                                        "a2u38_wisatawan",
+                                        "a2u38_destinasi",
+                                        "a2u38_pemandu_wisata",
+                                        "a2u38_penginapan",
+                                        "a2u38_pemesanan",
+                                        "a2u38_peta_wisata",
+                                        "a2u38_biaya_masuk",
+                                        "a2u38_jam_kunjung",
+                                        "a2u38_tiket_masuk",
+                                        "a2u38_objek_wisata",
+                                        "a2u38_oleh_oleh",
+                                        "a2u38_jadwal_kunjungan"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "a2u38_wisatawan",
+                                            "type": "mc",
+                                            "explanation": "«wisatawan» significa «Turista».",
+                                            "prompt": "¿Qué significa «wisatawan»?",
+                                            "options": [
+                                                "Turista",
+                                                "Destino",
+                                                "Guía turístico"
+                                            ],
+                                            "answer": 0
+                                        },
+                                        {
+                                            "vocabId": "a2u38_destinasi",
+                                            "type": "translate_es_id",
+                                            "explanation": "La frase utiliza «destinasi».",
+                                            "prompt": "Traduce: Bali es un destino popular.",
+                                            "answer": "Bali adalah destinasi populer."
+                                        },
+                                        {
+                                            "vocabId": "a2u38_pemandu_wisata",
+                                            "type": "listen",
+                                            "explanation": "La oración contiene «pemandu wisata».",
+                                            "prompt": "Escucha y escribe la oración.",
+                                            "answer": "Pemandu wisata menjelaskan sejarah tempat itu."
+                                        },
+                                        {
+                                            "vocabId": "a2u38_penginapan",
+                                            "type": "write",
+                                            "explanation": "Usa «penginapan» en una oración completa.",
+                                            "prompt": "Escribe una frase usando penginapan.",
+                                            "hint": "Puedes tomar como modelo: Penginapan kami dekat pantai.",
+                                            "modelAnswer": "Penginapan kami dekat pantai."
+                                        },
+                                        {
+                                            "vocabId": "a2u38_pemesanan",
+                                            "type": "order",
+                                            "explanation": "La frase completa es: Pemesanan kamar dilakukan melalui situs.",
+                                            "prompt": "Ordena: La reserva de la habitación se realiza mediante el sitio web.",
+                                            "words": [
+                                                "situs",
+                                                "melalui",
+                                                "dilakukan",
+                                                "kamar",
+                                                "Pemesanan"
+                                            ],
+                                            "correctOrder": [
+                                                "Pemesanan",
+                                                "kamar",
+                                                "dilakukan",
+                                                "melalui",
+                                                "situs"
+                                            ]
+                                        },
+                                        {
+                                            "vocabId": "a2u38_peta_wisata",
+                                            "type": "mc",
+                                            "explanation": "«peta wisata» significa «Mapa turístico».",
+                                            "prompt": "¿Qué significa «peta wisata»?",
+                                            "options": [
+                                                "Mapa turístico",
+                                                "Turista",
+                                                "Destino"
+                                            ],
+                                            "answer": 0
+                                        },
+                                        {
+                                            "vocabId": "a2u38_biaya_masuk",
+                                            "type": "translate_es_id",
+                                            "explanation": "La frase utiliza «biaya masuk».",
+                                            "prompt": "Traduce: La tarifa de entrada se paga en la taquilla.",
+                                            "answer": "Biaya masuk dibayar di loket."
+                                        },
+                                        {
+                                            "vocabId": "a2u38_jam_kunjung",
+                                            "type": "listen",
+                                            "explanation": "La oración contiene «jam kunjung».",
+                                            "prompt": "Escucha y escribe la oración.",
+                                            "answer": "Jam kunjung berakhir pukul lima."
+                                        },
+                                        {
+                                            "vocabId": "a2u38_tiket_masuk",
+                                            "type": "write",
+                                            "explanation": "Usa «tiket masuk» en una oración completa.",
+                                            "prompt": "Escribe una frase usando tiket masuk.",
+                                            "hint": "Puedes tomar como modelo: Simpan tiket masuk Anda.",
+                                            "modelAnswer": "Simpan tiket masuk Anda."
+                                        },
+                                        {
+                                            "vocabId": "a2u38_objek_wisata",
+                                            "type": "order",
+                                            "explanation": "La frase completa es: Objek wisata itu ramai pada akhir pekan.",
+                                            "prompt": "Ordena: Esa atracción turística está concurrida los fines de semana.",
+                                            "words": [
+                                                "pekan",
+                                                "akhir",
+                                                "pada",
+                                                "ramai",
+                                                "itu",
+                                                "wisata",
+                                                "Objek"
+                                            ],
+                                            "correctOrder": [
+                                                "Objek",
+                                                "wisata",
+                                                "itu",
+                                                "ramai",
+                                                "pada",
+                                                "akhir",
+                                                "pekan"
+                                            ]
+                                        },
+                                        {
+                                            "vocabId": "a2u38_oleh_oleh",
+                                            "type": "mc",
+                                            "explanation": "«oleh-oleh» significa «Recuerdo».",
+                                            "prompt": "¿Qué significa «oleh-oleh»?",
+                                            "options": [
+                                                "Recuerdo",
+                                                "Turista",
+                                                "Destino"
+                                            ],
+                                            "answer": 0
+                                        },
+                                        {
+                                            "vocabId": "a2u38_jadwal_kunjungan",
+                                            "type": "translate_es_id",
+                                            "explanation": "La frase utiliza «jadwal kunjungan».",
+                                            "prompt": "Traduce: El programa de visitas cambia debido a la lluvia.",
+                                            "answer": "Jadwal kunjungan berubah karena hujan."
+                                        }
+                                    ]
+                                }]
                         },
                         {
                             "id": "a2_u39",
@@ -14420,7 +14722,154 @@ window.BAHASA_CURRICULUM_A2 = {
                                         }
                                     ]
                                 }
-                            ]
+                            ,
+                                {
+                                    "title": "Lección 5: Recuperación espaciada y uso integrado",
+                                    "objective": "Recupera expresiones para participar en reuniones remotas, compartir archivos y gestionar el acceso digital.",
+                                    "grammar": "Contrasta unduh y unggah como acciones de transferencia en direcciones opuestas. Repasa instrucciones con silakan y jangan y expresiones para compartir, actualizar y conceder acceso.",
+                                    "vocabIds": [],
+                                    "reviewVocabIds": [
+                                        "a2u39_rapat_daring",
+                                        "a2u39_konferensi_video",
+                                        "a2u39_berbagi_layar",
+                                        "a2u39_dokumen_bersama",
+                                        "a2u39_tautan",
+                                        "a2u39_lampiran",
+                                        "a2u39_unduh",
+                                        "a2u39_unggah",
+                                        "a2u39_penyimpanan_awan",
+                                        "a2u39_notifikasi",
+                                        "a2u39_pembaruan",
+                                        "a2u39_akses"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "a2u39_rapat_daring",
+                                            "type": "mc",
+                                            "explanation": "«rapat daring» significa «Reunión en línea».",
+                                            "prompt": "¿Qué significa «rapat daring»?",
+                                            "options": [
+                                                "Reunión en línea",
+                                                "Videoconferencia",
+                                                "Compartir pantalla"
+                                            ],
+                                            "answer": 0
+                                        },
+                                        {
+                                            "vocabId": "a2u39_konferensi_video",
+                                            "type": "translate_es_id",
+                                            "explanation": "La frase utiliza «konferensi video».",
+                                            "prompt": "Traduce: Participamos en una videoconferencia con el equipo.",
+                                            "answer": "Kami mengikuti konferensi video dengan tim."
+                                        },
+                                        {
+                                            "vocabId": "a2u39_berbagi_layar",
+                                            "type": "listen",
+                                            "explanation": "La oración contiene «berbagi layar».",
+                                            "prompt": "Escucha y escribe la oración.",
+                                            "answer": "Saya berbagi layar saat presentasi."
+                                        },
+                                        {
+                                            "vocabId": "a2u39_dokumen_bersama",
+                                            "type": "write",
+                                            "explanation": "Usa «dokumen bersama» en una oración completa.",
+                                            "prompt": "Escribe una frase usando dokumen bersama.",
+                                            "hint": "Puedes tomar como modelo: Kami mengedit dokumen bersama.",
+                                            "modelAnswer": "Kami mengedit dokumen bersama."
+                                        },
+                                        {
+                                            "vocabId": "a2u39_tautan",
+                                            "type": "order",
+                                            "explanation": "La frase completa es: Kirim tautan rapat kepada saya.",
+                                            "prompt": "Ordena: Envíame el enlace de la reunión.",
+                                            "words": [
+                                                "saya",
+                                                "kepada",
+                                                "rapat",
+                                                "tautan",
+                                                "Kirim"
+                                            ],
+                                            "correctOrder": [
+                                                "Kirim",
+                                                "tautan",
+                                                "rapat",
+                                                "kepada",
+                                                "saya"
+                                            ]
+                                        },
+                                        {
+                                            "vocabId": "a2u39_lampiran",
+                                            "type": "mc",
+                                            "explanation": "«lampiran» significa «Archivo adjunto».",
+                                            "prompt": "¿Qué significa «lampiran»?",
+                                            "options": [
+                                                "Archivo adjunto",
+                                                "Reunión en línea",
+                                                "Videoconferencia"
+                                            ],
+                                            "answer": 0
+                                        },
+                                        {
+                                            "vocabId": "a2u39_unduh",
+                                            "type": "translate_es_id",
+                                            "explanation": "La frase utiliza «unduh».",
+                                            "prompt": "Traduce: Por favor, descarga ese archivo.",
+                                            "answer": "Silakan unduh berkas itu."
+                                        },
+                                        {
+                                            "vocabId": "a2u39_unggah",
+                                            "type": "listen",
+                                            "explanation": "La oración contiene «unggah».",
+                                            "prompt": "Escucha y escribe la oración.",
+                                            "answer": "Saya mengunggah laporan ke sistem."
+                                        },
+                                        {
+                                            "vocabId": "a2u39_penyimpanan_awan",
+                                            "type": "write",
+                                            "explanation": "Usa «penyimpanan awan» en una oración completa.",
+                                            "prompt": "Escribe una frase usando penyimpanan awan.",
+                                            "hint": "Puedes tomar como modelo: Dokumen disimpan di penyimpanan awan.",
+                                            "modelAnswer": "Dokumen disimpan di penyimpanan awan."
+                                        },
+                                        {
+                                            "vocabId": "a2u39_notifikasi",
+                                            "type": "order",
+                                            "explanation": "La frase completa es: Notifikasi muncul di layar.",
+                                            "prompt": "Ordena: La notificación aparece en la pantalla.",
+                                            "words": [
+                                                "layar",
+                                                "di",
+                                                "muncul",
+                                                "Notifikasi"
+                                            ],
+                                            "correctOrder": [
+                                                "Notifikasi",
+                                                "muncul",
+                                                "di",
+                                                "layar"
+                                            ]
+                                        },
+                                        {
+                                            "vocabId": "a2u39_pembaruan",
+                                            "type": "mc",
+                                            "explanation": "«pembaruan» significa «Actualización».",
+                                            "prompt": "¿Qué significa «pembaruan»?",
+                                            "options": [
+                                                "Actualización",
+                                                "Reunión en línea",
+                                                "Videoconferencia"
+                                            ],
+                                            "answer": 0
+                                        },
+                                        {
+                                            "vocabId": "a2u39_akses",
+                                            "type": "translate_es_id",
+                                            "explanation": "La frase utiliza «akses».",
+                                            "prompt": "Traduce: Solo los miembros del equipo tienen acceso.",
+                                            "answer": "Hanya anggota tim memiliki akses."
+                                        }
+                                    ]
+                                }]
                         },
                         {
                             "id": "a2_u40",
@@ -14716,7 +15165,154 @@ window.BAHASA_CURRICULUM_A2 = {
                                         }
                                     ]
                                 }
-                            ]
+                            ,
+                                {
+                                    "title": "Lección 5: Recuperación espaciada y uso integrado",
+                                    "objective": "Organiza una intervención breve: resume ideas, aclara información, responde y presenta una conclusión.",
+                                    "grammar": "Repasa menurut saya para expresar una opinión y meminta klarifikasi para pedir precisión. Practica cómo enlazar ringkasan, contoh tambahan, tanggapan y kesimpulan en una intervención coherente.",
+                                    "vocabIds": [],
+                                    "reviewVocabIds": [
+                                        "a2u40_ringkasan",
+                                        "a2u40_kesimpulan",
+                                        "a2u40_klarifikasi",
+                                        "a2u40_penegasan",
+                                        "a2u40_tanggapan",
+                                        "a2u40_sanggahan",
+                                        "a2u40_contoh_tambahan",
+                                        "a2u40_uraian",
+                                        "a2u40_rincian",
+                                        "a2u40_keterangan",
+                                        "a2u40_pernyataan",
+                                        "a2u40_pembahasan"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "a2u40_ringkasan",
+                                            "type": "mc",
+                                            "explanation": "«ringkasan» significa «Resumen».",
+                                            "prompt": "¿Qué significa «ringkasan»?",
+                                            "options": [
+                                                "Resumen",
+                                                "Conclusión",
+                                                "Aclaración"
+                                            ],
+                                            "answer": 0
+                                        },
+                                        {
+                                            "vocabId": "a2u40_kesimpulan",
+                                            "type": "translate_es_id",
+                                            "explanation": "La frase utiliza «kesimpulan».",
+                                            "prompt": "Traduce: La conclusión se formula después del debate.",
+                                            "answer": "Kesimpulan dibuat setelah diskusi."
+                                        },
+                                        {
+                                            "vocabId": "a2u40_klarifikasi",
+                                            "type": "listen",
+                                            "explanation": "La oración contiene «klarifikasi».",
+                                            "prompt": "Escucha y escribe la oración.",
+                                            "answer": "Saya meminta klarifikasi tentang instruksi itu."
+                                        },
+                                        {
+                                            "vocabId": "a2u40_penegasan",
+                                            "type": "write",
+                                            "explanation": "Usa «penegasan» en una oración completa.",
+                                            "prompt": "Escribe una frase usando penegasan.",
+                                            "hint": "Puedes tomar como modelo: Penegasan itu membuat maksudnya jelas.",
+                                            "modelAnswer": "Penegasan itu membuat maksudnya jelas."
+                                        },
+                                        {
+                                            "vocabId": "a2u40_tanggapan",
+                                            "type": "order",
+                                            "explanation": "La frase completa es: Tanggapan peserta sangat beragam.",
+                                            "prompt": "Ordena: Las respuestas de los participantes son muy variadas.",
+                                            "words": [
+                                                "beragam",
+                                                "sangat",
+                                                "peserta",
+                                                "Tanggapan"
+                                            ],
+                                            "correctOrder": [
+                                                "Tanggapan",
+                                                "peserta",
+                                                "sangat",
+                                                "beragam"
+                                            ]
+                                        },
+                                        {
+                                            "vocabId": "a2u40_sanggahan",
+                                            "type": "mc",
+                                            "explanation": "«sanggahan» significa «Objeción».",
+                                            "prompt": "¿Qué significa «sanggahan»?",
+                                            "options": [
+                                                "Objeción",
+                                                "Resumen",
+                                                "Conclusión"
+                                            ],
+                                            "answer": 0
+                                        },
+                                        {
+                                            "vocabId": "a2u40_contoh_tambahan",
+                                            "type": "translate_es_id",
+                                            "explanation": "La frase utiliza «contoh tambahan».",
+                                            "prompt": "Traduce: El profesor proporciona un ejemplo adicional.",
+                                            "answer": "Guru memberikan contoh tambahan."
+                                        },
+                                        {
+                                            "vocabId": "a2u40_uraian",
+                                            "type": "listen",
+                                            "explanation": "La oración contiene «uraian».",
+                                            "prompt": "Escucha y escribe la oración.",
+                                            "answer": "Uraian itu mudah dipahami."
+                                        },
+                                        {
+                                            "vocabId": "a2u40_rincian",
+                                            "type": "write",
+                                            "explanation": "Usa «rincian» en una oración completa.",
+                                            "prompt": "Escribe una frase usando rincian.",
+                                            "hint": "Puedes tomar como modelo: Tolong periksa rincian dokumen.",
+                                            "modelAnswer": "Tolong periksa rincian dokumen."
+                                        },
+                                        {
+                                            "vocabId": "a2u40_keterangan",
+                                            "type": "order",
+                                            "explanation": "La frase completa es: Keterangan tambahan tersedia di situs.",
+                                            "prompt": "Ordena: La información adicional está disponible en el sitio web.",
+                                            "words": [
+                                                "situs",
+                                                "di",
+                                                "tersedia",
+                                                "tambahan",
+                                                "Keterangan"
+                                            ],
+                                            "correctOrder": [
+                                                "Keterangan",
+                                                "tambahan",
+                                                "tersedia",
+                                                "di",
+                                                "situs"
+                                            ]
+                                        },
+                                        {
+                                            "vocabId": "a2u40_pernyataan",
+                                            "type": "mc",
+                                            "explanation": "«pernyataan» significa «Declaración».",
+                                            "prompt": "¿Qué significa «pernyataan»?",
+                                            "options": [
+                                                "Declaración",
+                                                "Resumen",
+                                                "Conclusión"
+                                            ],
+                                            "answer": 0
+                                        },
+                                        {
+                                            "vocabId": "a2u40_pembahasan",
+                                            "type": "translate_es_id",
+                                            "explanation": "La frase utiliza «pembahasan».",
+                                            "prompt": "Traduce: El debate sobre ese tema dura una hora.",
+                                            "answer": "Pembahasan topik itu berlangsung satu jam."
+                                        }
+                                    ]
+                                }]
                         }
                     ]
                 };

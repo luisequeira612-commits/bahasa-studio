@@ -1937,15 +1937,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                             "answer": 0,
                                             "explanation": "Umur significa edad."
                                         },
-                                        {
-                                            "vocabId": "v105",
-                                            "type": "write",
-                                            "prompt": "Escribe una frase usando Enam.",
-                                            "hint": "Puedes tomar como modelo: Enam buku.",
-                                            "modelAnswer": "Enam buku.",
-                                            "explanation": "Usa el vocabulario en una oración completa."
-                                        }
-                                    ,
+
                                         {
                                             "vocabId": "v15",
                                             "type": "mc",
@@ -2015,6 +2007,14 @@ window.BAHASA_CURRICULUM_A1 = {
                                             "options": ["Enam", "Tujuh", "Delapan"],
                                             "answer": 0,
                                             "explanation": "Enam significa seis."
+                                        },
+                                        {
+                                            "vocabId": "v105",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase usando Enam.",
+                                            "hint": "Puedes tomar como modelo: Enam buku.",
+                                            "modelAnswer": "Enam buku.",
+                                            "explanation": "Usa el vocabulario en una oración completa."
                                         },
                                         {
                                             "vocabId": "v18",

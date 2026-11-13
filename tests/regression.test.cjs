@@ -2017,3 +2017,31 @@ test('implemented B2 units expose five lessons with distinct active recall cover
     assert.ok(generatedTypes.size >= 2, unit.id + ' generated lessons must vary exercise types');
   }
 });
+
+
+test('A1 U5-U8 runtime uses five authored lessons without generated padding', () => {
+  const start = html.indexOf('const CourseData =');
+  const end = html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */', start);
+  const course = vm.runInNewContext(html.slice(start, end) + '\\nCourseData');
+  const engineStart = html.indexOf('function buildUnitAssessmentItems');
+  const engineEnd = html.indexOf('function unitLessonProgressKey', engineStart);
+  assert.ok(engineStart >= 0 && engineEnd > engineStart, 'unit lesson builder must exist');
+  const engine = vm.runInNewContext(
+    html.slice(engineStart, engineEnd) + '\\n({ buildUnitLessons })',
+    { CourseData: course, Map, Set, Math }
+  );
+  const a1 = course.levels.find(level => level.id === 'A1');
+  const expectedExerciseCounts = [23, 27, 23, 24];
+
+  for (const [index, unit] of a1.units.slice(4, 8).entries()) {
+    const lessons = engine.buildUnitLessons(unit);
+    assert.equal(unit.lessons.length, 5, unit.id + ' must have five authored lesson records');
+    assert.equal(lessons.length, 5, unit.id + ' must not use runtime padding');
+    assert.deepEqual(Array.from(lessons, lesson => lesson.title),
+      Array.from(unit.lessons, lesson => lesson.title), unit.id + ' must preserve the authored lesson order');
+    assert.equal(lessons.reduce((total, lesson) => total + lesson.exercises.length, 0),
+      expectedExerciseCounts[index], unit.id + ' must expose its complete authored exercise set');
+    assert.ok(lessons.every(lesson => lesson.exercises.every(exercise => exercise.generated !== true)),
+      unit.id + ' must not count generated exercises as authored practice');
+  }
+});

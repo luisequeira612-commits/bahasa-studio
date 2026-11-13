@@ -34,23 +34,28 @@
                 signal: controller.signal
             });
             const raw = await response.text();
-            let data = null;
-            let invalidJson = false;
-            try {
-                data = raw ? JSON.parse(raw) : null;
-            } catch (_) {
-                invalidJson = true;
-            }
-
             if (!response.ok) {
-                const detail = data && data.error && data.error.message;
+                let errorPayload = null;
+                try {
+                    errorPayload = raw ? JSON.parse(raw) : null;
+                } catch (_) {
+                    // El estado HTTP sigue siendo suficiente para informar el fallo.
+                }
+                const detail = errorPayload && errorPayload.error && errorPayload.error.message;
                 throw requestError(
                     'Gemini respondió HTTP ' + response.status +
                     (detail ? ': ' + String(detail).slice(0, 240) : '. Inténtalo más tarde.'),
                     'GEMINI_HTTP_ERROR'
                 );
             }
-            if (invalidJson || !data || typeof data !== 'object') {
+
+            let data;
+            try {
+                data = raw ? JSON.parse(raw) : null;
+            } catch (_) {
+                throw requestError('Gemini devolvió una respuesta JSON no válida.', 'GEMINI_INVALID_JSON');
+            }
+            if (!data || typeof data !== 'object') {
                 throw requestError('Gemini devolvió una respuesta JSON no válida.', 'GEMINI_INVALID_JSON');
             }
             return data;

@@ -2103,16 +2103,16 @@ test('real JSON v3 import keeps untrusted custom lesson content inert across rou
     await page.waitForFunction(id => Array.isArray(CustomLessons.units) &&
       CustomLessons.units.some(unit => unit.id === id), unitId);
 
-    const route = await page.evaluate(() => {
+    const route = await page.evaluate(expectedTitle => {
       App.renderCourseRoute();
       const nodes = [...document.querySelectorAll('.custom-unit-open-button')];
       return {
-        title: nodes.find(node => node.textContent.includes('xss_probe'))?.textContent || '',
+        title: nodes.find(node => node.textContent === expectedTitle)?.textContent || '',
         images: document.querySelectorAll('.custom-lessons-path img[src="x"]').length,
         handlers: document.querySelectorAll('.custom-lessons-path [onerror]').length,
         executed: window.__xssProbe
       };
-    });
+    }, payload);
     assert.ok(route.title.includes(payload), 'the imported custom-unit title should remain visible as text');
     assert.equal(route.images, 0);
     assert.equal(route.handlers, 0);

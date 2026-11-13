@@ -19,7 +19,8 @@
 ## Remediación de lecciones — 13 nov 2026
 - PR #533 fusionada en `main` como `a0e2dd19`: B2 U1–U3 pasan de 3 a 5 lecciones explícitas cada una (26 ejercicios por unidad), sin añadir IDs de vocabulario nuevos. Las lecciones añadidas trabajan recuperación espaciada, contraste de construcciones e integración contextual. CI del SHA final completado con ambos trabajos en éxito.
 - B2 U1–U5 implementadas cumplen ahora 5 lecciones explícitas; U6–U60 siguen pendientes. No ampliar B2 hasta remediar las unidades existentes y completar el inventario.
-- PR #534 en curso: A2 U2–U4 pasan de 4 a 5 lecciones explícitas cada una mediante una lección de recuperación espaciada que recupera todo el vocabulario ya enseñado, sin añadir IDs. U1 ya tenía cinco. U2/U3 añaden cinco ejercicios cada una; U4 añade tres para mantener el máximo estructural de 22 ejercicios por unidad. CI pendiente.
+- PR #534 fusionada en `main` como `e1f87521`: A2 U2–U4 pasan de 4 a 5 lecciones explícitas cada una mediante recuperación espaciada de todo el vocabulario ya enseñado, sin añadir IDs. U1 ya tenía cinco. CI del SHA exacto completado con ambos trabajos en éxito.
+- PR #535 en curso: A2 U5–U8 pasan de 4 a 5 lecciones explícitas cada una mediante recuperación espaciada de sus 12 verbos ya enseñados; sin IDs nuevos. Cada unidad pasa de 17 a 22 ejercicios. CI pendiente.
 
 ## B2 U5 y decisiones pendientes
 - U5 implementada y fusionada en PR #529 (`0c5899c9`): cinco lecciones/16 ejercicios; añade `menawari` y `menawarkan` con IDs propios y glosas contextuales; reutiliza `v448` (`bantuan`) y `b1v145` (`umpan balik`); `datangi`/`panasi` y `menjatuhi`/`dijatuhi` solo reconocimiento; excluye `tanami`/`garami`/`kantongi`. CI del PR y post-merge: test 74/74 y calidad offline 10/10; Pages correcto. Naturalidad/adecuación de ejemplos didácticos sigue `not_checked`.

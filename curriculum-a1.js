@@ -8978,7 +8978,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                                 "Saya",
                                                 "pergi"
                                             ],
-                                            "explanation": "Saya pergi. significa «Voy.»."
+                                            "explanation": "Ejemplo: «Saya pergi.» — «Voy.»."
                                         },
                                         {
                                             "vocabId": "v281",
@@ -9136,7 +9136,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                             "prompt": "Escribe una frase con «Pergi».",
                                             "hint": "Puedes tomar como referencia: Saya pergi.",
                                             "modelAnswer": "Saya pergi.",
-                                            "explanation": "Saya pergi. significa «Voy.»."
+                                            "explanation": "Ejemplo: «Saya pergi.» — «Voy.»."
                                         },
                                         {
                                             "vocabId": "v281",
@@ -9683,7 +9683,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                                 "bisa",
                                                 "pergi"
                                             ],
-                                            "explanation": "Saya bisa pergi. significa «Puedo ir.»."
+                                            "explanation": "Ejemplo: «Saya bisa pergi.» — «Puedo ir.»."
                                         },
                                         {
                                             "vocabId": "v289",
@@ -9748,7 +9748,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                             "prompt": "Escribe una frase con «Suka».",
                                             "hint": "Puedes tomar como referencia: Saya suka teh.",
                                             "modelAnswer": "Saya suka teh.",
-                                            "explanation": "Saya suka teh. significa «Me gusta el té.»."
+                                            "explanation": "Ejemplo: «Saya suka teh.» — «Me gusta el té.»."
                                         },
                                         {
                                             "vocabId": "v290",
@@ -9818,7 +9818,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                             "prompt": "Escribe una frase con «Bisa».",
                                             "hint": "Puedes tomar como referencia: Saya bisa pergi.",
                                             "modelAnswer": "Saya bisa pergi.",
-                                            "explanation": "Saya bisa pergi. significa «Puedo ir.»."
+                                            "explanation": "Ejemplo: «Saya bisa pergi.» — «Puedo ir.»."
                                         },
                                         {
                                             "vocabId": "v289",

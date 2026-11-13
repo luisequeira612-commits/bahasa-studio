@@ -1,11 +1,11 @@
 # MEMORY.md — Estado de Bahasa Studio
 
-> Memoria operativa; mantenerla por debajo de unas 150 líneas. Detalles extensos y evidencia histórica viven en documentos y PR enlazados. Última actualización: 12 nov 2026.
+> Memoria operativa; mantenerla por debajo de unas 150 líneas. Detalles extensos y evidencia histórica viven en documentos y PR enlazados. Última actualización: 13 nov 2026.
 
 ## Corrección pedagógica obligatoria — 12 nov 2026
 - Decisión explícita del dueño: todas las unidades A1–B2 deben tener 5–6 lecciones didácticas reales. Los ejercicios, bloques derivados de vocabulario y repasos automáticos genéricos no sustituyen lecciones planificadas. Distribuir vocabulario y recuperarlo espaciadamente en contextos diferentes.
 - Hallazgo en `main` `236537f`: B2 U1–U3 tienen tres lecciones explícitas, aunque `buildUnitLessons()` añade dos repasos activos genéricos y la app puede mostrar cinco. A1 genera bloques de vocabulario y repaso automáticamente; A2/B1/B2 también pueden completar por relleno. Las pruebas previas contaban solo algunos niveles/contratos y podían ocultar la diferencia.
-- PR #532 ya está fusionada en `main` (`9798a47e`): la auditoría A1–B2 separa lecciones explícitas, bloques derivados, repasos automáticos y total runtime. Detectó 3/127 unidades con 5–6 lecciones explícitas; 124 incumplen. Por nivel: A1 0/32, A2 1/40, B1 0/50, B2 2/5. La siguiente remediación empieza por B2 U1–U3.
+- PR #532 ya está fusionada en `main` (`9798a47e`): la auditoría A1–B2 separa lecciones explícitas, bloques derivados, repasos automáticos y total runtime. Detectó 3/127 unidades con 5–6 lecciones explícitas; 124 incumplen. Por nivel: A1 0/32, A2 1/40, B1 0/50, B2 2/5. La remediación se realiza por lotes y no se amplía B2 hasta corregir las unidades implementadas.
 - No modificar IndexedDB, backup JSON v3 ni añadir vocabulario/ejemplos no aprobados. La corrección debe reutilizar y redistribuir contenido existente cuando sea pedagógicamente válido; no inflar recuentos con contenido artificial.
 
 ## Estado vigente
@@ -17,8 +17,9 @@
 - La verificación post-merge de #519 corresponde al SHA exacto `ac77198400c7ac71ec4eaab85414f56cb3b01f2a`; Regression 74/74, calidad 10/10 y Pages build/reporte/deploy en éxito.
 
 ## Remediación de lecciones — 13 nov 2026
-- PR de remediación en curso: B2 U1–U3 pasan de 3 a 5 lecciones explícitas cada una (26 ejercicios por unidad), sin añadir IDs de vocabulario nuevos. Las dos lecciones nuevas de cada unidad están orientadas a recuperación espaciada, contraste de construcciones e integración contextual. El objetivo no es inflar el contador: las lecciones tienen objetivos, gramática, vocabulario distribuido y ejercicios propios.
-- B2 U1–U3 deben quedar verificadas con 5 lecciones explícitas en tests; no se cuentan los repasos automáticos del motor.
+- PR #533 fusionada en `main` como `a0e2dd19`: B2 U1–U3 pasan de 3 a 5 lecciones explícitas cada una (26 ejercicios por unidad), sin añadir IDs de vocabulario nuevos. Las lecciones añadidas trabajan recuperación espaciada, contraste de construcciones e integración contextual. CI del SHA final completado con ambos trabajos en éxito.
+- B2 U1–U5 implementadas cumplen ahora 5 lecciones explícitas; U6–U60 siguen pendientes. No ampliar B2 hasta remediar las unidades existentes y completar el inventario.
+- PR #534 en curso: A2 U2–U4 pasan de 4 a 5 lecciones explícitas cada una mediante una lección de recuperación espaciada que recupera todo el vocabulario ya enseñado, sin añadir IDs. U1 ya tenía cinco. U2/U3 añaden cinco ejercicios cada una; U4 añade tres para mantener el máximo estructural de 22 ejercicios por unidad. CI pendiente.
 
 ## B2 U5 y decisiones pendientes
 - U5 implementada y fusionada en PR #529 (`0c5899c9`): cinco lecciones/16 ejercicios; añade `menawari` y `menawarkan` con IDs propios y glosas contextuales; reutiliza `v448` (`bantuan`) y `b1v145` (`umpan balik`); `datangi`/`panasi` y `menjatuhi`/`dijatuhi` solo reconocimiento; excluye `tanami`/`garami`/`kantongi`. CI del PR y post-merge: test 74/74 y calidad offline 10/10; Pages correcto. Naturalidad/adecuación de ejemplos didácticos sigue `not_checked`.

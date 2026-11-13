@@ -4,6 +4,7 @@ import vm from 'node:vm';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadInlineB1Curriculum } from './load-inline-b1-curriculum.mjs';
+import { loadInlineB2Curriculum } from './load-inline-b2-curriculum.mjs';
 const ROOT=process.cwd();
 async function loadLevel(file,name){const source=await readFile(ROOT+'/'+file,'utf8');const sandbox={window:{}};vm.runInNewContext(source,sandbox,{filename:file,timeout:10000});const value=sandbox.window[name];if(!value||!Array.isArray(value.units))throw new Error('No se encontró '+name+'.units');return value;}
 export function collectExercises(unit){const out=[...(Array.isArray(unit.exercises)?unit.exercises:[])];function visit(node){if(!node||typeof node!=='object')return;if(Array.isArray(node)){for(const item of node)visit(item);return;}if(Array.isArray(node.exercises))out.push(...node.exercises);if(Array.isArray(node.lessons))visit(node.lessons);if(Array.isArray(node.sections))visit(node.sections);}visit(unit.lessons??[]);return out;}
@@ -11,20 +12,39 @@ function targetText(ex){if(Array.isArray(ex.correctOrder))return ex.correctOrder
 export function sentenceEstimate(ex){const value=targetText(ex).trim();return value?value.split(/\s+/).filter(Boolean).length>=2:false;}
 export function reviewVocabCount(unit){let count=Array.isArray(unit.reviewVocabIds)?unit.reviewVocabIds.length:0;function visit(lessons){for(const lesson of lessons??[]){if(Array.isArray(lesson.reviewVocabIds))count+=lesson.reviewVocabIds.length;if(Array.isArray(lesson.lessons))visit(lesson.lessons);}}visit(unit.lessons);return count;}
 export function hasReviewMarker(unit,exercises){const fields=[unit.title,unit.desc,unit.objective,unit.type,unit.reviewLabel];for(const lesson of unit.lessons??[])fields.push(lesson.title,lesson.objective,lesson.type);for(const ex of exercises)fields.push(ex.prompt,ex.title,ex.type,ex.reviewLabel);return reviewVocabCount(unit)>0||fields.some(v=>typeof v==='string'&&/(repaso|review|acumulativ)/i.test(v));}
+export function getLessonStructure(unit, levelId) {
+  const explicitLessons = Array.isArray(unit.lessons) ? unit.lessons.length : 0;
+  const explicitPlans = Array.isArray(unit.lessonPlans) ? unit.lessonPlans.length : 0;
+  const authoredLessons = explicitLessons || explicitPlans;
+  const target = levelId === 'A1' ? ((unit.vocab?.length ?? 0) >= 18 ? 6 : 5)
+    : ['A2', 'B1', 'B2'].includes(levelId) ? 5 : 0;
+  const derivedLessons = !authoredLessons && levelId === 'A1' && !unit.custom
+    ? Math.min(5, Math.max(2, Math.ceil((unit.vocab?.length ?? 0) / 4))) : 0;
+  const beforePadding = authoredLessons || derivedLessons;
+  const activeRecallPadding = Math.max(0, target - beforePadding);
+  return {
+    authoredLessons,
+    derivedLessons,
+    activeRecallPadding,
+    runtimeLessons: beforePadding + activeRecallPadding,
+    meetsAuthoredTarget: authoredLessons >= 5 && authoredLessons <= 6,
+  };
+}
 export function buildUnitContractRows(levels) {
   const units=[];
   for(const level of levels) for(const unit of level.units) units.push({level:level.id??level.title,unit,exercises:collectExercises(unit)});
   const firstTeaching=new Map(),entryInfo=new Map(),uses=new Map();
   units.forEach((item,index)=>{for(const entry of item.unit.vocab??[]){if(!entry?.id)continue;const id=String(entry.id);if(!firstTeaching.has(id)){firstTeaching.set(id,index);entryInfo.set(id,{id,form:entry.idn??'',gloss:entry.esp??'',unit:item.unit.id??'?'});}}});
   units.forEach((item,index)=>{for(const ex of item.exercises){const refs=[];if(typeof ex.vocabId==='string')refs.push(ex.vocabId);if(Array.isArray(ex.vocabIds))refs.push(...ex.vocabIds.filter(x=>typeof x==='string'));for(const id of new Set(refs)){if(!uses.has(id))uses.set(id,{total:0,later:0});const count=uses.get(id);count.total++;if(index>(firstTeaching.get(id)??index))count.later++;}}});
-  return units.map((item,index)=>{const ex=item.exercises;const types=[...new Set(ex.map(e=>String(e.type??'sin_tipo')))].sort();const full=ex.filter(sentenceEstimate).length;const own=ex.filter(e=>/^(write|writing|production|produce)$/i.test(String(e.type??''))&&typeof e.hint==='string'&&e.hint.trim()).length;return{index,level:item.level,id:item.unit.id??'?',count:ex.length,types,full,own,review:hasReviewMarker(item.unit,ex),reviewVocab:reviewVocabCount(item.unit)};});
+  return units.map((item,index)=>{const ex=item.exercises;const types=[...new Set(ex.map(e=>String(e.type??'sin_tipo')))].sort();const full=ex.filter(sentenceEstimate).length;const own=ex.filter(e=>/^(write|writing|production|produce)$/i.test(String(e.type??''))&&typeof e.hint==='string'&&e.hint.trim()).length;return{index,level:item.level,id:item.unit.id??'?',count:ex.length,types,full,own,review:hasReviewMarker(item.unit,ex),reviewVocab:reviewVocabCount(item.unit),lessonStructure:getLessonStructure(item.unit,item.level)};});
 }
 async function main() {
 const a1=await loadLevel('curriculum-a1.js','BAHASA_CURRICULUM_A1');
 const a2=await loadLevel('curriculum-a2.js','BAHASA_CURRICULUM_A2');
 const indexSource=await readFile(ROOT+'/index.html','utf8');
 const b1=loadInlineB1Curriculum(indexSource,a1,a2);
-const levels=[a1,a2,b1];
+const b2=loadInlineB2Curriculum(indexSource,a1,a2);
+const levels=[a1,a2,b1,b2];
 const rows=buildUnitContractRows(levels);
 const reviewRows=rows.filter(r=>r.review),reviewGaps=reviewRows.slice(1).map((r,i)=>r.index-reviewRows[i].index);
 const outliers=rows.filter(r=>r.count<14||r.count>22||r.types.length<4||r.full<5);
@@ -35,7 +55,9 @@ const lines=['# Informe de contrato por unidad','','Generado: '+new Date().toISO
 '- Producción propia con pista: se detecta solo cuando type es write/writing/production/produce y existe hint no vacío. Un resultado negativo no demuestra que no haya otra forma de producción no representada por esos campos.',
 '- Repaso acumulativo: solo se detectan marcas explícitas en título, objetivo, descripción, tipo o consigna que contengan “repaso”, “review” o “acumulativ”. No se infiere por la dificultad de los ejercicios.',
 '- Recurrencia: se cuentan referencias vocabId/vocabIds en ejercicios de todo el curso. La unidad de enseñanza es la primera aparición del ID en el inventario; “posteriores” significa unidades posteriores a esa primera unidad. IDs compartidos se cuentan como una entrada.','',
-'## Tabla por unidad','','| Nivel | Unidad | Ejercicios | Tipos distintos | Frase completa (estimada) | Producción propia con pista | Marca de repaso |','|---|---|---:|---:|---:|---|---|',
+'## Cobertura de lecciones: criterio obligatorio de 5–6','','Una lección explícita es una entrada de `unit.lessons` o `unit.lessonPlans`. Los bloques de vocabulario que el motor divide automáticamente y las lecciones genéricas de repaso activo se informan por separado; no se cuentan como lecciones didácticas redactadas. El número de lecciones en runtime describe lo que actualmente puede mostrar la app, no certifica que cada bloque tenga objetivos, secuencia y práctica pedagógica propios.','','| Nivel | Unidad | Lecciones explícitas | Bloques derivados | Repasos automáticos añadidos | Total runtime | Cumple 5–6 explícitas |','|---|---|---:|---:|---:|---:|---|',
+...rows.map(r=>'| '+r.level+' | '+r.id+' | '+r.lessonStructure.authoredLessons+' | '+r.lessonStructure.derivedLessons+' | '+r.lessonStructure.activeRecallPadding+' | '+r.lessonStructure.runtimeLessons+' | '+(r.lessonStructure.meetsAuthoredTarget?'Sí':'No')+' |'),
+'','### Resumen de lecciones','','- Unidades analizadas en A1–B2: **'+rows.length+'**.','- Unidades B2 pendientes de implementación (de 60 previstas): **'+Math.max(0,60-b2.units.length)+'**; no forman parte de las unidades auditadas.','- Unidades con 5–6 lecciones explícitas: **'+rows.filter(r=>r.lessonStructure.meetsAuthoredTarget).length+'**.','- Unidades que no cumplen el criterio explícito: **'+rows.filter(r=>!r.lessonStructure.meetsAuthoredTarget).length+'**.','- Lecciones genéricas de repaso activo añadidas por el motor: **'+rows.reduce((sum,r)=>sum+r.lessonStructure.activeRecallPadding,0)+'**.','- Nota: este informe es diagnóstico; no convierte bloques automáticos en lecciones escritas ni modifica el contenido curricular.','','## Tabla por unidad','','| Nivel | Unidad | Ejercicios | Tipos distintos | Frase completa (estimada) | Producción propia con pista | Marca de repaso |','|---|---|---:|---:|---:|---|---|',
 ...rows.map(r=>'| '+r.level+' | '+r.id+' | '+r.count+' | '+r.types.length+' ('+r.types.join(', ')+') | '+r.full+' | '+(r.own?'Sí ('+r.own+')':'No detectada')+' | '+(r.review?(r.reviewVocab?'Sí ('+r.reviewVocab+' IDs reviewVocabIds)':'Sí (marca textual)'):'No detectada')+' |'),
 '','## Resumen','','- Unidades analizadas: **'+rows.length+'**.','- Unidades fuera de uno o más indicadores (14–22 ejercicios, 4 tipos, 5 frases estimadas): **'+outliers.length+'**.','- Unidades con marca explícita de repaso: **'+reviewRows.length+'** ('+(reviewRows.map(r=>r.id).join(', ')||'ninguna')+').',
 '- Referencias declaradas en reviewVocabIds: **'+rows.reduce((sum,r)=>sum+r.reviewVocab,0)+'**. Las marcas aparecen en: '+(reviewRows.map(r=>r.id+(r.reviewVocab?' ('+r.reviewVocab+')':'')).join(', ')||'ninguna')+'.','- Distancias entre marcas detectadas, en unidades: **'+(reviewGaps.join(', ')||'no calculables')+'**. La distancia observada no muestra una pauta de cada 4–5 unidades; reviewVocabIds identifica vocabulario marcado para repaso, pero no certifica por sí solo la calidad ni la cobertura acumulativa.','- Entradas con menos de 3 apariciones en ejercicios: **'+low.length+'**.','','### Unidades fuera de indicadores','','| Unidad | Ejercicios | Tipos | Frases estimadas | Motivos |','|---|---:|---:|---:|---|',

@@ -47,6 +47,15 @@ App web para aprender idiomas, estilo Duolingo, alojada en GitHub Pages. Hoy tie
 - En B2 U4 el eje es exclusivamente `-kan`; U5–U6 continúan con `-i` y `memper-` según el eje aprobado, pero el eje no autoriza por sí solo ejemplos, glosas, claves ni vocabulario nuevo.
 - No cambiar IndexedDB, el formato de backup JSON v3 ni añadir dependencias/servicios externos.
 
+## Regla obligatoria de estructura didáctica A1–B2 (decisión del dueño: 12 nov 2026)
+- Todas las unidades de A1, A2, B1 y B2 deben tener entre **5 y 6 lecciones didácticas reales**. Es un requisito obligatorio, no una recomendación ni una excepción por nivel.
+- Una lección debe tener una secuencia/objetivo de aprendizaje y práctica propia. No cuentan como sustituto de lecciones las tandas de ejercicios, los bloques de vocabulario divididos automáticamente ni las lecciones genéricas de «repaso activo» que el motor añade para alcanzar un número.
+- Distribuir el vocabulario nuevo en varias lecciones y recuperar vocabulario anterior en contextos y actividades diferentes. No introducir una palabra una sola vez y darla por aprendida; planificar recurrencia espaciada, recuperación activa y reutilización contextual.
+- Las auditorías deben informar por separado lecciones explícitas, bloques derivados, repasos automáticos y lecciones visibles en runtime. El número runtime no demuestra por sí solo cumplimiento.
+- Las pruebas deben exigir 5–6 lecciones explícitas para cada unidad oficial A1–B2. Mientras existan unidades históricas pendientes de corrección, la auditoría debe mostrar sus incumplimientos con claridad; no falsear el cumplimiento ni añadir excepciones silenciosas.
+- No rellenar unidades con contenido artificial ni inventar vocabulario, ejemplos o explicaciones para alcanzar el número. Reestructurar y distribuir material existente cuando sea pedagógicamente válido; cualquier contenido nuevo sigue las reglas de aprobación y verificación lingüística.
+- Esta decisión prevalece sobre contratos de pruebas antiguos que aceptaban 2–3 lecciones, y sobre frases anteriores que declaraban los niveles completos sin verificar este criterio.
+
 ## Git
 - Nunca trabajar en main. Una rama por cambio y un pull request.
 - El dueño ha otorgado autorización permanente para crear y fusionar PRs sin aprobación individual. Fusiona únicamente cuando el CI del último commit esté completamente verde y no haya revisiones, comentarios ni problemas pendientes; informa siempre del resultado.

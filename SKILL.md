@@ -27,6 +27,13 @@ Cualquier tarea sobre el repo: lecciones nuevas, correcciones de vocabulario, ca
 - Formato compatible con lo que ya lee IndexedDB; no cambiar el esquema.
 - Contenido separado del código, organizado por idioma, nivel y unidad.
 
+## Regla didáctica obligatoria A1–B2
+- Cada unidad oficial de A1, A2, B1 y B2 debe tener 5–6 lecciones didácticas explícitas.
+- No contar ejercicios, bloques de vocabulario generados automáticamente ni repasos activos genéricos como sustitutos de lecciones diseñadas.
+- Distribuir el vocabulario nuevo y recuperarlo de forma espaciada en contextos/actividades distintos.
+- La auditoría debe distinguir lecciones explícitas, bloques derivados, relleno automático y total runtime. Las pruebas deben bloquear unidades con menos de 5 o más de 6 lecciones explícitas una vez completada la migración; mientras tanto, reportar las brechas sin ocultarlas.
+- No añadir contenido artificial ni vocabulario/ejemplos no aprobados para inflar el recuento.
+
 ## Reglas para interfaz
 - Estilo Duolingo, móvil-first y en español. La paleta vigente de Aprender es azul/blanco (`#0067C6`) desde la Fase 5B aprobada; no revertirla a rojo sin una nueva decisión del dueño. La bandera de Indonesia conserva su rojo cultural.
 - Sin animaciones ni efectos pesados: el teléfono es de gama media.

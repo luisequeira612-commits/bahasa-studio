@@ -3677,258 +3677,258 @@ window.BAHASA_CURRICULUM_A1 = {
                         ,
     lessons: [
         {
-            title: "Lección 1: Hablar de días y de hoy",
-            objective: "Distingue día y hoy y los usa en expresiones breves.",
-            grammar: "Hari significa día y Hari ini significa hoy; sitúan una acción en el tiempo.",
-            vocabIds: ["v35","v36"],
-            reviewVocabIds: [],
-            exercises: [
-                {
-                                                    "vocabId": "v35",
-                                                    "type": "mc",
-                                                    "prompt": "¿Qué significa hari?",
-                                                    "options": [
-                                                        "Día",
-                                                        "Agua",
-                                                        "Dormir",
-                                                        "Escuela"
-                                                    ],
-                                                    "answer": 0,
-                                                    "explanation": "Hari significa día."
-                                                },
-                {
-                                                    "vocabId": "v36",
-                                                    "type": "translate_es_id",
-                                                    "prompt": "Traduce: hoy",
-                                                    "answer": "Hari ini",
-                                                    "explanation": "Hari ini significa hoy."
-                                                },
-                {
-                                                    "vocabId": "v35",
-                                                    "type": "mc",
-                                                    "prompt": "Escucha la frase y elige su significado",
-                                                    "audioText": "Hari ini saya belajar",
-                                                    "options": ["Hoy estudio", "Mañana trabajo", "Todos los días duermo"],
-                                                    "answer": 0,
-                                                    "explanation": "Hari ini saya belajar significa «Hoy estudio»."
-                                                },
-                {
-                                                    "vocabId": "v36",
-                                                    "type": "mc",
-                                                    "prompt": "Completa: ___ saya belajar (Hoy estudio)",
-                                                    "options": [
-                                                        "Hari ini",
-                                                        "Hari Senin",
-                                                        "Hari Minggu",
-                                                        "Hari libur"
-                                                    ],
-                                                    "answer": 0,
-                                                    "explanation": "Hari ini se usa para hablar de hoy."
-                                                },
-                {"vocabId":"v36","type":"mc","prompt":"¿Qué significa hari ini?","options":["Hoy","Mañana","Ayer"],"answer":0,"explanation":"Hari ini significa hoy."}
-            ]
-        },
+                    title: "Lección 1: Hablar de días y de hoy",
+                    objective: "Distingue día y hoy y los usa en expresiones breves.",
+                    grammar: "Hari significa día y Hari ini significa hoy; sitúan una acción en el tiempo.",
+                    vocabIds: ["v35","v36"],
+                    reviewVocabIds: [],
+                    exercises: [
+                        {
+                                                                            "vocabId": "v35",
+                                                                            "type": "mc",
+                                                                            "prompt": "¿Qué significa hari?",
+                                                                            "options": [
+                                                                                "Día",
+                                                                                "Agua",
+                                                                                "Dormir",
+                                                                                "Escuela"
+                                                                            ],
+                                                                            "answer": 0,
+                                                                            "explanation": "Hari significa día."
+                                                                        },
+                        {
+                                                                            "vocabId": "v36",
+                                                                            "type": "translate_es_id",
+                                                                            "prompt": "Traduce: hoy",
+                                                                            "answer": "Hari ini",
+                                                                            "explanation": "Hari ini significa hoy."
+                                                                        },
+                        {
+                                                                            "vocabId": "v35",
+                                                                            "type": "mc",
+                                                                            "prompt": "Escucha la frase y elige su significado",
+                                                                            "audioText": "Hari ini saya belajar",
+                                                                            "options": ["Hoy estudio", "Mañana trabajo", "Todos los días duermo"],
+                                                                            "answer": 0,
+                                                                            "explanation": "Hari ini saya belajar significa «Hoy estudio»."
+                                                                        },
+                        {
+                                                                            "vocabId": "v36",
+                                                                            "type": "mc",
+                                                                            "prompt": "Completa: ___ saya belajar (Hoy estudio)",
+                                                                            "options": [
+                                                                                "Hari ini",
+                                                                                "Hari Senin",
+                                                                                "Hari Minggu",
+                                                                                "Hari libur"
+                                                                            ],
+                                                                            "answer": 0,
+                                                                            "explanation": "Hari ini se usa para hablar de hoy."
+                                                                        }
+                    ]
+                },
         {
-            title: "Lección 2: Decir qué estudias",
-            objective: "Expresa que estudia o aprende algo.",
-            grammar: "Belajar significa estudiar o aprender; Saya belajar expresa esa acción.",
-            vocabIds: ["v37"],
-            reviewVocabIds: ["v35"],
-            exercises: [
-                {
-                                                    "vocabId": "v37",
-                                                    "type": "mc",
-                                                    "prompt": "¿Qué significa belajar?",
-                                                    "options": [
-                                                        "Estudiar o aprender",
-                                                        "Comer",
-                                                        "Dormir",
-                                                        "Beber"
-                                                    ],
-                                                    "answer": 0,
-                                                    "explanation": "Belajar significa estudiar o aprender."
-                                                },
-                {
-                                                    "vocabId": "v37",
-                                                    "type": "listen",
-                                                    "prompt": "Escribe lo que escuchas",
-                                                    "answer": "Saya belajar bahasa Indonesia",
-                                                    "explanation": "La frase significa Estudio indonesio."
-                                                },
-                { vocabId: 'v35', type: 'write', prompt: "Escribe una frase breve sobre tu rutina diaria.", hint: "Usa un día o una acción cotidiana que hayas aprendido.", modelAnswer: "Saya makan pagi.", explanation: "Saya makan pagi significa «Desayuno»; makan es comer y pagi es mañana." }
-            ]
-        },
+                    title: "Lección 2: Decir qué estudias",
+                    objective: "Expresa que estudia o aprende algo.",
+                    grammar: "Belajar significa estudiar o aprender; Saya belajar expresa esa acción.",
+                    vocabIds: ["v37"],
+                    reviewVocabIds: ["v36"],
+                    exercises: [
+                        {
+                                                                            "vocabId": "v37",
+                                                                            "type": "mc",
+                                                                            "prompt": "¿Qué significa belajar?",
+                                                                            "options": [
+                                                                                "Estudiar o aprender",
+                                                                                "Comer",
+                                                                                "Dormir",
+                                                                                "Beber"
+                                                                            ],
+                                                                            "answer": 0,
+                                                                            "explanation": "Belajar significa estudiar o aprender."
+                                                                        },
+                        {
+                                                                            "vocabId": "v37",
+                                                                            "type": "listen",
+                                                                            "prompt": "Escribe lo que escuchas",
+                                                                            "answer": "Saya belajar bahasa Indonesia",
+                                                                            "explanation": "La frase significa Estudio indonesio."
+                                                                        },
+                        {"vocabId":"v36","type":"mc","prompt":"¿Qué significa hari ini?","options":["Hoy","Mañana","Ayer"],"answer":0,"explanation":"Hari ini significa hoy."}
+                    ]
+                },
         {
-            title: "Lección 3: Hablar del trabajo",
-            objective: "Habla del trabajo con una frase sencilla.",
-            grammar: "Bekerja significa trabajar; Ayah saya bekerja significa mi padre trabaja.",
-            vocabIds: ["v38"],
-            reviewVocabIds: [],
-            exercises: [
-                {
-                                                    "vocabId": "v38",
-                                                    "type": "order",
-                                                    "prompt": "Ordena: Mi padre trabaja",
-                                                    "words": [
-                                                        "bekerja",
-                                                        "saya",
-                                                        "Ayah"
-                                                    ],
-                                                    "correctOrder": [
-                                                        "Ayah",
-                                                        "saya",
-                                                        "bekerja"
-                                                    ],
-                                                    "explanation": "Ayah saya bekerja significa «Mi padre trabaja»."
-                                                },
-                {
-                                                    "vocabId": "v38",
-                                                    "type": "translate_es_id",
-                                                    "prompt": "Traduce: trabaja",
-                                                    "answer": "Bekerja",
-                                                    "explanation": "Bekerja significa trabajar."
-                                                },
-                {
-                                                    "vocabId": "v44",
-                                                    "type": "order",
-                                                    "prompt": "Ordena: Estudio todos los días",
-                                                    "words": [
-                                                        "hari",
-                                                        "Saya",
-                                                        "setiap",
-                                                        "belajar"
-                                                    ],
-                                                    "correctOrder": [
-                                                        "Saya",
-                                                        "belajar",
-                                                        "setiap",
-                                                        "hari"
-                                                    ],
-                                                    "explanation": "Saya belajar setiap hari expresa una rutina."
-                                                }
-            ]
-        },
+                    title: "Lección 3: Hablar del trabajo",
+                    objective: "Habla del trabajo con una frase sencilla.",
+                    grammar: "Bekerja significa trabajar; Ayah saya bekerja significa mi padre trabaja.",
+                    vocabIds: ["v38"],
+                    reviewVocabIds: ["v35"],
+                    exercises: [
+                        {
+                                                                            "vocabId": "v38",
+                                                                            "type": "order",
+                                                                            "prompt": "Ordena: Mi padre trabaja",
+                                                                            "words": [
+                                                                                "bekerja",
+                                                                                "saya",
+                                                                                "Ayah"
+                                                                            ],
+                                                                            "correctOrder": [
+                                                                                "Ayah",
+                                                                                "saya",
+                                                                                "bekerja"
+                                                                            ],
+                                                                            "explanation": "Ayah saya bekerja significa «Mi padre trabaja»."
+                                                                        },
+                        {
+                                                                            "vocabId": "v38",
+                                                                            "type": "translate_es_id",
+                                                                            "prompt": "Traduce: trabaja",
+                                                                            "answer": "Bekerja",
+                                                                            "explanation": "Bekerja significa trabajar."
+                                                                        },
+                        { vocabId: 'v35', type: 'write', prompt: "Escribe una frase breve sobre tu rutina diaria.", hint: "Usa un día o una acción cotidiana que hayas aprendido.", modelAnswer: "Saya makan pagi.", explanation: "Saya makan pagi significa «Desayuno»; makan es comer y pagi es mañana." }
+                    ]
+                },
         {
-            title: "Lección 4: Describir descanso y rutinas",
-            objective: "Habla de dormir, de mañana y de acciones cotidianas.",
-            grammar: "Tidur significa dormir, besok mañana y setiap hari todos los días; sitúan rutinas.",
-            vocabIds: ["v50","v44","v122"],
-            reviewVocabIds: [],
-            exercises: [
-                {
-                                                    "vocabId": "v50",
-                                                    "type": "translate_es_id",
-                                                    "prompt": "Traduce: dormir",
-                                                    "answer": "Tidur",
-                                                    "explanation": "Tidur significa dormir."
-                                                },
-                {
-                                                    "vocabId": "v44",
-                                                    "type": "mc",
-                                                    "prompt": "Escucha la frase y elige su significado",
-                                                    "audioText": "Saya belajar setiap hari",
-                                                    "options": ["Estudio todos los días", "Trabajo todos los días", "Duermo hoy"],
-                                                    "answer": 0,
-                                                    "explanation": "Saya belajar setiap hari significa «Estudio todos los días»."
-                                                },
-                {
-                                                    "vocabId": "v50",
-                                                    "type": "mc",
-                                                    "prompt": "¿Qué verbo significa dormir?",
-                                                    "options": [
-                                                        "Tidur",
-                                                        "Belajar",
-                                                        "Bekerja",
-                                                        "Makan"
-                                                    ],
-                                                    "answer": 0,
-                                                    "explanation": "Tidur significa dormir."
-                                                },
-                {"vocabId":"v122","type":"translate_es_id","prompt":"Traduce: mañana","answer":"Besok","explanation":"Besok significa mañana."},
-                {"vocabId":"v44","type":"write","prompt":"Escribe dos frases sobre tu rutina.","hint":"Intenta construir una frase nueva con el vocabulario de la unidad.","modelAnswer":"Hari ini saya belajar. Saya minum air setiap hari.","explanation":"Usa hari ini, besok o setiap hari."},
-                { vocabId: 'v44', type: 'write', prompt: 'Tarea integradora: preséntate, pide una bebida, pregunta el precio y describe tu rutina.', hint: 'Combina presentación, cortesía, una pregunta y una expresión temporal.', modelAnswer: 'Nama saya Ana. Saya dari Nikaragua. Saya mau teh, tolong. Berapa harganya? Saya belajar setiap hari.', explanation: 'La respuesta modelo combina varios objetivos A1; puedes usar tus propios datos y otras frases correctas.' }
-            ]
-        },
+                    title: "Lección 4: Describir descanso y rutinas",
+                    objective: "Habla de dormir, de mañana y de acciones cotidianas.",
+                    grammar: "Tidur significa dormir, besok mañana y setiap hari todos los días; sitúan rutinas.",
+                    vocabIds: ["v50","v44","v122"],
+                    reviewVocabIds: [],
+                    exercises: [
+                        {
+                                                                            "vocabId": "v50",
+                                                                            "type": "translate_es_id",
+                                                                            "prompt": "Traduce: dormir",
+                                                                            "answer": "Tidur",
+                                                                            "explanation": "Tidur significa dormir."
+                                                                        },
+                        {
+                                                                            "vocabId": "v44",
+                                                                            "type": "mc",
+                                                                            "prompt": "Escucha la frase y elige su significado",
+                                                                            "audioText": "Saya belajar setiap hari",
+                                                                            "options": ["Estudio todos los días", "Trabajo todos los días", "Duermo hoy"],
+                                                                            "answer": 0,
+                                                                            "explanation": "Saya belajar setiap hari significa «Estudio todos los días»."
+                                                                        },
+                        {
+                                                                            "vocabId": "v50",
+                                                                            "type": "mc",
+                                                                            "prompt": "¿Qué verbo significa dormir?",
+                                                                            "options": [
+                                                                                "Tidur",
+                                                                                "Belajar",
+                                                                                "Bekerja",
+                                                                                "Makan"
+                                                                            ],
+                                                                            "answer": 0,
+                                                                            "explanation": "Tidur significa dormir."
+                                                                        },
+                        {"vocabId":"v122","type":"translate_es_id","prompt":"Traduce: mañana","answer":"Besok","explanation":"Besok significa mañana."},
+                        {"vocabId":"v44","type":"write","prompt":"Escribe dos frases sobre tu rutina.","hint":"Intenta construir una frase nueva con el vocabulario de la unidad.","modelAnswer":"Hari ini saya belajar. Saya minum air setiap hari.","explanation":"Usa hari ini, besok o setiap hari."},
+                        { vocabId: 'v44', type: 'write', prompt: 'Tarea integradora: preséntate, pide una bebida, pregunta el precio y describe tu rutina.', hint: 'Combina presentación, cortesía, una pregunta y una expresión temporal.', modelAnswer: 'Nama saya Ana. Saya dari Nikaragua. Saya mau teh, tolong. Berapa harganya? Saya belajar setiap hari.', explanation: 'La respuesta modelo combina varios objetivos A1; puedes usar tus propios datos y otras frases correctas.' },
+                        {
+                                                                            "vocabId": "v44",
+                                                                            "type": "order",
+                                                                            "prompt": "Ordena: Estudio todos los días",
+                                                                            "words": [
+                                                                                "hari",
+                                                                                "Saya",
+                                                                                "setiap",
+                                                                                "belajar"
+                                                                            ],
+                                                                            "correctOrder": [
+                                                                                "Saya",
+                                                                                "belajar",
+                                                                                "setiap",
+                                                                                "hari"
+                                                                            ],
+                                                                            "explanation": "Saya belajar setiap hari expresa una rutina."
+                                                                        }
+                    ]
+                },
         {
-            title: "Lección 5: Recuperación espaciada",
-            objective: "Recupera el vocabulario de toda la unidad en tareas variadas, sin introducir palabras nuevas.",
-            grammar: "Combina las estructuras y expresiones de las cuatro lecciones anteriores; intenta recordar primero y consulta la pista solo después.",
-            vocabIds: [],
-            reviewVocabIds: ["v35","v36","v37","v38","v50","v44","v122"],
-            exercises: [
-                {
-                    "vocabId": "v35",
-                    "type": "mc",
-                    "prompt": "¿Qué significa «Hari»?",
-                    "options": [
-                        "Día",
-                        "Hoy / este día",
-                        "Estudiar / aprender"
-                    ],
-                    "answer": 0,
-                    "explanation": "Hari significa Día."
-                },
-                {
-                    "vocabId": "v36",
-                    "type": "translate_es_id",
-                    "prompt": "Traduce: Hoy / este día",
-                    "answer": "Hari ini",
-                    "explanation": "Hari ini significa Hoy / este día."
-                },
-                {
-                    "vocabId": "v37",
-                    "type": "order",
-                    "prompt": "Ordena la frase relacionada con esta palabra.",
-                    "words": [
-                        "Indonesia",
-                        "bahasa",
-                        "belajar",
-                        "Saya"
-                    ],
-                    "correctOrder": [
-                        "Saya",
-                        "belajar",
-                        "bahasa",
-                        "Indonesia"
-                    ],
-                    "explanation": "La frase practica Belajar en contexto."
-                },
-                {
-                    "vocabId": "v38",
-                    "type": "listen",
-                    "prompt": "Escucha y escribe la expresión.",
-                    "answer": "Ayah saya bekerja",
-                    "explanation": "La expresión practica Bekerja."
-                },
-                {
-                    "vocabId": "v50",
-                    "type": "write",
-                    "prompt": "Escribe una frase con «Tidur».",
-                    "hint": "Usa la palabra en una frase breve y completa.",
-                    "modelAnswer": "Saya tidur di malam hari.",
-                    "explanation": "Duermo por la noche."
-                },
-                {
-                    "vocabId": "v44",
-                    "type": "mc",
-                    "prompt": "¿Qué significa «Setiap hari»?",
-                    "options": [
-                        "Todos los días",
-                        "Día",
-                        "Hoy / este día"
-                    ],
-                    "answer": 0,
-                    "explanation": "Setiap hari significa Todos los días."
-                },
-                {
-                    "vocabId": "v122",
-                    "type": "translate_es_id",
-                    "prompt": "Traduce: Mañana",
-                    "answer": "Besok",
-                    "explanation": "Besok significa Mañana."
+                    title: "Lección 5: Recuperación espaciada",
+                    objective: "Recupera el vocabulario de toda la unidad en tareas variadas, sin introducir palabras nuevas.",
+                    grammar: "Combina las estructuras y expresiones de las cuatro lecciones anteriores; intenta recordar primero y consulta la pista solo después.",
+                    vocabIds: [],
+                    reviewVocabIds: ["v35","v36","v37","v38","v50","v44","v122"],
+                    exercises: [
+                        {
+                                            "vocabId": "v35",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Hari»?",
+                                            "options": [
+                                                "Día",
+                                                "Hoy / este día",
+                                                "Estudiar / aprender"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Hari significa Día."
+                                        },
+                        {
+                                            "vocabId": "v36",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Hoy / este día",
+                                            "answer": "Hari ini",
+                                            "explanation": "Hari ini significa Hoy / este día."
+                                        },
+                        {
+                                            "vocabId": "v37",
+                                            "type": "order",
+                                            "prompt": "Ordena la frase relacionada con esta palabra.",
+                                            "words": [
+                                                "Indonesia",
+                                                "bahasa",
+                                                "belajar",
+                                                "Saya"
+                                            ],
+                                            "correctOrder": [
+                                                "Saya",
+                                                "belajar",
+                                                "bahasa",
+                                                "Indonesia"
+                                            ],
+                                            "explanation": "La frase practica Belajar en contexto."
+                                        },
+                        {
+                                            "vocabId": "v38",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la expresión.",
+                                            "answer": "Ayah saya bekerja",
+                                            "explanation": "La expresión practica Bekerja."
+                                        },
+                        {
+                                            "vocabId": "v50",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase con «Tidur».",
+                                            "hint": "Usa la palabra en una frase breve y completa.",
+                                            "modelAnswer": "Saya tidur di malam hari.",
+                                            "explanation": "Duermo por la noche."
+                                        },
+                        {
+                                            "vocabId": "v44",
+                                            "type": "mc",
+                                            "prompt": "¿Qué significa «Setiap hari»?",
+                                            "options": [
+                                                "Todos los días",
+                                                "Día",
+                                                "Hoy / este día"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Setiap hari significa Todos los días."
+                                        },
+                        {
+                                            "vocabId": "v122",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Mañana",
+                                            "answer": "Besok",
+                                            "explanation": "Besok significa Mañana."
+                                        }
+                    ]
                 }
-            ]
-        }
     ]
 }
                         ,

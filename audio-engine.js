@@ -49,7 +49,7 @@ window.AudioEngine = {
                 if (!this.synth) {
                     status.textContent = 'Este navegador no admite síntesis de voz. Puedes continuar con las actividades sin audio.';
                 } else if (!indonesianVoices.length) {
-                    status.textContent = 'No se detectó una voz indonesia instalada. Se usará la voz predeterminada del sistema con el idioma id-ID; puedes instalar una voz indonesia en los ajustes del dispositivo.';
+                    status.textContent = 'No se detectó una voz indonesia instalada. El audio no se reproducirá para evitar una pronunciación incorrecta. Puedes instalar una voz indonesia en los ajustes del dispositivo.';
                 } else {
                     const active = this.selectedVoice || this.idVoice;
                     const countLabel = indonesianVoices.length === 1 ? 'voz indonesia disponible' : 'voces indonesias disponibles';
@@ -96,11 +96,17 @@ window.AudioEngine = {
                     alert('Este navegador no admite síntesis de voz. Prueba con otro navegador o dispositivo para escuchar el indonesio.');
                     return;
                 }
+                const voice = this.selectedVoice || this.idVoice;
+                if (!voice || !String(voice.lang || '').toLowerCase().startsWith('id')) {
+                    this.updateVoiceStatus();
+                    const status = document.getElementById('audioVoiceStatus');
+                    if (status) status.textContent = 'No hay una voz indonesia disponible. No se reproducirá audio para evitar una pronunciación incorrecta. Instala una voz indonesia en los ajustes del dispositivo.';
+                    return;
+                }
                 this.synth.cancel();
                 const utter = new SpeechSynthesisUtterance(text);
                 utter.lang = 'id-ID';
-                const voice = this.selectedVoice || this.idVoice;
-                if (voice) utter.voice = voice;
+                utter.voice = voice;
                 utter.rate = this.rate;
                 this.synth.speak(utter);
             },
@@ -110,7 +116,7 @@ window.AudioEngine = {
                     const voice = this.selectedVoice || this.idVoice;
                     if (status) status.textContent = 'Probando la voz indonesia «' + voice.name + '» (' + voice.lang + ').';
                 } else {
-                    if (status) status.textContent = 'No se detectó una voz indonesia instalada. Se intentará usar la voz predeterminada del sistema con el idioma id-ID; el resultado puede variar.';
+                    if (status) status.textContent = 'No se detectó una voz indonesia instalada. No se reproducirá audio para evitar una pronunciación incorrecta. Instala una voz indonesia en los ajustes del dispositivo.';
                 }
                 this.speak("Halo! Bahasa Indonesia.");
             }

@@ -113,15 +113,6 @@ test('A2 units 5-8 teach ber- and meN- forms in five authored lessons', () => {
   for (const unit of units) {
     assert.ok(unit.vocab.length >= 10, unit.id + ' should provide at least ten assessment items');
     assert.equal(unit.lessons.length, 5, unit.id + ' should have five authored lessons');
-    const retrieval = unit.lessons[4];
-    assert.deepEqual(Array.from(retrieval.vocabIds || []), [], unit.id + ' retrieval lesson must not introduce vocabulary again');
-    assert.deepEqual(Array.from(retrieval.reviewVocabIds || []).sort(), Array.from(unit.vocab, word => word.id).sort(),
-      unit.id + ' retrieval lesson must review every unit vocabulary item');
-    assert.equal(retrieval.exercises.length, 12, unit.id + ' retrieval lesson must practise all twelve words');
-    assert.deepEqual([...new Set(retrieval.exercises.map(exercise => exercise.vocabId))].sort(),
-      Array.from(unit.vocab, word => word.id).sort(), unit.id + ' retrieval exercises must cover every word');
-    assert.equal(new Set(retrieval.exercises.map(exercise => exercise.type)).size, 5,
-      unit.id + ' retrieval lesson must use five exercise types');
     const unitVocabIds = new Set(unit.vocab.map(word => word.id));
     const retrieval = unit.lessons[4];
     assert.deepEqual([...(retrieval.vocabIds || [])], [], unit.id + ' retrieval lesson must not reintroduce new vocabulary');
@@ -582,6 +573,15 @@ test('A2 units 37-40 teach emergency readiness, tourism, remote work, and integr
   for (const unit of units) {
     assert.equal(unit.vocab.length, 12, unit.id + ' should provide twelve assessment items');
     assert.equal(unit.lessons.length, 5, unit.id + ' should have five authored lessons');
+    const retrieval = unit.lessons[4];
+    assert.deepEqual(Array.from(retrieval.vocabIds || []), [], unit.id + ' retrieval lesson must not introduce vocabulary again');
+    assert.deepEqual(Array.from(retrieval.reviewVocabIds || []).sort(), Array.from(unit.vocab, word => word.id).sort(),
+      unit.id + ' retrieval lesson must review every unit vocabulary item');
+    assert.equal(retrieval.exercises.length, 12, unit.id + ' retrieval lesson must practise all twelve words');
+    assert.deepEqual([...new Set(retrieval.exercises.map(exercise => exercise.vocabId))].sort(),
+      Array.from(unit.vocab, word => word.id).sort(), unit.id + ' retrieval exercises must cover every word');
+    assert.equal(new Set(retrieval.exercises.map(exercise => exercise.type)).size, 5,
+      unit.id + ' retrieval lesson must use five exercise types');
     const exercises = unit.lessons.flatMap(lesson => lesson.exercises || []);
     assert.equal(exercises.length, 29, unit.id + ' should have 29 exercises');
     assert.ok(new Set(exercises.map(exercise => exercise.type)).size >= 4, unit.id + ' should use four exercise types');

@@ -71,4 +71,7 @@
 - 13 nov 2026: B5 completado en PR #542, fusionada en `main` (`97bdafca8fe3299dc50e35e9ba28337fb5be1a98`). La acción «Olvidar clave» limpia estado en memoria, campo e IndexedDB mediante `DB.delete`, sin cambiar el esquema; la clave no se exporta en JSON v3. CI pre-merge y post-merge, regresión, informes offline y Pages en éxito.
 
 - 13 nov 2026: B10 cerrado como no aplicable: `exportProgress`, `validateBackup` y `DB.replaceBackupData` ya implementan exportación/importación JSON v3; no se reimplementa ni modifica el formato.
-- 13 nov 2026: B16 en `docs/b16-add-project-readme`: añade README en español con instalación PWA, funciones, privacidad, backup v3, servicios opcionales, limitaciones lingüísticas, desarrollo y estructura. No asigna licencia ni crea LICENSE/NOTICE. Pendiente de CI y revisión.
+- 13 nov 2026: B16 completado en PR #543, fusionada en `main` (`b90696046a59df7def06cd2cbb56913a0988beb4`). Añade README en español con instalación, privacidad, backup v3, servicios opcionales, limitaciones y desarrollo. No asigna licencia ni crea LICENSE/NOTICE. CI pre-merge y post-merge, regresión, informes offline y Pages en éxito.
+
+- 13 nov 2026: Lote 1 de remediación técnica B1, B3, B4, B5, B7 y B16 completado; B10 cerrado como no aplicable. CI post-merge verificado en cada PR.
+- 13 nov 2026: B2 en `fix/b2-disable-misleading-voice-fallback`: si no hay voz `id*`, el audio no debe reproducirse con una voz de otro idioma; la interfaz informa que no hay voz indonesia. Se añaden pruebas para ausencia de voz, voz no indonesia y voz indonesia válida. Pendiente de CI y revisión.

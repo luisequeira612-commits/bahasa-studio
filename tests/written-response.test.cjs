@@ -161,7 +161,7 @@ test('real A1/A2 written-response exercises accept their canonical answer throug
  const cases=[];
  for(const level of levels){
   for(const unit of level.units){
-   const exercises=[...(unit.exercises||[]),...(unit.lessons||[]).flatMap(lesson=>lesson.exercises||[])];
+   const exercises=unit.lessons?.length?(unit.lessons.flatMap(lesson=>lesson.exercises||[])):(unit.exercises||[]);
    for(const exercise of exercises){
     if(!['translate_es_id','translate_id_es','listen'].includes(exercise.type))continue;
     assert.equal(typeof exercise.answer,'string',level.id+'/'+unit.id+' has a text answer');
@@ -184,5 +184,5 @@ test('real A1/A2 written-response exercises accept their canonical answer throug
    else assert.notEqual(alternativeResult.status,'correct',level+'/'+unit+' unapproved alternative: '+text);
   }
  }
- assert.equal(cases.length,623,'baseline: total A1/A2 written-response exercises after A2 U2-U32 spaced retrieval lessons');
+ assert.equal(cases.length,649,'baseline: active A1/A2 written-response exercises after A1 U1-U4 and A2 spaced-retrieval lessons');
 });

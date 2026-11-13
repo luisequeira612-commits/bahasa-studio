@@ -35,7 +35,8 @@ test('every A1 unit is divided into sequential lessons that introduce all vocabu
       assert.ok(lesson.exercises.length >= lesson.newVocab.length, unit.id + ' lesson should actively practise its new words');
       const learnedIds = new Set(lesson.vocab.map(word => word.id));
       const learnedMeanings = new Set(lesson.vocab.map(word => word.esp));
-      const exercisedIds = new Set(lesson.exercises.filter(exercise => exercise.generated).map(exercise => exercise.vocabId));
+      // Explicit authored exercises also count: generated-only filtering predates authored A1 lesson plans.
+      const exercisedIds = new Set(lesson.exercises.map(exercise => exercise.vocabId));
       for (const word of lesson.reviewVocab) assert.ok(exercisedIds.has(word.id), 'every previously learned word should be revisited in the next lesson');
       for (const exercise of lesson.exercises) {
         assert.ok(learnedIds.has(exercise.vocabId), unit.id + ' lesson ' + index + ' references a word not yet introduced');
@@ -267,27 +268,44 @@ test('A1 explicit authored lessons also receive additive reinforcement without c
   assert.ok(lessons.slice(2).every(lesson => lesson.index >= 2 && lesson.exercises.length === unit.vocab.length));
 });
 
-test('A1 Unit 3 exposes five lessons including additive active recall', () => {
+test('A1 Unit 3 exposes its five authored lessons in curriculum order', () => {
   const a1 = app.CourseData.levels.find(level => level.id === 'A1');
   const unit = a1.units.find(entry => entry.id === 'a1_u3');
   const lessons = app.buildUnitLessons(unit);
+  assert.equal(unit.lessons.length, 5);
   assert.equal(lessons.length, 5);
-  assert.deepEqual(Array.from(lessons.slice(-3), lesson => lesson.title),
-    ['Repaso activo 1', 'Repaso activo 2', 'Repaso activo 3']);
+  assert.deepEqual(Array.from(lessons, lesson => lesson.title),
+    Array.from(unit.lessons, lesson => lesson.title));
+  assert.deepEqual(Array.from(lessons[0].newVocab, word => word.id), ['v10', 'v11']);
+  assert.deepEqual(Array.from(lessons[1].newVocab, word => word.id), ['v12', 'v13']);
+  assert.deepEqual(Array.from(lessons[2].newVocab, word => word.id), ['v14', 'v101']);
+  assert.deepEqual(Array.from(lessons[3].newVocab, word => word.id), ['v102', 'v103']);
+  assert.deepEqual(Array.from(lessons[4].newVocab, word => word.id), []);
+  assert.deepEqual(Array.from(lessons[4].reviewVocab, word => word.id), Array.from(unit.vocab, word => word.id));
 });
 
-test('A1 appends five or six active-recall lessons without shifting legacy lesson indexes', () => {
+test('A1 authored units use their lesson plans while legacy units receive runtime reinforcement', () => {
   const a1 = app.CourseData.levels.find(level => level.id === 'A1');
   for (const unit of a1.units) {
     const lessons = app.buildUnitLessons(unit);
-    const legacyCount = Math.min(5, Math.max(2, Math.ceil(unit.vocab.length / 4)));
+    const authoredCount = Array.isArray(unit.lessons) ? unit.lessons.length : 0;
+    const legacyCount = authoredCount || Math.min(5, Math.max(2, Math.ceil(unit.vocab.length / 4)));
     const targetCount = unit.vocab.length >= 18 ? 6 : 5;
     assert.equal(lessons.length, targetCount, unit.id + ' should have five or six lessons');
     assert.deepEqual(Array.from(lessons.slice(0, legacyCount), lesson => lesson.index),
       Array.from({ length: legacyCount }, (_, index) => index),
-      unit.id + ' legacy lesson indexes must remain unchanged');
+      unit.id + ' existing lesson indexes must remain unchanged');
+    if (authoredCount) {
+      assert.equal(authoredCount, targetCount, unit.id + ' authored lessons must satisfy the unit target');
+      assert.deepEqual(Array.from(lessons, lesson => lesson.title),
+        Array.from(unit.lessons, lesson => lesson.title),
+        unit.id + ' must expose its authored lessons without runtime padding');
+      assert.ok(lessons.every(lesson => !lesson.title.startsWith('Repaso activo')),
+        unit.id + ' authored lessons must not be replaced by generated reinforcement');
+      continue;
+    }
     assert.ok(lessons.slice(0, legacyCount).every(lesson => !lesson.title.startsWith('Repaso activo')),
-      unit.id + ' reinforcement must be appended after legacy lessons');
+      unit.id + ' legacy lesson indexes must remain before reinforcement');
     for (const lesson of lessons.slice(legacyCount)) {
       assert.deepEqual(Array.from(lesson.reviewVocab, word => word.id), Array.from(unit.vocab, word => word.id));
       assert.equal(lesson.exercises.length, unit.vocab.length);

@@ -56,3 +56,9 @@
 - PR #526 fusionada por squash (`2a1dd2710c06b091d4bbbd75f060a0d449772132`): restaura el foco desde la burbuja y el popup de significado; el texto de origen conserva `tabindex="-1"` para mantener el foco programático fuera del orden normal de Tab. CI del PR: Regression 74/74 y calidad offline 10/10; CI post-merge de `main`: Regression 74/74 y calidad offline 10/10; Pages build, deploy y reporte en éxito.
 - PR #527 fusionada en `main` (`37e3faf`): el chat del Tutor anuncia mensajes y los campos de Tutor/Diccionario tienen nombres accesibles; regresión post-merge 74/74, calidad 10/10 y Pages correcto. PR #528 sincronizó esta evidencia en documentación y se fusionó como `a9a8b569` tras CI pre-merge verde.
 - La prueba física Android de los controles táctiles y de foco sigue pendiente.
+
+## Corrección técnica B1 — 13 nov 2026
+- Rama `fix/b1-unbiased-exercise-shuffle`, basada en `main` `d3aa7ce93116727786a5ec9abae697dacc33b5b1`. Se confirmaron los cuatro usos sesgados de `sort(() => Math.random() - 0.5)` en `index.html`.
+- Sustituidos por Fisher–Yates; los ejercicios `order` usan `correctOrder` como referencia y evitan mostrar exactamente la solución cuando hay al menos dos tokens distintos.
+- Añadida `tests/exercise-shuffle.test.cjs` con comprobaciones deterministas de las seis permutaciones de tres elementos, no mutación de origen, protección de `order` y los cuatro puntos de uso; el workflow ejecuta esta prueba.
+- No se modifican datos curriculares, IndexedDB, backup JSON v3 ni dependencias. La suite local del repositorio no se ejecutó en este entorno; queda pendiente la verificación de CI sobre el SHA exacto del PR.

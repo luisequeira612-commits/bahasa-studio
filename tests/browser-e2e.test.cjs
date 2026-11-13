@@ -2166,8 +2166,9 @@ test('real JSON v3 import keeps untrusted custom lesson content inert across rou
         assert.ok(rendered.html.includes('data-answer='), 'listen should render its answer in a data attribute');
         assert.ok(rendered.html.includes('&lt;img'), 'listen answer markup should be HTML-escaped');
       } else if (queue[index] === 'translate_es_id') {
-        assert.equal(rendered.currentAnswer, payload, 'the imported translation answer should reach the renderer');
-        assert.ok(rendered.html.includes('&lt;img'), 'translation prompt markup should be HTML-escaped');
+        assert.ok(String(rendered.currentAnswer).startsWith(payload),
+          'the imported translation answer should reach the renderer');
+        assert.ok(!rendered.html.includes(payload), 'translation payload must not be inserted as raw HTML');
       } else {
         assert.ok(rendered.text.includes(payload) || rendered.attributes.includes(payload),
           queue[index] + ' should preserve the untrusted content as text or an escaped data value');

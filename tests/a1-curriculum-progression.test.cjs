@@ -136,10 +136,19 @@ test('A1 U5-U8 contain five authored lessons with sequenced introductions and sp
     assert.equal(introducedAt.size, unit.vocab.length,
       unit.id + ' must introduce every vocabulary entry exactly once');
     const lessonExercises = unit.lessons.flatMap(lesson => lesson.exercises || []);
+    const originalCounts = new Map();
+    const lessonCounts = new Map();
     for (const exercise of unit.exercises) {
       const signature = JSON.stringify(exercise);
-      assert.equal(lessonExercises.filter(candidate => JSON.stringify(candidate) === signature).length, 1,
-        unit.id + ' must preserve every original unit exercise exactly once in its authored lessons');
+      originalCounts.set(signature, (originalCounts.get(signature) || 0) + 1);
+    }
+    for (const exercise of lessonExercises) {
+      const signature = JSON.stringify(exercise);
+      lessonCounts.set(signature, (lessonCounts.get(signature) || 0) + 1);
+    }
+    for (const [signature, count] of originalCounts) {
+      assert.equal(lessonCounts.get(signature) || 0, count,
+        unit.id + ' must preserve every original unit exercise with its exact multiplicity');
     }
     assert.ok(lessonExercises.every(exercise => exercise.generated !== true),
       unit.id + ' authored lessons must not count generated runtime exercises');

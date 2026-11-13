@@ -61,12 +61,6 @@ test('the first four A2 units have five authored lessons, varied practice, liste
     assert.ok(unit.vocab.length >= 4, unit.id + ' should introduce vocabulary');
     assert.ok(Array.isArray(unit.lessons) && unit.lessons.length === 5,
       unit.id + ' should contain five authored lessons');
-    const unitVocabIds = new Set(unit.vocab.map(word => word.id));
-    const retrieval = unit.lessons[4];
-    assert.deepEqual([...(retrieval.vocabIds || [])], [], unit.id + ' retrieval lesson must not reintroduce new vocabulary');
-    assert.deepEqual([...new Set(retrieval.reviewVocabIds || [])].sort(), [...unitVocabIds].sort(),
-      unit.id + ' retrieval lesson must review all vocabulary already taught');
-    assert.ok((retrieval.exercises || []).length >= 5, unit.id + ' retrieval lesson must contain its own exercises');
     const exercises = unit.lessons.flatMap(lesson => lesson.exercises || []);
     assert.ok(exercises.length >= 14 && exercises.length <= (unit.id === 'a2_u1' ? 27 : 22),
       unit.id + ' should include 14-27 exercises for U1 or 14-22 for the other units');
@@ -119,6 +113,12 @@ test('A2 units 5-8 teach ber- and meN- forms in five authored lessons', () => {
   for (const unit of units) {
     assert.ok(unit.vocab.length >= 10, unit.id + ' should provide at least ten assessment items');
     assert.equal(unit.lessons.length, 5, unit.id + ' should have five authored lessons');
+    const unitVocabIds = new Set(unit.vocab.map(word => word.id));
+    const retrieval = unit.lessons[4];
+    assert.deepEqual([...(retrieval.vocabIds || [])], [], unit.id + ' retrieval lesson must not reintroduce new vocabulary');
+    assert.deepEqual([...new Set(retrieval.reviewVocabIds || [])].sort(), [...unitVocabIds].sort(),
+      unit.id + ' retrieval lesson must review all vocabulary already taught');
+    assert.equal((retrieval.exercises || []).length, 5, unit.id + ' retrieval lesson must contain five didactic exercises');
     const exercises = unit.lessons.flatMap(lesson => lesson.exercises || []);
     assert.ok(exercises.length >= 14 && exercises.length <= 22, unit.id + ' should have 14-22 exercises');
     assert.ok(new Set(exercises.map(exercise => exercise.type)).size >= 4, unit.id + ' should use four exercise types');

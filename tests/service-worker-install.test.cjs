@@ -49,7 +49,7 @@ test('un recurso fallido no cancela la precarga de los demás', async () => {
 
     await assert.doesNotReject(installPromise);
     assert.equal(worker.attempted.length, worker.assets.length);
-    assert.deepEqual(worker.attempted, worker.assets);
+    assert.deepEqual(worker.attempted, Array.from(worker.assets));
     assert.equal(worker.cached.length, worker.assets.length - failed.size);
     for (const url of failed) assert.equal(worker.cached.includes(url), false);
     assert.equal(worker.skipWaitingCalls, 1);

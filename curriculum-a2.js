@@ -234,8 +234,22 @@ window.BAHASA_CURRICULUM_A2 = {
                                         { vocabId: 'a2u2_bulan_depan', type: 'listen', prompt: 'Escucha y escribe la oración.', answer: 'Saya pulang bulan depan.', explanation: 'Bulan depan significa «el mes que viene».' },
                                         { vocabId: 'a2u2_bulan_lalu', type: 'write', prompt: 'Escribe una frase para decir que trabajaste el mes pasado.', hint: 'Usa «Saya bekerja bulan lalu».', modelAnswer: 'Saya bekerja bulan lalu.', explanation: 'El modelo usa bulan lalu para situar el trabajo en el pasado.' }
                                     ]
+                                },
+                                {
+                                    title: 'Lección 5: Recuperación espaciada de marcadores temporales',
+                                    objective: 'Recupera los marcadores temporales de la unidad y combínalos para describir una secuencia entre pasado reciente, continuidad y futuro.',
+                                    grammar: 'Distingue el punto temporal antes de elegir: tadi sitúa un hecho en el pasado reciente; sudah indica que ya ocurrió; belum, que todavía no; sedang, que está en curso; masih, que continúa; akan, que ocurrirá después. Combina estos marcadores con expresiones como minggu depan.',
+                                    vocabIds: [],
+                                    reviewVocabIds: ['a2u2_sudah', 'a2u2_belum', 'a2u2_sedang', 'a2u2_akan', 'a2u2_tadi', 'a2u2_tadi_pagi', 'a2u2_tadi_malam', 'a2u2_baru_saja', 'a2u2_masih', 'a2u2_sebentar_lagi', 'a2u2_minggu_depan', 'a2u2_minggu_lalu', 'a2u2_bulan_lalu', 'a2u2_bulan_depan'],
+                                    exercises: [
+                                        { vocabId: 'a2u2_masih', type: 'mc', prompt: 'En «Saya masih belajar», ¿qué expresa masih?', options: ['Que la actividad continúa', 'Que la actividad ya terminó', 'Que ocurrirá la semana que viene'], answer: 0, explanation: 'Masih indica que una situación o actividad continúa.' },
+                                        { vocabId: 'a2u2_belum', type: 'translate_es_id', prompt: 'Traduce: «Todavía no he comido».', answer: 'Saya belum makan.', explanation: 'Belum indica que la acción todavía no ha ocurrido.' },
+                                        { vocabId: 'a2u2_minggu_depan', type: 'order', prompt: 'Ordena: «Voy a regresar a casa la semana que viene».', words: ['pulang', 'minggu', 'Saya', 'depan', 'akan'], correctOrder: ['Saya', 'akan', 'pulang', 'minggu', 'depan'], explanation: 'Akan marca el futuro y minggu depan sitúa la acción en la semana siguiente.' },
+                                        { vocabId: 'a2u2_baru_saja', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Dia baru saja datang.', explanation: 'Baru saja indica que la llegada ocurrió hace muy poco.' },
+                                        { vocabId: 'a2u2_tadi_pagi', type: 'write', prompt: 'Escribe tres oraciones breves: una sobre algo que hiciste esta mañana, otra sobre algo que sigue en curso y otra sobre la semana que viene.', hint: 'Puedes combinar tadi pagi, masih y akan ... minggu depan.', modelAnswer: 'Saya belajar tadi pagi. Saya masih belajar sekarang. Saya akan belajar lagi minggu depan.', explanation: 'La secuencia obliga a recuperar expresiones de pasado reciente, continuidad y futuro.' }
+                                    ]
                                 }
-                            ]
+]
                         },
                         {
                             id: 'a2_u3',
@@ -305,8 +319,22 @@ window.BAHASA_CURRICULUM_A2 = {
                                         { vocabId: 'a2u3_ketika', type: 'listen', prompt: 'Escucha y escribe la oración.', answer: 'Ketika saya makan, dia datang.', explanation: 'Ketika introduce el momento en que ocurre la llegada.' },
                                         { vocabId: 'a2u3_sampai', type: 'write', prompt: 'Escribe una frase para decir que estudias hasta la noche.', hint: 'Usa «Saya belajar sampai malam».', modelAnswer: 'Saya belajar sampai malam.', explanation: 'Sampai marca el límite temporal de la actividad.' }
                                     ]
+                                },
+                                {
+                                    title: 'Lección 5: Recuperación espaciada de secuencias',
+                                    objective: 'Integra conectores de inicio, continuación, anterioridad y cierre para narrar una secuencia breve y coherente.',
+                                    grammar: 'Organiza los acontecimientos según su relación: pertama abre la secuencia; lalu, kemudian y setelah itu la hacen avanzar; sebelumnya remite a un hecho anterior; akhirnya puede cerrar el relato. Ketika, selama y sampai expresan relaciones temporales dentro de la secuencia.',
+                                    vocabIds: [],
+                                    reviewVocabIds: ['a2u3_pertama', 'a2u3_lalu', 'a2u3_kemudian', 'a2u3_setelah_itu', 'a2u3_akhirnya', 'a2u3_berikutnya', 'a2u3_sebelumnya', 'a2u3_selanjutnya', 'a2u3_setelah', 'a2u3_ketika', 'a2u3_selama', 'a2u3_sampai'],
+                                    exercises: [
+                                        { vocabId: 'a2u3_sebelumnya', type: 'mc', prompt: '¿Qué conector remite a algo que ocurrió antes del momento narrado?', options: ['Sebelumnya', 'Selanjutnya', 'Akhirnya'], answer: 0, explanation: 'Sebelumnya significa «antes de eso» o «previamente».' },
+                                        { vocabId: 'a2u3_setelah', type: 'translate_es_id', prompt: 'Traduce: «Después de comer, bebo agua».', answer: 'Setelah makan, saya minum air.', explanation: 'Setelah introduce la acción que sirve de referencia temporal.' },
+                                        { vocabId: 'a2u3_pertama', type: 'order', prompt: 'Ordena las palabras para formar una secuencia: «Primero estudio. Luego leo un libro. Finalmente regreso a casa».', words: ['Akhirnya,', 'saya', 'Pertama,', 'pulang.', 'membaca', 'Lalu,', 'saya', 'buku.', 'saya', 'belajar.'], correctOrder: ['Pertama,', 'saya', 'belajar.', 'Lalu,', 'saya', 'membaca', 'buku.', 'Akhirnya,', 'saya', 'pulang.'], explanation: 'Los conectores ordenan tres acciones desde el inicio hasta el cierre.' },
+                                        { vocabId: 'a2u3_ketika', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Ketika saya makan, dia datang.', explanation: 'Ketika introduce el momento en que ocurre la llegada.' },
+                                        { vocabId: 'a2u3_akhirnya', type: 'write', prompt: 'Escribe una secuencia de tres oraciones sobre tu mañana. Usa un conector para empezar, otro para continuar y akhirnya para cerrar.', hint: 'Puedes reutilizar pertama, setelah itu y akhirnya.', modelAnswer: 'Pertama, saya sarapan. Setelah itu, saya belajar. Akhirnya, saya pergi.', explanation: 'La producción recupera los conectores en un contexto propio y mantiene el orden temporal.' }
+                                    ]
                                 }
-                            ]
+]
                         },
                         {
                             id: 'a2_u4',
@@ -380,8 +408,20 @@ window.BAHASA_CURRICULUM_A2 = {
                                         { vocabId: 'a2u4_sibuk', type: 'write', prompt: 'Escribe una frase para describir que hoy no estás ocupado/a.', hint: 'Usa «Hari ini saya tidak sibuk».', modelAnswer: 'Hari ini saya tidak sibuk.', explanation: 'El modelo niega sibuk con tidak.' },
                                         { vocabId: 'a2u4_jadwal', type: 'write', prompt: 'Escribe un horario breve con dos actividades y sus horas; termina indicando si tu horario está lleno o si hoy tienes un ritmo tranquilo.', hint: 'Puedes usar «Pukul ... saya ...» para cada actividad y terminar con «Jadwal saya penuh» o «Hari ini saya santai».', modelAnswer: 'Pukul delapan saya belajar. Pukul dua belas saya makan. Jadwal saya penuh.', explanation: 'La respuesta integra dos actividades con sus horas y una descripción global del día. Es un modelo guiado; se pueden aceptar otras actividades y horarios coherentes.' }
                                     ]
+                                },
+                                {
+                                    title: 'Lección 5: Recuperación espaciada de la jornada',
+                                    objective: 'Combina vocabulario de horarios, actividades y estados personales para resumir una jornada con principio, final y valoración.',
+                                    grammar: 'Para describir una jornada, presenta el jadwal, indica cuándo una actividad mulai y selesai, y añade cómo está tu día: sibuk, santai o penuh. El orden de las oraciones ayuda a que la descripción se entienda.',
+                                    vocabIds: [],
+                                    reviewVocabIds: ['a2u4_rutinitas', 'a2u4_jadwal', 'a2u4_teratur', 'a2u4_mulai', 'a2u4_selesai', 'a2u4_kegiatan', 'a2u4_acara', 'a2u4_sibuk', 'a2u4_santai', 'a2u4_penuh'],
+                                    exercises: [
+                                        { vocabId: 'a2u4_jadwal', type: 'mc', prompt: '¿Qué palabra usarías para hablar de tu horario diario?', options: ['Jadwal', 'Acara', 'Santai'], answer: 0, explanation: 'Jadwal significa «horario» o «programa».' },
+                                        { vocabId: 'a2u4_mulai', type: 'translate_es_id', prompt: 'Traduce: «Mi clase empieza a las ocho y termina a las doce».', answer: 'Kelas mulai pukul delapan dan selesai pukul dua belas.', explanation: 'Mulai indica el comienzo y selesai el final de la clase.' },
+                                        { vocabId: 'a2u4_sibuk', type: 'write', prompt: 'Describe tu jornada con tres oraciones: presenta tu horario, indica cuándo termina una actividad y explica si tu día está ocupado o tranquilo.', hint: 'Puedes usar jadwal, mulai, selesai, sibuk o santai.', modelAnswer: 'Jadwal saya mulai pukul delapan. Kegiatan selesai pukul dua belas. Hari ini saya santai.', explanation: 'La producción integra horarios, actividades y una descripción personal.' }
+                                    ]
                                 }
-                            ]
+]
                         },
                         {
                             "id": "a2_u5",

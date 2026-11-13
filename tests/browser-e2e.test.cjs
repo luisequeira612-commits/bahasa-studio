@@ -759,9 +759,13 @@ test('all A1 and A2 practical conversations support guided replies without chang
       }
 
       await page.getByRole('heading', { name: 'Conversación completada' }).waitFor();
-      const expectedScore = scenarioIndex === 0 ? '2/3' : '3/3';
+      const expectedScore = scenarioIndex === 0 ? '2/2' : '3/3';
       assert.match(await page.locator('#conversationResultScore').innerText(), new RegExp(expectedScore),
         scenarioId + ' should calculate the correct conversation score');
+      if (scenarioIndex === 0) {
+        assert.match(await page.locator('#conversationPracticeArea').innerText(), /1 respuesta\(s\) libre\(s\) practicada\(s\)/,
+          'the free response should be counted separately from the guided score');
+      }
       if (scenarioIndex < scenarioIds.length - 1) {
         await page.locator('[data-conversation-back]').click();
       }

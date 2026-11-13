@@ -12,7 +12,7 @@
 | A2 | 40 | 196 | 36 con 5; 4 con 4 | 4 |
 | B1 | 50 | 144 | 12 con 2; 32 con 3; 6 con 4 | 50 |
 | B2 | 5 | 25 | 5 con 5 | 0 |
-| **Total implementado** | **127** | **361** | — | **90** |
+| **Total implementado** | **127** | **365** | — | **86** |
 
 El mínimo para las 127 unidades ya implementadas es 635 lecciones. Faltan **258 lecciones explícitas** para llegar a cinco por unidad. Este cálculo no incluye B2 U6–U60, que todavía no están implementadas: esas 55 unidades deben diseñarse desde el principio con cinco o seis lecciones cada una.
 

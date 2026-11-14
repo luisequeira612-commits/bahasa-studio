@@ -28,6 +28,11 @@ class MemoryCache {
         this.entries.set(request.url, response.clone());
     }
 
+    async delete(request) {
+        const url = typeof request === 'string' ? new URL(request, ORIGIN).href : request.url;
+        return this.entries.delete(url);
+    }
+
     async keys() {
         return [...this.entries.keys()].map(url => new Request(url));
     }

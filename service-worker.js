@@ -157,6 +157,20 @@ async function migrateLegacyAudioCache({ skipAudio = false, preserveLegacy = fal
         return false;
     }
 
+    if (preserveLegacy) return false;
+    if (skipAudio) {
+        let deletionComplete = true;
+        for (const name of legacyNames) {
+            try {
+                await caches.delete(name);
+            } catch (_) {
+                deletionComplete = false;
+            }
+        }
+        if (!deletionComplete) audioRevisionInvalidationPending = true;
+        return deletionComplete;
+    }
+
     for (const name of legacyNames) {
         let source;
         let requests;

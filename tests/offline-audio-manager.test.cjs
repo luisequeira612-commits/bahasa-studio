@@ -47,7 +47,7 @@ test('extracts cached clip IDs only from matching audio paths', () => {
         new Request('https://example.test/bahasa-studio/audio/id/not-an-id.mp3'),
         new Request('https://example.test/bahasa-studio/audio/id/cccccccccccc.opus')
     ];
-    assert.deepEqual(Array.from(manager.idsFromCacheKeys(keys)).sort(), ['aaaaaaaaaaaa']);
+    assert.deepEqual(Array.from(manager.idsFromCacheKeys(keys)).sort(), ['aaaaaaaaaaaa', 'bbbbbbbbbbbb']);
 });
 
 test('formats storage values without claiming unknown sizes', () => {

@@ -7,7 +7,7 @@ on:
         description: Motor de voz para evaluar
         type: choice
         options: [edge, piper, mms]
-        default: edge
+        default: piper
         required: true
       mode:
         description: samples para escuchar; full solo después de elegir voz

@@ -179,7 +179,7 @@
 
 
 ## Cobertura de audio interactivo — PR #594 abierta — 14 nov 2026
-- Auditoría de código real: el manifiesto de 2.084 IDs no cubría todas las cadenas estáticas que la aplicación puede pronunciar. Se encontraron 97 entradas únicas contadas por categoría entre audioText de ejercicios, evaluaciones de escucha y conversaciones; tras deduplicar entre categorías y contrastar con la biblioteca actual, faltan 68 IDs.
+- Auditoría de código real: el manifiesto de 2.084 IDs no cubría todas las cadenas estáticas que la aplicación puede pronunciar. Se encontraron 96 textos estáticos distintos tras deduplicar entre categorías; 28 ya estaban cubiertos y 68 carecían de clip. Los cuatro grupos contienen 97 entradas únicas contadas por categoría porque un texto aparece en dos grupos.
 - Desglose de textos únicos por origen: 40 exercise-audioText (16 nuevos), 3 assessment-listen (2 nuevos), 27 conversation-turn (26 nuevos) y 27 conversation-example (24 nuevos). Las respuestas libres del usuario siguen siendo dinámicas y conservan el fallback TTS.
 - PR [#594](https://github.com/luisequeira612-commits/bahasa-studio/pull/594) abierta desde la rama audio/interactive-manifest-coverage; CI pendiente. El exportador conserva su modo normal sin cambios; --include-interactive activa las fuentes adicionales. La normalización SHA-1 y los IDs existentes no cambian.
 - El workflow permite level=all. Tras integrar la cobertura, ejecutar manualmente engine=piper, mode=full, level=all, limit=0, confirm_full=true. generate_audio.py omite IDs que ya tengan MP3 y Opus; debe sintetizar únicamente los 68 nuevos y actualizar índice/huellas. Los tests en ese modo verifican la unión completa entre manifiesto, índice y archivos.

@@ -6,6 +6,7 @@ import argparse
 import asyncio
 import hashlib
 import html
+import hashlib
 import json
 import shutil
 import subprocess
@@ -121,14 +122,26 @@ def ensure_single_voice(metadata_file: Path, engine: str, voice: str):
     expected = {"engine": engine, "voice": voice, "formats": ["opus", "mp3"]}
     if metadata_file.exists():
         existing = json.loads(metadata_file.read_text(encoding="utf-8"))
-        if existing != expected:
+        core = {key: existing.get(key) for key in expected}
+        if core != expected:
             raise RuntimeError(
                 "The production library is locked to one engine/voice. "
                 f"Existing: {existing}; requested: {expected}. "
                 "Do not mix voices between A1, A2 and B1."
             )
     else:
-                metadata_file.write_text(json.dumps(expected, indent=2), encoding="utf-8")
+        metadata_file.write_text(json.dumps(expected, indent=2) + "\n", encoding="utf-8")
+
+
+def refresh_audio_hashes(metadata_file: Path, audio_dir: Path):
+    metadata = json.loads(metadata_file.read_text(encoding="utf-8"))
+    hashes = {}
+    for audio_file in sorted(audio_dir.glob("*.mp3")):
+        digest = hashlib.sha256(audio_file.read_bytes()).hexdigest()
+        hashes[audio_file.stem] = digest
+    metadata["audio_hashes"] = hashes
+    metadata_file.write_text(json.dumps(metadata, indent=2) + "\n", encoding="utf-8")
+    return hashes
 
 
 def render_samples_index(samples_dir: Path, samples: list[dict]):
@@ -246,6 +259,7 @@ def main():
     else:
         index_file.parent.mkdir(parents=True, exist_ok=True)
         index_file.write_text(json.dumps(sorted(available_ids), indent=2) + "\n", encoding="utf-8")
+        refresh_audio_hashes(ROOT / "audio" / "metadata.json", output_dir)
         total_bytes = sum(path.stat().st_size for pattern in ("*.opus", "*.mp3") for path in output_dir.glob(pattern))
         print(f"Level {args.level}: {len(available_ids)} indexed clips; Opus + MP3 fallback size {total_bytes} bytes")
 

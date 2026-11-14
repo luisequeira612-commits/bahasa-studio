@@ -76,6 +76,14 @@ test('optional interactive audio export covers every static playback surface', a
     assert.equal(countSource('assessment-listen'), 3, 'all unique assessment listen utterances must be collected');
     assert.equal(countSource('conversation-turn'), 27, 'all unique conversation turns must be collected');
     assert.equal(countSource('conversation-example'), 27, 'all unique speakable conversation examples must be collected');
+    assert.equal(staticEntries.length, 96, 'static playback sources must deduplicate to 96 distinct texts');
+    assert.equal(staticEntries.filter((entry) => baseIds.has(entry.id)).length, 28, '28 static texts are already covered by the existing library');
+    assert.deepEqual(missingBySource, {
+      'exercise-audioText': 16,
+      'assessment-listen': 2,
+      'conversation-turn': 26,
+      'conversation-example': 24
+    }, 'all 68 missing clips must be attributed to their playback source');
     const baseIds = new Set(base.map((entry) => entry.id));
     const kinds = ['exercise-audioText', 'assessment-listen', 'conversation-turn', 'conversation-example'];
     const staticEntries = interactive.filter((entry) => entry.sources.some((source) => kinds.includes(source.kind)));

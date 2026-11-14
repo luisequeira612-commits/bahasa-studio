@@ -24,9 +24,9 @@ jobs:
             local status
             status="$(curl --silent --show-error --location --max-time 30 \
               --dump-header "$headers" --output /dev/null --write-out '%{http_code}' "$@" "$url")"
-            echo "::group::${label} (HTTP ${status})"
-            cat "$headers"
-            echo "::endgroup::"
+            echo "::group::${label} (HTTP ${status})" >&2
+            cat "$headers" >&2
+            echo "::endgroup::" >&2
             rm -f "$headers"
             printf '%s' "$status"
           }

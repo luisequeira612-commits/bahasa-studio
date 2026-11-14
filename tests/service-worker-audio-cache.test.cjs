@@ -163,7 +163,7 @@ test('los MP3 nuevos usan guardi-audio-v1 y los recursos normales siguen en la c
     const audioCache = worker.cacheStore.get('guardi-audio-v1');
     const appCache = worker.cacheStore.get('bahasa-studio-v3.8.96');
     assert.ok(await audioCache.match(audioRequest));
-    assert.equal(await appCache.match(audioRequest), null);
+    assert.equal(worker.cacheStore.has('bahasa-studio-v3.8.96'), false, 'audio fetch must not create the app cache');
 
     const appRequest = new Request(`${ORIGIN}/bahasa-studio/styles.css`);
     let appLifetime;

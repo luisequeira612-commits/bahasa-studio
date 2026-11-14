@@ -39,6 +39,7 @@ function createWorker({
     currentMetadata = true,
     audioClips = [],
     legacyClips = [],
+    failDelete = false,
     fetchImpl = async () => new Response('fresh audio', { status: 200, headers: { 'Content-Type': 'audio/mpeg' } })
 } = {}) {
     const handlers = {};
@@ -63,7 +64,10 @@ function createWorker({
             return cacheStore.get(name);
         },
         keys: async () => [...cacheStore.keys()],
-        delete: async name => cacheStore.delete(name)
+        delete: async name => {
+            if (failDelete && name.startsWith('bahasa-studio-')) throw new Error('simulated delete failure');
+            return cacheStore.delete(name);
+        }
     };
     const self = {
         location: { origin: ORIGIN, href: `${ORIGIN}/bahasa-studio/service-worker.js` },
@@ -123,6 +127,31 @@ test('una revisión mayor que uno sin marcador previo también invalida clips an
     const audioCache = worker.cacheStore.get(AUDIO_CACHE);
     assert.equal(await audioCache.match(new Request(clipUrl('old-without-marker'))), null);
     assert.equal(JSON.parse(await (await audioCache.match(new Request(METADATA_URL))).text()).content_revision, 3);
+});
+
+test('si no se pueden borrar cachés antiguas, no sirve clips viejos desde ellas', async () => {
+    const worker = createWorker({
+        currentRevision: 2,
+        previousRevision: 1,
+        audioClips: [['cached-old', 'old cached audio']],
+        legacyClips: [['legacy-old', 'old legacy audio']],
+        failDelete: true,
+        fetchImpl: async () => new Response('fresh audio', { status: 200, headers: { 'Content-Type': 'audio/mpeg' } })
+    });
+    await activate(worker);
+    assert.equal(worker.cacheStore.has('bahasa-studio-v3.8.97'), true);
+
+    let responsePromise;
+    let lifetimePromise;
+    worker.handlers.fetch({
+        request: new Request(clipUrl('legacy-old')),
+        waitUntil: promise => { lifetimePromise = promise; },
+        respondWith: promise => { responsePromise = promise; }
+    });
+    const response = await responsePromise;
+    await lifetimePromise;
+    assert.equal(response.status, 200);
+    assert.equal(await response.text(), 'fresh audio');
 });
 
 test('si falta metadata, conserva las cachés y evita servir clips potencialmente obsoletos', async () => {

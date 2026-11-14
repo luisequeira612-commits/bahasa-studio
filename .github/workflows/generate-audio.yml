@@ -105,6 +105,8 @@ jobs:
             BRANCH="audio/library-$LEVEL"
           fi
           echo "AUDIO_BRANCH=$BRANCH" >> "$GITHUB_ENV"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           if git ls-remote --exit-code --heads origin "$BRANCH" >/dev/null 2>&1; then
             git fetch origin "$BRANCH"
             git checkout -B "$BRANCH" "origin/$BRANCH"
@@ -194,7 +196,7 @@ jobs:
           echo "- Motor: **$ENGINE**" >> "$GITHUB_STEP_SUMMARY"
           echo "- Modo: **$MODE**" >> "$GITHUB_STEP_SUMMARY"
           echo "- Nivel: **$LEVEL**" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Rama: `$AUDIO_BRANCH`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Rama: $AUDIO_BRANCH" >> "$GITHUB_STEP_SUMMARY"
           if [[ -n "${{ steps.pr.outputs.PR_URL }}" ]]; then
             echo "- PR: ${{ steps.pr.outputs.PR_URL }}" >> "$GITHUB_STEP_SUMMARY"
           fi

@@ -79,7 +79,7 @@ test('unit final assessments cover only that unit vocabulary and require 80 perc
   const a1 = app.CourseData.levels.find(level => level.id === 'A1');
   for (const unit of a1.units) {
     const items = app.buildUnitAssessmentItems(unit);
-    const knownIds = new Set(unit.vocab.map(word => word.id));
+    const knownIds = new Set(Array.from(unit.vocab, word => word.id));
     const knownMeanings = new Set(unit.vocab.map(word => word.esp));
     assert.equal(items.length, unit.vocab.length);
     for (const item of items) {
@@ -133,7 +133,7 @@ test('A1 U25-U28 contain five authored lessons with cumulative practice and spac
       Array.from(unit.lessonPlans, plan => plan.title)
     );
 
-    const unitIds = new Set(unit.vocab.map(word => word.id));
+    const unitIds = new Set(Array.from(unit.vocab, word => word.id));
     const introduced = [];
     const allExercises = unit.lessons.flatMap(lesson => lesson.exercises || []);
     for (const [index, lesson] of unit.lessons.entries()) {
@@ -150,7 +150,7 @@ test('A1 U25-U28 contain five authored lessons with cumulative practice and spac
         introduced.push(id);
       }
     }
-    assert.deepEqual(introduced, unit.vocab.map(word => word.id),
+    assert.deepEqual(introduced, Array.from(unit.vocab, word => word.id),
       unit.id + ' must introduce every vocabulary item exactly once and in order');
 
     const originalCounts = new Map();
@@ -274,7 +274,7 @@ test('B1 U13-U26 expose five lessons while preserving authored vocabulary order 
   const a1 = levels.find(level => level.id === 'A1');
   const a2 = levels.find(level => level.id === 'A2');
   const b1 = levels.find(level => level.id === 'B1');
-  const known = new Set([...a1.units, ...a2.units].flatMap(unit => unit.vocab.map(word => word.id)));
+  const known = new Set([...a1.units, ...a2.units].flatMap(unit => Array.from(unit.vocab, word => word.id)));
   for (const unit of b1.units.filter(unit => /^b1_u(?:[1-9]|1[0-2])$/.test(unit.id))) {
     for (const word of unit.vocab) known.add(word.id);
   }

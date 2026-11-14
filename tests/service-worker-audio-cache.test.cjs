@@ -36,9 +36,17 @@ class MemoryCache {
 function createWorker(initialCaches = new Map(), fetchImpl = async () => new Response('network audio', {
     status: 200,
     headers: { 'Content-Type': 'audio/mpeg' }
-})) {
+}), currentHashes = null) {
     const handlers = {};
     const cacheStore = new Map(initialCaches);
+    if (currentHashes) {
+        const currentName = 'bahasa-studio-v3.8.97';
+        if (!cacheStore.has(currentName)) cacheStore.set(currentName, new MemoryCache());
+        cacheStore.get(currentName).entries.set(
+            ORIGIN + '/bahasa-studio/audio/metadata.json',
+            new Response(JSON.stringify({ audio_hashes: currentHashes }))
+        );
+    }
     let claimCalls = 0;
     const caches = {
         open: async name => {

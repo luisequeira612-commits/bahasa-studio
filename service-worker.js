@@ -1,10 +1,96 @@
-const CACHE_NAME = 'bahasa-studio-v3.8.96';
+const CACHE_NAME = 'bahasa-studio-v3.8.97';
 const AUDIO_CACHE_NAME = 'guardi-audio-v1';
 const ASSETS = ['./', './index.html', './manifest.json', './icon.svg', './assessment.html', './assessment-engine.js', './conversation-engine.js', './study-history.js', './study-activity.js', './adaptive-learning.js', './curriculum-a1.js', './curriculum-a2.js', './styles.css', './audio-engine.js', './audio/index.json', './audio/metadata.json', './pronunciation-engine.js', './writing-practice.js', './apple-touch-icon.png', './icon-192.png', './icon-512-any.png', './icon-512-maskable.png', './assets/guardi/guardi-normal.svg', './assets/guardi/guardi-feliz.svg', './assets/guardi/guardi-triste.svg', './assets/guardi/guardi-celebrando.svg', './assets/guardi/guardi-pensando.svg', './assets/guardi/guardi-mark.svg', './assets/guardi/guardi-icon.svg'];
+
+const inFlightAudioFetches = new Map();
 
 function isAudioClipRequest(request) {
     const url = new URL(request.url);
     return url.origin === self.location.origin && /\/audio\/id\/[^/]+\.mp3$/i.test(url.pathname);
+}
+
+function withoutRangeHeader(request) {
+    if (!request.headers || !request.headers.has('range')) return request;
+    const headers = new Headers(request.headers);
+    headers.delete('range');
+    return new Request(request, { headers });
+}
+
+function fetchAudioOnce(request) {
+    const key = request.url;
+    let pending = inFlightAudioFetches.get(key);
+    if (!pending) {
+        pending = fetch(request, { cache: 'no-cache' }).finally(() => {
+            inFlightAudioFetches.delete(key);
+        });
+        inFlightAudioFetches.set(key, pending);
+    }
+    return pending.then((response) => response.clone());
+}
+
+function parseByteRange(header, size) {
+    if (typeof header !== 'string') return { type: 'ignore' };
+    const match = /^bytes=(\d*)-(\d*)$/i.exec(header.trim());
+    if (!match || (!match[1] && !match[2])) return { type: 'ignore' };
+
+    if (size === 0) return { type: 'unsatisfiable' };
+
+    if (!match[1]) {
+        const suffixLength = Number(match[2]);
+        if (!Number.isSafeInteger(suffixLength)) return { type: 'ignore' };
+        if (suffixLength === 0) return { type: 'unsatisfiable' };
+        return {
+            type: 'range',
+            start: Math.max(0, size - suffixLength),
+            end: size - 1
+        };
+    }
+
+    const start = Number(match[1]);
+    if (!Number.isSafeInteger(start)) return { type: 'ignore' };
+    if (start >= size) return { type: 'unsatisfiable' };
+
+    let end = size - 1;
+    if (match[2]) {
+        const requestedEnd = Number(match[2]);
+        if (!Number.isSafeInteger(requestedEnd)) return { type: 'ignore' };
+        if (requestedEnd < start) return { type: 'ignore' };
+        end = Math.min(requestedEnd, size - 1);
+    }
+    return { type: 'range', start, end };
+}
+
+function rangeNotSatisfiable(size, contentType) {
+    const headers = new Headers({
+        'Accept-Ranges': 'bytes',
+        'Content-Range': `bytes */${size}`,
+        'Content-Length': '0'
+    });
+    if (contentType) headers.set('Content-Type', contentType);
+    return new Response(null, { status: 416, statusText: 'Range Not Satisfiable', headers });
+}
+
+async function createRangeResponse(response, rangeHeader) {
+    if (!rangeHeader || !response || response.status !== 200) return response;
+    const bytes = await response.clone().arrayBuffer();
+    const parsed = parseByteRange(rangeHeader, bytes.byteLength);
+    if (parsed.type === 'ignore') return response;
+    const contentType = response.headers.get('Content-Type') || 'audio/mpeg';
+    if (parsed.type === 'unsatisfiable') return rangeNotSatisfiable(bytes.byteLength, contentType);
+
+    const partial = bytes.slice(parsed.start, parsed.end + 1);
+    const headers = new Headers(response.headers);
+    // Fetch exposes decoded bytes; don't forward encoding/length metadata for the
+    // complete response into a newly constructed partial response.
+    headers.delete('Content-Encoding');
+    headers.delete('Content-Length');
+    headers.delete('Content-Range');
+    headers.delete('Transfer-Encoding');
+    headers.set('Accept-Ranges', 'bytes');
+    headers.set('Content-Type', contentType);
+    headers.set('Content-Range', `bytes ${parsed.start}-${parsed.end}/${bytes.byteLength}`);
+    headers.set('Content-Length', String(partial.byteLength));
+    return new Response(partial, { status: 206, statusText: 'Partial Content', headers });
 }
 
 async function migrateLegacyAudioCache() {
@@ -41,15 +127,12 @@ async function migrateLegacyAudioCache() {
                 if (!bytes.byteLength) continue;
                 await audioCache.put(request, response.clone());
             } catch (_) {
-                // Keep every legacy cache if any valid audio entry could not be copied.
                 migrationComplete = false;
             }
         }
     }
 
     if (!migrationComplete) return false;
-
-    // Delete old app caches only after every eligible audio clip has been copied.
     for (const name of legacyNames) {
         try {
             await caches.delete(name);
@@ -85,16 +168,16 @@ self.addEventListener('activate', (e) => {
     })());
 });
 
-// Stale-while-revalidate: responde al instante con la copia guardada y la actualiza
-// en segundo plano. Los MP3 usan una caché persistente separada de los recursos de la app.
+// Stale-while-revalidate. MP3 use a persistent cache and support single byte ranges.
 self.addEventListener('fetch', (e) => {
     const req = e.request;
     const requestUrl = new URL(req.url);
     if (req.method !== 'GET' || requestUrl.origin !== self.location.origin) return;
     const audioRequest = isAudioClipRequest(req);
     const targetCacheName = audioRequest ? AUDIO_CACHE_NAME : CACHE_NAME;
+    const cacheRequest = audioRequest ? withoutRangeHeader(req) : req;
+    const rangeHeader = audioRequest ? req.headers.get('range') : null;
 
-    // Register the lifetime promise synchronously, while the ExtendableEvent is open.
     let finishCacheUpdate;
     const cacheUpdateLifetime = new Promise((resolve) => {
         finishCacheUpdate = resolve;
@@ -107,33 +190,32 @@ self.addEventListener('fetch', (e) => {
 
     e.respondWith(
         caches.open(targetCacheName).then(async (cache) => {
-            let cached = await cache.match(req);
+            let cached = await cache.match(cacheRequest);
 
-            // If migration was interrupted, keep serving clips from the untouched
-            // legacy caches until a later activation can finish copying them.
             if (!cached && audioRequest) {
                 try {
                     const keys = await caches.keys();
                     for (const name of keys) {
                         if (!name.startsWith('bahasa-studio-') || name === CACHE_NAME) continue;
                         const legacy = await caches.open(name);
-                        const candidate = await legacy.match(req);
+                        const candidate = await legacy.match(cacheRequest);
                         if (candidate && candidate.status === 200) {
                             cached = candidate;
                             break;
                         }
                     }
                 } catch (_) {
-                    // Continue to the network path if legacy lookup is unavailable.
+                    // Continue to network if legacy lookup is unavailable.
                 }
             }
 
-            const network = fetch(req, { cache: 'no-cache' }).then((res) => {
-                // Only complete successful responses enter either cache. Range 206
-                // support is implemented separately and must not store partial files.
+            const fetchFresh = audioRequest
+                ? fetchAudioOnce(cacheRequest)
+                : fetch(cacheRequest, { cache: 'no-cache' });
+            const network = fetchFresh.then((res) => {
                 if (res && res.status === 200) {
                     try {
-                        Promise.resolve(cache.put(req, res.clone()))
+                        Promise.resolve(cache.put(cacheRequest, res.clone()))
                             .catch(() => {
                                 // Cache failure must never break audio/network playback.
                             })
@@ -149,9 +231,17 @@ self.addEventListener('fetch', (e) => {
                 finishCacheUpdate();
                 return null;
             });
-            if (cached) return cached;
+
+            if (cached) {
+                if (rangeHeader) return createRangeResponse(cached, rangeHeader);
+                return cached;
+            }
+
             const res = await network;
-            if (res) return res;
+            if (res) {
+                if (rangeHeader) return createRangeResponse(res, rangeHeader);
+                return res;
+            }
             if (req.mode === 'navigate') return cache.match('./index.html');
             return Response.error();
         }).catch((error) => {

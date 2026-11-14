@@ -153,3 +153,10 @@
 - Añade pruebas de migración desde varias cachés, fallo de copia sin borrar el origen, idempotencia y separación de cachés; el workflow de regresión ejecuta la nueva suite.
 - El primer CI con las cuatro pruebas nuevas en verde detectó una prueba previa de `learning-screen-phase-3.test.mjs` cuyo mock de Cache API solo implementaba `add()`. Se amplió el mock con `keys()` y `match()` vacíos para representar cachés antiguas sin clips; así la prueba sigue verificando que se limpien cachés antiguas cuando la migración sí se puede completar, mientras el test específico verifica que ante un fallo real se conserven. El mismo ajuste de `keys()` se aplicó al mock de `tests/curriculum-extraction.test.js`, que también simulaba cachés vacías.
 - Sin cambios a hashes de nombres de clips, rutas de audio, normalización, `audio-engine.js`, IndexedDB v1, backup JSON v3 ni dependencias. Range 206/416 sigue siendo una PR separada. La invalidación de clips regenerados con el mismo ID requiere una revisión adicional de metadatos/contenido; no se considera resuelta por esta PR.
+
+
+## PR #588 — invalidación selectiva de clips Piper — 14 nov 2026
+- PR #586 ya incorporó la caché independiente `guardi-audio-v1` y migración básica segura. Esta PR incremental añade SHA-256 por ID MP3 a `audio/metadata.json` y verifica los bytes reales de la caché persistente y de cualquier clip legacy antes de conservarlos.
+- Los clips sin cambios permanecen aunque se agreguen IDs nuevos; los que cambian de contenido o desaparecen del inventario se eliminan selectivamente. Si no hay huellas en metadata, se conserva el comportamiento de migración de #586.
+- `generate_audio.py` actualiza huellas al completar generación y sube el patch de `CACHE_NAME` solo cuando el mapa de hashes cambia; el workflow incluye el Service Worker en el commit generado para que la nueva metadata se precargue y active la verificación.
+- Sin cambios al SHA-1 del texto, rutas, normalización, `audio-engine.js`, IndexedDB v1, backup JSON v3 ni dependencias. Range 206/416 sigue separado. CI pendiente.

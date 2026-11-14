@@ -43,7 +43,7 @@ function addEntry(entries, levelId, text, kind, unitId) {
     }
     if (!existing.levels.includes(levelId)) existing.levels.push(levelId);
   } else {
-    entries.set(id, { id, text: text.trim().replace(/\\s+/g, ' '), normalized, levels: [levelId], sources: [source] });
+    entries.set(id, { id, text: text.trim().replace(/\s+/g, ' '), normalized, levels: [levelId], sources: [source] });
   }
 }
 
@@ -92,7 +92,7 @@ async function collectInteractiveSources(entries) {
   }
 }
 
-async function buildManifest({ includeInteractive = false } = {}) {
+export async function buildManifest({ includeInteractive = false } = {}) {
   const [a1, a2, indexSource] = await Promise.all([
     loadStandalone('curriculum-a1.js', 'BAHASA_CURRICULUM_A1'),
     loadStandalone('curriculum-a2.js', 'BAHASA_CURRICULUM_A2'),

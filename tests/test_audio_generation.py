@@ -1,4 +1,5 @@
 import importlib.util
+import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -33,6 +34,36 @@ class AudioSamplesPageTests(unittest.TestCase):
             MODULE.ensure_single_voice(metadata, "piper", "Piper / id_ID-news_tts-medium")
             with self.assertRaisesRegex(RuntimeError, "Do not mix voices"):
                 MODULE.ensure_single_voice(metadata, "edge", "Edge TTS / id-ID-ArdiNeural")
+
+    def test_content_revision_defaults_to_one_and_preserves_existing_revision(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            metadata = Path(temporary) / "audio" / "metadata.json"
+            created = MODULE.ensure_single_voice(metadata, "piper", "Piper / id_ID-news_tts-medium")
+            self.assertEqual(created["content_revision"], 1)
+            stored = json.loads(metadata.read_text(encoding="utf-8"))
+            stored["content_revision"] = 7
+            metadata.write_text(json.dumps(stored), encoding="utf-8")
+
+            existing = MODULE.ensure_single_voice(metadata, "piper", "Piper / id_ID-news_tts-medium")
+            self.assertEqual(existing["content_revision"], 7)
+            self.assertEqual(json.loads(metadata.read_text(encoding="utf-8"))["content_revision"], 7)
+
+    def test_bump_content_revision_increments_only_when_existing_audio_will_be_replaced(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            output = Path(temporary)
+            metadata = output / "metadata.json"
+            MODULE.ensure_single_voice(metadata, "piper", "Piper / id_ID-news_tts-medium")
+            entries = [{"id": "existing"}, {"id": "new"}]
+
+            self.assertFalse(MODULE.has_existing_audio_to_regenerate(entries, output, False))
+            (output / "existing.mp3").write_bytes(b"old mp3")
+            self.assertTrue(MODULE.has_existing_audio_to_regenerate(entries, output, False))
+            (output / "existing.opus").write_bytes(b"old opus")
+            self.assertFalse(MODULE.has_existing_audio_to_regenerate(entries, output, False))
+            self.assertTrue(MODULE.has_existing_audio_to_regenerate(entries, output, True))
+
+            self.assertEqual(MODULE.bump_content_revision(metadata), 2)
+            self.assertEqual(json.loads(metadata.read_text(encoding="utf-8"))["content_revision"], 2)
 
     def test_samples_page_has_useful_empty_state(self):
         with tempfile.TemporaryDirectory() as temporary:

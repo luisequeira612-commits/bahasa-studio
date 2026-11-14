@@ -73,12 +73,22 @@ La implementación en la rama PR3c (`fix/audio-range-requests`, todavía pendien
 
 Pruebas añadidas para rango cerrado, abierto, sufijo, final truncado, 416, rango inválido/múltiple, lectura offline y fallo de escritura de caché. No afirmar compatibilidad Safari/iOS hasta probarla físicamente.
 
+## Invalidación cuando se regenera un clip existente
+
+`audio/metadata.json` incluye `content_revision`, inicialmente `1`. El generador lo incrementa antes de reemplazar cualquier MP3/Opus existente (por regeneración forzada o porque falta uno de los dos formatos y debe reconstruir el par). La entrada manual `regenerate_existing` del workflow permite solicitar explícitamente la regeneración de clips completos.
+
+- Generar IDs nuevos no incrementa la revisión; por tanto, añadir unidades o vocabulario no purga clips ya guardados.
+- En `activate`, el Service Worker compara la revisión actual con el marcador guardado en `guardi-audio-v1`.
+- Si la revisión cambió, elimina los MP3 cacheados y no vuelve a migrar los archivos viejos desde las cachés versionadas. Así no reintroduce audio anterior para un ID que conserva el mismo nombre.
+- Si no puede leer la metadata o completar la invalidación, conserva las cachés antiguas y evita servir clips potencialmente obsoletos; la activación no se bloquea y el intento se repite en una activación posterior.
+- El contador no interviene en el ID SHA-1 del texto, la ruta ni la normalización. La purga afecta a la caché de audio local, no a IndexedDB ni a los backups.
+
 ## Secuencia de trabajo acordada
 
 1. Documentar el estado y añadir invariantes de manifiesto/índice/archivos.
 2. Ejecutar el workflow de sondeo Range y conservar su resultado antes de diseñar cambios.
 3. Ampliar cobertura de orígenes de audio y pruebas de integridad en una PR independiente.
-4. Separar los cambios del Service Worker: (a) guardado seguro y fallback abierto (PR #585); (b) caché independiente y migración segura (PR #586); (c) respuestas Range 206/416 (PR3c, pendiente); (d) invalidación cuando se regenere contenido de un ID existente, sin purgar por añadir IDs nuevos.
+4. Separar los cambios del Service Worker: (a) guardado seguro y fallback abierto (PR #585); (b) caché independiente y migración segura (PR #586); (c) respuestas Range 206/416 (PR #588); (d) invalidación por revisión de contenido al regenerar clips existentes (PR4, pendiente de CI/revisión).
 5. Tras desplegar y superar pruebas automáticas, el propietario debe verificar físicamente actualización y reproducción offline en Android antes de autorizar descargas por nivel.
 
 No modificar hashes, rutas, normalización, IndexedDB v1 ni backup JSON v3 durante esta fase. No añadir dependencias.

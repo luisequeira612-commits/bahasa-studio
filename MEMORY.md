@@ -145,3 +145,10 @@
 - Los errores de `cache.put()` son fail-open para que una cuota/caché defectuosa no impida reproducir el audio ni completar la respuesta de red. La promesa de vida de la caché se registra sincrónicamente con `waitUntil()`, antes de iniciar el trabajo asíncrono; la escritura termina esa promesa, sin invocar `waitUntil()` tarde.
 - La primera ejecución CI del head `7fdc061f1a1d3f5477e2b8e873fa541820bd0689` falló en `Run resilient service worker install tests`. Se detectó que el mock no definía `self.location` y que el código registraba `waitUntil()` demasiado tarde. La rama se corrigió: el mock define `self.location` y comprueba el registro sincrónico.
 - La corrección no cambia hashes, rutas, normalización, IndexedDB v1, backup JSON v3 ni dependencias. Pendiente CI del head corregido y revisión antes de fusionar; el manejo Range 206/416 y la caché/migración independiente siguen siendo PRs separadas.
+
+
+## PR #586 — caché de audio independiente y migración — 14 nov 2026
+- PR #586 separa los MP3 en `guardi-audio-v1`, independiente de la caché versionada de la aplicación. El Service Worker migra solo respuestas completas 200 desde cachés antiguas `bahasa-studio-*`; las cachés antiguas se conservan si cualquier parte de la migración falla.
+- La migración es idempotente, conserva clips ya presentes, omite entradas que no sean MP3 de la biblioteca actual y no guarda respuestas 206. La activación continúa aunque la migración no pueda completarse; se reintentará en una activación posterior.
+- `scripts/generate_audio.py` registra SHA-256 por ID MP3 en `audio/metadata.json`. Al cambiar el contenido de un ID existente, el Service Worker invalida solo ese clip; la incorporación de IDs nuevos no invalida los anteriores.
+- No cambia hashes SHA-1 de texto, rutas de audio, normalización, IndexedDB v1, backup JSON v3 ni dependencias. El soporte de respuesta Range 206/416 queda para PR separada. Pendiente CI y revisión del head exacto.

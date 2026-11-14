@@ -69,4 +69,4 @@ test('precarga el índice y los metadatos de la biblioteca de audio', () => {
     const worker = loadInstallHandler(new Set());
     assert.ok(worker.assets.includes('./audio/index.json'));
     assert.ok(worker.assets.includes('./audio/metadata.json'));
-});\n
+});

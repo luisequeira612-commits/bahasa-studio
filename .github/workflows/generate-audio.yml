@@ -1,0 +1,199 @@
+name: Generate Indonesian audio
+
+on:
+  workflow_dispatch:
+    inputs:
+      engine:
+        description: Motor de voz para evaluar
+        type: choice
+        options: [edge, piper, mms]
+        default: edge
+        required: true
+      mode:
+        description: samples para escuchar; full solo después de elegir voz
+        type: choice
+        options: [samples, full]
+        default: samples
+        required: true
+      limit:
+        description: Máximo de textos en muestras (0 = todos)
+        type: string
+        default: '10'
+        required: true
+      level:
+        description: Nivel para generación completa
+        type: choice
+        options: [A1, A2, B1, all]
+        default: A1
+        required: true
+      confirm_full:
+        description: Confirmo que ya elegí y validé la voz antes de generar el nivel completo
+        type: boolean
+        default: false
+        required: true
+
+permissions:
+  contents: write
+  pull-requests: write
+  actions: write
+
+concurrency:
+  group: generate-audio-${{ inputs.mode }}-${{ inputs.engine }}-${{ inputs.level }}
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      ENGINE: ${{ inputs.engine }}
+      MODE: ${{ inputs.mode }}
+      LEVEL: ${{ inputs.level }}
+      LIMIT: ${{ inputs.limit }}
+      CONFIRM_FULL: ${{ inputs.confirm_full }}
+    steps:
+      - name: Reject full generation until explicitly confirmed
+        if: ${{ inputs.mode == 'full' && inputs.confirm_full != true }}
+        run: |
+          echo "::error::La generación completa requiere confirm_full=true y la selección previa de una voz."
+          exit 1
+
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install ffmpeg
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+
+      - name: Install selected TTS engine
+        run: |
+          python -m pip install --upgrade pip
+          case "$ENGINE" in
+            edge)
+              python -m pip install edge-tts
+              ;;
+            piper)
+              python -m pip install "piper-tts==1.8.0"
+              ;;
+            mms)
+              python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+              python -m pip install "transformers>=4.45,<5" sentencepiece scipy
+              ;;
+          esac
+
+      - name: Prepare generation branch
+        shell: bash
+        run: |
+          if [[ "$MODE" == "samples" ]]; then
+            BRANCH="audio/tts-samples"
+          else
+            BRANCH="audio/library-$LEVEL"
+          fi
+          echo "AUDIO_BRANCH=$BRANCH" >> "$GITHUB_ENV"
+          if git ls-remote --exit-code --heads origin "$BRANCH" >/dev/null 2>&1; then
+            git fetch origin "$BRANCH"
+            git checkout -B "$BRANCH" "origin/$BRANCH"
+            git merge --no-edit origin/main
+          else
+            git checkout -b "$BRANCH" origin/main
+          fi
+
+      - name: Export manifest from A1, A2 and inline B1
+        run: node scripts/export-audio-manifest.mjs
+
+      - name: Generate selected audio
+        run: |
+          if [[ "$MODE" == "samples" ]]; then
+            python scripts/generate_audio.py --engine "$ENGINE" --mode samples --level all --limit "$LIMIT"
+          else
+            python scripts/generate_audio.py --engine "$ENGINE" --mode full --level "$LEVEL" --limit 0
+          fi
+
+      - name: Run audio generation tests
+        run: |
+          node --test tests/audio-manifest.test.mjs
+          python -m unittest discover -s tests -p 'test_audio_generation.py'
+
+      - name: Commit generated manifest and audio
+        id: commit
+        shell: bash
+        run: |
+          git add audio audio-samples
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No generated files changed."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "audio: generate $ENGINE $MODE"
+          git push origin "$AUDIO_BRANCH"
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Create or update pull request
+        if: steps.commit.outputs.changed == 'true'
+        id: pr
+        shell: bash
+        run: |
+          if [[ "$MODE" == "samples" ]]; then
+            TITLE="audio: add $ENGINE listening samples"
+            BODY="Generated $LIMIT Indonesian sample clips with $ENGINE in GitHub Actions.\n\nThe clips are evaluation material only; no production player or curriculum files changed. Review on Android after merging to the configured GitHub Pages source. Full generation remains gated."
+          else
+            TITLE="audio: generate $LEVEL library with $ENGINE"
+            BODY="Generated the $LEVEL audio library with $ENGINE in GitHub Actions after explicit confirmation. Review file count, size and CI before merging. No curriculum source was modified."
+          fi
+          EXISTING="$(gh pr list --head "$AUDIO_BRANCH" --state open --json url --jq '.[0].url // empty')"
+          if [[ -n "$EXISTING" ]]; then
+            gh pr edit "$EXISTING" --title "$TITLE" --body "$BODY"
+            echo "PR_URL=$EXISTING" >> "$GITHUB_OUTPUT"
+          else
+            URL="$(gh pr create --head "$AUDIO_BRANCH" --base main --title "$TITLE" --body "$BODY")"
+            echo "PR_URL=$URL" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Trigger regression CI for the generated branch
+        if: steps.commit.outputs.changed == 'true'
+        continue-on-error: true
+        run: gh workflow run regression.yml --ref "$AUDIO_BRANCH"
+
+      - name: Upload a copy of the samples for recovery
+        if: always() && inputs.mode == 'samples'
+        uses: actions/upload-artifact@v4
+        with:
+          name: indonesian-audio-samples-${{ inputs.engine }}-${{ github.run_number }}
+          path: audio-samples/
+          if-no-files-found: ignore
+          retention-days: 7
+
+      - name: Write run summary
+        if: always()
+        shell: bash
+        run: |
+          echo "## Generación de audio" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Motor: **$ENGINE**" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Modo: **$MODE**" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Nivel: **$LEVEL**" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Rama: `$AUDIO_BRANCH`" >> "$GITHUB_STEP_SUMMARY"
+          if [[ -n "${{ steps.pr.outputs.PR_URL }}" ]]; then
+            echo "- PR: ${{ steps.pr.outputs.PR_URL }}" >> "$GITHUB_STEP_SUMMARY"
+          fi
+          if [[ "$MODE" == "samples" ]]; then
+            echo "- Página prevista tras publicar la rama: https://luisequeira612-commits.github.io/bahasa-studio/audio-samples/" >> "$GITHUB_STEP_SUMMARY"
+            echo "- La página solo estará disponible cuando el contenido llegue a la rama/carpeta publicada por GitHub Pages." >> "$GITHUB_STEP_SUMMARY"
+          fi

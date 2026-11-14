@@ -170,3 +170,9 @@
 - Los clips sin cambios permanecen aunque se agreguen IDs nuevos; los que cambian de contenido o desaparecen del inventario se eliminan selectivamente. Si no hay huellas en metadata, se conserva la migración básica ya desplegada.
 - `generate_audio.py` actualiza huellas al completar generación y sube el patch de `CACHE_NAME` solo cuando cambia el mapa; el workflow incluye el Service Worker en el commit generado para precargar metadata y activar la verificación.
 - Sin cambios al SHA-1 del texto, rutas, normalización, `audio-engine.js`, IndexedDB v1, backup JSON v3 ni dependencias. Se conserva la implementación Range de PR #588. CI pendiente.
+
+
+## PR #591 — modo hash-only para la biblioteca de audio — 14 nov 2026
+- Añade `--hash-only` a `scripts/generate_audio.py` y un modo `hashes` al workflow manual. Recalcula SHA-256 de los MP3 existentes, actualiza `audio/metadata.json` y sube la versión de caché si el mapa cambió.
+- Este modo omite la instalación de Piper, FFmpeg y la exportación del manifiesto; no sintetiza ni descarga audios. Publica los cambios mediante la rama `audio/library-hashes` y PR automática.
+- Facilita activar la invalidación selectiva de PR #590 sin volver a generar o escuchar más de dos mil clips. CI pendiente.

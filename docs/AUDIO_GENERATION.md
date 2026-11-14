@@ -64,7 +64,7 @@ GitHub documenta que un `push` hecho con `GITHUB_TOKEN` no dispara otros workflo
 
 ### MMS-TTS
 - Modelo: `facebook/mms-tts-ind`, licencia CC BY-NC 4.0; el archivo de pesos publicado es de 145 MB.
-- Requiere PyTorch CPU, Transformers, SentencePiece y SciPy. La descarga de PyTorch más Transformers y el modelo puede superar varios cientos de MB; estimación de instalación/carga: 5–15 minutos en runner estándar, variable por caché y disponibilidad. Es más pesado, pero no requiere servicio de síntesis externo.
+- Requiere PyTorch CPU, Transformers, SentencePiece y SciPy. La descarga de PyTorch más Transformers y el modelo puede superar varios cientos de MB; estimación de instalación/carga: 8–25 minutos en runner estándar, variable por caché y disponibilidad. Es más pesado, pero no requiere servicio de síntesis externo.
 - CC BY-NC 4.0 es no comercial. Para compartir la app gratis puede ser compatible bajo atribución y demás condiciones, pero no usar en un producto comercial ni asumir que cualquier adaptación queda cubierta sin revisar la licencia.
 
 ## Coste y límites

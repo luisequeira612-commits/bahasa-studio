@@ -58,5 +58,65 @@
     "id": "94c1a3d4b65e",
     "text": "Halo, Ana!",
     "voice": "Edge TTS / id-ID-ArdiNeural"
+  },
+  {
+    "engine": "piper",
+    "id": "b820db6e2aba",
+    "text": "Saya",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "315b9da4bbf4",
+    "text": "Saya makan.",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "76c0af47fddc",
+    "text": "Kamu",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "79479e58eee3",
+    "text": "Kamu minum.",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "4967e07bc327",
+    "text": "Dia",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "4d217ac175a8",
+    "text": "Dia makan.",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "e1b89cc35480",
+    "text": "Selamat pagi",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "3023fa268c90",
+    "text": "Selamat pagi!",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "33b1eac21097",
+    "text": "Halo",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "94c1a3d4b65e",
+    "text": "Halo, Ana!",
+    "voice": "Piper / id_ID-news_tts-medium"
   }
 ]

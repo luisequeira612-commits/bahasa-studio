@@ -24,7 +24,7 @@ class MemoryCache {
 
     async put(request, response) {
         this.putCalls++;
-        if (this.failPut && /\\/audio\\/id\\//.test(new URL(request.url).pathname)) throw new Error('simulated quota failure');
+        if (this.failPut && /\/audio\/id\//.test(new URL(request.url).pathname)) throw new Error('simulated quota failure');
         this.entries.set(request.url, response.clone());
     }
 

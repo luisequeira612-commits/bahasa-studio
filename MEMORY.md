@@ -184,3 +184,10 @@
 - PR [#594](https://github.com/luisequeira612-commits/bahasa-studio/pull/594) creada desde la rama audio/interactive-manifest-coverage; CI completo en verde en run 43650767096 (Regression tests) y Offline quality reports. El exportador conserva su modo normal sin cambios; --include-interactive activa las fuentes adicionales. La normalización SHA-1 y los IDs existentes no cambian.
 - El workflow permite level=all. Tras integrar la cobertura, ejecutar manualmente engine=piper, mode=full, level=all, limit=0, confirm_full=true. generate_audio.py omite IDs que ya tengan MP3 y Opus; debe sintetizar únicamente los 68 nuevos y actualizar índice/huellas. Los tests en ese modo verifican la unión completa entre manifiesto, índice y archivos.
 - No cambia audio-engine.js, Service Worker, rutas, IndexedDB v1, backup JSON v3 ni dependencias. La prueba física offline en Tecno Pova 4 confirma un clip ya cacheado, no toda la biblioteca.
+
+## Preparación de audio sin conexión — PR en curso
+- Se está implementando una preparación explícita de MP3 por nivel (A1, A2, B1) y de toda la biblioteca, reutilizando la caché persistente `guardi-audio-v1`. No hay descargas automáticas.
+- La selección deduplica IDs compartidos entre niveles, omite los ya guardados, descarga secuencialmente, valida cada archivo contra SHA-256 de `audio/metadata.json`, permite cancelar/reanudar y reintenta solo los fallidos. La interfaz informa progreso y advierte antes de preparar toda la biblioteca.
+- La implementación no cambia Piper, `audio-engine.js`, IDs SHA-1, rutas, normalización, IndexedDB v1, backup JSON v3 ni dependencias. Los archivos descargados son los MP3 existentes; no se genera audio nuevo.
+- Fuente de decisión: prueba manual del usuario el 14 nov 2026: un clip reproducido previamente online funciona en modo avión; un clip nunca almacenado no funciona al primer intento offline. La limitación observada es caché bajo demanda, no fallo de generación Piper.
+- Estado: rama `audio/offline-preparation`; pruebas CI pendientes. No declarar la biblioteca completa disponible offline hasta que el usuario prepare los niveles o toda la biblioteca en su dispositivo.

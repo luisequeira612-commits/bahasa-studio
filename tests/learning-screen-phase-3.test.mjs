@@ -117,7 +117,7 @@ test('PWA manifest keeps standalone routing, explicit scope and the maskable ico
     icon.sizes === '512x512' && icon.purpose === 'maskable'));
 });
 
-test('service worker installs its declared cache, removes only older app caches and claims clients', async () => {
+test('service worker preserves legacy caches until audio migration can verify content and claims clients', async () => {
   const source = await read('service-worker.js');
   const cacheNameMatch = source.match(/CACHE_NAME\s*=\s*'([^']+)'/);
   assert.ok(cacheNameMatch, 'service worker must declare its cache name');
@@ -126,6 +126,8 @@ test('service worker installs its declared cache, removes only older app caches 
   assert.match(source, /'\.\/index\.html'/);
   assert.match(source, /'\.\/manifest\.json'/);
   assert.match(source, /'\.\/styles\.css'/);
+  assert.match(source, /AUDIO_CACHE_NAME\s*=\s*'guardi-audio-v1'/);
+  assert.match(source, /findLegacyAudioResponse/);
   assert.doesNotMatch(source, /indexedDB\.deleteDatabase|indexedDB\.deleteObjectStore/i);
 
   const handlers = {};
@@ -164,8 +166,9 @@ test('service worker installs its declared cache, removes only older app caches 
   let activatePromise;
   handlers.activate({ waitUntil(promise) { activatePromise = promise; } });
   await activatePromise;
-  assert.ok(deleted.includes('bahasa-studio-v3.8.71'));
-  assert.ok(deleted.includes('bahasa-studio-other'));
+  assert.deepEqual(deleted, [], 'legacy caches stay available until current audio hashes are present');
+  assert.ok(cacheNames.includes('bahasa-studio-v3.8.71'));
+  assert.ok(cacheNames.includes('bahasa-studio-other'));
   assert.equal(claimed, true);
   assert.ok(cacheStore.has(cacheName));
 });

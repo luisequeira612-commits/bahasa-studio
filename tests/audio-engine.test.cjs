@@ -60,9 +60,7 @@ test('sin voz indonesia no reproduce audio ni recurre a la voz predeterminada', 
 test('rechaza explícitamente una voz seleccionada que no sea indonesia', () => {
     const setup = createEngine();
     const englishVoice = { name: 'English voice', lang: 'en-US' };
-    setup.engine.voices = [englishVoice];
-    setup.engine.selectedVoice = englishVoice;
-    setup.engine.idVoice = null;
+    setup.setAvailableVoices([englishVoice]);
 
     setup.engine.speak('Halo!');
 
@@ -74,9 +72,7 @@ test('rechaza explícitamente una voz seleccionada que no sea indonesia', () => 
 test('usa una voz indonesia disponible y fija el idioma de la utterance', () => {
     const setup = createEngine();
     const voice = { name: 'Bahasa Indonesia', lang: 'id-ID' };
-    setup.engine.voices = [voice];
-    setup.engine.idVoice = voice;
-    setup.engine.selectedVoice = voice;
+    setup.setAvailableVoices([voice]);
 
     setup.engine.speak('Halo!');
 

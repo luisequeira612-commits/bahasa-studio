@@ -1,6 +1,8 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const vm = require('node:vm');
+const { createHash, webcrypto } = require('node:crypto');
+const hash = value => createHash('sha256').update(value).digest('hex');
 
 const source = require('node:fs').readFileSync(require('node:path').join(__dirname, '..', 'service-worker.js'), 'utf8');
 const ORIGIN = 'https://example.test/';
@@ -53,7 +55,7 @@ function createWorker({ currentHashes, legacyHashes, oldClipStatus = 200, failAu
             keys: async () => [...cachesByName.keys()],
             delete: async name => cachesByName.delete(name)
         },
-        Request, Response, URL, Promise, fetch: async () => new Response('network')
+        Request, Response, URL, Promise, crypto: webcrypto, fetch: async () => new Response('network')
     };
     vm.runInNewContext(source, sandbox);
     return {
@@ -73,7 +75,7 @@ async function activate(worker) {
 }
 
 test('migrates complete current MP3 clips into the independent cache before deleting legacy caches', async () => {
-    const worker = createWorker({ currentHashes: { '0123456789ab': 'hash-a' } });
+    const worker = createWorker({ currentHashes: { '0123456789ab': hash('legacy audio bytes') } });
     await activate(worker);
     const migrated = await worker.audio.match(new Request(clipUrl));
     assert.equal(await migrated.text(), 'legacy audio bytes');
@@ -85,7 +87,7 @@ test('migrates complete current MP3 clips into the independent cache before dele
 });
 
 test('keeps legacy caches when an audio migration write fails and retries on a later activation', async () => {
-    const worker = createWorker({ currentHashes: { '0123456789ab': 'hash-a' }, failAudioPut: true });
+    const worker = createWorker({ currentHashes: { '0123456789ab': hash('legacy audio bytes') }, failAudioPut: true });
     await activate(worker);
     assert.equal(worker.cachesByName.has('bahasa-studio-v3.8.95'), true);
     assert.equal(worker.claimed, 1);

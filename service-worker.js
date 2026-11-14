@@ -30,18 +30,53 @@ self.addEventListener('activate', (e) => {
 self.addEventListener('fetch', (e) => {
     const req = e.request;
     if (req.method !== 'GET' || new URL(req.url).origin !== self.location.origin) return;
+
+    // Register the lifetime promise synchronously, while the ExtendableEvent is open.
+    // The network response can then start the cache write without calling waitUntil late.
+    let finishCacheUpdate;
+    const cacheUpdateLifetime = new Promise((resolve) => {
+        finishCacheUpdate = resolve;
+    });
+    try {
+        e.waitUntil(cacheUpdateLifetime);
+    } catch (_) {
+        finishCacheUpdate();
+    }
+
     e.respondWith(
         caches.open(CACHE_NAME).then(async (cache) => {
             const cached = await cache.match(req);
             const network = fetch(req, { cache: 'no-cache' }).then((res) => {
-                if (res && res.ok) cache.put(req, res.clone());
+                // Only cache complete successful responses. Range (206) responses are
+                // handled in a later, separate change; they must never enter the
+                // normal resource cache as if they were complete files.
+                if (res && res.status === 200) {
+                    try {
+                        Promise.resolve(cache.put(req, res.clone()))
+                            .catch(() => {
+                                // Cache failure must never break audio/network playback.
+                            })
+                            .finally(finishCacheUpdate);
+                    } catch (_) {
+                        // A cache failure must never break audio/network playback.
+                        finishCacheUpdate();
+                    }
+                } else {
+                    finishCacheUpdate();
+                }
                 return res;
-            }).catch(() => null);
+            }).catch(() => {
+                finishCacheUpdate();
+                return null;
+            });
             if (cached) return cached;
             const res = await network;
             if (res) return res;
             if (req.mode === 'navigate') return cache.match('./index.html');
             return Response.error();
+        }).catch((error) => {
+            finishCacheUpdate();
+            throw error;
         })
     );
 });

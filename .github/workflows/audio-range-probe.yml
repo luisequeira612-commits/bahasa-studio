@@ -1,0 +1,44 @@
+name: Probe published audio Range responses
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Probe normal GET and byte-range GET against GitHub Pages
+        shell: bash
+        run: |
+          set -euo pipefail
+          url="https://luisequeira612-commits.github.io/bahasa-studio/audio/id/00205de28847.mp3"
+
+          probe() {
+            local label="$1"
+            shift
+            local headers
+            headers="$(mktemp)"
+            local status
+            status="$(curl --silent --show-error --location --max-time 30 \
+              --dump-header "$headers" --output /dev/null --write-out '%{http_code}' "$@" "$url")"
+            echo "::group::${label} (HTTP ${status})"
+            cat "$headers"
+            echo "::endgroup::"
+            rm -f "$headers"
+            printf '%s' "$status"
+          }
+
+          normal="$(probe 'Normal GET' )"
+          range="$(probe 'Range GET' --header 'Range: bytes=0-1')"
+          identity="$(probe 'Range GET with identity encoding' --header 'Range: bytes=0-1' --header 'Accept-Encoding: identity')"
+
+          echo "Normal GET status: ${normal}"
+          echo "Range GET status: ${range}"
+          echo "Range + identity status: ${identity}"
+
+          [[ "$normal" == "200" ]]
+          [[ "$range" == "200" || "$range" == "206" ]]
+          [[ "$identity" == "200" || "$identity" == "206" ]]

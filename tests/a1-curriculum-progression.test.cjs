@@ -254,3 +254,13 @@ test('A1 U17-U20 contain five authored lessons with cumulative practice and spac
   assert.deepEqual([...new Set(all.map(e=>e.type))].sort(),['listen','mc','order','translate_es_id','write']);
  }
 });
+
+
+test('A1 U17-U20 actively exercise all previously introduced vocabulary in each later lesson',()=>{
+ for(const unit of a1.units.slice(16,20)){
+  for(const lesson of unit.lessons.slice(1)){
+   const assessed=new Set(lesson.exercises.map(ex=>ex.vocabId));
+   for(const id of lesson.reviewVocabIds||[])assert.ok(assessed.has(id),unit.id+' must retrieve prior vocabulary '+id);
+  }
+ }
+});

@@ -10,7 +10,7 @@ Encontrar una forma de proporcionar audio indonesio reproducible para cualquier 
 ## Candidato principal para la prueba: sanoTTS
 
 - Modelo: [ampixa/sanoTTS](https://huggingface.co/ampixa/sanoTTS).
-- La ficha declara una voz indonesia (`id-newstts-1p46m`), arquitectura Piperlite, aproximadamente 1,46 M parámetros y ejecución de navegador mediante WebAssembly.
+- La ficha declara una voz indonesia (`id-newstts-1p46m`), arquitectura Piperlite, aproximadamente 1,46 M parámetros y ejecución de navegador mediante WebAssembly. El directorio de la voz en Hugging Face figura con 3,18 MB (incluye manifiesto, configuración y pesos); el paquete exacto del runtime web debe medirse aparte.
 - La demostración publicada permite introducir texto y sintetizar en el navegador: https://tts.ampixa.com/sanoTTS
 - La ficha no publica una métrica de calidad comparable para la voz indonesia. Las puntuaciones SCOREQ/UTMOS mostradas corresponden a voces inglesas; no deben extrapolarse al indonesio.
 - La licencia declarada para el proyecto completo es GPL-3.0. La documentación dice que la canalización incluye componentes GPL, entre ellos espeak-ng y Piper. Antes de incorporar runtime, redistribuir pesos o publicar audio generado, revisar la licencia y el alcance de cada artefacto por separado. No asumir que la licencia de código determina automáticamente los derechos de los archivos de audio generados.

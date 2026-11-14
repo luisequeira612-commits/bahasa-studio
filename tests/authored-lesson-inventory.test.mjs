@@ -26,7 +26,7 @@ test('repository inventory baseline distinguishes authored lessons from runtime-
   ]));
 
   assert.deepEqual(summary, {
-    A1: { unitCount: 32, authoredLessonCount: 121, distribution: { 0: 8, 5: 23, 6: 1 } },
+    A1: { unitCount: 32, authoredLessonCount: 141, distribution: { 0: 4, 5: 27, 6: 1 } },
     A2: { unitCount: 40, authoredLessonCount: 200, distribution: { 5: 40 } },
     B1: { unitCount: 50, authoredLessonCount: 144, distribution: { 2: 12, 3: 32, 4: 6 } },
     B2: { unitCount: 5, authoredLessonCount: 25, distribution: { 5: 5 } },

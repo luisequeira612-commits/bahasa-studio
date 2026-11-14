@@ -6,6 +6,8 @@ const path = require('node:path');
 
 const source = fs.readFileSync(path.join(__dirname, '..', 'service-worker.js'), 'utf8');
 const ORIGIN = 'https://example.test';
+const APP_CACHE_NAME = 'bahasa-studio-v3.8.98';
+const METADATA_URL = `${ORIGIN}/bahasa-studio/audio/metadata.json`;
 
 class MemoryCache {
     constructor(entries = [], options = {}) {
@@ -29,6 +31,9 @@ class MemoryCache {
     async keys() {
         return [...this.entries.keys()].map(url => new Request(url));
     }
+    async delete(request) {
+        return this.entries.delete(typeof request === 'string' ? request : request.url);
+    }
 }
 
 function createWorker(initialCaches = new Map(), fetchImpl = async () => new Response('network audio', {
@@ -37,6 +42,13 @@ function createWorker(initialCaches = new Map(), fetchImpl = async () => new Res
 })) {
     const handlers = {};
     const cacheStore = new Map(initialCaches);
+    const currentAppCache = cacheStore.get(APP_CACHE_NAME);
+    if (currentAppCache) {
+        currentAppCache.entries.set(METADATA_URL, new Response(JSON.stringify({ content_revision: 1 }), {
+            status: 200,
+            headers: { 'Content-Type': 'application/json' }
+        }));
+    }
     let claimCalls = 0;
     const caches = {
         open: async name => {
@@ -47,7 +59,7 @@ function createWorker(initialCaches = new Map(), fetchImpl = async () => new Res
         delete: async name => cacheStore.delete(name)
     };
     const self = {
-        location: { origin: ORIGIN },
+        location: { origin: ORIGIN, href: `${ORIGIN}/bahasa-studio/service-worker.js` },
         addEventListener: (name, handler) => { handlers[name] = handler; },
         skipWaiting: () => {},
         clients: { claim: async () => { claimCalls++; } }
@@ -85,7 +97,7 @@ test('migra MP3 completos de todas las cachés antiguas antes de borrarlas', asy
     const worker = createWorker(new Map([
         ['bahasa-studio-v3.8.95', old95],
         ['bahasa-studio-v3.8.94', old94],
-        ['bahasa-studio-v3.8.97', current]
+        [APP_CACHE_NAME, current]
     ]));
 
     let activation;
@@ -100,7 +112,7 @@ test('migra MP3 completos de todas las cachés antiguas antes de borrarlas', asy
     assert.equal(await audioCache.match(new Request(shellUrl)), null);
     assert.equal(worker.cacheStore.has('bahasa-studio-v3.8.95'), false);
     assert.equal(worker.cacheStore.has('bahasa-studio-v3.8.94'), false);
-    assert.equal(worker.cacheStore.has('bahasa-studio-v3.8.97'), true);
+    assert.equal(worker.cacheStore.has(APP_CACHE_NAME), true);
     assert.equal(worker.claimCalls, 1);
 });
 
@@ -112,7 +124,7 @@ test('si una copia falla, la activación no se bloquea y conserva las cachés an
     const audio = new MemoryCache([], { failPut: true });
     const worker = createWorker(new Map([
         ['bahasa-studio-v3.8.95', old],
-        ['bahasa-studio-v3.8.97', new MemoryCache()],
+        [APP_CACHE_NAME, new MemoryCache()],
         ['guardi-audio-v1', audio]
     ]));
 
@@ -131,7 +143,7 @@ test('la migración es idempotente y no vuelve a escribir clips ya copiados', as
     ]);
     const worker = createWorker(new Map([
         ['bahasa-studio-v3.8.95', old],
-        ['bahasa-studio-v3.8.97', new MemoryCache()]
+        [APP_CACHE_NAME, new MemoryCache()]
     ]));
 
     let firstActivation;
@@ -162,7 +174,7 @@ test('los MP3 nuevos usan guardi-audio-v1 y los recursos normales siguen en la c
 
     const audioCache = worker.cacheStore.get('guardi-audio-v1');
     assert.ok(await audioCache.match(audioRequest));
-    assert.equal(worker.cacheStore.has('bahasa-studio-v3.8.97'), false, 'audio fetch must not create the app cache');
+    assert.equal(worker.cacheStore.has(APP_CACHE_NAME), false, 'audio fetch must not create the app cache');
 
     const appRequest = new Request(`${ORIGIN}/bahasa-studio/styles.css`);
     let appLifetime;
@@ -174,7 +186,7 @@ test('los MP3 nuevos usan guardi-audio-v1 y los recursos normales siguen en la c
     });
     assert.equal((await appResponse).status, 200);
     await appLifetime;
-    const appCache = worker.cacheStore.get('bahasa-studio-v3.8.97');
+    const appCache = worker.cacheStore.get(APP_CACHE_NAME);
     assert.ok(await appCache.match(appRequest));
     assert.equal(await audioCache.match(appRequest), null);
 });

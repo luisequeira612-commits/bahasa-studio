@@ -354,7 +354,7 @@ test('A1 U25-U28 contain five authored lessons with cumulative practice and spac
         introduced.push(id);
       }
     }
-    assert.deepEqual(introduced, unit.vocab.map(word => word.id),
+    assert.deepEqual(introduced, Array.from(unit.vocab, word => word.id),
       unit.id + ' must introduce every vocabulary item exactly once and in order');
 
     const original = new Map(), placed = new Map();

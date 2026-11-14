@@ -62,7 +62,7 @@ async function migrateAudioCache() {
         // handles older app caches whose metadata predates per-clip SHA-256 hashes.
         for (const request of await audioCache.keys()) {
             if (!isAudioFileRequest(request)) continue;
-            const match = new URL(request.url).pathname.match(/\\/audio\\/id\\/([a-f0-9]{12})\\.mp3$/i);
+            const match = new URL(request.url).pathname.match(/\/audio\/id\/([a-f0-9]{12})\.mp3$/i);
             if (!match) continue;
             const id = match[1].toLowerCase();
             try {

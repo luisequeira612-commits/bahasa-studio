@@ -195,11 +195,20 @@ def main():
     parser.add_argument("--limit", type=int, default=10, help="0 means all selected texts")
     parser.add_argument("--voice", default="id-ID-ArdiNeural")
     parser.add_argument("--force", action="store_true")
+    parser.add_argument("--hash-only", action="store_true", help="refresh MP3 SHA-256 metadata without running TTS")
     args = parser.parse_args()
     if args.samples:
         args.mode = "samples"
     if args.limit < 0:
         parser.error("--limit cannot be negative")
+    if args.hash_only:
+        output_dir = ROOT / "audio" / "id"
+        metadata_file = ROOT / "audio" / "metadata.json"
+        hashes, changed = refresh_audio_hashes(metadata_file, output_dir)
+        if changed:
+            bump_service_worker_cache_version(ROOT / "service-worker.js")
+        print(f"Refreshed SHA-256 for {len(hashes)} MP3 clips; library changed: {changed}")
+        return
     if not MANIFEST.exists():
         parser.error("audio/manifest.json missing; run scripts/export-audio-manifest.mjs first")
     if shutil.which("ffmpeg") is None:

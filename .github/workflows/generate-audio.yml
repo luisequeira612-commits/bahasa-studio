@@ -135,7 +135,7 @@ jobs:
         id: commit
         shell: bash
         run: |
-          git add audio audio-samples
+          git add audio audio-samples service-worker.js
           if git diff --cached --quiet; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
             echo "No generated files changed."

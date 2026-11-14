@@ -31,11 +31,12 @@ La biblioteca contiene MP3 y Opus para los mismos IDs. El reproductor principal 
 
 - El Service Worker actual precarga `audio/index.json` y `audio/metadata.json`.
 - Los MP3 se descargan y se guardan bajo demanda cuando se reproducen; la biblioteca completa no se precarga.
-- La caché de recursos de la app usa un nombre versionado (`bahasa-studio-v3.8.96`). Los MP3 pasan a una caché persistente separada `guardi-audio-v1`, que no se elimina al actualizar la versión de la app.
+- La caché de recursos de la app usa un nombre versionado (`bahasa-studio-v3.8.98`). Los MP3 pasan a una caché persistente separada `guardi-audio-v1`, que no se elimina al actualizar la versión de la app.
 - En la activación, el Service Worker copia MP3 completos (200 y cuerpo no vacío) desde todas las cachés antiguas `bahasa-studio-*` a `guardi-audio-v1`. Solo elimina las cachés antiguas después de completar todas las copias; si falla una copia, conserva las fuentes y sigue sirviendo desde ellas mientras reintenta en la siguiente activación.
 - La migración es idempotente y no sobrescribe clips que ya están en la caché persistente. La nueva caché no incluye recursos generales de la aplicación.
+- `audio/metadata.json` incorpora SHA-256 de cada MP3 cuando se ejecuta una generación completa. En la siguiente activación, el Service Worker comprueba los bytes de los clips persistidos y elimina solo los que cambiaron o ya no pertenecen al índice; los clips intactos sobreviven aunque se añadan IDs nuevos. La generación incrementa automáticamente la versión de caché de la app para activar esta comprobación.
 - PR #585 registra `waitUntil()` sincrónicamente durante el evento fetch y trata los errores de `cache.put()` como fail-open. Solo guarda respuestas HTTP 200 completas; no almacena respuestas 206 parciales.
-- La caché independiente mantiene la separación entre clips y recursos de la aplicación. El manejo de Range 206/416 sigue pendiente de una PR separada; la caché persistente todavía no resuelve por sí sola solicitudes multimedia Range.
+- La caché independiente mantiene la separación entre clips y recursos de la aplicación. PR #588 implementa Range 206/416 desde MP3 completos cacheados, sin almacenar respuestas parciales.
 - Una prueba física en Tecno Pova 4 confirmó que un clip reproducido primero con conexión volvió a sonar en modo avión, sin voz indonesia instalada. Esto valida ese clip ya almacenado, no que toda la biblioteca esté disponible offline.
 - No se ha probado Safari/iOS. No afirmar compatibilidad de reproducción Range en esos entornos.
 
@@ -78,7 +79,7 @@ Pruebas añadidas para rango cerrado, abierto, sufijo, final truncado, 416, rang
 1. Documentar el estado y añadir invariantes de manifiesto/índice/archivos.
 2. Ejecutar el workflow de sondeo Range y conservar su resultado antes de diseñar cambios.
 3. Ampliar cobertura de orígenes de audio y pruebas de integridad en una PR independiente.
-4. Separar los cambios del Service Worker: (a) guardado seguro y fallback abierto (PR #585); (b) caché independiente y migración segura (PR #586); (c) respuestas Range 206/416 (PR3c, pendiente); (d) invalidación cuando se regenere contenido de un ID existente, sin purgar por añadir IDs nuevos.
+4. Separar los cambios del Service Worker: (a) guardado seguro y fallback abierto (PR #585); (b) caché independiente y migración segura (PR #586); (c) respuestas Range 206/416 (PR #588); (d) invalidación selectiva por contenido regenerado (PR #590).
 5. Tras desplegar y superar pruebas automáticas, el propietario debe verificar físicamente actualización y reproducción offline en Android antes de autorizar descargas por nivel.
 
 No modificar hashes, rutas, normalización, IndexedDB v1 ni backup JSON v3 durante esta fase. No añadir dependencias.

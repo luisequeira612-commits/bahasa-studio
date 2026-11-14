@@ -6,6 +6,7 @@ import argparse
 import asyncio
 import hashlib
 import html
+import re
 import json
 import shutil
 import subprocess
@@ -121,14 +122,39 @@ def ensure_single_voice(metadata_file: Path, engine: str, voice: str):
     expected = {"engine": engine, "voice": voice, "formats": ["opus", "mp3"]}
     if metadata_file.exists():
         existing = json.loads(metadata_file.read_text(encoding="utf-8"))
-        if existing != expected:
+        core = {key: existing.get(key) for key in expected}
+        if core != expected:
             raise RuntimeError(
                 "The production library is locked to one engine/voice. "
                 f"Existing: {existing}; requested: {expected}. "
                 "Do not mix voices between A1, A2 and B1."
             )
     else:
-                metadata_file.write_text(json.dumps(expected, indent=2), encoding="utf-8")
+        metadata_file.write_text(json.dumps(expected, indent=2) + "\n", encoding="utf-8")
+
+
+def refresh_audio_hashes(metadata_file: Path, audio_dir: Path):
+    metadata = json.loads(metadata_file.read_text(encoding="utf-8"))
+    previous = metadata.get("audio_hashes")
+    hashes = {
+        audio_file.stem: hashlib.sha256(audio_file.read_bytes()).hexdigest()
+        for audio_file in sorted(audio_dir.glob("*.mp3"))
+    }
+    changed = previous != hashes
+    metadata["audio_hashes"] = hashes
+    metadata_file.write_text(json.dumps(metadata, indent=2) + "\n", encoding="utf-8")
+    return hashes, changed
+
+
+def bump_service_worker_cache_version(service_worker_file: Path):
+    source = service_worker_file.read_text(encoding="utf-8")
+    match = re.search(r"(const CACHE_NAME = 'bahasa-studio-v)(\d+)\.(\d+)\.(\d+)(';)", source)
+    if not match:
+        raise RuntimeError("Could not find the versioned Service Worker cache name")
+    major, minor, patch = map(int, match.group(2, 3, 4))
+    replacement = f"{match.group(1)}{major}.{minor}.{patch + 1}{match.group(5)}"
+    service_worker_file.write_text(source[:match.start()] + replacement + source[match.end():], encoding="utf-8")
+    return replacement
 
 
 def render_samples_index(samples_dir: Path, samples: list[dict]):
@@ -246,6 +272,9 @@ def main():
     else:
         index_file.parent.mkdir(parents=True, exist_ok=True)
         index_file.write_text(json.dumps(sorted(available_ids), indent=2) + "\n", encoding="utf-8")
+        _, hashes_changed = refresh_audio_hashes(ROOT / "audio" / "metadata.json", output_dir)
+        if hashes_changed:
+            bump_service_worker_cache_version(ROOT / "service-worker.js")
         total_bytes = sum(path.stat().st_size for pattern in ("*.opus", "*.mp3") for path in output_dir.glob(pattern))
         print(f"Level {args.level}: {len(available_ids)} indexed clips; Opus + MP3 fallback size {total_bytes} bytes")
 

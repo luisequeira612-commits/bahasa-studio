@@ -41,9 +41,8 @@ El repositorio es público y el endpoint de repositorio informa `private=false`,
 2. Toca **Settings** (si no aparece, abre el menú desplegable de pestañas y selecciónalo).
 3. En el menú lateral, entra en **Actions → General**.
 4. Baja a **Workflow permissions**.
-5. Selecciona **Read and write permissions**.
-6. Activa **Allow GitHub Actions to create and approve pull requests**.
-7. Toca **Save**.
+5. Activa **Allow GitHub Actions to create and approve pull requests**.
+6. Toca **Save**.
 
 Si no quieres habilitar la creación automática de PR, el workflow puede dejar una rama con un enlace **Compare & pull request**; se puede crear el PR manualmente desde el teléfono. No se usa PAT ni secreto personal: solo `GITHUB_TOKEN`.
 

@@ -16,7 +16,9 @@ test('audio manifest exports unique A1, A2 and inline B1 texts without changing 
   const temp = await mkdtemp(path.join(os.tmpdir(), 'bahasa-audio-manifest-'));
   const output = path.join(temp, 'manifest.json');
   try {
-    const result = spawnSync(process.execPath, [script, '--output', output], { cwd: root, encoding: 'utf8', timeout: 30000 });
+    const includeInteractive = process.env.AUDIO_MANIFEST_INCLUDE_INTERACTIVE === '1';
+    const args = [script, ...(includeInteractive ? ['--include-interactive'] : []), '--output', output];
+    const result = spawnSync(process.execPath, args, { cwd: root, encoding: 'utf8', timeout: 30000 });
     assert.equal(result.status, 0, result.stderr || result.stdout);
     const entries = JSON.parse(await readFile(output, 'utf8'));
     assert.ok(entries.length > 0);
@@ -48,6 +50,35 @@ test('audio manifest exports unique A1, A2 and inline B1 texts without changing 
       const sourceLevels = [...new Set(entry.sources.map((source) => source.level))];
       assert.deepEqual(entry.levels, sourceLevels, 'levels must preserve first-seen source order');
     }
+  } finally {
+    await rm(temp, { recursive: true, force: true });
+  }
+});
+
+test('optional interactive audio export covers every static playback surface', async () => {
+  const temp = await mkdtemp(path.join(os.tmpdir(), 'bahasa-audio-interactive-'));
+  const baseOutput = path.join(temp, 'base.json');
+  const interactiveOutput = path.join(temp, 'interactive.json');
+  try {
+    for (const [output, args] of [
+      [baseOutput, [script, '--output', baseOutput]],
+      [interactiveOutput, [script, '--include-interactive', '--output', interactiveOutput]]
+    ]) {
+      const result = spawnSync(process.execPath, args, { cwd: root, encoding: 'utf8', timeout: 30000 });
+      assert.equal(result.status, 0, result.stderr || result.stdout);
+    }
+
+    const base = JSON.parse(await readFile(baseOutput, 'utf8'));
+    const interactive = JSON.parse(await readFile(interactiveOutput, 'utf8'));
+    const countSource = (kind) => interactive.filter((entry) => entry.sources.some((source) => source.kind === kind)).length;
+
+    assert.equal(countSource('exercise-audioText'), 28, 'all unique lesson audioText prompts must be collected');
+    assert.equal(countSource('assessment-listen'), 3, 'all unique assessment listen utterances must be collected');
+    assert.equal(countSource('conversation-turn'), 27, 'all unique conversation turns must be collected');
+    assert.equal(countSource('conversation-example'), 27, 'all unique speakable conversation examples must be collected');
+    assert.equal(interactive.length - base.length, 60, 'interactive sources should add only the 60 currently missing unique texts');
+    assert.equal(new Set(interactive.map((entry) => entry.id)).size, interactive.length);
+    assert.ok(interactive.every((entry) => entry.id === hashText(entry.text)));
   } finally {
     await rm(temp, { recursive: true, force: true });
   }

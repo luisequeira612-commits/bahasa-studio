@@ -4,5 +4,6 @@
   "formats": [
     "opus",
     "mp3"
-  ]
+  ],
+  "content_revision": 1
 }

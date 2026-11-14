@@ -1,7 +1,7 @@
 # Generación de audio desde GitHub Actions
 
 Fecha: 14 nov 2026  
-Estado: **Piper seleccionado como motor principal** para la biblioteca no comercial. La generación completa A1/A2/B1 sigue pendiente de ejecutarse y superar auditoría automática antes de integrar audio en la app.
+Estado: **Piper `id_ID-news_tts-medium` seleccionado y biblioteca A1/A2/B1 integrada**. La reproducción de clips está conectada a la app; los MP3 se descargan bajo demanda y se almacenan en caché al reproducirse. La auditoría de cobertura integral y la mejora de caché/Range siguen pendientes.
 
 ## Entorno real
 
@@ -23,7 +23,7 @@ La generación completa exige `mode=full` y `confirm_full=true`. No usarlo hasta
 
 ## Página para escuchar
 
-La página generada es `audio-samples/index.html`, con controles HTML `<audio controls>` y archivos MP3 de 48 kbps mono para facilitar la reproducción en Chrome Android y Safari/iOS. No necesita JavaScript externo. La biblioteca final incluye Opus y MP3 de la misma voz; el reproductor seleccionará el formato con `canPlayType('audio/ogg; codecs="opus"')` y, si no está soportado, usará MP3.
+La página `audio-samples/index.html` sirve para escuchar las muestras comparativas de los motores. La biblioteca integrada contiene MP3 y Opus, pero el reproductor principal actual utiliza MP3 mediante `new Audio(url)`; no implementa selección `canPlayType()` ni usa Opus en esa ruta. La presencia de ambos formatos no demuestra que Opus tenga consumidores.
 
 URL prevista del sitio publicado:
 
@@ -85,7 +85,7 @@ Termux queda como último recurso. En un Tecno Pova 4, ejecutar Piper puede ser 
 
 ## Validación
 
-Las pruebas de manifiesto y generación de la página se ejecutan en el workflow de regresión. El usuario solo escucha las muestras. La escucha no nativa puede detectar silencios, cortes o artefactos, pero no certificar pronunciación ni naturalidad. El contenido curricular mantiene sus estados de verificación actuales.
+Las pruebas de manifiesto comprueban IDs, niveles, índice y archivos MP3 físicos; no certifican naturalidad ni pronunciación. El usuario escuchó muestras y confirmó preferencia por Piper. El 14 nov 2026 confirmó en Tecno Pova 4 que un clip reproducido primero online volvió a sonar en modo avión sin voz indonesia instalada. Esa prueba valida el clip almacenado, no la biblioteca completa ni Safari/iOS. Consulta `docs/AUDIO.md` para los límites actuales y el plan de verificación.
 
 
 ## Resultado de comparación y decisión — 14 nov 2026
@@ -94,4 +94,4 @@ El usuario escuchó las muestras de los tres motores y mantiene preferencia por 
 
 Tamaño medido de los 10 MP3 de prueba (mismos textos): Piper 60,114 bytes; MMS 76,386 bytes; Edge 121,890 bytes. Piper fue aprox. 21.3% menor que MMS y 50.7% menor que Edge en esta muestra. No extrapolar exactamente estos porcentajes a toda la biblioteca: medir el total de A1/A2/B1 después de generar.
 
-La elección no certifica pronunciación nativa. Antes de integrar, ejecutar generación por nivel en GitHub Actions, auditar automáticamente existencia, integridad, duración, correspondencia ID/texto y tamaño; revisar manualmente solo muestra representativa y outliers. Mantener atribución de dataset/modelo y no usar la voz con fines comerciales sin nueva revisión de derechos.
+La elección no certifica pronunciación nativa. La biblioteca ya está integrada. Antes de ampliar el comportamiento offline, completar la auditoría de cobertura, probar Range real de GitHub Pages y separar los cambios del Service Worker en PRs pequeños. Mantener atribución de dataset/modelo y no usar la voz con fines comerciales sin nueva revisión de derechos.

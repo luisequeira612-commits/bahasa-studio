@@ -70,3 +70,89 @@ test('precarga el índice y los metadatos de la biblioteca de audio', () => {
     assert.ok(worker.assets.includes('./audio/index.json'));
     assert.ok(worker.assets.includes('./audio/metadata.json'));
 });
+
+test('el guardado de red solo intenta cachear respuestas 200 y no bloquea el audio si falla', async () => {
+    const handlers = {};
+    const cacheWrites = [];
+    let waitUntilCalls = 0;
+    let cachePutRejects = false;
+    const cache = {
+        match: async () => null,
+        put: async (request, response) => {
+            cacheWrites.push({ url: request.url, status: response.status });
+            if (cachePutRejects) throw new Error('quota or cache failure');
+        }
+    };
+    const sandbox = {
+        self: {
+            addEventListener: (name, handler) => { handlers[name] = handler; }
+        },
+        caches: { open: async () => cache },
+        fetch: async () => new Response('audio', { status: 200, headers: { 'Content-Type': 'audio/mp3' } }),
+        Response,
+        Request,
+        Promise,
+        URL,
+        location: { origin: 'https://example.test' }
+    };
+    vm.runInNewContext(source, sandbox);
+
+    const request = new Request('https://example.test/audio/id/test.mp3');
+    const event = {
+        request,
+        waitUntil: promise => {
+            waitUntilCalls++;
+            return promise;
+        },
+        respondWith: promise => { event.responsePromise = promise; }
+    };
+
+    handlers.fetch(event);
+    const response = await event.responsePromise;
+    assert.equal(response.status, 200);
+    assert.equal(waitUntilCalls, 1);
+    assert.deepEqual(cacheWrites, [{ url: request.url, status: 200 }]);
+
+    cacheWrites.length = 0;
+    cachePutRejects = true;
+    handlers.fetch(event);
+    const secondResponse = await event.responsePromise;
+    assert.equal(secondResponse.status, 200);
+    assert.deepEqual(cacheWrites, [{ url: request.url, status: 200 }]);
+});
+
+test('una respuesta 206 no se guarda como archivo completo', async () => {
+    const handlers = {};
+    const cacheWrites = [];
+    const cache = {
+        match: async () => null,
+        put: async (request, response) => {
+            cacheWrites.push({ url: request.url, status: response.status });
+        }
+    };
+    const sandbox = {
+        self: {
+            addEventListener: (name, handler) => { handlers[name] = handler; }
+        },
+        caches: { open: async () => cache }
+    };
+    sandbox.fetch = async () => new Response('partial', { status: 206 });
+    sandbox.Response = Response;
+    sandbox.Request = Request;
+    sandbox.Promise = Promise;
+    sandbox.URL = URL;
+    sandbox.location = { origin: 'https://example.test' };
+    vm.runInNewContext(source, sandbox);
+
+    const request = new Request('https://example.test/audio/id/test.mp3');
+    const event = {
+        request,
+        waitUntil: () => {},
+        respondWith: promise => { event.responsePromise = promise; }
+    };
+
+    handlers.fetch(event);
+    const response = await event.responsePromise;
+    assert.equal(response.status, 206);
+    assert.deepEqual(cacheWrites, []);
+});

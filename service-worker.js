@@ -34,7 +34,20 @@ self.addEventListener('fetch', (e) => {
         caches.open(CACHE_NAME).then(async (cache) => {
             const cached = await cache.match(req);
             const network = fetch(req, { cache: 'no-cache' }).then((res) => {
-                if (res && res.ok) cache.put(req, res.clone());
+                // Only cache complete successful responses. Range (206) responses are
+                // handled in a later, separate change; they must never enter the
+                // normal resource cache as if they were complete files.
+                if (res && res.status === 200) {
+                    try {
+                        e.waitUntil(
+                            cache.put(req, res.clone()).catch(() => {
+                                // Cache failure must never break audio/network playback.
+                            })
+                        );
+                    } catch (_) {
+                        // A cache failure must never break audio/network playback.
+                    }
+                }
                 return res;
             }).catch(() => null);
             if (cached) return cached;

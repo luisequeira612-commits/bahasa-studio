@@ -136,7 +136,7 @@ test('service worker installs its declared cache, removes only older app caches 
   const cacheStore = new Map();
   const context = {
     self: {
-      location: { origin: 'https://example.test' },
+      location: { origin: 'https://example.test', href: 'https://example.test/bahasa-studio/service-worker.js' },
       addEventListener(name, handler) { handlers[name] = handler; },
       skipWaiting() {},
       clients: { async claim() { claimed = true; } }
@@ -146,7 +146,14 @@ test('service worker installs its declared cache, removes only older app caches 
         if (!cacheStore.has(name)) cacheStore.set(name, {
           async add(asset) { installedAssets.push(asset); },
           async keys() { return []; },
-          async match() { return null; }
+          async match(request) {
+            if (String(request.url || request).endsWith('/audio/metadata.json')) {
+              return new Response(JSON.stringify({ content_revision: 1 }), { status: 200 });
+            }
+            return null;
+          },
+          async put() {},
+          async delete() { return true; }
         });
         return cacheStore.get(name);
       },

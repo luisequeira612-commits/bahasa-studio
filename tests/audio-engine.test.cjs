@@ -8,13 +8,14 @@ const source = fs.readFileSync(path.join(__dirname, '..', 'audio-engine.js'), 'u
 
 function createEngine() {
     const spoken = [];
+    let availableVoices = [];
     let cancelCalls = 0;
     const statuses = {
         audioVoiceStatus: { textContent: '' },
         voiceTestStatus: { textContent: '' }
     };
     const synth = {
-        getVoices: () => [],
+        getVoices: () => availableVoices,
         cancel: () => { cancelCalls++; },
         speak: utterance => spoken.push(utterance)
     };
@@ -37,6 +38,7 @@ function createEngine() {
         engine: context.window.AudioEngine,
         spoken,
         statuses,
+        setAvailableVoices(voices) { availableVoices = voices; },
         get cancelCalls() { return cancelCalls; }
     };
 }
@@ -83,6 +85,21 @@ test('usa una voz indonesia disponible y fija el idioma de la utterance', () => 
     assert.equal(setup.spoken[0].lang, 'id-ID');
     assert.equal(setup.spoken[0].voice, voice);
     assert.equal(setup.cancelCalls, 1);
+});
+
+test('vuelve a consultar las voces al reproducir si Chrome las expone tarde', () => {
+    const setup = createEngine();
+    setup.engine.init();
+    assert.equal(setup.engine.voices.length, 0);
+
+    const voice = { name: 'Google Bahasa Indonesia', lang: 'id-ID' };
+    setup.setAvailableVoices([voice]);
+    setup.engine.speak('Halo!');
+
+    assert.equal(setup.spoken.length, 1);
+    assert.equal(setup.spoken[0].voice, voice);
+    assert.equal(setup.spoken[0].lang, 'id-ID');
+    assert.match(setup.statuses.audioVoiceStatus.textContent, /voz indonesia disponible/i);
 });
 
 test('el botón de prueba explica que no habrá audio si falta una voz indonesia', () => {

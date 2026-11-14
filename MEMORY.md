@@ -107,3 +107,6 @@
 - 14 nov 2026: Rama `curriculum/a1-u17-u20-five-lessons-20261114` prepara A1 U17–U20 con cinco lecciones authored por unidad (20 total), vocabulario existente, recuperación acumulativa y recuperación espaciada final. Los ejercicios originales se distribuyen en las lecciones sin alterar el banco de unidad. Pendiente CI y revisión; naturalidad `not_checked`. Sin cambios a IndexedDB v1, backup JSON v3 ni dependencias.
 
 - 14 nov 2026: Revisión interna de PR #568 detectó que `reviewVocabIds` debía estar acompañado de ejercicios efectivos de recuperación. Se añadió práctica de cada palabra previa en las lecciones posteriores y se movió un ejercicio original de pregunta a la lección donde aparece esa palabra; se mantiene cada ejercicio original una sola vez. CI pendiente.
+
+
+- 14 nov 2026: Rama `curriculum/a1-u21-u24-five-lessons-20261114` prepara A1 U21–U24 con cinco lecciones authored por unidad (20 total), distribuyendo el vocabulario existente y preservando los ejercicios originales. La quinta lección recupera todo el vocabulario; las lecciones posteriores recuperan activamente el vocabulario previo. Sin cambios a IndexedDB v1, backup JSON v3 ni dependencias. Pendiente CI.

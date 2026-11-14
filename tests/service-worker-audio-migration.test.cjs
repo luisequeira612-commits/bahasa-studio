@@ -82,7 +82,7 @@ test('migrates complete current MP3 clips into the independent cache before dele
     assert.equal(worker.cachesByName.has('bahasa-studio-v3.8.95'), false);
     assert.equal(worker.cachesByName.has('bahasa-studio-v3.8.96'), true);
     const marker = await worker.audio.match(new Request(markerUrl));
-    assert.deepEqual((await marker.json()).audio_hashes, { '0123456789ab': 'hash-a' });
+    assert.deepEqual((await marker.json()).audio_hashes, { '0123456789ab': hash('legacy audio bytes') });
     assert.equal(worker.claimed, 1);
 });
 

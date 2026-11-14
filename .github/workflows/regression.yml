@@ -34,6 +34,8 @@ jobs:
         run: node --test tests/indonesian-language-markup.test.cjs
       - name: Run resilient service worker install tests
         run: node --test tests/service-worker-install.test.cjs
+      - name: Run dedicated audio cache migration tests
+        run: node --test tests/service-worker-audio-migration.test.cjs
       - name: Run API key management tests
         run: node --test tests/api-key-management.test.cjs
       - name: Run audio engine fallback tests

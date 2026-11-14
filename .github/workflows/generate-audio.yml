@@ -10,9 +10,9 @@ on:
         default: piper
         required: true
       mode:
-        description: samples para escuchar; full solo después de elegir voz
+        description: samples para escuchar; full genera audio; hashes solo calcula huellas sin TTS
         type: choice
-        options: [samples, full]
+        options: [samples, full, hashes]
         default: samples
         required: true
       limit:
@@ -76,11 +76,13 @@ jobs:
           python-version: '3.12'
 
       - name: Install ffmpeg
+        if: ${{ inputs.mode != 'hashes' }}
         run: |
           sudo apt-get update
           sudo apt-get install -y ffmpeg
 
       - name: Install selected TTS engine
+        if: ${{ inputs.mode != 'hashes' }}
         run: |
           python -m pip install --upgrade pip
           case "$ENGINE" in
@@ -101,6 +103,8 @@ jobs:
         run: |
           if [[ "$MODE" == "samples" ]]; then
             BRANCH="audio/tts-samples"
+          elif [[ "$MODE" == "hashes" ]]; then
+            BRANCH="audio/library-hashes"
           else
             BRANCH="audio/library-$LEVEL"
           fi
@@ -116,11 +120,14 @@ jobs:
           fi
 
       - name: Export manifest from A1, A2 and inline B1
+        if: ${{ inputs.mode != 'hashes' }}
         run: node scripts/export-audio-manifest.mjs
 
-      - name: Generate selected audio
+      - name: Generate selected audio or refresh fingerprints
         run: |
-          if [[ "$MODE" == "samples" ]]; then
+          if [[ "$MODE" == "hashes" ]]; then
+            python scripts/generate_audio.py --engine piper --hash-only
+          elif [[ "$MODE" == "samples" ]]; then
             python scripts/generate_audio.py --engine "$ENGINE" --mode samples --level all --limit "$LIMIT"
           else
             python scripts/generate_audio.py --engine "$ENGINE" --mode full --level "$LEVEL" --limit 0
@@ -155,6 +162,9 @@ jobs:
           if [[ "$MODE" == "samples" ]]; then
             TITLE="audio: add $ENGINE listening samples"
             BODY="Generated $LIMIT Indonesian sample clips with $ENGINE in GitHub Actions.\n\nThe clips are evaluation material only; no production player or curriculum files changed. Review on Android after merging to the configured GitHub Pages source. Full generation remains gated."
+          elif [[ "$MODE" == "hashes" ]]; then
+            TITLE="audio: refresh MP3 content fingerprints"
+            BODY="Refreshed SHA-256 fingerprints for the existing MP3 library. No audio was generated or downloaded and no curriculum source changed. The Service Worker cache version was advanced only if the fingerprint map changed."
           else
             TITLE="audio: generate $LEVEL library with $ENGINE"
             BODY="Generated the $LEVEL audio library with $ENGINE in GitHub Actions after explicit confirmation. Review file count, size and CI before merging. No curriculum source was modified."

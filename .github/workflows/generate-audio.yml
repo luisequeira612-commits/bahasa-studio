@@ -21,9 +21,9 @@ on:
         default: '10'
         required: true
       level:
-        description: Nivel para generación completa
+        description: Nivel o todos para generación completa
         type: choice
-        options: [A1, A2, B1]
+        options: [A1, A2, B1, all]
         default: A1
         required: true
       confirm_full:
@@ -119,9 +119,15 @@ jobs:
             git checkout -b "$BRANCH" origin/main
           fi
 
-      - name: Export manifest from A1, A2 and inline B1
+      - name: Export manifest from curriculum and optional interactive sources
         if: ${{ inputs.mode != 'hashes' }}
-        run: node scripts/export-audio-manifest.mjs
+        shell: bash
+        run: |
+          if [[ "$MODE" == "full" && "$LEVEL" == "all" ]]; then
+            node scripts/export-audio-manifest.mjs --include-interactive
+          else
+            node scripts/export-audio-manifest.mjs
+          fi
 
       - name: Generate selected audio or refresh fingerprints
         run: |
@@ -135,7 +141,11 @@ jobs:
 
       - name: Run audio generation tests
         run: |
-          node --test tests/audio-manifest.test.mjs
+          if [[ "$MODE" == "full" && "$LEVEL" == "all" ]]; then
+            AUDIO_MANIFEST_INCLUDE_INTERACTIVE=1 node --test tests/audio-manifest.test.mjs
+          else
+            node --test tests/audio-manifest.test.mjs
+          fi
           python -m unittest discover -s tests -p 'test_audio_generation.py'
 
       - name: Commit generated manifest and audio

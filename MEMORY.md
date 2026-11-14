@@ -174,5 +174,13 @@
 
 ## Biblioteca de audio Piper — PR #591 y #593 — 14 nov 2026
 - PR #591 fusionada: el workflow manual ofrece modo `hashes` y `generate_audio.py --hash-only`, que calcula SHA-256 de MP3 existentes sin instalar Piper/FFmpeg ni sintetizar o descargar audios.
-- PR #593: hashes actualizados para los 2.084 IDs de `audio/index.json`; cada ID tiene exactamente un SHA-256 válido en `audio/metadata.json`. Service Worker sube a `v3.8.99`; tests derivan dinámicamente el nombre de caché para evitar fixtures obsoletos. CI de PR verde; fusión y Pages post-merge pendientes.
+- PR [#593](https://github.com/luisequeira612-commits/bahasa-studio/pull/593) fusionada como `2731fb50fa5f6d33e8d3252d548e82c4a2182864`; hashes SHA-256 válidos para los 2.084 IDs, cero faltantes/sobrantes/inválidos. Service Worker `v3.8.99`. Regresión post-merge run `43648234256` y Pages run `43648233791` terminaron en éxito.
 - Sin cambios a SHA-1 de nombres, rutas, normalización, IndexedDB v1, backup JSON v3 ni dependencias. No se ha probado la biblioteca completa offline en el dispositivo; el usuario confirmó previamente reproducción offline de un clip ya descargado.
+
+
+## Cobertura de audio interactivo — PR #594 — 14 nov 2026
+- Auditoría de código real: el manifiesto de 2.084 IDs no cubría todas las cadenas estáticas que la aplicación puede pronunciar. Se encontraron 96 textos estáticos distintos tras deduplicar entre categorías; 28 ya estaban cubiertos y 68 carecían de clip. Los cuatro grupos contienen 97 entradas únicas contadas por categoría porque un texto aparece en dos grupos.
+- Desglose de textos únicos por origen: 40 exercise-audioText (16 nuevos), 3 assessment-listen (2 nuevos), 27 conversation-turn (26 nuevos) y 27 conversation-example (24 nuevos). Las respuestas libres del usuario siguen siendo dinámicas y conservan el fallback TTS.
+- PR [#594](https://github.com/luisequeira612-commits/bahasa-studio/pull/594) creada desde la rama audio/interactive-manifest-coverage; CI completo en verde en run 43650767096 (Regression tests) y Offline quality reports. El exportador conserva su modo normal sin cambios; --include-interactive activa las fuentes adicionales. La normalización SHA-1 y los IDs existentes no cambian.
+- El workflow permite level=all. Tras integrar la cobertura, ejecutar manualmente engine=piper, mode=full, level=all, limit=0, confirm_full=true. generate_audio.py omite IDs que ya tengan MP3 y Opus; debe sintetizar únicamente los 68 nuevos y actualizar índice/huellas. Los tests en ese modo verifican la unión completa entre manifiesto, índice y archivos.
+- No cambia audio-engine.js, Service Worker, rutas, IndexedDB v1, backup JSON v3 ni dependencias. La prueba física offline en Tecno Pova 4 confirma un clip ya cacheado, no toda la biblioteca.

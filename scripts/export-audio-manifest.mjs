@@ -19,39 +19,51 @@ async function loadStandalone(file, globalName) {
   return level;
 }
 
-function collectLevel(level, entries) {
-  function add(text, kind, unitId) {
-    if (typeof text !== 'string' || !text.trim()) return;
-    const normalized = normalize(text);
-    const id = hashText(text);
-    const existing = entries.get(id);
-    if (existing && existing.normalized !== normalized) {
-      throw new Error(`SHA-1 prefix collision for ${id}`);
-    }
-    const source = { level: level.id, unit: unitId, kind };
-    if (existing) {
-      if (!existing.sources.some((item) => item.level === source.level && item.unit === source.unit && item.kind === source.kind)) {
-        existing.sources.push(source);
-      }
-      if (!existing.levels.includes(level.id)) existing.levels.push(level.id);
-    } else {
-      entries.set(id, { id, text: text.trim().replace(/\s+/g, ' '), normalized, levels: [level.id], sources: [source] });
-    }
-  }
+async function loadBrowserGlobal(file, globalName) {
+  const source = await readFile(path.join(ROOT, file), 'utf8');
+  const sandbox = { window: {}, document: { addEventListener() {} } };
+  vm.runInNewContext(source, sandbox, { filename: file, timeout: 5000 });
+  const value = sandbox.window[globalName] || sandbox[globalName];
+  if (!value) throw new Error(`Invalid browser module: ${file}`);
+  return value;
+}
 
+function addEntry(entries, levelId, text, kind, unitId) {
+  if (typeof text !== 'string' || !text.trim()) return;
+  const normalized = normalize(text);
+  const id = hashText(text);
+  const existing = entries.get(id);
+  if (existing && existing.normalized !== normalized) {
+    throw new Error(`SHA-1 prefix collision for ${id}`);
+  }
+  const source = { level: levelId, unit: unitId, kind };
+  if (existing) {
+    if (!existing.sources.some((item) => item.level === source.level && item.unit === source.unit && item.kind === source.kind)) {
+      existing.sources.push(source);
+    }
+    if (!existing.levels.includes(levelId)) existing.levels.push(levelId);
+  } else {
+    entries.set(id, { id, text: text.trim().replace(/\s+/g, ' '), normalized, levels: [levelId], sources: [source] });
+  }
+}
+
+function collectLevel(level, entries, includeInteractive = false) {
   for (const unit of level.units) {
     for (const vocab of unit.vocab || []) {
-      add(vocab.idn, 'vocabulary', unit.id);
-      add(vocab.ex, 'example', unit.id);
+      addEntry(entries, level.id, vocab.idn, 'vocabulary', unit.id);
+      addEntry(entries, level.id, vocab.ex, 'example', unit.id);
     }
     const visitExercises = (items) => {
       for (const item of items || []) {
         if (!item || typeof item !== 'object') continue;
         if (item.type === 'listen') {
-          add(item.audioText, 'listen-audioText', unit.id);
-          if (typeof item.answer === 'string') add(item.answer, 'listen-answer', unit.id);
+          addEntry(entries, level.id, item.audioText, 'listen-audioText', unit.id);
+          if (typeof item.answer === 'string') addEntry(entries, level.id, item.answer, 'listen-answer', unit.id);
         } else if (item.type === 'translate_es_id' && typeof item.answer === 'string') {
-          add(item.answer, 'translate-answer', unit.id);
+          addEntry(entries, level.id, item.answer, 'translate-answer', unit.id);
+        }
+        if (includeInteractive && item.type !== 'listen' && typeof item.audioText === 'string') {
+          addEntry(entries, level.id, item.audioText, 'exercise-audioText', unit.id);
         }
       }
     };
@@ -60,7 +72,27 @@ function collectLevel(level, entries) {
   }
 }
 
-export async function buildManifest() {
+async function collectInteractiveSources(entries) {
+  const [assessment, conversation] = await Promise.all([
+    loadBrowserGlobal('assessment-engine.js', 'BahasaAssessment'),
+    loadBrowserGlobal('conversation-engine.js', 'ConversationEngine')
+  ]);
+
+  for (const item of assessment.ITEM_BANK || []) {
+    if (item.type !== 'listen') continue;
+    addEntry(entries, item.level, item.audioText || item.answer, 'assessment-listen', `assessment:${item.id}`);
+  }
+
+  for (const scenario of conversation.scenarios || []) {
+    for (const turn of scenario.turns || []) {
+      addEntry(entries, scenario.level, turn.line, 'conversation-turn', `conversation:${scenario.id}`);
+      const example = (turn.choices || []).find((choice) => choice.correct);
+      if (example) addEntry(entries, scenario.level, example.text, 'conversation-example', `conversation:${scenario.id}`);
+    }
+  }
+}
+
+export async function buildManifest({ includeInteractive = false } = {}) {
   const [a1, a2, indexSource] = await Promise.all([
     loadStandalone('curriculum-a1.js', 'BAHASA_CURRICULUM_A1'),
     loadStandalone('curriculum-a2.js', 'BAHASA_CURRICULUM_A2'),
@@ -68,14 +100,16 @@ export async function buildManifest() {
   ]);
   const b1 = loadInlineB1Curriculum(indexSource, a1, a2);
   const entries = new Map();
-  for (const level of [a1, a2, b1]) collectLevel(level, entries);
+  const levels = [a1, a2, b1];
+  for (const level of levels) collectLevel(level, entries, includeInteractive);
+  if (includeInteractive) await collectInteractiveSources(entries);
   return [...entries.values()];
 }
 
 async function main() {
   const outputIndex = process.argv.indexOf('--output');
   const output = outputIndex >= 0 ? path.resolve(process.argv[outputIndex + 1]) : path.join(ROOT, 'audio', 'manifest.json');
-  const manifest = await buildManifest();
+  const manifest = await buildManifest({ includeInteractive: process.argv.includes('--include-interactive') });
   await mkdir(path.dirname(output), { recursive: true });
   await writeFile(output, JSON.stringify(manifest, null, 2) + '\n', 'utf8');
   const counts = Object.fromEntries(['A1', 'A2', 'B1'].map((level) => [level, manifest.filter((entry) => entry.levels.includes(level)).length]));

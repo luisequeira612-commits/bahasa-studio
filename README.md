@@ -47,7 +47,7 @@ Al usar Gemini, el texto de tus consultas se envía a Google. Las cuotas, los l�
 
 ### Audio y pronunciación
 
-La síntesis de voz depende de las voces instaladas y de la compatibilidad del navegador. Que el sistema muestre una voz con etiqueta `id-ID` no garantiza que sea una voz indonesia natural.
+La síntesis de voz depende de las voces instaladas y de la compatibilidad del navegador. Que el sistema muestre una voz con etiqueta `id-ID` no garantiza que sea una voz indonesia natural. Los audios pregenerados que se incorporen al curso serán sintéticos y no certifican pronunciación nativa ni sustituyen una revisión lingüística.
 
 La práctica de reconocimiento de voz solo se activa cuando pulsas el control correspondiente. El navegador puede enviar el audio a su propio proveedor de reconocimiento; su tratamiento depende del navegador y del sistema.
 

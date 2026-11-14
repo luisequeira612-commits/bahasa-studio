@@ -163,3 +163,10 @@
 - La prueba manual de GitHub Pages previa confirmó 206 para `bytes=0-1` (`Content-Range: bytes 0-1/6765`, longitud 2). Safari/iOS no probado.
 - Nota de PR #586: Pages post-merge [43643854921](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/43643854921) pasó; regresión post-merge [43643855169](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/43643855169) tuvo un timeout aislado de 30 s en el E2E de burbuja de traducción, ajeno a audio. Se solicitó reintentar el job fallido `132597119731`; no tratar ese resultado como verde hasta confirmar el reintento.
 - Sigue pendiente invalidación de caché si se regenera audio de un ID existente; añadir nuevos IDs no debe purgar los clips existentes.
+
+
+## PR #590 — invalidación selectiva de clips Piper — 14 nov 2026
+- PR #586 separó los MP3 en `guardi-audio-v1`; PR #588 añadió respuestas Range 206/416 desde archivos completos almacenados. Esta PR incremental añade SHA-256 por ID MP3 y verifica bytes reales de la caché persistente y de clips legacy.
+- Los clips sin cambios permanecen aunque se agreguen IDs nuevos; los que cambian de contenido o desaparecen del inventario se eliminan selectivamente. Si no hay huellas en metadata, se conserva la migración básica ya desplegada.
+- `generate_audio.py` actualiza huellas al completar generación y sube el patch de `CACHE_NAME` solo cuando cambia el mapa; el workflow incluye el Service Worker en el commit generado para precargar metadata y activar la verificación.
+- Sin cambios al SHA-1 del texto, rutas, normalización, `audio-engine.js`, IndexedDB v1, backup JSON v3 ni dependencias. Se conserva la implementación Range de PR #588. CI pendiente.

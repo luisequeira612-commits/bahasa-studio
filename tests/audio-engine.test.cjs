@@ -3,12 +3,14 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const vm = require('node:vm');
 const path = require('node:path');
+const crypto = require('node:crypto');
 
 const source = fs.readFileSync(path.join(__dirname, '..', 'audio-engine.js'), 'utf8');
 
-function createEngine() {
+function createEngine(options = {}) {
     const spoken = [];
-    let availableVoices = [];
+    const createdAudio = [];
+    let availableVoices = options.voices || [];
     let cancelCalls = 0;
     const statuses = {
         audioVoiceStatus: { textContent: '' },
@@ -27,90 +29,104 @@ function createEngine() {
             this.rate = 1;
         }
     }
+    class FakeAudio {
+        constructor(src) {
+            this.src = src;
+            this.playbackRate = 1;
+            this.preload = '';
+            this.playCalls = 0;
+            this.paused = false;
+            createdAudio.push(this);
+        }
+        play() {
+            this.playCalls++;
+            return options.playPromise ? options.playPromise(this) : Promise.resolve();
+        }
+        pause() { this.paused = true; }
+        fail() { if (this.onerror) this.onerror(); }
+        end() { if (this.onended) this.onended(); }
+    }
     const context = {
-        window: { speechSynthesis: synth },
-        document: { getElementById: id => statuses[id] || null },
+        window: { speechSynthesis: options.noSynth ? null : synth },
+        document: {
+            baseURI: 'https://example.test/bahasa-studio/',
+            getElementById: id => statuses[id] || null
+        },
         SpeechSynthesisUtterance: Utterance,
+        Audio: options.noAudio ? undefined : FakeAudio,
+        TextEncoder,
+        Uint8Array,
+        DataView,
         alert: () => {}
     };
     vm.runInNewContext(source, context);
     return {
         engine: context.window.AudioEngine,
         spoken,
+        createdAudio,
         statuses,
         setAvailableVoices(voices) { availableVoices = voices; },
         get cancelCalls() { return cancelCalls; }
     };
 }
 
-test('sin voz indonesia no reproduce audio ni recurre a la voz predeterminada', () => {
+test('hashText coincide con el SHA-1 de export-audio-manifest y normaliza espacios/mayúsculas', () => {
     const setup = createEngine();
-    setup.engine.voices = [];
-    setup.engine.idVoice = null;
-    setup.engine.selectedVoice = null;
-
-    setup.engine.speak('Halo!');
-
-    assert.equal(setup.spoken.length, 0);
-    assert.equal(setup.cancelCalls, 0);
-    assert.match(setup.statuses.audioVoiceStatus.textContent, /no se reproducirá audio/i);
-    assert.match(setup.statuses.audioVoiceStatus.textContent, /pronunciación incorrecta/i);
+    const expected = crypto.createHash('sha1').update('halo dunia', 'utf8').digest('hex').slice(0, 12);
+    assert.equal(setup.engine.hashText('  Halo   Dunia  '), expected);
 });
 
-test('rechaza explícitamente una voz seleccionada que no sea indonesia', () => {
+test('reproduce el MP3 incluido aunque el dispositivo no tenga voz indonesia', () => {
     const setup = createEngine();
-    const englishVoice = { name: 'English voice', lang: 'en-US' };
-    setup.setAvailableVoices([englishVoice]);
-
     setup.engine.speak('Halo!');
-
+    const expected = crypto.createHash('sha1').update('halo!', 'utf8').digest('hex').slice(0, 12);
+    assert.equal(setup.createdAudio.length, 1);
+    assert.equal(setup.createdAudio[0].src, './audio/id/' + expected + '.mp3');
+    assert.equal(setup.createdAudio[0].playCalls, 1);
     assert.equal(setup.spoken.length, 0);
-    assert.equal(setup.cancelCalls, 0);
-    assert.match(setup.statuses.audioVoiceStatus.textContent, /No hay una voz indonesia disponible/i);
+    assert.match(setup.statuses.audioVoiceStatus.textContent, /grabaciones Piper/i);
 });
 
-test('usa una voz indonesia disponible y fija el idioma de la utterance', () => {
+test('si falta el MP3 y no hay voz indonesia, informa el problema sin usar otra lengua', () => {
     const setup = createEngine();
+    setup.engine.speak('frase sin clip');
+    setup.createdAudio[0].fail();
+    assert.equal(setup.spoken.length, 0);
+    assert.match(setup.statuses.audioVoiceStatus.textContent, /ni una voz indonesia instalada/i);
+});
+
+test('si falta el MP3, usa únicamente una voz indonesia instalada como respaldo', () => {
     const voice = { name: 'Bahasa Indonesia', lang: 'id-ID' };
-    setup.setAvailableVoices([voice]);
-
-    setup.engine.speak('Halo!');
-
+    const setup = createEngine({ voices: [voice] });
+    setup.engine.speak('frase sin clip');
+    setup.createdAudio[0].fail();
     assert.equal(setup.spoken.length, 1);
-    assert.equal(setup.spoken[0].text, 'Halo!');
+    assert.equal(setup.spoken[0].text, 'frase sin clip');
     assert.equal(setup.spoken[0].lang, 'id-ID');
     assert.equal(setup.spoken[0].voice, voice);
-    assert.equal(setup.cancelCalls, 1);
 });
 
-test('vuelve a consultar las voces al reproducir si Chrome las expone tarde', () => {
+test('la velocidad seleccionada se aplica al MP3 que está sonando', () => {
     const setup = createEngine();
-    setup.engine.init();
-    assert.equal(setup.engine.voices.length, 0);
-
-    const voice = { name: 'Google Bahasa Indonesia', lang: 'id-ID' };
-    setup.setAvailableVoices([voice]);
     setup.engine.speak('Halo!');
+    assert.equal(setup.engine.setRate(0.7, false), true);
+    assert.equal(setup.createdAudio[0].playbackRate, 0.7);
+});
 
+test('si el navegador no admite Audio, intenta solo el respaldo indonesio', () => {
+    const voice = { name: 'Bahasa Indonesia', lang: 'id-ID' };
+    const setup = createEngine({ noAudio: true, voices: [voice] });
+    setup.engine.speak('Halo!');
+    assert.equal(setup.createdAudio.length, 0);
     assert.equal(setup.spoken.length, 1);
     assert.equal(setup.spoken[0].voice, voice);
-    assert.equal(setup.spoken[0].lang, 'id-ID');
-    assert.match(setup.statuses.audioVoiceStatus.textContent, /voz indonesia disponible/i);
 });
 
-test('el botón de prueba explica que no habrá audio si falta una voz indonesia', () => {
+test('el botón de prueba reproduce una frase incluida sin exigir voces del dispositivo', () => {
     const setup = createEngine();
-    setup.engine.voices = [];
-    setup.engine.idVoice = null;
-    setup.engine.selectedVoice = null;
-
     setup.engine.testVoice();
-
-    assert.equal(setup.spoken.length, 0);
-    assert.match(setup.statuses.voiceTestStatus.textContent, /no se reproducirá audio/i);
-    assert.match(setup.statuses.audioVoiceStatus.textContent, /pronunciación incorrecta/i);
-});
-
-test('el código ya no anuncia el uso de una voz predeterminada como sustituto', () => {
-    assert.doesNotMatch(source, /voz predeterminada del sistema con el idioma id-ID/i);
+    assert.equal(setup.createdAudio.length, 1);
+    assert.equal(setup.createdAudio[0].src, './audio/id/' +
+        crypto.createHash('sha1').update('terima kasih', 'utf8').digest('hex').slice(0, 12) + '.mp3');
+    assert.match(setup.statuses.voiceTestStatus.textContent, /grabación Piper incluida/i);
 });

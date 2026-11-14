@@ -64,3 +64,9 @@ test('la instalación sigue resolviendo si todos los recursos fallan', async () 
     assert.equal(worker.cached.length, 0);
     assert.equal(worker.attempted.length, worker.assets.length);
 });
+
+test('precarga el índice y los metadatos de la biblioteca de audio', () => {
+    const worker = loadInstallHandler(new Set());
+    assert.ok(worker.assets.includes('./audio/index.json'));
+    assert.ok(worker.assets.includes('./audio/metadata.json'));
+});

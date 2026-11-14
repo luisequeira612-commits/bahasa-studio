@@ -253,13 +253,13 @@
         </div>
 
         <div class="card">
-            <h3>Sintetizador de Voz (TTS)</h3>
-            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px;">Elige una voz indonesia instalada en tu dispositivo. La disponibilidad depende del navegador y del sistema.</p>
-            <label for="audioVoiceSelect" style="display:block; font-size:0.9rem; margin:10px 0 6px;">Voz indonesia</label>
+            <h3>Audio en indonesio</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px;">La app incluye grabaciones de voz Piper. No necesitas instalar una voz indonesia; una voz del dispositivo solo se usa como respaldo si falta una grabación.</p>
+            <label for="audioVoiceSelect" style="display:block; font-size:0.9rem; margin:10px 0 6px;">Voz de respaldo del dispositivo (opcional)</label>
             <select id="audioVoiceSelect" class="input-field" onchange="AudioEngine.setVoice(this.value)" aria-label="Voz indonesia">
                 <option value="auto">Automática (recomendada)</option>
             </select>
-            <p id="audioVoiceStatus" role="status" aria-live="polite" style="font-size:0.85rem;color:var(--text-muted);margin-top:8px;">Buscando voces instaladas…</p>
+            <p id="audioVoiceStatus" role="status" aria-live="polite" style="font-size:0.85rem;color:var(--text-muted);margin-top:8px;">La app incluye grabaciones Piper; no necesitas instalar una voz indonesia.</p>
             <label for="audioPlaybackRate" style="display:block; font-size:0.9rem; margin:10px 0 6px;">Velocidad de reproducción</label>
             <select id="audioPlaybackRate" class="input-field" onchange="AudioEngine.setRate(this.value)" aria-label="Velocidad de reproducción de audio">
                 <option value="0.5">Muy lento (0,5×)</option>
@@ -267,8 +267,8 @@
                 <option value="0.85" selected>Normal lento (0,85×)</option>
                 <option value="1">Normal (1×)</option>
             </select>
-            <button class="btn btn-outline" style="margin-top:10px;" onclick="AudioEngine.testVoice()">Probar Voz (id-ID)</button>
-            <p id="voiceTestStatus" role="status" aria-live="polite" style="font-size:0.85rem;color:var(--text-muted);margin-top:8px;">Prueba la voz disponible en tu dispositivo. La disponibilidad y calidad de id-ID dependen del navegador y del sistema.</p>
+            <button class="btn btn-outline" style="margin-top:10px;" onclick="AudioEngine.testVoice()">Probar audio incluido</button>
+            <p id="voiceTestStatus" role="status" aria-live="polite" style="font-size:0.85rem;color:var(--text-muted);margin-top:8px;">Prueba una grabación incluida; no hace falta instalar una voz indonesia.</p>
         </div>
 
         <div class="card">

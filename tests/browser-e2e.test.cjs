@@ -1,6 +1,7 @@
 const assert = require('node:assert/strict');
 const http = require('node:http');
 const fs = require('node:fs');
+const crypto = require('node:crypto');
 const path = require('node:path');
 const { test, before, after } = require('node:test');
 const { chromium } = require('playwright');
@@ -218,13 +219,23 @@ test('real Chromium preserves progress on reload and safely imports valid/invali
 });
 
 
-test('audio engine sends Indonesian speech utterances to the browser voice API', async () => {
+test('audio engine plays bundled Indonesian MP3 before using browser voice API', async () => {
   const { server, url } = await startServer();
   const context = await browser.newContext({ serviceWorkers: 'block' });
   const page = await context.newPage();
 
   await page.addInitScript(() => {
     window.__spokenUtterances = [];
+    window.__playedAudio = [];
+    window.Audio = function (src) {
+      this.src = src;
+      this.playbackRate = 1;
+      this.play = () => {
+        window.__playedAudio.push({ src: this.src, rate: this.playbackRate });
+        return Promise.resolve();
+      };
+      this.pause = () => {};
+    };
     Object.defineProperty(window, 'speechSynthesis', {
       configurable: true,
       value: {
@@ -251,18 +262,20 @@ test('audio engine sends Indonesian speech utterances to the browser voice API',
       AudioEngine.init();
       AudioEngine.speak('Selamat pagi');
     });
-    const utterances = await page.evaluate(() => window.__spokenUtterances);
-    assert.equal(utterances.length, 1);
-    assert.equal(utterances[0].text, 'Selamat pagi');
-    assert.equal(utterances[0].lang, 'id-ID');
-    assert.equal(utterances[0].rate, 0.85);
-    assert.equal(utterances[0].voice, 'Mock Indonesian');
+    const result = await page.evaluate(() => ({
+      utterances: window.__spokenUtterances,
+      played: window.__playedAudio
+    }));
+    const hash = crypto.createHash('sha1').update('selamat pagi', 'utf8').digest('hex').slice(0, 12);
+    assert.equal(result.utterances.length, 0, 'a bundled recording must be preferred over device TTS');
+    assert.equal(result.played.length, 1);
+    assert.equal(result.played[0].src, './audio/id/' + hash + '.mp3');
+    assert.equal(result.played[0].rate, 0.85);
   } finally {
     await context.close();
     await new Promise(resolve => server.close(resolve));
   }
 });
-
 
 test('tap-to-translate shows a vocabulary meaning and example in the lesson', async () => {
   const { server, url } = await startServer();
@@ -1038,13 +1051,23 @@ test('listen-and-type exercises support optional pronunciation practice against 
   }
 });
 
-test('voice test does not use a system fallback when no Indonesian voice is installed', async () => {
+test('voice test plays a bundled recording when no Indonesian voice is installed', async () => {
   const { server, url } = await startServer();
   const context = await browser.newContext({ serviceWorkers: 'block' });
   const page = await context.newPage();
 
   await page.addInitScript(() => {
     window.__spokenUtterances = [];
+    window.__playedAudio = [];
+    window.Audio = function (src) {
+      this.src = src;
+      this.playbackRate = 1;
+      this.play = () => {
+        window.__playedAudio.push(this.src);
+        return Promise.resolve();
+      };
+      this.pause = () => {};
+    };
     Object.defineProperty(window, 'speechSynthesis', {
       configurable: true,
       value: {
@@ -1066,16 +1089,18 @@ test('voice test does not use a system fallback when no Indonesian voice is inst
     });
     const result = await page.evaluate(() => ({
       utterances: window.__spokenUtterances,
+      played: window.__playedAudio,
       status: document.getElementById('voiceTestStatus').textContent
     }));
+    const hash = crypto.createHash('sha1').update('terima kasih', 'utf8').digest('hex').slice(0, 12);
     assert.equal(result.utterances.length, 0);
-    assert.match(result.status, /no se reproducirá audio para evitar una pronunciación incorrecta/i);
+    assert.deepEqual(result.played, ['./audio/id/' + hash + '.mp3']);
+    assert.match(result.status, /Probando una grabación Piper incluida/i);
   } finally {
     await context.close();
     await new Promise(resolve => server.close(resolve));
   }
 });
-
 
 test('A1 lesson progress is sequential and the final exam gates the next unit at 80 percent', async () => {
   const { server, url } = await startServer();
@@ -1156,12 +1181,26 @@ test('A1 lesson progress is sequential and the final exam gates the next unit at
 });
 
 
-test('Indonesian TTS voice selection is available, applied to speech, and persisted', async () => {
+test('Indonesian device voice selection persists and is used only when a recording is unavailable', async () => {
   const { server, url } = await startServer();
   const context = await browser.newContext({ serviceWorkers: 'block' });
   const page = await context.newPage();
   await page.addInitScript(() => {
     window.__spokenVoices = [];
+    window.__audioPlayback = { played: [], fail: true };
+    window.Audio = function (src) {
+      this.src = src;
+      this.playbackRate = 1;
+      this.play = () => {
+        window.__audioPlayback.played.push(this.src);
+        if (window.__audioPlayback.fail) {
+          if (this.onerror) this.onerror();
+          return Promise.reject(new Error('recording unavailable in this test'));
+        }
+        return Promise.resolve();
+      };
+      this.pause = () => {};
+    };
     const voices = [
       { name: 'Mock Indonesian A', lang: 'id-ID', voiceURI: 'mock-id-a' },
       { name: 'Mock Indonesian B', lang: 'id-ID', voiceURI: 'mock-id-b' },
@@ -1192,11 +1231,12 @@ test('Indonesian TTS voice selection is available, applied to speech, and persis
       'Mock Indonesian B (id-ID)'
     ]);
     await page.locator('#audioVoiceSelect').selectOption('mock-id-b');
-    await page.evaluate(() => AudioEngine.speak('Selamat pagi'));
+    await page.evaluate(() => AudioEngine.speak('frase de respaldo sin clip'));
+    await page.waitForFunction(() => window.__spokenVoices.length === 1);
     assert.deepEqual(await page.evaluate(() => window.__spokenVoices), ['mock-id-b']);
     await page.waitForFunction(async () => (await DB.get('settings', 'audioVoiceURI')) === 'mock-id-b');
     assert.equal(await page.locator('#audioVoiceSelect').inputValue(), 'mock-id-b');
-    assert.match(await page.locator('#audioVoiceStatus').innerText(), /Voz activa: Mock Indonesian B/);
+    assert.match(await page.locator('#audioVoiceStatus').innerText(), /Voz del dispositivo disponible como respaldo: Mock Indonesian B/);
 
     await page.reload({ waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
@@ -1205,7 +1245,8 @@ test('Indonesian TTS voice selection is available, applied to speech, and persis
     await page.locator('#view-profile button[onclick*="settings"]').click();
     assert.equal(await page.locator('#audioVoiceSelect').inputValue(), 'mock-id-b',
       'the selected Indonesian voice should be restored after reload');
-    await page.evaluate(() => AudioEngine.speak('Terima kasih'));
+    await page.evaluate(() => AudioEngine.speak('frase de respaldo sin clip'));
+    await page.waitForFunction(() => window.__spokenVoices.length === 1);
     assert.deepEqual(await page.evaluate(() => window.__spokenVoices), ['mock-id-b']);
   } finally {
     await context.close();
@@ -1213,11 +1254,22 @@ test('Indonesian TTS voice selection is available, applied to speech, and persis
   }
 });
 
-test('Indonesian TTS voice selector falls back to automatic mode when no Indonesian voice exists', async () => {
+test('voice selector remains optional when no Indonesian device voice exists', async () => {
   const { server, url } = await startServer();
   const context = await browser.newContext({ serviceWorkers: 'block' });
   const page = await context.newPage();
   await page.addInitScript(() => {
+    window.__audioPlayback = { played: [], fail: true };
+    window.Audio = function (src) {
+      this.src = src;
+      this.playbackRate = 1;
+      this.play = () => {
+        window.__audioPlayback.played.push(this.src);
+        if (this.onerror) this.onerror();
+        return Promise.reject(new Error('recording unavailable in this test'));
+      };
+      this.pause = () => {};
+    };
     Object.defineProperty(window, 'speechSynthesis', {
       configurable: true,
       value: {
@@ -1235,15 +1287,15 @@ test('Indonesian TTS voice selector falls back to automatic mode when no Indones
     await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
     assert.equal(await page.locator('#audioVoiceSelect option').count(), 1);
     assert.equal(await page.locator('#audioVoiceSelect').inputValue(), 'auto');
-    assert.match(await page.locator('#audioVoiceStatus').innerText(), /No se detectó una voz indonesia instalada/);
-    await page.evaluate(() => AudioEngine.speak('Halo'));
+    assert.match(await page.locator('#audioVoiceStatus').innerText(), /grabaciones Piper y puede reproducirlas sin voces instaladas/);
+    await page.evaluate(() => AudioEngine.speak('frase sin grabación disponible'));
+    await page.waitForFunction(() => document.getElementById('audioVoiceStatus').textContent.includes('No se encontró una grabación'));
     assert.equal(await page.evaluate(() => AudioEngine.selectedVoice === null), true);
   } finally {
     await context.close();
     await new Promise(resolve => server.close(resolve));
   }
 });
-
 
 test('Indonesian voices discovered asynchronously refresh the selector', async () => {
   const { server, url } = await startServer();
@@ -1274,7 +1326,7 @@ test('Indonesian voices discovered asynchronously refresh the selector', async (
     await page.evaluate(() => window.__publishIndonesianVoices());
     await page.waitForFunction(() => document.querySelectorAll('#audioVoiceSelect option').length === 2);
     assert.equal(await page.locator('#audioVoiceSelect option').nth(1).textContent(), 'Late Indonesian (id-ID)');
-    assert.match(await page.locator('#audioVoiceStatus').innerText(), /1 voz indonesia disponible/);
+    assert.match(await page.locator('#audioVoiceStatus').innerText(), /Voz del dispositivo disponible como respaldo: Late Indonesian/);
   } finally {
     await context.close();
     await new Promise(resolve => server.close(resolve));

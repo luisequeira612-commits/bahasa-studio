@@ -124,7 +124,7 @@ def ensure_single_voice(metadata_file: Path, engine: str, voice: str):
                 "Do not mix voices between A1, A2 and B1."
             )
     else:
-        metadata_file.write_text(json.dumps(expected, indent=2) + "\\n", encoding="utf-8")
+        metadata_file.write_text(json.dumps(expected, indent=2) + "\n", encoding="utf-8")
 
 
 def render_samples_index(samples_dir: Path, samples: list[dict]):

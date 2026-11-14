@@ -99,7 +99,7 @@ La exportación normal mantiene la cobertura histórica de A1, A2 y B1 para que 
 - Cada línea de diálogo reproducible de los escenarios del tutor.
 - La respuesta correcta de cada turno, que el botón de ejemplo del modo de conversación libre reproduce con audio.
 
-Auditoría del código real del 14 nov 2026: 97 entradas únicas contadas por categoría de origen en esas cuatro superficies. Tras deduplicar entre categorías y contrastar con la biblioteca actual, el exportador añade 68 IDs nuevos. Desglose por origen: 40 exercise-audioText (16 nuevos), 3 assessment-listen (2 nuevos), 27 conversation-turn (26 nuevos) y 27 conversation-example (24 nuevos). El resultado se deduplica con el SHA-1 de texto existente; no se cambian IDs ni normalización.
+Auditoría del código real del 14 nov 2026: 96 textos estáticos distintos tras deduplicar entre categorías; 28 ya estaban cubiertos y 68 carecían de clip. Los cuatro grupos contienen 97 entradas únicas contadas por categoría porque un texto aparece en dos grupos. Desglose por origen: 40 exercise-audioText (16 nuevos), 3 assessment-listen (2 nuevos), 27 conversation-turn (26 nuevos) y 27 conversation-example (24 nuevos). El resultado se deduplica con el SHA-1 de texto existente; no se cambian IDs ni normalización.
 
 El tutor no intenta pregenerar las respuestas libres escritas por el usuario: siguen usando el fallback TTS del dispositivo cuando no hay clip. La reproducción dinámica no puede tener cobertura estática completa.
 

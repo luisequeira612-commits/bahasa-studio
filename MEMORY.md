@@ -139,3 +139,10 @@
 
 
 - 14 nov 2026: Inicio de la auditoría ampliada de la biblioteca de audio sobre `main` `ad2f96a53e71153d92012efc953df8b7396d0628`. Confirmado: 2.084 IDs únicos (2.170 pertenencias de nivel; 86 compartidos), 2.084 MP3 con 13.155.444 bytes; normalización = trim + colapsar espacios + minúsculas, sin quitar puntuación ni aplicar Unicode NFC/NFD. El exportador recorre A1→A2→B1 y conserva la primera variante de texto por ID. El reproductor usa MP3 vía `new Audio()`; Opus no aparece en la ruta principal. La prueba física Android solo valida el clip reproducido/almacenado, no la biblioteca completa. Se añade documentación `docs/AUDIO.md`, invariantes de manifiesto/índice/MP3 y workflow manual de sondeo HTTP Range. El intento de curl desde el entorno de trabajo no pudo resolver el dominio (DNS bloqueado); no se declara resultado de GitHub Pages. Pendiente ejecutar el workflow manual tras integrar esta PR. No modificar hashes/rutas/normalización, IndexedDB v1 ni backup JSON v3. Plan acordado: PRs separados para guardado seguro, caché/migración e implementación Range; descarga por nivel solo tras prueba física posterior.
+
+
+## PR #585 — guardado seguro del Service Worker — 14 nov 2026
+- Rama `fix/audio-safe-cache-put`: PR #585 separa el guardado seguro del Range. El Service Worker solo intenta guardar respuestas HTTP 200 completas; las 206 de Range no entran en la caché normal.
+- Los errores de `cache.put()` son fail-open y se mantienen dentro de `waitUntil()`, para que una cuota/caché defectuosa no impida reproducir el audio ni completar la respuesta de red.
+- Añade pruebas de regresión para 200, fallo de caché y rechazo de 206. No cambia hashes, rutas, normalización, IndexedDB v1, backup JSON v3 ni dependencias.
+- Pendiente: CI del head exacto y revisión antes de fusionar; el manejo Range 206/416 y la caché/migración independiente siguen siendo PRs separadas.

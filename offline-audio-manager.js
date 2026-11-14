@@ -168,6 +168,7 @@
                 failedEntries.push(entry);
                 if (error && (error.name === 'QuotaExceededError' || /quota|storage full/i.test(String(error.message || '')))) {
                     storageFull = true;
+                    failedEntries.push(...pending.slice(index + 1));
                     activeController.abort();
                 }
             }

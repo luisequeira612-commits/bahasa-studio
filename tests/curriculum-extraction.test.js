@@ -92,7 +92,8 @@ test('service worker precaches both data files and invalidates the previous cach
   const cache = {
     async add(request) { cached.set(String(request.url || request), { url: String(request.url || request) }); },
     async match(request) { return cached.get(String(request.url || request)); },
-    async put(request, response) { cached.set(String(request.url || request), response); }
+    async put(request, response) { cached.set(String(request.url || request), response); },
+    async keys() { return []; }
   };
   const deletedCaches = [];
   const cachesApi = {

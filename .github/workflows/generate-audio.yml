@@ -23,7 +23,7 @@ on:
       level:
         description: Nivel para generación completa
         type: choice
-        options: [A1, A2, B1, all]
+        options: [A1, A2, B1]
         default: A1
         required: true
       confirm_full:
@@ -38,7 +38,7 @@ permissions:
   actions: write
 
 concurrency:
-  group: generate-audio-${{ inputs.mode }}-${{ inputs.engine }}-${{ inputs.level }}
+  group: generate-audio
   cancel-in-progress: false
 
 jobs:
@@ -163,8 +163,14 @@ jobs:
             gh pr edit "$EXISTING" --title "$TITLE" --body "$BODY"
             echo "PR_URL=$EXISTING" >> "$GITHUB_OUTPUT"
           else
-            URL="$(gh pr create --head "$AUDIO_BRANCH" --base main --title "$TITLE" --body "$BODY")"
-            echo "PR_URL=$URL" >> "$GITHUB_OUTPUT"
+            if URL="$(gh pr create --head "$AUDIO_BRANCH" --base main --title "$TITLE" --body "$BODY")"; then
+              echo "PR_URL=$URL" >> "$GITHUB_OUTPUT"
+            else
+              COMPARE="https://github.com/luisequeira612-commits/bahasa-studio/compare/main...$AUDIO_BRANCH?expand=1"
+              echo "PR_CREATE_BLOCKED=true" >> "$GITHUB_OUTPUT"
+              echo "COMPARE_URL=$COMPARE" >> "$GITHUB_OUTPUT"
+              echo "::warning::No se pudo crear el PR automáticamente. La rama quedó publicada; usa el enlace Compare & pull request."
+            fi
           fi
 
       - name: Trigger regression CI for the generated branch
@@ -192,6 +198,9 @@ jobs:
           echo "- Rama: `$AUDIO_BRANCH`" >> "$GITHUB_STEP_SUMMARY"
           if [[ -n "${{ steps.pr.outputs.PR_URL }}" ]]; then
             echo "- PR: ${{ steps.pr.outputs.PR_URL }}" >> "$GITHUB_STEP_SUMMARY"
+          fi
+          if [[ -n "${{ steps.pr.outputs.COMPARE_URL }}" ]]; then
+            echo "- Crear PR manualmente: ${{ steps.pr.outputs.COMPARE_URL }}" >> "$GITHUB_STEP_SUMMARY"
           fi
           if [[ "$MODE" == "samples" ]]; then
             echo "- Página prevista tras publicar la rama: https://luisequeira612-commits.github.io/bahasa-studio/audio-samples/" >> "$GITHUB_STEP_SUMMARY"

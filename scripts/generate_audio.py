@@ -171,7 +171,7 @@ def main():
     if not entries:
         raise SystemExit("No curriculum texts matched the selected level/limit.")
 
-    output_root = ROOT / ("audio-samples" if args.mode == "samples" else "audio" / Path("id"))
+    output_root = ROOT / ("audio-samples" if args.mode == "samples" else "audio/id")
     output_dir = output_root / args.engine if args.mode == "samples" else output_root
     output_dir.mkdir(parents=True, exist_ok=True)
     model_cache = ROOT / ".audio-model-cache"

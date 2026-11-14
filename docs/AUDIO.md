@@ -31,8 +31,9 @@ La biblioteca contiene MP3 y Opus para los mismos IDs. El reproductor principal 
 
 - El Service Worker actual precarga `audio/index.json` y `audio/metadata.json`.
 - Los MP3 se descargan y se guardan bajo demanda cuando se reproducen; la biblioteca completa no se precarga.
-- La caché actual usa el nombre versionado `bahasa-studio-v3.8.95`. No existe todavía una caché de audio independiente ni una migración de clips.
-- El manejador actual intenta guardar respuestas `res.ok` sin capturar el rechazo de `cache.put()`. Cache API no permite guardar respuestas parciales 206 como si fueran respuestas completas. El soporte Range y la estrategia de caché se mantienen pendientes de cambios separados y pruebas.
+- Los recursos de la aplicación usan una caché versionada; los MP3 usan la caché persistente independiente `guardi-audio-v1`. Durante activación, el Service Worker migra clips completos HTTP 200 desde las cachés antiguas `bahasa-studio-*` y solo las elimina si la migración termina sin errores.
+- `audio/metadata.json` incluye SHA-256 por ID MP3. Si cambia el contenido de un clip existente, ese clip se invalida; añadir IDs nuevos no invalida los clips anteriores. La migración solo copia IDs presentes en la biblioteca actual y no sobrescribe una copia ya válida.
+- Las respuestas 206 no se guardan como archivos completos; los fetch con cabecera Range tampoco se guardan todavía. El manejo de respuestas Range 206/416 sigue siendo un cambio separado.
 - Una prueba física en Tecno Pova 4 confirmó que un clip reproducido primero con conexión volvió a sonar en modo avión, sin voz indonesia instalada. Esto valida ese clip ya almacenado, no que toda la biblioteca esté disponible offline.
 - No se ha probado Safari/iOS. No afirmar compatibilidad de reproducción Range en esos entornos.
 

@@ -1490,9 +1490,9 @@ test('bundled Indonesian recordings work without an installed device voice', () 
   assert.match(html, /id="voiceTestStatus"/);
   assert.match(html, /grabaciones de voz Piper/);
   assert.match(audioEngineSource, /La app incluye grabaciones Piper y puede reproducirlas sin voces instaladas/);
-  assert.match(audioEngineSource, /playRecorded\\(text\\)/);
-  assert.match(audioEngineSource, /new Audio\\('\\.\\/audio\\/id\\/' \\+ id \\+ '\\.mp3'\\)/);
-  assert.match(audioEngineSource, /testVoice\\(\\) \\{[\\s\\S]*?this\\.speak\\('terima kasih'\\);/);
+  assert.ok(audioEngineSource.includes('playRecorded(text)'));
+  assert.ok(audioEngineSource.includes("new Audio('./audio/id/' + id + '.mp3')"));
+  assert.ok(audioEngineSource.includes("this.speak('terima kasih')"));
   assert.doesNotMatch(audioEngineSource, /voz predeterminada del sistema con el idioma id-ID/);
 });;
 

@@ -96,6 +96,9 @@ window.AudioEngine = {
                     alert('Este navegador no admite síntesis de voz. Prueba con otro navegador o dispositivo para escuchar el indonesio.');
                     return;
                 }
+                // Chrome on Android may expose its installed voices after initial page setup.
+                // Re-read the browser list in the user's playback gesture before deciding audio is unavailable.
+                this.refreshVoices();
                 const voice = this.selectedVoice || this.idVoice;
                 if (!voice || !String(voice.lang || '').toLowerCase().startsWith('id')) {
                     this.updateVoiceStatus();

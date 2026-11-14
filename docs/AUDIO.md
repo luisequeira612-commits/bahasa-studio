@@ -1,6 +1,6 @@
 # Biblioteca de audio de Guardi
 
-Última revisión del código y los artefactos: 14 nov 2026. Rama base inspeccionada: `main` en `ad2f96a53e71153d92012efc953df8b7396d0628`.
+Última revisión del código y los artefactos: 14 nov 2026. Rama base inspeccionada: `main` en `2731fb50fa5f6d33e8d3252d548e82c4a2182864` (PR #593).
 
 ## Reproducción actual
 
@@ -31,7 +31,7 @@ La biblioteca contiene MP3 y Opus para los mismos IDs. El reproductor principal 
 
 - El Service Worker actual precarga `audio/index.json` y `audio/metadata.json`.
 - Los MP3 se descargan y se guardan bajo demanda cuando se reproducen; la biblioteca completa no se precarga.
-- La caché de recursos de la app usa un nombre versionado (`bahasa-studio-v3.8.98`). Los MP3 pasan a una caché persistente separada `guardi-audio-v1`, que no se elimina al actualizar la versión de la app.
+- La caché de recursos de la app usa un nombre versionado (`bahasa-studio-v3.8.99`). Los MP3 pasan a una caché persistente separada `guardi-audio-v1`, que no se elimina al actualizar la versión de la app.
 - En la activación, el Service Worker copia MP3 completos (200 y cuerpo no vacío) desde todas las cachés antiguas `bahasa-studio-*` a `guardi-audio-v1`. Solo elimina las cachés antiguas después de completar todas las copias; si falla una copia, conserva las fuentes y sigue sirviendo desde ellas mientras reintenta en la siguiente activación.
 - La migración es idempotente y no sobrescribe clips que ya están en la caché persistente. La nueva caché no incluye recursos generales de la aplicación.
 - `audio/metadata.json` incorpora SHA-256 de cada MP3 cuando se ejecuta una generación completa. En la siguiente activación, el Service Worker comprueba los bytes de los clips persistidos y elimina solo los que cambiaron o ya no pertenecen al índice; los clips intactos sobreviven aunque se añadan IDs nuevos. La generación incrementa automáticamente la versión de caché de la app para activar esta comprobación.
@@ -63,7 +63,7 @@ Fuentes de licencia consultadas el 14 nov 2026:
 
 El workflow manual `.github/workflows/audio-range-probe.yml` confirmó que GitHub Pages admite Range para los MP3 publicados. En la muestra del 14 nov 2026, GET normal devolvió 200 y `Range: bytes=0-1` devolvió 206 con `Content-Range: bytes 0-1/6765` y `Content-Length: 2`. El resultado se limita a ese endpoint de prueba.
 
-La implementación en la rama PR3c (`fix/audio-range-requests`, todavía pendiente de CI/revisión al registrar esta nota) sigue esta estrategia:
+La implementación integrada mediante PR #588 sigue esta estrategia:
 
 - Quita el encabezado Range de la petición al origen y obtiene el archivo completo 200; solo ese archivo completo se guarda en `guardi-audio-v1`.
 - Construye la respuesta 206 desde los bytes del MP3 completo, tanto si procede de red como de caché. Así Cache API nunca recibe una respuesta parcial.
@@ -88,3 +88,21 @@ No modificar hashes, rutas, normalización, IndexedDB v1 ni backup JSON v3 duran
 ## Actualizar huellas sin volver a generar audio
 
 El workflow manual [Generate Indonesian audio](https://github.com/luisequeira612-commits/bahasa-studio/actions/workflows/generate-audio.yml) ofrece el modo `hashes`. Este modo calcula SHA-256 de los MP3 ya presentes en `audio/id/`, actualiza `audio/metadata.json` y aumenta la versión del Service Worker solo si cambió el mapa. No instala Piper, no instala FFmpeg, no sintetiza ni descarga clips. El workflow crea/actualiza una PR para revisar metadata y Service Worker; tras fusionarla, el navegador precarga las huellas y activa la invalidación selectiva.
+
+
+## Cobertura de audio estático en superficies interactivas — 14 nov 2026
+
+La exportación normal mantiene la cobertura histórica de A1, A2 y B1 para que los checks de main sigan validando exactamente la biblioteca publicada. El exportador admite ahora la opción explícita --include-interactive, que incorpora además:
+
+- audioText de ejercicios que se reproducen desde las lecciones (incluidos los ejercicios de opción múltiple).
+- Los textos de escucha del banco de evaluaciones (audioText || answer).
+- Cada línea de diálogo reproducible de los escenarios del tutor.
+- La respuesta correcta de cada turno, que el botón de ejemplo del modo de conversación libre reproduce con audio.
+
+Auditoría del código real del 14 nov 2026: 84 textos estáticos distintos en esas cuatro superficies; 24 ya estaban en la biblioteca y 60 carecían de clip. Desglose de textos únicos por origen: 28 exercise-audioText (8 nuevos), 3 assessment-listen (2 nuevos), 27 conversation-turn (26 nuevos) y 27 conversation-example (24 nuevos). El resultado se deduplica con el SHA-1 de texto existente; no se cambian IDs ni normalización.
+
+El tutor no intenta pregenerar las respuestas libres escritas por el usuario: siguen usando el fallback TTS del dispositivo cuando no hay clip. La reproducción dinámica no puede tener cobertura estática completa.
+
+Tras integrar la PR de cobertura, la generación de los 60 clips pendientes se ejecutará con el workflow manual en engine=piper, mode=full, level=all, limit=0 y confirm_full=true. El modo all recorre el manifiesto ampliado y el generador omite cada ID que ya tenga MP3 y Opus, por lo que solo sintetiza los clips que faltan. Los tests del workflow comparan manifiesto, índice y archivos físicos con la cobertura ampliada. El tamaño final esperado es 2.144 IDs únicos si el contenido no cambia antes de la generación.
+
+Esta ampliación no precarga toda la biblioteca en el teléfono ni modifica la estrategia de caché offline: cada clip sigue descargándose al reproducirse por primera vez.

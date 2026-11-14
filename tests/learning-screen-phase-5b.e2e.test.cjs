@@ -456,7 +456,7 @@ test('translation bubble exposes expanded state and supports keyboard open and E
     });
 
     const trigger = page.locator('.tap-translation-word').last();
-    await page.keyboard.press('Enter');
+    await trigger.press('Enter');
     const bubble = page.locator('#tapTranslationBubble');
     await page.waitForFunction(() => document.getElementById('tapTranslationBubble')?.hidden === false);
     assert.equal(await trigger.getAttribute('aria-expanded'), 'true');

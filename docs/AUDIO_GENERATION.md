@@ -1,7 +1,7 @@
 # Generación de audio desde GitHub Actions
 
 Fecha: 14 nov 2026  
-Estado: infraestructura de muestras; **no se autoriza todavía generar A1/A2/B1 completos ni integrar audio en la app**.
+Estado: **Piper seleccionado como motor principal** para la biblioteca no comercial. La generación completa A1/A2/B1 sigue pendiente de ejecutarse y superar auditoría automática antes de integrar audio en la app.
 
 ## Entorno real
 
@@ -15,9 +15,9 @@ Después de fusionar el PR que añade el workflow:
 2. Toca **Actions**.
 3. Selecciona **Generate Indonesian audio**.
 4. Toca **Run workflow**.
-5. Deja la rama en `main`, selecciona `engine=edge`, `mode=samples`, `limit=10`, y toca **Run workflow**.
+5. Deja la rama en `main`, selecciona `engine=piper`, `mode=samples`, `limit=10`, y toca **Run workflow**.
 6. Cuando termine, abre el resumen de la ejecución. El workflow sube una copia de recuperación como artifact y actualiza la rama/PR `audio/tts-samples`.
-7. Repite con `piper` y luego `mms`; las muestras de cada motor se acumulan en la misma página y usan los mismos primeros textos del manifiesto.
+7. Las muestras de Edge, Piper y MMS ya están publicadas y comparadas. La selección para producción es Piper; no hace falta volver a generar muestras salvo que cambie el modelo.
 
 La generación completa exige `mode=full` y `confirm_full=true`. No usarlo hasta elegir voz y aprobar la siguiente fase. El workflow permite seleccionar A1, A2 o B1 para que cada nivel se genere en una rama/PR separada. La primera generación completa guarda `audio/metadata.json`; las siguientes rechazan cualquier motor o voz diferente para impedir mezclar voces. Fusiona A1 antes de iniciar A2, y A2 antes de B1, para que el bloqueo se herede en `main`.
 
@@ -58,12 +58,14 @@ GitHub documenta que un `push` hecho con `GITHUB_TOKEN` no dispara otros workflo
 - Depende de un servicio online de Microsoft; GitHub Actions puede recibir bloqueos, 403, rate limits o cambios de protocolo desde IPs de centros de datos. Si falla, el workflow deja el job en error y se prueba Piper o MMS. No hay garantía de continuidad ni de términos de uso para este cliente no oficial.
 
 ### Piper
-- Paquete Python: `piper-tts==1.8.0`; licencia del paquete: GPL-3.0-or-later. Solo se instala en el runner, no en la app.
-- Voz exacta: `id_ID-news_tts-medium`; archivo ONNX de 62,950,044 bytes (aprox. 60 MiB) y configuración de 5 KB.
-- El modelo card actual en `piper-voices` remite a una URL de dataset distinta/ambigua. Un checkpoint histórico de Piper remite a un dataset CC BY-NC-SA 4.0. La licencia efectiva de los pesos y los derechos de los audios resultantes no están resueltos. Piper se puede probar como candidato, pero no se distribuirán audios de forma permanente hasta aclarar la procedencia/licencia. El workflow descarga los dos archivos desde un commit fijado y comprueba sus MD5.
+- Paquete Python: `piper-tts==1.8.0`; licencia del paquete ejecutor: GPL-3.0-or-later. Solo se instala en el runner de GitHub Actions, no en la app.
+- Voz elegida: `id_ID-news_tts-medium`; archivo ONNX de 62,950,044 bytes (aprox. 60 MiB) y configuración de 5 KB.
+- **Importante: el MIT mostrado en el repositorio `rhasspy/piper-voices` no debe confundirse con la licencia de los datos de entrenamiento de esta voz.** La ficha del checkpoint indonesio identifica el dataset `s-sakti/data_indsp_news_tts` y CC BY-NC-SA 4.0. La voz debe tratarse como no comercial; conservar atribución y condiciones ShareAlike como enfoque conservador. La aplicación sigue siendo gratuita y no comercial. El efecto jurídico exacto de la licencia sobre los audios generados no está resuelto; esto no es asesoría legal. No usar esta voz si el proyecto pasa a ser comercial sin una nueva revisión de derechos.
+- La ficha más reciente de `piper-voices` tiene metadatos de dataset inconsistentes; para la atribución/licencia se conserva la ficha original del checkpoint: https://huggingface.co/datasets/rhasspy/piper-checkpoints/blob/main/id/id_ID/news_tts/medium/MODEL_CARD. La cadena de entrenamiento también menciona una voz base `lessac`; revisar toda la cadena si cambia el uso previsto.
+- El workflow descarga el modelo en el runner y no lo incorpora al repositorio ni a GitHub Pages.
 
 ### MMS-TTS
-- Modelo: `facebook/mms-tts-ind`, licencia CC BY-NC 4.0; el archivo de pesos publicado es de 145 MB.
+- Modelo alternativo evaluado: `facebook/mms-tts-ind`, licencia CC BY-NC 4.0 explícita (no comercial, sin cláusula ShareAlike); archivo de pesos de 145 MB. Su licencia es menos restrictiva que la cadena CC BY-NC-SA de la voz Piper, pero el usuario prefiere Piper y el proyecto es estrictamente no comercial.
 - Requiere PyTorch CPU, Transformers, SentencePiece y SciPy. La descarga de PyTorch más Transformers y el modelo puede superar varios cientos de MB; estimación de instalación/carga: 8–25 minutos en runner estándar, variable por caché y disponibilidad. Es más pesado, pero no requiere servicio de síntesis externo.
 - CC BY-NC 4.0 es no comercial. Para compartir la app gratis puede ser compatible bajo atribución y demás condiciones, pero no usar en un producto comercial ni asumir que cualquier adaptación queda cubierta sin revisar la licencia.
 
@@ -77,10 +79,19 @@ GitHub documenta que un `push` hecho con `GITHUB_TOKEN` no dispara otros workflo
 
 ## Plan de respaldo y Termux
 
-Si Edge falla, se intenta Piper; si Piper falla o su licencia no se aclara, MMS es la alternativa de código abierto no comercial. No se cambia automáticamente de motor dentro de una misma biblioteca: todas las frases finales deben salir de una única voz/motor elegido.
+Motor de producción seleccionado: Piper. MMS queda como alternativa técnica con licencia CC BY-NC 4.0 si la condición ShareAlike de Piper deja de ser aceptable; Edge no se recomienda para producción por depender de un servicio online mediante cliente no oficial. No se cambia automáticamente de motor dentro de una misma biblioteca: todas las frases finales deben salir de una única voz/motor elegido.
 
 Termux queda como último recurso. En un Tecno Pova 4, ejecutar Piper puede ser técnicamente posible solo si existe un wheel ONNX Runtime ARM64 compatible y suficiente RAM/espacio, pero la instalación de dependencias nativas y ffmpeg puede ser problemática. MMS con PyTorch en Android/Termux es desproporcionado y no lo recomiendo. Edge TTS desde Termux seguiría dependiendo del servicio online y no resolvería los riesgos. GitHub Actions es la ruta sensata; no te pediré que instales ni ejecutes nada en el teléfono.
 
 ## Validación
 
 Las pruebas de manifiesto y generación de la página se ejecutan en el workflow de regresión. El usuario solo escucha las muestras. La escucha no nativa puede detectar silencios, cortes o artefactos, pero no certificar pronunciación ni naturalidad. El contenido curricular mantiene sus estados de verificación actuales.
+
+
+## Resultado de comparación y decisión — 14 nov 2026
+
+El usuario escuchó las muestras de los tres motores y mantiene preferencia por Piper. La decisión para el proyecto personal/no comercial es **Piper `id_ID-news_tts-medium`**: ofrece el tamaño más reducido y es la voz preferida por el usuario. La licencia de la voz debe tratarse como CC BY-NC-SA 4.0 por su dataset de entrenamiento; no confundir con el metadato MIT del repositorio ni con la GPL del paquete ejecutor. MMS tiene licencia CC BY-NC 4.0 explícita y por tanto condiciones menos restrictivas en ShareAlike, pero sus pesos son más grandes.
+
+Tamaño medido de los 10 MP3 de prueba (mismos textos): Piper 60,114 bytes; MMS 76,386 bytes; Edge 121,890 bytes. Piper fue aprox. 21.3% menor que MMS y 50.7% menor que Edge en esta muestra. No extrapolar exactamente estos porcentajes a toda la biblioteca: medir el total de A1/A2/B1 después de generar.
+
+La elección no certifica pronunciación nativa. Antes de integrar, ejecutar generación por nivel en GitHub Actions, auditar automáticamente existencia, integridad, duración, correspondencia ID/texto y tamaño; revisar manualmente solo muestra representativa y outliers. Mantener atribución de dataset/modelo y no usar la voz con fines comerciales sin nueva revisión de derechos.

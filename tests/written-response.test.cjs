@@ -184,5 +184,5 @@ test('real A1/A2 written-response exercises accept their canonical answer throug
    else assert.notEqual(alternativeResult.status,'correct',level+'/'+unit+' unapproved alternative: '+text);
   }
  }
- assert.equal(cases.length,763,'baseline: active A1/A2 written-response exercises after A1 U1-U8 and A2 spaced-retrieval lessons');
+ assert.equal(cases.length,773,'baseline: active A1/A2 written-response exercises after A1 U1-U8 and A2 spaced-retrieval lessons');
 });

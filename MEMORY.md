@@ -147,8 +147,8 @@
 - La corrección no cambia hashes, rutas, normalización, IndexedDB v1, backup JSON v3 ni dependencias. Pendiente CI del head corregido y revisión antes de fusionar; el manejo Range 206/416 y la caché/migración independiente siguen siendo PRs separadas.
 
 
-## PR #586 — caché de audio independiente y migración — 14 nov 2026
+## PR #587 — caché de audio independiente y migración — 14 nov 2026
 - PR #586 separa los MP3 en `guardi-audio-v1`, independiente de la caché versionada de la aplicación. El Service Worker migra solo respuestas completas 200 desde cachés antiguas `bahasa-studio-*`; las cachés antiguas se conservan si cualquier parte de la migración falla.
-- La migración es idempotente, conserva clips ya presentes, omite entradas que no sean MP3 de la biblioteca actual y no guarda respuestas 206. La activación continúa aunque la migración no pueda completarse; se reintentará en una activación posterior.
+- La migración es idempotente, conserva clips ya presentes, omite entradas que no sean MP3 de la biblioteca actual y no guarda respuestas 206. La activación continúa aunque la migración no pueda completarse; se reintentará en una activación posterior. Mientras la metadata antigua no tenga huellas SHA-256, las cachés previas se conservan y el fetch puede leerlas como respaldo.
 - `scripts/generate_audio.py` registra SHA-256 por ID MP3 en `audio/metadata.json`. Al cambiar el contenido de un ID existente, el Service Worker invalida solo ese clip; la incorporación de IDs nuevos no invalida los anteriores.
 - No cambia hashes SHA-1 de texto, rutas de audio, normalización, IndexedDB v1, backup JSON v3 ni dependencias. El soporte de respuesta Range 206/416 queda para PR separada. Pendiente CI y revisión del head exacto.

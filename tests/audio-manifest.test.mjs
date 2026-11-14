@@ -72,6 +72,13 @@ test('optional interactive audio export covers every static playback surface', a
     const interactive = JSON.parse(await readFile(interactiveOutput, 'utf8'));
     const countSource = (kind) => interactive.filter((entry) => entry.sources.some((source) => source.kind === kind)).length;
 
+    const baseIds = new Set(base.map((entry) => entry.id));
+    const kinds = ['exercise-audioText', 'assessment-listen', 'conversation-turn', 'conversation-example'];
+    const staticEntries = interactive.filter((entry) => entry.sources.some((source) => kinds.includes(source.kind)));
+    const missingBySource = Object.fromEntries(kinds.map((kind) => [
+      kind,
+      interactive.filter((entry) => entry.sources.some((source) => source.kind === kind) && !baseIds.has(entry.id)).length
+    ]));
     assert.equal(countSource('exercise-audioText'), 40, 'all unique lesson audioText prompts must be collected');
     assert.equal(countSource('assessment-listen'), 3, 'all unique assessment listen utterances must be collected');
     assert.equal(countSource('conversation-turn'), 27, 'all unique conversation turns must be collected');
@@ -84,13 +91,6 @@ test('optional interactive audio export covers every static playback surface', a
       'conversation-turn': 26,
       'conversation-example': 24
     }, 'all 68 missing clips must be attributed to their playback source');
-    const baseIds = new Set(base.map((entry) => entry.id));
-    const kinds = ['exercise-audioText', 'assessment-listen', 'conversation-turn', 'conversation-example'];
-    const staticEntries = interactive.filter((entry) => entry.sources.some((source) => kinds.includes(source.kind)));
-    const missingBySource = Object.fromEntries(kinds.map((kind) => [
-      kind,
-      interactive.filter((entry) => entry.sources.some((source) => source.kind === kind) && !baseIds.has(entry.id)).length
-    ]));
     console.log('interactive audio coverage audit', JSON.stringify({
       base: base.length,
       interactive: interactive.length,

@@ -269,6 +269,22 @@
             </select>
             <button class="btn btn-outline" style="margin-top:10px;" onclick="AudioEngine.testVoice()">Probar audio incluido</button>
             <p id="voiceTestStatus" role="status" aria-live="polite" style="font-size:0.85rem;color:var(--text-muted);margin-top:8px;">Prueba una grabación incluida; no hace falta instalar una voz indonesia.</p>
+            <div id="offlineAudioPreparation" style="margin-top:16px;padding-top:14px;border-top:1px solid var(--border);">
+                <h4 style="margin:0 0 6px;">Preparar audio para usar sin conexión</h4>
+                <p style="font-size:0.85rem;color:var(--text-muted);margin:0 0 10px;">Guarda los MP3 en este dispositivo. Puedes preparar un nivel o toda la biblioteca. Se recomienda Wi-Fi; no se descargan automáticamente.</p>
+                <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;">
+                    <button class="btn btn-outline" type="button" data-offline-audio-level="A1">Preparar A1</button>
+                    <button class="btn btn-outline" type="button" data-offline-audio-level="A2">Preparar A2</button>
+                    <button class="btn btn-outline" type="button" data-offline-audio-level="B1">Preparar B1</button>
+                    <button class="btn btn-outline" type="button" data-offline-audio-level="all">Toda la biblioteca</button>
+                </div>
+                <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;">
+                    <button id="offlineAudioCancel" class="btn btn-outline" type="button" disabled>Cancelar descarga</button>
+                    <button id="offlineAudioRetry" class="btn btn-outline" type="button" hidden>Reintentar fallidos</button>
+                </div>
+                <p id="offlineAudioStatus" role="status" aria-live="polite" aria-atomic="true" style="font-size:0.85rem;color:var(--text-muted);margin:10px 0 0;">Consultando audios guardados…</p>
+                <progress id="offlineAudioProgress" max="1" value="0" style="display:block;width:100%;height:10px;margin-top:8px;"></progress>
+            </div>
         </div>
 
         <div class="card">
@@ -8848,6 +8864,7 @@ Requisitos:
     <script src="./conversation-engine.js"></script>
     <script src="./study-history.js"></script>
     <script src="./study-activity.js"></script>
+    <script src="./offline-audio-manager.js"></script>
     <script src="./adaptive-learning.js"></script>
     <script src="./writing-practice.js"></script>
 

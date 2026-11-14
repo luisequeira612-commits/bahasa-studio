@@ -1,6 +1,6 @@
-const CACHE_NAME = 'bahasa-studio-v3.8.100';
+const CACHE_NAME = 'bahasa-studio-v3.8.101';
 const AUDIO_CACHE_NAME = 'guardi-audio-v1';
-const ASSETS = ['./', './index.html', './manifest.json', './icon.svg', './assessment.html', './assessment-engine.js', './conversation-engine.js', './study-history.js', './study-activity.js', './adaptive-learning.js', './curriculum-a1.js', './curriculum-a2.js', './styles.css', './audio-engine.js', './audio/index.json', './audio/metadata.json', './pronunciation-engine.js', './writing-practice.js', './apple-touch-icon.png', './icon-192.png', './icon-512-any.png', './icon-512-maskable.png', './assets/guardi/guardi-normal.svg', './assets/guardi/guardi-feliz.svg', './assets/guardi/guardi-triste.svg', './assets/guardi/guardi-celebrando.svg', './assets/guardi/guardi-pensando.svg', './assets/guardi/guardi-mark.svg', './assets/guardi/guardi-icon.svg'];
+const ASSETS = ['./', './index.html', './manifest.json', './icon.svg', './assessment.html', './assessment-engine.js', './conversation-engine.js', './study-history.js', './study-activity.js', './adaptive-learning.js', './curriculum-a1.js', './curriculum-a2.js', './styles.css', './audio-engine.js', './audio/index.json', './audio/manifest.json', './audio/metadata.json', './offline-audio-manager.js', './pronunciation-engine.js', './writing-practice.js', './apple-touch-icon.png', './icon-192.png', './icon-512-any.png', './icon-512-maskable.png', './assets/guardi/guardi-normal.svg', './assets/guardi/guardi-feliz.svg', './assets/guardi/guardi-triste.svg', './assets/guardi/guardi-celebrando.svg', './assets/guardi/guardi-pensando.svg', './assets/guardi/guardi-mark.svg', './assets/guardi/guardi-icon.svg'];
 
 const inFlightAudioFetches = new Map();
 
@@ -234,6 +234,12 @@ self.addEventListener('fetch', (e) => {
     const requestUrl = new URL(req.url);
     if (req.method !== 'GET' || requestUrl.origin !== self.location.origin) return;
     const audioRequest = isAudioClipRequest(req);
+    // The offline preparation manager verifies SHA-256 before writing a new clip.
+    // Let its explicit fetch reach the network without the normal background cache write.
+    if (audioRequest && req.headers.get('x-offline-audio-preparation') === '1') {
+        e.respondWith(fetch(withoutRangeHeader(req), { cache: 'no-store' }));
+        return;
+    }
     const targetCacheName = audioRequest ? AUDIO_CACHE_NAME : CACHE_NAME;
     const cacheRequest = audioRequest ? withoutRangeHeader(req) : req;
     const rangeHeader = audioRequest ? req.headers.get('range') : null;

@@ -44,6 +44,8 @@ jobs:
         run: node --test tests/audio-engine.test.cjs
       - name: Run Indonesian audio manifest export tests
         run: node --test tests/audio-manifest.test.mjs
+      - name: Run offline audio preparation tests
+        run: node --test tests/offline-audio-manager.test.cjs
       - name: Run audio sample page generation tests
         run: python -m unittest discover -s tests -p 'test_audio_generation.py'
       - name: Check Python audio generator syntax
@@ -279,6 +281,7 @@ jobs:
             curriculum-a1.js
             curriculum-a2.js
             audio-engine.js
+            offline-audio-manager.js
             pronunciation-engine.js
             writing-practice.js
             styles.css

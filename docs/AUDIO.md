@@ -106,3 +106,14 @@ El tutor no intenta pregenerar las respuestas libres escritas por el usuario: si
 Tras integrar la PR de cobertura, la generación de los 68 clips pendientes se ejecutará con el workflow manual en engine=piper, mode=full, level=all, limit=0 y confirm_full=true. El modo all recorre el manifiesto ampliado y el generador omite cada ID que ya tenga MP3 y Opus, por lo que solo sintetiza los clips que faltan. Los tests del workflow comparan manifiesto, índice y archivos físicos con la cobertura ampliada. El tamaño final esperado es 2.152 IDs únicos si el contenido no cambia antes de la generación.
 
 Esta ampliación no precarga toda la biblioteca en el teléfono ni modifica la estrategia de caché offline: cada clip sigue descargándose al reproducirse por primera vez.
+
+
+## Preparar la biblioteca para uso sin conexión
+
+La pantalla Perfil ofrece preparación explícita por nivel (A1, A2 o B1) y una opción para toda la biblioteca. No hay descargas automáticas. Se recomienda Wi-Fi porque la operación usa conexión y almacenamiento del dispositivo.
+
+El gestor consulta `audio/manifest.json` y `audio/metadata.json`, deduplica los IDs compartidos entre niveles y reutiliza los MP3 ya presentes en `guardi-audio-v1`. Descarga de uno en uno, verifica el SHA-256 del archivo contra metadata y solo entonces lo guarda en la caché persistente. La petición de descarga verificada omite el guardado automático del Service Worker para evitar almacenar una respuesta antes de comprobar su integridad.
+
+El progreso se basa en los audios ya guardados, permite cancelar y reanudar (los clips completos permanecen), y ofrece reintento de los fallidos. Si el navegador informa menos de 1 MB disponible o la escritura alcanza la cuota, la operación se detiene sin borrar los clips que ya se guardaron. La estimación de almacenamiento del navegador no predice el tamaño exacto restante de la biblioteca.
+
+La preparación completa no incluye respuestas libres dinámicas del Tutor, porque no existen como archivos estáticos. Tampoco descarga Opus: el reproductor actual utiliza MP3. No se alteran Piper, `audio-engine.js`, SHA-1 de texto, rutas, normalización, IndexedDB v1 ni backup JSON v3.

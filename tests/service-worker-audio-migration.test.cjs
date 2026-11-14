@@ -58,6 +58,7 @@ function createWorker({ currentHashes, legacyHashes, oldClipStatus = 200, failAu
     vm.runInNewContext(source, sandbox);
     return {
         activate: handlers.activate,
+        fetch: handlers.fetch,
         cachesByName,
         audio,
         legacy,
@@ -107,4 +108,19 @@ test('does not migrate partial HTTP 206 responses', async () => {
     await activate(worker);
     assert.equal(await worker.audio.match(new Request(clipUrl)), undefined);
     assert.equal(worker.cachesByName.has('bahasa-studio-v3.8.95'), false);
+});
+
+test('continues serving legacy cached audio while old metadata has no SHA-256 map', async () => {
+    const worker = createWorker({ currentHashes: {} });
+    const request = new Request(clipUrl);
+    const event = {
+        request,
+        waitUntil: promise => { event.lifetime = promise; },
+        respondWith: promise => { event.responsePromise = promise; }
+    };
+    worker.fetch(event);
+    const response = await event.responsePromise;
+    assert.equal(await response.text(), 'legacy audio bytes');
+    await event.lifetime;
+    assert.equal(worker.cachesByName.has('bahasa-studio-v3.8.95'), true);
 });

@@ -42,5 +42,26 @@ class AudioSamplesPageTests(unittest.TestCase):
             self.assertIn("Aún no hay muestras", page)
 
 
+    def test_refresh_audio_hashes_detects_content_changes_and_bumps_cache_version(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            audio_dir = root / "id"
+            audio_dir.mkdir()
+            (audio_dir / "0123456789ab.mp3").write_bytes(b"clip-one")
+            metadata = root / "metadata.json"
+            metadata.write_text('{"engine":"piper","voice":"Piper voice","formats":["opus","mp3"]}', encoding="utf-8")
+            hashes, changed = MODULE.refresh_audio_hashes(metadata, audio_dir)
+            self.assertTrue(changed)
+            self.assertEqual(hashes["0123456789ab"], __import__("hashlib").sha256(b"clip-one").hexdigest())
+            _, changed_again = MODULE.refresh_audio_hashes(metadata, audio_dir)
+            self.assertFalse(changed_again)
+
+            worker = root / "service-worker.js"
+            worker.write_text("const CACHE_NAME = 'bahasa-studio-v3.8.97';", encoding="utf-8")
+            bumped = MODULE.bump_service_worker_cache_version(worker)
+            self.assertEqual(bumped, "const CACHE_NAME = 'bahasa-studio-v3.8.98';")
+            self.assertEqual(worker.read_text(encoding="utf-8"), bumped)
+
+
 if __name__ == "__main__":
     unittest.main()

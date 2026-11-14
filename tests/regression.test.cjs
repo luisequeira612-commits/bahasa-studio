@@ -1494,7 +1494,7 @@ test('bundled Indonesian recordings work without an installed device voice', () 
   assert.ok(audioEngineSource.includes("new Audio('./audio/id/' + id + '.mp3')"));
   assert.ok(audioEngineSource.includes("this.speak('terima kasih')"));
   assert.doesNotMatch(audioEngineSource, /voz predeterminada del sistema con el idioma id-ID/);
-});;
+});
 
 test('listen-and-type exercises also offer optional pronunciation practice using the expected phrase', () => {
   const start = html.indexOf("                } else if (ex.type === 'listen') {");

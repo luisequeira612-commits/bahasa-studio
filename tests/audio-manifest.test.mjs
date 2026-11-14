@@ -16,10 +16,22 @@ test('audio manifest exports unique A1, A2 and inline B1 texts without changing 
   const temp = await mkdtemp(path.join(os.tmpdir(), 'bahasa-audio-manifest-'));
   const output = path.join(temp, 'manifest.json');
   try {
-    const includeInteractive = process.env.AUDIO_MANIFEST_INCLUDE_INTERACTIVE === '1';
-    const args = [script, ...(includeInteractive ? ['--include-interactive'] : []), '--output', output];
-    const result = spawnSync(process.execPath, args, { cwd: root, encoding: 'utf8', timeout: 30000 });
-    assert.equal(result.status, 0, result.stderr || result.stdout);
+    const index = JSON.parse(await readFile(path.join(root, 'audio', 'index.json'), 'utf8'));
+    const baseResult = spawnSync(process.execPath, [script, '--output', output], { cwd: root, encoding: 'utf8', timeout: 30000 });
+    assert.equal(baseResult.status, 0, baseResult.stderr || baseResult.stdout);
+    const baseEntries = JSON.parse(await readFile(output, 'utf8'));
+    const baseIds = new Set(baseEntries.map((entry) => entry.id));
+    // The committed library index tells us whether this branch contains the optional
+    // interactive audio expansion. Main may still have the base library while a
+    // generated-audio PR intentionally carries the expanded manifest.
+    const includeInteractive = process.env.AUDIO_MANIFEST_INCLUDE_INTERACTIVE === '1'
+      || index.some((id) => !baseIds.has(id));
+    if (includeInteractive) {
+      const result = spawnSync(process.execPath, [script, '--include-interactive', '--output', output], {
+        cwd: root, encoding: 'utf8', timeout: 30000
+      });
+      assert.equal(result.status, 0, result.stderr || result.stdout);
+    }
     const entries = JSON.parse(await readFile(output, 'utf8'));
     assert.ok(entries.length > 0);
     const ids = entries.map((entry) => entry.id);
@@ -29,7 +41,6 @@ test('audio manifest exports unique A1, A2 and inline B1 texts without changing 
     assert.ok(entries.some((entry) => entry.levels.includes('A2')));
     assert.ok(entries.some((entry) => entry.levels.includes('B1')), 'B1 must be read from index.html');
 
-    const index = JSON.parse(await readFile(path.join(root, 'audio', 'index.json'), 'utf8'));
     assert.equal(new Set(index).size, index.length, 'audio index IDs must be unique');
     assert.deepEqual([...index].sort(), [...ids].sort(), 'index must equal the union of all manifest levels');
 

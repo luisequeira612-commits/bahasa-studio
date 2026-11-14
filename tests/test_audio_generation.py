@@ -1,6 +1,7 @@
 import importlib.util
 import tempfile
 import hashlib
+import sys
 import unittest
 from pathlib import Path
 
@@ -62,6 +63,35 @@ class AudioSamplesPageTests(unittest.TestCase):
             bumped = MODULE.bump_service_worker_cache_version(worker)
             self.assertEqual(bumped, "const CACHE_NAME = 'bahasa-studio-v3.8.99';")
             self.assertEqual(worker.read_text(encoding="utf-8"), bumped)
+
+
+    def test_hash_only_cli_refreshes_fingerprints_without_manifest_or_ffmpeg(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            audio_dir = root / "audio" / "id"
+            audio_dir.mkdir(parents=True)
+            (audio_dir / "0123456789ab.mp3").write_bytes(b"existing clip")
+            metadata = root / "audio" / "metadata.json"
+            metadata.write_text('{"engine":"piper","voice":"Piper voice","formats":["opus","mp3"]}', encoding="utf-8")
+            worker = root / "service-worker.js"
+            worker.write_text("const CACHE_NAME = 'bahasa-studio-v3.8.98';", encoding="utf-8")
+
+            old_root = MODULE.ROOT
+            old_manifest = MODULE.MANIFEST
+            old_argv = sys.argv
+            try:
+                MODULE.ROOT = root
+                MODULE.MANIFEST = root / "missing" / "manifest.json"
+                sys.argv = ["generate_audio.py", "--engine", "piper", "--hash-only"]
+                MODULE.main()
+            finally:
+                MODULE.ROOT = old_root
+                MODULE.MANIFEST = old_manifest
+                sys.argv = old_argv
+
+            saved = __import__("json").loads(metadata.read_text(encoding="utf-8"))
+            self.assertEqual(saved["audio_hashes"]["0123456789ab"], hashlib.sha256(b"existing clip").hexdigest())
+            self.assertEqual(worker.read_text(encoding="utf-8"), "const CACHE_NAME = 'bahasa-studio-v3.8.99';")
 
 
 if __name__ == "__main__":

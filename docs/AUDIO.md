@@ -83,3 +83,8 @@ Pruebas añadidas para rango cerrado, abierto, sufijo, final truncado, 416, rang
 5. Tras desplegar y superar pruebas automáticas, el propietario debe verificar físicamente actualización y reproducción offline en Android antes de autorizar descargas por nivel.
 
 No modificar hashes, rutas, normalización, IndexedDB v1 ni backup JSON v3 durante esta fase. No añadir dependencias.
+
+
+## Actualizar huellas sin volver a generar audio
+
+El workflow manual [Generate Indonesian audio](https://github.com/luisequeira612-commits/bahasa-studio/actions/workflows/generate-audio.yml) ofrece el modo `hashes`. Este modo calcula SHA-256 de los MP3 ya presentes en `audio/id/`, actualiza `audio/metadata.json` y aumenta la versión del Service Worker solo si cambió el mapa. No instala Piper, no instala FFmpeg, no sintetiza ni descarga clips. El workflow crea/actualiza una PR para revisar metadata y Service Worker; tras fusionarla, el navegador precarga las huellas y activa la invalidación selectiva.

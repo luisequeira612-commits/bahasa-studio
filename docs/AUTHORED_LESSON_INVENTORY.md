@@ -12,9 +12,9 @@
 | A2 | 40 | 200 | 40 con 5 | 0 |
 | B1 | 50 | 144 | 12 con 2; 32 con 3; 6 con 4 | 50 |
 | B2 | 5 | 25 | 5 con 5 | 0 |
-| **Total implementado** | **127** | **470** | — | **62** |
+| **Total implementado** | **127** | **490** | — | **58** |
 
-El mínimo para las 127 unidades ya implementadas es 635 lecciones. Faltan **165 lecciones explícitas** para llegar a cinco por unidad. Este cálculo no incluye B2 U6–U60, que todavía no están implementadas: esas 55 unidades deben diseñarse desde el principio con cinco o seis lecciones cada una.
+El mínimo para las 127 unidades ya implementadas es 635 lecciones. Faltan **145 lecciones explícitas** para llegar a cinco por unidad. Este cálculo no incluye B2 U6–U60, que todavía no están implementadas: esas 55 unidades deben diseñarse desde el principio con cinco o seis lecciones cada una.
 
 ## Interpretación por nivel
 
@@ -51,3 +51,14 @@ node --test tests/authored-lesson-inventory.test.mjs
 ```
 
 El informe lee A1/A2 desde sus archivos independientes y extrae B1/B2 con los extractores existentes. Solo cuenta `unit.lessons`; no invoca el generador de lecciones de la interfaz.
+
+
+### Actualización 14 nov 2026 — A1 U21–U24
+
+PR en preparación: `curriculum/a1-u21-u24-five-lessons-20261114`.
+
+- A1 U21–U24 pasan a cinco lecciones authored explícitas por unidad: **20 lecciones nuevas**.
+- Las 48 entradas de vocabulario existentes se introducen una sola vez en las primeras cuatro lecciones y se recuperan de forma acumulativa en las posteriores.
+- La quinta lección de cada unidad es recuperación espaciada de toda la unidad.
+- Se preservan los ejercicios originales del banco de cada unidad una sola vez dentro de las lecciones.
+- No se añaden IDs ni vocabulario nuevos.

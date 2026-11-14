@@ -81,8 +81,8 @@ test('A1 U31 hair translation and U32 thank-you response stay linked to the corr
 });
 
 
-test('A1 U24-U32 lesson plans explicitly introduce every tracked vocabulary item', () => {
-  const units = a1.units.filter(unit => /^a1_u(?:2[4-9]|3[0-2])$/.test(unit.id));
+test('A1 U25-U32 lesson plans explicitly introduce every tracked vocabulary item', () => {
+  const units = a1.units.filter(unit => /^a1_u(?:2[5-9]|3[0-2])$/.test(unit.id));
   for (const unit of units) {
     const planText = (unit.lessonPlans || []).flatMap(plan => [plan.title, plan.objective, plan.grammar])
       .filter(Boolean).join(' ').toLocaleLowerCase();

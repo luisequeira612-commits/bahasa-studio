@@ -13,10 +13,10 @@ vm.runInNewContext(
   { filename: 'curriculum-a1.js' }
 );
 const a1 = context.window.BAHASA_CURRICULUM_A1;
-const TARGET_UNITS = Array.from({ length: 9 }, (_, index) => 'a1_u' + (index + 24));
+const TARGET_UNITS = Array.from({ length: 8 }, (_, index) => 'a1_u' + (index + 25));
 const REQUIRED_EXERCISE_TYPES = ['mc', 'translate_es_id', 'order', 'listen', 'write'];
 
-test('A1 U24-U32 retain complete lesson plans and a balanced exercise mix', () => {
+test('A1 U25-U32 retain complete lesson plans and a balanced exercise mix', () => {
   assert.ok(a1, 'the canonical A1 curriculum must load');
   const units = a1.units.filter(unit => TARGET_UNITS.includes(unit.id));
   assert.deepEqual(Array.from(units, unit => unit.id), TARGET_UNITS);
@@ -46,7 +46,7 @@ test('A1 U24-U32 retain complete lesson plans and a balanced exercise mix', () =
   }
 });
 
-test('A1 U24-U32 focus guard is registered exactly once in regression CI', () => {
+test('A1 U25-U32 focus guard is registered exactly once in regression CI', () => {
   const workflow = fs.readFileSync(
     path.join(__dirname, '..', '.github', 'workflows', 'regression.yml'),
     'utf8'

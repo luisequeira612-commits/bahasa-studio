@@ -133,7 +133,7 @@ def ensure_single_voice(metadata_file: Path, engine: str, voice: str):
         existing["content_revision"] = revision
     else:
         existing = {**expected, "content_revision": 1}
-    metadata_file.write_text(json.dumps(existing, indent=2) + "\\n", encoding="utf-8")
+    metadata_file.write_text(json.dumps(existing, indent=2) + "\n", encoding="utf-8")
     return existing
 
 
@@ -143,7 +143,7 @@ def bump_content_revision(metadata_file: Path) -> int:
     if not isinstance(revision, int) or isinstance(revision, bool) or revision < 1:
         raise RuntimeError("audio/metadata.json content_revision must be a positive integer.")
     metadata["content_revision"] = revision + 1
-    metadata_file.write_text(json.dumps(metadata, indent=2) + "\\n", encoding="utf-8")
+    metadata_file.write_text(json.dumps(metadata, indent=2) + "\n", encoding="utf-8")
     return metadata["content_revision"]
 
 

@@ -126,3 +126,16 @@ test('continues serving legacy cached audio while old metadata has no SHA-256 ma
     await event.lifetime;
     assert.equal(worker.cachesByName.has('bahasa-studio-v3.8.95'), true);
 });
+
+test('keeps unchanged cached clips when the library only adds new IDs', async () => {
+    const existingHash = hash('legacy audio bytes');
+    const worker = createWorker({
+        currentHashes: { '0123456789ab': existingHash, 'abcdef012345': hash('new clip') },
+        legacyHashes: { '0123456789ab': existingHash },
+        existingAudioMarker: { '0123456789ab': existingHash }
+    });
+    worker.audio.entries.set(clipUrl, new Response('legacy audio bytes'));
+    await activate(worker);
+    const kept = await worker.audio.match(new Request(clipUrl));
+    assert.equal(await kept.text(), 'legacy audio bytes');
+});

@@ -178,9 +178,9 @@
 - Sin cambios a SHA-1 de nombres, rutas, normalización, IndexedDB v1, backup JSON v3 ni dependencias. No se ha probado la biblioteca completa offline en el dispositivo; el usuario confirmó previamente reproducción offline de un clip ya descargado.
 
 
-## Cobertura de audio interactivo — PR en preparación — 14 nov 2026
+## Cobertura de audio interactivo — PR #594 abierta — 14 nov 2026
 - Auditoría de código real: el manifiesto de 2.084 IDs no cubría todas las cadenas estáticas que la aplicación puede pronunciar. Se encontraron 84 textos únicos entre audioText de ejercicios, evaluaciones de escucha y conversaciones; 24 ya estaban cubiertos y 60 carecían de clip.
 - Desglose de textos únicos por origen: 28 exercise-audioText (8 nuevos), 3 assessment-listen (2 nuevos), 27 conversation-turn (26 nuevos) y 27 conversation-example (24 nuevos). Las respuestas libres del usuario siguen siendo dinámicas y conservan el fallback TTS.
-- Rama de trabajo: audio/interactive-manifest-coverage. El exportador conserva su modo normal sin cambios; --include-interactive activa las fuentes adicionales. La normalización SHA-1 y los IDs existentes no cambian.
+- PR [#594](https://github.com/luisequeira612-commits/bahasa-studio/pull/594) abierta desde la rama audio/interactive-manifest-coverage; CI pendiente. El exportador conserva su modo normal sin cambios; --include-interactive activa las fuentes adicionales. La normalización SHA-1 y los IDs existentes no cambian.
 - El workflow permite level=all. Tras integrar la cobertura, ejecutar manualmente engine=piper, mode=full, level=all, limit=0, confirm_full=true. generate_audio.py omite IDs que ya tengan MP3 y Opus; debe sintetizar únicamente los 60 nuevos y actualizar índice/huellas. Los tests en ese modo verifican la unión completa entre manifiesto, índice y archivos.
 - No cambia audio-engine.js, Service Worker, rutas, IndexedDB v1, backup JSON v3 ni dependencias. La prueba física offline en Tecno Pova 4 confirma un clip ya cacheado, no toda la biblioteca.

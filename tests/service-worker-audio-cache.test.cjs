@@ -3,6 +3,8 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const vm = require('node:vm');
 const path = require('node:path');
+const { createHash, webcrypto } = require('node:crypto');
+const hash = value => createHash('sha256').update(value).digest('hex');
 
 const source = fs.readFileSync(path.join(__dirname, '..', 'service-worker.js'), 'utf8');
 const ORIGIN = 'https://example.test';
@@ -47,12 +49,12 @@ function createWorker(initialCaches = new Map(), fetchImpl = async () => new Res
         delete: async name => cacheStore.delete(name)
     };
     const self = {
-        location: { origin: ORIGIN },
+        location: { origin: ORIGIN, href: ORIGIN + '/bahasa-studio/' },
         addEventListener: (name, handler) => { handlers[name] = handler; },
         skipWaiting: () => {},
         clients: { claim: async () => { claimCalls++; } }
     };
-    const sandbox = { self, caches, fetch: fetchImpl, Response, Request, Promise, URL };
+    const sandbox = { self, caches, fetch: fetchImpl, Response, Request, Promise, URL, crypto: webcrypto };
     vm.runInNewContext(source, sandbox);
     return {
         handlers,
@@ -85,7 +87,7 @@ test('migra MP3 completos de todas las cachés antiguas antes de borrarlas', asy
     const worker = createWorker(new Map([
         ['bahasa-studio-v3.8.95', old95],
         ['bahasa-studio-v3.8.94', old94],
-        ['bahasa-studio-v3.8.96', current]
+        ['bahasa-studio-v3.8.97', current]
     ]));
 
     let activation;
@@ -100,7 +102,7 @@ test('migra MP3 completos de todas las cachés antiguas antes de borrarlas', asy
     assert.equal(await audioCache.match(new Request(shellUrl)), null);
     assert.equal(worker.cacheStore.has('bahasa-studio-v3.8.95'), false);
     assert.equal(worker.cacheStore.has('bahasa-studio-v3.8.94'), false);
-    assert.equal(worker.cacheStore.has('bahasa-studio-v3.8.96'), true);
+    assert.equal(worker.cacheStore.has('bahasa-studio-v3.8.97'), true);
     assert.equal(worker.claimCalls, 1);
 });
 
@@ -112,7 +114,7 @@ test('si una copia falla, la activación no se bloquea y conserva las cachés an
     const audio = new MemoryCache([], { failPut: true });
     const worker = createWorker(new Map([
         ['bahasa-studio-v3.8.95', old],
-        ['bahasa-studio-v3.8.96', new MemoryCache()],
+        ['bahasa-studio-v3.8.97', new MemoryCache()],
         ['guardi-audio-v1', audio]
     ]));
 
@@ -131,7 +133,7 @@ test('la migración es idempotente y no vuelve a escribir clips ya copiados', as
     ]);
     const worker = createWorker(new Map([
         ['bahasa-studio-v3.8.95', old],
-        ['bahasa-studio-v3.8.96', new MemoryCache()]
+        ['bahasa-studio-v3.8.97', new MemoryCache()]
     ]));
 
     let firstActivation;
@@ -162,7 +164,7 @@ test('los MP3 nuevos usan guardi-audio-v1 y los recursos normales siguen en la c
 
     const audioCache = worker.cacheStore.get('guardi-audio-v1');
     assert.ok(await audioCache.match(audioRequest));
-    assert.equal(worker.cacheStore.has('bahasa-studio-v3.8.96'), false, 'audio fetch must not create the app cache');
+    assert.equal(worker.cacheStore.has('bahasa-studio-v3.8.97'), false, 'audio fetch must not create the app cache');
 
     const appRequest = new Request(`${ORIGIN}/bahasa-studio/styles.css`);
     let appLifetime;
@@ -174,7 +176,65 @@ test('los MP3 nuevos usan guardi-audio-v1 y los recursos normales siguen en la c
     });
     assert.equal((await appResponse).status, 200);
     await appLifetime;
-    const appCache = worker.cacheStore.get('bahasa-studio-v3.8.96');
+    const appCache = worker.cacheStore.get('bahasa-studio-v3.8.97');
     assert.ok(await appCache.match(appRequest));
     assert.equal(await audioCache.match(appRequest), null);
+});
+
+test('invalida solo los MP3 cuyo contenido cambió y conserva los que siguen iguales al añadir IDs', async () => {
+    const keepId = '0123456789ab';
+    const changedId = 'abcdef012345';
+    const removedId = 'fedcba987654';
+    const currentHashes = {
+        [keepId]: hash('unchanged bytes'),
+        [changedId]: hash('new bytes'),
+        '998877665544': hash('newly added clip')
+    };
+    const audio = new MemoryCache([
+        [audioUrl(keepId), new Response('unchanged bytes', { status: 200 })],
+        [audioUrl(changedId), new Response('old bytes', { status: 200 })],
+        [audioUrl(removedId), new Response('removed clip', { status: 200 })]
+    ]);
+    const current = new MemoryCache();
+    const worker = createWorker(new Map([
+        ['bahasa-studio-v3.8.96', new MemoryCache()],
+        ['bahasa-studio-v3.8.97', current],
+        ['guardi-audio-v1', audio]
+    ]), undefined, currentHashes);
+
+    let activation;
+    worker.handlers.activate({ waitUntil: promise => { activation = promise; } });
+    await activation;
+
+    assert.ok(await audio.match(new Request(audioUrl(keepId))));
+    assert.equal(await audio.match(new Request(audioUrl(changedId))), null);
+    assert.equal(await audio.match(new Request(audioUrl(removedId))), null);
+});
+
+test('migra solo clips legacy cuyos bytes coinciden con el SHA-256 actual', async () => {
+    const validId = '0123456789ab';
+    const staleId = 'abcdef012345';
+    const currentHashes = {
+        [validId]: hash('valid legacy bytes'),
+        [staleId]: hash('newer bytes')
+    };
+    const legacy = new MemoryCache([
+        [audioUrl(validId), new Response('valid legacy bytes', { status: 200 })],
+        [audioUrl(staleId), new Response('stale legacy bytes', { status: 200 })]
+    ]);
+    const current = new MemoryCache();
+    const audio = new MemoryCache();
+    const worker = createWorker(new Map([
+        ['bahasa-studio-v3.8.96', legacy],
+        ['bahasa-studio-v3.8.97', current],
+        ['guardi-audio-v1', audio]
+    ]), undefined, currentHashes);
+
+    let activation;
+    worker.handlers.activate({ waitUntil: promise => { activation = promise; } });
+    await activation;
+
+    assert.ok(await audio.match(new Request(audioUrl(validId))));
+    assert.equal(await audio.match(new Request(audioUrl(staleId))), null);
+    assert.equal(worker.cacheStore.has('bahasa-studio-v3.8.96'), false);
 });

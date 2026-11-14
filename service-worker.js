@@ -135,9 +135,8 @@ async function invalidateRegeneratedAudio(audioCache) {
             }
         }
 
-        await audioCache.put(metadataRequest, currentResponse.clone());
-        audioRevisionInvalidationPending = false;
-        return { known: true, changed };
+        audioRevisionInvalidationPending = changed;
+        return { known: true, changed, metadataRequest, currentResponse };
     } catch (_) {
         audioRevisionInvalidationPending = true;
         return { known: false, changed: true };
@@ -231,7 +230,14 @@ self.addEventListener('activate', (e) => {
                 skipAudio: revision.changed,
                 preserveLegacy: !revision.known
             });
-            if (revision.changed && !migrationComplete) {
+            if (revision.known && migrationComplete) {
+                try {
+                    await audioCache.put(revision.metadataRequest, revision.currentResponse.clone());
+                    audioRevisionInvalidationPending = false;
+                } catch (_) {
+                    audioRevisionInvalidationPending = true;
+                }
+            } else if (revision.changed || !revision.known) {
                 audioRevisionInvalidationPending = true;
             }
         } catch (_) {

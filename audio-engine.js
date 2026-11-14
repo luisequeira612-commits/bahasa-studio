@@ -10,7 +10,7 @@ window.AudioEngine = {
         return voice.voiceURI || (String(voice.lang || '') + ':' + String(voice.name || ''));
     },
     hashText(text) {
-        const normalized = String(text ?? '').trim().replace(/\\s+/g, ' ').toLowerCase();
+        const normalized = String(text ?? '').trim().replace(/\s+/g, ' ').toLowerCase();
         if (!normalized) return null;
         const bytes = new TextEncoder().encode(normalized);
         const bitLength = bytes.length * 8;
@@ -196,6 +196,7 @@ window.AudioEngine = {
     speak(text) {
         const value = String(text ?? '').trim();
         if (!value) return false;
+        this.updateVoiceStatus();
         if (this.playRecorded(value)) return true;
         return this.speakWithDeviceVoice(value);
     },

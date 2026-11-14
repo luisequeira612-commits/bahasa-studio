@@ -1,8 +1,9 @@
-const CACHE_NAME = 'bahasa-studio-v3.8.97';
+const CACHE_NAME = 'bahasa-studio-v3.8.98';
 const AUDIO_CACHE_NAME = 'guardi-audio-v1';
 const ASSETS = ['./', './index.html', './manifest.json', './icon.svg', './assessment.html', './assessment-engine.js', './conversation-engine.js', './study-history.js', './study-activity.js', './adaptive-learning.js', './curriculum-a1.js', './curriculum-a2.js', './styles.css', './audio-engine.js', './audio/index.json', './audio/metadata.json', './pronunciation-engine.js', './writing-practice.js', './apple-touch-icon.png', './icon-192.png', './icon-512-any.png', './icon-512-maskable.png', './assets/guardi/guardi-normal.svg', './assets/guardi/guardi-feliz.svg', './assets/guardi/guardi-triste.svg', './assets/guardi/guardi-celebrando.svg', './assets/guardi/guardi-pensando.svg', './assets/guardi/guardi-mark.svg', './assets/guardi/guardi-icon.svg'];
 
 const inFlightAudioFetches = new Map();
+let audioRevisionInvalidationPending = false;
 
 function isAudioClipRequest(request) {
     const url = new URL(request.url);
@@ -93,7 +94,57 @@ async function createRangeResponse(response, rangeHeader) {
     return new Response(partial, { status: 206, statusText: 'Partial Content', headers });
 }
 
-async function migrateLegacyAudioCache() {
+async function invalidateRegeneratedAudio(audioCache) {
+    try {
+        const metadataRequest = new Request(new URL('./audio/metadata.json', self.location.href).href);
+        const appCache = await caches.open(CACHE_NAME);
+        const currentResponse = await appCache.match(metadataRequest);
+        if (!currentResponse) {
+            audioRevisionInvalidationPending = true;
+            return { known: false, changed: true };
+        }
+
+        const currentMetadata = JSON.parse(await currentResponse.clone().text());
+        const currentRevision = currentMetadata.content_revision;
+        if (!Number.isSafeInteger(currentRevision) || currentRevision < 1) {
+            audioRevisionInvalidationPending = true;
+            return { known: false, changed: true };
+        }
+
+        const previousResponse = await audioCache.match(metadataRequest);
+        let changed = currentRevision > 1;
+        if (previousResponse) {
+            let previousRevision = null;
+            try {
+                const previousMetadata = JSON.parse(await previousResponse.clone().text());
+                previousRevision = previousMetadata.content_revision;
+            } catch (_) {
+                // An unreadable stored marker is treated as a revision change.
+            }
+            changed = !Number.isSafeInteger(previousRevision)
+                || previousRevision < 1
+                || previousRevision !== currentRevision;
+        }
+
+        if (changed) {
+            // Do not serve or re-migrate old clips if invalidation is incomplete.
+            audioRevisionInvalidationPending = true;
+            const requests = await audioCache.keys();
+            for (const request of requests) {
+                if (isAudioClipRequest(request)) await audioCache.delete(request);
+            }
+        }
+
+        await audioCache.put(metadataRequest, currentResponse.clone());
+        audioRevisionInvalidationPending = false;
+        return { known: true, changed };
+    } catch (_) {
+        audioRevisionInvalidationPending = true;
+        return { known: false, changed: true };
+    }
+}
+
+async function migrateLegacyAudioCache({ skipAudio = false, preserveLegacy = false } = {}) {
     let migrationComplete = true;
     let audioCache;
     let legacyNames;
@@ -118,7 +169,7 @@ async function migrateLegacyAudioCache() {
         }
 
         for (const request of requests) {
-            if (!isAudioClipRequest(request)) continue;
+            if (skipAudio || !isAudioClipRequest(request)) continue;
             try {
                 if (await audioCache.match(request)) continue;
                 const response = await source.match(request);
@@ -132,7 +183,7 @@ async function migrateLegacyAudioCache() {
         }
     }
 
-    if (!migrationComplete) return false;
+    if (!migrationComplete || preserveLegacy) return false;
     for (const name of legacyNames) {
         try {
             await caches.delete(name);
@@ -160,8 +211,14 @@ self.addEventListener('install', (e) => {
 self.addEventListener('activate', (e) => {
     e.waitUntil((async () => {
         try {
-            await migrateLegacyAudioCache();
+            const audioCache = await caches.open(AUDIO_CACHE_NAME);
+            const revision = await invalidateRegeneratedAudio(audioCache);
+            await migrateLegacyAudioCache({
+                skipAudio: revision.changed,
+                preserveLegacy: !revision.known
+            });
         } catch (_) {
+            audioRevisionInvalidationPending = true;
             // Activation must remain available even if storage migration fails.
         }
         await self.clients.claim();
@@ -190,9 +247,11 @@ self.addEventListener('fetch', (e) => {
 
     e.respondWith(
         caches.open(targetCacheName).then(async (cache) => {
-            let cached = await cache.match(cacheRequest);
+            let cached = audioRequest && audioRevisionInvalidationPending
+                ? null
+                : await cache.match(cacheRequest);
 
-            if (!cached && audioRequest) {
+            if (!cached && audioRequest && !audioRevisionInvalidationPending) {
                 try {
                     const keys = await caches.keys();
                     for (const name of keys) {

@@ -31,6 +31,11 @@ on:
         type: boolean
         default: false
         required: true
+      regenerate_existing:
+        description: Regenerar audios ya existentes (sube content_revision e invalida la caché local)
+        type: boolean
+        default: false
+        required: true
 
 permissions:
   contents: write
@@ -52,6 +57,7 @@ jobs:
       LEVEL: ${{ inputs.level }}
       LIMIT: ${{ inputs.limit }}
       CONFIRM_FULL: ${{ inputs.confirm_full }}
+      REGENERATE_EXISTING: ${{ inputs.regenerate_existing }}
     steps:
       - name: Reject full generation until explicitly confirmed
         if: ${{ inputs.mode == 'full' && inputs.confirm_full != true }}
@@ -123,7 +129,11 @@ jobs:
           if [[ "$MODE" == "samples" ]]; then
             python scripts/generate_audio.py --engine "$ENGINE" --mode samples --level all --limit "$LIMIT"
           else
-            python scripts/generate_audio.py --engine "$ENGINE" --mode full --level "$LEVEL" --limit 0
+            if [[ "$REGENERATE_EXISTING" == "true" ]]; then
+              python scripts/generate_audio.py --engine "$ENGINE" --mode full --level "$LEVEL" --limit 0 --force
+            else
+              python scripts/generate_audio.py --engine "$ENGINE" --mode full --level "$LEVEL" --limit 0
+            fi
           fi
 
       - name: Run audio generation tests
@@ -196,6 +206,7 @@ jobs:
           echo "- Motor: **$ENGINE**" >> "$GITHUB_STEP_SUMMARY"
           echo "- Modo: **$MODE**" >> "$GITHUB_STEP_SUMMARY"
           echo "- Nivel: **$LEVEL**" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Regenerar existentes: **$REGENERATE_EXISTING**" >> "$GITHUB_STEP_SUMMARY"
           echo "- Rama: $AUDIO_BRANCH" >> "$GITHUB_STEP_SUMMARY"
           if [[ -n "${{ steps.pr.outputs.PR_URL }}" ]]; then
             echo "- PR: ${{ steps.pr.outputs.PR_URL }}" >> "$GITHUB_STEP_SUMMARY"

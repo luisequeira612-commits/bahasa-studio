@@ -1,7 +1,7 @@
 # Generación de audio desde GitHub Actions
 
 Fecha: 14 nov 2026  
-Estado: **Piper `id_ID-news_tts-medium` seleccionado y biblioteca A1/A2/B1 integrada**. La reproducción de clips está conectada a la app; los MP3 se descargan bajo demanda y se almacenan en caché al reproducirse. La auditoría de cobertura integral y la mejora de caché/Range siguen pendientes.
+Estado: **Piper `id_ID-news_tts-medium` seleccionado y biblioteca A1/A2/B1 integrada**. La reproducción de clips está conectada a la app; los MP3 se descargan bajo demanda y se almacenan en la caché persistente. La migración y Range 206/416 ya están integrados; siguen pendientes la validación física final en Android, la invalidación de regeneraciones (PR4) y la auditoría integral de cobertura.
 
 ## Entorno real
 
@@ -19,7 +19,7 @@ Después de fusionar el PR que añade el workflow:
 6. Cuando termine, abre el resumen de la ejecución. El workflow sube una copia de recuperación como artifact y actualiza la rama/PR `audio/tts-samples`.
 7. Las muestras de Edge, Piper y MMS ya están publicadas y comparadas. La selección para producción es Piper; no hace falta volver a generar muestras salvo que cambie el modelo.
 
-La generación completa exige `mode=full` y `confirm_full=true`. No usarlo hasta elegir voz y aprobar la siguiente fase. El workflow permite seleccionar A1, A2 o B1 para que cada nivel se genere en una rama/PR separada. La primera generación completa guarda `audio/metadata.json`; las siguientes rechazan cualquier motor o voz diferente para impedir mezclar voces. Fusiona A1 antes de iniciar A2, y A2 antes de B1, para que el bloqueo se herede en `main`.
+La generación completa exige `mode=full` y `confirm_full=true`. El workflow permite seleccionar A1, A2 o B1 para que cada nivel se genere en una rama/PR separada. La primera generación completa guarda `audio/metadata.json`; las siguientes rechazan cualquier motor o voz diferente para impedir mezclar voces. La opción `regenerate_existing` queda desactivada por defecto. Si se activa, el generador fuerza la sustitución de archivos existentes y aumenta `content_revision` antes de sobrescribirlos, lo que hace que el Service Worker invalide los MP3 locales antiguos. Añadir IDs nuevos no aumenta la revisión ni purga los clips existentes. Fusiona A1 antes de iniciar A2, y A2 antes de B1, para que el bloqueo se herede en `main`.
 
 ## Página para escuchar
 

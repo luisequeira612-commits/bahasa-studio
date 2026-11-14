@@ -30,6 +30,11 @@ async function findLegacyAudioResponse(request) {
     return null;
 }
 
+async function sha256Hex(bytes) {
+    const digest = await crypto.subtle.digest('SHA-256', bytes);
+    return Array.from(new Uint8Array(digest), (byte) => byte.toString(16).padStart(2, '0')).join('');
+}
+
 async function readAudioHashes(cache) {
     try {
         const response = await cache.match(audioMetadataRequest());
@@ -51,25 +56,29 @@ async function migrateAudioCache() {
 
         audioCache = await caches.open(AUDIO_CACHE_NAME);
         const revisionRequest = audioRevisionRequest();
-        let previousHashes = null;
-        const revisionResponse = await audioCache.match(revisionRequest);
-        if (revisionResponse) {
+        let migrationSucceeded = true;
+
+        // Verify cached bytes against the current library fingerprint. This also
+        // handles older app caches whose metadata predates per-clip SHA-256 hashes.
+        for (const request of await audioCache.keys()) {
+            if (!isAudioFileRequest(request)) continue;
+            const match = new URL(request.url).pathname.match(/\\/audio\\/id\\/([a-f0-9]{12})\\.mp3$/i);
+            if (!match) continue;
+            const id = match[1].toLowerCase();
             try {
-                const revision = await revisionResponse.json();
-                if (revision && revision.audio_hashes && typeof revision.audio_hashes === 'object') {
-                    previousHashes = revision.audio_hashes;
+                const response = await audioCache.match(request);
+                const expectedHash = currentHashes[id];
+                if (!response || response.status !== 200 || !expectedHash) {
+                    await audioCache.delete(request);
+                    continue;
+                }
+                const bytes = await response.clone().arrayBuffer();
+                const actualHash = await sha256Hex(bytes);
+                if (!bytes.byteLength || actualHash !== expectedHash) {
+                    await audioCache.delete(request);
                 }
             } catch (_) {
-                return false;
-            }
-        }
-
-        // Remove only clips whose actual MP3 bytes changed or disappeared.
-        if (previousHashes) {
-            for (const [id, oldHash] of Object.entries(previousHashes)) {
-                if (currentHashes[id] !== oldHash) {
-                    await audioCache.delete(audioRequestForId(id));
-                }
+                migrationSucceeded = false;
             }
         }
 
@@ -106,7 +115,7 @@ async function migrateAudioCache() {
                     const response = await legacy.match(request);
                     if (!response || response.status !== 200) continue;
                     const bytes = await response.clone().arrayBuffer();
-                    if (!bytes.byteLength) continue;
+                    if (!bytes.byteLength || await sha256Hex(bytes) !== currentHash) continue;
                     await audioCache.put(canonicalRequest, response);
                 } catch (_) {
                     migrationSucceeded = false;

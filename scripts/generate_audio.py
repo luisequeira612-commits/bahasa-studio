@@ -121,14 +121,30 @@ def ensure_single_voice(metadata_file: Path, engine: str, voice: str):
     expected = {"engine": engine, "voice": voice, "formats": ["opus", "mp3"]}
     if metadata_file.exists():
         existing = json.loads(metadata_file.read_text(encoding="utf-8"))
-        if existing != expected:
+        if any(existing.get(key) != value for key, value in expected.items()):
             raise RuntimeError(
                 "The production library is locked to one engine/voice. "
                 f"Existing: {existing}; requested: {expected}. "
                 "Do not mix voices between A1, A2 and B1."
             )
+        revision = existing.get("content_revision", 1)
+        if not isinstance(revision, int) or isinstance(revision, bool) or revision < 1:
+            raise RuntimeError("audio/metadata.json content_revision must be a positive integer.")
+        existing["content_revision"] = revision
     else:
-                metadata_file.write_text(json.dumps(expected, indent=2), encoding="utf-8")
+        existing = {**expected, "content_revision": 1}
+    metadata_file.write_text(json.dumps(existing, indent=2) + "\\n", encoding="utf-8")
+    return existing
+
+
+def bump_content_revision(metadata_file: Path) -> int:
+    metadata = json.loads(metadata_file.read_text(encoding="utf-8"))
+    revision = metadata.get("content_revision", 1)
+    if not isinstance(revision, int) or isinstance(revision, bool) or revision < 1:
+        raise RuntimeError("audio/metadata.json content_revision must be a positive integer.")
+    metadata["content_revision"] = revision + 1
+    metadata_file.write_text(json.dumps(metadata, indent=2) + "\\n", encoding="utf-8")
+    return metadata["content_revision"]
 
 
 def render_samples_index(samples_dir: Path, samples: list[dict]):
@@ -197,8 +213,26 @@ def main():
 
     synthesize, voice_label = create_synthesizer(args.engine, args.voice, model_cache)
     sample_file = ROOT / "audio-samples" / "samples.json"
+    metadata_file = ROOT / "audio" / "metadata.json"
     if args.mode == "full":
-        ensure_single_voice(ROOT / "audio" / "metadata.json", args.engine, voice_label)
+        ensure_single_voice(metadata_file, args.engine, voice_label)
+        will_overwrite_existing = any(
+            (
+                (output_dir / f"{entry['id']}.opus").exists()
+                or (output_dir / f"{entry['id']}.mp3").exists()
+            )
+            and (
+                args.force
+                or not (
+                    (output_dir / f"{entry['id']}.opus").exists()
+                    and (output_dir / f"{entry['id']}.mp3").exists()
+                )
+            )
+            for entry in entries
+        )
+        if will_overwrite_existing:
+            revision = bump_content_revision(metadata_file)
+            print(f"Existing audio will be regenerated; content_revision bumped to {revision}.")
     existing_samples = json.loads(sample_file.read_text(encoding="utf-8")) if sample_file.exists() else []
     sample_map = {(item["engine"], item["id"]): item for item in existing_samples}
 

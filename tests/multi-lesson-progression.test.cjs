@@ -28,7 +28,7 @@ test('every A1 unit is divided into sequential lessons that introduce all vocabu
     assert.equal(lessons.length, expectedLessonCount,
       unit.id + ' should expose ' + expectedLessonCount + ' lessons under the A1 standard');
     const introduced = lessons.flatMap(lesson => lesson.newVocab.map(word => word.id));
-    assert.deepEqual(introduced, unit.vocab.map(word => word.id), unit.id + ' should introduce every vocabulary item exactly once and in order');
+    assert.deepEqual(introduced, Array.from(unit.vocab, word => word.id), unit.id + ' should introduce every vocabulary item exactly once and in order');
     lessons.forEach((lesson, index) => {
       assert.deepEqual(lesson.vocab.map(word => word.id), unit.vocab.slice(0, lesson.vocab.length).map(word => word.id));
       assert.deepEqual(lesson.reviewVocab.map(word => word.id), unit.vocab.slice(0, lesson.reviewVocab.length).map(word => word.id));

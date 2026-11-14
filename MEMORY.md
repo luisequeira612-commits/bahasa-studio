@@ -172,7 +172,7 @@
 - Sin cambios al SHA-1 del texto, rutas, normalización, `audio-engine.js`, IndexedDB v1, backup JSON v3 ni dependencias. Se conserva la implementación Range de PR #588. CI pendiente.
 
 
-## PR #591 — modo hash-only para la biblioteca de audio — 14 nov 2026
-- Añade `--hash-only` a `scripts/generate_audio.py` y un modo `hashes` al workflow manual. Recalcula SHA-256 de los MP3 existentes, actualiza `audio/metadata.json` y sube la versión de caché si el mapa cambió.
-- Este modo omite la instalación de Piper, FFmpeg y la exportación del manifiesto; no sintetiza ni descarga audios. Publica los cambios mediante la rama `audio/library-hashes` y PR automática.
-- Facilita activar la invalidación selectiva de PR #590 sin volver a generar o escuchar más de dos mil clips. CI pendiente.
+## Biblioteca de audio Piper — PR #591 y #593 — 14 nov 2026
+- PR #591 fusionada: el workflow manual ofrece modo `hashes` y `generate_audio.py --hash-only`, que calcula SHA-256 de MP3 existentes sin instalar Piper/FFmpeg ni sintetizar o descargar audios.
+- PR #593: hashes actualizados para los 2.084 IDs de `audio/index.json`; cada ID tiene exactamente un SHA-256 válido en `audio/metadata.json`. Service Worker sube a `v3.8.99`; tests derivan dinámicamente el nombre de caché para evitar fixtures obsoletos. CI de PR verde; fusión y Pages post-merge pendientes.
+- Sin cambios a SHA-1 de nombres, rutas, normalización, IndexedDB v1, backup JSON v3 ni dependencias. No se ha probado la biblioteca completa offline en el dispositivo; el usuario confirmó previamente reproducción offline de un clip ya descargado.

@@ -85,11 +85,13 @@
         manifestEntries = manifest;
         audioHashes = metadata.audio_hashes;
         await refreshCacheState();
-        const total = selectEntries(manifestEntries, 'all').length;
-        setProgress(cachedIds.size, total);
+        const allEntries = selectEntries(manifestEntries, 'all');
+        const total = allEntries.length;
+        const cachedTotal = allEntries.filter(entry => cachedIds.has(entry.id)).length;
+        setProgress(cachedTotal, total);
         const available = await storageCheck();
         const storageLabel = available === null ? '' : ' Espacio estimado disponible: ' + formatBytes(available) + '.';
-        setStatus('Biblioteca: ' + cachedIds.size + '/' + total + ' audios guardados. ' + countSummary() + '.' + storageLabel);
+        setStatus('Biblioteca: ' + cachedTotal + '/' + total + ' audios guardados. ' + countSummary() + '.' + storageLabel);
     }
 
     async function verifyAudio(blob, expectedHash) {

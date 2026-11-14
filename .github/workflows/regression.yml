@@ -36,6 +36,8 @@ jobs:
         run: node --test tests/service-worker-install.test.cjs
       - name: Run persistent audio cache migration tests
         run: node --test tests/service-worker-audio-cache.test.cjs
+      - name: Run audio byte range tests
+        run: node --test tests/service-worker-audio-range.test.cjs
       - name: Run API key management tests
         run: node --test tests/api-key-management.test.cjs
       - name: Run audio engine fallback tests

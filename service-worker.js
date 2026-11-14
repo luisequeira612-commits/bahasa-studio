@@ -227,10 +227,13 @@ self.addEventListener('activate', (e) => {
         try {
             const audioCache = await caches.open(AUDIO_CACHE_NAME);
             const revision = await invalidateRegeneratedAudio(audioCache);
-            await migrateLegacyAudioCache({
+            const migrationComplete = await migrateLegacyAudioCache({
                 skipAudio: revision.changed,
                 preserveLegacy: !revision.known
             });
+            if (revision.changed && !migrationComplete) {
+                audioRevisionInvalidationPending = true;
+            }
         } catch (_) {
             audioRevisionInvalidationPending = true;
             // Activation must remain available even if storage migration fails.

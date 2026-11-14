@@ -114,6 +114,7 @@ window.AudioEngine = {
                 this.synth.speak(utter);
             },
             testVoice() {
+                this.refreshVoices();
                 const status = document.getElementById('voiceTestStatus');
                 if (this.selectedVoice || this.idVoice) {
                     const voice = this.selectedVoice || this.idVoice;

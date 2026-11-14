@@ -91,9 +91,16 @@ test('service worker precaches both data files and invalidates the previous cach
   const cached = new Map();
   const cache = {
     async add(request) { cached.set(String(request.url || request), { url: String(request.url || request) }); },
-    async match(request) { return cached.get(String(request.url || request)); },
+    async match(request) {
+      const url = String(request.url || request);
+      if (url.endsWith('/audio/metadata.json')) {
+        return new Response(JSON.stringify({ content_revision: 1 }), { status: 200 });
+      }
+      return cached.get(url);
+    },
     async put(request, response) { cached.set(String(request.url || request), response); },
-    async keys() { return []; }
+    async keys() { return []; },
+    async delete() { return true; }
   };
   const deletedCaches = [];
   const cachesApi = {
@@ -102,13 +109,13 @@ test('service worker precaches both data files and invalidates the previous cach
     async delete(name) { deletedCaches.push(name); return name !== 'bahasa-studio-v3.8.23'; }
   };
   const sandbox = {
-    self: { location: { origin: 'https://example.test' }, clients: { claim() {} },
+    self: { location: { origin: 'https://example.test', href: 'https://example.test/bahasa-studio/service-worker.js' }, clients: { claim() {} },
       skipWaiting() {}, addEventListener(name, fn) { listeners[name] = fn; } },
     caches: cachesApi,
     Request: class Request { constructor(url) { this.url = new URL(url, 'https://example.test').href; } },
     URL,
     fetch: async () => { throw new Error('offline'); },
-    Response: { error: () => ({ error: true }) }
+    Response
   };
   vm.runInNewContext(source, sandbox, { filename: 'service-worker.js' });
   let installPromise;

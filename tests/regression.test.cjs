@@ -2074,7 +2074,7 @@ test('A1 U13-U16 runtime uses five authored lessons without generated padding',(
 
 
 test('A1 U17-U20 runtime uses five authored lessons without generated padding',()=>{
- const start=html.indexOf('const CourseData ='),end=html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */',start),course=vm.runInNewContext(html.slice(start,end)+'\\nCourseData');
- const a1=course.levels.find(l=>l.id==='A1'),s=html.indexOf('function buildUnitAssessmentItems'),e=html.indexOf('function unitLessonProgressKey',s),engine=vm.runInNewContext(html.slice(s,e)+'\\n({buildUnitLessons})',{CourseData:course,Map,Set,Math});
+ const start=html.indexOf('const CourseData ='),end=html.indexOf('/* 3. AUDIO Y AUDIO FALLBACK */',start),course=vm.runInNewContext(html.slice(start,end)+'\nCourseData');
+ const a1=course.levels.find(l=>l.id==='A1'),s=html.indexOf('function buildUnitAssessmentItems'),e=html.indexOf('function unitLessonProgressKey',s),engine=vm.runInNewContext(html.slice(s,e)+'\n({buildUnitLessons})',{CourseData:course,Map,Set,Math});
  for(const u of a1.units.slice(16,20)){const lessons=engine.buildUnitLessons(u);assert.equal(u.lessons.length,5);assert.equal(lessons.length,5);assert.deepEqual(Array.from(lessons,l=>l.title),Array.from(u.lessons,l=>l.title));assert.ok(lessons.every(l=>l.exercises.every(x=>x.generated!==true)));assert.deepEqual(Array.from(lessons,l=>l.exercises.length),Array.from(u.lessons,l=>l.exercises.length));}
 });

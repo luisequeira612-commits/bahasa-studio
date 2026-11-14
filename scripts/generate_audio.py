@@ -147,6 +147,15 @@ def bump_content_revision(metadata_file: Path) -> int:
     return metadata["content_revision"]
 
 
+def has_existing_audio_to_regenerate(entries: list[dict], output_dir: Path, force: bool) -> bool:
+    for entry in entries:
+        opus_exists = (output_dir / f"{entry['id']}.opus").exists()
+        mp3_exists = (output_dir / f"{entry['id']}.mp3").exists()
+        if (opus_exists or mp3_exists) and (force or not (opus_exists and mp3_exists)):
+            return True
+    return False
+
+
 def render_samples_index(samples_dir: Path, samples: list[dict]):
     samples_dir.mkdir(parents=True, exist_ok=True)
     samples = sorted(samples, key=lambda item: (item.get("engine", ""), item.get("id", "")))
@@ -216,20 +225,7 @@ def main():
     metadata_file = ROOT / "audio" / "metadata.json"
     if args.mode == "full":
         ensure_single_voice(metadata_file, args.engine, voice_label)
-        will_overwrite_existing = any(
-            (
-                (output_dir / f"{entry['id']}.opus").exists()
-                or (output_dir / f"{entry['id']}.mp3").exists()
-            )
-            and (
-                args.force
-                or not (
-                    (output_dir / f"{entry['id']}.opus").exists()
-                    and (output_dir / f"{entry['id']}.mp3").exists()
-                )
-            )
-            for entry in entries
-        )
+        will_overwrite_existing = has_existing_audio_to_regenerate(entries, output_dir, args.force)
         if will_overwrite_existing:
             revision = bump_content_revision(metadata_file)
             print(f"Existing audio will be regenerated; content_revision bumped to {revision}.")

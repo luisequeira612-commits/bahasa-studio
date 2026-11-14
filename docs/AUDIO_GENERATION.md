@@ -23,7 +23,7 @@ La generación completa exige `mode=full` y `confirm_full=true`. No usarlo hasta
 
 ## Página para escuchar
 
-La página generada es `audio-samples/index.html`, con controles HTML `<audio controls>` y archivos MP3 de 48 kbps mono para facilitar la reproducción en Chrome Android y Safari/iOS. No necesita JavaScript externo.
+La página generada es `audio-samples/index.html`, con controles HTML `<audio controls>` y archivos MP3 de 48 kbps mono para facilitar la reproducción en Chrome Android y Safari/iOS. No necesita JavaScript externo. La biblioteca final incluye Opus y MP3 de la misma voz; el reproductor seleccionará el formato con `canPlayType('audio/ogg; codecs="opus"')` y, si no está soportado, usará MP3.
 
 URL prevista del sitio publicado:
 
@@ -72,7 +72,7 @@ GitHub documenta que un `push` hecho con `GITHUB_TOKEN` no dispara otros workflo
 - Este repositorio es público. GitHub indica que los runners estándar alojados para repositorios públicos son gratuitos; no consumen la cuota mensual de minutos de repositorios privados. Se aplican límites máximos de ejecución y uso razonable de Actions.
 - Edge/Piper normalmente serán ejecuciones cortas; MMS puede tardar más por la instalación y descarga. El workflow fija un máximo de 60 minutos como guardarraíl.
 - El modelo Piper (60 MiB) y el modelo MMS (145 MB) solo se descargan en el runner. **No se suben al repositorio ni a GitHub Pages**.
-- El tamaño real de audio se imprimirá por nivel en las ejecuciones completas. Como orientación, a Opus mono 24 kbps, cada minuto de audio ocupa unos 180 KB; a 2–4 segundos por clip, 2.000–3.000 clips estarían aproximadamente entre 12 y 36 MB. Es una estimación, no el inventario medido.
+- El tamaño real de audio se imprimirá por nivel en las ejecuciones completas. Se guardan dos codificaciones de la misma voz: Opus mono 24 kbps (180 KB/min) y MP3 mono 32 kbps (240 KB/min). A 2–4 segundos por clip, 2.000–3.000 clips estarían aproximadamente entre 28 y 84 MB en total. Es una estimación, no el inventario medido.
 - GitHub Pages permite sitios publicados de hasta 1 GB, por lo que un conjunto de decenas de MB sería razonable. El repositorio actual reporta alrededor de 4.3 MB antes de audio. Vigilar el tamaño total y no incluir modelos TTS en el sitio.
 
 ## Plan de respaldo y Termux

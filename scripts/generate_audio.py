@@ -100,11 +100,15 @@ def create_synthesizer(engine: str, voice: str, work_dir: Path):
     raise ValueError(f"Unsupported engine: {engine}")
 
 
-def encode_audio(source: Path, destination: Path, mode: str):
-    if mode == "samples":
+def encode_audio(source: Path, destination: Path, codec_name: str):
+    if codec_name == "mp3":
+        codec = ["-c:a", "libmp3lame", "-b:a", "32k"]
+    elif codec_name == "sample-mp3":
         codec = ["-c:a", "libmp3lame", "-b:a", "48k"]
-    else:
+    elif codec_name == "opus":
         codec = ["-c:a", "libopus", "-b:a", "24k", "-vbr", "on", "-f", "ogg"]
+    else:
+        raise ValueError(f"Unsupported output codec: {codec_name}")
     command = [
         "ffmpeg", "-y", "-hide_banner", "-loglevel", "error", "-i", str(source),
         "-ac", "1", "-ar", "24000", *codec, str(destination)
@@ -114,7 +118,7 @@ def encode_audio(source: Path, destination: Path, mode: str):
 
 def ensure_single_voice(metadata_file: Path, engine: str, voice: str):
     metadata_file.parent.mkdir(parents=True, exist_ok=True)
-    expected = {"engine": engine, "voice": voice}
+    expected = {"engine": engine, "voice": voice, "formats": ["opus", "mp3"]}
     if metadata_file.exists():
         existing = json.loads(metadata_file.read_text(encoding="utf-8"))
         if existing != expected:
@@ -204,18 +208,27 @@ def main():
         available_ids.update(json.loads(index_file.read_text(encoding="utf-8")))
 
     for position, entry in enumerate(entries, 1):
-        extension = ".mp3" if args.mode == "samples" else ".opus"
-        destination = output_dir / f"{entry['id']}{extension}"
-        if destination.exists() and not args.force:
-            if args.mode == "full":
+        if args.mode == "samples":
+            destination = output_dir / f"{entry['id']}.mp3"
+            if destination.exists() and not args.force:
+                print(f"[{position}/{len(entries)}] cached {entry['id']}")
+                continue
+        else:
+            opus_destination = output_dir / f"{entry['id']}.opus"
+            mp3_destination = output_dir / f"{entry['id']}.mp3"
+            if opus_destination.exists() and mp3_destination.exists() and not args.force:
                 available_ids.add(entry["id"])
-            print(f"[{position}/{len(entries)}] cached {entry['id']}")
-            continue
+                print(f"[{position}/{len(entries)}] cached {entry['id']}")
+                continue
         with tempfile.TemporaryDirectory() as temporary:
             raw_extension = ".mp3" if args.engine == "edge" else ".wav"
             raw = Path(temporary) / f"raw{raw_extension}"
             synthesize(entry["text"], raw)
-            encode_audio(raw, destination, args.mode)
+            if args.mode == "samples":
+                encode_audio(raw, destination, "sample-mp3")
+            else:
+                encode_audio(raw, opus_destination, "opus")
+                encode_audio(raw, mp3_destination, "mp3")
         if args.mode == "full":
             available_ids.add(entry["id"])
         else:
@@ -233,8 +246,8 @@ def main():
     else:
         index_file.parent.mkdir(parents=True, exist_ok=True)
         index_file.write_text(json.dumps(sorted(available_ids), indent=2) + "\n", encoding="utf-8")
-        total_bytes = sum(path.stat().st_size for path in output_dir.glob("*.opus"))
-        print(f"Level {args.level}: {len(available_ids)} indexed clips; generated directory size {total_bytes} bytes")
+        total_bytes = sum(path.stat().st_size for pattern in ("*.opus", "*.mp3") for path in output_dir.glob(pattern))
+        print(f"Level {args.level}: {len(available_ids)} indexed clips; Opus + MP3 fallback size {total_bytes} bytes")
 
 
 if __name__ == "__main__":

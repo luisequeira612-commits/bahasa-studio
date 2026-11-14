@@ -87,7 +87,9 @@
         await refreshCacheState();
         const total = selectEntries(manifestEntries, 'all').length;
         setProgress(cachedIds.size, total);
-        setStatus('Biblioteca: ' + cachedIds.size + '/' + total + ' audios guardados. ' + countSummary() + '.');
+        const available = await storageCheck();
+        const storageLabel = available === null ? '' : ' Espacio estimado disponible: ' + formatBytes(available) + '.';
+        setStatus('Biblioteca: ' + cachedIds.size + '/' + total + ' audios guardados. ' + countSummary() + '.' + storageLabel);
     }
 
     async function verifyAudio(blob, expectedHash) {
@@ -143,6 +145,7 @@
         updateButtons();
         let completed = entries.length - pending.length;
         let failures = 0;
+        let storageFull = false;
         setProgress(completed, entries.length);
         setStatus('Preparando ' + scope + ': ' + completed + '/' + entries.length + ' listos; faltan ' + pending.length + '.');
 
@@ -151,7 +154,7 @@
             if (activeController.signal.aborted) break;
             const url = audioUrl(entry.id);
             try {
-                const response = await fetch(url, { cache: 'no-store', signal: activeController.signal });
+                const response = await fetch(url, { cache: 'no-store', signal: activeController.signal, headers: { 'X-Offline-Audio-Preparation': '1' } });
                 if (!response || response.status !== 200) throw new Error('Respuesta HTTP ' + (response ? response.status : 'sin respuesta'));
                 const blob = await response.blob();
                 if (!blob.size) throw new Error('El archivo de audio está vacío.');
@@ -163,6 +166,10 @@
                 if (activeController.signal.aborted) break;
                 failures++;
                 failedEntries.push(entry);
+                if (error && (error.name === 'QuotaExceededError' || /quota|storage full/i.test(String(error.message || '')))) {
+                    storageFull = true;
+                    activeController.abort();
+                }
             }
             setProgress(completed, entries.length);
             if ((index + 1) % 4 === 0 || index === pending.length - 1) {
@@ -177,7 +184,9 @@
         if (elements.cancel) elements.cancel.disabled = true;
         await refreshCacheState();
         const remaining = entries.length - entries.filter(entry => cachedIds.has(entry.id)).length;
-        if (cancelled) {
+        if (storageFull) {
+            setStatus('El almacenamiento del dispositivo se llenó. Se conservaron los audios guardados; libera espacio y pulsa “Reintentar fallidos”.');
+        } else if (cancelled) {
             setStatus('Descarga cancelada. Se conservaron los audios ya guardados; faltan ' + remaining + '. Puedes reanudar cuando quieras.');
         } else if (failures) {
             setStatus('Preparación terminada con ' + failures + ' fallidos. Guardados ' + (entries.length - remaining) + '/' + entries.length + '; puedes reintentar solo los fallidos.');

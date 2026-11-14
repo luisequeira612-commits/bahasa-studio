@@ -1,4 +1,4 @@
-const CACHE_NAME = 'bahasa-studio-v3.8.96';
+const CACHE_NAME = 'bahasa-studio-v3.8.97';
 const AUDIO_CACHE_NAME = 'guardi-audio-v1';
 const ASSETS = ['./', './index.html', './manifest.json', './icon.svg', './assessment.html', './assessment-engine.js', './conversation-engine.js', './study-history.js', './study-activity.js', './adaptive-learning.js', './curriculum-a1.js', './curriculum-a2.js', './styles.css', './audio-engine.js', './audio/index.json', './audio/metadata.json', './pronunciation-engine.js', './writing-practice.js', './apple-touch-icon.png', './icon-192.png', './icon-512-any.png', './icon-512-maskable.png', './assets/guardi/guardi-normal.svg', './assets/guardi/guardi-feliz.svg', './assets/guardi/guardi-triste.svg', './assets/guardi/guardi-celebrando.svg', './assets/guardi/guardi-pensando.svg', './assets/guardi/guardi-mark.svg', './assets/guardi/guardi-icon.svg'];
 
@@ -7,17 +7,68 @@ function isAudioClipRequest(request) {
     return url.origin === self.location.origin && /\/audio\/id\/[^/]+\.mp3$/i.test(url.pathname);
 }
 
+const audioMetadataRequest = () => new Request(new URL('./audio/metadata.json', self.location.href).href);
+
+async function readAudioHashes(cache) {
+    try {
+        const response = await cache.match(audioMetadataRequest());
+        if (!response || response.status !== 200) return null;
+        const metadata = await response.json();
+        const hashes = metadata && metadata.audio_hashes;
+        return hashes && typeof hashes === 'object' && Object.keys(hashes).length ? hashes : null;
+    } catch (_) {
+        return null;
+    }
+}
+
+async function sha256Hex(bytes) {
+    const digest = await crypto.subtle.digest('SHA-256', bytes);
+    return Array.from(new Uint8Array(digest), (byte) => byte.toString(16).padStart(2, '0')).join('');
+}
+
 async function migrateLegacyAudioCache() {
     let migrationComplete = true;
     let audioCache;
     let legacyNames;
+    let currentHashes = null;
 
     try {
+        const appCache = await caches.open(CACHE_NAME);
+        currentHashes = await readAudioHashes(appCache);
         audioCache = await caches.open(AUDIO_CACHE_NAME);
         const keys = await caches.keys();
         legacyNames = keys.filter((name) => name.startsWith('bahasa-studio-') && name !== CACHE_NAME);
     } catch (_) {
         return false;
+    }
+
+    // Validate persistent clips against actual MP3 bytes when fingerprints exist.
+    if (currentHashes) {
+        let cachedRequests;
+        try {
+            cachedRequests = await audioCache.keys();
+        } catch (_) {
+            return false;
+        }
+        for (const request of cachedRequests) {
+            const match = new URL(request.url).pathname.match(/\/audio\/id\/([a-f0-9]{12})\.mp3$/i);
+            if (!match) continue;
+            const id = match[1].toLowerCase();
+            try {
+                const response = await audioCache.match(request);
+                const expectedHash = currentHashes[id];
+                if (!response || response.status !== 200 || !expectedHash) {
+                    await audioCache.delete(request);
+                    continue;
+                }
+                const bytes = await response.clone().arrayBuffer();
+                if (!bytes.byteLength || await sha256Hex(bytes) !== expectedHash) {
+                    await audioCache.delete(request);
+                }
+            } catch (_) {
+                migrationComplete = false;
+            }
+        }
     }
 
     for (const name of legacyNames) {
@@ -39,6 +90,12 @@ async function migrateLegacyAudioCache() {
                 if (!response || response.status !== 200) continue;
                 const bytes = await response.clone().arrayBuffer();
                 if (!bytes.byteLength) continue;
+
+                if (currentHashes) {
+                    const match = new URL(request.url).pathname.match(/\/audio\/id\/([a-f0-9]{12})\.mp3$/i);
+                    const expectedHash = match ? currentHashes[match[1].toLowerCase()] : null;
+                    if (!expectedHash || await sha256Hex(bytes) !== expectedHash) continue;
+                }
                 await audioCache.put(request, response.clone());
             } catch (_) {
                 // Keep every legacy cache if any valid audio entry could not be copied.

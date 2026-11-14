@@ -31,8 +31,11 @@ La biblioteca contiene MP3 y Opus para los mismos IDs. El reproductor principal 
 
 - El Service Worker actual precarga `audio/index.json` y `audio/metadata.json`.
 - Los MP3 se descargan y se guardan bajo demanda cuando se reproducen; la biblioteca completa no se precarga.
-- La caché actual usa el nombre versionado `bahasa-studio-v3.8.95`. No existe todavía una caché de audio independiente ni una migración de clips.
-- El manejador actual intenta guardar respuestas `res.ok` sin capturar el rechazo de `cache.put()`. Cache API no permite guardar respuestas parciales 206 como si fueran respuestas completas. El soporte Range y la estrategia de caché se mantienen pendientes de cambios separados y pruebas.
+- La caché de recursos de la app usa un nombre versionado (`bahasa-studio-v3.8.96`). Los MP3 pasan a una caché persistente separada `guardi-audio-v1`, que no se elimina al actualizar la versión de la app.
+- En la activación, el Service Worker copia MP3 completos (200 y cuerpo no vacío) desde todas las cachés antiguas `bahasa-studio-*` a `guardi-audio-v1`. Solo elimina las cachés antiguas después de completar todas las copias; si falla una copia, conserva las fuentes y sigue sirviendo desde ellas mientras reintenta en la siguiente activación.
+- La migración es idempotente y no sobrescribe clips que ya están en la caché persistente. La nueva caché no incluye recursos generales de la aplicación.
+- PR #585 registra `waitUntil()` sincrónicamente durante el evento fetch y trata los errores de `cache.put()` como fail-open. Solo guarda respuestas HTTP 200 completas; no almacena respuestas 206 parciales.
+- La caché independiente mantiene la separación entre clips y recursos de la aplicación. El manejo de Range 206/416 sigue pendiente de una PR separada; la caché persistente todavía no resuelve por sí sola solicitudes multimedia Range.
 - Una prueba física en Tecno Pova 4 confirmó que un clip reproducido primero con conexión volvió a sonar en modo avión, sin voz indonesia instalada. Esto valida ese clip ya almacenado, no que toda la biblioteca esté disponible offline.
 - No se ha probado Safari/iOS. No afirmar compatibilidad de reproducción Range en esos entornos.
 
@@ -70,7 +73,7 @@ La documentación HTTP describe los significados de 200, 206 y 416, pero no prue
 1. Documentar el estado y añadir invariantes de manifiesto/índice/archivos.
 2. Ejecutar el workflow de sondeo Range y conservar su resultado antes de diseñar cambios.
 3. Ampliar cobertura de orígenes de audio y pruebas de integridad en una PR independiente.
-4. Separar los cambios del Service Worker: (a) guardado seguro y fallback abierto; (b) caché independiente, migración e invalidación; (c) respuestas Range 206/416.
+4. Separar los cambios del Service Worker: (a) guardado seguro y fallback abierto (PR #585); (b) caché independiente y migración segura; (c) respuestas Range 206/416; (d) invalidación cuando se regenere contenido de un ID existente, sin purgar por añadir IDs nuevos.
 5. Tras desplegar y superar pruebas automáticas, el propietario debe verificar físicamente actualización y reproducción offline en Android antes de autorizar descargas por nivel.
 
 No modificar hashes, rutas, normalización, IndexedDB v1 ni backup JSON v3 durante esta fase. No añadir dependencias.

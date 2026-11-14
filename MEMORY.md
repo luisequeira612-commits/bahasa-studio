@@ -163,3 +163,10 @@
 - La prueba manual de GitHub Pages previa confirmó 206 para `bytes=0-1` (`Content-Range: bytes 0-1/6765`, longitud 2). Safari/iOS no probado.
 - Nota de PR #586: Pages post-merge [43643854921](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/43643854921) pasó; regresión post-merge [43643855169](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/43643855169) tuvo un timeout aislado de 30 s en el E2E de burbuja de traducción, ajeno a audio. Se solicitó reintentar el job fallido `132597119731`; no tratar ese resultado como verde hasta confirmar el reintento.
 - Sigue pendiente invalidación de caché si se regenera audio de un ID existente; añadir nuevos IDs no debe purgar los clips existentes.
+
+## PR4 — invalidación de audio al regenerar clips — 14 nov 2026
+- Rama `fix/audio-cache-revision`: agrega `content_revision: 1` a `audio/metadata.json`. El generador incrementa la revisión antes de reemplazar archivos existentes; añadir IDs nuevos no la incrementa. El workflow `generate-audio.yml` expone `regenerate_existing` (default false) para forzar regeneración de forma explícita.
+- Service Worker v3.8.98 compara la revisión publicada con el marcador persistente en `guardi-audio-v1`. Si cambia, purga los MP3 guardados y omite la migración de clips viejos para evitar reintroducir audios obsoletos con el mismo ID. Si no puede leer metadata o completar la invalidación, conserva cachés de origen y evita servir audio potencialmente obsoleto; la activación no se bloquea.
+- Pruebas nuevas cubren revisión igual, revisión cambiada, primera revisión mayor que 1 sin marcador, y metadata ausente con fallback fail-safe. Actualiza mocks de activación para incluir metadata y Cache API delete.
+- Pruebas Python nuevas cubren revisión inicial, preservación del contador, incremento y la regla de no incrementar por IDs nuevos; CI regression añade la suite de revisión.
+- No cambia IDs SHA-1, rutas, normalización, `audio-engine.js`, IndexedDB v1, backup JSON v3 ni dependencias. Pendiente CI del head exacto y revisión; no fusionar hasta verde.

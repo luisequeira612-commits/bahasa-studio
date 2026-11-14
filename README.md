@@ -11,7 +11,7 @@ Guardi es una aplicación web progresiva (PWA) para estudiar indonesio desde esp
 - Práctica y repaso espaciado con progreso guardado en el dispositivo.
 - Diccionario del vocabulario del curso.
 - Tutor local básico; las funciones con IA son opcionales.
-- Audio mediante las voces que ofrezcan el navegador y el sistema operativo.
+- Biblioteca de audio indonesio pregenerado (Piper) con descarga bajo demanda y fallback de voz del dispositivo.
 - Instalación como PWA y almacenamiento en caché para uso sin conexión.
 - Exportación e importación del progreso mediante copias JSON versión 3.
 
@@ -47,7 +47,7 @@ Al usar Gemini, el texto de tus consultas se envía a Google. Las cuotas, los l�
 
 ### Audio y pronunciación
 
-La síntesis de voz depende de las voces instaladas y de la compatibilidad del navegador. Que el sistema muestre una voz con etiqueta `id-ID` no garantiza que sea una voz indonesia natural. Los audios pregenerados que se incorporen al curso serán sintéticos y no certifican pronunciación nativa ni sustituyen una revisión lingüística.
+Las lecciones usan clips MP3 indonesios pregenerados con Piper cuando están disponibles; el primer acceso descarga el clip y el navegador puede guardarlo para reproducirlo offline después. Si falta el clip o falla la reproducción, el fallback depende de que el dispositivo tenga una voz indonesia compatible instalada. Los audios son sintéticos: no certifican pronunciación nativa ni sustituyen una revisión lingüística. La biblioteca completa no se descarga automáticamente. Consulta [la guía técnica de audio](docs/AUDIO.md) para conocer los límites de caché, cobertura y licencias.
 
 La práctica de reconocimiento de voz solo se activa cuando pulsas el control correspondiente. El navegador puede enviar el audio a su propio proveedor de reconocimiento; su tratamiento depende del navegador y del sistema.
 
@@ -85,7 +85,8 @@ Para servir los archivos estáticos localmente, utiliza un servidor HTTP local d
 - `service-worker.js`: instalación y caché offline de recursos estáticos.
 - `manifest.json`: metadatos de la PWA.
 - `styles.css`: estilos de la aplicación.
-- `audio-engine.js`, `pronunciation-engine.js`: integración de voz del navegador.
+- `audio-engine.js`, `pronunciation-engine.js`: reproducción de clips y reconocimiento de voz del navegador.
+- `audio/`: manifiesto, índice y biblioteca de audio indonesio.
 - `tests/`: pruebas automatizadas.
 - `scripts/` y `docs/`: auditorías, informes y documentación de desarrollo.
 

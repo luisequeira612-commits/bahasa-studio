@@ -82,7 +82,6 @@ async function migrateAudioCache() {
             }
         }
 
-        let migrationSucceeded = true;
         const legacyNames = (await caches.keys()).filter((name) =>
             name.startsWith('bahasa-studio-') && name !== CACHE_NAME
         );

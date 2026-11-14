@@ -85,7 +85,7 @@ test('migra MP3 completos de todas las cachés antiguas antes de borrarlas', asy
     const worker = createWorker(new Map([
         ['bahasa-studio-v3.8.95', old95],
         ['bahasa-studio-v3.8.94', old94],
-        ['bahasa-studio-v3.8.96', current]
+        ['bahasa-studio-v3.8.97', current]
     ]));
 
     let activation;
@@ -100,7 +100,7 @@ test('migra MP3 completos de todas las cachés antiguas antes de borrarlas', asy
     assert.equal(await audioCache.match(new Request(shellUrl)), null);
     assert.equal(worker.cacheStore.has('bahasa-studio-v3.8.95'), false);
     assert.equal(worker.cacheStore.has('bahasa-studio-v3.8.94'), false);
-    assert.equal(worker.cacheStore.has('bahasa-studio-v3.8.96'), true);
+    assert.equal(worker.cacheStore.has('bahasa-studio-v3.8.97'), true);
     assert.equal(worker.claimCalls, 1);
 });
 
@@ -112,7 +112,7 @@ test('si una copia falla, la activación no se bloquea y conserva las cachés an
     const audio = new MemoryCache([], { failPut: true });
     const worker = createWorker(new Map([
         ['bahasa-studio-v3.8.95', old],
-        ['bahasa-studio-v3.8.96', new MemoryCache()],
+        ['bahasa-studio-v3.8.97', new MemoryCache()],
         ['guardi-audio-v1', audio]
     ]));
 
@@ -131,7 +131,7 @@ test('la migración es idempotente y no vuelve a escribir clips ya copiados', as
     ]);
     const worker = createWorker(new Map([
         ['bahasa-studio-v3.8.95', old],
-        ['bahasa-studio-v3.8.96', new MemoryCache()]
+        ['bahasa-studio-v3.8.97', new MemoryCache()]
     ]));
 
     let firstActivation;
@@ -162,7 +162,7 @@ test('los MP3 nuevos usan guardi-audio-v1 y los recursos normales siguen en la c
 
     const audioCache = worker.cacheStore.get('guardi-audio-v1');
     assert.ok(await audioCache.match(audioRequest));
-    assert.equal(worker.cacheStore.has('bahasa-studio-v3.8.96'), false, 'audio fetch must not create the app cache');
+    assert.equal(worker.cacheStore.has('bahasa-studio-v3.8.97'), false, 'audio fetch must not create the app cache');
 
     const appRequest = new Request(`${ORIGIN}/bahasa-studio/styles.css`);
     let appLifetime;
@@ -174,7 +174,7 @@ test('los MP3 nuevos usan guardi-audio-v1 y los recursos normales siguen en la c
     });
     assert.equal((await appResponse).status, 200);
     await appLifetime;
-    const appCache = worker.cacheStore.get('bahasa-studio-v3.8.96');
+    const appCache = worker.cacheStore.get('bahasa-studio-v3.8.97');
     assert.ok(await appCache.match(appRequest));
     assert.equal(await audioCache.match(appRequest), null);
 });

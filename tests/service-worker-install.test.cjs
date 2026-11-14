@@ -85,15 +85,15 @@ test('el guardado de red solo intenta cachear respuestas 200 y no bloquea el aud
     };
     const sandbox = {
         self: {
-            addEventListener: (name, handler) => { handlers[name] = handler; }
+            addEventListener: (name, handler) => { handlers[name] = handler; },
+            location: { origin: 'https://example.test' }
         },
         caches: { open: async () => cache },
         fetch: async () => new Response('audio', { status: 200, headers: { 'Content-Type': 'audio/mp3' } }),
         Response,
         Request,
         Promise,
-        URL,
-        location: { origin: 'https://example.test' }
+        URL
     };
     vm.runInNewContext(source, sandbox);
 
@@ -108,14 +108,15 @@ test('el guardado de red solo intenta cachear respuestas 200 y no bloquea el aud
     };
 
     handlers.fetch(event);
+    assert.equal(waitUntilCalls, 1, 'waitUntil debe registrarse sincrónicamente durante el evento');
     const response = await event.responsePromise;
     assert.equal(response.status, 200);
-    assert.equal(waitUntilCalls, 1);
     assert.deepEqual(cacheWrites, [{ url: request.url, status: 200 }]);
 
     cacheWrites.length = 0;
     cachePutRejects = true;
     handlers.fetch(event);
+    assert.equal(waitUntilCalls, 2);
     const secondResponse = await event.responsePromise;
     assert.equal(secondResponse.status, 200);
     assert.deepEqual(cacheWrites, [{ url: request.url, status: 200 }]);
@@ -132,16 +133,16 @@ test('una respuesta 206 no se guarda como archivo completo', async () => {
     };
     const sandbox = {
         self: {
-            addEventListener: (name, handler) => { handlers[name] = handler; }
+            addEventListener: (name, handler) => { handlers[name] = handler; },
+            location: { origin: 'https://example.test' }
         },
-        caches: { open: async () => cache }
+        caches: { open: async () => cache },
+        fetch: async () => new Response('partial', { status: 206 }),
+        Response,
+        Request,
+        Promise,
+        URL
     };
-    sandbox.fetch = async () => new Response('partial', { status: 206 });
-    sandbox.Response = Response;
-    sandbox.Request = Request;
-    sandbox.Promise = Promise;
-    sandbox.URL = URL;
-    sandbox.location = { origin: 'https://example.test' };
     vm.runInNewContext(source, sandbox);
 
     const request = new Request('https://example.test/audio/id/test.mp3');

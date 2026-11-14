@@ -58,22 +58,27 @@ Fuentes de licencia consultadas el 14 nov 2026:
 
 **Pendiente de trazabilidad:** registrar el commit exacto del repositorio de voces y SHA-256 del `.onnx` y `.onnx.json` utilizados, junto con el campo dataset del JSON de configuración. No se afirma que esos hashes estén archivados actualmente.
 
-## Comprobación de HTTP Range
+## HTTP Range: sondeo y respuesta desde el Service Worker
 
-No inferir el comportamiento de GitHub Pages por la prueba offline ni por documentación general. El workflow manual `.github/workflows/audio-range-probe.yml` consulta un MP3 publicado mediante GET normal, GET con `Range: bytes=0-1` y la misma petición con `Accept-Encoding: identity`. Registrar código HTTP y cabeceras:
+El workflow manual `.github/workflows/audio-range-probe.yml` confirmó que GitHub Pages admite Range para los MP3 publicados. En la muestra del 14 nov 2026, GET normal devolvió 200 y `Range: bytes=0-1` devolvió 206 con `Content-Range: bytes 0-1/6765` y `Content-Length: 2`. El resultado se limita a ese endpoint de prueba.
 
-- `200` en la petición Range significa que el servidor entregó el recurso completo e ignoró Range.
-- `206` debe incluir `Content-Range` coherente y `Content-Length: 2`.
-- No declarar el resultado hasta ejecutar el workflow contra Pages publicado.
+La implementación en la rama PR3c (`fix/audio-range-requests`, todavía pendiente de CI/revisión al registrar esta nota) sigue esta estrategia:
 
-La documentación HTTP describe los significados de 200, 206 y 416, pero no prueba el comportamiento concreto de GitHub Pages: [MDN — Range requests](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Range_requests).
+- Quita el encabezado Range de la petición al origen y obtiene el archivo completo 200; solo ese archivo completo se guarda en `guardi-audio-v1`.
+- Construye la respuesta 206 desde los bytes del MP3 completo, tanto si procede de red como de caché. Así Cache API nunca recibe una respuesta parcial.
+- Admite un único rango `bytes=a-b`, abierto `bytes=a-` y sufijo `bytes=-n`; limita el final al tamaño real.
+- Los rangos múltiples o mal formados se ignoran y reciben el archivo completo 200. Los rangos válidos pero no satisfacibles (inicio fuera del archivo o sufijo cero) reciben 416 con `Content-Range: bytes */size`.
+- En 206 define `Content-Range`, `Content-Length`, `Content-Type` y `Accept-Ranges: bytes`; elimina metadatos de compresión/longitud de la respuesta completa al construir el fragmento.
+- Una copia completa ya almacenada permite responder a Range también sin conexión; esto no implica que toda la biblioteca esté precargada. El primer uso de cada clip sigue requiriendo conexión o una copia previa.
+
+Pruebas añadidas para rango cerrado, abierto, sufijo, final truncado, 416, rango inválido/múltiple, lectura offline y fallo de escritura de caché. No afirmar compatibilidad Safari/iOS hasta probarla físicamente.
 
 ## Secuencia de trabajo acordada
 
 1. Documentar el estado y añadir invariantes de manifiesto/índice/archivos.
 2. Ejecutar el workflow de sondeo Range y conservar su resultado antes de diseñar cambios.
 3. Ampliar cobertura de orígenes de audio y pruebas de integridad en una PR independiente.
-4. Separar los cambios del Service Worker: (a) guardado seguro y fallback abierto (PR #585); (b) caché independiente y migración segura; (c) respuestas Range 206/416; (d) invalidación cuando se regenere contenido de un ID existente, sin purgar por añadir IDs nuevos.
+4. Separar los cambios del Service Worker: (a) guardado seguro y fallback abierto (PR #585); (b) caché independiente y migración segura (PR #586); (c) respuestas Range 206/416 (PR3c, pendiente); (d) invalidación cuando se regenere contenido de un ID existente, sin purgar por añadir IDs nuevos.
 5. Tras desplegar y superar pruebas automáticas, el propietario debe verificar físicamente actualización y reproducción offline en Android antes de autorizar descargas por nivel.
 
 No modificar hashes, rutas, normalización, IndexedDB v1 ni backup JSON v3 durante esta fase. No añadir dependencias.

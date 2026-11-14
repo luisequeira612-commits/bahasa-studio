@@ -242,3 +242,15 @@ test('A1 U13-U16 contain five authored lessons with cumulative practice and spac
   assert.deepEqual([...new Set(all.map(e=>e.type))].sort(),['listen','mc','order','translate_es_id','write']);
  }
 });
+
+
+test('A1 U17-U20 contain five authored lessons with cumulative practice and spaced retrieval', () => {
+ for (const unit of a1.units.slice(16,20)) {
+  assert.equal(unit.lessons.length,5,unit.id); const ids=new Set(unit.vocab.map(w=>w.id)),introduced=new Set(),all=unit.lessons.flatMap(l=>l.exercises||[]);
+  for(const lesson of unit.lessons){assert.ok(lesson.title&&lesson.objective&&lesson.grammar);assert.ok(lesson.exercises.length>=3);for(const id of lesson.vocabIds||[]){assert.ok(ids.has(id));assert.ok(!introduced.has(id));introduced.add(id);}}
+  assert.equal(introduced.size,unit.vocab.length); const original=new Map(),placed=new Map();for(const ex of unit.exercises){const k=JSON.stringify(ex);original.set(k,(original.get(k)||0)+1);}for(const ex of all){const k=JSON.stringify(ex);placed.set(k,(placed.get(k)||0)+1);}for(const [k,n] of original)assert.equal(placed.get(k)||0,n,unit.id+' original exercise multiplicity');
+  const last=unit.lessons[4];assert.match(last.title,/Recuperación espaciada/);assert.deepEqual(Array.from(last.vocabIds||[]),[]);assert.deepEqual([...new Set(last.reviewVocabIds)].sort(),[...ids].sort());assert.equal(last.exercises.length,unit.vocab.length);assert.equal(new Set(last.exercises.map(e=>e.vocabId)).size,unit.vocab.length);assert.equal(new Set(last.exercises.map(e=>e.type)).size,5);
+  let prior=[];for(const lesson of unit.lessons){assert.deepEqual(Array.from(lesson.reviewVocabIds||[]),prior);const available=new Set([...prior,...(lesson.vocabIds||[])]);for(const ex of lesson.exercises){assert.ok(available.has(ex.vocabId));assert.ok(ex.prompt&&ex.explanation);}prior=[...prior,...(lesson.vocabIds||[])];}
+  assert.deepEqual([...new Set(all.map(e=>e.type))].sort(),['listen','mc','order','translate_es_id','write']);
+ }
+});

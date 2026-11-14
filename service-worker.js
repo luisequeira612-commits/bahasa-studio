@@ -10,6 +10,26 @@ const isAudioFileRequest = (request) => {
 };
 const audioRequestForId = (id) => new Request(new URL(`./audio/id/${id}.mp3`, self.location.href).href);
 
+async function findLegacyAudioResponse(request) {
+    try {
+        const names = (await caches.keys()).filter((name) =>
+            name.startsWith('bahasa-studio-') && name !== CACHE_NAME
+        );
+        for (const name of names) {
+            try {
+                const legacy = await caches.open(name);
+                const response = await legacy.match(request);
+                if (response) return response;
+            } catch (_) {
+                // A broken legacy cache must not block network playback.
+            }
+        }
+    } catch (_) {
+        // Cache enumeration is best-effort.
+    }
+    return null;
+}
+
 async function readAudioHashes(cache) {
     try {
         const response = await cache.match(audioMetadataRequest());
@@ -150,7 +170,8 @@ self.addEventListener('fetch', (e) => {
     const cacheName = isAudioFileRequest(req) ? AUDIO_CACHE_NAME : CACHE_NAME;
     e.respondWith(
         caches.open(cacheName).then(async (cache) => {
-            const cached = await cache.match(req);
+            const cached = await cache.match(req) ||
+                (cacheName === AUDIO_CACHE_NAME ? await findLegacyAudioResponse(req) : null);
             const network = fetch(req, { cache: 'no-cache' }).then((res) => {
                 if (res && res.status === 200 && !req.headers.has('range')) {
                     try {

@@ -1486,12 +1486,15 @@ test('U24–U32 audit tracker vocabulary and examples stay synchronized with the
 });
 
 
-test('voice test explains audio is disabled when no Indonesian voice is installed', () => {
+test('bundled Indonesian recordings work without an installed device voice', () => {
   assert.match(html, /id="voiceTestStatus"/);
-  assert.match(audioEngineSource, /No se detectó una voz indonesia instalada\. No se reproducirá audio para evitar una pronunciación incorrecta/);
-  assert.match(audioEngineSource, /testVoice\(\) \{[\s\S]*?this\.speak\("Halo! Bahasa Indonesia\."\);/);
+  assert.match(html, /grabaciones de voz Piper/);
+  assert.match(audioEngineSource, /La app incluye grabaciones Piper y puede reproducirlas sin voces instaladas/);
+  assert.match(audioEngineSource, /playRecorded\\(text\\)/);
+  assert.match(audioEngineSource, /new Audio\\('\\.\\/audio\\/id\\/' \\+ id \\+ '\\.mp3'\\)/);
+  assert.match(audioEngineSource, /testVoice\\(\\) \\{[\\s\\S]*?this\\.speak\\('terima kasih'\\);/);
   assert.doesNotMatch(audioEngineSource, /voz predeterminada del sistema con el idioma id-ID/);
-});
+});;
 
 test('listen-and-type exercises also offer optional pronunciation practice using the expected phrase', () => {
   const start = html.indexOf("                } else if (ex.type === 'listen') {");

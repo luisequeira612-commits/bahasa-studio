@@ -141,6 +141,8 @@ test('si no se pueden borrar cachés antiguas, no sirve clips viejos desde ellas
     await activate(worker);
     assert.equal(worker.cacheStore.has('bahasa-studio-v3.8.97'), true);
 
+    const audioCache = worker.cacheStore.get(AUDIO_CACHE);
+    assert.equal(JSON.parse(await (await audioCache.match(new Request(METADATA_URL))).text()).content_revision, 1, 'failed cleanup must not commit the new revision marker');
     let responsePromise;
     let lifetimePromise;
     worker.handlers.fetch({

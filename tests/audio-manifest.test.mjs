@@ -76,8 +76,23 @@ test('optional interactive audio export covers every static playback surface', a
     assert.equal(countSource('assessment-listen'), 3, 'all unique assessment listen utterances must be collected');
     assert.equal(countSource('conversation-turn'), 27, 'all unique conversation turns must be collected');
     assert.equal(countSource('conversation-example'), 27, 'all unique speakable conversation examples must be collected');
-    console.log('interactive audio coverage audit', JSON.stringify({ base: base.length, interactive: interactive.length, added: interactive.length - base.length, sourceCounts: Object.fromEntries(['exercise-audioText', 'assessment-listen', 'conversation-turn', 'conversation-example'].map((kind) => [kind, countSource(kind)])) }));
-    assert.ok(interactive.length > base.length, 'interactive sources must add missing unique texts');
+    const baseIds = new Set(base.map((entry) => entry.id));
+    const kinds = ['exercise-audioText', 'assessment-listen', 'conversation-turn', 'conversation-example'];
+    const staticEntries = interactive.filter((entry) => entry.sources.some((source) => kinds.includes(source.kind)));
+    const missingBySource = Object.fromEntries(kinds.map((kind) => [
+      kind,
+      interactive.filter((entry) => entry.sources.some((source) => source.kind === kind) && !baseIds.has(entry.id)).length
+    ]));
+    console.log('interactive audio coverage audit', JSON.stringify({
+      base: base.length,
+      interactive: interactive.length,
+      staticUnique: staticEntries.length,
+      alreadyCovered: staticEntries.filter((entry) => baseIds.has(entry.id)).length,
+      added: interactive.length - base.length,
+      sourceCounts: Object.fromEntries(kinds.map((kind) => [kind, countSource(kind)])),
+      missingBySource
+    }));
+    assert.equal(interactive.length - base.length, 68, 'interactive sources should add the 68 currently missing unique texts');
     assert.equal(new Set(interactive.map((entry) => entry.id)).size, interactive.length);
     assert.ok(interactive.every((entry) => entry.id === hashText(entry.text)));
   } finally {

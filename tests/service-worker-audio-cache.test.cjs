@@ -195,6 +195,30 @@ test('los MP3 nuevos usan guardi-audio-v1 y los recursos normales siguen en la c
     assert.equal(await audioCache.match(appRequest), null);
 });
 
+test('la descarga explícita verificada evita la escritura automática del Service Worker', async () => {
+    const clip = audioUrl('verified');
+    let networkCalls = 0;
+    const worker = createWorker(new Map(), async request => {
+        networkCalls++;
+        assert.equal(request.headers.get('x-offline-audio-preparation'), '1');
+        return new Response('audio awaiting SHA-256 verification', {
+            status: 200,
+            headers: { 'Content-Type': 'audio/mpeg' }
+        });
+    });
+    const request = new Request(clip, { headers: { 'x-offline-audio-preparation': '1' } });
+    let responsePromise;
+    worker.handlers.fetch({
+        request,
+        waitUntil() { throw new Error('verified preparation must not register a cache write'); },
+        respondWith(promise) { responsePromise = promise; }
+    });
+    assert.equal((await responsePromise).status, 200);
+    assert.equal(networkCalls, 1);
+    assert.equal(worker.cacheStore.has('guardi-audio-v1'), false);
+    assert.equal(worker.cacheStore.has(CURRENT_CACHE_NAME), false);
+});
+
 test('invalida solo los MP3 cuyo contenido cambió y conserva los que siguen iguales al añadir IDs', async () => {
     const keepId = '0123456789ab';
     const changedId = 'abcdef012345';

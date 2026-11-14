@@ -119,11 +119,11 @@ test('authored A1 ordering exercises reference the vocabulary used by their answ
 });
 
 
-test('A1 U24-U32 use focused authored lesson plans while retaining generated practice and progression', () => {
+test('A1 U25-U32 use focused authored lesson plans while retaining generated practice and progression', () => {
   const a1 = app.CourseData.levels.find(level => level.id === 'A1');
-  const units = a1.units.slice(23, 32);
+  const units = a1.units.slice(24, 32);
   assert.deepEqual(Array.from(units, unit => unit.id),
-    ['a1_u24', 'a1_u25', 'a1_u26', 'a1_u27', 'a1_u28', 'a1_u29', 'a1_u30', 'a1_u31', 'a1_u32']);
+    ['a1_u25', 'a1_u26', 'a1_u27', 'a1_u28', 'a1_u29', 'a1_u30', 'a1_u31', 'a1_u32']);
 
   for (const unit of units) {
     assert.equal(unit.lessonPlans.length, 3, unit.id + ' should define three focused lesson plans');

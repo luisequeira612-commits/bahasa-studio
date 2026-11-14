@@ -26,6 +26,14 @@ class AudioSamplesPageTests(unittest.TestCase):
             self.assertIn("&lt;script&gt;", page)
             self.assertNotIn('<script>alert("x")</script>', page)
 
+    def test_full_library_rejects_mixing_engines_or_voices(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            metadata = Path(temporary) / "audio" / "metadata.json"
+            MODULE.ensure_single_voice(metadata, "piper", "Piper / id_ID-news_tts-medium")
+            MODULE.ensure_single_voice(metadata, "piper", "Piper / id_ID-news_tts-medium")
+            with self.assertRaisesRegex(RuntimeError, "Do not mix voices"):
+                MODULE.ensure_single_voice(metadata, "edge", "Edge TTS / id-ID-ArdiNeural")
+
     def test_samples_page_has_useful_empty_state(self):
         with tempfile.TemporaryDirectory() as temporary:
             output = Path(temporary)

@@ -19,7 +19,7 @@ Después de fusionar el PR que añade el workflow:
 6. Cuando termine, abre el resumen de la ejecución. El workflow sube una copia de recuperación como artifact y actualiza la rama/PR `audio/tts-samples`.
 7. Repite con `piper` y luego `mms`; las muestras de cada motor se acumulan en la misma página y usan los mismos primeros textos del manifiesto.
 
-La generación completa exige `mode=full` y `confirm_full=true`. No usarlo hasta elegir voz y aprobar la siguiente fase. El workflow permite seleccionar A1, A2 o B1 para que cada nivel se genere en una rama/PR separada.
+La generación completa exige `mode=full` y `confirm_full=true`. No usarlo hasta elegir voz y aprobar la siguiente fase. El workflow permite seleccionar A1, A2 o B1 para que cada nivel se genere en una rama/PR separada. La primera generación completa guarda `audio/metadata.json`; las siguientes rechazan cualquier motor o voz diferente para impedir mezclar voces. Fusiona A1 antes de iniciar A2, y A2 antes de B1, para que el bloqueo se herede en `main`.
 
 ## Página para escuchar
 
@@ -29,7 +29,7 @@ URL prevista del sitio publicado:
 
 https://luisequeira612-commits.github.io/bahasa-studio/audio-samples/
 
-**Condición:** esa URL solo servirá las muestras cuando el contenido esté en la fuente de GitHub Pages. La conexión GitHub disponible no permite leer el ajuste de Pages, así que no afirmamos qué rama/carpeta publica actualmente. Compruébalo desde el celular en **Settings → Pages → Build and deployment**. Si indica **Deploy from a branch**, confirma la rama y carpeta (para la URL indicada debe publicarse la raíz de `main` o una raíz que contenga `audio-samples/`). Si Pages usa una carpeta `/docs` o una rama distinta, habrá que adaptar la ruta o configurar Pages antes de esperar esa URL. No cambies el origen de Pages sin revisar cómo está desplegada la app actual.
+**Fuente verificada:** inspeccioné el último deployment de Pages (run 43558372270): el job Jekyll hizo checkout de `main` y construyó desde `source: .` (raíz). Por tanto, la URL anterior es la correcta después de fusionar el PR que contenga `audio-samples/` y de que termine el siguiente deployment. No hay que cambiar Settings → Pages.
 
 Las muestras se guardan primero en una rama y PR; no estarán en la URL pública antes de que el PR se fusione y Pages termine el despliegue. Si la fuente es `main` raíz, la fusión normal del PR produce la publicación. Después de elegir la voz, las muestras temporales se eliminarán en una PR pequeña.
 

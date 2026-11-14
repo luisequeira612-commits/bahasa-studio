@@ -112,6 +112,21 @@ def encode_audio(source: Path, destination: Path, mode: str):
     subprocess.run(command, check=True)
 
 
+def ensure_single_voice(metadata_file: Path, engine: str, voice: str):
+    metadata_file.parent.mkdir(parents=True, exist_ok=True)
+    expected = {"engine": engine, "voice": voice}
+    if metadata_file.exists():
+        existing = json.loads(metadata_file.read_text(encoding="utf-8"))
+        if existing != expected:
+            raise RuntimeError(
+                "The production library is locked to one engine/voice. "
+                f"Existing: {existing}; requested: {expected}. "
+                "Do not mix voices between A1, A2 and B1."
+            )
+    else:
+        metadata_file.write_text(json.dumps(expected, indent=2) + "\\n", encoding="utf-8")
+
+
 def render_samples_index(samples_dir: Path, samples: list[dict]):
     samples_dir.mkdir(parents=True, exist_ok=True)
     samples = sorted(samples, key=lambda item: (item.get("engine", ""), item.get("id", "")))
@@ -178,6 +193,8 @@ def main():
 
     synthesize, voice_label = create_synthesizer(args.engine, args.voice, model_cache)
     sample_file = ROOT / "audio-samples" / "samples.json"
+    if args.mode == "full":
+        ensure_single_voice(ROOT / "audio" / "metadata.json", args.engine, voice_label)
     existing_samples = json.loads(sample_file.read_text(encoding="utf-8")) if sample_file.exists() else []
     sample_map = {(item["engine"], item["id"]): item for item in existing_samples}
 

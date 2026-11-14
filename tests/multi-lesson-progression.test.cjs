@@ -27,8 +27,8 @@ test('every A1 unit is divided into sequential lessons that introduce all vocabu
     const expectedLessonCount = unit.vocab.length >= 18 ? 6 : 5;
     assert.equal(lessons.length, expectedLessonCount,
       unit.id + ' should expose ' + expectedLessonCount + ' lessons under the A1 standard');
-    const introduced = lessons.flatMap(lesson => lesson.newVocab.map(word => word.id));
-    assert.deepEqual(introduced, unit.vocab.map(word => word.id), unit.id + ' should introduce every vocabulary item exactly once and in order');
+    const introduced = Array.from(lessons.flatMap(lesson => lesson.newVocab.map(word => word.id)));
+    assert.deepEqual(introduced, Array.from(unit.vocab, word => word.id), unit.id + ' should introduce every vocabulary item exactly once and in order');
     lessons.forEach((lesson, index) => {
       assert.deepEqual(lesson.vocab.map(word => word.id), unit.vocab.slice(0, lesson.vocab.length).map(word => word.id));
       assert.deepEqual(lesson.reviewVocab.map(word => word.id), unit.vocab.slice(0, lesson.reviewVocab.length).map(word => word.id));
@@ -79,7 +79,7 @@ test('unit final assessments cover only that unit vocabulary and require 80 perc
   const a1 = app.CourseData.levels.find(level => level.id === 'A1');
   for (const unit of a1.units) {
     const items = app.buildUnitAssessmentItems(unit);
-    const knownIds = new Set(unit.vocab.map(word => word.id));
+    const knownIds = new Set(Array.from(unit.vocab, word => word.id));
     const knownMeanings = new Set(unit.vocab.map(word => word.esp));
     assert.equal(items.length, unit.vocab.length);
     for (const item of items) {
@@ -119,11 +119,90 @@ test('authored A1 ordering exercises reference the vocabulary used by their answ
 });
 
 
-test('A1 U25-U32 use focused authored lesson plans while retaining generated practice and progression', () => {
+test('A1 U25-U28 contain five authored lessons with cumulative practice and spaced retrieval', () => {
   const a1 = app.CourseData.levels.find(level => level.id === 'A1');
-  const units = a1.units.slice(24, 32);
+  const units = a1.units.slice(24, 28);
   assert.deepEqual(Array.from(units, unit => unit.id),
-    ['a1_u25', 'a1_u26', 'a1_u27', 'a1_u28', 'a1_u29', 'a1_u30', 'a1_u31', 'a1_u32']);
+    ['a1_u25', 'a1_u26', 'a1_u27', 'a1_u28']);
+
+  for (const unit of units) {
+    assert.equal(unit.lessonPlans.length, 3, unit.id + ' should retain three focused lesson plans');
+    assert.equal(unit.lessons.length, 5, unit.id + ' must contain five authored lessons');
+    assert.deepEqual(
+      Array.from(unit.lessons.slice(0, 3), lesson => lesson.title),
+      Array.from(unit.lessonPlans, plan => plan.title)
+    );
+
+    const unitIds = new Set(Array.from(unit.vocab, word => word.id));
+    const introduced = [];
+    const allExercises = unit.lessons.flatMap(lesson => lesson.exercises || []);
+    for (const [index, lesson] of unit.lessons.entries()) {
+      assert.ok(lesson.title && lesson.objective && lesson.grammar);
+      assert.ok(Array.isArray(lesson.exercises) && lesson.exercises.length >= 3,
+        unit.id + ' lesson ' + (index + 1) + ' needs its own active practice');
+      if (index < 3) {
+        const plan = unit.lessonPlans[index];
+        assert.equal(lesson.grammar, plan.objective + ' ' + plan.grammar);
+      }
+      for (const id of lesson.vocabIds || []) {
+        assert.ok(unitIds.has(id), unit.id + ' introduces vocabulary outside its unit: ' + id);
+        assert.ok(!introduced.includes(id), unit.id + ' introduces a word more than once: ' + id);
+        introduced.push(id);
+      }
+    }
+    assert.deepEqual(introduced, Array.from(unit.vocab, word => word.id),
+      unit.id + ' must introduce every vocabulary item exactly once and in order');
+
+    const originalCounts = new Map();
+    const lessonCounts = new Map();
+    for (const exercise of unit.exercises) {
+      const key = JSON.stringify(exercise);
+      originalCounts.set(key, (originalCounts.get(key) || 0) + 1);
+    }
+    for (const exercise of allExercises) {
+      const key = JSON.stringify(exercise);
+      lessonCounts.set(key, (lessonCounts.get(key) || 0) + 1);
+    }
+    for (const [key, count] of originalCounts) {
+      assert.equal(lessonCounts.get(key) || 0, count,
+        unit.id + ' must preserve every original unit exercise exactly once');
+    }
+    assert.ok(allExercises.every(exercise => exercise.generated !== true));
+
+    const finalLesson = unit.lessons[4];
+    assert.match(finalLesson.title, /Recuperación espaciada/);
+    assert.deepEqual(Array.from(finalLesson.vocabIds || []), []);
+    assert.deepEqual([...new Set(finalLesson.reviewVocabIds || [])].sort(), [...unitIds].sort());
+    assert.equal(finalLesson.exercises.length, unit.vocab.length);
+    assert.deepEqual([...new Set(finalLesson.exercises.map(exercise => exercise.vocabId))].sort(), [...unitIds].sort());
+    assert.equal(new Set(finalLesson.exercises.map(exercise => exercise.type)).size, 5);
+
+    let prior = [];
+    for (const lesson of unit.lessons) {
+      assert.deepEqual(Array.from(lesson.reviewVocabIds || []), prior,
+        unit.id + ' must review all previously introduced vocabulary');
+      const available = new Set([...prior, ...(lesson.vocabIds || [])]);
+      const exercised = new Set(lesson.exercises.map(exercise => exercise.vocabId));
+      for (const exercise of lesson.exercises) {
+        assert.ok(available.has(exercise.vocabId),
+          unit.id + ' assesses vocabulary before it is introduced');
+      }
+      for (const id of lesson.reviewVocabIds || []) {
+        assert.ok(exercised.has(id), unit.id + ' must actively retrieve prior vocabulary ' + id);
+      }
+      prior = [...prior, ...(lesson.vocabIds || [])];
+    }
+    assert.deepEqual([...new Set(allExercises.map(exercise => exercise.type))].sort(),
+      ['listen', 'mc', 'order', 'translate_es_id', 'write']);
+  }
+});
+
+
+test('A1 U29-U32 retain focused lesson plans and generated reinforcement', () => {
+  const a1 = app.CourseData.levels.find(level => level.id === 'A1');
+  const units = a1.units.slice(28, 32);
+  assert.deepEqual(Array.from(units, unit => unit.id),
+    ['a1_u29', 'a1_u30', 'a1_u31', 'a1_u32']);
 
   for (const unit of units) {
     assert.equal(unit.lessonPlans.length, 3, unit.id + ' should define three focused lesson plans');
@@ -195,7 +274,7 @@ test('B1 U13-U26 expose five lessons while preserving authored vocabulary order 
   const a1 = levels.find(level => level.id === 'A1');
   const a2 = levels.find(level => level.id === 'A2');
   const b1 = levels.find(level => level.id === 'B1');
-  const known = new Set([...a1.units, ...a2.units].flatMap(unit => unit.vocab.map(word => word.id)));
+  const known = new Set([...a1.units, ...a2.units].flatMap(unit => Array.from(unit.vocab, word => word.id)));
   for (const unit of b1.units.filter(unit => /^b1_u(?:[1-9]|1[0-2])$/.test(unit.id))) {
     for (const word of unit.vocab) known.add(word.id);
   }

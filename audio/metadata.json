@@ -1,0 +1,8 @@
+{
+  "engine": "piper",
+  "voice": "Piper / id_ID-news_tts-medium",
+  "formats": [
+    "opus",
+    "mp3"
+  ]
+}

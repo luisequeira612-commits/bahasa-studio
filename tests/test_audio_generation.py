@@ -42,5 +42,23 @@ class AudioSamplesPageTests(unittest.TestCase):
             self.assertIn("Aún no hay muestras", page)
 
 
+    def test_refresh_audio_hashes_records_each_mp3_and_preserves_voice_metadata(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            audio_dir = root / "id"
+            audio_dir.mkdir()
+            (audio_dir / "0123456789ab.mp3").write_bytes(b"clip-one")
+            (audio_dir / "abcdef012345.mp3").write_bytes(b"clip-two")
+            metadata = root / "metadata.json"
+            metadata.write_text('{"engine":"piper","voice":"Piper voice","formats":["opus","mp3"]}', encoding="utf-8")
+            hashes = MODULE.refresh_audio_hashes(metadata, audio_dir)
+            saved = __import__("json").loads(metadata.read_text(encoding="utf-8"))
+            self.assertEqual(set(hashes), {"0123456789ab", "abcdef012345"})
+            self.assertEqual(saved["audio_hashes"], hashes)
+            self.assertEqual(saved["engine"], "piper")
+            self.assertEqual(saved["voice"], "Piper voice")
+            self.assertEqual(len(hashes["0123456789ab"]), 64)
+
+
 if __name__ == "__main__":
     unittest.main()

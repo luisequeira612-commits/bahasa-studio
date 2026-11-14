@@ -1,0 +1,62 @@
+[
+  {
+    "engine": "edge",
+    "id": "b820db6e2aba",
+    "text": "Saya",
+    "voice": "Edge TTS / id-ID-ArdiNeural"
+  },
+  {
+    "engine": "edge",
+    "id": "315b9da4bbf4",
+    "text": "Saya makan.",
+    "voice": "Edge TTS / id-ID-ArdiNeural"
+  },
+  {
+    "engine": "edge",
+    "id": "76c0af47fddc",
+    "text": "Kamu",
+    "voice": "Edge TTS / id-ID-ArdiNeural"
+  },
+  {
+    "engine": "edge",
+    "id": "79479e58eee3",
+    "text": "Kamu minum.",
+    "voice": "Edge TTS / id-ID-ArdiNeural"
+  },
+  {
+    "engine": "edge",
+    "id": "4967e07bc327",
+    "text": "Dia",
+    "voice": "Edge TTS / id-ID-ArdiNeural"
+  },
+  {
+    "engine": "edge",
+    "id": "4d217ac175a8",
+    "text": "Dia makan.",
+    "voice": "Edge TTS / id-ID-ArdiNeural"
+  },
+  {
+    "engine": "edge",
+    "id": "e1b89cc35480",
+    "text": "Selamat pagi",
+    "voice": "Edge TTS / id-ID-ArdiNeural"
+  },
+  {
+    "engine": "edge",
+    "id": "3023fa268c90",
+    "text": "Selamat pagi!",
+    "voice": "Edge TTS / id-ID-ArdiNeural"
+  },
+  {
+    "engine": "edge",
+    "id": "33b1eac21097",
+    "text": "Halo",
+    "voice": "Edge TTS / id-ID-ArdiNeural"
+  },
+  {
+    "engine": "edge",
+    "id": "94c1a3d4b65e",
+    "text": "Halo, Ana!",
+    "voice": "Edge TTS / id-ID-ArdiNeural"
+  }
+]

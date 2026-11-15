@@ -637,7 +637,7 @@ test('daily XP goals and study streaks persist across reloads', async () => {
 
   try {
     await page.goto(url, { waitUntil: 'domcontentloaded' });
-    await page.waitForFunction(() => typeof App !== 'undefined' && typeof StudyActivity !== 'undefined' && DB && DB.db);
+    await page.waitForFunction(() => typeof App !== 'undefined' && typeof StudyActivity !== 'undefined' && DB && DB.db && App.studyActivity !== null);
 
     await page.evaluate(() => App.addXp(10));
     await page.waitForFunction(async () => {

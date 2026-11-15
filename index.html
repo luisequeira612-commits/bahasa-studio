@@ -7119,6 +7119,33 @@
                                         { vocabId: 'b1v161', type: 'write', prompt: 'Resume una situación en cuatro frases: presenta una declaración, explica qué se afirma, qué se admite y qué se niega.', hint: 'Integra pernyataan, menyatakan, mengakui y menyangkal.', modelAnswer: 'Pernyataan resmi akan diumumkan besok. Dia menyatakan pendapatnya dengan jelas. Dia mengakui kesalahannya. Dia menyangkal tuduhan tersebut.', explanation: 'La producción distingue una declaración, una afirmación, una admisión y una negación.' }
                                     ]
                                 }
+                            ,
+                                {
+                                    title: 'Diferenciar una afirmación de una admisión',
+                                    objective: 'Distingue lo que una persona declara de aquello que reconoce como cierto.',
+                                    grammar: 'Menyatakan presenta una opinión o afirmación; mengakui admite un hecho o error. Menegaskan añade firmeza a una afirmación. La elección depende de si la persona expresa una postura o reconoce una responsabilidad.',
+                                    reviewVocabIds: ['a2u40_pernyataan', 'b1v158', 'b1v159', 'b1v160'],
+                                    vocabIds: [],
+                                    exercises: [
+                                        { vocabId: 'b1v160', type: 'mc', prompt: '¿Qué expresa mengakui?', options: ["Reconocer o admitir","Negar una acusación","Comparar opciones"], answer: 0, explanation: 'Mengakui significa reconocer o admitir un hecho o error.' },
+                                        { vocabId: 'b1v158', type: 'translate_es_id', prompt: 'Traduce: «Él/Ella expresa su opinión claramente».', answer: 'Dia menyatakan pendapatnya dengan jelas.', explanation: 'Menyatakan expresa declarar o expresar una idea.' },
+                                        { vocabId: 'b1v160', type: 'order', prompt: 'Ordena: «Él/Ella reconoce su error».', words: ["kesalahannya.","mengakui","Dia"], correctOrder: ["Dia","mengakui","kesalahannya."], explanation: 'Mengakui kesalahannya expresa admitir un error.' },
+                                        { vocabId: 'b1v159', type: 'write', prompt: 'Escribe dos frases: presenta una opinión y admite un error relacionado con la situación.', hint: 'Integra menyatakan, menegaskan y mengakui.', modelAnswer: 'Dia menyatakan pendapatnya dengan jelas. Dia menegaskan bahwa informasi itu benar. Dia mengakui kesalahannya.', explanation: 'La producción distingue expresar una postura, afirmarla con firmeza y admitir un error.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Responder a una acusación con claridad',
+                                    objective: 'Explica cómo se presenta una declaración y cómo se niega una acusación concreta.',
+                                    grammar: 'Menyangkal significa negar o desmentir una acusación. Puede aparecer en una declaración oficial. Distingue menyangkal de mengakui: la primera niega algo atribuido; la segunda admite un hecho.',
+                                    reviewVocabIds: ['a2u40_pernyataan', 'b1v158', 'b1v160', 'b1v161'],
+                                    vocabIds: [],
+                                    exercises: [
+                                        { vocabId: 'b1v161', type: 'mc', prompt: '¿Qué significa menyangkal?', options: ["Negar o desmentir","Reconocer un error","Recalcar una idea"], answer: 0, explanation: 'Menyangkal significa negar o desmentir una acusación o afirmación.' },
+                                        { vocabId: 'b1v161', type: 'translate_es_id', prompt: 'Traduce: «Él/Ella niega esa acusación».', answer: 'Dia menyangkal tuduhan tersebut.', explanation: 'Menyangkal expresa negar una acusación.' },
+                                        { vocabId: 'a2u40_pernyataan', type: 'order', prompt: 'Ordena: «La declaración oficial se anunciará mañana».', words: ["besok.","resmi","Pernyataan","akan","diumumkan"], correctOrder: ["Pernyataan","resmi","akan","diumumkan","besok."], explanation: 'Pernyataan resmi es el sujeto; akan diumumkan expresa una acción futura en pasiva.' },
+                                        { vocabId: 'b1v161', type: 'write', prompt: 'Resume una situación: presenta una declaración, explica qué se afirma y aclara qué acusación se niega.', hint: 'Usa pernyataan, menyatakan y menyangkal.', modelAnswer: 'Pernyataan resmi akan diumumkan besok. Dia menyatakan pendapatnya dengan jelas. Dia menyangkal tuduhan tersebut.', explanation: 'La producción relaciona una declaración con una afirmación y una negación.' }
+                                    ]
+                                }
                             ]
                         },
                         {
@@ -7173,6 +7200,19 @@
                                         { vocabId: 'b1v165', type: 'translate_es_id', prompt: 'Traduce: «Encontramos semejanzas en las opiniones».', answer: 'Kami menemukan kesamaan dalam pendapat.', explanation: 'Kesamaan expresa una característica compartida.' },
                                         { vocabId: 'b1v165', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Kami menemukan kesamaan dalam pendapat mereka.', explanation: 'La frase identifica semejanzas entre opiniones.' },
                                         { vocabId: 'b1v165', type: 'write', prompt: 'Escribe un texto de cuatro frases: compara dos opciones, menciona una diferencia, una semejanza y concluye cuál prefieres.', hint: 'Integra perbandingan, sebaliknya y kesamaan.', modelAnswer: 'Saya membandingkan dua pilihan. Perbandingan itu menunjukkan perbedaan. Kami juga menemukan kesamaan dalam pendapat. Saya memilih pilihan pertama.', explanation: 'La producción reúne comparación, diferencia, semejanza y preferencia.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Comparar semejanzas y diferencias en contexto',
+                                    objective: 'Compara dos opciones y explica qué característica comparten y en qué se distinguen.',
+                                    grammar: 'Perbandingan nombra la comparación; membandingkan expresa la acción de comparar. Kesamaan señala una característica compartida y sebaliknya introduce un contraste.',
+                                    reviewVocabIds: ['b1v162', 'a2u13_membandingkan', 'b1v163', 'b1v164', 'b1v165'],
+                                    vocabIds: [],
+                                    exercises: [
+                                        { vocabId: 'b1v165', type: 'mc', prompt: '¿Qué significa kesamaan?', options: ["Semejanza o similitud","Una acusación","Una previsión"], answer: 0, explanation: 'Kesamaan significa semejanza o similitud.' },
+                                        { vocabId: 'b1v165', type: 'translate_es_id', prompt: 'Traduce: «Encontramos semejanzas en las opiniones».', answer: 'Kami menemukan kesamaan dalam pendapat.', explanation: 'Kesamaan expresa una característica compartida.' },
+                                        { vocabId: 'b1v163', type: 'order', prompt: 'Ordena: «Él/Ella elige un método sencillo; yo, por el contrario, elijo otro».', words: ["lain.","sebaliknya,","cara","saya,","Dia","memilih","sederhana;","cara"], correctOrder: ["Dia","memilih","cara","sederhana;","saya,","sebaliknya,","cara","lain."], explanation: 'Sebaliknya introduce el contraste con la elección anterior.' },
+                                        { vocabId: 'b1v162', type: 'write', prompt: 'Compara dos opciones: indica una semejanza, una diferencia y cuál prefieres.', hint: 'Integra membandingkan, kesamaan y sebaliknya.', modelAnswer: 'Saya membandingkan dua pilihan. Kami menemukan kesamaan dalam pendapat. Pilihan pertama lebih murah; pilihan kedua, sebaliknya, lebih cepat. Saya memilih pilihan pertama.', explanation: 'La producción reúne comparación, semejanza, contraste y preferencia.' }
                                     ]
                                 },
                                 {
@@ -7301,6 +7341,33 @@
                                         { vocabId: 'b1v170', type: 'write', prompt: 'Escribe cuatro frases que expliquen una situación, dos factores relacionados, de qué depende el resultado y qué experiencia influye en la decisión.', hint: 'Integra kondisi, hubungan, bergantung y berpengaruh.', modelAnswer: 'Kondisi kerja berubah setiap tahun. Ada hubungan antara waktu dan hasil pekerjaan. Hasilnya bergantung pada kondisi. Pengalaman itu berpengaruh pada keputusan akhir.', explanation: 'La producción integra condiciones, relaciones, dependencia e influencia.' }
                                     ]
                                 }
+                            ,
+                                {
+                                    title: 'Identificar factores que condicionan un resultado',
+                                    objective: 'Explica de qué condiciones depende un resultado y qué relación existe entre dos factores.',
+                                    grammar: 'Kondisi describe una condición o situación. Hubungan expresa una relación entre elementos. Bergantung pada indica que un resultado depende de una condición.',
+                                    reviewVocabIds: ['b1v166', 'b1v167', 'b1v168'],
+                                    vocabIds: [],
+                                    exercises: [
+                                        { vocabId: 'b1v168', type: 'mc', prompt: '¿Qué expresa bergantung pada?', options: ["Depender de una condición","Negar una acusación","Hacer una estimación"], answer: 0, explanation: 'Bergantung pada indica dependencia de una condición o factor.' },
+                                        { vocabId: 'b1v168', type: 'translate_es_id', prompt: 'Traduce: «El resultado depende de las condiciones».', answer: 'Hasilnya bergantung pada kondisi.', explanation: 'Bergantung pada conecta el resultado con la condición de la que depende.' },
+                                        { vocabId: 'b1v167', type: 'order', prompt: 'Ordena: «Existe una relación entre el tiempo y el resultado del trabajo».', words: ["pekerjaan.","hasil","waktu","antara","hubungan","Ada","dan"], correctOrder: ["Ada","hubungan","antara","waktu","dan","hasil","pekerjaan."], explanation: 'Hubungan antara presenta la relación entre dos factores.' },
+                                        { vocabId: 'b1v166', type: 'write', prompt: 'Describe una situación y explica qué dos factores están relacionados y de qué condición depende el resultado.', hint: 'Usa kondisi, hubungan y bergantung.', modelAnswer: 'Kondisi kerja berubah setiap tahun. Ada hubungan antara waktu dan hasil pekerjaan. Hasilnya bergantung pada kondisi.', explanation: 'La producción conecta una condición, una relación y una dependencia.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Explicar cómo una experiencia influye en una decisión',
+                                    objective: 'Describe la influencia de una experiencia y distingue influir de depender.',
+                                    grammar: 'Memengaruhi expresa afectar o influir directamente en algo. Berpengaruh pada indica tener influencia sobre un resultado o decisión. Bergantung pada expresa dependencia, no necesariamente influencia.',
+                                    reviewVocabIds: ['b1v166', 'b1v167', 'b1v168', 'b1v169', 'b1v170'],
+                                    vocabIds: [],
+                                    exercises: [
+                                        { vocabId: 'b1v170', type: 'mc', prompt: '¿Qué expresa berpengaruh pada?', options: ["Tener influencia sobre algo","Depender de una fecha","Negar un hecho"], answer: 0, explanation: 'Berpengaruh pada expresa tener influencia sobre un resultado o una decisión.' },
+                                        { vocabId: 'b1v170', type: 'translate_es_id', prompt: 'Traduce: «Esa experiencia influye en la decisión final».', answer: 'Pengalaman itu berpengaruh pada keputusan akhir.', explanation: 'Berpengaruh pada señala la influencia de una experiencia en una decisión.' },
+                                        { vocabId: 'b1v169', type: 'order', prompt: 'Ordena: «Esa decisión afecta el resultado».', words: ["hasil.","memengaruhi","itu","Keputusan"], correctOrder: ["Keputusan","itu","memengaruhi","hasil."], explanation: 'Memengaruhi expresa afectar o influir directamente en algo.' },
+                                        { vocabId: 'b1v170', type: 'write', prompt: 'Escribe tres frases: presenta una experiencia, explica qué decisión influye y menciona el resultado.', hint: 'Integra pengalaman, memengaruhi y berpengaruh.', modelAnswer: 'Pengalaman itu berpengaruh pada keputusan akhir. Keputusan itu memengaruhi hasil. Kondisi juga berpengaruh pada keputusan.', explanation: 'La producción conecta una experiencia, su influencia y el resultado.' }
+                                    ]
+                                }
                             ]
                         },
 
@@ -7356,6 +7423,33 @@
                                         { vocabId: 'b1v175', type: 'translate_es_id', prompt: 'Traduce: «Se estima que ese costo aumentará».', answer: 'Biaya itu diperkirakan meningkat.', explanation: 'Diperkirakan presenta una estimación o previsión.' },
                                         { vocabId: 'b1v175', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Biaya itu diperkirakan meningkat tahun depan.', explanation: 'La frase presenta una previsión para el próximo año.' },
                                         { vocabId: 'b1v175', type: 'write', prompt: 'Escribe un breve informe de cuatro frases: presenta una estimación, menciona una posibilidad, explica el potencial y formula una previsión sin afirmar que sea segura.', hint: 'Integra perkiraan, kemungkinan, berpotensi y diperkirakan.', modelAnswer: 'Perkiraan itu berdasarkan data terbaru. Ada kemungkinan biaya meningkat. Ide itu berpotensi berhasil. Biaya itu diperkirakan meningkat tahun depan.', explanation: 'La producción distingue estimación, posibilidad, potencial y previsión.' }
+                                    ]
+                                }
+                            ,
+                                {
+                                    title: 'Construir una previsión a partir de datos',
+                                    objective: 'Explica cómo se estima un costo o resultado usando información disponible.',
+                                    grammar: 'Perkiraan es una estimación; memperkirakan es el acto de calcular o prever. Berdasarkan introduce los datos que sirven de base. Una previsión debe presentarse como estimación, no como certeza.',
+                                    reviewVocabIds: ['b1v171', 'b1v172', 'b1v175'],
+                                    vocabIds: [],
+                                    exercises: [
+                                        { vocabId: 'b1v172', type: 'mc', prompt: '¿Qué significa memperkirakan?', options: ["Estimar o calcular","Evitar una situación","Admitir un error"], answer: 0, explanation: 'Memperkirakan significa estimar, calcular o prever.' },
+                                        { vocabId: 'b1v172', type: 'translate_es_id', prompt: 'Traduce: «Estimamos el costo del viaje».', answer: 'Kami memperkirakan biaya perjalanan.', explanation: 'Memperkirakan expresa estimar o calcular un costo.' },
+                                        { vocabId: 'b1v171', type: 'order', prompt: 'Ordena: «Esa estimación se basa en los datos más recientes».', words: ["terbaru.","data","berdasarkan","itu","Perkiraan"], correctOrder: ["Perkiraan","itu","berdasarkan","data","terbaru."], explanation: 'Berdasarkan data terbaru explica la base de la estimación.' },
+                                        { vocabId: 'b1v171', type: 'write', prompt: 'Escribe un informe breve: presenta una estimación y explica qué datos usas para calcularla.', hint: 'Integra perkiraan, memperkirakan y berdasarkan.', modelAnswer: 'Perkiraan itu berdasarkan data terbaru. Kami memperkirakan biaya perjalanan sebelum berangkat.', explanation: 'La producción presenta una estimación y explica su fundamento.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Comunicar posibilidades sin afirmar certezas',
+                                    objective: 'Expresa que una idea podría funcionar y distingue potencial de una previsión segura.',
+                                    grammar: 'Kemungkinan expresa posibilidad o probabilidad. Berpotensi indica que algo tiene potencial para producir un resultado. Diperkirakan presenta una previsión; ninguna de estas formas garantiza que el resultado ocurra.',
+                                    reviewVocabIds: ['b1v171', 'b1v172', 'b1v173', 'b1v174', 'b1v175'],
+                                    vocabIds: [],
+                                    exercises: [
+                                        { vocabId: 'b1v174', type: 'mc', prompt: '¿Qué significa berpotensi?', options: ["Tener potencial","Estar confirmado","Negar una acusación"], answer: 0, explanation: 'Berpotensi expresa tener potencial para producir un resultado.' },
+                                        { vocabId: 'b1v174', type: 'translate_es_id', prompt: 'Traduce: «Esa idea tiene potencial para funcionar».', answer: 'Ide itu berpotensi berhasil.', explanation: 'Berpotensi expresa tener potencial, sin garantizar el resultado.' },
+                                        { vocabId: 'b1v175', type: 'order', prompt: 'Ordena: «Se estima que ese costo aumentará».', words: ["meningkat.","diperkirakan","itu","Biaya"], correctOrder: ["Biaya","itu","diperkirakan","meningkat."], explanation: 'Diperkirakan presenta una estimación o previsión.' },
+                                        { vocabId: 'b1v173', type: 'write', prompt: 'Describe una posibilidad, explica qué idea tiene potencial y presenta una previsión sin afirmar que sea segura.', hint: 'Integra kemungkinan, berpotensi y diperkirakan.', modelAnswer: 'Ada kemungkinan biaya meningkat. Ide itu berpotensi berhasil. Biaya itu diperkirakan meningkat tahun depan.', explanation: 'La producción distingue posibilidad, potencial y previsión.' }
                                     ]
                                 }
                             ]

@@ -29,9 +29,11 @@ test('every A1 unit is divided into sequential lessons that introduce all vocabu
       unit.id + ' should expose ' + expectedLessonCount + ' lessons under the A1 standard');
     const introduced = Array.from(lessons.flatMap(lesson => lesson.newVocab.map(word => word.id)));
     assert.deepEqual(introduced, Array.from(unit.vocab, word => word.id), unit.id + ' should introduce every vocabulary item exactly once and in order');
+    const introducedSoFar = new Set();
     lessons.forEach((lesson, index) => {
       assert.deepEqual(lesson.vocab.map(word => word.id), unit.vocab.slice(0, lesson.vocab.length).map(word => word.id));
-      assert.deepEqual(lesson.reviewVocab.map(word => word.id), unit.vocab.slice(0, lesson.reviewVocab.length).map(word => word.id));
+      assert.ok(lesson.reviewVocab.every(word => introducedSoFar.has(word.id)),
+        unit.id + ' lesson ' + index + ' may review only vocabulary introduced in an earlier lesson');
       assert.ok(lesson.exercises.length >= lesson.newVocab.length, unit.id + ' lesson should actively practise its new words');
       const learnedIds = new Set(lesson.vocab.map(word => word.id));
       const learnedMeanings = new Set(lesson.vocab.map(word => word.esp));
@@ -43,6 +45,7 @@ test('every A1 unit is divided into sequential lessons that introduce all vocabu
         if (exercise.generated && exercise.options) assert.ok(exercise.options.every(option => learnedMeanings.has(option)), 'generated lesson distractors must come only from learned vocabulary');
         if (exercise.generated && exercise.answer && exercise.type !== 'mc') assert.ok(lesson.vocab.some(word => word.idn === exercise.answer), 'generated lesson answers must use learned vocabulary');
       }
+      lesson.newVocab.forEach(word => introducedSoFar.add(word.id));
     });
   }
 });

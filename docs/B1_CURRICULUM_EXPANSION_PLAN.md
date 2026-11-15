@@ -161,3 +161,10 @@ El usuario autorizó sustituir los borradores antiguos de U10–U12 y conservar 
 - Las antiguas unidades de cortesía formal, negociación e integración se conservan literalmente en el archivo de desplazados para futura reasignación, no se cargan ni se descartan.
 - B1 continúa oculto. No se modifican A1/A2, IndexedDB, backup JSON v3, trackers/CSV ni dependencias. Material beta sin validación nativa ni calibración MCER/BIPA.
 
+
+
+## Migración de lecciones authored — B1 U1–U4 — 14 nov 2026
+
+La PR `curriculum/b1-u1-u4-five-lessons-20261114` añade tres lecciones didácticas a cada unidad para alcanzar cinco authored. Se mantienen los IDs y las entradas de vocabulario originales, así como los bancos directos de ejercicios; los ejercicios de las dos lecciones existentes permanecen una sola vez y la lección final conserva la recuperación de la unidad. U4 mantiene al final el checkpoint acumulativo U1–U4. Las nuevas actividades reutilizan frases y formas que ya existen en los ejemplos curriculares; no introducen vocabulario nuevo.
+
+La distribución de ejercicios combinados queda dentro del contrato de 14–22 por unidad: U1 21, U2 21, U3 22 y U4 20. Las cinco lecciones tienen práctica propia (mínimo dos ejercicios por lección). La ampliación es estructural y no certifica naturalidad lingüística ni nivel MCER/BIPA; se mantienen las reglas de no depender de KBBI ni de disponibilidad de hablante nativo.

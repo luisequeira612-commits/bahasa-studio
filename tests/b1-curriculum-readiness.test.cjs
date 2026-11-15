@@ -238,7 +238,7 @@ test('B1 cumulative review checkpoints cover U22, U27, U32, U37, U42 and U47', (
     for (const exercise of lesson.exercises) {
       assert.ok(lesson.reviewVocabIds.includes(exercise.vocabId), unitId + ' review exercise must target a reviewed vocabulary ID');
     }
-    assert.equal(exercisesOf(unit).length, unitId === 'b1_u22' ? 20 : 18, unitId + ' exercise count after authored lesson expansion');
+    assert.equal(exercisesOf(unit).length, ['b1_u22', 'b1_u27'].includes(unitId) ? 20 : 18, unitId + ' exercise count after authored lesson expansion');
   }
 });
 
@@ -1150,7 +1150,7 @@ test('B1 U25-U28 describe character, places, opinions and degrees of certainty',
   ]);
   const earlierIds = new Set(b1.units.filter(unit => !['b1_u25', 'b1_u26', 'b1_u27', 'b1_u28'].includes(unit.id)).flatMap(unit => unit.vocab.map(word => word.id)));
   for (const [unit, expectedCount] of expectedCounts) {
-    assert.equal(unit.lessons.length, ['b1_u22', 'b1_u27', 'b1_u32', 'b1_u37', 'b1_u42', 'b1_u47'].includes(unit.id) ? 4 : 3);
+    assert.equal(unit.lessons.length, 5, unit.id + ' must have five authored lessons');
     const exercises = exercisesOf(unit);
     assert.equal(exercises.length, expectedCount);
     const types = new Set(exercises.map(exercise => exercise.type));

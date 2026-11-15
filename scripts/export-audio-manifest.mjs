@@ -117,9 +117,15 @@ async function main() {
   if (!includeB2) {
     try {
       const index = JSON.parse(await readFile(path.join(ROOT, 'audio', 'index.json'), 'utf8'));
-      const b2Candidates = await buildManifest({ includeB2: true });
-      const b2Ids = new Set(b2Candidates.filter((entry) => entry.levels.includes('B2')).map((entry) => entry.id));
-      includeB2 = index.some((id) => b2Ids.has(id));
+      const [baseCandidates, b2Candidates] = await Promise.all([
+        buildManifest(),
+        buildManifest({ includeB2: true })
+      ]);
+      const baseIds = new Set(baseCandidates.map((entry) => entry.id));
+      const b2OnlyIds = new Set(b2Candidates
+        .filter((entry) => entry.levels.includes('B2') && !baseIds.has(entry.id))
+        .map((entry) => entry.id));
+      includeB2 = index.some((id) => b2OnlyIds.has(id));
     } catch (error) {
       if (error?.code !== 'ENOENT') throw error;
     }

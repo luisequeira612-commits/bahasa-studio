@@ -64,20 +64,35 @@ Al completar U8, el estudiante podrá:
 - Contrastar ke-...-an nominalizador con formas verbales adversativas/perfectivas como *kejatuhan* y *kebakaran*.
 - Analizar *ketinggian* en contextos que favorezcan la lectura de ‘altura’ frente a ‘demasiado alto’.
 - Priorizar comprensión contextual; no exigir producción libre de formas complejas.
-- Cerrar con producción guiada a partir de expresiones que hayan sido cotejadas y seleccionadas.
+
+### Lección 4 — Alcance y estructura de los dominios complejos
+
+- Delimitar qué material queda dentro del dominio nominalizado y qué elementos permanecen fuera.
+- Comparar ejemplos con negación, adverbio o prefijo bajo, y reconocer que objetos y ciertos prefijos no se integran libremente.
+- Explicar por qué *ketidakadilan*, *kesalahpahaman* y *keberuntungan* no autorizan a crear nuevas formas por analogía.
+- Resolver ejercicios de segmentación y lectura con el contexto completo, no con palabras aisladas.
+
+### Lección 5 — Integración y reformulación guiada
+
+- Integrar nominalizaciones de base simple, dominios complejos y contrastes verbales en un texto formal breve.
+- Elegir la interpretación que encaja con la sintaxis y el contexto, justificando qué indicios la sostienen.
+- Parafrasear de forma guiada una nominalización como cláusula española explícita, sin añadir agentes, tiempos ni causas.
+- Cerrar con recuperación acumulativa y producción guiada; no exigir creación libre de palabras derivadas.
 
 ## Banco de ejercicios previsto
 
-Propuesta de **16 ejercicios combinados**, todavía sin consignas ni claves definitivas:
+Propuesta de **16 ejercicios combinados en cinco lecciones authored**, todavía sin consignas ni claves definitivas:
 
-| Lección | Opción múltiple | Traducción contextual | Ordenación | Escucha | Escritura | Total |
+| Lección | Opción múltiple | Traducción contextual | Ordenación | Escucha | Lectura/producción guiada | Total |
 |---|---:|---:|---:|---:|---:|---:|
-| 1 | 2 | 1 | 1 | 1 | 0 | 5 |
-| 2 | 2 | 1 | 1 | 1 | 0 | 5 |
-| 3 | 1 | 1 | 0 | 1 | 3 | 6 |
-| **Total** | **5** | **3** | **2** | **3** | **3** | **16** |
+| 1 | 1 | 1 | 0 | 1 | 0 | 3 |
+| 2 | 1 | 0 | 1 | 0 | 1 | 3 |
+| 3 | 1 | 1 | 0 | 1 | 0 | 3 |
+| 4 | 1 | 0 | 1 | 0 | 1 | 3 |
+| 5 | 1 | 1 | 0 | 0 | 2 | 4 |
+| **Total** | **5** | **3** | **2** | **2** | **4** | **16** |
 
-Al menos cinco ejercicios deben usar oraciones completas y al menos uno debe incluir producción guiada. La escucha usará únicamente el mecanismo local existente.
+Al menos cinco ejercicios deben usar oraciones completas y al menos uno debe incluir producción guiada. La escucha usará únicamente el mecanismo local existente; no se añadirá audio externo ni se cambiarán sus rutas o hashes.
 
 ## Vocabulario y dependencias
 

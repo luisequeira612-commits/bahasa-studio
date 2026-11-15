@@ -52,3 +52,10 @@ Esta corrección mejora la honestidad de la interfaz y la claridad de la tarea; 
 ## Estímulo visible en ejercicios MC — U24–U32
 
 La segunda inspección detectó que ocho preguntas MC conservaban un campo `audioText`, pero ese tipo de ejercicio no muestra un reproductor. Se incorporó la frase indonesia directamente en cada consigna para que el estudiante tenga el estímulo visible y pueda responder sin audio oculto. Se mantienen el tipo MC, las opciones, las respuestas y las explicaciones. La regresión comprueba que todo estímulo textual de estas preguntas aparezca en la consigna. Esto no convierte la actividad en escucha ni certifica la naturalidad de las frases.
+
+
+## Autoría didáctica explícita — U29–U32 — 14 nov 2026
+
+Las cuatro unidades incorporan cinco lecciones explícitas cada una. Las diez entradas de vocabulario ya existentes se introducen una sola vez en las primeras cuatro lecciones, con recuperación acumulativa de las anteriores; la quinta lección practica las diez entradas. Los ejercicios originales se conservan en las lecciones y no se añaden IDs ni vocabulario.
+
+La ampliación es estructural y didáctica, no una certificación lingüística. Se mantienen las advertencias editoriales de esta auditoría: no hubo hablante nativo disponible y KBBI no es requisito ni bloqueo.

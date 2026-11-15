@@ -8,18 +8,18 @@
 
 | Nivel | Unidades implementadas | Lecciones explícitas | Distribución por unidad | Unidades fuera del estándar |
 |---|---:|---:|---|---:|
-| A1 | 32 | 141 | 4 con 0; 27 con 5; 1 con 6 | 4 |
+| A1 | 32 | 161 | 31 con 5; 1 con 6 | 0 |
 | A2 | 40 | 200 | 40 con 5 | 0 |
 | B1 | 50 | 144 | 12 con 2; 32 con 3; 6 con 4 | 50 |
 | B2 | 5 | 25 | 5 con 5 | 0 |
-| **Total implementado** | **127** | **510** | — | **54** |
+| **Total implementado** | **127** | **530** | — | **50** |
 
-Faltan **126 lecciones explícitas** para llevar todas las unidades ya implementadas al mínimo de cinco: 20 en A1 U29–U32 y 106 en B1. B2 U6–U60 (55 unidades) todavía no están implementadas; deben nacer con cinco o seis lecciones explícitas cada una.
+Faltan **106 lecciones explícitas** para llevar todas las unidades ya implementadas al mínimo de cinco; todas corresponden a B1. B2 U6–U60 (55 unidades) todavía no están implementadas; deben nacer con cinco o seis lecciones explícitas cada una.
 
 ## Estado por nivel
 
 ### A1
-U1–U28 ya cumplen el estándar (U9 tiene seis; las demás, cinco). U29–U32 todavía no tienen `lessons[]`; el refuerzo que el motor genera en runtime no sustituye la autoría didáctica.
+U1–U32 cumplen el estándar: 31 unidades tienen cinco lecciones explícitas y U9 tiene seis. U29–U32 incorporaron 20 lecciones didácticas authored; el vocabulario existente se distribuye entre las primeras cuatro y la quinta recupera las diez entradas sin añadir IDs.
 
 ### A2
 Las 40 unidades tienen cinco lecciones explícitas. La quinta incorpora recuperación espaciada del vocabulario existente, sin añadir IDs nuevos.
@@ -36,7 +36,7 @@ Las cinco unidades implementadas (U1–U5) tienen cinco lecciones explícitas. U
 - `node scripts/audit-authored-lesson-inventory.mjs --strict` falla con código distinto de cero si alguna unidad implementada tiene menos de cinco o más de seis lecciones explícitas.
 - `npm run curriculum:lesson-inventory:strict` es el comando estable para activar el gate cuando la migración A1–B2 esté completa.
 - La prueba sintética comprueba ambos límites (menos de cinco y más de seis), y la prueba de línea base impide que los recuentos actuales se alteren silenciosamente.
-- No activar todavía el modo estricto en CI general: A1 U29–U32 y B1 siguen en migración. No se ocultan ni se exceptúan sus incumplimientos.
+- No activar todavía el modo estricto en CI general: B1 sigue en migración. No se ocultan ni se exceptúan sus incumplimientos.
 
 ## Reglas de migración
 

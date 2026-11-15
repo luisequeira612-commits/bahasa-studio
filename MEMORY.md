@@ -241,3 +241,10 @@
 - U7 contrasta peN-an/per-an sin enseñar los patrones como reglas productivas libres. No modifica IndexedDB v1, backup JSON v3 ni dependencias.
 - U6 y U7 siguen ocultas/no publicables hasta ampliar y verificar el pipeline de audio B2; el flujo actual confirmado cubre A1/A2/B1. No declarar U7 publicada ni con audio listo antes de cerrar ese gate.
 - Siguiente bloque: preparar U8 ke-an a partir de su diseño documental existente, sin introducir vocabulario ni IDs nuevos hasta cotejar candidatos y recibir aprobación explícita.
+
+
+## Soporte de generación de audio B2 — PR en curso — 15 nov 2026
+- Rama `audio/b2-manifest-generation-support-20261115`: el exportador de manifiesto incorpora B2 de forma explícita con `--include-b2`, leyendo el currículo inline mediante el loader B2 existente. Una vez que el índice de audio contiene clips B2, las ejecuciones posteriores preservan automáticamente esas entradas al regenerar otros niveles.
+- El workflow manual añade B2 como nivel seleccionable; `all` incluye B2. El generador Piper/Edge/MMS acepta `B2` y mantiene el bloqueo de una sola voz para toda la biblioteca. En modo samples se respeta el nivel seleccionado y solo se versiona `audio-samples`.
+- Pruebas nuevas cubren la exportación de vocabulario y respuestas de escucha de U6/U7, unicidad de IDs y hashes SHA-1 existentes. No se modifica la normalización, los hashes, las rutas, `audio-engine.js`, Service Worker, IndexedDB v1, backup JSON v3 ni dependencias.
+- Este PR solo habilita el pipeline: todavía no genera ni publica clips B2. U6/U7 siguen ocultas hasta ejecutar generación completa con Piper y verificar manifiesto, índice, archivos MP3/Opus, huellas SHA-256 y CI.

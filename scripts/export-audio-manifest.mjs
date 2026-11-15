@@ -5,6 +5,7 @@ import vm from 'node:vm';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 import { loadInlineB1Curriculum } from './load-inline-b1-curriculum.mjs';
+import { loadInlineB2Curriculum } from './load-inline-b2-curriculum.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const normalize = (text) => text.trim().replace(/\s+/g, ' ').toLowerCase();
@@ -92,15 +93,17 @@ async function collectInteractiveSources(entries) {
   }
 }
 
-export async function buildManifest({ includeInteractive = false } = {}) {
+export async function buildManifest({ includeInteractive = false, includeB2 = false } = {}) {
   const [a1, a2, indexSource] = await Promise.all([
     loadStandalone('curriculum-a1.js', 'BAHASA_CURRICULUM_A1'),
     loadStandalone('curriculum-a2.js', 'BAHASA_CURRICULUM_A2'),
     readFile(path.join(ROOT, 'index.html'), 'utf8')
   ]);
   const b1 = loadInlineB1Curriculum(indexSource, a1, a2);
+  const b2 = includeB2 ? loadInlineB2Curriculum(indexSource, a1, a2) : null;
   const entries = new Map();
   const levels = [a1, a2, b1];
+  if (b2) levels.push(b2);
   for (const level of levels) collectLevel(level, entries, includeInteractive);
   if (includeInteractive) await collectInteractiveSources(entries);
   return [...entries.values()];
@@ -109,10 +112,28 @@ export async function buildManifest({ includeInteractive = false } = {}) {
 async function main() {
   const outputIndex = process.argv.indexOf('--output');
   const output = outputIndex >= 0 ? path.resolve(process.argv[outputIndex + 1]) : path.join(ROOT, 'audio', 'manifest.json');
-  const manifest = await buildManifest({ includeInteractive: process.argv.includes('--include-interactive') });
+  const includeInteractive = process.argv.includes('--include-interactive');
+  let includeB2 = process.argv.includes('--include-b2');
+  if (!includeB2) {
+    try {
+      const index = JSON.parse(await readFile(path.join(ROOT, 'audio', 'index.json'), 'utf8'));
+      const [baseCandidates, b2Candidates] = await Promise.all([
+        buildManifest(),
+        buildManifest({ includeB2: true })
+      ]);
+      const baseIds = new Set(baseCandidates.map((entry) => entry.id));
+      const b2OnlyIds = new Set(b2Candidates
+        .filter((entry) => entry.levels.includes('B2') && !baseIds.has(entry.id))
+        .map((entry) => entry.id));
+      includeB2 = index.some((id) => b2OnlyIds.has(id));
+    } catch (error) {
+      if (error?.code !== 'ENOENT') throw error;
+    }
+  }
+  const manifest = await buildManifest({ includeInteractive, includeB2 });
   await mkdir(path.dirname(output), { recursive: true });
   await writeFile(output, JSON.stringify(manifest, null, 2) + '\n', 'utf8');
-  const counts = Object.fromEntries(['A1', 'A2', 'B1'].map((level) => [level, manifest.filter((entry) => entry.levels.includes(level)).length]));
+  const counts = Object.fromEntries(['A1', 'A2', 'B1', 'B2'].map((level) => [level, manifest.filter((entry) => entry.levels.includes(level)).length]));
   process.stdout.write(`Unique audio texts: ${manifest.length}; ${JSON.stringify(counts)}\n`);
 }
 

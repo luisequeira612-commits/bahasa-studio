@@ -12,6 +12,9 @@ SPEC.loader.exec_module(MODULE)
 
 
 class AudioSamplesPageTests(unittest.TestCase):
+    def test_generation_level_choices_include_b2(self):
+        self.assertEqual(MODULE.LEVELS, ("A1", "A2", "B1", "B2", "all"))
+
     def test_samples_page_escapes_text_and_contains_native_audio_controls(self):
         with tempfile.TemporaryDirectory() as temporary:
             output = Path(temporary)

@@ -24,12 +24,29 @@ test('audio manifest exports unique A1, A2 and inline B1 texts without changing 
     // The committed library index tells us whether this branch contains the optional
     // interactive audio expansion. Main may still have the base library while a
     // generated-audio PR intentionally carries the expanded manifest.
-    const includeInteractive = process.env.AUDIO_MANIFEST_INCLUDE_INTERACTIVE === '1'
-      || index.some((id) => !baseIds.has(id));
-    if (includeInteractive) {
-      const result = spawnSync(process.execPath, [script, '--include-interactive', '--output', output], {
+    const b2Output = path.join(temp, 'b2.json');
+    const b2Result = spawnSync(process.execPath, [script, '--include-b2', '--output', b2Output], {
+      cwd: root, encoding: 'utf8', timeout: 30000
+    });
+    assert.equal(b2Result.status, 0, b2Result.stderr || b2Result.stdout);
+    const b2Ids = new Set(JSON.parse(await readFile(b2Output, 'utf8')).map((entry) => entry.id));
+    const includeB2 = process.env.AUDIO_MANIFEST_INCLUDE_B2 === '1'
+      || index.some((id) => b2Ids.has(id) && !baseIds.has(id));
+    let selectedIds = baseIds;
+    if (includeB2) {
+      const result = spawnSync(process.execPath, [script, '--include-b2', '--output', output], {
         cwd: root, encoding: 'utf8', timeout: 30000
       });
+      assert.equal(result.status, 0, result.stderr || result.stdout);
+      selectedIds = new Set(JSON.parse(await readFile(output, 'utf8')).map((entry) => entry.id));
+    }
+    const includeInteractive = process.env.AUDIO_MANIFEST_INCLUDE_INTERACTIVE === '1'
+      || index.some((id) => !selectedIds.has(id));
+    if (includeInteractive) {
+      const args = [script];
+      if (includeB2) args.push('--include-b2');
+      args.push('--include-interactive', '--output', output);
+      const result = spawnSync(process.execPath, args, { cwd: root, encoding: 'utf8', timeout: 30000 });
       assert.equal(result.status, 0, result.stderr || result.stdout);
     }
     const entries = JSON.parse(await readFile(output, 'utf8'));
@@ -61,6 +78,31 @@ test('audio manifest exports unique A1, A2 and inline B1 texts without changing 
       const sourceLevels = [...new Set(entry.sources.map((source) => source.level))];
       assert.deepEqual(entry.levels, sourceLevels, 'levels must preserve first-seen source order');
     }
+  } finally {
+    await rm(temp, { recursive: true, force: true });
+  }
+});
+
+test('optional B2 audio export covers implemented U6 and U7 curriculum sources', async () => {
+  const temp = await mkdtemp(path.join(os.tmpdir(), 'bahasa-audio-b2-'));
+  const output = path.join(temp, 'b2.json');
+  try {
+    const result = spawnSync(process.execPath, [script, '--include-b2', '--output', output], {
+      cwd: root, encoding: 'utf8', timeout: 30000
+    });
+    assert.equal(result.status, 0, result.stderr || result.stdout);
+    const entries = JSON.parse(await readFile(output, 'utf8'));
+    assert.ok(entries.some((entry) => entry.levels.includes('B2')), 'optional export must include B2');
+    for (const unitId of ['b2_u6', 'b2_u7']) {
+      assert.ok(entries.some((entry) => entry.sources.some((source) =>
+        source.level === 'B2' && source.unit === unitId && source.kind === 'vocabulary'
+      )), unitId + ' vocabulary must be represented in the B2 manifest');
+    }
+    assert.ok(entries.some((entry) => entry.sources.some((source) =>
+      source.level === 'B2' && source.unit === 'b2_u7' && source.kind === 'listen-answer'
+    )), 'B2 U7 listen answers must be exported as audio text');
+    assert.equal(new Set(entries.map((entry) => entry.id)).size, entries.length);
+    assert.ok(entries.every((entry) => entry.id === hashText(entry.text)));
   } finally {
     await rm(temp, { recursive: true, force: true });
   }

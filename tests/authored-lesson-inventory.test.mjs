@@ -90,6 +90,6 @@ test('repository inventory baseline distinguishes authored lessons from runtime-
     A1: { unitCount: 32, authoredLessonCount: 161, distribution: { 5: 31, 6: 1 } },
     A2: { unitCount: 40, authoredLessonCount: 200, distribution: { 5: 40 } },
     B1: { unitCount: 50, authoredLessonCount: 250, distribution: { 5: 50 } },
-    B2: { unitCount: 6, authoredLessonCount: 30, distribution: { 5: 6 } },
+    B2: { unitCount: 7, authoredLessonCount: 35, distribution: { 5: 7 } },
   });
 });

@@ -283,15 +283,49 @@ test('B2 U5 implements the approved -i design with five lessons, 16 exercises an
   assert.match(unit.vocab.find((word) => word.id === 'b2u5_menawarkan').esp, /ofrecer algo/i);
 });
 
-test('only implemented B2 U1/U2/U3/U4/U5 remain executable while later legacy draft units stay archived', async () => {
+
+test('B2 U7 implements five authored lessons, 16 exercises and canonical reused vocabulary', async () => {
+  const { a1, a2, b1, b2 } = await loadCurricula();
+  const unit = b2.units.find((item) => item.id === 'b2_u7');
+  assert.ok(unit, 'B2 U7 must exist');
+  assert.equal(unit.lessons.length, 5);
+  assert.deepEqual(unit.lessons.map((lesson) => lesson.exercises.length), [3, 3, 3, 3, 4]);
+  const exercises = allExercises(unit);
+  assert.equal(exercises.length, 16);
+  assert.deepEqual([...new Set(exercises.map((exercise) => exercise.type))].sort(),
+    ['listen', 'mc', 'order', 'translate_es_id', 'write']);
+  const canonicalA2 = new Map(a2.units.flatMap((entry) => entry.vocab || []).map((word) => [word.id, word]));
+  const canonicalB1 = new Map(b1.units.flatMap((entry) => entry.vocab || []).map((word) => [word.id, word]));
+  for (const id of ['a2u15_pertemuan', 'a2u14_perjalanan', 'v242']) {
+    const local = unit.vocab.find((word) => word.id === id);
+    const source = (id.startsWith('a2') ? canonicalA2 : canonicalB1).get(id);
+    assert.ok(source, id + ' must exist in its original curriculum');
+    assert.ok(local, id + ' must be reused in U7 without a duplicate ID');
+    assert.equal(local.idn.toLowerCase(), source.idn.toLowerCase());
+    assert.equal(local.esp, source.esp);
+  }
+  const allowed = new Set(unit.vocab.map((word) => word.id));
+  for (const lesson of unit.lessons) {
+    for (const id of [...lesson.vocabIds, ...lesson.reviewVocabIds]) {
+      assert.ok(allowed.has(id), 'U7 lesson references unknown vocabulary: ' + id);
+    }
+    for (const exercise of lesson.exercises) {
+      assert.ok(allowed.has(exercise.vocabId), 'U7 exercise references unknown vocabulary: ' + exercise.vocabId);
+    }
+  }
+  assert.ok(exercises.some((exercise) => exercise.type === 'write' && exercise.hint?.trim()),
+    'U7 must include guided production');
+});
+
+test('implemented B2 U1–U7 are executable while later legacy draft units stay archived', async () => {
   const { b2 } = await loadCurricula();
   const legacyArchive = await readFile(new URL('../docs/B2_LEGACY_DRAFT_ARCHIVE.md', import.meta.url), 'utf8');
-  assert.deepEqual(b2.units.map((unit) => unit.id), ['b2_u1', 'b2_u2', 'b2_u3', 'b2_u4', 'b2_u5', 'b2_u6']);
+  assert.deepEqual(b2.units.map((unit) => unit.id), ['b2_u1', 'b2_u2', 'b2_u3', 'b2_u4', 'b2_u5', 'b2_u6', 'b2_u7']);
   for (const id of ['b2_u5']) {
     assert.ok(legacyArchive.includes('"id": "' + id + '"'), id + ' must remain in the historical archive');
   }
   for (const id of ['v231', 'v232', 'v233', 'v234', 'v235', 'v236', 'v237', 'v238',
-    'v239', 'v240', 'v241', 'v242', 'v243', 'v244', 'v245', 'v246']) {
+    'v239', 'v240', 'v241', 'v243', 'v244', 'v245', 'v246']) {
     assert.equal(b2.units.flatMap((unit) => unit.vocab || []).some((word) => word.id === id), false,
       id + ' belongs only to the archived legacy draft until approved for reuse');
   }

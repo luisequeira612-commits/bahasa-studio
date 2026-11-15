@@ -8513,6 +8513,87 @@
                                 }
                             ]
                         },
+
+                        {
+                            id: 'b2_u7',
+                            title: 'Unidad 7: Nominalizaciones con peN-an y per-an',
+                            desc: 'Interpreta nominalizaciones de acción, proceso, evento y relación, y contrasta formas próximas por su origen y contexto.',
+                            grammar: 'Las nominalizaciones con peN-an y per-an no deben reducirse a una traducción fija. En peN-an, formas como pembelian, pengiriman y pembuatan nombran acciones o procesos; en per-an, formas como pertemuan, perjalanan y peraturan expresan eventos, relaciones o ámbitos según la palabra completa. Penemuan y pertemuan muestran por qué conviene aprender cada forma con su origen y contexto.',
+                            vocab: [
+                                { id: 'b2u7_pembelian', idn: 'Pembelian', esp: 'Compra; adquisición', ex: 'Pembelian tiket untuk masuk ke tempat wisata itu dapat dilakukan pagi hari.', exEsp: 'La compra de entradas para entrar al lugar turístico puede hacerse por la mañana.' },
+                                { id: 'b2u7_pengiriman', idn: 'Pengiriman', esp: 'Envío; expedición', ex: 'Pengiriman barang-barang P.T. Makmur dilakukan dengan truk-truk.', exEsp: 'El envío de las mercancías de P.T. Makmur se realiza en camiones.' },
+                                { id: 'b2u7_pembuatan', idn: 'Pembuatan', esp: 'Elaboración; fabricación', ex: 'Pembuatan krupuk ini memakan waktu tiga hari.', exEsp: 'La elaboración de estas galletas de camarón lleva tres días.' },
+                                { id: 'b2u7_penemuan', idn: 'Penemuan', esp: 'Descubrimiento; hallazgo', ex: 'Penemuan para ahli itu diterbitkan dalam jurnal ilmiah.', exEsp: 'El descubrimiento de los expertos fue publicado en una revista científica.' },
+                                { id: 'b2u7_pergerakan', idn: 'Pergerakan', esp: 'Movimiento', ex: 'Pergerakan kaum wanita di Jawa dipelopori oleh Ibu Kartini.', exEsp: 'El movimiento de las mujeres en Java fue impulsado por Ibu Kartini.' },
+                                { id: 'a2u15_pertemuan', idn: 'pertemuan', esp: 'Reunión', ex: 'Pertemuan itu penting.', exEsp: 'Esa reunión es importante.' },
+                                { id: 'a2u14_perjalanan', idn: 'perjalanan', esp: 'Viaje', ex: 'Perjalanan saya jauh.', exEsp: 'Mi viaje es largo.' },
+                                { id: 'v242', idn: 'Peraturan', esp: 'Reglamento', ex: 'Peraturan itu berlaku.', exEsp: 'Ese reglamento está vigente.' }
+                            ],
+                            exercises: [],
+                            lessons: [
+                                {
+                                    title: '1. Acción y proceso con peN-an',
+                                    objective: 'Reconoce pembelian, pengiriman y pembuatan como nombres de acción o proceso y los interpreta dentro de oraciones completas.',
+                                    grammar: 'Pembelian procede de membeli, pengiriman de mengirim y pembuatan de membuat. El significado exacto depende del sustantivo y del contexto: compra, envío o elaboración.',
+                                    vocabIds: ['b2u7_pembelian', 'b2u7_pengiriman', 'b2u7_pembuatan'],
+                                    reviewVocabIds: [],
+                                    exercises: [
+                                        { vocabId: 'b2u7_pembelian', type: 'mc', prompt: 'En «Pembelian tiket untuk masuk ke tempat wisata itu dapat dilakukan pagi hari», ¿qué se puede hacer por la mañana?', options: ['La compra de entradas', 'El movimiento de mujeres', 'El descubrimiento de expertos'], answer: 0, explanation: 'Pembelian nombra la acción o proceso de comprar las entradas.' },
+                                        { vocabId: 'b2u7_pengiriman', type: 'translate_es_id', prompt: 'Traduce al indonesio: «El envío de las mercancías se realiza en camiones».', answer: 'Pengiriman barang-barang dilakukan dengan truk-truk.', explanation: 'Pengiriman nombra el envío y se conserva el contexto de transporte.' },
+                                        { vocabId: 'b2u7_pembuatan', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Pembuatan krupuk ini memakan waktu tiga hari.', explanation: 'Pembuatan nombra la elaboración de krupuk y aparece como sujeto de la oración.' }
+                                    ]
+                                },
+                                {
+                                    title: '2. Eventos y relaciones con per-an',
+                                    objective: 'Interpreta pertemuan, perjalanan y peraturan según la palabra completa y su contexto.',
+                                    grammar: 'Pertemuan, perjalanan y peraturan comparten el patrón per-an, pero no tienen una sola traducción mecánica. Pertemuan nombra un encuentro o reunión, perjalanan un viaje o recorrido y peraturan una regla o reglamento.',
+                                    vocabIds: [],
+                                    reviewVocabIds: ['a2u15_pertemuan', 'a2u14_perjalanan', 'v242'],
+                                    exercises: [
+                                        { vocabId: 'a2u15_pertemuan', type: 'mc', prompt: '¿Qué significa «pertemuan» en «Pertemuan itu berlangsung selama dua jam»?', options: ['Encuentro o reunión', 'Descubrimiento', 'Envío'], answer: 0, explanation: 'Pertemuan nombra un encuentro o reunión.' },
+                                        { vocabId: 'a2u14_perjalanan', type: 'translate_es_id', prompt: 'Traduce al indonesio: «El viaje fue largo».', answer: 'Perjalanan itu panjang.', explanation: 'Perjalanan se refiere al viaje o recorrido.' },
+                                        { vocabId: 'v242', type: 'listen', prompt: 'Escucha y escribe la palabra que significa «reglamento».', answer: 'Peraturan', explanation: 'Peraturan es la forma ya existente del inventario y se reutiliza sin crear un ID nuevo.' }
+                                    ]
+                                },
+                                {
+                                    title: '3. Pertemuan frente a penemuan',
+                                    objective: 'Distingue un encuentro o reunión de un descubrimiento y relaciona cada forma con su origen léxico.',
+                                    grammar: 'Pertemuan se relaciona con bertemu y nombra un encuentro o reunión. Penemuan se relaciona con menemukan y nombra un descubrimiento o hallazgo. La semejanza formal no implica el mismo significado.',
+                                    vocabIds: ['b2u7_penemuan'],
+                                    reviewVocabIds: ['a2u15_pertemuan', 'b2u7_pembelian'],
+                                    exercises: [
+                                        { vocabId: 'a2u15_pertemuan', type: 'mc', prompt: '¿Cuál palabra nombra un encuentro o reunión?', options: ['Pertemuan', 'Penemuan', 'Pengiriman'], answer: 0, explanation: 'Pertemuan nombra un encuentro o reunión.' },
+                                        { vocabId: 'b2u7_penemuan', type: 'translate_es_id', prompt: 'Traduce al indonesio: «El descubrimiento de los expertos fue publicado en una revista científica».', answer: 'Penemuan para ahli itu diterbitkan dalam jurnal ilmiah.', explanation: 'Penemuan nombra el descubrimiento y conserva el contexto informativo aprobado.' },
+                                        { vocabId: 'b2u7_penemuan', type: 'order', prompt: 'Ordena para formar una oración completa.', options: ['para ahli itu', 'diterbitkan', 'Penemuan', 'dalam jurnal ilmiah'], answer: ['Penemuan', 'para ahli itu', 'diterbitkan', 'dalam jurnal ilmiah'], explanation: 'La oración completa presenta penemuan como el descubrimiento que fue publicado.' }
+                                    ]
+                                },
+                                {
+                                    title: '4. Nominalizaciones en textos informativos',
+                                    objective: 'Identifica nominalizaciones en información sobre producción, movimiento y procesos, sin traducir el patrón de forma automática.',
+                                    grammar: 'En un texto informativo, una nominalización puede funcionar como sujeto, tema o resultado. Pembuatan nombra una elaboración; pergerakan puede nombrar un movimiento o proceso colectivo; pembelian y pengiriman permiten reconocer acciones nominalizadas en contextos prácticos.',
+                                    vocabIds: ['b2u7_pembuatan', 'b2u7_pergerakan'],
+                                    reviewVocabIds: ['b2u7_pembelian', 'b2u7_pengiriman'],
+                                    exercises: [
+                                        { vocabId: 'b2u7_pembuatan', type: 'mc', prompt: 'En «Pembuatan krupuk ini memakan waktu tiga hari», ¿qué significa pembuatan?', options: ['Elaboración o fabricación', 'Encuentro', 'Reglamento'], answer: 0, explanation: 'Pembuatan nombra el proceso de elaborar o fabricar algo.' },
+                                        { vocabId: 'b2u7_pergerakan', type: 'translate_es_id', prompt: 'Traduce al indonesio: «El movimiento de las mujeres en Java fue impulsado por Ibu Kartini».', answer: 'Pergerakan kaum wanita di Jawa dipelopori oleh Ibu Kartini.', explanation: 'Pergerakan nombra el movimiento en el contexto histórico indicado.' },
+                                        { vocabId: 'b2u7_pengiriman', type: 'write', prompt: 'Escribe una oración informativa usando pengiriman para hablar de un envío. Usa solo vocabulario ya estudiado.', hint: 'Modelo: «Pengiriman barang-barang dilakukan dengan truk-truk».', modelAnswer: 'Pengiriman barang-barang dilakukan dengan truk-truk.', explanation: 'La producción guiada reutiliza pengiriman en una oración completa y coherente.' }
+                                    ]
+                                },
+                                {
+                                    title: '5. Integración y producción guiada',
+                                    objective: 'Integra las nominalizaciones aprobadas en lectura y producción, diferenciando acción, proceso, evento y relación.',
+                                    grammar: 'La integración recupera pembelian, pengiriman, pembuatan, penemuan y pergerakan junto con pertemuan, perjalanan y peraturan ya existentes. La meta es elegir la palabra convencional adecuada al contexto, no formar nominalizaciones nuevas por analogía.',
+                                    vocabIds: ['b2u7_pembelian', 'b2u7_pengiriman', 'b2u7_pembuatan', 'b2u7_penemuan', 'b2u7_pergerakan'],
+                                    reviewVocabIds: ['a2u15_pertemuan', 'a2u14_perjalanan', 'v242'],
+                                    exercises: [
+                                        { vocabId: 'b2u7_pembelian', type: 'mc', prompt: '¿Qué opción completa mejor «___ tiket untuk masuk ke tempat wisata itu dapat dilakukan pagi hari»?', options: ['Pembelian', 'Pertemuan', 'Penemuan'], answer: 0, explanation: 'Pembelian nombra la compra de los billetes o entradas.' },
+                                        { vocabId: 'b2u7_pergerakan', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Pergerakan kaum wanita di Jawa dipelopori oleh Ibu Kartini.', explanation: 'La escucha integra pergerakan en un contexto histórico completo.' },
+                                        { vocabId: 'a2u15_pertemuan', type: 'translate_es_id', prompt: 'Traduce al indonesio: «La reunión duró dos horas».', answer: 'Pertemuan itu berlangsung selama dua jam.', explanation: 'Pertemuan se reutiliza como forma ya estudiada y no recibe un ID nuevo.' },
+                                        { vocabId: 'b2u7_penemuan', type: 'write', prompt: 'Escribe dos oraciones breves: una sobre un encuentro y otra sobre un descubrimiento. Usa pertemuan y penemuan y no inventes vocabulario nuevo.', hint: 'Modelo: «Pertemuan itu berlangsung selama dua jam. Penemuan para ahli itu diterbitkan dalam jurnal ilmiah».', modelAnswer: 'Pertemuan itu berlangsung selama dua jam. Penemuan para ahli itu diterbitkan dalam jurnal ilmiah.', explanation: 'La producción final contrasta explícitamente encuentro y descubrimiento.' }
+                                    ]
+                                }
+                            ]
+                        },
                     ]
                 }
             ]

@@ -3,7 +3,7 @@
 **Estado:** propuesta documental; no implementada ni publicada.  
 **Fecha:** 8 nov 2026.  
 **Ubicación:** segunda unidad propuesta dentro del bloque B2 U7–U10, cuyo eje aprobado es nominalizaciones.  
-**Dependencias:** B1 completo y progresión B2 previa; no presupone que U7 esté aprobada o implementada.
+**Dependencias:** B1 completo y B2 U1–U7 implementadas. U7 está fusionada, pero U6/U7 siguen ocultas hasta completar el gate de audio B2.
 
 ## Propósito y alcance
 
@@ -106,4 +106,4 @@ Al menos cinco ejercicios deben usar oraciones completas y al menos uno debe inc
 4. Los ejercicios de predicados complejos se limitan a estructuras respaldadas por la bibliografía.
 5. Las pruebas verifican referencias de vocabulario, coherencia consigna-respuesta, progresión y ausencia de exposición anticipada.
 
-**Estatus de decisión:** el dueño aprobó el eje general de nominalizaciones para B2 U7–U10, no este desglose ni sus ejemplos. Esta propuesta es documental y reversible; no autoriza vocabulario nuevo ni contenido ejecutable.
+**Estatus de decisión:** el dueño aprobó el eje general de nominalizaciones para B2 U7–U10. U7 ya está implementada y fusionada; U8 sigue siendo propuesta documental reversible, sin vocabulario nuevo aprobado ni contenido ejecutable. Los candidatos citados no son entradas del curso.

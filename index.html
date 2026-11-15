@@ -3909,8 +3909,79 @@
                                         { vocabId: 'v383', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Kamar saya bersih.', explanation: 'La oración describe una habitación limpia.' },
                                         { vocabId: 'v360', type: 'order', prompt: 'Ordena: «Estoy sano/a».', words: ['Saya', 'sehat.'], correctOrder: ['Saya', 'sehat.'], explanation: 'Saya sehat significa «Estoy sano/a».' }
                                     ]
+                                },
+                                {
+                                    "title": "Relacionar salud y limpieza en contexto",
+                                    "objective": "Reconoce los nombres de cualidad y los adjetivos que aparecen en frases breves.",
+                                    "grammar": "Kesehatan y kebersihan nombran conceptos; sehat y bersih describen estados o cualidades. Observa qué función cumple cada forma en la oración.",
+                                    "vocabIds": [],
+                                    "reviewVocabIds": [
+                                        "b1u12_kesehatan",
+                                        "a2u20_kebersihan",
+                                        "v360",
+                                        "v383"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "a2u20_kebersihan",
+                                            "type": "mc",
+                                            "prompt": "¿Qué palabra nombra la limpieza?",
+                                            "options": [
+                                                "Kebersihan",
+                                                "Bersih",
+                                                "Sehat"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Kebersihan nombra la cualidad de estar limpio."
+                                        },
+                                        {
+                                            "vocabId": "a2u20_kebersihan",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: La limpieza del entorno es muy importante.",
+                                            "answer": "Kebersihan lingkungan sangat penting.",
+                                            "explanation": "Kebersihan nombra la limpieza; la frase completa expresa su importancia."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Producir descripciones de cualidad",
+                                    "objective": "Organiza y escribe frases que distinguen un estado de salud de una cualidad de limpieza.",
+                                    "grammar": "Sehat y bersih funcionan como descripciones; kesehatan y kebersihan nombran los conceptos relacionados. La posición de cada forma en la frase ayuda a reconocer su función.",
+                                    "vocabIds": [],
+                                    "reviewVocabIds": [
+                                        "b1u12_kesehatan",
+                                        "a2u20_kebersihan",
+                                        "v360",
+                                        "v383"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v383",
+                                            "type": "order",
+                                            "prompt": "Ordena: «Mi habitación está limpia».",
+                                            "words": [
+                                                "Kamar",
+                                                "saya",
+                                                "bersih."
+                                            ],
+                                            "correctOrder": [
+                                                "Kamar",
+                                                "saya",
+                                                "bersih."
+                                            ],
+                                            "explanation": "Kamar saya bersih describe una habitación limpia."
+                                        },
+                                        {
+                                            "vocabId": "v360",
+                                            "type": "write",
+                                            "prompt": "Escribe dos frases: una sobre tu salud y otra sobre la limpieza de tu habitación.",
+                                            "hint": "Usa sehat y bersih como descripciones.",
+                                            "modelAnswer": "Saya sehat. Kamar saya bersih.",
+                                            "explanation": "El modelo usa sehat y bersih para describir dos estados o cualidades."
+                                        }
+                                    ]
                                 }
-                            ]
+                                ]
                         },
                         {
                             id: 'b1_u14',
@@ -3965,8 +4036,82 @@
                                         { vocabId: 'b1u12_kebudayaan', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Kebudayaan Indonesia penting.', explanation: 'La frase dice que la cultura indonesia es importante.' },
                                         { vocabId: 'b1u12_kebudayaan', type: 'order', prompt: 'Ordena: «La cultura de Indonesia es importante».', words: ['Kebudayaan', 'Indonesia', 'penting.'], correctOrder: ['Kebudayaan', 'Indonesia', 'penting.'], explanation: 'Kebudayaan Indonesia penting significa «La cultura indonesia es importante».' }
                                     ]
+                                },
+                                {
+                                    "title": "Relacionar familia y oportunidad",
+                                    "objective": "Reconoce keluarga y kesempatan en expresiones completas y distingue sus significados.",
+                                    "grammar": "Keluarga nombra a la familia y kesempatan a una oportunidad. Aprende cada palabra en una expresión completa, sin atribuirle una traducción mecánica al afijo.",
+                                    "vocabIds": [],
+                                    "reviewVocabIds": [
+                                        "v20",
+                                        "a2u12_kesempatan",
+                                        "b1u12_kecelakaan",
+                                        "b1u12_keadaan",
+                                        "b1u12_kebudayaan"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "v20",
+                                            "type": "mc",
+                                            "prompt": "En «Ini keluarga saya», ¿qué significa «keluarga»?",
+                                            "options": [
+                                                "Familia",
+                                                "Oportunidad",
+                                                "Accidente"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Keluarga significa familia."
+                                        },
+                                        {
+                                            "vocabId": "a2u12_kesempatan",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: Tengo una oportunidad.",
+                                            "answer": "Saya punya kesempatan.",
+                                            "explanation": "Kesempatan nombra la oportunidad."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Integrar situaciones, accidentes y cultura",
+                                    "objective": "Relaciona keadaan, kecelakaan y kebudayaan con el contexto de cada frase.",
+                                    "grammar": "Keadaan se refiere a una situación o condición, kecelakaan a un accidente y kebudayaan a la cultura. Cada palabra tiene un significado propio que se reconoce en la oración.",
+                                    "vocabIds": [],
+                                    "reviewVocabIds": [
+                                        "v20",
+                                        "a2u12_kesempatan",
+                                        "b1u12_kecelakaan",
+                                        "b1u12_keadaan",
+                                        "b1u12_kebudayaan"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "b1u12_keadaan",
+                                            "type": "order",
+                                            "prompt": "Ordena: «La situación actual está mejor».",
+                                            "words": [
+                                                "Keadaan",
+                                                "sekarang",
+                                                "lebih",
+                                                "baik."
+                                            ],
+                                            "correctOrder": [
+                                                "Keadaan",
+                                                "sekarang",
+                                                "lebih",
+                                                "baik."
+                                            ],
+                                            "explanation": "Keadaan sekarang lebih baik habla de una situación actual."
+                                        },
+                                        {
+                                            "vocabId": "b1u12_kecelakaan",
+                                            "type": "listen",
+                                            "prompt": "Escucha y escribe la oración completa.",
+                                            "answer": "Kecelakaan itu terjadi kemarin.",
+                                            "explanation": "La frase informa de un accidente ocurrido ayer."
+                                        }
+                                    ]
                                 }
-                            ]
+                                ]
                         },
                         {
                             id: 'b1_u15',
@@ -4021,8 +4166,87 @@
                                         { vocabId: 'b1v051', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Teman saya membaca buku yang baik.', explanation: 'La oración contiene una descripción relativa con yang baik.' },
                                         { vocabId: 'b1v051', type: 'write', prompt: 'Escribe un pequeño texto de dos frases sobre un amigo y un libro, usando yang al menos una vez.', hint: 'Puedes presentar a tu amigo y después describir el libro que lees.', modelAnswer: 'Teman saya membaca buku. Buku yang saya baca milik saya.', explanation: 'El texto combina una oración principal con una cláusula relativa introducida por yang.' }
                                     ]
+                                },
+                                {
+                                    "title": "Aplicar yang + adjetivo en contexto",
+                                    "objective": "Interpreta la descripción introducida por yang después de un nombre.",
+                                    "grammar": "En teman yang baik, la expresión yang baik describe al nombre teman. La descripción sigue al nombre y ayuda a identificarlo.",
+                                    "vocabIds": [],
+                                    "reviewVocabIds": [
+                                        "b1v051",
+                                        "v53",
+                                        "v1002",
+                                        "v52",
+                                        "v211"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "b1v051",
+                                            "type": "mc",
+                                            "prompt": "En «Teman yang baik membaca buku», ¿qué aporta «yang baik»?",
+                                            "options": [
+                                                "Describe a teman",
+                                                "Nombra una acción pasada",
+                                                "Indica pluralidad"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Yang baik describe al nombre teman."
+                                        },
+                                        {
+                                            "vocabId": "v53",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: El amigo que es bueno lee un libro.",
+                                            "answer": "Teman yang baik membaca buku.",
+                                            "explanation": "Teman yang baik identifica al amigo mediante una descripción."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Usar yang para identificar un libro",
+                                    "objective": "Reconoce y produce una cláusula relativa que precisa el nombre buku.",
+                                    "grammar": "En buku yang saya baca, la cláusula yang saya baca identifica el libro. La información relativa aparece después del nombre principal.",
+                                    "vocabIds": [],
+                                    "reviewVocabIds": [
+                                        "b1v051",
+                                        "v53",
+                                        "v1002",
+                                        "v52",
+                                        "v211"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "b1v051",
+                                            "type": "order",
+                                            "prompt": "Ordena: «El libro que leo es mío».",
+                                            "words": [
+                                                "Buku",
+                                                "yang",
+                                                "saya",
+                                                "baca",
+                                                "milik",
+                                                "saya."
+                                            ],
+                                            "correctOrder": [
+                                                "Buku",
+                                                "yang",
+                                                "saya",
+                                                "baca",
+                                                "milik",
+                                                "saya."
+                                            ],
+                                            "explanation": "Buku yang saya baca identifica el libro antes de indicar que es mío."
+                                        },
+                                        {
+                                            "vocabId": "b1v051",
+                                            "type": "write",
+                                            "prompt": "Escribe una frase sobre un libro usando «yang».",
+                                            "hint": "Puedes usar buku yang saya baca y completar con milik saya.",
+                                            "modelAnswer": "Buku yang saya baca milik saya.",
+                                            "explanation": "La cláusula yang saya baca precisa el nombre buku."
+                                        }
+                                    ]
                                 }
-                            ]
+                                ]
                         },
                         {
                             id: 'b1_u16',
@@ -4079,8 +4303,89 @@
                                         { vocabId: 'b1v053', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Tempat yang dekat itu baik.', explanation: 'La frase identifica un lugar mediante la descripción yang dekat.' },
                                         { vocabId: 'v52', type: 'write', prompt: 'Escribe tres frases breves: una sobre una persona, otra sobre una cosa y otra sobre un lugar. Usa yang en cada una.', hint: 'Combina orang, hal y tempat con yang baik o yang dekat.', modelAnswer: 'Orang yang baik membaca buku. Hal yang baik itu ada di sini. Tempat yang dekat itu baik.', explanation: 'El texto aplica la misma estructura relativa a personas, cosas y lugares.' }
                                     ]
+                                },
+                                {
+                                    "title": "Distinguir personas y cosas descritas con yang",
+                                    "objective": "Identifica el nombre principal y la descripción que lo sigue en una frase.",
+                                    "grammar": "Orang yang baik describe a una persona; hal yang baik describe un asunto o una cosa. Yang introduce la información que precisa el nombre anterior.",
+                                    "vocabIds": [],
+                                    "reviewVocabIds": [
+                                        "b1v052",
+                                        "b1v053",
+                                        "b1v054",
+                                        "v1002",
+                                        "v53",
+                                        "v52",
+                                        "v211"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "b1v052",
+                                            "type": "mc",
+                                            "prompt": "En «Orang yang baik membaca buku», ¿qué nombre se describe?",
+                                            "options": [
+                                                "Orang",
+                                                "Baik",
+                                                "Buku"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Orang es el nombre principal; yang baik lo describe."
+                                        },
+                                        {
+                                            "vocabId": "v1002",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: La persona buena lee un libro.",
+                                            "answer": "Orang yang baik membaca buku.",
+                                            "explanation": "Orang yang baik identifica a la persona mediante su cualidad."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Describir lugares con yang",
+                                    "objective": "Construye una descripción relativa para identificar un lugar y la integra en un texto breve.",
+                                    "grammar": "Tempat significa lugar. En tempat yang dekat, yang dekat describe al nombre tempat. La misma estructura también aparece con orang y hal.",
+                                    "vocabIds": [],
+                                    "reviewVocabIds": [
+                                        "b1v052",
+                                        "b1v053",
+                                        "b1v054",
+                                        "v1002",
+                                        "v53",
+                                        "v52",
+                                        "v211"
+                                    ],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "b1v053",
+                                            "type": "order",
+                                            "prompt": "Ordena: «El lugar que está cerca es bueno».",
+                                            "words": [
+                                                "Tempat",
+                                                "yang",
+                                                "dekat",
+                                                "itu",
+                                                "baik."
+                                            ],
+                                            "correctOrder": [
+                                                "Tempat",
+                                                "yang",
+                                                "dekat",
+                                                "itu",
+                                                "baik."
+                                            ],
+                                            "explanation": "Tempat yang dekat identifica el lugar mediante la descripción yang dekat."
+                                        },
+                                        {
+                                            "vocabId": "b1v053",
+                                            "type": "write",
+                                            "prompt": "Escribe tres frases breves: una sobre una persona, otra sobre una cosa y otra sobre un lugar.",
+                                            "hint": "Puedes usar orang yang baik, hal yang baik y tempat yang dekat.",
+                                            "modelAnswer": "Orang yang baik membaca buku. Hal yang baik itu ada di sini. Tempat yang dekat itu baik.",
+                                            "explanation": "El modelo aplica yang a personas, cosas y lugares."
+                                        }
+                                    ]
                                 }
-                            ]
+                                ]
                         },
                         {
                             id: 'b1_u17',

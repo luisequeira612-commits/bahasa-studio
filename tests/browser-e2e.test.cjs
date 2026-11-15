@@ -2006,7 +2006,10 @@ test('imported custom lesson content cannot inject executable markup into the un
 
   try {
     await page.goto(url, { waitUntil: 'domcontentloaded' });
-    await page.waitForFunction(() => typeof App !== 'undefined' && typeof StudyActivity !== 'undefined');
+    await page.waitForFunction(() => {
+      const status = document.getElementById('storagePersistenceStatus');
+      return Boolean(status && status.dataset.persisted !== undefined);
+    }); // App.init has loaded custom units before the test injects its fixture.
     const invalidUnitId = 'ai_xss_probe" onclick="window.__xssProbe=2';
     const invalidIdRejected = await page.evaluate(id => {
       try {

@@ -24,14 +24,21 @@ test('every A1 unit is divided into sequential lessons that introduce all vocabu
   const a1 = app.CourseData.levels.find(level => level.id === 'A1');
   for (const unit of a1.units) {
     const lessons = app.buildUnitLessons(unit);
-    const expectedLessonCount = unit.vocab.length >= 18 ? 6 : 5;
+    const expectedLessonCount = unit.vocab.length >= 18 || /^a1_u2[1-4]$/.test(unit.id) ? 6 : 5;
     assert.equal(lessons.length, expectedLessonCount,
       unit.id + ' should expose ' + expectedLessonCount + ' lessons under the A1 standard');
     const introduced = Array.from(lessons.flatMap(lesson => lesson.newVocab.map(word => word.id)));
     assert.deepEqual(introduced, Array.from(unit.vocab, word => word.id), unit.id + ' should introduce every vocabulary item exactly once and in order');
+    const introducedSoFar = new Set();
     lessons.forEach((lesson, index) => {
-      assert.deepEqual(lesson.vocab.map(word => word.id), unit.vocab.slice(0, lesson.vocab.length).map(word => word.id));
-      assert.deepEqual(lesson.reviewVocab.map(word => word.id), unit.vocab.slice(0, lesson.reviewVocab.length).map(word => word.id));
+      if (/^a1_u2[1-4]$/.test(unit.id) && index === 4) {
+        assert.deepEqual(lesson.vocab.map(word => word.id), lesson.reviewVocab.map(word => word.id),
+          unit.id + ' applied lesson should expose only the previously introduced vocabulary it actively retrieves');
+      } else {
+        assert.deepEqual(lesson.vocab.map(word => word.id), unit.vocab.slice(0, lesson.vocab.length).map(word => word.id));
+      }
+      assert.ok(lesson.reviewVocab.every(word => introducedSoFar.has(word.id)),
+        unit.id + ' lesson ' + index + ' may review only vocabulary introduced in an earlier lesson');
       assert.ok(lesson.exercises.length >= lesson.newVocab.length, unit.id + ' lesson should actively practise its new words');
       const learnedIds = new Set(lesson.vocab.map(word => word.id));
       const learnedMeanings = new Set(lesson.vocab.map(word => word.esp));
@@ -43,6 +50,7 @@ test('every A1 unit is divided into sequential lessons that introduce all vocabu
         if (exercise.generated && exercise.options) assert.ok(exercise.options.every(option => learnedMeanings.has(option)), 'generated lesson distractors must come only from learned vocabulary');
         if (exercise.generated && exercise.answer && exercise.type !== 'mc') assert.ok(lesson.vocab.some(word => word.idn === exercise.answer), 'generated lesson answers must use learned vocabulary');
       }
+      lesson.newVocab.forEach(word => introducedSoFar.add(word.id));
     });
   }
 });
@@ -373,7 +381,7 @@ test('A1 authored units use their lesson plans while legacy units receive runtim
     const lessons = app.buildUnitLessons(unit);
     const authoredCount = Array.isArray(unit.lessons) ? unit.lessons.length : 0;
     const legacyCount = authoredCount || Math.min(5, Math.max(2, Math.ceil(unit.vocab.length / 4)));
-    const targetCount = unit.vocab.length >= 18 ? 6 : 5;
+    const targetCount = unit.vocab.length >= 18 || /^a1_u2[1-4]$/.test(unit.id) ? 6 : 5;
     assert.equal(lessons.length, targetCount, unit.id + ' should have five or six lessons');
     assert.deepEqual(Array.from(lessons.slice(0, legacyCount), lesson => lesson.index),
       Array.from({ length: legacyCount }, (_, index) => index),

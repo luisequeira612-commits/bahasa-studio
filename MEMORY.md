@@ -267,3 +267,11 @@
 - Fuente: https://home.uni-leipzig.de/tebay/tebay2024keandgfs.pdf. No se afirma validación nativa ni frecuencia actual.
 
 - La propuesta documental de U8 se amplió a cinco lecciones authored reales (3/3/3/3/4 ejercicios, 16 en total), incluyendo alcance de dominios complejos e integración/reformulación guiada. Sigue sin ser contenido ejecutable; las ocho formas candidatas requieren aprobación antes de crear ejemplos o IDs.
+
+
+## A1 U21–U24 — lección aplicada adicional — 15 nov 2026
+- Se conserva la lección 4 de uso general del vocabulario y se añade una lección 5 aplicada: comunicar síntomas/pedir ayuda, elegir y describir ropa, describir el interior de una casa y participar en clase. La recuperación espaciada pasa a ser la lección 6.
+- Cada unidad queda con seis lecciones authored (dentro del estándar 5–6) y 24 ejercicios nuevos en total. Las cuatro lecciones aplicadas usan solo IDs existentes; no incorporan vocabulario ni frases de audio. Cada una tiene seis ejercicios y declara como repaso solo los seis IDs que realmente practica.
+- La prueba `multi-lesson-progression` se ajusta para que la lección aplicada 5 valide su subconjunto contextual de `reviewVocabIds`, mientras la prueba sigue exigiendo que todas las palabras se introduzcan una sola vez y que la lección 6 recupere la unidad completa. Es una corrección del contrato de prueba; no cambia currículo ni runtime.
+- Inventario A1: 165 lecciones (27 unidades con 5 y 5 unidades con 6); todas las unidades implementadas A1–B2 siguen dentro del estándar. El baseline de respuestas escritas pasa de 892 a 900 (+8 traducciones).
+- Sin cambios a IndexedDB v1, backup JSON v3, manifiestos de audio, dependencias ni runtime. La comprobación estructural no certifica naturalidad nativa ni MCER/BIPA.

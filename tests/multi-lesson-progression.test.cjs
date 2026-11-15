@@ -31,7 +31,12 @@ test('every A1 unit is divided into sequential lessons that introduce all vocabu
     assert.deepEqual(introduced, Array.from(unit.vocab, word => word.id), unit.id + ' should introduce every vocabulary item exactly once and in order');
     const introducedSoFar = new Set();
     lessons.forEach((lesson, index) => {
-      assert.deepEqual(lesson.vocab.map(word => word.id), unit.vocab.slice(0, lesson.vocab.length).map(word => word.id));
+      if (/^a1_u2[1-4]$/.test(unit.id) && index === 4) {
+        assert.deepEqual(lesson.vocab.map(word => word.id), lesson.reviewVocab.map(word => word.id),
+          unit.id + ' applied lesson should expose only the previously introduced vocabulary it actively retrieves');
+      } else {
+        assert.deepEqual(lesson.vocab.map(word => word.id), unit.vocab.slice(0, lesson.vocab.length).map(word => word.id));
+      }
       assert.ok(lesson.reviewVocab.every(word => introducedSoFar.has(word.id)),
         unit.id + ' lesson ' + index + ' may review only vocabulary introduced in an earlier lesson');
       assert.ok(lesson.exercises.length >= lesson.newVocab.length, unit.id + ' lesson should actively practise its new words');

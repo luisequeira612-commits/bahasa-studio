@@ -220,4 +220,6 @@
 ## B2 U6 — aprobación e implementación — 15 nov 2026
 - El dueño aprobó explícitamente las ocho formas y ejemplos de B2 U6 `memper-`: `memperkuat`, `memperlemah`, `memperluas`, `memperpanjang`, `memperbesar`, `memperkecil`, `mempermudah` y `mempercepat`.
 - Se implementó U6 en la rama `curriculum/b2-u6-memper-20261115`: cinco lecciones authored y 16 ejercicios, con IDs nuevos `b2u6_*`. No se modificaron IndexedDB v1, backup JSON v3 ni dependencias.
-- La unidad mantiene el guardarraíl: no enseña `memper-` como regla productiva libre ni generaliza su contraste con `meN-kan`. Queda pendiente CI/fusión y la preparación de audio de los nuevos textos mediante el pipeline existente.
+- La unidad mantiene el guardarraíl: no enseña `memper-` como regla productiva libre ni generaliza su contraste con `meN-kan`. La lección 5 introduce `memperkecil` antes de usarlo en actividades, y las pruebas de progresión verifican que el repaso solo referencia vocabulario ya enseñado.
+- Se actualizaron los baselines de inventario y las pruebas que enumeran unidades B2. CI completo verde en run `43704112913` (Regression tests y Offline quality reports). La unidad sigue fuera del recorrido visible: el gate de aprendizaje/revisión/tutor continúa limitado a U1–U5.
+- Pendiente: fusionar PR #615 y generar los audios faltantes mediante el pipeline Piper existente; después se podrá preparar la activación de U6 con cobertura de audio. No cambiar hashes, normalización, rutas ni IndexedDB/backup v3.

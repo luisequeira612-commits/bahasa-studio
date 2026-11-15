@@ -3,7 +3,7 @@
 **Estado:** propuesta documental reversible; no implementada ni publicada.  
 **Fecha:** 8 nov 2026.  
 **Ubicación:** tercera unidad propuesta dentro del eje B2 U7–U10 de nominalizaciones.  
-**Dependencias:** comprensión de voz verbal y nominalizaciones de B1/B2; no presupone aprobación de este desglose ni de sus ejemplos.
+**Dependencias:** comprensión de voz verbal y nominalizaciones de B1/B2; U7 está implementada y fusionada, mientras U8 y U9 siguen en fase documental. Este diseño no aprueba sus ejemplos ni vocabulario.
 
 ## Propósito y alcance
 
@@ -130,4 +130,4 @@ Al menos cinco ejercicios deben trabajar oraciones completas y al menos uno debe
 5. Diseñar claves que acepten paráfrasis españolas equivalentes y no traduzcan -nya de forma aislada.
 6. Ejecutar pruebas de coherencia consigna-respuesta, referencias, duplicados y ausencia de exposición anticipada.
 
-**Estatus de decisión:** el dueño aprobó el eje general de nominalizaciones para B2 U7–U10, no este desglose ni sus ejemplos. U9 es una propuesta documental reversible; no autoriza vocabulario, IDs, glosas definitivas ni ejercicios ejecutables.
+**Estatus de decisión:** el dueño aprobó el eje general de nominalizaciones para B2 U7–U10. U7 ya está implementada y fusionada; U9 sigue siendo propuesta documental reversible y no autoriza vocabulario, IDs, glosas definitivas ni ejercicios ejecutables.

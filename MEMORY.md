@@ -275,3 +275,9 @@
 - La prueba `multi-lesson-progression` se ajusta para que la lección aplicada 5 valide su subconjunto contextual de `reviewVocabIds`, mientras la prueba sigue exigiendo que todas las palabras se introduzcan una sola vez y que la lección 6 recupere la unidad completa. Es una corrección del contrato de prueba; no cambia currículo ni runtime.
 - Inventario A1: 165 lecciones (27 unidades con 5 y 5 unidades con 6); todas las unidades implementadas A1–B2 siguen dentro del estándar. El baseline de respuestas escritas pasa de 892 a 900 (+8 traducciones).
 - Sin cambios a IndexedDB v1, backup JSON v3, manifiestos de audio, dependencias ni runtime. La comprobación estructural no certifica naturalidad nativa ni MCER/BIPA.
+
+## Gate de licencia del audio B2 — 15 nov 2026
+- PR #625 sigue como borrador; la rama `audio/library-B2` es pública y sus archivos son accesibles desde GitHub aunque la PR sea draft. No fusionar ni habilitar U6–U7 mientras siga abierto el gate.
+- Piper aclara que la licencia del `MODEL_CARD` solo cubre el dataset propio. `id_ID-news_tts-medium` declara CC BY-NC-SA 4.0 y fine-tuning desde Lessac; el corpus Lessac limita el uso a investigación/exploración y Piper no representa que existan derechos downstream. La condición de obra derivada de modelos/audios sigue sin resolver; no es una conclusión de infracción ni asesoría legal.
+- Pocket TTS Indonesian queda como candidato no adoptado: CC BY 4.0 declarado, pero base Kyutai con acceso condicionado, 438 MB, PyTorch 2.5+, CPU 2,23× y calidad/limitaciones publicadas que requieren prueba. No añadir dependencias, aceptar condiciones ni crear secretos de CI sin aprobación.
+- Evidencia: [Piper licensing](https://github.com/OHF-Voice/piper1-gpl/blob/main/docs/LICENSING.md), [Pocket TTS Indonesian](https://huggingface.co/anak10thn/pocket-tts-indonesian), [Kyutai Pocket TTS](https://huggingface.co/kyutai/pocket-tts).

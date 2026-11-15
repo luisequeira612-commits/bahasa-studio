@@ -208,11 +208,10 @@
 - Fuente de decisión: prueba manual del usuario el 14 nov 2026: un clip reproducido previamente online funciona en modo avión; un clip nunca almacenado no funciona al primer intento offline. La limitación observada es caché bajo demanda, no fallo de generación Piper. No declarar la biblioteca completa disponible offline hasta que el usuario prepare los niveles o toda la biblioteca en su dispositivo.
 
 
-## Migración curricular B1 U25–U50 — 15 nov 2026
-- PR #606–#609 fusionadas: B1 U21–U36 completadas. PR #610 fusionada como `93a3c71a`: U37–U40 con cinco lecciones y 22 ejercicios cada una; CI verde en run 43686463048. PR #611 fusionada como `b4357b74`: U41–U44 con cinco lecciones y 22 ejercicios; CI verde en run 43686910827. PR #612 fusionada como `269de28f`: U45–U48 con cinco lecciones y 22 ejercicios; CI pre-merge verde en run 43687494105.
-- PR #613 en preparación: añade cuatro lecciones authored (dos en U49 y dos en U50). Cada unidad quedará con cinco lecciones y 22 ejercicios, completando la migración estructural de B1 U1–U50.
-- Se reutilizan IDs de vocabulario ya existentes; las ocho traducciones ya existen en `audio/manifest.json`. No se añaden entradas, frases ni clips de audio. Sin cambios a IndexedDB v1, backup JSON v3, Service Worker, hashes/rutas de audio, dependencias ni runtime.
-- Baseline previsto tras #613: B1 250 lecciones (50×5) y 1022 ejercicios; currículo total 644 lecciones en 127 unidades. B1 quedará completamente en el estándar de cinco lecciones explícitas. B2 U1–U5 siguen implementadas; U6–U60 pendientes.
-- AGENTS.md refleja la finalización de la migración estructural B1. La coherencia interna y las pruebas estructurales no equivalen a validación nativa ni certificación MCER/BIPA; no se exige KBBI ni hablante nativo.
-- Roadmap: indonesio hasta B2; después inglés A1 para hispanohablantes; ningún otro idioma planificado.
+## Migración curricular B1 U21–U50 completada — 15 nov 2026
+- PR #606–#609 fusionadas: B1 U21–U36 completadas. PR #610 fusionada como `93a3c71a`: U37–U40 con cinco lecciones y 22 ejercicios cada una; CI verde en run 43686463048. PR #611 fusionada como `b4357b74`: U41–U44 con cinco lecciones y 22 ejercicios; CI verde en run 43686910827. PR #612 fusionada como `269de28f`: U45–U48 con cinco lecciones y 22 ejercicios; CI verde en run 43687494105. PR #613 fusionada como `251ef5b2`: U49–U50 con cinco lecciones y 22 ejercicios; CI pre-merge verde en run 43687978469.
+- B1 queda completo estructuralmente: 50 unidades, cinco lecciones authored por unidad, 250 lecciones y 1022 ejercicios. Currículo total actual: 644 lecciones en 127 unidades implementadas.
+- Las tandas #610–#613 reutilizaron vocabulario/IDs locales y frases de traducción ya presentes en `audio/manifest.json`; no añadieron vocabulario, clips ni frases de audio. Sin cambios a IndexedDB v1, backup JSON v3, Service Worker, hashes/rutas de audio, dependencias ni runtime.
+- AGENTS.md refleja B1 completo. La coherencia interna y las pruebas estructurales no equivalen a validación nativa ni certificación MCER/BIPA; no se exige KBBI ni hablante nativo.
+- B2 U1–U5 siguen implementadas; U6–U60 pendientes. Roadmap: completar indonesio hasta B2; después inglés A1 para hispanohablantes; ningún otro idioma planificado.
 

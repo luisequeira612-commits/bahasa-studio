@@ -18,7 +18,7 @@ App web para aprender idiomas, estilo Duolingo, alojada en GitHub Pages. Hoy tie
 - No se publica en tiendas de apps.
 
 ## Hoja de ruta de idiomas (estado vigente: 15 nov 2026)
-1. **Indonesio:** completar todo el material hasta B2. A1 y A2 están completos. B1 tiene sus 50 unidades implementadas, pero continúa la migración para que todas tengan 5–6 lecciones explícitas: U1–U50 cumplen el estándar de cinco lecciones explícitas. B2 U1–U5 están implementadas; U6–U60 siguen pendientes. No añadir ningún otro idioma hasta completar el indonesio hasta B2.
+1. **Indonesio:** completar todo el material hasta B2. A1 y A2 están completos. B1 tiene sus 50 unidades implementadas y la migración estructural de cinco lecciones explícitas está completa: U1–U50 cumplen el estándar. B2 U1–U5 están implementadas; U6–U60 siguen pendientes. No añadir ningún otro idioma hasta completar el indonesio hasta B2.
 2. **Inglés:** se añadirá después del indonesio, desde nivel cero (A1), pensado para hispanohablantes. Incluir pronunciación con audio o transcripción sencilla, falsos amigos y verbos frasales.
 3. **Otros idiomas:** no hay ningún otro idioma planificado por ahora. Cualquier idioma adicional lo decidirá el dueño más adelante.
 

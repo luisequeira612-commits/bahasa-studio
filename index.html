@@ -4433,12 +4433,35 @@
                                         { vocabId: 'v8', type: 'write', prompt: 'Escribe una oración que identifique un libro mediante una acción pasiva.', hint: 'Usa buku yang dibaca Rina y completa con ada di sini.', modelAnswer: 'Buku yang dibaca Rina ada di sini.', explanation: 'La cláusula pasiva yang dibaca Rina describe el libro.' }
                                     ]
                                 },
+
+                                {
+                                    title: 'Formar superlativos con paling',
+                                    objective: 'Usa paling para expresar el grado máximo de una cualidad en una descripción breve.',
+                                    grammar: 'Paling precede al adjetivo para expresar el grado máximo: buku ini paling baik. La forma se aprende dentro de la expresión completa, no como una traducción fija del afijo.',
+                                    reviewVocabIds: ['b1u12_kesehatan', 'a2u20_kebersihan', 'v360', 'v383', 'v20', 'a2u12_kesempatan', 'b1u12_kecelakaan', 'b1u12_keadaan', 'b1u12_kebudayaan', 'b1v051', 'v53', 'v1002', 'v52', 'v211', 'b1v052', 'b1v053', 'b1v054', 'v298', 'v348', 'v8', 'b1v001'],
+                                    vocabIds: ['b1v055'],
+                                    exercises: [
+                                        { vocabId: 'b1v055', type: 'mc', prompt: '¿Qué palabra expresa el grado máximo en «Buku ini paling baik»?', options: ['Paling', 'Yang mana', 'Dibaca'], answer: 0, explanation: 'Paling marca el grado máximo de la cualidad baik.' },
+                                        { vocabId: 'b1v055', type: 'order', prompt: 'Ordena: «Este libro es el mejor».', words: ['Buku', 'ini', 'paling', 'baik.'], correctOrder: ['Buku', 'ini', 'paling', 'baik.'], explanation: 'Paling baik expresa que el libro tiene el grado máximo de la cualidad.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Integrar preguntas, relativas y superlativos',
+                                    objective: 'Combina una pregunta de selección con una descripción relativa en voz pasiva.',
+                                    grammar: 'Yang mana pregunta cuál de varias opciones; yang dibaca Rina identifica el libro mediante una relativa pasiva. Paling puede añadir una descripción de grado máximo.',
+                                    reviewVocabIds: ['b1u12_kesehatan', 'a2u20_kebersihan', 'v360', 'v383', 'v20', 'a2u12_kesempatan', 'b1u12_kecelakaan', 'b1u12_keadaan', 'b1u12_kebudayaan', 'b1v051', 'v53', 'v1002', 'v52', 'v211', 'b1v052', 'b1v053', 'b1v054', 'v298', 'v348', 'v8', 'b1v001', 'b1v055'],
+                                    vocabIds: [],
+                                    exercises: [
+                                        { vocabId: 'v348', type: 'order', prompt: 'Ordena: «¿Cuál es el libro que lee Rina?».', words: ['Buku', 'yang', 'mana', 'yang', 'dibaca', 'Rina?'], correctOrder: ['Buku', 'yang', 'mana', 'yang', 'dibaca', 'Rina?'], explanation: 'Yang mana pregunta cuál; yang dibaca Rina identifica el libro mediante una relativa pasiva.' },
+                                        { vocabId: 'v8', type: 'write', prompt: 'Escribe una oración que combine una relativa pasiva y una descripción superlativa.', hint: 'Puedes usar buku yang dibaca Rina y yang paling baik.', modelAnswer: 'Buku yang dibaca Rina adalah buku yang paling baik.', explanation: 'La primera relativa identifica el libro y yang paling baik expresa el grado máximo.' }
+                                    ]
+                                },
                                 {
                                     title: 'Yang paling y repaso acumulativo',
                                     objective: 'Interpreta yang paling en una descripción superlativa y recupera vocabulario de ke-an.',
                                     grammar: 'Yang paling + adjetivo expresa el grado máximo dentro de un grupo: buku yang paling baik. El uso de paling se ha contrastado con fuentes gramaticales secundarias; la entrada directa de KBBI VI no se pudo consultar, por lo que no se presenta como validación primaria.',
-                                    reviewVocabIds: ['b1v051', 'v8', 'b1v001', 'b1u12_kesehatan', 'a2u20_kebersihan', 'v1002', 'v298', 'v348', 'v52'],
-                                    vocabIds: ['b1v055'],
+                                    reviewVocabIds: ['b1u12_kesehatan', 'a2u20_kebersihan', 'v360', 'v383', 'v20', 'a2u12_kesempatan', 'b1u12_kecelakaan', 'b1u12_keadaan', 'b1u12_kebudayaan', 'b1v051', 'v53', 'v1002', 'v52', 'v211', 'b1v052', 'b1v053', 'b1v054', 'v298', 'v348', 'v8', 'b1v001', 'b1v055'],
+                                    vocabIds: [],
                                     exercises: [
                                         { vocabId: 'b1v055', type: 'mc', prompt: 'En «buku yang paling baik», ¿qué expresa paling?', options: ['El grado máximo de la cualidad', 'Una acción pasada', 'El agente de una acción'], answer: 0, explanation: 'Paling expresa el grado máximo; yang introduce la descripción del libro.' },
                                         { vocabId: 'v52', type: 'translate_es_id', prompt: 'Traduce: «El libro que es el mejor es mío».', answer: 'Buku yang paling baik itu milik saya.', explanation: 'Yang paling baik expresa que el libro alcanza el grado máximo de la cualidad.' },
@@ -4490,11 +4513,34 @@
                                         { vocabId: 'b1v059', type: 'write', prompt: 'Escribe una oración con asalkan para indicar un requisito suficiente para que puedas ir a casa o llegar a un lugar.', hint: 'Usa asalkan ada waktu o asalkan pekerjaan selesai.', modelAnswer: 'Saya boleh pulang asalkan pekerjaan selesai.', explanation: 'Asalkan introduce el requisito que debe cumplirse para que el resultado sea posible.' }
                                     ]
                                 },
+
+                                {
+                                    title: 'Comparar condiciones posibles e hipotéticas',
+                                    objective: 'Distingue una condición posible de una situación imaginaria y reconoce el registro de cada conector.',
+                                    grammar: 'Kalau y jika presentan condiciones posibles; seandainya marca con más claridad una hipótesis. La elección depende de la relación entre las dos partes.',
+                                    reviewVocabIds: ['b1v056', 'b1v057', 'b1v058', 'b1v059'],
+                                    vocabIds: [],
+                                    exercises: [
+                                        { vocabId: 'b1v056', type: 'mc', prompt: '¿Qué diferencia principal distingue kalau de jika en los ejemplos de la unidad?', options: ['Kalau suele ser más conversacional; jika es más neutro o formal', 'Kalau expresa concesión; jika expresa contraste', 'Ambos cambian la forma del verbo'], answer: 0, explanation: 'Los dos presentan condiciones posibles; la diferencia destacada es principalmente de registro.' },
+                                        { vocabId: 'b1v057', type: 'order', prompt: 'Ordena: «Si llueve, volveré a casa».', words: ['Jika', 'hujan,', 'saya', 'akan', 'pulang.'], correctOrder: ['Jika', 'hujan,', 'saya', 'akan', 'pulang.'], explanation: 'Jika introduce una condición posible y la segunda parte expresa el resultado.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Producir condiciones y requisitos',
+                                    objective: 'Organiza una hipótesis y formula un requisito suficiente con conectores distintos.',
+                                    grammar: 'Seandainya presenta una situación imaginaria; asalkan indica el requisito que debe cumplirse para que el resultado sea posible.',
+                                    reviewVocabIds: ['b1v056', 'b1v057', 'b1v058', 'b1v059'],
+                                    vocabIds: [],
+                                    exercises: [
+                                        { vocabId: 'b1v058', type: 'order', prompt: 'Ordena: «Si tuviera tiempo, estudiaría indonesio».', words: ['bahasa', 'Seandainya', 'Indonesia.', 'saya', 'belajar', 'punya', 'waktu,', 'akan', 'saya'], correctOrder: ['Seandainya', 'saya', 'punya', 'waktu,', 'saya', 'akan', 'belajar', 'bahasa', 'Indonesia.'], explanation: 'La hipótesis con seandainya aparece antes del resultado.' },
+                                        { vocabId: 'b1v059', type: 'write', prompt: 'Escribe una frase con asalkan que indique un requisito suficiente.', hint: 'Puedes usar pekerjaan selesai para explicar cuándo puedes volver a casa.', modelAnswer: 'Saya boleh pulang asalkan pekerjaan selesai.', explanation: 'Asalkan introduce el requisito que permite que se cumpla el resultado.' }
+                                    ]
+                                },
                                 {
                                     title: 'Elegir el tipo de condición',
                                     objective: 'Selecciona el conector según la posibilidad, la hipótesis o el requisito expresado.',
                                     grammar: 'Compara: kalau/jika para condiciones posibles, seandainya para situaciones imaginarias y asalkan para un requisito suficiente. No son sufijos ni cambian la conjugación verbal; la relación lógica entre las dos partes determina la elección.',
-                                    reviewVocabIds: ['b1v056', 'b1v058', 'b1v059'],
+                                    reviewVocabIds: ['b1v056', 'b1v057', 'b1v058', 'b1v059'],
                                     vocabIds: [],
                                     exercises: [
                                         { vocabId: 'b1v059', type: 'mc', prompt: 'En «Saya boleh pulang asalkan pekerjaan selesai», ¿qué expresa asalkan?', options: ['Una condición suficiente o requisito', 'Una concesión', 'Un contraste entre dos ideas'], answer: 0, explanation: 'Asalkan presenta el requisito que permite que se cumpla el resultado.' },
@@ -4544,11 +4590,34 @@
                                         { vocabId: 'b1v062', type: 'write', prompt: 'Escribe una frase personal con biarpun y un resultado que se mantiene.', hint: 'Puedes usar rumah jauh y tetap datang.', modelAnswer: 'Biarpun rumah jauh, saya tetap datang.', explanation: 'Biarpun presenta el obstáculo; la oración principal afirma que el resultado se mantiene.' }
                                     ]
                                 },
+
+                                {
+                                    title: 'Comparar concesiones con un mismo resultado',
+                                    objective: 'Reconoce que walaupun y meskipun expresan concesión y pueden presentar el mismo obstáculo.',
+                                    grammar: 'Walaupun y meskipun presentan una circunstancia que no impide el resultado. El significado concesivo se mantiene aunque cambie el conector.',
+                                    reviewVocabIds: ['b1v060', 'b1v061', 'b1v062'],
+                                    vocabIds: [],
+                                    exercises: [
+                                        { vocabId: 'b1v060', type: 'mc', prompt: '¿Qué tienen en común walaupun y meskipun?', options: ['Ambos expresan una concesión', 'Ambos expresan un requisito suficiente', 'Ambos introducen una hipótesis imaginaria'], answer: 0, explanation: 'Los dos presentan un obstáculo a pesar del cual ocurre el resultado.' },
+                                        { vocabId: 'b1v061', type: 'translate_es_id', prompt: 'Traduce: «Aunque llueve, de todos modos vuelvo a casa».', answer: 'Meskipun hujan, saya tetap pulang.', explanation: 'Meskipun introduce el obstáculo y tetap refuerza la continuidad del resultado.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Producir concesiones en contexto',
+                                    objective: 'Construye dos frases concesivas y conserva el resultado a pesar del obstáculo.',
+                                    grammar: 'Biarpun comparte el sentido concesivo de walaupun y meskipun, pero suele sonar más conversacional o personal.',
+                                    reviewVocabIds: ['b1v056', 'b1v057', 'b1v058', 'b1v059', 'b1v060', 'b1v061', 'b1v062'],
+                                    vocabIds: [],
+                                    exercises: [
+                                        { vocabId: 'b1v062', type: 'order', prompt: 'Ordena: «Aunque la casa esté lejos, de todos modos voy».', words: ['saya', 'Biarpun', 'datang.', 'jauh,', 'rumah', 'tetap'], correctOrder: ['Biarpun', 'rumah', 'jauh,', 'saya', 'tetap', 'datang.'], explanation: 'La cláusula con biarpun presenta el obstáculo antes del resultado.' },
+                                        { vocabId: 'b1v060', type: 'write', prompt: 'Escribe dos frases concesivas: una con walaupun y otra con biarpun.', hint: 'Puedes usar hujan, rumah jauh y tetap.', modelAnswer: 'Walaupun hujan, saya tetap pulang. Biarpun rumah jauh, saya tetap datang.', explanation: 'Ambas frases mantienen el resultado a pesar de una circunstancia adversa.' }
+                                    ]
+                                },
                                 {
                                     title: 'Elegir una concesión',
                                     objective: 'Distingue el sentido concesivo y selecciona el conector según el tono.',
                                     grammar: 'Walaupun y meskipun son opciones neutrales; biarpun suele ser más conversacional. En los tres casos, el resultado contradice la consecuencia que normalmente se esperaría del obstáculo. Tetap puede reforzar esa persistencia.',
-                                    reviewVocabIds: ['b1v056', 'b1v058', 'b1v060', 'b1v061', 'b1v062'],
+                                    reviewVocabIds: ['b1v056', 'b1v057', 'b1v058', 'b1v059', 'b1v060', 'b1v061', 'b1v062'],
                                     vocabIds: [],
                                     exercises: [
                                         { vocabId: 'b1v061', type: 'mc', prompt: '¿Cuál afirmación describe mejor walaupun, meskipun y biarpun?', options: ['Todos expresan una causa', 'Los tres expresan concesión, con diferencias de registro', 'Todos expresan un requisito'], answer: 1, explanation: 'Los tres son concesivos; biarpun tiende a sonar más conversacional.' },
@@ -4597,11 +4666,34 @@
                                         { vocabId: 'b1v064', type: 'write', prompt: 'Escribe dos oraciones: la segunda debe comenzar con namun y contrastar con la primera.', hint: 'Usa Hujan. Namun, saya tetap pergi.', modelAnswer: 'Hujan. Namun, saya tetap pergi.', explanation: 'Namun enlaza la segunda oración con la primera sin convertirlas en una sola oración coordinada.' }
                                     ]
                                 },
+
+                                {
+                                    title: 'Distinguir contraste dentro y entre oraciones',
+                                    objective: 'Selecciona tetapi o namun según la estructura que conecta las ideas.',
+                                    grammar: 'Tetapi coordina cláusulas dentro de una oración; namun suele iniciar otra oración que contrasta con la anterior.',
+                                    reviewVocabIds: ['b1v060', 'b1v061', 'b1v062', 'b1v063', 'b1v064'],
+                                    vocabIds: [],
+                                    exercises: [
+                                        { vocabId: 'b1v063', type: 'mc', prompt: '¿Qué diferencia principal distingue tetapi de namun?', options: ['Tetapi coordina cláusulas; namun suele iniciar una oración nueva', 'Tetapi expresa hipótesis; namun expresa concesión', 'Los dos solo aparecen al final de una oración'], answer: 0, explanation: 'Tetapi enlaza partes de una misma oración y namun introduce una oración contrastiva.' },
+                                        { vocabId: 'b1v064', type: 'translate_es_id', prompt: 'Traduce: «Llueve. Sin embargo, de todos modos vuelvo a casa».', answer: 'Hujan. Namun, saya tetap pulang.', explanation: 'Namun inicia la segunda oración y establece el contraste con la primera.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Integrar dos estructuras de contraste',
+                                    objective: 'Produce versiones contrastivas con tetapi y namun sin mezclar sus funciones.',
+                                    grammar: 'Puedes expresar el mismo contraste dentro de una oración con tetapi o dividirlo en dos oraciones y comenzar la segunda con namun.',
+                                    reviewVocabIds: ['b1v060', 'b1v061', 'b1v062', 'b1v063', 'b1v064'],
+                                    vocabIds: [],
+                                    exercises: [
+                                        { vocabId: 'b1v063', type: 'order', prompt: 'Ordena: «Llueve, pero volveré a casa».', words: ['pulang.', 'Hujan,', 'tetapi', 'saya', 'akan'], correctOrder: ['Hujan,', 'tetapi', 'saya', 'akan', 'pulang.'], explanation: 'Tetapi conecta las dos cláusulas dentro de la misma oración.' },
+                                        { vocabId: 'b1v064', type: 'write', prompt: 'Escribe dos versiones del mismo contraste: una con tetapi y otra con namun.', hint: 'La primera debe ser una sola oración; la segunda debe tener dos.', modelAnswer: 'Hujan, tetapi saya tetap pergi. Hujan. Namun, saya tetap pergi.', explanation: 'Tetapi coordina cláusulas y namun introduce una segunda oración contrastiva.' }
+                                    ]
+                                },
                                 {
                                     title: 'Elegir una estructura de contraste',
                                     objective: 'Distingue tetapi y namun y evita duplicar automáticamente los marcadores concesivos.',
                                     grammar: 'Usa tetapi para contrastar cláusulas en una oración y namun para iniciar una oración que contrasta con la anterior. Con meskipun o walaupun, no es necesario añadir automáticamente tetapi: Meskipun hujan, saya tetap pergi es una construcción completa.',
-                                    reviewVocabIds: ['b1v060', 'b1v062', 'b1v063', 'b1v064'],
+                                    reviewVocabIds: ['b1v056', 'b1v057', 'b1v058', 'b1v059', 'b1v060', 'b1v061', 'b1v062', 'b1v063', 'b1v064'],
                                     vocabIds: [],
                                     exercises: [
                                         { vocabId: 'b1v063', type: 'mc', prompt: '¿Cuál oración usa una concesión sin duplicar innecesariamente el contraste?', options: ['Meskipun hujan, saya tetap pergi.', 'Meskipun hujan, tetapi saya tetap pergi.', 'Meskipun hujan, maka saya tetap pergi.'], answer: 0, explanation: 'Meskipun ya introduce la concesión; no hace falta añadir tetapi automáticamente.' },

@@ -285,7 +285,7 @@ test('B1 U13-U26 expose five lessons while preserving authored vocabulary order 
   for (const unit of targetUnits) {
     const lessons = app.buildUnitLessons(unit);
     const authoredCount = unit.lessons.length;
-    const expectedAuthoredCount = ['b1_u13', 'b1_u14', 'b1_u15', 'b1_u16'].includes(unit.id) ? 5 : null;
+    const expectedAuthoredCount = ['b1_u13', 'b1_u14', 'b1_u15', 'b1_u16', 'b1_u17', 'b1_u18', 'b1_u19', 'b1_u20'].includes(unit.id) ? 5 : null;
     assert.ok(expectedAuthoredCount === null ? authoredCount === 3 || authoredCount === 4 : authoredCount === expectedAuthoredCount,
       unit.id + ' should retain its expected authored lesson count');
     assert.equal(lessons.length, 5, unit.id + ' should expose five lessons');

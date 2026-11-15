@@ -142,4 +142,4 @@ Se mantienen cinco tipos: opción múltiple, traducción contextual, ordenación
 6. El dueño aprueba explícitamente cada forma nueva, glosa y ejemplo antes de crear IDs o contenido ejecutable.
 7. La cobertura de audio de las actividades de escucha está generada y verificada en el manifiesto/índice/archivos antes de publicar la unidad.
 
-**Estatus de decisión:** el dueño aprobó el eje general de nominalizaciones para B2 U7–U10, no este desglose ni sus ejemplos. Esta propuesta es documental y reversible; no autoriza vocabulario nuevo ni contenido ejecutable.
+**Estatus de implementación:** el dueño aprobó explícitamente `pembelian`, `pengiriman`, `pembuatan`, `penemuan` y `pergerakan`, con los ejemplos documentados, el 15 nov 2026. U7 ya está implementada en `index.html` con cinco lecciones y 16 ejercicios. La unidad no debe publicarse hasta que el pipeline de audio B2 esté ampliado y verificado; U7 permanece sujeta al mismo gate que U6.

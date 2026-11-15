@@ -42,12 +42,16 @@ test('repository inventory baseline distinguishes authored lessons from runtime-
   const b1 = levels.find((level) => level.id === 'B1');
   const consolidated = ['b1_u29', 'b1_u30', 'b1_u31', 'b1_u32'].map((id) => b1.units.find((unit) => unit.id === id));
   assert.deepEqual(consolidated.map((unit) => unit.lessons.length), [5, 5, 5, 5]);
+  assert.deepEqual(consolidated.map((unit) => unit.lessons.reduce((sum, lesson) => sum + lesson.exercises.length, 0)), [22, 22, 22, 22]);
+  assert.equal(consolidated[3].lessons[4].title, 'Repaso acumulativo de B1 U28–U32');
   const newLessonTitles = [
     'Elegir el grado de obligación según la situación', 'Explicar y justificar una recomendación',
     'Convertir una meta en un plan concreto', 'Mantener el esfuerzo a lo largo del plan',
     'Secuenciar pasos hacia una meta', 'Preparar y decidir el siguiente paso',
     'Reorganizar el horario según las prioridades',
   ];
+  const addedLessons = consolidated.flatMap((unit) => unit.lessons.filter((item) => newLessonTitles.includes(item.title)));
+  assert.equal(addedLessons.length, 7);
   for (const unit of consolidated) {
     for (const lesson of unit.lessons.filter((item) => newLessonTitles.includes(item.title))) {
       assert.deepEqual(new Set(lesson.exercises.map((exercise) => exercise.type)), new Set(['mc', 'translate_es_id', 'order', 'write']));

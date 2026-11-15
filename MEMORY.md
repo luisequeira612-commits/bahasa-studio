@@ -80,6 +80,7 @@
 - 13 nov 2026: B8 revisado como diseño intencional/no accionable: precargar `./` y `./index.html` cubre rutas distintas; `mobile-check.html` es diagnóstico; `skipWaiting`/`clients.claim` y stale-while-revalidate no muestran defecto reproducible.
 - 13 nov 2026: B9 permanece `NECESITA MÁS DATOS`: SpeechRecognition lo gestiona el navegador/SO; el código no sube audio por fetch/XHR ni identifica proveedor. No atribuir a Google sin pruebas por navegador.
 
+- 14 nov 2026: B15 queda instrumentado con gate estricto opcional para 5–6 lecciones explícitas por unidad. El modo informativo enumera las brechas; `--strict` falla si alguna unidad implementada incumple. No se activa en CI mientras continúe la migración. Inventario de referencia: A1 141/32 (U29–U32 pendientes), A2 200/40, B1 144/50 y B2 25/5; 54 unidades fuera del estándar y 126 lecciones mínimas faltantes. PR en preparación `quality/b15-strict-authored-lesson-gate`.
 - 13 nov 2026: B14 completado en PR #546, fusionada en `main` (`57564fabffc692e2a41adeb5fabca18fd8495322`). Añade `node --check` para todos los `.js` fuera de `node_modules`; CI del SHA exacto del PR pasó. Sin dependencias nuevas.
 
 - 13 nov 2026: PR #547 fusionada por squash (`f47f93e50380baa7ef1c6fedaa8710b14ff7fd00`): auditor reproducible de lecciones explícitas, test de línea base y documentación; CI pre/post-merge de regresión, Offline quality reports y Pages en éxito.

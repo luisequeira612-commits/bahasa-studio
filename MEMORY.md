@@ -243,6 +243,13 @@
 - Siguiente bloque: preparar U8 ke-an a partir de su diseño documental existente, sin introducir vocabulario ni IDs nuevos hasta cotejar candidatos y recibir aprobación explícita.
 
 
+
+## Diseños B2 U9–U10 — cinco lecciones — 15 nov 2026
+- Los diseños documentales `docs/B2_U9_DESIGN.md` y `docs/B2_U10_DESIGN.md` se ampliaron de tres a cinco lecciones authored cada uno, manteniendo 16 ejercicios propuestos por unidad (3/3/3/3/4).
+- U9 separa función de -nya, estructura/complemento/voz, causalidad y aspecto, ambigüedad di-V-nya e integración con paráfrasis. No afirma que -nya sea siempre nominalizador ni conjunción causal.
+- U10 integra lectura de texto continuo, recuperación de participantes, reformulación, registro y edición guiada. Depende de la aprobación e implementación previa de U7–U9.
+- Son diseños documentales, no contenido ejecutable; no se añadieron vocabulario, ejemplos, IDs ni ejercicios definitivos. Se mantiene la regla de no introducir formas o ejemplos nuevos sin aprobación explícita.
+
 ## Soporte de generación de audio B2 — PR #619 fusionada — 15 nov 2026
 - PR [#619](https://github.com/luisequeira612-commits/bahasa-studio/pull/619) fusionada mediante squash en `main`, commit `42fad9629f67b0d7331d6887ecfcbd0d1f0c62cb`. Head pre-merge `382e02f7a190e0811d3f7be63709d84a0a4e09a0`; CI pre-merge run #2672 pasó con `test` y `Offline quality reports` en éxito.
 - El exportador de manifiesto incorpora B2 de forma explícita con `--include-b2`, leyendo el currículo inline mediante el loader B2 existente. Una vez que el índice de audio contiene clips B2 exclusivos, las ejecuciones posteriores preservan automáticamente esas entradas al regenerar otros niveles.

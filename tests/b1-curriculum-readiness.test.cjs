@@ -1150,9 +1150,9 @@ test('B1 U50 closes the level with an integrated project capstone', () => {
   assert.ok(unit);
   assert.deepEqual(Array.from(unit.vocab, word => word.id), ['b1v198', 'b1v199', 'b1v200', 'b1v201', 'b1v202']);
   assert.deepEqual(Array.from(unit.vocab, word => word.idn.toLowerCase()), ['rancangan', 'kelayakan', 'pelaksanaan', 'mempresentasikan', 'menindaklanjuti']);
-  assert.equal(unit.lessons.length, ['b1_u22', 'b1_u27', 'b1_u32', 'b1_u37', 'b1_u42', 'b1_u47'].includes(unit.id) ? 4 : 3);
+  assert.equal(unit.lessons.length, 5);
   const exercises = exercisesOf(unit);
-  assert.equal(exercises.length, 14);
+  assert.equal(exercises.length, 22);
   for (const type of ['mc', 'translate_es_id', 'order', 'listen', 'write']) {
     assert.ok(exercises.some(exercise => exercise.type === type), 'B1 U50 missing exercise type ' + type);
   }

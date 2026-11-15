@@ -28,6 +28,10 @@ Por tanto, U7 no debe volver a enseñar PEN-/PE- como nombres de agente, ni repe
 - **Mukhibun & Saddhono (2023), “The Indonesian Confix /Pe-+-an/ in Thammasat University Student Descriptive Text: Allomorph, Usage, and Grammatical Meaning”.** Analiza textos descriptivos de estudiantes BIPA y registra seis variantes de pe(N)-an, además de funciones como acciones, procesos, maneras de hablar y organizaciones. El corpus es pequeño y de aprendientes; no se usa como prueba de frecuencia nativa ni como regla general para todas las bases. https://journal.unj.ac.id/unj/index.php/aksis/article/view/39924
 - **Zainuddin (2016), “A Study on Derivational Affixes of Indonesian Noun-Formation in Newspaper Editorial: A Semantic Perspective”.** Estudia nominalizaciones en editoriales de *Kompas* e incluye per-an, ke-an, pe-an y pen-an entre los patrones observados. Su utilidad aquí es contextualizar la presencia de estas formas en prosa editorial, no atribuir un significado uniforme a cada afijo. https://doi.org/10.5539/ijel.v6n3p148
 - **Suhardi (1984; publicación digital 2015), “Transformasi Nominalisasi Bentuk Verbal Bahasa Indonesia dalam Pengajaran Bahasa”.** Revisión de transformaciones nominalizadoras en indonesio, con peN-, pe-, per-an, pen-an y ke-an; advierte que nominalización y subordinación/embedding no deben confundirse. Se toma como referencia teórica histórica, no como validación del uso actual. https://doi.org/10.21831/cp.v2i2.7476
+- **Tata Bahasa Baku Bahasa Indonesia, edición digital del repositorio del Ministerio de Educación de Indonesia.** Describe funciones de per-…-an y ejemplos como `pergerakan` desde `bergerak`, `pertemuan` desde `bertemu` y otras nominalizaciones. Se utiliza como referencia normativa general, no para afirmar que cualquier base admite el patrón. https://repositori.kemendikdasmen.go.id/16351/1/Tata%20Bahasa%20Baku%20Bahasa%20Ind.pdf
+- **ANU, “Nominal Derivation in Indonesian”.** Analiza pares como `pertemuan`/`penemuan`, `perkembangan`/`pengembangan` y `perpisahan`/`pemisahan`; explica que los contrastes se relacionan con la familia verbal y la presencia o ausencia de agente. https://openresearch-repository.anu.edu.au/bitstreams/7d35fdf4-4618-4cc8-9983-3ade511727fd/download
+- **Northern Illinois University, SEAsite, “Circumfix peN-...-an”.** Registra `pengiriman` como nominalización de `kirim` y ofrece un ejemplo de uso con el envío de mercancías. https://seasite.niu.edu/Indonesian/new_indonesian/tatabahasa/circumfix/Circumfiks_peN--an_new.html
+- **“Bangga Berbahasa Indonesia”, material didáctico de secundaria.** Ofrece `pembelian` y `pengiriman` en ejemplos contextuales de compra de entradas y envío. Se usa como apoyo didáctico secundario. https://api.pintar.pdk.jatengprov.go.id/storage/uploads/users/kontributor_bptikp/materi/SMA_BSE/kelas10_Bangga_berbahasa_indonesia_B_hendrian.pdf
 
 ### Síntesis prudente
 
@@ -101,16 +105,16 @@ Se mantienen cinco tipos: opción múltiple, traducción contextual, ordenación
 
 - No se añaden entradas ni IDs en este documento. Ninguna forma de la lista siguiente está aprobada como vocabulario nuevo de U7.
 - Revisión literal del código vigente el 15 nov 2026:
-  | Forma | Familia propuesta | Estado en el currículo actual | Tratamiento |
-  |---|---|---|---|
-  | `pembelian` | peN-an | Mencionada como reconocimiento en B1 U7; sin entrada de vocabulario propia en esa unidad. | Candidata a pasar de reconocimiento a estudio, previa aprobación. |
-  | `pengiriman` | peN-an | Mencionada como reconocimiento en B1 U7; sin entrada de vocabulario propia en esa unidad. | Candidata a pasar de reconocimiento a estudio, previa aprobación. |
-  | `pembuatan` | peN-an | Sin coincidencia literal encontrada en el currículo ejecutable. | Candidata; falta cerrar evidencia contextual y aprobación. |
-  | `penemuan` | peN-an | Sin coincidencia literal encontrada en el currículo ejecutable. | Candidata con contraste documentado frente a `pertemuan`; requiere aprobación. |
-  | `pergerakan` | per-an | Sin coincidencia literal encontrada en el currículo ejecutable. | Candidata documental; requiere aprobación. |
-  | `pertemuan` | per-an | A2 U15, ID canónico `a2u15_pertemuan`. | Reutilizar el ID existente; no crear otro. |
-  | `perjalanan` | per-an | A2 U14, ID canónico `a2u14_perjalanan`. | Reutilizar el ID existente; no crear otro. |
-  | `peraturan` | per-an | Ya aparece en el material B1 con ID `v242`. | No duplicar; confirmar su fuente canónica y su función didáctica antes de reutilizar. |
+  | Forma | Glosa de trabajo | Familia documentada | Ejemplo contextual propuesto | Estado / tratamiento |
+  |---|---|---|---|---|
+  | `pembelian` | compra/adquisición | `membeli` → peN-an | `Pembelian tiket untuk masuk ke tempat wisata itu dapat dilakukan pagi hari.` | Mencionada como reconocimiento en B1 U7; candidata a vocabulario activo, previa aprobación. Ejemplo de material didáctico. |
+  | `pengiriman` | envío | `mengirim` → peN-an | `Pengiriman barang-barang P.T. Makmur dilakukan dengan truk-truk.` | Mencionada como reconocimiento en B1 U7; candidata a vocabulario activo, previa aprobación. Ejemplo de NIU/SEAsite. |
+  | `pembuatan` | elaboración/fabricación | `membuat` → peN-an | `Pembuatan krupuk ini memakan waktu tiga hari.` | Sin coincidencia literal encontrada en el currículo ejecutable; candidata documentada por MSU, previa aprobación. |
+  | `penemuan` | descubrimiento/hallazgo | `menemukan` → peN-an | `Penemuan para ahli itu diterbitkan dalam jurnal ilmiah.` | Sin coincidencia literal encontrada; candidata para el contraste léxico con `pertemuan`, previa aprobación. Ejemplo de referencia didáctica secundaria. |
+  | `pergerakan` | movimiento; movimiento social | `bergerak` → per-an | `Pergerakan kaum wanita di Jawa dipelopori oleh Ibu Kartini.` | Sin coincidencia literal encontrada; candidata documentada por MSU, NIU y Tata Bahasa Baku, previa aprobación. |
+  | `pertemuan` | reunión/encuentro | `bertemu` → per-an | `Pertemuan itu penting.` | A2 U15, ID canónico `a2u15_pertemuan`; reutilizar, no crear otro ID. |
+  | `perjalanan` | viaje/trayecto | `berjalan` → per-an | `Perjalanan saya jauh.` | A2 U14, ID canónico `a2u14_perjalanan`; reutilizar, no crear otro ID. |
+  | `peraturan` | reglamento/normativa | Base nominal `aturan`; forma lexicalizada per-an | `Peraturan itu berlaku.` | Ya aparece en material B1 con ID `v242`; reutilizar solo como contraste léxico, no como ejemplo central de nominalización verbal. |
 - La búsqueda literal no demuestra ausencia de sinónimos, variantes ni solapamiento conceptual. Antes de cerrar el inventario, comparar cada forma con el vocabulario global A1–B2 y revisar ID, glosa, categoría, ejemplo, nivel y prerrequisitos.
 - No volver a contar como nuevas las palabras ya enseñadas en A1/A2/B1. La promoción de una forma mencionada solo como reconocimiento a vocabulario productivo debe quedar explícita.
 - Si hace falta vocabulario nuevo, presentar primero forma, glosa, ejemplo contextual, familia verbal, fuentes y motivo al dueño.

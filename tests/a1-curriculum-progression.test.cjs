@@ -267,7 +267,7 @@ test('A1 U17-U20 actively exercise all previously introduced vocabulary in each 
 
 test('A1 U21-U24 contain six authored lessons with applied practice and spaced retrieval', () => {
   for (const unit of a1.units.slice(20, 24)) {
-    assert.equal(unit.lessons.length, 5, unit.id + ' must contain five authored lessons');
+    assert.equal(unit.lessons.length, 6, unit.id + ' must contain six authored lessons');
     const unitIds = new Set(unit.vocab.map(word => word.id));
     const introduced = new Set();
     const allExercises = unit.lessons.flatMap(lesson => lesson.exercises || []);

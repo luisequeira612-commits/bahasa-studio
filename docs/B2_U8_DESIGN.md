@@ -117,7 +117,7 @@ La bibliografía de Tebay (2024, diapositivas 8–10; ejemplos atribuidos a KBBI
 | `keingintahuan` | `ingin + tahu` | curiosidad | predicado complejo |
 | `keberuntungan` | `beruntung` | suerte / fortuna | predicado con prefijo bajo `ber-` |
 
-**Uso pedagógico sugerido:** lección 1 contrasta nombres de cualidad, evento, institución y colectivo; lección 2 analiza dominios complejos con negación o material verbal limitado; lección 3 desambigua por contexto y distingue nominalizaciones de predicados verbales adversativos/perfectivos. Las ocho formas son una lista de trabajo, no una selección final ni vocabulario aprobado.
+**Uso pedagógico sugerido:** lección 1 contrasta nombres de cualidad, evento, institución y colectivo; lección 2 analiza dominios complejos con negación o material verbal limitado; lección 3 desambigua *ketinggian* y distingue nominalizaciones de predicados verbales adversativos/perfectivos; lección 4 delimita el alcance del dominio y sus restricciones; lección 5 integra la lectura y la reformulación guiada. Las ocho formas son una lista de trabajo, no una selección final ni vocabulario aprobado.
 
 **Límites:** las glosas españolas son propuestas de traducción a partir de las glosas inglesas de la fuente, no certificación lexicográfica. No se escriben ejemplos nuevos, no se crean IDs y no se incorporan estas formas al currículo ejecutable hasta que el dueño apruebe forma, glosa y oración contextual. `ketinggian` se conserva solo como caso analítico de ambigüedad nominal (‘altura’) frente a lectura excesiva (‘demasiado alto’); `kejatuhan` y `kebakaran` siguen siendo contrastes verbales, no parte de esta lista nominal.
 

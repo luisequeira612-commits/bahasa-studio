@@ -31,6 +31,20 @@ class AudioSamplesPageTests(unittest.TestCase):
             self.assertIn("&lt;script&gt;", page)
             self.assertNotIn('<script>alert("x")</script>', page)
 
+    def test_mms_replaces_legacy_piper_only_when_forced(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            metadata = Path(temporary) / "audio" / "metadata.json"
+            MODULE.ensure_single_voice(metadata, "piper", "Piper / id_ID-news_tts-medium")
+            with self.assertRaisesRegex(RuntimeError, "Do not mix voices"):
+                MODULE.ensure_single_voice(metadata, "mms", "MMS / facebook/mms-tts-ind@171b004ccd54")
+            MODULE.ensure_single_voice(
+                metadata, "mms", "MMS / facebook/mms-tts-ind@171b004ccd54",
+                allow_piper_replacement=True,
+            )
+            saved = __import__("json").loads(metadata.read_text(encoding="utf-8"))
+            self.assertEqual(saved["engine"], "mms")
+            self.assertEqual(saved["voice"], "MMS / facebook/mms-tts-ind@171b004ccd54")
+
     def test_full_library_rejects_mixing_engines_or_voices(self):
         with tempfile.TemporaryDirectory() as temporary:
             metadata = Path(temporary) / "audio" / "metadata.json"

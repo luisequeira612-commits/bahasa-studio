@@ -13,7 +13,7 @@ Cada unidad B1 U33–U36 pasa de tres lecciones authored a cinco, añadiendo dos
 ## Contrato de las lecciones nuevas
 - Cuatro ejercicios por lección: opción múltiple, traducción español-indonesio, ordenación y escritura guiada.
 - Reutilizan únicamente vocabulario ya presente en su unidad; no crean IDs ni cambian glosas.
-- No incluyen ejercicios de escucha, por lo que no requieren clips ni cambios al manifiesto de audio.
+- No incluyen ejercicios de escucha. Las ocho respuestas de traducción reutilizan frases que ya existen en el manifiesto de audio, por lo que no requieren clips nuevos ni cambios al índice.
 - Cada unidad queda con 22 ejercicios combinados y cinco lecciones authored.
 
 ## Validación

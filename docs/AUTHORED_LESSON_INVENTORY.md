@@ -1,64 +1,58 @@
 # Inventario de lecciones didácticas explícitas
 
-**Fecha de corte:** 13 de noviembre de 2026  
+**Fecha de corte:** 14 de noviembre de 2026  
 **Rama de referencia:** `main`  
-**Criterio acordado:** todas las unidades A1–B2 deben contener entre cinco y seis lecciones didácticas reales, escritas en el currículo. Los repasos creados automáticamente por el motor no cuentan.
+**Criterio:** cada unidad implementada de A1–B2 debe contener entre cinco y seis lecciones didácticas reales en `unit.lessons[]`. Los bloques de vocabulario derivados y repasos creados automáticamente por el motor no cuentan.
 
 ## Estado medido
 
-| Nivel | Unidades implementadas | Lecciones explícitas | Distribución por unidad | Unidades bajo el mínimo |
+| Nivel | Unidades implementadas | Lecciones explícitas | Distribución por unidad | Unidades fuera del estándar |
 |---|---:|---:|---|---:|
-| A1 | 32 | 101 | 12 sin `lessons[]`; 19 con 5; 1 con 6 | 12 |
+| A1 | 32 | 141 | 4 con 0; 27 con 5; 1 con 6 | 4 |
 | A2 | 40 | 200 | 40 con 5 | 0 |
 | B1 | 50 | 144 | 12 con 2; 32 con 3; 6 con 4 | 50 |
 | B2 | 5 | 25 | 5 con 5 | 0 |
-| **Total implementado** | **127** | **490** | — | **58** |
+| **Total implementado** | **127** | **510** | — | **54** |
 
-El mínimo para las 127 unidades ya implementadas es 635 lecciones. Faltan **145 lecciones explícitas** para llegar a cinco por unidad. Este cálculo no incluye B2 U6–U60, que todavía no están implementadas: esas 55 unidades deben diseñarse desde el principio con cinco o seis lecciones cada una.
+Faltan **126 lecciones explícitas** para llevar todas las unidades ya implementadas al mínimo de cinco: 20 en A1 U29–U32 y 106 en B1. B2 U6–U60 (55 unidades) todavía no están implementadas; deben nacer con cinco o seis lecciones explícitas cada una.
 
-## Interpretación por nivel
+## Estado por nivel
 
 ### A1
-
-U1–U20 ya tienen cinco o seis lecciones explícitas cada una (101 en total). U9 tiene seis; U1–U8 y U10–U20 tienen cinco. U21–U32 todavía carecen de `lessons[]`; el motor crea lecciones en tiempo de ejecución, pero ese refuerzo no cuenta como autoría curricular. A1 requiere autoría explícita en las 12 unidades restantes.
+U1–U28 ya cumplen el estándar (U9 tiene seis; las demás, cinco). U29–U32 todavía no tienen `lessons[]`; el refuerzo que el motor genera en runtime no sustituye la autoría didáctica.
 
 ### A2
-
-Las 40 unidades tienen cinco lecciones explícitas. U13–U40 incorporan una quinta lección de recuperación espaciada con doce ejercicios que revisan todas las palabras de cada unidad, sin introducir vocabulario nuevo. No se debe crear una lección vacía para cumplir el número.
+Las 40 unidades tienen cinco lecciones explícitas. La quinta incorpora recuperación espaciada del vocabulario existente, sin añadir IDs nuevos.
 
 ### B1
-
-Las 50 unidades tienen entre dos y cuatro lecciones explícitas. Los checkpoints U22, U27, U32, U37, U42 y U47 tienen cuatro; el resto se distribuye entre dos y tres. El motor completa automáticamente las unidades hasta cinco, pero ese refuerzo generado no satisface el estándar autoral. La expansión debe preservar la progresión de vocabulario, los diez checkpoints acumulativos y los contratos de ejercicios ya existentes.
+Las 50 unidades tienen entre dos y cuatro lecciones explícitas. Los checkpoints U22, U27, U32, U37, U42 y U47 tienen cuatro; las demás se distribuyen entre dos y tres. La migración debe preservar la progresión de vocabulario, los checkpoints acumulativos y los contratos de ejercicios ya existentes.
 
 ### B2
+Las cinco unidades implementadas (U1–U5) tienen cinco lecciones explícitas. U6–U60 aún no existen como unidades implementadas; cada unidad futura deberá incluir cinco o seis lecciones desde su primera versión y no se activará sin contenido aprobado.
 
-Las cinco unidades implementadas (U1–U5) tienen cinco lecciones explícitas cada una. U6–U60 todavía no existen como unidades implementadas; cuando se creen, cada una deberá incluir cinco o seis lecciones desde su primera versión.
+## Contrato de auditoría y gate estricto
 
-## Reglas para la migración
+- `node scripts/audit-authored-lesson-inventory.mjs` informa la distribución y enumera cada unidad fuera del estándar; no falla durante la migración.
+- `node scripts/audit-authored-lesson-inventory.mjs --strict` falla con código distinto de cero si alguna unidad implementada tiene menos de cinco o más de seis lecciones explícitas.
+- `npm run curriculum:lesson-inventory:strict` es el comando estable para activar el gate cuando la migración A1–B2 esté completa.
+- La prueba sintética comprueba ambos límites (menos de cinco y más de seis), y la prueba de línea base impide que los recuentos actuales se alteren silenciosamente.
+- No activar todavía el modo estricto en CI general: A1 U29–U32 y B1 siguen en migración. No se ocultan ni se exceptúan sus incumplimientos.
 
-1. Mantener separadas las lecciones explícitas (`unit.lessons`) y las de refuerzo generadas por `buildUnitLessons()`.
-2. Cada lección nueva debe tener objetivo didáctico, asignación coherente de vocabulario nuevo/revisado y ejercicios propios; una lista de ejercicios repetidos no constituye una lección.
-3. Distribuir el vocabulario entre lecciones para favorecer encuentros repetidos y recuperación espaciada. No introducir toda la lista en una sola lección.
+## Reglas de migración
+
+1. Mantener separadas las lecciones explícitas y las de refuerzo generadas por `buildUnitLessons()`.
+2. Cada lección debe tener objetivo didáctico, vocabulario nuevo/revisado coherente y ejercicios propios; no inflar el recuento con copias sin propósito.
+3. Distribuir vocabulario y recuperarlo espaciadamente en contextos y actividades diferentes.
 4. Preservar IDs canónicos, progreso SRS, IndexedDB v1 y backup JSON v3.
-5. Actualizar los tests que hoy aceptan 2–4 lecciones solo cuando la unidad correspondiente haya sido realmente ampliada. No rebajar los tests ni contar refuerzos generados como autoría.
-6. El inventario es estructural; no certifica naturalidad, traducción, pronunciación ni equivalencia MCER/BIPA. No bloquear la autoría por falta de hablante nativo o acceso a KBBI.
+5. Reutilizar y redistribuir el contenido existente cuando sea pedagógicamente válido; no inventar vocabulario, ejemplos ni explicaciones para alcanzar el número.
+6. La auditoría es estructural: no certifica naturalidad, traducción, pronunciación ni equivalencia MCER/BIPA. No bloquear el avance por falta de hablante nativo o acceso a KBBI.
 
 ## Reproducción
 
 ```bash
 node scripts/audit-authored-lesson-inventory.mjs
+node scripts/audit-authored-lesson-inventory.mjs --strict
 node --test tests/authored-lesson-inventory.test.mjs
 ```
 
-El informe lee A1/A2 desde sus archivos independientes y extrae B1/B2 con los extractores existentes. Solo cuenta `unit.lessons`; no invoca el generador de lecciones de la interfaz.
-
-
-### Actualización 14 nov 2026 — A1 U21–U24
-
-PR en preparación: `curriculum/a1-u21-u24-five-lessons-20261114`.
-
-- A1 U21–U24 pasan a cinco lecciones authored explícitas por unidad: **20 lecciones nuevas**.
-- Las 48 entradas de vocabulario existentes se introducen una sola vez en las primeras cuatro lecciones y se recuperan de forma acumulativa en las posteriores.
-- La quinta lección de cada unidad es recuperación espaciada de toda la unidad.
-- Se preservan los ejercicios originales del banco de cada unidad una sola vez dentro de las lecciones.
-- No se añaden IDs ni vocabulario nuevos.
+El informe lee A1/A2 desde sus archivos independientes y extrae B1/B2 mediante los extractores existentes. Solo cuenta `unit.lessons[]`; no invoca el generador de lecciones de la interfaz.

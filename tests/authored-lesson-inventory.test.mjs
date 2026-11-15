@@ -55,7 +55,7 @@ test('repository inventory baseline distinguishes authored lessons from runtime-
     'Transmitir información de forma ordenada', 'Verificar datos y confirmar acuerdos',
   ];
   const addedLessons = consolidated.flatMap((unit) => unit.lessons.filter((item) => newLessonTitles.includes(item.title)));
-  assert.equal(addedLessons.length, 7);
+  assert.equal(addedLessons.length, 15);
   for (const unit of consolidated) {
     for (const lesson of unit.lessons.filter((item) => newLessonTitles.includes(item.title))) {
       assert.deepEqual(new Set(lesson.exercises.map((exercise) => exercise.type)), new Set(['mc', 'translate_es_id', 'order', 'write']));

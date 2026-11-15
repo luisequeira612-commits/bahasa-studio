@@ -258,3 +258,5 @@
 - Búsqueda literal en `curriculum-a1.js`, `curriculum-a2.js` e `index.html` (B1/B2 inline) no encontró coincidencias exactas para esas ocho formas; esto no descarta solapamientos semánticos ni derivados relacionados.
 - Ningún ejemplo nuevo, ID ni entrada ejecutable se añadió. Las ocho formas siguen pendientes de aprobación explícita del dueño. `ketinggian` queda como caso analítico de ambigüedad; `kejatuhan` y `kebakaran` solo como contraste verbal.
 - Fuente: https://home.uni-leipzig.de/tebay/tebay2024keandgfs.pdf. No se afirma validación nativa ni frecuencia actual.
+
+- La propuesta documental de U8 se amplió a cinco lecciones authored reales (3/3/3/3/4 ejercicios, 16 en total), incluyendo alcance de dominios complejos e integración/reformulación guiada. Sigue sin ser contenido ejecutable; las ocho formas candidatas requieren aprobación antes de crear ejemplos o IDs.

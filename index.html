@@ -6399,7 +6399,34 @@
                                         { vocabId: 'b1v124', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Kami ingin memperbaiki cara kerja kami.', explanation: 'La frase expresa el deseo de mejorar la forma de trabajar.' },
                                         { vocabId: 'b1v124', type: 'write', prompt: 'Escribe un breve plan: explica el problema, la solución y qué vas a corregir para evitar que se repita.', hint: 'Integra masalah, solusi y memperbaiki.', modelAnswer: 'Masalah ini menghambat pekerjaan kami. Kami mencari solusi bersama. Kami ingin memperbaiki cara kerja kami.', explanation: 'La producción presenta el problema, la respuesta y una mejora concreta.' }
                                     ]
+                                },
+                                {
+                                    title: 'Diagnosticar causas y efectos de un problema',
+                                    objective: 'Relaciona una dificultad con su causa y explica qué se puede hacer para afrontarla.',
+                                    grammar: 'Para describir una situación, presenta primero el masalah y después concreta el hambatan que dificulta resolverlo. Mengatasi introduce la respuesta activa; mencari solusi expresa la búsqueda de una solución.',
+                                    reviewVocabIds: ['b1v120', 'b1v121', 'b1v122', 'b1v123'],
+                                    vocabIds: [],
+                                    exercises: [
+                                        { vocabId: 'b1v121', type: 'mc', prompt: 'Si la falta de tiempo impide terminar una tarea, ¿qué representa la falta de tiempo?', options: ['Un hambatan', 'Una solusi', 'Una mejora'], answer: 0, explanation: 'Hambatan es aquello que dificulta o impide avanzar.' },
+                                        { vocabId: 'b1v122', type: 'translate_es_id', prompt: 'Traduce: «Necesitamos buscar una solución».', answer: 'Kita perlu mencari solusi.', explanation: 'Mencoba mengatasi expresa intentar hacer frente a una dificultad.' },
+                                        { vocabId: 'b1v120', type: 'order', prompt: 'Ordena: «Necesitamos encontrar una solución para ese problema».', words: ['masalah', 'solusi', 'perlu', 'untuk', 'Kita', 'mencari', 'itu.'], correctOrder: ['Kita', 'perlu', 'mencari', 'solusi', 'untuk', 'masalah', 'itu.'], explanation: 'La frase conecta la búsqueda de una solución con el problema.' },
+                                        { vocabId: 'b1v123', type: 'write', prompt: 'Explica un problema, identifica el obstáculo principal y propone una primera respuesta.', hint: 'Integra masalah, hambatan, mengatasi y solusi.', modelAnswer: 'Kami punya masalah dengan jadwal. Kurangnya waktu menjadi hambatan utama. Kami mencoba mengatasi masalah itu dan mencari solusi bersama.', explanation: 'La respuesta organiza la situación, el obstáculo y la acción propuesta.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Proponer una mejora después de un problema',
+                                    objective: 'Explica qué se puede corregir y cómo evitar que una dificultad se repita.',
+                                    grammar: 'Memperbaiki puede referirse a corregir un error o mejorar una manera de hacer algo. Relaciona la mejora con el problema detectado y la solución elegida.',
+                                    reviewVocabIds: ['b1v120', 'b1v121', 'b1v122', 'b1v123', 'b1v124'],
+                                    vocabIds: [],
+                                    exercises: [
+                                        { vocabId: 'b1v124', type: 'mc', prompt: '¿Qué expresa memperbaiki en «memperbaiki cara kerja»?', options: ['Mejorar la forma de trabajar', 'Rechazar una propuesta', 'Evaluar un riesgo'], answer: 0, explanation: 'Memperbaiki puede significar mejorar una manera de hacer algo.' },
+                                        { vocabId: 'b1v124', type: 'translate_es_id', prompt: 'Traduce: «Quiero corregir ese error».', answer: 'Saya ingin memperbaiki kesalahan itu.', explanation: 'Memperbaiki se usa aquí con el sentido de mejorar.' },
+                                        { vocabId: 'b1v123', type: 'order', prompt: 'Ordena: «Buscamos una solución sencilla para ese problema».', words: ['masalah', 'solusi', 'mencari', 'sederhana', 'untuk', 'Kami', 'itu.'], correctOrder: ['Kami', 'mencari', 'solusi', 'sederhana', 'untuk', 'masalah', 'itu.'], explanation: 'La frase presenta la solución y especifica el problema al que responde.' },
+                                        { vocabId: 'b1v124', type: 'write', prompt: 'Escribe un breve plan de mejora: explica qué salió mal, qué solución propones y qué cambiarás.', hint: 'Usa masalah, solusi y memperbaiki.', modelAnswer: 'Kami menemukan masalah dalam pekerjaan. Kami mencari solusi bersama. Kami ingin memperbaiki cara kerja kami agar masalah itu tidak terulang.', explanation: 'La producción enlaza el problema con una solución y una mejora preventiva.' }
+                                    ]
                                 }
+
                             ]
                         },
                         {
@@ -6455,7 +6482,34 @@
                                         { vocabId: 'b1v129', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Kami mengevaluasi hasilnya sebelum mengambil keputusan.', explanation: 'La frase sitúa la evaluación antes de tomar una decisión.' },
                                         { vocabId: 'b1v129', type: 'write', prompt: 'Escribe cuatro frases: presenta dos opciones, compara sus riesgos, explica una consecuencia y di cómo evaluarás el resultado.', hint: 'Integra pilihan, risiko, akibat y mengevaluasi.', modelAnswer: 'Kita punya dua pilihan. Setiap pilihan memiliki risiko. Kita harus memahami akibat dari keputusan itu. Kami mengevaluasi hasilnya sebelum memutuskan.', explanation: 'La producción integra alternativas, riesgos, consecuencias y evaluación.' }
                                     ]
+                                },
+                                {
+                                    title: 'Comparar alternativas con criterios claros',
+                                    objective: 'Compara dos opciones y explica qué factores debes considerar antes de elegir.',
+                                    grammar: 'Pilihan presenta las alternativas disponibles. Mempertimbangkan introduce los factores que se tienen en cuenta, como tiempo, coste o dificultad. La comparación ayuda a explicar por qué una opción resulta más adecuada.',
+                                    reviewVocabIds: ['b1v125', 'b1v126', 'b1v127', 'b1v128'],
+                                    vocabIds: [],
+                                    exercises: [
+                                        { vocabId: 'b1v126', type: 'mc', prompt: '¿Qué haces cuando mempertimbangkan dos opciones?', options: ['Tienes en cuenta sus factores antes de elegir', 'Confirmas que ya se hizo una tarea', 'Rechazas todas las propuestas'], answer: 0, explanation: 'Mempertimbangkan significa considerar o tener en cuenta.' },
+                                        { vocabId: 'b1v125', type: 'translate_es_id', prompt: 'Traduce: «Consideramos las opciones y evaluamos el riesgo».', answer: 'Kami mempertimbangkan pilihan dan mengevaluasi risiko.', explanation: 'Pilihan significa opción; mempertimbangkan expresa considerar.' },
+                                        { vocabId: 'b1v127', type: 'order', prompt: 'Ordena: «Debemos considerar el riesgo de cada opción».', words: ['risiko', 'mempertimbangkan', 'pilihan.', 'harus', 'Kita', 'setiap'], correctOrder: ['Kita', 'harus', 'mempertimbangkan', 'risiko', 'setiap', 'pilihan.'], explanation: 'La frase identifica el riesgo como factor que se considera.' },
+                                        { vocabId: 'b1v126', type: 'write', prompt: 'Compara dos opciones para resolver una situación y explica qué factores considerarías.', hint: 'Incluye pilihan y mempertimbangkan.', modelAnswer: 'Kita punya dua pilihan. Saya mempertimbangkan waktu dan biaya. Pilihan pertama lebih cepat, tetapi pilihan kedua lebih murah.', explanation: 'La respuesta compara alternativas mediante dos criterios concretos.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Justificar una decisión y evaluar sus consecuencias',
+                                    objective: 'Explica por qué eliges una alternativa y cómo valorarás el resultado.',
+                                    grammar: 'Risiko describe una posibilidad incierta o negativa; akibat señala el resultado de una decisión. Mengevaluasi permite valorar después si la opción elegida funcionó como se esperaba.',
+                                    reviewVocabIds: ['b1v125', 'b1v126', 'b1v127', 'b1v128', 'b1v129'],
+                                    vocabIds: [],
+                                    exercises: [
+                                        { vocabId: 'b1v128', type: 'mc', prompt: '¿Qué palabra se refiere al resultado de una acción o decisión?', options: ['Akibat', 'Pilihan', 'Hambatan'], answer: 0, explanation: 'Akibat significa consecuencia o resultado.' },
+                                        { vocabId: 'b1v129', type: 'translate_es_id', prompt: 'Traduce: «Evaluamos el resultado juntos».', answer: 'Kami mengevaluasi hasilnya bersama.', explanation: 'Mengevaluasi expresa valorar o examinar un resultado.' },
+                                        { vocabId: 'b1v127', type: 'order', prompt: 'Ordena: «Cada opción tiene un riesgo y una consecuencia».', words: ['akibat.', 'risiko', 'memiliki', 'pilihan', 'Setiap', 'dan'], correctOrder: ['Setiap', 'pilihan', 'memiliki', 'risiko', 'dan', 'akibat.'], explanation: 'La oración distingue dos aspectos que se deben valorar.' },
+                                        { vocabId: 'b1v129', type: 'write', prompt: 'Describe una decisión, menciona un riesgo y una consecuencia posible y explica cómo evaluarás el resultado.', hint: 'Integra pilihan, risiko, akibat y mengevaluasi.', modelAnswer: 'Kami memilih satu pilihan setelah mempertimbangkan risikonya. Kami memahami akibat keputusan itu. Setelah selesai, kami akan mengevaluasi hasilnya.', explanation: 'La producción sigue el proceso de considerar, decidir y evaluar.' }
+                                    ]
                                 }
+
                             ]
                         },
 
@@ -6512,7 +6566,34 @@
                                         { vocabId: 'a2u36_kompromi', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Kita perlu mencari kompromi agar semua pihak setuju.', explanation: 'La frase relaciona el compromiso con la aceptación de todas las partes.' },
                                         { vocabId: 'a2u36_kompromi', type: 'write', prompt: 'Resume una negociación en cuatro frases: presenta el tema, una propuesta, un rechazo o aceptación y el compromiso final.', hint: 'Integra berunding, menyetujui, menolak y kompromi.', modelAnswer: 'Kami berunding tentang jadwal baru. Saya menyetujui usulan pertama. Mereka menolak waktu tersebut. Akhirnya, kita mencari kompromi.', explanation: 'La producción recorre el proceso desde la negociación hasta una solución de compromiso.' }
                                     ]
+                                },
+                                {
+                                    title: 'Presentar propuestas durante una negociación',
+                                    objective: 'Expón una propuesta, escucha otra postura y explica si estás de acuerdo.',
+                                    grammar: 'Berunding describe el proceso de negociar. Menyetujui expresa aceptar una propuesta y menolak expresa rechazarla. Puedes añadir una razón para que la postura quede clara.',
+                                    reviewVocabIds: ['a2u36_kesepakatan', 'b1v131', 'b1v132', 'b1v133'],
+                                    vocabIds: [],
+                                    exercises: [
+                                        { vocabId: 'b1v131', type: 'mc', prompt: '¿Qué acción describe berunding?', options: ['Negociar o deliberar', 'Confirmar un horario', 'Corregir un error'], answer: 0, explanation: 'Berunding se refiere a negociar o deliberar.' },
+                                        { vocabId: 'b1v132', type: 'translate_es_id', prompt: 'Traduce: «Negocian sobre el nuevo horario».', answer: 'Mereka berunding tentang jadwal baru.', explanation: 'Menyetujui expresa aceptar o aprobar una propuesta.' },
+                                        { vocabId: 'b1v133', type: 'order', prompt: 'Ordena: «Rechazaron la oferta porque era demasiado cara».', words: ['terlalu', 'tawaran', 'itu', 'karena', 'mahal.', 'Mereka', 'menolak'], correctOrder: ['Mereka', 'menolak', 'tawaran', 'itu', 'karena', 'terlalu', 'mahal.'], explanation: 'Menolak introduce la oferta que se rechaza y karena explica el motivo.' },
+                                        { vocabId: 'b1v131', type: 'write', prompt: 'Resume una negociación breve: presenta el tema, una propuesta y la respuesta de la otra parte.', hint: 'Usa berunding, menyetujui o menolak.', modelAnswer: 'Kami berunding tentang jadwal baru. Saya menyetujui usulan pertama. Mereka menolak usulan itu karena waktunya kurang sesuai.', explanation: 'La producción presenta el tema y dos posturas distintas.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Construir un compromiso compartido',
+                                    objective: 'Explica cómo las partes modifican sus propuestas para alcanzar un acuerdo.',
+                                    grammar: 'Kesepakatan es el acuerdo alcanzado. Kompromi describe una solución en la que cada parte acepta alguna concesión. Berunding puede continuar hasta encontrar una opción aceptable.',
+                                    reviewVocabIds: ['a2u36_kesepakatan', 'a2u36_kompromi', 'b1v131', 'b1v132', 'b1v133'],
+                                    vocabIds: [],
+                                    exercises: [
+                                        { vocabId: 'a2u36_kompromi', type: 'mc', prompt: '¿Qué describe kompromi?', options: ['Una concesión mutua para acercar posiciones', 'Un rechazo sin explicación', 'Un obstáculo inesperado'], answer: 0, explanation: 'Kompromi es un compromiso o concesión mutua.' },
+                                        { vocabId: 'a2u36_kesepakatan', type: 'translate_es_id', prompt: 'Traduce: «Necesitamos buscar un compromiso».', answer: 'Kita perlu mencari kompromi.', explanation: 'Mencapai kesepakatan significa llegar a un acuerdo.' },
+                                        { vocabId: 'a2u36_kompromi', type: 'order', prompt: 'Ordena: «Necesitamos buscar un compromiso juntos».', words: ['kompromi', 'perlu', 'bersama.', 'mencari', 'Kita'], correctOrder: ['Kita', 'perlu', 'mencari', 'kompromi', 'bersama.'], explanation: 'Mencari kompromi expresa buscar una solución de concesión mutua.' },
+                                        { vocabId: 'a2u36_kesepakatan', type: 'write', prompt: 'Explica en cuatro frases cómo dos partes negocian, hacen una concesión y alcanzan un acuerdo.', hint: 'Integra berunding, menolak, kompromi y kesepakatan.', modelAnswer: 'Kami berunding tentang jadwal. Mereka menolak waktu pertama. Kami mencari kompromi bersama. Akhirnya, kami mencapai kesepakatan.', explanation: 'La secuencia muestra negociación, rechazo, concesión y acuerdo.' }
+                                    ]
                                 }
+
                             ]
                         },
                         {
@@ -6568,7 +6649,34 @@
                                         { vocabId: 'b1v139', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Saya memastikan semua orang memahami informasi tersebut.', explanation: 'La frase expresa una comprobación de comprensión.' },
                                         { vocabId: 'b1v139', type: 'write', prompt: 'Redacta un mensaje breve en cuatro frases: explica el plan, comunica un cambio, confirma el horario y comprueba que todos lo entendieron.', hint: 'Integra menerangkan, menyampaikan, mengonfirmasi y memastikan.', modelAnswer: 'Saya menerangkan rencana baru. Kami menyampaikan jadwal baru kepada peserta. Saya mengonfirmasi jadwal pertemuan. Saya memastikan semua orang memahami informasi tersebut.', explanation: 'La producción reúne explicación, comunicación, confirmación y comprobación.' }
                                     ]
+                                },
+                                {
+                                    title: 'Transmitir información de forma ordenada',
+                                    objective: 'Explica una situación, comunica el dato principal y responde a una pregunta.',
+                                    grammar: 'Menerangkan sirve para explicar una idea o razón. Menyampaikan se centra en transmitir un mensaje a otras personas. Menanggapi expresa responder o reaccionar a una pregunta o comentario.',
+                                    reviewVocabIds: ['b1v135', 'b1v136', 'b1v138'],
+                                    vocabIds: [],
+                                    exercises: [
+                                        { vocabId: 'b1v138', type: 'mc', prompt: '¿Qué verbo destaca el acto de comunicar información a otras personas?', options: ['Menyampaikan', 'Memastikan', 'Menolak'], answer: 0, explanation: 'Menyampaikan significa comunicar o transmitir información.' },
+                                        { vocabId: 'b1v135', type: 'translate_es_id', prompt: 'Traduce: «Él/Ella responde a esa pregunta».', answer: 'Dia menanggapi pertanyaan itu.', explanation: 'Menerangkan explica el motivo; menyampaikan transmite la información.' },
+                                        { vocabId: 'b1v136', type: 'order', prompt: 'Ordena: «Ella responde a la pregunta con calma».', words: ['pertanyaan', 'dengan', 'menanggapi', 'tenang.', 'Dia', 'itu'], correctOrder: ['Dia', 'menanggapi', 'pertanyaan', 'itu', 'dengan', 'tenang.'], explanation: 'Menanggapi introduce la pregunta o comentario al que se responde.' },
+                                        { vocabId: 'b1v138', type: 'write', prompt: 'Escribe un mensaje breve: explica un nuevo horario, comunica el dato importante y responde a una pregunta.', hint: 'Integra menerangkan, menyampaikan y menanggapi.', modelAnswer: 'Saya menerangkan jadwal baru. Kami menyampaikan informasi baru kepada peserta. Dia menanggapi pertanyaan itu dengan tenang.', explanation: 'La producción organiza explicación, transmisión y respuesta.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Verificar datos y confirmar acuerdos',
+                                    objective: 'Confirma un detalle importante y comprueba que todas las personas comprendieron el mensaje.',
+                                    grammar: 'Mengonfirmasi expresa confirmar que un dato es correcto. Memastikan añade la idea de comprobar que una condición se cumple, por ejemplo que todos entienden la información.',
+                                    reviewVocabIds: ['b1v135', 'b1v136', 'b1v137', 'b1v138', 'b1v139', 'a2u36_kesepakatan'],
+                                    vocabIds: [],
+                                    exercises: [
+                                        { vocabId: 'b1v137', type: 'mc', prompt: 'Si repites un horario para comprobar que es correcto, ¿qué verbo corresponde?', options: ['Mengonfirmasi', 'Mengatasi', 'Memperbaiki'], answer: 0, explanation: 'Mengonfirmasi significa confirmar un dato o acuerdo.' },
+                                        { vocabId: 'b1v139', type: 'translate_es_id', prompt: 'Traduce: «Me aseguro de que todos entiendan ese plan».', answer: 'Saya memastikan semua orang memahami rencana itu.', explanation: 'Memastikan expresa comprobar que algo se cumple.' },
+                                        { vocabId: 'b1v137', type: 'order', prompt: 'Ordena: «Confirmamos el acuerdo antes de empezar».', words: ['kesepakatan', 'mengonfirmasi', 'mulai.', 'sebelum', 'Kami'], correctOrder: ['Kami', 'mengonfirmasi', 'kesepakatan', 'sebelum', 'mulai.'], explanation: 'La frase sitúa la confirmación antes de comenzar.' },
+                                        { vocabId: 'b1v139', type: 'write', prompt: 'Redacta un mensaje de cierre: confirma un acuerdo y comprueba que todos conocen el siguiente paso.', hint: 'Usa mengonfirmasi y memastikan.', modelAnswer: 'Kami mengonfirmasi kesepakatan hari ini. Saya memastikan semua orang memahami langkah berikutnya.', explanation: 'La producción confirma el acuerdo y verifica la comprensión del paso siguiente.' }
+                                    ]
                                 }
+
                             ]
                         },
                         {

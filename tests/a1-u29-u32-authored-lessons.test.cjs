@@ -42,7 +42,7 @@ test('A1 U29-U32 contain five authored lessons with cumulative introductions and
         introduced.set(id, index);
       }
 
-      const expectedReview = unit.lessons.slice(0, index).flatMap(previous => previous.vocabIds || []);
+      const expectedReview = Array.from(unit.lessons.slice(0, index).flatMap(previous => previous.vocabIds || []));
       assert.deepEqual(Array.from(lesson.reviewVocabIds || []), expectedReview,
         unit.id + ' lesson ' + (index + 1) + ' must review all previously introduced vocabulary');
 
@@ -94,6 +94,6 @@ test('A1 U29-U32 contain five authored lessons with cumulative introductions and
 
 test('A1 U29-U32 authored lesson regression is registered exactly once in CI', () => {
   const workflow = fs.readFileSync(path.join(__dirname, '..', '.github', 'workflows', 'regression.yml'), 'utf8');
-  const registrations = workflow.match(/node --test tests\\/a1-u29-u32-authored-lessons\\.test\\.cjs/g) || [];
+  const registrations = workflow.split('node --test tests/a1-u29-u32-authored-lessons.test.cjs').length - 1;
   assert.equal(registrations.length, 1);
 });

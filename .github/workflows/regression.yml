@@ -250,6 +250,8 @@ jobs:
         run: node --test tests/assessment-engine.test.cjs
       - name: Run B1 curriculum readiness tests
         run: node --test tests/b1-curriculum-readiness.test.cjs
+      - name: Run B1 U1-U4 authored lesson regression
+        run: node --test tests/b1-u1-u4-authored-lessons.test.cjs
       - name: Run curriculum release gate tests
         run: node --test tests/curriculum-release-gates.test.cjs
       - name: Run curriculum extraction integrity and offline cache tests

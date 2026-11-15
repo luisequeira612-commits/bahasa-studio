@@ -30,16 +30,46 @@ function exercisesOf(unit) {
 }
 
 // B1 U50 readiness baseline updated with the final curriculum unit.
-test('B1 draft has fifty units, two hundred twenty-four unique IDs including earlier canonical vocabulary, and eight hundred ninety exercises', () => {
+test('B1 draft has fifty units, two hundred twenty-four unique IDs including earlier canonical vocabulary, and nine hundred twenty-two exercises', () => {
   const b1 = course.levels.find(level => level.id === 'B1');
   assert.ok(b1);
   assert.equal(b1.units.length, 50);
   assert.equal(new Set(b1.units.flatMap(unit => unit.vocab.map(word => word.id))).size, 224);
-  assert.equal(b1.units.reduce((sum, unit) => sum + exercisesOf(unit).length, 0), 890);
+  assert.equal(b1.units.reduce((sum, unit) => sum + exercisesOf(unit).length, 0), 922);
   assert.deepEqual(Array.from(b1.units, unit => unit.id), [
     'b1_u1', 'b1_u2', 'b1_u3', 'b1_u4', 'b1_u5', 'b1_u6', 'b1_u7',
     'b1_u8', 'b1_u9', 'b1_u10', 'b1_u11', 'b1_u12', 'b1_u13', 'b1_u14', 'b1_u15', 'b1_u16', 'b1_u17', 'b1_u18', 'b1_u19', 'b1_u20', 'b1_u21', 'b1_u22', 'b1_u23', 'b1_u24', 'b1_u25', 'b1_u26', 'b1_u27', 'b1_u28', 'b1_u29', 'b1_u30', 'b1_u31', 'b1_u32', 'b1_u33', 'b1_u34', 'b1_u35', 'b1_u36', 'b1_u37', 'b1_u38', 'b1_u39', 'b1_u40', 'b1_u41', 'b1_u42', 'b1_u43', 'b1_u44', 'b1_u45', 'b1_u46', 'b1_u47', 'b1_u48', 'b1_u49', 'b1_u50'
   ]);
+});
+
+test('B1 U33-U36 have five authored lessons and 22 exercises each', () => {
+  const b1 = course.levels.find(level => level.id === 'B1');
+  const expectedTitles = {
+    b1_u33: ['Diagnosticar causas y efectos de un problema', 'Proponer una mejora después de un problema'],
+    b1_u34: ['Comparar alternativas con criterios claros', 'Justificar una decisión y evaluar sus consecuencias'],
+    b1_u35: ['Presentar propuestas durante una negociación', 'Construir un compromiso compartido'],
+    b1_u36: ['Transmitir información de forma ordenada', 'Verificar datos y confirmar acuerdos']
+  };
+  for (const [unitId, titles] of Object.entries(expectedTitles)) {
+    const unit = b1.units.find(item => item.id === unitId);
+    assert.ok(unit);
+    assert.equal(unit.lessons.length, 5, unitId + ' needs five authored lessons');
+    assert.equal(exercisesOf(unit).length, 22, unitId + ' must have 22 combined exercises');
+    for (const title of titles) {
+      const lesson = unit.lessons.find(item => item.title === title);
+      assert.ok(lesson, unitId + ' missing ' + title);
+      assert.equal(lesson.exercises.length, 4);
+      assert.deepEqual(new Set(lesson.exercises.map(item => item.type)), new Set(['mc', 'translate_es_id', 'order', 'write']));
+      assert.equal(lesson.vocabIds.length, 0);
+      for (const exercise of lesson.exercises) {
+        assert.ok(unit.vocab.some(word => word.id === exercise.vocabId), unitId + ' lesson references non-local vocabulary');
+        assert.ok(exercise.prompt && exercise.explanation);
+        if (exercise.type === 'order') assert.deepEqual(Array.from(exercise.words).sort(), Array.from(exercise.correctOrder).sort());
+      }
+    }
+  }
+  const u37 = b1.units.find(item => item.id === 'b1_u37');
+  assert.match(u37.lessons[4].title, /Repaso acumulativo de B1 U33–U37/);
 });
 
 test('B1 U1 provides a complete introductory practice set for passive di-', () => {

@@ -1105,7 +1105,7 @@ test('B1 U47-U49 teach procedures, community participation and sustainability', 
   for (let i = 0; i < units.length; i++) {
     const unit = units[i];
     assert.deepEqual(Array.from(unit.vocab, word => word.id), expected[i]);
-    assert.equal(unit.lessons.length, ['b1_u22', 'b1_u27', 'b1_u32', 'b1_u37', 'b1_u42', 'b1_u47'].includes(unit.id) ? 4 : 3);
+    assert.equal(unit.lessons.length, ['b1_u47', 'b1_u48'].includes(unit.id) ? 5 : 3);
     const exercises = exercisesOf(unit);
     assert.equal(exercises.length, ['b1_u47', 'b1_u48'].includes(unit.id) ? 22 : 14);
     for (const type of ['mc', 'translate_es_id', 'order', 'listen', 'write']) {

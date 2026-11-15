@@ -1,6 +1,6 @@
 # B2 U6 — construcción verbal memper- con bases adjetivales
 
-**Estado:** propuesta refinada el 12 nov 2026; no aprobada para contenido ejecutable, no implementada ni publicada.  
+**Estado:** aprobada el 15 nov 2026; implementada en la rama `curriculum/b2-u6-memper-20261115` mediante PR de construcción U6, pendiente de CI/fusión al actualizar esta nota.  
 **Ubicación:** tercera unidad del bloque aprobado U4–U6 (`-kan`, `-i`, `memper-`).  
 **Dependencias:** U1–U5 están implementadas y expuestas secuencialmente en `main`; U6 sigue oculta. El eje `memper-` está aprobado como tema, pero no este desglose, sus palabras, ejemplos, glosas ni claves.
 
@@ -79,7 +79,7 @@ Se proponen cinco tipos de ejercicio: opción múltiple, traducción contextual,
 ## Vocabulario y dependencias
 
 - No se proponen entradas nuevas ni IDs en este documento.
-- Candidatos para revisión, no aprobados: `memperkuat`, `memperlemah`, `memperluas`, `memperpanjang`, `memperbesar`, `memperkecil`, `mempermudah` y `mempercepat`.
+- Inventario aprobado por el dueño el 15 nov 2026: `memperkuat`, `memperlemah`, `memperluas`, `memperpanjang`, `memperbesar`, `memperkecil`, `mempermudah` y `mempercepat`, con los ocho ejemplos incluidos en la implementación.
 - Revisión literal preliminar de `index.html`, `curriculum-a1.js` y `curriculum-a2.js` en `main` (12 nov 2026): no se encontraron ocurrencias exactas de estas ocho formas. Esto no demuestra ausencia de sinónimos, variantes ni solapamiento conceptual y no sustituye la revisión de todo el inventario antes de implementar.
 - Antes de cerrar el inventario, comprobar cada forma contra el vocabulario global A1–B2 y revisar ID, glosa, ejemplo, nivel y prerrequisitos.
 - Priorizar formas convencionales con ejemplos contextuales completos; no añadir formas hipotéticas por analogía.
@@ -99,10 +99,10 @@ Se proponen cinco tipos de ejercicio: opción múltiple, traducción contextual,
 
 ## Condiciones pendientes antes de implementar
 
-1. Obtener aprobación explícita del dueño para el inventario final, glosas, ejemplos completos, consignas, respuestas y claves de U6.
-2. Cotejar cada forma con el inventario global A1–B2, incluyendo IDs existentes y variantes; no crear IDs duplicados.
+1. Inventario, glosas y ejemplos aprobados explícitamente por el dueño el 15 nov 2026.
+2. Cotejar cada forma con el inventario global A1–B2, incluyendo IDs existentes y variantes; la implementación usa IDs nuevos `b2u6_*`.
 3. Mantener `not_checked` para naturalidad/adecuación cuando no haya dos fuentes secundarias independientes o revisión humana.
 4. No generalizar el contraste `memper-`/`meN-kan` y no pedir formación libre de verbos.
-5. Tras la aprobación, implementar cinco lecciones/16 ejercicios, actualizar las pruebas de progresión y verificar que U6 no se exponga antes de completar U5.
+5. Implementación realizada: cinco lecciones y 16 ejercicios; ejecutar CI y verificar que U6 no se exponga antes de completar U5.
 
-**Estatus de decisión:** el dueño aprobó el eje U4–U6, pero U6 sigue siendo una propuesta documental. No se ha aprobado su contenido específico ni se ha autorizado activarlo. Esta propuesta es reversible y no cambia el currículo ejecutable.
+**Estatus de decisión:** el dueño aprobó explícitamente el inventario de ocho formas y ejemplos el 15 nov 2026. U6 ya está implementada en la rama `curriculum/b2-u6-memper-20261115` con cinco lecciones/16 ejercicios; falta CI y fusión antes de considerarla publicada en `main`.

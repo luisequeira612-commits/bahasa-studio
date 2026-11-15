@@ -8433,6 +8433,86 @@
                                 }
                             ]
                         },
+                        {
+                            id: 'b2_u6',
+                            title: 'Unidad 6: Construcción verbal con memper-',
+                            desc: 'Reconoce y usa un conjunto reducido de verbos convencionales con memper- y bases adjetivales, sin tratar el patrón como una regla productiva libre.',
+                            grammar: 'Las formas estudian un patrón causativo convencional: el sujeto provoca que el objeto tenga en mayor grado la propiedad de la base. No todos los adjetivos forman libremente verbos con memper-, y el contraste con meN-kan depende de cada forma y construcción.',
+                            vocab: [
+                                { id: 'b2u6_memperkuat', idn: 'Memperkuat', esp: 'Fortalecer', ex: 'Tim berusaha memperkuat kerja sama.', exEsp: 'El equipo intenta fortalecer la cooperación.' },
+                                { id: 'b2u6_memperlemah', idn: 'Memperlemah', esp: 'Debilitar', ex: 'Keputusan itu dapat memperlemah hubungan.', exEsp: 'Esa decisión puede debilitar la relación.' },
+                                { id: 'b2u6_memperluas', idn: 'Memperluas', esp: 'Ampliar', ex: 'Kami ingin memperluas kerja sama.', exEsp: 'Queremos ampliar la cooperación.' },
+                                { id: 'b2u6_memperpanjang', idn: 'Memperpanjang', esp: 'Prolongar', ex: 'Kami perlu memperpanjang waktu kerja.', exEsp: 'Necesitamos prolongar el tiempo de trabajo.' },
+                                { id: 'b2u6_memperbesar', idn: 'Memperbesar', esp: 'Aumentar / agrandar', ex: 'Kami ingin memperbesar jumlah produksi.', exEsp: 'Queremos aumentar la producción.' },
+                                { id: 'b2u6_memperkecil', idn: 'Memperkecil', esp: 'Reducir / hacer más pequeño', ex: 'Kami berusaha memperkecil risiko.', exEsp: 'Intentamos reducir el riesgo.' },
+                                { id: 'b2u6_mempermudah', idn: 'Mempermudah', esp: 'Facilitar', ex: 'Cara ini mempermudah pekerjaan.', exEsp: 'Este método facilita el trabajo.' },
+                                { id: 'b2u6_mempercepat', idn: 'Mempercepat', esp: 'Acelerar', ex: 'Cara baru itu mempercepat proses kerja.', exEsp: 'Ese método nuevo acelera el proceso de trabajo.' }
+                            ],
+                            exercises: [],
+                            lessons: [
+                                {
+                                    title: '1. Fortalecer y debilitar',
+                                    objective: 'Reconoce memperkuat y memperlemah en oraciones completas e identifica la propiedad afectada.',
+                                    grammar: 'En ambos ejemplos, el sujeto provoca un cambio de grado en una propiedad del objeto: fortalecer la cooperación o debilitar una relación. Aprende las formas como verbos convencionales; no supongas que cualquier adjetivo admite el mismo patrón.',
+                                    vocabIds: ['b2u6_memperkuat', 'b2u6_memperlemah'],
+                                    reviewVocabIds: ['b2u5_menawari', 'b2u5_menawarkan'],
+                                    exercises: [
+                                        { vocabId: 'b2u6_memperkuat', type: 'mc', prompt: 'En «Tim berusaha memperkuat kerja sama», ¿qué se intenta hacer?', options: ['Fortalecer la cooperación', 'Reducir la cooperación', 'Acelerar el trabajo'], answer: 0, explanation: 'Memperkuat expresa el aumento de fuerza o solidez de la cooperación en este contexto.' },
+                                        { vocabId: 'b2u6_memperlemah', type: 'translate_es_id', prompt: 'Traduce al indonesio: «Esa decisión puede debilitar la relación».', answer: 'Keputusan itu dapat memperlemah hubungan.', explanation: 'La oración usa la forma aprobada memperlemah con hubungan como objeto afectado.' },
+                                        { vocabId: 'b2u6_memperkuat', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Tim berusaha memperkuat kerja sama.', explanation: 'Reconoce memperkuat dentro de una oración completa y conserva el objeto kerja sama.' }
+                                    ]
+                                },
+                                {
+                                    title: '2. Dimensión y extensión',
+                                    objective: 'Distingue ampliar, prolongar y aumentar/reducir el tamaño según el objeto de la oración.',
+                                    grammar: 'Memperluas se usa aquí para ampliar una cooperación; memperpanjang para prolongar un tiempo de trabajo; memperbesar para aumentar una cantidad de producción. El significado se aprende junto con la forma y su contexto, no como una regla mecánica aplicable a cualquier base.',
+                                    vocabIds: ['b2u6_memperluas', 'b2u6_memperpanjang', 'b2u6_memperbesar'],
+                                    reviewVocabIds: ['b2u6_memperkuat'],
+                                    exercises: [
+                                        { vocabId: 'b2u6_memperluas', type: 'mc', prompt: '¿Qué verbo aparece con «kerja sama» en «Kami ingin memperluas kerja sama»?', options: ['memperluas', 'memperpanjang', 'memperkecil'], answer: 0, explanation: 'Memperluas significa ampliar y en el ejemplo afecta a kerja sama.' },
+                                        { vocabId: 'b2u6_memperpanjang', type: 'translate_es_id', prompt: 'Traduce al indonesio: «Necesitamos prolongar el tiempo de trabajo».', answer: 'Kami perlu memperpanjang waktu kerja.', explanation: 'La oración aprobada usa memperpanjang con waktu kerja.' },
+                                        { vocabId: 'b2u6_memperbesar', type: 'order', prompt: 'Ordena: «Queremos aumentar la producción».', words: ['jumlah produksi.', 'Kami', 'memperbesar', 'ingin'], correctOrder: ['Kami', 'ingin', 'memperbesar', 'jumlah produksi.'], explanation: 'La oración conserva el sujeto, la intención y el objeto cuyo tamaño/cantidad se aumenta.' }
+                                    ]
+                                },
+                                {
+                                    title: '3. Facilidad y velocidad',
+                                    objective: 'Interpreta mempermudah y mempercepat como verbos convencionales dentro de contextos completos.',
+                                    grammar: 'Mempermudah presenta una acción que hace más fácil una tarea; mempercepat presenta una acción que hace más rápido un proceso. El estudiante debe reconocer el verbo completo y el objeto afectado, sin convertir estas formas en una receta productiva.',
+                                    vocabIds: ['b2u6_mempermudah', 'b2u6_mempercepat'],
+                                    reviewVocabIds: ['b2u6_memperpanjang'],
+                                    exercises: [
+                                        { vocabId: 'b2u6_mempermudah', type: 'mc', prompt: 'En «Cara ini mempermudah pekerjaan», ¿qué propiedad de pekerjaan cambia?', options: ['Se vuelve más fácil', 'Se vuelve más largo', 'Se vuelve más grande'], answer: 0, explanation: 'Mempermudah indica que el método facilita el trabajo.' },
+                                        { vocabId: 'b2u6_mempercepat', type: 'order', prompt: 'Ordena: «Ese método nuevo acelera el proceso de trabajo».', words: ['proses kerja.', 'Cara baru itu', 'mempercepat'], correctOrder: ['Cara baru itu', 'mempercepat', 'proses kerja.'], explanation: 'El método nuevo es el causante y proses kerja es lo que se acelera.' },
+                                        { vocabId: 'b2u6_mempercepat', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Cara baru itu mempercepat proses kerja.', explanation: 'Identifica mempercepat y el objeto proses kerja dentro de la oración aprobada.' }
+                                    ]
+                                },
+                                {
+                                    title: '4. Contraste acotado con meN-kan',
+                                    objective: 'Reconoce que memper- y algunas formas meN-kan pueden relacionarse semánticamente sin ser intercambiables por regla general.',
+                                    grammar: 'Las fuentes describen una relación entre memper- y ciertas formas meN-kan, pero advierten que la sustitución depende de la base y del significado y que existe variación entre hablantes. Esta lección usa el contraste solo para reconocimiento y no pide formar alternativas nuevas.',
+                                    vocabIds: ['b2u6_memperbesar', 'b2u6_memperpanjang'],
+                                    reviewVocabIds: ['b2u6_memperluas', 'b2u6_mempercepat'],
+                                    exercises: [
+                                        { vocabId: 'b2u6_memperbesar', type: 'mc', prompt: '¿Qué regla general es segura a partir de esta unidad?', options: ['Todo adjetivo puede recibir memper- libremente.', 'Memper- y meN-kan siempre son intercambiables.', 'Conviene aprender las formas convencionales y su contexto.'], answer: 2, explanation: 'La construcción tiene productividad limitada y el contraste con meN-kan depende de cada forma y construcción.' },
+                                        { vocabId: 'b2u6_memperpanjang', type: 'translate_es_id', prompt: 'Traduce al indonesio: «Necesitamos prolongar el tiempo de trabajo».', answer: 'Kami perlu memperpanjang waktu kerja.', explanation: 'Se reutiliza una forma aprobada para reforzar el contexto y evitar inventar una alternativa con meN-kan.' },
+                                        { vocabId: 'b2u6_memperluas', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Kami ingin memperluas kerja sama.', explanation: 'Reconoce memperluas como una forma convencional del inventario estudiado.' }
+                                    ]
+                                },
+                                {
+                                    title: '5. Integración y producción guiada',
+                                    objective: 'Integra las ocho formas aprobadas en lectura y producción guiada, sin crear verbos nuevos por analogía.',
+                                    grammar: 'La producción final recupera únicamente verbos ya aprobados: memperkuat, memperlemah, memperluas, memperpanjang, memperbesar, memperkecil, mempermudah y mempercepat. La meta es elegir una forma convencional adecuada al contexto, no demostrar una regla productiva general.',
+                                    vocabIds: ['b2u6_memperkuat', 'b2u6_memperluas', 'b2u6_mempermudah', 'b2u6_memperkecil'],
+                                    reviewVocabIds: ['b2u6_memperlemah', 'b2u6_memperpanjang', 'b2u6_memperbesar', 'b2u6_mempercepat'],
+                                    exercises: [
+                                        { vocabId: 'b2u6_memperkuat', type: 'mc', prompt: '¿Cuál de estas formas pertenece al inventario aprobado de U6?', options: ['memperkuat', 'memperkuatan', 'memperkuati'], answer: 0, explanation: 'Memperkuat es una de las ocho formas aprobadas; las otras opciones no forman parte del inventario de U6.' },
+                                        { vocabId: 'b2u6_memperluas', type: 'write', prompt: 'Escribe dos oraciones: una sobre ampliar una cooperación y otra sobre facilitar un trabajo. Usa memperluas y mempermudah.', hint: 'Puedes usar «Kami ingin memperluas kerja sama» y «Cara ini mempermudah pekerjaan» como modelo, pero cambia al menos un elemento.', modelAnswer: 'Kami ingin memperluas kerja sama. Cara ini mempermudah pekerjaan.', explanation: 'La producción guiada integra dos formas aprobadas en contextos distintos.' },
+                                        { vocabId: 'b2u6_mempercepat', type: 'write', prompt: 'Escribe una oración sobre acelerar un proceso. Usa mempercepat y un objeto ya estudiado.', hint: 'Modelo: «Cara baru itu mempercepat proses kerja».', modelAnswer: 'Cara baru itu mempercepat proses kerja.', explanation: 'La producción usa mempercepat con un contexto ya aprobado.' },
+                                        { vocabId: 'b2u6_memperkecil', type: 'write', prompt: 'Explica brevemente en español por qué no debes formar libremente verbos nuevos con memper- a partir de cualquier adjetivo.', hint: 'Menciona la convencionalidad del inventario y evita presentar memper- como una regla universal.', modelAnswer: 'Porque el patrón tiene productividad limitada y las fuentes muestran un conjunto de formas convencionalizadas; por eso conviene aprender cada verbo con su contexto y no crear formas nuevas por analogía.', explanation: 'La respuesta resume el guardarraíl central de U6: reconocer formas acreditadas sin generalizar la construcción a cualquier adjetivo.' }
+                                    ]
+                                }
+                            ]
+                        },
                     ]
                 }
             ]

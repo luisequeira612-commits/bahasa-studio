@@ -271,7 +271,7 @@ test('authored lesson vocabulary references resolve unambiguously within their i
 });
 
 
-test('B1 U13-U26 expose five lessons while preserving authored vocabulary order and adding full-unit review', () => {
+test('B1 U13-U28 expose five lessons while preserving authored vocabulary order and adding full-unit review', () => {
   const levels = app.CourseData.levels;
   const a1 = levels.find(level => level.id === 'A1');
   const a2 = levels.find(level => level.id === 'A2');
@@ -280,12 +280,12 @@ test('B1 U13-U26 expose five lessons while preserving authored vocabulary order 
   for (const unit of b1.units.filter(unit => /^b1_u(?:[1-9]|1[0-2])$/.test(unit.id))) {
     for (const word of unit.vocab) known.add(word.id);
   }
-  const targetUnits = b1.units.filter(unit => /^b1_u(?:1[3-9]|2[0-6])$/.test(unit.id));
-  assert.equal(targetUnits.length, 14);
+  const targetUnits = b1.units.filter(unit => /^b1_u(?:1[3-9]|2[0-8])$/.test(unit.id));
+  assert.equal(targetUnits.length, 16);
   for (const unit of targetUnits) {
     const lessons = app.buildUnitLessons(unit);
     const authoredCount = unit.lessons.length;
-    const expectedAuthoredCount = ['b1_u13', 'b1_u14', 'b1_u15', 'b1_u16', 'b1_u17', 'b1_u18', 'b1_u19', 'b1_u20', 'b1_u21', 'b1_u22', 'b1_u23', 'b1_u24'].includes(unit.id) ? 5 : null;
+    const expectedAuthoredCount = ['b1_u13', 'b1_u14', 'b1_u15', 'b1_u16', 'b1_u17', 'b1_u18', 'b1_u19', 'b1_u20', 'b1_u21', 'b1_u22', 'b1_u23', 'b1_u24', 'b1_u25', 'b1_u26', 'b1_u27', 'b1_u28'].includes(unit.id) ? 5 : null;
     assert.ok(expectedAuthoredCount === null ? authoredCount === 3 || authoredCount === 4 : authoredCount === expectedAuthoredCount,
       unit.id + ' should retain its expected authored lesson count');
     assert.equal(lessons.length, 5, unit.id + ' should expose five lessons');

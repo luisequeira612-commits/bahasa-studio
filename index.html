@@ -7508,6 +7508,33 @@
                                         { vocabId: 'b1v180', type: 'write', prompt: 'Escribe cuatro frases: anticipa un riesgo, propone una prevención, explica qué error quieres impedir y qué situación deseas evitar.', hint: 'Integra antisipasi, pencegahan, mencegah y menghindari.', modelAnswer: 'Antisipasi membantu menghindari risiko. Pencegahan masalah membutuhkan persiapan. Kita dapat mencegah kesalahan. Saya ingin menghindari risiko yang tidak perlu.', explanation: 'La producción integra previsión, prevención y evitación de riesgos.' }
                                     ]
                                 }
+                            ,
+                                {
+                                    title: 'Anticipar riesgos antes de actuar',
+                                    objective: 'Identifica una situación posible y explica cómo prepararse para reducir riesgos.',
+                                    grammar: 'Antisipasi nombra la previsión preventiva; mengantisipasi expresa anticipar una situación. Mencegah se centra en impedir que ocurra un problema.',
+                                    reviewVocabIds: ['b1v176', 'b1v177', 'b1v179', 'b1v180'],
+                                    vocabIds: [],
+                                    exercises: [
+                                        { vocabId: 'b1v177', type: 'mc', prompt: '¿Qué expresa mengantisipasi?', options: ["Anticipar o prever","Incumplir una norma","Asignar recursos"], answer: 0, explanation: 'Mengantisipasi expresa prever una situación antes de que ocurra.' },
+                                        { vocabId: 'b1v179', type: 'translate_es_id', prompt: 'Traduce: «Podemos prevenir errores».', answer: 'Kita dapat mencegah kesalahan.', explanation: 'Mencegah significa prevenir o impedir que algo ocurra.' },
+                                        { vocabId: 'b1v176', type: 'order', prompt: 'Ordena: «La anticipación se realiza antes de que ocurra un problema».', words: ["terjadi.","masalah","sebelum","dilakukan","Antisipasi"], correctOrder: ["Antisipasi","dilakukan","sebelum","masalah","terjadi."], explanation: 'La frase sitúa la preparación antes de que aparezca el problema.' },
+                                        { vocabId: 'b1v180', type: 'write', prompt: 'Describe un riesgo posible, explica cómo lo anticipas y qué acción puede evitarlo.', hint: 'Integra antisipasi, mengantisipasi, mencegah y menghindari.', modelAnswer: 'Antisipasi dilakukan sebelum masalah terjadi. Kami mengantisipasi perubahan cuaca. Kita dapat mencegah kesalahan. Saya ingin menghindari risiko yang tidak perlu.', explanation: 'La producción relaciona previsión, prevención y evitación.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Elegir medidas de prevención adecuadas',
+                                    objective: 'Propone una medida preventiva y distingue impedir un problema de evitar una exposición innecesaria.',
+                                    grammar: 'Pencegahan nombra la prevención; mencegah expresa impedir que ocurra algo. Menghindari significa evitar una situación o riesgo. Una medida preventiva actúa antes de que aparezca el problema.',
+                                    reviewVocabIds: ['b1v176', 'b1v178', 'b1v179', 'b1v180'],
+                                    vocabIds: [],
+                                    exercises: [
+                                        { vocabId: 'b1v178', type: 'mc', prompt: '¿Qué diferencia mejor pencegahan de mencegah?', options: ["Pencegahan es el concepto de prevención; mencegah es la acción de prevenir","Ambas significan solicitar apoyo","Pencegahan significa incumplir"], answer: 0, explanation: 'Pencegahan es un sustantivo; mencegah es el verbo prevenir.' },
+                                        { vocabId: 'b1v178', type: 'translate_es_id', prompt: 'Traduce: «La prevención de problemas requiere preparación».', answer: 'Pencegahan masalah membutuhkan persiapan.', explanation: 'Pencegahan significa prevención.' },
+                                        { vocabId: 'b1v180', type: 'order', prompt: 'Ordena: «Quiero evitar riesgos innecesarios».', words: ["tidak","risiko","Saya","ingin","perlu.","menghindari","yang"], correctOrder: ["Saya","ingin","menghindari","risiko","yang","tidak","perlu."], explanation: 'Menghindari toma risiko yang tidak perlu como aquello que se desea evitar.' },
+                                        { vocabId: 'b1v179', type: 'write', prompt: 'Propón dos medidas para impedir errores y evitar riesgos innecesarios.', hint: 'Usa pencegahan, mencegah y menghindari.', modelAnswer: 'Pencegahan masalah membutuhkan persiapan. Kita dapat mencegah kesalahan dengan memeriksa pekerjaan. Saya ingin menghindari risiko yang tidak perlu.', explanation: 'La producción presenta medidas concretas y explica su finalidad.' }
+                                    ]
+                                }
                             ]
                         },
                         {
@@ -7562,6 +7589,33 @@
                                         { vocabId: 'b1v185', type: 'translate_es_id', prompt: 'Traduce: «Asignamos tiempo a cada tarea».', answer: 'Kami mengalokasikan waktu untuk setiap tugas.', explanation: 'Mengalokasikan expresa asignar recursos.' },
                                         { vocabId: 'b1v185', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Kami mengalokasikan waktu untuk setiap tugas dengan bijak.', explanation: 'La frase describe una distribución cuidadosa del tiempo.' },
                                         { vocabId: 'b1v185', type: 'write', prompt: 'Escribe cuatro frases: identifica los recursos, describe su uso, explica cómo ahorrar y di cómo distribuirás el tiempo entre las tareas.', hint: 'Integra sumber daya, penggunaan, menghemat y mengalokasikan.', modelAnswer: 'Kami menggunakan sumber daya dengan bijak. Penggunaan air harus diperhatikan. Kita perlu menghemat energi. Kami mengalokasikan waktu untuk setiap tugas dengan bijak.', explanation: 'La producción integra uso responsable, ahorro y distribución de recursos.' }
+                                    ]
+                                }
+                            ,
+                                {
+                                    title: 'Medir el uso responsable de los recursos',
+                                    objective: 'Describe qué recursos se utilizan y cómo se puede controlar su consumo.',
+                                    grammar: 'Sumber daya identifica los recursos disponibles; penggunaan nombra su utilización. Menghemat expresa ahorrar o conservar para reducir el desperdicio.',
+                                    reviewVocabIds: ['b1v181', 'b1v182', 'b1v183'],
+                                    vocabIds: [],
+                                    exercises: [
+                                        { vocabId: 'b1v182', type: 'mc', prompt: '¿Qué nombra penggunaan?', options: ["El uso o la utilización","La responsabilidad","Una solicitud formal"], answer: 0, explanation: 'Penggunaan nombra el uso o la utilización de algo.' },
+                                        { vocabId: 'b1v181', type: 'translate_es_id', prompt: 'Traduce: «Utilizamos los recursos con prudencia».', answer: 'Kami menggunakan sumber daya dengan bijak.', explanation: 'Sumber daya significa recursos; dengan bijak indica utilizarlos con prudencia.' },
+                                        { vocabId: 'b1v183', type: 'order', prompt: 'Ordena: «Necesitamos ahorrar energía».', words: ["energi.","menghemat","perlu","Kita"], correctOrder: ["Kita","perlu","menghemat","energi."], explanation: 'Perlu expresa necesidad y menghemat significa ahorrar.' },
+                                        { vocabId: 'b1v181', type: 'write', prompt: 'Explica qué recursos necesita una actividad, cómo se utilizan y qué puedes hacer para ahorrar.', hint: 'Integra sumber daya, penggunaan y menghemat.', modelAnswer: 'Kami menggunakan sumber daya dengan bijak. Penggunaan air harus diperhatikan. Kita perlu menghemat energi.', explanation: 'La producción relaciona los recursos, su uso y el ahorro.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Distribuir recursos según las prioridades',
+                                    objective: 'Explica cómo asignar tiempo o materiales y por qué un método puede ser más eficiente.',
+                                    grammar: 'Mengalokasikan expresa asignar o distribuir recursos para un propósito. Efisien describe un método que aprovecha bien el tiempo, la energía o los materiales.',
+                                    reviewVocabIds: ['b1v181', 'b1v183', 'b1v184', 'b1v185'],
+                                    vocabIds: [],
+                                    exercises: [
+                                        { vocabId: 'b1v185', type: 'mc', prompt: '¿Qué significa mengalokasikan?', options: ["Asignar o distribuir recursos","Evitar un riesgo","Incumplir una regla"], answer: 0, explanation: 'Mengalokasikan significa asignar o distribuir recursos.' },
+                                        { vocabId: 'b1v184', type: 'translate_es_id', prompt: 'Traduce: «Este método es más eficiente».', answer: 'Cara ini lebih efisien.', explanation: 'Efisien significa eficiente.' },
+                                        { vocabId: 'b1v185', type: 'order', prompt: 'Ordena: «Asignamos tiempo a cada tarea».', words: ["tugas.","untuk","waktu","mengalokasikan","Kami","setiap"], correctOrder: ["Kami","mengalokasikan","waktu","untuk","setiap","tugas."], explanation: 'Mengalokasikan waktu untuk setiap tugas describe la distribución del tiempo.' },
+                                        { vocabId: 'b1v185', type: 'write', prompt: 'Describe cómo distribuyes el tiempo entre tareas y qué método permite aprovechar mejor los recursos.', hint: 'Integra mengalokasikan, sumber daya y efisien.', modelAnswer: 'Kami mengalokasikan waktu untuk setiap tugas. Cara ini lebih efisien dan dapat menghemat energi.', explanation: 'La producción explica una asignación y su efecto en la eficiencia.' }
                                     ]
                                 }
                             ]
@@ -7619,6 +7673,19 @@
                                         { vocabId: 'b1v187', type: 'translate_es_id', prompt: 'Traduce: «Cada miembro tiene una responsabilidad».', answer: 'Setiap anggota memiliki tanggung jawab.', explanation: 'Tanggung jawab es la responsabilidad que tiene cada miembro.' },
                                         { vocabId: 'b1v187', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Setiap anggota memiliki tanggung jawab untuk mengikuti prosedur.', explanation: 'La frase relaciona la responsabilidad con seguir un procedimiento.' },
                                         { vocabId: 'b1v187', type: 'write', prompt: 'Escribe cuatro frases: menciona un reglamento, un procedimiento, una regla que se debe cumplir y la responsabilidad de cada miembro.', hint: 'Integra peraturan, prosedur, mematuhi y tanggung jawab.', modelAnswer: 'Peraturan itu berlaku. Kami mengikuti prosedur yang benar. Setiap anggota harus mematuhi aturan. Setiap anggota memiliki tanggung jawab.', explanation: 'La producción integra normas, procedimientos y responsabilidades.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Aplicar procedimientos y asumir responsabilidades',
+                                    objective: 'Explica cómo una persona cumple una norma, sigue un procedimiento y responde por sus tareas.',
+                                    grammar: 'Mematuhi expresa cumplir una regla; melanggar, infringirla. Tanggung jawab nombra la responsabilidad de cada miembro. Un procedimiento describe los pasos que deben seguirse.',
+                                    reviewVocabIds: ['v242', 'b1v186', 'a2u10_mematuhi', 'a2u10_melanggar', 'b1v187'],
+                                    vocabIds: [],
+                                    exercises: [
+                                        { vocabId: 'b1v187', type: 'mc', prompt: '¿Qué expresa tanggung jawab?', options: ["Responsabilidad","Solicitud","Prevención"], answer: 0, explanation: 'Tanggung jawab significa responsabilidad.' },
+                                        { vocabId: 'b1v186', type: 'translate_es_id', prompt: 'Traduce: «Seguimos el procedimiento correcto».', answer: 'Kami mengikuti prosedur yang benar.', explanation: 'Prosedur significa procedimiento.' },
+                                        { vocabId: 'a2u10_mematuhi', type: 'order', prompt: 'Ordena: «Cada miembro debe cumplir la regla».', words: ["aturan.","mematuhi","harus","anggota","Setiap"], correctOrder: ["Setiap","anggota","harus","mematuhi","aturan."], explanation: 'Setiap anggota harus mematuhi aturan expresa una obligación para cada miembro.' },
+                                        { vocabId: 'b1v187', type: 'write', prompt: 'Describe un reglamento, los pasos que debe seguir el equipo y la responsabilidad de cada miembro.', hint: 'Integra peraturan, prosedur, mematuhi y tanggung jawab.', modelAnswer: 'Peraturan itu berlaku. Kami mengikuti prosedur yang benar. Setiap anggota harus mematuhi aturan. Setiap anggota memiliki tanggung jawab.', explanation: 'La producción conecta normas, procedimientos y responsabilidad.' }
                                     ]
                                 },
                                 {
@@ -7743,6 +7810,33 @@
                                         { vocabId: 'b1v191', type: 'translate_es_id', prompt: 'Traduce: «Organizan una actividad en conjunto».', answer: 'Mereka menyelenggarakan kegiatan bersama.', explanation: 'Menyelenggarakan expresa organizar una actividad.' },
                                         { vocabId: 'b1v191', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Mereka menyelenggarakan kegiatan bersama pada hari Sabtu.', explanation: 'La frase presenta una actividad organizada para el sábado.' },
                                         { vocabId: 'b1v191', type: 'write', prompt: 'Escribe cuatro frases: presenta una iniciativa, explica cómo solicitar apoyo, menciona la participación y describe la actividad que organizarán.', hint: 'Integra partisipasi, mengajukan, dukungan y menyelenggarakan.', modelAnswer: 'Partisipasi warga sangat penting. Kami mengajukan usulan kepada panitia. Kami membutuhkan dukungan masyarakat. Mereka menyelenggarakan kegiatan bersama pada hari Sabtu.', explanation: 'La producción recorre una iniciativa desde la propuesta hasta su organización.' }
+                                    ]
+                                }
+                            ,
+                                {
+                                    title: 'Participar y presentar propuestas',
+                                    objective: 'Explica cómo las personas participan en una iniciativa y presentan propuestas a un comité.',
+                                    grammar: 'Partisipasi nombra la participación; mengajukan expresa presentar formalmente una propuesta o solicitud. Puede indicarse el destinatario con kepada.',
+                                    reviewVocabIds: ['b1v188', 'b1v189', 'b1v190'],
+                                    vocabIds: [],
+                                    exercises: [
+                                        { vocabId: 'b1v188', type: 'mc', prompt: '¿Qué significa partisipasi?', options: ["Participación","Responsabilidad","Prevención"], answer: 0, explanation: 'Partisipasi significa participación.' },
+                                        { vocabId: 'b1v188', type: 'translate_es_id', prompt: 'Traduce: «La participación de los vecinos es muy importante».', answer: 'Partisipasi warga sangat penting.', explanation: 'Partisipasi warga se refiere a la participación de los vecinos.' },
+                                        { vocabId: 'b1v189', type: 'order', prompt: 'Ordena: «Presentamos una propuesta al comité».', words: ["panitia.","kepada","usulan","mengajukan","Kami"], correctOrder: ["Kami","mengajukan","usulan","kepada","panitia."], explanation: 'Kepada panitia indica a quién se presenta la propuesta.' },
+                                        { vocabId: 'b1v189', type: 'write', prompt: 'Describe una iniciativa comunitaria y explica cómo pueden participar las personas y presentar propuestas.', hint: 'Usa partisipasi, mengajukan y permohonan.', modelAnswer: 'Partisipasi warga sangat penting. Kami mengajukan usulan kepada panitia. Permohonan itu sudah diterima.', explanation: 'La producción presenta participación y una propuesta formal.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Solicitar apoyo y organizar una actividad',
+                                    objective: 'Describe una solicitud, explica qué apoyo se necesita y cómo se organizará una actividad colectiva.',
+                                    grammar: 'Permohonan es una solicitud formal; dukungan, el apoyo recibido. Menyelenggarakan expresa organizar o llevar a cabo una actividad.',
+                                    reviewVocabIds: ['b1v188', 'b1v190', 'b1v191', 'b1v192'],
+                                    vocabIds: [],
+                                    exercises: [
+                                        { vocabId: 'b1v192', type: 'mc', prompt: '¿Qué significa dukungan?', options: ["Apoyo o respaldo","Procedimiento","Uso de recursos"], answer: 0, explanation: 'Dukungan significa apoyo o respaldo.' },
+                                        { vocabId: 'b1v190', type: 'translate_es_id', prompt: 'Traduce: «La solicitud ya fue recibida».', answer: 'Permohonan itu sudah diterima.', explanation: 'Permohonan significa solicitud o petición.' },
+                                        { vocabId: 'b1v191', type: 'order', prompt: 'Ordena: «Organizan una actividad en conjunto».', words: ["bersama.","kegiatan","menyelenggarakan","Mereka"], correctOrder: ["Mereka","menyelenggarakan","kegiatan","bersama."], explanation: 'Menyelenggarakan kegiatan bersama describe organizar una actividad en conjunto.' },
+                                        { vocabId: 'b1v192', type: 'write', prompt: 'Escribe un breve plan: presenta la solicitud, indica qué apoyo necesitas y describe la actividad que organizarán.', hint: 'Integra permohonan, dukungan y menyelenggarakan.', modelAnswer: 'Permohonan itu sudah diterima. Kami membutuhkan dukungan masyarakat. Mereka menyelenggarakan kegiatan bersama.', explanation: 'La producción recorre la solicitud, el apoyo y la organización.' }
                                     ]
                                 }
                             ]

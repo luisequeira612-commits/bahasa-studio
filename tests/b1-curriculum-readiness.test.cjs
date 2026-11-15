@@ -30,12 +30,12 @@ function exercisesOf(unit) {
 }
 
 // B1 U50 readiness baseline updated with the final curriculum unit.
-test('B1 draft has fifty units, two hundred twenty-four unique IDs including earlier canonical vocabulary, and nine hundred seventy-eight exercises', () => {
+test('B1 draft has fifty units, two hundred twenty-four unique IDs including earlier canonical vocabulary, and one thousand six exercises', () => {
   const b1 = course.levels.find(level => level.id === 'B1');
   assert.ok(b1);
   assert.equal(b1.units.length, 50);
   assert.equal(new Set(b1.units.flatMap(unit => unit.vocab.map(word => word.id))).size, 224);
-  assert.equal(b1.units.reduce((sum, unit) => sum + exercisesOf(unit).length, 0), 978);
+  assert.equal(b1.units.reduce((sum, unit) => sum + exercisesOf(unit).length, 0), 1006);
   assert.deepEqual(Array.from(b1.units, unit => unit.id), [
     'b1_u1', 'b1_u2', 'b1_u3', 'b1_u4', 'b1_u5', 'b1_u6', 'b1_u7',
     'b1_u8', 'b1_u9', 'b1_u10', 'b1_u11', 'b1_u12', 'b1_u13', 'b1_u14', 'b1_u15', 'b1_u16', 'b1_u17', 'b1_u18', 'b1_u19', 'b1_u20', 'b1_u21', 'b1_u22', 'b1_u23', 'b1_u24', 'b1_u25', 'b1_u26', 'b1_u27', 'b1_u28', 'b1_u29', 'b1_u30', 'b1_u31', 'b1_u32', 'b1_u33', 'b1_u34', 'b1_u35', 'b1_u36', 'b1_u37', 'b1_u38', 'b1_u39', 'b1_u40', 'b1_u41', 'b1_u42', 'b1_u43', 'b1_u44', 'b1_u45', 'b1_u46', 'b1_u47', 'b1_u48', 'b1_u49', 'b1_u50'
@@ -270,7 +270,7 @@ test('B1 cumulative review checkpoints cover U22, U27, U32, U37, U42 and U47', (
     for (const exercise of lesson.exercises) {
       assert.ok(lesson.reviewVocabIds.includes(exercise.vocabId), unitId + ' review exercise must target a reviewed vocabulary ID');
     }
-    assert.equal(exercisesOf(unit).length, ['b1_u32', 'b1_u37', 'b1_u42'].includes(unitId) ? 22 : (['b1_u22', 'b1_u27'].includes(unitId) ? 20 : 18), unitId + ' exercise count after authored lesson expansion');
+    assert.equal(exercisesOf(unit).length, ['b1_u32', 'b1_u37', 'b1_u42', 'b1_u47'].includes(unitId) ? 22 : (['b1_u22', 'b1_u27'].includes(unitId) ? 20 : 18), unitId + ' exercise count after authored lesson expansion');
   }
 });
 
@@ -1034,9 +1034,9 @@ test('B1 U44-U46 teach forecasting, prevention and resource efficiency', () => {
   for (let i = 0; i < units.length; i++) {
     const unit = units[i];
     assert.deepEqual(Array.from(unit.vocab, word => word.id), expected[i]);
-    assert.equal(unit.lessons.length, unit.id === 'b1_u44' ? 5 : 3);
+    assert.equal(unit.lessons.length, ['b1_u44', 'b1_u45', 'b1_u46'].includes(unit.id) ? 5 : 3);
     const exercises = exercisesOf(unit);
-    assert.equal(exercises.length, unit.id === 'b1_u44' ? 22 : 14);
+    assert.equal(exercises.length, ['b1_u44', 'b1_u45', 'b1_u46'].includes(unit.id) ? 22 : 14);
     for (const type of ['mc', 'translate_es_id', 'order', 'listen', 'write']) {
       assert.ok(exercises.some(exercise => exercise.type === type), unit.id + ' missing exercise type ' + type);
     }
@@ -1070,7 +1070,7 @@ test('B1 U50 closes the level with an integrated capstone', () => {
   const unit = b1.units.find(item => item.id === 'b1_u50');
   assert.ok(unit);
   assert.deepEqual(Array.from(unit.vocab, word => word.id), ['b1v198', 'b1v199', 'b1v200', 'b1v201', 'b1v202']);
-  assert.equal(unit.lessons.length, ['b1_u22', 'b1_u27', 'b1_u32', 'b1_u37', 'b1_u42', 'b1_u47'].includes(unit.id) ? 4 : 3);
+  assert.equal(unit.lessons.length, unit.id === 'b1_u47' ? 5 : 3);
   const exercises = exercisesOf(unit);
   assert.equal(exercises.length, 14);
   assert.deepEqual(
@@ -1105,9 +1105,9 @@ test('B1 U47-U49 teach procedures, community participation and sustainability', 
   for (let i = 0; i < units.length; i++) {
     const unit = units[i];
     assert.deepEqual(Array.from(unit.vocab, word => word.id), expected[i]);
-    assert.equal(unit.lessons.length, ['b1_u22', 'b1_u27', 'b1_u32', 'b1_u37', 'b1_u42', 'b1_u47'].includes(unit.id) ? 4 : 3);
+    assert.equal(unit.lessons.length, ['b1_u47', 'b1_u48'].includes(unit.id) ? 5 : 3);
     const exercises = exercisesOf(unit);
-    assert.equal(exercises.length, unit.id === 'b1_u47' ? 18 : 14);
+    assert.equal(exercises.length, ['b1_u47', 'b1_u48'].includes(unit.id) ? 22 : 14);
     for (const type of ['mc', 'translate_es_id', 'order', 'listen', 'write']) {
       assert.ok(exercises.some(exercise => exercise.type === type), unit.id + ' missing exercise type ' + type);
     }

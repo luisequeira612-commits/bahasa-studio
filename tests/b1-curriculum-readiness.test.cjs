@@ -617,6 +617,12 @@ test('B1 U21-U24 teach cause, purpose and past-experience narration', () => {
   assert.ok(u22.lessons[4].reviewVocabIds.includes('b1v071') && u22.lessons[4].reviewVocabIds.includes('b1v072'));
   assert.ok(u23.lessons[2].vocabIds.includes('b1v075'), 'U23 introduces telah before its final consolidation lesson');
   assert.ok(u23.lessons[4].reviewVocabIds.includes('b1v075'));
+  for (const unit of [u21, u22, u23, u24]) {
+    assert.equal(unit.lessons[4].vocabIds.length, 0, unit.id + ' final review must not reintroduce new vocabulary');
+    for (const word of unit.vocab) {
+      assert.ok(unit.lessons[4].reviewVocabIds.includes(word.id), unit.id + ' final lesson must review ' + word.id);
+    }
+  }
   assert.deepEqual(Array.from(u21.vocab, word => word.id), ['b1v065', 'b1v066', 'b1v067', 'b1v068', 'b1v069', 'b1v070']);
   assert.deepEqual(Array.from(u22.vocab, word => word.id), ['b1v071', 'b1v072']);
   assert.deepEqual(Array.from(u23.vocab, word => word.id), ['a2u16_pernah', 'b1v073', 'a2u2_baru_saja', 'b1v074', 'b1v075', 'a2u2_masih']);

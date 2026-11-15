@@ -10,11 +10,11 @@
 |---|---:|---:|---|---:|
 | A1 | 32 | 161 | 31 con 5; 1 con 6 | 0 |
 | A2 | 40 | 200 | 40 con 5 | 0 |
-| B1 | 50 | 144 | 12 con 2; 32 con 3; 6 con 4 | 50 |
+| B1 | 50 | 156 | 8 con 2; 32 con 3; 6 con 4; 4 con 5 | 46 |
 | B2 | 5 | 25 | 5 con 5 | 0 |
-| **Total implementado** | **127** | **530** | — | **50** |
+| **Total implementado** | **127** | **542** | — | **46** |
 
-Faltan **106 lecciones explícitas** para llevar todas las unidades ya implementadas al mínimo de cinco; todas corresponden a B1. B2 U6–U60 (55 unidades) todavía no están implementadas; deben nacer con cinco o seis lecciones explícitas cada una.
+Faltan **94 lecciones explícitas** para llevar todas las unidades ya implementadas al mínimo de cinco; todas corresponden a B1. B1 U1–U4 ya tienen cinco lecciones authored cada una. B2 U6–U60 (55 unidades) todavía no están implementadas; deben nacer con cinco o seis lecciones explícitas cada una.
 
 ## Estado por nivel
 
@@ -36,7 +36,7 @@ Las cinco unidades implementadas (U1–U5) tienen cinco lecciones explícitas. U
 - `node scripts/audit-authored-lesson-inventory.mjs --strict` falla con código distinto de cero si alguna unidad implementada tiene menos de cinco o más de seis lecciones explícitas.
 - `npm run curriculum:lesson-inventory:strict` es el comando estable para activar el gate cuando la migración A1–B2 esté completa.
 - La prueba sintética comprueba ambos límites (menos de cinco y más de seis), y la prueba de línea base impide que los recuentos actuales se alteren silenciosamente.
-- No activar todavía el modo estricto en CI general: B1 sigue en migración. No se ocultan ni se exceptúan sus incumplimientos.
+- No activar todavía el modo estricto en CI general: B1 U1–U4 ya cumplen el estándar; B1 U5–U50 sigue en migración. No se ocultan ni se exceptúan sus incumplimientos.
 
 ## Reglas de migración
 

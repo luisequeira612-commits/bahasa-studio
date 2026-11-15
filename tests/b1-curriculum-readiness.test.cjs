@@ -30,7 +30,7 @@ function exercisesOf(unit) {
 }
 
 // B1 U50 readiness baseline updated with the final curriculum unit.
-test('B1 draft has fifty units, two hundred twenty-four unique IDs including earlier canonical vocabulary, and seven hundred twenty-seven exercises', () => {
+test('B1 draft has fifty units, two hundred twenty-four unique IDs including earlier canonical vocabulary, and seven hundred fifty-four exercises', () => {
   const b1 = course.levels.find(level => level.id === 'B1');
   assert.ok(b1);
   assert.equal(b1.units.length, 50);
@@ -60,7 +60,7 @@ test('B1 U1-U4 meet the consolidated unit practice contract and U4 closes the fi
   for (const unitId of ['b1_u1', 'b1_u2', 'b1_u3', 'b1_u4']) {
     const unit = b1.units.find(item => item.id === unitId);
     assert.ok(unit, unitId + ' must exist');
-    assert.ok(Array.isArray(unit.lessons) && unit.lessons.length >= 2, unitId + ' needs at least two practice lessons');
+    assert.ok(Array.isArray(unit.lessons) && unit.lessons.length === 5, unitId + ' needs five authored practice lessons');
     const exercises = exercisesOf(unit);
     assert.ok(exercises.length >= 14 && exercises.length <= 22, unitId + ' must have 14–22 combined exercises');
     const types = new Set(exercises.map(item => item.type));
@@ -77,7 +77,7 @@ test('B1 U1-U4 meet the consolidated unit practice contract and U4 closes the fi
       unitId + ' needs guided original production');
     const localIds = new Set(unit.vocab.map(word => word.id));
     for (const exercise of exercises) assert.ok(localIds.has(exercise.vocabId), unitId + ' exercise references non-local vocabulary');
-    for (const lesson of unit.lessons) assert.ok(lesson.exercises.length >= 4, unitId + ' lesson needs at least four exercises');
+    for (const lesson of unit.lessons) assert.ok(lesson.exercises.length >= 2, unitId + ' authored lesson needs at least two exercises');
   }
   const u4 = b1.units.find(item => item.id === 'b1_u4');
   const cumulative = u4.lessons.find(lesson => /repaso acumulativo/i.test(lesson.title));

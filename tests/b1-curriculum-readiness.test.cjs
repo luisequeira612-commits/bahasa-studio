@@ -530,7 +530,7 @@ test('B1 U15-U17 teach yang relatives, interrogatives, passive clauses and cumul
   assert.match(u17.grammar + u17.lessons.map(lesson => lesson.grammar).join(' '), /apa yang[\s\S]*yang mana[\s\S]*dibaca[\s\S]*yang paling/);
   assert.ok(u17.vocab.some(word => word.id === 'b1u12_kesehatan') && u17.vocab.some(word => word.id === 'a2u20_kebersihan'));
   assert.match(u17.lessons[4].title, /repaso acumulativo/i);
-  assert.deepEqual(u17.lessons[4].vocabIds, []);
+  assert.equal(u17.lessons[4].vocabIds.length, 0);
   assert.ok(u17.lessons[2].vocabIds.includes('b1v055'), 'U17 introduces paling before the final checkpoint');
   assert.ok(u17.lessons[4].reviewVocabIds.includes('b1v055'));
   for (const priorUnitId of ['b1_u13', 'b1_u14', 'b1_u15', 'b1_u16']) {

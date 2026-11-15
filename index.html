@@ -5681,6 +5681,122 @@
                                         { vocabId: 'b1v104', type: 'write', prompt: 'Escribe un consejo respetuoso de cuatro frases sobre un problema cotidiano. Incluye una opinión, una razón, un grado de posibilidad y una recomendación.', hint: 'Combina menurut saya, karena, mungkin o sepertinya y menyarankan.', modelAnswer: 'Menurut saya, kamu perlu istirahat karena kamu terlihat lelah. Mungkin kamu terlalu sibuk. Sepertinya pekerjaan itu bisa ditunda. Saya menyarankan agar kamu istirahat lebih banyak.', explanation: 'El texto integra opinión, causa, posibilidad o inferencia y una recomendación explícita.' }
                                     ]
                                 }
+                            ,
+                                {
+                                    "title": "Elegir el grado de obligación según la situación",
+                                    "objective": "Distingue un consejo, una necesidad práctica y una obligación establecida según el contexto.",
+                                    "grammar": "Seharusnya presenta lo que sería conveniente; harus expresa obligación o necesidad fuerte; wajib suele señalar una regla o requisito; perlu presenta una necesidad práctica. La situación determina cuál encaja mejor.",
+                                    "reviewVocabIds": [
+                                        "b1v100",
+                                        "b1v101",
+                                        "b1v102",
+                                        "b1v103"
+                                    ],
+                                    "vocabIds": [],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "b1v101",
+                                            "type": "mc",
+                                            "prompt": "En «Kita harus belajar», ¿qué expresa harus?",
+                                            "options": [
+                                                "Una obligación o necesidad fuerte",
+                                                "Una posibilidad aproximada",
+                                                "Una recomendación muy indirecta"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Harus expresa que algo se debe hacer o es necesario."
+                                        },
+                                        {
+                                            "vocabId": "b1v102",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: «Todos los estudiantes deben llevar uniforme».",
+                                            "answer": "Semua siswa wajib memakai seragam.",
+                                            "explanation": "Wajib presenta el uniforme como un requisito obligatorio."
+                                        },
+                                        {
+                                            "vocabId": "b1v103",
+                                            "type": "order",
+                                            "prompt": "Ordena: «Tenemos que tener cuidado».",
+                                            "words": [
+                                                "berhati-hati.",
+                                                "Kita",
+                                                "perlu"
+                                            ],
+                                            "correctOrder": [
+                                                "Kita",
+                                                "perlu",
+                                                "berhati-hati."
+                                            ],
+                                            "explanation": "Perlu introduce la acción que se considera necesaria."
+                                        },
+                                        {
+                                            "vocabId": "b1v100",
+                                            "type": "write",
+                                            "prompt": "Escribe tres frases sobre una misma situación: un consejo, una obligación y una necesidad práctica. Usa seharusnya, harus o wajib y perlu.",
+                                            "hint": "Puedes hablar de estudiar, llevar uniforme y tener cuidado.",
+                                            "modelAnswer": "Kamu seharusnya istirahat. Kita harus belajar. Semua siswa wajib memakai seragam. Kita perlu berhati-hati.",
+                                            "explanation": "La práctica compara los distintos grados de consejo, obligación y necesidad."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Explicar y justificar una recomendación",
+                                    "objective": "Formula un consejo completo, explica el motivo y presenta una recomendación respetuosa.",
+                                    "grammar": "Una recomendación puede combinar una opinión con una razón y una propuesta. Menyarankan expresa recomendar; seharusnya suaviza el consejo, mientras perlu destaca una necesidad.",
+                                    "reviewVocabIds": [
+                                        "b1v088",
+                                        "b1v096",
+                                        "b1v100",
+                                        "b1v103",
+                                        "b1v104"
+                                    ],
+                                    "vocabIds": [],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "b1v104",
+                                            "type": "mc",
+                                            "prompt": "¿Qué forma expresa de manera explícita que alguien recomienda una acción?",
+                                            "options": [
+                                                "Menyarankan",
+                                                "Wajib",
+                                                "Berusaha"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Menyarankan significa recomendar o aconsejar."
+                                        },
+                                        {
+                                            "vocabId": "b1v104",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: «Te recomiendo que descanses porque estás cansado».",
+                                            "answer": "Saya menyarankan agar kamu istirahat karena kamu lelah.",
+                                            "explanation": "Menyarankan introduce la recomendación y karena presenta la razón."
+                                        },
+                                        {
+                                            "vocabId": "b1v100",
+                                            "type": "order",
+                                            "prompt": "Ordena: «Deberías descansar».",
+                                            "words": [
+                                                "istirahat.",
+                                                "Kamu",
+                                                "seharusnya"
+                                            ],
+                                            "correctOrder": [
+                                                "Kamu",
+                                                "seharusnya",
+                                                "istirahat."
+                                            ],
+                                            "explanation": "Seharusnya aparece después del sujeto y antes de la acción recomendada."
+                                        },
+                                        {
+                                            "vocabId": "b1v104",
+                                            "type": "write",
+                                            "prompt": "Escribe un consejo de cuatro frases: presenta tu opinión, explica una razón, indica qué sería conveniente y formula una recomendación.",
+                                            "hint": "Integra menurut saya, karena, seharusnya y menyarankan.",
+                                            "modelAnswer": "Menurut saya, kamu seharusnya istirahat. Kamu terlihat lelah karena kamu belajar setiap hari. Kamu perlu tidur lebih awal. Saya menyarankan agar kamu istirahat.",
+                                            "explanation": "La producción conecta opinión, motivo, necesidad y recomendación."
+                                        }
+                                    ]
+                                }
                             ]
                         },
                         {
@@ -5737,6 +5853,126 @@
                                         { vocabId: 'b1v109', type: 'write', prompt: 'Escribe cuatro frases sobre una meta: presenta tu objetivo, tu plan, cuándo lo harás y el esfuerzo que harás para conseguirlo.', hint: 'Integra tujuan, rencana, berencana y berusaha.', modelAnswer: 'Tujuan saya adalah berbicara lebih lancar. Saya punya rencana untuk belajar setiap hari. Saya berencana belajar pada pagi hari. Saya berusaha berlatih setiap hari.', explanation: 'La producción integra meta, plan, intención y esfuerzo.' }
                                     ]
                                 }
+                            ,
+                                {
+                                    "title": "Convertir una meta en un plan concreto",
+                                    "objective": "Relaciona un objetivo personal con un plan y con una actividad prevista.",
+                                    "grammar": "Tujuan identifica el resultado que quieres alcanzar y rencana nombra el plan. Berencana presenta lo que tienes previsto hacer; merencanakan destaca la acción de organizar ese plan.",
+                                    "reviewVocabIds": [
+                                        "b1v105",
+                                        "b1v106",
+                                        "b1v107",
+                                        "b1v108"
+                                    ],
+                                    "vocabIds": [],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "b1v105",
+                                            "type": "mc",
+                                            "prompt": "¿Qué diferencia mejor rencana de tujuan?",
+                                            "options": [
+                                                "Rencana es el plan; tujuan es la meta",
+                                                "Rencana es el esfuerzo; tujuan es el horario",
+                                                "Ambas significan obligación"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Rencana nombra el plan y tujuan el objetivo que se busca."
+                                        },
+                                        {
+                                            "vocabId": "b1v106",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: «Tengo un plan para estudiar. Mi objetivo es hablar con más fluidez».",
+                                            "answer": "Saya punya rencana untuk belajar. Tujuan saya adalah berbicara lebih lancar.",
+                                            "explanation": "La primera frase presenta el plan y la segunda identifica la meta."
+                                        },
+                                        {
+                                            "vocabId": "b1v107",
+                                            "type": "order",
+                                            "prompt": "Ordena: «Planeo estudiar cada día».",
+                                            "words": [
+                                                "setiap hari.",
+                                                "Saya",
+                                                "berencana",
+                                                "belajar"
+                                            ],
+                                            "correctOrder": [
+                                                "Saya",
+                                                "berencana",
+                                                "belajar",
+                                                "setiap hari."
+                                            ],
+                                            "explanation": "Berencana expresa una actividad prevista."
+                                        },
+                                        {
+                                            "vocabId": "b1v105",
+                                            "type": "write",
+                                            "prompt": "Escribe cuatro frases: indica una meta, presenta tu plan y explica qué tienes previsto hacer para avanzar.",
+                                            "hint": "Usa tujuan, rencana y berencana.",
+                                            "modelAnswer": "Tujuan saya adalah berbicara lebih lancar. Saya punya rencana untuk belajar setiap hari. Saya berencana belajar pada pagi hari. Saya berencana berlatih setiap hari.",
+                                            "explanation": "La producción conecta una meta con un plan y acciones previstas."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Mantener el esfuerzo a lo largo del plan",
+                                    "objective": "Explica cómo sostienes el esfuerzo y cómo se relaciona con el plan y la meta.",
+                                    "grammar": "Berusaha expresa esfuerzo o intento. Puede combinarse con acciones previstas para explicar cómo trabajas hacia una meta. Recupera rencana y tujuan para mantener clara la relación entre esfuerzo y objetivo.",
+                                    "reviewVocabIds": [
+                                        "b1v105",
+                                        "b1v106",
+                                        "b1v107",
+                                        "b1v108",
+                                        "b1v109"
+                                    ],
+                                    "vocabIds": [],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "b1v109",
+                                            "type": "mc",
+                                            "prompt": "En «Saya berusaha belajar setiap hari», ¿qué expresa berusaha?",
+                                            "options": [
+                                                "El esfuerzo por realizar una acción",
+                                                "Una obligación establecida por una norma",
+                                                "Una decisión ya terminada"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Berusaha expresa esforzarse o intentar hacer algo."
+                                        },
+                                        {
+                                            "vocabId": "b1v109",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: «Me esfuerzo por estudiar todos los días».",
+                                            "answer": "Saya berusaha belajar setiap hari.",
+                                            "explanation": "Berusaha presenta el esfuerzo y la acción aparece después."
+                                        },
+                                        {
+                                            "vocabId": "b1v109",
+                                            "type": "order",
+                                            "prompt": "Ordena: «Me esfuerzo por estudiar cada día».",
+                                            "words": [
+                                                "setiap hari.",
+                                                "Saya",
+                                                "belajar",
+                                                "berusaha"
+                                            ],
+                                            "correctOrder": [
+                                                "Saya",
+                                                "berusaha",
+                                                "belajar",
+                                                "setiap hari."
+                                            ],
+                                            "explanation": "Berusaha precede a la acción que requiere esfuerzo."
+                                        },
+                                        {
+                                            "vocabId": "b1v106",
+                                            "type": "write",
+                                            "prompt": "Escribe cuatro frases sobre una meta y el esfuerzo que haces para alcanzarla. Incluye un plan y una actividad que repites.",
+                                            "hint": "Integra tujuan, rencana, berencana y berusaha.",
+                                            "modelAnswer": "Tujuan saya adalah berbicara lebih lancar. Saya punya rencana untuk belajar setiap hari. Saya berencana belajar pada pagi hari. Saya berusaha belajar setiap hari.",
+                                            "explanation": "La producción enlaza meta, plan, intención y esfuerzo sostenido."
+                                        }
+                                    ]
+                                }
                             ]
                         },
                         {
@@ -5791,6 +6027,134 @@
                                         { vocabId: 'b1v114', type: 'translate_es_id', prompt: 'Traduce: «Decidimos empezar mañana».', answer: 'Kami memutuskan untuk mulai besok.', explanation: 'Memutuskan expresa la decisión y untuk introduce la acción decidida.' },
                                         { vocabId: 'b1v114', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Kami memutuskan untuk mulai besok.', explanation: 'La frase presenta una decisión sobre el inicio de una actividad.' },
                                         { vocabId: 'b1v114', type: 'write', prompt: 'Escribe un mini-plan de cuatro frases: indica una meta, un paso, una preparación y una decisión concreta para seguir avanzando.', hint: 'Integra tujuan, langkah, mempersiapkan y memutuskan.', modelAnswer: 'Tujuan saya adalah belajar lebih banyak. Langkah pertama adalah membuat rencana. Saya mempersiapkan waktu untuk belajar. Saya memutuskan untuk mulai besok.', explanation: 'La producción organiza una meta, un paso, una preparación y una decisión.' }
+                                    ]
+                                }
+                            ,
+                                {
+                                    "title": "Secuenciar pasos hacia una meta",
+                                    "objective": "Organiza una meta en pasos y formula un objetivo concreto que puedas seguir.",
+                                    "grammar": "Langkah presenta una etapa o paso de un proceso. Target concreta el resultado que quieres alcanzar. Puedes presentar el primer paso y después explicar cuál es tu target.",
+                                    "reviewVocabIds": [
+                                        "b1v105",
+                                        "b1v106",
+                                        "b1v110",
+                                        "b1v111"
+                                    ],
+                                    "vocabIds": [],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "b1v110",
+                                            "type": "mc",
+                                            "prompt": "¿Qué palabra nombra una etapa o acción dentro de un proceso?",
+                                            "options": [
+                                                "Langkah",
+                                                "Target",
+                                                "Mempersiapkan"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Langkah significa paso o etapa."
+                                        },
+                                        {
+                                            "vocabId": "b1v111",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: «Mi meta es leer un libro».",
+                                            "answer": "Target saya adalah membaca satu buku.",
+                                            "explanation": "Target presenta un objetivo concreto."
+                                        },
+                                        {
+                                            "vocabId": "b1v110",
+                                            "type": "order",
+                                            "prompt": "Ordena: «Mi primer paso es estudiar cada día».",
+                                            "words": [
+                                                "setiap hari.",
+                                                "pertama",
+                                                "Langkah",
+                                                "saya",
+                                                "adalah",
+                                                "belajar"
+                                            ],
+                                            "correctOrder": [
+                                                "Langkah",
+                                                "pertama",
+                                                "saya",
+                                                "adalah",
+                                                "belajar",
+                                                "setiap hari."
+                                            ],
+                                            "explanation": "Langkah pertama identifica la primera etapa del proceso."
+                                        },
+                                        {
+                                            "vocabId": "b1v111",
+                                            "type": "write",
+                                            "prompt": "Escribe cuatro frases: presenta un target y divídelo en dos o tres pasos.",
+                                            "hint": "Usa target y langkah; puedes describir un plan de estudio.",
+                                            "modelAnswer": "Target saya adalah berbicara lebih lancar. Langkah pertama saya adalah belajar setiap hari. Langkah kedua saya adalah membaca satu buku. Saya ingin mencapai target itu.",
+                                            "explanation": "La producción convierte un objetivo en pasos concretos."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Preparar y decidir el siguiente paso",
+                                    "objective": "Explica qué preparas y qué decisión tomas para continuar hacia una meta.",
+                                    "grammar": "Mempersiapkan expresa preparar algo con antelación. Memutuskan expresa tomar una decisión; puede combinarse con untuk para introducir la acción decidida. Ambas formas conectan la preparación con el siguiente paso.",
+                                    "reviewVocabIds": [
+                                        "b1v105",
+                                        "b1v106",
+                                        "b1v110",
+                                        "b1v111",
+                                        "b1v112",
+                                        "b1v113",
+                                        "b1v114"
+                                    ],
+                                    "vocabIds": [],
+                                    "exercises": [
+                                        {
+                                            "vocabId": "b1v113",
+                                            "type": "mc",
+                                            "prompt": "¿Qué acción expresa mempersiapkan?",
+                                            "options": [
+                                                "Preparar algo con antelación",
+                                                "Dar prioridad a una tarea",
+                                                "Posponer una decisión"
+                                            ],
+                                            "answer": 0,
+                                            "explanation": "Mempersiapkan significa preparar."
+                                        },
+                                        {
+                                            "vocabId": "b1v114",
+                                            "type": "translate_es_id",
+                                            "prompt": "Traduce: «Preparo todos los materiales. Decido empezar mañana».",
+                                            "answer": "Saya mempersiapkan semua bahan. Saya memutuskan untuk mulai besok.",
+                                            "explanation": "Mempersiapkan expresa la preparación y memutuskan la decisión."
+                                        },
+                                        {
+                                            "vocabId": "b1v114",
+                                            "type": "order",
+                                            "prompt": "Ordena: «Decidimos empezar mañana».",
+                                            "words": [
+                                                "besok.",
+                                                "untuk",
+                                                "Kami",
+                                                "memutuskan",
+                                                "mulai"
+                                            ],
+                                            "correctOrder": [
+                                                "Kami",
+                                                "memutuskan",
+                                                "untuk",
+                                                "mulai",
+                                                "besok."
+                                            ],
+                                            "explanation": "Memutuskan untuk introduce la acción que se ha decidido."
+                                        },
+                                        {
+                                            "vocabId": "b1v113",
+                                            "type": "write",
+                                            "prompt": "Escribe cuatro frases sobre una meta: indica qué preparas, qué paso seguirás y qué has decidido hacer.",
+                                            "hint": "Integra mempersiapkan, langkah, target y memutuskan.",
+                                            "modelAnswer": "Target saya adalah belajar lebih banyak. Saya mempersiapkan semua bahan. Langkah berikutnya adalah belajar setiap hari. Saya memutuskan untuk mulai besok.",
+                                            "explanation": "La producción conecta objetivo, preparación, siguiente paso y decisión."
+                                        }
                                     ]
                                 }
                             ]
@@ -5851,7 +6215,71 @@
                                         { vocabId: 'b1v119', type: 'write', prompt: 'Escribe un mini-plan de tres frases: menciona tu prioridad, el horario y qué tarea atenderás primero.', hint: 'Integra prioritas, jadwal y mendahulukan.', modelAnswer: 'Belajar adalah prioritas saya. Saya membuat jadwal setiap minggu. Saya mendahulukan tugas yang paling penting.', explanation: 'La producción conecta prioridad, planificación y orden de las tareas.' }
                                     ]
                                 },
-                                {
+                                                                    {
+                                        "title": "Reorganizar el horario según las prioridades",
+                                        "objective": "Revisa un horario y explica qué tarea debe ir primero y cuál puedes aplazar.",
+                                        "grammar": "Prioritas ayuda a decidir qué merece atención primero. Jadwal organiza las actividades en el tiempo. Mengatur describe la organización; mendahulukan pone una tarea antes que otra y menunda permite aplazar una actividad.",
+                                        "reviewVocabIds": [
+                                            "b1v115",
+                                            "b1v116",
+                                            "b1v117",
+                                            "b1v118",
+                                            "b1v119",
+                                            "b1v105",
+                                            "b1v110"
+                                        ],
+                                        "vocabIds": [],
+                                        "exercises": [
+                                            {
+                                                "vocabId": "b1v119",
+                                                "type": "mc",
+                                                "prompt": "Si tienes dos tareas y una es más importante, ¿qué expresa mendahulukan?",
+                                                "options": [
+                                                    "Poner primero la tarea prioritaria",
+                                                    "Aplazar todas las tareas",
+                                                    "Preparar un material"
+                                                ],
+                                                "answer": 0,
+                                                "explanation": "Mendahulukan significa dar prioridad o poner algo primero."
+                                            },
+                                            {
+                                                "vocabId": "b1v116",
+                                                "type": "translate_es_id",
+                                                "prompt": "Traduce: «Hago un horario de estudio cada semana».",
+                                                "answer": "Saya membuat jadwal belajar setiap minggu.",
+                                                "explanation": "Jadwal organiza las actividades según el tiempo."
+                                            },
+                                            {
+                                                "vocabId": "b1v117",
+                                                "type": "order",
+                                                "prompt": "Ordena: «Organizo bien mi tiempo».",
+                                                "words": [
+                                                    "baik.",
+                                                    "waktu",
+                                                    "Saya",
+                                                    "mengatur",
+                                                    "dengan"
+                                                ],
+                                                "correctOrder": [
+                                                    "Saya",
+                                                    "mengatur",
+                                                    "waktu",
+                                                    "dengan",
+                                                    "baik."
+                                                ],
+                                                "explanation": "Mengatur toma waktu como objeto y dengan baik describe cómo se organiza."
+                                            },
+                                            {
+                                                "vocabId": "b1v115",
+                                                "type": "write",
+                                                "prompt": "Escribe cuatro frases sobre tu semana: indica una prioridad, organiza un horario, explica qué tarea atenderás primero y cuál no quieres aplazar.",
+                                                "hint": "Integra prioritas, jadwal, mengatur, mendahulukan y menunda.",
+                                                "modelAnswer": "Belajar adalah prioritas saya. Saya mengatur jadwal belajar setiap minggu. Saya mendahulukan tugas penting. Saya tidak ingin menunda pekerjaan penting.",
+                                                "explanation": "La producción conecta prioridad, horario, organización y orden de las tareas."
+                                            }
+                                        ]
+                                    },
+{
                                     "title": "Repaso acumulativo de B1 U28–U32",
                                     "objective": "Integra expresiones de posibilidad, consejo, planes, metas y pasos para organizar una acción.",
                                     "grammar": "Mungkin y sepertinya expresan posibilidad; seharusnya, harus y perlu presentan consejo o necesidad; rencana, tujuan y berusaha organizan metas; langkah, target y mencapai describen pasos y resultados. Elige la forma según el grado de certeza o compromiso.",

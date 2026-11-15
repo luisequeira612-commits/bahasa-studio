@@ -1,6 +1,6 @@
 # B2 U6 — construcción verbal memper- con bases adjetivales
 
-**Estado:** aprobada el 15 nov 2026; implementada en `main` mediante PR de construcción U6, pendiente de CI/fusión al actualizar esta nota.  
+**Estado:** aprobada el 15 nov 2026; implementada en la rama `curriculum/b2-u6-memper-20261115` mediante PR de construcción U6, pendiente de CI/fusión al actualizar esta nota.  
 **Ubicación:** tercera unidad del bloque aprobado U4–U6 (`-kan`, `-i`, `memper-`).  
 **Dependencias:** U1–U5 están implementadas y expuestas secuencialmente en `main`; U6 sigue oculta. El eje `memper-` está aprobado como tema, pero no este desglose, sus palabras, ejemplos, glosas ni claves.
 

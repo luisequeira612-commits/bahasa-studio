@@ -95,5 +95,5 @@ test('A1 U29-U32 contain five authored lessons with cumulative introductions and
 test('A1 U29-U32 authored lesson regression is registered exactly once in CI', () => {
   const workflow = fs.readFileSync(path.join(__dirname, '..', '.github', 'workflows', 'regression.yml'), 'utf8');
   const registrations = workflow.split('node --test tests/a1-u29-u32-authored-lessons.test.cjs').length - 1;
-  assert.equal(registrations.length, 1);
+  assert.equal(registrations, 1);
 });

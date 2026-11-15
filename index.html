@@ -1907,115 +1907,219 @@
                                 ]
                             ,
                                 "lessons": [
-                                    {
-                                        "title": "Elegir el verbo según la relación",
-                                        "objective": "Distingue qué expresa cada verbo con -kan o -i a partir de sus participantes y del contexto.",
-                                        "grammar": "Mengingatkan expresa recordar algo a alguien; memasukkan introduce algo en un lugar; mendatangi dirige la acción hacia un lugar o persona; menemui se usa para encontrarse con alguien. Aprende cada verbo en su construcción habitual.",
-                                        "vocabIds": [
-                                            "b1u5_mengingatkan",
-                                            "b1u5_memasukkan",
-                                            "b1u5_mendatangi",
-                                            "b1u5_menemui"
-                                        ],
-                                        "reviewVocabIds": [],
-                                        "exercises": [
-                                            {
-                                                "vocabId": "b1u5_mengingatkan",
-                                                "type": "mc",
-                                                "prompt": "¿Qué información aparece en «Ibu mengingatkan saya tentang rapat»?",
-                                                "options": [
-                                                    "Una persona recuerda a otra un asunto",
-                                                    "Una persona entra en una sala",
-                                                    "Una persona se reúne con un profesor"
-                                                ],
-                                                "answer": 0,
-                                                "explanation": "Mengingatkan presenta a alguien que recuerda o avisa algo a otra persona."
-                                            },
-                                            {
-                                                "vocabId": "b1u5_mendatangi",
-                                                "type": "translate_es_id",
-                                                "prompt": "Traduce: Acudimos a esa oficina.",
-                                                "answer": "Kami mendatangi kantor itu.",
-                                                "explanation": "Mendatangi dirige la acción hacia el lugar visitado."
-                                            },
-                                            {
-                                                "vocabId": "b1u5_menemui",
-                                                "type": "order",
-                                                "prompt": "Ordena la oración: «Me reúno con el profesor después de clase».",
-                                                "words": [
-                                                    "Saya",
-                                                    "menemui",
-                                                    "guru",
-                                                    "setelah",
-                                                    "kelas."
-                                                ],
-                                                "correctOrder": [
-                                                    "Saya",
-                                                    "menemui",
-                                                    "guru",
-                                                    "setelah",
-                                                    "kelas."
-                                                ],
-                                                "explanation": "Menemui se usa aquí para encontrarse con una persona."
-                                            },
-                                            {
-                                                "vocabId": "b1u5_mengingatkan",
-                                                "type": "listen",
-                                                "prompt": "Escucha y escribe la oración completa.",
-                                                "answer": "Ibu mengingatkan saya tentang rapat.",
-                                                "explanation": "La oración indica quién recuerda, a quién y cuál es el asunto."
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "title": "Usar -kan e -i en situaciones concretas",
-                                        "objective": "Selecciona y produce el verbo adecuado para introducir un objeto, visitar un lugar o encontrarse con alguien.",
-                                        "grammar": "No sustituyas -kan por -i de forma automática. La elección depende del verbo y de la relación expresada; conserva las construcciones completas de los ejemplos.",
-                                        "vocabIds": [],
-                                        "reviewVocabIds": [
-                                            "b1u5_mengingatkan",
-                                            "b1u5_memasukkan",
-                                            "b1u5_mendatangi",
-                                            "b1u5_menemui"
-                                        ],
-                                        "exercises": [
-                                            {
-                                                "vocabId": "b1u5_memasukkan",
-                                                "type": "mc",
-                                                "prompt": "¿Qué verbo corresponde a introducir un libro en una bolsa?",
-                                                "options": [
-                                                    "memasukkan",
-                                                    "menemui",
-                                                    "mengingatkan"
-                                                ],
-                                                "answer": 0,
-                                                "explanation": "Memasukkan expresa introducir algo en un lugar."
-                                            },
-                                            {
-                                                "vocabId": "b1u5_memasukkan",
-                                                "type": "translate_es_id",
-                                                "prompt": "Traduce: Meto el libro en la bolsa.",
-                                                "answer": "Saya memasukkan buku ke tas.",
-                                                "explanation": "La frase presenta el objeto buku y el destino ke tas."
-                                            },
-                                            {
-                                                "vocabId": "b1u5_mendatangi",
-                                                "type": "listen",
-                                                "prompt": "Escucha y escribe la oración completa.",
-                                                "answer": "Kami mendatangi kantor itu.",
-                                                "explanation": "Mendatangi indica que acudimos a esa oficina."
-                                            },
-                                            {
-                                                "vocabId": "b1u5_menemui",
-                                                "type": "write",
-                                                "prompt": "Escribe una oración propia con «menemui».",
-                                                "hint": "Puedes mencionar a una persona y cuándo te encuentras con ella.",
-                                                "modelAnswer": "Saya menemui guru setelah kelas.",
-                                                "explanation": "El modelo usa menemui para un encuentro con una persona."
-                                            }
-                                        ]
-                                    }
-                                ]
+  {
+    "title": "Elegir el verbo según la relación",
+    "objective": "Distingue qué expresa cada verbo con -kan o -i a partir de sus participantes y del contexto.",
+    "grammar": "Mengingatkan expresa recordar algo a alguien; memasukkan introduce algo en un lugar; mendatangi dirige la acción hacia un lugar o persona; menemui se usa para encontrarse con alguien. Aprende cada verbo en su construcción habitual.",
+    "vocabIds": [
+      "b1u5_mengingatkan",
+      "b1u5_memasukkan",
+      "b1u5_mendatangi",
+      "b1u5_menemui"
+    ],
+    "reviewVocabIds": [],
+    "exercises": [
+      {
+        "vocabId": "b1u5_mengingatkan",
+        "type": "mc",
+        "prompt": "¿Qué información aparece en «Ibu mengingatkan saya tentang rapat»?",
+        "options": [
+          "Una persona recuerda a otra un asunto",
+          "Una persona entra en una sala",
+          "Una persona se reúne con un profesor"
+        ],
+        "answer": 0,
+        "explanation": "Mengingatkan presenta a alguien que recuerda o avisa algo a otra persona."
+      },
+      {
+        "vocabId": "b1u5_mendatangi",
+        "type": "translate_es_id",
+        "prompt": "Traduce: Acudimos a esa oficina.",
+        "answer": "Kami mendatangi kantor itu.",
+        "explanation": "Mendatangi dirige la acción hacia el lugar visitado."
+      },
+      {
+        "vocabId": "b1u5_menemui",
+        "type": "order",
+        "prompt": "Ordena la oración: «Me reúno con el profesor después de clase».",
+        "words": [
+          "Saya",
+          "menemui",
+          "guru",
+          "setelah",
+          "kelas."
+        ],
+        "correctOrder": [
+          "Saya",
+          "menemui",
+          "guru",
+          "setelah",
+          "kelas."
+        ],
+        "explanation": "Menemui se usa aquí para encontrarse con una persona."
+      },
+      {
+        "vocabId": "b1u5_mengingatkan",
+        "type": "listen",
+        "prompt": "Escucha y escribe la oración completa.",
+        "answer": "Ibu mengingatkan saya tentang rapat.",
+        "explanation": "La oración indica quién recuerda, a quién y cuál es el asunto."
+      }
+    ]
+  },
+  {
+    "title": "Usar -kan e -i en situaciones concretas",
+    "objective": "Selecciona y produce el verbo adecuado para introducir un objeto, visitar un lugar o encontrarse con alguien.",
+    "grammar": "No sustituyas -kan por -i de forma automática. La elección depende del verbo y de la relación expresada; conserva las construcciones completas de los ejemplos.",
+    "vocabIds": [],
+    "reviewVocabIds": [
+      "b1u5_mengingatkan",
+      "b1u5_memasukkan",
+      "b1u5_mendatangi",
+      "b1u5_menemui"
+    ],
+    "exercises": [
+      {
+        "vocabId": "b1u5_memasukkan",
+        "type": "mc",
+        "prompt": "¿Qué verbo corresponde a introducir un libro en una bolsa?",
+        "options": [
+          "memasukkan",
+          "menemui",
+          "mengingatkan"
+        ],
+        "answer": 0,
+        "explanation": "Memasukkan expresa introducir algo en un lugar."
+      },
+      {
+        "vocabId": "b1u5_memasukkan",
+        "type": "translate_es_id",
+        "prompt": "Traduce: Meto el libro en la bolsa.",
+        "answer": "Saya memasukkan buku ke tas.",
+        "explanation": "La frase presenta el objeto buku y el destino ke tas."
+      },
+      {
+        "vocabId": "b1u5_mendatangi",
+        "type": "listen",
+        "prompt": "Escucha y escribe la oración completa.",
+        "answer": "Kami mendatangi kantor itu.",
+        "explanation": "Mendatangi indica que acudimos a esa oficina."
+      },
+      {
+        "vocabId": "b1u5_menemui",
+        "type": "write",
+        "prompt": "Escribe una oración propia con «menemui».",
+        "hint": "Puedes mencionar a una persona y cuándo te encuentras con ella.",
+        "modelAnswer": "Saya menemui guru setelah kelas.",
+        "explanation": "El modelo usa menemui para un encuentro con una persona."
+      }
+    ]
+  },
+  {
+    "title": "Contrastar -kan e -i en situaciones",
+    "objective": "Elige el verbo adecuado cuando la acción se dirige a una persona, un objeto o un destino.",
+    "grammar": "Compara el sentido completo de mengingatkan, memasukkan, mendatangi y menemui. No conviertas -kan e -i en una regla mecánica: cada verbo mantiene sus participantes habituales.",
+    "vocabIds": [
+      "b1u5_mengingatkan",
+      "b1u5_memasukkan",
+      "b1u5_mendatangi",
+      "b1u5_menemui"
+    ],
+    "reviewVocabIds": [],
+    "exercises": [
+      {
+        "vocabId": "b1u5_mengingatkan",
+        "type": "translate_es_id",
+        "prompt": "Traduce: Le recuerdo a Ana la reunión.",
+        "answer": "Ibu mengingatkan saya tentang rapat.",
+        "explanation": "Mengingatkan puede dirigirse a una persona e introducir el asunto recordado con tentang."
+      },
+      {
+        "vocabId": "b1u5_memasukkan",
+        "type": "order",
+        "prompt": "Ordena: «Meto el teléfono en la bolsa».",
+        "words": [
+          "tas.",
+          "ke",
+          "Saya",
+          "telepon",
+          "memasukkan"
+        ],
+        "correctOrder": [
+          "Saya",
+          "memasukkan",
+          "telepon",
+          "ke",
+          "tas."
+        ],
+        "explanation": "Memasukkan expresa introducir un objeto y ke marca el destino."
+      }
+    ]
+  },
+  {
+    "title": "Distinguir lugar y persona",
+    "objective": "Relaciona mendatangi con el lugar o persona visitados y menemui con la persona con la que se encuentra alguien.",
+    "grammar": "Mendatangi puede señalar el destino de una visita; menemui se usa para encontrarse o reunirse con una persona. Aprende ambas construcciones en frases completas.",
+    "vocabIds": [
+      "b1u5_mendatangi",
+      "b1u5_menemui"
+    ],
+    "reviewVocabIds": [
+      "b1u5_mengingatkan",
+      "b1u5_memasukkan"
+    ],
+    "exercises": [
+      {
+        "vocabId": "b1u5_mendatangi",
+        "type": "listen",
+        "prompt": "Escucha y escribe la oración completa.",
+        "answer": "Kami mendatangi kantor itu.",
+        "explanation": "Mendatangi dirige la acción hacia la oficina visitada."
+      },
+      {
+        "vocabId": "b1u5_menemui",
+        "type": "write",
+        "prompt": "Escribe una oración indicando con quién te encuentras después de una actividad.",
+        "hint": "Usa menemui y una persona.",
+        "modelAnswer": "Saya menemui guru setelah kelas.",
+        "explanation": "Menemui se usa aquí para un encuentro con una persona."
+      }
+    ]
+  },
+  {
+    "title": "Usar los cuatro verbos en contexto",
+    "objective": "Integra los cuatro verbos de la unidad en una breve situación cotidiana sin confundir sus complementos.",
+    "grammar": "La recuperación espaciada combina recordar, introducir, acudir y encontrarse. El contexto determina qué verbo resulta adecuado.",
+    "vocabIds": [],
+    "reviewVocabIds": [
+      "b1u5_mengingatkan",
+      "b1u5_memasukkan",
+      "b1u5_mendatangi",
+      "b1u5_menemui"
+    ],
+    "exercises": [
+      {
+        "vocabId": "b1u5_mengingatkan",
+        "type": "mc",
+        "prompt": "¿Qué verbo completa «Saya ___ Rina tentang rapat» si quiero recordarle la reunión?",
+        "options": [
+          "mengingatkan",
+          "memasukkan",
+          "menemui"
+        ],
+        "answer": 0,
+        "explanation": "Mengingatkan expresa recordar o avisar algo a alguien."
+      },
+      {
+        "vocabId": "b1u5_menemui",
+        "type": "translate_es_id",
+        "prompt": "Traduce: Me reúno con el profesor después de la clase.",
+        "answer": "Saya menemui guru setelah kelas.",
+        "explanation": "Menemui expresa el encuentro con una persona."
+      }
+    ]
+  }
+]
                             },
                         {
                                 "id": "b1_u6",
@@ -2125,116 +2229,218 @@
                                 ]
                             ,
                                 "lessons": [
-                                    {
-                                        "title": "Dirigir acciones a eventos, personas y lugares",
-                                        "objective": "Reconoce los complementos habituales de los verbos con -i que aparecen en la unidad.",
-                                        "grammar": "Menghadiri se usa con eventos, mencintai con aquello o aquella persona que se ama y memasuki con el lugar al que se entra. Aprende las combinaciones en frases completas.",
-                                        "vocabIds": [
-                                            "b1u6_menghadiri",
-                                            "b1u6_mencintai",
-                                            "b1u6_memasuki",
-                                            "b1u6_dijelaskan",
-                                            "b1u6_ditemui"
-                                        ],
-                                        "reviewVocabIds": [
-                                            "b1u5_mendatangi",
-                                            "b1u5_menemui"
-                                        ],
-                                        "exercises": [
-                                            {
-                                                "vocabId": "b1u6_menghadiri",
-                                                "type": "mc",
-                                                "prompt": "¿Qué expresa «Mereka menghadiri rapat»?",
-                                                "options": [
-                                                    "Asisten a la reunión",
-                                                    "Entran en la sala",
-                                                    "Explican la reunión"
-                                                ],
-                                                "answer": 0,
-                                                "explanation": "Menghadiri se utiliza para asistir a un evento."
-                                            },
-                                            {
-                                                "vocabId": "b1u6_menghadiri",
-                                                "type": "translate_es_id",
-                                                "prompt": "Traduce: Ellos asisten a la reunión.",
-                                                "answer": "Mereka menghadiri rapat.",
-                                                "explanation": "Menghadiri aparece con el evento rapat."
-                                            },
-                                            {
-                                                "vocabId": "b1u6_mencintai",
-                                                "type": "order",
-                                                "prompt": "Ordena la oración: «Él/ella ama a su familia».",
-                                                "words": [
-                                                    "Dia",
-                                                    "mencintai",
-                                                    "keluarganya."
-                                                ],
-                                                "correctOrder": [
-                                                    "Dia",
-                                                    "mencintai",
-                                                    "keluarganya."
-                                                ],
-                                                "explanation": "Mencintai expresa amor y keluarga se presenta con el posesivo -nya."
-                                            },
-                                            {
-                                                "vocabId": "b1u6_memasuki",
-                                                "type": "listen",
-                                                "prompt": "Escucha y escribe la oración completa.",
-                                                "answer": "Mereka memasuki ruangan.",
-                                                "explanation": "Memasuki dirige la acción hacia la sala a la que entran."
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "title": "Reconocer la pasiva y comparar la acción",
-                                        "objective": "Relaciona las formas activas con sus pasivas y produce una oración usando un verbo de la unidad.",
-                                        "grammar": "Dijelaskan es una forma pasiva de menjelaskan y ditemui corresponde a menemui. En la pasiva, el participante que recibe la acción ocupa el primer plano; oleh puede introducir al agente.",
-                                        "vocabIds": [],
-                                        "reviewVocabIds": [
-                                            "b1u6_menghadiri",
-                                            "b1u6_mencintai",
-                                            "b1u6_memasuki",
-                                            "b1u6_dijelaskan",
-                                            "b1u6_ditemui"
-                                        ],
-                                        "exercises": [
-                                            {
-                                                "vocabId": "b1u6_dijelaskan",
-                                                "type": "mc",
-                                                "prompt": "¿Qué relación expresa «Cara membaca dijelaskan oleh guru»?",
-                                                "options": [
-                                                    "La lección es explicada por el profesor",
-                                                    "El profesor entra en la lección",
-                                                    "La lección explica al profesor"
-                                                ],
-                                                "answer": 0,
-                                                "explanation": "Dijelaskan presenta la acción de explicar en voz pasiva."
-                                            },
-                                            {
-                                                "vocabId": "b1u6_ditemui",
-                                                "type": "translate_es_id",
-                                                "prompt": "Traduce: Fui recibido por el profesor después de clase.",
-                                                "answer": "Saya ditemui oleh guru setelah kelas.",
-                                                "explanation": "Ditemui es la forma pasiva relacionada con menemui."
-                                            },
-                                            {
-                                                "vocabId": "b1u6_dijelaskan",
-                                                "type": "listen",
-                                                "prompt": "Escucha y escribe la oración completa.",
-                                                "answer": "Cara membaca dijelaskan oleh guru.",
-                                                "explanation": "La lección recibe la acción y el profesor aparece como agente."
-                                            },
-                                            {
-                                                "vocabId": "b1u6_menghadiri",
-                                                "type": "write",
-                                                "prompt": "Escribe una oración propia usando «menghadiri».",
-                                                "hint": "Menciona un evento al que asistes.",
-                                                "modelAnswer": "Mereka menghadiri rapat.",
-                                                "explanation": "El modelo usa menghadiri con el evento rapat."
-                                            }
-                                        ]
-                                    }
-                                ]
+  {
+    "title": "Dirigir acciones a eventos, personas y lugares",
+    "objective": "Reconoce los complementos habituales de los verbos con -i que aparecen en la unidad.",
+    "grammar": "Menghadiri se usa con eventos, mencintai con aquello o aquella persona que se ama y memasuki con el lugar al que se entra. Aprende las combinaciones en frases completas.",
+    "vocabIds": [
+      "b1u6_menghadiri",
+      "b1u6_mencintai",
+      "b1u6_memasuki",
+      "b1u6_dijelaskan",
+      "b1u6_ditemui"
+    ],
+    "reviewVocabIds": [
+      "b1u5_mendatangi",
+      "b1u5_menemui"
+    ],
+    "exercises": [
+      {
+        "vocabId": "b1u6_menghadiri",
+        "type": "mc",
+        "prompt": "¿Qué expresa «Mereka menghadiri rapat»?",
+        "options": [
+          "Asisten a la reunión",
+          "Entran en la sala",
+          "Explican la reunión"
+        ],
+        "answer": 0,
+        "explanation": "Menghadiri se utiliza para asistir a un evento."
+      },
+      {
+        "vocabId": "b1u6_menghadiri",
+        "type": "translate_es_id",
+        "prompt": "Traduce: Ellos asisten a la reunión.",
+        "answer": "Mereka menghadiri rapat.",
+        "explanation": "Menghadiri aparece con el evento rapat."
+      },
+      {
+        "vocabId": "b1u6_mencintai",
+        "type": "order",
+        "prompt": "Ordena la oración: «Él/ella ama a su familia».",
+        "words": [
+          "Dia",
+          "mencintai",
+          "keluarganya."
+        ],
+        "correctOrder": [
+          "Dia",
+          "mencintai",
+          "keluarganya."
+        ],
+        "explanation": "Mencintai expresa amor y keluarga se presenta con el posesivo -nya."
+      },
+      {
+        "vocabId": "b1u6_memasuki",
+        "type": "listen",
+        "prompt": "Escucha y escribe la oración completa.",
+        "answer": "Mereka memasuki ruangan.",
+        "explanation": "Memasuki dirige la acción hacia la sala a la que entran."
+      }
+    ]
+  },
+  {
+    "title": "Reconocer la pasiva y comparar la acción",
+    "objective": "Relaciona las formas activas con sus pasivas y produce una oración usando un verbo de la unidad.",
+    "grammar": "Dijelaskan es una forma pasiva de menjelaskan y ditemui corresponde a menemui. En la pasiva, el participante que recibe la acción ocupa el primer plano; oleh puede introducir al agente.",
+    "vocabIds": [],
+    "reviewVocabIds": [
+      "b1u6_menghadiri",
+      "b1u6_mencintai",
+      "b1u6_memasuki",
+      "b1u6_dijelaskan",
+      "b1u6_ditemui"
+    ],
+    "exercises": [
+      {
+        "vocabId": "b1u6_dijelaskan",
+        "type": "mc",
+        "prompt": "¿Qué relación expresa «Cara membaca dijelaskan oleh guru»?",
+        "options": [
+          "La lección es explicada por el profesor",
+          "El profesor entra en la lección",
+          "La lección explica al profesor"
+        ],
+        "answer": 0,
+        "explanation": "Dijelaskan presenta la acción de explicar en voz pasiva."
+      },
+      {
+        "vocabId": "b1u6_ditemui",
+        "type": "translate_es_id",
+        "prompt": "Traduce: Fui recibido por el profesor después de clase.",
+        "answer": "Saya ditemui oleh guru setelah kelas.",
+        "explanation": "Ditemui es la forma pasiva relacionada con menemui."
+      },
+      {
+        "vocabId": "b1u6_dijelaskan",
+        "type": "listen",
+        "prompt": "Escucha y escribe la oración completa.",
+        "answer": "Cara membaca dijelaskan oleh guru.",
+        "explanation": "La lección recibe la acción y el profesor aparece como agente."
+      },
+      {
+        "vocabId": "b1u6_menghadiri",
+        "type": "write",
+        "prompt": "Escribe una oración propia usando «menghadiri».",
+        "hint": "Menciona un evento al que asistes.",
+        "modelAnswer": "Mereka menghadiri rapat.",
+        "explanation": "El modelo usa menghadiri con el evento rapat."
+      }
+    ]
+  },
+  {
+    "title": "Asistir, amar y entrar",
+    "objective": "Distingue los complementos habituales de menghadiri, mencintai y memasuki.",
+    "grammar": "Menghadiri se usa con eventos, mencintai con aquello o aquella persona que se ama y memasuki con el lugar al que se entra. La combinación debe aprenderse como parte del verbo.",
+    "vocabIds": [
+      "b1u6_menghadiri",
+      "b1u6_mencintai",
+      "b1u6_memasuki"
+    ],
+    "reviewVocabIds": [
+      "b1u5_mendatangi",
+      "b1u5_menemui"
+    ],
+    "exercises": [
+      {
+        "vocabId": "b1u6_menghadiri",
+        "type": "translate_es_id",
+        "prompt": "Traduce: Ellos asisten a la reunión.",
+        "answer": "Mereka menghadiri rapat.",
+        "explanation": "Menghadiri se usa para asistir a un evento."
+      },
+      {
+        "vocabId": "b1u6_memasuki",
+        "type": "order",
+        "prompt": "Ordena: «Ellos entran en la sala».",
+        "words": [
+          "ruangan.",
+          "memasuki",
+          "Mereka"
+        ],
+        "correctOrder": [
+          "Mereka",
+          "memasuki",
+          "ruangan."
+        ],
+        "explanation": "Memasuki dirige la acción hacia el lugar al que se entra."
+      }
+    ]
+  },
+  {
+    "title": "Reconocer las pasivas correspondientes",
+    "objective": "Relaciona menjelaskan y menemui con sus formas pasivas dijelaskan y ditemui en contextos completos.",
+    "grammar": "La pasiva con di- pone en primer plano aquello que recibe la acción. Dijelaskan corresponde a menjelaskan y ditemui a menemui.",
+    "vocabIds": [
+      "b1u6_dijelaskan",
+      "b1u6_ditemui"
+    ],
+    "reviewVocabIds": [
+      "b1u6_menghadiri",
+      "b1u6_memasuki"
+    ],
+    "exercises": [
+      {
+        "vocabId": "b1u6_dijelaskan",
+        "type": "translate_es_id",
+        "prompt": "Traduce: La forma de leer es explicada por el profesor.",
+        "answer": "Cara membaca dijelaskan oleh guru.",
+        "explanation": "Dijelaskan presenta como foco aquello que recibe la explicación."
+      },
+      {
+        "vocabId": "b1u6_ditemui",
+        "type": "listen",
+        "prompt": "Escucha y escribe la oración completa.",
+        "answer": "Saya ditemui oleh guru setelah kelas.",
+        "explanation": "Ditemui expresa que el sujeto recibe el encuentro o la atención."
+      }
+    ]
+  },
+  {
+    "title": "Comparar acción y pasiva",
+    "objective": "Integra las formas activas con -i y las pasivas con di- sin confundir quién realiza y quién recibe la acción.",
+    "grammar": "Las formas activas como menghadiri y menemui presentan la acción desde quien la realiza; las pasivas dijelaskan y ditemui destacan el elemento que recibe la acción.",
+    "vocabIds": [],
+    "reviewVocabIds": [
+      "b1u6_menghadiri",
+      "b1u6_mencintai",
+      "b1u6_memasuki",
+      "b1u6_dijelaskan",
+      "b1u6_ditemui"
+    ],
+    "exercises": [
+      {
+        "vocabId": "b1u6_menghadiri",
+        "type": "mc",
+        "prompt": "¿Cuál oración indica que ellos asisten a la reunión?",
+        "options": [
+          "Mereka menghadiri rapat.",
+          "Rapat dihadiri mereka.",
+          "Mereka memasuki rapat."
+        ],
+        "answer": 0,
+        "explanation": "Menghadiri presenta la acción activa de asistir a un evento."
+      },
+      {
+        "vocabId": "b1u6_dijelaskan",
+        "type": "translate_es_id",
+        "prompt": "Traduce: La lección es explicada por el profesor.",
+        "answer": "Cara membaca dijelaskan oleh guru.",
+        "explanation": "Dijelaskan es la forma pasiva correspondiente a menjelaskan en este ejemplo."
+      }
+    ]
+  }
+]
                             }
                         ,
                         {
@@ -2257,114 +2463,210 @@
                             ]
                         ,
                                 "lessons": [
-                                    {
-                                        "title": "Identificar a la persona por su actividad",
-                                        "objective": "Distingue penjual, pembeli y pemain en frases que muestran qué actividad realiza cada persona.",
-                                        "grammar": "Los nombres de agente relacionan a una persona con una actividad: penjual vende, pembeli compra y pemain juega o participa. Observa la palabra completa y su contexto.",
-                                        "vocabIds": [
-                                            "b1u7_penjual",
-                                            "b1u7_pembeli",
-                                            "b1u7_pemain"
-                                        ],
-                                        "reviewVocabIds": [
-                                            "b1u5_mengingatkan",
-                                            "b1u6_menghadiri"
-                                        ],
-                                        "exercises": [
-                                            {
-                                                "vocabId": "b1u7_penjual",
-                                                "type": "mc",
-                                                "prompt": "En «Penjual menjual buku», ¿quién realiza la venta?",
-                                                "options": [
-                                                    "Penjual",
-                                                    "Pembeli",
-                                                    "Pemain"
-                                                ],
-                                                "answer": 0,
-                                                "explanation": "Penjual nombra a quien vende."
-                                            },
-                                            {
-                                                "vocabId": "b1u7_pembeli",
-                                                "type": "translate_es_id",
-                                                "prompt": "Traduce: El comprador compra fruta.",
-                                                "answer": "Pembeli membeli buah.",
-                                                "explanation": "Pembeli es la persona que compra."
-                                            },
-                                            {
-                                                "vocabId": "b1u7_pemain",
-                                                "type": "order",
-                                                "prompt": "Ordena la oración: «El jugador juega al fútbol».",
-                                                "words": [
-                                                    "Pemain",
-                                                    "bermain",
-                                                    "sepak",
-                                                    "bola."
-                                                ],
-                                                "correctOrder": [
-                                                    "Pemain",
-                                                    "bermain",
-                                                    "sepak",
-                                                    "bola."
-                                                ],
-                                                "explanation": "Pemain nombra al participante y bermain expresa jugar."
-                                            },
-                                            {
-                                                "vocabId": "b1u7_penjual",
-                                                "type": "listen",
-                                                "prompt": "Escucha y escribe la oración completa.",
-                                                "answer": "Penjual menjual buku.",
-                                                "explanation": "La oración presenta al vendedor realizando la venta."
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "title": "Relacionar nombres de agente y acciones",
-                                        "objective": "Interpreta y produce frases que distinguen vendedor, comprador y jugador.",
-                                        "grammar": "Compara cada nombre con el verbo de su ejemplo: penjual–menjual, pembeli–membeli y pemain–bermain. Pembelian y pengiriman son solo formas de reconocimiento mencionadas en la explicación, no vocabulario productivo de esta unidad.",
-                                        "vocabIds": [],
-                                        "reviewVocabIds": [
-                                            "b1u7_penjual",
-                                            "b1u7_pembeli",
-                                            "b1u7_pemain"
-                                        ],
-                                        "exercises": [
-                                            {
-                                                "vocabId": "b1u7_pembeli",
-                                                "type": "mc",
-                                                "prompt": "¿Qué persona compra los productos?",
-                                                "options": [
-                                                    "Pembeli",
-                                                    "Penjual",
-                                                    "Pemain"
-                                                ],
-                                                "answer": 0,
-                                                "explanation": "Pembeli significa comprador o compradora."
-                                            },
-                                            {
-                                                "vocabId": "b1u7_pemain",
-                                                "type": "translate_es_id",
-                                                "prompt": "Traduce: El jugador juega al fútbol.",
-                                                "answer": "Pemain bermain sepak bola.",
-                                                "explanation": "Pemain nombra a quien participa en la actividad."
-                                            },
-                                            {
-                                                "vocabId": "b1u7_pembeli",
-                                                "type": "listen",
-                                                "prompt": "Escucha y escribe la oración completa.",
-                                                "answer": "Pembeli membeli buah.",
-                                                "explanation": "La oración relaciona pembeli con la acción membeli."
-                                            },
-                                            {
-                                                "vocabId": "b1u7_penjual",
-                                                "type": "write",
-                                                "prompt": "Escribe una oración propia con «penjual».",
-                                                "hint": "Puedes decir qué vende esa persona.",
-                                                "modelAnswer": "Penjual menjual buku.",
-                                                "explanation": "El modelo usa penjual para nombrar a quien vende."
-                                            }
-                                        ]
-                                    }
-                                ]
+  {
+    "title": "Identificar a la persona por su actividad",
+    "objective": "Distingue penjual, pembeli y pemain en frases que muestran qué actividad realiza cada persona.",
+    "grammar": "Los nombres de agente relacionan a una persona con una actividad: penjual vende, pembeli compra y pemain juega o participa. Observa la palabra completa y su contexto.",
+    "vocabIds": [
+      "b1u7_penjual",
+      "b1u7_pembeli",
+      "b1u7_pemain"
+    ],
+    "reviewVocabIds": [
+      "b1u5_mengingatkan",
+      "b1u6_menghadiri"
+    ],
+    "exercises": [
+      {
+        "vocabId": "b1u7_penjual",
+        "type": "mc",
+        "prompt": "En «Penjual menjual buku», ¿quién realiza la venta?",
+        "options": [
+          "Penjual",
+          "Pembeli",
+          "Pemain"
+        ],
+        "answer": 0,
+        "explanation": "Penjual nombra a quien vende."
+      },
+      {
+        "vocabId": "b1u7_pembeli",
+        "type": "translate_es_id",
+        "prompt": "Traduce: El comprador compra fruta.",
+        "answer": "Pembeli membeli buah.",
+        "explanation": "Pembeli es la persona que compra."
+      },
+      {
+        "vocabId": "b1u7_pemain",
+        "type": "order",
+        "prompt": "Ordena la oración: «El jugador juega al fútbol».",
+        "words": [
+          "Pemain",
+          "bermain",
+          "sepak",
+          "bola."
+        ],
+        "correctOrder": [
+          "Pemain",
+          "bermain",
+          "sepak",
+          "bola."
+        ],
+        "explanation": "Pemain nombra al participante y bermain expresa jugar."
+      },
+      {
+        "vocabId": "b1u7_penjual",
+        "type": "listen",
+        "prompt": "Escucha y escribe la oración completa.",
+        "answer": "Penjual menjual buku.",
+        "explanation": "La oración presenta al vendedor realizando la venta."
+      }
+    ]
+  },
+  {
+    "title": "Relacionar nombres de agente y acciones",
+    "objective": "Interpreta y produce frases que distinguen vendedor, comprador y jugador.",
+    "grammar": "Compara cada nombre con el verbo de su ejemplo: penjual–menjual, pembeli–membeli y pemain–bermain. Pembelian y pengiriman son solo formas de reconocimiento mencionadas en la explicación, no vocabulario productivo de esta unidad.",
+    "vocabIds": [],
+    "reviewVocabIds": [
+      "b1u7_penjual",
+      "b1u7_pembeli",
+      "b1u7_pemain"
+    ],
+    "exercises": [
+      {
+        "vocabId": "b1u7_pembeli",
+        "type": "mc",
+        "prompt": "¿Qué persona compra los productos?",
+        "options": [
+          "Pembeli",
+          "Penjual",
+          "Pemain"
+        ],
+        "answer": 0,
+        "explanation": "Pembeli significa comprador o compradora."
+      },
+      {
+        "vocabId": "b1u7_pemain",
+        "type": "translate_es_id",
+        "prompt": "Traduce: El jugador juega al fútbol.",
+        "answer": "Pemain bermain sepak bola.",
+        "explanation": "Pemain nombra a quien participa en la actividad."
+      },
+      {
+        "vocabId": "b1u7_pembeli",
+        "type": "listen",
+        "prompt": "Escucha y escribe la oración completa.",
+        "answer": "Pembeli membeli buah.",
+        "explanation": "La oración relaciona pembeli con la acción membeli."
+      },
+      {
+        "vocabId": "b1u7_penjual",
+        "type": "write",
+        "prompt": "Escribe una oración propia con «penjual».",
+        "hint": "Puedes decir qué vende esa persona.",
+        "modelAnswer": "Penjual menjual buku.",
+        "explanation": "El modelo usa penjual para nombrar a quien vende."
+      }
+    ]
+  },
+  {
+    "title": "Comparar persona y actividad",
+    "objective": "Relaciona penjual, pembeli y pemain con las actividades que identifican a cada persona.",
+    "grammar": "Penjual se relaciona con menjual, pembeli con membeli y pemain con bermain. La relación se aprende en contexto y no como una terminación mecánica única.",
+    "vocabIds": [
+      "b1u7_penjual",
+      "b1u7_pembeli",
+      "b1u7_pemain"
+    ],
+    "reviewVocabIds": [],
+    "exercises": [
+      {
+        "vocabId": "b1u7_penjual",
+        "type": "order",
+        "prompt": "Ordena: «El vendedor vende libros».",
+        "words": [
+          "buku.",
+          "menjual",
+          "Penjual"
+        ],
+        "correctOrder": [
+          "Penjual",
+          "menjual",
+          "buku."
+        ],
+        "explanation": "Penjual nombra a quien vende y menjual expresa la actividad."
+      },
+      {
+        "vocabId": "b1u7_pembeli",
+        "type": "listen",
+        "prompt": "Escucha y escribe la oración completa.",
+        "answer": "Pembeli membeli buah.",
+        "explanation": "Pembeli nombra a la persona que compra."
+      }
+    ]
+  },
+  {
+    "title": "Reconocer formas de agente en frases",
+    "objective": "Identifica el nombre de agente adecuado según la actividad descrita.",
+    "grammar": "Cada palabra nombra a la persona asociada con una actividad concreta: vender, comprar o jugar/participar. Observa el contexto completo.",
+    "vocabIds": [],
+    "reviewVocabIds": [
+      "b1u7_penjual",
+      "b1u7_pembeli",
+      "b1u7_pemain"
+    ],
+    "exercises": [
+      {
+        "vocabId": "b1u7_pemain",
+        "type": "translate_es_id",
+        "prompt": "Traduce: El jugador juega al fútbol.",
+        "answer": "Pemain bermain sepak bola.",
+        "explanation": "Pemain identifica a quien juega o participa."
+      },
+      {
+        "vocabId": "b1u7_penjual",
+        "type": "mc",
+        "prompt": "¿Quién compra fruta?",
+        "options": [
+          "Pembeli",
+          "Penjual",
+          "Pemain"
+        ],
+        "answer": 0,
+        "explanation": "Pembeli significa comprador o compradora."
+      }
+    ]
+  },
+  {
+    "title": "Integrar los tres nombres de agente",
+    "objective": "Usa penjual, pembeli y pemain para interpretar una situación breve con diferentes roles.",
+    "grammar": "Los nombres de agente permiten identificar a las personas por su actividad. El verbo de la oración ayuda a reconocer el papel de cada una.",
+    "vocabIds": [],
+    "reviewVocabIds": [
+      "b1u7_penjual",
+      "b1u7_pembeli",
+      "b1u7_pemain"
+    ],
+    "exercises": [
+      {
+        "vocabId": "b1u7_pemain",
+        "type": "write",
+        "prompt": "Escribe una oración propia con «pemain» y una actividad.",
+        "hint": "Puedes usar bermain y una actividad deportiva.",
+        "modelAnswer": "Pemain bermain sepak bola.",
+        "explanation": "El modelo relaciona pemain con la actividad que realiza."
+      },
+      {
+        "vocabId": "b1u7_pembeli",
+        "type": "translate_es_id",
+        "prompt": "Traduce: El comprador compra fruta.",
+        "answer": "Pembeli membeli buah.",
+        "explanation": "Pembeli nombra a quien realiza la compra."
+      }
+    ]
+  }
+]
                             },
                         {
                             id: 'b1_u8',
@@ -2386,126 +2688,247 @@
                             ]
                         ,
                                 "lessons": [
-                                    {
-                                        "title": "Reconocer escritor, docente y trabajador",
-                                        "objective": "Distingue penulis, pengajar y pekerja en oraciones que describen sus actividades.",
-                                        "grammar": "Penulis se relaciona con escribir, pengajar con enseñar y pekerja con trabajar. Compara los nombres con menulis, mengajar y bekerja sin asumir que todas las palabras con peN- se forman igual.",
-                                        "vocabIds": [
-                                            "b1u8_penulis",
-                                            "b1u8_pengajar",
-                                            "b1u8_pekerja"
-                                        ],
-                                        "reviewVocabIds": [
-                                            "b1u7_penjual",
-                                            "b1u7_pembeli",
-                                            "b1u7_pemain"
-                                        ],
-                                        "exercises": [
-                                            {
-                                                "vocabId": "b1u8_penulis",
-                                                "type": "mc",
-                                                "prompt": "¿Quién escribe una carta en «Penulis menulis surat»?",
-                                                "options": [
-                                                    "Penulis",
-                                                    "Pengajar",
-                                                    "Pekerja"
-                                                ],
-                                                "answer": 0,
-                                                "explanation": "Penulis nombra a la persona que escribe."
-                                            },
-                                            {
-                                                "vocabId": "b1u8_penulis",
-                                                "type": "translate_es_id",
-                                                "prompt": "Traduce: El escritor escribe una carta.",
-                                                "answer": "Penulis menulis surat.",
-                                                "explanation": "Penulis se relaciona con la actividad menulis."
-                                            },
-                                            {
-                                                "vocabId": "b1u8_pengajar",
-                                                "type": "order",
-                                                "prompt": "Ordena la oración: «El docente enseña al alumno».",
-                                                "words": [
-                                                    "Pengajar",
-                                                    "mengajar",
-                                                    "murid."
-                                                ],
-                                                "correctOrder": [
-                                                    "Pengajar",
-                                                    "mengajar",
-                                                    "murid."
-                                                ],
-                                                "explanation": "Pengajar nombra al docente y mengajar expresa enseñar."
-                                            },
-                                            {
-                                                "vocabId": "b1u8_pekerja",
-                                                "type": "listen",
-                                                "prompt": "Escucha y escribe la oración completa.",
-                                                "answer": "Pekerja bekerja di kantor.",
-                                                "explanation": "La oración presenta al trabajador en su lugar de trabajo."
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "title": "Repaso acumulativo de B1 U5–U8",
-                                        "objective": "Recupera el vocabulario y las construcciones de las cuatro unidades del bloque en contextos breves.",
-                                        "grammar": "El repaso reúne los verbos con -kan/-i, sus pasivas y los nombres de agente con pe-/peN-. Las formas se recuperan dentro de frases y no como reglas mecánicas aisladas.",
-                                        "vocabIds": [
-                                            "b1u8_penulis",
-                                            "b1u8_pengajar",
-                                            "b1u8_pekerja"
-                                        ],
-                                        "reviewVocabIds": [
-                                            "b1u5_mengingatkan",
-                                            "b1u5_memasukkan",
-                                            "b1u5_mendatangi",
-                                            "b1u5_menemui",
-                                            "b1u6_menghadiri",
-                                            "b1u6_mencintai",
-                                            "b1u6_memasuki",
-                                            "b1u6_dijelaskan",
-                                            "b1u6_ditemui",
-                                            "b1u7_penjual",
-                                            "b1u7_pembeli",
-                                            "b1u7_pemain"
-                                        ],
-                                        "exercises": [
-                                            {
-                                                "vocabId": "b1u8_pekerja",
-                                                "type": "mc",
-                                                "prompt": "¿Qué palabra nombra a la persona que trabaja?",
-                                                "options": [
-                                                    "Pekerja",
-                                                    "Penulis",
-                                                    "Pengajar"
-                                                ],
-                                                "answer": 0,
-                                                "explanation": "Pekerja significa trabajador o trabajadora."
-                                            },
-                                            {
-                                                "vocabId": "b1u8_pengajar",
-                                                "type": "translate_es_id",
-                                                "prompt": "Traduce: El docente enseña al alumno.",
-                                                "answer": "Pengajar mengajar murid.",
-                                                "explanation": "Pengajar nombra al docente; mengajar es la acción de enseñar."
-                                            },
-                                            {
-                                                "vocabId": "b1u8_penulis",
-                                                "type": "listen",
-                                                "prompt": "Escucha y escribe la oración completa.",
-                                                "answer": "Penulis menulis surat.",
-                                                "explanation": "Penulis y menulis pertenecen a la misma familia de actividad."
-                                            },
-                                            {
-                                                "vocabId": "b1u8_penulis",
-                                                "type": "write",
-                                                "prompt": "Escribe una oración propia con «penulis».",
-                                                "hint": "Puedes mencionar qué escribe esa persona.",
-                                                "modelAnswer": "Penulis menulis surat.",
-                                                "explanation": "El modelo presenta a la persona que escribe una carta."
-                                            }
-                                        ]
-                                    }
-                                ]
+  {
+    "title": "Reconocer escritor, docente y trabajador",
+    "objective": "Distingue penulis, pengajar y pekerja en oraciones que describen sus actividades.",
+    "grammar": "Penulis se relaciona con escribir, pengajar con enseñar y pekerja con trabajar. Compara los nombres con menulis, mengajar y bekerja sin asumir que todas las palabras con peN- se forman igual.",
+    "vocabIds": [
+      "b1u8_penulis",
+      "b1u8_pengajar",
+      "b1u8_pekerja"
+    ],
+    "reviewVocabIds": [
+      "b1u7_penjual",
+      "b1u7_pembeli",
+      "b1u7_pemain"
+    ],
+    "exercises": [
+      {
+        "vocabId": "b1u8_penulis",
+        "type": "mc",
+        "prompt": "¿Quién escribe una carta en «Penulis menulis surat»?",
+        "options": [
+          "Penulis",
+          "Pengajar",
+          "Pekerja"
+        ],
+        "answer": 0,
+        "explanation": "Penulis nombra a la persona que escribe."
+      },
+      {
+        "vocabId": "b1u8_penulis",
+        "type": "translate_es_id",
+        "prompt": "Traduce: El escritor escribe una carta.",
+        "answer": "Penulis menulis surat.",
+        "explanation": "Penulis se relaciona con la actividad menulis."
+      },
+      {
+        "vocabId": "b1u8_pengajar",
+        "type": "order",
+        "prompt": "Ordena la oración: «El docente enseña al alumno».",
+        "words": [
+          "Pengajar",
+          "mengajar",
+          "murid."
+        ],
+        "correctOrder": [
+          "Pengajar",
+          "mengajar",
+          "murid."
+        ],
+        "explanation": "Pengajar nombra al docente y mengajar expresa enseñar."
+      },
+      {
+        "vocabId": "b1u8_pekerja",
+        "type": "listen",
+        "prompt": "Escucha y escribe la oración completa.",
+        "answer": "Pekerja bekerja di kantor.",
+        "explanation": "La oración presenta al trabajador en su lugar de trabajo."
+      }
+    ]
+  },
+  {
+    "title": "Comparar los nombres de agente",
+    "objective": "Relaciona penulis, pengajar y pekerja con las actividades de escribir, enseñar y trabajar.",
+    "grammar": "Penulis se relaciona con menulis, pengajar con mengajar y pekerja con bekerja. Aprende las palabras completas en contexto, porque las formas de peN- no siguen una sola regla mecánica.",
+    "vocabIds": [
+      "b1u8_penulis",
+      "b1u8_pengajar",
+      "b1u8_pekerja"
+    ],
+    "reviewVocabIds": [
+      "b1u7_penjual",
+      "b1u7_pembeli",
+      "b1u7_pemain"
+    ],
+    "exercises": [
+      {
+        "vocabId": "b1u8_penulis",
+        "type": "order",
+        "prompt": "Ordena: «El escritor escribe una carta».",
+        "words": [
+          "surat.",
+          "menulis",
+          "Penulis"
+        ],
+        "correctOrder": [
+          "Penulis",
+          "menulis",
+          "surat."
+        ],
+        "explanation": "Penulis identifica a quien escribe y menulis expresa la actividad."
+      },
+      {
+        "vocabId": "b1u8_pengajar",
+        "type": "translate_es_id",
+        "prompt": "Traduce: El docente enseña al alumno.",
+        "answer": "Pengajar mengajar murid.",
+        "explanation": "Pengajar nombra al docente y mengajar la actividad de enseñar."
+      }
+    ]
+  },
+  {
+    "title": "Distinguir escritor, docente y trabajador",
+    "objective": "Interpreta los tres nombres de agente a partir de la actividad que aparece en la oración.",
+    "grammar": "El verbo o contexto permite identificar el papel: penulis escribe, pengajar enseña y pekerja trabaja.",
+    "vocabIds": [],
+    "reviewVocabIds": [
+      "b1u8_penulis",
+      "b1u8_pengajar",
+      "b1u8_pekerja"
+    ],
+    "exercises": [
+      {
+        "vocabId": "b1u8_pekerja",
+        "type": "listen",
+        "prompt": "Escucha y escribe la oración completa.",
+        "answer": "Pekerja bekerja di kantor.",
+        "explanation": "Pekerja nombra a la persona que trabaja."
+      },
+      {
+        "vocabId": "b1u8_penulis",
+        "type": "mc",
+        "prompt": "¿Qué palabra identifica a quien escribe una carta?",
+        "options": [
+          "Penulis",
+          "Pengajar",
+          "Pekerja"
+        ],
+        "answer": 0,
+        "explanation": "Penulis significa escritor o persona que escribe."
+      }
+    ]
+  },
+  {
+    "title": "Preparar el repaso acumulativo",
+    "objective": "Recupera las formas de las cuatro unidades antes del checkpoint final U5–U8.",
+    "grammar": "Relaciona los verbos con -kan/-i, las pasivas correspondientes y los nombres de agente. Esta lección prepara la recuperación acumulativa sin introducir vocabulario nuevo.",
+    "vocabIds": [],
+    "reviewVocabIds": [
+      "b1u5_mengingatkan",
+      "b1u5_memasukkan",
+      "b1u5_mendatangi",
+      "b1u5_menemui",
+      "b1u6_menghadiri",
+      "b1u6_mencintai",
+      "b1u6_memasuki",
+      "b1u6_dijelaskan",
+      "b1u6_ditemui",
+      "b1u7_penjual",
+      "b1u7_pembeli",
+      "b1u7_pemain",
+      "b1u8_penulis",
+      "b1u8_pengajar",
+      "b1u8_pekerja"
+    ],
+    "exercises": [
+      {
+        "vocabId": "b1u8_pekerja",
+        "type": "mc",
+        "prompt": "¿Qué papel tiene «Pekerja» en «Pekerja bekerja di kantor»?",
+        "options": [
+          "La persona que trabaja",
+          "La persona que enseña",
+          "La persona que escribe"
+        ],
+        "answer": 0,
+        "explanation": "Pekerja nombra a quien trabaja; la frase lo muestra en su lugar de trabajo."
+      },
+      {
+        "vocabId": "b1u8_pengajar",
+        "type": "mc",
+        "prompt": "¿Con qué actividad se relaciona «Pengajar»?",
+        "options": [
+          "mengajar",
+          "menulis",
+          "bekerja"
+        ],
+        "answer": 0,
+        "explanation": "Pengajar nombra al docente y se relaciona con la actividad mengajar."
+      }
+    ]
+  },
+  {
+    "title": "Repaso acumulativo de B1 U5–U8",
+    "objective": "Recupera el vocabulario y las construcciones de las cuatro unidades del bloque en contextos breves.",
+    "grammar": "El repaso reúne los verbos con -kan/-i, sus pasivas y los nombres de agente con pe-/peN-. Las formas se recuperan dentro de frases y no como reglas mecánicas aisladas.",
+    "vocabIds": [
+      "b1u8_penulis",
+      "b1u8_pengajar",
+      "b1u8_pekerja"
+    ],
+    "reviewVocabIds": [
+      "b1u5_mengingatkan",
+      "b1u5_memasukkan",
+      "b1u5_mendatangi",
+      "b1u5_menemui",
+      "b1u6_menghadiri",
+      "b1u6_mencintai",
+      "b1u6_memasuki",
+      "b1u6_dijelaskan",
+      "b1u6_ditemui",
+      "b1u7_penjual",
+      "b1u7_pembeli",
+      "b1u7_pemain"
+    ],
+    "exercises": [
+      {
+        "vocabId": "b1u8_pekerja",
+        "type": "mc",
+        "prompt": "¿Qué palabra nombra a la persona que trabaja?",
+        "options": [
+          "Pekerja",
+          "Penulis",
+          "Pengajar"
+        ],
+        "answer": 0,
+        "explanation": "Pekerja significa trabajador o trabajadora."
+      },
+      {
+        "vocabId": "b1u8_pengajar",
+        "type": "translate_es_id",
+        "prompt": "Traduce: El docente enseña al alumno.",
+        "answer": "Pengajar mengajar murid.",
+        "explanation": "Pengajar nombra al docente; mengajar es la acción de enseñar."
+      },
+      {
+        "vocabId": "b1u8_penulis",
+        "type": "listen",
+        "prompt": "Escucha y escribe la oración completa.",
+        "answer": "Penulis menulis surat.",
+        "explanation": "Penulis y menulis pertenecen a la misma familia de actividad."
+      },
+      {
+        "vocabId": "b1u8_penulis",
+        "type": "write",
+        "prompt": "Escribe una oración propia con «penulis».",
+        "hint": "Puedes mencionar qué escribe esa persona.",
+        "modelAnswer": "Penulis menulis surat.",
+        "explanation": "El modelo presenta a la persona que escribe una carta."
+      }
+    ]
+  }
+]
                             },
                         {
                             id: 'b1_u9',

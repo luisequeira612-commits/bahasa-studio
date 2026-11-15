@@ -208,11 +208,11 @@
 - Fuente de decisión: prueba manual del usuario el 14 nov 2026: un clip reproducido previamente online funciona en modo avión; un clip nunca almacenado no funciona al primer intento offline. La limitación observada es caché bajo demanda, no fallo de generación Piper. No declarar la biblioteca completa disponible offline hasta que el usuario prepare los niveles o toda la biblioteca en su dispositivo.
 
 
-## Migración curricular B1 U25–U40 — 15 nov 2026
-- PR #606–#609 fusionadas: B1 U21–U36 quedan con cinco lecciones explícitas por unidad. #609 se fusionó como `a10d37a8`; su CI pre-merge quedó verde en Regression tests y Offline quality reports.
-- PR #610 en preparación: añade siete lecciones authored (una en U37 antes del checkpoint acumulativo y dos en cada U38–U40). Las cuatro unidades quedarán con cinco lecciones y 22 ejercicios cada una; se reutiliza exclusivamente vocabulario existente.
-- Las siete respuestas de traducción reutilizan frases ya presentes en el manifiesto de audio. No se añaden IDs de vocabulario, clips ni frases de audio; no se alteran índices, metadata, hashes ni archivos MP3/Opus.
-- Baseline esperado tras #610: B1 232 lecciones (8×3, 2×4, 40×5) y 950 ejercicios; currículo total 626 lecciones en 127 unidades. Quedarán 10 unidades y 18 lecciones mínimas pendientes, todas B1 U41–U50.
-- AGENTS.md refleja el avance hasta U40. Se preservan IndexedDB v1, backup JSON v3, Service Worker, audio, dependencias y lógica runtime. Las pruebas estructurales no equivalen a validación nativa ni certificación MCER/BIPA; no se exige KBBI ni hablante nativo.
+## Migración curricular B1 U25–U44 — 15 nov 2026
+- PR #606–#609 fusionadas: B1 U21–U36 completadas. PR #610 también fusionada mediante squash como `93a3c71a`; B1 U37–U40 quedan con cinco lecciones explícitas y 22 ejercicios por unidad. CI pre-merge #610 completamente verde en run 43686463048 (Regression tests y Offline quality reports).
+- PR #611 en preparación: añade siete lecciones authored (dos en U41, una en U42 antes del checkpoint acumulativo, dos en U43 y dos en U44). Cada unidad queda con cinco lecciones y 22 ejercicios; solo reutiliza vocabulario existente.
+- Las siete traducciones reutilizan frases presentes en `audio/manifest.json`; no se añaden vocabulario, clips ni IDs/frases de audio. Sin cambios a IndexedDB v1, backup JSON v3, Service Worker, hashes/rutas de audio, dependencias ni runtime.
+- Baseline previsto tras #611: B1 239 lecciones (5×3, 1×4, 44×5) y 978 ejercicios; currículo total 633 lecciones en 127 unidades. Quedarán seis unidades y 11 lecciones mínimas pendientes, todas B1 U45–U50.
+- AGENTS.md refleja la migración hasta U44. La coherencia interna y las pruebas estructurales no equivalen a validación nativa ni certificación MCER/BIPA; no se exige KBBI ni hablante nativo.
 - Roadmap: indonesio hasta B2; después inglés A1 para hispanohablantes; ningún otro idioma planificado.
 

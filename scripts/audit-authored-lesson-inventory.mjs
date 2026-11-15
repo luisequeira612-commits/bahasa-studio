@@ -64,7 +64,38 @@ export function buildAuthoredLessonInventory(levels, minimum = 5, maximum = 6) {
   });
 }
 
-async function main() {
+export function findAuthoredLessonViolations(report) {
+  if (!Array.isArray(report)) throw new TypeError('report must be an array');
+  return report.flatMap((level) => [
+    ...level.belowMinimum.map((unit) => ({
+      level: level.level,
+      id: unit.id,
+      count: unit.authoredLessonCount,
+      reason: 'below-minimum',
+    })),
+    ...level.aboveMaximum.map((unit) => ({
+      level: level.level,
+      id: unit.id,
+      count: unit.authoredLessonCount,
+      reason: 'above-maximum',
+    })),
+  ]);
+}
+
+export function assertAuthoredLessonCompliance(report) {
+  const violations = findAuthoredLessonViolations(report);
+  if (violations.length) {
+    const details = violations.map((item) =>
+      item.level + ' ' + item.id + ': ' + item.count + ' authored lessons (' + item.reason + ')'
+    ).join('; ');
+    throw new Error(
+      violations.length + ' unit(s) violate the explicit 5–6 authored lesson standard: ' + details
+    );
+  }
+  return true;
+}
+
+async function main(args = process.argv.slice(2)) {
   const report = buildAuthoredLessonInventory(await loadAuthoredLessonLevels());
   console.log('Authored lesson inventory (runtime-generated lessons excluded)');
   for (const level of report) {
@@ -77,9 +108,19 @@ async function main() {
       ' authored lessons (' + (distribution || 'no authored lessons') + '); ' +
       level.belowMinimum.length + ' below minimum, ' + level.aboveMaximum.length + ' above maximum.'
     );
+    for (const unit of [...level.belowMinimum, ...level.aboveMaximum]) {
+      console.log('  - ' + level.level + ' ' + unit.id + ': ' + unit.authoredLessonCount + ' authored lessons');
+    }
   }
-  const gaps = report.reduce((sum, level) => sum + level.belowMinimum.length, 0);
-  console.log('Total units below the ' + 5 + '–' + 6 + ' lesson standard: ' + gaps);
+
+  const violations = findAuthoredLessonViolations(report);
+  console.log('Total units outside the 5–6 authored lesson standard: ' + violations.length);
+  if (args.includes('--strict')) {
+    assertAuthoredLessonCompliance(report);
+    console.log('Strict authored lesson gate: PASS');
+  } else {
+    console.log('Informational mode: use --strict to fail on any unit outside the standard.');
+  }
 }
 
 const invokedPath = process.argv[1] ? path.resolve(process.argv[1]) : '';

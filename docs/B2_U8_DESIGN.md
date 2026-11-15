@@ -87,6 +87,27 @@ Al menos cinco ejercicios deben usar oraciones completas y al menos uno debe inc
 - No volver a contar como nuevas las formas ya enseñadas en B1/A1/A2.
 - Si hace falta vocabulario nuevo, presentar primero forma, glosa, ejemplo contextual y motivo al dueño.
 
+## Inventario candidato para revisión (no aprobado)
+
+La bibliografía de Tebay (2024, diapositivas 8–10; ejemplos atribuidos a KBBI Daring 2016) permite priorizar ocho formas para estudiar la unidad sin repetir literalmente entradas encontradas en los archivos curriculares A1, A2 e `index.html` (que contiene B1/B2 inline). La búsqueda fue literal; no descarta solapamientos semánticos, derivados relacionados ni diferencias de uso.
+
+| Forma candidata | Base/dominio indicado por la fuente | Glosa española propuesta | Función que permite analizar |
+|---|---|---|---|
+| `kekotoran` | `kotor` | suciedad | cualidad/estado |
+| `kedatangan` | `datang` | llegada | evento |
+| `kementerian` | `menteri` | ministerio | institución/ámbito |
+| `kepulauan` | `pulau` | archipiélago | colectivo/geografía |
+| `ketidakadilan` | `tidak + adil` | injusticia | predicado complejo con negación |
+| `kesalahpahaman` | `salah + paham` | malentendido | predicado complejo |
+| `keingintahuan` | `ingin + tahu` | curiosidad | predicado complejo |
+| `keberuntungan` | `beruntung` | suerte / fortuna | predicado con prefijo bajo `ber-` |
+
+**Uso pedagógico sugerido:** lección 1 contrasta nombres de cualidad, evento, institución y colectivo; lección 2 analiza dominios complejos con negación o material verbal limitado; lección 3 desambigua por contexto y distingue nominalizaciones de predicados verbales adversativos/perfectivos. Las ocho formas son una lista de trabajo, no una selección final ni vocabulario aprobado.
+
+**Límites:** las glosas españolas son propuestas de traducción a partir de las glosas inglesas de la fuente, no certificación lexicográfica. No se escriben ejemplos nuevos, no se crean IDs y no se incorporan estas formas al currículo ejecutable hasta que el dueño apruebe forma, glosa y oración contextual. `ketinggian` se conserva solo como caso analítico de ambigüedad nominal (‘altura’) frente a lectura excesiva (‘demasiado alto’); `kejatuhan` y `kebakaran` siguen siendo contrastes verbales, no parte de esta lista nominal.
+
+**Fuente principal:** Sören E. Tebay (2024), “Prosodic domains and (re-)linearization in Indonesian nominalizing circumfixes”, diapositivas 8–10, 46. DGfS, Universität Leipzig. https://home.uni-leipzig.de/tebay/tebay2024keandgfs.pdf. La presentación distingue los cuatro primeros ejemplos nominales de cuatro dominios complejos y limita explícitamente qué elementos pueden quedar dentro del dominio `ke-...-an`.
+
 ## Guardarraíles
 
 - No repetir como contenido nuevo las palabras básicas ke-an ya cubiertas en B1 U12–U14.

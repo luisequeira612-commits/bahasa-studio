@@ -61,7 +61,7 @@ test('A1 keeps its complete 32-unit sequence and does not assess vocabulary befo
 
 test('A1 U1-U4 contain five authored lessons with sequenced introductions and spaced retrieval', () => {
   for (const unit of a1.units.slice(0, 4)) {
-    assert.equal(unit.lessons.length, 6, unit.id + ' must contain six authored lessons');
+    assert.equal(unit.lessons.length, 5, unit.id + ' must contain five authored lessons');
     const unitIds = new Set(unit.vocab.map(word => word.id));
     const introducedAt = new Map();
 

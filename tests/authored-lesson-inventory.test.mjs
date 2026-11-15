@@ -37,7 +37,28 @@ test('strict gate passes only when every implemented unit has 5–6 explicit les
 });
 
 test('repository inventory baseline distinguishes authored lessons from runtime-generated reinforcement', async () => {
-  const report = buildAuthoredLessonInventory(await loadAuthoredLessonLevels());
+  const levels = await loadAuthoredLessonLevels();
+  const report = buildAuthoredLessonInventory(levels);
+  const b1 = levels.find((level) => level.id === 'B1');
+  const consolidated = ['b1_u29', 'b1_u30', 'b1_u31', 'b1_u32'].map((id) => b1.units.find((unit) => unit.id === id));
+  assert.deepEqual(consolidated.map((unit) => unit.lessons.length), [5, 5, 5, 5]);
+  assert.deepEqual(consolidated.map((unit) => unit.lessons.reduce((sum, lesson) => sum + lesson.exercises.length, 0)), [22, 22, 22, 22]);
+  assert.equal(consolidated[3].lessons[4].title, 'Repaso acumulativo de B1 U28–U32');
+  const newLessonTitles = [
+    'Elegir el grado de obligación según la situación', 'Explicar y justificar una recomendación',
+    'Convertir una meta en un plan concreto', 'Mantener el esfuerzo a lo largo del plan',
+    'Secuenciar pasos hacia una meta', 'Preparar y decidir el siguiente paso',
+    'Reorganizar el horario según las prioridades',
+  ];
+  const addedLessons = consolidated.flatMap((unit) => unit.lessons.filter((item) => newLessonTitles.includes(item.title)));
+  assert.equal(addedLessons.length, 7);
+  for (const unit of consolidated) {
+    for (const lesson of unit.lessons.filter((item) => newLessonTitles.includes(item.title))) {
+      assert.deepEqual(new Set(lesson.exercises.map((exercise) => exercise.type)), new Set(['mc', 'translate_es_id', 'order', 'write']));
+      assert.equal(lesson.exercises.some((exercise) => exercise.type === 'listen'), false);
+      assert.equal(lesson.vocabIds.length, 0);
+    }
+  }
   const summary = Object.fromEntries(report.map((level) => [
     level.level,
     {
@@ -50,7 +71,7 @@ test('repository inventory baseline distinguishes authored lessons from runtime-
   assert.deepEqual(summary, {
     A1: { unitCount: 32, authoredLessonCount: 161, distribution: { 5: 31, 6: 1 } },
     A2: { unitCount: 40, authoredLessonCount: 200, distribution: { 5: 40 } },
-    B1: { unitCount: 50, authoredLessonCount: 210, distribution: { 3: 18, 4: 4, 5: 28 } },
+    B1: { unitCount: 50, authoredLessonCount: 217, distribution: { 3: 15, 4: 3, 5: 32 } },
     B2: { unitCount: 5, authoredLessonCount: 25, distribution: { 5: 5 } },
   });
 });

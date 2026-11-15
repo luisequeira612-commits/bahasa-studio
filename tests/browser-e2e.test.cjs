@@ -2079,7 +2079,10 @@ test('imported custom lesson content cannot inject executable markup into the un
     assert.equal(sheet.executed, 0);
 
     await page.evaluate(unitId => LessonEngine.startUnitById(unitId, 0), unitId);
-    await page.waitForTimeout(100);
+    await page.waitForFunction(expectedText => {
+      const area = document.getElementById('exerciseArea');
+      return Boolean(area && area.textContent.includes(expectedText));
+    }, payload);
     const lesson = await page.evaluate(() => ({
       images: document.querySelectorAll('#exerciseArea img[src="x"]').length,
       handlers: document.querySelectorAll('#exerciseArea [onerror]').length,

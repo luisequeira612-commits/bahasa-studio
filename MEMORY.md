@@ -208,10 +208,11 @@
 - Fuente de decisión: prueba manual del usuario el 14 nov 2026: un clip reproducido previamente online funciona en modo avión; un clip nunca almacenado no funciona al primer intento offline. La limitación observada es caché bajo demanda, no fallo de generación Piper. No declarar la biblioteca completa disponible offline hasta que el usuario prepare los niveles o toda la biblioteca en su dispositivo.
 
 
-## Migración curricular B1 U25–U36 — 15 nov 2026
-- PR [#606](https://github.com/luisequeira612-commits/bahasa-studio/pull/606), [#607](https://github.com/luisequeira612-commits/bahasa-studio/pull/607) y [#608](https://github.com/luisequeira612-commits/bahasa-studio/pull/608) están fusionadas. #608 deja B1 U29–U32 con cinco lecciones explícitas y 22 ejercicios por unidad (890 ejercicios B1).
-- CI #608 completamente verde: pre-merge [run 43682886724](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/43682886724), regresión post-merge [run 43684584143](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/43684584143) y publicación Pages [run 43684583384](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/43684583384).
-- PR #609 en curso: añade dos lecciones authored de cuatro ejercicios cada una a B1 U33–U36. Cada unidad queda con cinco lecciones y 22 ejercicios. Reutiliza exclusivamente vocabulario existente; las nuevas prácticas son opción múltiple, traducción, ordenación y escritura guiada. Las ocho respuestas de traducción ya existen en el manifiesto de audio; no añade vocabulario, clips ni IDs de audio.
-- Baseline esperado tras #609: B1 225 lecciones (11×3, 3×4, 36×5) y 922 ejercicios; currículo total 611 lecciones en 127 unidades. Quedarían 14 unidades y 25 lecciones mínimas pendientes, todas B1 U37–U50.
-- AGENTS.md se actualiza para reflejar el estado real: A1/A2 completos; B1 U1–U36 cumplen ya el estándar didáctico de 5–6 lecciones y U37–U50 siguen en migración; B2 U1–U5 implementadas, U6–U60 pendientes.
-- Se preservan IndexedDB v1, backup JSON v3, audio/manifiestos/hashes/rutas, Service Worker, dependencias y lógica runtime. Las comprobaciones estructurales no equivalen a validación nativa ni certificación MCER/BIPA; no se exige KBBI ni hablante nativo. Hoja de ruta: indonesio hasta B2; después inglés A1 para hispanohablantes; no otros idiomas por ahora.
+## Migración curricular B1 U25–U40 — 15 nov 2026
+- PR #606–#609 fusionadas: B1 U21–U36 quedan con cinco lecciones explícitas por unidad. #609 se fusionó como `a10d37a8`; su CI pre-merge quedó verde en Regression tests y Offline quality reports.
+- PR #610 en preparación: añade siete lecciones authored (una en U37 antes del checkpoint acumulativo y dos en cada U38–U40). Las cuatro unidades quedarán con cinco lecciones y 22 ejercicios cada una; se reutiliza exclusivamente vocabulario existente.
+- Las siete respuestas de traducción reutilizan frases ya presentes en el manifiesto de audio. No se añaden IDs de vocabulario, clips ni frases de audio; no se alteran índices, metadata, hashes ni archivos MP3/Opus.
+- Baseline esperado tras #610: B1 232 lecciones (8×3, 2×4, 40×5) y 950 ejercicios; currículo total 626 lecciones en 127 unidades. Quedarán 10 unidades y 18 lecciones mínimas pendientes, todas B1 U41–U50.
+- AGENTS.md refleja el avance hasta U40. Se preservan IndexedDB v1, backup JSON v3, Service Worker, audio, dependencias y lógica runtime. Las pruebas estructurales no equivalen a validación nativa ni certificación MCER/BIPA; no se exige KBBI ni hablante nativo.
+- Roadmap: indonesio hasta B2; después inglés A1 para hispanohablantes; ningún otro idioma planificado.
+

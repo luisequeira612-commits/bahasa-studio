@@ -61,7 +61,7 @@ test('A1 keeps its complete 32-unit sequence and does not assess vocabulary befo
 
 test('A1 U1-U4 contain five authored lessons with sequenced introductions and spaced retrieval', () => {
   for (const unit of a1.units.slice(0, 4)) {
-    assert.equal(unit.lessons.length, 5, unit.id + ' must contain five authored lessons');
+    assert.equal(unit.lessons.length, 6, unit.id + ' must contain six authored lessons');
     const unitIds = new Set(unit.vocab.map(word => word.id));
     const introducedAt = new Map();
 
@@ -265,7 +265,7 @@ test('A1 U17-U20 actively exercise all previously introduced vocabulary in each 
  }
 });
 
-test('A1 U21-U24 contain five authored lessons with complete introductions and spaced retrieval', () => {
+test('A1 U21-U24 contain six authored lessons with applied practice and spaced retrieval', () => {
   for (const unit of a1.units.slice(20, 24)) {
     assert.equal(unit.lessons.length, 5, unit.id + ' must contain five authored lessons');
     const unitIds = new Set(unit.vocab.map(word => word.id));
@@ -301,7 +301,7 @@ test('A1 U21-U24 contain five authored lessons with complete introductions and s
     }
     assert.ok(allExercises.every(exercise => exercise.generated !== true));
 
-    const finalLesson = unit.lessons[4];
+    const finalLesson = unit.lessons[unit.lessons.length - 1];
     assert.match(finalLesson.title, /Recuperación espaciada/);
     assert.deepEqual(Array.from(finalLesson.vocabIds || []), []);
     assert.deepEqual([...new Set(finalLesson.reviewVocabIds || [])].sort(), [...unitIds].sort());
@@ -309,10 +309,21 @@ test('A1 U21-U24 contain five authored lessons with complete introductions and s
     assert.deepEqual([...new Set(finalLesson.exercises.map(exercise => exercise.vocabId))].sort(), [...unitIds].sort());
     assert.equal(new Set(finalLesson.exercises.map(exercise => exercise.type)).size, 5);
 
+    assert.match(unit.lessons[4].title, /^Lección 5:/);
+    assert.match(unit.lessons[5].title, /^Lección 6: Recuperación espaciada/);
     let prior = [];
-    for (const lesson of unit.lessons) {
-      assert.deepEqual(Array.from(lesson.reviewVocabIds || []), prior,
-        unit.id + ' must review every previously introduced word in order');
+    for (const [lessonIndex, lesson] of unit.lessons.entries()) {
+      const reviewIds = Array.from(lesson.reviewVocabIds || []);
+      if (lessonIndex === 4) {
+        assert.ok(reviewIds.every(id => prior.includes(id)),
+          unit.id + ' applied lesson may review only previously introduced vocabulary');
+        assert.deepEqual([...new Set(reviewIds)].sort(),
+          [...new Set(lesson.exercises.map(exercise => exercise.vocabId))].sort(),
+          unit.id + ' applied lesson must actively retrieve its declared review vocabulary');
+      } else {
+        assert.deepEqual(reviewIds, prior,
+          unit.id + ' must review every previously introduced word in order');
+      }
       const available = new Set([...prior, ...(lesson.vocabIds || [])]);
       const exercised = new Set(lesson.exercises.map(exercise => exercise.vocabId));
       for (const exercise of lesson.exercises) {

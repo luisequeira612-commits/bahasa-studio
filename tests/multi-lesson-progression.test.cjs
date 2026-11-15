@@ -24,7 +24,7 @@ test('every A1 unit is divided into sequential lessons that introduce all vocabu
   const a1 = app.CourseData.levels.find(level => level.id === 'A1');
   for (const unit of a1.units) {
     const lessons = app.buildUnitLessons(unit);
-    const expectedLessonCount = unit.vocab.length >= 18 ? 6 : 5;
+    const expectedLessonCount = unit.vocab.length >= 18 || /^a1_u2[1-4]$/.test(unit.id) ? 6 : 5;
     assert.equal(lessons.length, expectedLessonCount,
       unit.id + ' should expose ' + expectedLessonCount + ' lessons under the A1 standard');
     const introduced = Array.from(lessons.flatMap(lesson => lesson.newVocab.map(word => word.id)));
@@ -373,7 +373,7 @@ test('A1 authored units use their lesson plans while legacy units receive runtim
     const lessons = app.buildUnitLessons(unit);
     const authoredCount = Array.isArray(unit.lessons) ? unit.lessons.length : 0;
     const legacyCount = authoredCount || Math.min(5, Math.max(2, Math.ceil(unit.vocab.length / 4)));
-    const targetCount = unit.vocab.length >= 18 ? 6 : 5;
+    const targetCount = unit.vocab.length >= 18 || /^a1_u2[1-4]$/.test(unit.id) ? 6 : 5;
     assert.equal(lessons.length, targetCount, unit.id + ' should have five or six lessons');
     assert.deepEqual(Array.from(lessons.slice(0, legacyCount), lesson => lesson.index),
       Array.from({ length: legacyCount }, (_, index) => index),

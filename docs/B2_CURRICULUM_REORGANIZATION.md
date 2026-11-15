@@ -1,8 +1,8 @@
 # Reorganización del currículo B2 (60 unidades)
 
 **Decisión del dueño:** 7 nov 2026, autorización explícita para reorganizar el borrador conservando todo el contenido anterior.  
-**Estado:** plan de migración y conservación; no hay unidades B2 nuevas publicadas por este cambio.  
-**Base de código:** `index.html` en `main`, commit `7584bcbe2fbdcb7014c82806836d5e29be30abd7`.
+**Estado:** plan de migración y conservación; U1–U6 están implementadas en el currículo, pero U6 permanece fuera del recorrido visible hasta completar audio y gate de publicación.  
+**Base de código:** `index.html` en `main`, commit `e5890b8bc09200d7073467ff25d2d20415aa58f1` (PR #615).
 
 ## Orden aprobado
 
@@ -39,7 +39,7 @@ El contenido íntegro del borrador anterior está en `docs/B2_LEGACY_DRAFT_ARCHI
 - Cada forma derivada nueva debe tener un ID canónico único. Antes de reutilizar IDs antiguos, comprobar colisiones en A1/A2/B1 y dentro de B2.
 - No exigir producción de una forma antes de su unidad prevista.
 - A1/A2/B1 quedan intactos. No modificar IndexedDB ni el backup JSON v3; sin dependencias ni servicios externos.
-- B2 permanece en desarrollo. U1–U4 están implementadas; el recorrido las expone con desbloqueo secuencial tras B1 y la unidad anterior. U5–U60 siguen sin contenido ejecutable y no se exponen como unidades disponibles.
+- B2 permanece en desarrollo. U1–U5 están implementadas y visibles con desbloqueo secuencial tras B1 y la unidad anterior. U6 está implementada y fusionada, pero no se expone todavía porque sus textos de audio no están en el manifiesto y el pipeline actual solo exporta A1/A2/B1. U7–U60 siguen sin contenido ejecutable; U7 tiene un diseño documental de cinco lecciones pendiente de aprobación de vocabulario.
 
 ## Vocabulario y evidencia
 

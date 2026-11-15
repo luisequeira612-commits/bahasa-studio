@@ -1,9 +1,9 @@
 # Diseño preliminar B2 U7 — nominalizaciones peN-an y per-an en contexto
 
-**Estado:** propuesta documental; no implementada ni publicada.  
+**Estado:** propuesta documental de cinco lecciones; vocabulario candidato pendiente de aprobación explícita, no implementada ni publicada.  
 **Fecha:** 8 nov 2026.  
 **Ubicación:** primera unidad del bloque B2 U7–U10, cuyo eje aprobado es nominalizaciones.  
-**Dependencias:** B1 completo; B2 U1–U6 como progresión prevista, sin presuponer que todos sus diseños estén aprobados o implementados.
+**Dependencias:** B1 completo; B2 U1–U6 implementadas. U6 está fusionada, pero permanece fuera del recorrido visible hasta preparar su cobertura de audio y actualizar el gate de publicación.
 
 ## Propósito y alcance
 
@@ -28,6 +28,11 @@ Por tanto, U7 no debe volver a enseñar PEN-/PE- como nombres de agente, ni repe
 - **Mukhibun & Saddhono (2023), “The Indonesian Confix /Pe-+-an/ in Thammasat University Student Descriptive Text: Allomorph, Usage, and Grammatical Meaning”.** Analiza textos descriptivos de estudiantes BIPA y registra seis variantes de pe(N)-an, además de funciones como acciones, procesos, maneras de hablar y organizaciones. El corpus es pequeño y de aprendientes; no se usa como prueba de frecuencia nativa ni como regla general para todas las bases. https://journal.unj.ac.id/unj/index.php/aksis/article/view/39924
 - **Zainuddin (2016), “A Study on Derivational Affixes of Indonesian Noun-Formation in Newspaper Editorial: A Semantic Perspective”.** Estudia nominalizaciones en editoriales de *Kompas* e incluye per-an, ke-an, pe-an y pen-an entre los patrones observados. Su utilidad aquí es contextualizar la presencia de estas formas en prosa editorial, no atribuir un significado uniforme a cada afijo. https://doi.org/10.5539/ijel.v6n3p148
 - **Suhardi (1984; publicación digital 2015), “Transformasi Nominalisasi Bentuk Verbal Bahasa Indonesia dalam Pengajaran Bahasa”.** Revisión de transformaciones nominalizadoras en indonesio, con peN-, pe-, per-an, pen-an y ke-an; advierte que nominalización y subordinación/embedding no deben confundirse. Se toma como referencia teórica histórica, no como validación del uso actual. https://doi.org/10.21831/cp.v2i2.7476
+- **Tata Bahasa Baku Bahasa Indonesia, edición digital del repositorio del Ministerio de Educación de Indonesia.** Describe funciones de per-…-an y ejemplos como `pergerakan` desde `bergerak`, `pertemuan` desde `bertemu` y otras nominalizaciones. Se utiliza como referencia normativa general, no para afirmar que cualquier base admite el patrón. https://repositori.kemendikdasmen.go.id/16351/1/Tata%20Bahasa%20Baku%20Bahasa%20Ind.pdf
+- **ANU, “Nominal Derivation in Indonesian”.** Analiza pares como `pertemuan`/`penemuan`, `perkembangan`/`pengembangan` y `perpisahan`/`pemisahan`; explica que los contrastes se relacionan con la familia verbal y la presencia o ausencia de agente. https://openresearch-repository.anu.edu.au/bitstreams/7d35fdf4-4618-4cc8-9983-3ade511727fd/download
+- **Northern Illinois University, SEAsite, “Circumfix peN-...-an”.** Registra `pengiriman` como nominalización de `kirim` y ofrece un ejemplo de uso con el envío de mercancías. https://seasite.niu.edu/Indonesian/new_indonesian/tatabahasa/circumfix/Circumfiks_peN--an_new.html
+- **Elon.io, “per-...-an: Valency, Lexicalization, and Register”.** Aporta ejemplos contemporáneos de `pertemuan` y `penemuan`, y contrasta `peraturan` con `pengaturan`. Es una fuente didáctica secundaria, no normativa. https://elon.io/grammar/indonesian/word-formation/per-an/usage
+- **“Bangga Berbahasa Indonesia”, material didáctico de secundaria.** Ofrece `pembelian` y `pengiriman` en ejemplos contextuales de compra de entradas y envío. Se usa como apoyo didáctico secundario. https://api.pintar.pdk.jatengprov.go.id/storage/uploads/users/kontributor_bptikp/materi/SMA_BSE/kelas10_Bangga_berbahasa_indonesia_B_hendrian.pdf
 
 ### Síntesis prudente
 
@@ -50,47 +55,70 @@ Al completar U7, el estudiante podrá:
 
 ## Lecciones propuestas
 
-### Lección 1 — peN-an y nombres de acción/proceso
+La unidad debe tener cinco lecciones explícitas para cumplir el contrato didáctico A1–B2. El diseño distribuye 16 ejercicios en una secuencia de 3/3/3/3/4; no se crearán consignas, claves ni audio definitivo hasta aprobar el inventario léxico.
 
-- Reconocer familias convencionales derivadas de verbos meN-.
-- Comparar la nominalización con una oración verbal equivalente para identificar qué información se mantiene y cuál queda implícita.
-- Reutilizar `pembelian` y `pengiriman` solo como puente de reconocimiento desde B1 si permanecen en el inventario; no volver a enseñarlas como palabras nuevas.
-- No asumir que todas las bases verbales forman una nominalización peN-an aceptada.
+### Lección 1 — peN-an: acción y proceso
+- Reconocer nominalizaciones convencionales relacionadas con familias verbales meN-, empezando por formas ya mencionadas como reconocimiento en B1: `pembelian` y `pengiriman`.
+- Comparar la palabra nominal con su familia verbal solo cuando la relación esté documentada.
+- Distinguir el nombre de la acción del verbo que describe quién la realiza.
+- No asumir que cualquier verbo meN- admite una nominalización peN-an.
 
-### Lección 2 — per-an y eventos/relaciones
+### Lección 2 — per-an: evento y relación
+- Recuperar `pertemuan` y `perjalanan` con sus IDs canónicos ya existentes en A2; no crear entradas duplicadas.
+- Interpretar cada palabra dentro de su contexto, sin asignar a per-an una traducción fija.
+- Comparar una oración verbal con la nominalización cuando la paráfrasis sea natural y esté respaldada.
+- Tratar las lecturas de evento, proceso, resultado, lugar o relación como posibilidades léxicas, no como una lista de significados aplicable a toda palabra.
 
-- Reconocer palabras convencionales relacionadas con verbos ber- y otras bases cuando la fuente lo documente.
-- Contrastar ejemplos como `pertemuan` y `penemuan` para mostrar que una misma raíz no implica el mismo significado ni la misma familia verbal.
-- Interpretar en contexto las lecturas de evento, resultado, lugar o relación nominal.
-- No presentar per-an como equivalente universal de «-ción» o «re-».
+### Lección 3 — Contraste de familias: pertemuan y penemuan
+- Estudiar el contraste documentado entre `pertemuan` (relacionado con `bertemu`) y `penemuan` (relacionado con `menemukan`).
+- Mostrar que compartir la raíz `temu` no vuelve intercambiables las dos nominalizaciones.
+- Usar `penemuan` solo si el dueño aprueba su incorporación y se conserva la evidencia contextual de la fuente.
+- Evitar pedir al estudiante que forme por analogía una segunda nominalización para cualquier raíz.
 
-### Lección 3 — Nominalización en textos formales
+### Lección 4 — Nominalizaciones en textos informativos
+- Localizar formas nominales en un fragmento informativo breve y determinar qué acción, evento o resultado compactan.
+- Reconstruir una cláusula verbal equivalente de manera guiada, sin afirmar que siempre existe una paráfrasis única.
+- Comparar el efecto discursivo de la nominalización y la formulación verbal explícita.
+- Incorporar `pembuatan` o `pergerakan` únicamente si cada forma supera la revisión documental y recibe aprobación; no son vocabulario aprobado.
 
-- Localizar nombres de proceso y evento en fragmentos informativos o editoriales.
-- Reconstruir de forma guiada la relación con una cláusula verbal sin exigir que cada nominalización tenga una paráfrasis única.
-- Comparar el estilo más compacto de la nominalización con una formulación verbal explícita.
-- Cerrar con producción guiada a partir de palabras previamente seleccionadas y auditadas.
+### Lección 5 — Lectura integrada y producción guiada
+- Interpretar un texto breve que combine formas peN-an y per-an previamente aprobadas.
+- Identificar las familias verbales solo donde la relación esté documentada.
+- Escribir un texto corto usando exclusivamente palabras enseñadas en U7 o vocabulario anterior ya conocido.
+- La actividad final evalúa selección léxica y claridad contextual, no la capacidad de inventar nominalizaciones.
 
 ## Banco de ejercicios previsto
 
-Propuesta de **16 ejercicios combinados**, aún sin consignas ni claves definitivas:
+Propuesta de **16 ejercicios**, distribuidos en cinco lecciones:
 
 | Lección | Opción múltiple | Traducción contextual | Ordenación | Escucha | Escritura | Total |
 |---|---:|---:|---:|---:|---:|---:|
-| 1 | 2 | 1 | 1 | 1 | 0 | 5 |
-| 2 | 2 | 1 | 1 | 1 | 0 | 5 |
-| 3 | 1 | 1 | 0 | 1 | 3 | 6 |
+| 1 | 1 | 1 | 0 | 1 | 0 | 3 |
+| 2 | 1 | 0 | 1 | 1 | 0 | 3 |
+| 3 | 1 | 1 | 0 | 1 | 0 | 3 |
+| 4 | 1 | 1 | 1 | 0 | 0 | 3 |
+| 5 | 1 | 0 | 0 | 0 | 3 | 4 |
 | **Total** | **5** | **3** | **2** | **3** | **3** | **16** |
 
-Al menos cinco ejercicios deben trabajar oraciones completas y al menos uno debe incluir producción guiada. La escucha utilizará únicamente el mecanismo local existente.
+Se mantienen cinco tipos: opción múltiple, traducción contextual, ordenación, escucha con audio reproducible y escritura guiada. Al menos cinco ejercicios deberán evaluar oraciones completas y al menos uno pedirá producción original. Las consignas y claves siguen pendientes del inventario aprobado. La escucha solo se activará cuando el pipeline tenga los clips correspondientes; no se publicará un ejercicio de escucha sin audio verificable.
 
 ## Vocabulario y dependencias
 
-- No se añaden entradas ni IDs en este documento.
-- `pembuatan`, `pengiriman`, `pembelian`, `pertemuan`, `penemuan`, `pergerakan`, `perjalanan` y `peraturan` son ejemplos/candidatos documentales, no vocabulario aprobado para U7.
-- Antes de elegir el inventario final, comparar cada forma con todo el vocabulario A1–B2 y comprobar ID, glosa, categoría, ejemplo, nivel y prerrequisitos.
-- No volver a contar como nuevas las palabras ya enseñadas en B1 o A1/A2.
-- Si hace falta vocabulario nuevo, presentar primero forma, glosa, ejemplo contextual y motivo al dueño.
+- No se añaden entradas ni IDs en este documento. Ninguna forma de la lista siguiente está aprobada como vocabulario nuevo de U7.
+- Revisión literal del código vigente el 15 nov 2026:
+  | Forma | Glosa de trabajo | Familia documentada | Ejemplo contextual propuesto | Estado / tratamiento |
+  |---|---|---|---|---|
+  | `pembelian` | compra/adquisición | `membeli` → peN-an | `Pembelian tiket untuk masuk ke tempat wisata itu dapat dilakukan pagi hari.` | Mencionada como reconocimiento en B1 U7; candidata a vocabulario activo, previa aprobación. Ejemplo de material didáctico. |
+  | `pengiriman` | envío | `mengirim` → peN-an | `Pengiriman barang-barang P.T. Makmur dilakukan dengan truk-truk.` | Mencionada como reconocimiento en B1 U7; candidata a vocabulario activo, previa aprobación. Ejemplo de NIU/SEAsite. |
+  | `pembuatan` | elaboración/fabricación | `membuat` → peN-an | `Pembuatan krupuk ini memakan waktu tiga hari.` | Sin coincidencia literal encontrada en el currículo ejecutable; candidata documentada por MSU, previa aprobación. |
+  | `penemuan` | descubrimiento/hallazgo | `menemukan` → peN-an | `Penemuan para ahli itu diterbitkan dalam jurnal ilmiah.` | Sin coincidencia literal encontrada; candidata para el contraste léxico con `pertemuan`, previa aprobación. Ejemplo de referencia didáctica secundaria. |
+  | `pergerakan` | movimiento; movimiento social | `bergerak` → per-an | `Pergerakan kaum wanita di Jawa dipelopori oleh Ibu Kartini.` | Sin coincidencia literal encontrada; candidata documentada por MSU, NIU y Tata Bahasa Baku, previa aprobación. |
+  | `pertemuan` | reunión/encuentro | `bertemu` → per-an | `Pertemuan itu penting.` | A2 U15, ID canónico `a2u15_pertemuan`; reutilizar, no crear otro ID. |
+  | `perjalanan` | viaje/trayecto | `berjalan` → per-an | `Perjalanan saya jauh.` | A2 U14, ID canónico `a2u14_perjalanan`; reutilizar, no crear otro ID. |
+  | `peraturan` | reglamento/normativa | Base nominal `aturan`; forma lexicalizada per-an | `Peraturan itu berlaku.` | Ya aparece en material B1 con ID `v242`; reutilizar solo como contraste léxico, no como ejemplo central de nominalización verbal. |
+- La búsqueda literal no demuestra ausencia de sinónimos, variantes ni solapamiento conceptual. Antes de cerrar el inventario, comparar cada forma con el vocabulario global A1–B2 y revisar ID, glosa, categoría, ejemplo, nivel y prerrequisitos.
+- No volver a contar como nuevas las palabras ya enseñadas en A1/A2/B1. La promoción de una forma mencionada solo como reconocimiento a vocabulario productivo debe quedar explícita.
+- Si hace falta vocabulario nuevo, presentar primero forma, glosa, ejemplo contextual, familia verbal, fuentes y motivo al dueño.
 
 ## Guardarraíles
 
@@ -110,6 +138,8 @@ Al menos cinco ejercicios deben trabajar oraciones completas y al menos uno debe
 2. Se selecciona un inventario pequeño que amplíe B1 sin duplicarlo y se compara con el inventario global.
 3. Cada relación base-derivado tiene evidencia contextual y una glosa que no dependa de traducir el afijo de forma mecánica.
 4. Los ejercicios distinguen acción/proceso/evento/resultado solo donde la palabra y el contexto lo respalden.
-5. Las pruebas verifican referencias de vocabulario, coherencia consigna-respuesta, progresión y ausencia de exposición anticipada.
+5. Las cinco lecciones cumplen el estándar authored de la unidad y las pruebas verifican referencias de vocabulario, coherencia consigna-respuesta, progresión y ausencia de exposición anticipada.
+6. El dueño aprueba explícitamente cada forma nueva, glosa y ejemplo antes de crear IDs o contenido ejecutable.
+7. La cobertura de audio de las actividades de escucha está generada y verificada en el manifiesto/índice/archivos antes de publicar la unidad.
 
 **Estatus de decisión:** el dueño aprobó el eje general de nominalizaciones para B2 U7–U10, no este desglose ni sus ejemplos. Esta propuesta es documental y reversible; no autoriza vocabulario nuevo ni contenido ejecutable.

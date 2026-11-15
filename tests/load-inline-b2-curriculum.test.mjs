@@ -294,10 +294,11 @@ test('B2 U7 implements five authored lessons, 16 exercises and canonical reused 
   assert.equal(exercises.length, 16);
   assert.deepEqual([...new Set(exercises.map((exercise) => exercise.type))].sort(),
     ['listen', 'mc', 'order', 'translate_es_id', 'write']);
-  const canonical = new Map([...a1.units, ...a2.units, ...b1.units].flatMap((entry) => entry.vocab || []).map((word) => [word.id, word]));
+  const canonicalA2 = new Map(a2.units.flatMap((entry) => entry.vocab || []).map((word) => [word.id, word]));
+  const canonicalB1 = new Map(b1.units.flatMap((entry) => entry.vocab || []).map((word) => [word.id, word]));
   for (const id of ['a2u15_pertemuan', 'a2u14_perjalanan', 'v242']) {
     const local = unit.vocab.find((word) => word.id === id);
-    const source = canonical.get(id);
+    const source = (id.startsWith('a2') ? canonicalA2 : canonicalB1).get(id);
     assert.ok(source, id + ' must exist in its original curriculum');
     assert.ok(local, id + ' must be reused in U7 without a duplicate ID');
     assert.equal(local.idn.toLowerCase(), source.idn.toLowerCase());
@@ -324,7 +325,7 @@ test('implemented B2 U1–U7 are executable while later legacy draft units stay 
     assert.ok(legacyArchive.includes('"id": "' + id + '"'), id + ' must remain in the historical archive');
   }
   for (const id of ['v231', 'v232', 'v233', 'v234', 'v235', 'v236', 'v237', 'v238',
-    'v239', 'v240', 'v241', 'v242', 'v243', 'v244', 'v245', 'v246']) {
+    'v239', 'v240', 'v241', 'v243', 'v244', 'v245', 'v246']) {
     assert.equal(b2.units.flatMap((unit) => unit.vocab || []).some((word) => word.id === id), false,
       id + ' belongs only to the archived legacy draft until approved for reuse');
   }

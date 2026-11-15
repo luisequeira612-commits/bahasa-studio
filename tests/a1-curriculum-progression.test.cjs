@@ -296,8 +296,8 @@ test('A1 U21-U24 contain six authored lessons with applied practice and spaced r
       lessonCounts.set(key, (lessonCounts.get(key) || 0) + 1);
     }
     for (const [key, count] of originalCounts) {
-      assert.equal(lessonCounts.get(key) || 0, count,
-        unit.id + ' must preserve every original unit exercise exactly once');
+      assert.ok((lessonCounts.get(key) || 0) >= count,
+        unit.id + ' must preserve every original unit exercise; spaced retrieval may repeat it');
     }
     assert.ok(allExercises.every(exercise => exercise.generated !== true));
 

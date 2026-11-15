@@ -30,12 +30,12 @@ function exercisesOf(unit) {
 }
 
 // B1 U50 readiness baseline updated with the final curriculum unit.
-test('B1 draft has fifty units, two hundred twenty-four unique IDs including earlier canonical vocabulary, and eight hundred forty-eight exercises', () => {
+test('B1 draft has fifty units, two hundred twenty-four unique IDs including earlier canonical vocabulary, and eight hundred sixty-two exercises', () => {
   const b1 = course.levels.find(level => level.id === 'B1');
   assert.ok(b1);
   assert.equal(b1.units.length, 50);
   assert.equal(new Set(b1.units.flatMap(unit => unit.vocab.map(word => word.id))).size, 224);
-  assert.equal(b1.units.reduce((sum, unit) => sum + exercisesOf(unit).length, 0), 848);
+  assert.equal(b1.units.reduce((sum, unit) => sum + exercisesOf(unit).length, 0), 862);
   assert.deepEqual(Array.from(b1.units, unit => unit.id), [
     'b1_u1', 'b1_u2', 'b1_u3', 'b1_u4', 'b1_u5', 'b1_u6', 'b1_u7',
     'b1_u8', 'b1_u9', 'b1_u10', 'b1_u11', 'b1_u12', 'b1_u13', 'b1_u14', 'b1_u15', 'b1_u16', 'b1_u17', 'b1_u18', 'b1_u19', 'b1_u20', 'b1_u21', 'b1_u22', 'b1_u23', 'b1_u24', 'b1_u25', 'b1_u26', 'b1_u27', 'b1_u28', 'b1_u29', 'b1_u30', 'b1_u31', 'b1_u32', 'b1_u33', 'b1_u34', 'b1_u35', 'b1_u36', 'b1_u37', 'b1_u38', 'b1_u39', 'b1_u40', 'b1_u41', 'b1_u42', 'b1_u43', 'b1_u44', 'b1_u45', 'b1_u46', 'b1_u47', 'b1_u48', 'b1_u49', 'b1_u50'
@@ -700,7 +700,7 @@ test('B1 U27-U29 teach opinions, probability and advice', () => {
   ]);
   const earlierIds = new Set(b1.units.filter(unit => !['b1_u27', 'b1_u28', 'b1_u29'].includes(unit.id)).flatMap(unit => unit.vocab.map(word => word.id)));
   for (const [unit, expectedCount] of expectedCounts) {
-    assert.equal(unit.lessons.length, ['b1_u22', 'b1_u27', 'b1_u32', 'b1_u37', 'b1_u42', 'b1_u47'].includes(unit.id) ? 4 : 3);
+    assert.equal(unit.lessons.length, 5, unit.id + ' must have five authored lessons');
     const exercises = exercisesOf(unit);
     assert.equal(exercises.length, expectedCount);
     const types = new Set(exercises.map(exercise => exercise.type));
@@ -1132,20 +1132,23 @@ test('B1 U50 closes the level with an integrated project capstone', () => {
   assert.equal(unit.vocab.some(word => word.verificationStatus === 'verified_primary'), false);
 });
 
-test('B1 U25-U26 describe character and places with canonical A1 vocabulary', () => {
+test('B1 U25-U28 describe character, places, opinions and degrees of certainty', () => {
   const b1 = course.levels.find(level => level.id === 'B1');
   const u25 = b1.units.find(unit => unit.id === 'b1_u25');
   const u26 = b1.units.find(unit => unit.id === 'b1_u26');
   assert.ok(u25 && u26);
   assert.deepEqual(Array.from(u25.vocab, word => word.id), ['v457', 'b1v078', 'b1v079', 'b1v080', 'b1v081', 'b1v082', 'b1v083']);
   assert.deepEqual(Array.from(u26.vocab, word => word.id), ['b1v084', 'b1v085', 'b1v086', 'b1v087', 'v383']);
-  const expectedCounts = new Map([[u25, 14], [u26, 14]]);
+  const u27 = b1.units.find(unit => unit.id === 'b1_u27');
+  const u28 = b1.units.find(unit => unit.id === 'b1_u28');
+  assert.ok(u27 && u28);
+  const expectedCounts = new Map([[u25, 18], [u26, 18], [u27, 20], [u28, 18]]);
   const allNewForms = new Map([
     ['b1v078', 'sabar'], ['b1v079', 'pendiam'], ['b1v080', 'rajin'], ['b1v081', 'malas'],
     ['b1v082', 'lucu'], ['b1v083', 'sopan'], ['b1v084', 'nyaman'], ['b1v085', 'ramai'],
     ['b1v086', 'sepi'], ['b1v087', 'indah']
   ]);
-  const earlierIds = new Set(b1.units.filter(unit => !['b1_u25', 'b1_u26'].includes(unit.id)).flatMap(unit => unit.vocab.map(word => word.id)));
+  const earlierIds = new Set(b1.units.filter(unit => !['b1_u25', 'b1_u26', 'b1_u27', 'b1_u28'].includes(unit.id)).flatMap(unit => unit.vocab.map(word => word.id)));
   for (const [unit, expectedCount] of expectedCounts) {
     assert.equal(unit.lessons.length, ['b1_u22', 'b1_u27', 'b1_u32', 'b1_u37', 'b1_u42', 'b1_u47'].includes(unit.id) ? 4 : 3);
     const exercises = exercisesOf(unit);
@@ -1187,6 +1190,11 @@ test('B1 U25-U26 describe character and places with canonical A1 vocabulary', ()
   const u25Text = (u25.grammar + u25.lessons.map(lesson => lesson.grammar).join(' ')).toLowerCase();
   for (const term of ['ramah', 'sabar', 'pendiam', 'rajin', 'malas', 'lucu', 'sopan']) assert.ok(u25Text.includes(term), 'missing character adjective ' + term);
   assert.match(u25.grammar + u25.lessons.map(lesson => lesson.grammar).join(' '), /diam[\s\S]*peN-/i);
+  assert.match(u25.lessons[4].title, /Retratar a una persona/);
+  assert.match(u26.lessons[4].title, /Describir y comparar/);
+  assert.match(u27.lessons[4].title, /Repaso acumulativo/);
+  assert.match(u28.lessons[4].title, /Ajustar el grado de certeza/);
+  assert.equal(u27.lessons[3].vocabIds.length, 0);
   const u26Text = (u26.grammar + u26.lessons.map(lesson => lesson.grammar).join(' ')).toLowerCase();
   for (const term of ['nyaman', 'ramai', 'sepi', 'indah', 'bersih']) assert.ok(u26Text.includes(term), 'missing place adjective ' + term);
   assert.ok(exercisesOf(u25).some(exercise => exercise.type === 'write' && /yang/.test(exercise.modelAnswer)));

@@ -206,3 +206,10 @@
 - No cambia Piper, `audio-engine.js`, IDs SHA-1, rutas, normalización, IndexedDB v1, backup JSON v3 ni dependencias. Descarga MP3 existentes; no genera audio nuevo. Respuestas libres dinámicas del Tutor no están incluidas.
 - Verificado en `main` tras el merge: `index.html`, `offline-audio-manager.js`, `service-worker.js`, `MEMORY.md` y `docs/AUDIO.md` contienen los cambios esperados. Regresión y despliegue Pages post-merge todavía pendientes de confirmación.
 - Fuente de decisión: prueba manual del usuario el 14 nov 2026: un clip reproducido previamente online funciona en modo avión; un clip nunca almacenado no funciona al primer intento offline. La limitación observada es caché bajo demanda, no fallo de generación Piper. No declarar la biblioteca completa disponible offline hasta que el usuario prepare los niveles o toda la biblioteca en su dispositivo.
+
+
+## Migración curricular B1 U25–U28 — 15 nov 2026
+- PR [#606](https://github.com/luisequeira612-commits/bahasa-studio/pull/606) fusionada por squash en `main` como `32724b02ee317a272f21d10feb05984e8c7bcb42`; ambos checks del head `f81cd1a5` (`test` y `Offline quality reports`) terminaron en éxito. U21–U24 quedan con cinco lecciones explícitas cada una.
+- Siguiente tanda preparada en rama `curriculum/b1-u25-u28-five-lessons-20261115`: U25, U26 y U28 pasan de tres a cinco lecciones; U27 pasa de cuatro a cinco, conservando su repaso acumulativo como quinta. Se añaden siete lecciones (dos ejercicios cada una), sin vocabulario nuevo ni nuevos textos de audio.
+- La tanda mantiene el alcance limitado a `index.html`, pruebas y esta memoria. No modifica IndexedDB v1, backup JSON v3, rutas/hashes/metadata/audio, Service Worker, dependencias ni lógica runtime. La coherencia interna no equivale a certificación lingüística; no se exige KBBI ni hablante nativo.
+- Proyección tras la tanda: B1 210 lecciones explícitas; inventario total 596 lecciones en 127 unidades. 105 unidades cumplirán 5–6 lecciones y quedarán 22 unidades por debajo del mínimo (40 lecciones mínimas pendientes), todas en B1 U29–U50. Cifras sujetas a CI y al inventario del head final.

@@ -212,7 +212,7 @@
 - PR #606–#609 fusionadas: B1 U21–U36 completadas. PR #610 también fusionada mediante squash como `93a3c71a`; B1 U37–U40 quedan con cinco lecciones explícitas y 22 ejercicios por unidad. CI pre-merge #610 completamente verde en run 43686463048 (Regression tests y Offline quality reports).
 - PR #611 en preparación: añade siete lecciones authored (dos en U41, una en U42 antes del checkpoint acumulativo, dos en U43 y dos en U44). Cada unidad queda con cinco lecciones y 22 ejercicios; solo reutiliza vocabulario existente.
 - Las siete traducciones reutilizan frases presentes en `audio/manifest.json`; no se añaden vocabulario, clips ni IDs/frases de audio. Sin cambios a IndexedDB v1, backup JSON v3, Service Worker, hashes/rutas de audio, dependencias ni runtime.
-- Baseline previsto tras #611: B1 239 lecciones (5×3, 1×4, 44×5) y 978 ejercicios; currículo total 633 lecciones en 127 unidades. Quedarán seis unidades y 11 lecciones mínimas pendientes, todas B1 U45–U50.
+- Baseline previsto tras #611: B1 246 lecciones (5×3, 1×4, 44×5) y 1006 ejercicios; currículo total 640 lecciones en 127 unidades. Quedarán dos unidades y cuatro lecciones mínimas pendientes, todas B1 U49–U50.
 - AGENTS.md refleja la migración hasta U44. La coherencia interna y las pruebas estructurales no equivalen a validación nativa ni certificación MCER/BIPA; no se exige KBBI ni hablante nativo.
 - Roadmap: indonesio hasta B2; después inglés A1 para hispanohablantes; ningún otro idioma planificado.
 

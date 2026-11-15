@@ -22,6 +22,7 @@ MANIFEST = ROOT / "audio" / "manifest.json"
 PIPER_VOICE = "id_ID-news_tts-medium"
 PIPER_REVISION = "7c89b592e94392a56c789bd35a860fec66a6583f"
 PIPER_BASE = f"https://huggingface.co/rhasspy/piper-voices/resolve/{PIPER_REVISION}/id/id_ID/news_tts/medium"
+LEVELS = ("A1", "A2", "B1", "B2", "all")
 
 
 def normalize(text: str) -> str:
@@ -127,7 +128,7 @@ def ensure_single_voice(metadata_file: Path, engine: str, voice: str):
             raise RuntimeError(
                 "The production library is locked to one engine/voice. "
                 f"Existing: {existing}; requested: {expected}. "
-                "Do not mix voices between A1, A2 and B1."
+                "Do not mix voices between A1, A2, B1 and B2."
             )
     else:
         metadata_file.write_text(json.dumps(expected, indent=2) + "\n", encoding="utf-8")
@@ -191,7 +192,7 @@ def main():
     parser.add_argument("--engine", choices=("edge", "piper", "mms"), required=True)
     parser.add_argument("--mode", choices=("samples", "full"), default="samples")
     parser.add_argument("--samples", action="store_true", help="alias for --mode samples")
-    parser.add_argument("--level", choices=("A1", "A2", "B1", "all"), default="all")
+    parser.add_argument("--level", choices=LEVELS, default="all")
     parser.add_argument("--limit", type=int, default=10, help="0 means all selected texts")
     parser.add_argument("--voice", default="id-ID-ArdiNeural")
     parser.add_argument("--force", action="store_true")

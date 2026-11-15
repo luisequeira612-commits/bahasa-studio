@@ -86,20 +86,36 @@ Al completar U9, el estudiante podrá:
 - Reconstruir la relación entre el contenido de la construcción y la cláusula principal.
 - Distinguir causa, consecuencia y marco temporal con apoyo del contexto, no solo por -nya.
 - Contrastar ejemplos de evento completado con formas de cambio en curso, tal como los analiza Grangé.
-- Cerrar con lectura guiada y paráfrasis en español; no exigir producción libre de construcciones avanzadas.
+- No convertir la lectura causal en una traducción fija ni inferir pasado solo por -nya.
+
+### Lección 4 — Ambigüedad estructural en secuencias di-V-nya
+
+- Comparar pares contextualizados en los que -nya puede ser pronombre de tercera persona o parte del patrón verbal con complemento nominal.
+- Usar la presencia, posición y función del NP complemento como indicio de análisis.
+- Identificar voz de paciente y papel semántico del participante sin reducir la estructura a una pasiva mecánica.
+- Explicar por qué la secuencia aislada no basta para decidir la interpretación.
+
+### Lección 5 — Lectura integrada y paráfrasis controlada
+
+- Integrar en un texto formal breve los contrastes de función, complemento, voz, causalidad y aspecto estudiados.
+- Justificar la interpretación con dos o más indicios sintácticos/contextuales.
+- Parafrasear en español manteniendo participantes y relación discursiva, sin añadir agente, tiempo o causalidad no expresados.
+- Cerrar con recuperación acumulativa; no producir libremente construcciones nuevas.
 
 ## Banco de ejercicios previsto
 
-Propuesta de **16 ejercicios combinados**, todavía sin consignas ni claves definitivas:
+Propuesta de **16 ejercicios combinados en cinco lecciones authored**, todavía sin consignas ni claves definitivas:
 
 | Lección | Opción múltiple | Identificar función | Ordenación | Traducción contextual | Lectura guiada | Total |
 |---|---:|---:|---:|---:|---:|---:|
-| 1 | 2 | 2 | 0 | 1 | 0 | 5 |
-| 2 | 2 | 1 | 1 | 1 | 0 | 5 |
-| 3 | 1 | 1 | 0 | 1 | 3 | 6 |
-| **Total** | **5** | **4** | **1** | **3** | **3** | **16** |
+| 1 | 1 | 1 | 0 | 1 | 0 | 3 |
+| 2 | 1 | 1 | 1 | 0 | 0 | 3 |
+| 3 | 1 | 0 | 0 | 1 | 1 | 3 |
+| 4 | 1 | 1 | 0 | 0 | 1 | 3 |
+| 5 | 1 | 0 | 0 | 1 | 2 | 4 |
+| **Total** | **5** | **3** | **1** | **3** | **4** | **16** |
 
-Al menos cinco ejercicios deben trabajar oraciones completas y al menos uno debe incluir producción guiada de paráfrasis en español. La unidad no debe exigir grabación ni nuevos recursos: la escucha, si se conserva, usará únicamente el mecanismo local existente y no será la evidencia principal para una estructura caracterizada como escrita/formal.
+Al menos cinco ejercicios deben trabajar oraciones completas y al menos uno debe incluir producción guiada de paráfrasis en español. La unidad no debe exigir grabación ni nuevos recursos: la escucha, si se conserva, será secundaria y usará únicamente el mecanismo local existente, nunca como evidencia principal para una estructura caracterizada como escrita/formal.
 
 ## Vocabulario y dependencias
 

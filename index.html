@@ -6734,6 +6734,19 @@
                                     ]
                                 },
                                 {
+                                    title: 'Aplicar mejoras y revisar el progreso',
+                                    objective: 'Relaciona una tarea terminada con un avance y elige qué capacidad conviene mejorar después.',
+                                    grammar: 'Compara el resultado alcanzado con el objetivo inicial. Meningkatkan se centra en mejorar un nivel o resultado; mengembangkan, en desarrollar una capacidad. Menyelesaikan permite señalar la tarea que ya se completó.',
+                                    reviewVocabIds: ['b1v140', 'b1v141', 'b1v142', 'a2u12_meningkatkan', 'a2u12_mengembangkan'],
+                                    vocabIds: [],
+                                    exercises: [
+                                        { vocabId: 'a2u12_meningkatkan', type: 'mc', prompt: '¿Qué expresa meningkatkan en «meningkatkan kemampuan»?', options: ["Mejorar o aumentar una capacidad","Terminar una tarea","Reconocer un logro"], answer: 0, explanation: 'Meningkatkan expresa mejorar o aumentar un nivel, una calidad o una cantidad.,0' },
+                                        { vocabId: 'b1v142', type: 'translate_es_id', prompt: 'Traduce: «Terminamos la tarea a tiempo».', answer: 'Kami menyelesaikan tugas tepat waktu.', explanation: 'Menyelesaikan expresa completar una tarea; tepat waktu indica que se hace a tiempo.' },
+                                        { vocabId: 'a2u12_mengembangkan', type: 'order', prompt: 'Ordena: «Quiero mejorar mi capacidad».', words: ["kemampuan.","meningkatkan","ingin","Saya"], correctOrder: ["Saya","ingin","meningkatkan","kemampuan."], explanation: 'Ingin introduce el deseo y meningkatkan kemampuan expresa mejorar una capacidad.,0' },
+                                        { vocabId: 'b1v140', type: 'write', prompt: 'Describe un avance, menciona una tarea completada y explica qué capacidad quieres mejorar después.', hint: 'Integra kemajuan, menyelesaikan y meningkatkan.', modelAnswer: 'Kami melihat kemajuan dalam pekerjaan. Kami menyelesaikan tugas tepat waktu. Saya ingin meningkatkan kemampuan saya.', explanation: 'La producción conecta progreso, finalización de una tarea y una meta de mejora.' }
+                                    ]
+                                },
+                                {
                                     "title": "Repaso acumulativo de B1 U33–U37",
                                     "objective": "Recupera vocabulario de problemas, opciones, negociación y comunicación para explicar cómo se resuelve una situación.",
                                     "grammar": "Masalah y hambatan describen dificultades; pilihan y risiko ayudan a evaluar alternativas; kesepakatan y menyetujui expresan acuerdos; mengonfirmasi, menyampaikan y memastikan organizan la comunicación. Relaciona cada palabra con la etapa del proceso.",
@@ -6856,6 +6869,33 @@
                                         { vocabId: 'a2u26_menghargai', type: 'write', prompt: 'Escribe un mensaje breve en cuatro frases: recibe un comentario, responde con respeto, reconoce una contribución y explica cómo valorarás la opinión de otra persona.', hint: 'Integra umpan balik, memuji y menghargai.', modelAnswer: 'Saya menerima umpan balik dari teman. Saya menanggapi komentar itu dengan baik. Dia memuji kerja keras tim. Kita harus menghargai pendapat orang lain.', explanation: 'La producción integra recibir comentarios, responder y valorar las opiniones ajenas.' }
                                     ]
                                 }
+                            ,
+                                {
+                                    title: 'Responder a los comentarios con acciones concretas',
+                                    objective: 'Explica cómo recibes una observación y la conviertes en una mejora concreta.',
+                                    grammar: 'Umpan balik es la retroalimentación recibida. Menghargai permite mostrar que valoras la opinión; memperbaiki describe la acción posterior de corregir o mejorar un trabajo.',
+                                    reviewVocabIds: ['b1v145', 'b1v146', 'b1v147', 'b1v148', 'a2u26_menghargai'],
+                                    vocabIds: [],
+                                    exercises: [
+                                        { vocabId: 'b1v145', type: 'mc', prompt: '¿Qué es umpan balik?', options: ["Retroalimentación sobre un trabajo o una idea","Un acuerdo definitivo","Una costumbre regional"], answer: 0, explanation: 'Umpan balik significa comentarios o retroalimentación.,0' },
+                                        { vocabId: 'b1v145', type: 'translate_es_id', prompt: 'Traduce: «Recibo comentarios del profesor».', answer: 'Saya menerima umpan balik dari guru.', explanation: 'Menerima umpan balik expresa recibir comentarios o retroalimentación.' },
+                                        { vocabId: 'a2u26_menghargai', type: 'order', prompt: 'Ordena: «Valoro la opinión de mi amigo».', words: ["teman.","pendapat","menghargai","Saya"], correctOrder: ["Saya","menghargai","pendapat","teman."], explanation: 'Menghargai pendapat teman expresa valorar la opinión de un amigo.,0' },
+                                        { vocabId: 'b1v146', type: 'write', prompt: 'Escribe una respuesta breve a un comentario: agradece la observación y explica qué mejorarás.', hint: 'Usa umpan balik, menghargai y memperbaiki.', modelAnswer: 'Saya menerima umpan balik dari guru. Saya menghargai pendapat itu. Saya ingin memperbaiki pekerjaan saya.', explanation: 'La producción pasa de recibir comentarios a valorar la opinión y actuar.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Equilibrar crítica y reconocimiento',
+                                    objective: 'Formula una observación respetuosa y reconoce una contribución positiva.',
+                                    grammar: 'Mengkritik se dirige a una idea o trabajo, no necesariamente a la persona. Memuji reconoce una acción positiva. Menghargai ayuda a mantener el respeto durante el intercambio.',
+                                    reviewVocabIds: ['b1v145', 'b1v146', 'b1v147', 'b1v148', 'a2u26_menghargai'],
+                                    vocabIds: [],
+                                    exercises: [
+                                        { vocabId: 'b1v147', type: 'mc', prompt: '¿Cuál es el enfoque más respetuoso al usar mengkritik?', options: ["Comentar la idea sin atacar a la persona","Insultar a quien presenta la idea","Ignorar toda observación"], answer: 0, explanation: 'La crítica constructiva se centra en la idea, no en un ataque personal.,0' },
+                                        { vocabId: 'b1v147', type: 'translate_es_id', prompt: 'Traduce: «Podemos criticar la idea sin atacar a la persona».', answer: 'Kita dapat mengkritik ide tanpa menyerang orangnya.', explanation: 'Mengkritik ide limita la crítica a la idea; tanpa menyerang orangnya evita el ataque personal.' },
+                                        { vocabId: 'b1v148', type: 'order', prompt: 'Ordena: «Él/Ella elogia el esfuerzo del equipo».', words: ["tim.","kerja keras","memuji","Dia"], correctOrder: ["Dia","memuji","kerja keras","tim."], explanation: 'Memuji kerja keras tim expresa reconocer el esfuerzo del equipo.,0' },
+                                        { vocabId: 'b1v148', type: 'write', prompt: 'Escribe dos frases: una crítica centrada en una idea y un reconocimiento concreto del esfuerzo.', hint: 'Integra mengkritik y memuji.', modelAnswer: 'Kita dapat mengkritik ide tanpa menyerang orangnya. Dia memuji kerja keras tim.', explanation: 'La producción combina una observación respetuosa y un elogio.' }
+                                    ]
+                                }
                             ]
                         },
                         {
@@ -6912,6 +6952,33 @@
                                         { vocabId: 'b1v153', type: 'write', prompt: 'Escribe un resumen de cuatro frases: presenta un hecho, menciona una prueba, explica qué demuestra y formula una conclusión.', hint: 'Integra fakta, bukti, membuktikan y menyimpulkan.', modelAnswer: 'Fakta itu berbeda dari pendapat pribadi. Kami membutuhkan bukti yang jelas. Data itu membuktikan bahwa rencana itu berhasil. Kami menyimpulkan bahwa rencana itu berhasil.', explanation: 'La producción sigue la secuencia de hecho, evidencia, demostración y conclusión.' }
                                     ]
                                 }
+                            ,
+                                {
+                                    title: 'Organizar la evidencia antes de concluir',
+                                    objective: 'Ordena hechos y pruebas para explicar por qué una afirmación merece confianza.',
+                                    grammar: 'Fakta identifica un hecho o dato; bukti es la evidencia que lo respalda. Berdasarkan introduce la base de una afirmación. Distinguir estos elementos evita presentar una opinión como si fuera un hecho probado.',
+                                    reviewVocabIds: ['b1v149', 'b1v150', 'b1v151', 'b1v152'],
+                                    vocabIds: [],
+                                    exercises: [
+                                        { vocabId: 'b1v150', type: 'mc', prompt: '¿Qué distingue fakta de bukti?', options: ["Fakta es un hecho; bukti es la evidencia que respalda una afirmación","Fakta es una opinión; bukti es un saludo","Ambas palabras significan acuerdo"], answer: 0, explanation: 'Fakta significa hecho o dato; bukti significa prueba o evidencia.,0' },
+                                        { vocabId: 'b1v150', type: 'translate_es_id', prompt: 'Traduce: «Ese hecho es distinto de una opinión».', answer: 'Fakta itu berbeda dari pendapat.', explanation: 'Fakta itu berbeda dari pendapat contrasta un hecho con una opinión.' },
+                                        { vocabId: 'b1v149', type: 'order', prompt: 'Ordena: «Necesitamos pruebas claras».', words: ["jelas.","bukti","membutuhkan","Kami","yang"], correctOrder: ["Kami","membutuhkan","bukti","yang","jelas."], explanation: 'Yang jelas describe el tipo de evidencia que se necesita.,0' },
+                                        { vocabId: 'b1v149', type: 'write', prompt: 'Presenta un hecho y explica qué evidencia necesitarías para respaldar una afirmación relacionada.', hint: 'Usa fakta y bukti.', modelAnswer: 'Fakta itu berbeda dari pendapat. Kami membutuhkan bukti yang jelas.', explanation: 'La producción diferencia un dato de la evidencia necesaria para sostener una afirmación.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Comunicar conclusiones con fundamento',
+                                    objective: 'Explica qué demuestran unos datos y presenta una conclusión basada en ellos.',
+                                    grammar: 'Membuktikan expresa demostrar algo mediante pruebas. Menyimpulkan expresa llegar a una conclusión; puede introducir el contenido con bahwa. Berdasarkan señala la información en la que se apoya la conclusión.',
+                                    reviewVocabIds: ['b1v149', 'b1v150', 'b1v151', 'b1v152', 'b1v153'],
+                                    vocabIds: [],
+                                    exercises: [
+                                        { vocabId: 'b1v153', type: 'mc', prompt: '¿Qué expresa menyimpulkan?', options: ["Llegar a una conclusión","Recibir comentarios","Adaptarse a un entorno"], answer: 0, explanation: 'Menyimpulkan significa concluir o sacar una conclusión.,0' },
+                                        { vocabId: 'b1v153', type: 'translate_es_id', prompt: 'Traduce: «Concluimos que ese plan tuvo éxito».', answer: 'Kami menyimpulkan bahwa rencana itu berhasil.', explanation: 'Menyimpulkan introduce la conclusión y bahwa presenta su contenido.' },
+                                        { vocabId: 'b1v152', type: 'order', prompt: 'Ordena: «Esos datos demuestran que el plan funcionó».', words: ["berhasil.","membuktikan","rencana","bahwa","Data","itu"], correctOrder: ["Data","itu","membuktikan","bahwa","rencana","berhasil."], explanation: 'Membuktikan bahwa introduce lo que los datos demuestran.,0' },
+                                        { vocabId: 'b1v153', type: 'write', prompt: 'Resume en tres pasos: menciona los datos, explica qué demuestran y formula una conclusión.', hint: 'Integra data, membuktikan y menyimpulkan.', modelAnswer: 'Data itu membuktikan bahwa rencana itu berhasil. Kami menyimpulkan bahwa rencana itu berhasil berdasarkan data.', explanation: 'La producción conecta evidencia, demostración y conclusión.' }
+                                    ]
+                                }
                             ]
                         },
                         {
@@ -6966,6 +7033,33 @@
                                         { vocabId: 'a2u34_kebiasaan', type: 'translate_es_id', prompt: 'Traduce: «Esa costumbre es diferente en cada región».', answer: 'Kebiasaan itu berbeda di setiap daerah.', explanation: 'Kebiasaan se refiere a una costumbre o práctica habitual.' },
                                         { vocabId: 'a2u34_kebiasaan', type: 'listen', prompt: 'Escucha y escribe la oración completa.', answer: 'Kebiasaan itu berbeda di setiap daerah.', explanation: 'La frase compara costumbres entre regiones.' },
                                         { vocabId: 'a2u34_kebiasaan', type: 'write', prompt: 'Escribe un texto breve en cuatro frases: describe una costumbre, explica qué cambio la afecta, cómo se adapta la gente y cuál puede ser el impacto.', hint: 'Integra kebiasaan, perubahan, menyesuaikan y dampak.', modelAnswer: 'Kebiasaan itu berbeda di setiap daerah. Perubahan itu memiliki dampak besar pada kehidupan sehari-hari. Orang-orang menyesuaikan kebiasaan mereka. Perubahan itu memiliki dampak besar.', explanation: 'La producción integra una costumbre, un cambio, una adaptación y su impacto.' }
+                                    ]
+                                }
+                            ,
+                                {
+                                    title: 'Planificar ajustes ante un cambio',
+                                    objective: 'Describe un cambio y decide qué aspecto de una rutina o plan necesita ajustarse.',
+                                    grammar: 'Perubahan nombra el cambio; menyesuaikan expresa ajustar algo a una situación nueva. Antes de actuar, identifica qué parte del horario o de la actividad debe adaptarse.',
+                                    reviewVocabIds: ['b1v154', 'b1v155', 'b1v156', 'a2u34_kebiasaan'],
+                                    vocabIds: [],
+                                    exercises: [
+                                        { vocabId: 'b1v155', type: 'mc', prompt: '¿Qué significa menyesuaikan jadwal?', options: ["Ajustar el horario","Elogiar al equipo","Demostrar una afirmación"], answer: 0, explanation: 'Menyesuaikan significa ajustar o adaptar algo a una condición.,0' },
+                                        { vocabId: 'b1v155', type: 'translate_es_id', prompt: 'Traduce: «Adaptamos el horario a la nueva situación».', answer: 'Kami menyesuaikan jadwal dengan keadaan baru.', explanation: 'Menyesuaikan jadwal expresa ajustar el horario.' },
+                                        { vocabId: 'b1v156', type: 'order', prompt: 'Ordena: «Aprende a adaptarse a un entorno nuevo».', words: ["baru.","dengan","beradaptasi","belajar","Dia","lingkungan"], correctOrder: ["Dia","belajar","beradaptasi","dengan","lingkungan","baru."], explanation: 'Beradaptasi dengan lingkungan baru expresa adaptarse a un entorno nuevo.,0' },
+                                        { vocabId: 'b1v154', type: 'write', prompt: 'Describe un cambio en una rutina y explica qué necesitas ajustar para responder a la nueva situación.', hint: 'Integra perubahan y menyesuaikan.', modelAnswer: 'Perubahan itu penting bagi pekerjaan kami. Kami menyesuaikan jadwal dengan keadaan baru.', explanation: 'La producción presenta el cambio y un ajuste concreto.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Valorar el impacto de nuevas costumbres',
+                                    objective: 'Explica cómo una adaptación puede modificar un hábito y producir efectos en la vida diaria.',
+                                    grammar: 'Kebiasaan se refiere a una práctica habitual. Beradaptasi describe el proceso de ajustarse a un entorno; dampak señala el efecto que puede producir un cambio en esas prácticas.',
+                                    reviewVocabIds: ['b1v154', 'b1v155', 'b1v156', 'b1v157', 'a2u34_kebiasaan'],
+                                    vocabIds: [],
+                                    exercises: [
+                                        { vocabId: 'b1v157', type: 'mc', prompt: '¿Qué significa dampak?', options: ["Impacto o efecto","Costumbre","Prueba"], answer: 0, explanation: 'Dampak significa impacto o efecto.,0' },
+                                        { vocabId: 'a2u34_kebiasaan', type: 'translate_es_id', prompt: 'Traduce: «Esa costumbre es diferente en cada región».', answer: 'Kebiasaan itu berbeda di setiap daerah.', explanation: 'Kebiasaan se refiere a una costumbre o práctica habitual.' },
+                                        { vocabId: 'b1v157', type: 'order', prompt: 'Ordena: «Ese cambio tiene un gran impacto».', words: ["besar.","dampak","memiliki","itu","Perubahan"], correctOrder: ["Perubahan","itu","memiliki","dampak","besar."], explanation: 'Memiliki dampak besar expresa tener un gran impacto.,0' },
+                                        { vocabId: 'b1v157', type: 'write', prompt: 'Explica qué hábito puede cambiar, cómo se adapta la gente y qué efecto podría producir el cambio.', hint: 'Integra kebiasaan, beradaptasi y dampak.', modelAnswer: 'Kebiasaan itu berbeda di setiap daerah. Dia belajar beradaptasi dengan lingkungan baru. Perubahan itu memiliki dampak besar.', explanation: 'La producción conecta una costumbre, la adaptación y el efecto de un cambio.' }
                                     ]
                                 }
                             ]

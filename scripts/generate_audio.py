@@ -21,6 +21,10 @@ ROOT = Path(__file__).resolve().parent.parent
 MANIFEST = ROOT / "audio" / "manifest.json"
 PIPER_VOICE = "id_ID-news_tts-medium"
 PIPER_REVISION = "7c89b592e94392a56c789bd35a860fec66a6583f"
+MMS_MODEL_ID = "facebook/mms-tts-ind"
+MMS_MODEL_REVISION = "171b004ccd54f266a31efee71f1ad850c91d39c0"
+MMS_MODEL_LICENSE = "CC BY-NC 4.0"
+MMS_MODEL_SHA256 = "d56181bae3a51458aab6b4a893ecd71d0fde69378f576c53e139b59940d80ca0"
 PIPER_BASE = f"https://huggingface.co/rhasspy/piper-voices/resolve/{PIPER_REVISION}/id/id_ID/news_tts/medium"
 LEVELS = ("A1", "A2", "B1", "B2", "all")
 
@@ -86,9 +90,8 @@ def create_synthesizer(engine: str, voice: str, work_dir: Path):
         from transformers import AutoModelForTextToWaveform, AutoTokenizer
         from scipy.io import wavfile
 
-        model_id = "facebook/mms-tts-ind"
-        tokenizer = AutoTokenizer.from_pretrained(model_id)
-        model = AutoModelForTextToWaveform.from_pretrained(model_id).to("cpu")
+        tokenizer = AutoTokenizer.from_pretrained(MMS_MODEL_ID, revision=MMS_MODEL_REVISION)
+        model = AutoModelForTextToWaveform.from_pretrained(MMS_MODEL_ID, revision=MMS_MODEL_REVISION).to("cpu")
         model.eval()
 
         def synth(text: str, output: Path):
@@ -97,7 +100,7 @@ def create_synthesizer(engine: str, voice: str, work_dir: Path):
                 waveform = model(**inputs).waveform[0].cpu().numpy()
             wavfile.write(str(output), model.config.sampling_rate, np.asarray(waveform, dtype=np.float32))
 
-        return synth, f"MMS / {model_id}"
+        return synth, f"MMS / {MMS_MODEL_ID}@{MMS_MODEL_REVISION[:12]}"
 
     raise ValueError(f"Unsupported engine: {engine}")
 
@@ -118,13 +121,16 @@ def encode_audio(source: Path, destination: Path, codec_name: str):
     subprocess.run(command, check=True)
 
 
-def ensure_single_voice(metadata_file: Path, engine: str, voice: str):
+def ensure_single_voice(metadata_file: Path, engine: str, voice: str, allow_piper_replacement: bool = False):
     metadata_file.parent.mkdir(parents=True, exist_ok=True)
     expected = {"engine": engine, "voice": voice, "formats": ["opus", "mp3"]}
     if metadata_file.exists():
         existing = json.loads(metadata_file.read_text(encoding="utf-8"))
         core = {key: existing.get(key) for key in expected}
         if core != expected:
+            if allow_piper_replacement and existing.get("engine") == "piper" and engine == "mms":
+                metadata_file.write_text(json.dumps(expected, indent=2) + "\n", encoding="utf-8")
+                return
             raise RuntimeError(
                 "The production library is locked to one engine/voice. "
                 f"Existing: {existing}; requested: {expected}. "
@@ -234,7 +240,10 @@ def main():
     synthesize, voice_label = create_synthesizer(args.engine, args.voice, model_cache)
     sample_file = ROOT / "audio-samples" / "samples.json"
     if args.mode == "full":
-        ensure_single_voice(ROOT / "audio" / "metadata.json", args.engine, voice_label)
+        ensure_single_voice(
+            ROOT / "audio" / "metadata.json", args.engine, voice_label,
+            allow_piper_replacement=args.engine == "mms" and args.force,
+        )
     existing_samples = json.loads(sample_file.read_text(encoding="utf-8")) if sample_file.exists() else []
     sample_map = {(item["engine"], item["id"]): item for item in existing_samples}
 

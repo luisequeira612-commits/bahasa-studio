@@ -40,9 +40,9 @@ test('repository inventory baseline distinguishes authored lessons from runtime-
   const levels = await loadAuthoredLessonLevels();
   const report = buildAuthoredLessonInventory(levels);
   const b1 = levels.find((level) => level.id === 'B1');
-  const consolidated = ['b1_u29', 'b1_u30', 'b1_u31', 'b1_u32', 'b1_u33', 'b1_u34', 'b1_u35', 'b1_u36', 'b1_u37', 'b1_u38', 'b1_u39', 'b1_u40', 'b1_u41', 'b1_u42', 'b1_u43', 'b1_u44', 'b1_u45', 'b1_u46', 'b1_u47', 'b1_u48'].map((id) => b1.units.find((unit) => unit.id === id));
-  assert.deepEqual(consolidated.map((unit) => unit.lessons.length), [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5]);
-  assert.deepEqual(consolidated.map((unit) => unit.lessons.reduce((sum, lesson) => sum + lesson.exercises.length, 0)), [22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22]);
+  const consolidated = ['b1_u29', 'b1_u30', 'b1_u31', 'b1_u32', 'b1_u33', 'b1_u34', 'b1_u35', 'b1_u36', 'b1_u37', 'b1_u38', 'b1_u39', 'b1_u40', 'b1_u41', 'b1_u42', 'b1_u43', 'b1_u44', 'b1_u45', 'b1_u46', 'b1_u47', 'b1_u48', 'b1_u49', 'b1_u50'].map((id) => b1.units.find((unit) => unit.id === id));
+  assert.deepEqual(consolidated.map((unit) => unit.lessons.length), [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5]);
+  assert.deepEqual(consolidated.map((unit) => unit.lessons.reduce((sum, lesson) => sum + lesson.exercises.length, 0)), [22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22]);
   assert.equal(consolidated[3].lessons[4].title, 'Repaso acumulativo de B1 U28–U32');
   const newLessonTitles = [
     'Elegir el grado de obligación según la situación', 'Explicar y justificar una recomendación',
@@ -65,9 +65,11 @@ test('repository inventory baseline distinguishes authored lessons from runtime-
     'Medir el uso responsable de los recursos', 'Distribuir recursos según las prioridades',
     'Aplicar procedimientos y asumir responsabilidades', 'Participar y presentar propuestas',
     'Solicitar apoyo y organizar una actividad',
+    'Promover prácticas sostenibles', 'Reducir residuos y explicar sus efectos',
+    'Comprobar la viabilidad de un plan', 'Presentar el proyecto y dar seguimiento',
   ];
   const addedLessons = consolidated.flatMap((unit) => unit.lessons.filter((item) => newLessonTitles.includes(item.title)));
-  assert.equal(addedLessons.length, 36);
+  assert.equal(addedLessons.length, 40);
   for (const unit of consolidated) {
     for (const lesson of unit.lessons.filter((item) => newLessonTitles.includes(item.title))) {
       assert.deepEqual(new Set(lesson.exercises.map((exercise) => exercise.type)), new Set(['mc', 'translate_es_id', 'order', 'write']));
@@ -87,7 +89,7 @@ test('repository inventory baseline distinguishes authored lessons from runtime-
   assert.deepEqual(summary, {
     A1: { unitCount: 32, authoredLessonCount: 161, distribution: { 5: 31, 6: 1 } },
     A2: { unitCount: 40, authoredLessonCount: 200, distribution: { 5: 40 } },
-    B1: { unitCount: 50, authoredLessonCount: 246, distribution: { 3: 2, 5: 48 } },
+    B1: { unitCount: 50, authoredLessonCount: 250, distribution: { 5: 50 } },
     B2: { unitCount: 5, authoredLessonCount: 25, distribution: { 5: 5 } },
   });
 });

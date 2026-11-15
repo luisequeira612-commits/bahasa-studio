@@ -112,10 +112,19 @@ export async function buildManifest({ includeInteractive = false, includeB2 = fa
 async function main() {
   const outputIndex = process.argv.indexOf('--output');
   const output = outputIndex >= 0 ? path.resolve(process.argv[outputIndex + 1]) : path.join(ROOT, 'audio', 'manifest.json');
-  const manifest = await buildManifest({
-    includeInteractive: process.argv.includes('--include-interactive'),
-    includeB2: process.argv.includes('--include-b2')
-  });
+  const includeInteractive = process.argv.includes('--include-interactive');
+  let includeB2 = process.argv.includes('--include-b2');
+  if (!includeB2) {
+    try {
+      const index = JSON.parse(await readFile(path.join(ROOT, 'audio', 'index.json'), 'utf8'));
+      const b2Candidates = await buildManifest({ includeB2: true });
+      const b2Ids = new Set(b2Candidates.filter((entry) => entry.levels.includes('B2')).map((entry) => entry.id));
+      includeB2 = index.some((id) => b2Ids.has(id));
+    } catch (error) {
+      if (error?.code !== 'ENOENT') throw error;
+    }
+  }
+  const manifest = await buildManifest({ includeInteractive, includeB2 });
   await mkdir(path.dirname(output), { recursive: true });
   await writeFile(output, JSON.stringify(manifest, null, 2) + '\n', 'utf8');
   const counts = Object.fromEntries(['A1', 'A2', 'B1', 'B2'].map((level) => [level, manifest.filter((entry) => entry.levels.includes(level)).length]));

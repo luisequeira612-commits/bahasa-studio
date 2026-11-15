@@ -42,20 +42,29 @@ La biblioteca contiene MP3 y Opus para los mismos IDs. El reproductor principal 
 
 ## Licencias y trazabilidad
 
-La selección actual es Piper `id_ID-news_tts-medium` para el proyecto personal, gratuito y no comercial.
+**Revisión: 15 nov 2026.** La selección de Piper `id_ID-news_tts-medium` sigue siendo provisional y no se considera autorizada para redistribuir sus audios hasta resolver la cadena completa.
 
-- El paquete ejecutor `piper-tts` se instala y ejecuta en GitHub Actions; no se distribuye dentro de la PWA. Su licencia de paquete es GPL-3.0-or-later.
-- El metadato MIT del repositorio de voces no debe interpretarse como licencia de los pesos ni de los datos de entrenamiento.
-- La ficha original del checkpoint identifica el dataset indonesio `s-sakti/data_indsp_news_tts`, con licencia CC BY-NC-SA 4.0. Mantener atribución y enfoque no comercial/conservador.
-- No está resuelta la cuestión jurídica de si los audios generados son obras derivadas sujetas a ShareAlike. Esto no es asesoría legal.
-- La ficha actual de voces y la ficha histórica del checkpoint presentan metadatos de dataset discrepantes. Antes de cualquier uso comercial, donaciones, anuncios o distribución en tiendas, revisar de nuevo la cadena completa y consultar a los titulares si hace falta.
+- El paquete ejecutor `piper-tts` se instala en GitHub Actions y no se distribuye dentro de la PWA. Su licencia de código es GPL-3.0-or-later; esa licencia no concede derechos sobre las voces.
+- La documentación oficial de Piper aclara que el campo `License` de un `MODEL_CARD` describe solo el dataset de esa voz, no los datasets de la voz base de la que se hizo fine-tuning. Piper no concede licencia propia sobre los modelos de voz y considera no resuelta la cuestión jurídica de si un modelo entrenado es obra derivada de sus corpus.
+- La ficha histórica del checkpoint `id_ID-news_tts-medium` identifica `s-sakti/data_indsp_news_tts` con CC BY-NC-SA 4.0 y declara fine-tuning desde `en_US-lessac-medium`. La ficha actual de `rhasspy/piper-voices` muestra `See URL` para el dataset y mantiene el origen Lessac; la propia guía Piper dice que las fichas `See URL` aún no han sido revisadas.
+- La guía oficial de Piper indica que `en_US-lessac-medium` procede del corpus Lessac Blizzard 2013, cuya licencia limita el uso a investigación/exploración de tecnologías de voz y excluye el uso comercial de la síntesis resultante. Piper declara que no tiene permiso de Lessac Technologies/CSTR ni representa que existan derechos downstream. Esto no determina por sí solo si un uso personal/no comercial de los audios generados está permitido: la condición de obra derivada y el alcance de la licencia sobre outputs siguen sin resolverse.
+- La app incluye MP3 generados, no los pesos `.onnx`. Eso evita redistribuir directamente el modelo, pero no resuelve la situación jurídica de los audios generados. Si se fusiona la biblioteca B2, esos MP3 quedarían servidos públicamente por GitHub Pages.
+- La PR [#625](https://github.com/luisequeira612-commits/bahasa-studio/pull/625) sigue como borrador. Su rama `audio/library-B2` pertenece al repositorio público: el estado «draft» no oculta la rama ni sus archivos. No afirmar que esos clips aún no son accesibles desde GitHub.
+- Decisión conservadora: mantener B2 U6–U7 ocultas y no fusionar ni publicar esa biblioteca hasta obtener permiso/documentación suficiente o adoptar una voz alternativa con cadena compatible. No es asesoría legal ni una conclusión de infracción.
 
-Fuentes de licencia consultadas el 14 nov 2026:
-- [Piper TTS en PyPI](https://pypi.org/project/piper-tts/)
-- [Repositorio Piper voices](https://github.com/rhasspy/piper-voices)
-- [Ficha original del checkpoint indonesio](https://huggingface.co/datasets/rhasspy/piper-checkpoints/blob/main/id/id_ID/news_tts/medium/MODEL_CARD)
-- [Dataset indonesio](https://huggingface.co/datasets/s-sakti/data_indsp_news_tts)
-- [Licencia CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)
+### Alternativa investigada: Pocket TTS Indonesian (no adoptada)
+
+- [`anak10thn/pocket-tts-indonesian`](https://huggingface.co/anak10thn/pocket-tts-indonesian) declara CC BY 4.0, 502 horas de LEMAS y una base Kyutai Pocket TTS que también declara CC BY 4.0. La ficha base de Kyutai exige aceptar condiciones y compartir datos de Hugging Face para acceder a los pesos; el modelo no está disponible mediante Inference Providers.
+- El student de seis capas ocupa 438 MB, declara 2,23× tiempo real en CPU y mediana WER 9,09% en 153 muestras; 4/153 superan 50% WER. UTMOS 2,68 refleja el audio de origen de 16 kHz. La ficha tiene una inconsistencia: la tabla actual marca 0 silencios a `eos -6.0` tras el reentrenamiento, mientras una viñeta de limitaciones todavía indica 2/153 (resultado previo). Advierte además que los dígitos y `!` son OOV, la narración formal está fuera de dominio y puede perder elementos de enumeraciones largas.
+- Requiere `pocket-tts`/PyTorch 2.5+; en Linux la instalación por defecto puede descargar varios GB de wheels CUDA si no se fuerza el índice CPU. No está probado con frases de la app ni escuchado por el dueño.
+- Estado: candidato de investigación, no una sustitución aprobada. No añadir dependencias, aceptar condiciones, crear secretos de CI, cambiar el generador ni regenerar audios sin aprobación explícita. El modelo no se propone para cargarlo en el teléfono.
+
+Fuentes oficiales consultadas el 15 nov 2026:
+- [Piper voice licensing](https://github.com/OHF-Voice/piper1-gpl/blob/main/docs/LICENSING.md)
+- [Piper commercial-use list](https://github.com/OHF-Voice/piper1-gpl/blob/main/docs/COMMERCIAL_USE.md)
+- [Checkpoint Piper indonesio](https://huggingface.co/datasets/rhasspy/piper-checkpoints/blob/main/id/id_ID/news_tts/medium/MODEL_CARD)
+- [Ficha actual de la voz Piper](https://huggingface.co/rhasspy/piper-voices/blob/main/id/id_ID/news_tts/medium/MODEL_CARD)
+- [Pocket TTS Indonesian](https://huggingface.co/anak10thn/pocket-tts-indonesian) y [modelo base Kyutai](https://huggingface.co/kyutai/pocket-tts).
 
 **Pendiente de trazabilidad:** registrar el commit exacto del repositorio de voces y SHA-256 del `.onnx` y `.onnx.json` utilizados, junto con el campo dataset del JSON de configuración. No se afirma que esos hashes estén archivados actualmente.
 

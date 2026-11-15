@@ -1,9 +1,9 @@
-# Diseño preliminar B2 U7 — nominalizaciones peN-an y per-an en contexto
+# Diseño de referencia B2 U7 — nominalizaciones peN-an y per-an en contexto
 
-**Estado:** propuesta documental de cinco lecciones; vocabulario candidato pendiente de aprobación explícita, no implementada ni publicada.  
+**Estado:** unidad implementada y fusionada en PR #617; cinco lecciones authored y 16 ejercicios. Permanece oculta/no publicada hasta verificar el gate de audio B2.  
 **Fecha:** 8 nov 2026.  
 **Ubicación:** primera unidad del bloque B2 U7–U10, cuyo eje aprobado es nominalizaciones.  
-**Dependencias:** B1 completo; B2 U1–U6 implementadas. U6 está fusionada, pero permanece fuera del recorrido visible hasta preparar su cobertura de audio y actualizar el gate de publicación.
+**Dependencias:** B1 completo; B2 U1–U7 implementadas. U6 y U7 permanecen fuera de publicación hasta preparar y verificar la cobertura de audio B2.
 
 ## Propósito y alcance
 

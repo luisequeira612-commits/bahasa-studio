@@ -3,7 +3,7 @@
 **Estado:** propuesta documental reversible; no implementada ni publicada.  
 **Fecha:** 8 nov 2026.  
 **Ubicación:** cuarta y última unidad propuesta del bloque B2 U7–U10, cuyo eje aprobado es nominalizaciones.  
-**Dependencias:** los diseños U7–U9 son propuestas preliminares; esta unidad no presupone que sus ejemplos, vocabulario o ejercicios estén aprobados ni implementados.
+**Dependencias:** U7 está implementada y fusionada; U8 y U9 siguen siendo diseños documentales. U10 no presupone que sus ejemplos, vocabulario o ejercicios estén aprobados ni implementados.
 
 ## Propósito y alcance
 
@@ -94,7 +94,7 @@ Al menos cinco ejercicios trabajarán oraciones completas; al menos uno incluir�
 - No presentar el análisis de Grangé para -nya como consenso ni como regla causal universal.
 - No reconstruir agentes, tiempos, aspecto o causalidad que el contexto no respalde.
 - No exigir producción libre de formas derivadas ni crear palabras por analogía.
-- No asumir que U7–U9 están aprobadas o implementadas por el mero hecho de existir sus diseños.
+- No asumir que U8–U9 están implementadas por el mero hecho de existir sus diseños; U7 sí está implementada y fusionada.
 - Mantener B2 oculta/no publicada hasta completar el contenido y el flujo de liberación.
 - No modificar A1/A2/B1, IndexedDB, backup JSON v3, trackers, dependencias ni servicios externos.
 - No afirmar validación nativa ni certificación MCER/BIPA.
@@ -108,4 +108,4 @@ Al menos cinco ejercicios trabajarán oraciones completas; al menos uno incluir�
 5. Usar solo vocabulario existente o someter nuevas propuestas a aprobación explícita.
 6. Ejecutar controles de coherencia consigna-respuesta, referencias, duplicados, progresión y ausencia de exposición anticipada.
 
-**Estatus de decisión:** el dueño aprobó el eje general de nominalizaciones para B2 U7–U10, no este desglose ni sus ejemplos. U10 es una propuesta documental reversible de integración; no autoriza vocabulario, IDs, glosas definitivas ni ejercicios ejecutables.
+**Estatus de decisión:** el dueño aprobó el eje general de nominalizaciones para B2 U7–U10. U7 está implementada y fusionada; U10 sigue siendo una propuesta documental reversible de integración y no autoriza vocabulario, IDs, glosas definitivas ni ejercicios ejecutables.

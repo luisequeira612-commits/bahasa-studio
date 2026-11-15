@@ -250,3 +250,10 @@
 - Pruebas nuevas cubren la exportación de vocabulario y respuestas de escucha de U6/U7, unicidad de IDs y hashes SHA-1 existentes. No se modifica la normalización, los hashes, las rutas, `audio-engine.js`, Service Worker, IndexedDB v1, backup JSON v3 ni dependencias.
 - Este PR solo habilita el pipeline: todavía no genera ni publica clips B2. U6/U7 siguen ocultas hasta ejecutar generación completa con Piper y verificar manifiesto, índice, archivos MP3/Opus, huellas SHA-256 y CI post-merge. El despliegue Pages post-merge terminó en éxito; la regresión post-merge sigue en ejecución al actualizar esta nota.
 - Próximo paso operativo: ejecutar manualmente [Generate Indonesian audio](https://github.com/luisequeira612-commits/bahasa-studio/actions/workflows/generate-audio.yml) con `engine=piper`, `mode=full`, `level=B2`, `limit=0` y `confirm_full=true`; después revisar la PR automática de audio y no publicar U6/U7 hasta verificar el inventario completo y el CI.
+
+
+## Diseños B2 U9–U10 — cinco lecciones — 15 nov 2026
+- Los diseños documentales `docs/B2_U9_DESIGN.md` y `docs/B2_U10_DESIGN.md` se ampliaron de tres a cinco lecciones authored cada uno, manteniendo 16 ejercicios propuestos por unidad (3/3/3/3/4).
+- U9 separa función de -nya, estructura/complemento/voz, causalidad y aspecto, ambigüedad di-V-nya e integración con paráfrasis. No afirma que -nya sea siempre nominalizador ni conjunción causal.
+- U10 integra lectura de texto continuo, recuperación de participantes, reformulación, registro y edición guiada. Depende de la aprobación e implementación previa de U7–U9.
+- Son diseños documentales, no contenido ejecutable; no se añadieron vocabulario, ejemplos, IDs ni ejercicios definitivos. Se mantiene la regla de no introducir formas o ejemplos nuevos sin aprobación explícita.

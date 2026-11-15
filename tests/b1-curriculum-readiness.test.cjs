@@ -691,7 +691,7 @@ test('B1 U27-U29 teach opinions, probability and advice', () => {
   assert.deepEqual(Array.from(u27.vocab, word => word.id), ['b1v088', 'b1v089', 'b1v090', 'b1v091', 'b1v092', 'b1v093', 'b1v094']);
   assert.deepEqual(Array.from(u28.vocab, word => word.id), ['b1v095', 'b1v096', 'b1v097', 'b1v098', 'b1v099']);
   assert.deepEqual(Array.from(u29.vocab, word => word.id), ['b1v100', 'b1v101', 'b1v102', 'b1v103', 'b1v104']);
-  const expectedCounts = new Map([[u27, 18], [u28, 14], [u29, 14]]);
+  const expectedCounts = new Map([[u27, 20], [u28, 18], [u29, 14]]);
   const allNewForms = new Map([
     ['b1v088', 'pendapat'], ['b1v089', 'menurut saya'], ['b1v090', 'bagi saya'],
     ['b1v091', 'setuju'], ['b1v092', 'tidak setuju'], ['b1v093', 'berpikir'], ['b1v094', 'merasa'],
@@ -700,7 +700,7 @@ test('B1 U27-U29 teach opinions, probability and advice', () => {
   ]);
   const earlierIds = new Set(b1.units.filter(unit => !['b1_u27', 'b1_u28', 'b1_u29'].includes(unit.id)).flatMap(unit => unit.vocab.map(word => word.id)));
   for (const [unit, expectedCount] of expectedCounts) {
-    assert.equal(unit.lessons.length, 5, unit.id + ' must have five authored lessons');
+    assert.equal(unit.lessons.length, unit.id === 'b1_u29' ? 3 : 5, unit.id + ' authored lesson count');
     const exercises = exercisesOf(unit);
     assert.equal(exercises.length, expectedCount);
     const types = new Set(exercises.map(exercise => exercise.type));

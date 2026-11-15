@@ -250,3 +250,11 @@
 - Pruebas nuevas cubren la exportación de vocabulario y respuestas de escucha de U6/U7, unicidad de IDs y hashes SHA-1 existentes. No se modifica la normalización, los hashes, las rutas, `audio-engine.js`, Service Worker, IndexedDB v1, backup JSON v3 ni dependencias.
 - Este PR solo habilita el pipeline: todavía no genera ni publica clips B2. U6/U7 siguen ocultas hasta ejecutar generación completa con Piper y verificar manifiesto, índice, archivos MP3/Opus, huellas SHA-256 y CI post-merge. El despliegue Pages post-merge terminó en éxito; la regresión post-merge sigue en ejecución al actualizar esta nota.
 - Próximo paso operativo: ejecutar manualmente [Generate Indonesian audio](https://github.com/luisequeira612-commits/bahasa-studio/actions/workflows/generate-audio.yml) con `engine=piper`, `mode=full`, `level=B2`, `limit=0` y `confirm_full=true`; después revisar la PR automática de audio y no publicar U6/U7 hasta verificar el inventario completo y el CI.
+
+
+## B2 U8 ke-an — shortlist documental — 15 nov 2026
+- Se añadió a `docs/B2_U8_DESIGN.md` una lista de ocho candidatos, sin incorporarlos al currículo: `kekotoran` (suciedad), `kedatangan` (llegada), `kementerian` (ministerio), `kepulauan` (archipiélago), `ketidakadilan` (injusticia), `kesalahpahaman` (malentendido), `keingintahuan` (curiosidad) y `keberuntungan` (suerte/fortuna).
+- La lista se basa en Sören E. Tebay (2024), diapositivas 8–10, que separa nominalizaciones de una base simple y dominios complejos con negación/prefijo bajo. Las glosas españolas son propuestas de traducción de las glosas inglesas de la fuente, no certificación lexicográfica.
+- Búsqueda literal en `curriculum-a1.js`, `curriculum-a2.js` e `index.html` (B1/B2 inline) no encontró coincidencias exactas para esas ocho formas; esto no descarta solapamientos semánticos ni derivados relacionados.
+- Ningún ejemplo nuevo, ID ni entrada ejecutable se añadió. Las ocho formas siguen pendientes de aprobación explícita del dueño. `ketinggian` queda como caso analítico de ambigüedad; `kejatuhan` y `kebakaran` solo como contraste verbal.
+- Fuente: https://home.uni-leipzig.de/tebay/tebay2024keandgfs.pdf. No se afirma validación nativa ni frecuencia actual.

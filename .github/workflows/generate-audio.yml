@@ -23,7 +23,7 @@ on:
       level:
         description: Nivel o todos para generación completa
         type: choice
-        options: [A1, A2, B1, all]
+        options: [A1, A2, B1, B2, all]
         default: A1
         required: true
       confirm_full:
@@ -123,18 +123,21 @@ jobs:
         if: ${{ inputs.mode != 'hashes' }}
         shell: bash
         run: |
-          if [[ "$MODE" == "full" && "$LEVEL" == "all" ]]; then
-            node scripts/export-audio-manifest.mjs --include-interactive
-          else
-            node scripts/export-audio-manifest.mjs
+          ARGS=()
+          if [[ "$LEVEL" == "B2" || "$LEVEL" == "all" ]]; then
+            ARGS+=(--include-b2)
           fi
+          if [[ "$MODE" == "full" && "$LEVEL" == "all" ]]; then
+            ARGS+=(--include-interactive)
+          fi
+          node scripts/export-audio-manifest.mjs "${ARGS[@]}"
 
       - name: Generate selected audio or refresh fingerprints
         run: |
           if [[ "$MODE" == "hashes" ]]; then
             python scripts/generate_audio.py --engine piper --hash-only
           elif [[ "$MODE" == "samples" ]]; then
-            python scripts/generate_audio.py --engine "$ENGINE" --mode samples --level all --limit "$LIMIT"
+            python scripts/generate_audio.py --engine "$ENGINE" --mode samples --level "$LEVEL" --limit "$LIMIT"
           else
             python scripts/generate_audio.py --engine "$ENGINE" --mode full --level "$LEVEL" --limit 0
           fi
@@ -152,7 +155,11 @@ jobs:
         id: commit
         shell: bash
         run: |
-          git add audio audio-samples service-worker.js
+          if [[ "$MODE" == "samples" ]]; then
+            git add audio-samples
+          else
+            git add audio service-worker.js
+          fi
           if git diff --cached --quiet; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
             echo "No generated files changed."

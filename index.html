@@ -4747,12 +4747,35 @@
                                         { vocabId: 'b1v069', type: 'write', prompt: 'Escribe dos oraciones relacionadas: presenta primero una causa y después su consecuencia con oleh karena itu o akibatnya.', hint: 'Usa hujan turun y una consecuencia como jalan basah o saya pulang.', modelAnswer: 'Hujan turun. Oleh karena itu, saya pulang. Hujan turun. Akibatnya, jalan basah.', explanation: 'Oleh karena itu y akibatnya pueden presentar una consecuencia al comienzo de una nueva oración.' }
                                     ]
                                 },
+
+                                {
+                                    title: 'Makanya y la consecuencia conversacional',
+                                    objective: 'Reconoce makanya como conector coloquial y lo distingue de las formas neutrales de consecuencia.',
+                                    grammar: 'Makanya presenta una consecuencia en conversación. Para una explicación formal o escrita, suelen preferirse oleh karena itu o akibatnya.',
+                                    reviewVocabIds: ['b1v065', 'b1v066', 'b1v067', 'b1v068', 'b1v069'],
+                                    vocabIds: ['b1v070'],
+                                    exercises: [
+                                        { vocabId: 'b1v070', type: 'mc', prompt: '¿Qué conector suele tener un tono más coloquial y conversacional?', options: ['Oleh karena itu', 'Makanya', 'Sehingga'], answer: 1, explanation: 'Makanya suele aparecer en conversaciones para presentar una consecuencia.' },
+                                        { vocabId: 'b1v070', type: 'order', prompt: 'Ordena: «Llueve; por eso me quedo en casa».', words: ['rumah.', 'Hujan', 'tinggal', 'makanya', 'saya', 'di', 'turun,'], correctOrder: ['Hujan', 'turun,', 'makanya', 'saya', 'tinggal', 'di', 'rumah.'], explanation: 'Makanya introduce la consecuencia en un registro conversacional.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Integrar causas y consecuencias',
+                                    objective: 'Relaciona una causa con sus resultados y elige un conector adecuado para cada estructura.',
+                                    grammar: 'Sehingga suele conectar causa y resultado dentro de una construcción; oleh karena itu y akibatnya pueden iniciar una nueva oración; makanya es más coloquial.',
+                                    reviewVocabIds: ['b1v065', 'b1v066', 'b1v067', 'b1v068', 'b1v069', 'b1v070'],
+                                    vocabIds: [],
+                                    exercises: [
+                                        { vocabId: 'b1v068', type: 'mc', prompt: 'En «Hujan turun sehingga jalan basah», ¿qué introduce sehingga?', options: ['La causa', 'El resultado', 'Una hipótesis'], answer: 1, explanation: 'Sehingga introduce el resultado que se deriva de la lluvia.' },
+                                        { vocabId: 'b1v067', type: 'write', prompt: 'Escribe dos versiones de una relación causa-consecuencia: una neutral o formal y otra conversacional.', hint: 'Usa oleh karena itu en la primera y makanya en la segunda.', modelAnswer: 'Hujan turun. Oleh karena itu, saya pulang. Hujan turun, makanya saya tinggal di rumah.', explanation: 'Las dos versiones expresan consecuencia, pero usan conectores de distinto registro.' }
+                                    ]
+                                },
                                 {
                                     title: 'Makanya y el registro conversacional',
                                     objective: 'Reconoce makanya como conector coloquial de consecuencia y elige un registro adecuado.',
                                     grammar: 'Makanya suele aparecer en conversación para presentar una consecuencia o explicar por qué se hizo algo. En textos formales, prefiere oleh karena itu o akibatnya. No es un sufijo ni una regla productiva: se aprende como conector lexicalizado.',
-                                    reviewVocabIds: ['b1v067', 'b1v068', 'b1v069', 'b1v063', 'b1v064'],
-                                    vocabIds: ['b1v070'],
+                                    reviewVocabIds: ['b1v065', 'b1v066', 'b1v067', 'b1v068', 'b1v069', 'b1v070', 'b1v063', 'b1v064'],
+                                    vocabIds: [],
                                     exercises: [
                                         { vocabId: 'b1v070', type: 'mc', prompt: '¿Qué conector tiene un tono más coloquial y conversacional?', options: ['Oleh karena itu', 'Makanya', 'Sehingga'], answer: 1, explanation: 'Makanya es más coloquial; los otros conectores funcionan mejor en escritura neutral o formal.' },
                                         { vocabId: 'b1v070', type: 'translate_es_id', prompt: 'Traduce en un registro conversacional: «Está lloviendo; por eso me quedo en casa».', answer: 'Hujan turun, makanya saya tinggal di rumah.', explanation: 'Makanya presenta la consecuencia en un tono conversacional.' },
@@ -4814,9 +4837,21 @@
                                     ]
                                 },
                                 {
+
+                                {
+                                    title: 'Comparar conectores de propósito',
+                                    objective: 'Distingue supaya y agar según el registro y reconoce la construcción untuk + verbo.',
+                                    grammar: 'Supaya y agar introducen una finalidad mediante una cláusula o resultado deseado; untuk + verbo expresa propósito sin introducir una cláusula finita.',
+                                    reviewVocabIds: ['b1v071', 'b1v072', 'b1v065', 'b1v067', 'b1v068'],
+                                    vocabIds: [],
+                                    exercises: [
+                                        { vocabId: 'b1v071', type: 'mc', prompt: '¿Qué conector suele ser más común en conversación para expresar propósito?', options: ['Supaya', 'Agar', 'Akibatnya'], answer: 0, explanation: 'Supaya es muy frecuente en conversación; agar puede sonar más formal.' },
+                                        { vocabId: 'b1v072', type: 'order', prompt: 'Ordena: «Estudio a fin de aprobar el examen».', words: ['agar', 'Saya', 'ujian.', 'lulus', 'belajar'], correctOrder: ['Saya', 'belajar', 'agar', 'lulus', 'ujian.'], explanation: 'Agar introduce el resultado que se desea conseguir.' }
+                                    ]
+                                },
                                     "title": "Repaso acumulativo de B1 U18–U22",
-                                    "objective": "Recupera conectores de condición, concesión, contraste y causa antes de seguir con la expresión de propósito.",
-                                    "grammar": "El repaso reúne kalau y seandainya (condición), walaupun y meskipun (concesión), tetapi y namun (contraste), serta karena, oleh karena itu y sehingga (causa y consecuencia). Identifica la relación lógica antes de elegir el conector.",
+                                    "objective": "Integra conectores de condición, concesión, contraste, causa y propósito antes de avanzar.",
+                                    "grammar": "El repaso reúne kalau y seandainya (condición), walaupun y meskipun (concesión), tetapi y namun (contraste), karena, oleh karena itu y sehingga (causa y consecuencia), serta supaya y agar (propósito). Identifica la relación lógica antes de elegir el conector.",
                                     "vocabIds": [],
                                     "reviewVocabIds": [
                                         "b1v056",
@@ -4827,7 +4862,9 @@
                                         "b1v064",
                                         "b1v065",
                                         "b1v067",
-                                        "b1v068"
+                                        "b1v068",
+                                        "b1v071",
+                                        "b1v072"
                                     ],
                                     "exercises": [
                                         {
@@ -4922,12 +4959,35 @@
                                         { vocabId: 'b1v074', type: 'write', prompt: 'Escribe dos frases: una con baru saja y otra con sempat.', hint: 'Usa datang o belajar di rumah.', modelAnswer: 'Saya baru saja pulang. Saya sempat belajar sebelum tidur.', explanation: 'Baru saja sitúa una acción muy cerca del presente; sempat destaca la oportunidad de realizarla.' }
                                     ]
                                 },
+
+                                {
+                                    title: 'Usar telah para acciones completadas',
+                                    objective: 'Reconoce telah como marcador más formal y lo distingue de masih y belum pernah.',
+                                    grammar: 'Telah presenta una acción como completada y aparece con frecuencia en escritura cuidada; masih indica continuidad y belum pernah niega una experiencia hasta el momento.',
+                                    reviewVocabIds: ['a2u16_pernah', 'b1v073', 'a2u2_baru_saja', 'b1v074', 'a2u2_masih'],
+                                    vocabIds: ['b1v075'],
+                                    exercises: [
+                                        { vocabId: 'b1v075', type: 'mc', prompt: '¿Qué marcador suele sonar más formal o escrito para presentar una acción completada?', options: ['Masih', 'Telah', 'Belum pernah'], answer: 1, explanation: 'Telah presenta una acción como completada y suele ser más formal que sudah.' },
+                                        { vocabId: 'b1v075', type: 'order', prompt: 'Ordena: «He ido a Bali».', words: ['Bali.', 'Saya', 'telah', 'pergi', 'ke'], correctOrder: ['Saya', 'telah', 'pergi', 'ke', 'Bali.'], explanation: 'Telah aparece antes del verbo para presentar la acción como completada.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Integrar experiencias y continuidad',
+                                    objective: 'Combina marcadores de experiencia, acción reciente y continuidad en respuestas breves.',
+                                    grammar: 'Pernah y belum pernah hablan de experiencias; baru saja sitúa una acción muy reciente; sempat destaca una oportunidad; telah presenta una acción completada y masih una situación que continúa.',
+                                    reviewVocabIds: ['a2u16_pernah', 'b1v073', 'a2u2_baru_saja', 'b1v074', 'b1v075', 'a2u2_masih'],
+                                    vocabIds: [],
+                                    exercises: [
+                                        { vocabId: 'a2u2_masih', type: 'order', prompt: 'Ordena: «Todavía recuerdo esa experiencia».', words: ['pengalaman', 'Saya', 'itu.', 'ingat', 'masih'], correctOrder: ['Saya', 'masih', 'ingat', 'pengalaman', 'itu.'], explanation: 'Masih indica que el recuerdo continúa en el momento actual.' },
+                                        { vocabId: 'b1v073', type: 'write', prompt: 'Escribe tres frases: una sobre una experiencia vivida, otra sobre una que todavía no has tenido y otra sobre una acción completada.', hint: 'Usa pernah, belum pernah y telah.', modelAnswer: 'Saya pernah ke Bali. Saya belum pernah naik pesawat. Saya telah pergi ke Bali.', explanation: 'Las tres formas distinguen experiencia, ausencia de experiencia hasta ahora y acción completada.' }
+                                    ]
+                                },
                                 {
                                     title: 'Telah y masih: acción completada y situación que continúa',
                                     objective: 'Reconoce telah como marcador más formal de acción completada y masih como continuidad.',
                                     grammar: 'Telah presenta una acción como completada y es más habitual en escritura formal, noticias o informes. Masih indica que una situación continúa en el momento de referencia. En una narración, pueden contrastarse una acción ya realizada y un recuerdo o estado que sigue vigente.',
-                                    reviewVocabIds: ['a2u2_masih', 'b1v074', 'b1v068', 'b1v069'],
-                                    vocabIds: ['b1v075'],
+                                    reviewVocabIds: ['a2u16_pernah', 'b1v073', 'a2u2_baru_saja', 'b1v074', 'b1v075', 'a2u2_masih'],
+                                    vocabIds: [],
                                     exercises: [
                                         { vocabId: 'b1v075', type: 'mc', prompt: '¿Qué marcador suele sonar más formal o escrito para presentar una acción completada?', options: ['Masih', 'Telah', 'Belum pernah'], answer: 1, explanation: 'Telah es más formal o escrito que sudah en muchos contextos.' },
                                         { vocabId: 'b1v075', type: 'translate_es_id', prompt: 'Traduce: «He ido a Bali».', answer: 'Saya telah pergi ke Bali.', explanation: 'Telah presenta la acción de ir como completada.' },
@@ -4979,6 +5039,29 @@
                                         { vocabId: 'a2u3_kemudian', type: 'order', prompt: 'Ordena: «Después, entré en la casa».', words: ['rumah.', 'Kemudian,', 'masuk', 'ke', 'saya'], correctOrder: ['Kemudian,', 'saya', 'masuk', 'ke', 'rumah.'], explanation: 'Kemudian marca la acción que ocurre después.' },
                                         { vocabId: 'a2u3_ketika', type: 'listen', prompt: 'Escucha y escribe las dos oraciones completas.', answer: 'Ketika saya pulang, hujan turun. Kemudian, saya masuk ke rumah.', explanation: 'Ketika sitúa el primer acontecimiento y kemudian presenta el siguiente.' },
                                         { vocabId: 'a2u3_setelah_itu', type: 'write', prompt: 'Escribe una secuencia de tres acciones usando ketika, kemudian y setelah itu.', hint: 'Cuenta qué ocurrió al volver a casa, entrar y comer.', modelAnswer: 'Ketika saya pulang, hujan turun. Kemudian, saya masuk ke rumah. Setelah itu, saya makan.', explanation: 'Los tres conectores ordenan los acontecimientos en el tiempo.' }
+                                    ]
+                                },
+
+                                {
+                                    title: 'Distinguir etapas y momentos del pasado',
+                                    objective: 'Elige dulu o waktu itu según se describa una etapa anterior o una ocasión concreta.',
+                                    grammar: 'Dulu sitúa una etapa o hábito pasado; waktu itu señala un momento específico. Ambos pueden aparecer al inicio para establecer el contexto de la narración.',
+                                    reviewVocabIds: ['b1v076', 'b1v077', 'a2u3_ketika', 'a2u3_kemudian', 'a2u3_setelah_itu', 'a2u12_pengalaman', 'a2u14_perjalanan', 'a2u16_liburan'],
+                                    vocabIds: [],
+                                    exercises: [
+                                        { vocabId: 'b1v076', type: 'mc', prompt: '¿Qué expresión suele referirse a una etapa anterior o un hábito pasado?', options: ['Dulu', 'Waktu itu', 'Kemudian'], answer: 0, explanation: 'Dulu suele situar una etapa anterior; waktu itu señala una ocasión concreta.' },
+                                        { vocabId: 'b1v077', type: 'order', prompt: 'Ordena: «En aquel momento, fui a casa de mi abuela».', words: ['nenek.', 'Waktu', 'pergi', 'rumah', 'itu,', 'saya', 'ke'], correctOrder: ['Waktu', 'itu,', 'saya', 'pergi', 'ke', 'rumah', 'nenek.'], explanation: 'Waktu itu establece el momento concreto antes de narrar la acción.' }
+                                    ]
+                                },
+                                {
+                                    title: 'Organizar una experiencia en secuencia',
+                                    objective: 'Ordena acontecimientos con ketika, kemudian y setelah itu y cierra la narración con una valoración.',
+                                    grammar: 'Ketika introduce el momento de una acción; kemudian y setelah itu sitúan los acontecimientos siguientes. Pengalaman y perjalanan permiten nombrar la experiencia o el viaje narrado.',
+                                    reviewVocabIds: ['b1v076', 'b1v077', 'a2u3_ketika', 'a2u3_kemudian', 'a2u3_setelah_itu', 'a2u12_pengalaman', 'a2u14_perjalanan', 'a2u16_liburan'],
+                                    vocabIds: [],
+                                    exercises: [
+                                        { vocabId: 'a2u3_ketika', type: 'order', prompt: 'Ordena: «Cuando volví a casa, llovió».', words: ['hujan', 'Ketika', 'pulang,', 'turun.', 'saya'], correctOrder: ['Ketika', 'saya', 'pulang,', 'hujan', 'turun.'], explanation: 'Ketika introduce el momento en que ocurrió la lluvia.' },
+                                        { vocabId: 'a2u12_pengalaman', type: 'write', prompt: 'Escribe tres o cuatro frases sobre una experiencia pasada y ordénalas temporalmente.', hint: 'Usa una referencia con dulu o waktu itu y al menos dos conectores de secuencia.', modelAnswer: 'Dulu, saya tinggal di desa. Waktu itu, saya pergi ke rumah nenek. Kemudian, saya makan bersama keluarga.', explanation: 'La narración establece el contexto y presenta los acontecimientos en orden.' }
                                     ]
                                 },
                                 {

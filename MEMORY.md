@@ -231,3 +231,11 @@
 - Auditoría literal del currículo: `pertemuan` ya existe en A2 con ID `a2u15_pertemuan`; `perjalanan` existe en A2 con ID `a2u14_perjalanan`; `pembelian` y `pengiriman` aparecen como reconocimiento en B1 U7, sin entrada propia en esa unidad; `peraturan` aparece en material B1 con ID `v242`. `pembuatan`, `penemuan` y `pergerakan` no tuvieron coincidencia literal en el currículo ejecutable inspeccionado. Esto no prueba ausencia de sinónimos o solapamiento semántico.
 - Ninguna forma nueva está aprobada para U7. El diseño solo propone candidatos y condiciones de aprobación; no se añadieron IDs, vocabulario ni ejercicios ejecutables. Se reutilizarán IDs existentes cuando corresponda y se presentarán forma, glosa, ejemplo y evidencia antes de incorporar vocabulario nuevo.
 - U7 sigue sin implementar; no activar contenido por el mero hecho de que el documento tenga cinco lecciones propuestas. No se modifican A1/A2/B1, IndexedDB, backup v3 ni dependencias.
+
+
+## B2 U7 — implementación en curso — 15 nov 2026
+- U7 se implementó en la rama `curriculum/b2-u7-nominalizations-20261115`: cinco lecciones authored y 16 ejercicios, distribuidos 3/3/3/3/4, con cinco tipos de ejercicio y producción guiada.
+- El dueño aprobó explícitamente los cinco nuevos términos y ejemplos: `pembelian`, `pengiriman`, `pembuatan`, `penemuan` y `pergerakan`. Se reutilizan sin duplicar IDs: `a2u15_pertemuan`, `a2u14_perjalanan` y `v242` (`peraturan`).
+- U7 contrasta peN-an/per-an sin enseñar los patrones como reglas productivas libres. No modifica IndexedDB v1, backup JSON v3 ni dependencias.
+- El contenido sigue oculto/no publicable hasta resolver y verificar la cobertura de audio B2; el pipeline actual confirmado en U6 exporta/genera A1/A2/B1, por lo que no se debe declarar U7 publicada ni con audio listo antes de ampliar ese gate.
+- Próximo paso: validar el diff/CI de la rama y, si todo queda verde, abrir y fusionar el PR. Después continuar con el bloque U8–U10 de nominalizaciones.

@@ -40,15 +40,19 @@ test('repository inventory baseline distinguishes authored lessons from runtime-
   const levels = await loadAuthoredLessonLevels();
   const report = buildAuthoredLessonInventory(levels);
   const b1 = levels.find((level) => level.id === 'B1');
-  const consolidated = ['b1_u29', 'b1_u30', 'b1_u31', 'b1_u32'].map((id) => b1.units.find((unit) => unit.id === id));
-  assert.deepEqual(consolidated.map((unit) => unit.lessons.length), [5, 5, 5, 5]);
-  assert.deepEqual(consolidated.map((unit) => unit.lessons.reduce((sum, lesson) => sum + lesson.exercises.length, 0)), [22, 22, 22, 22]);
+  const consolidated = ['b1_u29', 'b1_u30', 'b1_u31', 'b1_u32', 'b1_u33', 'b1_u34', 'b1_u35', 'b1_u36'].map((id) => b1.units.find((unit) => unit.id === id));
+  assert.deepEqual(consolidated.map((unit) => unit.lessons.length), [5, 5, 5, 5, 5, 5, 5, 5]);
+  assert.deepEqual(consolidated.map((unit) => unit.lessons.reduce((sum, lesson) => sum + lesson.exercises.length, 0)), [22, 22, 22, 22, 22, 22, 22, 22]);
   assert.equal(consolidated[3].lessons[4].title, 'Repaso acumulativo de B1 U28–U32');
   const newLessonTitles = [
     'Elegir el grado de obligación según la situación', 'Explicar y justificar una recomendación',
     'Convertir una meta en un plan concreto', 'Mantener el esfuerzo a lo largo del plan',
     'Secuenciar pasos hacia una meta', 'Preparar y decidir el siguiente paso',
     'Reorganizar el horario según las prioridades',
+    'Diagnosticar causas y efectos de un problema', 'Proponer una mejora después de un problema',
+    'Comparar alternativas con criterios claros', 'Justificar una decisión y evaluar sus consecuencias',
+    'Presentar propuestas durante una negociación', 'Construir un compromiso compartido',
+    'Transmitir información de forma ordenada', 'Verificar datos y confirmar acuerdos',
   ];
   const addedLessons = consolidated.flatMap((unit) => unit.lessons.filter((item) => newLessonTitles.includes(item.title)));
   assert.equal(addedLessons.length, 7);
@@ -71,7 +75,7 @@ test('repository inventory baseline distinguishes authored lessons from runtime-
   assert.deepEqual(summary, {
     A1: { unitCount: 32, authoredLessonCount: 161, distribution: { 5: 31, 6: 1 } },
     A2: { unitCount: 40, authoredLessonCount: 200, distribution: { 5: 40 } },
-    B1: { unitCount: 50, authoredLessonCount: 217, distribution: { 3: 15, 4: 3, 5: 32 } },
+    B1: { unitCount: 50, authoredLessonCount: 225, distribution: { 3: 11, 4: 3, 5: 36 } },
     B2: { unitCount: 5, authoredLessonCount: 25, distribution: { 5: 5 } },
   });
 });

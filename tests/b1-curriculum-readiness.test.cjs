@@ -30,12 +30,12 @@ function exercisesOf(unit) {
 }
 
 // B1 U50 readiness baseline updated with the final curriculum unit.
-test('B1 draft has fifty units, two hundred twenty-four unique IDs including earlier canonical vocabulary, and seven hundred seventy-eight exercises', () => {
+test('B1 draft has fifty units, two hundred twenty-four unique IDs including earlier canonical vocabulary, and eight hundred two exercises', () => {
   const b1 = course.levels.find(level => level.id === 'B1');
   assert.ok(b1);
   assert.equal(b1.units.length, 50);
   assert.equal(new Set(b1.units.flatMap(unit => unit.vocab.map(word => word.id))).size, 224);
-  assert.equal(b1.units.reduce((sum, unit) => sum + exercisesOf(unit).length, 0), 778);
+  assert.equal(b1.units.reduce((sum, unit) => sum + exercisesOf(unit).length, 0), 802);
   assert.deepEqual(Array.from(b1.units, unit => unit.id), [
     'b1_u1', 'b1_u2', 'b1_u3', 'b1_u4', 'b1_u5', 'b1_u6', 'b1_u7',
     'b1_u8', 'b1_u9', 'b1_u10', 'b1_u11', 'b1_u12', 'b1_u13', 'b1_u14', 'b1_u15', 'b1_u16', 'b1_u17', 'b1_u18', 'b1_u19', 'b1_u20', 'b1_u21', 'b1_u22', 'b1_u23', 'b1_u24', 'b1_u25', 'b1_u26', 'b1_u27', 'b1_u28', 'b1_u29', 'b1_u30', 'b1_u31', 'b1_u32', 'b1_u33', 'b1_u34', 'b1_u35', 'b1_u36', 'b1_u37', 'b1_u38', 'b1_u39', 'b1_u40', 'b1_u41', 'b1_u42', 'b1_u43', 'b1_u44', 'b1_u45', 'b1_u46', 'b1_u47', 'b1_u48', 'b1_u49', 'b1_u50'
@@ -127,14 +127,14 @@ test('B1 U5-U8 meet the consolidated practice contract and U8 closes the second 
 });
 
 
-test('B1 U9-U12 meet the consolidated practice contract and U12 closes the third cumulative review', () => {
+test('B1 U9-U12 meet the five-lesson practice contract and U12 closes the third cumulative review', () => {
   const b1 = course.levels.find(level => level.id === 'B1');
   for (const unitId of ['b1_u9', 'b1_u10', 'b1_u11', 'b1_u12']) {
     const unit = b1.units.find(item => item.id === unitId);
     assert.ok(unit, unitId + ' must exist');
-    assert.ok(Array.isArray(unit.lessons) && unit.lessons.length >= 2, unitId + ' needs two practice lessons');
+    assert.ok(Array.isArray(unit.lessons) && unit.lessons.length === 5, unitId + ' needs exactly five authored practice lessons');
     const exercises = exercisesOf(unit);
-    assert.equal(exercises.length, 14, unitId + ' must have fourteen combined exercises');
+    assert.equal(exercises.length, 20, unitId + ' must have twenty combined exercises');
     const types = new Set(exercises.map(item => item.type));
     for (const type of ['mc', 'translate_es_id', 'order', 'listen', 'write']) {
       assert.ok(types.has(type), unitId + ' missing exercise type ' + type);
@@ -150,13 +150,15 @@ test('B1 U9-U12 meet the consolidated practice contract and U12 closes the third
     const localIds = new Set(unit.vocab.map(word => word.id));
     for (const exercise of exercises) assert.ok(localIds.has(exercise.vocabId), unitId + ' exercise references non-local vocabulary');
     for (const lesson of unit.lessons) {
-      assert.ok(lesson.exercises.length >= 4, unitId + ' lesson needs at least four exercises');
+      assert.ok(lesson.exercises.length >= 2, unitId + ' lesson needs at least two exercises');
       for (const exercise of lesson.exercises) assert.ok(localIds.has(exercise.vocabId), unitId + ' lesson references non-local vocabulary');
     }
   }
   const u12 = b1.units.find(item => item.id === 'b1_u12');
   const cumulative = u12.lessons.find(lesson => /repaso acumulativo/i.test(lesson.title));
   assert.ok(cumulative, 'B1 U12 must close the U9-U12 cumulative review');
+  assert.equal(u12.lessons[u12.lessons.length - 1], cumulative, 'U12 cumulative review must remain the fifth and final lesson');
+  assert.equal(cumulative.exercises.length, 4, 'U12 cumulative checkpoint keeps its four exercises');
   for (const id of [
     'b1u9_pemimpin', 'b1u9_penduduk', 'b1u9_pembaca',
     'b1u10_pelajaran', 'b1u10_pekerjaan',

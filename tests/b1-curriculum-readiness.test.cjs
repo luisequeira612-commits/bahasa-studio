@@ -69,7 +69,9 @@ test('B1 U33-U36 have five authored lessons and 22 exercises each', () => {
     }
   }
   const u37 = b1.units.find(item => item.id === 'b1_u37');
-  assert.match(u37.lessons[4].title, /Repaso acumulativo de B1 U33–U37/);
+  const checkpoint = u37.lessons.find(lesson => /repaso acumulativo/i.test(lesson.title));
+  assert.ok(checkpoint);
+  assert.match(checkpoint.title, /Repaso acumulativo de B1 U33–U37/);
 });
 
 test('B1 U1 provides a complete introductory practice set for passive di-', () => {
@@ -836,9 +838,9 @@ test('B1 U32-U34 consolidate planning, problem solving and decision evaluation',
   for (let i = 0; i < units.length; i++) {
     const unit = units[i];
     assert.deepEqual(Array.from(unit.vocab, word => word.id), expected[i]);
-    assert.equal(unit.lessons.length, unit.id === 'b1_u32' ? 5 : 3);
+    assert.equal(unit.lessons.length, 5);
     const exercises = exercisesOf(unit);
-    assert.equal(exercises.length, unit.id === 'b1_u32' ? 22 : 14);
+    assert.equal(exercises.length, 22);
     for (const type of ['mc', 'translate_es_id', 'order', 'listen', 'write']) {
       assert.ok(exercises.some(exercise => exercise.type === type), unit.id + ' missing exercise type ' + type);
     }
@@ -885,9 +887,9 @@ test('B1 U35-U37 teach negotiation, clear communication and continuous improveme
   for (let i = 0; i < units.length; i++) {
     const unit = units[i];
     assert.deepEqual(Array.from(unit.vocab, word => word.id), expected[i]);
-    assert.equal(unit.lessons.length, ['b1_u22', 'b1_u27', 'b1_u32', 'b1_u37', 'b1_u42', 'b1_u47'].includes(unit.id) ? 4 : 3);
+    assert.equal(unit.lessons.length, unit.id === 'b1_u37' ? 4 : 5);
     const exercises = exercisesOf(unit);
-    assert.equal(exercises.length, unit.id === 'b1_u37' ? 18 : 14);
+    assert.equal(exercises.length, unit.id === 'b1_u37' ? 18 : 22);
     for (const type of ['mc', 'translate_es_id', 'order', 'listen', 'write']) {
       assert.ok(exercises.some(exercise => exercise.type === type), unit.id + ' missing exercise type ' + type);
     }

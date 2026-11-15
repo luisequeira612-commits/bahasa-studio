@@ -90,11 +90,11 @@ test('B1 U1-U4 meet the consolidated unit practice contract and U4 closes the fi
 
 test('B1 U5-U8 meet the consolidated practice contract and U8 closes the second cumulative review', () => {
   const b1 = course.levels.find(level => level.id === 'B1');
-  const expected = new Map([['b1_u5', 14], ['b1_u6', 15], ['b1_u7', 14], ['b1_u8', 14]]);
+  const expected = new Map([['b1_u5', 20], ['b1_u6', 21], ['b1_u7', 20], ['b1_u8', 20]]);
   for (const [unitId, expectedCount] of expected) {
     const unit = b1.units.find(item => item.id === unitId);
     assert.ok(unit, unitId + ' must exist');
-    assert.ok(Array.isArray(unit.lessons) && unit.lessons.length >= 2, unitId + ' needs two practice lessons');
+    assert.ok(Array.isArray(unit.lessons) && unit.lessons.length === 5, unitId + ' needs five authored practice lessons');
     const exercises = exercisesOf(unit);
     assert.equal(exercises.length, expectedCount, unitId + ' combined exercise count');
     const types = new Set(exercises.map(item => item.type));
@@ -112,7 +112,7 @@ test('B1 U5-U8 meet the consolidated practice contract and U8 closes the second 
     const localIds = new Set(unit.vocab.map(word => word.id));
     for (const exercise of exercises) assert.ok(localIds.has(exercise.vocabId), unitId + ' exercise references non-local vocabulary');
     for (const lesson of unit.lessons) {
-      assert.ok(lesson.exercises.length >= 4, unitId + ' lesson needs at least four exercises');
+      assert.ok(lesson.exercises.length >= 2, unitId + ' lesson needs at least two exercises');
       for (const exercise of lesson.exercises) assert.ok(localIds.has(exercise.vocabId), unitId + ' lesson references non-local vocabulary');
     }
   }

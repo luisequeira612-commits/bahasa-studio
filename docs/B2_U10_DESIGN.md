@@ -58,23 +58,39 @@ Al completar U10, el estudiante podrá:
 - Distinguir la relación discursiva expresada por el contexto de la función morfológica de un afijo.
 - Tratar el patrón -nya de acuerdo con el análisis contextual de U9; no convertirlo en conjunción causal.
 
-### Lección 3 — Condensación, reformulación y registro
+### Lección 3 — Condensación y reformulación sin pérdida de significado
 
 - Comparar una formulación compacta con una paráfrasis más explícita.
-- Revisar si la reformulación conserva los participantes, la referencia temporal/aspectual y la relación lógica del texto.
-- Editar un párrafo breve para mejorar claridad sin añadir agentes, causas o tiempos no expresados.
-- Cerrar con una producción guiada de paráfrasis o edición, no con formación libre de palabras derivadas.
+- Revisar si la reformulación conserva participantes, referencia temporal/aspectual y relación lógica.
+- Editar un párrafo breve sin añadir agentes, causas o tiempos no expresados.
+- Distinguir qué información está codificada en la forma y cuál se recupera del contexto.
+
+### Lección 4 — Registro, claridad y límites de la paráfrasis
+
+- Comparar el efecto de una nominalización y una cláusula más explícita en un texto formal.
+- Decidir cuándo una paráfrasis mejora claridad y cuándo altera el foco informativo.
+- Corregir reformulaciones que inventen un agente, conviertan una tendencia causal en regla o borren una ambigüedad relevante.
+- Justificar por qué dos formulaciones pueden ser contextualmente adecuadas sin ser intercambiables en todos los contextos.
+
+### Lección 5 — Edición integrada y producción guiada
+
+- Revisar un texto continuo con construcciones de U7–U9, solo después de que las unidades de origen estén implementadas y aprobadas.
+- Seleccionar la interpretación respaldada por el contexto y mantener separados los análisis de peN-an, per-an, ke-...-an y -nya.
+- Reescribir dos oraciones de forma guiada y verificar que se conservan participantes y relaciones.
+- Cerrar con una edición breve acumulativa; no crear palabras ni estructuras por analogía.
 
 ## Banco de ejercicios previsto
 
-Propuesta de **16 ejercicios combinados**, todavía sin consignas ni claves definitivas:
+Propuesta de **16 ejercicios combinados en cinco lecciones authored**, todavía sin consignas ni claves definitivas:
 
 | Lección | Opción múltiple | Identificar estructura | Traducción contextual | Ordenación | Lectura/reformulación | Total |
 |---|---:|---:|---:|---:|---:|---:|
-| 1 | 2 | 2 | 1 | 0 | 0 | 5 |
-| 2 | 1 | 1 | 1 | 1 | 1 | 5 |
-| 3 | 1 | 0 | 1 | 0 | 4 | 6 |
-| **Total** | **4** | **3** | **3** | **1** | **5** | **16** |
+| 1 | 1 | 1 | 1 | 0 | 0 | 3 |
+| 2 | 1 | 1 | 0 | 1 | 0 | 3 |
+| 3 | 1 | 0 | 1 | 0 | 1 | 3 |
+| 4 | 1 | 1 | 1 | 0 | 0 | 3 |
+| 5 | 1 | 0 | 1 | 0 | 2 | 4 |
+| **Total** | **5** | **3** | **4** | **1** | **3** | **16** |
 
 Al menos cinco ejercicios trabajarán oraciones completas; al menos uno incluirá producción guiada. El texto continuo se seleccionará y verificará antes de escribir las consignas. Si se conserva escucha, será secundaria y usará solo el mecanismo local existente; no se añadirán servicios ni recursos externos.
 

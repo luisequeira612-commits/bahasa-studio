@@ -18,7 +18,7 @@ App web para aprender idiomas, estilo Duolingo, alojada en GitHub Pages. Hoy tie
 - No se publica en tiendas de apps.
 
 ## Hoja de ruta de idiomas (estado vigente: 15 nov 2026)
-1. **Indonesio:** completar todo el material hasta B2. A1 y A2 están completos. B1 tiene sus 50 unidades implementadas y la migración estructural de cinco lecciones explícitas está completa: U1–U50 cumplen el estándar. B2 U1–U6 están implementadas; U7–U60 siguen pendientes. U6 está fusionada en main, pero permanece fuera del recorrido visible hasta preparar su cobertura de audio y actualizar de forma controlada el gate de publicación. No añadir ningún otro idioma hasta completar el indonesio hasta B2.
+1. **Indonesio:** completar todo el material hasta B2. A1 y A2 están completos. B1 tiene sus 50 unidades implementadas y la migración estructural de cinco lecciones explícitas está completa: U1–U50 cumplen el estándar. B2 U1–U7 están implementadas; U6 y U7 siguen ocultas/no publicables hasta completar la cobertura de audio y aclarar las condiciones de redistribución de la voz Piper. U8–U60 siguen pendientes; U13–U60 aún carecen de mapa curricular aprobado. No añadir ningún otro idioma hasta completar el indonesio hasta B2.
 2. **Inglés:** se añadirá después del indonesio, desde nivel cero (A1), pensado para hispanohablantes. Incluir pronunciación con audio o transcripción sencilla, falsos amigos y verbos frasales.
 3. **Otros idiomas:** no hay ningún otro idioma planificado por ahora. Cualquier idioma adicional lo decidirá el dueño más adelante.
 
@@ -37,7 +37,7 @@ App web para aprender idiomas, estilo Duolingo, alojada en GitHub Pages. Hoy tie
 
 ## Reglas curriculares B1/B2 (estado vigente: 15 nov 2026)
 - A1 (32 unidades) y A2 (40 unidades) cumplen el currículo vigente. B1 tiene 50 unidades con contenido implementado; la migración estructural de 5–6 lecciones explícitas está completada en U1–U50. No cambiar vocabulario, glosas ni explicaciones salvo corrección demostrable mediante un PR acotado.
-- B2 U1–U5 están implementadas; U6–U60 siguen pendientes y no deben activarse sin contenido aprobado. B2 continúa secuencial y oculto/no publicado hasta que el dueño decida lo contrario.
+- B2 U1–U7 están implementadas; U6/U7 no deben activarse hasta cerrar el gate de audio/licencia. U8–U60 siguen pendientes; U13–U60 no tienen mapa curricular aprobado. B2 continúa secuencial y oculto/no publicado hasta que el dueño decida lo contrario.
 - Las unidades B1 se muestran y se pueden estudiar en cuanto su PR se fusiona; no ocultarlas mediante flags o bloqueos ligados a A1.
 - No asumir que todas las unidades B2 están diseñadas: U13–U60 aún no tienen mapa aprobado.
 - Cada unidad nueva: 14–22 ejercicios, al menos cuatro tipos entre opción múltiple, traducción, ordenación, escucha con audio reproducible y escritura; al menos cinco ejercicios con frases completas y una producción original guiada. Añadir repaso acumulativo cada 4–5 unidades.

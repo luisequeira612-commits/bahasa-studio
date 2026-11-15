@@ -215,3 +215,9 @@
 - AGENTS.md refleja B1 completo. La coherencia interna y las pruebas estructurales no equivalen a validación nativa ni certificación MCER/BIPA; no se exige KBBI ni hablante nativo.
 - B2 U1–U5 siguen implementadas; U6–U60 pendientes. Roadmap: completar indonesio hasta B2; después inglés A1 para hispanohablantes; ningún otro idioma planificado.
 
+
+
+## B2 U6 — aprobación e implementación — 15 nov 2026
+- El dueño aprobó explícitamente las ocho formas y ejemplos de B2 U6 `memper-`: `memperkuat`, `memperlemah`, `memperluas`, `memperpanjang`, `memperbesar`, `memperkecil`, `mempermudah` y `mempercepat`.
+- Se implementó U6 en la rama `curriculum/b2-u6-memper-20261115`: cinco lecciones authored y 16 ejercicios, con IDs nuevos `b2u6_*`. No se modificaron IndexedDB v1, backup JSON v3 ni dependencias.
+- La unidad mantiene el guardarraíl: no enseña `memper-` como regla productiva libre ni generaliza su contraste con `meN-kan`. Queda pendiente CI/fusión y la preparación de audio de los nuevos textos mediante el pipeline existente.

@@ -198,7 +198,7 @@ test('A1 U25-U28 contain five authored lessons with cumulative practice and spac
 });
 
 
-test('A1 U29-U32 retain focused lesson plans and generated reinforcement', () => {
+test('A1 U29-U32 use five explicit lessons and preserve cumulative retrieval', () => {
   const a1 = app.CourseData.levels.find(level => level.id === 'A1');
   const units = a1.units.slice(28, 32);
   assert.deepEqual(Array.from(units, unit => unit.id),
@@ -206,8 +206,9 @@ test('A1 U29-U32 retain focused lesson plans and generated reinforcement', () =>
 
   for (const unit of units) {
     assert.equal(unit.lessonPlans.length, 3, unit.id + ' should define three focused lesson plans');
+    assert.equal(unit.lessons.length, 5, unit.id + ' should define five authored lessons');
     const lessons = app.buildUnitLessons(unit);
-    assert.equal(lessons.length, unit.vocab.length >= 18 ? 6 : 5, unit.id + ' should meet the new A1 lesson standard');
+    assert.equal(lessons.length, 5, unit.id + ' should use its five authored lessons without runtime fillers');
     assert.deepEqual(Array.from(lessons.slice(0, 3), lesson => lesson.title), Array.from(unit.lessonPlans, plan => plan.title));
     lessons.slice(0, 3).forEach((lesson, index) => {
       const plan = unit.lessonPlans[index];
@@ -220,19 +221,20 @@ test('A1 U29-U32 retain focused lesson plans and generated reinforcement', () =>
       for (const exercise of lesson.exercises) {
         assert.ok(available.has(exercise.vocabId),
           unit.id + ' ' + lesson.title + ' must not assess vocabulary before it is introduced');
+        assert.notEqual(exercise.generated, true, unit.id + ' authored practice must remain explicit');
       }
     });
-    lessons.slice(3).forEach((lesson, index) => {
-      assert.equal(lesson.index, index + 3);
-      assert.equal(lesson.title, 'Repaso activo ' + (index + 1));
-      assert.deepEqual(Array.from(lesson.newVocab), []);
-      assert.deepEqual(Array.from(lesson.reviewVocab, word => word.id), Array.from(unit.vocab, word => word.id));
-      assert.equal(lesson.exercises.length, unit.vocab.length);
-      assert.ok(lesson.exercises.every(exercise => exercise.generated));
-    });
+
+    assert.equal(lessons[3].title, 'Aplicación guiada y producción');
+    assert.ok(lessons[3].newVocab.length > 0);
+    assert.equal(lessons[4].title, 'Lección 5: Recuperación espaciada de toda la unidad');
+    assert.equal(lessons[4].index, 4);
+    assert.deepEqual(Array.from(lessons[4].newVocab), []);
+    assert.deepEqual(Array.from(lessons[4].reviewVocab, word => word.id), Array.from(unit.vocab, word => word.id));
+    assert.equal(lessons[4].exercises.length, unit.vocab.length);
+    assert.ok(lessons.every(lesson => lesson.exercises.every(exercise => !exercise.generated)));
   }
 });
-
 
 test('authored lesson vocabulary references resolve unambiguously within their intended unit history', () => {
   const levels = app.CourseData.levels;

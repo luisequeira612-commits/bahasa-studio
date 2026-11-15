@@ -269,7 +269,8 @@
 - La propuesta documental de U8 se amplió a cinco lecciones authored reales (3/3/3/3/4 ejercicios, 16 en total), incluyendo alcance de dominios complejos e integración/reformulación guiada. Sigue sin ser contenido ejecutable; las ocho formas candidatas requieren aprobación antes de crear ejemplos o IDs.
 
 
-## A1 U21–U24 — lecciones aplicadas — 15 nov 2026
-- Se sustituyen las lecciones genéricas de uso de vocabulario por lecciones situacionales específicas: comunicar síntomas/pedir ayuda, elegir y describir ropa, describir el interior de una casa y participar en clase.
-- Cada unidad conserva cinco lecciones authored (la lección 5 sigue siendo recuperación espaciada); seis ejercicios propios por lección. Se reutilizan solo IDs de vocabulario ya presentes en la unidad; las cuatro lecciones no introducen vocabulario nuevo. Se añaden ocho respuestas de traducción al inventario de evaluación escrita (baseline actualizado de 892 a 900).
-- La estructura y el inventario de vocabulario no cambian; no se modifican IndexedDB v1, backup JSON v3, manifiestos de audio, dependencias ni runtime. La comprobación estructural no certifica naturalidad nativa ni MCER/BIPA.
+## A1 U21–U24 — lección aplicada adicional — 15 nov 2026
+- Se conserva la lección 4 de uso general del vocabulario y se añade una lección 5 aplicada: comunicar síntomas/pedir ayuda, elegir y describir ropa, describir el interior de una casa y participar en clase. La recuperación espaciada pasa a ser la lección 6.
+- Cada unidad queda con seis lecciones authored (dentro del estándar 5–6) y 24 ejercicios nuevos en total. Las cuatro lecciones aplicadas usan solo IDs existentes; no incorporan vocabulario ni frases de audio. Cada una tiene seis ejercicios y declara como repaso solo los seis IDs que realmente practica.
+- Inventario A1: 165 lecciones (27 unidades con 5 y 5 unidades con 6); todas las unidades implementadas A1–B2 siguen dentro del estándar. El baseline de respuestas escritas pasa de 892 a 900 (+8 traducciones).
+- Sin cambios a IndexedDB v1, backup JSON v3, manifiestos de audio, dependencias ni runtime. La comprobación estructural no certifica naturalidad nativa ni MCER/BIPA.

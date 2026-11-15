@@ -213,7 +213,7 @@
 - B1 queda completo estructuralmente: 50 unidades, cinco lecciones authored por unidad, 250 lecciones y 1022 ejercicios. Currículo total actual: 644 lecciones en 127 unidades implementadas.
 - Las tandas #610–#613 reutilizaron vocabulario/IDs locales y frases de traducción ya presentes en `audio/manifest.json`; no añadieron vocabulario, clips ni frases de audio. Sin cambios a IndexedDB v1, backup JSON v3, Service Worker, hashes/rutas de audio, dependencias ni runtime.
 - AGENTS.md refleja B1 completo. La coherencia interna y las pruebas estructurales no equivalen a validación nativa ni certificación MCER/BIPA; no se exige KBBI ni hablante nativo.
-- B2 U1–U5 siguen implementadas; U6–U60 pendientes. Roadmap: completar indonesio hasta B2; después inglés A1 para hispanohablantes; ningún otro idioma planificado.
+- B2 U1–U6 están implementadas; U7–U60 pendientes. U6 permanece fuera del recorrido visible hasta preparar su audio y gate de publicación. Roadmap: completar indonesio hasta B2; después inglés A1 para hispanohablantes; ningún otro idioma planificado.
 
 
 
@@ -221,5 +221,13 @@
 - El dueño aprobó explícitamente las ocho formas y ejemplos de B2 U6 `memper-`: `memperkuat`, `memperlemah`, `memperluas`, `memperpanjang`, `memperbesar`, `memperkecil`, `mempermudah` y `mempercepat`.
 - Se implementó U6 en la rama `curriculum/b2-u6-memper-20261115`: cinco lecciones authored y 16 ejercicios, con IDs nuevos `b2u6_*`. No se modificaron IndexedDB v1, backup JSON v3 ni dependencias.
 - La unidad mantiene el guardarraíl: no enseña `memper-` como regla productiva libre ni generaliza su contraste con `meN-kan`. La lección 5 introduce `memperkecil` antes de usarlo en actividades, y las pruebas de progresión verifican que el repaso solo referencia vocabulario ya enseñado.
-- Se actualizaron los baselines de inventario y las pruebas que enumeran unidades B2. CI completo verde en run `43704112913` (Regression tests y Offline quality reports). La unidad sigue fuera del recorrido visible: el gate de aprendizaje/revisión/tutor continúa limitado a U1–U5.
-- Pendiente: fusionar PR #615 y generar los audios faltantes mediante el pipeline Piper existente; después se podrá preparar la activación de U6 con cobertura de audio. No cambiar hashes, normalización, rutas ni IndexedDB/backup v3.
+- Se actualizaron los baselines de inventario y las pruebas de progresión. La prueba detectó y corrigió una referencia de repaso prematura: `memperkecil` se enseña en la lección 5 antes de utilizarse. CI completo verde en run `43704585402` (Regression tests y Offline quality reports). PR [#615](https://github.com/luisequeira612-commits/bahasa-studio/pull/615) fusionada mediante squash como `e5890b8bc09200d7073467ff25d2d20415aa58f1`.
+- U6 permanece fuera del recorrido visible: los gates de aprendizaje/revisión/tutor siguen limitados a U1–U5. La revisión del pipeline confirmó que `scripts/export-audio-manifest.mjs` exporta solo A1/A2/B1 y el workflow `generate-audio.yml` solo ofrece esos niveles y `all`; por tanto no se debe ejecutar todavía una generación completa esperando que incluya U6. Se requiere ampliar de forma explícita y probada el exportador/workflow para B2 antes de generar clips.
+- No cambiar hashes, normalización, rutas, `audio-engine.js`, IndexedDB v1 ni backup JSON v3. No activar U6 hasta que los clips estén en manifiesto, índice, metadata y archivos MP3/Opus y las pruebas de cobertura pasen.
+
+
+## B2 U7 — diseño preliminar ampliado — 15 nov 2026
+- `docs/B2_U7_DESIGN.md` se amplió de tres a cinco lecciones explícitas (16 ejercicios distribuidos 3/3/3/3/4) para respetar el estándar de 5–6 lecciones por unidad.
+- Auditoría literal del currículo: `pertemuan` ya existe en A2 con ID `a2u15_pertemuan`; `perjalanan` existe en A2 con ID `a2u14_perjalanan`; `pembelian` y `pengiriman` aparecen como reconocimiento en B1 U7, sin entrada propia en esa unidad; `peraturan` aparece en material B1 con ID `v242`. `pembuatan`, `penemuan` y `pergerakan` no tuvieron coincidencia literal en el currículo ejecutable inspeccionado. Esto no prueba ausencia de sinónimos o solapamiento semántico.
+- Ninguna forma nueva está aprobada para U7. El diseño solo propone candidatos y condiciones de aprobación; no se añadieron IDs, vocabulario ni ejercicios ejecutables. Se reutilizarán IDs existentes cuando corresponda y se presentarán forma, glosa, ejemplo y evidencia antes de incorporar vocabulario nuevo.
+- U7 sigue sin implementar; no activar contenido por el mero hecho de que el documento tenga cinco lecciones propuestas. No se modifican A1/A2/B1, IndexedDB, backup v3 ni dependencias.

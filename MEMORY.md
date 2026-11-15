@@ -275,3 +275,9 @@
 - La prueba `multi-lesson-progression` se ajusta para que la lección aplicada 5 valide su subconjunto contextual de `reviewVocabIds`, mientras la prueba sigue exigiendo que todas las palabras se introduzcan una sola vez y que la lección 6 recupere la unidad completa. Es una corrección del contrato de prueba; no cambia currículo ni runtime.
 - Inventario A1: 165 lecciones (27 unidades con 5 y 5 unidades con 6); todas las unidades implementadas A1–B2 siguen dentro del estándar. El baseline de respuestas escritas pasa de 892 a 900 (+8 traducciones).
 - PR [#626](https://github.com/luisequeira612-commits/bahasa-studio/pull/626) fusionada por squash en `main` como `19a30a34a38e491b7d31392bf79f7e9f9342b914`; CI pre-merge run `43749115240`, regresión post-merge `43749335943` y Pages `43749335399` terminaron en éxito. PR #627 también espera a que `App.studyActivity` se hidrate en su prueba E2E antes de sumar XP, evitando una carrera de inicialización; no cambia runtime. Sin cambios a IndexedDB v1, backup JSON v3, manifiestos de audio ni dependencias.
+
+
+## Audio legal/provenance migration — 15 nov 2026
+- La auditoría confirmó una ambigüedad real en la cadena Piper de producción: id_ID-news_tts-medium está documentado históricamente como CC BY-NC-SA 4.0 y fine-tuned desde en_US-lessac-medium; la documentación oficial de Piper no garantiza derechos downstream sobre los outputs.
+- Se preparó la migración a MMS Indonesian (facebook/mms-tts-ind), revisión 171b004ccd54f266a31efee71f1ad850c91d39c0, modelo CC BY-NC 4.0 y SHA-256 del peso d56181bae3a51458aab6b4a893ecd71d0fde69378f576c53e139b59940d80ca0. El workflow rechaza Piper para generación full y fuerza --force con MMS para regenerar la biblioteca completa.
+- PR de migración: rama audio/license-safe-mms-20261115. El audio existente sigue siendo Piper hasta ejecutar y fusionar la regeneración completa; no afirmar que la migración está terminada antes de verificar los nuevos MP3/Opus y CI.

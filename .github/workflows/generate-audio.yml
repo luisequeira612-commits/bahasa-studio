@@ -7,7 +7,7 @@ on:
         description: Motor de voz para evaluar
         type: choice
         options: [edge, piper, mms]
-        default: piper
+        default: mms
         required: true
       mode:
         description: samples para escuchar; full genera audio; hashes solo calcula huellas sin TTS
@@ -57,6 +57,12 @@ jobs:
         if: ${{ inputs.mode == 'full' && inputs.confirm_full != true }}
         run: |
           echo "::error::La generación completa requiere confirm_full=true y la selección previa de una voz."
+          exit 1
+
+      - name: Reject legacy Piper for production regeneration
+        if: ${{ inputs.mode == 'full' && inputs.engine == 'piper' }}
+        run: |
+          echo "::error::Piper queda solo para muestras históricas. La biblioteca de producción debe regenerarse con MMS Indonesian (CC BY-NC 4.0)."
           exit 1
 
       - name: Check out repository
@@ -139,7 +145,7 @@ jobs:
           elif [[ "$MODE" == "samples" ]]; then
             python scripts/generate_audio.py --engine "$ENGINE" --mode samples --level "$LEVEL" --limit "$LIMIT"
           else
-            python scripts/generate_audio.py --engine "$ENGINE" --mode full --level "$LEVEL" --limit 0
+            python scripts/generate_audio.py --engine "$ENGINE" --mode full --level "$LEVEL" --limit 0 --force
           fi
 
       - name: Run audio generation tests

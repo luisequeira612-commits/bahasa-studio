@@ -25,7 +25,7 @@ U1–U32 cumplen el estándar: 31 unidades tienen cinco lecciones explícitas y 
 Las 40 unidades tienen cinco lecciones explícitas. La quinta incorpora recuperación espaciada del vocabulario existente, sin añadir IDs nuevos.
 
 ### B1
-Las 50 unidades tienen entre dos y cuatro lecciones explícitas. Los checkpoints U22, U27, U32, U37, U42 y U47 tienen cuatro; las demás se distribuyen entre dos y tres. La migración debe preservar la progresión de vocabulario, los checkpoints acumulativos y los contratos de ejercicios ya existentes.
+B1 U1–U4 ya tienen cinco lecciones explícitas cada una; U4 conserva al final el checkpoint acumulativo U1–U4. Las 46 unidades restantes tienen entre dos y cuatro lecciones: los checkpoints U22, U27, U32, U37, U42 y U47 tienen cuatro; las demás se distribuyen entre dos y tres. La migración debe preservar la progresión de vocabulario, los checkpoints acumulativos y los contratos de ejercicios ya existentes.
 
 ### B2
 Las cinco unidades implementadas (U1–U5) tienen cinco lecciones explícitas. U6–U60 aún no existen como unidades implementadas; cada unidad futura deberá incluir cinco o seis lecciones desde su primera versión y no se activará sin contenido aprobado.

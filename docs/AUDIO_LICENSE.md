@@ -13,14 +13,14 @@ MMS Indonesian publica explícitamente su modelo bajo **CC BY-NC 4.0**, sin la c
 - Modelo: facebook/mms-tts-ind
 - Revisión: 171b004ccd54f266a31efee71f1ad850c91d39c0
 - SHA-256 del peso model.safetensors: d56181bae3a51458aab6b4a893ecd71d0fde69378f576c53e139b59940d80ca0
-- Licencia declarada: CC BY-NC 4.0
+- Licencia declarada: [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)
 - Fuente: https://huggingface.co/facebook/mms-tts-ind/tree/171b004ccd54f266a31efee71f1ad850c91d39c0
 
 ## Qué se redistribuye
 
 Bahasa Studio no distribuye los pesos del modelo dentro de la PWA. Distribuye únicamente archivos MP3/Opus generados durante el pipeline de GitHub Actions.
 
-La licencia CC BY-NC 4.0 es una mejora clara frente a la procedencia anterior, pero no debe describirse como una garantía jurídica absoluta sobre cualquier output de TTS. La aplicación es gratuita y no comercial, y debe conservar atribución de la fuente del modelo en esta documentación.
+La licencia CC BY-NC 4.0 es una mejora clara frente a la procedencia anterior, pero no debe describirse como una garantía jurídica absoluta sobre cualquier output de TTS. La aplicación es gratuita y no comercial. La atribución se registra también en `audio/metadata.json` cuando la migración se complete, para que viaje junto a la biblioteca distribuida; esta documentación conserva la ficha de origen y el enlace a la licencia.
 
 ## Migración
 
@@ -38,6 +38,6 @@ Piper queda disponible únicamente para muestras históricas/diagnóstico. El wo
 
 ## Atribución
 
-MMS-TTS fue desarrollado por Vineel Pratap et al. como parte del proyecto Massively Multilingual Speech de Meta AI. La referencia del proyecto y la licencia están en la ficha oficial del modelo.
+Atribución: **MMS-TTS**, por Vineel Pratap et al., Meta AI, como parte del proyecto Massively Multilingual Speech. Modelo: [facebook/mms-tts-ind](https://huggingface.co/facebook/mms-tts-ind/tree/171b004ccd54f266a31efee71f1ad850c91d39c0). Licencia declarada por el repositorio del modelo: [Creative Commons Attribution-NonCommercial 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/). Los archivos de audio se generan con este modelo y se codifican a MP3/Opus. Esta nota documenta la procedencia y atribución, pero no determina si cada output constituye jurídicamente una obra derivada; la licencia del modelo no debe presentarse como garantía legal absoluta sobre todos los outputs.
 
 La licencia del motor de inferencia (Transformers/PyTorch) es independiente de la licencia del modelo; el pipeline no incorpora esos paquetes en la PWA.

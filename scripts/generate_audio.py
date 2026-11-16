@@ -24,6 +24,8 @@ PIPER_REVISION = "7c89b592e94392a56c789bd35a860fec66a6583f"
 MMS_MODEL_ID = "facebook/mms-tts-ind"
 MMS_MODEL_REVISION = "171b004ccd54f266a31efee71f1ad850c91d39c0"
 MMS_MODEL_LICENSE = "CC BY-NC 4.0"
+MMS_MODEL_LICENSE_URL = "https://creativecommons.org/licenses/by-nc/4.0/"
+MMS_MODEL_ATTRIBUTION = "MMS-TTS by Vineel Pratap et al., Meta AI"
 MMS_MODEL_SHA256 = "d56181bae3a51458aab6b4a893ecd71d0fde69378f576c53e139b59940d80ca0"
 PIPER_BASE = f"https://huggingface.co/rhasspy/piper-voices/resolve/{PIPER_REVISION}/id/id_ID/news_tts/medium"
 LEVELS = ("A1", "A2", "B1", "B2", "all")
@@ -145,6 +147,15 @@ def encode_audio(source: Path, destination: Path, codec_name: str):
 def ensure_single_voice(metadata_file: Path, engine: str, voice: str, allow_piper_replacement: bool = False):
     metadata_file.parent.mkdir(parents=True, exist_ok=True)
     expected = {"engine": engine, "voice": voice, "formats": ["opus", "mp3"]}
+    if engine == "mms":
+        expected.update({
+            "model": MMS_MODEL_ID,
+            "model_revision": MMS_MODEL_REVISION,
+            "model_sha256": MMS_MODEL_SHA256,
+            "model_license": MMS_MODEL_LICENSE,
+            "model_license_url": MMS_MODEL_LICENSE_URL,
+            "model_attribution": MMS_MODEL_ATTRIBUTION,
+        })
     if metadata_file.exists():
         existing = json.loads(metadata_file.read_text(encoding="utf-8"))
         core = {key: existing.get(key) for key in expected}

@@ -7798,6 +7798,11 @@
         "level": "A1",
         "unit": "a1_u21",
         "kind": "example"
+      },
+      {
+        "level": "A1",
+        "unit": "a1_u21",
+        "kind": "translate-answer"
       }
     ]
   },
@@ -7833,6 +7838,11 @@
         "level": "A1",
         "unit": "a1_u21",
         "kind": "example"
+      },
+      {
+        "level": "A1",
+        "unit": "a1_u21",
+        "kind": "translate-answer"
       }
     ]
   },
@@ -8075,6 +8085,11 @@
         "level": "A1",
         "unit": "a1_u22",
         "kind": "exercise-audioText"
+      },
+      {
+        "level": "A1",
+        "unit": "a1_u22",
+        "kind": "translate-answer"
       }
     ]
   },
@@ -8110,6 +8125,11 @@
         "level": "A1",
         "unit": "a1_u22",
         "kind": "example"
+      },
+      {
+        "level": "A1",
+        "unit": "a1_u22",
+        "kind": "translate-answer"
       }
     ]
   },
@@ -8640,6 +8660,11 @@
         "level": "A1",
         "unit": "a1_u23",
         "kind": "example"
+      },
+      {
+        "level": "A1",
+        "unit": "a1_u23",
+        "kind": "translate-answer"
       }
     ]
   },
@@ -8762,6 +8787,11 @@
         "level": "A1",
         "unit": "a1_u23",
         "kind": "example"
+      },
+      {
+        "level": "A1",
+        "unit": "a1_u23",
+        "kind": "translate-answer"
       }
     ]
   },
@@ -8972,7 +9002,8 @@
     "normalized": "membaca",
     "levels": [
       "A1",
-      "B1"
+      "B1",
+      "B2"
     ],
     "sources": [
       {
@@ -9004,6 +9035,11 @@
         "level": "B1",
         "unit": "b1_u17",
         "kind": "vocabulary"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u1",
+        "kind": "vocabulary"
       }
     ]
   },
@@ -9027,6 +9063,11 @@
         "kind": "exercise-audioText"
       },
       {
+        "level": "A1",
+        "unit": "a1_u24",
+        "kind": "translate-answer"
+      },
+      {
         "level": "B1",
         "unit": "b1_u15",
         "kind": "example"
@@ -9044,7 +9085,8 @@
     "normalized": "menulis",
     "levels": [
       "A1",
-      "B1"
+      "B1",
+      "B2"
     ],
     "sources": [
       {
@@ -9060,6 +9102,11 @@
       {
         "level": "B1",
         "unit": "b1_u2",
+        "kind": "vocabulary"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u1",
         "kind": "vocabulary"
       }
     ]
@@ -9136,6 +9183,11 @@
         "level": "A1",
         "unit": "a1_u24",
         "kind": "example"
+      },
+      {
+        "level": "A1",
+        "unit": "a1_u24",
+        "kind": "translate-answer"
       }
     ]
   },
@@ -10559,6 +10611,11 @@
         "level": "A1",
         "unit": "a1_u29",
         "kind": "vocabulary"
+      },
+      {
+        "level": "A1",
+        "unit": "a1_u29",
+        "kind": "translate-answer"
       }
     ]
   },
@@ -10594,6 +10651,11 @@
         "level": "A1",
         "unit": "a1_u29",
         "kind": "translate-answer"
+      },
+      {
+        "level": "A1",
+        "unit": "a1_u29",
+        "kind": "listen-answer"
       }
     ]
   },
@@ -10719,6 +10781,11 @@
         "level": "A1",
         "unit": "a1_u29",
         "kind": "vocabulary"
+      },
+      {
+        "level": "A1",
+        "unit": "a1_u29",
+        "kind": "translate-answer"
       }
     ]
   },
@@ -10749,6 +10816,11 @@
         "level": "A1",
         "unit": "a1_u29",
         "kind": "vocabulary"
+      },
+      {
+        "level": "A1",
+        "unit": "a1_u29",
+        "kind": "listen-answer"
       }
     ]
   },
@@ -10874,6 +10946,11 @@
         "level": "A1",
         "unit": "a1_u30",
         "kind": "vocabulary"
+      },
+      {
+        "level": "A1",
+        "unit": "a1_u30",
+        "kind": "translate-answer"
       }
     ]
   },
@@ -10904,6 +10981,11 @@
         "level": "A1",
         "unit": "a1_u30",
         "kind": "vocabulary"
+      },
+      {
+        "level": "A1",
+        "unit": "a1_u30",
+        "kind": "listen-answer"
       }
     ]
   },
@@ -10927,7 +11009,8 @@
     "text": "Bantuan",
     "normalized": "bantuan",
     "levels": [
-      "A1"
+      "A1",
+      "B2"
     ],
     "sources": [
       {
@@ -10939,6 +11022,11 @@
         "level": "A1",
         "unit": "a1_u30",
         "kind": "translate-answer"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u5",
+        "kind": "vocabulary"
       }
     ]
   },
@@ -10947,7 +11035,8 @@
     "text": "Saya perlu bantuan.",
     "normalized": "saya perlu bantuan.",
     "levels": [
-      "A1"
+      "A1",
+      "B2"
     ],
     "sources": [
       {
@@ -10958,6 +11047,11 @@
       {
         "level": "A1",
         "unit": "a1_u32",
+        "kind": "example"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u5",
         "kind": "example"
       }
     ]
@@ -11199,6 +11293,11 @@
         "level": "A1",
         "unit": "a1_u31",
         "kind": "vocabulary"
+      },
+      {
+        "level": "A1",
+        "unit": "a1_u31",
+        "kind": "translate-answer"
       }
     ]
   },
@@ -11230,6 +11329,11 @@
         "level": "A1",
         "unit": "a1_u31",
         "kind": "vocabulary"
+      },
+      {
+        "level": "A1",
+        "unit": "a1_u31",
+        "kind": "listen-answer"
       },
       {
         "level": "B1",
@@ -11400,6 +11504,11 @@
         "level": "A1",
         "unit": "a1_u31",
         "kind": "vocabulary"
+      },
+      {
+        "level": "A1",
+        "unit": "a1_u31",
+        "kind": "listen-answer"
       }
     ]
   },
@@ -11510,6 +11619,11 @@
         "level": "A1",
         "unit": "a1_u32",
         "kind": "vocabulary"
+      },
+      {
+        "level": "A1",
+        "unit": "a1_u32",
+        "kind": "translate-answer"
       }
     ]
   },
@@ -11545,6 +11659,11 @@
         "level": "A1",
         "unit": "a1_u32",
         "kind": "translate-answer"
+      },
+      {
+        "level": "A1",
+        "unit": "a1_u32",
+        "kind": "listen-answer"
       }
     ]
   },
@@ -11673,6 +11792,11 @@
         "kind": "vocabulary"
       },
       {
+        "level": "A1",
+        "unit": "a1_u32",
+        "kind": "translate-answer"
+      },
+      {
         "level": "B1",
         "unit": "b1_u29",
         "kind": "vocabulary"
@@ -11691,6 +11815,11 @@
         "level": "A1",
         "unit": "a1_u32",
         "kind": "vocabulary"
+      },
+      {
+        "level": "A1",
+        "unit": "a1_u32",
+        "kind": "listen-answer"
       }
     ]
   },
@@ -14511,7 +14640,8 @@
     "normalized": "menjual",
     "levels": [
       "A2",
-      "B1"
+      "B1",
+      "B2"
     ],
     "sources": [
       {
@@ -14528,6 +14658,11 @@
         "level": "B1",
         "unit": "b1_u2",
         "kind": "listen-answer"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u1",
+        "kind": "vocabulary"
       }
     ]
   },
@@ -14762,7 +14897,8 @@
     "normalized": "mengajar",
     "levels": [
       "A2",
-      "B1"
+      "B1",
+      "B2"
     ],
     "sources": [
       {
@@ -14773,6 +14909,11 @@
       {
         "level": "B1",
         "unit": "b1_u2",
+        "kind": "vocabulary"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u1",
         "kind": "vocabulary"
       }
     ]
@@ -15748,7 +15889,8 @@
     "normalized": "menjelaskan",
     "levels": [
       "A2",
-      "B1"
+      "B1",
+      "B2"
     ],
     "sources": [
       {
@@ -15765,6 +15907,11 @@
         "level": "B1",
         "unit": "b1_u4",
         "kind": "listen-answer"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u4",
+        "kind": "vocabulary"
       }
     ]
   },
@@ -15965,7 +16112,8 @@
     "normalized": "peraturan",
     "levels": [
       "A2",
-      "B1"
+      "B1",
+      "B2"
     ],
     "sources": [
       {
@@ -15977,6 +16125,16 @@
         "level": "B1",
         "unit": "b1_u47",
         "kind": "vocabulary"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u7",
+        "kind": "vocabulary"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u7",
+        "kind": "listen-answer"
       }
     ]
   },
@@ -17732,7 +17890,8 @@
     "normalized": "perjalanan",
     "levels": [
       "A2",
-      "B1"
+      "B1",
+      "B2"
     ],
     "sources": [
       {
@@ -17744,6 +17903,11 @@
         "level": "B1",
         "unit": "b1_u24",
         "kind": "vocabulary"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u7",
+        "kind": "vocabulary"
       }
     ]
   },
@@ -17753,7 +17917,8 @@
     "normalized": "perjalanan saya jauh.",
     "levels": [
       "A2",
-      "B1"
+      "B1",
+      "B2"
     ],
     "sources": [
       {
@@ -17770,6 +17935,11 @@
         "level": "B1",
         "unit": "b1_u24",
         "kind": "translate-answer"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u7",
+        "kind": "example"
       }
     ]
   },
@@ -18559,12 +18729,18 @@
     "text": "pertemuan",
     "normalized": "pertemuan",
     "levels": [
-      "A2"
+      "A2",
+      "B2"
     ],
     "sources": [
       {
         "level": "A2",
         "unit": "a2_u15",
+        "kind": "vocabulary"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u7",
         "kind": "vocabulary"
       }
     ]
@@ -18574,7 +18750,8 @@
     "text": "Pertemuan itu penting.",
     "normalized": "pertemuan itu penting.",
     "levels": [
-      "A2"
+      "A2",
+      "B2"
     ],
     "sources": [
       {
@@ -18586,6 +18763,11 @@
         "level": "A2",
         "unit": "a2_u15",
         "kind": "translate-answer"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u7",
+        "kind": "example"
       }
     ]
   },
@@ -23651,12 +23833,18 @@
     "text": "penemuan",
     "normalized": "penemuan",
     "levels": [
-      "A2"
+      "A2",
+      "B2"
     ],
     "sources": [
       {
         "level": "A2",
         "unit": "a2_u28",
+        "kind": "vocabulary"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u7",
         "kind": "vocabulary"
       }
     ]
@@ -24341,12 +24529,18 @@
     "text": "pengiriman",
     "normalized": "pengiriman",
     "levels": [
-      "A2"
+      "A2",
+      "B2"
     ],
     "sources": [
       {
         "level": "A2",
         "unit": "a2_u29",
+        "kind": "vocabulary"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u7",
         "kind": "vocabulary"
       }
     ]
@@ -29150,7 +29344,8 @@
     "text": "Dibaca",
     "normalized": "dibaca",
     "levels": [
-      "B1"
+      "B1",
+      "B2"
     ],
     "sources": [
       {
@@ -29161,6 +29356,11 @@
       {
         "level": "B1",
         "unit": "b1_u17",
+        "kind": "vocabulary"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u1",
         "kind": "vocabulary"
       }
     ]
@@ -29170,7 +29370,8 @@
     "text": "Buku dibaca oleh Rina.",
     "normalized": "buku dibaca oleh rina.",
     "levels": [
-      "B1"
+      "B1",
+      "B2"
     ],
     "sources": [
       {
@@ -29192,6 +29393,16 @@
         "level": "B1",
         "unit": "b1_u17",
         "kind": "example"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u1",
+        "kind": "example"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u1",
+        "kind": "listen-answer"
       }
     ]
   },
@@ -29200,7 +29411,8 @@
     "text": "Ditulis",
     "normalized": "ditulis",
     "levels": [
-      "B1"
+      "B1",
+      "B2"
     ],
     "sources": [
       {
@@ -29211,6 +29423,11 @@
       {
         "level": "B1",
         "unit": "b1_u17",
+        "kind": "vocabulary"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u1",
         "kind": "vocabulary"
       }
     ]
@@ -29220,7 +29437,8 @@
     "text": "Surat ditulis oleh Rina.",
     "normalized": "surat ditulis oleh rina.",
     "levels": [
-      "B1"
+      "B1",
+      "B2"
     ],
     "sources": [
       {
@@ -29242,6 +29460,16 @@
         "level": "B1",
         "unit": "b1_u17",
         "kind": "example"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u1",
+        "kind": "example"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u1",
+        "kind": "listen-answer"
       }
     ]
   },
@@ -29250,7 +29478,8 @@
     "text": "Dijual",
     "normalized": "dijual",
     "levels": [
-      "B1"
+      "B1",
+      "B2"
     ],
     "sources": [
       {
@@ -29262,6 +29491,11 @@
         "level": "B1",
         "unit": "b1_u1",
         "kind": "listen-answer"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u1",
+        "kind": "vocabulary"
       }
     ]
   },
@@ -29270,13 +29504,24 @@
     "text": "Buah dijual di pasar.",
     "normalized": "buah dijual di pasar.",
     "levels": [
-      "B1"
+      "B1",
+      "B2"
     ],
     "sources": [
       {
         "level": "B1",
         "unit": "b1_u1",
         "kind": "example"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u1",
+        "kind": "example"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u1",
+        "kind": "translate-answer"
       }
     ]
   },
@@ -29285,12 +29530,18 @@
     "text": "Diajar",
     "normalized": "diajar",
     "levels": [
-      "B1"
+      "B1",
+      "B2"
     ],
     "sources": [
       {
         "level": "B1",
         "unit": "b1_u1",
+        "kind": "vocabulary"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u1",
         "kind": "vocabulary"
       }
     ]
@@ -29300,7 +29551,8 @@
     "text": "Murid diajar oleh guru.",
     "normalized": "murid diajar oleh guru.",
     "levels": [
-      "B1"
+      "B1",
+      "B2"
     ],
     "sources": [
       {
@@ -29317,6 +29569,16 @@
         "level": "B1",
         "unit": "b1_u1",
         "kind": "translate-answer"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u1",
+        "kind": "example"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u1",
+        "kind": "listen-answer"
       }
     ]
   },
@@ -29325,13 +29587,24 @@
     "text": "Ana membaca buku.",
     "normalized": "ana membaca buku.",
     "levels": [
-      "B1"
+      "B1",
+      "B2"
     ],
     "sources": [
       {
         "level": "B1",
         "unit": "b1_u2",
         "kind": "example"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u1",
+        "kind": "example"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u1",
+        "kind": "translate-answer"
       }
     ]
   },
@@ -29340,7 +29613,8 @@
     "text": "Rina menulis surat.",
     "normalized": "rina menulis surat.",
     "levels": [
-      "B1"
+      "B1",
+      "B2"
     ],
     "sources": [
       {
@@ -29351,6 +29625,16 @@
       {
         "level": "B1",
         "unit": "b1_u2",
+        "kind": "translate-answer"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u1",
+        "kind": "example"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u1",
         "kind": "translate-answer"
       }
     ]
@@ -29360,7 +29644,8 @@
     "text": "Mereka menjual buah.",
     "normalized": "mereka menjual buah.",
     "levels": [
-      "B1"
+      "B1",
+      "B2"
     ],
     "sources": [
       {
@@ -29372,6 +29657,11 @@
         "level": "B1",
         "unit": "b1_u2",
         "kind": "translate-answer"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u1",
+        "kind": "example"
       }
     ]
   },
@@ -29380,7 +29670,8 @@
     "text": "Guru mengajar murid.",
     "normalized": "guru mengajar murid.",
     "levels": [
-      "B1"
+      "B1",
+      "B2"
     ],
     "sources": [
       {
@@ -29392,6 +29683,16 @@
         "level": "B1",
         "unit": "b1_u2",
         "kind": "listen-answer"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u1",
+        "kind": "example"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u1",
+        "kind": "translate-answer"
       }
     ]
   },
@@ -29400,12 +29701,18 @@
     "text": "Oleh",
     "normalized": "oleh",
     "levels": [
-      "B1"
+      "B1",
+      "B2"
     ],
     "sources": [
       {
         "level": "B1",
         "unit": "b1_u2",
+        "kind": "vocabulary"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u1",
         "kind": "vocabulary"
       }
     ]
@@ -29415,7 +29722,8 @@
     "text": "Buku dibaca oleh Ana.",
     "normalized": "buku dibaca oleh ana.",
     "levels": [
-      "B1"
+      "B1",
+      "B2"
     ],
     "sources": [
       {
@@ -29426,6 +29734,21 @@
       {
         "level": "B1",
         "unit": "b1_u2",
+        "kind": "listen-answer"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u1",
+        "kind": "example"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u1",
+        "kind": "listen-answer"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u3",
         "kind": "listen-answer"
       }
     ]
@@ -29580,12 +29903,18 @@
     "text": "Memberikan",
     "normalized": "memberikan",
     "levels": [
-      "B1"
+      "B1",
+      "B2"
     ],
     "sources": [
       {
         "level": "B1",
         "unit": "b1_u4",
+        "kind": "vocabulary"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u4",
         "kind": "vocabulary"
       }
     ]
@@ -29595,7 +29924,8 @@
     "text": "Saya memberikan buku kepada Rina.",
     "normalized": "saya memberikan buku kepada rina.",
     "levels": [
-      "B1"
+      "B1",
+      "B2"
     ],
     "sources": [
       {
@@ -29607,6 +29937,16 @@
         "level": "B1",
         "unit": "b1_u4",
         "kind": "translate-answer"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u4",
+        "kind": "example"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u4",
+        "kind": "listen-answer"
       }
     ]
   },
@@ -29615,12 +29955,18 @@
     "text": "Mengirimkan",
     "normalized": "mengirimkan",
     "levels": [
-      "B1"
+      "B1",
+      "B2"
     ],
     "sources": [
       {
         "level": "B1",
         "unit": "b1_u4",
+        "kind": "vocabulary"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u4",
         "kind": "vocabulary"
       }
     ]
@@ -29630,7 +29976,8 @@
     "text": "Saya mengirimkan dokumen kepada Rina.",
     "normalized": "saya mengirimkan dokumen kepada rina.",
     "levels": [
-      "B1"
+      "B1",
+      "B2"
     ],
     "sources": [
       {
@@ -29642,6 +29989,21 @@
         "level": "B1",
         "unit": "b1_u4",
         "kind": "translate-answer"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u4",
+        "kind": "example"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u4",
+        "kind": "translate-answer"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u4",
+        "kind": "listen-answer"
       }
     ]
   },
@@ -29650,7 +30012,8 @@
     "text": "Guru menjelaskan cara membaca kepada siswa.",
     "normalized": "guru menjelaskan cara membaca kepada siswa.",
     "levels": [
-      "B1"
+      "B1",
+      "B2"
     ],
     "sources": [
       {
@@ -29667,6 +30030,16 @@
         "level": "B1",
         "unit": "b1_u4",
         "kind": "listen-answer"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u4",
+        "kind": "example"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u4",
+        "kind": "translate-answer"
       }
     ]
   },
@@ -29675,12 +30048,18 @@
     "text": "Membersihkan",
     "normalized": "membersihkan",
     "levels": [
-      "B1"
+      "B1",
+      "B2"
     ],
     "sources": [
       {
         "level": "B1",
         "unit": "b1_u4",
+        "kind": "vocabulary"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u4",
         "kind": "vocabulary"
       }
     ]
@@ -29690,7 +30069,8 @@
     "text": "Saya membersihkan rumah setiap pagi.",
     "normalized": "saya membersihkan rumah setiap pagi.",
     "levels": [
-      "B1"
+      "B1",
+      "B2"
     ],
     "sources": [
       {
@@ -29702,6 +30082,11 @@
         "level": "B1",
         "unit": "b1_u4",
         "kind": "listen-answer"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u4",
+        "kind": "example"
       }
     ]
   },
@@ -29832,6 +30217,11 @@
         "level": "B1",
         "unit": "b1_u5",
         "kind": "example"
+      },
+      {
+        "level": "B1",
+        "unit": "b1_u5",
+        "kind": "translate-answer"
       }
     ]
   },
@@ -29977,6 +30367,11 @@
         "level": "B1",
         "unit": "b1_u6",
         "kind": "listen-answer"
+      },
+      {
+        "level": "B1",
+        "unit": "b1_u6",
+        "kind": "translate-answer"
       }
     ]
   },
@@ -30012,6 +30407,11 @@
         "level": "B1",
         "unit": "b1_u6",
         "kind": "translate-answer"
+      },
+      {
+        "level": "B1",
+        "unit": "b1_u6",
+        "kind": "listen-answer"
       }
     ]
   },
@@ -30407,6 +30807,11 @@
         "level": "B1",
         "unit": "b1_u10",
         "kind": "listen-answer"
+      },
+      {
+        "level": "B1",
+        "unit": "b1_u10",
+        "kind": "translate-answer"
       }
     ]
   },
@@ -30592,6 +30997,11 @@
         "level": "B1",
         "unit": "b1_u12",
         "kind": "example"
+      },
+      {
+        "level": "B1",
+        "unit": "b1_u12",
+        "kind": "translate-answer"
       },
       {
         "level": "B1",
@@ -31417,6 +31827,11 @@
         "level": "B1",
         "unit": "b1_u19",
         "kind": "listen-answer"
+      },
+      {
+        "level": "B1",
+        "unit": "b1_u19",
+        "kind": "translate-answer"
       }
     ]
   },
@@ -34056,6 +34471,26 @@
     ]
   },
   {
+    "id": "e74be7210f8b",
+    "text": "Kami mempertimbangkan pilihan dan mengevaluasi risiko.",
+    "normalized": "kami mempertimbangkan pilihan dan mengevaluasi risiko.",
+    "levels": [
+      "B1"
+    ],
+    "sources": [
+      {
+        "level": "B1",
+        "unit": "b1_u34",
+        "kind": "translate-answer"
+      },
+      {
+        "level": "B1",
+        "unit": "b1_u37",
+        "kind": "translate-answer"
+      }
+    ]
+  },
+  {
     "id": "260e8fe1229f",
     "text": "Berunding",
     "normalized": "berunding",
@@ -34576,21 +35011,6 @@
     ]
   },
   {
-    "id": "e74be7210f8b",
-    "text": "Kami mempertimbangkan pilihan dan mengevaluasi risiko.",
-    "normalized": "kami mempertimbangkan pilihan dan mengevaluasi risiko.",
-    "levels": [
-      "B1"
-    ],
-    "sources": [
-      {
-        "level": "B1",
-        "unit": "b1_u37",
-        "kind": "translate-answer"
-      }
-    ]
-  },
-  {
     "id": "326f2cc52196",
     "text": "Kami mengonfirmasi jadwal dan memastikan semua orang memahami.",
     "normalized": "kami mengonfirmasi jadwal dan memastikan semua orang memahami.",
@@ -34610,12 +35030,18 @@
     "text": "Umpan balik",
     "normalized": "umpan balik",
     "levels": [
-      "B1"
+      "B1",
+      "B2"
     ],
     "sources": [
       {
         "level": "B1",
         "unit": "b1_u38",
+        "kind": "vocabulary"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u5",
         "kind": "vocabulary"
       }
     ]
@@ -34625,12 +35051,23 @@
     "text": "Saya menerima umpan balik dari guru.",
     "normalized": "saya menerima umpan balik dari guru.",
     "levels": [
-      "B1"
+      "B1",
+      "B2"
     ],
     "sources": [
       {
         "level": "B1",
         "unit": "b1_u38",
+        "kind": "example"
+      },
+      {
+        "level": "B1",
+        "unit": "b1_u38",
+        "kind": "translate-answer"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u5",
         "kind": "example"
       }
     ]
@@ -34697,6 +35134,11 @@
         "level": "B1",
         "unit": "b1_u38",
         "kind": "example"
+      },
+      {
+        "level": "B1",
+        "unit": "b1_u38",
+        "kind": "translate-answer"
       }
     ]
   },
@@ -35597,6 +36039,11 @@
         "level": "B1",
         "unit": "b1_u43",
         "kind": "example"
+      },
+      {
+        "level": "B1",
+        "unit": "b1_u43",
+        "kind": "translate-answer"
       }
     ]
   },
@@ -35712,6 +36159,11 @@
         "level": "B1",
         "unit": "b1_u43",
         "kind": "listen-answer"
+      },
+      {
+        "level": "B1",
+        "unit": "b1_u43",
+        "kind": "translate-answer"
       }
     ]
   },
@@ -36017,6 +36469,11 @@
         "level": "B1",
         "unit": "b1_u45",
         "kind": "example"
+      },
+      {
+        "level": "B1",
+        "unit": "b1_u45",
+        "kind": "translate-answer"
       }
     ]
   },
@@ -36152,6 +36609,11 @@
         "level": "B1",
         "unit": "b1_u46",
         "kind": "example"
+      },
+      {
+        "level": "B1",
+        "unit": "b1_u46",
+        "kind": "translate-answer"
       }
     ]
   },
@@ -36340,12 +36802,18 @@
     "text": "Peraturan itu berlaku.",
     "normalized": "peraturan itu berlaku.",
     "levels": [
-      "B1"
+      "B1",
+      "B2"
     ],
     "sources": [
       {
         "level": "B1",
         "unit": "b1_u47",
+        "kind": "example"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u7",
         "kind": "example"
       }
     ]
@@ -36522,6 +36990,11 @@
         "level": "B1",
         "unit": "b1_u48",
         "kind": "example"
+      },
+      {
+        "level": "B1",
+        "unit": "b1_u48",
+        "kind": "translate-answer"
       }
     ]
   },
@@ -36587,6 +37060,11 @@
         "level": "B1",
         "unit": "b1_u48",
         "kind": "example"
+      },
+      {
+        "level": "B1",
+        "unit": "b1_u48",
+        "kind": "translate-answer"
       }
     ]
   },
@@ -36762,6 +37240,11 @@
         "level": "B1",
         "unit": "b1_u49",
         "kind": "example"
+      },
+      {
+        "level": "B1",
+        "unit": "b1_u49",
+        "kind": "translate-answer"
       }
     ]
   },
@@ -37122,6 +37605,816 @@
         "level": "B1",
         "unit": "b1_u50",
         "kind": "listen-answer"
+      }
+    ]
+  },
+  {
+    "id": "fb016b173c29",
+    "text": "Kubaca",
+    "normalized": "kubaca",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u2",
+        "kind": "vocabulary"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u3",
+        "kind": "vocabulary"
+      }
+    ]
+  },
+  {
+    "id": "fc6945be68cc",
+    "text": "Buku itu kubaca.",
+    "normalized": "buku itu kubaca.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u2",
+        "kind": "example"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u3",
+        "kind": "example"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u3",
+        "kind": "translate-answer"
+      }
+    ]
+  },
+  {
+    "id": "8a64fd008e9c",
+    "text": "Kaubaca",
+    "normalized": "kaubaca",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u2",
+        "kind": "vocabulary"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u3",
+        "kind": "vocabulary"
+      }
+    ]
+  },
+  {
+    "id": "fd1c12a80ebf",
+    "text": "Buku itu kaubaca.",
+    "normalized": "buku itu kaubaca.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u2",
+        "kind": "example"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u2",
+        "kind": "listen-answer"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u2",
+        "kind": "translate-answer"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u3",
+        "kind": "example"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u3",
+        "kind": "listen-answer"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u3",
+        "kind": "translate-answer"
+      }
+    ]
+  },
+  {
+    "id": "cd79a95c4c77",
+    "text": "Kutulis",
+    "normalized": "kutulis",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u2",
+        "kind": "vocabulary"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u3",
+        "kind": "vocabulary"
+      }
+    ]
+  },
+  {
+    "id": "c22bb36d3b95",
+    "text": "Surat itu kutulis.",
+    "normalized": "surat itu kutulis.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u2",
+        "kind": "example"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u2",
+        "kind": "translate-answer"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u3",
+        "kind": "example"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u3",
+        "kind": "listen-answer"
+      }
+    ]
+  },
+  {
+    "id": "715b75060347",
+    "text": "Kautulis",
+    "normalized": "kautulis",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u2",
+        "kind": "vocabulary"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u3",
+        "kind": "vocabulary"
+      }
+    ]
+  },
+  {
+    "id": "ec45df156d35",
+    "text": "Surat itu kautulis.",
+    "normalized": "surat itu kautulis.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u2",
+        "kind": "example"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u2",
+        "kind": "listen-answer"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u3",
+        "kind": "example"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u3",
+        "kind": "listen-answer"
+      }
+    ]
+  },
+  {
+    "id": "e8b74d168ccd",
+    "text": "Surat itu ditulis oleh Rina.",
+    "normalized": "surat itu ditulis oleh rina.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u3",
+        "kind": "translate-answer"
+      }
+    ]
+  },
+  {
+    "id": "468e2141c0ba",
+    "text": "Siti sudah membersihkan kamar ini.",
+    "normalized": "siti sudah membersihkan kamar ini.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u4",
+        "kind": "translate-answer"
+      }
+    ]
+  },
+  {
+    "id": "a1886a30f23c",
+    "text": "Kamar ini sudah bersih.",
+    "normalized": "kamar ini sudah bersih.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u4",
+        "kind": "listen-answer"
+      }
+    ]
+  },
+  {
+    "id": "0c4f13453d1a",
+    "text": "Menawari",
+    "normalized": "menawari",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u5",
+        "kind": "vocabulary"
+      }
+    ]
+  },
+  {
+    "id": "d298ed19585a",
+    "text": "Mereka menawari saya bantuan.",
+    "normalized": "mereka menawari saya bantuan.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u5",
+        "kind": "example"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u5",
+        "kind": "translate-answer"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u5",
+        "kind": "listen-answer"
+      }
+    ]
+  },
+  {
+    "id": "9b1985d47381",
+    "text": "Menawarkan",
+    "normalized": "menawarkan",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u5",
+        "kind": "vocabulary"
+      }
+    ]
+  },
+  {
+    "id": "315b76e2d414",
+    "text": "Mereka menawarkan bantuan kepada saya.",
+    "normalized": "mereka menawarkan bantuan kepada saya.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u5",
+        "kind": "example"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u5",
+        "kind": "listen-answer"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u5",
+        "kind": "translate-answer"
+      }
+    ]
+  },
+  {
+    "id": "04d552ee505b",
+    "text": "Saya menawari Rina bantuan.",
+    "normalized": "saya menawari rina bantuan.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u5",
+        "kind": "translate-answer"
+      }
+    ]
+  },
+  {
+    "id": "f78e57948382",
+    "text": "Rumah itu dijatuhi mangga.",
+    "normalized": "rumah itu dijatuhi mangga.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u5",
+        "kind": "listen-answer"
+      }
+    ]
+  },
+  {
+    "id": "771bb8085d98",
+    "text": "Memperkuat",
+    "normalized": "memperkuat",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u6",
+        "kind": "vocabulary"
+      }
+    ]
+  },
+  {
+    "id": "db3a7245df4b",
+    "text": "Tim berusaha memperkuat kerja sama.",
+    "normalized": "tim berusaha memperkuat kerja sama.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u6",
+        "kind": "example"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u6",
+        "kind": "listen-answer"
+      }
+    ]
+  },
+  {
+    "id": "986d1bc57445",
+    "text": "Memperlemah",
+    "normalized": "memperlemah",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u6",
+        "kind": "vocabulary"
+      }
+    ]
+  },
+  {
+    "id": "d36318d5d690",
+    "text": "Keputusan itu dapat memperlemah hubungan.",
+    "normalized": "keputusan itu dapat memperlemah hubungan.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u6",
+        "kind": "example"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u6",
+        "kind": "translate-answer"
+      }
+    ]
+  },
+  {
+    "id": "1d4a682456d6",
+    "text": "Memperluas",
+    "normalized": "memperluas",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u6",
+        "kind": "vocabulary"
+      }
+    ]
+  },
+  {
+    "id": "f00ef98b9e8e",
+    "text": "Kami ingin memperluas kerja sama.",
+    "normalized": "kami ingin memperluas kerja sama.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u6",
+        "kind": "example"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u6",
+        "kind": "listen-answer"
+      }
+    ]
+  },
+  {
+    "id": "95cf2a8bc612",
+    "text": "Memperpanjang",
+    "normalized": "memperpanjang",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u6",
+        "kind": "vocabulary"
+      }
+    ]
+  },
+  {
+    "id": "30417d10940f",
+    "text": "Kami perlu memperpanjang waktu kerja.",
+    "normalized": "kami perlu memperpanjang waktu kerja.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u6",
+        "kind": "example"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u6",
+        "kind": "translate-answer"
+      }
+    ]
+  },
+  {
+    "id": "7d6fc96541d4",
+    "text": "Memperbesar",
+    "normalized": "memperbesar",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u6",
+        "kind": "vocabulary"
+      }
+    ]
+  },
+  {
+    "id": "884fb38fa57b",
+    "text": "Kami ingin memperbesar jumlah produksi.",
+    "normalized": "kami ingin memperbesar jumlah produksi.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u6",
+        "kind": "example"
+      }
+    ]
+  },
+  {
+    "id": "e4ca4ce12eb3",
+    "text": "Memperkecil",
+    "normalized": "memperkecil",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u6",
+        "kind": "vocabulary"
+      }
+    ]
+  },
+  {
+    "id": "ad48471371c4",
+    "text": "Kami berusaha memperkecil risiko.",
+    "normalized": "kami berusaha memperkecil risiko.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u6",
+        "kind": "example"
+      }
+    ]
+  },
+  {
+    "id": "18d0f3541a57",
+    "text": "Mempermudah",
+    "normalized": "mempermudah",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u6",
+        "kind": "vocabulary"
+      }
+    ]
+  },
+  {
+    "id": "03374ee7c60c",
+    "text": "Cara ini mempermudah pekerjaan.",
+    "normalized": "cara ini mempermudah pekerjaan.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u6",
+        "kind": "example"
+      }
+    ]
+  },
+  {
+    "id": "fb11b84b0faf",
+    "text": "Mempercepat",
+    "normalized": "mempercepat",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u6",
+        "kind": "vocabulary"
+      }
+    ]
+  },
+  {
+    "id": "5ebd8f142821",
+    "text": "Cara baru itu mempercepat proses kerja.",
+    "normalized": "cara baru itu mempercepat proses kerja.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u6",
+        "kind": "example"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u6",
+        "kind": "listen-answer"
+      }
+    ]
+  },
+  {
+    "id": "eec5a2c12800",
+    "text": "Pembelian",
+    "normalized": "pembelian",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u7",
+        "kind": "vocabulary"
+      }
+    ]
+  },
+  {
+    "id": "a869ef307e5d",
+    "text": "Pembelian tiket untuk masuk ke tempat wisata itu dapat dilakukan pagi hari.",
+    "normalized": "pembelian tiket untuk masuk ke tempat wisata itu dapat dilakukan pagi hari.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u7",
+        "kind": "example"
+      }
+    ]
+  },
+  {
+    "id": "ab6af8d063bc",
+    "text": "Pengiriman barang-barang P.T. Makmur dilakukan dengan truk-truk.",
+    "normalized": "pengiriman barang-barang p.t. makmur dilakukan dengan truk-truk.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u7",
+        "kind": "example"
+      }
+    ]
+  },
+  {
+    "id": "bd8884778b23",
+    "text": "Pembuatan",
+    "normalized": "pembuatan",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u7",
+        "kind": "vocabulary"
+      }
+    ]
+  },
+  {
+    "id": "03765f92b604",
+    "text": "Pembuatan krupuk ini memakan waktu tiga hari.",
+    "normalized": "pembuatan krupuk ini memakan waktu tiga hari.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u7",
+        "kind": "example"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u7",
+        "kind": "listen-answer"
+      }
+    ]
+  },
+  {
+    "id": "02b516a2682c",
+    "text": "Penemuan para ahli itu diterbitkan dalam jurnal ilmiah.",
+    "normalized": "penemuan para ahli itu diterbitkan dalam jurnal ilmiah.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u7",
+        "kind": "example"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u7",
+        "kind": "translate-answer"
+      }
+    ]
+  },
+  {
+    "id": "5c2f0af8b4dd",
+    "text": "Pergerakan",
+    "normalized": "pergerakan",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u7",
+        "kind": "vocabulary"
+      }
+    ]
+  },
+  {
+    "id": "392ff4a672b3",
+    "text": "Pergerakan kaum wanita di Jawa dipelopori oleh Ibu Kartini.",
+    "normalized": "pergerakan kaum wanita di jawa dipelopori oleh ibu kartini.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u7",
+        "kind": "example"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u7",
+        "kind": "translate-answer"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u7",
+        "kind": "listen-answer"
+      }
+    ]
+  },
+  {
+    "id": "dcce62b0e560",
+    "text": "Pengiriman barang-barang dilakukan dengan truk-truk.",
+    "normalized": "pengiriman barang-barang dilakukan dengan truk-truk.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u7",
+        "kind": "translate-answer"
+      }
+    ]
+  },
+  {
+    "id": "d18c376196a6",
+    "text": "Perjalanan itu panjang.",
+    "normalized": "perjalanan itu panjang.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u7",
+        "kind": "translate-answer"
+      }
+    ]
+  },
+  {
+    "id": "6ce0299143fc",
+    "text": "Pertemuan itu berlangsung selama dua jam.",
+    "normalized": "pertemuan itu berlangsung selama dua jam.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u7",
+        "kind": "translate-answer"
       }
     ]
   },

@@ -299,3 +299,9 @@
 ## Corrección del workflow de muestras MMS — 16 nov 2026
 - La ejecución [43795277223](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/43795277223) falló antes de sintetizar: al reutilizar la rama histórica `audio/tts-samples`, el paso de preparación intentó mezclarla con `main` y encontró un conflicto add/add en `audio/manifest.json`. La instalación del motor MMS sí terminó correctamente; la ejecución no produjo nuevas muestras MMS.
 - Corrección propuesta: cada ejecución `samples` crea una rama aislada `audio/tts-samples-${GITHUB_RUN_ID}` desde `origin/main`. No mezcla ni sobrescribe la rama histórica; los modos `full` y `hashes` conservan su estrategia de actualización. Pendiente CI y una nueva ejecución de 10 muestras A1 MMS.
+
+
+## Corrección de ramas de generación completa MMS — 16 nov 2026
+- La ejecución [43818039964](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/43818039964) sí recibió `engine=mms`, `mode=full`, `level=all`, `limit=0` y `confirm_full=true`. Instaló MMS correctamente, pero falló antes de exportar el manifiesto o sintetizar audio: la rama histórica `audio/library-all` estaba divergida (2 commits propios y 36 detrás de `main`) y el merge encontró conflictos en `service-worker.js` y `tests/audio-manifest.test.mjs`. No se generó ni reemplazó audio.
+- Corrección en rama `fix/audio-generation-branch-base-20261116`: los modos `full` y `hashes` crean ahora una rama nueva por ejecución desde `origin/main` (`audio/library-$LEVEL-$GITHUB_RUN_ID` o `audio/library-hashes-$GITHUB_RUN_ID`), sin mezclar ramas históricas divergentes. El modo `samples` conserva su rama aislada por ejecución.
+- Pendiente: CI de esta corrección; después reintentar MMS full/all y verificar los 2.152 IDs, MP3/Opus, hashes, metadata, pruebas y PR antes de afirmar que la migración está completa.

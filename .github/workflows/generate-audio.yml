@@ -116,21 +116,17 @@ jobs:
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git checkout -b "$BRANCH" origin/main
           else
+            # Full/hash runs are generated from the current main snapshot.
+            # A unique branch avoids stale long-lived branches and merge conflicts.
             if [[ "$MODE" == "hashes" ]]; then
-              BRANCH="audio/library-hashes"
+              BRANCH="audio/library-hashes-${GITHUB_RUN_ID}"
             else
-              BRANCH="audio/library-$LEVEL"
+              BRANCH="audio/library-$LEVEL-${GITHUB_RUN_ID}"
             fi
             echo "AUDIO_BRANCH=$BRANCH" >> "$GITHUB_ENV"
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            if git ls-remote --exit-code --heads origin "$BRANCH" >/dev/null 2>&1; then
-              git fetch origin "$BRANCH"
-              git checkout -B "$BRANCH" "origin/$BRANCH"
-              git merge --no-edit origin/main
-            else
-              git checkout -b "$BRANCH" origin/main
-            fi
+            git checkout -b "$BRANCH" origin/main
           fi
 
       - name: Export manifest from curriculum and optional interactive sources

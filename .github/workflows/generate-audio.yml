@@ -108,21 +108,29 @@ jobs:
         shell: bash
         run: |
           if [[ "$MODE" == "samples" ]]; then
-            BRANCH="audio/tts-samples"
-          elif [[ "$MODE" == "hashes" ]]; then
-            BRANCH="audio/library-hashes"
-          else
-            BRANCH="audio/library-$LEVEL"
-          fi
-          echo "AUDIO_BRANCH=$BRANCH" >> "$GITHUB_ENV"
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if git ls-remote --exit-code --heads origin "$BRANCH" >/dev/null 2>&1; then
-            git fetch origin "$BRANCH"
-            git checkout -B "$BRANCH" "origin/$BRANCH"
-            git merge --no-edit origin/main
-          else
+            # Sample runs are isolated from the long-lived historical branch.
+            # Each run starts from current main, avoiding stale manifest conflicts.
+            BRANCH="audio/tts-samples-${GITHUB_RUN_ID}"
+            echo "AUDIO_BRANCH=$BRANCH" >> "$GITHUB_ENV"
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git checkout -b "$BRANCH" origin/main
+          else
+            if [[ "$MODE" == "hashes" ]]; then
+              BRANCH="audio/library-hashes"
+            else
+              BRANCH="audio/library-$LEVEL"
+            fi
+            echo "AUDIO_BRANCH=$BRANCH" >> "$GITHUB_ENV"
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            if git ls-remote --exit-code --heads origin "$BRANCH" >/dev/null 2>&1; then
+              git fetch origin "$BRANCH"
+              git checkout -B "$BRANCH" "origin/$BRANCH"
+              git merge --no-edit origin/main
+            else
+              git checkout -b "$BRANCH" origin/main
+            fi
           fi
 
       - name: Export manifest from curriculum and optional interactive sources

@@ -331,3 +331,10 @@
 - El workflow `.github/workflows/generate-audio.yml` ahora admite `source_ref` y construye la rama de generación desde `origin/$SOURCE_REF`. Esto permite ejecutar MMS full sobre una rama curricular aún no fusionada, conservando los audios existentes y generando solo los IDs que falten cuando el generador no use `--force`.
 - Para U8, el plan es usar `source_ref=curriculum/b2-u8-ke-an-20261116`, `engine=mms`, `mode=full`, `level=B2`, `limit=0`, `confirm_full=true`. El generador actual usa `--force`, por lo que primero debe cambiarse a modo sin force para aprovechar los clips B2 existentes; después se ejecutará Actions manualmente desde la interfaz porque el conector disponible no expone `workflow_dispatch`.
 - No fusionar PR #639 ni afirmar que U8 está publicado hasta tener los ocho audios nuevos, CI de audio/regresión en verde y revisión de la rama generada.
+
+
+## Corrección de velocidad de reproducción MMS — 16 nov 2026
+- La revisión de `audio-engine.js` encontró que el reproductor aplicaba `playbackRate=0.85` por defecto a todos los MP3, ralentizando las grabaciones MMS un 15 %. Se cambia el valor inicial a velocidad natural (1.0); las opciones lentas siguen disponibles manualmente.
+- Se actualiza el texto de estado que todavía identificaba erróneamente la biblioteca incluida como Piper: ahora indica MMS. Se añade regresión para la velocidad inicial y se incrementa la caché de la app a `v3.8.104` para que los dispositivos reciban el reproductor actualizado.
+- Esto corrige la ralentización del reproductor, pero no certifica ni corrige por sí solo la articulación de `makan` ni de `Selamat pagi`; la calidad fonética de esos clips queda pendiente de escucha humana tras publicar la versión. No se modifican archivos de audio, currículo, IndexedDB v1, backup JSON v3 ni dependencias.
+- Fuente: inspección de `audio-engine.js`, pruebas `tests/audio-engine.test.cjs` y reporte del usuario en ChatGPT, 16 nov 2026.

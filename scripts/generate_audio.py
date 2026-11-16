@@ -251,7 +251,7 @@ def select_manifest_entries(entries: list[dict], level: str, limit: int, ids_tex
     selected = entries if level == "all" else [
         entry for entry in entries if level in entry.get("levels", [])
     ]
-    requested_ids = [item for item in re.split(r"[,\\s]+", ids_text.strip()) if item]
+    requested_ids = [item for item in re.split(r"[,\s]+", ids_text.strip()) if item]
     if requested_ids:
         if len(requested_ids) != len(set(requested_ids)):
             raise ValueError("--ids contains duplicate IDs")

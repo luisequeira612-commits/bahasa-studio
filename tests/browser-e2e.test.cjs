@@ -1095,7 +1095,7 @@ test('voice test plays a bundled recording when no Indonesian voice is installed
     const hash = crypto.createHash('sha1').update('terima kasih', 'utf8').digest('hex').slice(0, 12);
     assert.equal(result.utterances.length, 0);
     assert.deepEqual(result.played, ['./audio/id/' + hash + '.mp3']);
-    assert.match(result.status, /Probando una grabación Piper incluida/i);
+    assert.match(result.status, /Probando una grabación MMS incluida/i);
   } finally {
     await context.close();
     await new Promise(resolve => server.close(resolve));
@@ -1287,7 +1287,7 @@ test('voice selector remains optional when no Indonesian device voice exists', a
     await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
     assert.equal(await page.locator('#audioVoiceSelect option').count(), 1);
     assert.equal(await page.locator('#audioVoiceSelect').inputValue(), 'auto');
-    assert.match(await page.locator('#audioVoiceStatus').innerText(), /grabaciones Piper y puede reproducirlas sin voces instaladas/);
+    assert.match(await page.locator('#audioVoiceStatus').innerText(), /grabaciones MMS y puede reproducirlas sin voces instaladas/);
     await page.evaluate(() => AudioEngine.speak('frase sin grabación disponible'));
     await page.waitForFunction(() => document.getElementById('audioVoiceStatus').textContent.includes('No se encontró una grabación'));
     assert.equal(await page.evaluate(() => AudioEngine.selectedVoice === null), true);

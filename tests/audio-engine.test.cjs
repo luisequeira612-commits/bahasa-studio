@@ -83,8 +83,9 @@ test('reproduce el MP3 incluido aunque el dispositivo no tenga voz indonesia', (
     assert.equal(setup.createdAudio.length, 1);
     assert.equal(setup.createdAudio[0].src, './audio/id/' + expected + '.mp3');
     assert.equal(setup.createdAudio[0].playCalls, 1);
+    assert.equal(setup.createdAudio[0].playbackRate, 1);
     assert.equal(setup.spoken.length, 0);
-    assert.match(setup.statuses.audioVoiceStatus.textContent, /grabaciones Piper/i);
+    assert.match(setup.statuses.audioVoiceStatus.textContent, /grabaciones MMS/i);
 });
 
 test('si falta el MP3 y no hay voz indonesia, informa el problema sin usar otra lengua', () => {
@@ -104,6 +105,13 @@ test('si falta el MP3, usa únicamente una voz indonesia instalada como respaldo
     assert.equal(setup.spoken[0].text, 'frase sin clip');
     assert.equal(setup.spoken[0].lang, 'id-ID');
     assert.equal(setup.spoken[0].voice, voice);
+});
+
+test('la velocidad predeterminada reproduce el audio a velocidad natural', () => {
+    const setup = createEngine();
+    assert.equal(setup.engine.rate, 1);
+    setup.engine.speak('Makan');
+    assert.equal(setup.createdAudio[0].playbackRate, 1);
 });
 
 test('la velocidad seleccionada se aplica al MP3 que está sonando', () => {
@@ -128,5 +136,5 @@ test('el botón de prueba reproduce una frase incluida sin exigir voces del disp
     assert.equal(setup.createdAudio.length, 1);
     assert.equal(setup.createdAudio[0].src, './audio/id/' +
         crypto.createHash('sha1').update('terima kasih', 'utf8').digest('hex').slice(0, 12) + '.mp3');
-    assert.match(setup.statuses.voiceTestStatus.textContent, /grabación Piper incluida/i);
+    assert.match(setup.statuses.voiceTestStatus.textContent, /grabación MMS incluida/i);
 });

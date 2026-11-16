@@ -12,6 +12,30 @@ SPEC.loader.exec_module(MODULE)
 
 
 class AudioSamplesPageTests(unittest.TestCase):
+    def test_exact_sample_ids_override_limit_and_preserve_requested_order(self):
+        entries = [
+            {"id": "a1", "text": "Saya", "levels": ["A1"]},
+            {"id": "b2", "text": "Makan", "levels": ["A1"]},
+            {"id": "c3", "text": "Selamat pagi", "levels": ["A1"]},
+        ]
+        selected = MODULE.select_manifest_entries(entries, "A1", 1, "c3, b2")
+        self.assertEqual([entry["id"] for entry in selected], ["c3", "b2"])
+
+    def test_exact_sample_ids_reject_unknown_or_duplicate_ids(self):
+        entries = [{"id": "a1", "text": "Saya", "levels": ["A1"]}]
+        with self.assertRaisesRegex(ValueError, "Unknown audio sample ID"):
+            MODULE.select_manifest_entries(entries, "A1", 10, "missing")
+        with self.assertRaisesRegex(ValueError, "duplicate IDs"):
+            MODULE.select_manifest_entries(entries, "A1", 10, "a1,a1")
+
+    def test_exact_sample_ids_respect_selected_level(self):
+        entries = [
+            {"id": "a1", "text": "Saya", "levels": ["A1"]},
+            {"id": "b2", "text": "Saya sudah", "levels": ["A2"]},
+        ]
+        with self.assertRaisesRegex(ValueError, "selected level"):
+            MODULE.select_manifest_entries(entries, "A1", 10, "b2")
+
     def test_generation_level_choices_include_b2(self):
         self.assertEqual(MODULE.LEVELS, ("A1", "A2", "B1", "B2", "all"))
 

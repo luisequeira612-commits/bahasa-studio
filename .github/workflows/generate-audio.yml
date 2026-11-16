@@ -6,7 +6,7 @@ on:
       engine:
         description: Motor de voz para evaluar
         type: choice
-        options: [edge, piper, mms]
+        options: [edge, piper, mms, both]
         default: mms
         required: true
       mode:
@@ -24,6 +24,11 @@ on:
         description: IDs exactos separados por comas (solo samples; vacío usa limit)
         type: string
         default: ''
+        required: false
+      voice:
+        description: Voz Edge TTS para muestras (MMS ignora este valor)
+        type: string
+        default: id-ID-GadisNeural
         required: false
       level:
         description: Nivel o todos para generación completa
@@ -62,6 +67,7 @@ jobs:
       LEVEL: ${{ inputs.level }}
       LIMIT: ${{ inputs.limit }}
       IDS: ${{ inputs.ids }}
+      VOICE: ${{ inputs.voice }}
       CONFIRM_FULL: ${{ inputs.confirm_full }}
       SOURCE_REF: ${{ inputs.source_ref }}
     steps:
@@ -69,6 +75,12 @@ jobs:
         if: ${{ inputs.mode == 'full' && inputs.confirm_full != true }}
         run: |
           echo "::error::La generación completa requiere confirm_full=true y la selección previa de una voz."
+          exit 1
+
+      - name: Restrict both-engine comparison to samples
+        if: ${{ inputs.engine == 'both' && inputs.mode != 'samples' }}
+        run: |
+          echo "::error::La opción both solo está disponible para muestras de evaluación."
           exit 1
 
       - name: Reject legacy Piper for production regeneration
@@ -111,6 +123,11 @@ jobs:
               python -m pip install "piper-tts==1.8.0"
               ;;
             mms)
+              python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+              python -m pip install "transformers>=4.45,<5" sentencepiece scipy
+              ;;
+            both)
+              python -m pip install edge-tts
               python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
               python -m pip install "transformers>=4.45,<5" sentencepiece scipy
               ;;
@@ -159,11 +176,16 @@ jobs:
           if [[ "$MODE" == "hashes" ]]; then
             python scripts/generate_audio.py --engine piper --hash-only
           elif [[ "$MODE" == "samples" ]]; then
-            ARGS=(--engine "$ENGINE" --mode samples --level "$LEVEL" --limit "$LIMIT" --force)
+            ARGS=(--mode samples --level "$LEVEL" --limit "$LIMIT" --force)
             if [[ -n "$IDS" ]]; then
               ARGS+=(--ids "$IDS")
             fi
-            python scripts/generate_audio.py "${ARGS[@]}"
+            if [[ "$ENGINE" == "both" ]]; then
+              python scripts/generate_audio.py --engine mms "${ARGS[@]}"
+              python scripts/generate_audio.py --engine edge --voice "$VOICE" "${ARGS[@]}"
+            else
+              python scripts/generate_audio.py --engine "$ENGINE" --voice "$VOICE" "${ARGS[@]}"
+            fi
           else
             python scripts/generate_audio.py --engine "$ENGINE" --mode full --level "$LEVEL" --limit 0
           fi

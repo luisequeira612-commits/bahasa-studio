@@ -310,3 +310,10 @@
 ## B2 U8 — paquete de aprobación preparado — 16 nov 2026
 - PR en preparación `docs/b2-u8-approval-packet-20261116`: añade `docs/B2_U8_APPROVAL_PACKET.md` con ocho formas `ke-...-an`, glosas y oraciones contextuales propuestas; todas `not_checked`, no activas y sin IDs. Solo las filas aprobadas por el dueño podrán pasar a implementación. Actualiza los enlaces/estado en `docs/B2_U8_DESIGN.md` y `docs/B2_CURRICULUM_REORGANIZATION.md`.
 - Estado de referencia: B2 U1–U7 implementadas (35 lecciones authored); U6/U7 siguen ocultas hasta verificar gate de audio/publicación. U8–U12 son diseños; U13–U60 no tienen mapa aprobado. No cambia currículo ejecutable, audio, IndexedDB v1, backup JSON v3 ni dependencias.
+
+
+## Audio generation from a curriculum ref — 16 nov 2026
+- PR #639 (B2 U8) dejó el gate de regresión bloqueado porque `tests/audio-manifest.test.mjs` exige que el índice de audio coincida con la unión del manifiesto; la rama de U8 tiene los textos nuevos pero todavía no los MP3/Opus correspondientes.
+- El workflow `.github/workflows/generate-audio.yml` ahora admite `source_ref` y construye la rama de generación desde `origin/$SOURCE_REF`. Esto permite ejecutar MMS full sobre una rama curricular aún no fusionada, conservando los audios existentes y generando solo los IDs que falten cuando el generador no use `--force`.
+- Para U8, el plan es usar `source_ref=curriculum/b2-u8-ke-an-20261116`, `engine=mms`, `mode=full`, `level=B2`, `limit=0`, `confirm_full=true`. El generador actual usa `--force`, por lo que primero debe cambiarse a modo sin force para aprovechar los clips B2 existentes; después se ejecutará Actions manualmente desde la interfaz porque el conector disponible no expone `workflow_dispatch`.
+- No fusionar PR #639 ni afirmar que U8 está publicado hasta tener los ocho audios nuevos, CI de audio/regresión en verde y revisión de la rama generada.

@@ -294,3 +294,8 @@
 - Se corrige el workflow para forzar la regeneración de las muestras seleccionadas en cada ejecución; solo reemplaza los clips del motor seleccionado, conserva las muestras de los otros motores y no toca `audio/id` ni la biblioteca publicada.
 - Cada registro de muestra MMS ahora incluye ID, revisión inmutable, SHA-256, licencia CC BY-NC 4.0, URL de licencia y atribución. Se añade prueba unitaria de esos campos.
 - La biblioteca de producción continúa declarada Piper hasta completar y verificar la migración total. Las muestras son evaluación técnica, no certificación de pronunciación ni dictamen legal.
+
+
+## Corrección del workflow de muestras MMS — 16 nov 2026
+- La ejecución [43795277223](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/43795277223) falló antes de sintetizar: al reutilizar la rama histórica `audio/tts-samples`, el paso de preparación intentó mezclarla con `main` y encontró un conflicto add/add en `audio/manifest.json`. La instalación del motor MMS sí terminó correctamente; la ejecución no produjo nuevas muestras MMS.
+- Corrección propuesta: cada ejecución `samples` crea una rama aislada `audio/tts-samples-${GITHUB_RUN_ID}` desde `origin/main`. No mezcla ni sobrescribe la rama histórica; los modos `full` y `hashes` conservan su estrategia de actualización. Pendiente CI y una nueva ejecución de 10 muestras A1 MMS.

@@ -1,6 +1,6 @@
 # MEMORY.md — Estado de Bahasa Studio
 
-> Memoria operativa; mantenerla por debajo de unas 150 líneas. Detalles extensos y evidencia histórica viven en documentos y PR enlazados. Última actualización: 15 nov 2026.
+> Memoria operativa; mantenerla por debajo de unas 150 líneas. Detalles extensos y evidencia histórica viven en documentos y PR enlazados. Última actualización: 16 nov 2026.
 
 ## Corrección pedagógica obligatoria — 12 nov 2026
 - Decisión explícita del dueño: todas las unidades A1–B2 deben tener 5–6 lecciones didácticas reales. Los ejercicios, bloques derivados de vocabulario y repasos automáticos genéricos no sustituyen lecciones planificadas. Distribuir vocabulario y recuperarlo espaciadamente en contextos diferentes.
@@ -305,3 +305,8 @@
 - La ejecución [43818039964](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/43818039964) sí recibió `engine=mms`, `mode=full`, `level=all`, `limit=0` y `confirm_full=true`. Instaló MMS correctamente, pero falló antes de exportar el manifiesto o sintetizar audio: la rama histórica `audio/library-all` estaba divergida (2 commits propios y 36 detrás de `main`) y el merge encontró conflictos en `service-worker.js` y `tests/audio-manifest.test.mjs`. No se generó ni reemplazó audio.
 - Corrección en rama `fix/audio-generation-branch-base-20261116`: los modos `full` y `hashes` crean ahora una rama nueva por ejecución desde `origin/main` (`audio/library-$LEVEL-$GITHUB_RUN_ID` o `audio/library-hashes-$GITHUB_RUN_ID`), sin mezclar ramas históricas divergentes. El modo `samples` conserva su rama aislada por ejecución.
 - Pendiente: CI de esta corrección; después reintentar MMS full/all y verificar los 2.152 IDs, MP3/Opus, hashes, metadata, pruebas y PR antes de afirmar que la migración está completa.
+
+
+## B2 U8 — paquete de aprobación preparado — 16 nov 2026
+- PR en preparación `docs/b2-u8-approval-packet-20261116`: añade `docs/B2_U8_APPROVAL_PACKET.md` con ocho formas `ke-...-an`, glosas y oraciones contextuales propuestas; todas `not_checked`, no activas y sin IDs. Solo las filas aprobadas por el dueño podrán pasar a implementación. Actualiza los enlaces/estado en `docs/B2_U8_DESIGN.md` y `docs/B2_CURRICULUM_REORGANIZATION.md`.
+- Estado de referencia: B2 U1–U7 implementadas (35 lecciones authored); U6/U7 siguen ocultas hasta verificar gate de audio/publicación. U8–U12 son diseños; U13–U60 no tienen mapa aprobado. No cambia currículo ejecutable, audio, IndexedDB v1, backup JSON v3 ni dependencias.

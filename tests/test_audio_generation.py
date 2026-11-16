@@ -31,6 +31,16 @@ class AudioSamplesPageTests(unittest.TestCase):
             self.assertIn("&lt;script&gt;", page)
             self.assertNotIn('<script>alert("x")</script>', page)
 
+    def test_mms_sample_record_persists_model_provenance(self):
+        entry = {"id": "0123456789ab", "text": "Selamat pagi."}
+        record = MODULE.build_sample_record("mms", entry, "MMS / facebook/mms-tts-ind@171b004ccd54")
+        self.assertEqual(record["model"], MODULE.MMS_MODEL_ID)
+        self.assertEqual(record["model_revision"], MODULE.MMS_MODEL_REVISION)
+        self.assertEqual(record["model_sha256"], MODULE.MMS_MODEL_SHA256)
+        self.assertEqual(record["model_license"], MODULE.MMS_MODEL_LICENSE)
+        self.assertEqual(record["model_license_url"], MODULE.MMS_MODEL_LICENSE_URL)
+        self.assertEqual(record["model_attribution"], MODULE.MMS_MODEL_ATTRIBUTION)
+
     def test_mms_model_checksum_verification_accepts_exact_weights(self):
         with tempfile.TemporaryDirectory() as temporary:
             model = Path(temporary) / "model.safetensors"

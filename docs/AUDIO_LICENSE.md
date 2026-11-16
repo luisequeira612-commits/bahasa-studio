@@ -38,6 +38,6 @@ Piper queda disponible únicamente para muestras históricas/diagnóstico. El wo
 
 ## Atribución
 
-Atribución: **MMS-TTS**, por Vineel Pratap et al., Meta AI, como parte del proyecto Massively Multilingual Speech. Modelo: [facebook/mms-tts-ind](https://huggingface.co/facebook/mms-tts-ind/tree/171b004ccd54f266a31efee71f1ad850c91d39c0). Licencia: [Creative Commons Attribution-NonCommercial 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/). Los audios generados son adaptaciones técnicas del modelo (síntesis y codificación MP3/Opus); la atribución y la referencia de licencia deben mantenerse al redistribuirlos.
+Atribución: **MMS-TTS**, por Vineel Pratap et al., Meta AI, como parte del proyecto Massively Multilingual Speech. Modelo: [facebook/mms-tts-ind](https://huggingface.co/facebook/mms-tts-ind/tree/171b004ccd54f266a31efee71f1ad850c91d39c0). Licencia declarada por el repositorio del modelo: [Creative Commons Attribution-NonCommercial 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/). Los archivos de audio se generan con este modelo y se codifican a MP3/Opus. Esta nota documenta la procedencia y atribución, pero no determina si cada output constituye jurídicamente una obra derivada; la licencia del modelo no debe presentarse como garantía legal absoluta sobre todos los outputs.
 
 La licencia del motor de inferencia (Transformers/PyTorch) es independiente de la licencia del modelo; el pipeline no incorpora esos paquetes en la PWA.

@@ -114,7 +114,9 @@ def create_synthesizer(engine: str, voice: str, work_dir: Path):
         ))
         verify_mms_model_checksum(model_weights)
         tokenizer = AutoTokenizer.from_pretrained(MMS_MODEL_ID, revision=MMS_MODEL_REVISION)
-        model = AutoModelForTextToWaveform.from_pretrained(MMS_MODEL_ID, revision=MMS_MODEL_REVISION).to("cpu")
+        model = AutoModelForTextToWaveform.from_pretrained(
+            MMS_MODEL_ID, revision=MMS_MODEL_REVISION, use_safetensors=True
+        ).to("cpu")
         model.eval()
 
         def synth(text: str, output: Path):

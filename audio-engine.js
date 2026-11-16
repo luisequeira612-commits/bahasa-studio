@@ -5,7 +5,7 @@ window.AudioEngine = {
     selectedVoice: null,
     voicePreference: 'auto',
     currentAudio: null,
-    rate: 0.85,
+    rate: 1,
     voiceKey(voice) {
         return voice.voiceURI || (String(voice.lang || '') + ':' + String(voice.name || ''));
     },
@@ -88,10 +88,10 @@ window.AudioEngine = {
         const indonesianVoices = this.voices.filter(voice => String(voice.lang || '').toLowerCase().startsWith('id'));
         if (indonesianVoices.length) {
             const active = this.selectedVoice || this.idVoice;
-            status.textContent = 'La app incluye grabaciones Piper: no necesitas instalar una voz indonesia. Voz del dispositivo disponible como respaldo: ' +
+            status.textContent = 'La app incluye grabaciones MMS: no necesitas instalar una voz indonesia. Voz del dispositivo disponible como respaldo: ' +
                 (active ? active.name : 'selección automática') + '.';
         } else {
-            status.textContent = 'La app incluye grabaciones Piper y puede reproducirlas sin voces instaladas. Una voz indonesia del dispositivo solo es necesaria como respaldo si falta una grabación.';
+            status.textContent = 'La app incluye grabaciones MMS y puede reproducirlas sin voces instaladas. Una voz indonesia del dispositivo solo es necesaria como respaldo si falta una grabación.';
         }
     },
     refreshVoices() {
@@ -203,7 +203,7 @@ window.AudioEngine = {
     testVoice() {
         this.refreshVoices();
         const status = document.getElementById('voiceTestStatus');
-        if (status) status.textContent = 'Probando una grabación Piper incluida. No necesitas instalar una voz indonesia.';
+        if (status) status.textContent = 'Probando una grabación MMS incluida. No necesitas instalar una voz indonesia.';
         return this.speak('terima kasih');
     }
 };

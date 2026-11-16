@@ -122,7 +122,7 @@ jobs:
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git checkout -b "$BRANCH" "origin/$SOURCE_REF"
           else
-            # Full/hash runs are generated from the current main snapshot.
+            # Full/hash runs are generated from the selected source snapshot.
             # A unique branch avoids stale long-lived branches and merge conflicts.
             if [[ "$MODE" == "hashes" ]]; then
               BRANCH="audio/library-hashes-${GITHUB_RUN_ID}"
@@ -132,7 +132,7 @@ jobs:
             echo "AUDIO_BRANCH=$BRANCH" >> "$GITHUB_ENV"
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git checkout -b "$BRANCH" origin/main
+            git checkout -b "$BRANCH" "origin/$SOURCE_REF"
           fi
 
       - name: Export manifest from curriculum and optional interactive sources
@@ -155,7 +155,7 @@ jobs:
           elif [[ "$MODE" == "samples" ]]; then
             python scripts/generate_audio.py --engine "$ENGINE" --mode samples --level "$LEVEL" --limit "$LIMIT" --force
           else
-            python scripts/generate_audio.py --engine "$ENGINE" --mode full --level "$LEVEL" --limit 0 --force
+            python scripts/generate_audio.py --engine "$ENGINE" --mode full --level "$LEVEL" --limit 0
           fi
 
       - name: Run audio generation tests

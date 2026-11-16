@@ -287,3 +287,10 @@
 - PR #628 fusionada como `d1102aa36456698d3718834beb28b0db91bef7ec`: motor de producción MMS Indonesian, revisión inmutable y SHA-256 documentado; el workflow bloquea generación full con Piper. PR #629 fusionada como `a4269caf7209e9f0d3ecd3ba85a2477d0d647dfd`: verifica el SHA-256 real de `model.safetensors` antes de cargar MMS; CI de regresión en verde.
 - En `main`, la biblioteca sigue siendo íntegramente Piper: manifiesto 2.152/2.152 IDs cubiertos (A1 683, A2 1.014, B1 541, B2 0); metadata contiene 2.152 huellas MP3 y declara Piper. La migración no se ha ejecutado ni publicado. No pedir al dueño descargar pesos manualmente: el runner de Actions los descarga y verifica.
 - PR #630 añade a `audio/metadata.json` ID/revisión/SHA-256/licencia/enlace/atribución del modelo MMS cuando se complete la generación, y refuerza el enlace/atribución en `docs/AUDIO_LICENSE.md`. No modifica audios ni afirma que la migración esté terminada.
+
+
+## Muestras TTS MMS — corrección de caché y procedencia — 16 nov 2026
+- La revisión del pipeline encontró que `audio/tts-samples` conservaba MP3 MMS generados antes de fijar/verificar el peso actual. El modo `samples` reutilizaba esos archivos por caché, por lo que una nueva ejecución podía aparentar éxito sin volver a sintetizarlos con la revisión MMS auditada.
+- Se corrige el workflow para forzar la regeneración de las muestras seleccionadas en cada ejecución; solo reemplaza los clips del motor seleccionado, conserva las muestras de los otros motores y no toca `audio/id` ni la biblioteca publicada.
+- Cada registro de muestra MMS ahora incluye ID, revisión inmutable, SHA-256, licencia CC BY-NC 4.0, URL de licencia y atribución. Se añade prueba unitaria de esos campos.
+- La biblioteca de producción continúa declarada Piper hasta completar y verificar la migración total. Las muestras son evaluación técnica, no certificación de pronunciación ni dictamen legal.

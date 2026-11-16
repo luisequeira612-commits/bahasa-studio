@@ -281,3 +281,9 @@
 - La auditoría confirmó una ambigüedad real en la cadena Piper de producción: id_ID-news_tts-medium está documentado históricamente como CC BY-NC-SA 4.0 y fine-tuned desde en_US-lessac-medium; la documentación oficial de Piper no garantiza derechos downstream sobre los outputs.
 - Se preparó la migración a MMS Indonesian (facebook/mms-tts-ind), revisión 171b004ccd54f266a31efee71f1ad850c91d39c0, modelo CC BY-NC 4.0 y SHA-256 del peso d56181bae3a51458aab6b4a893ecd71d0fde69378f576c53e139b59940d80ca0. El workflow rechaza Piper para generación full y fuerza --force con MMS para regenerar la biblioteca completa.
 - PR de migración: rama audio/license-safe-mms-20261115. El audio existente sigue siendo Piper hasta ejecutar y fusionar la regeneración completa; no afirmar que la migración está terminada antes de verificar los nuevos MP3/Opus y CI.
+
+
+## Audio MMS — trazabilidad de modelo — 15 nov 2026
+- PR #628 fusionada como `d1102aa36456698d3718834beb28b0db91bef7ec`: motor de producción MMS Indonesian, revisión inmutable y SHA-256 documentado; el workflow bloquea generación full con Piper. PR #629 fusionada como `a4269caf7209e9f0d3ecd3ba85a2477d0d647dfd`: verifica el SHA-256 real de `model.safetensors` antes de cargar MMS; CI de regresión en verde.
+- En `main`, la biblioteca sigue siendo íntegramente Piper: manifiesto 2.152/2.152 IDs cubiertos (A1 683, A2 1.014, B1 541, B2 0); metadata contiene 2.152 huellas MP3 y declara Piper. La migración no se ha ejecutado ni publicado. No pedir al dueño descargar pesos manualmente: el runner de Actions los descarga y verifica.
+- PR #630 añade a `audio/metadata.json` ID/revisión/SHA-256/licencia/enlace/atribución del modelo MMS cuando se complete la generación, y refuerza el enlace/atribución en `docs/AUDIO_LICENSE.md`. No modifica audios ni afirma que la migración esté terminada.

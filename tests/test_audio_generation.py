@@ -59,6 +59,12 @@ class AudioSamplesPageTests(unittest.TestCase):
             saved = __import__("json").loads(metadata.read_text(encoding="utf-8"))
             self.assertEqual(saved["engine"], "mms")
             self.assertEqual(saved["voice"], "MMS / facebook/mms-tts-ind@171b004ccd54")
+            self.assertEqual(saved["model"], MODULE.MMS_MODEL_ID)
+            self.assertEqual(saved["model_revision"], MODULE.MMS_MODEL_REVISION)
+            self.assertEqual(saved["model_sha256"], MODULE.MMS_MODEL_SHA256)
+            self.assertEqual(saved["model_license"], MODULE.MMS_MODEL_LICENSE)
+            self.assertEqual(saved["model_license_url"], MODULE.MMS_MODEL_LICENSE_URL)
+            self.assertEqual(saved["model_attribution"], MODULE.MMS_MODEL_ATTRIBUTION)
 
     def test_full_library_rejects_mixing_engines_or_voices(self):
         with tempfile.TemporaryDirectory() as temporary:

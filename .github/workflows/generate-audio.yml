@@ -31,6 +31,11 @@ on:
         type: boolean
         default: false
         required: true
+      source_ref:
+        description: Rama o ref de currículo desde la que se construirá la biblioteca de audio
+        type: string
+        default: main
+        required: true
 
 permissions:
   contents: write
@@ -52,6 +57,7 @@ jobs:
       LEVEL: ${{ inputs.level }}
       LIMIT: ${{ inputs.limit }}
       CONFIRM_FULL: ${{ inputs.confirm_full }}
+      SOURCE_REF: ${{ inputs.source_ref }}
     steps:
       - name: Reject full generation until explicitly confirmed
         if: ${{ inputs.mode == 'full' && inputs.confirm_full != true }}
@@ -68,7 +74,7 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
         with:
-          ref: main
+          ref: ${{ inputs.source_ref }}
           fetch-depth: 0
 
       - name: Set up Node.js
@@ -114,7 +120,7 @@ jobs:
             echo "AUDIO_BRANCH=$BRANCH" >> "$GITHUB_ENV"
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git checkout -b "$BRANCH" origin/main
+            git checkout -b "$BRANCH" "origin/$SOURCE_REF"
           else
             # Full/hash runs are generated from the current main snapshot.
             # A unique branch avoids stale long-lived branches and merge conflicts.

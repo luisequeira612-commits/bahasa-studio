@@ -1,6 +1,6 @@
 # Diseño preliminar B2 U8 — ke-an como nominalizador abstracto y de predicados complejos
 
-**Estado:** propuesta documental; no implementada ni publicada.  
+**Estado:** propuesta documental; no implementada ni publicada. Paquete de revisión de forma, glosa y ejemplos: [B2 U8 approval packet](B2_U8_APPROVAL_PACKET.md). Ninguna propuesta está aprobada ni activa.  
 **Fecha:** 8 nov 2026.  
 **Ubicación:** segunda unidad propuesta dentro del bloque B2 U7–U10, cuyo eje aprobado es nominalizaciones.  
 **Dependencias:** B1 completo y B2 U1–U7 implementadas. U7 está fusionada, pero U6/U7 siguen ocultas hasta completar el gate de audio B2.

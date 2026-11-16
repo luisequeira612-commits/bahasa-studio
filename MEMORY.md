@@ -307,6 +307,12 @@
 - Pendiente: CI de esta corrección; después reintentar MMS full/all y verificar los 2.152 IDs, MP3/Opus, hashes, metadata, pruebas y PR antes de afirmar que la migración está completa.
 
 
-## B2 U8 — paquete de aprobación preparado — 16 nov 2026
-- PR en preparación `docs/b2-u8-approval-packet-20261116`: añade `docs/B2_U8_APPROVAL_PACKET.md` con ocho formas `ke-...-an`, glosas y oraciones contextuales propuestas; todas `not_checked`, no activas y sin IDs. Solo las filas aprobadas por el dueño podrán pasar a implementación. Actualiza los enlaces/estado en `docs/B2_U8_DESIGN.md` y `docs/B2_CURRICULUM_REORGANIZATION.md`.
-- Estado de referencia: B2 U1–U7 implementadas (35 lecciones authored); U6/U7 siguen ocultas hasta verificar gate de audio/publicación. U8–U12 son diseños; U13–U60 no tienen mapa aprobado. No cambia currículo ejecutable, audio, IndexedDB v1, backup JSON v3 ni dependencias.
+## B2 U8 ke-an — aprobación e implementación — 16 nov 2026
+- El dueño aprobó explícitamente las ocho formas y los ejemplos contextuales del paquete U8: `kekotoran`, `kedatangan`, `kementerian`, `kepulauan`, `ketidakadilan`, `kesalahpahaman`, `keingintahuan` y `keberuntungan`.
+- Se implementó U8 en la rama `curriculum/b2-u8-ke-an-20261116`: cinco lecciones authored y 16 ejercicios (3/3/3/3/4), cinco tipos de ejercicio y producción guiada. Se crearon IDs nuevos `b2u8_*` solo para las ocho formas aprobadas.
+- Las oraciones usadas en vocabulario/ejercicios proceden del paquete aprobado; no se introducen candidatos adicionales ni se usan `ketinggian`, `kejatuhan` o `kebakaran` como vocabulario nuevo.
+- La unidad mantiene los guardarraíles: ke-...-an no se presenta como traducción única ni como regla productiva libre; el foco es interpretación contextual y alcance de dominios documentados.
+- U8 queda implementada pero no se añade a la ruta visible: el gate actual mantiene B2 U1–U5 visibles mientras U6–U8 esperan el gate de audio/publicación B2. No cambiar visibilidad solo por implementar contenido.
+- No se modifican IndexedDB v1, backup JSON v3 ni dependencias. El audio de U8 queda pendiente de generación/verificación en manifiesto, índice, metadata y archivos antes de cualquier publicación.
+- El estándar de 5–6 lecciones authored se mantiene: B2 pasa de 35 a 40 lecciones authored en 8 unidades implementadas.
+- El estado `not_checked` de las fuentes lingüísticas se conserva: la aprobación del dueño autoriza el uso curricular de estas formas y ejemplos, pero no equivale a validación nativa, certificación lexicográfica ni certificación MCER/BIPA.

@@ -317,10 +317,41 @@ test('B2 U7 implements five authored lessons, 16 exercises and canonical reused 
     'U7 must include guided production');
 });
 
-test('implemented B2 U1–U7 are executable while later legacy draft units stay archived', async () => {
+test('B2 U8 implements five authored lessons, 16 exercises and the eight approved ke-an forms', async () => {
+  const { b2 } = await loadCurricula();
+  const unit = b2.units.find((item) => item.id === 'b2_u8');
+  assert.ok(unit, 'B2 U8 must exist');
+  assert.equal(unit.lessons.length, 5);
+  assert.deepEqual(unit.lessons.map((lesson) => lesson.exercises.length), [3, 3, 3, 3, 4]);
+  const exercises = allExercises(unit);
+  assert.equal(exercises.length, 16);
+  assert.deepEqual([...new Set(exercises.map((exercise) => exercise.type))].sort(),
+    ['listen', 'mc', 'order', 'translate_es_id', 'write']);
+  assert.deepEqual(unit.vocab.map((word) => word.id), [
+    'b2u8_kekotoran', 'b2u8_kedatangan', 'b2u8_kementerian', 'b2u8_kepulauan',
+    'b2u8_ketidakadilan', 'b2u8_kesalahpahaman', 'b2u8_keingintahuan', 'b2u8_keberuntungan'
+  ]);
+  assert.deepEqual(unit.vocab.map((word) => word.idn), [
+    'Kekotoran', 'Kedatangan', 'Kementerian', 'Kepulauan',
+    'Ketidakadilan', 'Kesalahpahaman', 'Keingintahuan', 'Keberuntungan'
+  ]);
+  const allowed = new Set(unit.vocab.map((word) => word.id));
+  for (const lesson of unit.lessons) {
+    for (const id of [...lesson.vocabIds, ...lesson.reviewVocabIds]) {
+      assert.ok(allowed.has(id), 'U8 lesson references unknown vocabulary: ' + id);
+    }
+    for (const exercise of lesson.exercises) {
+      assert.ok(allowed.has(exercise.vocabId), 'U8 exercise references unknown vocabulary: ' + exercise.vocabId);
+    }
+  }
+  assert.ok(exercises.some((exercise) => exercise.type === 'write' && exercise.hint?.trim()), 'U8 must include guided production');
+  assert.ok(exercises.some((exercise) => exercise.type === 'listen'), 'U8 must include listening');
+});
+
+test('implemented B2 U1–U8 are executable while later legacy draft units stay archived', async () => {
   const { b2 } = await loadCurricula();
   const legacyArchive = await readFile(new URL('../docs/B2_LEGACY_DRAFT_ARCHIVE.md', import.meta.url), 'utf8');
-  assert.deepEqual(b2.units.map((unit) => unit.id), ['b2_u1', 'b2_u2', 'b2_u3', 'b2_u4', 'b2_u5', 'b2_u6', 'b2_u7']);
+  assert.deepEqual(b2.units.map((unit) => unit.id), ['b2_u1', 'b2_u2', 'b2_u3', 'b2_u4', 'b2_u5', 'b2_u6', 'b2_u7', 'b2_u8']);
   for (const id of ['b2_u5']) {
     assert.ok(legacyArchive.includes('"id": "' + id + '"'), id + ' must remain in the historical archive');
   }

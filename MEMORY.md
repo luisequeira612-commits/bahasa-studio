@@ -307,10 +307,24 @@
 - Pendiente: CI de esta corrección; después reintentar MMS full/all y verificar los 2.152 IDs, MP3/Opus, hashes, metadata, pruebas y PR antes de afirmar que la migración está completa.
 
 
-## B2 U8 — paquete de aprobación preparado — 16 nov 2026
-- PR en preparación `docs/b2-u8-approval-packet-20261116`: añade `docs/B2_U8_APPROVAL_PACKET.md` con ocho formas `ke-...-an`, glosas y oraciones contextuales propuestas; todas `not_checked`, no activas y sin IDs. Solo las filas aprobadas por el dueño podrán pasar a implementación. Actualiza los enlaces/estado en `docs/B2_U8_DESIGN.md` y `docs/B2_CURRICULUM_REORGANIZATION.md`.
-- Estado de referencia: B2 U1–U7 implementadas (35 lecciones authored); U6/U7 siguen ocultas hasta verificar gate de audio/publicación. U8–U12 son diseños; U13–U60 no tienen mapa aprobado. No cambia currículo ejecutable, audio, IndexedDB v1, backup JSON v3 ni dependencias.
+## B2 U8 ke-an — aprobación e implementación — 16 nov 2026
+- El dueño aprobó explícitamente las ocho formas y los ejemplos contextuales del paquete U8: `kekotoran`, `kedatangan`, `kementerian`, `kepulauan`, `ketidakadilan`, `kesalahpahaman`, `keingintahuan` y `keberuntungan`.
+- Se implementó U8 en la rama `curriculum/b2-u8-ke-an-20261116`: cinco lecciones authored y 16 ejercicios (3/3/3/3/4), cinco tipos de ejercicio y producción guiada. Se crearon IDs nuevos `b2u8_*` solo para las ocho formas aprobadas.
+- Las oraciones usadas en vocabulario/ejercicios proceden del paquete aprobado; no se introducen candidatos adicionales ni se usan `ketinggian`, `kejatuhan` o `kebakaran` como vocabulario nuevo.
+- La unidad mantiene los guardarraíles: ke-...-an no se presenta como traducción única ni como regla productiva libre; el foco es interpretación contextual y alcance de dominios documentados.
+- U8 queda implementada pero no se añade a la ruta visible: el gate actual mantiene B2 U1–U5 visibles mientras U6–U8 esperan el gate de audio/publicación B2. No cambiar visibilidad solo por implementar contenido.
+- No se modifican IndexedDB v1, backup JSON v3 ni dependencias. El audio de U8 queda pendiente de generación/verificación en manifiesto, índice, metadata y archivos antes de cualquier publicación.
+- El estándar de 5–6 lecciones authored se mantiene: B2 pasa de 35 a 40 lecciones authored en 8 unidades implementadas.
+- El estado `not_checked` de las fuentes lingüísticas se conserva: la aprobación del dueño autoriza el uso curricular de estas formas y ejemplos, pero no equivale a validación nativa, certificación lexicográfica ni certificación MCER/BIPA.
 
+## Audio B2 MMS para U8 — 16 nov 2026
+
+- PR #640 fusionada como `449984e1cb8c9a543a5e2387b0442b624988e48e`; el workflow admite `source_ref` y full mode conserva los audios existentes, generando solo los faltantes.
+- El usuario ejecutó [run 43910956541](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/43910956541) con `engine=mms`, `mode=full`, `level=B2`, `limit=0`, `confirm_full=true` y `source_ref=curriculum/b2-u8-ke-an-20261116`. La exportación detectó 98 textos B2 únicos; el índice final reportó 2.212 clips. Se generaron 14 pares MP3/Opus faltantes y se refrescó una huella SHA-256.
+- Las pruebas propias del generador/manifiesto pasaron. La regresión [run 43911446349](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/43911446349) completó `test` y `Offline quality reports` en éxito.
+- GitHub Actions no pudo crear la PR automáticamente porque el token no tenía permiso `createPullRequest`. Se abrió manualmente [PR #641](https://github.com/luisequeira612-commits/bahasa-studio/pull/641), dirigida a la rama curricular U8 para separar el audio del contenido; se fusionó mediante squash en esa rama como `7587ecc84ed57edb7d6d361cf311e44193283897`.
+- La PR curricular [#639](https://github.com/luisequeira612-commits/bahasa-studio/pull/639) ahora contiene U8 y los audios en su rama `curriculum/b2-u8-ke-an-20261116`, head `7587ecc84ed57edb7d6d361cf311e44193283897`. Todavía no está fusionada en `main`: la rama necesita sincronizar las actualizaciones recientes de `main` en `.github/workflows/generate-audio.yml` y `MEMORY.md`, después ejecutar y verificar CI sobre el head actualizado.
+- U8 permanece fuera de la ruta visible. No publicar ni cambiar su visibilidad hasta que #639 esté sincronizada, CI esté verde y se verifique el manifiesto, índice, metadata, hashes y archivos de audio. No se modifican IndexedDB v1, backup JSON v3 ni dependencias. La validación técnica no equivale a certificación lingüística nativa/MCER/BIPA.
 
 ## Audio generation from a curriculum ref — 16 nov 2026
 - PR #639 (B2 U8) dejó el gate de regresión bloqueado porque `tests/audio-manifest.test.mjs` exige que el índice de audio coincida con la unión del manifiesto; la rama de U8 tiene los textos nuevos pero todavía no los MP3/Opus correspondientes.

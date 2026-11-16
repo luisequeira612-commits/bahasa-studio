@@ -198,6 +198,25 @@ def bump_service_worker_cache_version(service_worker_file: Path):
     return replacement
 
 
+def build_sample_record(engine: str, entry: dict, voice_label: str) -> dict:
+    record = {
+        "engine": engine,
+        "id": entry["id"],
+        "text": entry["text"],
+        "voice": voice_label,
+    }
+    if engine == "mms":
+        record.update({
+            "model": MMS_MODEL_ID,
+            "model_revision": MMS_MODEL_REVISION,
+            "model_sha256": MMS_MODEL_SHA256,
+            "model_license": MMS_MODEL_LICENSE,
+            "model_license_url": MMS_MODEL_LICENSE_URL,
+            "model_attribution": MMS_MODEL_ATTRIBUTION,
+        })
+    return record
+
+
 def render_samples_index(samples_dir: Path, samples: list[dict]):
     samples_dir.mkdir(parents=True, exist_ok=True)
     samples = sorted(samples, key=lambda item: (item.get("engine", ""), item.get("id", "")))
@@ -311,9 +330,7 @@ def main():
         if args.mode == "full":
             available_ids.add(entry["id"])
         else:
-            sample_map[(args.engine, entry["id"])] = {
-                "engine": args.engine, "id": entry["id"], "text": entry["text"], "voice": voice_label
-            }
+            sample_map[(args.engine, entry["id"])] = build_sample_record(args.engine, entry, voice_label)
         print(f"[{position}/{len(entries)}] {entry['id']} {entry['text']}")
 
     if args.mode == "samples":

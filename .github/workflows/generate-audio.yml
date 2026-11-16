@@ -20,6 +20,11 @@ on:
         type: string
         default: '10'
         required: true
+      ids:
+        description: IDs exactos separados por comas (solo samples; vacío usa limit)
+        type: string
+        default: ''
+        required: false
       level:
         description: Nivel o todos para generación completa
         type: choice
@@ -56,6 +61,7 @@ jobs:
       MODE: ${{ inputs.mode }}
       LEVEL: ${{ inputs.level }}
       LIMIT: ${{ inputs.limit }}
+      IDS: ${{ inputs.ids }}
       CONFIRM_FULL: ${{ inputs.confirm_full }}
       SOURCE_REF: ${{ inputs.source_ref }}
     steps:
@@ -153,7 +159,11 @@ jobs:
           if [[ "$MODE" == "hashes" ]]; then
             python scripts/generate_audio.py --engine piper --hash-only
           elif [[ "$MODE" == "samples" ]]; then
-            python scripts/generate_audio.py --engine "$ENGINE" --mode samples --level "$LEVEL" --limit "$LIMIT" --force
+            ARGS=(--engine "$ENGINE" --mode samples --level "$LEVEL" --limit "$LIMIT" --force)
+            if [[ -n "$IDS" ]]; then
+              ARGS+=(--ids "$IDS")
+            fi
+            python scripts/generate_audio.py "${ARGS[@]}"
           else
             python scripts/generate_audio.py --engine "$ENGINE" --mode full --level "$LEVEL" --limit 0
           fi

@@ -340,3 +340,9 @@
 - La primera ejecución CI detectó una aserción histórica de `tests/regression.test.cjs` que todavía esperaba el texto Piper; se actualizó para esperar MMS. No era un fallo del motor ni de la velocidad. Fuente: run 43966351482, 16 nov 2026.
 - La segunda CI pasó regresión, pruebas de motor, calidad local y los informes; el E2E encontró dos aserciones adicionales antiguas que esperaban Piper en `tests/browser-e2e.test.cjs`. Se actualizaron ambas a MMS; pendiente nueva CI completa. Fuente: run 43966595598, 16 nov 2026.
 - Fuente: inspección de `audio-engine.js`, pruebas `tests/audio-engine.test.cjs` y reporte del usuario en ChatGPT, 16 nov 2026.
+
+
+## Muestras fonéticas dirigidas — 16 nov 2026
+- Se amplía el generador de muestras para aceptar IDs explícitos del manifiesto (`--ids`), en vez de limitarse a los primeros N textos. La entrada de GitHub Actions acepta IDs separados por comas; solo afecta al modo `samples` y no puede usarse para generación de biblioteca `full`.
+- El objetivo de evaluación del reporte del usuario es comparar `Makan` (ID `2c82a33b24e7`), `Selamat pagi` (`e1b89cc35480`), `Selamat pagi!` (`3023fa268c90`) y `Saya makan.` (`315b9da4bbf4`) con MMS y Edge TTS. Las muestras son solo material de evaluación, no sustituyen la biblioteca offline ni implican adoptar Edge como voz de producción.
+- Se añaden pruebas para selección exacta, orden, IDs desconocidos/duplicados y respeto del nivel. No se modifica la biblioteca de audio, currículo, IndexedDB v1, backup JSON v3 ni dependencias. Fuente: `audio/manifest.json`, `scripts/generate_audio.py`, `tests/test_audio_generation.py` y reporte del usuario, 16 nov 2026.

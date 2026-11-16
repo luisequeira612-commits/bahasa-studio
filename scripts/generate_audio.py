@@ -246,6 +246,25 @@ def render_samples_index(samples_dir: Path, samples: list[dict]):
     (samples_dir / "index.html").write_text(page, encoding="utf-8")
 
 
+
+def select_manifest_entries(entries: list[dict], level: str, limit: int, ids_text: str = "") -> list[dict]:
+    selected = entries if level == "all" else [
+        entry for entry in entries if level in entry.get("levels", [])
+    ]
+    requested_ids = [item for item in re.split(r"[,\s]+", ids_text.strip()) if item]
+    if requested_ids:
+        if len(requested_ids) != len(set(requested_ids)):
+            raise ValueError("--ids contains duplicate IDs")
+        by_id = {entry["id"]: entry for entry in selected}
+        missing = [item for item in requested_ids if item not in by_id]
+        if missing:
+            raise ValueError(
+                "Unknown audio sample ID(s) for the selected level: " + ", ".join(missing)
+            )
+        return [by_id[item] for item in requested_ids]
+    return selected[:limit] if limit else selected
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--engine", choices=("edge", "piper", "mms"), required=True)
@@ -253,6 +272,7 @@ def main():
     parser.add_argument("--samples", action="store_true", help="alias for --mode samples")
     parser.add_argument("--level", choices=LEVELS, default="all")
     parser.add_argument("--limit", type=int, default=10, help="0 means all selected texts")
+    parser.add_argument("--ids", default="", help="comma- or space-separated manifest IDs for an exact samples-only set; overrides --limit")
     parser.add_argument("--voice", default="id-ID-ArdiNeural")
     parser.add_argument("--force", action="store_true")
     parser.add_argument("--hash-only", action="store_true", help="refresh MP3 SHA-256 metadata without running TTS")
@@ -261,6 +281,8 @@ def main():
         args.mode = "samples"
     if args.limit < 0:
         parser.error("--limit cannot be negative")
+    if args.ids and args.mode != "samples":
+        parser.error("--ids is available only in samples mode")
     if args.hash_only:
         output_dir = ROOT / "audio" / "id"
         metadata_file = ROOT / "audio" / "metadata.json"
@@ -275,12 +297,10 @@ def main():
         parser.error("ffmpeg is required in the GitHub Actions runner")
 
     entries = json.loads(MANIFEST.read_text(encoding="utf-8"))
-    if args.level != "all":
-        entries = [entry for entry in entries if args.level in entry.get("levels", [])]
-    if args.mode == "samples" and args.limit:
-        entries = entries[:args.limit]
-    if args.mode == "full" and args.limit:
-        entries = entries[:args.limit]
+    try:
+        entries = select_manifest_entries(entries, args.level, args.limit, args.ids)
+    except ValueError as error:
+        parser.error(str(error))
 
     if not entries:
         raise SystemExit("No curriculum texts matched the selected level/limit.")

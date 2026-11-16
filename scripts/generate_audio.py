@@ -54,6 +54,20 @@ def download_piper_model(model_dir: Path) -> Path:
     return model
 
 
+def verify_mms_model_checksum(model_path: Path) -> str:
+    digest = hashlib.sha256()
+    with model_path.open("rb") as model_file:
+        for chunk in iter(lambda: model_file.read(1024 * 1024), b""):
+            digest.update(chunk)
+    actual = digest.hexdigest()
+    if actual != MMS_MODEL_SHA256:
+        raise RuntimeError(
+            "MMS model checksum mismatch for "
+            f"{model_path.name}: expected {MMS_MODEL_SHA256}, got {actual}"
+        )
+    return actual
+
+
 def create_synthesizer(engine: str, voice: str, work_dir: Path):
     if engine == "edge":
         import edge_tts
@@ -87,9 +101,16 @@ def create_synthesizer(engine: str, voice: str, work_dir: Path):
     if engine == "mms":
         import numpy as np
         import torch
+        from huggingface_hub import hf_hub_download
         from transformers import AutoModelForTextToWaveform, AutoTokenizer
         from scipy.io import wavfile
 
+        model_weights = Path(hf_hub_download(
+            repo_id=MMS_MODEL_ID,
+            filename="model.safetensors",
+            revision=MMS_MODEL_REVISION,
+        ))
+        verify_mms_model_checksum(model_weights)
         tokenizer = AutoTokenizer.from_pretrained(MMS_MODEL_ID, revision=MMS_MODEL_REVISION)
         model = AutoModelForTextToWaveform.from_pretrained(MMS_MODEL_ID, revision=MMS_MODEL_REVISION).to("cpu")
         model.eval()

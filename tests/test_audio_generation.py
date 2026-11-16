@@ -31,6 +31,21 @@ class AudioSamplesPageTests(unittest.TestCase):
             self.assertIn("&lt;script&gt;", page)
             self.assertNotIn('<script>alert("x")</script>', page)
 
+    def test_mms_model_checksum_verification_accepts_exact_weights(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            model = Path(temporary) / "model.safetensors"
+            model.write_bytes(b"pinned-model-fixture")
+            expected = hashlib.sha256(b"pinned-model-fixture").hexdigest()
+            old_expected = MODULE.MMS_MODEL_SHA256
+            try:
+                MODULE.MMS_MODEL_SHA256 = expected
+                self.assertEqual(MODULE.verify_mms_model_checksum(model), expected)
+                MODULE.MMS_MODEL_SHA256 = "0" * 64
+                with self.assertRaisesRegex(RuntimeError, "MMS model checksum mismatch"):
+                    MODULE.verify_mms_model_checksum(model)
+            finally:
+                MODULE.MMS_MODEL_SHA256 = old_expected
+
     def test_mms_replaces_legacy_piper_only_when_forced(self):
         with tempfile.TemporaryDirectory() as temporary:
             metadata = Path(temporary) / "audio" / "metadata.json"

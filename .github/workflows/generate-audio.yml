@@ -143,7 +143,7 @@ jobs:
           if [[ "$MODE" == "hashes" ]]; then
             python scripts/generate_audio.py --engine piper --hash-only
           elif [[ "$MODE" == "samples" ]]; then
-            python scripts/generate_audio.py --engine "$ENGINE" --mode samples --level "$LEVEL" --limit "$LIMIT"
+            python scripts/generate_audio.py --engine "$ENGINE" --mode samples --level "$LEVEL" --limit "$LIMIT" --force
           else
             python scripts/generate_audio.py --engine "$ENGINE" --mode full --level "$LEVEL" --limit 0 --force
           fi

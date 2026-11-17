@@ -53,7 +53,7 @@ def main() -> None:
             "--limit", "0", "--ids", ",".join(ids), "--force")
         run("scripts/audio_review.py", "--manifest", str(batch_manifest), "--audio-dir", str(ROOT / "audio" / "id"),
             "--ids", ",".join(ids), "--model", args.whisper_size)
-        run("scripts/auto_fix_pronunciation.py", "--manifest", str(batch_manifest),
+        run("scripts/auto_fix_pronunciation.py", "--manifest", str(MANIFEST),
             "--audio-dir", str(ROOT / "audio" / "id"), "--report", str(ROOT / "scripts" / "audio_review_report.csv"),
             "--model", args.whisper_size, "--mode", "production", "--max-passes", "2")
         run("scripts/audio_review.py", "--manifest", str(batch_manifest), "--audio-dir", str(ROOT / "audio" / "id"),

@@ -212,7 +212,7 @@ class AudioSamplesPageTests(unittest.TestCase):
             try:
                 MODULE.ROOT = root
                 MODULE.MANIFEST = root / "missing" / "manifest.json"
-                sys.argv = ["generate_audio.py", "--engine", "piper", "--hash-only"]
+                sys.argv = ["generate_audio.py", "--engine", "mms", "--hash-only"]
                 MODULE.main()
             finally:
                 MODULE.ROOT = old_root
@@ -222,6 +222,44 @@ class AudioSamplesPageTests(unittest.TestCase):
             saved = __import__("json").loads(metadata.read_text(encoding="utf-8"))
             self.assertEqual(saved["audio_hashes"]["0123456789ab"], hashlib.sha256(b"existing clip").hexdigest())
             self.assertEqual(worker.read_text(encoding="utf-8"), "const CACHE_NAME = 'bahasa-studio-v3.8.99';")
+
+
+class PronunciationPreparationTests(unittest.TestCase):
+    def test_three_experimental_pagi_variants_change_only_speech_text(self):
+        visible_text = "Selamat pagi!"
+        expected = {
+            "pa gi": "selamat pa gi!",
+            "pa-gi": "selamat pa-gi!",
+            "paghi": "selamat paghi!",
+        }
+        for variant, spoken in expected.items():
+            with self.subTest(variant=variant):
+                self.assertEqual(MODULE.prepare_speech_text(visible_text, {}, variant), spoken)
+                self.assertEqual(visible_text, "Selamat pagi!")
+
+    def test_configured_overrides_are_loaded_as_lowercase_tts_mappings(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            path = Path(temporary) / "pronunciation_overrides.json"
+            path.write_text('{"PAGI": "pa gi"}', encoding="utf-8")
+            overrides = MODULE.load_pronunciation_overrides(path)
+        self.assertEqual(overrides, {"pagi": "pa gi"})
+        self.assertEqual(MODULE.prepare_speech_text("Selamat PAGI!", overrides), "selamat pa gi!")
+
+    def test_pronunciation_replacement_respects_word_boundaries(self):
+        self.assertEqual(
+            MODULE.prepare_speech_text("pagi-pagi, pagian", {"pagi": "pa gi"}),
+            "pa gi-pa gi, pagian",
+        )
+
+    def test_sample_record_keeps_original_visible_text_and_variant_metadata(self):
+        entry = {"id": "e1b89cc35480", "text": "Selamat pagi!", "levels": ["A1"]}
+        record = MODULE.build_sample_record(
+            "mms", entry, "MMS / facebook/mms-tts-ind",
+            "mms/pronunciation-variants/selamat-pagi__pa-gi.mp3", "pa-gi",
+        )
+        self.assertEqual(record["text"], "Selamat pagi!")
+        self.assertEqual(record["pronunciation_variant"], "pa-gi")
+        self.assertEqual(record["file"], "mms/pronunciation-variants/selamat-pagi__pa-gi.mp3")
 
 
 if __name__ == "__main__":

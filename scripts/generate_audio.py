@@ -50,6 +50,10 @@ def load_pronunciation_overrides(path: Path = PRONUNCIATION_OVERRIDES_PATH) -> d
         raise ValueError("pronunciation_overrides.json must contain a JSON object")
     overrides = {}
     for word, respelling in data.items():
+        if isinstance(respelling, dict):
+            if respelling.get("state") not in {"auto_whisper", "unresolved"}:
+                raise ValueError(f"Unsupported override state for {word!r}")
+            respelling = respelling.get("respelling", "")
         if not isinstance(word, str) or not word.strip() or not isinstance(respelling, str) or not respelling.strip():
             raise ValueError("Pronunciation overrides must map non-empty words to non-empty respellings")
         overrides[word.strip().lower()] = respelling.strip().lower()
@@ -137,7 +141,8 @@ def create_ephemeral_model_cache(repo_root: Path = ROOT, runner_temp: Path | Non
     os.environ["TRANSFORMERS_CACHE"] = str(cache_dir / "transformers")
     os.environ["TORCH_HOME"] = str(cache_dir / "torch")
     os.environ["HF_HUB_DISABLE_TELEMETRY"] = "1"
-    atexit.register(cleanup_ephemeral_model_cache, cache_dir)
+    if os.environ.get("BAHASA_TTS_PERSIST_MODEL_CACHE") != "1":
+        atexit.register(cleanup_ephemeral_model_cache, cache_dir)
     return cache_dir
 
 
@@ -355,7 +360,7 @@ def main():
     parser.add_argument("--samples", action="store_true", help="alias for --mode samples")
     parser.add_argument("--level", choices=LEVELS, default="all")
     parser.add_argument("--limit", type=int, default=10, help="0 means all selected texts")
-    parser.add_argument("--ids", default="", help="comma- or space-separated manifest IDs for an exact samples-only set; overrides --limit")
+    parser.add_argument("--ids", default="", help="comma- or space-separated manifest IDs for an exact set; overrides --limit")
     parser.add_argument("--include-pronunciation-variants", action="store_true", help="add three experimental MMS readings of the A1 phrase Selamat pagi")
     parser.add_argument("--voice", default="id-ID-ArdiNeural")
     parser.add_argument("--force", action="store_true")
@@ -365,8 +370,6 @@ def main():
         args.mode = "samples"
     if args.limit < 0:
         parser.error("--limit cannot be negative")
-    if args.ids and args.mode != "samples":
-        parser.error("--ids is available only in samples mode")
     if args.include_pronunciation_variants and (args.mode != "samples" or args.engine != "mms" or args.ids):
         parser.error("--include-pronunciation-variants requires MMS samples mode and no explicit --ids")
     if args.hash_only:

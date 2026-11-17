@@ -51,7 +51,6 @@ jobs:
       HF_HOME: ${{ runner.temp }}/guardi-audio-model-cache/huggingface
       HF_HUB_CACHE: ${{ runner.temp }}/guardi-audio-model-cache/huggingface/hub
       TORCH_HOME: ${{ runner.temp }}/guardi-audio-model-cache/torch
-      HOME: ${{ runner.temp }}/guardi-audio-model-cache/home
       WHISPER_CACHE_DIR: ${{ runner.temp }}/guardi-audio-model-cache/home/.cache/whisper
       MODE: ${{ inputs.mode }}
       BATCH_SIZE: ${{ inputs.batch_size }}

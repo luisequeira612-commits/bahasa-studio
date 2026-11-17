@@ -15,14 +15,10 @@ import subprocess
 import sys
 import tempfile
 import time
-import urllib.request
-import wave
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 MANIFEST = ROOT / "audio" / "manifest.json"
-PIPER_VOICE = "id_ID-news_tts-medium"
-PIPER_REVISION = "7c89b592e94392a56c789bd35a860fec66a6583f"
 MMS_MODEL_ID = "facebook/mms-tts-ind"
 MMS_MODEL_REVISION = "171b004ccd54f266a31efee71f1ad850c91d39c0"
 MMS_MODEL_LICENSE = "CC BY-NC 4.0"
@@ -33,7 +29,6 @@ MMS_SEED = 20261117
 PRONUNCIATION_OVERRIDES_PATH = ROOT / "scripts" / "pronunciation_overrides.json"
 MMS_PRONUNCIATION_VARIANTS = ("pa gi", "pa-gi", "paghi")
 MMS_VARIANT_SAMPLE_ID = "e1b89cc35480"
-PIPER_BASE = f"https://huggingface.co/rhasspy/piper-voices/resolve/{PIPER_REVISION}/id/id_ID/news_tts/medium"
 LEVELS = ("A1", "A2", "B1", "B2", "all")
 
 
@@ -71,27 +66,6 @@ def prepare_speech_text(text: str, overrides: dict[str, str] | None = None, vari
     for word in sorted(replacements, key=len, reverse=True):
         spoken = re.sub(r"(?<!\w)" + re.escape(word) + r"(?!\w)", replacements[word], spoken)
     return spoken
-
-
-def download_piper_model(model_dir: Path) -> Path:
-    model_dir.mkdir(parents=True, exist_ok=True)
-    model = model_dir / f"{PIPER_VOICE}.onnx"
-    config = model_dir / f"{PIPER_VOICE}.onnx.json"
-    assets = [
-        (model, f"{PIPER_BASE}/{PIPER_VOICE}.onnx", "17de01db7ac654655436b6e509893c72"),
-        (config, f"{PIPER_BASE}/{PIPER_VOICE}.onnx.json", "c023cfa031cc9ed4cf5dd8d2ef1e48ed"),
-    ]
-    for target, url, expected_md5 in assets:
-        if target.exists() and hashlib.md5(target.read_bytes()).hexdigest() == expected_md5:
-            continue
-        request = urllib.request.Request(url, headers={"User-Agent": "BahasaStudio-AudioGenerator/1.0"})
-        with urllib.request.urlopen(request, timeout=90) as response, target.open("wb") as output:
-            shutil.copyfileobj(response, output)
-        actual = hashlib.md5(target.read_bytes()).hexdigest()
-        if actual != expected_md5:
-            target.unlink(missing_ok=True)
-            raise RuntimeError(f"Checksum mismatch downloading {target.name}: {actual}")
-    return model
 
 
 def verify_mms_model_checksum(model_path: Path) -> str:
@@ -167,18 +141,6 @@ def create_synthesizer(engine: str, voice: str, work_dir: Path):
             raise RuntimeError(f"edge-tts failed after 3 attempts: {last_error}")
 
         return lambda text, output: asyncio.run(synth(text, output)), f"Edge TTS / {voice}"
-
-    if engine == "piper":
-        from piper import PiperVoice
-
-        model_path = download_piper_model(work_dir / "piper")
-        piper_voice = PiperVoice.load(str(model_path))
-
-        def synth(text: str, output: Path):
-            with wave.open(str(output), "wb") as wav_file:
-                piper_voice.synthesize_wav(text, wav_file)
-
-        return synth, f"Piper / {PIPER_VOICE}"
 
     if engine == "mms":
         import numpy as np

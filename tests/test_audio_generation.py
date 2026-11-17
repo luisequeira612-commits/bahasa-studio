@@ -52,11 +52,17 @@ class EphemeralModelCacheTests(unittest.TestCase):
             checkout = root / "checkout"
             checkout.mkdir()
             previous = os.environ.get("BAHASA_TTS_MODEL_CACHE")
-            os.environ["BAHASA_TTS_MODEL_CACHE"] = str(checkout / ".models")
             try:
-                with self.assertRaisesRegex(RuntimeError, "outside the repository"):
-                    MODULE.create_ephemeral_model_cache(checkout, root / "runner-temp")
-                self.assertFalse((checkout / ".models").exists())
+                for unsafe_path in (checkout, checkout / ".models"):
+                    os.environ["BAHASA_TTS_MODEL_CACHE"] = str(unsafe_path)
+                    with self.assertRaisesRegex(RuntimeError, "outside the repository"):
+                        MODULE.create_ephemeral_model_cache(checkout, root / "runner-temp")
+                    self.assertTrue(checkout.is_dir())
+                    self.assertFalse((checkout / ".models").exists())
+                os.environ.pop("BAHASA_TTS_MODEL_CACHE", None)
+                with self.assertRaisesRegex(RuntimeError, "Runner temporary directory"):
+                    MODULE.create_ephemeral_model_cache(checkout, checkout / ".runner-temp")
+                self.assertTrue(checkout.is_dir())
             finally:
                 if previous is None:
                     os.environ.pop("BAHASA_TTS_MODEL_CACHE", None)

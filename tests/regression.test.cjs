@@ -1489,7 +1489,7 @@ test('U24–U32 audit tracker vocabulary and examples stay synchronized with the
 test('bundled Indonesian recordings work without an installed device voice', () => {
   assert.match(html, /id="voiceTestStatus"/);
   assert.doesNotMatch(html, /grabaciones de voz Piper/);
-  assert.match(audioEngineSource, /audio MMS-TTS de Vineel Pratap et al\\. \\/ Meta AI \\(CC BY-NC 4\\.0/);
+  assert.ok(audioEngineSource.includes('audio MMS-TTS de Vineel Pratap et al. / Meta AI (CC BY-NC 4.0'));
   assert.ok(audioEngineSource.includes('playRecorded(text)'));
   assert.ok(audioEngineSource.includes("new Audio('./audio/id/' + id + '.mp3')"));
   assert.ok(audioEngineSource.includes("this.speak('terima kasih')"));

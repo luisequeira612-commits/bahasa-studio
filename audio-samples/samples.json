@@ -238,5 +238,173 @@
     "model_license": "CC BY-NC 4.0",
     "model_license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
     "model_attribution": "MMS-TTS by Vineel Pratap et al., Meta AI"
+  },
+  {
+    "engine": "piper",
+    "id": "0c5e59d90170",
+    "text": "Saya tidak tidur.",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "abf9ce266f24",
+    "text": "Nama saya Ana.",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "42b798df72f7",
+    "text": "Satu buku.",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "3dee56f0217c",
+    "text": "Ini keluarga saya.",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "510931d0c5f8",
+    "text": "Saya mau air.",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "423ae167839d",
+    "text": "Saya di rumah.",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "b1e32f1bba3d",
+    "text": "Hari ini saya belajar.",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "437185e338c8",
+    "text": "Sebelas teman.",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "5edc003cceee",
+    "text": "Ini uang.",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "ac1d586a5570",
+    "text": "Pagi ini saya belajar.",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "829d6aeb4101",
+    "text": "Saya bangun pagi.",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "b6f79fd9396b",
+    "text": "Cuaca panas.",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "92b897de68ec",
+    "text": "Saya naik bus.",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "329db33a5a0b",
+    "text": "Saya pergi.",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "f34af9751f66",
+    "text": "Saya bisa pergi.",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "87968bd9ca09",
+    "text": "Ada bus di sini?",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "f5aedaabfb03",
+    "text": "Buku ini.",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "38f715c8a85e",
+    "text": "Saya di restoran.",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "aab241130724",
+    "text": "Saya di pasar.",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "597140997190",
+    "text": "Kepala saya sakit.",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "c7b4f4d8ffaa",
+    "text": "Jaket saya merah.",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "126926c0dd06",
+    "text": "Saya di kamar.",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "c0349ee2e799",
+    "text": "Kantin sekolah itu besar.",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "fba240e0b605",
+    "text": "Apa hobi kamu?",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "fe1170f50626",
+    "text": "Jalan ini panjang.",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "492e3921d84a",
+    "text": "Saya di hotel.",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "d9943c89cf67",
+    "text": "Saya selalu belajar.",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "75808abdc634",
+    "text": "Maaf, saya terlambat.",
+    "voice": "Piper / id_ID-news_tts-medium"
   }
 ]

@@ -88,10 +88,10 @@ window.AudioEngine = {
         const indonesianVoices = this.voices.filter(voice => String(voice.lang || '').toLowerCase().startsWith('id'));
         if (indonesianVoices.length) {
             const active = this.selectedVoice || this.idVoice;
-            status.textContent = 'La app incluye grabaciones MMS: no necesitas instalar una voz indonesia. Voz del dispositivo disponible como respaldo: ' +
+            status.textContent = 'La app incluye grabaciones MMS de Meta AI (CC BY-NC 4.0; uso no comercial): no necesitas instalar una voz indonesia. Voz del dispositivo disponible como respaldo: ' +
                 (active ? active.name : 'selección automática') + '.';
         } else {
-            status.textContent = 'La app incluye grabaciones MMS y puede reproducirlas sin voces instaladas. Una voz indonesia del dispositivo solo es necesaria como respaldo si falta una grabación.';
+            status.textContent = 'La app incluye grabaciones MMS de Meta AI (CC BY-NC 4.0; uso no comercial) y puede reproducirlas sin voces instaladas. Una voz indonesia del dispositivo solo es necesaria como respaldo si falta una grabación.';
         }
     },
     refreshVoices() {

@@ -58,7 +58,7 @@ concurrency:
 
 jobs:
   generate:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     timeout-minutes: 60
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -70,6 +70,7 @@ jobs:
       VOICE: ${{ inputs.voice }}
       CONFIRM_FULL: ${{ inputs.confirm_full }}
       SOURCE_REF: ${{ inputs.source_ref }}
+      BAHASA_TTS_PERSIST_MODEL_CACHE: "1"
     steps:
       - name: Reject full generation until explicitly confirmed
         if: ${{ inputs.mode == 'full' && inputs.confirm_full != true }}
@@ -94,6 +95,13 @@ jobs:
         with:
           ref: ${{ inputs.source_ref }}
           fetch-depth: 0
+
+      - name: Restore MMS model cache
+        if: ${{ inputs.mode != 'hashes' }}
+        uses: actions/cache@v4
+        with:
+          path: ${{ runner.temp }}/guardi-tts-cache
+          key: guardi-mms-model-${{ runner.os }}-171b004ccd54-v1
 
       - name: Set up Node.js
         uses: actions/setup-node@v4

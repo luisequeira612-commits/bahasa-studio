@@ -66,6 +66,7 @@ def main() -> None:
     synth, _voice = gen.create_synthesizer("mms", "", cache)
     unresolved_lines = []
     accepted = 0
+    accepted_words = set()
     for pass_no in range(1, args.max_passes + 1):
         with args.report.open(encoding="utf-8-sig", newline="") as f:
             rows = list(csv.DictReader(f))
@@ -112,18 +113,8 @@ def main() -> None:
                         "note": "Aceptada automáticamente por Whisper; no verificada por una persona."
                     }
                     accepted += 1
+                    accepted_words.add(target)
                     changed_this_pass += 1
-                    speech = gen.prepare_speech_text(original, {target: best["respelling"]})
-                    with tempfile.TemporaryDirectory() as td:
-                        raw = Path(td) / "fixed.wav"
-                        synth(speech, raw)
-                        mp3 = args.audio_dir / f"{row['ID']}.mp3"
-                        mp3.parent.mkdir(parents=True, exist_ok=True)
-                        if args.mode == "production":
-                            gen.encode_audio(raw, args.audio_dir / f"{row['ID']}.opus", "opus")
-                            gen.encode_audio(raw, mp3, "mp3")
-                        else:
-                            gen.encode_audio(raw, mp3, "sample-mp3")
                     row["status"] = "auto_whisper"
                     row["transcript"] = best["transcript"]
                     row["match score"] = f"{best['score']:.4f}"
@@ -139,6 +130,25 @@ def main() -> None:
         OVERRIDES.write_text(json.dumps(overrides, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         if changed_this_pass == 0:
             break
+    OVERRIDES.write_text(json.dumps(overrides, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    if accepted_words:
+        final_overrides = gen.load_pronunciation_overrides(OVERRIDES)
+        # Apply a newly accepted word override only to the reviewed batch/sample,
+        # including other reviewed phrases containing that word.
+        for reviewed_row in rows:
+            entry = by_id.get(reviewed_row.get("ID"))
+            if not entry or not any(re.search(r"(?<!\w)" + re.escape(word) + r"(?!\w)", entry["text"], re.I) for word in accepted_words):
+                continue
+            with tempfile.TemporaryDirectory() as td:
+                raw = Path(td) / "fixed.wav"
+                synth(gen.prepare_speech_text(entry["text"], final_overrides), raw)
+                mp3 = args.audio_dir / f"{entry['id']}.mp3"
+                mp3.parent.mkdir(parents=True, exist_ok=True)
+                if args.mode == "production":
+                    gen.encode_audio(raw, args.audio_dir / f"{entry['id']}.opus", "opus")
+                    gen.encode_audio(raw, mp3, "mp3")
+                else:
+                    gen.encode_audio(raw, mp3, "sample-mp3")
     if unresolved_lines:
         existing = UNRESOLVED.read_text(encoding="utf-8") if UNRESOLVED.exists() else ""
         UNRESOLVED.write_text(existing + "\n".join(dict.fromkeys(unresolved_lines)) + "\n", encoding="utf-8")

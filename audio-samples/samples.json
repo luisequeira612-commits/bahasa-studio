@@ -238,5 +238,125 @@
     "model_license": "CC BY-NC 4.0",
     "model_license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
     "model_attribution": "MMS-TTS by Vineel Pratap et al., Meta AI"
+  },
+  {
+    "engine": "piper",
+    "id": "3a0fdeee4c6c",
+    "text": "Saya menyikat gigi pada pagi hari.",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "e97e44fafb1e",
+    "text": "Indonesia adalah negara besar.",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "7243d108c727",
+    "text": "Saya belajar bahasa Indonesia.",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "f016ba06affd",
+    "text": "Saya membaca pada akhir pekan.",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "755d9e2bfafc",
+    "text": "Delapan puluh sembilan teman.",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "3476ce1bf934",
+    "text": "Saya belajar pada siang hari.",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "84c4cfcf6595",
+    "text": "Saya perlu stempel di paspor.",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "1af7d6a5e3ba",
+    "text": "Selamat datang di rumah saya.",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "82da9a165732",
+    "text": "Dia gagal.",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "39c837f2b087",
+    "text": "Saya yakin.",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "c416fb960757",
+    "text": "Ini solusi.",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "e2fae20727d8",
+    "text": "Saya pulang.",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "6c80ad901245",
+    "text": "Saya berdoa.",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "b05a485f9157",
+    "text": "Ini larangan.",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "76f6c2a419e6",
+    "text": "Donasi diberikan kepada keluarga yang membutuhkan.",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "190d3a62b1b6",
+    "text": "Kami mengirim ucapan selamat kepada pasangan itu.",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "d73e7d197671",
+    "text": "Mereka menyelesaikan perselisihan dengan tenang.",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "ee872458ee99",
+    "text": "Saya meminta klarifikasi tentang instruksi itu.",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "6689f0b15f53",
+    "text": "Langkah berikutnya adalah menghubungi petugas.",
+    "voice": "Piper / id_ID-news_tts-medium"
+  },
+  {
+    "engine": "piper",
+    "id": "c68fe729f32b",
+    "text": "Pemandu wisata menjelaskan sejarah tempat itu.",
+    "voice": "Piper / id_ID-news_tts-medium"
   }
 ]

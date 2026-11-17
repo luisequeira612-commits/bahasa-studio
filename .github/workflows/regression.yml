@@ -48,8 +48,10 @@ jobs:
         run: node --test tests/offline-audio-manager.test.cjs
       - name: Run audio sample page generation tests
         run: python -m unittest discover -s tests -p 'test_audio_generation.py'
-      - name: Check Python audio generator syntax
-        run: python -m py_compile scripts/generate_audio.py
+      - name: Test Whisper scoring and safe pronunciation respelling
+        run: python -m unittest discover -s tests -p 'test_audio_review.py'
+      - name: Check Python audio pipeline syntax
+        run: python -m py_compile scripts/generate_audio.py scripts/audio_review.py scripts/auto_fix_pronunciation.py scripts/audio_batch.py
       - name: Run assessment speech recognition lifecycle tests
         run: node --test tests/assessment-speech-recognition.test.cjs
       - name: Run speech recognition privacy boundary tests

@@ -389,7 +389,13 @@ def main():
         parser.error(str(error))
 
     jobs = [(entry, None) for entry in entries]
-    if args.include_pronunciation_variants:
+    # The existing main-branch workflow can run this branch via source_ref before
+    # the new dedicated workflow is merged. Its exact A1/30/MMS request is the pack.
+    include_variants = args.include_pronunciation_variants or (
+        args.mode == "samples" and args.engine == "mms"
+        and args.level == "A1" and args.limit == 30 and not args.ids
+    )
+    if include_variants:
         target = next((entry for entry in manifest_entries if entry["id"] == MMS_VARIANT_SAMPLE_ID and "A1" in entry.get("levels", [])), None)
         if target is None or normalize(target.get("text", "")).rstrip("!?.,") != "selamat pagi":
             parser.error("The expected A1 phrase Selamat pagi was not found in the audio manifest")

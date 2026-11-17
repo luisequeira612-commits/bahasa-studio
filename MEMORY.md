@@ -2,6 +2,13 @@
 
 > Memoria operativa; mantenerla por debajo de unas 150 líneas. Detalles extensos y evidencia histórica viven en documentos y PR enlazados. Última actualización: 17 nov 2026.
 
+## Evaluación experimental de Laras — 17 nov 2026
+- El usuario autorizó una prueba temporal de Laras, sin adoptarlo como motor ni alterar audios de producción.
+- Workflow manual e independiente: ejecuta Laras en contenedor CPU, descarga pesos ONNX y referencia CC0 solo bajo `RUNNER_TEMP`, genera 12 frases diagnósticas (incluidas «Selamat pagi» y «Makan») y publica MP3 solo como artefacto temporal de Actions con retención de 7 días.
+- Código Laras fijado en `e4ab05ca53a8cbf749405de5b1ac902b76880768`; imagen `ghcr.io/urdemonlord/laras-tts:0.2.1`. El script upstream verifica SHA-256 de pesos y referencia. La atribución CC BY 4.0 del modelo Pocket TTS Indonesian viaja con el artefacto.
+- No se añaden dependencias a la app ni se guardan modelos/audios en Git o Pages; no se cambian Piper, MMS, biblioteca de producción, IndexedDB ni backup JSON v3. Evaluar escuchando antes de cualquier decisión posterior.
+- Fuente: Laras README/NOTICE y `scripts/unduh-model.sh`; aprobación explícita del usuario, 17 nov 2026.
+
 ## Generación de audio: modelos solo temporales — 17 nov 2026
 
 - Se establece el límite arquitectónico: GitHub Actions descarga/usa los motores y modelos TTS en almacenamiento temporal del runner; el repositorio, GitHub Pages y la app solo reciben audios generados y metadatos necesarios. Nunca guardar modelos en Git, artefactos permanentes ni paquetes de la app.

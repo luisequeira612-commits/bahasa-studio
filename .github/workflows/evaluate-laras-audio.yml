@@ -1,0 +1,143 @@
+name: Evaluate Laras Indonesian samples
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: laras-audio-evaluation
+  cancel-in-progress: false
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - name: Check out Bahasa Studio
+        uses: actions/checkout@v4
+
+      - name: Install audio utilities
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg jq
+
+      - name: Prepare temporary model and reference storage
+        shell: bash
+        run: |
+          set -euo pipefail
+          DATA_DIR="$RUNNER_TEMP/laras-data"
+          mkdir -p "$DATA_DIR/models" "$DATA_DIR/ref" "$DATA_DIR/cache" samples
+          git init "$RUNNER_TEMP/laras-source"
+          git -C "$RUNNER_TEMP/laras-source" remote add origin https://github.com/Urdemonlord/laras-tts.git
+          git -C "$RUNNER_TEMP/laras-source" fetch --depth 1 origin e4ab05ca53a8cbf749405de5b1ac902b76880768
+          git -C "$RUNNER_TEMP/laras-source" checkout --detach FETCH_HEAD
+          echo "Laras source commit: $(git -C "$RUNNER_TEMP/laras-source" rev-parse HEAD)"
+          "$RUNNER_TEMP/laras-source/scripts/unduh-model.sh" --dir "$DATA_DIR/models" --ref-dir "$DATA_DIR/ref"
+          echo "LARAS_DATA_DIR=$DATA_DIR" >> "$GITHUB_ENV"
+
+      - name: Pull pinned Laras runtime image
+        run: |
+          docker pull ghcr.io/urdemonlord/laras-tts:0.2.1
+          docker image inspect ghcr.io/urdemonlord/laras-tts:0.2.1 --format '{{index .RepoDigests 0}}' | tee "$RUNNER_TEMP/laras-image-digest.txt"
+
+      - name: Start isolated Laras inference service
+        shell: bash
+        run: |
+          set -euo pipefail
+          docker run -d --name laras-evaluation --memory=3g \
+            -p 127.0.0.1:8080:8080 \
+            -v "$LARAS_DATA_DIR:/data" \
+            -e MODELS_DIR=/data/models \
+            -e REF_WAV=/data/ref/common_voice_id_19961910.mp3 \
+            -e CACHE_DIR=/data/cache \
+            -e LARAS_LANG=id -e TAKES=3 -e TEMP=0.1 -e EOS=-4.0 \
+            -e THREADS=0 -e MAX_CONCURRENT=1 \
+            ghcr.io/urdemonlord/laras-tts:0.2.1
+          for attempt in $(seq 1 120); do
+            if curl --fail --silent http://127.0.0.1:8080/health > "$RUNNER_TEMP/laras-health.json"; then
+              cat "$RUNNER_TEMP/laras-health.json"
+              exit 0
+            fi
+            sleep 5
+          done
+          docker logs laras-evaluation
+          echo "::error::Laras did not become healthy within 10 minutes."
+          exit 1
+
+      - name: Synthesize diagnostic phrases
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p samples
+          : > samples/results.tsv
+          cat > "$RUNNER_TEMP/phrases.tsv" <<'PHRASES'
+          selamat-pagi|Selamat pagi.
+          makan|Makan.
+          saya-makan-nasi|Saya makan nasi.
+          terima-kasih|Terima kasih.
+          apa-kabar|Apa kabar?
+          minum-air|Saya ingin minum air.
+          buku-saya|Ini buku saya.
+          pergi-pasar|Ibu pergi ke pasar.
+          belajar-indonesia|Saya belajar bahasa Indonesia setiap hari.
+          harga-dua-puluh-ribu|Harga buku ini Rp 20.000.
+          bangun-pagi|Saya bangun pukul enam pagi.
+          kalimat-panjang|Besok kami akan pergi ke sekolah bersama teman-teman.
+          PHRASES
+          while IFS='|' read -r slug phrase; do
+            [ -n "$slug" ] || continue
+            echo "Synthesizing: $phrase"
+            payload="$(jq -n --arg text "$phrase" '{text:$text}')"
+            curl --fail --silent --show-error \
+              -H 'content-type: application/json' \
+              -X POST http://127.0.0.1:8080/tts \
+              --data "$payload" \
+              -D "$RUNNER_TEMP/laras-headers.txt" \
+              -o "$RUNNER_TEMP/$slug.wav"
+            ffmpeg -y -hide_banner -loglevel error -i "$RUNNER_TEMP/$slug.wav" \
+              -ac 1 -ar 24000 -c:a libmp3lame -b:a 48k "samples/$slug.mp3"
+            duration="$(ffprobe -v error -show_entries format=duration -of csv=p=0 "samples/$slug.mp3")"
+            wer="$(awk 'BEGIN{IGNORECASE=1} /^x-wer:/ {gsub(/\r/, "", $2); print $2}' "$RUNNER_TEMP/laras-headers.txt")"
+            printf '%s\t%s\t%s\t%s\n' "$slug" "$phrase" "$duration" "${wer:-not-reported}" >> samples/results.tsv
+          done < "$RUNNER_TEMP/phrases.tsv"
+          {
+            echo '<!doctype html><html lang="es"><meta charset="utf-8">'
+            echo '<meta name="viewport" content="width=device-width,initial-scale=1">'
+            echo '<title>Muestras Laras — Bahasa Studio</title>'
+            echo '<style>body{font:16px system-ui;max-width:720px;margin:auto;padding:18px}article{padding:12px 0;border-bottom:1px solid #888}audio{width:100%}small{opacity:.7}</style>'
+            echo '<h1>Muestras experimentales de Laras</h1>'
+            echo '<p>Generadas en GitHub Actions. No son audio de producción ni certificación de pronunciación nativa.</p>'
+            while IFS=$'\t' read -r slug phrase duration wer; do
+              printf '<article><strong>%s</strong><br><audio controls preload="none" src="%s.mp3"></audio><br><small>Duración: %ss · WER: %s</small></article>\n' "$phrase" "$slug" "$duration" "$wer"
+            done < samples/results.tsv
+            echo '</html>'
+          } > samples/index.html
+          cp "$RUNNER_TEMP/laras-image-digest.txt" samples/runtime-image.txt
+          cat > samples/ATTRIBUTION.txt <<'ATTRIBUTION'
+          Experimental evaluation only; these audio files are not production assets.
+          Laras source code: MIT OR Apache-2.0.
+          Indonesian model: Pocket TTS Indonesian by anak10thn, CC BY 4.0.
+          https://huggingface.co/anak10thn/pocket-tts-indonesian
+          https://creativecommons.org/licenses/by/4.0/
+          Voice reference: Common Voice 22.0 Indonesian sample, CC0, checksum-verified by Laras downloader.
+          ATTRIBUTION
+          echo "Generated $(find samples -maxdepth 1 -name '*.mp3' | wc -l) MP3 samples."
+
+      - name: Upload listening samples (temporary artifact only)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bahasa-studio-laras-indonesian-samples
+          path: samples/
+          if-no-files-found: warn
+          retention-days: 7
+
+      - name: Stop Laras and remove temporary model data
+        if: always()
+        shell: bash
+        run: |
+          docker logs laras-evaluation 2>&1 | tail -n 100 || true
+          docker rm -f laras-evaluation || true
+          rm -rf "$RUNNER_TEMP/laras-data" "$RUNNER_TEMP/laras-source"

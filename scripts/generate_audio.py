@@ -65,7 +65,7 @@ def prepare_speech_text(text: str, overrides: dict[str, str] | None = None, vari
             raise ValueError(f"Unsupported MMS pronunciation variant: {variant}")
         replacements["pagi"] = variant
     for word in sorted(replacements, key=len, reverse=True):
-        spoken = re.sub(r"(?<!\\w)" + re.escape(word) + r"(?!\\w)", replacements[word], spoken)
+        spoken = re.sub(r"(?<!\w)" + re.escape(word) + r"(?!\w)", replacements[word], spoken)
     return spoken
 
 

@@ -126,3 +126,18 @@ El gestor consulta `audio/manifest.json` y `audio/metadata.json`, deduplica los 
 El progreso se basa en los audios ya guardados, permite cancelar y reanudar (los clips completos permanecen), y ofrece reintento de los fallidos. Si el navegador informa menos de 1 MB disponible o la escritura alcanza la cuota, la operación se detiene sin borrar los clips que ya se guardaron. La estimación de almacenamiento del navegador no predice el tamaño exacto restante de la biblioteca.
 
 La preparación completa no incluye respuestas libres dinámicas del Tutor, porque no existen como archivos estáticos. Tampoco descarga Opus: el reproductor actual utiliza MP3. No se alteran Piper, `audio-engine.js`, SHA-1 de texto, rutas, normalización, IndexedDB v1 ni backup JSON v3.
+
+
+## Migración a MMS-TTS — 17 nov 2026
+
+La generación futura de audio de Guardi usa **MMS-TTS** de Meta AI (`facebook/mms-tts-ind`), fijado a la revisión `171b004ccd54f266a31efee71f1ad850c91d39c0`. El generador usa `VitsModel` y `AutoTokenizer` de Transformers, PyTorch en CPU, semilla fija por frase y texto en minúsculas. El modelo y sus dependencias se descargan solo durante GitHub Actions a almacenamiento temporal del runner; no se añaden dependencias ni pesos a la PWA.
+
+**Atribución:** MMS-TTS, de Vineel Pratap et al. / Meta AI, bajo [Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)](https://creativecommons.org/licenses/by-nc/4.0/). Guardi es un proyecto no comercial. Esta licencia prohíbe el uso comercial; no debe describirse como permiso para comercializar la aplicación o sus audios. La atribución no sustituye el cumplimiento de las condiciones de la licencia.
+
+La migración conserva el SHA-1 existente que determina cada ID, los mismos nombres de archivo MP3/Opus en `audio/id/` y el SHA-256 de cada MP3 en `audio/metadata.json`. No modifica IndexedDB v1 ni el backup JSON v3. La caché persistente pasa de `guardi-audio-v1` a `guardi-audio-v2`; al activar el nuevo Service Worker se elimina la caché v1 para impedir que los clips Piper antiguos se reutilicen.
+
+### Overrides fonéticos y muestras
+
+`scripts/pronunciation_overrides.json` contiene reemplazos exclusivos para síntesis. Nunca modifica `audio/manifest.json`, el texto mostrado, el ID SHA-1 ni el texto visible en la app. Se mantiene vacío hasta que el dueño apruebe una pronunciación. El workflow manual genera 30 frases A1 con MMS y tres muestras adicionales de «Selamat pagi» con las variantes `pa gi`, `pa-gi` y `paghi`. El pack se entrega como artefacto temporal de GitHub Actions, con retención de 7 días; no sustituye ni regenera la biblioteca.
+
+**Gate de publicación:** no regenerar los 2.152 audios de producción hasta que el dueño escuche y apruebe las muestras. La generación completa exige confirmación manual explícita y queda restringida a MMS. Las muestras no constituyen certificación de pronunciación nativa ni validación lingüística.

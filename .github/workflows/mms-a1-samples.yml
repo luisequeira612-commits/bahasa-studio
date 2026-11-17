@@ -20,6 +20,10 @@ jobs:
       BAHASA_TTS_MODEL_CACHE: ${{ runner.temp }}/guardi-mms-samples-cache
       BAHASA_TTS_PERSIST_MODEL_CACHE: "1"
     steps:
+      - name: Start execution timer
+        id: clock
+        run: echo "started=$(date +%s)" >> "$GITHUB_OUTPUT"
+
       - name: Check out repository
         uses: actions/checkout@v4
 
@@ -49,6 +53,14 @@ jobs:
         run: |
           rm -rf audio-samples
           python scripts/generate_audio.py --engine mms --mode samples --level A1 --limit 30 --include-pronunciation-variants --force
+
+      - name: Report runtime
+        if: always()
+        env:
+          STARTED: ${{ steps.clock.outputs.started }}
+        run: |
+          MINUTES="$(python -c 'import os,time; print(round((time.time()-int(os.environ.get("STARTED","0")))/60,2))')"
+          echo "- Tiempo transcurrido del runner: **${MINUTES} minutos aprox.**" >> "$GITHUB_STEP_SUMMARY"
 
       - name: Upload listening pack
         uses: actions/upload-artifact@v4

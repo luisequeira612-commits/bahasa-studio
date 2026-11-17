@@ -43,7 +43,7 @@ def main() -> None:
     args = p.parse_args()
     import torch, whisper
     torch.set_num_threads(min(4, max(1, torch.get_num_threads())))
-    model = whisper.load_model(args.model, device="cpu")
+    model = whisper.load_model(args.model, device="cpu", download_root=__import__("os").environ.get("WHISPER_CACHE_DIR"))
     entries = json.loads(args.manifest.read_text(encoding="utf-8"))
     if args.ids:
         wanted = [x.strip() for x in args.ids.split(",") if x.strip()]
@@ -65,7 +65,9 @@ def main() -> None:
             result = model.transcribe(str(audio), language="id", task="transcribe", fp16=False, verbose=False)
             transcript = str(result.get("text", "")).strip()
             match = score(entry["text"], transcript)
-            status = "revisar" if match < args.review_threshold else "coincide"
+            relevant = {k: v for k, v in overrides.items() if re.search(r"(?<!\\w)" + re.escape(k) + r"(?!\\w)", entry["text"], re.I)}
+            auto_applied = any(isinstance(v, dict) and v.get("state") == "auto_whisper" for v in relevant.values())
+            status = "revisar" if match < args.review_threshold else ("auto_whisper" if auto_applied else "coincide")
         if status in {"revisar", "falló"}:
             low_words.update(normalize(entry["text"]).split())
         rows.append({

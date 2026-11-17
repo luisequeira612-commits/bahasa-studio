@@ -238,5 +238,11 @@
     "model_license": "CC BY-NC 4.0",
     "model_license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
     "model_attribution": "MMS-TTS by Vineel Pratap et al., Meta AI"
+  },
+  {
+    "engine": "piper",
+    "id": "2c82a33b24e7",
+    "text": "Makan",
+    "voice": "Piper / id_ID-news_tts-medium"
   }
 ]

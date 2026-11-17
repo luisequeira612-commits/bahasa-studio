@@ -1,0 +1,186 @@
+name: Guardi MMS + Whisper audio pipeline
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Primero prueba de 100 A1; lotes de producción solo tras aprobación
+        type: choice
+        options: [sample100, production-batch]
+        default: sample100
+        required: true
+      batch_size:
+        description: Tamaño del lote de producción (150–200)
+        type: number
+        default: 175
+        required: true
+      whisper_size:
+        description: Modelo Whisper multilingüe (CPU)
+        type: choice
+        options: [base, small]
+        default: base
+        required: true
+      confirm_production:
+        description: Confirmo que aprobé el resumen de la muestra A1 de 100 frases
+        type: boolean
+        default: false
+        required: true
+      source_ref:
+        description: Rama de origen para generar el lote
+        type: string
+        default: main
+        required: true
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: guardi-mms-whisper-audio
+  cancel-in-progress: false
+
+jobs:
+  audio:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    env:
+      HF_HUB_DISABLE_TELEMETRY: "1"
+      PIP_NO_CACHE_DIR: "1"
+      BAHASA_TTS_PERSIST_MODEL_CACHE: "1"
+      BAHASA_TTS_MODEL_CACHE: ${{ runner.temp }}/guardi-audio-model-cache/huggingface
+      HF_HOME: ${{ runner.temp }}/guardi-audio-model-cache/huggingface
+      HF_HUB_CACHE: ${{ runner.temp }}/guardi-audio-model-cache/huggingface/hub
+      TORCH_HOME: ${{ runner.temp }}/guardi-audio-model-cache/torch
+      HOME: ${{ runner.temp }}/guardi-audio-model-cache/home
+      WHISPER_CACHE_DIR: ${{ runner.temp }}/guardi-audio-model-cache/home/.cache/whisper
+      MODE: ${{ inputs.mode }}
+      BATCH_SIZE: ${{ inputs.batch_size }}
+      WHISPER_SIZE: ${{ inputs.whisper_size }}
+      CONFIRM_PRODUCTION: ${{ inputs.confirm_production }}
+      SOURCE_REF: ${{ inputs.source_ref }}
+    steps:
+      - name: Start execution timer
+        id: clock
+        run: echo "started=$(date +%s)" >> "$GITHUB_OUTPUT"
+
+      - name: Enforce production approval gate
+        if: ${{ inputs.mode == 'production-batch' && inputs.confirm_production != true }}
+        run: |
+          echo "::error::El lote de producción requiere confirm_production=true después de revisar el resumen A1 de 100 frases."
+          exit 1
+
+      - name: Validate batch size
+        if: ${{ inputs.mode == 'production-batch' }}
+        run: |
+          if (( BATCH_SIZE < 150 || BATCH_SIZE > 200 )); then
+            echo "::error::batch_size debe estar entre 150 y 200."
+            exit 1
+          fi
+
+      - name: Check out source
+        uses: actions/checkout$v4
+        with:
+          ref: ${{ inputs.source_ref }}
+          fetch-depth: 0
+
+      - name: Restore MMS and Whisper model cache
+        uses: actions/cache$v4
+        with:
+          path: ${{ runner.temp }}/guardi-audio-model-cache
+          key: guardi-audio-models-${{ runner.os }}-mms-171b004ccd54-whisper-${{ inputs.whisper_size }}-v1
+          restore-keys: |
+            guardi-audio-models-${{ runner.os }}-mms-171b004ccd54-whisper-${{ inputs.whisper_size }}-
+
+      - name: Set up Python
+        uses: actions/setup-python$v5
+        with:
+          python-version: "3.12"
+
+      - name: Install FFmpeg and Python dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+          mkdir -p "$WHISPER_CACHE_DIR" "$BAHASA_TTS_MODEL_CACHE"
+          python -m pip install --no-cache-dir --upgrade pip
+          python -m pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install --no-cache-dir "transformers>=4.45,<5" sentencepiece scipy huggingface_hub "openai-whisper==20250625"
+
+      - name: Export current audio manifest
+        run: node scripts/export-audio-manifest.mjs
+
+      - name: Generate and review 100 A1 phrases
+        if: ${{ inputs.mode == 'sample100' }}
+        run: |
+          python scripts/generate_audio.py --engine mms --mode samples --level A1 --limit 100 --force
+          python scripts/audio_review.py --audio-dir audio-samples/mms --limit 100 --model "$WHISPER_SIZE"
+          python scripts/auto_fix_pronunciation.py --audio-dir audio-samples/mms --model "$WHISPER_SIZE" --mode samples --max-passes 2
+          python scripts/audio_review.py --audio-dir audio-samples/mms --limit 100 --model "$WHISPER_SIZE"
+
+      - name: Generate, review and correct one resumable production batch
+        if: ${{ inputs.mode == 'production-batch' }}
+        run: python scripts/audio_batch.py --batch-size "$BATCH_SIZE" --whisper-size "$WHISPER_SIZE"
+
+      - name: Create review branch and pull request for production batch
+        if: ${{ inputs.mode == 'production-batch' }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          BRANCH="audio/mms-whisper-batch-${GITHUB_RUN_ID}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]$users.noreply.github.com"
+          git checkout -b "$BRANCH"
+          git add audio/id audio/index.json audio/metadata.json service-worker.js \
+            scripts/audio_progress.json scripts/pronunciation_overrides.json \
+            scripts/pronunciation_unresolved.txt scripts/audio_review_report.csv \
+            scripts/audio_review_words.txt
+          if git diff --cached --quiet; then
+            echo "No hay cambios que publicar." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          git commit -m "audio: generate and review MMS batch"
+          git push origin "$BRANCH"
+          gh pr create --base main --head "$BRANCH" \
+            --title "audio: add reviewed MMS batch ${{ github.run_number }}" \
+            --body "Lote MMS generado y filtrado por Whisper en GitHub Actions. Whisper es un filtro, no un veredicto ni certificación de pronunciación. Revisar audio_progress.json, audio_review_report.csv, pronunciation_overrides.json y pronunciation_unresolved.txt. No se modifica IndexedDB ni backup JSON v3."
+
+      - name: Summarize results and Actions runtime
+        if: always()
+        env:
+          STARTED: ${{ steps.clock.outputs.started }}
+        run: |
+          python - <<'PY'
+          import csv, json, os
+          from pathlib import Path
+          report = Path("scripts/audio_review_report.csv")
+          rows = list(csv.DictReader(report.open(encoding="utf-8-sig"))) if report.exists() else []
+          failed = sum(r.get("status") == "falló" for r in rows)
+          review = sum(r.get("status") == "revisar" for r in rows)
+          fixed = sum(r.get("status") == "auto_whisper" for r in rows)
+          unresolved = Path("scripts/pronunciation_unresolved.txt")
+          unresolved_count = sum(1 for line in unresolved.read_text(encoding="utf-8").splitlines() if line.strip()) if unresolved.exists() else 0
+          start = int(os.environ.get("STARTED") or 0)
+          minutes = round((__import__("time").time() - start) / 60, 2) if start else None
+          print(f"Failed={failed}; review={review}; auto_whisper={fixed}; unresolved={unresolved_count}; elapsed_minutes={minutes}")
+          with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as out:
+              out.write("## Resultado de audio MMS + Whisper\n")
+              out.write(f"- Audios fallidos: **{failed}**\n- Marcados para revisar: **{review}**\n- Corregidos automáticamente: **{fixed}**\n- Sin resolver: **{unresolved_count}**\n")
+              out.write(f"- Tiempo transcurrido del runner (minutos aproximados): **{minutes}**\n")
+              out.write("- Whisper es un filtro, no un veredicto. Una coincidencia alta no certifica pronunciación.\n")
+              if os.environ.get("MODE") == "sample100":
+                  out.write("- Esta es solo la muestra de 100 frases A1; la biblioteca de producción no se regenera en este modo.\n")
+          PY
+
+      - name: Upload review artifacts
+        if: always()
+        uses: actions/upload-artifact$v4
+        with:
+          name: guardi-mms-whisper-${{ inputs.mode }}-${{ github.run_number }}
+          path: |
+            audio-samples/
+            scripts/audio_review_report.csv
+            scripts/audio_review_words.txt
+            scripts/pronunciation_overrides.json
+            scripts/pronunciation_unresolved.txt
+            scripts/audio_progress.json
+          if-no-files-found: ignore
+          retention-days: 7

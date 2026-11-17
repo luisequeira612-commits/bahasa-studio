@@ -8,8 +8,13 @@ permissions:
 
 jobs:
   probe:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
+      - name: Start execution timer
+        id: clock
+        run: echo "started=$(date +%s)" >> "$GITHUB_OUTPUT"
+
       - name: Probe normal GET and byte-range GET against GitHub Pages
         shell: bash
         run: |
@@ -42,3 +47,11 @@ jobs:
           [[ "$normal" == "200" ]]
           [[ "$range" == "200" || "$range" == "206" ]]
           [[ "$identity" == "200" || "$identity" == "206" ]]
+
+      - name: Report runtime
+        if: always()
+        env:
+          STARTED: ${{ steps.clock.outputs.started }}
+        run: |
+          MINUTES="$(python -c 'import os,time; print(round((time.time()-int(os.environ.get("STARTED","0")))/60,2))')"
+          echo "- Tiempo transcurrido del runner: **${MINUTES} minutos aprox.**" >> "$GITHUB_STEP_SUMMARY"

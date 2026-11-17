@@ -30,7 +30,7 @@ function createWorker({ audioEntries = [], failPut = false, fetchImpl } = {}) {
     const handlers = {};
     const cacheStore = new Map();
     const audioCache = new MemoryCache(audioEntries, { failPut });
-    cacheStore.set('guardi-audio-v1', audioCache);
+    cacheStore.set('guardi-audio-v2', audioCache);
     const caches = {
         open: async name => {
             if (!cacheStore.has(name)) cacheStore.set(name, new MemoryCache());

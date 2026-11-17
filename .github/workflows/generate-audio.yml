@@ -6,7 +6,7 @@ on:
       engine:
         description: Motor de voz para evaluar
         type: choice
-        options: [edge, piper, mms, both]
+        options: [edge, mms, both]
         default: mms
         required: true
       mode:
@@ -37,7 +37,7 @@ on:
         default: A1
         required: true
       confirm_full:
-        description: Confirmo que ya elegí y validé la voz antes de generar el nivel completo
+        description: Confirmo que escuché y aprobé las muestras MMS antes de regenerar la biblioteca completa
         type: boolean
         default: false
         required: true
@@ -58,7 +58,7 @@ concurrency:
 
 jobs:
   generate:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     timeout-minutes: 60
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -70,7 +70,12 @@ jobs:
       VOICE: ${{ inputs.voice }}
       CONFIRM_FULL: ${{ inputs.confirm_full }}
       SOURCE_REF: ${{ inputs.source_ref }}
+      BAHASA_TTS_PERSIST_MODEL_CACHE: "1"
     steps:
+      - name: Start execution timer
+        id: clock
+        run: echo "started=$(date +%s)" >> "$GITHUB_OUTPUT"
+
       - name: Reject full generation until explicitly confirmed
         if: ${{ inputs.mode == 'full' && inputs.confirm_full != true }}
         run: |
@@ -83,10 +88,10 @@ jobs:
           echo "::error::La opción both solo está disponible para muestras de evaluación."
           exit 1
 
-      - name: Reject legacy Piper for production regeneration
-        if: ${{ inputs.mode == 'full' && inputs.engine == 'piper' }}
+      - name: Require MMS for production regeneration
+        if: ${{ inputs.mode == 'full' && inputs.engine != 'mms' }}
         run: |
-          echo "::error::Piper queda solo para muestras históricas. La biblioteca de producción debe regenerarse con MMS Indonesian (CC BY-NC 4.0)."
+          echo "::error::La biblioteca de producción solo puede regenerarse con MMS y después de aprobar sus muestras."
           exit 1
 
       - name: Check out repository
@@ -94,6 +99,13 @@ jobs:
         with:
           ref: ${{ inputs.source_ref }}
           fetch-depth: 0
+
+      - name: Restore MMS model cache
+        if: ${{ inputs.mode != 'hashes' }}
+        uses: actions/cache@v4
+        with:
+          path: ${{ runner.temp }}/guardi-tts-cache
+          key: guardi-mms-model-${{ runner.os }}-171b004ccd54-v1
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -135,9 +147,6 @@ jobs:
           case "$ENGINE" in
             edge)
               python -m pip install --no-cache-dir edge-tts
-              ;;
-            piper)
-              python -m pip install --no-cache-dir "piper-tts==1.8.0"
               ;;
             mms)
               python -m pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu
@@ -191,7 +200,7 @@ jobs:
       - name: Generate selected audio or refresh fingerprints
         run: |
           if [[ "$MODE" == "hashes" ]]; then
-            python scripts/generate_audio.py --engine piper --hash-only
+            python scripts/generate_audio.py --engine mms --hash-only
           elif [[ "$MODE" == "samples" ]]; then
             ARGS=(--mode samples --level "$LEVEL" --limit "$LIMIT" --force)
             if [[ -n "$IDS" ]]; then
@@ -204,7 +213,7 @@ jobs:
               python scripts/generate_audio.py --engine "$ENGINE" --voice "$VOICE" "${ARGS[@]}"
             fi
           else
-            python scripts/generate_audio.py --engine "$ENGINE" --mode full --level "$LEVEL" --limit 0
+            python scripts/generate_audio.py --engine "$ENGINE" --mode full --level "$LEVEL" --limit 0 --force
           fi
 
       - name: Run audio generation tests
@@ -215,6 +224,8 @@ jobs:
             node --test tests/audio-manifest.test.mjs
           fi
           python -m unittest discover -s tests -p 'test_audio_generation.py'
+          python -m unittest discover -s tests -p 'test_audio_review.py'
+          python -m py_compile scripts/generate_audio.py scripts/audio_review.py scripts/auto_fix_pronunciation.py scripts/audio_batch.py
 
       - name: Commit generated manifest and audio
         id: commit
@@ -249,7 +260,7 @@ jobs:
             BODY="Refreshed SHA-256 fingerprints for the existing MP3 library. No audio was generated or downloaded and no curriculum source changed. The Service Worker cache version was advanced only if the fingerprint map changed."
           else
             TITLE="audio: generate $LEVEL library with $ENGINE"
-            BODY="Generated the $LEVEL audio library with $ENGINE in GitHub Actions after explicit confirmation. Review file count, size and CI before merging. No curriculum source was modified."
+            BODY="Generated the $LEVEL audio library with $ENGINE in GitHub Actions after the owner explicitly approved the MMS sample pack. Review file count, size and CI before merging. No curriculum source was modified. The model is CC BY-NC 4.0 and is for non-commercial use only."
           fi
           EXISTING="$(gh pr list --head "$AUDIO_BRANCH" --state open --json url --jq '.[0].url // empty')"
           if [[ -n "$EXISTING" ]]; then
@@ -280,16 +291,15 @@ jobs:
           if-no-files-found: ignore
           retention-days: 7
 
-      - name: Remove temporary model storage
-        if: always()
-        shell: bash
-        run: rm -rf "$RUNNER_TEMP/guardi-tts-cache"
-
       - name: Write run summary
         if: always()
         shell: bash
+        env:
+          STARTED: ${{ steps.clock.outputs.started }}
         run: |
+          MINUTES="$(python -c 'import os,time; print(round((time.time()-int(os.environ.get("STARTED","0")))/60,2))')"
           echo "## Generación de audio" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Tiempo transcurrido del runner: **${MINUTES} minutos aprox.**" >> "$GITHUB_STEP_SUMMARY"
           echo "- Motor: **$ENGINE**" >> "$GITHUB_STEP_SUMMARY"
           echo "- Modo: **$MODE**" >> "$GITHUB_STEP_SUMMARY"
           echo "- Nivel: **$LEVEL**" >> "$GITHUB_STEP_SUMMARY"

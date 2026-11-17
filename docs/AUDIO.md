@@ -12,7 +12,7 @@
 
 ## Manifiesto e identidad de los textos
 
-`scripts/export-audio-manifest.mjs` recorre los niveles en orden fijo A1 → A2 → B1. El primer texto que produce un ID conserva el campo `text`; los encuentros posteriores añaden sus fuentes y niveles sin reemplazar esa variante. El exportador conserva el texto con espacios normalizados, pero respeta las mayúsculas/minúsculas de la primera aparición. Este orden hace determinista la variante que se envía al generador Piper.
+`scripts/export-audio-manifest.mjs` recorre los niveles en orden fijo A1 → A2 → B1. El primer texto que produce un ID conserva el campo `text`; los encuentros posteriores añaden sus fuentes y niveles sin reemplazar esa variante. El exportador conserva el texto con espacios normalizados, pero respeta las mayúsculas/minúsculas de la primera aparición. Este orden hace determinista la variante que se envía al generador MMS-TTS.
 
 El índice global `audio/index.json` contiene IDs únicos, no pertenencias por nivel. En la revisión de la rama base:
 
@@ -31,8 +31,8 @@ La biblioteca contiene MP3 y Opus para los mismos IDs. El reproductor principal 
 
 - El Service Worker actual precarga `audio/index.json` y `audio/metadata.json`.
 - Los MP3 se descargan y se guardan bajo demanda cuando se reproducen; la biblioteca completa no se precarga.
-- La caché de recursos de la app usa un nombre versionado (`bahasa-studio-v3.8.99`). Los MP3 pasan a una caché persistente separada `guardi-audio-v1`, que no se elimina al actualizar la versión de la app.
-- En la activación, el Service Worker copia MP3 completos (200 y cuerpo no vacío) desde todas las cachés antiguas `bahasa-studio-*` a `guardi-audio-v1`. Solo elimina las cachés antiguas después de completar todas las copias; si falla una copia, conserva las fuentes y sigue sirviendo desde ellas mientras reintenta en la siguiente activación.
+- La caché de recursos de la app usa un nombre versionado (`bahasa-studio-v3.8.104`). Los MP3 pasan a una caché persistente separada `guardi-audio-v2`, que no se elimina al actualizar la versión de la app.
+- En la activación, el Service Worker copia MP3 completos (200 y cuerpo no vacío) desde todas las cachés antiguas `bahasa-studio-*` a `guardi-audio-v2`. Solo elimina las cachés antiguas después de completar todas las copias; si falla una copia, conserva las fuentes y sigue sirviendo desde ellas mientras reintenta en la siguiente activación.
 - La migración es idempotente y no sobrescribe clips que ya están en la caché persistente. La nueva caché no incluye recursos generales de la aplicación.
 - `audio/metadata.json` incorpora SHA-256 de cada MP3 cuando se ejecuta una generación completa. En la siguiente activación, el Service Worker comprueba los bytes de los clips persistidos y elimina solo los que cambiaron o ya no pertenecen al índice; los clips intactos sobreviven aunque se añadan IDs nuevos. La generación incrementa automáticamente la versión de caché de la app para activar esta comprobación.
 - PR #585 registra `waitUntil()` sincrónicamente durante el evento fetch y trata los errores de `cache.put()` como fail-open. Solo guarda respuestas HTTP 200 completas; no almacena respuestas 206 parciales.
@@ -74,7 +74,7 @@ El workflow manual `.github/workflows/audio-range-probe.yml` confirmó que GitHu
 
 La implementación integrada mediante PR #588 sigue esta estrategia:
 
-- Quita el encabezado Range de la petición al origen y obtiene el archivo completo 200; solo ese archivo completo se guarda en `guardi-audio-v1`.
+- Quita el encabezado Range de la petición al origen y obtiene el archivo completo 200; solo ese archivo completo se guarda en `guardi-audio-v2`.
 - Construye la respuesta 206 desde los bytes del MP3 completo, tanto si procede de red como de caché. Así Cache API nunca recibe una respuesta parcial.
 - Admite un único rango `bytes=a-b`, abierto `bytes=a-` y sufijo `bytes=-n`; limita el final al tamaño real.
 - Los rangos múltiples o mal formados se ignoran y reciben el archivo completo 200. Los rangos válidos pero no satisfacibles (inicio fuera del archivo o sufijo cero) reciben 416 con `Content-Range: bytes */size`.
@@ -96,7 +96,7 @@ No modificar hashes, rutas, normalización, IndexedDB v1 ni backup JSON v3 duran
 
 ## Actualizar huellas sin volver a generar audio
 
-El workflow manual [Generate Indonesian audio](https://github.com/luisequeira612-commits/bahasa-studio/actions/workflows/generate-audio.yml) ofrece el modo `hashes`. Este modo calcula SHA-256 de los MP3 ya presentes en `audio/id/`, actualiza `audio/metadata.json` y aumenta la versión del Service Worker solo si cambió el mapa. No instala Piper, no instala FFmpeg, no sintetiza ni descarga clips. El workflow crea/actualiza una PR para revisar metadata y Service Worker; tras fusionarla, el navegador precarga las huellas y activa la invalidación selectiva.
+El workflow manual [Generate Indonesian audio](https://github.com/luisequeira612-commits/bahasa-studio/actions/workflows/generate-audio.yml) ofrece el modo `hashes`. Este modo calcula SHA-256 de los MP3 ya presentes en `audio/id/`, actualiza `audio/metadata.json` y aumenta la versión del Service Worker solo si cambió el mapa. No instala motores TTS ni FFmpeg, no sintetiza ni descarga clips. El workflow crea/actualiza una PR para revisar metadata y Service Worker; tras fusionarla, el navegador precarga las huellas y activa la invalidación selectiva.
 
 
 ## Cobertura de audio estático en superficies interactivas — 14 nov 2026
@@ -112,7 +112,7 @@ Auditoría del código real del 14 nov 2026: 96 textos estáticos distintos tras
 
 El tutor no intenta pregenerar las respuestas libres escritas por el usuario: siguen usando el fallback TTS del dispositivo cuando no hay clip. La reproducción dinámica no puede tener cobertura estática completa.
 
-Tras integrar la PR de cobertura, la generación de los 68 clips pendientes se ejecutará con el workflow manual en engine=piper, mode=full, level=all, limit=0 y confirm_full=true. El modo all recorre el manifiesto ampliado y el generador omite cada ID que ya tenga MP3 y Opus, por lo que solo sintetiza los clips que faltan. Los tests del workflow comparan manifiesto, índice y archivos físicos con la cobertura ampliada. El tamaño final esperado es 2.152 IDs únicos si el contenido no cambia antes de la generación.
+Tras integrar la PR de cobertura, la generación de los 68 clips pendientes se ejecutará con el workflow manual en engine=mms, mode=full, level=all, limit=0 y confirm_full=true, únicamente después de aprobar las muestras. El modo all recorre el manifiesto ampliado y el generador omite cada ID que ya tenga MP3 y Opus, por lo que solo sintetiza los clips que faltan. Los tests del workflow comparan manifiesto, índice y archivos físicos con la cobertura ampliada. El tamaño final esperado es 2.152 IDs únicos si el contenido no cambia antes de la generación.
 
 Esta ampliación no precarga toda la biblioteca en el teléfono ni modifica la estrategia de caché offline: cada clip sigue descargándose al reproducirse por primera vez.
 
@@ -121,8 +121,33 @@ Esta ampliación no precarga toda la biblioteca en el teléfono ni modifica la e
 
 La pantalla Perfil ofrece preparación explícita por nivel (A1, A2 o B1) y una opción para toda la biblioteca. No hay descargas automáticas. Se recomienda Wi-Fi porque la operación usa conexión y almacenamiento del dispositivo.
 
-El gestor consulta `audio/manifest.json` y `audio/metadata.json`, deduplica los IDs compartidos entre niveles y reutiliza los MP3 ya presentes en `guardi-audio-v1`. Descarga de uno en uno, verifica el SHA-256 del archivo contra metadata y solo entonces lo guarda en la caché persistente. La petición de descarga verificada omite el guardado automático del Service Worker para evitar almacenar una respuesta antes de comprobar su integridad.
+El gestor consulta `audio/manifest.json` y `audio/metadata.json`, deduplica los IDs compartidos entre niveles y reutiliza los MP3 ya presentes en `guardi-audio-v2`. Descarga de uno en uno, verifica el SHA-256 del archivo contra metadata y solo entonces lo guarda en la caché persistente. La petición de descarga verificada omite el guardado automático del Service Worker para evitar almacenar una respuesta antes de comprobar su integridad.
 
 El progreso se basa en los audios ya guardados, permite cancelar y reanudar (los clips completos permanecen), y ofrece reintento de los fallidos. Si el navegador informa menos de 1 MB disponible o la escritura alcanza la cuota, la operación se detiene sin borrar los clips que ya se guardaron. La estimación de almacenamiento del navegador no predice el tamaño exacto restante de la biblioteca.
 
-La preparación completa no incluye respuestas libres dinámicas del Tutor, porque no existen como archivos estáticos. Tampoco descarga Opus: el reproductor actual utiliza MP3. No se alteran Piper, `audio-engine.js`, SHA-1 de texto, rutas, normalización, IndexedDB v1 ni backup JSON v3.
+La preparación completa no incluye respuestas libres dinámicas del Tutor, porque no existen como archivos estáticos. Tampoco descarga Opus: el reproductor actual utiliza MP3. No se alteran el texto curricular, `audio-engine.js`, SHA-1 de texto, rutas, normalización, IndexedDB v1 ni backup JSON v3.
+
+
+## Migración a MMS-TTS — 17 nov 2026
+
+La generación futura de audio de Guardi usa **MMS-TTS** de Meta AI (`facebook/mms-tts-ind`), fijado a la revisión `171b004ccd54f266a31efee71f1ad850c91d39c0`. El generador usa `VitsModel` y `AutoTokenizer` de Transformers, PyTorch en CPU, semilla fija por frase y texto en minúsculas. El modelo y sus dependencias se descargan solo durante GitHub Actions a almacenamiento temporal del runner; no se añaden dependencias ni pesos a la PWA.
+
+**Atribución:** MMS-TTS, de Vineel Pratap et al. / Meta AI, bajo [Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)](https://creativecommons.org/licenses/by-nc/4.0/). Guardi es un proyecto no comercial. Esta licencia prohíbe el uso comercial; no debe describirse como permiso para comercializar la aplicación o sus audios. La atribución no sustituye el cumplimiento de las condiciones de la licencia.
+
+La migración conserva el SHA-1 existente que determina cada ID, los mismos nombres de archivo MP3/Opus en `audio/id/` y el SHA-256 de cada MP3 en `audio/metadata.json`. No modifica IndexedDB v1 ni el backup JSON v3. La caché persistente pasa de `guardi-audio-v1` a `guardi-audio-v2`; al activar el nuevo Service Worker se elimina la caché v1 para impedir que los clips Piper antiguos se reutilicen.
+
+### Overrides fonéticos y muestras
+
+`scripts/pronunciation_overrides.json` contiene reemplazos exclusivos para síntesis. Nunca modifica `audio/manifest.json`, el texto mostrado, el ID SHA-1 ni el texto visible en la app. Se mantiene vacío hasta que el dueño apruebe una pronunciación. El workflow manual genera 30 frases A1 con MMS y tres muestras adicionales de «Selamat pagi» con las variantes `pa gi`, `pa-gi` y `paghi`. El pack se entrega como artefacto temporal de GitHub Actions, con retención de 7 días; no sustituye ni regenera la biblioteca.
+
+**Gate de publicación:** no regenerar los 2.152 audios de producción hasta que el dueño escuche y apruebe las muestras. La generación completa exige confirmación manual explícita y queda restringida a MMS. Las muestras no constituyen certificación de pronunciación nativa ni validación lingüística.
+
+
+## Revisión automática y lotes MMS + Whisper — 17 nov 2026
+- El workflow \`audio-review-whisper.yml\` es manual, usa \`ubuntu-latest\`, timeout y caché temporal de modelos mediante \`actions/cache\`.
+- La primera ejecución genera y revisa 100 frases A1; entrega CSV, frecuencia de palabras y resumen de fallos, correcciones y minutos transcurridos.
+- Whisper usa \`base\` o \`small\` en CPU; es un filtro, nunca un veredicto ni certificación de pronunciación.
+- La corrección procesa solo filas \`revisar\`, con máximo dos pasadas; los cambios de letras se dejan sin resolver si no se puede demostrar la identidad léxica.
+- Los estados automáticos son \`auto_whisper\`, nunca verificados por una persona; los dudosos se anotan en \`pronunciation_unresolved.txt\`.
+- Producción solo se procesa tras aprobación explícita, en lotes configurables de 150–200 y con reanudación por hashes en \`audio_progress.json\`.
+- Cada lote regenera solo textos/overrides nuevos o cambiados, refresca SHA-256 y abre una PR; IndexedDB y backup JSON v3 no se modifican.

@@ -101,6 +101,7 @@ test('migra MP3 completos de todas las cachés antiguas antes de borrarlas', asy
     const worker = createWorker(new Map([
         ['bahasa-studio-v3.8.95', old95],
         ['bahasa-studio-v3.8.94', old94],
+        ['guardi-audio-v1', new MemoryCache([[audioUrl('old-piper'), new Response('old Piper audio', { status: 200 })]])],
         [CURRENT_CACHE_NAME, current]
     ]));
 
@@ -108,7 +109,7 @@ test('migra MP3 completos de todas las cachés antiguas antes de borrarlas', asy
     worker.handlers.activate({ waitUntil: promise => { activation = promise; } });
     await assert.doesNotReject(activation);
 
-    const audioCache = worker.cacheStore.get('guardi-audio-v1');
+    const audioCache = worker.cacheStore.get('guardi-audio-v2');
     assert.ok(await audioCache.match(new Request(firstClip)));
     assert.ok(await audioCache.match(new Request(secondClip)));
     assert.equal(await audioCache.match(new Request(partialClip)), null);
@@ -116,6 +117,8 @@ test('migra MP3 completos de todas las cachés antiguas antes de borrarlas', asy
     assert.equal(await audioCache.match(new Request(shellUrl)), null);
     assert.equal(worker.cacheStore.has('bahasa-studio-v3.8.95'), false);
     assert.equal(worker.cacheStore.has('bahasa-studio-v3.8.94'), false);
+    assert.equal(worker.cacheStore.has('guardi-audio-v1'), false, 'old Piper cache must be discarded');
+    assert.equal(await audioCache.match(new Request(audioUrl('old-piper'))), null);
     assert.equal(worker.cacheStore.has(CURRENT_CACHE_NAME), true);
     assert.equal(worker.claimCalls, 1);
 });
@@ -129,14 +132,14 @@ test('si una copia falla, la activación no se bloquea y conserva las cachés an
     const worker = createWorker(new Map([
         ['bahasa-studio-v3.8.95', old],
         [CURRENT_CACHE_NAME, new MemoryCache()],
-        ['guardi-audio-v1', audio]
+        ['guardi-audio-v2', audio]
     ]));
 
     let activation;
     worker.handlers.activate({ waitUntil: promise => { activation = promise; } });
     await assert.doesNotReject(activation);
     assert.equal(worker.cacheStore.has('bahasa-studio-v3.8.95'), true);
-    assert.equal(worker.cacheStore.has('guardi-audio-v1'), true);
+    assert.equal(worker.cacheStore.has('guardi-audio-v2'), true);
     assert.equal(worker.claimCalls, 1);
 });
 
@@ -153,7 +156,7 @@ test('la migración es idempotente y no vuelve a escribir clips ya copiados', as
     let firstActivation;
     worker.handlers.activate({ waitUntil: promise => { firstActivation = promise; } });
     await firstActivation;
-    const audioCache = worker.cacheStore.get('guardi-audio-v1');
+    const audioCache = worker.cacheStore.get('guardi-audio-v2');
     assert.equal(audioCache.putCalls, 1);
 
     let secondActivation;
@@ -163,7 +166,7 @@ test('la migración es idempotente y no vuelve a escribir clips ya copiados', as
     assert.equal(worker.claimCalls, 2);
 });
 
-test('los MP3 nuevos usan guardi-audio-v1 y los recursos normales siguen en la caché de la app', async () => {
+test('los MP3 nuevos usan guardi-audio-v2 y los recursos normales siguen en la caché de la app', async () => {
     const worker = createWorker();
     const audioRequest = new Request(audioUrl('fresh'));
     let audioLifetime;
@@ -176,7 +179,7 @@ test('los MP3 nuevos usan guardi-audio-v1 y los recursos normales siguen en la c
     assert.equal((await audioResponse).status, 200);
     await audioLifetime;
 
-    const audioCache = worker.cacheStore.get('guardi-audio-v1');
+    const audioCache = worker.cacheStore.get('guardi-audio-v2');
     assert.ok(await audioCache.match(audioRequest));
     assert.equal(worker.cacheStore.has(CURRENT_CACHE_NAME), false, 'audio fetch must not create the app cache');
 
@@ -215,7 +218,7 @@ test('la descarga explícita verificada evita la escritura automática del Servi
     });
     assert.equal((await responsePromise).status, 200);
     assert.equal(networkCalls, 1);
-    assert.equal(worker.cacheStore.has('guardi-audio-v1'), false);
+    assert.equal(worker.cacheStore.has('guardi-audio-v2'), false);
     assert.equal(worker.cacheStore.has(CURRENT_CACHE_NAME), false);
 });
 
@@ -237,7 +240,7 @@ test('invalida solo los MP3 cuyo contenido cambió y conserva los que siguen igu
     const worker = createWorker(new Map([
         ['bahasa-studio-v3.8.97', new MemoryCache()],
         [CURRENT_CACHE_NAME, current],
-        ['guardi-audio-v1', audio]
+        ['guardi-audio-v2', audio]
     ]), undefined, currentHashes);
 
     let activation;
@@ -265,7 +268,7 @@ test('migra solo clips legacy cuyos bytes coinciden con el SHA-256 actual', asyn
     const worker = createWorker(new Map([
         ['bahasa-studio-v3.8.97', legacy],
         [CURRENT_CACHE_NAME, current],
-        ['guardi-audio-v1', audio]
+        ['guardi-audio-v2', audio]
     ]), undefined, currentHashes);
 
     let activation;

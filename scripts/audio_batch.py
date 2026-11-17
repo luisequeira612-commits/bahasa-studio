@@ -34,7 +34,7 @@ def main() -> None:
     for entry in entries:
         text_hash = digest(entry["text"])
         import re
-        used = {k: v for k, v in overrides.items() if re.search(r"(?<!\\w)" + re.escape(k) + r"(?!\\w)", entry["text"], re.I)}
+        used = {k: v for k, v in overrides.items() if re.search(r"(?<!\w)" + re.escape(k) + r"(?!\w)", entry["text"], re.I)}
         override_hash = digest(json.dumps(used, sort_keys=True, ensure_ascii=False))
         mp3 = ROOT / "audio" / "id" / f"{entry['id']}.mp3"
         opus = ROOT / "audio" / "id" / f"{entry['id']}.opus"
@@ -61,18 +61,21 @@ def main() -> None:
         run("scripts/generate_audio.py", "--engine", "mms", "--hash-only")
     overrides = json.loads(OVERRIDES.read_text(encoding="utf-8")) if OVERRIDES.exists() else {}
     now = datetime.now(timezone.utc).isoformat()
+    with (ROOT / "scripts" / "audio_review_report.csv").open(encoding="utf-8-sig", newline="") as f:
+        import csv
+        report_status = {row["ID"]: row.get("status", "revisar") for row in csv.DictReader(f)}
     for entry, text_hash, override_hash in batch:
         audio = ROOT / "audio" / "id" / f"{entry['id']}.mp3"
         opus = ROOT / "audio" / "id" / f"{entry['id']}.opus"
         import re
-        used = {k: v for k, v in overrides.items() if re.search(r"(?<!\\w)" + re.escape(k) + r"(?!\\w)", entry["text"], re.I)}
+        used = {k: v for k, v in overrides.items() if re.search(r"(?<!\w)" + re.escape(k) + r"(?!\w)", entry["text"], re.I)}
         override_hash = digest(json.dumps(used, sort_keys=True, ensure_ascii=False))
         state[entry["id"]] = {
             "text_sha256": text_hash,
             "override_sha256": override_hash,
             "mp3_sha256": digest_file(audio) if audio.exists() else None,
             "opus_sha256": digest_file(opus) if opus.exists() else None,
-            "status": "reviewed_by_whisper_filter",
+            "status": report_status.get(entry["id"], "revisar"),
             "updated_at": now
         }
     progress["version"] = 1

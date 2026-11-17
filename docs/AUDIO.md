@@ -31,7 +31,7 @@ La biblioteca contiene MP3 y Opus para los mismos IDs. El reproductor principal 
 
 - El Service Worker actual precarga `audio/index.json` y `audio/metadata.json`.
 - Los MP3 se descargan y se guardan bajo demanda cuando se reproducen; la biblioteca completa no se precarga.
-- La caché de recursos de la app usa un nombre versionado (`bahasa-studio-v3.8.99`). Los MP3 pasan a una caché persistente separada `guardi-audio-v2`, que no se elimina al actualizar la versión de la app.
+- La caché de recursos de la app usa un nombre versionado (`bahasa-studio-v3.8.104`). Los MP3 pasan a una caché persistente separada `guardi-audio-v2`, que no se elimina al actualizar la versión de la app.
 - En la activación, el Service Worker copia MP3 completos (200 y cuerpo no vacío) desde todas las cachés antiguas `bahasa-studio-*` a `guardi-audio-v2`. Solo elimina las cachés antiguas después de completar todas las copias; si falla una copia, conserva las fuentes y sigue sirviendo desde ellas mientras reintenta en la siguiente activación.
 - La migración es idempotente y no sobrescribe clips que ya están en la caché persistente. La nueva caché no incluye recursos generales de la aplicación.
 - `audio/metadata.json` incorpora SHA-256 de cada MP3 cuando se ejecuta una generación completa. En la siguiente activación, el Service Worker comprueba los bytes de los clips persistidos y elimina solo los que cambiaron o ya no pertenecen al índice; los clips intactos sobreviven aunque se añadan IDs nuevos. La generación incrementa automáticamente la versión de caché de la app para activar esta comprobación.
@@ -134,7 +134,7 @@ La generación futura de audio de Guardi usa **MMS-TTS** de Meta AI (`facebook/m
 
 **Atribución:** MMS-TTS, de Vineel Pratap et al. / Meta AI, bajo [Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)](https://creativecommons.org/licenses/by-nc/4.0/). Guardi es un proyecto no comercial. Esta licencia prohíbe el uso comercial; no debe describirse como permiso para comercializar la aplicación o sus audios. La atribución no sustituye el cumplimiento de las condiciones de la licencia.
 
-La migración conserva el SHA-1 existente que determina cada ID, los mismos nombres de archivo MP3/Opus en `audio/id/` y el SHA-256 de cada MP3 en `audio/metadata.json`. No modifica IndexedDB v1 ni el backup JSON v3. La caché persistente pasa de `guardi-audio-v2` a `guardi-audio-v2`; al activar el nuevo Service Worker se elimina la caché v1 para impedir que los clips Piper antiguos se reutilicen.
+La migración conserva el SHA-1 existente que determina cada ID, los mismos nombres de archivo MP3/Opus en `audio/id/` y el SHA-256 de cada MP3 en `audio/metadata.json`. No modifica IndexedDB v1 ni el backup JSON v3. La caché persistente pasa de `guardi-audio-v1` a `guardi-audio-v2`; al activar el nuevo Service Worker se elimina la caché v1 para impedir que los clips Piper antiguos se reutilicen.
 
 ### Overrides fonéticos y muestras
 

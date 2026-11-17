@@ -1,6 +1,7 @@
 import importlib.util
 import tempfile
 import hashlib
+import os
 import sys
 import unittest
 from pathlib import Path
@@ -10,6 +11,63 @@ SPEC = importlib.util.spec_from_file_location("generate_audio", ROOT / "scripts"
 MODULE = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(MODULE)
 
+
+class EphemeralModelCacheTests(unittest.TestCase):
+    def test_model_cache_is_outside_checkout_and_uses_runner_temp(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            checkout = root / "checkout"
+            runner_temp = root / "runner-temp"
+            checkout.mkdir()
+            runner_temp.mkdir()
+            keys = (
+                "BAHASA_TTS_MODEL_CACHE", "HF_HOME", "HF_HUB_CACHE",
+                "HUGGINGFACE_HUB_CACHE", "TRANSFORMERS_CACHE", "TORCH_HOME",
+                "HF_HUB_DISABLE_TELEMETRY",
+            )
+            previous = {key: os.environ.get(key) for key in keys}
+            for key in keys:
+                os.environ.pop(key, None)
+            try:
+                cache = MODULE.create_ephemeral_model_cache(checkout, runner_temp)
+                self.assertTrue(cache.is_dir())
+                self.assertTrue(cache.is_relative_to(runner_temp))
+                self.assertFalse(cache.is_relative_to(checkout))
+                self.assertEqual(Path(os.environ["BAHASA_TTS_MODEL_CACHE"]), cache)
+                self.assertEqual(Path(os.environ["HF_HOME"]), cache / "huggingface")
+                self.assertEqual(Path(os.environ["HF_HUB_CACHE"]), cache / "huggingface" / "hub")
+                self.assertEqual(Path(os.environ["TRANSFORMERS_CACHE"]), cache / "transformers")
+                MODULE.cleanup_ephemeral_model_cache(cache)
+                self.assertFalse(cache.exists())
+            finally:
+                for key, value in previous.items():
+                    if value is None:
+                        os.environ.pop(key, None)
+                    else:
+                        os.environ[key] = value
+
+    def test_model_cache_refuses_a_path_inside_the_repository(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            checkout = root / "checkout"
+            checkout.mkdir()
+            previous = os.environ.get("BAHASA_TTS_MODEL_CACHE")
+            try:
+                for unsafe_path in (checkout, checkout / ".models"):
+                    os.environ["BAHASA_TTS_MODEL_CACHE"] = str(unsafe_path)
+                    with self.assertRaisesRegex(RuntimeError, "outside the repository"):
+                        MODULE.create_ephemeral_model_cache(checkout, root / "runner-temp")
+                    self.assertTrue(checkout.is_dir())
+                    self.assertFalse((checkout / ".models").exists())
+                os.environ.pop("BAHASA_TTS_MODEL_CACHE", None)
+                with self.assertRaisesRegex(RuntimeError, "Runner temporary directory"):
+                    MODULE.create_ephemeral_model_cache(checkout, checkout / ".runner-temp")
+                self.assertTrue(checkout.is_dir())
+            finally:
+                if previous is None:
+                    os.environ.pop("BAHASA_TTS_MODEL_CACHE", None)
+                else:
+                    os.environ["BAHASA_TTS_MODEL_CACHE"] = previous
 
 class AudioSamplesPageTests(unittest.TestCase):
     def test_exact_sample_ids_override_limit_and_preserve_requested_order(self):

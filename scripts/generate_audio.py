@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
-"""Generate Indonesian audio in GitHub Actions; no local computer is required."""
+"""Generate curriculum audio in GitHub Actions; no local computer is required."""
 from __future__ import annotations
 
 import argparse
 import asyncio
+import atexit
+import os
 import hashlib
 import html
 import re
@@ -69,6 +71,47 @@ def verify_mms_model_checksum(model_path: Path) -> str:
         )
     return actual
 
+
+def create_ephemeral_model_cache(repo_root: Path = ROOT, runner_temp: Path | None = None) -> Path:
+    """Keep downloaded TTS weights outside the checkout and delete them at process exit."""
+    repository_root = Path(repo_root).resolve()
+    configured_cache = os.environ.get("BAHASA_TTS_MODEL_CACHE")
+    if configured_cache:
+        cache_dir = Path(configured_cache).resolve()
+        try:
+            cache_dir.relative_to(repository_root)
+        except ValueError:
+            pass
+        else:
+            raise RuntimeError("TTS model cache must be outside the repository checkout")
+        cache_dir.mkdir(parents=True, exist_ok=True)
+    else:
+        temporary_root = Path(
+            runner_temp or os.environ.get("RUNNER_TEMP") or tempfile.gettempdir()
+        ).resolve()
+        try:
+            temporary_root.relative_to(repository_root)
+        except ValueError:
+            pass
+        else:
+            raise RuntimeError("Runner temporary directory must be outside the repository checkout")
+        temporary_root.mkdir(parents=True, exist_ok=True)
+        cache_dir = Path(tempfile.mkdtemp(prefix="guardi-tts-models-", dir=temporary_root))
+    # Keep every common model cache in the same disposable runner directory.
+    os.environ["BAHASA_TTS_MODEL_CACHE"] = str(cache_dir)
+    os.environ["HF_HOME"] = str(cache_dir / "huggingface")
+    os.environ["HF_HUB_CACHE"] = str(cache_dir / "huggingface" / "hub")
+    os.environ["HUGGINGFACE_HUB_CACHE"] = str(cache_dir / "huggingface" / "hub")
+    os.environ["TRANSFORMERS_CACHE"] = str(cache_dir / "transformers")
+    os.environ["TORCH_HOME"] = str(cache_dir / "torch")
+    os.environ["HF_HUB_DISABLE_TELEMETRY"] = "1"
+    atexit.register(cleanup_ephemeral_model_cache, cache_dir)
+    return cache_dir
+
+
+def cleanup_ephemeral_model_cache(cache_dir: Path):
+    """Remove downloaded models and tokenizer caches after generation."""
+    shutil.rmtree(cache_dir, ignore_errors=True)
 
 def create_synthesizer(engine: str, voice: str, work_dir: Path):
     if engine == "edge":
@@ -308,7 +351,7 @@ def main():
     output_root = ROOT / ("audio-samples" if args.mode == "samples" else "audio/id")
     output_dir = output_root / args.engine if args.mode == "samples" else output_root
     output_dir.mkdir(parents=True, exist_ok=True)
-    model_cache = ROOT / ".audio-model-cache"
+    model_cache = create_ephemeral_model_cache(ROOT)
 
     synthesize, voice_label = create_synthesizer(args.engine, args.voice, model_cache)
     sample_file = ROOT / "audio-samples" / "samples.json"

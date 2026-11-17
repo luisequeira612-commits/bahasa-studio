@@ -141,3 +141,13 @@ La migración conserva el SHA-1 existente que determina cada ID, los mismos nomb
 `scripts/pronunciation_overrides.json` contiene reemplazos exclusivos para síntesis. Nunca modifica `audio/manifest.json`, el texto mostrado, el ID SHA-1 ni el texto visible en la app. Se mantiene vacío hasta que el dueño apruebe una pronunciación. El workflow manual genera 30 frases A1 con MMS y tres muestras adicionales de «Selamat pagi» con las variantes `pa gi`, `pa-gi` y `paghi`. El pack se entrega como artefacto temporal de GitHub Actions, con retención de 7 días; no sustituye ni regenera la biblioteca.
 
 **Gate de publicación:** no regenerar los 2.152 audios de producción hasta que el dueño escuche y apruebe las muestras. La generación completa exige confirmación manual explícita y queda restringida a MMS. Las muestras no constituyen certificación de pronunciación nativa ni validación lingüística.
+
+
+## Revisión automática y lotes MMS + Whisper — 17 nov 2026
+- El workflow \`audio-review-whisper.yml\` es manual, usa \`ubuntu-latest\`, timeout y caché temporal de modelos mediante \`actions/cache\`.
+- La primera ejecución genera y revisa 100 frases A1; entrega CSV, frecuencia de palabras y resumen de fallos, correcciones y minutos transcurridos.
+- Whisper usa \`base\` o \`small\` en CPU; es un filtro, nunca un veredicto ni certificación de pronunciación.
+- La corrección procesa solo filas \`revisar\`, con máximo dos pasadas; los cambios de letras se dejan sin resolver si no se puede demostrar la identidad léxica.
+- Los estados automáticos son \`auto_whisper\`, nunca verificados por una persona; los dudosos se anotan en \`pronunciation_unresolved.txt\`.
+- Producción solo se procesa tras aprobación explícita, en lotes configurables de 150–200 y con reanudación por hashes en \`audio_progress.json\`.
+- Cada lote regenera solo textos/overrides nuevos o cambiados, refresca SHA-256 y abre una PR; IndexedDB y backup JSON v3 no se modifican.

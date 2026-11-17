@@ -12,15 +12,22 @@ concurrency:
 
 jobs:
   samples:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     timeout-minutes: 60
     env:
       HF_HUB_DISABLE_TELEMETRY: "1"
       PIP_NO_CACHE_DIR: "1"
       BAHASA_TTS_MODEL_CACHE: ${{ runner.temp }}/guardi-mms-samples-cache
+      BAHASA_TTS_PERSIST_MODEL_CACHE: "1"
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+
+      - name: Restore MMS model cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ runner.temp }}/guardi-mms-samples-cache
+          key: guardi-mms-model-${{ runner.os }}-171b004ccd54-v1
 
       - name: Set up Python
         uses: actions/setup-python@v5

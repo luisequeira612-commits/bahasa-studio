@@ -29,12 +29,44 @@ MMS_MODEL_LICENSE = "CC BY-NC 4.0"
 MMS_MODEL_LICENSE_URL = "https://creativecommons.org/licenses/by-nc/4.0/"
 MMS_MODEL_ATTRIBUTION = "MMS-TTS by Vineel Pratap et al., Meta AI"
 MMS_MODEL_SHA256 = "d56181bae3a51458aab6b4a893ecd71d0fde69378f576c53e139b59940d80ca0"
+MMS_SEED = 20261117
+PRONUNCIATION_OVERRIDES_PATH = ROOT / "scripts" / "pronunciation_overrides.json"
+MMS_PRONUNCIATION_VARIANTS = ("pa gi", "pa-gi", "paghi")
+MMS_VARIANT_SAMPLE_ID = "e1b89cc35480"
 PIPER_BASE = f"https://huggingface.co/rhasspy/piper-voices/resolve/{PIPER_REVISION}/id/id_ID/news_tts/medium"
 LEVELS = ("A1", "A2", "B1", "B2", "all")
 
 
 def normalize(text: str) -> str:
     return " ".join(text.strip().split()).lower()
+
+
+def load_pronunciation_overrides(path: Path = PRONUNCIATION_OVERRIDES_PATH) -> dict[str, str]:
+    """Load TTS-only respellings; never mutate manifest or visible text."""
+    if not path.exists():
+        return {}
+    data = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(data, dict):
+        raise ValueError("pronunciation_overrides.json must contain a JSON object")
+    overrides = {}
+    for word, respelling in data.items():
+        if not isinstance(word, str) or not word.strip() or not isinstance(respelling, str) or not respelling.strip():
+            raise ValueError("Pronunciation overrides must map non-empty words to non-empty respellings")
+        overrides[word.strip().lower()] = respelling.strip().lower()
+    return overrides
+
+
+def prepare_speech_text(text: str, overrides: dict[str, str] | None = None, variant: str | None = None) -> str:
+    """Prepare lowercase speech-only text while preserving the original visible phrase."""
+    spoken = str(text).strip().lower()
+    replacements = dict(overrides or {})
+    if variant is not None:
+        if variant not in MMS_PRONUNCIATION_VARIANTS:
+            raise ValueError(f"Unsupported MMS pronunciation variant: {variant}")
+        replacements["pagi"] = variant
+    for word in sorted(replacements, key=len, reverse=True):
+        spoken = re.sub(r"(?<!\\w)" + re.escape(word) + r"(?!\\w)", replacements[word], spoken)
+    return spoken
 
 
 def download_piper_model(model_dir: Path) -> Path:
@@ -147,7 +179,7 @@ def create_synthesizer(engine: str, voice: str, work_dir: Path):
         import numpy as np
         import torch
         from huggingface_hub import hf_hub_download
-        from transformers import AutoModelForTextToWaveform, AutoTokenizer
+        from transformers import VitsModel, AutoTokenizer
         from scipy.io import wavfile
 
         model_weights = Path(hf_hub_download(
@@ -157,13 +189,14 @@ def create_synthesizer(engine: str, voice: str, work_dir: Path):
         ))
         verify_mms_model_checksum(model_weights)
         tokenizer = AutoTokenizer.from_pretrained(MMS_MODEL_ID, revision=MMS_MODEL_REVISION)
-        model = AutoModelForTextToWaveform.from_pretrained(
+        model = VitsModel.from_pretrained(
             MMS_MODEL_ID, revision=MMS_MODEL_REVISION, use_safetensors=True
         ).to("cpu")
         model.eval()
 
         def synth(text: str, output: Path):
-            inputs = tokenizer(text, return_tensors="pt")
+            torch.manual_seed(MMS_SEED)
+            inputs = tokenizer(str(text).lower(), return_tensors="pt")
             with torch.inference_mode():
                 waveform = model(**inputs).waveform[0].cpu().numpy()
             wavfile.write(str(output), model.config.sampling_rate, np.asarray(waveform, dtype=np.float32))
@@ -241,13 +274,17 @@ def bump_service_worker_cache_version(service_worker_file: Path):
     return replacement
 
 
-def build_sample_record(engine: str, entry: dict, voice_label: str) -> dict:
+def build_sample_record(engine: str, entry: dict, voice_label: str, sample_file: str | None = None, pronunciation_variant: str | None = None) -> dict:
     record = {
         "engine": engine,
         "id": entry["id"],
         "text": entry["text"],
         "voice": voice_label,
     }
+    if sample_file:
+        record["file"] = sample_file
+    if pronunciation_variant:
+        record["pronunciation_variant"] = pronunciation_variant
     if engine == "mms":
         record.update({
             "model": MMS_MODEL_ID,
@@ -270,11 +307,14 @@ def render_samples_index(samples_dir: Path, samples: list[dict]):
             if item["engine"] != engine:
                 continue
             text = html.escape(item["text"])
-            src = html.escape(f"{engine}/{item['id']}.mp3", quote=True)
+            src = html.escape(item.get("file", f"{engine}/{item['id']}.mp3"), quote=True)
+            label = item.get("voice", engine)
+            if item.get("pronunciation_variant"):
+                label += f" · variante: {item['pronunciation_variant']}"
             cards.append(
                 f'<article class="sample"><p>{text}</p>'
                 f'<audio controls preload="none" src="{src}">Tu navegador no admite este audio.</audio>'
-                f'<small>{html.escape(item.get("voice", engine))}</small></article>'
+                f'<small>{html.escape(label)}</small></article>'
             )
         sections.append(f'<section><h2>{html.escape(engine.upper())}</h2>{"".join(cards)}</section>')
     body = "".join(sections) or "<p>Aún no hay muestras. Ejecuta el workflow desde GitHub Actions.</p>"
@@ -310,12 +350,13 @@ def select_manifest_entries(entries: list[dict], level: str, limit: int, ids_tex
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--engine", choices=("edge", "piper", "mms"), required=True)
+    parser.add_argument("--engine", choices=("edge", "mms"), required=True)
     parser.add_argument("--mode", choices=("samples", "full"), default="samples")
     parser.add_argument("--samples", action="store_true", help="alias for --mode samples")
     parser.add_argument("--level", choices=LEVELS, default="all")
     parser.add_argument("--limit", type=int, default=10, help="0 means all selected texts")
     parser.add_argument("--ids", default="", help="comma- or space-separated manifest IDs for an exact samples-only set; overrides --limit")
+    parser.add_argument("--include-pronunciation-variants", action="store_true", help="add three experimental MMS readings of the A1 phrase Selamat pagi")
     parser.add_argument("--voice", default="id-ID-ArdiNeural")
     parser.add_argument("--force", action="store_true")
     parser.add_argument("--hash-only", action="store_true", help="refresh MP3 SHA-256 metadata without running TTS")
@@ -326,6 +367,8 @@ def main():
         parser.error("--limit cannot be negative")
     if args.ids and args.mode != "samples":
         parser.error("--ids is available only in samples mode")
+    if args.include_pronunciation_variants and (args.mode != "samples" or args.engine != "mms" or args.ids):
+        parser.error("--include-pronunciation-variants requires MMS samples mode and no explicit --ids")
     if args.hash_only:
         output_dir = ROOT / "audio" / "id"
         metadata_file = ROOT / "audio" / "metadata.json"
@@ -339,11 +382,18 @@ def main():
     if shutil.which("ffmpeg") is None:
         parser.error("ffmpeg is required in the GitHub Actions runner")
 
-    entries = json.loads(MANIFEST.read_text(encoding="utf-8"))
+    manifest_entries = json.loads(MANIFEST.read_text(encoding="utf-8"))
     try:
-        entries = select_manifest_entries(entries, args.level, args.limit, args.ids)
+        entries = select_manifest_entries(manifest_entries, args.level, args.limit, args.ids)
     except ValueError as error:
         parser.error(str(error))
+
+    jobs = [(entry, None) for entry in entries]
+    if args.include_pronunciation_variants:
+        target = next((entry for entry in manifest_entries if entry["id"] == MMS_VARIANT_SAMPLE_ID and "A1" in entry.get("levels", [])), None)
+        if target is None or normalize(target.get("text", "")).rstrip("!?.,") != "selamat pagi":
+            parser.error("The expected A1 phrase Selamat pagi was not found in the audio manifest")
+        jobs.extend((target, variant) for variant in MMS_PRONUNCIATION_VARIANTS)
 
     if not entries:
         raise SystemExit("No curriculum texts matched the selected level/limit.")
@@ -361,18 +411,26 @@ def main():
             allow_piper_replacement=args.engine == "mms" and args.force,
         )
     existing_samples = json.loads(sample_file.read_text(encoding="utf-8")) if sample_file.exists() else []
-    sample_map = {(item["engine"], item["id"]): item for item in existing_samples}
+    sample_map = {(item["engine"], item["id"], item.get("pronunciation_variant", "")): item for item in existing_samples}
 
     available_ids = set()
     index_file = ROOT / "audio" / "index.json"
     if args.mode == "full" and index_file.exists():
         available_ids.update(json.loads(index_file.read_text(encoding="utf-8")))
 
-    for position, entry in enumerate(entries, 1):
+    pronunciation_overrides = load_pronunciation_overrides()
+    for position, (entry, pronunciation_variant) in enumerate(jobs, 1):
+        sample_relative_file = None
         if args.mode == "samples":
-            destination = output_dir / f"{entry['id']}.mp3"
+            if pronunciation_variant:
+                variant_slug = re.sub(r"[^a-z0-9]+", "-", pronunciation_variant.lower()).strip("-")
+                sample_relative_file = f"{args.engine}/pronunciation-variants/selamat-pagi__{variant_slug}.mp3"
+            else:
+                sample_relative_file = f"{args.engine}/{entry['id']}.mp3"
+            destination = ROOT / "audio-samples" / sample_relative_file
+            destination.parent.mkdir(parents=True, exist_ok=True)
             if destination.exists() and not args.force:
-                print(f"[{position}/{len(entries)}] cached {entry['id']}")
+                print(f"[{position}/{len(jobs)}] cached {entry['id']} {pronunciation_variant or ''}")
                 continue
         else:
             opus_destination = output_dir / f"{entry['id']}.opus"
@@ -384,7 +442,10 @@ def main():
         with tempfile.TemporaryDirectory() as temporary:
             raw_extension = ".mp3" if args.engine == "edge" else ".wav"
             raw = Path(temporary) / f"raw{raw_extension}"
-            synthesize(entry["text"], raw)
+            speech_text = entry["text"]
+            if args.engine == "mms":
+                speech_text = prepare_speech_text(entry["text"], pronunciation_overrides, pronunciation_variant)
+            synthesize(speech_text, raw)
             if args.mode == "samples":
                 encode_audio(raw, destination, "sample-mp3")
             else:
@@ -393,8 +454,10 @@ def main():
         if args.mode == "full":
             available_ids.add(entry["id"])
         else:
-            sample_map[(args.engine, entry["id"])] = build_sample_record(args.engine, entry, voice_label)
-        print(f"[{position}/{len(entries)}] {entry['id']} {entry['text']}")
+            sample_map[(args.engine, entry["id"], pronunciation_variant or "")] = build_sample_record(
+                args.engine, entry, voice_label, sample_relative_file, pronunciation_variant
+            )
+        print(f"[{position}/{len(jobs)}] {entry['id']} {entry['text']}" + (f" [{pronunciation_variant}]" if pronunciation_variant else ""))
 
     if args.mode == "samples":
         sample_file.parent.mkdir(parents=True, exist_ok=True)

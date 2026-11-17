@@ -160,10 +160,10 @@ jobs:
           overrides_path = Path("scripts/pronunciation_overrides.json")
           overrides = json.loads(overrides_path.read_text(encoding="utf-8")) if overrides_path.exists() else {}
           fixed_words = [word for word, value in overrides.items() if isinstance(value, dict) and value.get("state") == "auto_whisper"]
-          fixed = sum(1 for row in rows if any(re.search(r"(?<!\\w)" + re.escape(word) + r"(?!\\w)", row.get("original text", ""), re.I) for word in fixed_words))
+          fixed = sum(1 for row in rows if any(re.search(r"(?<!\w)" + re.escape(word) + r"(?!\w)", row.get("original text", ""), re.I) for word in fixed_words))
           unresolved = Path("scripts/pronunciation_unresolved.txt")
           ids = {r.get("ID") for r in rows}
-          unresolved_count = sum(1 for line in unresolved.read_text(encoding="utf-8").splitlines() if line.strip() and not line.lstrip().startswith("#") and len(line.split("\\t")) > 1 and line.split("\\t")[1] in ids) if unresolved.exists() else 0
+          unresolved_count = sum(1 for line in unresolved.read_text(encoding="utf-8").splitlines() if line.strip() and not line.lstrip().startswith("#") and len(line.split("\t")) > 1 and line.split("\t")[1] in ids) if unresolved.exists() else 0
           start = int(os.environ.get("STARTED") or 0)
           minutes = round((__import__("time").time() - start) / 60, 2) if start else None
           print(f"Failed={failed}; review={review}; auto_whisper={fixed}; unresolved={unresolved_count}; elapsed_minutes={minutes}")

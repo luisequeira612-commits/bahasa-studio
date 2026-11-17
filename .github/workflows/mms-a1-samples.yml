@@ -54,14 +54,6 @@ jobs:
           rm -rf audio-samples
           python scripts/generate_audio.py --engine mms --mode samples --level A1 --limit 30 --include-pronunciation-variants --force
 
-      - name: Report runtime
-        if: always()
-        env:
-          STARTED: ${{ steps.clock.outputs.started }}
-        run: |
-          MINUTES="$(python -c 'import os,time; print(round((time.time()-int(os.environ.get("STARTED","0")))/60,2))')"
-          echo "- Tiempo transcurrido del runner: **${MINUTES} minutos aprox.**" >> "$GITHUB_STEP_SUMMARY"
-
       - name: Upload listening pack
         uses: actions/upload-artifact@v4
         with:
@@ -69,3 +61,12 @@ jobs:
           path: audio-samples/
           if-no-files-found: error
           retention-days: 7
+
+      - name: Final Actions runtime
+        if: always()
+        env:
+          STARTED: ${{ steps.clock.outputs.started }}
+        run: |
+          ELAPSED=$(( $(date +%s) - STARTED ))
+          MINUTES="$(awk -v seconds="$ELAPSED" 'BEGIN { printf "%.2f", seconds / 60 }')"
+          echo "- Tiempo total transcurrido del runner: **${MINUTES} minutos aprox.**" >> "$GITHUB_STEP_SUMMARY"

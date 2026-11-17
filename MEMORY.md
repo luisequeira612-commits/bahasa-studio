@@ -1,5 +1,10 @@
 # MEMORY.md — Estado de Bahasa Studio
 
+## Migración de generación de audio a MMS — 17 nov 2026
+- La generación futura de Guardi se migra a `facebook/mms-tts-ind` (VitsModel/AutoTokenizer + PyTorch CPU en GitHub Actions), con revisión y checksum fijados. Licencia CC BY-NC 4.0: atribución Meta AI y uso exclusivamente no comercial.
+- No regenerar los 2.152 clips hasta que el dueño escuche y apruebe el pack manual de 30 frases A1 más tres variantes de «Selamat pagi» (`pa gi`, `pa-gi`, `paghi`). Los overrides siguen vacíos hasta esa decisión y solo afectan al texto de síntesis.
+- Se conserva el formato MP3 + Opus, IDs existentes, SHA-256 de MP3, IndexedDB v1 y backup JSON v3. La caché persistente pasa a `guardi-audio-v2`; las dependencias TTS permanecen solo en GitHub Actions.
+
 > Memoria operativa; mantenerla por debajo de unas 150 líneas. Detalles extensos y evidencia histórica viven en documentos y PR enlazados. Última actualización: 17 nov 2026.
 
 ## Evaluación experimental de Laras — 17 nov 2026

@@ -4,8 +4,6 @@ from __future__ import annotations
 import argparse, csv, difflib, json, re, subprocess, tempfile
 from pathlib import Path
 import generate_audio as gen
-import whisper
-import torch
 
 ROOT = Path(__file__).resolve().parent.parent
 OVERRIDES = ROOT / "scripts" / "pronunciation_overrides.json"
@@ -55,6 +53,7 @@ def main() -> None:
     p.add_argument("--mode", choices=("samples", "production"), default="samples")
     p.add_argument("--max-passes", type=int, choices=(1, 2), default=2)
     args = p.parse_args()
+    import whisper, torch
     if not args.report.exists():
         raise SystemExit("No existe el informe Whisper; ejecuta primero scripts/audio_review.py")
     entries = json.loads(args.manifest.read_text(encoding="utf-8"))

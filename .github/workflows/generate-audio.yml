@@ -72,6 +72,10 @@ jobs:
       SOURCE_REF: ${{ inputs.source_ref }}
       BAHASA_TTS_PERSIST_MODEL_CACHE: "1"
     steps:
+      - name: Start execution timer
+        id: clock
+        run: echo "started=$(date +%s)" >> "$GITHUB_OUTPUT"
+
       - name: Reject full generation until explicitly confirmed
         if: ${{ inputs.mode == 'full' && inputs.confirm_full != true }}
         run: |
@@ -285,16 +289,15 @@ jobs:
           if-no-files-found: ignore
           retention-days: 7
 
-      - name: Remove temporary model storage
-        if: always()
-        shell: bash
-        run: rm -rf "$RUNNER_TEMP/guardi-tts-cache"
-
       - name: Write run summary
         if: always()
         shell: bash
+        env:
+          STARTED: ${{ steps.clock.outputs.started }}
         run: |
+          MINUTES="$(python -c 'import os,time; print(round((time.time()-int(os.environ.get("STARTED","0")))/60,2))')"
           echo "## Generación de audio" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Tiempo transcurrido del runner: **${MINUTES} minutos aprox.**" >> "$GITHUB_STEP_SUMMARY"
           echo "- Motor: **$ENGINE**" >> "$GITHUB_STEP_SUMMARY"
           echo "- Modo: **$MODE**" >> "$GITHUB_STEP_SUMMARY"
           echo "- Nivel: **$LEVEL**" >> "$GITHUB_STEP_SUMMARY"

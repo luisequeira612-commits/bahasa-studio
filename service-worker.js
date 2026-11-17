@@ -1,5 +1,5 @@
 const CACHE_NAME = 'bahasa-studio-v3.8.104';
-const AUDIO_CACHE_NAME = 'guardi-audio-v1';
+const AUDIO_CACHE_NAME = 'guardi-audio-v2';
 const ASSETS = ['./', './index.html', './manifest.json', './icon.svg', './assessment.html', './assessment-engine.js', './conversation-engine.js', './study-history.js', './study-activity.js', './adaptive-learning.js', './curriculum-a1.js', './curriculum-a2.js', './styles.css', './audio-engine.js', './audio/index.json', './audio/manifest.json', './audio/metadata.json', './offline-audio-manager.js', './pronunciation-engine.js', './writing-practice.js', './apple-touch-icon.png', './icon-192.png', './icon-512-any.png', './icon-512-maskable.png', './assets/guardi/guardi-normal.svg', './assets/guardi/guardi-feliz.svg', './assets/guardi/guardi-triste.svg', './assets/guardi/guardi-celebrando.svg', './assets/guardi/guardi-pensando.svg', './assets/guardi/guardi-mark.svg', './assets/guardi/guardi-icon.svg'];
 
 const inFlightAudioFetches = new Map();
@@ -223,6 +223,12 @@ self.addEventListener('activate', (e) => {
             await migrateLegacyAudioCache();
         } catch (_) {
             // Activation must remain available even if storage migration fails.
+        }
+        // Start the new voice library with an empty cache; never reuse old Piper clips.
+        try {
+            await caches.delete('guardi-audio-v1');
+        } catch (_) {
+            // Retry cleanup on the next activation.
         }
         await self.clients.claim();
     })());

@@ -122,3 +122,14 @@ Reglas:
 - Los overrides de `scripts/pronunciation_overrides.json` solo afectan el texto enviado al sintetizador. Nunca alterar texto curricular/visible, IDs o manifiesto. No fijar una pronunciación dudosa hasta que el dueño escuche y apruebe las muestras.
 - Antes de regenerar la biblioteca completa (2.152 clips), generar y entregar el pack manual de 30 frases A1 más las tres variantes de «Selamat pagi» (`pa gi`, `pa-gi`, `paghi`). No regenerar producción hasta aprobación explícita del dueño.
 - No añadir dependencias a la aplicación; PyTorch, Transformers, SentencePiece y SciPy se instalan solo dentro del workflow de GitHub Actions.
+
+
+## Guardi audio MMS + Whisper (17 nov 2026)
+- Todos los workflows de audio deben usar exclusivamente \`workflow_dispatch\`, runner estándar \`ubuntu-latest\` y \`timeout-minutes\` en cada job; nunca push/PR triggers ni runners grandes/de pago.
+- Modelos y cachés solo en \`RUNNER_TEMP\` + \`actions/cache\`; no guardar pesos en el repo, Pages o app.
+- La primera muestra es 100 frases A1; no generar producción sin aprobación explícita del dueño.
+- Producción: lotes manuales de 150–200, progreso persistente \`scripts/audio_progress.json\`, comparación SHA-256 de texto y override, saltar audios sin cambios.
+- Whisper \`base\` o \`small\` CPU es filtro, no veredicto; una coincidencia alta no certifica pronunciación.
+- Auto-fix solo en filas \`revisar\`, máximo dos pasadas; si no se puede probar que la grafía conserva la identidad léxica, dejarla sin resolver.
+- Los estados automáticos son \`auto_whisper\`, jamás humanos/verificados; actualizar SHA-256 de MP3 tras cualquier regeneración.
+- No modificar IndexedDB, backup JSON v3 ni añadir dependencias a la app.

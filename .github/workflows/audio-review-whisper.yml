@@ -164,9 +164,7 @@ jobs:
           unresolved = Path("scripts/pronunciation_unresolved.txt")
           ids = {r.get("ID") for r in rows}
           unresolved_count = sum(1 for line in unresolved.read_text(encoding="utf-8").splitlines() if line.strip() and not line.lstrip().startswith("#") and len(line.split("\t")) > 1 and line.split("\t")[1] in ids) if unresolved.exists() else 0
-          start = int(os.environ.get("STARTED") or 0)
-          minutes = round((__import__("time").time() - start) / 60, 2) if start else None
-          print(f"Failed={failed}; review={review}; auto_whisper={fixed}; unresolved={unresolved_count}; elapsed_minutes={minutes}")
+          print(f"Failed={failed}; review={review}; auto_whisper={fixed}; unresolved={unresolved_count}")
           with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as out:
               out.write("## Resultado de audio MMS + Whisper\n")
               out.write(f"- Audios fallidos: **{failed}**\n- Marcados para revisar: **{review}**\n- Corregidos automáticamente: **{fixed}**\n- Sin resolver: **{unresolved_count}**\n")
@@ -190,3 +188,11 @@ jobs:
             scripts/audio_progress.json
           if-no-files-found: ignore
           retention-days: 7
+
+      - name: Final Actions runtime
+        if: always()
+        env:
+          STARTED: ${{ steps.clock.outputs.started }}
+        run: |
+          MINUTES="$(python -c 'import os,time; print(round((time.time()-int(os.environ.get(\"STARTED\",\"0\"))/60,2))')"
+          echo "- Tiempo total transcurrido del runner: **${MINUTES} minutos aprox.**" >> "$GITHUB_STEP_SUMMARY"

@@ -13,6 +13,9 @@ OVERRIDES = ROOT / "scripts" / "pronunciation_overrides.json"
 def digest(value: str) -> str:
     return hashlib.sha256(value.encode("utf-8")).hexdigest()
 
+def digest_file(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
 def run(*args: str) -> None:
     subprocess.run([sys.executable, *args], cwd=ROOT, check=True)
 
@@ -30,7 +33,8 @@ def main() -> None:
     pending = []
     for entry in entries:
         text_hash = digest(entry["text"])
-        used = {k: v for k, v in overrides.items() if k.lower() in entry["text"].lower().split()}
+        import re
+        used = {k: v for k, v in overrides.items() if re.search(r"(?<!\\w)" + re.escape(k) + r"(?!\\w)", entry["text"], re.I)}
         override_hash = digest(json.dumps(used, sort_keys=True, ensure_ascii=False))
         mp3 = ROOT / "audio" / "id" / f"{entry['id']}.mp3"
         opus = ROOT / "audio" / "id" / f"{entry['id']}.opus"
@@ -54,15 +58,20 @@ def main() -> None:
             "--model", args.whisper_size, "--mode", "production", "--max-passes", "2")
         run("scripts/audio_review.py", "--manifest", str(batch_manifest), "--audio-dir", str(ROOT / "audio" / "id"),
             "--ids", ",".join(ids), "--model", args.whisper_size)
+        run("scripts/generate_audio.py", "--engine", "mms", "--hash-only")
+    overrides = json.loads(OVERRIDES.read_text(encoding="utf-8")) if OVERRIDES.exists() else {}
     now = datetime.now(timezone.utc).isoformat()
     for entry, text_hash, override_hash in batch:
         audio = ROOT / "audio" / "id" / f"{entry['id']}.mp3"
         opus = ROOT / "audio" / "id" / f"{entry['id']}.opus"
+        import re
+        used = {k: v for k, v in overrides.items() if re.search(r"(?<!\\w)" + re.escape(k) + r"(?!\\w)", entry["text"], re.I)}
+        override_hash = digest(json.dumps(used, sort_keys=True, ensure_ascii=False))
         state[entry["id"]] = {
             "text_sha256": text_hash,
             "override_sha256": override_hash,
-            "mp3_sha256": digest(audio.read_bytes().hex()) if audio.exists() else None,
-            "opus_sha256": digest(opus.read_bytes().hex()) if opus.exists() else None,
+            "mp3_sha256": digest_file(audio) if audio.exists() else None,
+            "opus_sha256": digest_file(opus) if opus.exists() else None,
             "status": "reviewed_by_whisper_filter",
             "updated_at": now
         }

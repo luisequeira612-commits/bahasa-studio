@@ -77,13 +77,13 @@ jobs:
           fi
 
       - name: Check out source
-        uses: actions/checkout$v4
+        uses: actions/checkout@v4
         with:
           ref: ${{ inputs.source_ref }}
           fetch-depth: 0
 
       - name: Restore MMS and Whisper model cache
-        uses: actions/cache$v4
+        uses: actions/cache@v4
         with:
           path: ${{ runner.temp }}/guardi-audio-model-cache
           key: guardi-audio-models-${{ runner.os }}-mms-171b004ccd54-whisper-${{ inputs.whisper_size }}-v1
@@ -91,7 +91,7 @@ jobs:
             guardi-audio-models-${{ runner.os }}-mms-171b004ccd54-whisper-${{ inputs.whisper_size }}-
 
       - name: Set up Python
-        uses: actions/setup-python$v5
+        uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
@@ -105,7 +105,10 @@ jobs:
           python -m pip install --no-cache-dir "transformers>=4.45,<5" sentencepiece scipy huggingface_hub "openai-whisper==20250625"
 
       - name: Export current audio manifest
-        run: node scripts/export-audio-manifest.mjs
+        run: node scripts/export-audio-manifest.mjs --include-b2 --include-interactive
+
+      - name: Test Whisper review and conservative respelling rules
+        run: python -m unittest discover -s tests -p 'test_audio_review.py'
 
       - name: Generate and review 100 A1 phrases
         if: ${{ inputs.mode == 'sample100' }}
@@ -126,7 +129,7 @@ jobs:
         run: |
           BRANCH="audio/mms-whisper-batch-${GITHUB_RUN_ID}"
           git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]$users.noreply.github.com"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git checkout -b "$BRANCH"
           git add audio/id audio/index.json audio/metadata.json service-worker.js \
             scripts/audio_progress.json scripts/pronunciation_overrides.json \
@@ -171,7 +174,7 @@ jobs:
 
       - name: Upload review artifacts
         if: always()
-        uses: actions/upload-artifact$v4
+        uses: actions/upload-artifact@v4
         with:
           name: guardi-mms-whisper-${{ inputs.mode }}-${{ github.run_number }}
           path: |

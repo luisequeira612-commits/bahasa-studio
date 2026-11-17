@@ -168,7 +168,6 @@ jobs:
           with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as out:
               out.write("## Resultado de audio MMS + Whisper\n")
               out.write(f"- Audios fallidos: **{failed}**\n- Marcados para revisar: **{review}**\n- Corregidos automáticamente: **{fixed}**\n- Sin resolver: **{unresolved_count}**\n")
-              out.write(f"- Tiempo transcurrido del runner (minutos aproximados): **{minutes}**\n")
               out.write("- Whisper es un filtro, no un veredicto. Una coincidencia alta no certifica pronunciación.\n")
               if os.environ.get("MODE") == "sample100":
                   out.write("- Esta es solo la muestra de 100 frases A1; la biblioteca de producción no se regenera en este modo.\n")
@@ -194,5 +193,6 @@ jobs:
         env:
           STARTED: ${{ steps.clock.outputs.started }}
         run: |
-          MINUTES="$(python -c 'import os,time; print(round((time.time()-int(os.environ.get(\"STARTED\",\"0\"))/60,2))')"
+          ELAPSED=$(( $(date +%s) - STARTED ))
+          MINUTES="$(awk -v seconds="$ELAPSED" 'BEGIN { printf "%.2f", seconds / 60 }')"
           echo "- Tiempo total transcurrido del runner: **${MINUTES} minutos aprox.**" >> "$GITHUB_STEP_SUMMARY"

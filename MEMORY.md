@@ -371,3 +371,12 @@
 - Mejora del flujo de evaluación: el workflow permite `engine=both` únicamente en modo `samples`, para producir MMS y Edge en una sola ejecución, y acepta una voz Edge explícita. La voz de referencia predeterminada se fija en `id-ID-GadisNeural` para incluir la opción femenina preferida. PR [#646](https://github.com/luisequeira612-commits/bahasa-studio/pull/646) fusionada en `main` como `b7a0bc6e4467e1bea94531c28ade1ef7cef2e1fd`; `engine=both` está limitado a `mode=samples` y ejecuta MMS seguido de Edge TTS con la voz de referencia `id-ID-GadisNeural`.
 
 - Verificación post-merge de PR #646: Pages [run 43977726770](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/43977726770) y regresión [run 43977727621](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/43977727621) completadas en éxito. Próximo paso: el usuario debe iniciar una sola ejecución manual de `Generate Indonesian audio` con `engine=both`, `mode=samples`, `level=A1`, `voice=id-ID-GadisNeural` e IDs `2c82a33b24e7,e1b89cc35480,3023fa268c90,315b9da4bbf4`; el conector disponible no puede despachar workflow. Aún no se han generado ni reemplazado clips de producción.
+
+## Audio MMS + Whisper — 17 nov 2026
+- PR #650 amplía la migración MMS con revisión Whisper y corrección conservadora; permanece sin fusionar y requiere revisión del dueño.
+- Workflows de audio solo manuales, \`ubuntu-latest\`, timeout por job y caché de modelos temporal con \`actions/cache\`.
+- Primera ejecución: 100 frases A1; informar fallidos, revisados, auto-fix, unresolved y minutos transcurridos. No regenerar producción en esta fase.
+- Producción futura: lotes de 150–200, \`audio_progress.json\` compara hash de texto y override y permite reanudar sin repetir audios intactos.
+- Whisper base/small en CPU solo filtra; no certifica pronunciación. Máximo dos pasadas y solo filas \`revisar\`.
+- Auto-correcciones llevan estado \`auto_whisper\`; cambios de letras se rechazan cuando no se puede probar identidad léxica; dudas a \`pronunciation_unresolved.txt\`.
+- No cambiar IndexedDB ni backup JSON v3, no añadir dependencias a la app y no fusionar hasta aprobación explícita.

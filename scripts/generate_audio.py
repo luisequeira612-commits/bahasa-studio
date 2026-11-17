@@ -74,27 +74,29 @@ def verify_mms_model_checksum(model_path: Path) -> str:
 
 def create_ephemeral_model_cache(repo_root: Path = ROOT, runner_temp: Path | None = None) -> Path:
     """Keep downloaded TTS weights outside the checkout and delete them at process exit."""
+    repository_root = Path(repo_root).resolve()
     configured_cache = os.environ.get("BAHASA_TTS_MODEL_CACHE")
     if configured_cache:
         cache_dir = Path(configured_cache).resolve()
+        try:
+            cache_dir.relative_to(repository_root)
+        except ValueError:
+            pass
+        else:
+            raise RuntimeError("TTS model cache must be outside the repository checkout")
         cache_dir.mkdir(parents=True, exist_ok=True)
     else:
         temporary_root = Path(
             runner_temp or os.environ.get("RUNNER_TEMP") or tempfile.gettempdir()
         ).resolve()
+        try:
+            temporary_root.relative_to(repository_root)
+        except ValueError:
+            pass
+        else:
+            raise RuntimeError("Runner temporary directory must be outside the repository checkout")
         temporary_root.mkdir(parents=True, exist_ok=True)
         cache_dir = Path(tempfile.mkdtemp(prefix="guardi-tts-models-", dir=temporary_root))
-
-    repository_root = Path(repo_root).resolve()
-    try:
-        cache_dir.relative_to(repository_root)
-    except ValueError:
-        pass
-    else:
-        shutil.rmtree(cache_dir, ignore_errors=True)
-        raise RuntimeError("TTS model cache must be outside the repository checkout")
-
-    cache_dir.mkdir(parents=True, exist_ok=True)
     # Keep every common model cache in the same disposable runner directory.
     os.environ["BAHASA_TTS_MODEL_CACHE"] = str(cache_dir)
     os.environ["HF_HOME"] = str(cache_dir / "huggingface")

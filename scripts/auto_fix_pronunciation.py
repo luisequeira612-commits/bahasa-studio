@@ -29,6 +29,8 @@ def variants(word: str) -> list[str]:
 
 def lexical_collision(candidate: str, target: str, known_words: set[str]) -> str | None:
     compact = re.sub(r"[\s-]+", "", candidate.lower())
+    if compact != target:
+        return "cambio de letras no verificable sin un léxico indonesio completo"
     for known in known_words:
         if known != target and compact == known:
             return known
@@ -60,7 +62,7 @@ def main() -> None:
     known_words = {w for e in entries for w in tokens(e["text"])}
     overrides = load_overrides()
     torch.set_num_threads(min(4, max(1, torch.get_num_threads())))
-    asr = whisper.load_model(args.model, device="cpu")
+    asr = whisper.load_model(args.model, device="cpu", download_root=__import__("os").environ.get("WHISPER_CACHE_DIR"))
     cache = gen.create_ephemeral_model_cache(ROOT)
     synth, _voice = gen.create_synthesizer("mms", "", cache)
     unresolved_lines = []

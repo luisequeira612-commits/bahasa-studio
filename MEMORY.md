@@ -1,6 +1,13 @@
 # MEMORY.md — Estado de Bahasa Studio
 
-> Memoria operativa; mantenerla por debajo de unas 150 líneas. Detalles extensos y evidencia histórica viven en documentos y PR enlazados. Última actualización: 16 nov 2026.
+> Memoria operativa; mantenerla por debajo de unas 150 líneas. Detalles extensos y evidencia histórica viven en documentos y PR enlazados. Última actualización: 17 nov 2026.
+
+## Generación de audio: modelos solo temporales — 17 nov 2026
+
+- Se establece el límite arquitectónico: GitHub Actions descarga/usa los motores y modelos TTS en almacenamiento temporal del runner; el repositorio, GitHub Pages y la app solo reciben audios generados y metadatos necesarios. Nunca guardar modelos en Git, artefactos permanentes ni paquetes de la app.
+- La implementación usa `RUNNER_TEMP` para cachés Piper/Hugging Face/Transformers/Torch, desactiva la caché de descargas pip y elimina el directorio temporal al terminar (también en fallo). Sin nuevas dependencias ni cambios a la biblioteca de producción, IndexedDB o backup JSON v3.
+- Se documenta la separación para futuros idiomas: manifiesto y perfil de voz/modelo por idioma, adaptadores TTS reutilizables, audio estático por idioma. Indonesio sigue siendo el único idioma configurado; inglés solo después de completar indonesio hasta B2 y no se habilita aquí.
+- Fuente: inspección de `scripts/generate_audio.py`, `.github/workflows/generate-audio.yml`, `AGENTS.md` y límites oficiales de GitHub Pages/Actions; 17 nov 2026. PR de implementación en curso.
 
 ## Corrección pedagógica obligatoria — 12 nov 2026
 - Decisión explícita del dueño: todas las unidades A1–B2 deben tener 5–6 lecciones didácticas reales. Los ejercicios, bloques derivados de vocabulario y repasos automáticos genéricos no sustituyen lecciones planificadas. Distribuir vocabulario y recuperarlo espaciadamente en contextos diferentes.

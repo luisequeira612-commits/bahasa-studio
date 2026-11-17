@@ -9,7 +9,7 @@
     "engine": "edge",
     "id": "315b9da4bbf4",
     "text": "Saya makan.",
-    "voice": "Edge TTS / id-ID-ArdiNeural"
+    "voice": "Edge TTS / id-ID-GadisNeural"
   },
   {
     "engine": "edge",
@@ -39,13 +39,13 @@
     "engine": "edge",
     "id": "e1b89cc35480",
     "text": "Selamat pagi",
-    "voice": "Edge TTS / id-ID-ArdiNeural"
+    "voice": "Edge TTS / id-ID-GadisNeural"
   },
   {
     "engine": "edge",
     "id": "3023fa268c90",
     "text": "Selamat pagi!",
-    "voice": "Edge TTS / id-ID-ArdiNeural"
+    "voice": "Edge TTS / id-ID-GadisNeural"
   },
   {
     "engine": "edge",
@@ -238,5 +238,11 @@
     "model_license": "CC BY-NC 4.0",
     "model_license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
     "model_attribution": "MMS-TTS by Vineel Pratap et al., Meta AI"
+  },
+  {
+    "engine": "edge",
+    "id": "2c82a33b24e7",
+    "text": "Makan",
+    "voice": "Edge TTS / id-ID-GadisNeural"
   }
 ]

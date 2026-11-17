@@ -1,0 +1,1 @@
+# Palabras que no pudieron corregirse con seguridad; Whisper no certifica pronunciación.

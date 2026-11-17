@@ -36,6 +36,7 @@ def main() -> None:
     p.add_argument("--manifest", type=Path, default=ROOT / "audio" / "manifest.json")
     p.add_argument("--model", choices=("small", "base"), default="base")
     p.add_argument("--limit", type=int, default=0)
+    p.add_argument("--ids", default="", help="optional comma-separated exact IDs to review")
     p.add_argument("--review-threshold", type=float, default=0.90)
     p.add_argument("--report", type=Path, default=REPORT)
     p.add_argument("--words-report", type=Path, default=WORDS)
@@ -44,8 +45,17 @@ def main() -> None:
     torch.set_num_threads(min(4, max(1, torch.get_num_threads())))
     model = whisper.load_model(args.model, device="cpu")
     entries = json.loads(args.manifest.read_text(encoding="utf-8"))
-    if args.limit:
+    if args.ids:
+        wanted = [x.strip() for x in args.ids.split(",") if x.strip()]
+        by_id = {e["id"]: e for e in entries}
+        missing = [x for x in wanted if x not in by_id]
+        if missing:
+            raise SystemExit("IDs no encontrados en el manifiesto: " + ", ".join(missing))
+        entries = [by_id[x] for x in wanted]
+    elif args.limit:
         entries = entries[:args.limit]
+    overrides_path = ROOT / "scripts" / "pronunciation_overrides.json"
+    overrides = json.loads(overrides_path.read_text(encoding="utf-8")) if overrides_path.exists() else {}
     rows, low_words = [], Counter()
     for i, entry in enumerate(entries, 1):
         audio = args.audio_dir / f"{entry['id']}.mp3"
@@ -61,7 +71,7 @@ def main() -> None:
         rows.append({
             "ID": entry["id"], "original text": entry["text"], "transcript": transcript,
             "match score": f"{match:.4f}", "status": status,
-            "text_sha256": sha(entry["text"]), "override_sha256": "",
+            "text_sha256": sha(entry["text"]), "override_sha256": sha(json.dumps({k:v for k,v in overrides.items() if re.search(r"(?<!\\w)"+re.escape(k)+r"(?!\\w)", entry["text"], re.I)}, sort_keys=True, ensure_ascii=False)),
             "interpretation": "Whisper es un filtro, no un veredicto; una coincidencia alta no certifica pronunciación."
         })
         print(f"[{i}/{len(entries)}] {entry['id']} {status} {match:.3f}", flush=True)

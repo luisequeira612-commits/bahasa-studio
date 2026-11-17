@@ -65,7 +65,7 @@ def main() -> None:
             result = model.transcribe(str(audio), language="id", task="transcribe", fp16=False, verbose=False)
             transcript = str(result.get("text", "")).strip()
             match = score(entry["text"], transcript)
-            relevant = {k: v for k, v in overrides.items() if re.search(r"(?<!\\w)" + re.escape(k) + r"(?!\\w)", entry["text"], re.I)}
+            relevant = {k: v for k, v in overrides.items() if re.search(r"(?<!\w)" + re.escape(k) + r"(?!\w)", entry["text"], re.I)}
             auto_applied = any(isinstance(v, dict) and v.get("state") == "auto_whisper" for v in relevant.values())
             status = "revisar" if match < args.review_threshold else ("auto_whisper" if auto_applied else "coincide")
         if status in {"revisar", "falló"}:
@@ -73,7 +73,7 @@ def main() -> None:
         rows.append({
             "ID": entry["id"], "original text": entry["text"], "transcript": transcript,
             "match score": f"{match:.4f}", "status": status,
-            "text_sha256": sha(entry["text"]), "override_sha256": sha(json.dumps({k:v for k,v in overrides.items() if re.search(r"(?<!\\w)"+re.escape(k)+r"(?!\\w)", entry["text"], re.I)}, sort_keys=True, ensure_ascii=False)),
+            "text_sha256": sha(entry["text"]), "override_sha256": sha(json.dumps({k:v for k,v in overrides.items() if re.search(r"(?<!\w)"+re.escape(k)+r"(?!\w)", entry["text"], re.I)}, sort_keys=True, ensure_ascii=False)),
             "interpretation": "Whisper es un filtro, no un veredicto; una coincidencia alta no certifica pronunciación."
         })
         print(f"[{i}/{len(entries)}] {entry['id']} {status} {match:.3f}", flush=True)

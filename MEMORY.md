@@ -431,3 +431,11 @@
 - La escucha inicial evalúa solo aspectos técnicos (volumen, cortes, distorsión, ruido, silencios); pronunciación, fonemas, acento y prosodia quedan `not_assessed` hasta revisión competente en indonesio. Whisper no certifica pronunciación.
 - PR en curso añade un generador Python estándar, determinista y de solo lectura del manifiesto desde el CSV comparativo; tests de cuotas, unicidad, reproducibilidad y fallback. No copia, modifica ni regenera audio; no toca producción, IndexedDB ni backup v3.
 - Fuente: análisis de artefactos #14391907433/#14401108232 y diseño metodológico guardado en Notion; 18 nov 2026.
+
+
+## Auditoría técnica reproducible de sample100 — 18 nov 2026
+- PR en curso: feat/audio-technical-audit-20261118. Añade scripts/audit_audio_technical.py, auditoría determinista y de solo lectura sobre los MP3 seleccionados por el manifiesto estratificado.
+- Mide decodificación, duración, RMS, pico, fracción de clipping y tramo silencioso más largo; clasifica clean, quiet_or_unbalanced, clipped_or_truncated, dropout_or_silence o uncertain.
+- Usa solo herramientas estándar del runner (ffmpeg + Python stdlib), no añade dependencias a la app ni modifica audio, overrides, producción, IndexedDB o backup v3. La auditoría técnica no evalúa pronunciación, fonemas, acento, prosodia ni corrección lingüística.
+- Añade pruebas unitarias para las métricas y etiquetas. La ejecución real se hará sobre el manifiesto + MP3 del artefacto sample100 cuando estén disponibles en un workflow manual; no se deben regenerar audios para realizar esta auditoría.
+- Fuente: PR #657 fusionada (7746b2f2021e7084552e0da31a94c99d5e3e4b9c) y diseño de auditoría aprobado; 18 nov 2026.

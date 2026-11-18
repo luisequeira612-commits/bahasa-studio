@@ -48,6 +48,8 @@ jobs:
         run: node --test tests/offline-audio-manager.test.cjs
       - name: Run audio sample page generation tests
         run: python -m unittest discover -s tests -p 'test_audio_generation.py'
+      - name: Run Whisper diagnostic metric tests
+        run: python -m unittest discover -s tests -p 'test_diagnose_whisper_sample.py'
       - name: Check Python audio generator syntax
         run: python -m py_compile scripts/generate_audio.py
       - name: Run assessment speech recognition lifecycle tests

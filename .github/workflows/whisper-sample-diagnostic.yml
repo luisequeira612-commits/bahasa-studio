@@ -70,6 +70,12 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Install system audio dependency
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y ffmpeg
+          ffmpeg -version
+
       - name: Install Whisper
         run: |
           python -m pip install --no-cache-dir --upgrade pip

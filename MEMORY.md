@@ -446,3 +446,10 @@
 - Se corrige el archivo convirtiendo las ocho comprobaciones en métodos de unittest.TestCase, manteniendo Python estándar y el mismo comando de CI. El fallo era de descubrimiento del runner, no evidencia de que las métricas del auditor estuvieran incorrectas.
 - No se fusiona PR #658 hasta que todas las pruebas y el resto de CI terminen correctamente. No se ejecutan audios ni se modifica producción durante esta corrección.
 - Fuente: Actions run #44262775374, job 134659896804, paso Run technical audio audit tests; 18 nov 2026.
+
+
+## Corrección de aserción RMS en auditoría técnica — 18 nov 2026
+- CI de PR #658 (run #44265148387) ya descubrió y ejecutó las ocho pruebas correctamente, pero una aserción de rango RMS era demasiado alta: el vector de prueba produce RMS ≈0.61236, no >0.7.
+- Se ajustó únicamente la expectativa del test a 0.6 < RMS < 0.7; no cambia la implementación del auditor ni sus umbrales técnicos.
+- Los otros siete tests pasaron. La corrección queda en la misma rama y debe volver a ejecutar CI antes de fusionar.
+- Fuente: Actions run #44265148387, job 134667716096, paso Run technical audio audit tests; 18 nov 2026.

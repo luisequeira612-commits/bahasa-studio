@@ -1,0 +1,111 @@
+name: Guardi Whisper sample diagnostic
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_run_id:
+        description: Run que contiene el artefacto sample100 MMS
+        type: string
+        default: "44222325789"
+        required: true
+      artifact_name:
+        description: Nombre exacto del artefacto de la muestra
+        type: string
+        default: guardi-mms-whisper-sample100-52
+        required: true
+      model_a:
+        description: Primer modelo Whisper
+        type: choice
+        options: [base, small]
+        default: base
+        required: true
+      model_b:
+        description: Segundo modelo Whisper
+        type: choice
+        options: [base, small]
+        default: small
+        required: true
+
+permissions:
+  actions: read
+  contents: read
+
+concurrency:
+  group: guardi-whisper-sample-diagnostic
+  cancel-in-progress: false
+
+jobs:
+  diagnostic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - name: Start execution timer
+        id: clock
+        run: echo "started=$(date +%s)" >> "$GITHUB_OUTPUT"
+
+      - name: Configure temporary model cache
+        env:
+          WHISPER_CACHE_DIR: ${{ runner.temp }}/whisper-model-cache
+        run: echo "WHISPER_CACHE_DIR=$WHISPER_CACHE_DIR" >> "$GITHUB_ENV"
+
+      - name: Check out source
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Download existing sample artifact
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SOURCE_RUN_ID: ${{ inputs.source_run_id }}
+          ARTIFACT_NAME: ${{ inputs.artifact_name }}
+        run: |
+          mkdir -p diagnostic-input
+          gh run download "$SOURCE_RUN_ID" --repo "$GITHUB_REPOSITORY" --name "$ARTIFACT_NAME" --dir diagnostic-input
+          test -d diagnostic-input/audio-samples/mms
+          test -f diagnostic-input/scripts/audio_review_report.csv
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Whisper
+        run: |
+          python -m pip install --no-cache-dir --upgrade pip
+          python -m pip install --no-cache-dir "openai-whisper==20250625"
+
+      - name: Compare Whisper models without regenerating MMS
+        env:
+          MODEL_A: ${{ inputs.model_a }}
+          MODEL_B: ${{ inputs.model_b }}
+        run: |
+          python scripts/diagnose_whisper_sample.py --report diagnostic-input/scripts/audio_review_report.csv --audio-dir diagnostic-input/audio-samples/mms --model-a "$MODEL_A" --model-b "$MODEL_B" --cache-dir "$WHISPER_CACHE_DIR" --output diagnostic-input/scripts/whisper_model_comparison.csv
+
+      - name: Write diagnostic summary
+        if: ${{ always() }}
+        run: |
+          if test -f diagnostic-input/scripts/whisper_model_comparison.summary.json; then
+            cat diagnostic-input/scripts/whisper_model_comparison.summary.json >> "$GITHUB_STEP_SUMMARY"
+          fi
+          echo "No se regeneró audio MMS y no se modificó la biblioteca de producción." >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload diagnostic report
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: guardi-whisper-model-diagnostic-${{ github.run_number }}
+          path: |
+            diagnostic-input/scripts/whisper_model_comparison.csv
+            diagnostic-input/scripts/whisper_model_comparison.summary.json
+          if-no-files-found: warn
+          retention-days: 7
+
+      - name: Final Actions runtime
+        if: ${{ always() }}
+        env:
+          STARTED: ${{ steps.clock.outputs.started }}
+        run: |
+          ELAPSED=$(( $(date +%s) - STARTED ))
+          MINUTES="$(awk -v seconds="$ELAPSED" 'BEGIN { printf "%.2f", seconds / 60 }')"
+          echo "- Tiempo total transcurrido: **${MINUTES} minutos aprox.**" >> "$GITHUB_STEP_SUMMARY"

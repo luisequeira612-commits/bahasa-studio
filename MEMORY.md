@@ -410,3 +410,9 @@
 - Se corrigió después del merge la normalización de espacios en `scripts/diagnose_whisper_sample.py` (commit `d0c58bf88319937a97955096732e86ba9cc5e48b`) y el script carga cada modelo Whisper una sola vez, no una vez por audio.
 - El workflow `whisper-sample-diagnostic.yml` es exclusivamente `workflow_dispatch`, usa `ubuntu-latest` y timeout 180. El conector GitHub disponible no ofrece acción para despachar workflows; el diagnóstico comparativo aún requiere iniciarlo manualmente desde Actions. No iniciar producción antes de revisar ese informe.
 - Fuente: Actions #44222325789, PR #654 y commit de corrección; 18 nov 2026.
+
+
+## Diagnóstico Whisper: dependencia FFmpeg — 18 nov 2026
+- La ejecución manual del diagnóstico comparativo #44241747682 descargó la muestra100 e instaló Whisper, pero falló al comenzar la transcripción porque el runner no tenía el ejecutable del sistema `ffmpeg` (FileNotFoundError). No se procesaron comparaciones, no se generó artefacto de informe y no se modificó audio de producción.
+- Corrección propuesta en la rama `fix/whisper-diagnostic-install-ffmpeg-20261118`: instalar FFmpeg con apt en un paso explícito antes de instalar/ejecutar Whisper y verificar `ffmpeg -version`. Se mantienen workflow_dispatch, ubuntu-latest, timeout 180, muestra existente y cero regeneración MMS. Pendiente CI y nueva ejecución manual del diagnóstico.
+- Fuente: Actions run #44241747682, logs del job 134591063817; 18 nov 2026.

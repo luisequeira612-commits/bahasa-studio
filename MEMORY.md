@@ -424,3 +424,10 @@
 - Se detectó que la métrica es similitud de edición de tokens, no score fonético; números escritos y dígitos no se normalizan. Este cambio añade desglose por longitud, definición explícita de umbrales y conteo de coincidencias ordenadas sin duplicar tokens. Pruebas Python estándar, sin dependencias nuevas.
 - Mantener Whisper base como referencia provisional; no cambiar overrides ni regenerar producción por estos resultados. Revisar primero una muestra estratificada y cualquier discrepancia con escucha técnica/humana.
 - Fuente: Actions #44244108322, artefacto #14401108232, CSV comparativo y análisis técnico de los 100 MP3 del artefacto #14391907433; 18 nov 2026.
+
+
+## Auditoría auditiva estratificada de sample100 — 18 nov 2026
+- Diseño aprobado para evaluación no productiva: 30 textos objetivo únicos, cuotas 12 de una palabra, 8 de dos, 8 de tres y 2 de cuatro o más; repartir por categorías Whisper para no seleccionar solo los peores. La muestra original tiene 100 clips, 86 textos únicos, 42/26/25/7 por longitud.
+- La escucha inicial evalúa solo aspectos técnicos (volumen, cortes, distorsión, ruido, silencios); pronunciación, fonemas, acento y prosodia quedan `not_assessed` hasta revisión competente en indonesio. Whisper no certifica pronunciación.
+- PR en curso añade un generador Python estándar, determinista y de solo lectura del manifiesto desde el CSV comparativo; tests de cuotas, unicidad, reproducibilidad y fallback. No copia, modifica ni regenera audio; no toca producción, IndexedDB ni backup v3.
+- Fuente: análisis de artefactos #14391907433/#14401108232 y diseño metodológico guardado en Notion; 18 nov 2026.

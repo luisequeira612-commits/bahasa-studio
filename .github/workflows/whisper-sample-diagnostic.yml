@@ -41,7 +41,7 @@ jobs:
     steps:
       - name: Start execution timer
         id: clock
-        run: echo "started=${{ date +%s }}" >> "$GITHUB_OUTPUT"
+        run: echo "started=$(date +%s)" >> "$GITHUB_OUTPUT"
 
       - name: Configure temporary model cache
         env:
@@ -80,7 +80,7 @@ jobs:
           MODEL_A: ${{ inputs.model_a }}
           MODEL_B: ${{ inputs.model_b }}
         run: |
-          python scripts/diagnose_whisper_sample.py             --report diagnostic-input/scripts/audio_review_report.csv             --audio-dir diagnostic-input/audio-samples/mms             --model-a "$MODEL_A" --model-b "$MODEL_B"             --cache-dir "$WHISPER_CACHE_DIR"             --output diagnostic-input/scripts/whisper_model_comparison.csv
+          python scripts/diagnose_whisper_sample.py --report diagnostic-input/scripts/audio_review_report.csv --audio-dir diagnostic-input/audio-samples/mms --model-a "$MODEL_A" --model-b "$MODEL_B" --cache-dir "$WHISPER_CACHE_DIR" --output diagnostic-input/scripts/whisper_model_comparison.csv
 
       - name: Write diagnostic summary
         if: ${{ always() }}

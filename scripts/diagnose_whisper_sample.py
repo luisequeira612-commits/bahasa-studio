@@ -19,7 +19,7 @@ IMPROVEMENT_DELTA_THRESHOLD = 0.20
 
 
 def norm(text: str) -> str:
-    return re.sub(r"[^a-z0-9áéíóúüñ'\\s-]", " ", (text or "").lower())
+    return re.sub(r"[^a-z0-9áéíóúüñ'\s-]", " ", (text or "").lower())
 
 
 def words(text: str) -> list[str]:

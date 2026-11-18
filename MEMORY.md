@@ -387,3 +387,11 @@
 - La primera ejecución manual de la muestra A1, run #44219858277, terminó `startup_failure` sin jobs ni artefactos; no hubo generación ni minutos de runner de procesamiento. No hay diagnóstico interno disponible en la API. Reintentar después de confirmar el estado del workflow/Actions; no iniciar producción.
 - Se detectó y corrige en PR #652 un desajuste: el input de lote aún tenía default 175 aunque la decisión vigente es 200. Default objetivo 200, ajustable 150–200. Muestra100 sigue independiente y no toca producción.
 - Fuente: PR #650/#651, run #44219858277 y decisión del dueño; 18 nov 2026.
+
+
+## Diagnóstico y corrección del arranque MMS + Whisper — 18 nov 2026
+- La primera muestra manual (#44219858277) acabó `startup_failure` sin jobs ni artefactos. La inspección de las ejecuciones recientes también encontró runs sintéticos `push` sin jobs para los workflows de audio manuales, mientras la regresión general sí arrancó y pasó; esto no generó audio.
+- Causa concreta identificada en `audio-review-whisper.yml`: se interpolaba `${{ runner.temp }}` en `jobs.audio.env`, donde GitHub no admite el contexto `runner`. La tabla oficial de disponibilidad de contextos restringe `jobs.<job_id>.env` y sí permite `runner` en `jobs.<job_id>.steps.env`.
+- PR #653 mueve las rutas Hugging Face/Torch/Whisper a un paso inicial con contexto `runner` válido y las exporta a `GITHUB_ENV`; conserva los mismos directorios bajo `RUNNER_TEMP`, cache, ejecución manual, runner estándar y muestra100 por defecto. No ejecuta TTS ni toca producción.
+- PR #652 fusionada por squash (`52753a37e0fa74c976b63600c1d15a4cfec23f23`); checks `test` y `Offline quality reports` en éxito. El tamaño por defecto ahora es 200 (rango 150–200).
+- Fuente: workflow `audio-review-whisper.yml`, runs #44219858277/#44220083166/#44221022568, PR #652 y documentación oficial GitHub Actions Contexts; 18 nov 2026.

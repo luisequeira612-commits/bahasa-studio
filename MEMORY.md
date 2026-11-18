@@ -402,3 +402,11 @@
 - PR #653 mueve las rutas Hugging Face/Torch/Whisper a un paso inicial con contexto `runner` válido y las exporta a `GITHUB_ENV`; conserva los mismos directorios bajo `RUNNER_TEMP`, cache, ejecución manual, runner estándar y muestra100 por defecto. No ejecuta TTS ni toca producción.
 - PR #652 fusionada por squash (`52753a37e0fa74c976b63600c1d15a4cfec23f23`); checks `test` y `Offline quality reports` en éxito. El tamaño por defecto ahora es 200 (rango 150–200).
 - Fuente: workflow `audio-review-whisper.yml`, runs #44219858277/#44220083166/#44221022568, PR #652 y documentación oficial GitHub Actions Contexts; 18 nov 2026.
+
+## Diagnóstico Whisper de la muestra A1 — 18 nov 2026
+- Run sample100 #44222325789 terminó correctamente: 100/100 audios procesados; 17 coincidencias directas, 13 frases marcadas `auto_whisper`, 70 `revisar`, 0 fallos. Las 13 filas `auto_whisper` no son 13 correcciones independientes: reflejan 11 palabras con overrides reutilizadas en varias frases.
+- La revisión encontró que Whisper base dejó 70 frases bajo revisión (score medio aproximado 0.155); esto es señal de ASR débil o desajuste de audio/texto, no prueba automática de mala pronunciación.
+- PR #654 fusionada por squash como `d4af343a8981e8667756ad64ba3560d0256a6d34`. Añade diagnóstico manual base vs small sobre los mismos 100 clips, sin regenerar MMS ni tocar producción, IndexedDB o backup v3.
+- Se corrigió después del merge la normalización de espacios en `scripts/diagnose_whisper_sample.py` (commit `d0c58bf88319937a97955096732e86ba9cc5e48b`) y el script carga cada modelo Whisper una sola vez, no una vez por audio.
+- El workflow `whisper-sample-diagnostic.yml` es exclusivamente `workflow_dispatch`, usa `ubuntu-latest` y timeout 180. El conector GitHub disponible no ofrece acción para despachar workflows; el diagnóstico comparativo aún requiere iniciarlo manualmente desde Actions. No iniciar producción antes de revisar ese informe.
+- Fuente: Actions #44222325789, PR #654 y commit de corrección; 18 nov 2026.

@@ -17,8 +17,8 @@ def samples(values):
 class AudioTechnicalAuditTests(unittest.TestCase):
     def test_rms_and_peak_are_normalized(self):
         data = samples([0, 16384, -16384, 32767])
-        self.assertGreater(mod.rms(data), 0.7)
-        self.assertLess(mod.rms(data), 0.8)
+        self.assertGreater(mod.rms(data), 0.6)
+        self.assertLess(mod.rms(data), 0.7)
         self.assertGreater(mod.peak(data), 0.999)
 
     def test_longest_silence_is_measured(self):

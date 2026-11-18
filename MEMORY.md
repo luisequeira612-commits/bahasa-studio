@@ -380,3 +380,10 @@
 - Whisper base/small en CPU solo filtra; no certifica pronunciación. Máximo dos pasadas y solo filas \`revisar\`.
 - Auto-correcciones llevan estado \`auto_whisper\`; cambios de letras se rechazan cuando no se puede probar identidad léxica; dudas a \`pronunciation_unresolved.txt\`.
 - No cambiar IndexedDB ni backup JSON v3, no añadir dependencias a la app y no fusionar hasta aprobación explícita.
+
+
+## Estado de ejecución MMS + Whisper — 18 nov 2026
+- PR #650 está fusionada en `main` (`0daa1af3a85dfc050ce806d3fa51903722491852`); CI post-merge y Pages terminaron en éxito. PR #651 también está fusionada (`8efd2e841e1721b15478fdbb84fa66bc645e72ac`), estandarizando Laras en `ubuntu-latest`; ambos checks de PR pasaron.
+- La primera ejecución manual de la muestra A1, run #44219858277, terminó `startup_failure` sin jobs ni artefactos; no hubo generación ni minutos de runner de procesamiento. No hay diagnóstico interno disponible en la API. Reintentar después de confirmar el estado del workflow/Actions; no iniciar producción.
+- Se detectó y corrige en PR #652 un desajuste: el input de lote aún tenía default 175 aunque la decisión vigente es 200. Default objetivo 200, ajustable 150–200. Muestra100 sigue independiente y no toca producción.
+- Fuente: PR #650/#651, run #44219858277 y decisión del dueño; 18 nov 2026.

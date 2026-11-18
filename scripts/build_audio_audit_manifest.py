@@ -132,6 +132,7 @@ def build_manifest(
 
     selected: list[dict[str, str]] = []
     selected_keys: set[str] = set()
+    fallback_ids: set[str] = set()
     selected_by_length: Counter[int] = Counter()
     deficits: dict[int, int] = {}
 
@@ -162,6 +163,7 @@ def build_manifest(
                 row = chosen[0]
                 selected.append(row)
                 selected_keys.add(row["_target_key"])
+                fallback_ids.add(row["ID"])
                 selected_by_length[length] += 1
                 remaining -= 1
                 progressed = True
@@ -187,8 +189,8 @@ def build_manifest(
             "baseline_status": row.get("baseline_status", ""),
             "selection_stratum": f"{stratum}_word",
             "selection_reason": (
-                "quota" if selected_by_length[stratum] <= quotas.get(stratum, 0)
-                else "fallback_for_sparse_stratum"
+                "fallback_for_sparse_stratum" if row["ID"] in fallback_ids
+                else "quota"
             ),
             "technical_listening_status": "pending",
             "linguistic_status": "not_assessed",

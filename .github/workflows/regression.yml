@@ -52,8 +52,12 @@ jobs:
         run: python -m unittest discover -s tests -p 'test_diagnose_whisper_sample.py'
       - name: Run stratified audio audit manifest tests
         run: python -m unittest discover -s tests -p 'test_build_audio_audit_manifest.py'
+      - name: Run technical audio audit tests
+        run: python -m unittest discover -s tests -p 'test_audio_technical_audit.py'
       - name: Check Python audio generator syntax
         run: python -m py_compile scripts/generate_audio.py
+      - name: Check Python audio audit syntax
+        run: python -m py_compile scripts/audit_audio_technical.py
       - name: Run assessment speech recognition lifecycle tests
         run: node --test tests/assessment-speech-recognition.test.cjs
       - name: Run speech recognition privacy boundary tests

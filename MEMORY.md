@@ -431,3 +431,25 @@
 - La escucha inicial evalúa solo aspectos técnicos (volumen, cortes, distorsión, ruido, silencios); pronunciación, fonemas, acento y prosodia quedan `not_assessed` hasta revisión competente en indonesio. Whisper no certifica pronunciación.
 - PR en curso añade un generador Python estándar, determinista y de solo lectura del manifiesto desde el CSV comparativo; tests de cuotas, unicidad, reproducibilidad y fallback. No copia, modifica ni regenera audio; no toca producción, IndexedDB ni backup v3.
 - Fuente: análisis de artefactos #14391907433/#14401108232 y diseño metodológico guardado en Notion; 18 nov 2026.
+
+
+## Auditoría técnica reproducible de sample100 — 18 nov 2026
+- PR en curso: feat/audio-technical-audit-20261118. Añade scripts/audit_audio_technical.py, auditoría determinista y de solo lectura sobre los MP3 seleccionados por el manifiesto estratificado.
+- Mide decodificación, duración, RMS, pico, fracción de clipping y tramo silencioso más largo; clasifica clean, quiet_or_unbalanced, clipped_or_truncated, dropout_or_silence o uncertain.
+- Usa solo herramientas estándar del runner (ffmpeg + Python stdlib), no añade dependencias a la app ni modifica audio, overrides, producción, IndexedDB o backup v3. La auditoría técnica no evalúa pronunciación, fonemas, acento, prosodia ni corrección lingüística.
+- Añade pruebas unitarias para las métricas y etiquetas. La ejecución real se hará sobre el manifiesto + MP3 del artefacto sample100 cuando estén disponibles en un workflow manual; no se deben regenerar audios para realizar esta auditoría.
+- Fuente: PR #657 fusionada (7746b2f2021e7084552e0da31a94c99d5e3e4b9c) y diseño de auditoría aprobado; 18 nov 2026.
+
+
+## Corrección CI: descubrimiento de pruebas de auditoría técnica — 18 nov 2026
+- La primera ejecución de CI de PR #658 (#44262775374) falló en el paso de auditoría técnica porque unittest discover encontró 0 pruebas: el archivo tests/test_audio_technical_audit.py contenía funciones test_* simples, no métodos de una clase unittest.TestCase.
+- Se corrige el archivo convirtiendo las ocho comprobaciones en métodos de unittest.TestCase, manteniendo Python estándar y el mismo comando de CI. El fallo era de descubrimiento del runner, no evidencia de que las métricas del auditor estuvieran incorrectas.
+- No se fusiona PR #658 hasta que todas las pruebas y el resto de CI terminen correctamente. No se ejecutan audios ni se modifica producción durante esta corrección.
+- Fuente: Actions run #44262775374, job 134659896804, paso Run technical audio audit tests; 18 nov 2026.
+
+
+## Corrección de aserción RMS en auditoría técnica — 18 nov 2026
+- CI de PR #658 (run #44265148387) ya descubrió y ejecutó las ocho pruebas correctamente, pero una aserción de rango RMS era demasiado alta: el vector de prueba produce RMS ≈0.61236, no >0.7.
+- Se ajustó únicamente la expectativa del test a 0.6 < RMS < 0.7; no cambia la implementación del auditor ni sus umbrales técnicos.
+- Los otros siete tests pasaron. La corrección queda en la misma rama y debe volver a ejecutar CI antes de fusionar.
+- Fuente: Actions run #44265148387, job 134667716096, paso Run technical audio audit tests; 18 nov 2026.

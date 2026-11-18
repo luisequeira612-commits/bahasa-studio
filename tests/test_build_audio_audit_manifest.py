@@ -73,6 +73,8 @@ class StratifiedAudioAuditManifestTests(unittest.TestCase):
         manifest, _ = build_manifest(rows)
         self.assertTrue(all(row["linguistic_status"] == "not_assessed" for row in manifest))
         self.assertTrue(all(row["technical_listening_status"] == "pending" for row in manifest))
+        self.assertTrue(all("duration_seconds" in row for row in manifest))
+        self.assertTrue(all(row["duration_seconds"] == "" for row in manifest))
 
     def test_target_normalization_only_deduplicates_case_punctuation_spacing(self):
         self.assertEqual(normalize_target(" Halo,  DUNIA! "), "halo dunia")

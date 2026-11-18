@@ -439,3 +439,10 @@
 - Usa solo herramientas estándar del runner (ffmpeg + Python stdlib), no añade dependencias a la app ni modifica audio, overrides, producción, IndexedDB o backup v3. La auditoría técnica no evalúa pronunciación, fonemas, acento, prosodia ni corrección lingüística.
 - Añade pruebas unitarias para las métricas y etiquetas. La ejecución real se hará sobre el manifiesto + MP3 del artefacto sample100 cuando estén disponibles en un workflow manual; no se deben regenerar audios para realizar esta auditoría.
 - Fuente: PR #657 fusionada (7746b2f2021e7084552e0da31a94c99d5e3e4b9c) y diseño de auditoría aprobado; 18 nov 2026.
+
+
+## Corrección CI: descubrimiento de pruebas de auditoría técnica — 18 nov 2026
+- La primera ejecución de CI de PR #658 (#44262775374) falló en el paso de auditoría técnica porque unittest discover encontró 0 pruebas: el archivo tests/test_audio_technical_audit.py contenía funciones test_* simples, no métodos de una clase unittest.TestCase.
+- Se corrige el archivo convirtiendo las ocho comprobaciones en métodos de unittest.TestCase, manteniendo Python estándar y el mismo comando de CI. El fallo era de descubrimiento del runner, no evidencia de que las métricas del auditor estuvieran incorrectas.
+- No se fusiona PR #658 hasta que todas las pruebas y el resto de CI terminen correctamente. No se ejecutan audios ni se modifica producción durante esta corrección.
+- Fuente: Actions run #44262775374, job 134659896804, paso Run technical audio audit tests; 18 nov 2026.

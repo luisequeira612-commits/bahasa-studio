@@ -50,6 +50,8 @@ jobs:
         run: python -m unittest discover -s tests -p 'test_audio_generation.py'
       - name: Run Whisper diagnostic metric tests
         run: python -m unittest discover -s tests -p 'test_diagnose_whisper_sample.py'
+      - name: Run stratified audio audit manifest tests
+        run: python -m unittest discover -s tests -p 'test_build_audio_audit_manifest.py'
       - name: Check Python audio generator syntax
         run: python -m py_compile scripts/generate_audio.py
       - name: Run assessment speech recognition lifecycle tests

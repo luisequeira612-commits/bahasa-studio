@@ -416,3 +416,11 @@
 - La ejecución manual del diagnóstico comparativo #44241747682 descargó la muestra100 e instaló Whisper, pero falló al comenzar la transcripción porque el runner no tenía el ejecutable del sistema `ffmpeg` (FileNotFoundError). No se procesaron comparaciones, no se generó artefacto de informe y no se modificó audio de producción.
 - Corrección propuesta en la rama `fix/whisper-diagnostic-install-ffmpeg-20261118`: instalar FFmpeg con apt en un paso explícito antes de instalar/ejecutar Whisper y verificar `ffmpeg -version`. Se mantienen workflow_dispatch, ubuntu-latest, timeout 180, muestra existente y cero regeneración MMS. Pendiente CI y nueva ejecución manual del diagnóstico.
 - Fuente: Actions run #44241747682, logs del job 134591063817; 18 nov 2026.
+
+
+## Resultado Whisper base vs small y análisis de la muestra — 18 nov 2026
+- La ejecución manual #44244108322 terminó correctamente: 100/100 clips comparados; media de similitud por tokens `base=0.4205`, `small=0.3960`; 13 casos favorecen a base, 11 a small, 35 similares y 41 bajos en ambos. No se regeneró MMS ni se modificó producción.
+- Los 100 clips representan 86 textos objetivo distintos; 42 son palabras aisladas y 36/41 casos `both_low` son palabras de una sola palabra. No hay evidencia de archivos vacíos/silenciosos; la duración fue 0.768–3.504 s. Esto apunta a una limitación importante del ASR en clips muy cortos, no demuestra mala pronunciación MMS.
+- Se detectó que la métrica es similitud de edición de tokens, no score fonético; números escritos y dígitos no se normalizan. Este cambio añade desglose por longitud, definición explícita de umbrales y conteo de coincidencias ordenadas sin duplicar tokens. Pruebas Python estándar, sin dependencias nuevas.
+- Mantener Whisper base como referencia provisional; no cambiar overrides ni regenerar producción por estos resultados. Revisar primero una muestra estratificada y cualquier discrepancia con escucha técnica/humana.
+- Fuente: Actions #44244108322, artefacto #14401108232, CSV comparativo y análisis técnico de los 100 MP3 del artefacto #14391907433; 18 nov 2026.

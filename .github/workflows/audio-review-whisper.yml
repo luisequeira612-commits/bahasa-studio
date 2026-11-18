@@ -47,11 +47,6 @@ jobs:
       HF_HUB_DISABLE_TELEMETRY: "1"
       PIP_NO_CACHE_DIR: "1"
       BAHASA_TTS_PERSIST_MODEL_CACHE: "1"
-      BAHASA_TTS_MODEL_CACHE: ${{ runner.temp }}/guardi-audio-model-cache/huggingface
-      HF_HOME: ${{ runner.temp }}/guardi-audio-model-cache/huggingface
-      HF_HUB_CACHE: ${{ runner.temp }}/guardi-audio-model-cache/huggingface/hub
-      TORCH_HOME: ${{ runner.temp }}/guardi-audio-model-cache/torch
-      WHISPER_CACHE_DIR: ${{ runner.temp }}/guardi-audio-model-cache/home/.cache/whisper
       MODE: ${{ inputs.mode }}
       BATCH_SIZE: ${{ inputs.batch_size }}
       WHISPER_SIZE: ${{ inputs.whisper_size }}
@@ -61,6 +56,22 @@ jobs:
       - name: Start execution timer
         id: clock
         run: echo "started=$(date +%s)" >> "$GITHUB_OUTPUT"
+
+      - name: Configure temporary model cache paths
+        env:
+          BAHASA_TTS_MODEL_CACHE: ${{ runner.temp }}/guardi-audio-model-cache/huggingface
+          HF_HOME: ${{ runner.temp }}/guardi-audio-model-cache/huggingface
+          HF_HUB_CACHE: ${{ runner.temp }}/guardi-audio-model-cache/huggingface/hub
+          TORCH_HOME: ${{ runner.temp }}/guardi-audio-model-cache/torch
+          WHISPER_CACHE_DIR: ${{ runner.temp }}/guardi-audio-model-cache/home/.cache/whisper
+        run: |
+          {
+            echo "BAHASA_TTS_MODEL_CACHE=$BAHASA_TTS_MODEL_CACHE"
+            echo "HF_HOME=$HF_HOME"
+            echo "HF_HUB_CACHE=$HF_HUB_CACHE"
+            echo "TORCH_HOME=$TORCH_HOME"
+            echo "WHISPER_CACHE_DIR=$WHISPER_CACHE_DIR"
+          } >> "$GITHUB_ENV"
 
       - name: Enforce production approval gate
         if: ${{ inputs.mode == 'production-batch' && inputs.confirm_production != true }}

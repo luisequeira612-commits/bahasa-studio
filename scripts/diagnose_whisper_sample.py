@@ -5,63 +5,155 @@ Diagnostic only: it never changes audio, overrides, production state,
 IndexedDB, or backup data.
 """
 from __future__ import annotations
-import argparse, csv, json, re, subprocess
+
+import argparse
+import csv
+import json
+import re
 from pathlib import Path
 from statistics import mean
 
+import whisper
+
+
 def norm(text: str) -> str:
-    return re.sub(r"[^a-z0-9áéíóúüñ'\s-]", " ", (text or "").lower())
+    return re.sub(r"[^a-z0-9áéíóúüñ'\\s-]", " ", (text or "").lower())
+
+
 def words(text: str) -> list[str]:
-    return [w for w in norm(text).split() if w]
+    return [word for word in norm(text).split() if word]
+
+
 def edit_distance(a: list[str], b: list[str]) -> int:
-    prev=list(range(len(b)+1))
-    for i,x in enumerate(a,1):
-        cur=[i]
-        for j,y in enumerate(b,1):
-            cur.append(min(cur[-1]+1,prev[j]+1,prev[j-1]+(x!=y)))
-        prev=cur
-    return prev[-1]
+    previous = list(range(len(b) + 1))
+    for i, word_a in enumerate(a, 1):
+        current = [i]
+        for j, word_b in enumerate(b, 1):
+            current.append(min(
+                current[-1] + 1,
+                previous[j] + 1,
+                previous[j - 1] + (word_a != word_b),
+            ))
+        previous = current
+    return previous[-1]
+
+
 def score(target: str, transcript: str) -> float:
-    a,b=words(target),words(transcript)
-    return 1.0 if not a and not b else max(0.0,1.0-edit_distance(a,b)/max(len(a),len(b),1))
-def transcribe(model: str, audio: Path, cache_dir: Path) -> str:
-    code=("import whisper,sys; m=whisper.load_model(sys.argv[1], download_root=sys.argv[3], device='cpu'); "
-          "r=m.transcribe(sys.argv[2], language='id', task='transcribe', fp16=False); print(r.get('text','').strip())")
-    return subprocess.check_output(["python","-c",code,model,str(audio),str(cache_dir)],text=True,stderr=subprocess.DEVNULL).strip()
+    target_words, transcript_words = words(target), words(transcript)
+    if not target_words and not transcript_words:
+        return 1.0
+    return max(
+        0.0,
+        1.0 - edit_distance(target_words, transcript_words)
+        / max(len(target_words), len(transcript_words), 1),
+    )
+
+
+def transcribe(model: whisper.Whisper, audio: Path) -> str:
+    result = model.transcribe(
+        str(audio), language="id", task="transcribe", fp16=False
+    )
+    return result.get("text", "").strip()
+
 
 def main() -> int:
-    ap=argparse.ArgumentParser()
-    ap.add_argument("--report",required=True,type=Path); ap.add_argument("--audio-dir",required=True,type=Path)
-    ap.add_argument("--model-a",default="base"); ap.add_argument("--model-b",default="small")
-    ap.add_argument("--cache-dir",required=True,type=Path); ap.add_argument("--output",required=True,type=Path)
-    args=ap.parse_args()
-    rows=list(csv.DictReader(args.report.open(encoding="utf-8-sig"))); results=[]
-    for index,row in enumerate(rows,1):
-        audio=args.audio_dir/f"{row['ID']}.mp3"
-        if not audio.exists(): continue
-        a=transcribe(args.model_a,audio,args.cache_dir); b=transcribe(args.model_b,audio,args.cache_dir)
-        ta,tb=row["original text"],a
-        sa,sb=score(ta,a),score(ta,b); tw=words(ta); aw,bw=words(a),words(b)
-        results.append({"ID":row["ID"],"original_text":ta,"baseline_status":row["status"],
-                        f"{args.model_a}_transcript":a,f"{args.model_b}_transcript":b,
-                        f"{args.model_a}_score":f"{sa:.4f}",f"{args.model_b}_score":f"{sb:.4f}",
-                        f"{args.model_a}_target_word_hits":sum(w in aw for w in tw),
-                        f"{args.model_b}_target_word_hits":sum(w in bw for w in tw),
-                        "small_vs_base_delta":f"{sb-sa:.4f}",
-                        "diagnostic":"both_low" if sa<.25 and sb<.25 else "small_improves" if sb>=sa+.20 else "base_improves" if sa>=sb+.20 else "similar"})
-        print(f"[{index}/{len(rows)}] {row['ID']}",flush=True)
-    args.output.parent.mkdir(parents=True,exist_ok=True)
-    fields=list(results[0].keys()) if results else ["ID","original_text","baseline_status"]
-    with args.output.open("w",encoding="utf-8",newline="") as fh:
-        w=csv.DictWriter(fh,fieldnames=fields); w.writeheader(); w.writerows(results)
-    summary={"rows":len(results),"baseline_review":sum(r["baseline_status"]=="revisar" for r in results),
-             "both_low":sum(r["diagnostic"]=="both_low" for r in results),
-             "small_improves":sum(r["diagnostic"]=="small_improves" for r in results),
-             "base_improves":sum(r["diagnostic"]=="base_improves" for r in results),
-             "similar":sum(r["diagnostic"]=="similar" for r in results),
-             "mean_score":{args.model_a:round(mean(float(r[f"{args.model_a}_score"]) for r in results),4) if results else 0.0,
-                           args.model_b:round(mean(float(r[f"{args.model_b}_score"]) for r in results),4) if results else 0.0},
-             "interpretation":"Diagnóstico de ASR, no certificación de pronunciación. both_low no demuestra por sí solo que MMS pronuncie mal."}
-    args.output.with_suffix(".summary.json").write_text(json.dumps(summary,ensure_ascii=False,indent=2),encoding="utf-8")
-    print(json.dumps(summary,ensure_ascii=False,indent=2)); return 0
-if __name__=="__main__": raise SystemExit(main())
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--report", required=True, type=Path)
+    parser.add_argument("--audio-dir", required=True, type=Path)
+    parser.add_argument("--model-a", default="base", choices=("base", "small"))
+    parser.add_argument("--model-b", default="small", choices=("base", "small"))
+    parser.add_argument("--cache-dir", required=True, type=Path)
+    parser.add_argument("--output", required=True, type=Path)
+    args = parser.parse_args()
+
+    args.cache_dir.mkdir(parents=True, exist_ok=True)
+    with args.report.open(encoding="utf-8-sig", newline="") as handle:
+        rows = list(csv.DictReader(handle))
+
+    # Load each model once. Loading inside the audio loop would download/read
+    # model weights up to 200 times and make the diagnostic impractically slow.
+    models = {
+        args.model_a: whisper.load_model(
+            args.model_a, device="cpu", download_root=str(args.cache_dir)
+        )
+    }
+    if args.model_b not in models:
+        models[args.model_b] = whisper.load_model(
+            args.model_b, device="cpu", download_root=str(args.cache_dir)
+        )
+
+    results = []
+    for index, row in enumerate(rows, 1):
+        audio = args.audio_dir / f"{row['ID']}.mp3"
+        if not audio.is_file():
+            print(f"[{index}/{len(rows)}] {row['ID']}: audio ausente", flush=True)
+            continue
+
+        transcripts = {
+            model_name: transcribe(model, audio)
+            for model_name, model in models.items()
+        }
+        transcript_a = transcripts[args.model_a]
+        transcript_b = transcripts[args.model_b]
+        target = row["original text"]
+        score_a = score(target, transcript_a)
+        score_b = score(target, transcript_b)
+        target_words = words(target)
+        words_a, words_b = words(transcript_a), words(transcript_b)
+
+        results.append({
+            "ID": row["ID"],
+            "original_text": target,
+            "baseline_status": row["status"],
+            f"{args.model_a}_transcript": transcript_a,
+            f"{args.model_b}_transcript": transcript_b,
+            f"{args.model_a}_score": f"{score_a:.4f}",
+            f"{args.model_b}_score": f"{score_b:.4f}",
+            f"{args.model_a}_target_word_hits": sum(w in words_a for w in target_words),
+            f"{args.model_b}_target_word_hits": sum(w in words_b for w in target_words),
+            "model_b_vs_a_delta": f"{score_b - score_a:.4f}",
+            "diagnostic": (
+                "both_low" if score_a < .25 and score_b < .25
+                else "model_b_improves" if score_b >= score_a + .20
+                else "model_a_improves" if score_a >= score_b + .20
+                else "similar"
+            ),
+        })
+        print(f"[{index}/{len(rows)}] {row['ID']}", flush=True)
+
+    args.output.parent.mkdir(parents=True, exist_ok=True)
+    fields = list(results[0]) if results else [
+        "ID", "original_text", "baseline_status"
+    ]
+    with args.output.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=fields)
+        writer.writeheader()
+        writer.writerows(results)
+
+    summary = {
+        "rows": len(results),
+        "baseline_review": sum(r["baseline_status"] == "revisar" for r in results),
+        "both_low": sum(r["diagnostic"] == "both_low" for r in results),
+        "model_b_improves": sum(r["diagnostic"] == "model_b_improves" for r in results),
+        "model_a_improves": sum(r["diagnostic"] == "model_a_improves" for r in results),
+        "similar": sum(r["diagnostic"] == "similar" for r in results),
+        "mean_score": {
+            args.model_a: round(mean(float(r[f"{args.model_a}_score"]) for r in results), 4)
+            if results else 0.0,
+            args.model_b: round(mean(float(r[f"{args.model_b}_score"]) for r in results), 4)
+            if results else 0.0,
+        },
+        "interpretation": (
+            "Diagnóstico de ASR, no certificación de pronunciación. "
+            "both_low no demuestra por sí solo que MMS pronuncie mal."
+        ),
+    }
+    args.output.with_suffix(".summary.json").write_text(
+        json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
+    print(json.dumps(summary, ensure_ascii=False, indent=2))
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

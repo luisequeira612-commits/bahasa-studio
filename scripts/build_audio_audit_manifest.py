@@ -11,6 +11,8 @@ import csv
 import hashlib
 import json
 import re
+import shutil
+import subprocess
 from collections import Counter, defaultdict
 from pathlib import Path
 
@@ -112,9 +114,29 @@ def select_balanced(
     return selected
 
 
+def audio_duration_seconds(audio_dir: Path | None, clip_id: str) -> str:
+    """Read duration with ffprobe when an audio directory is supplied; never alters audio."""
+    if audio_dir is None:
+        return ""
+    ffprobe = shutil.which("ffprobe")
+    audio = audio_dir / f"{clip_id}.mp3"
+    if not ffprobe or not audio.is_file():
+        return ""
+    result = subprocess.run(
+        [ffprobe, "-v", "error", "-show_entries", "format=duration",
+         "-of", "default=noprint_wrappers=1:nokey=1", str(audio)],
+        capture_output=True, text=True, check=False,
+    )
+    value = result.stdout.strip()
+    try:
+        return f"{float(value):.3f}" if value else ""
+    except ValueError:
+        return ""
+
 def build_manifest(
     rows: list[dict[str, str]], seed: str = DEFAULT_SEED,
     quotas: dict[int, int] | None = None,
+    audio_dir: Path | None = None,
 ) -> tuple[list[dict[str, str]], dict]:
     quotas = dict(quotas or DEFAULT_QUOTAS)
     if any(count not in (1, 2, 3, 4) or quota < 0 for count, quota in quotas.items()):
@@ -183,6 +205,7 @@ def build_manifest(
             "ID": row["ID"],
             "original_text": row["original_text"],
             "target_word_count": str(length),
+            "duration_seconds": audio_duration_seconds(audio_dir, row["ID"]),
             "diagnostic": row.get("diagnostic", "") or "unknown",
             "base_score": row.get("base_score", ""),
             "small_score": row.get("small_score", ""),
@@ -212,6 +235,7 @@ def build_manifest(
             "Manifest de escucha técnica, no certificación de pronunciación. "
             "Whisper solo define estratos de muestreo."
         ),
+        "duration_seconds_included": audio_dir is not None,
         "audio_modified": False,
         "production_modified": False,
     }
@@ -224,12 +248,14 @@ def main() -> int:
                         help="whisper_model_comparison.csv del artefacto sample100")
     parser.add_argument("--output", required=True, type=Path)
     parser.add_argument("--summary", type=Path)
+    parser.add_argument("--audio-dir", type=Path,
+                        help="Directorio opcional con los MP3 sample100 para añadir duración")
     parser.add_argument("--seed", default=DEFAULT_SEED)
     args = parser.parse_args()
 
     with args.input.open(encoding="utf-8-sig", newline="") as handle:
         rows = list(csv.DictReader(handle))
-    manifest, summary = build_manifest(rows, args.seed)
+    manifest, summary = build_manifest(rows, args.seed, audio_dir=args.audio_dir)
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
     with args.output.open("w", encoding="utf-8-sig", newline="") as handle:

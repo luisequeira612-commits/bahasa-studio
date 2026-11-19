@@ -224,6 +224,29 @@ class AudioSamplesPageTests(unittest.TestCase):
             self.assertEqual(worker.read_text(encoding="utf-8"), "const CACHE_NAME = 'bahasa-studio-v3.8.99';")
 
 
+class MmsNoiseSettingsTests(unittest.TestCase):
+    def test_noise_settings_are_applied_only_when_explicitly_supplied(self):
+        class FakeModel:
+            noise_scale = 0.667
+            noise_scale_duration = 0.8
+
+        model = FakeModel()
+        MODULE.apply_mms_noise_settings(model)
+        self.assertEqual(model.noise_scale, 0.667)
+        self.assertEqual(model.noise_scale_duration, 0.8)
+        MODULE.apply_mms_noise_settings(model, 0.0, 0.0)
+        self.assertEqual(model.noise_scale, 0.0)
+        self.assertEqual(model.noise_scale_duration, 0.0)
+
+    def test_sample_record_persists_experimental_noise_parameters(self):
+        entry = {"id": "0123456789ab", "text": "Baik"}
+        record = MODULE.build_sample_record(
+            "mms", entry, "MMS diagnostic", "mms/diagnostics/ns-0p0_nd-0p0/0123456789ab.mp3",
+            noise_scale=0.0, noise_scale_duration=0.0,
+        )
+        self.assertEqual(record["mms_noise"], {"noise_scale": 0.0, "noise_scale_duration": 0.0})
+
+
 class PronunciationPreparationTests(unittest.TestCase):
     def test_three_experimental_pagi_variants_change_only_speech_text(self):
         visible_text = "Selamat pagi!"

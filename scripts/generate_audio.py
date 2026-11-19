@@ -77,6 +77,15 @@ def apply_mms_noise_settings(model, noise_scale: float | None = None, noise_scal
     return model
 
 
+def apply_mms_noise_settings(model, noise_scale: float | None = None, noise_scale_duration: float | None = None):
+    """Apply optional sample-only VITS stochasticity settings without changing defaults."""
+    if noise_scale is not None:
+        model.noise_scale = noise_scale
+    if noise_scale_duration is not None:
+        model.noise_scale_duration = noise_scale_duration
+    return model
+
+
 def verify_mms_model_checksum(model_path: Path) -> str:
     digest = hashlib.sha256()
     with model_path.open("rb") as model_file:

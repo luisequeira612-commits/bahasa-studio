@@ -68,6 +68,15 @@ def prepare_speech_text(text: str, overrides: dict[str, str] | None = None, vari
     return spoken
 
 
+def apply_mms_noise_settings(model, noise_scale: float | None = None, noise_scale_duration: float | None = None):
+    """Apply optional sample-only VITS stochasticity settings without changing defaults."""
+    if noise_scale is not None:
+        model.noise_scale = noise_scale
+    if noise_scale_duration is not None:
+        model.noise_scale_duration = noise_scale_duration
+    return model
+
+
 def verify_mms_model_checksum(model_path: Path) -> str:
     digest = hashlib.sha256()
     with model_path.open("rb") as model_file:
@@ -124,7 +133,7 @@ def cleanup_ephemeral_model_cache(cache_dir: Path):
     """Remove downloaded models and tokenizer caches after generation."""
     shutil.rmtree(cache_dir, ignore_errors=True)
 
-def create_synthesizer(engine: str, voice: str, work_dir: Path):
+def create_synthesizer(engine: str, voice: str, work_dir: Path, noise_scale: float | None = None, noise_scale_duration: float | None = None):
     if engine == "edge":
         import edge_tts
 
@@ -160,6 +169,7 @@ def create_synthesizer(engine: str, voice: str, work_dir: Path):
             MMS_MODEL_ID, revision=MMS_MODEL_REVISION, use_safetensors=True
         ).to("cpu")
         model.eval()
+        apply_mms_noise_settings(model, noise_scale, noise_scale_duration)
 
         def synth(text: str, output: Path):
             torch.manual_seed(MMS_SEED)
@@ -241,7 +251,7 @@ def bump_service_worker_cache_version(service_worker_file: Path):
     return replacement
 
 
-def build_sample_record(engine: str, entry: dict, voice_label: str, sample_file: str | None = None, pronunciation_variant: str | None = None) -> dict:
+def build_sample_record(engine: str, entry: dict, voice_label: str, sample_file: str | None = None, pronunciation_variant: str | None = None, noise_scale: float | None = None, noise_scale_duration: float | None = None) -> dict:
     record = {
         "engine": engine,
         "id": entry["id"],
@@ -252,6 +262,11 @@ def build_sample_record(engine: str, entry: dict, voice_label: str, sample_file:
         record["file"] = sample_file
     if pronunciation_variant:
         record["pronunciation_variant"] = pronunciation_variant
+    if noise_scale is not None or noise_scale_duration is not None:
+        record["mms_noise"] = {
+            "noise_scale": noise_scale,
+            "noise_scale_duration": noise_scale_duration,
+        }
     if engine == "mms":
         record.update({
             "model": MMS_MODEL_ID,
@@ -325,6 +340,8 @@ def main():
     parser.add_argument("--ids", default="", help="comma- or space-separated manifest IDs for an exact set; overrides --limit")
     parser.add_argument("--include-pronunciation-variants", action="store_true", help="add three experimental MMS readings of the A1 phrase Selamat pagi")
     parser.add_argument("--voice", default="id-ID-ArdiNeural")
+    parser.add_argument("--noise-scale", type=float, default=None, help="experimental MMS samples only; lower values reduce acoustic variation")
+    parser.add_argument("--noise-scale-duration", type=float, default=None, help="experimental MMS samples only; lower values reduce duration variation")
     parser.add_argument("--force", action="store_true")
     parser.add_argument("--hash-only", action="store_true", help="refresh MP3 SHA-256 metadata without running TTS")
     args = parser.parse_args()
@@ -332,6 +349,8 @@ def main():
         args.mode = "samples"
     if args.limit < 0:
         parser.error("--limit cannot be negative")
+    if (args.noise_scale is not None or args.noise_scale_duration is not None) and (args.engine != "mms" or args.mode != "samples"):
+        parser.error("MMS noise settings are experimental and allowed only in MMS samples mode; production defaults remain unchanged")
     if args.include_pronunciation_variants and (args.mode != "samples" or args.engine != "mms" or args.ids):
         parser.error("--include-pronunciation-variants requires MMS samples mode and no explicit --ids")
     if args.hash_only:
@@ -374,7 +393,12 @@ def main():
     output_dir.mkdir(parents=True, exist_ok=True)
     model_cache = create_ephemeral_model_cache(ROOT)
 
-    synthesize, voice_label = create_synthesizer(args.engine, args.voice, model_cache)
+    synthesize, voice_label = create_synthesizer(
+        args.engine, args.voice, model_cache, args.noise_scale, args.noise_scale_duration
+    )
+    if args.engine == "mms" and (args.noise_scale is not None or args.noise_scale_duration is not None):
+        voice_label += f" · noise_scale={args.noise_scale if args.noise_scale is not None else 'default'}"
+        voice_label += f" · noise_scale_duration={args.noise_scale_duration if args.noise_scale_duration is not None else 'default'}"
     sample_file = ROOT / "audio-samples" / "samples.json"
     if args.mode == "full":
         ensure_single_voice(
@@ -382,7 +406,12 @@ def main():
             allow_piper_replacement=args.engine == "mms" and args.force,
         )
     existing_samples = json.loads(sample_file.read_text(encoding="utf-8")) if sample_file.exists() else []
-    sample_map = {(item["engine"], item["id"], item.get("pronunciation_variant", "")): item for item in existing_samples}
+    sample_map = {
+        (item["engine"], item["id"], item.get("pronunciation_variant", ""),
+         item.get("mms_noise", {}).get("noise_scale"),
+         item.get("mms_noise", {}).get("noise_scale_duration")): item
+        for item in existing_samples
+    }
 
     available_ids = set()
     index_file = ROOT / "audio" / "index.json"
@@ -397,7 +426,11 @@ def main():
                 variant_slug = re.sub(r"[^a-z0-9]+", "-", pronunciation_variant.lower()).strip("-")
                 sample_relative_file = f"{args.engine}/pronunciation-variants/selamat-pagi__{variant_slug}.mp3"
             else:
-                sample_relative_file = f"{args.engine}/{entry['id']}.mp3"
+                if args.engine == "mms" and (args.noise_scale is not None or args.noise_scale_duration is not None):
+                    noise_slug = f"ns-{args.noise_scale if args.noise_scale is not None else 'default'}_nd-{args.noise_scale_duration if args.noise_scale_duration is not None else 'default'}".replace(".", "p")
+                    sample_relative_file = f"{args.engine}/diagnostics/{noise_slug}/{entry['id']}.mp3"
+                else:
+                    sample_relative_file = f"{args.engine}/{entry['id']}.mp3"
             destination = ROOT / "audio-samples" / sample_relative_file
             destination.parent.mkdir(parents=True, exist_ok=True)
             if destination.exists() and not args.force:
@@ -425,8 +458,9 @@ def main():
         if args.mode == "full":
             available_ids.add(entry["id"])
         else:
-            sample_map[(args.engine, entry["id"], pronunciation_variant or "")] = build_sample_record(
-                args.engine, entry, voice_label, sample_relative_file, pronunciation_variant
+            sample_map[(args.engine, entry["id"], pronunciation_variant or "", args.noise_scale, args.noise_scale_duration)] = build_sample_record(
+                args.engine, entry, voice_label, sample_relative_file, pronunciation_variant,
+                args.noise_scale, args.noise_scale_duration,
             )
         print(f"[{position}/{len(jobs)}] {entry['id']} {entry['text']}" + (f" [{pronunciation_variant}]" if pronunciation_variant else ""))
 

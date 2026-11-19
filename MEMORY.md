@@ -1,3 +1,8 @@
+## Consistencia de voz MMS — investigación y experimento — 19 nov 2026
+- El config oficial de `facebook/mms-tts-ind` declara `num_speakers=1`: no hay perfiles seleccionables joven/anciano. VITS usa `noise_scale=0.667` y `noise_scale_duration=0.8` por defecto, parámetros que controlan variación acústica y de duración. Fuentes: [config](https://huggingface.co/facebook/mms-tts-ind/blob/main/config.json), [docs VITS](https://huggingface.co/docs/transformers/v4.33.3/model_doc/vits).
+- En la muestra de 30, los tres clips que el usuario marcó como balbuceo (Baik, Dia, Umur) son de una palabra; sus tres favoritos son frases de 2–3 palabras. La mediana F0 estimada por palabra fue ~147 Hz (12 clips), dos palabras ~155 Hz (8) y tres palabras ~189 Hz (8). Es una pista acústica dependiente del texto, no identifica hablantes ni certifica pronunciación.
+- Se añade control experimental de escalas VITS solo para `mms` + `samples`; las opciones vacías conservan los defaults y `full` rechaza esos parámetros. Las muestras experimentales se guardan en subcarpetas separadas y registran sus escalas; producción, overrides, IndexedDB y backup v3 no cambian.
+
 # MEMORY.md — Estado de Bahasa Studio
 
 ## Migración de generación de audio a MMS — 17 nov 2026

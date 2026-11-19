@@ -30,6 +30,16 @@ on:
         type: string
         default: id-ID-GadisNeural
         required: false
+      noise_scale:
+        description: Escala experimental de ruido MMS (vacío conserva el valor predeterminado)
+        type: string
+        default: ''
+        required: false
+      noise_scale_duration:
+        description: Escala experimental de duración MMS (vacío conserva el valor predeterminado)
+        type: string
+        default: ''
+        required: false
       level:
         description: Nivel o todos para generación completa
         type: choice
@@ -68,6 +78,8 @@ jobs:
       LIMIT: ${{ inputs.limit }}
       IDS: ${{ inputs.ids }}
       VOICE: ${{ inputs.voice }}
+      NOISE_SCALE: ${{ inputs.noise_scale }}
+      NOISE_SCALE_DURATION: ${{ inputs.noise_scale_duration }}
       CONFIRM_FULL: ${{ inputs.confirm_full }}
       SOURCE_REF: ${{ inputs.source_ref }}
       BAHASA_TTS_PERSIST_MODEL_CACHE: "1"
@@ -80,6 +92,12 @@ jobs:
         if: ${{ inputs.mode == 'full' && inputs.confirm_full != true }}
         run: |
           echo "::error::La generación completa requiere confirm_full=true y la selección previa de una voz."
+          exit 1
+
+      - name: Restrict experimental MMS noise settings to MMS samples
+        if: ${{ (inputs.noise_scale != '' || inputs.noise_scale_duration != '') && (inputs.engine != 'mms' || inputs.mode != 'samples') }}
+        run: |
+          echo "::error::Las escalas de ruido solo se permiten para muestras MMS; no afectan la producción."
           exit 1
 
       - name: Restrict both-engine comparison to samples
@@ -203,6 +221,8 @@ jobs:
             python scripts/generate_audio.py --engine mms --hash-only
           elif [[ "$MODE" == "samples" ]]; then
             ARGS=(--mode samples --level "$LEVEL" --limit "$LIMIT" --force)
+            if [[ -n "$NOISE_SCALE" ]]; then ARGS+=(--noise-scale "$NOISE_SCALE"); fi
+            if [[ -n "$NOISE_SCALE_DURATION" ]]; then ARGS+=(--noise-scale-duration "$NOISE_SCALE_DURATION"); fi
             if [[ -n "$IDS" ]]; then
               ARGS+=(--ids "$IDS")
             fi

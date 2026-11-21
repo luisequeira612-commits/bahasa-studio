@@ -1,6 +1,6 @@
 # B2 U8 — paquete de aprobación léxica y contextual
 
-**Estado:** propuesta para revisión del dueño; no es contenido ejecutable.  
+**Estado:** aprobación registrada; no es un paquete de contenido ejecutable independiente. El contenido aprobado se implementó en B2 U8 mediante PR #639.  
 **Fecha:** 16 nov 2026.  
 **Unidad:** U8, ke-...-an como nominalizador abstracto y de predicados complejos.  
 **Base didáctica:** `docs/B2_U8_DESIGN.md` (cinco lecciones previstas, 16 ejercicios).  
@@ -52,3 +52,11 @@ La distribución es orientativa. Si se rechaza una forma, se ajustará la secuen
 ## Cómo responder la aprobación
 
 El dueño puede aprobar todas las filas, aprobar solo números concretos, corregir una glosa/oración o rechazar candidatos. Solo las filas aprobadas pasarán a la siguiente fase de implementación; la aprobación no se extiende a otras unidades ni a nuevas formas por analogía.
+
+
+## Decisión del dueño — 16 nov 2026
+
+- El dueño aprobó las ocho formas y los ejemplos contextuales propuestos en las filas 1–8 de este paquete: `kekotoran`, `kedatangan`, `kementerian`, `kepulauan`, `ketidakadilan`, `kesalahpahaman`, `keingintahuan` y `keberuntungan`.
+- La aprobación se aplicó exclusivamente a esos ocho candidatos y sus ejemplos; no autoriza derivados por analogía ni formas adicionales.
+- B2 U8 se implementó con cinco lecciones authored y 16 ejercicios y se fusionó en PR #639, merge commit `7b50f3923a5615d61d6cd72ca5cc798800c94e73`.
+- La naturalidad no se presenta como validación nativa ni certificación lexicográfica/MCER/BIPA; se conserva el estado de incertidumbre definido por el proyecto.

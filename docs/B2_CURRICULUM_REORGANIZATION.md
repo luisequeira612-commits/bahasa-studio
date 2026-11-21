@@ -39,7 +39,7 @@ El contenido íntegro del borrador anterior está en `docs/B2_LEGACY_DRAFT_ARCHI
 - Cada forma derivada nueva debe tener un ID canónico único. Antes de reutilizar IDs antiguos, comprobar colisiones en A1/A2/B1 y dentro de B2.
 - No exigir producción de una forma antes de su unidad prevista.
 - A1/A2/B1 quedan intactos. No modificar IndexedDB ni el backup JSON v3; sin dependencias ni servicios externos.
-- B2 permanece en desarrollo. U1–U9 están implementadas con cinco lecciones authored cada una; U1–U5 son las visibles y U6–U9 siguen ocultas hasta decisión explícita de publicación. U8 fue aprobada e implementada en PR #639. U9 se implementó con cinco fragmentos fuente aprobados por el dueño, 16 ejercicios y sin vocabulario/IDs ni audio nuevos. U10 tiene diseño documental; U11–U12 son propuestas; U13–U60 carecen de mapa curricular aprobado.
+- B2 permanece en desarrollo. U1–U9 están implementadas con cinco lecciones authored cada una; U1–U5 son las visibles y U6–U9 siguen ocultas hasta decisión explícita de publicación. U8 fue aprobada e implementada en PR #639. U9 se implementó con cinco fragmentos fuente aprobados por el dueño, 16 ejercicios y sin vocabulario/IDs ni audio nuevos. U10–U12 están implementadas con cinco lecciones authored cada una; U13–U60 carecen de mapa curricular aprobado.
 
 ## Vocabulario y evidencia
 

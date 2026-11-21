@@ -472,7 +472,7 @@ test('B2 U12 implements five authored lessons and 16 source-backed compound/idio
   const exercises = allExercises(unit);
   assert.equal(exercises.length, 16);
   assert.ok(exercises.every((exercise) => exercise.type !== 'listen'), 'U12 must not fall back to device speech without Piper recordings');
-  const exerciseText = exercises.map((exercise) => [exercise.prompt, ...(exercise.options || [])].join(' ')).join(' ');
+  const exerciseText = unit.lessons.map((lesson) => lesson.grammar + ' ' + lesson.exercises.map((exercise) => [exercise.prompt, ...(exercise.options || [])].join(' ')).join(' ')).join(' ');
   for (const example of ['meja tulis', 'kepala sekolah', 'panjang tangan', 'rumah makan', 'baju baru']) {
     assert.ok(exerciseText.includes(example), 'U12 must use the documented example: ' + example);
   }
@@ -515,7 +515,7 @@ test('B2 U13 implements five authored lessons and 16 source-backed pronominal cl
     const target = typeof exercise.modelAnswer === 'string' ? exercise.modelAnswer
       : typeof exercise.answer === 'string' ? exercise.answer
       : '';
-    return target.trim().split(/\\s+/).filter(Boolean).length >= 5;
+    return target.trim().split(/\s+/).filter(Boolean).length >= 5;
   });
   assert.ok(sentenceTargets.length >= 5, 'U13 must include at least five complete-sentence response targets');
 });

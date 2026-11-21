@@ -33,11 +33,11 @@ jobs:
           node scripts/export-audio-manifest.mjs --include-b2 --output "$RUNNER_TEMP/b2-audio-manifest.json"
           node <<'NODE'
           const fs = require('node:fs');
-          const event = JSON.parse(fs.readFileSync(process.env.GITHUB_EVENT_PATH, 'utf8'));
-          const changed = [...new Set((event.commits || []).flatMap((commit) => [
-            ...(commit.added || []),
-            ...(commit.modified || [])
-          ]))].filter((path) => path.startsWith('docs/audio-requests/') && path.endsWith('.json'));
+          const { execFileSync } = require('node:child_process');
+          const changed = [...new Set(execFileSync('git', ['show', '--pretty=format:', '--name-only', 'HEAD'], { encoding: 'utf8' })
+            .split(/\\r?\\n/)
+            .map((path) => path.trim())
+            .filter((path) => path.startsWith('docs/audio-requests/') && path.endsWith('.json')))];
           if (changed.length !== 1) throw new Error('Expected exactly one changed audio request JSON file; got: ' + changed.join(', '));
           const request = JSON.parse(fs.readFileSync(changed[0], 'utf8'));
           if (request.engine !== 'piper' || request.level !== 'B2' || !Array.isArray(request.texts) || request.texts.length === 0) {

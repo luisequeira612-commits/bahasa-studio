@@ -354,6 +354,20 @@ def select_manifest_entries(entries: list[dict], level: str, limit: int, ids_tex
     return selected[:limit] if limit else selected
 
 
+def include_indexed_legacy_entries(entries: list[dict], legacy_entries: list[dict], indexed_ids: set[str]) -> list[dict]:
+    """Append retired manifest records still referenced by the committed audio index."""
+    current_ids = {entry["id"] for entry in entries}
+    legacy_by_id = {entry["id"]: entry for entry in legacy_entries}
+    missing_ids = sorted(indexed_ids - current_ids)
+    unresolved = [audio_id for audio_id in missing_ids if audio_id not in legacy_by_id]
+    if unresolved:
+        raise ValueError(
+            "Indexed audio IDs are missing from both the current and legacy manifests: "
+            + ", ".join(unresolved[:20])
+        )
+    return entries + [legacy_by_id[audio_id] for audio_id in missing_ids]
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--engine", choices=("piper", "edge", "mms"), required=True)
@@ -362,6 +376,7 @@ def main():
     parser.add_argument("--level", choices=LEVELS, default="all")
     parser.add_argument("--limit", type=int, default=10, help="0 means all selected texts")
     parser.add_argument("--ids", default="", help="comma- or space-separated manifest IDs for an exact set; overrides --limit")
+    parser.add_argument("--legacy-manifest", type=Path, default=None, help="historical manifest used only to regenerate indexed legacy clips in a full all-level migration")
     parser.add_argument("--include-pronunciation-variants", action="store_true", help="add three experimental MMS readings of the A1 phrase Selamat pagi")
     parser.add_argument("--voice", default=PIPER_MODEL_ID)
     parser.add_argument("--noise-scale", type=float, default=None, help="experimental MMS samples only; lower values reduce acoustic variation")
@@ -395,6 +410,22 @@ def main():
         entries = select_manifest_entries(manifest_entries, args.level, args.limit, args.ids)
     except ValueError as error:
         parser.error(str(error))
+
+    index_file = ROOT / "audio" / "index.json"
+    indexed_ids = set()
+    if args.mode == "full" and index_file.exists():
+        indexed_ids.update(json.loads(index_file.read_text(encoding="utf-8")))
+
+    if args.legacy_manifest is not None:
+        if args.mode != "full" or args.level != "all" or args.ids:
+            parser.error("--legacy-manifest is allowed only for a full all-level generation without explicit --ids")
+        if not args.legacy_manifest.is_file():
+            parser.error(f"Legacy manifest not found: {args.legacy_manifest}")
+        try:
+            legacy_entries = json.loads(args.legacy_manifest.read_text(encoding="utf-8"))
+            entries = include_indexed_legacy_entries(entries, legacy_entries, indexed_ids)
+        except (ValueError, KeyError, TypeError) as error:
+            parser.error(f"Could not reconcile indexed legacy audio: {error}")
 
     jobs = [(entry, None) for entry in entries]
     # The existing main-branch workflow can run this branch via source_ref before
@@ -437,10 +468,7 @@ def main():
         for item in existing_samples
     }
 
-    available_ids = set()
-    index_file = ROOT / "audio" / "index.json"
-    if args.mode == "full" and index_file.exists():
-        available_ids.update(json.loads(index_file.read_text(encoding="utf-8")))
+    available_ids = set(indexed_ids)
 
     pronunciation_overrides = load_pronunciation_overrides()
     for position, (entry, pronunciation_variant) in enumerate(jobs, 1):

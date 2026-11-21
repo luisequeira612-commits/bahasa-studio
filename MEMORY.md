@@ -1,8 +1,13 @@
+## B2 U12 implementada — 21 nov 2026
+- PR [#674](https://github.com/luisequeira612-commits/bahasa-studio/pull/674) implementa U12 en una rama separada; CI pendiente al abrirla. U12 incorpora cinco lecciones authored y 16 ejercicios ([3,3,3,3,4]) de cuatro tipos (mc, fill, order, write), sin vocabulario/IDs nuevos ni producción de frases indonesias. Usa ejemplos publicados de Denistia & Baayen (2021) y Darnis (2022) para contrastar compuestos, frases, transparencia, cabeza e idioms; conserva la ambigüedad donde las fuentes permiten más de un análisis.
+- U12 permanece oculta/no publicada; U1–U5 siguen siendo las únicas unidades visibles. No añade audio, dependencias ni cambios a IndexedDB v1 o backup JSON v3. La revisión estructural no es validación nativa.
+- Fuente: autorización autónoma del dueño, 21 nov 2026; `docs/B2_U12_DESIGN.md`; [Denistia & Baayen (2021)](https://www.sfs.uni-tuebingen.de/~hbaayen/publications/DenistiaBaayen2021.pdf), [Darnis (2022)](https://badanbahasa.kemendikdasmen.go.id/artikel-detail/808/majemuk-idiom-dan-frasa-konsep-dan-perbedaannya).
+
 ## B2 U11 implementada — 21 nov 2026
 - Por instrucción directa del dueño, continúa la implementación autónoma de B2 por lotes, sin pedir aprobación intermedia. La autorización incluye añadir vocabulario nuevo cuando esté documentado y no duplique entradas existentes; no autoriza publicar las unidades.
 - U11 tiene cinco lecciones authored y 16 ejercicios ([3,3,3,3,4]), cinco tipos (mc, translate_es_id, order, fill, write) y 14 entradas canónicas nuevas: `pulau-pulau`, `dua-dua`, `memukul-mukul`, `pukul-memukul`, `dipukul-pukul`, `melihat-lihat`, `sayur-mayur`, `gerak-gerik`, `kaya-raya`, `lelaki`, `dedaunan`, `pepohonan`, `kecil-kecil`, `keras-keras`. Se distinguen reduplicación completa, afijada, imitativa y parcial; no se generan formas por analogía.
 - Fuentes: Denistia & Baayen (2021), Dalrymple & Mofu (2012), Fettes (2024) y ejemplos de Sneddon documentados en las referencias curriculares. Los resultados de Fettes son específicos del indonesio de Yakarta y no se generalizan al estándar.
-- No se añaden tareas de escucha: los textos nuevos no tienen grabación Piper en el manifiesto y el motor caería a voz del dispositivo; no se ofrece esa sustitución como si fuera Piper. No se modifica audio, manifiesto, dependencias ni datos persistentes.
+- La PR #673 generó e integró 15 textos Piper (14 formas nuevas y una respuesta de traducción) en MP3/Opus; el índice y manifiesto productivos alcanzan 2.227 IDs, 113 asociados a B2. No se añadieron tareas de escucha; las tarjetas nuevas sí tienen audio Piper reproducible. No se modifican IndexedDB v1 ni backup JSON v3.
 - U11 permanece oculta/no publicada; U1–U5 siguen siendo las únicas unidades visibles. No se modifican IndexedDB v1 ni backup JSON v3.
 - Fuente: instrucción directa del dueño, 21 nov 2026; `docs/B2_U11_DESIGN.md` y pruebas curriculares.
 

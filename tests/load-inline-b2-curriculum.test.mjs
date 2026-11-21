@@ -460,10 +460,40 @@ test('B2 U11 implements 14 source-backed reduplication entries and 16 contextual
   }
 });
 
-test('implemented B2 U1–U11 are executable while later legacy draft units stay archived', async () => {
+
+test('B2 U12 implements five authored lessons and 16 source-backed compound/idiom exercises without new vocabulary', async () => {
+  const { b2 } = await loadCurricula();
+  const unit = b2.units.find((item) => item.id === 'b2_u12');
+  assert.ok(unit, 'B2 U12 must exist');
+  assert.equal(unit.lessons.length, 5);
+  assert.deepEqual(unit.lessons.map((lesson) => lesson.exercises.length), [3, 3, 3, 3, 4]);
+  assert.deepEqual(unit.vocab, []);
+  assert.deepEqual([...new Set(allExercises(unit).map((exercise) => exercise.type))].sort(), ['fill', 'mc', 'order', 'write']);
+  const exercises = allExercises(unit);
+  assert.equal(exercises.length, 16);
+  assert.ok(exercises.every((exercise) => exercise.type !== 'listen'), 'U12 must not fall back to device speech without Piper recordings');
+  const exerciseText = exercises.map((exercise) => [exercise.prompt, ...(exercise.options || [])].join(' ')).join(' ');
+  for (const example of ['meja tulis', 'kepala sekolah', 'panjang tangan', 'rumah makan', 'baju baru']) {
+    assert.ok(exerciseText.includes(example), 'U12 must use the documented example: ' + example);
+  }
+  assert.ok(exercises.filter((exercise) => exercise.type === 'write' && exercise.answerLanguage === 'es' && exercise.hint?.trim()).length >= 2);
+  for (const lesson of unit.lessons) {
+    assert.deepEqual(lesson.vocabIds, []);
+    assert.deepEqual(lesson.reviewVocabIds, []);
+  }
+  const sentenceTargets = exercises.filter((exercise) => {
+    const target = typeof exercise.modelAnswer === 'string' ? exercise.modelAnswer
+      : typeof exercise.answer === 'string' ? exercise.answer
+      : '';
+    return target.trim().split(/\s+/).filter(Boolean).length >= 5;
+  });
+  assert.ok(sentenceTargets.length >= 5, 'U12 must include at least five complete-sentence response targets');
+});
+
+test('implemented B2 U1–U12 are executable while later legacy draft units stay archived', async () => {
   const { b2 } = await loadCurricula();
   const legacyArchive = await readFile(new URL('../docs/B2_LEGACY_DRAFT_ARCHIVE.md', import.meta.url), 'utf8');
-  assert.deepEqual(b2.units.map((unit) => unit.id), ['b2_u1', 'b2_u2', 'b2_u3', 'b2_u4', 'b2_u5', 'b2_u6', 'b2_u7', 'b2_u8', 'b2_u9', 'b2_u10', 'b2_u11']);
+  assert.deepEqual(b2.units.map((unit) => unit.id), ['b2_u1', 'b2_u2', 'b2_u3', 'b2_u4', 'b2_u5', 'b2_u6', 'b2_u7', 'b2_u8', 'b2_u9', 'b2_u10', 'b2_u11', 'b2_u12']);
   for (const id of ['b2_u5']) {
     assert.ok(legacyArchive.includes('"id": "' + id + '"'), id + ' must remain in the historical archive');
   }

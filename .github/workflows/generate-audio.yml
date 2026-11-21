@@ -202,6 +202,15 @@ jobs:
           fi
           node scripts/export-audio-manifest.mjs "${ARGS[@]}"
 
+      - name: Recover the previous complete Piper manifest for retained IDs
+        if: ${{ inputs.mode == 'full' && inputs.level == 'all' }}
+        shell: bash
+        run: |
+          LEGACY_REF="ae64d48994947747404eb081b77e347b10623666"
+          git show "$LEGACY_REF:audio/manifest.json" > "$RUNNER_TEMP/piper-legacy-manifest.json"
+          echo "PIPER_LEGACY_MANIFEST=$RUNNER_TEMP/piper-legacy-manifest.json" >> "$GITHUB_ENV"
+          echo "Recovered the historical Piper manifest to regenerate indexed clips no longer present in the current curriculum manifest."
+
       - name: Generate selected audio or refresh fingerprints
         run: |
           if [[ "$MODE" == "hashes" ]]; then
@@ -218,7 +227,11 @@ jobs:
               python scripts/generate_audio.py --engine "$ENGINE" --voice "$VOICE" "${ARGS[@]}"
             fi
           else
-            python scripts/generate_audio.py --engine "$ENGINE" --mode full --level "$LEVEL" --limit 0 --force
+            ARGS=(--engine "$ENGINE" --mode full --level "$LEVEL" --limit 0 --force)
+            if [[ "$LEVEL" == "all" && -n "${PIPER_LEGACY_MANIFEST:-}" ]]; then
+              ARGS+=(--legacy-manifest "$PIPER_LEGACY_MANIFEST")
+            fi
+            python scripts/generate_audio.py "${ARGS[@]}"
           fi
 
       - name: Run audio generation tests

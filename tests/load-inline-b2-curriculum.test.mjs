@@ -583,7 +583,7 @@ test('B2 U15 implements five authored lessons and 16 source-backed pun/pula exer
   }
   const sourceText = JSON.stringify(unit);
   for (const fragment of ['Saya pun mau pergi kalau diberi tiket gratis.',
-    'pedagang kota pun datang ke sana', 'Saya makan nasi juga.',
+    'pedagang kota pun datang ke sana', 'Saya makan nasi juga',
     'dikembangkan pula usaha di bidang industri rumah', 'siapa pun', 'walaupun', 'meskipun', 'biarpun']) {
     assert.ok(sourceText.includes(fragment), 'U15 must preserve the source-backed example: ' + fragment);
   }

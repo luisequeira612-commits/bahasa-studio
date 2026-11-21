@@ -1,0 +1,14 @@
+{
+  "unit": "b2_u15",
+  "level": "B2",
+  "engine": "piper",
+  "voice": "id_ID-news_tts-medium",
+  "purpose": "Generate production MP3 and Opus for the two new U15 vocabulary forms and their source-backed example sentences.",
+  "texts": [
+    "pun",
+    "pula",
+    "Saya pun mau pergi kalau diberi tiket gratis.",
+    "Selain itu, oleh desa dikembangkan pula usaha di bidang industri rumah, seperti pertenunan."
+  ],
+  "requestVersion": 1
+}

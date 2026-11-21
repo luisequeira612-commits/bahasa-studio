@@ -308,6 +308,11 @@ test('B1 U13-U28 expose five lessons while preserving authored vocabulary order 
     assert.deepEqual(declaredNewIds.slice().sort(), expectedNewIds, unit.id + ' must introduce every new B1 word exactly once');
 
     let learned = new Set(known);
+    if (unit.vocab.length === 0) {
+      assert.equal(lessons.length, unit.lessons.length, unit.id + ' must not receive empty active-recall lessons');
+      continue;
+    }
+
     for (const [index, lesson] of lessons.entries()) {
       const lessonIds = new Set(lesson.vocab.map(word => word.id));
       if (index < authoredCount) {
@@ -444,10 +449,10 @@ test('A1 completed units stay completed and existing in-progress lesson keys ret
   assert.equal(completed.completed, true);
 });
  
-test('all implemented B2 units expose five lessons with full-unit active recall and stable authored lessons', () => {
+test('all implemented B2 units preserve five authored lessons; vocabulary units retain full-unit active recall', () => {
   const b2 = app.CourseData.levels.find(level => level.id === 'B2');
   const implemented = b2.units.filter(unit => Array.isArray(unit.lessons) && unit.lessons.length > 0);
-  assert.deepEqual(Array.from(implemented, unit => unit.id), ['b2_u1', 'b2_u2', 'b2_u3', 'b2_u4', 'b2_u5', 'b2_u6', 'b2_u7', 'b2_u8']);
+  assert.deepEqual(Array.from(implemented, unit => unit.id), ['b2_u1', 'b2_u2', 'b2_u3', 'b2_u4', 'b2_u5', 'b2_u6', 'b2_u7', 'b2_u8', 'b2_u9']);
 
   for (const unit of implemented) {
     const lessons = app.buildUnitLessons(unit);

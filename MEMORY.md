@@ -1,3 +1,11 @@
+## Implementación B2 U9 — 21 nov 2026
+- B2 U9 se implementó en la rama `curriculum/b2-u9-implementation-20261121` tras aprobación explícita de los cinco fragmentos fuente (Grangé 2015) por el dueño el 21 nov 2026.
+- U9 tiene cinco lecciones authored y 16 ejercicios ([3,3,3,3,4]); cuatro tipos: mc, fill, order y write. Los cinco fragmentos aprobados se usan una sola vez como base de lectura/análisis; no se añadieron vocabulario, IDs, oraciones indonesias inventadas ni audio.
+- La unidad usa `vocab: []`; se ajustó mínimamente `buildUnitLessons` para aceptar unidades con lecciones authored y sin vocabulario y evitar el relleno automático de active recall cuando el vocabulario está vacío. La escritura guiada de U9 es en español y la UI adapta placeholder/idioma del modelo de respuesta; no pide producción original en indonesio.
+- U9 sigue fuera del recorrido visible: se mantiene el límite B2 de las primeras cinco unidades. No se cambió la visibilidad/publicación ni la puerta secuencial.
+- No se modificaron IndexedDB v1, backup JSON v3, el manifiesto/índice de audio ni dependencias.
+- Fuente: aprobación directa del dueño en ChatGPT, 21 nov 2026; Grangé (2015), Wacana 16(1), ejemplos 15,17,25,26,34.
+
 ## Decisión de contenido B2 U9 — 21 nov 2026
 - El dueño aprobó explícitamente los cinco fragmentos 1–5 del paquete `docs/B2_U9_APPROVAL_PACKET.md` (Grangé 2015) para lectura y análisis en U9. Aprobación recibida en ChatGPT: «Sí», en respuesta a la pregunta de aprobación de los cinco fragmentos.
 - Alcance exacto: solo los cinco fragmentos y usos didácticos descritos. No autoriza ejemplos indonesios adicionales, vocabulario/IDs nuevos, generalización productiva de la construcción ni publicación/activación de U9.

@@ -1,6 +1,6 @@
 # B2 U9 — paquete de aprobación de ejemplos fuente
 
-**Estado:** los cinco fragmentos 1–5 y sus usos didácticos fueron aprobados explícitamente por el dueño el 21 nov 2026. Aún no es contenido ejecutable; implementación pendiente.  
+**Estado:** los cinco fragmentos 1–5 y sus usos didácticos fueron aprobados explícitamente por el dueño el 21 nov 2026 y se implementaron en B2 U9 (cinco lecciones, 16 ejercicios). Este paquete conserva el registro de aprobación; no es contenido ejecutable.  
 **Fecha:** 21 nov 2026.  
 **Unidad:** B2 U9, lectura de construcciones verbales con `-nya` y relaciones entre cláusulas.  
 **Diseño base:** `docs/B2_U9_DESIGN.md` (cinco lecciones authored y 16 ejercicios propuestos).  
@@ -17,13 +17,13 @@
 
 ## Candidatos para decidir
 
-| # | Fragmento breve de la fuente | Contexto descrito en el artículo | Lectura propuesta en español | Qué permitiría enseñar | Ubicación |
+| # | Referencia aprobada | Contexto descrito en el artículo | Lectura propuesta en español | Qué permite analizar | Ubicación |
 |---:|---|---|---|---|---|
-| 1 | `di-tolak-nya` | Aparece en una oración donde el pronombre `-nya` representa al agente que rechazó una justificación. | «fue rechazada por él/ella» | Contraste: `-nya` puede ser un pronombre de tercera persona con papel semántico; no es automáticamente el patrón clausal de U9. | Ej. 15, p. 138 |
-| 2 | `di-tolak-nya banding Hartono` | El fragmento aparece dentro de una expresión sobre el motivo por el que se rechazó la apelación de Hartono. El nombre que sigue a `-nya` es el complemento nominal relevante. | «el rechazo de la apelación de Hartono» / «el hecho de que se rechazara la apelación de Hartono» | Contrastar el mismo aspecto superficial `di-V-nya` con el caso 1: aquí `-nya` no remite al agente; el complemento nominal cambia el análisis. | Ej. 17, p. 138 |
-| 3 | `di-per-parah oleh buruk-nya aturan` | El artículo presenta una construcción en la que una situación resulta agravada por la mala condición de una normativa. | «Todo eso se agrava por lo deficiente de la normativa.» | Reconocer una construcción con `-nya` dentro de un complemento introducido por `oleh`; no traducir el sufijo de forma aislada. | Ej. 25, p. 142 |
-| 4 | `di-picu banyak-nya penduduk Jakarta` | El artículo describe un problema desencadenado por el gran número de habitantes de Yakarta que pasan sus vacaciones en Bandung. | «El problema se desencadena por la gran cantidad de habitantes de Yakarta que vacacionan en Bandung.» | Leer el núcleo `banyak-nya` junto con su complemento nominal y el contexto causal; observar que el complemento puede extenderse con información relativa. | Ej. 26, p. 142 |
-| 5 | `di-tolak-nya cabai Indonesia oleh pasar Taiwan` | La construcción en voz de paciente aparece al inicio, seguida por el complemento que identifica el elemento rechazado y por el agente introducido con `oleh`; la cláusula principal expresa el impacto sobre la exportación de chile. | «El rechazo del chile indonesio por parte del mercado taiwanés golpea al negocio exportador de chile.» | Leer la secuencia de voz de paciente + `-nya` + complemento nominal + agente opcional; comparar con el caso pronominal 1. | Ej. 34, pp. 146–147 |
+| 1 | Ejemplo 15: uso pronominal de `-nya` | El pronombre representa al agente que rechazó una justificación. | «La justificación fue rechazada por él/ella». | Contrastar el uso pronominal con el patrón verbal de los casos siguientes. | p. 138 |
+| 2 | Ejemplo 17: patrón verbal con complemento nominal | El fragmento se refiere al rechazo de la apelación de Hartono; el nombre que sigue a `-nya` es el complemento nominal relevante. | «La apelación de Hartono fue rechazada». | Distinguir la presencia del complemento nominal del uso pronominal del caso 1. | p. 138 |
+| 3 | Ejemplo 25: relación con la condición de una normativa | Una situación resulta agravada por la mala condición de una normativa. | «La situación se agrava por la mala calidad de la normativa». | Leer la relación contextual sin traducir `-nya` de forma aislada. | p. 142 |
+| 4 | Ejemplo 26: cantidad de habitantes de Yakarta | El artículo describe un problema desencadenado por el gran número de habitantes que pasan sus vacaciones en Bandung. | «El problema fue desencadenado por la gran cantidad de habitantes de Yakarta». | Interpretar el núcleo de cantidad junto con su complemento nominal. | p. 142 |
+| 5 | Ejemplo 34: voz de paciente, complemento y agente | La construcción identifica el elemento rechazado y el agente introducido por `oleh`; la cláusula principal expresa el impacto sobre el negocio exportador. | «El mercado taiwanés rechazó el chile indonesio». | Reconocer la secuencia de voz de paciente, complemento nominal y agente. | pp. 146–147 |
 
 **Nota de conteo:** los cinco fragmentos reproducen en conjunto menos de 25 palabras del artículo. Las glosas españolas son traducciones de trabajo redactadas para este paquete, no citas de la traducción inglesa publicada.
 
@@ -55,4 +55,4 @@ Philippe Grangé (2015), “The Indonesian verbal suffix ‘-nya’: Nominalizat
 
 El dueño respondió «Sí» a la solicitud de aprobar los cinco fragmentos para utilizarlos como material de lectura y análisis en B2 U9. Quedan aprobados los candidatos 1, 2, 3, 4 y 5, con sus contextos, paráfrasis y objetivos didácticos descritos en este paquete.
 
-La aprobación no constituye validación lingüística independiente ni certificación por hablante nativo/KBBI/MCER/BIPA. No autoriza ampliar el conjunto de ejemplos por analogía, añadir vocabulario o IDs, ni mostrar/publicar B2 U9. La implementación debe usar solo estos fragmentos aprobados y actividades que evalúen lectura, estructura y paráfrasis española sin inventar nuevas oraciones indonesias.
+La aprobación no constituye validación lingüística independiente ni certificación por hablante nativo/KBBI/MCER/BIPA. La implementación de U9 usa exclusivamente estos cinco casos y no añade ejemplos indonesios, vocabulario, IDs ni audio. La unidad permanece oculta/no publicada hasta decisión explícita del dueño.

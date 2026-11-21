@@ -1,6 +1,6 @@
 # Diseño preliminar B2 U9 — construcciones verbales con -nya y lectura de cláusula
 
-**Estado:** los cinco fragmentos del paquete de aprobación fueron aprobados por el dueño el 21 nov 2026. U9 aún no está implementada ni publicada; la implementación puede usar exclusivamente esos cinco fragmentos y actividades de análisis/paráfrasis, sin ejemplos indonesios nuevos ni vocabulario/IDs nuevos. [Paquete de aprobación](B2_U9_APPROVAL_PACKET.md).  
+**Estado:** implementada en la rama `curriculum/b2-u9-implementation-20261121`: cinco lecciones authored, 16 ejercicios y cuatro tipos. Usa solo los cinco fragmentos aprobados por el dueño el 21 nov 2026; sin vocabulario/IDs, oraciones indonesias nuevas ni audio. Sigue oculta/no publicada hasta decisión explícita. [Paquete de aprobación](B2_U9_APPROVAL_PACKET.md).  
 **Fecha:** 8 nov 2026.  
 **Ubicación:** tercera unidad propuesta dentro del eje B2 U7–U10 de nominalizaciones.  
 **Dependencias:** comprensión de voz verbal y nominalizaciones de B1/B2; U7 está implementada y fusionada, y U8 también está implementada (PR #639). U9 sigue en fase documental; el paquete asociado propone solo fragmentos de ejemplos publicados, no vocabulario ni IDs nuevos.
@@ -115,7 +115,7 @@ Propuesta de **16 ejercicios combinados en cinco lecciones authored**, todavía 
 | 5 | 1 | 0 | 0 | 1 | 2 | 4 |
 | **Total** | **5** | **3** | **1** | **3** | **4** | **16** |
 
-Al menos cinco ejercicios deben trabajar oraciones completas y al menos uno debe incluir producción guiada de paráfrasis en español. La unidad no debe exigir grabación ni nuevos recursos: la escucha, si se conserva, será secundaria y usará únicamente el mecanismo local existente, nunca como evidencia principal para una estructura caracterizada como escrita/formal.
+Al menos cinco ejercicios trabajan objetivos de lectura a nivel de oración y una actividad incluye producción guiada de paráfrasis en español. La unidad no exige grabación ni nuevos recursos; no se pide producción original en indonesio porque el alcance aprobado se limita a cinco fragmentos escritos/formales.
 
 ## Vocabulario y dependencias
 
@@ -146,4 +146,4 @@ Al menos cinco ejercicios deben trabajar oraciones completas y al menos uno debe
 5. Diseñar claves que acepten paráfrasis españolas equivalentes y no traduzcan -nya de forma aislada.
 6. Ejecutar pruebas de coherencia consigna-respuesta, referencias, duplicados y ausencia de exposición anticipada.
 
-**Estatus de decisión:** el dueño aprobó el eje general de nominalizaciones para B2 U7–U10 y los cinco fragmentos fuente de U9 (21 nov 2026). U9 puede pasar a implementación con esos cinco fragmentos, pero no autoriza otros ejemplos indonesios, vocabulario ni IDs nuevos. Las glosas españolas siguen siendo paráfrasis de trabajo, no certificación lingüística. U9 permanece sin publicar hasta decisión explícita.
+**Estatus de decisión:** el dueño aprobó el eje general de nominalizaciones para B2 U7–U10 y los cinco fragmentos fuente de U9 (21 nov 2026). U9 está implementada con esos cinco fragmentos; no autoriza otros ejemplos indonesios, vocabulario ni IDs nuevos. Las glosas españolas siguen siendo paráfrasis de trabajo, no certificación lingüística. U9 permanece sin publicar hasta decisión explícita.

@@ -1,6 +1,6 @@
 ## B2 U15 implementada — 21 nov 2026
 - U15 añade cinco lecciones authored y 16 ejercicios ([3,3,3,3,4]) sobre la partícula focalizadora pun y los marcadores aditivos pula/juga; cubre alcance, foco, lectura de «también/incluso», secuenciación menos frecuente con pun y la diferencia ortográfica entre pun separado y conjunciones como walaupun/meskipun/biarpun.
-- Añade dos IDs canónicos nuevos: `b2u15_pun` y `b2u15_pula`; no se detectan colisiones en los tests globales. Usa ejemplos publicados de Sneddon et al. (2010, §§2.219–2.226, 3.49, 4.99) y la regla ortográfica oficial EYD V. No inventa frases indonesias; no añade clips Piper ni ejercicios de escucha.
+- Añade dos IDs canónicos nuevos: `b2u15_pun` y `b2u15_pula`; los tests incorporan una comprobación de unicidad global contra A1/A2/B1 y B2 previo. Usa ejemplos publicados de Sneddon et al. (2010, §§2.219–2.226, 3.49, 4.99) y la regla ortográfica oficial EYD V. No inventa frases indonesias; no añade clips Piper ni ejercicios de escucha.
 - U15 permanece oculta/no publicada; U1–U5 siguen visibles. No cambia IndexedDB v1, backup JSON v3, A1/A2/B1 ni dependencias. La naturalidad no ha sido validada por hablante nativo; las dos entradas quedan `not_checked`.
 - Fuente: autorización autónoma del dueño, 21 nov 2026; `docs/B2_U15_DESIGN.md`; [Sneddon et al. (2010)](https://theswissbay.ch/pdf/Books/Linguistics/Mega%20linguistics%20pack/Austronesian/Indonesian%20Reference%20Grammar%20%28Sneddon%29.pdf), [EYD V — Partikel](https://ejaan.kemendikdasmen.go.id/eyd/penulisan-kata/partikel/).
 

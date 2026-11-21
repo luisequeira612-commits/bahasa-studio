@@ -348,10 +348,54 @@ test('B2 U8 implements five authored lessons, 16 exercises and the eight approve
   assert.ok(exercises.some((exercise) => exercise.type === 'listen'), 'U8 must include listening');
 });
 
-test('implemented B2 U1–U8 are executable while later legacy draft units stay archived', async () => {
+
+test('B2 U9 implements five authored lessons and 16 exercises using only the five approved Grange fragments', async () => {
+  const { b2, indexSource } = await loadCurricula();
+  const unit = b2.units.find((item) => item.id === 'b2_u9');
+  assert.ok(unit, 'B2 U9 must exist');
+  assert.equal(unit.lessons.length, 5);
+  assert.deepEqual(unit.lessons.map((lesson) => lesson.exercises.length), [3, 3, 3, 3, 4]);
+  assert.deepEqual(unit.vocab, [], 'U9 must not add vocabulary or vocabulary IDs');
+  const exercises = allExercises(unit);
+  assert.equal(exercises.length, 16);
+  assert.deepEqual([...new Set(exercises.map((exercise) => exercise.type))].sort(),
+    ['fill', 'mc', 'order', 'write']);
+  for (const lesson of unit.lessons) {
+    assert.deepEqual(lesson.vocabIds, []);
+    assert.deepEqual(lesson.reviewVocabIds, []);
+    for (const exercise of lesson.exercises) assert.equal(Object.hasOwn(exercise, 'vocabId'), false);
+  }
+  const joined = unit.lessons.map((lesson) => lesson.grammar).join(' ');
+  assert.ok(joined.includes('di-tolak-nya'));
+  assert.ok(joined.includes('banding Hartono'));
+  assert.ok(joined.includes('di-per-parah oleh buruk-nya aturan'));
+  assert.ok(joined.includes('di-picu banyak-nya penduduk Jakarta'));
+  assert.deepEqual(unit.lessons[1].exercises.find((exercise) => exercise.type === 'order').words,
+    ['di-tolak-nya', 'cabai Indonesia', 'oleh pasar Taiwan']);
+  const spanishFills = exercises.filter((exercise) => exercise.type === 'fill');
+  assert.equal(spanishFills.length, 5);
+  assert.ok(spanishFills.every((exercise) => exercise.answerLanguage === 'es' && exercise.direction === 'id→es'));
+  const guided = exercises.find((exercise) => exercise.type === 'write');
+  assert.equal(guided.answerLanguage, 'es');
+  assert.match(guided.prompt, /en español/i);
+  assert.match(guided.hint, /No inventes una oración nueva en indonesio/i);
+  assert.ok(exercises.filter((exercise) => {
+    const target = Array.isArray(exercise.correctOrder) ? exercise.correctOrder.join(' ')
+      : typeof exercise.modelAnswer === 'string' ? exercise.modelAnswer
+      : typeof exercise.answer === 'string' ? exercise.answer
+      : Number.isInteger(exercise.answer) && Array.isArray(exercise.options) ? exercise.options[exercise.answer] || ''
+      : '';
+    return target.trim().split(/\\s+/).filter(Boolean).length >= 2;
+  }).length >= 5, 'U9 must include at least five sentence-level targets');
+  assert.match(indexSource, /!unit\.vocab\.length && !\(Array\.isArray\(unit\.lessons\) && unit\.lessons\.length\)/);
+  assert.match(indexSource, /const activeRecallTarget = unit\.vocab\.length \?/);
+  assert.match(indexSource, /writingLanguage = ex\.answerLanguage === 'es' \? 'es' : 'id'/);
+});
+
+test('implemented B2 U1–U9 are executable while later legacy draft units stay archived', async () => {
   const { b2 } = await loadCurricula();
   const legacyArchive = await readFile(new URL('../docs/B2_LEGACY_DRAFT_ARCHIVE.md', import.meta.url), 'utf8');
-  assert.deepEqual(b2.units.map((unit) => unit.id), ['b2_u1', 'b2_u2', 'b2_u3', 'b2_u4', 'b2_u5', 'b2_u6', 'b2_u7', 'b2_u8']);
+  assert.deepEqual(b2.units.map((unit) => unit.id), ['b2_u1', 'b2_u2', 'b2_u3', 'b2_u4', 'b2_u5', 'b2_u6', 'b2_u7', 'b2_u8', 'b2_u9']);
   for (const id of ['b2_u5']) {
     assert.ok(legacyArchive.includes('"id": "' + id + '"'), id + ' must remain in the historical archive');
   }

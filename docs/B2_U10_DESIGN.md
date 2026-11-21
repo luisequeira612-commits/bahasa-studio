@@ -1,6 +1,6 @@
 # Diseño preliminar B2 U10 — integración de nominalizaciones en textos formales
 
-**Estado:** implementada en `curriculum/b2-u10-approval-20261121-v2`; cinco lecciones authored y 16 ejercicios. Oculta/no publicada. Reutiliza únicamente IDs canónicos de U7/U8 y fragmentos ya aprobados de U9; no añade vocabulario ni oraciones indonesias nuevas.  
+**Estado:** implementada en `curriculum/b2-u10-implementation-20261121-clean`; cinco lecciones authored y 16 ejercicios. Oculta/no publicada. Reutiliza únicamente IDs canónicos de U7/U8 y fragmentos ya aprobados de U9; no añade vocabulario ni oraciones indonesias nuevas.  
 **Fecha:** 8 nov 2026.  
 **Ubicación:** cuarta y última unidad propuesta del bloque B2 U7–U10, cuyo eje aprobado es nominalizaciones.  
 **Dependencias:** U7 está implementada y fusionada; U8 y U9 ya están implementadas. U10 no presupone que sus ejemplos, vocabulario o ejercicios estén aprobados ni implementados.

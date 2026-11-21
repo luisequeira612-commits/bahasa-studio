@@ -37,7 +37,7 @@ App web para aprender idiomas, estilo Duolingo, alojada en GitHub Pages. Hoy tie
 
 ## Reglas curriculares B1/B2 (estado vigente: 15 nov 2026)
 - A1 (32 unidades) y A2 (40 unidades) cumplen el currículo vigente. B1 tiene 50 unidades con contenido implementado; la migración estructural de 5–6 lecciones explícitas está completada en U1–U50. No cambiar vocabulario, glosas ni explicaciones salvo corrección demostrable mediante un PR acotado.
-- B2 U1–U8 están implementadas con cinco lecciones authored cada una. Piper cubre 2.212 IDs indexados; 98 textos de audio están asociados a B2 U1–U8. U6–U8 permanecen ocultas hasta decisión explícita de publicación; no se activan automáticamente por tener audio. U9–U10 tienen diseños documentales, U11–U12 propuestas de diseño y U13–U60 no tienen mapa aprobado. No exigir muestras MMS.
+- B2 U1–U9 están implementadas con cinco lecciones authored cada una. U1–U5 son las visibles; U6–U9 permanecen ocultas hasta decisión explícita de publicación. Piper cubre 2.212 IDs indexados; 98 textos de audio corresponden a U1–U8 y U9 no añade audio. U10 tiene diseño documental, U11–U12 propuestas de diseño y U13–U60 no tienen mapa aprobado. No exigir muestras MMS.
 - Las unidades B1 se muestran y se pueden estudiar en cuanto su PR se fusiona; no ocultarlas mediante flags o bloqueos ligados a A1.
 - No asumir que todas las unidades B2 están diseñadas: U13–U60 aún no tienen mapa aprobado.
 - Cada unidad nueva: 14–22 ejercicios, al menos cuatro tipos entre opción múltiple, traducción, ordenación, escucha con audio reproducible y escritura; al menos cinco ejercicios con frases completas y una producción original guiada. Añadir repaso acumulativo cada 4–5 unidades.

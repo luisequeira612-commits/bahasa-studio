@@ -1,0 +1,72 @@
+name: Dispatch selected Piper audio
+
+on:
+  push:
+    branches:
+      - 'curriculum/**'
+    paths:
+      - 'docs/audio-requests/*.json'
+
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out curriculum branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Export B2 manifest and resolve requested text IDs
+        id: selection
+        shell: bash
+        run: |
+          node scripts/export-audio-manifest.mjs --include-b2 --output "$RUNNER_TEMP/b2-audio-manifest.json"
+          node <<'NODE'
+          const fs = require('node:fs');
+          const event = JSON.parse(fs.readFileSync(process.env.GITHUB_EVENT_PATH, 'utf8'));
+          const changed = [...new Set((event.commits || []).flatMap((commit) => [
+            ...(commit.added || []),
+            ...(commit.modified || [])
+          ]))].filter((path) => path.startsWith('docs/audio-requests/') && path.endsWith('.json'));
+          if (changed.length !== 1) throw new Error('Expected exactly one changed audio request JSON file; got: ' + changed.join(', '));
+          const request = JSON.parse(fs.readFileSync(changed[0], 'utf8'));
+          if (request.engine !== 'piper' || request.level !== 'B2' || !Array.isArray(request.texts) || request.texts.length === 0) {
+            throw new Error('Audio request must specify engine=piper, level=B2 and a non-empty texts array.');
+          }
+          if (new Set(request.texts).size !== request.texts.length) throw new Error('Audio request contains duplicate texts.');
+          const manifest = JSON.parse(fs.readFileSync(process.env.RUNNER_TEMP + '/b2-audio-manifest.json', 'utf8'));
+          const byText = new Map(manifest.filter((entry) => entry.levels.includes('B2')).map((entry) => [entry.text, entry.id]));
+          const missing = request.texts.filter((text) => !byText.has(text));
+          if (missing.length) throw new Error('Requested text is missing from the B2 manifest: ' + missing.join(' | '));
+          const ids = request.texts.map((text) => byText.get(text));
+          if (new Set(ids).size !== ids.length) throw new Error('Requested texts do not resolve to unique audio IDs.');
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, 'ids=' + ids.join(',') + '\n');
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, 'count=' + ids.length + '\n');
+          console.log('Resolved ' + ids.length + ' exact Piper audio IDs from ' + changed[0]);
+          NODE
+
+      - name: Dispatch selected Piper production generation
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          IDS: ${{ steps.selection.outputs.ids }}
+          BRANCH: ${{ github.ref_name }}
+        run: |
+          gh workflow run generate-audio.yml --repo "$GITHUB_REPOSITORY" --ref "$BRANCH" \
+            -f engine=piper \
+            -f mode=full \
+            -f limit=0 \
+            -f ids="$IDS" \
+            -f level=B2 \
+            -f confirm_full=false \
+            -f source_ref="$BRANCH"
+          echo "Dispatched selected Piper generation for ${{ steps.selection.outputs.count }} exact B2 texts."

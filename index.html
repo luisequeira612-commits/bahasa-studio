@@ -8712,6 +8712,78 @@
                                 }
                             ]
                         },
+                        {
+                            id: 'b2_u10',
+                            title: 'Unidad 10: Integrar nominalizaciones en textos formales',
+                            desc: 'Integra nombres de acción, proceso y concepto con el patrón verbal -nya mediante lectura, análisis y reformulación contextual.',
+                            grammar: 'Esta unidad integra material ya estudiado en U7–U9. peN-an, per-an y ke-...-an conservan sus análisis propios; el patrón verbal con -nya sigue siendo una construcción debatida y dependiente del contexto. No se traducen los afijos de forma fija ni se reconstruyen agentes, causas o tiempos que el texto no expresa. El trabajo se centra en reconocer relaciones, recuperar participantes y reformular en español sin alterar el sentido.',
+                            vocab: [],
+                            exercises: [],
+                            lessons: [
+                                {
+                                    title: '1. Reconocer las familias en un dossier',
+                                    objective: 'Localiza formas de acción, proceso, evento e institución en el material recuperado de U7–U9 sin clasificar por terminación aislada.',
+                                    grammar: 'Recupera pembelian y pergerakan de U7, junto con kedatangan, kementerian y ketidakadilan de U8. Son formas ya estudiadas y se reutilizan con su ID y glosa originales. El dossier también remite a los fragmentos aprobados de U9; no se inventa un texto indonesio continuo.',
+                                    vocabIds: [],
+                                    reviewVocabIds: ["b2u7_pembelian","b2u7_pergerakan","b2u8_kedatangan","b2u8_kementerian","b2u8_ketidakadilan"],
+                                    exercises: [
+                                        { vocabId: 'b2u7_pembelian', type: 'mc', prompt: '¿Qué procedimiento evita una clasificación precipitada de pembelian, pergerakan y kedatangan?', options: ['Examinar la forma, su función y el contexto','Asignar el mismo significado a todos los afijos','Clasificar solo por la terminación'], answer: 0, explanation: 'Las formas se interpretan en sus familias y contextos; la terminación por sí sola no determina toda la función.' },
+                                        { vocabId: 'b2u8_ketidakadilan', type: 'mc', prompt: '¿Por qué ketidakadilan no debe tratarse como equivalente estructural de cualquier forma con -nya?', options: ['Porque pertenecen a patrones distintos y requieren análisis propio','Porque ambas formas siempre son verbos','Porque los dos elementos expresan obligatoriamente pasado'], answer: 0, explanation: 'La integración compara fenómenos sin fusionarlos en una sola regla.' },
+                                        { vocabId: 'b2u8_kedatangan', type: 'fill', prompt: 'Completa la paráfrasis metodológica en español: «Primero identifico la forma; después reviso su función y el ____».', answer: 'contexto', answerLanguage: 'es', direction: 'id→es', explanation: 'El contexto permite interpretar la función concreta sin traducir el afijo de forma mecánica.' }
+                                    ]
+                                },
+                                {
+                                    title: '2. Acción, proceso y evento',
+                                    objective: 'Compara las formas recuperadas de U7 y U8 sin imponer una equivalencia única entre sus afijos.',
+                                    grammar: 'Pembelian, pergerakan y kedatangan sirven para recuperar nombres relacionados con acción, proceso o evento. La unidad no propone que peN-an, per-an y ke-...-an sean intercambiables: se conserva el análisis y el contexto de cada forma en su unidad original.',
+                                    vocabIds: [],
+                                    reviewVocabIds: ["b2u7_pembelian","b2u7_pergerakan","b2u8_kedatangan","b2u8_kementerian","b2u8_ketidakadilan"],
+                                    exercises: [
+                                        { vocabId: 'b2u7_pergerakan', type: 'mc', prompt: 'Al comparar pembelian y pergerakan, ¿qué debe conservarse?', options: ['El análisis particular de cada forma y su contexto','Una traducción fija común para sus afijos','La idea de que ambas expresan siempre el mismo evento'], answer: 0, explanation: 'La comparación es integradora, no una reducción de las familias a una sola plantilla.' },
+                                        { vocabId: 'b2u8_kedatangan', type: 'order', prompt: 'Ordena el procedimiento para comparar dos formas ya estudiadas.', words: ['Revisar el contexto.', 'Identificar cada forma.', 'Comparar sus funciones sin igualar los afijos.'], correctOrder: ['Identificar cada forma.', 'Revisar el contexto.', 'Comparar sus funciones sin igualar los afijos.'], explanation: 'Primero se reconocen las formas, luego se interpreta su contexto y finalmente se comparan sus funciones.' },
+                                        { vocabId: 'b2u7_pembelian', type: 'fill', prompt: 'Completa en español: «Comparar dos nominalizaciones no significa que sus afijos sean ____».', answer: 'intercambiables', answerLanguage: 'es', direction: 'id→es', explanation: 'Cada familia conserva sus restricciones y su análisis.' }
+                                    ]
+                                },
+                                {
+                                    title: '3. Recuperar participantes y relaciones',
+                                    objective: 'Distingue la información explícita de la que puede recuperarse del contexto, especialmente en los fragmentos de U9.',
+                                    grammar: 'Los fragmentos aprobados de U9 permiten observar complemento nominal, voz de paciente, agente y relaciones entre cláusulas. El análisis de Grangé (2015) es una propuesta académica relevante, no un consenso universal. No se añade un agente ni se interpreta -nya como una conjunción causal por sí sola.',
+                                    vocabIds: [],
+                                    reviewVocabIds: ["b2u7_pembelian","b2u7_pergerakan","b2u8_kedatangan","b2u8_kementerian","b2u8_ketidakadilan"],
+                                    exercises: [
+                                        { vocabId: 'b2u8_kementerian', type: 'mc', prompt: 'Si un fragmento no identifica expresamente al agente, ¿qué debe hacer el lector?', options: ['Dejarlo sin identificar salvo que el contexto aporte evidencia','Inventar el agente más probable','Suponer que -nya siempre lo identifica'], answer: 0, explanation: 'La interpretación debe distinguir lo explícito de lo que el contexto realmente permite recuperar.' },
+                                        { vocabId: 'b2u8_ketidakadilan', type: 'fill', prompt: 'Completa en español: «No añado participantes que la oración ni el contexto ____».', answer: 'justifican', answerLanguage: 'es', direction: 'id→es', explanation: 'La paráfrasis debe conservar la información disponible, sin completar huecos con conjeturas.' },
+                                        { vocabId: 'b2u7_pergerakan', type: 'write', answerLanguage: 'es', direction: 'id→es', prompt: 'Explica en español, en dos o tres oraciones, cómo distingues un participante explícito de uno que solo podría recuperarse del contexto.', hint: 'Indica qué aparece en la estructura y qué evidencia contextual sería necesaria. No inventes ejemplos indonesios.', modelAnswer: 'Un participante explícito aparece expresado en la oración. Solo recupero uno omitido cuando el contexto aporta indicios suficientes; si no los aporta, dejo la información abierta.', explanation: 'La producción evalúa una explicación metodológica en español, no la creación de una estructura indonesia nueva.' }
+                                    ]
+                                },
+                                {
+                                    title: '4. Reformular sin cambiar el significado',
+                                    objective: 'Evalúa si una paráfrasis conserva participantes y relaciones sin añadir causa, tiempo o agente.',
+                                    grammar: 'Una reformulación puede hacer más explícita una relación, pero no debe convertir una hipótesis en un hecho. En los fragmentos con -nya, la relación se interpreta a partir de la construcción completa y del contexto; en las nominalizaciones léxicas, la paráfrasis debe conservar el significado de la forma concreta.',
+                                    vocabIds: [],
+                                    reviewVocabIds: ["b2u7_pembelian","b2u7_pergerakan","b2u8_kedatangan","b2u8_kementerian","b2u8_ketidakadilan"],
+                                    exercises: [
+                                        { vocabId: 'b2u8_kedatangan', type: 'mc', prompt: '¿Qué paráfrasis es más fiel cuando la fuente no identifica al agente?', options: ['Una formulación que conserva el agente sin especificarlo','Una frase que inventa quién realizó la acción','Una traducción que convierte -nya en «porque»'], answer: 0, explanation: 'Una paráfrasis fiel no introduce participantes ni relaciones no respaldados por la fuente.' },
+                                        { vocabId: 'b2u8_kementerian', type: 'order', prompt: 'Ordena la revisión de una paráfrasis.', words: ['Comprobar que no añadí información.', 'Identificar la estructura de partida.', 'Comparar participantes y relación discursiva.'], correctOrder: ['Identificar la estructura de partida.', 'Comparar participantes y relación discursiva.', 'Comprobar que no añadí información.'], explanation: 'La revisión parte de la estructura y comprueba después que la reformulación conserva su contenido.' },
+                                        { vocabId: 'b2u8_ketidakadilan', type: 'fill', prompt: 'Completa en español: «Una paráfrasis fiel conserva el sentido y evita añadir información ____».', answer: 'no expresada', answerLanguage: 'es', direction: 'id→es', explanation: 'La paráfrasis no debe introducir causas, tiempos ni agentes que la fuente no expresa.' }
+                                    ]
+                                },
+                                {
+                                    title: '5. Edición integrada y recuperación acumulativa',
+                                    objective: 'Integra las familias léxicas y el análisis de -nya en una tarea de lectura, comparación y edición guiada.',
+                                    grammar: 'La lectura integrada mantiene separados los análisis de U7, U8 y U9. El objetivo es justificar una interpretación con indicios de forma, sintaxis y contexto, reconocer los límites de la evidencia y redactar una paráfrasis española clara. No se exige producir nuevas nominalizaciones ni construcciones con -nya.',
+                                    vocabIds: [],
+                                    reviewVocabIds: ["b2u7_pembelian","b2u7_pergerakan","b2u8_kedatangan","b2u8_kementerian","b2u8_ketidakadilan"],
+                                    exercises: [
+                                        { vocabId: 'b2u7_pembelian', type: 'mc', prompt: '¿Cuál es el criterio más sólido para editar una explicación que integra U7–U9?', options: ['Mantener cada análisis y justificar la lectura con el contexto','Unificar todos los fenómenos bajo una regla de nominalización','Traducir cada afijo con una palabra española fija'], answer: 0, explanation: 'La integración compara los fenómenos sin borrar sus diferencias estructurales.' },
+                                        { vocabId: 'b2u7_pergerakan', type: 'fill', prompt: 'Completa en español: «La evidencia documental orienta el análisis, pero no equivale a una certificación ____».', answer: 'nativa', answerLanguage: 'es', direction: 'id→es', explanation: 'La bibliografía y la revisión estructural no sustituyen una evaluación por hablantes competentes.' },
+                                        { vocabId: 'b2u8_kementerian', type: 'order', prompt: 'Ordena las etapas de una edición responsable.', words: ['Redactar una paráfrasis prudente.', 'Identificar las formas y sus fuentes.', 'Comprobar participantes y relaciones.'], correctOrder: ['Identificar las formas y sus fuentes.', 'Comprobar participantes y relaciones.', 'Redactar una paráfrasis prudente.'], explanation: 'La edición parte de la fuente, analiza las relaciones y solo después reformula.' },
+                                        { vocabId: 'b2u8_ketidakadilan', type: 'write', answerLanguage: 'es', direction: 'id→es', prompt: 'Escribe un mini texto de tres o cuatro oraciones en español explicando cómo compararías los tres grupos del dossier U10 sin confundir sus estructuras.', hint: 'Incluye: familias de acción/proceso, nominalizaciones abstractas y el patrón verbal con -nya. Explica qué evidencia usarías y qué no concluirías.', modelAnswer: 'Primero compararía las familias de acción y proceso de U7 con las formas de U8, conservando el análisis de cada una. Después revisaría los fragmentos con -nya atendiendo al complemento, la voz y el contexto. Finalmente redactaría una paráfrasis que conserve los participantes y no añada una causa o un agente que la fuente no exprese.', explanation: 'La respuesta integra los tres bloques con una producción guiada en español y mantiene explícitos los límites de la evidencia.' }
+                                    ]
+                                }
+                            ]
+                        },
+
 
                     ]
                 }

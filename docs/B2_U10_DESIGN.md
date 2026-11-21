@@ -1,6 +1,6 @@
 # Diseño preliminar B2 U10 — integración de nominalizaciones en textos formales
 
-**Estado:** propuesta documental reversible; no implementada ni publicada.  
+**Estado:** propuesta documental reversible; no implementada ni publicada. Paquete de aprobación para reutilizar ejemplos ya aprobados de U7–U9: [B2 U10 approval packet](B2_U10_APPROVAL_PACKET.md).  
 **Fecha:** 8 nov 2026.  
 **Ubicación:** cuarta y última unidad propuesta del bloque B2 U7–U10, cuyo eje aprobado es nominalizaciones.  
 **Dependencias:** U7 está implementada y fusionada; U8 y U9 ya están implementadas. U10 no presupone que sus ejemplos, vocabulario o ejercicios estén aprobados ni implementados.
@@ -29,7 +29,7 @@ La propuesta se apoya en los trabajos ya documentados en los diseños anteriores
 - **Denistia & Baayen (2021), “The morphology of Indonesian: Data and quantitative modeling”.** Distingue usos nominales y verbales de ke-...-an y describe restricciones morfológicas; no debe extrapolarse como una receta libre. https://www.sfs.uni-tuebingen.de/~hbaayen/publications/DenistiaBaayen2021.pdf
 - **Grangé (2015), “The Indonesian verbal suffix ‘-nya’: Nominalization or subordination?”, Wacana 16(1), 133–166.** Presenta un análisis específico del patrón verbal -nya y discute su clasificación; no convierte todas las apariciones de -nya en nominalizaciones ni en cláusulas causales. https://doi.org/10.17510/wjhi.v16i1.370
 
-Estos trabajos no constituyen una descripción exhaustiva de todas las variedades actuales ni una certificación pedagógica. La unidad deberá conservar las diferencias entre análisis y no presentar una taxonomía única como consenso.
+Estos trabajos no constituyen una descripción exhaustiva de todas las variedades actuales ni una certificación pedagógica. La unidad deberá conservar las diferencias entre análisis y no presentar una taxonomía única como consenso. La selección de ejemplos y la propuesta de dossier de fragmentos fuente están pendientes de aprobación específica del dueño.
 
 ## Objetivos propuestos
 

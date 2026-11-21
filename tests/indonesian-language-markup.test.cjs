@@ -29,7 +29,7 @@ test('la frase interactiva solo recibe lang=id cuando su idioma es indonesio', (
 });
 
 test('marca el ejemplo modelo y el término emergente como indonesios', () => {
-    assert.match(html, /<p lang="id" style="white-space:pre-wrap;">\$\{App\.escapeHtml\(ex\.modelAnswer/);
+    assert.match(html, /<p lang="\$\{ex\.answerLanguage === 'es' \? 'es' : 'id'\}" style="white-space:pre-wrap;">\$\{App\.escapeHtml\(ex\.modelAnswer/);\n    assert.match(html, /writingLanguage = ex\.answerLanguage === 'es' \? 'es' : 'id'/);
     assert.match(html, /termNode\.lang = 'id'/);
     assert.match(html, /original\.lang = 'id'/);
 });

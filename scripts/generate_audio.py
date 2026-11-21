@@ -24,6 +24,10 @@ MMS_MODEL_REVISION = "171b004ccd54f266a31efee71f1ad850c91d39c0"
 MMS_MODEL_LICENSE = "CC BY-NC 4.0"
 MMS_MODEL_LICENSE_URL = "https://creativecommons.org/licenses/by-nc/4.0/"
 MMS_MODEL_ATTRIBUTION = "MMS-TTS by Vineel Pratap et al., Meta AI"
+PIPER_MODEL_ID = "id_ID-news_tts-medium"
+PIPER_MODEL_LICENSE = "MIT (repository); dataset license not specified in model card"
+PIPER_MODEL_LICENSE_URL = "https://huggingface.co/rhasspy/piper-voices/tree/main/id/id_ID/news_tts/medium"
+PIPER_MODEL_ATTRIBUTION = "Piper Indonesian news_tts voice; rhasspy/piper-voices"
 MMS_MODEL_SHA256 = "d56181bae3a51458aab6b4a893ecd71d0fde69378f576c53e139b59940d80ca0"
 MMS_SEED = 20261117
 PRONUNCIATION_OVERRIDES_PATH = ROOT / "scripts" / "pronunciation_overrides.json"
@@ -151,6 +155,19 @@ def create_synthesizer(engine: str, voice: str, work_dir: Path, noise_scale: flo
 
         return lambda text, output: asyncio.run(synth(text, output)), f"Edge TTS / {voice}"
 
+    if engine == "piper":
+        model_path = Path(os.environ.get("PIPER_MODEL_PATH", ""))
+        if not model_path.is_file():
+            raise RuntimeError("PIPER_MODEL_PATH must point to the downloaded Indonesian Piper ONNX model")
+
+        def synth(text: str, output: Path):
+            subprocess.run(
+                ["piper", "--model", str(model_path), "--output_file", str(output)],
+                input=str(text), text=True, check=True,
+            )
+
+        return synth, f"Piper / {PIPER_MODEL_ID}"
+
     if engine == "mms":
         import numpy as np
         import torch
@@ -211,11 +228,18 @@ def ensure_single_voice(metadata_file: Path, engine: str, voice: str, allow_pipe
             "model_license_url": MMS_MODEL_LICENSE_URL,
             "model_attribution": MMS_MODEL_ATTRIBUTION,
         })
+    elif engine == "piper":
+        expected.update({
+            "model": PIPER_MODEL_ID,
+            "model_license": PIPER_MODEL_LICENSE,
+            "model_license_url": PIPER_MODEL_LICENSE_URL,
+            "model_attribution": PIPER_MODEL_ATTRIBUTION,
+        })
     if metadata_file.exists():
         existing = json.loads(metadata_file.read_text(encoding="utf-8"))
         core = {key: existing.get(key) for key in expected}
         if core != expected:
-            if allow_piper_replacement and existing.get("engine") == "piper" and engine == "mms":
+            if allow_piper_replacement and existing.get("engine") == "mms" and engine == "piper":
                 metadata_file.write_text(json.dumps(expected, indent=2) + "\n", encoding="utf-8")
                 return
             raise RuntimeError(
@@ -332,14 +356,14 @@ def select_manifest_entries(entries: list[dict], level: str, limit: int, ids_tex
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--engine", choices=("edge", "mms"), required=True)
+    parser.add_argument("--engine", choices=("piper", "edge", "mms"), required=True)
     parser.add_argument("--mode", choices=("samples", "full"), default="samples")
     parser.add_argument("--samples", action="store_true", help="alias for --mode samples")
     parser.add_argument("--level", choices=LEVELS, default="all")
     parser.add_argument("--limit", type=int, default=10, help="0 means all selected texts")
     parser.add_argument("--ids", default="", help="comma- or space-separated manifest IDs for an exact set; overrides --limit")
     parser.add_argument("--include-pronunciation-variants", action="store_true", help="add three experimental MMS readings of the A1 phrase Selamat pagi")
-    parser.add_argument("--voice", default="id-ID-ArdiNeural")
+    parser.add_argument("--voice", default=PIPER_MODEL_ID)
     parser.add_argument("--noise-scale", type=float, default=None, help="experimental MMS samples only; lower values reduce acoustic variation")
     parser.add_argument("--noise-scale-duration", type=float, default=None, help="experimental MMS samples only; lower values reduce duration variation")
     parser.add_argument("--force", action="store_true")
@@ -403,7 +427,7 @@ def main():
     if args.mode == "full":
         ensure_single_voice(
             ROOT / "audio" / "metadata.json", args.engine, voice_label,
-            allow_piper_replacement=args.engine == "mms" and args.force,
+            allow_piper_replacement=args.engine == "piper" and args.force,
         )
     existing_samples = json.loads(sample_file.read_text(encoding="utf-8")) if sample_file.exists() else []
     sample_map = {

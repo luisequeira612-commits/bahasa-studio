@@ -86,6 +86,30 @@ class AudioSamplesPageTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "duplicate IDs"):
             MODULE.select_manifest_entries(entries, "A1", 10, "a1,a1")
 
+    def test_full_piper_migration_reconciles_indexed_legacy_entries(self):
+        current = [
+            {"id": "current-a", "text": "Saya makan.", "levels": ["A1"]},
+            {"id": "current-b", "text": "Saya minum.", "levels": ["A2"]},
+        ]
+        legacy = [
+            {"id": "retired-a", "text": "Old sentence one.", "levels": ["A1"]},
+            {"id": "retired-b", "text": "Old sentence two.", "levels": ["A2"]},
+        ]
+        indexed = {"current-a", "current-b", "retired-a", "retired-b"}
+        combined = MODULE.include_indexed_legacy_entries(current, legacy, indexed)
+        self.assertEqual(
+            [entry["id"] for entry in combined],
+            ["current-a", "current-b", "retired-a", "retired-b"],
+        )
+
+    def test_legacy_reconciliation_fails_closed_for_unknown_index_ids(self):
+        with self.assertRaisesRegex(ValueError, "missing from both"):
+            MODULE.include_indexed_legacy_entries(
+                [{"id": "current-a", "text": "Saya.", "levels": ["A1"]}],
+                [{"id": "retired-a", "text": "Old.", "levels": ["A1"]}],
+                {"current-a", "missing-a"},
+            )
+
     def test_exact_sample_ids_respect_selected_level(self):
         entries = [
             {"id": "a1", "text": "Saya", "levels": ["A1"]},

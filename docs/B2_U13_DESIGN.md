@@ -19,7 +19,7 @@ No se cubren `-lah` y `-kah` en esta unidad: son partículas con funciones discu
    Fuente: https://universaldependencies.org/id/index.html
 
 3. **“Handling Indonesian Clitics: A Dataset Comparison for an MT System” (2012).** Describe la ambigüedad de `bukunya` entre lectura posesiva y determinante, y los patrones de proclíticos/enclíticos sobre verbos y nombres. Se usa como apoyo secundario, no como regla universal.  
-   Fuente: https://paperzz.com/doc/7717115/handling-indonesian-clitics--a-dataset-comparison-for-an
+   Fuente: https://aclanthology.org/Y12-1015.pdf
 
 4. **Material curricular previamente aprobado.** U2 ya enseña `Buku itu kubaca` y `Buku itu kaubaca`; U9 conserva el fragmento segmentado `di-tolak-nya` para el análisis formal debatido. U13 los recupera sin crear frases nuevas ni modificar sus IDs.
 

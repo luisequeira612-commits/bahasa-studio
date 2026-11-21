@@ -30,8 +30,7 @@ on:
         type: string
         default: id-ID-GadisNeural
         required: false
-      noise_scale:
-              level:
+      level:
         description: Nivel o todos para generación completa
         type: choice
         options: [A1, A2, B1, B2, all]
@@ -101,7 +100,7 @@ jobs:
           ref: ${{ inputs.source_ref }}
           fetch-depth: 0
 
-      - name: Restore MMS model cache
+      - name: Restore Piper voice cache
         if: ${{ inputs.mode != 'hashes' }}
         uses: actions/cache@v4
         with:

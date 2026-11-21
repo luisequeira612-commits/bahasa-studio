@@ -564,10 +564,12 @@ test('B2 U15 implements five authored lessons and 16 source-backed pun/pula exer
   assert.equal(exercises.length, 16);
   assert.ok(exercises.every((exercise) => exercise.type !== 'listen'),
     'U15 must not create listening tasks without Piper recordings');
-  const priorIds = new Set([a1, a2, b1, ...b2.units.filter((item) => item.id !== 'b2_u15')]
-    .flatMap((level) => level.units || [])
-    .flatMap((item) => item.vocab || [])
-    .map((word) => word.id));
+  const priorIds = new Set([
+    ...a1.units.flatMap((item) => item.vocab || []),
+    ...a2.units.flatMap((item) => item.vocab || []),
+    ...b1.units.flatMap((item) => item.vocab || []),
+    ...b2.units.filter((item) => item.id !== 'b2_u15').flatMap((item) => item.vocab || []),
+  ].map((word) => word.id));
   for (const word of unit.vocab) {
     assert.equal(priorIds.has(word.id), false, word.id + ' must be globally unique');
   }

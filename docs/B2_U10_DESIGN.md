@@ -3,7 +3,7 @@
 **Estado:** propuesta documental reversible; no implementada ni publicada.  
 **Fecha:** 8 nov 2026.  
 **Ubicación:** cuarta y última unidad propuesta del bloque B2 U7–U10, cuyo eje aprobado es nominalizaciones.  
-**Dependencias:** U7 está implementada y fusionada; U8 y U9 siguen siendo diseños documentales. U10 no presupone que sus ejemplos, vocabulario o ejercicios estén aprobados ni implementados.
+**Dependencias:** U7 está implementada y fusionada; U8 y U9 ya están implementadas. U10 no presupone que sus ejemplos, vocabulario o ejercicios estén aprobados ni implementados.
 
 ## Propósito y alcance
 
@@ -15,7 +15,7 @@ El objetivo no es reducir estas construcciones a una única regla de «nominaliz
 
 - U7 propone reconocer familias léxicas peN-an y per-an en contexto, sin traducir los afijos mecánicamente.
 - U8 propone interpretar nominalizaciones ke-...-an y distinguirlas de formas verbales homónimas o parecidas.
-- U9 propone leer el patrón verbal -nya con su complemento y reconocer que la literatura debate entre análisis de nominalización y subordinación.
+- U9 implementa lectura del patrón verbal -nya con su complemento y el debate académico entre análisis de nominalización y subordinación, sin generalización productiva.
 - U10 no volverá a enseñar esos contenidos por separado. Los usará, si finalmente se aprueban, como recursos de lectura dentro de un texto más amplio.
 
 La integración será funcional y textual, no una afirmación de que todos los patrones comparten la misma estructura. No se introducirán nuevos afijos, paradigmas ni reglas productivas.
@@ -46,7 +46,7 @@ Al completar U10, el estudiante podrá:
 
 ### Lección 1 — Reconocer estructuras en un texto continuo
 
-- Leer un fragmento informativo o expositivo breve y localizar formas ya estudiadas en U7–U9, si esos diseños llegan a aprobarse.
+- Leer un fragmento informativo o expositivo breve y localizar formas ya estudiadas en U7–U9, solo con los ejemplos fuente que el dueño aprobó para U9.
 - Clasificar cada caso con la explicación específica de su unidad de origen; no inferir la categoría a partir de la forma aislada.
 - Separar nominalizaciones léxicas, lecturas verbales de ke-an y el patrón verbal -nya debatido en U9.
 - No introducir vocabulario ni morfología nueva como requisito para resolver la lectura.
@@ -97,7 +97,7 @@ Al menos cinco ejercicios trabajarán oraciones completas; al menos uno incluir�
 ## Vocabulario y dependencias
 
 - No se proponen entradas nuevas ni IDs.
-- No se aprueba ni reutiliza automáticamente ningún ejemplo de U7, U8 o U9.
+- No se aprueba ni reutiliza automáticamente ningún ejemplo adicional de U7, U8 o U9.
 - Los términos de los textos fuente serán material de lectura provisional hasta verificar forma, glosa, contexto, categoría, nivel e inventario A1–B2.
 - No contar expresiones o formas derivadas como vocabulario nuevo solo por aparecer en el texto.
 - Si se considera necesario añadir vocabulario, presentar primero cada forma al dueño con glosa española, oración contextual y motivo.
@@ -110,14 +110,14 @@ Al menos cinco ejercicios trabajarán oraciones completas; al menos uno incluir�
 - No presentar el análisis de Grangé para -nya como consenso ni como regla causal universal.
 - No reconstruir agentes, tiempos, aspecto o causalidad que el contexto no respalde.
 - No exigir producción libre de formas derivadas ni crear palabras por analogía.
-- No asumir que U8–U9 están implementadas por el mero hecho de existir sus diseños; U7 sí está implementada y fusionada.
+- U7–U9 están implementadas; no ampliar sus ejemplos ni vocabulario sin aprobación específica.
 - Mantener B2 oculta/no publicada hasta completar el contenido y el flujo de liberación.
 - No modificar A1/A2/B1, IndexedDB, backup JSON v3, trackers, dependencias ni servicios externos.
 - No afirmar validación nativa ni certificación MCER/BIPA.
 
 ## Condiciones para pasar a implementación
 
-1. Revisar U7–U9 tras cualquier decisión del dueño y eliminar solapamientos reales.
+1. Revisar U7–U9 para detectar solapamientos reales sin ampliar los ejemplos aprobados.
 2. Seleccionar un texto continuo con fuente y contexto verificables; no redactar ejercicios a partir de fragmentos descontextualizados.
 3. Confirmar que cada ejemplo pertenece a la unidad de origen correcta y que sus análisis no se mezclan.
 4. Comprobar que las paráfrasis conservan participantes y relaciones, y aceptar alternativas españolas equivalentes.

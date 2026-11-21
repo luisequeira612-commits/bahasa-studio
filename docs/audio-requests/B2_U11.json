@@ -21,5 +21,6 @@
     "keras-keras",
     "Pulau-pulau Bali, Lombok dan Sumbawa terletak di sebelah timur pulau Jawa."
   ],
-  "requestVersion": 2
+  "requestVersion": 3,
+  "preserveInteractive": true
 }

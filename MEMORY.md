@@ -1,3 +1,9 @@
+## B2 U15 implementada — 21 nov 2026
+- U15 añade cinco lecciones authored y 16 ejercicios ([3,3,3,3,4]) sobre la partícula focalizadora pun y los marcadores aditivos pula/juga; cubre alcance, foco, lectura de «también/incluso», secuenciación menos frecuente con pun y la diferencia ortográfica entre pun separado y conjunciones como walaupun/meskipun/biarpun.
+- Añade dos IDs canónicos nuevos: `b2u15_pun` y `b2u15_pula`; no se detectan colisiones en los tests globales. Usa ejemplos publicados de Sneddon et al. (2010, §§2.219–2.226, 3.49, 4.99) y la regla ortográfica oficial EYD V. No inventa frases indonesias; no añade clips Piper ni ejercicios de escucha.
+- U15 permanece oculta/no publicada; U1–U5 siguen visibles. No cambia IndexedDB v1, backup JSON v3, A1/A2/B1 ni dependencias. La naturalidad no ha sido validada por hablante nativo; las dos entradas quedan `not_checked`.
+- Fuente: autorización autónoma del dueño, 21 nov 2026; `docs/B2_U15_DESIGN.md`; [Sneddon et al. (2010)](https://theswissbay.ch/pdf/Books/Linguistics/Mega%20linguistics%20pack/Austronesian/Indonesian%20Reference%20Grammar%20%28Sneddon%29.pdf), [EYD V — Partikel](https://ejaan.kemendikdasmen.go.id/eyd/penulisan-kata/partikel/).
+
 ## B2 U14 implementada — 21 nov 2026
 - U14 tiene cinco lecciones authored y 16 ejercicios ([3,3,3,3,4]) de cuatro tipos (mc, fill, order, write). Distingue -lah como partícula de foco/realce y -kah como marcador interrogativo; incluye la variación pragmática de -lah en imperativos (no equivale siempre a «por favor») y la focalización interrogativa de -kah.
 - Usa ejemplos de Denistia & Baayen (2021), Sneddon et al. (2010), Universal Dependencies Indonesian y material gramatical del repositorio del Ministerio de Educación de Indonesia; reutiliza Bacalah de B1 y silakan/tolong de niveles previos. No añade vocabulario/IDs, oraciones indonesias inventadas ni audio. U14 permanece oculta/no publicada; U1–U5 siguen visibles.
@@ -42,7 +48,7 @@
 - Próximo trabajo autorizado: implementar cinco lecciones y 16 ejercicios alrededor de esos fragmentos, con consignas y claves contextualizadas; sin escribir nuevas oraciones indonesias. Paráfrasis españolas pueden ser actividades de comprensión, no sustituyen validación lingüística.
 - Fuente: aprobación directa del dueño en ChatGPT, 21 nov 2026; Grangé (2015), Wacana 16(1), pp. 138–147.
 
-## Estado B2 actualizado — 21 nov 2026
+## Estado B2 histórico — 21 nov 2026 (antes de U9)
 - B2 U1–U8 están implementadas, cada una con cinco lecciones authored; U1–U5 son las visibles y U6–U8 permanecen ocultas hasta decisión explícita de publicación del dueño. La migración Piper cubre los 2.212 IDs del índice; 98 textos están asociados a B2 U1–U8.
 - U8 se aprobó e implementó en PR #639 (merge `7b50f3923a5615d61d6cd72ca5cc798800c94e73`). No describir ya sus ocho formas/ejemplos como pendientes.
 - El siguiente checkpoint es B2 U9. Su diseño prevé cinco lecciones/16 ejercicios, sin vocabulario ni IDs nuevos. Se prepara `docs/B2_U9_APPROVAL_PACKET.md` con cinco fragmentos de ejemplos publicados en Grangé (2015), usados solo para que el dueño decida; ningún fragmento/glosa queda aprobado por crear el paquete. Tras aprobación explícita se puede implementar U9. U10 mantiene su diseño documental; U11–U12 son propuestas; U13–U60 carecen de mapa aprobado.

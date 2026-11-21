@@ -417,7 +417,7 @@ test('B2 U10 implements five authored integration lessons and 16 Spanish-analysi
       : typeof exercise.answer === 'string' ? exercise.answer
       : Number.isInteger(exercise.answer) && Array.isArray(exercise.options) ? exercise.options[exercise.answer] || ''
       : '';
-    return target.trim().split(/\\s+/).filter(Boolean).length >= 2;
+    return target.trim().split(/\s+/).filter(Boolean).length >= 2;
   }).length >= 5, 'U10 must include at least five sentence-level targets');
 });
 

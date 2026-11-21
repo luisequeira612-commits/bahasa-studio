@@ -8942,6 +8942,78 @@
                             ]
                         },
 
+                        {
+                            id: 'b2_u13',
+                            title: 'Unidad 13: Clíticos pronominales y ambigüedad de -nya',
+                            desc: 'Interpreta proclíticos y enclíticos según su posición y el tipo de huésped; distingue las funciones de -ku, -mu y -nya sin asignarles una traducción fija.',
+                            grammar: 'El indonesio usa clíticos pronominales unidos a una palabra huésped. Ku- y kau- aparecen antes del verbo como proclíticos y ya se estudiaron en U2. -ku, -mu y -nya aparecen después del huésped como enclíticos; en verbos pueden expresar objeto y en nombres posesión. -nya es especialmente ambiguo: en nombres puede ser posesivo de tercera persona o determinante definido; en verbos activos con meN- puede representar el objeto de tercera persona y en verbos pasivos con di- puede representar al participante de tercera persona asociado al agente. La interpretación depende del huésped, la voz, la sintaxis y el contexto. No debe confundirse automáticamente con el patrón formal debatido de U9.',
+                            vocab: [],
+                            exercises: [],
+                            lessons: [
+                                {
+                                    title: '1. Proclíticos y enclíticos: posición del clítico',
+                                    objective: 'Distingue las formas pronominales que preceden al verbo de las que se posponen a su huésped.',
+                                    grammar: 'Ku- y kau- son proclíticos de primera y segunda persona singular, respectivamente; U2 ya los presentó en Buku itu kubaca y Buku itu kaubaca. -ku, -mu y -nya son enclíticos: se adjuntan después de un verbo o un nombre. La diferencia es de posición y distribución, no una equivalencia de traducción palabra por palabra.',
+                                    vocabIds: [],
+                                    reviewVocabIds: [],
+                                    exercises: [
+                                        { type: 'mc', prompt: '¿Qué diferencia estructural distingue ku-/kau- de -ku/-mu/-nya?', options: ['Ku-/kau- preceden a su huésped verbal; -ku/-mu/-nya se posponen al huésped','Todas las formas aparecen siempre antes del verbo','La diferencia depende únicamente del tiempo verbal'], answer: 0, explanation: 'Ku- y kau- son proclíticos; -ku, -mu y -nya son enclíticos. La categoría depende de su posición respecto del huésped.' },
+                                        { type: 'order', prompt: 'Reconstruye el ejemplo ya estudiado en B2 U2.', words: ['kubaca.','Buku','itu'], correctOrder: ['Buku','itu','kubaca.'], explanation: 'Buku itu aparece primero y ku- se incorpora al verbo como proclítico.' },
+                                        { type: 'fill', prompt: 'Explica en una oración completa la diferencia de posición entre los dos grupos.', answer: 'Ku- y kau- son proclíticos que preceden al huésped, mientras que -ku, -mu y -nya son enclíticos que aparecen después.', answerLanguage: 'es', direction: 'id→es', explanation: 'La clasificación se basa en la posición del clítico con respecto a la palabra huésped.' }
+                                    ]
+                                },
+                                {
+                                    title: '2. Clíticos en nombres: posesión y determinación',
+                                    objective: 'Interpreta -ku, -mu y -nya en nombres y reconoce la ambigüedad entre posesión y determinación definida.',
+                                    grammar: 'La fuente documenta bukuku (mi libro), bukumu (tu libro) y bukunya, que puede significar su libro o el libro definido según el contexto. -ku y -mu expresan posesión de primera y segunda persona singular; -nya puede expresar posesión de tercera persona o definitud. El contexto resuelve la lectura.',
+                                    vocabIds: [],
+                                    reviewVocabIds: [],
+                                    exercises: [
+                                        { type: 'mc', prompt: 'En bukunya, ¿qué dos lecturas puede tener -nya cuando se adjunta al nombre buku?', options: ['Posesivo de tercera persona o determinante definido','Primera persona o segunda persona','Marca obligatoria de plural'], answer: 0, explanation: 'La fuente documenta las dos lecturas nominales de -nya: posesión de tercera persona y definitud.' },
+                                        { type: 'fill', prompt: 'Explica en una oración completa qué aporta -ku en bukuku.', answer: 'En bukuku, el enclítico -ku expresa que el libro pertenece a la persona que habla.', answerLanguage: 'es', direction: 'id→es', explanation: '-ku representa la primera persona singular en función posesiva cuando se adjunta a un nombre.' },
+                                        { type: 'write', answerLanguage: 'es', direction: 'id→es', prompt: 'Compara bukuku, bukumu y bukunya en tres oraciones en español.', hint: 'Distingue primera persona, segunda persona y las dos lecturas posibles de -nya. No inventes nuevas formas indonesias.', modelAnswer: 'Bukuku expresa «mi libro» mediante el enclítico de primera persona -ku. Bukumu expresa «tu libro» mediante -mu. Bukunya puede significar «su libro» o «el libro» definido, por lo que el contexto permite elegir entre posesión y determinación.', explanation: 'La respuesta distingue las personas de -ku y -mu y conserva la ambigüedad documentada de -nya.' }
+                                    ]
+                                },
+                                {
+                                    title: '3. Clíticos en verbos: objeto pronominal',
+                                    objective: 'Reconoce los enclíticos que expresan el objeto pronominal de un verbo activo.',
+                                    grammar: 'En verbos, los enclíticos pueden realizar el objeto pronominal. La fuente documenta mencintaiku («amarme») y mencintaimu («amarte»); la documentación de Universal Dependencies también analiza mencintainya como mencintai + -nya («amarlo/la»). En los ejemplos activos con meN-, el clítico final expresa la persona del objeto y no la del agente.',
+                                    vocabIds: [],
+                                    reviewVocabIds: [],
+                                    exercises: [
+                                        { type: 'mc', prompt: 'En mencintaimu, ¿qué función cumple -mu?', options: ['Objeto pronominal de segunda persona','Agente de primera persona','Determinante definido del nombre'], answer: 0, explanation: '-mu representa a la persona amada como objeto de segunda persona.' },
+                                        { type: 'order', prompt: 'Ordena el procedimiento para interpretar un enclítico en un verbo activo.', words: ['Determinar qué persona representa el clítico final.','Reconocer el verbo activo y su huésped.','Comprobar qué participante funciona como objeto en el contexto.'], correctOrder: ['Reconocer el verbo activo y su huésped.','Determinar qué persona representa el clítico final.','Comprobar qué participante funciona como objeto en el contexto.'], explanation: 'Primero se identifica el huésped verbal; después se interpreta la persona del clítico y su función sintáctica.' },
+                                        { type: 'fill', prompt: 'Explica en una oración completa la función de -nya en mencintainya.', answer: 'En mencintainya, -nya representa el objeto de tercera persona unido al verbo activo.', answerLanguage: 'es', direction: 'id→es', explanation: 'La documentación de Universal Dependencies separa mencintai y nya como verbo y clítico de objeto.' }
+                                    ]
+                                },
+                                {
+                                    title: '4. Las funciones de -nya: huésped y voz',
+                                    objective: 'Distingue las lecturas nominales, el objeto de un verbo activo y el participante de tercera persona en una construcción pasiva.',
+                                    grammar: 'La forma -nya no tiene una única función. En bukunya puede ser posesivo o determinante; en mencintainya es objeto de un verbo activo con meN-; en el fragmento segmentado di-tolak-nya de U9 puede representar al participante de tercera persona asociado al agente de la construcción pasiva. Los guiones de di-tolak-nya indican segmentación morfológica del fragmento fuente, no una nueva regla ortográfica.',
+                                    vocabIds: [],
+                                    reviewVocabIds: [],
+                                    exercises: [
+                                        { type: 'mc', prompt: 'En el fragmento di-tolak-nya ya estudiado en U9, ¿qué lectura pronominal de -nya se reconoce?', options: ['Participante de tercera persona asociado al agente de la construcción pasiva','Determinante definido de un nombre','Objeto de segunda persona de un verbo activo'], answer: 0, explanation: 'En el fragmento pasivo de U9, -nya representa al participante de tercera persona asociado al agente; no es el uso nominal de bukunya.' },
+                                        { type: 'fill', prompt: 'Resume en una oración completa por qué no se debe traducir -nya siempre de la misma manera.', answer: 'La función de -nya depende de la categoría de su huésped, la voz verbal y el contexto.', answerLanguage: 'es', direction: 'id→es', explanation: 'El clítico puede tener lecturas distintas en nombres, verbos activos y construcciones pasivas.' },
+                                        { type: 'write', answerLanguage: 'es', direction: 'id→es', prompt: 'Compara bukunya, mencintainya y di-tolak-nya en tres o cuatro oraciones.', hint: 'Incluye posesión/definitud, objeto activo y participante de tercera persona en la construcción pasiva. No añadas ejemplos indonesios.', modelAnswer: 'En bukunya, -nya puede expresar posesión de tercera persona o definitud. En mencintainya, -nya representa el objeto de tercera persona de un verbo activo. En di-tolak-nya, fragmento pasivo segmentado de U9, representa al participante de tercera persona asociado al agente. El huésped y la voz ayudan a distinguir las lecturas.', explanation: 'La comparación separa tres funciones documentadas sin asignar a -nya una traducción fija.' }
+                                    ]
+                                },
+                                {
+                                    title: '5. Integración con U2 y U9',
+                                    objective: 'Integra proclíticos, enclíticos y el patrón formal debatido de U9 sin confundir sus análisis.',
+                                    grammar: 'U2 estudió ku- y kau- como proclíticos que identifican al agente de primera y segunda persona. Esta unidad estudia -ku, -mu y -nya como enclíticos en nombres y verbos. U9, por su parte, analizó un patrón formal con -nya cuyo estatus se debate en la bibliografía. La similitud gráfica no demuestra que los tres fenómenos tengan la misma estructura: se debe atender al huésped, la voz, el complemento y el contexto.',
+                                    vocabIds: [],
+                                    reviewVocabIds: [],
+                                    exercises: [
+                                        { type: 'mc', prompt: '¿Qué estrategia evita confundir los clíticos de esta unidad con el patrón formal de -nya estudiado en U9?', options: ['Analizar el huésped, la voz, el complemento y el contexto antes de clasificar','Traducir toda forma -nya como «porque»','Suponer que cualquier -nya nominaliza el verbo anterior'], answer: 0, explanation: 'U9 estudia un patrón formal debatido; los enclíticos pronominales se interpretan según su huésped y su función.' },
+                                        { type: 'fill', prompt: 'Explica en una oración completa cómo se relacionan U2, U9 y esta unidad.', answer: 'U2 estudia proclíticos de agente, U9 analiza un patrón formal debatido con -nya y U13 amplía las funciones de los enclíticos pronominales.', answerLanguage: 'es', direction: 'id→es', explanation: 'La integración conserva la diferencia entre posición, función pronominal y el patrón formal específico de U9.' },
+                                        { type: 'order', prompt: 'Ordena un análisis completo de una forma con clítico pronominal.', words: ['Comprobar el contexto y la función sintáctica.','Identificar el huésped y la posición del clítico.','Determinar la persona y la lectura posible.'], correctOrder: ['Identificar el huésped y la posición del clítico.','Determinar la persona y la lectura posible.','Comprobar el contexto y la función sintáctica.'], explanation: 'La interpretación parte de la forma y su posición, identifica la lectura pronominal y la confirma con la sintaxis y el contexto.' },
+                                        { type: 'write', answerLanguage: 'es', direction: 'id→es', prompt: 'Escribe un resumen de cuatro oraciones que contraste proclíticos y enclíticos y explique por qué -nya requiere contexto.', hint: 'Incluye ku-/kau-, -ku/-mu/-nya y la diferencia entre U9 y las funciones pronominales. No inventes frases indonesias.', modelAnswer: 'Ku- y kau- son proclíticos que preceden al verbo y representan al agente, como se estudió en U2. -Ku y -mu pueden expresar posesión en nombres u objeto en verbos, mientras que -nya tiene varias lecturas según el huésped. En nombres, -nya puede ser posesivo o determinante; en verbos, puede expresar objeto activo o el participante asociado al agente en una construcción pasiva. El patrón formal debatido de U9 debe analizarse por separado y no se reduce a una traducción fija de -nya.', explanation: 'La producción integra posición, persona, huésped y contexto sin mezclar el patrón formal de U9 con todos los clíticos pronominales.' }
+                                    ]
+                                }
+                            ]
+                        },
+
 
                     ]
                 }

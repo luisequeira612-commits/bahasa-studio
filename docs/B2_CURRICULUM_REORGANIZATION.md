@@ -1,7 +1,7 @@
 # Reorganización del currículo B2 (60 unidades)
 
 **Decisión del dueño:** 7 nov 2026, autorización explícita para reorganizar el borrador conservando todo el contenido anterior.  
-**Estado:** plan de migración y conservación; U1–U8 están implementadas con cinco lecciones authored cada una. U6–U8 siguen ocultas hasta decisión explícita de publicación. U9 está implementada; U10 tiene diseño documental; U11–U12 son propuestas de diseño; U13–U60 no tienen mapa aprobado.  
+**Estado:** plan de migración y conservación; U1–U9 están implementadas con cinco lecciones authored cada una. U6–U9 siguen ocultas hasta decisión explícita de publicación. U10 tiene diseño documental; U11–U12 son propuestas de diseño; U13–U60 no tienen mapa aprobado.  
 **Base de código:** `index.html` en `main`, commit `e5890b8bc09200d7073467ff25d2d20415aa58f1` (PR #615).
 
 ## Orden aprobado

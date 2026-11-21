@@ -422,7 +422,7 @@ test('B2 U10 implements five authored integration lessons and 16 Spanish-analysi
 });
 
 
-test('B2 U11 implements 12 source-backed reduplication entries and 16 contextual exercises', async () => {
+test('B2 U11 implements 14 source-backed reduplication entries and 16 contextual exercises', async () => {
   const { b2 } = await loadCurricula();
   const unit = b2.units.find((item) => item.id === 'b2_u11');
   assert.ok(unit, 'B2 U11 must exist');
@@ -432,7 +432,7 @@ test('B2 U11 implements 12 source-backed reduplication entries and 16 contextual
     'b2u11_pulau_pulau', 'b2u11_dua_dua', 'b2u11_memukul_memukul',
     'b2u11_pukul_memukul', 'b2u11_dipukul_pukul', 'b2u11_melihat_lihat',
     'b2u11_sayur_mayur', 'b2u11_gerak_gerik', 'b2u11_kaya_raya',
-    'b2u11_lelaki', 'b2u11_dedaunan', 'b2u11_pepohonan'
+    'b2u11_lelaki', 'b2u11_dedaunan', 'b2u11_pepohonan', 'b2u11_kecil_kecil', 'b2u11_keras_keras'
   ];
   assert.deepEqual(unit.vocab.map((word) => word.id), expectedIds);
   assert.ok(unit.vocab.every((word) => word.idn && word.esp), 'every new canonical form needs Indonesian form and Spanish gloss');
@@ -442,8 +442,8 @@ test('B2 U11 implements 12 source-backed reduplication entries and 16 contextual
     ['b2u11_pulau_pulau', 'b2u11_dua_dua'],
     ['b2u11_memukul_memukul', 'b2u11_pukul_memukul', 'b2u11_dipukul_pukul', 'b2u11_melihat_lihat'],
     ['b2u11_sayur_mayur', 'b2u11_gerak_gerik', 'b2u11_kaya_raya', 'b2u11_lelaki', 'b2u11_dedaunan', 'b2u11_pepohonan'],
-    [],
-    []
+    ['b2u11_kecil_kecil'],
+    ['b2u11_keras_keras']
   ]);
   const exercises = allExercises(unit);
   assert.equal(exercises.length, 16);

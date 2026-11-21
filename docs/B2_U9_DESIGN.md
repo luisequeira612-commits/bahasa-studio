@@ -1,9 +1,9 @@
 # Diseño preliminar B2 U9 — construcciones verbales con -nya y lectura de cláusula
 
-**Estado:** propuesta documental reversible; no implementada ni publicada.  
+**Estado:** diseño documental reversible; no implementada ni publicada. Paquete de ejemplos fuente preparado para aprobación del dueño: [B2 U9 approval packet](B2_U9_APPROVAL_PACKET.md). Ningún ejemplo ni glosa del paquete está aprobado todavía.  
 **Fecha:** 8 nov 2026.  
 **Ubicación:** tercera unidad propuesta dentro del eje B2 U7–U10 de nominalizaciones.  
-**Dependencias:** comprensión de voz verbal y nominalizaciones de B1/B2; U7 está implementada y fusionada, mientras U8 y U9 siguen en fase documental. Este diseño no aprueba sus ejemplos ni vocabulario.
+**Dependencias:** comprensión de voz verbal y nominalizaciones de B1/B2; U7 está implementada y fusionada, y U8 también está implementada (PR #639). U9 sigue en fase documental; el paquete asociado propone solo fragmentos de ejemplos publicados, no vocabulario ni IDs nuevos.
 
 ## Propósito y alcance
 

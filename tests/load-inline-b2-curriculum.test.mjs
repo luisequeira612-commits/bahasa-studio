@@ -454,6 +454,7 @@ test('B2 U11 implements 14 source-backed reduplication entries and 16 contextual
   assert.ok(exercises.some((exercise) => exercise.type === 'fill' && exercise.prompt.includes('Buku-buku berjatuhan') && exercise.answerLanguage === 'es'));
   assert.ok(exercises.some((exercise) => exercise.type === 'fill' && exercise.prompt.includes('Anak itu berteriak keras-keras') && exercise.answerLanguage === 'es'));
   assert.equal(exercises.filter((exercise) => exercise.type === 'write').length, 2);
+  for (const exercise of exercises) if (exercise.vocabId) assert.ok(expectedIds.includes(exercise.vocabId), 'exercise vocabulary references must resolve to a U11 canonical ID');
   for (const lesson of unit.lessons) {
     for (const id of [...lesson.vocabIds, ...lesson.reviewVocabIds]) assert.ok(expectedIds.includes(id), 'lesson vocabulary references must resolve to a U11 canonical ID');
   }

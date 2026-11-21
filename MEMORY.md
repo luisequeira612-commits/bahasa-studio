@@ -1,8 +1,8 @@
-## B2 U10: selección de reutilización pendiente — 21 nov 2026
-- Tras fusionar U9, el siguiente checkpoint es U10, última unidad del bloque de nominalizaciones U7–U10. Su diseño propone integración de lectura y reformulación sin vocabulario nuevo.
-- Se preparó `docs/B2_U10_APPROVAL_PACKET.md` para que el dueño decida si se reutilizan en U10 cinco IDs ya aprobados de U7/U8 (`b2u7_pembelian`, `b2u7_pergerakan`, `b2u8_kedatangan`, `b2u8_kementerian`, `b2u8_ketidakadilan`) y cuatro fragmentos ya aprobados de U9 (ejemplos 15, 17, 26 y 34 de Grangé 2015). La propuesta recomienda un dossier de tres grupos de fragmentos auténticos en vez de fabricar un texto indonesio continuo.
-- La aprobación U7/U8/U9 no autoriza automáticamente su reutilización en U10; esperar decisión explícita. No crear vocabulario/IDs, oraciones indonesias nuevas, audio ni contenido ejecutable de U10 antes de aprobar el paquete.
-- Fuente: estado de `main`, `docs/B2_U10_DESIGN.md`, diseños U7/U8/U9 y sus aprobaciones previas; 21 nov 2026.
+## B2 U10 implementada — 21 nov 2026
+- Por instrucción directa del dueño, se continuó el currículo de forma autónoma y por lotes, sin detenerse a pedir aprobaciones intermedias. U10 cierra el bloque de integración U7–U10.
+- U10 tiene cinco lecciones authored y 16 ejercicios ([3,3,3,3,4]), cuatro tipos (mc, fill, order, write). Reutiliza los cinco IDs canónicos ya existentes de U7/U8 y los fragmentos U9 documentados; no crea vocabulario, IDs, oraciones indonesias ni audio. La producción guiada y las paráfrasis son en español.
+- U10 permanece oculta/no publicada; la ruta visible y el desbloqueo secuencial no se modifican. No se alteran A1/A2/B1, IndexedDB v1, backup JSON v3, audio ni dependencias.
+- Fuente: instrucción directa del dueño en ChatGPT, 21 nov 2026; `docs/B2_U10_DESIGN.md`, `docs/B2_U10_APPROVAL_PACKET.md` y pruebas estructurales del repositorio.
 
 ## Implementación B2 U9 — 21 nov 2026
 - B2 U9 se implementó en la rama `curriculum/b2-u9-implementation-20261121` tras aprobación explícita de los cinco fragmentos fuente (Grangé 2015) por el dueño el 21 nov 2026.

@@ -1,6 +1,6 @@
 # Diseño preliminar B2 U10 — integración de nominalizaciones en textos formales
 
-**Estado:** propuesta documental reversible; no implementada ni publicada. Paquete de aprobación para reutilizar ejemplos ya aprobados de U7–U9: [B2 U10 approval packet](B2_U10_APPROVAL_PACKET.md).  
+**Estado:** implementada en `curriculum/b2-u10-implementation-20261121-clean`; cinco lecciones authored y 16 ejercicios. Oculta/no publicada. Reutiliza únicamente IDs canónicos de U7/U8 y fragmentos ya aprobados de U9; no añade vocabulario ni oraciones indonesias nuevas.  
 **Fecha:** 8 nov 2026.  
 **Ubicación:** cuarta y última unidad propuesta del bloque B2 U7–U10, cuyo eje aprobado es nominalizaciones.  
 **Dependencias:** U7 está implementada y fusionada; U8 y U9 ya están implementadas. U10 no presupone que sus ejemplos, vocabulario o ejercicios estén aprobados ni implementados.
@@ -125,3 +125,13 @@ Al menos cinco ejercicios trabajarán oraciones completas; al menos uno incluir�
 6. Ejecutar controles de coherencia consigna-respuesta, referencias, duplicados, progresión y ausencia de exposición anticipada.
 
 **Estatus de decisión:** el dueño aprobó el eje general de nominalizaciones para B2 U7–U10. U7 está implementada y fusionada; U10 sigue siendo una propuesta documental reversible de integración y no autoriza vocabulario, IDs, glosas definitivas ni ejercicios ejecutables.
+
+
+## Registro de implementación — 21 nov 2026
+
+- La unidad se implementó tras la instrucción del dueño de continuar B2 de forma autónoma y por lotes.
+- Cinco lecciones authored, 16 ejercicios distribuidos [3, 3, 3, 3, 4] y cuatro tipos: mc, fill, order y write.
+- Se reutilizan `b2u7_pembelian`, `b2u7_pergerakan`, `b2u8_kedatangan`, `b2u8_kementerian` y `b2u8_ketidakadilan` como referencias canónicas, además de los fragmentos U9 documentados en el paquete.
+- No se añaden vocabulario/IDs, ejemplos indonesios nuevos, audio ni dependencias. Las paráfrasis y la producción guiada se realizan en español.
+- La unidad sigue oculta/no publicada; no se modifican puertas de visibilidad ni progresión.
+- Las comprobaciones estructurales no certifican naturalidad, registro ni equivalencia semántica nativa.

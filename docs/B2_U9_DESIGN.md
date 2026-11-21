@@ -115,7 +115,7 @@ Propuesta de **16 ejercicios combinados en cinco lecciones authored**, todavía 
 | 5 | 1 | 0 | 0 | 1 | 2 | 4 |
 | **Total** | **5** | **3** | **1** | **3** | **4** | **16** |
 
-Al menos cinco ejercicios deben trabajar oraciones completas y al menos uno debe incluir producción guiada de paráfrasis en español. La unidad no debe exigir grabación ni nuevos recursos: la escucha, si se conserva, será secundaria y usará únicamente el mecanismo local existente, nunca como evidencia principal para una estructura caracterizada como escrita/formal.
+Al menos cinco ejercicios trabajan objetivos de lectura a nivel de oración y una actividad incluye producción guiada de paráfrasis en español. La unidad no exige grabación ni nuevos recursos; no se pide producción original en indonesio porque el alcance aprobado se limita a cinco fragmentos escritos/formales.
 
 ## Vocabulario y dependencias
 

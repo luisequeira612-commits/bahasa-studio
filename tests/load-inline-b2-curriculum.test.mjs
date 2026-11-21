@@ -502,7 +502,7 @@ test('B2 U13 implements five authored lessons and 16 source-backed pronominal cl
   const exercises = allExercises(unit);
   assert.equal(exercises.length, 16);
   assert.ok(exercises.every((exercise) => exercise.type !== 'listen'), 'U13 must not create listening tasks without Piper recordings');
-  const exerciseText = exercises.map((exercise) => [exercise.prompt, ...(exercise.options || [])].join(' ')).join(' ');
+  const exerciseText = unit.lessons.map((lesson) => [lesson.grammar, ...lesson.exercises.map((exercise) => [exercise.prompt, ...(exercise.options || [])].join(' '))].join(' ')).join(' ');
   for (const example of ['ku-', 'kau-', '-ku', '-mu', '-nya', 'bukuku', 'bukumu', 'bukunya', 'mencintaiku', 'mencintaimu', 'mencintainya', 'di-tolak-nya']) {
     assert.ok(exerciseText.includes(example), 'U13 must cover the documented clitic example: ' + example);
   }

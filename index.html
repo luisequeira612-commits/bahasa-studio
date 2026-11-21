@@ -9572,11 +9572,14 @@
                     `;
                     if (ex.audioText) AudioEngine.speak(ex.audioText);
                 } else if (ex.type === 'fill') {
+                    const fillLanguage = ex.answerLanguage === 'es' ? 'es' : 'id';
+                    const fillPlaceholder = fillLanguage === 'es' ? 'Escribe tu respuesta en español...' : 'Escribe la palabra que falta...';
+                    const fillAriaLabel = fillLanguage === 'es' ? 'Respuesta en español' : 'Palabra que falta';
                     container.innerHTML = `
                         <div>
                             <h3>${App.escapeHtml(ex.prompt)}</h3>
-                            <input type="text" id="textAnswer" class="input-field" autocomplete="off"
-                                aria-label="Palabra que falta" placeholder="Escribe la palabra que falta..." style="margin-top:20px;">
+                            <input type="text" id="textAnswer" class="input-field" autocomplete="off" lang="${fillLanguage}"
+                                aria-label="${fillAriaLabel}" placeholder="${fillPlaceholder}" style="margin-top:20px;">
                         </div>
                         <div id="actionArea">
                             <button class="btn" type="button" onclick="LessonEngine.checkTranslate()">Comprobar</button>
@@ -9622,7 +9625,7 @@
                                 <ul>${checklistMarkup}</ul>
                                 <small style="color:var(--text-muted);">Son criterios de autoevaluación, no una corrección automática.</small>
                             </section>
-                            <textarea id="textAnswer" class="input-field" rows="${writingRows}" placeholder="${writingPlaceholder}" style="margin-top:16px;"></textarea>
+                            <textarea id="textAnswer" class="input-field" rows="${writingRows}" lang="${writingLanguage}" placeholder="${writingPlaceholder}" style="margin-top:16px;"></textarea>
                         </div>
                         <div id="actionArea">
                             <button class="btn" onclick="LessonEngine.checkWriting()">Revisar mi escritura</button>

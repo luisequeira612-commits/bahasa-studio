@@ -1,0 +1,28 @@
+name: Dispatch approved Piper production migration
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - docs/PIPER_MIGRATION_REQUEST.md
+
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dispatch one full Piper migration
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run generate-audio.yml --ref main \
+            -f engine=piper \
+            -f mode=full \
+            -f limit=0 \
+            -f level=all \
+            -f confirm_full=true \
+            -f source_ref=main
+          echo "Dispatched the owner-approved full Piper migration (all indexed IDs included by the legacy-manifest safeguard)."

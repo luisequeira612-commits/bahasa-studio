@@ -35,7 +35,7 @@ App web para aprender idiomas, estilo Duolingo, alojada en GitHub Pages. Hoy tie
 - Cualquier decisión de escalabilidad debe mantener cero backend y cero costo. Si una idea requiere servidor, cuentas o pago, no se implementa: me la propones aparte.
 - Antes de compartir la app con otras personas, revisar: licencias y fuentes del vocabulario, que no haya datos personales ni claves expuestas en el repo, y que las instrucciones de uso estén claras.
 
-## Reglas curriculares B1/B2 (estado vigente: 15 nov 2026)
+## Reglas curriculares B1/B2 (estado vigente: 21 nov 2026)
 - A1 (32 unidades) y A2 (40 unidades) cumplen el currículo vigente. B1 tiene 50 unidades con contenido implementado; la migración estructural de 5–6 lecciones explícitas está completada en U1–U50. No cambiar vocabulario, glosas ni explicaciones salvo corrección demostrable mediante un PR acotado.
 - B2 U1–U12 están implementadas con cinco lecciones authored cada una. U1–U5 son las visibles; U6–U12 permanecen ocultas hasta decisión explícita de publicación. Piper cubre 2.227 IDs indexados; 113 textos de audio corresponden a B2 (98 de U1–U8 y 15 de U11); U9, U10 y U12 no añaden audio. U10 integra nominalizaciones, U11 reduplicación y U12 compuestos/idiomaticidad; U13–U60 aún carecen de mapa curricular aprobado. No exigir muestras MMS.
 - Las unidades B1 se muestran y se pueden estudiar en cuanto su PR se fusiona; no ocultarlas mediante flags o bloqueos ligados a A1.

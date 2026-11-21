@@ -18,7 +18,7 @@ App web para aprender idiomas, estilo Duolingo, alojada en GitHub Pages. Hoy tie
 - No se publica en tiendas de apps.
 
 ## Hoja de ruta de idiomas (estado vigente: 15 nov 2026)
-1. **Indonesio:** completar todo el material hasta B2. A1 y A2 están completos. B1 tiene sus 50 unidades implementadas y la migración estructural de cinco lecciones explícitas está completa: U1–U50 cumplen el estándar. B2 U1–U7 están implementadas; U6 y U7 siguen ocultas/no publicables hasta completar la cobertura de audio y obtener aprobación explícita del dueño para las muestras MMS. U8–U60 siguen pendientes; U13–U60 aún carecen de mapa curricular aprobado. No añadir ningún otro idioma hasta completar el indonesio hasta B2.
+1. **Indonesio:** completar todo el material hasta B2. A1 y A2 están completos. B1 tiene sus 50 unidades implementadas y la migración estructural de cinco lecciones explícitas está completa: U1–U50 cumplen el estándar. B2 U1–U7 están implementadas; La biblioteca de audio Piper ya tiene cobertura completa de los 2.212 IDs indexados. U6/U7 siguen ocultas: la migración de audio no autoriza por sí sola su activación ni publicación, que requieren una decisión explícita del dueño; eliminar cualquier gate que exija muestras MMS, porque MMS está abandonado. U8–U60 siguen pendientes; U13–U60 aún carecen de mapa curricular aprobado. No añadir ningún otro idioma hasta completar el indonesio hasta B2.
 2. **Inglés:** se añadirá después del indonesio, desde nivel cero (A1), pensado para hispanohablantes. Incluir pronunciación con audio o transcripción sencilla, falsos amigos y verbos frasales.
 3. **Otros idiomas:** no hay ningún otro idioma planificado por ahora. Cualquier idioma adicional lo decidirá el dueño más adelante.
 
@@ -37,7 +37,7 @@ App web para aprender idiomas, estilo Duolingo, alojada en GitHub Pages. Hoy tie
 
 ## Reglas curriculares B1/B2 (estado vigente: 15 nov 2026)
 - A1 (32 unidades) y A2 (40 unidades) cumplen el currículo vigente. B1 tiene 50 unidades con contenido implementado; la migración estructural de 5–6 lecciones explícitas está completada en U1–U50. No cambiar vocabulario, glosas ni explicaciones salvo corrección demostrable mediante un PR acotado.
-- B2 U1–U7 están implementadas; U6/U7 no deben activarse hasta cerrar el gate de audio y obtener aprobación explícita de las muestras MMS. U8–U60 siguen pendientes; U13–U60 no tienen mapa curricular aprobado. B2 continúa secuencial y oculto/no publicado hasta que el dueño decida lo contrario.
+- B2 U1–U7 están implementadas; La cobertura de audio Piper ya está generada; U6/U7 no deben activarse automáticamente por ese hecho y siguen sujetas a una decisión explícita de publicación del dueño. No exigir aprobación de muestras MMS. U8–U60 siguen pendientes; U13–U60 no tienen mapa curricular aprobado. B2 continúa secuencial y oculto/no publicado hasta que el dueño decida lo contrario.
 - Las unidades B1 se muestran y se pueden estudiar en cuanto su PR se fusiona; no ocultarlas mediante flags o bloqueos ligados a A1.
 - No asumir que todas las unidades B2 están diseñadas: U13–U60 aún no tienen mapa aprobado.
 - Cada unidad nueva: 14–22 ejercicios, al menos cuatro tipos entre opción múltiple, traducción, ordenación, escucha con audio reproducible y escritura; al menos cinco ejercicios con frases completas y una producción original guiada. Añadir repaso acumulativo cada 4–5 unidades.
@@ -115,21 +115,17 @@ Reglas:
 - Los tres informes se generan localmente, sin red ni servicios externos, y se publican como artefactos del workflow. No añadir dependencias ni modificar currículo, trackers, IndexedDB o backup JSON v3.
 
 
-## Audio de Guardi: motor, licencia y aprobación
-- La generación futura de audio indonesio usa `facebook/mms-tts-ind` mediante `VitsModel` + `AutoTokenizer` y PyTorch CPU en GitHub Actions. El modelo y sus dependencias viven solo en almacenamiento temporal del runner; no se incorporan a la app ni a sus dependencias.
-- Licencia y atribución obligatorias: MMS-TTS, Vineel Pratap et al. / Meta AI, CC BY-NC 4.0. El proyecto es no comercial; no afirmar que la licencia permite uso comercial.
-- Mantener IDs SHA-1, MP3 + Opus en `audio/id/`, SHA-256 en `audio/metadata.json`, IndexedDB v1 y backup JSON v3 sin cambios. La caché persistente actual es `guardi-audio-v2`; invalidar la v1.
-- Los overrides de `scripts/pronunciation_overrides.json` solo afectan el texto enviado al sintetizador. Nunca alterar texto curricular/visible, IDs o manifiesto. No fijar una pronunciación dudosa hasta que el dueño escuche y apruebe las muestras.
-- Antes de regenerar la biblioteca completa (2.152 clips), generar y entregar el pack manual de 30 frases A1 más las tres variantes de «Selamat pagi» (`pa gi`, `pa-gi`, `paghi`). No regenerar producción hasta aprobación explícita del dueño.
-- No añadir dependencias a la aplicación; PyTorch, Transformers, SentencePiece y SciPy se instalan solo dentro del workflow de GitHub Actions.
+## Audio de Guardi: motor y estado de producción — 21 nov 2026
+- Piper es el motor oficial de producción: voz `id_ID-news_tts-medium`. Edge TTS queda como alternativa; MMS se abandona para producción por los problemas de pronunciación observados en las muestras.
+- La biblioteca completa se regeneró y fusionó mediante PR #663 (commit `125b2a751a636f3473cd80cdc8bf2f4e15b84547`): 2.212 IDs, formatos MP3 + Opus, huellas SHA-256 y metadata de Piper. Se conservaron los 68 IDs históricos que seguían en `audio/index.json`; no se incorporaron de nuevo al manifiesto curricular.
+- La metadata declara MIT para el repositorio de voces; el MODEL_CARD no especifica la licencia del dataset. No presentar MIT como una garantía general de derechos sobre el dataset o los audios generados, ni afirmar que existe una certificación legal. Conservar atribución y procedencia.
+- Modelos y dependencias TTS solo en `RUNNER_TEMP`/caché de GitHub Actions; nunca guardar pesos en Git, Pages o la app. No añadir dependencias a la aplicación.
+- Mantener IDs SHA-1, MP3 + Opus en `audio/id/`, SHA-256 en `audio/metadata.json`, IndexedDB v1 y backup JSON v3 sin cambios.
+- Los overrides de pronunciación solo pueden cambiar el texto enviado al sintetizador; nunca alterar el texto curricular/visible, IDs o manifiesto. No fijar una pronunciación dudosa sin revisión explícita.
 
-
-## Guardi audio MMS + Whisper (17 nov 2026)
-- Todos los workflows de audio deben usar exclusivamente \`workflow_dispatch\`, runner estándar \`ubuntu-latest\` y \`timeout-minutes\` en cada job; nunca push/PR triggers ni runners grandes/de pago.
-- Modelos y cachés solo en \`RUNNER_TEMP\` + \`actions/cache\`; no guardar pesos en el repo, Pages o app.
-- La primera muestra es 100 frases A1; no generar producción sin aprobación explícita del dueño.
-- Producción: lotes manuales de 150–200, progreso persistente \`scripts/audio_progress.json\`, comparación SHA-256 de texto y override, saltar audios sin cambios.
-- Whisper \`base\` o \`small\` CPU es filtro, no veredicto; una coincidencia alta no certifica pronunciación.
-- Auto-fix solo en filas \`revisar\`, máximo dos pasadas; si no se puede probar que la grafía conserva la identidad léxica, dejarla sin resolver.
-- Los estados automáticos son \`auto_whisper\`, jamás humanos/verificados; actualizar SHA-256 de MP3 tras cualquier regeneración.
-- No modificar IndexedDB, backup JSON v3 ni añadir dependencias a la app.
+## Audio: workflows y verificación — 21 nov 2026
+- La generación productiva se inicia mediante un flujo explícito; no debe sintetizar audio por cada push/PR. El workflow crea una rama/PR revisable y no fusiona automáticamente la biblioteca.
+- No regenerar ni cambiar de motor salvo que aparezca un defecto reproducible. La migración completa y sus pruebas de CI/regresión quedaron fusionadas en #663.
+- El dueño probó dos lecciones en la app publicada y confirmó que los audios suenan bien y la voz se percibe femenina. Esto verifica solo esas dos lecciones; no equivale a escuchar los 2.212 clips ni a certificar pronunciación o calidad lingüística.
+- Los antiguos informes MMS/Whisper y sus auto-etiquetas son diagnósticos históricos; no son gate de producción ni certificación de pronunciación. Whisper base/small es un filtro ASR, no un veredicto lingüístico.
+- Mantener runners estándar `ubuntu-latest`, límites de tiempo por job y modelos/cachés en almacenamiento temporal. No modificar IndexedDB, backup JSON v3 ni añadir dependencias a la app.

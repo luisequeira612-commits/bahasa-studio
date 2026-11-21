@@ -195,7 +195,7 @@ jobs:
         run: |
           ARGS=()
           if [[ "$LEVEL" == "B2" || "$LEVEL" == "all" ]]; then
-            ARGS+=(--include-b2)
+            ARGS+=(--include-b2 --include-interactive)
           fi
           if [[ "$MODE" == "full" && "$LEVEL" == "all" ]]; then
             ARGS+=(--include-interactive)

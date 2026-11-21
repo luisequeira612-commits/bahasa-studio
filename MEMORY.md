@@ -5,10 +5,10 @@
 
 # MEMORY.md — Estado de Bahasa Studio
 
-## Migración de generación de audio a MMS — 17 nov 2026
-- La generación futura de Guardi se migra a `facebook/mms-tts-ind` (VitsModel/AutoTokenizer + PyTorch CPU en GitHub Actions), con revisión y checksum fijados. Licencia CC BY-NC 4.0: atribución Meta AI y uso exclusivamente no comercial.
-- No regenerar los 2.152 clips hasta que el dueño escuche y apruebe el pack manual de 30 frases A1 más tres variantes de «Selamat pagi» (`pa gi`, `pa-gi`, `paghi`). Los overrides siguen vacíos hasta esa decisión y solo afectan al texto de síntesis.
-- Se conserva el formato MP3 + Opus, IDs existentes, SHA-256 de MP3, IndexedDB v1 y backup JSON v3. La caché persistente pasa a `guardi-audio-v2`; las dependencias TTS permanecen solo en GitHub Actions.
+## Migración de generación de audio a Piper — 21 nov 2026
+- Decisión explícita del dueño: Piper (id_ID-news_tts-medium) será el motor oficial; Edge TTS queda como alternativa; MMS se abandona por pronunciación deficiente en las muestras escuchadas.
+- Esta etapa habilita Piper en generador y GitHub Actions; no regenera aún la biblioteca. La migración productiva debe conservar IDs, MP3 + Opus, SHA-256, IndexedDB v1 y backup JSON v3. No mezclar motores en la biblioteca.
+- Voz del catálogo rhasspy/piper-voices: el repositorio indica MIT; el MODEL_CARD remite a la licencia del dataset sin especificarla. Modelos solo en RUNNER_TEMP/cache de Actions; nunca en Git ni en la app. Fuente: decisión del dueño y https://huggingface.co/rhasspy/piper-voices/tree/main/id/id_ID/news_tts/medium; 21 nov 2026.
 
 > Memoria operativa; mantenerla por debajo de unas 150 líneas. Detalles extensos y evidencia histórica viven en documentos y PR enlazados. Última actualización: 17 nov 2026.
 

@@ -238,5 +238,107 @@
     "model_license": "CC BY-NC 4.0",
     "model_license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
     "model_attribution": "MMS-TTS by Vineel Pratap et al., Meta AI"
+  },
+  {
+    "engine": "mms",
+    "id": "b820db6e2aba",
+    "text": "Saya",
+    "voice": "MMS / facebook/mms-tts-ind@171b004ccd54 · noise_scale=0.4 · noise_scale_duration=0.5",
+    "file": "mms/diagnostics/ns-0p4_nd-0p5/b820db6e2aba.mp3",
+    "mms_noise": {
+      "noise_scale": 0.4,
+      "noise_scale_duration": 0.5
+    },
+    "model": "facebook/mms-tts-ind",
+    "model_revision": "171b004ccd54f266a31efee71f1ad850c91d39c0",
+    "model_sha256": "d56181bae3a51458aab6b4a893ecd71d0fde69378f576c53e139b59940d80ca0",
+    "model_license": "CC BY-NC 4.0",
+    "model_license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "model_attribution": "MMS-TTS by Vineel Pratap et al., Meta AI"
+  },
+  {
+    "engine": "mms",
+    "id": "315b9da4bbf4",
+    "text": "Saya makan.",
+    "voice": "MMS / facebook/mms-tts-ind@171b004ccd54 · noise_scale=0.4 · noise_scale_duration=0.5",
+    "file": "mms/diagnostics/ns-0p4_nd-0p5/315b9da4bbf4.mp3",
+    "mms_noise": {
+      "noise_scale": 0.4,
+      "noise_scale_duration": 0.5
+    },
+    "model": "facebook/mms-tts-ind",
+    "model_revision": "171b004ccd54f266a31efee71f1ad850c91d39c0",
+    "model_sha256": "d56181bae3a51458aab6b4a893ecd71d0fde69378f576c53e139b59940d80ca0",
+    "model_license": "CC BY-NC 4.0",
+    "model_license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "model_attribution": "MMS-TTS by Vineel Pratap et al., Meta AI"
+  },
+  {
+    "engine": "mms",
+    "id": "76c0af47fddc",
+    "text": "Kamu",
+    "voice": "MMS / facebook/mms-tts-ind@171b004ccd54 · noise_scale=0.4 · noise_scale_duration=0.5",
+    "file": "mms/diagnostics/ns-0p4_nd-0p5/76c0af47fddc.mp3",
+    "mms_noise": {
+      "noise_scale": 0.4,
+      "noise_scale_duration": 0.5
+    },
+    "model": "facebook/mms-tts-ind",
+    "model_revision": "171b004ccd54f266a31efee71f1ad850c91d39c0",
+    "model_sha256": "d56181bae3a51458aab6b4a893ecd71d0fde69378f576c53e139b59940d80ca0",
+    "model_license": "CC BY-NC 4.0",
+    "model_license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "model_attribution": "MMS-TTS by Vineel Pratap et al., Meta AI"
+  },
+  {
+    "engine": "mms",
+    "id": "79479e58eee3",
+    "text": "Kamu minum.",
+    "voice": "MMS / facebook/mms-tts-ind@171b004ccd54 · noise_scale=0.4 · noise_scale_duration=0.5",
+    "file": "mms/diagnostics/ns-0p4_nd-0p5/79479e58eee3.mp3",
+    "mms_noise": {
+      "noise_scale": 0.4,
+      "noise_scale_duration": 0.5
+    },
+    "model": "facebook/mms-tts-ind",
+    "model_revision": "171b004ccd54f266a31efee71f1ad850c91d39c0",
+    "model_sha256": "d56181bae3a51458aab6b4a893ecd71d0fde69378f576c53e139b59940d80ca0",
+    "model_license": "CC BY-NC 4.0",
+    "model_license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "model_attribution": "MMS-TTS by Vineel Pratap et al., Meta AI"
+  },
+  {
+    "engine": "mms",
+    "id": "4967e07bc327",
+    "text": "Dia",
+    "voice": "MMS / facebook/mms-tts-ind@171b004ccd54 · noise_scale=0.4 · noise_scale_duration=0.5",
+    "file": "mms/diagnostics/ns-0p4_nd-0p5/4967e07bc327.mp3",
+    "mms_noise": {
+      "noise_scale": 0.4,
+      "noise_scale_duration": 0.5
+    },
+    "model": "facebook/mms-tts-ind",
+    "model_revision": "171b004ccd54f266a31efee71f1ad850c91d39c0",
+    "model_sha256": "d56181bae3a51458aab6b4a893ecd71d0fde69378f576c53e139b59940d80ca0",
+    "model_license": "CC BY-NC 4.0",
+    "model_license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "model_attribution": "MMS-TTS by Vineel Pratap et al., Meta AI"
+  },
+  {
+    "engine": "mms",
+    "id": "4d217ac175a8",
+    "text": "Dia makan.",
+    "voice": "MMS / facebook/mms-tts-ind@171b004ccd54 · noise_scale=0.4 · noise_scale_duration=0.5",
+    "file": "mms/diagnostics/ns-0p4_nd-0p5/4d217ac175a8.mp3",
+    "mms_noise": {
+      "noise_scale": 0.4,
+      "noise_scale_duration": 0.5
+    },
+    "model": "facebook/mms-tts-ind",
+    "model_revision": "171b004ccd54f266a31efee71f1ad850c91d39c0",
+    "model_sha256": "d56181bae3a51458aab6b4a893ecd71d0fde69378f576c53e139b59940d80ca0",
+    "model_license": "CC BY-NC 4.0",
+    "model_license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "model_attribution": "MMS-TTS by Vineel Pratap et al., Meta AI"
   }
 ]

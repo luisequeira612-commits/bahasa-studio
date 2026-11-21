@@ -1,9 +1,9 @@
-# Diseño preliminar B2 U8 — ke-an como nominalizador abstracto y de predicados complejos
+# Diseño de referencia B2 U8 — ke-an como nominalizador abstracto y de predicados complejos
 
-**Estado:** propuesta documental; no implementada ni publicada. Paquete de revisión de forma, glosa y ejemplos: [B2 U8 approval packet](B2_U8_APPROVAL_PACKET.md). Ninguna propuesta está aprobada ni activa.  
+**Estado:** implementada y fusionada en PR #639 (`7b50f3923a5615d61d6cd72ca5cc798800c94e73`); cinco lecciones authored y 16 ejercicios. Permanece oculta/no publicada hasta decisión explícita del dueño. Las ocho formas y ejemplos del paquete de aprobación fueron aprobados el 16 nov 2026.  
 **Fecha:** 8 nov 2026.  
 **Ubicación:** segunda unidad propuesta dentro del bloque B2 U7–U10, cuyo eje aprobado es nominalizaciones.  
-**Dependencias:** B1 completo y B2 U1–U7 implementadas. U7 está fusionada, pero U6/U7 siguen ocultas hasta completar el gate de audio B2.
+**Dependencias:** B1 completo y B2 U1–U7 implementadas. U6/U7 permanecen ocultas hasta decisión explícita de publicación; U8 se añadió después mediante PR #639.
 
 ## Propósito y alcance
 
@@ -50,7 +50,7 @@ Al completar U8, el estudiante podrá:
 - Reutilizar el conocimiento previo de B1 sin volver a enseñar kesehatan/kebersihan como vocabulario nuevo.
 - Reconocer nombres abstractos derivados de adjetivos, nombres y verbos en ejemplos documentados.
 - Interpretar cada palabra completa y su base, sin traducir ke-...-an como una sola palabra española.
-- Mantener las formas citadas como candidatos de análisis, no como entradas aprobadas.
+- Las ocho formas aprobadas se usan solo en los sentidos y contextos aprobados; otras formas citadas en la bibliografía permanecen como contraste analítico.
 
 ### Lección 2 — Nominalización de predicados complejos
 
@@ -97,14 +97,14 @@ Al menos cinco ejercicios deben usar oraciones completas y al menos uno debe inc
 ## Vocabulario y dependencias
 
 - No se añaden entradas ni IDs en este documento.
-- *Kekotoran*, *kedatangan*, *kementerian*, *kepulauan*, *ketidakadilan*, *kesalahpahaman*, *keingintahuan*, *keberuntungan*, *ketidakbertanggungjawaban*, *ketinggian*, *kejatuhan* y *kebakaran* son ejemplos de las fuentes y candidatos de análisis; no son vocabulario aprobado para U8.
+- Las ocho formas *kekotoran*, *kedatangan*, *kementerian*, *kepulauan*, *ketidakadilan*, *kesalahpahaman*, *keingintahuan* y *keberuntungan* fueron aprobadas e implementadas en U8. *Ketidakbertanggungjawaban*, *ketinggian*, *kejatuhan* y *kebakaran* siguen siendo referencias de análisis/contraste, no vocabulario nuevo aprobado para U8.
 - Antes de elegir el inventario final, comparar cada forma con A1–B2 y comprobar ID, glosa, categoría, ejemplo, nivel y prerrequisitos.
 - No volver a contar como nuevas las formas ya enseñadas en B1/A1/A2.
 - Si hace falta vocabulario nuevo, presentar primero forma, glosa, ejemplo contextual y motivo al dueño.
 
-## Inventario candidato para revisión (no aprobado)
+## Inventario aprobado e implementado
 
-La bibliografía de Tebay (2024, diapositivas 8–10; ejemplos atribuidos a KBBI Daring 2016) permite priorizar ocho formas para estudiar la unidad sin repetir literalmente entradas encontradas en los archivos curriculares A1, A2 e `index.html` (que contiene B1/B2 inline). La búsqueda fue literal; no descarta solapamientos semánticos, derivados relacionados ni diferencias de uso.
+La bibliografía de Tebay (2024, diapositivas 8–10; ejemplos atribuidos a KBBI Daring 2016) sustentó la selección de estas ocho formas. El dueño aprobó forma, glosa y ejemplo contextual el 16 nov 2026; se implementaron en PR #639. La búsqueda literal previa no descartó solapamientos semánticos ni derivados relacionados.
 
 | Forma candidata | Base/dominio indicado por la fuente | Glosa española propuesta | Función que permite analizar |
 |---|---|---|---|
@@ -117,9 +117,9 @@ La bibliografía de Tebay (2024, diapositivas 8–10; ejemplos atribuidos a KBBI
 | `keingintahuan` | `ingin + tahu` | curiosidad | predicado complejo |
 | `keberuntungan` | `beruntung` | suerte / fortuna | predicado con prefijo bajo `ber-` |
 
-**Uso pedagógico sugerido:** lección 1 contrasta nombres de cualidad, evento, institución y colectivo; lección 2 analiza dominios complejos con negación o material verbal limitado; lección 3 desambigua *ketinggian* y distingue nominalizaciones de predicados verbales adversativos/perfectivos; lección 4 delimita el alcance del dominio y sus restricciones; lección 5 integra la lectura y la reformulación guiada. Las ocho formas son una lista de trabajo, no una selección final ni vocabulario aprobado.
+**Uso pedagógico implementado:** las cinco lecciones authored de U8 distribuyen las ocho formas aprobadas entre nombres de cualidad/evento/institución/colectivo, dominios complejos, desambiguación contextual, límites de alcance e integración con reformulación guiada.
 
-**Límites:** las glosas españolas son propuestas de traducción a partir de las glosas inglesas de la fuente, no certificación lexicográfica. No se escriben ejemplos nuevos, no se crean IDs y no se incorporan estas formas al currículo ejecutable hasta que el dueño apruebe forma, glosa y oración contextual. `ketinggian` se conserva solo como caso analítico de ambigüedad nominal (‘altura’) frente a lectura excesiva (‘demasiado alto’); `kejatuhan` y `kebakaran` siguen siendo contrastes verbales, no parte de esta lista nominal.
+**Límites:** las glosas españolas son traducciones de trabajo a partir de las glosas inglesas de la fuente; la aprobación del dueño autorizó su uso curricular, pero no equivale a certificación lexicográfica ni validación nativa. No se extiende la aprobación a nuevas formas por analogía. `ketinggian` se conserva solo como caso analítico de ambigüedad nominal (‘altura’) frente a lectura excesiva (‘demasiado alto’); `kejatuhan` y `kebakaran` siguen siendo contrastes verbales, no parte de esta lista nominal.
 
 **Fuente principal:** Sören E. Tebay (2024), “Prosodic domains and (re-)linearization in Indonesian nominalizing circumfixes”, diapositivas 8–10, 46. DGfS, Universität Leipzig. https://home.uni-leipzig.de/tebay/tebay2024keandgfs.pdf. La presentación distingue los cuatro primeros ejemplos nominales de cuatro dominios complejos y limita explícitamente qué elementos pueden quedar dentro del dominio `ke-...-an`.
 
@@ -130,16 +130,16 @@ La bibliografía de Tebay (2024, diapositivas 8–10; ejemplos atribuidos a KBBI
 - No asignar a ke-...-an una traducción única ni una función única.
 - No inferir que cualquier frase o prefijo puede quedar dentro del dominio nominalizado.
 - No enseñar la estructura compleja como patrón libre de formación.
-- Mantener B2 oculta/no publicada hasta completar el contenido y el flujo de liberación.
+- Mantener U6–U8 ocultas/no publicadas hasta decisión explícita del dueño; U1–U5 son las unidades B2 visibles.
 - No modificar A1/A2/B1, IndexedDB, backup JSON v3, trackers ni dependencias.
 - No afirmar validación nativa ni certificación MCER/BIPA.
 
 ## Condiciones para pasar a implementación
 
-1. U7–U10 permanecen dentro del eje aprobado de nominalizaciones; este desglose de U8 es una propuesta reversible.
+1. U7–U10 permanecen dentro del eje aprobado de nominalizaciones; U8 está implementada y fusionada en PR #639.
 2. Se selecciona un inventario pequeño, documentado y no duplicado respecto de B1.
 3. Cada lectura se evalúa en contexto, especialmente la ambigüedad nominal/verbal de ke-an.
 4. Los ejercicios de predicados complejos se limitan a estructuras respaldadas por la bibliografía.
 5. Las pruebas verifican referencias de vocabulario, coherencia consigna-respuesta, progresión y ausencia de exposición anticipada.
 
-**Estatus de decisión:** el dueño aprobó el eje general de nominalizaciones para B2 U7–U10. U7 ya está implementada y fusionada; U8 sigue siendo propuesta documental reversible, sin vocabulario nuevo aprobado ni contenido ejecutable. Los candidatos citados no son entradas del curso.
+**Estatus de decisión:** el dueño aprobó el eje general de nominalizaciones para B2 U7–U10 y aprobó las ocho formas y ejemplos de U8 el 16 nov 2026. U8 está implementada y fusionada en PR #639 (merge `7b50f3923a5615d61d6cd72ca5cc798800c94e73`), con cinco lecciones authored y 16 ejercicios. Permanece oculta/no publicada hasta decisión explícita. No se afirma validación nativa ni certificación MCER/BIPA.

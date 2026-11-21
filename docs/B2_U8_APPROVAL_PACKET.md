@@ -1,6 +1,6 @@
 # B2 U8 — paquete de aprobación léxica y contextual
 
-**Estado:** propuesta para revisión del dueño; no es contenido ejecutable.  
+**Estado:** aprobación registrada; no es un paquete de contenido ejecutable independiente. El contenido aprobado se implementó en B2 U8 mediante PR #639.  
 **Fecha:** 16 nov 2026.  
 **Unidad:** U8, ke-...-an como nominalizador abstracto y de predicados complejos.  
 **Base didáctica:** `docs/B2_U8_DESIGN.md` (cinco lecciones previstas, 16 ejercicios).  
@@ -10,8 +10,8 @@
 
 - Estas ocho formas aparecen como candidatos en Sören E. Tebay (2024), diapositivas 8–10. La fuente las usa para ilustrar nominalización de cualidad/evento/institución/colectivo y dominios complejos.
 - La búsqueda literal previa en el currículo ejecutable no encontró coincidencias exactas; esto no descarta solapamientos semánticos ni derivados relacionados.
-- Las oraciones de la tabla son borradores didácticos propuestos para revisión, no citas de la fuente ni ejemplos validados. Todas quedan `not_checked`.
-- No se crean IDs, no se añaden entradas a vocabulario, no se insertan ejemplos ni ejercicios en `index.html`, y no se genera audio B2 U8 hasta recibir aprobación explícita.
+- Las oraciones de la tabla fueron redactadas como borradores didácticos, no son citas de la fuente. El dueño aprobó su uso curricular el 16 nov 2026 y se implementaron en PR #639. Su naturalidad y equivalencia lingüística independiente siguen `not_checked`.
+- Este paquete registra la aprobación histórica; no debe usarse como propuesta pendiente. La implementación y la generación de audio B2 U8 se realizaron en PR #639 y en la biblioteca Piper global posterior. U8 permanece oculta hasta decisión explícita de publicación.
 - Las glosas españolas son provisionales, derivadas de las glosas inglesas de la fuente. No equivalen a `cross_checked`, `verified_primary`, validación nativa ni certificación MCER/BIPA.
 
 ## Candidatos para decidir
@@ -47,8 +47,16 @@ La distribución es orientativa. Si se rechaza una forma, se ajustará la secuen
 - Sören E. Tebay (2024), “Prosodic domains and (re-)linearization in Indonesian nominalizing circumfixes”, 46. DGfS, diapositivas 8–10: https://home.uni-leipzig.de/tebay/tebay2024keandgfs.pdf
 - Denistia & Baayen (2021), “The morphology of Indonesian: Data and quantitative modeling”: https://www.sfs.uni-tuebingen.de/~hbaayen/publications/DenistiaBaayen2021.pdf
 
-**Estado de las ocho formas, glosas y oraciones:** `not_checked`; fuente académica identificada, pero no se ha hecho verificación lexicográfica independiente ni revisión por hablante nativo. La ausencia de KBBI o de hablante nativo no bloquea el proyecto; se conservan las incertidumbres y no se sobreafirman conclusiones.
+**Estado de evidencia:** las ocho formas, glosas y oraciones están aprobadas por el dueño para uso curricular, pero su validación lingüística independiente sigue `not_checked`. No se afirma verificación lexicográfica ni revisión por hablante nativo. La ausencia de KBBI o de hablante nativo no bloquea el proyecto; se conservan las incertidumbres.
 
 ## Cómo responder la aprobación
 
-El dueño puede aprobar todas las filas, aprobar solo números concretos, corregir una glosa/oración o rechazar candidatos. Solo las filas aprobadas pasarán a la siguiente fase de implementación; la aprobación no se extiende a otras unidades ni a nuevas formas por analogía.
+La decisión se registró el 16 nov 2026: las filas 1–8 fueron aprobadas y luego implementadas en U8. La aprobación no se extiende a otras unidades ni a nuevas formas por analogía.
+
+
+## Decisión del dueño — 16 nov 2026
+
+- El dueño aprobó las ocho formas y los ejemplos contextuales propuestos en las filas 1–8 de este paquete: `kekotoran`, `kedatangan`, `kementerian`, `kepulauan`, `ketidakadilan`, `kesalahpahaman`, `keingintahuan` y `keberuntungan`.
+- La aprobación se aplicó exclusivamente a esos ocho candidatos y sus ejemplos; no autoriza derivados por analogía ni formas adicionales.
+- B2 U8 se implementó con cinco lecciones authored y 16 ejercicios y se fusionó en PR #639, merge commit `7b50f3923a5615d61d6cd72ca5cc798800c94e73`.
+- La naturalidad no se presenta como validación nativa ni certificación lexicográfica/MCER/BIPA; se conserva el estado de incertidumbre definido por el proyecto.

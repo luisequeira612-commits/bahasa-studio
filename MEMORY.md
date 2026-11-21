@@ -1,3 +1,8 @@
+## B2 U13 implementada — 21 nov 2026
+- U13 tiene cinco lecciones authored y 16 ejercicios ([3,3,3,3,4]) de cuatro tipos (mc, fill, order, write). Distingue proclíticos ku-/kau- ya estudiados en U2 de enclíticos -ku/-mu/-nya; analiza posesión/definitud nominal, objeto en verbos activos y el participante de tercera persona asociado al agente en construcciones pasivas. Separa estos usos del patrón formal debatido de U9.
+- Usa solo ejemplos documentados de Denistia & Baayen (2021), Universal Dependencies Indonesian y formas ya aprobadas en U2/U9/B1. No añade vocabulario/IDs, oraciones indonesias inventadas ni audio; todas las producciones son análisis en español. U13 permanece oculta/no publicada; U1–U5 siguen visibles.
+- Fuente: autorización autónoma del dueño, 21 nov 2026; `docs/B2_U13_DESIGN.md`; [Denistia & Baayen (2021), §2.7](https://www.sfs.uni-tuebingen.de/~hbaayen/publications/DenistiaBaayen2021.pdf), [Universal Dependencies Indonesian](https://universaldependencies.org/id/index.html).
+
 ## B2 U12 implementada — 21 nov 2026
 - PR [#674](https://github.com/luisequeira612-commits/bahasa-studio/pull/674) implementa U12 en una rama separada; CI pendiente al abrirla. U12 incorpora cinco lecciones authored y 16 ejercicios ([3,3,3,3,4]) de cuatro tipos (mc, fill, order, write), sin vocabulario/IDs nuevos ni producción de frases indonesias. Usa ejemplos publicados de Denistia & Baayen (2021) y Darnis (2022) para contrastar compuestos, frases, transparencia, cabeza e idioms; conserva la ambigüedad donde las fuentes permiten más de un análisis.
 - U12 permanece oculta/no publicada; U1–U5 siguen siendo las únicas unidades visibles. No añade audio, dependencias ni cambios a IndexedDB v1 o backup JSON v3. La revisión estructural no es validación nativa.

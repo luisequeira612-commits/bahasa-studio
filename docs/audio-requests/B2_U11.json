@@ -1,0 +1,24 @@
+{
+  "unit": "b2_u11",
+  "level": "B2",
+  "engine": "piper",
+  "voice": "id_ID-news_tts-medium",
+  "purpose": "Generate production MP3 and Opus for the 14 new U11 vocabulary forms and its source-backed translate_es_id answer.",
+  "texts": [
+    "pulau-pulau",
+    "dua-dua",
+    "memukul-mukul",
+    "pukul-memukul",
+    "dipukul-pukul",
+    "melihat-lihat",
+    "sayur-mayur",
+    "gerak-gerik",
+    "kaya-raya",
+    "lelaki",
+    "dedaunan",
+    "pepohonan",
+    "kecil-kecil",
+    "keras-keras",
+    "Pulau-pulau Bali, Lombok dan Sumbawa terletak di sebelah timur pulau Jawa."
+  ]
+}

@@ -7,7 +7,7 @@
 - Fuente: instrucción directa del dueño, 21 nov 2026; `docs/B2_U11_DESIGN.md` y pruebas curriculares.
 
 ## B2 U10 implementada — 21 nov 2026
-- PR [#671](https://github.com/luisequeira612-commits/bahasa-studio/pull/671) fusionada en main como `682269e7a502362e9a36032c8b1f9314340b208d`; CI de regresión y Offline quality reports pasó en run `44959239907`. GitHub Pages post-merge seguía en ejecución en run `44959423572` al registrar este estado.
+- PR [#671](https://github.com/luisequeira612-commits/bahasa-studio/pull/671) fusionada en main como `682269e7a502362e9a36032c8b1f9314340b208d`; CI de regresión y Offline quality reports pasó en run `44959239907`. GitHub Pages post-merge finalizó con éxito en run `44959423572`.
 - Por instrucción directa del dueño, se continuó el currículo de forma autónoma y por lotes, sin detenerse a pedir aprobaciones intermedias. U10 cierra el bloque de integración U7–U10.
 - U10 tiene cinco lecciones authored y 16 ejercicios ([3,3,3,3,4]), cuatro tipos (mc, fill, order, write). Reutiliza los cinco IDs canónicos ya existentes de U7/U8 y los fragmentos U9 documentados; no crea vocabulario, IDs, oraciones indonesias ni audio. La producción guiada y las paráfrasis son en español.
 - U10 permanece oculta/no publicada; la ruta visible y el desbloqueo secuencial no se modifican. No se alteran A1/A2/B1, IndexedDB v1, backup JSON v3, audio ni dependencias.

@@ -9086,6 +9086,81 @@
                             ]
                         },
 
+                        {
+                            id: 'b2_u15',
+                            title: 'Unidad 15: Adición y alcance — pun y pula',
+                            desc: 'Interpreta pun y pula como marcadores aditivos y enfáticos; analiza su posición, alcance y relación con juga y las conjunciones concesivas ya conocidas.',
+                            grammar: 'Pun es un adjunto focalizador que suele seguir al sujeto y se escribe como palabra independiente; puede significar «también» o «incluso» según el foco y las expectativas. En indefinidos como siapa pun, apa pun y berapa pun también se escribe separado. En walaupun, meskipun y biarpun forma parte de una conjunción y se escribe unido. Pula y juga expresan adición, pero su posición puede cambiar el elemento enfocado: pula puede aparecer después del predicado, como en el ejemplo pasivo de la fuente. La interpretación depende del alcance y del contexto.',
+                            vocab: [
+                                { id: 'b2u15_pun', idn: 'pun', esp: 'también; incluso; hasta (partícula aditiva y enfática; suele seguir al sujeto)', ex: 'Saya pun mau pergi kalau diberi tiket gratis.', exEsp: 'Yo también iría si me dieran un boleto gratis.' },
+                                { id: 'b2u15_pula', idn: 'pula', esp: 'también; además; asimismo (marcador aditivo)', ex: 'Selain itu, oleh desa dikembangkan pula usaha di bidang industri rumah, seperti pertenunan.', exEsp: 'Además, el pueblo también ha desarrollado actividades de industria doméstica, como el tejido.' }
+                            ],
+                            exercises: [],
+                            lessons: [
+                                {
+                                    title: '1. Pun independiente: adición y énfasis',
+                                    objective: 'Reconoce pun como partícula independiente que sigue al sujeto y destaca su inclusión en la situación.',
+                                    grammar: 'Sneddon et al. (2010, §2.221) describen pun como adjunto focalizador: normalmente sigue al sujeto, lo enfatiza y se escribe separado, excepto cuando forma parte de ciertas conjunciones. En Saya pun mau pergi kalau diberi tiket gratis, pun añade al hablante al grupo de personas que irían.',
+                                    vocabIds: ['b2u15_pun'],
+                                    reviewVocabIds: [],
+                                    exercises: [
+                                        { vocabId: 'b2u15_pun', type: 'mc', prompt: 'En Saya pun mau pergi kalau diberi tiket gratis, ¿qué aporta pun?', options: ['Incluye y enfatiza al sujeto como participante adicional','Marca el pasado del verbo pergi','Convierte la oración en una pregunta'], answer: 0, explanation: 'Pun sigue al sujeto saya y lo presenta como una adición al conjunto esperado.' },
+                                        { vocabId: 'b2u15_pun', type: 'fill', prompt: 'Resume en una oración completa la posición y la función de pun en el ejemplo.', answer: 'Pun sigue al sujeto y lo destaca como otro participante que también realizaría la acción.', answerLanguage: 'es', direction: 'id→es', explanation: 'La posición después del sujeto y el foco aditivo son rasgos centrales de pun.' },
+                                        { type: 'order', prompt: 'Ordena el análisis del ejemplo Saya pun mau pergi kalau diberi tiket gratis.', words: ['Interpretar la inclusión del sujeto como adición o énfasis.','Identificar saya como sujeto y localizar pun después de él.','Comprobar qué información previa hace relevante esa adición.'], correctOrder: ['Identificar saya como sujeto y localizar pun después de él.','Interpretar la inclusión del sujeto como adición o énfasis.','Comprobar qué información previa hace relevante esa adición.'], explanation: 'El análisis comienza con el sujeto y la posición de pun; después se determina el foco y se confirma con el contexto.' }
+                                    ]
+                                },
+                                {
+                                    title: '2. Pun: «también» e «incluso» según el foco',
+                                    objective: 'Distingue la lectura aditiva de pun de su lectura enfática de inclusión inesperada.',
+                                    grammar: 'Pun puede significar «también» cuando añade un participante o una acción; con información inesperada puede equivaler a «incluso». En Desa Bangunarjo menjadi terkenal di seluruh kabupaten sampai pedagang kota pun datang ke sana, el foco presenta la llegada de comerciantes de la ciudad como un resultado que supera lo esperado. No debe traducirse siempre con una única palabra española.',
+                                    vocabIds: ['b2u15_pun'],
+                                    reviewVocabIds: [],
+                                    exercises: [
+                                        { vocabId: 'b2u15_pun', type: 'mc', prompt: 'En el ejemplo de los comerciantes de la ciudad que también llegaron a Desa Bangunarjo, ¿qué lectura de pun destaca la fuente?', options: ['Incluso: la llegada supera lo esperado','Solo: excluye a otros participantes','Otra vez: repite una acción anterior'], answer: 0, explanation: 'La fuente usa pun para señalar que incluso los comerciantes de la ciudad llegaron allí.' },
+                                        { vocabId: 'b2u15_pun', type: 'fill', prompt: 'Explica en una oración completa por qué pun puede traducirse como «incluso» en ese contexto.', answer: 'Pun puede traducirse como «incluso» porque destaca una participación que va más allá de lo esperado.', answerLanguage: 'es', direction: 'id→es', explanation: 'La lectura enfática depende de las expectativas y del foco informativo.' },
+                                        { type: 'translate_es_id', prompt: 'Traduce al indonesio: «Yo también iría si me dieran un boleto gratis».', answer: 'Saya pun mau pergi kalau diberi tiket gratis.', explanation: 'La respuesta reproduce el ejemplo documentado por Sneddon et al. (2010, §2.221).' }
+                                    ]
+                                },
+                                {
+                                    title: '3. Pula y juga: adición y alcance',
+                                    objective: 'Interpreta pula como marcador aditivo y compara su posición con juga.',
+                                    grammar: 'Sneddon et al. (2010, §§2.219 y 4.99) agrupan juga y pula entre los marcadores de adición. En Saya makan nasi juga, juga aparece al final y puede enfocar al hablante, la acción o el alimento según el acento. En Selain itu, oleh desa dikembangkan pula usaha di bidang industri rumah, seperti pertenunan, pula sigue al verbo pasivo dikembangkan y marca que esas actividades también se desarrollaron. La posición ayuda a identificar el alcance.',
+                                    vocabIds: ['b2u15_pula'],
+                                    reviewVocabIds: ['b2u15_pun'],
+                                    exercises: [
+                                        { vocabId: 'b2u15_pula', type: 'mc', prompt: 'En oleh desa dikembangkan pula usaha di bidang industri rumah, ¿qué función cumple pula?', options: ['Añade otra actividad al conjunto de información','Marca posesión de tercera persona','Introduce una condición hipotética'], answer: 0, explanation: 'Pula señala que las actividades también se desarrollaron; aparece después del verbo pasivo.' },
+                                        { vocabId: 'b2u15_pula', type: 'fill', prompt: 'Resume en una oración completa cómo se relacionan pula y juga.', answer: 'Pula y juga pueden marcar adición, pero su posición contribuye a determinar qué elemento queda enfocado.', answerLanguage: 'es', direction: 'id→es', explanation: 'Ambos marcadores presentan una información como adición; el foco puede variar con la posición y el acento.' },
+                                        { type: 'write', answerLanguage: 'es', direction: 'id→es', prompt: 'Compara en tres oraciones el uso de juga al final de Saya makan nasi juga y pula después de dikembangkan.', hint: 'Explica qué se añade y por qué la posición ayuda a identificar el alcance. No inventes nuevas oraciones indonesias.', modelAnswer: 'En Saya makan nasi juga, juga marca una adición y el foco puede recaer en el sujeto, la acción o el alimento. En el ejemplo pasivo de la fuente, pula aparece después de dikembangkan y añade otra actividad al discurso. Ambos marcadores expresan adición, pero la posición y el acento determinan el elemento enfocado.', explanation: 'La comparación se centra en la posición del marcador y el alcance de la información añadida.' }
+                                    ]
+                                },
+                                {
+                                    title: '4. Pun separado y pun unido: indefinidos y concesión',
+                                    objective: 'Distingue pun independiente de las conjunciones concesivas que contienen la misma forma.',
+                                    grammar: 'En siapa pun, apa pun y berapa pun, pun se escribe separado y forma expresiones indefinidas («quienquiera», «cualquier cosa», «cuanto sea»). En walaupun, meskipun y biarpun aparece unido porque forma parte de una conjunción concesiva; estas formas ya se estudiaron en B1 U19. La relación histórica y semántica entre los usos no elimina la diferencia ortográfica y sintáctica actual.',
+                                    vocabIds: ['b2u15_pun'],
+                                    reviewVocabIds: ['b2u15_pula'],
+                                    exercises: [
+                                        { vocabId: 'b2u15_pun', type: 'mc', prompt: '¿Cuál de estas formas contiene pun independiente y separado?', options: ['siapa pun','walaupun','meskipun'], answer: 0, explanation: 'Siapa pun se escribe en dos palabras; walaupun y meskipun son conjunciones escritas juntas.' },
+                                        { vocabId: 'b2u15_pun', type: 'fill', prompt: 'Explica en una oración completa la diferencia ortográfica entre siapa pun y walaupun.', answer: 'En siapa pun, pun es una palabra independiente; en walaupun forma parte de una conjunción concesiva.', answerLanguage: 'es', direction: 'id→es', explanation: 'La misma secuencia gráfica aparece en estructuras distintas y no debe separarse de manera automática.' },
+                                        { type: 'order', prompt: 'Agrupa las formas según su escritura y función.', words: ['walaupun, meskipun, biarpun: conjunciones concesivas unidas','siapa pun, apa pun, berapa pun: indefinidos con pun separado'], correctOrder: ['siapa pun, apa pun, berapa pun: indefinidos con pun separado','walaupun, meskipun, biarpun: conjunciones concesivas unidas'], explanation: 'Los indefinidos mantienen pun como palabra separada; las conjunciones concesivas se escriben unidas.' }
+                                    ]
+                                },
+                                {
+                                    title: '5. Integración: adición, foco y contexto',
+                                    objective: 'Integra pun, pula y juga sin confundirlos con clíticos pronominales o partículas de foco distintas.',
+                                    grammar: 'Pun suele seguir al sujeto y enfatizar su inclusión; pula y juga marcan adición y su alcance depende de la posición y el acento. Pun puede significar «incluso» cuando la información supera las expectativas, y forma parte de conjunciones concesivas como walaupun. No se confunde con -nya (U13), -lah/-kah (U14) ni con la lectura restrictiva de otros marcadores. La interpretación debe considerar la estructura y el contexto.',
+                                    vocabIds: ['b2u15_pun', 'b2u15_pula'],
+                                    reviewVocabIds: [],
+                                    exercises: [
+                                        { type: 'mc', prompt: '¿Qué análisis distingue correctamente pun y pula?', options: ['Pun suele seguir al sujeto y enfatizarlo; pula puede marcar una adición después del predicado','Pun siempre significa «porque»; pula siempre significa «solo»','Ambos son clíticos posesivos de tercera persona'], answer: 0, explanation: 'Pun focaliza normalmente al sujeto; pula y juga se describen como marcadores aditivos y su alcance depende de la posición.' },
+                                        { type: 'fill', prompt: 'Resume en una oración completa cómo se determina el alcance de pun y pula.', answer: 'El alcance de pun y pula se interpreta a partir de su posición, del elemento enfocado y del contexto.', answerLanguage: 'es', direction: 'id→es', explanation: 'No basta con asignar una traducción fija; el foco y la información previa determinan la lectura.' },
+                                        { type: 'write', answerLanguage: 'es', direction: 'id→es', prompt: 'Redacta cuatro oraciones que comparen pun, pula y juga y distingan pun separado de las conjunciones concesivas.', hint: 'Incluye posición, adición, énfasis y ortografía; relaciona el análisis con B1 U19.', modelAnswer: 'Pun suele seguir al sujeto y lo presenta como participante adicional o inesperado. Pula y juga también expresan adición, pero la posición ayuda a determinar qué parte de la oración se añade. En siapa pun, pun se escribe separado y forma un indefinido. En walaupun, meskipun y biarpun está unido a la conjunción concesiva.', explanation: 'La respuesta integra alcance, posición, foco y ortografía sin reducir los marcadores a una traducción única.' },
+                                        { type: 'translate_es_id', prompt: 'Traduce al indonesio: «Además, el pueblo también ha desarrollado actividades de industria doméstica, como el tejido».', answer: 'Selain itu, oleh desa dikembangkan pula usaha di bidang industri rumah, seperti pertenunan.', explanation: 'La respuesta reproduce el ejemplo documentado de Sneddon et al. (2010, §4.99) sobre el uso aditivo de pula.' }
+                                    ]
+                                }
+                            ]
+                        },
+
 
                     ]
                 }

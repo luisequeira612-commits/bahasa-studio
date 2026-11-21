@@ -30,7 +30,7 @@ jobs:
         id: selection
         shell: bash
         run: |
-          node scripts/export-audio-manifest.mjs --include-b2 --output "$RUNNER_TEMP/b2-audio-manifest.json"
+          node scripts/export-audio-manifest.mjs --include-b2 --include-interactive --output "$RUNNER_TEMP/b2-audio-manifest.json"
           node <<'NODE'
           const fs = require('node:fs');
           const { execFileSync } = require('node:child_process');
@@ -68,5 +68,6 @@ jobs:
             -f ids="$IDS" \
             -f level=B2 \
             -f confirm_full=false \
+            -f include_interactive=true \
             -f source_ref="$BRANCH"
           echo "Dispatched selected Piper generation for ${{ steps.selection.outputs.count }} exact B2 texts."

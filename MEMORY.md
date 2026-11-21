@@ -468,3 +468,5 @@
 - Fuente: comparación de audio/manifest.json y audio/index.json de main con el commit Piper histórico; 21 nov 2026.
 
 - Para no depender de un dispatch manual desde el conector, PR #661 incorpora un disparador de una sola intención: al llegar a main el marcador docs/PIPER_MIGRATION_REQUEST.md, un workflow con permisos mínimos (actions:write, contents:read) ejecuta `gh workflow run generate-audio.yml` con engine=piper, mode=full, level=all y confirm_full=true. No genera en PR; solo después de fusionar el preparativo. El workflow de generación crea una rama/PR revisable, no fusiona automáticamente los audios.
+
+- PR #661 se fusionó (commit 112e8fa5701c08c0b8feceaf16918be756fde5cc); ambos jobs de regresión pasaron. El dispatch automático inicial (#44944163681) falló porque `gh workflow run` no tenía contexto Git (`fatal: not a git repository`); no se generó audio. PR correctivo `fix/piper-dispatch-repo-context-20261121` agrega `--repo "$GITHUB_REPOSITORY"` y modifica el marcador para rearmar el disparo al fusionar. La regeneración completa sigue pendiente.

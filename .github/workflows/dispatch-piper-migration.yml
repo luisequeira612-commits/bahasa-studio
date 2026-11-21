@@ -18,7 +18,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh workflow run generate-audio.yml --ref main \
+          gh workflow run generate-audio.yml --repo "$GITHUB_REPOSITORY" --ref main \
             -f engine=piper \
             -f mode=full \
             -f limit=0 \

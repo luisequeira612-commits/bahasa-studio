@@ -138,25 +138,44 @@ class AudioSamplesPageTests(unittest.TestCase):
             finally:
                 MODULE.MMS_MODEL_SHA256 = old_expected
 
-    def test_mms_replaces_legacy_piper_only_when_forced(self):
+    def test_piper_replaces_legacy_mms_only_when_forced(self):
         with tempfile.TemporaryDirectory() as temporary:
             metadata = Path(temporary) / "audio" / "metadata.json"
-            MODULE.ensure_single_voice(metadata, "piper", "Piper / id_ID-news_tts-medium")
+            MODULE.ensure_single_voice(metadata, "mms", "MMS / facebook/mms-tts-ind")
             with self.assertRaisesRegex(RuntimeError, "Do not mix voices"):
-                MODULE.ensure_single_voice(metadata, "mms", "MMS / facebook/mms-tts-ind@171b004ccd54")
+                MODULE.ensure_single_voice(metadata, "piper", MODULE.PIPER_MODEL_ID)
             MODULE.ensure_single_voice(
-                metadata, "mms", "MMS / facebook/mms-tts-ind@171b004ccd54",
+                metadata, "piper", f"Piper / {MODULE.PIPER_MODEL_ID}",
                 allow_piper_replacement=True,
             )
             saved = __import__("json").loads(metadata.read_text(encoding="utf-8"))
-            self.assertEqual(saved["engine"], "mms")
-            self.assertEqual(saved["voice"], "MMS / facebook/mms-tts-ind@171b004ccd54")
-            self.assertEqual(saved["model"], MODULE.MMS_MODEL_ID)
-            self.assertEqual(saved["model_revision"], MODULE.MMS_MODEL_REVISION)
-            self.assertEqual(saved["model_sha256"], MODULE.MMS_MODEL_SHA256)
-            self.assertEqual(saved["model_license"], MODULE.MMS_MODEL_LICENSE)
-            self.assertEqual(saved["model_license_url"], MODULE.MMS_MODEL_LICENSE_URL)
-            self.assertEqual(saved["model_attribution"], MODULE.MMS_MODEL_ATTRIBUTION)
+            self.assertEqual(saved["engine"], "piper")
+            self.assertEqual(saved["voice"], f"Piper / {MODULE.PIPER_MODEL_ID}")
+            self.assertEqual(saved["model"], MODULE.PIPER_MODEL_ID)
+            self.assertEqual(saved["model_license"], MODULE.PIPER_MODEL_LICENSE)
+
+    def test_piper_synthesizer_invokes_cli_with_model_and_text(self):
+        from unittest.mock import patch
+        with tempfile.TemporaryDirectory() as temporary:
+            model = Path(temporary) / "voice.onnx"
+            model.write_bytes(b"fixture")
+            old = os.environ.get("PIPER_MODEL_PATH")
+            os.environ["PIPER_MODEL_PATH"] = str(model)
+            try:
+                synth, label = MODULE.create_synthesizer("piper", MODULE.PIPER_MODEL_ID, Path(temporary))
+                output = Path(temporary) / "sample.wav"
+                with patch.object(MODULE.subprocess, "run") as run:
+                    synth("Saya makan.", output)
+                run.assert_called_once_with(
+                    ["piper", "--model", str(model), "--output_file", str(output)],
+                    input="Saya makan.", text=True, check=True,
+                )
+                self.assertEqual(label, f"Piper / {MODULE.PIPER_MODEL_ID}")
+            finally:
+                if old is None:
+                    os.environ.pop("PIPER_MODEL_PATH", None)
+                else:
+                    os.environ["PIPER_MODEL_PATH"] = old
 
     def test_full_library_rejects_mixing_engines_or_voices(self):
         with tempfile.TemporaryDirectory() as temporary:

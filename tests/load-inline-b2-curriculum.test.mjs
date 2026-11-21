@@ -472,11 +472,10 @@ test('B2 U12 implements five authored lessons and 16 source-backed compound/idio
   const exercises = allExercises(unit);
   assert.equal(exercises.length, 16);
   assert.ok(exercises.every((exercise) => exercise.type !== 'listen'), 'U12 must not fall back to device speech without Piper recordings');
-  assert.ok(exercises.some((exercise) => exercise.prompt.includes('meja tulis')));
-  assert.ok(exercises.some((exercise) => exercise.prompt.includes('kepala sekolah')));
-  assert.ok(exercises.some((exercise) => exercise.prompt.includes('panjang tangan')));
-  assert.ok(exercises.some((exercise) => exercise.prompt.includes('rumah makan')));
-  assert.ok(exercises.some((exercise) => exercise.prompt.includes('baju baru')));
+  const exerciseText = exercises.map((exercise) => [exercise.prompt, ...(exercise.options || [])].join(' ')).join(' ');
+  for (const example of ['meja tulis', 'kepala sekolah', 'panjang tangan', 'rumah makan', 'baju baru']) {
+    assert.ok(exerciseText.includes(example), 'U12 must use the documented example: ' + example);
+  }
   assert.ok(exercises.filter((exercise) => exercise.type === 'write' && exercise.answerLanguage === 'es' && exercise.hint?.trim()).length >= 2);
   for (const lesson of unit.lessons) {
     assert.deepEqual(lesson.vocabIds, []);

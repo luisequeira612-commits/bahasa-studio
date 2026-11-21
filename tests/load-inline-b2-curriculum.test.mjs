@@ -486,7 +486,7 @@ test('B2 U12 implements five authored lessons and 16 source-backed compound/idio
     const target = typeof exercise.modelAnswer === 'string' ? exercise.modelAnswer
       : typeof exercise.answer === 'string' ? exercise.answer
       : '';
-    return target.trim().split(/\\s+/).filter(Boolean).length >= 5;
+    return target.trim().split(/\s+/).filter(Boolean).length >= 5;
   });
   assert.ok(sentenceTargets.length >= 5, 'U12 must include at least five complete-sentence response targets');
 });

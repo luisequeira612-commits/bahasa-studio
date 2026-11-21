@@ -1,0 +1,12 @@
+# Approved Piper production migration
+
+This marker intentionally triggers exactly one GitHub Actions dispatch when this change reaches the default branch.
+
+Approved settings:
+- Engine: Piper (id_ID-news_tts-medium)
+- Mode: full production library
+- Level: all (A1, A2, B1, B2, and interactive entries included by the current manifest exporter)
+- Confirm full regeneration: true
+- Preserve every ID in audio/index.json, including the 68 historical entries recovered from the complete Piper manifest at commit ae64d48994947747404eb081b77e347b10623666.
+
+The resulting generated-audio pull request must be reviewed for 2,212 indexed IDs, MP3 and Opus files, metadata, SHA-256 hashes, repository size, and regression CI before merging. This request does not authorize changes to IndexedDB v1 or backup JSON v3.

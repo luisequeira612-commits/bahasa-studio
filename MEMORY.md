@@ -458,3 +458,11 @@
 - Se ajustó únicamente la expectativa del test a 0.6 < RMS < 0.7; no cambia la implementación del auditor ni sus umbrales técnicos.
 - Los otros siete tests pasaron. La corrección queda en la misma rama y debe volver a ejecutar CI antes de fusionar.
 - Fuente: Actions run #44265148387, job 134667716096, paso Run technical audio audit tests; 18 nov 2026.
+
+
+## Migración Piper: conservar los IDs históricos indexados — 21 nov 2026
+- La biblioteca actual tiene 2.144 entradas de manifiesto y 2.212 IDs en audio/index.json. Comparación con la biblioteca Piper completa anterior (commit ae64d48994947747404eb081b77e347b10623666): 2.084 IDs compartidos, 60 IDs nuevos y 68 IDs históricos retirados del manifiesto actual pero aún presentes en el índice.
+- La regeneración total debe producir 2.212 clips Piper: los 2.144 textos del manifiesto curricular actual más los 68 textos recuperados del manifiesto Piper histórico. No borrar ni dejar en MMS los 68 archivos indexados.
+- El workflow full/all recupera el manifiesto histórico desde Git, y generate_audio.py --legacy-manifest añade solo los IDs que siguen en el índice y faltan del manifiesto actual. Si algún ID indexado no aparece en ninguno de los dos manifiestos, la generación falla de forma segura. El manifiesto curricular actual no se contamina con lecciones retiradas.
+- PR de implementación en curso: fix/audio-preserve-legacy-piper-20261121. Añade pruebas de reconciliación; todavía no genera archivos ni cambia metadatos productivos. La ejecución real de Actions sigue pendiente.
+- Fuente: comparación de audio/manifest.json y audio/index.json de main con el commit Piper histórico; 21 nov 2026.

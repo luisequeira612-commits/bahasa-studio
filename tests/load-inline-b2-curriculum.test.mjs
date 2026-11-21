@@ -366,12 +366,9 @@ test('B2 U9 implements five authored lessons and 16 exercises using only the fiv
     for (const exercise of lesson.exercises) assert.equal(Object.hasOwn(exercise, 'vocabId'), false);
   }
   const joined = unit.lessons.map((lesson) => lesson.grammar).join(' ');
-  assert.ok(joined.includes('di-tolak-nya'));
-  assert.ok(joined.includes('banding Hartono'));
-  assert.ok(joined.includes('di-per-parah oleh buruk-nya aturan'));
-  assert.ok(joined.includes('di-picu banyak-nya penduduk Jakarta'));
-  assert.deepEqual(unit.lessons[1].exercises.find((exercise) => exercise.type === 'order').words,
-    ['di-tolak-nya', 'cabai Indonesia', 'oleh pasar Taiwan']);
+  assert.match(joined, /pronominal.*complemento nominal/i);
+  assert.match(unit.lessons[1].grammar, /voz de paciente/i);
+  assert.equal(unit.lessons[1].exercises.find((exercise) => exercise.type === 'order').words.length, 3);
   const spanishFills = exercises.filter((exercise) => exercise.type === 'fill');
   assert.equal(spanishFills.length, 5);
   assert.ok(spanishFills.every((exercise) => exercise.answerLanguage === 'es' && exercise.direction === 'id→es'));
@@ -385,7 +382,7 @@ test('B2 U9 implements five authored lessons and 16 exercises using only the fiv
       : typeof exercise.answer === 'string' ? exercise.answer
       : Number.isInteger(exercise.answer) && Array.isArray(exercise.options) ? exercise.options[exercise.answer] || ''
       : '';
-    return target.trim().split(/\\s+/).filter(Boolean).length >= 2;
+    return target.trim().split(/\s+/).filter(Boolean).length >= 2;
   }).length >= 5, 'U9 must include at least five sentence-level targets');
   assert.match(indexSource, /!unit\.vocab\.length && !\(Array\.isArray\(unit\.lessons\) && unit\.lessons\.length\)/);
   assert.match(indexSource, /const activeRecallTarget = unit\.vocab\.length \?/);

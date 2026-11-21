@@ -1,3 +1,9 @@
+## B2 U10: selección de reutilización pendiente — 21 nov 2026
+- Tras fusionar U9, el siguiente checkpoint es U10, última unidad del bloque de nominalizaciones U7–U10. Su diseño propone integración de lectura y reformulación sin vocabulario nuevo.
+- Se preparó `docs/B2_U10_APPROVAL_PACKET.md` para que el dueño decida si se reutilizan en U10 cinco IDs ya aprobados de U7/U8 (`b2u7_pembelian`, `b2u7_pergerakan`, `b2u8_kedatangan`, `b2u8_kementerian`, `b2u8_ketidakadilan`) y cuatro fragmentos ya aprobados de U9 (ejemplos 15, 17, 26 y 34 de Grangé 2015). La propuesta recomienda un dossier de tres grupos de fragmentos auténticos en vez de fabricar un texto indonesio continuo.
+- La aprobación U7/U8/U9 no autoriza automáticamente su reutilización en U10; esperar decisión explícita. No crear vocabulario/IDs, oraciones indonesias nuevas, audio ni contenido ejecutable de U10 antes de aprobar el paquete.
+- Fuente: estado de `main`, `docs/B2_U10_DESIGN.md`, diseños U7/U8/U9 y sus aprobaciones previas; 21 nov 2026.
+
 ## Implementación B2 U9 — 21 nov 2026
 - B2 U9 se implementó en la rama `curriculum/b2-u9-implementation-20261121` tras aprobación explícita de los cinco fragmentos fuente (Grangé 2015) por el dueño el 21 nov 2026.
 - U9 tiene cinco lecciones authored y 16 ejercicios ([3,3,3,3,4]); cuatro tipos: mc, fill, order y write. Los cinco fragmentos aprobados se usan una sola vez como base de lectura/análisis; no se añadieron vocabulario, IDs, oraciones indonesias inventadas ni audio.

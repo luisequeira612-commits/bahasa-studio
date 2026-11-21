@@ -1,10 +1,10 @@
 # B2 U10 — paquete de aprobación para reutilizar ejemplos
 
-**Estado:** propuesta para decisión del dueño; no es contenido ejecutable.  
+**Estado:** selección implementada en B2 U10 tras la instrucción del dueño de continuar el currículo de forma autónoma el 21 nov 2026.  
 **Fecha:** 21 nov 2026.  
 **Unidad:** B2 U10, integración de nominalizaciones en textos formales.  
 **Diseño base:** `docs/B2_U10_DESIGN.md` (cinco lecciones y 16 ejercicios propuestos).  
-**Decisión requerida:** aprobar o modificar la selección de ejemplos ya existentes y el formato de dossier de fragmentos fuente.
+**Decisión registrada:** se implementó el dossier propuesto con los límites y salvaguardas descritos; la unidad sigue oculta/no publicada.
 
 ## Recomendación
 
@@ -53,6 +53,10 @@ Esta propuesta no añade vocabulario, IDs, oraciones indonesias, fuentes nuevas 
 - U8: Sören E. Tebay (2024), presentación “Prosodic domains and (re-)linearization in Indonesian nominalizing circumfixes”; Denistia & Baayen (2021), “The morphology of Indonesian: Data and quantitative modeling”. Ver `docs/B2_U8_DESIGN.md`.
 - U9: Philippe Grangé (2015), “The Indonesian verbal suffix ‘-nya’: Nominalization or subordination?”, Wacana 16(1), ejemplos 15, 17, 26 y 34. Ver `docs/B2_U9_APPROVAL_PACKET.md`.
 
+## Registro de implementación
+
+La instrucción directa del dueño del 21 nov 2026 autoriza continuar B2 por lotes sin detenerse a pedir aprobaciones intermedias. U10 implementada en `index.html` con cinco lecciones authored y 16 ejercicios. No se añadieron vocabulario, IDs, oraciones indonesias ni audio. Se mantienen las puertas de publicación y la validación lingüística honesta.
+
 ## Respuesta de aprobación
 
-El dueño puede aprobar la selección y el formato de dossier completo, excluir grupos o pedir sustituciones. La aprobación solo autorizará reutilizar los ejemplos enumerados en U10; no aprobará ejemplos nuevos, vocabulario adicional ni publicación de la unidad.
+La selección se reutilizó exactamente dentro del alcance descrito. La instrucción de trabajo autónomo no cambia la puerta de publicación: U10 permanece oculta hasta la fase de liberación curricular.

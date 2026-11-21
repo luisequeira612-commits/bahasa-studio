@@ -57,7 +57,7 @@ Se usan oraciones completas documentadas, incluida la frase de `pulau-pulau`, `B
 
 ## Audio y dependencias
 
-No se añadieron ejercicios de escucha ni archivos de audio. Los textos de U11 no tienen grabaciones Piper en el manifiesto; el motor puede recurrir a la voz instalada en el dispositivo cuando falta un MP3. Para no presentar esa voz como si fuera Piper/Edge ni degradar la calidad verificada por el dueño, se mantienen ejercicios escritos hasta que se genere y compruebe audio reproducible con el motor aprobado.
+Se generaron 15 textos con Piper en MP3 y Opus: las 14 formas nuevas y la respuesta completa de la tarea translate_es_id. Los IDs se incorporaron a `audio/manifest.json`, `audio/index.json` y `audio/metadata.json`; el Service Worker avanzó su versión de caché. Motor/voz: `piper`, `id_ID-news_tts-medium`. U11 no añade ejercicios de escucha, pero las nuevas tarjetas de vocabulario tienen grabaciones Piper disponibles; no necesitan recurrir a la voz del dispositivo. La prueba de exportación del manifiesto pasó en el workflow de generación.
 
 ## Guardarraíles
 

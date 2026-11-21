@@ -1,4 +1,13 @@
+## B2 U11 implementada — 21 nov 2026
+- Por instrucción directa del dueño, continúa la implementación autónoma de B2 por lotes, sin pedir aprobación intermedia. La autorización incluye añadir vocabulario nuevo cuando esté documentado y no duplique entradas existentes; no autoriza publicar las unidades.
+- U11 tiene cinco lecciones authored y 16 ejercicios ([3,3,3,3,4]), cinco tipos (mc, translate_es_id, order, fill, write) y 12 entradas canónicas nuevas: `pulau-pulau`, `dua-dua`, `memukul-mukul`, `pukul-memukul`, `dipukul-pukul`, `melihat-lihat`, `sayur-mayur`, `gerak-gerik`, `kaya-raya`, `lelaki`, `dedaunan`, `pepohonan`. Se distinguen reduplicación completa, afijada, imitativa y parcial; no se generan formas por analogía.
+- Fuentes: Denistia & Baayen (2021), Dalrymple & Mofu (2012), Fettes (2024) y ejemplos de Sneddon documentados en las referencias curriculares. Los resultados de Fettes son específicos del indonesio de Yakarta y no se generalizan al estándar.
+- No se añaden tareas de escucha: los textos nuevos no tienen grabación Piper en el manifiesto y el motor caería a voz del dispositivo; no se ofrece esa sustitución como si fuera Piper. No se modifica audio, manifiesto, dependencias ni datos persistentes.
+- U11 permanece oculta/no publicada; U1–U5 siguen siendo las únicas unidades visibles. No se modifican IndexedDB v1 ni backup JSON v3.
+- Fuente: instrucción directa del dueño, 21 nov 2026; `docs/B2_U11_DESIGN.md` y pruebas curriculares.
+
 ## B2 U10 implementada — 21 nov 2026
+- PR [#671](https://github.com/luisequeira612-commits/bahasa-studio/pull/671) fusionada en main como `682269e7a502362e9a36032c8b1f9314340b208d`; CI de regresión y Offline quality reports pasó en run `44959239907`. GitHub Pages post-merge seguía en ejecución en run `44959423572` al registrar este estado.
 - Por instrucción directa del dueño, se continuó el currículo de forma autónoma y por lotes, sin detenerse a pedir aprobaciones intermedias. U10 cierra el bloque de integración U7–U10.
 - U10 tiene cinco lecciones authored y 16 ejercicios ([3,3,3,3,4]), cuatro tipos (mc, fill, order, write). Reutiliza los cinco IDs canónicos ya existentes de U7/U8 y los fragmentos U9 documentados; no crea vocabulario, IDs, oraciones indonesias ni audio. La producción guiada y las paráfrasis son en español.
 - U10 permanece oculta/no publicada; la ruta visible y el desbloqueo secuencial no se modifican. No se alteran A1/A2/B1, IndexedDB v1, backup JSON v3, audio ni dependencias.

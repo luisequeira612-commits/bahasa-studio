@@ -8870,6 +8870,78 @@
                             ]
                         },
 
+                        {
+                            id: 'b2_u12',
+                            title: 'Unidad 12: Compuestos, frases e idiomaticidad',
+                            desc: 'Distingue compuestos, frases e idioms mediante ejemplos documentados, atendiendo a la estructura, la transparencia y el contexto sin convertir diagnósticos orientativos en reglas absolutas.',
+                            grammar: 'En indonesio, una combinación de palabras puede funcionar como unidad léxica aunque se escriba separada. Los compuestos pueden ser transparentes, parcialmente transparentes o idiomáticos; la frontera con las frases fijas no siempre es nítida. La inserción, la modificación de componentes y la permutación aportan indicios, pero no son pruebas mecánicas. También existen compuestos endocéntricos, exocéntricos y coordinativos. La escritura separada no basta para clasificar una secuencia.',
+                            vocab: [],
+                            exercises: [],
+                            lessons: [
+                                {
+                                    title: '1. ¿Compuesto o frase?',
+                                    objective: 'Usa indicios estructurales para analizar combinaciones documentadas sin tratar un diagnóstico aislado como prueba definitiva.',
+                                    grammar: 'Darnis (2022) presenta la inserción, la expansión/modificación y la permutación como diagnósticos orientativos. Por ejemplo, angkat bicara resiste la inserción en el análisis citado, mientras que alat negara admite una expansión con dari. Estos contrastes ayudan a formular hipótesis, pero deben interpretarse con el contexto y el análisis de la fuente.',
+                                    vocabIds: [],
+                                    reviewVocabIds: [],
+                                    exercises: [
+                                        { type: 'mc', prompt: 'Según el análisis de Darnis (2022), ¿qué indica que una combinación resista la inserción de otro elemento entre sus componentes?', options: ['Puede ser un indicio de unidad léxica o compuesto','Demuestra por sí solo que todas las combinaciones de dos palabras son compuestos','Demuestra que la secuencia debe escribirse unida'], answer: 0, explanation: 'La resistencia a la inserción es un diagnóstico orientativo, no una prueba universal ni una regla ortográfica.' },
+                                        { type: 'fill', prompt: 'Completa en español: «Los diagnósticos estructurales aportan indicios, pero no determinan por sí solos la categoría ____».', answer: 'lingüística', answerLanguage: 'es', direction: 'id→es', explanation: 'La clasificación requiere combinar estructura, significado, contexto y el análisis documentado.' },
+                                        { type: 'order', prompt: 'Ordena un procedimiento prudente para analizar una combinación documentada.', words: ['Comparar los indicios de inserción, modificación y permutación.','Leer la combinación en su contexto y localizar la fuente.','Formular una conclusión provisional y explicar sus límites.'], correctOrder: ['Leer la combinación en su contexto y localizar la fuente.','Comparar los indicios de inserción, modificación y permutación.','Formular una conclusión provisional y explicar sus límites.'], explanation: 'Primero se establece el contexto y la fuente; después se comparan indicios y se formula una conclusión cautelosa.' }
+                                    ]
+                                },
+                                {
+                                    title: '2. Transparencia y significado global',
+                                    objective: 'Compara compuestos transparentes, parcialmente transparentes e idiomáticos sin confundir literalidad con categoría.',
+                                    grammar: 'Denistia y Baayen (2021) contrastan meja tulis (mesa de escribir; transparente), kepala sekolah (director de escuela; parcialmente transparente) y panjang tangan (persona a la que le gusta robar; idiomático). La transparencia es gradual: no todos los compuestos tienen un significado opaco y una combinación transparente también puede analizarse como compuesto según la fuente.',
+                                    vocabIds: [],
+                                    reviewVocabIds: [],
+                                    exercises: [
+                                        { type: 'mc', prompt: '¿Qué secuencia ofrece la fuente como ejemplo de significado idiomático, no deducible literalmente de sus componentes?', options: ['panjang tangan','meja tulis','baju baru'], answer: 0, explanation: 'Panjang tangan se usa idiomáticamente con el sentido de persona que roba; no equivale literalmente a «mano larga».' },
+                                        { type: 'fill', prompt: 'Completa en español: «En kepala sekolah se reconoce parte del significado de los componentes, por eso el ejemplo se describe como parcialmente ____».', answer: 'transparente', answerLanguage: 'es', direction: 'id→es', explanation: 'La fuente lo presenta como semitransparente: la interpretación global está convencionalizada, pero conserva una relación reconocible con sus partes.' },
+                                        { type: 'write', answerLanguage: 'es', direction: 'id→es', prompt: 'Escribe tres oraciones en español que comparen meja tulis, kepala sekolah y panjang tangan según su grado de transparencia.', hint: 'Explica cuál es transparente, cuál es parcialmente transparente y cuál es idiomático. No inventes ejemplos indonesios.', modelAnswer: 'Meja tulis es transparente porque su significado se relaciona claramente con sus componentes. Kepala sekolah es parcialmente transparente: conserva una relación reconocible con «cabeza» y «escuela», pero designa el cargo de director. Panjang tangan es idiomático porque su significado convencional se refiere a una persona que roba y no se obtiene de la lectura literal.', explanation: 'La comparación mantiene separadas la estructura de la combinación y la transparencia de su significado.' }
+                                    ]
+                                },
+                                {
+                                    title: '3. Cabeza y tipos de compuestos',
+                                    objective: 'Reconoce compuestos endocéntricos, exocéntricos y coordinativos en ejemplos analizados por la bibliografía.',
+                                    grammar: 'Darnis (2022) describe compuestos endocéntricos con cabeza a la izquierda en ejemplos indonesios como rumah makan y burung unta. También distingue compuestos exocéntricos, cuyo significado global no es una subclase de uno de sus componentes, y coordinativos, donde ambos elementos tienen un estatus semántico comparable. No se debe imponer una única posición de cabeza a todas las combinaciones.',
+                                    vocabIds: [],
+                                    reviewVocabIds: [],
+                                    exercises: [
+                                        { type: 'mc', prompt: 'En el análisis de Darnis (2022), ¿qué ejemplo ilustra un compuesto endocéntrico con cabeza a la izquierda?', options: ['rumah makan','panjang tangan','utara-selatan'], answer: 0, explanation: 'La fuente usa rumah makan como ejemplo de compuesto con cabeza a la izquierda; no se generaliza esa posición a todos los compuestos.' },
+                                        { type: 'order', prompt: 'Ordena cómo justificarías la cabeza de un compuesto endocéntrico.', words: ['Explicar la relación semántica entre el conjunto y esa cabeza.','Identificar qué componente funciona como cabeza en el análisis citado.','Comprobar que el conjunto es una subclase semántica de la cabeza.'], correctOrder: ['Identificar qué componente funciona como cabeza en el análisis citado.','Comprobar que el conjunto es una subclase semántica de la cabeza.','Explicar la relación semántica entre el conjunto y esa cabeza.'], explanation: 'La clasificación parte de la cabeza propuesta por la fuente y comprueba la relación semántica del compuesto completo.' },
+                                        { type: 'fill', prompt: 'Completa en español: «En un compuesto coordinativo, los dos componentes tienen un estatus semántico ____».', answer: 'comparable', answerLanguage: 'es', direction: 'id→es', explanation: 'La relación coordinativa no presenta uno de los elementos como modificador subordinado del otro.' }
+                                    ]
+                                },
+                                {
+                                    title: '4. Idioms, semiidioms y contexto',
+                                    objective: 'Interpreta expresiones idiomáticas y de transparencia parcial como unidades convencionales que necesitan contexto.',
+                                    grammar: 'Un idiom tiene un significado global que no se obtiene de forma plenamente predecible a partir de sus componentes. Darnis (2022) distingue también semiidioms, en los que uno de los componentes conserva un sentido especial dentro de la construcción, con ejemplos como mata kaki y harga diri. La etiqueta y los límites de estas categorías dependen del análisis lingüístico utilizado.',
+                                    vocabIds: [],
+                                    reviewVocabIds: [],
+                                    exercises: [
+                                        { type: 'mc', prompt: '¿Qué afirmación describe mejor un idiom?', options: ['Su significado global no se deduce plenamente de los significados literales de sus componentes','Siempre se puede traducir palabra por palabra sin perder el sentido','Debe escribirse como una sola palabra'], answer: 0, explanation: 'La unidad idiomática se aprende como una expresión convencional; su ortografía no define por sí sola la categoría.' },
+                                        { type: 'fill', prompt: 'Según el ejemplo de Denistia y Baayen (2021), panjang tangan se interpreta como una persona a la que le gusta ____.', answer: 'robar', answerLanguage: 'es', direction: 'id→es', explanation: 'El significado idiomático no es «mano larga»; la expresión se refiere a alguien que roba.' },
+                                        { type: 'write', answerLanguage: 'es', direction: 'id→es', prompt: 'Explica en tres o cuatro oraciones la diferencia entre un idiom y un semiidiom usando los ejemplos de la fuente.', hint: 'Puedes mencionar panjang tangan, mata kaki o harga diri. Conserva la atribución a la fuente y no inventes traducciones.', modelAnswer: 'Un idiom tiene un significado global que no se obtiene de forma predecible al sumar sus componentes, como panjang tangan en el sentido de una persona que roba. Un semiidiom conserva un componente con un significado especial dentro de la expresión. Darnis (2022) cita mata kaki y harga diri para ilustrar esa transparencia parcial. La distinción describe un análisis lingüístico y no una regla ortográfica.', explanation: 'La respuesta compara las categorías y mantiene los ejemplos vinculados a la fuente.' }
+                                    ]
+                                },
+                                {
+                                    title: '5. Ortografía, ambigüedad y dossier integrado',
+                                    objective: 'Separa la escritura de una combinación, su estructura y su significado, y justifica una interpretación prudente.',
+                                    grammar: 'En indonesio muchos compuestos se escriben separados. Por eso, un espacio no demuestra que una secuencia sea una frase sintáctica. Denistia y Baayen (2021) señalan que baju baru puede analizarse como frase o como compuesto subordinativo; la frontera no siempre es clara. La clasificación debe indicar qué análisis sigue y qué evidencia lo respalda.',
+                                    vocabIds: [],
+                                    reviewVocabIds: [],
+                                    exercises: [
+                                        { type: 'mc', prompt: '¿Qué conclusión es correcta sobre la escritura separada de un compuesto indonesio?', options: ['La separación gráfica no basta para decidir si es compuesto o frase','Toda secuencia escrita con espacio es necesariamente una frase','Todo compuesto debe escribirse con guion'], answer: 0, explanation: 'La ortografía indonesia permite escribir muchos compuestos separados; la categoría requiere análisis adicional.' },
+                                        { type: 'fill', prompt: 'Completa en español: «baju baru puede recibir más de un análisis porque la frontera entre compuesto y frase fija no siempre es ____».', answer: 'clara', answerLanguage: 'es', direction: 'id→es', explanation: 'La fuente advierte que algunas combinaciones admiten análisis alternativos; no se debe imponer una clasificación categórica sin evidencia.' },
+                                        { type: 'order', prompt: 'Ordena las preguntas para revisar una expresión en un texto.', words: ['¿Qué significado tiene en ese contexto?','¿Cómo la clasifica la fuente y con qué grado de certeza?','¿Qué forma aparece y cómo está escrita?'], correctOrder: ['¿Qué forma aparece y cómo está escrita?','¿Qué significado tiene en ese contexto?','¿Cómo la clasifica la fuente y con qué grado de certeza?'], explanation: 'La forma y la escritura se observan primero, el contexto determina la lectura y la fuente permite justificar la clasificación.' },
+                                        { type: 'write', answerLanguage: 'es', direction: 'id→es', prompt: 'Redacta un breve comentario de cuatro oraciones sobre por qué no debes clasificar baju baru únicamente por su escritura o por su traducción literal.', hint: 'Incluye la ambigüedad señalada por Denistia y Baayen (2021), el contexto y el límite de los diagnósticos.', modelAnswer: 'Baju baru se escribe separado, pero ese dato no demuestra que sea una frase y no un compuesto. Denistia y Baayen (2021) señalan que puede analizarse como una combinación sintáctica o como un compuesto subordinativo. La interpretación debe considerar el contexto y los criterios usados por cada análisis. Por eso, una clasificación responsable explica la evidencia y conserva la incertidumbre cuando la frontera no está clara.', explanation: 'La respuesta distingue ortografía, categoría y significado, y evita convertir una propuesta de análisis en una regla universal.' }
+                                    ]
+                                }
+                            ]
+                        },
+
 
                     ]
                 }

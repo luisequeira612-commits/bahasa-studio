@@ -421,10 +421,48 @@ test('B2 U10 implements five authored integration lessons and 16 Spanish-analysi
   }).length >= 5, 'U10 must include at least five sentence-level targets');
 });
 
-test('implemented B2 U1–U10 are executable while later legacy draft units stay archived', async () => {
+
+test('B2 U11 implements 12 source-backed reduplication entries and 16 contextual exercises', async () => {
+  const { b2 } = await loadCurricula();
+  const unit = b2.units.find((item) => item.id === 'b2_u11');
+  assert.ok(unit, 'B2 U11 must exist');
+  assert.equal(unit.lessons.length, 5);
+  assert.deepEqual(unit.lessons.map((lesson) => lesson.exercises.length), [3, 3, 3, 3, 4]);
+  const expectedIds = [
+    'b2u11_pulau_pulau', 'b2u11_dua_dua', 'b2u11_memukul_memukul',
+    'b2u11_pukul_memukul', 'b2u11_dipukul_pukul', 'b2u11_melihat_lihat',
+    'b2u11_sayur_mayur', 'b2u11_gerak_gerik', 'b2u11_kaya_raya',
+    'b2u11_lelaki', 'b2u11_dedaunan', 'b2u11_pepohonan'
+  ];
+  assert.deepEqual(unit.vocab.map((word) => word.id), expectedIds);
+  assert.ok(unit.vocab.every((word) => word.idn && word.esp), 'every new canonical form needs Indonesian form and Spanish gloss');
+  const priorIds = new Set(b2.units.filter((item) => item.id !== 'b2_u11').flatMap((item) => (item.vocab || []).map((word) => word.id)));
+  assert.ok(unit.vocab.every((word) => !priorIds.has(word.id)), 'U11 IDs must not duplicate earlier B2 vocabulary');
+  assert.deepEqual(unit.lessons.map((lesson) => lesson.vocabIds), [
+    ['b2u11_pulau_pulau', 'b2u11_dua_dua'],
+    ['b2u11_memukul_memukul', 'b2u11_pukul_memukul', 'b2u11_dipukul_pukul', 'b2u11_melihat_lihat'],
+    ['b2u11_sayur_mayur', 'b2u11_gerak_gerik', 'b2u11_kaya_raya', 'b2u11_lelaki', 'b2u11_dedaunan', 'b2u11_pepohonan'],
+    [],
+    []
+  ]);
+  const exercises = allExercises(unit);
+  assert.equal(exercises.length, 16);
+  assert.deepEqual([...new Set(exercises.map((exercise) => exercise.type))].sort(), ['fill', 'mc', 'order', 'translate_es_id', 'write']);
+  assert.ok(!exercises.some((exercise) => exercise.type === 'listen'), 'do not use device-voice fallback where no Piper recording exists');
+  assert.ok(exercises.some((exercise) => exercise.type === 'translate_es_id' && exercise.answer === 'Pulau-pulau Bali, Lombok dan Sumbawa terletak di sebelah timur pulau Jawa.'));
+  assert.ok(exercises.some((exercise) => exercise.type === 'fill' && exercise.prompt.includes('Kecil-kecil bisa punya pacar') && exercise.answerLanguage === 'es'));
+  assert.ok(exercises.some((exercise) => exercise.type === 'fill' && exercise.prompt.includes('Buku-buku berjatuhan') && exercise.answerLanguage === 'es'));
+  assert.ok(exercises.some((exercise) => exercise.type === 'fill' && exercise.prompt.includes('Anak itu berteriak keras-keras') && exercise.answerLanguage === 'es'));
+  assert.equal(exercises.filter((exercise) => exercise.type === 'write').length, 2);
+  for (const lesson of unit.lessons) {
+    for (const id of [...lesson.vocabIds, ...lesson.reviewVocabIds]) assert.ok(expectedIds.includes(id), 'lesson vocabulary references must resolve to a U11 canonical ID');
+  }
+});
+
+test('implemented B2 U1–U11 are executable while later legacy draft units stay archived', async () => {
   const { b2 } = await loadCurricula();
   const legacyArchive = await readFile(new URL('../docs/B2_LEGACY_DRAFT_ARCHIVE.md', import.meta.url), 'utf8');
-  assert.deepEqual(b2.units.map((unit) => unit.id), ['b2_u1', 'b2_u2', 'b2_u3', 'b2_u4', 'b2_u5', 'b2_u6', 'b2_u7', 'b2_u8', 'b2_u9', 'b2_u10']);
+  assert.deepEqual(b2.units.map((unit) => unit.id), ['b2_u1', 'b2_u2', 'b2_u3', 'b2_u4', 'b2_u5', 'b2_u6', 'b2_u7', 'b2_u8', 'b2_u9', 'b2_u10', 'b2_u11']);
   for (const id of ['b2_u5']) {
     assert.ok(legacyArchive.includes('"id": "' + id + '"'), id + ' must remain in the historical archive');
   }

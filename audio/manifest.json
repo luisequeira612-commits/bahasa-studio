@@ -39477,5 +39477,230 @@
         "kind": "conversation-example"
       }
     ]
+  },
+  {
+    "id": "a3f6246c5c7c",
+    "text": "pulau-pulau",
+    "normalized": "pulau-pulau",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u11",
+        "kind": "vocabulary"
+      }
+    ]
+  },
+  {
+    "id": "b52614e373a9",
+    "text": "dua-dua",
+    "normalized": "dua-dua",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u11",
+        "kind": "vocabulary"
+      }
+    ]
+  },
+  {
+    "id": "b9123c300f26",
+    "text": "memukul-mukul",
+    "normalized": "memukul-mukul",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u11",
+        "kind": "vocabulary"
+      }
+    ]
+  },
+  {
+    "id": "83c32dc3e589",
+    "text": "pukul-memukul",
+    "normalized": "pukul-memukul",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u11",
+        "kind": "vocabulary"
+      }
+    ]
+  },
+  {
+    "id": "b0fb07ab5a49",
+    "text": "dipukul-pukul",
+    "normalized": "dipukul-pukul",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u11",
+        "kind": "vocabulary"
+      }
+    ]
+  },
+  {
+    "id": "0413a8111447",
+    "text": "melihat-lihat",
+    "normalized": "melihat-lihat",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u11",
+        "kind": "vocabulary"
+      }
+    ]
+  },
+  {
+    "id": "a4291ebea265",
+    "text": "sayur-mayur",
+    "normalized": "sayur-mayur",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u11",
+        "kind": "vocabulary"
+      }
+    ]
+  },
+  {
+    "id": "068da49fa145",
+    "text": "gerak-gerik",
+    "normalized": "gerak-gerik",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u11",
+        "kind": "vocabulary"
+      }
+    ]
+  },
+  {
+    "id": "ceec72c540e9",
+    "text": "kaya-raya",
+    "normalized": "kaya-raya",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u11",
+        "kind": "vocabulary"
+      }
+    ]
+  },
+  {
+    "id": "ce08fb4d8e77",
+    "text": "lelaki",
+    "normalized": "lelaki",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u11",
+        "kind": "vocabulary"
+      }
+    ]
+  },
+  {
+    "id": "a3b1d4ebcd5d",
+    "text": "dedaunan",
+    "normalized": "dedaunan",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u11",
+        "kind": "vocabulary"
+      }
+    ]
+  },
+  {
+    "id": "b1529fd81f7f",
+    "text": "pepohonan",
+    "normalized": "pepohonan",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u11",
+        "kind": "vocabulary"
+      }
+    ]
+  },
+  {
+    "id": "fa8c8e7a12e3",
+    "text": "kecil-kecil",
+    "normalized": "kecil-kecil",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u11",
+        "kind": "vocabulary"
+      }
+    ]
+  },
+  {
+    "id": "7638a74a55b9",
+    "text": "keras-keras",
+    "normalized": "keras-keras",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u11",
+        "kind": "vocabulary"
+      }
+    ]
+  },
+  {
+    "id": "d3d36d807060",
+    "text": "Pulau-pulau Bali, Lombok dan Sumbawa terletak di sebelah timur pulau Jawa.",
+    "normalized": "pulau-pulau bali, lombok dan sumbawa terletak di sebelah timur pulau jawa.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u11",
+        "kind": "translate-answer"
+      }
+    ]
   }
 ]

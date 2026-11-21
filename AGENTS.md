@@ -18,7 +18,7 @@ App web para aprender idiomas, estilo Duolingo, alojada en GitHub Pages. Hoy tie
 - No se publica en tiendas de apps.
 
 ## Hoja de ruta de idiomas (estado vigente: 15 nov 2026)
-1. **Indonesio:** completar todo el material hasta B2. A1 y A2 están completos. B1 tiene sus 50 unidades implementadas y la migración estructural de cinco lecciones explícitas está completa: U1–U50 cumplen el estándar. B2 U1–U10 están implementadas (cinco lecciones authored cada una). La biblioteca Piper cubre los 2.212 IDs indexados, incluidos 98 textos asociados a B2 en U1–U8; U9 no añade audio. U6–U10 siguen ocultas: la cobertura de audio no autoriza por sí sola su activación/publicación, que requiere decisión explícita del dueño. U10 implementa la integración de nominalizaciones con cinco lecciones y 16 ejercicios, reutilizando IDs de U7/U8 y fragmentos U9; U11–U12 tienen diseños documentales pendientes de implementación; U13–U60 aún carecen de mapa curricular aprobado. No exigir muestras MMS: MMS está abandonado. No añadir ningún otro idioma hasta completar el indonesio hasta B2.
+1. **Indonesio:** completar todo el material hasta B2. A1 y A2 están completos. B1 tiene sus 50 unidades implementadas y la migración estructural de cinco lecciones explícitas está completa: U1–U50 cumplen el estándar. B2 U1–U11 están implementadas (cinco lecciones authored cada una). La biblioteca Piper cubre los 2.212 IDs indexados, incluidos 98 textos asociados a B2 en U1–U8; U9–U10 no añaden audio nuevo; U11 añade 15 textos Piper (14 vocabularios y una respuesta de traducción). U6–U11 siguen ocultas: la cobertura de audio no autoriza por sí sola su activación/publicación, que requiere decisión explícita del dueño. U10 implementa la integración de nominalizaciones; U11 implementa reduplicación con 14 entradas nuevas y 16 ejercicios; U12 conserva su diseño documental pendiente; U13–U60 aún carecen de mapa curricular aprobado. No exigir muestras MMS: MMS está abandonado. No añadir ningún otro idioma hasta completar el indonesio hasta B2.
 2. **Inglés:** se añadirá después del indonesio, desde nivel cero (A1), pensado para hispanohablantes. Incluir pronunciación con audio o transcripción sencilla, falsos amigos y verbos frasales.
 3. **Otros idiomas:** no hay ningún otro idioma planificado por ahora. Cualquier idioma adicional lo decidirá el dueño más adelante.
 
@@ -37,15 +37,21 @@ App web para aprender idiomas, estilo Duolingo, alojada en GitHub Pages. Hoy tie
 
 ## Reglas curriculares B1/B2 (estado vigente: 15 nov 2026)
 - A1 (32 unidades) y A2 (40 unidades) cumplen el currículo vigente. B1 tiene 50 unidades con contenido implementado; la migración estructural de 5–6 lecciones explícitas está completada en U1–U50. No cambiar vocabulario, glosas ni explicaciones salvo corrección demostrable mediante un PR acotado.
-- B2 U1–U10 están implementadas con cinco lecciones authored cada una. U1–U5 son las visibles; U6–U10 permanecen ocultas hasta decisión explícita de publicación. Piper cubre 2.212 IDs indexados; 98 textos de audio corresponden a U1–U8 y U9 no añade audio. U10 está implementada; U11–U12 tienen diseños documentales y U13–U60 aún carecen de mapa curricular aprobado. No exigir muestras MMS.
+- B2 U1–U11 están implementadas con cinco lecciones authored cada una. U1–U5 son las visibles; U6–U11 permanecen ocultas hasta decisión explícita de publicación. Piper cubre 2.212 IDs indexados; 98 textos de audio corresponden a U1–U8 y U9–U11 no añaden audio nuevo. U10 y U11 están implementadas; U12 tiene diseño documental y U13–U60 aún carecen de mapa curricular aprobado. No exigir muestras MMS.
 - Las unidades B1 se muestran y se pueden estudiar en cuanto su PR se fusiona; no ocultarlas mediante flags o bloqueos ligados a A1.
 - No asumir que todas las unidades B2 están diseñadas: U13–U60 aún no tienen mapa aprobado.
 - Cada unidad nueva: 14–22 ejercicios, al menos cuatro tipos entre opción múltiple, traducción, ordenación, escucha con audio reproducible y escritura; al menos cinco ejercicios con frases completas y una producción original guiada. Añadir repaso acumulativo cada 4–5 unidades.
 - Desde A2 en adelante, enseñar mediante textos, diálogos y familias léxicas, no listas aisladas.
 - Enseñar afijos mediante familias (raíz + derivados en ejemplos completos); no asignar una traducción fija al afijo. Cada forma derivada nueva conserva su propio ID canónico; nunca duplicar una forma con IDs distintos. No exigir producción antes del nivel previsto.
 - En B1, memper- y ber-kan son solo de reconocimiento. Consultar KBBI cuando esté disponible; marcar dudas y no afirmar validación nativa.
-- En B2 U4 el eje es exclusivamente `-kan`; U5–U6 continúan con `-i` y `memper-` según el eje aprobado, pero el eje no autoriza por sí solo ejemplos, glosas, claves ni vocabulario nuevo.
+- En B2 U4 el eje es exclusivamente `-kan`; U5–U6 continúan con `-i` y `memper-` según el eje aprobado, pero el eje no autoriza por sí solo ejemplos, glosas, claves ni vocabulario nuevo; para el trabajo B2 en curso prevalece la autorización autónoma explícita del dueño registrada el 21 nov 2026.
 - No cambiar IndexedDB, el formato de backup JSON v3 ni añadir dependencias/servicios externos.
+
+
+### Autorización autónoma para completar B2 (decisión del dueño: 21 nov 2026)
+- El dueño indicó continuar B2 de forma autónoma y por lotes, sin pedir aprobación intermedia por cada unidad; autorizó seleccionar y añadir vocabulario y mejoras sin consultas de permiso entre lotes. Esta autorización prevalece sobre las antiguas reglas de aprobación individual de ejemplos/IDs para el trabajo B2 en curso.
+- Cada forma nueva debe tener fuente identificable, glosa contextual y un ID canónico único; comprobar duplicados contra A1–B2 antes de añadirla. No crear frases indonesias sin respaldo ni presentar la revisión estructural como validación nativa.
+- Mantener todas las unidades nuevas ocultas/no publicadas. La autorización para desarrollar el currículo no autoriza activar U6–U60 ni cambiar el recorrido visible; la liberación seguirá siendo una decisión separada del dueño.
 
 ## Regla obligatoria de estructura didáctica A1–B2 (decisión del dueño: 12 nov 2026)
 - Todas las unidades de A1, A2, B1 y B2 deben tener entre **5 y 6 lecciones didácticas reales**. Es un requisito obligatorio, no una recomendación ni una excepción por nivel.
@@ -53,7 +59,7 @@ App web para aprender idiomas, estilo Duolingo, alojada en GitHub Pages. Hoy tie
 - Distribuir el vocabulario nuevo en varias lecciones y recuperar vocabulario anterior en contextos y actividades diferentes. No introducir una palabra una sola vez y darla por aprendida; planificar recurrencia espaciada, recuperación activa y reutilización contextual.
 - Las auditorías deben informar por separado lecciones explícitas, bloques derivados, repasos automáticos y lecciones visibles en runtime. El número runtime no demuestra por sí solo cumplimiento.
 - Las pruebas deben exigir 5–6 lecciones explícitas para cada unidad oficial A1–B2. Mientras existan unidades históricas pendientes de corrección, la auditoría debe mostrar sus incumplimientos con claridad; no falsear el cumplimiento ni añadir excepciones silenciosas.
-- No rellenar unidades con contenido artificial ni inventar vocabulario, ejemplos o explicaciones para alcanzar el número. Reestructurar y distribuir material existente cuando sea pedagógicamente válido; cualquier contenido nuevo sigue las reglas de aprobación y verificación lingüística.
+- No rellenar unidades con contenido artificial ni inventar vocabulario, ejemplos o explicaciones para alcanzar el número. Reestructurar y distribuir material existente cuando sea pedagógicamente válido; el contenido nuevo de B2 sigue la autorización autónoma del dueño: fuente identificable, comprobación de duplicados, glosa contextual y límites explícitos; no se afirma validación nativa.
 - Esta decisión prevalece sobre contratos de pruebas antiguos que aceptaban 2–3 lecciones, y sobre frases anteriores que declaraban los niveles completos sin verificar este criterio.
 
 ## Git

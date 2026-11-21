@@ -10,7 +10,7 @@ on:
         default: piper
         required: true
       mode:
-        description: samples para escuchar; full genera audio; hashes solo calcula huellas sin TTS
+        description: samples para escuchar; full genera todos los textos seleccionados por level/ids; hashes solo calcula huellas sin TTS
         type: choice
         options: [samples, full, hashes]
         default: samples
@@ -21,7 +21,7 @@ on:
         default: '10'
         required: true
       ids:
-        description: IDs exactos separados por comas (solo samples; vacío usa limit)
+        description: IDs exactos separados por comas (samples o generación selectiva; vacío usa limit)
         type: string
         default: ''
         required: false
@@ -77,7 +77,7 @@ jobs:
         run: echo "started=$(date +%s)" >> "$GITHUB_OUTPUT"
 
       - name: Reject full generation until explicitly confirmed
-        if: ${{ inputs.mode == 'full' && inputs.confirm_full != true }}
+        if: ${{ inputs.mode == 'full' && inputs.confirm_full != true && inputs.ids == '' }}
         run: |
           echo "::error::La generación completa requiere confirm_full=true y la selección previa de una voz."
           exit 1
@@ -195,7 +195,7 @@ jobs:
         run: |
           ARGS=()
           if [[ "$LEVEL" == "B2" || "$LEVEL" == "all" ]]; then
-            ARGS+=(--include-b2)
+            ARGS+=(--include-b2 --include-interactive)
           fi
           if [[ "$MODE" == "full" && "$LEVEL" == "all" ]]; then
             ARGS+=(--include-interactive)
@@ -228,6 +228,9 @@ jobs:
             fi
           else
             ARGS=(--engine "$ENGINE" --mode full --level "$LEVEL" --limit 0 --force)
+            if [[ -n "$IDS" ]]; then
+              ARGS+=(--ids "$IDS")
+            fi
             if [[ "$LEVEL" == "all" && -n "${PIPER_LEGACY_MANIFEST:-}" ]]; then
               ARGS+=(--legacy-manifest "$PIPER_LEGACY_MANIFEST")
             fi

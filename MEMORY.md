@@ -1,3 +1,9 @@
+## Decisión de contenido B2 U9 — 21 nov 2026
+- El dueño aprobó explícitamente los cinco fragmentos 1–5 del paquete `docs/B2_U9_APPROVAL_PACKET.md` (Grangé 2015) para lectura y análisis en U9. Aprobación recibida en ChatGPT: «Sí», en respuesta a la pregunta de aprobación de los cinco fragmentos.
+- Alcance exacto: solo los cinco fragmentos y usos didácticos descritos. No autoriza ejemplos indonesios adicionales, vocabulario/IDs nuevos, generalización productiva de la construcción ni publicación/activación de U9.
+- Próximo trabajo autorizado: implementar cinco lecciones y 16 ejercicios alrededor de esos fragmentos, con consignas y claves contextualizadas; sin escribir nuevas oraciones indonesias. Paráfrasis españolas pueden ser actividades de comprensión, no sustituyen validación lingüística.
+- Fuente: aprobación directa del dueño en ChatGPT, 21 nov 2026; Grangé (2015), Wacana 16(1), pp. 138–147.
+
 ## Estado B2 actualizado — 21 nov 2026
 - B2 U1–U8 están implementadas, cada una con cinco lecciones authored; U1–U5 son las visibles y U6–U8 permanecen ocultas hasta decisión explícita de publicación del dueño. La migración Piper cubre los 2.212 IDs del índice; 98 textos están asociados a B2 U1–U8.
 - U8 se aprobó e implementó en PR #639 (merge `7b50f3923a5615d61d6cd72ca5cc798800c94e73`). No describir ya sus ocho formas/ejemplos como pendientes.

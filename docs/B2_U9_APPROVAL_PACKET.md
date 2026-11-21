@@ -1,10 +1,10 @@
 # B2 U9 — paquete de aprobación de ejemplos fuente
 
-**Estado:** propuesta para decisión del dueño; no es contenido ejecutable.  
+**Estado:** los cinco fragmentos 1–5 y sus usos didácticos fueron aprobados explícitamente por el dueño el 21 nov 2026. Aún no es contenido ejecutable; implementación pendiente.  
 **Fecha:** 21 nov 2026.  
 **Unidad:** B2 U9, lectura de construcciones verbales con `-nya` y relaciones entre cláusulas.  
 **Diseño base:** `docs/B2_U9_DESIGN.md` (cinco lecciones authored y 16 ejercicios propuestos).  
-**Decisión requerida:** aprobar, rechazar o pedir cambios para cada fragmento y su uso didáctico. Ningún ejemplo queda aprobado por aparecer aquí.
+**Decisión registrada:** aprobación de los cinco fragmentos 1–5 para lectura y análisis en B2 U9, confirmada por el dueño en ChatGPT el 21 nov 2026. La aprobación cubre únicamente estos cinco fragmentos y los usos descritos; no autoriza ejemplos adicionales, vocabulario nuevo, IDs ni publicación de la unidad.
 
 ## Alcance y límites
 
@@ -51,6 +51,8 @@ Esta distribución es orientativa. La estructura final debe mantener cinco lecci
 
 Philippe Grangé (2015), “The Indonesian verbal suffix ‘-nya’: Nominalization or subordination?”, *Wacana*, 16(1), 133–166, DOI: [10.17510/wjhi.v16i1.370](https://doi.org/10.17510/wjhi.v16i1.370). PDF consultado: [Wacana PDF](https://media.neliti.com/media/publications/180895-EN-the-indonesian-verbal-suffix-nya-nominal.pdf), especialmente pp. 138–147 (ejemplos 15, 17, 25, 26 y 34).
 
-## Cómo responder la aprobación
+## Registro de aprobación — 21 nov 2026
 
-El dueño puede aprobar todos los candidatos, aprobar solo números concretos, corregir una glosa o pedir reemplazos. Solo los fragmentos aprobados podrán convertirse en material de ejercicios. La aprobación de este paquete no autoriza ejemplos nuevos por analogía, vocabulario adicional ni publicación/activación de B2 U9.
+El dueño respondió «Sí» a la solicitud de aprobar los cinco fragmentos para utilizarlos como material de lectura y análisis en B2 U9. Quedan aprobados los candidatos 1, 2, 3, 4 y 5, con sus contextos, paráfrasis y objetivos didácticos descritos en este paquete.
+
+La aprobación no constituye validación lingüística independiente ni certificación por hablante nativo/KBBI/MCER/BIPA. No autoriza ampliar el conjunto de ejemplos por analogía, añadir vocabulario o IDs, ni mostrar/publicar B2 U9. La implementación debe usar solo estos fragmentos aprobados y actividades que evalúen lectura, estructura y paráfrasis española sin inventar nuevas oraciones indonesias.

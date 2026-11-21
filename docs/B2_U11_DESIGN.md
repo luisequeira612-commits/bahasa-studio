@@ -1,6 +1,6 @@
 # B2 U11 — Reduplicación: forma, alcance y significado en contexto
 
-**Estado:** implementada en `curriculum/b2-u11-reduplication-20261121`; cinco lecciones authored, 16 ejercicios y 12 IDs de vocabulario. Oculta/no publicada.  
+**Estado:** implementada en `curriculum/b2-u11-reduplication-20261121`; cinco lecciones authored, 16 ejercicios y 14 IDs de vocabulario. Oculta/no publicada.  
 **Fecha:** 21 nov 2026.  
 **Bloque:** U11–U12 reduplicación y composición.
 
@@ -29,8 +29,10 @@ La bibliografía ofrece ejemplos y análisis, no certificación de naturalidad p
 | `b2u11_lelaki` | `lelaki` | hombre | Reduplicación parcial |
 | `b2u11_dedaunan` | `dedaunan` | follaje | Reduplicación parcial |
 | `b2u11_pepohonan` | `pepohonan` | árboles; conjunto de árboles | Reduplicación parcial |
+| `b2u11_kecil_kecil` | `kecil-kecil` | muy pequeño; lectura contrastiva de juventud | Reduplicación completa de adjetivo |
+| `b2u11_keras_keras` | `keras-keras` | fuertemente; muy fuerte | Reduplicación adverbial/intensificadora |
 
-Los 12 IDs se comprobaron contra el inventario de vocabulario activo de `index.html`; no se encontraron entradas canónicas previas con esas formas. Las palabras ya conocidas `buku-buku` y `orang-orang` se recuperan como conocimiento previo y no reciben IDs duplicados.
+Los 14 IDs se comprobaron contra el inventario de vocabulario activo de `index.html`; no se encontraron entradas canónicas previas con esas formas. Las palabras ya conocidas `buku-buku` y `orang-orang` se recuperan como conocimiento previo y no reciben IDs duplicados.
 
 ## Lecciones implementadas
 
@@ -69,6 +71,6 @@ No se añadieron ejercicios de escucha ni archivos de audio. Los textos de U11 n
 
 ## Registro de implementación — 21 nov 2026
 
-La instrucción directa del dueño autoriza continuar B2 por lotes y añadir vocabulario/mejoras sin pedir aprobación intermedia. U11 implementa 5 lecciones authored y 16 ejercicios en distribución [3, 3, 3, 3, 4], con 12 formas documentadas y cinco tipos de ejercicio. La naturalidad y adecuación de cada forma sigue siendo `not_checked` cuando no existe revisión nativa; las fuentes académicas respaldan la selección, no certifican el curso.
+La instrucción directa del dueño autoriza continuar B2 por lotes y añadir vocabulario/mejoras sin pedir aprobación intermedia. U11 implementa 5 lecciones authored y 16 ejercicios en distribución [3, 3, 3, 3, 4], con 14 formas documentadas y cinco tipos de ejercicio. La naturalidad y adecuación de cada forma sigue siendo `not_checked` cuando no existe revisión nativa; las fuentes académicas respaldan la selección, no certifican el curso.
 
 Siguiente unidad: U12, compuestos, fraseología y límites entre compuesto, frase fija y expresión idiomática.

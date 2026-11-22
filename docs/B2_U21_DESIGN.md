@@ -36,11 +36,11 @@ Cinco lecciones authored y 16 ejercicios (3/3/3/3/4), con cuatro tipos: `mc`, `t
 4. **Bukan tidak ...:** negación enfática y alternativa implícita.
 5. **Tidak ... melainkan:** corrección de una acción o destino.
 
-Seis respuestas de traducción completas usan los ejemplos fuente; la primera coincide con el ejemplo léxico de `melainkan`, por lo que el exportador de audio debe deduplicarla.
+Seis respuestas de traducción completas usan los ejemplos fuente; la primera coincide con el ejemplo léxico de `melainkan`, por lo que el exportador de audio debe deduplicarla. El headword aislado `melainkan` también necesita su propio clip.
 
 ## Audio
 
-Se solicita generación selectiva Piper para estos seis textos exactos:
+Se solicita generación selectiva Piper para estos siete textos exactos:
 
 - `Bukan dia bodoh, melainkan dia malas.`
 - `Bukannya saya tidak mau membeli rumah, tetapi uang saya tidak cukup.`
@@ -48,8 +48,9 @@ Se solicita generación selectiva Piper para estos seis textos exactos:
 - `Saya bukan tidak percaya kepadamu.`
 - `Dia bukan bodoh, melainkan malas saja.`
 - `Kami tidak pergi ke Solo, melainkan ke Yogya.`
+- `melainkan` (headword de vocabulario).
 
-No se regenera la biblioteca completa. Tras la generación esperada: +6 IDs (2.267 en total) y +6 textos B2 (154 en total), con MP3/Opus, manifiesto, índice y hashes sincronizados. El test de audio debe verificar la igualdad de índice/manifiesto y presencia de los archivos.
+No se regenera la biblioteca completa. Tras la generación esperada: +7 IDs (2.268 en total) y +7 textos B2 (155 en total), con MP3/Opus, manifiesto, índice y hashes sincronizados. El test de audio debe verificar la igualdad de índice/manifiesto y presencia de los archivos.
 
 ## Restricciones
 

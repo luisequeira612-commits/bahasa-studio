@@ -1,3 +1,10 @@
+## B2 U22 implementada en rama — 22 nov 2026
+
+- U22 profundiza la adición escalar: `bukan hanya ... melainkan/tetapi juga` y la variante documentada `tidak hanya ... tetapi juga`. Cinco lecciones authored, 16 ejercicios ([3,3,3,3,4]), cuatro tipos (mc, translate_es_id, order, write), sin vocabulario/IDs nuevos.
+- Se corrigió la unidad para usar únicamente ejemplos indonesios documentados: Sneddon et al. (2010), §4.86; y *Tata Bahasa Baku Bahasa Indonesia* (2017), §8.2.2.2. Se eliminó la dependencia de ejemplos inventados/atribuciones imprecisas.
+- U22 permanece oculta/no publicada. No cambia IndexedDB v1, backup JSON v3, A1/A2/B1 ni dependencias. No añade audio Piper todavía porque no incorpora formas léxicas nuevas y ya cumple cuatro tipos.
+- Rama: `curriculum/b2-u22-bukan-hanya-20261122`. Pendiente: ejecutar CI completo, revisar resultados y preparar/fusionar PR solo si todo queda verde y sin revisiones pendientes.
+
 ## B2 U21 en rama — 22 nov 2026
 
 - U20 quedó fusionada en main mediante PR #688. B2 U1–U20 están implementadas; U1–U5 visibles, U6–U20 ocultas.

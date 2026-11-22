@@ -704,17 +704,16 @@ test('B2 U18 implements five authored lessons on intent complements and reported
   assert.equal(unit.lessons.length, 5);
   assert.deepEqual(unit.lessons.map((lesson) => lesson.exercises.length), [3, 3, 3, 3, 4]);
   assert.deepEqual(unit.vocab.map((word) => word.id), [
-    'b2u18_menyuruh', 'b2u18_memerintahkan', 'b2u18_mendesak',
-    'b2u18_mengingatkan', 'b2u18_minta',
+    'b2u18_menyuruh', 'b2u18_memerintahkan', 'b2u18_mendesak', 'b2u18_minta',
   ]);
   const exercises = allExercises(unit);
   assert.equal(exercises.length, 16);
   assert.deepEqual([...new Set(exercises.map((exercise) => exercise.type))].sort(),
     ['fill', 'listen', 'mc', 'order', 'translate_es_id', 'write']);
   const listeningExercises = exercises.filter((exercise) => exercise.type === 'listen');
-  assert.equal(listeningExercises.length, 5, 'U18 must use Piper recordings for all five new verbs');
+  assert.equal(listeningExercises.length, 5, 'U18 must use four new Piper forms and the existing B1 warning verb');
   assert.deepEqual(listeningExercises.map((exercise) => exercise.vocabId).sort(), [
-    'b2u18_memerintahkan', 'b2u18_mendesak', 'b2u18_mengingatkan', 'b2u18_menyuruh', 'b2u18_minta',
+    'b1u5_mengingatkan', 'b2u18_memerintahkan', 'b2u18_mendesak', 'b2u18_menyuruh', 'b2u18_minta',
   ]);
   const priorIds = new Set([
     ...a1.units.flatMap((item) => item.vocab || []),
@@ -728,9 +727,9 @@ test('B2 U18 implements five authored lessons on intent complements and reported
   const ownIds = new Set(unit.vocab.map((word) => word.id));
   for (const lesson of unit.lessons) {
     assert.ok(lesson.vocabIds.every((id) => ownIds.has(id)), 'lesson vocabulary must resolve to U18 IDs');
-    assert.ok(lesson.reviewVocabIds.every((id) => ownIds.has(id)), 'review vocabulary must resolve to U18 IDs');
+    assert.ok(lesson.reviewVocabIds.every((id) => ownIds.has(id) || priorIds.has(id)), 'review vocabulary must resolve to current or previously taught IDs');
     for (const exercise of lesson.exercises) {
-      if (exercise.vocabId) assert.ok(ownIds.has(exercise.vocabId), 'exercise vocabulary must resolve to U18 IDs');
+      if (exercise.vocabId) assert.ok(ownIds.has(exercise.vocabId) || priorIds.has(exercise.vocabId), 'exercise vocabulary must resolve to current or previously taught IDs');
     }
   }
   const sourceText = JSON.stringify(unit).toLowerCase();

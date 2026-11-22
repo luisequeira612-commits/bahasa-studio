@@ -2,7 +2,7 @@
 
 - Se retiraron de la interfaz las etiquetas «En desarrollo» asociadas a B2: selector de nivel, vista de ruta y selector de salto de unidad. El selector de nivel muestra ahora unidades completadas/total.
 - Se mantienen sin cambios las reglas de acceso/publicación y el límite de unidades visibles; este cambio solo elimina el texto de estado desactualizado, no publica ni desbloquea contenido.
-- Cambio realizado en la rama `ui/remove-b2-development-label-20261122`.
+- PR #711 fusionada en `main` (commit `4bc263e198ad0e21bb781f8ff58a1934590ef3e0`); CI de PR run `45082760119` y regresión post-merge run `45083052685` completados con éxito; GitHub Pages run `45083052365` desplegado correctamente.
 
 ## B2 U41–U45 integradas en main — PR #705 — 22 nov 2026
 
@@ -696,7 +696,7 @@
 - Se añaden 0 IDs léxicos y 0 términos a trackers; no hay estados nuevos de verificación que atribuir.
 
 
-## B2 U56–U60 implementadas en rama final — PR #710 — 22 nov 2026
+## B2 U56–U60 integradas en main — PR #710 — 22 nov 2026
 - U56 adverbios de manera con dengan/secara (§§2.168–2.169); U57 adjuntos preposicionales de medio, compañía, beneficio, razón, comparación, excepción y tema (§§2.209–2.215); U58 alcance de negación, temporales y modales (§§2.133–2.159); U59 integración sintáctica; U60 proyecto integrador B2.
-- Cinco lecciones authored y 16 ejercicios por unidad (3/3/3/3/4), cuatro tipos; U59–U60 reutilizan ejemplos previos y no introducen vocabulario nuevo. No se añaden IDs léxicos ni audio. Todas las unidades U6–U60 siguen ocultas/no publicadas.
+- Cinco lecciones authored y 16 ejercicios por unidad (3/3/3/3/4), cuatro tipos; U59–U60 reutilizan ejemplos previos y no introducen vocabulario nuevo. No se añaden IDs léxicos ni audio. PR #710 se fusionó en `main` mediante squash (commit `a816c8c01a9920e2042c7fa5bddde50aa4c0f7fa`); CI pre-merge y regresión post-merge pasaron, y Pages se desplegó. Todas las unidades U6–U60 siguen ocultas/no publicadas.
 - Filtros y baseline ampliados a 60 unidades / 300 lecciones authored. Sin cambios a IndexedDB v1, backup JSON v3, biblioteca Piper ni dependencias. La estructura y los ejemplos de referencia no equivalen a validación nativa ni certificación MCER/BIPA.

@@ -39059,6 +39059,106 @@
     ]
   },
   {
+    "id": "7e1e2b1aa5a2",
+    "text": "bahwa",
+    "normalized": "bahwa",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u17",
+        "kind": "vocabulary"
+      }
+    ]
+  },
+  {
+    "id": "e3a330100635",
+    "text": "Dia menjawab bahwa dia tidak percaya.",
+    "normalized": "dia menjawab bahwa dia tidak percaya.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u17",
+        "kind": "example"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u17",
+        "kind": "translate-answer"
+      }
+    ]
+  },
+  {
+    "id": "3949453b1c17",
+    "text": "apakah",
+    "normalized": "apakah",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u17",
+        "kind": "vocabulary"
+      }
+    ]
+  },
+  {
+    "id": "e6d6199706c5",
+    "text": "Saya tidak tahu apakah bis ini berhenti di Pasar Senen.",
+    "normalized": "saya tidak tahu apakah bis ini berhenti di pasar senen.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u17",
+        "kind": "example"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u17",
+        "kind": "translate-answer"
+      }
+    ]
+  },
+  {
+    "id": "0ce903146758",
+    "text": "Kami mengakui bahwa kami perlu bantuan dari luar negeri.",
+    "normalized": "kami mengakui bahwa kami perlu bantuan dari luar negeri.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u17",
+        "kind": "translate-answer"
+      }
+    ]
+  },
+  {
+    "id": "6cc4f8359add",
+    "text": "Masih diragukan apakah pendapat ini dapat diterima.",
+    "normalized": "masih diragukan apakah pendapat ini dapat diterima.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u17",
+        "kind": "translate-answer"
+      }
+    ]
+  },
+  {
     "id": "ac14444a4d3b",
     "text": "Meskipun hujan deras, kegiatan tetap berlangsung.",
     "normalized": "meskipun hujan deras, kegiatan tetap berlangsung.",

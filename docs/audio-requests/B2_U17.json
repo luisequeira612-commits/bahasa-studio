@@ -1,0 +1,16 @@
+{
+  "unit": "b2_u17",
+  "level": "B2",
+  "engine": "piper",
+  "voice": "id_ID-news_tts-medium",
+  "purpose": "Generate production MP3 and Opus for both new U17 vocabulary entries and every source-backed full-sentence example exported into the production audio manifest.",
+  "texts": [
+    "bahwa",
+    "apakah",
+    "Dia menjawab bahwa dia tidak percaya.",
+    "Saya tidak tahu apakah bis ini berhenti di Pasar Senen.",
+    "Kami mengakui bahwa kami perlu bantuan dari luar negeri.",
+    "Masih diragukan apakah pendapat ini dapat diterima."
+  ],
+  "requestVersion": 1
+}

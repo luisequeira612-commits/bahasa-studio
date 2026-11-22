@@ -642,10 +642,64 @@ test('B2 U16 implements five authored lessons and source-backed restrictive focu
   assert.ok(sentenceTargets.length >= 5, 'U16 must include at least five complete-sentence response targets');
 });
 
-test('implemented B2 U1–U16 are executable while later legacy draft units stay archived', async () => {
+
+test('B2 U17 implements five authored lessons on reported statements and indirect questions', async () => {
+  const { a1, a2, b1, b2 } = await loadCurricula();
+  const unit = b2.units.find((item) => item.id === 'b2_u17');
+  assert.ok(unit, 'B2 U17 must exist');
+  assert.equal(unit.lessons.length, 5);
+  assert.deepEqual(unit.lessons.map((lesson) => lesson.exercises.length), [3, 3, 3, 3, 4]);
+  assert.deepEqual(unit.vocab.map((word) => word.id), ['b2u17_bahwa', 'b2u17_apakah']);
+  const exercises = allExercises(unit);
+  assert.equal(exercises.length, 16);
+  assert.deepEqual([...new Set(exercises.map((exercise) => exercise.type))].sort(),
+    ['fill', 'listen', 'mc', 'order', 'translate_es_id', 'write']);
+  const listeningExercises = exercises.filter((exercise) => exercise.type === 'listen');
+  assert.equal(listeningExercises.length, 2, 'U17 must use its two generated Piper vocabulary clips');
+  assert.deepEqual(listeningExercises.map((exercise) => exercise.vocabId).sort(), ['b2u17_apakah', 'b2u17_bahwa']);
+  const priorIds = new Set([
+    ...a1.units.flatMap((item) => item.vocab || []),
+    ...a2.units.flatMap((item) => item.vocab || []),
+    ...b1.units.flatMap((item) => item.vocab || []),
+    ...b2.units.filter((item) => item.id !== 'b2_u17').flatMap((item) => item.vocab || []),
+  ].map((word) => word.id));
+  for (const word of unit.vocab) {
+    assert.equal(priorIds.has(word.id), false, word.id + ' must be globally unique');
+  }
+  const ownIds = new Set(unit.vocab.map((word) => word.id));
+  for (const lesson of unit.lessons) {
+    assert.ok(lesson.vocabIds.every((id) => ownIds.has(id)), 'lesson vocabulary must resolve to U17 IDs');
+    assert.ok(lesson.reviewVocabIds.every((id) => ownIds.has(id)), 'review vocabulary must resolve to U17 IDs');
+    for (const exercise of lesson.exercises) {
+      if (exercise.vocabId) assert.ok(ownIds.has(exercise.vocabId), 'exercise vocabulary must resolve to U17 IDs');
+    }
+  }
+  const sourceText = JSON.stringify(unit).toLowerCase();
+  for (const fragment of [
+    'dia menjawab bahwa dia tidak percaya.',
+    'kami percaya bahwa kami dapat mengatasi kesukaran ini.',
+    'kami mengakui bahwa kami perlu bantuan dari luar negeri.',
+    'saya tahu (bahwa) dia pencuri.',
+    'saya tidak tahu mengapa rapat itu dibatalkan.',
+    'saya lupa di mana saya menyimpan surat itu.',
+    'kami ragu-ragu apa dia bisa lulus ujian.',
+    'saya tidak tahu apakah bis ini berhenti di pasar senen.',
+    'masih diragukan apakah pendapat ini dapat diterima.',
+  ]) {
+    assert.ok(sourceText.includes(fragment), 'U17 must preserve the source-backed example: ' + fragment);
+  }
+  const sentenceTargets = exercises.filter((exercise) => {
+    const target = typeof exercise.modelAnswer === 'string' ? exercise.modelAnswer
+      : typeof exercise.answer === 'string' ? exercise.answer : '';
+    return target.trim().split(/\s+/).filter(Boolean).length >= 5;
+  });
+  assert.ok(sentenceTargets.length >= 5, 'U17 must include at least five complete-sentence response targets');
+});
+
+test('implemented B2 U1–U17 are executable while later legacy draft units stay archived', async () => {
   const { b2 } = await loadCurricula();
   const legacyArchive = await readFile(new URL('../docs/B2_LEGACY_DRAFT_ARCHIVE.md', import.meta.url), 'utf8');
-  assert.deepEqual(b2.units.map((unit) => unit.id), ['b2_u1', 'b2_u2', 'b2_u3', 'b2_u4', 'b2_u5', 'b2_u6', 'b2_u7', 'b2_u8', 'b2_u9', 'b2_u10', 'b2_u11', 'b2_u12', 'b2_u13', 'b2_u14', 'b2_u15', 'b2_u16']);
+  assert.deepEqual(b2.units.map((unit) => unit.id), ['b2_u1', 'b2_u2', 'b2_u3', 'b2_u4', 'b2_u5', 'b2_u6', 'b2_u7', 'b2_u8', 'b2_u9', 'b2_u10', 'b2_u11', 'b2_u12', 'b2_u13', 'b2_u14', 'b2_u15', 'b2_u16', 'b2_u17']);
   for (const id of ['b2_u5']) {
     assert.ok(legacyArchive.includes('"id": "' + id + '"'), id + ' must remain in the historical archive');
   }

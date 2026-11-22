@@ -10,7 +10,7 @@ Enseñar conectores que presentan una segunda oración contrastiva, a veces indi
 - **tetapi, akan tetapi**: «pero / sin embargo / aun así».
 - **sebaliknya**: «por el contrario / por otro lado».
 - **malah, malahan, bahkan**: «en cambio / por el contrario» en uso contrastivo, especialmente después de una oración negativa; también tienen valor aditivo en §4.99.
-- **bagaimanapun (juga)**: «sin importar cómo / de cualquier manera».
+- **bagaimanapun (juga)**: «sin importar cómo / de cualquier manera». Este enlace discursivo es distinto de la estructura correlativa de U29, bagaimanapun/betapapun + adjetivo + -nya ... namun/toh.
 - **juga** puede reforzar el contraste con el matiz «de todos modos».
 
 ## Ejemplos documentados usados

@@ -1,6 +1,6 @@
 # Propuesta de secuencia B2 U20–U60
 
-**Estado:** hoja de ruta de desarrollo elaborada bajo la autorización autónoma del dueño (21 nov 2026). U20 y U21 están implementadas en main; U22 está implementada en la rama curriculum/b2-u22-bukan-hanya-20261122; U23 está implementada en la rama curriculum/b2-u23-bukan-asalkan-20261122; U24–U60 siguen siendo objetivos de trabajo, no contenido ejecutable ni promesa de certificación MCER/BIPA.
+**Estado:** hoja de ruta de desarrollo elaborada bajo la autorización autónoma del dueño (21 nov 2026). U20 y U21 están implementadas en main; U22 está implementada en la rama curriculum/b2-u22-bukan-hanya-20261122; U23 está implementada en la rama curriculum/b2-u23-bukan-asalkan-20261122; U24 está implementada en la rama curriculum/b2-u24-begitu-sehingga-20261122; U25–U60 siguen siendo objetivos de trabajo, no contenido ejecutable ni promesa de certificación MCER/BIPA.
 
 ## Criterios de diseño
 
@@ -55,6 +55,10 @@
 | U58 | Orden de negación, marcadores temporales y modales en el predicado: interpretar combinaciones sin trasladar el orden del español. | Sneddon et al. (2010), §§2.133–2.159. |
 | U59 | Integración de sintagmas, complementos, foco y elipsis en lectura y reformulación de textos; solo estructuras previamente enseñadas. | Síntesis de Sneddon et al. (2010), capítulos 2–4; revisar solapamiento antes de definir ejemplos. |
 | U60 | Proyecto integrador B2: lectura, escucha, argumentación y producción guiada con estructuras de U1–U59, sin introducir vocabulario nuevo para inflar el inventario. | Síntesis curricular del nivel; no es una certificación MCER/BIPA. |
+
+## U24 implementada en rama
+
+U24 desarrolla la correlación de grado y consecuencia documentada en Sneddon et al. (2010), §4.88. Incluye `begitu`, `demikian`, `sedemikian`, `sehingga` y `sampai`, además del uso de `-nya` con sedemikian y la variante con adverbio de manera. Los ejemplos indonesios son los documentados por la fuente; no se inventan oraciones para rellenar ejercicios. El diseño detallado está en docs/B2_U24_DESIGN.md.
 
 ## U23 implementada en rama
 

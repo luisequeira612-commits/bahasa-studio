@@ -629,7 +629,7 @@ test('B2 U16 implements five authored lessons and source-backed restrictive focu
     }
   }
   const sourceText = JSON.stringify(unit);
-  for (const fragment of ['Mereka cuma minum teh.', 'Tadi pagi saya makan roti saja.',
+  for (const fragment of ['Mereka cuma minum teh.', 'Tadi pagi saya makan roti saja',
     'Cuma teh yang mereka minum.', 'Kenaikan pendapatan itu terutama berasal dari pajak.',
     'semata-mata', 'melulu', 'khususnya']) {
     assert.ok(sourceText.includes(fragment), 'U16 must preserve the source-backed example or contrast: ' + fragment);

@@ -73,7 +73,7 @@ test('phase 5B learning screen is compact, blue and preserves all level/tool ent
     assert.ok(safeBottom.padding >= 22, 'level sheet must retain bottom breathing room');
     assert.ok(safeBottom.bottom - (lastLevelRowBox.y + lastLevelRowBox.height) >= safeBottom.padding - 1, 'last level row must remain above safe bottom padding');
     const progressLabels = await Promise.all([0,1,2,3].map(i => levelRows.nth(i).locator('small').innerText()));
-    assert.deepEqual(progressLabels, ['0 de 32 unidades', '0 de 40 unidades', '0 de 50 unidades', 'En desarrollo']);
+    assert.deepEqual(progressLabels, ['0 de 32 unidades', '0 de 40 unidades', '0 de 50 unidades', '0 de 60 unidades']);
     assert.equal(await levelRows.count(), 4);
     const languageBadge = page.locator('#learningLevelLanguageLabel');
     assert.equal(await languageBadge.innerText(), 'Indonesio');

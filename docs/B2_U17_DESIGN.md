@@ -1,6 +1,6 @@
 # B2 U17 — Discurso referido y preguntas indirectas
 
-**Estado:** cinco lecciones authored, 16 ejercicios, dos IDs nuevos. U17 permanece oculta/no publicada. Se generaron seis clips Piper de producción en MP3 y Opus; no hay ejercicios de escucha porque el audio se usa como apoyo de pronunciación.
+**Estado:** cinco lecciones authored, 16 ejercicios, dos IDs nuevos. U17 permanece oculta/no publicada. Se generaron seis clips Piper de producción en MP3 y Opus; dos ejercicios de escucha practican las formas `bahwa` y `apakah`.
 
 ## Objetivos
 

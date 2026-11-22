@@ -1,6 +1,6 @@
 # B2 U20 — Coordinación correlativa baik … maupun
 
-**Estado:** implementada en la rama de trabajo; cinco lecciones authored, 16 ejercicios y cuatro tipos (mc, translate_es_id, order, write). Sin vocabulario nuevo ni IDs léxicos. Oculta/no publicada. No se añaden clips de audio en este lote.
+**Estado:** implementada en la rama de trabajo; cinco lecciones authored, 16 ejercicios y cuatro tipos (mc, translate_es_id, order, write). Sin vocabulario nuevo ni IDs léxicos. Cinco frases fuente se envían al pipeline selectivo Piper; la unidad permanece oculta/no publicada hasta la validación de audio y CI.
 **Fecha:** 21 nov 2026.
 **Dependencias:** B1 U18–U21 (condiciones, concesión, contraste, causa/consecuencia); B2 U15 (pun aditivo/focalizador, no confundir con la conjunción correlativa maupun).
 
@@ -37,7 +37,7 @@ Fuente: vista previa del libro; sección 4.82 reproducida en la vista de texto e
 - Cinco traducciones con oraciones completas, tomadas de Sneddon et al. (2010), §4.82.
 - Una producción original guiada; la respuesta modelo reutiliza un ejemplo documentado.
 - vocab: [], vocabIds: [] y reviewVocabIds: []. No se crean IDs duplicados ni se modifica el vocabulario previo.
-- No se generan audios en este lote. La unidad cumple el mínimo de cuatro tipos sin ejercicio de escucha; se podrá añadir escucha cuando se prepare un lote de audio con Piper y hashes verificables.
+- Cinco respuestas de traducción completas requieren audio de reproducción; se solicita generación selectiva Piper para esos cinco textos exactos, no una regeneración completa. La escucha solo se añadirá cuando los archivos MP3, IDs y hashes estén comprobados.
 
 ## Límites
 

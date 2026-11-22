@@ -1,3 +1,7 @@
+## Correcciones de CI — 22 nov 2026
+
+- CI correction (22 nov 2026): se corrigió el cierre final de B2 U25; se cierra el objeto de unidad, el array de unidades B2, el objeto de nivel y el array de niveles antes de continuar el script.
+
 ## B2 U24 implementada en rama — 22 nov 2026
 
 - U24 desarrolla la correlación de grado–resultado `begitu/demikian/sedemikian ... sehingga/sampai`. Cinco lecciones authored, 16 ejercicios ([3,3,3,3,4]), cuatro tipos (mc, translate_es_id, order, write), sin vocabulario/IDs nuevos.

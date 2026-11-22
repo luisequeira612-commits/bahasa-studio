@@ -1,7 +1,7 @@
 # B2 U21 — bukan ... melainkan/tetapi: corrección contrastiva
 
 Fecha: 22 nov 2026  
-Estado: implementada en la rama `curriculum/b2-u21-bukan-melainkan-20261122`; pendiente de audio Piper y CI. La unidad permanece oculta/no publicada.
+Estado: implementada en la rama de audio `audio/library-B2-44986204234`; siete clips Piper generados y pruebas específicas de manifiesto/generación pasadas. CI de regresión completo pendiente. La unidad permanece oculta/no publicada.
 
 ## Fuente y alcance
 
@@ -50,7 +50,7 @@ Se solicita generación selectiva Piper para estos siete textos exactos:
 - `Kami tidak pergi ke Solo, melainkan ke Yogya.`
 - `melainkan` (headword de vocabulario).
 
-No se regenera la biblioteca completa. Tras la generación esperada: +7 IDs (2.268 en total) y +7 textos B2 (155 en total), con MP3/Opus, manifiesto, índice y hashes sincronizados. El test de audio debe verificar la igualdad de índice/manifiesto y presencia de los archivos.
+No se regenera la biblioteca completa. Los siete clips se generaron/reutilizaron con Piper en el workflow 44986204234. IDs: `8b6bd776f5d7`, `ddbb57c323ac`, `26b2f02eadfb`, `7079c47a4194`, `aba66f1d776e`, `1b4bf93e7a67` y `fcf0fcff37f5` (headword `melainkan`). `audio/index.json`, `audio/manifest.json` y `audio/metadata.json` contienen 2.268 entradas/hashes, 155 asociadas a B2. Las pruebas de generación y manifiesto pasaron. La integridad técnica no sustituye la escucha perceptiva.
 
 ## Restricciones
 

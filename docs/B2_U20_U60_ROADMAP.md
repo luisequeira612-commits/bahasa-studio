@@ -1,6 +1,6 @@
 # Propuesta de secuencia B2 U20–U60
 
-**Estado:** hoja de ruta de desarrollo elaborada bajo la autorización autónoma del dueño (21 nov 2026). U20 y U21 están implementadas en main; U22 está implementada en la rama curriculum/b2-u22-bukan-hanya-20261122; U23–U60 siguen siendo objetivos de trabajo, no contenido ejecutable ni promesa de certificación MCER/BIPA.
+**Estado:** hoja de ruta de desarrollo elaborada bajo la autorización autónoma del dueño (21 nov 2026). U20 y U21 están implementadas en main; U22 está implementada en la rama curriculum/b2-u22-bukan-hanya-20261122; U23 está implementada en la rama curriculum/b2-u23-bukan-asalkan-20261122; U24 está implementada en la rama curriculum/b2-u24-begitu-sehingga-20261122; U25 está implementada en la rama curriculum/b2-u25-begitu-segera-20261122; U26 está implementada en la rama curriculum/b2-u26-makin-semakin-20261122; U27 está implementada en la rama curriculum/b2-u27-meskipun-namun-20261122; U28 está implementada en la rama curriculum/b2-u28-lebih-baik-daripada-20261122; U29 está implementada en la rama curriculum/b2-u29-bagaimanapun-betapapun-20261122; U30 está implementada en la rama curriculum/b2-u30-baru-not-until-20261122; U31 está implementada en la rama curriculum/b2-u31-entah-entah-20261122; U32–U60 siguen siendo objetivos de trabajo, no contenido ejecutable ni promesa de certificación MCER/BIPA.
 
 ## Criterios de diseño
 
@@ -17,11 +17,11 @@
 | U20 | **baik … maupun**: inclusión de dos miembros paralelos; sujetos, frases preposicionales, lectura «ni … ni …» bajo negación, omisión documentada de baik y listas de más de dos elementos. | Sneddon et al. (2010), §4.82. |
 | U21 | **bukan … melainkan/tetapi**: corrección contrastiva; distinguir negación de identidad y rectificación del miembro rechazado (implementada en rama; 5 lecciones, 16 ejercicios, 1 ID léxico y 7 clips Piper generados; pruebas de audio/manifiesto pasaron y CI de regresión está pendiente). | Sneddon et al. (2010), §§4.83–4.84. |
 | U22 | **bukan hanya … melainkan/tetapi juga**: adición escalar y paralelismo de constituyentes. | Sneddon et al. (2010), §4.86; Tata Bahasa Baku Bahasa Indonesia (2017), §8.2.2.2. |
-| U23 | Otras correlativas con **bukan**: alcance, alternativas de corrección y límites de combinación. | Sneddon et al. (2010), §§4.83–4.87. |
+| U23 | Otras correlativas con **bukan**: `asal(kan)` introduce una condición sobre la acción de la primera cláusula, con el patrón documentado `Saya bukan tidak rela ..., asal ...`. | Sneddon et al. (2010), §4.87. |
 | U24 | **begitu / sedemikian … sehingga / sampai**: grado, resultado y alcance de la consecuencia. | Sneddon et al. (2010), §4.88. |
 | U25 | **begitu … baru**: secuencia temporal «no antes de / solo entonces», sin confundirla con begitu de grado. | Sneddon et al. (2010), §4.89. |
 | U26 | **makin/semakin … makin/semakin**: cambio proporcional y paralelismo de dos escalas. | Sneddon et al. (2010), §4.90. |
-| U27 | Correlativas concesivas **meskipun … namun** y variantes: integrar una concesión ya conocida con una respuesta discursiva explícita, sin duplicar conectores por calco del español. | Sneddon et al. (2010), §4.91; B1 U19 como prerrequisito. |
+| U27 | Correlativas concesivas **meskipun … namun** y variantes: integrar una concesión ya conocida con una respuesta discursiva explícita, distinguir **meski/biarpun** y los refuerzos **toh/juga**, sin duplicar conectores por calco del español. | Sneddon et al. (2010), §4.91; B1 U19 como prerrequisito. |
 | U28 | **lebih baik / sebaiknya … daripada**: preferencia, recomendación y comparación entre alternativas completas. | Sneddon et al. (2010), §4.92. |
 | U29 | **bagaimanapun/betapapun + adjetivo + -nya … namun/toh**: concesión escalar «por muy… que…», registro y alcance. | Sneddon et al. (2010), §4.93. |
 | U30 | **baru** con valor «no hasta / solo entonces»: foco temporal y diferencia frente a «nuevo». | Sneddon et al. (2010), §4.94. |
@@ -55,6 +55,42 @@
 | U58 | Orden de negación, marcadores temporales y modales en el predicado: interpretar combinaciones sin trasladar el orden del español. | Sneddon et al. (2010), §§2.133–2.159. |
 | U59 | Integración de sintagmas, complementos, foco y elipsis en lectura y reformulación de textos; solo estructuras previamente enseñadas. | Síntesis de Sneddon et al. (2010), capítulos 2–4; revisar solapamiento antes de definir ejemplos. |
 | U60 | Proyecto integrador B2: lectura, escucha, argumentación y producción guiada con estructuras de U1–U59, sin introducir vocabulario nuevo para inflar el inventario. | Síntesis curricular del nivel; no es una certificación MCER/BIPA. |
+
+## U24 implementada en rama
+
+U24 desarrolla la correlación de grado y consecuencia documentada en Sneddon et al. (2010), §4.88. Incluye `begitu`, `demikian`, `sedemikian`, `sehingga` y `sampai`, además del uso de `-nya` con sedemikian y la variante con adverbio de manera. Los ejemplos indonesios son los documentados por la fuente; no se inventan oraciones para rellenar ejercicios. El diseño detallado está en docs/B2_U24_DESIGN.md.
+
+## U31 implementada en rama
+
+U31 desarrolla **entah … entah** según Sneddon et al. (2010), §4.95. Usa únicamente tres ejemplos documentados: «Entah dia bodoh entah malas, dia tidak pernah menyelesaikan pekerjaannya», «Entah disetujui entah tidak, dia tetap akan mengusulkan gagasannya» y el ejemplo largo sobre las posibles causas de que no se encuentren monos muertos. Cubre alternativas no resueltas, elipsis de elementos compartidos y la posibilidad de colocar primero la cláusula de resultado. Cinco lecciones authored, 16 ejercicios, cuatro tipos, sin vocabulario/IDs nuevos; oculta/no publicada. Diseño: docs/B2_U31_DESIGN.md.
+
+## U30 implementada en rama
+
+U30 desarrolla **baru** como marcador de foco temporal «no hasta / solo entonces», Sneddon et al. (2010), §4.94. Incluye los cuatro ejemplos documentados: «Baru setelah keluar dari desa ketiga tokoh kita dapat naik dokar», «Baru pukul sepuluh berita itu diketahui», «Sore hari, sehabis bekerja, baru kita pulang» y «Malam harinya baru aku pergi ke Hotel Homan». Enseña las dos posiciones generales descritas por la fuente y distingue el marcador temporal del adjetivo léxico `baru` «nuevo». Cinco lecciones authored, 16 ejercicios, cuatro tipos, sin vocabulario/IDs nuevos; oculta/no publicada. Diseño: docs/B2_U30_DESIGN.md.
+
+## U29 implementada en rama
+
+U29 desarrolla la concesión escalar de §4.93 con **bagaimanapun/betapapun + adjetivo + -nya ... namun/toh**. Usa únicamente los dos ejemplos documentados: «Betapapun baiknya orang Eropah itu pada kita, toh mereka takut mengambil risiko» y «Bagaimanapun terbukanya pemikiran Nurcholish, di kalangan kebanyakan umat pemikiran itu agak susah diterima». Enseña que `-nya` se adjunta al adjetivo, que la segunda cláusula puede comenzar con `namun` o `toh`, y que `namun` puede omitirse. Distingue el uso de enlace discursivo de `bagaimanapun`, remitido por la fuente a §4.100/U35. Cinco lecciones authored, 16 ejercicios y cuatro tipos; sin vocabulario/IDs nuevos; oculta/no publicada. Diseño: docs/B2_U29_DESIGN.md.
+
+## U28 implementada en rama
+
+U28 desarrolla la preferencia de §4.92 con **lebih baik/sebaiknya ... daripada**. Usa los dos ejemplos documentados por Sneddon et al. (2010): «Daripada mati kelaparan, lebih baik kita pindah saja» y «Sebaiknya mereka menyerah saja, daripada melawan». La unidad cubre el papel de `daripada`, el orden flexible de las dos cláusulas y `saja` como refuerzo frecuente de la opción preferida. Mantiene cinco lecciones authored, 16 ejercicios y cuatro tipos, sin vocabulario/IDs nuevos, y permanece oculta/no publicada. El diseño detallado está en docs/B2_U28_DESIGN.md.
+
+## U27 implementada en rama
+
+U27 desarrolla la correlación concesiva de §4.91 con **meskipun/meski/biarpun ... namun/toh/juga**. Usa únicamente ejemplos documentados por Sneddon et al. (2010): «Meskipun sawahnya banyak, namun kenikmatan hidup sedikit», «Biarpun sumbangannya tidak seberapa, namun dia mempunyai peranan dalam proyek raksasa ini», «Meski keterangan Suryaman seru, toh terasa kurang meyakinkan», «Meskipun hujan lebat, si Amat pergi juga» y «Meskipun sakit, namun anak-anak ini toh sekolah juga». La unidad mantiene cinco lecciones authored, 16 ejercicios y cuatro tipos, sin vocabulario/IDs nuevos, y permanece oculta/no publicada. El diseño detallado está en docs/B2_U27_DESIGN.md.
+
+## U26 implementada en rama
+
+U26 desarrolla la correlación proporcional de §4.90 con **makin/semakin/kian/tambah/bertambah ... makin/semakin**: el aumento de un grado acompaña al aumento del otro. Incluye los ejemplos documentados «Ali makin besar makin sombong», «Orang itu tambah tua tambah kaya», «Ali makin lama makin kurus», «Harga barang semakin lama semakin tinggi» y «Golongan itu bertambah hari bertambah kuat». También incorpora el patrón documentado con *makin sering*. No añade vocabulario ni IDs léxicos y permanece oculta/no publicada. El diseño detallado está en docs/B2_U26_DESIGN.md.
+
+## U25 implementada en rama
+
+U25 desarrolla la correlación temporal de §4.89 con **begitu** como introductor de la primera cláusula y una segunda acción inmediatamente posterior. Se usan los dos ejemplos documentados por Sneddon et al. (2010): «Begitu timbul penyakit baru, segera juga ditemukan obatnya» y «Begitu musim hujan tiba, jalan itu tertutup air». La unidad contrasta explícitamente este uso temporal con el begitu de grado–resultado de U24 (§4.88), no añade vocabulario ni IDs léxicos y permanece oculta/no publicada. El diseño detallado está en docs/B2_U25_DESIGN.md.
+
+## U23 implementada en rama
+
+U23 desarrolla la estructura documentada en Sneddon et al. (2010), §4.87, donde `asal(kan)` introduce una condición sobre la acción de la primera cláusula después de una construcción con `bukan`. La unidad se mantiene deliberadamente source-bound porque §4.87 ofrece un ejemplo central; no se inventan nuevas oraciones indonesias para rellenar ejercicios. El diseño detallado está en docs/B2_U23_DESIGN.md.
 
 ## Primera unidad de la secuencia: U20
 

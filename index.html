@@ -8007,11 +8007,10 @@
                                     ]
                                 }
                             ]
-                        },
-
+                        }
                     ]
                 },
-{
+                {
                     id: 'B2',
                     title: 'B2 — Intermedio Alto',
                     units: [
@@ -9677,6 +9676,647 @@
                                     }
                                 ]
                             },
+                            {
+                                id: 'b2_u23',
+                                title: 'Unidad 23: otras correlativas con bukan — condición con asal(kan)',
+                                subtitle: 'no es que X no..., siempre que Y',
+                                description: 'Interpreta una correlación en la que bukan niega una formulación interna y asal(kan) introduce la condición que permite mantener la acción.',
+                                goal: 'Distinguir la corrección bukan ... melainkan de la estructura bukan ... asal(kan), e interpretar asal(kan) como condición para la acción de la primera parte.',
+                                vocab: [],
+                                lessons: [
+                                    {
+                                        title: '1. Bukan tidak ... asal(kan): negación interna y condición',
+                                        objective: 'Reconoce que bukan puede preceder una cláusula que ya contiene tidak y que asal(kan) introduce una condición.',
+                                        grammar: 'Sneddon et al. (2010), §4.87, presenta la estructura «Saya bukan tidak rela kau membantu familimu, asal kau pertimbangkan juga kebutuhan kita sendiri». Aquí bukan no introduce una simple corrección de X por Y; niega la formulación interna tidak rela y asal(kan) establece la condición.',
+                                        vocabIds: [],
+                                        reviewVocabIds: [],
+                                        exercises: [
+                                            { id: 'b2u23_l1_e1', type: 'mc', prompt: 'En la oración documentada, ¿qué función cumple asal?', options: ['Introduce una condición', 'Corrige una alternativa con melainkan', 'Introduce una causa'], answer: 0, explanation: 'La fuente traduce asal como «provided that»: establece la condición bajo la cual se mantiene la acción.' },
+                                            { id: 'b2u23_l1_e2', type: 'translate_es_id', prompt: 'Traduce al indonesio: «No estoy en contra de que ayudes a tu familia, siempre que también consideres nuestras propias necesidades».', answer: 'Saya bukan tidak rela kau membantu familimu, asal kau pertimbangkan juga kebutuhan kita sendiri.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.87.' },
+                                            { id: 'b2u23_l1_e3', type: 'order', prompt: 'Ordena la oración documentada.', words: ['Saya', 'bukan', 'tidak', 'rela', 'kau', 'membantu', 'familimu,', 'asal', 'kau', 'pertimbangkan', 'juga', 'kebutuhan', 'kita', 'sendiri.'], correctOrder: ['Saya', 'bukan', 'tidak', 'rela', 'kau', 'membantu', 'familimu,', 'asal', 'kau', 'pertimbangkan', 'juga', 'kebutuhan', 'kita', 'sendiri.'], explanation: 'La primera parte contiene bukan tidak rela; asal introduce la condición posterior.' }
+                                        ]
+                                    },
+                                    {
+                                        title: '2. No confundirla con bukan ... melainkan',
+                                        objective: 'Diferencia una corrección contrastiva de una negación interna seguida de una condición.',
+                                        grammar: 'En U21, bukan ... melainkan/tetapi presenta una primera alternativa como incorrecta y una segunda como verdadera. En U23, asal(kan) no presenta una alternativa verdadera que reemplace la primera: establece una condición para que la acción de la primera cláusula sea aceptable.',
+                                        vocabIds: [],
+                                        reviewVocabIds: [],
+                                        exercises: [
+                                            { id: 'b2u23_l2_e1', type: 'mc', prompt: '¿Qué relación expresa la oración de U23?', options: ['Una condición para que la acción indicada sea aceptable', 'Una corrección entre dos alternativas', 'Una adición escalar'], answer: 0, explanation: 'Asal(kan) introduce la condición; no funciona como melainkan/tetapi juga.' },
+                                            { id: 'b2u23_l2_e2', type: 'mc', prompt: '¿Qué palabra introduce la condición en «Saya bukan tidak rela kau membantu familimu, asal kau pertimbangkan juga kebutuhan kita sendiri»?', options: ['asal', 'bukan', 'tidak'], answer: 0, explanation: 'Asal introduce la cláusula condicional.' },
+                                            { id: 'b2u23_l2_e3', type: 'translate_es_id', prompt: 'Traduce al indonesio: «No estoy en contra de que ayudes a tu familia, siempre que también consideres nuestras propias necesidades».', answer: 'Saya bukan tidak rela kau membantu familimu, asal kau pertimbangkan juga kebutuhan kita sendiri.', answerLanguage: 'id', direction: 'es→id', explanation: 'La traducción recupera el único ejemplo completo documentado de §4.87.' }
+                                        ]
+                                    },
+                                    {
+                                        title: '3. Alcance de bukan y tidak',
+                                        objective: 'Identifica que bukan puede tomar alcance sobre una cláusula cuyo predicado ya contiene tidak.',
+                                        grammar: 'La secuencia bukan tidak rela no debe analizarse como si bukan y tidak fueran dos negaciones simples independientes. La descripción de Sneddon trata bukan aquí como parte de una construcción correlativa; la cláusula siguiente, introducida por asal, fija la condición.',
+                                        vocabIds: [],
+                                        reviewVocabIds: [],
+                                        exercises: [
+                                            { id: 'b2u23_l3_e1', type: 'mc', prompt: '¿Qué bloque contiene la negación interna del ejemplo?', options: ['tidak rela', 'asal kau', 'kebutuhan kita'], answer: 0, explanation: 'Tidak modifica rela dentro de la primera parte.' },
+                                            { id: 'b2u23_l3_e2', type: 'order', prompt: 'Ordena solo la primera parte documentada hasta la coma.', words: ['Saya', 'bukan', 'tidak', 'rela', 'kau', 'membantu', 'familimu,'], correctOrder: ['Saya', 'bukan', 'tidak', 'rela', 'kau', 'membantu', 'familimu,'], explanation: 'La secuencia completa antes de la coma conserva el patrón bukan tidak + predicado + cláusula subordinada.' },
+                                            { id: 'b2u23_l3_e3', type: 'mc', prompt: '¿Qué introduce asal en la estructura?', options: ['La condición que limita la aceptación de la primera acción', 'La segunda alternativa que sustituye a la primera', 'El resultado de la primera acción'], answer: 0, explanation: 'La fuente describe asal(kan) como una palabra que establece una condición para que ocurra la acción de la primera cláusula.' }
+                                        ]
+                                    },
+                                    {
+                                        title: '4. La condición afecta a la acción de la primera parte',
+                                        objective: 'Relaciona la cláusula con asal(kan) con la acción expresada antes de ella.',
+                                        grammar: 'La fuente explica que asal(kan) establece una condición sobre la ocurrencia de la acción de la primera cláusula. Por eso no conviene traducirlo mecánicamente como una conjunción de contraste: su función es condicional.',
+                                        vocabIds: [],
+                                        reviewVocabIds: [],
+                                        exercises: [
+                                            { id: 'b2u23_l4_e1', type: 'mc', prompt: 'Según la fuente, ¿qué queda condicionado por asal(kan)?', options: ['La ocurrencia de la acción de la primera cláusula', 'La existencia de la palabra bukan', 'La traducción al español'], answer: 0, explanation: '§4.87 dice explícitamente que asal(kan) establece una condición sobre la ocurrencia de la acción de la primera cláusula.' },
+                                            { id: 'b2u23_l4_e2', type: 'translate_es_id', prompt: 'Reconstruye el ejemplo documentado: «No estoy en contra de que ayudes a tu familia, siempre que también consideres nuestras propias necesidades».', answer: 'Saya bukan tidak rela kau membantu familimu, asal kau pertimbangkan juga kebutuhan kita sendiri.', answerLanguage: 'id', direction: 'es→id', explanation: 'Producción controlada basada en el ejemplo fuente de §4.87.' },
+                                            { id: 'b2u23_l4_e3', type: 'order', prompt: 'Ordena la cláusula condicional documentada.', words: ['asal', 'kau', 'pertimbangkan', 'juga', 'kebutuhan', 'kita', 'sendiri.'], correctOrder: ['asal', 'kau', 'pertimbangkan', 'juga', 'kebutuhan', 'kita', 'sendiri.'], explanation: 'Asal encabeza la condición; el resto expresa lo que debe considerarse.' }
+                                        ]
+                                    },
+                                    {
+                                        title: '5. Integración: U21, U22 y U23',
+                                        objective: 'Selecciona la estructura según la relación entre las dos partes: corrección, adición o condición.',
+                                        grammar: 'U21: bukan ... melainkan/tetapi corrige una primera alternativa. U22: bukan hanya ... melainkan/tetapi juga añade una segunda información. U23: bukan ... asal(kan) combina una negación interna con una condición que limita la aceptación de la acción inicial.',
+                                        vocabIds: [],
+                                        reviewVocabIds: [],
+                                        exercises: [
+                                            { id: 'b2u23_l5_e1', type: 'mc', prompt: '¿Qué patrón corresponde a «no solo X, sino también Y»?', options: ['bukan hanya X, melainkan/tetapi juga Y', 'bukan X, melainkan Y', 'bukan X, asal Y'], answer: 0, explanation: 'La adición escalar corresponde a U22.' },
+                                            { id: 'b2u23_l5_e2', type: 'mc', prompt: '¿Qué patrón corresponde a una condición introducida por «siempre que / provided that»?', options: ['bukan ... asal(kan)', 'bukan ... melainkan', 'bukan hanya ... juga'], answer: 0, explanation: 'U23 trabaja asal(kan) como introducción de una condición.' },
+                                            { id: 'b2u23_l5_e3', type: 'translate_es_id', prompt: 'Traduce al indonesio el ejemplo fuente de U23: «No estoy en contra de que ayudes a tu familia, siempre que también consideres nuestras propias necesidades».', answer: 'Saya bukan tidak rela kau membantu familimu, asal kau pertimbangkan juga kebutuhan kita sendiri.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.87.' },
+                                            { id: 'b2u23_l5_e4', type: 'write', prompt: 'Escribe de memoria la oración documentada de U23 a partir de la traducción española y usa asal para introducir la condición.', answerLanguage: 'id', hint: 'Reproduce el ejemplo fuente sin cambiar sus elementos.', modelAnswer: 'Saya bukan tidak rela kau membantu familimu, asal kau pertimbangkan juga kebutuhan kita sendiri.' }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                id: 'b2_u24',
+                                title: 'Unidad 24: grado y consecuencia — begitu / (se)demikian ... sehingga / sampai',
+                                subtitle: 'tan... que; grado que produce un resultado',
+                                description: 'Relaciona un grado o intensidad con una consecuencia usando begitu, demikian o sedemikian en la primera parte y sehingga/sampai en la segunda.',
+                                goal: 'Distinguir la correlación de grado–resultado de otras estructuras con begitu y controlar la posición de -nya, sehingga y sampai.',
+                                vocab: [],
+                                lessons: [
+                                    {
+                                        title: '1. Begitu + adjetivo ... sehingga',
+                                        objective: 'Reconoce begitu como modificador de grado que conduce a una consecuencia.',
+                                        grammar: 'En §4.88, Sneddon et al. documenta «Dia begitu gembira, sehingga dia menangis». Begitu modifica el grado de gembira; sehingga introduce el resultado.',
+                                        vocabIds: [],
+                                        reviewVocabIds: [],
+                                        exercises: [
+                                            { id: 'b2u24_l1_e1', type: 'mc', prompt: '¿Qué relación expresa begitu gembira ... sehingga dia menangis?', options: ['Un grado que produce una consecuencia', 'Una condición', 'Una corrección entre alternativas'], answer: 0, explanation: 'La primera parte expresa el grado de alegría y la segunda su consecuencia.' },
+                                            { id: 'b2u24_l1_e2', type: 'translate_es_id', prompt: 'Traduce: «Estaba tan feliz que lloró».', answer: 'Dia begitu gembira, sehingga dia menangis.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.88.' },
+                                            { id: 'b2u24_l1_e3', type: 'order', prompt: 'Ordena la oración documentada.', words: ['Dia', 'begitu', 'gembira,', 'sehingga', 'dia', 'menangis.'], correctOrder: ['Dia', 'begitu', 'gembira,', 'sehingga', 'dia', 'menangis.'], explanation: 'Begitu precede al adjetivo de grado; sehingga introduce la consecuencia.' }
+                                        ]
+                                    },
+                                    {
+                                        title: '2. Sedemikian ... sehingga',
+                                        objective: 'Reconoce sedemikian como marcador de grado y diferencia la consecuencia de la descripción inicial.',
+                                        grammar: 'La fuente documenta «Harganya sedemikian mahal, sehingga tidak ada yang mau beli». Sedemikian marca un grado elevado de mahal y sehingga introduce el resultado.',
+                                        vocabIds: [],
+                                        reviewVocabIds: [],
+                                        exercises: [
+                                            { id: 'b2u24_l2_e1', type: 'mc', prompt: 'En «Harganya sedemikian mahal, sehingga tidak ada yang mau beli», ¿qué introduce sehingga?', options: ['La consecuencia del precio', 'El sujeto del primer segmento', 'Una comparación'], answer: 0, explanation: 'La segunda cláusula expresa el resultado del precio elevado.' },
+                                            { id: 'b2u24_l2_e2', type: 'translate_es_id', prompt: 'Traduce: «El precio era tan caro que nadie quería comprarlo».', answer: 'Harganya sedemikian mahal, sehingga tidak ada yang mau beli.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.88.' },
+                                            { id: 'b2u24_l2_e3', type: 'order', prompt: 'Ordena la cláusula documentada.', words: ['Harganya', 'sedemikian', 'mahal,', 'sehingga', 'tidak', 'ada', 'yang', 'mau', 'beli.'], correctOrder: ['Harganya', 'sedemikian', 'mahal,', 'sehingga', 'tidak', 'ada', 'yang', 'mau', 'beli.'], explanation: 'Sedemikian modifica mahal y sehingga abre la consecuencia.' }
+                                        ]
+                                    },
+                                    {
+                                        title: '3. Demikian ... sampai y el resultado',
+                                        objective: 'Interpreta demikian ... sampai como otra realización de la misma relación de grado y consecuencia.',
+                                        grammar: 'Sneddon et al. documenta «Dia demikian lelah, sampai tidak dapat berjalan lagi». En esta variante, sampai introduce la consecuencia; el grado se expresa con demikian.',
+                                        vocabIds: [],
+                                        reviewVocabIds: [],
+                                        exercises: [
+                                            { id: 'b2u24_l3_e1', type: 'mc', prompt: '¿Qué diferencia funcional hay entre sehingga y sampai en los ejemplos de esta unidad?', options: ['Ambos pueden introducir la consecuencia; cambia el conector', 'Uno siempre introduce una condición', 'Uno convierte la oración en una pregunta'], answer: 0, explanation: 'La fuente presenta sehingga y sampai como introductores de la cláusula resultativa.' },
+                                            { id: 'b2u24_l3_e2', type: 'translate_es_id', prompt: 'Traduce: «Estaba tan cansada que ya no podía caminar».', answer: 'Dia demikian lelah, sampai tidak dapat berjalan lagi.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.88.' },
+                                            { id: 'b2u24_l3_e3', type: 'order', prompt: 'Ordena la oración documentada.', words: ['Dia', 'demikian', 'lelah,', 'sampai', 'tidak', 'dapat', 'berjalan', 'lagi.'], correctOrder: ['Dia', 'demikian', 'lelah,', 'sampai', 'tidak', 'dapat', 'berjalan', 'lagi.'], explanation: 'Demikian expresa el grado; sampai introduce la consecuencia.' }
+                                        ]
+                                    },
+                                    {
+                                        title: '4. -nya y adverbios de manera',
+                                        objective: 'Reconoce el uso de -nya con sedemikian y la posibilidad de que el primer segmento sea un adverbio de manera.',
+                                        grammar: 'La fuente señala que con demikian o sedemikian el adjetivo puede llevar -nya, y documenta «Udara sedemikian panasnya, sampai banyak orang pingsan». También permite un adverbio de manera: «Dia lari begitu cepat sehingga sangat sukar untuk memotretnya».',
+                                        vocabIds: [],
+                                        reviewVocabIds: [],
+                                        exercises: [
+                                            { id: 'b2u24_l4_e1', type: 'mc', prompt: '¿Qué aparece en «Udara sedemikian panasnya»?', options: ['El adjetivo panas con -nya', 'Una forma comparativa con lebih', 'Una cláusula condicional con kalau'], answer: 0, explanation: 'La fuente documenta explícitamente el uso de -nya en esta configuración.' },
+                                            { id: 'b2u24_l4_e2', type: 'translate_es_id', prompt: 'Traduce: «El aire estaba tan caliente que muchas personas se desmayaron».', answer: 'Udara sedemikian panasnya, sampai banyak orang pingsan.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.88.' },
+                                            { id: 'b2u24_l4_e3', type: 'translate_es_id', prompt: 'Traduce: «Corría tan rápido que era muy difícil fotografiarlo».', answer: 'Dia lari begitu cepat sehingga sangat sukar untuk memotretnya.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.88.' }
+                                        ]
+                                    },
+                                    {
+                                        title: '5. Integración de las variantes de grado–resultado',
+                                        objective: 'Selecciona la correlación adecuada y reconstruye ejemplos documentados de grado, consecuencia y manera.',
+                                        grammar: 'Begitu, demikian y sedemikian expresan el grado en la primera parte; sehingga y sampai introducen la consecuencia. La estructura puede partir de un adjetivo predicativo o de un adverbio de manera.',
+                                        vocabIds: [],
+                                        reviewVocabIds: [],
+                                        exercises: [
+                                            { id: 'b2u24_l5_e1', type: 'mc', prompt: '¿Qué patrón expresa «tan X que Y» en esta unidad?', options: ['begitu/demikian/sedemikian + grado ... sehingga/sampai + resultado', 'bukan ... melainkan ...', 'asal ...'], answer: 0, explanation: 'La unidad reúne las variantes documentadas de la correlación de grado y resultado.' },
+                                            { id: 'b2u24_l5_e2', type: 'mc', prompt: '¿Cuál de estas palabras introduce el resultado en los ejemplos de U24?', options: ['sehingga', 'begitu', 'sedemikian'], answer: 0, explanation: 'Begitu y sedemikian expresan el grado; sehingga introduce la consecuencia.' },
+                                            { id: 'b2u24_l5_e3', type: 'translate_es_id', prompt: 'Traduce: «El aire estaba tan caliente que muchas personas se desmayaron».', answer: 'Udara sedemikian panasnya, sampai banyak orang pingsan.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.88.' },
+                                            { id: 'b2u24_l5_e4', type: 'write', prompt: 'Escribe de memoria un ejemplo documentado de U24 usando begitu y sehingga.', answerLanguage: 'id', hint: 'Reproduce el ejemplo fuente trabajado en la lección 1.', modelAnswer: 'Dia begitu gembira, sehingga dia menangis.' }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                id: 'b2_u25',
+                                title: 'Unidad 25: secuencia inmediata — begitu ... baru',
+                                subtitle: 'no antes de / solo entonces; begitu temporal',
+                                description: 'Distingue begitu temporal, que introduce una acción seguida inmediatamente por otra, de begitu de grado–resultado de U24.',
+                                goal: 'Reconocer begitu ... baru como correlación temporal inmediata y no confundirla con begitu ... sehingga/sampai de U24.',
+                                vocab: [],
+                                lessons: [
+                                    {
+                                        title: '1. Begitu introduce la primera acción',
+                                        objective: 'Reconoce begitu como marcador de una primera acción cuya segunda acción ocurre inmediatamente después.',
+                                        grammar: 'Sneddon et al. (2010), §4.89, describe begitu como introductor de la primera cláusula en una correlación temporal; la segunda cláusula no necesita un marcador formal y sigue inmediatamente. Ejemplo documentado: «Begitu timbul penyakit baru, segera juga ditemukan obatnya».',
+                                        vocabIds: [],
+                                        reviewVocabIds: [],
+                                        exercises: [
+                                            { id: 'b2u25_l1_e1', type: 'mc', prompt: '¿Qué función tiene begitu en «Begitu timbul penyakit baru, segera juga ditemukan obatnya»?', options: ['Introduce la primera acción de una secuencia temporal inmediata', 'Expresa el grado de timbul', 'Introduce una corrección contrastiva'], answer: 0, explanation: 'En §4.89, begitu introduce la primera cláusula; la segunda acción sigue inmediatamente.' },
+                                            { id: 'b2u25_l1_e2', type: 'translate_es_id', prompt: 'Traduce: «En cuanto aparece una nueva enfermedad, enseguida también se descubre su medicamento».', answer: 'Begitu timbul penyakit baru, segera juga ditemukan obatnya.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.89.' },
+                                            { id: 'b2u25_l1_e3', type: 'order', prompt: 'Ordena la oración documentada.', words: ['Begitu', 'timbul', 'penyakit', 'baru,', 'segera', 'juga', 'ditemukan', 'obatnya.'], correctOrder: ['Begitu', 'timbul', 'penyakit', 'baru,', 'segera', 'juga', 'ditemukan', 'obatnya.'], explanation: 'Begitu abre la primera cláusula y segera juga introduce la acción que sigue inmediatamente.' }
+                                        ]
+                                    },
+                                    {
+                                        title: '2. La segunda acción ocurre enseguida',
+                                        objective: 'Interpreta la relación temporal entre las dos cláusulas y reconoce la función de segera juga en el ejemplo fuente.',
+                                        grammar: 'La correlación de §4.89 no necesita un conector formal en la segunda cláusula. El segundo acontecimiento se presenta como inmediatamente posterior al primero. En el ejemplo fuente aparece además segera juga, que hace explícita esa inmediatez.',
+                                        vocabIds: [],
+                                        reviewVocabIds: [],
+                                        exercises: [
+                                            { id: 'b2u25_l2_e1', type: 'mc', prompt: '¿Qué relación hay entre timbul penyakit baru y ditemukan obatnya?', options: ['La segunda acción sigue inmediatamente a la primera', 'La segunda acción es una consecuencia de grado', 'La segunda acción corrige a la primera'], answer: 0, explanation: 'La sección §4.89 trata esta estructura como una secuencia temporal inmediata.' },
+                                            { id: 'b2u25_l2_e2', type: 'translate_es_id', prompt: 'Traduce: «En cuanto aparece una nueva enfermedad, enseguida también se descubre su medicamento».', answer: 'Begitu timbul penyakit baru, segera juga ditemukan obatnya.', answerLanguage: 'id', direction: 'es→id', explanation: 'Se reutiliza el ejemplo documentado para recuperación activa.' },
+                                            { id: 'b2u25_l2_e3', type: 'mc', prompt: 'En el ejemplo fuente, ¿qué refuerza la idea de inmediatez?', options: ['segera juga', 'penyakit baru', 'obatnya'], answer: 0, explanation: 'Segera significa «enseguida/inmediatamente» y aparece junto a juga en la segunda cláusula.' }
+                                        ]
+                                    },
+                                    {
+                                        title: '3. Otro ejemplo documentado: llega la estación lluviosa',
+                                        objective: 'Reconoce la misma correlación temporal en un segundo ejemplo de §4.89.',
+                                        grammar: 'La fuente documenta «Begitu musim hujan tiba, jalan itu tertutup air». La llegada de la estación lluviosa se presenta primero y la segunda situación sigue inmediatamente.',
+                                        vocabIds: [],
+                                        reviewVocabIds: [],
+                                        exercises: [
+                                            { id: 'b2u25_l3_e1', type: 'mc', prompt: '¿Qué ocurre primero en «Begitu musim hujan tiba, jalan itu tertutup air»?', options: ['Musim hujan tiba', 'Jalan itu tertutup air', 'Ninguna de las dos'], answer: 0, explanation: 'Begitu introduce la primera acción: llega la estación lluviosa.' },
+                                            { id: 'b2u25_l3_e2', type: 'translate_es_id', prompt: 'Traduce: «En cuanto llega la estación lluviosa, esas carreteras quedan cubiertas de agua».', answer: 'Begitu musim hujan tiba, jalan itu tertutup air.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.89.' },
+                                            { id: 'b2u25_l3_e3', type: 'order', prompt: 'Ordena la oración documentada.', words: ['Begitu', 'musim', 'hujan', 'tiba,', 'jalan', 'itu', 'tertutup', 'air.'], correctOrder: ['Begitu', 'musim', 'hujan', 'tiba,', 'jalan', 'itu', 'tertutup', 'air.'], explanation: 'La primera cláusula comienza con begitu y la segunda sigue sin un conector correlativo adicional.' }
+                                        ]
+                                    },
+                                    {
+                                        title: '4. No confundir el begitu temporal con U24',
+                                        objective: 'Distingue la secuencia temporal de §4.89 de la correlación de grado y resultado de §4.88.',
+                                        grammar: 'U24 enseña begitu + grado ... sehingga/sampai + resultado. U25 enseña begitu + primera acción ... segunda acción inmediata. En U25, begitu no modifica un adjetivo para expresar intensidad; introduce una cláusula temporal.',
+                                        vocabIds: [],
+                                        reviewVocabIds: [],
+                                        exercises: [
+                                            { id: 'b2u25_l4_e1', type: 'mc', prompt: '¿Cuál estructura corresponde a U25?', options: ['begitu + primera acción ... segunda acción inmediata', 'begitu + grado ... sehingga + resultado', 'bukan hanya ... melainkan juga'], answer: 0, explanation: 'U25 desarrolla el uso temporal de begitu descrito en §4.89.' },
+                                            { id: 'b2u25_l4_e2', type: 'translate_es_id', prompt: 'Traduce: «En cuanto llega la estación lluviosa, esas carreteras quedan cubiertas de agua».', answer: 'Begitu musim hujan tiba, jalan itu tertutup air.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.89.' },
+                                            { id: 'b2u25_l4_e3', type: 'mc', prompt: '¿Qué NO expresa begitu en U25?', options: ['Un grado de intensidad que produce un resultado', 'Una primera acción temporal', 'El inicio de la primera cláusula'], answer: 0, explanation: 'El uso de grado–resultado pertenece a U24; U25 trata el uso temporal.' }
+                                        ]
+                                    },
+                                    {
+                                        title: '5. Integración: secuencia inmediata y producción guiada',
+                                        objective: 'Selecciona la lectura temporal adecuada y reconstruye los ejemplos documentados de §4.89.',
+                                        grammar: 'En la correlación temporal de §4.89, begitu introduce la primera cláusula y la segunda acción ocurre inmediatamente después. La segunda cláusula no requiere un marcador formal; el contexto puede incluir expresiones como segera juga.',
+                                        vocabIds: [],
+                                        reviewVocabIds: [],
+                                        exercises: [
+                                            { id: 'b2u25_l5_e1', type: 'mc', prompt: '¿Qué patrón resume U25?', options: ['begitu + primera acción ... segunda acción inmediata', 'begitu + adjetivo ... sehingga + consecuencia', 'bukan ... melainkan ...'], answer: 0, explanation: 'U25 se centra en la secuencia temporal inmediata de §4.89.' },
+                                            { id: 'b2u25_l5_e2', type: 'translate_es_id', prompt: 'Traduce: «En cuanto aparece una nueva enfermedad, enseguida también se descubre su medicamento».', answer: 'Begitu timbul penyakit baru, segera juga ditemukan obatnya.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.89.' },
+                                            { id: 'b2u25_l5_e3', type: 'translate_es_id', prompt: 'Traduce: «En cuanto llega la estación lluviosa, esas carreteras quedan cubiertas de agua».', answer: 'Begitu musim hujan tiba, jalan itu tertutup air.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.89.' },
+                                            { id: 'b2u25_l5_e4', type: 'write', prompt: 'Reconstruye de memoria un ejemplo documentado de U25 y explica en español por qué pertenece al uso temporal de begitu.', answerLanguage: 'id', hint: 'Elige uno de los dos ejemplos fuente trabajados en la unidad; no inventes una oración indonesia nueva.', modelAnswer: 'Begitu musim hujan tiba, jalan itu tertutup air.' }
+                                        ]
+                                    }
+                                ],
+                            },
+                            {
+                                id: 'b2_u26',
+                                title: 'Unidad 26: cambio proporcional — makin / semakin ... makin / semakin',
+                                subtitle: 'cuanto más ..., más ...; progresión paralela',
+                                description: 'Expresa cómo aumenta el grado de una cualidad o situación a medida que aumenta el grado de otra, usando correlaciones con makin, semakin, kian, tambah o bertambah.',
+                                goal: 'Reconocer y producir la correlación proporcional de §4.90 y distinguirla del simple modificador makin en una sola cláusula.',
+                                vocab: [],
+                                lessons: [
+                                    {
+                                        title: '1. La correlación makin ... makin',
+                                        objective: 'Reconoce la relación proporcional entre dos cláusulas con adverbios de aumento.',
+                                        grammar: 'Sneddon et al. (2010), §4.90 describe dos cláusulas adjetivales en relación correlativa: al aumentar el grado del primer adjetivo, también aumenta el grado del segundo. Cada cláusula lleva un modificador como makin, semakin, kian, tambah o bertambah. Ejemplo documentado: «Ali makin besar makin sombong».',
+                                        vocabIds: [],
+                                        reviewVocabIds: [],
+                                        exercises: [
+                                            { id: 'b2u26_l1_e1', type: 'mc', prompt: '¿Qué relación expresa «Ali makin besar makin sombong»?', options: ['A medida que aumenta una cualidad, también aumenta la otra', 'Una causa seguida de una consecuencia puntual', 'Una corrección entre dos nombres'], answer: 0, explanation: '§4.90 describe una relación correlativa proporcional: el aumento del primer grado acompaña al aumento del segundo.' },
+                                            { id: 'b2u26_l1_e2', type: 'translate_es_id', prompt: 'Traduce: «Cuanto mayor se hace Ali, más arrogante se vuelve».', answer: 'Ali makin besar makin sombong.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.90.' },
+                                            { id: 'b2u26_l1_e3', type: 'order', prompt: 'Ordena la oración documentada.', words: ['Ali', 'makin', 'besar', 'makin', 'sombong.'], correctOrder: ['Ali', 'makin', 'besar', 'makin', 'sombong.'], explanation: 'Las dos cláusulas correlativas se organizan como makin + grado ... makin + grado.' }
+                                        ]
+                                    },
+                                    {
+                                        title: '2. Variantes de makin y semakin',
+                                        objective: 'Reconoce las variantes documentadas del modificador en la misma construcción.',
+                                        grammar: 'Además de makin, §4.90 enumera semakin, kian, tambah y bertambah como modificadores que pueden aparecer en la correlación. La fuente documenta «Orang itu tambah tua tambah kaya» además del ejemplo con makin.',
+                                        vocabIds: [],
+                                        reviewVocabIds: [],
+                                        exercises: [
+                                            { id: 'b2u26_l2_e1', type: 'mc', prompt: '¿Cuál de estas formas aparece documentada como modificador de aumento en §4.90?', options: ['semakin', 'walaupun', 'karena'], answer: 0, explanation: '§4.90 enumera makin, semakin, kian, tambah y bertambah.' },
+                                            { id: 'b2u26_l2_e2', type: 'translate_es_id', prompt: 'Traduce: «Cuanto mayor se hace esa persona, más rica se vuelve».', answer: 'Orang itu tambah tua tambah kaya.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.90.' },
+                                            { id: 'b2u26_l2_e3', type: 'mc', prompt: 'En «Orang itu tambah tua tambah kaya», ¿qué función cumple tambah?', options: ['Marca aumento en cada miembro de la correlación', 'Introduce una condición', 'Introduce una concesión'], answer: 0, explanation: 'En el ejemplo fuente, tambah modifica ambos miembros de la correlación.' }
+                                        ]
+                                    },
+                                    {
+                                        title: '3. Añadir lama: progresión a lo largo del tiempo',
+                                        objective: 'Interpreta makin lama makin como una progresión que aumenta con el paso del tiempo.',
+                                        grammar: '§4.90 permite que la primera cláusula contenga lama «largo/de tiempo». La construcción expresa que la segunda cualidad aumenta a medida que pasa el tiempo. Ejemplo documentado: «Ali makin lama makin kurus».',
+                                        vocabIds: [],
+                                        reviewVocabIds: [],
+                                        exercises: [
+                                            { id: 'b2u26_l3_e1', type: 'mc', prompt: '¿Qué añade lama en «Ali makin lama makin kurus»?', options: ['La dimensión temporal de la progresión', 'Una negación', 'Una comparación con un segundo objeto'], answer: 0, explanation: 'La fuente explica que lama en la primera cláusula indica que el aumento del segundo grado ocurre con el paso del tiempo.' },
+                                            { id: 'b2u26_l3_e2', type: 'translate_es_id', prompt: 'Traduce: «Con el paso del tiempo, Ali se vuelve cada vez más delgado».', answer: 'Ali makin lama makin kurus.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.90.' },
+                                            { id: 'b2u26_l3_e3', type: 'order', prompt: 'Ordena la oración documentada.', words: ['Ali', 'makin', 'lama', 'makin', 'kurus.'], correctOrder: ['Ali', 'makin', 'lama', 'makin', 'kurus.'], explanation: 'La secuencia temporal makin lama precede al segundo miembro de la correlación.' }
+                                        ]
+                                    },
+                                    {
+                                        title: '4. Tiempo y cambio: lama y hari',
+                                        objective: 'Reconoce las dos formas documentadas para expresar el paso del tiempo dentro de esta correlación.',
+                                        grammar: 'La fuente también permite hari «día» en lugar de lama con este sentido temporal. Ejemplo documentado: «Golongan itu bertambah hari bertambah kuat». El punto de U26 es la progresión proporcional, no simplemente la frecuencia de una acción.',
+                                        vocabIds: [],
+                                        reviewVocabIds: [],
+                                        exercises: [
+                                            { id: 'b2u26_l4_e1', type: 'mc', prompt: '¿Qué palabra puede sustituir a lama en la construcción temporal descrita en §4.90?', options: ['hari', 'namun', 'sehingga'], answer: 0, explanation: '§4.90 indica que hari puede reemplazar a lama con el mismo sentido de duración en esta construcción.' },
+                                            { id: 'b2u26_l4_e2', type: 'translate_es_id', prompt: 'Traduce: «Ese grupo se hace cada vez más fuerte con el paso de los días».', answer: 'Golongan itu bertambah hari bertambah kuat.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.90.' },
+                                            { id: 'b2u26_l4_e3', type: 'mc', prompt: '¿Qué distingue U26 de un simple «makin» en una sola cláusula?', options: ['La correlación vincula el aumento de dos grados', 'Makіn solo puede aparecer con sustantivos', 'La estructura siempre necesita sehingga'], answer: 0, explanation: 'La construcción correlativa relaciona dos grados que aumentan conjuntamente; no necesita sehingga.' }
+                                        ]
+                                    },
+                                    {
+                                        title: '5. Integración y contraste',
+                                        objective: 'Selecciona la correlación proporcional adecuada y distingue cambio progresivo de otras relaciones ya estudiadas.',
+                                        grammar: 'U26 resume §4.90: dos miembros correlativos muestran aumentos paralelos. Puede aparecer makin, semakin, kian, tambah o bertambah; lama o hari pueden situar la progresión en el tiempo. No se debe confundir con U24, donde begitu/sedemikian introduce grado y sehingga/sampai introduce resultado.',
+                                        vocabIds: [],
+                                        reviewVocabIds: [],
+                                        exercises: [
+                                            { id: 'b2u26_l5_e1', type: 'mc', prompt: '¿Cuál patrón resume U26?', options: ['aumento del primer grado ... aumento del segundo grado', 'grado ... resultado con sehingga/sampai', 'condición ... resultado con maka'], answer: 0, explanation: 'U26 trata la correlación proporcional de §4.90.' },
+                                            { id: 'b2u26_l5_e2', type: 'translate_es_id', prompt: 'Traduce: «El precio de los productos aumenta cada vez más con el paso del tiempo».', answer: 'Harga barang semakin lama semakin tinggi.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.90.' },
+                                            { id: 'b2u26_l5_e3', type: 'translate_es_id', prompt: 'Traduce: «Cuanto más a menudo se encuentran, más a menudo discuten».', answer: 'Makin sering mereka bertemu, makin sering mereka bertengkar.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado en material de referencia de Sneddon; se mantiene como ejemplo source-bound para la correlación de aumento.' },
+                                            { id: 'b2u26_l5_e4', type: 'write', prompt: 'Reconstruye de memoria un ejemplo documentado de U26 y explica en español qué aumenta en los dos miembros.', answerLanguage: 'id', hint: 'Elige uno de los ejemplos fuente trabajados en la unidad; no inventes una oración indonesia nueva.', modelAnswer: 'Harga barang semakin lama semakin tinggi.' }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                id: 'b2_u27',
+                                title: 'Unidad 27: concesión correlativa — meskipun ... namun',
+                                subtitle: 'aunque X, sin embargo Y; contraste concesivo',
+                                description: 'Refuerza la relación concesiva mediante una correlación explícita: meskipun, meski o biarpun introducen la primera cláusula y namun, toh o juga hacen explícito el contraste en la segunda.',
+                                goal: 'Reconocer la concesión correlativa de §4.91, mantener meskipun/biarpun/meski antes de la segunda cláusula y distinguir namun, toh y juga según la estructura documentada.',
+                                vocab: [],
+                                lessons: [
+                                    {
+                                        title: '1. Meskipun ... namun: la concesión explícita',
+                                        objective: 'Reconoce que meskipun introduce la primera cláusula concesiva y namun introduce la segunda cláusula en una correlación que enfatiza el contraste.',
+                                        grammar: 'Sneddon et al. (2010), §4.91, describe meskipun como introductor de una cláusula de concesión y explica que puede aparecer en relación correlativa con una segunda cláusula que comienza con namun. La cláusula con meskipun debe ir primero. Ejemplo documentado: «Meskipun sawahnya banyak, namun kenikmatan hidup sedikit».',
+                                        vocabIds: [],
+                                        reviewVocabIds: [],
+                                        exercises: [
+                                            { id: 'b2u27_l1_e1', type: 'mc', prompt: '¿Qué relación expresa «Meskipun sawahnya banyak, namun kenikmatan hidup sedikit»?', options: ['Concesión y contraste', 'Causa y consecuencia', 'Adición de dos elementos'], answer: 0, explanation: 'La fuente describe meskipun ... namun como una relación correlativa de concesión que enfatiza el contraste.' },
+                                            { id: 'b2u27_l1_e2', type: 'translate_es_id', prompt: 'Traduce al indonesio: «Aunque tiene muchos arrozales, sin embargo los placeres de la vida son pocos».', answer: 'Meskipun sawahnya banyak, namun kenikmatan hidup sedikit.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.91.' },
+                                            { id: 'b2u27_l1_e3', type: 'order', prompt: 'Ordena la oración documentada.', words: ['Meskipun', 'sawahnya', 'banyak,', 'namun', 'kenikmatan', 'hidup', 'sedikit.'], correctOrder: ['Meskipun', 'sawahnya', 'banyak,', 'namun', 'kenikmatan', 'hidup', 'sedikit.'], explanation: 'La cláusula con meskipun aparece primero y la segunda comienza con namun.' }
+                                        ]
+                                    },
+                                    {
+                                        title: '2. Biarpun también puede introducir la primera cláusula',
+                                        objective: 'Reconoce biarpun como otra subordinator concesiva que puede participar en la misma correlación con namun.',
+                                        grammar: 'La fuente indica que otros subordinadores de concesión también pueden aparecer en esta estructura, entre ellos biarpun. Ejemplo documentado: «Biarpun sumbangannya tidak seberapa, namun dia mempunyai peranan dalam proyek raksasa ini».',
+                                        vocabIds: [],
+                                        reviewVocabIds: [],
+                                        exercises: [
+                                            { id: 'b2u27_l2_e1', type: 'mc', prompt: '¿Qué palabra introduce la primera cláusula concesiva en el ejemplo de esta lección?', options: ['Biarpun', 'Namun', 'Juga'], answer: 0, explanation: 'Biarpun introduce la primera cláusula; namun introduce la segunda.' },
+                                            { id: 'b2u27_l2_e2', type: 'translate_es_id', prompt: 'Traduce al indonesio: «Aunque su contribución no sea gran cosa, sin embargo tiene un papel en este proyecto gigantesco».', answer: 'Biarpun sumbangannya tidak seberapa, namun dia mempunyai peranan dalam proyek raksasa ini.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.91.' },
+                                            { id: 'b2u27_l2_e3', type: 'order', prompt: 'Ordena la oración documentada.', words: ['Biarpun', 'sumbangannya', 'tidak', 'seberapa,', 'namun', 'dia', 'mempunyai', 'peranan', 'dalam', 'proyek', 'raksasa', 'ini.'], correctOrder: ['Biarpun', 'sumbangannya', 'tidak', 'seberapa,', 'namun', 'dia', 'mempunyai', 'peranan', 'dalam', 'proyek', 'raksasa', 'ini.'], explanation: 'Biarpun introduce la concesión y namun marca el segundo miembro contrastivo.' }
+                                        ]
+                                    },
+                                    {
+                                        title: '3. Variantes del segundo miembro: namun, toh y juga',
+                                        objective: 'Distingue las formas documentadas para reforzar el contraste en la segunda cláusula.',
+                                        grammar: '§4.91 permite namun como marcador de la segunda cláusula, toh con sentido de «sin embargo» y juga después del predicado con sentido de «de todos modos». La fuente muestra también combinaciones fuertes de namun, toh y juga.',
+                                        vocabIds: [],
+                                        reviewVocabIds: [],
+                                        exercises: [
+                                            { id: 'b2u27_l3_e1', type: 'mc', prompt: 'En «Meskipun hujan lebat, si Amat pergi juga», ¿qué aporta juga?', options: ['La idea de que la segunda acción ocurre de todos modos', 'La condición de la primera cláusula', 'La negación de la segunda acción'], answer: 0, explanation: 'La fuente explica que juga después del predicado puede expresar «anyway», reforzando que la acción ocurre pese a la primera situación.' },
+                                            { id: 'b2u27_l3_e2', type: 'translate_es_id', prompt: 'Traduce al indonesio: «Aunque llovía mucho, Amat se fue de todos modos».', answer: 'Meskipun hujan lebat, si Amat pergi juga.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.91.' },
+                                            { id: 'b2u27_l3_e3', type: 'mc', prompt: '¿Qué combinación presenta la fuente como especialmente enfática?', options: ['Meskipun ... namun ... toh ... juga', 'Meskipun ... sehingga ... maka', 'Meskipun ... asal ... melainkan'], answer: 0, explanation: 'La fuente indica que namun, toh y juga pueden aparecer juntos para dar un énfasis especialmente fuerte al contraste.' }
+                                        ]
+                                    },
+                                    {
+                                        title: '4. Meski y la concesión sin repetir el patrón completo',
+                                        objective: 'Reconoce meski como variante documentada y diferencia la correlación concesiva de una construcción relacionada con tetapi ... juga.',
+                                        grammar: 'La fuente presenta «Meski keterangan Suryaman seru, toh terasa kurang meyakinkan». También señala una construcción estrechamente relacionada en la que la primera cláusula no lleva conjunción y la segunda termina en juga, con frecuencia introducida por tetapi: «Dia tidak diundang, tetapi dia datang juga».',
+                                        vocabIds: [],
+                                        reviewVocabIds: [],
+                                        exercises: [
+                                            { id: 'b2u27_l4_e1', type: 'mc', prompt: '¿Cuál es la función de meski en «Meski keterangan Suryaman seru, toh terasa kurang meyakinkan»?', options: ['Introduce la primera cláusula concesiva', 'Introduce la segunda cláusula', 'Introduce una consecuencia'], answer: 0, explanation: 'Meski es una variante concesiva que introduce la primera cláusula; toh aparece en la segunda.' },
+                                            { id: 'b2u27_l4_e2', type: 'translate_es_id', prompt: 'Traduce al indonesio: «Aunque la explicación de Suryaman fue estridente, no resultó del todo convincente».', answer: 'Meski keterangan Suryaman seru, toh terasa kurang meyakinkan.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.91.' },
+                                            { id: 'b2u27_l4_e3', type: 'mc', prompt: '¿Qué estructura relacionada documenta también §4.91?', options: ['Una primera cláusula sin conjunción y una segunda con tetapi ... juga', 'Una primera cláusula con asal y una segunda con melainkan', 'Una primera cláusula con sehingga y una segunda con maka'], answer: 0, explanation: 'La fuente da «Dia tidak diundang, tetapi dia datang juga» como construcción estrechamente relacionada.' }
+                                        ]
+                                    },
+                                    {
+                                        title: '5. Integración: concesión, contraste y orden',
+                                        objective: 'Integra las variantes documentadas y evita invertir el orden de la correlación concesiva.',
+                                        grammar: 'En la correlación de §4.91, la cláusula con meskipun, meski o biarpun debe ir primero. La segunda puede comenzar con namun o toh, o contener juga después del predicado; la fuente también documenta la combinación «Meskipun sakit, namun anak-anak ini toh sekolah juga».',
+                                        vocabIds: [],
+                                        reviewVocabIds: [],
+                                        exercises: [
+                                            { id: 'b2u27_l5_e1', type: 'mc', prompt: '¿Qué orden exige la correlación concesiva de §4.91?', options: ['Primero la cláusula con meskipun/meski/biarpun; después la segunda cláusula', 'Primero la cláusula con namun y después meskipun', 'El orden es siempre indiferente'], answer: 0, explanation: 'La fuente indica explícitamente que la cláusula con meskipun debe aparecer primero.' },
+                                            { id: 'b2u27_l5_e2', type: 'translate_es_id', prompt: 'Traduce al indonesio: «Aunque están enfermos, sin embargo estos niños van a la escuela de todos modos».', answer: 'Meskipun sakit, namun anak-anak ini toh sekolah juga.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.91.' },
+                                            { id: 'b2u27_l5_e3', type: 'translate_es_id', prompt: 'Traduce al indonesio: «Aunque llovía mucho, Amat se fue de todos modos».', answer: 'Meskipun hujan lebat, si Amat pergi juga.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.91.' },
+                                            { id: 'b2u27_l5_e4', type: 'write', prompt: 'Reconstruye de memoria un ejemplo documentado de U27 y explica en español qué hace concesivo al primer miembro y qué refuerza el contraste en el segundo.', answerLanguage: 'id', hint: 'Elige uno de los ejemplos fuente trabajados en la unidad; no inventes una oración indonesia nueva.', modelAnswer: 'Meskipun sakit, namun anak-anak ini toh sekolah juga.' }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                id: 'b2_u28',
+                                title: 'Unidad 28: preferencia — lebih baik / sebaiknya ... daripada',
+                                subtitle: 'es mejor ... que; preferencia entre alternativas',
+                                description: 'Compara dos alternativas y expresa que una es preferible a la otra mediante lebih baik o sebaiknya y daripada.',
+                                goal: 'Reconocer la comparación de preferencia de §4.92, identificar el papel de lebih baik/sebaiknya y daripada, y conservar el alcance de saja cuando la fuente lo documenta.',
+                                vocab: [],
+                                lessons: [
+                                    {
+                                        title: '1. Lebih baik ... daripada: elegir la alternativa preferida',
+                                        objective: 'Reconoce la relación de preferencia entre dos cláusulas introducida por lebih baik y daripada.',
+                                        grammar: 'Sneddon et al. (2010), §4.92 describe una construcción que contrasta dos cláusulas con el sentido «es mejor que ... que». La primera puede comenzar con lebih baik y la alternativa se introduce con daripada. Ejemplo documentado: «Daripada mati kelaparan, lebih baik kita pindah saja».',
+                                        vocabIds: [],
+                                        reviewVocabIds: [],
+                                        exercises: [
+                                            { id: 'b2u28_l1_e1', type: 'mc', prompt: '¿Qué relación expresa «Daripada mati kelaparan, lebih baik kita pindah saja»?', options: ['Una preferencia entre dos alternativas', 'Una concesión entre dos cláusulas', 'Una consecuencia de grado'], answer: 0, explanation: '§4.92 trata esta construcción como un contraste del tipo «es mejor ... que ...».' },
+                                            { id: 'b2u28_l1_e2', type: 'translate_es_id', prompt: 'Traduce al indonesio: «En lugar de morir de hambre, es mejor que nos mudemos».', answer: 'Daripada mati kelaparan, lebih baik kita pindah saja.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.92.' },
+                                            { id: 'b2u28_l1_e3', type: 'order', prompt: 'Ordena la oración documentada.', words: ['Daripada', 'mati', 'kelaparan,', 'lebih', 'baik', 'kita', 'pindah', 'saja.'], correctOrder: ['Daripada', 'mati', 'kelaparan,', 'lebih', 'baik', 'kita', 'pindah', 'saja.'], explanation: 'Daripada introduce la alternativa contrastada; lebih baik marca la opción preferida.' }
+                                        ]
+                                    },
+                                    {
+                                        title: '2. El papel de daripada',
+                                        objective: 'Identifica qué alternativa queda en contraste con la opción preferida.',
+                                        grammar: 'En §4.92, daripada introduce la alternativa frente a la que se evalúa la opción preferida. En el ejemplo fuente, mati kelaparan es la alternativa rechazada y pindah es la opción presentada como mejor.',
+                                        vocabIds: [],
+                                        reviewVocabIds: [],
+                                        exercises: [
+                                            { id: 'b2u28_l2_e1', type: 'mc', prompt: 'En «Daripada mati kelaparan, lebih baik kita pindah saja», ¿qué alternativa se presenta como preferida?', options: ['kita pindah', 'mati kelaparan', 'daripada'], answer: 0, explanation: 'Lebih baik introduce la opción preferida: kita pindah.' },
+                                            { id: 'b2u28_l2_e2', type: 'translate_es_id', prompt: 'Traduce al indonesio: «En lugar de morir de hambre, es mejor que nos mudemos».', answer: 'Daripada mati kelaparan, lebih baik kita pindah saja.', answerLanguage: 'id', direction: 'es→id', explanation: 'Se reutiliza el ejemplo documentado para recuperación activa.' },
+                                            { id: 'b2u28_l2_e3', type: 'mc', prompt: '¿Qué introduce daripada en la construcción?', options: ['La alternativa frente a la que se evalúa la preferencia', 'El resultado de la decisión', 'La segunda parte de una concesión'], answer: 0, explanation: 'Daripada introduce la alternativa de comparación o contraste.' }
+                                        ]
+                                    },
+                                    {
+                                        title: '3. Sebaiknya: recomendación preferida',
+                                        objective: 'Reconoce sebaiknya como otra forma documentada de expresar la opción preferida.',
+                                        grammar: '§4.92 también documenta sebaiknya «es mejor / sería preferible». Puede aparecer con saja y la alternativa se introduce con daripada. Ejemplo: «Sebaiknya mereka menyerah saja, daripada melawan».',
+                                        vocabIds: [],
+                                        reviewVocabIds: [],
+                                        exercises: [
+                                            { id: 'b2u28_l3_e1', type: 'mc', prompt: '¿Qué aporta sebaiknya en «Sebaiknya mereka menyerah saja, daripada melawan»?', options: ['Presenta la opción preferida o recomendada', 'Introduce la alternativa rechazada', 'Introduce una concesión'], answer: 0, explanation: 'Sebaiknya presenta la opción que se considera preferible.' },
+                                            { id: 'b2u28_l3_e2', type: 'translate_es_id', prompt: 'Traduce al indonesio: «Es mejor que se rindan, en lugar de luchar».', answer: 'Sebaiknya mereka menyerah saja, daripada melawan.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.92.' },
+                                            { id: 'b2u28_l3_e3', type: 'order', prompt: 'Ordena la oración documentada.', words: ['Sebaiknya', 'mereka', 'menyerah', 'saja,', 'daripada', 'melawan.'], correctOrder: ['Sebaiknya', 'mereka', 'menyerah', 'saja,', 'daripada', 'melawan.'], explanation: 'Sebaiknya presenta la opción preferida y daripada introduce la alternativa.' }
+                                        ]
+                                    },
+                                    {
+                                        title: '4. Saja y el énfasis de la preferencia',
+                                        objective: 'Reconoce el uso documentado de saja para reforzar la opción preferida en estas construcciones.',
+                                        grammar: 'La fuente señala que la cláusula con lebih baik/sebaiknya frecuentemente contiene saja «just», que enfatiza el contraste. No se debe convertir saja en un requisito universal: aquí se enseña como el elemento que aparece en los ejemplos documentados.',
+                                        vocabIds: [],
+                                        reviewVocabIds: [],
+                                        exercises: [
+                                            { id: 'b2u28_l4_e1', type: 'mc', prompt: '¿Qué función cumple saja en los ejemplos de §4.92?', options: ['Puede reforzar el contraste de la opción preferida', 'Introduce la alternativa de daripada', 'Convierte la oración en concesiva'], answer: 0, explanation: 'Sneddon indica que la cláusula con lebih baik/sebaiknya frecuentemente contiene saja para enfatizar el contraste.' },
+                                            { id: 'b2u28_l4_e2', type: 'translate_es_id', prompt: 'Traduce al indonesio: «En lugar de morir de hambre, es mejor que nos mudemos».', answer: 'Daripada mati kelaparan, lebih baik kita pindah saja.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.92.' },
+                                            { id: 'b2u28_l4_e3', type: 'mc', prompt: '¿Cuál afirmación es correcta?', options: ['Saja aparece frecuentemente con la opción preferida en los ejemplos de §4.92', 'Saja siempre debe aparecer con daripada', 'Saja introduce la cláusula alternativa'], answer: 0, explanation: 'La fuente presenta saja como un refuerzo frecuente de la cláusula con lebih baik/sebaiknya.' }
+                                        ]
+                                    },
+                                    {
+                                        title: '5. Integración: ambas direcciones del contraste',
+                                        objective: 'Integra lebih baik, sebaiknya y daripada y reconoce que cualquiera de las dos alternativas puede aparecer primero.',
+                                        grammar: '§4.92 permite que cualquiera de las dos cláusulas aparezca primero. La construcción puede presentar primero la alternativa con daripada o empezar directamente con sebaiknya/lebih baik. Los dos ejemplos fuente muestran ambos órdenes.',
+                                        vocabIds: [],
+                                        reviewVocabIds: [],
+                                        exercises: [
+                                            { id: 'b2u28_l5_e1', type: 'mc', prompt: '¿Qué indica §4.92 sobre el orden de las dos cláusulas?', options: ['Cualquiera de las dos puede aparecer primero', 'Siempre debe aparecer daripada primero', 'Siempre debe aparecer lebih baik primero'], answer: 0, explanation: 'La fuente dice explícitamente que cualquiera de las dos cláusulas puede ocurrir primero.' },
+                                            { id: 'b2u28_l5_e2', type: 'translate_es_id', prompt: 'Traduce al indonesio: «Es mejor que se rindan, en lugar de luchar».', answer: 'Sebaiknya mereka menyerah saja, daripada melawan.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.92.' },
+                                            { id: 'b2u28_l5_e3', type: 'translate_es_id', prompt: 'Traduce al indonesio: «En lugar de morir de hambre, es mejor que nos mudemos».', answer: 'Daripada mati kelaparan, lebih baik kita pindah saja.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.92.' },
+                                            { id: 'b2u28_l5_e4', type: 'write', prompt: 'Reconstruye de memoria un ejemplo documentado de U28 y explica en español qué alternativa se prefiere y cuál introduce daripada.', answerLanguage: 'id', hint: 'Elige uno de los dos ejemplos fuente trabajados en la unidad; no inventes una oración indonesia nueva.', modelAnswer: 'Sebaiknya mereka menyerah saja, daripada melawan.' }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                id: 'b2_u29',
+                                title: 'Unidad 29: concesión escalar — bagaimanapun/betapapun ... -nya',
+                                subtitle: 'por muy ... que sea; aun así',
+                                description: 'Expresa que una acción o estado se mantiene aunque la primera cláusula alcance un grado extremo de una cualidad, mediante bagaimanapun/betapapun + adjetivo + -nya y una segunda cláusula marcada por namun o toh.',
+                                goal: 'Reconocer la construcción concesiva escalar de §4.93, formar la primera cláusula con adjetivo + -nya y distinguir el segundo miembro con namun/toh de los usos discursivos de bagaimanapun.',
+                                vocab: [],
+                                lessons: [
+                                    {
+                                        title: '1. Betapapun + adjetivo + -nya',
+                                        objective: 'Reconoce cómo betapapun introduce una cualidad de grado variable y cómo -nya se adjunta al adjetivo.',
+                                        grammar: 'Sneddon et al. (2010), §4.93 describe una primera cláusula adjetival en la que -nya se adjunta al adjetivo. Ejemplo documentado: «Betapapun baiknya orang Eropah itu pada kita, toh mereka takut mengambil risiko». La idea es «por muy amables que sean ... aun así ...».',
+                                        vocabIds: [],
+                                        reviewVocabIds: [],
+                                        exercises: [
+                                            { id: 'b2u29_l1_e1', type: 'mc', prompt: 'En «Betapapun baiknya orang Eropah itu pada kita, toh mereka takut mengambil risiko», ¿qué forma lleva el sufijo -nya?', options: ['baiknya', 'betapapun', 'toh'], answer: 0, explanation: 'La fuente especifica que -nya se adjunta al adjetivo de la primera cláusula: baik + -nya.' },
+                                            { id: 'b2u29_l1_e2', type: 'translate_es_id', prompt: 'Traduce al indonesio: «Por muy amables que sean con nosotros esas personas europeas, aun así temen correr riesgos».', answer: 'Betapapun baiknya orang Eropah itu pada kita, toh mereka takut mengambil risiko.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.93.' },
+                                            { id: 'b2u29_l1_e3', type: 'order', prompt: 'Ordena la primera cláusula del ejemplo documentado.', words: ['Betapapun', 'baiknya', 'orang', 'Eropah', 'itu', 'pada', 'kita,'], correctOrder: ['Betapapun', 'baiknya', 'orang', 'Eropah', 'itu', 'pada', 'kita,'], explanation: 'Betapapun precede al adjetivo marcado con -nya.' }
+                                        ]
+                                    },
+                                    {
+                                        title: '2. Bagaimanapun + adjetivo + -nya',
+                                        objective: 'Reconoce bagaimanapun en la misma construcción concesiva escalar y analiza el adjetivo nominalizado con -nya.',
+                                        grammar: 'La fuente documenta también bagaimanapun con adjetivo + -nya. Ejemplo: «Bagaimanapun terbukanya pemikiran Nurcholish, di kalangan kebanyakan umat pemikiran itu agak susah diterima». Aquí no aparece namun en la segunda cláusula: §4.93 señala expresamente que namun puede omitirse.',
+                                        vocabIds: [],
+                                        reviewVocabIds: [],
+                                        exercises: [
+                                            { id: 'b2u29_l2_e1', type: 'mc', prompt: '¿Qué rasgo morfológico comparte «terbukanya» con «baiknya»?', options: ['El adjetivo lleva -nya', 'El adjetivo lleva -kan', 'La forma lleva el prefijo meN-'], answer: 0, explanation: 'Ambos ejemplos muestran -nya adjunto al adjetivo de la primera cláusula.' },
+                                            { id: 'b2u29_l2_e2', type: 'translate_es_id', prompt: 'Traduce al indonesio: «Por muy abierta que sea la mentalidad de Nurcholish, entre la mayoría de los creyentes esa idea es bastante difícil de aceptar».', answer: 'Bagaimanapun terbukanya pemikiran Nurcholish, di kalangan kebanyakan umat pemikiran itu agak susah diterima.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.93.' },
+                                            { id: 'b2u29_l2_e3', type: 'order', prompt: 'Ordena la primera cláusula del ejemplo documentado.', words: ['Bagaimanapun', 'terbukanya', 'pemikiran', 'Nurcholish,'], correctOrder: ['Bagaimanapun', 'terbukanya', 'pemikiran', 'Nurcholish,'], explanation: 'Bagaimanapun introduce la cláusula adjetival y -nya aparece en terbukanya.' }
+                                        ]
+                                    },
+                                    {
+                                        title: '3. Namun y toh: el segundo miembro',
+                                        objective: 'Distingue los dos marcadores documentados para introducir la segunda cláusula concesiva.',
+                                        grammar: '§4.93 indica que la segunda cláusula se introduce con namun o toh, ambos con el sentido de «sin embargo». El primer ejemplo usa toh; el segundo demuestra que namun puede faltar. No hay que añadir ambos marcadores obligatoriamente.',
+                                        vocabIds: [],
+                                        reviewVocabIds: [],
+                                        exercises: [
+                                            { id: 'b2u29_l3_e1', type: 'mc', prompt: '¿Qué marcador aparece en el ejemplo con «Betapapun baiknya ...»?', options: ['toh', 'namun', 'tetapi'], answer: 0, explanation: 'El ejemplo de betapapun usa toh en la segunda cláusula.' },
+                                            { id: 'b2u29_l3_e2', type: 'mc', prompt: '¿Qué dice §4.93 sobre namun?', options: ['Puede omitirse de la segunda cláusula', 'Debe aparecer en todas las oraciones', 'Solo puede aparecer en la primera cláusula'], answer: 0, explanation: 'La fuente proporciona un ejemplo con bagaimanapun en el que namun está ausente.' },
+                                            { id: 'b2u29_l3_e3', type: 'translate_es_id', prompt: 'Traduce al indonesio: «Por muy amables que sean con nosotros esas personas europeas, aun así temen correr riesgos».', answer: 'Betapapun baiknya orang Eropah itu pada kita, toh mereka takut mengambil risiko.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.93.' }
+                                        ]
+                                    },
+                                    {
+                                        title: '4. No confundir la concesión escalar con el conector discursivo',
+                                        objective: 'Distingue bagaimanapun + adjetivo + -nya dentro de una cláusula de su uso para enlazar con la oración precedente.',
+                                        grammar: 'En §4.93, bagaimanapun también se señala como forma capaz de enlazar la cláusula siguiente con la oración anterior; ese uso se remite a §4.100, conectores discursivos de contraste. Esta unidad se centra en el patrón concesivo escalar con adjetivo + -nya; el uso de enlace entre oraciones se estudiará en U35.',
+                                        vocabIds: [],
+                                        reviewVocabIds: [],
+                                        exercises: [
+                                            { id: 'b2u29_l4_e1', type: 'mc', prompt: '¿Qué patrón identifica el objetivo central de U29?', options: ['Bagaimanapun/betapapun + adjetivo + -nya en la primera cláusula', 'Bagaimanapun al inicio de una oración independiente como conector discursivo', 'Bagaimanapun seguido de un sustantivo sin sufijo'], answer: 0, explanation: 'U29 se limita al patrón escalar descrito en §4.93; el conector entre oraciones se reserva para U35.' },
+                                            { id: 'b2u29_l4_e2', type: 'mc', prompt: '¿A qué sección remite Sneddon para bagaimanapun como enlace con la oración precedente?', options: ['§4.100', '§4.82', '§4.92'], answer: 0, explanation: 'La propia sección §4.93 remite al uso discursivo de §4.100.' },
+                                            { id: 'b2u29_l4_e3', type: 'translate_es_id', prompt: 'Traduce al indonesio: «Por muy abierta que sea la mentalidad de Nurcholish, entre la mayoría de los creyentes esa idea es bastante difícil de aceptar».', answer: 'Bagaimanapun terbukanya pemikiran Nurcholish, di kalangan kebanyakan umat pemikiran itu agak susah diterima.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.93.' }
+                                        ]
+                                    },
+                                    {
+                                        title: '5. Integración: grado extremo y resultado persistente',
+                                        objective: 'Integra ambas variantes de la primera cláusula y reconoce cuándo el segundo marcador está presente o ausente.',
+                                        grammar: 'La concesión escalar no expresa una condición ordinaria: presenta una cualidad en grado extremo y afirma que la segunda situación se mantiene. La primera cláusula contiene bagaimanapun/betapapun + adjetivo + -nya; la segunda puede comenzar con namun o toh, y namun puede omitirse.',
+                                        vocabIds: [],
+                                        reviewVocabIds: [],
+                                        exercises: [
+                                            { id: 'b2u29_l5_e1', type: 'mc', prompt: '¿Qué estructura morfológica se espera en el adjetivo de la primera cláusula?', options: ['Adjetivo + -nya', 'Adjetivo + -kan', 'Adjetivo reduplicado obligatoriamente'], answer: 0, explanation: 'El sufijo -nya se adjunta al adjetivo en la primera cláusula.' },
+                                            { id: 'b2u29_l5_e2', type: 'translate_es_id', prompt: 'Traduce al indonesio: «Por muy amables que sean con nosotros esas personas europeas, aun así temen correr riesgos».', answer: 'Betapapun baiknya orang Eropah itu pada kita, toh mereka takut mengambil risiko.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.93.' },
+                                            { id: 'b2u29_l5_e3', type: 'translate_es_id', prompt: 'Traduce al indonesio: «Por muy abierta que sea la mentalidad de Nurcholish, entre la mayoría de los creyentes esa idea es bastante difícil de aceptar».', answer: 'Bagaimanapun terbukanya pemikiran Nurcholish, di kalangan kebanyakan umat pemikiran itu agak susah diterima.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.93.' },
+                                            { id: 'b2u29_l5_e4', type: 'write', prompt: 'Reconstruye de memoria uno de los dos ejemplos documentados de U29 y explica en español cómo funciona el adjetivo + -nya y si aparece namun/toh.', answerLanguage: 'id', hint: 'Elige una frase fuente trabajada en la unidad; no inventes una oración indonesia nueva.', modelAnswer: 'Betapapun baiknya orang Eropah itu pada kita, toh mereka takut mengambil risiko.' }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                id: 'b2_u30',
+                                title: 'Unidad 30: baru — no hasta / solo entonces',
+                                subtitle: 'foco temporal y momento de realización',
+                                description: 'Usa baru para señalar que la acción principal no ocurre hasta el momento expresado por una cláusula o un adjunto temporal.',
+                                goal: 'Reconocer baru como marcador de foco temporal, distinguir su posición ante el elemento temporal o la cláusula principal y evitar confundirlo con baru «nuevo».',
+                                vocab: [],
+                                lessons: [
+                                    {
+                                        title: '1. Baru setelah: no hasta que...',
+                                        objective: 'Reconoce baru ante una cláusula temporal introducida por setelah.',
+                                        grammar: 'Sneddon et al. (2010), §4.94 explica que baru indica que la acción del verbo principal no ocurre hasta el momento de la cláusula temporal. Ejemplo documentado: «Baru setelah keluar dari desa ketiga tokoh kita dapat naik dokar».',
+                                        vocabIds: [],
+                                        reviewVocabIds: [],
+                                        exercises: [
+                                            { id: 'b2u30_l1_e1', type: 'mc', prompt: '¿Qué expresa baru en «Baru setelah keluar dari desa ketiga tokoh kita dapat naik dokar»?', options: ['La acción principal no ocurre hasta ese momento', 'La acción principal ocurrió antes', 'El sustantivo dokar es nuevo'], answer: 0, explanation: '§4.94 define este baru como foco temporal: no hasta el momento de la cláusula temporal.' },
+                                            { id: 'b2u30_l1_e2', type: 'translate_es_id', prompt: 'Traduce al indonesio: «No fue hasta después de salir del tercer pueblo que nuestros tres personajes pudieron subir al carruaje».', answer: 'Baru setelah keluar dari desa ketiga tokoh kita dapat naik dokar.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.94.' },
+                                            { id: 'b2u30_l1_e3', type: 'order', prompt: 'Ordena la oración documentada.', words: ['Baru', 'setelah', 'keluar', 'dari', 'desa', 'ketiga', 'tokoh', 'kita', 'dapat', 'naik', 'dokar.'], correctOrder: ['Baru', 'setelah', 'keluar', 'dari', 'desa', 'ketiga', 'tokoh', 'kita', 'dapat', 'naik', 'dokar.'], explanation: 'En este patrón, baru precede a la cláusula temporal.' }
+                                        ]
+                                    },
+                                    {
+                                        title: '2. Baru + adjunto temporal',
+                                        objective: 'Reconoce baru cuando precede directamente a una expresión de tiempo dentro de la oración.',
+                                        grammar: 'La fuente señala que baru también puede aparecer dentro de una cláusula con un adjunto temporal. Ejemplo: «Baru pukul sepuluh berita itu diketahui» («La noticia no se supo hasta las diez»).',
+                                        vocabIds: [],
+                                        reviewVocabIds: [],
+                                        exercises: [
+                                            { id: 'b2u30_l2_e1', type: 'mc', prompt: 'En «Baru pukul sepuluh berita itu diketahui», ¿qué elemento temporal sigue a baru?', options: ['pukul sepuluh', 'berita itu', 'diketahui'], answer: 0, explanation: 'Baru precede directamente al adjunto temporal pukul sepuluh.' },
+                                            { id: 'b2u30_l2_e2', type: 'translate_es_id', prompt: 'Traduce al indonesio: «La noticia no se supo hasta las diez».', answer: 'Baru pukul sepuluh berita itu diketahui.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.94.' },
+                                            { id: 'b2u30_l2_e3', type: 'order', prompt: 'Ordena la oración documentada.', words: ['Baru', 'pukul', 'sepuluh', 'berita', 'itu', 'diketahui.'], correctOrder: ['Baru', 'pukul', 'sepuluh', 'berita', 'itu', 'diketahui.'], explanation: 'El marcador baru puede preceder directamente al elemento temporal.' }
+                                        ]
+                                    },
+                                    {
+                                        title: '3. Baru al final del bloque temporal',
+                                        objective: 'Reconoce la posición de baru después de la expresión temporal y antes de la acción principal.',
+                                        grammar: '§4.94 documenta que baru puede preceder al elemento temporal o a la cláusula principal. Ejemplo: «Sore hari, sehabis bekerja, baru kita pulang». La expresión temporal aparece primero y baru precede a la cláusula principal.',
+                                        vocabIds: [],
+                                        reviewVocabIds: [],
+                                        exercises: [
+                                            { id: 'b2u30_l3_e1', type: 'mc', prompt: 'En «Sore hari, sehabis bekerja, baru kita pulang», ¿dónde aparece baru?', options: ['Después del bloque temporal y antes de la acción principal', 'Antes de sore hari', 'Después del verbo pulang'], answer: 0, explanation: 'La expresión temporal precede a baru; baru marca el momento de la acción principal.' },
+                                            { id: 'b2u30_l3_e2', type: 'translate_es_id', prompt: 'Traduce al indonesio: «Por la tarde, después de trabajar, solo entonces regresamos a casa».', answer: 'Sore hari, sehabis bekerja, baru kita pulang.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.94.' },
+                                            { id: 'b2u30_l3_e3', type: 'order', prompt: 'Ordena la oración documentada.', words: ['Sore', 'hari,', 'sehabis', 'bekerja,', 'baru', 'kita', 'pulang.'], correctOrder: ['Sore', 'hari,', 'sehabis', 'bekerja,', 'baru', 'kita', 'pulang.'], explanation: 'La posición de baru después del adjunto temporal destaca que la acción principal ocurre solo entonces.' }
+                                        ]
+                                    },
+                                    {
+                                        title: '4. Baru en otra posición de la oración',
+                                        objective: 'Compara el foco temporal con baru antepuesto a la acción principal después de un adjunto temporal.',
+                                        grammar: 'La fuente documenta también «Malam harinya baru aku pergi ke Hotel Homan». El adjunto malam harinya aparece primero y baru precede al predicado principal. Los ejemplos muestran flexibilidad de posición sin cambiar el valor de «no hasta entonces».',
+                                        vocabIds: [],
+                                        reviewVocabIds: [],
+                                        exercises: [
+                                            { id: 'b2u30_l4_e1', type: 'mc', prompt: 'En «Malam harinya baru aku pergi ke Hotel Homan», ¿qué expresa baru?', options: ['Que la ida ocurrió solo por la noche', 'Que el hotel era nuevo', 'Que la persona fue antes del anochecer'], answer: 0, explanation: 'Malam harinya es el adjunto temporal; baru destaca que la acción ocurre solo entonces.' },
+                                            { id: 'b2u30_l4_e2', type: 'translate_es_id', prompt: 'Traduce al indonesio: «No fui al Hotel Homan hasta la noche».', answer: 'Malam harinya baru aku pergi ke Hotel Homan.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.94.' },
+                                            { id: 'b2u30_l4_e3', type: 'mc', prompt: '¿Qué dos posiciones generales permite §4.94?', options: ['Antes del elemento temporal o antes de la cláusula principal', 'Solo al final de la oración', 'Solo inmediatamente después del sujeto'], answer: 0, explanation: 'La fuente indica que baru puede preceder al elemento temporal o a la cláusula principal.' }
+                                        ]
+                                    },
+                                    {
+                                        title: '5. Integración: posición y alcance temporal',
+                                        objective: 'Integra los patrones documentados y diferencia el foco temporal del significado léxico «nuevo».',
+                                        grammar: 'En §4.94, baru funciona como marcador temporal: la acción principal no ocurre hasta el momento de referencia. Puede preceder a la cláusula temporal o al elemento temporal/la cláusula principal. Esta unidad no enseña el adjetivo baru «nuevo», que pertenece al vocabulario léxico.',
+                                        vocabIds: [],
+                                        reviewVocabIds: [],
+                                        exercises: [
+                                            { id: 'b2u30_l5_e1', type: 'mc', prompt: '¿Qué lectura de baru se estudia en U30?', options: ['No hasta / solo entonces', 'Nuevo / reciente', 'Otra vez'], answer: 0, explanation: 'U30 trata el valor de foco temporal descrito en §4.94.' },
+                                            { id: 'b2u30_l5_e2', type: 'translate_es_id', prompt: 'Traduce al indonesio: «La noticia no se supo hasta las diez».', answer: 'Baru pukul sepuluh berita itu diketahui.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.94.' },
+                                            { id: 'b2u30_l5_e3', type: 'translate_es_id', prompt: 'Traduce al indonesio: «Por la tarde, después de trabajar, solo entonces regresamos a casa».', answer: 'Sore hari, sehabis bekerja, baru kita pulang.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.94.' },
+                                            { id: 'b2u30_l5_e4', type: 'write', prompt: 'Reconstruye de memoria un ejemplo documentado de U30 y explica en español qué momento limita la acción principal.', answerLanguage: 'id', hint: 'Elige una frase fuente de la unidad; no inventes una oración indonesia nueva.', modelAnswer: 'Malam harinya baru aku pergi ke Hotel Homan.' }
+                                        ]
+                                    }
+                                ]
+                            }
+
+                            ,
+                            {
+                                id: 'b2_u31',
+                                title: 'Unidad 31: entah ... entah — alternativas no resueltas',
+                                subtitle: 'dos posibilidades y un resultado',
+                                description: 'Interpreta alternativas inciertas introducidas por entah y su relación con el resultado de la oración.',
+                                goal: 'Reconocer las dos alternativas, la elipsis habitual en la segunda y la posibilidad de presentar primero la cláusula de resultado.',
+                                vocab: [],
+                                lessons: [
+                                    {
+                                        title: '1. Entah A, entah B: dos posibilidades',
+                                        objective: 'Identifica las dos alternativas que presenta la correlación entah ... entah.',
+                                        grammar: 'Sneddon et al. (2010), §4.95 describe una construcción que presenta dos posibles causas o circunstancias con entah y después indica el resultado. En «Entah dia bodoh entah malas, dia tidak pernah menyelesaikan pekerjaannya», las alternativas son bodoh y malas; el resultado es que nunca termina su trabajo.',
+                                        vocabIds: [],
+                                        reviewVocabIds: [],
+                                        exercises: [
+                                            { id: 'b2u31_l1_e1', type: 'mc', prompt: 'En «Entah dia bodoh entah malas, dia tidak pernah menyelesaikan pekerjaannya», ¿qué elementos son las alternativas?', options: ['bodoh y malas', 'dia y pekerjaannya', 'tidak y pernah'], answer: 0, explanation: 'Las dos posibilidades se introducen con entah; la cláusula final expresa el resultado.' },
+                                            { id: 'b2u31_l1_e2', type: 'translate_es_id', prompt: 'Traduce al indonesio: «Sea porque es tonto o porque es perezoso, nunca termina su trabajo».', answer: 'Entah dia bodoh entah malas, dia tidak pernah menyelesaikan pekerjaannya.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.95.' },
+                                            { id: 'b2u31_l1_e3', type: 'order', prompt: 'Ordena el ejemplo documentado.', words: ['Entah', 'dia', 'bodoh', 'entah', 'malas,', 'dia', 'tidak', 'pernah', 'menyelesaikan', 'pekerjaannya.'], correctOrder: ['Entah', 'dia', 'bodoh', 'entah', 'malas,', 'dia', 'tidak', 'pernah', 'menyelesaikan', 'pekerjaannya.'], explanation: 'Las alternativas preceden al resultado en este ejemplo.' }
+                                        ]
+                                    },
+                                    {
+                                        title: '2. Entah ... entah tidak: sí o no',
+                                        objective: 'Reconoce una alternativa afirmativa y su contraparte negativa con elipsis.',
+                                        grammar: 'La fuente documenta «Entah disetujui entah tidak, dia tetap akan mengusulkan gagasannya». La segunda parte omite el verbo repetido: entah tidak equivale aquí a «no se sabe si se aprueba o no». La cláusula principal expresa lo que ocurrirá en cualquiera de los dos casos.',
+                                        vocabIds: [],
+                                        reviewVocabIds: [],
+                                        exercises: [
+                                            { id: 'b2u31_l2_e1', type: 'mc', prompt: '¿Qué se omite en «entah disetujui entah tidak»?', options: ['La repetición de disetujui después de tidak', 'El sujeto de la oración principal', 'La primera partícula entah'], answer: 0, explanation: 'La segunda alternativa elide el predicado que ya aparece en la primera.' },
+                                            { id: 'b2u31_l2_e2', type: 'translate_es_id', prompt: 'Traduce al indonesio: «Sea aprobado o no, él seguirá proponiendo su idea».', answer: 'Entah disetujui entah tidak, dia tetap akan mengusulkan gagasannya.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.95.' },
+                                            { id: 'b2u31_l2_e3', type: 'order', prompt: 'Ordena el ejemplo documentado.', words: ['Entah', 'disetujui', 'entah', 'tidak,', 'dia', 'tetap', 'akan', 'mengusulkan', 'gagasannya.'], correctOrder: ['Entah', 'disetujui', 'entah', 'tidak,', 'dia', 'tetap', 'akan', 'mengusulkan', 'gagasannya.'], explanation: 'La segunda alternativa negativa aparece abreviada; no se repite disetujui.' }
+                                        ]
+                                    },
+                                    {
+                                        title: '3. Elipsis dentro de las alternativas',
+                                        objective: 'Interpreta la omisión de un elemento compartido en la segunda alternativa.',
+                                        grammar: 'En el primer ejemplo, «Entah dia bodoh entah malas», el sujeto dia se expresa en la primera alternativa y no se repite antes de malas. Sneddon et al. señala que la elipsis de elementos de la cláusula en los miembros con entah es habitual. No hay que interpretar malas como una alternativa sin sujeto.',
+                                        vocabIds: [],
+                                        reviewVocabIds: [],
+                                        exercises: [
+                                            { id: 'b2u31_l3_e1', type: 'mc', prompt: 'En «Entah dia bodoh entah malas», ¿qué se recupera antes de malas?', options: ['El sujeto dia', 'El verbo menyelesaikan', 'La cláusula de resultado'], answer: 0, explanation: 'El sujeto compartido no necesita repetirse en la segunda alternativa.' },
+                                            { id: 'b2u31_l3_e2', type: 'translate_es_id', prompt: 'Traduce al indonesio: «No se sabe si es tonto o perezoso; nunca termina su trabajo».', answer: 'Entah dia bodoh entah malas, dia tidak pernah menyelesaikan pekerjaannya.', answerLanguage: 'id', direction: 'es→id', explanation: 'Se reutiliza el ejemplo fuente de §4.95; no se crea una oración indonesia nueva.' },
+                                            { id: 'b2u31_l3_e3', type: 'write', prompt: 'Explica en español qué elemento se omite en la segunda alternativa del ejemplo y por qué se puede recuperar.', answerLanguage: 'es', hint: 'Compara «dia bodoh» con «malas».', modelAnswer: 'El sujeto dia se expresa en la primera alternativa y se recupera en la segunda; por eso no es necesario repetirlo antes de malas.' }
+                                        ]
+                                    },
+                                    {
+                                        title: '4. El resultado puede aparecer primero',
+                                        objective: 'Reconoce la posición final de las alternativas cuando la cláusula de resultado abre la oración.',
+                                        grammar: '§4.95 indica que la cláusula que expresa el resultado también puede aparecer primero. El ejemplo de los monos comienza con «Kalau mati secara alami biasanya monyet ini tidak ditemukan» y añade después dos explicaciones posibles con entah. La correlación no exige que las alternativas aparezcan al principio.',
+                                        vocabIds: [],
+                                        reviewVocabIds: [],
+                                        exercises: [
+                                            { id: 'b2u31_l4_e1', type: 'mc', prompt: 'En el ejemplo de los monos, ¿qué aparece primero?', options: ['La consecuencia: normalmente no se encuentran', 'Las dos alternativas con entah', 'Una pregunta directa'], answer: 0, explanation: 'La fuente permite colocar primero la cláusula que expresa el resultado.' },
+                                            { id: 'b2u31_l4_e2', type: 'translate_es_id', prompt: 'Traduce al indonesio el ejemplo documentado sobre los monos y las dos posibles explicaciones.', answer: 'Kalau mati secara alami biasanya monyet ini tidak ditemukan, entah dikubur oleh monyet lainnya, entah kebiasaan monyet itu menyembunyikan diri sebelum mati.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.95.' },
+                                            { id: 'b2u31_l4_e3', type: 'order', prompt: 'Ordena el comienzo del ejemplo documentado.', words: ['Kalau', 'mati', 'secara', 'alami', 'biasanya', 'monyet', 'ini', 'tidak', 'ditemukan,'], correctOrder: ['Kalau', 'mati', 'secara', 'alami', 'biasanya', 'monyet', 'ini', 'tidak', 'ditemukan,'], explanation: 'La oración presenta primero el resultado general antes de enumerar las alternativas.' }
+                                        ]
+                                    },
+                                    {
+                                        title: '5. Integración: alternativas y resultado',
+                                        objective: 'Distingue las dos alternativas inciertas, la elipsis y el orden de la cláusula de resultado.',
+                                        grammar: 'La construcción entah ... entah no afirma cuál alternativa es verdadera. Puede presentar dos causas o circunstancias antes del resultado, o añadirlas después de la cláusula que expresa el resultado. La elipsis de elementos repetidos es habitual. No se debe confundir esta estructura con una pregunta directa.',
+                                        vocabIds: [],
+                                        reviewVocabIds: [],
+                                        exercises: [
+                                            { id: 'b2u31_l5_e1', type: 'mc', prompt: '¿Qué tienen en común los ejemplos de §4.95?', options: ['Presentan alternativas no resueltas con entah', 'Afirman que ambas alternativas son verdaderas', 'Formulan preguntas directas al interlocutor'], answer: 0, explanation: 'Entah presenta posibilidades cuya elección no se resuelve en la oración.' },
+                                            { id: 'b2u31_l5_e2', type: 'translate_es_id', prompt: 'Traduce al indonesio: «No se sabe si fue aprobado o no; él seguirá proponiendo su idea».', answer: 'Entah disetujui entah tidak, dia tetap akan mengusulkan gagasannya.', answerLanguage: 'id', direction: 'es→id', explanation: 'Reutiliza el ejemplo documentado de §4.95.' },
+                                            { id: 'b2u31_l5_e3', type: 'order', prompt: 'Ordena la oración completa con las alternativas antes del resultado.', words: ['Entah', 'dia', 'bodoh', 'entah', 'malas,', 'dia', 'tidak', 'pernah', 'menyelesaikan', 'pekerjaannya.'], correctOrder: ['Entah', 'dia', 'bodoh', 'entah', 'malas,', 'dia', 'tidak', 'pernah', 'menyelesaikan', 'pekerjaannya.'], explanation: 'El ejemplo combina las alternativas y el resultado en una sola oración.' },
+                                            { id: 'b2u31_l5_e4', type: 'write', prompt: 'Reconstruye de memoria un ejemplo documentado de U31 y explica en español cómo se relacionan sus alternativas con el resultado.', answerLanguage: 'id', hint: 'Elige uno de los tres ejemplos fuente; no inventes una oración indonesia nueva.', modelAnswer: 'Entah dia bodoh entah malas, dia tidak pernah menyelesaikan pekerjaannya.' }
+                                        ]
+                                    }
+                                ]
+                            }
                             ]
                 }
             ]

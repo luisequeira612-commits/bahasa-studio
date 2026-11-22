@@ -1,6 +1,6 @@
 # Propuesta de secuencia B2 U20–U60
 
-**Estado:** hoja de ruta de desarrollo elaborada bajo la autorización autónoma del dueño (21 nov 2026). U20–U50 están integradas en main; U51–U55 tienen paquete de diseño preparado en la rama curriculum/b2-u51-u55-pronouns-numbers-comparison-20261122; U51–U60 siguen siendo objetivos de trabajo, no contenido ejecutable ni promesa de certificación MCER/BIPA.
+**Estado:** hoja de ruta de desarrollo elaborada bajo la autorización autónoma del dueño (21 nov 2026). U20–U50 están integradas en main; U51–U55 están implementadas en la rama curriculum/b2-u51-u55-implementation-20261122, pendientes de CI/PR; U56–U60 siguen siendo objetivos de trabajo, no contenido ejecutable ni promesa de certificación MCER/BIPA.
 
 ## Criterios de diseño
 
@@ -136,7 +136,7 @@ La unidad usa únicamente ejemplos documentados en la fuente. Tiene cinco leccio
 Se ampliaron los filtros del selector y ruta de aprendizaje, el progreso visible, el vocabulario que recibe el tutor, la inferencia de nivel del tutor y el fallback de traducción contextual para incluir las unidades B2 implementadas U1–U45. Los IDs futuros U46–U60 continúan fuera de esas superficies. El primer CI había detectado límites obsoletos U1–U5 y un baseline U1–U40; ambos contratos se actualizaron. CI del último commit aún pendiente. La puerta de desbloqueo entre unidades sigue secuencial; U41–U45 no se publican antes de la aprobación normal.
 
 
-## U46–U50 implementadas en rama — 22 nov 2026
+## U46–U50 integradas en main — PR #706 — 22 nov 2026
 
 - U46 elipsis de palabras distintas del sujeto (§4.115); U47 elipsis múltiple (§4.116); U48 elipsis de posesivos (§4.117); U49 elipsis en respuestas (§4.118); U50 integración de §§4.112–4.118.
 - Cinco lecciones authored y 16 ejercicios por unidad (3/3/3/3/4), cuatro tipos; sin vocabulario/IDs nuevos ni audio. U46–U49 reutilizan ejemplos documentados de las secciones correspondientes; U50 reutiliza ejemplos fuente de las unidades previas como repaso integrador.
@@ -153,3 +153,9 @@ Se ampliaron los filtros del selector y ruta de aprendizaje, el progreso visible
 - U54 clasificadores y partitivos (§§2.21–2.33).
 - U55 comparativas y equativas (§§2.101–2.105).
 - Diseños: docs/B2_U51_DESIGN.md … docs/B2_U55_DESIGN.md. La implementación debe conservar cinco lecciones authored y 16 ejercicios por unidad, sin inventar frases indonesias para rellenar el recuento.
+
+
+## U51–U55 implementadas en rama — 22 nov 2026
+- U51 pronombres indefinidos y sustitutos pronominales (§§2.67–2.69, 2.83–2.92); U52 interrogativos con saja y libre elección con pun (§§2.83–2.96, 4.22); U53 cuantificadores y números indefinidos (§§2.106–2.117); U54 clasificadores y partitivos (§§2.21–2.33); U55 comparativas y equativas (§§2.101–2.105).
+- Cinco lecciones authored y 16 ejercicios por unidad (3/3/3/3/4), cuatro tipos (mc, translate_es_id, order, write). Sin vocabulario/IDs nuevos ni audio; se reutilizan ejemplos documentados y las actividades de análisis se responden en español.
+- Filtros de aprendizaje, progreso, tutor y traducción contextual ampliados a U1–U55; U56–U60 siguen excluidas. Unidades ocultas/no publicadas; la fuente y las pruebas estructurales no equivalen a validación nativa ni certificación MCER/BIPA.

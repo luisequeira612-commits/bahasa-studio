@@ -682,3 +682,9 @@
 - Preparado en rama curriculum/b2-u51-u55-pronouns-numbers-comparison-20261122: U51 sustitutos pronominales/pronombres indefinidos; U52 interrogativos + saja/pun; U53 cuantificadores y números indefinidos; U54 clasificadores/partitivos; U55 comparativas/equativas.
 - Cinco diseños documentados en docs/B2_U51_DESIGN.md a docs/B2_U55_DESIGN.md, con alcance, cinco objetivos de lección y ejemplos respaldados por Sneddon et al. (2010). Aún no se integran en el currículo ejecutable: la siguiente implementación debe añadir cinco lecciones y 16 ejercicios por unidad sin inventar ejemplos indonesios.
 - U51–U55 seguirán ocultas/no publicadas y fuera de los filtros de acceso hasta su implementación y validación de CI.
+
+
+## B2 U51–U55 implementadas en rama — 22 nov 2026
+- Añadidas U51–U55 con cinco lecciones authored y 16 ejercicios por unidad (3/3/3/3/4), cuatro tipos (mc, translate_es_id, order, write), sin vocabulario/IDs nuevos ni audio. Ejemplos documentados en Sneddon et al. (2010), §§2.21–2.33, 2.67–2.69, 2.83–2.117 y 2.101–2.105; no se inventan oraciones indonesias.
+- Filtros de aprendizaje, tutor, vocabulario, traducción y progreso ampliados a U1–U55; U56–U60 siguen fuera. Todas permanecen ocultas/no publicadas. Sin cambios a IndexedDB v1, backup JSON v3, biblioteca Piper ni dependencias.
+- Se añaden 0 IDs léxicos y 0 términos a trackers; no hay estados nuevos de verificación que atribuir.

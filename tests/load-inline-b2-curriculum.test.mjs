@@ -1275,7 +1275,7 @@ test('B2 U33 teaches source-bound jangankan ... pun scalar expectation', async (
     if (typeof exercise.answer === 'string') return exercise.answer;
     if (Number.isInteger(exercise.answer) && Array.isArray(exercise.options)) return exercise.options[exercise.answer] || '';
     return '';
-  }).filter((target) => target.trim().split(/\\s+/).filter(Boolean).length >= 2);
+  }).filter((target) => target.trim().split(/\s+/).filter(Boolean).length >= 2);
   assert.ok(targets.length >= 5, 'U33 must include at least five full-sentence targets');
   assert.ok(exercises.some((exercise) => exercise.type === 'write' && exercise.answerLanguage === 'es'
     && exercise.hint?.trim() && /jangankan|pun/i.test(exercise.modelAnswer)));

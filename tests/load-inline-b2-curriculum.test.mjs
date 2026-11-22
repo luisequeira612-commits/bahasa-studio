@@ -1082,6 +1082,37 @@ test('B2 U25 teaches temporal begitu with immediate sequence and distinguishes i
 
 
 
+
+
+test('B2 U30 teaches source-bound temporal baru in both documented positions', async () => {
+  const { b2, indexSource } = await loadCurricula();
+  const unit = b2.units.find((item) => item.id === 'b2_u30');
+  assert.ok(unit, 'B2 U30 must exist');
+  assert.equal(unit.lessons.length, 5);
+  assert.deepEqual(unit.lessons.map((lesson) => lesson.exercises.length), [3, 3, 3, 3, 4]);
+  assert.deepEqual(unit.vocab, []);
+  const exercises = allExercises(unit);
+  assert.equal(exercises.length, 16);
+  assert.deepEqual([...new Set(exercises.map((exercise) => exercise.type))].sort(),
+    ['mc', 'order', 'translate_es_id', 'write']);
+  for (const phrase of [
+    'Baru setelah keluar dari desa ketiga tokoh kita dapat naik dokar.',
+    'Baru pukul sepuluh berita itu diketahui.',
+    'Sore hari, sehabis bekerja, baru kita pulang.',
+    'Malam harinya baru aku pergi ke Hotel Homan.',
+  ]) assert.ok(indexSource.includes(phrase), phrase + ' must remain source-bound');
+  const answers = exercises.filter((exercise) => exercise.type === 'translate_es_id').map((exercise) => exercise.answer);
+  for (const phrase of [
+    'Baru setelah keluar dari desa ketiga tokoh kita dapat naik dokar.',
+    'Baru pukul sepuluh berita itu diketahui.',
+    'Sore hari, sehabis bekerja, baru kita pulang.',
+    'Malam harinya baru aku pergi ke Hotel Homan.',
+  ]) assert.ok(answers.includes(phrase), phrase + ' must be practised');
+  assert.ok(exercises.some((exercise) => exercise.type === 'write' && exercise.answerLanguage === 'id'
+    && exercise.hint?.trim() && exercise.modelAnswer?.trim()));
+  assert.equal(new Set(exercises.map((exercise) => exercise.id)).size, exercises.length);
+});
+
 test('B2 U29 teaches source-bound bagaimanapun/betapapun adjective -nya scalar concession', async () => {
   const { b2, indexSource } = await loadCurricula();
   const unit = b2.units.find((item) => item.id === 'b2_u29');

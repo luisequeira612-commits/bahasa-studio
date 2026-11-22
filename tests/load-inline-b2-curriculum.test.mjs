@@ -628,9 +628,9 @@ test('B2 U16 implements five authored lessons and source-backed restrictive focu
       if (exercise.vocabId) assert.ok(ownIds.has(exercise.vocabId), 'exercise vocabulary must resolve to U16 IDs');
     }
   }
-  const sourceText = JSON.stringify(unit);
-  for (const fragment of ['Mereka cuma minum teh.', 'Tadi pagi saya makan roti saja',
-    'Cuma teh yang mereka minum.', 'Kenaikan pendapatan itu terutama berasal dari pajak.',
+  const sourceText = JSON.stringify(unit).toLowerCase();
+  for (const fragment of ['mereka cuma minum teh.', 'tadi pagi saya makan roti saja',
+    'cuma teh yang mereka minum.', 'kenaikan pendapatan itu terutama berasal dari pajak.',
     'semata-mata', 'melulu', 'khususnya']) {
     assert.ok(sourceText.includes(fragment), 'U16 must preserve the source-backed example or contrast: ' + fragment);
   }

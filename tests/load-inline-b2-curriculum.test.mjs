@@ -107,6 +107,29 @@ test('B2 U27 implements five authored lessons with 16 source-bound concessive ex
   assert.ok(exercises.some((exercise) => exercise.prompt?.includes('Biarpun') && exercise.answer === 'Biarpun sumbangannya tidak seberapa, namun dia mempunyai peranan dalam proyek raksasa ini.'));
 });
 
+
+
+test('B2 U28 implements five authored lessons with 16 source-bound preference exercises and no new vocabulary IDs', async () => {
+  const { b2, indexSource } = await loadCurricula();
+  const unit = b2.units.find((item) => item.id === 'b2_u28');
+  assert.ok(unit, 'B2 U28 must exist');
+  assert.equal(unit.lessons.length, 5);
+  assert.deepEqual(unit.lessons.map((lesson) => lesson.exercises.length), [3, 3, 3, 3, 4]);
+  assert.equal(unit.vocab.length, 0);
+  const exercises = allExercises(unit);
+  assert.equal(exercises.length, 16);
+  assert.deepEqual([...new Set(exercises.map((exercise) => exercise.type))].sort(),
+    ['mc', 'order', 'translate_es_id', 'write']);
+  for (const phrase of [
+    'Daripada mati kelaparan, lebih baik kita pindah saja.',
+    'Sebaiknya mereka menyerah saja, daripada melawan.',
+  ]) assert.ok(indexSource.includes(phrase), phrase + ' must remain source-bound in index.html');
+  assert.ok(exercises.some((exercise) => exercise.type === 'write' && exercise.hint?.trim()
+    && /ejemplo documentado|frase fuente/i.test(exercise.prompt)));
+  assert.ok(exercises.some((exercise) => exercise.answer === 'Daripada mati kelaparan, lebih baik kita pindah saja.'));
+  assert.ok(exercises.some((exercise) => exercise.answer === 'Sebaiknya mereka menyerah saja, daripada melawan.'));
+});
+
 test('B2 keeps its development gate while implemented U1 unlocks sequentially after B1', async () => {
   const { indexSource } = await loadCurricula();
   const assessmentStart = indexSource.indexOf('startUnitAssessment(unitId) {');
@@ -819,7 +842,7 @@ test('B2 U19 implements nominalised relative clauses and identifying focus', asy
 test('implemented B2 U1–U23 are executable while later legacy draft units stay archived', async () => {
   const { b2 } = await loadCurricula();
   const legacyArchive = await readFile(new URL('../docs/B2_LEGACY_DRAFT_ARCHIVE.md', import.meta.url), 'utf8');
-  assert.deepEqual(b2.units.map((unit) => unit.id), ['b2_u1', 'b2_u2', 'b2_u3', 'b2_u4', 'b2_u5', 'b2_u6', 'b2_u7', 'b2_u8', 'b2_u9', 'b2_u10', 'b2_u11', 'b2_u12', 'b2_u13', 'b2_u14', 'b2_u15', 'b2_u16', 'b2_u17', 'b2_u18', 'b2_u19', 'b2_u20', 'b2_u21', 'b2_u22', 'b2_u23']);
+  assert.deepEqual(b2.units.map((unit) => unit.id), ['b2_u1', 'b2_u2', 'b2_u3', 'b2_u4', 'b2_u5', 'b2_u6', 'b2_u7', 'b2_u8', 'b2_u9', 'b2_u10', 'b2_u11', 'b2_u12', 'b2_u13', 'b2_u14', 'b2_u15', 'b2_u16', 'b2_u17', 'b2_u18', 'b2_u19', 'b2_u20', 'b2_u21', 'b2_u22', 'b2_u23', 'b2_u24']);
   for (const id of ['b2_u5']) {
     assert.ok(legacyArchive.includes('"id": "' + id + '"'), id + ' must remain in the historical archive');
   }

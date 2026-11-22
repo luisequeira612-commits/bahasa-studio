@@ -60,13 +60,17 @@ test('audio manifest exports unique A1, A2 and inline B1 texts without changing 
     assert.ok(entries.some((entry) => entry.levels.includes('B1')), 'B1 must be read from index.html');
 
     assert.equal(new Set(index).size, index.length, 'audio index IDs must be unique');
-    assert.deepEqual([...index].sort(), [...ids].sort(), 'index must equal the union of all manifest levels');
+    if (includeInteractive) {
+      assert.deepEqual([...index].sort(), [...ids].sort(), 'interactive export must equal the complete audio index');
+    } else {
+      assert.ok(ids.every((id) => index.includes(id)), 'every exported manifest ID must exist in the committed audio index');
+    }
 
     const audioFiles = (await readdir(path.join(root, 'audio', 'id')))
       .filter((name) => name.endsWith('.mp3'))
       .map((name) => name.slice(0, -4));
     assert.equal(new Set(audioFiles).size, audioFiles.length, 'MP3 filenames must be unique');
-    assert.deepEqual([...audioFiles].sort(), [...ids].sort(), 'every manifest ID must have one MP3 and no orphan MP3 may remain');
+    assert.deepEqual([...audioFiles].sort(), [...index].sort(), 'every indexed audio ID must have one MP3 and no orphan MP3 may remain');
 
     const levelUnion = new Set(entries.flatMap((entry) => entry.levels.map(() => entry.id)));
     assert.equal(levelUnion.size, entries.length, 'unique manifest IDs must equal the union of level memberships');

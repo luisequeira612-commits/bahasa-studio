@@ -55,3 +55,11 @@ No cambiar IndexedDB schema v1 ni backup format v3 para una ampliación curricul
 La página independiente `assessment.html` solo ofrece A1 mientras la evaluación siga siendo parcial y A1 no se haya validado. El banco A1 actual tiene 19 ítems y 24 puntos: cubre algunas áreas seleccionadas, incluidas edad (U4), familia (U5), rutina (U12) y las unidades U15–U17, pero **no debe describirse como una evaluación exhaustiva de todas las unidades A1**. Las posiciones de respuesta correcta se equilibran mediante una prueba automatizada. Las tareas abiertas necesitan tutor o evaluador competente en indonesio; no son una autocorrección fiable para principiantes.
 
 Los vocabularios repetidos usan el ID canónico de la primera enseñanza. Para no perder progreso SRS de instalaciones o copias de seguridad anteriores, se conserva un mapa de alias de IDs históricos a IDs canónicos. No se cambia el esquema IndexedDB (v1) ni el formato de copia de seguridad (v3). La página de evaluación y su motor se incluyen en la precarga del service worker de la versión 3.7.1 para permitir su primera apertura sin conexión.
+
+
+## Estado B2 actualizado — 22 nov 2026
+
+- B2 U1–U17 están implementadas con cinco lecciones authored cada una; U1–U5 son visibles y U6–U17 permanecen ocultas/no publicadas.
+- U17 amplía el uso de cláusulas de contenido y preguntas indirectas: `bahwa` para declaraciones, `apakah/apa` para preguntas sí/no y palabras interrogativas para preguntas de información integradas. Cinco lecciones, 16 ejercicios y dos IDs nuevos.
+- El audio Piper de U17 está solicitado, aún no generado; por ello no hay tareas de escucha en la unidad. No cambia IndexedDB v1 ni el backup JSON v3.
+- U18–U60 aún no tienen mapa curricular aprobado. La evidencia documental no equivale a validación por hablante nativo ni certificación MCER/BIPA.

@@ -1,6 +1,6 @@
 # B2 U18 — Cláusulas de intención, órdenes y peticiones
 
-**Estado:** cinco lecciones authored, 16 ejercicios, cinco IDs nuevos y cinco ejercicios de escucha. La unidad permanece oculta/no publicada. Los once textos de audio Piper están solicitados, pero aún no se han generado; no fusionar hasta que el manifiesto y el índice contengan todos sus IDs.
+**Estado:** cinco lecciones authored, 16 ejercicios, cuatro IDs nuevos, un verbo reutilizado de B1 y cinco ejercicios de escucha. La unidad permanece oculta/no publicada. Los once textos de audio Piper están solicitados, pero aún no se han generado; no fusionar hasta que el manifiesto y el índice contengan todos sus IDs.
 
 ## Objetivos
 
@@ -34,7 +34,7 @@ Sneddon, J. N., Adelaar, A., Djenar, D. N. & Ewing, M. C. (2010). *Indonesian: A
 4. Peticiones negativas con `tidak/jangan).
 5. Restricciones de `untuk) frente a `supaya/agar) y advertencias reportadas.
 
-Vocabulario nuevo: `b2u18_menyuruh`, `b2u18_memerintahkan`, `b2u18_mendesak`, `b2u18_mengingatkan` y `b2u18_minta`. Los ejemplos indonesios se toman de la fuente citada; no se inventan oraciones nuevas. Se reutilizan conectores y negadores ya enseñados en B1/A1/A2.
+Vocabulario nuevo: `b2u18_menyuruh`, `b2u18_memerintahkan`, `b2u18_mendesak` y `b2u18_minta`. `mengingatkan` se reutiliza con el ID existente `b1u5_mengingatkan` de B1 U5; no se crea un duplicado. Los ejemplos indonesios se toman de la fuente citada; no se inventan oraciones nuevas. Se reutilizan conectores y negadores ya enseñados en B1/A1/A2.
 
 ## Verificación y límites
 

@@ -136,7 +136,7 @@ La unidad usa únicamente ejemplos documentados en la fuente. Tiene cinco leccio
 Se ampliaron los filtros del selector y ruta de aprendizaje, el progreso visible, el vocabulario que recibe el tutor, la inferencia de nivel del tutor y el fallback de traducción contextual para incluir las unidades B2 implementadas U1–U45. Los IDs futuros U46–U60 continúan fuera de esas superficies. El primer CI había detectado límites obsoletos U1–U5 y un baseline U1–U40; ambos contratos se actualizaron. CI del último commit aún pendiente. La puerta de desbloqueo entre unidades sigue secuencial; U41–U45 no se publican antes de la aprobación normal.
 
 
-## U46–U50 implementadas en rama — 22 nov 2026
+## U46–U50 integradas en main — PR #706 — 22 nov 2026
 
 - U46 elipsis de palabras distintas del sujeto (§4.115); U47 elipsis múltiple (§4.116); U48 elipsis de posesivos (§4.117); U49 elipsis en respuestas (§4.118); U50 integración de §§4.112–4.118.
 - Cinco lecciones authored y 16 ejercicios por unidad (3/3/3/3/4), cuatro tipos; sin vocabulario/IDs nuevos ni audio. U46–U49 reutilizan ejemplos documentados de las secciones correspondientes; U50 reutiliza ejemplos fuente de las unidades previas como repaso integrador.

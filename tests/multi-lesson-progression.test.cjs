@@ -452,7 +452,7 @@ test('A1 completed units stay completed and existing in-progress lesson keys ret
 test('all implemented B2 units preserve five authored lessons; vocabulary units retain full-unit active recall', () => {
   const b2 = app.CourseData.levels.find(level => level.id === 'B2');
   const implemented = b2.units.filter(unit => Array.isArray(unit.lessons) && unit.lessons.length > 0);
-  assert.deepEqual(Array.from(implemented, unit => unit.id), ['b2_u1', 'b2_u2', 'b2_u3', 'b2_u4', 'b2_u5', 'b2_u6', 'b2_u7', 'b2_u8', 'b2_u9', 'b2_u10', 'b2_u11', 'b2_u12', 'b2_u13', 'b2_u14', 'b2_u15', 'b2_u16', 'b2_u17', 'b2_u18', 'b2_u19', 'b2_u20', 'b2_u21', 'b2_u22', 'b2_u23', 'b2_u24']);
+  assert.deepEqual(Array.from(implemented, unit => unit.id), ['b2_u1', 'b2_u2', 'b2_u3', 'b2_u4', 'b2_u5', 'b2_u6', 'b2_u7', 'b2_u8', 'b2_u9', 'b2_u10', 'b2_u11', 'b2_u12', 'b2_u13', 'b2_u14', 'b2_u15', 'b2_u16', 'b2_u17', 'b2_u18', 'b2_u19', 'b2_u20', 'b2_u21', 'b2_u22', 'b2_u23', 'b2_u24', 'b2_u25']);
 
   for (const unit of implemented) {
     const lessons = app.buildUnitLessons(unit);

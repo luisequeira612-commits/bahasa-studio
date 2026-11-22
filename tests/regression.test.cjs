@@ -923,7 +923,6 @@ test('B1 follows A2 progression and implemented B2 units keep sequential access'
   assert.match(html, /unit-path-coming-soon/);
   assert.match(html, /Las demás unidades B2 todavía no están implementadas/);
   assert.match(html, /B2 units open sequentially after B1 is complete/);
-  assert.match(html, /<span class="badge">En desarrollo<\/span>/);
   assert.doesNotMatch(html, /if \(!isB1Complete\(this\.completedUnits\)\) return;/);
   assert.doesNotMatch(html, /: 'Disponible'/,
     'B1 units must no longer be shown as unconditionally available');

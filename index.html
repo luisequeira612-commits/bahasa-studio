@@ -19600,7 +19600,7 @@ Requisitos:
                     row.className = 'learning-level-sheet-row' + (level.id === this.selectedLearningLevel ? ' selected' : '');
                     row.setAttribute('aria-current', level.id === this.selectedLearningLevel ? 'true' : 'false');
                     row.disabled = level.id === 'A2' && !A2_RELEASE_ENABLED;
-                    const progressLabel = level.id === 'B2' ? 'En desarrollo' : progress.completed + ' de ' + progress.total + ' ' + (progress.total === 1 ? 'unidad' : 'unidades');
+                    const progressLabel = progress.completed + ' de ' + progress.total + ' ' + (progress.total === 1 ? 'unidad' : 'unidades');
                     row.innerHTML = '<span><strong>' + App.escapeHtml(level.id) + '</strong><small>' + progressLabel + '</small></span><span class="learning-level-sheet-check" aria-hidden="true">' + (level.id === this.selectedLearningLevel ? '✓' : '') + '</span>';
                     row.addEventListener('click', () => this.selectLearningLevel(level.id));
                     content.appendChild(row);
@@ -19788,7 +19788,7 @@ Requisitos:
                     option.value = unit.id;
                     option.textContent = level.id + ' · Unidad ' + (index + 1) + ' — ' + unit.title;
                     if ((level.id === 'A2' && !A2_RELEASE_ENABLED) || level.id === 'B2') option.disabled = true;
-                    if (level.id === 'B2') option.textContent += ' — En desarrollo';
+                    
                     select.appendChild(option);
                     });
                 });
@@ -19802,7 +19802,7 @@ Requisitos:
                     return;
                 }
                 if (found.level.id === 'B2') {
-                    this.showUnitPathNotice('B2 sigue en desarrollo y no se puede saltar a sus unidades.');
+                    this.showUnitPathNotice('No se puede saltar a las unidades de B2 desde este selector.');
                     return;
                 }
                 if (found.level.id === 'A2' && !A2_RELEASE_ENABLED) {
@@ -19875,11 +19875,6 @@ Requisitos:
                     return;
                 }
 
-                if (level.id === 'B2') {
-                    const developmentStatus = document.createElement('div');
-                    developmentStatus.innerHTML = '<span class="badge">En desarrollo</span>';
-                    container.appendChild(developmentStatus);
-                }
                 if (level.id === 'A2') {
                     const betaBadge = document.createElement('span');
                     betaBadge.className = 'badge';

@@ -1,6 +1,6 @@
 # B2 U16 — Limitadores y alcance: hanya, cuma, saja y terutama
 
-**Estado:** cinco lecciones authored, 16 ejercicios, dos IDs nuevos. U16 permanece oculta/no publicada. Audio Piper pendiente de generación; no incluye tareas de escucha.
+**Estado:** cinco lecciones authored, 16 ejercicios, dos IDs nuevos. U16 permanece oculta/no publicada. Cuatro clips Piper de producción (MP3 y Opus) generados; no incluye tareas de escucha.
 
 ## Objetivos
 
@@ -30,7 +30,8 @@ Vocabulario nuevo: `b2u16_cuma`, `b2u16_terutama`. Se reutilizan ejemplos public
 ## Verificación y límites
 
 - Pruebas de cinco lecciones, 16 ejercicios, cinco tipos, IDs globalmente únicos, referencias válidas y al menos cinco objetivos de respuesta en frases completas.
-- Audio Piper solicitado para las dos formas y sus dos ejemplos fuente; sin tareas `listen`. La generación se registrará en `docs/audio-requests/B2_U16.json`.
+- Cuatro textos tienen audio Piper de producción en MP3 y Opus: `cuma`, `terutama` y los dos ejemplos de vocabulario. IDs: `f0c3175631be`, `3251300d4372`, `5b13931e1b71` y `4444d433c2fc`.
+- Los cuatro clips están incorporados en `audio/manifest.json`, `audio/index.json` y `audio/metadata.json`; la biblioteca tiene 2.235 IDs, con 121 textos B2. Voz: `id_ID-news_tts-medium`. No hay ejercicios `listen`; las tarjetas sí disponen de pronunciación grabada.
 - La evidencia documental no equivale a validación por hablante nativo ni certificación MCER/BIPA.
 - No modificar IndexedDB v1, backup JSON v3, A1/A2/B1, dependencias ni visibilidad de la ruta.
 

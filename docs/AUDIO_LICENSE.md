@@ -1,43 +1,32 @@
 # Licencia y procedencia del audio
 
-Revisión: 15 nov 2026.
+Revisión: 21 nov 2026.
 
-## Decisión
+## Decisión de producción
 
-La biblioteca de producción deja de generar audio nuevo con Piper. El motor de producción pasa a **MMS Indonesian** (facebook/mms-tts-ind) con una revisión inmutable.
+La voz principal de producción es **Piper Indonesian — id_ID-news_tts-medium**. Edge TTS queda como alternativa/fallback cuando el flujo lo permita. MMS Indonesian queda fuera de la producción: en las pruebas del dueño su pronunciación no resultó satisfactoria, mientras que Piper y Edge sí fueron aceptados para el uso previsto.
 
-La razón es reducir el riesgo de procedencia que existía con id_ID-news_tts-medium: su historial documenta un dataset CC BY-NC-SA 4.0 y un fine-tuning desde en_US-lessac-medium; la documentación oficial de Piper advierte que no concede derechos sobre los modelos de voz y que la situación jurídica de los outputs derivados de los corpus no está resuelta.
+La elección de Piper fue explícita del dueño después de escuchar las muestras. La app sigue siendo gratuita y no comercial; no distribuye los pesos del modelo dentro de la PWA. El pipeline genera y distribuye únicamente los archivos de audio MP3/Opus seleccionados.
 
-MMS Indonesian publica explícitamente su modelo bajo **CC BY-NC 4.0**, sin la cadena Lessac del modelo Piper. La revisión fijada es:
+## Procedencia y límites de licencia
 
-- Modelo: facebook/mms-tts-ind
-- Revisión: 171b004ccd54f266a31efee71f1ad850c91d39c0
-- SHA-256 del peso model.safetensors: d56181bae3a51458aab6b4a893ecd71d0fde69378f576c53e139b59940d80ca0
-- Licencia declarada: [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)
-- Fuente: https://huggingface.co/facebook/mms-tts-ind/tree/171b004ccd54f266a31efee71f1ad850c91d39c0
+- Proyecto/repositorio de voces: [rhasspy/piper-voices](https://huggingface.co/rhasspy/piper-voices/tree/main/id/id_ID/news_tts/medium).
+- Voz: id_ID-news_tts-medium.
+- El repositorio del modelo declara MIT; la licencia y procedencia del conjunto de datos de entrenamiento no están documentadas de forma suficiente en la ficha consultada.
+- La revisión anterior identificó una posible procedencia CC BY-NC-SA 4.0 del dataset y fine-tuning desde en_US-lessac-medium. La documentación de Piper advierte que la licencia del código no concede automáticamente derechos sobre los modelos o los datos de voz.
+- Por tanto, **no se afirma que todos los derechos de los audios generados estén jurídicamente despejados**. El dueño decidió asumir esta incertidumbre para un proyecto personal, gratuito y no comercial. Esta decisión de producto no es asesoría ni garantía legal.
 
-## Qué se redistribuye
+## Pipeline
 
-Bahasa Studio no distribuye los pesos del modelo dentro de la PWA. Distribuye únicamente archivos MP3/Opus generados durante el pipeline de GitHub Actions.
-
-La licencia CC BY-NC 4.0 es una mejora clara frente a la procedencia anterior, pero no debe describirse como una garantía jurídica absoluta sobre cualquier output de TTS. La aplicación es gratuita y no comercial. La atribución se registra también en `audio/metadata.json` cuando la migración se complete, para que viaje junto a la biblioteca distribuida; esta documentación conserva la ficha de origen y el enlace a la licencia.
-
-## Migración
-
-La regeneración de producción debe ejecutarse con:
-
-- engine: mms
-- mode: full
-- level: all
-- limit: 0
-- confirm_full: true
-
-El workflow fuerza --force para que los MP3/Opus existentes no sean reutilizados: todos los clips de producción deben proceder del nuevo motor. No se cambia el ID SHA-1 de los textos, las rutas, IndexedDB, backup JSON v3 ni el reproductor.
-
-Piper queda disponible únicamente para muestras históricas/diagnóstico. El workflow rechaza una generación full con Piper.
+- Motor de producción: piper.
+- Voz: id_ID-news_tts-medium.
+- Motor alternativo: Edge TTS, sujeto a conectividad y disponibilidad del servicio.
+- MMS: no usar para generar nuevas voces ni clips de producción.
+- Workflow principal: .github/workflows/generate-audio.yml.
+- Para lotes pequeños se utiliza .github/workflows/dispatch-selected-piper-audio.yml con una solicitud JSON que enumera textos exactos e IDs resueltos desde el manifiesto B2.
+- No regenerar la biblioteca completa para añadir unas pocas frases. Generar solo los IDs seleccionados y verificar MP3, manifiesto, índice y hashes.
 
 ## Atribución
 
-Atribución: **MMS-TTS**, por Vineel Pratap et al., Meta AI, como parte del proyecto Massively Multilingual Speech. Modelo: [facebook/mms-tts-ind](https://huggingface.co/facebook/mms-tts-ind/tree/171b004ccd54f266a31efee71f1ad850c91d39c0). Licencia declarada por el repositorio del modelo: [Creative Commons Attribution-NonCommercial 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/). Los archivos de audio se generan con este modelo y se codifican a MP3/Opus. Esta nota documenta la procedencia y atribución, pero no determina si cada output constituye jurídicamente una obra derivada; la licencia del modelo no debe presentarse como garantía legal absoluta sobre todos los outputs.
+Atribución del motor/modelo: Piper, rhasspy/piper-voices, voz Indonesian id_ID-news_tts-medium. El repositorio del proyecto Piper y la ficha de la voz deben mantenerse como referencias de procedencia. La atribución no sustituye la verificación de los derechos del dataset ni determina por sí sola el estatus legal de cada salida.
 
-La licencia del motor de inferencia (Transformers/PyTorch) es independiente de la licencia del modelo; el pipeline no incorpora esos paquetes en la PWA.

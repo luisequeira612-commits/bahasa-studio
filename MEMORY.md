@@ -1,3 +1,13 @@
+## B2 U21 en rama — 22 nov 2026
+
+- U20 quedó fusionada en main mediante PR #688. B2 U1–U20 están implementadas; U1–U5 visibles, U6–U20 ocultas.
+- U21 aborda corrección contrastiva: bukan/bukannya ... melainkan/tetapi, alcance de la negación exterior/interior y contraste verbal tidak ... melainkan.
+- Fuente: Sneddon et al. (2010), *Indonesian: A Comprehensive Grammar*, 2.ª ed., §§4.83–4.84.
+- Cinco lecciones authored, 16 ejercicios, cuatro tipos (mc, translate_es_id, order, write), un nuevo ID léxico b2u21_melainkan. Seis frases completas fuente necesitan audio Piper selectivo; generación pendiente.
+- U21 permanece oculta/no publicada. U22–U60 siguen siendo propuestas del roadmap, no unidades implementadas.
+- Audio en main antes de U21: 2.261 IDs indexados, 148 textos B2; objetivo tras generar seis clips: 2.267 IDs y 154 textos B2.
+- Rama de trabajo: curriculum/b2-u21-bukan-melainkan-20261122. No se ha creado PR todavía.
+
 ## B2 U20 implementada en rama audio y PR #688 — 21 nov 2026
 - U20 desarrolla baik … maupun con cinco lecciones authored y 16 ejercicios (3/3/3/3/4), cuatro tipos (mc, order, translate_es_id, write), cinco ejemplos completos documentados y producción guiada. Cubre paralelismo sintáctico, lectura negativa «ni…ni», omisión documentada de baik y coordinación de más de dos miembros. No añade vocabulario/IDs. Cinco clips Piper (MP3/Opus) generados y verificados en el workflow 44984996460; IDs: aaea322c234f, 53ab5e861d20, 1358c0f87fdd, fb0ab6b6fbed y 36f1d5be2e3d. audio/index.json, audio/manifest.json y audio/metadata.json tienen 2.261 entradas/hashes; B2 148. La prueba de manifiesto y generación pasó. La unidad sigue oculta/no publicada. Fuente: Sneddon et al. (2010), §4.82; diseño en docs/B2_U20_DESIGN.md.
 - Se preparó la secuencia de trabajo U20–U60 en docs/B2_U20_U60_ROADMAP.md, basada en Sneddon et al. (2010), §§4.81–4.118 y capítulos 2–3. La propuesta diferencia lo ya enseñado en B1/B2 y no equivale a certificación MCER/BIPA. U21–U60 aún no están implementadas.

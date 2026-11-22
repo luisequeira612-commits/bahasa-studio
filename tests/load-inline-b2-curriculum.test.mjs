@@ -961,3 +961,36 @@ test('B2 U23 teaches bukan ... asal(kan) as a conditional correlative structure'
   assert.ok(exercises.some((exercise) => exercise.type === 'write' && exercise.answerLanguage === 'id' && exercise.hint?.trim() && exercise.modelAnswer?.trim()),
     'U23 must include guided Indonesian production');
 });
+
+
+test('B2 U24 teaches degree-result correlatives begitu/demikian/sedemikian ... sehingga/sampai', async () => {
+  const { b2 } = await loadCurricula();
+  const unit = b2.units.find((item) => item.id === 'b2_u24');
+  assert.ok(unit, 'B2 U24 must exist');
+  assert.match(unit.title, /begitu.*sehingga.*sampai/i);
+  assert.equal(unit.lessons.length, 5);
+  assert.deepEqual(unit.lessons.map((lesson) => lesson.exercises.length), [3, 3, 3, 3, 4]);
+  const exercises = allExercises(unit);
+  assert.equal(exercises.length, 16);
+  assert.deepEqual([...new Set(exercises.map((exercise) => exercise.type))].sort(),
+    ['mc', 'order', 'translate_es_id', 'write']);
+  assert.deepEqual(unit.vocab, [], 'U24 reuses grammatical material; no new lexical IDs');
+  for (const lesson of unit.lessons) {
+    assert.deepEqual(lesson.vocabIds, []);
+    assert.deepEqual(lesson.reviewVocabIds, []);
+  }
+  const translations = exercises.filter((exercise) => exercise.type === 'translate_es_id').map((exercise) => exercise.answer);
+  assert.deepEqual([...new Set(translations)], [
+    'Dia begitu gembira, sehingga dia menangis.',
+    'Harganya sedemikian mahal, sehingga tidak ada yang mau beli.',
+    'Dia demikian lelah, sampai tidak dapat berjalan lagi.',
+    'Udara sedemikian panasnya, sampai banyak orang pingsan.',
+    'Dia lari begitu cepat sehingga sangat sukar untuk memotretnya.',
+  ]);
+  assert.ok(exercises.every((exercise) => !exercise.answer || !/tanpa inventar|oración nueva/i.test(exercise.answer)),
+    'U24 should remain source-bound');
+  const ids = exercises.map((exercise) => exercise.id);
+  assert.equal(new Set(ids).size, ids.length, 'exercise IDs must be unique');
+  assert.ok(exercises.some((exercise) => exercise.type === 'write' && exercise.answerLanguage === 'id' && exercise.hint?.trim() && exercise.modelAnswer?.trim()),
+    'U24 must include guided Indonesian production');
+});

@@ -840,10 +840,10 @@ test('B2 U19 implements nominalised relative clauses and identifying focus', asy
   }
 });
 
-test('implemented B2 U1–U35 are executable while later legacy draft units stay archived', async () => {
+test('implemented B2 U1–U40 are executable while later legacy draft units stay archived', async () => {
   const { b2 } = await loadCurricula();
   const legacyArchive = await readFile(new URL('../docs/B2_LEGACY_DRAFT_ARCHIVE.md', import.meta.url), 'utf8');
-  assert.deepEqual(b2.units.map((unit) => unit.id), ['b2_u1', 'b2_u2', 'b2_u3', 'b2_u4', 'b2_u5', 'b2_u6', 'b2_u7', 'b2_u8', 'b2_u9', 'b2_u10', 'b2_u11', 'b2_u12', 'b2_u13', 'b2_u14', 'b2_u15', 'b2_u16', 'b2_u17', 'b2_u18', 'b2_u19', 'b2_u20', 'b2_u21', 'b2_u22', 'b2_u23', 'b2_u24', 'b2_u25', 'b2_u26', 'b2_u27', 'b2_u28', 'b2_u29', 'b2_u30', 'b2_u31', 'b2_u32', 'b2_u33', 'b2_u34', 'b2_u35']);
+  assert.deepEqual(b2.units.map((unit) => unit.id), ['b2_u1', 'b2_u2', 'b2_u3', 'b2_u4', 'b2_u5', 'b2_u6', 'b2_u7', 'b2_u8', 'b2_u9', 'b2_u10', 'b2_u11', 'b2_u12', 'b2_u13', 'b2_u14', 'b2_u15', 'b2_u16', 'b2_u17', 'b2_u18', 'b2_u19', 'b2_u20', 'b2_u21', 'b2_u22', 'b2_u23', 'b2_u24', 'b2_u25', 'b2_u26', 'b2_u27', 'b2_u28', 'b2_u29', 'b2_u30', 'b2_u31', 'b2_u32', 'b2_u33', 'b2_u34', 'b2_u35', 'b2_u36', 'b2_u37', 'b2_u38', 'b2_u39', 'b2_u40']);
   for (const id of ['b2_u5']) {
     assert.ok(legacyArchive.includes('"id": "' + id + '"'), id + ' must remain in the historical archive');
   }
@@ -1337,4 +1337,73 @@ test('B2 U35 implements five authored lessons, 16 source-bound contrast-linker e
   assert.ok(exercises.some((exercise) => exercise.type === 'write' && exercise.hint?.trim()
     && /reconstruye de memoria/i.test(exercise.prompt)));
   assert.ok(unit.lessons.every((lesson) => lesson.vocabIds.length === 0 && lesson.reviewVocabIds.length === 0));
+});
+
+
+
+test('B2 U36–U40 add five authored discourse units with 16 source-bound exercises each', async () => {
+  const { b2, indexSource } = await loadCurricula();
+  const cases = [
+    { id: 'b2_u36', phrases: [
+      'Gino sudah besar. Maka dia punya buku tabungan sendiri.',
+      'Tempat itu licin. Makanya kamu jatuh.',
+      'Sopir mereka, Rudy, melihat massa mendekat sambil melempari mobil yang mereka tumpangi. Walhasil, Rudy langsung tancap gas.',
+      'Suasana di kantor itu sudah tegang. Soalnya, kantor itu terus-terusan menerima ancaman melalui telepon.',
+      'Ini memang bukan air minum. Habis, dipakai untuk segala macam kebutuhan.'
+    ]},
+    { id: 'b2_u37', phrases: [
+      'Buah-buahan makanan yang sehat. Umpamanya, buah mangga dan buah semangka mengandung banyak vitamin A.'
+    ]},
+    { id: 'b2_u38', phrases: [
+      'Orang tuanya berbelanja ke Glodok. Sesudah itu, mereka pergi ke Ancol.',
+      'Tahun lalu mereka pindah ke Jakarta. Sebelumnya, mereka tinggal di Bandung.'
+    ]},
+    { id: 'b2_u39', phrases: [
+      'Gino sudah besar. Maka dia punya buku tabungan sendiri.',
+      'Keadaan memang sudah mulai aman. Akan tetapi, kita harus tetap waspada.',
+      'Buah-buahan makanan yang sehat. Umpamanya, buah mangga dan buah semangka mengandung banyak vitamin A.',
+      'Orang tuanya berbelanja ke Glodok. Sesudah itu, mereka pergi ke Ancol.'
+    ]},
+    { id: 'b2_u40', phrases: [
+      'Untung, maling dapat dihalau penjaga.',
+      'Insya Allah, mereka selamat dalam perjalanan.',
+      'Saya seharusnya berangkat tanggal dua.',
+      'Para veteran pantas berang.',
+      'Syukurlah, orang tua saya begitu luas pandangannya.',
+      'Untunglah, kini ada kebijakan baru!'
+    ]}
+  ];
+  for (const item of cases) {
+    const unit = b2.units.find((entry) => entry.id === item.id);
+    assert.ok(unit, item.id + ' must exist');
+    assert.equal(unit.lessons.length, 5, item.id + ' must have five authored lessons');
+    assert.deepEqual(unit.lessons.map((lesson) => lesson.exercises.length), [3, 3, 3, 3, 4]);
+    assert.deepEqual(unit.vocab, [], item.id + ' must not add lexical IDs');
+    const exercises = allExercises(unit);
+    assert.equal(exercises.length, 16);
+    assert.deepEqual([...new Set(exercises.map((exercise) => exercise.type))].sort(),
+      ['mc', 'order', 'translate_es_id', 'write']);
+    assert.equal(new Set(exercises.map((exercise) => exercise.id)).size, 16);
+    assert.ok(exercises.every((exercise) => exercise.type !== 'listen'));
+    const sentenceTargets = exercises.map((exercise) => {
+      if (Array.isArray(exercise.correctOrder)) return exercise.correctOrder.join(' ');
+      if (typeof exercise.modelAnswer === 'string') return exercise.modelAnswer;
+      if (typeof exercise.answer === 'string') return exercise.answer;
+      if (Number.isInteger(exercise.answer) && Array.isArray(exercise.options)) return exercise.options[exercise.answer] || '';
+      return '';
+    }).filter((target) => target.trim().split(/\s+/).filter(Boolean).length >= 2);
+    assert.ok(sentenceTargets.length >= 5, item.id + ' must practise at least five full-sentence targets');
+    assert.ok(exercises.some((exercise) => exercise.type === 'write' && exercise.answerLanguage === 'id'
+      && exercise.hint?.trim() && exercise.modelAnswer?.trim()), item.id + ' must include guided Indonesian reconstruction');
+    for (const phrase of item.phrases) {
+      assert.ok(indexSource.includes(phrase), item.id + ' must preserve source example: ' + phrase);
+      assert.ok(exercises.some((exercise) => exercise.type === 'translate_es_id' && exercise.answer === phrase)
+        || exercises.some((exercise) => exercise.type === 'translate_es_id' && phrase.includes(exercise.answer))
+        || exercises.some((exercise) => exercise.type === 'write' && exercise.modelAnswer === phrase),
+      item.id + ' must use source material in translation or guided reconstruction: ' + phrase);
+    }
+    assert.ok(exercises.some((exercise) => exercise.type === 'write' && exercise.hint?.trim() && exercise.modelAnswer?.trim()),
+      item.id + ' must include guided production');
+    assert.ok(unit.lessons.every((lesson) => lesson.vocabIds.length === 0 && lesson.reviewVocabIds.length === 0));
+  }
 });

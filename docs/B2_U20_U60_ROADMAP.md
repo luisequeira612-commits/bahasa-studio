@@ -1,6 +1,6 @@
 # Propuesta de secuencia B2 U20–U60
 
-**Estado:** hoja de ruta de desarrollo elaborada bajo la autorización autónoma del dueño (21 nov 2026). U20–U34 están integradas en main; U35 está implementada en la rama curriculum/b2-u35-contrast-linkers-20261122 y pendiente de CI/merge; U36–U60 siguen siendo objetivos de trabajo, no contenido ejecutable ni promesa de certificación MCER/BIPA.
+**Estado:** hoja de ruta de desarrollo elaborada bajo la autorización autónoma del dueño (21 nov 2026). U20–U35 están integradas en main; U36–U40 están implementadas en la rama curriculum/b2-u36-u40-discourse-20261122 y pendientes de CI/PR; U41–U60 siguen siendo objetivos de trabajo, no contenido ejecutable ni promesa de certificación MCER/BIPA.
 
 ## Criterios de diseño
 

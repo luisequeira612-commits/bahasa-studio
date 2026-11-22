@@ -1,6 +1,6 @@
 # Propuesta de secuencia B2 U20–U60
 
-**Estado:** hoja de ruta de desarrollo elaborada bajo la autorización autónoma del dueño (21 nov 2026). U1–U34 están implementadas en main; U35–U60 siguen siendo objetivos de trabajo, no contenido ejecutable ni promesa de certificación MCER/BIPA.
+**Estado:** hoja de ruta de desarrollo elaborada bajo la autorización autónoma del dueño (21 nov 2026). U20–U33 están implementadas en main; U34 está implementada en la rama curriculum/b2-u34-adicion-entre-oraciones-20261122 y pendiente de CI/merge; U35–U60 siguen siendo objetivos de trabajo, no contenido ejecutable ni promesa de certificación MCER/BIPA.
 
 ## Criterios de diseño
 
@@ -109,3 +109,8 @@ U20 desarrolla **baik … maupun** a partir de los ejemplos documentados en Sned
 ## U33 implementada en rama — 22 nov 2026
 
 U33 desarrolla la correlación escalar `jangankan … pun` según Sneddon et al. (2010), §4.97. Usa los tres ejemplos documentados de la sección, con cinco lecciones authored y 16 ejercicios (3/3/3/3/4) en cuatro tipos. No añade vocabulario/IDs ni audio; permanece oculta/no publicada. El diseño y las pruebas source-bound están en `docs/B2_U33_DESIGN.md`. La estructura y la correspondencia con la fuente no equivalen a validación nativa ni certificación MCER/BIPA.
+
+
+## U34 implementada en rama — 22 nov 2026
+
+U34 desarrolla conectores de adición entre oraciones según Sneddon et al. (2010), §4.99. Distingue además/continuación/refuerzo para selain itu, di samping itu, kecuali itu, lagi pula, juga, selanjutnya, bahkan, apalagi y malah/malahan. Usa los tres ejemplos documentados de la sección, cinco lecciones authored y 16 ejercicios (3/3/3/3/4), cuatro tipos. Sin vocabulario/IDs nuevos ni audio; permanece oculta/no publicada. Diseño: `docs/B2_U34_DESIGN.md`. Pendiente CI y PR; no equivale a validación nativa ni certificación MCER/BIPA.

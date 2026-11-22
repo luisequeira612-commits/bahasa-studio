@@ -1,6 +1,6 @@
 # Propuesta de secuencia B2 U20–U60
 
-**Estado:** hoja de ruta de desarrollo elaborada bajo la autorización autónoma del dueño (21 nov 2026). U20 y U21 están implementadas en main; U22 está implementada en la rama curriculum/b2-u22-bukan-hanya-20261122; U23 está implementada en la rama curriculum/b2-u23-bukan-asalkan-20261122; U24 está implementada en la rama curriculum/b2-u24-begitu-sehingga-20261122; U25–U60 siguen siendo objetivos de trabajo, no contenido ejecutable ni promesa de certificación MCER/BIPA.
+**Estado:** hoja de ruta de desarrollo elaborada bajo la autorización autónoma del dueño (21 nov 2026). U20 y U21 están implementadas en main; U22 está implementada en la rama curriculum/b2-u22-bukan-hanya-20261122; U23 está implementada en la rama curriculum/b2-u23-bukan-asalkan-20261122; U24 está implementada en la rama curriculum/b2-u24-begitu-sehingga-20261122; U25 está implementada en la rama curriculum/b2-u25-begitu-segera-20261122; U26–U60 siguen siendo objetivos de trabajo, no contenido ejecutable ni promesa de certificación MCER/BIPA.
 
 ## Criterios de diseño
 
@@ -59,6 +59,10 @@
 ## U24 implementada en rama
 
 U24 desarrolla la correlación de grado y consecuencia documentada en Sneddon et al. (2010), §4.88. Incluye `begitu`, `demikian`, `sedemikian`, `sehingga` y `sampai`, además del uso de `-nya` con sedemikian y la variante con adverbio de manera. Los ejemplos indonesios son los documentados por la fuente; no se inventan oraciones para rellenar ejercicios. El diseño detallado está en docs/B2_U24_DESIGN.md.
+
+## U25 implementada en rama
+
+U25 desarrolla la correlación temporal de §4.89 con **begitu** como introductor de la primera cláusula y una segunda acción inmediatamente posterior. Se usan los dos ejemplos documentados por Sneddon et al. (2010): «Begitu timbul penyakit baru, segera juga ditemukan obatnya» y «Begitu musim hujan tiba, jalan itu tertutup air». La unidad contrasta explícitamente este uso temporal con el begitu de grado–resultado de U24 (§4.88), no añade vocabulario ni IDs léxicos y permanece oculta/no publicada. El diseño detallado está en docs/B2_U25_DESIGN.md.
 
 ## U23 implementada en rama
 

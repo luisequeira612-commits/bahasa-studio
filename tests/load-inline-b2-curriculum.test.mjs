@@ -153,7 +153,7 @@ test('B2 keeps its development gate while implemented U1 unlocks sequentially af
   assert.notEqual(learningLevels, -1);
   const learningSource = indexSource.slice(learningLevels, learningLevels + 650);
   assert.ok(learningSource.includes("level.id !== 'B2'"), 'non-B2 learning levels remain available');
-  assert.ok(learningSource.includes("unit.id === 'b2_u1' || unit.id === 'b2_u2' || unit.id === 'b2_u3' || unit.id === 'b2_u4' || unit.id === 'b2_u5'"),
+  assert.ok(learningSource.includes("/^b2_u(?:[1-9]|[1-3]\\d|4[0-5])$/.test(unit.id)"),
     'only implemented B2 U1–U45 may enter learning and review collections');
   assert.ok(learningSource.includes("level.id !== 'A2' || A2_RELEASE_ENABLED"),
     'the existing A2 release condition remains intact');
@@ -164,7 +164,7 @@ test('B2 keeps its development gate while implemented U1 unlocks sequentially af
   const route = indexSource.slice(routeStart, routeEnd);
   const visibleUnitsStart = indexSource.indexOf('getVisibleLearningUnits(level) {');
   assert.notEqual(visibleUnitsStart, -1);
-  assert.ok(indexSource.slice(visibleUnitsStart, visibleUnitsStart + 250).includes("level.units.slice(0, 5)"),
+  assert.ok(indexSource.slice(visibleUnitsStart, visibleUnitsStart + 250).includes("level.units.slice(0, 45)"),
     'the route exposes only implemented B2 U1–U45');
   assert.ok(route.includes('unit-path-coming-soon'));
   assert.ok(route.includes('Las demás unidades B2 todavía no están implementadas'));
@@ -172,7 +172,7 @@ test('B2 keeps its development gate while implemented U1 unlocks sequentially af
     'B2 path visibility must not depend on the old hidden route gate');
 });
 
-test('tap translation fallback includes only implemented B2 U1/U2/U3/U4/U5 authored exercises', async () => {
+test('tap translation fallback includes only implemented B2 U1–U45 authored exercises', async () => {
   const { indexSource } = await loadCurricula();
   const fallbackStart = indexSource.indexOf('// Existing authored translation exercises are a fallback source');
   assert.notEqual(fallbackStart, -1, 'tap translation fallback must remain present');
@@ -180,7 +180,7 @@ test('tap translation fallback includes only implemented B2 U1/U2/U3/U4/U5 autho
   const unitLoop = indexSource.indexOf('for (const unit of level.units || []) {', levelLoop);
   assert.ok(levelLoop > fallbackStart && unitLoop > levelLoop, 'fallback must iterate authored levels and units');
   const fallbackSource = indexSource.slice(unitLoop, unitLoop + 260);
-  assert.ok(fallbackSource.includes("level.id === 'B2' && !['b2_u1', 'b2_u2', 'b2_u3', 'b2_u4', 'b2_u5'].includes(unit.id)"),
+  assert.ok(fallbackSource.includes("level.id === 'B2' && !/^b2_u(?:[1-9]|[1-3]\\d|4[0-5])$/.test(unit.id)"),
     'only implemented B2 U1–U45 translation exercises may be used; future B2 units remain excluded');
 });
 
@@ -860,7 +860,7 @@ test('tutor prompt infers B2 only from completed implemented U1/U2/U3/U4/U5', as
   const promptStart = indexSource.indexOf('async buildPrompt(topic) {');
   assert.notEqual(promptStart, -1, 'tutor prompt builder must remain present');
   const promptSource = indexSource.slice(promptStart, promptStart + 950);
-  assert.ok(promptSource.includes("(l.id !== 'B2' || u.id === 'b2_u1' || u.id === 'b2_u2' || u.id === 'b2_u3' || u.id === 'b2_u4' || u.id === 'b2_u5')"),
+  assert.ok(promptSource.includes("(l.id !== 'B2' || /^b2_u(?:[1-9]|[1-3]\\d|4[0-5])$/.test(u.id))"),
     'only implemented B2 U1/U2/U3/U4/U5 may affect the inferred tutor level');
   assert.ok(promptSource.includes('App.completedUnits.includes(u.id)'),
     'the tutor level still depends on saved unit completion');

@@ -1,6 +1,6 @@
 # Propuesta de secuencia B2 U20–U60
 
-**Estado:** hoja de ruta de desarrollo elaborada bajo la autorización autónoma del dueño (21 nov 2026). U20–U35 están integradas en main; U36–U40 están implementadas en la rama curriculum/b2-u36-u40-discourse-20261122 y pendientes de CI/PR; U41–U60 siguen siendo objetivos de trabajo, no contenido ejecutable ni promesa de certificación MCER/BIPA.
+**Estado:** hoja de ruta de desarrollo elaborada bajo la autorización autónoma del dueño (21 nov 2026). U20–U40 están integradas en main; U41–U45 están implementadas en la rama curriculum/b2-u41-u45-stance-ellipsis-20261122 y pendientes de CI/PR; U46–U60 siguen siendo objetivos de trabajo, no contenido ejecutable ni promesa de certificación MCER/BIPA.
 
 ## Criterios de diseño
 
@@ -121,3 +121,16 @@ U34 desarrolla conectores de adición entre oraciones según Sneddon et al. (201
 U35 desarrolla los conectores de contraste entre oraciones de Sneddon et al. (2010), §§4.98–4.100. Enseña namun/namun demikian, biarpun/walaupun/meskipun demikian/begitu, tetapi/akan tetapi, sebaliknya, malah/malahan/bahkan en lectura contrastiva y bagaimanapun (juga). Distingue los sentence linkers de la coordinación dentro de una oración; compara los usos contrastivos de malah/malahan/bahkan con sus usos aditivos de U34 y evita repetir la correlativa concesiva de U27 y el bagaimanapun + adjetivo + -nya de U29.
 
 La unidad usa únicamente ejemplos documentados en la fuente. Tiene cinco lecciones authored, 16 ejercicios (3/3/3/3/4), cuatro tipos (mc, translate_es_id, order, write), cero vocabulario/IDs nuevos y ningún audio. Permanece oculta/no publicada. Diseño: docs/B2_U35_DESIGN.md. Fuente y pruebas estructurales no equivalen a validación nativa ni certificación MCER/BIPA.
+
+
+## U41–U45 implementadas en rama — 22 nov 2026
+
+- U41: adjuntos de probabilidad y veracidad (§4.107); U42: adjuntos de reporte y atribución (§4.108); U43: elipsis de sujeto humano (§4.112); U44: elipsis de sujetos no humanos (§4.113); U45: retención de componentes del sintagma nominal (§4.114).
+- Cada unidad tiene cinco lecciones authored y 16 ejercicios (3/3/3/3/4), cuatro tipos (mc, translate_es_id, order, write), sin vocabulario/IDs nuevos ni audio. Se reutilizan ejemplos documentados de Sneddon et al. (2010); las tareas de producción y análisis se mantienen en español para no inventar frases indonesias.
+- Diseño detallado: docs/B2_U41_DESIGN.md a docs/B2_U45_DESIGN.md. Rama curriculum/b2-u41-u45-stance-ellipsis-20261122. U41–U45 permanecen ocultas/no publicadas.
+- No modifica A1/A2/B1, IndexedDB v1, backup JSON v3, biblioteca Piper ni dependencias. Implementación y pruebas estructurales no equivalen a validación nativa ni certificación MCER/BIPA.
+
+
+## Acceso real de U1–U45 en PR #705 — 22 nov 2026
+
+Se ampliaron los filtros del selector y ruta de aprendizaje, el progreso visible, el vocabulario que recibe el tutor, la inferencia de nivel del tutor y el fallback de traducción contextual para incluir las unidades B2 implementadas U1–U45. Los IDs futuros U46–U60 continúan fuera de esas superficies. El primer CI había detectado límites obsoletos U1–U5 y un baseline U1–U40; ambos contratos se actualizaron. CI del último commit aún pendiente. La puerta de desbloqueo entre unidades sigue secuencial; U41–U45 no se publican antes de la aprobación normal.

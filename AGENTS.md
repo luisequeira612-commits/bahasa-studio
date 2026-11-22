@@ -139,4 +139,6 @@ Reglas:
 
 ## B2: filtros de unidades implementadas — 22 nov 2026
 - Cuando se amplíe el currículo B2, actualizar conjuntamente los filtros de aprendizaje, progreso, vocabulario y prompt del tutor, traducción contextual y pruebas de inventario. No dejar límites antiguos U1–U5 ni baselines fijos U1–U40.
-- En PR #705 los filtros se ampliaron a U1–U45; U46–U60 permanecen excluidas hasta su implementación. Mantener el desbloqueo secuencial y la puerta de publicación.
+- En PR #705 los filtros se ampliaron a U1–U45; en la rama curriculum/b2-u46-u50-ellipsis-integration-20261122 se amplían a U1–U50. U51–U60 permanecen excluidas hasta su implementación. Mantener el desbloqueo secuencial y la puerta de publicación.
+
+- En el lote U46–U50 se actualiza el inventario de 50 unidades y los filtros a U1–U50. Toda ampliación futura debe actualizar también las pruebas de progresión multi-lección y mantener fuera las unidades todavía no implementadas.

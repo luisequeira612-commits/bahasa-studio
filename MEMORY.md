@@ -3,13 +3,14 @@
 - U33 desarrolla la correlación escalar `jangankan … pun` según Sneddon et al. (2010), §4.97. `jangankan` introduce el primer miembro y `pun` marca el segundo, al que también se aplica la predicación; la lectura escalar depende del contexto.
 - Usa únicamente los tres ejemplos documentados en §4.97. Cinco lecciones authored, 16 ejercicios (3/3/3/3/4), cuatro tipos (mc, translate_es_id, order, write). Sin vocabulario/IDs nuevos ni audio. U33 permanece oculta/no publicada.
 - Diseño: `docs/B2_U33_DESIGN.md`; roadmap, AGENTS.md, MEMORY.md, inventario y tests de progresión actualizados. No modifica IndexedDB v1, backup JSON v3 ni dependencias.
-- Rama: `curriculum/b2-u33-jangankan-pun-20261122`. Pendiente CI completo y revisión. La fuente y las pruebas estructurales no equivalen a validación nativa ni certificación MCER/BIPA.
+- PR #700 fusionada en `main` el 22 nov 2026 (commit `7e95ab15131b86e9829b57159a7e633a44c2913d`): B2 U32 integrada; CI del head `97a858172b870832bad0c73a3b4a92a85a69318f` (run `45052156811`) completó `test` y `Offline quality reports` con éxito. La prueba de U28 se ajustó para leer `modelAnswer` además de `answer`, sin cambiar el contenido de la unidad.
+- Rama U33 integrada con `main` mediante commit de dos padres `2d1e0d0c5dae172df80c6ffd6bb2ece90039a5d7`; la comparación contra `main` deja solo los ocho archivos propios de U33 y documentación/tests asociados. PR #701 pendiente de CI. La fuente y las pruebas estructurales no equivalen a validación nativa ni certificación MCER/BIPA.
 
 ## B2 U32 implementada en rama — 22 nov 2026
 
 - U32 desarrolla `kalau/apabila … maka` según Sneddon et al. (2010), §4.96. Los dos conectores condicionales introducen la cláusula de condición; `maka` introduce la cláusula que expresa la consecuencia. Se evita repetir las condiciones básicas de B1 U18.
 - Usa únicamente los dos ejemplos documentados de §4.96. Cinco lecciones authored, 16 ejercicios (3/3/3/3/4), cuatro tipos (mc, translate_es_id, order, write). Sin vocabulario/IDs nuevos ni audio. U32 permanece oculta/no publicada.
-- Diseño: `docs/B2_U32_DESIGN.md`; rama `curriculum/b2-u32-kalau-maka-20261122`. Se corrigió una llave duplicada en el bloque de U28 antes de U29; commit correctivo `4862fa2170a789b22679bd4ed2fbc42a22bd6dfa`. Pendiente de CI/revisión y posterior integración después de U23–U31.
+- Diseño: `docs/B2_U32_DESIGN.md`; rama `curriculum/b2-u32-kalau-maka-20261122`. Se corrigió una llave duplicada en el bloque de U28 antes de U29; commit correctivo `4862fa2170a789b22679bd4ed2fbc42a22bd6dfa`. PR #700 fusionada en `main` (commit `7e95ab15131b86e9829b57159a7e633a44c2913d`); CI completo verde en run `45052156811`.
 - Fuente y pruebas estructurales no equivalen a validación nativa ni certificación MCER/BIPA. No modifica IndexedDB v1, backup JSON v3 ni dependencias.
 
 ## B2 U31 implementada en rama — 22 nov 2026

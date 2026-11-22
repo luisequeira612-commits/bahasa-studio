@@ -1,3 +1,7 @@
+## Correcciones de CI — 22 nov 2026
+
+- CI correction (22 nov 2026): el ejercicio de escritura de B2 U28 pide ahora reconstruir «un ejemplo documentado» en singular, como exige la prueba source-bound; no añade oraciones ni vocabulario.
+
 ## B2 U28 implementada en rama — 22 nov 2026
 
 - U28 desarrolla la preferencia de Sneddon et al. (2010), §4.92: **lebih baik/sebaiknya ... daripada**. Cinco lecciones authored, 16 ejercicios ([3,3,3,3,4]), cuatro tipos (mc, translate_es_id, order, write), sin vocabulario/IDs nuevos.

@@ -1,6 +1,6 @@
 # B2 U17 — Discurso referido y preguntas indirectas
 
-**Estado:** cinco lecciones authored, 16 ejercicios, dos IDs nuevos. U17 permanece oculta/no publicada. El audio Piper está solicitado, pero todavía no se ha generado; por eso no hay ejercicios de escucha.
+**Estado:** cinco lecciones authored, 16 ejercicios, dos IDs nuevos. U17 permanece oculta/no publicada. Se generaron seis clips Piper de producción en MP3 y Opus; no hay ejercicios de escucha porque el audio se usa como apoyo de pronunciación.
 
 ## Objetivos
 
@@ -33,8 +33,9 @@ Vocabulario nuevo: `b2u17_bahwa` y `b2u17_apakah`. Se reutilizan verbos y vocabu
 ## Verificación y límites
 
 - Pruebas: cinco lecciones, 16 ejercicios en distribución 3/3/3/3/4, cinco tipos (`mc`, `fill`, `order`, `translate_es_id`, `write`), IDs globalmente únicos, referencias de vocabulario válidas y al menos cinco respuestas objetivo en frases completas.
-- No hay ejercicios `listen` hasta que existan grabaciones Piper.
-- Solicitud final de audio: `docs/audio-requests/B2_U17_retry.json` (seis textos: dos formas y cuatro ejemplos). `docs/audio-requests/B2_U17.json` conserva la solicitud inicial como registro. Voz solicitada: `id_ID-news_tts-medium`.
+- Seis clips Piper de producción (MP3 y Opus): `bahwa`, `apakah` y cuatro ejemplos completos. IDs: `7e1e2b1aa5a2`, `3949453b1c17`, `e3a330100635`, `e6d6199706c5`, `0ce903146758` y `6cc4f8359add`.
+- Biblioteca resultante: 2.241 IDs indexados, 127 textos B2; voz `id_ID-news_tts-medium`. No hay ejercicios `listen`; las grabaciones se usan como apoyo de pronunciación.
+- Solicitud final: `docs/audio-requests/B2_U17_retry.json`; `docs/audio-requests/B2_U17.json` conserva la solicitud inicial como registro.
 - Las dos entradas quedan `not_checked`: la evidencia gramatical respalda el diseño, pero no equivale a validación de forma/glosa por hablante nativo ni a certificación MCER/BIPA.
 - U17 permanece oculta/no publicada. No modificar A1/A2/B1, IndexedDB v1, backup JSON v3 ni dependencias.
 

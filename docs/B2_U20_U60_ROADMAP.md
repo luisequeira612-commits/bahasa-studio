@@ -1,6 +1,6 @@
 # Propuesta de secuencia B2 U20–U60
 
-**Estado:** hoja de ruta de desarrollo elaborada bajo la autorización autónoma del dueño (21 nov 2026). U20 y U21 están implementadas en main; U22 está implementada en la rama curriculum/b2-u22-bukan-hanya-20261122; U23 está implementada en la rama curriculum/b2-u23-bukan-asalkan-20261122; U24 está implementada en la rama curriculum/b2-u24-begitu-sehingga-20261122; U25 está implementada en la rama curriculum/b2-u25-begitu-segera-20261122; U26 está implementada en la rama curriculum/b2-u26-makin-semakin-20261122; U27 está implementada en la rama curriculum/b2-u27-meskipun-namun-20261122; U28 está implementada en la rama curriculum/b2-u28-lebih-baik-daripada-20261122; U29 está implementada en la rama curriculum/b2-u29-bagaimanapun-betapapun-20261122; U30 está implementada en la rama curriculum/b2-u30-baru-not-until-20261122; U31–U60 siguen siendo objetivos de trabajo, no contenido ejecutable ni promesa de certificación MCER/BIPA.
+**Estado:** hoja de ruta de desarrollo elaborada bajo la autorización autónoma del dueño (21 nov 2026). U20 y U21 están implementadas en main; U22 está implementada en la rama curriculum/b2-u22-bukan-hanya-20261122; U23 está implementada en la rama curriculum/b2-u23-bukan-asalkan-20261122; U24 está implementada en la rama curriculum/b2-u24-begitu-sehingga-20261122; U25 está implementada en la rama curriculum/b2-u25-begitu-segera-20261122; U26 está implementada en la rama curriculum/b2-u26-makin-semakin-20261122; U27 está implementada en la rama curriculum/b2-u27-meskipun-namun-20261122; U28 está implementada en la rama curriculum/b2-u28-lebih-baik-daripada-20261122; U29 está implementada en la rama curriculum/b2-u29-bagaimanapun-betapapun-20261122; U30 está implementada en la rama curriculum/b2-u30-baru-not-until-20261122; U31 está implementada en la rama curriculum/b2-u31-entah-entah-20261122; U32–U60 siguen siendo objetivos de trabajo, no contenido ejecutable ni promesa de certificación MCER/BIPA.
 
 ## Criterios de diseño
 
@@ -59,6 +59,10 @@
 ## U24 implementada en rama
 
 U24 desarrolla la correlación de grado y consecuencia documentada en Sneddon et al. (2010), §4.88. Incluye `begitu`, `demikian`, `sedemikian`, `sehingga` y `sampai`, además del uso de `-nya` con sedemikian y la variante con adverbio de manera. Los ejemplos indonesios son los documentados por la fuente; no se inventan oraciones para rellenar ejercicios. El diseño detallado está en docs/B2_U24_DESIGN.md.
+
+## U31 implementada en rama
+
+U31 desarrolla **entah … entah** según Sneddon et al. (2010), §4.95. Usa únicamente tres ejemplos documentados: «Entah dia bodoh entah malas, dia tidak pernah menyelesaikan pekerjaannya», «Entah disetujui entah tidak, dia tetap akan mengusulkan gagasannya» y el ejemplo largo sobre las posibles causas de que no se encuentren monos muertos. Cubre alternativas no resueltas, elipsis de elementos compartidos y la posibilidad de colocar primero la cláusula de resultado. Cinco lecciones authored, 16 ejercicios, cuatro tipos, sin vocabulario/IDs nuevos; oculta/no publicada. Diseño: docs/B2_U31_DESIGN.md.
 
 ## U30 implementada en rama
 

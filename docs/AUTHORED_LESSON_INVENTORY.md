@@ -11,7 +11,7 @@
 | A1 | 32 | 165 | 27 con 5; 5 con 6 | 0 |
 | A2 | 40 | 200 | 40 con 5 | 0 |
 | B1 | 50 | 250 | 50 con 5 | 0 |
-| B2 | 17 | 85 | 17 con 5 | 0 |
+| B2 | 18 | 90 | 18 con 5 | 0 |
 | **Total implementado** | **129** | **650** | — | **0** |
 
 Todas las unidades implementadas cumplen actualmente el estándar de cinco o seis lecciones explícitas. No quedan unidades implementadas por debajo del mínimo ni por encima del máximo.

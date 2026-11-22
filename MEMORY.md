@@ -1,3 +1,13 @@
+## B2 U19 implementada y audio Piper generado — 22 nov 2026
+- U19 tiene cinco lecciones authored y 16 ejercicios ([3,3,3,3,4]) sobre relativas nominalizadas con `yang`, omisión del nombre antecedente, funciones de sujeto/objeto/predicado, voz pasiva, cláusulas identificativas, foco y negación.
+- Cinco ejercicios `listen` emparejados con cinco objetivos de traducción de frases completas; cinco tipos de ejercicio: mc, fill, listen, translate_es_id y write. Reutiliza `yang`, `bukan`, `tidak` y `-lah`; `vocab: []`, cero IDs léxicos nuevos.
+- Cinco textos Piper de producción en MP3 y Opus; voz `id_ID-news_tts-medium`. IDs de audio: `01bc30ebf218`, `534cd801f050`, `7793f3b10fea`, `8e29a146a860` y `e0948e008caf`. Correspondencias: `Yang dibangun Pak Dani tidak begitu besar.`, `Yang itu teman saya.`, `Bukan saya yang selalu terlambat.`, `Hadi yang berangkat tadi.`, `Andi memilih yang besar.`.
+- Biblioteca resultante: 2.256 IDs indexados y 143 textos asociados a B2. Manifiesto, índice, metadata, huellas y Service Worker sincronizados.
+- B1 U15–U17 ya cubren relativas básicas con nombre expreso; U19 no repite esa base ni la construcción verbal con `-nya` de B2 U9.
+- Fuente: Sneddon, Adelaar, Djenar & Ewing (2010), *Indonesian: A Comprehensive Grammar*, 2.ª ed., §§3.92–3.94, 3.131–3.135 y 4.114. La fuente gramatical no equivale a validación nativa ni certificación MCER/BIPA.
+- U19 permanece oculta/no publicada. No modifica IndexedDB v1, backup JSON v3 ni dependencias.
+- Fuente de implementación: PR #686, rama `curriculum/b2-u19-nominalised-relatives-20261122`, `docs/B2_U19_DESIGN.md` y `docs/audio-requests/B2_U19.json`.
+
 ## B2 U18 implementada y audio Piper generado — 22 nov 2026
 - U18 incorpora cinco lecciones authored y 16 ejercicios ([3,3,3,3,4]) sobre complementos de intención: órdenes, peticiones, presión y advertencias; sujeto compartido/omitido, pasiva, negación y contraste estructural entre `supaya/agar` y `untuk`. Seis tipos de ejercicio; cinco ejercicios `listen`.
 - Cuatro IDs canónicos nuevos: `b2u18_menyuruh`, `b2u18_memerintahkan`, `b2u18_mendesak` y `b2u18_minta`. Reutiliza `b1u5_mengingatkan` sin duplicar el ID. Se corrigió la prueba para conservar como oración completa el ejemplo fuente `Saya menyuruhmu supaya kamu membaca buku itu.`; U18 incluye al menos cinco objetivos de respuesta en frases completas.

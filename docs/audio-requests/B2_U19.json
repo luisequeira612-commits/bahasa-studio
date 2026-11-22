@@ -1,0 +1,15 @@
+{
+  "unit": "b2_u19",
+  "level": "B2",
+  "engine": "piper",
+  "voice": "id_ID-news_tts-medium",
+  "purpose": "Retry selected Piper generation after the dispatcher request-file detection check; generate five source-backed U19 sentence targets in MP3 and Opus.",
+  "texts": [
+    "Yang itu teman saya.",
+    "Andi memilih yang besar.",
+    "Yang dibangun Pak Dani tidak begitu besar.",
+    "Hadi yang berangkat tadi.",
+    "Bukan saya yang selalu terlambat."
+  ],
+  "requestVersion": 2
+}

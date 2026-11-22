@@ -39206,6 +39206,11 @@
         "level": "B2",
         "unit": "b2_u18",
         "kind": "example"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u18",
+        "kind": "translate-answer"
       }
     ]
   },
@@ -39351,6 +39356,131 @@
         "level": "B2",
         "unit": "b2_u18",
         "kind": "listen-audioText"
+      }
+    ]
+  },
+  {
+    "id": "534cd801f050",
+    "text": "Yang itu teman saya.",
+    "normalized": "yang itu teman saya.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u19",
+        "kind": "translate-answer"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u19",
+        "kind": "listen-audioText"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u19",
+        "kind": "listen-answer"
+      }
+    ]
+  },
+  {
+    "id": "e0948e008caf",
+    "text": "Andi memilih yang besar.",
+    "normalized": "andi memilih yang besar.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u19",
+        "kind": "listen-audioText"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u19",
+        "kind": "listen-answer"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u19",
+        "kind": "translate-answer"
+      }
+    ]
+  },
+  {
+    "id": "01bc30ebf218",
+    "text": "Yang dibangun Pak Dani tidak begitu besar.",
+    "normalized": "yang dibangun pak dani tidak begitu besar.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u19",
+        "kind": "listen-audioText"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u19",
+        "kind": "listen-answer"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u19",
+        "kind": "translate-answer"
+      }
+    ]
+  },
+  {
+    "id": "8e29a146a860",
+    "text": "Hadi yang berangkat tadi.",
+    "normalized": "hadi yang berangkat tadi.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u19",
+        "kind": "listen-audioText"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u19",
+        "kind": "listen-answer"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u19",
+        "kind": "translate-answer"
+      }
+    ]
+  },
+  {
+    "id": "7793f3b10fea",
+    "text": "Bukan saya yang selalu terlambat.",
+    "normalized": "bukan saya yang selalu terlambat.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u19",
+        "kind": "translate-answer"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u19",
+        "kind": "listen-audioText"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u19",
+        "kind": "listen-answer"
       }
     ]
   },

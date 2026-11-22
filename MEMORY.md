@@ -1,7 +1,7 @@
 ## B2 U17 implementada — 22 nov 2026
 - U17 añade cinco lecciones authored y 16 ejercicios ([3,3,3,3,4]) sobre discurso referido: declaraciones con `bahwa`, preguntas indirectas de sí/no con `apakah/apa` y preguntas de información con palabras interrogativas integradas.
 - Dos IDs nuevos y globalmente únicos: `b2u17_bahwa` y `b2u17_apakah`. Se reutilizan los verbos y vocabulario de B1 (p. ej., mengakui, percaya, tahu); no se duplican IDs. Los ejemplos indonesios se toman de Sneddon et al. (2010), §§3.111 y 4.28–4.30; Sneddon (2000), cap. Questions; y DLI Indonesian SOLT I, Module 6 Lesson 6.
-- No se añaden ejercicios `listen`: falta generar audio Piper para las dos formas y cuatro ejemplos; solicitud en `docs/audio-requests/B2_U17.json`. Las dos entradas quedan `not_checked`; evidencia gramatical no equivale a validación nativa ni certificación MCER/BIPA.
+- No se añaden ejercicios `listen`: falta generar audio Piper para las dos formas y cuatro ejemplos; solicitud final en `docs/audio-requests/B2_U17_retry.json`. Las dos entradas quedan `not_checked`; evidencia gramatical no equivale a validación nativa ni certificación MCER/BIPA.
 - U17 permanece oculta/no publicada; U1–U5 siguen visibles. Sin cambios a A1/A2/B1, IndexedDB v1, backup JSON v3 ni dependencias. La biblioteca Piper sigue en 2.235 IDs y 121 textos B2 hasta incorporar el lote de U17.
 - Autorización autónoma del dueño, 21 nov 2026: continuar B2 por lotes sin pedir aprobación individual por unidad o palabra; no habilita publicar U6–U60.
 - Fuente: PR de implementación B2 U17, `docs/B2_U17_DESIGN.md`, `docs/audio-requests/B2_U17.json`; Sneddon et al. (2010), Sneddon (2000), DLI SOLT I.

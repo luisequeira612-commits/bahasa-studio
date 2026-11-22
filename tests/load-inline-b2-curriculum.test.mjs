@@ -839,10 +839,10 @@ test('B2 U19 implements nominalised relative clauses and identifying focus', asy
   }
 });
 
-test('implemented B2 U1–U23 are executable while later legacy draft units stay archived', async () => {
+test('implemented B2 U1–U31 are executable while later legacy draft units stay archived', async () => {
   const { b2 } = await loadCurricula();
   const legacyArchive = await readFile(new URL('../docs/B2_LEGACY_DRAFT_ARCHIVE.md', import.meta.url), 'utf8');
-  assert.deepEqual(b2.units.map((unit) => unit.id), ['b2_u1', 'b2_u2', 'b2_u3', 'b2_u4', 'b2_u5', 'b2_u6', 'b2_u7', 'b2_u8', 'b2_u9', 'b2_u10', 'b2_u11', 'b2_u12', 'b2_u13', 'b2_u14', 'b2_u15', 'b2_u16', 'b2_u17', 'b2_u18', 'b2_u19', 'b2_u20', 'b2_u21', 'b2_u22', 'b2_u23', 'b2_u24']);
+  assert.deepEqual(b2.units.map((unit) => unit.id), ['b2_u1', 'b2_u2', 'b2_u3', 'b2_u4', 'b2_u5', 'b2_u6', 'b2_u7', 'b2_u8', 'b2_u9', 'b2_u10', 'b2_u11', 'b2_u12', 'b2_u13', 'b2_u14', 'b2_u15', 'b2_u16', 'b2_u17', 'b2_u18', 'b2_u19', 'b2_u20', 'b2_u21', 'b2_u22', 'b2_u23', 'b2_u24', 'b2_u25', 'b2_u26', 'b2_u27', 'b2_u28', 'b2_u29', 'b2_u30', 'b2_u31']);
   for (const id of ['b2_u5']) {
     assert.ok(legacyArchive.includes('"id": "' + id + '"'), id + ' must remain in the historical archive');
   }
@@ -1173,4 +1173,33 @@ test('B2 U26 teaches proportional makin/semakin ... makin/semakin and time-progr
     'U26 must include guided source-bound Indonesian production');
   const ids = exercises.map((exercise) => exercise.id);
   assert.equal(new Set(ids).size, ids.length, 'exercise IDs must be unique');
+});
+
+test('B2 U31 teaches source-bound entah ... entah alternatives and ellipsis', async () => {
+  const { b2, indexSource } = await loadCurricula();
+  const unit = b2.units.find((item) => item.id === 'b2_u31');
+  assert.ok(unit, 'B2 U31 must exist');
+  assert.match(unit.title, /entah/i);
+  assert.equal(unit.lessons.length, 5);
+  assert.deepEqual(unit.lessons.map((lesson) => lesson.exercises.length), [3, 3, 3, 3, 4]);
+  assert.deepEqual(unit.vocab, []);
+  for (const lesson of unit.lessons) {
+    assert.deepEqual(lesson.vocabIds, []);
+    assert.deepEqual(lesson.reviewVocabIds, []);
+  }
+  const exercises = allExercises(unit);
+  assert.equal(exercises.length, 16);
+  assert.deepEqual([...new Set(exercises.map((exercise) => exercise.type))].sort(),
+    ['mc', 'order', 'translate_es_id', 'write']);
+  for (const phrase of [
+    'Entah dia bodoh entah malas, dia tidak pernah menyelesaikan pekerjaannya.',
+    'Entah disetujui entah tidak, dia tetap akan mengusulkan gagasannya.',
+    'Kalau mati secara alami biasanya monyet ini tidak ditemukan, entah dikubur oleh monyet lainnya, entah kebiasaan monyet itu menyembunyikan diri sebelum mati.',
+  ]) assert.ok(indexSource.includes(phrase), phrase + ' must remain source-bound');
+  const answers = exercises.filter((exercise) => exercise.type === 'translate_es_id').map((exercise) => exercise.answer);
+  assert.ok(answers.includes('Entah dia bodoh entah malas, dia tidak pernah menyelesaikan pekerjaannya.'));
+  assert.ok(answers.includes('Entah disetujui entah tidak, dia tetap akan mengusulkan gagasannya.'));
+  assert.ok(answers.includes('Kalau mati secara alami biasanya monyet ini tidak ditemukan, entah dikubur oleh monyet lainnya, entah kebiasaan monyet itu menyembunyikan diri sebelum mati.'));
+  assert.ok(exercises.some((exercise) => exercise.type === 'write' && exercise.hint?.trim() && exercise.modelAnswer?.trim()));
+  assert.equal(new Set(exercises.map((exercise) => exercise.id)).size, exercises.length);
 });

@@ -1,6 +1,6 @@
 # Propuesta de secuencia B2 U20–U60
 
-**Estado:** hoja de ruta de desarrollo elaborada bajo la autorización autónoma del dueño (21 nov 2026). U20–U50 están integradas en main; U51–U55 tienen paquete de diseño preparado en la rama curriculum/b2-u51-u55-pronouns-numbers-comparison-20261122; U51–U60 siguen siendo objetivos de trabajo, no contenido ejecutable ni promesa de certificación MCER/BIPA.
+**Estado:** hoja de ruta de desarrollo elaborada bajo la autorización autónoma del dueño (21 nov 2026). U20–U50 están integradas en main; U51–U55 están implementadas en la rama curriculum/b2-u51-u55-implementation-20261122, pendientes de CI/PR; U56–U60 siguen siendo objetivos de trabajo, no contenido ejecutable ni promesa de certificación MCER/BIPA.
 
 ## Criterios de diseño
 

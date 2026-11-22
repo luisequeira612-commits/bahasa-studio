@@ -81,6 +81,32 @@ test('B2 U1 has at least five sentence-level targets and a guided original-writi
   assert.ok(exercises.some((exercise) => exercise.type === 'write' && exercise.hint?.trim() && /mini texto|tres o cuatro oraciones/i.test(exercise.prompt)));
 });
 
+
+
+test('B2 U27 implements five authored lessons with 16 source-bound concessive exercises and no new vocabulary IDs', async () => {
+  const { b2, indexSource } = await loadCurricula();
+  const unit = b2.units.find((item) => item.id === 'b2_u27');
+  assert.ok(unit, 'B2 U27 must exist');
+  assert.equal(unit.lessons.length, 5);
+  assert.deepEqual(unit.lessons.map((lesson) => lesson.exercises.length), [3, 3, 3, 3, 4]);
+  assert.equal(unit.vocab.length, 0);
+  const exercises = allExercises(unit);
+  assert.equal(exercises.length, 16);
+  assert.deepEqual([...new Set(exercises.map((exercise) => exercise.type))].sort(),
+    ['mc', 'order', 'translate_es_id', 'write']);
+  for (const phrase of [
+    'Meskipun sawahnya banyak, namun kenikmatan hidup sedikit.',
+    'Biarpun sumbangannya tidak seberapa, namun dia mempunyai peranan dalam proyek raksasa ini.',
+    'Meski keterangan Suryaman seru, toh terasa kurang meyakinkan.',
+    'Meskipun hujan lebat, si Amat pergi juga.',
+    'Meskipun sakit, namun anak-anak ini toh sekolah juga.',
+  ]) assert.ok(indexSource.includes(phrase), phrase + ' must remain source-bound in index.html');
+  assert.ok(exercises.some((exercise) => exercise.type === 'write' && exercise.hint?.trim()
+    && /ejemplo documentado|frase fuente/i.test(exercise.prompt)));
+  assert.ok(exercises.some((exercise) => exercise.prompt?.includes('meskipun') && exercise.answer === 'Meskipun sawahnya banyak, namun kenikmatan hidup sedikit.'));
+  assert.ok(exercises.some((exercise) => exercise.prompt?.includes('Biarpun') && exercise.answer === 'Biarpun sumbangannya tidak seberapa, namun dia mempunyai peranan dalam proyek raksasa ini.'));
+});
+
 test('B2 keeps its development gate while implemented U1 unlocks sequentially after B1', async () => {
   const { indexSource } = await loadCurricula();
   const assessmentStart = indexSource.indexOf('startUnitAssessment(unitId) {');

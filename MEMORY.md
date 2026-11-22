@@ -1,3 +1,11 @@
+## B2 U32 implementada en rama — 22 nov 2026
+
+- U32 desarrolla `kalau/apabila … maka` según Sneddon et al. (2010), §4.96: `kalau` y `apabila` introducen la condición; `maka` introduce la cláusula que expresa la consecuencia. No repite las condiciones básicas de B1 U18.
+- Usa únicamente los dos ejemplos documentados de §4.96. Cinco lecciones authored, 16 ejercicios (3/3/3/3/4), cuatro tipos (mc, translate_es_id, order, write). Sin vocabulario/IDs nuevos ni audio. U32 permanece oculta/no publicada.
+- Diseño: `docs/B2_U32_DESIGN.md`; roadmap, AGENTS.md, MEMORY.md y pruebas de inventario/progresión actualizados. No modifica IndexedDB v1, backup JSON v3 ni dependencias.
+- PR #699 integró U23–U31 en main (squash `00dde46f5ca0084d1a9f1389f1ab6cfa90937a0d`). La rama U32 se ha actualizado con main como primer padre y conserva el árbol acumulativo de U22–U32. Pendiente CI completo y revisión de la PR U32.
+- La fuente y las pruebas estructurales no equivalen a validación nativa ni certificación MCER/BIPA.
+
 ## B2 U31 implementada en rama — 22 nov 2026
 
 - U31 desarrolla `entah … entah` según Sneddon et al. (2010), §4.95: alternativas no resueltas, elipsis de elementos compartidos y posición variable de la cláusula de resultado.

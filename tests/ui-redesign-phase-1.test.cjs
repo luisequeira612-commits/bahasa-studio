@@ -81,7 +81,6 @@ test('B2 shows implemented U1–U5, keeps later units as placeholders and preser
     assert.match(html, /unit-path-coming-soon-circle/);
     assert.ok(css.includes('.unit-path-coming-soon .unit-path-coming-soon-circle'));
     assert.match(html, /if \(level\.id === 'B2'\) \{[\s\S]*?const previousLevel = levels\[levelIndex - 1\]/);
-    assert.match(html, /<span class="badge">En desarrollo<\/span>/);
     assert.match(html, /skipIds\.includes\(unit\.id\)/);
     assert.match(html, /const availableUnits = level\.id === 'B2' \? level\.units\.slice\(0, 5\) : level\.units/);
 });

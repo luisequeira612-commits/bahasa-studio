@@ -1,3 +1,11 @@
+## B2 U16 implementada — 22 nov 2026
+- U16 incorpora cinco lecciones authored y 16 ejercicios ([3,3,3,3,4]) sobre foco restrictivo/selectivo: posición de hanya/cuma/saja, alcance del predicado frente al objeto, cuma frente a hanya por registro y terutama frente a exclusividad.
+- Dos IDs canónicos nuevos: `b2u16_cuma` y `b2u16_terutama`. Se reutilizan hanya y saja ya vistos en ejemplos A2/B1; no se crean IDs duplicados. Ejemplos publicados: `Mereka cuma minum teh.`, `Tadi pagi saya makan roti saja.`, `Cuma teh yang mereka minum.` y `Kenaikan pendapatan itu terutama berasal dari pajak.`.
+- Cuatro clips Piper MP3/Opus para cuma, terutama y sus dos ejemplos de vocabulario. IDs de audio: `f0c3175631be`, `3251300d4372`, `5b13931e1b71`, `4444d433c2fc`. Biblioteca: 2.235 IDs, 121 textos B2 (98 U1–U8, 15 U11, 4 U15, 4 U16). Voz `id_ID-news_tts-medium`; sin tareas de escucha.
+- U16 permanece oculta/no publicada; U1–U5 siguen visibles. No cambia IndexedDB v1, backup JSON v3 ni dependencias. Las fuentes respaldan los ejemplos, pero no hay validación nativa ni certificación MCER/BIPA; las dos entradas quedan `not_checked`.
+- Autorización autónoma del dueño, 21 nov 2026: continuar B2 y añadir vocabulario/mejoras sin pedir aprobación individual por unidad o palabra. La autorización no habilita activar U6–U60.
+- Fuente: branch `curriculum/b2-u16-limiters-20261122`, `docs/B2_U16_DESIGN.md`, `docs/audio-requests/B2_U16.json`; Sneddon et al. (2010, §§2.217–2.218), Kroeger (2014, §4.2.2), Kardana (2013).
+
 ## B2 U15 implementada — 21 nov 2026
 - U15 añade cinco lecciones authored y 16 ejercicios ([3,3,3,3,4]) sobre la partícula focalizadora pun y los marcadores aditivos pula/juga; cubre alcance, foco, lectura de «también/incluso» y la diferencia ortográfica entre pun separado y conjunciones como walaupun/meskipun/biarpun.
 - Añade dos IDs canónicos nuevos: `b2u15_pun` y `b2u15_pula`; los tests incorporan una comprobación de unicidad global contra A1/A2/B1 y B2 previo. Usa ejemplos publicados de Sneddon et al. (2010, §§2.219–2.226, 3.49, 4.99) y la regla ortográfica oficial EYD V. No inventa frases indonesias; añade cuatro clips Piper (dos formas y dos ejemplos), pero no ejercicios de escucha.

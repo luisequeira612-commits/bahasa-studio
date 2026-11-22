@@ -9532,7 +9532,80 @@
                                 }
                             ]
                         },
-]
+
+                            {
+                                id: 'b2_u21',
+                                title: 'Unidad 21: corrección contrastiva — bukan ... melainkan/tetapi',
+                                subtitle: 'alcance de bukan, bukannya y la alternativa que corrige',
+                                description: 'Distingue la negación de una proposición o identidad de la negación verbal con tidak, y usa melainkan/tetapi para presentar la corrección.',
+                                goal: 'Interpretar la alternativa rechazada, el alcance de bukan/bukannya y la función correctiva de melainkan/tetapi sin confundirlo con la negación básica de A1.',
+                                vocab: [
+                                    { id: 'b2u21_melainkan', idn: 'melainkan', es: 'sino; sino más bien; introduce la alternativa que corrige lo negado', ex: 'Bukan dia bodoh, melainkan dia malas.', exEsp: 'No es que sea tonto, sino que es perezoso.', source: 'Sneddon et al. (2010), §4.84.', category: 'conjunction', tags: ['contrastive-correction', 'formal-register'] }
+                                ],
+                                lessons: [
+                                    {
+                                        title: '1. Bukan ... melainkan: corregir una proposición',
+                                        objective: 'Reconoce que bukan puede rechazar una proposición completa y que melainkan presenta la alternativa correcta.',
+                                        grammar: 'Cuando bukan aparece al inicio, puede negar la primera proposición completa. La cláusula con melainkan no añade simplemente otra idea: corrige la alternativa rechazada. En «Bukan dia bodoh, melainkan dia malas», no se afirma que sea tonto; se corrige esa interpretación con «es perezoso». Melainkan equivale aquí a «sino (más bien)».',
+                                        vocabIds: ['b2u21_melainkan'],
+                                        reviewVocabIds: [],
+                                        exercises: [
+                                            { id: 'b2u21_l1_e1', type: 'mc', prompt: 'En «Bukan dia bodoh, melainkan dia malas», ¿qué función cumple la segunda cláusula?', options: ['Corrige la proposición rechazada por bukan', 'Añade una segunda característica sin corregir nada', 'Niega que la persona exista'], answer: 0, explanation: 'Melainkan introduce la alternativa que reemplaza la proposición negada.' },
+                                            { id: 'b2u21_l1_e2', type: 'translate_es_id', prompt: 'Traduce al indonesio: «No es que sea tonto, sino que es perezoso».', answer: 'Bukan dia bodoh, melainkan dia malas.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.84.' },
+                                            { id: 'b2u21_l1_e3', type: 'write', prompt: 'Explica en español por qué melainkan no significa simplemente «y» en el ejemplo.', answerLanguage: 'es', hint: 'Compara la primera proposición negada con la alternativa posterior.', modelAnswer: 'Melainkan introduce una corrección: rechaza que sea tonto y presenta que es perezoso como la alternativa correcta.' }
+                                        ]
+                                    },
+                                    {
+                                        title: '2. Bukannya ... tetapi: negación dentro de otra negación',
+                                        objective: 'Distingue el alcance de bukannya y el de tidak cuando aparecen en la misma cláusula.',
+                                        grammar: 'En «Bukannya saya tidak mau membeli rumah, tetapi uang saya tidak cukup», bukannya introduce una interpretación que se rechaza («no es que yo no quiera comprar una casa»). El tidak interior niega mau, mientras que la segunda cláusula con tetapi aporta la razón real: el dinero no es suficiente. No conviertas automáticamente la doble negación en una afirmación simple.',
+                                        vocabIds: [],
+                                        reviewVocabIds: ['b2u21_melainkan'],
+                                        exercises: [
+                                            { id: 'b2u21_l2_e1', type: 'mc', prompt: 'En «Bukannya saya tidak mau membeli rumah, tetapi uang saya tidak cukup», ¿qué niega tidak en la primera cláusula?', options: ['La voluntad de comprar una casa', 'La existencia del dinero', 'La segunda cláusula completa'], answer: 0, explanation: 'Tidak niega mau; bukannya rechaza la interpretación completa de que no quiera comprar.' },
+                                            { id: 'b2u21_l2_e2', type: 'translate_es_id', prompt: 'Traduce al indonesio: «No es que no quiera comprar una casa, pero no tengo suficiente dinero».', answer: 'Bukannya saya tidak mau membeli rumah, tetapi uang saya tidak cukup.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.84.' },
+                                            { id: 'b2u21_l2_e3', type: 'order', prompt: 'Ordena la oración documentada.', words: ['Bukannya', 'saya', 'tidak', 'mau', 'membeli', 'rumah,', 'tetapi', 'uang', 'saya', 'tidak', 'cukup.'], correctOrder: ['Bukannya', 'saya', 'tidak', 'mau', 'membeli', 'rumah,', 'tetapi', 'uang', 'saya', 'tidak', 'cukup.'], explanation: 'Bukannya rechaza la primera interpretación; tetapi introduce la explicación correctiva.' }
+                                        ]
+                                    },
+                                    {
+                                        title: '3. Un mismo sujeto, dos predicados',
+                                        objective: 'Identifica la corrección cuando el sujeto compartido se expresa una sola vez.',
+                                        grammar: 'La fuente también documenta bukannya después del sujeto cuando este se comparte entre las dos alternativas: «Ia bukannya memerankan si Doel, melainkan menjadi sutradara». Ia es el sujeto de ambos predicados; bukannya rechaza la primera actividad y melainkan introduce la que sí corresponde. Memerankan significa «interpretar un papel» y sutradara, «director».',
+                                        vocabIds: [],
+                                        reviewVocabIds: ['b2u21_melainkan'],
+                                        exercises: [
+                                            { id: 'b2u21_l3_e1', type: 'mc', prompt: 'En «Ia bukannya memerankan si Doel, melainkan menjadi sutradara», ¿quién realiza las dos acciones contrastadas?', options: ['El mismo sujeto, ia', 'Dos personas diferentes', 'El personaje Si Doel y el director'], answer: 0, explanation: 'El sujeto ia se comparte; lo que cambia es el predicado: memerankan frente a menjadi sutradara.' },
+                                            { id: 'b2u21_l3_e2', type: 'translate_es_id', prompt: 'Traduce al indonesio: «No interpreta a Si Doel, sino que es director».', answer: 'Ia bukannya memerankan si Doel, melainkan menjadi sutradara.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.84.' },
+                                            { id: 'b2u21_l3_e3', type: 'write', prompt: 'Explica en español qué se mantiene y qué cambia entre las dos partes de la oración.', answerLanguage: 'es', hint: 'Observa el sujeto ia y los dos predicados.', modelAnswer: 'El sujeto ia se mantiene para las dos partes; se rechaza memerankan si Doel y se corrige con menjadi sutradara.' }
+                                        ]
+                                    },
+                                    {
+                                        title: '4. Bukan tidak ... y la alternativa implícita',
+                                        objective: 'Interpreta una negación enfática y reconoce cuándo la corrección puede quedar implícita.',
+                                        grammar: '«Saya bukan tidak percaya kepadamu» contiene bukan y tidak: no significa «no confío en ti», sino «no es que no confíe en ti». En algunos contextos, la alternativa que se corrige queda implícita. La fuente también ofrece «Dia bukan bodoh, melainkan malas saja»: bukan rechaza la etiqueta bodoh y la alternativa es malas saja.',
+                                        vocabIds: [],
+                                        reviewVocabIds: ['b2u21_melainkan'],
+                                        exercises: [
+                                            { id: 'b2u21_l4_e1', type: 'mc', prompt: '¿Qué expresa «Saya bukan tidak percaya kepadamu»?', options: ['No es que no confíe en ti', 'No confío en ti en absoluto', 'No te conozco'], answer: 0, explanation: 'Bukan rechaza la proposición negativa tidak percaya; no equivale a una negación simple.' },
+                                            { id: 'b2u21_l4_e2', type: 'translate_es_id', prompt: 'Traduce al indonesio: «No es que no confíe en ti».', answer: 'Saya bukan tidak percaya kepadamu.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.84.' },
+                                            { id: 'b2u21_l4_e3', type: 'translate_es_id', prompt: 'Traduce al indonesio: «No es tonto, sino simplemente perezoso».', answer: 'Dia bukan bodoh, melainkan malas saja.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.84.' }
+                                        ]
+                                    },
+                                    {
+                                        title: '5. Tidak ... melainkan: corregir una acción o destino',
+                                        objective: 'Distingue la negación verbal con tidak de la corrección contrastiva con melainkan.',
+                                        grammar: 'Cuando no se enfatiza la negación de identidad o de una proposición completa, puede aparecer tidak en el predicado verbal: «Kami tidak pergi ke Solo, melainkan ke Yogya». Tidak niega pergi; melainkan corrige el destino rechazado (Solo) por el destino correcto (Yogya). No se debe sustituir bukan y tidak mecánicamente: observa qué elemento se niega.',
+                                        vocabIds: [],
+                                        reviewVocabIds: ['b2u21_melainkan'],
+                                        exercises: [
+                                            { id: 'b2u21_l5_e1', type: 'mc', prompt: 'En «Kami tidak pergi ke Solo, melainkan ke Yogya», ¿qué corrige melainkan?', options: ['El destino: Solo se reemplaza por Yogya', 'El sujeto kami', 'La negación tidak'], answer: 0, explanation: 'Tidak niega el verbo pergi; melainkan introduce el destino alternativo.' },
+                                            { id: 'b2u21_l5_e2', type: 'translate_es_id', prompt: 'Traduce al indonesio: «No vamos a Solo, sino a Yogyakarta».', answer: 'Kami tidak pergi ke Solo, melainkan ke Yogya.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.84; Yogya es la forma usada en el ejemplo.' },
+                                            { id: 'b2u21_l5_e3', type: 'order', prompt: 'Ordena la oración documentada.', words: ['Kami', 'tidak', 'pergi', 'ke', 'Solo,', 'melainkan', 'ke', 'Yogya.'], correctOrder: ['Kami', 'tidak', 'pergi', 'ke', 'Solo,', 'melainkan', 'ke', 'Yogya.'], explanation: 'Tidak niega pergi; melainkan introduce el destino que reemplaza a Solo.' },
+                                            { id: 'b2u21_l5_e4', type: 'write', prompt: 'Escribe en indonesio una oración que use bukan ... melainkan para corregir una afirmación.', answerLanguage: 'id', hint: 'Puedes reutilizar el patrón documentado de la unidad.', modelAnswer: 'Bukan dia bodoh, melainkan dia malas.' }
+                                        ]
+                                    }
+                                ]
+                            },]
                 }
             ]
         };;

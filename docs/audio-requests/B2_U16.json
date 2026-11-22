@@ -1,0 +1,14 @@
+{
+  "unit": "b2_u16",
+  "level": "B2",
+  "engine": "piper",
+  "voice": "id_ID-news_tts-medium",
+  "purpose": "Generate production MP3 and Opus for the two new U16 vocabulary entries and their source-backed example sentences.",
+  "texts": [
+    "cuma",
+    "terutama",
+    "Mereka cuma minum teh.",
+    "Kenaikan pendapatan itu terutama berasal dari pajak."
+  ],
+  "requestVersion": 1
+}

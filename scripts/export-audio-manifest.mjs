@@ -126,7 +126,7 @@ async function main() {
       const b2OnlyIds = new Set(b2Candidates
         .filter((entry) => entry.levels.includes('B2') && !baseIds.has(entry.id))
         .map((entry) => entry.id));
-      includeB2 = index.some((id) => b2OnlyIds.has(id));
+      includeB2 = b2OnlyIds.size > 0 && [...b2OnlyIds].every((id) => index.includes(id));
     } catch (error) {
       if (error?.code !== 'ENOENT') throw error;
     }

@@ -39485,6 +39485,81 @@
     ]
   },
   {
+    "id": "aaea322c234f",
+    "text": "Baik Ana maupun Ira tinggal di Jakarta.",
+    "normalized": "baik ana maupun ira tinggal di jakarta.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u20",
+        "kind": "translate-answer"
+      }
+    ]
+  },
+  {
+    "id": "53ab5e861d20",
+    "text": "Baik di kota maupun di desa sepak bola digemari orang.",
+    "normalized": "baik di kota maupun di desa sepak bola digemari orang.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u20",
+        "kind": "translate-answer"
+      }
+    ]
+  },
+  {
+    "id": "1358c0f87fdd",
+    "text": "Baik kepandaian maupun kecantikan tidak berguna untuk mencapai kebahagiaan.",
+    "normalized": "baik kepandaian maupun kecantikan tidak berguna untuk mencapai kebahagiaan.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u20",
+        "kind": "translate-answer"
+      }
+    ]
+  },
+  {
+    "id": "fb0ab6b6fbed",
+    "text": "Mereka berjuang untuk bangsa maupun untuk keluarga.",
+    "normalized": "mereka berjuang untuk bangsa maupun untuk keluarga.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u20",
+        "kind": "translate-answer"
+      }
+    ]
+  },
+  {
+    "id": "36f1d5be2e3d",
+    "text": "Baik orang Cina, orang Jepang, orang India maupun orang Portugis berdagang di Jakarta.",
+    "normalized": "baik orang cina, orang jepang, orang india maupun orang portugis berdagang di jakarta.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u20",
+        "kind": "translate-answer"
+      }
+    ]
+  },
+  {
     "id": "ac14444a4d3b",
     "text": "Meskipun hujan deras, kegiatan tetap berlangsung.",
     "normalized": "meskipun hujan deras, kegiatan tetap berlangsung.",

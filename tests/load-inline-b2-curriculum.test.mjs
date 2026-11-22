@@ -125,7 +125,7 @@ test('B2 U28 implements five authored lessons with 16 source-bound preference ex
     'Sebaiknya mereka menyerah saja, daripada melawan.',
   ]) assert.ok(indexSource.includes(phrase), phrase + ' must remain source-bound in index.html');
   assert.ok(exercises.some((exercise) => exercise.type === 'write' && exercise.hint?.trim()
-    && ['Daripada mati kelaparan, lebih baik kita pindah saja.', 'Sebaiknya mereka menyerah saja, daripada melawan.'].includes(exercise.answer)),
+    && ['Daripada mati kelaparan, lebih baik kita pindah saja.', 'Sebaiknya mereka menyerah saja, daripada melawan.'].includes(exercise.modelAnswer ?? exercise.answer)),
   'at least one guided writing exercise must use a documented source sentence');
   assert.ok(exercises.some((exercise) => exercise.answer === 'Daripada mati kelaparan, lebih baik kita pindah saja.'));
   assert.ok(exercises.some((exercise) => exercise.answer === 'Sebaiknya mereka menyerah saja, daripada melawan.'));

@@ -30,8 +30,9 @@ test('audio manifest exports unique A1, A2 and inline B1 texts without changing 
     });
     assert.equal(b2Result.status, 0, b2Result.stderr || b2Result.stdout);
     const b2Ids = new Set(JSON.parse(await readFile(b2Output, 'utf8')).map((entry) => entry.id));
+    const b2OnlyIds = [...b2Ids].filter((id) => !baseIds.has(id));
     const includeB2 = process.env.AUDIO_MANIFEST_INCLUDE_B2 === '1'
-      || index.some((id) => b2Ids.has(id) && !baseIds.has(id));
+      || (b2OnlyIds.length > 0 && b2OnlyIds.every((id) => index.includes(id)));
     let selectedIds = baseIds;
     if (includeB2) {
       const result = spawnSync(process.execPath, [script, '--include-b2', '--output', output], {

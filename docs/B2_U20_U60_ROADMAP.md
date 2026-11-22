@@ -1,6 +1,6 @@
 # Propuesta de secuencia B2 U20–U60
 
-**Estado:** hoja de ruta de desarrollo elaborada bajo la autorización autónoma del dueño (21 nov 2026). U20 y U21 están implementadas en main; U22 está implementada en la rama curriculum/b2-u22-bukan-hanya-20261122; U23 está implementada en la rama curriculum/b2-u23-bukan-asalkan-20261122; U24 está implementada en la rama curriculum/b2-u24-begitu-sehingga-20261122; U25 está implementada en la rama curriculum/b2-u25-begitu-segera-20261122; U26 está implementada en la rama curriculum/b2-u26-makin-semakin-20261122; U27 está implementada en la rama curriculum/b2-u27-meskipun-namun-20261122; U28 está implementada en la rama curriculum/b2-u28-lebih-baik-daripada-20261122; U29 está implementada en la rama curriculum/b2-u29-bagaimanapun-betapapun-20261122; U30 está implementada en la rama curriculum/b2-u30-baru-not-until-20261122; U31 está implementada en la rama curriculum/b2-u31-entah-entah-20261122; U32 está implementada en la rama curriculum/b2-u32-kalau-maka-20261122; U33–U60 siguen siendo objetivos de trabajo, no contenido ejecutable ni promesa de certificación MCER/BIPA.
+**Estado:** hoja de ruta de desarrollo elaborada bajo la autorización autónoma del dueño (21 nov 2026). U20–U32 están implementadas en main; U33 está implementada en la rama curriculum/b2-u33-jangankan-pun-20261122 y pendiente de CI/merge; U34–U60 siguen siendo objetivos de trabajo, no contenido ejecutable ni promesa de certificación MCER/BIPA.
 
 ## Criterios de diseño
 
@@ -104,3 +104,8 @@ U20 desarrolla **baik … maupun** a partir de los ejemplos documentados en Sned
 1. Sneddon, J. N., Adelaar, A., Djenar, D. N. & Ewing, M. C. (2010). *Indonesian: A Comprehensive Grammar*, 2.ª ed., capítulo 4, especialmente §§4.81–4.118; capítulo 2, §§2.21–2.33, 2.61–2.63, 2.83–2.117, 2.101–2.105, 2.133–2.159 y 2.168–2.215. [Ficha editorial Routledge](https://www.routledge.com/Indonesian-A-Comprehensive-Grammar/Sneddon-Adelaar-Djenar-Ewing/p/book/9780415581547). [Vista previa del contenido y tabla de secciones](https://api.pageplace.de/preview/DT0400.9781135873448_A23809813/preview-9781135873448_A23809813.pdf).
 2. Badan Pengembangan dan Pembinaan Bahasa (2017). *Tata Bahasa Baku Bahasa Indonesia*, 4.ª ed. Usar como referencia complementaria para norma y revisión de estructuras; no asumir que una mención aislada certifica la naturalidad de cada ejemplo.
 3. Las propuestas de U21–U60 son un mapa de trabajo. Antes de implementar cada unidad, contrastar el alcance exacto con B1 y B2 anterior, seleccionar ejemplos documentados y mantener las formas nuevas en not_checked o cross_checked según la evidencia disponible. No marcar verified_primary.
+
+
+## U33 implementada en rama — 22 nov 2026
+
+U33 desarrolla la correlación escalar `jangankan … pun` según Sneddon et al. (2010), §4.97. Usa los tres ejemplos documentados de la sección, con cinco lecciones authored y 16 ejercicios (3/3/3/3/4) en cuatro tipos. No añade vocabulario/IDs ni audio; permanece oculta/no publicada. El diseño y las pruebas source-bound están en `docs/B2_U33_DESIGN.md`. La estructura y la correspondencia con la fuente no equivalen a validación nativa ni certificación MCER/BIPA.

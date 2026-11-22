@@ -793,7 +793,7 @@ test('B2 U19 implements nominalised relative clauses and identifying focus', asy
 test('implemented B2 U1–U20 are executable while later legacy draft units stay archived', async () => {
   const { b2 } = await loadCurricula();
   const legacyArchive = await readFile(new URL('../docs/B2_LEGACY_DRAFT_ARCHIVE.md', import.meta.url), 'utf8');
-  assert.deepEqual(b2.units.map((unit) => unit.id), ['b2_u1', 'b2_u2', 'b2_u3', 'b2_u4', 'b2_u5', 'b2_u6', 'b2_u7', 'b2_u8', 'b2_u9', 'b2_u10', 'b2_u11', 'b2_u12', 'b2_u13', 'b2_u14', 'b2_u15', 'b2_u16', 'b2_u17', 'b2_u18', 'b2_u19', 'b2_u20']);
+  assert.deepEqual(b2.units.map((unit) => unit.id), ['b2_u1', 'b2_u2', 'b2_u3', 'b2_u4', 'b2_u5', 'b2_u6', 'b2_u7', 'b2_u8', 'b2_u9', 'b2_u10', 'b2_u11', 'b2_u12', 'b2_u13', 'b2_u14', 'b2_u15', 'b2_u16', 'b2_u17', 'b2_u18', 'b2_u19', 'b2_u20', 'b2_u21']);
   for (const id of ['b2_u5']) {
     assert.ok(legacyArchive.includes('"id": "' + id + '"'), id + ' must remain in the historical archive');
   }
@@ -855,4 +855,41 @@ test('B2 U20 teaches baik ... maupun with five authored lessons and source-backe
   assert.equal(new Set(ids).size, ids.length, 'exercise IDs must be unique');
   assert.ok(exercises.some((exercise) => exercise.type === 'write' && exercise.answerLanguage === 'id' && exercise.hint?.trim()),
     'U20 must include guided original production in Indonesian');
+});
+
+
+test('B2 U21 teaches contrastive correction with bukan, bukannya and melainkan/tetapi', async () => {
+  const { b2 } = await loadCurricula();
+  const unit = b2.units.find((item) => item.id === 'b2_u21');
+  assert.ok(unit, 'B2 U21 must exist');
+  assert.match(unit.title, /bukan.*melainkan/i);
+  assert.equal(unit.lessons.length, 5);
+  assert.deepEqual(unit.lessons.map((lesson) => lesson.exercises.length), [3, 3, 3, 3, 4]);
+  const exercises = allExercises(unit);
+  assert.equal(exercises.length, 16);
+  assert.deepEqual([...new Set(exercises.map((exercise) => exercise.type))].sort(),
+    ['mc', 'order', 'translate_es_id', 'write']);
+  assert.deepEqual(unit.vocab.map((word) => word.id), ['b2u21_melainkan']);
+  assert.equal(unit.vocab[0].idn, 'melainkan');
+  assert.equal(unit.vocab[0].source, 'Sneddon et al. (2010), §4.84.');
+  assert.deepEqual(unit.lessons[0].vocabIds, ['b2u21_melainkan']);
+  for (const lesson of unit.lessons.slice(1)) {
+    assert.deepEqual(lesson.vocabIds, []);
+    assert.deepEqual(lesson.reviewVocabIds, ['b2u21_melainkan']);
+  }
+  const translations = exercises
+    .filter((exercise) => exercise.type === 'translate_es_id')
+    .map((exercise) => exercise.answer);
+  assert.deepEqual(translations, [
+    'Bukan dia bodoh, melainkan dia malas.',
+    'Bukannya saya tidak mau membeli rumah, tetapi uang saya tidak cukup.',
+    'Ia bukannya memerankan si Doel, melainkan menjadi sutradara.',
+    'Saya bukan tidak percaya kepadamu.',
+    'Dia bukan bodoh, melainkan malas saja.',
+    'Kami tidak pergi ke Solo, melainkan ke Yogya.',
+  ]);
+  const ids = exercises.map((exercise) => exercise.id);
+  assert.equal(new Set(ids).size, ids.length, 'exercise IDs must be unique');
+  assert.ok(exercises.some((exercise) => exercise.type === 'write' && exercise.answerLanguage === 'id' && exercise.hint?.trim() && exercise.modelAnswer?.trim()),
+    'U21 must include guided Indonesian production');
 });

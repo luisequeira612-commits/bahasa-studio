@@ -1,9 +1,10 @@
-## B2 U34 implementada en rama — 22 nov 2026
+## B2 U35 implementada en rama — 22 nov 2026
 
-- U34 desarrolla conectores de adición entre oraciones según Sneddon et al. (2010), §4.99: selain itu, di samping itu, kecuali itu, lagi pula, juga, selanjutnya, bahkan, apalagi y malah/malahan; distingue suma, continuación y refuerzo sin tratarlos como sinónimos exactos.
-- Usa los tres ejemplos documentados de §4.99, cinco lecciones authored y 16 ejercicios (3/3/3/3/4), con cuatro tipos (mc, translate_es_id, order, write). Sin vocabulario/IDs nuevos ni audio. U34 permanece oculta/no publicada.
-- Diseño: `docs/B2_U34_DESIGN.md`. PR #701 de U33 integrada en main (commit `893cb4c329bb61bb47052b9dad509d9b29f3c4b1`; CI run `45055365782` verde). U34 se prepara en `curriculum/b2-u34-adicion-entre-oraciones-20261122`; la primera regresión detectó una lista fija de unidades B2 desactualizada en `tests/multi-lesson-progression.test.cjs`; se actualizó para incluir U34. Pendiente CI del head final y PR.
-- No modifica IndexedDB v1, backup JSON v3 ni dependencias. Fuente y pruebas estructurales no equivalen a validación nativa ni certificación MCER/BIPA.
+- U35 desarrolla conectores de contraste entre oraciones según Sneddon et al. (2010), §§4.98–4.100: namun/namun demikian, biarpun/walaupun/meskipun demikian/begitu, tetapi/akan tetapi, sebaliknya, malah/malahan/bahkan en lectura contrastiva y bagaimanapun (juga). Distingue enlace entre oraciones de coordinación interna y evita duplicar B2 U27/U29/U34.
+- Usa únicamente ejemplos documentados de §§4.98–4.100. Cinco lecciones authored y 16 ejercicios (3/3/3/3/4), cuatro tipos (mc, translate_es_id, order, write). Sin vocabulario/IDs nuevos ni audio. U35 permanece oculta/no publicada.
+- Diseño: docs/B2_U35_DESIGN.md. Rama: curriculum/b2-u35-contrast-linkers-20261122. Se actualizan index.html, pruebas de currículo/inventario/progresión, roadmap, AGENTS.md y MEMORY.md. Pendiente CI completo y revisión del PR.
+- U34 está integrada en main mediante PR #702, commit e40f1ea2c566a31058c34f1754238178ce9d4a5a; CI de test e informes offline y Pages finalizaron correctamente según el registro del proyecto. El inventario B2 de main es 34 unidades / 170 lecciones authored.
+- No modifica IndexedDB v1, backup JSON v3, biblioteca de audio ni dependencias. Fuente y pruebas estructurales no equivalen a validación nativa ni certificación MCER/BIPA.
 
 ## B2 U33 integrada en main — 22 nov 2026
 

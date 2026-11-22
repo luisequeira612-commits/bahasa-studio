@@ -61,5 +61,5 @@ Los vocabularios repetidos usan el ID canónico de la primera enseñanza. Para n
 
 - B2 U1–U18 están implementadas con cinco lecciones authored cada una; U1–U5 son visibles y U6–U18 permanecen ocultas/no publicadas.
 - U17 amplía el uso de cláusulas de contenido y preguntas indirectas: `bahwa` para declaraciones, `apakah/apa` para preguntas sí/no y palabras interrogativas para preguntas de información integradas. Cinco lecciones, 16 ejercicios y dos IDs nuevos.
-- U17 ya tiene seis clips Piper de producción (MP3 y Opus) para sus dos formas y cuatro ejemplos; incluye dos ejercicios de escucha. U18 añade cinco verbos de intención y cinco ejercicios de escucha; sus once textos de audio Piper están solicitados y pendientes. No cambia IndexedDB v1 ni el backup JSON v3.
+- U17 ya tiene seis clips Piper de producción (MP3 y Opus) para sus dos formas y cuatro ejemplos; incluye dos ejercicios de escucha. U18 añade cuatro verbos nuevos de intención, reutiliza `mengingatkan` de B1 U5 y tiene cinco ejercicios de escucha; diez textos Piper están solicitados y pendientes. No cambia IndexedDB v1 ni el backup JSON v3.
 - U19–U60 aún no tienen mapa curricular aprobado. La evidencia documental no equivale a validación por hablante nativo ni certificación MCER/BIPA.

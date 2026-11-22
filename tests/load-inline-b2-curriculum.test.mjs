@@ -1391,7 +1391,7 @@ test('B2 U36–U40 add five authored discourse units with 16 source-bound exerci
       if (typeof exercise.answer === 'string') return exercise.answer;
       if (Number.isInteger(exercise.answer) && Array.isArray(exercise.options)) return exercise.options[exercise.answer] || '';
       return '';
-    }).filter((target) => target.trim().split(/\\s+/).filter(Boolean).length >= 2);
+    }).filter((target) => target.trim().split(/\s+/).filter(Boolean).length >= 2);
     assert.ok(sentenceTargets.length >= 5, item.id + ' must practise at least five full-sentence targets');
     assert.ok(exercises.some((exercise) => exercise.type === 'write' && exercise.answerLanguage === 'id'
       && exercise.hint?.trim() && exercise.modelAnswer?.trim()), item.id + ' must include guided Indonesian reconstruction');

@@ -1243,3 +1243,44 @@ test('B2 U32 teaches source-bound kalau/apabila ... maka condition-consequence s
     && examples.includes(exercise.modelAnswer)));
   assert.ok(exercises.every((exercise) => exercise.type !== 'listen'), 'U32 does not add audio');
 });
+
+test('B2 U33 teaches source-bound jangankan ... pun scalar expectation', async () => {
+  const { b2, indexSource } = await loadCurricula();
+  const unit = b2.units.find((item) => item.id === 'b2_u33');
+  assert.ok(unit, 'B2 U33 must exist');
+  assert.equal(unit.lessons.length, 5);
+  assert.deepEqual(unit.lessons.map((lesson) => lesson.exercises.length), [3, 3, 3, 3, 4]);
+  assert.deepEqual(unit.vocab, []);
+  for (const lesson of unit.lessons) {
+    assert.deepEqual(lesson.vocabIds, []);
+    assert.deepEqual(lesson.reviewVocabIds, []);
+  }
+  const exercises = allExercises(unit);
+  assert.equal(exercises.length, 16);
+  assert.deepEqual([...new Set(exercises.map((exercise) => exercise.type))].sort(),
+    ['mc', 'order', 'translate_es_id', 'write']);
+  const examples = [
+    'Jangankan orang lain, orang tuanya sendiri pun tidak dihormati.',
+    'Jangankan rumah, kamar pun belum punya.',
+    'Jangankan Ida Betara, saya pun risih kalau melihat jemuran di depan pura.',
+  ];
+  for (const phrase of examples) assert.ok(indexSource.includes(phrase), phrase + ' must remain source-bound in index.html');
+  const translated = exercises.filter((exercise) => exercise.type === 'translate_es_id').map((exercise) => exercise.answer);
+  assert.ok(examples.every((phrase) => translated.includes(phrase)), 'all three documented examples must be translated');
+  const ordered = exercises.filter((exercise) => exercise.type === 'order').map((exercise) => exercise.correctOrder.join(' '));
+  assert.ok(examples.every((phrase) => ordered.includes(phrase)), 'all three documented examples must be ordered');
+  const targets = exercises.map((exercise) => {
+    if (Array.isArray(exercise.correctOrder)) return exercise.correctOrder.join(' ');
+    if (typeof exercise.modelAnswer === 'string') return exercise.modelAnswer;
+    if (typeof exercise.answer === 'string') return exercise.answer;
+    if (Number.isInteger(exercise.answer) && Array.isArray(exercise.options)) return exercise.options[exercise.answer] || '';
+    return '';
+  }).filter((target) => target.trim().split(/\\s+/).filter(Boolean).length >= 2);
+  assert.ok(targets.length >= 5, 'U33 must include at least five full-sentence targets');
+  assert.ok(exercises.some((exercise) => exercise.type === 'write' && exercise.answerLanguage === 'es'
+    && exercise.hint?.trim() && /jangankan|pun/i.test(exercise.modelAnswer)));
+  assert.ok(exercises.some((exercise) => exercise.type === 'write' && exercise.answerLanguage === 'id'
+    && examples.includes(exercise.modelAnswer)));
+  assert.ok(exercises.every((exercise) => exercise.type !== 'listen'), 'U33 does not add audio');
+  assert.equal(new Set(exercises.map((exercise) => exercise.id)).size, exercises.length);
+});

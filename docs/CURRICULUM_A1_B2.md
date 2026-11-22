@@ -59,7 +59,7 @@ Los vocabularios repetidos usan el ID canónico de la primera enseñanza. Para n
 
 ## Estado B2 actualizado — 22 nov 2026
 
-- B2 U1–U18 están implementadas con cinco lecciones authored cada una; U1–U5 son visibles y U6–U18 permanecen ocultas/no publicadas.
-- U17 amplía el uso de cláusulas de contenido y preguntas indirectas: `bahwa` para declaraciones, `apakah/apa` para preguntas sí/no y palabras interrogativas para preguntas de información integradas. Cinco lecciones, 16 ejercicios y dos IDs nuevos.
-- U17 ya tiene seis clips Piper de producción (MP3 y Opus) para sus dos formas y cuatro ejemplos; incluye dos ejercicios de escucha. U18 añade cuatro verbos nuevos de intención, reutiliza `mengingatkan` de B1 U5 y tiene cinco ejercicios de escucha; diez textos Piper están solicitados y pendientes. No cambia IndexedDB v1 ni el backup JSON v3.
-- U19–U60 aún no tienen mapa curricular aprobado. La evidencia documental no equivale a validación por hablante nativo ni certificación MCER/BIPA.
+- B2 U1–U60 están integradas en `main`: 60 unidades y 300 lecciones authored (cinco por unidad). PR #706 integró U46–U50, PR #708 integró U51–U55 y PR #710 integró U56–U60 (commit `a816c8c01a9920e2042c7fa5bddde50aa4c0f7fa`).
+- U1–U5 son las únicas visibles; U6–U60 permanecen ocultas/no publicadas hasta decisión explícita del dueño. La integración curricular no cambia la puerta de publicación ni el desbloqueo secuencial.
+- U21 añadió un ID léxico y siete clips Piper; las unidades U22–U60 no añadieron vocabulario/IDs ni audio en los lotes recientes. No se modifica IndexedDB v1, backup JSON v3 ni dependencias.
+- La evidencia documental y las pruebas estructurales no equivalen a validación por hablante nativo ni certificación MCER/BIPA.

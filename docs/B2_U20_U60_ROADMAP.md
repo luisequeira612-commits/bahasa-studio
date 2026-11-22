@@ -1,6 +1,6 @@
 # Propuesta de secuencia B2 U20–U60
 
-**Estado:** hoja de ruta de desarrollo elaborada bajo la autorización autónoma del dueño (21 nov 2026). U20–U45 están integradas en main; U46–U50 están implementadas en la rama curriculum/b2-u46-u50-ellipsis-integration-20261122 y pendientes de CI/PR; U51–U60 siguen siendo objetivos de trabajo, no contenido ejecutable ni promesa de certificación MCER/BIPA.
+**Estado:** hoja de ruta de desarrollo elaborada bajo la autorización autónoma del dueño (21 nov 2026). U20–U50 están integradas en main; U51–U55 tienen paquete de diseño preparado en la rama curriculum/b2-u51-u55-pronouns-numbers-comparison-20261122; U51–U60 siguen siendo objetivos de trabajo, no contenido ejecutable ni promesa de certificación MCER/BIPA.
 
 ## Criterios de diseño
 
@@ -143,3 +143,13 @@ Se ampliaron los filtros del selector y ruta de aprendizaje, el progreso visible
 - Diseño detallado: docs/B2_U46_DESIGN.md a docs/B2_U50_DESIGN.md. Rama curriculum/b2-u46-u50-ellipsis-integration-20261122. U46–U50 permanecen ocultas/no publicadas; CI/PR pendientes.
 - Los filtros de aprendizaje, progreso, tutor y traducción contextual se amplían a U1–U50; U51–U60 siguen fuera de esas superficies. Se conserva el desbloqueo secuencial.
 - No modifica A1/A2/B1, IndexedDB v1, backup JSON v3, biblioteca Piper ni dependencias. No equivale a validación nativa ni certificación MCER/BIPA.
+
+
+## U51–U55 — diseño preparado — 22 nov 2026
+
+- U51 pronombres indefinidos y sustitutos pronominales (§§2.67–2.69, 2.83–2.92).
+- U52 interrogativos con saja y libre elección con pun (§§2.83–2.96, 4.22; continuidad de U15).
+- U53 cuantificadores y números indefinidos (§§2.106–2.117).
+- U54 clasificadores y partitivos (§§2.21–2.33).
+- U55 comparativas y equativas (§§2.101–2.105).
+- Diseños: docs/B2_U51_DESIGN.md … docs/B2_U55_DESIGN.md. La implementación debe conservar cinco lecciones authored y 16 ejercicios por unidad, sin inventar frases indonesias para rellenar el recuento.

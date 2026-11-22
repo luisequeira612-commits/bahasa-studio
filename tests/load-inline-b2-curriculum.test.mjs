@@ -750,7 +750,7 @@ test('B2 U18 implements five authored lessons on intent complements and reported
   const sentenceTargets = exercises.filter((exercise) => {
     const target = typeof exercise.modelAnswer === 'string' ? exercise.modelAnswer
       : typeof exercise.answer === 'string' ? exercise.answer : '';
-    return target.trim().split(/\\s+/).filter(Boolean).length >= 5;
+    return target.trim().split(/\s+/).filter(Boolean).length >= 5;
   });
   assert.ok(sentenceTargets.length >= 5, 'U18 must include at least five complete-sentence response targets');
 });

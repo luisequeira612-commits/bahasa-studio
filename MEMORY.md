@@ -1,3 +1,11 @@
+## B2 U23 implementada en rama — 22 nov 2026
+
+- U23 desarrolla otras correlativas con `bukan` mediante `asal(kan)`, que introduce una condición sobre la acción de la primera cláusula. Cinco lecciones authored, 16 ejercicios ([3,3,3,3,4]), cuatro tipos (mc, translate_es_id, order, write), sin vocabulario/IDs nuevos.
+- Fuente principal: Sneddon, Adelaar, Djenar & Ewing (2010), *Indonesian: A Comprehensive Grammar*, 2.ª ed., §4.87. Ejemplo central documentado: `Saya bukan tidak rela kau membantu familimu, asal kau pertimbangkan juga kebutuhan kita sendiri.`
+- U23 se mantiene source-bound porque §4.87 ofrece un ejemplo completo central: los ejercicios de producción controlada reproducen ese ejemplo en lugar de inventar nuevas oraciones indonesias.
+- U23 permanece oculta/no publicada. No modifica IndexedDB v1, backup JSON v3, A1/A2/B1 ni dependencias. No añade audio Piper todavía.
+- Rama: `curriculum/b2-u23-bukan-asalkan-20261122`, basada en la rama de U22 para mantener la secuencia. Pendiente: CI completo y revisión del PR.
+
 ## B2 U22 implementada en rama — 22 nov 2026
 
 - U22 profundiza la adición escalar: `bukan hanya ... melainkan/tetapi juga` y la variante documentada `tidak hanya ... tetapi juga`. Cinco lecciones authored, 16 ejercicios ([3,3,3,3,4]), cuatro tipos (mc, translate_es_id, order, write), sin vocabulario/IDs nuevos.

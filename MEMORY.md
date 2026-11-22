@@ -1,10 +1,16 @@
+## B2 U32 implementada en rama — 22 nov 2026
+
+- U32 desarrolla `kalau/apabila … maka` según Sneddon et al. (2010), §4.96: `kalau` y `apabila` introducen la condición; `maka` introduce la cláusula que expresa la consecuencia. No repite las condiciones básicas de B1 U18.
+- Usa únicamente los dos ejemplos documentados de §4.96. Cinco lecciones authored, 16 ejercicios (3/3/3/3/4), cuatro tipos (mc, translate_es_id, order, write). Sin vocabulario/IDs nuevos ni audio. U32 permanece oculta/no publicada.
+- Diseño: `docs/B2_U32_DESIGN.md`; roadmap, AGENTS.md, MEMORY.md y pruebas de inventario/progresión actualizados. No modifica IndexedDB v1, backup JSON v3 ni dependencias.
+- PR #699 integró U23–U31 en main (squash `00dde46f5ca0084d1a9f1389f1ab6cfa90937a0d`). La rama U32 se ha actualizado con main como primer padre y conserva el árbol acumulativo de U22–U32. Pendiente CI completo y revisión de la PR U32.
+- La fuente y las pruebas estructurales no equivalen a validación nativa ni certificación MCER/BIPA.
+
 ## B2 U31 implementada en rama — 22 nov 2026
 
 - U31 desarrolla `entah … entah` según Sneddon et al. (2010), §4.95: alternativas no resueltas, elipsis de elementos compartidos y posición variable de la cláusula de resultado.
 - Usa solo tres ejemplos documentados de la fuente; no añade vocabulario/IDs ni audio. Cinco lecciones authored, 16 ejercicios ([3,3,3,3,4]), cuatro tipos (mc, translate_es_id, order, write); U31 permanece oculta/no publicada.
 - Se actualizan el roadmap, AGENTS.md, MEMORY.md y las pruebas de inventario/progresión. No se modifican IndexedDB v1, backup JSON v3 ni dependencias. Rama: `curriculum/b2-u31-entah-entah-20261122`; pendiente CI completo y revisión del PR.
-- Corrección de integración del 22 nov 2026: el cierre de `CourseData.levels` no cerraba el array `B1.units` ni el objeto B1 antes de declarar B2. El extractor VM fallaba con `Unexpected token ';'` y los reportes/paquetes dependientes heredaban el fallo. Se añadieron los dos cierres en la frontera B1/B2; comprobación local del bloque: parsea y expone B1 con 50 unidades y B2 con 31. CI completo pendiente de repetición.
-- En la revisión de la secuencia se corrigió también el prompt de escritura de B2 U28: ahora pide reconstruir «un ejemplo documentado» en singular, de acuerdo con el contrato de su prueba source-bound; conserva los dos ejemplos originales y no añade frases indonesias.
 
 ## B2 U30 implementada en rama — 22 nov 2026
 

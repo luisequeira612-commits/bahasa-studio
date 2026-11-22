@@ -930,3 +930,34 @@ test('B2 U22 teaches additive bukan hanya ... melainkan/tetapi juga with paralle
   assert.ok(exercises.some((exercise) => exercise.type === 'write' && exercise.answerLanguage === 'id' && exercise.hint?.trim() && exercise.modelAnswer?.trim()),
     'U22 must include guided Indonesian production');
 });
+
+
+test('B2 U23 teaches bukan ... asal(kan) as a conditional correlative structure', async () => {
+  const { b2 } = await loadCurricula();
+  const unit = b2.units.find((item) => item.id === 'b2_u23');
+  assert.ok(unit, 'B2 U23 must exist');
+  assert.match(unit.title, /bukan.*asal/i);
+  assert.equal(unit.lessons.length, 5);
+  assert.deepEqual(unit.lessons.map((lesson) => lesson.exercises.length), [3, 3, 3, 3, 4]);
+  const exercises = allExercises(unit);
+  assert.equal(exercises.length, 16);
+  assert.deepEqual([...new Set(exercises.map((exercise) => exercise.type))].sort(),
+    ['mc', 'order', 'translate_es_id', 'write']);
+  assert.deepEqual(unit.vocab, [], 'U23 teaches a grammatical correlator; no new lexical IDs');
+  for (const lesson of unit.lessons) {
+    assert.deepEqual(lesson.vocabIds, []);
+    assert.deepEqual(lesson.reviewVocabIds, []);
+  }
+  const translations = exercises
+    .filter((exercise) => exercise.type === 'translate_es_id')
+    .map((exercise) => exercise.answer);
+  assert.deepEqual([...new Set(translations)], [
+    'Saya bukan tidak rela kau membantu familimu, asal kau pertimbangkan juga kebutuhan kita sendiri.',
+  ]);
+  assert.ok(exercises.every((exercise) => !exercise.answer || exercise.answer === 'Saya bukan tidak rela kau membantu familimu, asal kau pertimbangkan juga kebutuhan kita sendiri.'),
+    'U23 must stay source-bound and must not invent Indonesian examples');
+  const ids = exercises.map((exercise) => exercise.id);
+  assert.equal(new Set(ids).size, ids.length, 'exercise IDs must be unique');
+  assert.ok(exercises.some((exercise) => exercise.type === 'write' && exercise.answerLanguage === 'id' && exercise.hint?.trim() && exercise.modelAnswer?.trim()),
+    'U23 must include guided Indonesian production');
+});

@@ -1030,3 +1030,38 @@ test('B2 U25 teaches temporal begitu with immediate sequence and distinguishes i
   assert.ok(exercises.every((exercise) => !exercise.answer || !/inventad|sin fuente/i.test(String(exercise.explanation || ''))),
     'U25 must keep source-bound examples');
 });
+
+test('B2 U26 teaches proportional makin/semakin ... makin/semakin and time-progressive variants', async () => {
+  const { b2 } = await loadCurricula();
+  const unit = b2.units.find((item) => item.id === 'b2_u26');
+  assert.ok(unit, 'B2 U26 must exist');
+  assert.match(unit.title, /makin.*semakin/i);
+  assert.equal(unit.lessons.length, 5);
+  assert.deepEqual(unit.lessons.map((lesson) => lesson.exercises.length), [3, 3, 3, 3, 4]);
+  const exercises = allExercises(unit);
+  assert.equal(exercises.length, 16);
+  assert.deepEqual([...new Set(exercises.map((exercise) => exercise.type))].sort(),
+    ['mc', 'order', 'translate_es_id', 'write']);
+  assert.deepEqual(unit.vocab, [], 'U26 reuses existing modifiers; no new lexical IDs');
+  for (const lesson of unit.lessons) {
+    assert.deepEqual(lesson.vocabIds, []);
+    assert.deepEqual(lesson.reviewVocabIds, []);
+  }
+  const answers = exercises.filter((exercise) => exercise.type === 'translate_es_id').map((exercise) => exercise.answer);
+  assert.deepEqual(answers, [
+    'Ali makin besar makin sombong.',
+    'Orang itu tambah tua tambah kaya.',
+    'Ali makin lama makin kurus.',
+    'Golongan itu bertambah hari bertambah kuat.',
+    'Harga barang semakin lama semakin tinggi.',
+    'Makin sering mereka bertemu, makin sering mereka bertengkar.'
+  ]);
+  assert.ok(unit.lessons[1].grammar.includes('semakin'));
+  assert.ok(unit.lessons[2].grammar.includes('lama'));
+  assert.ok(unit.lessons[3].grammar.includes('hari'));
+  assert.ok(exercises.some((exercise) => exercise.type === 'write'
+    && exercise.answerLanguage === 'id' && exercise.hint?.trim() && exercise.modelAnswer?.trim()),
+    'U26 must include guided source-bound Indonesian production');
+  const ids = exercises.map((exercise) => exercise.id);
+  assert.equal(new Set(ids).size, ids.length, 'exercise IDs must be unique');
+});

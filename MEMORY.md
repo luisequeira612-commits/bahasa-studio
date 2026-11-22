@@ -1,3 +1,9 @@
+## B2 U27 implementada en rama — 22 nov 2026
+
+- U27 desarrolla la correlación concesiva de Sneddon et al. (2010), §4.91: **meskipun/meski/biarpun ... namun/toh/juga**. Cinco lecciones authored, 16 ejercicios ([3,3,3,3,4]), cuatro tipos (mc, translate_es_id, order, write), sin vocabulario/IDs nuevos.
+- Ejemplos source-bound usados: `Meskipun sawahnya banyak, namun kenikmatan hidup sedikit.`, `Biarpun sumbangannya tidak seberapa, namun dia mempunyai peranan dalam proyek raksasa ini.`, `Meski keterangan Suryaman seru, toh terasa kurang meyakinkan.`, `Meskipun hujan lebat, si Amat pergi juga.` y `Meskipun sakit, namun anak-anak ini toh sekolah juga.`. La unidad también enseña la estructura relacionada `Dia tidak diundang, tetapi dia datang juga.`.
+- U27 permanece oculta/no publicada. No modifica IndexedDB v1, backup JSON v3 ni dependencias. Rama: `curriculum/b2-u27-meskipun-namun-20261122`. Pendiente: CI completo, revisión y posible fusión solo con CI verde y sin revisiones/comentarios pendientes.
+
 ## B2 U24 implementada en rama — 22 nov 2026
 
 - U24 desarrolla la correlación de grado–resultado `begitu/demikian/sedemikian ... sehingga/sampai`. Cinco lecciones authored, 16 ejercicios ([3,3,3,3,4]), cuatro tipos (mc, translate_es_id, order, write), sin vocabulario/IDs nuevos.

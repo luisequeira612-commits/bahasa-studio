@@ -1341,7 +1341,7 @@ test('guided A1 writing shows task-specific review criteria and records progress
 
   try {
     await page.goto(url, { waitUntil: 'domcontentloaded' });
-    await page.waitForFunction(() => typeof LessonEngine !== 'undefined' && typeof DB !== 'undefined' && DB.db && App);
+    await page.waitForFunction(() => typeof LessonEngine !== 'undefined' && typeof DB !== 'undefined' && DB.db && App && App.studyActivity !== null && Array.isArray(App.completedUnits) && Array.isArray(App.completedLessons));
 
     await page.evaluate(async () => {
       const level = CourseData.levels.find(entry => entry.id === 'A1');

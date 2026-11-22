@@ -1,6 +1,6 @@
 # Propuesta de secuencia B2 U20–U60
 
-**Estado:** hoja de ruta de desarrollo elaborada bajo la autorización autónoma del dueño (21 nov 2026). U20–U50 están integradas en main; U51–U55 están implementadas en la rama curriculum/b2-u51-u55-implementation-20261122, pendientes de CI/PR; U56–U60 siguen siendo objetivos de trabajo, no contenido ejecutable ni promesa de certificación MCER/BIPA.
+**Estado:** hoja de ruta de desarrollo elaborada bajo la autorización autónoma del dueño (21 nov 2026). U20–U55 están integradas en main; U56–U60 están implementadas en la rama curriculum/b2-u56-u60-final-20261122, pendientes de CI/PR; no constituyen contenido publicado ni promesa de certificación MCER/BIPA.
 
 ## Criterios de diseño
 
@@ -54,7 +54,7 @@
 | U57 | Adjuntos preposicionales de excepción, medio e información temática: diferenciar la relación expresada por cada frase preposicional. | Sneddon et al. (2010), §§2.209–2.215. |
 | U58 | Orden de negación, marcadores temporales y modales en el predicado: interpretar combinaciones sin trasladar el orden del español. | Sneddon et al. (2010), §§2.133–2.159. |
 | U59 | Integración de sintagmas, complementos, foco y elipsis en lectura y reformulación de textos; solo estructuras previamente enseñadas. | Síntesis de Sneddon et al. (2010), capítulos 2–4; revisar solapamiento antes de definir ejemplos. |
-| U60 | Proyecto integrador B2: lectura, escucha, argumentación y producción guiada con estructuras de U1–U59, sin introducir vocabulario nuevo para inflar el inventario. | Síntesis curricular del nivel; no es una certificación MCER/BIPA. |
+| U60 | Proyecto integrador B2: lectura, análisis, argumentación y producción guiada con estructuras de U1–U59, sin introducir vocabulario nuevo para inflar el inventario. | Síntesis curricular del nivel; no es una certificación MCER/BIPA. |
 
 ## U24 implementada en rama
 
@@ -155,7 +155,16 @@ Se ampliaron los filtros del selector y ruta de aprendizaje, el progreso visible
 - Diseños: docs/B2_U51_DESIGN.md … docs/B2_U55_DESIGN.md. La implementación debe conservar cinco lecciones authored y 16 ejercicios por unidad, sin inventar frases indonesias para rellenar el recuento.
 
 
-## U51–U55 implementadas en rama — 22 nov 2026
+## U51–U55 integradas en main — PR #708 — 22 nov 2026
 - U51 pronombres indefinidos y sustitutos pronominales (§§2.67–2.69, 2.83–2.92); U52 interrogativos con saja y libre elección con pun (§§2.83–2.96, 4.22); U53 cuantificadores y números indefinidos (§§2.106–2.117); U54 clasificadores y partitivos (§§2.21–2.33); U55 comparativas y equativas (§§2.101–2.105).
 - Cinco lecciones authored y 16 ejercicios por unidad (3/3/3/3/4), cuatro tipos (mc, translate_es_id, order, write). Sin vocabulario/IDs nuevos ni audio; se reutilizan ejemplos documentados y las actividades de análisis se responden en español.
 - Filtros de aprendizaje, progreso, tutor y traducción contextual ampliados a U1–U55; U56–U60 siguen excluidas. Unidades ocultas/no publicadas; la fuente y las pruebas estructurales no equivalen a validación nativa ni certificación MCER/BIPA.
+
+
+## U56–U60 implementadas en rama — 22 nov 2026
+- U56 adverbios de manera con dengan y secara (§§2.168–2.169), con ejemplos fuente para ambas construcciones.
+- U57 adjuntos preposicionales (§§2.209–2.215): instrumento/medio, compañía, beneficiario, razón, comparación, excepción y tema.
+- U58 negación, marcadores temporales, modales y combinaciones de alcance (§§2.133–2.159).
+- U59 integra grupos, adjuntos, complementos, foco y elipsis usando ejemplos ya enseñados. U60 es el proyecto integrador de lectura, análisis, argumentación y producción guiada; no añade vocabulario para inflar el inventario.
+- Cada unidad contiene cinco lecciones authored y 16 ejercicios (3/3/3/3/4), cuatro tipos. Sin vocabulario/IDs nuevos ni audio. Filtros de acceso extendidos a U1–U60; U6–U60 siguen ocultas/no publicadas.
+- No modifica IndexedDB v1, backup JSON v3, biblioteca Piper ni dependencias. La correspondencia con la fuente y las pruebas estructurales no equivalen a validación nativa ni certificación MCER/BIPA.

@@ -30095,13 +30095,19 @@
     "text": "Mengingatkan",
     "normalized": "mengingatkan",
     "levels": [
-      "B1"
+      "B1",
+      "B2"
     ],
     "sources": [
       {
         "level": "B1",
         "unit": "b1_u5",
         "kind": "vocabulary"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u18",
+        "kind": "listen-answer"
       }
     ]
   },
@@ -39070,6 +39076,11 @@
         "level": "B2",
         "unit": "b2_u17",
         "kind": "vocabulary"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u17",
+        "kind": "listen-answer"
       }
     ]
   },
@@ -39105,6 +39116,11 @@
         "level": "B2",
         "unit": "b2_u17",
         "kind": "vocabulary"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u17",
+        "kind": "listen-answer"
       }
     ]
   },
@@ -39155,6 +39171,186 @@
         "level": "B2",
         "unit": "b2_u17",
         "kind": "translate-answer"
+      }
+    ]
+  },
+  {
+    "id": "578a8e9183d6",
+    "text": "menyuruh",
+    "normalized": "menyuruh",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u18",
+        "kind": "vocabulary"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u18",
+        "kind": "listen-answer"
+      }
+    ]
+  },
+  {
+    "id": "fc6fe1f1a688",
+    "text": "Suwono menyuruh anaknya pergi ke sekolah.",
+    "normalized": "suwono menyuruh anaknya pergi ke sekolah.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u18",
+        "kind": "example"
+      }
+    ]
+  },
+  {
+    "id": "1e54fdc32d81",
+    "text": "memerintahkan",
+    "normalized": "memerintahkan",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u18",
+        "kind": "vocabulary"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u18",
+        "kind": "listen-answer"
+      }
+    ]
+  },
+  {
+    "id": "e45975a7a59e",
+    "text": "Kepala kantor memerintahkan Soeparno agar mencari berkas itu.",
+    "normalized": "kepala kantor memerintahkan soeparno agar mencari berkas itu.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u18",
+        "kind": "example"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u18",
+        "kind": "translate-answer"
+      }
+    ]
+  },
+  {
+    "id": "c810f679b652",
+    "text": "mendesak",
+    "normalized": "mendesak",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u18",
+        "kind": "vocabulary"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u18",
+        "kind": "listen-answer"
+      }
+    ]
+  },
+  {
+    "id": "0b2e10d6bbbd",
+    "text": "Perdana Menteri didesak oleh rakyat agar mengambil langkah tegas.",
+    "normalized": "perdana menteri didesak oleh rakyat agar mengambil langkah tegas.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u18",
+        "kind": "example"
+      }
+    ]
+  },
+  {
+    "id": "cb492c1516eb",
+    "text": "minta",
+    "normalized": "minta",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u18",
+        "kind": "vocabulary"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u18",
+        "kind": "listen-answer"
+      }
+    ]
+  },
+  {
+    "id": "3d47d8069f23",
+    "text": "Saya minta supaya saudara tidak pergi.",
+    "normalized": "saya minta supaya saudara tidak pergi.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u18",
+        "kind": "example"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u18",
+        "kind": "translate-answer"
+      }
+    ]
+  },
+  {
+    "id": "e05adaad7596",
+    "text": "Saya disuruh oleh polisi supaya pergi.",
+    "normalized": "saya disuruh oleh polisi supaya pergi.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u18",
+        "kind": "translate-answer"
+      }
+    ]
+  },
+  {
+    "id": "b7d1bae480c0",
+    "text": "Rukman mengingatkan agar anak buahnya tidak menembak.",
+    "normalized": "rukman mengingatkan agar anak buahnya tidak menembak.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u18",
+        "kind": "listen-audioText"
       }
     ]
   },

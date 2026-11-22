@@ -9311,6 +9311,83 @@
                                     ]
                                 }
                             ]
+
+                        },
+                        {
+                            id: 'b2_u18',
+                            title: 'Unidad 18: cláusulas de intención, órdenes y peticiones',
+                            subtitle: 'menyuruh, memerintahkan, minta, mendesak y mengingatkan',
+                            description: 'Construye complementos de intención con supaya/agar, sujeto compartido u omitido, alternancias activas y pasivas y negación dentro de la cláusula.',
+                            goal: 'Distinguir el objeto del verbo principal del actor de la acción complementaria; usar supaya/agar y untuk según la estructura, y reconocer cómo cambia el punto de vista en las pasivas.',
+                            vocab: [
+                                { id: 'b2u18_menyuruh', idn: 'menyuruh', es: 'ordenar; decirle a alguien que haga algo', ex: 'Suwono menyuruh anaknya pergi ke sekolah.', exEsp: 'Suwono ordenó a su hijo que fuera a la escuela.', source: 'Sneddon et al. (2010), §3.123.', category: 'verb', tags: ['directive', 'intent-complement'] },
+                                { id: 'b2u18_memerintahkan', idn: 'memerintahkan', es: 'ordenar; dar una instrucción formal', ex: 'Kepala kantor memerintahkan Soeparno agar mencari berkas itu.', exEsp: 'El jefe de la oficina ordenó a Soeparno que buscara el expediente.', source: 'Sneddon et al. (2010), §3.122.', category: 'verb', tags: ['formal-directive', 'intent-complement'] },
+                                { id: 'b2u18_mendesak', idn: 'mendesak', es: 'instar; presionar para que alguien actúe', ex: 'Perdana Menteri didesak oleh rakyat agar mengambil langkah tegas.', exEsp: 'El primer ministro fue instado por el pueblo a tomar medidas firmes.', source: 'Sneddon et al. (2010), §3.122.', category: 'verb', tags: ['pressure', 'passive-directive'] },
+                                { id: 'b2u18_minta', idn: 'minta', es: 'pedir; solicitar que alguien haga o no haga algo', ex: 'Saya minta supaya saudara tidak pergi.', exEsp: 'Pido que usted no se vaya.', source: 'Sneddon et al. (2010), §3.128.', category: 'verb', tags: ['request', 'negative-complement'] }
+                            ],
+                            lessons: [
+                                {
+                                    title: '1. Verbos transitivos de intención',
+                                    objective: 'Identifica el objeto del verbo principal como la persona que debe realizar la acción complementaria.',
+                                    grammar: 'Los verbos transitivos de intención expresan que el sujeto quiere que el objeto realice otra acción. Esa acción aparece en una cláusula complementaria con supaya o agar. En Kepala kantor memerintahkan Soeparno agar mencari berkas itu, Soeparno es el objeto de memerintahkan y, al mismo tiempo, el actor de mencari. La fuente señala que el sujeto de la cláusula complementaria suele omitirse porque coincide con el objeto del verbo principal.',
+                                    vocabIds: ['b2u18_memerintahkan'],
+                                    reviewVocabIds: [],
+                                    exercises: [
+                                        { id: 'b2u18_l1_e1', type: 'mc', prompt: 'En Kepala kantor memerintahkan Soeparno agar mencari berkas itu, ¿quién debe buscar el expediente?', options: ['Soeparno', 'El jefe de la oficina', 'El expediente'], answer: 0, explanation: 'Soeparno es el objeto de memerintahkan y el actor implícito de mencari.' },
+                                        { id: 'b2u18_l1_e2', type: 'translate_es_id', prompt: 'Traduce al indonesio: «El jefe de la oficina ordenó a Soeparno que buscara el expediente».', answer: 'Kepala kantor memerintahkan Soeparno agar mencari berkas itu.', answerLanguage: 'id', direction: 'es→id', explanation: 'Es el ejemplo de verbo transitivo de intención documentado por Sneddon et al. (2010), §3.122.' },
+                                        { id: 'b2u18_l1_e3', vocabId: 'b2u18_memerintahkan', type: 'listen', prompt: 'Escucha y escribe el verbo formal que significa «ordenar».', answer: 'memerintahkan', explanation: 'Memerintahkan expresa una orden formal y puede introducir un complemento con agar.' }
+                                    ]
+                                },
+                                {
+                                    title: '2. Sujeto compartido y omisión de supaya/agar',
+                                    objective: 'Reconoce cuándo se omite el sujeto de la cláusula complementaria y cuándo puede omitirse el conector.',
+                                    grammar: 'Cuando el objeto del verbo principal es también el actor de la acción complementaria, ese sujeto suele omitirse: Suwono menyuruh anaknya pergi ke sekolah. En esta construcción transitiva, supaya puede aparecer u omitirse: Suwono menyuruh anaknya (supaya) pergi ke sekolah. La omisión del conector no es una regla universal para cualquier verbo o cláusula; depende de la construcción. La fuente también muestra Saya menyuruhmu supaya kamu membaca buku itu. En esa oración se expresan tanto el objeto como el sujeto de la cláusula, una opción poco común.',
+                                    vocabIds: ['b2u18_menyuruh'],
+                                    reviewVocabIds: ['b2u18_memerintahkan'],
+                                    exercises: [
+                                        { id: 'b2u18_l2_e1', type: 'translate_es_id', prompt: 'Traduce al indonesio: «Suwono ordenó a su hijo que fuera a la escuela».', answer: 'Suwono menyuruh anaknya pergi ke sekolah.', answerLanguage: 'id', direction: 'es→id', explanation: 'Se conserva el ejemplo fuente de Sneddon et al. (2010), §3.123; anaknya es el objeto de menyuruh y actor implícito de pergi.' },
+                                        { id: 'b2u18_l2_e2', type: 'mc', prompt: 'En Suwono menyuruh anaknya (supaya) pergi ke sekolah, ¿qué indica el paréntesis?', options: ['Supaya puede omitirse en este ejemplo.', 'Supaya debe repetirse dos veces.', 'La oración se convierte en pasiva.'], answer: 0, explanation: 'Sneddon documenta la omisión opcional de supaya con esta construcción transitiva.' },
+                                        { id: 'b2u18_l2_e3', vocabId: 'b2u18_menyuruh', type: 'listen', prompt: 'Escucha y escribe el verbo que significa «ordenar a alguien que haga algo».', answer: 'menyuruh', explanation: 'Menyuruh introduce una instrucción dirigida a otra persona.' }
+                                    ]
+                                },
+                                {
+                                    title: '3. Pasiva: quién recibe la orden y quién ejecuta la acción',
+                                    objective: 'Interpreta el sujeto paciente de la pasiva y conserva el actor de la cláusula complementaria.',
+                                    grammar: 'El verbo principal transitivo puede pasar a pasiva sin eliminar la cláusula complementaria. En Saya disuruh oleh polisi supaya pergi, saya es el paciente de disuruh y el actor de pergi; oleh polisi expresa quién dio la orden. En Perdana Menteri didesak oleh rakyat agar mengambil langkah tegas, el primer ministro recibe la presión y es quien debe tomar las medidas. El complemento supaya/agar permanece después del verbo principal.',
+                                    vocabIds: ['b2u18_mendesak'],
+                                    reviewVocabIds: ['b2u18_menyuruh', 'b2u18_memerintahkan'],
+                                    exercises: [
+                                        { id: 'b2u18_l3_e1', type: 'mc', prompt: 'En Saya disuruh oleh polisi supaya pergi, ¿qué papel tiene saya?', options: ['Recibe la orden y realiza la acción de ir.', 'Da la orden a la policía.', 'Es quien da la orden y recibe la acción.'], answer: 0, explanation: 'En la pasiva, saya es paciente del verbo principal y actor del complemento pergi.' },
+                                        { id: 'b2u18_l3_e2', type: 'translate_es_id', prompt: 'Traduce al indonesio: «La policía me ordenó que me fuera» (usa la construcción pasiva documentada).', answer: 'Saya disuruh oleh polisi supaya pergi.', answerLanguage: 'id', direction: 'es→id', explanation: 'La oración presenta a la persona que recibe la orden como sujeto de la pasiva.' },
+                                        { id: 'b2u18_l3_e3', vocabId: 'b2u18_mendesak', type: 'listen', prompt: 'Escucha y escribe el verbo que significa «instar o presionar».', answer: 'mendesak', explanation: 'Mendesak aparece en la fuente en una construcción pasiva como didesak.' }
+                                    ]
+                                },
+                                {
+                                    title: '4. Peticiones negativas: tidak y jangan',
+                                    objective: 'Coloca la negación dentro de la cláusula complementaria y distingue una petición de una orden afirmativa.',
+                                    grammar: 'La negación puede aparecer dentro de la cláusula supaya/agar. Sneddon documenta Saya minta supaya saudara tidak/jangan pergi. La fuente indica que ambas formas aparecen; muchos hablantes prefieren tidak en esta construcción, pero jangan también está documentado. No muevas la negación a la cláusula principal: se está pidiendo que la otra persona no realice la acción.',
+                                    vocabIds: ['b2u18_minta'],
+                                    reviewVocabIds: ['b2u18_menyuruh'],
+                                    exercises: [
+                                        { id: 'b2u18_l4_e1', type: 'fill', prompt: 'Completa con la forma preferida por muchos hablantes en el ejemplo: Saya minta supaya saudara ___ pergi.', answer: 'tidak', hint: 'La fuente también documenta jangan como alternativa.', explanation: 'La negación pertenece a la cláusula complementaria; jangan también aparece como variante.' },
+                                        { id: 'b2u18_l4_e2', type: 'translate_es_id', prompt: 'Traduce al indonesio: «Pido que usted no se vaya».', answer: 'Saya minta supaya saudara tidak pergi.', answerLanguage: 'id', direction: 'es→id', explanation: 'Se conserva el ejemplo de petición negativa de Sneddon et al. (2010), §3.128.' },
+                                        { id: 'b2u18_l4_e3', vocabId: 'b2u18_minta', type: 'listen', prompt: 'Escucha y escribe la forma que significa «pedir».', answer: 'minta', explanation: 'Minta introduce la petición; el contenido solicitado aparece después de supaya.' }
+                                    ]
+                                },
+                                {
+                                    title: '5. Complementos con sujeto omitido: untuk frente a supaya/agar',
+                                    objective: 'Selecciona untuk o supaya/agar según se exprese o se omita el sujeto de la cláusula complementaria.',
+                                    grammar: 'Cuando el sujeto de la cláusula complementaria está omitido y coincide con un elemento de la oración principal, untuk puede alternar con supaya/agar en algunas construcciones: Saya dapat mengusulkan kepada pimpinan untuk/supaya menerima saudara. Si el sujeto de la cláusula aparece expresamente, untuk no lo sustituye: Saya dapat mengusulkan kepada pimpinan supaya mereka menerima saudara. Como advertencia reportada, la fuente también documenta Rukman mengingatkan agar anak buahnya tidak menembak. La elección depende de la estructura, no de una equivalencia libre entre conectores.',
+                                    vocabIds: [],
+                                    reviewVocabIds: ['b1u5_mengingatkan', 'b2u18_minta', 'b2u18_mendesak'],
+                                    exercises: [
+                                        { id: 'b2u18_l5_e1', type: 'mc', prompt: '¿Qué conector conserva la cláusula cuando su sujeto está expresado en Saya dapat mengusulkan kepada pimpinan ___ mereka menerima saudara?', options: ['supaya', 'untuk', 'oleh'], answer: 0, explanation: 'Cuando el sujeto mereka está presente, Sneddon indica que untuk no puede reemplazar a supaya.' },
+                                        { id: 'b2u18_l5_e2', type: 'order', prompt: 'Ordena la advertencia reportada documentada por la fuente.', words: ['tidak', 'Rukman', 'anak', 'agar', 'menembak.', 'mengingatkan', 'buahnya'], correctOrder: ['Rukman', 'mengingatkan', 'agar', 'anak', 'buahnya', 'tidak', 'menembak.'], explanation: 'Agar introduce la cláusula de advertencia; tidak niega la acción complementaria.' },
+                                        { id: 'b2u18_l5_e3', vocabId: 'b1u5_mengingatkan', audioText: 'Rukman mengingatkan agar anak buahnya tidak menembak.', type: 'listen', prompt: 'Escucha la advertencia y escribe el verbo que significa «recordar o advertir».', answer: 'mengingatkan', explanation: 'Mengingatkan introduce una advertencia seguida de una cláusula agar.' },
+                                        { id: 'b2u18_l5_e4', type: 'write', prompt: 'Explica en español cuándo puede usarse untuk en lugar de supaya/agar en estos complementos.', answerLanguage: 'es', hint: 'Compara la cláusula con sujeto omitido con la que incluye mereka.', modelAnswer: 'Untuk puede alternar con supaya/agar cuando el sujeto de la cláusula complementaria está omitido y coincide con un elemento de la oración principal. Si el sujeto aparece expresamente, como mereka, se mantiene supaya/agar; untuk no puede introducir esa cláusula con sujeto explícito.' }
+                                    ]
+                                }
+                            ]
                         },
                     ]
                 }

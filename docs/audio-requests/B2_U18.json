@@ -1,0 +1,20 @@
+{
+  "unit": "b2_u18",
+  "level": "B2",
+  "engine": "piper",
+  "voice": "id_ID-news_tts-medium",
+  "purpose": "Generate production MP3 and Opus for the four new U18 vocabulary IDs and six source-backed full-sentence examples. The existing B1 ID mengingatkan is reused and must not be requested as a new B2 audio ID.",
+  "texts": [
+    "menyuruh",
+    "memerintahkan",
+    "mendesak",
+    "minta",
+    "Suwono menyuruh anaknya pergi ke sekolah.",
+    "Kepala kantor memerintahkan Soeparno agar mencari berkas itu.",
+    "Perdana Menteri didesak oleh rakyat agar mengambil langkah tegas.",
+    "Rukman mengingatkan agar anak buahnya tidak menembak.",
+    "Saya minta supaya saudara tidak pergi.",
+    "Saya disuruh oleh polisi supaya pergi."
+  ],
+  "requestVersion": 2
+}

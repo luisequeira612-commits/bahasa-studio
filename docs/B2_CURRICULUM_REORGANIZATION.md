@@ -1,7 +1,7 @@
 # Reorganización del currículo B2 (60 unidades)
 
 **Decisión del dueño:** 7 nov 2026, autorización explícita para reorganizar el borrador conservando todo el contenido anterior.  
-**Estado:** plan de migración y conservación; U1–U17 están implementadas con cinco lecciones authored cada una. U1–U5 son visibles; U6–U17 siguen ocultas hasta decisión explícita de publicación. U18–U60 no tienen mapa aprobado.  
+**Estado:** plan de migración y conservación; U1–U18 están implementadas con cinco lecciones authored cada una. U1–U5 son visibles; U6–U18 siguen ocultas hasta decisión explícita de publicación. U19–U60 no tienen mapa aprobado.  
 **Base de código:** `index.html` en `main`, commit `e5890b8bc09200d7073467ff25d2d20415aa58f1` (PR #615).
 
 ## Orden aprobado
@@ -15,9 +15,10 @@
 | 5 | U13–U15 | U13 clíticos pronominales; U14 partículas -lah/-kah; U15 adición y alcance con pun/pula |
 | 6 | U16 | Foco restrictivo y selectivo: hanya, cuma, saja, semata-mata y terutama; posición, alcance y registro |
 | 7 | U17 | Discurso referido y preguntas indirectas: cláusulas con bahwa, preguntas sí/no con apakah/apa y preguntas de información integradas |
-| 8 | U18–U60 | Pendiente de desarrollar; no inventar títulos ni objetivos aún no definidos |
+| 8 | U18 | Complementos de intención: órdenes/peticiones con menyuruh, memerintahkan, minta, pasivas con disuruh/didesak, negación y contraste supaya/agar/untuk |
+| 9 | U19–U60 | Pendiente de desarrollar; no inventar títulos ni objetivos aún no definidos |
 
-Este documento registra solo los ejes explícitos ya decididos. No completa por inferencia los temas de U18–U60.
+Este documento registra solo los ejes explícitos ya decididos. No completa por inferencia los temas de U19–U60.
 
 ## Correspondencia del borrador antiguo
 
@@ -42,7 +43,7 @@ El contenido íntegro del borrador anterior está en `docs/B2_LEGACY_DRAFT_ARCHI
 - Cada forma derivada nueva debe tener un ID canónico único. Antes de reutilizar IDs antiguos, comprobar colisiones en A1/A2/B1 y dentro de B2.
 - No exigir producción de una forma antes de su unidad prevista.
 - A1/A2/B1 quedan intactos. No modificar IndexedDB ni el backup JSON v3; sin dependencias ni servicios externos.
-- B2 permanece en desarrollo. U1–U17 están implementadas con cinco lecciones authored cada una; U1–U5 son las visibles y U6–U17 siguen ocultas hasta decisión explícita de publicación. U8 fue aprobada e implementada en PR #639. U9 se implementó con cinco fragmentos fuente aprobados por el dueño, 16 ejercicios y sin vocabulario/IDs ni audio nuevos. U10 integra nominalizaciones, U11 reduplicación, U12 compuestos/idiomaticidad, U13 clíticos pronominales, U14 partículas -lah/-kah y U15 adición/foco con pun/pula (dos IDs nuevos, cuatro clips Piper y sin tareas de escucha); U16 limitadores y alcance (cuma/terutama, dos IDs, cuatro clips Piper y sin tareas de escucha); U17 discurso referido/preguntas indirectas (bahwa/apakah, dos IDs, seis clips Piper y dos ejercicios de escucha); U18–U60 carecen de mapa curricular aprobado.
+- B2 permanece en desarrollo. U1–U18 están implementadas con cinco lecciones authored cada una; U1–U5 son las visibles y U6–U18 siguen ocultas hasta decisión explícita de publicación. U8 fue aprobada e implementada en PR #639. U9 se implementó con cinco fragmentos fuente aprobados por el dueño, 16 ejercicios y sin vocabulario/IDs ni audio nuevos. U10 integra nominalizaciones, U11 reduplicación, U12 compuestos/idiomaticidad, U13 clíticos pronominales, U14 partículas -lah/-kah y U15 adición/foco con pun/pula (dos IDs nuevos, cuatro clips Piper y sin tareas de escucha); U16 limitadores y alcance (cuma/terutama, dos IDs, cuatro clips Piper y sin tareas de escucha); U17 discurso referido/preguntas indirectas (bahwa/apakah, dos IDs, seis clips Piper y dos ejercicios de escucha); U18 complementos de intención (cuatro IDs nuevos, reutiliza mengingatkan de B1 U5, cinco ejercicios de escucha, diez textos Piper generados en MP3/Opus); U19–U60 carecen de mapa curricular aprobado.
 
 ## Vocabulario y evidencia
 
@@ -56,7 +57,7 @@ La primera construcción se hará con vocabulario ya existente siempre que sirva
 2. Preparar U1–U3 según el primer bloque aprobado, con vocabulario ya enseñado y un diseño de progresión que no anticipe U4–U6.
 3. Revisar el contrato de unidad, referencias, vocabulario adelantado y tipos de ejercicio en CI.
 4. Continuar por bloques, incluyendo checkpoints acumulativos.
-5. Completar el mapa U18–U60 antes de inventar o cargar contenido para esos números.
+5. Completar el mapa U19–U60 antes de inventar o cargar contenido para esos números.
 
 ## Límites de este cambio
 

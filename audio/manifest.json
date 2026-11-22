@@ -39560,6 +39560,116 @@
     ]
   },
   {
+    "id": "fcf0fcff37f5",
+    "text": "melainkan",
+    "normalized": "melainkan",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u21",
+        "kind": "vocabulary"
+      }
+    ]
+  },
+  {
+    "id": "8b6bd776f5d7",
+    "text": "Bukan dia bodoh, melainkan dia malas.",
+    "normalized": "bukan dia bodoh, melainkan dia malas.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u21",
+        "kind": "example"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u21",
+        "kind": "translate-answer"
+      }
+    ]
+  },
+  {
+    "id": "ddbb57c323ac",
+    "text": "Bukannya saya tidak mau membeli rumah, tetapi uang saya tidak cukup.",
+    "normalized": "bukannya saya tidak mau membeli rumah, tetapi uang saya tidak cukup.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u21",
+        "kind": "translate-answer"
+      }
+    ]
+  },
+  {
+    "id": "26b2f02eadfb",
+    "text": "Ia bukannya memerankan si Doel, melainkan menjadi sutradara.",
+    "normalized": "ia bukannya memerankan si doel, melainkan menjadi sutradara.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u21",
+        "kind": "translate-answer"
+      }
+    ]
+  },
+  {
+    "id": "7079c47a4194",
+    "text": "Saya bukan tidak percaya kepadamu.",
+    "normalized": "saya bukan tidak percaya kepadamu.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u21",
+        "kind": "translate-answer"
+      }
+    ]
+  },
+  {
+    "id": "aba66f1d776e",
+    "text": "Dia bukan bodoh, melainkan malas saja.",
+    "normalized": "dia bukan bodoh, melainkan malas saja.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u21",
+        "kind": "translate-answer"
+      }
+    ]
+  },
+  {
+    "id": "1b4bf93e7a67",
+    "text": "Kami tidak pergi ke Solo, melainkan ke Yogya.",
+    "normalized": "kami tidak pergi ke solo, melainkan ke yogya.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u21",
+        "kind": "translate-answer"
+      }
+    ]
+  },
+  {
     "id": "ac14444a4d3b",
     "text": "Meskipun hujan deras, kegiatan tetap berlangsung.",
     "normalized": "meskipun hujan deras, kegiatan tetap berlangsung.",

@@ -1,4 +1,14 @@
-## B2 U20 implementada en rama audio y PR #688 — 21 nov 2026
+## B2 U21 en rama — 22 nov 2026
+
+- U20 quedó fusionada en main mediante PR #688. B2 U1–U20 están implementadas; U1–U5 visibles, U6–U20 ocultas.
+- U21 aborda corrección contrastiva: bukan/bukannya ... melainkan/tetapi, alcance de la negación exterior/interior y contraste verbal tidak ... melainkan.
+- Fuente: Sneddon et al. (2010), *Indonesian: A Comprehensive Grammar*, 2.ª ed., §§4.83–4.84.
+- Cinco lecciones authored, 16 ejercicios, cuatro tipos (mc, translate_es_id, order, write), un nuevo ID léxico b2u21_melainkan. Seis frases completas fuente más el headword aislado melainkan: siete clips Piper generados/verificados en el workflow 44986204234. IDs: 8b6bd776f5d7, ddbb57c323ac, 26b2f02eadfb, 7079c47a4194, aba66f1d776e, 1b4bf93e7a67 y fcf0fcff37f5.
+- U21 permanece oculta/no publicada. U22–U60 siguen siendo propuestas del roadmap, no unidades implementadas.
+- Audio en main antes de U21: 2.261 IDs indexados, 148 textos B2; Rama de audio: 2.268 IDs, 155 textos B2; audio/index.json, audio/manifest.json y audio/metadata.json sincronizados. Pruebas específicas de generación/manifiesto pasaron; CI de regresión completo pendiente.
+- Ramas: curriculum/b2-u21-bukan-melainkan-20261122 y audio/library-B2-44986204234. PR #689 abierto desde la rama audio/library-B2-44986204234; CI completo del PR pendiente.
+
+## B2 U20 fusionada en main mediante PR #688 — 22 nov 2026
 - U20 desarrolla baik … maupun con cinco lecciones authored y 16 ejercicios (3/3/3/3/4), cuatro tipos (mc, order, translate_es_id, write), cinco ejemplos completos documentados y producción guiada. Cubre paralelismo sintáctico, lectura negativa «ni…ni», omisión documentada de baik y coordinación de más de dos miembros. No añade vocabulario/IDs. Cinco clips Piper (MP3/Opus) generados y verificados en el workflow 44984996460; IDs: aaea322c234f, 53ab5e861d20, 1358c0f87fdd, fb0ab6b6fbed y 36f1d5be2e3d. audio/index.json, audio/manifest.json y audio/metadata.json tienen 2.261 entradas/hashes; B2 148. La prueba de manifiesto y generación pasó. La unidad sigue oculta/no publicada. Fuente: Sneddon et al. (2010), §4.82; diseño en docs/B2_U20_DESIGN.md.
 - Se preparó la secuencia de trabajo U20–U60 en docs/B2_U20_U60_ROADMAP.md, basada en Sneddon et al. (2010), §§4.81–4.118 y capítulos 2–3. La propuesta diferencia lo ya enseñado en B1/B2 y no equivale a certificación MCER/BIPA. U21–U60 aún no están implementadas.
 - Validación: generación y pruebas de manifiesto Piper pasaron. Las dos primeras regresiones detectaron listas fijas antiguas que esperaban B2 U1–U19: se corrigieron en tests/load-inline-b2-curriculum.test.mjs y tests/multi-lesson-progression.test.cjs para incluir U20 (commits db27a2b y 0ef8f2f). Una ejecución posterior detectó una carrera en browser-e2e.test.cjs: el test A1 modificaba el progreso antes de que App.init terminara de hidratar DB. Se añadió espera por App.studyActivity y los arrays de progreso antes de preparar el test. CI final pendiente. No se afirma ejecución local. Sin cambios a IndexedDB v1, backup JSON v3, A1/A2/B1 ni dependencias.

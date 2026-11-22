@@ -1,0 +1,60 @@
+# B2 U21 — bukan ... melainkan/tetapi: corrección contrastiva
+
+Fecha: 22 nov 2026  
+Estado: implementada en la rama de audio `audio/library-B2-44986204234`; siete clips Piper generados y pruebas específicas de manifiesto/generación pasadas. CI de regresión completo pendiente. La unidad permanece oculta/no publicada.
+
+## Fuente y alcance
+
+Fuente principal: James N. Sneddon et al. (2010), *Indonesian: A Comprehensive Grammar*, 2.ª ed., §§4.83–4.84. Se usan ejemplos documentados de la sección 4.84:
+
+1. `Bukan dia bodoh, melainkan dia malas.`
+2. `Bukannya saya tidak mau membeli rumah, tetapi uang saya tidak cukup.`
+3. `Ia bukannya memerankan si Doel, melainkan menjadi sutradara.`
+4. `Saya bukan tidak percaya kepadamu.`
+5. `Dia bukan bodoh, melainkan malas saja.`
+6. `Kami tidak pergi ke Solo, melainkan ke Yogya.`
+
+La unidad no repite la negación básica de A1. Enseña el alcance de bukan/bukannya, la negación interna con tidak, la alternativa correctiva con melainkan/tetapi y la variante verbal tidak ... melainkan. No equivale a certificación MCER/BIPA ni a validación por hablante nativo.
+
+## Objetivo didáctico
+
+Distinguir tres operaciones que no deben confundirse:
+
+- `bukan` al inicio puede rechazar una proposición completa; la cláusula con `melainkan` corrige la alternativa rechazada.
+- `bukannya` puede introducir una interpretación que se niega; si aparece además `tidak`, hay que identificar el alcance de cada negación.
+- Cuando el foco es un predicado verbal sin énfasis contrastivo de identidad, puede aparecer `tidak`; `melainkan` introduce el destino/miembro alternativo.
+
+`Melainkan` es el único ID léxico nuevo: `b2u21_melainkan`. Se reutiliza como vocabulario de la unidad en las cinco lecciones. Los demás términos de los ejemplos se explican contextualmente, sin duplicar IDs ya existentes ni crear cuota léxica.
+
+## Estructura
+
+Cinco lecciones authored y 16 ejercicios (3/3/3/3/4), con cuatro tipos: `mc`, `translate_es_id`, `order`, `write`.
+
+1. **Bukan ... melainkan:** corrección de una proposición completa.
+2. **Bukannya ... tetapi:** alcance de la negación exterior e interior.
+3. **Un sujeto, dos predicados:** contraste con sujeto compartido.
+4. **Bukan tidak ...:** negación enfática y alternativa implícita.
+5. **Tidak ... melainkan:** corrección de una acción o destino.
+
+Seis respuestas de traducción completas usan los ejemplos fuente; la primera coincide con el ejemplo léxico de `melainkan`, por lo que el exportador de audio debe deduplicarla. El headword aislado `melainkan` también necesita su propio clip.
+
+## Audio
+
+Se solicita generación selectiva Piper para estos siete textos exactos:
+
+- `Bukan dia bodoh, melainkan dia malas.`
+- `Bukannya saya tidak mau membeli rumah, tetapi uang saya tidak cukup.`
+- `Ia bukannya memerankan si Doel, melainkan menjadi sutradara.`
+- `Saya bukan tidak percaya kepadamu.`
+- `Dia bukan bodoh, melainkan malas saja.`
+- `Kami tidak pergi ke Solo, melainkan ke Yogya.`
+- `melainkan` (headword de vocabulario).
+
+No se regenera la biblioteca completa. Los siete clips se generaron/reutilizaron con Piper en el workflow 44986204234. IDs: `8b6bd776f5d7`, `ddbb57c323ac`, `26b2f02eadfb`, `7079c47a4194`, `aba66f1d776e`, `1b4bf93e7a67` y `fcf0fcff37f5` (headword `melainkan`). `audio/index.json`, `audio/manifest.json` y `audio/metadata.json` contienen 2.268 entradas/hashes, 155 asociadas a B2. Las pruebas de generación y manifiesto pasaron. La integridad técnica no sustituye la escucha perceptiva.
+
+## Restricciones
+
+- U21 sigue oculta/no publicada; U1–U5 continúan siendo las únicas unidades B2 visibles.
+- No modificar A1/A2/B1, IndexedDB v1, backup JSON v3, dependencias, backend ni servicios externos.
+- No exigir KBBI ni hablante nativo para avanzar; la coherencia interna y la fuente gramatical no son certificación lingüística.
+- Mantener el control de solapamiento con B1 y B2 U1–U20.

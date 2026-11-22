@@ -1432,3 +1432,50 @@ test('B2 U41-U45 implement five authored lessons and 16 source-bound exercises e
     for (const phrase of phrases) assert.ok(indexSource.includes(phrase), id + ' must use source-bound examples: ' + phrase);
   }
 });
+
+
+test('B2 U46-U50 complete the documented ellipsis sequence with five authored lessons each', async () => {
+  const { b2, indexSource } = await loadCurricula();
+  const cases = [
+    ['b2_u46', [
+      'Saya sudah makan tapi mereka belum.',
+      'Majikannya tidak tahu ke mana dia pindah. Teman-temannya juga tidak tahu.',
+    ]],
+    ['b2_u47', [
+      'Entah gagasannya disetujui entah tidak, dia tetap akan mengusulkan gagasannya.',
+    ]],
+    ['b2_u48', [
+      'Dia mengulurkan tangan kepadaku.',
+      'Mereka sedang menggosok gigi.',
+    ]],
+    ['b2_u49', [
+      'Siapa nama saudara? Jim.',
+      'Berapa harganya? Tiga ribu.',
+      'Kapan saudara berangkat? Besok pagi.',
+      'Ada orang cari anda. Siapa?',
+      'Saya sudah ke sana. Saya juga.',
+    ]],
+    ['b2_u50', [
+      'Mereka sudah lama kawin, tetapi belum punya anak.',
+      'Saya sudah makan tapi mereka belum.',
+      'Mereka sedang menggosok gigi.',
+      'Entah gagasannya disetujui entah tidak, dia tetap akan mengusulkan gagasannya.',
+      'Saya sudah ke sana. Saya juga.',
+    ]],
+  ];
+  for (const [id, phrases] of cases) {
+    const unit = b2.units.find((item) => item.id === id);
+    assert.ok(unit, id + ' must exist');
+    assert.equal(unit.lessons.length, 5, id + ' must have five authored lessons');
+    assert.deepEqual(unit.lessons.map((lesson) => lesson.exercises.length), [3, 3, 3, 3, 4]);
+    assert.deepEqual(unit.vocab, [], id + ' must not introduce untracked vocabulary');
+    const exercises = allExercises(unit);
+    assert.equal(exercises.length, 16);
+    assert.deepEqual([...new Set(exercises.map((exercise) => exercise.type))].sort(),
+      ['mc', 'order', 'translate_es_id', 'write']);
+    assert.equal(new Set(exercises.map((exercise) => exercise.id)).size, 16, id + ' exercise IDs must be unique');
+    assert.ok(exercises.some((exercise) => exercise.type === 'write' && exercise.hint?.trim()
+      && exercise.answerLanguage === 'es'), id + ' must include a guided Spanish analysis task');
+    for (const phrase of phrases) assert.ok(indexSource.includes(phrase), id + ' must use documented examples: ' + phrase);
+  }
+});

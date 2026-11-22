@@ -839,10 +839,10 @@ test('B2 U19 implements nominalised relative clauses and identifying focus', asy
   }
 });
 
-test('implemented B2 U1–U31 are executable while later legacy draft units stay archived', async () => {
+test('implemented B2 U1–U32 are executable while later legacy draft units stay archived', async () => {
   const { b2 } = await loadCurricula();
   const legacyArchive = await readFile(new URL('../docs/B2_LEGACY_DRAFT_ARCHIVE.md', import.meta.url), 'utf8');
-  assert.deepEqual(b2.units.map((unit) => unit.id), ['b2_u1', 'b2_u2', 'b2_u3', 'b2_u4', 'b2_u5', 'b2_u6', 'b2_u7', 'b2_u8', 'b2_u9', 'b2_u10', 'b2_u11', 'b2_u12', 'b2_u13', 'b2_u14', 'b2_u15', 'b2_u16', 'b2_u17', 'b2_u18', 'b2_u19', 'b2_u20', 'b2_u21', 'b2_u22', 'b2_u23', 'b2_u24', 'b2_u25', 'b2_u26', 'b2_u27', 'b2_u28', 'b2_u29', 'b2_u30', 'b2_u31']);
+  assert.deepEqual(b2.units.map((unit) => unit.id), ['b2_u1', 'b2_u2', 'b2_u3', 'b2_u4', 'b2_u5', 'b2_u6', 'b2_u7', 'b2_u8', 'b2_u9', 'b2_u10', 'b2_u11', 'b2_u12', 'b2_u13', 'b2_u14', 'b2_u15', 'b2_u16', 'b2_u17', 'b2_u18', 'b2_u19', 'b2_u20', 'b2_u21', 'b2_u22', 'b2_u23', 'b2_u24', 'b2_u25', 'b2_u26', 'b2_u27', 'b2_u28', 'b2_u29', 'b2_u30', 'b2_u31', 'b2_u32']);
   for (const id of ['b2_u5']) {
     assert.ok(legacyArchive.includes('"id": "' + id + '"'), id + ' must remain in the historical archive');
   }
@@ -1202,4 +1202,44 @@ test('B2 U31 teaches source-bound entah ... entah alternatives and ellipsis', as
   assert.ok(answers.includes('Kalau mati secara alami biasanya monyet ini tidak ditemukan, entah dikubur oleh monyet lainnya, entah kebiasaan monyet itu menyembunyikan diri sebelum mati.'));
   assert.ok(exercises.some((exercise) => exercise.type === 'write' && exercise.hint?.trim() && exercise.modelAnswer?.trim()));
   assert.equal(new Set(exercises.map((exercise) => exercise.id)).size, exercises.length);
+});
+
+
+test('B2 U32 teaches source-bound kalau/apabila ... maka condition-consequence structure', async () => {
+  const { b2, indexSource } = await loadCurricula();
+  const unit = b2.units.find((item) => item.id === 'b2_u32');
+  assert.ok(unit, 'B2 U32 must exist');
+  assert.equal(unit.lessons.length, 5);
+  assert.deepEqual(unit.lessons.map((lesson) => lesson.exercises.length), [3, 3, 3, 3, 4]);
+  assert.equal(unit.vocab.length, 0);
+  for (const lesson of unit.lessons) {
+    assert.deepEqual(lesson.vocabIds, []);
+    assert.deepEqual(lesson.reviewVocabIds, []);
+  }
+  const exercises = allExercises(unit);
+  assert.equal(exercises.length, 16);
+  assert.deepEqual([...new Set(exercises.map((exercise) => exercise.type))].sort(),
+    ['mc', 'order', 'translate_es_id', 'write']);
+  const examples = [
+    'Apabila pemerintah Sri Langka tidak mengambil langkah tegas, maka India akan protes.',
+    'Kalau teori ini benar, maka jawaban itu harus kita pertimbangkan lagi.',
+  ];
+  for (const phrase of examples) assert.ok(indexSource.includes(phrase), phrase + ' must remain source-bound in index.html');
+  const translated = exercises.filter((exercise) => exercise.type === 'translate_es_id').map((exercise) => exercise.answer);
+  assert.ok(examples.every((phrase) => translated.includes(phrase)), 'both documented examples must be translated');
+  const ordered = exercises.filter((exercise) => exercise.type === 'order').map((exercise) => exercise.correctOrder.join(' '));
+  assert.ok(examples.every((phrase) => ordered.includes(phrase)), 'both documented examples must be ordered');
+  const targets = exercises.map((exercise) => {
+    if (Array.isArray(exercise.correctOrder)) return exercise.correctOrder.join(' ');
+    if (typeof exercise.modelAnswer === 'string') return exercise.modelAnswer;
+    if (typeof exercise.answer === 'string') return exercise.answer;
+    if (Number.isInteger(exercise.answer) && Array.isArray(exercise.options)) return exercise.options[exercise.answer] || '';
+    return '';
+  }).filter((target) => target.trim().split(/\s+/).filter(Boolean).length >= 2);
+  assert.ok(targets.length >= 5, 'U32 must include at least five full-sentence targets');
+  assert.ok(exercises.some((exercise) => exercise.type === 'write' && exercise.answerLanguage === 'es'
+    && exercise.hint?.trim() && exercise.modelAnswer?.includes('maka')));
+  assert.ok(exercises.some((exercise) => exercise.type === 'write' && exercise.answerLanguage === 'id'
+    && examples.includes(exercise.modelAnswer)));
+  assert.ok(exercises.every((exercise) => exercise.type !== 'listen'), 'U32 does not add audio');
 });

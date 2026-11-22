@@ -8007,10 +8007,11 @@
                                     ]
                                 }
                             ]
-                        }
+                        },
+
                     ]
                 },
-                {
+{
                     id: 'B2',
                     title: 'B2 — Intermedio Alto',
                     units: [
@@ -10097,7 +10098,7 @@
                                             { id: 'b2u28_l5_e1', type: 'mc', prompt: '¿Qué indica §4.92 sobre el orden de las dos cláusulas?', options: ['Cualquiera de las dos puede aparecer primero', 'Siempre debe aparecer daripada primero', 'Siempre debe aparecer lebih baik primero'], answer: 0, explanation: 'La fuente dice explícitamente que cualquiera de las dos cláusulas puede ocurrir primero.' },
                                             { id: 'b2u28_l5_e2', type: 'translate_es_id', prompt: 'Traduce al indonesio: «Es mejor que se rindan, en lugar de luchar».', answer: 'Sebaiknya mereka menyerah saja, daripada melawan.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.92.' },
                                             { id: 'b2u28_l5_e3', type: 'translate_es_id', prompt: 'Traduce al indonesio: «En lugar de morir de hambre, es mejor que nos mudemos».', answer: 'Daripada mati kelaparan, lebih baik kita pindah saja.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.92.' },
-                                            { id: 'b2u28_l5_e4', type: 'write', prompt: 'Reconstruye de memoria un ejemplo documentado de U28 y explica en español qué alternativa se prefiere y cuál introduce daripada.', answerLanguage: 'id', hint: 'Elige uno de los dos ejemplos fuente trabajados en la unidad; no inventes una oración indonesia nueva.', modelAnswer: 'Sebaiknya mereka menyerah saja, daripada melawan.' }
+                                            { id: 'b2u28_l5_e4', type: 'write', prompt: 'Reconstruye de memoria uno de los dos ejemplos documentados de U28 y explica en español qué alternativa se prefiere y cuál introduce daripada.', answerLanguage: 'id', hint: 'Elige uno de los dos ejemplos fuente trabajados en la unidad; no inventes una oración indonesia nueva.', modelAnswer: 'Sebaiknya mereka menyerah saja, daripada melawan.' }
                                         ]
                                     }
                                 ]
@@ -10313,6 +10314,77 @@
                                             { id: 'b2u31_l5_e2', type: 'translate_es_id', prompt: 'Traduce al indonesio: «No se sabe si fue aprobado o no; él seguirá proponiendo su idea».', answer: 'Entah disetujui entah tidak, dia tetap akan mengusulkan gagasannya.', answerLanguage: 'id', direction: 'es→id', explanation: 'Reutiliza el ejemplo documentado de §4.95.' },
                                             { id: 'b2u31_l5_e3', type: 'order', prompt: 'Ordena la oración completa con las alternativas antes del resultado.', words: ['Entah', 'dia', 'bodoh', 'entah', 'malas,', 'dia', 'tidak', 'pernah', 'menyelesaikan', 'pekerjaannya.'], correctOrder: ['Entah', 'dia', 'bodoh', 'entah', 'malas,', 'dia', 'tidak', 'pernah', 'menyelesaikan', 'pekerjaannya.'], explanation: 'El ejemplo combina las alternativas y el resultado en una sola oración.' },
                                             { id: 'b2u31_l5_e4', type: 'write', prompt: 'Reconstruye de memoria un ejemplo documentado de U31 y explica en español cómo se relacionan sus alternativas con el resultado.', answerLanguage: 'id', hint: 'Elige uno de los tres ejemplos fuente; no inventes una oración indonesia nueva.', modelAnswer: 'Entah dia bodoh entah malas, dia tidak pernah menyelesaikan pekerjaannya.' }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                id: 'b2_u32',
+                                title: 'Unidad 32: kalau/apabila ... maka — condición y consecuencia explícita',
+                                subtitle: 'marcar con claridad el resultado de una condición',
+                                description: 'Relaciona una cláusula condicional introducida por kalau o apabila con una cláusula de consecuencia que comienza con maka.',
+                                goal: 'Distinguir el conector de condición de maka, que introduce explícitamente la consecuencia en la estructura correlativa descrita en §4.96.',
+                                vocab: [],
+                                lessons: [
+                                    {
+                                        title: '1. Maka introduce la consecuencia',
+                                        objective: 'Identifica maka como el marcador que abre la cláusula de consecuencia después de una condición.',
+                                        grammar: 'Sneddon et al. (2010), §4.96 explica que kalau y apabila introducen una cláusula subordinada de condición. Esta puede coaparecer con una cláusula que comienza con maka, «entonces», y expresa la consecuencia. En «Apabila pemerintah Sri Langka tidak mengambil langkah tegas, maka India akan protes», la condición es que el gobierno no tome medidas firmes y la consecuencia es que India protestará.',
+                                        vocabIds: [],
+                                        reviewVocabIds: [],
+                                        exercises: [
+                                            { id: 'b2u32_l1_e1', type: 'mc', prompt: 'En «Apabila pemerintah Sri Langka tidak mengambil langkah tegas, maka India akan protes», ¿qué introduce maka?', options: ['La consecuencia de la condición', 'La condición subordinada', 'Una concesión'], answer: 0, explanation: 'La cláusula que comienza con maka expresa lo que ocurre como consecuencia.' },
+                                            { id: 'b2u32_l1_e2', type: 'translate_es_id', prompt: 'Traduce al indonesio: «Si el gobierno de Sri Lanka no toma medidas firmes, entonces India protestará».', answer: 'Apabila pemerintah Sri Langka tidak mengambil langkah tegas, maka India akan protes.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.96.' },
+                                            { id: 'b2u32_l1_e3', type: 'order', prompt: 'Ordena el ejemplo documentado.', words: ['Apabila', 'pemerintah', 'Sri', 'Langka', 'tidak', 'mengambil', 'langkah', 'tegas,', 'maka', 'India', 'akan', 'protes.'], correctOrder: ['Apabila', 'pemerintah', 'Sri', 'Langka', 'tidak', 'mengambil', 'langkah', 'tegas,', 'maka', 'India', 'akan', 'protes.'], explanation: 'La condición aparece primero; maka introduce la consecuencia.' }
+                                        ]
+                                    },
+                                    {
+                                        title: '2. Kalau y apabila presentan la condición',
+                                        objective: 'Reconoce los dos conectores condicionales documentados en la estructura con maka.',
+                                        grammar: 'La sección 4.96 presenta tanto apabila como kalau antes de maka. Ambos introducen la condición; el marcador maka no reemplaza ese conector, sino que abre la cláusula que expresa el resultado. El segundo ejemplo es «Kalau teori ini benar, maka jawaban itu harus kita pertimbangkan lagi».',
+                                        vocabIds: [],
+                                        reviewVocabIds: [],
+                                        exercises: [
+                                            { id: 'b2u32_l2_e1', type: 'mc', prompt: 'En el ejemplo «Kalau teori ini benar, maka jawaban itu harus kita pertimbangkan lagi», ¿qué palabra introduce la condición?', options: ['Kalau', 'Maka', 'Harus'], answer: 0, explanation: 'Kalau introduce la condición «si esta teoría es correcta».' },
+                                            { id: 'b2u32_l2_e2', type: 'translate_es_id', prompt: 'Traduce al indonesio: «Si esta teoría es correcta, entonces debemos reconsiderar esa respuesta».', answer: 'Kalau teori ini benar, maka jawaban itu harus kita pertimbangkan lagi.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.96.' },
+                                            { id: 'b2u32_l2_e3', type: 'order', prompt: 'Ordena el segundo ejemplo documentado.', words: ['Kalau', 'teori', 'ini', 'benar,', 'maka', 'jawaban', 'itu', 'harus', 'kita', 'pertimbangkan', 'lagi.'], correctOrder: ['Kalau', 'teori', 'ini', 'benar,', 'maka', 'jawaban', 'itu', 'harus', 'kita', 'pertimbangkan', 'lagi.'], explanation: 'Kalau introduce la condición y maka marca el comienzo de la consecuencia.' }
+                                        ]
+                                    },
+                                    {
+                                        title: '3. Separar condición y consecuencia',
+                                        objective: 'Distingue el contenido de la cláusula condicional del contenido de la consecuencia.',
+                                        grammar: 'La primera parte responde a «¿bajo qué condición?»; la parte que comienza con maka responde a «¿qué consecuencia se sigue?». En el ejemplo del gobierno, la condición es la falta de medidas firmes y la consecuencia es la protesta de India. En el ejemplo de la teoría, la condición es que la teoría sea correcta y la consecuencia es reconsiderar la respuesta.',
+                                        vocabIds: [],
+                                        reviewVocabIds: [],
+                                        exercises: [
+                                            { id: 'b2u32_l3_e1', type: 'mc', prompt: 'En el ejemplo del gobierno de Sri Langka, ¿cuál es la consecuencia?', options: ['India akan protes', 'pemerintah Sri Langka tidak mengambil langkah tegas', 'Apabila'], answer: 0, explanation: 'La consecuencia aparece después de maka: India protestará.' },
+                                            { id: 'b2u32_l3_e2', type: 'translate_es_id', prompt: 'Traduce al indonesio: «Si esta teoría es correcta, entonces debemos reconsiderar esa respuesta».', answer: 'Kalau teori ini benar, maka jawaban itu harus kita pertimbangkan lagi.', answerLanguage: 'id', direction: 'es→id', explanation: 'Se reutiliza el segundo ejemplo documentado de §4.96.' },
+                                            { id: 'b2u32_l3_e3', type: 'order', prompt: 'Ordena el ejemplo del gobierno de Sri Langka.', words: ['Apabila', 'pemerintah', 'Sri', 'Langka', 'tidak', 'mengambil', 'langkah', 'tegas,', 'maka', 'India', 'akan', 'protes.'], correctOrder: ['Apabila', 'pemerintah', 'Sri', 'Langka', 'tidak', 'mengambil', 'langkah', 'tegas,', 'maka', 'India', 'akan', 'protes.'], explanation: 'La coma separa la condición inicial de la cláusula de consecuencia.' }
+                                        ]
+                                    },
+                                    {
+                                        title: '4. Maka frente a una condición simple',
+                                        objective: 'Compara la condición básica ya estudiada con la correlación explícita de B2.',
+                                        grammar: 'B1 U18 ya enseña kalau/jika como conectores de condición y practica resultados como «Kalau hujan, saya akan pulang». U32 no vuelve a enseñar esa base: añade la organización explícita «condición, maka consecuencia», tal como la describe §4.96. Maka pertenece a la cláusula de resultado, no a la condición.',
+                                        vocabIds: [],
+                                        reviewVocabIds: [],
+                                        exercises: [
+                                            { id: 'b2u32_l4_e1', type: 'mc', prompt: '¿Qué añade la estructura de U32 frente a la condición básica de B1 U18?', options: ['Maka marca explícitamente el comienzo de la consecuencia', 'Maka sustituye siempre a kalau', 'Maka convierte la condición en una concesión'], answer: 0, explanation: 'La condición sigue introducida por kalau o apabila; maka hace explícita la cláusula de consecuencia.' },
+                                            { id: 'b2u32_l4_e2', type: 'mc', prompt: '¿Cuál de estas palabras abre la cláusula de consecuencia en los dos ejemplos de §4.96?', options: ['maka', 'apabila', 'kalau'], answer: 0, explanation: 'Maka precede a la cláusula que expresa el resultado.' },
+                                            { id: 'b2u32_l4_e3', type: 'order', prompt: 'Ordena el ejemplo sobre la teoría y la respuesta.', words: ['Kalau', 'teori', 'ini', 'benar,', 'maka', 'jawaban', 'itu', 'harus', 'kita', 'pertimbangkan', 'lagi.'], correctOrder: ['Kalau', 'teori', 'ini', 'benar,', 'maka', 'jawaban', 'itu', 'harus', 'kita', 'pertimbangkan', 'lagi.'], explanation: 'La condición precede a la cláusula de consecuencia marcada por maka.' }
+                                        ]
+                                    },
+                                    {
+                                        title: '5. Integración: condición y resultado',
+                                        objective: 'Interpreta y reconstruye los dos ejemplos documentados sin confundir los conectores.',
+                                        grammar: 'Recuerda la distribución: kalau o apabila introducen la condición; maka introduce la consecuencia. La construcción permite hacer visible la relación entre ambas cláusulas. Los dos ejemplos de §4.96 muestran una condición negativa sobre medidas gubernamentales y una condición sobre la validez de una teoría.',
+                                        vocabIds: [],
+                                        reviewVocabIds: [],
+                                        exercises: [
+                                            { id: 'b2u32_l5_e1', type: 'mc', prompt: '¿Qué análisis describe correctamente «Kalau teori ini benar, maka jawaban itu harus kita pertimbangkan lagi»?', options: ['Kalau introduce la condición y maka introduce la consecuencia', 'Maka introduce la condición y kalau la consecuencia', 'Las dos palabras expresan concesión'], answer: 0, explanation: 'La condición es que la teoría sea correcta; la consecuencia es reconsiderar la respuesta.' },
+                                            { id: 'b2u32_l5_e2', type: 'translate_es_id', prompt: 'Traduce al indonesio: «Si el gobierno de Sri Lanka no toma medidas firmes, entonces India protestará».', answer: 'Apabila pemerintah Sri Langka tidak mengambil langkah tegas, maka India akan protes.', answerLanguage: 'id', direction: 'es→id', explanation: 'Recupera el ejemplo documentado de §4.96.' },
+                                            { id: 'b2u32_l5_e3', type: 'write', prompt: 'Explica en español qué diferencia hay entre el conector condicional y el marcador de consecuencia en los ejemplos de U32.', answerLanguage: 'es', hint: 'Indica qué función cumplen kalau/apabila y qué función cumple maka.', modelAnswer: 'Kalau y apabila introducen la condición; maka introduce la cláusula que expresa la consecuencia.' },
+                                            { id: 'b2u32_l5_e4', type: 'write', prompt: 'Reconstruye de memoria uno de los dos ejemplos documentados de U32; no inventes una oración indonesia nueva.', answerLanguage: 'id', hint: 'Elige el ejemplo del gobierno de Sri Langka o el de la teoría; identifica mentalmente la condición y la consecuencia.', modelAnswer: 'Kalau teori ini benar, maka jawaban itu harus kita pertimbangkan lagi.' }
                                         ]
                                     }
                                 ]

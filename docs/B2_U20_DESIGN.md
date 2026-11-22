@@ -1,6 +1,6 @@
 # B2 U20 — Coordinación correlativa baik … maupun
 
-**Estado:** implementada en la rama de trabajo; cinco lecciones authored, 16 ejercicios y cuatro tipos (mc, translate_es_id, order, write). Sin vocabulario nuevo ni IDs léxicos. Cinco frases fuente se envían al pipeline selectivo Piper; la unidad permanece oculta/no publicada hasta la validación de audio y CI.
+**Estado:** implementada en la rama de trabajo; cinco lecciones authored, 16 ejercicios y cuatro tipos (mc, translate_es_id, order, write). Sin vocabulario nuevo ni IDs léxicos. Cinco frases fuente ya tienen clips Piper generados en MP3 y Opus; la unidad permanece oculta/no publicada hasta que termine CI.
 **Fecha:** 21 nov 2026.
 **Dependencias:** B1 U18–U21 (condiciones, concesión, contraste, causa/consecuencia); B2 U15 (pun aditivo/focalizador, no confundir con la conjunción correlativa maupun).
 
@@ -37,8 +37,23 @@ Fuente: vista previa del libro; sección 4.82 reproducida en la vista de texto e
 - Cinco traducciones con oraciones completas, tomadas de Sneddon et al. (2010), §4.82.
 - Una producción original guiada; la respuesta modelo reutiliza un ejemplo documentado.
 - vocab: [], vocabIds: [] y reviewVocabIds: []. No se crean IDs duplicados ni se modifica el vocabulario previo.
-- Cinco respuestas de traducción completas requieren audio de reproducción; se solicita generación selectiva Piper para esos cinco textos exactos, no una regeneración completa. La escucha solo se añadirá cuando los archivos MP3, IDs y hashes estén comprobados.
+- Las cinco respuestas de traducción completas tienen audio generado selectivamente con Piper; no se regeneró la biblioteca completa. La comprobación de audio-manifest.test.mjs pasó en el workflow de generación. No se añadieron ejercicios listen porque el contrato ya contiene cuatro tipos.
 
 ## Límites
 
 La fuente gramatical respalda el análisis y los ejemplos, pero no equivale a validación por hablante nativo ni certificación MCER/BIPA. La unidad permanece oculta/no publicada. No se modifica A1/A2/B1, IndexedDB v1, backup JSON v3 ni dependencias.
+
+
+## Audio generado
+
+Generación selectiva Piper (workflow de GitHub Actions, ejecución 44984996460). Los cinco textos quedaron en el índice y manifiesto de audio y tienen MP3/Opus:
+
+| Texto | ID |
+|---|---|
+| Baik Ana maupun Ira tinggal di Jakarta. | aaea322c234f |
+| Baik di kota maupun di desa sepak bola digemari orang. | 53ab5e861d20 |
+| Baik kepandaian maupun kecantikan tidak berguna untuk mencapai kebahagiaan. | 1358c0f87fdd |
+| Mereka berjuang untuk bangsa maupun untuk keluarga. | fb0ab6b6fbed |
+| Baik orang Cina, orang Jepang, orang India maupun orang Portugis berdagang di Jakarta. | 36f1d5be2e3d |
+
+Tras la generación: 2.261 IDs en audio/index.json, 2.261 entradas en audio/manifest.json y 2.261 hashes en audio/metadata.json; B2 aporta 148 entradas. El test técnico de manifiesto y generación terminó correctamente. Esto verifica integridad y presencia, no calidad perceptiva de pronunciación.

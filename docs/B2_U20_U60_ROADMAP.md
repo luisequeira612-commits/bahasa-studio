@@ -1,6 +1,6 @@
 # Propuesta de secuencia B2 U20–U60
 
-**Estado:** hoja de ruta de desarrollo elaborada bajo la autorización autónoma del dueño (21 nov 2026). U20 y U21 están implementadas en main; U22 está implementada en la rama curriculum/b2-u22-bukan-hanya-20261122; U23 está implementada en la rama curriculum/b2-u23-bukan-asalkan-20261122; U24 está implementada en la rama curriculum/b2-u24-begitu-sehingga-20261122; U25 está implementada en la rama curriculum/b2-u25-begitu-segera-20261122; U26 está implementada en la rama curriculum/b2-u26-makin-semakin-20261122; U27 está implementada en la rama curriculum/b2-u27-meskipun-namun-20261122; U28 está implementada en la rama curriculum/b2-u28-lebih-baik-daripada-20261122; U29 está implementada en la rama curriculum/b2-u29-bagaimanapun-betapapun-20261122; U30 está implementada en la rama curriculum/b2-u30-baru-not-until-20261122; U31 está implementada en la rama curriculum/b2-u31-entah-entah-20261122; U32 está implementada en la rama curriculum/b2-u32-kalau-maka-20261122; U33 está implementada en la rama curriculum/b2-u33-jangankan-pun-20261122; U34–U60 siguen siendo objetivos de trabajo, no contenido ejecutable ni promesa de certificación MCER/BIPA.
+**Estado:** hoja de ruta de desarrollo elaborada bajo la autorización autónoma del dueño (21 nov 2026). U20–U32 están implementadas en main; U33 está implementada en la rama curriculum/b2-u33-jangankan-pun-20261122 y pendiente de CI/merge; U34–U60 siguen siendo objetivos de trabajo, no contenido ejecutable ni promesa de certificación MCER/BIPA.
 
 ## Criterios de diseño
 

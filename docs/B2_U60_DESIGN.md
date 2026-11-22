@@ -3,7 +3,7 @@
 **Fuente principal:** síntesis curricular de Sneddon et al. (2010), *Indonesian: A Comprehensive Grammar*, 2.ª ed., capítulos 1–4.
 
 ## Alcance
-Proyecto de cierre que aplica estructuras ya enseñadas en U1–U59 mediante lectura, escucha, argumentación y producción guiada. No introduce vocabulario nuevo para inflar el inventario ni afirma que el curso constituya una certificación MCER/BIPA.
+Proyecto de cierre que aplica estructuras ya enseñadas en U1–U59 mediante lectura, análisis, argumentación y producción guiada. No introduce vocabulario nuevo para inflar el inventario ni afirma que el curso constituya una certificación MCER/BIPA.
 
 ## Ejemplos reutilizados
 - «Siapa saja boleh ikut.»

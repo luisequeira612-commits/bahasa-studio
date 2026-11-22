@@ -3,9 +3,9 @@
 - U20 quedó fusionada en main mediante PR #688. B2 U1–U20 están implementadas; U1–U5 visibles, U6–U20 ocultas.
 - U21 aborda corrección contrastiva: bukan/bukannya ... melainkan/tetapi, alcance de la negación exterior/interior y contraste verbal tidak ... melainkan.
 - Fuente: Sneddon et al. (2010), *Indonesian: A Comprehensive Grammar*, 2.ª ed., §§4.83–4.84.
-- Cinco lecciones authored, 16 ejercicios, cuatro tipos (mc, translate_es_id, order, write), un nuevo ID léxico b2u21_melainkan. Seis frases completas fuente necesitan audio Piper selectivo; generación pendiente.
+- Cinco lecciones authored, 16 ejercicios, cuatro tipos (mc, translate_es_id, order, write), un nuevo ID léxico b2u21_melainkan. Seis frases completas fuente más el headword aislado melainkan necesitan siete clips Piper selectivos; generación pendiente.
 - U21 permanece oculta/no publicada. U22–U60 siguen siendo propuestas del roadmap, no unidades implementadas.
-- Audio en main antes de U21: 2.261 IDs indexados, 148 textos B2; objetivo tras generar seis clips: 2.267 IDs y 154 textos B2.
+- Audio en main antes de U21: 2.261 IDs indexados, 148 textos B2; objetivo tras generar siete clips: 2.268 IDs y 155 textos B2.
 - Rama de trabajo: curriculum/b2-u21-bukan-melainkan-20261122. No se ha creado PR todavía.
 
 ## B2 U20 implementada en rama audio y PR #688 — 21 nov 2026

@@ -1,6 +1,6 @@
 # Propuesta de secuencia B2 U20–U60
 
-**Estado:** hoja de ruta de desarrollo elaborada bajo la autorización autónoma del dueño (21 nov 2026). U20–U33 están implementadas en main; U34 está implementada en la rama curriculum/b2-u34-adicion-entre-oraciones-20261122 y pendiente de CI/merge; U35–U60 siguen siendo objetivos de trabajo, no contenido ejecutable ni promesa de certificación MCER/BIPA.
+**Estado:** hoja de ruta de desarrollo elaborada bajo la autorización autónoma del dueño (21 nov 2026). U20–U34 están implementadas en main; U35 está implementada en la rama curriculum/b2-u35-contraste-entre-oraciones-20261122 y pendiente de CI/merge; U36–U60 siguen siendo objetivos de trabajo, no contenido ejecutable ni promesa de certificación MCER/BIPA.
 
 ## Criterios de diseño
 
@@ -114,3 +114,8 @@ U33 desarrolla la correlación escalar `jangankan … pun` según Sneddon et al.
 ## U34 implementada en rama — 22 nov 2026
 
 U34 desarrolla conectores de adición entre oraciones según Sneddon et al. (2010), §4.99. Distingue además/continuación/refuerzo para selain itu, di samping itu, kecuali itu, lagi pula, juga, selanjutnya, bahkan, apalagi y malah/malahan. Usa los tres ejemplos documentados de la sección, cinco lecciones authored y 16 ejercicios (3/3/3/3/4), cuatro tipos. Sin vocabulario/IDs nuevos ni audio; permanece oculta/no publicada. Diseño: `docs/B2_U34_DESIGN.md`. Pendiente CI y PR; no equivale a validación nativa ni certificación MCER/BIPA.
+
+
+## U35 implementada en rama — 22 nov 2026
+
+U35 desarrolla conectores de contraste entre oraciones según Sneddon et al. (2010), §4.100, distinguiéndolos de las conjunciones entre cláusulas explicadas en §4.98. Incluye las formas concesivas con demikian/begitu, tetapi/akan tetapi, sebaliknya, malah/malahan/bahkan con valor contrastivo y bagaimanapun (juga). Usa ejemplos documentados de §§4.98–4.100, cinco lecciones authored y 16 ejercicios (3/3/3/3/4) en cuatro tipos. Sin vocabulario/IDs nuevos ni audio; permanece oculta/no publicada. Diseño: `docs/B2_U35_DESIGN.md`. Pendiente CI/PR; no equivale a validación nativa ni certificación MCER/BIPA.

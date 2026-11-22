@@ -1,7 +1,7 @@
 # Reorganización del currículo B2 (60 unidades)
 
 **Decisión del dueño:** 7 nov 2026, autorización explícita para reorganizar el borrador conservando todo el contenido anterior.  
-**Estado:** plan de migración y conservación; U1–U20 están implementadas en main con cinco lecciones authored cada una; U21 se implementa en la rama curriculum/b2-u21-bukan-melainkan-20261122 con cinco lecciones, 16 ejercicios, un ID léxico y seis clips Piper pendientes. U1–U5 son visibles; U6–U21 siguen ocultas hasta decisión explícita de publicación. La propuesta de secuencia U20–U60 está documentada en docs/B2_U20_U60_ROADMAP.md y se desarrolló bajo la autorización autónoma del dueño del 21 nov 2026.  
+**Estado:** plan de migración y conservación; U1–U20 están implementadas en main con cinco lecciones authored cada una; U21 se implementa en la rama curriculum/b2-u21-bukan-melainkan-20261122 con cinco lecciones, 16 ejercicios, un ID léxico y siete clips Piper pendientes (seis frases y el headword). U1–U5 son visibles; U6–U21 siguen ocultas hasta decisión explícita de publicación. La propuesta de secuencia U20–U60 está documentada en docs/B2_U20_U60_ROADMAP.md y se desarrolló bajo la autorización autónoma del dueño del 21 nov 2026.  
 **Base de código:** `index.html` en `main`, commit `73fba72ee6743b71831f14febfcc159cf976a97a`; U19 ya está fusionada en `main` y U20 se incorpora mediante PR #688 (rama de audio con currículo y clips).
 
 ## Orden aprobado

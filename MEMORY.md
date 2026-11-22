@@ -2,7 +2,7 @@
 
 - U34 desarrolla conectores de adición entre oraciones según Sneddon et al. (2010), §4.99: selain itu, di samping itu, kecuali itu, lagi pula, juga, selanjutnya, bahkan, apalagi y malah/malahan; distingue suma, continuación y refuerzo sin tratarlos como sinónimos exactos.
 - Usa los tres ejemplos documentados de §4.99, cinco lecciones authored y 16 ejercicios (3/3/3/3/4), con cuatro tipos (mc, translate_es_id, order, write). Sin vocabulario/IDs nuevos ni audio. U34 permanece oculta/no publicada.
-- Diseño: `docs/B2_U34_DESIGN.md`. PR #701 de U33 integrada en main (commit `893cb4c329bb61bb47052b9dad509d9b29f3c4b1`; CI run `45055365782` verde). U34 se prepara en `curriculum/b2-u34-adicion-entre-oraciones-20261122`; pendiente CI y PR.
+- Diseño: `docs/B2_U34_DESIGN.md`. PR #701 de U33 integrada en main (commit `893cb4c329bb61bb47052b9dad509d9b29f3c4b1`; CI run `45055365782` verde). U34 se prepara en `curriculum/b2-u34-adicion-entre-oraciones-20261122`; la primera regresión detectó una lista fija de unidades B2 desactualizada en `tests/multi-lesson-progression.test.cjs`; se actualizó para incluir U34. Pendiente CI del head final y PR.
 - No modifica IndexedDB v1, backup JSON v3 ni dependencias. Fuente y pruebas estructurales no equivalen a validación nativa ni certificación MCER/BIPA.
 
 ## B2 U33 integrada en main — 22 nov 2026

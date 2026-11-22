@@ -7,8 +7,9 @@
     "Ia bukannya memerankan si Doel, melainkan menjadi sutradara.",
     "Saya bukan tidak percaya kepadamu.",
     "Dia bukan bodoh, melainkan malas saja.",
-    "Kami tidak pergi ke Solo, melainkan ke Yogya."
+    "Kami tidak pergi ke Solo, melainkan ke Yogya.",
+    "melainkan"
   ],
   "source": "docs/B2_U21_DESIGN.md",
-  "note": "Seis ejemplos documentados en Sneddon et al. (2010), Indonesian: A Comprehensive Grammar, §§4.83–4.84. Generación selectiva; no regenerar la biblioteca completa. El ejemplo léxico de melainkan coincide con la primera respuesta y debe deduplicarse."
+  "note": "Seis ejemplos documentados en Sneddon et al. (2010), Indonesian: A Comprehensive Grammar, §§4.83–4.84, más el headword aislado melainkan para el vocabulario. Generación selectiva; no regenerar la biblioteca completa. El ejemplo léxico de melainkan coincide con la primera respuesta y debe deduplicarse."
 }

@@ -1,6 +1,6 @@
 # Propuesta de secuencia B2 U20–U60
 
-**Estado:** hoja de ruta de desarrollo elaborada bajo la autorización autónoma del dueño (21 nov 2026). U20–U33 están implementadas en main; U34 está implementada en la rama curriculum/b2-u34-adicion-entre-oraciones-20261122 y pendiente de CI/merge; U35–U60 siguen siendo objetivos de trabajo, no contenido ejecutable ni promesa de certificación MCER/BIPA.
+**Estado:** hoja de ruta de desarrollo elaborada bajo la autorización autónoma del dueño (21 nov 2026). U20–U34 están integradas en main; U35 está implementada en la rama curriculum/b2-u35-contrast-linkers-20261122 y pendiente de CI/merge; U36–U60 siguen siendo objetivos de trabajo, no contenido ejecutable ni promesa de certificación MCER/BIPA.
 
 ## Criterios de diseño
 
@@ -29,7 +29,7 @@
 | U32 | **kalau/apabila … maka**: correlación explícita condición–resultado, sin reenseñar las condiciones básicas de B1 U18. | Sneddon et al. (2010), §4.96. |
 | U33 | **jangankan … pun**: escala de expectativa y lectura «ni siquiera …, mucho menos …». | Sneddon et al. (2010), §4.97. |
 | U34 | Conectores entre oraciones de adición: ampliar, sumar evidencia y añadir un punto sin convertir cada conector en sinónimo de juga. | Sneddon et al. (2010), §4.99. |
-| U35 | Conectores entre oraciones de contraste: oposición, reserva y cambio de perspectiva; distinguirlos de la coordinación dentro de una oración. | Sneddon et al. (2010), §4.100; B1 U20 como base. |
+| U35 | Conectores entre oraciones de contraste: oposición, reserva y cambio de perspectiva; distinguirlos de la coordinación dentro de una oración. | Sneddon et al. (2010), §§4.98–4.100; B1 U20 como base. |
 | U36 | Conectores de consecuencia: inferencia, resultado y conclusión; distinguir consecuencia lógica de resultado directo. | Sneddon et al. (2010), §§4.101–4.102; B1 U21 como base. |
 | U37 | Conectores de ejemplificación: introducir ejemplos, especificaciones y evidencia ilustrativa. | Sneddon et al. (2010), §4.103. |
 | U38 | Conectores de secuencia temporal entre oraciones: ordenar fases y acontecimientos en textos largos. | Sneddon et al. (2010), §4.104; B1 U24 como base. |
@@ -114,3 +114,10 @@ U33 desarrolla la correlación escalar `jangankan … pun` según Sneddon et al.
 ## U34 implementada en rama — 22 nov 2026
 
 U34 desarrolla conectores de adición entre oraciones según Sneddon et al. (2010), §4.99. Distingue además/continuación/refuerzo para selain itu, di samping itu, kecuali itu, lagi pula, juga, selanjutnya, bahkan, apalagi y malah/malahan. Usa los tres ejemplos documentados de la sección, cinco lecciones authored y 16 ejercicios (3/3/3/3/4), cuatro tipos. Sin vocabulario/IDs nuevos ni audio; permanece oculta/no publicada. Diseño: `docs/B2_U34_DESIGN.md`. Pendiente CI y PR; no equivale a validación nativa ni certificación MCER/BIPA.
+
+
+## U35 implementada en rama
+
+U35 desarrolla los conectores de contraste entre oraciones de Sneddon et al. (2010), §§4.98–4.100. Enseña namun/namun demikian, biarpun/walaupun/meskipun demikian/begitu, tetapi/akan tetapi, sebaliknya, malah/malahan/bahkan en lectura contrastiva y bagaimanapun (juga). Distingue los sentence linkers de la coordinación dentro de una oración; compara los usos contrastivos de malah/malahan/bahkan con sus usos aditivos de U34 y evita repetir la correlativa concesiva de U27 y el bagaimanapun + adjetivo + -nya de U29.
+
+La unidad usa únicamente ejemplos documentados en la fuente. Tiene cinco lecciones authored, 16 ejercicios (3/3/3/3/4), cuatro tipos (mc, translate_es_id, order, write), cero vocabulario/IDs nuevos y ningún audio. Permanece oculta/no publicada. Diseño: docs/B2_U35_DESIGN.md. Fuente y pruebas estructurales no equivalen a validación nativa ni certificación MCER/BIPA.

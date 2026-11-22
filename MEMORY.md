@@ -1,3 +1,10 @@
+## B2 U41–U45 implementadas en rama — 22 nov 2026
+
+- U41: adjuntos de probabilidad/veracidad (§4.107); U42: reporte/atribución (§4.108); U43: elipsis del sujeto humano (§4.112); U44: elipsis de sujetos no humanos (§4.113); U45: retención de componentes del sintagma nominal (§4.114).
+- Cada unidad contiene cinco lecciones authored y 16 ejercicios (3/3/3/3/4), cuatro tipos (mc, translate_es_id, order, write), cero vocabulario/IDs nuevos y sin audio. Los 80 ejercicios reutilizan ejemplos documentados de Sneddon et al. (2010); análisis y producción guiada en español, sin frases indonesias inventadas.
+- Se actualizaron index.html, tests/load-inline-b2-curriculum.test.mjs, roadmap y AGENTS.md; cinco diseños U41–U45. Rama curriculum/b2-u41-u45-stance-ellipsis-20261122. Unidades ocultas/no publicadas; CI/PR pendientes.
+- No cambia IndexedDB v1, backup JSON v3, biblioteca Piper ni dependencias. La prueba estructural no es validación nativa ni certificación MCER/BIPA.
+
 ## B2 U36–U40 implementadas en lote — 22 nov 2026
 
 - U36–U40 se añadieron juntas en la rama `curriculum/b2-u36-u40-discourse-20261122`: U36 conectores de consecuencia/explicación (§§4.101–4.102); U37 ejemplificación (§4.103); U38 secuencia temporal (§4.104); U39 cohesión integrada (§§4.98–4.104); U40 adjuntos de sentimiento y opinión (§4.106).

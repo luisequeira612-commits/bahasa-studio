@@ -754,10 +754,42 @@ test('B2 U18 implements five authored lessons on intent complements and reported
   assert.ok(sentenceTargets.length >= 5, 'U18 must include at least five complete-sentence response targets');
 });
 
-test('implemented B2 U1–U18 are executable while later legacy draft units stay archived', async () => {
+test('B2 U19 implements nominalised relative clauses and identifying focus', async () => {
+  const { b2 } = await loadCurricula();
+  const unit = b2.units.find((item) => item.id === 'b2_u19');
+  assert.ok(unit, 'B2 U19 must exist');
+  assert.equal(unit.lessons.length, 5);
+  assert.deepEqual(unit.lessons.map((lesson) => lesson.exercises.length), [3, 3, 3, 3, 4]);
+  assert.deepEqual(unit.vocab, [], 'U19 must not add new vocabulary IDs');
+  const exercises = allExercises(unit);
+  assert.equal(exercises.length, 16);
+  assert.deepEqual([...new Set(exercises.map((exercise) => exercise.type))].sort(),
+    ['fill', 'mc', 'translate_es_id', 'write']);
+  assert.equal(exercises.filter((exercise) => exercise.type === 'listen').length, 0,
+    'U19 reuses known grammar and does not require new audio');
+  const translations = exercises.filter((exercise) => exercise.type === 'translate_es_id');
+  assert.equal(translations.length, 5);
+  assert.ok(translations.every((exercise) => exercise.answerLanguage === 'id'
+    && typeof exercise.answer === 'string' && /yang/i.test(exercise.answer)
+    && /[.!?]$/.test(exercise.answer)), 'U19 translation targets must be complete source-backed yang clauses');
+  const sentenceTargets = exercises.filter((exercise) => {
+    const target = typeof exercise.modelAnswer === 'string' ? exercise.modelAnswer
+      : typeof exercise.answer === 'string' ? exercise.answer : '';
+    return target.trim().split(/\s+/).filter(Boolean).length >= 5;
+  });
+  assert.ok(sentenceTargets.length >= 5, 'U19 must include at least five complete-sentence response targets');
+  assert.ok(unit.lessons.every((lesson) => lesson.vocabIds.length === 0
+    && lesson.reviewVocabIds.length === 0), 'U19 must not create duplicate vocabulary references');
+  const sourceText = JSON.stringify(unit).toLowerCase();
+  for (const fragment of ['yang', 'bukan', 'tidak', 'dibangun', 'berangkat', 'terlambat', '-lah']) {
+    assert.ok(sourceText.includes(fragment), 'U19 must cover the documented construction: ' + fragment);
+  }
+});
+
+test('implemented B2 U1–U19 are executable while later legacy draft units stay archived', async () => {
   const { b2 } = await loadCurricula();
   const legacyArchive = await readFile(new URL('../docs/B2_LEGACY_DRAFT_ARCHIVE.md', import.meta.url), 'utf8');
-  assert.deepEqual(b2.units.map((unit) => unit.id), ['b2_u1', 'b2_u2', 'b2_u3', 'b2_u4', 'b2_u5', 'b2_u6', 'b2_u7', 'b2_u8', 'b2_u9', 'b2_u10', 'b2_u11', 'b2_u12', 'b2_u13', 'b2_u14', 'b2_u15', 'b2_u16', 'b2_u17', 'b2_u18']);
+  assert.deepEqual(b2.units.map((unit) => unit.id), ['b2_u1', 'b2_u2', 'b2_u3', 'b2_u4', 'b2_u5', 'b2_u6', 'b2_u7', 'b2_u8', 'b2_u9', 'b2_u10', 'b2_u11', 'b2_u12', 'b2_u13', 'b2_u14', 'b2_u15', 'b2_u16', 'b2_u17', 'b2_u18', 'b2_u19']);
   for (const id of ['b2_u5']) {
     assert.ok(legacyArchive.includes('"id": "' + id + '"'), id + ' must remain in the historical archive');
   }

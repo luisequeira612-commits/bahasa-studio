@@ -135,3 +135,8 @@ Reglas:
 - El dueño probó dos lecciones en la app publicada y confirmó que los audios suenan bien y la voz se percibe femenina. Esto verifica solo esas dos lecciones; no equivale a escuchar los 2.212 clips ni a certificar pronunciación o calidad lingüística.
 - Los antiguos informes MMS/Whisper y sus auto-etiquetas son diagnósticos históricos; no son gate de producción ni certificación de pronunciación. Whisper base/small es un filtro ASR, no un veredicto lingüístico.
 - Mantener runners estándar `ubuntu-latest`, límites de tiempo por job y modelos/cachés en almacenamiento temporal. No modificar IndexedDB, backup JSON v3 ni añadir dependencias a la app.
+
+
+## B2: filtros de unidades implementadas — 22 nov 2026
+- Cuando se amplíe el currículo B2, actualizar conjuntamente los filtros de aprendizaje, progreso, vocabulario y prompt del tutor, traducción contextual y pruebas de inventario. No dejar límites antiguos U1–U5 ni baselines fijos U1–U40.
+- En PR #705 los filtros se ampliaron a U1–U45; U46–U60 permanecen excluidas hasta su implementación. Mantener el desbloqueo secuencial y la puerta de publicación.

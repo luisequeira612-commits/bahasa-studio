@@ -9236,8 +9236,82 @@
                                     ]
                                 }
                             ]
-                        },
 
+                        },
+                        {
+                            id: 'b2_u17',
+                            title: 'Unidad 17: Discurso referido y preguntas indirectas',
+                            subtitle: 'bahwa, apakah y cláusulas integradas',
+                            description: 'Integra declaraciones y preguntas dentro de otra oración sin convertirlas en citas directas ni alterar innecesariamente su estructura.',
+                            goal: 'Distinguir el contenido declarado introducido por bahwa de las preguntas indirectas introducidas por apakah o por una palabra interrogativa; conservar el punto de vista y la estructura de la cláusula.',
+                            vocab: [
+                                { id: 'b2u17_bahwa', idn: 'bahwa', es: 'que; introduce el contenido de una declaración, pensamiento o conocimiento', ex: 'Dia menjawab bahwa dia tidak percaya.', exEsp: 'Él respondió que no lo creía.', source: 'Sneddon et al. (2010), §3.111.', category: 'conjunction', tags: ['reported-speech', 'complement-clause'] },
+                                { id: 'b2u17_apakah', idn: 'apakah', es: 'si; introduce una pregunta indirecta de sí o no', ex: 'Saya tidak tahu apakah bis ini berhenti di Pasar Senen.', exEsp: 'No sé si este autobús para en Pasar Senen.', source: 'Sneddon et al. (2010), §4.30.', category: 'interrogative', tags: ['indirect-question', 'embedded-clause'] }
+                            ],
+                            lessons: [
+                                {
+                                    title: '1. Declaración directa y discurso referido',
+                                    objective: 'Distingue una cita que conserva las palabras originales de una declaración integrada con bahwa.',
+                                    grammar: 'Una cita directa reproduce las palabras del hablante entre comillas: Dia menjawab, «Saya tidak percaya». Al informar el contenido, la fuente muestra Dia menjawab bahwa dia tidak percaya. Bahwa introduce la proposición reportada; el pronombre saya de la cita pasa a dia porque ahora se habla de la persona desde fuera. No conviertas la oración reportada en una cita literal.',
+                                    vocabIds: ['b2u17_bahwa'],
+                                    reviewVocabIds: [],
+                                    exercises: [
+                                        { id: 'b2u17_l1_e1', type: 'mc', prompt: '¿Cuál de estas formas integra el contenido como discurso referido y no como cita directa?', options: ['Dia menjawab bahwa dia tidak percaya.', 'Dia menjawab, «Saya tidak percaya».', 'Saya tidak tahu apakah bis ini berhenti di Pasar Senen.'], answer: 0, explanation: 'La cláusula con bahwa informa el contenido de la respuesta sin reproducir la cita entre comillas.' },
+                                        { id: 'b2u17_l1_e2', type: 'translate_es_id', prompt: 'Traduce al indonesio: «Él respondió que no lo creía».', answer: 'Dia menjawab bahwa dia tidak percaya.', answerLanguage: 'id', direction: 'es→id', explanation: 'La forma reportada documentada por Sneddon contrasta con la cita directa Saya tidak percaya.' },
+                                        { id: 'b2u17_l1_e3', type: 'fill', prompt: 'Completa la cláusula reportada: Dia menjawab ___ dia tidak percaya.', answer: 'bahwa', hint: 'Usa el conector que introduce el contenido de una declaración.', explanation: 'Bahwa introduce una proposición; no introduce una pregunta de sí o no.' }
+                                    ]
+                                },
+                                {
+                                    title: '2. Bahwa como complemento de verbos de conocimiento y respuesta',
+                                    objective: 'Reconoce las cláusulas de contenido y el contexto limitado en que puede omitirse bahwa.',
+                                    grammar: 'Bahwa puede introducir el contenido de verbos de respuesta, conocimiento, conciencia, creencia o admisión. Sneddon documenta Dia sadar bahwa dia telah ditipu, Kami percaya bahwa kami dapat mengatasi kesukaran ini y Kami mengakui bahwa kami perlu bantuan dari luar negeri. En Saya tahu (bahwa) dia pencuri, la fuente permite omitir bahwa. Esa posibilidad no significa que deba eliminarse después de cualquier verbo o en toda situación.',
+                                    vocabIds: [],
+                                    reviewVocabIds: ['b2u17_bahwa'],
+                                    exercises: [
+                                        { id: 'b2u17_l2_e1', type: 'order', prompt: 'Ordena la declaración completa documentada por la fuente.', words: ['bantuan', 'Kami', 'bahwa', 'luar', 'mengakui', 'negeri.', 'perlu', 'kami', 'dari'], correctOrder: ['Kami', 'mengakui', 'bahwa', 'kami', 'perlu', 'bantuan', 'dari', 'luar', 'negeri.'], explanation: 'Mengakui introduce la admisión y bahwa presenta su contenido.' },
+                                        { id: 'b2u17_l2_e2', type: 'mc', prompt: 'En Saya tahu (bahwa) dia pencuri, ¿qué indica el paréntesis?', options: ['Bahwa puede omitirse en este ejemplo.', 'Bahwa siempre debe duplicarse.', 'La oración es una pregunta indirecta.'], answer: 0, explanation: 'La fuente muestra la omisión posible en este complemento con tahu; no es una regla para todos los verbos.' },
+                                        { id: 'b2u17_l2_e3', type: 'translate_es_id', prompt: 'Traduce al indonesio: «Reconocemos que necesitamos ayuda del extranjero».', answer: 'Kami mengakui bahwa kami perlu bantuan dari luar negeri.', answerLanguage: 'id', direction: 'es→id', explanation: 'Se conserva la oración publicada en Sneddon et al. (2010), §3.111.' }
+                                    ]
+                                },
+                                {
+                                    title: '3. Preguntas indirectas con palabra interrogativa',
+                                    objective: 'Integra preguntas de información conservando la palabra interrogativa y el orden de la cláusula.',
+                                    grammar: 'Una pregunta indirecta de información ocupa el lugar de un complemento: Saya tidak tahu mengapa rapat itu dibatalkan; Saya lupa di mana saya menyimpan surat itu; Kami mengerti bagaimana perasaannya. La palabra interrogativa se mantiene dentro de la cláusula. En el discurso integrado no se usa la entonación de pregunta directa ni se coloca un signo de interrogación al final de la oración declarativa.',
+                                    vocabIds: [],
+                                    reviewVocabIds: [],
+                                    exercises: [
+                                        { id: 'b2u17_l3_e1', type: 'mc', prompt: '¿Qué elemento se conserva al integrar una pregunta de información?', options: ['La palabra interrogativa, como mengapa o di mana.', 'Una inversión obligatoria del sujeto y el verbo.', 'El signo de interrogación de la pregunta original.'], answer: 0, explanation: 'La pregunta conserva su palabra interrogativa y el orden interno normal de la cláusula.' },
+                                        { id: 'b2u17_l3_e2', type: 'order', prompt: 'Ordena la pregunta indirecta documentada: «No sé por qué se canceló la reunión».', words: ['dibatalkan.', 'rapat', 'mengapa', 'tahu', 'Saya', 'itu', 'tidak'], correctOrder: ['Saya', 'tidak', 'tahu', 'mengapa', 'rapat', 'itu', 'dibatalkan.'], explanation: 'Mengapa permanece dentro de la cláusula integrada; la oración completa es declarativa.' },
+                                        { id: 'b2u17_l3_e3', type: 'write', prompt: 'Explica en español por qué Saya lupa di mana saya menyimpan surat itu no lleva un signo de interrogación al final.', answerLanguage: 'es', hint: 'Distingue la pregunta contenida del tipo de oración completa.', modelAnswer: 'La oración completa afirma que no recuerdo dónde guardé la carta. Di mana introduce la información desconocida dentro de un complemento; la oración principal Saya lupa es declarativa, por eso no se escribe como una pregunta directa.' }
+                                    ]
+                                },
+                                {
+                                    title: '4. Preguntas indirectas de sí o no: apa y apakah',
+                                    objective: 'Distingue las preguntas indirectas de sí o no de las declaraciones introducidas por bahwa.',
+                                    grammar: 'Una pregunta indirecta de sí o no necesita apa o apakah antes de la cláusula. Sneddon documenta Saya tidak tahu apakah bis ini berhenti di Pasar Senen y también Kami ragu-ragu apa dia bisa lulus ujian. Apakah es una forma explícita y clara; apa también aparece en la construcción descrita por la fuente. No uses bahwa para preguntar si algo ocurre: bahwa introduce una proposición, no una alternativa de sí o no.',
+                                    vocabIds: ['b2u17_apakah'],
+                                    reviewVocabIds: [],
+                                    exercises: [
+                                        { id: 'b2u17_l4_e1', type: 'mc', prompt: '¿Qué conector introduce la pregunta indirecta de sí o no en Saya tidak tahu apakah bis ini berhenti di Pasar Senen?', options: ['apakah', 'bahwa', 'mengapa'], answer: 0, explanation: 'Apakah introduce la alternativa de sí o no; bahwa introduce contenido declarativo.' },
+                                        { id: 'b2u17_l4_e2', type: 'fill', prompt: 'Completa la pregunta indirecta: Saya tidak tahu ___ bis ini berhenti di Pasar Senen.', answer: 'apakah', hint: 'La respuesta debe marcar una alternativa de sí o no.', explanation: 'Apakah introduce la pregunta indirecta sin convertir la oración completa en pregunta directa.' },
+                                        { id: 'b2u17_l4_e3', type: 'translate_es_id', prompt: 'Traduce al indonesio: «No sé si este autobús para en Pasar Senen».', answer: 'Saya tidak tahu apakah bis ini berhenti di Pasar Senen.', answerLanguage: 'id', direction: 'es→id', explanation: 'Es el ejemplo de pregunta indirecta sí/no documentado por Sneddon et al. (2010), §4.30.' }
+                                    ]
+                                },
+                                {
+                                    title: '5. Integración: declaraciones y preguntas reportadas',
+                                    objective: 'Selecciona la estructura de complemento según se informe una afirmación, una pregunta de información o una pregunta de sí o no.',
+                                    grammar: 'Bahwa presenta el contenido de una declaración o creencia; apakah o apa introducen una pregunta indirecta de sí o no; mengapa, di mana, bagaimana y otras palabras interrogativas conservan su función en preguntas de información. Compara Dia sadar bahwa dia telah ditipu con Masih diragukan apakah pendapat ini dapat diterima. La primera integra una proposición; la segunda deja abierta una respuesta de sí o no. No agregues automáticamente signos de interrogación ni cambies la forma verbal por influencia del inglés.',
+                                    vocabIds: [],
+                                    reviewVocabIds: ['b2u17_bahwa', 'b2u17_apakah'],
+                                    exercises: [
+                                        { id: 'b2u17_l5_e1', type: 'mc', prompt: '¿Qué contraste entre las dos estructuras es correcto?', options: ['Bahwa introduce contenido declarativo; apakah introduce una pregunta indirecta de sí o no.', 'Bahwa y apakah son intercambiables en todas las cláusulas.', 'Apakah solo aparece en preguntas directas.'], answer: 0, explanation: 'La elección del conector depende del tipo de contenido integrado.' },
+                                        { id: 'b2u17_l5_e2', type: 'order', prompt: 'Ordena la pregunta indirecta de información documentada.', words: ['surat', 'di', 'Saya', 'menyimpan', 'lupa', 'mana', 'saya', 'itu.'], correctOrder: ['Saya', 'lupa', 'di', 'mana', 'saya', 'menyimpan', 'surat', 'itu.'], explanation: 'Di mana conserva su posición dentro de la cláusula complementaria.' },
+                                        { id: 'b2u17_l5_e3', type: 'write', prompt: 'Compara en español Dia menjawab bahwa dia tidak percaya y Saya tidak tahu apakah bis ini berhenti di Pasar Senen. Explica por qué no se usa el mismo conector.', answerLanguage: 'es', hint: 'Una oración informa una respuesta; la otra deja abierta una alternativa sí/no.', modelAnswer: 'Dia menjawab bahwa dia tidak percaya informa el contenido de una respuesta y por eso usa bahwa. Saya tidak tahu apakah bis ini berhenti di Pasar Senen expresa una pregunta indirecta de sí o no y usa apakah. Los conectores no son intercambiables porque introducen tipos distintos de contenido.' },
+                                        { id: 'b2u17_l5_e4', type: 'translate_es_id', prompt: 'Traduce al indonesio: «Todavía se duda de si esta opinión puede aceptarse».', answer: 'Masih diragukan apakah pendapat ini dapat diterima.', answerLanguage: 'id', direction: 'es→id', explanation: 'La fuente usa apakah para introducir una pregunta indirecta en una construcción pasiva impersonal.' }
+                                    ]
+                                }
+                            ]
+                        },
                     ]
                 }
             ]

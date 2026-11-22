@@ -447,7 +447,7 @@ test('B2 U11 implements 14 source-backed reduplication entries and 16 contextual
   ]);
   const exercises = allExercises(unit);
   assert.equal(exercises.length, 16);
-  assert.deepEqual([...new Set(exercises.map((exercise) => exercise.type))].sort(), ['fill', 'mc', 'order', 'translate_es_id', 'write']);
+  assert.deepEqual([...new Set(exercises.map((exercise) => exercise.type))].sort(), ['fill', 'listen', 'mc', 'order', 'translate_es_id', 'write']);
   assert.ok(!exercises.some((exercise) => exercise.type === 'listen'), 'do not use device-voice fallback where no Piper recording exists');
   assert.ok(exercises.some((exercise) => exercise.type === 'translate_es_id' && exercise.answer === 'Pulau-pulau Bali, Lombok dan Sumbawa terletak di sebelah timur pulau Jawa.'));
   assert.ok(exercises.some((exercise) => exercise.type === 'fill' && exercise.prompt.includes('Kecil-kecil bisa punya pacar') && exercise.answerLanguage === 'es'));
@@ -654,8 +654,9 @@ test('B2 U17 implements five authored lessons on reported statements and indirec
   assert.equal(exercises.length, 16);
   assert.deepEqual([...new Set(exercises.map((exercise) => exercise.type))].sort(),
     ['fill', 'mc', 'order', 'translate_es_id', 'write']);
-  assert.ok(exercises.every((exercise) => exercise.type !== 'listen'),
-    'U17 must not create listening tasks before its Piper recordings exist');
+  const listeningExercises = exercises.filter((exercise) => exercise.type === 'listen');
+  assert.equal(listeningExercises.length, 2, 'U17 must use its two generated Piper vocabulary clips');
+  assert.deepEqual(listeningExercises.map((exercise) => exercise.vocabId).sort(), ['b2u17_apakah', 'b2u17_bahwa']);
   const priorIds = new Set([
     ...a1.units.flatMap((item) => item.vocab || []),
     ...a2.units.flatMap((item) => item.vocab || []),

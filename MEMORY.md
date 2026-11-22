@@ -1,3 +1,9 @@
+## B2 U31 implementada en rama — 22 nov 2026
+
+- U31 desarrolla `entah … entah` según Sneddon et al. (2010), §4.95: alternativas no resueltas, elipsis de elementos compartidos y posición variable de la cláusula de resultado.
+- Usa solo tres ejemplos documentados de la fuente; no añade vocabulario/IDs ni audio. Cinco lecciones authored, 16 ejercicios ([3,3,3,3,4]), cuatro tipos (mc, translate_es_id, order, write); U31 permanece oculta/no publicada.
+- Se actualizan el roadmap, AGENTS.md, MEMORY.md y las pruebas de inventario/progresión. No se modifican IndexedDB v1, backup JSON v3 ni dependencias. Rama: `curriculum/b2-u31-entah-entah-20261122`; pendiente CI completo y revisión del PR.
+
 ## B2 U30 implementada en rama — 22 nov 2026
 
 - U30 desarrolla **baru** como marcador de foco temporal «no hasta / solo entonces», Sneddon et al. (2010), §4.94. Cinco lecciones authored, 16 ejercicios ([3,3,3,3,4]), cuatro tipos (mc, translate_es_id, order, write), sin vocabulario/IDs nuevos.

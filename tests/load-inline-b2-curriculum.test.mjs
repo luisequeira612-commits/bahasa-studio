@@ -1285,3 +1285,30 @@ test('B2 U33 teaches source-bound jangankan ... pun scalar expectation', async (
   assert.ok(exercises.every((exercise) => exercise.type !== 'listen'), 'U33 does not add audio');
   assert.equal(new Set(exercises.map((exercise) => exercise.id)).size, exercises.length);
 });
+
+test('B2 U34 implements five authored lessons, 16 source-bound additive-linker exercises and no new vocabulary IDs', async () => {
+  const { b2, indexSource } = await loadCurricula();
+  const unit = b2.units.find((item) => item.id === 'b2_u34');
+  assert.ok(unit, 'B2 U34 must exist');
+  assert.equal(unit.lessons.length, 5);
+  assert.deepEqual(unit.lessons.map((lesson) => lesson.exercises.length), [3, 3, 3, 3, 4]);
+  assert.equal(unit.vocab.length, 0);
+  const exercises = allExercises(unit);
+  assert.equal(exercises.length, 16);
+  assert.deepEqual([...new Set(exercises.map((exercise) => exercise.type))].sort(),
+    ['mc', 'order', 'translate_es_id', 'write']);
+  for (const phrase of [
+    'Sejak kecil penduduk Bangunarjo mengalami hidup di lingkungan yang sehat dan teratur.',
+    'Selain itu, oleh desa dikembangkan pula usaha di bidang industri rumah, seperti pertenunan.',
+    'Anak itu memang nakal. Bahkan ibunya sendiri pernah ditipunya.',
+    'Ia tidak mau masuk sekolah. Lagi pula, ia tidak mau belajar di rumah.',
+  ]) assert.ok(indexSource.includes(phrase), phrase + ' must remain source-bound in index.html');
+  assert.ok(exercises.some((exercise) => exercise.type === 'translate_es_id'
+    && exercise.answer.includes('Selain itu, oleh desa dikembangkan pula')));
+  assert.ok(exercises.some((exercise) => exercise.type === 'translate_es_id'
+    && exercise.answer === 'Anak itu memang nakal. Bahkan ibunya sendiri pernah ditipunya.'));
+  assert.ok(exercises.some((exercise) => exercise.type === 'write' && exercise.hint?.trim()
+    && /reconstruye de memoria/i.test(exercise.prompt)));
+  assert.ok(unit.lessons.every((lesson) => lesson.vocabIds.length === 0 && lesson.reviewVocabIds.length === 0));
+});
+

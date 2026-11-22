@@ -1,10 +1,17 @@
-## B2 U33 implementada en rama — 22 nov 2026
+## B2 U34 implementada en rama — 22 nov 2026
+
+- U34 desarrolla conectores de adición entre oraciones según Sneddon et al. (2010), §4.99: selain itu, di samping itu, kecuali itu, lagi pula, juga, selanjutnya, bahkan, apalagi y malah/malahan; distingue suma, continuación y refuerzo sin tratarlos como sinónimos exactos.
+- Usa los tres ejemplos documentados de §4.99, cinco lecciones authored y 16 ejercicios (3/3/3/3/4), con cuatro tipos (mc, translate_es_id, order, write). Sin vocabulario/IDs nuevos ni audio. U34 permanece oculta/no publicada.
+- Diseño: `docs/B2_U34_DESIGN.md`. PR #701 de U33 integrada en main (commit `893cb4c329bb61bb47052b9dad509d9b29f3c4b1`; CI run `45055365782` verde). U34 se prepara en `curriculum/b2-u34-adicion-entre-oraciones-20261122`; pendiente CI y PR.
+- No modifica IndexedDB v1, backup JSON v3 ni dependencias. Fuente y pruebas estructurales no equivalen a validación nativa ni certificación MCER/BIPA.
+
+## B2 U33 integrada en main — 22 nov 2026
 
 - U33 desarrolla la correlación escalar `jangankan … pun` según Sneddon et al. (2010), §4.97. `jangankan` introduce el primer miembro y `pun` marca el segundo, al que también se aplica la predicación; la lectura escalar depende del contexto.
 - Usa únicamente los tres ejemplos documentados en §4.97. Cinco lecciones authored, 16 ejercicios (3/3/3/3/4), cuatro tipos (mc, translate_es_id, order, write). Sin vocabulario/IDs nuevos ni audio. U33 permanece oculta/no publicada.
 - Diseño: `docs/B2_U33_DESIGN.md`; roadmap, AGENTS.md, MEMORY.md, inventario y tests de progresión actualizados. No modifica IndexedDB v1, backup JSON v3 ni dependencias.
 - PR #700 fusionada en `main` el 22 nov 2026 (commit `7e95ab15131b86e9829b57159a7e633a44c2913d`): B2 U32 integrada; CI del head `97a858172b870832bad0c73a3b4a92a85a69318f` (run `45052156811`) completó `test` y `Offline quality reports` con éxito. La prueba de U28 se ajustó para leer `modelAnswer` además de `answer`, sin cambiar el contenido de la unidad.
-- Rama U33 integrada con `main` mediante commit de dos padres `2d1e0d0c5dae172df80c6ffd6bb2ece90039a5d7`; la comparación contra `main` deja solo los ocho archivos propios de U33 y documentación/tests asociados. PR #701 pendiente de CI. La fuente y las pruebas estructurales no equivalen a validación nativa ni certificación MCER/BIPA.
+- PR #701 fusionada en `main` el 22 nov 2026 (commit `893cb4c329bb61bb47052b9dad509d9b29f3c4b1`); CI run `45055365782` completó `test` y `Offline quality reports` con éxito. El inventario B2 queda en 33 unidades y 165 lecciones authored. La fuente y las pruebas estructurales no equivalen a validación nativa ni certificación MCER/BIPA.
 
 ## B2 U32 implementada en rama — 22 nov 2026
 

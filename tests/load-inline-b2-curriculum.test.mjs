@@ -1080,6 +1080,35 @@ test('B2 U25 teaches temporal begitu with immediate sequence and distinguishes i
     'U25 must keep source-bound examples');
 });
 
+
+
+test('B2 U29 teaches source-bound bagaimanapun/betapapun adjective -nya scalar concession', async () => {
+  const { b2, indexSource } = await loadCurricula();
+  const unit = b2.units.find((item) => item.id === 'b2_u29');
+  assert.ok(unit, 'B2 U29 must exist');
+  assert.equal(unit.lessons.length, 5);
+  assert.deepEqual(unit.lessons.map((lesson) => lesson.exercises.length), [3, 3, 3, 3, 4]);
+  assert.deepEqual(unit.vocab, []);
+  for (const lesson of unit.lessons) {
+    assert.deepEqual(lesson.vocabIds, []);
+    assert.deepEqual(lesson.reviewVocabIds, []);
+  }
+  const exercises = allExercises(unit);
+  assert.equal(exercises.length, 16);
+  assert.deepEqual([...new Set(exercises.map((exercise) => exercise.type))].sort(),
+    ['mc', 'order', 'translate_es_id', 'write']);
+  for (const phrase of [
+    'Betapapun baiknya orang Eropah itu pada kita, toh mereka takut mengambil risiko.',
+    'Bagaimanapun terbukanya pemikiran Nurcholish, di kalangan kebanyakan umat pemikiran itu agak susah diterima.',
+  ]) assert.ok(indexSource.includes(phrase), phrase + ' must remain source-bound');
+  const answers = exercises.filter((exercise) => exercise.type === 'translate_es_id').map((exercise) => exercise.answer);
+  assert.ok(answers.includes('Betapapun baiknya orang Eropah itu pada kita, toh mereka takut mengambil risiko.'));
+  assert.ok(answers.includes('Bagaimanapun terbukanya pemikiran Nurcholish, di kalangan kebanyakan umat pemikiran itu agak susah diterima.'));
+  assert.ok(exercises.some((exercise) => exercise.type === 'write' && exercise.answerLanguage === 'id'
+    && exercise.hint?.trim() && exercise.modelAnswer?.trim()));
+  assert.equal(new Set(exercises.map((exercise) => exercise.id)).size, exercises.length);
+});
+
 test('B2 U26 teaches proportional makin/semakin ... makin/semakin and time-progressive variants', async () => {
   const { b2 } = await loadCurricula();
   const unit = b2.units.find((item) => item.id === 'b2_u26');

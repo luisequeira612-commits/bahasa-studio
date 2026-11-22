@@ -823,3 +823,36 @@ test('direct lesson entry uses the shared B2 U1 sequential gate and emergency sk
   assert.ok(indexSource.slice(start, start + 550).includes('!isUnitUnlocked(level, unit)'),
     'startUnit must enforce the shared derived progression gate');
 });
+
+
+test('B2 U20 teaches baik ... maupun with five authored lessons and source-backed full sentences', async () => {
+  const { b2 } = await loadCurricula();
+  const unit = b2.units.find((item) => item.id === 'b2_u20');
+  assert.ok(unit, 'B2 U20 must exist');
+  assert.match(unit.title, /baik.*maupun/i);
+  assert.equal(unit.lessons.length, 5);
+  assert.deepEqual(unit.lessons.map((lesson) => lesson.exercises.length), [3, 3, 3, 3, 4]);
+  const exercises = allExercises(unit);
+  assert.equal(exercises.length, 16);
+  assert.deepEqual([...new Set(exercises.map((exercise) => exercise.type))].sort(),
+    ['mc', 'order', 'translate_es_id', 'write']);
+  assert.deepEqual(unit.vocab, [], 'U20 must not add lexical IDs when the source examples need none');
+  for (const lesson of unit.lessons) {
+    assert.deepEqual(lesson.vocabIds, []);
+    assert.deepEqual(lesson.reviewVocabIds, []);
+  }
+  const translations = exercises
+    .filter((exercise) => exercise.type === 'translate_es_id')
+    .map((exercise) => exercise.answer);
+  assert.deepEqual(translations, [
+    'Baik Ana maupun Ira tinggal di Jakarta.',
+    'Baik di kota maupun di desa sepak bola digemari orang.',
+    'Baik kepandaian maupun kecantikan tidak berguna untuk mencapai kebahagiaan.',
+    'Mereka berjuang untuk bangsa maupun untuk keluarga.',
+    'Baik orang Cina, orang Jepang, orang India maupun orang Portugis berdagang di Jakarta.',
+  ]);
+  const ids = exercises.map((exercise) => exercise.id);
+  assert.equal(new Set(ids).size, ids.length, 'exercise IDs must be unique');
+  assert.ok(exercises.some((exercise) => exercise.type === 'write' && exercise.answerLanguage === 'id' && exercise.hint?.trim()),
+    'U20 must include guided original production in Indonesian');
+});

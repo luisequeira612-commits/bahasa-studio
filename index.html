@@ -9460,7 +9460,79 @@
                                 }
                             ]
                         },
-                    ]
+                    
+                        {
+                            id: 'b2_u20',
+                            title: 'Unidad 20: coordinación correlativa — baik ... maupun',
+                            subtitle: 'inclusión paralela, negación y listas de más de dos elementos',
+                            description: 'Usa baik ... maupun para incluir dos o más elementos paralelos y reconoce su lectura negativa cuando el predicado contiene negación.',
+                            goal: 'Mantener la misma función sintáctica en los miembros coordinados, ubicar ambos marcadores y distinguir inclusión conjunta de lectura ni...ni.',
+                            vocab: [],
+                            lessons: [
+                                {
+                                    title: '1. Incluir dos miembros: baik ... maupun',
+                                    objective: 'Identifica los dos elementos coordinados y la función de cada marcador.',
+                                    grammar: 'La construcción correlativa baik ... maupun destaca que una afirmación se aplica a dos elementos. Baik aparece antes del primer miembro y maupun antes del segundo. No se traduce baik como el adjetivo «bueno»: la pareja completa funciona como una estructura de coordinación. Ejemplo documentado: Baik Ana maupun Ira tinggal di Jakarta.',
+                                    vocabIds: [],
+                                    reviewVocabIds: [],
+                                    exercises: [
+                                        { id: 'b2u20_l1_e1', type: 'mc', prompt: 'En «Baik Ana maupun Ira tinggal di Jakarta», ¿qué elementos se coordinan?', options: ['Ana e Ira, ambos sujetos de tinggal', 'Ira y Jakarta, dos lugares', 'Ana y tinggal, dos verbos'], answer: 0, explanation: 'Baik precede al primer sujeto y maupun al segundo; ambos realizan la misma función sintáctica.' },
+                                        { id: 'b2u20_l1_e2', type: 'translate_es_id', prompt: 'Traduce al indonesio: «Tanto Ana como Ira viven en Yakarta».', answer: 'Baik Ana maupun Ira tinggal di Jakarta.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.82.' },
+                                        { id: 'b2u20_l1_e3', type: 'write', prompt: 'Explica en español qué función cumplen baik y maupun en la oración del ejemplo.', answerLanguage: 'es', hint: 'Indica dónde aparece cada marcador y qué relación establece.', modelAnswer: 'Baik introduce el primer miembro y maupun el segundo; juntos presentan los dos elementos como incluidos en la misma afirmación.' }
+                                    ]
+                                },
+                                {
+                                    title: '2. Coordinar frases con la misma función',
+                                    objective: 'Reconoce que los dos miembros pueden ser frases preposicionales y no solamente sujetos.',
+                                    grammar: 'Los miembros de baik ... maupun deben mantener una relación paralela. En «Baik di kota maupun di desa sepak bola digemari orang», los dos miembros son frases preposicionales con di: di kota y di desa. La estructura no exige que los elementos coordinados sean nombres de personas; pueden ser frases que ocupan la misma función.',
+                                    vocabIds: [],
+                                    reviewVocabIds: [],
+                                    exercises: [
+                                        { id: 'b2u20_l2_e1', type: 'mc', prompt: 'En «Baik di kota maupun di desa sepak bola digemari orang», ¿qué se coordina?', options: ['Dos frases preposicionales: di kota y di desa', 'Un sujeto y un verbo', 'Dos cláusulas con sujetos distintos'], answer: 0, explanation: 'Los dos miembros comienzan con di y expresan lugares en paralelo.' },
+                                        { id: 'b2u20_l2_e2', type: 'order', prompt: 'Ordena la oración documentada: «El fútbol gusta tanto en la ciudad como en el campo».', words: ['Baik', 'di', 'kota', 'maupun', 'di', 'desa', 'sepak', 'bola', 'digemari', 'orang.'], correctOrder: ['Baik', 'di', 'kota', 'maupun', 'di', 'desa', 'sepak', 'bola', 'digemari', 'orang.'], explanation: 'Baik y maupun enmarcan dos frases preposicionales paralelas.' },
+                                        { id: 'b2u20_l2_e3', type: 'translate_es_id', prompt: 'Traduce al indonesio: «El fútbol es apreciado tanto en la ciudad como en el campo».', answer: 'Baik di kota maupun di desa sepak bola digemari orang.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.82.' }
+                                    ]
+                                },
+                                {
+                                    title: '3. Lectura negativa: ni ... ni ...',
+                                    objective: 'Interpreta el efecto de la negación del predicado sobre la pareja correlativa.',
+                                    grammar: 'Cuando el predicado que acompaña a baik ... maupun está negado, la construcción puede expresar «ni ... ni ...». En «Baik kepandaian maupun kecantikan tidak berguna untuk mencapai kebahagiaan», tidak niega el predicado berguna: ninguno de los dos elementos resulta útil. No se debe interpretar automáticamente como «no ambos».',
+                                    vocabIds: [],
+                                    reviewVocabIds: [],
+                                    exercises: [
+                                        { id: 'b2u20_l3_e1', type: 'mc', prompt: '¿Qué significa la oración «Baik kepandaian maupun kecantikan tidak berguna untuk mencapai kebahagiaan»?', options: ['Ni la inteligencia ni la belleza sirven para alcanzar la felicidad.', 'Solo la inteligencia sirve para alcanzar la felicidad.', 'La inteligencia y la belleza son igualmente útiles.'], answer: 0, explanation: 'La negación del predicado produce la lectura «ni ... ni ...» descrita en la fuente.' },
+                                        { id: 'b2u20_l3_e2', type: 'translate_es_id', prompt: 'Traduce al indonesio: «Ni la inteligencia ni la belleza sirven para alcanzar la felicidad».', answer: 'Baik kepandaian maupun kecantikan tidak berguna untuk mencapai kebahagiaan.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.82.' },
+                                        { id: 'b2u20_l3_e3', type: 'write', prompt: 'Explica en español por qué la oración anterior se interpreta como «ni ... ni ...».', answerLanguage: 'es', hint: 'Observa la posición de tidak y el predicado que niega.', modelAnswer: 'Tidak niega el predicado berguna; por eso la construcción niega la utilidad de ambos miembros coordinados.' }
+                                    ]
+                                },
+                                {
+                                    title: '4. Cuando baik se omite',
+                                    objective: 'Reconoce que baik puede omitirse en algunos usos y que maupun puede introducir el segundo miembro.',
+                                    grammar: 'La fuente documenta casos en que baik no aparece y se conserva maupun antes del segundo miembro: «Mereka berjuang untuk bangsa maupun untuk keluarga». Esta variante no significa que baik y maupun sean siempre intercambiables ni autoriza a omitir baik en cualquier contexto; se aprende como una posibilidad documentada.',
+                                    vocabIds: [],
+                                    reviewVocabIds: [],
+                                    exercises: [
+                                        { id: 'b2u20_l4_e1', type: 'mc', prompt: '¿Qué muestra «Mereka berjuang untuk bangsa maupun untuk keluarga»?', options: ['Un ejemplo en el que baik se omite y maupun se conserva', 'Que maupun debe aparecer al inicio', 'Que baik y maupun significan «bueno»'], answer: 0, explanation: 'Sneddon et al. documentan esta variante sin baik antes del primer miembro.' },
+                                        { id: 'b2u20_l4_e2', type: 'translate_es_id', prompt: 'Traduce al indonesio: «Luchan tanto por la nación como por la familia».', answer: 'Mereka berjuang untuk bangsa maupun untuk keluarga.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.82; baik está omitido.' },
+                                        { id: 'b2u20_l4_e3', type: 'order', prompt: 'Ordena la oración documentada.', words: ['Mereka', 'berjuang', 'untuk', 'bangsa', 'maupun', 'untuk', 'keluarga.'], correctOrder: ['Mereka', 'berjuang', 'untuk', 'bangsa', 'maupun', 'untuk', 'keluarga.'], explanation: 'Maupun introduce el segundo miembro paralelo: untuk keluarga.' }
+                                    ]
+                                },
+                                {
+                                    title: '5. Coordinar más de dos elementos',
+                                    objective: 'Ubica baik antes del primer miembro y maupun antes del último cuando hay una lista de tres o más elementos.',
+                                    grammar: 'Cuando se coordinan más de dos elementos, baik se coloca antes del primero y maupun antes del último; los miembros intermedios quedan dentro de la misma coordinación. Ejemplo documentado: «Baik orang Cina, orang Jepang, orang India maupun orang Portugis berdagang di Jakarta». La pareja no exige que solo existan dos elementos.',
+                                    vocabIds: [],
+                                    reviewVocabIds: [],
+                                    exercises: [
+                                        { id: 'b2u20_l5_e1', type: 'mc', prompt: 'En la lista «Baik orang Cina, orang Jepang, orang India maupun orang Portugis ...», ¿dónde aparecen los marcadores?', options: ['Baik antes del primer miembro y maupun antes del último', 'Baik y maupun juntos antes del primer miembro', 'Maupun después de cada miembro'], answer: 0, explanation: 'La fuente indica que en listas de más de dos elementos baik precede al primero y maupun al último.' },
+                                        { id: 'b2u20_l5_e2', type: 'translate_es_id', prompt: 'Traduce al indonesio: «Tanto los chinos, los japoneses y los indios como los portugueses comerciaban en Yakarta».', answer: 'Baik orang Cina, orang Jepang, orang India maupun orang Portugis berdagang di Jakarta.', answerLanguage: 'id', direction: 'es→id', explanation: 'Ejemplo documentado por Sneddon et al. (2010), §4.82.' },
+                                        { id: 'b2u20_l5_e3', type: 'order', prompt: 'Ordena la oración documentada completa.', words: ['Baik', 'orang', 'Cina,', 'orang', 'Jepang,', 'orang', 'India', 'maupun', 'orang', 'Portugis', 'berdagang', 'di', 'Jakarta.'], correctOrder: ['Baik', 'orang', 'Cina,', 'orang', 'Jepang,', 'orang', 'India', 'maupun', 'orang', 'Portugis', 'berdagang', 'di', 'Jakarta.'], explanation: 'Los miembros intermedios aparecen entre el primer miembro y el último.' },
+                                        { id: 'b2u20_l5_e4', type: 'write', prompt: 'Escribe una oración en indonesio con baik ... maupun que coordine dos elementos paralelos que ya conozcas.', answerLanguage: 'id', hint: 'Coloca baik antes del primer elemento y maupun antes del segundo. Comprueba que ambos cumplen la misma función.', modelAnswer: 'Baik Ana maupun Ira tinggal di Jakarta.', explanation: 'La respuesta modelo es un ejemplo documentado; tu producción puede usar otros elementos ya estudiados si conserva el paralelismo.' }
+                                    ]
+                                }
+                            ]
+                        },
+]
                 }
             ]
         };;

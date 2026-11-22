@@ -1,3 +1,8 @@
+## B2 U20 implementada en rama y mapa U20–U60 preparado — 21 nov 2026
+- U20 desarrolla baik … maupun con cinco lecciones authored y 16 ejercicios (3/3/3/3/4), cuatro tipos (mc, order, translate_es_id, write), cinco ejemplos completos documentados y producción guiada. Cubre paralelismo sintáctico, lectura negativa «ni…ni», omisión documentada de baik y coordinación de más de dos miembros. No añade vocabulario/IDs ni audio; permanece oculta/no publicada. Fuente: Sneddon et al. (2010), §4.82; diseño en docs/B2_U20_DESIGN.md.
+- Se preparó la secuencia de trabajo U20–U60 en docs/B2_U20_U60_ROADMAP.md, basada en Sneddon et al. (2010), §§4.81–4.118 y capítulos 2–3. La propuesta diferencia lo ya enseñado en B1/B2 y no equivale a certificación MCER/BIPA. U21–U60 aún no están implementadas.
+- Validación pendiente: CI del PR; no se afirma ejecución local. Sin cambios a IndexedDB v1, backup JSON v3, A1/A2/B1 ni dependencias.
+
 ## B2 U19 implementada y audio Piper generado — 22 nov 2026
 - U19 tiene cinco lecciones authored y 16 ejercicios ([3,3,3,3,4]) sobre relativas nominalizadas con `yang`, omisión del nombre antecedente, funciones de sujeto/objeto/predicado, voz pasiva, cláusulas identificativas, foco y negación.
 - Cinco ejercicios `listen` emparejados con cinco objetivos de traducción de frases completas; cinco tipos de ejercicio: mc, fill, listen, translate_es_id y write. Reutiliza `yang`, `bukan`, `tidak` y `-lah`; `vocab: []`, cero IDs léxicos nuevos.

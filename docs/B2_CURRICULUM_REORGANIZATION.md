@@ -1,7 +1,7 @@
 # Reorganización del currículo B2 (60 unidades)
 
 **Decisión del dueño:** 7 nov 2026, autorización explícita para reorganizar el borrador conservando todo el contenido anterior.  
-**Estado:** plan de migración y conservación; U1–U18 están implementadas con cinco lecciones authored cada una; U19 está implementada y tiene cinco clips Piper generados en la rama de trabajo, pendiente de CI/PR final. U1–U5 son visibles; U6–U19 siguen ocultas hasta decisión explícita de publicación. U20–U60 no tienen mapa aprobado.  
+**Estado:** plan de migración y conservación; U1–U19 están implementadas con cinco lecciones authored cada una; U20 se implementa en la rama de trabajo con cinco lecciones y 16 ejercicios. U1–U5 son visibles; U6–U20 siguen ocultas hasta decisión explícita de publicación. La propuesta de secuencia U20–U60 está documentada en docs/B2_U20_U60_ROADMAP.md y se desarrolló bajo la autorización autónoma del dueño del 21 nov 2026.  
 **Base de código:** `index.html` en `main`, commit `659d64010871cf726c316bfb9aeb08f5a1d57d95` (PR #685 y actualización documental posterior); U19 está en `curriculum/b2-u19-nominalised-relatives-20261122`.
 
 ## Orden aprobado
@@ -17,9 +17,9 @@
 | 7 | U17 | Discurso referido y preguntas indirectas: cláusulas con bahwa, preguntas sí/no con apakah/apa y preguntas de información integradas |
 | 8 | U18 | Complementos de intención: órdenes/peticiones con menyuruh, memerintahkan, minta, pasivas con disuruh/didesak, negación y contraste supaya/agar/untuk |
 | 9 | U19 | Relativas nominalizadas y cláusulas identificativas: omisión del nombre antecedente, funciones sintácticas, voz, negación y foco; reutiliza `yang`, `bukan/tidak` y `-lah`; cinco clips Piper de frase completa |
-| 10 | U20–U60 | Pendiente de desarrollar; no inventar títulos ni objetivos aún no definidos |
+| 10 | U20–U60 | Correlativas avanzadas, conectores discursivos, adjuntos oracionales, elipsis y consolidación; secuencia propuesta en docs/B2_U20_U60_ROADMAP.md |
 
-U19 se incorpora como progresión curricular autónoma autorizada por el dueño el 21 nov 2026: profundiza la relativa con `yang` ya estudiada en B1 sin repetir la construcción básica. No completa por inferencia los temas de U20–U60.
+U19 se incorpora como progresión curricular autónoma autorizada por el dueño el 21 nov 2026: profundiza la relativa con yang ya estudiada en B1 sin repetir la construcción básica. La propuesta U20–U60 se basa en los apartados de estructuras correlativas, conectores, adjuntos oracionales y elipsis de Sneddon et al. (2010), con revisión de solapamiento contra B1 antes de cada implementación; no equivale a certificación MCER/BIPA.
 
 ## Correspondencia del borrador antiguo
 
@@ -44,7 +44,7 @@ El contenido íntegro del borrador anterior está en `docs/B2_LEGACY_DRAFT_ARCHI
 - Cada forma derivada nueva debe tener un ID canónico único. Antes de reutilizar IDs antiguos, comprobar colisiones en A1/A2/B1 y dentro de B2.
 - No exigir producción de una forma antes de su unidad prevista.
 - A1/A2/B1 quedan intactos. No modificar IndexedDB ni el backup JSON v3; sin dependencias ni servicios externos.
-- B2 permanece en desarrollo. U1–U18 están implementadas con cinco lecciones authored cada una; U19 está implementada en la rama de trabajo, pendiente de CI/PR; U1–U5 son las visibles y U6–U19 siguen ocultas hasta decisión explícita de publicación. U8 fue aprobada e implementada en PR #639. U9 se implementó con cinco fragmentos fuente aprobados por el dueño, 16 ejercicios y sin vocabulario/IDs ni audio nuevos. U10 integra nominalizaciones, U11 reduplicación, U12 compuestos/idiomaticidad, U13 clíticos pronominales, U14 partículas -lah/-kah y U15 adición/foco con pun/pula (dos IDs nuevos, cuatro clips Piper y sin tareas de escucha); U16 limitadores y alcance (cuma/terutama, dos IDs, cuatro clips Piper y sin tareas de escucha); U17 discurso referido/preguntas indirectas (bahwa/apakah, dos IDs, seis clips Piper y dos ejercicios de escucha); U18 complementos de intención (cuatro IDs nuevos, reutiliza mengingatkan de B1 U5, cinco ejercicios de escucha, diez textos Piper generados en MP3/Opus); U20–U60 carecen de mapa curricular aprobado.
+- B2 permanece en desarrollo. U1–U18 están implementadas con cinco lecciones authored cada una; U19 está implementada en la rama de trabajo, pendiente de CI/PR; U1–U5 son las visibles y U6–U19 siguen ocultas hasta decisión explícita de publicación. U8 fue aprobada e implementada en PR #639. U9 se implementó con cinco fragmentos fuente aprobados por el dueño, 16 ejercicios y sin vocabulario/IDs ni audio nuevos. U10 integra nominalizaciones, U11 reduplicación, U12 compuestos/idiomaticidad, U13 clíticos pronominales, U14 partículas -lah/-kah y U15 adición/foco con pun/pula (dos IDs nuevos, cuatro clips Piper y sin tareas de escucha); U16 limitadores y alcance (cuma/terutama, dos IDs, cuatro clips Piper y sin tareas de escucha); U17 discurso referido/preguntas indirectas (bahwa/apakah, dos IDs, seis clips Piper y dos ejercicios de escucha); U18 complementos de intención (cuatro IDs nuevos, reutiliza mengingatkan de B1 U5, cinco ejercicios de escucha, diez textos Piper generados en MP3/Opus); La secuencia U20–U60 está propuesta en docs/B2_U20_U60_ROADMAP.md; solo U20 se implementa en esta rama. Las unidades U21–U60 se desarrollarán por lotes y seguirán ocultas/no publicadas.
 
 ## Vocabulario y evidencia
 

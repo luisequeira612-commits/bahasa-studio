@@ -1,8 +1,8 @@
-## B2 U41–U45 implementadas en rama — 22 nov 2026
+## B2 U41–U45 integradas en main — PR #705 — 22 nov 2026
 
 - U41: adjuntos de probabilidad/veracidad (§4.107); U42: reporte/atribución (§4.108); U43: elipsis del sujeto humano (§4.112); U44: elipsis de sujetos no humanos (§4.113); U45: retención de componentes del sintagma nominal (§4.114).
 - Cada unidad contiene cinco lecciones authored y 16 ejercicios (3/3/3/3/4), cuatro tipos (mc, translate_es_id, order, write), cero vocabulario/IDs nuevos y sin audio. Los 80 ejercicios reutilizan ejemplos documentados de Sneddon et al. (2010); análisis y producción guiada en español, sin frases indonesias inventadas.
-- Se actualizaron index.html, tests/load-inline-b2-curriculum.test.mjs, roadmap y AGENTS.md; cinco diseños U41–U45. Rama curriculum/b2-u41-u45-stance-ellipsis-20261122. Unidades ocultas/no publicadas; CI/PR pendientes.
+- Se actualizaron index.html, tests/load-inline-b2-curriculum.test.mjs, roadmap y AGENTS.md; cinco diseños U41–U45. PR #705 fusionada en main (commit a8ea1c2d3380fee3e393968ee8479373e6303168). U41–U45 siguen ocultas/no publicadas.
 - No cambia IndexedDB v1, backup JSON v3, biblioteca Piper ni dependencias. La prueba estructural no es validación nativa ni certificación MCER/BIPA.
 
 ## B2 U36–U40 implementadas en lote — 22 nov 2026
@@ -670,3 +670,10 @@
 - Se actualizó el baseline a 45 unidades / 225 lecciones authored y se extendieron los filtros de las superficies de aprendizaje, vocabulario del tutor, prompt del tutor, ruta/progreso y fallback de traducción a B2 U1–U45; unidades posteriores siguen excluidas. El desbloqueo continúa secuencial.
 - PR #705 conserva U41–U45 ocultas/no publicadas. Última revisión de código en commit 2cec5285474e2e7eed54a8877cff8320c3428a16; CI de ese commit pendiente al registrar esta nota.
 - Fuente: GitHub Actions run #45072921862 (primer fallo: dos expectativas obsoletas), commits f8fda3a, 4dae636 y 2cec528; 22 nov 2026.
+
+
+## B2 U46–U50 implementadas en rama — 22 nov 2026
+- U46: elipsis de palabras distintas del sujeto (§4.115); U47: elipsis múltiple (§4.116); U48: elipsis de posesivos (§4.117); U49: elipsis en respuestas (§4.118); U50: integración §§4.112–4.118.
+- Cinco lecciones authored y 16 ejercicios por unidad (3/3/3/3/4): 25 lecciones, 80 ejercicios, cuatro tipos (mc, translate_es_id, order, write), cero vocabulario/IDs nuevos y sin audio. Se usan ejemplos documentados de Sneddon et al. (2010); U50 reutiliza ejemplos ya estudiados para consolidar sin inventar material.
+- Rama curriculum/b2-u46-u50-ellipsis-integration-20261122. Filtros de aprendizaje/progreso/tutor/traducción y pruebas de inventario extendidos a U1–U50; U51–U60 siguen excluidas. Unidades U46–U50 ocultas/no publicadas; CI/PR pendientes.
+- No modifica IndexedDB v1, backup JSON v3, biblioteca Piper ni dependencias. Fuente y estructura no equivalen a validación nativa ni certificación MCER/BIPA.

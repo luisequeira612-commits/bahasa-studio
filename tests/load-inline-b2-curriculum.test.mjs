@@ -447,7 +447,7 @@ test('B2 U11 implements 14 source-backed reduplication entries and 16 contextual
   ]);
   const exercises = allExercises(unit);
   assert.equal(exercises.length, 16);
-  assert.deepEqual([...new Set(exercises.map((exercise) => exercise.type))].sort(), ['fill', 'listen', 'mc', 'order', 'translate_es_id', 'write']);
+  assert.deepEqual([...new Set(exercises.map((exercise) => exercise.type))].sort(), ['fill', 'mc', 'order', 'translate_es_id', 'write']);
   assert.ok(!exercises.some((exercise) => exercise.type === 'listen'), 'do not use device-voice fallback where no Piper recording exists');
   assert.ok(exercises.some((exercise) => exercise.type === 'translate_es_id' && exercise.answer === 'Pulau-pulau Bali, Lombok dan Sumbawa terletak di sebelah timur pulau Jawa.'));
   assert.ok(exercises.some((exercise) => exercise.type === 'fill' && exercise.prompt.includes('Kecil-kecil bisa punya pacar') && exercise.answerLanguage === 'es'));

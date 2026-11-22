@@ -1,3 +1,9 @@
+## Retirada de etiqueta visual de B2 — 22 nov 2026
+
+- Se retiraron de la interfaz las etiquetas «En desarrollo» asociadas a B2: selector de nivel, vista de ruta y selector de salto de unidad. El selector de nivel muestra ahora unidades completadas/total.
+- Se mantienen sin cambios las reglas de acceso/publicación y el límite de unidades visibles; este cambio solo elimina el texto de estado desactualizado, no publica ni desbloquea contenido.
+- Cambio realizado en la rama `ui/remove-b2-development-label-20261122`.
+
 ## B2 U41–U45 integradas en main — PR #705 — 22 nov 2026
 
 - U41: adjuntos de probabilidad/veracidad (§4.107); U42: reporte/atribución (§4.108); U43: elipsis del sujeto humano (§4.112); U44: elipsis de sujetos no humanos (§4.113); U45: retención de componentes del sintagma nominal (§4.114).

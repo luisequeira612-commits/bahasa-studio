@@ -1,6 +1,6 @@
 # Propuesta de secuencia B2 U20–U60
 
-**Estado:** hoja de ruta de desarrollo elaborada bajo la autorización autónoma del dueño (21 nov 2026). U20 y U21 están implementadas en main; U22 está implementada en la rama curriculum/b2-u22-bukan-hanya-20261122; U23 está implementada en la rama curriculum/b2-u23-bukan-asalkan-20261122; U24 está implementada en la rama curriculum/b2-u24-begitu-sehingga-20261122; U25 está implementada en la rama curriculum/b2-u25-begitu-segera-20261122; U26 está implementada en la rama curriculum/b2-u26-makin-semakin-20261122; U27–U60 siguen siendo objetivos de trabajo, no contenido ejecutable ni promesa de certificación MCER/BIPA.
+**Estado:** hoja de ruta de desarrollo elaborada bajo la autorización autónoma del dueño (21 nov 2026). U20 y U21 están implementadas en main; U22 está implementada en la rama curriculum/b2-u22-bukan-hanya-20261122; U23 está implementada en la rama curriculum/b2-u23-bukan-asalkan-20261122; U24 está implementada en la rama curriculum/b2-u24-begitu-sehingga-20261122; U25 está implementada en la rama curriculum/b2-u25-begitu-segera-20261122; U26 está implementada en la rama curriculum/b2-u26-makin-semakin-20261122; U27 está implementada en la rama curriculum/b2-u27-meskipun-namun-20261122; U28–U60 siguen siendo objetivos de trabajo, no contenido ejecutable ni promesa de certificación MCER/BIPA.
 
 ## Criterios de diseño
 
@@ -21,7 +21,7 @@
 | U24 | **begitu / sedemikian … sehingga / sampai**: grado, resultado y alcance de la consecuencia. | Sneddon et al. (2010), §4.88. |
 | U25 | **begitu … baru**: secuencia temporal «no antes de / solo entonces», sin confundirla con begitu de grado. | Sneddon et al. (2010), §4.89. |
 | U26 | **makin/semakin … makin/semakin**: cambio proporcional y paralelismo de dos escalas. | Sneddon et al. (2010), §4.90. |
-| U27 | Correlativas concesivas **meskipun … namun** y variantes: integrar una concesión ya conocida con una respuesta discursiva explícita, sin duplicar conectores por calco del español. | Sneddon et al. (2010), §4.91; B1 U19 como prerrequisito. |
+| U27 | Correlativas concesivas **meskipun … namun** y variantes: integrar una concesión ya conocida con una respuesta discursiva explícita, distinguir **meski/biarpun** y los refuerzos **toh/juga**, sin duplicar conectores por calco del español. | Sneddon et al. (2010), §4.91; B1 U19 como prerrequisito. |
 | U28 | **lebih baik / sebaiknya … daripada**: preferencia, recomendación y comparación entre alternativas completas. | Sneddon et al. (2010), §4.92. |
 | U29 | **bagaimanapun/betapapun + adjetivo + -nya … namun/toh**: concesión escalar «por muy… que…», registro y alcance. | Sneddon et al. (2010), §4.93. |
 | U30 | **baru** con valor «no hasta / solo entonces»: foco temporal y diferencia frente a «nuevo». | Sneddon et al. (2010), §4.94. |
@@ -59,6 +59,10 @@
 ## U24 implementada en rama
 
 U24 desarrolla la correlación de grado y consecuencia documentada en Sneddon et al. (2010), §4.88. Incluye `begitu`, `demikian`, `sedemikian`, `sehingga` y `sampai`, además del uso de `-nya` con sedemikian y la variante con adverbio de manera. Los ejemplos indonesios son los documentados por la fuente; no se inventan oraciones para rellenar ejercicios. El diseño detallado está en docs/B2_U24_DESIGN.md.
+
+## U27 implementada en rama
+
+U27 desarrolla la correlación concesiva de §4.91 con **meskipun/meski/biarpun ... namun/toh/juga**. Usa únicamente ejemplos documentados por Sneddon et al. (2010): «Meskipun sawahnya banyak, namun kenikmatan hidup sedikit», «Biarpun sumbangannya tidak seberapa, namun dia mempunyai peranan dalam proyek raksasa ini», «Meski keterangan Suryaman seru, toh terasa kurang meyakinkan», «Meskipun hujan lebat, si Amat pergi juga» y «Meskipun sakit, namun anak-anak ini toh sekolah juga». La unidad mantiene cinco lecciones authored, 16 ejercicios y cuatro tipos, sin vocabulario/IDs nuevos, y permanece oculta/no publicada. El diseño detallado está en docs/B2_U27_DESIGN.md.
 
 ## U26 implementada en rama
 

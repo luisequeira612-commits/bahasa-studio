@@ -1407,3 +1407,28 @@ test('B2 U36–U40 add five authored discourse units with 16 source-bound exerci
     assert.ok(unit.lessons.every((lesson) => lesson.vocabIds.length === 0 && lesson.reviewVocabIds.length === 0));
   }
 });
+
+
+test('B2 U41-U45 implement five authored lessons and 16 source-bound exercises each', async () => {
+  const { b2, indexSource } = await loadCurricula();
+  const cases = [
+    ['b2_u41', ['Desas-desus itu ternyata tidak benar.', 'Rupanya dia tidak mau bergaul dengan kita.', 'Tampaknya ceritanya benar.', 'Dia pasti orang luar biasa.', 'Memang dia pandai.', 'Setahu saya, dia orang yang jujur.']],
+    ['b2_u42', ['Konon dahulu kala datanglah seorang musyafir ke daerah ini di musim kemarau.', 'Kata Bu Kusno, gadis itu ialah kemenakannya.', 'Di mata mayoritas umat Islam, para orientalis itu adalah musuh agama.']],
+    ['b2_u43', ['O, sombong kau, Ki Demang. Diminta air, malahan menyombongkan kekayaan.', 'Makan malam di luar?', 'Diundang teman lama, sahut Febrian dengan perasaan bersalah.', 'Mereka sudah lama kawin, tetapi belum punya anak.', 'Ali tidak pergi ke sekolah karena sakit.']],
+    ['b2_u44', ['Nira tidak bisa dibiarkan lama. Kalau tidak segera dimasak akan cepat jadi rusak.']],
+    ['b2_u45', ['Dia datang membawa susu dua gelas.', 'Segelas diletakkannya di atas meja.', 'Yang lain dibawanya padaku.']],
+  ];
+  for (const [id, phrases] of cases) {
+    const unit = b2.units.find((item) => item.id === id);
+    assert.ok(unit, id + ' must exist');
+    assert.equal(unit.lessons.length, 5, id + ' must have five authored lessons');
+    assert.deepEqual(unit.lessons.map((lesson) => lesson.exercises.length), [3, 3, 3, 3, 4]);
+    assert.equal(unit.vocab.length, 0, id + ' must not add untracked vocabulary IDs');
+    const exercises = allExercises(unit);
+    assert.equal(exercises.length, 16);
+    assert.deepEqual([...new Set(exercises.map((exercise) => exercise.type))].sort(),
+      ['mc', 'order', 'translate_es_id', 'write']);
+    assert.ok(exercises.some((exercise) => exercise.type === 'write' && exercise.hint?.trim()));
+    for (const phrase of phrases) assert.ok(indexSource.includes(phrase), id + ' must use source-bound examples: ' + phrase);
+  }
+});

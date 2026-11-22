@@ -684,13 +684,13 @@
 - U51–U55 seguirán ocultas/no publicadas y fuera de los filtros de acceso hasta su implementación y validación de CI.
 
 
-## B2 U51–U55 implementadas en rama — 22 nov 2026
-- Añadidas U51–U55 con cinco lecciones authored y 16 ejercicios por unidad (3/3/3/3/4), cuatro tipos (mc, translate_es_id, order, write), sin vocabulario/IDs nuevos ni audio. Ejemplos documentados en Sneddon et al. (2010), §§2.21–2.33, 2.67–2.69, 2.83–2.117 y 2.101–2.105; no se inventan oraciones indonesias.
-- Filtros de aprendizaje, tutor, vocabulario, traducción y progreso ampliados a U1–U55; U56–U60 siguen fuera. Todas permanecen ocultas/no publicadas. Sin cambios a IndexedDB v1, backup JSON v3, biblioteca Piper ni dependencias.
+## B2 U51–U55 integradas en main — PR #708 — 22 nov 2026
+- Integradas U51–U55 en main con cinco lecciones authored y 16 ejercicios por unidad (3/3/3/3/4), cuatro tipos (mc, translate_es_id, order, write), sin vocabulario/IDs nuevos ni audio. Ejemplos documentados en Sneddon et al. (2010), §§2.21–2.33, 2.67–2.69, 2.83–2.117 y 2.101–2.105; no se inventan oraciones indonesias.
+- Filtros de aprendizaje, tutor, vocabulario, traducción y progreso ampliados a U1–U55; U56–U60 siguen fuera de main hasta el PR #710. Todas permanecen ocultas/no publicadas. Sin cambios a IndexedDB v1, backup JSON v3, biblioteca Piper ni dependencias.
 - Se añaden 0 IDs léxicos y 0 términos a trackers; no hay estados nuevos de verificación que atribuir.
 
 
-## B2 U56–U60 implementadas en rama — 22 nov 2026
+## B2 U56–U60 implementadas en rama final — PR #710 — 22 nov 2026
 - U56 adverbios de manera con dengan/secara (§§2.168–2.169); U57 adjuntos preposicionales de medio, compañía, beneficio, razón, comparación, excepción y tema (§§2.209–2.215); U58 alcance de negación, temporales y modales (§§2.133–2.159); U59 integración sintáctica; U60 proyecto integrador B2.
 - Cinco lecciones authored y 16 ejercicios por unidad (3/3/3/3/4), cuatro tipos; U59–U60 reutilizan ejemplos previos y no introducen vocabulario nuevo. No se añaden IDs léxicos ni audio. Todas las unidades U6–U60 siguen ocultas/no publicadas.
 - Filtros y baseline ampliados a 60 unidades / 300 lecciones authored. Sin cambios a IndexedDB v1, backup JSON v3, biblioteca Piper ni dependencias. La estructura y los ejemplos de referencia no equivalen a validación nativa ni certificación MCER/BIPA.

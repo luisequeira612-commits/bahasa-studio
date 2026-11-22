@@ -1,6 +1,6 @@
 # Propuesta de secuencia B2 U20–U60
 
-**Estado:** hoja de ruta de desarrollo elaborada bajo la autorización autónoma del dueño (21 nov 2026). U20–U50 están integradas en main; U51–U60 están implementadas en ramas de desarrollo, pendientes de CI/PR; no constituyen contenido publicado ni promesa de certificación MCER/BIPA.
+**Estado:** hoja de ruta de desarrollo elaborada bajo la autorización autónoma del dueño (21 nov 2026). U20–U55 están integradas en main; U56–U60 están implementadas en la rama curriculum/b2-u56-u60-final-20261122, pendientes de CI/PR; no constituyen contenido publicado ni promesa de certificación MCER/BIPA.
 
 ## Criterios de diseño
 
@@ -155,7 +155,7 @@ Se ampliaron los filtros del selector y ruta de aprendizaje, el progreso visible
 - Diseños: docs/B2_U51_DESIGN.md … docs/B2_U55_DESIGN.md. La implementación debe conservar cinco lecciones authored y 16 ejercicios por unidad, sin inventar frases indonesias para rellenar el recuento.
 
 
-## U51–U55 implementadas en rama — 22 nov 2026
+## U51–U55 integradas en main — PR #708 — 22 nov 2026
 - U51 pronombres indefinidos y sustitutos pronominales (§§2.67–2.69, 2.83–2.92); U52 interrogativos con saja y libre elección con pun (§§2.83–2.96, 4.22); U53 cuantificadores y números indefinidos (§§2.106–2.117); U54 clasificadores y partitivos (§§2.21–2.33); U55 comparativas y equativas (§§2.101–2.105).
 - Cinco lecciones authored y 16 ejercicios por unidad (3/3/3/3/4), cuatro tipos (mc, translate_es_id, order, write). Sin vocabulario/IDs nuevos ni audio; se reutilizan ejemplos documentados y las actividades de análisis se responden en español.
 - Filtros de aprendizaje, progreso, tutor y traducción contextual ampliados a U1–U55; U56–U60 siguen excluidas. Unidades ocultas/no publicadas; la fuente y las pruebas estructurales no equivalen a validación nativa ni certificación MCER/BIPA.

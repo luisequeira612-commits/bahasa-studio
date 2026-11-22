@@ -38989,6 +38989,76 @@
     ]
   },
   {
+    "id": "f0c3175631be",
+    "text": "cuma",
+    "normalized": "cuma",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u16",
+        "kind": "vocabulary"
+      }
+    ]
+  },
+  {
+    "id": "5b13931e1b71",
+    "text": "Mereka cuma minum teh.",
+    "normalized": "mereka cuma minum teh.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u16",
+        "kind": "example"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u16",
+        "kind": "translate-answer"
+      }
+    ]
+  },
+  {
+    "id": "3251300d4372",
+    "text": "terutama",
+    "normalized": "terutama",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u16",
+        "kind": "vocabulary"
+      }
+    ]
+  },
+  {
+    "id": "4444d433c2fc",
+    "text": "Kenaikan pendapatan itu terutama berasal dari pajak.",
+    "normalized": "kenaikan pendapatan itu terutama berasal dari pajak.",
+    "levels": [
+      "B2"
+    ],
+    "sources": [
+      {
+        "level": "B2",
+        "unit": "b2_u16",
+        "kind": "example"
+      },
+      {
+        "level": "B2",
+        "unit": "b2_u16",
+        "kind": "translate-answer"
+      }
+    ]
+  },
+  {
     "id": "ac14444a4d3b",
     "text": "Meskipun hujan deras, kegiatan tetap berlangsung.",
     "normalized": "meskipun hujan deras, kegiatan tetap berlangsung.",

@@ -1,3 +1,9 @@
+## B2 U28 implementada en rama — 22 nov 2026
+
+- U28 desarrolla la preferencia de Sneddon et al. (2010), §4.92: **lebih baik/sebaiknya ... daripada**. Cinco lecciones authored, 16 ejercicios ([3,3,3,3,4]), cuatro tipos (mc, translate_es_id, order, write), sin vocabulario/IDs nuevos.
+- Ejemplos source-bound: `Daripada mati kelaparan, lebih baik kita pindah saja.` y `Sebaiknya mereka menyerah saja, daripada melawan.`. Cubre también el orden flexible de las cláusulas y `saja` como refuerzo frecuente documentado.
+- U28 permanece oculta/no publicada. No modifica IndexedDB v1, backup JSON v3 ni dependencias. Rama: `curriculum/b2-u28-lebih-baik-daripada-20261122`. Pendiente: CI completo, revisión y posible fusión solo con CI verde y sin revisiones/comentarios pendientes.
+
 ## B2 U27 implementada en rama — 22 nov 2026
 
 - U27 desarrolla la correlación concesiva de Sneddon et al. (2010), §4.91: **meskipun/meski/biarpun ... namun/toh/juga**. Cinco lecciones authored, 16 ejercicios ([3,3,3,3,4]), cuatro tipos (mc, translate_es_id, order, write), sin vocabulario/IDs nuevos.

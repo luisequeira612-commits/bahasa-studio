@@ -102,7 +102,7 @@ test('B2 U27 implements five authored lessons with 16 source-bound concessive ex
     'Meskipun sakit, namun anak-anak ini toh sekolah juga.',
   ]) assert.ok(indexSource.includes(phrase), phrase + ' must remain source-bound in index.html');
   assert.ok(exercises.some((exercise) => exercise.type === 'write' && exercise.hint?.trim()
-    && /ejemplo documentado|frase fuente/i.test(exercise.prompt)));
+    && /ejemplos? documentados?|frase fuente/i.test(exercise.prompt)));
   assert.ok(exercises.some((exercise) => exercise.type === 'translate_es_id' && exercise.answer === 'Meskipun sawahnya banyak, namun kenikmatan hidup sedikit.'));
   assert.ok(exercises.some((exercise) => exercise.type === 'translate_es_id' && exercise.answer === 'Biarpun sumbangannya tidak seberapa, namun dia mempunyai peranan dalam proyek raksasa ini.'));
 });

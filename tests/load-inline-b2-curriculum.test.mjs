@@ -154,7 +154,7 @@ test('B2 keeps its development gate while implemented U1 unlocks sequentially af
   const learningSource = indexSource.slice(learningLevels, learningLevels + 650);
   assert.ok(learningSource.includes("level.id !== 'B2'"), 'non-B2 learning levels remain available');
   assert.ok(learningSource.includes("unit.id === 'b2_u1' || unit.id === 'b2_u2' || unit.id === 'b2_u3' || unit.id === 'b2_u4' || unit.id === 'b2_u5'"),
-    'only implemented B2 U1/U2/U3/U4/U5 may enter learning and review collections');
+    'only implemented B2 U1–U45 may enter learning and review collections');
   assert.ok(learningSource.includes("level.id !== 'A2' || A2_RELEASE_ENABLED"),
     'the existing A2 release condition remains intact');
 
@@ -165,7 +165,7 @@ test('B2 keeps its development gate while implemented U1 unlocks sequentially af
   const visibleUnitsStart = indexSource.indexOf('getVisibleLearningUnits(level) {');
   assert.notEqual(visibleUnitsStart, -1);
   assert.ok(indexSource.slice(visibleUnitsStart, visibleUnitsStart + 250).includes("level.units.slice(0, 5)"),
-    'the route exposes only implemented B2 U1/U2/U3/U4/U5');
+    'the route exposes only implemented B2 U1–U45');
   assert.ok(route.includes('unit-path-coming-soon'));
   assert.ok(route.includes('Las demás unidades B2 todavía no están implementadas'));
   assert.doesNotMatch(route, /isB1Complete\(this\.completedUnits\)/,
@@ -181,7 +181,7 @@ test('tap translation fallback includes only implemented B2 U1/U2/U3/U4/U5 autho
   assert.ok(levelLoop > fallbackStart && unitLoop > levelLoop, 'fallback must iterate authored levels and units');
   const fallbackSource = indexSource.slice(unitLoop, unitLoop + 260);
   assert.ok(fallbackSource.includes("level.id === 'B2' && !['b2_u1', 'b2_u2', 'b2_u3', 'b2_u4', 'b2_u5'].includes(unit.id)"),
-    'only implemented B2 U1/U2/U3/U4/U5 translation exercises may be used; future B2 units remain excluded');
+    'only implemented B2 U1–U45 translation exercises may be used; future B2 units remain excluded');
 });
 
 test('B2 U2 implements five authored lessons with 26 exercises and five types', async () => {
@@ -840,10 +840,10 @@ test('B2 U19 implements nominalised relative clauses and identifying focus', asy
   }
 });
 
-test('implemented B2 U1–U40 are executable while later legacy draft units stay archived', async () => {
+test('implemented B2 U1–U45 are executable while later legacy draft units stay archived', async () => {
   const { b2 } = await loadCurricula();
   const legacyArchive = await readFile(new URL('../docs/B2_LEGACY_DRAFT_ARCHIVE.md', import.meta.url), 'utf8');
-  assert.deepEqual(b2.units.map((unit) => unit.id), ['b2_u1', 'b2_u2', 'b2_u3', 'b2_u4', 'b2_u5', 'b2_u6', 'b2_u7', 'b2_u8', 'b2_u9', 'b2_u10', 'b2_u11', 'b2_u12', 'b2_u13', 'b2_u14', 'b2_u15', 'b2_u16', 'b2_u17', 'b2_u18', 'b2_u19', 'b2_u20', 'b2_u21', 'b2_u22', 'b2_u23', 'b2_u24', 'b2_u25', 'b2_u26', 'b2_u27', 'b2_u28', 'b2_u29', 'b2_u30', 'b2_u31', 'b2_u32', 'b2_u33', 'b2_u34', 'b2_u35', 'b2_u36', 'b2_u37', 'b2_u38', 'b2_u39', 'b2_u40']);
+  assert.deepEqual(b2.units.map((unit) => unit.id), ['b2_u1', 'b2_u2', 'b2_u3', 'b2_u4', 'b2_u5', 'b2_u6', 'b2_u7', 'b2_u8', 'b2_u9', 'b2_u10', 'b2_u11', 'b2_u12', 'b2_u13', 'b2_u14', 'b2_u15', 'b2_u16', 'b2_u17', 'b2_u18', 'b2_u19', 'b2_u20', 'b2_u21', 'b2_u22', 'b2_u23', 'b2_u24', 'b2_u25', 'b2_u26', 'b2_u27', 'b2_u28', 'b2_u29', 'b2_u30', 'b2_u31', 'b2_u32', 'b2_u33', 'b2_u34', 'b2_u35', 'b2_u36', 'b2_u37', 'b2_u38', 'b2_u39', 'b2_u40', 'b2_u41', 'b2_u42', 'b2_u43', 'b2_u44', 'b2_u45']);
   for (const id of ['b2_u5']) {
     assert.ok(legacyArchive.includes('"id": "' + id + '"'), id + ' must remain in the historical archive');
   }

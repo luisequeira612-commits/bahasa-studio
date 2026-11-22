@@ -1,3 +1,9 @@
+## B2 U30 implementada en rama — 22 nov 2026
+
+- U30 desarrolla **baru** como marcador de foco temporal «no hasta / solo entonces», Sneddon et al. (2010), §4.94. Cinco lecciones authored, 16 ejercicios ([3,3,3,3,4]), cuatro tipos (mc, translate_es_id, order, write), sin vocabulario/IDs nuevos.
+- Cuatro ejemplos source-bound: `Baru setelah keluar dari desa ketiga tokoh kita dapat naik dokar.`, `Baru pukul sepuluh berita itu diketahui.`, `Sore hari, sehabis bekerja, baru kita pulang.`, `Malam harinya baru aku pergi ke Hotel Homan.`. Enseña baru ante la cláusula temporal, ante el adjunto temporal y antes de la cláusula principal; distingue «no hasta» de «nuevo».
+- U30 permanece oculta/no publicada. No modifica IndexedDB v1, backup JSON v3 ni dependencias. Rama: `curriculum/b2-u30-baru-not-until-20261122`. Pendiente: CI completo, revisión y posible fusión solo con CI verde y sin revisiones/comentarios pendientes.
+
 ## B2 U29 implementada en rama — 22 nov 2026
 
 - U29 desarrolla la concesión escalar de Sneddon et al. (2010), §4.93: **bagaimanapun/betapapun + adjetivo + -nya ... namun/toh**. Cinco lecciones authored, 16 ejercicios ([3,3,3,3,4]), cuatro tipos (mc, translate_es_id, order, write), sin vocabulario/IDs nuevos.

@@ -1,6 +1,6 @@
 # Propuesta de secuencia B2 U20–U60
 
-**Estado:** hoja de ruta de desarrollo elaborada bajo la autorización autónoma del dueño (21 nov 2026). U20 y U21 están implementadas en main; U22 está implementada en la rama curriculum/b2-u22-bukan-hanya-20261122; U23–U60 siguen siendo objetivos de trabajo, no contenido ejecutable ni promesa de certificación MCER/BIPA.
+**Estado:** hoja de ruta de desarrollo elaborada bajo la autorización autónoma del dueño (21 nov 2026). U20 y U21 están implementadas en main; U22 está implementada en la rama curriculum/b2-u22-bukan-hanya-20261122; U23 está implementada en la rama curriculum/b2-u23-bukan-asalkan-20261122; U24–U60 siguen siendo objetivos de trabajo, no contenido ejecutable ni promesa de certificación MCER/BIPA.
 
 ## Criterios de diseño
 
@@ -17,7 +17,7 @@
 | U20 | **baik … maupun**: inclusión de dos miembros paralelos; sujetos, frases preposicionales, lectura «ni … ni …» bajo negación, omisión documentada de baik y listas de más de dos elementos. | Sneddon et al. (2010), §4.82. |
 | U21 | **bukan … melainkan/tetapi**: corrección contrastiva; distinguir negación de identidad y rectificación del miembro rechazado (implementada en rama; 5 lecciones, 16 ejercicios, 1 ID léxico y 7 clips Piper generados; pruebas de audio/manifiesto pasaron y CI de regresión está pendiente). | Sneddon et al. (2010), §§4.83–4.84. |
 | U22 | **bukan hanya … melainkan/tetapi juga**: adición escalar y paralelismo de constituyentes. | Sneddon et al. (2010), §4.86; Tata Bahasa Baku Bahasa Indonesia (2017), §8.2.2.2. |
-| U23 | Otras correlativas con **bukan**: alcance, alternativas de corrección y límites de combinación. | Sneddon et al. (2010), §§4.83–4.87. |
+| U23 | Otras correlativas con **bukan**: `asal(kan)` introduce una condición sobre la acción de la primera cláusula, con el patrón documentado `Saya bukan tidak rela ..., asal ...`. | Sneddon et al. (2010), §4.87. |
 | U24 | **begitu / sedemikian … sehingga / sampai**: grado, resultado y alcance de la consecuencia. | Sneddon et al. (2010), §4.88. |
 | U25 | **begitu … baru**: secuencia temporal «no antes de / solo entonces», sin confundirla con begitu de grado. | Sneddon et al. (2010), §4.89. |
 | U26 | **makin/semakin … makin/semakin**: cambio proporcional y paralelismo de dos escalas. | Sneddon et al. (2010), §4.90. |
@@ -55,6 +55,10 @@
 | U58 | Orden de negación, marcadores temporales y modales en el predicado: interpretar combinaciones sin trasladar el orden del español. | Sneddon et al. (2010), §§2.133–2.159. |
 | U59 | Integración de sintagmas, complementos, foco y elipsis en lectura y reformulación de textos; solo estructuras previamente enseñadas. | Síntesis de Sneddon et al. (2010), capítulos 2–4; revisar solapamiento antes de definir ejemplos. |
 | U60 | Proyecto integrador B2: lectura, escucha, argumentación y producción guiada con estructuras de U1–U59, sin introducir vocabulario nuevo para inflar el inventario. | Síntesis curricular del nivel; no es una certificación MCER/BIPA. |
+
+## U23 implementada en rama
+
+U23 desarrolla la estructura documentada en Sneddon et al. (2010), §4.87, donde `asal(kan)` introduce una condición sobre la acción de la primera cláusula después de una construcción con `bukan`. La unidad se mantiene deliberadamente source-bound porque §4.87 ofrece un ejemplo central; no se inventan nuevas oraciones indonesias para rellenar ejercicios. El diseño detallado está en docs/B2_U23_DESIGN.md.
 
 ## Primera unidad de la secuencia: U20
 

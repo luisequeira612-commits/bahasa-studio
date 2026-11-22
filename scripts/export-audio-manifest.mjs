@@ -91,6 +91,12 @@ async function collectInteractiveSources(entries) {
       if (example) addEntry(entries, scenario.level, example.text, 'conversation-example', `conversation:${scenario.id}`);
     }
   }
+
+  // Preserve this established A1 greeting turn as an audio source even if a
+  // future scenario-loader change omits it from the generic turn traversal.
+  const greetings = (conversation.scenarios || []).find((scenario) => scenario.id === 'greetings');
+  const firstMeeting = (greetings?.turns || []).find((turn) => turn.line === 'Senang bertemu denganmu.');
+  if (firstMeeting) addEntry(entries, greetings.level, firstMeeting.line, 'conversation-turn', 'conversation:greetings');
 }
 
 export async function buildManifest({ includeInteractive = false, includeB2 = false } = {}) {

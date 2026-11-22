@@ -1,6 +1,6 @@
 # Propuesta de secuencia B2 U20–U60
 
-**Estado:** hoja de ruta de desarrollo elaborada bajo la autorización autónoma del dueño (21 nov 2026). U20 se implementa en la misma rama que esta propuesta; U21–U60 son objetivos de trabajo, no contenido ejecutable ni promesa de certificación MCER/BIPA.
+**Estado:** hoja de ruta de desarrollo elaborada bajo la autorización autónoma del dueño (21 nov 2026). U20 está implementada en main; U21 se implementa en la rama curriculum/b2-u21-bukan-melainkan-20261122; U22–U60 siguen siendo objetivos de trabajo, no contenido ejecutable ni promesa de certificación MCER/BIPA.
 
 ## Criterios de diseño
 
@@ -15,7 +15,7 @@
 | Unidad | Eje y alcance | Base documental principal |
 |---|---|---|
 | U20 | **baik … maupun**: inclusión de dos miembros paralelos; sujetos, frases preposicionales, lectura «ni … ni …» bajo negación, omisión documentada de baik y listas de más de dos elementos. | Sneddon et al. (2010), §4.82. |
-| U21 | **bukan … melainkan/tetapi**: corrección contrastiva; distinguir negación de identidad y rectificación del miembro rechazado. | Sneddon et al. (2010), §§4.83–4.84. |
+| U21 | **bukan … melainkan/tetapi**: corrección contrastiva; distinguir negación de identidad y rectificación del miembro rechazado. | Sneddon et al. (2010), §§4.83–4.84. | Implementada en rama; 5 lecciones, 16 ejercicios, 1 ID léxico y 6 clips Piper pendientes de generación. |
 | U22 | **bukan hanya … melainkan/tetapi juga**: adición escalar y paralelismo de constituyentes. | Sneddon et al. (2010), §4.86. |
 | U23 | Otras correlativas con **bukan**: alcance, alternativas de corrección y límites de combinación. | Sneddon et al. (2010), §§4.83–4.87. |
 | U24 | **begitu / sedemikian … sehingga / sampai**: grado, resultado y alcance de la consecuencia. | Sneddon et al. (2010), §4.88. |

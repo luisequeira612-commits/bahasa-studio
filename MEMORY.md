@@ -664,3 +664,9 @@
 - Para no depender de un dispatch manual desde el conector, PR #661 incorpora un disparador de una sola intención: al llegar a main el marcador docs/PIPER_MIGRATION_REQUEST.md, un workflow con permisos mínimos (actions:write, contents:read) ejecuta `gh workflow run generate-audio.yml` con engine=piper, mode=full, level=all y confirm_full=true. No genera en PR; solo después de fusionar el preparativo. El workflow de generación crea una rama/PR revisable, no fusiona automáticamente los audios.
 
 - PR #661 se fusionó (commit 112e8fa5701c08c0b8feceaf16918be756fde5cc); ambos jobs de regresión pasaron. El dispatch automático inicial (#44944163681) falló porque `gh workflow run` no tenía contexto Git (`fatal: not a git repository`); no se generó audio. PR correctivo `fix/piper-dispatch-repo-context-20261121` agrega `--repo "$GITHUB_REPOSITORY"` y modifica el marcador para rearmar el disparo al fusionar. La regeneración completa sigue pendiente.
+
+## Corrección de acceso B2 U1–U45 en PR #705 — 22 nov 2026
+- El primer CI falló porque el inventario esperaba 40 unidades B2 y los contratos de acceso del tutor, aprendizaje y traducción contextual seguían limitados a U1–U5. No era un defecto de las lecciones nuevas.
+- Se actualizó el baseline a 45 unidades / 225 lecciones authored y se extendieron los filtros de las superficies de aprendizaje, vocabulario del tutor, prompt del tutor, ruta/progreso y fallback de traducción a B2 U1–U45; unidades posteriores siguen excluidas. El desbloqueo continúa secuencial.
+- PR #705 conserva U41–U45 ocultas/no publicadas. Última revisión de código en commit 2cec5285474e2e7eed54a8877cff8320c3428a16; CI de ese commit pendiente al registrar esta nota.
+- Fuente: GitHub Actions run #45072921862 (primer fallo: dos expectativas obsoletas), commits f8fda3a, 4dae636 y 2cec528; 22 nov 2026.

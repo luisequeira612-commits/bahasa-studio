@@ -34,7 +34,7 @@ Vocabulario nuevo: `b2u17_bahwa` y `b2u17_apakah`. Se reutilizan verbos y vocabu
 
 - Pruebas: cinco lecciones, 16 ejercicios en distribución 3/3/3/3/4, cinco tipos (`mc`, `fill`, `order`, `translate_es_id`, `write`), IDs globalmente únicos, referencias de vocabulario válidas y al menos cinco respuestas objetivo en frases completas.
 - No hay ejercicios `listen` hasta que existan grabaciones Piper.
-- Solicitud de audio: `docs/audio-requests/B2_U17.json`; dos formas y cuatro ejemplos de la unidad. Voz solicitada: `id_ID-news_tts-medium`.
+- Solicitud final de audio: `docs/audio-requests/B2_U17_retry.json` (seis textos: dos formas y cuatro ejemplos). `docs/audio-requests/B2_U17.json` conserva la solicitud inicial como registro. Voz solicitada: `id_ID-news_tts-medium`.
 - Las dos entradas quedan `not_checked`: la evidencia gramatical respalda el diseño, pero no equivale a validación de forma/glosa por hablante nativo ni a certificación MCER/BIPA.
 - U17 permanece oculta/no publicada. No modificar A1/A2/B1, IndexedDB v1, backup JSON v3 ni dependencias.
 

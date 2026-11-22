@@ -1,3 +1,9 @@
+## B2 U29 implementada en rama — 22 nov 2026
+
+- U29 desarrolla la concesión escalar de Sneddon et al. (2010), §4.93: **bagaimanapun/betapapun + adjetivo + -nya ... namun/toh**. Cinco lecciones authored, 16 ejercicios ([3,3,3,3,4]), cuatro tipos (mc, translate_es_id, order, write), sin vocabulario/IDs nuevos.
+- Ejemplos source-bound: `Betapapun baiknya orang Eropah itu pada kita, toh mereka takut mengambil risiko.` y `Bagaimanapun terbukanya pemikiran Nurcholish, di kalangan kebanyakan umat pemikiran itu agak susah diterima.`. Enseña -nya adjunto al adjetivo, namun/toh y la omisión documentada de namun.
+- Distingue el bagaimanapun de enlace discursivo remitido a §4.100/U35. U29 permanece oculta/no publicada. No modifica IndexedDB v1, backup JSON v3 ni dependencias. Rama: `curriculum/b2-u29-bagaimanapun-betapapun-20261122`. Pendiente: CI completo, revisión y posible fusión solo con CI verde y sin revisiones/comentarios pendientes.
+
 ## B2 U28 implementada en rama — 22 nov 2026
 
 - U28 desarrolla la preferencia de Sneddon et al. (2010), §4.92: **lebih baik/sebaiknya ... daripada**. Cinco lecciones authored, 16 ejercicios ([3,3,3,3,4]), cuatro tipos (mc, translate_es_id, order, write), sin vocabulario/IDs nuevos.

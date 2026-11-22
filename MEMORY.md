@@ -1,3 +1,51 @@
+## B2 U31 implementada en rama — 22 nov 2026
+
+- U31 desarrolla `entah … entah` según Sneddon et al. (2010), §4.95: alternativas no resueltas, elipsis de elementos compartidos y posición variable de la cláusula de resultado.
+- Usa solo tres ejemplos documentados de la fuente; no añade vocabulario/IDs ni audio. Cinco lecciones authored, 16 ejercicios ([3,3,3,3,4]), cuatro tipos (mc, translate_es_id, order, write); U31 permanece oculta/no publicada.
+- Se actualizan el roadmap, AGENTS.md, MEMORY.md y las pruebas de inventario/progresión. No se modifican IndexedDB v1, backup JSON v3 ni dependencias. Rama: `curriculum/b2-u31-entah-entah-20261122`; pendiente CI completo y revisión del PR.
+- Corrección de integración del 22 nov 2026: el cierre de `CourseData.levels` no cerraba el array `B1.units` ni el objeto B1 antes de declarar B2. El extractor VM fallaba con `Unexpected token ';'` y los reportes/paquetes dependientes heredaban el fallo. Se añadieron los dos cierres en la frontera B1/B2; comprobación local del bloque: parsea y expone B1 con 50 unidades y B2 con 31. CI completo pendiente de repetición.
+- En la revisión de la secuencia se corrigió también el prompt de escritura de B2 U28: ahora pide reconstruir «un ejemplo documentado» en singular, de acuerdo con el contrato de su prueba source-bound; conserva los dos ejemplos originales y no añade frases indonesias.
+
+## B2 U30 implementada en rama — 22 nov 2026
+
+- U30 desarrolla **baru** como marcador de foco temporal «no hasta / solo entonces», Sneddon et al. (2010), §4.94. Cinco lecciones authored, 16 ejercicios ([3,3,3,3,4]), cuatro tipos (mc, translate_es_id, order, write), sin vocabulario/IDs nuevos.
+- Cuatro ejemplos source-bound: `Baru setelah keluar dari desa ketiga tokoh kita dapat naik dokar.`, `Baru pukul sepuluh berita itu diketahui.`, `Sore hari, sehabis bekerja, baru kita pulang.`, `Malam harinya baru aku pergi ke Hotel Homan.`. Enseña baru ante la cláusula temporal, ante el adjunto temporal y antes de la cláusula principal; distingue «no hasta» de «nuevo».
+- U30 permanece oculta/no publicada. No modifica IndexedDB v1, backup JSON v3 ni dependencias. Rama: `curriculum/b2-u30-baru-not-until-20261122`. Pendiente: CI completo, revisión y posible fusión solo con CI verde y sin revisiones/comentarios pendientes.
+
+## B2 U29 implementada en rama — 22 nov 2026
+
+- U29 desarrolla la concesión escalar de Sneddon et al. (2010), §4.93: **bagaimanapun/betapapun + adjetivo + -nya ... namun/toh**. Cinco lecciones authored, 16 ejercicios ([3,3,3,3,4]), cuatro tipos (mc, translate_es_id, order, write), sin vocabulario/IDs nuevos.
+- Ejemplos source-bound: `Betapapun baiknya orang Eropah itu pada kita, toh mereka takut mengambil risiko.` y `Bagaimanapun terbukanya pemikiran Nurcholish, di kalangan kebanyakan umat pemikiran itu agak susah diterima.`. Enseña -nya adjunto al adjetivo, namun/toh y la omisión documentada de namun.
+- Distingue el bagaimanapun de enlace discursivo remitido a §4.100/U35. U29 permanece oculta/no publicada. No modifica IndexedDB v1, backup JSON v3 ni dependencias. Rama: `curriculum/b2-u29-bagaimanapun-betapapun-20261122`. Pendiente: CI completo, revisión y posible fusión solo con CI verde y sin revisiones/comentarios pendientes.
+
+## B2 U28 implementada en rama — 22 nov 2026
+
+- U28 desarrolla la preferencia de Sneddon et al. (2010), §4.92: **lebih baik/sebaiknya ... daripada**. Cinco lecciones authored, 16 ejercicios ([3,3,3,3,4]), cuatro tipos (mc, translate_es_id, order, write), sin vocabulario/IDs nuevos.
+- Ejemplos source-bound: `Daripada mati kelaparan, lebih baik kita pindah saja.` y `Sebaiknya mereka menyerah saja, daripada melawan.`. Cubre también el orden flexible de las cláusulas y `saja` como refuerzo frecuente documentado.
+- U28 permanece oculta/no publicada. No modifica IndexedDB v1, backup JSON v3 ni dependencias. Rama: `curriculum/b2-u28-lebih-baik-daripada-20261122`. Pendiente: CI completo, revisión y posible fusión solo con CI verde y sin revisiones/comentarios pendientes.
+
+## B2 U27 implementada en rama — 22 nov 2026
+
+- U27 desarrolla la correlación concesiva de Sneddon et al. (2010), §4.91: **meskipun/meski/biarpun ... namun/toh/juga**. Cinco lecciones authored, 16 ejercicios ([3,3,3,3,4]), cuatro tipos (mc, translate_es_id, order, write), sin vocabulario/IDs nuevos.
+- Ejemplos source-bound usados: `Meskipun sawahnya banyak, namun kenikmatan hidup sedikit.`, `Biarpun sumbangannya tidak seberapa, namun dia mempunyai peranan dalam proyek raksasa ini.`, `Meski keterangan Suryaman seru, toh terasa kurang meyakinkan.`, `Meskipun hujan lebat, si Amat pergi juga.` y `Meskipun sakit, namun anak-anak ini toh sekolah juga.`. La unidad también enseña la estructura relacionada `Dia tidak diundang, tetapi dia datang juga.`.
+- U27 permanece oculta/no publicada. No modifica IndexedDB v1, backup JSON v3 ni dependencias. Rama: `curriculum/b2-u27-meskipun-namun-20261122`. Pendiente: CI completo, revisión y posible fusión solo con CI verde y sin revisiones/comentarios pendientes.
+
+## B2 U24 implementada en rama — 22 nov 2026
+
+- U24 desarrolla la correlación de grado–resultado `begitu/demikian/sedemikian ... sehingga/sampai`. Cinco lecciones authored, 16 ejercicios ([3,3,3,3,4]), cuatro tipos (mc, translate_es_id, order, write), sin vocabulario/IDs nuevos.
+- Fuente principal: Sneddon, Adelaar, Djenar & Ewing (2010), *Indonesian: A Comprehensive Grammar*, 2.ª ed., §4.88. Ejemplos documentados usados: `Dia begitu gembira, sehingga dia menangis.`, `Harganya sedemikian mahal, sehingga tidak ada yang mau beli.`, `Dia demikian lelah, sampai tidak dapat berjalan lagi.`, `Udara sedemikian panasnya, sampai banyak orang pingsan.` y `Dia lari begitu cepat sehingga sangat sukar untuk memotretnya.`
+- U24 se mantiene source-bound: no se inventan oraciones indonesias nuevas para rellenar ejercicios. No añade audio Piper ni vocabulario.
+- U24 permanece oculta/no publicada. No modifica IndexedDB v1, backup JSON v3, A1/A2/B1 ni dependencias.
+- Rama: `curriculum/b2-u24-begitu-sehingga-20261122`, basada en U23 para mantener la secuencia U22 → U23 → U24. Pendiente: CI completo y revisión del PR.
+
+## B2 U23 implementada en rama — 22 nov 2026
+
+- U23 desarrolla otras correlativas con `bukan` mediante `asal(kan)`, que introduce una condición sobre la acción de la primera cláusula. Cinco lecciones authored, 16 ejercicios ([3,3,3,3,4]), cuatro tipos (mc, translate_es_id, order, write), sin vocabulario/IDs nuevos.
+- Fuente principal: Sneddon, Adelaar, Djenar & Ewing (2010), *Indonesian: A Comprehensive Grammar*, 2.ª ed., §4.87. Ejemplo central documentado: `Saya bukan tidak rela kau membantu familimu, asal kau pertimbangkan juga kebutuhan kita sendiri.`
+- U23 se mantiene source-bound porque §4.87 ofrece un ejemplo completo central: los ejercicios de producción controlada reproducen ese ejemplo en lugar de inventar nuevas oraciones indonesias.
+- U23 permanece oculta/no publicada. No modifica IndexedDB v1, backup JSON v3, A1/A2/B1 ni dependencias. No añade audio Piper todavía.
+- Rama: `curriculum/b2-u23-bukan-asalkan-20261122`, basada en la rama de U22 para mantener la secuencia. Pendiente: CI completo y revisión del PR.
+
 ## B2 U22 implementada en rama — 22 nov 2026
 
 - U22 profundiza la adición escalar: `bukan hanya ... melainkan/tetapi juga` y la variante documentada `tidak hanya ... tetapi juga`. Cinco lecciones authored, 16 ejercicios ([3,3,3,3,4]), cuatro tipos (mc, translate_es_id, order, write), sin vocabulario/IDs nuevos.

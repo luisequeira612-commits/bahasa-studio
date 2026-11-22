@@ -40,8 +40,20 @@ test('audio manifest exports unique A1, A2 and inline B1 texts without changing 
       assert.equal(result.status, 0, result.stderr || result.stdout);
       selectedIds = new Set(JSON.parse(await readFile(output, 'utf8')).map((entry) => entry.id));
     }
+    const interactiveCandidates = await (async () => {
+      const result = spawnSync(process.execPath, [script, '--include-interactive', ...(includeB2 ? ['--include-b2'] : []), '--output', path.join(temp, 'interactive-candidates.json')], {
+        cwd: root, encoding: 'utf8', timeout: 30000
+      });
+      assert.equal(result.status, 0, result.stderr || result.stdout);
+      return JSON.parse(await readFile(path.join(temp, 'interactive-candidates.json'), 'utf8'));
+    })();
+    const interactiveOnlyIds = interactiveCandidates
+      .map((entry) => entry.id)
+      .filter((id) => !selectedIds.has(id));
+    // Include the optional interactive expansion only when the committed index
+    // contains the complete expansion. Unrelated legacy IDs must not trigger it.
     const includeInteractive = process.env.AUDIO_MANIFEST_INCLUDE_INTERACTIVE === '1'
-      || index.some((id) => !selectedIds.has(id));
+      || (interactiveOnlyIds.length > 0 && interactiveOnlyIds.every((id) => index.includes(id)));
     if (includeInteractive) {
       const args = [script];
       if (includeB2) args.push('--include-b2');

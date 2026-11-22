@@ -9162,6 +9162,82 @@
                         },
 
 
+
+                        {
+                            id: 'b2_u16',
+                            title: 'Limitadores y alcance: solo, solamente y especialmente',
+                            subtitle: 'Foco restrictivo y selectivo',
+                            description: 'Distingue los marcadores que restringen una acción o un constituyente de los que destacan un elemento sin excluir los demás.',
+                            goal: 'Interpretar el alcance de hanya, cuma y saja, reconocer sus posiciones y distinguir la exclusividad de la selección enfática con terutama.',
+                            vocab: [
+                                { id: 'b2u16_cuma', idn: 'cuma', es: 'solo; solamente (registro coloquial)', ex: 'Mereka cuma minum teh.', exEsp: 'Ellos solo bebieron té.', source: 'Kroeger (2014), §4.2.2, ejemplo 36a; Sneddon et al. (2010), §2.217.', category: 'adverb', tags: ['focus', 'limiter', 'register'] },
+                                { id: 'b2u16_terutama', idn: 'terutama', es: 'principalmente; sobre todo; especialmente', ex: 'Kenaikan pendapatan itu terutama berasal dari pajak.', exEsp: 'El aumento de los ingresos proviene principalmente de los impuestos.', source: 'Sneddon et al. (2010), §2.218.', category: 'adverb', tags: ['focus', 'selective', 'discourse'] }
+                            ],
+                            lessons: [
+                                {
+                                    title: '1. Hanya y cuma: restricción y registro',
+                                    objective: 'Distingue el uso de hanya y cuma y reconoce que ambos pueden restringir el predicado.',
+                                    grammar: 'Hanya y cuma pueden equivaler a «solo» o «solamente». La descripción gramatical de Sneddon incluye ambos entre los limitadores que preceden al predicado. Kroeger observa una tendencia de registro: hanya es más elevado y cuma más coloquial. En Mereka cuma minum teh, el marcador aparece antes del predicado; no concluyas automáticamente que el único elemento permitido es teh: el alcance depende del foco y del contexto.',
+                                    vocabIds: ['b2u16_cuma'],
+                                    reviewVocabIds: [],
+                                    exercises: [
+                                        { id: 'b2u16_l1_e1', type: 'mc', prompt: '¿Qué contraste de registro describe la fuente para hanya y cuma?', options: ['Hanya tiende a un registro más elevado y cuma a uno más coloquial.', 'Cuma es siempre formal y hanya siempre vulgar.', 'Los dos son conjunciones concesivas.'], answer: 0, explanation: 'La diferencia es una tendencia de registro, no una regla absoluta sobre toda conversación.' },
+                                        { id: 'b2u16_l1_e2', type: 'fill', prompt: 'En Mereka cuma minum teh, cuma precede al predicado y restringe el alcance de la oración. ¿Qué no debes asumir sin contexto?', answer: 'Que el foco sea necesariamente solo el sustantivo teh; también puede abarcar el predicado completo.', hint: 'Distingue el alcance sobre la acción del alcance sobre el objeto.', explanation: 'La posición ayuda, pero el foco exacto se interpreta con la estructura y el contexto.' },
+                                        { id: 'b2u16_l1_e3', type: 'translate_es_id', prompt: 'Traduce al indonesio: «Ellos solo bebieron té».', answer: 'Mereka cuma minum teh.', answerLanguage: 'id', direction: 'es→id', explanation: 'Es el ejemplo publicado con cuma en Kroeger (2014).' }
+                                    ]
+                                },
+                                {
+                                    title: '2. Saja y la posición del elemento limitado',
+                                    objective: 'Reconoce que saja sigue al elemento enfocado y contrasta su posición con hanya.',
+                                    grammar: 'Saja suele seguir al constituyente que limita. En Tadi pagi saya makan roti saja, aparece después de makan roti. Hanya, en cambio, suele preceder al predicado. Sneddon también documenta la combinación hanya ... saja para reforzar la lectura restrictiva, como en Dia hanya makan roti saja; la combinación no es obligatoria en todas las oraciones.',
+                                    vocabIds: ['b2u16_cuma'],
+                                    reviewVocabIds: ['b2u16_cuma'],
+                                    exercises: [
+                                        { id: 'b2u16_l2_e1', type: 'mc', prompt: 'En Tadi pagi saya makan roti saja, ¿dónde aparece saja?', options: ['Después del elemento que limita: makan roti.', 'Antes del sujeto saya.', 'Al inicio como conjunción.'], answer: 0, explanation: 'Saja sigue al constituyente enfocado en el ejemplo de Sneddon.' },
+                                        { id: 'b2u16_l2_e2', type: 'fill', prompt: 'Completa la comparación: hanya suele preceder al predicado; saja suele...', answer: 'seguir al elemento enfocado o limitado.', hint: 'Piensa en la posición relativa al constituyente.', explanation: 'La posición de cada marcador ayuda a identificar el alcance.' },
+                                        { id: 'b2u16_l2_e3', type: 'order', prompt: 'Ordena el ejemplo publicado.', words: ['roti', 'Tadi pagi', 'saya', 'makan', 'saja'], correctOrder: ['Tadi pagi', 'saya', 'makan', 'roti', 'saja'], explanation: 'Saja aparece después del constituyente makan roti.' }
+                                    ]
+                                },
+                                {
+                                    title: '3. Alcance estrecho y foco del objeto',
+                                    objective: 'Distingue el alcance sobre el predicado del foco exclusivo sobre un objeto.',
+                                    grammar: 'Mereka cuma minum teh puede recibir una lectura amplia sobre la actividad. Si se quiere focalizar estrechamente el objeto teh, la fuente muestra la construcción escindida Cuma teh yang mereka minum. La secuencia marcada *Mereka minum cuma teh no expresa esa lectura de foco estrecho en el análisis de Kroeger; el asterisco se refiere a esa interpretación, no a toda secuencia imaginable con esas palabras.',
+                                    vocabIds: ['b2u16_cuma'],
+                                    reviewVocabIds: ['b2u16_cuma'],
+                                    exercises: [
+                                        { id: 'b2u16_l3_e1', type: 'mc', prompt: '¿Qué construcción de la fuente focaliza estrechamente el objeto teh?', options: ['Cuma teh yang mereka minum.', 'Mereka minum cuma teh.', 'Mereka teh minum cuma yang.'], answer: 0, explanation: 'La construcción escindida coloca el objeto focalizado al inicio.' },
+                                        { id: 'b2u16_l3_e2', type: 'fill', prompt: 'En la fuente, el asterisco de *Mereka minum cuma teh indica que la secuencia no es aceptable para la lectura de foco estrecho sobre el objeto. ¿Qué alternativa se documenta?', answer: 'Cuma teh yang mereka minum.', hint: 'El constituyente focalizado se coloca en una construcción escindida.', explanation: 'No conviertas el juicio en una prohibición absoluta para cualquier contexto; se refiere a la lectura indicada.' },
+                                        { id: 'b2u16_l3_e3', type: 'write', prompt: 'Explica en español la diferencia entre el alcance amplio sobre la actividad y el foco estrecho sobre el objeto en los dos ejemplos.', answerLanguage: 'es', hint: 'Compara Mereka cuma minum teh con Cuma teh yang mereka minum.', modelAnswer: 'En Mereka cuma minum teh, cuma aparece antes del predicado y puede restringir la actividad completa. Para destacar que el único objeto bebido fue el té, la fuente usa Cuma teh yang mereka minum. La construcción escindida hace explícito el foco estrecho sobre el objeto.' }
+                                    ]
+                                },
+                                {
+                                    title: '4. Terutama: selección, no exclusión',
+                                    objective: 'Distingue un marcador selectivo de los limitadores que expresan exclusividad.',
+                                    grammar: 'Terutama significa «principalmente», «sobre todo» o «especialmente». A diferencia de hanya y cuma, no afirma necesariamente que no existan otras fuentes o elementos. En Kenaikan pendapatan itu terutama berasal dari pajak, los impuestos son la fuente principal, pero la oración no excluye por sí sola otras fuentes. Khususnya también puede destacar un caso particular; semata-mata aparece en la descripción de Sneddon entre los limitadores de lectura exclusiva.',
+                                    vocabIds: ['b2u16_terutama'],
+                                    reviewVocabIds: ['b2u16_cuma'],
+                                    exercises: [
+                                        { id: 'b2u16_l4_e1', type: 'mc', prompt: '¿Qué interpretación corresponde mejor a terutama?', options: ['Destaca la fuente principal sin excluir necesariamente otras.', 'Afirma que existe una sola fuente y ninguna otra.', 'Niega por completo la acción.'], answer: 0, explanation: 'Terutama es selectivo: destaca lo principal, no impone siempre exclusividad.' },
+                                        { id: 'b2u16_l4_e2', type: 'fill', prompt: '¿Por qué terutama no equivale automáticamente a hanya?', answer: 'Porque terutama destaca lo principal o especialmente relevante, mientras que hanya restringe a solo aquello que se menciona.', hint: 'Contrasta selección principal con exclusividad.', explanation: 'La diferencia afecta a lo que la oración excluye o deja abierto.' },
+                                        { id: 'b2u16_l4_e3', type: 'translate_es_id', prompt: 'Traduce al indonesio: «El aumento de los ingresos proviene principalmente de los impuestos».', answer: 'Kenaikan pendapatan itu terutama berasal dari pajak.', answerLanguage: 'id', direction: 'es→id', explanation: 'Se conserva el ejemplo documentado por Sneddon et al. (2010).' }
+                                    ]
+                                },
+                                {
+                                    title: '5. Integración: adición, exclusividad y selección',
+                                    objective: 'Interpreta el foco sin confundir los marcadores aditivos de U15 con los limitadores de U16.',
+                                    grammar: 'Pun, pula y juga añaden participantes o información; hanya, cuma y saja restringen el conjunto o la acción; terutama destaca el elemento principal sin excluir necesariamente los demás. Semata-mata es otro limitador listado por Sneddon, mientras que melulu puede seguir al elemento enfocado. La lectura final depende de la posición, el alcance y el contexto.',
+                                    vocabIds: ['b2u16_cuma', 'b2u16_terutama'],
+                                    reviewVocabIds: ['b2u16_cuma', 'b2u16_terutama'],
+                                    exercises: [
+                                        { id: 'b2u16_l5_e1', type: 'mc', prompt: '¿Qué grupo expresa adición y cuál expresa restricción?', options: ['Pun/pula/juga añaden; hanya/cuma/saja restringen.', 'Pun/pula/juga restringen; hanya/cuma/saja añaden.', 'Terutama y hanya siempre significan exactamente lo mismo.'], answer: 0, explanation: 'U15 y U16 forman un contraste funcional entre adición y limitación.' },
+                                        { id: 'b2u16_l5_e2', type: 'fill', prompt: 'Completa: terutama selecciona lo principal, mientras que hanya/cuma expresan...', answer: 'exclusividad o restricción del conjunto o de la acción.', hint: 'La respuesta contrasta selección y exclusión.', explanation: 'No todos los marcadores focales tienen el mismo efecto semántico.' },
+                                        { id: 'b2u16_l5_e3', type: 'write', prompt: 'Compara en español pun/pula, hanya/cuma/saja y terutama. Incluye posición, alcance y si se excluyen otras posibilidades.', answerLanguage: 'es', hint: 'Usa los ejemplos de las lecciones y distingue adición, exclusividad y selección.', modelAnswer: 'Pun y pula añaden información o destacan un participante como también o incluso. Hanya y cuma restringen la acción o el conjunto; cuma tiende a ser más coloquial y hanya a un registro más elevado. Saja suele seguir al elemento limitado. Terutama destaca lo principal, pero no excluye necesariamente otras posibilidades. Para interpretar cada oración hay que observar la posición, el alcance y el contexto.' },
+                                        { id: 'b2u16_l5_e4', type: 'order', prompt: 'Ordena el ejemplo documentado con terutama.', words: ['terutama', 'pajak', 'Kenaikan', 'berasal', 'pendapatan', 'itu', 'dari'], correctOrder: ['Kenaikan', 'pendapatan', 'itu', 'terutama', 'berasal', 'dari', 'pajak'], explanation: 'Terutama aparece antes del predicado y destaca la fuente principal.' }
+                                    ]
+                                }
+                            ]
+                        },
+
                     ]
                 }
             ]

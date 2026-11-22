@@ -672,8 +672,13 @@
 - Fuente: GitHub Actions run #45072921862 (primer fallo: dos expectativas obsoletas), commits f8fda3a, 4dae636 y 2cec528; 22 nov 2026.
 
 
-## B2 U46–U50 implementadas en rama — 22 nov 2026
+## B2 U46–U50 integradas en main — PR #706 — 22 nov 2026
 - U46: elipsis de palabras distintas del sujeto (§4.115); U47: elipsis múltiple (§4.116); U48: elipsis de posesivos (§4.117); U49: elipsis en respuestas (§4.118); U50: integración §§4.112–4.118.
 - Cinco lecciones authored y 16 ejercicios por unidad (3/3/3/3/4): 25 lecciones, 80 ejercicios, cuatro tipos (mc, translate_es_id, order, write), cero vocabulario/IDs nuevos y sin audio. Se usan ejemplos documentados de Sneddon et al. (2010); U50 reutiliza ejemplos ya estudiados para consolidar sin inventar material.
-- Rama curriculum/b2-u46-u50-ellipsis-integration-20261122. Filtros de aprendizaje/progreso/tutor/traducción y pruebas de inventario extendidos a U1–U50; U51–U60 siguen excluidas. Unidades U46–U50 ocultas/no publicadas; CI/PR pendientes.
+- PR #706 fusionada mediante squash en main (commit 1b01baf6d66fae2cea907b009ab13f4614f26807). U46–U50 quedan integradas con filtros de aprendizaje/progreso/tutor/traducción y pruebas de inventario hasta U50; U51–U60 siguen excluidas. U46–U50 permanecen ocultas/no publicadas.
 - No modifica IndexedDB v1, backup JSON v3, biblioteca Piper ni dependencias. Fuente y estructura no equivalen a validación nativa ni certificación MCER/BIPA.
+
+## B2 U51–U55: paquete de diseño y fuentes — 22 nov 2026
+- Preparado en rama curriculum/b2-u51-u55-pronouns-numbers-comparison-20261122: U51 sustitutos pronominales/pronombres indefinidos; U52 interrogativos + saja/pun; U53 cuantificadores y números indefinidos; U54 clasificadores/partitivos; U55 comparativas/equativas.
+- Cinco diseños documentados en docs/B2_U51_DESIGN.md a docs/B2_U55_DESIGN.md, con alcance, cinco objetivos de lección y ejemplos respaldados por Sneddon et al. (2010). Aún no se integran en el currículo ejecutable: la siguiente implementación debe añadir cinco lecciones y 16 ejercicios por unidad sin inventar ejemplos indonesios.
+- U51–U55 seguirán ocultas/no publicadas y fuera de los filtros de acceso hasta su implementación y validación de CI.

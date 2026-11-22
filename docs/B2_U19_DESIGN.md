@@ -1,6 +1,6 @@
 # B2 U19 — Relativas nominalizadas y cláusulas identificativas
 
-**Estado:** implementada en la rama de trabajo; cinco lecciones authored y 16 ejercicios (3/3/3/3/4), con cinco ejercicios de escucha de frases completas. Sin vocabulario ni IDs léxicos nuevos. Cinco textos Piper de producción (MP3/Opus) pendientes de generación. U19 permanece oculta/no publicada.
+**Estado:** implementada en la rama de trabajo; cinco lecciones authored y 16 ejercicios (3/3/3/3/4), con cinco ejercicios de escucha de frases completas. Sin vocabulario ni IDs léxicos nuevos. Cinco textos Piper de producción generados en MP3 y Opus. U19 permanece oculta/no publicada.
 **Fecha:** 22 nov 2026.
 **Dependencias:** B1 U15–U17 (relativas básicas con `yang`); B2 U14 (partícula `-lah`); B2 U17–U18 (cláusulas complejas). No modifica el análisis de `-nya` trabajado en B2 U9.
 
@@ -65,12 +65,16 @@ Al completar U19, el estudiante podrá:
 - Cinco lecciones authored y 16 ejercicios distribuidos 3/3/3/3/4.
 - Cinco tipos: opción múltiple, completar, traducción español→indonesio, escucha de frase completa y explicación guiada en español.
 - Cinco objetivos de respuesta en frases completas, con ejemplos breves tomados de la fuente citada.
-- Cinco ejercicios `listen`, uno por lección, reutilizan exactamente las cinco respuestas de traducción; se solicita un clip Piper por frase. No se introduce vocabulario léxico nuevo.
+- Cinco ejercicios `listen`, uno por lección, reutilizan exactamente las cinco respuestas de traducción; cada frase tiene un clip Piper MP3/Opus. No se introduce vocabulario léxico nuevo.
 - `vocab: []`, `vocabIds: []` y `reviewVocabIds: []`. La unidad reutiliza conocimiento previo de `yang`, `bukan`, `tidak` y `-lah`, sin crear IDs léxicos duplicados. Los cinco IDs de audio son IDs de texto, no vocabulario.
+
+## Audio generado
+
+Biblioteca total: 2.256 IDs indexados, 143 textos asociados a B2. Los cinco IDs de audio de U19 son `01bc30ebf218`, `534cd801f050`, `7793f3b10fea`, `8e29a146a860` y `e0948e008caf`. Voz: `id_ID-news_tts-medium`; formatos MP3 y Opus. Los IDs de audio son hashes de texto, no IDs de vocabulario.
 
 ## Límites y calidad
 
 - Los ejemplos indonesios de producción son los documentados por Sneddon et al. (2010); no se inventan oraciones para rellenar ejercicios.
 - La fuente describe el estándar indonesio y no certifica por sí misma el nivel MCER/BIPA ni la comprensión de un estudiante.
 - Las entradas léxicas nuevas son cero; no hay auditoría de frecuencia ni necesidad de consultar KBBI.
-- U19 permanece oculta/no publicada. No cambiar A1/A2/B1, IndexedDB v1, backup JSON v3 ni dependencias. La biblioteca Piper añadirá cinco textos de frase, sin cambiar la voz `id_ID-news_tts-medium`.
+- U19 permanece oculta/no publicada. No cambiar A1/A2/B1, IndexedDB v1, backup JSON v3 ni dependencias. La biblioteca Piper añade cinco textos de frase sin crear IDs léxicos.

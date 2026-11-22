@@ -1,6 +1,6 @@
 # Propuesta de secuencia B2 U20–U60
 
-**Estado:** hoja de ruta de desarrollo elaborada bajo la autorización autónoma del dueño (21 nov 2026). U20 y U21 están implementadas en main; U22 está implementada en la rama curriculum/b2-u22-bukan-hanya-20261122; U23 está implementada en la rama curriculum/b2-u23-bukan-asalkan-20261122; U24 está implementada en la rama curriculum/b2-u24-begitu-sehingga-20261122; U25 está implementada en la rama curriculum/b2-u25-begitu-segera-20261122; U26 está implementada en la rama curriculum/b2-u26-makin-semakin-20261122; U27 está implementada en la rama curriculum/b2-u27-meskipun-namun-20261122; U28 está implementada en la rama curriculum/b2-u28-lebih-baik-daripada-20261122; U29–U60 siguen siendo objetivos de trabajo, no contenido ejecutable ni promesa de certificación MCER/BIPA.
+**Estado:** hoja de ruta de desarrollo elaborada bajo la autorización autónoma del dueño (21 nov 2026). U20 y U21 están implementadas en main; U22 está implementada en la rama curriculum/b2-u22-bukan-hanya-20261122; U23 está implementada en la rama curriculum/b2-u23-bukan-asalkan-20261122; U24 está implementada en la rama curriculum/b2-u24-begitu-sehingga-20261122; U25 está implementada en la rama curriculum/b2-u25-begitu-segera-20261122; U26 está implementada en la rama curriculum/b2-u26-makin-semakin-20261122; U27 está implementada en la rama curriculum/b2-u27-meskipun-namun-20261122; U28 está implementada en la rama curriculum/b2-u28-lebih-baik-daripada-20261122; U29 está implementada en la rama curriculum/b2-u29-bagaimanapun-betapapun-20261122; U30–U60 siguen siendo objetivos de trabajo, no contenido ejecutable ni promesa de certificación MCER/BIPA.
 
 ## Criterios de diseño
 
@@ -59,6 +59,10 @@
 ## U24 implementada en rama
 
 U24 desarrolla la correlación de grado y consecuencia documentada en Sneddon et al. (2010), §4.88. Incluye `begitu`, `demikian`, `sedemikian`, `sehingga` y `sampai`, además del uso de `-nya` con sedemikian y la variante con adverbio de manera. Los ejemplos indonesios son los documentados por la fuente; no se inventan oraciones para rellenar ejercicios. El diseño detallado está en docs/B2_U24_DESIGN.md.
+
+## U29 implementada en rama
+
+U29 desarrolla la concesión escalar de §4.93 con **bagaimanapun/betapapun + adjetivo + -nya ... namun/toh**. Usa únicamente los dos ejemplos documentados: «Betapapun baiknya orang Eropah itu pada kita, toh mereka takut mengambil risiko» y «Bagaimanapun terbukanya pemikiran Nurcholish, di kalangan kebanyakan umat pemikiran itu agak susah diterima». Enseña que `-nya` se adjunta al adjetivo, que la segunda cláusula puede comenzar con `namun` o `toh`, y que `namun` puede omitirse. Distingue el uso de enlace discursivo de `bagaimanapun`, remitido por la fuente a §4.100/U35. Cinco lecciones authored, 16 ejercicios y cuatro tipos; sin vocabulario/IDs nuevos; oculta/no publicada. Diseño: docs/B2_U29_DESIGN.md.
 
 ## U28 implementada en rama
 

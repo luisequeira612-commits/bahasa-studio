@@ -10,16 +10,14 @@ Distingue bukan, tidak, belum y jangan; sudah, telah, sedang, masih, akan, bakal
 - «Mereka tidak menolong kami.»
 - «Ali sudah bangun.»
 - «Mereka sedang makan.»
+- «Kami akan makan nanti.»
+- «Dia pernah belajar di Paris.»
 - «Dia tidak boleh hadir.»
 - «Dia boleh tidak hadir.»
 - «Kamu boleh pergi tapi harus pulang sebelum jam lima.»
-- «Kami akan makan nanti.»
-- «Dia boleh tidak hadir.»
 - «Pelamar tidak harus sudah menikah.»
 - «Pelamar harus belum menikah.»
 - «Saya belum pernah pergi ke sana.»
-- «Pelamar tidak harus sudah menikah.»
-- «Pelamar harus belum menikah.»
 
 ## Lecciones
 1. bukan y tidak según el predicado

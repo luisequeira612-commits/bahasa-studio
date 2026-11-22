@@ -1,0 +1,15 @@
+{
+  "unit": "b2_u19",
+  "level": "B2",
+  "engine": "piper",
+  "voice": "id_ID-news_tts-medium",
+  "purpose": "Generate production MP3 and Opus for the five source-backed U19 sentence targets used in translation and listening exercises.",
+  "texts": [
+    "Yang itu teman saya.",
+    "Andi memilih yang besar.",
+    "Yang dibangun Pak Dani tidak begitu besar.",
+    "Hadi yang berangkat tadi.",
+    "Bukan saya yang selalu terlambat."
+  ],
+  "requestVersion": 1
+}

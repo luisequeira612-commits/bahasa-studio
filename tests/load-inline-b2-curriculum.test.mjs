@@ -653,7 +653,7 @@ test('B2 U17 implements five authored lessons on reported statements and indirec
   const exercises = allExercises(unit);
   assert.equal(exercises.length, 16);
   assert.deepEqual([...new Set(exercises.map((exercise) => exercise.type))].sort(),
-    ['fill', 'mc', 'order', 'translate_es_id', 'write']);
+    ['fill', 'listen', 'mc', 'order', 'translate_es_id', 'write']);
   const listeningExercises = exercises.filter((exercise) => exercise.type === 'listen');
   assert.equal(listeningExercises.length, 2, 'U17 must use its two generated Piper vocabulary clips');
   assert.deepEqual(listeningExercises.map((exercise) => exercise.vocabId).sort(), ['b2u17_apakah', 'b2u17_bahwa']);

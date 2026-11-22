@@ -1,0 +1,13 @@
+{
+  "engine": "piper",
+  "level": "B2",
+  "texts": [
+    "Baik Ana maupun Ira tinggal di Jakarta.",
+    "Baik di kota maupun di desa sepak bola digemari orang.",
+    "Baik kepandaian maupun kecantikan tidak berguna untuk mencapai kebahagiaan.",
+    "Mereka berjuang untuk bangsa maupun untuk keluarga.",
+    "Baik orang Cina, orang Jepang, orang India maupun orang Portugis berdagang di Jakarta."
+  ],
+  "source": "docs/B2_U20_DESIGN.md",
+  "note": "Cinco ejemplos completos documentados en Sneddon et al. (2010), Indonesian: A Comprehensive Grammar, §4.82. Generación selectiva; no regenerar la biblioteca completa."
+}

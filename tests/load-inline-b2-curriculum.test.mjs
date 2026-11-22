@@ -918,11 +918,13 @@ test('B2 U22 teaches additive bukan hanya ... melainkan/tetapi juga with paralle
   assert.deepEqual(translations, [
     'Candi Borobudur bukan hanya sebuah monumen bersejarah saja, tetapi juga ramai didatangi orang.',
     'Bukan hanya masalah itu, melainkan juga masalah pendidikan.',
-    'Ibunya bukan hanya mengurus hidup dirinya, melainkan juga mengurus pekerjaannya.',
     'Kita tidak hanya harus setuju, tetapi juga harus patuh terhadap putusan itu.',
-    'Bukan hanya dia yang bersedih atas kejadian ini, melainkan juga semua teman-temannya.',
-    'Orang itu bukan hanya merusak nama baik sekolah, melainkan juga nama baik orang tuanya.',
+    'Bukan hanya masalah itu, melainkan juga masalah pendidikan.',
+    'Bukan hanya masalah itu, melainkan juga masalah pendidikan.',
+    'Candi Borobudur bukan hanya sebuah monumen bersejarah saja, tetapi juga ramai didatangi orang.',
   ]);
+  assert.ok(exercises.every((exercise) => !exercise.answer || !/Ibunya|teman-temannya|Orang itu bukan/.test(exercise.answer)),
+    'U22 must not introduce unsupported Indonesian examples');
   const ids = exercises.map((exercise) => exercise.id);
   assert.equal(new Set(ids).size, ids.length, 'exercise IDs must be unique');
   assert.ok(exercises.some((exercise) => exercise.type === 'write' && exercise.answerLanguage === 'id' && exercise.hint?.trim() && exercise.modelAnswer?.trim()),

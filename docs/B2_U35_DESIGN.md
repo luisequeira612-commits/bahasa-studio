@@ -7,7 +7,7 @@
 Enseñar conectores discursivos que relacionan una oración con la anterior y marcan oposición, reserva o un resultado contrario a la expectativa. La unidad parte de §4.98: estos linkers conectan oraciones, suelen aparecer al inicio del segundo enunciado, aunque también pueden aparecer dentro de él.
 
 - **namun, namun demikian**: «a pesar de eso / sin embargo».
-- **walaupun demikian/begitu, meskipun demikian/begitu, biarpun demikian/begitu**: «a pesar de eso / sin embargo».
+- **walaupun demikian, namun begitu, meskipun demikian/begitu, biarpun demikian/begitu**: «a pesar de eso / sin embargo».
 - **tetapi, akan tetapi**: «pero / sin embargo».
 - **sebaliknya**: «por el contrario / por otra parte».
 - **malah, malahan, bahkan**: en §4.100 pueden significar «en cambio / por el contrario», especialmente después de un enunciado negativo. Estas formas también aparecen con valor aditivo en §4.99; el contexto decide la lectura.

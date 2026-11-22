@@ -1,13 +1,13 @@
 # B2 U15 — Adición y alcance: pun, pula y juga
 
-**Estado:** implementada en `curriculum/b2-u15-pun-pula-20261121`; cinco lecciones authored, 16 ejercicios, dos IDs nuevos. Oculta/no publicada. No añade audio ni tareas de escucha.
+**Estado:** implementada en `curriculum/b2-u15-pun-pula-20261121`; cinco lecciones authored, 16 ejercicios, dos IDs nuevos y cuatro clips Piper. Oculta/no publicada; no añade tareas de escucha.
 
 ## Objetivos
 
 - Interpretar `pun` como adjunto focalizador que sigue al sujeto y lo enfatiza.
 - Distinguir la lectura aditiva («también») de la lectura enfática de inclusión inesperada («incluso»).
 - Comparar `pula` y `juga` como marcadores aditivos; identificar el elemento enfocado mediante posición, acento y contexto, sin asignar una traducción fija.
-- Reconocer que `pun` también puede enlazar cláusulas sucesivas, con una lectura equivalente a «entonces» en ciertos contextos; el uso es mucho menos frecuente en el indonesio moderno.
+- Reconocer que la referencia también documenta un uso menos frecuente de `pun` como enlace entre cláusulas; se deja como límite de lectura y no se evalúa en esta unidad.
 - Separar `pun` como palabra independiente de las formas conjuntivas lexicalizadas `walaupun`, `meskipun` y `biarpun`.
 
 ## Evidencia y alcance
@@ -29,14 +29,15 @@ EYD V, sección E.2–3, confirma la regla ortográfica: el `pun` productivo se 
 - Lección 4: `pun` separado en indefinidos frente a conjunciones escritas unidas.
 - Lección 5: integración contextual y contraste con U13 (`-nya`) y U14 (`-lah/-kah`).
 
-Vocabulario: `b2u15_pun`, `b2u15_pula`. Se conservan los ejemplos fuente publicados; no se crean oraciones nuevas en indonesio. Las actividades de producción y explicación se responden en español. Hay cinco tipos de ejercicio: `mc`, `fill`, `order`, `write` y `translate_es_id`.
+Vocabulario: `b2u15_pun`, `b2u15_pula`. Se conservan los ejemplos fuente publicados; no se crean oraciones nuevas en indonesio. El uso de `pun` como enlace entre cláusulas se registra como nota fuera del alcance evaluado. Las actividades de producción y explicación se responden en español. Hay cinco tipos de ejercicio: `mc`, `fill`, `order`, `write` y `translate_es_id`.
 
 ## Verificación y límites
 
 - Pruebas: cinco lecciones, 16 ejercicios, cinco tipos, IDs globalmente únicos, referencias de vocabulario válidas y al menos cinco objetivos de respuesta en frases completas.
-- Sin audio Piper nuevo ni ejercicios `listen`; por tanto, la unidad no afirma cobertura de pronunciación para las dos entradas nuevas.
+- Cuatro textos tienen audio Piper de producción en MP3 y Opus: `pun`, `pula` y los dos ejemplos de vocabulario. IDs: `505475f06e90`, `201d12fe92cd`, `1fe023df6919` y `3df78bf993ed`.
+- Los cuatro clips están incorporados en `audio/manifest.json`, `audio/index.json` y `audio/metadata.json`; la biblioteca tiene 2.231 IDs, con 117 textos B2. Voz: `id_ID-news_tts-medium`. No hay ejercicios `listen`; las tarjetas sí disponen de pronunciación grabada.
 - Los ejemplos y análisis tienen respaldo documental, pero no equivalen a validación por hablante nativo ni a certificación MCER/BIPA.
-- No modificar IndexedDB v1, backup JSON v3, A1/A2/B1, la visibilidad de B2 ni las dependencias.
+- La solicitud y selección de textos queda registrada en `docs/audio-requests/B2_U15.json`. No modificar IndexedDB v1, backup JSON v3, A1/A2/B1, la visibilidad de B2 ni las dependencias.
 
 ## Fuentes
 

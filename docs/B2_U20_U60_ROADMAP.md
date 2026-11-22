@@ -54,7 +54,7 @@
 | U57 | Adjuntos preposicionales de excepción, medio e información temática: diferenciar la relación expresada por cada frase preposicional. | Sneddon et al. (2010), §§2.209–2.215. |
 | U58 | Orden de negación, marcadores temporales y modales en el predicado: interpretar combinaciones sin trasladar el orden del español. | Sneddon et al. (2010), §§2.133–2.159. |
 | U59 | Integración de sintagmas, complementos, foco y elipsis en lectura y reformulación de textos; solo estructuras previamente enseñadas. | Síntesis de Sneddon et al. (2010), capítulos 2–4; revisar solapamiento antes de definir ejemplos. |
-| U60 | Proyecto integrador B2: lectura, escucha, argumentación y producción guiada con estructuras de U1–U59, sin introducir vocabulario nuevo para inflar el inventario. | Síntesis curricular del nivel; no es una certificación MCER/BIPA. |
+| U60 | Proyecto integrador B2: lectura, análisis, argumentación y producción guiada con estructuras de U1–U59, sin introducir vocabulario nuevo para inflar el inventario. | Síntesis curricular del nivel; no es una certificación MCER/BIPA. |
 
 ## U24 implementada en rama
 
@@ -165,6 +165,6 @@ Se ampliaron los filtros del selector y ruta de aprendizaje, el progreso visible
 - U56 adverbios de manera con dengan y secara (§§2.168–2.169), con ejemplos fuente para ambas construcciones.
 - U57 adjuntos preposicionales (§§2.209–2.215): instrumento/medio, compañía, beneficiario, razón, comparación, excepción y tema.
 - U58 negación, marcadores temporales, modales y combinaciones de alcance (§§2.133–2.159).
-- U59 integra grupos, adjuntos, complementos, foco y elipsis usando ejemplos ya enseñados. U60 es el proyecto integrador de lectura, escucha, argumentación y producción guiada; no añade vocabulario para inflar el inventario.
+- U59 integra grupos, adjuntos, complementos, foco y elipsis usando ejemplos ya enseñados. U60 es el proyecto integrador de lectura, análisis, argumentación y producción guiada; no añade vocabulario para inflar el inventario.
 - Cada unidad contiene cinco lecciones authored y 16 ejercicios (3/3/3/3/4), cuatro tipos. Sin vocabulario/IDs nuevos ni audio. Filtros de acceso extendidos a U1–U60; U6–U60 siguen ocultas/no publicadas.
 - No modifica IndexedDB v1, backup JSON v3, biblioteca Piper ni dependencias. La correspondencia con la fuente y las pruebas estructurales no equivalen a validación nativa ni certificación MCER/BIPA.

@@ -1,3 +1,7 @@
+## Correcciones de CI — 22 nov 2026
+
+- Corrección de prueba source-bound (22 nov 2026): el ejercicio de escritura de B2 U28 pide ahora reconstruir «un ejemplo documentado» en singular, como exige la aserción; conserva los ejemplos originales y no añade frases indonesias.
+
 ## B2 U30 implementada en rama — 22 nov 2026
 
 - U30 desarrolla **baru** como marcador de foco temporal «no hasta / solo entonces», Sneddon et al. (2010), §4.94. Cinco lecciones authored, 16 ejercicios ([3,3,3,3,4]), cuatro tipos (mc, translate_es_id, order, write), sin vocabulario/IDs nuevos.

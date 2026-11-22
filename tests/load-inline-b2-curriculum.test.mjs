@@ -840,10 +840,10 @@ test('B2 U19 implements nominalised relative clauses and identifying focus', asy
   }
 });
 
-test('implemented B2 U1–U33 are executable while later legacy draft units stay archived', async () => {
+test('implemented B2 U1–U34 are executable while later legacy draft units stay archived', async () => {
   const { b2 } = await loadCurricula();
   const legacyArchive = await readFile(new URL('../docs/B2_LEGACY_DRAFT_ARCHIVE.md', import.meta.url), 'utf8');
-  assert.deepEqual(b2.units.map((unit) => unit.id), ['b2_u1', 'b2_u2', 'b2_u3', 'b2_u4', 'b2_u5', 'b2_u6', 'b2_u7', 'b2_u8', 'b2_u9', 'b2_u10', 'b2_u11', 'b2_u12', 'b2_u13', 'b2_u14', 'b2_u15', 'b2_u16', 'b2_u17', 'b2_u18', 'b2_u19', 'b2_u20', 'b2_u21', 'b2_u22', 'b2_u23', 'b2_u24', 'b2_u25', 'b2_u26', 'b2_u27', 'b2_u28', 'b2_u29', 'b2_u30', 'b2_u31', 'b2_u32', 'b2_u33']);
+  assert.deepEqual(b2.units.map((unit) => unit.id), ['b2_u1', 'b2_u2', 'b2_u3', 'b2_u4', 'b2_u5', 'b2_u6', 'b2_u7', 'b2_u8', 'b2_u9', 'b2_u10', 'b2_u11', 'b2_u12', 'b2_u13', 'b2_u14', 'b2_u15', 'b2_u16', 'b2_u17', 'b2_u18', 'b2_u19', 'b2_u20', 'b2_u21', 'b2_u22', 'b2_u23', 'b2_u24', 'b2_u25', 'b2_u26', 'b2_u27', 'b2_u28', 'b2_u29', 'b2_u30', 'b2_u31', 'b2_u32', 'b2_u33', 'b2_u34']);
   for (const id of ['b2_u5']) {
     assert.ok(legacyArchive.includes('"id": "' + id + '"'), id + ' must remain in the historical archive');
   }
@@ -1285,3 +1285,30 @@ test('B2 U33 teaches source-bound jangankan ... pun scalar expectation', async (
   assert.ok(exercises.every((exercise) => exercise.type !== 'listen'), 'U33 does not add audio');
   assert.equal(new Set(exercises.map((exercise) => exercise.id)).size, exercises.length);
 });
+
+test('B2 U34 implements five authored lessons, 16 source-bound additive-linker exercises and no new vocabulary IDs', async () => {
+  const { b2, indexSource } = await loadCurricula();
+  const unit = b2.units.find((item) => item.id === 'b2_u34');
+  assert.ok(unit, 'B2 U34 must exist');
+  assert.equal(unit.lessons.length, 5);
+  assert.deepEqual(unit.lessons.map((lesson) => lesson.exercises.length), [3, 3, 3, 3, 4]);
+  assert.equal(unit.vocab.length, 0);
+  const exercises = allExercises(unit);
+  assert.equal(exercises.length, 16);
+  assert.deepEqual([...new Set(exercises.map((exercise) => exercise.type))].sort(),
+    ['mc', 'order', 'translate_es_id', 'write']);
+  for (const phrase of [
+    'Sejak kecil penduduk Bangunarjo mengalami hidup di lingkungan yang sehat dan teratur.',
+    'Selain itu, oleh desa dikembangkan pula usaha di bidang industri rumah, seperti pertenunan.',
+    'Anak itu memang nakal. Bahkan ibunya sendiri pernah ditipunya.',
+    'Ia tidak mau masuk sekolah. Lagi pula, ia tidak mau belajar di rumah.',
+  ]) assert.ok(indexSource.includes(phrase), phrase + ' must remain source-bound in index.html');
+  assert.ok(exercises.some((exercise) => exercise.type === 'translate_es_id'
+    && exercise.answer.includes('Selain itu, oleh desa dikembangkan pula')));
+  assert.ok(exercises.some((exercise) => exercise.type === 'translate_es_id'
+    && exercise.answer === 'Anak itu memang nakal. Bahkan ibunya sendiri pernah ditipunya.'));
+  assert.ok(exercises.some((exercise) => exercise.type === 'write' && exercise.hint?.trim()
+    && /reconstruye de memoria/i.test(exercise.prompt)));
+  assert.ok(unit.lessons.every((lesson) => lesson.vocabIds.length === 0 && lesson.reviewVocabIds.length === 0));
+});
+

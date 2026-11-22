@@ -1,6 +1,6 @@
 # Propuesta de secuencia B2 U20–U60
 
-**Estado:** hoja de ruta de desarrollo elaborada bajo la autorización autónoma del dueño (21 nov 2026). U20–U50 están integradas en main; U51–U60 están implementadas en ramas de desarrollo, pendientes de CI/PR; no constituyen contenido publicado ni promesa de certificación MCER/BIPA, no contenido ejecutable ni promesa de certificación MCER/BIPA.
+**Estado:** hoja de ruta de desarrollo elaborada bajo la autorización autónoma del dueño (21 nov 2026). U20–U50 están integradas en main; U51–U60 están implementadas en ramas de desarrollo, pendientes de CI/PR; no constituyen contenido publicado ni promesa de certificación MCER/BIPA.
 
 ## Criterios de diseño
 

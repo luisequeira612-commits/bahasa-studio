@@ -1,3 +1,11 @@
+## B2 U18 implementada en rama — 22 nov 2026
+- U18 añade cinco lecciones authored y 16 ejercicios ([3,3,3,3,4]) sobre complementos de intención: órdenes, peticiones, presión y advertencias; sujeto compartido/omitido, pasiva, negación y contraste estructural entre `supaya/agar` y `untuk`.
+- Cinco IDs nuevos y globalmente únicos: `b2u18_menyuruh`, `b2u18_memerintahkan`, `b2u18_mendesak`, `b2u18_mengingatkan` y `b2u18_minta`. Reutiliza `supaya`, `agar`, `untuk`, `tidak` y `jangan` ya enseñados; no repite el contenido básico de B1 U22 (propósito) ni U29 (consejos/obligación).
+- Cinco ejercicios `listen`, uno por cada verbo nuevo. Audio Piper solicitado para cinco formas y seis ejemplos fuente (11 textos); generación pendiente. No debe fusionarse hasta que la biblioteca de producción contenga todos los IDs de audio requeridos.
+- Ejemplos documentados de Sneddon et al. (2010), §§3.122–3.129: sujeto del complemento compartido con el objeto, omisión opcional de supaya/agar, pasivas con disuruh/didesak, negación con tidak/jangan y restricción de untuk cuando el sujeto complementario está expreso.
+- U18 permanece oculta/no publicada; U1–U5 siguen visibles. No cambia A1/A2/B1, IndexedDB v1, backup JSON v3 ni dependencias. Las entradas nuevas quedan `not_checked`; evidencia gramatical no equivale a validación nativa ni certificación MCER/BIPA.
+- Fuente: rama `curriculum/b2-u18-intent-clauses-20261122`, `docs/B2_U18_DESIGN.md`, `docs/audio-requests/B2_U18.json`; Sneddon et al. (2010), §§3.122–3.129.
+
 ## B2 U17 implementada — 22 nov 2026
 - U17 añade cinco lecciones authored y 16 ejercicios ([3,3,3,3,4]) sobre discurso referido: declaraciones con `bahwa`, preguntas indirectas de sí/no con `apakah/apa` y preguntas de información con palabras interrogativas integradas.
 - Dos IDs nuevos y globalmente únicos: `b2u17_bahwa` y `b2u17_apakah`. Se reutilizan los verbos y vocabulario de B1 (p. ej., mengakui, percaya, tahu); no se duplican IDs. Los ejemplos indonesios se toman de Sneddon et al. (2010), §§3.111 y 4.28–4.30; Sneddon (2000), cap. Questions; y DLI Indonesian SOLT I, Module 6 Lesson 6.

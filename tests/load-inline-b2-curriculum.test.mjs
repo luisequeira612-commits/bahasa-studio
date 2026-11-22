@@ -1338,3 +1338,59 @@ test('B2 U35 implements five authored lessons, 16 source-bound contrast-linker e
     && /reconstruye de memoria/i.test(exercise.prompt)));
   assert.ok(unit.lessons.every((lesson) => lesson.vocabIds.length === 0 && lesson.reviewVocabIds.length === 0));
 });
+
+\n\ntest('B2 U36–U40 add five authored discourse units with 16 source-bound exercises each', async () => {
+  const { b2, indexSource } = await loadCurricula();
+  const cases = [
+    { id: 'b2_u36', phrases: [
+      'Gino sudah besar. Maka dia punya buku tabungan sendiri.',
+      'Tempat itu licin. Makanya kamu jatuh.',
+      'Sopir mereka, Rudy, melihat massa mendekat sambil melempari mobil yang mereka tumpangi. Walhasil, Rudy langsung tancap gas.',
+      'Suasana di kantor itu sudah tegang. Soalnya, kantor itu terus-terusan menerima ancaman melalui telepon.',
+      'Ini memang bukan air minum. Habis, dipakai untuk segala macam kebutuhan.'
+    ]},
+    { id: 'b2_u37', phrases: [
+      'Buah-buahan makanan yang sehat. Umpamanya, buah mangga dan buah semangka mengandung banyak vitamin A.'
+    ]},
+    { id: 'b2_u38', phrases: [
+      'Orang tuanya berbelanja ke Glodok. Sesudah itu, mereka pergi ke Ancol.',
+      'Tahun lalu mereka pindah ke Jakarta. Sebelumnya, mereka tinggal di Bandung.'
+    ]},
+    { id: 'b2_u39', phrases: [
+      'Gino sudah besar. Maka dia punya buku tabungan sendiri.',
+      'Keadaan memang sudah mulai aman. Akan tetapi, kita harus tetap waspada.',
+      'Buah-buahan makanan yang sehat. Umpamanya, buah mangga dan buah semangka mengandung banyak vitamin A.',
+      'Orang tuanya berbelanja ke Glodok. Sesudah itu, mereka pergi ke Ancol.'
+    ]},
+    { id: 'b2_u40', phrases: [
+      'Untung, maling dapat dihalau penjaga.',
+      'Insya Allah, mereka selamat dalam perjalanan.',
+      'Saya seharusnya berangkat tanggal dua.',
+      'Para veteran pantas berang.',
+      'Syukurlah, orang tua saya begitu luas pandangannya.',
+      'Untunglah, kini ada kebijakan baru!'
+    ]}
+  ];
+  for (const item of cases) {
+    const unit = b2.units.find((entry) => entry.id === item.id);
+    assert.ok(unit, item.id + ' must exist');
+    assert.equal(unit.lessons.length, 5, item.id + ' must have five authored lessons');
+    assert.deepEqual(unit.lessons.map((lesson) => lesson.exercises.length), [3, 3, 3, 3, 4]);
+    assert.deepEqual(unit.vocab, [], item.id + ' must not add lexical IDs');
+    const exercises = allExercises(unit);
+    assert.equal(exercises.length, 16);
+    assert.deepEqual([...new Set(exercises.map((exercise) => exercise.type))].sort(),
+      ['mc', 'order', 'translate_es_id', 'write']);
+    assert.equal(new Set(exercises.map((exercise) => exercise.id)).size, 16);
+    assert.ok(exercises.every((exercise) => exercise.type !== 'listen'));
+    for (const phrase of item.phrases) {
+      assert.ok(indexSource.includes(phrase), item.id + ' must preserve source example: ' + phrase);
+      assert.ok(exercises.some((exercise) => exercise.type === 'translate_es_id' && exercise.answer === phrase)
+        || exercises.some((exercise) => exercise.type === 'translate_es_id' && phrase.includes(exercise.answer)),
+      item.id + ' must use source material in translation practice: ' + phrase);
+    }
+    assert.ok(exercises.some((exercise) => exercise.type === 'write' && exercise.hint?.trim() && exercise.modelAnswer?.trim()),
+      item.id + ' must include guided production');
+    assert.ok(unit.lessons.every((lesson) => lesson.vocabIds.length === 0 && lesson.reviewVocabIds.length === 0));
+  }
+});

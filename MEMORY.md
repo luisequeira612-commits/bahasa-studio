@@ -1,10 +1,14 @@
-## B2 U35 implementada en rama — 22 nov 2026
+## B2 U36–U40 implementadas en lote — 22 nov 2026
 
-- U35 desarrolla conectores de contraste entre oraciones según Sneddon et al. (2010), §§4.98–4.100: namun/namun demikian, biarpun/walaupun/meskipun demikian/begitu, tetapi/akan tetapi, sebaliknya, malah/malahan/bahkan en lectura contrastiva y bagaimanapun (juga). Distingue enlace entre oraciones de coordinación interna y evita duplicar B2 U27/U29/U34.
-- Usa únicamente ejemplos documentados de §§4.98–4.100. Cinco lecciones authored y 16 ejercicios (3/3/3/3/4), cuatro tipos (mc, translate_es_id, order, write). Sin vocabulario/IDs nuevos ni audio. U35 permanece oculta/no publicada.
-- Diseño: docs/B2_U35_DESIGN.md. Rama: curriculum/b2-u35-contrast-linkers-20261122. Se actualizan index.html, pruebas de currículo/inventario/progresión, roadmap, AGENTS.md y MEMORY.md. Pendiente CI completo y revisión del PR.
-- U34 está integrada en main mediante PR #702, commit e40f1ea2c566a31058c34f1754238178ce9d4a5a; CI de test e informes offline y Pages finalizaron correctamente según el registro del proyecto. El inventario B2 de main es 34 unidades / 170 lecciones authored.
-- No modifica IndexedDB v1, backup JSON v3, biblioteca de audio ni dependencias. Fuente y pruebas estructurales no equivalen a validación nativa ni certificación MCER/BIPA.
+- U36–U40 se añadieron juntas en la rama `curriculum/b2-u36-u40-discourse-20261122`: U36 conectores de consecuencia/explicación (§§4.101–4.102); U37 ejemplificación (§4.103); U38 secuencia temporal (§4.104); U39 cohesión integrada (§§4.98–4.104); U40 adjuntos de sentimiento y opinión (§4.106).
+- Cada unidad tiene cinco lecciones authored y 16 ejercicios (3/3/3/3/4), cuatro tipos (mc, translate_es_id, order, write), cero vocabulario/IDs nuevos y sin audio. Ejemplos fuente de Sneddon et al. (2010); no se inventan oraciones indonesias para rellenar ejercicios. U36–U40 permanecen ocultas/no publicadas.
+- Se actualizaron index.html, pruebas de currículo/progresión/inventario, roadmap, AGENTS.md y cinco diseños U36–U40. No modifica IndexedDB v1, backup JSON v3, biblioteca Piper ni dependencias. CI/PR pendientes; no equivale a validación nativa ni certificación MCER/BIPA.
+
+## B2 U35 integrada en main — 22 nov 2026
+
+- U35 desarrolla conectores de contraste entre oraciones según Sneddon et al. (2010), §§4.98–4.100. Cinco lecciones authored, 16 ejercicios, cuatro tipos, sin vocabulario/IDs nuevos ni audio; permanece oculta/no publicada.
+- PR #703 fusionada mediante squash en commit `b77988ca2e29b4a561f5e0689ed1fe1f0d2f276e`. CI del head `86e848716cb3819dd53dc0086fde73fd6db2f040`, run `45069343063`: `test` y `Offline quality reports` completados con éxito; sin revisiones, comentarios ni hilos pendientes.
+- Inventario B2 integrado: U1–U35, 175 lecciones authored. No modifica IndexedDB v1, backup JSON v3, biblioteca de audio ni dependencias. La fuente y las pruebas estructurales no equivalen a validación nativa ni certificación MCER/BIPA.
 
 ## B2 U33 integrada en main — 22 nov 2026
 

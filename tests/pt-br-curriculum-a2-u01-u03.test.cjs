@@ -77,5 +77,5 @@ test('service worker precaches the A2 manifest and U1-U3 block',()=>{
  const source=fs.readFileSync(path.join(repo,'service-worker.js'),'utf8');
  assert.match(source,/units-01-03\.js/);
  assert.match(source,/curriculum\/a2\/index\.js/);
- assert.match(source,/bahasa-studio-v3\.8\.136/);
+ assert.match(source,/bahasa-studio-v3\.8\.137/);
 });

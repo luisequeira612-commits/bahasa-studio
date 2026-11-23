@@ -60,7 +60,7 @@ mc(u1[1].id,'Completa: Você ___ Luis.',['sou','é','somos'],1),
 order(u1[0].id,'Ordena: «Yo soy Ana».',['Ana','sou','Eu'],['Eu','sou','Ana'])
 ]),
 lesson('Lección 4: Un primer diálogo','Comprende un intercambio breve de presentación.','Lee el diálogo y reconoce quién saluda y quién se presenta; no se reproduce audio en este piloto.',u1.map(x=>x.id),[],[
-mc(u1[3].id,'Lee: «Oi! Eu sou Ana. Você é Luis?» ¿Qué ocurre?',['Ana se presenta y pregunta el nombre','Ana se despide','Ana da las gracias'],0)
+mc(u1[3].id,'Lee en voz alta: «Oi! Eu sou Ana. Você é Luis?» ¿Qué ocurre?',['Ana se presenta y pregunta el nombre','Ana se despide','Ana da las gracias'],0)
 ]),
 lesson('Lección 5: Repaso y producción','Combina saludos, pronombres y ser en una presentación.','Usa un saludo, un pronombre y la forma correcta de ser.',u1.map(x=>x.id),[],[
 write(u1[0].id,'Escribe una presentación breve con eu y ser.','Eu sou Ana.'),

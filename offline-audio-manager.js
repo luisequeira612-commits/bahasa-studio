@@ -53,22 +53,18 @@
 
     function idsFromCacheKeys(keys, language = activeLanguage) {
         const config = languageConfig(language);
-        const ids = new Set();
-        const pattern = new RegExp('/audio/' + config.code.replace(/[.*+?^${}()|[\]\\]/g, '\\    function audioUrl(id) {
-        return new URL('./audio/id/' + id + '.mp3', document.baseURI).href;
-    }
-
-    function idsFromCacheKeys(keys) {
+        const expectedPrefix = '/audio/' + config.code + '/';
         const ids = new Set();
         for (const request of keys || []) {
             try {
                 const pathname = new URL(request.url || request, document.baseURI).pathname;
-                const match = /\/audio\/id\/([a-f0-9]{12})\.mp3$/i.exec(pathname);
-                if (match) ids.add(match[1].toLowerCase());
+                const filename = pathname.slice(pathname.lastIndexOf('/') + 1);
+                if (!pathname.includes(expectedPrefix) || !/^[a-f0-9]{12}\.mp3$/i.test(filename)) continue;
+                ids.add(filename.slice(0, 12).toLowerCase());
             } catch (_) {}
         }
         return ids;
-    }') + '/([a-f0-9]{12})\\.mp3
+    }
 
     function formatBytes(bytes) {
         if (!Number.isFinite(bytes) || bytes < 0) return null;

@@ -39,7 +39,7 @@ test('Playwright: carga A1 U1-U24, A2 U1-U30 y B1 U1-U3 offline, aislando el pro
   await page.reload();
   await page.waitForFunction(()=>Boolean(navigator.serviceWorker.controller));
   const cacheReady=await page.evaluate(async()=>{
-   const cache=await caches.open('bahasa-studio-v3.8.140');
+   const cache=await caches.open('bahasa-studio-v3.8.141');
    return Boolean(await cache.match(new URL('/languages/pt-BR/curriculum/a1/index.js',location.href).href)) &&
      Boolean(await cache.match(new URL('/languages/pt-BR/curriculum/a1/units-01-06.js',location.href).href)) &&
      Boolean(await cache.match(new URL('/languages/pt-BR/curriculum/a1/units-13-18.js',location.href).href)) &&

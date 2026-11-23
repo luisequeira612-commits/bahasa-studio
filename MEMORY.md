@@ -3,6 +3,19 @@
 - PR [#731](https://github.com/luisequeira612-commits/bahasa-studio/pull/731) fusionada mediante squash en `main`; head `5211f9532bab8167fc456e8e9dd3e4eab955fc2f`, commit integrado `fb5776937f8c5008f639f15a9d180989623c2a20`.
 - Normaliza el hash esperado a minúsculas en la comparación de caché actual y de migración legacy. Añade regresiones independientes para ambas rutas con hashes uppercase. Mantiene la validación estricta de 64 caracteres hexadecimales; no altera inventarios, audio, IndexedDB v1, backup JSON v3 ni dependencias.
 - CI #45129083642: `test` completó 101/101 pasos con éxito y `Offline quality reports` 10/10. Sin reviews ni hilos pendientes; head comprobado sin cambios antes del merge.
+
+## 2026-11-16 — biblioteca de audio MMS completa y verificada
+- Generación completa [run #43819778038](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/43819778038): MMS, modo full, todos los niveles; 2.196 clips únicos y 29.660.564 bytes combinados MP3 + Opus. PR [#636](https://github.com/luisequeira612-commits/bahasa-studio/pull/636) fusionada por squash como `88caa5fffdb7302e185b7201d58d7a198adfd775`.
+- Verificación post-merge: índice y manifiesto contienen los mismos 2.196 IDs; árbol Git con 2.196 MP3 y 2.196 Opus, sin faltantes ni sobrantes; metadata identifica MMS `facebook/mms-tts-ind`, revisión `171b004ccd54f266a31efee71f1ad850c91d39c0`, licencia CC BY-NC 4.0; 2.196 hashes SHA-256 válidos, sin huellas faltantes ni sobrantes.
+- Regresión pre-merge [#43821919412](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/43821919412) y post-merge [#43822481728](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/43822481728): jobs `test` y `Offline quality reports` completados con éxito. GitHub Pages post-merge [#43822480330](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/43822480330) completado con éxito.
+- El usuario escuchó una muestra y la consideró natural y entendible; prefería voz femenina, pero aceptaba la voz masculina disponible. Esto no constituye certificación lingüística ni validación nativa. Quedaba pendiente una comprobación manual de reproducción/descarga offline en el Tecno Pova 4.
+- Fuente: GitHub Actions #43819778038, #43821919412, #43822481728, #43822480330; PR #636 y artefactos de inventario en main; 16 nov 2026.
+
+## 2026-11-14 — despliegue de audio offline verificado
+- Tras la integración de descarga/caché bajo demanda, regresión post-merge del commit `dd7b29805c2475cc051187aa219b369cdae209c6` aprobada en [run #43655294954](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/43655294954): jobs `test` y `Offline quality reports` en éxito.
+- GitHub Pages post-merge completado en [run #43655294337](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/43655294337).
+- La prueba manual del usuario confirmó que un clip reproducido previamente online funcionaba en modo avión, mientras que uno nunca almacenado no funcionaba en el primer intento offline. La limitación era caché bajo demanda, no fallo de generación Piper. No declarar toda la biblioteca disponible offline hasta que el usuario prepare niveles o la biblioteca completa en su dispositivo.
+- Fuente: PR #598, commit `dd7b29805c2475cc051187aa219b369cdae209c6`, Actions #43655294954/#43655294337 y prueba manual del usuario; 14 nov 2026.
  
 ## 2026-11-23 — PR #729 fusionada: preservar audio ante hashes SHA-256 malformados
 - PR [#729](https://github.com/luisequeira612-commits/bahasa-studio/pull/729) fusionada mediante squash en `main`; head validado `159ed558eba3037ff857b48e2e4125dc0451596c`, commit integrado `7def9f7c9828e85fe9038ffa009d39b0bd8339a0`.

@@ -213,7 +213,11 @@ Fuente: PR #722–#726, commits squash y ejecuciones CI enlazadas; 23 nov 2026.
 - PR #742 fusionada por squash en main, commit 97f5cbc457a91168e9637eea1f7b41bda666d89e. CI run 45143050099: test y Offline quality reports ambos en éxito.
 - AudioEngine.testVoice() usa testPhrase del idioma activo; indonesio conserva terima kasih. Si no hay frase configurada, muestra aviso en español y no reproduce contenido indonesio. Sin nuevos audios, dependencias o cambios de datos persistentes.
 
-## 2026-11-23 — PR #746: pt-BR A1 U10–U12 en preparación
-- Rama basada en main posterior a #745 y #742. Se amplía el piloto con compras/precios (U10), ropa/colores (U11) y días de la semana/referencias temporales (U12).
-- Cada unidad aporta diez términos con verification.status not_checked, cinco lecciones y diez ejercicios finales usando únicamente renderizadores existentes (mc y order). No se activa pt-BR; no se añade audio/TTS ni dependencias; se preservan IndexedDB v1 y backup JSON v3.
-- Se amplían pruebas de carga U1–U12, estructura, referencias léxicas y tipos de ejercicio. Validación CI pendiente.
+## 2026-11-23 — PR #746: pt-BR A1 U10–U12 integradas
+- PR #746 fusionada por squash en main, merge commit `195b1679bdde4162dbae29ffb4113cdbc917ff8f`. CI run `45202650825`: `test` (101/101 pasos) y `Offline quality reports` ambos success.
+- U10 compras/precios, U11 ropa/colores, U12 días de la semana/referencias temporales. Manifiesto A1 declara 24 unidades y U1–U12 publicadas.
+- Cada unidad aporta diez términos `not_checked`, cinco lecciones y diez ejercicios finales. `pt-BR` sigue `available:false`; sin audio/TTS ni dependencias; se preservan IndexedDB v1 y backup JSON v3.
+
+## 2026-11-23 — PR #747: pt-BR A1 U13–U15 en preparación
+- Rama basada en main posterior a #746. U13 lectura y aficiones creativas; U14 deportes y movimiento; U15 cine, salidas e invitaciones.
+- Cada unidad aporta diez términos `not_checked`, cinco lecciones y diez ejercicios finales; solo renderizadores existentes `mc` y `order`. Se amplía la carga U1–U15 y precache offline. `pt-BR` continúa `available:false`; no audio/TTS nuevo ni dependencias; sin cambios a IndexedDB v1 o backup JSON v3. CI pendiente.

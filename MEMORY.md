@@ -1,3 +1,10 @@
+## 2026-11-23 — PR #765 fusionada y B1 U10–U12 en preparación
+
+- PR #765 (B1 U7–U9) fusionada por squash en \`main\`; commit integrado \`7d9f474808a6df48cf5a9605b6f3595dd3fd4e10\`. Head validado \`7fc90a3d4feb4ae44383690adcbea9f1a28ec3ba\`; los runs #45286333417 y #45286360609 terminaron con \`test\` y \`Offline quality reports\` en success. No había reviews, hilos ni comentarios pendientes.
+- U1–U9 de B1 están publicadas en el manifiesto (9/36); el idioma \`pt-BR\` permanece \`available:false\`, y todos los términos del piloto siguen \`not_checked\`. El merge no certifica la corrección lingüística.
+- Nuevo tramo preparado en rama \`feat/pt-br-b1-u10-u12\`, basada en \`main\`: U10 globalización y relaciones internacionales; U11 ciudadanía y políticas públicas; U12 crisis climática y transición energética. Objetivo de contrato: 10 términos, 5 lecciones y 10 ejercicios por unidad, referencias de repaso A2 existentes, Node + Playwright y caché offline \`v3.8.144\`.
+- No cambiar IndexedDB v1, backup JSON v3, dependencias, disponibilidad del idioma ni infraestructura de servidor. Validar CI completo antes de abrir/considerar merge de la PR siguiente.
+
 ## 2026-11-23 — Corrección CI PR #765: contratos de currículo y caché
 
 - El CI run #45284257266 mostró `Offline quality reports` success y `test` failure (15 contratos): tres tests B1 tenían una expresión regular inválida para la ruta `units-07-09.js`; doce tests previos de A1/A2 seguían esperando la caché `v3.8.142` después de que el Service Worker avanzara a `v3.8.143`.

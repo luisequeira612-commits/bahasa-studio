@@ -264,13 +264,15 @@ test('audio engine plays bundled Indonesian MP3 before using browser voice API',
     });
     const result = await page.evaluate(() => ({
       utterances: window.__spokenUtterances,
-      played: window.__playedAudio
+      played: window.__playedAudio,
+      configuredRate: AudioEngine.rate
     }));
     const hash = crypto.createHash('sha1').update('selamat pagi', 'utf8').digest('hex').slice(0, 12);
     assert.equal(result.utterances.length, 0, 'a bundled recording must be preferred over device TTS');
     assert.equal(result.played.length, 1);
     assert.equal(result.played[0].src, './audio/id/' + hash + '.mp3');
-    assert.equal(result.played[0].rate, 1);
+    assert.equal(result.played[0].rate, result.configuredRate,
+      'bundled playback must respect the active persisted playback-rate preference');
   } finally {
     await context.close();
     await new Promise(resolve => server.close(resolve));

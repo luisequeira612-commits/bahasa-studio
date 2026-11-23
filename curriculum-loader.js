@@ -68,6 +68,7 @@
         await loadScript(descriptor.path);
         manifest = readManifest(descriptor.language, descriptor.level);
         if (!manifest || !Array.isArray(manifest.publishedUnits) || !Array.isArray(manifest.blocks)) {
+            loaded.delete(descriptor.path);
             throw new Error('El índice curricular no publicó un manifiesto válido.');
         }
         return manifest;
@@ -100,7 +101,11 @@
         const unitsByNumber = new Map();
         for (const block of blocks) {
             const entry = levelBlocks[block.id];
-            if (!entry || !Array.isArray(entry.units)) throw new Error('Falta un bloque curricular publicado.');
+            if (!entry || !Array.isArray(entry.units)) {
+                const missingBlock = blocks.find(candidate => candidate.id === block.id);
+                if (missingBlock) loaded.delete(missingBlock.path);
+                throw new Error('Falta un bloque curricular publicado.');
+            }
             for (const unit of entry.units) {
                 if (Number.isInteger(unit.unitNumber)) unitsByNumber.set(unit.unitNumber, unit);
             }
@@ -124,7 +129,10 @@
         if (descriptor.exportName) {
             await loadScript(descriptor.path);
             const legacy = readExisting(descriptor);
-            if (!legacy) throw new Error('El archivo no publicó el currículo esperado.');
+            if (!legacy) {
+                loaded.delete(descriptor.path);
+                throw new Error('El archivo no publicó el currículo esperado.');
+            }
             return legacy;
         }
         const manifest = await loadManifest(resolveContent(language, level));

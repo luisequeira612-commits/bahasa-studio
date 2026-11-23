@@ -57,6 +57,7 @@ test('U3 teaches numbers 1-20 and recycles exactly two U1 questions',async()=>{
  const {loader}=createPilot();
  const {units}=await loader.loadUnits('pt-BR','A1',[1,2,3]);
  const [u1,,u3]=units;
+ assert.equal(u3.exercises.length,10);
  const numberWords=u3.vocab.filter(word=>word.id.startsWith('ptbr_a1_u3_n'));
  assert.equal(numberWords.length,20);
  assert.equal(numberWords[0].target,'um');

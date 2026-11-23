@@ -258,7 +258,7 @@ mc(u8[5].id,'¿Qué significa esquerda?',['derecha','izquierda','delante'],1),
 mc(u8[6].id,'¿Qué significa direita?',['izquierda','delante','derecha'],2)
 ]),
 lesson('Lección 4: Delante y transporte','Describe una ubicación y un medio de transporte.','Na frente expresa posición; de ônibus y de carro expresan el medio de transporte.',[u8[7].id,u8[8].id,u8[9].id],[],[
-mc(u8[7].id,'¿Qué significa frente en A escola fica na frente?',['delante','detrás','cerca'],0),
+mc(u8[7].id,'¿Qué significa em frente?',['delante','detrás','cerca'],0),
 mc(u8[8].id,'¿Cómo se dice «en autobús»?',['de carro','de ônibus','à esquerda'],1)
 ]),
 lesson('Lección 5: Repaso de lugares','Combina ir, lugares, direcciones y transporte.','Usa vou, destinos y expresiones básicas de orientación.',u8.map(x=>x.id),[u7[8].id],[ 
@@ -280,7 +280,7 @@ mc(u8[2].id,'¿Qué significa escola?',['trabajo','escuela','mercado'],1),
 mc(u8[3].id,'¿Qué significa trabalho?',['autobús','trabajo / lugar de trabajo','derecha'],1),
 mc(u8[5].id,'¿Qué significa esquerda?',['derecha','izquierda','delante'],1),
 mc(u8[6].id,'¿Qué significa direita?',['izquierda','derecha','mercado'],1),
-mc(u8[7].id,'¿Qué significa frente?',['detrás','delante','izquierda'],1),
+mc(u8[7].id,'¿Qué significa em frente?',['detrás','delante','izquierda'],1),
 mc(u8[8].id,'¿Cómo se dice «en autobús»?',['de carro','de ônibus','ao mercado'],1),
 mc(u8[9].id,'¿Cómo se dice «en coche»?',['de carro','de ônibus','à direita'],0),
 order(u8[0].id,'Ordena: «Voy al mercado».',['mercado','vou','Eu','ao'],['Eu','vou','ao','mercado'])
@@ -290,7 +290,7 @@ order(u8[0].id,'Ordena: «Voy al mercado».',['mercado','vou','Eu','ao'],['Eu','
 const u9=[
 v('ptbr_a1_u9_v01','tempo','tiempo / clima','O tempo está bom.','Hace buen tiempo.'),
 v('ptbr_a1_u9_v02','sol','sol','Tem sol hoje.','Hay sol hoy.'),
-v('ptbr_a1_u9_v03','chuva','lluvia','Tem chuva hoje.','Hay lluvia hoy.'),
+v('ptbr_a1_u9_v03','chuva','lluvia','A chuva começou.','La lluvia empezó.'),
 v('ptbr_a1_u9_v04','quente','caliente / caluroso','Hoje está quente.','Hoy hace calor.'),
 v('ptbr_a1_u9_v05','frio','frío','Hoje está frio.','Hoy hace frío.'),
 v('ptbr_a1_u9_v06','calor','calor','Eu sinto calor.','Siento calor.'),
@@ -343,7 +343,7 @@ order(u9[9].id,'Ordena: «Estoy feliz porque estoy aquí».',['porque','feliz','
 ]
 };
 
-root.GUARDI_CURRICULUM_BLOCKS||{};
+root.GUARDI_CURRICULUM_BLOCKS=root.GUARDI_CURRICULUM_BLOCKS||{};
 root.GUARDI_CURRICULUM_BLOCKS['pt-BR']=root.GUARDI_CURRICULUM_BLOCKS['pt-BR']||{};
 root.GUARDI_CURRICULUM_BLOCKS['pt-BR'].A1=root.GUARDI_CURRICULUM_BLOCKS['pt-BR'].A1||{};
 root.GUARDI_CURRICULUM_BLOCKS['pt-BR'].A1['07-12']={units:[unit4,unit5,unit6,unit7,unit8,unit9]};

@@ -355,3 +355,22 @@ Fuente: logs del job `test` de GitHub Actions run #45243502516 y commits de `fea
 - Repetir CI completo en el nuevo head; no fusionar hasta que ambos jobs estén en success.
 
 Fuente: logs de GitHub Actions run #45249391579 y commits de `feat/pt-br-a2-u16-u18-main`; 23 nov 2026.
+
+
+## 2026-11-23 — A2 U19–U21: implementación e integración en curso
+- Tras fusionar PR #758 en `main` (commit `3188230cf925bd9da413dc8b8492f4fd7b2c06e2`), se creó la rama limpia `feat/pt-br-a2-u19-u21`.
+- Se añadió `languages/pt-BR/curriculum/a2/units-19-21.js`: U19 vivienda y alquiler; U20 convivencia y resolución de conflictos; U21 derechos del consumidor. Son 30 entradas nuevas (10 por unidad), todas `not_checked`, cinco lecciones y diez ejercicios MC por unidad.
+- Los 30 términos nuevos se cotejaron contra 240 registros A1 y 180 registros A2 existentes (420 anteriores); no se detectaron duplicados exactos tras normalizar mayúsculas, acentos y espacios. Los IDs nuevos usan `ptbr_a2_u19_v01..v10`, U20 y U21 en el mismo esquema.
+- El manifiesto A2 publica U1–U21 de 30. Service Worker avanza a `bahasa-studio-v3.8.137` y precarga `units-19-21.js`. Se añade contrato Node para carga offline, estructura, respuestas MC, referencias de repaso y duplicados; `quality:tests` lo incluye. Playwright E2E amplía caché y carga offline A2 hasta U21. Contratos A2 previos y pruebas A1 dependientes de la versión de caché se alinean a v3.8.137.
+- La rama aún está en implementación y no hay PR abierta. Ejecutar CI completo sobre el head final antes de abrir/mergear. Mantener `pt-BR available:false`; no modificar IndexedDB v1 ni backup JSON v3, no añadir backend, dependencias ni audio/TTS.
+- Estado después de #758: A1 24/24, A2 21/30 en esta rama (18/30 integradas en `main` hasta que se fusione este bloque), B1 0/36, B2 0/40. Coherencia y controles internos no son certificación lingüística nativa.
+
+Fuente: GitHub `main` commit #758, rama `feat/pt-br-a2-u19-u21`, archivos curriculares y contratos Node/Playwright; 23 nov 2026.
+
+
+## 2026-11-23 — corrección de CI PR #759: harness de repaso A2
+- Primer run de PR [#759](https://github.com/luisequeira612-commits/bahasa-studio/pull/759), Actions [#45255051684](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45255051684): `Offline quality reports` success; `Run local quality tests` falló únicamente en cuatro contratos de repaso A2 U7–U9, U10–U12, U13–U15 y U16–U18.
+- La causa fue que esos cuatro harness cargan el currículo completo hasta U21 para verificar referencias retrospectivas, pero sus mapas de fuentes simuladas terminaban en U16–U18. Se añadieron `units-19-21.js` a cada mapa; no se alteraron ni relajaron aserciones ni contenido curricular.
+- Repetir CI sobre el nuevo head. No fusionar hasta que `test` y `Offline quality reports` estén ambos en success.
+
+Fuente: logs del job `test` de Actions run #45255051684 y commits correctivos en `feat/pt-br-a2-u19-u21`; 23 nov 2026.

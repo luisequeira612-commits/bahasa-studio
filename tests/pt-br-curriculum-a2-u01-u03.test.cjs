@@ -56,7 +56,7 @@ test('A2 manifest publishes the eighteen prepared units of thirty',()=>{
  const {window}=createPilot();
  const manifest=window.GUARDI_CURRICULUM_MANIFESTS['pt-BR'].A2;
  assert.equal(manifest.totalUnits,30);
- assert.deepEqual(Array.from(manifest.publishedUnits),[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]);
+ assert.deepEqual(Array.from(manifest.publishedUnits),[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21]);
  assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
 });
 test('A2 review references point to earlier A1/A2 vocabulary IDs',()=>{
@@ -77,5 +77,5 @@ test('service worker precaches the A2 manifest and U1-U3 block',()=>{
  const source=fs.readFileSync(path.join(repo,'service-worker.js'),'utf8');
  assert.match(source,/units-01-03\.js/);
  assert.match(source,/curriculum\/a2\/index\.js/);
- assert.match(source,/bahasa-studio-v3\.8\.136/);
+ assert.match(source,/bahasa-studio-v3\.8\.137/);
 });

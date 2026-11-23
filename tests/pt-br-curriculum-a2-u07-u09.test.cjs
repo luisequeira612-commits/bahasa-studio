@@ -14,7 +14,8 @@ const sources={
  './languages/pt-BR/curriculum/a2/units-07-09.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a2/units-07-09.js'),'utf8'),
  './languages/pt-BR/curriculum/a2/units-10-12.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a2/units-10-12.js'),'utf8'),
  './languages/pt-BR/curriculum/a2/units-13-15.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a2/units-13-15.js'),'utf8')
- ,'./languages/pt-BR/curriculum/a2/units-16-18.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a2/units-16-18.js'),'utf8')
+ ,'./languages/pt-BR/curriculum/a2/units-16-18.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a2/units-16-18.js'),'utf8'),
+ './languages/pt-BR/curriculum/a2/units-19-21.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a2/units-19-21.js'),'utf8')
 };
 function createPilot(){
  const window={localStorage:{getItem(){return 'id';},setItem(){}},document:{createElement(){return {};},head:{appendChild(script){

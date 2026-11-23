@@ -8,12 +8,14 @@ const repo=path.join(__dirname,'..');
 const managerSource=fs.readFileSync(path.join(repo,'language-manager.js'),'utf8');
 const loaderSource=fs.readFileSync(path.join(repo,'curriculum-loader.js'),'utf8');
 const manifestSource=fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a1/index.js'),'utf8');
-const blockSource=fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a1/units-01-06.js'),'utf8');
+const blockSource1=fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a1/units-01-06.js'),'utf8');
+const blockSource2=fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a1/units-07-12.js'),'utf8');
 
 function createPilot(){
  const sources={
   './languages/pt-BR/curriculum/a1/index.js':manifestSource,
-  './languages/pt-BR/curriculum/a1/units-01-06.js':blockSource
+  './languages/pt-BR/curriculum/a1/units-01-06.js':blockSource1,
+  './languages/pt-BR/curriculum/a1/units-07-12.js':blockSource2
  };
  const window={localStorage:{getItem(){return 'id';},setItem(){}},document:{createElement(){return {};},head:{appendChild(script){
   const source=sources[script.src];
@@ -27,20 +29,20 @@ function createPilot(){
  return {window,loader:window.CurriculumLoader};
 }
 
-test('pt-BR A1 pilot loads U1-U3 without making the incomplete course selectable',async()=>{
+test('pt-BR A1 pilot loads U1-U6 without making the incomplete course selectable',async()=>{
  const {window,loader}=createPilot();
  assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
  assert.equal(loader.resolve('pt-BR','A1'),null);
- const curriculum=await loader.loadUnits('pt-BR','A1',[1,2,3]);
+ const curriculum=await loader.loadUnits('pt-BR','A1',[1,2,3,4,5,6]);
  assert.equal(curriculum.language,'pt-BR');
  assert.equal(curriculum.totalUnits,24);
- assert.deepEqual(Array.from(curriculum.units,u=>u.unitNumber),[1,2,3]);
+ assert.deepEqual(Array.from(curriculum.units,u=>u.unitNumber),[1,2,3,4,5,6]);
  await assert.rejects(loader.load('pt-BR','A1'),/no está disponible/);
 });
 
 test('each pilot unit has five explicit lessons and valid vocabulary references',async()=>{
  const {loader}=createPilot();
- const {units}=await loader.loadUnits('pt-BR','A1',[1,2,3]);
+ const {units}=await loader.loadUnits('pt-BR','A1',[1,2,3,4,5,6]);
  const allIds=new Set(units.flatMap(unit=>unit.vocab.map(word=>word.id)));
  for(const unit of units){
   assert.equal(unit.lessons.length,5,unit.id);
@@ -73,23 +75,40 @@ test('U3 teaches numbers 1-20 and recycles exactly two U1 questions',async()=>{
  assert.ok(u3.lessons[4].reviewVocabIds.includes('ptbr_a1_u1_v02'));
 });
 
+test('U4-U6 each introduce ten vocabulary targets and ten final exercises',async()=>{
+ const {loader}=createPilot();
+ const {units}=await loader.loadUnits('pt-BR','A1',[4,5,6]);
+ assert.deepEqual(Array.from(units,u=>u.unitNumber),[4,5,6]);
+ for(const unit of units){
+  assert.equal(unit.vocab.length,10,unit.id);
+  assert.equal(unit.exercises.length,10,unit.id);
+  assert.equal(unit.lessons.length,5,unit.id);
+  assert.ok(unit.grammar.length>0,unit.id);
+  assert.ok(unit.trap && unit.trap.detail,unit.id);
+ }
+ assert.equal(units[0].vocab[7].target,'meu / minha');
+ assert.equal(units[1].vocab[8].target,'gostar de');
+ assert.equal(units[2].vocab[9].target,'onde');
+});
+
 test('pilot exercises remain text-only and do not request or reference Portuguese audio',async()=>{
  const {loader}=createPilot();
- const {units}=await loader.loadUnits('pt-BR','A1',[1,2,3]);
+ const {units}=await loader.loadUnits('pt-BR','A1',[1,2,3,4,5,6]);
  for(const unit of units){
   for(const ex of [...unit.exercises,...unit.lessons.flatMap(lesson=>lesson.exercises)]){
-   assert.ok(['mc','order'].includes(ex.type), 'exercise type must use an existing renderer');
+   assert.ok(['mc','order'].includes(ex.type),'exercise type must use an existing renderer');
    assert.notEqual(ex.type,'listen');
    assert.equal(Object.hasOwn(ex,'audioText'),false);
   }
  }
 });
 
-test('service worker precaches the Portuguese manifest and pilot block',()=>{
+test('service worker precaches the Portuguese manifest and A1 pilot blocks',()=>{
  const source=fs.readFileSync(path.join(repo,'service-worker.js'),'utf8');
  const sandbox={self:{location:{origin:'https://example.test'},addEventListener(){}},URL,Set,Map,Promise};
  vm.runInNewContext(source,sandbox);
  const assets=vm.runInNewContext('ASSETS',sandbox);
  assert.ok(assets.includes('./languages/pt-BR/curriculum/a1/index.js'));
  assert.ok(assets.includes('./languages/pt-BR/curriculum/a1/units-01-06.js'));
+ assert.ok(assets.includes('./languages/pt-BR/curriculum/a1/units-07-12.js'));
 });

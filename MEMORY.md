@@ -1,3 +1,13 @@
+## 2026-11-23 — PR #757 fusionada; A2 U16–U18 en preparación
+- PR [#757](https://github.com/luisequeira612-commits/bahasa-studio/pull/757) quedó fusionada por squash en `main`, commit `06ef4b2090a8d6fa57ece76ccc08ea9455aac68a`. CI del head final `1f3ce77dcc5a0cba45b4ae4307082b992e68fa22`, run [#45244335592](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45244335592): `test` y `Offline quality reports` ambos success.
+- Estado curricular tras #757: Portugués A1 24/24; A2 15/30; B1 0/36; B2 0/40. `pt-BR available:false` permanece.
+- Nueva rama limpia `feat/pt-br-a2-u16-u18-main`, basada directamente en el merge commit de #757 para evitar que la siguiente PR incluya cambios de U13–U15 ya integrados. U16 tecnología, privacidad y seguridad digital; U17 educación y formación continua; U18 salud y atención sanitaria.
+- U16–U18 aportan 30 entradas `not_checked` (10 por unidad), cinco lecciones y diez ejercicios MC por unidad. Referencias de repaso dirigidas a A2 previo. Se corrigió una colisión exacta detectada con U8: `prazo` se sustituyó por `ementa`.
+- Manifiesto A2 amplía publicación parcial U1–U18; Service Worker avanza a `bahasa-studio-v3.8.136` y precarga `units-16-18.js`. Playwright se amplía a A2 U1–U18 offline; se añade test Node de contrato y se alinean expectativas de caché.
+- La rama limpia está preparada pero aún sin PR/CI. Verificar harness, referencias, precache y suite antes de abrir PR. Se preservan IndexedDB v1, backup JSON v3, `available:false`; sin backend, dependencias ni audio/TTS.
+
+Fuente: GitHub PR #757, Actions run #45244335592 y rama `feat/pt-br-a2-u16-u18-main`; 23 nov 2026.
+
 ## 2026-11-23 — PR #748 preparada: pt-BR A1 U16–U18
 
 - Rama `feat/pt-br-a1-u16-u18`, basada en el merge de PR #747 `1f6be39c6a3367c885ee29282f7430b3fac2b390`.

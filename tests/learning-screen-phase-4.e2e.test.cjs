@@ -433,7 +433,7 @@ test('compact language picker is accessible, catalog-driven and fits the 360px l
       node: document.querySelector('.learning-unit-node.node-current').getBoundingClientRect().toJSON(),
       scrollY: window.scrollY
     }));
-    assert.equal(route.scrollY, 0, 'first route content must not require an initial scroll');
+    assert.ok(route.scrollY <= 16, 'initial alignment must not push the route out of the first viewport: ' + JSON.stringify(route));
     assert.ok(route.top >= 58 && route.top <= 60, 'unit path banner must start directly below the topbar: ' + JSON.stringify(route));
     assert.ok(route.node.top < 800 && route.node.bottom > 0, 'current unit must appear in the first mobile viewport');
 

@@ -347,3 +347,11 @@ Fuente: PR #722–#726, commits squash y ejecuciones CI enlazadas; 23 nov 2026.
 - Repetir CI completo sobre el nuevo head; no fusionar hasta que `test` y `Offline quality reports` estén en success.
 
 Fuente: logs del job `test` de GitHub Actions run #45243502516 y commits de `feat/pt-br-a2-u13-u15`; 23 nov 2026.
+
+
+## 2026-11-23 — corrección CI PR #758: harness A2 incompletos
+- El run #45249391579 completó `Offline quality reports`, pero `Run local quality tests` falló en los tests de repaso de A2 U7–U9, U10–U12 y U13–U15. Los tres harness simulaban la carga offline sin registrar el bloque `units-16-18.js`, ahora incluido en el manifiesto A2 U1–U18.
+- Se añadieron las fuentes del bloque U16–U18 a los mapas de los tres harness en commits `f2a72d4cdfced2e5ddec126b4ef21acba9db9a75`, `2d002f52276e40b938eb7b35317e9848e816a39c` y `47f45986908d4d209bfae971f7de772e0ebf7353`. No se cambia el currículo ni el comportamiento de la aplicación.
+- Repetir CI completo en el nuevo head; no fusionar hasta que ambos jobs estén en success.
+
+Fuente: logs de GitHub Actions run #45249391579 y commits de `feat/pt-br-a2-u16-u18-main`; 23 nov 2026.

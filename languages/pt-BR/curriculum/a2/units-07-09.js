@@ -32,8 +32,8 @@ vocab(7,10,'cumprir','cumplir','Precisamos cumprir as regras.','Necesitamos cump
 const u8=[
 vocab(8,1,'primeiro','primero','Primeiro, precisamos comprar os bilhetes.','Primero, necesitamos comprar los billetes.'),
 vocab(8,2,'em seguida','a continuación','Em seguida, vamos pegar o ônibus.','A continuación, vamos a tomar el autobús.'),
-vocab(8,3,'depois','después','Depois, fazemos o check-in.','Después, hacemos el registro de entrada.'),
-vocab(8,4,'enquanto','mientras','Enquanto você espera, vou ligar para o hotel.','Mientras esperas, voy a llamar al hotel.'),
+vocab(8,3,'logo após','justo después','Logo após, fazemos o check-in.','Justo después, hacemos el registro de entrada.'),
+vocab(8,4,'durante','durante','Durante a espera, vou ligar para o hotel.','Durante la espera, voy a llamar al hotel.'),
 vocab(8,5,'por isso','por eso','O trem atrasou; por isso, chegamos tarde.','El tren se retrasó; por eso llegamos tarde.'),
 vocab(8,6,'então','entonces','Está chovendo, então vamos ficar aqui.','Está lloviendo, entonces nos quedaremos aquí.'),
 vocab(8,7,'porém','sin embargo','Queria viajar, porém não tenho tempo.','Quería viajar, sin embargo no tengo tiempo.'),
@@ -71,7 +71,7 @@ u8,[
 ['Lección 2: Añadir información','Amplía una explicación con otro dato.','Além disso añade información relacionada a la idea anterior.',[2,7],['ptbr_a2_u5_v10']],
 ['Lección 3: Explicar consecuencias','Relaciona una situación con su resultado.','Por isso y então pueden introducir una consecuencia.',[4,5],['ptbr_a2_u4_v07']],
 ['Lección 4: Contrastar ideas','Presenta una expectativa y una situación diferente.','Porém conecta ideas contrastantes; suele aparecer después de una coma o punto y coma.',[6,8],['ptbr_a2_u5_v04']],
-['Lección 5: Actuar a pesar de algo','Explica una acción que ocurre pese a una dificultad.','Apesar de + sustantivo o infinitivo expresa concesión: apesar da chuva, apesar de estar cansado.',[9,3],['ptbr_a2_u4_v03']]
+['Lección 5: A pesar de algo y durante una situación','Explica una acción que ocurre pese a una dificultad y sitúa otra en el tiempo.','Apesar de + sustantivo o infinitivo expresa concesión; durante + sustantivo sitúa una acción en un periodo.',[9,3],['ptbr_a2_u4_v03']]
 ]);
 const unit9=makeUnit(9,'Viajes, transporte y alojamiento','Organiza un viaje, entiende servicios de transporte y gestiona la llegada al alojamiento.',
 'Passagem y bagagem se relacionan con el transporte. Reserva, hospedagem y check-in se usan al alojarse. Embarcar/desembarcar describen subir y bajar; conexão puede ser una escala entre trayectos.',

@@ -124,6 +124,10 @@ async function readAudioHashes(cache, language = 'id') {
     }
 }
 
+function isValidAudioHash(value) {
+    return typeof value === 'string' && /^[a-f0-9]{64}$/i.test(value);
+}
+
 async function sha256Hex(bytes) {
     const digest = await crypto.subtle.digest('SHA-256', bytes);
     return Array.from(new Uint8Array(digest), (byte) => byte.toString(16).padStart(2, '0')).join('');
@@ -135,8 +139,7 @@ function audioClipIdFromRequest(request) {
 }
 
 async function hasValidAudioHash(response, expectedHash) {
-    if (!response || response.status !== 200 ||
-        typeof expectedHash !== 'string' || !/^[a-f0-9]{64}$/i.test(expectedHash)) return false;
+    if (!response || response.status !== 200 || !isValidAudioHash(expectedHash)) return false;
     try {
         const bytes = await response.clone().arrayBuffer();
         return bytes.byteLength > 0 && await sha256Hex(bytes) === expectedHash.toLowerCase();
@@ -202,9 +205,9 @@ async function migrateLegacyAudioCache() {
                     await audioCache.delete(request);
                     continue;
                 }
-                if (!expectedHash) {
-                    // Keep cached bytes when the inventory cannot verify this clip.
-                    // Also retain legacy app caches until the missing fingerprint is resolved.
+                if (!isValidAudioHash(expectedHash)) {
+                    // Missing or malformed fingerprints are unavailable evidence, not proof
+                    // that cached bytes are corrupt. Preserve the bytes and legacy sources.
                     migrationComplete = false;
                     continue;
                 }
@@ -254,8 +257,9 @@ async function migrateLegacyAudioCache() {
                 }
                 const match = new URL(request.url).pathname.match(/\/audio\/[a-z]{2}(?:-[A-Z]{2})?\/([a-f0-9]{12})\.mp3$/i);
                 const expectedHash = match ? currentHashes[match[1].toLowerCase()] : null;
-                if (!expectedHash) {
-                    // Preserve the legacy source when this clip has no verifiable fingerprint.
+                if (!isValidAudioHash(expectedHash)) {
+                    // Missing or malformed fingerprints cannot verify the legacy copy.
+                    // Keep the source cache until a valid inventory is available.
                     migrationComplete = false;
                     continue;
                 }
@@ -359,7 +363,7 @@ self.addEventListener('fetch', (e) => {
                 if (await hasValidAudioHash(cached, expectedHash)) {
                     // A cache hit is trusted only when its bytes match the active inventory.
                 } else {
-                    if (expectedHash) {
+                    if (isValidAudioHash(expectedHash)) {
                         try { await cache.delete(cacheRequest); } catch (_) {}
                     }
                     cached = null;
@@ -388,7 +392,7 @@ self.addEventListener('fetch', (e) => {
                 : fetch(cacheRequest, { cache: 'no-cache' });
             const network = fetchFresh.then(async (res) => {
                 if (audioRequest) {
-                    if (res && res.status === 200 && expectedHash) {
+                    if (res && res.status === 200 && isValidAudioHash(expectedHash)) {
                         const verified = await hasValidAudioHash(res, expectedHash);
                         if (!verified) {
                             finishCacheUpdate();
@@ -403,8 +407,11 @@ self.addEventListener('fetch', (e) => {
                         } catch (_) {
                             finishCacheUpdate();
                         }
+                    } else if (res && res.status === 200) {
+                        // Missing or malformed inventory/hash: allow online playback,
+                        // but do not trust or persist the clip as available offline.
+                        finishCacheUpdate();
                     } else {
-                        // Missing inventory/hash: return online audio, but do not cache it.
                         finishCacheUpdate();
                     }
                 } else if (res && res.status === 200) {

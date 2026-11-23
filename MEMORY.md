@@ -266,3 +266,8 @@ Fuente: PR #722–#726, commits squash y ejecuciones CI enlazadas; 23 nov 2026.
 
 
 - Ampliación de cobertura del runner: `quality:tests` ahora incluye los contratos incrementales A1 U19–U21, A1 U22–U24 y A2 U1–U3. Se corrigieron los harness de pruebas incrementales para inicializar el manifiesto antes de inspeccionar sus unidades publicadas.
+
+
+## 2026-11-23 — PR #753: corrección de regresiones de integración A1/A2
+- El primer CI (#45233109300) detectó tres expectativas antiguas en los tests incrementales A1 U19–U21 y U22–U24: el manifiesto A1 ya publica U1–U24 (no U1–U21) y el Service Worker avanzó a `v3.8.131` al añadir el manifiesto y bloque A2.
+- Se actualizan únicamente esas expectativas; el contenido curricular A1/A2 y el estado `pt-BR available:false` no cambian. `Offline quality reports` pasó; se repetirá CI completo, incluido Playwright.

@@ -58,7 +58,7 @@ test('pt-BR A1 manifest publishes exactly U1-U21 while keeping A1 incomplete',()
  const {window}=createPilot();
  const manifest=window.GUARDI_CURRICULUM_MANIFESTS['pt-BR'].A1;
  assert.equal(manifest.totalUnits,24);
- assert.deepEqual(Array.from(manifest.publishedUnits),Array.from({length:21},(_,index)=>index+1));
+ assert.deepEqual(Array.from(manifest.publishedUnits),Array.from({length:24},(_,index)=>index+1));
  assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
 });
 test('service worker precaches the U19-U21 curriculum block',()=>{

@@ -48,7 +48,7 @@ test('Playwright: carga U1-U21 offline y aísla el progreso pt-BR del indonesio'
   assert.equal(cacheReady,true,'manifest and curriculum block must be in the app-shell cache');
   await context.setOffline(true);
   const result=await page.evaluate(async()=>{
-   const curriculum=await CurriculumLoader.loadUnits('pt-BR','A1',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]);
+   const curriculum=await CurriculumLoader.loadUnits('pt-BR','A1',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21]);
    const u3=curriculum.units[2];
    const previous=new Set(curriculum.units[0].vocab.map(word=>word.id));
    const recycled=u3.exercises.filter(ex=>previous.has(ex.vocabId)).map(ex=>ex.vocabId);

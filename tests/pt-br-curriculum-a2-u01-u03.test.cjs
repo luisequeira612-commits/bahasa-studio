@@ -52,11 +52,11 @@ test('pt-BR A2 U1-U3 load through the offline content loader but remain unavaila
   }
  }
 });
-test('A2 manifest publishes only the first three of thirty units',()=>{
+test('A2 manifest publishes the six prepared units of thirty',()=>{
  const {window}=createPilot();
  const manifest=window.GUARDI_CURRICULUM_MANIFESTS['pt-BR'].A2;
  assert.equal(manifest.totalUnits,30);
- assert.deepEqual(Array.from(manifest.publishedUnits),[1,2,3]);
+ assert.deepEqual(Array.from(manifest.publishedUnits),[1,2,3,4,5,6]);
  assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
 });
 test('A2 review references point to earlier A1/A2 vocabulary IDs',()=>{

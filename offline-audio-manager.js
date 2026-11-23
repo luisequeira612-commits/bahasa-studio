@@ -4,7 +4,7 @@
     const CACHE_NAME = 'guardi-audio-v2';
     const AUDIO_LANGUAGES = new Set(['pt-BR', 'en', 'it', 'fr', 'de', 'nl', 'ru', 'ja', 'ko', 'id']);
     let activeLanguage = 'id';
-    const LEVELS = ['A1', 'A2', 'B1'];
+    const LEVELS = ['A1', 'A2', 'B1', 'B2'];
     const elements = {};
     let manifestEntries = [];
     let audioHashes = {};
@@ -23,6 +23,52 @@
             seen.add(entry.id);
             return true;
         });
+    }
+
+    function validateInventory(manifest, metadata) {
+        if (!Array.isArray(manifest) || !manifest.length) {
+            throw new Error('El manifiesto de audio está vacío o no tiene un formato válido.');
+        }
+        const sourceHashes = metadata && metadata.audio_hashes;
+        if (!sourceHashes || typeof sourceHashes !== 'object' || Array.isArray(sourceHashes)) {
+            throw new Error('Las huellas SHA-256 del inventario no tienen un formato válido.');
+        }
+
+        const hashes = {};
+        for (const [rawId, hash] of Object.entries(sourceHashes)) {
+            if (!/^[a-f0-9]{12}$/i.test(rawId) || typeof hash !== 'string' || !/^[a-f0-9]{64}$/i.test(hash)) {
+                throw new Error('El inventario contiene una huella SHA-256 malformada.');
+            }
+            const id = rawId.toLowerCase();
+            if (Object.prototype.hasOwnProperty.call(hashes, id)) {
+                throw new Error('El inventario contiene IDs de audio duplicados en sus huellas.');
+            }
+            hashes[id] = hash.toLowerCase();
+        }
+
+        const seen = new Set();
+        const entries = manifest.map(entry => {
+            if (!entry || typeof entry.id !== 'string' || !/^[a-f0-9]{12}$/i.test(entry.id)) {
+                throw new Error('El manifiesto contiene un ID de audio no válido.');
+            }
+            const id = entry.id.toLowerCase();
+            if (seen.has(id)) throw new Error('El manifiesto contiene IDs de audio duplicados.');
+            seen.add(id);
+            if (typeof entry.text !== 'string' || !entry.text.trim()) {
+                throw new Error('El manifiesto contiene un audio sin texto de referencia.');
+            }
+            if (!Array.isArray(entry.levels) || !entry.levels.length ||
+                entry.levels.some(level => !LEVELS.includes(level)) ||
+                new Set(entry.levels).size !== entry.levels.length) {
+                throw new Error('El manifiesto contiene niveles vacíos, repetidos o no reconocidos.');
+            }
+            if (!hashes[id]) {
+                throw new Error('Falta una huella SHA-256 válida para uno de los audios del manifiesto.');
+            }
+            return Object.assign({}, entry, { id });
+        });
+
+        return { entries, hashes };
     }
 
     function languageConfig(language) {
@@ -112,9 +158,9 @@
         if (!manifestResponse.ok || !metadataResponse.ok) throw new Error('No se pudo consultar el inventario de audio. Conéctate a internet y vuelve a intentarlo.');
         const manifest = await manifestResponse.json();
         const metadata = await metadataResponse.json();
-        if (!Array.isArray(manifest) || !metadata || !metadata.audio_hashes) throw new Error('El inventario o las huellas de audio no tienen un formato válido.');
-        manifestEntries = manifest;
-        audioHashes = metadata.audio_hashes;
+        const validated = validateInventory(manifest, metadata);
+        manifestEntries = validated.entries;
+        audioHashes = validated.hashes;
         await refreshCacheState();
         const allEntries = selectEntries(manifestEntries, 'all');
         const total = allEntries.length;
@@ -283,6 +329,7 @@
 
     window.OfflineAudioManager = {
         selectEntries,
+        validateInventory,
         idsFromCacheKeys,
         audioUrl,
         cacheNameForLanguage,

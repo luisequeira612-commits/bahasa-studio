@@ -171,3 +171,14 @@ test('service worker installs its declared cache, removes only older app caches 
   assert.equal(claimed, true);
   assert.ok(cacheStore.has(cacheName));
 });
+
+
+test('language catalog keeps the approved teaching variants and does not activate Portuguese prematurely', async () => {
+  const source = await read('language-manager.js');
+  assert.match(source, /code:\s*'pt-BR'[^}]*locale:\s*'pt-BR'[^}]*name:\s*'Portugués'[^}]*flag:\s*'🇧🇷'/s);
+  assert.match(source, /code:\s*'en'[^}]*locale:\s*'en-US'[^}]*name:\s*'Inglés'[^}]*flag:\s*'🇺🇸'/s);
+  assert.doesNotMatch(source, /Portugués de Brasil/);
+  assert.doesNotMatch(source, /flag:\s*'🇬🇧'/);
+  assert.match(source, /'pt-BR': Object\.freeze\(\{[^}]*available:\s*false/s);
+  assert.match(source, /en: Object\.freeze\(\{[^}]*available:\s*false/s);
+});

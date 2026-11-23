@@ -1,3 +1,7 @@
+## Ajustes de regresión de fase 1 de audio multiidioma — 23 nov 2026
+
+- El primer CI de PR #718 detectó cuatro expectativas obsoletas en `tests/regression.test.cjs`: búsqueda de voz fija `id`, ruta literal `./audio/id/` y dos aserciones de `recognition.lang = 'id-ID'`. El comportamiento nuevo es intencionalmente dinámico y conserva `id-ID` solo como fallback de compatibilidad.
+- Se actualizaron las expectativas para validar el filtro de metadatos seguro, la ruta dinámica configurada (y el fallback legacy `./audio/id/`) y `recognition.lang = locale`. No se cambia la evaluación standalone, que sigue siendo específicamente indonesia.
 ## Audio: configuración de voz y reconocimiento por idioma — 23 nov 2026
 
 - La fase 1 desacopla `audio-engine.js` y `pronunciation-engine.js` del locale/ruta fijos de indonesio: consultan `LanguageManager` para locale, nombre y `audioPath` del idioma activo. Las voces del dispositivo se filtran por el subtag de idioma; no se usa una voz de otro idioma como fallback.

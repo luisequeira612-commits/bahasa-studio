@@ -52,11 +52,11 @@ test('pt-BR A2 U1-U3 load through the offline content loader but remain unavaila
   }
  }
 });
-test('A2 manifest publishes the U1-U27 as a partial level of thirty units',()=>{
+test('A2 manifest publishes the U1-U30 as a partial level of thirty units',()=>{
  const {window}=createPilot();
  const manifest=window.GUARDI_CURRICULUM_MANIFESTS['pt-BR'].A2;
  assert.equal(manifest.totalUnits,30);
- assert.deepEqual(Array.from(manifest.publishedUnits),[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27]);
+ assert.deepEqual(Array.from(manifest.publishedUnits),[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]);
  assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
 });
 test('A2 review references point to earlier A1/A2 vocabulary IDs',()=>{
@@ -77,5 +77,5 @@ test('service worker precaches the A2 manifest and U1-U3 block',()=>{
  const source=fs.readFileSync(path.join(repo,'service-worker.js'),'utf8');
  assert.match(source,/units-01-03\.js/);
  assert.match(source,/curriculum\/a2\/index\.js/);
- assert.match(source,/bahasa-studio-v3\.8\.139/);
+ assert.match(source,/bahasa-studio-v3\.8\.140/);
 });

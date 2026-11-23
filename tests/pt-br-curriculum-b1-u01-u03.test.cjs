@@ -77,6 +77,6 @@ test('B1 U1-U3 add no exact normalized vocabulary duplicates against A1 or A2',(
 });
 test('service worker precaches the B1 manifest and U1-U9 blocks with cache v3.8.143',()=>{
  const source=fs.readFileSync(path.join(repo,'service-worker.js'),'utf8');
- assert.match(source,/curriculum\/b1\/index\.js/);assert.match(source,/curriculum\/b1\/units-01-03\.js/);assert.match(source,/curriculum\/b1\/units-04-06\.js/);
+ assert.match(source,/curriculum\/b1\/index\.js/);assert.match(source,/curriculum\/b1\/units-01-03\.js/);assert.match(source,/curriculum\/b1\/units-04-06\.js/);assert.match(source,/curriculum\\/b1\\/units-07-09\\.js/);
  assert.match(source,/bahasa-studio-v3\.8\.143/);
 });

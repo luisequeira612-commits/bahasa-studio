@@ -1,3 +1,14 @@
+## 2026-11-23 — PR #763 abierta: Portugués B1 U1–U3
+
+- PR [#763](https://github.com/luisequeira612-commits/bahasa-studio/pull/763) abierta desde rama `feat/pt-br-b1-u01-u03`, basada en `main` tras PR #762 (merge commit `9bd2ac59fd38acafad26f4055b5bf7244bb78a36`). Head actual: `bb482137a7b7a0668c876e1698112d25db097a47`; CI de este head pendiente.
+- Inicia el nivel B1 (36 unidades) con U1 relatos y experiencias significativas; U2 argumentación y debate; U3 hipótesis y consecuencias. Añade 30 términos (10 por unidad), cinco lecciones y diez ejercicios MC por unidad, ejemplos PT/ES y referencias de repaso a IDs A2 existentes. Todos los términos siguen `not_checked`.
+- Añade manifiesto pt-BR B1 que publica solo U1–U3 de 36 y registra la ruta B1 en `language-manager.js`; `pt-BR available:false` y `CurriculumLoader.resolve` no habilitan el curso. El contenido se puede cargar para pruebas sin habilitar la selección.
+- Auditoría léxica coteja 30 términos nuevos contra 540 entradas anteriores A1+A2; se detectaron dos colisiones iniciales (`evidência`, `hipótese`) y se sustituyeron por `indício` y `conjectura`. La auditoría repetida y el contrato automatizado deben confirmar cero duplicados.
+- Service Worker avanza a `bahasa-studio-v3.8.141` y precarga el manifiesto/bloque B1. Añade contrato Node (estructura, lecciones, explicaciones, MC, referencias A2, duplicados) y amplía Playwright para cargar A1 24/24, A2 30/30 y B1 U1–U3 sin conexión.
+- Restricciones: sin dependencias nuevas, backend, audio/TTS, cambios a IndexedDB v1 ni backup JSON v3. B2 sigue 0/40; B1 3/36 en esta rama, todavía no integrado. CI/PR pendientes.
+
+Fuente: GitHub rama `feat/pt-br-b1-u01-u03`, manifiesto y bloque B1, tests, Service Worker y language manager; 23 nov 2026.
+
 ## 2026-11-23 — PR #758: corrección de expectativas de integración A2 U16–U18
 - CI inicial del head `32d4767b59e838d669fa846ad8726441f2dacd19`, run [#45246346115](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45246346115): instalación Chromium y pruebas principales avanzaron; el job `test` falló en `Run local quality tests`, no por el contenido de U16–U18, sino por cinco contratos de manifiesto heredados que todavía esperaban U1–U15 y una expectativa de Service Worker que esperaba caché v3.8.135.
 - Se actualizaron los cinco contratos antiguos a publicación U1–U18 (18 unidades) y la prueba de caché U13–U15 a v3.8.136. Los checks conservan la lista exacta de unidades y la versión de caché actual; no se redujo cobertura.

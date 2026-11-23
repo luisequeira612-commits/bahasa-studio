@@ -23,7 +23,7 @@ function startServer(){
  return new Promise(resolve=>server.listen(0,'127.0.0.1',()=>resolve(server)));
 }
 
-test('Playwright: carga U1-U24 offline y aísla el progreso pt-BR del indonesio', {timeout:120000}, async()=>{
+test('Playwright: carga A1 U1-U24 y A2 U1-U27 offline, aislando el progreso pt-BR del indonesio', {timeout:120000}, async()=>{
  const server=await startServer();
  const address=server.address();
  const browser=await chromium.launch({headless:true});

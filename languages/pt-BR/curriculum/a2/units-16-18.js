@@ -28,7 +28,7 @@ vocab(17,9,'orientador','tutor / asesor académico','Conversei com meu orientado
 vocab(17,10,'aprendizagem','aprendizaje','A prática diária ajuda na aprendizagem.','La práctica diaria ayuda en el aprendizaje.')
 ];
 const u18=[
-vocab(18,1,'consulta','consulta médica','Marquei uma consulta para a próxima semana.','Concerté una consulta para la próxima semana.'),
+vocab(18,1,'triagem','triaje','A triagem ajuda a organizar o atendimento inicial.','El triaje ayuda a organizar la atención inicial.'),
 vocab(18,2,'receita','receta médica','A médica escreveu uma receita para o tratamento.','La médica escribió una receta para el tratamiento.'),
 vocab(18,3,'sintoma','síntoma','A febre é um sintoma que precisa ser observado.','La fiebre es un síntoma que debe observarse.'),
 vocab(18,4,'exame','examen médico','O exame será realizado no laboratório.','El examen se realizará en el laboratorio.'),
@@ -53,8 +53,8 @@ const unit17=makeUnit(17,'Educación y formación continua','Comprende procesos 
 ['Lección 4: Investigación y plazos','Habla de trabajos y fechas de entrega.','Pesquisa es una investigación; prazo es el tiempo límite.',[6,7],['ptbr_a2_u14_v02']],
 ['Lección 5: Orientación y aprendizaje','Describe el acompañamiento académico.','Orientador acompaña un proyecto o estudio; aprendizagem es el proceso de aprender.',[8,9],['ptbr_a2_u14_v05']]
 ]);
-const unit18=makeUnit(18,'Salud y atención sanitaria','Comprende vocabulario frecuente para consultas, pruebas y tratamientos médicos.','Consulta puede ser una cita médica; exame es una prueba. Sintoma describe una señal, mientras tratamento y prevenção se refieren a cuidados.',['Receita y tratamento','Receita es la indicación médica escrita; tratamento es el conjunto de cuidados o medidas.'],u18,[
-['Lección 1: Consultas y recetas','Habla de citas y orientaciones médicas.','Consulta es una cita; receita contiene indicaciones de un profesional.',[0,1],['ptbr_a2_u15_v07']],
+const unit18=makeUnit(18,'Salud y atención sanitaria','Comprende vocabulario frecuente para consultas, pruebas y tratamientos médicos.','Triagem organiza la evaluación inicial; exame es una prueba. Sintoma describe una señal, mientras tratamento y prevenção se refieren a cuidados.',['Receita y tratamento','Receita es la indicación médica escrita; tratamento es el conjunto de cuidados o medidas.'],u18,[
+['Lección 1: Triaje y recetas','Comprende la evaluación inicial y las indicaciones médicas.','Triagem organiza la atención inicial; receita contiene indicaciones de un profesional.',[0,1],['ptbr_a2_u15_v07']],
 ['Lección 2: Síntomas y exámenes','Describe señales y pruebas de salud.','Sintoma es una manifestación; exame es una prueba para investigar el estado de salud.',[2,3],['ptbr_a2_u15_v01']],
 ['Lección 3: Tratamientos y alergias','Comunica información importante sobre cuidados.','Tratamento reúne medidas de cuidado; alergia es una reacción a una sustancia.',[4,5],['ptbr_a2_u15_v09']],
 ['Lección 4: Atención de urgencia y cobertura','Comprende servicios y cobertura médica.','Pronto-socorro es un servicio de urgencias; convênio puede referirse al seguro médico.',[6,7],['ptbr_a2_u13_v09']],

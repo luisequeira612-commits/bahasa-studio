@@ -23,7 +23,7 @@ function startServer(){
  return new Promise(resolve=>server.listen(0,'127.0.0.1',()=>resolve(server)));
 }
 
-test('Playwright: carga U1-U18 offline y aísla el progreso pt-BR del indonesio', {timeout:120000}, async()=>{
+test('Playwright: carga U1-U21 offline y aísla el progreso pt-BR del indonesio', {timeout:120000}, async()=>{
  const server=await startServer();
  const address=server.address();
  const browser=await chromium.launch({headless:true});
@@ -39,7 +39,7 @@ test('Playwright: carga U1-U18 offline y aísla el progreso pt-BR del indonesio'
   await page.reload();
   await page.waitForFunction(()=>Boolean(navigator.serviceWorker.controller));
   const cacheReady=await page.evaluate(async()=>{
-   const cache=await caches.open('bahasa-studio-v3.8.128');
+   const cache=await caches.open('bahasa-studio-v3.8.129');
    return Boolean(await cache.match(new URL('/languages/pt-BR/curriculum/a1/index.js',location.href).href)) &&
      Boolean(await cache.match(new URL('/languages/pt-BR/curriculum/a1/units-01-06.js',location.href).href)) &&
      Boolean(await cache.match(new URL('/languages/pt-BR/curriculum/a1/units-13-18.js',location.href).href)) &&

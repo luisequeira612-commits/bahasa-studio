@@ -54,7 +54,7 @@ test('pt-BR A1 U19-U21 load as a non-selectable offline pilot with complete less
  }
  assert.equal(loader.resolve('pt-BR','A1'),null);
 });
-test('pt-BR A1 manifest publishes exactly U1-U21 while keeping A1 incomplete',()=>{
+test('pt-BR A1 manifest publishes exactly U1-U24 while keeping A1 incomplete',()=>{
  const {window}=createPilot();
  const manifest=window.GUARDI_CURRICULUM_MANIFESTS['pt-BR'].A1;
  assert.equal(manifest.totalUnits,24);

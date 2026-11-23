@@ -258,7 +258,12 @@ test('audio engine plays bundled Indonesian MP3 before using browser voice API',
   try {
     await page.goto(url, { waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => typeof AudioEngine !== 'undefined');
-    await page.evaluate(() => {
+    await page.evaluate(async () => {
+      // Seed and read the persisted preference before playback; app startup may
+      // restore it asynchronously after AudioEngine first becomes available.
+      await DB.set('settings', 'audioPlaybackRate', 0.85);
+      const persistedRate = await DB.get('settings', 'audioPlaybackRate');
+      AudioEngine.setRate(persistedRate, false);
       AudioEngine.init();
       AudioEngine.speak('Selamat pagi');
     });

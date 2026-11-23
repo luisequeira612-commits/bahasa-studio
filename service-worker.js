@@ -166,8 +166,14 @@ async function migrateLegacyAudioCache() {
             try {
                 const response = await audioCache.match(request);
                 const expectedHash = currentHashes[id];
-                if (!response || response.status !== 200 || !expectedHash) {
+                if (!response || response.status !== 200) {
                     await audioCache.delete(request);
+                    continue;
+                }
+                if (!expectedHash) {
+                    // Keep cached bytes when the inventory cannot verify this clip.
+                    // Also retain legacy app caches until the missing fingerprint is resolved.
+                    migrationComplete = false;
                     continue;
                 }
                 const bytes = await response.clone().arrayBuffer();

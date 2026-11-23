@@ -174,8 +174,177 @@ order(u6[6].id,'Ordena: «El baño está aquí».',['aqui','está','banheiro','O
 ]
 };
 
-root.GUARDI_CURRICULUM_BLOCKS=root.GUARDI_CURRICULUM_BLOCKS||{};
+
+const u7=[
+v('ptbr_a1_u7_v01','acordar','despertarse','Eu acordo cedo.','Me despierto temprano.'),
+v('ptbr_a1_u7_v02','levantar','levantarse','Eu levanto às sete.','Me levanto a las siete.'),
+v('ptbr_a1_u7_v03','tomar banho','ducharse / bañarse','Eu tomo banho de manhã.','Me ducho por la mañana.'),
+v('ptbr_a1_u7_v04','manhã','mañana','De manhã eu estudo.','Por la mañana estudio.'),
+v('ptbr_a1_u7_v05','tarde','tarde','À tarde eu trabalho.','Por la tarde trabajo.'),
+v('ptbr_a1_u7_v06','noite','noche','À noite eu descanso.','Por la noche descanso.'),
+v('ptbr_a1_u7_v07','hoje','hoy','Hoje eu estudo.','Hoy estudio.'),
+v('ptbr_a1_u7_v08','cedo','temprano','Eu acordo cedo.','Me despierto temprano.'),
+v('ptbr_a1_u7_v09','todos os dias','todos los días','Eu estudo todos os dias.','Estudio todos los días.'),
+v('ptbr_a1_u7_v10','descansar','descansar','Eu descanso à noite.','Descanso por la noche.')
+];
+
+const u7Lessons=[
+lesson('Lección 1: La rutina de la mañana','Reconoce acciones básicas de la mañana.','Acordar, levantar y tomar banho describen acciones habituales; con eu aparecen como eu acordo, eu levanto, eu tomo.',u7.slice(0,4).map(x=>x.id),[],[
+mc(u7[0].id,'¿Qué significa acordar?',['despertarse','descansar','trabajar'],0),
+mc(u7[2].id,'¿Qué significa tomar banho?',['comer','ducharse / bañarse','estudiar'],1)
+]),
+lesson('Lección 2: Mañana, tarde y noche','Distingue partes básicas del día.','De manhã, à tarde y à noite sitúan acciones en distintos momentos del día.',u7.slice(3,6).map(x=>x.id),[],[
+mc(u7[3].id,'¿Qué significa manhã?',['noche','mañana','tarde'],1),
+mc(u7[5].id,'Completa: Eu descanso ___ noite.',['de','à','em'],1)
+]),
+lesson('Lección 3: Hoy y temprano','Habla de cuándo ocurre una acción.','Hoje significa «hoy» y cedo significa «temprano».', [u7[6].id,u7[7].id,u7[0].id],[],[
+mc(u7[6].id,'¿Qué significa hoje?',['ayer','hoy','mañana'],1),
+mc(u7[7].id,'¿Qué significa cedo?',['tarde','temprano','noche'],1)
+]),
+lesson('Lección 4: Todos los días','Expresa hábitos cotidianos.','Todos os dias presenta una frecuencia habitual: Eu estudo todos os dias.',[u7[8].id,u7[9].id,u7[6].id],[],[
+mc(u7[8].id,'¿Qué significa todos os dias?',['todos los días','esta noche','por la mañana'],0),
+order(u7[8].id,'Ordena: «Estudio todos los días».',['todos','os','dias','Eu','estudo'],['Eu','estudo','todos','os','dias'])
+]),
+lesson('Lección 5: Repaso de la rutina','Combina acciones y momentos del día en frases cortas.','Usa verbos de rutina con expresiones temporales básicas.',u7.map(x=>x.id),[u6[6].id],[ 
+write(u7[0].id,'Construye: «Me despierto temprano».','Eu acordo cedo.'),
+mc(u7[9].id,'¿Qué significa descansar?',['descansar','levantarse','despertarse'],0)
+])
+];
+
+const unit7={
+unitNumber:7,id:'ptbr_a1_u7',title:'Unidad 7: Rutina diaria y momentos del día',
+desc:'Habla de acciones cotidianas y sitúalas en el día.',
+grammar:'Acordar, levantar, tomar banho y descansar; de manhã, à tarde, à noite; hoje, cedo y todos os dias.',
+trap:{title:'Atenção a à noite',detail:'En la expresión temporal fija se usa à noite: Eu descanso à noite.'},
+vocab:u7,lessons:u7Lessons,
+exercises:[
+mc(u7[0].id,'¿Qué significa acordar?',['despertarse','descansar','levantarse'],0),
+mc(u7[1].id,'¿Qué significa levantar?',['levantarse','ducharse','trabajar'],0),
+mc(u7[2].id,'¿Qué significa tomar banho?',['comer','ducharse / bañarse','dormir'],1),
+mc(u7[3].id,'¿Qué significa manhã?',['mañana','tarde','noche'],0),
+mc(u7[4].id,'¿Qué significa tarde?',['noche','tarde','mañana'],1),
+mc(u7[5].id,'¿Qué significa noite?',['mañana','tarde','noche'],2),
+mc(u7[6].id,'¿Qué significa hoje?',['ayer','hoy','mañana'],1),
+mc(u7[7].id,'¿Qué significa cedo?',['temprano','tarde','hoy'],0),
+mc(u7[8].id,'Completa: Eu estudo ___ os dias.',['todos','à','de'],0),
+write(u7[9].id,'Construye una frase con descansar y à noite.','Eu descanso à noite.')
+]
+};
+
+const u8=[
+v('ptbr_a1_u8_v01','ir','ir','Eu vou ao mercado.','Voy al mercado.'),
+v('ptbr_a1_u8_v02','mercado','mercado','Eu vou ao mercado.','Voy al mercado.'),
+v('ptbr_a1_u8_v03','escola','escuela','A escola fica perto.','La escuela queda cerca.'),
+v('ptbr_a1_u8_v04','trabalho','trabajo / lugar de trabajo','Eu vou ao trabalho.','Voy al trabajo.'),
+v('ptbr_a1_u8_v05','rua','calle','A rua é grande.','La calle es grande.'),
+v('ptbr_a1_u8_v06','esquerda','izquierda','Vire à esquerda.','Gira a la izquierda.'),
+v('ptbr_a1_u8_v07','direita','derecha','Vire à direita.','Gira a la derecha.'),
+v('ptbr_a1_u8_v08','frente','frente / delante','A escola fica na frente.','La escuela queda delante.'),
+v('ptbr_a1_u8_v09','ônibus','autobús','Eu vou de ônibus.','Voy en autobús.'),
+v('ptbr_a1_u8_v10','carro','coche / carro','Eu vou de carro.','Voy en coche.')
+];
+
+const u8Lessons=[
+lesson('Lección 1: Ir a lugares','Usa ir para hablar de desplazamientos sencillos.','Ir en presente con eu: eu vou. En frases de destino se combina aquí con ao: vou ao mercado.',[u8[0].id,u8[1].id,u8[2].id,u8[3].id],[],[
+mc(u8[0].id,'¿Qué significa ir?',['ir','venir','quedarse'],0),
+mc(u8[1].id,'Completa: Eu vou ___ mercado.',['ao','à','em'],0)
+]),
+lesson('Lección 2: Lugares cotidianos','Nombra lugares básicos de la vida diaria.','Mercado, escola, trabalho y rua aparecen en frases simples de ubicación o destino.',u8.slice(1,5).map(x=>x.id),[],[
+mc(u8[2].id,'¿Qué significa escola?',['mercado','escuela','calle'],1),
+mc(u8[3].id,'¿Qué significa trabalho?',['escuela','trabajo / lugar de trabajo','autobús'],1)
+]),
+lesson('Lección 3: Izquierda y derecha','Reconoce direcciones básicas.','Esquerda y direita aparecen en instrucciones cortas como vire à esquerda / à direita.',[u8[5].id,u8[6].id],[],[
+mc(u8[5].id,'¿Qué significa esquerda?',['derecha','izquierda','delante'],1),
+mc(u8[6].id,'¿Qué significa direita?',['izquierda','delante','derecha'],2)
+]),
+lesson('Lección 4: Delante y transporte','Describe una ubicación y un medio de transporte.','Na frente expresa posición; de ônibus y de carro expresan el medio de transporte.',[u8[7].id,u8[8].id,u8[9].id],[],[
+mc(u8[7].id,'¿Qué significa frente en A escola fica na frente?',['delante','detrás','cerca'],0),
+mc(u8[8].id,'¿Cómo se dice «en autobús»?',['de carro','de ônibus','à esquerda'],1)
+]),
+lesson('Lección 5: Repaso de lugares','Combina ir, lugares, direcciones y transporte.','Usa vou, destinos y expresiones básicas de orientación.',u8.map(x=>x.id),[u7[8].id],[ 
+write(u8[0].id,'Construye: «Voy al mercado».','Eu vou ao mercado.'),
+mc(u8[9].id,'¿Cómo se dice «en coche»?',['de carro','de ônibus','na frente'],0)
+])
+];
+
+const unit8={
+unitNumber:8,id:'ptbr_a1_u8',title:'Unidad 8: Lugares, direcciones y transporte',
+desc:'Habla de destinos cotidianos, direcciones básicas y medios de transporte.',
+grammar:'Ir: eu vou. Destino: vou ao mercado. Direcciones: esquerda, direita, frente. Transporte: de ônibus, de carro.',
+trap:{title:'Vou ao mercado',detail:'Con mercado se usa la contracción ao: Eu vou ao mercado.'},
+vocab:u8,lessons:u8Lessons,
+exercises:[
+mc(u8[0].id,'¿Qué significa ir?',['ir','venir','vivir'],0),
+mc(u8[1].id,'¿Qué significa mercado?',['mercado','escuela','calle'],0),
+mc(u8[2].id,'¿Qué significa escola?',['trabajo','escuela','mercado'],1),
+mc(u8[3].id,'¿Qué significa trabalho?',['autobús','trabajo / lugar de trabajo','derecha'],1),
+mc(u8[5].id,'¿Qué significa esquerda?',['derecha','izquierda','delante'],1),
+mc(u8[6].id,'¿Qué significa direita?',['izquierda','derecha','mercado'],1),
+mc(u8[7].id,'¿Qué significa frente?',['detrás','delante','izquierda'],1),
+mc(u8[8].id,'¿Cómo se dice «en autobús»?',['de carro','de ônibus','ao mercado'],1),
+mc(u8[9].id,'¿Cómo se dice «en coche»?',['de carro','de ônibus','à direita'],0),
+order(u8[0].id,'Ordena: «Voy al mercado».',['mercado','vou','Eu','ao'],['Eu','vou','ao','mercado'])
+]
+};
+
+const u9=[
+v('ptbr_a1_u9_v01','tempo','tiempo / clima','O tempo está bom.','Hace buen tiempo.'),
+v('ptbr_a1_u9_v02','sol','sol','Tem sol hoje.','Hay sol hoy.'),
+v('ptbr_a1_u9_v03','chuva','lluvia','Tem chuva hoje.','Hay lluvia hoy.'),
+v('ptbr_a1_u9_v04','quente','caliente / caluroso','Hoje está quente.','Hoy hace calor.'),
+v('ptbr_a1_u9_v05','frio','frío','Hoje está frio.','Hoy hace frío.'),
+v('ptbr_a1_u9_v06','calor','calor','Eu sinto calor.','Siento calor.'),
+v('ptbr_a1_u9_v07','cansado / cansada','cansado / cansada','Eu estou cansado.','Estoy cansado.'),
+v('ptbr_a1_u9_v08','feliz','feliz','Eu estou feliz.','Estoy feliz.'),
+v('ptbr_a1_u9_v09','triste','triste','Eu estou triste.','Estoy triste.'),
+v('ptbr_a1_u9_v10','porque','porque','Estou feliz porque estou aqui.','Estoy feliz porque estoy aquí.')
+];
+
+const u9Lessons=[
+lesson('Lección 1: El tiempo y el clima','Reconoce vocabulario básico sobre el clima.','Tempo puede referirse al tiempo atmosférico; sol y chuva nombran fenómenos frecuentes.',u9.slice(0,3).map(x=>x.id),[],[
+mc(u9[0].id,'¿Qué significa tempo en contexto meteorológico?',['tiempo / clima','sol','lluvia'],0),
+mc(u9[2].id,'¿Qué significa chuva?',['frío','lluvia','calor'],1)
+]),
+lesson('Lección 2: Calor y frío','Describe condiciones sencillas del tiempo.','Quente y frio se combinan con estar para describir condiciones: está quente, está frio.',[u9[3].id,u9[4].id,u9[5].id],[],[
+mc(u9[3].id,'¿Qué significa quente?',['frío','caluroso','triste'],1),
+mc(u9[4].id,'¿Qué significa frio?',['feliz','frío','calor'],1)
+]),
+lesson('Lección 3: Estados personales','Expresa estados y emociones básicas.','Cansado/cansada, feliz y triste funcionan con estar: estou feliz, estou triste.',[u9[6].id,u9[7].id,u9[8].id],[],[
+mc(u9[7].id,'Completa: Eu estou ___.',['feliz','felizes','felizmente'],0),
+mc(u9[8].id,'¿Qué significa triste?',['triste','cansado','caluroso'],0)
+]),
+lesson('Lección 4: Explicar una razón','Une una emoción con una causa sencilla.','Porque introduce una causa: Estou feliz porque estou aqui.',[u9[9].id,u9[7].id,u9[6].id],[],[
+mc(u9[9].id,'¿Qué significa porque?',['aunque','porque','dónde'],1),
+order(u9[9].id,'Ordena: «Estoy feliz porque estoy aquí».',['porque','feliz','aqui','Estou','estou'],['Estou','feliz','porque','estou','aqui'])
+]),
+lesson('Lección 5: Repaso del clima y estados','Combina clima, estados y una razón breve.','Integra estar, vocabulario meteorológico y porque en frases cortas.',u9.map(x=>x.id),[u8[0].id],[ 
+write(u9[7].id,'Construye: «Estoy feliz».','Eu estou feliz.'),
+mc(u9[4].id,'Completa: Hoje está ___.',['frio','feliz','porque'],0)
+])
+];
+
+const unit9={
+unitNumber:9,id:'ptbr_a1_u9',title:'Unidad 9: Clima, estados y razones',
+desc:'Describe el tiempo, expresa estados básicos y explica una razón sencilla.',
+grammar:'Está quente/frio para condiciones; estou cansado/feliz/triste para estados personales; porque introduce una razón.',
+trap:{title:'Quente y calor',detail:'Quente describe una condición («está quente»); calor es un sustantivo («sinto calor»).'},
+vocab:u9,lessons:u9Lessons,
+exercises:[
+mc(u9[0].id,'¿Qué significa tempo en contexto meteorológico?',['tiempo / clima','tiempo verbal','hora'],0),
+mc(u9[1].id,'¿Qué significa sol?',['sol','lluvia','frío'],0),
+mc(u9[2].id,'¿Qué significa chuva?',['calor','lluvia','sol'],1),
+mc(u9[3].id,'Completa: Hoje está ___.',['quente','quentes','quentei'],0),
+mc(u9[4].id,'¿Qué significa frio?',['calor','frío','feliz'],1),
+mc(u9[6].id,'¿Qué significa cansado?',['cansado','feliz','triste'],0),
+mc(u9[7].id,'¿Qué significa feliz?',['triste','feliz','caluroso'],1),
+mc(u9[8].id,'¿Qué significa triste?',['feliz','triste','frío'],1),
+mc(u9[9].id,'¿Qué significa porque?',['porque','dónde','quién'],0),
+order(u9[9].id,'Ordena: «Estoy feliz porque estoy aquí».',['porque','feliz','aqui','Estou','estou'],['Estou','feliz','porque','estou','aqui'])
+]
+};
+
+root.GUARDI_CURRICULUM_BLOCKS||{};
 root.GUARDI_CURRICULUM_BLOCKS['pt-BR']=root.GUARDI_CURRICULUM_BLOCKS['pt-BR']||{};
 root.GUARDI_CURRICULUM_BLOCKS['pt-BR'].A1=root.GUARDI_CURRICULUM_BLOCKS['pt-BR'].A1||{};
-root.GUARDI_CURRICULUM_BLOCKS['pt-BR'].A1['07-12']={units:[unit4,unit5,unit6]};
+root.GUARDI_CURRICULUM_BLOCKS['pt-BR'].A1['07-12']={units:[unit4,unit5,unit6,unit7,unit8,unit9]};
 })(typeof window!=='undefined'?window:globalThis);

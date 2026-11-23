@@ -19143,6 +19143,19 @@ Requisitos:
                     write: code => DB.set('settings', 'activeLanguage', code),
                     onChange: code => DB.setActiveLanguage(code)
                 });
+
+                // Resolve the active course through the language-aware loader before
+                // any screen or study engine consumes CourseData.
+                const activeLanguage = LanguageManager.getActiveLanguage();
+                const activeCurricula = await Promise.all(
+                    ['A1', 'A2'].map(level => CurriculumLoader.load(activeLanguage, level))
+                );
+                const curriculaByLevel = new Map(activeCurricula.map(curriculum => [curriculum.id, curriculum]));
+                if (!Array.isArray(CourseData.levels) || ['A1', 'A2'].some(level => !curriculaByLevel.has(level))) {
+                    throw new Error('No se pudieron preparar los niveles del curso activo.');
+                }
+                CourseData.levels = CourseData.levels.map(level => curriculaByLevel.get(level.id) || level);
+
                 AudioEngine.init();
                 AudioEngine.setRate((await DB.get('settings', 'audioPlaybackRate')) ?? 0.85, false);
                 AudioEngine.setVoice((await DB.get('settings', 'audioVoiceURI')) || 'auto', false);

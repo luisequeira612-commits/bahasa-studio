@@ -15,7 +15,8 @@ const sources={
  './languages/pt-BR/curriculum/a2/units-10-12.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a2/units-10-12.js'),'utf8'),
  './languages/pt-BR/curriculum/a2/units-13-15.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a2/units-13-15.js'),'utf8'),
  './languages/pt-BR/curriculum/a2/units-16-18.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a2/units-16-18.js'),'utf8'),
- './languages/pt-BR/curriculum/a2/units-19-21.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a2/units-19-21.js'),'utf8')
+ './languages/pt-BR/curriculum/a2/units-19-21.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a2/units-19-21.js'),'utf8'),
+ './languages/pt-BR/curriculum/a2/units-22-24.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a2/units-22-24.js'),'utf8')
 };
 function createPilot(){
  const window={localStorage:{getItem(){return 'id';},setItem(){}},document:{createElement(){return {};},head:{appendChild(script){const source=sources[script.src];if(!source){script.onerror();return;}vm.runInNewContext(source,sandbox);script.onload();}}}};
@@ -40,16 +41,16 @@ test('pt-BR A2 U16-U18 load through the offline loader while the language remain
   for(const ex of [...unit.exercises,...unit.lessons.flatMap(l=>l.exercises)]){assert.equal(ex.type,'mc',unit.id);const word=unit.vocab.find(w=>w.id===ex.vocabId);assert.ok(word,ex.vocabId);assert.equal(ex.options[ex.answer],word.esp,ex.vocabId);}
  }
 });
-test('A2 manifest publishes U1-U18 as a partial level of thirty units',()=>{
+test('A2 manifest publishes U1-U24 as a partial level of thirty units',()=>{
  const {window}=createPilot(),manifest=window.GUARDI_CURRICULUM_MANIFESTS['pt-BR'].A2;
- assert.equal(manifest.totalUnits,30);assert.deepEqual(Array.from(manifest.publishedUnits),Array.from({length:21},(_,i)=>i+1));
+ assert.equal(manifest.totalUnits,30);assert.deepEqual(Array.from(manifest.publishedUnits),Array.from({length:24},(_,i)=>i+1));
  assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
 });
 test('A2 U16-U18 review references resolve only to previously published A2 vocabulary',async()=>{
- const {loader}=createPilot(),{units}=await loader.loadUnits('pt-BR','A2',Array.from({length:21},(_,i)=>i+1));
+ const {loader}=createPilot(),{units}=await loader.loadUnits('pt-BR','A2',Array.from({length:24},(_,i)=>i+1));
  for(let index=15;index<18;index++){const earlier=new Set(units.slice(0,index).flatMap(u=>u.vocab.map(w=>w.id)));for(const lesson of units[index].lessons)for(const id of lesson.reviewVocabIds)assert.ok(earlier.has(id),id);}
 });
 test('service worker precaches A2 U16-U18 using cache v3.8.136',()=>{
  const source=fs.readFileSync(path.join(repo,'service-worker.js'),'utf8');
- assert.match(source,/units-16-18\.js/);assert.match(source,/curriculum\/a2\/index\.js/);assert.match(source,/bahasa-studio-v3\.8\.137/);
+ assert.match(source,/units-16-18\.js/);assert.match(source,/curriculum\/a2\/index\.js/);assert.match(source,/bahasa-studio-v3\.8\.138/);
 });

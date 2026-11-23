@@ -31,7 +31,7 @@ La arquitectura técnica puede preparar Guardi para trabajar con varios idiomas,
 - Todo código y estructura de datos nuevos deben ser independientes del idioma: no introducir textos, rutas, nombres de archivo, identificadores ni reglas fijas que solo funcionen para el indonesio.
 - No hacer ahora una refactorización general ni migrar el currículo existente. El alcance es preventivo: evitar nuevas dependencias del indonesio al añadir o modificar código y datos, de modo que incorporar inglés no exija una reestructuración grande.
 - Cuando un PR afecte esta hoja de ruta, la arquitectura multiidioma o la preparación para inglés, debe registrar la hoja de ruta vigente y cualquier impacto o desviación en MEMORY.md y en la descripción del PR.
-- Esta regla no autoriza a saltar el orden secuencial aprobado ni a activar cursos sin contenido completo y pruebas.
+- Esta regla no autoriza activar cursos sin contenido completo y pruebas; no existe todavía un orden aprobado para los idiomas nuevos.
 
 
 ### Núcleo multiidioma — implementación técnica gradual

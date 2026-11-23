@@ -1,6 +1,6 @@
 ## Guardi — preservación de caché ante hashes ausentes — 23 nov 2026
 - PR #723 fusionada en main (commit `a2bf144e5f2b6e86c88f7eff43971c918b76eb2f`); CI run #45112533279 completó `test` (101 pasos) y `Offline quality reports` con éxito. La migración conserva la caché legacy si falta el hash individual de un clip que aún no se ha copiado.
-- Auditoría posterior detectó el caso de un clip que ya está en `guardi-audio-v2`, pero cuyo ID no aparece en el inventario actual. PR #724 en preparación mantiene esos bytes cacheados y marca la migración incompleta para evitar limpiar cachés antiguas hasta poder verificarlo. Se añade prueba de regresión.
+- Auditoría posterior detectó el caso de un clip que ya está en `guardi-audio-v2`, pero cuyo ID no aparece en el inventario actual. PR #724 en preparación mantiene esos bytes cacheados y marca la migración incompleta para evitar limpiar cachés antiguas hasta poder verificarlo. La prueba de regresión de invalidación también se ajustó: elimina clips cuyo hash existe y no coincide, pero conserva los clips cuyo hash falta y la caché legacy mientras la migración queda incompleta.
 - Sin cambios a IndexedDB v1, backup JSON v3, manifiestos productivos ni dependencias.
 
 

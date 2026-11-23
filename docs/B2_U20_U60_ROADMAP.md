@@ -1,6 +1,6 @@
 # Propuesta de secuencia B2 U20–U60
 
-**Estado:** hoja de ruta de desarrollo elaborada bajo la autorización autónoma del dueño (21 nov 2026). U20–U55 están integradas en main; U56–U60 están implementadas en la rama curriculum/b2-u56-u60-final-20261122, pendientes de CI/PR; no constituyen contenido publicado ni promesa de certificación MCER/BIPA.
+**Estado (22 nov 2026):** B2 U1–U60 están integradas en `main` (60/60 unidades, 300 lecciones authored). PR #706 integró U46–U50; PR #708 integró U51–U55; PR #710 integró U56–U60 (commit `a816c8c01a9920e2042c7fa5bddde50aa4c0f7fa`). Solo U1–U5 están visibles; U6–U60 permanecen ocultas/no publicadas. La implementación no equivale a validación nativa ni certificación MCER/BIPA.
 
 ## Criterios de diseño
 
@@ -161,10 +161,10 @@ Se ampliaron los filtros del selector y ruta de aprendizaje, el progreso visible
 - Filtros de aprendizaje, progreso, tutor y traducción contextual ampliados a U1–U55; U56–U60 siguen excluidas. Unidades ocultas/no publicadas; la fuente y las pruebas estructurales no equivalen a validación nativa ni certificación MCER/BIPA.
 
 
-## U56–U60 implementadas en rama — 22 nov 2026
+## U56–U60 integradas en main — PR #710 — 22 nov 2026
 - U56 adverbios de manera con dengan y secara (§§2.168–2.169), con ejemplos fuente para ambas construcciones.
 - U57 adjuntos preposicionales (§§2.209–2.215): instrumento/medio, compañía, beneficiario, razón, comparación, excepción y tema.
 - U58 negación, marcadores temporales, modales y combinaciones de alcance (§§2.133–2.159).
 - U59 integra grupos, adjuntos, complementos, foco y elipsis usando ejemplos ya enseñados. U60 es el proyecto integrador de lectura, análisis, argumentación y producción guiada; no añade vocabulario para inflar el inventario.
-- Cada unidad contiene cinco lecciones authored y 16 ejercicios (3/3/3/3/4), cuatro tipos. Sin vocabulario/IDs nuevos ni audio. Filtros de acceso extendidos a U1–U60; U6–U60 siguen ocultas/no publicadas.
-- No modifica IndexedDB v1, backup JSON v3, biblioteca Piper ni dependencias. La correspondencia con la fuente y las pruebas estructurales no equivalen a validación nativa ni certificación MCER/BIPA.
+- Cada unidad contiene cinco lecciones authored y 16 ejercicios (3/3/3/3/4), cuatro tipos. Sin vocabulario/IDs nuevos ni audio. Los filtros de aprendizaje, progreso, tutor y traducción contextual incluyen U1–U60; U6–U60 siguen ocultas/no publicadas.
+- PR #710 fusionada mediante squash en `main` (commit `a816c8c01a9920e2042c7fa5bddde50aa4c0f7fa`). CI pre-merge y regresión post-merge completados con éxito; GitHub Pages desplegado. No modifica IndexedDB v1, backup JSON v3, biblioteca Piper ni dependencias. La correspondencia con la fuente y las pruebas estructurales no equivalen a validación nativa ni certificación MCER/BIPA.

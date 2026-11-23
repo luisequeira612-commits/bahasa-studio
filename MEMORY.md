@@ -727,3 +727,5 @@
 - CI PR #714 run 45096564433 (head b6fa98f): actualiza el test de restauración para simular claves existentes id/pt-BR/en y comprobar que solo se elimina pt-BR, además de confirmar que las nuevas entradas y settings llevan prefijo. El test del loader mostró que la aserción regex del rechazo era frágil con el Error cross-realm; se cambia a un predicate sobre el texto del error. CI de este head sigue en curso.
 
 - ProgressNamespace: filterRecords valida el código de idioma al inicio, incluso si la colección está vacía; evita aceptar silenciosamente un código desconocido cuando no hay registros que ejecutar en el predicado.
+
+- CI PR #714 run 45096951416: gestor, historial, loader y namespaces pasaron. tests/backup-validation.test.cjs conservaba dos regex de error previas a PR #713; el import ahora informa que el curso aún no está disponible. Se actualizan las expectativas al mensaje actual.

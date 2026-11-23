@@ -39,8 +39,8 @@ test('valid legacy v3 backups without language remain Indonesian', () => {
 test('v3 backups explicitly identify Indonesian and reject unsupported languages', () => {
     const validator = loadValidator();
     assert.equal(validator.validateBackup({ ...validLegacyBackup(), language: 'id' }).language, 'id');
-    assert.throws(() => validator.validateBackup({ ...validLegacyBackup(), language: 'pt-BR' }), /idioma que todavía no está disponible/);
-    assert.throws(() => validator.validateBackup({ ...validLegacyBackup(), language: 'xx' }), /idioma que todavía no está disponible/);
+    assert.throws(() => validator.validateBackup({ ...validLegacyBackup(), language: 'pt-BR' }), /curso todavía no está disponible/);
+    assert.throws(() => validator.validateBackup({ ...validLegacyBackup(), language: 'xx' }), /curso todavía no está disponible/);
 });
 
 test('backup validation rejects wrong versions and unknown top-level fields', () => {

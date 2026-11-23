@@ -283,9 +283,13 @@ test('conserva una copia legacy válida si el cache actual tiene bytes no verifi
     assert.equal(worker.claimCalls, 2, 'both activations complete');
 });
 
-test('los MP3 nuevos usan guardi-audio-v2 y los recursos normales siguen en la caché de la app', async () => {
-    const worker = createWorker();
-    const audioRequest = new Request(audioUrl('fresh'));
+test('los MP3 nuevos solo se guardan cuando coinciden con el SHA-256 del inventario', async () => {
+    const id = '0123456789ab';
+    const worker = createWorker(new Map(), async () => new Response('network audio', {
+        status: 200,
+        headers: { 'Content-Type': 'audio/mpeg' }
+    }), { [id]: hash('network audio') });
+    const audioRequest = new Request(audioUrl(id));
     let audioLifetime;
     let audioResponse;
     worker.handlers.fetch({
@@ -298,7 +302,7 @@ test('los MP3 nuevos usan guardi-audio-v2 y los recursos normales siguen en la c
 
     const audioCache = worker.cacheStore.get('guardi-audio-v2');
     assert.ok(await audioCache.match(audioRequest));
-    assert.equal(worker.cacheStore.has(CURRENT_CACHE_NAME), false, 'audio fetch must not create the app cache');
+    assert.equal(worker.cacheStore.has(CURRENT_CACHE_NAME), true, 'inventory metadata is read from the app cache');
 
     const appRequest = new Request(`${ORIGIN}/bahasa-studio/styles.css`);
     let appLifetime;
@@ -313,6 +317,43 @@ test('los MP3 nuevos usan guardi-audio-v2 y los recursos normales siguen en la c
     const appCache = worker.cacheStore.get(CURRENT_CACHE_NAME);
     assert.ok(await appCache.match(appRequest));
     assert.equal(await audioCache.match(appRequest), null);
+});
+
+test('la reproducción online no cachea audio si falta el inventario o su hash', async () => {
+    const id = 'abcdef012345';
+    const worker = createWorker();
+    const request = new Request(audioUrl(id));
+    let lifetime;
+    let responsePromise;
+    worker.handlers.fetch({
+        request,
+        waitUntil: promise => { lifetime = promise; },
+        respondWith: promise => { responsePromise = promise; }
+    });
+    assert.equal((await responsePromise).status, 200, 'online playback remains available');
+    await lifetime;
+    const audioCache = worker.cacheStore.get('guardi-audio-v2');
+    assert.equal(await audioCache.match(request), null, 'unverified audio must not become an offline cache entry');
+});
+
+test('la reproducción rechaza bytes de audio cuyo SHA-256 no coincide', async () => {
+    const id = 'fedcba987654';
+    const worker = createWorker(new Map(), async () => new Response('tampered bytes', {
+        status: 200,
+        headers: { 'Content-Type': 'audio/mpeg' }
+    }), { [id]: hash('expected bytes') });
+    const request = new Request(audioUrl(id));
+    let lifetime;
+    let responsePromise;
+    worker.handlers.fetch({
+        request,
+        waitUntil: promise => { lifetime = promise; },
+        respondWith: promise => { responsePromise = promise; }
+    });
+    const response = await responsePromise;
+    await lifetime;
+    assert.equal(response.type, 'error');
+    assert.equal(await worker.cacheStore.get('guardi-audio-v2').match(request), null);
 });
 
 test('la descarga explícita verificada evita la escritura automática del Service Worker', async () => {
@@ -399,7 +440,13 @@ test('migra solo clips legacy cuyos bytes coinciden con el SHA-256 actual', asyn
 });
 
 test('separa las rutas y cachés persistentes por idioma', async () => {
-    const worker = createWorker();
+    const id = 'sameclip00001';
+    const appCache = new MemoryCache([
+        [ORIGIN + '/bahasa-studio/audio/pt-BR/metadata.json', new Response(JSON.stringify({
+            audio_hashes: { [id]: hash('network audio') }
+        }))]
+    ]);
+    const worker = createWorker(new Map([[CURRENT_CACHE_NAME, appCache]]), undefined, { [id]: hash('network audio') });
     for (const [language, id] of [['id', 'sameclip00001'], ['pt-BR', 'sameclip00001']]) {
         const request = new Request(audioUrl(id, language));
         let responsePromise;

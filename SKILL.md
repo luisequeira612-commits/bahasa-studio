@@ -42,10 +42,12 @@ Cualquier tarea sobre el repo: lecciones nuevas, correcciones de vocabulario, ca
 ## Reglas de escalabilidad
 - Todo debe seguir siendo estático, offline y gratis: cero backend, cero cuentas, cero costos.
 - No agregar nada que obligue a otra persona a crear cuentas o pagar.
-- La arquitectura multiidioma incremental está autorizada, pero el usuario aún está decidiendo qué idiomas añadir y en qué orden. Los códigos registrados en LanguageManager son candidatos técnicos, no una hoja de ruta curricular aprobada.
-- No crear currículos, vocabulario, audios ni datasets de idiomas nuevos, ni elegir una secuencia, hasta que el usuario confirme los idiomas. Solo Indonesian permanece disponible; los demás códigos siguen inactivos.
+- La secuencia curricular está aprobada: pt-BR → en → it → fr → de → nl → ru → ja → ko → id.
+- Completar A1, A2, B1 y B2 de un idioma antes de comenzar el siguiente. El siguiente piloto es portugués brasileño A1, después de terminar la fase 3.
+- Los códigos del LanguageManager son catálogo técnico; no habilitar un idioma sin contenido completo y pruebas. Actualmente solo indonesio está disponible.
+- Mantener UI, navegación y explicaciones en español; todo código y datos nuevos deben ser independientes del idioma.
 - Preservar IndexedDB v1 y backup JSON v3 mediante compatibilidad y pruebas; no hacer migraciones destructivas.
-- No activar niveles que no estén realmente implementados y probados.
+- No añadir dependencias, backend ni servicios de pago.
 
 ## Ahorro de tokens
 - No explorar todo el repo; buscar por nombre o texto antes de abrir archivos completos.

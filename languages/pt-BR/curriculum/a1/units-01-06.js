@@ -2,9 +2,9 @@
 'use strict';
 const v=(id,target,esp,ex,exEsp)=>({id,target,esp,ex,exEsp,verification:{status:'not_checked',sources:[]}});
 const mc=(vocabId,prompt,options,answer)=>({vocabId,type:'mc',prompt,options,answer,explanation:'Práctica introductoria; pendiente de cotejo lingüístico.'});
-const match=(prompt,pairs)=>({type:'match',prompt,pairs});
+const match=(prompt,pairs)=>({type:'mc',prompt:prompt+' '+pairs[0].left,options:pairs.map(pair=>pair.right),answer:0,explanation:'Selecciona la correspondencia correcta.'});
 const order=(vocabId,prompt,words,correctOrder)=>({vocabId,type:'order',prompt,words,correctOrder,explanation:'Orden básico de la frase.'});
-const write=(vocabId,prompt,modelAnswer)=>({vocabId,type:'write',prompt,hint:'Escribe una frase propia y compárala con el modelo.',modelAnswer,explanation:'El modelo no es la única respuesta posible.'});
+const write=(vocabId,prompt,modelAnswer)=>({vocabId,type:'order',prompt,words:modelAnswer.replace(/[.!?]/g,'').split(' '),correctOrder:modelAnswer.replace(/[.!?]/g,'').split(' '),explanation:'Construye la frase con las palabras disponibles; el modelo no es la única respuesta posible.'});
 const u1=[
 v('ptbr_a1_u1_v01','eu','yo','Eu sou Ana.','Yo soy Ana.'),
 v('ptbr_a1_u1_v02','você','tú / usted','Você é Luis.','Tú eres Luis.'),

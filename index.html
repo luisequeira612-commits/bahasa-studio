@@ -19524,7 +19524,7 @@ Requisitos:
                     name.append(flag, label);
                     const state = document.createElement('span');
                     state.className = 'language-picker-state';
-                    state.textContent = language.code === active.code ? 'Actual' : 'Disponible';
+                    state.textContent = language.code === active.code ? 'Actual' : 'Listo';
                     row.append(name, state);
                     row.addEventListener('click', () => this.setStudyLanguage(language.code));
                     availableList.appendChild(row);

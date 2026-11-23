@@ -77,8 +77,8 @@ function createWorker(initialCaches = new Map(), fetchImpl = async () => new Res
     };
 }
 
-function audioUrl(id) {
-    return `${ORIGIN}/bahasa-studio/audio/id/${id}.mp3`;
+function audioUrl(id, language = 'id') {
+    return `${ORIGIN}/bahasa-studio/audio/${language}/${id}.mp3`;
 }
 
 test('migra MP3 completos de todas las cachés antiguas antes de borrarlas', async () => {
@@ -278,4 +278,25 @@ test('migra solo clips legacy cuyos bytes coinciden con el SHA-256 actual', asyn
     assert.ok(await audio.match(new Request(audioUrl(validId))));
     assert.equal(await audio.match(new Request(audioUrl(staleId))), null);
     assert.equal(worker.cacheStore.has('bahasa-studio-v3.8.97'), false);
+});
+
+test('separa las rutas y cachés persistentes por idioma', async () => {
+    const worker = createWorker();
+    for (const [language, id] of [['id', 'sameclip00001'], ['pt-BR', 'sameclip00001']]) {
+        const request = new Request(audioUrl(id, language));
+        let responsePromise;
+        let lifetimePromise;
+        worker.handlers.fetch({
+            request,
+            waitUntil: promise => { lifetimePromise = promise; },
+            respondWith: promise => { responsePromise = promise; }
+        });
+        assert.equal((await responsePromise).status, 200);
+        await lifetimePromise;
+    }
+    assert.ok(worker.cacheStore.has('guardi-audio-v2'));
+    assert.ok(worker.cacheStore.has('guardi-audio-v2-pt-BR'));
+    assert.ok(await worker.cacheStore.get('guardi-audio-v2').match(new Request(audioUrl('sameclip00001', 'id'))));
+    assert.ok(await worker.cacheStore.get('guardi-audio-v2-pt-BR').match(new Request(audioUrl('sameclip00001', 'pt-BR'))));
+    assert.equal(await worker.cacheStore.get('guardi-audio-v2').match(new Request(audioUrl('sameclip00001', 'pt-BR'))), null);
 });

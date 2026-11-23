@@ -39,7 +39,9 @@ v('ptbr_a1_u3_v04','morar','vivir / residir','Eu moro aqui.','Yo vivo aquí.'),
 v('ptbr_a1_u3_v05','gostar','gustar','Eu gosto de música.','Me gusta la música.'),
 v('ptbr_a1_u3_v06','embaraçada','avergonzada / incómoda','Estou embaraçada.','Estoy avergonzada.'),
 v('ptbr_a1_u3_v07','embaraçado','avergonzado / incómodo','Ele está embaraçado.','Él está avergonzado.'),
-v('ptbr_a1_u3_v08','grávida','embarazada','Ela está grávida.','Ella está embarazada.')
+v('ptbr_a1_u3_v08','grávida','embarazada','Ela está grávida.','Ella está embarazada.'),
+v('ptbr_a1_u3_v09','português','portugués','Eu falo português.','Yo hablo portugués.'),
+v('ptbr_a1_u3_v10','música','música','Eu gosto de música.','Me gusta la música.')
 ];
 
 const numbers='um,dois,três,quatro,cinco,seis,sete,oito,nove,dez,onze,doze,treze,quatorze,quinze,dezesseis,dezessete,dezoito,dezenove,vinte'.split(',');
@@ -130,9 +132,11 @@ order(u2[1].id,'Ordena: «Yo estoy aquí».',['aqui','estou','Eu'],['Eu','estou'
 };
 
 const u3Lessons=[
-lesson('Lección 1: Verbos regulares en -ar','Forma frases sencillas con verbos regulares en -ar.','En presente, muchos verbos regulares en -ar usan -o con eu y -a con você: eu falo, você fala.',u3.slice(0,5).map(x=>x.id),[],[
+lesson('Lección 1: Verbos regulares en -ar','Forma frases sencillas con verbos regulares en -ar.','En presente, muchos verbos regulares en -ar usan -o con eu y -a con você: eu falo, você fala.',u3.slice(0,5).map(x=>x.id).concat([u3[8].id,u3[9].id]),[],[
 match('Relaciona cada verbo con su significado.',[{left:'falar',right:'hablar'},{left:'estudar',right:'estudiar'},{left:'trabalhar',right:'trabajar'},{left:'morar',right:'vivir'}]),
-mc(u3[0].id,'Completa: Eu ___ português.',['fala','falo','falam'],1)
+mc(u3[0].id,'Completa: Eu ___ português.',['fala','falo','falam'],1),
+mc(u3[8].id,'¿Qué significa português?',['portugués','español','brasileño'],0),
+mc(u3[9].id,'¿Qué significa música?',['trabajo','música','casa'],1)
 ]),
 lesson('Lección 2: Números del 1 al 10','Reconoce y ordena los números del uno al diez.','Practica la secuencia oral y escrita del 1 al 10; este piloto no reproduce audio.',numberVocab.slice(0,10).map(x=>x.id),[],[
 match('Empareja los primeros números.',[{left:'um',right:'1'},{left:'dois',right:'2'},{left:'três',right:'3'},{left:'dez',right:'10'}]),

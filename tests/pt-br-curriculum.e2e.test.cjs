@@ -50,7 +50,8 @@ test('Playwright: carga U1-U24 offline y aísla el progreso pt-BR del indonesio'
      Boolean(await cache.match(new URL('/languages/pt-BR/curriculum/a2/units-04-06.js',location.href).href)) &&
      Boolean(await cache.match(new URL('/languages/pt-BR/curriculum/a2/units-07-09.js',location.href).href)) &&
      Boolean(await cache.match(new URL('/languages/pt-BR/curriculum/a2/units-10-12.js',location.href).href)) &&
-     Boolean(await cache.match(new URL('/languages/pt-BR/curriculum/a2/units-13-15.js',location.href).href));
+     Boolean(await cache.match(new URL('/languages/pt-BR/curriculum/a2/units-13-15.js',location.href).href)) &&
+     Boolean(await cache.match(new URL('/languages/pt-BR/curriculum/a2/units-16-18.js',location.href).href));
   });
   assert.equal(cacheReady,true,'manifest and curriculum block must be in the app-shell cache');
   await context.setOffline(true);

@@ -43,3 +43,6 @@ v('ptbr_a1_u3_v06','embaraçada','avergonzada / incómoda','Estou embaraçada.',
 v('ptbr_a1_u3_v07','embaraçado','avergonzado / incómodo','Ele está embaraçado.','Él está avergonzado.'),
 v('ptbr_a1_u3_v08','grávida','embarazada','Ela está grávida.','Ella está embarazada.')
 ];
+
+const numbers='um,dois,três,quatro,cinco,seis,sete,oito,nove,dez,onze,doze,treze,quatorze,quinze,dezesseis,dezessete,dezoito,dezenove,vinte'.split(',');
+const numberVocab=numbers.map((target,index)=>v('ptbr_a1_u3_n'+String(index+1).padStart(2,'0'),target,String(index+1),target+'!',String(index+1)));

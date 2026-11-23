@@ -54,10 +54,10 @@ test('pt-BR A2 U19-U21 load offline with ten vocabulary entries, five lessons an
   }
  }
 });
-test('A2 manifest publishes U1-U24 as a partial level of thirty units',()=>{
+test('A2 manifest publishes U1-U27 as a partial level of thirty units',()=>{
  const {window}=createPilot(),manifest=window.GUARDI_CURRICULUM_MANIFESTS['pt-BR'].A2;
  assert.equal(manifest.totalUnits,30);
- assert.deepEqual(Array.from(manifest.publishedUnits),Array.from({length:24},(_,i)=>i+1));
+ assert.deepEqual(Array.from(manifest.publishedUnits),Array.from({length:27},(_,i)=>i+1));
  assert.ok(manifest.blocks.some(block=>block.id==='19-21'&&block.units.join(',')==='19,20,21'));
  assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
 });

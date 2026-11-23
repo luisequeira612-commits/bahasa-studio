@@ -7,6 +7,7 @@ const { createHash, webcrypto } = require('node:crypto');
 const hash = value => createHash('sha256').update(value).digest('hex');
 
 const source = fs.readFileSync(path.join(__dirname, '..', 'service-worker.js'), 'utf8');
+const CURRENT_CACHE_NAME = source.match(/const CACHE_NAME = '([^']+)'/)[1];
 const ORIGIN = 'https://example.test';
 const CLIP_ID = '0123456789ab';
 const clipUrl = `${ORIGIN}/bahasa-studio/audio/id/${CLIP_ID}.mp3`;
@@ -38,7 +39,7 @@ function createWorker({ audioEntries = [], failPut = false, fetchImpl } = {}) {
         [`${ORIGIN}/bahasa-studio/audio/metadata.json`, new Response(JSON.stringify({ audio_hashes: { [CLIP_ID]: hash('abcdef') } }))],
         [`${ORIGIN}/bahasa-studio/audio/pt-BR/metadata.json`, new Response(JSON.stringify({ audio_hashes: { [CLIP_ID]: hash('abcdef') } }))]
     ]);
-    cacheStore.set('bahasa-studio-v3.8.118', appCache);
+    cacheStore.set(CURRENT_CACHE_NAME, appCache);
     const caches = {
         open: async name => {
             if (!cacheStore.has(name)) cacheStore.set(name, new MemoryCache());
@@ -48,7 +49,7 @@ function createWorker({ audioEntries = [], failPut = false, fetchImpl } = {}) {
         delete: async name => cacheStore.delete(name)
     };
     const self = {
-        location: { origin: ORIGIN },
+        location: { origin: ORIGIN, href: ORIGIN + '/bahasa-studio/' },
         addEventListener: (name, handler) => { handlers[name] = handler; },
         skipWaiting: () => {},
         clients: { claim: async () => {} }

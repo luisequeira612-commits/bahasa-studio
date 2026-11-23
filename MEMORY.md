@@ -4,7 +4,7 @@
 - Rama limpia `feat/pt-br-b1-u07-u09`, basada en ese `main`. Añade U7 cultura, patrimonio e identidad; U8 investigación científica e innovación; U9 economía cotidiana y desigualdad. Son 30 términos nuevos (10/unidad), cinco lecciones y diez ejercicios MC por unidad, ejemplos PT/ES y `verification.status: not_checked`.
 - Cotejo exacto normalizado: 30 términos nuevos frente a 600 registros previos de A1+A2+B1 U1–U6; cero colisiones y cero duplicados internos. Las 15 referencias de repaso seleccionadas apuntan a IDs A2 existentes.
 - Manifiesto B1 publica U1–U9 de 36. Service Worker avanza a `bahasa-studio-v3.8.143` y precarga U7–U9. Contratos Node y Playwright se amplían a U1–U9 offline; `quality:tests` incluye el nuevo contrato U7–U9.
-- Head de rama al registrar: `c6b28c86e2f0f380e11142789e13e35f7738bd5a`. PR y CI de este bloque aún no abiertos/ejecutados; pendiente revisar el contrato final y ejecutar CI completo.
+- PR [#765](https://github.com/luisequeira612-commits/bahasa-studio/pull/765) abierta desde `feat/pt-br-b1-u07-u09`. Head de la implementación `4bfceee965f9b7263d46c6a58ff263a1a3e322f5`; CI run #45284024369: `Offline quality reports` success (10/10), `test` aún en `Install Chromium`, sin fallos reportados al consultar. Este commit de memoria actualiza el estado; repetir CI sobre el head nuevo antes de fusionar.
 - `pt-BR available:false` permanece. Sin nuevas dependencias, backend, audio/TTS, cambios a IndexedDB v1 ni backup JSON v3. La auditoría estructural no certifica el portugués; no hay hablante nativo disponible y el vocabulario permanece `not_checked`.
 
 Fuente: GitHub `main` commit `aa8f32a9`, rama `feat/pt-br-b1-u07-u09`, bloques B1 U1–U9, contratos y Service Worker; 23 nov 2026.

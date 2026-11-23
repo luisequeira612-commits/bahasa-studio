@@ -20,3 +20,10 @@
 - Corrección: restaurar `tests/browser-e2e.test.cjs` íntegramente desde `main` y reaplicar únicamente las dos expectativas E2E de PR #718: los mensajes ahora incluyen `para indonesio`.
 - No se modifica IndexedDB v1, backup JSON v3, audio, Service Worker, manifiestos ni dependencias.
 - Debe ejecutarse un CI completo nuevo sobre el head corregido antes de fusionar PR #718.
+
+
+## 2026-11-23 — PR #718 E2E: ajuste de velocidad predeterminada
+
+- El nuevo CI `45108384175` pasó todos los pasos 1–95 y falló únicamente en el E2E `audio engine plays bundled Indonesian MP3 before using browser voice API`: el test esperaba velocidad `0.85`, mientras `AudioEngine` declara y aplica `1` como velocidad natural predeterminada.
+- Se actualizó solo la expectativa E2E de `0.85` a `1`. Los tests unitarios ya verificaban que la velocidad predeterminada es `1`; no se cambió el comportamiento del producto.
+- No se modifica IndexedDB v1, backup JSON v3, Service Worker, manifiestos, audios ni dependencias. Debe ejecutarse otro CI completo antes de fusionar PR #718.

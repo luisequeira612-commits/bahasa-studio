@@ -1,3 +1,8 @@
+## 2026-11-23 — fase 3: conectar CourseData con CurriculumLoader
+- La integración de arranque ahora resuelve A1 y A2 del idioma activo mediante `CurriculumLoader` antes de inicializar AudioEngine y las pantallas; reemplaza solo esos niveles y conserva B1/B2 existentes. Si falta un nivel requerido, el arranque falla explícitamente en lugar de usar datos silenciosamente incorrectos.
+- Se sincronizaron AGENTS.md y SKILL.md con la secuencia aprobada el 22 nov 2026: pt-BR → en → it → fr → de → nl → ru → ja → ko → id; se completa A1–B2 de cada idioma antes del siguiente. Solo indonesio sigue disponible durante esta fase; pt-BR A1 comienza después de cerrar fase 3.
+- Se añadió regresión de integración y se incrementó la caché del app shell a v3.8.119 para publicar el cambio offline. IndexedDB v1, backup JSON v3, audio productivo, dependencias y datos curriculares no se modifican. CI/PR pendiente de verificación.
+
 ## 2026-11-23 — corregir normalización de SHA-256 en migración de audio
 - Auditoría posterior a PR #730 detectó una inconsistencia: el validador acepta fingerprints hexadecimales en mayúsculas y la verificación de reproducción normaliza el valor, pero las dos rutas de migración comparaban el digest hexadecimal minúsculo con el metadata original. Un clip actual válido podía borrarse y una copia legacy válida podía no migrarse antes de eliminarse la caché antigua.
 - PR [#731](https://github.com/luisequeira612-commits/bahasa-studio/pull/731) fusionada mediante squash en `main`; head `5211f9532bab8167fc456e8e9dd3e4eab955fc2f`, commit integrado `fb5776937f8c5008f639f15a9d180989623c2a20`.

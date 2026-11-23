@@ -1,3 +1,9 @@
+## 2026-11-23 — mejora del selector de idiomas
+- Corrección UX: el selector permanece desplegable aunque solo exista un curso disponible, para que se pueda consultar el catálogo aprobado y ver los nueve cursos próximos. Cada opción no disponible continúa deshabilitada y LanguageManager vuelve a validar cualquier intento de cambio.
+- Seleccionar de nuevo el idioma ya activo no guarda ni recarga la aplicación.
+- Cache app shell v3.8.122. Se añade regresión para la visibilidad del catálogo y el no-op del idioma activo. CI pendiente.
+- No se activan idiomas, cursos, vocabulario ni audio nuevos; IndexedDB v1 y backup JSON v3 siguen intactos.
+
 ## 2026-11-23 — fase 3: selector de idioma protegido
 - PR en preparación: añade al Perfil un selector que muestra el catálogo aprobado, pero deshabilita cada curso no disponible; actualmente solo Indonesio puede seleccionarse. El control completo permanece deshabilitado hasta que exista más de un curso disponible.
 - El cambio de idioma llama a LanguageManager.setActiveLanguage, persiste el código mediante el adaptador existente y recarga la app para reconstruir CourseData, motores y vistas bajo el nuevo namespace. El nombre del idioma activo se usa en la etiqueta de idioma de la vista de aprendizaje.

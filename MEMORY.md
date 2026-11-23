@@ -1,3 +1,22 @@
+## 2026-11-23 — PR #764: Portugués B1 U4–U6 en preparación
+
+- Rama limpia `feat/pt-br-b1-u04-u06`, basada en el merge commit de PR #763 `9faab7e38819f61aff4dc93053b65e261203318a`.
+- U4 gestión y colaboración profesional; U5 lectura crítica de medios; U6 movilidad y vida urbana. Añade 30 términos nuevos (10 por unidad), cinco lecciones y diez ejercicios MC por unidad, ejemplos PT/ES y vocabulario `not_checked`.
+- Cotejo de 30 términos contra las 540 entradas previas A1+A2: cuatro colisiones iniciales (`delegar`, `desempenho`, `manchete`, `boato`) se sustituyeron por `incumbência`, `eficiência`, `título` y `rumor`; el cotejo posterior no detecta duplicados contra A1/A2. El contrato nuevo vuelve a comprobar contra A1, A2 y B1 U1–U3.
+- Manifiesto B1 publica U1–U6 de 36 en dos bloques. Service Worker avanza a `bahasa-studio-v3.8.142` y precarga `units-04-06.js`. Contrato Node nuevo verifica estructura, cobertura exacta de vocabulario en las cinco lecciones, ejercicios, referencias A2, duplicados y caché; Playwright ampliará la carga offline a B1 U1–U6.
+- Se alinean las expectativas heredadas de caché en contratos A2 U7–U30 y A1 U22–U24; no se relajan aserciones. `pt-BR available:false` permanece. No se modifican IndexedDB v1 ni backup JSON v3; sin nuevas dependencias, backend ni audio/TTS.
+- Pendiente validar referencias y suite completa, actualizar E2E y completar CI de la PR antes de fusionar.
+  
+Fuente: rama `feat/pt-br-b1-u04-u06`, bloque B1 U4–U6, manifiesto, Service Worker y tests; 23 nov 2026.
+
+## 2026-11-23 — Corrección del registro de PR #763 tras su fusión
+
+- La PR #763 no está abierta: se fusionó por squash en `main`, merge commit `9faab7e38819f61aff4dc93053b65e261203318a`.
+- La regresión post-merge #45276297330 completó `test` (101 pasos) y `Offline quality reports` (10 pasos), ambos success. GitHub Pages run #45276296585 completó build, deploy y report-build-status en success.
+- Estado en `main`: pt-BR A1 24/24, A2 30/30, B1 3/36, B2 0/40; `pt-BR available:false`.
+
+Fuente: GitHub PR #763, merge commit `9faab7e3`, Actions runs #45276297330 y #45276296585; 23 nov 2026.
+
 ## 2026-11-23 — PR #763 abierta: Portugués B1 U1–U3
 
 - PR [#763](https://github.com/luisequeira612-commits/bahasa-studio/pull/763) abierta desde rama `feat/pt-br-b1-u01-u03`, basada en `main` tras PR #762 (merge commit `9bd2ac59fd38acafad26f4055b5bf7244bb78a36`). Head actual: `bb482137a7b7a0668c876e1698112d25db097a47`; CI de este head pendiente.

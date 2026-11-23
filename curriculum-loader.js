@@ -3,10 +3,7 @@
 
     const LEVELS = Object.freeze(['A1', 'A2', 'B1', 'B2']);
     const LEGACY_EXPORTS = Object.freeze({
-        id: Object.freeze({
-            A1: 'BAHASA_CURRICULUM_A1',
-            A2: 'BAHASA_CURRICULUM_A2'
-        })
+        id: Object.freeze({ A1: 'BAHASA_CURRICULUM_A1', A2: 'BAHASA_CURRICULUM_A2' })
     });
     const loaded = new Map();
 
@@ -20,6 +17,16 @@
         return Object.freeze({ language, level: normalizedLevel, path, exportName: LEGACY_EXPORTS[language] && LEGACY_EXPORTS[language][normalizedLevel] || null });
     }
 
+    function resolveContent(language, level) {
+        const manager = root.LanguageManager;
+        const config = manager && manager.getLanguage(language);
+        const normalizedLevel = typeof level === 'string' ? level.toUpperCase() : '';
+        if (!config || !manager.isSupported(language) || !LEVELS.includes(normalizedLevel)) return null;
+        const path = config.curriculum && config.curriculum[normalizedLevel];
+        if (typeof path !== 'string' || !path.startsWith('./languages/')) return null;
+        return Object.freeze({ language, level: normalizedLevel, path });
+    }
+
     function readExisting(descriptor) {
         if (!descriptor) return null;
         if (descriptor.exportName) {
@@ -31,36 +38,105 @@
         return value && typeof value === 'object' ? value : null;
     }
 
-    function load(language, level) {
-        const descriptor = resolve(language, level);
-        if (!descriptor) return Promise.reject(new Error('El currículo solicitado no está disponible.'));
-        const existing = readExisting(descriptor);
-        if (existing) return Promise.resolve(existing);
-        if (loaded.has(descriptor.path)) return loaded.get(descriptor.path);
+    function loadScript(path) {
+        if (loaded.has(path)) return loaded.get(path);
         if (!root.document || typeof root.document.createElement !== 'function') {
             return Promise.reject(new Error('No se puede cargar el currículo en este entorno.'));
         }
         const pending = new Promise((resolveLoad, rejectLoad) => {
             const script = root.document.createElement('script');
-            script.src = descriptor.path;
-            script.onload = () => {
-                const curriculum = readExisting(descriptor);
-                if (curriculum) resolveLoad(curriculum);
-                else rejectLoad(new Error('El archivo no publicó el currículo esperado en GUARDI_CURRICULA.'));
-            };
-            script.onerror = () => {
-                loaded.delete(descriptor.path);
-                rejectLoad(new Error('No se pudo cargar el currículo, incluso sin conexión.'));
-            };
+            script.src = path;
+            script.onload = () => resolveLoad();
+            script.onerror = () => rejectLoad(new Error('No se pudo cargar el currículo, incluso sin conexión.'));
             (root.document.head || root.document.body).appendChild(script);
         });
-        loaded.set(descriptor.path, pending);
-        // A failed or malformed offline load must not poison this path forever.
+        loaded.set(path, pending);
         return pending.catch(error => {
-            if (loaded.get(descriptor.path) === pending) loaded.delete(descriptor.path);
+            if (loaded.get(path) === pending) loaded.delete(path);
             throw error;
         });
     }
 
-    root.CurriculumLoader = Object.freeze({ levels: LEVELS, resolve, load });
+    function readManifest(language, level) {
+        const registry = root.GUARDI_CURRICULUM_MANIFESTS;
+        return registry && registry[language] && registry[language][level] || null;
+    }
+
+    async function loadManifest(descriptor) {
+        let manifest = readManifest(descriptor.language, descriptor.level);
+        if (manifest) return manifest;
+        await loadScript(descriptor.path);
+        manifest = readManifest(descriptor.language, descriptor.level);
+        if (!manifest || !Array.isArray(manifest.publishedUnits) || !Array.isArray(manifest.blocks)) {
+            throw new Error('El índice curricular no publicó un manifiesto válido.');
+        }
+        return manifest;
+    }
+
+    async function loadUnits(language, level, unitNumbers) {
+        const descriptor = resolveContent(language, level);
+        if (!descriptor) throw new Error('El contenido curricular solicitado no está registrado.');
+        if (!Array.isArray(unitNumbers) || !unitNumbers.length ||
+            unitNumbers.some(number => !Number.isInteger(number) || number < 1 || number > 40) ||
+            new Set(unitNumbers).size !== unitNumbers.length) {
+            throw new Error('La selección de unidades no es válida.');
+        }
+        const manifest = await loadManifest(descriptor);
+        const published = new Set(manifest.publishedUnits);
+        if (unitNumbers.some(number => !published.has(number))) {
+            throw new Error('Una o más unidades todavía no están publicadas.');
+        }
+        const blocks = manifest.blocks.filter(block =>
+            Array.isArray(block.units) && unitNumbers.some(number => block.units.includes(number))
+        );
+        const covered = new Set(blocks.flatMap(block => block.units));
+        if (unitNumbers.some(number => !covered.has(number)) || blocks.some(block => typeof block.path !== 'string' || !block.path.startsWith('./languages/'))) {
+            throw new Error('El manifiesto no cubre las unidades solicitadas.');
+        }
+        await Promise.all(blocks.map(block => loadScript(block.path)));
+        const registry = root.GUARDI_CURRICULUM_BLOCKS;
+        const levelBlocks = registry && registry[language] && registry[language][descriptor.level];
+        if (!levelBlocks) throw new Error('Los bloques curriculares no se registraron correctamente.');
+        const unitsByNumber = new Map();
+        for (const block of blocks) {
+            const entry = levelBlocks[block.id];
+            if (!entry || !Array.isArray(entry.units)) throw new Error('Falta un bloque curricular publicado.');
+            for (const unit of entry.units) {
+                if (Number.isInteger(unit.unitNumber)) unitsByNumber.set(unit.unitNumber, unit);
+            }
+        }
+        const units = unitNumbers.map(number => unitsByNumber.get(number));
+        if (units.some(unit => !unit)) throw new Error('El bloque no contiene todas las unidades declaradas.');
+        return Object.freeze({
+            id: descriptor.level,
+            title: manifest.title,
+            language,
+            totalUnits: manifest.totalUnits,
+            units
+        });
+    }
+
+    async function load(language, level) {
+        const descriptor = resolve(language, level);
+        if (!descriptor) throw new Error('El currículo solicitado no está disponible.');
+        const existing = readExisting(descriptor);
+        if (existing) return existing;
+        if (descriptor.exportName) {
+            await loadScript(descriptor.path);
+            const legacy = readExisting(descriptor);
+            if (!legacy) throw new Error('El archivo no publicó el currículo esperado.');
+            return legacy;
+        }
+        const manifest = await loadManifest(resolveContent(language, level));
+        if (!Number.isInteger(manifest.totalUnits) || manifest.publishedUnits.length !== manifest.totalUnits) {
+            throw new Error('El nivel todavía no tiene todas sus unidades publicadas.');
+        }
+        const curriculum = await loadUnits(language, level, manifest.publishedUnits);
+        const registry = root.GUARDI_CURRICULA || (root.GUARDI_CURRICULA = {});
+        registry[language] = registry[language] || {};
+        registry[language][descriptor.level] = curriculum;
+        return curriculum;
+    }
+
+    root.CurriculumLoader = Object.freeze({ levels: LEVELS, resolve, load, loadUnits });
 })(typeof window !== 'undefined' ? window : globalThis);

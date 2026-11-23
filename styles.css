@@ -1048,9 +1048,10 @@ body.unit-sheet-open { overflow: hidden; }
 
 
 /* Selector compacto de idioma en la barra superior y hoja inferior. */
-.topbar-language-trigger { width:44px; min-width:44px; height:44px; min-height:44px; padding:0; border:1px solid #8A94A3; border-bottom:2px solid #E5E7EB; border-radius:999px; background:#fff; color:#1F2937; display:inline-grid; place-items:center; flex:0 0 44px; font-size:1.28rem; line-height:1; cursor:pointer; touch-action:manipulation; }
+.topbar-language-trigger { width:48px; min-width:48px; height:48px; min-height:48px; padding:0; border:1px solid #8A94A3; border-bottom:2px solid #E5E7EB; border-radius:999px; background:#fff; color:#1F2937; display:inline-grid; place-items:center; flex:0 0 48px; font-size:1.28rem; line-height:1; cursor:pointer; touch-action:manipulation; }
 .topbar-language-trigger:focus-visible { outline:3px solid #004A91; outline-offset:2px; }
 .language-picker-sheet { display:flex; flex-direction:column; gap:12px; }
+.language-picker-sheet .learning-sheet-close { width:48px; height:48px; }
 .language-current-card { padding:12px; border:1px solid #8A94A3; border-radius:16px; background:#E6F1FB; }
 .language-sheet-eyebrow { margin:0 0 8px; color:#004A91; font-size:.72rem; font-weight:800; letter-spacing:.04em; text-transform:uppercase; }
 .language-current-main { display:flex; align-items:center; gap:10px; }
@@ -1086,7 +1087,7 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
  .topbar-streak strong { max-width:36px; overflow:hidden; text-overflow:clip; }
  .topbar-xp strong { max-width:66px; overflow:hidden; text-overflow:clip; }
  .level-progress-trigger { min-width:70px; padding-inline:4px; gap:3px; }
- .topbar-language-trigger { width:44px; min-width:44px; flex-basis:44px; }
+ .topbar-language-trigger { width:48px; min-width:48px; flex-basis:48px; }
  .unit-path-section-banner { top:58px !important; }
 }
 

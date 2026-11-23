@@ -62,7 +62,7 @@ const unit6=makeUnit(6,'Movilidad y vida urbana','Describe desafíos de la ciuda
 ['Lección 1: Movilidad y desplazamientos','Describe cómo las personas se desplazan por la ciudad.','Mobilidade trata das condições gerais de circulação; acessibilidade considera quem consegue usar os espaços e serviços.',[0,1],['ptbr_a2_u9_v04']],
 ['Lección 2: Infraestructura y saneamiento','Explica qué redes y servicios necesita una ciudad.','Infraestrutura reúne estruturas e serviços essenciais; saneamento inclui serviços como água e esgoto.',[2,3],['ptbr_a2_u28_v02']],
 ['Lección 3: Crecimiento y densificación','Explica cómo aumenta la concentración de personas y edificios.','Adensamento descreve o aumento da concentração de pessoas ou construções; zoneamento estabelece regras para o uso do solo.',[4,5],['ptbr_a2_u27_v09']],
-['Lección 4: Desplazamiento y accesibilidad','Evalúa si las rutas y los espacios sirven a personas diferentes.','Deslocamento é o trajeto realizado entre dois lugares; acessibilidade considera diferentes necessidades de uso.',[6,7],['ptbr_a2_u23_v08']],
+['Lección 4: Arbolado y desplazamientos','Explica cómo los árboles y las rutas influyen en la vida urbana.','Arborização amplia a presença de árvores nas áreas urbanas; deslocamento é o trajeto realizado entre dois lugares.',[6,7],['ptbr_a2_u23_v08']],
 ['Lección 5: Espacios verdes y comunidad','Valora proyectos que mejoran los espacios compartidos.','Arborização amplia a presença de árvores nas áreas urbanas; revitalização recupera espaços; pertencimento expressa a ligação das pessoas com a comunidade.',[8,9],['ptbr_a2_u22_v06']]
 ]);
 root.GUARDI_CURRICULUM_BLOCKS=root.GUARDI_CURRICULUM_BLOCKS||{};

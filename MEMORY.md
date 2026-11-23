@@ -1,7 +1,7 @@
 ## Guardi — verificación SHA-256 en la caché automática del Service Worker — 23 nov 2026
 
 - PR en preparación: la ruta de reproducción normal del Service Worker guardaba cualquier respuesta HTTP 200 sin comprobar el inventario, aunque la descarga offline explícita sí verificaba SHA-256. El cambio valida los bytes de caché y de red contra el hash del idioma antes de servir una copia persistente; si falta inventario/hash, permite reproducción online pero no promueve el archivo a caché offline; si el hash disponible no coincide, rechaza la respuesta. Incluye pruebas para hash válido, inventario ausente y contenido alterado.
-- Archivos previstos: `service-worker.js`, `tests/service-worker-audio-cache.test.cjs`, `tests/service-worker-audio-range.test.cjs`, `MEMORY.md`. Pendiente de CI y revisión. No modifica audios/manifiestos, IndexedDB v1, backup JSON v3 ni dependencias.
+- Archivos previstos: `service-worker.js`, `tests/service-worker-audio-cache.test.cjs`, `tests/service-worker-audio-range.test.cjs`, `tests/service-worker-install.test.cjs`, `MEMORY.md`. El primer CI detectó que una prueba antigua esperaba cachear MP3 sin inventario; se actualizó para reflejar la política nueva (reproducción online permitida, sin persistencia no verificada). Pendiente de CI completo y revisión. No modifica audios/manifiestos, IndexedDB v1, backup JSON v3 ni dependencias.
 
 Fuente: auditoría de `main` posterior a PR #727; 23 nov 2026.
 

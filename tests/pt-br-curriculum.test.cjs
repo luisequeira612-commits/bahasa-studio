@@ -38,7 +38,7 @@ test('pt-BR A1 pilot loads U1-U18 without making the incomplete course selectabl
  const curriculum=await loader.loadUnits('pt-BR','A1',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]);
  assert.equal(curriculum.language,'pt-BR');
  assert.equal(curriculum.totalUnits,24);
- assert.deepEqual(Array.from(curriculum.units,u=>u.unitNumber),[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]);
+ assert.deepEqual(Array.from(curriculum.units,u=>u.unitNumber),[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]);
  await assert.rejects(loader.load('pt-BR','A1'),/no está disponible/);
 });
 
@@ -181,7 +181,7 @@ test('pt-BR A1 pilot still remains unavailable after publishing U1-U18',()=>{
 
 test('pilot exercises remain text-only and do not request or reference Portuguese audio',async()=>{
  const {loader}=createPilot();
- const {units}=await loader.loadUnits('pt-BR','A1',[1,2,3,4,5,6,7,8,9,10,11,12]);
+ const {units}=await loader.loadUnits('pt-BR','A1',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]);
  for(const unit of units){
   for(const ex of [...unit.exercises,...unit.lessons.flatMap(lesson=>lesson.exercises)]){
    assert.ok(['mc','order'].includes(ex.type),'exercise type must use an existing renderer');

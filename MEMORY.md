@@ -201,3 +201,19 @@ Fuente: PR #722–#726, commits squash y ejecuciones CI enlazadas; 23 nov 2026.
 - Indonesio conserva `terima kasih`. Si un idioma no tiene frase configurada, la prueba muestra un aviso en español y no intenta reproducir contenido de otro idioma.
 - Se añaden pruebas unitarias y estructurales para impedir que vuelva el fallback fijo al indonesio.
 - No se habilitan cursos nuevos ni se modifican IndexedDB v1, backup JSON v3, dependencias o recursos de audio.
+
+
+## 2026-11-23 — PR #745: pt-BR A1 U7–U9 integradas
+- PR #745 fusionada mediante squash en main, commit b29f79e0befa06d1050657d1a2ea98f148dc03eb. CI completo del head 9465d3eaa43a365bc6475c4af44f610404a5e69c, run 45200036939, terminó con test y Offline quality reports en éxito; incluye E2E Chromium y evaluación en navegador.
+- A1 pt-BR tiene 24 unidades declaradas y U1–U9 publicadas. U7: rutina diaria; U8: lugares, direcciones y transporte; U9: clima, estados personales y razones. Cada unidad mantiene cinco lecciones, diez términos nuevos y diez ejercicios finales. Los términos continúan not_checked.
+- El primer CI detectó una expectativa desactualizada de U1–U6 y la falta de inicialización del registro global en el bloque U7–U12; ambas correcciones pasaron el segundo CI. Se mejoraron dos ejemplos (em frente; A chuva começou.).
+- pt-BR sigue available:false. Sin nuevos recursos de audio/TTS, dependencias, cambios a IndexedDB v1 o backup JSON v3.
+
+## 2026-11-23 — PR #742: prueba de voz por idioma integrada
+- PR #742 fusionada por squash en main, commit 97f5cbc457a91168e9637eea1f7b41bda666d89e. CI run 45143050099: test y Offline quality reports ambos en éxito.
+- AudioEngine.testVoice() usa testPhrase del idioma activo; indonesio conserva terima kasih. Si no hay frase configurada, muestra aviso en español y no reproduce contenido indonesio. Sin nuevos audios, dependencias o cambios de datos persistentes.
+
+## 2026-11-23 — PR #746: pt-BR A1 U10–U12 en preparación
+- Rama basada en main posterior a #745 y #742. Se amplía el piloto con compras/precios (U10), ropa/colores (U11) y días de la semana/referencias temporales (U12).
+- Cada unidad aporta diez términos con verification.status not_checked, cinco lecciones y diez ejercicios finales usando únicamente renderizadores existentes (mc y order). No se activa pt-BR; no se añade audio/TTS ni dependencias; se preservan IndexedDB v1 y backup JSON v3.
+- Se amplían pruebas de carga U1–U12, estructura, referencias léxicas y tipos de ejercicio. Validación CI pendiente.

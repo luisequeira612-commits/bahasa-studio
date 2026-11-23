@@ -1,3 +1,7 @@
+## Guardi — migración segura de caché legacy — 23 nov 2026
+- Auditoría posterior a PR #721 detectó que `migrateLegacyAudioCache()` podía copiar clips legacy sin verificar si faltaba el inventario SHA-256 del idioma y luego borrar la caché de origen.
+- PR correctiva #722 (en preparación): cuando falta el inventario, la migración deja los bytes sin copiar y conserva las cachés antiguas; la activación del Service Worker sigue completándose. Se agregan pruebas para inventarios disponibles y ausentes. No se cambia el runtime de reproducción, los manifiestos productivos, IndexedDB v1, backup JSON v3 ni dependencias.
+
 ## Guardi — validación del inventario offline de audio — 23 nov 2026
 - Auditoría de main: `audio/manifest.json` y `audio/metadata.json` contienen 2.268 entradas/huellas, sin IDs duplicados, hashes faltantes ni huellas huérfanas; niveles A1 683, A2 1.014, B1 541 y B2 155.
 - PR #721 endurece la validación de manifiesto/huellas al cargar el inventario, normaliza IDs/hash hexadecimales, rechaza duplicados, niveles desconocidos, textos vacíos y SHA-256 inválidos; el resumen de biblioteca incluye B2. También elimina de AGENTS.md una hoja de ruta antigua que contradecía la decisión vigente: idiomas nuevos pendientes de selección. No añade recursos ni activa cursos; IndexedDB v1, backup JSON v3 y dependencias intactos.

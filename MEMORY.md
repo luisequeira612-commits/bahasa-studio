@@ -69,3 +69,11 @@
 - El primer CI de PR #719 (`45110400062`) pasó el informe de calidad, pero falló en la comprobación JavaScript antes de ejecutar la batería de pruebas: `offline-audio-manager.js` contenía un fragmento residual duplicado después del cierre (`})();, 'i');`).
 - La lógica válida de `idsFromCacheKeys` ya estaba implementada antes; el fragmento residual pertenecía a una versión anterior de esa función y era código suelto fuera del módulo. Se eliminó únicamente ese bloque posterior al cierre, sin alterar la implementación activa.
 - No se modifican IndexedDB v1, backup JSON v3, manifiestos, audios, dependencias ni el alcance de activación de idiomas. Repetir CI completo antes de fusionar PR #719.
+
+
+## 2026-11-23 — PR #724: estabilizar E2E de velocidad de audio
+
+- El primer CI del head `47a1cb808fcc0e0efffc9fb7136afe3f9e483beb` pasó Offline quality reports y 32/33 pruebas Chromium; falló la E2E de reproducción MP3 porque la prueba invocaba `speak()` antes de que terminara la restauración asíncrona de `audioPlaybackRate`. El MP3 capturó la velocidad inicial `1`, mientras la preferencia persistida `0.85` llegó después.
+- Se hizo determinista el fixture E2E: guarda `0.85` en IndexedDB de prueba, lo vuelve a leer, sincroniza `AudioEngine.setRate(..., false)` y solo entonces inicia la reproducción. La prueba sigue comprobando que el MP3 recibe la preferencia persistida; no se cambia código de producto.
+- El resto de E2E pasó (32/33) y el informe de calidad offline fue exitoso. Repetir CI completo sobre el nuevo head antes de fusionar PR #724.
+- Sin cambios a IndexedDB v1 del usuario, backup JSON v3, Service Worker, manifiestos productivos, audios ni dependencias.

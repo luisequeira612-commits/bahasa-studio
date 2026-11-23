@@ -1,3 +1,9 @@
+## 2026-11-23 — selector de idiomas compacto en la barra superior (PR en preparación)
+- Por aprobación explícita, se sustituye la tarjeta grande de idioma en Aprender por un chip de bandera en la barra superior y una hoja inferior accesible. El catálogo se lee de `LanguageManager.list()`; Indonesio permanece como único curso disponible y los otros nueve se muestran en gris con etiqueta «Pronto», sin controles seleccionables.
+- La hoja muestra el idioma activo, su nivel y el porcentaje de progreso del nivel actual. El chip de nivel conserva el progreso calculado desde el currículo y namespace del idioma activo. No cambia la selección predeterminada ni el mecanismo de persistencia de `LanguageManager`.
+- Se eliminó el bloque explicativo y el margen que desplazaba la ruta. Barra compacta ajustada para 360 px; hoja con `role=dialog`, cierre por botón, fondo y Escape, foco visible y restauración del foco.
+- Cambios visuales/navegación solamente: sin dependencias, backend, cambios de IndexedDB v1 ni backup JSON v3. Caché app shell v3.8.125. PR y pruebas Playwright pendientes; no fusionar sin «Aprobado».
+
 ## 2026-11-23 — selector de idioma trasladado a la pantalla principal
 - Por aprobación explícita del dueño, el selector de curso se mueve de Perfil a la parte superior de Aprender/Ruta, en una tarjeta compacta y visible; Perfil deja de ser el único acceso al cambio de idioma.
 - Se conserva el catálogo de diez idiomas, Indonesian como único curso seleccionable, los demás deshabilitados, la validación de LanguageManager y el reinicio seguro al cambiar de curso. No cambia currículo, progreso, IndexedDB v1 ni backup JSON v3.

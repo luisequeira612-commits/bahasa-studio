@@ -25,6 +25,7 @@ function createPilot(){
  const sandbox={window,Object,Map,Set,Promise,Error,String,Array,Number};
  vm.runInNewContext(managerSource,sandbox);
  vm.runInNewContext(loaderSource,sandbox);
+ vm.runInNewContext(manifestSource,sandbox);
  return {window,loader:window.CurriculumLoader};
 }
 test('pt-BR A1 U22-U24 load as a non-selectable offline pilot with complete lesson contracts',async()=>{

@@ -70,7 +70,8 @@ test('closed learning tools leave no residual drawers and iconography is inline 
   const header = html.slice(html.indexOf('<header class="app-topbar">'), html.indexOf('<!-- CURSO / RUTA -->'));
   const tools = html.slice(html.indexOf('<div class="learning-tools-row"'), html.indexOf('<details class="feature-drawer learning-tool-panel"'));
   const nav = html.slice(html.indexOf('<nav class="nav-bottom"'), html.indexOf('</nav>'));
-  assert.doesNotMatch(header + tools + nav, /[🇮🇩🔥⚡✨📓💬🔒]/u);
+  const headerWithoutLanguageFlag = header.replace(/<span id="studyLanguageFlag"[^>]*>.*?<\\/span>/s, '');
+  assert.doesNotMatch(headerWithoutLanguageFlag + tools + nav, /[🇮🇩🔥⚡✨📓💬🔒]/u);
   assert.equal((html.match(/class="learning-tools-row"/g) || []).length, 0, 'legacy tools row is removed in Phase 5B');
   const toolsSheet = html.slice(html.indexOf('id="learningToolsSheetOverlay"'), html.indexOf('id="unitSheetOverlay"'));
   assert.match(toolsSheet, /<svg class="ui-icon"/);

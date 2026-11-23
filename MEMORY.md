@@ -1,3 +1,10 @@
+## 2026-11-23 — pt-BR A1 U4–U6 en preparación
+- Se amplía el piloto curricular a A1 U1–U6 sin habilitar Portugués. U4 trabaja familia y posesivos; U5 comida, bebida, gustos y negación; U6 casa, ubicación y distancia.
+- U4–U6 mantienen cinco lecciones explícitas y diez registros léxicos por unidad. Todos los términos nuevos permanecen `not_checked`; no se presenta certificación nativa ni se bloquea el avance por ausencia de hablante nativo.
+- Se publica el bloque `07-12` para U4–U6 y el manifiesto declara seis unidades publicadas dentro del nivel A1 de 24 unidades. El selector y la carga normal siguen bloqueados mientras `pt-BR` permanezca `available:false`.
+- Se actualizan pruebas Node para cargar U1–U6, validar cinco lecciones por unidad, diez ejercicios finales en U4–U6 y ausencia de audio pt-BR. El Service Worker precarga también el nuevo bloque y pasa a caché app shell v3.8.127.
+- No se modifica IndexedDB v1, backup JSON v3 ni dependencias. PR #742 sigue sin fusionar porque GitHub no reporta CI completo verde.
+
 ## 2026-11-23 — piloto curricular pt-BR A1 U1–U3 (PR en preparación)
 - Tras aprobación explícita, rama `feat/pt-br-a1-pilot-u1-u3`; se prepara un piloto parcial de A1 (24 unidades previstas; U1–U3 publicadas como contenido de prueba), sin habilitar el curso ni cambiar el idioma activo.
 - U1–U3 tienen cinco lecciones explícitas cada una. Inventario: 50 registros léxicos (U1 10, U2 10, U3 10 términos + 20 números); todos `not_checked`, sin hablante nativo ni certificación. U3 recicla exactamente dos preguntas de U1.

@@ -319,3 +319,12 @@ Fuente: PR #722–#726, commits squash y ejecuciones CI enlazadas; 23 nov 2026.
 - Se amplía manifiesto a U1–U15, caché a `bahasa-studio-v3.8.135` y precarga `units-13-15.js`; tests de manifiesto y Playwright se amplían para 15 unidades. Sin nuevas dependencias, backend, audio/TTS ni cambios de persistencia. Pendiente PR y CI del bloque.
 
 - PR #757 abierta: https://github.com/luisequeira612-commits/bahasa-studio/pull/757. Head inicial `7e3ec6a7a9de87c7c778d1c8810d506d2092bb6a`, 13 archivos, +203/-24. Pendiente CI completo sobre el head final; no fusionar antes de ambos jobs success.
+
+
+## 2026-11-23 — corrección CI PR #757: harness offline A2 incompletos
+- El CI del head `1fc43d93f4532da8ec888d291ff41a873c748e66`, run [#45243502516](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45243502516), completó `Offline quality reports` en success, pero `Run local quality tests` falló en dos tests de referencias de repaso: `pt-br-curriculum-a2-u07-u09.test.cjs` y `pt-br-curriculum-a2-u13-u15.test.cjs`. El resto de la suite de calidad reportó 213/215 pruebas superadas.
+- Causa: al ampliar el manifiesto a U1–U15, los harness simulados no registraban todos los archivos que el loader intentaba importar. El test U7–U9 no incluía U13–U15; el test U13–U15 omitía U10–U12 y repetía la entrada U13–U15. No era un fallo de referencias léxicas del currículo.
+- Corrección en commits `a168942171b3e366219175ba197f202ab23f4581` y `eb46ff0fa5bdf1e015e444c0c3fc70cdc479712c`: completar los mapas de archivos en ambos harness para que cubran los bloques U1–U15. Se mantienen las aserciones de resolución de repaso y no se modifica contenido de vocabulario, manifiesto, disponibilidad ni persistencia.
+- Repetir CI completo sobre el nuevo head; no fusionar hasta que `test` y `Offline quality reports` estén en success.
+
+Fuente: logs del job `test` de GitHub Actions run #45243502516 y commits de `feat/pt-br-a2-u13-u15`; 23 nov 2026.

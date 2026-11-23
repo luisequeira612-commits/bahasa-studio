@@ -53,12 +53,17 @@ test('Playwright: carga U1-U3 offline y aísla el progreso pt-BR del indonesio',
    const now=new Date(2026,10,23,12);
    const ptKey=ProgressNamespace.storageKey('progress','unit_1','pt-BR');
    const idKey=ProgressNamespace.storageKey('progress','unit_1','id');
+   const progressRecords=[{key:ptKey,val:{completed:false}},{key:idKey,val:{completed:true}}];
+   const ptProgress=ProgressNamespace.filterRecords('progress',progressRecords,'pt-BR');
+   const idProgress=ProgressNamespace.filterRecords('progress',progressRecords,'id');
    await StudyHistory.record('points',12,now,'pt-BR');
    await StudyHistory.record('points',5,now,'id');
    return {
     units:curriculum.units.map(unit=>({id:unit.id,lessons:unit.lessons.length})),
     recycled,
     ptKey,idKey,
+    ptProgress:ptProgress.map(record=>record.val.completed),
+    idProgress:idProgress.map(record=>record.val.completed),
     ptHistory:localStorage.getItem(StudyHistory.storageKey('pt-BR')),
     idHistory:localStorage.getItem(StudyHistory.storageKey('id')),
     available:LanguageManager.isAvailable('pt-BR')
@@ -68,6 +73,8 @@ test('Playwright: carga U1-U3 offline y aísla el progreso pt-BR del indonesio',
   assert.deepEqual(result.recycled,['ptbr_a1_u1_v01','ptbr_a1_u1_v02']);
   assert.equal(result.ptKey,'pt-BR::unit_1');
   assert.equal(result.idKey,'unit_1');
+  assert.deepEqual(result.ptProgress,[false]);
+  assert.deepEqual(result.idProgress,[true]);
   assert.match(result.ptHistory,/12/);
   assert.match(result.idHistory,/5/);
   assert.equal(result.available,false);

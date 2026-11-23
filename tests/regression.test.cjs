@@ -680,71 +680,84 @@ test('backup restoration writes SRS and settings in one readwrite transaction an
   const methodBody = methodSource.slice(bodyStart, bodyEnd);
   const replaceBackupData = vm.runInNewContext(
     '({ async replaceBackupData(data) {' + methodBody + '\n} }).replaceBackupData',
-    { StudyActivity, LanguageManager: { isSupported: code => code === 'id' } }
+    { StudyActivity, LanguageManager: { isSupported: code => ['id', 'pt-BR'].includes(code) } }
   );
 
   const data = {
+    language: 'pt-BR',
     srs: [{ key: 'v1', val: { attempts: 2 } }],
-    xp: 8, completedUnits: ['a1_u1'], customUnits: [], syllabusPos: 0
+    xp: 8, completedUnits: ['pt_a1_u1'], customUnits: [], syllabusPos: 0
   };
   const writes = [];
   const transactions = [];
+  const existingKeys = ['legacy-id-word', 'pt-BR::old-word', 'en::other-word'];
+  const deleted = [];
   const stores = {
     srs: {
       openCursor() {
         const request = { result: null, onsuccess: null };
-        queueMicrotask(() => {
-          if (request.onsuccess) request.onsuccess();
-          queueMicrotask(() => transactions.at(-1).tx.oncomplete && transactions.at(-1).tx.oncomplete());
-        });
+        let index = 0;
+        const advance = () => {
+          request.result = index < existingKeys.length ? {
+            key: existingKeys[index],
+            delete() { deleted.push(existingKeys[index]); },
+            continue() { index++; queueMicrotask(advance); }
+          } : null;
+          if (request.onsuccess) {
+            request.onsuccess();
+            if (request.result === null) queueMicrotask(() => transactions.at(-1).tx.oncomplete && transactions.at(-1).tx.oncomplete());
+          }
+        };
+        queueMicrotask(advance);
         return request;
       },
       put: value => writes.push({ store: 'srs', type: 'put', value })
     },
-    settings: {
-      put: value => writes.push({ store: 'settings', type: 'put', value })
-    }
+    settings: { put: value => writes.push({ store: 'settings', type: 'put', value }) }
   };
-  const db = {
-    transaction(names, mode) {
-      const tx = {
-        names, mode, error: null,
-        objectStore: name => stores[name],
-        oncomplete: null, onerror: null, onabort: null
-      };
-      transactions.push({ names, mode, tx });
-      return tx;
-    }
-  };
+  const courseSettings = new Set(['userXp', 'completedUnits', 'completedLessons', 'customUnits', 'syllabusPos', 'studyActivity']);
   const restoreContext = {
-    db,
-    scopedKey: (store, key) => key,
-    belongsToLanguage: () => true
+    db: {
+      transaction(names, mode) {
+        const tx = { names, mode, error: null, objectStore: name => stores[name], oncomplete: null, onerror: null, onabort: null };
+        transactions.push({ names, mode, tx });
+        return tx;
+      }
+    },
+    scopedKey(store, key, language = 'id') {
+      return language !== 'id' &&
+        (store === 'srs' || store === 'progress' || (store === 'settings' && courseSettings.has(String(key))))
+        ? language + '::' + key : key;
+    },
+    belongsToLanguage(store, key, language = 'id') {
+      if (store !== 'srs' && store !== 'progress') return true;
+      if (language === 'id') return !['pt-BR::', 'en::', 'it::', 'fr::', 'de::', 'nl::', 'ru::', 'ja::', 'ko::'].some(prefix => String(key).startsWith(prefix));
+      return String(key).startsWith(language + '::');
+    }
   };
   await replaceBackupData.call(restoreContext, data);
   assert.deepEqual(Array.from(transactions[0].names), ['srs', 'settings']);
   assert.equal(transactions[0].mode, 'readwrite');
-  assert.ok(!writes.some(write => write.store === 'srs' && write.type === 'clear'));
-  assert.ok(writes.some(write => write.store === 'srs' && write.type === 'put' && write.value.wordId === 'v1'));
-  assert.ok(writes.some(write => write.store === 'settings' && write.type === 'put' && write.value.key === 'userXp' && write.value.val === 8));
-  assert.ok(writes.some(write => write.store === 'settings' && write.type === 'put' && write.value.key === 'completedUnits'));
-  assert.ok(writes.some(write => write.store === 'settings' && write.type === 'put' && write.value.key === 'studyActivity'));
+  assert.deepEqual(deleted, ['pt-BR::old-word'], 'only the imported language namespace is replaced');
+  assert.ok(writes.some(write => write.store === 'srs' && write.type === 'put' && write.value.wordId === 'pt-BR::v1'));
+  assert.ok(writes.some(write => write.store === 'settings' && write.type === 'put' && write.value.key === 'pt-BR::userXp' && write.value.val === 8));
+  assert.ok(writes.some(write => write.store === 'settings' && write.type === 'put' && write.value.key === 'pt-BR::completedUnits'));
+  assert.ok(writes.some(write => write.store === 'settings' && write.type === 'put' && write.value.key === 'pt-BR::studyActivity'));
+  assert.ok(writes.some(write => write.store === 'settings' && write.type === 'put' && write.value.key === 'activeLanguage' && write.value.val === 'pt-BR'));
 
   const abortDb = {
     transaction(names, mode) {
-      const tx = {
-        error: new Error('simulated transaction abort'),
-        objectStore: name => stores[name],
-        oncomplete: null, onerror: null, onabort: null
-      };
-      const request = { result: null, onsuccess: null };
-      stores.srs.openCursor = () => {
-        queueMicrotask(() => {
-          if (request.onsuccess) request.onsuccess();
-          queueMicrotask(() => tx.onabort && tx.onabort());
-        });
-        return request;
-      };
+      const tx = { error: new Error('simulated transaction abort'), objectStore: name => ({
+        openCursor() {
+          const request = { result: null, onsuccess: null };
+          queueMicrotask(() => {
+            if (request.onsuccess) request.onsuccess();
+            queueMicrotask(() => tx.onabort && tx.onabort());
+          });
+          return request;
+        },
+        put: value => writes.push({ store: name, type: 'put', value })
+      }), oncomplete: null, onerror: null, onabort: null };
       return tx;
     }
   };

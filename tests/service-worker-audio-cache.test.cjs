@@ -300,3 +300,33 @@ test('separa las rutas y cachés persistentes por idioma', async () => {
     assert.ok(await worker.cacheStore.get('guardi-audio-v2-pt-BR').match(new Request(audioUrl('sameclip00001', 'pt-BR'))));
     assert.equal(await worker.cacheStore.get('guardi-audio-v2').match(new Request(audioUrl('sameclip00001', 'pt-BR'))), null);
 });
+
+test('migra y valida hashes de un inventario de idioma independiente', async () => {
+    const validId = '0123456789ab';
+    const staleId = 'abcdef012345';
+    const current = new MemoryCache([
+        [ORIGIN + '/bahasa-studio/audio/pt-BR/metadata.json', new Response(JSON.stringify({
+            audio_hashes: {
+                [validId]: hash('pt-BR current bytes'),
+                [staleId]: hash('replacement bytes')
+            }
+        }))]
+    ]);
+    const legacy = new MemoryCache([
+        [audioUrl(validId, 'pt-BR'), new Response('pt-BR current bytes', { status: 200 })],
+        [audioUrl(staleId, 'pt-BR'), new Response('stale pt-BR bytes', { status: 200 })]
+    ]);
+    const worker = createWorker(new Map([
+        ['bahasa-studio-v3.8.117', legacy],
+        [CURRENT_CACHE_NAME, current]
+    ]));
+
+    let activation;
+    worker.handlers.activate({ waitUntil: promise => { activation = promise; } });
+    await activation;
+
+    const languageCache = worker.cacheStore.get('guardi-audio-v2-pt-BR');
+    assert.ok(await languageCache.match(new Request(audioUrl(validId, 'pt-BR'))));
+    assert.equal(await languageCache.match(new Request(audioUrl(staleId, 'pt-BR'))), null);
+    assert.equal(worker.cacheStore.has('bahasa-studio-v3.8.117'), false);
+});

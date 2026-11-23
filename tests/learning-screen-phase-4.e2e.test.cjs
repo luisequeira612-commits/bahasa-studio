@@ -386,3 +386,101 @@ test('phase four path geometry is collision-free at 360px across levels and zigz
     await new Promise(resolve => server.close(resolve));
   }
 });
+
+
+test('compact language picker is accessible, catalog-driven and fits the 360px learning header', async () => {
+  const { server, url } = await startServer();
+  const browser = await chromium.launch({ headless: true });
+  const context = await browser.newContext({
+    viewport: { width: 360, height: 800 },
+    serviceWorkers: 'block',
+    reducedMotion: 'reduce'
+  });
+  const page = await context.newPage();
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
+    await page.waitForSelector('.learning-unit-node.node-current');
+
+    assert.equal(await page.locator('#studyLanguageCard').count(), 0, 'large language card must be removed');
+    assert.equal(await page.locator('#studyLanguageSelect').count(), 0, 'the old select must be removed');
+    assert.equal(await page.locator('#studyLanguageTrigger').isVisible(), true);
+    assert.equal(await page.locator('#studyLanguageTrigger').getAttribute('aria-label').then(value => /Indonesio actual/.test(value)), true);
+    assert.equal(await page.locator('#studyLanguageFlag').innerText(), '🇮🇩');
+
+    const header = await page.locator('.app-topbar').evaluate(el => {
+      const metrics = el.querySelector('.topbar-metrics').getBoundingClientRect();
+      const trigger = el.querySelector('#studyLanguageTrigger').getBoundingClientRect();
+      return {
+        width: el.getBoundingClientRect().width,
+        scrollWidth: el.scrollWidth,
+        metricsRight: metrics.right,
+        languageRight: trigger.right,
+        languageWidth: trigger.width,
+        languageHeight: trigger.height,
+        viewport: window.innerWidth
+      };
+    });
+    assert.ok(header.width <= header.viewport, 'topbar must fit the viewport: ' + JSON.stringify(header));
+    assert.ok(header.scrollWidth <= header.viewport, 'topbar must not overflow horizontally: ' + JSON.stringify(header));
+    assert.ok(header.languageRight <= header.viewport, 'language chip must remain visible: ' + JSON.stringify(header));
+    assert.ok(header.languageWidth >= 48 && header.languageHeight >= 48, 'language chip must have a comfortable touch target');
+
+    const route = await page.locator('.unit-path-section-banner').first().evaluate(el => ({
+      top: el.getBoundingClientRect().top,
+      bottom: el.getBoundingClientRect().bottom,
+      node: document.querySelector('.learning-unit-node.node-current').getBoundingClientRect().toJSON(),
+      scrollY: window.scrollY
+    }));
+    assert.ok(route.scrollY <= 16, 'initial alignment must not push the route out of the first viewport: ' + JSON.stringify(route));
+    assert.ok(route.top >= 58 && route.top <= 60, 'unit path banner must start directly below the topbar: ' + JSON.stringify(route));
+    assert.ok(route.node.top < 800 && route.node.bottom > 0, 'current unit must appear in the first mobile viewport');
+
+    await page.locator('#studyLanguageTrigger').click();
+    const overlay = page.locator('#studyLanguageSheetOverlay');
+    await page.waitForFunction(() => !document.getElementById('studyLanguageSheetOverlay').hidden);
+    assert.equal(await page.locator('#studyLanguageSheet').getAttribute('role'), 'dialog');
+    assert.equal(await page.locator('#studyLanguageSheet').getAttribute('aria-modal'), 'true');
+    assert.equal(await page.locator('#studyLanguageCurrentName').innerText(), 'Indonesio');
+    const currentProgress = await page.locator('#studyLanguageCurrentProgress').innerText();
+    const levelChipPercent = await page.locator('#levelProgressPercent').innerText();
+    assert.match(currentProgress, /^A1 · \d+% completado/);
+    assert.ok(currentProgress.includes('A1 · ' + levelChipPercent + ' completado'),
+      'language sheet and level chip must use the same active-course progress');
+    assert.deepEqual(await page.locator('#studyLanguageUpcomingList .language-picker-name strong').allTextContents(),
+      ['Portugués de Brasil', 'Inglés', 'Italiano', 'Francés', 'Alemán', 'Neerlandés', 'Ruso', 'Japonés', 'Coreano']);
+    assert.equal(await page.locator('#studyLanguageAvailableSection').isHidden(), true,
+      'Disponibles is omitted while Indonesian is the only ready course');
+    assert.equal(await page.locator('#studyLanguageUpcomingList .language-picker-row').count(), 9);
+    assert.equal(await page.locator('#studyLanguageUpcomingList .language-picker-row button').count(), 0,
+      'upcoming languages must not be interactive buttons');
+    assert.equal(await page.locator('#studyLanguageUpcomingList input[type=radio]').count(), 0,
+      'upcoming languages must not look like radio options');
+    assert.equal(await page.locator('#studyLanguageUpcomingList .language-picker-soon').count(), 9);
+    assert.equal(await page.locator('#studyLanguageUpcomingList .language-picker-soon').first().innerText(), 'Pronto');
+
+    await page.locator('.learning-sheet-close[aria-label="Cerrar selector de idioma"]').click();
+    await page.waitForFunction(() => document.getElementById('studyLanguageSheetOverlay').hidden);
+
+    await page.locator('#studyLanguageTrigger').click();
+    await page.waitForFunction(() => !document.getElementById('studyLanguageSheetOverlay').hidden);
+    await page.keyboard.press('Escape');
+    await page.waitForFunction(() => document.getElementById('studyLanguageSheetOverlay').hidden);
+
+    await page.locator('#studyLanguageTrigger').click();
+    await page.waitForFunction(() => !document.getElementById('studyLanguageSheetOverlay').hidden);
+    await overlay.click({ position: { x: 6, y: 6 } });
+    await page.waitForFunction(() => document.getElementById('studyLanguageSheetOverlay').hidden);
+
+    await page.reload({ waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
+    assert.equal(await page.evaluate(() => LanguageManager.getActiveLanguage()), 'id',
+      'active Indonesian selection must persist after reload');
+    assert.equal(await page.locator('#studyLanguageFlag').innerText(), '🇮🇩');
+  } finally {
+    await context.close();
+    await browser.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});

@@ -72,24 +72,33 @@ test('a supported but not yet implemented course cannot become active through st
 });
 
 
-test('main learning screen exposes the approved language catalog and disables unavailable courses', () => {
+test('main learning screen exposes the catalog in an accessible language sheet', () => {
     const indexSource = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
-    assert.match(indexSource, /id="studyLanguageSelect"/);
+    assert.doesNotMatch(indexSource, /id="studyLanguageSelect"/,
+        'the oversized select must be removed');
+    assert.match(indexSource, /id="studyLanguageTrigger"/);
+    assert.match(indexSource, /id="studyLanguageFlag"/);
+    assert.match(indexSource, /aria-controls="studyLanguageSheetOverlay"/);
     const routeStart = indexSource.indexOf('<main id="view-route"');
     const routeEnd = indexSource.indexOf('</main>', routeStart);
     const profileStart = indexSource.indexOf('<main id="view-profile"');
     const profileEnd = indexSource.indexOf('</main>', profileStart);
-    const selectorPosition = indexSource.indexOf('id="studyLanguageSelect"');
-    assert.ok(routeStart >= 0 && selectorPosition > routeStart && selectorPosition < routeEnd,
-        'language selector should be on the main learning screen');
-    assert.ok(profileStart >= 0 && !indexSource.slice(profileStart, profileEnd).includes('studyLanguageSelect'),
-        'profile should no longer contain the primary language selector');
-    assert.match(indexSource, /language\.available \? '' : ' · Próximamente'/);
-    assert.match(indexSource, /option\.disabled = !language\.available/);
-    assert.match(indexSource, /select\.disabled = availableCount === 0/);
-    assert.match(indexSource, /option\.disabled = !language\.available/);
-    assert.match(indexSource, /code === LanguageManager\.getActiveLanguage\(\)/);
+    const route = indexSource.slice(routeStart, routeEnd);
+    assert.ok(routeStart >= 0 && route.includes('id="studyLanguageSheetOverlay"'),
+        'the language sheet belongs to the learning view');
+    assert.match(route, /role="dialog"/);
+    assert.match(route, /aria-modal="true"/);
+    assert.ok(profileStart >= 0 && !indexSource.slice(profileStart, profileEnd).includes('studyLanguageTrigger'),
+        'profile should not contain the primary language selector');
+    assert.match(indexSource, /const languages = LanguageManager\.list\(\)/);
+    assert.match(indexSource, /const available = languages\.filter\(language => language\.available\)/);
+    assert.match(indexSource, /const upcoming = languages\.filter\(language => !language\.available\)/);
+    assert.match(indexSource, /availableSection\.hidden = available\.length < 2/);
+    assert.match(indexSource, /row\.setAttribute\('aria-disabled', 'true'\)/);
+    assert.match(indexSource, /soon\.textContent = 'Pronto'/);
     assert.match(indexSource, /async setStudyLanguage\(code\)/);
     assert.match(indexSource, /await LanguageManager\.setActiveLanguage\(code\)/);
     assert.match(indexSource, /window\.location\.reload\(\)/);
+    assert.match(indexSource, /this\.getLearningLevelProgress\(level\)/);
+    assert.match(indexSource, /levelProgressPercent\) levelProgressPercent\.textContent = levelPercent \+ '%'/);
 });

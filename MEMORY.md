@@ -1,3 +1,7 @@
+## CI de PR #717 — ajuste de pruebas E2E Piper — 23 nov 2026
+- El segundo CI (#45099002676) pasó regresión y todos los tests previos, pero falló en dos aserciones de `tests/browser-e2e.test.cjs` que todavía esperaban textos de atribución MMS. Las 31/33 pruebas E2E pasaron; ambas fallas eran expectativas antiguas frente al mensaje Piper correcto.
+- Se actualizaron las dos aserciones para comprobar la grabación Piper y la atribución vigente del curso. No cambia el comportamiento de producción. Repetir CI completo y mantener PR #717 sin fusionar hasta que todo esté verde y no haya revisiones/hilos pendientes.
+
 ## CI de PR #717 — corrección de regresión — 23 nov 2026
 - El primer CI detectó una única aserción obsoleta en `tests/regression.test.cjs`: aún exigía la atribución MMS eliminada, aunque los metadatos reales (`audio/metadata.json`) identifican `engine: piper` y atribuyen el modelo Piper. Se actualizó la prueba para leer y validar los metadatos reales además del mensaje visible. El fallo no indicaba un problema de reproducción; 84 de 85 subpruebas de regresión pasaron.
 - Reejecutar CI completo antes de fusionar PR #717. No ampliar el alcance de esta corrección.

@@ -1,3 +1,9 @@
+## 2026-11-23 — Corrección CI PR #765: contratos de currículo y caché
+
+- El CI run #45284257266 mostró `Offline quality reports` success y `test` failure (15 contratos): tres tests B1 tenían una expresión regular inválida para la ruta `units-07-09.js`; doce tests previos de A1/A2 seguían esperando la caché `v3.8.142` después de que el Service Worker avanzara a `v3.8.143`.
+- Se sustituyeron las tres expresiones regulares frágiles por comprobaciones literales de la ruta del bloque B1 U7–U9. Se alinearon las expectativas de caché heredadas en los contratos A2 U13–U30 y A1 U19–U24 a `v3.8.143`; se conservaron las aserciones funcionales.
+- Commits correctivos en `feat/pt-br-b1-u07-u09`: `fa559b0c`, `ed24544f`, `5d70e28a`, `01318368`, `f972b181`, `9c6fd4f3`, `d25e90b1`, `24d6030f`, `f537ada3`, `5e838462`, `30e47e18`. Repetir CI completo sobre el head resultante y no fusionar hasta que todos los checks requeridos terminen en success.
+
 ## 2026-11-23 — Portugués B1 U7–U9 en preparación
 
 - Tras fusionar PR #764 por squash en `main` (commit `aa8f32a97f4824e7dc5cd94f3a86720ee0116eb2`), la regresión post-merge #45282986354 completó `test` (101/101 pasos) y `Offline quality reports` (10/10), ambos success. GitHub Pages run #45282985616 completó build, deploy y report-build-status en success.

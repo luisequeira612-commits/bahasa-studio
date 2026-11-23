@@ -22,7 +22,7 @@ vocab(1,10,'aprendizado','aprendizaje','O aprendizado veio depois de várias ten
 ];
 const u2=[
 vocab(2,1,'argumento','argumento','O argumento precisa estar apoiado em informações confiáveis.','El argumento debe apoyarse en información confiable.'),
-vocab(2,2,'evidência','evidencia / prueba','A pesquisa apresenta evidências que sustentam a conclusão.','La investigación presenta pruebas que respaldan la conclusión.'),
+vocab(2,2,'indício','indicio / señal','O indício encontrado reforça a explicação apresentada.','El indicio encontrado refuerza la explicación presentada.'),
 vocab(2,3,'ressalva','salvedad','Concordo com a proposta, mas faço uma ressalva.','Estoy de acuerdo con la propuesta, pero hago una salvedad.'),
 vocab(2,4,'contradição','contradicción','Há uma contradição entre a promessa e o resultado.','Hay una contradicción entre la promesa y el resultado.'),
 vocab(2,5,'perspectiva','perspectiva','É importante considerar a perspectiva de quem será afetado.','Es importante considerar la perspectiva de quien se verá afectado.'),
@@ -33,7 +33,7 @@ vocab(2,9,'consenso','consenso','O grupo chegou a um consenso depois do debate.'
 vocab(2,10,'controvérsia','controversia','A decisão gerou controvérsia entre os especialistas.','La decisión generó controversia entre los especialistas.')
 ];
 const u3=[
-vocab(3,1,'hipótese','hipótesis','A hipótese será analisada antes de qualquer conclusão.','La hipótesis se analizará antes de cualquier conclusión.'),
+vocab(3,1,'conjectura','conjetura','A conjectura será analisada antes de qualquer conclusão.','La conjetura se analizará antes de cualquier conclusión.'),
 vocab(3,2,'suposição','suposición','Não devemos tratar uma suposição como se fosse um fato.','No debemos tratar una suposición como si fuera un hecho.'),
 vocab(3,3,'consequência','consecuencia','Toda escolha pode trazer uma consequência inesperada.','Toda elección puede traer una consecuencia inesperada.'),
 vocab(3,4,'condição','condición','A participação depende de uma condição específica.','La participación depende de una condición específica.'),
@@ -59,7 +59,7 @@ const unit2=makeUnit(2,'Argumentación y debate','Presenta una postura, apoya id
 ['Lección 5: Llegar a un consenso','Resume diferencias y busca un acuerdo razonado.','Consenso nombra un acuerdo compartido; controvérsia señala un desacuerdo que genera debate.',[8,9],['ptbr_a2_u20_v04']]
 ]);
 const unit3=makeUnit(3,'Hipótesis y consecuencias','Plantea escenarios posibles, establece condiciones y explica resultados probables.','Para hipóteses irreais ou pouco prováveis, usa se + imperfeito do subjuntivo e futuro do pretérito (se tivesse tempo, participaria). Caso, desde que e a menos que introduzem condições; caso contrário apresenta uma consequência alternativa.','Condición y subjuntivo','No confundas una condición real con una hipótesis: si a condição é incerta ou hipotética, a forma verbal pode exigir o subjuntivo.',u3,[
-['Lección 1: Hipótesis y suposiciones','Distingue una hipótesis de un hecho comprobado.','Hipótese plantea una explicación posible; suposição es una idea aceptada provisionalmente sin prueba suficiente.',[0,1],['ptbr_a2_u27_v03']],
+['Lección 1: Conjeturas y suposiciones','Distingue una conjetura de un hecho comprobado.','Conjectura plantea una explicación posible; suposição es una idea aceptada provisionalmente sin prueba suficiente.',[0,1],['ptbr_a2_u27_v03']],
 ['Lección 2: Consecuencias y condiciones','Explica qué puede ocurrir si se cumple una condición.','Consequência nombra el resultado; condição establece lo que debe cumplirse.',[2,3],['ptbr_a2_u30_v05']],
 ['Lección 3: Posibilidades e improbabilidad','Valora si un escenario puede suceder.','Possibilidade expresa que algo puede ocurrir; improvável indica que tiene pocas probabilidades. Es común usar subjuntivo después de é improvável que.',[4,5],['ptbr_a2_u24_v03']],
 ['Lección 4: Condiciones con desde que','Formula requisitos para que una acción sea posible.','Desde que equivale a siempre que y suele introducir una condición: desde que todos concordem.',[6,7],['ptbr_a2_u29_v09']],

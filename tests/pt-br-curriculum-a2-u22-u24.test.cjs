@@ -38,9 +38,9 @@ test('pt-BR A2 U22-U24 load offline with ten vocabulary entries, five lessons an
   }
  }
 });
-test('A2 manifest publishes U1-U24 as a partial level of thirty units',()=>{
+test('A2 manifest publishes U1-U27 as a partial level of thirty units',()=>{
  const {window}=createPilot(),manifest=window.GUARDI_CURRICULUM_MANIFESTS['pt-BR'].A2;
- assert.equal(manifest.totalUnits,30);assert.deepEqual(Array.from(manifest.publishedUnits),Array.from({length:24},(_,i)=>i+1));
+ assert.equal(manifest.totalUnits,30);assert.deepEqual(Array.from(manifest.publishedUnits),Array.from({length:27},(_,i)=>i+1));
  assert.ok(manifest.blocks.some(block=>block.id==='22-24'&&block.units.join(',')==='22,23,24'));
  assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
 });
@@ -66,7 +66,7 @@ test('U22-U24 introduce no exact normalized vocabulary duplicates against A1 and
  const previous=targets.slice(0,-30).map(normalize),added=targets.slice(-30).map(normalize);
  assert.equal(added.length,30);assert.equal(new Set(added).size,30);assert.deepEqual(added.filter(word=>previous.includes(word)),[]);
 });
-test('service worker precaches A2 U22-U24 with cache v3.8.138',()=>{
+test('service worker precaches A2 U22-U24 with cache v3.8.139',()=>{
  const source=fs.readFileSync(path.join(repo,'service-worker.js'),'utf8');
- assert.match(source,/units-22-24\.js/);assert.match(source,/curriculum\/a2\/index\.js/);assert.match(source,/bahasa-studio-v3\.8\.138/);
+ assert.match(source,/units-22-24\.js/);assert.match(source,/curriculum\/a2\/index\.js/);assert.match(source,/bahasa-studio-v3\.8\.139/);
 });

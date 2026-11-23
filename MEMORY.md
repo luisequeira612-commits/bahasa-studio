@@ -383,3 +383,13 @@ Fuente: logs del job `test` de Actions run #45255051684 y commits correctivos en
 - Pendiente completar manifiesto A2 U1–U24, caché offline `v3.8.138`, contratos Node/Playwright y CI. Mantener `pt-BR available:false`, sin cambios a IndexedDB v1/backup JSON v3, sin backend, dependencias ni audio/TTS.
 
 Fuente: GitHub `main` commit `45a31b0`, rama `feat/pt-br-a2-u22-u24`, bloque `units-22-24.js`; 23 nov 2026.
+
+
+## 2026-11-23 — PR #761 abierta: Portugués A2 U25–U27
+- Tras integrar PR #760 (`b8d86150df1da0934b2b828ced115e7a676b64fc`) y verificar la regresión post-merge #45259801554 en success, se creó la rama limpia `feat/pt-br-a2-u25-u27` desde `main`.
+- U25 condimentos y técnicas de cocina; U26 emociones matizadas y vínculos personales; U27 fenómenos naturales y gestión de riesgos. Se añaden 30 términos con `not_checked`, cinco lecciones y diez ejercicios MC por unidad, con ejemplos bilingües y referencias de repaso a A1/A2 previo.
+- Cotejo de diseño inicial: términos elegidos no repiten los lemas explícitos de A1/A2 inspeccionados; se incluye contrato automático de duplicados exactos normalizados contra A1 y A2.
+- PR [#761](https://github.com/luisequeira612-commits/bahasa-studio/pull/761) abierta desde `feat/pt-br-a2-u25-u27`, base `main` en `b8d86150df1da0934b2b828ced115e7a676b64fc`. El manifiesto publica U1–U27, caché offline `v3.8.139`, contratos Node y Playwright amplían la carga offline hasta U27. Mantener `pt-BR available:false`; no modificar IndexedDB v1 ni backup JSON v3, no añadir backend, dependencias ni audio/TTS.
+- Primer CI del head inicial, Actions #45261291545, encontró fallos de contratos heredados que aún esperaban el regex literal de caché `v3.8.138`, más dos defectos de la prueba/contenido nuevo: la lección de sequía agrupaba `abrigo` sin explicarlo y U25 usaba referencias A1 mientras el nuevo contrato exigía referencias A2. Se corrigieron las expectativas de caché en los contratos A1/A2, se reorganizó U27 para agrupar `tempestade` con `seca` y `deslizamento` con `desabamento`, y U25 ahora repasa IDs A2 previos. No se relajaron aserciones. Repetir CI en el head final antes de fusionar.
+
+Fuente: GitHub `main` commit `b8d86150`, rama `feat/pt-br-a2-u25-u27`, bloque `units-25-27.js`; 23 nov 2026.

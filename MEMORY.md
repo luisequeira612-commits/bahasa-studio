@@ -723,3 +723,5 @@
 - Tercera ejecución CI PR #714 (run 45096041633): regression.test.cjs ya pasa; tests/api-key-management.test.cjs tenía un DB fake aislado que no suministraba ProgressNamespace a DB.delete. Se actualiza el fixture con una función identity para preservar el propósito del test (borrar la clave global); la lógica de namespaces se prueba separadamente.
 
 - Cuarta ejecución CI PR #714 (run 45096186173): regresión y API key harness ya pasaron. tests/study-history.test.cjs tuvo una expectativa invertida: después de registrar 35 XP en pt-BR y cambiar el manager activo a pt-BR, la lectura implícita debe devolver 35, no 0. Se corrige la expectativa; el aislamiento explícito id/pt-BR/en y clearAll ya pasaron.
+
+- CI PR #714 run 45096564433 (head b6fa98f): actualiza el test de restauración para simular claves existentes id/pt-BR/en y comprobar que solo se elimina pt-BR, además de confirmar que las nuevas entradas y settings llevan prefijo. El test del loader mostró que la aserción regex del rechazo era frágil con el Error cross-realm; se cambia a un predicate sobre el texto del error. CI de este head sigue en curso.

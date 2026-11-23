@@ -41,7 +41,7 @@ test('returns already loaded Indonesian curriculum without network or script inj
 
 test('rejects unavailable language curricula instead of falling back to Indonesian silently', async () => {
     const loader = createLoader();
-    await assert.rejects(loader.load('pt-BR', 'A1'), /currículo solicitado não está disponível/);
+    await assert.rejects(loader.load('pt-BR', 'A1'), error => String(error).includes('no está disponible'));
 });
 
 

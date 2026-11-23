@@ -125,6 +125,22 @@ async function sha256Hex(bytes) {
     return Array.from(new Uint8Array(digest), (byte) => byte.toString(16).padStart(2, '0')).join('');
 }
 
+function audioClipIdFromRequest(request) {
+    const match = new URL(request.url).pathname.match(/\\/audio\\/[a-z]{2}(?:-[A-Z]{2})?\\/([a-f0-9]{12})\\.mp3$/i);
+    return match ? match[1].toLowerCase() : null;
+}
+
+async function hasValidAudioHash(response, expectedHash) {
+    if (!response || response.status !== 200 ||
+        typeof expectedHash !== 'string' || !/^[a-f0-9]{64}$/i.test(expectedHash)) return false;
+    try {
+        const bytes = await response.clone().arrayBuffer();
+        return bytes.byteLength > 0 && await sha256Hex(bytes) === expectedHash.toLowerCase();
+    } catch (_) {
+        return false;
+    }
+}
+
 async function migrateLegacyAudioCache() {
     let migrationComplete = true;
     let appCache;
@@ -321,7 +337,30 @@ self.addEventListener('fetch', (e) => {
 
     e.respondWith(
         caches.open(targetCacheName).then(async (cache) => {
+            let expectedHash = null;
+            if (audioRequest) {
+                const clipId = audioClipIdFromRequest(cacheRequest);
+                try {
+                    const appCache = await caches.open(CACHE_NAME);
+                    const hashes = await readAudioHashes(appCache, audioLanguage);
+                    expectedHash = clipId && hashes ? hashes[clipId] : null;
+                } catch (_) {
+                    // Playback may continue online, but audio without an inventory
+                    // fingerprint must never be trusted or persisted as offline-ready.
+                }
+            }
+
             let cached = await cache.match(cacheRequest);
+            if (cached && audioRequest) {
+                if (await hasValidAudioHash(cached, expectedHash)) {
+                    // A cache hit is trusted only when its bytes match the active inventory.
+                } else {
+                    if (expectedHash) {
+                        try { await cache.delete(cacheRequest); } catch (_) {}
+                    }
+                    cached = null;
+                }
+            }
 
             if (!cached && audioRequest) {
                 try {
@@ -330,7 +369,7 @@ self.addEventListener('fetch', (e) => {
                         if (!name.startsWith('bahasa-studio-') || name === CACHE_NAME) continue;
                         const legacy = await caches.open(name);
                         const candidate = await legacy.match(cacheRequest);
-                        if (candidate && candidate.status === 200) {
+                        if (candidate && await hasValidAudioHash(candidate, expectedHash)) {
                             cached = candidate;
                             break;
                         }
@@ -343,8 +382,28 @@ self.addEventListener('fetch', (e) => {
             const fetchFresh = audioRequest
                 ? fetchAudioOnce(cacheRequest)
                 : fetch(cacheRequest, { cache: 'no-cache' });
-            const network = fetchFresh.then((res) => {
-                if (res && res.status === 200) {
+            const network = fetchFresh.then(async (res) => {
+                if (audioRequest) {
+                    if (res && res.status === 200 && expectedHash) {
+                        const verified = await hasValidAudioHash(res, expectedHash);
+                        if (!verified) {
+                            finishCacheUpdate();
+                            return null;
+                        }
+                        try {
+                            Promise.resolve(cache.put(cacheRequest, res.clone()))
+                                .catch(() => {
+                                    // Cache failure must never break audio/network playback.
+                                })
+                                .finally(finishCacheUpdate);
+                        } catch (_) {
+                            finishCacheUpdate();
+                        }
+                    } else {
+                        // Missing inventory/hash: return online audio, but do not cache it.
+                        finishCacheUpdate();
+                    }
+                } else if (res && res.status === 200) {
                     try {
                         Promise.resolve(cache.put(cacheRequest, res.clone()))
                             .catch(() => {

@@ -240,3 +240,10 @@ Fuente: PR #722–#726, commits squash y ejecuciones CI enlazadas; 23 nov 2026.
 - El segundo CI (run [45209101045](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45209101045)) pasó `Offline quality reports`, pero el job `test` falló en tres pruebas relacionadas: el bloque U13–U15 usaba referencias a variables locales de otros archivos (`u3`, `u12`, `u10`) que no existen en su ámbito; la prueba unitaria aún esperaba solo U1–U12; y el E2E abría el nombre de caché anterior `v3.8.127` aunque el Service Worker actual usa `v3.8.128`.
 - Corrección: sustituir referencias cruzadas por IDs estables de vocabulario; actualizar la expectativa de carga a U1–U15; alinear el E2E con la versión actual de caché y comprobar también que U13–U15 están precargadas.
 - No se relajan las pruebas ni se altera el estado `available:false`. Sin cambios a IndexedDB v1, backup JSON v3, dependencias ni audio/TTS.
+
+
+## 2026-11-23 — PR #749: pt-BR A1 U19–U21 preparada sobre main
+- Tras integrar #748 (squash `0b5910ea1e40d57b189da59d0027c5d5e3926440`), la rama apilada original de #749 quedó con conflictos por incluir los mismos cambios de U16–U18 y `MEMORY.md`. Se prepara una rama limpia desde `main` que contiene solo el incremento U19–U21 y sus pruebas.
+- U19 meses, fechas y cumpleaños; U20 restaurante y pedidos; U21 tareas domésticas. Diez términos por unidad, cinco lecciones y diez ejercicios finales; vocabulario `not_checked`.
+- Manifiesto U1–U21 de 24; `pt-BR available:false`. Service Worker precarga `units-19-21.js` y usa cache key `bahasa-studio-v3.8.129`. Node y Playwright amplían contratos/carga offline a U1–U21.
+- Sin dependencias, audio/TTS, backend, cambios a IndexedDB v1 ni backup JSON v3. La PR nueva debe pasar CI completo antes de fusionar.

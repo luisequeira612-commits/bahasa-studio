@@ -425,7 +425,7 @@ test('compact language picker is accessible, catalog-driven and fits the 360px l
     assert.ok(header.width <= header.viewport, 'topbar must fit the viewport: ' + JSON.stringify(header));
     assert.ok(header.scrollWidth <= header.viewport, 'topbar must not overflow horizontally: ' + JSON.stringify(header));
     assert.ok(header.languageRight <= header.viewport, 'language chip must remain visible: ' + JSON.stringify(header));
-    assert.ok(header.languageWidth >= 44 && header.languageHeight >= 44, 'language chip must have a comfortable touch target');
+    assert.ok(header.languageWidth >= 48 && header.languageHeight >= 48, 'language chip must have a comfortable touch target');
 
     const route = await page.locator('.unit-path-section-banner').first().evaluate(el => ({
       top: el.getBoundingClientRect().top,

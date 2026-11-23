@@ -1,3 +1,15 @@
+## CI de PR #717 — ajuste de pruebas E2E Piper — 23 nov 2026
+- El segundo CI (#45099002676) pasó regresión y todos los tests previos, pero falló en dos aserciones de `tests/browser-e2e.test.cjs` que todavía esperaban textos de atribución MMS. Las 31/33 pruebas E2E pasaron; ambas fallas eran expectativas antiguas frente al mensaje Piper correcto.
+- Se actualizaron las dos aserciones para comprobar la grabación Piper y la atribución vigente del curso. No cambia el comportamiento de producción. Repetir CI completo y mantener PR #717 sin fusionar hasta que todo esté verde y no haya revisiones/hilos pendientes.
+
+## CI de PR #717 — corrección de regresión — 23 nov 2026
+- El primer CI detectó una única aserción obsoleta en `tests/regression.test.cjs`: aún exigía la atribución MMS eliminada, aunque los metadatos reales (`audio/metadata.json`) identifican `engine: piper` y atribuyen el modelo Piper. Se actualizó la prueba para leer y validar los metadatos reales además del mensaje visible. El fallo no indicaba un problema de reproducción; 84 de 85 subpruebas de regresión pasaron.
+- Reejecutar CI completo antes de fusionar PR #717. No ampliar el alcance de esta corrección.
+
+## Audio: atribución visible corregida — 23 nov 2026
+- `audio-engine.js` identifica correctamente las grabaciones incluidas como Piper, coherente con `audio/metadata.json`; las voces del dispositivo siguen siendo un respaldo opcional. La corrección actualiza también las aserciones de `tests/audio-engine.test.cjs`.
+- No se regeneran audios ni se modifican manifiestos, hashes, Service Worker, IndexedDB v1, backup JSON v3 o dependencias. La reproducción grabada, el gestor offline y el reconocimiento siguen siendo específicos de indonesio; la adaptación multiidioma de audio queda como siguiente fase coordinada, sin activar cursos.
+
 ## Recuperación del cargador curricular — 23 nov 2026
 - Se corrigió `CurriculumLoader.load()`: si un script falla o carga sin publicar el registro esperado, la promesa rechazada ya no queda cacheada permanentemente; una siguiente solicitud puede reintentar la carga. Se añadió regresión que reproduce la carga malformada y verifica el segundo intento correcto.
 - PR #715 documentó la integración de #714 y quedó fusionada en `main` (commit `db431bc39678afc1f826ba32bea755ee19cd1342`). Este cambio no activa idiomas ni cursos, no modifica IndexedDB v1, backup JSON v3, audio, UI ni dependencias.

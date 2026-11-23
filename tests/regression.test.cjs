@@ -18,6 +18,7 @@ const serviceWorker = fs.readFileSync(path.join(root, 'service-worker.js'), 'utf
 const manifest = JSON.parse(fs.readFileSync(path.join(root, 'manifest.json'), 'utf8'));
 const studyActivitySource = fs.readFileSync(path.join(root, 'study-activity.js'), 'utf8');
 const audioEngineSource = fs.readFileSync(path.join(root, 'audio-engine.js'), 'utf8');
+const audioMetadata = JSON.parse(fs.readFileSync(path.join(root, 'audio', 'metadata.json'), 'utf8'));
 const pronunciationEngineSource = fs.readFileSync(path.join(root, 'pronunciation-engine.js'), 'utf8');
 const html = htmlBase + '\n' + audioEngineSource + '\n' + pronunciationEngineSource;
 const studyActivitySandbox = { window: {} };
@@ -1521,7 +1522,9 @@ test('U24–U32 audit tracker vocabulary and examples stay synchronized with the
 test('bundled Indonesian recordings work without an installed device voice', () => {
   assert.match(html, /id="voiceTestStatus"/);
   assert.doesNotMatch(html, /grabaciones de voz Piper/);
-  assert.ok(audioEngineSource.includes('MMS-TTS de Vineel Pratap et al. / Meta AI (CC BY-NC 4.0'));
+  assert.equal(audioMetadata.engine, 'piper');
+  assert.match(audioMetadata.model_attribution, /Piper Indonesian news_tts voice/);
+  assert.ok(audioEngineSource.includes('grabaciones Piper del curso'));
   assert.ok(audioEngineSource.includes('playRecorded(text)'));
   assert.ok(audioEngineSource.includes("new Audio('./audio/id/' + id + '.mp3')"));
   assert.ok(audioEngineSource.includes("this.speak('terima kasih')"));

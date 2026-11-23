@@ -85,7 +85,7 @@ test('reproduce el MP3 incluido aunque el dispositivo no tenga voz indonesia', (
     assert.equal(setup.createdAudio[0].playCalls, 1);
     assert.equal(setup.createdAudio[0].playbackRate, 1);
     assert.equal(setup.spoken.length, 0);
-    assert.match(setup.statuses.audioVoiceStatus.textContent, /grabaciones MMS/i);
+    assert.match(setup.statuses.audioVoiceStatus.textContent, /grabaciones Piper/i);
 });
 
 test('si falta el MP3 y no hay voz indonesia, informa el problema sin usar otra lengua', () => {
@@ -136,5 +136,5 @@ test('el botón de prueba reproduce una frase incluida sin exigir voces del disp
     assert.equal(setup.createdAudio.length, 1);
     assert.equal(setup.createdAudio[0].src, './audio/id/' +
         crypto.createHash('sha1').update('terima kasih', 'utf8').digest('hex').slice(0, 12) + '.mp3');
-    assert.match(setup.statuses.voiceTestStatus.textContent, /grabación MMS incluida/i);
+    assert.match(setup.statuses.voiceTestStatus.textContent, /grabación Piper incluida/i);
 });

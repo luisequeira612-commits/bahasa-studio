@@ -42,7 +42,9 @@ Cualquier tarea sobre el repo: lecciones nuevas, correcciones de vocabulario, ca
 ## Reglas de escalabilidad
 - Todo debe seguir siendo estático, offline y gratis: cero backend, cero cuentas, cero costos.
 - No agregar nada que obligue a otra persona a crear cuentas o pagar.
-- No sobrediseñar: preparar la estructura solo cuando toque, y proponerla antes.
+- Decisión aprobada el 22 nov 2026: preparar la arquitectura para diez idiomas en este orden: pt-BR, en, it, fr, de, nl, ru, ja, ko, id. UI en español. Completar A1–B2 de cada idioma antes de iniciar el siguiente.
+- La refactorización incremental de robustez, gestor/cargador y aislamiento de progreso está autorizada. Preservar IndexedDB v1 y backup JSON v3 mediante compatibilidad y pruebas; no hacer migraciones destructivas.
+- No añadir nuevos idiomas al contenido ni activar niveles que no estén realmente implementados y probados.
 
 ## Ahorro de tokens
 - No explorar todo el repo; buscar por nombre o texto antes de abrir archivos completos.

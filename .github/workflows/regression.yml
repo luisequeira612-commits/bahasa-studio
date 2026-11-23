@@ -90,6 +90,8 @@ jobs:
         run: node --test tests/study-activity.test.cjs
       - name: Run local study history tests
         run: node --test tests/study-history.test.cjs
+      - name: Run strict backup validation tests
+        run: node --test tests/backup-validation.test.cjs
       - name: Run adaptive learning recommendation tests
         run: node --test tests/adaptive-learning.test.cjs
       - name: Run A2 curriculum structure tests

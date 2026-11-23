@@ -47,7 +47,7 @@ const numberVocab=numbers.map((target,index)=>v('ptbr_a1_u3_n'+String(index+1).p
 
 const lesson=(title,objective,grammar,vocabIds,reviewVocabIds,exercises)=>({title,objective,grammar,vocabIds,reviewVocabIds,exercises});
 const u1Lessons=[
-lesson('Lección 1: Saludos cotidianos','Reconoce saludos de mañana, tarde y noche.','Olá y oi son saludos generales; bom dia, boa tarde y boa noite dependen del momento.',u1.slice(3,8).map(x=>x.id),[],[
+lesson('Lección 1: Saludos cotidianos','Reconoce saludos de mañana, tarde y noche.','Olá y oi son saludos generales; bom dia, boa tarde y boa noite dependen del momento.',u1.slice(3,9).map(x=>x.id),[],[
 match('Empareja cada saludo con su significado.',[{left:'bom dia',right:'buenos días'},{left:'boa tarde',right:'buenas tardes'},{left:'boa noite',right:'buenas noches'}]),
 mc(u1[4].id,'¿Cuál es un saludo informal?', ['oi','tchau','obrigado'],0)
 ]),

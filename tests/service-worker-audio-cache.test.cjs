@@ -546,5 +546,7 @@ test('un hash malformado no elimina una copia actual ni bloquea la reproducción
     await lifetime;
     assert.equal(response.status, 200, 'online playback must continue when the inventory hash is malformed');
     assert.equal(await response.text(), 'online bytes');
-    assert.equal(await cached.match(request), null, 'unverified cached bytes must not be served');
+    const preserved = await cached.match(request);
+    assert.ok(preserved, 'unverified cached bytes must remain stored for later verification');
+    assert.equal(await preserved.text(), 'cached bytes');
 });

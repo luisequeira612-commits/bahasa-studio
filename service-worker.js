@@ -216,7 +216,12 @@ async function migrateLegacyAudioCache() {
                 }
                 const match = new URL(request.url).pathname.match(/\/audio\/[a-z]{2}(?:-[A-Z]{2})?\/([a-f0-9]{12})\.mp3$/i);
                 const expectedHash = match ? currentHashes[match[1].toLowerCase()] : null;
-                if (!expectedHash || await sha256Hex(bytes) !== expectedHash) continue;
+                if (!expectedHash) {
+                    // Preserve the legacy source when this clip has no verifiable fingerprint.
+                    migrationComplete = false;
+                    continue;
+                }
+                if (await sha256Hex(bytes) !== expectedHash) continue;
                 await audioCache.put(request, response.clone());
             } catch (_) {
                 // Keep every legacy cache if any eligible audio entry could not be copied.

@@ -1,3 +1,8 @@
+## Guardi — preservación ante hash individual ausente — 23 nov 2026
+- Revisión adicional posterior a PR #722 encontró otro caso equivalente: el inventario del idioma puede existir, pero faltar la huella de un clip concreto. La migración no debe borrar la caché legacy si ese clip no puede verificarse.
+- PR #723 (en preparación) marca la migración incompleta cuando falta el hash individual; no copia ese clip y conserva el origen. Añade regresión para inventario existente con hash ausente. Los clips con hash presente siguen requiriendo coincidencia SHA-256; una discrepancia no se migra.
+- Alcance: service-worker.js, pruebas de migración y esta memoria; sin cambios a IndexedDB v1, backup JSON v3, manifiestos productivos ni dependencias.
+
 ## Guardi — migración segura de caché legacy — 23 nov 2026
 - Auditoría posterior a PR #721 detectó que `migrateLegacyAudioCache()` podía copiar clips legacy sin verificar si faltaba el inventario SHA-256 del idioma y luego borrar la caché de origen.
 - PR correctiva #722 (en preparación): cuando falta el inventario, la migración deja los bytes sin copiar y conserva las cachés antiguas; la activación del Service Worker sigue completándose. Se agregan pruebas para inventarios disponibles y ausentes. No se cambia el runtime de reproducción, los manifiestos productivos, IndexedDB v1, backup JSON v3 ni dependencias.

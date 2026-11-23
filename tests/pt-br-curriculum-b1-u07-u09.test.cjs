@@ -59,7 +59,7 @@ test('B1 U7-U9 review references resolve to existing A2 vocabulary IDs',async()=
  const ids=new Set(a2.flatMap(unit=>unit.vocab.map(word=>word.id)));
  for(const unit of units)for(const lesson of unit.lessons)for(const id of lesson.reviewVocabIds)assert.ok(ids.has(id),id);
 });
-test('B1 U7-U9 add no exact normalized vocabulary duplicates against A1, A2 or B1 U1-U3',()=>{
+test('B1 U7-U9 add no exact normalized vocabulary duplicates against A1, A2 or B1 U1-U6',()=>{
  const prior=[];
  for(const file of a1Files){
   const source=fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a1',file),'utf8');

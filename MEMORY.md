@@ -715,3 +715,5 @@
 - PR #713 CI detectó una aserción de regresión desactualizada que esperaba el objeto normalizado v3 sin el nuevo campo language; el código pasó el parseo y el fallo no indica corrupción ni fallo de importación. Se actualiza la expectativa para incluir language y se espera una nueva ejecución completa.
 
 - Segunda ejecución CI de PR #713 encontró otra aserción de fuente antigua en la prueba legacy SRS, que buscaba el objeto v3 sin language. La nueva suite de backup y la primera expectativa ya pasaron; se actualiza esta última aserción y se repetirá CI.
+
+- CI inicial PR #714 (run 45095656863) detectó una única expectativa heredada en tests/regression.test.cjs que exigía srsStore.clear(); ahora la restauración debe conservar namespaces ajenos y eliminar solo los registros del idioma importado con cursor. El resto del job llegó a la suite de regresión sin fallos de sintaxis; se actualiza la expectativa para el contrato por idioma y se repetirá CI.

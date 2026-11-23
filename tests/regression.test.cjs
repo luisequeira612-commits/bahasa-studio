@@ -138,7 +138,9 @@ test('backup restoration validates version and replaces SRS data transactionally
   assert.match(html, /parsed\.version !== 3/);
   assert.match(html, /validateBackup\(JSON\.parse/);
   assert.match(html, /transaction\(\['srs', 'settings'\], 'readwrite'\)/);
-  assert.match(html, /srsStore\.clear\(\)/);
+  assert.match(html, /srsStore\.openCursor\(\)/);
+  assert.match(html, /this\.scopedKey\('srs', item\.key, language\)/);
+  assert.match(html, /ProgressNamespace\.filterRecords\(store, records, this\.activeLanguage\)/);
   assert.match(html, /putSetting\('studyActivity', data\.studyActivity/);
   assert.match(html, /tx\.oncomplete/);
 });

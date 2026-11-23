@@ -249,3 +249,10 @@ Fuente: PR #722–#726, commits squash y ejecuciones CI enlazadas; 23 nov 2026.
 - Sin dependencias, audio/TTS, backend, cambios a IndexedDB v1 ni backup JSON v3. La PR nueva debe pasar CI completo antes de fusionar.
 
 - CI inicial de #750 run `45225937982`: `Offline quality reports` success; `test` falló únicamente en Playwright porque el E2E aún cargaba U1–U18 aunque esperaba U1–U21. Corregido en commit `de38f8db5740b93f2a32ed00361a1da6f87fe507`: `CurriculumLoader.loadUnits` ahora solicita U1–U21. Revalidar el nuevo head con CI completo antes del merge.
+
+
+## 2026-11-23 — pt-BR A1 U22–U24 preparadas
+- Rama `feat/pt-br-a1-u22-u24`, apilada sobre el head corregido de #750 (`9a9399db6290f93bb69a9bfa7f4dd9c1fc83354a`).
+- U22 aula y materiales de estudio; U23 profesiones y trabajo; U24 teléfono y mensajes. Cada unidad incluye 10 entradas nuevas, 5 lecciones y 10 ejercicios finales; términos `not_checked`, tipos existentes `mc`.
+- Manifiesto propuesto U1–U24; `pt-BR available:false` se mantiene hasta cierre y validación. Service Worker actualiza cache a `bahasa-studio-v3.8.130` y precarga `units-22-24.js`; Playwright amplía carga offline a U1–U24.
+- Añadida prueba de contratos U22–U24. Pendiente PR/CI; no activar pt-BR ni modificar IndexedDB v1 o backup JSON v3.

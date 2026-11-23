@@ -4,8 +4,6 @@
     const CACHE_NAME = 'guardi-audio-v2';
     const AUDIO_LANGUAGES = new Set(['pt-BR', 'en', 'it', 'fr', 'de', 'nl', 'ru', 'ja', 'ko', 'id']);
     let activeLanguage = 'id';
-    const MANIFEST_URL = './audio/manifest.json';
-    const METADATA_URL = './audio/metadata.json';
     const LEVELS = ['A1', 'A2', 'B1'];
     const elements = {};
     let manifestEntries = [];
@@ -102,6 +100,9 @@
     }
 
     async function loadInventory() {
+        const manager = window.LanguageManager;
+        const requested = manager && typeof manager.getActiveLanguage === 'function' ? manager.getActiveLanguage() : 'id';
+        activeLanguage = AUDIO_LANGUAGES.has(requested) ? requested : 'id';
         const urls = inventoryUrlsForLanguage(activeLanguage);
         const [manifestResponse, metadataResponse] = await Promise.all([
             fetch(urls.manifest, { cache: 'no-cache' }),
@@ -513,6 +514,9 @@
     window.OfflineAudioManager = {
         selectEntries,
         idsFromCacheKeys,
+        audioUrl,
+        cacheNameForLanguage,
+        inventoryUrlsForLanguage,
         formatBytes
     };
 

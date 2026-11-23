@@ -27,10 +27,8 @@ v('ptbr_a1_u2_v05','brasileira','brasileña','Ela é brasileira.','Ella es brasi
 v('ptbr_a1_u2_v06','nicaraguense','nicaragüense','Eu sou nicaraguense.','Soy nicaragüense.'),
 v('ptbr_a1_u2_v07','mexicano','mexicano','Ele é mexicano.','Él es mexicano.'),
 v('ptbr_a1_u2_v08','mexicana','mexicana','Ela é mexicana.','Ella es mexicana.'),
-v('ptbr_a1_u2_v09','o','el (artículo)','O brasileiro fala português.','El brasileño habla portugués.'),
-v('ptbr_a1_u2_v10','a','la (artículo)','A brasileira fala português.','La brasileña habla portugués.'),
-v('ptbr_a1_u2_v11','os','los (artículo)','Os brasileiros moram aqui.','Los brasileños viven aquí.'),
-v('ptbr_a1_u2_v12','as','las (artículo)','As brasileiras moram aqui.','Las brasileñas viven aquí.')
+v('ptbr_a1_u2_v09','o / a / os / as','el / la / los / las','O brasileiro e a brasileira estão aqui.','El brasileño y la brasileña están aquí.'),
+v('ptbr_a1_u2_v10','bem','bien','Eu estou bem.','Estoy bien.')
 ];
 
 const u3=[
@@ -98,9 +96,9 @@ lesson('Lección 2: Nacionalidades','Nombra nacionalidades en masculino y femeni
 match('Relaciona las nacionalidades.',[{left:'brasileiro',right:'brasileño'},{left:'brasileira',right:'brasileña'},{left:'nicaraguense',right:'nicaragüense'}]),
 mc(u2[5].id,'¿Cómo se dice «nicaragüense»?',['nicaraguense','nicaraguensa','nicaraguenses'],0)
 ]),
-lesson('Lección 3: Artículos definidos','Reconoce o, a, os y as.','O y a son singulares; os y as son plurales. El artículo concuerda con el sustantivo.',u2.slice(8,12).map(x=>x.id),[],[
+lesson('Lección 3: Artículos definidos','Reconoce o, a, os y as.','O y a son singulares; os y as son plurales. El artículo concuerda con el sustantivo.',u2.slice(8,10).map(x=>x.id),[],[
 match('Empareja los artículos.',[{left:'o',right:'el'},{left:'a',right:'la'},{left:'os',right:'los'},{left:'as',right:'las'}]),
-mc(u2[10].id,'¿Qué artículo significa «los»?',['a','os','as'],1)
+mc(u2[8].id,'¿Qué artículo significa «los»?',['a','os','as'],1)
 ]),
 lesson('Lección 4: Ser o estar','Distingue nacionalidad de estado o ubicación.','Ser identifica nacionalidad: ela é brasileira. Estar expresa estado o ubicación: ela está aqui.',u2.map(x=>x.id),[],[
 mc(u2[4].id,'Completa: Ela ___ brasileira.',['está','é','sou'],1),
@@ -124,7 +122,7 @@ mc(u2[3].id,'¿Qué significa brasileiro?',['brasileño','brasileña','mexicano'
 mc(u2[5].id,'¿Qué significa nicaraguense?',['mexicano','nicaragüense','brasileña'],1),
 mc(u2[4].id,'Completa: Ela é ___.',['brasileiro','brasileira','brasileiros'],1),
 mc(u2[8].id,'¿Qué artículo significa «el»?',['o','a','as'],0),
-mc(u2[11].id,'¿Qué artículo significa «las»?',['os','a','as'],2),
+mc(u2[8].id,'¿Qué artículo significa «las»?',['os','a','as'],2),
 mc(u2[3].id,'Completa: ___ brasileiro fala português.',['A','O','As'],1),
 mc(u2[4].id,'Completa: ___ brasileira fala português.',['O','Os','A'],2),
 order(u2[1].id,'Ordena: «Yo estoy aquí».',['aqui','estou','Eu'],['Eu','estou','aqui'])

@@ -12,7 +12,7 @@
         ru: Object.freeze({ code: 'ru', locale: 'ru-RU', name: 'Ruso', flag: '🇷🇺', piperVoice: 'ru_RU-ruslan-medium', voiceStatus: 'candidate', audioPath: './audio/ru/', curriculum: Object.freeze({}), available: false }),
         ja: Object.freeze({ code: 'ja', locale: 'ja-JP', name: 'Japonés', flag: '🇯🇵', piperVoice: 'ja_JP', voiceStatus: 'unverified', audioPath: './audio/ja/', curriculum: Object.freeze({}), available: false }),
         ko: Object.freeze({ code: 'ko', locale: 'ko-KR', name: 'Coreano', flag: '🇰🇷', piperVoice: 'ko_KR-kss-medium', voiceStatus: 'unverified', audioPath: './audio/ko/', curriculum: Object.freeze({}), available: false }),
-        id: Object.freeze({ code: 'id', locale: 'id-ID', name: 'Indonesio', flag: '🇮🇩', piperVoice: 'id_ID-news_tts-medium', voiceStatus: 'configured', audioPath: './audio/id/', curriculum: Object.freeze({ A1: './curriculum-a1.js', A2: './curriculum-a2.js' }), available: true })
+        id: Object.freeze({ code: 'id', locale: 'id-ID', name: 'Indonesio', flag: '🇮🇩', piperVoice: 'id_ID-news_tts-medium', voiceStatus: 'configured', audioPath: './audio/id/', curriculum: Object.freeze({ A1: './curriculum-a1.js', A2: './curriculum-a2.js' }), testPhrase: 'terima kasih', available: true })
     });
     const supported = code => typeof code === 'string' && Object.prototype.hasOwnProperty.call(LANGUAGES, code);
     let activeLanguage = 'id';

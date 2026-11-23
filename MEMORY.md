@@ -1,3 +1,10 @@
+## 2026-11-23 — PR #744 fusionada y pt-BR A1 U7–U9 en preparación
+- PR #744 (`feat/pt-br-a1-u4-u6`) quedó fusionada mediante squash en `main`: `89f0c50bb121d012eb2cbe271fbc28d8345c4e27`. El head `1c0ecd21c161588540b01f7ec81e75b964f5b450` pasó el CI completo #45195101334: jobs `test` y `Offline quality reports` en `success`, incluidos E2E real, evaluación y auditorías de calidad.
+- El siguiente tramo del piloto añade U7–U9 en la rama `feat/pt-br-a1-u7-u9`: U7 rutina diaria y momentos del día; U8 lugares, direcciones y transporte; U9 clima, estados personales y razones. Cada unidad mantiene cinco lecciones, diez términos nuevos, diez ejercicios finales y `verification.status: not_checked`.
+- Se mantiene `pt-BR` con `available:false`; el manifiesto A1 sigue declarando 24 unidades, ahora con U1–U9 publicadas para pruebas. No se publica audio/TTS nuevo y solo se usan los handlers existentes `mc` y `order`.
+- Se preservan IndexedDB v1, backup JSON v3, dependencias y el alcance offline. La ausencia de hablante nativo/KBBI no bloquea el progreso; `not_checked` no equivale a validación lingüística.
+- Tests Node y Playwright se amplían a U1–U9 y mantienen la comprobación de aislamiento de progreso/historial y precarga offline. El siguiente paso es ejecutar CI completo y fusionar solo si todo queda verde.
+
 ## 2026-11-23 — pt-BR A1 U4–U6 en preparación
 - Se amplía el piloto curricular a A1 U1–U6 sin habilitar Portugués. U4 trabaja familia y posesivos; U5 comida, bebida, gustos y negación; U6 casa, ubicación y distancia.
 - U4–U6 mantienen cinco lecciones explícitas y diez registros léxicos por unidad. Todos los términos nuevos permanecen `not_checked`; no se presenta certificación nativa ni se bloquea el avance por ausencia de hablante nativo.

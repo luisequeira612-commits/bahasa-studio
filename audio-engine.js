@@ -88,10 +88,10 @@ window.AudioEngine = {
         const indonesianVoices = this.voices.filter(voice => String(voice.lang || '').toLowerCase().startsWith('id'));
         if (indonesianVoices.length) {
             const active = this.selectedVoice || this.idVoice;
-            status.textContent = 'La app incluye grabaciones MMS-TTS de Vineel Pratap et al. / Meta AI (CC BY-NC 4.0; uso no comercial; creativecommons.org/licenses/by-nc/4.0/): no necesitas instalar una voz indonesia. Voz del dispositivo disponible como respaldo: ' +
+            status.textContent = 'La app incluye grabaciones Piper del curso; no necesitas instalar una voz indonesia. Voz del dispositivo disponible como respaldo: ' +
                 (active ? active.name : 'selección automática') + '.';
         } else {
-            status.textContent = 'La app incluye grabaciones MMS-TTS de Vineel Pratap et al. / Meta AI (CC BY-NC 4.0; uso no comercial; creativecommons.org/licenses/by-nc/4.0/) y puede reproducirlo sin voces instaladas. Una voz indonesia del dispositivo solo es necesaria como respaldo si falta una grabación.';
+            status.textContent = 'La app incluye grabaciones Piper del curso y puede reproducirlas sin voces instaladas. Una voz indonesia del dispositivo solo es necesaria como respaldo si falta una grabación.';
         }
     },
     refreshVoices() {
@@ -203,7 +203,7 @@ window.AudioEngine = {
     testVoice() {
         this.refreshVoices();
         const status = document.getElementById('voiceTestStatus');
-        if (status) status.textContent = 'Probando una grabación MMS incluida. No necesitas instalar una voz indonesia.';
+        if (status) status.textContent = 'Probando una grabación Piper incluida. No necesitas instalar una voz indonesia.';
         return this.speak('terima kasih');
     }
 };

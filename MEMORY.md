@@ -221,3 +221,8 @@ Fuente: PR #722–#726, commits squash y ejecuciones CI enlazadas; 23 nov 2026.
 ## 2026-11-23 — PR #747: pt-BR A1 U13–U15 en preparación
 - Rama basada en main posterior a #746. U13 lectura y aficiones creativas; U14 deportes y movimiento; U15 cine, salidas e invitaciones.
 - Cada unidad aporta diez términos `not_checked`, cinco lecciones y diez ejercicios finales; solo renderizadores existentes `mc` y `order`. Se amplía la carga U1–U15 y precache offline. `pt-BR` continúa `available:false`; no audio/TTS nuevo ni dependencias; sin cambios a IndexedDB v1 o backup JSON v3. CI pendiente.
+
+
+## 2026-11-23 — PR #747: corrección de sintaxis pendiente
+- El primer CI del head a0efcf38744cb552b624eae1b346790391670514 falló: `units-13-18.js` no incluía el wrapper IIFE ni los helpers locales (`v`, `mc`, `order`, `write`, `lesson`). Esto provocó SyntaxError y fallos derivados en E2E/carga de U13–U15.
+- `Offline quality reports` terminó success; el fallo no se atribuye a los avisos editoriales generales. La PR no se fusiona hasta corregir sintaxis y lograr CI completo verde.

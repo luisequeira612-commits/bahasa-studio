@@ -53,7 +53,7 @@ const unit1=makeUnit(1,'Relatos y experiencias significativas','Narra experienci
 ]);
 const unit2=makeUnit(2,'Argumentación y debate','Presenta una postura, apoya ideas con evidencias y responde a objeciones con matices.','Organiza argumentos con porque y portanto; contrapone ideas con no entanto y por outro lado. Embora y apesar de introducen concesiones; conviene distinguir opinión, evidencia y conclusión.','Conectores de argumentación','No uses portanto como sinónimo de porém: portanto introduce una consecuencia; porém y no entanto expresan contraste.',u2,[
 ['Lección 1: Construir un argumento','Explica una idea y la información que la respalda.','Argumento presenta una razón; indício aporta una señal o dato que la sostiene.',[0,1],['ptbr_a2_u27_v01']],
-['Lección 2: Añadir matices','Expresa acuerdo parcial y presenta una salvedad.','Ressalva limita o matiza una afirmación. No entanto introduce una idea que contrasta con la anterior.',[2,3],['ptbr_a2_u27_v02']],
+['Lección 2: Añadir matices','Expresa acuerdo parcial y presenta una salvedad.','Ressalva limita o matiza una afirmación; contradição señala una incompatibilidad entre ideas. No entanto introduce contraste.',[2,3],['ptbr_a2_u27_v02']],
 ['Lección 3: Comparar perspectivas','Considera distintos puntos de vista antes de decidir.','Perspectiva expresa un punto de vista; posicionamento indica la postura adoptada.',[4,5],['ptbr_a2_u20_v05']],
 ['Lección 4: Defender y cuestionar ideas','Defiende una postura y responde a una objeción.','Convicção expresa seguridad en una idea; contestação presenta una objeción o impugnación.',[6,7],['ptbr_a2_u21_v07']],
 ['Lección 5: Llegar a un consenso','Resume diferencias y busca un acuerdo razonado.','Consenso nombra un acuerdo compartido; controvérsia señala un desacuerdo que genera debate.',[8,9],['ptbr_a2_u20_v04']]
@@ -62,7 +62,7 @@ const unit3=makeUnit(3,'Hipótesis y consecuencias','Plantea escenarios posibles
 ['Lección 1: Conjeturas y suposiciones','Distingue una conjetura de un hecho comprobado.','Conjectura plantea una explicación posible; suposição es una idea aceptada provisionalmente sin prueba suficiente.',[0,1],['ptbr_a2_u27_v03']],
 ['Lección 2: Consecuencias y condiciones','Explica qué puede ocurrir si se cumple una condición.','Consequência nombra el resultado; condição establece lo que debe cumplirse.',[2,3],['ptbr_a2_u30_v05']],
 ['Lección 3: Posibilidades e improbabilidad','Valora si un escenario puede suceder.','Possibilidade expresa que algo puede ocurrir; improvável indica que tiene pocas probabilidades. Es común usar subjuntivo después de é improvável que.',[4,5],['ptbr_a2_u24_v03']],
-['Lección 4: Condiciones con desde que','Formula requisitos para que una acción sea posible.','Desde que equivale a siempre que y suele introducir una condición: desde que todos concordem.',[6,7],['ptbr_a2_u29_v09']],
+['Lección 4: Condiciones con desde que','Formula requisitos para que una acción sea posible.','Desde que equivale a siempre que y suele introducir una condición: desde que todos concordem. Caso contrário presenta la consecuencia si la condición no se cumple.',[6,7],['ptbr_a2_u29_v09']],
 ['Lección 5: Excepciones y planes alternativos','Presenta una excepción y explica qué ocurriría en otro caso.','A menos que introduce una excepción; caso contrário presenta la consecuencia alternativa y eventualidade nombra un imprevisto.',[8,9],['ptbr_a2_u30_v08']]
 ]);
 root.GUARDI_CURRICULUM_BLOCKS=root.GUARDI_CURRICULUM_BLOCKS||{};

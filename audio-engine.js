@@ -216,9 +216,15 @@ window.AudioEngine = {
         return this.speakWithDeviceVoice(value);
     },
     testVoice() {
-        this.refreshVoices();
+        const language = this.getLanguageConfig();
+        const phrase = String(language.testPhrase || '').trim();
         const status = document.getElementById('voiceTestStatus');
+        if (!phrase) {
+            if (status) status.textContent = 'Todavía no hay una frase de prueba configurada para este idioma.';
+            return false;
+        }
+        this.refreshVoices();
         if (status) status.textContent = 'Probando una grabación Piper incluida. No necesitas instalar una voz.';
-        return this.speak('terima kasih');
+        return this.speak(phrase);
     }
 };

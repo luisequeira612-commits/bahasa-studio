@@ -32,3 +32,14 @@ v('ptbr_a1_u2_v10','a','la (artículo)','A brasileira fala português.','La bras
 v('ptbr_a1_u2_v11','os','los (artículo)','Os brasileiros moram aqui.','Los brasileños viven aquí.'),
 v('ptbr_a1_u2_v12','as','las (artículo)','As brasileiras moram aqui.','Las brasileñas viven aquí.')
 ];
+
+const u3=[
+v('ptbr_a1_u3_v01','falar','hablar','Eu falo português.','Yo hablo portugués.'),
+v('ptbr_a1_u3_v02','estudar','estudiar','Você estuda português.','Tú estudias portugués.'),
+v('ptbr_a1_u3_v03','trabalhar','trabajar','Ela trabalha aqui.','Ella trabaja aquí.'),
+v('ptbr_a1_u3_v04','morar','vivir / residir','Eu moro aqui.','Yo vivo aquí.'),
+v('ptbr_a1_u3_v05','gostar','gustar','Eu gosto de música.','Me gusta la música.'),
+v('ptbr_a1_u3_v06','embaraçada','avergonzada / incómoda','Estou embaraçada.','Estoy avergonzada.'),
+v('ptbr_a1_u3_v07','embaraçado','avergonzado / incómodo','Ele está embaraçado.','Él está avergonzado.'),
+v('ptbr_a1_u3_v08','grávida','embarazada','Ela está grávida.','Ella está embarazada.')
+];

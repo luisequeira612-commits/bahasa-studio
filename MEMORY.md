@@ -383,3 +383,12 @@ Fuente: logs del job `test` de Actions run #45255051684 y commits correctivos en
 - Pendiente completar manifiesto A2 U1–U24, caché offline `v3.8.138`, contratos Node/Playwright y CI. Mantener `pt-BR available:false`, sin cambios a IndexedDB v1/backup JSON v3, sin backend, dependencias ni audio/TTS.
 
 Fuente: GitHub `main` commit `45a31b0`, rama `feat/pt-br-a2-u22-u24`, bloque `units-22-24.js`; 23 nov 2026.
+
+
+## 2026-11-23 — Portugués A2 U25–U27 en preparación
+- Tras integrar PR #760 (`b8d86150df1da0934b2b828ced115e7a676b64fc`) y verificar la regresión post-merge #45259801554 en success, se creó la rama limpia `feat/pt-br-a2-u25-u27` desde `main`.
+- U25 condimentos y técnicas de cocina; U26 emociones matizadas y vínculos personales; U27 fenómenos naturales y gestión de riesgos. Se añaden 30 términos con `not_checked`, cinco lecciones y diez ejercicios MC por unidad, con ejemplos bilingües y referencias de repaso a A1/A2 previo.
+- Cotejo de diseño inicial: términos elegidos no repiten los lemas explícitos de A1/A2 inspeccionados; se incluye contrato automático de duplicados exactos normalizados contra A1 y A2.
+- Pendiente integrar bloque en manifiesto A2 U1–U27, caché offline `v3.8.139`, contratos Node/Playwright y CI. Mantener `pt-BR available:false`; no modificar IndexedDB v1 ni backup JSON v3, no añadir backend, dependencias ni audio/TTS.
+
+Fuente: GitHub `main` commit `b8d86150`, rama `feat/pt-br-a2-u25-u27`, bloque `units-25-27.js`; 23 nov 2026.

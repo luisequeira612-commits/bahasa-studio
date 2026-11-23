@@ -88,3 +88,45 @@ order(u1[0].id,'Ordena: «Yo soy Ana».',['Ana','sou','Eu'],['Eu','sou','Ana']),
 write(u1[1].id,'Escribe una frase de presentación con você.','Você é Luis.')
 ]
 };
+
+const u2Lessons=[
+lesson('Lección 1: Estados con estar','Expresa cómo te encuentras y dónde estás.','Estar se conjuga: eu estou; você está. Se usa aquí para estados y ubicación.',u2.slice(0,3).map(x=>x.id),[],[
+match('Empareja las formas de estar.',[{left:'eu estou',right:'yo estoy'},{left:'você está',right:'tú estás' }]),
+mc(u2[1].id,'Completa: Eu ___ bem.',['estou','está','sou'],0)
+]),
+lesson('Lección 2: Nacionalidades','Nombra nacionalidades en masculino y femenino.','Las terminaciones de nacionalidades suelen concordar con la persona: brasileiro / brasileira; nicaraguense mantiene la misma forma.',u2.slice(3,8).map(x=>x.id),[],[
+match('Relaciona las nacionalidades.',[{left:'brasileiro',right:'brasileño'},{left:'brasileira',right:'brasileña'},{left:'nicaraguense',right:'nicaragüense'}]),
+mc(u2[5].id,'¿Cómo se dice «nicaragüense»?',['nicaraguense','nicaraguensa','nicaraguenses'],0)
+]),
+lesson('Lección 3: Artículos definidos','Reconoce o, a, os y as.','O y a son singulares; os y as son plurales. El artículo concuerda con el sustantivo.',u2.slice(8,12).map(x=>x.id),[],[
+match('Empareja los artículos.',[{left:'o',right:'el'},{left:'a',right:'la'},{left:'os',right:'los'},{left:'as',right:'las'}]),
+mc(u2[10].id,'¿Qué artículo significa «los»?',['a','os','as'],1)
+]),
+lesson('Lección 4: Ser o estar','Distingue nacionalidad de estado o ubicación.','Ser identifica nacionalidad: ela é brasileira. Estar expresa estado o ubicación: ela está aqui.',u2.map(x=>x.id),[],[
+mc(u2[4].id,'Completa: Ela ___ brasileira.',['está','é','sou'],1),
+mc(u2[2].id,'Completa: Você ___ aqui.',['está','é','são'],0)
+]),
+lesson('Lección 5: Repaso contextual','Combina estar, nacionalidades y artículos.','Lee las frases completas y recupera el vocabulario de saludos de U1.',u2.map(x=>x.id),[u1[0].id,u1[1].id],[
+mc(u2[3].id,'Lee: «O brasileiro está aqui». ¿Qué significa?',['El brasileño está aquí','La brasileña está aquí','Los brasileños están aquí'],0),
+mc(u1[0].id,'¿Qué significa eu?',['yo','tú','ella'],0)
+])
+];
+const unit2={
+unitNumber:2,id:'ptbr_a1_u2',title:'Unidad 2: Estar, nacionalidades y artículos',
+desc:'Expresa estados y ubicación, nombra nacionalidades y usa artículos definidos.',
+grammar:'Estar: eu estou, você está. Ser expresa identidad o nacionalidad; estar expresa estado o ubicación. O/a/os/as concuerdan con el sustantivo.',
+trap:{title:'Ser no es estar',detail:'Para nacionalidad se usa ser (ela é brasileira); para ubicación o estado se usa estar (ela está aqui).'},
+vocab:u2,lessons:u2Lessons,
+exercises:[
+mc(u2[1].id,'Completa: Eu ___ bem.',['estou','está','é'],0),
+mc(u2[2].id,'Completa: Você ___ aqui.',['sou','está','são'],1),
+mc(u2[3].id,'¿Qué significa brasileiro?',['brasileño','brasileña','mexicano'],0),
+mc(u2[5].id,'¿Qué significa nicaraguense?',['mexicano','nicaragüense','brasileña'],1),
+mc(u2[4].id,'Completa: Ela é ___.',['brasileiro','brasileira','brasileiros'],1),
+mc(u2[8].id,'¿Qué artículo significa «el»?',['o','a','as'],0),
+mc(u2[11].id,'¿Qué artículo significa «las»?',['os','a','as'],2),
+mc(u2[3].id,'Completa: ___ brasileiro fala português.',['A','O','As'],1),
+mc(u2[4].id,'Completa: ___ brasileira fala português.',['O','Os','A'],2),
+order(u2[1].id,'Ordena: «Yo estoy aquí».',['aqui','estou','Eu'],['Eu','estou','aqui'])
+]
+};

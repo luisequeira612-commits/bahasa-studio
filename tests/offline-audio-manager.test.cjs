@@ -18,6 +18,38 @@ const sandbox = {
 vm.runInNewContext(source, sandbox);
 const manager = sandbox.window.OfflineAudioManager;
 
+test('validates manifest IDs, levels, text and SHA-256 hashes before accepting an inventory', () => {
+    const manifest = [
+        { id: 'AAAAAAAAAAAA', text: 'Saya', levels: ['A1'] },
+        { id: 'bbbbbbbbbbbb', text: 'Saya makan.', levels: ['B2', 'A2'] }
+    ];
+    const metadata = { audio_hashes: {
+        aaaaaaaaaaaa: 'A'.repeat(64),
+        bbbbbbbbbbbb: 'b'.repeat(64)
+    } };
+    const validated = manager.validateInventory(manifest, metadata);
+    assert.deepEqual(Array.from(validated.entries, item => item.id), ['aaaaaaaaaaaa', 'bbbbbbbbbbbb']);
+    assert.equal(validated.hashes.aaaaaaaaaaaa, 'a'.repeat(64));
+    assert.equal(validated.entries.length, 2);
+});
+
+test('rejects malformed, duplicate or unverified inventory records', () => {
+    const validEntry = { id: 'aaaaaaaaaaaa', text: 'Saya', levels: ['A1'] };
+    const validHashes = { audio_hashes: { aaaaaaaaaaaa: 'a'.repeat(64) } };
+    const cases = [
+        { manifest: [validEntry, { ...validEntry }], metadata: validHashes, message: /duplicados/ },
+        { manifest: [{ ...validEntry, id: 'bad-id' }], metadata: validHashes, message: /ID de audio no válido/ },
+        { manifest: [{ ...validEntry, text: '  ' }], metadata: validHashes, message: /sin texto/ },
+        { manifest: [{ ...validEntry, levels: ['C1'] }], metadata: validHashes, message: /niveles vacíos/ },
+        { manifest: [validEntry], metadata: { audio_hashes: { aaaaaaaaaaaa: 'not-a-sha256' } }, message: /huella SHA-256 malformada/ },
+        { manifest: [validEntry], metadata: { audio_hashes: {} }, message: /Falta una huella/ },
+        { manifest: [], metadata: validHashes, message: /manifiesto de audio está vacío/ }
+    ];
+    for (const item of cases) {
+        assert.throws(() => manager.validateInventory(item.manifest, item.metadata), item.message);
+    }
+});
+
 test('selects only valid unique audio entries for a requested level', () => {
     const entries = [
         { id: 'aaaaaaaaaaaa', levels: ['A1'] },

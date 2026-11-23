@@ -47,7 +47,7 @@ test('A2 manifest publishes U1-U24 as a partial level of thirty units',()=>{
  assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
 });
 test('A2 U16-U18 review references resolve only to previously published A2 vocabulary',async()=>{
- const {loader}=createPilot(),{units}=await loader.loadUnits('pt-BR','A2',Array.from({length:21},(_,i)=>i+1));
+ const {loader}=createPilot(),{units}=await loader.loadUnits('pt-BR','A2',Array.from({length:24},(_,i)=>i+1));
  for(let index=15;index<18;index++){const earlier=new Set(units.slice(0,index).flatMap(u=>u.vocab.map(w=>w.id)));for(const lesson of units[index].lessons)for(const id of lesson.reviewVocabIds)assert.ok(earlier.has(id),id);}
 });
 test('service worker precaches A2 U16-U18 using cache v3.8.136',()=>{

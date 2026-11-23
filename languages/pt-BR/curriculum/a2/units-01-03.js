@@ -4,7 +4,7 @@ const vocab=(unit,index,target,esp,ex,exEsp)=>({id:'ptbr_a2_u'+unit+'_v'+String(
 const lesson=(title,objective,grammar,vocabIds,reviewVocabIds,exercises)=>({title,objective,grammar,vocabIds,reviewVocabIds,exercises});
 const makeExercise=(words,index)=>{
  const correct=words[index], candidates=[correct.esp,words[(index+3)%10].esp,words[(index+6)%10].esp];
- const answer=index%3, options=candidates.slice(answer).concat(candidates.slice(0,answer));
+ const answer=index%3, options=candidates.slice(3-answer).concat(candidates.slice(0,3-answer));
  return {vocabId:correct.id,type:'mc',prompt:'¿Qué significa «'+correct.target+'»?',options,answer,explanation:'Relaciona la expresión con su significado en español.'};
 };
 const makeUnit=(number,title,desc,grammar,trapTitle,trapDetail,words,lessonSpecs)=>{

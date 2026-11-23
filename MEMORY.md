@@ -1,3 +1,5 @@
+- Revisión léxica ampliada de U16–U18 contra 240 registros A1 y 150 A2 previos detectó otra colisión exacta: `consulta` ya existía en A1. Se sustituyó por `triagem` (triaje) en U18 y se ajustaron ejemplo y lección. La nueva revisión no debe describir el bloque como libre de duplicados hasta repetir el cotejo completo tras este cambio.
+
 ## 2026-11-23 — PR #757 fusionada; A2 U16–U18 en preparación
 - PR [#757](https://github.com/luisequeira612-commits/bahasa-studio/pull/757) quedó fusionada por squash en `main`, commit `06ef4b2090a8d6fa57ece76ccc08ea9455aac68a`. CI del head final `1f3ce77dcc5a0cba45b4ae4307082b992e68fa22`, run [#45244335592](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45244335592): `test` y `Offline quality reports` ambos success.
 - Estado curricular tras #757: Portugués A1 24/24; A2 15/30; B1 0/36; B2 0/40. `pt-BR available:false` permanece.

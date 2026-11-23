@@ -366,3 +366,11 @@ Fuente: logs de GitHub Actions run #45249391579 y commits de `feat/pt-br-a2-u16-
 - Estado después de #758: A1 24/24, A2 21/30 en esta rama (18/30 integradas en `main` hasta que se fusione este bloque), B1 0/36, B2 0/40. Coherencia y controles internos no son certificación lingüística nativa.
 
 Fuente: GitHub `main` commit #758, rama `feat/pt-br-a2-u19-u21`, archivos curriculares y contratos Node/Playwright; 23 nov 2026.
+
+
+## 2026-11-23 — corrección de CI PR #759: harness de repaso A2
+- Primer run de PR [#759](https://github.com/luisequeira612-commits/bahasa-studio/pull/759), Actions [#45255051684](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45255051684): `Offline quality reports` success; `Run local quality tests` falló únicamente en cuatro contratos de repaso A2 U7–U9, U10–U12, U13–U15 y U16–U18.
+- La causa fue que esos cuatro harness cargan el currículo completo hasta U21 para verificar referencias retrospectivas, pero sus mapas de fuentes simuladas terminaban en U16–U18. Se añadieron `units-19-21.js` a cada mapa; no se alteraron ni relajaron aserciones ni contenido curricular.
+- Repetir CI sobre el nuevo head. No fusionar hasta que `test` y `Offline quality reports` estén ambos en success.
+
+Fuente: logs del job `test` de Actions run #45255051684 y commits correctivos en `feat/pt-br-a2-u19-u21`; 23 nov 2026.

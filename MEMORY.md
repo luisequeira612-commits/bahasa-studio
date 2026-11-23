@@ -374,3 +374,12 @@ Fuente: GitHub `main` commit #758, rama `feat/pt-br-a2-u19-u21`, archivos curric
 - Repetir CI sobre el nuevo head. No fusionar hasta que `test` y `Offline quality reports` estén ambos en success.
 
 Fuente: logs del job `test` de Actions run #45255051684 y commits correctivos en `feat/pt-br-a2-u19-u21`; 23 nov 2026.
+
+
+## 2026-11-23 — Portugués A2 U22–U24 en preparación
+- Rama `feat/pt-br-a2-u22-u24` creada desde `main` tras integrar PR #759 (`45a31b013c69acdf3fd6f2da2bd76d6972cbc32c`).
+- U22 ciudadanía y participación comunitaria; U23 agricultura y producción de alimentos; U24 ciencia e investigación. El bloque añade 30 términos con `not_checked`, cinco lecciones y diez ejercicios MC por unidad, y referencias de repaso a vocabulario A2 previo.
+- Cotejo inicial de términos nuevos contra las 210 entradas explícitas A2 ya integradas: no se observan coincidencias exactas normalizadas en las 30 entradas añadidas. La prueba automatizada también coteja A1 y A2 completo.
+- Pendiente completar manifiesto A2 U1–U24, caché offline `v3.8.138`, contratos Node/Playwright y CI. Mantener `pt-BR available:false`, sin cambios a IndexedDB v1/backup JSON v3, sin backend, dependencias ni audio/TTS.
+
+Fuente: GitHub `main` commit `45a31b0`, rama `feat/pt-br-a2-u22-u24`, bloque `units-22-24.js`; 23 nov 2026.

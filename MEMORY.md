@@ -1,3 +1,10 @@
+## 2026-11-23 — PR #758: corrección de expectativas de integración A2 U16–U18
+- CI inicial del head `32d4767b59e838d669fa846ad8726441f2dacd19`, run [#45246346115](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45246346115): instalación Chromium y pruebas principales avanzaron; el job `test` falló en `Run local quality tests`, no por el contenido de U16–U18, sino por cinco contratos de manifiesto heredados que todavía esperaban U1–U15 y una expectativa de Service Worker que esperaba caché v3.8.135.
+- Se actualizaron los cinco contratos antiguos a publicación U1–U18 (18 unidades) y la prueba de caché U13–U15 a v3.8.136. Los checks conservan la lista exacta de unidades y la versión de caché actual; no se redujo cobertura.
+- Commits correctivos en `feat/pt-br-a2-u16-u18-main`: `64d1a7e`, `9c25977`, `a779bc2`, `0cbb3ca`, `f8a9115`. CI nuevo pendiente sobre el head resultante; no fusionar hasta que ambos jobs pasen.
+
+Fuente: GitHub Actions run #45246346115 y rama `feat/pt-br-a2-u16-u18-main`; 23 nov 2026.
+
 - Revisión léxica ampliada de U16–U18 contra 240 registros A1 y 150 A2 previos detectó otra colisión exacta: `consulta` ya existía en A1. Se sustituyó por `triagem` (triaje) en U18 y se ajustaron ejemplo y lección. La nueva revisión no debe describir el bloque como libre de duplicados hasta repetir el cotejo completo tras este cambio.
 
 ## 2026-11-23 — PR #757 fusionada; A2 U16–U18 en preparación

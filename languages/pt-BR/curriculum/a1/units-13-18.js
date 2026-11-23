@@ -77,5 +77,95 @@ mc(u15[0].id,'¿Qué significa cinema?',['cine','película','parque'],0),mc(u15[
 root.GUARDI_CURRICULUM_BLOCKS=root.GUARDI_CURRICULUM_BLOCKS||{};
 root.GUARDI_CURRICULUM_BLOCKS['pt-BR']=root.GUARDI_CURRICULUM_BLOCKS['pt-BR']||{};
 root.GUARDI_CURRICULUM_BLOCKS['pt-BR'].A1=root.GUARDI_CURRICULUM_BLOCKS['pt-BR'].A1||{};
-root.GUARDI_CURRICULUM_BLOCKS['pt-BR'].A1['13-18']={units:[unit13,unit14,unit15]};
+
+
+const exerciseFor=(vocab,index,all)=> {
+ const options=[vocab.esp,all[(index+1)%all.length].esp,all[(index+2)%all.length].esp];
+ const answer=index%3;
+ [options[0],options[answer]]=[options[answer],options[0]];
+ return mc(vocab.id,'¿Qué significa '+vocab.target+'?',options,answer);
+};
+const addUnit=(number,title,desc,grammar,trapTitle,trapDetail,vocab,lessonSpecs)=>{
+ const lessons=lessonSpecs.map((spec,index)=>lesson(
+  spec[0],spec[1],spec[2],spec[3].map(i=>vocab[i].id),spec[4],
+  [exerciseFor(vocab[spec[3][0]],index,vocab),exerciseFor(vocab[spec[3][1]],index+1,vocab)]
+ ));
+ return {
+  unitNumber:number,id:'ptbr_a1_u'+number,title:'Unidad '+number+': '+title,desc,grammar,
+  trap:{title:trapTitle,detail:trapDetail},vocab,lessons,
+  exercises:vocab.map((word,index)=>exerciseFor(word,index,vocab))
+ };
+};
+
+const u16=[
+v('ptbr_a1_u16_v01','cabeça','cabeza','Minha cabeça está aqui.','Mi cabeza está aquí.'),
+v('ptbr_a1_u16_v02','rosto','rostro / cara','Meu rosto está aqui.','Mi cara está aquí.'),
+v('ptbr_a1_u16_v03','olho','ojo','Meu olho é grande.','Mi ojo es grande.'),
+v('ptbr_a1_u16_v04','nariz','nariz','Meu nariz é pequeno.','Mi nariz es pequeño.'),
+v('ptbr_a1_u16_v05','boca','boca','Minha boca é pequena.','Mi boca es pequeña.'),
+v('ptbr_a1_u16_v06','orelha','oreja','Minha orelha é pequena.','Mi oreja es pequeña.'),
+v('ptbr_a1_u16_v07','mão','mano','Minha mão é grande.','Mi mano es grande.'),
+v('ptbr_a1_u16_v08','braço','brazo','Meu braço é grande.','Mi brazo es grande.'),
+v('ptbr_a1_u16_v09','perna','pierna','Minha perna é grande.','Mi pierna es grande.'),
+v('ptbr_a1_u16_v10','pé','pie','Meu pé é pequeno.','Mi pie es pequeño.')
+];
+const unit16=addUnit(16,'El cuerpo y sus partes','Nombra partes básicas del cuerpo y usa posesivos para identificarlas.',
+'Partes del cuerpo; meu/minha + sustantivo; adjetivos sencillos ya estudiados para describir rasgos.',
+'Meu o minha','El posesivo concuerda con el sustantivo: meu rosto, meu nariz, meu braço; minha cabeça, minha boca, minha mão.',
+u16,[
+['Lección 1: La cabeza y la cara','Reconoce partes principales de la cabeza.','Cabeça y rosto nombran la cabeza y la cara; olho, nariz y boca son partes del rostro.',[0,1,2,3,4],[]],
+['Lección 2: Orejas y brazos','Nombra orelha, mão y braço.','Orelha y mão son femeninos; braço es masculino. Usa minha orelha y meu braço.',[5,6,7],[]],
+['Lección 3: Piernas y pies','Identifica las partes inferiores del cuerpo.','Perna es femenino y pé es masculino: minha perna, meu pé.',[8,9],[]],
+['Lección 4: Los posesivos del cuerpo','Combina partes del cuerpo con meu y minha.','El posesivo concuerda con el sustantivo, no con la persona que habla.',[0,2,6,7,8],['ptbr_a1_u4_v08','ptbr_a1_u4_v09']],
+['Lección 5: Descripción sencilla','Recupera vocabulario del cuerpo en frases breves.','Combina meu/minha con partes del cuerpo y adjetivos conocidos como grande y pequeno.',[1,3,4,5,9],['ptbr_a1_u6_v05','ptbr_a1_u6_v06']]
+]);
+
+const u17=[
+v('ptbr_a1_u17_v01','feliz','feliz','Eu estou feliz hoje.','Estoy feliz hoy.'),
+v('ptbr_a1_u17_v02','triste','triste','Ela está triste.','Ella está triste.'),
+v('ptbr_a1_u17_v03','cansado / cansada','cansado / cansada','Estou cansado hoje.','Estoy cansado hoy.'),
+v('ptbr_a1_u17_v04','com fome','con hambre','Estou com fome.','Tengo hambre.'),
+v('ptbr_a1_u17_v05','com sede','con sed','Estou com sede.','Tengo sed.'),
+v('ptbr_a1_u17_v06','sono','sueño','Estou com sono.','Tengo sueño.'),
+v('ptbr_a1_u17_v07','medo','miedo','Estou com medo.','Tengo miedo.'),
+v('ptbr_a1_u17_v08','preocupado / preocupada','preocupado / preocupada','Estou preocupado hoje.','Estoy preocupado hoy.'),
+v('ptbr_a1_u17_v09','calmo / calma','tranquilo / tranquila','Ela está calma.','Ella está tranquila.'),
+v('ptbr_a1_u17_v10','nervoso / nervosa','nervioso / nerviosa','Ele está nervoso.','Él está nervioso.')
+];
+const unit17=addUnit(17,'Emociones y sensaciones','Expresa emociones, estados personales y sensaciones físicas cotidianas.',
+'Estar + adjetivo para estados; estar com + sustantivo para sensaciones como fome, sede, sono y medo; concordancia de género.',
+'Estar feliz o estar com fome','En portugués se dice estou feliz, pero estou com fome / com sede / com sono. No traduzcas literalmente «tengo» en estas expresiones.',
+u17,[
+['Lección 1: Alegría y tristeza','Expresa dos emociones básicas.','Feliz y triste pueden seguir a estar: estou feliz, ela está triste.',[0,1],['ptbr_a1_u7_v07']],
+['Lección 2: Cansancio y concordancia','Describe cansancio y ajusta el género.','Cansado se usa en masculino y cansada en femenino: estou cansado / estou cansada.',[2,0],['ptbr_a1_u2_v09']],
+['Lección 3: Hambre y sed','Expresa dos sensaciones comunes.','Las expresiones son estar com fome y estar com sede.',[3,4],['ptbr_a1_u5_v03']],
+['Lección 4: Sueño y miedo','Nombra sueño y miedo con estar com.','Se dice estou com sono y estou com medo; com forma parte de la expresión.',[5,6],[]],
+['Lección 5: Preocupación y calma','Describe estados personales con adjetivos.','Preocupado, calmo y nervoso concuerdan con la persona descrita.',[7,8,9],['ptbr_a1_u7_v07']]
+]);
+
+const u18=[
+v('ptbr_a1_u18_v01','saúde','salud','A saúde é importante.','La salud es importante.'),
+v('ptbr_a1_u18_v02','doente','enfermo / enferma','Estou doente hoje.','Estoy enfermo hoy.'),
+v('ptbr_a1_u18_v03','febre','fiebre','Estou com febre.','Tengo fiebre.'),
+v('ptbr_a1_u18_v04','tosse','tos','Estou com tosse.','Tengo tos.'),
+v('ptbr_a1_u18_v05','médico','médico','Vou ao médico.','Voy al médico.'),
+v('ptbr_a1_u18_v06','remédio','medicamento','Preciso de um remédio.','Necesito un medicamento.'),
+v('ptbr_a1_u18_v07','farmácia','farmacia','A farmácia está perto.','La farmacia está cerca.'),
+v('ptbr_a1_u18_v08','dor','dolor','Estou com dor.','Tengo dolor.'),
+v('ptbr_a1_u18_v09','consulta','consulta médica','Minha consulta é hoje.','Mi consulta es hoy.'),
+v('ptbr_a1_u18_v10','precisar de','necesitar','Eu preciso de um remédio.','Necesito un medicamento.')
+];
+const unit18=addUnit(18,'Salud y necesidades básicas','Comunica malestar sencillo y reconoce palabras útiles para pedir atención.',
+'Estar doente; estar com + síntoma; ir ao médico; precisar de + sustantivo.',
+'Estar com síntomas y precisar de','Para síntomas se usa estar com: estou com febre, tosse ou dor. Precisar de lleva la preposición de.',
+u18,[
+['Lección 1: Salud y malestar','Reconoce salud y enfermedad.','Saúde es un sustantivo; doente describe a una persona que está enferma.',[0,1],['ptbr_a1_u17_v03']],
+['Lección 2: Síntomas comunes','Nombra fiebre, tos y dolor.','Las expresiones habituales son estar com febre, estar com tosse y estar com dor.',[2,3,7],['ptbr_a1_u17_v04','ptbr_a1_u17_v05']],
+['Lección 3: Médico y consulta','Habla de acudir al médico.','Ir ao médico combina ir a + o; minha consulta é hoje ofrece un ejemplo sencillo de uso de consulta.',[4,8],['ptbr_a1_u8_v01','ptbr_a1_u7_v07']],
+['Lección 4: Medicamento y farmacia','Reconoce lugares y objetos de atención.','Remédio es el medicamento y farmácia es el lugar donde se compra.',[5,6],['ptbr_a1_u6_v08']],
+['Lección 5: Necesitar algo','Expresa una necesidad sencilla.','Precisar de + sustantivo expresa necesidad: preciso de um remédio.',[9,5,4],['ptbr_a1_u5_v03']]
+]);
+
+
+root.GUARDI_CURRICULUM_BLOCKS['pt-BR'].A1['13-18']={units:[unit13,unit14,unit15,unit16,unit17,unit18]};
 })(typeof window!=='undefined'?window:globalThis);

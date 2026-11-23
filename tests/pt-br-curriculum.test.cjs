@@ -31,14 +31,14 @@ function createPilot(){
  return {window,loader:window.CurriculumLoader};
 }
 
-test('pt-BR A1 pilot loads U1-U15 without making the incomplete course selectable',async()=>{
+test('pt-BR A1 pilot loads U1-U18 without making the incomplete course selectable',async()=>{
  const {window,loader}=createPilot();
  assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
  assert.equal(loader.resolve('pt-BR','A1'),null);
- const curriculum=await loader.loadUnits('pt-BR','A1',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]);
+ const curriculum=await loader.loadUnits('pt-BR','A1',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]);
  assert.equal(curriculum.language,'pt-BR');
  assert.equal(curriculum.totalUnits,24);
- assert.deepEqual(Array.from(curriculum.units,u=>u.unitNumber),[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]);
+ assert.deepEqual(Array.from(curriculum.units,u=>u.unitNumber),[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]);
  await assert.rejects(loader.load('pt-BR','A1'),/no está disponible/);
 });
 
@@ -150,14 +150,38 @@ test('U13-U15 add hobbies, sports and outings with ten terms, five lessons and t
  }
 });
 
-test('pt-BR A1 pilot still remains unavailable after publishing U1-U15',()=>{
+test('U16-U18 cover body, feelings and basic health with ten terms and five lessons each',async()=>{
+ const {loader}=createPilot();
+ const {units}=await loader.loadUnits('pt-BR','A1',[16,17,18]);
+ assert.deepEqual(Array.from(units,u=>u.unitNumber),[16,17,18]);
+ const expected=[['cabeça','pé'],['feliz','nervoso / nervosa'],['saúde','precisar de']];
+ for(let i=0;i<units.length;i++){
+  const unit=units[i];
+  assert.equal(unit.vocab.length,10,unit.id);
+  assert.equal(unit.exercises.length,10,unit.id);
+  assert.equal(unit.lessons.length,5,unit.id);
+  assert.ok(unit.grammar.length>0,unit.id);
+  assert.ok(unit.trap && unit.trap.detail,unit.id);
+  assert.equal(new Set(unit.vocab.map(word=>word.id)).size,10,unit.id);
+  for(const word of unit.vocab) assert.equal(word.verification.status,'not_checked');
+  for(const lesson of unit.lessons){
+   assert.ok(lesson.vocabIds.length>=2,unit.id);
+   for(const id of [...lesson.vocabIds,...lesson.reviewVocabIds]) assert.ok(id.startsWith('ptbr_a1_'),unit.id+' invalid reference '+id);
+  }
+  for(const ex of [...unit.exercises,...unit.lessons.flatMap(lesson=>lesson.exercises)]) assert.ok(['mc','order'].includes(ex.type),unit.id);
+  assert.equal(unit.vocab[0].target,expected[i][0]);
+  assert.equal(unit.vocab[9].target,expected[i][1]);
+ }
+});
+
+test('pt-BR A1 pilot still remains unavailable after publishing U1-U18',()=>{
  const {window}=createPilot();
  assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
 });
 
 test('pilot exercises remain text-only and do not request or reference Portuguese audio',async()=>{
  const {loader}=createPilot();
- const {units}=await loader.loadUnits('pt-BR','A1',[1,2,3,4,5,6,7,8,9,10,11,12]);
+ const {units}=await loader.loadUnits('pt-BR','A1',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]);
  for(const unit of units){
   for(const ex of [...unit.exercises,...unit.lessons.flatMap(lesson=>lesson.exercises)]){
    assert.ok(['mc','order'].includes(ex.type),'exercise type must use an existing renderer');

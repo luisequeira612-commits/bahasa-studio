@@ -1,3 +1,11 @@
+## 2026-11-23 — PR #748 preparada: pt-BR A1 U16–U18
+
+- Rama `feat/pt-br-a1-u16-u18`, basada en el merge de PR #747 `1f6be39c6a3367c885ee29282f7430b3fac2b390`.
+- U16 cuerpo y partes del cuerpo; U17 emociones y sensaciones; U18 salud y necesidades básicas. Diez términos por unidad, cinco lecciones y diez ejercicios finales. Los términos permanecen `not_checked`.
+- El manifiesto publica U1–U18 de 24 (75 % del nivel), pero `pt-BR available:false` se conserva. El bloque curricular existente ya estaba en el precache del Service Worker; no se requiere cambiar la versión de caché.
+- Pruebas Node ampliadas a U1–U18 y contratos de U16–U18; Playwright debe cargar U1–U18 completamente offline y comprobar el aislamiento del progreso. Sin nuevos tipos de ejercicio, audio/TTS, dependencias, cambios a IndexedDB v1 o backup JSON v3.
+- Pendiente CI completo; no fusionar hasta que `test` y `Offline quality reports` estén en éxito.
+ 
 ## 2026-11-23 — PR #745: correcciones del primer CI
 - El primer CI (#45197843322) detectó dos fallos limitados a las pruebas nuevas: la expectativa del test de carga seguía enumerando U1–U6 pese a solicitar U1–U9, y el bloque `units-07-12.js` había perdido la asignación inicial del registro global al insertar U7–U9. Se corrigió la expectativa y se restauró `root.GUARDI_CURRICULUM_BLOCKS = root.GUARDI_CURRICULUM_BLOCKS || {}`.
 - Se ajustó también el ejemplo léxico de `em frente` y la frase de `chuva` para evitar ejemplos poco naturales. El E2E Playwright U1–U9 había pasado en el primer CI; `Offline quality reports` también pasó. Se espera un CI completo nuevo antes de merge.

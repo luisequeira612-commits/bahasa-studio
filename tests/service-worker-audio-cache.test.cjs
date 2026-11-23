@@ -495,3 +495,56 @@ test('migra y valida hashes de un inventario de idioma independiente', async () 
     assert.equal(await languageCache.match(new Request(audioUrl(staleId, 'pt-BR'))), null);
     assert.equal(worker.cacheStore.has('bahasa-studio-v3.8.117'), false);
 });
+
+
+test('un hash malformado se trata como no verificable y conserva las copias legacy', async () => {
+    const id = 'abcdabcdabcd';
+    const clip = audioUrl(id);
+    const legacy = new MemoryCache([
+        [clip, new Response('legacy audio bytes', { status: 200 })]
+    ]);
+    const worker = createWorker(new Map([
+        ['bahasa-studio-v3.8.121', legacy],
+        [CURRENT_CACHE_NAME, new MemoryCache()]
+    ]), undefined, { [id]: 'sha256-incompleto' });
+
+    let activation;
+    worker.handlers.activate({ waitUntil: promise => { activation = promise; } });
+    await activation;
+
+    const audio = worker.cacheStore.get('guardi-audio-v2');
+    assert.equal(await audio.match(new Request(clip)), null, 'malformed fingerprint must not authorize migration');
+    assert.equal(worker.cacheStore.has('bahasa-studio-v3.8.121'), true, 'legacy source must survive malformed inventory data');
+    assert.equal(worker.claimCalls, 1, 'activation must still complete');
+});
+
+test('un hash malformado no elimina una copia actual ni bloquea la reproducción online', async () => {
+    const id = 'dcba4321dcba';
+    const clip = audioUrl(id);
+    const cached = new MemoryCache([
+        [clip, new Response('cached bytes', { status: 200 })]
+    ]);
+    const worker = createWorker(new Map([
+        [CURRENT_CACHE_NAME, new MemoryCache()],
+        ['guardi-audio-v2', cached]
+    ]), async () => new Response('online bytes', { status: 200 }), { [id]: 'bad-hash' });
+
+    let activation;
+    worker.handlers.activate({ waitUntil: promise => { activation = promise; } });
+    await activation;
+    assert.ok(await cached.match(new Request(clip)), 'unverifiable cached bytes are preserved during migration');
+
+    const request = new Request(clip);
+    let lifetime;
+    let responsePromise;
+    worker.handlers.fetch({
+        request,
+        waitUntil: promise => { lifetime = promise; },
+        respondWith: promise => { responsePromise = promise; }
+    });
+    const response = await responsePromise;
+    await lifetime;
+    assert.equal(response.status, 200, 'online playback must continue when the inventory hash is malformed');
+    assert.equal(await response.text(), 'online bytes');
+    assert.equal(await cached.match(request), null, 'unverified cached bytes must not be served');
+});

@@ -132,7 +132,9 @@ test('skill focus ignores malformed counters and does not claim mastery', () => 
 
 test('adaptive dashboard passes the saved skill profile into recommendation logic', () => {
   const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
-  assert.match(html, /skillStats: this\.studyActivity && this\.studyActivity\.skillStats/);
+  assert.match(html, /language: LanguageManager\.getActiveLanguage\(\)/);
+  assert.match(html, /skillStatsByLanguage:/);
+  assert.match(html, /AdaptiveLearning\.recommend\(/);
 });
 
 
@@ -454,4 +456,25 @@ test('learner skill profile uses the same ten-attempt confidence threshold as ad
   assert.match(html, /stats\.attempts < 10/);
   assert.match(html, /attempts < 10/);
   assert.match(html, /datos iniciales \(mínimo 10\)/);
+});
+
+
+test('adaptive recommendations select only the active language skill profile', () => {
+  const result = AdaptiveLearning.recommend({
+    language: 'pt-BR',
+    skillStatsByLanguage: {
+      id: { translation: { attempts: 10, correct: 2 } },
+      'pt-BR': { listening: { attempts: 10, correct: 3 } }
+    },
+    nextLesson: { unitId: 'pt_a1_u1', lessonIndex: 0 }
+  });
+  assert.match(result.description, /escucha: 30%/);
+  assert.doesNotMatch(result.description, /traducción/);
+  assert.deepEqual(JSON.parse(JSON.stringify(AdaptiveLearning.skillStatsForLanguage({
+    id: { recognition: { attempts: 10, correct: 9 } },
+    en: { writing: { attempts: 10, correct: 4 } }
+  }, 'en'))), { writing: { attempts: 10, correct: 4 } });
+  assert.deepEqual(JSON.parse(JSON.stringify(AdaptiveLearning.skillStatsForLanguage({
+    id: { recognition: { attempts: 10, correct: 9 } }
+  }, 'xx'))), {});
 });

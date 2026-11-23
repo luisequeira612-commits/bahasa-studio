@@ -473,8 +473,11 @@
         </button>
     </nav>
 
+        <script src="./language-manager.js"></script>
+        <script src="./progress-namespace.js"></script>
         <script src="./curriculum-a1.js"></script>
     <script src="./curriculum-a2.js"></script>
+    <script src="./curriculum-loader.js"></script>
     <script>
         if (!window.BAHASA_CURRICULUM_A1 || !window.BAHASA_CURRICULUM_A2) {
             document.body.innerHTML = '<main style="max-width:680px;margin:12vh auto;padding:24px;font:16px system-ui;color:#1f2937"><h1>No se pudo cargar el currículo</h1><p>Falta un archivo de datos del curso (A1 o A2). Comprueba tu conexión, recarga la página y, si el problema continúa, borra la caché de Guardi desde los ajustes del navegador.</p></main>';
@@ -626,6 +629,20 @@
             dbName: 'BahasaStudio3DB',
             version: 1,
             db: null,
+            activeLanguage: 'id',
+            setActiveLanguage(code) {
+                if (!LanguageManager.isSupported(code)) throw new Error('Código de idioma no soportado.');
+                this.activeLanguage = code;
+            },
+            scopedKey(store, key, language = this.activeLanguage) {
+                return ProgressNamespace.storageKey(store, key, language);
+            },
+            belongsToLanguage(store, key, language = this.activeLanguage) {
+                return ProgressNamespace.belongsToLanguage(store, key, language);
+            },
+            logicalKey(store, key, language = this.activeLanguage) {
+                return ProgressNamespace.logicalKey(store, key, language);
+            },
             init() {
                 return new Promise((resolve, reject) => {
                     const req = indexedDB.open(this.dbName, this.version);
@@ -642,7 +659,7 @@
             async get(store, key) {
                 return new Promise((resolve) => {
                     const tx = this.db.transaction(store, 'readonly');
-                    const req = tx.objectStore(store).get(key);
+                    const req = tx.objectStore(store).get(this.scopedKey(store, key));
                     req.onsuccess = () => resolve(req.result ? req.result.val : null);
                     req.onerror = () => resolve(null);
                 });
@@ -655,7 +672,8 @@
                     const tx = this.db.transaction(store, 'readwrite');
                     const objectStore = tx.objectStore(store);
                     for (const entry of entries) {
-                        objectStore.put({ id: entry.key, wordId: entry.key, key: entry.key, val: entry.val });
+                        const key = this.scopedKey(store, entry.key);
+                        objectStore.put({ id: key, wordId: key, key, val: entry.val });
                     }
                     tx.oncomplete = () => resolve();
                     tx.onerror = () => reject(tx.error || new Error('No se pudo guardar en IndexedDB.'));
@@ -665,7 +683,7 @@
             async delete(store, key) {
                 return new Promise((resolve, reject) => {
                     const tx = this.db.transaction(store, 'readwrite');
-                    tx.objectStore(store).delete(key);
+                    tx.objectStore(store).delete(this.scopedKey(store, key));
                     tx.oncomplete = () => resolve();
                     tx.onerror = () => reject(tx.error || new Error('No se pudo eliminar el dato.'));
                     tx.onabort = () => reject(tx.error || new Error('Se canceló la eliminación.'));
@@ -675,7 +693,10 @@
                 return new Promise((resolve, reject) => {
                     const tx = this.db.transaction(store, 'readonly');
                     const req = tx.objectStore(store).getAll();
-                    req.onsuccess = () => resolve(req.result || []);
+                    req.onsuccess = () => {
+                        const records = req.result || [];
+                        resolve(ProgressNamespace.filterRecords(store, records, this.activeLanguage));
+                    };
                     req.onerror = () => reject(req.error || new Error('No se pudieron leer los datos.'));
                 });
             },
@@ -684,16 +705,33 @@
                     const tx = this.db.transaction(['srs', 'settings'], 'readwrite');
                     const srsStore = tx.objectStore('srs');
                     const settingsStore = tx.objectStore('settings');
-                    srsStore.clear();
-                    for (const item of data.srs) srsStore.put({ id: item.key, wordId: item.key, key: item.key, val: item.val });
-                    const putSetting = (key, val) => settingsStore.put({ id: key, wordId: key, key, val });
+                    const language = LanguageManager.isSupported(data.language) ? data.language : 'id';
+                    const putSetting = (key, val) => {
+                        const scoped = this.scopedKey('settings', key, language);
+                        settingsStore.put({ id: scoped, wordId: scoped, key: scoped, val });
+                    };
+                    const cursorRequest = srsStore.openCursor();
+                    cursorRequest.onsuccess = () => {
+                        const cursor = cursorRequest.result;
+                        if (cursor) {
+                            if (this.belongsToLanguage('srs', cursor.key, language)) cursor.delete();
+                            cursor.continue();
+                            return;
+                        }
+                        // Write only after the cursor has deleted this language's old records.
+                        // This prevents a later cursor delete from erasing the freshly imported values.
+                        for (const item of data.srs) {
+                            const key = this.scopedKey('srs', item.key, language);
+                            srsStore.put({ id: key, wordId: key, key, val: item.val });
+                        }
+                    };
                     putSetting('userXp', data.xp);
                     putSetting('completedUnits', data.completedUnits);
                     putSetting('completedLessons', data.completedLessons || []);
                     putSetting('customUnits', data.customUnits);
                     putSetting('syllabusPos', data.syllabusPos);
                     putSetting('studyActivity', data.studyActivity || StudyActivity.createDefault());
-                    putSetting('activeLanguage', data.language || 'id');
+                    settingsStore.put({ id: 'activeLanguage', wordId: 'activeLanguage', key: 'activeLanguage', val: language });
                     tx.oncomplete = () => resolve();
                     tx.onerror = () => reject(tx.error || new Error('No se pudo restaurar la copia.'));
                     tx.onabort = () => reject(tx.error || new Error('Se canceló la restauración.'));
@@ -19100,6 +19138,11 @@ Requisitos:
 
             async init() {
                 await DB.init();
+                await LanguageManager.init({
+                    read: () => DB.get('settings', 'activeLanguage'),
+                    write: code => DB.set('settings', 'activeLanguage', code),
+                    onChange: code => DB.setActiveLanguage(code)
+                });
                 AudioEngine.init();
                 AudioEngine.setRate((await DB.get('settings', 'audioPlaybackRate')) ?? 0.85, false);
                 AudioEngine.setVoice((await DB.get('settings', 'audioVoiceURI')) || 'auto', false);
@@ -20165,7 +20208,10 @@ Requisitos:
                     isolatedWords,
                     nextLesson,
                     skillLesson,
-                    skillStats: this.studyActivity && this.studyActivity.skillStats,
+                    language: LanguageManager.getActiveLanguage(),
+                    skillStatsByLanguage: {
+                        [LanguageManager.getActiveLanguage()]: this.studyActivity && this.studyActivity.skillStats
+                    },
                     todayXp: this.studyActivity && this.studyActivity.todayXp,
                     dailyGoal: this.studyActivity && this.studyActivity.dailyGoal
                 });
@@ -20323,7 +20369,7 @@ Requisitos:
             async exportProgress() {
                 const data = {
                     version: 3,
-                    language: 'id',
+                    language: LanguageManager.getActiveLanguage(),
                     customUnits: CustomLessons.units,
                     syllabusPos: CustomLessons.pos,
                     xp: this.xp,
@@ -20346,10 +20392,9 @@ Requisitos:
                 const allowedFields = new Set(['version', 'language', 'exportedAt', 'customUnits', 'syllabusPos', 'xp', 'completedUnits', 'completedLessons', 'studyActivity', 'srs']);
                 if (!isObject(parsed) || Object.keys(parsed).some(key => !allowedFields.has(key)) ||
                     parsed.version !== 3 || !Number.isSafeInteger(parsed.xp) || parsed.xp < 0 || parsed.xp > 1000000000) fail();
-                // Until the language manager is enabled, only Indonesian backups can be restored.
                 // Historical v3 files without a language field remain Indonesian by definition.
                 const language = parsed.language === undefined ? 'id' : parsed.language;
-                if (language !== 'id') throw new Error('Esta copia pertenece a un idioma que todavía no está disponible en esta versión.');
+                if (!LanguageManager.isAvailable(language)) throw new Error('Esta copia pertenece a un idioma cuyo curso todavía no está disponible en esta versión.');
                 if (parsed.exportedAt !== undefined &&
                     (typeof parsed.exportedAt !== 'string' || !Number.isFinite(Date.parse(parsed.exportedAt)) ||
                     new Date(parsed.exportedAt).toISOString() !== parsed.exportedAt)) fail();
@@ -20454,6 +20499,7 @@ Requisitos:
                         const backup = this.validateBackup(JSON.parse(evt.target.result));
                         if (!confirm('¿Deseas restaurar esta copia de seguridad? Se reemplazará el progreso actual.')) return;
                         await DB.replaceBackupData(backup);
+                        await LanguageManager.setActiveLanguage(backup.language);
                         this.xp = backup.xp;
                         this.completedUnits = backup.completedUnits;
                         this.completedLessons = backup.completedLessons || [];
@@ -20473,7 +20519,7 @@ Requisitos:
             },
             async resetAllData() {
                 if (confirm("¿Confirmas que deseas borrar todos los datos guardados en este dispositivo?")) {
-                    if (typeof StudyHistory !== 'undefined') StudyHistory.clear();
+                    if (typeof StudyHistory !== 'undefined') StudyHistory.clearAll();
                     indexedDB.deleteDatabase('BahasaStudio3DB');
                     location.reload();
                 }

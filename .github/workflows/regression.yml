@@ -90,6 +90,12 @@ jobs:
         run: node --test tests/study-activity.test.cjs
       - name: Run local study history tests
         run: node --test tests/study-history.test.cjs
+      - name: Run language manager tests
+        run: node --test tests/language-manager.test.cjs
+      - name: Run curriculum loader tests
+        run: node --test tests/curriculum-loader.test.cjs
+      - name: Run progress namespace tests
+        run: node --test tests/progress-namespace.test.cjs
       - name: Run strict backup validation tests
         run: node --test tests/backup-validation.test.cjs
       - name: Run adaptive learning recommendation tests
@@ -293,6 +299,9 @@ jobs:
             conversation-engine.js
             study-activity.js
             study-history.js
+            language-manager.js
+            curriculum-loader.js
+            progress-namespace.js
             adaptive-learning.js
             curriculum-a1.js
             curriculum-a2.js

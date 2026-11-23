@@ -15,6 +15,7 @@ function loadValidator() {
     const source = `({ validateBackup(parsed) {${match[1]}\n} })`;
     const context = {
         CourseData: { levels: [] },
+        LanguageManager: { isAvailable(code) { return code === 'id'; } },
         LEGACY_SRS_ID_ALIASES: {},
         SYLLABUS: [],
         StudyActivity: { validateBackup(value) { return value === undefined ? { legacy: true } : { valid: true }; } },
@@ -80,6 +81,9 @@ test('storage persistence request and accessible status are already wired into s
 test('backup replacement remains a single IndexedDB v1 transaction', () => {
     assert.match(html, /version:\s*1/);
     assert.match(html, /transaction\(\['srs', 'settings'\], 'readwrite'\)/);
-    assert.match(html, /srsStore\.clear\(\)/);
+    assert.match(html, /srsStore\\.openCursor\\(\\)/);
+    assert.match(html, /this\\.scopedKey\\('srs', item\\.key, language\\)/);
+    assert.match(html, /ProgressNamespace\\.filterRecords\\(store, records, this\\.activeLanguage\\)/);
+    assert.match(html, /LanguageManager\\.init\\(/);
     assert.match(html, /tx\.oncomplete/);
 });

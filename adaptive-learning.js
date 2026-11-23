@@ -26,6 +26,13 @@
         conversation: 'conversación'
     };
 
+    function skillStatsForLanguage(profiles, language) {
+        if (!profiles || typeof profiles !== 'object' || Array.isArray(profiles) ||
+            typeof language !== 'string' || !/^(?:pt-BR|en|it|fr|de|nl|ru|ja|ko|id)$/.test(language)) return {};
+        const stats = profiles[language];
+        return stats && typeof stats === 'object' && !Array.isArray(stats) ? stats : {};
+    }
+
     function weakestSkill(value) {
         const stats = value && typeof value === 'object' ? value : {};
         const candidates = Object.keys(SKILL_LABELS).map((key, index) => {
@@ -83,7 +90,10 @@
 
     function recommend(input) {
         const data = input && typeof input === 'object' ? input : {};
-        const focus = weakestSkill(data.skillStats);
+        const languageStats = data.skillStatsByLanguage
+            ? skillStatsForLanguage(data.skillStatsByLanguage, data.language)
+            : data.skillStats;
+        const focus = weakestSkill(languageStats);
         const dueCount = count(data.dueCount);
         const weakWords = Array.isArray(data.weakWords)
             ? data.weakWords.filter(word => word && typeof word.id === 'string' && word.id &&
@@ -202,5 +212,5 @@
         }, focus);
     }
 
-    root.AdaptiveLearning = Object.freeze({ recommend, weakestSkill, selectSkillLesson, normalizeSrsCount, earliestValidTimestamp });
+    root.AdaptiveLearning = Object.freeze({ recommend, weakestSkill, selectSkillLesson, normalizeSrsCount, earliestValidTimestamp, skillStatsForLanguage });
 })(typeof window !== 'undefined' ? window : globalThis);

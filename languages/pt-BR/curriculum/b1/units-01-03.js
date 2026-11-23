@@ -2,9 +2,9 @@
 'use strict';
 const vocab=(unit,index,target,esp,ex,exEsp)=>({id:'ptbr_b1_u'+unit+'_v'+String(index).padStart(2,'0'),target,esp,ex,exEsp,verification:{status:'not_checked',sources:[]}});
 const exercise=(words,index)=>{const word=words[index],choices=[word.esp,words[(index+3)%10].esp,words[(index+6)%10].esp],answer=index%3;return {vocabId:word.id,type:'mc',prompt:'¿Qué significa «'+word.target+'»?',options:choices.slice(3-answer).concat(choices.slice(0,3-answer)),answer,explanation:'Relaciona la expresión con su significado en español.'};};
-const makeUnit=(number,title,desc,grammar,trap,words,specs)=>({
+const makeUnit=(number,title,desc,grammar,trapTitle,trapDetail,words,specs)=>({
  unitNumber:number,id:'ptbr_b1_u'+number,title:'Unidad '+number+': '+title,desc,grammar,
- trap:{title:trap[0],detail:trap[1]},vocab:words,
+ trap:{title:trapTitle,detail:trapDetail},vocab:words,
  lessons:specs.map(spec=>({title:spec[0],objective:spec[1],grammar:spec[2],vocabIds:spec[3].map(i=>words[i].id),reviewVocabIds:spec[4],exercises:[exercise(words,spec[3][0]),exercise(words,spec[3][1])]})),
  exercises:words.map((_,i)=>exercise(words,i))
 });
@@ -48,7 +48,7 @@ const unit1=makeUnit(1,'Relatos y experiencias significativas','Narra experienci
 ['Lección 1: Acontecimientos y contexto','Identifica un hecho y describe las circunstancias en que ocurrió.','Acontecimento y circunstância ayudan a presentar el hecho y su contexto. El perfeito relata lo que pasó; el imperfeito describe cómo era la situación.',[0,2],['ptbr_a2_u28_v01','ptbr_a2_u29_v01']],
 ['Lección 2: Trayectorias y cambios','Describe etapas y cambios en una experiencia personal.','Trajetória organiza etapas de una vida o carrera; reviravolta marca un cambio inesperado.',[1,5],['ptbr_a2_u30_v01']],
 ['Lección 3: Dificultades y logros','Explica un proceso de superación y su resultado.','Superação describe vencer dificultades; conquista nombra el logro alcanzado.',[3,4],['ptbr_a2_u26_v01']],
-['Lección 4: Relatos y testimonios','Cuenta una experiencia desde el punto de vista de quien la vivió.','Testemunho presenta el relato de una persona. Tinha + particípio permite indicar qué había ocurrido antes.',[6,7],['ptbr_a2_u20_v01']],
+['Lección 4: Relatos y testimonios','Cuenta una experiencia desde el punto de vista de quien la vivió.','Testemunho presenta el relato de una persona; lembrança nombra algo que se recuerda. Tinha + particípio permite indicar qué había ocurrido antes.',[6,7],['ptbr_a2_u20_v01']],
 ['Lección 5: Desenlace y aprendizaje','Explica cómo terminó una experiencia y qué se aprendió.','Desfecho presenta el final de un relato; aprendizado destaca lo aprendido a partir de la experiencia.',[8,9],['ptbr_a2_u17_v01']]
 ]);
 const unit2=makeUnit(2,'Argumentación y debate','Presenta una postura, apoya ideas con evidencias y responde a objeciones con matices.','Organiza argumentos con porque y portanto; contrapone ideas con no entanto y por outro lado. Embora y apesar de introducen concesiones; conviene distinguir opinión, evidencia y conclusión.','Conectores de argumentación','No uses portanto como sinónimo de porém: portanto introduce una consecuencia; porém y no entanto expresan contraste.',u2,[

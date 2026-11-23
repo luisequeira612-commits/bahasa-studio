@@ -184,7 +184,7 @@ test('byte ranges also work on a language-specific audio route and cache', async
     assert.equal(await response.text(), 'bcd');
     const languageCache = worker.cacheStore.get('guardi-audio-v2-pt-BR');
     assert.ok(languageCache);
-    const stored = await languageCache.match(new Request(`${ORIGIN}/bahasa-studio/audio/pt-BR/sample.mp3`));
+    const stored = await languageCache.match(new Request(`${ORIGIN}/bahasa-studio/audio/pt-BR/${CLIP_ID}.mp3`));
     assert.equal(stored.status, 200);
     assert.equal(await stored.text(), 'abcdef');
 });

@@ -270,7 +270,7 @@ test('audio engine plays bundled Indonesian MP3 before using browser voice API',
     assert.equal(result.utterances.length, 0, 'a bundled recording must be preferred over device TTS');
     assert.equal(result.played.length, 1);
     assert.equal(result.played[0].src, './audio/id/' + hash + '.mp3');
-    assert.equal(result.played[0].rate, 0.85);
+    assert.equal(result.played[0].rate, 1);
   } finally {
     await context.close();
     await new Promise(resolve => server.close(resolve));

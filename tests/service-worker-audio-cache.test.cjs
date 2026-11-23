@@ -197,6 +197,28 @@ test('conserva la caché legacy si falta el inventario SHA-256 del idioma', asyn
     assert.equal(worker.claimCalls, 1, 'activation must still complete');
 });
 
+
+test('conserva la caché legacy si falta el hash de un clip dentro del inventario', async () => {
+    const id = '666666666666';
+    const clip = audioUrl(id);
+    const legacy = new MemoryCache([
+        [clip, new Response('clip without fingerprint', { status: 200 })]
+    ]);
+    const worker = createWorker(new Map([
+        ['bahasa-studio-v3.8.118', legacy],
+        [CURRENT_CACHE_NAME, new MemoryCache()]
+    ]), undefined, {});
+
+    let activation;
+    worker.handlers.activate({ waitUntil: promise => { activation = promise; } });
+    await activation;
+
+    const audio = worker.cacheStore.get('guardi-audio-v2');
+    assert.equal(await audio.match(new Request(clip)), null, 'clip without fingerprint must not be copied');
+    assert.equal(worker.cacheStore.has('bahasa-studio-v3.8.118'), true, 'legacy cache must not be deleted');
+    assert.equal(worker.claimCalls, 1, 'activation must still complete');
+});
+
 test('los MP3 nuevos usan guardi-audio-v2 y los recursos normales siguen en la caché de la app', async () => {
     const worker = createWorker();
     const audioRequest = new Request(audioUrl('fresh'));

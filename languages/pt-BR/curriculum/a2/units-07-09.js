@@ -60,7 +60,7 @@ u7,[
 ['Lección 1: Lo que tienes que hacer','Expresa obligaciones concretas.','Ter que + infinitivo: tenho que entregar, temos que cumprir.',[0,6],['ptbr_a2_u6_v04']],
 ['Lección 2: Consejos y recomendaciones','Da consejos sobre hábitos y decisiones.','Dever + infinitivo puede suavizar una recomendación: você deve descansar.',[1,2],['ptbr_a2_u6_v07']],
 ['Lección 3: Reglas y permisos','Comprende lo que está permitido u obligado.','É obrigatório/permitido/proibido + infinitivo o sustantivo expresa una regla.',[3,4,5],['ptbr_a2_u6_v09']],
-['Lección 4: Plazos y entregas','Habla de fechas límite y tareas pendientes.','Prazo indica el límite de tiempo; entregar puede llevar un objeto directo.',[6,7],['ptbr_a3_u1_v01']],
+['Lección 4: Plazos y entregas','Habla de fechas límite y tareas pendientes.','Prazo indica el límite de tiempo; entregar puede llevar un objeto directo.',[6,7],['ptbr_a2_u4_v01']],
 ['Lección 5: Asistencia y cumplimiento','Explica por qué debes asistir y respetar reglas.','Faltar a algo expresa ausencia; cumprir se combina con regras, prazo y obrigação.',[8,9],['ptbr_a2_u6_v10']]
 ]);
 const unit8=makeUnit(8,'Conectar y ordenar acontecimientos','Organiza relatos y explica secuencias, causas, consecuencias y contrastes.',

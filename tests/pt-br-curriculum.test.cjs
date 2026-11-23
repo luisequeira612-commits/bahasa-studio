@@ -44,6 +44,7 @@ test('each pilot unit has five explicit lessons and valid vocabulary references'
  const allIds=new Set(units.flatMap(unit=>unit.vocab.map(word=>word.id)));
  for(const unit of units){
   assert.equal(unit.lessons.length,5,unit.id);
+  assert.ok(unit.vocab.length>=10,unit.id+' should introduce at least ten vocabulary targets');
   assert.equal(new Set(unit.vocab.map(word=>word.id)).size,unit.vocab.length,unit.id);
   for(const lesson of unit.lessons){
    for(const id of [...lesson.vocabIds,...lesson.reviewVocabIds]) assert.ok(allIds.has(id),unit.id+' missing '+id);
@@ -73,6 +74,7 @@ test('pilot exercises remain text-only and do not request or reference Portugues
  const {units}=await loader.loadUnits('pt-BR','A1',[1,2,3]);
  for(const unit of units){
   for(const ex of [...unit.exercises,...unit.lessons.flatMap(lesson=>lesson.exercises)]){
+   assert.ok(['mc','order'].includes(ex.type), 'exercise type must use an existing renderer');
    assert.notEqual(ex.type,'listen');
    assert.equal(Object.hasOwn(ex,'audioText'),false);
   }

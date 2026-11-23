@@ -17,15 +17,24 @@ App web para aprender idiomas, estilo Duolingo, alojada en GitHub Pages. Hoy tie
 - Sin agentes de IA externos dentro de la app por ahora.
 - No se publica en tiendas de apps.
 
-## Arquitectura multiidioma y selección de idiomas pendiente
-La arquitectura técnica puede preparar Guardi para trabajar con varios idiomas, pero el usuario todavía está evaluando cuáles quiere añadir y en qué orden. No tratar listas, banderas, voces o códigos registrados como una decisión curricular aprobada.
+## Arquitectura multiidioma y secuencia curricular aprobada (decisión del dueño: 22 nov 2026)
+La selección y el orden ya están aprobados. La secuencia obligatoria es:
+1. Portugués brasileño (`pt-BR`)
+2. Inglés (`en`)
+3. Italiano (`it`)
+4. Francés (`fr`)
+5. Alemán (`de`)
+6. Neerlandés (`nl`)
+7. Ruso (`ru`)
+8. Japonés (`ja`)
+9. Coreano (`ko`)
+10. Indonesio (`id`)
 
-- Mantener la UI, navegación y explicaciones en español.
-- Los códigos registrados en LanguageManager son únicamente candidatos técnicos/inactivos, no una promesa de cursos ni una secuencia de lanzamiento.
-- No crear currículos, vocabulario, audio, datasets ni seleccionar un orden de idiomas nuevos hasta que el usuario confirme su selección.
-- Solo Indonesian permanece disponible. Los demás códigos siguen inactivos y no deben aparecer como cursos seleccionables.
+No comenzar el idioma siguiente hasta completar A1, A2, B1 y B2 del idioma actual. La UI, navegación y explicaciones permanecen en español. La secuencia aprobada autoriza preparar y desarrollar los cursos de forma secuencial; no significa que estén disponibles hoy. Durante la fase 3, solo indonesio permanece seleccionable. El siguiente piloto curricular será portugués brasileño A1, una vez terminada y probada la integración de fase 3. No activar un curso sin contenido real completo para el nivel y pruebas correspondientes.
+
+- Los códigos registrados en LanguageManager son un catálogo técnico; solo los cursos marcados como disponibles y con currículo completo pueden seleccionarse.
 - Verificar licencias, versión, disponibilidad, tamaño y runtime antes de incorporar cualquier recurso de voz o dataset.
-- El usuario aprobó la refactorización incremental de robustez y núcleo multiidioma, pero reservó la decisión sobre qué idiomas añadir. Esta autorización permite preparar infraestructura neutral, no elegir idiomas ni crear cursos.
+- El usuario aprobó la refactorización incremental, el catálogo de diez idiomas y el orden anterior; no volver a pedir selección de idiomas.
 
 ### Regla de independencia del idioma
 - Todo código y estructura de datos nuevos deben ser independientes del idioma: no introducir textos, rutas, nombres de archivo, identificadores ni reglas fijas que solo funcionen para el indonesio.
@@ -43,7 +52,7 @@ La arquitectura técnica puede preparar Guardi para trabajar con varios idiomas,
 - La carga de audio por idioma y el selector UI son fases posteriores. No declarar cambio de curso en runtime hasta integrar el cargador con CourseData, el audio y la interfaz, y disponer de contenido real.
 
 ## Pensar en crecer (sin sobrediseñar)
-- La selección y el orden de idiomas nuevos siguen pendientes de decisión del dueño. La arquitectura multiidioma puede avanzar de forma neutral, pero no se crearán currículos, vocabulario, audio ni datasets para otros idiomas hasta recibir confirmación explícita. Todo código y estructura nuevos deben ser independientes del idioma.
+- La selección y el orden están aprobados según la lista de diez idiomas de la sección de arquitectura. Completar A1–B2 de cada idioma antes de comenzar el siguiente; el próximo piloto es pt-BR A1 tras finalizar fase 3. No activar cursos incompletos. Todo código y estructura nuevos deben ser independientes del idioma.
 - Compartir con otros: el contenido debe estar separado del código (datos por idioma, nivel y unidad), para que añadir un curso o corregir una lección no obligue a tocar la lógica.
 - Cada persona guarda su progreso en su propio dispositivo. Debe seguir siendo posible exportar e importar el progreso (backup v3) sin romper compatibilidad.
 - Cualquier decisión de escalabilidad debe mantener cero backend y cero costo. Si una idea requiere servidor, cuentas o pago, no se implementa: me la propones aparte.

@@ -179,6 +179,6 @@ test('language catalog keeps the approved teaching variants and does not activat
   assert.match(source, /code:\s*'en'[^}]*locale:\s*'en-US'[^}]*name:\s*'Inglés'[^}]*flag:\s*'🇺🇸'/s);
   assert.doesNotMatch(source, /Portugués de Brasil/);
   assert.doesNotMatch(source, /flag:\s*'🇬🇧'/);
-  assert.match(source, /'pt-BR': Object\.freeze\(\{[^}]*available:\s*false/s);
-  assert.match(source, /en: Object\.freeze\(\{[^}]*available:\s*false/s);
+  assert.match(source, /'pt-BR': Object\.freeze\(\{[\s\S]*?available:\s*false\s*\}\)/);
+  assert.match(source, /en: Object\.freeze\(\{[\s\S]*?available:\s*false\s*\}\)/);
 });

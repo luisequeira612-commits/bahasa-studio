@@ -36,7 +36,7 @@ test('pt-BR A1 pilot loads U1-U9 without making the incomplete course selectable
  const curriculum=await loader.loadUnits('pt-BR','A1',[1,2,3,4,5,6,7,8,9]);
  assert.equal(curriculum.language,'pt-BR');
  assert.equal(curriculum.totalUnits,24);
- assert.deepEqual(Array.from(curriculum.units,u=>u.unitNumber),[1,2,3,4,5,6]);
+ assert.deepEqual(Array.from(curriculum.units,u=>u.unitNumber),[1,2,3,4,5,6,7,8,9]);
  await assert.rejects(loader.load('pt-BR','A1'),/no está disponible/);
 });
 

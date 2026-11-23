@@ -54,16 +54,16 @@ test('pt-BR A2 U7-U9 load through the offline loader while the language remains 
   }
  }
 });
-test('A2 manifest publishes U1-U9 as a partial level of thirty units',()=>{
+test('A2 manifest publishes U1-U12 as a partial level of thirty units',()=>{
  const {window}=createPilot();
  const manifest=window.GUARDI_CURRICULUM_MANIFESTS['pt-BR'].A2;
  assert.equal(manifest.totalUnits,30);
- assert.deepEqual(Array.from(manifest.publishedUnits),[1,2,3,4,5,6,7,8,9]);
+ assert.deepEqual(Array.from(manifest.publishedUnits),[1,2,3,4,5,6,7,8,9,10,11,12]);
  assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
 });
 test('A2 U7-U9 review references resolve only to previously published A2 vocabulary',async()=>{
  const {loader}=createPilot();
- const {units}=await loader.loadUnits('pt-BR','A2',[1,2,3,4,5,6,7,8,9]);
+ const {units}=await loader.loadUnits('pt-BR','A2',[1,2,3,4,5,6,7,8,9,10,11,12]);
  for(let index=6;index<9;index++){
   const earlier=new Set(units.slice(0,index).flatMap(unit=>unit.vocab.map(word=>word.id)));
   for(const lesson of units[index].lessons) for(const id of lesson.reviewVocabIds) assert.ok(earlier.has(id),id);

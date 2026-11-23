@@ -95,3 +95,19 @@ test('retries a curriculum path after a script loads without publishing its regi
     assert.equal(curriculum.id, 'pt-BR-A1');
     assert.equal(attempts, 2);
 });
+
+
+test('App.init resolves the active A1/A2 curricula through CurriculumLoader before audio and screens initialize', () => {
+    const indexSource = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+    const initPosition = indexSource.indexOf('await LanguageManager.init({');
+    const loaderPosition = indexSource.indexOf("['A1', 'A2'].map(level => CurriculumLoader.load(activeLanguage, level))", initPosition);
+    const courseAssignmentPosition = indexSource.indexOf('CourseData.levels = CourseData.levels.map', loaderPosition);
+    const audioPosition = indexSource.indexOf('AudioEngine.init();', initPosition);
+
+    assert.ok(initPosition >= 0, 'App initializes LanguageManager');
+    assert.ok(loaderPosition > initPosition, 'App loads each active level through CurriculumLoader');
+    assert.ok(courseAssignmentPosition > loaderPosition, 'loaded curricula replace only matching CourseData levels');
+    assert.ok(audioPosition > courseAssignmentPosition, 'audio and subsequent app initialization run after course resolution');
+    assert.match(indexSource.slice(loaderPosition, audioPosition), /curriculaByLevel\.get\(level\.id\) \|\| level/);
+    assert.match(indexSource.slice(loaderPosition, audioPosition), /some\(level => !curriculaByLevel\.has\(level\)\)/);
+});

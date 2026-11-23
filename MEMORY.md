@@ -395,9 +395,9 @@ Fuente: GitHub `main` commit `45a31b0`, rama `feat/pt-br-a2-u22-u24`, bloque `un
 Fuente: GitHub PR #761, merge commit `5e4da2e9`, rama `feat/pt-br-a2-u25-u27`, bloque `units-25-27.js`; 23 nov 2026.
 
 
-## 2026-11-23 — Portugués A2 U28–U30 en preparación
+## 2026-11-23 — PR #762 abierta: Portugués A2 U28–U30
 - Rama limpia `feat/pt-br-a2-u28-u30` creada desde `main` tras integrar PR #761 (`5e4da2e9af702f15a5bd3081c37ed73a3d3906a5`).
 - U28 dispositivos y recursos digitales; U29 atención al público y servicios; U30 planificación y trabajo en equipo. Se añaden 30 términos `not_checked`, cinco lecciones y diez ejercicios MC por unidad, con ejemplos PT/ES y referencias de repaso a vocabulario A2 anterior.
-- Pendiente integrar el bloque final A2 U28–U30, publicar U1–U30, caché offline `v3.8.140`, contratos Node/Playwright y CI. Mantener `pt-BR available:false`; sin cambios a IndexedDB v1/backup JSON v3, sin backend, dependencias ni audio/TTS.
+- PR [#762](https://github.com/luisequeira612-commits/bahasa-studio/pull/762) abierta desde `feat/pt-br-a2-u28-u30`, base `main` en `5e4da2e9af702f15a5bd3081c37ed73a3d3906a5`, head `60efe33eb0e59f8d2e6e0848bf806a20153b3db3`; CI pendiente. El manifiesto publica U1–U30, caché offline `v3.8.140`, contratos Node/Playwright amplían la carga offline a A2 completo. Mantener `pt-BR available:false`; sin cambios a IndexedDB v1/backup JSON v3, sin backend, dependencias ni audio/TTS.
 
 Fuente: GitHub `main` commit `5e4da2e9`, rama `feat/pt-br-a2-u28-u30`, bloque `units-28-30.js`; 23 nov 2026.

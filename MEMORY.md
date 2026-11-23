@@ -297,3 +297,16 @@ Fuente: PR #722–#726, commits squash y ejecuciones CI enlazadas; 23 nov 2026.
 ## 2026-11-23 — corrección CI PR #755
 - CI run #45238319009 detectó un error de sintaxis en `tests/pt-br-curriculum.e2e.test.cjs`: un literal `\\n` quedó insertado en la expresión de verificación de la caché offline. El resto de la suite reportó 206/207 pruebas superadas; `Offline quality reports` pasó.
 - Se corrigió el test sustituyendo el literal por un salto de línea real en commit `4425703f5990b78e5f9aee1d9563f93e3d94bc27`. Se requiere CI completo sobre este nuevo head antes de fusionar. No se cambia contenido curricular ni comportamiento de la app.
+
+
+## 2026-11-23 — pt-BR A2 U7–U9 fusionadas y U10–U12 en preparación
+- PR #755 se fusionó por squash en `main`, commit `96ae18a55cbb3986c5b0e37df705243ffa85c0c9`. CI run #45238928076 completó `test` (101/101 pasos) y `Offline quality reports` (10/10 pasos), ambos en success. Se corrigió previamente un literal de salto de línea en el test E2E.
+- Estado confirmado tras el merge: A1 24/24; A2 9/30; B1 0/36; B2 0/40. pt-BR permanece `available:false`; no se modifica IndexedDB v1 ni backup JSON v3.
+- Nueva rama `feat/pt-br-a2-u10-u12` parte del commit fusionado. Bloque previsto: U10 noticias y medios; U11 cultura y espectáculos; U12 medio ambiente y sostenibilidad. Se cotejaron 330 términos A1/A2 existentes y se evitaron colisiones exactas en las 30 entradas nuevas.
+- Cada unidad mantiene 10 términos `not_checked`, 5 lecciones y 10 ejercicios MC. Se amplía manifiesto a U1–U12, precarga offline y caché a `bahasa-studio-v3.8.134`; se actualizan tests de manifiesto y Playwright. Sin nuevas dependencias, backend, audio/TTS ni cambios de persistencia. Pendiente CI del PR de este bloque.
+
+- PR #756 abierto: https://github.com/luisequeira612-commits/bahasa-studio/pull/756. Head inicial `f269ebaa7824c4e0a59431054f01bd454a391595`, 10 archivos, +193/-16. CI pendiente; no fusionar hasta comprobar todos los checks del head definitivo.
+
+- 2026-11-23 — CI PR #756 run #45240545419 encontró 6 fallos en pruebas de caché heredadas que seguían esperando `v3.8.133` después de subir a `v3.8.134`; además, el test U7–U9 cargaba ahora el manifiesto U1–U12 sin mapear el nuevo archivo U10–U12. Corregidos los cinco archivos de test afectados (U1–U3, U4–U6, U7–U9, A1 U19–U21 y A1 U22–U24); el test U7–U9 ahora incluye el bloque U10–U12 en su loader simulado. Sin cambios al currículo ni a persistencia. Pendiente repetir CI en el head nuevo.
+
+- Segunda pasada CI PR #756, run #45241418593, confirmó que la simulación offline U7–U9 ya resuelve U10–U12; cuatro tests seguían fallando solo porque sus regex contienen puntos escapados literalmente (`3\\.8\\.133`), por lo que el reemplazo anterior no actualizó esas cadenas. Corregidas las regex exactas a `3\\.8\\.134` en A2 U1–U3, A2 U4–U6, A2 U7–U9 y A1 U19–U21. A1 U22–U24 ya pasó. Pendiente nuevo CI del head final.

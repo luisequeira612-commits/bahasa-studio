@@ -11,7 +11,8 @@ const sources={
  './languages/pt-BR/curriculum/a2/index.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a2/index.js'),'utf8'),
  './languages/pt-BR/curriculum/a2/units-01-03.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a2/units-01-03.js'),'utf8'),
  './languages/pt-BR/curriculum/a2/units-04-06.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a2/units-04-06.js'),'utf8'),
- './languages/pt-BR/curriculum/a2/units-07-09.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a2/units-07-09.js'),'utf8')
+ './languages/pt-BR/curriculum/a2/units-07-09.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a2/units-07-09.js'),'utf8'),
+ './languages/pt-BR/curriculum/a2/units-10-12.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a2/units-10-12.js'),'utf8')
 };
 function createPilot(){
  const window={localStorage:{getItem(){return 'id';},setItem(){}},document:{createElement(){return {};},head:{appendChild(script){
@@ -54,24 +55,24 @@ test('pt-BR A2 U7-U9 load through the offline loader while the language remains 
   }
  }
 });
-test('A2 manifest publishes U1-U9 as a partial level of thirty units',()=>{
+test('A2 manifest publishes U1-U12 as a partial level of thirty units',()=>{
  const {window}=createPilot();
  const manifest=window.GUARDI_CURRICULUM_MANIFESTS['pt-BR'].A2;
  assert.equal(manifest.totalUnits,30);
- assert.deepEqual(Array.from(manifest.publishedUnits),[1,2,3,4,5,6,7,8,9]);
+ assert.deepEqual(Array.from(manifest.publishedUnits),[1,2,3,4,5,6,7,8,9,10,11,12]);
  assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
 });
 test('A2 U7-U9 review references resolve only to previously published A2 vocabulary',async()=>{
  const {loader}=createPilot();
- const {units}=await loader.loadUnits('pt-BR','A2',[1,2,3,4,5,6,7,8,9]);
+ const {units}=await loader.loadUnits('pt-BR','A2',[1,2,3,4,5,6,7,8,9,10,11,12]);
  for(let index=6;index<9;index++){
   const earlier=new Set(units.slice(0,index).flatMap(unit=>unit.vocab.map(word=>word.id)));
   for(const lesson of units[index].lessons) for(const id of lesson.reviewVocabIds) assert.ok(earlier.has(id),id);
  }
 });
-test('service worker precaches A2 U7-U9 using cache v3.8.133',()=>{
+test('service worker precaches A2 U7-U9 using cache v3.8.134',()=>{
  const source=fs.readFileSync(path.join(repo,'service-worker.js'),'utf8');
  assert.match(source,/units-07-09\.js/);
  assert.match(source,/curriculum\/a2\/index\.js/);
- assert.match(source,/bahasa-studio-v3\.8\.133/);
+ assert.match(source,/bahasa-studio-v3\.8\.134/);
 });

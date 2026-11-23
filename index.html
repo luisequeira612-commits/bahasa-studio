@@ -79,6 +79,20 @@
     <!-- CURSO / RUTA -->
     <main id="view-route" class="app-view active">
 
+        <section class="card" id="studyLanguageCard" aria-labelledby="studyLanguageHeading" style="margin:0 0 14px;padding:14px 16px;border:1px solid var(--border);">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+                <div style="min-width:0;flex:1 1 150px;">
+                    <p class="eyebrow" style="margin:0 0 4px;">ESTÁS APRENDIENDO</p>
+                    <h2 id="studyLanguageHeading" style="margin:0;font-size:1.05rem;">Idioma de estudio</h2>
+                </div>
+                <label for="studyLanguageSelect" class="sr-only">Cambiar idioma de estudio</label>
+                <select id="studyLanguageSelect" class="input-field" aria-describedby="studyLanguageStatus" aria-label="Cambiar idioma de estudio" onchange="App.setStudyLanguage(this.value)" style="width:auto;min-width:min(100%,190px);max-width:100%;flex:0 1 230px;margin:0;">
+                    <option value="id">🇮🇩 Indonesio</option>
+                </select>
+            </div>
+            <p id="studyLanguageStatus" class="profile-muted" role="status" aria-live="polite" style="margin:8px 0 0;font-size:.78rem;">Los demás cursos se habilitarán cuando su contenido y pruebas estén completos.</p>
+        </section>
+
         <details class="feature-drawer learning-tool-panel" id="aiGeneratorDrawer">
             <summary>Generador de lecciones con IA</summary>
             <div class="feature-drawer-content">
@@ -309,14 +323,6 @@
     <main id="view-profile" class="app-view">
         <p class="eyebrow">TU ESPACIO PERSONAL</p>
         <h1>Perfil</h1>
-        <section class="card" id="studyLanguageCard">
-            <h2>Idioma de estudio</h2>
-            <label for="studyLanguageSelect">Curso activo</label>
-            <select id="studyLanguageSelect" class="input-field" aria-describedby="studyLanguageStatus" onchange="App.setStudyLanguage(this.value)">
-                <option value="id">🇮🇩 Indonesio</option>
-            </select>
-            <p id="studyLanguageStatus" class="profile-muted" role="status" aria-live="polite">Los demás cursos se habilitarán cuando su contenido y pruebas estén completos.</p>
-        </section>
         <section class="card profile-backup-card">
             <h2>Copia de seguridad</h2>
             <p id="backupReminderBanner" role="status" aria-live="polite">Recuerda exportar tu copia JSON para proteger tu progreso.</p>
@@ -19482,8 +19488,9 @@ Requisitos:
                 // only unavailable options are disabled until their courses are ready.
                 select.disabled = availableCount === 0;
                 if (status) {
+                    const activeName = LanguageManager.getLanguage(active).name;
                     status.textContent = availableCount < 2
-                        ? 'Indonesio es el único curso disponible. Los demás aparecen como próximos y no se pueden seleccionar hasta completar su contenido y pruebas.'
+                        ? activeName + ' es el único curso disponible. Los demás aparecen como próximos y no se pueden seleccionar hasta completar su contenido y pruebas.'
                         : 'Al cambiar de curso, la aplicación se reiniciará para cargar su currículo y progreso separados.';
                 }
             },

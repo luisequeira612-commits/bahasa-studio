@@ -72,9 +72,18 @@ test('a supported but not yet implemented course cannot become active through st
 });
 
 
-test('profile language selector exposes the approved catalog but disables unavailable courses', () => {
+test('main learning screen exposes the approved language catalog and disables unavailable courses', () => {
     const indexSource = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
     assert.match(indexSource, /id="studyLanguageSelect"/);
+    const routeStart = indexSource.indexOf('<main id="view-route"');
+    const routeEnd = indexSource.indexOf('</main>', routeStart);
+    const profileStart = indexSource.indexOf('<main id="view-profile"');
+    const profileEnd = indexSource.indexOf('</main>', profileStart);
+    const selectorPosition = indexSource.indexOf('id="studyLanguageSelect"');
+    assert.ok(routeStart >= 0 && selectorPosition > routeStart && selectorPosition < routeEnd,
+        'language selector should be on the main learning screen');
+    assert.ok(profileStart >= 0 && !indexSource.slice(profileStart, profileEnd).includes('studyLanguageSelect'),
+        'profile should no longer contain the primary language selector');
     assert.match(indexSource, /language\.available \? '' : ' · Próximamente'/);
     assert.match(indexSource, /option\.disabled = !language\.available/);
     assert.match(indexSource, /select\.disabled = availableCount === 0/);

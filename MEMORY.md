@@ -1,3 +1,8 @@
+## 2026-11-23 — selector de idioma trasladado a la pantalla principal
+- Por aprobación explícita del dueño, el selector de curso se mueve de Perfil a la parte superior de Aprender/Ruta, en una tarjeta compacta y visible; Perfil deja de ser el único acceso al cambio de idioma.
+- Se conserva el catálogo de diez idiomas, Indonesian como único curso seleccionable, los demás deshabilitados, la validación de LanguageManager y el reinicio seguro al cambiar de curso. No cambia currículo, progreso, IndexedDB v1 ni backup JSON v3.
+- Cache app shell incrementada a v3.8.124. Prueba de regresión verifica ubicación en la pantalla principal y ausencia del selector en Perfil; CI pendiente.
+
 ## 2026-11-23 — mejora del selector de idiomas
 - Corrección UX: el selector permanece desplegable aunque solo exista un curso disponible, para que se pueda consultar el catálogo aprobado y ver los nueve cursos próximos. Cada opción no disponible continúa deshabilitada y LanguageManager vuelve a validar cualquier intento de cambio.
 - Seleccionar de nuevo el idioma ya activo no guarda ni recarga la aplicación.

@@ -1,3 +1,8 @@
+## Audio: configuración de voz y reconocimiento por idioma — 23 nov 2026
+
+- La fase 1 desacopla `audio-engine.js` y `pronunciation-engine.js` del locale/ruta fijos de indonesio: consultan `LanguageManager` para locale, nombre y `audioPath` del idioma activo. Las voces del dispositivo se filtran por el subtag de idioma; no se usa una voz de otro idioma como fallback.
+- Se conserva el fallback a indonesio cuando `LanguageManager` no está cargado, para páginas legacy. `idVoice` se mantiene como alias de compatibilidad. La biblioteca Piper productiva sigue conteniendo solo audio indonesio; los demás cursos continúan no disponibles y no se activan.
+- Esta fase no modifica `offline-audio-manager.js`, `service-worker.js`, manifiestos, grabaciones, IndexedDB v1, backup JSON v3 ni dependencias. Siguiente etapa: inventario/caché offline multi-ruta con validación SHA-256 y migración segura de caché.
 ## CI de PR #717 — ajuste de pruebas E2E Piper — 23 nov 2026
 - El segundo CI (#45099002676) pasó regresión y todos los tests previos, pero falló en dos aserciones de `tests/browser-e2e.test.cjs` que todavía esperaban textos de atribución MMS. Las 31/33 pruebas E2E pasaron; ambas fallas eran expectativas antiguas frente al mensaje Piper correcto.
 - Se actualizaron las dos aserciones para comprobar la grabación Piper y la atribución vigente del curso. No cambia el comportamiento de producción. Repetir CI completo y mantener PR #717 sin fusionar hasta que todo esté verde y no haya revisiones/hilos pendientes.

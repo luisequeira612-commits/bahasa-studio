@@ -1,6 +1,6 @@
 ## 2026-11-23 — piloto curricular pt-BR A1 U1–U3 (PR en preparación)
 - Tras aprobación explícita, rama `feat/pt-br-a1-pilot-u1-u3`; se prepara un piloto parcial de A1 (24 unidades previstas; U1–U3 publicadas como contenido de prueba), sin habilitar el curso ni cambiar el idioma activo.
-- U1–U3 tienen cinco lecciones explícitas cada una. Inventario: 50 registros léxicos (U1 10, U2 10, U3 8 términos + 20 números); todos `not_checked`, sin hablante nativo ni certificación. U3 recicla exactamente dos preguntas de U1.
+- U1–U3 tienen cinco lecciones explícitas cada una. Inventario: 50 registros léxicos (U1 10, U2 10, U3 10 términos + 20 números); todos `not_checked`, sin hablante nativo ni certificación. U3 recicla exactamente dos preguntas de U1.
 - Vocabulario usa el campo neutral `target`; ejercicios usan handlers existentes `mc` y `order`. Las actividades de comprensión son texto/selección; no se publica audio ni se elige voz.
 - `CurriculumLoader.loadUnits('pt-BR','A1',[1,2,3])` permite probar bloques aun con `available:false`; la carga normal y el selector siguen bloqueados hasta completar A1. Service Worker precarga manifiesto y bloque del piloto.
 - Añadidas pruebas Node y Playwright para cinco lecciones por unidad, referencias, reciclaje U3, carga offline y aislamiento del historial/progreso pt-BR frente a Indonesio. CI pendiente de ejecución.

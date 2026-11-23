@@ -128,7 +128,7 @@ test('each language stores an independent history while Indonesian keeps its leg
     assert.equal(api.getRecentDays(1, day, 'en')[0].xp, 80);
 
     setLanguage('pt-BR');
-    assert.equal(api.getRecentDays(1, day)[0].xp, 0, 'the active manager locale controls the implicit history key');
+    assert.equal(api.getRecentDays(1, day)[0].xp, 35, 'the active manager locale selects the matching language history');
 });
 
 test('clearing one language does not remove another language history', () => {

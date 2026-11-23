@@ -7,17 +7,24 @@ const vm = require('node:vm');
 const { test } = require('node:test');
 
 const source = fs.readFileSync(path.join(__dirname, '..', 'study-history.js'), 'utf8');
+const supported = new Set(['pt-BR', 'en', 'it', 'fr', 'de', 'nl', 'ru', 'ja', 'ko', 'id']);
 
-function createHistory(initial = {}) {
+function createHistory(initial = {}, initialLanguage = 'id') {
     const values = new Map(Object.entries(initial));
+    let language = initialLanguage;
     const localStorage = {
         getItem(key) { return values.has(key) ? values.get(key) : null; },
         setItem(key, value) { values.set(key, String(value)); },
         removeItem(key) { values.delete(key); }
     };
-    const sandbox = { window: { localStorage }, Date, Map, JSON, Number, String, Math };
+    const LanguageManager = {
+        getActiveLanguage() { return language; },
+        isSupported(code) { return supported.has(code); },
+        list() { return [...supported].map(code => ({ code })); }
+    };
+    const sandbox = { window: { localStorage, LanguageManager }, Date, Map, JSON, Number, String, Math };
     vm.runInNewContext(source, sandbox);
-    return { api: sandbox.window.StudyHistory, values };
+    return { api: sandbox.window.StudyHistory, values, setLanguage(code) { language = code; } };
 }
 
 function localDate(year, month, day) {
@@ -35,6 +42,7 @@ test('records daily XP, lessons and reviews separately from the v3 study activit
         date: '2026-11-02', xp: 25, lessons: 1, reviews: 1, attempts: 0, correct: 0, sessions: 0
     });
     assert.ok(values.has('bahasaStudioStudyHistoryV1'));
+    assert.equal(api.storageKey('id'), 'bahasaStudioStudyHistoryV1');
 });
 
 test('records scored skill attempts and free writing or conversation sessions without saving text', () => {
@@ -103,6 +111,36 @@ test('invalid event types, skills and counters do not create misleading history'
     assert.equal(today.sessions, 0);
 });
 
+test('each language stores an independent history while Indonesian keeps its legacy key', () => {
+    const { api, values, setLanguage } = createHistory();
+    const day = localDate(2026, 11, 2);
+    api.record('points', 10, day, 'id');
+    api.record('points', 35, day, 'pt-BR');
+    api.record('points', 80, day, 'en');
+
+    assert.equal(api.storageKey('pt-BR'), 'guardi_study_history_pt-BR');
+    assert.equal(api.storageKey('en'), 'guardi_study_history_en');
+    assert.ok(values.has('bahasaStudioStudyHistoryV1'));
+    assert.ok(values.has('guardi_study_history_pt-BR'));
+    assert.ok(values.has('guardi_study_history_en'));
+    assert.equal(api.getRecentDays(1, day, 'id')[0].xp, 10);
+    assert.equal(api.getRecentDays(1, day, 'pt-BR')[0].xp, 35);
+    assert.equal(api.getRecentDays(1, day, 'en')[0].xp, 80);
+
+    setLanguage('pt-BR');
+    assert.equal(api.getRecentDays(1, day)[0].xp, 35, 'the active manager locale selects the matching language history');
+});
+
+test('clearing one language does not remove another language history', () => {
+    const { api, values } = createHistory();
+    const day = localDate(2026, 11, 2);
+    api.record('points', 10, day, 'id');
+    api.record('points', 35, day, 'pt-BR');
+    assert.equal(api.clear('pt-BR'), true);
+    assert.ok(values.has('bahasaStudioStudyHistoryV1'));
+    assert.equal(values.has('guardi_study_history_pt-BR'), false);
+});
+
 test('profile, service worker and CI include the history module and its regression suite', () => {
     const root = path.join(__dirname, '..');
     const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
@@ -116,9 +154,22 @@ test('profile, service worker and CI include the history module and its regressi
     assert.match(html, /totals\.sessions \+ ' sesiones de escritura\/conversación'/);
     assert.match(html, /study-history-bar--activity-only/);
     assert.match(html, /day\.sessions \+ ' sesiones de escritura\/conversación\.'/);
-    assert.match(html, /StudyHistory\.clear\(\)/);
+    assert.match(html, /StudyHistory\.clearAll\(\)/);
     assert.match(worker, /CACHE_NAME\s*=\s*'bahasa-studio-v\d+\.\d+\.\d+'/);
     assert.match(worker, /'\.\/study-history\.js'/);
     assert.match(workflow, /node --test tests\/study-history\.test\.cjs/);
     assert.match(workflow, /            study-history\.js/);
+});
+
+
+test('clearAll removes every registered language history during a full device reset', () => {
+    const { api, values } = createHistory();
+    const day = localDate(2026, 11, 2);
+    api.record('points', 10, day, 'id');
+    api.record('points', 35, day, 'pt-BR');
+    api.record('points', 80, day, 'en');
+    assert.equal(api.clearAll(), true);
+    assert.equal(values.has('bahasaStudioStudyHistoryV1'), false);
+    assert.equal(values.has('guardi_study_history_pt-BR'), false);
+    assert.equal(values.has('guardi_study_history_en'), false);
 });

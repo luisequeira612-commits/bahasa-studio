@@ -41,6 +41,15 @@ El usuario aprobó la refactorización incremental de robustez y núcleo multiid
 - Cuando un PR afecte esta hoja de ruta, la arquitectura multiidioma o la preparación para inglés, debe registrar la hoja de ruta vigente y cualquier impacto o desviación en MEMORY.md y en la descripción del PR.
 - Esta regla no autoriza a saltar el orden secuencial aprobado ni a activar cursos sin contenido completo y pruebas.
 
+
+### Núcleo multiidioma — implementación técnica gradual
+- `language-manager.js` mantiene el registro cerrado de diez códigos, locale, bandera, voz candidata y ruta de audio. Solo `id` está marcado como curso disponible hasta que exista un currículo completo y probado; no activar cursos vacíos. La raíz HTML y la UI permanecen en español (`lang=es`); cada componente de contenido/voz de estudio aplicará el locale del idioma objetivo a su propio elemento, nunca al documento completo.
+- `curriculum-loader.js` resuelve únicamente rutas declaradas para cursos disponibles. Los currículos nuevos deben publicar `GUARDI_CURRICULA[codigo][nivel]`; el cargador conserva adaptadores para los globals legacy de A1/A2 indonesio.
+- `progress-namespace.js` centraliza las claves por idioma. El SRS y el store progress usan `codigo::id` para cursos nuevos; el indonesio conserva sus IDs históricos sin prefijo. Solo las claves de progreso de settings se namespacen; preferencias del dispositivo y `activeLanguage` siguen globales.
+- `study-history.js` conserva `bahasaStudioStudyHistoryV1` para indonesio y usa `guardi_study_history_<codigo>` para otros idiomas. `adaptive-learning.js` sigue siendo lógica pura y selecciona el perfil de habilidad del idioma activo; no debe crear persistencia propia.
+- IndexedDB continúa en v1 y los stores existentes. La importación v3 reemplaza solo los registros SRS del idioma de la copia mediante cursor en una única transacción; no borra los demás idiomas. Los backups antiguos sin `language` siguen siendo indonesios.
+- La carga de audio por idioma y el selector UI son fases posteriores. No declarar cambio de curso en runtime hasta integrar el cargador con CourseData, el audio y la interfaz, y disponer de contenido real.
+
 ## Pensar en crecer (sin sobrediseñar)
 - Aplicar la hoja de ruta multiidioma aprobada el 22 nov 2026: portugués brasileño → inglés → italiano → francés → alemán → neerlandés → ruso → japonés → coreano → indonesio. Todo código y estructura de datos nuevos deben ser independientes del idioma. Completar A1–B2 de cada idioma antes de iniciar el siguiente.
 - Compartir con otros: el contenido debe estar separado del código (datos por idioma, nivel y unidad), para que añadir un curso o corregir una lección no obligue a tocar la lógica.

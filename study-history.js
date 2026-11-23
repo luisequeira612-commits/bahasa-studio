@@ -2,8 +2,21 @@
     'use strict';
 
     const STORAGE_KEY = 'bahasaStudioStudyHistoryV1';
+    const STORAGE_PREFIX = 'guardi_study_history_';
     const MAX_DAYS = 30;
     const SKILLS = ['recognition', 'translation', 'listening', 'sentenceBuilding', 'writing', 'conversation'];
+
+    function activeLanguage(language) {
+        const code = language || (root.LanguageManager && root.LanguageManager.getActiveLanguage()) || 'id';
+        if (root.LanguageManager && root.LanguageManager.isSupported(code)) return code;
+        return 'id';
+    }
+
+    function storageKey(language) {
+        const code = activeLanguage(language);
+        // Keep the original unprefixed Indonesian key so existing history is not lost.
+        return code === 'id' ? STORAGE_KEY : STORAGE_PREFIX + code;
+    }
 
     function dateKey(value) {
         const date = new Date(value == null ? Date.now() : value);
@@ -37,9 +50,10 @@
         return day;
     }
 
-    function read() {
+    function read(language) {
         try {
-            const raw = root.localStorage && root.localStorage.getItem(STORAGE_KEY);
+            const key = storageKey(language);
+            const raw = root.localStorage && root.localStorage.getItem(key);
             if (!raw) return [];
             const parsed = JSON.parse(raw);
             if (!parsed || parsed.version !== 1 || !Array.isArray(parsed.days)) return [];
@@ -51,19 +65,19 @@
         }
     }
 
-    function write(days) {
+    function write(days, language) {
         try {
             if (!root.localStorage) return false;
-            root.localStorage.setItem(STORAGE_KEY, JSON.stringify({ version: 1, days: days.slice(-MAX_DAYS) }));
+            root.localStorage.setItem(storageKey(language), JSON.stringify({ version: 1, days: days.slice(-MAX_DAYS) }));
             return true;
         } catch (_) {
             return false;
         }
     }
 
-    function update(now, updater) {
+    function update(now, updater, language) {
         const date = dateKey(now);
-        const days = read();
+        const days = read(language);
         let day = days.find(entry => entry.date === date);
         if (!day) {
             day = emptyDay(date);
@@ -71,7 +85,7 @@
         }
         updater(day);
         const retained = days.sort((a, b) => a.date.localeCompare(b.date)).slice(-MAX_DAYS);
-        return write(retained);
+        return write(retained, language);
     }
 
     function increment(day, key, amount) {
@@ -80,28 +94,28 @@
         day[key] += Math.floor(value);
     }
 
-    function record(kind, amount, now) {
+    function record(kind, amount, now, language) {
         if (!['points', 'lesson', 'review'].includes(kind)) return false;
         if (kind === 'points' && (!Number.isFinite(Number(amount)) || Number(amount) < 0 || !safeCount(Math.floor(Number(amount))))) return false;
-        return update(now, day => increment(day, kind === 'points' ? 'xp' : kind === 'lesson' ? 'lessons' : 'reviews', kind === 'points' ? amount : 1));
+        return update(now, day => increment(day, kind === 'points' ? 'xp' : kind === 'lesson' ? 'lessons' : 'reviews', kind === 'points' ? amount : 1), language);
     }
 
-    function recordSkill(skill, isCorrect, now) {
+    function recordSkill(skill, isCorrect, now, language) {
         if (!SKILLS.includes(skill) || typeof isCorrect !== 'boolean') return false;
         return update(now, day => {
             increment(day, 'attempts', 1);
             if (isCorrect) increment(day, 'correct', 1);
-        });
+        }, language);
     }
 
-    function recordSession(skill, now) {
+    function recordSession(skill, now, language) {
         if (!['writing', 'conversation'].includes(skill)) return false;
-        return update(now, day => increment(day, 'sessions', 1));
+        return update(now, day => increment(day, 'sessions', 1), language);
     }
 
-    function getRecentDays(count, now) {
+    function getRecentDays(count, now, language) {
         const requested = Number.isInteger(count) ? Math.max(1, Math.min(MAX_DAYS, count)) : 14;
-        const byDate = new Map(read().map(day => [day.date, day]));
+        const byDate = new Map(read(language).map(day => [day.date, day]));
         const cursor = new Date(now == null ? Date.now() : now);
         if (Number.isNaN(cursor.getTime())) throw new Error('Fecha de actividad no válida.');
         cursor.setHours(12, 0, 0, 0);
@@ -115,21 +129,32 @@
         return result;
     }
 
-    function clear() {
+    function clear(language) {
         try {
-            if (root.localStorage) root.localStorage.removeItem(STORAGE_KEY);
+            if (root.localStorage) root.localStorage.removeItem(storageKey(language));
             return true;
         } catch (_) {
             return false;
         }
     }
 
-    root.StudyHistory = {
+    function clearAll() {
+        const languages = root.LanguageManager && typeof root.LanguageManager.list === 'function'
+            ? root.LanguageManager.list().map(language => language.code)
+            : ['id'];
+        let success = true;
+        languages.forEach(language => { if (!clear(language)) success = false; });
+        return success;
+    }
+
+    root.StudyHistory = Object.freeze({
         maxDays: MAX_DAYS,
+        storageKey,
         record,
         recordSkill,
         recordSession,
         getRecentDays,
-        clear
-    };
+        clear,
+        clearAll
+    });
 })(typeof window !== 'undefined' ? window : globalThis);

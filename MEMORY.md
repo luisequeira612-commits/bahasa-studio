@@ -1,3 +1,9 @@
+## Núcleo multiidioma — PR #2 en preparación — 23 nov 2026
+- Rama `feat/multilingual-core-20261123`: registro cerrado de diez idiomas, loader con contrato `GUARDI_CURRICULA[codigo][nivel]`, namespace centralizado para SRS/progreso/settings, historial por idioma con clave legacy id preservada y recomendaciones adaptativas aisladas por perfil de idioma.
+- Solo id permanece seleccionable; los otros nueve están registrados pero inactivos hasta que cada curso tenga contenido. No hay selector UI, audio multiidioma ni curso portugués en esta PR. La raíz HTML permanece `lang=es` porque la interfaz y las explicaciones siguen en español; `LanguageManager.getLocale()` entrega el locale para elementos del contenido de estudio.
+- IndexedDB v1 y stores existentes se mantienen. Importación v3 elimina/reemplaza solo el SRS del idioma importado mediante cursor dentro de la transacción, conservando los demás namespaces. Backup legacy sin language continúa siendo id.
+- Añadidas pruebas de gestor, loader, namespaces, historial y perfiles adaptativos; CI completo pendiente. Próximo paso: validar el PR y después abordar audio/UI; piloto pt-BR A1 solo tras integrar la arquitectura.
+
 ## Retirada de etiqueta visual de B2 — 22 nov 2026
 
 - Se retiraron de la interfaz las etiquetas «En desarrollo» asociadas a B2: selector de nivel, vista de ruta y selector de salto de unidad. El selector de nivel muestra ahora unidades completadas/total.
@@ -709,3 +715,17 @@
 - PR #713 CI detectó una aserción de regresión desactualizada que esperaba el objeto normalizado v3 sin el nuevo campo language; el código pasó el parseo y el fallo no indica corrupción ni fallo de importación. Se actualiza la expectativa para incluir language y se espera una nueva ejecución completa.
 
 - Segunda ejecución CI de PR #713 encontró otra aserción de fuente antigua en la prueba legacy SRS, que buscaba el objeto v3 sin language. La nueva suite de backup y la primera expectativa ya pasaron; se actualiza esta última aserción y se repetirá CI.
+
+- CI inicial PR #714 (run 45095656863) detectó una única expectativa heredada en tests/regression.test.cjs que exigía srsStore.clear(); ahora la restauración debe conservar namespaces ajenos y eliminar solo los registros del idioma importado con cursor. El resto del job llegó a la suite de regresión sin fallos de sintaxis; se actualiza la expectativa para el contrato por idioma y se repetirá CI.
+
+- Segunda ejecución CI PR #714 (run 45095790131): corregida la aserción srsStore.clear, pero regression.test.cjs mostró tres mocks incompletos: falta LanguageManager en los contextos del validador/restauración, y faltan scopedKey/belongsToLanguage + openCursor en el fake DB. Se ajustan fixtures de pruebas, sin cambio de comportamiento productivo.
+
+- Tercera ejecución CI PR #714 (run 45096041633): regression.test.cjs ya pasa; tests/api-key-management.test.cjs tenía un DB fake aislado que no suministraba ProgressNamespace a DB.delete. Se actualiza el fixture con una función identity para preservar el propósito del test (borrar la clave global); la lógica de namespaces se prueba separadamente.
+
+- Cuarta ejecución CI PR #714 (run 45096186173): regresión y API key harness ya pasaron. tests/study-history.test.cjs tuvo una expectativa invertida: después de registrar 35 XP en pt-BR y cambiar el manager activo a pt-BR, la lectura implícita debe devolver 35, no 0. Se corrige la expectativa; el aislamiento explícito id/pt-BR/en y clearAll ya pasaron.
+
+- CI PR #714 run 45096564433 (head b6fa98f): actualiza el test de restauración para simular claves existentes id/pt-BR/en y comprobar que solo se elimina pt-BR, además de confirmar que las nuevas entradas y settings llevan prefijo. El test del loader mostró que la aserción regex del rechazo era frágil con el Error cross-realm; se cambia a un predicate sobre el texto del error. CI de este head sigue en curso.
+
+- ProgressNamespace: filterRecords valida el código de idioma al inicio, incluso si la colección está vacía; evita aceptar silenciosamente un código desconocido cuando no hay registros que ejecutar en el predicado.
+
+- CI PR #714 run 45096951416: gestor, historial, loader y namespaces pasaron. tests/backup-validation.test.cjs conservaba dos regex de error previas a PR #713; el import ahora informa que el curso aún no está disponible. Se actualizan las expectativas al mensaje actual.

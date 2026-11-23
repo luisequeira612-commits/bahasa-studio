@@ -74,7 +74,7 @@ test('A2 U7-U9 review references resolve only to previously published A2 vocabul
   for(const lesson of units[index].lessons) for(const id of lesson.reviewVocabIds) assert.ok(earlier.has(id),id);
  }
 });
-test('service worker precaches A2 U7-U9 using cache v3.8.141',()=>{
+test('service worker precaches A2 U7-U9 using cache v3.8.142',()=>{
  const source=fs.readFileSync(path.join(repo,'service-worker.js'),'utf8');
  assert.match(source,/units-07-09\.js/);
  assert.match(source,/curriculum\/a2\/index\.js/);

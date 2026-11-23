@@ -7,7 +7,7 @@ const {test}=require('node:test');
 const repo=path.join(__dirname,'..');
 const managerSource=fs.readFileSync(path.join(repo,'language-manager.js'),'utf8');
 const loaderSource=fs.readFileSync(path.join(repo,'curriculum-loader.js'),'utf8');
-const blockFiles=['units-01-03.js','units-04-06.js','units-07-09.js','units-10-12.js','units-13-15.js','units-16-18.js','units-19-21.js'];
+const blockFiles=['units-01-03.js','units-04-06.js','units-07-09.js','units-10-12.js','units-13-15.js','units-16-18.js','units-19-21.js','units-22-24.js'];
 const sources={
  './languages/pt-BR/curriculum/a2/index.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a2/index.js'),'utf8')
 };
@@ -54,15 +54,15 @@ test('pt-BR A2 U19-U21 load offline with ten vocabulary entries, five lessons an
   }
  }
 });
-test('A2 manifest publishes U1-U21 as a partial level of thirty units',()=>{
+test('A2 manifest publishes U1-U24 as a partial level of thirty units',()=>{
  const {window}=createPilot(),manifest=window.GUARDI_CURRICULUM_MANIFESTS['pt-BR'].A2;
  assert.equal(manifest.totalUnits,30);
- assert.deepEqual(Array.from(manifest.publishedUnits),Array.from({length:21},(_,i)=>i+1));
+ assert.deepEqual(Array.from(manifest.publishedUnits),Array.from({length:24},(_,i)=>i+1));
  assert.ok(manifest.blocks.some(block=>block.id==='19-21'&&block.units.join(',')==='19,20,21'));
  assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
 });
 test('U19-U21 review references resolve to earlier A2 vocabulary IDs',async()=>{
- const {loader}=createPilot(),{units}=await loader.loadUnits('pt-BR','A2',Array.from({length:21},(_,i)=>i+1));
+ const {loader}=createPilot(),{units}=await loader.loadUnits('pt-BR','A2',Array.from({length:24},(_,i)=>i+1));
  for(let index=18;index<21;index++){
   const earlier=new Set(units.slice(0,index).flatMap(unit=>unit.vocab.map(word=>word.id)));
   for(const lesson of units[index].lessons)for(const id of lesson.reviewVocabIds)assert.ok(earlier.has(id),id);
@@ -70,7 +70,7 @@ test('U19-U21 review references resolve to earlier A2 vocabulary IDs',async()=>{
 });
 test('U19-U21 introduce no exact normalized vocabulary duplicates against A1 and prior A2',()=>{
  const a1Files=['units-01-06.js','units-07-12.js','units-13-18.js','units-19-21.js','units-22-24.js'];
- const a2Files=blockFiles;
+ const a2Files=blockFiles.slice(0,-1);
  const targets=[];
  for(const file of a1Files){
   const source=fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a1',file),'utf8');

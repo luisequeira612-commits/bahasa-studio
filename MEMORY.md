@@ -264,3 +264,5 @@ Fuente: PR #722–#726, commits squash y ejecuciones CI enlazadas; 23 nov 2026.
 - Manifiesto A2 declara 30 unidades y publica solo U1–U3. Se registra la ruta A2 en LanguageManager, se precargan manifiesto y bloque U1–U3 con Service Worker cache `bahasa-studio-v3.8.131`, y se amplía Playwright para comprobar carga offline A1+A2. `pt-BR available:false` se conserva; el nivel A2 incompleto no se activa.
 - Sin nuevas dependencias, backend, audio/TTS ni cambios a IndexedDB v1 o backup JSON v3. CI pendiente antes de abrir/ fusionar la PR.
 
+
+- Ampliación de cobertura del runner: `quality:tests` ahora incluye los contratos incrementales A1 U19–U21, A1 U22–U24 y A2 U1–U3. Se corrigieron los harness de pruebas incrementales para inicializar el manifiesto antes de inspeccionar sus unidades publicadas.

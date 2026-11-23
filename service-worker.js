@@ -212,7 +212,7 @@ async function migrateLegacyAudioCache() {
                     continue;
                 }
                 const bytes = await response.clone().arrayBuffer();
-                if (!bytes.byteLength || await sha256Hex(bytes) !== expectedHash) {
+                if (!bytes.byteLength || await sha256Hex(bytes) !== expectedHash.toLowerCase()) {
                     await audioCache.delete(request);
                 }
             } catch (_) {
@@ -263,7 +263,7 @@ async function migrateLegacyAudioCache() {
                     migrationComplete = false;
                     continue;
                 }
-                if (await sha256Hex(bytes) !== expectedHash) continue;
+                if (await sha256Hex(bytes) !== expectedHash.toLowerCase()) continue;
                 await audioCache.put(request, response.clone());
             } catch (_) {
                 // Keep every legacy cache if any eligible audio entry could not be copied.

@@ -21,7 +21,7 @@
         const manager = root.LanguageManager;
         const config = manager && manager.getLanguage(language);
         const normalizedLevel = typeof level === 'string' ? level.toUpperCase() : '';
-        if (!config || !manager.isSupported(language) || !LEVELS.includes(normalizedLevel)) return null;
+        if (!config || (typeof manager.isSupported === 'function' && !manager.isSupported(language)) || !LEVELS.includes(normalizedLevel)) return null;
         const path = config.curriculum && config.curriculum[normalizedLevel];
         if (typeof path !== 'string' || !path.startsWith('./languages/')) return null;
         return Object.freeze({ language, level: normalizedLevel, path });
@@ -69,7 +69,7 @@
         manifest = readManifest(descriptor.language, descriptor.level);
         if (!manifest || !Array.isArray(manifest.publishedUnits) || !Array.isArray(manifest.blocks)) {
             loaded.delete(descriptor.path);
-            throw new Error('El índice curricular no publicó un manifiesto válido.');
+            throw new Error('El archivo no publicó el currículo esperado: manifiesto no válido.');
         }
         return manifest;
     }
@@ -135,7 +135,14 @@
             }
             return legacy;
         }
-        const manifest = await loadManifest(resolveContent(language, level));
+        let manifest;
+        try {
+            manifest = await loadManifest(resolveContent(language, level));
+        } catch (error) {
+            const published = readExisting(descriptor);
+            if (published) return published;
+            throw error;
+        }
         if (!Number.isInteger(manifest.totalUnits) || manifest.publishedUnits.length !== manifest.totalUnits) {
             throw new Error('El nivel todavía no tiene todas sus unidades publicadas.');
         }

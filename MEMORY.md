@@ -705,3 +705,5 @@
 ## Arquitectura multiidioma — aprobación y PR de robustez — 22 nov 2026
 - El dueño aprobó preparar Guardi para diez idiomas en orden pt-BR → en → it → fr → de → nl → ru → ja → ko → id, con UI española, cero backend/coste y regla A1→A2→B1→B2 antes de avanzar. Detalles, voces candidatas, fuentes y riesgos: Notion “Guardi - Arquitectura Multi-idioma”.
 - PR #712 sincronizó estado B2 U1–U60 y se fusionó en main (8df80778). La persistencia navigator.storage.persist() ya existía; no duplicarla. PR de robustez añade metadatos sociales, licencia y validación más estricta de backup v3 manteniendo IndexedDB v1; el único idioma restaurable en esta fase es id y los backups v3 históricos sin language se interpretan como id.
+
+- PR #713 CI detectó una aserción de regresión desactualizada que esperaba el objeto normalizado v3 sin el nuevo campo language; el código pasó el parseo y el fallo no indica corrupción ni fallo de importación. Se actualiza la expectativa para incluir language y se espera una nueva ejecución completa.

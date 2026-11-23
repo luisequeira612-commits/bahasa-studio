@@ -8,7 +8,7 @@ const makeUnit=(number,title,desc,grammar,trapTitle,trapDetail,vocab,specs)=>{
   mc(vocab[spec[3][0]].id,'¿Qué significa '+vocab[spec[3][0]].target+'?',[vocab[spec[3][0]].esp,vocab[(spec[3][0]+3)%10].esp,vocab[(spec[3][0]+6)%10].esp],0),
   mc(vocab[spec[3][1]].id,'¿Qué significa '+vocab[spec[3][1]].target+'?',[vocab[spec[3][1]].esp,vocab[(spec[3][1]+2)%10].esp,vocab[(spec[3][1]+5)%10].esp],0)
  ]));
- return {unitNumber:number,id:'ptbr_a1_u'+number,title:'Unidad '+number+': '+title,desc,grammar,trap:{title:trapTitle,detail:trapDetail},vocab,lessons,exercises:vocab.map(word=>mc(word.id,'¿Qué significa '+word.target+'?',[word.esp,'otra palabra','otra expresión'],0))};
+ return {unitNumber:number,id:'ptbr_a1_u'+number,title:'Unidad '+number+': '+title,desc,grammar,trap:{title:trapTitle,detail:trapDetail},vocab,lessons,exercises:vocab.map((word,index)=>mc(word.id,'¿Qué significa '+word.target+'?',[word.esp,vocab[(index+3)%10].esp,vocab[(index+6)%10].esp],0))};
 };
 const u19=[
 v('ptbr_a1_u19_v01','mês','mes','Este mês é especial.','Este mes es especial.'),

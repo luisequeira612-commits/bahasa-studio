@@ -719,3 +719,5 @@
 - CI inicial PR #714 (run 45095656863) detectó una única expectativa heredada en tests/regression.test.cjs que exigía srsStore.clear(); ahora la restauración debe conservar namespaces ajenos y eliminar solo los registros del idioma importado con cursor. El resto del job llegó a la suite de regresión sin fallos de sintaxis; se actualiza la expectativa para el contrato por idioma y se repetirá CI.
 
 - Segunda ejecución CI PR #714 (run 45095790131): corregida la aserción srsStore.clear, pero regression.test.cjs mostró tres mocks incompletos: falta LanguageManager en los contextos del validador/restauración, y faltan scopedKey/belongsToLanguage + openCursor en el fake DB. Se ajustan fixtures de pruebas, sin cambio de comportamiento productivo.
+
+- Tercera ejecución CI PR #714 (run 45096041633): regression.test.cjs ya pasa; tests/api-key-management.test.cjs tenía un DB fake aislado que no suministraba ProgressNamespace a DB.delete. Se actualiza el fixture con una función identity para preservar el propósito del test (borrar la clave global); la lógica de namespaces se prueba separadamente.

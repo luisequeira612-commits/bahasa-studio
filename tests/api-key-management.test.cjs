@@ -30,7 +30,10 @@ test('DB.delete elimina una clave por key en una transacción readwrite sin camb
     const end = html.indexOf('/* 2. CURRICULO COMPLETO A1 CON ESTRUCTURA A2-B2 */', start);
     assert.ok(start >= 0 && end > start, 'DB wrapper block must exist');
     const dbSource = html.slice(start, end);
-    const db = vm.runInNewContext(dbSource + '\nDB', { Promise, Error });
+    const db = vm.runInNewContext(dbSource + '\nDB', {
+        Promise, Error,
+        ProgressNamespace: { storageKey: (store, key) => String(key) }
+    });
     let transactionArgs;
     let deleted;
     const tx = {

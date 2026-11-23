@@ -72,7 +72,7 @@ test('B1 U7-U9 add no exact normalized vocabulary duplicates against A1, A2 or B
  const first=fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/b1/units-01-03.js'),'utf8');
  const second=fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/b1/units-04-06.js'),'utf8');
  const source=fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/b1/units-07-09.js'),'utf8');
- const previous=[...first.matchAll(/vocab\(\d+,\d+,'([^']+)'/g)].map(match=>match[1]);
+ const previous=[...first.matchAll(/vocab\(\d+,\d+,'([^']+)'/g),...second.matchAll(/vocab\(\d+,\d+,'([^']+)'/g)].map(match=>match[1]);
  const added=[...source.matchAll(/vocab\(\d+,\d+,'([^']+)'/g)].map(match=>match[1]);
  const normalize=value=>value.toLocaleLowerCase('pt-BR').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/\s+/g,' ').trim();
  const allPrior=new Set([...prior,...previous].map(normalize)),normalized=added.map(normalize);
@@ -82,5 +82,5 @@ test('B1 U7-U9 add no exact normalized vocabulary duplicates against A1, A2 or B
 test('service worker precaches the B1 manifest and U1-U9 blocks with cache v3.8.143',()=>{
  const source=fs.readFileSync(path.join(repo,'service-worker.js'),'utf8');
  assert.match(source,/curriculum\/b1\/index\.js/);assert.match(source,/curriculum\/b1\/units-01-03\.js/);assert.match(source,/curriculum\/b1\/units-04-06\.js/);
- assert.match(source,/bahasa-studio-v3\.8\.142/);
+ assert.match(source,/bahasa-studio-v3\.8\.143/);
 });

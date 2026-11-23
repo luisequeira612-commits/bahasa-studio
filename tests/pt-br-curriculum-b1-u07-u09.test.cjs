@@ -54,7 +54,7 @@ test('B1 manifest publishes exactly U1-U9 of 36 and remains unavailable in the l
  assert.deepEqual(Array.from(manifest.blocks[1].units),[4,5,6]);assert.deepEqual(Array.from(manifest.blocks[2].units),[7,8,9]);assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
 });
 test('B1 U7-U9 review references resolve to existing A2 vocabulary IDs',async()=>{
- const {loader}=createPilot(),{units}=await loader.loadUnits('pt-BR','B1',[4,5,6]);
+ const {loader}=createPilot(),{units}=await loader.loadUnits('pt-BR','B1',[7,8,9]);
  const {units:a2}=await loader.loadUnits('pt-BR','A2',Array.from({length:30},(_,i)=>i+1));
  const ids=new Set(a2.flatMap(unit=>unit.vocab.map(word=>word.id)));
  for(const unit of units)for(const lesson of unit.lessons)for(const id of lesson.reviewVocabIds)assert.ok(ids.has(id),id);
@@ -71,7 +71,7 @@ test('B1 U7-U9 add no exact normalized vocabulary duplicates against A1, A2 or B
  }
  const first=fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/b1/units-01-03.js'),'utf8');
  const second=fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/b1/units-04-06.js'),'utf8');
- const source=fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/b1/units-04-06.js'),'utf8');
+ const source=fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/b1/units-07-09.js'),'utf8');
  const previous=[...first.matchAll(/vocab\(\d+,\d+,'([^']+)'/g)].map(match=>match[1]);
  const added=[...source.matchAll(/vocab\(\d+,\d+,'([^']+)'/g)].map(match=>match[1]);
  const normalize=value=>value.toLocaleLowerCase('pt-BR').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/\s+/g,' ').trim();

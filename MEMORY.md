@@ -1,3 +1,11 @@
+## 2026-11-23 — piloto curricular pt-BR A1 U1–U3 (PR en preparación)
+- Tras aprobación explícita, rama `feat/pt-br-a1-pilot-u1-u3`; se prepara un piloto parcial de A1 (24 unidades previstas; U1–U3 publicadas como contenido de prueba), sin habilitar el curso ni cambiar el idioma activo.
+- U1–U3 tienen cinco lecciones explícitas cada una. Inventario: 50 registros léxicos (U1 10, U2 10, U3 8 términos + 20 números); todos `not_checked`, sin hablante nativo ni certificación. U3 recicla exactamente dos preguntas de U1.
+- Vocabulario usa el campo neutral `target`; ejercicios usan handlers existentes `mc` y `order`. Las actividades de comprensión son texto/selección; no se publica audio ni se elige voz.
+- `CurriculumLoader.loadUnits('pt-BR','A1',[1,2,3])` permite probar bloques aun con `available:false`; la carga normal y el selector siguen bloqueados hasta completar A1. Service Worker precarga manifiesto y bloque del piloto.
+- Añadidas pruebas Node y Playwright para cinco lecciones por unidad, referencias, reciclaje U3, carga offline y aislamiento del historial/progreso pt-BR frente a Indonesio. CI pendiente de ejecución.
+- Sin cambios a IndexedDB v1, backup JSON v3, dependencias ni recursos de audio.
+
 ## 2026-11-23 — selector de idiomas compacto en la barra superior (PR #738 abierta; CI verde)
 - Por aprobación explícita, se sustituye la tarjeta grande de idioma en Aprender por un chip de bandera en la barra superior y una hoja inferior accesible. El catálogo se lee de `LanguageManager.list()`; Indonesio permanece como único curso disponible y los otros nueve se muestran en gris con etiqueta «Pronto», sin controles seleccionables.
 - La hoja muestra el idioma activo, su nivel y el porcentaje de progreso del nivel actual. El chip de nivel conserva el progreso calculado desde el currículo y namespace del idioma activo. No cambia la selección predeterminada ni el mecanismo de persistencia de `LanguageManager`.

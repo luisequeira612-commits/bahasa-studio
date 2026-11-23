@@ -317,3 +317,5 @@ Fuente: PR #722–#726, commits squash y ejecuciones CI enlazadas; 23 nov 2026.
 - Estado tras merge: A1 24/24; A2 12/30; B1 0/36; B2 0/40. `pt-BR available:false`; caché SW `bahasa-studio-v3.8.134`; sin cambios en IndexedDB v1 ni backup JSON v3.
 - Nueva rama `feat/pt-br-a2-u13-u15` parte del merge commit. U13 finanzas personales y servicios bancarios; U14 búsqueda de empleo y condiciones laborales; U15 trámites y servicios públicos. 30 términos nuevos sin colisiones exactas detectadas frente a 360 entradas previas A1/A2; todos `not_checked`. Cada unidad tiene 5 lecciones y 10 ejercicios MC, con referencias de repaso a A2 previo.
 - Se amplía manifiesto a U1–U15, caché a `bahasa-studio-v3.8.135` y precarga `units-13-15.js`; tests de manifiesto y Playwright se amplían para 15 unidades. Sin nuevas dependencias, backend, audio/TTS ni cambios de persistencia. Pendiente PR y CI del bloque.
+
+- PR #757 abierta: https://github.com/luisequeira612-commits/bahasa-studio/pull/757. Head inicial `7e3ec6a7a9de87c7c778d1c8810d506d2092bb6a`, 13 archivos, +203/-24. Pendiente CI completo sobre el head final; no fusionar antes de ambos jobs success.

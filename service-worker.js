@@ -7,8 +7,12 @@ function audioLanguageFromRequest(request) {
     if (url.origin !== self.location.origin) return null;
     const match = /\/audio\/([a-z]{2}(?:-[A-Z]{2})?)\/[^/]+\.mp3$/i.exec(url.pathname);
     if (!match) return null;
-    const language = match[1];
-    return AUDIO_LANGUAGES.has(language) ? language : null;
+    const requestedLanguage = match[1];
+    // URL matching is case-insensitive; resolve to the canonical catalog code
+    // so pt-BR always selects the same metadata path and cache namespace.
+    return [...AUDIO_LANGUAGES].find((language) =>
+        language.toLowerCase() === requestedLanguage.toLowerCase()
+    ) || null;
 }
 
 function audioCacheName(language) {

@@ -310,3 +310,21 @@ Fuente: PR #722–#726, commits squash y ejecuciones CI enlazadas; 23 nov 2026.
 - 2026-11-23 — CI PR #756 run #45240545419 encontró 6 fallos en pruebas de caché heredadas que seguían esperando `v3.8.133` después de subir a `v3.8.134`; además, el test U7–U9 cargaba ahora el manifiesto U1–U12 sin mapear el nuevo archivo U10–U12. Corregidos los cinco archivos de test afectados (U1–U3, U4–U6, U7–U9, A1 U19–U21 y A1 U22–U24); el test U7–U9 ahora incluye el bloque U10–U12 en su loader simulado. Sin cambios al currículo ni a persistencia. Pendiente repetir CI en el head nuevo.
 
 - Segunda pasada CI PR #756, run #45241418593, confirmó que la simulación offline U7–U9 ya resuelve U10–U12; cuatro tests seguían fallando solo porque sus regex contienen puntos escapados literalmente (`3\\.8\\.133`), por lo que el reemplazo anterior no actualizó esas cadenas. Corregidas las regex exactas a `3\\.8\\.134` en A2 U1–U3, A2 U4–U6, A2 U7–U9 y A1 U19–U21. A1 U22–U24 ya pasó. Pendiente nuevo CI del head final.
+
+
+## 2026-11-23 — PR #756 fusionada y A2 U13–U15 en preparación
+- PR #756 se fusionó por squash en `main`, commit `9efda040e24d439247ba60e06e035b911e49721e`. CI final run #45241897883 en head `855fe44d4ebda94992e2e27322bc5483572c44ea`: `test` 101/101 pasos y `Offline quality reports` 10/10 pasos, ambos success. Playwright E2E offline y assessment browser tests pasaron.
+- Estado tras merge: A1 24/24; A2 12/30; B1 0/36; B2 0/40. `pt-BR available:false`; caché SW `bahasa-studio-v3.8.134`; sin cambios en IndexedDB v1 ni backup JSON v3.
+- Nueva rama `feat/pt-br-a2-u13-u15` parte del merge commit. U13 finanzas personales y servicios bancarios; U14 búsqueda de empleo y condiciones laborales; U15 trámites y servicios públicos. 30 términos nuevos sin colisiones exactas detectadas frente a 360 entradas previas A1/A2; todos `not_checked`. Cada unidad tiene 5 lecciones y 10 ejercicios MC, con referencias de repaso a A2 previo.
+- Se amplía manifiesto a U1–U15, caché a `bahasa-studio-v3.8.135` y precarga `units-13-15.js`; tests de manifiesto y Playwright se amplían para 15 unidades. Sin nuevas dependencias, backend, audio/TTS ni cambios de persistencia. Pendiente PR y CI del bloque.
+
+- PR #757 abierta: https://github.com/luisequeira612-commits/bahasa-studio/pull/757. Head inicial `7e3ec6a7a9de87c7c778d1c8810d506d2092bb6a`, 13 archivos, +203/-24. Pendiente CI completo sobre el head final; no fusionar antes de ambos jobs success.
+
+
+## 2026-11-23 — corrección CI PR #757: harness offline A2 incompletos
+- El CI del head `1fc43d93f4532da8ec888d291ff41a873c748e66`, run [#45243502516](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45243502516), completó `Offline quality reports` en success, pero `Run local quality tests` falló en dos tests de referencias de repaso: `pt-br-curriculum-a2-u07-u09.test.cjs` y `pt-br-curriculum-a2-u13-u15.test.cjs`. El resto de la suite de calidad reportó 213/215 pruebas superadas.
+- Causa: al ampliar el manifiesto a U1–U15, los harness simulados no registraban todos los archivos que el loader intentaba importar. El test U7–U9 no incluía U13–U15; el test U13–U15 omitía U10–U12 y repetía la entrada U13–U15. No era un fallo de referencias léxicas del currículo.
+- Corrección en commits `a168942171b3e366219175ba197f202ab23f4581` y `eb46ff0fa5bdf1e015e444c0c3fc70cdc479712c`: completar los mapas de archivos en ambos harness para que cubran los bloques U1–U15. Se mantienen las aserciones de resolución de repaso y no se modifica contenido de vocabulario, manifiesto, disponibilidad ni persistencia.
+- Repetir CI completo sobre el nuevo head; no fusionar hasta que `test` y `Offline quality reports` estén en success.
+
+Fuente: logs del job `test` de GitHub Actions run #45243502516 y commits de `feat/pt-br-a2-u13-u15`; 23 nov 2026.

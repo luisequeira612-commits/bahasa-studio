@@ -17,23 +17,15 @@ App web para aprender idiomas, estilo Duolingo, alojada en GitHub Pages. Hoy tie
 - Sin agentes de IA externos dentro de la app por ahora.
 - No se publica en tiendas de apps.
 
-## Hoja de ruta multiidioma (decisión aprobada: 22 nov 2026)
-La UI, navegación y explicaciones de Guardi permanecen en español. El catálogo y la secuencia aprobados son:
-1. Portugués de Brasil (pt-BR) — voz candidata pt_BR-faber-medium; fuente candidata brazilian-portuguese-cefr-vocabulary.
-2. Inglés (en) — en_US-lessac-medium; English Vocabulary Profile y CEFR-English-Vocabulary-List.
-3. Italiano (it) — it_IT-riccardo (catálogo consultado indica x_low); listas QCER y repositorios italian-cefr-vocabulary.
-4. Francés (fr) — fr_FR-upmc-medium; Français Fondamental y french-cefr-vocabulary.
-5. Alemán (de) — voz thorsten propuesta sin confirmar; listas Goethe-Institut y german-cefr-vocabulary.
-6. Neerlandés (nl) — nl_NL-mls-medium; Staatsexamen NT2 y dutch-cefr-vocabulary.
-7. Ruso (ru) — ru_RU-ruslan-medium; Russian CEFR Vocabulary y russian-cefr-vocabulary.
-8. Japonés (ja) — modelo Piper/runtime por seleccionar; JLPT N5–N1 y jlpt-vocabulary.
-9. Coreano (ko) — catálogo consultado muestra ko_KR/Kss, no ko_KO; TOPIK 1–6 y topik-vocabulary.
-10. Indonesio (id) — currículo existente; mantener voz Piper id_ID-news_tts-medium como configuración actual.
-Las voces y listas son candidatas: verificar licencia, versión, disponibilidad, tamaño y runtime antes de integrarlas. Priorizar licencias MIT, CC-BY o CC0; no copiar datasets sin licencia clara.
+## Arquitectura multiidioma y selección de idiomas pendiente
+La arquitectura técnica puede preparar Guardi para trabajar con varios idiomas, pero el usuario todavía está evaluando cuáles quiere añadir y en qué orden. No tratar listas, banderas, voces o códigos registrados como una decisión curricular aprobada.
 
-**Regla secuencial obligatoria:** comenzar por portugués brasileño y completar A1 → A2 → B1 → B2 antes de iniciar inglés. Repetir en el orden indicado; el indonesio se conserva como curso existente y se audita/consolida en su turno. No iniciar un idioma siguiente antes de completar el actual. El objetivo arquitectónico es admitir hasta diez idiomas, pero solo activar niveles con currículo realmente implementado y probado.
-
-El usuario aprobó la refactorización incremental de robustez y núcleo multiidioma. Se permite preparar el registro de los diez idiomas, gestor/cargador, aislamiento de progreso y compatibilidad con datos antiguos. Esto sustituye las restricciones anteriores de no hacer refactorización general ni añadir idiomas adicionales.
+- Mantener la UI, navegación y explicaciones en español.
+- Los códigos registrados en LanguageManager son únicamente candidatos técnicos/inactivos, no una promesa de cursos ni una secuencia de lanzamiento.
+- No crear currículos, vocabulario, audio, datasets ni seleccionar un orden de idiomas nuevos hasta que el usuario confirme su selección.
+- Solo Indonesian permanece disponible. Los demás códigos siguen inactivos y no deben aparecer como cursos seleccionables.
+- Verificar licencias, versión, disponibilidad, tamaño y runtime antes de incorporar cualquier recurso de voz o dataset.
+- El usuario aprobó la refactorización incremental de robustez y núcleo multiidioma, pero reservó la decisión sobre qué idiomas añadir. Esta autorización permite preparar infraestructura neutral, no elegir idiomas ni crear cursos.
 
 ### Regla de independencia del idioma
 - Todo código y estructura de datos nuevos deben ser independientes del idioma: no introducir textos, rutas, nombres de archivo, identificadores ni reglas fijas que solo funcionen para el indonesio.

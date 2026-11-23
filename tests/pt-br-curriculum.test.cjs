@@ -10,12 +10,14 @@ const loaderSource=fs.readFileSync(path.join(repo,'curriculum-loader.js'),'utf8'
 const manifestSource=fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a1/index.js'),'utf8');
 const blockSource1=fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a1/units-01-06.js'),'utf8');
 const blockSource2=fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a1/units-07-12.js'),'utf8');
+const blockSource3=fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a1/units-13-18.js'),'utf8');
 
 function createPilot(){
  const sources={
   './languages/pt-BR/curriculum/a1/index.js':manifestSource,
   './languages/pt-BR/curriculum/a1/units-01-06.js':blockSource1,
-  './languages/pt-BR/curriculum/a1/units-07-12.js':blockSource2
+  './languages/pt-BR/curriculum/a1/units-07-12.js':blockSource2,
+  './languages/pt-BR/curriculum/a1/units-13-18.js':blockSource3
  };
  const window={localStorage:{getItem(){return 'id';},setItem(){}},document:{createElement(){return {};},head:{appendChild(script){
   const source=sources[script.src];
@@ -29,14 +31,14 @@ function createPilot(){
  return {window,loader:window.CurriculumLoader};
 }
 
-test('pt-BR A1 pilot loads U1-U12 without making the incomplete course selectable',async()=>{
+test('pt-BR A1 pilot loads U1-U15 without making the incomplete course selectable',async()=>{
  const {window,loader}=createPilot();
  assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
  assert.equal(loader.resolve('pt-BR','A1'),null);
- const curriculum=await loader.loadUnits('pt-BR','A1',[1,2,3,4,5,6,7,8,9,10,11,12]);
+ const curriculum=await loader.loadUnits('pt-BR','A1',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]);
  assert.equal(curriculum.language,'pt-BR');
  assert.equal(curriculum.totalUnits,24);
- assert.deepEqual(Array.from(curriculum.units,u=>u.unitNumber),[1,2,3,4,5,6,7,8,9,10,11,12]);
+ assert.deepEqual(Array.from(curriculum.units,u=>u.unitNumber),[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]);
  await assert.rejects(loader.load('pt-BR','A1'),/no está disponible/);
 });
 
@@ -127,6 +129,32 @@ test('U10-U12 each introduce ten vocabulary targets and ten final exercises',asy
  assert.equal(units[2].vocab[8].target,'amanhã');
 });
 
+
+test('U13-U15 add hobbies, sports and outings with ten terms, five lessons and ten exercises each',async()=>{
+ const {loader}=createPilot();
+ const {units}=await loader.loadUnits('pt-BR','A1',[13,14,15]);
+ assert.deepEqual(Array.from(units,u=>u.unitNumber),[13,14,15]);
+ const expected=[['ler','fotografia'],['esporte','bola'],['cinema','divertido']];
+ for(let i=0;i<units.length;i++){
+  const unit=units[i];
+  assert.equal(unit.vocab.length,10,unit.id);
+  assert.equal(unit.exercises.length,10,unit.id);
+  assert.equal(unit.lessons.length,5,unit.id);
+  for(const word of unit.vocab) assert.equal(word.verification.status,'not_checked');
+  for(const lesson of unit.lessons){
+   for(const id of [...lesson.vocabIds,...lesson.reviewVocabIds]) assert.ok(unit.vocab.some(word=>word.id===id)||id.startsWith('ptbr_a1_'),unit.id+' review reference '+id);
+  }
+  for(const ex of [...unit.exercises,...unit.lessons.flatMap(lesson=>lesson.exercises)]) assert.ok(['mc','order'].includes(ex.type),unit.id);
+  assert.equal(unit.vocab[0].target,expected[i][0]);
+  assert.equal(unit.vocab[9].target,expected[i][1]);
+ }
+});
+
+test('pt-BR A1 pilot still remains unavailable after publishing U1-U15',()=>{
+ const {window}=createPilot();
+ assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
+});
+
 test('pilot exercises remain text-only and do not request or reference Portuguese audio',async()=>{
  const {loader}=createPilot();
  const {units}=await loader.loadUnits('pt-BR','A1',[1,2,3,4,5,6,7,8,9,10,11,12]);
@@ -147,4 +175,5 @@ test('service worker precaches the Portuguese manifest and A1 pilot blocks',()=>
  assert.ok(assets.includes('./languages/pt-BR/curriculum/a1/index.js'));
  assert.ok(assets.includes('./languages/pt-BR/curriculum/a1/units-01-06.js'));
  assert.ok(assets.includes('./languages/pt-BR/curriculum/a1/units-07-12.js'));
+ assert.ok(assets.includes('./languages/pt-BR/curriculum/a1/units-13-18.js'));
 });

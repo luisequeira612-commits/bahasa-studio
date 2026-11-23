@@ -35,11 +35,12 @@
     }
 
     function filterRecords(store, records, language) {
+        const code = assertLanguage(language || 'id');
         if (store !== 'srs' && store !== 'progress') return Array.isArray(records) ? records.slice() : [];
         return (Array.isArray(records) ? records : [])
-            .filter(record => record && belongsToLanguage(store, record.key, language))
+            .filter(record => record && belongsToLanguage(store, record.key, code))
             .map(record => {
-                const key = logicalKey(store, record.key, language);
+                const key = logicalKey(store, record.key, code);
                 return Object.assign({}, record, { id: key, wordId: key, key });
             });
     }

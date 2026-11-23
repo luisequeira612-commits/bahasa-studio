@@ -208,11 +208,15 @@ async function migrateLegacyAudioCache() {
                 if (!bytes.byteLength) continue;
 
                 const currentHashes = hashesByLanguage.get(language);
-                if (currentHashes) {
-                    const match = new URL(request.url).pathname.match(/\/audio\/[a-z]{2}(?:-[A-Z]{2})?\/([a-f0-9]{12})\.mp3$/i);
-                    const expectedHash = match ? currentHashes[match[1].toLowerCase()] : null;
-                    if (!expectedHash || await sha256Hex(bytes) !== expectedHash) continue;
+                if (!currentHashes) {
+                    // Without the matching inventory, do not move an unverified clip
+                    // or delete the only legacy copy during cache cleanup.
+                    migrationComplete = false;
+                    continue;
                 }
+                const match = new URL(request.url).pathname.match(/\/audio\/[a-z]{2}(?:-[A-Z]{2})?\/([a-f0-9]{12})\.mp3$/i);
+                const expectedHash = match ? currentHashes[match[1].toLowerCase()] : null;
+                if (!expectedHash || await sha256Hex(bytes) !== expectedHash) continue;
                 await audioCache.put(request, response.clone());
             } catch (_) {
                 // Keep every legacy cache if any eligible audio entry could not be copied.

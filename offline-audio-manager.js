@@ -29,7 +29,8 @@
         const code = AUDIO_LANGUAGES.has(language) ? language : 'id';
         const manager = window.LanguageManager;
         const config = manager && typeof manager.getLanguage === 'function' ? manager.getLanguage(code) : null;
-        const path = config && typeof config.audioPath === 'string' ? config.audioPath : './audio/id/';
+        const expectedPath = './audio/' + code + '/';
+        const path = config && config.audioPath === expectedPath ? config.audioPath : expectedPath;
         return { code, path };
     }
 

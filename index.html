@@ -309,6 +309,14 @@
     <main id="view-profile" class="app-view">
         <p class="eyebrow">TU ESPACIO PERSONAL</p>
         <h1>Perfil</h1>
+        <section class="card" id="studyLanguageCard">
+            <h2>Idioma de estudio</h2>
+            <label for="studyLanguageSelect">Curso activo</label>
+            <select id="studyLanguageSelect" class="input-field" aria-describedby="studyLanguageStatus" onchange="App.setStudyLanguage(this.value)">
+                <option value="id">🇮🇩 Indonesio</option>
+            </select>
+            <p id="studyLanguageStatus" class="profile-muted" role="status" aria-live="polite">Los demás cursos se habilitarán cuando su contenido y pruebas estén completos.</p>
+        </section>
         <section class="card profile-backup-card">
             <h2>Copia de seguridad</h2>
             <p id="backupReminderBanner" role="status" aria-live="polite">Recuerda exportar tu copia JSON para proteger tu progreso.</p>
@@ -19121,7 +19129,7 @@ Requisitos:
         };
 
         /* 6. CONTROLADOR PRINCIPAL Y TUTOR SECUNDARIO */
-        const STUDY_LANGUAGE_LABEL = 'Indonesio';
+        let STUDY_LANGUAGE_LABEL = 'Indonesio';
 
         const App = {
             xp: 0,
@@ -19155,6 +19163,8 @@ Requisitos:
                     throw new Error('No se pudieron preparar los niveles del curso activo.');
                 }
                 CourseData.levels = CourseData.levels.map(level => curriculaByLevel.get(level.id) || level);
+                STUDY_LANGUAGE_LABEL = LanguageManager.getLanguage(activeLanguage).name;
+                this.renderStudyLanguageSelector();
 
                 AudioEngine.init();
                 AudioEngine.setRate((await DB.get('settings', 'audioPlaybackRate')) ?? 0.85, false);
@@ -19451,6 +19461,39 @@ Requisitos:
                 if (typeof StudyHistory !== 'undefined') StudyHistory.recordSession(skill, new Date());
                 this.updateStudyDashboard();
                 return DB.set('settings', 'studyActivity', this.studyActivity);
+            },
+            renderStudyLanguageSelector() {
+                const select = document.getElementById('studyLanguageSelect');
+                const status = document.getElementById('studyLanguageStatus');
+                if (!select) return;
+                const active = LanguageManager.getActiveLanguage();
+                const languages = LanguageManager.list();
+                select.replaceChildren();
+                languages.forEach(language => {
+                    const option = document.createElement('option');
+                    option.value = language.code;
+                    option.textContent = language.flag + ' ' + language.name + (language.available ? '' : ' · Próximamente');
+                    option.disabled = !language.available;
+                    option.selected = language.code === active;
+                    select.appendChild(option);
+                });
+                select.disabled = languages.filter(language => language.available).length < 2;
+                if (status) {
+                    status.textContent = select.disabled
+                        ? 'Indonesio es el único curso disponible. Los demás se habilitarán cuando su contenido y pruebas estén completos.'
+                        : 'Al cambiar de curso, la aplicación se reiniciará para cargar su currículo y progreso separados.';
+                }
+            },
+            async setStudyLanguage(code) {
+                const status = document.getElementById('studyLanguageStatus');
+                try {
+                    await LanguageManager.setActiveLanguage(code);
+                    if (status) status.textContent = 'Cambiando de curso…';
+                    window.location.reload();
+                } catch (error) {
+                    if (status) status.textContent = error && error.message ? error.message : 'No se pudo cambiar el curso.';
+                    this.renderStudyLanguageSelector();
+                }
             },
             setDailyGoal(goal) {
                 try {

@@ -70,3 +70,15 @@ test('a supported but not yet implemented course cannot become active through st
     assert.equal(document.documentElement.lang, 'es');
     assert.equal(values.get('guardi_active_language'), 'id');
 });
+
+
+test('profile language selector exposes the approved catalog but disables unavailable courses', () => {
+    const indexSource = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+    assert.match(indexSource, /id="studyLanguageSelect"/);
+    assert.match(indexSource, /language\.available \? '' : ' · Próximamente'/);
+    assert.match(indexSource, /option\.disabled = !language\.available/);
+    assert.match(indexSource, /select\.disabled = languages\.filter\(language => language\.available\)\.length < 2/);
+    assert.match(indexSource, /async setStudyLanguage\(code\)/);
+    assert.match(indexSource, /await LanguageManager\.setActiveLanguage\(code\)/);
+    assert.match(indexSource, /window\.location\.reload\(\)/);
+});

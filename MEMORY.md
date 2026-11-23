@@ -1,3 +1,8 @@
+## 2026-11-23 — fase 3: selector de idioma protegido
+- PR en preparación: añade al Perfil un selector que muestra el catálogo aprobado, pero deshabilita cada curso no disponible; actualmente solo Indonesio puede seleccionarse. El control completo permanece deshabilitado hasta que exista más de un curso disponible.
+- El cambio de idioma llama a LanguageManager.setActiveLanguage, persiste el código mediante el adaptador existente y recarga la app para reconstruir CourseData, motores y vistas bajo el nuevo namespace. El nombre del idioma activo se usa en la etiqueta de idioma de la vista de aprendizaje.
+- No se crean cursos ni recursos nuevos. La interfaz y mensajes siguen en español; IndexedDB v1, backup JSON v3 y los namespaces existentes se preservan. Cache app shell v3.8.121. La primera ejecución CI reveló una colisión con el nombre de caché legacy v3.8.120 en una prueba de migración; se corrigió usando v3.8.121. CI de la revisión corregida pendiente.
+
 ## 2026-11-23 — fase 3: conectar CourseData con CurriculumLoader
 - La integración de arranque ahora resuelve A1 y A2 del idioma activo mediante `CurriculumLoader` antes de inicializar AudioEngine y las pantallas; reemplaza solo esos niveles y conserva B1/B2 existentes. Si falta un nivel requerido, el arranque falla explícitamente en lugar de usar datos silenciosamente incorrectos.
 - Se sincronizaron AGENTS.md y SKILL.md con la secuencia aprobada el 22 nov 2026: pt-BR → en → it → fr → de → nl → ru → ja → ko → id; se completa A1–B2 de cada idioma antes del siguiente. Solo indonesio sigue disponible durante esta fase; pt-BR A1 comienza después de cerrar fase 3.

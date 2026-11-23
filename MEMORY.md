@@ -247,3 +247,5 @@ Fuente: PR #722–#726, commits squash y ejecuciones CI enlazadas; 23 nov 2026.
 - U19 meses, fechas y cumpleaños; U20 restaurante y pedidos; U21 tareas domésticas. Diez términos por unidad, cinco lecciones y diez ejercicios finales; vocabulario `not_checked`.
 - Manifiesto U1–U21 de 24; `pt-BR available:false`. Service Worker precarga `units-19-21.js` y usa cache key `bahasa-studio-v3.8.129`. Node y Playwright amplían contratos/carga offline a U1–U21.
 - Sin dependencias, audio/TTS, backend, cambios a IndexedDB v1 ni backup JSON v3. La PR nueva debe pasar CI completo antes de fusionar.
+
+- CI inicial de #750 run `45225937982`: `Offline quality reports` success; `test` falló únicamente en Playwright porque el E2E aún cargaba U1–U18 aunque esperaba U1–U21. Corregido en commit `de38f8db5740b93f2a32ed00361a1da6f87fe507`: `CurriculumLoader.loadUnits` ahora solicita U1–U21. Revalidar el nuevo head con CI completo antes del merge.

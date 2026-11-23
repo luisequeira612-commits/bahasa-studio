@@ -63,7 +63,7 @@ test('U3 teaches numbers 1-20 and recycles exactly two U1 questions',async()=>{
  assert.equal(numberWords[0].target,'um');
  assert.equal(numberWords[19].target,'vinte');
  const priorIds=new Set(u1.vocab.map(word=>word.id));
- assert.deepEqual(u3.exercises.filter(ex=>priorIds.has(ex.vocabId)).map(ex=>ex.vocabId),[
+ assert.deepEqual(Array.from(u3.exercises.filter(ex=>priorIds.has(ex.vocabId)),ex=>ex.vocabId),[
   'ptbr_a1_u1_v01','ptbr_a1_u1_v02'
  ]);
  assert.ok(u3.lessons[4].reviewVocabIds.includes('ptbr_a1_u1_v01'));

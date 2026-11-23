@@ -130,3 +130,51 @@ mc(u2[4].id,'Completa: ___ brasileira fala português.',['O','Os','A'],2),
 order(u2[1].id,'Ordena: «Yo estoy aquí».',['aqui','estou','Eu'],['Eu','estou','aqui'])
 ]
 };
+
+const u3Lessons=[
+lesson('Lección 1: Verbos regulares en -ar','Forma frases sencillas con verbos regulares en -ar.','En presente, muchos verbos regulares en -ar usan -o con eu y -a con você: eu falo, você fala.',u3.slice(0,5).map(x=>x.id),[],[
+match('Relaciona cada verbo con su significado.',[{left:'falar',right:'hablar'},{left:'estudar',right:'estudiar'},{left:'trabalhar',right:'trabajar'},{left:'morar',right:'vivir'}]),
+mc(u3[0].id,'Completa: Eu ___ português.',['fala','falo','falam'],1)
+]),
+lesson('Lección 2: Números del 1 al 10','Reconoce y ordena los números del uno al diez.','Practica la secuencia oral y escrita del 1 al 10; este piloto no reproduce audio.',numberVocab.slice(0,10).map(x=>x.id),[],[
+match('Empareja los primeros números.',[{left:'um',right:'1'},{left:'dois',right:'2'},{left:'três',right:'3'},{left:'dez',right:'10'}]),
+mc(numberVocab[4].id,'¿Qué número significa cinco?',['três','cinco','sete'],1)
+]),
+lesson('Lección 3: Números del 11 al 20','Reconoce los números del once al veinte.','Los números del 11 al 19 tienen formas propias; veinte es vinte.',numberVocab.slice(10,20).map(x=>x.id),[],[
+match('Empareja números del 11 al 20.',[{left:'onze',right:'11'},{left:'doze',right:'12'},{left:'quinze',right:'15'},{left:'vinte',right:'20'}]),
+mc(numberVocab[19].id,'¿Cómo se dice veinte?',['dezenove','vinte','doze'],1)
+]),
+lesson('Lección 4: Un falso amigo importante','Distingue embaraçada de grávida.','Embaraçada significa avergonzada o incómoda; grávida significa embarazada. No traduzcas embarazada como embaraçada.',u3.slice(5,8).map(x=>x.id),[],[
+mc(u3[5].id,'Si alguien dice «Estou embaraçada», ¿qué quiere decir?',['Estoy embarazada','Estoy avergonzada','Estoy trabajando'],1),
+mc(u3[7].id,'¿Qué palabra significa «embarazada»?',['embaraçada','grávida','falar'],1)
+]),
+lesson('Lección 5: Repaso acumulativo','Recupera pronombres y saludos de U1 junto con el contenido nuevo.','Combina una presentación breve con un verbo en -ar y vocabulario ya estudiado.',u3.map(x=>x.id),[u1[0].id,u1[1].id],[
+mc(u1[0].id,'¿Qué significa eu?',['yo','tú','ella'],0),
+mc(u1[1].id,'¿Qué pronombre significa «tú / usted»?',['eu','você','ela'],1),
+write(u3[0].id,'Escribe una frase con eu y un verbo regular en -ar.','Eu falo português.')
+])
+];
+const unit3={
+unitNumber:3,id:'ptbr_a1_u3',title:'Unidad 3: Verbos en -ar, números y falsos amigos',
+desc:'Usa verbos regulares en -ar, cuenta del 1 al 20 y evita un falso amigo frecuente.',
+grammar:'En presente, los verbos regulares en -ar forman eu falo / você fala. Números: 1–20. Embaraçada significa avergonzada; grávida significa embarazada.',
+trap:{title:'Falso amigo: embaraçada',detail:'Embaraçada no significa embarazada; significa avergonzada o incómoda. Para «embarazada» usa grávida.'},
+vocab:u3.concat(numberVocab),lessons:u3Lessons,
+exercises:[
+mc(u1[0].id,'Repaso U1: ¿Qué significa eu?',['yo','tú','ella'],0),
+mc(u1[1].id,'Repaso U1: ¿Qué significa você?',['él','tú / usted','nosotros'],1),
+mc(u3[0].id,'¿Qué significa falar?',['hablar','estudiar','vivir'],0),
+mc(u3[1].id,'Completa: Você ___ português.',['estuda','estudo','estudam'],0),
+mc(numberVocab[0].id,'¿Cómo se dice uno?',['um','dois','três'],0),
+mc(numberVocab[9].id,'¿Cómo se dice diez?',['doze','dez','vinte'],1),
+mc(numberVocab[10].id,'¿Cómo se dice once?',['onze','treze','quinze'],0),
+mc(numberVocab[19].id,'¿Cómo se dice veinte?',['dezenove','vinte','dezesseis'],1),
+mc(u3[5].id,'¿Qué significa embaraçada?',['embarazada','avergonzada','mexicana'],1),
+mc(u3[7].id,'¿Qué palabra significa embarazada?',['grávida','embaraçada','trabalhar'],0)
+]
+};
+root.GUARDI_CURRICULUM_BLOCKS=root.GUARDI_CURRICULUM_BLOCKS||{};
+root.GUARDI_CURRICULUM_BLOCKS['pt-BR']=root.GUARDI_CURRICULUM_BLOCKS['pt-BR']||{};
+root.GUARDI_CURRICULUM_BLOCKS['pt-BR'].A1=root.GUARDI_CURRICULUM_BLOCKS['pt-BR'].A1||{};
+root.GUARDI_CURRICULUM_BLOCKS['pt-BR'].A1['01-06']={units:[unit1,unit2,unit3]};
+})(typeof window!=='undefined'?window:globalThis);

@@ -443,7 +443,13 @@ test('compact language picker is accessible, catalog-driven and fits the 360px l
     assert.equal(await page.locator('#studyLanguageSheet').getAttribute('role'), 'dialog');
     assert.equal(await page.locator('#studyLanguageSheet').getAttribute('aria-modal'), 'true');
     assert.equal(await page.locator('#studyLanguageCurrentName').innerText(), 'Indonesio');
-    assert.match(await page.locator('#studyLanguageCurrentProgress').innerText(), /^A1 · \d+% completado/);
+    const currentProgress = await page.locator('#studyLanguageCurrentProgress').innerText();
+    const levelChipPercent = await page.locator('#levelProgressPercent').innerText();
+    assert.match(currentProgress, /^A1 · \d+% completado/);
+    assert.ok(currentProgress.includes('A1 · ' + levelChipPercent + ' completado'),
+      'language sheet and level chip must use the same active-course progress');
+    assert.deepEqual(await page.locator('#studyLanguageUpcomingList .language-picker-name strong').allTextContents(),
+      ['Portugués de Brasil', 'Inglés', 'Italiano', 'Francés', 'Alemán', 'Neerlandés', 'Ruso', 'Japonés', 'Coreano']);
     assert.equal(await page.locator('#studyLanguageAvailableSection').isHidden(), true,
       'Disponibles is omitted while Indonesian is the only ready course');
     assert.equal(await page.locator('#studyLanguageUpcomingList .language-picker-row').count(), 9);

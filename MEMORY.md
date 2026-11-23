@@ -1,3 +1,20 @@
+## 2026-11-23 — Corrección CI PR #765: contratos de currículo y caché
+
+- El CI run #45284257266 mostró `Offline quality reports` success y `test` failure (15 contratos): tres tests B1 tenían una expresión regular inválida para la ruta `units-07-09.js`; doce tests previos de A1/A2 seguían esperando la caché `v3.8.142` después de que el Service Worker avanzara a `v3.8.143`.
+- Se sustituyeron las tres expresiones regulares frágiles por comprobaciones literales de la ruta del bloque B1 U7–U9. Se alinearon las expectativas de caché heredadas en los contratos A2 U13–U30 y A1 U19–U24 a `v3.8.143`; se conservaron las aserciones funcionales.
+- Commits correctivos en `feat/pt-br-b1-u07-u09`: `fa559b0c`, `ed24544f`, `5d70e28a`, `01318368`, `f972b181`, `9c6fd4f3`, `d25e90b1`, `24d6030f`, `f537ada3`, `5e838462`, `30e47e18`. Repetir CI completo sobre el head resultante y no fusionar hasta que todos los checks requeridos terminen en success.
+
+## 2026-11-23 — Portugués B1 U7–U9 en preparación
+
+- Tras fusionar PR #764 por squash en `main` (commit `aa8f32a97f4824e7dc5cd94f3a86720ee0116eb2`), la regresión post-merge #45282986354 completó `test` (101/101 pasos) y `Offline quality reports` (10/10), ambos success. GitHub Pages run #45282985616 completó build, deploy y report-build-status en success.
+- Rama limpia `feat/pt-br-b1-u07-u09`, basada en ese `main`. Añade U7 cultura, patrimonio e identidad; U8 investigación científica e innovación; U9 economía cotidiana y desigualdad. Son 30 términos nuevos (10/unidad), cinco lecciones y diez ejercicios MC por unidad, ejemplos PT/ES y `verification.status: not_checked`.
+- Cotejo exacto normalizado: 30 términos nuevos frente a 600 registros previos de A1+A2+B1 U1–U6; cero colisiones y cero duplicados internos. Las 15 referencias de repaso seleccionadas apuntan a IDs A2 existentes.
+- Manifiesto B1 publica U1–U9 de 36. Service Worker avanza a `bahasa-studio-v3.8.143` y precarga U7–U9. Contratos Node y Playwright se amplían a U1–U9 offline; `quality:tests` incluye el nuevo contrato U7–U9.
+- PR [#765](https://github.com/luisequeira612-commits/bahasa-studio/pull/765) abierta desde `feat/pt-br-b1-u07-u09`. Head de la implementación `4bfceee965f9b7263d46c6a58ff263a1a3e322f5`; CI run #45284024369: `Offline quality reports` success (10/10), `test` aún en `Install Chromium`, sin fallos reportados al consultar. Este commit de memoria actualiza el estado; repetir CI sobre el head nuevo antes de fusionar.
+- `pt-BR available:false` permanece. Sin nuevas dependencias, backend, audio/TTS, cambios a IndexedDB v1 ni backup JSON v3. La auditoría estructural no certifica el portugués; no hay hablante nativo disponible y el vocabulario permanece `not_checked`.
+
+Fuente: GitHub `main` commit `aa8f32a9`, rama `feat/pt-br-b1-u07-u09`, bloques B1 U1–U9, contratos y Service Worker; 23 nov 2026.
+
 ## 2026-11-23 — PR #764: Portugués B1 U4–U6 en preparación
 
 - Rama limpia `feat/pt-br-b1-u04-u06`, basada en el merge commit de PR #763 `9faab7e38819f61aff4dc93053b65e261203318a`.

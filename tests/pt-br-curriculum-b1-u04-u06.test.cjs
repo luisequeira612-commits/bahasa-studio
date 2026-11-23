@@ -7,7 +7,7 @@ const {test}=require('node:test');
 const repo=path.join(__dirname,'..');
 const managerSource=fs.readFileSync(path.join(repo,'language-manager.js'),'utf8');
 const loaderSource=fs.readFileSync(path.join(repo,'curriculum-loader.js'),'utf8');
-const b1Files=['units-01-03.js','units-04-06.js'];
+const b1Files=['units-01-03.js','units-04-06.js','units-07-09.js'];
 const a2Files=['units-01-03.js','units-04-06.js','units-07-09.js','units-10-12.js','units-13-15.js','units-16-18.js','units-19-21.js','units-22-24.js','units-25-27.js','units-28-30.js'];
 const a1Files=['units-01-06.js','units-07-12.js','units-13-18.js','units-19-21.js','units-22-24.js'];
 const sources={
@@ -48,10 +48,10 @@ test('pt-BR B1 U4-U6 load as content while the incomplete course remains unavail
   }
  }
 });
-test('B1 manifest publishes exactly U1-U6 of 36 and remains unavailable in the language selector',()=>{
+test('B1 manifest publishes exactly U1-U9 of 36 and remains unavailable in the language selector',()=>{
  const {window}=createPilot(),manifest=window.GUARDI_CURRICULUM_MANIFESTS['pt-BR'].B1;
- assert.equal(manifest.totalUnits,36);assert.deepEqual(Array.from(manifest.publishedUnits),[1,2,3,4,5,6]);
- assert.deepEqual(Array.from(manifest.blocks[1].units),[4,5,6]);assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
+ assert.equal(manifest.totalUnits,36);assert.deepEqual(Array.from(manifest.publishedUnits),[1,2,3,4,5,6,7,8,9]);
+ assert.deepEqual(Array.from(manifest.blocks[1].units),[4,5,6]);assert.deepEqual(Array.from(manifest.blocks[2].units),[7,8,9]);assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
 });
 test('B1 U4-U6 review references resolve to existing A2 vocabulary IDs',async()=>{
  const {loader}=createPilot(),{units}=await loader.loadUnits('pt-BR','B1',[4,5,6]);
@@ -78,8 +78,8 @@ test('B1 U4-U6 add no exact normalized vocabulary duplicates against A1, A2 or B
  assert.equal(prior.length,540);assert.equal(previous.length,30);assert.equal(added.length,30);assert.equal(new Set(normalized).size,30);
  assert.deepEqual(normalized.filter(word=>allPrior.has(word)),[]);
 });
-test('service worker precaches the B1 manifest and U1-U6 blocks with cache v3.8.142',()=>{
+test('service worker precaches the B1 manifest and U1-U9 blocks with cache v3.8.143',()=>{
  const source=fs.readFileSync(path.join(repo,'service-worker.js'),'utf8');
- assert.match(source,/curriculum\/b1\/index\.js/);assert.match(source,/curriculum\/b1\/units-01-03\.js/);assert.match(source,/curriculum\/b1\/units-04-06\.js/);
- assert.match(source,/bahasa-studio-v3\.8\.142/);
+ assert.ok(source.includes("./languages/pt-BR/curriculum/b1/units-07-09.js"));
+ assert.match(source,/bahasa-studio-v3\.8\.143/);
 });

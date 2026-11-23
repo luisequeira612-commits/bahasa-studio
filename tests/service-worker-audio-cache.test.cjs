@@ -82,10 +82,14 @@ function audioUrl(id, language = 'id') {
 }
 
 test('migra MP3 completos de todas las cachés antiguas antes de borrarlas', async () => {
-    const firstClip = audioUrl('old-one');
-    const secondClip = audioUrl('old-two');
-    const partialClip = audioUrl('partial');
-    const emptyClip = audioUrl('empty');
+    const firstId = '0123456789ab';
+    const secondId = 'abcdef012345';
+    const partialId = '111111111111';
+    const emptyId = '222222222222';
+    const firstClip = audioUrl(firstId);
+    const secondClip = audioUrl(secondId);
+    const partialClip = audioUrl(partialId);
+    const emptyClip = audioUrl(emptyId);
     const shellUrl = `${ORIGIN}/bahasa-studio/index.html`;
 
     const old95 = new MemoryCache([
@@ -103,7 +107,12 @@ test('migra MP3 completos de todas las cachés antiguas antes de borrarlas', asy
         ['bahasa-studio-v3.8.94', old94],
         ['guardi-audio-v1', new MemoryCache([[audioUrl('old-piper'), new Response('old Piper audio', { status: 200 })]])],
         [CURRENT_CACHE_NAME, current]
-    ]));
+    ]), undefined, {
+        [firstId]: hash('mp3-one'),
+        [secondId]: hash('mp3-two'),
+        [partialId]: hash('partial'),
+        [emptyId]: hash('')
+    });
 
     let activation;
     worker.handlers.activate({ waitUntil: promise => { activation = promise; } });
@@ -124,7 +133,7 @@ test('migra MP3 completos de todas las cachés antiguas antes de borrarlas', asy
 });
 
 test('si una copia falla, la activación no se bloquea y conserva las cachés antiguas', async () => {
-    const clip = audioUrl('keep-old');
+    const clip = audioUrl('333333333333');
     const old = new MemoryCache([
         [clip, new Response('valid audio', { status: 200, headers: { 'Content-Type': 'audio/mpeg' } })]
     ]);
@@ -133,7 +142,7 @@ test('si una copia falla, la activación no se bloquea y conserva las cachés an
         ['bahasa-studio-v3.8.95', old],
         [CURRENT_CACHE_NAME, new MemoryCache()],
         ['guardi-audio-v2', audio]
-    ]));
+    ]), undefined, { '333333333333': hash('valid audio') });
 
     let activation;
     worker.handlers.activate({ waitUntil: promise => { activation = promise; } });
@@ -144,14 +153,14 @@ test('si una copia falla, la activación no se bloquea y conserva las cachés an
 });
 
 test('la migración es idempotente y no vuelve a escribir clips ya copiados', async () => {
-    const clip = audioUrl('once');
+    const clip = audioUrl('444444444444');
     const old = new MemoryCache([
         [clip, new Response('valid audio', { status: 200 })]
     ]);
     const worker = createWorker(new Map([
         ['bahasa-studio-v3.8.95', old],
         [CURRENT_CACHE_NAME, new MemoryCache()]
-    ]));
+    ]), undefined, { '444444444444': hash('valid audio') });
 
     let firstActivation;
     worker.handlers.activate({ waitUntil: promise => { firstActivation = promise; } });
@@ -164,6 +173,28 @@ test('la migración es idempotente y no vuelve a escribir clips ya copiados', as
     await secondActivation;
     assert.equal(audioCache.putCalls, 1);
     assert.equal(worker.claimCalls, 2);
+});
+
+
+test('conserva la caché legacy si falta el inventario SHA-256 del idioma', async () => {
+    const id = '555555555555';
+    const clip = audioUrl(id);
+    const legacy = new MemoryCache([
+        [clip, new Response('unverified legacy bytes', { status: 200 })]
+    ]);
+    const worker = createWorker(new Map([
+        ['bahasa-studio-v3.8.117', legacy],
+        [CURRENT_CACHE_NAME, new MemoryCache()]
+    ]));
+
+    let activation;
+    worker.handlers.activate({ waitUntil: promise => { activation = promise; } });
+    await activation;
+
+    const audio = worker.cacheStore.get('guardi-audio-v2');
+    assert.equal(await audio.match(new Request(clip)), null, 'unverified bytes must not enter the current audio cache');
+    assert.equal(worker.cacheStore.has('bahasa-studio-v3.8.117'), true, 'the only legacy copy must be preserved');
+    assert.equal(worker.claimCalls, 1, 'activation must still complete');
 });
 
 test('los MP3 nuevos usan guardi-audio-v2 y los recursos normales siguen en la caché de la app', async () => {

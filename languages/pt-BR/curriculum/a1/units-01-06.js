@@ -17,3 +17,18 @@ v('ptbr_a1_u1_v08','boa noite','buenas noches','Boa noite!','¡Buenas noches!'),
 v('ptbr_a1_u1_v09','tchau','adiós','Tchau, Ana!','¡Adiós, Ana!'),
 v('ptbr_a1_u1_v10','obrigado / obrigada','gracias','Obrigado pela ajuda.','Gracias por la ayuda.')
 ];
+
+const u2=[
+v('ptbr_a1_u2_v01','estar','estar','Eu estou bem.','Estoy bien.'),
+v('ptbr_a1_u2_v02','estou','estoy','Eu estou aqui.','Estoy aquí.'),
+v('ptbr_a1_u2_v03','está','estás / está','Você está aqui.','Estás aquí.'),
+v('ptbr_a1_u2_v04','brasileiro','brasileño','Ele é brasileiro.','Él es brasileño.'),
+v('ptbr_a1_u2_v05','brasileira','brasileña','Ela é brasileira.','Ella es brasileña.'),
+v('ptbr_a1_u2_v06','nicaraguense','nicaragüense','Eu sou nicaraguense.','Soy nicaragüense.'),
+v('ptbr_a1_u2_v07','mexicano','mexicano','Ele é mexicano.','Él es mexicano.'),
+v('ptbr_a1_u2_v08','mexicana','mexicana','Ela é mexicana.','Ella es mexicana.'),
+v('ptbr_a1_u2_v09','o','el (artículo)','O brasileiro fala português.','El brasileño habla portugués.'),
+v('ptbr_a1_u2_v10','a','la (artículo)','A brasileira fala português.','La brasileña habla portugués.'),
+v('ptbr_a1_u2_v11','os','los (artículo)','Os brasileiros moram aqui.','Los brasileños viven aquí.'),
+v('ptbr_a1_u2_v12','as','las (artículo)','As brasileiras moram aqui.','Las brasileñas viven aquí.')
+];

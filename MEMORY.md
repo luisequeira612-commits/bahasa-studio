@@ -162,3 +162,10 @@ Fuente: PR #722–#726, commits squash y ejecuciones CI enlazadas; 23 nov 2026.
 - Corrección en curso: antes de contar un clip, comprobar respuesta HTTP 200, contenido no vacío y SHA-256 esperado; eliminar del cache los clips conocidos que no pasan la verificación y dejar que se vuelvan a descargar. Los clips solo se consideran guardados si coinciden con el inventario validado.
 - Se añade prueba para conservar un clip íntegro y excluir/eliminar uno alterado y otro sin hash. El cambio no modifica el formato de inventario, Service Worker, IndexedDB v1, backup JSON v3, audios ni dependencias.
 - Validación CI pendiente en PR.
+
+
+## 2026-11-23 — Prueba de voz dependiente del idioma
+- La prueba manual de voz ahora obtiene su frase de `LanguageManager.getLanguageConfig().testPhrase` en vez de reproducir siempre una frase indonesia.
+- Indonesio conserva `terima kasih`. Si un idioma todavía no tiene frase configurada, la prueba muestra un aviso en español y no intenta reproducir contenido de otro idioma.
+- Se añade una regresión estructural para evitar que vuelva a introducirse el fallback fijo al indonesio.
+- No se habilitan cursos nuevos ni se modifican IndexedDB v1, backup JSON v3, dependencias o recursos de audio.

@@ -1,3 +1,7 @@
+## 2026-11-23 — PR #745: correcciones del primer CI
+- El primer CI (#45197843322) detectó dos fallos limitados a las pruebas nuevas: la expectativa del test de carga seguía enumerando U1–U6 pese a solicitar U1–U9, y el bloque `units-07-12.js` había perdido la asignación inicial del registro global al insertar U7–U9. Se corrigió la expectativa y se restauró `root.GUARDI_CURRICULUM_BLOCKS = root.GUARDI_CURRICULUM_BLOCKS || {}`.
+- Se ajustó también el ejemplo léxico de `em frente` y la frase de `chuva` para evitar ejemplos poco naturales. El E2E Playwright U1–U9 había pasado en el primer CI; `Offline quality reports` también pasó. Se espera un CI completo nuevo antes de merge.
+
 ## 2026-11-23 — PR #744 fusionada y pt-BR A1 U7–U9 en preparación
 - PR #744 (`feat/pt-br-a1-u4-u6`) quedó fusionada mediante squash en `main`: `89f0c50bb121d012eb2cbe271fbc28d8345c4e27`. El head `1c0ecd21c161588540b01f7ec81e75b964f5b450` pasó el CI completo #45195101334: jobs `test` y `Offline quality reports` en `success`, incluidos E2E real, evaluación y auditorías de calidad.
 - El siguiente tramo del piloto añade U7–U9 en la rama `feat/pt-br-a1-u7-u9`: U7 rutina diaria y momentos del día; U8 lugares, direcciones y transporte; U9 clima, estados personales y razones. Cada unidad mantiene cinco lecciones, diez términos nuevos, diez ejercicios finales y `verification.status: not_checked`.

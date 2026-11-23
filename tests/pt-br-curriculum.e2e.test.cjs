@@ -39,20 +39,21 @@ test('Playwright: carga U1-U24 offline y aísla el progreso pt-BR del indonesio'
   await page.reload();
   await page.waitForFunction(()=>Boolean(navigator.serviceWorker.controller));
   const cacheReady=await page.evaluate(async()=>{
-   const cache=await caches.open('bahasa-studio-v3.8.131');
+   const cache=await caches.open('bahasa-studio-v3.8.132');
    return Boolean(await cache.match(new URL('/languages/pt-BR/curriculum/a1/index.js',location.href).href)) &&
      Boolean(await cache.match(new URL('/languages/pt-BR/curriculum/a1/units-01-06.js',location.href).href)) &&
      Boolean(await cache.match(new URL('/languages/pt-BR/curriculum/a1/units-13-18.js',location.href).href)) &&
      Boolean(await cache.match(new URL('/languages/pt-BR/curriculum/a1/units-19-21.js',location.href).href)) &&
      Boolean(await cache.match(new URL('/languages/pt-BR/curriculum/a1/units-22-24.js',location.href).href)) &&
      Boolean(await cache.match(new URL('/languages/pt-BR/curriculum/a2/index.js',location.href).href)) &&
-     Boolean(await cache.match(new URL('/languages/pt-BR/curriculum/a2/units-01-03.js',location.href).href));
+     Boolean(await cache.match(new URL('/languages/pt-BR/curriculum/a2/units-01-03.js',location.href).href)) &&
+     Boolean(await cache.match(new URL('/languages/pt-BR/curriculum/a2/units-04-06.js',location.href).href));
   });
   assert.equal(cacheReady,true,'manifest and curriculum block must be in the app-shell cache');
   await context.setOffline(true);
   const result=await page.evaluate(async()=>{
    const curriculum=await CurriculumLoader.loadUnits('pt-BR','A1',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]);
-   const a2=await CurriculumLoader.loadUnits('pt-BR','A2',[1,2,3]);
+   const a2=await CurriculumLoader.loadUnits('pt-BR','A2',[1,2,3,4,5,6]);
    const u3=curriculum.units[2];
    const previous=new Set(curriculum.units[0].vocab.map(word=>word.id));
    const recycled=u3.exercises.filter(ex=>previous.has(ex.vocabId)).map(ex=>ex.vocabId);
@@ -79,7 +80,7 @@ test('Playwright: carga U1-U24 offline y aísla el progreso pt-BR del indonesio'
   });
   assert.deepEqual(result.units,Array.from({length:24},(_,index)=>({id:'ptbr_a1_u'+(index+1),lessons:5})));
   assert.deepEqual(result.recycled,['ptbr_a1_u1_v01','ptbr_a1_u1_v02']);
-  assert.deepEqual(result.a2Units,[{id:'ptbr_a2_u1',lessons:5,vocab:10},{id:'ptbr_a2_u2',lessons:5,vocab:10},{id:'ptbr_a2_u3',lessons:5,vocab:10}]);
+  assert.deepEqual(result.a2Units,Array.from({length:6},(_,index)=>({id:'ptbr_a2_u'+(index+1),lessons:5,vocab:10})));
   assert.equal(result.a2TotalUnits,30);
   assert.equal(result.ptKey,'pt-BR::unit_1');
   assert.equal(result.idKey,'unit_1');

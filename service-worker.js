@@ -1,4 +1,4 @@
-const CACHE_NAME = 'bahasa-studio-v3.8.125';
+const CACHE_NAME = 'bahasa-studio-v3.8.126';
 const AUDIO_CACHE_NAME = 'guardi-audio-v2';
 const AUDIO_LANGUAGES = new Set(['pt-BR', 'en', 'it', 'fr', 'de', 'nl', 'ru', 'ja', 'ko', 'id']);
 
@@ -18,7 +18,7 @@ function audioLanguageFromRequest(request) {
 function audioCacheName(language) {
     return language === 'id' ? AUDIO_CACHE_NAME : AUDIO_CACHE_NAME + '-' + language;
 }
-const ASSETS = ['./', './index.html', './manifest.json', './icon.svg', './assessment.html', './assessment-engine.js', './conversation-engine.js', './study-history.js', './study-activity.js', './language-manager.js', './curriculum-loader.js', './progress-namespace.js', './adaptive-learning.js', './curriculum-a1.js', './curriculum-a2.js', './styles.css', './audio-engine.js', './audio/index.json', './audio/manifest.json', './audio/metadata.json', './offline-audio-manager.js', './pronunciation-engine.js', './writing-practice.js', './apple-touch-icon.png', './icon-192.png', './icon-512-any.png', './icon-512-maskable.png', './assets/guardi/guardi-normal.svg', './assets/guardi/guardi-feliz.svg', './assets/guardi/guardi-triste.svg', './assets/guardi/guardi-celebrando.svg', './assets/guardi/guardi-pensando.svg', './assets/guardi/guardi-mark.svg', './assets/guardi/guardi-icon.svg'];
+const ASSETS = ['./', './index.html', './manifest.json', './icon.svg', './assessment.html', './assessment-engine.js', './conversation-engine.js', './study-history.js', './study-activity.js', './language-manager.js', './curriculum-loader.js', './progress-namespace.js', './adaptive-learning.js', './curriculum-a1.js', './curriculum-a2.js', './languages/pt-BR/curriculum/a1/index.js', './languages/pt-BR/curriculum/a1/units-01-06.js', './styles.css', './audio-engine.js', './audio/index.json', './audio/manifest.json', './audio/metadata.json', './offline-audio-manager.js', './pronunciation-engine.js', './writing-practice.js', './apple-touch-icon.png', './icon-192.png', './icon-512-any.png', './icon-512-maskable.png', './assets/guardi/guardi-normal.svg', './assets/guardi/guardi-feliz.svg', './assets/guardi/guardi-triste.svg', './assets/guardi/guardi-celebrando.svg', './assets/guardi/guardi-pensando.svg', './assets/guardi/guardi-mark.svg', './assets/guardi/guardi-icon.svg'];
 
 const inFlightAudioFetches = new Map();
 

@@ -21,6 +21,7 @@ function createPilot(){
  const sandbox={window,Object,Map,Set,Promise,Error,String,Array,Number};
  vm.runInNewContext(managerSource,sandbox);
  vm.runInNewContext(loaderSource,sandbox);
+ vm.runInNewContext(sources['./languages/pt-BR/curriculum/a2/index.js'],sandbox);
  return {window,loader:window.CurriculumLoader};
 }
 test('pt-BR A2 U1-U3 load through the offline content loader but remain unavailable',async()=>{

@@ -3,8 +3,8 @@
 
     const STORAGE_KEY = 'guardi_active_language';
     const LANGUAGES = Object.freeze({
-        'pt-BR': Object.freeze({ code: 'pt-BR', locale: 'pt-BR', name: 'Portugués de Brasil', flag: '🇧🇷', piperVoice: 'pt_BR-faber-medium', voiceStatus: 'candidate', audioPath: './audio/pt-BR/', curriculum: Object.freeze({}), available: false }),
-        en: Object.freeze({ code: 'en', locale: 'en-US', name: 'Inglés', flag: '🇬🇧', piperVoice: 'en_US-lessac-medium', voiceStatus: 'candidate', audioPath: './audio/en/', curriculum: Object.freeze({}), available: false }),
+        'pt-BR': Object.freeze({ code: 'pt-BR', locale: 'pt-BR', name: 'Portugués', flag: '🇧🇷', piperVoice: 'pt_BR-faber-medium', voiceStatus: 'candidate', audioPath: './audio/pt-BR/', curriculum: Object.freeze({}), available: false }),
+        en: Object.freeze({ code: 'en', locale: 'en-US', name: 'Inglés', flag: '🇺🇸', piperVoice: 'en_US-lessac-medium', voiceStatus: 'candidate', audioPath: './audio/en/', curriculum: Object.freeze({}), available: false }),
         it: Object.freeze({ code: 'it', locale: 'it-IT', name: 'Italiano', flag: '🇮🇹', piperVoice: 'it_IT-riccardo-x_low', voiceStatus: 'unverified', audioPath: './audio/it/', curriculum: Object.freeze({}), available: false }),
         fr: Object.freeze({ code: 'fr', locale: 'fr-FR', name: 'Francés', flag: '🇫🇷', piperVoice: 'fr_FR-upmc-medium', voiceStatus: 'candidate', audioPath: './audio/fr/', curriculum: Object.freeze({}), available: false }),
         de: Object.freeze({ code: 'de', locale: 'de-DE', name: 'Alemán', flag: '🇩🇪', piperVoice: 'de_DE-thorsten', voiceStatus: 'unverified', audioPath: './audio/de/', curriculum: Object.freeze({}), available: false }),

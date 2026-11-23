@@ -297,3 +297,10 @@ Fuente: PR #722–#726, commits squash y ejecuciones CI enlazadas; 23 nov 2026.
 ## 2026-11-23 — corrección CI PR #755
 - CI run #45238319009 detectó un error de sintaxis en `tests/pt-br-curriculum.e2e.test.cjs`: un literal `\\n` quedó insertado en la expresión de verificación de la caché offline. El resto de la suite reportó 206/207 pruebas superadas; `Offline quality reports` pasó.
 - Se corrigió el test sustituyendo el literal por un salto de línea real en commit `4425703f5990b78e5f9aee1d9563f93e3d94bc27`. Se requiere CI completo sobre este nuevo head antes de fusionar. No se cambia contenido curricular ni comportamiento de la app.
+
+
+## 2026-11-23 — pt-BR A2 U7–U9 fusionadas y U10–U12 en preparación
+- PR #755 se fusionó por squash en `main`, commit `96ae18a55cbb3986c5b0e37df705243ffa85c0c9`. CI run #45238928076 completó `test` (101/101 pasos) y `Offline quality reports` (10/10 pasos), ambos en success. Se corrigió previamente un literal de salto de línea en el test E2E.
+- Estado confirmado tras el merge: A1 24/24; A2 9/30; B1 0/36; B2 0/40. pt-BR permanece `available:false`; no se modifica IndexedDB v1 ni backup JSON v3.
+- Nueva rama `feat/pt-br-a2-u10-u12` parte del commit fusionado. Bloque previsto: U10 noticias y medios; U11 cultura y espectáculos; U12 medio ambiente y sostenibilidad. Se cotejaron 330 términos A1/A2 existentes y se evitaron colisiones exactas en las 30 entradas nuevas.
+- Cada unidad mantiene 10 términos `not_checked`, 5 lecciones y 10 ejercicios MC. Se amplía manifiesto a U1–U12, precarga offline y caché a `bahasa-studio-v3.8.134`; se actualizan tests de manifiesto y Playwright. Sin nuevas dependencias, backend, audio/TTS ni cambios de persistencia. Pendiente CI del PR de este bloque.

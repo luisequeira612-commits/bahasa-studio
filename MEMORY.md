@@ -1,3 +1,12 @@
+## 2026-11-23 — preparación A2 U16–U18 y CI de PR #757
+- La PR #757 sigue abierta sobre main, head `1f3ce77dcc5a0cba45b4ae4307082b992e68fa22`. Run #45244335592: `Offline quality reports` success; `test` continúa en `Install Chromium`, sin fallo registrado. La descarga de logs del job activo devuelve BlobNotFound, no una señal de fallo.
+- Se creó la rama apilada `feat/pt-br-a2-u16-u18` desde la rama #757 para preparar el siguiente bloque sin fusionar ni duplicar cambios. U16 seguridad digital y privacidad; U17 educación y formación continua; U18 salud y atención sanitaria.
+- U16–U18 contienen 30 entradas `not_checked` (10 por unidad), cinco lecciones y diez ejercicios MC por unidad. Las referencias de repaso apuntan a unidades A2 previas. Se detectó y corrigió la colisión exacta de `prazo` con A2 U8, sustituyéndola por `ementa` en U17.
+- Manifiesto A2 publica U1–U18 de 30; Service Worker avanza a `bahasa-studio-v3.8.136` y precarga `units-16-18.js`. Se amplía Playwright para cargar A2 U1–U18 offline y se añade contrato Node U16–U18; las expectativas de caché heredadas se actualizan a v3.8.136.
+- Esta rama todavía no tiene PR ni CI. Antes de abrirla, verificar íntegramente los harness offline, las referencias de repaso, el cache precache y las pruebas; después abrir como PR separada cuando #757 quede integrada para evitar una PR apilada confusa. `pt-BR available:false` permanece; no se toca IndexedDB v1 ni backup JSON v3, no se añaden dependencias ni audio/TTS.
+
+Fuente: GitHub branch `feat/pt-br-a2-u16-u18`, PR #757 y Actions run #45244335592; 23 nov 2026.
+
 ## 2026-11-23 — PR #748 preparada: pt-BR A1 U16–U18
 
 - Rama `feat/pt-br-a1-u16-u18`, basada en el merge de PR #747 `1f6be39c6a3367c885ee29282f7430b3fac2b390`.

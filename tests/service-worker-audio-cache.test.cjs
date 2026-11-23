@@ -497,6 +497,48 @@ test('migra y valida hashes de un inventario de idioma independiente', async () 
 });
 
 
+test('preserva una copia actual válida cuando el hash SHA-256 está en mayúsculas', async () => {
+    const id = '123456789abc';
+    const clip = audioUrl(id);
+    const audio = new MemoryCache([
+        [clip, new Response('current uppercase hash bytes', { status: 200 })]
+    ]);
+    const worker = createWorker(new Map([
+        [CURRENT_CACHE_NAME, new MemoryCache()],
+        ['guardi-audio-v2', audio]
+    ]), undefined, { [id]: hash('current uppercase hash bytes').toUpperCase() });
+
+    let activation;
+    worker.handlers.activate({ waitUntil: promise => { activation = promise; } });
+    await activation;
+
+    const preserved = await audio.match(new Request(clip));
+    assert.ok(preserved, 'a valid uppercase SHA-256 must not cause the current clip to be deleted');
+    assert.equal(await preserved.text(), 'current uppercase hash bytes');
+});
+
+test('migra una copia legacy válida cuando el hash SHA-256 está en mayúsculas', async () => {
+    const id = 'abcdefabcdef';
+    const clip = audioUrl(id);
+    const legacy = new MemoryCache([
+        [clip, new Response('legacy uppercase hash bytes', { status: 200 })]
+    ]);
+    const worker = createWorker(new Map([
+        ['bahasa-studio-v3.8.122', legacy],
+        [CURRENT_CACHE_NAME, new MemoryCache()]
+    ]), undefined, { [id]: hash('legacy uppercase hash bytes').toUpperCase() });
+
+    let activation;
+    worker.handlers.activate({ waitUntil: promise => { activation = promise; } });
+    await activation;
+
+    const audio = worker.cacheStore.get('guardi-audio-v2');
+    const migrated = await audio.match(new Request(clip));
+    assert.ok(migrated, 'a valid uppercase SHA-256 must authorize legacy migration');
+    assert.equal(await migrated.text(), 'legacy uppercase hash bytes');
+    assert.equal(worker.cacheStore.has('bahasa-studio-v3.8.122'), false, 'legacy cache is removed only after verified migration');
+});
+
 test('un hash malformado se trata como no verificable y conserva las copias legacy', async () => {
     const id = 'abcdabcdabcd';
     const clip = audioUrl(id);

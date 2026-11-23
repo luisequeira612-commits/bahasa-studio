@@ -1,3 +1,10 @@
+## Guardi — verificación SHA-256 en la caché automática del Service Worker — 23 nov 2026
+
+- PR en preparación: la ruta de reproducción normal del Service Worker guardaba cualquier respuesta HTTP 200 sin comprobar el inventario, aunque la descarga offline explícita sí verificaba SHA-256. El cambio valida los bytes de caché y de red contra el hash del idioma antes de servir una copia persistente; si falta inventario/hash, permite reproducción online pero no promueve el archivo a caché offline; si el hash disponible no coincide, rechaza la respuesta. Incluye pruebas para hash válido, inventario ausente y contenido alterado.
+- Archivos previstos: `service-worker.js`, `tests/service-worker-audio-cache.test.cjs`, `MEMORY.md`. Pendiente de CI y revisión. No modifica audios/manifiestos, IndexedDB v1, backup JSON v3 ni dependencias.
+
+Fuente: auditoría de `main` posterior a PR #727; 23 nov 2026.
+
 ## Guardi — cadena de correcciones de integridad de audio offline — 23 nov 2026
 
 - PR [#726](https://github.com/luisequeira612-commits/bahasa-studio/pull/726) fusionada en `main`, squash commit `0471c2264f1d4af3bcd19962d9227c245c7d0984`. CI del head `406da3a7887e2c2002bbc5b07978917f37050157`, run [#45119720724](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45119720724): `test` y `Offline quality reports` completados con éxito, incluidos E2E en navegador real. Sin reviews ni hilos pendientes. La migración conserva la caché legacy cuando la caché actual contiene bytes no verificables por falta del inventario del idioma; una activación posterior puede recuperar y verificar el original antes de limpiar la fuente.

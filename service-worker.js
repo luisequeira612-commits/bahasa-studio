@@ -126,7 +126,7 @@ async function sha256Hex(bytes) {
 }
 
 function audioClipIdFromRequest(request) {
-    const match = new URL(request.url).pathname.match(/\\/audio\\/[a-z]{2}(?:-[A-Z]{2})?\\/([a-f0-9]{12})\\.mp3$/i);
+    const match = new URL(request.url).pathname.match(/\/audio\/[a-z]{2}(?:-[A-Z]{2})?\/([a-f0-9]{12})\\.mp3$/i);
     return match ? match[1].toLowerCase() : null;
 }
 

@@ -68,6 +68,7 @@
         <div class="topbar-metrics" aria-label="Tu actividad y progreso">
             <span class="topbar-chip topbar-streak" title="Racha actual"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22c-4.1 0-7-2.8-7-6.7 0-2.8 1.4-5 3.5-6.9.1 2.4.9 3.8 2.2 4.6-.2-4 1.2-7.1 4.3-10.2.2 3.3 1.4 5.1 3.1 6.8 1.4 1.5 2.4 3.2 2.4 5.7 0 3.8-2.8 6.7-6.5 6.7Z"/><path d="M12.2 18.7c-1.5 0-2.5-1-2.5-2.4 0-1.1.7-2.1 1.8-3.1.2 1.1.7 1.7 1.4 2.1.7.5 1.1 1 1.1 1.8 0 .9-.8 1.6-1.8 1.6Z"/></svg><strong id="studyStreakText">0 días</strong></span>
             <span class="topbar-chip topbar-xp" title="XP de hoy frente a tu meta"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m13.2 2.5-8 11h5.6l-.5 8 8.5-12h-5.7l.1-7Z"/></svg><strong id="studyDailyXpText">Meta: 0/30 XP</strong></span>
+            <button class="topbar-language-trigger" id="studyLanguageTrigger" type="button" title="Cambiar idioma de estudio" aria-label="Cambiar idioma de estudio. Indonesio actual" aria-haspopup="dialog" aria-controls="studyLanguageSheetOverlay" onclick="App.openStudyLanguageSheet()"><span id="studyLanguageFlag" aria-hidden="true">🇮🇩</span></button>
             <button class="level-progress-wrap level-progress-trigger" id="learningLevelTrigger" type="button" title="Cambiar nivel" aria-label="Cambiar nivel. A1 seleccionado, 0 de 32 unidades completadas" aria-haspopup="dialog" aria-controls="learningLevelSheetOverlay" onclick="App.openLearningLevelSheet()">
                 <span class="level-progress-ring" id="levelProgressRing" role="img" aria-hidden="true"><span class="level-progress-ring-inner" id="levelProgressPercent">0%</span></span>
                 <span class="level-progress-level" id="levelProgressLevel">A1</span>
@@ -78,20 +79,6 @@
 
     <!-- CURSO / RUTA -->
     <main id="view-route" class="app-view active">
-
-        <section class="card" id="studyLanguageCard" aria-labelledby="studyLanguageHeading" style="margin:0 0 14px;padding:14px 16px;border:1px solid var(--border);">
-            <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
-                <div style="min-width:0;flex:1 1 150px;">
-                    <p class="eyebrow" style="margin:0 0 4px;">ESTÁS APRENDIENDO</p>
-                    <h2 id="studyLanguageHeading" style="margin:0;font-size:1.05rem;">Idioma de estudio</h2>
-                </div>
-                <label for="studyLanguageSelect" class="sr-only">Cambiar idioma de estudio</label>
-                <select id="studyLanguageSelect" class="input-field" aria-describedby="studyLanguageStatus" aria-label="Cambiar idioma de estudio" onchange="App.setStudyLanguage(this.value)" style="width:auto;min-width:min(100%,190px);max-width:100%;flex:0 1 230px;margin:0;">
-                    <option value="id">🇮🇩 Indonesio</option>
-                </select>
-            </div>
-            <p id="studyLanguageStatus" class="profile-muted" role="status" aria-live="polite" style="margin:8px 0 0;font-size:.78rem;">Los demás cursos se habilitarán cuando su contenido y pruebas estén completos.</p>
-        </section>
 
         <details class="feature-drawer learning-tool-panel" id="aiGeneratorDrawer">
             <summary>Generador de lecciones con IA</summary>
@@ -136,6 +123,27 @@
         <p id="unitPathNotice" class="unit-path-notice" role="status" aria-live="polite" hidden></p>
         <div id="courseContainer"></div>
         <button id="jumpToCurrentUnitBtn" class="jump-current-unit-button" type="button" onclick="App.scrollToCurrentUnit(true)" hidden>↑ Ir a mi unidad</button>
+        <div id="studyLanguageSheetOverlay" class="learning-action-sheet-overlay" hidden onclick="App.handleLearningSheetBackdrop(event)">
+            <section id="studyLanguageSheet" class="learning-action-sheet language-picker-sheet" role="dialog" aria-modal="true" aria-labelledby="studyLanguageSheetTitle">
+                <div class="learning-sheet-grabber" aria-hidden="true"></div>
+                <button class="learning-sheet-close" type="button" aria-label="Cerrar selector de idioma" onclick="App.closeLearningActionSheet('studyLanguageSheetOverlay')">×</button>
+                <h2 id="studyLanguageSheetTitle">Cambiar idioma</h2>
+                <section class="language-current-card" aria-labelledby="studyLanguageCurrentHeading">
+                    <p class="language-sheet-eyebrow" id="studyLanguageCurrentHeading">Tu idioma actual</p>
+                    <div class="language-current-main"><span id="studyLanguageCurrentFlag" aria-hidden="true">🇮🇩</span><div><strong id="studyLanguageCurrentName">Indonesio</strong><small id="studyLanguageCurrentProgress">A1 · 0% completado</small></div></div>
+                    <div class="language-current-progress" aria-hidden="true"><span id="studyLanguageCurrentProgressBar"></span></div>
+                </section>
+                <section id="studyLanguageAvailableSection" class="language-picker-section" hidden aria-labelledby="studyLanguageAvailableHeading">
+                    <h3 id="studyLanguageAvailableHeading">Disponibles</h3>
+                    <div id="studyLanguageAvailableList" class="language-picker-list"></div>
+                </section>
+                <section class="language-picker-section" aria-labelledby="studyLanguageUpcomingHeading">
+                    <h3 id="studyLanguageUpcomingHeading">Próximamente</h3>
+                    <div id="studyLanguageUpcomingList" class="language-picker-list" aria-label="Idiomas próximos"></div>
+                </section>
+                <p id="studyLanguageSheetStatus" class="language-picker-status" role="status" aria-live="polite"></p>
+            </section>
+        </div>
         <div id="learningLevelSheetOverlay" class="learning-action-sheet-overlay" hidden onclick="App.handleLearningSheetBackdrop(event)">
             <section id="learningLevelSheet" class="learning-action-sheet" role="dialog" aria-modal="true" aria-labelledby="learningLevelSheetTitle">
                 <div class="learning-sheet-grabber" aria-hidden="true"></div>
@@ -19469,44 +19477,99 @@ Requisitos:
                 return DB.set('settings', 'studyActivity', this.studyActivity);
             },
             renderStudyLanguageSelector() {
-                const select = document.getElementById('studyLanguageSelect');
-                const status = document.getElementById('studyLanguageStatus');
-                if (!select) return;
-                const active = LanguageManager.getActiveLanguage();
+                const active = LanguageManager.getLanguage(LanguageManager.getActiveLanguage());
+                const trigger = document.getElementById('studyLanguageTrigger');
+                const flag = document.getElementById('studyLanguageFlag');
+                if (!active) return;
+                if (flag) flag.textContent = active.flag;
+                if (trigger) trigger.setAttribute('aria-label', 'Cambiar idioma de estudio. ' + active.name + ' actual');
+            },
+            renderStudyLanguageSheet() {
                 const languages = LanguageManager.list();
-                select.replaceChildren();
-                languages.forEach(language => {
-                    const option = document.createElement('option');
-                    option.value = language.code;
-                    option.textContent = language.flag + ' ' + language.name + (language.available ? '' : ' · Próximamente');
-                    option.disabled = !language.available;
-                    option.selected = language.code === active;
-                    select.appendChild(option);
+                const active = LanguageManager.getLanguage(LanguageManager.getActiveLanguage());
+                const currentFlag = document.getElementById('studyLanguageCurrentFlag');
+                const currentName = document.getElementById('studyLanguageCurrentName');
+                const currentProgress = document.getElementById('studyLanguageCurrentProgress');
+                const progressBar = document.getElementById('studyLanguageCurrentProgressBar');
+                const availableSection = document.getElementById('studyLanguageAvailableSection');
+                const availableList = document.getElementById('studyLanguageAvailableList');
+                const upcomingList = document.getElementById('studyLanguageUpcomingList');
+                const status = document.getElementById('studyLanguageSheetStatus');
+                if (!active || !availableList || !upcomingList) return;
+                const level = CourseData.levels.find(entry => entry.id === this.selectedLearningLevel) || CourseData.levels[0];
+                const progress = level ? this.getLearningLevelProgress(level) : { total: 0, completed: 0, percent: 0 };
+                if (currentFlag) currentFlag.textContent = active.flag;
+                if (currentName) currentName.textContent = active.name;
+                if (currentProgress) currentProgress.textContent = (level ? level.id : '—') + ' · ' + progress.percent + '% completado · ' + progress.completed + '/' + progress.total + ' unidades';
+                if (progressBar) progressBar.style.width = progress.percent + '%';
+                availableList.replaceChildren();
+                upcomingList.replaceChildren();
+                const available = languages.filter(language => language.available);
+                const upcoming = languages.filter(language => !language.available);
+                if (availableSection) availableSection.hidden = available.length < 2;
+                available.forEach(language => {
+                    const row = document.createElement('button');
+                    row.type = 'button';
+                    row.className = 'language-picker-row' + (language.code === active.code ? ' is-current' : '');
+                    row.setAttribute('aria-current', language.code === active.code ? 'true' : 'false');
+                    row.setAttribute('aria-label', language.name + (language.code === active.code ? ', idioma actual' : ', seleccionar idioma'));
+                    const name = document.createElement('span');
+                    name.className = 'language-picker-name';
+                    const flag = document.createElement('span');
+                    flag.className = 'language-picker-flag';
+                    flag.setAttribute('aria-hidden', 'true');
+                    flag.textContent = language.flag;
+                    const label = document.createElement('strong');
+                    label.textContent = language.name;
+                    name.append(flag, label);
+                    const state = document.createElement('span');
+                    state.className = 'language-picker-state';
+                    state.textContent = language.code === active.code ? 'Actual' : 'Disponible';
+                    row.append(name, state);
+                    row.addEventListener('click', () => this.setStudyLanguage(language.code));
+                    availableList.appendChild(row);
                 });
-                const availableCount = languages.filter(language => language.available).length;
-                // Keep the picker openable so learners can see the approved roadmap;
-                // only unavailable options are disabled until their courses are ready.
-                select.disabled = availableCount === 0;
-                if (status) {
-                    const activeName = LanguageManager.getLanguage(active).name;
-                    status.textContent = availableCount < 2
-                        ? activeName + ' es el único curso disponible. Los demás aparecen como próximos y no se pueden seleccionar hasta completar su contenido y pruebas.'
-                        : 'Al cambiar de curso, la aplicación se reiniciará para cargar su currículo y progreso separados.';
-                }
+                upcoming.forEach(language => {
+                    const row = document.createElement('div');
+                    row.className = 'language-picker-row is-upcoming';
+                    row.setAttribute('aria-disabled', 'true');
+                    const name = document.createElement('span');
+                    name.className = 'language-picker-name';
+                    const flag = document.createElement('span');
+                    flag.className = 'language-picker-flag';
+                    flag.setAttribute('aria-hidden', 'true');
+                    flag.textContent = language.flag;
+                    const label = document.createElement('strong');
+                    label.textContent = language.name;
+                    name.append(flag, label);
+                    const soon = document.createElement('span');
+                    soon.className = 'language-picker-soon';
+                    soon.textContent = 'Pronto';
+                    row.append(name, soon);
+                    upcomingList.appendChild(row);
+                });
+                if (status) status.textContent = '';
+            },
+            openStudyLanguageSheet() {
+                const trigger = document.getElementById('studyLanguageTrigger');
+                this.learningSheetReturnFocus = trigger;
+                this.renderStudyLanguageSheet();
+                this.openLearningActionSheet('studyLanguageSheetOverlay');
             },
             async setStudyLanguage(code) {
-                const status = document.getElementById('studyLanguageStatus');
+                const status = document.getElementById('studyLanguageSheetStatus');
                 if (code === LanguageManager.getActiveLanguage()) {
-                    if (status) status.textContent = 'Este curso ya está activo.';
+                    if (status) status.textContent = 'Este idioma ya está activo.';
                     return;
                 }
                 try {
                     await LanguageManager.setActiveLanguage(code);
-                    if (status) status.textContent = 'Cambiando de curso…';
+                    if (status) status.textContent = 'Cambiando de idioma…';
                     window.location.reload();
                 } catch (error) {
-                    if (status) status.textContent = error && error.message ? error.message : 'No se pudo cambiar el curso.';
+                    if (status) status.textContent = error && error.message ? error.message : 'No se pudo cambiar el idioma.';
                     this.renderStudyLanguageSelector();
+                    this.renderStudyLanguageSheet();
                 }
             },
             setDailyGoal(goal) {
@@ -19979,6 +20042,9 @@ Requisitos:
                 const levelProgressRing = document.getElementById('levelProgressRing');
                 const levelProgressPercent = document.getElementById('levelProgressPercent');
                 const levelProgressLevel = document.getElementById('levelProgressLevel');
+                const languageFlag = document.getElementById('studyLanguageFlag');
+                const activeLanguage = LanguageManager.getLanguage(LanguageManager.getActiveLanguage());
+                if (languageFlag && activeLanguage) languageFlag.textContent = activeLanguage.flag;
                 const levelTotal = visibleUnits.length;
                 const levelCompleted = levelTotal ? visibleUnits.filter(unit => getUnitProgressState(level, unit).completed).length : 0;
                 const levelPercent = levelTotal ? Math.round(levelCompleted / levelTotal * 100) : 0;
@@ -19990,6 +20056,8 @@ Requisitos:
                 if (levelProgressLevel) levelProgressLevel.textContent = level ? level.id : '—';
                 const levelTrigger = document.getElementById('learningLevelTrigger');
                 if (levelTrigger) levelTrigger.setAttribute('aria-label', 'Cambiar nivel. ' + (level ? level.id : 'seleccionado') + ' seleccionado, ' + levelCompleted + ' de ' + levelTotal + ' unidades completadas (' + levelPercent + '%)');
+                const languageTrigger = document.getElementById('studyLanguageTrigger');
+                if (languageTrigger && activeLanguage) languageTrigger.setAttribute('aria-label', 'Cambiar idioma de estudio. ' + activeLanguage.name + ' actual. Nivel ' + (level ? level.id : '—') + ', ' + levelPercent + '% de progreso');
                 if (!level || !level.units.length) {
                     container.innerHTML = '<section class="learning-empty-state"><strong>Próximamente</strong><p>Este nivel todavía no tiene unidades disponibles.</p></section>';
                     this.populateEmergencyUnitSelect();

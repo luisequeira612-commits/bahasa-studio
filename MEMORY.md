@@ -1,8 +1,10 @@
-## 2026-11-23 — selector de idiomas compacto en la barra superior (PR en preparación)
+## 2026-11-23 — selector de idiomas compacto en la barra superior (PR #738 abierta; CI verde)
 - Por aprobación explícita, se sustituye la tarjeta grande de idioma en Aprender por un chip de bandera en la barra superior y una hoja inferior accesible. El catálogo se lee de `LanguageManager.list()`; Indonesio permanece como único curso disponible y los otros nueve se muestran en gris con etiqueta «Pronto», sin controles seleccionables.
 - La hoja muestra el idioma activo, su nivel y el porcentaje de progreso del nivel actual. El chip de nivel conserva el progreso calculado desde el currículo y namespace del idioma activo. No cambia la selección predeterminada ni el mecanismo de persistencia de `LanguageManager`.
 - Se eliminó el bloque explicativo y el margen que desplazaba la ruta. Barra compacta ajustada para 360 px; hoja con `role=dialog`, cierre por botón, fondo y Escape, foco visible y restauración del foco.
-- Cambios visuales/navegación solamente: sin dependencias, backend, cambios de IndexedDB v1 ni backup JSON v3. Caché app shell v3.8.125. PR y pruebas Playwright pendientes; no fusionar sin «Aprobado».
+- Cambios visuales/navegación solamente: sin dependencias, backend, cambios de IndexedDB v1 ni backup JSON v3. Caché app shell v3.8.125. Los estilos nuevos se mantienen inline en index.html para preservar el hash del styles.css canónico; no se añadieron archivos de runtime.
+- PR #738: https://github.com/luisequeira612-commits/bahasa-studio/pull/738. Rama `feat/compact-language-selector-sheet`; head `182e7f6bc084e9cc69e1f2680c09e12457fb64da`; base `db429218c7e33206ee46667625962aa1883667b8`. CI final run #45138894376: `test` y `Offline quality reports` completados en éxito. Playwright incluye 360×800, chip de 48 px, hoja y cierres, orden de idiomas, progreso coincidente, ruta en primera pantalla y persistencia tras recargar. Prueba física en Tecno Pova 4 aún pendiente.
+- PR permanece abierta y sin merge. Esperar el «Aprobado» explícito del usuario.
 
 ## 2026-11-23 — selector de idioma trasladado a la pantalla principal
 - Por aprobación explícita del dueño, el selector de curso se mueve de Perfil a la parte superior de Aprender/Ruta, en una tarjeta compacta y visible; Perfil deja de ser el único acceso al cambio de idioma.

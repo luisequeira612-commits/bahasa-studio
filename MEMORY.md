@@ -256,3 +256,18 @@ Fuente: PR #722–#726, commits squash y ejecuciones CI enlazadas; 23 nov 2026.
 - U22 aula/materiales de estudio; U23 profesiones/trabajo; U24 teléfono/mensajes. Diez términos nuevos, cinco lecciones y diez ejercicios por unidad; vocabulario `not_checked`.
 - Manifiesto U1–U24; `pt-BR available:false` hasta validar el curso. SW cache `bahasa-studio-v3.8.130`, precache `units-22-24.js`; E2E carga U1–U24 offline y se añade test Node para contratos de U22–U24.
 - Sin nuevas dependencias, audio/TTS, backend, cambios a IndexedDB v1 ni backup JSON v3.
+
+## 2026-11-23 — pt-BR A2 U1–U3 en preparación
+- A1 U1–U24 quedó integrada en `main` mediante PR #752, squash commit `f5a90d716352b09c26dee8a564a48b9656517e00`. El CI de la PR completó `test` (101 pasos) y `Offline quality reports` (10 pasos) en success; GitHub Pages completó build y deploy del commit integrado.
+- Inicia A2 (30 unidades) en la rama `feat/pt-br-a2-u01-u03`. U1: pasado reciente y pretérito perfeito; U2: infancia y hábitos con pretérito imperfeito; U3: planes, compromisos e ir + infinitivo.
+- Cada unidad contiene 10 términos, 5 lecciones y 10 ejercicios de selección múltiple; las lecciones incluyen 2 ejercicios y las respuestas correctas se distribuyen entre las opciones. Vocabulario `not_checked`; referencias de repaso apuntan a IDs previos de A1/A2.
+- Manifiesto A2 declara 30 unidades y publica solo U1–U3. Se registra la ruta A2 en LanguageManager, se precargan manifiesto y bloque U1–U3 con Service Worker cache `bahasa-studio-v3.8.131`, y se amplía Playwright para comprobar carga offline A1+A2. `pt-BR available:false` se conserva; el nivel A2 incompleto no se activa.
+- Sin nuevas dependencias, backend, audio/TTS ni cambios a IndexedDB v1 o backup JSON v3. CI pendiente antes de abrir/ fusionar la PR.
+
+
+- Ampliación de cobertura del runner: `quality:tests` ahora incluye los contratos incrementales A1 U19–U21, A1 U22–U24 y A2 U1–U3. Se corrigieron los harness de pruebas incrementales para inicializar el manifiesto antes de inspeccionar sus unidades publicadas.
+
+
+## 2026-11-23 — PR #753: corrección de regresiones de integración A1/A2
+- El primer CI (#45233109300) detectó tres expectativas antiguas en los tests incrementales A1 U19–U21 y U22–U24: el manifiesto A1 ya publica U1–U24 (no U1–U21) y el Service Worker avanzó a `v3.8.131` al añadir el manifiesto y bloque A2.
+- Se actualizan únicamente esas expectativas; el contenido curricular A1/A2 y el estado `pt-BR available:false` no cambian. `Offline quality reports` pasó; se repetirá CI completo, incluido Playwright.

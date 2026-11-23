@@ -47,7 +47,21 @@ test('extracts cached clip IDs only from matching audio paths', () => {
         new Request('https://example.test/bahasa-studio/audio/id/not-an-id.mp3'),
         new Request('https://example.test/bahasa-studio/audio/id/cccccccccccc.opus')
     ];
-    assert.deepEqual(Array.from(manager.idsFromCacheKeys(keys)).sort(), ['aaaaaaaaaaaa', 'bbbbbbbbbbbb']);
+    assert.deepEqual(Array.from(manager.idsFromCacheKeys(keys, 'id')).sort(), ['aaaaaaaaaaaa', 'bbbbbbbbbbbb']);
+    assert.deepEqual(Array.from(manager.idsFromCacheKeys([
+        new Request('https://example.test/bahasa-studio/audio/pt-BR/aaaaaaaaaaaa.mp3'),
+        new Request('https://example.test/bahasa-studio/audio/id/bbbbbbbbbbbb.mp3')
+    ], 'pt-BR')), ['aaaaaaaaaaaa']);
+});
+
+test('resolves language-specific audio routes, inventory and cache names safely', () => {
+    assert.equal(manager.audioUrl('aaaaaaaaaaaa', 'id'), 'https://example.test/bahasa-studio/audio/id/aaaaaaaaaaaa.mp3');
+    assert.equal(manager.audioUrl('aaaaaaaaaaaa', 'pt-BR'), 'https://example.test/bahasa-studio/audio/pt-BR/aaaaaaaaaaaa.mp3');
+    assert.equal(manager.cacheNameForLanguage('id'), 'guardi-audio-v2');
+    assert.equal(manager.cacheNameForLanguage('pt-BR'), 'guardi-audio-v2-pt-BR');
+    assert.deepEqual(JSON.parse(JSON.stringify(manager.inventoryUrlsForLanguage('id'))), { manifest: './audio/manifest.json', metadata: './audio/metadata.json' });
+    assert.deepEqual(JSON.parse(JSON.stringify(manager.inventoryUrlsForLanguage('pt-BR'))), { manifest: './audio/pt-BR/manifest.json', metadata: './audio/pt-BR/metadata.json' });
+    assert.equal(manager.cacheNameForLanguage('../id'), 'guardi-audio-v2');
 });
 
 test('formats storage values without claiming unknown sizes', () => {

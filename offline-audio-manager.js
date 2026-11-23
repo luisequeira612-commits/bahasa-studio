@@ -1,9 +1,9 @@
 (function () {
     'use strict';
 
-    const CACHE_NAME = 'guardi-audio-v1';
-    const MANIFEST_URL = './audio/manifest.json';
-    const METADATA_URL = './audio/metadata.json';
+    const CACHE_NAME = 'guardi-audio-v2';
+    const AUDIO_LANGUAGES = new Set(['pt-BR', 'en', 'it', 'fr', 'de', 'nl', 'ru', 'ja', 'ko', 'id']);
+    let activeLanguage = 'id';
     const LEVELS = ['A1', 'A2', 'B1'];
     const elements = {};
     let manifestEntries = [];
@@ -25,17 +25,41 @@
         });
     }
 
-    function audioUrl(id) {
-        return new URL('./audio/id/' + id + '.mp3', document.baseURI).href;
+    function languageConfig(language) {
+        const code = AUDIO_LANGUAGES.has(language) ? language : 'id';
+        const manager = window.LanguageManager;
+        const config = manager && typeof manager.getLanguage === 'function' ? manager.getLanguage(code) : null;
+        const expectedPath = './audio/' + code + '/';
+        const path = config && config.audioPath === expectedPath ? config.audioPath : expectedPath;
+        return { code, path };
     }
 
-    function idsFromCacheKeys(keys) {
+    function cacheNameForLanguage(language) {
+        const code = AUDIO_LANGUAGES.has(language) ? language : 'id';
+        return code === 'id' ? CACHE_NAME : CACHE_NAME + '-' + code;
+    }
+
+    function inventoryUrlsForLanguage(language) {
+        const config = languageConfig(language);
+        if (config.code === 'id') return { manifest: './audio/manifest.json', metadata: './audio/metadata.json' };
+        return { manifest: config.path + 'manifest.json', metadata: config.path + 'metadata.json' };
+    }
+
+    function audioUrl(id, language = activeLanguage) {
+        const config = languageConfig(language);
+        return new URL(config.path + id + '.mp3', document.baseURI).href;
+    }
+
+    function idsFromCacheKeys(keys, language = activeLanguage) {
+        const config = languageConfig(language);
+        const expectedPrefix = '/audio/' + config.code + '/';
         const ids = new Set();
         for (const request of keys || []) {
             try {
                 const pathname = new URL(request.url || request, document.baseURI).pathname;
-                const match = /\/audio\/id\/([a-f0-9]{12})\.mp3$/i.exec(pathname);
-                if (match) ids.add(match[1].toLowerCase());
+                const filename = pathname.slice(pathname.lastIndexOf('/') + 1);
+                if (!pathname.includes(expectedPrefix) || !/^[a-f0-9]{12}\.mp3$/i.test(filename)) continue;
+                ids.add(filename.slice(0, 12).toLowerCase());
             } catch (_) {}
         }
         return ids;
@@ -59,7 +83,10 @@
 
     async function refreshCacheState() {
         if (!('caches' in window)) throw new Error('Este navegador no permite guardar audio sin conexión.');
-        cache = await caches.open(CACHE_NAME);
+        const manager = window.LanguageManager;
+        const requested = manager && typeof manager.getActiveLanguage === 'function' ? manager.getActiveLanguage() : 'id';
+        activeLanguage = AUDIO_LANGUAGES.has(requested) ? requested : 'id';
+        cache = await caches.open(cacheNameForLanguage(activeLanguage));
         cachedIds = idsFromCacheKeys(await cache.keys());
         return cachedIds;
     }
@@ -74,9 +101,13 @@
     }
 
     async function loadInventory() {
+        const manager = window.LanguageManager;
+        const requested = manager && typeof manager.getActiveLanguage === 'function' ? manager.getActiveLanguage() : 'id';
+        activeLanguage = AUDIO_LANGUAGES.has(requested) ? requested : 'id';
+        const urls = inventoryUrlsForLanguage(activeLanguage);
         const [manifestResponse, metadataResponse] = await Promise.all([
-            fetch(MANIFEST_URL, { cache: 'no-cache' }),
-            fetch(METADATA_URL, { cache: 'no-cache' })
+            fetch(urls.manifest, { cache: 'no-cache' }),
+            fetch(urls.metadata, { cache: 'no-cache' })
         ]);
         if (!manifestResponse.ok || !metadataResponse.ok) throw new Error('No se pudo consultar el inventario de audio. Conéctate a internet y vuelve a intentarlo.');
         const manifest = await manifestResponse.json();
@@ -253,9 +284,12 @@
     window.OfflineAudioManager = {
         selectEntries,
         idsFromCacheKeys,
+        audioUrl,
+        cacheNameForLanguage,
+        inventoryUrlsForLanguage,
         formatBytes
     };
 
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once: true });
     else init();
-})();
+})()

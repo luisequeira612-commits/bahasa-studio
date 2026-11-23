@@ -57,8 +57,9 @@ function createWorker({ audioEntries = [], failPut = false, fetchImpl } = {}) {
     return { handlers, cacheStore, audioCache };
 }
 
-async function dispatchFetch(worker, range) {
-    const request = new Request(clipUrl, range ? { headers: { Range: range } } : undefined);
+async function dispatchFetch(worker, range, language = 'id') {
+    const requestUrl = language === 'id' ? clipUrl : `${ORIGIN}/bahasa-studio/audio/${language}/sample.mp3`;
+    const request = new Request(requestUrl, range ? { headers: { Range: range } } : undefined);
     let responsePromise;
     let lifetimePromise;
     worker.handlers.fetch({
@@ -164,4 +165,17 @@ test('a cache write failure does not block a Range response', async () => {
     assert.equal(response.status, 206);
     assert.equal(await response.text(), 'ab');
     assert.equal(worker.audioCache.putCalls.length, 1);
+});
+
+
+test('byte ranges also work on a language-specific audio route and cache', async () => {
+    const worker = createWorker();
+    const response = await dispatchFetch(worker, 'bytes=1-3', 'pt-BR');
+    assert.equal(response.status, 206);
+    assert.equal(await response.text(), 'bcd');
+    const languageCache = worker.cacheStore.get('guardi-audio-v2-pt-BR');
+    assert.ok(languageCache);
+    const stored = await languageCache.match(new Request(`${ORIGIN}/bahasa-studio/audio/pt-BR/sample.mp3`));
+    assert.equal(stored.status, 200);
+    assert.equal(await stored.text(), 'abcdef');
 });

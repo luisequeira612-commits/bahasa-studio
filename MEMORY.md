@@ -1,3 +1,7 @@
+## 2026-11-23 — corregir normalización de SHA-256 en migración de audio
+- Auditoría posterior a PR #730 detectó una inconsistencia: el validador acepta fingerprints hexadecimales en mayúsculas y la verificación de reproducción normaliza el valor, pero las dos rutas de migración comparaban el digest hexadecimal minúsculo con el metadata original. Un clip actual válido podía borrarse y una copia legacy válida podía no migrarse antes de eliminarse la caché antigua.
+- Normaliza el hash esperado a minúsculas en la comparación de caché actual y de migración legacy. Añade regresiones independientes para ambas rutas con hashes uppercase. Mantiene la validación estricta de 64 caracteres hexadecimales; no altera inventarios, audio, IndexedDB v1, backup JSON v3 ni dependencias. Pendiente de CI.
+ 
 ## 2026-11-23 — PR #729 fusionada: preservar audio ante hashes SHA-256 malformados
 - PR [#729](https://github.com/luisequeira612-commits/bahasa-studio/pull/729) fusionada mediante squash en `main`; head validado `159ed558eba3037ff857b48e2e4125dc0451596c`, commit integrado `7def9f7c9828e85fe9038ffa009d39b0bd8339a0`.
 - CI final #45127449881: `test` completó 98 pasos con éxito, incluidos tests de audio/caché, E2E en navegador real, evaluación y preview; `Offline quality reports` también terminó con éxito. Sin reviews ni hilos pendientes.

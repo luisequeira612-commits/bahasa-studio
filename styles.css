@@ -1090,3 +1090,6 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
  .unit-path-section-banner { top:58px !important; }
 }
 
+
+/* La ruta de unidades comienza inmediatamente bajo la barra superior. */
+#view-route { padding-top:0; }

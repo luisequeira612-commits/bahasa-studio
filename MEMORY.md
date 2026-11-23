@@ -77,3 +77,11 @@
 - Se hizo determinista el fixture E2E: guarda `0.85` en IndexedDB de prueba, lo vuelve a leer, sincroniza `AudioEngine.setRate(..., false)` y solo entonces inicia la reproducción. La prueba sigue comprobando que el MP3 recibe la preferencia persistida; no se cambia código de producto.
 - El resto de E2E pasó (32/33) y el informe de calidad offline fue exitoso. Repetir CI completo sobre el nuevo head antes de fusionar PR #724.
 - Sin cambios a IndexedDB v1 del usuario, backup JSON v3, Service Worker, manifiestos productivos, audios ni dependencias.
+
+
+## 2026-11-23 — PR: verificar integridad de MP3 ya cacheados
+
+- Auditoría posterior a PR #724 detectó que `OfflineAudioManager.refreshCacheState()` contaba IDs de archivos presentes sin comprobar sus bytes contra el inventario SHA-256. Un MP3 alterado o sin huella podía aparecer como listo para uso sin conexión.
+- Corrección en curso: antes de contar un clip, comprobar respuesta HTTP 200, contenido no vacío y SHA-256 esperado; eliminar del cache los clips conocidos que no pasan la verificación y dejar que se vuelvan a descargar. Los clips solo se consideran guardados si coinciden con el inventario validado.
+- Se añade prueba para conservar un clip íntegro y excluir/eliminar uno alterado y otro sin hash. El cambio no modifica el formato de inventario, Service Worker, IndexedDB v1, backup JSON v3, audios ni dependencias.
+- Validación CI pendiente en PR.

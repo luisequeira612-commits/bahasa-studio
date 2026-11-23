@@ -327,7 +327,8 @@ test('invalida solo los MP3 cuyo contenido cambió y conserva los que siguen igu
 
     assert.ok(await audio.match(new Request(audioUrl(keepId))));
     assert.equal(await audio.match(new Request(audioUrl(changedId))), null);
-    assert.equal(await audio.match(new Request(audioUrl(removedId))), null);
+    assert.ok(await audio.match(new Request(audioUrl(removedId))), 'a clip without an individual hash must be preserved');
+    assert.ok(worker.cacheStore.has('bahasa-studio-v3.8.97'), 'legacy app cache must remain while an audio fingerprint is missing');
 });
 
 test('migra solo clips legacy cuyos bytes coinciden con el SHA-256 actual', async () => {

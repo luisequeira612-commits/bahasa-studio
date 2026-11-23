@@ -99,15 +99,15 @@ const addUnit=(number,title,desc,grammar,trapTitle,trapDetail,vocab,lessonSpecs)
 
 const u16=[
 v('ptbr_a1_u16_v01','cabeça','cabeza','Minha cabeça está aqui.','Mi cabeza está aquí.'),
-v('ptbr_a1_u16_v02','rosto','rostro / cara','Meu rosto está aqui.','Mi cara está mojada.'),
-v('ptbr_a1_u16_v03','olho','ojo','Meu olho é grande.','Mi ojo está abierto.'),
+v('ptbr_a1_u16_v02','rosto','rostro / cara','Meu rosto está aqui.','Mi cara está aquí.'),
+v('ptbr_a1_u16_v03','olho','ojo','Meu olho é grande.','Mi ojo es grande.'),
 v('ptbr_a1_u16_v04','nariz','nariz','Meu nariz é pequeno.','Mi nariz es pequeño.'),
-v('ptbr_a1_u16_v05','boca','boca','Minha boca é pequena.','Mi boca está cerrada.'),
-v('ptbr_a1_u16_v06','orelha','oreja','Minha orelha é pequena.','Mi oreja está roja.'),
-v('ptbr_a1_u16_v07','mão','mano','Minha mão é grande.','Mi mano está aquí.'),
-v('ptbr_a1_u16_v08','braço','brazo','Meu braço é grande.','Mi brazo está aquí.'),
-v('ptbr_a1_u16_v09','perna','pierna','Minha perna é grande.','Mi pierna está aquí.'),
-v('ptbr_a1_u16_v10','pé','pie','Meu pé é pequeno.','Mi pie está aquí.')
+v('ptbr_a1_u16_v05','boca','boca','Minha boca é pequena.','Mi boca es pequeña.'),
+v('ptbr_a1_u16_v06','orelha','oreja','Minha orelha é pequena.','Mi oreja es pequeña.'),
+v('ptbr_a1_u16_v07','mão','mano','Minha mão é grande.','Mi mano es grande.'),
+v('ptbr_a1_u16_v08','braço','brazo','Meu braço é grande.','Mi brazo es grande.'),
+v('ptbr_a1_u16_v09','perna','pierna','Minha perna é grande.','Mi pierna es grande.'),
+v('ptbr_a1_u16_v10','pé','pie','Meu pé é pequeno.','Mi pie es pequeño.')
 ];
 const unit16=addUnit(16,'El cuerpo y sus partes','Nombra partes básicas del cuerpo y usa posesivos para identificarlas.',
 'Partes del cuerpo; meu/minha + sustantivo; adjetivos sencillos ya estudiados para describir rasgos.',
@@ -152,7 +152,7 @@ v('ptbr_a1_u18_v05','médico','médico','Vou ao médico.','Voy al médico.'),
 v('ptbr_a1_u18_v06','remédio','medicamento','Preciso de um remédio.','Necesito un medicamento.'),
 v('ptbr_a1_u18_v07','farmácia','farmacia','A farmácia está perto.','La farmacia está cerca.'),
 v('ptbr_a1_u18_v08','dor','dolor','Estou com dor.','Tengo dolor.'),
-v('ptbr_a1_u18_v09','consulta','consulta médica','Minha consulta é hoje.','Tengo una consulta hoy.'),
+v('ptbr_a1_u18_v09','consulta','consulta médica','Minha consulta é hoje.','Mi consulta es hoy.'),
 v('ptbr_a1_u18_v10','precisar de','necesitar','Eu preciso de um remédio.','Necesito un medicamento.')
 ];
 const unit18=addUnit(18,'Salud y necesidades básicas','Comunica malestar sencillo y reconoce palabras útiles para pedir atención.',
@@ -161,7 +161,7 @@ const unit18=addUnit(18,'Salud y necesidades básicas','Comunica malestar sencil
 u18,[
 ['Lección 1: Salud y malestar','Reconoce salud y enfermedad.','Saúde es un sustantivo; doente describe a una persona que está enferma.',[0,1],['ptbr_a1_u17_v03']],
 ['Lección 2: Síntomas comunes','Nombra fiebre, tos y dolor.','Las expresiones habituales son estar com febre, estar com tosse y estar com dor.',[2,3,7],['ptbr_a1_u17_v04','ptbr_a1_u17_v05']],
-['Lección 3: Médico y consulta','Habla de acudir al médico.','Ir ao médico combina ir a + o; consulta puede aparecer con ter: tenho uma consulta.',[4,8],['ptbr_a1_u8_v01','ptbr_a1_u7_v07']],
+['Lección 3: Médico y consulta','Habla de acudir al médico.','Ir ao médico combina ir a + o; minha consulta é hoje ofrece un ejemplo sencillo de uso de consulta.',[4,8],['ptbr_a1_u8_v01','ptbr_a1_u7_v07']],
 ['Lección 4: Medicamento y farmacia','Reconoce lugares y objetos de atención.','Remédio es el medicamento y farmácia es el lugar donde se compra.',[5,6],['ptbr_a1_u6_v08']],
 ['Lección 5: Necesitar algo','Expresa una necesidad sencilla.','Precisar de + sustantivo expresa necesidad: preciso de um remédio.',[9,5,4],['ptbr_a1_u5_v03']]
 ]);

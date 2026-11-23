@@ -71,7 +71,7 @@ test('precarga el índice y los metadatos de la biblioteca de audio', () => {
     assert.ok(worker.assets.includes('./audio/metadata.json'));
 });
 
-test('el guardado de red solo intenta cachear respuestas 200 y no bloquea el audio si falla', async () => {
+test('la reproducción online sin inventario no cachea audio y no se bloquea si falla el cache', async () => {
     const handlers = {};
     const cacheWrites = [];
     let waitUntilCalls = 0;
@@ -111,7 +111,7 @@ test('el guardado de red solo intenta cachear respuestas 200 y no bloquea el aud
     assert.equal(waitUntilCalls, 1, 'waitUntil debe registrarse sincrónicamente durante el evento');
     const response = await event.responsePromise;
     assert.equal(response.status, 200);
-    assert.deepEqual(cacheWrites, [{ url: request.url, status: 200 }]);
+    assert.deepEqual(cacheWrites, [], 'sin inventario SHA-256 no se crea una copia offline no verificada');
 
     cacheWrites.length = 0;
     cachePutRejects = true;
@@ -119,7 +119,7 @@ test('el guardado de red solo intenta cachear respuestas 200 y no bloquea el aud
     assert.equal(waitUntilCalls, 2);
     const secondResponse = await event.responsePromise;
     assert.equal(secondResponse.status, 200);
-    assert.deepEqual(cacheWrites, [{ url: request.url, status: 200 }]);
+    assert.deepEqual(cacheWrites, [], 'la ausencia de hash sigue evitando escrituras incluso si el cache falla');
 });
 
 test('una respuesta 206 no se guarda como archivo completo', async () => {

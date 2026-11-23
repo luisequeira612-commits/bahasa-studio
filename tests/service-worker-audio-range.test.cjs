@@ -3,10 +3,14 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const vm = require('node:vm');
 const path = require('node:path');
+const { createHash, webcrypto } = require('node:crypto');
+const hash = value => createHash('sha256').update(value).digest('hex');
 
 const source = fs.readFileSync(path.join(__dirname, '..', 'service-worker.js'), 'utf8');
+const CURRENT_CACHE_NAME = source.match(/const CACHE_NAME = '([^']+)'/)[1];
 const ORIGIN = 'https://example.test';
-const clipUrl = `${ORIGIN}/bahasa-studio/audio/id/sample.mp3`;
+const CLIP_ID = '0123456789ab';
+const clipUrl = `${ORIGIN}/bahasa-studio/audio/id/${CLIP_ID}.mp3`;
 
 class MemoryCache {
     constructor(entries = [], options = {}) {
@@ -31,6 +35,11 @@ function createWorker({ audioEntries = [], failPut = false, fetchImpl } = {}) {
     const cacheStore = new Map();
     const audioCache = new MemoryCache(audioEntries, { failPut });
     cacheStore.set('guardi-audio-v2', audioCache);
+    const appCache = new MemoryCache([
+        [`${ORIGIN}/bahasa-studio/audio/metadata.json`, new Response(JSON.stringify({ audio_hashes: { [CLIP_ID]: hash('abcdef') } }))],
+        [`${ORIGIN}/bahasa-studio/audio/pt-BR/metadata.json`, new Response(JSON.stringify({ audio_hashes: { [CLIP_ID]: hash('abcdef') } }))]
+    ]);
+    cacheStore.set(CURRENT_CACHE_NAME, appCache);
     const caches = {
         open: async name => {
             if (!cacheStore.has(name)) cacheStore.set(name, new MemoryCache());
@@ -40,7 +49,7 @@ function createWorker({ audioEntries = [], failPut = false, fetchImpl } = {}) {
         delete: async name => cacheStore.delete(name)
     };
     const self = {
-        location: { origin: ORIGIN },
+        location: { origin: ORIGIN, href: ORIGIN + '/bahasa-studio/' },
         addEventListener: (name, handler) => { handlers[name] = handler; },
         skipWaiting: () => {},
         clients: { claim: async () => {} }
@@ -51,14 +60,14 @@ function createWorker({ audioEntries = [], failPut = false, fetchImpl } = {}) {
             status: 200,
             headers: { 'Content-Type': 'audio/mpeg' }
         })),
-        Response, Request, Headers, Promise, URL, Map
+        Response, Request, Headers, Promise, URL, Map, crypto: webcrypto
     };
     vm.runInNewContext(source, sandbox);
     return { handlers, cacheStore, audioCache };
 }
 
 async function dispatchFetch(worker, range, language = 'id') {
-    const requestUrl = language === 'id' ? clipUrl : `${ORIGIN}/bahasa-studio/audio/${language}/sample.mp3`;
+    const requestUrl = language === 'id' ? clipUrl : `${ORIGIN}/bahasa-studio/audio/${language}/${CLIP_ID}.mp3`;
     const request = new Request(requestUrl, range ? { headers: { Range: range } } : undefined);
     let responsePromise;
     let lifetimePromise;
@@ -175,7 +184,7 @@ test('byte ranges also work on a language-specific audio route and cache', async
     assert.equal(await response.text(), 'bcd');
     const languageCache = worker.cacheStore.get('guardi-audio-v2-pt-BR');
     assert.ok(languageCache);
-    const stored = await languageCache.match(new Request(`${ORIGIN}/bahasa-studio/audio/pt-BR/sample.mp3`));
+    const stored = await languageCache.match(new Request(`${ORIGIN}/bahasa-studio/audio/pt-BR/${CLIP_ID}.mp3`));
     assert.equal(stored.status, 200);
     assert.equal(await stored.text(), 'abcdef');
 });

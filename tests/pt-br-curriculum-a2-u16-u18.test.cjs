@@ -41,9 +41,9 @@ test('pt-BR A2 U16-U18 load through the offline loader while the language remain
   for(const ex of [...unit.exercises,...unit.lessons.flatMap(l=>l.exercises)]){assert.equal(ex.type,'mc',unit.id);const word=unit.vocab.find(w=>w.id===ex.vocabId);assert.ok(word,ex.vocabId);assert.equal(ex.options[ex.answer],word.esp,ex.vocabId);}
  }
 });
-test('A2 manifest publishes U1-U27 as a partial level of thirty units',()=>{
+test('A2 manifest publishes U1-U30 as a partial level of thirty units',()=>{
  const {window}=createPilot(),manifest=window.GUARDI_CURRICULUM_MANIFESTS['pt-BR'].A2;
- assert.equal(manifest.totalUnits,30);assert.deepEqual(Array.from(manifest.publishedUnits),Array.from({length:27},(_,i)=>i+1));
+ assert.equal(manifest.totalUnits,30);assert.deepEqual(Array.from(manifest.publishedUnits),Array.from({length:30},(_,i)=>i+1));
  assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
 });
 test('A2 U16-U18 review references resolve only to previously published A2 vocabulary',async()=>{
@@ -52,5 +52,5 @@ test('A2 U16-U18 review references resolve only to previously published A2 vocab
 });
 test('service worker precaches A2 U16-U18 using cache v3.8.139',()=>{
  const source=fs.readFileSync(path.join(repo,'service-worker.js'),'utf8');
- assert.match(source,/units-16-18\.js/);assert.match(source,/curriculum\/a2\/index\.js/);assert.match(source,/bahasa-studio-v3\.8\.139/);
+ assert.match(source,/units-16-18\.js/);assert.match(source,/curriculum\/a2\/index\.js/);assert.match(source,/bahasa-studio-v3\.8\.140/);
 });

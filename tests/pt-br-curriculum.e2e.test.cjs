@@ -23,7 +23,7 @@ function startServer(){
  return new Promise(resolve=>server.listen(0,'127.0.0.1',()=>resolve(server)));
 }
 
-test('Playwright: carga A1 U1-U24 y A2 U1-U27 offline, aislando el progreso pt-BR del indonesio', {timeout:120000}, async()=>{
+test('Playwright: carga A1 U1-U24 y A2 U1-U30 offline, aislando el progreso pt-BR del indonesio', {timeout:120000}, async()=>{
  const server=await startServer();
  const address=server.address();
  const browser=await chromium.launch({headless:true});
@@ -39,7 +39,7 @@ test('Playwright: carga A1 U1-U24 y A2 U1-U27 offline, aislando el progreso pt-B
   await page.reload();
   await page.waitForFunction(()=>Boolean(navigator.serviceWorker.controller));
   const cacheReady=await page.evaluate(async()=>{
-   const cache=await caches.open('bahasa-studio-v3.8.139');
+   const cache=await caches.open('bahasa-studio-v3.8.140');
    return Boolean(await cache.match(new URL('/languages/pt-BR/curriculum/a1/index.js',location.href).href)) &&
      Boolean(await cache.match(new URL('/languages/pt-BR/curriculum/a1/units-01-06.js',location.href).href)) &&
      Boolean(await cache.match(new URL('/languages/pt-BR/curriculum/a1/units-13-18.js',location.href).href)) &&
@@ -54,13 +54,14 @@ test('Playwright: carga A1 U1-U24 y A2 U1-U27 offline, aislando el progreso pt-B
      Boolean(await cache.match(new URL('/languages/pt-BR/curriculum/a2/units-16-18.js',location.href).href)) &&
      Boolean(await cache.match(new URL('/languages/pt-BR/curriculum/a2/units-19-21.js',location.href).href)) &&
      Boolean(await cache.match(new URL('/languages/pt-BR/curriculum/a2/units-22-24.js',location.href).href)) &&
-     Boolean(await cache.match(new URL('/languages/pt-BR/curriculum/a2/units-25-27.js',location.href).href));
+     Boolean(await cache.match(new URL('/languages/pt-BR/curriculum/a2/units-25-27.js',location.href).href)) &&
+     Boolean(await cache.match(new URL('/languages/pt-BR/curriculum/a2/units-28-30.js',location.href).href));
   });
   assert.equal(cacheReady,true,'manifest and curriculum block must be in the app-shell cache');
   await context.setOffline(true);
   const result=await page.evaluate(async()=>{
    const curriculum=await CurriculumLoader.loadUnits('pt-BR','A1',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]);
-   const a2=await CurriculumLoader.loadUnits('pt-BR','A2',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27]);
+   const a2=await CurriculumLoader.loadUnits('pt-BR','A2',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]);
    const u3=curriculum.units[2];
    const previous=new Set(curriculum.units[0].vocab.map(word=>word.id));
    const recycled=u3.exercises.filter(ex=>previous.has(ex.vocabId)).map(ex=>ex.vocabId);
@@ -87,7 +88,7 @@ test('Playwright: carga A1 U1-U24 y A2 U1-U27 offline, aislando el progreso pt-B
   });
   assert.deepEqual(result.units,Array.from({length:24},(_,index)=>({id:'ptbr_a1_u'+(index+1),lessons:5})));
   assert.deepEqual(result.recycled,['ptbr_a1_u1_v01','ptbr_a1_u1_v02']);
-  assert.deepEqual(result.a2Units,Array.from({length:27},(_,index)=>({id:'ptbr_a2_u'+(index+1),lessons:5,vocab:10})));
+  assert.deepEqual(result.a2Units,Array.from({length:30},(_,index)=>({id:'ptbr_a2_u'+(index+1),lessons:5,vocab:10})));
   assert.equal(result.a2TotalUnits,30);
   assert.equal(result.ptKey,'pt-BR::unit_1');
   assert.equal(result.idKey,'unit_1');

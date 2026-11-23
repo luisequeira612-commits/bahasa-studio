@@ -385,11 +385,19 @@ Fuente: logs del job `test` de Actions run #45255051684 y commits correctivos en
 Fuente: GitHub `main` commit `45a31b0`, rama `feat/pt-br-a2-u22-u24`, bloque `units-22-24.js`; 23 nov 2026.
 
 
-## 2026-11-23 — PR #761 abierta: Portugués A2 U25–U27
+## 2026-11-23 — PR #761 fusionada: Portugués A2 U25–U27
 - Tras integrar PR #760 (`b8d86150df1da0934b2b828ced115e7a676b64fc`) y verificar la regresión post-merge #45259801554 en success, se creó la rama limpia `feat/pt-br-a2-u25-u27` desde `main`.
 - U25 condimentos y técnicas de cocina; U26 emociones matizadas y vínculos personales; U27 fenómenos naturales y gestión de riesgos. Se añaden 30 términos con `not_checked`, cinco lecciones y diez ejercicios MC por unidad, con ejemplos bilingües y referencias de repaso a A1/A2 previo.
 - Cotejo de diseño inicial: términos elegidos no repiten los lemas explícitos de A1/A2 inspeccionados; se incluye contrato automático de duplicados exactos normalizados contra A1 y A2.
-- PR [#761](https://github.com/luisequeira612-commits/bahasa-studio/pull/761) abierta desde `feat/pt-br-a2-u25-u27`, base `main` en `b8d86150df1da0934b2b828ced115e7a676b64fc`. El manifiesto publica U1–U27, caché offline `v3.8.139`, contratos Node y Playwright amplían la carga offline hasta U27. Mantener `pt-BR available:false`; no modificar IndexedDB v1 ni backup JSON v3, no añadir backend, dependencias ni audio/TTS.
-- Primer CI del head inicial, Actions #45261291545, encontró fallos de contratos heredados que aún esperaban el regex literal de caché `v3.8.138`, más dos defectos de la prueba/contenido nuevo: la lección de sequía agrupaba `abrigo` sin explicarlo y U25 usaba referencias A1 mientras el nuevo contrato exigía referencias A2. Se corrigieron las expectativas de caché en los contratos A1/A2, se reorganizó U27 para agrupar `tempestade` con `seca` y `deslizamento` con `desabamento`, y U25 ahora repasa IDs A2 previos. No se relajaron aserciones. Repetir CI en el head final antes de fusionar.
+- PR [#761](https://github.com/luisequeira612-commits/bahasa-studio/pull/761) fusionada por squash en `main`, commit `5e4da2e9af702f15a5bd3081c37ed73a3d3906a5`, tras CI PR #45261891289 y regresión post-merge #45262451262 en success. El manifiesto publica U1–U27 y caché offline `v3.8.139`; Playwright amplía carga offline hasta U27. Mantener `pt-BR available:false`; no modificar IndexedDB v1 ni backup JSON v3, no añadir backend, dependencias ni audio/TTS.
+- Primer CI del head inicial, Actions #45261291545, encontró fallos de contratos heredados que aún esperaban el regex literal de caché `v3.8.138`, más dos defectos de la prueba/contenido nuevo: la lección de sequía agrupaba `abrigo` sin explicarlo y U25 usaba referencias A1 mientras el nuevo contrato exigía referencias A2. Se corrigieron las expectativas de caché en los contratos A1/A2, se reorganizó U27 para agrupar `tempestade` con `seca` y `deslizamento` con `desabamento`, y U25 ahora repasa IDs A2 previos. No se relajaron aserciones. CI final del head `f19e5c60` (#45261891289) y regresión post-merge de `main` (#45262451262) terminaron en success; Pages deploy (#45262450731) también terminó en success.
 
-Fuente: GitHub `main` commit `b8d86150`, rama `feat/pt-br-a2-u25-u27`, bloque `units-25-27.js`; 23 nov 2026.
+Fuente: GitHub PR #761, merge commit `5e4da2e9`, rama `feat/pt-br-a2-u25-u27`, bloque `units-25-27.js`; 23 nov 2026.
+
+
+## 2026-11-23 — PR #762 abierta: Portugués A2 U28–U30
+- Rama limpia `feat/pt-br-a2-u28-u30` creada desde `main` tras integrar PR #761 (`5e4da2e9af702f15a5bd3081c37ed73a3d3906a5`).
+- U28 dispositivos y recursos digitales; U29 atención al público y servicios; U30 planificación y trabajo en equipo. Se añaden 30 términos `not_checked`, cinco lecciones y diez ejercicios MC por unidad, con ejemplos PT/ES y referencias de repaso a vocabulario A2 anterior.
+- PR [#762](https://github.com/luisequeira612-commits/bahasa-studio/pull/762) abierta desde `feat/pt-br-a2-u28-u30`, base `main` en `5e4da2e9af702f15a5bd3081c37ed73a3d3906a5`, head `60efe33eb0e59f8d2e6e0848bf806a20153b3db3`; CI pendiente. El manifiesto publica U1–U30, caché offline `v3.8.140`, contratos Node/Playwright amplían la carga offline a A2 completo. Mantener `pt-BR available:false`; sin cambios a IndexedDB v1/backup JSON v3, sin backend, dependencias ni audio/TTS.
+
+Fuente: GitHub `main` commit `5e4da2e9`, rama `feat/pt-br-a2-u28-u30`, bloque `units-28-30.js`; 23 nov 2026.

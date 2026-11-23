@@ -593,7 +593,7 @@ test('backup validator executes against valid and invalid version 3 payloads', (
   const course = vm.runInNewContext('(() => {\n' + html.slice(courseStart, courseEnd) + '\nreturn CourseData;\n})()');
   const validateBackup = vm.runInNewContext(
     '({' + methodSource + '\n}).validateBackup',
-    { CourseData: course, SYLLABUS: [], LEGACY_SRS_ID_ALIASES: {}, StudyActivity }
+    { CourseData: course, LanguageManager: { isAvailable: code => code === 'id' }, SYLLABUS: [], LEGACY_SRS_ID_ALIASES: {}, StudyActivity }
   );
 
   const normalized = validateBackup({
@@ -680,7 +680,7 @@ test('backup restoration writes SRS and settings in one readwrite transaction an
   const methodBody = methodSource.slice(bodyStart, bodyEnd);
   const replaceBackupData = vm.runInNewContext(
     '({ async replaceBackupData(data) {' + methodBody + '\n} }).replaceBackupData',
-    { StudyActivity }
+    { StudyActivity, LanguageManager: { isSupported: code => code === 'id' } }
   );
 
   const data = {
@@ -691,7 +691,14 @@ test('backup restoration writes SRS and settings in one readwrite transaction an
   const transactions = [];
   const stores = {
     srs: {
-      clear: () => writes.push({ store: 'srs', type: 'clear' }),
+      openCursor() {
+        const request = { result: null, onsuccess: null };
+        queueMicrotask(() => {
+          if (request.onsuccess) request.onsuccess();
+          queueMicrotask(() => transactions.at(-1).tx.oncomplete && transactions.at(-1).tx.oncomplete());
+        });
+        return request;
+      },
       put: value => writes.push({ store: 'srs', type: 'put', value })
     },
     settings: {
@@ -705,32 +712,43 @@ test('backup restoration writes SRS and settings in one readwrite transaction an
         objectStore: name => stores[name],
         oncomplete: null, onerror: null, onabort: null
       };
-      transactions.push(tx);
-      queueMicrotask(() => tx.oncomplete && tx.oncomplete());
+      transactions.push({ names, mode, tx });
       return tx;
     }
   };
-  await replaceBackupData.call({ db }, data);
+  const restoreContext = {
+    db,
+    scopedKey: (store, key) => key,
+    belongsToLanguage: () => true
+  };
+  await replaceBackupData.call(restoreContext, data);
   assert.deepEqual(Array.from(transactions[0].names), ['srs', 'settings']);
   assert.equal(transactions[0].mode, 'readwrite');
-  assert.ok(writes.some(write => write.store === 'srs' && write.type === 'clear'));
+  assert.ok(!writes.some(write => write.store === 'srs' && write.type === 'clear'));
   assert.ok(writes.some(write => write.store === 'srs' && write.type === 'put' && write.value.wordId === 'v1'));
   assert.ok(writes.some(write => write.store === 'settings' && write.type === 'put' && write.value.key === 'userXp' && write.value.val === 8));
   assert.ok(writes.some(write => write.store === 'settings' && write.type === 'put' && write.value.key === 'completedUnits'));
   assert.ok(writes.some(write => write.store === 'settings' && write.type === 'put' && write.value.key === 'studyActivity'));
 
   const abortDb = {
-    transaction() {
+    transaction(names, mode) {
       const tx = {
         error: new Error('simulated transaction abort'),
         objectStore: name => stores[name],
         oncomplete: null, onerror: null, onabort: null
       };
-      queueMicrotask(() => tx.onabort && tx.onabort());
+      const request = { result: null, onsuccess: null };
+      stores.srs.openCursor = () => {
+        queueMicrotask(() => {
+          if (request.onsuccess) request.onsuccess();
+          queueMicrotask(() => tx.onabort && tx.onabort());
+        });
+        return request;
+      };
       return tx;
     }
   };
-  await assert.rejects(replaceBackupData.call({ db: abortDb }, data), /simulated transaction abort/);
+  await assert.rejects(replaceBackupData.call({ ...restoreContext, db: abortDb }, data), /simulated transaction abort/);
 });
 
 
@@ -801,7 +819,7 @@ test('SRS duplicate snapshots are persisted in one atomic IndexedDB transaction'
   const setMany = vm.runInNewContext(
     '({ async setMany(store, entries) {' + setManyBody + '\n} }).setMany'
   );
-  await setMany.call({ db: fakeDb }, 'srs', [
+  await setMany.call({ db: fakeDb, scopedKey: (store, key) => key }, 'srs', [
     { key: 'v27', val: { attempts: 4, wordId: 'v27' } },
     { key: 'v48', val: { attempts: 4, wordId: 'v48' } }
   ]);

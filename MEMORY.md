@@ -717,3 +717,5 @@
 - Segunda ejecución CI de PR #713 encontró otra aserción de fuente antigua en la prueba legacy SRS, que buscaba el objeto v3 sin language. La nueva suite de backup y la primera expectativa ya pasaron; se actualiza esta última aserción y se repetirá CI.
 
 - CI inicial PR #714 (run 45095656863) detectó una única expectativa heredada en tests/regression.test.cjs que exigía srsStore.clear(); ahora la restauración debe conservar namespaces ajenos y eliminar solo los registros del idioma importado con cursor. El resto del job llegó a la suite de regresión sin fallos de sintaxis; se actualiza la expectativa para el contrato por idioma y se repetirá CI.
+
+- Segunda ejecución CI PR #714 (run 45095790131): corregida la aserción srsStore.clear, pero regression.test.cjs mostró tres mocks incompletos: falta LanguageManager en los contextos del validador/restauración, y faltan scopedKey/belongsToLanguage + openCursor en el fake DB. Se ajustan fixtures de pruebas, sin cambio de comportamiento productivo.

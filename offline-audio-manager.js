@@ -127,13 +127,40 @@
         elements.progress.value = Math.min(done, total);
     }
 
+    async function verifiedCachedIds(targetCache, entries, hashes) {
+        const verified = new Set();
+        for (const entry of selectEntries(entries, 'all')) {
+            const url = audioUrl(entry.id);
+            const response = await targetCache.match(url);
+            if (!response) continue;
+            let valid = false;
+            try {
+                if (response.status === 200) {
+                    const blob = await response.blob();
+                    if (blob.size) {
+                        await verifyAudio(blob, hashes && hashes[entry.id]);
+                        valid = true;
+                    }
+                }
+            } catch (_) {
+                // An unreadable or unverifiable cached response is not offline-ready.
+            }
+            if (valid) {
+                verified.add(entry.id);
+            } else {
+                try { await targetCache.delete(url); } catch (_) {}
+            }
+        }
+        return verified;
+    }
+
     async function refreshCacheState() {
         if (!('caches' in window)) throw new Error('Este navegador no permite guardar audio sin conexión.');
         const manager = window.LanguageManager;
         const requested = manager && typeof manager.getActiveLanguage === 'function' ? manager.getActiveLanguage() : 'id';
         activeLanguage = AUDIO_LANGUAGES.has(requested) ? requested : 'id';
         cache = await caches.open(cacheNameForLanguage(activeLanguage));
-        cachedIds = idsFromCacheKeys(await cache.keys());
+        cachedIds = await verifiedCachedIds(cache, manifestEntries, audioHashes);
         return cachedIds;
     }
 
@@ -331,6 +358,7 @@
         selectEntries,
         validateInventory,
         idsFromCacheKeys,
+        verifiedCachedIds,
         audioUrl,
         cacheNameForLanguage,
         inventoryUrlsForLanguage,

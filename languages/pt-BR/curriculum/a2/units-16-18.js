@@ -23,7 +23,7 @@ vocab(17,4,'certificado','certificado','Recebi o certificado depois de concluir 
 vocab(17,5,'frequência','asistencia','A frequência mínima é necessária para aprovação.','La asistencia mínima es necesaria para aprobar.'),
 vocab(17,6,'avaliação','evaluación','A avaliação inclui uma atividade escrita.','La evaluación incluye una actividad escrita.'),
 vocab(17,7,'pesquisa','investigación','Os alunos fizeram uma pesquisa sobre o tema.','Los alumnos hicieron una investigación sobre el tema.'),
-vocab(17,8,'prazo','plazo','O prazo para entregar o trabalho é amanhã.','El plazo para entregar el trabajo es mañana.'),
+vocab(17,8,'ementa','programa / temario del curso','A ementa apresenta os assuntos estudados durante o semestre.','El temario presenta los temas estudiados durante el semestre.'),
 vocab(17,9,'orientador','tutor / asesor académico','Conversei com meu orientador sobre o projeto.','Hablé con mi tutor sobre el proyecto.'),
 vocab(17,10,'aprendizagem','aprendizaje','A prática diária ajuda na aprendizagem.','La práctica diaria ayuda en el aprendizaje.')
 ];

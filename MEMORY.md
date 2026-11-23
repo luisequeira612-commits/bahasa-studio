@@ -162,3 +162,9 @@ Fuente: PR #722–#726, commits squash y ejecuciones CI enlazadas; 23 nov 2026.
 - Corrección en curso: antes de contar un clip, comprobar respuesta HTTP 200, contenido no vacío y SHA-256 esperado; eliminar del cache los clips conocidos que no pasan la verificación y dejar que se vuelvan a descargar. Los clips solo se consideran guardados si coinciden con el inventario validado.
 - Se añade prueba para conservar un clip íntegro y excluir/eliminar uno alterado y otro sin hash. El cambio no modifica el formato de inventario, Service Worker, IndexedDB v1, backup JSON v3, audios ni dependencias.
 - Validación CI pendiente en PR.
+
+
+## 2026-11-23 — Variantes del catálogo multilingüe
+- Corrección de UI/catálogo: el idioma mostrado como **Portugués** usa la bandera 🇧🇷; no se debe mostrar “Portugués de Brasil”, porque la bandera ya identifica la variante enseñada.
+- El idioma **Inglés** corresponde a **inglés de Estados Unidos** y debe usar la bandera 🇺🇸, no 🇬🇧.
+- Decisión vigente: **no iniciar todavía el curso de Portugués**. La activación y creación de su currículo queda bloqueada hasta que Luis defina primero cuántas unidades tendrá.

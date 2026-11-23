@@ -77,7 +77,9 @@ test('profile language selector exposes the approved catalog but disables unavai
     assert.match(indexSource, /id="studyLanguageSelect"/);
     assert.match(indexSource, /language\.available \? '' : ' · Próximamente'/);
     assert.match(indexSource, /option\.disabled = !language\.available/);
-    assert.match(indexSource, /select\.disabled = languages\.filter\(language => language\.available\)\.length < 2/);
+    assert.match(indexSource, /select\.disabled = availableCount === 0/);
+    assert.match(indexSource, /option\.disabled = !language\.available/);
+    assert.match(indexSource, /code === LanguageManager\.getActiveLanguage\(\)/);
     assert.match(indexSource, /async setStudyLanguage\(code\)/);
     assert.match(indexSource, /await LanguageManager\.setActiveLanguage\(code\)/);
     assert.match(indexSource, /window\.location\.reload\(\)/);

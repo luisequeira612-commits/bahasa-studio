@@ -40,8 +40,8 @@ test('Playwright: carga U1-U3 offline y aísla el progreso pt-BR del indonesio',
   await page.waitForFunction(()=>Boolean(navigator.serviceWorker.controller));
   const cacheReady=await page.evaluate(async()=>{
    const cache=await caches.open('bahasa-studio-v3.8.126');
-   return Boolean(await cache.match('/languages/pt-BR/curriculum/a1/index.js')) &&
-     Boolean(await cache.match('/languages/pt-BR/curriculum/a1/units-01-06.js'));
+   return Boolean(await cache.match(new URL('/languages/pt-BR/curriculum/a1/index.js',location.href).href)) &&
+     Boolean(await cache.match(new URL('/languages/pt-BR/curriculum/a1/units-01-06.js',location.href).href));
   });
   assert.equal(cacheReady,true,'manifest and curriculum block must be in the app-shell cache');
   await context.setOffline(true);

@@ -29,11 +29,11 @@ function createPilot(){
  return {window,loader:window.CurriculumLoader};
 }
 
-test('pt-BR A1 pilot loads U1-U6 without making the incomplete course selectable',async()=>{
+test('pt-BR A1 pilot loads U1-U9 without making the incomplete course selectable',async()=>{
  const {window,loader}=createPilot();
  assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
  assert.equal(loader.resolve('pt-BR','A1'),null);
- const curriculum=await loader.loadUnits('pt-BR','A1',[1,2,3,4,5,6]);
+ const curriculum=await loader.loadUnits('pt-BR','A1',[1,2,3,4,5,6,7,8,9]);
  assert.equal(curriculum.language,'pt-BR');
  assert.equal(curriculum.totalUnits,24);
  assert.deepEqual(Array.from(curriculum.units,u=>u.unitNumber),[1,2,3,4,5,6]);
@@ -42,7 +42,7 @@ test('pt-BR A1 pilot loads U1-U6 without making the incomplete course selectable
 
 test('each pilot unit has five explicit lessons and valid vocabulary references',async()=>{
  const {loader}=createPilot();
- const {units}=await loader.loadUnits('pt-BR','A1',[1,2,3,4,5,6]);
+ const {units}=await loader.loadUnits('pt-BR','A1',[1,2,3,4,5,6,7,8,9]);
  const allIds=new Set(units.flatMap(unit=>unit.vocab.map(word=>word.id)));
  for(const unit of units){
   assert.equal(unit.lessons.length,5,unit.id);
@@ -91,9 +91,26 @@ test('U4-U6 each introduce ten vocabulary targets and ten final exercises',async
  assert.equal(units[2].vocab[9].target,'onde');
 });
 
+test('U7-U9 each introduce ten vocabulary targets and ten final exercises',async()=>{
+ const {loader}=createPilot();
+ const {units}=await loader.loadUnits('pt-BR','A1',[7,8,9]);
+ assert.deepEqual(Array.from(units,u=>u.unitNumber),[7,8,9]);
+ for(const unit of units){
+  assert.equal(unit.vocab.length,10,unit.id);
+  assert.equal(unit.exercises.length,10,unit.id);
+  assert.equal(unit.lessons.length,5,unit.id);
+  assert.ok(unit.grammar.length>0,unit.id);
+  assert.ok(unit.trap && unit.trap.detail,unit.id);
+  for(const word of unit.vocab) assert.equal(word.verification.status,'not_checked');
+ }
+ assert.equal(units[0].vocab[0].target,'acordar');
+ assert.equal(units[1].vocab[0].target,'ir');
+ assert.equal(units[2].vocab[9].target,'porque');
+});
+
 test('pilot exercises remain text-only and do not request or reference Portuguese audio',async()=>{
  const {loader}=createPilot();
- const {units}=await loader.loadUnits('pt-BR','A1',[1,2,3,4,5,6]);
+ const {units}=await loader.loadUnits('pt-BR','A1',[1,2,3,4,5,6,7,8,9]);
  for(const unit of units){
   for(const ex of [...unit.exercises,...unit.lessons.flatMap(lesson=>lesson.exercises)]){
    assert.ok(['mc','order'].includes(ex.type),'exercise type must use an existing renderer');

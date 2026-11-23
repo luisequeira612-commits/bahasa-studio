@@ -51,7 +51,7 @@ function createEngine(options = {}) {
             speechSynthesis: options.noSynth ? null : synth,
             LanguageManager: {
                 getActiveLanguage: () => (options.language || { code: 'id' }).code,
-                getLanguage: () => options.language || { code: 'id', locale: 'id-ID', name: 'Indonesio', audioPath: './audio/id/' }
+                getLanguage: () => options.language || { code: 'id', locale: 'id-ID', name: 'Indonesio', audioPath: './audio/id/', testPhrase: 'terima kasih' }
             }
         },
         document: {
@@ -145,6 +145,15 @@ test('el botón de prueba reproduce una frase incluida sin exigir voces del disp
     assert.match(setup.statuses.voiceTestStatus.textContent, /grabación Piper incluida/i);
 });
 
+
+test('el botón de prueba no reproduce una frase indonesia para un idioma sin frase configurada', () => {
+    const language = { code: 'pt-BR', locale: 'pt-BR', name: 'Portugués', audioPath: './audio/pt-BR/' };
+    const setup = createEngine({ language });
+    assert.equal(setup.engine.testVoice(), false);
+    assert.equal(setup.createdAudio.length, 0);
+    assert.equal(setup.spoken.length, 0);
+    assert.match(setup.statuses.voiceTestStatus.textContent, /no hay una frase de prueba configurada/i);
+});
 
 test('usa la ruta y el locale de la configuración del idioma activo', () => {
     const language = { code: 'pt-BR', locale: 'pt-BR', name: 'Portugués de Brasil', audioPath: './audio/pt-BR/' };

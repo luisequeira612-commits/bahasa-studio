@@ -173,6 +173,16 @@ test('service worker installs its declared cache, removes only older app caches 
 });
 
 
+test('voice test uses the active language phrase and never falls back to Indonesian', async () => {
+  const languageManager = await read('language-manager.js');
+  const audioEngine = await read('audio-engine.js');
+  assert.match(languageManager, /id: Object\.freeze\(\{[^\n]*testPhrase:\s*'terima kasih'/);
+  assert.match(audioEngine, /const language = this\.getLanguageConfig\(\);[\s\S]*?const phrase = String\(language\.testPhrase \|\| ''\)\.trim\(\)/);
+  assert.match(audioEngine, /if \(!phrase\)[\s\S]*?return false;/);
+  assert.match(audioEngine, /return this\.speak\(phrase\);/);
+  assert.doesNotMatch(audioEngine, /return this\.speak\('terima kasih'\)/);
+});
+
 test('language catalog keeps the approved teaching variants and does not activate Portuguese prematurely', async () => {
   const source = await read('language-manager.js');
   assert.match(source, /code:\s*'pt-BR'[^}]*locale:\s*'pt-BR'[^}]*name:\s*'Portugués'[^}]*flag:\s*'🇧🇷'/s);

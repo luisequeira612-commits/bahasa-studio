@@ -194,3 +194,10 @@ Fuente: PR #722–#726, commits squash y ejecuciones CI enlazadas; 23 nov 2026.
 - Corrección de UI/catálogo: el idioma mostrado como **Portugués** usa la bandera 🇧🇷; no se debe mostrar “Portugués de Brasil”, porque la bandera ya identifica la variante enseñada.
 - El idioma **Inglés** corresponde a **inglés de Estados Unidos** y debe usar la bandera 🇺🇸, no 🇬🇧.
 - Decisión vigente: **no iniciar todavía el curso de Portugués**. La activación y creación de su currículo queda bloqueada hasta que Luis defina primero cuántas unidades tendrá.
+
+
+## 2026-11-23 — Prueba de voz dependiente del idioma
+- La prueba manual de voz obtiene la frase de prueba de la configuración del idioma activo mediante `testPhrase`, en lugar de reproducir siempre una frase indonesia.
+- Indonesio conserva `terima kasih`. Si un idioma no tiene frase configurada, la prueba muestra un aviso en español y no intenta reproducir contenido de otro idioma.
+- Se añaden pruebas unitarias y estructurales para impedir que vuelva el fallback fijo al indonesio.
+- No se habilitan cursos nuevos ni se modifican IndexedDB v1, backup JSON v3, dependencias o recursos de audio.

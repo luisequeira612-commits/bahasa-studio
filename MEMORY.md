@@ -1,6 +1,6 @@
 ## 2026-11-23 — PR #763 abierta: Portugués B1 U1–U3
 
-- PR [#763](https://github.com/luisequeira612-commits/bahasa-studio/pull/763) abierta desde rama `feat/pt-br-b1-u01-u03`, basada en `main` tras PR #762 (merge commit `9bd2ac59fd38acafad26f4055b5bf7244bb78a36`). Head inicial: `73d92cbfa64e2d15e49574b5efc84eee4b3d50d3`; CI pendiente.
+- PR [#763](https://github.com/luisequeira612-commits/bahasa-studio/pull/763) abierta desde rama `feat/pt-br-b1-u01-u03`, basada en `main` tras PR #762 (merge commit `9bd2ac59fd38acafad26f4055b5bf7244bb78a36`). Head actual: `bb482137a7b7a0668c876e1698112d25db097a47`; CI de este head pendiente.
 - Inicia el nivel B1 (36 unidades) con U1 relatos y experiencias significativas; U2 argumentación y debate; U3 hipótesis y consecuencias. Añade 30 términos (10 por unidad), cinco lecciones y diez ejercicios MC por unidad, ejemplos PT/ES y referencias de repaso a IDs A2 existentes. Todos los términos siguen `not_checked`.
 - Añade manifiesto pt-BR B1 que publica solo U1–U3 de 36 y registra la ruta B1 en `language-manager.js`; `pt-BR available:false` y `CurriculumLoader.resolve` no habilitan el curso. El contenido se puede cargar para pruebas sin habilitar la selección.
 - Auditoría léxica coteja 30 términos nuevos contra 540 entradas anteriores A1+A2; se detectaron dos colisiones iniciales (`evidência`, `hipótese`) y se sustituyeron por `indício` y `conjectura`. La auditoría repetida y el contrato automatizado deben confirmar cero duplicados.

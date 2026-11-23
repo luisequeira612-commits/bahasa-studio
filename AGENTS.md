@@ -43,7 +43,7 @@ La arquitectura técnica puede preparar Guardi para trabajar con varios idiomas,
 - La carga de audio por idioma y el selector UI son fases posteriores. No declarar cambio de curso en runtime hasta integrar el cargador con CourseData, el audio y la interfaz, y disponer de contenido real.
 
 ## Pensar en crecer (sin sobrediseñar)
-- Aplicar la hoja de ruta multiidioma aprobada el 22 nov 2026: portugués brasileño → inglés → italiano → francés → alemán → neerlandés → ruso → japonés → coreano → indonesio. Todo código y estructura de datos nuevos deben ser independientes del idioma. Completar A1–B2 de cada idioma antes de iniciar el siguiente.
+- La selección y el orden de idiomas nuevos siguen pendientes de decisión del dueño. La arquitectura multiidioma puede avanzar de forma neutral, pero no se crearán currículos, vocabulario, audio ni datasets para otros idiomas hasta recibir confirmación explícita. Todo código y estructura nuevos deben ser independientes del idioma.
 - Compartir con otros: el contenido debe estar separado del código (datos por idioma, nivel y unidad), para que añadir un curso o corregir una lección no obligue a tocar la lógica.
 - Cada persona guarda su progreso en su propio dispositivo. Debe seguir siendo posible exportar e importar el progreso (backup v3) sin romper compatibilidad.
 - Cualquier decisión de escalabilidad debe mantener cero backend y cero costo. Si una idea requiere servidor, cuentas o pago, no se implementa: me la propones aparte.

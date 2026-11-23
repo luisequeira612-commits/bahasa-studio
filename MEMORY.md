@@ -306,3 +306,5 @@ Fuente: PR #722–#726, commits squash y ejecuciones CI enlazadas; 23 nov 2026.
 - Cada unidad mantiene 10 términos `not_checked`, 5 lecciones y 10 ejercicios MC. Se amplía manifiesto a U1–U12, precarga offline y caché a `bahasa-studio-v3.8.134`; se actualizan tests de manifiesto y Playwright. Sin nuevas dependencias, backend, audio/TTS ni cambios de persistencia. Pendiente CI del PR de este bloque.
 
 - PR #756 abierto: https://github.com/luisequeira612-commits/bahasa-studio/pull/756. Head inicial `f269ebaa7824c4e0a59431054f01bd454a391595`, 10 archivos, +193/-16. CI pendiente; no fusionar hasta comprobar todos los checks del head definitivo.
+
+- 2026-11-23 — CI PR #756 run #45240545419 encontró 6 fallos en pruebas de caché heredadas que seguían esperando `v3.8.133` después de subir a `v3.8.134`; además, el test U7–U9 cargaba ahora el manifiesto U1–U12 sin mapear el nuevo archivo U10–U12. Corregidos los cinco archivos de test afectados (U1–U3, U4–U6, U7–U9, A1 U19–U21 y A1 U22–U24); el test U7–U9 ahora incluye el bloque U10–U12 en su loader simulado. Sin cambios al currículo ni a persistencia. Pendiente repetir CI en el head nuevo.

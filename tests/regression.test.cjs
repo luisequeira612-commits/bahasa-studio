@@ -1527,7 +1527,7 @@ test('bundled Indonesian recordings work without an installed device voice', () 
   assert.ok(audioEngineSource.includes('grabaciones Piper del curso'));
   assert.ok(audioEngineSource.includes("audioPath: './audio/id/'") && audioEngineSource.includes('playRecorded(text)'));
   assert.ok(audioEngineSource.includes("new Audio(this.getLanguageConfig().audioPath + id + '.mp3')"));
-  assert.ok(audioEngineSource.includes("this.speak('terima kasih')"));
+  assert.ok(audioEngineSource.includes("const phrase = String(language.testPhrase || '').trim()") && audioEngineSource.includes('return this.speak(phrase)'));
   assert.doesNotMatch(audioEngineSource, /voz predeterminada del sistema con el idioma id-ID/);
 });
 

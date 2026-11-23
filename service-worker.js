@@ -1,12 +1,25 @@
 const CACHE_NAME = 'bahasa-studio-v3.8.118';
 const AUDIO_CACHE_NAME = 'guardi-audio-v2';
+const AUDIO_LANGUAGES = new Set(['pt-BR', 'en', 'it', 'fr', 'de', 'nl', 'ru', 'ja', 'ko', 'id']);
+
+function audioLanguageFromRequest(request) {
+    const url = new URL(request.url);
+    if (url.origin !== self.location.origin) return null;
+    const match = /\/audio\/([a-z]{2}(?:-[A-Z]{2})?)\/[^/]+\.mp3$/i.exec(url.pathname);
+    if (!match) return null;
+    const language = match[1];
+    return AUDIO_LANGUAGES.has(language) ? language : null;
+}
+
+function audioCacheName(language) {
+    return language === 'id' ? AUDIO_CACHE_NAME : AUDIO_CACHE_NAME + '-' + language;
+}
 const ASSETS = ['./', './index.html', './manifest.json', './icon.svg', './assessment.html', './assessment-engine.js', './conversation-engine.js', './study-history.js', './study-activity.js', './language-manager.js', './curriculum-loader.js', './progress-namespace.js', './adaptive-learning.js', './curriculum-a1.js', './curriculum-a2.js', './styles.css', './audio-engine.js', './audio/index.json', './audio/manifest.json', './audio/metadata.json', './offline-audio-manager.js', './pronunciation-engine.js', './writing-practice.js', './apple-touch-icon.png', './icon-192.png', './icon-512-any.png', './icon-512-maskable.png', './assets/guardi/guardi-normal.svg', './assets/guardi/guardi-feliz.svg', './assets/guardi/guardi-triste.svg', './assets/guardi/guardi-celebrando.svg', './assets/guardi/guardi-pensando.svg', './assets/guardi/guardi-mark.svg', './assets/guardi/guardi-icon.svg'];
 
 const inFlightAudioFetches = new Map();
 
 function isAudioClipRequest(request) {
-    const url = new URL(request.url);
-    return url.origin === self.location.origin && /\/audio\/id\/[^/]+\.mp3$/i.test(url.pathname);
+    return audioLanguageFromRequest(request) !== null;
 }
 
 function withoutRangeHeader(request) {
@@ -93,11 +106,11 @@ async function createRangeResponse(response, rangeHeader) {
     return new Response(partial, { status: 206, statusText: 'Partial Content', headers });
 }
 
-const audioMetadataRequest = () => new Request(new URL('./audio/metadata.json', self.location.href).href);
+const audioMetadataRequest = (language) => new Request(new URL(language === 'id' ? './audio/metadata.json' : './audio/' + language + '/metadata.json', self.location.href).href);
 
-async function readAudioHashes(cache) {
+async function readAudioHashes(cache, language = 'id') {
     try {
-        const response = await cache.match(audioMetadataRequest());
+        const response = await cache.match(audioMetadataRequest(language));
         if (!response || response.status !== 200) return null;
         const metadata = await response.json();
         const hashes = metadata && metadata.audio_hashes;
@@ -114,22 +127,30 @@ async function sha256Hex(bytes) {
 
 async function migrateLegacyAudioCache() {
     let migrationComplete = true;
-    let audioCache;
+    let appCache;
     let legacyNames;
-    let currentHashes = null;
+    const hashesByLanguage = new Map();
+    const audioCaches = new Map();
 
     try {
-        const appCache = await caches.open(CACHE_NAME);
-        currentHashes = await readAudioHashes(appCache);
-        audioCache = await caches.open(AUDIO_CACHE_NAME);
+        appCache = await caches.open(CACHE_NAME);
         const keys = await caches.keys();
         legacyNames = keys.filter((name) => name.startsWith('bahasa-studio-') && name !== CACHE_NAME);
+        for (const language of AUDIO_LANGUAGES) {
+            const name = audioCacheName(language);
+            if (language !== 'id' && !keys.includes(name)) continue;
+            const audioCache = await caches.open(name);
+            audioCaches.set(language, audioCache);
+            hashesByLanguage.set(language, await readAudioHashes(appCache, language));
+        }
     } catch (_) {
         return false;
     }
 
-    // Validate persistent clips against actual MP3 bytes when fingerprints exist.
-    if (currentHashes) {
+    // Validate every existing language cache against the matching language inventory.
+    for (const [language, audioCache] of audioCaches) {
+        const currentHashes = hashesByLanguage.get(language);
+        if (!currentHashes) continue;
         let cachedRequests;
         try {
             cachedRequests = await audioCache.keys();
@@ -137,7 +158,9 @@ async function migrateLegacyAudioCache() {
             return false;
         }
         for (const request of cachedRequests) {
-            const match = new URL(request.url).pathname.match(/\/audio\/id\/([a-f0-9]{12})\.mp3$/i);
+            const requestLanguage = audioLanguageFromRequest(request);
+            if (requestLanguage !== language) continue;
+            const match = new URL(request.url).pathname.match(/\/audio\/[a-z]{2}(?:-[A-Z]{2})?\/([a-f0-9]{12})\.mp3$/i);
             if (!match) continue;
             const id = match[1].toLowerCase();
             try {
@@ -169,22 +192,30 @@ async function migrateLegacyAudioCache() {
         }
 
         for (const request of requests) {
-            if (!isAudioClipRequest(request)) continue;
+            const language = audioLanguageFromRequest(request);
+            if (!language) continue;
             try {
+                let audioCache = audioCaches.get(language);
+                if (!audioCache) {
+                    audioCache = await caches.open(audioCacheName(language));
+                    audioCaches.set(language, audioCache);
+                    hashesByLanguage.set(language, await readAudioHashes(appCache, language));
+                }
                 if (await audioCache.match(request)) continue;
                 const response = await source.match(request);
                 if (!response || response.status !== 200) continue;
                 const bytes = await response.clone().arrayBuffer();
                 if (!bytes.byteLength) continue;
 
+                const currentHashes = hashesByLanguage.get(language);
                 if (currentHashes) {
-                    const match = new URL(request.url).pathname.match(/\/audio\/id\/([a-f0-9]{12})\.mp3$/i);
+                    const match = new URL(request.url).pathname.match(/\/audio\/[a-z]{2}(?:-[A-Z]{2})?\/([a-f0-9]{12})\.mp3$/i);
                     const expectedHash = match ? currentHashes[match[1].toLowerCase()] : null;
                     if (!expectedHash || await sha256Hex(bytes) !== expectedHash) continue;
                 }
                 await audioCache.put(request, response.clone());
             } catch (_) {
-                // Keep every legacy cache if any valid audio entry could not be copied.
+                // Keep every legacy cache if any eligible audio entry could not be copied.
                 migrationComplete = false;
             }
         }
@@ -192,7 +223,7 @@ async function migrateLegacyAudioCache() {
 
     if (!migrationComplete) return false;
 
-    // Delete old app caches only after every eligible audio clip has been copied.
+    // Delete old app caches only after eligible audio clips have been copied.
     for (const name of legacyNames) {
         try {
             await caches.delete(name);
@@ -239,14 +270,15 @@ self.addEventListener('fetch', (e) => {
     const req = e.request;
     const requestUrl = new URL(req.url);
     if (req.method !== 'GET' || requestUrl.origin !== self.location.origin) return;
-    const audioRequest = isAudioClipRequest(req);
+    const audioLanguage = audioLanguageFromRequest(req);
+    const audioRequest = audioLanguage !== null;
     // The offline preparation manager verifies SHA-256 before writing a new clip.
     // Let its explicit fetch reach the network without the normal background cache write.
     if (audioRequest && req.headers.get('x-offline-audio-preparation') === '1') {
         e.respondWith(fetch(withoutRangeHeader(req), { cache: 'no-store' }));
         return;
     }
-    const targetCacheName = audioRequest ? AUDIO_CACHE_NAME : CACHE_NAME;
+    const targetCacheName = audioRequest ? audioCacheName(audioLanguage) : CACHE_NAME;
     const cacheRequest = audioRequest ? withoutRangeHeader(req) : req;
     const rangeHeader = audioRequest ? req.headers.get('range') : null;
 

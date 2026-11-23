@@ -271,3 +271,11 @@ Fuente: PR #722–#726, commits squash y ejecuciones CI enlazadas; 23 nov 2026.
 ## 2026-11-23 — PR #753: corrección de regresiones de integración A1/A2
 - El primer CI (#45233109300) detectó tres expectativas antiguas en los tests incrementales A1 U19–U21 y U22–U24: el manifiesto A1 ya publica U1–U24 (no U1–U21) y el Service Worker avanzó a `v3.8.131` al añadir el manifiesto y bloque A2.
 - Se actualizan únicamente esas expectativas; el contenido curricular A1/A2 y el estado `pt-BR available:false` no cambian. `Offline quality reports` pasó; se repetirá CI completo, incluido Playwright.
+
+
+## 2026-11-23 — pt-BR A2 U4–U6
+- PR #753 se fusionó por squash tras completar ambos jobs: test (101 pasos) y Offline quality reports (10 pasos), ambos success. Commit de merge: 57685ed4a911149feb2f97383778a27639ad6cf1.
+- Nueva rama limpia feat/pt-br-a2-u04-u06, basada en el commit de main posterior a #753. Añade U4 experiencias y acontecimientos (já/ainda não/nunca y contraste de tiempos pasados), U5 comparativos (mais/menos/tão, melhor/pior, maior/menor) y U6 pedir ayuda/resolver problemas (poder, precisar, infinitivo).
+- Cada unidad: 10 vocabularios, 5 lecciones, 10 ejercicios MC; respuestas correctas comprobadas por índice, IDs propios y referencias de repaso a U1–U3. Estado léxico not_checked.
+- Manifiesto A2 declara 30 unidades y ahora publica U1–U6 en dos bloques. Service Worker bahasa-studio-v3.8.132 precarga units-04-06.js. Se agrega test incremental Node, se incluye en quality:tests y Playwright amplía la carga offline A2 a U1–U6.
+- pt-BR available:false permanece sin cambios. No se modifican IndexedDB v1 ni backup JSON v3; sin dependencias, backend ni audio/TTS. No implica certificación lingüística nativa.

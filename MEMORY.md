@@ -249,3 +249,10 @@ Fuente: PR #722–#726, commits squash y ejecuciones CI enlazadas; 23 nov 2026.
 - Sin dependencias, audio/TTS, backend, cambios a IndexedDB v1 ni backup JSON v3. La PR nueva debe pasar CI completo antes de fusionar.
 
 - CI inicial de #750 run `45225937982`: `Offline quality reports` success; `test` falló únicamente en Playwright porque el E2E aún cargaba U1–U18 aunque esperaba U1–U21. Corregido en commit `de38f8db5740b93f2a32ed00361a1da6f87fe507`: `CurriculumLoader.loadUnits` ahora solicita U1–U21. Revalidar el nuevo head con CI completo antes del merge.
+
+
+## 2026-11-23 — pt-BR A1 U22–U24
+- Tras fusionar #750 en `main` (squash `a8748298b28b846b85413d53d596afee8a5e3938`), se prepara la PR limpia #752 desde ese `main`, con solo U22–U24; la PR apilada #751 no debe fusionarse porque su historial conserva los commits ya squash-mergeados de U19–U21.
+- U22 aula/materiales de estudio; U23 profesiones/trabajo; U24 teléfono/mensajes. Diez términos nuevos, cinco lecciones y diez ejercicios por unidad; vocabulario `not_checked`.
+- Manifiesto U1–U24; `pt-BR available:false` hasta validar el curso. SW cache `bahasa-studio-v3.8.130`, precache `units-22-24.js`; E2E carga U1–U24 offline y se añade test Node para contratos de U22–U24.
+- Sin nuevas dependencias, audio/TTS, backend, cambios a IndexedDB v1 ni backup JSON v3.

@@ -1,8 +1,7 @@
-## Núcleo multiidioma — PR #2 en preparación — 23 nov 2026
-- Rama `feat/multilingual-core-20261123`: registro cerrado de diez idiomas, loader con contrato `GUARDI_CURRICULA[codigo][nivel]`, namespace centralizado para SRS/progreso/settings, historial por idioma con clave legacy id preservada y recomendaciones adaptativas aisladas por perfil de idioma.
-- Solo id permanece seleccionable; los otros nueve están registrados pero inactivos hasta que cada curso tenga contenido. No hay selector UI, audio multiidioma ni curso portugués en esta PR. La raíz HTML permanece `lang=es` porque la interfaz y las explicaciones siguen en español; `LanguageManager.getLocale()` entrega el locale para elementos del contenido de estudio.
-- IndexedDB v1 y stores existentes se mantienen. Importación v3 elimina/reemplaza solo el SRS del idioma importado mediante cursor dentro de la transacción, conservando los demás namespaces. Backup legacy sin language continúa siendo id.
-- Añadidas pruebas de gestor, loader, namespaces, historial y perfiles adaptativos; CI completo pendiente. Próximo paso: validar el PR y después abordar audio/UI; piloto pt-BR A1 solo tras integrar la arquitectura.
+## Núcleo multiidioma integrado — PR #714 — 22 nov 2026
+- PR #714 (`feat/multilingual-core-20261123`) fusionada mediante squash en `main`, commit `29865d25960cbb17963baef59e894881f7c0de19`. CI del head `5e539b8e1e7e9c55b0d9226fc22d8b16bb6e55ef`, run `45097134644`: `test` y `Offline quality reports` completados con éxito; sin revisiones ni hilos pendientes.
+- Se integraron el catálogo cerrado de diez idiomas, `CurriculumLoader`, `ProgressNamespace`, historial por idioma y perfiles adaptativos aislados. Solo indonesio sigue disponible; los otros nueve permanecen inactivos. No se añadió selector UI, audio multiidioma ni currículo pt-BR.
+- IndexedDB v1, stores existentes y backup JSON v3 se conservan; la restauración reemplaza solo el SRS del idioma importado. La raíz UI continúa en español. Próxima fase: preparar integración de CourseData/audio/UI y el piloto pt-BR A1, sin activar contenido incompleto ni cambiar el orden de idiomas aprobado.
 
 ## Retirada de etiqueta visual de B2 — 22 nov 2026
 

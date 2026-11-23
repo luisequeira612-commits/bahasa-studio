@@ -284,3 +284,16 @@ Fuente: PR #722–#726, commits squash y ejecuciones CI enlazadas; 23 nov 2026.
 ## 2026-11-23 — corrección CI PR #754
 - CI run #45236415109 detectó 4 fallos de regresión en la suite `quality:tests` (199/203 pasaron): el test A2 U1–U3 aún esperaba que el manifiesto publicara solo U1–U3; los tests de A2 U1–U3, A1 U19–U21 y A1 U22–U24 todavía esperaban la caché `v3.8.131` tras el avance a `v3.8.132`.
 - Se actualizaron únicamente esas expectativas: el manifiesto ahora debe publicar U1–U6 y los tres tests verifican la versión actual de caché. No se cambia lógica de producto ni se eliminan aserciones. Se repetirá CI completo antes de fusionar.
+
+
+## 2026-11-23 — pt-BR A2 U7–U9 en preparación
+- PR #754 quedó fusionada por squash en `main`, commit `c6c00fd18618591fca6f61bcb0aa6cd141d86e2b`, después de CI completo en success: `test` 101 pasos y `Offline quality reports` 10 pasos.
+- Nueva rama limpia `feat/pt-br-a2-u07-u09` basada en ese commit. U7 obligaciones, permisos y consejos (ter que, dever, precisar); U8 conectores y secuencia (primeiro, em seguida, por isso, porém, apesar de); U9 viajes, transporte y alojamiento (passagem, bagagem, hospedagem, check-in, embarcar/desembarcar, conexão).
+- Cada unidad contiene 10 términos `not_checked`, 5 lecciones y 10 ejercicios MC. Referencias de repaso de U7–U9 apuntan a vocabulario de unidades A2 anteriores; tests comprueban IDs, respuestas correctas, manifiesto y resolución de repaso.
+- Manifiesto A2 publica U1–U9 de 30; Service Worker avanza a `bahasa-studio-v3.8.133` y precarga `units-07-09.js`. Playwright se amplía para cargar A2 U1–U9 offline; los tests anteriores alinean expectativas de caché.
+- `pt-BR available:false` permanece; no se alteran IndexedDB v1 ni backup JSON v3. Sin nuevas dependencias, backend ni audio/TTS. El vocabulario sigue sin certificación nativa.
+
+
+## 2026-11-23 — corrección CI PR #755
+- CI run #45238319009 detectó un error de sintaxis en `tests/pt-br-curriculum.e2e.test.cjs`: un literal `\\n` quedó insertado en la expresión de verificación de la caché offline. El resto de la suite reportó 206/207 pruebas superadas; `Offline quality reports` pasó.
+- Se corrigió el test sustituyendo el literal por un salto de línea real en commit `4425703f5990b78e5f9aee1d9563f93e3d94bc27`. Se requiere CI completo sobre este nuevo head antes de fusionar. No se cambia contenido curricular ni comportamiento de la app.

@@ -53,11 +53,11 @@ test('pt-BR A2 U4-U6 load as offline content while the language remains unavaila
   }
  }
 });
-test('A2 manifest publishes U1-U6 as a partial level of thirty units',()=>{
+test('A2 manifest publishes U1-U9 as a partial level of thirty units',()=>{
  const {window}=createPilot();
  const manifest=window.GUARDI_CURRICULUM_MANIFESTS['pt-BR'].A2;
  assert.equal(manifest.totalUnits,30);
- assert.deepEqual(Array.from(manifest.publishedUnits),[1,2,3,4,5,6]);
+ assert.deepEqual(Array.from(manifest.publishedUnits),[1,2,3,4,5,6,7,8,9]);
  assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
 });
 test('A2 U4-U6 review references resolve to earlier published A2 vocabulary',async()=>{
@@ -70,5 +70,5 @@ test('service worker precaches A2 U4-U6 with a new cache namespace',()=>{
  const source=fs.readFileSync(path.join(repo,'service-worker.js'),'utf8');
  assert.match(source,/units-04-06\.js/);
  assert.match(source,/curriculum\/a2\/index\.js/);
- assert.match(source,/bahasa-studio-v3\.8\.132/);
+ assert.match(source,/bahasa-studio-v3\.8\.133/);
 });

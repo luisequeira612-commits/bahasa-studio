@@ -43,7 +43,7 @@ El usuario aprobó la refactorización incremental de robustez y núcleo multiid
 
 
 ### Núcleo multiidioma — implementación técnica gradual
-- `language-manager.js` mantiene el registro cerrado de diez códigos, locale, bandera, voz candidata y ruta de audio. Solo `id` está marcado como curso disponible hasta que exista un currículo completo y probado; no activar cursos vacíos.
+- `language-manager.js` mantiene el registro cerrado de diez códigos, locale, bandera, voz candidata y ruta de audio. Solo `id` está marcado como curso disponible hasta que exista un currículo completo y probado; no activar cursos vacíos. La raíz HTML y la UI permanecen en español (`lang=es`); cada componente de contenido/voz de estudio aplicará el locale del idioma objetivo a su propio elemento, nunca al documento completo.
 - `curriculum-loader.js` resuelve únicamente rutas declaradas para cursos disponibles. Los currículos nuevos deben publicar `GUARDI_CURRICULA[codigo][nivel]`; el cargador conserva adaptadores para los globals legacy de A1/A2 indonesio.
 - `progress-namespace.js` centraliza las claves por idioma. El SRS y el store progress usan `codigo::id` para cursos nuevos; el indonesio conserva sus IDs históricos sin prefijo. Solo las claves de progreso de settings se namespacen; preferencias del dispositivo y `activeLanguage` siguen globales.
 - `study-history.js` conserva `bahasaStudioStudyHistoryV1` para indonesio y usa `guardi_study_history_<codigo>` para otros idiomas. `adaptive-learning.js` sigue siendo lógica pura y selecciona el perfil de habilidad del idioma activo; no debe crear persistencia propia.

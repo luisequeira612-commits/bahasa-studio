@@ -20,7 +20,8 @@
 
     function apply(code) {
         activeLanguage = code;
-        if (root.document && root.document.documentElement) root.document.documentElement.lang = LANGUAGES[code].locale;
+        // The application chrome and explanations remain Spanish. Course renderers
+        // should apply LANGUAGES[code].locale to target-language content elements.
         if (adapter && typeof adapter.onChange === 'function') adapter.onChange(code);
         try { if (root.localStorage) root.localStorage.setItem(STORAGE_KEY, code); } catch (_) {}
         return code;
@@ -49,6 +50,7 @@
     }
 
     function getActiveLanguage() { return activeLanguage; }
+    function getLocale(code) { return supported(code) ? LANGUAGES[code].locale : null; }
     function getLanguage(code) { return supported(code) ? LANGUAGES[code] : null; }
     function isSupported(code) { return supported(code); }
     function isAvailable(code) { return supported(code) && LANGUAGES[code].available; }
@@ -56,6 +58,6 @@
 
     root.LanguageManager = Object.freeze({
         STORAGE_KEY, LANGUAGES, init, setActiveLanguage, getActiveLanguage,
-        getLanguage, isSupported, isAvailable, list
+        getLanguage, getLocale, isSupported, isAvailable, list
     });
 })(typeof window !== 'undefined' ? window : globalThis);

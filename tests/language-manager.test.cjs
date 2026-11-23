@@ -40,7 +40,7 @@ test('Indonesian remains the only selectable course until another curriculum is 
     await assert.rejects(api.setActiveLanguage('xx'), /Código de idioma no soportado/);
 });
 
-test('initialization restores the persisted language and updates html lang', async () => {
+test('initialization restores the study language while keeping the Spanish application language', async () => {
     const { api, values, document } = createManager({ guardi_active_language: 'id' });
     const writes = [];
     const selected = await api.init({
@@ -49,7 +49,10 @@ test('initialization restores the persisted language and updates html lang', asy
         onChange: () => {}
     });
     assert.equal(selected, 'id');
-    assert.equal(document.documentElement.lang, 'id-ID');
+    assert.equal(document.documentElement.lang, 'es');
+    assert.equal(api.getLocale('id'), 'id-ID');
+    assert.equal(api.getLocale('pt-BR'), 'pt-BR');
+    assert.equal(api.getLocale('../id'), null);
     assert.equal(values.get('guardi_active_language'), 'id');
     assert.deepEqual(writes, []);
 });
@@ -57,13 +60,13 @@ test('initialization restores the persisted language and updates html lang', asy
 test('unknown stored values fall back safely to Indonesian', async () => {
     const { api, document } = createManager({ guardi_active_language: '../unknown' });
     assert.equal(await api.init({ read: async () => null, write: async () => {}, onChange: () => {} }), 'id');
-    assert.equal(document.documentElement.lang, 'id-ID');
+    assert.equal(document.documentElement.lang, 'es');
 });
 
 
 test('a supported but not yet implemented course cannot become active through stale local storage', async () => {
     const { api, document, values } = createManager({ guardi_active_language: 'pt-BR' });
     assert.equal(await api.init({ read: async () => null, write: async () => {}, onChange: () => {} }), 'id');
-    assert.equal(document.documentElement.lang, 'id-ID');
+    assert.equal(document.documentElement.lang, 'es');
     assert.equal(values.get('guardi_active_language'), 'id');
 });

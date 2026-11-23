@@ -1,6 +1,6 @@
 ## Núcleo multiidioma — PR #2 en preparación — 23 nov 2026
 - Rama `feat/multilingual-core-20261123`: registro cerrado de diez idiomas, loader con contrato `GUARDI_CURRICULA[codigo][nivel]`, namespace centralizado para SRS/progreso/settings, historial por idioma con clave legacy id preservada y recomendaciones adaptativas aisladas por perfil de idioma.
-- Solo id permanece seleccionable; los otros nueve están registrados pero inactivos hasta que cada curso tenga contenido. No hay selector UI, audio multiidioma ni curso portugués en esta PR.
+- Solo id permanece seleccionable; los otros nueve están registrados pero inactivos hasta que cada curso tenga contenido. No hay selector UI, audio multiidioma ni curso portugués en esta PR. La raíz HTML permanece `lang=es` porque la interfaz y las explicaciones siguen en español; `LanguageManager.getLocale()` entrega el locale para elementos del contenido de estudio.
 - IndexedDB v1 y stores existentes se mantienen. Importación v3 elimina/reemplaza solo el SRS del idioma importado mediante cursor dentro de la transacción, conservando los demás namespaces. Backup legacy sin language continúa siendo id.
 - Añadidas pruebas de gestor, loader, namespaces, historial y perfiles adaptativos; CI completo pendiente. Próximo paso: validar el PR y después abordar audio/UI; piloto pt-BR A1 solo tras integrar la arquitectura.
 

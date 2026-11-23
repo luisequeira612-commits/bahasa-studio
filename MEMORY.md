@@ -279,3 +279,8 @@ Fuente: PR #722–#726, commits squash y ejecuciones CI enlazadas; 23 nov 2026.
 - Cada unidad: 10 vocabularios, 5 lecciones, 10 ejercicios MC; respuestas correctas comprobadas por índice, IDs propios y referencias de repaso a U1–U3. Estado léxico not_checked.
 - Manifiesto A2 declara 30 unidades y ahora publica U1–U6 en dos bloques. Service Worker bahasa-studio-v3.8.132 precarga units-04-06.js. Se agrega test incremental Node, se incluye en quality:tests y Playwright amplía la carga offline A2 a U1–U6.
 - pt-BR available:false permanece sin cambios. No se modifican IndexedDB v1 ni backup JSON v3; sin dependencias, backend ni audio/TTS. No implica certificación lingüística nativa.
+
+
+## 2026-11-23 — corrección CI PR #754
+- CI run #45236415109 detectó 4 fallos de regresión en la suite `quality:tests` (199/203 pasaron): el test A2 U1–U3 aún esperaba que el manifiesto publicara solo U1–U3; los tests de A2 U1–U3, A1 U19–U21 y A1 U22–U24 todavía esperaban la caché `v3.8.131` tras el avance a `v3.8.132`.
+- Se actualizaron únicamente esas expectativas: el manifiesto ahora debe publicar U1–U6 y los tres tests verifican la versión actual de caché. No se cambia lógica de producto ni se eliminan aserciones. Se repetirá CI completo antes de fusionar.

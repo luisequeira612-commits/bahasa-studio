@@ -1,3 +1,22 @@
+## 2026-11-23 — PR #758: corrección de expectativas de integración A2 U16–U18
+- CI inicial del head `32d4767b59e838d669fa846ad8726441f2dacd19`, run [#45246346115](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45246346115): instalación Chromium y pruebas principales avanzaron; el job `test` falló en `Run local quality tests`, no por el contenido de U16–U18, sino por cinco contratos de manifiesto heredados que todavía esperaban U1–U15 y una expectativa de Service Worker que esperaba caché v3.8.135.
+- Se actualizaron los cinco contratos antiguos a publicación U1–U18 (18 unidades) y la prueba de caché U13–U15 a v3.8.136. Los checks conservan la lista exacta de unidades y la versión de caché actual; no se redujo cobertura.
+- Commits correctivos en `feat/pt-br-a2-u16-u18-main`: `64d1a7e`, `9c25977`, `a779bc2`, `0cbb3ca`, `f8a9115`. CI nuevo pendiente sobre el head resultante; no fusionar hasta que ambos jobs pasen.
+
+Fuente: GitHub Actions run #45246346115 y rama `feat/pt-br-a2-u16-u18-main`; 23 nov 2026.
+
+- Revisión léxica ampliada de U16–U18 contra 240 registros A1 y 150 A2 previos detectó otra colisión exacta: `consulta` ya existía en A1. Se sustituyó por `triagem` (triaje) en U18 y se ajustaron ejemplo y lección. La nueva revisión no debe describir el bloque como libre de duplicados hasta repetir el cotejo completo tras este cambio.
+
+## 2026-11-23 — PR #757 fusionada; A2 U16–U18 en preparación
+- PR [#757](https://github.com/luisequeira612-commits/bahasa-studio/pull/757) quedó fusionada por squash en `main`, commit `06ef4b2090a8d6fa57ece76ccc08ea9455aac68a`. CI del head final `1f3ce77dcc5a0cba45b4ae4307082b992e68fa22`, run [#45244335592](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45244335592): `test` y `Offline quality reports` ambos success.
+- Estado curricular tras #757: Portugués A1 24/24; A2 15/30; B1 0/36; B2 0/40. `pt-BR available:false` permanece.
+- Nueva rama limpia `feat/pt-br-a2-u16-u18-main`, basada directamente en el merge commit de #757 para evitar que la siguiente PR incluya cambios de U13–U15 ya integrados. U16 tecnología, privacidad y seguridad digital; U17 educación y formación continua; U18 salud y atención sanitaria.
+- U16–U18 aportan 30 entradas `not_checked` (10 por unidad), cinco lecciones y diez ejercicios MC por unidad. Referencias de repaso dirigidas a A2 previo. Se corrigió una colisión exacta detectada con U8: `prazo` se sustituyó por `ementa`.
+- Manifiesto A2 amplía publicación parcial U1–U18; Service Worker avanza a `bahasa-studio-v3.8.136` y precarga `units-16-18.js`. Playwright se amplía a A2 U1–U18 offline; se añade test Node de contrato y se alinean expectativas de caché.
+- La rama limpia está preparada pero aún sin PR/CI. Verificar harness, referencias, precache y suite antes de abrir PR. Se preservan IndexedDB v1, backup JSON v3, `available:false`; sin backend, dependencias ni audio/TTS.
+
+Fuente: GitHub PR #757, Actions run #45244335592 y rama `feat/pt-br-a2-u16-u18-main`; 23 nov 2026.
+
 ## 2026-11-23 — PR #748 preparada: pt-BR A1 U16–U18
 
 - Rama `feat/pt-br-a1-u16-u18`, basada en el merge de PR #747 `1f6be39c6a3367c885ee29282f7430b3fac2b390`.
@@ -328,3 +347,11 @@ Fuente: PR #722–#726, commits squash y ejecuciones CI enlazadas; 23 nov 2026.
 - Repetir CI completo sobre el nuevo head; no fusionar hasta que `test` y `Offline quality reports` estén en success.
 
 Fuente: logs del job `test` de GitHub Actions run #45243502516 y commits de `feat/pt-br-a2-u13-u15`; 23 nov 2026.
+
+
+## 2026-11-23 — corrección CI PR #758: harness A2 incompletos
+- El run #45249391579 completó `Offline quality reports`, pero `Run local quality tests` falló en los tests de repaso de A2 U7–U9, U10–U12 y U13–U15. Los tres harness simulaban la carga offline sin registrar el bloque `units-16-18.js`, ahora incluido en el manifiesto A2 U1–U18.
+- Se añadieron las fuentes del bloque U16–U18 a los mapas de los tres harness en commits `f2a72d4cdfced2e5ddec126b4ef21acba9db9a75`, `2d002f52276e40b938eb7b35317e9848e816a39c` y `47f45986908d4d209bfae971f7de772e0ebf7353`. No se cambia el currículo ni el comportamiento de la aplicación.
+- Repetir CI completo en el nuevo head; no fusionar hasta que ambos jobs estén en success.
+
+Fuente: logs de GitHub Actions run #45249391579 y commits de `feat/pt-br-a2-u16-u18-main`; 23 nov 2026.

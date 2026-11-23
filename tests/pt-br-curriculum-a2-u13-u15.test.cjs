@@ -61,12 +61,12 @@ test('A2 manifest publishes U1-U18 as a partial level of thirty units',()=>{
  const {window}=createPilot();
  const manifest=window.GUARDI_CURRICULUM_MANIFESTS['pt-BR'].A2;
  assert.equal(manifest.totalUnits,30);
- assert.deepEqual(Array.from(manifest.publishedUnits),[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]);
+ assert.deepEqual(Array.from(manifest.publishedUnits),[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21]);
  assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
 });
 test('A2 U13-U15 review references resolve only to previously published A2 vocabulary',async()=>{
  const {loader}=createPilot();
- const {units}=await loader.loadUnits('pt-BR','A2',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]);
+ const {units}=await loader.loadUnits('pt-BR','A2',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21]);
  for(let index=12;index<15;index++){
   const earlier=new Set(units.slice(0,index).flatMap(unit=>unit.vocab.map(word=>word.id)));
   for(const lesson of units[index].lessons) for(const id of lesson.reviewVocabIds) assert.ok(earlier.has(id),id);

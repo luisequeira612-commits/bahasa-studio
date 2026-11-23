@@ -2,10 +2,12 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const vm = require('node:vm');
+const { createHash, webcrypto } = require('node:crypto');
+const sha256 = value => createHash('sha256').update(value).digest('hex');
 
 const source = fs.readFileSync(require.resolve('../offline-audio-manager.js'), 'utf8');
 const sandbox = {
-    window: {},
+    window: { crypto: webcrypto },
     document: { readyState: 'loading', addEventListener() {}, baseURI: 'https://example.test/bahasa-studio/' },
     URL,
     console,
@@ -100,4 +102,40 @@ test('formats storage values without claiming unknown sizes', () => {
     assert.equal(manager.formatBytes(1024), '1 KB');
     assert.equal(manager.formatBytes(2 * 1024 * 1024), '2,0 MB');
     assert.equal(manager.formatBytes(null), null);
+});
+
+test('solo cuenta como offline los MP3 cacheados cuyo SHA-256 coincide', async () => {
+    const validId = '111111111111';
+    const changedId = '222222222222';
+    const missingHashId = '333333333333';
+    const base = 'https://example.test/bahasa-studio/audio/id/';
+    const urls = {
+        valid: base + validId + '.mp3',
+        changed: base + changedId + '.mp3',
+        missing: base + missingHashId + '.mp3'
+    };
+    const entries = [
+        { id: validId, levels: ['A1'] },
+        { id: changedId, levels: ['A1'] },
+        { id: missingHashId, levels: ['A1'] }
+    ];
+    const stored = new Map([
+        [urls.valid, new Response('correct audio', { status: 200 })],
+        [urls.changed, new Response('altered audio', { status: 200 })],
+        [urls.missing, new Response('unverified audio', { status: 200 })]
+    ]);
+    const cache = {
+        match: async url => stored.has(url) ? stored.get(url).clone() : null,
+        delete: async url => stored.delete(url)
+    };
+
+    const verified = await manager.verifiedCachedIds(cache, entries, {
+        [validId]: sha256('correct audio'),
+        [changedId]: sha256('expected audio')
+    });
+
+    assert.deepEqual(Array.from(verified), [validId]);
+    assert.equal(stored.has(urls.valid), true, 'an intact clip remains cached');
+    assert.equal(stored.has(urls.changed), false, 'a clip with changed bytes is removed');
+    assert.equal(stored.has(urls.missing), false, 'a clip without an expected hash is not trusted');
 });

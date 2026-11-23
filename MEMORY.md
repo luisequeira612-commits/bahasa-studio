@@ -1,3 +1,7 @@
+## CI de PR #717 — corrección de regresión — 23 nov 2026
+- El primer CI detectó una única aserción obsoleta en `tests/regression.test.cjs`: aún exigía la atribución MMS eliminada, aunque los metadatos reales (`audio/metadata.json`) identifican `engine: piper` y atribuyen el modelo Piper. Se actualizó la prueba para leer y validar los metadatos reales además del mensaje visible. El fallo no indicaba un problema de reproducción; 84 de 85 subpruebas de regresión pasaron.
+- Reejecutar CI completo antes de fusionar PR #717. No ampliar el alcance de esta corrección.
+
 ## Audio: atribución visible corregida — 23 nov 2026
 - `audio-engine.js` identifica correctamente las grabaciones incluidas como Piper, coherente con `audio/metadata.json`; las voces del dispositivo siguen siendo un respaldo opcional. La corrección actualiza también las aserciones de `tests/audio-engine.test.cjs`.
 - No se regeneran audios ni se modifican manifiestos, hashes, Service Worker, IndexedDB v1, backup JSON v3 o dependencias. La reproducción grabada, el gestor offline y el reconocimiento siguen siendo específicos de indonesio; la adaptación multiidioma de audio queda como siguiente fase coordinada, sin activar cursos.

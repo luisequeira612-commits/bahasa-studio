@@ -150,7 +150,19 @@ async function migrateLegacyAudioCache() {
     // Validate every existing language cache against the matching language inventory.
     for (const [language, audioCache] of audioCaches) {
         const currentHashes = hashesByLanguage.get(language);
-        if (!currentHashes) continue;
+        if (!currentHashes) {
+            // If the current cache already contains audio, keep legacy sources until
+            // an inventory is available to verify (and, if needed, replace) those bytes.
+            try {
+                const unverifiedRequests = await audioCache.keys();
+                if (unverifiedRequests.some((request) => audioLanguageFromRequest(request) === language)) {
+                    migrationComplete = false;
+                }
+            } catch (_) {
+                return false;
+            }
+            continue;
+        }
         let cachedRequests;
         try {
             cachedRequests = await audioCache.keys();

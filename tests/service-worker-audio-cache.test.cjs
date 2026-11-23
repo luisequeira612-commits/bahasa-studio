@@ -244,6 +244,45 @@ test('conserva un MP3 de la caché actual cuando falta su hash individual', asyn
     assert.equal(worker.claimCalls, 1, 'activation must still complete');
 });
 
+test('conserva una copia legacy válida si el cache actual tiene bytes no verificables y falta el inventario', async () => {
+    const id = '999999999999';
+    const clip = audioUrl(id);
+    const currentAudio = new MemoryCache([
+        [clip, new Response('corrupt current bytes', { status: 200 })]
+    ]);
+    const legacy = new MemoryCache([
+        [clip, new Response('valid legacy bytes', { status: 200 })]
+    ]);
+    const app = new MemoryCache();
+    const worker = createWorker(new Map([
+        ['bahasa-studio-v3.8.120', legacy],
+        [CURRENT_CACHE_NAME, app],
+        ['guardi-audio-v2', currentAudio]
+    ]));
+
+    let firstActivation;
+    worker.handlers.activate({ waitUntil: promise => { firstActivation = promise; } });
+    await firstActivation;
+
+    assert.ok(await currentAudio.match(new Request(clip)), 'unverified current bytes remain untouched');
+    assert.equal(worker.cacheStore.has('bahasa-studio-v3.8.120'), true, 'legacy source must survive without an inventory');
+
+    app.entries.set(
+        ORIGIN + '/bahasa-studio/audio/metadata.json',
+        new Response(JSON.stringify({ audio_hashes: { [id]: hash('valid legacy bytes') } }))
+    );
+
+    let secondActivation;
+    worker.handlers.activate({ waitUntil: promise => { secondActivation = promise; } });
+    await secondActivation;
+
+    const restored = await currentAudio.match(new Request(clip));
+    assert.ok(restored, 'verified legacy bytes replace the unverifiable current entry');
+    assert.equal(await restored.text(), 'valid legacy bytes');
+    assert.equal(worker.cacheStore.has('bahasa-studio-v3.8.120'), false, 'legacy cache is removed only after verified recovery');
+    assert.equal(worker.claimCalls, 2, 'both activations complete');
+});
+
 test('los MP3 nuevos usan guardi-audio-v2 y los recursos normales siguen en la caché de la app', async () => {
     const worker = createWorker();
     const audioRequest = new Request(audioUrl('fresh'));

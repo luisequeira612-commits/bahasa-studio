@@ -60,3 +60,38 @@ test('supports a language-specific registry export when a future course is enabl
     const curriculum = await window.CurriculumLoader.load('pt-BR', 'A1');
     assert.equal(curriculum.id, 'pt-BR-A1');
 });
+
+test('retries a curriculum path after a script loads without publishing its registry entry', async () => {
+    let attempts = 0;
+    const window = {
+        GUARDI_CURRICULA: {},
+        LanguageManager: {
+            getLanguage(code) {
+                return code === 'pt-BR' ? { curriculum: { A1: './languages/pt-BR/curriculum-a1.js' } } : null;
+            },
+            isAvailable(code) { return code === 'pt-BR'; }
+        },
+        document: {
+            createElement() { return {}; },
+            head: {
+                appendChild(script) {
+                    attempts += 1;
+                    if (attempts === 2) {
+                        window.GUARDI_CURRICULA['pt-BR'] = { A1: { id: 'pt-BR-A1', units: [] } };
+                    }
+                    script.onload();
+                }
+            }
+        }
+    };
+    const sandbox = { window, Object, Map, Promise, Error, String };
+    vm.runInNewContext(loaderSource, sandbox);
+
+    await assert.rejects(
+        window.CurriculumLoader.load('pt-BR', 'A1'),
+        /no publicó el currículo esperado/
+    );
+    const curriculum = await window.CurriculumLoader.load('pt-BR', 'A1');
+    assert.equal(curriculum.id, 'pt-BR-A1');
+    assert.equal(attempts, 2);
+});

@@ -55,7 +55,11 @@
             (root.document.head || root.document.body).appendChild(script);
         });
         loaded.set(descriptor.path, pending);
-        return pending;
+        // A failed or malformed offline load must not poison this path forever.
+        return pending.catch(error => {
+            if (loaded.get(descriptor.path) === pending) loaded.delete(descriptor.path);
+            throw error;
+        });
     }
 
     root.CurriculumLoader = Object.freeze({ levels: LEVELS, resolve, load });

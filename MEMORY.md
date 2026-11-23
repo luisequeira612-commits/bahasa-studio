@@ -1,3 +1,7 @@
+## Recuperación del cargador curricular — 23 nov 2026
+- Se corrigió `CurriculumLoader.load()`: si un script falla o carga sin publicar el registro esperado, la promesa rechazada ya no queda cacheada permanentemente; una siguiente solicitud puede reintentar la carga. Se añadió regresión que reproduce la carga malformada y verifica el segundo intento correcto.
+- PR #715 documentó la integración de #714 y quedó fusionada en `main` (commit `db431bc39678afc1f826ba32bea755ee19cd1342`). Este cambio no activa idiomas ni cursos, no modifica IndexedDB v1, backup JSON v3, audio, UI ni dependencias.
+
 ## Núcleo multiidioma integrado — PR #714 — 22 nov 2026
 - PR #714 (`feat/multilingual-core-20261123`) fusionada mediante squash en `main`, commit `29865d25960cbb17963baef59e894881f7c0de19`. CI del head `5e539b8e1e7e9c55b0d9226fc22d8b16bb6e55ef`, run `45097134644`: `test` y `Offline quality reports` completados con éxito; sin revisiones ni hilos pendientes.
 - Se integraron el catálogo cerrado de diez idiomas, `CurriculumLoader`, `ProgressNamespace`, historial por idioma y perfiles adaptativos aislados. Solo indonesio sigue disponible; los otros nueve permanecen inactivos. No se añadió selector UI, audio multiidioma ni currículo pt-BR.

@@ -1,9 +1,11 @@
-## 2026-11-23 — PR #765 fusionada y B1 U10–U12 en preparación
+## 2026-11-23 — PR #765 fusionada y PR #766 abierta: Portugués B1 U10–U12
 
-- PR #765 (B1 U7–U9) fusionada por squash en \`main\`; commit integrado \`7d9f474808a6df48cf5a9605b6f3595dd3fd4e10\`. Head validado \`7fc90a3d4feb4ae44383690adcbea9f1a28ec3ba\`; los runs #45286333417 y #45286360609 terminaron con \`test\` y \`Offline quality reports\` en success. No había reviews, hilos ni comentarios pendientes.
-- U1–U9 de B1 están publicadas en el manifiesto (9/36); el idioma \`pt-BR\` permanece \`available:false\`, y todos los términos del piloto siguen \`not_checked\`. El merge no certifica la corrección lingüística.
-- Nuevo tramo preparado en rama \`feat/pt-br-b1-u10-u12\`, basada en \`main\`: U10 globalización y relaciones internacionales; U11 ciudadanía y políticas públicas; U12 crisis climática y transición energética. Objetivo de contrato: 10 términos, 5 lecciones y 10 ejercicios por unidad, referencias de repaso A2 existentes, Node + Playwright y caché offline \`v3.8.144\`.
-- No cambiar IndexedDB v1, backup JSON v3, dependencias, disponibilidad del idioma ni infraestructura de servidor. Validar CI completo antes de abrir/considerar merge de la PR siguiente.
+- PR #765 (B1 U7–U9) fusionada por squash en `main`; commit integrado `7d9f474808a6df48cf5a9605b6f3595dd3fd4e10`. Head validado `7fc90a3d4feb4ae44383690adcbea9f1a28ec3ba`; runs #45286333417 y #45286360609 completaron `test` y `Offline quality reports` en success. No había reviews, hilos ni comentarios pendientes.
+- B1 publica U1–U9 de 36 (25 %). El idioma `pt-BR` permanece `available:false`; todos los términos del piloto continúan `not_checked`. El merge no certifica la corrección lingüística.
+- PR #766 abierta desde `feat/pt-br-b1-u10-u12`, basada en el merge de #765. Head de implementación `e1f28bbd06334909a6f7a1396f81aca9dc21433e`. Añade U10 globalización y relaciones internacionales; U11 ciudadanía y políticas públicas; U12 crisis climática y transición energética: 30 términos, cinco lecciones y diez ejercicios por unidad, con referencias A2.
+- El manifiesto B1 pasa a U1–U12 de 36 (33,3 %); Service Worker añade el bloque offline U10–U12 y cambia a `bahasa-studio-v3.8.144`. Se actualizan contratos Node/Playwright y expectativas de caché heredadas; el contrato nuevo se incorpora a `quality:tests`.
+- CI de PR #766 pendiente de aparecer/completarse; no fusionar hasta que `test` y `Offline quality reports` terminen en success y se revise el head final.
+- Sin cambios a IndexedDB v1, backup JSON v3, dependencias, disponibilidad del idioma ni infraestructura de servidor.
 
 ## 2026-11-23 — Corrección CI PR #765: contratos de currículo y caché
 

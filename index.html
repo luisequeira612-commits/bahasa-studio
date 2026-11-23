@@ -19477,15 +19477,22 @@ Requisitos:
                     option.selected = language.code === active;
                     select.appendChild(option);
                 });
-                select.disabled = languages.filter(language => language.available).length < 2;
+                const availableCount = languages.filter(language => language.available).length;
+                // Keep the picker openable so learners can see the approved roadmap;
+                // only unavailable options are disabled until their courses are ready.
+                select.disabled = availableCount === 0;
                 if (status) {
-                    status.textContent = select.disabled
-                        ? 'Indonesio es el único curso disponible. Los demás se habilitarán cuando su contenido y pruebas estén completos.'
+                    status.textContent = availableCount < 2
+                        ? 'Indonesio es el único curso disponible. Los demás aparecen como próximos y no se pueden seleccionar hasta completar su contenido y pruebas.'
                         : 'Al cambiar de curso, la aplicación se reiniciará para cargar su currículo y progreso separados.';
                 }
             },
             async setStudyLanguage(code) {
                 const status = document.getElementById('studyLanguageStatus');
+                if (code === LanguageManager.getActiveLanguage()) {
+                    if (status) status.textContent = 'Este curso ya está activo.';
+                    return;
+                }
                 try {
                     await LanguageManager.setActiveLanguage(code);
                     if (status) status.textContent = 'Cambiando de curso…';

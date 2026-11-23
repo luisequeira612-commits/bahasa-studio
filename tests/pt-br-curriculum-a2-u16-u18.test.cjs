@@ -40,9 +40,9 @@ test('pt-BR A2 U16-U18 load through the offline loader while the language remain
   for(const ex of [...unit.exercises,...unit.lessons.flatMap(l=>l.exercises)]){assert.equal(ex.type,'mc',unit.id);const word=unit.vocab.find(w=>w.id===ex.vocabId);assert.ok(word,ex.vocabId);assert.equal(ex.options[ex.answer],word.esp,ex.vocabId);}
  }
 });
-test('A2 manifest publishes U1-U18 as a partial level of thirty units',()=>{
+test('A2 manifest publishes U1-U24 as a partial level of thirty units',()=>{
  const {window}=createPilot(),manifest=window.GUARDI_CURRICULUM_MANIFESTS['pt-BR'].A2;
- assert.equal(manifest.totalUnits,30);assert.deepEqual(Array.from(manifest.publishedUnits),Array.from({length:21},(_,i)=>i+1));
+ assert.equal(manifest.totalUnits,30);assert.deepEqual(Array.from(manifest.publishedUnits),Array.from({length:24},(_,i)=>i+1));
  assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
 });
 test('A2 U16-U18 review references resolve only to previously published A2 vocabulary',async()=>{

@@ -34,7 +34,8 @@ function assertNoAppOwnedAudioTransport(source, label) {
 test('pronunciation recognition is explicit, Indonesian-only, and discloses browser processing', () => {
     assert.match(app, /onclick="LessonEngine\.startPronunciationPractice\(\)"/);
     assert.match(pronunciation, /window\.SpeechRecognition\s*\|\|\s*window\.webkitSpeechRecognition/);
-    assert.match(pronunciation, /recognition\.lang\s*=\s*'id-ID'/);
+    assert.match(pronunciation, /recognition\.lang\s*=\s*locale/);
+    assert.match(pronunciation, /const locale = language\.locale \|\| 'id-ID'/);
     assert.match(pronunciation, /recognition\.continuous\s*=\s*false/);
     assert.match(app, /El micrófono solo se activa al pulsar\. El navegador puede enviar audio a su proveedor de reconocimiento\./);
     assertNoAppOwnedAudioTransport(pronunciation, 'PronunciationEngine');

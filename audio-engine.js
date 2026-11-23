@@ -6,6 +6,16 @@ window.AudioEngine = {
     voicePreference: 'auto',
     currentAudio: null,
     rate: 1,
+    getLanguageConfig() {
+        const manager = window.LanguageManager;
+        const code = manager && typeof manager.getActiveLanguage === 'function' ? manager.getActiveLanguage() : 'id';
+        const config = manager && typeof manager.getLanguage === 'function' ? manager.getLanguage(code) : null;
+        return config || { code: 'id', locale: 'id-ID', name: 'indonesio', audioPath: './audio/id/' };
+    },
+    matchesActiveLanguage(voice) {
+        const languageTag = String(this.getLanguageConfig().locale || 'id-ID').toLowerCase().split('-')[0];
+        return String(voice && voice.lang || '').toLowerCase().split('-')[0] === languageTag;
+    },
     voiceKey(voice) {
         return voice.voiceURI || (String(voice.lang || '') + ':' + String(voice.name || ''));
     },
@@ -70,14 +80,14 @@ window.AudioEngine = {
         automatic.value = 'auto';
         automatic.textContent = 'Automática (recomendada)';
         select.appendChild(automatic);
-        this.voices.filter(voice => String(voice.lang || '').toLowerCase().startsWith('id')).forEach(voice => {
+        this.voices.filter(voice => this.matchesActiveLanguage(voice)).forEach(voice => {
             const option = document.createElement('option');
             option.value = this.voiceKey(voice);
             option.textContent = voice.name + ' (' + voice.lang + ')';
             select.appendChild(option);
         });
         const available = this.voices.some(voice =>
-            String(voice.lang || '').toLowerCase().startsWith('id') &&
+            this.matchesActiveLanguage(voice) &&
             this.voiceKey(voice) === this.voicePreference
         );
         select.value = available ? this.voicePreference : 'auto';
@@ -85,13 +95,16 @@ window.AudioEngine = {
     updateVoiceStatus() {
         const status = document.getElementById('audioVoiceStatus');
         if (!status) return;
-        const indonesianVoices = this.voices.filter(voice => String(voice.lang || '').toLowerCase().startsWith('id'));
-        if (indonesianVoices.length) {
+        const language = this.getLanguageConfig();
+        const voices = this.voices.filter(voice => this.matchesActiveLanguage(voice));
+        const languageName = String(language.name || language.code || 'idioma del curso').toLowerCase();
+        if (voices.length) {
             const active = this.selectedVoice || this.idVoice;
-            status.textContent = 'La app incluye grabaciones Piper del curso; no necesitas instalar una voz indonesia. Voz del dispositivo disponible como respaldo: ' +
-                (active ? active.name : 'selección automática') + '.';
+            status.textContent = 'La app incluye grabaciones Piper del curso; no necesitas instalar una voz. Voz del dispositivo disponible como respaldo para ' +
+                languageName + ': ' + (active ? active.name : 'selección automática') + '.';
         } else {
-            status.textContent = 'La app incluye grabaciones Piper del curso y puede reproducirlas sin voces instaladas. Una voz indonesia del dispositivo solo es necesaria como respaldo si falta una grabación.';
+            status.textContent = 'La app incluye grabaciones Piper del curso y puede reproducirlas sin voces instaladas. Una voz del dispositivo para ' +
+                languageName + ' solo es necesaria como respaldo si falta una grabación.';
         }
     },
     refreshVoices() {
@@ -104,9 +117,9 @@ window.AudioEngine = {
             return;
         }
         this.voices = this.synth.getVoices() || [];
-        const indonesianVoices = this.voices.filter(voice => String(voice.lang || '').toLowerCase().startsWith('id'));
-        this.idVoice = indonesianVoices[0] || null;
-        this.selectedVoice = indonesianVoices.find(voice => this.voiceKey(voice) === this.voicePreference) || this.idVoice;
+        const languageVoices = this.voices.filter(voice => this.matchesActiveLanguage(voice));
+        this.idVoice = languageVoices[0] || null;
+        this.selectedVoice = languageVoices.find(voice => this.voiceKey(voice) === this.voicePreference) || this.idVoice;
         this.renderVoiceOptions();
         this.updateVoiceStatus();
     },
@@ -116,7 +129,7 @@ window.AudioEngine = {
         this.selectedVoice = preference === 'auto'
             ? this.idVoice
             : this.voices.find(voice =>
-                String(voice.lang || '').toLowerCase().startsWith('id') &&
+                this.matchesActiveLanguage(voice) &&
                 this.voiceKey(voice) === preference
             ) || this.idVoice;
         this.renderVoiceOptions();
@@ -134,21 +147,23 @@ window.AudioEngine = {
         }
     },
     speakWithDeviceVoice(text) {
+        const language = this.getLanguageConfig();
+        const languageName = String(language.name || language.code || 'idioma del curso').toLowerCase();
         if (!this.synth) {
             const status = document.getElementById('audioVoiceStatus');
-            if (status) status.textContent = 'Esta frase no tiene una grabación disponible y el navegador no ofrece una voz indonesia de respaldo.';
+            if (status) status.textContent = 'Esta frase no tiene una grabación disponible y el navegador no ofrece una voz de respaldo para ' + languageName + '.';
             return false;
         }
         this.refreshVoices();
         const voice = this.selectedVoice || this.idVoice;
-        if (!voice || !String(voice.lang || '').toLowerCase().startsWith('id')) {
+        if (!voice || !this.matchesActiveLanguage(voice)) {
             const status = document.getElementById('audioVoiceStatus');
-            if (status) status.textContent = 'No se encontró una grabación para esta frase ni una voz indonesia instalada como respaldo.';
+            if (status) status.textContent = 'No se encontró una grabación para esta frase ni una voz instalada para ' + languageName + ' como respaldo.';
             return false;
         }
         this.synth.cancel();
         const utter = new SpeechSynthesisUtterance(text);
-        utter.lang = 'id-ID';
+        utter.lang = language.locale || 'id-ID';
         utter.voice = voice;
         utter.rate = this.rate;
         this.synth.speak(utter);
@@ -159,7 +174,7 @@ window.AudioEngine = {
         const id = this.hashText(text);
         if (!id) return false;
         this.stopCurrentAudio();
-        const audio = new Audio('./audio/id/' + id + '.mp3');
+        const audio = new Audio(this.getLanguageConfig().audioPath + id + '.mp3');
         audio.preload = 'auto';
         audio.playbackRate = this.rate;
         this.currentAudio = audio;
@@ -203,7 +218,7 @@ window.AudioEngine = {
     testVoice() {
         this.refreshVoices();
         const status = document.getElementById('voiceTestStatus');
-        if (status) status.textContent = 'Probando una grabación Piper incluida. No necesitas instalar una voz indonesia.';
+        if (status) status.textContent = 'Probando una grabación Piper incluida. No necesitas instalar una voz.';
         return this.speak('terima kasih');
     }
 };

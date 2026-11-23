@@ -414,7 +414,7 @@ test('v3.7.1 audit fixes remain in place without changing backup or database ver
   assert.match(html, /async set\(store, key, val\) \{\s+return this\.setMany\(store, \[\{ key, val \}\]\);/);
   assert.match(html, /async setMany\(store, entries\) \{\s+return new Promise\(\(resolve, reject\) => \{/);
   assert.match(html, /Elige la frase que significa «Esta es mi familia»/);
-  assert.ok(html.includes("String(voice.lang || '').toLowerCase().startsWith('id')"),
+  assert.ok(html.includes("String(voice && voice.lang || '').toLowerCase()"),
     'voice discovery should tolerate missing language metadata without throwing');
   assert.ok(html.includes("function getLearningLevels()"));
   assert.ok(html.includes("return getLevels().filter(level =>"));
@@ -1525,8 +1525,8 @@ test('bundled Indonesian recordings work without an installed device voice', () 
   assert.equal(audioMetadata.engine, 'piper');
   assert.match(audioMetadata.model_attribution, /Piper Indonesian news_tts voice/);
   assert.ok(audioEngineSource.includes('grabaciones Piper del curso'));
-  assert.ok(audioEngineSource.includes('playRecorded(text)'));
-  assert.ok(audioEngineSource.includes("new Audio('./audio/id/' + id + '.mp3')"));
+  assert.ok(audioEngineSource.includes("audioPath: './audio/id/'") && audioEngineSource.includes('playRecorded(text)'));
+  assert.ok(audioEngineSource.includes("new Audio(this.getLanguageConfig().audioPath + id + '.mp3')"));
   assert.ok(audioEngineSource.includes("this.speak('terima kasih')"));
   assert.doesNotMatch(audioEngineSource, /voz predeterminada del sistema con el idioma id-ID/);
 });
@@ -1711,7 +1711,7 @@ test('optional pronunciation practice is isolated and never changes learning rec
   assert.match(html, /aria-label="Practicar pronunciación"/);
   assert.match(html, /El navegador puede enviar audio a su proveedor de reconocimiento/);
   assert.match(pronunciationEngineSource, /window\.SpeechRecognition \|\| window\.webkitSpeechRecognition/);
-  assert.match(pronunciationEngineSource, /recognition\.lang = 'id-ID'/);
+  assert.match(pronunciationEngineSource, /recognition\.lang = locale/);
   assert.match(pronunciationEngineSource, /No se concedió permiso para usar el micrófono/);
   assert.match(pronunciationEngineSource, /no ofrece reconocimiento de voz/);
   assert.match(html, /PronunciationEngine\.start\(targetText, status, button\)/);
@@ -1887,7 +1887,7 @@ test('optional pronunciation practice uses Indonesian browser recognition withou
   assert.match(html, /aria-label="Practicar pronunciación"/);
   assert.match(html, /El navegador puede enviar audio a su proveedor de reconocimiento/);
   assert.match(pronunciationEngineSource, /window\.SpeechRecognition \|\| window\.webkitSpeechRecognition/);
-  assert.match(pronunciationEngineSource, /recognition\.lang = 'id-ID'/);
+  assert.match(pronunciationEngineSource, /recognition\.lang = locale/);
   assert.match(pronunciationEngineSource, /No se concedió permiso para usar el micrófono/);
   assert.match(pronunciationEngineSource, /no ofrece reconocimiento de voz/);
   assert.match(html, /PronunciationEngine\.start\(targetText, status, button\)/);

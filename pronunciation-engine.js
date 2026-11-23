@@ -2,6 +2,12 @@
     'use strict';
     const PronunciationEngine = {
         activeRecognition: null,
+        getLanguageConfig() {
+            const manager = window.LanguageManager;
+            const code = manager && typeof manager.getActiveLanguage === 'function' ? manager.getActiveLanguage() : 'id';
+            const language = manager && typeof manager.getLanguage === 'function' ? manager.getLanguage(code) : null;
+            return language || { code: 'id', locale: 'id-ID', name: 'indonesio' };
+        },
         stop() {
             if (!this.activeRecognition) return;
             const recognition = this.activeRecognition;
@@ -18,14 +24,16 @@
             this.stop();
             const recognition = new Recognition();
             this.activeRecognition = recognition;
-            recognition.lang = 'id-ID';
+            const language = this.getLanguageConfig();
+            const locale = language.locale || 'id-ID';
+            recognition.lang = locale;
             recognition.continuous = false;
             recognition.interimResults = true;
             recognition.maxAlternatives = 3;
-            const normalize = value => String(value || '').toLocaleLowerCase('id-ID')
+            const normalize = value => String(value || '').toLocaleLowerCase(locale)
                 .normalize('NFD').replace(/\p{M}/gu, '')
                 .replace(/[^\p{L}\p{N}\s]/gu, ' ').replace(/\s+/g, ' ').trim();
-            status.textContent = 'Escuchando… Di la frase en indonesio con claridad.';
+            status.textContent = 'Escuchando… Di la frase en el idioma del curso con claridad.';
             if (button) button.disabled = true;
             recognition.onresult = event => {
                 const results = Array.from(event.results || []);

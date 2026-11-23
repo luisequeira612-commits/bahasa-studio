@@ -264,13 +264,15 @@ test('audio engine plays bundled Indonesian MP3 before using browser voice API',
     });
     const result = await page.evaluate(() => ({
       utterances: window.__spokenUtterances,
-      played: window.__playedAudio
+      played: window.__playedAudio,
+      configuredRate: AudioEngine.rate
     }));
     const hash = crypto.createHash('sha1').update('selamat pagi', 'utf8').digest('hex').slice(0, 12);
     assert.equal(result.utterances.length, 0, 'a bundled recording must be preferred over device TTS');
     assert.equal(result.played.length, 1);
     assert.equal(result.played[0].src, './audio/id/' + hash + '.mp3');
-    assert.equal(result.played[0].rate, 0.85);
+    assert.equal(result.played[0].rate, result.configuredRate,
+      'bundled playback must respect the active persisted playback-rate preference');
   } finally {
     await context.close();
     await new Promise(resolve => server.close(resolve));
@@ -1236,7 +1238,7 @@ test('Indonesian device voice selection persists and is used only when a recordi
     assert.deepEqual(await page.evaluate(() => window.__spokenVoices), ['mock-id-b']);
     await page.waitForFunction(async () => (await DB.get('settings', 'audioVoiceURI')) === 'mock-id-b');
     assert.equal(await page.locator('#audioVoiceSelect').inputValue(), 'mock-id-b');
-    assert.match(await page.locator('#audioVoiceStatus').innerText(), /Voz del dispositivo disponible como respaldo: Mock Indonesian B/);
+    assert.match(await page.locator('#audioVoiceStatus').innerText(), /Voz del dispositivo disponible como respaldo para indonesio: Mock Indonesian B/);
 
     await page.reload({ waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
@@ -1326,7 +1328,7 @@ test('Indonesian voices discovered asynchronously refresh the selector', async (
     await page.evaluate(() => window.__publishIndonesianVoices());
     await page.waitForFunction(() => document.querySelectorAll('#audioVoiceSelect option').length === 2);
     assert.equal(await page.locator('#audioVoiceSelect option').nth(1).textContent(), 'Late Indonesian (id-ID)');
-    assert.match(await page.locator('#audioVoiceStatus').innerText(), /Voz del dispositivo disponible como respaldo: Late Indonesian/);
+    assert.match(await page.locator('#audioVoiceStatus').innerText(), /Voz del dispositivo disponible como respaldo para indonesio: Late Indonesian/);
   } finally {
     await context.close();
     await new Promise(resolve => server.close(resolve));

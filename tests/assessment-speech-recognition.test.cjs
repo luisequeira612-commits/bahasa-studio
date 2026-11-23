@@ -2,6 +2,7 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
+const vm = require('node:vm');
 
 const source = fs.readFileSync(path.join(__dirname, '..', 'assessment.html'), 'utf8');
 
@@ -32,4 +33,32 @@ test('assessment stops active speech capture before replacing or submitting asse
 test('speech transcript remains provisional and is not treated as an oral proficiency score', () => {
     assert.match(source, /no es una calificación de pronunciación/);
     assert.match(source, /La producción oral requiere revisión humana/);
+});
+
+
+test('pronunciation engine takes recognition locale from the active language', () => {
+    const engineSource = fs.readFileSync(path.join(__dirname, '..', 'pronunciation-engine.js'), 'utf8');
+    let instance;
+    class FakeRecognition {
+        constructor() { instance = this; }
+        start() {}
+        abort() {}
+    }
+    const context = {
+        window: {
+            SpeechRecognition: FakeRecognition,
+            LanguageManager: {
+                getActiveLanguage: () => 'pt-BR',
+                getLanguage: () => ({ code: 'pt-BR', locale: 'pt-BR', name: 'Portugués de Brasil' })
+            }
+        }
+    };
+    vm.runInNewContext(engineSource, context);
+    const status = { textContent: '', isConnected: true };
+    const button = { disabled: false, isConnected: true };
+    context.window.PronunciationEngine.start('Bom dia', status, button);
+    assert.equal(instance.lang, 'pt-BR');
+    assert.match(status.textContent, /idioma del curso/i);
+    assert.doesNotMatch(status.textContent, /indonesio/i);
+    context.window.PronunciationEngine.stop();
 });

@@ -1,3 +1,8 @@
+## 2026-11-23 — PR #728: corregir fixture de caché Range pt-BR
+- El CI #45124084489 volvió a fallar únicamente en `tests/service-worker-audio-range.test.cjs`: la respuesta Range 206 era correcta, pero la prueba buscaba el clip cacheado bajo `sample.mp3`, mientras que la solicitud real usaba el ID hexadecimal `0123456789ab`. Además, ese nombre ficticio no podía producir un ID verificable para SHA-256.
+- Se corrigió el fixture para consultar exactamente la misma URL de audio regional que se solicitó, conservando el ID hexadecimal y el inventario SHA-256 correspondiente. No se relajó la verificación ni la política de caché.
+- Pendiente de CI completo. No modifica audios ni inventarios productivos, IndexedDB v1, backup JSON v3 ni dependencias.
+
 ## Guardi — verificación SHA-256 en la caché automática del Service Worker — 23 nov 2026
 
 - PR en preparación: la ruta de reproducción normal del Service Worker guardaba cualquier respuesta HTTP 200 sin comprobar el inventario, aunque la descarga offline explícita sí verificaba SHA-256. El cambio valida los bytes de caché y de red contra el hash del idioma antes de servir una copia persistente; si falta inventario/hash, permite reproducción online pero no promueve el archivo a caché offline; si el hash disponible no coincide, rechaza la respuesta. Incluye pruebas para hash válido, inventario ausente y contenido alterado.

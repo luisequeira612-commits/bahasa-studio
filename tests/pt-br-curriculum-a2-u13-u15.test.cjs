@@ -59,11 +59,11 @@ test('pt-BR A2 U13-U15 load through the offline loader while the language remain
   }
  }
 });
-test('A2 manifest publishes U1-U24 as a partial level of thirty units',()=>{
+test('A2 manifest publishes U1-U27 as a partial level of thirty units',()=>{
  const {window}=createPilot();
  const manifest=window.GUARDI_CURRICULUM_MANIFESTS['pt-BR'].A2;
  assert.equal(manifest.totalUnits,30);
- assert.deepEqual(Array.from(manifest.publishedUnits),[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]);
+ assert.deepEqual(Array.from(manifest.publishedUnits),[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27]);
  assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
 });
 test('A2 U13-U15 review references resolve only to previously published A2 vocabulary',async()=>{

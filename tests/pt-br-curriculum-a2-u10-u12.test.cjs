@@ -11,6 +11,7 @@ const sources={
  './languages/pt-BR/curriculum/a2/index.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a2/index.js'),'utf8'),
  './languages/pt-BR/curriculum/a2/units-01-03.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a2/units-01-03.js'),'utf8'),
  './languages/pt-BR/curriculum/a2/units-04-06.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a2/units-04-06.js'),'utf8'),
+ './languages/pt-BR/curriculum/a2/units-07-09.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a2/units-07-09.js'),'utf8'),
  './languages/pt-BR/curriculum/a2/units-10-12.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a2/units-10-12.js'),'utf8')
 };
 function createPilot(){

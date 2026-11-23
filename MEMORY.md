@@ -1,7 +1,7 @@
 ## 2026-11-23 — mejora del selector de idiomas
 - Corrección UX: el selector permanece desplegable aunque solo exista un curso disponible, para que se pueda consultar el catálogo aprobado y ver los nueve cursos próximos. Cada opción no disponible continúa deshabilitada y LanguageManager vuelve a validar cualquier intento de cambio.
 - Seleccionar de nuevo el idioma ya activo no guarda ni recarga la aplicación.
-- Cache app shell v3.8.122. Se añade regresión para la visibilidad del catálogo y el no-op del idioma activo. CI pendiente.
+- Cache app shell v3.8.123. La primera ejecución CI detectó que v3.8.122 también está reservado como nombre de caché legacy en la prueba de migración SHA-256; se corrigió a v3.8.123. Se añade regresión para la visibilidad del catálogo y el no-op del idioma activo. CI corregido pendiente.
 - No se activan idiomas, cursos, vocabulario ni audio nuevos; IndexedDB v1 y backup JSON v3 siguen intactos.
 
 ## 2026-11-23 — fase 3: selector de idioma protegido

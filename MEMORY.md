@@ -1,3 +1,14 @@
+## 2026-11-23 — Portugués B1 U7–U9 en preparación
+
+- Tras fusionar PR #764 por squash en `main` (commit `aa8f32a97f4824e7dc5cd94f3a86720ee0116eb2`), la regresión post-merge #45282986354 completó `test` (101/101 pasos) y `Offline quality reports` (10/10), ambos success. GitHub Pages run #45282985616 completó build, deploy y report-build-status en success.
+- Rama limpia `feat/pt-br-b1-u07-u09`, basada en ese `main`. Añade U7 cultura, patrimonio e identidad; U8 investigación científica e innovación; U9 economía cotidiana y desigualdad. Son 30 términos nuevos (10/unidad), cinco lecciones y diez ejercicios MC por unidad, ejemplos PT/ES y `verification.status: not_checked`.
+- Cotejo exacto normalizado: 30 términos nuevos frente a 600 registros previos de A1+A2+B1 U1–U6; cero colisiones y cero duplicados internos. Las 15 referencias de repaso seleccionadas apuntan a IDs A2 existentes.
+- Manifiesto B1 publica U1–U9 de 36. Service Worker avanza a `bahasa-studio-v3.8.143` y precarga U7–U9. Contratos Node y Playwright se amplían a U1–U9 offline; `quality:tests` incluye el nuevo contrato U7–U9.
+- Head de rama al registrar: `c6b28c86e2f0f380e11142789e13e35f7738bd5a`. PR y CI de este bloque aún no abiertos/ejecutados; pendiente revisar el contrato final y ejecutar CI completo.
+- `pt-BR available:false` permanece. Sin nuevas dependencias, backend, audio/TTS, cambios a IndexedDB v1 ni backup JSON v3. La auditoría estructural no certifica el portugués; no hay hablante nativo disponible y el vocabulario permanece `not_checked`.
+
+Fuente: GitHub `main` commit `aa8f32a9`, rama `feat/pt-br-b1-u07-u09`, bloques B1 U1–U9, contratos y Service Worker; 23 nov 2026.
+
 ## 2026-11-23 — PR #764: Portugués B1 U4–U6 en preparación
 
 - Rama limpia `feat/pt-br-b1-u04-u06`, basada en el merge commit de PR #763 `9faab7e38819f61aff4dc93053b65e261203318a`.

@@ -5,6 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guardi</title>
     <meta name="description" content="Aprende idiomas con lecciones y repaso, gratis y sin cuentas.">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Guardi">
+    <meta property="og:title" content="Guardi — Aprende idiomas gratis">
+    <meta property="og:description" content="Aprende idiomas desde español con lecciones, repaso espaciado y acceso offline.">
+    <meta property="og:url" content="https://luisequeira612-commits.github.io/bahasa-studio/">
+    <meta property="og:image" content="https://luisequeira612-commits.github.io/bahasa-studio/icon-512-any.png">
+    <meta property="og:image:width" content="512">
+    <meta property="og:image:height" content="512">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Guardi — Aprende idiomas gratis">
+    <meta name="twitter:description" content="Aprende idiomas desde español con lecciones, repaso espaciado y acceso offline.">
+    <meta name="twitter:image" content="https://luisequeira612-commits.github.io/bahasa-studio/icon-512-any.png">
     <meta name="apple-mobile-web-app-title" content="Guardi">
     <meta name="theme-color" content="#0067C6">
     <link rel="manifest" href="./manifest.json">
@@ -238,7 +250,7 @@
         <div class="card">
             <h3>Protección del almacenamiento</h3>
             <p id="storagePersistenceStatus" role="status" aria-live="polite" style="font-size:0.85rem;color:var(--text-muted);margin:8px 0;">Comprobando si el navegador protege los datos de esta app…</p>
-            <p style="font-size:0.8rem;color:var(--text-muted);">La persistencia depende del navegador. Mantén también una copia JSON fuera del dispositivo.</p>
+            <p style="font-size:0.8rem;color:var(--text-muted);">La persistencia reduce el riesgo de que el navegador elimine los datos, pero no lo elimina por completo ni sustituye una copia JSON fuera del dispositivo.</p>
         </div>
 
 
@@ -681,6 +693,7 @@
                     putSetting('customUnits', data.customUnits);
                     putSetting('syllabusPos', data.syllabusPos);
                     putSetting('studyActivity', data.studyActivity || StudyActivity.createDefault());
+                    putSetting('activeLanguage', data.language || 'id');
                     tx.oncomplete = () => resolve();
                     tx.onerror = () => reject(tx.error || new Error('No se pudo restaurar la copia.'));
                     tx.onabort = () => reject(tx.error || new Error('Se canceló la restauración.'));
@@ -20310,6 +20323,7 @@ Requisitos:
             async exportProgress() {
                 const data = {
                     version: 3,
+                    language: 'id',
                     customUnits: CustomLessons.units,
                     syllabusPos: CustomLessons.pos,
                     xp: this.xp,
@@ -20329,11 +20343,20 @@ Requisitos:
                 const fail = () => { throw new Error('Formato de copia no válido.'); };
                 const isObject = value => value && typeof value === 'object' && !Array.isArray(value);
                 const validText = (value, max = 500) => typeof value === 'string' && value.length > 0 && value.length <= max;
-                if (!isObject(parsed) || parsed.version !== 3 || !Number.isSafeInteger(parsed.xp) || parsed.xp < 0 || parsed.xp > 1000000000) fail();
+                const allowedFields = new Set(['version', 'language', 'exportedAt', 'customUnits', 'syllabusPos', 'xp', 'completedUnits', 'completedLessons', 'studyActivity', 'srs']);
+                if (!isObject(parsed) || Object.keys(parsed).some(key => !allowedFields.has(key)) ||
+                    parsed.version !== 3 || !Number.isSafeInteger(parsed.xp) || parsed.xp < 0 || parsed.xp > 1000000000) fail();
+                // Until the language manager is enabled, only Indonesian backups can be restored.
+                // Historical v3 files without a language field remain Indonesian by definition.
+                const language = parsed.language === undefined ? 'id' : parsed.language;
+                if (language !== 'id') throw new Error('Esta copia pertenece a un idioma que todavía no está disponible en esta versión.');
+                if (parsed.exportedAt !== undefined &&
+                    (typeof parsed.exportedAt !== 'string' || !Number.isFinite(Date.parse(parsed.exportedAt)) ||
+                    new Date(parsed.exportedAt).toISOString() !== parsed.exportedAt)) fail();
                 const completedUnits = parsed.completedUnits === undefined ? [] : parsed.completedUnits;
-                if (!Array.isArray(completedUnits) || completedUnits.length > 200 || completedUnits.some(id => !validText(id, 100))) fail();
+                if (!Array.isArray(completedUnits) || completedUnits.length > 200 || completedUnits.some(id => !validText(id, 100)) || new Set(completedUnits).size !== completedUnits.length) fail();
                 const completedLessons = parsed.completedLessons === undefined ? [] : parsed.completedLessons;
-                if (!Array.isArray(completedLessons) || completedLessons.length > 1000 || completedLessons.some(id => !validText(id, 120))) fail();
+                if (!Array.isArray(completedLessons) || completedLessons.length > 1000 || completedLessons.some(id => !validText(id, 120)) || new Set(completedLessons).size !== completedLessons.length) fail();
                 const customRaw = parsed.customUnits === undefined ? [] : parsed.customUnits;
                 if (!Array.isArray(customRaw) || customRaw.length > 100) fail();
                 const seenUnitIds = new Set(), seenVocabIds = new Set();
@@ -20415,9 +20438,11 @@ Requisitos:
                         attempts, correct, incorrect, lastReviewed
                     }});
                 }
-                const syllabusPos = Number.isSafeInteger(parsed.syllabusPos) && parsed.syllabusPos >= 0 && parsed.syllabusPos <= SYLLABUS.length ? parsed.syllabusPos : 0;
+                if (parsed.syllabusPos !== undefined &&
+                    (!Number.isSafeInteger(parsed.syllabusPos) || parsed.syllabusPos < 0 || parsed.syllabusPos > SYLLABUS.length)) fail();
+                const syllabusPos = parsed.syllabusPos === undefined ? 0 : parsed.syllabusPos;
                 const studyActivity = StudyActivity.validateBackup(parsed.studyActivity, new Date());
-                return { version: 3, xp: parsed.xp, completedUnits, completedLessons, customUnits, syllabusPos, srs, studyActivity };
+                return { version: 3, language, xp: parsed.xp, completedUnits, completedLessons, customUnits, syllabusPos, srs, studyActivity };
             },
             importProgress(e) {
                 const file = e.target.files[0];

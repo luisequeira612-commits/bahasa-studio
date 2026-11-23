@@ -512,7 +512,7 @@ test('version 3 backup normalization supplies safe defaults for absent legacy SR
     "interval: num('interval', 0",
     "efactor: num('efactor', 2.5",
     'const studyActivity = StudyActivity.validateBackup(parsed.studyActivity, new Date());',
-    'return { version: 3, xp: parsed.xp, completedUnits, completedLessons, customUnits, syllabusPos, srs, studyActivity }'
+    'return { version: 3, language, xp: parsed.xp, completedUnits, completedLessons, customUnits, syllabusPos, srs, studyActivity }'
   ]) assert.ok(validator.includes(expected), 'missing backup normalization: ' + expected);
 });
 
@@ -1112,7 +1112,7 @@ test('legacy SRS records remain linked to canonical IDs after duplicate cards ar
     assert.ok(html.includes(pair), 'missing legacy SRS alias ' + pair);
   }
   assert.match(html, /version: 1/);
-  assert.match(html, /return \{ version: 3, xp: parsed\.xp/);
+  assert.match(html, /return \{ version: 3, language, xp: parsed\.xp/);
   const statsStart = html.indexOf('async updateSrsView() {');
   const statsEnd = html.indexOf('renderDict()', statsStart);
   const statsView = html.slice(statsStart, statsEnd);

@@ -700,3 +700,12 @@
 - U56 adverbios de manera con dengan/secara (§§2.168–2.169); U57 adjuntos preposicionales de medio, compañía, beneficio, razón, comparación, excepción y tema (§§2.209–2.215); U58 alcance de negación, temporales y modales (§§2.133–2.159); U59 integración sintáctica; U60 proyecto integrador B2.
 - Cinco lecciones authored y 16 ejercicios por unidad (3/3/3/3/4), cuatro tipos; U59–U60 reutilizan ejemplos previos y no introducen vocabulario nuevo. No se añaden IDs léxicos ni audio. PR #710 se fusionó en `main` mediante squash (commit `a816c8c01a9920e2042c7fa5bddde50aa4c0f7fa`); CI pre-merge y regresión post-merge pasaron, y Pages se desplegó. Todas las unidades U6–U60 siguen ocultas/no publicadas.
 - Filtros y baseline ampliados a 60 unidades / 300 lecciones authored. Sin cambios a IndexedDB v1, backup JSON v3, biblioteca Piper ni dependencias. La estructura y los ejemplos de referencia no equivalen a validación nativa ni certificación MCER/BIPA.
+
+
+## Arquitectura multiidioma — aprobación y PR de robustez — 22 nov 2026
+- El dueño aprobó preparar Guardi para diez idiomas en orden pt-BR → en → it → fr → de → nl → ru → ja → ko → id, con UI española, cero backend/coste y regla A1→A2→B1→B2 antes de avanzar. Detalles, voces candidatas, fuentes y riesgos: Notion “Guardi - Arquitectura Multi-idioma”.
+- PR #712 sincronizó estado B2 U1–U60 y se fusionó en main (8df80778). La persistencia navigator.storage.persist() ya existía; no duplicarla. PR de robustez añade metadatos sociales, licencia y validación más estricta de backup v3 manteniendo IndexedDB v1; el único idioma restaurable en esta fase es id y los backups v3 históricos sin language se interpretan como id.
+
+- PR #713 CI detectó una aserción de regresión desactualizada que esperaba el objeto normalizado v3 sin el nuevo campo language; el código pasó el parseo y el fallo no indica corrupción ni fallo de importación. Se actualiza la expectativa para incluir language y se espera una nueva ejecución completa.
+
+- Segunda ejecución CI de PR #713 encontró otra aserción de fuente antigua en la prueba legacy SRS, que buscaba el objeto v3 sin language. La nueva suite de backup y la primera expectativa ya pasaron; se actualiza esta última aserción y se repetirá CI.

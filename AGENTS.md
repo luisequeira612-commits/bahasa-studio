@@ -11,25 +11,38 @@ App web para aprender idiomas, estilo Duolingo, alojada en GitHub Pages. Hoy tie
 ## Reglas fijas (no se rompen)
 - Gratuita, local, sin cuentas, sin backend, sin costos para el dueño ni para quien la use.
 - Sin dependencias nuevas salvo necesidad real y con mi aprobación.
-- No modificar IndexedDB ni el backup v3.
+- Preservar IndexedDB v1 y el formato backup JSON v3; solo ampliarlos de forma compatible, sin migraciones destructivas y con pruebas de importación/exportación.
 - Debe funcionar offline (service worker + manifest).
 - Sin vidas, sin anuncios, sin funciones sociales.
 - Sin agentes de IA externos dentro de la app por ahora.
 - No se publica en tiendas de apps.
 
-## Hoja de ruta de idiomas (estado vigente: 22 nov 2026)
-1. **Indonesio:** completar todo el material hasta B2. A1 y A2 están completos. B1 tiene sus 50 unidades implementadas y la migración estructural de cinco lecciones explícitas está completa: U1–U50 cumplen el estándar. B2 U1–U60 están integradas en main, con cinco lecciones authored por unidad (300 en total). U1–U5 son visibles; U6–U60 siguen ocultas/no publicadas hasta decisión explícita del dueño. U21 añadió un ID léxico y siete clips Piper generados/verificados. La biblioteca Piper de main tiene 2.268 IDs indexados y 155 textos B2. U1–U5 son visibles; U6–U60 siguen ocultas hasta decisión explícita de publicación del dueño. U10 integra nominalizaciones; U11 reduplicación; U12 compuestos e idiomaticidad; U13 clíticos pronominales; U14 partículas -lah/-kah; U15 adición/foco con pun/pula; U16 limitadores y alcance con hanya/cuma/saja/terutama; U17 discurso referido/preguntas indirectas con bahwa/apakah; U18 complementos de intención y órdenes/peticiones con supaya/agar, sujeto compartido y pasivas; U19 relativas nominalizadas y cláusulas identificativas con yang, foco y negación; U20 coordinación correlativa baik ... maupun; U21 corrección contrastiva bukan/bukannya ... melainkan/tetapi. La hoja de ruta U20–U60 está en docs/B2_U20_U60_ROADMAP.md; U36–U60 están integradas en main; U20–U35 también están integradas en main. No exigir muestras MMS: MMS está abandonado. No añadir ningún otro idioma hasta completar el indonesio hasta B2.
-2. **Inglés:** se añadirá después del indonesio, desde nivel cero (A1), pensado para hispanohablantes. Incluir pronunciación con audio o transcripción sencilla, falsos amigos y verbos frasales.
-3. **Otros idiomas:** no hay ningún otro idioma planificado por ahora. Cualquier idioma adicional lo decidirá el dueño más adelante.
+## Hoja de ruta multiidioma (decisión aprobada: 22 nov 2026)
+La UI, navegación y explicaciones de Guardi permanecen en español. El catálogo y la secuencia aprobados son:
+1. Portugués de Brasil (pt-BR) — voz candidata pt_BR-faber-medium; fuente candidata brazilian-portuguese-cefr-vocabulary.
+2. Inglés (en) — en_US-lessac-medium; English Vocabulary Profile y CEFR-English-Vocabulary-List.
+3. Italiano (it) — it_IT-riccardo (catálogo consultado indica x_low); listas QCER y repositorios italian-cefr-vocabulary.
+4. Francés (fr) — fr_FR-upmc-medium; Français Fondamental y french-cefr-vocabulary.
+5. Alemán (de) — voz thorsten propuesta sin confirmar; listas Goethe-Institut y german-cefr-vocabulary.
+6. Neerlandés (nl) — nl_NL-mls-medium; Staatsexamen NT2 y dutch-cefr-vocabulary.
+7. Ruso (ru) — ru_RU-ruslan-medium; Russian CEFR Vocabulary y russian-cefr-vocabulary.
+8. Japonés (ja) — modelo Piper/runtime por seleccionar; JLPT N5–N1 y jlpt-vocabulary.
+9. Coreano (ko) — catálogo consultado muestra ko_KR/Kss, no ko_KO; TOPIK 1–6 y topik-vocabulary.
+10. Indonesio (id) — currículo existente; mantener voz Piper id_ID-news_tts-medium como configuración actual.
+Las voces y listas son candidatas: verificar licencia, versión, disponibilidad, tamaño y runtime antes de integrarlas. Priorizar licencias MIT, CC-BY o CC0; no copiar datasets sin licencia clara.
+
+**Regla secuencial obligatoria:** comenzar por portugués brasileño y completar A1 → A2 → B1 → B2 antes de iniciar inglés. Repetir en el orden indicado; el indonesio se conserva como curso existente y se audita/consolida en su turno. No iniciar un idioma siguiente antes de completar el actual. El objetivo arquitectónico es admitir hasta diez idiomas, pero solo activar niveles con currículo realmente implementado y probado.
+
+El usuario aprobó la refactorización incremental de robustez y núcleo multiidioma. Se permite preparar el registro de los diez idiomas, gestor/cargador, aislamiento de progreso y compatibilidad con datos antiguos. Esto sustituye las restricciones anteriores de no hacer refactorización general ni añadir idiomas adicionales.
 
 ### Regla de independencia del idioma
 - Todo código y estructura de datos nuevos deben ser independientes del idioma: no introducir textos, rutas, nombres de archivo, identificadores ni reglas fijas que solo funcionen para el indonesio.
 - No hacer ahora una refactorización general ni migrar el currículo existente. El alcance es preventivo: evitar nuevas dependencias del indonesio al añadir o modificar código y datos, de modo que incorporar inglés no exija una reestructuración grande.
 - Cuando un PR afecte esta hoja de ruta, la arquitectura multiidioma o la preparación para inglés, debe registrar la hoja de ruta vigente y cualquier impacto o desviación en MEMORY.md y en la descripción del PR.
-- Esta regla no autoriza a empezar inglés antes de completar indonesio hasta B2 ni a introducir idiomas adicionales no decididos por el dueño.
+- Esta regla no autoriza a saltar el orden secuencial aprobado ni a activar cursos sin contenido completo y pruebas.
 
 ## Pensar en crecer (sin sobrediseñar)
-- Aplicar la hoja de ruta del 5 nov 2026: indonesio hasta B2 → inglés A1 para hispanohablantes; no hay otros idiomas planificados. Todo código y estructura de datos nuevos deben ser independientes del idioma. No hacer ahora una refactorización general ni añadir inglés antes de completar indonesio hasta B2.
+- Aplicar la hoja de ruta multiidioma aprobada el 22 nov 2026: portugués brasileño → inglés → italiano → francés → alemán → neerlandés → ruso → japonés → coreano → indonesio. Todo código y estructura de datos nuevos deben ser independientes del idioma. Completar A1–B2 de cada idioma antes de iniciar el siguiente.
 - Compartir con otros: el contenido debe estar separado del código (datos por idioma, nivel y unidad), para que añadir un curso o corregir una lección no obligue a tocar la lógica.
 - Cada persona guarda su progreso en su propio dispositivo. Debe seguir siendo posible exportar e importar el progreso (backup v3) sin romper compatibilidad.
 - Cualquier decisión de escalabilidad debe mantener cero backend y cero costo. Si una idea requiere servidor, cuentas o pago, no se implementa: me la propones aparte.

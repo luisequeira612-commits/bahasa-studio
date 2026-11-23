@@ -449,7 +449,7 @@ test('compact language picker is accessible, catalog-driven and fits the 360px l
     assert.ok(currentProgress.includes('A1 · ' + levelChipPercent + ' completado'),
       'language sheet and level chip must use the same active-course progress');
     assert.deepEqual(await page.locator('#studyLanguageUpcomingList .language-picker-name strong').allTextContents(),
-      ['Portugués de Brasil', 'Inglés', 'Italiano', 'Francés', 'Alemán', 'Neerlandés', 'Ruso', 'Japonés', 'Coreano']);
+      ['Portugués', 'Inglés', 'Italiano', 'Francés', 'Alemán', 'Neerlandés', 'Ruso', 'Japonés', 'Coreano']);
     assert.equal(await page.locator('#studyLanguageAvailableSection').isHidden(), true,
       'Disponibles is omitted while Indonesian is the only ready course');
     assert.equal(await page.locator('#studyLanguageUpcomingList .language-picker-row').count(), 9);

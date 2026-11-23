@@ -145,7 +145,7 @@
 
     function skillForExercise(type, hasAudio) {
         if (hasAudio) return 'listening';
-        const mapping = { mc: 'recognition', match: 'recognition', translate_es_id: 'translation', listen: 'listening', order: 'sentenceBuilding', write: 'writing' };
+        const mapping = { mc: 'recognition', match: 'recognition', translate_es_id: 'translation', translate_es_target: 'translation', listen: 'listening', order: 'sentenceBuilding', write: 'writing' };
         return mapping[type] || null;
     }
 

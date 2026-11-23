@@ -171,3 +171,14 @@ test('service worker installs its declared cache, removes only older app caches 
   assert.equal(claimed, true);
   assert.ok(cacheStore.has(cacheName));
 });
+
+
+test('voice test uses the active language phrase and never falls back to Indonesian', async () => {
+  const languageManager = await read('language-manager.js');
+  const audioEngine = await read('audio-engine.js');
+  assert.match(languageManager, /id: Object\.freeze\(\{[^}]*testPhrase:\s*'terima kasih'/s);
+  assert.match(audioEngine, /const language = this\.getLanguageConfig\(\);[\s\S]*?const phrase = String\(language\.testPhrase \|\| ''\)\.trim\(\)/);
+  assert.match(audioEngine, /if \(!phrase\)[\s\S]*?return false;/);
+  assert.match(audioEngine, /return this\.speak\(phrase\);/);
+  assert.doesNotMatch(audioEngine, /return this\.speak\('terima kasih'\)/);
+});

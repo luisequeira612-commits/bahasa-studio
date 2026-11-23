@@ -88,7 +88,7 @@ write(u1[1].id,'Escribe una frase de presentación con você.','Você é Luis.')
 };
 
 const u2Lessons=[
-lesson('Lección 1: Estados con estar','Expresa cómo te encuentras y dónde estás.','Estar se conjuga: eu estou; você está. Se usa aquí para estados y ubicación.',u2.slice(0,3).map(x=>x.id),[],[
+lesson('Lección 1: Estados con estar','Expresa cómo te encuentras y dónde estás.','Estar se conjuga: eu estou; você está. Se usa aquí para estados y ubicación.',u2.slice(0,3).map(x=>x.id).concat([u2[9].id]),[],[
 match('Empareja las formas de estar.',[{left:'eu estou',right:'yo estoy'},{left:'você está',right:'tú estás' }]),
 mc(u2[1].id,'Completa: Eu ___ bem.',['estou','está','sou'],0)
 ]),
@@ -96,7 +96,7 @@ lesson('Lección 2: Nacionalidades','Nombra nacionalidades en masculino y femeni
 match('Relaciona las nacionalidades.',[{left:'brasileiro',right:'brasileño'},{left:'brasileira',right:'brasileña'},{left:'nicaraguense',right:'nicaragüense'}]),
 mc(u2[5].id,'¿Cómo se dice «nicaragüense»?',['nicaraguense','nicaraguensa','nicaraguenses'],0)
 ]),
-lesson('Lección 3: Artículos definidos','Reconoce o, a, os y as.','O y a son singulares; os y as son plurales. El artículo concuerda con el sustantivo.',u2.slice(8,10).map(x=>x.id),[],[
+lesson('Lección 3: Artículos definidos','Reconoce o, a, os y as.','O y a son singulares; os y as son plurales. El artículo concuerda con el sustantivo.',[u2[8].id],[],[
 match('Empareja los artículos.',[{left:'o',right:'el'},{left:'a',right:'la'},{left:'os',right:'los'},{left:'as',right:'las'}]),
 mc(u2[8].id,'¿Qué artículo significa «los»?',['a','os','as'],1)
 ]),

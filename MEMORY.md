@@ -1,12 +1,18 @@
+## 2026-11-23 — PR #729 fusionada: preservar audio ante hashes SHA-256 malformados
+- PR [#729](https://github.com/luisequeira612-commits/bahasa-studio/pull/729) fusionada mediante squash en `main`; head validado `159ed558eba3037ff857b48e2e4125dc0451596c`, commit integrado `7def9f7c9828e85fe9038ffa009d39b0bd8339a0`.
+- CI final #45127449881: `test` completó 98 pasos con éxito, incluidos tests de audio/caché, E2E en navegador real, evaluación y preview; `Offline quality reports` también terminó con éxito. Sin reviews ni hilos pendientes.
+- La prueba de hash malformado se corrigió para exigir que los bytes no verificados permanezcan almacenados para verificación futura, pero no se sirvan desde caché; la reproducción online continúa. No se relajó la implementación.
+- Alcance: `service-worker.js`, `tests/service-worker-audio-cache.test.cjs` y `MEMORY.md`; sin cambios en audios/inventarios productivos, IndexedDB v1, backup JSON v3 ni dependencias.
+
 ## 2026-11-23 — PR #729: ajustar regresión de caché no verificable
 - CI #45126091140 falló únicamente en la prueba nueva de hash malformado: la prueba esperaba que el audio cacheado se borrara tras impedir su reproducción. Eso contradice el objetivo de preservar físicamente la copia para una verificación futura.
 - Se corrige la prueba para exigir simultáneamente que la respuesta servida sea el audio online y que la copia cacheada original permanezca almacenada, sin servirla ni eliminarla. La regresión anterior de migración legacy pasó.
-- La implementación no se relajó; pendiente de repetir CI completo.
+- La implementación no se relajó; la repetición completa del CI terminó en verde (run #45127449881) y la PR #729 se fusionó.
 
-## 2026-11-23 — PR en preparación: preservar audio ante hashes SHA-256 malformados
+## 2026-11-23 — PR #729: preservar audio ante hashes SHA-256 malformados
 - Auditoría posterior a PR #728 detectó que el Service Worker distinguía hash ausente de hash presente sin validar formato. Un hash malformado podía provocar que se eliminara una copia cacheada actual o que se limpiara una caché legacy sin haber podido verificar el audio; en reproducción online también podía rechazarse un MP3 válido solo por metadata malformada.
 - La corrección trata hashes ausentes o malformados como evidencia no disponible: no sirve bytes cacheados sin verificar, no los elimina solo por falta de evidencia, no migra ni borra la única copia legacy y permite reproducción online sin persistencia offline. Un hash SHA-256 válido que no coincide sigue invalidando el contenido.
-- Añade regresiones para migración legacy con hash malformado, preservación de caché actual y reproducción online. Pendiente de CI y revisión. No cambia inventarios productivos, audios, IndexedDB v1, backup JSON v3 ni dependencias.
+- Añade regresiones para migración legacy con hash malformado, preservación de caché actual y reproducción online. CI final #45127449881 y revisión completados; PR #729 fusionada mediante squash en `main` (commit `7def9f7c9828e85fe9038ffa009d39b0bd8339a0`). No cambia inventarios productivos, audios, IndexedDB v1, backup JSON v3 ni dependencias.
 
 ## 2026-11-23 — PR #728: corregir fixture de caché Range pt-BR
 - El CI #45124084489 volvió a fallar únicamente en `tests/service-worker-audio-range.test.cjs`: la respuesta Range 206 era correcta, pero la prueba buscaba el clip cacheado bajo `sample.mp3`, mientras que la solicitud real usaba el ID hexadecimal `0123456789ab`. Además, ese nombre ficticio no podía producir un ID verificable para SHA-256.

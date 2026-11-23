@@ -56,7 +56,10 @@ test('each pilot unit has five explicit lessons and valid vocabulary references'
 test('U3 teaches numbers 1-20 and recycles exactly two U1 questions',async()=>{
  const {loader}=createPilot();
  const {units}=await loader.loadUnits('pt-BR','A1',[1,2,3]);
- const [u1,,u3]=units;
+ const [u1,u2,u3]=units;
+ assert.equal(u1.vocab.length,10);
+ assert.equal(u2.vocab.length,10);
+ assert.equal(u3.vocab.length,30);
  assert.equal(u3.exercises.length,10);
  const numberWords=u3.vocab.filter(word=>word.id.startsWith('ptbr_a1_u3_n'));
  assert.equal(numberWords.length,20);

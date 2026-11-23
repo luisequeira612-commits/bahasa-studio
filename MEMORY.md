@@ -1,11 +1,11 @@
 ## 2026-11-23 — Rama preparada: pt-BR A1 U19–U21
 
-- Rama `feat/pt-br-a1-u19-u21`, creada sobre el HEAD de la PR #748 (`8a5cb7d80e3f7370a71c2f68b807419f7250b9a8`); todavía no se ha abierto PR porque #748 sigue pendiente de CI.
+- Rama `feat/pt-br-a1-u19-u21`, creada sobre el HEAD de la PR #748 (`8a5cb7d80e3f7370a71c2f68b807419f7250b9a8`); PR apilada #749 abierta sobre `feat/pt-br-a1-u16-u18` para validar el conjunto acumulado; no fusionar hasta integrar #748 en `main` y retargetear #749.
 - U19 meses, fechas y cumpleaños; U20 restaurante, menú, pedidos, comidas y cuenta; U21 tareas domésticas.
 - Cada unidad aporta diez términos, cinco lecciones y diez ejercicios finales. Las referencias de repaso apuntan a vocabulario ya existente; los términos nuevos siguen `not_checked`.
 - Manifiesto ampliado a U1–U21 de 24; `pt-BR available:false` se mantiene. Nuevo bloque `units-19-21.js` añadido al precache; cache del Service Worker pasa a `bahasa-studio-v3.8.129`.
 - Añadidas pruebas Node para contratos y disponibilidad; Playwright amplía la carga offline a U1–U21 y mantiene la prueba de aislamiento del progreso por idioma. No se modifica IndexedDB v1 ni backup JSON v3; sin dependencias, backend o audio nuevo.
-- La PR #748 (head `8a5cb7d80e3f7370a71c2f68b807419f7250b9a8`, run `45222982492`) seguía con `test` en `Install Chromium` y `Offline quality reports` en éxito al iniciar esta rama. No fusionar #748 ni abrir/ fusionar #749 hasta que el CI del head actual de #748 finalice satisfactoriamente.
+- La PR #748 (head `8a5cb7d80e3f7370a71c2f68b807419f7250b9a8`, run `45222982492`) y la PR #749 (head `e1b0b1316cb01f85fc055ca61bc05d523e144aa4`, run `45224311772`) tienen `Offline quality reports` en éxito; ambos jobs `test` siguen en `Install Chromium`, sin fallos reportados. No fusionar #748 hasta que su CI finalice satisfactoriamente; no fusionar #749 hasta integrar #748 en `main`, retargetearla y validar el head final.
 
 ## 2026-11-23 — PR #748 preparada: pt-BR A1 U16–U18
 

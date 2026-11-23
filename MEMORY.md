@@ -707,3 +707,5 @@
 - PR #712 sincronizó estado B2 U1–U60 y se fusionó en main (8df80778). La persistencia navigator.storage.persist() ya existía; no duplicarla. PR de robustez añade metadatos sociales, licencia y validación más estricta de backup v3 manteniendo IndexedDB v1; el único idioma restaurable en esta fase es id y los backups v3 históricos sin language se interpretan como id.
 
 - PR #713 CI detectó una aserción de regresión desactualizada que esperaba el objeto normalizado v3 sin el nuevo campo language; el código pasó el parseo y el fallo no indica corrupción ni fallo de importación. Se actualiza la expectativa para incluir language y se espera una nueva ejecución completa.
+
+- Segunda ejecución CI de PR #713 encontró otra aserción de fuente antigua en la prueba legacy SRS, que buscaba el objeto v3 sin language. La nueva suite de backup y la primera expectativa ya pasaron; se actualiza esta última aserción y se repetirá CI.

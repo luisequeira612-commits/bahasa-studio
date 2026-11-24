@@ -536,3 +536,5 @@ Fuente: GitHub Actions run #45304701798, job `test`, archivos de pruebas A2/U22�
 
 - Diagnóstico adicional del E2E: el test esperaba B1 U1–U18, pero todavía llamaba al loader con U1–U15. Se amplió la llamada a U1–U18; el Service Worker ya incluía el bloque U16–U18 y el manifiesto lo publicaba.
 - También se actualizó el contrato histórico de precache U22–U24 a la caché v3.8.146. La siguiente ejecución debe verificar estos cambios y la corrección de términos U17.
+
+- La ejecución #45309751749 redujo los fallos a una sola prueba: el test U22–U24 conservaba una expresión regular literal con `3.8.145` (sin puntos escapados), por lo que el reemplazo previo no la había actualizado. Se corrigió explícitamente a `3.8.146`; las 237 pruebas restantes pasaron y la auditoría offline también.

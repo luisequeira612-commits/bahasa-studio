@@ -18760,7 +18760,7 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                 area.innerHTML = `
                     <div class="feedback-box">
                         <strong>Tu respuesta:</strong><p style="white-space:pre-wrap;">${App.escapeHtml(input)}</p>
-                        <strong>Un ejemplo posible:</strong><p lang="${ex.answerLanguage === 'es' ? 'es' : 'id'}" style="white-space:pre-wrap;">${App.escapeHtml(ex.modelAnswer || '')}</p>
+                        <strong>Un ejemplo posible:</strong><p lang="${App.escapeHtml(ex.answerLocale || ex.targetLocale || 'und')}" style="white-space:pre-wrap;">${App.escapeHtml(ex.modelAnswer || '')}</p>
                         <small>${App.escapeHtml(ex.explanation || 'Compara el orden de las palabras y el vocabulario. Puede haber otras respuestas correctas.')}</small>
                     </div>
                     <section class="card" data-writing-review>

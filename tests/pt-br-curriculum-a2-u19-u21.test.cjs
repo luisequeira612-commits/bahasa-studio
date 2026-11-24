@@ -87,7 +87,7 @@ test('U19-U21 introduce no exact normalized vocabulary duplicates against A1 and
  assert.equal(new Set(added).size,30);
  assert.deepEqual(added.filter(word=>previous.includes(word)),[]);
 });
-test('service worker precaches A2 U19-U21 with cache v3.8.147',()=>{
+test('service worker precaches A2 U19-U21 with cache v3.8.148',()=>{
  const source=fs.readFileSync(path.join(repo,'service-worker.js'),'utf8');
  assert.match(source,/units-19-21\.js/);
  assert.match(source,/curriculum\/a2\/index\.js/);

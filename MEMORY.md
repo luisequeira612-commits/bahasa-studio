@@ -556,3 +556,13 @@ Fuente: rama `feat/pt-br-b1-u19-u21`, archivos curriculares/manifiesto/Service W
 - La PR permanece abierta y no fusionada hasta ejecutar CI completo sobre el head corregido. No cambiar disponibilidad del curso ni contratos de persistencia.
 
 Fuente: GitHub Actions run #45314054499, job test, PR #769 y archivos de contratos/currículo; 24 nov 2026.
+
+
+## 2026-11-24 — Portugués B1 U22–U24 en preparación
+- Tras fusionar PR #769, `main` quedó en `79c10046626ef48f21696dd29f4ecc7ce32a7a9a`. La regresión post-merge #45318720549 terminó con `test` 101/101 y `Offline quality reports` 10/10 en success; Pages #45318719535 completó build, deploy y report-build-status en success.
+- Rama `feat/pt-br-b1-u22-u24` creada desde ese `main`. U22 inclusión digital y servicios públicos; U23 preparación ante emergencias; U24 seguridad y prevención en el trabajo.
+- Bloque nuevo: 30 términos (10 por unidad), cinco lecciones por unidad, diez ejercicios MC finales por unidad y 15 referencias de repaso A2. Ejemplos PT-BR/ES; cada término conserva `verification.status: not_checked`. La auditoría de duplicados compara A1, A2 y B1 U1–U21; no se marca ninguna entrada como validada lingüísticamente.
+- Se amplía el manifiesto B1 a U1–U24 de 36 (24/36; 66,7 %), se añade `units-22-24.js` al precache y se incrementa la caché de app shell a `bahasa-studio-v3.8.148`. Se añade contrato Node dedicado y se amplía la prueba E2E offline a B1 U1–U24. CI de esta rama pendiente; no fusionar hasta que todos los checks pasen y después verificar regresión post-merge y Pages.
+- `pt-BR available:false` permanece. Sin dependencias nuevas, backend, audio/TTS, cambios de IndexedDB v1 ni backup JSON v3.
+
+Fuente: main commit `79c1004`, PR #769, Actions #45318720549/#45318719535 y rama `feat/pt-br-b1-u22-u24`; 24 nov 2026.

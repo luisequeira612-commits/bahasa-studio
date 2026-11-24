@@ -16,7 +16,10 @@ test('las tarjetas de lección usan el adaptador común y el locale objetivo', (
 
     assert.ok(start >= 0, 'el renderizador de vocabulario está definido');
     assert.match(renderer, /CurriculumLoader\.adaptVocabulary\(v, language\)/);
-    assert.match(renderer, /LanguageManager\.getLocale\(language\)/);
+    const introStart = html.lastIndexOf('const language = LanguageManager.getActiveLanguage();', start);
+    const introSetup = html.slice(introStart, start);
+    assert.ok(introStart >= 0, 'lesson intro resolves the active language before rendering');
+    assert.match(introSetup, /LanguageManager\.getLocale\(language\)/);
     assert.match(renderer, /word\.example/);
     assert.match(renderer, /lang="\$\{App\.escapeHtml\(locale\)\}"/);
     assert.doesNotMatch(renderer, /v\.idn|lang="id"/);

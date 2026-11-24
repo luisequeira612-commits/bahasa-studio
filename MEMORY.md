@@ -1,3 +1,8 @@
+## 2026-11-24 — Contrato de aislamiento de planificación SRS por idioma (PR siguiente)
+- Tras fusionar PR #784 (commit `29fcbe087016d19aa0dbc0e73e354f6bd509c232`), la revisión del helper `ProgressNamespace` confirma que SRS conserva IDs legacy de indonesio y usa claves `codigo::id` para los demás idiomas. La prueba previa solo diferenciaba `repetition`; se amplía para cubrir intentos, aciertos/errores, intervalo, factor de facilidad, próxima revisión y última revisión con el mismo ID lógico en tres idiomas.
+- Esta cobertura valida el filtro/namespace puro; no afirma activación de pt-BR ni cambia IndexedDB v1, backup JSON v3 o la disponibilidad de cursos. La integración de runtime y la adaptación visual del SRS siguen siendo tareas separadas.
+Fuente: `progress-namespace.js`, `tests/progress-namespace.test.cjs`, PR #784 y commit merge; 24 nov 2026.
+
 ## 2026-11-24 — Anclaje estable del test de fallback de traducción (PR #784)
 - CI #45494338225 volvió a detectar un fallo exclusivo del contrato: el test buscaba una frase de comentario que no existe en la versión final de `index.html`; la comprobación no encontraba el fallback aunque el guard multilingüe sí está presente.
 - Se ancla la prueba al guard de comportamiento `isSpanishSource && activeLanguage === 'id'`, y mantiene la verificación del recorrido de niveles/unidades y el límite B2 U1–U60. Sin cambios de producción, currículo ni persistencia.

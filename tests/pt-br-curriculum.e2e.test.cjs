@@ -69,7 +69,7 @@ test('Playwright: carga A1 U1-U24, A2 U1-U30 y B1 U1-U18 offline, aislando el pr
   const result=await page.evaluate(async()=>{
    const curriculum=await CurriculumLoader.loadUnits('pt-BR','A1',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]);
    const a2=await CurriculumLoader.loadUnits('pt-BR','A2',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]);
-   const b1=await CurriculumLoader.loadUnits('pt-BR','B1',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]);
+   const b1=await CurriculumLoader.loadUnits('pt-BR','B1',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]);
    const u3=curriculum.units[2];
    const previous=new Set(curriculum.units[0].vocab.map(word=>word.id));
    const recycled=u3.exercises.filter(ex=>previous.has(ex.vocabId)).map(ex=>ex.vocabId);

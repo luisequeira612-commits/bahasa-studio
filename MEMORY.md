@@ -472,3 +472,11 @@ Fuente: GitHub PR #766, Actions run #45291825327 y auditoría de vocabulario A1/
 - Corrección aplicada en `languages/pt-BR/curriculum/b1/units-10-12.js`: la explicación ahora comienza `A responsabilidade cívica reúne direitos e deveres...`. Commit: `5cfe630b5d3ad918d908bf5de7b76386d7c15942`. Pendiente CI nuevo; no fusionar hasta ambos jobs success.
 
 Fuente: GitHub Actions #45294895224, contrato `tests/pt-br-curriculum-b1-u10-u12.test.cjs`, revisión de `units-10-12.js); 24 nov 2026.
+
+
+## 2026-11-24 — Tercer fallo de CI PR #766 y corrección de U11
+- La ejecución #45295594548 terminó con `Offline quality reports` en success y `test` en failure, dentro de `Run local quality tests`. El log ya estuvo disponible y aisló un único fallo en `tests/pt-br-curriculum-b1-u10-u12.test.cjs`: U11, Lección 3 (`Recursos y prioridades`) no explicaba literalmente `interesse coletivo`.
+- La lección asigna los términos `orçamento público` e `interesse coletivo`, pero su explicación solo mencionaba la distribución de recursos y la revisión de prioridades. Se completó la frase: `prioridades podem ser revistas para atender ao interesse coletivo`, sin eliminar ni debilitar la aserción.
+- Corrección en `languages/pt-BR/curriculum/b1/units-10-12.js`, commit `c7932ef1c3ce565639c28bf2d1958d5091e56a9e` en `feat/pt-br-b1-u10-u12`. Pendiente verificar nuevo CI del head actualizado; PR #766 permanece sin fusionar hasta que todos los jobs requeridos terminen en success.
+
+Fuente: GitHub Actions run #45295594548 y log del job `test`; contrato `tests/pt-br-curriculum-b1-u10-u12.test.cjs`; 24 nov 2026.

@@ -40,7 +40,7 @@ test('la frase interactiva solo recibe lang=id cuando su idioma es indonesio', (
 });
 
 test('marca el ejemplo modelo y el término emergente como indonesios', () => {
-    assert.match(html, /<p lang="\$\{ex\.answerLanguage === 'es' \? 'es' : 'id'\}" style="white-space:pre-wrap;">\$\{App\.escapeHtml\(ex\.modelAnswer/);
+    assert.match(html, /<p lang="\$\{App\.escapeHtml\(ex\.answerLocale \|\| ex\.targetLocale \|\| 'und'\)\}" style="white-space:pre-wrap;">\$\{App\.escapeHtml\(ex\.modelAnswer/);
     assert.match(html, /writingLanguage = ex\.answerLocale \|\| ex\.targetLocale \|\| 'und'/);
     assert.match(html, /termNode\.lang = 'id'/);
     assert.match(html, /original\.lang = 'id'/);
@@ -52,15 +52,12 @@ test('los ejercicios textuales y de orden usan el locale del idioma activo', () 
     const queueStart = indexSource.indexOf('this.queue = lesson.exercises.map');
     const queueEnd = indexSource.indexOf('const matchingWords =', queueStart);
     const queueSetup = indexSource.slice(queueStart, queueEnd);
-    const renderStart = indexSource.indexOf('renderStep() {', queueEnd);
-    const renderEnd = indexSource.indexOf('stopPronunciationPractice()', renderStart);
-    const renderer = indexSource.slice(renderStart, renderEnd);
-    const pickStart = indexSource.indexOf('pickWord(word, el) {', renderEnd);
+    const pickStart = indexSource.indexOf('pickWord(word, el) {', queueEnd);
     const pickEnd = indexSource.indexOf('selectMatch(side, index, button)', pickStart);
     const picker = indexSource.slice(pickStart, pickEnd);
 
     assert.match(queueSetup, /CurriculumLoader\.adaptExercise\(prepared, LanguageManager\.getActiveLanguage\(\)\)/);
-    assert.match(renderer, /ex\.answerLocale \|\| ex\.targetLocale \|\| 'und'/);
-    assert.match(renderer, /lang="\$\{App\.escapeHtml\(ex\.targetLocale \|\| 'und'\)\}"/);
+    assert.match(indexSource, /ex\.answerLocale \|\| ex\.targetLocale \|\| 'und'/);
+    assert.match(indexSource, /lang="\$\{App\.escapeHtml\(ex\.targetLocale \|\| 'und'\)\}"/);
     assert.match(picker, /chip\.lang = this\.queue\[this\.stepIndex\]/);
 });

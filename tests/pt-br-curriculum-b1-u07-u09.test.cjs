@@ -55,7 +55,7 @@ test('B1 manifest publishes exactly U1-U30 of 36 and remains unavailable in the 
 });
 test('B1 U7-U9 review references resolve to existing A2 vocabulary IDs',async()=>{
  const {loader}=createPilot(),{units}=await loader.loadUnits('pt-BR','B1',[7,8,9]);
- const {units:a2}=await loader.loadUnits('pt-BR','A2',Array.from({length:33},(_,i)=>i+1));
+ const {units:a2}=await loader.loadUnits('pt-BR','A2',Array.from({length:30},(_,i)=>i+1));
  const ids=new Set(a2.flatMap(unit=>unit.vocab.map(word=>word.id)));
  for(const unit of units)for(const lesson of unit.lessons)for(const id of lesson.reviewVocabIds)assert.ok(ids.has(id),id);
 });

@@ -436,7 +436,8 @@ test('B2 U9 implements five authored lessons and 16 exercises using only the fiv
   }).length >= 5, 'U9 must include at least five sentence-level targets');
   assert.match(indexSource, /!unit\.vocab\.length && !\(Array\.isArray\(unit\.lessons\) && unit\.lessons\.length\)/);
   assert.match(indexSource, /const activeRecallTarget = unit\.vocab\.length \?/);
-  assert.match(indexSource, /writingLanguage = ex\.answerLanguage === 'es' \? 'es' : 'id'/);
+  assert.match(indexSource, /writingLanguage = ex\.answerLocale \|\| ex\.targetLocale \|\| 'und'/);
+  assert.doesNotMatch(indexSource, /writingLanguage = ex\.answerLanguage === 'es' \? 'es' : 'id'/);
 });
 
 

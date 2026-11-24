@@ -27,8 +27,8 @@ test('las tarjetas de lección usan el adaptador común y el locale objetivo', (
 
 test('marca las fichas del diccionario y los bancos de ordenación', () => {
     assert.match(html, /<strong lang="id">\$\{App\.escapeHtml\(v\.idn\)\}<\/strong>/);
-    assert.match(html, /class="word-chip" lang="id" data-word=/);
-    assert.match(html, /chip\.lang = 'id'/);
+    assert.match(html, /class="word-chip" lang="\$\{App\.escapeHtml\(ex\.targetLocale \|\| 'und'\)\}" data-word=/);
+    assert.match(html, /chip\.lang = this\.queue\[this\.stepIndex\]\?\.targetLocale/);
 });
 
 test('marca las opciones indonesias de emparejamiento', () => {
@@ -40,8 +40,24 @@ test('la frase interactiva solo recibe lang=id cuando su idioma es indonesio', (
 });
 
 test('marca el ejemplo modelo y el término emergente como indonesios', () => {
-    assert.match(html, /<p lang="\$\{ex\.answerLanguage === 'es' \? 'es' : 'id'\}" style="white-space:pre-wrap;">\$\{App\.escapeHtml\(ex\.modelAnswer/);
-    assert.match(html, /writingLanguage = ex\.answerLanguage === 'es' \? 'es' : 'id'/);
+    assert.match(html, /<p lang="\$\{App\.escapeHtml\(ex\.answerLocale \|\| ex\.targetLocale \|\| 'und'\)\}" style="white-space:pre-wrap;">\$\{App\.escapeHtml\(ex\.modelAnswer/);
+    assert.match(html, /writingLanguage = ex\.answerLocale \|\| ex\.targetLocale \|\| 'und'/);
     assert.match(html, /termNode\.lang = 'id'/);
     assert.match(html, /original\.lang = 'id'/);
+});
+
+
+test('los ejercicios textuales y de orden usan el locale del idioma activo', () => {
+    const indexSource = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+    const queueStart = indexSource.indexOf('this.queue = lesson.exercises.map');
+    const queueEnd = indexSource.indexOf('const matchingWords =', queueStart);
+    const queueSetup = indexSource.slice(queueStart, queueEnd);
+    const pickStart = indexSource.indexOf('pickWord(word, el) {', queueEnd);
+    const pickEnd = indexSource.indexOf('selectMatch(side, index, button)', pickStart);
+    const picker = indexSource.slice(pickStart, pickEnd);
+
+    assert.match(queueSetup, /CurriculumLoader\.adaptExercise\(prepared, LanguageManager\.getActiveLanguage\(\)\)/);
+    assert.match(indexSource, /ex\.answerLocale \|\| ex\.targetLocale \|\| 'und'/);
+    assert.match(indexSource, /lang="\$\{App\.escapeHtml\(ex\.targetLocale \|\| 'und'\)\}"/);
+    assert.match(picker, /chip\.lang = this\.queue\[this\.stepIndex\]/);
 });

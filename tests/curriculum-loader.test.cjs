@@ -165,3 +165,46 @@ test('lesson vocabulary cards use the common adapter and the active target local
     assert.match(renderer, /lang="\$\{App\.escapeHtml\(locale\)\}"/);
     assert.doesNotMatch(renderer, /v\.idn|lang="id"/);
 });
+
+
+test('adapts exercise answer locales without rewriting authored fields or acceptance rules', () => {
+    const loader = createLoader();
+    const indonesian = {
+        type: 'fill', prompt: 'Completa la frase', answer: 'makan',
+        acceptedAnswers: ['makan', 'sedang makan']
+    };
+    const portuguese = {
+        type: 'fill', prompt: 'Complete a frase', answer: 'café da manhã',
+        acceptedAnswers: ['café da manhã', 'desjejum']
+    };
+    const spanish = { type: 'translate_id_es', prompt: 'Traduce', answer: 'comer' };
+    const explicitSpanish = { type: 'fill', prompt: 'Parafrasea', answer: 'comer', answerLanguage: 'es' };
+    const original = JSON.stringify(portuguese);
+
+    const idView = loader.adaptExercise(indonesian, 'id');
+    const ptView = loader.adaptExercise(portuguese, 'pt-BR');
+    const esView = loader.adaptExercise(spanish, 'pt-BR');
+    const explicitEsView = loader.adaptExercise(explicitSpanish, 'pt-BR');
+
+    assert.equal(idView.targetLocale, 'id-ID');
+    assert.equal(idView.answerLanguage, 'id');
+    assert.equal(idView.answerLocale, 'id-ID');
+    assert.equal(ptView.targetLocale, 'pt-BR');
+    assert.equal(ptView.answerLanguage, 'pt-BR');
+    assert.equal(ptView.answerLocale, 'pt-BR');
+    assert.equal(Object.isFrozen(ptView), true);
+    assert.deepEqual(JSON.parse(JSON.stringify(ptView.acceptedAnswers)), ['café da manhã', 'desjejum']);
+    assert.equal(esView.answerLanguage, 'es');
+    assert.equal(esView.answerLocale, 'es');
+    assert.equal(explicitEsView.answerLocale, 'es');
+    assert.equal(JSON.stringify(portuguese), original);
+    assert.equal(ptView.answer, 'café da manhã');
+    assert.equal(ptView.answerLocale, 'pt-BR');
+});
+
+test('rejects invalid exercise values and unsupported language codes', () => {
+    const loader = createLoader();
+    assert.equal(loader.adaptExercise(null, 'id'), null);
+    assert.equal(loader.adaptExercise([], 'id'), null);
+    assert.equal(loader.adaptExercise({ type: 'fill' }, '../id'), null);
+});

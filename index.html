@@ -18362,10 +18362,11 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                         Array.isArray(exercise.options) && Number.isInteger(exercise.answer) &&
                         typeof exercise.options[exercise.answer] === 'string';
                     const prepared = isSentenceCompletion
-                        ? { ...exercise, type: 'fill', answer: exercise.options[exercise.answer], answerLanguage: 'id', direction: 'id→id (completar)' }
+                        ? { ...exercise, type: 'fill', answer: exercise.options[exercise.answer], answerLanguage: LanguageManager.getActiveLanguage(), direction: 'id→id (completar)' }
                         : { ...exercise };
+                    const adapted = CurriculumLoader.adaptExercise(prepared, LanguageManager.getActiveLanguage()) || prepared;
                     return {
-                        ...prepared,
+                        ...adapted,
                         _auditExerciseId: exercise.id || unit.id + ':lesson-' + (lesson.index + 1) + ':exercise-' + (index + 1)
                     };
                 });
@@ -18534,9 +18535,9 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                     `;
                     if (ex.audioText) AudioEngine.speak(ex.audioText);
                 } else if (ex.type === 'fill') {
-                    const fillLanguage = ex.answerLanguage === 'es' ? 'es' : 'id';
-                    const fillPlaceholder = fillLanguage === 'es' ? 'Escribe tu respuesta en español...' : 'Escribe la palabra que falta...';
-                    const fillAriaLabel = fillLanguage === 'es' ? 'Respuesta en español' : 'Palabra que falta';
+                    const fillLanguage = ex.answerLocale || ex.targetLocale || 'und';
+                    const fillPlaceholder = fillLanguage === 'es' ? 'Escribe tu respuesta en español...' : 'Escribe la respuesta en el idioma objetivo...';
+                    const fillAriaLabel = fillLanguage === 'es' ? 'Respuesta en español' : 'Respuesta en el idioma objetivo';
                     container.innerHTML = `
                         <div>
                             <h3>${App.escapeHtml(ex.prompt)}</h3>
@@ -18553,7 +18554,7 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                         <div>
                             <h3>${App.escapeHtml(tapPrompt.label)}</h3>
                             ${window.renderTapTranslationSentence(tapPrompt.phrase, 'es')}
-                            <input type="text" id="textAnswer" class="input-field" autocomplete="off" placeholder="Escribe en indonesio..." style="margin-top:20px;">
+                            <input type="text" id="textAnswer" class="input-field" autocomplete="off" lang="${App.escapeHtml(ex.targetLocale || 'und')}" placeholder="Escribe en el idioma objetivo..." style="margin-top:20px;">
                         </div>
                         <div id="actionArea">
                             <button class="btn" onclick="LessonEngine.checkTranslate()">Comprobar</button>
@@ -18575,13 +18576,13 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                     const writingChecklist = getGuidedWritingChecklist(ex, this.currentUnit);
                     const checklistMarkup = writingChecklist.map(item => '<li>' + App.escapeHtml(item) + '</li>').join('');
                     const writingRows = /diálogo|dos frases|Tarea integradora/i.test(ex.prompt) ? 6 : 3;
-                    const writingLanguage = ex.answerLanguage === 'es' ? 'es' : 'id';
-                    const writingPlaceholder = writingLanguage === 'es' ? 'Escribe tu paráfrasis en español...' : 'Escribe tu respuesta en indonesio...';
+                    const writingLanguage = ex.answerLocale || ex.targetLocale || 'und';
+                    const writingPlaceholder = writingLanguage === 'es' ? 'Escribe tu paráfrasis en español...' : 'Escribe tu respuesta en el idioma objetivo...';
                     container.innerHTML = `
                         <div>
                             <p class="pill" style="display:inline-block;margin-bottom:8px;">Escritura guiada · autoevaluación</p>
                             <h3>${App.escapeHtml(ex.prompt)}</h3>
-                            <p style="margin-top:10px;color:var(--text-secondary);">${App.escapeHtml(ex.hint || 'Escribe tu propia frase en indonesio.')}</p>
+                            <p style="margin-top:10px;color:var(--text-secondary);">${App.escapeHtml(ex.hint || 'Escribe tu propia frase en el idioma objetivo.')}</p>
                             <section class="card" data-guided-writing-checklist aria-label="Lista para revisar tu escritura">
                                 <strong>Antes de revisar tu escritura, comprueba:</strong>
                                 <ul>${checklistMarkup}</ul>
@@ -18600,7 +18601,7 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                             <h3>${App.escapeHtml(ex.prompt)}</h3>
                             <div id="selectedBank" class="word-bank"></div>
                             <div id="availableBank" class="word-bank">
-                                ${shuffled.map(w => `<span class="word-chip" lang="id" data-word="${App.escapeHtml(w)}" onclick="LessonEngine.pickWord(this.dataset.word, this)">${App.escapeHtml(w)}</span>`).join('')}
+                                ${shuffled.map(w => `<span class="word-chip" lang="${App.escapeHtml(ex.targetLocale || 'und')}" data-word="${App.escapeHtml(w)}" onclick="LessonEngine.pickWord(this.dataset.word, this)">${App.escapeHtml(w)}</span>`).join('')}
                             </div>
                         </div>
                         <div id="actionArea">
@@ -18669,7 +18670,7 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                 const bank = document.getElementById('selectedBank');
                 const chip = document.createElement('span');
                 chip.className = 'word-chip';
-                chip.lang = 'id';
+                chip.lang = this.queue[this.stepIndex]?.targetLocale || LanguageManager.getLocale(LanguageManager.getActiveLanguage()) || 'und';
                 chip.innerText = word;
                 chip.onclick = () => {
                     const k = this.userOrder.lastIndexOf(word); if (k > -1) this.userOrder.splice(k, 1);
@@ -18759,7 +18760,7 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                 area.innerHTML = `
                     <div class="feedback-box">
                         <strong>Tu respuesta:</strong><p style="white-space:pre-wrap;">${App.escapeHtml(input)}</p>
-                        <strong>Un ejemplo posible:</strong><p lang="${ex.answerLanguage === 'es' ? 'es' : 'id'}" style="white-space:pre-wrap;">${App.escapeHtml(ex.modelAnswer || '')}</p>
+                        <strong>Un ejemplo posible:</strong><p lang="${App.escapeHtml(ex.answerLocale || ex.targetLocale || 'und')}" style="white-space:pre-wrap;">${App.escapeHtml(ex.modelAnswer || '')}</p>
                         <small>${App.escapeHtml(ex.explanation || 'Compara el orden de las palabras y el vocabulario. Puede haber otras respuestas correctas.')}</small>
                     </div>
                     <section class="card" data-writing-review>

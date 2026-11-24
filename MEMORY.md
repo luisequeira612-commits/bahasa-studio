@@ -1,3 +1,38 @@
+## 2026-11-24 — Corrección del alcance de prueba y locale de ejemplo modelo (PR #782)
+
+- CI #45480195732: informes offline success; regresión falló solo en la prueba nueva de marcado, porque el test recortaba `renderStep()` antes de llegar al bloque de ejercicios. Se cambió la comprobación para inspeccionar el archivo completo y mantener el recorte solo para `pickWord`.
+- Revisión de código detectó además un `lang="id"` fijo en el ejemplo modelo de la pantalla de autoevaluación. Se sustituyó por `answerLocale || targetLocale || 'und'`, escapado con `App.escapeHtml`; el test ahora exige ese locale dinámico.
+- Commits correctivos: `65768bb26d80b6b57e6ee5c1471f1df5225c4f8a` y `6143a8d90e01b3698c45e053c7267d0659833e4a`. Ejecutar CI completo sobre el nuevo head; no fusionar aún.
+
+Fuente: GitHub Actions #45480195732 y revisión de `LessonEngine.checkWriting`; 24 nov 2026.
+
+## 2026-11-24 — Ajuste de pruebas legacy de marcado indonesio (PR #782)
+
+- CI #45479976222: `Offline quality reports` success; `test` falló en dos aserciones heredadas de `tests/indonesian-language-markup.test.cjs` que exigían `lang="id"` en fichas de ordenación y la expresión fija de locale para escritura.
+- Se actualizan esas expectativas para exigir el locale objetivo dinámico y el locale derivado del adaptador. Se mantienen las comprobaciones de elementos exclusivamente indonesios (diccionario, matching y ejemplo modelo).
+- Commit correctivo: `2bfe37594a3ee1c2d52209416591ff84afe79da2`. Repetir CI sobre el nuevo head; no fusionar mientras haya fallos o ejecución incompleta.
+
+Fuente: GitHub Actions #45479976222, job `test`; PR #782; 24 nov 2026.
+
+## 2026-11-24 — Corrección de test heredado y vista de ejercicio inmutable (PR #782)
+
+- PR #782: https://github.com/luisequeira612-commits/bahasa-studio/pull/782. La primera ejecución CI #45479679061 tuvo `Offline quality reports` success y falló `test` por una expectativa obsoleta en `tests/load-inline-b2-curriculum.test.mjs` que exigía la expresión antigua `writingLanguage = answerLanguage ? es : id`. La implementación ahora resuelve locale con `answerLocale || targetLocale || 'und'`; se actualizó el test para exigir el contrato nuevo y rechazar la expresión antigua.
+- `adaptExercise` ahora devuelve una copia superficial congelada, consistente con el contrato de vista de solo lectura del adaptador de vocabulario. Se añadió aserción `Object.isFrozen`.
+- Los commits correctivos son `e505078`, `6a0c260` y `b11662d`; el head actual es `b11662d76cdeb386e7b3e9e6f253709bf12252ad`.
+- La nueva ejecución CI todavía no aparece asociada al head al momento de esta nota. No fusionar hasta que `test` y `Offline quality reports` estén en success y revisar el diff final.
+
+Fuente: GitHub Actions #45479679061, PR #782 y commits de corrección; 24 nov 2026.
+
+
+## 2026-11-24 — Integración inicial del locale en ejercicios (fase 5)
+
+- Rama `feat/multilingual-exercise-adapter`, basada en el merge validado de PR #781. Se añade `CurriculumLoader.adaptExercise(exercise, language)`: copia superficial no mutante que conserva tipo, prompt, opciones, answer numérico/textual y `acceptedAnswers`; añade `targetLocale` y `answerLocale` sin cambiar reglas de comparación.
+- Los ejercicios de respuesta textual resuelven el locale desde `answerLanguage` explícito o el idioma activo; `translate_id_es` conserva respuesta en español. El renderizador utiliza locale dinámico en fill/write y fichas de ordenación; el input de traducción al idioma objetivo deja de nombrar indonesio en su placeholder.
+- Se conserva la conversión histórica de MC sentence-completion, ahora usando el idioma activo como `answerLanguage`. Se mantiene la UI y explicaciones en español.
+- Matching, audio/reconocimiento de voz y bubble de traducción quedan fuera de este cambio porque todavía dependen de campos y utilidades legacy `idn/esp`; requieren adaptación separada. No se activa pt-BR, ni se cambian datos curriculares, IndexedDB v1, backup JSON v3 o dependencias.
+- CI pendiente. PR aún no abierta hasta completar revisión del diff y pruebas.
+
+Fuente: contrato `docs/multilingual-curriculum-data-contract.md`, PR #781 fusionada y revisión de `LessonEngine`; 24 nov 2026.
 
 
 ### 2026-11-24 — Segundo test con alcance de locale corregido en PR #781
@@ -718,3 +753,11 @@ Fuente: rama `feat/pt-br-b1-u34-u36`, commit curricular `116f765eb66a87d66312bdb
 - Próxima fase curricular aprobada para pt-BR: B2, con 40 unidades según la decisión registrada en Notion. En el repositorio no existe aún `languages/pt-BR/curriculum/b2/`; antes de implementar datos se debe preparar un mapa temático propio de pt-BR y distinguirlo del currículo B2 indonesio existente (60 unidades), que tiene otra hoja de ruta y reglas específicas.
 
 Fuente: PR #775, commits de `main`, GitHub Actions #45447210438, #45448852637 y #45448851006; decisión curricular pt-BR registrada en Notion; 24 nov 2026.
+
+
+## 2026-11-24 — Test E2E alineado con el nombre accesible multilingüe (PR #782)
+
+- CI #45480612260: `Offline quality reports` success; regresión falló únicamente en el E2E `priority 3 adds written sentence completion and tap-to-match practice without curriculum edits`. La prueba buscaba el nombre accesible legacy `Palabra que falta`, pero el renderer ahora expone `Respuesta en el idioma objetivo` para locales de destino, incluido `id-ID`.
+- Se actualizó la consulta Playwright al nombre accesible actual, sin cambiar el comportamiento de producción ni debilitar la comprobación funcional. Reejecutar CI completo sobre el nuevo head antes de fusionar.
+
+Fuente: GitHub Actions #45480612260, job `test`; PR #782; 24 nov 2026.

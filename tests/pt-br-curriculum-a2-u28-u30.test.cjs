@@ -70,5 +70,5 @@ test('U28-U30 introduce no exact normalized vocabulary duplicates against A1 and
 });
 test('service worker precaches A2 U28-U30 with cache v3.8.152',()=>{
  const source=fs.readFileSync(path.join(repo,'service-worker.js'),'utf8');
- assert.match(source,/units-28-30\.js/);assert.match(source,/curriculum\/a2\/index\.js/);assert.match(source,/bahasa-studio-v3\.8\.151/);
+ assert.match(source,/units-28-30\.js/);assert.match(source,/curriculum\/a2\/index\.js/);assert.match(source,/bahasa-studio-v3\.8\.152/);
 });

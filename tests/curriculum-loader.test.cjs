@@ -192,6 +192,7 @@ test('adapts exercise answer locales without rewriting authored fields or accept
     assert.equal(ptView.targetLocale, 'pt-BR');
     assert.equal(ptView.answerLanguage, 'pt-BR');
     assert.equal(ptView.answerLocale, 'pt-BR');
+    assert.equal(Object.isFrozen(ptView), true);
     assert.deepEqual(JSON.parse(JSON.stringify(ptView.acceptedAnswers)), ['café da manhã', 'desjejum']);
     assert.equal(esView.answerLanguage, 'es');
     assert.equal(esView.answerLocale, 'es');

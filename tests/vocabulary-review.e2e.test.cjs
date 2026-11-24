@@ -335,3 +335,86 @@ test('SRS dashboard distinguishes course vocabulary from words with review progr
     await new Promise(resolve => server.close(resolve));
   }
 });
+
+
+test('SRS runtime isolates identical vocabulary IDs across language namespaces', async () => {
+  const { server, url } = await startServer();
+  const browser = await chromium.launch({ headless: true });
+  const context = await browser.newContext({ serviceWorkers: 'block' });
+  const page = await context.newPage();
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof SRSEngine !== 'undefined' && DB && DB.db);
+
+    const result = await page.evaluate(async () => {
+      const now = Date.now();
+      const idInitial = {
+        attempts: 3, correct: 1, incorrect: 2, interval: 4, repetition: 2,
+        efactor: 2.4, nextReview: now - 1000, lastReviewed: now - 86400000
+      };
+      const ptInitial = {
+        attempts: 8, correct: 7, incorrect: 1, interval: 12, repetition: 3,
+        efactor: 2.8, nextReview: now - 1000, lastReviewed: now - 2 * 86400000
+      };
+
+      DB.setActiveLanguage('id');
+      await DB.set('srs', 'v45', idInitial);
+      await DB.set('srs', 'v46', {
+        attempts: 1, correct: 0, incorrect: 1, interval: 1, repetition: 0,
+        efactor: 2, nextReview: now + 86400000, lastReviewed: now, savedForReview: true
+      });
+
+      DB.setActiveLanguage('pt-BR');
+      await DB.set('srs', 'v45', ptInitial);
+      await DB.set('srs', 'v46', {
+        attempts: 1, correct: 1, incorrect: 0, interval: 8, repetition: 2,
+        efactor: 2.7, nextReview: now + 8 * 86400000, lastReviewed: now
+      });
+      await SRSEngine.recordAttempt('v45', 1);
+      const ptAfterReview = await DB.get('srs', 'v45');
+      const ptDue = await SRSEngine.getDueItems();
+
+      DB.setActiveLanguage('id');
+      await SRSEngine.recordAttempt('v45', 5);
+      const idAfterReview = await DB.get('srs', 'v45');
+      const idDue = await SRSEngine.getDueItems();
+
+      DB.setActiveLanguage('pt-BR');
+      const ptAfterIdReview = await DB.get('srs', 'v45');
+      const ptRecords = await DB.getAll('srs');
+
+      return {
+        idInitial, ptInitial, ptAfterReview, idAfterReview, ptAfterIdReview,
+        ptDue: ptDue.map(item => item.key),
+        idDue: idDue.map(item => item.key),
+        ptRecordKeys: ptRecords.map(item => item.key)
+      };
+    });
+
+    assert.equal(result.ptAfterReview.attempts, 9);
+    assert.equal(result.ptAfterReview.incorrect, 2);
+    assert.equal(result.ptAfterReview.repetition, 0);
+    assert.equal(result.ptAfterReview.interval, 1);
+    assert.equal(result.idAfterReview.attempts, 4);
+    assert.equal(result.idAfterReview.correct, 2);
+    assert.equal(result.idAfterReview.incorrect, 2);
+    assert.equal(result.idAfterReview.interval, 10);
+    assert.equal(result.idAfterReview.repetition, 3);
+    assert.equal(result.ptAfterIdReview.attempts, 9,
+      'reviewing the Indonesian record must not change the Portuguese schedule');
+    assert.equal(result.ptAfterIdReview.interval, 1);
+    assert.equal(result.ptAfterIdReview.repetition, 0);
+    assert.ok(result.idDue.includes('v46'),
+      'the Indonesian queue should include its own saved-for-review record');
+    assert.ok(!result.ptDue.includes('v46'),
+      'the Portuguese queue must not read the Indonesian saved-for-review record');
+    assert.ok(result.ptRecordKeys.includes('v45'));
+    assert.ok(!result.ptRecordKeys.some(key => key.startsWith('pt-BR::')),
+      'DB.getAll should expose logical IDs, not persisted namespace prefixes');
+  } finally {
+    await context.close();
+    await browser.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});

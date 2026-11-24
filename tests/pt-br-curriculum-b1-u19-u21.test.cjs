@@ -7,8 +7,8 @@ const {test}=require('node:test');
 const repo=path.join(__dirname,'..');
 const managerSource=fs.readFileSync(path.join(repo,'language-manager.js'),'utf8');
 const loaderSource=fs.readFileSync(path.join(repo,'curriculum-loader.js'),'utf8');
-const b1Files=['units-01-03.js','units-04-06.js','units-07-09.js','units-10-12.js','units-13-15.js','units-19-21.js'];
-const a2Files=['units-01-03.js','units-04-06.js','units-07-09.js','units-10-12.js','units-13-15.js','units-19-21.js','units-19-21.js','units-22-24.js','units-25-27.js','units-28-30.js'];
+const b1Files=['units-01-03.js','units-04-06.js','units-07-09.js','units-10-12.js','units-13-15.js','units-16-18.js','units-19-21.js'];
+const a2Files=['units-01-03.js','units-04-06.js','units-07-09.js','units-10-12.js','units-13-15.js','units-16-18.js','units-19-21.js','units-22-24.js','units-25-27.js','units-28-30.js'];
 const a1Files=['units-01-06.js','units-07-12.js','units-13-18.js','units-19-21.js','units-22-24.js'];
 const sources={
  './languages/pt-BR/curriculum/b1/index.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/b1/index.js'),'utf8'),
@@ -71,7 +71,7 @@ test('B1 U19-U21 add no exact normalized vocabulary duplicates against A1, A2 or
  assert.equal(prior.length,540);assert.equal(previous.length,180);assert.equal(added.length,30);assert.equal(new Set(normalized).size,30);
  assert.deepEqual(normalized.filter(word=>allPrior.has(word)),[]);
 });
-test('service worker precaches B1 U1-U21 with cache v3.8.146',()=>{
+test('service worker precaches B1 U1-U21 with cache v3.8.147',()=>{
  const source=fs.readFileSync(path.join(repo,'service-worker.js'),'utf8');
  assert.ok(source.includes("./languages/pt-BR/curriculum/b1/units-19-21.js"));
  assert.match(source,/bahasa-studio-v3\.8\.147/);

@@ -1,3 +1,11 @@
+## 2026-11-24 — Ajuste de pruebas legacy de marcado indonesio (PR #782)
+
+- CI #45479976222: `Offline quality reports` success; `test` falló en dos aserciones heredadas de `tests/indonesian-language-markup.test.cjs` que exigían `lang="id"` en fichas de ordenación y la expresión fija de locale para escritura.
+- Se actualizan esas expectativas para exigir el locale objetivo dinámico y el locale derivado del adaptador. Se mantienen las comprobaciones de elementos exclusivamente indonesios (diccionario, matching y ejemplo modelo).
+- Commit correctivo: `2bfe37594a3ee1c2d52209416591ff84afe79da2`. Repetir CI sobre el nuevo head; no fusionar mientras haya fallos o ejecución incompleta.
+
+Fuente: GitHub Actions #45479976222, job `test`; PR #782; 24 nov 2026.
+
 ## 2026-11-24 — Corrección de test heredado y vista de ejercicio inmutable (PR #782)
 
 - PR #782: https://github.com/luisequeira612-commits/bahasa-studio/pull/782. La primera ejecución CI #45479679061 tuvo `Offline quality reports` success y falló `test` por una expectativa obsoleta en `tests/load-inline-b2-curriculum.test.mjs` que exigía la expresión antigua `writingLanguage = answerLanguage ? es : id`. La implementación ahora resuelve locale con `answerLocale || targetLocale || 'und'`; se actualizó el test para exigir el contrato nuevo y rechazar la expresión antigua.

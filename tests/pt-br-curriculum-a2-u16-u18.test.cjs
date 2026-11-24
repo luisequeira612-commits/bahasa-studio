@@ -52,5 +52,5 @@ test('A2 U16-U18 review references resolve only to previously published A2 vocab
 });
 test('service worker precaches A2 U16-U18 using cache v3.8.148',()=>{
  const source=fs.readFileSync(path.join(repo,'service-worker.js'),'utf8');
- assert.match(source,/units-16-18\.js/);assert.match(source,/curriculum\/a2\/index\.js/);assert.match(source,/bahasa-studio-v3\.8\.147/);
+ assert.match(source,/units-16-18\.js/);assert.match(source,/curriculum\/a2\/index\.js/);assert.match(source,/bahasa-studio-v3\.8\.148/);
 });

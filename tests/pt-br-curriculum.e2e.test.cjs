@@ -102,7 +102,7 @@ test('Playwright: carga A1 U1-U24, A2 U1-U30 y B1 U1-U24 offline, aislando el pr
   assert.deepEqual(result.recycled,['ptbr_a1_u1_v01','ptbr_a1_u1_v02']);
   assert.deepEqual(result.a2Units,Array.from({length:30},(_,index)=>({id:'ptbr_a2_u'+(index+1),lessons:5,vocab:10})));
   assert.equal(result.a2TotalUnits,30);
-  assert.deepEqual(result.b1Units,Array.from({length:21},(_,index)=>({id:'ptbr_b1_u'+(index+1),lessons:5,vocab:10})));
+  assert.deepEqual(result.b1Units,Array.from({length:24},(_,index)=>({id:'ptbr_b1_u'+(index+1),lessons:5,vocab:10})));
   assert.equal(result.b1TotalUnits,36);
   assert.equal(result.ptKey,'pt-BR::unit_1');
   assert.equal(result.idKey,'unit_1');

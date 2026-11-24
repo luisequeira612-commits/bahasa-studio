@@ -648,3 +648,12 @@ Fuente: GitHub Actions #45334713127, logs del job `test`, PR #773 y archivos de 
 - `pt-BR available:false`; los términos nuevos siguen `verification.status: not_checked`. IndexedDB v1 y backup JSON v3 sin cambios.
 
 Fuente: PR #773, commit squash `6b595ec`, GitHub Actions #45338392893; 24 nov 2026.
+
+
+## 2026-11-24 — Preparación B1 U31–U33
+- Se abrió la rama `feat/pt-br-b1-u31-u33` desde el commit validado `6d96ec994c4b4a4a2489fe54f287b727615281ec`.
+- Se añadió el bloque curricular `units-31-33.js`: investigación e innovación pública, producción alimentaria y agroecología, y privacidad y gobernanza digital. Incluye 30 términos, 15 lecciones, 30 ejercicios de opción múltiple y referencias de repaso A2.
+- Los términos nuevos conservan `verification.status: not_checked`; el curso pt-BR sigue `available:false`. El manifiesto avanza a U1–U33/36 y el Service Worker a `bahasa-studio-v3.8.151`, precargando `units-31-33.js`.
+- Se amplían el contrato estructural de U31–U33 y la prueba Playwright offline para cargar B1 U1–U33. Sin cambios a IndexedDB v1, backup JSON v3 ni dependencias.
+- Pendiente: ejecutar auditoría local/CI, resolver cualquier duplicado léxico detectado por contrato, abrir PR y validar regresión post-merge + Pages antes de U34–U36.
+- Fuente: rama `feat/pt-br-b1-u31-u33`, commit curricular `f2426aa91bd046c51dabe9061267826fae9b8923`; 24 nov 2026.

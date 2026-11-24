@@ -819,3 +819,13 @@ Fuente: GitHub Actions #45487013109, job `test`; PR #783; 24 nov 2026.
 - No se cambian datos curriculares, disponibilidad `pt-BR`, IndexedDB v1, backup JSON v3 ni dependencias. La burbuja sigue usando el guardado SRS existente por ID; el trabajo específico de SRS multilingüe queda para el siguiente paso.
 
 Fuente: rama `feat/multilingual-tap-translation`, cambios en `index.html`, `tests/indonesian-language-markup.test.cjs` y `package.json`; 24 nov 2026.
+
+
+## 2026-11-24 — Cobertura multilingüe del perfil de habilidades de estudio
+
+- La CI post-merge del PR #787 terminó en success en todos sus jobs, incluidos regresión, Chromium/E2E y calidad offline (run #45501699412).
+- Se prepara una prueba de contrato para `StudyActivity` que carga los manifiestos y todos los bloques publicados pt-BR A1 (24 unidades), A2 (30) y B1 (36), y verifica que cada ejercicio se asigne a una habilidad adaptativa. También se cubre explícitamente el tipo neutral `translate_es_target`, conservando el alias histórico `translate_es_id`.
+- La prueba solo verifica cobertura estructural del seguimiento; no habilita pt-BR, no certifica calidad lingüística y no cambia contenido curricular ni comportamiento de producción.
+- No se modifican IndexedDB v1, backup JSON v3, dependencias ni disponibilidad de idiomas. PR en preparación; exigir CI completo y regresión post-merge antes de considerar cerrado el cambio.
+
+Fuente: GitHub Actions #45501699412; `study-activity.js`, `tests/study-activity.test.cjs` y manifiestos pt-BR A1/A2/B1; 24 nov 2026.

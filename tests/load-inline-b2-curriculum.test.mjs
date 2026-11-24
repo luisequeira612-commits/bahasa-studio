@@ -174,7 +174,7 @@ test('B2 keeps its development gate while implemented U1 unlocks sequentially af
 
 test('tap translation fallback includes only implemented B2 U1–U60 authored exercises', async () => {
   const { indexSource } = await loadCurricula();
-  const fallbackStart = indexSource.indexOf('// Preserve authored Indonesian-to-Spanish phrase fallbacks without applying legacy exercise types to other languages');
+  const fallbackStart = indexSource.indexOf('// Existing authored translation exercises are a fallback source for exact phrases');
   assert.notEqual(fallbackStart, -1, 'tap translation fallback must remain present');
   const levelLoop = indexSource.indexOf('for (const level of CourseData.levels) {', fallbackStart);
   const unitLoop = indexSource.indexOf('for (const unit of level.units || []) {', levelLoop);

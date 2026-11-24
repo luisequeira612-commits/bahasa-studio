@@ -1,4 +1,7 @@
-## 2026-11-24 — Integración multiidioma: fase 3 en curso
+## 2026-11-24 — Integración multiidioma: fase 4 en curso
+- Fase 3 completada: PR #779 fusionada mediante squash en `main`, commit `ba21c4647c0ba8e4c5f9d383a133e2b13e1d5290`; CI #45469430382 (`test` y `Offline quality reports`) success. `CurriculumLoader.adaptVocabulary` añade una vista común no mutante, sin conectar todavía renderizadores.
+- Fase 4: rama `test/multiscript-curriculum-contract` creada desde el commit de #779. Se amplían pruebas del contrato opcional con japonés, árabe, tailandés, coreano, devanagari, emoji y equivalencia Unicode NFC; no se impone tokenización por espacios ni se eliminan diacríticos. PR/CI pendientes.
+- Se mantienen `pt-BR available:false`, datos productivos intactos, IndexedDB v1 y backup JSON v3 sin cambios; sin dependencias nuevas. Las pruebas estructurales no certifican corrección lingüística ni MCER.
 - Fase 1 (baseline) y fase 2 (contrato de campos opcionales) completadas. PR #778 fusionada por squash en `main`, commit `699dfb92eee84235aa57bb6e3c983390901bc095`; CI del head #45468262779: `test` y `Offline quality reports` success. El contrato es aditivo, no conecta aún campos opcionales a UI y no cambia datos productivos.
 - Fase 3 inicia una vista común de vocabulario en `CurriculumLoader.adaptVocabulary`: normaliza lectura de texto/ traducción/ejemplo sin mutar registros; aísla el campo legacy indonesio `idn` y prioriza `target` para currículos nuevos. La vista no activa idiomas ni cambia IndexedDB v1/backup JSON v3.
 - La integración visual en renderizadores y adaptadores de ejercicios queda pendiente; mantener `pt-BR available:false`, sin nuevas dependencias, audio ni cambios de persistencia.

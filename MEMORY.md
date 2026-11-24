@@ -1,3 +1,10 @@
+## 2026-11-24 — Fase 2: contrato de campos opcionales en revisión
+- Tras fusionar PR #777, comienza la etapa de campos opcionales en la rama `feat/multilingual-optional-curriculum-fields`.
+- Se define un contrato aditivo y language-neutral: `reading`, `transliteration`, `pronunciation.ipa`, `tokens`, `grammaticalFunctions`, `forms`, `annotations`, `verification` legacy opcional y `acceptedAnswers` en ejercicios textuales. No se requiere ninguno para currículos existentes.
+- Se añade un validador estructural puro y tests legacy/Unicode; no se conecta aún a UI ni se modifican datos curriculares. Sin dependencias, audio nuevo, IndexedDB v1 ni backup JSON v3.
+- La validación Unicode de cobertura amplia queda para la fase posterior al cierre del contrato. PR de esta fase pendiente de CI; no se considera integrada hasta confirmación de merge.
+
+---
 ## 2026-11-24 — Aprobación del plan multiidioma y baseline de calidad
 - El usuario aprobó el plan técnico y el temario portugués B2 (40 unidades, 5 lecciones por unidad) y exigió aprobaciones por etapas; no fusionar ninguna PR sin su «Aprobado» explícito.
 - Baseline estructural recuperado de GitHub Actions run #45463235040 sobre `main` SHA `497d6c45d3439103bfa4db3a5a10118564ad9413`: trabajos `test` y `Offline quality reports` en success. Resumen y limitaciones en `docs/quality-baselines/2026-11-24.md`.

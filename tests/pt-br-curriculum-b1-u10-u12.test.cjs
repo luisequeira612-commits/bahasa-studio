@@ -47,9 +47,9 @@ test('pt-BR B1 U10-U12 load as content while the incomplete course remains unava
   }
  }
 });
-test('B1 manifest publishes exactly U1-U12 of 36 and remains unavailable in the language selector',()=>{
+test('B1 manifest publishes exactly U1-U15 of 36 and remains unavailable in the language selector',()=>{
  const {window}=createPilot(),manifest=window.GUARDI_CURRICULUM_MANIFESTS['pt-BR'].B1;
- assert.equal(manifest.totalUnits,36);assert.deepEqual(Array.from(manifest.publishedUnits),[1,2,3,4,5,6,7,8,9,10,11,12]);
+ assert.equal(manifest.totalUnits,36);assert.deepEqual(Array.from(manifest.publishedUnits),[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]);
  assert.deepEqual(Array.from(manifest.blocks[3].units),[10,11,12]);assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
 });
 test('B1 U10-U12 review references resolve to existing A2 vocabulary IDs',async()=>{
@@ -74,5 +74,5 @@ test('B1 U10-U12 add no exact normalized vocabulary duplicates against A1, A2 or
 test('service worker precaches B1 U1-U12 with cache v3.8.144',()=>{
  const source=fs.readFileSync(path.join(repo,'service-worker.js'),'utf8');
  assert.ok(source.includes("./languages/pt-BR/curriculum/b1/units-10-12.js"));
- assert.match(source,/bahasa-studio-v3\.8\.144/);
+ assert.match(source,/bahasa-studio-v3\.8\.145/);
 });

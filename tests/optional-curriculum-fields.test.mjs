@@ -20,7 +20,7 @@ test('rejects malformed optional fields and duplicate accepted answers', () => {
   const curriculum = { units: [{ vocab: [{
     reading: ' ', tokens: ['a', ''], pronunciation: { ipa: '' },
     forms: [{ value: 'x' }], annotations: [{ type: '', text: 'nota' }]
-  }], lessons: [], exercises: [{ acceptedAnswers: ['Olá', ' ola '] }] }] };
+  }], lessons: [], exercises: [{ acceptedAnswers: ['Olá', 'olá '] }] }] };
   const codes = validateOptionalCurriculumFields(curriculum).map(issue => issue.code);
   for (const code of ['OPTIONAL_TEXT_INVALID', 'PRONUNCIATION_IPA_INVALID', 'FORM_ITEM_INVALID', 'ANNOTATION_ITEM_INVALID', 'OPTIONAL_TEXT_DUPLICATE']) assert.ok(codes.includes(code), code);
 });

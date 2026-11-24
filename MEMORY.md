@@ -621,3 +621,13 @@ Fuente: GitHub Actions run #45326693589 y commit e3a9db12ef2c58ae6c23a58eaa7630b
 - `pt-BR available:false`, `verification.status: not_checked`, IndexedDB v1 y backup JSON v3 permanecen sin cambios.
 
 Fuente: PR #772/#773 y GitHub Actions #45330309615/#45334239766; 24 nov 2026.
+
+
+## 2026-11-24 — Segundo diagnóstico y correcciones CI PR #773
+- El CI #45334713127 ya terminó: `Offline quality reports` pasó, pero `Run local quality tests` falló con 20 de 289 pruebas.
+- Diez contratos A2 y dos contratos A1 seguían esperando caché `v3.8.149`; se alinearon con `v3.8.150`. Siete contratos B1 todavía enumeraban U1–U27 en el manifiesto; se actualizaron para U1–U30. Se mantienen las comprobaciones exactas y `pt-BR available:false`.
+- La auditoría de duplicados encontró cuatro colisiones reales en el vocabulario nuevo: `desinformação`, `fonte primária`, `alfabetização midiática` e `impasse`. Se sustituyeron por `notícia manipulada`, `fonte independente`, `competência informacional` y `proposta conciliatória`, con traducciones y explicaciones correspondientes. No se relajó el contrato de duplicados.
+- Cambios aplicados en la rama `fix/pt-br-b1-u28-u30-ci-guards`; head actual `175e8afb095d00111b6e2abb6253091e95c0a7bf`. CI nuevo del head final pendiente. PR #773 no se fusiona hasta que todos los checks requeridos estén en success; después se repite CI de #772 y se exige regresión post-merge + Pages.
+- Los términos siguen `verification.status: not_checked`; las pruebas estructurales no certifican naturalidad ni corrección lingüística. No se modifican IndexedDB v1 ni backup JSON v3.
+
+Fuente: GitHub Actions #45334713127, logs del job `test`, PR #773 y archivos de contratos/currículo; 24 nov 2026.

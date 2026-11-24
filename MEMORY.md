@@ -657,3 +657,13 @@ Fuente: PR #773, commit squash `6b595ec`, GitHub Actions #45338392893; 24 nov 20
 - Se amplían el contrato estructural de U31–U33 y la prueba Playwright offline para cargar B1 U1–U33. Sin cambios a IndexedDB v1, backup JSON v3 ni dependencias.
 - Pendiente: ejecutar auditoría local/CI, resolver cualquier duplicado léxico detectado por contrato, abrir PR y validar regresión post-merge + Pages antes de U34–U36.
 - Fuente: rama `feat/pt-br-b1-u31-u33`, commit curricular `f2426aa91bd046c51dabe9061267826fae9b8923`; 24 nov 2026.
+
+
+## 2026-11-24 — Preparación B1 U34–U36
+- Se creó la rama `feat/pt-br-b1-u34-u36` desde `main` validado tras PR #774, con las tres últimas unidades del B1: U34 adaptación climática y resiliencia territorial; U35 trabajo, emprendimiento y responsabilidad empresarial; U36 patrimonio, cultura y acceso al conocimiento.
+- Bloque nuevo: 30 términos (10 por unidad), cinco lecciones por unidad, dos términos explicados por lección, ejercicios MC y referencias de repaso a A2. Los términos mantienen `verification.status: not_checked`; `pt-BR available:false` permanece.
+- Se amplía el manifiesto B1 a U1–U36/36, se añade `units-34-36.js` al Service Worker y se incrementa la caché de app shell a `bahasa-studio-v3.8.152`. Se amplían el contrato Node y la prueba Playwright offline para cubrir U1–U36.
+- No se modifican IndexedDB v1 ni backup JSON v3, no se añaden dependencias ni backend. Las comprobaciones estructurales no equivalen a certificación lingüística.
+- Tras completar CI, la PR debe fusionarse solo con todos los checks en success y después verificarse regresión de `main` y GitHub Pages. Si ambas pasan, B1 queda completo en contenido (36/36), pero pt-BR sigue sin publicarse hasta superar la validación de calidad correspondiente.
+
+Fuente: rama `feat/pt-br-b1-u34-u36`, commit curricular `116f765eb66a87d66312bdb148db3073c0f8f44a`; 24 nov 2026.

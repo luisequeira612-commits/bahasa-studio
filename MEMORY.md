@@ -1,3 +1,15 @@
+
+## 2026-11-24 — Portugués brasileño B1 U28–U30 en preparación
+- La PR #771 se fusionó por squash en `main`, commit `f1b6a725ba9c4084070af3d8e262f2a7e3e7c827`. Regresión post-merge #45329499591: trabajos `test` y `Offline quality reports` en success; GitHub Pages #45329499050: build, deploy y reporte en success.
+- La regresión cubrió 101 pasos de pruebas, incluyendo Chromium y E2E offline; el informe de calidad terminó en success.
+- Se inicia la rama `feat/pt-br-b1-u28-u30` desde `main` para U28 medios y desinformación; U29 mediación y negociación; U30 migración, refugio e integración.
+- El bloque añade 30 términos (10 por unidad), cinco lecciones por unidad, dos términos explicados por lección y diez ejercicios MC por unidad. Incluye ejemplos PT-BR y traducción ES, además de referencias de repaso a vocabulario A2 existente.
+- Los términos siguen `verification.status: not_checked`; los controles estructurales no certifican naturalidad ni corrección lingüística. `pt-BR available:false` se conserva.
+- El manifiesto B1 se ampliará a U1–U30 de 36; Service Worker a `bahasa-studio-v3.8.150` con precache del bloque. Se añade contrato Node y se amplía Playwright para carga offline U1–U30. No se añaden dependencias ni se modifican IndexedDB v1 o backup JSON v3.
+- Pendiente de abrir PR y CI completo; no fusionar hasta que todos los checks requeridos terminen en success. Tras el merge se exigirá regresión post-merge y Pages.
+
+Fuente: PR #771, Actions #45329499591/#45329499050; rama `feat/pt-br-b1-u28-u30`, nuevos bloques y contratos; 24 nov 2026.
+
 ## 2026-11-24 — Portugués B1 U13–U15 en preparación
 - La regresión post-merge de PR #766 en `main` terminó en success: Actions run #45298580544 (`test` y `Offline quality reports`), y GitHub Pages deployment run #45298578980 también terminó en success. `main` queda en merge commit `1b80394a87ab32c6714880601586b66ae5cbba82`.
 - Rama `feat/pt-br-b1-u13-u15` creada desde ese `main`. Añade U13 educación y aprendizaje permanente; U14 privacidad y ciudadanía digital; U15 cultura, creación y políticas culturales.
@@ -599,3 +611,40 @@ Fuente: GitHub Actions run #45326693589 y commit e3a9db12ef2c58ae6c23a58eaa7630b
 - La ejecución #45327148126 detectó que la lección 5 de U25 no repetía literalmente el término `reaproveitamento pós-consumo` en su explicación.
 - Se ajustó el texto de la lección para explicar el término de forma explícita, sin cambiar vocabulario, IDs, estructura curricular ni disponibilidad del curso.
 - Commit: `a81280f834a5e6267ff49f4f60c75fcecaf22667`. Nueva CI pendiente; PR #771 continúa sin fusionar.
+
+
+## 2026-11-24 — Corrección de guardas CI PR #773 para B1 U28–U30
+- La PR #772 añadió B1 U28–U30 y avanzó el Service Worker a `bahasa-studio-v3.8.150`, pero el primer CI (#45330309615) falló por expectativas heredadas que todavía comprobaban U1–U27 y `v3.8.149`.
+- La PR #773, rama `fix/pt-br-b1-u28-u30-ci-guards`, actualiza nueve contratos heredados para esperar U1–U30 y `v3.8.150`. No cambia contenido curricular ni lógica de runtime.
+- Head de #773: `42d75591a3c40ad96d4f3143c5587029df65dba3`. CI #45334239766 está en ejecución: `Offline quality reports` ya está en success; el job `test` está instalando Chromium y aún no ha llegado a los contratos.
+- PR #773 queda pendiente de CI completo antes de fusionarse en la rama de #772. Después se debe repetir CI de #772 sobre el head actualizado, fusionar solo con todos los checks requeridos en success y verificar regresión post-merge + GitHub Pages.
+- `pt-BR available:false`, `verification.status: not_checked`, IndexedDB v1 y backup JSON v3 permanecen sin cambios.
+
+Fuente: PR #772/#773 y GitHub Actions #45330309615/#45334239766; 24 nov 2026.
+
+
+## 2026-11-24 — Segundo diagnóstico y correcciones CI PR #773
+- El CI #45334713127 ya terminó: `Offline quality reports` pasó, pero `Run local quality tests` falló con 20 de 289 pruebas.
+- Diez contratos A2 y dos contratos A1 seguían esperando caché `v3.8.149`; se alinearon con `v3.8.150`. Siete contratos B1 todavía enumeraban U1–U27 en el manifiesto; se actualizaron para U1–U30. Se mantienen las comprobaciones exactas y `pt-BR available:false`.
+- La auditoría de duplicados encontró cuatro colisiones reales en el vocabulario nuevo: `desinformação`, `fonte primária`, `alfabetização midiática` e `impasse`. Se sustituyeron por `notícia manipulada`, `fonte independente`, `competência informacional` y `proposta conciliatória`, con traducciones y explicaciones correspondientes. No se relajó el contrato de duplicados.
+- Cambios aplicados en la rama `fix/pt-br-b1-u28-u30-ci-guards`; head actual `175e8afb095d00111b6e2abb6253091e95c0a7bf`. CI nuevo del head final pendiente. PR #773 no se fusiona hasta que todos los checks requeridos estén en success; después se repite CI de #772 y se exige regresión post-merge + Pages.
+- Los términos siguen `verification.status: not_checked`; las pruebas estructurales no certifican naturalidad ni corrección lingüística. No se modifican IndexedDB v1 ni backup JSON v3.
+
+Fuente: GitHub Actions #45334713127, logs del job `test`, PR #773 y archivos de contratos/currículo; 24 nov 2026.
+
+
+## 2026-11-24 — Ajuste del contrato didáctico B1 U29 en PR #773
+- El CI #45337705294 completó Chromium y todas las pruebas generales, pero `quality:tests` falló en un único contrato: U29, lección 4 no explicaba explícitamente `concessão mútua` aunque el término estaba en el vocabulario de la unidad.
+- Se corrigió el texto de la lección para definir la concesión mutua como ajuste recíproco de exigencias, manteniendo el ejemplo condicional y sin cambiar IDs, términos, ejercicios, estructura, disponibilidad ni verificación lingüística.
+- Actualización aplicada a `languages/pt-BR/curriculum/b1/units-28-30.js` en PR #773; commit cbb2f8607f52667884b0975dbc7471b1b672caf8. Repetir CI completo antes de cualquier merge.
+- Fuente: GitHub Actions #45337705294, fallo `tests/pt-br-curriculum-b1-u28-u30.test.cjs:41`; 24 nov 2026.
+
+
+## 2026-11-24 — PR #773 fusionada y CI corregido para B1 U28–U30
+- PR #773 se fusionó mediante squash en la rama de integración `feat/pt-br-b1-u28-u30`, commit `6b595ec64963eeed712cb160040da438e7131944`.
+- CI final del head `1b177afafff35460b1837a7af23889a170b9658c`, run #45338392893: job `test` completó todos sus pasos con success, incluidos Chromium, `quality:tests` y E2E real; `Offline quality reports` también terminó en success.
+- La corrección final añadió a U29 lección 4 una explicación explícita de `concessão mútua`, tras el único fallo de contrato en la ejecución anterior. Se conservaron los contratos estrictos.
+- La PR #772 debe ejecutar CI completo sobre la rama actualizada antes de fusionarse. Después exigir regresión post-merge y GitHub Pages.
+- `pt-BR available:false`; los términos nuevos siguen `verification.status: not_checked`. IndexedDB v1 y backup JSON v3 sin cambios.
+
+Fuente: PR #773, commit squash `6b595ec`, GitHub Actions #45338392893; 24 nov 2026.

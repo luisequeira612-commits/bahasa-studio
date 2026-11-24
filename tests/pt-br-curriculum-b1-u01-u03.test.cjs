@@ -47,9 +47,9 @@ test('pt-BR B1 U1-U3 load as content while the incomplete course remains unavail
   }
  }
 });
-test('B1 manifest publishes exactly U1-U24 of 36 and remains unavailable in the language selector',()=>{
+test('B1 manifest publishes exactly U1-U27 of 36 and remains unavailable in the language selector',()=>{
  const {window}=createPilot(),manifest=window.GUARDI_CURRICULUM_MANIFESTS['pt-BR'].B1;
- assert.equal(manifest.totalUnits,36);assert.deepEqual(Array.from(manifest.publishedUnits),[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]);
+ assert.equal(manifest.totalUnits,36);assert.deepEqual(Array.from(manifest.publishedUnits),[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27]);
  assert.deepEqual(Array.from(manifest.blocks[0].units),[1,2,3]);assert.deepEqual(Array.from(manifest.blocks[1].units),[4,5,6]);assert.deepEqual(Array.from(manifest.blocks[2].units),[7,8,9]);assert.deepEqual(Array.from(manifest.blocks[3].units),[10,11,12]);assert.deepEqual(Array.from(manifest.blocks[4].units),[13,14,15]);assert.deepEqual(Array.from(manifest.blocks[5].units),[16,17,18]);assert.deepEqual(Array.from(manifest.blocks[3].units),[10,11,12]);assert.deepEqual(Array.from(manifest.blocks[6].units),[19,20,21]);assert.deepEqual(Array.from(manifest.blocks[7].units),[22,23,24]);assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
 });
 test('B1 review references resolve to existing A2 vocabulary IDs',async()=>{

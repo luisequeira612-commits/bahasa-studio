@@ -1,3 +1,8 @@
+## 2026-11-24 — Aprobación del plan multiidioma y baseline de calidad
+- El usuario aprobó el plan técnico y el temario portugués B2 (40 unidades, 5 lecciones por unidad) y exigió aprobaciones por etapas; no fusionar ninguna PR sin su «Aprobado» explícito.
+- Baseline estructural recuperado de GitHub Actions run #45463235040 sobre `main` SHA `497d6c45d3439103bfa4db3a5a10118564ad9413`: trabajos `test` y `Offline quality reports` en success. Resumen y limitaciones en `docs/quality-baselines/2026-11-24.md`.
+- Los auditores existentes recorren currículos indonesios (122 unidades en auditoría/cola; 182 unidades en contrato), no constituyen baseline lingüístico ni cobertura de portugués B1. No certifican naturalidad ni MCER; KBBI no es requisito. El baseline no modifica currículos, IndexedDB v1 ni backup JSON v3.
+
 
 ## 2026-11-24 — Portugués brasileño B1 U28–U30 en preparación
 - La PR #771 se fusionó por squash en `main`, commit `f1b6a725ba9c4084070af3d8e262f2a7e3e7c827`. Regresión post-merge #45329499591: trabajos `test` y `Offline quality reports` en success; GitHub Pages #45329499050: build, deploy y reporte en success.

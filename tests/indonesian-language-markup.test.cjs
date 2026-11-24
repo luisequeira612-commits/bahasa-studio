@@ -31,8 +31,12 @@ test('marca las fichas del diccionario y los bancos de ordenación', () => {
     assert.match(html, /chip\.lang = this\.queue\[this\.stepIndex\]\?\.targetLocale/);
 });
 
-test('marca las opciones indonesias de emparejamiento', () => {
-    assert.match(html, /class="match-option-btn" lang="id" data-side="idn"/);
+test('el matching usa el locale activo y pares con campos neutrales', () => {
+    assert.match(html, /CurriculumLoader\.adaptMatchingPairs\(/);
+    assert.match(html, /class="match-option-btn" lang="\$\{App\.escapeHtml\(ex\.targetLocale \|\| 'und'\)\}" data-side="target"/);
+    assert.match(html, /data-side="esp"/);
+    assert.match(html, /selectMatch\('target'/);
+    assert.doesNotMatch(html, /match-option-btn[^\n]*lang="id"|data-side="idn"/);
 });
 
 test('la frase interactiva solo recibe lang=id cuando su idioma es indonesio', () => {

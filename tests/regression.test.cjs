@@ -420,7 +420,7 @@ test('v3.7.1 audit fixes remain in place without changing backup or database ver
   assert.ok(html.includes("return getLevels().filter(level =>"));
   assert.ok(html.includes("(level.id !== 'A2' || A2_RELEASE_ENABLED)"));
   assert.ok(html.includes("function getUniqueLearningVocabulary()"));
-  assert.ok(html.includes("String(word && word.idn || '').trim().toLocaleLowerCase()"));
+  assert.match(html, /adaptSrsVocabulary\(word, language\)/, 'SRS vocabulary deduplication must use the common language adapter');
   assert.ok(html.includes("async getDuplicateWordIds(wordId)"));
   assert.ok(html.includes("async getMergedSrsItem(wordId)"));
   assert.ok(html.includes("const unique = new Map()"));
@@ -803,6 +803,8 @@ test('SRS due queue returns one due item per Indonesian headword and excludes pl
     '({ async getDueItems() {' + methodBody + '\n} }).getDueItems',
     {
       getLearningLevels: () => [{ units: [{ vocab }] }],
+      LanguageManager: { getActiveLanguage: () => 'id' },
+      adaptSrsVocabulary: word => word ? { ...word, text: word.target || word.idn || null } : null,
       LEGACY_SRS_ID_ALIASES: { 'legacy-a': 'dup-a' },
       DB: { getAll: async () => records },
       Date: { now: () => 100 }
@@ -1135,6 +1137,8 @@ test('legacy SRS records remain linked to canonical IDs after duplicate cards ar
     '({ async getDuplicateWordIds(wordId) {' + methodBody + '\n} }).getDuplicateWordIds',
     {
       getLearningLevels: () => [{ units: [{ vocab: [{ id: 'v53', idn: 'Teman' }, { id: 'v46', idn: 'Makan' }] }] }],
+      LanguageManager: { getActiveLanguage: () => 'id' },
+      adaptSrsVocabulary: word => word ? { ...word, text: word.target || word.idn || null } : null,
       LEGACY_SRS_ID_ALIASES: { v24: 'v53', v25: 'v46' }
     }
   );

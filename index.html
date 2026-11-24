@@ -18110,9 +18110,10 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
             async getDuplicateWordIds(wordId) {
                 const allWords = getLearningLevels().flatMap(level => level.units.flatMap(unit => unit.vocab || []));
                 const sourceWord = allWords.find(word => word.id === wordId);
-                const key = String(sourceWord && sourceWord.idn || '').trim().toLocaleLowerCase();
+                const language = LanguageManager.getActiveLanguage();
+                const key = String(adaptSrsVocabulary(sourceWord, language)?.text || '').trim().toLocaleLowerCase();
                 const matchingIds = key
-                    ? allWords.filter(word => String(word.idn || '').trim().toLocaleLowerCase() === key).map(word => word.id)
+                    ? allWords.filter(word => String(adaptSrsVocabulary(word, language)?.text || '').trim().toLocaleLowerCase() === key).map(word => word.id)
                     : [wordId];
                 const legacyIds = Object.entries(LEGACY_SRS_ID_ALIASES)
                     .filter(([, canonicalId]) => canonicalId === wordId)
@@ -18137,10 +18138,11 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                 const vocabIds = new Set([...allWords.map(v => v.id), ...Object.keys(LEGACY_SRS_ID_ALIASES)]);
                 const all = await DB.getAll('srs');
                 const now = Date.now();
-                const byId = new Map(allWords.map(word => [word.id, word]));
+                const language = LanguageManager.getActiveLanguage();
+                const byId = new Map(allWords.map(word => [word.id, adaptSrsVocabulary(word, language)]));
                 for (const [legacyId, canonicalId] of Object.entries(LEGACY_SRS_ID_ALIASES)) {
                     const canonicalWord = allWords.find(word => word.id === canonicalId);
-                    if (canonicalWord) byId.set(legacyId, canonicalWord);
+                    if (canonicalWord) byId.set(legacyId, adaptSrsVocabulary(canonicalWord, language));
                 }
                 const due = all.filter(i => i.val && vocabIds.has(i.key) &&
                     (i.val.savedForReview === true || i.val.nextReview <= now) &&
@@ -18157,7 +18159,7 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                 const seenWords = new Set();
                 return due.filter(item => {
                     const word = byId.get(item.key);
-                    const key = String(word && word.idn || '').trim().toLocaleLowerCase();
+                    const key = String(word && word.text || '').trim().toLocaleLowerCase();
                     if (!key || seenWords.has(key)) return false;
                     seenWords.add(key);
                     return true;
@@ -18169,9 +18171,10 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
 
             async startSession() {
                 const rawDue = await this.getDueItems();
+                const language = LanguageManager.getActiveLanguage();
                 const vocabById = new Map(getLearningLevels().flatMap(level =>
                     level.units.flatMap(unit => unit.vocab || [])
-                ).map(v => [v.id, v]));
+                ).map(v => [v.id, adaptSrsVocabulary(v, language)]));
                 const selectedSize = Number(document.getElementById('srsSessionSize')?.value || this.maxSessionItems);
                 const sessionLimit = selectedSize === 0 ? rawDue.length : Math.max(1, Math.min(50, selectedSize));
                 this.activeQueue = rawDue.map(item => ({ vocab: vocabById.get(item.key), srs: item.val }))
@@ -18196,14 +18199,18 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                 const progress = document.getElementById('srsProgressText');
                 if (progress) progress.textContent = 'Tarjeta ' + (this.currentIndex + 1) + ' de ' + this.activeQueue.length;
                 const reverse = (this.currentIndex + this.sessionNumber) % 2 === 1;
+                const language = LanguageManager.getLanguage(LanguageManager.getActiveLanguage());
+                const targetName = language && language.name ? language.name : 'idioma objetivo';
                 current.direction = reverse ? 'es-id' : 'id-es';
-                document.getElementById('srsDirectionText').innerText = reverse ? 'Español → indonesio' : 'Indonesio → español';
-                document.getElementById('srsPromptText').innerText = reverse ? current.vocab.esp : current.vocab.idn;
-                document.getElementById('srsContextText').innerText = reverse ? current.vocab.exEsp : current.vocab.ex;
+                document.getElementById('srsDirectionText').innerText = reverse
+                    ? 'Español → ' + targetName.toLocaleLowerCase()
+                    : targetName + ' → español';
+                document.getElementById('srsPromptText').innerText = reverse ? current.vocab.translation : current.vocab.text;
+                document.getElementById('srsContextText').innerText = reverse ? (current.vocab.exampleTranslation || '') : (current.vocab.example || '');
                 document.getElementById('srsContextText').style.display = 'block';
                 document.getElementById('srsAnswerArea').style.display = 'none';
                 document.getElementById('srsRevealBtn').style.display = 'inline-flex';
-                if (!reverse) AudioEngine.speak(current.vocab.idn);
+                if (!reverse && LanguageManager.getActiveLanguage() === 'id') AudioEngine.speak(current.vocab.text);
             },
 
             exitSession() {
@@ -18226,10 +18233,10 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
             revealAnswer() {
                 const current = this.activeQueue[this.currentIndex];
                 if (current.direction === 'es-id') {
-                    document.getElementById('srsAnswerText').innerText = current.vocab.idn + (current.vocab.ex ? ' (' + current.vocab.ex + ')' : '');
-                    AudioEngine.speak(current.vocab.idn);
+                    document.getElementById('srsAnswerText').innerText = current.vocab.text + (current.vocab.example ? ' (' + current.vocab.example + ')' : '');
+                    if (LanguageManager.getActiveLanguage() === 'id') AudioEngine.speak(current.vocab.text);
                 } else {
-                    document.getElementById('srsAnswerText').innerText = current.vocab.esp + (current.vocab.exEsp ? ' (' + current.vocab.exEsp + ')' : '');
+                    document.getElementById('srsAnswerText').innerText = current.vocab.translation + (current.vocab.exampleTranslation ? ' (' + current.vocab.exampleTranslation + ')' : '');
                 }
                 document.getElementById('srsAnswerArea').style.display = 'block';
                 document.getElementById('srsRevealBtn').style.display = 'none';
@@ -18940,11 +18947,18 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                 ? { ...level, units: level.units.filter(unit => /^b2_u(?:[1-9]|[1-5]\d|60)$/.test(unit.id)) }
                 : level);
         }
+        function adaptSrsVocabulary(word, language = LanguageManager.getActiveLanguage()) {
+            const adapted = CurriculumLoader.adaptVocabulary(word, language);
+            return adapted && adapted.text && adapted.translation ? adapted : null;
+        }
+
         function getUniqueLearningVocabulary() {
             const seen = new Set();
+            const language = LanguageManager.getActiveLanguage();
             return getLearningLevels().flatMap(level => level.units.flatMap(unit => unit.vocab || []))
                 .filter(word => {
-                    const key = String(word && word.idn || '').trim().toLocaleLowerCase();
+                    const adapted = adaptSrsVocabulary(word, language);
+                    const key = String(adapted && adapted.text || '').trim().toLocaleLowerCase();
                     if (!key || seen.has(key)) return false;
                     seen.add(key);
                     return true;
@@ -20274,8 +20288,9 @@ Requisitos:
                 const due = await SRSEngine.getDueItems();
                 document.getElementById('srsCountText').innerText = due.length;
                 const allVocab = getLearningLevels().flatMap(level => level.units.flatMap(unit => unit.vocab || []));
-                const vocabById = new Map(allVocab.filter(v => v && v.id).map(v => [v.id, v]));
-                const uniqueVocab = getUniqueLearningVocabulary();
+                const language = LanguageManager.getActiveLanguage();
+                const vocabById = new Map(allVocab.filter(v => v && v.id).map(v => [v.id, adaptSrsVocabulary(v, language)]));
+                const uniqueVocab = getUniqueLearningVocabulary().map(word => adaptSrsVocabulary(word, language)).filter(Boolean);
                 const allIds = new Set([...allVocab.filter(v => v && v.id).map(v => v.id), ...Object.keys(LEGACY_SRS_ID_ALIASES)]);
                 for (const [legacyId, canonicalId] of Object.entries(LEGACY_SRS_ID_ALIASES)) {
                     const canonicalWord = vocabById.get(canonicalId);
@@ -20285,7 +20300,7 @@ Requisitos:
                 for (const item of await DB.getAll('srs')) {
                     if (!item.val || !allIds.has(item.key)) continue;
                     const word = vocabById.get(item.key);
-                    const key = String(word && word.idn || '').trim().toLocaleLowerCase();
+                    const key = String(word && word.text || '').trim().toLocaleLowerCase();
                     if (!key) continue;
                     if (!srsByWord.has(key)) srsByWord.set(key, { attempts: 0, correct: 0, incorrect: 0, repetition: 0, savedForReview: false, seenStates: new Set() });
                     const aggregate = srsByWord.get(key);
@@ -20341,10 +20356,10 @@ Requisitos:
                         return b[1].incorrect - a[1].incorrect;
                     });
                 const toAdaptiveWord = ([term, history]) => {
-                    const word = uniqueVocab.find(entry => String(entry.idn || '').trim().toLocaleLowerCase() === term);
+                    const word = uniqueVocab.find(entry => String(entry.text || '').trim().toLocaleLowerCase() === term);
                     return word ? {
                         id: word.id,
-                        term: word.idn,
+                        term: word.text,
                         incorrect: history.incorrect,
                         attempts: history.attempts,
                         repetition: history.repetition,

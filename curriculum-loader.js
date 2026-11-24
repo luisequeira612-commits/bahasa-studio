@@ -169,9 +169,9 @@
         const adapted = {
             id: typeof word.id === 'string' ? word.id : null,
             text,
-            translation: typeof word.esp === 'string' ? word.esp : null,
-            example: typeof word.ex === 'string' ? word.ex : null,
-            exampleTranslation: typeof word.exEsp === 'string' ? word.exEsp : null
+            translation: typeof word.translation === 'string' ? word.translation : (typeof word.esp === 'string' ? word.esp : null),
+            example: typeof word.example === 'string' ? word.example : (typeof word.ex === 'string' ? word.ex : null),
+            exampleTranslation: typeof word.exampleTranslation === 'string' ? word.exampleTranslation : (typeof word.exEsp === 'string' ? word.exEsp : null)
         };
         for (const field of [
             'reading', 'transliteration', 'pronunciation', 'tokens',

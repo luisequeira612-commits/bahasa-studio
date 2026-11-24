@@ -829,3 +829,9 @@ Fuente: rama `feat/multilingual-tap-translation`, cambios en `index.html`, `test
 - No se modifican IndexedDB v1, backup JSON v3, dependencias ni disponibilidad de idiomas. PR en preparación; exigir CI completo y regresión post-merge antes de considerar cerrado el cambio.
 
 Fuente: GitHub Actions #45501699412; `study-activity.js`, `tests/study-activity.test.cjs` y manifiestos pt-BR A1/A2/B1; 24 nov 2026.
+
+
+## 2026-11-24 — Corrección de comparación cross-realm en cobertura pt-BR (PR #788)
+- CI #45503627725 encontró que la prueba de cobertura A1/A2/B1 fallaba aunque los números de unidades cargadas coincidían exactamente con el manifiesto. La causa era `assert.deepEqual` entre un array creado dentro de `vm` y otro del realm del test: Node compara también el prototipo, por lo que dos listas numéricamente iguales no son equivalentes bajo comparación estricta.
+- Se normaliza únicamente `manifest.publishedUnits` con `Array.from` antes de comparar. Se conserva la exigencia de cobertura exacta de todas las unidades publicadas; no se modifica currículo ni producción.
+Fuente: GitHub Actions #45503627725, job `test`, PR #788; 24 nov 2026.

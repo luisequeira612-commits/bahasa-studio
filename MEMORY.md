@@ -667,3 +667,16 @@ Fuente: PR #773, commit squash `6b595ec`, GitHub Actions #45338392893; 24 nov 20
 - Tras completar CI, la PR debe fusionarse solo con todos los checks en success y después verificarse regresión de `main` y GitHub Pages. Si ambas pasan, B1 queda completo en contenido (36/36), pero pt-BR sigue sin publicarse hasta superar la validación de calidad correspondiente.
 
 Fuente: rama `feat/pt-br-b1-u34-u36`, commit curricular `116f765eb66a87d66312bdb148db3073c0f8f44a`; 24 nov 2026.
+
+## 2026-11-24 — Portugués brasileño B1 completado y cierre post-merge
+
+- PR [#775](https://github.com/luisequeira612-commits/bahasa-studio/pull/775) fusionada mediante squash en `main`; commit integrado `7ae44e6b25e327d835ee1a5a65df968c4b910ad4`.
+- El bloque U34–U36 completa B1 pt-BR: 36/36 unidades. U34 adaptación climática y resiliencia territorial; U35 trabajo, emprendimiento y responsabilidad empresarial; U36 patrimonio, cultura y acceso al conocimiento.
+- CI del head de PR #775, run [#45447210438](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45447210438): `test` y `Offline quality reports` terminaron en success.
+- Regresión post-merge de `main`, run [#45448852637](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45448852637): `test` y `Offline quality reports` en success. El job de pruebas registró 289/289 pruebas aprobadas, incluidas las comprobaciones de manifiesto B1 U1–U36 y carga offline de A1/A2/B1.
+- GitHub Pages, run [#45448851006](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45448851006): build, report-build-status y deploy completados en success.
+- Se mantiene `pt-BR available:false`; B1 completado en contenido no equivale a publicar el idioma ni a certificar nivel MCER/BIPA. Los términos nuevos permanecen `verification.status: not_checked`; las pruebas estructurales no certifican naturalidad ni exactitud lingüística.
+- Sin cambios a IndexedDB v1, backup JSON v3 ni dependencias.
+- Próxima fase curricular aprobada para pt-BR: B2, con 40 unidades según la decisión registrada en Notion. En el repositorio no existe aún `languages/pt-BR/curriculum/b2/`; antes de implementar datos se debe preparar un mapa temático propio de pt-BR y distinguirlo del currículo B2 indonesio existente (60 unidades), que tiene otra hoja de ruta y reglas específicas.
+
+Fuente: PR #775, commits de `main`, GitHub Actions #45447210438, #45448852637 y #45448851006; decisión curricular pt-BR registrada en Notion; 24 nov 2026.

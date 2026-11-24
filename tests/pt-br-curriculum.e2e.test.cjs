@@ -67,7 +67,8 @@ test('Playwright: carga A1 U1-U24, A2 U1-U30 y B1 U1-U36 offline, aislando el pr
      Boolean(await cache.match(new URL('/languages/pt-BR/curriculum/b1/units-22-24.js',location.href).href)) &&
      Boolean(await cache.match(new URL('/languages/pt-BR/curriculum/b1/units-25-27.js',location.href).href)) &&
      Boolean(await cache.match(new URL('/languages/pt-BR/curriculum/b1/units-28-30.js',location.href).href)) &&
-     Boolean(await cache.match(new URL('/languages/pt-BR/curriculum/b1/units-31-33.js',location.href).href)) && Boolean(await cache.match(new URL('/languages/pt-BR/curriculum/b1/units-34-36.js',location.href).href))
+     Boolean(await cache.match(new URL('/languages/pt-BR/curriculum/b1/units-31-33.js',location.href).href)) &&
+     Boolean(await cache.match(new URL('/languages/pt-BR/curriculum/b1/units-34-36.js',location.href).href))
   });
   assert.equal(cacheReady,true,'manifest and curriculum block must be in the app-shell cache');
   await context.setOffline(true);

@@ -71,7 +71,7 @@ test('B1 U10-U12 add no exact normalized vocabulary duplicates against A1, A2 or
  assert.equal(prior.length,540);assert.equal(previous.length,90);assert.equal(added.length,30);assert.equal(new Set(normalized).size,30);
  assert.deepEqual(normalized.filter(word=>allPrior.has(word)),[]);
 });
-test('service worker precaches B1 U1-U12 with cache v3.8.150',()=>{
+test('service worker precaches B1 U1-U12 with cache v3.8.152',()=>{
  const source=fs.readFileSync(path.join(repo,'service-worker.js'),'utf8');
  assert.ok(source.includes("./languages/pt-BR/curriculum/b1/units-10-12.js"));
  assert.match(source,/bahasa-studio-v3\.8\.151/);

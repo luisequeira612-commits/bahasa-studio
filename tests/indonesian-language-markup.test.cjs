@@ -39,15 +39,16 @@ test('el matching usa el locale activo y pares con campos neutrales', () => {
     assert.doesNotMatch(html, /match-option-btn[^\n]*lang="id"|data-side="idn"/);
 });
 
-test('la frase interactiva solo recibe lang=id cuando su idioma es indonesio', () => {
-    assert.match(html, /language === 'idn' \? ' lang="id"'/);
+test('la frase interactiva aplica el locale de origen y reserva audio para indonesio', () => {
+    assert.match(html, /sourceLocale = language === 'es' \? 'es' : LanguageManager\.getLocale\(activeLanguage\)/);
+    assert.match(html, /language !== 'es' && activeLanguage === 'id'/);
 });
 
 test('marca el ejemplo modelo y el término emergente como indonesios', () => {
     assert.match(html, /<p lang="\$\{App\.escapeHtml\(ex\.answerLocale \|\| ex\.targetLocale \|\| 'und'\)\}" style="white-space:pre-wrap;">\$\{App\.escapeHtml\(ex\.modelAnswer/);
     assert.match(html, /writingLanguage = ex\.answerLocale \|\| ex\.targetLocale \|\| 'und'/);
-    assert.match(html, /termNode\.lang = 'id'/);
-    assert.match(html, /original\.lang = 'id'/);
+    assert.match(html, /termNode\.lang = matches\[0\]\.locale/);
+    assert.match(html, /original\.lang = example\.locale/);
 });
 
 

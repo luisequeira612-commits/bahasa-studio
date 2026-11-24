@@ -753,3 +753,11 @@ Fuente: rama `feat/pt-br-b1-u34-u36`, commit curricular `116f765eb66a87d66312bdb
 - Próxima fase curricular aprobada para pt-BR: B2, con 40 unidades según la decisión registrada en Notion. En el repositorio no existe aún `languages/pt-BR/curriculum/b2/`; antes de implementar datos se debe preparar un mapa temático propio de pt-BR y distinguirlo del currículo B2 indonesio existente (60 unidades), que tiene otra hoja de ruta y reglas específicas.
 
 Fuente: PR #775, commits de `main`, GitHub Actions #45447210438, #45448852637 y #45448851006; decisión curricular pt-BR registrada en Notion; 24 nov 2026.
+
+
+## 2026-11-24 — Test E2E alineado con el nombre accesible multilingüe (PR #782)
+
+- CI #45480612260: `Offline quality reports` success; regresión falló únicamente en el E2E `priority 3 adds written sentence completion and tap-to-match practice without curriculum edits`. La prueba buscaba el nombre accesible legacy `Palabra que falta`, pero el renderer ahora expone `Respuesta en el idioma objetivo` para locales de destino, incluido `id-ID`.
+- Se actualizó la consulta Playwright al nombre accesible actual, sin cambiar el comportamiento de producción ni debilitar la comprobación funcional. Reejecutar CI completo sobre el nuevo head antes de fusionar.
+
+Fuente: GitHub Actions #45480612260, job `test`; PR #782; 24 nov 2026.

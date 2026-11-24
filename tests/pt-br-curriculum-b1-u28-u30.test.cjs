@@ -60,13 +60,13 @@ test('B1 U28-U30 review references resolve to existing A2 vocabulary IDs',async(
 });
 test('B1 U28-U30 add no exact normalized vocabulary duplicates against A1, A2 or B1 U1-U27',()=>{
  const prior=[];
- for(const file of a1Files){const source=fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a1',file),'utf8');for(const match of source.matchAll(/v\\('(?:[^']+)'\\s*,\\s*'([^']+)'/g))prior.push(match[1]);}
- for(const file of a2Files){const source=fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a2',file),'utf8');for(const match of source.matchAll(/vocab\\(\\s*\\d+\\s*,\\s*\\d+\\s*,\\s*'([^']+)'/g))prior.push(match[1]);}
+ for(const file of a1Files){const source=fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a1',file),'utf8');for(const match of source.matchAll(/v\('(?:[^']+)'\s*,\s*'([^']+)'/g))prior.push(match[1]);}
+ for(const file of a2Files){const source=fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a2',file),'utf8');for(const match of source.matchAll(/vocab\(\s*\d+\s*,\s*\d+\s*,\s*'([^']+)'/g))prior.push(match[1]);}
  const previous=[];
- for(const file of b1Files.slice(0,9)){const source=fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/b1',file),'utf8');for(const match of source.matchAll(/vocab\\(\\d+,\\d+,'([^']+)'/g))previous.push(match[1]);}
+ for(const file of b1Files.slice(0,9)){const source=fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/b1',file),'utf8');for(const match of source.matchAll(/vocab\(\d+,\d+,'([^']+)'/g))previous.push(match[1]);}
  const source=fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/b1/units-28-30.js'),'utf8');
- const added=[...source.matchAll(/vocab\\(\\d+,\\d+,'([^']+)'/g)].map(match=>match[1]);
- const normalize=value=>value.toLocaleLowerCase('pt-BR').normalize('NFD').replace(/[\\u0300-\\u036f]/g,'').replace(/\\s+/g,' ').trim();
+ const added=[...source.matchAll(/vocab\(\d+,\d+,'([^']+)'/g)].map(match=>match[1]);
+ const normalize=value=>value.toLocaleLowerCase('pt-BR').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/\s+/g,' ').trim();
  const allPrior=new Set([...prior,...previous].map(normalize)),normalized=added.map(normalize);
  assert.equal(prior.length,540);assert.equal(previous.length,270);assert.equal(added.length,30);assert.equal(new Set(normalized).size,30);
  assert.deepEqual(normalized.filter(word=>allPrior.has(word)),[]);
@@ -74,5 +74,5 @@ test('B1 U28-U30 add no exact normalized vocabulary duplicates against A1, A2 or
 test('service worker precaches B1 U1-U30 with cache v3.8.150',()=>{
  const source=fs.readFileSync(path.join(repo,'service-worker.js'),'utf8');
  assert.ok(source.includes("./languages/pt-BR/curriculum/b1/units-28-30.js"));
- assert.match(source,/bahasa-studio-v3\\.8\\.150/);
+ assert.match(source,/bahasa-studio-v3\.8\.150/);
 });

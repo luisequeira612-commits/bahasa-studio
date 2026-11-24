@@ -243,3 +243,12 @@ test('rejects invalid exercise values and unsupported language codes', () => {
     assert.equal(loader.adaptExercise([], 'id'), null);
     assert.equal(loader.adaptExercise({ type: 'fill' }, '../id'), null);
 });
+
+
+test('adapts neutral vocabulary fields for SRS while preserving legacy Indonesian fields', () => {
+    const loader = createLoader();
+    const neutral = loader.adaptVocabulary({ id: 'pt-1', target: 'bom dia', translation: 'buenos días', example: 'Bom dia!', exampleTranslation: '¡Buenos días!' }, 'pt-BR');
+    const legacy = loader.adaptVocabulary({ id: 'id-1', idn: 'selamat pagi', esp: 'buenos días', ex: 'Selamat pagi!', exEsp: '¡Buenos días!' }, 'id');
+    assert.deepEqual(JSON.parse(JSON.stringify(neutral)), { id: 'pt-1', text: 'bom dia', translation: 'buenos días', example: 'Bom dia!', exampleTranslation: '¡Buenos días!' });
+    assert.deepEqual(JSON.parse(JSON.stringify(legacy)), { id: 'id-1', text: 'selamat pagi', translation: 'buenos días', example: 'Selamat pagi!', exampleTranslation: '¡Buenos días!' });
+});

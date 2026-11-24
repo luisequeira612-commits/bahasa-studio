@@ -418,3 +418,49 @@ test('SRS runtime isolates identical vocabulary IDs across language namespaces',
     await new Promise(resolve => server.close(resolve));
   }
 });
+
+
+test('SRS card renderer reads neutral vocabulary fields in both directions', async () => {
+  const { server, url } = await startServer();
+  const browser = await chromium.launch({ headless: true });
+  const context = await browser.newContext({ serviceWorkers: 'block' });
+  const page = await context.newPage();
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof SRSEngine !== 'undefined' && DB && DB.db);
+    const result = await page.evaluate(() => {
+      const originalSpeak = AudioEngine.speak;
+      AudioEngine.speak = () => {};
+      try {
+        SRSEngine.activeQueue = [
+          { vocab: { id: 'pt-test-1', text: 'bom dia', translation: 'buenos días', example: 'Bom dia!', exampleTranslation: '¡Buenos días!' } },
+          { vocab: { id: 'pt-test-2', text: 'obrigado', translation: 'gracias', example: 'Obrigado pela ajuda.', exampleTranslation: 'Gracias por la ayuda.' } }
+        ];
+        SRSEngine.currentIndex = 0;
+        SRSEngine.sessionNumber = 1;
+        SRSEngine.renderCard();
+        const spanishPrompt = document.getElementById('srsPromptText').innerText;
+        const spanishContext = document.getElementById('srsContextText').innerText;
+        SRSEngine.revealAnswer();
+        const targetAnswer = document.getElementById('srsAnswerText').innerText;
+        SRSEngine.currentIndex = 1;
+        SRSEngine.renderCard();
+        const targetPrompt = document.getElementById('srsPromptText').innerText;
+        const targetContext = document.getElementById('srsContextText').innerText;
+        SRSEngine.revealAnswer();
+        const spanishAnswer = document.getElementById('srsAnswerText').innerText;
+        return { spanishPrompt, spanishContext, targetAnswer, targetPrompt, targetContext, spanishAnswer };
+      } finally { AudioEngine.speak = originalSpeak; }
+    });
+    assert.equal(result.spanishPrompt, 'buenos días');
+    assert.equal(result.spanishContext, '¡Buenos días!');
+    assert.equal(result.targetAnswer, 'bom dia (Bom dia!)');
+    assert.equal(result.targetPrompt, 'obrigado');
+    assert.equal(result.targetContext, 'Obrigado pela ajuda.');
+    assert.equal(result.spanishAnswer, 'gracias (Gracias por la ayuda.)');
+  } finally {
+    await context.close();
+    await browser.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});

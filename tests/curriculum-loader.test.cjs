@@ -156,7 +156,10 @@ test('lesson vocabulary cards use the common adapter and the active target local
 
     assert.ok(start >= 0, 'lesson intro defines its vocabulary card renderer');
     assert.match(renderer, /CurriculumLoader\.adaptVocabulary\(v, language\)/);
-    assert.match(renderer, /LanguageManager\.getLocale\(language\)/);
+    const introStart = indexSource.lastIndexOf('const language = LanguageManager.getActiveLanguage();', start);
+    const introSetup = indexSource.slice(introStart, start);
+    assert.ok(introStart >= 0, 'lesson intro resolves the active language before rendering');
+    assert.match(introSetup, /LanguageManager\.getLocale\(language\)/);
     assert.match(renderer, /word\.reading/);
     assert.match(renderer, /word\.transliteration/);
     assert.match(renderer, /lang="\$\{App\.escapeHtml\(locale\)\}"/);

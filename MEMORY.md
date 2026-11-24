@@ -611,3 +611,13 @@ Fuente: GitHub Actions run #45326693589 y commit e3a9db12ef2c58ae6c23a58eaa7630b
 - La ejecución #45327148126 detectó que la lección 5 de U25 no repetía literalmente el término `reaproveitamento pós-consumo` en su explicación.
 - Se ajustó el texto de la lección para explicar el término de forma explícita, sin cambiar vocabulario, IDs, estructura curricular ni disponibilidad del curso.
 - Commit: `a81280f834a5e6267ff49f4f60c75fcecaf22667`. Nueva CI pendiente; PR #771 continúa sin fusionar.
+
+
+## 2026-11-24 — Corrección de guardas CI PR #773 para B1 U28–U30
+- La PR #772 añadió B1 U28–U30 y avanzó el Service Worker a `bahasa-studio-v3.8.150`, pero el primer CI (#45330309615) falló por expectativas heredadas que todavía comprobaban U1–U27 y `v3.8.149`.
+- La PR #773, rama `fix/pt-br-b1-u28-u30-ci-guards`, actualiza nueve contratos heredados para esperar U1–U30 y `v3.8.150`. No cambia contenido curricular ni lógica de runtime.
+- Head de #773: `42d75591a3c40ad96d4f3143c5587029df65dba3`. CI #45334239766 está en ejecución: `Offline quality reports` ya está en success; el job `test` está instalando Chromium y aún no ha llegado a los contratos.
+- PR #773 queda pendiente de CI completo antes de fusionarse en la rama de #772. Después se debe repetir CI de #772 sobre el head actualizado, fusionar solo con todos los checks requeridos en success y verificar regresión post-merge + GitHub Pages.
+- `pt-BR available:false`, `verification.status: not_checked`, IndexedDB v1 y backup JSON v3 permanecen sin cambios.
+
+Fuente: PR #772/#773 y GitHub Actions #45330309615/#45334239766; 24 nov 2026.

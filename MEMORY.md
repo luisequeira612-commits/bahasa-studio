@@ -638,3 +638,13 @@ Fuente: GitHub Actions #45334713127, logs del job `test`, PR #773 y archivos de 
 - Se corrigió el texto de la lección para definir la concesión mutua como ajuste recíproco de exigencias, manteniendo el ejemplo condicional y sin cambiar IDs, términos, ejercicios, estructura, disponibilidad ni verificación lingüística.
 - Actualización aplicada a `languages/pt-BR/curriculum/b1/units-28-30.js` en PR #773; commit cbb2f8607f52667884b0975dbc7471b1b672caf8. Repetir CI completo antes de cualquier merge.
 - Fuente: GitHub Actions #45337705294, fallo `tests/pt-br-curriculum-b1-u28-u30.test.cjs:41`; 24 nov 2026.
+
+
+## 2026-11-24 — PR #773 fusionada y CI corregido para B1 U28–U30
+- PR #773 se fusionó mediante squash en la rama de integración `feat/pt-br-b1-u28-u30`, commit `6b595ec64963eeed712cb160040da438e7131944`.
+- CI final del head `1b177afafff35460b1837a7af23889a170b9658c`, run #45338392893: job `test` completó todos sus pasos con success, incluidos Chromium, `quality:tests` y E2E real; `Offline quality reports` también terminó en success.
+- La corrección final añadió a U29 lección 4 una explicación explícita de `concessão mútua`, tras el único fallo de contrato en la ejecución anterior. Se conservaron los contratos estrictos.
+- La PR #772 debe ejecutar CI completo sobre la rama actualizada antes de fusionarse. Después exigir regresión post-merge y GitHub Pages.
+- `pt-BR available:false`; los términos nuevos siguen `verification.status: not_checked`. IndexedDB v1 y backup JSON v3 sin cambios.
+
+Fuente: PR #773, commit squash `6b595ec`, GitHub Actions #45338392893; 24 nov 2026.

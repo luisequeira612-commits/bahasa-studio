@@ -1,3 +1,11 @@
+## 2026-11-24 — Corrección CI de ayudas de traducción por toque (PR #784)
+
+- CI #45490455600 detectó tres expectativas legacy: dos en `tests/regression.test.cjs` exigían `lang="id"`/campos `idn`, y una en `tests/load-inline-b2-curriculum.test.mjs` buscaba el comentario antiguo del fallback.
+- Se actualizan solo esos contratos para reflejar la implementación neutral de fase 5: `text/translation`, locale dinámico y fallback authored indonesio limitado a B2 U1–U60. No cambia producción, datos ni persistencia.
+- Pendiente: repetir CI completo sobre el nuevo head; no fusionar hasta que `test` y `Offline quality reports` estén verdes.
+
+Fuente: GitHub Actions #45490455600, PR #784; 24 nov 2026.
+
 ## 2026-11-24 — Corrección del alcance de prueba y locale de ejemplo modelo (PR #782)
 
 - CI #45480195732: informes offline success; regresión falló solo en la prueba nueva de marcado, porque el test recortaba `renderStep()` antes de llegar al bloque de ejercicios. Se cambió la comprobación para inspeccionar el archivo completo y mantener el recorte solo para `pickWord`.

@@ -1,5 +1,14 @@
 
 
+### 2026-11-24 — Segundo test con alcance de locale corregido en PR #781
+
+- CI #45477231395 confirmó que la primera corrección del test de markup no había actualizado la aserción equivalente en `tests/curriculum-loader.test.cjs`; el test fallaba porque buscaba el locale dentro de `wordCard`, no en la preparación de `renderIntro()`.
+- Se ajusta esa segunda prueba para validar `LanguageManager.getLocale(language)` en el bloque de preparación, manteniendo las aserciones del adaptador y campos opcionales en el renderer. No se modifica producción.
+- La suite debe repetirse sobre el nuevo head antes de fusionar.
+
+Fuente: GitHub Actions #45477231395, job `test`, subtest `lesson vocabulary cards use the common adapter and the active target locale`; 24 nov 2026.
+
+
 ### 2026-11-24 — Corrección de alcance del test en PR #781
 
 - CI #45476822874: `Offline quality reports` success; `test` falló únicamente en `tests/indonesian-language-markup.test.cjs`. El test buscaba `LanguageManager.getLocale(language)` dentro del cuerpo de `wordCard`, aunque esa configuración se declara correctamente antes del renderer.

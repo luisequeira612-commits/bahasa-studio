@@ -214,12 +214,16 @@ test('adapts exercise answer locales without rewriting authored fields or accept
     };
     const spanish = { type: 'translate_id_es', prompt: 'Traduce', answer: 'comer' };
     const explicitSpanish = { type: 'fill', prompt: 'Parafrasea', answer: 'comer', answerLanguage: 'es' };
+    const neutralTranslation = { type: 'translate_es_target', prompt: 'Traduce al idioma objetivo', answer: 'bom dia' };
+    const explicitNeutralTranslation = { type: 'translate_es_target', prompt: 'Traduce al idioma objetivo', answer: 'buenos días', answerLanguage: 'es' };
     const original = JSON.stringify(portuguese);
 
     const idView = loader.adaptExercise(indonesian, 'id');
     const ptView = loader.adaptExercise(portuguese, 'pt-BR');
     const esView = loader.adaptExercise(spanish, 'pt-BR');
     const explicitEsView = loader.adaptExercise(explicitSpanish, 'pt-BR');
+    const neutralPtView = loader.adaptExercise(neutralTranslation, 'pt-BR');
+    const explicitNeutralEsView = loader.adaptExercise(explicitNeutralTranslation, 'pt-BR');
 
     assert.equal(idView.targetLocale, 'id-ID');
     assert.equal(idView.answerLanguage, 'id');
@@ -232,6 +236,10 @@ test('adapts exercise answer locales without rewriting authored fields or accept
     assert.equal(esView.answerLanguage, 'es');
     assert.equal(esView.answerLocale, 'es');
     assert.equal(explicitEsView.answerLocale, 'es');
+    assert.equal(neutralPtView.answerLanguage, 'pt-BR');
+    assert.equal(neutralPtView.answerLocale, 'pt-BR');
+    assert.equal(explicitNeutralEsView.answerLanguage, 'es');
+    assert.equal(explicitNeutralEsView.answerLocale, 'es');
     assert.equal(JSON.stringify(portuguese), original);
     assert.equal(ptView.answer, 'café da manhã');
     assert.equal(ptView.answerLocale, 'pt-BR');

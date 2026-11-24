@@ -841,3 +841,11 @@ Fuente: GitHub Actions #45503627725, job `test`, PR #788; 24 nov 2026.
 - Tras corregir la comparación cross-realm, CI #45504645770 detectó otra expectativa incorrecta: el test exigía que el currículo portugués contuviera las cinco habilidades, aunque los bloques publicados actuales solo incluyen ejercicios de reconocimiento y construcción de frases (con escucha derivada cuando hay audio). La prueba fallaba específicamente por traducción, que no está representada en esos bloques; no era una habilidad sin mapear.
 - Se elimina la exigencia de presencia artificial de todas las categorías y se mantiene: cada ejercicio publicado debe mapear a una habilidad válida, las unidades publicadas deben cargarse completas y el conjunto debe aportar al menos una habilidad. La correspondencia explícita de `translate_es_target` sigue cubierta en el test unitario de tipos, sin fingir que ya aparece en los datos curriculares pt-BR.
 Fuente: GitHub Actions #45504645770 y revisión de bloques pt-BR A1; 24 nov 2026.
+
+
+## 2026-11-24 — Inferencia de locale para ejercicios de traducción neutrales
+- La revisión posterior al PR #788 detectó que `CurriculumLoader.adaptExercise` infería el idioma de respuesta para `translate_es_id` (alias histórico), pero omitía el nuevo tipo neutral `translate_es_target`. Esto dejaba sin `answerLanguage`/`answerLocale` inferidos los ejercicios neutrales cuando el contenido no declaraba explícitamente esos campos.
+- Se añade `translate_es_target` a la lista de tipos cuya respuesta está en el idioma objetivo activo. Se amplían las pruebas para comprobar pt-BR, preservar `answerLanguage: 'es'` explícito y mantener la cobertura del alias `translate_es_id`.
+- El adaptador sigue siendo de solo lectura: no reescribe respuestas ni reglas de aceptación. No se habilita pt-BR, no se cambian currículos, IndexedDB v1, backup JSON v3 ni dependencias. Pendiente CI completa y regresión post-merge.
+
+Fuente: `curriculum-loader.js`, `tests/curriculum-loader.test.cjs`, revisión posterior al PR #788; 24 nov 2026.

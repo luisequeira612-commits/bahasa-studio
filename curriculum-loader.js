@@ -217,7 +217,7 @@
             ? exercise.answerLanguage
             : exercise.type === 'translate_id_es'
                 ? 'es'
-                : ['fill', 'translate_es_id', 'listen', 'write', 'order'].includes(exercise.type)
+                : ['fill', 'translate_es_id', 'translate_es_target', 'listen', 'write', 'order'].includes(exercise.type)
                     ? language
                     : null;
         if (answerLanguage) {

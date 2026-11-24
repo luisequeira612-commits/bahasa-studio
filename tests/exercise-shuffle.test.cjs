@@ -55,7 +55,7 @@ test('order exercises never render the canonical answer when a different arrange
 test('all exercise shuffle call sites use Fisher–Yates and order-specific protection', () => {
   assert.match(html, /const options = shuffleArray\(\[word\.esp, \.\.\.distractors\]\);/);
   assert.match(html, /const shuffled = shuffleOrderWords\(ex\.words, ex\.correctOrder\);/);
-  assert.match(html, /const idnOptions = shuffleArray\(ex\.pairs\.map/);
+  assert.match(html, /const targetOptions = shuffleArray\(ex\.pairs\.map/);
   assert.match(html, /const espOptions = shuffleArray\(ex\.pairs\.map/);
   assert.doesNotMatch(html, /sort\(\(\) => Math\.random\(\) - 0\.5\)/);
 });

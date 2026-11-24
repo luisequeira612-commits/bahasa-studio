@@ -1,3 +1,8 @@
+## 2026-11-24 — Fase 4 completada; integración inicial de renderizador en fase 5
+
+- PR #780 fusionada por squash en `main`, commit `f1a1f49a171c97aa0624e25055d9636c351cfb74`; CI #45473441650: `test` y `Offline quality reports` success. El caso NFC fue corregido para usar una marca combinante real.
+- Fase 5 iniciada en `feat/multilingual-vocabulary-renderer`: el primer renderizador de tarjetas de vocabulario de lección consume `CurriculumLoader.adaptVocabulary`, aplica locale del idioma objetivo y muestra lectura/transliteración opcionales. Sin activar pt-BR ni alterar datos/persistencia; queda pendiente validar CI y extender a adaptadores de ejercicios/SRS.
+
 ## 2026-11-24 — Integración multiidioma: fase 4 en curso
 - Fase 3 completada: PR #779 fusionada mediante squash en `main`, commit `ba21c4647c0ba8e4c5f9d383a133e2b13e1d5290`; CI #45469430382 (`test` y `Offline quality reports`) success. `CurriculumLoader.adaptVocabulary` añade una vista común no mutante, sin conectar todavía renderizadores.
 - Fase 4: rama `test/multiscript-curriculum-contract` creada desde el commit de #779. Se amplían pruebas del contrato opcional con japonés, árabe, tailandés, coreano, devanagari, emoji y equivalencia Unicode NFC; no se impone tokenización por espacios ni se eliminan diacríticos. PR/CI pendientes.

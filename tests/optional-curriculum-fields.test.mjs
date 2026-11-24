@@ -31,3 +31,40 @@ test('validator does not mutate curriculum data', () => {
   assert.deepEqual(validateOptionalCurriculumFields(curriculum), []);
   assert.equal(JSON.stringify(curriculum), before);
 });
+
+
+test('accepts multilingual text without assuming Latin script or space-delimited tokens', () => {
+  const curriculum = { units: [{ vocab: [{
+    target: '食べる', reading: 'たべる', transliteration: 'taberu',
+    tokens: ['食', 'べる'], grammaticalFunctions: ['動詞', '辞書形'],
+    forms: [{ value: '食べます', label: '丁寧形' }],
+    annotations: [{ type: 'usage', text: '日常的な動作を表す。' }],
+    pronunciation: { ipa: 'ta.be.ɾɯ' },
+    verification: { status: 'not_checked', sources: [] }
+  }, {
+    target: 'مرحبا', reading: 'مَرْحَبًا', tokens: ['مرحبا'],
+    annotations: [{ type: 'script', text: 'نص عربي متصل دون افتراض فصل الكلمات.' }]
+  }, {
+    target: 'ภาษาไทย', tokens: ['ภาษาไทย'], reading: 'ภาษาไทย'
+  }, {
+    target: '한국어', reading: '한국어', tokens: ['한', '국', '어']
+  }, {
+    target: 'नमस्ते', reading: 'नमस्ते', tokens: ['नमस्ते']
+  }], lessons: [{ exercises: [{
+    type: 'write', acceptedAnswers: ['食べる', 'たべる', 'مرحبا', 'ภาษาไทย', '한국어', 'नमस्ते', '👩🏽‍💻']
+  }] }], exercises: [] }] };
+  assert.deepEqual(validateOptionalCurriculumFields(curriculum), []);
+});
+
+test('normalizes canonically equivalent Unicode answers without stripping diacritics', () => {
+  const curriculum = { units: [{ vocab: [], lessons: [], exercises: [{
+    acceptedAnswers: ['café', 'cafe\\u0301']
+  }] }] };
+  const issues = validateOptionalCurriculumFields(curriculum);
+  assert.equal(issues.filter(issue => issue.code === 'OPTIONAL_TEXT_DUPLICATE').length, 1);
+  assert.equal(issues[0].path, 'units[0].exercises[0].acceptedAnswers[1]');
+  const distinct = { units: [{ vocab: [], lessons: [], exercises: [{
+    acceptedAnswers: ['café', 'cafe']
+  }] }] };
+  assert.deepEqual(validateOptionalCurriculumFields(distinct), []);
+});

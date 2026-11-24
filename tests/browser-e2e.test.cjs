@@ -1743,10 +1743,10 @@ test('priority 3 adds written sentence completion and tap-to-match practice with
       LessonEngine.stepIndex = index;
       LessonEngine.renderStep();
     }, matchIndex);
-    assert.equal(await page.locator('#matchIdn .match-option-btn').count(), 3);
+    assert.equal(await page.locator('#matchTarget .match-option-btn').count(), 3);
     assert.equal(await page.locator('#matchEsp .match-option-btn').count(), 3);
     for (let index = 0; index < 3; index++) {
-      await page.locator('#matchIdn .match-option-btn[data-pair-index="' + index + '"]').click();
+      await page.locator('#matchTarget .match-option-btn[data-pair-index="' + index + '"]').click();
       await page.locator('#matchEsp .match-option-btn[data-pair-index="' + index + '"]').click();
       await page.waitForFunction(expected => LessonEngine.matchSolved.size === expected, index + 1);
     }

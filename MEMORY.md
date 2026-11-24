@@ -559,6 +559,7 @@ Fuente: GitHub Actions run #45314054499, job test, PR #769 y archivos de contrat
 
 
 ## 2026-11-24 — Portugués B1 U22–U24 en preparación
+- PR [#770](https://github.com/luisequeira612-commits/bahasa-studio/pull/770) abierta desde `feat/pt-br-b1-u22-u24`; head inicial `c0092b98c378d1a2710daf5905ba4add77d960fe`. CI pendiente sobre el head actual.
 - Tras fusionar PR #769, `main` quedó en `79c10046626ef48f21696dd29f4ecc7ce32a7a9a`. La regresión post-merge #45318720549 terminó con `test` 101/101 y `Offline quality reports` 10/10 en success; Pages #45318719535 completó build, deploy y report-build-status en success.
 - Rama `feat/pt-br-b1-u22-u24` creada desde ese `main`. U22 inclusión digital y servicios públicos; U23 preparación ante emergencias; U24 seguridad y prevención en el trabajo.
 - Bloque nuevo: 30 términos (10 por unidad), cinco lecciones por unidad, diez ejercicios MC finales por unidad y 15 referencias de repaso A2. Ejemplos PT-BR/ES; cada término conserva `verification.status: not_checked`. La auditoría de duplicados compara A1, A2 y B1 U1–U21; no se marca ninguna entrada como validada lingüísticamente.

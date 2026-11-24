@@ -182,5 +182,30 @@
         return Object.freeze(adapted);
     }
 
-    root.CurriculumLoader = Object.freeze({ levels: LEVELS, resolve, load, loadUnits, adaptVocabulary });
+    // Read-only-shape adapter for exercise language metadata. It preserves authored
+    // exercise fields and never changes answer indexes or acceptance rules.
+    function adaptExercise(exercise, language) {
+        const manager = root.LanguageManager;
+        if (!manager || typeof manager.isSupported !== 'function' || !manager.isSupported(language)) return null;
+        if (!exercise || typeof exercise !== 'object' || Array.isArray(exercise)) return null;
+
+        const adapted = { ...exercise };
+        adapted.targetLocale = manager.getLocale(language) || 'und';
+        const answerLanguage = typeof exercise.answerLanguage === 'string' && exercise.answerLanguage
+            ? exercise.answerLanguage
+            : exercise.type === 'translate_id_es'
+                ? 'es'
+                : ['fill', 'translate_es_id', 'listen', 'write', 'order'].includes(exercise.type)
+                    ? language
+                    : null;
+        if (answerLanguage) {
+            adapted.answerLanguage = answerLanguage;
+            adapted.answerLocale = answerLanguage === 'es'
+                ? 'es'
+                : manager.getLocale(answerLanguage) || adapted.targetLocale;
+        }
+        return adapted;
+    }
+
+    root.CurriculumLoader = Object.freeze({ levels: LEVELS, resolve, load, loadUnits, adaptVocabulary, adaptExercise });
 })(typeof window !== 'undefined' ? window : globalThis);

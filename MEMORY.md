@@ -548,3 +548,11 @@ Fuente: GitHub Actions run #45304701798, job `test`, archivos de pruebas A2/U22�
 - `pt-BR available:false` se mantiene. Sin dependencias nuevas, backend, audio/TTS, cambios de IndexedDB v1 ni backup JSON v3. CI de la nueva rama aún pendiente de abrir/ejecutar; no fusionar hasta que el CI completo pase y después confirmar regresión post-merge y Pages.
  
 Fuente: rama `feat/pt-br-b1-u19-u21`, archivos curriculares/manifiesto/Service Worker/tests, PR #768 y Actions #45312227091/#45312226119; 24 nov 2026.
+
+
+## 2026-11-24 — Corrección CI PR #769: contratos de caché y duplicado léxico
+- El primer CI de PR #769, run #45314054499, pasó `Offline quality reports` pero falló `Run local quality tests`. El log identificó expectativas heredadas A2/B1 que aún exigían la caché v3.8.146 (y títulos v3.8.144), aunque el Service Worker de la rama usa v3.8.147.
+- Se actualizaron las expectativas afectadas a v3.8.147, manteniendo las aserciones de precache. El mismo run detectó una colisión normalizada de `assistência técnica` con el vocabulario A2; se reemplaza por `orientação agronômica` y se actualizan traducción y explicación de la lección correspondiente.
+- La PR permanece abierta y no fusionada hasta ejecutar CI completo sobre el head corregido. No cambiar disponibilidad del curso ni contratos de persistencia.
+
+Fuente: GitHub Actions run #45314054499, job test, PR #769 y archivos de contratos/currículo; 24 nov 2026.

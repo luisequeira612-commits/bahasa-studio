@@ -1,3 +1,15 @@
+## 2026-11-24 — Portugués B1 U13–U15 en preparación
+- La regresión post-merge de PR #766 en `main` terminó en success: Actions run #45298580544 (`test` y `Offline quality reports`), y GitHub Pages deployment run #45298578980 también terminó en success. `main` queda en merge commit `1b80394a87ab32c6714880601586b66ae5cbba82`.
+- Rama `feat/pt-br-b1-u13-u15` creada desde ese `main`. Añade U13 educación y aprendizaje permanente; U14 privacidad y ciudadanía digital; U15 cultura, creación y políticas culturales.
+- El bloque incorpora 30 términos (10 por unidad), cinco lecciones y diez ejercicios MC por unidad; ejemplos PT/ES y estado `not_checked`. Cada lección cubre y explica dos términos; se añaden 15 referencias de repaso A2, todas resueltas.
+- Auditoría local de diseño contra 540 términos A1/A2 y 120 B1 U1–U12: 30 términos nuevos, cero duplicados normalizados y cero duplicados internos. Se reemplazaron dos colisiones iniciales (`bolsa de estudos`, `vazamento de dados`) por `auxílio estudantil` y `exposição de informações pessoais`.
+- Manifiesto B1 amplía unidades publicadas a U1–U15 de 36; Service Worker avanza a `bahasa-studio-v3.8.145` y precarga `units-13-15.js`. Se amplían contratos Node y Playwright para cobertura estructural, duplicados normalizados, referencias A2 y carga offline.
+- PR [#767](https://github.com/luisequeira612-commits/bahasa-studio/pull/767) abierta desde `feat/pt-br-b1-u13-u15`, head `b11ff59023856b0fd20fcfc423567113ddf9bb58`, base `main` en `1b80394a87ab32c6714880601586b66ae5cbba82`. CI run #45300722282: `test` y `Offline quality reports` en ejecución; esperar ambos success sobre el head final antes de fusionar.
+- `pt-BR available:false` se conserva; no se modifican IndexedDB v1 ni backup JSON v3, no se añaden dependencias, backend ni audio/TTS. Las pruebas estructurales no certifican corrección lingüística nativa.
+
+Fuente: GitHub `main` merge commit de PR #766, rama `feat/pt-br-b1-u13-u15`, bloque curricular y contratos; 24 nov 2026.
+
+
 ## 2026-11-23 — PR #765 fusionada y PR #766 abierta: Portugués B1 U10–U12
 
 - PR #765 (B1 U7–U9) fusionada por squash en `main`; commit integrado `7d9f474808a6df48cf5a9605b6f3595dd3fd4e10`. Head validado `7fc90a3d4feb4ae44383690adcbea9f1a28ec3ba`; runs #45286333417 y #45286360609 completaron `test` y `Offline quality reports` en success. No había reviews, hilos ni comentarios pendientes.
@@ -488,3 +500,10 @@ Fuente: GitHub Actions run #45295594548 y log del job `test`; contrato `tests/pt
 - Cambio en `languages/pt-BR/curriculum/b1/units-10-12.js`. Pendiente actualizar este registro en el head nuevo, ejecutar CI completo y verificar los dos jobs antes de fusionar.
 
 Fuente: GitHub Actions #45296584115, log del job `test` y contrato `tests/pt-br-curriculum-b1-u10-u12.test.cjs`; 23 nov 2026.
+
+
+### PR #767 — corrección de contratos heredados (2026-11-24)
+- CI inicial #45300758316: `Offline quality reports` pasó; `test` falló en `quality:local` con 20 fallos de pruebas heredadas.
+- Diagnóstico: 16 pruebas antiguas tenían expectativas fijas para `bahasa-studio-v3.8.144`; el SW de la rama usa correctamente `v3.8.145`. Cuatro pruebas B1 además esperaban el manifiesto solo hasta U9/U12, pese a la ampliación U1–U15.
+- Se actualizan las expectativas de caché A1/A2/B1 y las cuatro pruebas B1 para reflejar U1–U15. Sin cambios de runtime ni de datos curriculares.
+- Head actual en proceso de corrección; no fusionar hasta que CI completo pase sobre el head final.

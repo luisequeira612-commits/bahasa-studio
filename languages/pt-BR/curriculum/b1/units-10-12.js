@@ -21,7 +21,7 @@ vocab(10,9,'organismo multilateral','organismo multilateral','Um organismo multi
 vocab(10,10,'soberania nacional','soberanía nacional','A soberania nacional orienta decisões sobre o próprio território.','La soberanía nacional orienta decisiones sobre el propio territorio.')
 ];
 const u11=[
-vocab(11,1,'cidadania','ciudadanía','O exercício da cidadania inclui direitos e responsabilidades.','El ejercicio de la ciudadanía incluye derechos y responsabilidades.'),
+vocab(11,1,'responsabilidade cívica','responsabilidad cívica','A responsabilidade cívica inclui conhecer direitos e cumprir deveres na vida coletiva.','La responsabilidad cívica incluye conocer los derechos y cumplir los deberes en la vida colectiva.'),
 vocab(11,2,'participação popular','participación ciudadana','A participação popular contribuiu para rever o projeto.','La participación ciudadana contribuyó a revisar el proyecto.'),
 vocab(11,3,'consulta pública','consulta pública','A consulta pública recebeu sugestões de moradores e especialistas.','La consulta pública recibió sugerencias de vecinos y especialistas.'),
 vocab(11,4,'política pública','política pública','Uma política pública precisa considerar as necessidades da população.','Una política pública debe tener en cuenta las necesidades de la población.'),

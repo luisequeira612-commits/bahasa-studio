@@ -25,10 +25,15 @@ test('course settings are namespaced while device-wide preferences remain shared
 });
 
 test('reads only the active language SRS entries and exposes their original logical IDs', () => {
+    const schedules = {
+        id: { attempts: 2, correct: 2, incorrect: 0, interval: 6, repetition: 2, efactor: 2.6, nextReview: 1700000000000, lastReviewed: 1699900000000 },
+        pt: { attempts: 4, correct: 3, incorrect: 1, interval: 3, repetition: 1, efactor: 2.1, nextReview: 1700100000000, lastReviewed: 1700000000000 },
+        en: { attempts: 7, correct: 4, incorrect: 3, interval: 1, repetition: 0, efactor: 1.8, nextReview: 1700200000000, lastReviewed: 1700100000000 }
+    };
     const records = [
-        { key: 'vocab_1', val: { repetition: 2 } },
-        { key: 'pt-BR::vocab_1', val: { repetition: 4 } },
-        { key: 'en::vocab_1', val: { repetition: 7 } }
+        { key: 'vocab_1', val: schedules.id },
+        { key: 'pt-BR::vocab_1', val: schedules.pt },
+        { key: 'en::vocab_1', val: schedules.en }
     ];
     const id = Namespace.filterRecords('srs', records, 'id');
     const pt = Namespace.filterRecords('srs', records, 'pt-BR');
@@ -37,8 +42,11 @@ test('reads only the active language SRS entries and exposes their original logi
     assert.equal(pt.length, 1);
     assert.equal(en.length, 1);
     assert.equal(pt[0].key, 'vocab_1');
-    assert.equal(pt[0].val.repetition, 4);
-    assert.equal(en[0].val.repetition, 7);
+    assert.deepEqual(id[0].val, schedules.id, 'legacy Indonesian scheduling remains attached to its unprefixed key');
+    assert.deepEqual(pt[0].val, schedules.pt, 'Portuguese due date, interval and ease remain independent');
+    assert.deepEqual(en[0].val, schedules.en, 'English due date, interval and ease remain independent');
+    assert.notEqual(pt[0].val.nextReview, en[0].val.nextReview);
+    assert.notEqual(pt[0].val.efactor, en[0].val.efactor);
 });
 
 test('rejects unknown language codes before building storage keys', () => {

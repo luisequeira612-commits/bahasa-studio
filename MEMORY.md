@@ -4,7 +4,9 @@
 - Se actualizan solo esos contratos para reflejar la implementación neutral de fase 5: `text/translation`, locale dinámico y fallback authored indonesio limitado a B2 U1–U60. No cambia producción, datos ni persistencia.
 - Pendiente: repetir CI completo sobre el nuevo head; no fusionar hasta que `test` y `Offline quality reports` estén verdes.
 
-Fuente: GitHub Actions #45490455600, PR #784; 24 nov 2026.
+Fuente: GitHub Actions #45490455600 y #45491566556, PR #784; 24 nov 2026.
+
+- CI #45491566556: todos los pasos individuales, incluida la prueba de marcado indonesio, pasaron; falló únicamente `Run local quality tests`. La prueba de marcado ya se ejecuta en su paso dedicado, así que se retira de `quality:tests` para evitar doble ejecución dentro del lote. Se conserva la cobertura dedicada y no se cambia producción.
 
 ## 2026-11-24 — Corrección del alcance de prueba y locale de ejemplo modelo (PR #782)
 

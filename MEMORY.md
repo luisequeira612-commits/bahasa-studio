@@ -517,3 +517,9 @@ Fuente: GitHub Actions #45296584115, log del job `test` y contrato `tests/pt-br-
 - Auditoría de duplicados y ejecución de CI pendientes. No fusionar hasta que las pruebas y auditorías pasen en el head definitivo. Sin dependencias nuevas, backend, audio/TTS, cambios de IndexedDB v1 ni backup JSON v3.
 
 Fuente: rama `feat/pt-br-b1-u16-u18`, archivos curriculares, manifiesto, Service Worker y contratos; 24 nov 2026.
+
+
+## 2026-11-24 — Corrección CI Portugués B1 U16–U18
+- El primer CI de PR #768 detectó que el manifiesto B1 añadía el bloque U16–U18 pero no incluía los números 16–18 en `publishedUnits`; por eso el loader rechazaba el contenido aunque el bloque existía. Se corrige la lista publicada a U1–U18 manteniendo el nivel completo no disponible.
+- Se actualizan contratos de manifiesto/caché de las pruebas heredadas para reflejar la publicación incremental y `bahasa-studio-v3.8.146`. La auditoría offline pasó; la nueva ejecución de CI debe confirmar las correcciones.
+- Fuente: CI #45303458470, PR #768, diagnóstico de tests y manifiesto; 24 nov 2026.

@@ -873,3 +873,13 @@ Fuente: service-worker.js, tests/service-worker-install.test.cjs, árbol de GitH
 - La prueba añadida en #791 valida las 64 rutas locales del precache: cada recurso debe existir como archivo y permanecer dentro del repositorio. La auditoría inicial encontró las 64 rutas presentes; 30 recursos curriculares pt-BR precargados no habilitan el idioma.
 - Estado final verificado: `main` en `dc042784088324ecda7958cc26b1a97cfb324987`; sin fallos en CI, sin cambios de producción, currículos, IndexedDB v1, backup JSON v3, dependencias ni disponibilidad de idiomas.
 Fuente: PR #791, GitHub Actions #45510910393, #45511368640 y #45511366352; 24 nov 2026.
+
+
+## 2026-11-24 — Cierre post-merge de PR #792 y sincronización de fase
+- PR #792 se fusionó mediante squash en `main`, merge commit `db1690173b7ebfbfd49247044c280baf219c7525`. La regresión post-merge #45512800901 terminó en success: test 101/101 y Offline quality reports 10/10. GitHub Pages #45512797930 completó build, report-build-status y deploy en success.
+- Se actualiza `docs/PHASE_6_POSTMERGE_VERIFICATION.md` para distinguir el estado histórico del 12 nov del estado vigente: la fase 5 multilingüe está integrada en vocabulario, ejercicios, ayudas de traducción, matching y SRS; pt-BR continúa `available:false`.
+- El mapa vigente `docs/B2_U20_U60_ROADMAP.md` confirma B2 indonesio U1–U60 integradas, con U1–U5 visibles y U6–U60 ocultas/no publicadas. Esto sustituye el pendiente antiguo de diseñar U13–U60, sin aprobar su publicación.
+- La comprobación física de controles táctiles y restauración de foco en Tecno Pova 4 sigue pendiente; CI y E2E de navegador no la sustituyen.
+- Se corrige el estado documental que quedó obsoleto en la entrada anterior sobre PR #790: la regresión post-merge #790 y Pages quedaron verificadas en runs #45510755559 y #45510754096; PR #791 y #792 también tienen CI post-merge y Pages en success.
+- Sin cambios de producción, currículos, IndexedDB v1, backup JSON v3, dependencias ni disponibilidad de idiomas en PR #792.
+Fuente: PR #792, GitHub Actions #45512800901 y #45512797930, `docs/B2_U20_U60_ROADMAP.md`, `docs/PHASE_6_POSTMERGE_VERIFICATION.md`; 24 nov 2026.

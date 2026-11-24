@@ -20,3 +20,18 @@ Fecha: 12 nov 2026
 ## Criterio de cierre
 
 La evidencia de CI post-merge y Pages está disponible para el SHA exacto de `main`. La comprobación física específica en Android sigue separada como pendiente de dispositivo y no bloquea el trabajo técnico posterior. U5 está completada y verificada. U6 aún requiere diseño y aprobación explícita del contenido; U13–U60 requieren un mapa curricular antes de producirse. La preparación técnica de CI no equivale a validación lingüística ni a aprobación de contenido.
+
+
+## Actualización de estado — 24 nov 2026
+
+Esta actualización sustituye los datos de estado y los pendientes curriculares fechados el 12 nov 2026 cuando contradigan los documentos y merges posteriores. El historial anterior se conserva como registro de lo que se sabía en esa fecha.
+
+- `main` está en `db1690173b7ebfbfd49247044c280baf219c7525`, tras PR #792. La PR #792 está fusionada; su regresión post-merge #45512800901 terminó en success (test 101/101 y Offline quality reports 10/10). GitHub Pages #45512797930 completó build, report-build-status y deploy en success.
+- La fase 5 de integración multilingüe tiene integrados los adaptadores comunes en tarjetas de vocabulario, ejercicios, ayudas de traducción por toque, matching y SRS; se añadieron contratos y pruebas de aislamiento por idioma. Esto no habilita pt-BR: `available:false` se conserva.
+- El mapa B2 indonesio vigente está en `docs/B2_U20_U60_ROADMAP.md`: B2 U1–U60 existen en `main` (60/60, 300 lecciones authored), pero solo U1–U5 están visibles; U6–U60 permanecen ocultas/no publicadas. Por tanto, el pendiente antiguo de diseñar U13–U60 ya no describe el estado del repositorio. No publicar unidades ocultas ni inferir aprobación de contenido a partir de CI.
+- La comprobación manual en el Tecno Pova 4 de controles táctiles y restauración de foco sigue pendiente. Las pruebas de navegador no sustituyen esa verificación física; no se afirma que se haya realizado.
+- PR #791 añade la integridad del precache y comprueba que las 64 rutas declaradas existan dentro del repositorio. PR #792 registra el resultado final; no cambia producción, currículos, almacenamiento, dependencias ni disponibilidad de idiomas.
+
+## Criterio operativo vigente
+
+Continuar con mejoras técnicas de bajo riesgo, preferentemente con pruebas automatizadas y sin modificar IndexedDB v1, backup JSON v3 ni dependencias. Mantener separadas las verificaciones estructurales de la validación lingüística. No activar pt-BR ni publicar unidades B2 ocultas sin la aprobación curricular correspondiente. Registrar cualquier prueba física como pendiente hasta contar con evidencia del dispositivo.

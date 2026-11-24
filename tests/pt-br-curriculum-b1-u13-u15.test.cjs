@@ -47,9 +47,9 @@ test('pt-BR B1 U13-U15 load as content while the incomplete course remains unava
   }
  }
 });
-test('B1 manifest publishes exactly U1-U30 of 36 and remains unavailable in the language selector',()=>{
+test('B1 manifest publishes exactly U1-U36 of 36 and remains unavailable in the language selector',()=>{
  const {window}=createPilot(),manifest=window.GUARDI_CURRICULUM_MANIFESTS['pt-BR'].B1;
- assert.equal(manifest.totalUnits,36);assert.deepEqual(Array.from(manifest.publishedUnits),Array.from({length:33},(_,index)=>index+1));
+ assert.equal(manifest.totalUnits,36);assert.deepEqual(Array.from(manifest.publishedUnits),Array.from({length:36},(_,index)=>index+1));
  assert.deepEqual(Array.from(manifest.blocks[4].units),[13,14,15]);assert.deepEqual(Array.from(manifest.blocks[5].units),[16,17,18]);assert.deepEqual(Array.from(manifest.blocks[6].units),[19,20,21]);assert.deepEqual(Array.from(manifest.blocks[7].units),[22,23,24]);assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
 });
 test('B1 U13-U15 review references resolve to existing A2 vocabulary IDs',async()=>{

@@ -1,4 +1,14 @@
 
+## 2026-11-24 — Integración inicial del locale en ejercicios (fase 5)
+
+- Rama `feat/multilingual-exercise-adapter`, basada en el merge validado de PR #781. Se añade `CurriculumLoader.adaptExercise(exercise, language)`: copia superficial no mutante que conserva tipo, prompt, opciones, answer numérico/textual y `acceptedAnswers`; añade `targetLocale` y `answerLocale` sin cambiar reglas de comparación.
+- Los ejercicios de respuesta textual resuelven el locale desde `answerLanguage` explícito o el idioma activo; `translate_id_es` conserva respuesta en español. El renderizador utiliza locale dinámico en fill/write y fichas de ordenación; el input de traducción al idioma objetivo deja de nombrar indonesio en su placeholder.
+- Se conserva la conversión histórica de MC sentence-completion, ahora usando el idioma activo como `answerLanguage`. Se mantiene la UI y explicaciones en español.
+- Matching, audio/reconocimiento de voz y bubble de traducción quedan fuera de este cambio porque todavía dependen de campos y utilidades legacy `idn/esp`; requieren adaptación separada. No se activa pt-BR, ni se cambian datos curriculares, IndexedDB v1, backup JSON v3 o dependencias.
+- CI pendiente. PR aún no abierta hasta completar revisión del diff y pruebas.
+
+Fuente: contrato `docs/multilingual-curriculum-data-contract.md`, PR #781 fusionada y revisión de `LessonEngine`; 24 nov 2026.
+
 
 ### 2026-11-24 — Segundo test con alcance de locale corregido en PR #781
 

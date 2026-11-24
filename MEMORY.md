@@ -523,3 +523,13 @@ Fuente: rama `feat/pt-br-b1-u16-u18`, archivos curriculares, manifiesto, Service
 - El primer CI de PR #768 detectó que el manifiesto B1 añadía el bloque U16–U18 pero no incluía los números 16–18 en `publishedUnits`; por eso el loader rechazaba el contenido aunque el bloque existía. Se corrige la lista publicada a U1–U18 manteniendo el nivel completo no disponible.
 - Se actualizan contratos de manifiesto/caché de las pruebas heredadas para reflejar la publicación incremental y `bahasa-studio-v3.8.146`. La auditoría offline pasó; la nueva ejecución de CI debe confirmar las correcciones.
 - Fuente: CI #45303458470, PR #768, diagnóstico de tests y manifiesto; 24 nov 2026.
+
+
+## 2026-11-24 — Segunda corrección CI Portugués B1 U16–U18
+- CI #45304701798: la auditoría offline pasó, pero fallaron 13 pruebas en el job `test`.
+- Diez contratos históricos de precache A2 y el contrato U22–U24 todavía afirmaban versiones antiguas de caché; se alinearon con `bahasa-studio-v3.8.146`, sin cambiar el Service Worker.
+- El contrato de vocabulario detectó duplicados exactos en B1 U17: `coleta seletiva` y `energia renovável` ya estaban en A2. Se sustituyeron por `triagem de recicláveis` y `fontes de energia limpa`, y se actualizaron sus traducciones y explicaciones en los ejemplos/lecciones.
+- La prueba E2E y el contrato U22–U24 también fallaron en esa ejecución; la causa debe confirmarse con el siguiente CI después de los cambios de caché. No se considera resuelto hasta que el job completo pase.
+- PR #768 permanece abierto y sin fusionar; no iniciar U19–U21 hasta que el head final pase CI y, tras fusionar, la regresión post-merge y Pages.
+
+Fuente: GitHub Actions run #45304701798, job `test`, archivos de pruebas A2/U22–U24 y `languages/pt-BR/curriculum/b1/units-16-18.js`; 24 nov 2026.

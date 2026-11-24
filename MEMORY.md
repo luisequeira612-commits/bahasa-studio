@@ -770,3 +770,14 @@ Fuente: GitHub Actions #45480612260, job `test`; PR #782; 24 nov 2026.
 - Head al abrir PR #783: `2d78c3ce51f5cd688ce6d9591ce387c5a0c320d5`. Repetir CI completo después de la corrección; no fusionar con pruebas pendientes.
 
 Fuente: GitHub Actions #45487013109, job `test`; PR #783; 24 nov 2026.
+
+
+## 2026-11-24 — Adaptación de ayudas de traducción por toque (fase 5, PR en preparación)
+
+- Rama `feat/multilingual-tap-translation`, creada desde `main` en `930e14a17873a62d65f20d166a3238e060fa6eb2`.
+- El generador de candidatos de traducción y el índice del popup ahora consumen vistas de vocabulario mediante `CurriculumLoader.adaptVocabulary`, con campos neutrales `text/translation/example/exampleTranslation` y locale del idioma activo. Se conserva prioridad de vocabulario de la unidad actual y fallback de frases authored `translate_es_id` exclusivamente para el curso indonesio.
+- La frase interactiva marca su idioma con el locale real; audio de esa ayuda sigue disponible solo para indonesio, sin alterar voces ni el motor de audio. El texto alternativo de prompt deja de mencionar indonesio de forma fija.
+- Se añade cobertura de regresión para los dos componentes y se incorpora el contrato de marcado al script `quality:tests`. CI todavía pendiente; revisar resultados y cualquier caso legacy antes de fusionar.
+- No se cambian datos curriculares, disponibilidad `pt-BR`, IndexedDB v1, backup JSON v3 ni dependencias. La burbuja sigue usando el guardado SRS existente por ID; el trabajo específico de SRS multilingüe queda para el siguiente paso.
+
+Fuente: rama `feat/multilingual-tap-translation`, cambios en `index.html`, `tests/indonesian-language-markup.test.cjs` y `package.json`; 24 nov 2026.

@@ -1,3 +1,8 @@
+## 2026-11-24 — Corrección del contrato de fallback de traducción por toque (PR #784)
+- CI #45493469645: `Run local quality tests` falló únicamente en el nuevo test `tap translation fallback includes only implemented B2 U1–U60 authored exercises`. La producción ya había renombrado el comentario del fallback durante la adaptación multilingüe, pero el test seguía buscando el marcador anterior; no era un fallo de comportamiento. Se actualizó solo la expectativa del test para usar el marcador vigente.
+- El resto del bloque de calidad terminó sin errores de auditoría; no se modifican datos curriculares, IndexedDB v1, backup JSON v3 ni dependencias.
+Fuente: GitHub Actions #45493469645, PR #784; 24 nov 2026.
+
 ## 2026-11-24 — Corrección CI de ayudas de traducción por toque (PR #784)
 - CI #45492641361: `Run local quality tests` volvió a fallar, ahora por un `SyntaxError` introducido en `tests/load-inline-b2-curriculum.test.mjs`: el literal de búsqueda del comentario del fallback se había dividido en dos líneas dentro de comillas simples. Se corrige solo el contrato de prueba, sin cambios de producción ni de persistencia. Fuente: GitHub Actions #45492641361 y PR #784; 24 nov 2026.
 

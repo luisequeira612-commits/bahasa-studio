@@ -204,7 +204,7 @@
                 ? 'es'
                 : manager.getLocale(answerLanguage) || adapted.targetLocale;
         }
-        return adapted;
+        return Object.freeze(adapted);
     }
 
     root.CurriculumLoader = Object.freeze({ levels: LEVELS, resolve, load, loadUnits, adaptVocabulary, adaptExercise });

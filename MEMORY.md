@@ -1,4 +1,6 @@
 ## 2026-11-24 — Corrección CI de ayudas de traducción por toque (PR #784)
+- CI #45492641361: `Run local quality tests` volvió a fallar, ahora por un `SyntaxError` introducido en `tests/load-inline-b2-curriculum.test.mjs`: el literal de búsqueda del comentario del fallback se había dividido en dos líneas dentro de comillas simples. Se corrige solo el contrato de prueba, sin cambios de producción ni de persistencia. Fuente: GitHub Actions #45492641361 y PR #784; 24 nov 2026.
+
 
 - CI #45490455600 detectó tres expectativas legacy: dos en `tests/regression.test.cjs` exigían `lang="id"`/campos `idn`, y una en `tests/load-inline-b2-curriculum.test.mjs` buscaba el comentario antiguo del fallback.
 - Se actualizan solo esos contratos para reflejar la implementación neutral de fase 5: `text/translation`, locale dinámico y fallback authored indonesio limitado a B2 U1–U60. No cambia producción, datos ni persistencia.

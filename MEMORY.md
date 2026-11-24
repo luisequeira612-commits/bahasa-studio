@@ -584,3 +584,13 @@ Fuente: PR #770, commit `0ac3929`, Actions #45320928433/#45321237709/#4532123725
 - El CI de la PR debe volver a ejecutarse y pasar íntegramente antes de fusionar; no se declara validación lingüística (los términos siguen `not_checked`).
 
 Fuente: GitHub Actions #45325730097, job test; PR #771, tests B1 U7–U27 y `units-25-27.js`; 24 nov 2026.
+
+
+## 2026-11-24 — Corrección de CI PR #771: vocabulario B1 U25–U27
+
+- La primera regresión del head corregido (#45326693589) completó los informes de calidad (10/10) pero falló un contrato de duplicados normalizados: detectó colisiones exactas en «logística reversa» y «zoneamento urbano» frente al currículo A1/A2/B1 previo.
+- Se sustituyeron por «reaproveitamento pós-consumo» y «ordenamento territorial municipal», respectivamente, y se ajustó la explicación de la lección correspondiente para conservar cobertura explícita del término.
+- Commit correctivo: e3a9db12ef2c58ae6c23a58eaa7630b554dba9e8 en feat/pt-br-b1-u25-u27. Repetir CI completo sobre este head; no fusionar hasta que regresión y calidad estén en success.
+- Las expectativas históricas A2 se alinearon con caché v3.8.149; B1 U1–U6 ahora esperan manifiesto U1–U27. No se cambia la disponibilidad pt-BR, IndexedDB v1 ni backup JSON v3.
+
+Fuente: GitHub Actions run #45326693589 y commit e3a9db12ef2c58ae6c23a58eaa7630b554dba9e8; 24 nov 2026.

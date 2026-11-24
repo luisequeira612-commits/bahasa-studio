@@ -7,7 +7,7 @@ const {test}=require('node:test');
 const repo=path.join(__dirname,'..');
 const managerSource=fs.readFileSync(path.join(repo,'language-manager.js'),'utf8');
 const loaderSource=fs.readFileSync(path.join(repo,'curriculum-loader.js'),'utf8');
-const b1Files=['units-01-03.js','units-04-06.js','units-07-09.js','units-10-12.js'];
+const b1Files=['units-01-03.js','units-04-06.js','units-07-09.js','units-10-12.js','units-13-15.js','units-16-18.js'];
 const a2Files=['units-01-03.js','units-04-06.js','units-07-09.js','units-10-12.js','units-13-15.js','units-16-18.js','units-19-21.js','units-22-24.js','units-25-27.js','units-28-30.js'];
 const a1Files=['units-01-06.js','units-07-12.js','units-13-18.js','units-19-21.js','units-22-24.js'];
 const sources={
@@ -49,8 +49,8 @@ test('pt-BR B1 U10-U12 load as content while the incomplete course remains unava
 });
 test('B1 manifest publishes exactly U1-U15 of 36 and remains unavailable in the language selector',()=>{
  const {window}=createPilot(),manifest=window.GUARDI_CURRICULUM_MANIFESTS['pt-BR'].B1;
- assert.equal(manifest.totalUnits,36);assert.deepEqual(Array.from(manifest.publishedUnits),[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]);
- assert.deepEqual(Array.from(manifest.blocks[3].units),[10,11,12]);assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
+ assert.equal(manifest.totalUnits,36);assert.deepEqual(Array.from(manifest.publishedUnits),[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]);
+ assert.deepEqual(Array.from(manifest.blocks[3].units),[10,11,12]);assert.deepEqual(Array.from(manifest.blocks[4].units),[13,14,15]);assert.deepEqual(Array.from(manifest.blocks[5].units),[16,17,18]);assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
 });
 test('B1 U10-U12 review references resolve to existing A2 vocabulary IDs',async()=>{
  const {loader}=createPilot(),{units}=await loader.loadUnits('pt-BR','B1',[10,11,12]);

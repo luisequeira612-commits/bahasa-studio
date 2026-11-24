@@ -576,3 +576,11 @@ Fuente: main commit `79c1004`, PR #769, Actions #45318720549/#45318719535 y rama
 - `pt-BR available:false` se mantiene. Sin dependencias nuevas, backend, audio/TTS, cambios de IndexedDB v1 ni backup JSON v3. La PR debe pasar todo el CI; tras el merge se exigirá regresión post-merge y Pages antes de iniciar U28–U30.
 
 Fuente: PR #770, commit `0ac3929`, Actions #45320928433/#45321237709/#45321237255; rama `feat/pt-br-b1-u25-u27` y cambios curriculares/tests; 24 nov 2026.
+
+
+## 2026-11-24 — Correcciones del primer CI de PR #771
+- El primer run #45325730097 pasó los informes de calidad (10/10), pero detectó expectativas heredadas de manifiesto U1–U24 en contratos de B1 U7–U24; se actualizaron a U1–U27 para reflejar el manifiesto real, manteniendo `available:false`.
+- El contrato U25–U27 detectó 11 términos normalizados repetidos frente a A1/A2. Se sustituyeron por vocabulario más específico (descarbonização, matriz de geração, geração distribuída, intensidade energética, resiliência climática, logística reversa, atenção ambulatorial, tratamento de efluentes, transporte intermodal, desenho universal y zoneamento urbano) y se ajustaron ejemplos/traducciones. También se explicitó en la lección U26 la expresión `surto localizado`.
+- El CI de la PR debe volver a ejecutarse y pasar íntegramente antes de fusionar; no se declara validación lingüística (los términos siguen `not_checked`).
+
+Fuente: GitHub Actions #45325730097, job test; PR #771, tests B1 U7–U27 y `units-25-27.js`; 24 nov 2026.

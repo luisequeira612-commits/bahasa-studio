@@ -567,3 +567,35 @@ Fuente: GitHub Actions run #45314054499, job test, PR #769 y archivos de contrat
 - `pt-BR available:false` permanece. Sin dependencias nuevas, backend, audio/TTS, cambios de IndexedDB v1 ni backup JSON v3.
 
 Fuente: main commit `79c1004`, PR #769, Actions #45318720549/#45318719535 y rama `feat/pt-br-b1-u22-u24`; 24 nov 2026.
+
+## 2026-11-24 — Portugués brasileño B1 U25–U27 en preparación
+- La PR #770 ya está fusionada en `main`, commit `0ac3929c5d6fb7967c2b0f19a45c573532087b75`. CI del head #45320928433: tests 101/101 y calidad offline 10/10; regresión post-merge #45321237709: tests 101/101 y calidad offline 10/10; Pages #45321237255: build, informe y deploy en success.
+- Rama `feat/pt-br-b1-u25-u27` creada desde ese main validado. Bloque nuevo: U25 transición energética y sostenibilidad; U26 salud pública y prevención comunitaria; U27 movilidad urbana y vivienda.
+- Cada unidad contiene 10 términos, cinco lecciones, dos términos explicados por lección, dos ejercicios por lección y 10 ejercicios MC de unidad. Se agregan 30 términos con ejemplos PT-BR y traducción ES; referencias de repaso apuntan a vocabulario A2 existente. Se conserva `verification.status: not_checked`: las pruebas estructurales no equivalen a validación lingüística.
+- Manifiesto B1 se amplía a U1–U27 de 36 (27/36; 75 %). Service Worker pasa a `bahasa-studio-v3.8.149` y precarga `units-25-27.js`. Se añade contrato Node dedicado, se registra en `quality:tests`, se amplía Playwright a carga offline B1 U1–U27 y se alinean aserciones históricas de caché.
+- `pt-BR available:false` se mantiene. Sin dependencias nuevas, backend, audio/TTS, cambios de IndexedDB v1 ni backup JSON v3. La PR debe pasar todo el CI; tras el merge se exigirá regresión post-merge y Pages antes de iniciar U28–U30.
+
+Fuente: PR #770, commit `0ac3929`, Actions #45320928433/#45321237709/#45321237255; rama `feat/pt-br-b1-u25-u27` y cambios curriculares/tests; 24 nov 2026.
+
+
+## 2026-11-24 — Correcciones del primer CI de PR #771
+- El primer run #45325730097 pasó los informes de calidad (10/10), pero detectó expectativas heredadas de manifiesto U1–U24 en contratos de B1 U7–U24; se actualizaron a U1–U27 para reflejar el manifiesto real, manteniendo `available:false`.
+- El contrato U25–U27 detectó 11 términos normalizados repetidos frente a A1/A2. Se sustituyeron por vocabulario más específico (descarbonização, matriz de geração, geração distribuída, intensidade energética, resiliência climática, logística reversa, atenção ambulatorial, tratamento de efluentes, transporte intermodal, desenho universal y zoneamento urbano) y se ajustaron ejemplos/traducciones. También se explicitó en la lección U26 la expresión `surto localizado`.
+- El CI de la PR debe volver a ejecutarse y pasar íntegramente antes de fusionar; no se declara validación lingüística (los términos siguen `not_checked`).
+
+Fuente: GitHub Actions #45325730097, job test; PR #771, tests B1 U7–U27 y `units-25-27.js`; 24 nov 2026.
+
+
+## 2026-11-24 — Corrección de CI PR #771: vocabulario B1 U25–U27
+
+- La primera regresión del head corregido (#45326693589) completó los informes de calidad (10/10) pero falló un contrato de duplicados normalizados: detectó colisiones exactas en «logística reversa» y «zoneamento urbano» frente al currículo A1/A2/B1 previo.
+- Se sustituyeron por «reaproveitamento pós-consumo» y «ordenamento territorial municipal», respectivamente, y se ajustó la explicación de la lección correspondiente para conservar cobertura explícita del término.
+- Commit correctivo: e3a9db12ef2c58ae6c23a58eaa7630b554dba9e8 en feat/pt-br-b1-u25-u27. Repetir CI completo sobre este head; no fusionar hasta que regresión y calidad estén en success.
+- Las expectativas históricas A2 se alinearon con caché v3.8.149; B1 U1–U6 ahora esperan manifiesto U1–U27. No se cambia la disponibilidad pt-BR, IndexedDB v1 ni backup JSON v3.
+
+Fuente: GitHub Actions run #45326693589 y commit e3a9db12ef2c58ae6c23a58eaa7630b554dba9e8; 24 nov 2026.
+
+### Corrección adicional de CI — PR #771
+- La ejecución #45327148126 detectó que la lección 5 de U25 no repetía literalmente el término `reaproveitamento pós-consumo` en su explicación.
+- Se ajustó el texto de la lección para explicar el término de forma explícita, sin cambiar vocabulario, IDs, estructura curricular ni disponibilidad del curso.
+- Commit: `a81280f834a5e6267ff49f4f60c75fcecaf22667`. Nueva CI pendiente; PR #771 continúa sin fusionar.

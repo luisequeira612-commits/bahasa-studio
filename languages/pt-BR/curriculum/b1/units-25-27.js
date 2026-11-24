@@ -10,7 +10,7 @@ const makeUnit=(number,title,desc,grammar,trapTitle,trapDetail,words,specs)=>({
 });
 const u25=[
 vocab(25,1,'descarbonização','descarbonización','A descarbonização exige planejamento e investimento em fontes mais limpas.','La descarbonización exige planificación e inversión en fuentes más limpias.'),
-vocab(25,2,'matriz de geração','matriz de geração','A matriz de geração brasileira reúne diferentes fontes de energia.','La matriz de geração brasileña reúne distintas fuentes de energía.'),
+vocab(25,2,'matriz de geração','matriz de generación','A matriz de geração brasileira reúne diferentes fontes de energia.','La matriz de geração brasileña reúne distintas fuentes de energía.'),
 vocab(25,3,'geração distribuída','generación distribuida','A geração distribuída pode ser produzida pelo sol, pelo vento e pela água.','La generación distribuida puede producirse mediante el sol, el viento y el agua.'),
 vocab(25,4,'intensidade energética','intensidad energética','A intensidade energética reduz o consumo sem comprometer o funcionamento dos equipamentos.','La intensidad energética reduce el consumo sin comprometer el funcionamiento de los equipos.'),
 vocab(25,5,'emissão de carbono','emisión de carbono','A emissão de carbono pode diminuir com mudanças no transporte e na produção.','La emisión de carbono puede disminuir con cambios en el transporte y la producción.'),

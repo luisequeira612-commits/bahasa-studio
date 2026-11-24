@@ -1,3 +1,15 @@
+
+## 2026-11-24 — Portugués brasileño B1 U28–U30 en preparación
+- La PR #771 se fusionó por squash en `main`, commit `f1b6a725ba9c4084070af3d8e262f2a7e3e7c827`. Regresión post-merge #45329499591: trabajos `test` y `Offline quality reports` en success; GitHub Pages #45329499050: build, deploy y reporte en success.
+- La regresión cubrió 101 pasos de pruebas, incluyendo Chromium y E2E offline; el informe de calidad terminó en success.
+- Se inicia la rama `feat/pt-br-b1-u28-u30` desde `main` para U28 medios y desinformación; U29 mediación y negociación; U30 migración, refugio e integración.
+- El bloque añade 30 términos (10 por unidad), cinco lecciones por unidad, dos términos explicados por lección y diez ejercicios MC por unidad. Incluye ejemplos PT-BR y traducción ES, además de referencias de repaso a vocabulario A2 existente.
+- Los términos siguen `verification.status: not_checked`; los controles estructurales no certifican naturalidad ni corrección lingüística. `pt-BR available:false` se conserva.
+- El manifiesto B1 se ampliará a U1–U30 de 36; Service Worker a `bahasa-studio-v3.8.150` con precache del bloque. Se añade contrato Node y se amplía Playwright para carga offline U1–U30. No se añaden dependencias ni se modifican IndexedDB v1 o backup JSON v3.
+- Pendiente de abrir PR y CI completo; no fusionar hasta que todos los checks requeridos terminen en success. Tras el merge se exigirá regresión post-merge y Pages.
+
+Fuente: PR #771, Actions #45329499591/#45329499050; rama `feat/pt-br-b1-u28-u30`, nuevos bloques y contratos; 24 nov 2026.
+
 ## 2026-11-24 — Portugués B1 U13–U15 en preparación
 - La regresión post-merge de PR #766 en `main` terminó en success: Actions run #45298580544 (`test` y `Offline quality reports`), y GitHub Pages deployment run #45298578980 también terminó en success. `main` queda en merge commit `1b80394a87ab32c6714880601586b66ae5cbba82`.
 - Rama `feat/pt-br-b1-u13-u15` creada desde ese `main`. Añade U13 educación y aprendizaje permanente; U14 privacidad y ciudadanía digital; U15 cultura, creación y políticas culturales.

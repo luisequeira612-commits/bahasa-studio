@@ -1731,7 +1731,7 @@ test('priority 3 adds written sentence completion and tap-to-match practice with
     assert.equal(await page.evaluate(() => LessonEngine.queue[0].type), 'fill',
       'sentence-completion multiple choice should be presented as a short written response');
     await page.getByRole('button', { name: 'Comenzar lección' }).click();
-    await page.getByRole('textbox', { name: 'Palabra que falta' }).fill('tidak');
+    await page.getByRole('textbox', { name: 'Respuesta en el idioma objetivo' }).fill('tidak');
     await page.getByRole('button', { name: 'Comprobar' }).click();
     await page.locator('#actionArea.lesson-feedback-sheet.correct').waitFor();
     assert.match(await page.locator('#actionArea').innerText(), /Tidak niega una acción/);

@@ -1569,11 +1569,11 @@ test('tap-to-translate lookup is wired into learning text and uses safe text ren
   assert.match(html, /caretRangeFromPoint/);
   assert.match(html, /window\.refreshWordTranslationIndex/);
   assert.match(html, /Toca una palabra en indonesio para consultar su significado/);
-  assert.match(html, /termNode\.lang = 'id'/);
-  assert.match(html, /termNode\.textContent = matches\[0\]\.idn/);
+  assert.match(html, /termNode\.lang = matches\[0\]\.locale/);
+  assert.match(html, /termNode\.textContent = matches\[0\]\.text/);
   assert.match(html, /meaningNode\.textContent = matches\.slice\(0, 3\)/);
   assert.match(html, /exampleNode\.replaceChildren\(\)/);
-  assert.match(html, /original\.lang = 'id'/);
+  assert.match(html, /original\.lang = example\.locale/);
 });
 
 
@@ -1745,11 +1745,11 @@ test('tap-to-translate lookup is wired into learning text and uses safe text ren
   assert.match(html, /caretRangeFromPoint/);
   assert.match(html, /window\.refreshWordTranslationIndex/);
   assert.match(html, /Toca una palabra en indonesio para consultar su significado/);
-  assert.match(html, /termNode\.lang = 'id'/);
-  assert.match(html, /termNode\.textContent = matches\[0\]\.idn/);
+  assert.match(html, /termNode\.lang = matches\[0\]\.locale/);
+  assert.match(html, /termNode\.textContent = matches\[0\]\.text/);
   assert.match(html, /meaningNode\.textContent = matches\.slice\(0, 3\)/);
   assert.match(html, /exampleNode\.replaceChildren\(\)/);
-  assert.match(html, /original\.lang = 'id'/);
+  assert.match(html, /original\.lang = example\.locale/);
 });
 
 

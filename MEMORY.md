@@ -507,3 +507,34 @@ Fuente: GitHub Actions #45296584115, log del job `test` y contrato `tests/pt-br-
 - Diagnóstico: 16 pruebas antiguas tenían expectativas fijas para `bahasa-studio-v3.8.144`; el SW de la rama usa correctamente `v3.8.145`. Cuatro pruebas B1 además esperaban el manifiesto solo hasta U9/U12, pese a la ampliación U1–U15.
 - Se actualizan las expectativas de caché A1/A2/B1 y las cuatro pruebas B1 para reflejar U1–U15. Sin cambios de runtime ni de datos curriculares.
 - Head actual en proceso de corrección; no fusionar hasta que CI completo pase sobre el head final.
+
+
+## 2026-11-24 — Portugués B1 U16–U18 en preparación
+- Tras el merge de PR #767, la regresión post-merge de `main` #45301700314 terminó con `test` y `Offline quality reports` en success; Pages #45301698987 completó `build`, `deploy` y `report-build-status` en success. `main` verificado en `63a84ec51507e2ce6b04ebbdd109ae4c002c6a6a`.
+- Rama `feat/pt-br-b1-u16-u18` creada desde ese `main`. Se incorpora U16 salud pública y prevención; U17 consumo sostenible y economía circular; U18 vivienda y desarrollo urbano.
+- Bloque de 30 términos (10 por unidad), cinco lecciones por unidad y diez ejercicios MC por unidad, ejemplos PT/ES, dos términos explicados por lección y referencias de repaso a A2. Todos los términos permanecen `not_checked`; esto no es certificación lingüística.
+- Se amplían manifiesto B1 a U1–U18/36, precache offline a `units-16-18.js`, cache key `bahasa-studio-v3.8.146`, contratos incrementales y E2E Playwright. `pt-BR available:false` permanece.
+- Auditoría de duplicados y ejecución de CI pendientes. No fusionar hasta que las pruebas y auditorías pasen en el head definitivo. Sin dependencias nuevas, backend, audio/TTS, cambios de IndexedDB v1 ni backup JSON v3.
+
+Fuente: rama `feat/pt-br-b1-u16-u18`, archivos curriculares, manifiesto, Service Worker y contratos; 24 nov 2026.
+
+
+## 2026-11-24 — Corrección CI Portugués B1 U16–U18
+- El primer CI de PR #768 detectó que el manifiesto B1 añadía el bloque U16–U18 pero no incluía los números 16–18 en `publishedUnits`; por eso el loader rechazaba el contenido aunque el bloque existía. Se corrige la lista publicada a U1–U18 manteniendo el nivel completo no disponible.
+- Se actualizan contratos de manifiesto/caché de las pruebas heredadas para reflejar la publicación incremental y `bahasa-studio-v3.8.146`. La auditoría offline pasó; la nueva ejecución de CI debe confirmar las correcciones.
+- Fuente: CI #45303458470, PR #768, diagnóstico de tests y manifiesto; 24 nov 2026.
+
+
+## 2026-11-24 — Segunda corrección CI Portugués B1 U16–U18
+- CI #45304701798: la auditoría offline pasó, pero fallaron 13 pruebas en el job `test`.
+- Diez contratos históricos de precache A2 y el contrato U22–U24 todavía afirmaban versiones antiguas de caché; se alinearon con `bahasa-studio-v3.8.146`, sin cambiar el Service Worker.
+- El contrato de vocabulario detectó duplicados exactos en B1 U17: `coleta seletiva` y `energia renovável` ya estaban en A2. Se sustituyeron por `triagem de recicláveis` y `fontes de energia limpa`, y se actualizaron sus traducciones y explicaciones en los ejemplos/lecciones.
+- La prueba E2E y el contrato U22–U24 también fallaron en esa ejecución; la causa debe confirmarse con el siguiente CI después de los cambios de caché. No se considera resuelto hasta que el job completo pase.
+- PR #768 permanece abierto y sin fusionar; no iniciar U19–U21 hasta que el head final pase CI y, tras fusionar, la regresión post-merge y Pages.
+
+Fuente: GitHub Actions run #45304701798, job `test`, archivos de pruebas A2/U22–U24 y `languages/pt-BR/curriculum/b1/units-16-18.js`; 24 nov 2026.
+
+- Diagnóstico adicional del E2E: el test esperaba B1 U1–U18, pero todavía llamaba al loader con U1–U15. Se amplió la llamada a U1–U18; el Service Worker ya incluía el bloque U16–U18 y el manifiesto lo publicaba.
+- También se actualizó el contrato histórico de precache U22–U24 a la caché v3.8.146. La siguiente ejecución debe verificar estos cambios y la corrección de términos U17.
+
+- La ejecución #45309751749 redujo los fallos a una sola prueba: el test U22–U24 conservaba una expresión regular literal con `3.8.145` (sin puntos escapados), por lo que el reemplazo previo no la había actualizado. Se corrigió explícitamente a `3.8.146`; las 237 pruebas restantes pasaron y la auditoría offline también.

@@ -155,10 +155,10 @@ test('lesson vocabulary cards use the common adapter and the active target local
     const renderer = indexSource.slice(start, end);
 
     assert.ok(start >= 0, 'lesson intro defines its vocabulary card renderer');
-    assert.match(renderer, /CurriculumLoader\\.adaptVocabulary\\(v, language\\)/);
-    assert.match(renderer, /LanguageManager\\.getLocale\\(language\\)/);
-    assert.match(renderer, /word\\.reading/);
-    assert.match(renderer, /word\\.transliteration/);
-    assert.match(renderer, /lang="\\$\\{App\\.escapeHtml\\(locale\\)\\}"/);
-    assert.doesNotMatch(renderer, /v\\.idn|lang="id"/);
+    assert.match(renderer, /CurriculumLoader\.adaptVocabulary\(v, language\)/);
+    assert.match(renderer, /LanguageManager\.getLocale\(language\)/);
+    assert.match(renderer, /word\.reading/);
+    assert.match(renderer, /word\.transliteration/);
+    assert.match(renderer, /lang="\$\{App\.escapeHtml\(locale\)\}"/);
+    assert.doesNotMatch(renderer, /v\.idn|lang="id"/);
 });

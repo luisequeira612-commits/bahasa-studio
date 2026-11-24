@@ -631,3 +631,10 @@ Fuente: PR #772/#773 y GitHub Actions #45330309615/#45334239766; 24 nov 2026.
 - Los términos siguen `verification.status: not_checked`; las pruebas estructurales no certifican naturalidad ni corrección lingüística. No se modifican IndexedDB v1 ni backup JSON v3.
 
 Fuente: GitHub Actions #45334713127, logs del job `test`, PR #773 y archivos de contratos/currículo; 24 nov 2026.
+
+
+## 2026-11-24 — Ajuste del contrato didáctico B1 U29 en PR #773
+- El CI #45337705294 completó Chromium y todas las pruebas generales, pero `quality:tests` falló en un único contrato: U29, lección 4 no explicaba explícitamente `concessão mútua` aunque el término estaba en el vocabulario de la unidad.
+- Se corrigió el texto de la lección para definir la concesión mutua como ajuste recíproco de exigencias, manteniendo el ejemplo condicional y sin cambiar IDs, términos, ejercicios, estructura, disponibilidad ni verificación lingüística.
+- Actualización aplicada a `languages/pt-BR/curriculum/b1/units-28-30.js` en PR #773; commit cbb2f8607f52667884b0975dbc7471b1b672caf8. Repetir CI completo antes de cualquier merge.
+- Fuente: GitHub Actions #45337705294, fallo `tests/pt-br-curriculum-b1-u28-u30.test.cjs:41`; 24 nov 2026.

@@ -157,3 +157,16 @@ test('una respuesta 206 no se guarda como archivo completo', async () => {
     assert.equal(response.status, 206);
     assert.deepEqual(cacheWrites, []);
 });
+
+test('todos los recursos locales del precache existen en el repositorio', () => {
+    const worker = loadInstallHandler(new Set());
+    const root = path.resolve(__dirname, '..');
+
+    for (const asset of worker.assets) {
+        if (asset === './') continue;
+        const filename = path.resolve(root, asset);
+        assert.ok(filename.startsWith(root + path.sep), 'el recurso debe permanecer dentro del repositorio: ' + asset);
+        assert.ok(fs.existsSync(filename), 'el recurso del precache debe existir: ' + asset);
+        assert.ok(fs.statSync(filename).isFile(), 'el recurso del precache debe ser un archivo: ' + asset);
+    }
+});

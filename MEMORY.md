@@ -859,3 +859,10 @@ Fuente: `curriculum-loader.js`, `tests/curriculum-loader.test.cjs`, revisión po
 - La regresión posterior a #789 terminó correctamente: run #45507945725 (tests 101/101 + calidad 10/10) y Pages #45507944048 (build/deploy success).
 - Sin cambios de producción, currículos, IndexedDB v1, backup JSON v3, dependencias ni disponibilidad.
 Fuente: `curriculum-loader.js`, `language-manager.js`, manifiesto A1 pt-BR, pruebas curriculares/E2E, scripts de validación y CI; 24 nov 2026.
+
+## 2026-11-24 — Integridad de recursos del precache offline
+- Tras fusionar PR #790, la auditoría de service-worker.js confirmó que los 64 recursos declarados en ASSETS existen actualmente; 30 corresponden a bloques/manifiestos curriculares pt-BR precargados sin habilitar el curso.
+- Se añade una prueba que resuelve cada ruta local del precache contra la raíz del repositorio y exige que exista como archivo dentro del proyecto. Esto evita que futuras eliminaciones o renombres de archivos dejen entradas obsoletas que fallen silenciosamente durante la instalación offline.
+- La prueba no cambia la lista de recursos, el Service Worker, la disponibilidad de idiomas ni el almacenamiento. pt-BR continúa con available:false; no se modifica IndexedDB v1 ni backup JSON v3.
+- CI de PR #790: reintento #45509664191 aprobado (101/101 pasos) y calidad offline 10/10. Regresión post-merge y Pages de #790 pendientes al preparar esta entrada.
+Fuente: service-worker.js, tests/service-worker-install.test.cjs, árbol de GitHub y GitHub Actions #45509664191; 24 nov 2026.

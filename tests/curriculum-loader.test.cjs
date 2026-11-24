@@ -167,6 +167,41 @@ test('lesson vocabulary cards use the common adapter and the active target local
 });
 
 
+test('adapts matching pairs from legacy Indonesian and language-neutral vocabulary', () => {
+    const loader = createLoader();
+    const legacy = [
+        { id: 'id-1', idn: 'makan', esp: 'comer' },
+        { id: 'id-2', idn: 'minum', esp: 'beber' },
+        { id: 'id-3', idn: 'tidur', esp: 'dormir' }
+    ];
+    const portuguese = [
+        { id: 'pt-1', target: 'café da manhã', esp: 'desayuno' },
+        { id: 'pt-2', target: 'ônibus', esp: 'autobús' },
+        { id: 'pt-3', target: 'trem', esp: 'tren' },
+        { id: 'pt-4', target: 'ônibus', esp: 'colectivo' },
+        { id: 'pt-5', target: 'metrô', esp: 'autobús' }
+    ];
+    const before = JSON.stringify(portuguese);
+    const idPairs = loader.adaptMatchingPairs(legacy, 'id');
+    const ptPairs = loader.adaptMatchingPairs(portuguese, 'pt-BR');
+
+    assert.deepEqual(JSON.parse(JSON.stringify(idPairs)), [
+        { target: 'makan', translation: 'comer' },
+        { target: 'minum', translation: 'beber' },
+        { target: 'tidur', translation: 'dormir' }
+    ]);
+    assert.deepEqual(JSON.parse(JSON.stringify(ptPairs)), [
+        { target: 'café da manhã', translation: 'desayuno' },
+        { target: 'ônibus', translation: 'autobús' },
+        { target: 'trem', translation: 'tren' }
+    ]);
+    assert.equal(Object.isFrozen(ptPairs), true);
+    assert.equal(Object.isFrozen(ptPairs[0]), true);
+    assert.equal(JSON.stringify(portuguese), before);
+    assert.deepEqual(JSON.parse(JSON.stringify(loader.adaptMatchingPairs([], 'pt-BR'))), []);
+    assert.deepEqual(JSON.parse(JSON.stringify(loader.adaptMatchingPairs(legacy, '../id'))), []);
+});
+
 test('adapts exercise answer locales without rewriting authored fields or acceptance rules', () => {
     const loader = createLoader();
     const indonesian = {

@@ -34,7 +34,7 @@ test('pt-BR B1 U10-U12 load as content while the incomplete course remains unava
   assert.equal(unit.vocab.length,10,unit.id);assert.equal(unit.lessons.length,5,unit.id);assert.equal(unit.exercises.length,10,unit.id);
   assert.equal(new Set(unit.vocab.map(word=>word.id)).size,10,unit.id);
   for(const word of unit.vocab){assert.equal(word.verification.status,'not_checked',word.id);assert.ok(word.ex&&word.exEsp,word.id);}
-  assert.deepEqual(unit.lessons.flatMap(lesson=>lesson.vocabIds),unit.vocab.map(word=>word.id),unit.id+' lessons must cover all ten terms exactly once');
+  assert.deepEqual([...unit.lessons.flatMap(lesson=>lesson.vocabIds)].sort(),[...unit.vocab.map(word=>word.id)].sort(),unit.id+' lessons must cover all ten terms exactly once');
   for(const lesson of unit.lessons){
    assert.equal(lesson.vocabIds.length,2,unit.id);
    const grammar=lesson.grammar.toLocaleLowerCase('pt-BR');

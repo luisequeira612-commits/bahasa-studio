@@ -4,7 +4,7 @@
 - El bloque incorpora 30 términos (10 por unidad), cinco lecciones y diez ejercicios MC por unidad; ejemplos PT/ES y estado `not_checked`. Cada lección cubre y explica dos términos; se añaden 15 referencias de repaso A2, todas resueltas.
 - Auditoría local de diseño contra 540 términos A1/A2 y 120 B1 U1–U12: 30 términos nuevos, cero duplicados normalizados y cero duplicados internos. Se reemplazaron dos colisiones iniciales (`bolsa de estudos`, `vazamento de dados`) por `auxílio estudantil` y `exposição de informações pessoais`.
 - Manifiesto B1 amplía unidades publicadas a U1–U15 de 36; Service Worker avanza a `bahasa-studio-v3.8.145` y precarga `units-13-15.js`. Se amplían contratos Node y Playwright para cobertura estructural, duplicados normalizados, referencias A2 y carga offline.
-- Estado: implementación en rama, aún sin PR ni CI. Antes de abrir/fusionar, validar el contrato nuevo, referencias A2 y ausencia de duplicados con CI completo.
+- PR [#767](https://github.com/luisequeira612-commits/bahasa-studio/pull/767) abierta desde `feat/pt-br-b1-u13-u15`, head `b11ff59023856b0fd20fcfc423567113ddf9bb58`, base `main` en `1b80394a87ab32c6714880601586b66ae5cbba82`. CI run #45300722282: `test` y `Offline quality reports` en ejecución; esperar ambos success sobre el head final antes de fusionar.
 - `pt-BR available:false` se conserva; no se modifican IndexedDB v1 ni backup JSON v3, no se añaden dependencias, backend ni audio/TTS. Las pruebas estructurales no certifican corrección lingüística nativa.
 
 Fuente: GitHub `main` merge commit de PR #766, rama `feat/pt-br-b1-u13-u15`, bloque curricular y contratos; 24 nov 2026.

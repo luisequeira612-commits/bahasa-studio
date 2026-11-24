@@ -58,7 +58,7 @@ test('accepts multilingual text without assuming Latin script or space-delimited
 
 test('normalizes canonically equivalent Unicode answers without stripping diacritics', () => {
   const curriculum = { units: [{ vocab: [], lessons: [], exercises: [{
-    acceptedAnswers: ['café', 'cafe\\u0301']
+    acceptedAnswers: ['café', 'cafe\u0301']
   }] }] };
   const issues = validateOptionalCurriculumFields(curriculum);
   assert.equal(issues.filter(issue => issue.code === 'OPTIONAL_TEXT_DUPLICATE').length, 1);

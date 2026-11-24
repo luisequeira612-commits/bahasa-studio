@@ -78,5 +78,5 @@ test('B1 U1-U3 add no exact normalized vocabulary duplicates against A1 or A2',(
 test('service worker uses the current B1 app-shell cache v3.8.152',()=>{
  const source=fs.readFileSync(path.join(repo,'service-worker.js'),'utf8');
  assert.ok(source.includes("./languages/pt-BR/curriculum/b1/units-07-09.js"));
- assert.match(source,/bahasa-studio-v3\.8\.151/);
+ assert.match(source,/bahasa-studio-v3\.8\.152/);
 });

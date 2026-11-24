@@ -1,3 +1,8 @@
+## 2026-11-24 — Verificación E2E del SRS entre namespaces (PR siguiente)
+- Después de reforzar el helper en PR #785, se añade una prueba de navegador sobre el runtime real `DB` + `SRSEngine`: el mismo ID lógico `v45` recibe revisiones distintas bajo `id` y `pt-BR`; guardar una calificación en un idioma no altera intentos, intervalo, repetición ni facilidad del otro. También se comprueba que `getDueItems()` solo recoge la tarjeta guardada para repaso del idioma activo y que `getAll()` devuelve IDs lógicos sin prefijos.
+- La prueba selecciona namespaces directamente en `DB` para ejercitar el contrato de persistencia sin activar ni declarar disponible el curso pt-BR. No cambia runtime, currículos, IndexedDB v1 ni backup JSON v3.
+Fuente: `index.html` (DB/SRSEngine), `progress-namespace.js`, `tests/vocabulary-review.e2e.test.cjs`; 24 nov 2026.
+
 ## 2026-11-24 — Contrato de aislamiento de planificación SRS por idioma (PR siguiente)
 - Tras fusionar PR #784 (commit `29fcbe087016d19aa0dbc0e73e354f6bd509c232`), la revisión del helper `ProgressNamespace` confirma que SRS conserva IDs legacy de indonesio y usa claves `codigo::id` para los demás idiomas. La prueba previa solo diferenciaba `repetition`; se amplía para cubrir intentos, aciertos/errores, intervalo, factor de facilidad, próxima revisión y última revisión con el mismo ID lógico en tres idiomas.
 - Esta cobertura valida el filtro/namespace puro; no afirma activación de pt-BR ni cambia IndexedDB v1, backup JSON v3 o la disponibilidad de cursos. La integración de runtime y la adaptación visual del SRS siguen siendo tareas separadas.

@@ -18142,7 +18142,7 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                 const byId = new Map(allWords.map(word => [word.id, adaptSrsVocabulary(word, language)]));
                 for (const [legacyId, canonicalId] of Object.entries(LEGACY_SRS_ID_ALIASES)) {
                     const canonicalWord = allWords.find(word => word.id === canonicalId);
-                    if (canonicalWord) byId.set(legacyId, canonicalWord);
+                    if (canonicalWord) byId.set(legacyId, adaptSrsVocabulary(canonicalWord, language));
                 }
                 const due = all.filter(i => i.val && vocabIds.has(i.key) &&
                     (i.val.savedForReview === true || i.val.nextReview <= now) &&
@@ -18210,7 +18210,7 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                 document.getElementById('srsContextText').style.display = 'block';
                 document.getElementById('srsAnswerArea').style.display = 'none';
                 document.getElementById('srsRevealBtn').style.display = 'inline-flex';
-                if (!reverse) AudioEngine.speak(current.vocab.text);
+                if (!reverse && LanguageManager.getActiveLanguage() === 'id') AudioEngine.speak(current.vocab.text);
             },
 
             exitSession() {
@@ -18234,7 +18234,7 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                 const current = this.activeQueue[this.currentIndex];
                 if (current.direction === 'es-id') {
                     document.getElementById('srsAnswerText').innerText = current.vocab.text + (current.vocab.example ? ' (' + current.vocab.example + ')' : '');
-                    AudioEngine.speak(current.vocab.text);
+                    if (LanguageManager.getActiveLanguage() === 'id') AudioEngine.speak(current.vocab.text);
                 } else {
                     document.getElementById('srsAnswerText').innerText = current.vocab.translation + (current.vocab.exampleTranslation ? ' (' + current.vocab.exampleTranslation + ')' : '');
                 }

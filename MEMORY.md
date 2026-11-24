@@ -538,3 +538,21 @@ Fuente: GitHub Actions run #45304701798, job `test`, archivos de pruebas A2/U22�
 - También se actualizó el contrato histórico de precache U22–U24 a la caché v3.8.146. La siguiente ejecución debe verificar estos cambios y la corrección de términos U17.
 
 - La ejecución #45309751749 redujo los fallos a una sola prueba: el test U22–U24 conservaba una expresión regular literal con `3.8.145` (sin puntos escapados), por lo que el reemplazo previo no la había actualizado. Se corrigió explícitamente a `3.8.146`; las 237 pruebas restantes pasaron y la auditoría offline también.
+
+
+## 2026-11-24 — Portugués B1 U19–U21 en preparación
+- Tras fusionar PR #768, la regresión post-merge de `main` #45312227091 terminó con `test` y `Offline quality reports` en success; el trabajo `test` completó 100 pasos correctos y cero fallos. Pages #45312226119 completó build, deploy y report-build-status en success. `main` verificado en `c6d772bdb2001ee60777780610cd712a94734ce6`.
+- Rama `feat/pt-br-b1-u19-u21` creada desde ese commit. U19 envejecimiento y cambios demográficos; U20 agricultura familiar y seguridad alimentaria; U21 turismo responsable y economías locales.
+- Bloque nuevo: 30 términos (10 por unidad), cinco lecciones por unidad, diez ejercicios MC finales por unidad y dos términos explicados por lección; 15 referencias de repaso a vocabulario A2. Ejemplos en PT-BR y español. Los términos mantienen `verification.status: not_checked`; las comprobaciones estructurales no certifican naturalidad ni corrección lingüística.
+- Manifiesto B1 publica U1–U21 de 36 (21/36, 58,3 %); se añade `units-19-21.js` al precache y se incrementa la caché del app shell a `bahasa-studio-v3.8.147`. Se incorpora contrato Node específico U19–U21, se integra en `quality:tests`, se actualiza Playwright para cargar U1–U21 sin conexión y se alinean contratos B1 históricos con el manifiesto actual.
+- `pt-BR available:false` se mantiene. Sin dependencias nuevas, backend, audio/TTS, cambios de IndexedDB v1 ni backup JSON v3. CI de la nueva rama aún pendiente de abrir/ejecutar; no fusionar hasta que el CI completo pase y después confirmar regresión post-merge y Pages.
+ 
+Fuente: rama `feat/pt-br-b1-u19-u21`, archivos curriculares/manifiesto/Service Worker/tests, PR #768 y Actions #45312227091/#45312226119; 24 nov 2026.
+
+
+## 2026-11-24 — Corrección CI PR #769: contratos de caché y duplicado léxico
+- El primer CI de PR #769, run #45314054499, pasó `Offline quality reports` pero falló `Run local quality tests`. El log identificó expectativas heredadas A2/B1 que aún exigían la caché v3.8.146 (y títulos v3.8.144), aunque el Service Worker de la rama usa v3.8.147.
+- Se actualizaron las expectativas afectadas a v3.8.147, manteniendo las aserciones de precache. El mismo run detectó una colisión normalizada de `assistência técnica` con el vocabulario A2; se reemplaza por `orientação agronômica` y se actualizan traducción y explicación de la lección correspondiente.
+- La PR permanece abierta y no fusionada hasta ejecutar CI completo sobre el head corregido. No cambiar disponibilidad del curso ni contratos de persistencia.
+
+Fuente: GitHub Actions run #45314054499, job test, PR #769 y archivos de contratos/currículo; 24 nov 2026.

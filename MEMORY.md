@@ -1,3 +1,11 @@
+## 2026-11-24 — Corrección del alcance de prueba y locale de ejemplo modelo (PR #782)
+
+- CI #45480195732: informes offline success; regresión falló solo en la prueba nueva de marcado, porque el test recortaba `renderStep()` antes de llegar al bloque de ejercicios. Se cambió la comprobación para inspeccionar el archivo completo y mantener el recorte solo para `pickWord`.
+- Revisión de código detectó además un `lang="id"` fijo en el ejemplo modelo de la pantalla de autoevaluación. Se sustituyó por `answerLocale || targetLocale || 'und'`, escapado con `App.escapeHtml`; el test ahora exige ese locale dinámico.
+- Commits correctivos: `65768bb26d80b6b57e6ee5c1471f1df5225c4f8a` y `6143a8d90e01b3698c45e053c7267d0659833e4a`. Ejecutar CI completo sobre el nuevo head; no fusionar aún.
+
+Fuente: GitHub Actions #45480195732 y revisión de `LessonEngine.checkWriting`; 24 nov 2026.
+
 ## 2026-11-24 — Ajuste de pruebas legacy de marcado indonesio (PR #782)
 
 - CI #45479976222: `Offline quality reports` success; `test` falló en dos aserciones heredadas de `tests/indonesian-language-markup.test.cjs` que exigían `lang="id"` en fichas de ordenación y la expresión fija de locale para escritura.

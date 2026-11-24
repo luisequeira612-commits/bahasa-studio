@@ -1,3 +1,12 @@
+## 2026-11-23 — PR #765 fusionada y PR #766 abierta: Portugués B1 U10–U12
+
+- PR #765 (B1 U7–U9) fusionada por squash en `main`; commit integrado `7d9f474808a6df48cf5a9605b6f3595dd3fd4e10`. Head validado `7fc90a3d4feb4ae44383690adcbea9f1a28ec3ba`; runs #45286333417 y #45286360609 completaron `test` y `Offline quality reports` en success. No había reviews, hilos ni comentarios pendientes.
+- B1 publica U1–U9 de 36 (25 %). El idioma `pt-BR` permanece `available:false`; todos los términos del piloto continúan `not_checked`. El merge no certifica la corrección lingüística.
+- PR #766 abierta desde `feat/pt-br-b1-u10-u12`, basada en el merge de #765. Head de implementación `e1f28bbd06334909a6f7a1396f81aca9dc21433e`. Añade U10 globalización y relaciones internacionales; U11 ciudadanía y políticas públicas; U12 crisis climática y transición energética: 30 términos, cinco lecciones y diez ejercicios por unidad, con referencias A2.
+- El manifiesto B1 pasa a U1–U12 de 36 (33,3 %); Service Worker añade el bloque offline U10–U12 y cambia a `bahasa-studio-v3.8.144`. Se actualizan contratos Node/Playwright y expectativas de caché heredadas; el contrato nuevo se incorpora a `quality:tests`.
+- CI de PR #766 pendiente de aparecer/completarse; no fusionar hasta que `test` y `Offline quality reports` terminen en success y se revise el head final.
+- Sin cambios a IndexedDB v1, backup JSON v3, dependencias, disponibilidad del idioma ni infraestructura de servidor.
+
 ## 2026-11-23 — Corrección CI PR #765: contratos de currículo y caché
 
 - El CI run #45284257266 mostró `Offline quality reports` success y `test` failure (15 contratos): tres tests B1 tenían una expresión regular inválida para la ruta `units-07-09.js`; doce tests previos de A1/A2 seguían esperando la caché `v3.8.142` después de que el Service Worker avanzara a `v3.8.143`.
@@ -447,3 +456,35 @@ Fuente: GitHub PR #761, merge commit `5e4da2e9`, rama `feat/pt-br-a2-u25-u27`, b
 - PR [#762](https://github.com/luisequeira612-commits/bahasa-studio/pull/762) abierta desde `feat/pt-br-a2-u28-u30`, base `main` en `5e4da2e9af702f15a5bd3081c37ed73a3d3906a5`, head `60efe33eb0e59f8d2e6e0848bf806a20153b3db3`; CI pendiente. El manifiesto publica U1–U30, caché offline `v3.8.140`, contratos Node/Playwright amplían la carga offline a A2 completo. Mantener `pt-BR available:false`; sin cambios a IndexedDB v1/backup JSON v3, sin backend, dependencias ni audio/TTS.
 
 Fuente: GitHub `main` commit `5e4da2e9`, rama `feat/pt-br-a2-u28-u30`, bloque `units-28-30.js`; 23 nov 2026.
+
+
+## 2026-11-23 — Correcciones de CI PR #766 (B1 U10–U12)
+- El CI inicial del head `194a999f7bf19b4381f8c1f59bb4c57e1c6db81f`, run [#45291825327](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45291825327), completó el job `test` con fallo en `Run local quality tests`; `Offline quality reports` pasó. Los dos fallos del contrato nuevo fueron: orden de cobertura de vocabulario comparado como secuencia pese a que las lecciones están organizadas temáticamente, y duplicación exacta normalizada de `cidadania` contra A2 U22.
+- Correcciones aplicadas en la misma rama: la prueba compara la cobertura de los diez IDs como conjunto ordenado, conservando la exigencia de que cada término aparezca exactamente una vez; el término repetido de B1 U11 se sustituyó por `responsabilidade cívica` (responsabilidad cívica). No se relajó la auditoría de duplicados.
+- Commits de corrección: `174c6d0bb02bfb7d22bb79220010eaa5073849b2` (vocabulario) y `a47a1fa5d2a25092f9f3691c8fdaaf778848b6a7` (contrato). Pendiente confirmar head final y ejecutar CI completo antes de fusionar.
+
+Fuente: GitHub PR #766, Actions run #45291825327 y auditoría de vocabulario A1/A2/B1; 23 nov 2026.
+
+
+## 2026-11-24 — Segundo fallo de CI PR #766 y corrección editorial
+- La ejecución #45294895224 aprobó `Offline quality reports` y los contratos de vocabulario A1/A2, pero falló el paso `Run local quality tests`. El endpoint de logs de ese job devolvió 404, por lo que el diagnóstico se hizo contrastando el contrato nuevo con el contenido curricular.
+- Causa localizada: tras reemplazar el término duplicado de B1 U11 por `responsabilidade cívica`, la gramática de la lección 1 todavía decía `A cidadania reúne...`; el contrato exige que cada lección explique literalmente sus dos términos asignados.
+- Corrección aplicada en `languages/pt-BR/curriculum/b1/units-10-12.js`: la explicación ahora comienza `A responsabilidade cívica reúne direitos e deveres...`. Commit: `5cfe630b5d3ad918d908bf5de7b76386d7c15942`. Pendiente CI nuevo; no fusionar hasta ambos jobs success.
+
+Fuente: GitHub Actions #45294895224, contrato `tests/pt-br-curriculum-b1-u10-u12.test.cjs`, revisión de `units-10-12.js); 24 nov 2026.
+
+
+## 2026-11-24 — Tercer fallo de CI PR #766 y corrección de U11
+- La ejecución #45295594548 terminó con `Offline quality reports` en success y `test` en failure, dentro de `Run local quality tests`. El log ya estuvo disponible y aisló un único fallo en `tests/pt-br-curriculum-b1-u10-u12.test.cjs`: U11, Lección 3 (`Recursos y prioridades`) no explicaba literalmente `interesse coletivo`.
+- La lección asigna los términos `orçamento público` e `interesse coletivo`, pero su explicación solo mencionaba la distribución de recursos y la revisión de prioridades. Se completó la frase: `prioridades podem ser revistas para atender ao interesse coletivo`, sin eliminar ni debilitar la aserción.
+- Corrección en `languages/pt-BR/curriculum/b1/units-10-12.js`, commit `c7932ef1c3ce565639c28bf2d1958d5091e56a9e` en `feat/pt-br-b1-u10-u12`. Pendiente verificar nuevo CI del head actualizado; PR #766 permanece sin fusionar hasta que todos los jobs requeridos terminen en success.
+
+Fuente: GitHub Actions run #45295594548 y log del job `test`; contrato `tests/pt-br-curriculum-b1-u10-u12.test.cjs`; 24 nov 2026.
+
+
+## 2026-11-23 — Cuarto fallo de CI PR #766 y corrección de cobertura U12
+- El CI del head `e29dfa847a4407f90972ac952f147380536b776b`, run [#45296584115](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45296584115), aprobó `Offline quality reports` pero falló una sola prueba en `Run local quality tests` (258/259): B1 U12 repetía `ptbr_b1_u12_v02` en las lecciones 1 y 2 y omitía `ptbr_b1_u12_v06`.
+- Se corrigió la distribución temática sin relajar el contrato: Lección 2 ahora cubre `efeito estufa` y `matriz energética` (v03/v04); Lección 3 cubre `energia renovável` y `transição energética` (v05/v06). También se amplían las explicaciones para definir explícitamente ambos términos asignados.
+- Cambio en `languages/pt-BR/curriculum/b1/units-10-12.js`. Pendiente actualizar este registro en el head nuevo, ejecutar CI completo y verificar los dos jobs antes de fusionar.
+
+Fuente: GitHub Actions #45296584115, log del job `test` y contrato `tests/pt-br-curriculum-b1-u10-u12.test.cjs`; 23 nov 2026.

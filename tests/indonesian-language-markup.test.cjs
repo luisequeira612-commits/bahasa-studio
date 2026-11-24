@@ -45,3 +45,22 @@ test('marca el ejemplo modelo y el término emergente como indonesios', () => {
     assert.match(html, /termNode\.lang = 'id'/);
     assert.match(html, /original\.lang = 'id'/);
 });
+
+
+test('los ejercicios textuales y de orden usan el locale del idioma activo', () => {
+    const indexSource = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+    const queueStart = indexSource.indexOf('this.queue = lesson.exercises.map');
+    const queueEnd = indexSource.indexOf('const matchingWords =', queueStart);
+    const queueSetup = indexSource.slice(queueStart, queueEnd);
+    const renderStart = indexSource.indexOf('renderStep() {', queueEnd);
+    const renderEnd = indexSource.indexOf('stopPronunciationPractice()', renderStart);
+    const renderer = indexSource.slice(renderStart, renderEnd);
+    const pickStart = indexSource.indexOf('pickWord(word, el) {', renderEnd);
+    const pickEnd = indexSource.indexOf('selectMatch(side, index, button)', pickStart);
+    const picker = indexSource.slice(pickStart, pickEnd);
+
+    assert.match(queueSetup, /CurriculumLoader\.adaptExercise\(prepared, LanguageManager\.getActiveLanguage\(\)\)/);
+    assert.match(renderer, /ex\.answerLocale \|\| ex\.targetLocale \|\| 'und'/);
+    assert.match(renderer, /lang="\$\{App\.escapeHtml\(ex\.targetLocale \|\| 'und'\)\}"/);
+    assert.match(picker, /chip\.lang = this\.queue\[this\.stepIndex\]/);
+});

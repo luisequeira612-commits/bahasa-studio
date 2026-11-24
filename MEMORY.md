@@ -480,3 +480,11 @@ Fuente: GitHub Actions #45294895224, contrato `tests/pt-br-curriculum-b1-u10-u12
 - Corrección en `languages/pt-BR/curriculum/b1/units-10-12.js`, commit `c7932ef1c3ce565639c28bf2d1958d5091e56a9e` en `feat/pt-br-b1-u10-u12`. Pendiente verificar nuevo CI del head actualizado; PR #766 permanece sin fusionar hasta que todos los jobs requeridos terminen en success.
 
 Fuente: GitHub Actions run #45295594548 y log del job `test`; contrato `tests/pt-br-curriculum-b1-u10-u12.test.cjs`; 24 nov 2026.
+
+
+## 2026-11-23 — Cuarto fallo de CI PR #766 y corrección de cobertura U12
+- El CI del head `e29dfa847a4407f90972ac952f147380536b776b`, run [#45296584115](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45296584115), aprobó `Offline quality reports` pero falló una sola prueba en `Run local quality tests` (258/259): B1 U12 repetía `ptbr_b1_u12_v02` en las lecciones 1 y 2 y omitía `ptbr_b1_u12_v06`.
+- Se corrigió la distribución temática sin relajar el contrato: Lección 2 ahora cubre `efeito estufa` y `matriz energética` (v03/v04); Lección 3 cubre `energia renovável` y `transição energética` (v05/v06). También se amplían las explicaciones para definir explícitamente ambos términos asignados.
+- Cambio en `languages/pt-BR/curriculum/b1/units-10-12.js`. Pendiente actualizar este registro en el head nuevo, ejecutar CI completo y verificar los dos jobs antes de fusionar.
+
+Fuente: GitHub Actions #45296584115, log del job `test` y contrato `tests/pt-br-curriculum-b1-u10-u12.test.cjs`; 23 nov 2026.

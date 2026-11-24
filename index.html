@@ -18419,7 +18419,7 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                 if (!exercise) return '';
                 if (exercise.type === 'mc' && Array.isArray(exercise.options)) return exercise.options[exercise.answer] || '';
                 if (exercise.type === 'order' && Array.isArray(exercise.correctOrder)) return exercise.correctOrder.join(' ');
-                if (exercise.type === 'match' && Array.isArray(exercise.pairs)) return exercise.pairs.map(pair => pair.idn + ' — ' + pair.esp).join('; ');
+                if (exercise.type === 'match' && Array.isArray(exercise.pairs)) return exercise.pairs.map(pair => pair.target + ' — ' + pair.translation).join('; ');
                 return String(exercise.modelAnswer || exercise.answer || '');
             },
             reportCurrentExercise(button) {
@@ -18439,7 +18439,7 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                     exerciseType: exercise.type || '',
                     options: Array.isArray(exercise.options) ? exercise.options :
                         (Array.isArray(exercise.words) ? exercise.words :
-                            (Array.isArray(exercise.pairs) ? exercise.pairs.map(pair => pair.idn + ' — ' + pair.esp) : []))
+                            (Array.isArray(exercise.pairs) ? exercise.pairs.map(pair => pair.target + ' — ' + pair.translation) : []))
                 });
                 button.textContent = '✓ Reportado';
                 button.disabled = true;
@@ -18700,7 +18700,7 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                     this.matchMistakes++;
                     const status = document.getElementById('matchStatus');
                     if (status) status.textContent = 'No coinciden. Vuelve a intentarlo.';
-                    this.matchSelection = { idn: null, esp: null };
+                    this.matchSelection = { target: null, esp: null };
                     document.querySelectorAll('.match-option-btn').forEach(item => item.classList.remove('selected'));
                 }
             },

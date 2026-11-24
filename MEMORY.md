@@ -761,3 +761,12 @@ Fuente: PR #775, commits de `main`, GitHub Actions #45447210438, #45448852637 y 
 - Se actualizó la consulta Playwright al nombre accesible actual, sin cambiar el comportamiento de producción ni debilitar la comprobación funcional. Reejecutar CI completo sobre el nuevo head antes de fusionar.
 
 Fuente: GitHub Actions #45480612260, job `test`; PR #782; 24 nov 2026.
+
+
+## 2026-11-24 — Corrección de expectativa de shuffle tras matching neutral (PR #783)
+
+- CI #45487013109: `Offline quality reports` success; el job `test` detectó una expectativa legacy en `tests/exercise-shuffle.test.cjs` que exigía el identificador local `idnOptions` del renderer de matching.
+- El renderer ahora usa `targetOptions` porque las parejas se adaptan a `target/translation`; el algoritmo Fisher–Yates no cambió. Se actualiza la expectativa para verificar el nuevo nombre y conservar la comprobación de la columna española.
+- Head al abrir PR #783: `2d78c3ce51f5cd688ce6d9591ce387c5a0c320d5`. Repetir CI completo después de la corrección; no fusionar con pruebas pendientes.
+
+Fuente: GitHub Actions #45487013109, job `test`; PR #783; 24 nov 2026.

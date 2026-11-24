@@ -500,3 +500,10 @@ Fuente: GitHub Actions run #45295594548 y log del job `test`; contrato `tests/pt
 - Cambio en `languages/pt-BR/curriculum/b1/units-10-12.js`. Pendiente actualizar este registro en el head nuevo, ejecutar CI completo y verificar los dos jobs antes de fusionar.
 
 Fuente: GitHub Actions #45296584115, log del job `test` y contrato `tests/pt-br-curriculum-b1-u10-u12.test.cjs`; 23 nov 2026.
+
+
+### PR #767 — corrección de contratos heredados (2026-11-24)
+- CI inicial #45300758316: `Offline quality reports` pasó; `test` falló en `quality:local` con 20 fallos de pruebas heredadas.
+- Diagnóstico: 16 pruebas antiguas tenían expectativas fijas para `bahasa-studio-v3.8.144`; el SW de la rama usa correctamente `v3.8.145`. Cuatro pruebas B1 además esperaban el manifiesto solo hasta U9/U12, pese a la ampliación U1–U15.
+- Se actualizan las expectativas de caché A1/A2/B1 y las cuatro pruebas B1 para reflejar U1–U15. Sin cambios de runtime ni de datos curriculares.
+- Head actual en proceso de corrección; no fusionar hasta que CI completo pase sobre el head final.

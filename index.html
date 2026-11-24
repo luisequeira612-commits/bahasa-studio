@@ -18370,24 +18370,16 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                         _auditExerciseId: exercise.id || unit.id + ':lesson-' + (lesson.index + 1) + ':exercise-' + (index + 1)
                     };
                 });
-                const matchingWords = [];
-                const seenMatchTerms = new Set();
-                [...(lesson.newVocab || []), ...(lesson.reviewVocab || [])].forEach(word => {
-                    const idn = String(word && word.idn || '').trim();
-                    const esp = String(word && word.esp || '').trim();
-                    const key = idn.toLocaleLowerCase() + '|' + esp.toLocaleLowerCase();
-                    if (!idn || !esp || seenMatchTerms.has(key)) return;
-                    seenMatchTerms.add(key);
-                    if (matchingWords.some(item => item.idn.toLocaleLowerCase() === idn.toLocaleLowerCase() ||
-                        item.esp.toLocaleLowerCase() === esp.toLocaleLowerCase())) return;
-                    matchingWords.push({ idn, esp });
-                });
+                const matchingWords = CurriculumLoader.adaptMatchingPairs(
+                    [...(lesson.newVocab || []), ...(lesson.reviewVocab || [])],
+                    LanguageManager.getActiveLanguage()
+                );
                 if (matchingWords.length >= 3) {
-                    const pairs = matchingWords.slice(0, 4);
                     this.queue.push({
                         type: 'match',
-                        prompt: 'Une cada palabra en indonesio con su significado en español.',
-                        pairs,
+                        prompt: 'Une cada palabra del idioma objetivo con su significado en español.',
+                        pairs: matchingWords.slice(0, 4),
+                        targetLocale: LanguageManager.getLocale(LanguageManager.getActiveLanguage()) || 'und',
                         explanation: 'Relaciona cada palabra con su significado. Lee las parejas completas para fijar el vocabulario.',
                         _auditExerciseId: unit.id + ':lesson-' + (lesson.index + 1) + ':matching'
                     });
@@ -18427,7 +18419,7 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                 if (!exercise) return '';
                 if (exercise.type === 'mc' && Array.isArray(exercise.options)) return exercise.options[exercise.answer] || '';
                 if (exercise.type === 'order' && Array.isArray(exercise.correctOrder)) return exercise.correctOrder.join(' ');
-                if (exercise.type === 'match' && Array.isArray(exercise.pairs)) return exercise.pairs.map(pair => pair.idn + ' — ' + pair.esp).join('; ');
+                if (exercise.type === 'match' && Array.isArray(exercise.pairs)) return exercise.pairs.map(pair => pair.target + ' — ' + pair.translation).join('; ');
                 return String(exercise.modelAnswer || exercise.answer || '');
             },
             reportCurrentExercise(button) {
@@ -18447,7 +18439,7 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                     exerciseType: exercise.type || '',
                     options: Array.isArray(exercise.options) ? exercise.options :
                         (Array.isArray(exercise.words) ? exercise.words :
-                            (Array.isArray(exercise.pairs) ? exercise.pairs.map(pair => pair.idn + ' — ' + pair.esp) : []))
+                            (Array.isArray(exercise.pairs) ? exercise.pairs.map(pair => pair.target + ' — ' + pair.translation) : []))
                 });
                 button.textContent = '✓ Reportado';
                 button.disabled = true;
@@ -18505,7 +18497,7 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
 
                 this.selectedOption = null;
                 this.userOrder = [];
-                this.matchSelection = { idn: null, esp: null };
+                this.matchSelection = { target: null, esp: null };
                 this.matchSolved = new Set();
                 this.matchMistakes = 0;
 
@@ -18609,19 +18601,19 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                         </div>
                     `;
                 } else if (ex.type === 'match') {
-                    const idnOptions = shuffleArray(ex.pairs.map((pair, index) => ({ label: pair.idn, index })));
-                    const espOptions = shuffleArray(ex.pairs.map((pair, index) => ({ label: pair.esp, index })));
+                    const targetOptions = shuffleArray(ex.pairs.map((pair, index) => ({ label: pair.target, index })));
+                    const espOptions = shuffleArray(ex.pairs.map((pair, index) => ({ label: pair.translation, index })));
                     container.innerHTML = `
                         <div class="matching-exercise">
                             <h3>${App.escapeHtml(ex.prompt)}</h3>
                             <div class="matching-columns">
-                                <section id="matchIdn" aria-label="Palabras en indonesio">
-                                    <h4>Indonesio</h4>
-                                    ${idnOptions.map(item => `<button type="button" class="match-option-btn" lang="id" data-side="idn" data-pair-index="${item.index}" onclick="LessonEngine.selectMatch('idn', ${item.index}, this)">${App.escapeHtml(item.label)}</button>`).join('')}
+                                <section id="matchTarget" aria-label="Palabras en el idioma objetivo">
+                                    <h4>Idioma objetivo</h4>
+                                    ${targetOptions.map(item => `<button type="button" class="match-option-btn" lang="${App.escapeHtml(ex.targetLocale || 'und')}" data-side="target" data-pair-index="${item.index}" onclick="LessonEngine.selectMatch('target', ${item.index}, this)">${App.escapeHtml(item.label)}</button>`).join('')}
                                 </section>
                                 <section id="matchEsp" aria-label="Significados en español">
                                     <h4>Español</h4>
-                                    ${espOptions.map(item => `<button type="button" class="match-option-btn" data-side="esp" data-pair-index="${item.index}" onclick="LessonEngine.selectMatch('esp', ${item.index}, this)">${App.escapeHtml(item.label)}</button>`).join('')}
+                                    ${espOptions.map(item => `<button type="button" class="match-option-btn" lang="es" data-side="esp" data-pair-index="${item.index}" onclick="LessonEngine.selectMatch('esp', ${item.index}, this)">${App.escapeHtml(item.label)}</button>`).join('')}
                                 </section>
                             </div>
                             <p id="matchStatus" class="matching-status" role="status" aria-live="polite">Selecciona una palabra y después su significado.</p>
@@ -18680,13 +18672,13 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                 bank.appendChild(chip);
             },
             selectMatch(side, index, button) {
-                if (!button || button.disabled || !['idn', 'esp'].includes(side) || this.matchSolved.has(index)) return;
+                if (!button || button.disabled || !['target', 'esp'].includes(side) || this.matchSolved.has(index)) return;
                 this.matchSelection[side] = index;
                 document.querySelectorAll('.match-option-btn').forEach(item => {
                     item.classList.toggle('selected',
                         !item.disabled && item.dataset.side === side && Number(item.dataset.pairIndex) === index);
                 });
-                const otherSide = side === 'idn' ? 'esp' : 'idn';
+                const otherSide = side === 'target' ? 'esp' : 'target';
                 const otherIndex = this.matchSelection[otherSide];
                 if (otherIndex === null) return;
                 if (otherIndex === index) {
@@ -18698,7 +18690,7 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                     });
                     const status = document.getElementById('matchStatus');
                     if (status) status.textContent = 'Pareja correcta. ' + this.matchSolved.size + ' de ' + this.queue[this.stepIndex].pairs.length + ' completadas.';
-                    this.matchSelection = { idn: null, esp: null };
+                    this.matchSelection = { target: null, esp: null };
                     const exercise = this.queue[this.stepIndex];
                     if (this.matchSolved.size === exercise.pairs.length) {
                         this.showFeedback(this.matchMistakes === 0, exercise.explanation,
@@ -18708,7 +18700,7 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                     this.matchMistakes++;
                     const status = document.getElementById('matchStatus');
                     if (status) status.textContent = 'No coinciden. Vuelve a intentarlo.';
-                    this.matchSelection = { idn: null, esp: null };
+                    this.matchSelection = { target: null, esp: null };
                     document.querySelectorAll('.match-option-btn').forEach(item => item.classList.remove('selected'));
                 }
             },

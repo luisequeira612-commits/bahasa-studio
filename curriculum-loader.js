@@ -182,6 +182,28 @@
         return Object.freeze(adapted);
     }
 
+    // Build immutable, language-neutral matching pairs from either legacy or new vocabulary fields.
+    function adaptMatchingPairs(words, language) {
+        if (!Array.isArray(words)) return Object.freeze([]);
+        const pairs = [];
+        const seenTargets = new Set();
+        const seenTranslations = new Set();
+        for (const word of words) {
+            const adapted = adaptVocabulary(word, language);
+            if (!adapted || typeof adapted.text !== 'string' || !adapted.text.trim() ||
+                typeof adapted.translation !== 'string' || !adapted.translation.trim()) continue;
+            const target = adapted.text.trim();
+            const translation = adapted.translation.trim();
+            const targetKey = target.toLocaleLowerCase();
+            const translationKey = translation.toLocaleLowerCase();
+            if (seenTargets.has(targetKey) || seenTranslations.has(translationKey)) continue;
+            seenTargets.add(targetKey);
+            seenTranslations.add(translationKey);
+            pairs.push(Object.freeze({ target, translation }));
+        }
+        return Object.freeze(pairs);
+    }
+
     // Read-only-shape adapter for exercise language metadata. It preserves authored
     // exercise fields and never changes answer indexes or acceptance rules.
     function adaptExercise(exercise, language) {
@@ -207,5 +229,5 @@
         return Object.freeze(adapted);
     }
 
-    root.CurriculumLoader = Object.freeze({ levels: LEVELS, resolve, load, loadUnits, adaptVocabulary, adaptExercise });
+    root.CurriculumLoader = Object.freeze({ levels: LEVELS, resolve, load, loadUnits, adaptVocabulary, adaptExercise, adaptMatchingPairs });
 })(typeof window !== 'undefined' ? window : globalThis);

@@ -819,3 +819,25 @@ Fuente: GitHub Actions #45487013109, job `test`; PR #783; 24 nov 2026.
 - No se cambian datos curriculares, disponibilidad `pt-BR`, IndexedDB v1, backup JSON v3 ni dependencias. La burbuja sigue usando el guardado SRS existente por ID; el trabajo específico de SRS multilingüe queda para el siguiente paso.
 
 Fuente: rama `feat/multilingual-tap-translation`, cambios en `index.html`, `tests/indonesian-language-markup.test.cjs` y `package.json`; 24 nov 2026.
+
+
+## 2026-11-24 — Cobertura multilingüe del perfil de habilidades de estudio
+
+- La CI post-merge del PR #787 terminó en success en todos sus jobs, incluidos regresión, Chromium/E2E y calidad offline (run #45501699412).
+- Se prepara una prueba de contrato para `StudyActivity` que carga los manifiestos y todos los bloques publicados pt-BR A1 (24 unidades), A2 (30) y B1 (36), y verifica que cada ejercicio se asigne a una habilidad adaptativa. También se cubre explícitamente el tipo neutral `translate_es_target`, conservando el alias histórico `translate_es_id`.
+- La prueba solo verifica cobertura estructural del seguimiento; no habilita pt-BR, no certifica calidad lingüística y no cambia contenido curricular ni comportamiento de producción.
+- No se modifican IndexedDB v1, backup JSON v3, dependencias ni disponibilidad de idiomas. PR en preparación; exigir CI completo y regresión post-merge antes de considerar cerrado el cambio.
+
+Fuente: GitHub Actions #45501699412; `study-activity.js`, `tests/study-activity.test.cjs` y manifiestos pt-BR A1/A2/B1; 24 nov 2026.
+
+
+## 2026-11-24 — Corrección de comparación cross-realm en cobertura pt-BR (PR #788)
+- CI #45503627725 encontró que la prueba de cobertura A1/A2/B1 fallaba aunque los números de unidades cargadas coincidían exactamente con el manifiesto. La causa era `assert.deepEqual` entre un array creado dentro de `vm` y otro del realm del test: Node compara también el prototipo, por lo que dos listas numéricamente iguales no son equivalentes bajo comparación estricta.
+- Se normaliza únicamente `manifest.publishedUnits` con `Array.from` antes de comparar. Se conserva la exigencia de cobertura exacta de todas las unidades publicadas; no se modifica currículo ni producción.
+Fuente: GitHub Actions #45503627725, job `test`, PR #788; 24 nov 2026.
+
+
+## 2026-11-24 — Alinear cobertura adaptativa pt-BR con habilidades realmente publicadas (PR #788)
+- Tras corregir la comparación cross-realm, CI #45504645770 detectó otra expectativa incorrecta: el test exigía que el currículo portugués contuviera las cinco habilidades, aunque los bloques publicados actuales solo incluyen ejercicios de reconocimiento y construcción de frases (con escucha derivada cuando hay audio). La prueba fallaba específicamente por traducción, que no está representada en esos bloques; no era una habilidad sin mapear.
+- Se elimina la exigencia de presencia artificial de todas las categorías y se mantiene: cada ejercicio publicado debe mapear a una habilidad válida, las unidades publicadas deben cargarse completas y el conjunto debe aportar al menos una habilidad. La correspondencia explícita de `translate_es_target` sigue cubierta en el test unitario de tipos, sin fingir que ya aparece en los datos curriculares pt-BR.
+Fuente: GitHub Actions #45504645770 y revisión de bloques pt-BR A1; 24 nov 2026.

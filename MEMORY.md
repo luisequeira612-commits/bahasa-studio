@@ -1,3 +1,12 @@
+## 2026-11-24 — Corrección de test heredado y vista de ejercicio inmutable (PR #782)
+
+- PR #782: https://github.com/luisequeira612-commits/bahasa-studio/pull/782. La primera ejecución CI #45479679061 tuvo `Offline quality reports` success y falló `test` por una expectativa obsoleta en `tests/load-inline-b2-curriculum.test.mjs` que exigía la expresión antigua `writingLanguage = answerLanguage ? es : id`. La implementación ahora resuelve locale con `answerLocale || targetLocale || 'und'`; se actualizó el test para exigir el contrato nuevo y rechazar la expresión antigua.
+- `adaptExercise` ahora devuelve una copia superficial congelada, consistente con el contrato de vista de solo lectura del adaptador de vocabulario. Se añadió aserción `Object.isFrozen`.
+- Los commits correctivos son `e505078`, `6a0c260` y `b11662d`; el head actual es `b11662d76cdeb386e7b3e9e6f253709bf12252ad`.
+- La nueva ejecución CI todavía no aparece asociada al head al momento de esta nota. No fusionar hasta que `test` y `Offline quality reports` estén en success y revisar el diff final.
+
+Fuente: GitHub Actions #45479679061, PR #782 y commits de corrección; 24 nov 2026.
+
 
 ## 2026-11-24 — Integración inicial del locale en ejercicios (fase 5)
 

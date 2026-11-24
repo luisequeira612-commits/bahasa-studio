@@ -74,9 +74,9 @@ test('A2 U10-U12 review references resolve only to previously published A2 vocab
   for(const lesson of units[index].lessons) for(const id of lesson.reviewVocabIds) assert.ok(earlier.has(id),id);
  }
 });
-test('service worker precaches A2 U10-U12 using cache v3.8.148',()=>{
+test('service worker precaches A2 U10-U12 using cache v3.8.152',()=>{
  const source=fs.readFileSync(path.join(repo,'service-worker.js'),'utf8');
  assert.match(source,/units-10-12\.js/);
  assert.match(source,/curriculum\/a2\/index\.js/);
- assert.match(source,/bahasa-studio-v3\.8\.151/);
+ assert.match(source,/bahasa-studio-v3\.8\.152/);
 });

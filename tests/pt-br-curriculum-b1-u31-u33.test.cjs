@@ -47,9 +47,9 @@ test('pt-BR B1 U31-U33 load as content while the incomplete course remains unava
   }
  }
 });
-test('B1 manifest publishes exactly U1-U33 of 36 and remains unavailable in the language selector',()=>{
+test('B1 manifest publishes exactly U1-U36 of 36 and remains unavailable in the language selector',()=>{
  const {window}=createPilot(),manifest=window.GUARDI_CURRICULUM_MANIFESTS['pt-BR'].B1;
- assert.equal(manifest.totalUnits,36);assert.deepEqual(Array.from(manifest.publishedUnits),Array.from({length:33},(_,index)=>index+1));
+ assert.equal(manifest.totalUnits,36);assert.deepEqual(Array.from(manifest.publishedUnits),Array.from({length:36},(_,index)=>index+1));
  assert.deepEqual(Array.from(manifest.blocks[10].units),[31,32,33]);assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
 });
 test('B1 U31-U33 review references resolve to existing A2 vocabulary IDs',async()=>{
@@ -58,7 +58,7 @@ test('B1 U31-U33 review references resolve to existing A2 vocabulary IDs',async(
  const ids=new Set(a2.flatMap(unit=>unit.vocab.map(word=>word.id)));
  for(const unit of units)for(const lesson of unit.lessons)for(const id of lesson.reviewVocabIds)assert.ok(ids.has(id),id);
 });
-test('B1 U31-U33 add no exact normalized vocabulary duplicates against A1, A2 or B1 U1-U30',()=>{
+test('B1 U31-U33 add no exact normalized vocabulary duplicates against A1, A2 or B1 U1-U36',()=>{
  const prior=[];
  for(const file of a1Files){const source=fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a1',file),'utf8');for(const match of source.matchAll(/v\('(?:[^']+)'\s*,\s*'([^']+)'/g))prior.push(match[1]);}
  for(const file of a2Files){const source=fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a2',file),'utf8');for(const match of source.matchAll(/vocab\(\s*\d+\s*,\s*\d+\s*,\s*'([^']+)'/g))prior.push(match[1]);}
@@ -71,8 +71,8 @@ test('B1 U31-U33 add no exact normalized vocabulary duplicates against A1, A2 or
  assert.equal(prior.length,540);assert.equal(previous.length,300);assert.equal(added.length,30);assert.equal(new Set(normalized).size,30);
  assert.deepEqual(normalized.filter(word=>allPrior.has(word)),[]);
 });
-test('service worker precaches B1 U1-U33 with cache v3.8.151',()=>{
+test('service worker precaches B1 U1-U36 with cache v3.8.152',()=>{
  const source=fs.readFileSync(path.join(repo,'service-worker.js'),'utf8');
  assert.ok(source.includes("./languages/pt-BR/curriculum/b1/units-31-33.js"));
- assert.match(source,/bahasa-studio-v3\.8\.151/);
+ assert.match(source,/bahasa-studio-v3\.8\.152/);
 });

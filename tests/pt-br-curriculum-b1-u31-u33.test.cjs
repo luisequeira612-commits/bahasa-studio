@@ -8,7 +8,7 @@ const repo=path.join(__dirname,'..');
 const managerSource=fs.readFileSync(path.join(repo,'language-manager.js'),'utf8');
 const loaderSource=fs.readFileSync(path.join(repo,'curriculum-loader.js'),'utf8');
 const b1Files=['units-01-03.js','units-04-06.js','units-07-09.js','units-10-12.js','units-13-15.js','units-16-18.js','units-19-21.js','units-22-24.js','units-25-27.js','units-28-30.js','units-31-33.js'];
-const a2Files=['units-01-03.js','units-04-06.js','units-07-09.js','units-10-12.js','units-13-15.js','units-16-18.js','units-19-21.js','units-22-24.js','units-25-27.js','units-31-33.js'];
+const a2Files=['units-01-03.js','units-04-06.js','units-07-09.js','units-10-12.js','units-13-15.js','units-16-18.js','units-19-21.js','units-22-24.js','units-25-27.js','units-28-30.js'];
 const a1Files=['units-01-06.js','units-07-12.js','units-13-18.js','units-19-21.js','units-22-24.js'];
 const sources={
  './languages/pt-BR/curriculum/b1/index.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/b1/index.js'),'utf8'),
@@ -47,13 +47,13 @@ test('pt-BR B1 U31-U33 load as content while the incomplete course remains unava
   }
  }
 });
-test('B1 manifest publishes exactly U1-U30 of 36 and remains unavailable in the language selector',()=>{
+test('B1 manifest publishes exactly U1-U33 of 36 and remains unavailable in the language selector',()=>{
  const {window}=createPilot(),manifest=window.GUARDI_CURRICULUM_MANIFESTS['pt-BR'].B1;
  assert.equal(manifest.totalUnits,36);assert.deepEqual(Array.from(manifest.publishedUnits),Array.from({length:33},(_,index)=>index+1));
- assert.deepEqual(Array.from(manifest.blocks[10].units),[28,29,30]);assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
+ assert.deepEqual(Array.from(manifest.blocks[10].units),[31,32,33]);assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
 });
 test('B1 U31-U33 review references resolve to existing A2 vocabulary IDs',async()=>{
- const {loader}=createPilot(),{units}=await loader.loadUnits('pt-BR','B1',[28,29,30]);
+ const {loader}=createPilot(),{units}=await loader.loadUnits('pt-BR','B1',[31,32,33]);
  const {units:a2}=await loader.loadUnits('pt-BR','A2',Array.from({length:30},(_,i)=>i+1));
  const ids=new Set(a2.flatMap(unit=>unit.vocab.map(word=>word.id)));
  for(const unit of units)for(const lesson of unit.lessons)for(const id of lesson.reviewVocabIds)assert.ok(ids.has(id),id);
@@ -71,7 +71,7 @@ test('B1 U31-U33 add no exact normalized vocabulary duplicates against A1, A2 or
  assert.equal(prior.length,540);assert.equal(previous.length,300);assert.equal(added.length,30);assert.equal(new Set(normalized).size,30);
  assert.deepEqual(normalized.filter(word=>allPrior.has(word)),[]);
 });
-test('service worker precaches B1 U1-U30 with cache v3.8.150',()=>{
+test('service worker precaches B1 U1-U30 with cache v3.8.151',()=>{
  const source=fs.readFileSync(path.join(repo,'service-worker.js'),'utf8');
  assert.ok(source.includes("./languages/pt-BR/curriculum/b1/units-31-33.js"));
  assert.match(source,/bahasa-studio-v3\.8\.150/);

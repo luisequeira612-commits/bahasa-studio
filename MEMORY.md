@@ -1,3 +1,12 @@
+
+
+### 2026-11-24 — Corrección de alcance del test en PR #781
+
+- CI #45476822874: `Offline quality reports` success; `test` falló únicamente en `tests/indonesian-language-markup.test.cjs`. El test buscaba `LanguageManager.getLocale(language)` dentro del cuerpo de `wordCard`, aunque esa configuración se declara correctamente antes del renderer.
+- Se corrige el contrato para verificar la resolución de locale en el bloque de preparación de `renderIntro()` y mantener dentro del renderer las aserciones del adaptador, campos opcionales y atributo `lang` dinámico. No se relaja ni cambia el comportamiento de producción.
+- PR #781 permanece abierta; esperar CI completo sobre el nuevo head antes de fusionar.
+
+Fuente: GitHub Actions #45476822874, job `test`, log de `Run Indonesian language markup tests`; 24 nov 2026.
 ## 2026-11-24 — Fase 4 completada; integración inicial de renderizador en fase 5
 
 - PR #780 fusionada por squash en `main`, commit `f1a1f49a171c97aa0624e25055d9636c351cfb74`; CI #45473441650: `test` y `Offline quality reports` success. El caso NFC fue corregido para usar una marca combinante real.

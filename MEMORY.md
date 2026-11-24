@@ -1,4 +1,5 @@
 ## 2026-11-24 — Fase 2: contrato de campos opcionales en revisión
+- Preferencia operativa actualizada por el usuario (24 nov 2026): continuar haciendo mejoras sin pedir autorización para cada una; fusionar cuando el agente considere que el cambio está correcto y validado; informar la fase solo en avances significativos.
 - Tras fusionar PR #777, comienza la etapa de campos opcionales en la rama `feat/multilingual-optional-curriculum-fields`.
 - Se define un contrato aditivo y language-neutral: `reading`, `transliteration`, `pronunciation.ipa`, `tokens`, `grammaticalFunctions`, `forms`, `annotations`, `verification` legacy opcional y `acceptedAnswers` en ejercicios textuales. No se requiere ninguno para currículos existentes.
 - Se añade un validador estructural puro y tests legacy/Unicode; no se conecta aún a UI ni se modifican datos curriculares. Sin dependencias, audio nuevo, IndexedDB v1 ni backup JSON v3.
@@ -6,7 +7,7 @@
 
 ---
 ## 2026-11-24 — Aprobación del plan multiidioma y baseline de calidad
-- El usuario aprobó el plan técnico y el temario portugués B2 (40 unidades, 5 lecciones por unidad) y exigió aprobaciones por etapas; no fusionar ninguna PR sin su «Aprobado» explícito.
+- El usuario aprobó el plan técnico y el temario portugués B2 (40 unidades, 5 lecciones por unidad) y exigió aprobaciones por etapas. Actualización del 24 nov: el usuario autoriza al agente a fusionar cuando el cambio esté correcto y CI pase, sin pedir autorización previa para cada merge; informar la fase en avances significativos.
 - Baseline estructural recuperado de GitHub Actions run #45463235040 sobre `main` SHA `497d6c45d3439103bfa4db3a5a10118564ad9413`: trabajos `test` y `Offline quality reports` en success. Resumen y limitaciones en `docs/quality-baselines/2026-11-24.md`.
 - Los auditores existentes recorren currículos indonesios (122 unidades en auditoría/cola; 182 unidades en contrato), no constituyen baseline lingüístico ni cobertura de portugués B1. No certifican naturalidad ni MCER; KBBI no es requisito. El baseline no modifica currículos, IndexedDB v1 ni backup JSON v3.
 

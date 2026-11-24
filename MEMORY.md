@@ -846,6 +846,16 @@ Fuente: GitHub Actions #45504645770 y revisión de bloques pt-BR A1; 24 nov 2026
 ## 2026-11-24 — Inferencia de locale para ejercicios de traducción neutrales
 - La revisión posterior al PR #788 detectó que `CurriculumLoader.adaptExercise` infería el idioma de respuesta para `translate_es_id` (alias histórico), pero omitía el nuevo tipo neutral `translate_es_target`. Esto dejaba sin `answerLanguage`/`answerLocale` inferidos los ejercicios neutrales cuando el contenido no declaraba explícitamente esos campos.
 - Se añade `translate_es_target` a la lista de tipos cuya respuesta está en el idioma objetivo activo. Se amplían las pruebas para comprobar pt-BR, preservar `answerLanguage: 'es'` explícito y mantener la cobertura del alias `translate_es_id`.
-- El adaptador sigue siendo de solo lectura: no reescribe respuestas ni reglas de aceptación. No se habilita pt-BR, no se cambian currículos, IndexedDB v1, backup JSON v3 ni dependencias. Pendiente CI completa y regresión post-merge.
+- El adaptador sigue siendo de solo lectura: no reescribe respuestas ni reglas de aceptación. No se habilita pt-BR, no se cambian currículos, IndexedDB v1, backup JSON v3 ni dependencias. PR #789 fusionada; CI de PR #45506636280 y regresión post-merge #45507945725 aprobadas (101/101 pasos), calidad offline 10/10 y despliegue Pages #45507944048 completado.
 
 Fuente: `curriculum-loader.js`, `tests/curriculum-loader.test.cjs`, revisión posterior al PR #788; 24 nov 2026.
+
+
+## 2026-11-24 — Auditoría de contratos multilingües y estado de fase
+- Se actualizan los contratos documentales porque estaban desfasados: el contrato del adaptador aún decía que la integración en renderizadores estaba pendiente, aunque las tarjetas de lección, SRS, adaptación de ejercicios y pares de asociación ya consumen las vistas comunes.
+- Se aclara el comportamiento real de `adaptVocabulary`, `adaptExercise` y `adaptMatchingPairs`, incluidos fallbacks legacy, locale de respuesta explícito, aislamiento del audio indonesio y límites de no mutación.
+- Se actualiza el contrato de extensiones opcionales: el validador estructural ya está implementado e integrado en `quality:tests`; los campos siguen siendo opcionales y CI no certifica corrección lingüística.
+- Auditoría de disponibilidad: pt-BR mantiene `available:false`; sus manifiestos/currículos offline no lo hacen seleccionable. A1 pt-BR publica U1–U24; A2 y B1 tienen manifiestos y bloques pero siguen deshabilitados. No activar ningún nivel por presencia de archivos.
+- La regresión posterior a #789 terminó correctamente: run #45507945725 (tests 101/101 + calidad 10/10) y Pages #45507944048 (build/deploy success).
+- Sin cambios de producción, currículos, IndexedDB v1, backup JSON v3, dependencias ni disponibilidad.
+Fuente: `curriculum-loader.js`, `language-manager.js`, manifiesto A1 pt-BR, pruebas curriculares/E2E, scripts de validación y CI; 24 nov 2026.

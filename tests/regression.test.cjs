@@ -53,11 +53,11 @@ assert.equal(manifest.description, 'Aprende idiomas');
   assert.doesNotMatch(html + serviceWorker + JSON.stringify(manifest), /3\.5\.1/);
 });
 
-test('word meaning popup renders the Indonesian example and its Spanish translation separately', () => {
+test('word meaning popup renders the active-language example and its translation separately', () => {
   assert.match(html, /exampleNode\.replaceChildren\(\)/);
-  assert.match(html, /original\.lang = 'id'/);
-  assert.match(html, /original\.textContent = example\.ex/);
-  assert.match(html, /exampleNode\.append\('Traducción: ' \+ example\.exEsp\)/);
+  assert.match(html, /original\.lang = example\.locale/);
+  assert.match(html, /original\.textContent = example\.example/);
+  assert.match(html, /exampleNode\.append\('Traducción: ' \+ example\.exampleTranslation\)/);
   assert.doesNotMatch(html.slice(html.indexOf('function showMeaning'), html.indexOf('closeButton.addEventListener')), /innerHTML/);
 });
 

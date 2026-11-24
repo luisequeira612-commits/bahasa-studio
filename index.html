@@ -20738,7 +20738,7 @@ Requisitos:
             '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
         })[char]);
         const wordTokens = value => [...String(value || '').matchAll(/[\p{L}\p{M}]+(?:[’'-][\p{L}\p{M}]+)*/gu)];
-        const normToken = value => String(value || '').normalize('NFKC').toLocaleLowerCase('es').replace(/[^\p{L}\p{M}]/gu, '');
+        const normToken = (value, locale) => String(value || '').normalize('NFKC').toLocaleLowerCase(locale || 'und').replace(/[^\p{L}\p{M}]/gu, '');
 
         window.getTapTranslationVocabulary = function () {
             const language = LanguageManager.getActiveLanguage();
@@ -20755,6 +20755,7 @@ Requisitos:
         function translationCandidates(sourceLanguage) {
             const activeLanguage = LanguageManager.getActiveLanguage();
             const isSpanishSource = sourceLanguage === 'es';
+            const sourceLocale = isSpanishSource ? 'es' : LanguageManager.getLocale(activeLanguage) || 'und';
             const candidates = [];
             const localVocabulary = typeof LessonEngine !== 'undefined' && LessonEngine.currentUnit &&
                 Array.isArray(LessonEngine.currentUnit.vocab) ? LessonEngine.currentUnit.vocab : [];
@@ -20772,7 +20773,7 @@ Requisitos:
                 const target = isSpanishSource ? String(word.text) : String(word.translation);
                 const variants = [source, ...source.split(/\s+\/\s+/u)].filter(Boolean);
                 for (const variant of variants) {
-                    const tokens = wordTokens(variant).map(match => normToken(match[0])).filter(Boolean);
+                    const tokens = wordTokens(variant).map(match => normToken(match[0], sourceLocale)).filter(Boolean);
                     if (tokens.length) candidates.push({ source: variant, target, tokens, priority: item.priority, vocabId: word.id });
                 }
             }
@@ -20791,7 +20792,7 @@ Requisitos:
                             if (exercise.type !== 'translate_es_id' || !exercise.prompt || !exercise.answer) continue;
                             const parsed = window.parseTapTranslationPrompt(exercise.prompt, 'es');
                             const source = String(parsed.phrase || '').trim();
-                            const tokens = wordTokens(source).map(match => normToken(match[0])).filter(Boolean);
+                            const tokens = wordTokens(source).map(match => normToken(match[0], 'es')).filter(Boolean);
                             if (tokens.length) candidates.push({ source, target: String(exercise.answer), tokens, priority: 2 });
                         }
                     }
@@ -20803,6 +20804,8 @@ Requisitos:
         window.renderTapTranslationSentence = function (phrase, language) {
             const text = String(phrase || '');
             const tokens = wordTokens(text);
+            const activeLanguage = LanguageManager.getActiveLanguage();
+            const sourceLocale = language === 'es' ? 'es' : LanguageManager.getLocale(activeLanguage) || 'und';
             const candidates = translationCandidates(language);
             let output = '';
             let cursor = 0;
@@ -20813,7 +20816,7 @@ Requisitos:
                 let found = null;
                 for (const candidate of candidates) {
                     if (candidate.tokens.length < 1 || i + candidate.tokens.length > tokens.length) continue;
-                    const slice = tokens.slice(i, i + candidate.tokens.length).map(token => normToken(token[0]));
+                    const slice = tokens.slice(i, i + candidate.tokens.length).map(token => normToken(token[0], sourceLocale));
                     if (!candidate.tokens.every((token, j) => token === slice[j])) continue;
                     const sameCandidates = candidates.filter(other => other.tokens.length === candidate.tokens.length &&
                         other.tokens.every((token, j) => token === candidate.tokens[j]));
@@ -20841,8 +20844,6 @@ Requisitos:
                 }
             }
             output += escapeHtml(text.slice(cursor));
-            const activeLanguage = LanguageManager.getActiveLanguage();
-            const sourceLocale = language === 'es' ? 'es' : LanguageManager.getLocale(activeLanguage) || 'und';
             const speaker = language !== 'es' && activeLanguage === 'id'
                 ? '<button type="button" class="tap-translation-speaker" aria-label="Escuchar frase" data-audio="' + escapeHtml(text) +
                     '" onclick="AudioEngine.speak(this.dataset.audio)"><svg class="ui-icon lesson-speaker-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4h4l5 4V6l-5 4H4Z"/><path d="M16 9.5a4 4 0 0 1 0 5M18.5 7a7 7 0 0 1 0 10"/></svg></button>' : '';

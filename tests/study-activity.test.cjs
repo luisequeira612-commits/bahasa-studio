@@ -269,7 +269,7 @@ test('all Portuguese A1/A2/B1 curriculum exercises contribute to the adaptive sk
 
     assert.deepEqual(
       [...units].sort((a, b) => a - b),
-      manifest.publishedUnits,
+      Array.from(manifest.publishedUnits),
       level.id + ' must load every unit declared as published'
     );
     loadedUnits.set(level.id, units.size);

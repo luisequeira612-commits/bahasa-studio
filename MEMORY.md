@@ -1,9 +1,8 @@
-## 2026-11-24 — Fase 2: contrato de campos opcionales en revisión
-- Preferencia operativa actualizada por el usuario (24 nov 2026): continuar haciendo mejoras sin pedir autorización para cada una; fusionar cuando el agente considere que el cambio está correcto y validado; informar la fase solo en avances significativos.
-- Tras fusionar PR #777, comienza la etapa de campos opcionales en la rama `feat/multilingual-optional-curriculum-fields`.
-- Se define un contrato aditivo y language-neutral: `reading`, `transliteration`, `pronunciation.ipa`, `tokens`, `grammaticalFunctions`, `forms`, `annotations`, `verification` legacy opcional y `acceptedAnswers` en ejercicios textuales. No se requiere ninguno para currículos existentes.
-- Se añade un validador estructural puro y tests legacy/Unicode; no se conecta aún a UI ni se modifican datos curriculares. Sin dependencias, audio nuevo, IndexedDB v1 ni backup JSON v3.
-- La validación Unicode de cobertura amplia queda para la fase posterior al cierre del contrato. PR de esta fase pendiente de CI; no se considera integrada hasta confirmación de merge.
+## 2026-11-24 — Integración multiidioma: fase 3 en curso
+- Fase 1 (baseline) y fase 2 (contrato de campos opcionales) completadas. PR #778 fusionada por squash en `main`, commit `699dfb92eee84235aa57bb6e3c983390901bc095`; CI del head #45468262779: `test` y `Offline quality reports` success. El contrato es aditivo, no conecta aún campos opcionales a UI y no cambia datos productivos.
+- Fase 3 inicia una vista común de vocabulario en `CurriculumLoader.adaptVocabulary`: normaliza lectura de texto/ traducción/ejemplo sin mutar registros; aísla el campo legacy indonesio `idn` y prioriza `target` para currículos nuevos. La vista no activa idiomas ni cambia IndexedDB v1/backup JSON v3.
+- La integración visual en renderizadores y adaptadores de ejercicios queda pendiente; mantener `pt-BR available:false`, sin nuevas dependencias, audio ni cambios de persistencia.
+- Preferencia operativa vigente (24 nov 2026): continuar con mejoras sin pedir autorización por cada una; fusionar cuando el cambio esté correcto y validado por CI; informar la fase en avances significativos.
 
 ---
 ## 2026-11-24 — Aprobación del plan multiidioma y baseline de calidad

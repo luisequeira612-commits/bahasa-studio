@@ -97,6 +97,41 @@ test('retries a curriculum path after a script loads without publishing its regi
 });
 
 
+
+test('adapts legacy Indonesian and language-neutral vocabulary into one read-only view', () => {
+    const loader = createLoader();
+    const legacy = { id: 'v1', idn: 'makan', esp: 'comer', ex: 'Saya makan.', exEsp: 'Yo como.' };
+    const portuguese = {
+        id: 'pt-1', target: 'café da manhã', esp: 'desayuno',
+        ex: 'Tomo café da manhã.', exEsp: 'Desayuno.',
+        reading: 'optional reading', tokens: ['café', 'da', 'manhã'],
+        verification: { status: 'not_checked', sources: [] }
+    };
+    const idView = loader.adaptVocabulary(legacy, 'id');
+    const ptView = loader.adaptVocabulary(portuguese, 'pt-BR');
+
+    assert.equal(idView.text, 'makan');
+    assert.equal(idView.translation, 'comer');
+    assert.equal(idView.example, 'Saya makan.');
+    assert.equal(ptView.text, 'café da manhã');
+    assert.deepEqual(JSON.parse(JSON.stringify(ptView.tokens)), ['café', 'da', 'manhã']);
+    assert.equal(ptView.verification.status, 'not_checked');
+    assert.equal(Object.isFrozen(idView), true);
+    assert.equal(legacy.target, undefined);
+    assert.equal(portuguese.idn, undefined);
+});
+
+test('does not infer Indonesian legacy fields for another language or mutate source data', () => {
+    const loader = createLoader();
+    const legacyOnly = { id: 'x1', idn: 'makan', esp: 'comer' };
+    const before = JSON.stringify(legacyOnly);
+    assert.equal(loader.adaptVocabulary(legacyOnly, 'pt-BR').text, null);
+    assert.equal(loader.adaptVocabulary(legacyOnly, 'id').text, 'makan');
+    assert.equal(loader.adaptVocabulary(legacyOnly, '../id'), null);
+    assert.equal(loader.adaptVocabulary(null, 'id'), null);
+    assert.equal(JSON.stringify(legacyOnly), before);
+});
+
 test('App.init resolves the active A1/A2 curricula through CurriculumLoader before audio and screens initialize', () => {
     const indexSource = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
     const initPosition = indexSource.indexOf('await LanguageManager.init({');

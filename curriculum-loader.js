@@ -153,5 +153,34 @@
         return curriculum;
     }
 
-    root.CurriculumLoader = Object.freeze({ levels: LEVELS, resolve, load, loadUnits });
+
+    // Read-only common view for legacy and language-neutral vocabulary records.
+    // Indonesian's historical "idn" field is isolated here; new courses use "target".
+    function adaptVocabulary(word, language) {
+        const manager = root.LanguageManager;
+        if (!manager || typeof manager.isSupported !== 'function' || !manager.isSupported(language)) return null;
+        if (!word || typeof word !== 'object' || Array.isArray(word)) return null;
+
+        const text = typeof word.target === 'string'
+            ? word.target
+            : language === 'id' && typeof word.idn === 'string'
+                ? word.idn
+                : null;
+        const adapted = {
+            id: typeof word.id === 'string' ? word.id : null,
+            text,
+            translation: typeof word.esp === 'string' ? word.esp : null,
+            example: typeof word.ex === 'string' ? word.ex : null,
+            exampleTranslation: typeof word.exEsp === 'string' ? word.exEsp : null
+        };
+        for (const field of [
+            'reading', 'transliteration', 'pronunciation', 'tokens',
+            'grammaticalFunctions', 'forms', 'annotations', 'verification'
+        ]) {
+            if (Object.prototype.hasOwnProperty.call(word, field)) adapted[field] = word[field];
+        }
+        return Object.freeze(adapted);
+    }
+
+    root.CurriculumLoader = Object.freeze({ levels: LEVELS, resolve, load, loadUnits, adaptVocabulary });
 })(typeof window !== 'undefined' ? window : globalThis);

@@ -464,3 +464,11 @@ Fuente: GitHub `main` commit `5e4da2e9`, rama `feat/pt-br-a2-u28-u30`, bloque `u
 - Commits de corrección: `174c6d0bb02bfb7d22bb79220010eaa5073849b2` (vocabulario) y `a47a1fa5d2a25092f9f3691c8fdaaf778848b6a7` (contrato). Pendiente confirmar head final y ejecutar CI completo antes de fusionar.
 
 Fuente: GitHub PR #766, Actions run #45291825327 y auditoría de vocabulario A1/A2/B1; 23 nov 2026.
+
+
+## 2026-11-24 — Segundo fallo de CI PR #766 y corrección editorial
+- La ejecución #45294895224 aprobó `Offline quality reports` y los contratos de vocabulario A1/A2, pero falló el paso `Run local quality tests`. El endpoint de logs de ese job devolvió 404, por lo que el diagnóstico se hizo contrastando el contrato nuevo con el contenido curricular.
+- Causa localizada: tras reemplazar el término duplicado de B1 U11 por `responsabilidade cívica`, la gramática de la lección 1 todavía decía `A cidadania reúne...`; el contrato exige que cada lección explique literalmente sus dos términos asignados.
+- Corrección aplicada en `languages/pt-BR/curriculum/b1/units-10-12.js`: la explicación ahora comienza `A responsabilidade cívica reúne direitos e deveres...`. Commit: `5cfe630b5d3ad918d908bf5de7b76386d7c15942`. Pendiente CI nuevo; no fusionar hasta ambos jobs success.
+
+Fuente: GitHub Actions #45294895224, contrato `tests/pt-br-curriculum-b1-u10-u12.test.cjs`, revisión de `units-10-12.js); 24 nov 2026.

@@ -84,6 +84,7 @@ test('exercise types map to explicit practice skills', () => {
   assert.equal(StudyActivity.skillForExercise('mc', true), 'listening');
   assert.equal(StudyActivity.skillForExercise('match'), 'recognition');
   assert.equal(StudyActivity.skillForExercise('translate_es_id'), 'translation');
+  assert.equal(StudyActivity.skillForExercise('translate_es_target'), 'translation');
   assert.equal(StudyActivity.skillForExercise('listen'), 'listening');
   assert.equal(StudyActivity.skillForExercise('mc', false), 'recognition');
   assert.equal(StudyActivity.skillForExercise('order'), 'sentenceBuilding');
@@ -221,5 +222,65 @@ test('every A1/A2 curriculum exercise is included in the adaptive skill profile'
   assert.deepEqual(uncovered, [], 'every released exercise must contribute to a tracked skill');
   for (const skill of ['recognition', 'translation', 'listening', 'sentenceBuilding', 'writing']) {
     assert.ok(coveredSkills.has(skill), skill + ' must receive exercises from the released curriculum');
+  }
+});
+
+
+test('all Portuguese A1/A2/B1 curriculum exercises contribute to the adaptive skill profile', () => {
+  const curriculumSandbox = { window: {} };
+  const levels = [
+    { id: 'A1', path: 'languages/pt-BR/curriculum/a1/index.js' },
+    { id: 'A2', path: 'languages/pt-BR/curriculum/a2/index.js' },
+    { id: 'B1', path: 'languages/pt-BR/curriculum/b1/index.js' }
+  ];
+  const coveredSkills = new Set();
+  const uncovered = [];
+  const loadedUnits = new Map();
+  let exerciseCount = 0;
+
+  for (const level of levels) {
+    const manifestSource = fs.readFileSync(path.join(__dirname, '..', level.path), 'utf8');
+    vm.runInNewContext(manifestSource, curriculumSandbox, { filename: level.path });
+    const manifest = curriculumSandbox.window.GUARDI_CURRICULUM_MANIFESTS['pt-BR'][level.id];
+    assert.ok(manifest && Array.isArray(manifest.blocks), level.id + ' must expose curriculum blocks');
+
+    const units = new Set();
+    for (const block of manifest.blocks) {
+      const blockPath = block.path.replace(/^\.\//, '');
+      const sourcePath = path.join(__dirname, '..', blockPath);
+      const blockSource = fs.readFileSync(sourcePath, 'utf8');
+      vm.runInNewContext(blockSource, curriculumSandbox, { filename: blockPath });
+      const data = curriculumSandbox.window.GUARDI_CURRICULUM_BLOCKS['pt-BR'][level.id][block.id];
+      assert.ok(data && Array.isArray(data.units), level.id + ' / ' + block.id + ' must expose units');
+
+      for (const unit of data.units) {
+        units.add(unit.unitNumber);
+        for (const exercise of unit.exercises || []) {
+          exerciseCount += 1;
+          const skill = StudyActivity.skillForExercise(exercise.type, Boolean(exercise.audioText));
+          if (!skill) {
+            uncovered.push(level.id + ' / ' + unit.id + ' / ' + exercise.type + ' / ' + exercise.prompt);
+          } else {
+            coveredSkills.add(skill);
+          }
+        }
+      }
+    }
+
+    assert.deepEqual(
+      [...units].sort((a, b) => a - b),
+      manifest.publishedUnits,
+      level.id + ' must load every unit declared as published'
+    );
+    loadedUnits.set(level.id, units.size);
+  }
+
+  assert.equal(loadedUnits.get('A1'), 24);
+  assert.equal(loadedUnits.get('A2'), 30);
+  assert.equal(loadedUnits.get('B1'), 36);
+  assert.ok(exerciseCount > 0, 'the published Portuguese curricula must contain exercises');
+  assert.deepEqual(uncovered, [], 'every published Portuguese exercise must contribute to a tracked skill');
+  for (const skill of ['recognition', 'translation', 'listening', 'sentenceBuilding', 'writing']) {
+    assert.ok(coveredSkills.has(skill), skill + ' must be represented in the Portuguese curriculum');
   }
 });

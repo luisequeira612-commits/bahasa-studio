@@ -27,8 +27,8 @@ test('las tarjetas de lección usan el adaptador común y el locale objetivo', (
 
 test('marca las fichas del diccionario y los bancos de ordenación', () => {
     assert.match(html, /<strong lang="id">\$\{App\.escapeHtml\(v\.idn\)\}<\/strong>/);
-    assert.match(html, /class="word-chip" lang="id" data-word=/);
-    assert.match(html, /chip\.lang = 'id'/);
+    assert.match(html, /class="word-chip" lang="\$\{App\.escapeHtml\(ex\.targetLocale \|\| 'und'\)\}" data-word=/);
+    assert.match(html, /chip\.lang = this\.queue\[this\.stepIndex\]\?\.targetLocale/);
 });
 
 test('marca las opciones indonesias de emparejamiento', () => {
@@ -41,7 +41,7 @@ test('la frase interactiva solo recibe lang=id cuando su idioma es indonesio', (
 
 test('marca el ejemplo modelo y el término emergente como indonesios', () => {
     assert.match(html, /<p lang="\$\{ex\.answerLanguage === 'es' \? 'es' : 'id'\}" style="white-space:pre-wrap;">\$\{App\.escapeHtml\(ex\.modelAnswer/);
-    assert.match(html, /writingLanguage = ex\.answerLanguage === 'es' \? 'es' : 'id'/);
+    assert.match(html, /writingLanguage = ex\.answerLocale \|\| ex\.targetLocale \|\| 'und'/);
     assert.match(html, /termNode\.lang = 'id'/);
     assert.match(html, /original\.lang = 'id'/);
 });

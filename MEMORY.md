@@ -594,3 +594,8 @@ Fuente: GitHub Actions #45325730097, job test; PR #771, tests B1 U7–U27 y `uni
 - Las expectativas históricas A2 se alinearon con caché v3.8.149; B1 U1–U6 ahora esperan manifiesto U1–U27. No se cambia la disponibilidad pt-BR, IndexedDB v1 ni backup JSON v3.
 
 Fuente: GitHub Actions run #45326693589 y commit e3a9db12ef2c58ae6c23a58eaa7630b554dba9e8; 24 nov 2026.
+
+### Corrección adicional de CI — PR #771
+- La ejecución #45327148126 detectó que la lección 5 de U25 no repetía literalmente el término `reaproveitamento pós-consumo` en su explicación.
+- Se ajustó el texto de la lección para explicar el término de forma explícita, sin cambiar vocabulario, IDs, estructura curricular ni disponibilidad del curso.
+- Commit: `a81280f834a5e6267ff49f4f60c75fcecaf22667`. Nueva CI pendiente; PR #771 continúa sin fusionar.

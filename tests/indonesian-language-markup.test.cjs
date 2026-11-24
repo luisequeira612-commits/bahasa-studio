@@ -44,7 +44,7 @@ test('la frase interactiva aplica el locale de origen y reserva audio para indon
     assert.match(html, /language !== 'es' && activeLanguage === 'id'/);
 });
 
-test('marca el ejemplo modelo y el término emergente como indonesios', () => {
+test('marca el ejemplo modelo y el término emergente con locale dinámico', () => {
     assert.match(html, /<p lang="\$\{App\.escapeHtml\(ex\.answerLocale \|\| ex\.targetLocale \|\| 'und'\)\}" style="white-space:pre-wrap;">\$\{App\.escapeHtml\(ex\.modelAnswer/);
     assert.match(html, /writingLanguage = ex\.answerLocale \|\| ex\.targetLocale \|\| 'und'/);
     assert.match(html, /termNode\.lang = matches\[0\]\.locale/);

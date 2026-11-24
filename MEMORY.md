@@ -866,3 +866,10 @@ Fuente: `curriculum-loader.js`, `language-manager.js`, manifiesto A1 pt-BR, prue
 - La prueba no cambia la lista de recursos, el Service Worker, la disponibilidad de idiomas ni el almacenamiento. pt-BR continúa con available:false; no se modifica IndexedDB v1 ni backup JSON v3.
 - CI de PR #790: reintento #45509664191 aprobado (101/101 pasos) y calidad offline 10/10. Regresión post-merge y Pages de #790 pendientes al preparar esta entrada.
 Fuente: service-worker.js, tests/service-worker-install.test.cjs, árbol de GitHub y GitHub Actions #45509664191; 24 nov 2026.
+
+## 2026-11-24 — Regresión y despliegue confirmados tras la integridad del precache
+- PR #791 se fusionó mediante squash como `dc042784088324ecda7958cc26b1a97cfb324987` después de que su CI terminara en éxito: run #45510910393, pruebas 101/101 y calidad offline 10/10.
+- La regresión posterior en `main` terminó en éxito en run #45511368640: pruebas 101/101 y calidad offline 10/10. GitHub Pages terminó build y deploy en éxito en run #45511366352.
+- La prueba añadida en #791 valida las 64 rutas locales del precache: cada recurso debe existir como archivo y permanecer dentro del repositorio. La auditoría inicial encontró las 64 rutas presentes; 30 recursos curriculares pt-BR precargados no habilitan el idioma.
+- Estado final verificado: `main` en `dc042784088324ecda7958cc26b1a97cfb324987`; sin fallos en CI, sin cambios de producción, currículos, IndexedDB v1, backup JSON v3, dependencias ni disponibilidad de idiomas.
+Fuente: PR #791, GitHub Actions #45510910393, #45511368640 y #45511366352; 24 nov 2026.

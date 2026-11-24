@@ -49,8 +49,8 @@ test('pt-BR B1 U22-U24 load as content while the incomplete course remains unava
 });
 test('B1 manifest publishes exactly U1-U27 of 36 and remains unavailable in the language selector',()=>{
  const {window}=createPilot(),manifest=window.GUARDI_CURRICULUM_MANIFESTS['pt-BR'].B1;
- assert.equal(manifest.totalUnits,36);assert.deepEqual(Array.from(manifest.publishedUnits),Array.from({length:24},(_,index)=>index+1));
- assert.deepEqual(Array.from(manifest.blocks[7].units),[22,23,24]);assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
+ assert.equal(manifest.totalUnits,36);assert.deepEqual(Array.from(manifest.publishedUnits),Array.from({length:27},(_,index)=>index+1));
+ assert.deepEqual(Array.from(manifest.blocks[7].units),[22,23,24]);assert.deepEqual(Array.from(manifest.blocks[8].units),[25,26,27]);assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
 });
 test('B1 U22-U24 review references resolve to existing A2 vocabulary IDs',async()=>{
  const {loader}=createPilot(),{units}=await loader.loadUnits('pt-BR','B1',[22,23,24]);

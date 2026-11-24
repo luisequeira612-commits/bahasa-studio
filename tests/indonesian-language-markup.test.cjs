@@ -39,15 +39,16 @@ test('el matching usa el locale activo y pares con campos neutrales', () => {
     assert.doesNotMatch(html, /match-option-btn[^\n]*lang="id"|data-side="idn"/);
 });
 
-test('la frase interactiva solo recibe lang=id cuando su idioma es indonesio', () => {
-    assert.match(html, /language === 'idn' \? ' lang="id"'/);
+test('la frase interactiva aplica el locale de origen y reserva audio para indonesio', () => {
+    assert.match(html, /sourceLocale = language === 'es' \? 'es' : LanguageManager\.getLocale\(activeLanguage\)/);
+    assert.match(html, /language !== 'es' && activeLanguage === 'id'/);
 });
 
-test('marca el ejemplo modelo y el término emergente como indonesios', () => {
+test('marca el ejemplo modelo y el término emergente con locale dinámico', () => {
     assert.match(html, /<p lang="\$\{App\.escapeHtml\(ex\.answerLocale \|\| ex\.targetLocale \|\| 'und'\)\}" style="white-space:pre-wrap;">\$\{App\.escapeHtml\(ex\.modelAnswer/);
     assert.match(html, /writingLanguage = ex\.answerLocale \|\| ex\.targetLocale \|\| 'und'/);
-    assert.match(html, /termNode\.lang = 'id'/);
-    assert.match(html, /original\.lang = 'id'/);
+    assert.match(html, /termNode\.lang = matches\[0\]\.locale/);
+    assert.match(html, /original\.lang = example\.locale/);
 });
 
 
@@ -64,4 +65,29 @@ test('los ejercicios textuales y de orden usan el locale del idioma activo', () 
     assert.match(indexSource, /ex\.answerLocale \|\| ex\.targetLocale \|\| 'und'/);
     assert.match(indexSource, /lang="\$\{App\.escapeHtml\(ex\.targetLocale \|\| 'und'\)\}"/);
     assert.match(picker, /chip\.lang = this\.queue\[this\.stepIndex\]/);
+});
+
+
+test('la burbuja de traducción usa la vista neutral del vocabulario activo', () => {
+    const start = html.indexOf('function translationCandidates(sourceLanguage)');
+    const end = html.indexOf('window.parseTapTranslationPrompt', start);
+    const candidates = html.slice(start, end);
+    assert.ok(start >= 0, 'translation candidates are defined');
+    assert.match(html, /CurriculumLoader\.adaptVocabulary\(word, language\)/);
+    assert.match(candidates, /word\.text/);
+    assert.match(candidates, /word\.translation/);
+    assert.doesNotMatch(candidates, /word\.idn|word\.esp/);
+    assert.match(candidates, /activeLanguage === 'id'/);
+});
+
+test('el popup de significado usa texto, traducción y ejemplos con locale dinámico', () => {
+    const start = html.indexOf('function buildTapTranslationIndex()');
+    const end = html.indexOf('function tokenAtPoint(event)', start);
+    const indexBuilder = html.slice(start, end);
+    assert.match(indexBuilder, /word\.text/);
+    assert.match(indexBuilder, /word\.translation/);
+    assert.match(indexBuilder, /normalizeTapWord\(word && word\.text, locale\)/);
+    assert.doesNotMatch(indexBuilder, /word\.idn|word\.esp|lang = 'id'/);
+    assert.match(html, /termNode\.lang = matches\[0\]\.locale/);
+    assert.match(html, /original\.lang = example\.locale/);
 });

@@ -1,3 +1,25 @@
+## 2026-11-24 — Anclaje estable del test de fallback de traducción (PR #784)
+- CI #45494338225 volvió a detectar un fallo exclusivo del contrato: el test buscaba una frase de comentario que no existe en la versión final de `index.html`; la comprobación no encontraba el fallback aunque el guard multilingüe sí está presente.
+- Se ancla la prueba al guard de comportamiento `isSpanishSource && activeLanguage === 'id'`, y mantiene la verificación del recorrido de niveles/unidades y el límite B2 U1–U60. Sin cambios de producción, currículo ni persistencia.
+Fuente: GitHub Actions #45494338225, job `test`, PR #784; 24 nov 2026.
+
+## 2026-11-24 — Corrección del contrato de fallback de traducción por toque (PR #784)
+- CI #45493469645: `Run local quality tests` falló únicamente en el nuevo test `tap translation fallback includes only implemented B2 U1–U60 authored exercises`. La producción ya había renombrado el comentario del fallback durante la adaptación multilingüe, pero el test seguía buscando el marcador anterior; no era un fallo de comportamiento. Se actualizó solo la expectativa del test para usar el marcador vigente.
+- El resto del bloque de calidad terminó sin errores de auditoría; no se modifican datos curriculares, IndexedDB v1, backup JSON v3 ni dependencias.
+Fuente: GitHub Actions #45493469645, PR #784; 24 nov 2026.
+
+## 2026-11-24 — Corrección CI de ayudas de traducción por toque (PR #784)
+- CI #45492641361: `Run local quality tests` volvió a fallar, ahora por un `SyntaxError` introducido en `tests/load-inline-b2-curriculum.test.mjs`: el literal de búsqueda del comentario del fallback se había dividido en dos líneas dentro de comillas simples. Se corrige solo el contrato de prueba, sin cambios de producción ni de persistencia. Fuente: GitHub Actions #45492641361 y PR #784; 24 nov 2026.
+
+
+- CI #45490455600 detectó tres expectativas legacy: dos en `tests/regression.test.cjs` exigían `lang="id"`/campos `idn`, y una en `tests/load-inline-b2-curriculum.test.mjs` buscaba el comentario antiguo del fallback.
+- Se actualizan solo esos contratos para reflejar la implementación neutral de fase 5: `text/translation`, locale dinámico y fallback authored indonesio limitado a B2 U1–U60. No cambia producción, datos ni persistencia.
+- Pendiente: repetir CI completo sobre el nuevo head; no fusionar hasta que `test` y `Offline quality reports` estén verdes.
+
+Fuente: GitHub Actions #45490455600 y #45491566556, PR #784; 24 nov 2026.
+
+- CI #45491566556: todos los pasos individuales, incluida la prueba de marcado indonesio, pasaron; falló únicamente `Run local quality tests`. La prueba de marcado ya se ejecuta en su paso dedicado, así que se retira de `quality:tests` para evitar doble ejecución dentro del lote. Se conserva la cobertura dedicada y no se cambia producción.
+
 ## 2026-11-24 — Corrección del alcance de prueba y locale de ejemplo modelo (PR #782)
 
 - CI #45480195732: informes offline success; regresión falló solo en la prueba nueva de marcado, porque el test recortaba `renderStep()` antes de llegar al bloque de ejercicios. Se cambió la comprobación para inspeccionar el archivo completo y mantener el recorte solo para `pickWord`.
@@ -770,3 +792,14 @@ Fuente: GitHub Actions #45480612260, job `test`; PR #782; 24 nov 2026.
 - Head al abrir PR #783: `2d78c3ce51f5cd688ce6d9591ce387c5a0c320d5`. Repetir CI completo después de la corrección; no fusionar con pruebas pendientes.
 
 Fuente: GitHub Actions #45487013109, job `test`; PR #783; 24 nov 2026.
+
+
+## 2026-11-24 — Adaptación de ayudas de traducción por toque (fase 5, PR en preparación)
+
+- Rama `feat/multilingual-tap-translation`, creada desde `main` en `930e14a17873a62d65f20d166a3238e060fa6eb2`.
+- El generador de candidatos de traducción y el índice del popup ahora consumen vistas de vocabulario mediante `CurriculumLoader.adaptVocabulary`, con campos neutrales `text/translation/example/exampleTranslation` y locale del idioma activo. Se conserva prioridad de vocabulario de la unidad actual y fallback de frases authored `translate_es_id` exclusivamente para el curso indonesio.
+- La frase interactiva marca su idioma con el locale real; audio de esa ayuda sigue disponible solo para indonesio, sin alterar voces ni el motor de audio. El texto alternativo de prompt deja de mencionar indonesio de forma fija.
+- Se añade cobertura de regresión para los dos componentes y se incorpora el contrato de marcado al script `quality:tests`. CI todavía pendiente; revisar resultados y cualquier caso legacy antes de fusionar.
+- No se cambian datos curriculares, disponibilidad `pt-BR`, IndexedDB v1, backup JSON v3 ni dependencias. La burbuja sigue usando el guardado SRS existente por ID; el trabajo específico de SRS multilingüe queda para el siguiente paso.
+
+Fuente: rama `feat/multilingual-tap-translation`, cambios en `index.html`, `tests/indonesian-language-markup.test.cjs` y `package.json`; 24 nov 2026.

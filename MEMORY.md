@@ -456,3 +456,11 @@ Fuente: GitHub PR #761, merge commit `5e4da2e9`, rama `feat/pt-br-a2-u25-u27`, b
 - PR [#762](https://github.com/luisequeira612-commits/bahasa-studio/pull/762) abierta desde `feat/pt-br-a2-u28-u30`, base `main` en `5e4da2e9af702f15a5bd3081c37ed73a3d3906a5`, head `60efe33eb0e59f8d2e6e0848bf806a20153b3db3`; CI pendiente. El manifiesto publica U1–U30, caché offline `v3.8.140`, contratos Node/Playwright amplían la carga offline a A2 completo. Mantener `pt-BR available:false`; sin cambios a IndexedDB v1/backup JSON v3, sin backend, dependencias ni audio/TTS.
 
 Fuente: GitHub `main` commit `5e4da2e9`, rama `feat/pt-br-a2-u28-u30`, bloque `units-28-30.js`; 23 nov 2026.
+
+
+## 2026-11-23 — Correcciones de CI PR #766 (B1 U10–U12)
+- El CI inicial del head `194a999f7bf19b4381f8c1f59bb4c57e1c6db81f`, run [#45291825327](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45291825327), completó el job `test` con fallo en `Run local quality tests`; `Offline quality reports` pasó. Los dos fallos del contrato nuevo fueron: orden de cobertura de vocabulario comparado como secuencia pese a que las lecciones están organizadas temáticamente, y duplicación exacta normalizada de `cidadania` contra A2 U22.
+- Correcciones aplicadas en la misma rama: la prueba compara la cobertura de los diez IDs como conjunto ordenado, conservando la exigencia de que cada término aparezca exactamente una vez; el término repetido de B1 U11 se sustituyó por `responsabilidade cívica` (responsabilidad cívica). No se relajó la auditoría de duplicados.
+- Commits de corrección: `174c6d0bb02bfb7d22bb79220010eaa5073849b2` (vocabulario) y `a47a1fa5d2a25092f9f3691c8fdaaf778848b6a7` (contrato). Pendiente confirmar head final y ejecutar CI completo antes de fusionar.
+
+Fuente: GitHub PR #766, Actions run #45291825327 y auditoría de vocabulario A1/A2/B1; 23 nov 2026.

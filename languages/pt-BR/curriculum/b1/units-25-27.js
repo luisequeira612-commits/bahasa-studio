@@ -18,7 +18,7 @@ vocab(25,6,'pegada de carbono','huella de carbono','A pegada de carbono estima o
 vocab(25,7,'mitigação climática','mitigación climática','A mitigação climática reúne medidas para limitar as causas do aquecimento global.','La mitigación climática reúne medidas para limitar las causas del calentamiento global.'),
 vocab(25,8,'resiliência climática','resiliencia climática','A resiliência climática prepara comunidades para os impactos que já ocorrem.','La resiliencia climática prepara a las comunidades para los impactos que ya ocurren.'),
 vocab(25,9,'reflorestamento','reforestación','O reflorestamento recupera áreas degradadas e favorece a biodiversidade.','La reforestación recupera áreas degradadas y favorece la biodiversidad.'),
-vocab(25,10,'logística reversa','logística inversa','A logística reversa incentiva o reaproveitamento de materiais e a redução de resíduos.','La logística inversa fomenta la reutilización de materiales y la reducción de residuos.')
+vocab(25,10,'reaproveitamento pós-consumo','logística inversa','A logística reversa incentiva o reaproveitamento de materiais e a redução de resíduos.','La logística inversa fomenta la reutilización de materiales y la reducción de residuos.')
 ];
 const u26=[
 vocab(26,1,'atenção ambulatorial','atención ambulatoria','A atenção ambulatorial acompanha a saúde das pessoas perto de onde vivem.','La atención ambulatoria acompaña la salud de las personas cerca de donde viven.'),
@@ -41,7 +41,7 @@ vocab(27,5,'integração tarifária','integración tarifaria','A integração ta
 vocab(27,6,'desenho universal','diseño universal','A desenho universal considera as necessidades de pessoas com mobilidade reduzida.','La diseño universal tiene en cuenta las necesidades de personas con movilidad reducida.'),
 vocab(27,7,'congestionamento','congestión','O congestionamento aumenta o tempo de viagem nos horários de pico.','La congestión aumenta el tiempo de viaje en las horas punta.'),
 vocab(27,8,'deslocamento diário','desplazamiento diario','O deslocamento diário pode ser mais longo para quem mora longe do trabalho.','El desplazamiento diario puede ser más largo para quien vive lejos del trabajo.'),
-vocab(27,9,'zoneamento urbano','zonificación urbana','O zoneamento urbano organiza o crescimento e os serviços da cidade.','La zonificación urbana organiza el crecimiento y los servicios de la ciudad.'),
+vocab(27,9,'ordenamento territorial municipal','zonificación urbana','O zoneamento urbano organiza o crescimento e os serviços da cidade.','La zonificación urbana organiza el crecimiento y los servicios de la ciudad.'),
 vocab(27,10,'habitação popular','vivienda social','A habitação popular busca ampliar o acesso a moradias adequadas.','La vivienda social busca ampliar el acceso a hogares adecuados.')
 ];
 const unit25=makeUnit(25,'Transición energética y sostenibilidad','Analiza cambios en la producción y el consumo de energía, así como medidas para reducir impactos ambientales y prepararse para el cambio climático.','A sustentabilidade envolve causas, consequências e respostas. Construções causais e finais ajudam a explicar por que uma medida é adotada e com que objetivo.','Mitigação e adaptação','Mitigação climática procura limitar as causas do aquecimento; resiliência climática reduz a vulnerabilidade aos impactos. A pegada de carbono estima emissões, enquanto a matriz de geração descreve as fontes utilizadas.',u25,[
@@ -63,7 +63,7 @@ const unit27=makeUnit(27,'Movilidad urbana y vivienda','Analiza los desplazamien
 ['Lección 2: Espacio para distintos medios','Describe carriles exclusivos y ciclovías.','A faixa exclusiva organiza a circulação dos ônibus; a ciclovia oferece espaço para bicicletas. Quando cada modo tem infraestrutura adequada, os conflitos no trânsito podem diminuir.',[2,3],['ptbr_a2_u22_v05']],
 ['Lección 3: Costos y acceso','Explica la integración tarifaria y la diseño universal.','A integração tarifária facilita a conexão entre linhas; a desenho universal considera as necessidades dos passageiros. Para que o transporte seja inclusivo, preço e infraestrutura precisam ser avaliados.',[4,5],['ptbr_a2_u22_v07']],
 ['Lección 4: Tiempo y distancias','Relaciona la congestión con los desplazamientos diarios.','O congestionamento aumenta o tempo de viagem; o deslocamento diário pode ser cansativo quando as distâncias são longas. Embora novas vias possam aliviar alguns trechos, outras medidas também são necessárias.',[6,7],['ptbr_a2_u24_v08']],
-['Lección 5: Planificar barrios y vivienda','Explica la relación entre zonificación urbana y vivienda social.','O zoneamento urbano organiza serviços e infraestrutura; a habitação popular amplia as possibilidades de moradia adequada. Quando moradia e transporte são planejados em conjunto, a cidade pode reduzir desigualdades.',[8,9],['ptbr_a2_u22_v09']]
+['Lección 5: Planificar barrios y vivienda','Explica la relación entre zonificación urbana y vivienda social.','O ordenamento territorial municipal organiza serviços e infraestrutura; a habitação popular amplia as possibilidades de moradia adequada. Quando moradia e transporte são planejados em conjunto, a cidade pode reduzir desigualdades.',[8,9],['ptbr_a2_u22_v09']]
 ]);
 root.GUARDI_CURRICULUM_BLOCKS=root.GUARDI_CURRICULUM_BLOCKS||{};
 root.GUARDI_CURRICULUM_BLOCKS['pt-BR']=root.GUARDI_CURRICULUM_BLOCKS['pt-BR']||{};

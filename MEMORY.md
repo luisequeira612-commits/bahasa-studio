@@ -567,3 +567,12 @@ Fuente: GitHub Actions run #45314054499, job test, PR #769 y archivos de contrat
 - `pt-BR available:false` permanece. Sin dependencias nuevas, backend, audio/TTS, cambios de IndexedDB v1 ni backup JSON v3.
 
 Fuente: main commit `79c1004`, PR #769, Actions #45318720549/#45318719535 y rama `feat/pt-br-b1-u22-u24`; 24 nov 2026.
+
+## 2026-11-24 — Portugués brasileño B1 U25–U27 en preparación
+- La PR #770 ya está fusionada en `main`, commit `0ac3929c5d6fb7967c2b0f19a45c573532087b75`. CI del head #45320928433: tests 101/101 y calidad offline 10/10; regresión post-merge #45321237709: tests 101/101 y calidad offline 10/10; Pages #45321237255: build, informe y deploy en success.
+- Rama `feat/pt-br-b1-u25-u27` creada desde ese main validado. Bloque nuevo: U25 transición energética y sostenibilidad; U26 salud pública y prevención comunitaria; U27 movilidad urbana y vivienda.
+- Cada unidad contiene 10 términos, cinco lecciones, dos términos explicados por lección, dos ejercicios por lección y 10 ejercicios MC de unidad. Se agregan 30 términos con ejemplos PT-BR y traducción ES; referencias de repaso apuntan a vocabulario A2 existente. Se conserva `verification.status: not_checked`: las pruebas estructurales no equivalen a validación lingüística.
+- Manifiesto B1 se amplía a U1–U27 de 36 (27/36; 75 %). Service Worker pasa a `bahasa-studio-v3.8.149` y precarga `units-25-27.js`. Se añade contrato Node dedicado, se registra en `quality:tests`, se amplía Playwright a carga offline B1 U1–U27 y se alinean aserciones históricas de caché.
+- `pt-BR available:false` se mantiene. Sin dependencias nuevas, backend, audio/TTS, cambios de IndexedDB v1 ni backup JSON v3. La PR debe pasar todo el CI; tras el merge se exigirá regresión post-merge y Pages antes de iniciar U28–U30.
+
+Fuente: PR #770, commit `0ac3929`, Actions #45320928433/#45321237709/#45321237255; rama `feat/pt-br-b1-u25-u27` y cambios curriculares/tests; 24 nov 2026.

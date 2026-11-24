@@ -18469,9 +18469,18 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                 const lesson = this.currentLesson;
                 document.getElementById('lessonStepCount').innerText = '0/' + this.queue.length;
                 document.getElementById('lessonProgressFill').style.width = '0%';
-                const wordCard = v => `<div class="card lesson-word-card">
-                    <div class="lesson-word-card-main"><strong lang="id">${App.escapeHtml(v.idn)}</strong> — ${App.escapeHtml(v.esp)}<br><small><span lang="id">${App.escapeHtml(v.ex)}</span> (${App.escapeHtml(v.exEsp)})</small></div>
-                    <button class="btn btn-outline btn-sm lesson-word-audio" type="button" data-word="${App.escapeHtml(v.idn)}" onclick="AudioEngine.speak(this.dataset.word)" aria-label="Escuchar ${App.escapeHtml(v.idn)}"><svg class="ui-icon lesson-speaker-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4h4l5 4V6l-5 4H4Z"/><path d="M16 9.5a4 4 0 0 1 0 5M18.5 7a7 7 0 0 1 0 10"/></svg></button></div>`;
+                const language = LanguageManager.getActiveLanguage();
+                const locale = LanguageManager.getLocale(language) || 'und';
+                const wordCard = v => {
+                    const word = CurriculumLoader.adaptVocabulary(v, language);
+                    if (!word || !word.text) return '';
+                    const reading = [word.reading, word.transliteration].filter(Boolean).join(' · ');
+                    const example = word.example || '';
+                    const exampleTranslation = word.exampleTranslation || '';
+                    return `<div class="card lesson-word-card">
+                    <div class="lesson-word-card-main"><strong lang="${App.escapeHtml(locale)}">${App.escapeHtml(word.text)}</strong>${word.translation ? ' — ' + App.escapeHtml(word.translation) : ''}${reading ? `<br><small>Lectura / transliteración: ${App.escapeHtml(reading)}</small>` : ''}${example || exampleTranslation ? `<br><small>${example ? `<span lang="${App.escapeHtml(locale)}">${App.escapeHtml(example)}</span>` : ''}${example && exampleTranslation ? ' ' : ''}${exampleTranslation ? '(' + App.escapeHtml(exampleTranslation) + ')' : ''}</small>` : ''}</div>
+                    <button class="btn btn-outline btn-sm lesson-word-audio" type="button" data-word="${App.escapeHtml(word.text)}" onclick="AudioEngine.speak(this.dataset.word)" aria-label="Escuchar ${App.escapeHtml(word.text)}"><svg class="ui-icon lesson-speaker-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4h4l5 4V6l-5 4H4Z"/><path d="M16 9.5a4 4 0 0 1 0 5M18.5 7a7 7 0 0 1 0 10"/></svg></button></div>`;
+                };
                 document.getElementById('exerciseArea').innerHTML = `<div>
                     <h3>${App.escapeHtml(u.title)}</h3>
                     <p style="margin:6px 0 12px;color:var(--text-muted);">Lección ${lesson.index + 1} de ${buildUnitLessons(u).length} · ${lesson.newVocab.length} palabras nuevas</p>

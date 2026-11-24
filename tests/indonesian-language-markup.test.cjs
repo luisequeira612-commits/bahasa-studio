@@ -9,9 +9,20 @@ test('mantiene el idioma principal de la interfaz en español', () => {
     assert.match(html, /<html lang="es">/);
 });
 
-test('marca vocabulario y ejemplos indonesios de las tarjetas de lección', () => {
-    assert.match(html, /<strong lang="id">\$\{App\.escapeHtml\(v\.idn\)\}<\/strong>/);
-    assert.match(html, /<small><span lang="id">\$\{App\.escapeHtml\(v\.ex\)\}<\/span>/);
+test('las tarjetas de lección usan el adaptador común y el locale objetivo', () => {
+    const start = html.indexOf('const wordCard = v => {', html.indexOf('renderIntro()'));
+    const end = html.indexOf("document.getElementById('exerciseArea').innerHTML", start);
+    const renderer = html.slice(start, end);
+
+    assert.ok(start >= 0, 'el renderizador de vocabulario está definido');
+    assert.match(renderer, /CurriculumLoader\.adaptVocabulary\(v, language\)/);
+    const introStart = html.lastIndexOf('const language = LanguageManager.getActiveLanguage();', start);
+    const introSetup = html.slice(introStart, start);
+    assert.ok(introStart >= 0, 'lesson intro resolves the active language before rendering');
+    assert.match(introSetup, /LanguageManager\.getLocale\(language\)/);
+    assert.match(renderer, /word\.example/);
+    assert.match(renderer, /lang="\$\{App\.escapeHtml\(locale\)\}"/);
+    assert.doesNotMatch(renderer, /v\.idn|lang="id"/);
 });
 
 test('marca las fichas del diccionario y los bancos de ordenación', () => {

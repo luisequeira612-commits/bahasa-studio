@@ -533,3 +533,6 @@ Fuente: rama `feat/pt-br-b1-u16-u18`, archivos curriculares, manifiesto, Service
 - PR #768 permanece abierto y sin fusionar; no iniciar U19–U21 hasta que el head final pase CI y, tras fusionar, la regresión post-merge y Pages.
 
 Fuente: GitHub Actions run #45304701798, job `test`, archivos de pruebas A2/U22–U24 y `languages/pt-BR/curriculum/b1/units-16-18.js`; 24 nov 2026.
+
+- Diagnóstico adicional del E2E: el test esperaba B1 U1–U18, pero todavía llamaba al loader con U1–U15. Se amplió la llamada a U1–U18; el Service Worker ya incluía el bloque U16–U18 y el manifiesto lo publicaba.
+- También se actualizó el contrato histórico de precache U22–U24 a la caché v3.8.146. La siguiente ejecución debe verificar estos cambios y la corrección de términos U17.

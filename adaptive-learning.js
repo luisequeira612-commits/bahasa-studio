@@ -52,6 +52,7 @@
             mc: 'recognition',
             match: 'recognition',
             translate_es_id: 'translation',
+            translate_es_target: 'translation',
             listen: 'listening',
             order: 'sentenceBuilding',
             write: 'writing'

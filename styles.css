@@ -1045,3 +1045,10 @@ body.unit-sheet-open { overflow: hidden; }
     min-width:48px;
     min-height:48px;
 }
+
+
+/* No anunciar que todo está al día cuando existe una recomendación accionable. */
+.card:has(> .btn:not(:disabled)) > .guardi-empty-illustration,
+.card:has(> .btn:not(:disabled)) > .guardi-empty-message {
+    display:none;
+}

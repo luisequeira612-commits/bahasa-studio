@@ -35,3 +35,17 @@ Esta actualización sustituye los datos de estado y los pendientes curriculares 
 ## Criterio operativo vigente
 
 Continuar con mejoras técnicas de bajo riesgo, preferentemente con pruebas automatizadas y sin modificar IndexedDB v1, backup JSON v3 ni dependencias. Mantener separadas las verificaciones estructurales de la validación lingüística. No activar pt-BR ni publicar unidades B2 ocultas sin la aprobación curricular correspondiente. Registrar cualquier prueba física como pendiente hasta contar con evidencia del dispositivo.
+
+
+## Actualización de estado — 24 nov 2026, tras PR #797
+
+Esta entrada sustituye el SHA y el estado de validación anteriores; conserva los pendientes de dispositivo.
+
+- `main` está en `cbae2cb6880c7e07488b614ff050740bf520decc`, tras fusionar PR #797 (controles de traducción en viewport de 320 px).
+- PR #794–#797 ampliaron la cobertura de accesibilidad y adaptación móvil: restauración de foco al cerrar paneles, navegación por teclado, disposición compacta de 320 px, panel de herramientas y objetivos táctiles de traducción.
+- Regresión post-merge #45518553869: job `test` y `Offline quality reports` completados en success. El workflow de regresión incluye las pruebas Chromium reales de la suite fase 5B. Calidad offline 10/10.
+- GitHub Pages #45518553195 completó build y deploy en success sobre el mismo SHA.
+- La suite automatizada de fase 6 queda cubierta para los casos incorporados. La verificación manual en el Tecno Pova 4 (720×1640), especialmente interacción táctil y comportamiento de foco en el dispositivo real, sigue pendiente; no se considera sustituida por Chromium.
+- Sin cambios en currículos, IndexedDB v1, backup JSON v3, dependencias ni disponibilidad de idiomas. pt-BR sigue `available:false`; B2 U6–U60 siguen ocultas/no publicadas.
+
+Fuente: PR #794–#797, GitHub Actions #45518553869 y #45518553195; 24 nov 2026.

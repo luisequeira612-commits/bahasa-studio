@@ -1,3 +1,11 @@
+## 2026-11-25 — Accesibilidad de evaluación piloto A1 (PR en curso)
+
+- La pantalla independiente de evaluación mantenía el foco en el botón de envío después de ocultar el formulario y mostrar los resultados. Se añade foco programático al primer enunciado al comenzar/reiniciar y al título del resultado al calcular o volver a aplicar puntuaciones revisadas.
+- Se amplía tests/assessment-page.e2e.test.cjs con un caso Chromium a 320×640: ausencia de overflow horizontal en portada, preguntas y resultados; foco correcto al iniciar, enviar y reiniciar.
+- Cambio acotado a la página de evaluación y su cobertura E2E. Sin cambios curriculares, IndexedDB v1, backup JSON v3, dependencias ni disponibilidad de idiomas. CI pendiente.
+
+Fuente: assessment.html y tests/assessment-page.e2e.test.cjs; 25 nov 2026.
+
 ## 2026-11-25 — Restauración de backup sin escritura redundante del idioma activo
 
 - La transacción `DB.replaceBackupData` ya guarda `activeLanguage` junto con los datos del backup. El flujo de importación llamaba después a `LanguageManager.setActiveLanguage`, que volvía a escribir el mismo ajuste en una segunda transacción; si esa escritura redundante fallaba, la restauración ya estaba confirmada pero la interfaz mostraba error y no sincronizaba el estado en memoria.

@@ -73,7 +73,22 @@ test('phase 5B learning screen is compact, blue and preserves all level/tool ent
     assert.equal(recommendationPlacement.outsideUnitPath, true, 'recommendation host should remain independent from the unit path');
     assert.equal(recommendationPlacement.beforeUnitList, true, 'recommendation host should remain before the unit list');
     assert.equal(recommendationPlacement.noReservedSpace, true, 'hidden recommendation must not reserve vertical space');
-    assert.equal(recommendationPlacement.aboveUnitList, true, 'hidden recommendation must not overlap the unit list');
+    assert.equal(recommendationPlacement.aboveUnitList, true, 'hidden review card must not overlap the unit list');
+
+    const adaptiveRecommendation = page.locator('#adaptiveLearningRecommendationLearn');
+    await page.waitForFunction(() => {
+      const host = document.getElementById('adaptiveLearningRecommendationLearn');
+      return Boolean(host && !host.hidden && host.querySelector('button:not(:disabled)'));
+    });
+    assert.match(await adaptiveRecommendation.locator('h3').innerText(), /Continúa con la siguiente lección/);
+    assert.equal(await adaptiveRecommendation.locator('button').innerText(), 'Continuar aprendiendo');
+    await adaptiveRecommendation.locator('button').click();
+    await page.waitForFunction(() => document.getElementById('view-lesson').classList.contains('active'));
+    assert.ok(await page.evaluate(() => Boolean(LessonEngine.currentLesson)), 'the recommended next lesson should actually open');
+    await page.evaluate(() => App.switchView('route'));
+    await page.waitForFunction(() => document.getElementById('view-route').classList.contains('active'));
+    await page.waitForSelector('.learning-unit-node.node-current');
+
     const before = await current.boundingBox();
     const bannerBox = await banner.boundingBox();
     console.log('[phase5B 360x740] first current node y=' + before.y.toFixed(1) + 'px (' + (before.y / 740 * 100).toFixed(1) + '% viewport height); banner=' + bannerBox.height.toFixed(1) + 'px');
@@ -532,27 +547,55 @@ test('translation bubble exposes expanded state and supports keyboard open and E
   const browser = await chromium.launch({ headless: true });
   const context = await browser.newContext({ viewport: { width: 360, height: 740 }, serviceWorkers: 'block', reducedMotion: 'reduce' });
   const page = await context.newPage();
+  const pageErrors = [];
+  page.on('pageerror', error => pageErrors.push(error.message));
 
   try {
     await page.goto(url, { waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
+    await page.waitForFunction(() => document.getElementById('tapTranslationBubble')?.dataset.initialized === 'true');
     await page.evaluate(() => {
-      const host = document.querySelector('#actionArea') || document.body;
       const trigger = document.createElement('button');
       trigger.type = 'button';
+      trigger.id = 'keyboardTranslationTrigger';
       trigger.className = 'tap-translation-word';
       trigger.dataset.translation = 'casa';
       trigger.dataset.vocabId = 'keyboard-a11y-test';
       trigger.textContent = 'rumah';
-      host.appendChild(trigger);
+      trigger.style.cssText = 'position:fixed;left:12px;top:100px;z-index:9999;';
+      document.body.insertBefore(trigger, document.getElementById('tapTranslationBubble'));
       trigger.focus();
     });
 
-    const trigger = page.locator('.tap-translation-word').last();
+    const trigger = page.locator('#keyboardTranslationTrigger');
+    assert.equal(await page.evaluate(() => document.activeElement?.id), 'keyboardTranslationTrigger',
+      'The synthetic word button must retain focus before keyboard activation');
+    await page.evaluate(() => {
+      window.__keyboardBubbleEvents = [];
+      document.addEventListener('keydown', event => window.__keyboardBubbleEvents.push({
+        type: 'keydown', key: event.key, target: event.target?.id || event.target?.tagName || null
+      }), true);
+      document.addEventListener('click', event => window.__keyboardBubbleEvents.push({
+        type: 'click', detail: event.detail, target: event.target?.id || event.target?.tagName || null
+      }), true);
+    });
     await trigger.press('Enter');
+    await page.waitForTimeout(150);
     const bubble = page.locator('#tapTranslationBubble');
-    await page.waitForFunction(() => document.getElementById('tapTranslationBubble')?.hidden === false);
-    assert.equal(await trigger.getAttribute('aria-expanded'), 'true');
+    const keyboardState = await page.evaluate(() => ({
+      activeElementId: document.activeElement?.id || null,
+      triggerExpanded: document.getElementById('keyboardTranslationTrigger')?.getAttribute('aria-expanded'),
+      bubbleHidden: document.getElementById('tapTranslationBubble')?.hidden,
+      initialized: document.getElementById('tapTranslationBubble')?.dataset.initialized,
+      events: window.__keyboardBubbleEvents || [],
+      expandedWords: Array.from(document.querySelectorAll('.tap-translation-word[aria-expanded="true"]'))
+        .map(element => ({ id: element.id || null, text: element.textContent }))
+    }));
+    keyboardState.pageErrors = pageErrors;
+    assert.equal(keyboardState.bubbleHidden, false,
+      'Enter should open the translation bubble; state: ' + JSON.stringify(keyboardState));
+    assert.equal(await trigger.getAttribute('aria-expanded'), 'true',
+      'Enter should expand the focused word button; state: ' + JSON.stringify(keyboardState));
     assert.equal(await trigger.getAttribute('aria-controls'), 'tapTranslationBubble');
     assert.equal(await bubble.getAttribute('aria-label'), 'Traducción y repaso');
     assert.equal(await page.locator('#tapTranslationText').getAttribute('aria-live'), 'polite');

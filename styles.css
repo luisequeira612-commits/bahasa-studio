@@ -41,6 +41,7 @@
         .app-view.active { display: block; }
         
         .card { background: var(--bg-secondary); border-radius: 12px; padding: 16px; margin-bottom: 16px; border: 1px solid var(--border); }
+        [data-adaptive-recommendation][hidden] { display: none !important; }
         .btn { background: var(--accent); color: white; border: none; padding: 12px 20px; border-radius: 8px; font-weight: 600; font-size: 1rem; cursor: pointer; width: 100%; text-align: center; min-height: 48px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
         .btn:active { background: var(--accent-hover); transform: scale(0.98); }
         .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text-main); }

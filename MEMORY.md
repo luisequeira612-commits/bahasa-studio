@@ -1,3 +1,18 @@
+## 2026-11-25 — Ajuste de visibilidad de tarjetas ocultas (PR #832)
+
+- La segunda ejecución de CI reveló que el atributo HTML `hidden` no garantizaba ocultar el host SRS: la medición mostró que el host conservaba 236 px y empujaba la recomendación adaptativa.
+- Corrección en `styles.css`: `[data-adaptive-recommendation][hidden] { display: none !important; }`. Ambos hosts respetan ahora `hidden` y no reservan espacio cuando no corresponde mostrarlos. No altera la lógica adaptativa ni el SRS.
+- Commit de corrección: `2b0e429e4f6475948dd967f4892d32db94afe871`. Pendiente CI renovado y revisar el timeout de la prueba de teclado de la burbuja de traducción.
+- Fuente: GitHub Actions #45649556212, medición geométrica de fase 4 y diff de `styles.css`; 25 nov 2026.
+
+## 2026-11-25 — PR en preparación: restaurar recomendación de aprendizaje en Aprender
+
+- Diagnóstico: PR #829 convirtió `adaptiveRecommendationLearn` en una tarjeta exclusivamente SRS y la oculta cuando `dueCount === 0`. El motor `AdaptiveLearning.recommend()` sí calcula `nextLesson`, `skillLesson`, errores y acciones; pero Aprender dejó de mostrar esas recomendaciones sin repasos vencidos.
+- Corrección en rama `fix/restore-learn-adaptive-recommendation-20261125`: conservar intacta la fila compacta SRS y añadir `adaptiveLearningRecommendationLearn` como host independiente. Se muestra cuando no hay repaso SRS prioritario y existe una acción de aprendizaje; se oculta cuando hay repasos vencidos o no hay acción. La tarjeta nueva usa el mismo motor y los handlers existentes. También se activa la vista SRS antes de iniciar la sesión cuando la recomendación refuerza palabras con errores, evitando el mismo problema de contenedor oculto corregido para «Repasar» en #830.
+- Pruebas añadidas: E2E verifica que, sin repasos vencidos, aparece «Continúa con la siguiente lección» y su botón abre realmente la lección; prueba unitaria protege la separación entre tarjeta SRS y recomendación de aprendizaje y la navegación a SRS para acciones de refuerzo.
+- La primera ejecución CI encontró una expectativa geométrica obsoleta en la E2E de fase 4: comparaba una coordenada de documento con una coordenada de viewport y asumía que la única tarjeta de Aprender debía estar oculta. Se actualizó para distinguir la tarjeta SRS oculta de la tarjeta adaptativa visible y comprobar que esta última no se solapa con la primera unidad. Nueva ejecución CI pendiente; no fusionar hasta verificar todos los checks. Sin cambios en algoritmo, XP, currículo, IndexedDB v1, backup JSON v3, dependencias ni persistencia.
+- Fuente: inspección de `index.html` (blob SHA `4065685c26de3b3d45b749f9bd7d812ab8d4764e`), PR #829 y pruebas; 25 nov 2026.
+
 ## 2026-11-25 — PR de corrección: botón de tarjeta de repaso abre la vista SRS
 
 - Tras el despliegue de PR #829, el usuario informó que al tocar «Repasar» no ocurría nada visible.
@@ -58,3 +73,77 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - PR #826 fusionada por squash en `main`, commit `639dc11e3c176ffeb9b9e4411dcbb8ada075aa49`. CI de PR [#45585825025](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45585825025): `test` y `Offline quality reports` success; sin reviews ni hilos pendientes. Regresión post-merge [#45586327839](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45586327839) y Pages [#45586326796](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45586326796): success.
 - La prueba física en Tecno Pova 4 (720×1640) seguirá pendiente después del despliegue.
 - Fuente: PR #825/#826, `index.html`, `tests/adaptive-learning.test.cjs`, pruebas E2E de fases 4 y 5B y GitHub Actions; 25 nov 2026.
+
+
+## 2026-11-25 — PR #832: estabilización de prueba de teclado
+- CI `45651470629`: la prueba E2E de la burbuja de traducción falló al esperar que se abriera con Enter; las otras 300 pruebas pasaron y el informe offline de calidad pasó.
+- El fixture de teclado ahora inserta el botón de prueba directamente en `document.body`, con posición visible/fija e ID propio, y enfoca ese botón antes de enviar Enter. Esto evita depender de `#actionArea`, que puede no estar disponible o visible en el fixture.
+- No se modificó la lógica de producción de traducción; pendiente volver a ejecutar CI y comprobar apertura con Enter, cierre con Escape y restauración del foco.
+
+
+## 2026-11-25 — PR #832: activación por teclado de la burbuja de traducción
+- El CI #45654312381 volvió a fallar en la prueba 112: el fixture visible y enfocado seguía sin abrir la burbuja con Enter. La prueba 113 de restauración del foco sí pasó.
+- Diagnóstico en `index.html`: `initTapTranslationBubble()` solo escuchaba clics delegados para abrir la burbuja y Escape para cerrarla; no manejaba explícitamente Enter ni Espacio.
+- Corrección en commit `f00571dd5f3f68c4bd949178d735d2e4d6143dd4`: el manejador de teclado detecta `.tap-translation-word`, abre con Enter/Espacio y previene la activación duplicada del botón. Se mantiene Escape con restauración de foco.
+- CI nuevo #45655191461 disparado para el commit corregido; pendiente confirmar la prueba 112 y el resto de checks. No fusionar hasta CI verde.
+- Fuente: inspección de `index.html`, prueba E2E fase 5B y GitHub Actions; 25 nov 2026.
+
+
+## 2026-11-25 — PR #832: diagnóstico detallado de activación por teclado
+- CI #45655191461 y #45655305950: la prueba 112 ya no expira; llega a la aserción y falla porque `aria-expanded` permanece en `false` aunque el host de la burbuja informa `hidden === false`. La prueba 113 continúa pasando.
+- La prueba E2E se instrumentó en commit `97584242add299fd1813fae2b15dbe874aee6d87` para registrar foco activo, estado hidden, aria-expanded y botones con aria-expanded true; también comprueba que el fixture conserva el foco justo antes de pulsar Enter.
+- Próximo paso: usar el estado instrumentado del CI para identificar si Enter llega al botón, si la burbuja ya estaba visible por otro flujo o si el estado accesible se desincroniza. No cambiar más producción ni relajar la prueba sin esa evidencia.
+- PR #832 sigue abierta, no fusionada; CI verde requerido.
+- Fuente: logs de GitHub Actions #45655191461 y #45655305950 y prueba E2E fase 5B; 25 nov 2026.
+
+
+## 2026-11-25 — Actualización de hash CSS en PR #832
+
+- La ejecución CI #45655878732 pasó las E2E de Fase 4 y el informe de calidad offline, pero se detuvo en la prueba de integridad de extracción: el hash de `styles.css` cambió de `740de7f9` a `7800ca18` por la regla intencional `[data-adaptive-recommendation][hidden] { display: none !important; }` añadida para que los hosts ocultos no reserven espacio.
+- No es un cambio del currículo ni de IndexedDB; la prueba mantiene los hashes y conteos de A1/A2 y solo debe fijar el hash nuevo del CSS extraído. Se actualizó la expectativa en `tests/curriculum-extraction.test.js`, commit [5b503df](https://github.com/luisequeira612-commits/bahasa-studio/commit/5b503dff75d13eb611957bf7faeb718d1725b834).
+- La ejecución anterior no llegó a las pruebas posteriores de Fase 5B porque el fallo de integridad detuvo el job; el diagnóstico instrumentado de Enter sigue pendiente de una ejecución que alcance esa prueba. PR #832 sigue abierta y no fusionada.
+- Fuente: GitHub Actions #45655878732, comparación del hash de `styles.css` y diff de la prueba; 25 nov 2026.
+
+
+## 2026-11-25 — Sincronización del fixture de teclado en PR #832
+
+- CI [#45656428865](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45656428865): las 301 pruebas locales llegaron a ejecutarse; 300 pasaron y falló solo la prueba 112 de teclado por timeout esperando que la burbuja se abriera. La extracción curricular/CSS ya pasó y los informes de calidad offline también terminaron en success.
+- La causa está en el orden del fixture: esperaba a que DB estuviera lista, pero eso no garantizaba que el listener de `initTapTranslationBubble()` ya se hubiera registrado. El botón sintético podía recibir Enter antes de que existiera el manejador delegado. La prueba de restauración de foco 113 pasó.
+- Se añadió una espera explícita por `#tapTranslationBubble.dataset.initialized === 'true'` antes de insertar/enfocar el botón y pulsar Enter. Commit [3cca880](https://github.com/luisequeira612-commits/bahasa-studio/commit/3cca880878f9e4aac6ac17a9631ceeaff72ac5ff). No se cambió código de producción ni se relajó ninguna aserción.
+- Pendiente: ejecutar CI sobre el nuevo head y comprobar si la prueba de teclado pasa; PR #832 continúa abierta y no fusionada.
+- Fuente: log del job test de GitHub Actions #45656428865, líneas de test 112/113 y fixture fase 5B; 25 nov 2026.
+
+
+## 2026-11-25 — PR #832: evita doble activación de la burbuja con Enter
+- CI #45657511237: Fase 4, calidad offline y 300 pruebas adicionales pasaron; solo falló la E2E de teclado de la burbuja (11/12 pruebas Fase 5B).
+- Diagnóstico: al pulsar Enter en un botón nativo, el manejador keydown abre la burbuja y el navegador emite después un click de teclado (detail=0). El manejador click volvía a llamar open() sobre el mismo botón, cuyo comportamiento de alternancia la cerraba inmediatamente; por eso la E2E agotaba el tiempo esperando hidden=false.
+- Corrección en commit 6122b00b5a0b7daeb839d735c3c4875f3f441372: el click de teclado generado tras una apertura por keydown ya no alterna/cierra la burbuja; el click de puntero mantiene el comportamiento de alternancia. Pendiente CI completo, Escape y restauración de foco.
+- Fuente: log de GitHub Actions #45657511237 y función initTapTranslationBubble() en index.html; 25 nov 2026.
+
+## 2026-11-25 — PR #832: instrumentación de la activación por teclado
+- CI [#45658823373](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45658823373): Fase 4 pasó y el informe offline pasó; las pruebas locales terminaron con 300/301. La única falla volvió a ser la E2E 112 de la burbuja: timeout esperando que `#tapTranslationBubble.hidden` cambiara a false. Fase 5B posterior quedó omitida por el fallo.
+- El cambio de doble activación de Enter del commit `6122b00` no resolvió todavía el timeout; por eso no se fusiona. La prueba 113 de restauración de foco pasó.
+- En commit `c53eb16` se reemplazó la espera opaca de 30 s por instrumentación temporal que registra keydown/click capturados, foco, estado aria/hidden y errores JS; el objetivo es distinguir si Playwright emite Enter, si el listener recibe el evento o si el handler falla. No se cambió la lógica de producción.
+- Pendiente CI nuevo para leer el diagnóstico antes de tocar producción. PR #832 sigue abierta y no fusionada.
+- Fuente: log del job test #139362754918 (run #45658823373), prueba `tests/learning-screen-phase-5b.e2e.test.cjs` y commit `c53eb1669573f85aa83826ee302dce573b139257`; 25 nov 2026.
+
+## 2026-11-25 — PR #832: corrige prioridad SRS y teclado de burbuja
+- CI #45661003146 pasó Fase 4 y calidad offline, pero falló en dos pruebas de Fase 5B (112 y 117); Fase 5B y pruebas finales se omitieron.
+- Diagnóstico 112: el evento Enter sí alcanza el documento (foco correcto, listener inicializado y sin errores JS), pero el handler delegado de teclado en fase bubble no abre la burbuja. Se cambia el listener a fase capture para que la activación accesible no dependa de que otro listener detenga propagación. La prueba conserva sus aserciones de apertura, aria-expanded y Escape.
+- Diagnóstico 117: la tarjeta SRS se ocultaba si el recomendador general elegía una acción distinta de review aunque existieran palabras vencidas; además el botón heredaba esa acción. La tarjeta SRS ahora depende de que haya vencimientos y fuerza la acción review, manteniendo la recomendación adaptativa independiente oculta mientras el SRS sea prioritario.
+- Cambios limitados a `index.html`; no se modifican algoritmo adaptativo, XP, currículo, IndexedDB v1, backup JSON v3 ni dependencias. Pendiente CI completo y verificación manual; PR #832 permanece abierta.
+- Fuente: logs del job test de GitHub Actions #45661003146 (fallos 112/117), código `initTapTranslationBubble()` y `renderAdaptiveRecommendation()`; 25 nov 2026.
+
+
+## 2026-11-25 — PR #832: sincroniza prueba de prioridad SRS
+- CI [#45662198111](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45662198111): Fase 4 y pruebas locales de calidad pasaron; falló el test 46 de `tests/adaptive-learning.test.cjs` porque aún exigía la condición antigua `reviewCount === 0 || recommendation.action !== 'review'`.
+- La implementación nueva muestra la tarjeta SRS siempre que `reviewCount > 0`, independiente de la recomendación general, y fuerza la acción `review` para esa tarjeta. Se actualizó el test para comprobar explícitamente ambas condiciones y que el botón inicia `srs`; no se eliminó ninguna comprobación funcional.
+- Commit de prueba: [737b0e0](https://github.com/luisequeira612-commits/bahasa-studio/commit/737b0e0da415b66eb8903cf5e6271a8f3ebb7529). Pendiente nuevo CI, especialmente las pruebas 112/117 de Fase 5B. PR #832 sigue abierta y no fusionada.
+- Fuente: log del job test de GitHub Actions #45662198111 y comparación de la aserción con `renderAdaptiveRecommendation()`; 25 nov 2026.
+
+
+## 2026-11-25 — PR #832: adelanta la captura del teclado de la burbuja
+- CI #45663123141 volvió a fallar únicamente en la prueba 112: el evento Enter se registra en el documento, el botón conserva el foco, la burbuja sigue oculta y no hay errores JavaScript. La corrección previa que puso el listener de `keydown` en captura de `document` no bastó.
+- Inspección del código completo de `initTapTranslationBubble()`: el listener delegado seguía en `document` capture. Se mueve a `window` capture para ejecutarlo antes de los listeners de captura del documento que podrían detener la propagación. Se conservan apertura, `aria-expanded`, Escape y restauración de foco; no se relajan aserciones.
+- Commit: [9ca95d2](https://github.com/luisequeira612-commits/bahasa-studio/commit/9ca95d20e608927c3166214910356573c7e42200). Pendiente CI nuevo, especialmente pruebas 112 y 117, Fase 5B y E2E final. PR #832 continúa abierta y sin fusionar.
+- Fuente: logs del job test #139377986951 (run #45663123141), código de `index.html` y commit 9ca95d2; 25 nov 2026.

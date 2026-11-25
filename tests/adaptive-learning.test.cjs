@@ -581,6 +581,19 @@ test('Learn shows a compact SRS-only row with live counts and hides it when no r
   assert.match(html, /const weakestSkill = AdaptiveLearning\.weakestSkill\(skillStats\)/);
   assert.match(html, /Punto débil: /);
   assert.match(html, /button\.textContent = isLearnReviewCard \? 'Repasar'/);
-  assert.match(html, /if \(reviewCount === 0 \|\| recommendation\.action !== 'review'\) \{\s*host\.hidden = true;/);
+  assert.match(html, /if \(reviewCount === 0\) \{\s*host\.hidden = true;/);
+  assert.match(html, /const action = isLearnReviewCard \? 'review' : recommendation\.action;/);
+  assert.match(html, /if \(action === 'review'\) \{\s*App\.switchView\('srs'\);\s*await SRSEngine\.startSession\(\);/);
   assert.match(html, /reviewCount \+ \(reviewCount === 1/);
+});
+
+
+test('Aprender keeps the compact SRS card separate from the actionable lesson recommendation', () => {
+  const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+  assert.match(html, /id="adaptiveRecommendationLearn"[^>]*aria-label="Repaso pendiente" hidden/);
+  assert.match(html, /id="adaptiveLearningRecommendationLearn"[^>]*aria-label="Tu siguiente paso recomendado" hidden/);
+  assert.match(html, /const isLearnRecommendationCard = host\.id === 'adaptiveLearningRecommendationLearn'/);
+  assert.match(html, /reviewCount > 0 \|\| recommendation\.action === 'none'/);
+  assert.match(html, /host\.id === 'adaptiveRecommendation' && input\.dueCount === 0/);
+  assert.match(html, /App\.switchView\('srs'\);\s*await SRSEngine\.startSession\(\);/);
 });

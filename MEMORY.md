@@ -21,5 +21,5 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 
 - Rama `test/lesson-xp-first-completion-e2e`: se añade una prueba Chromium con IndexedDB real para verificar que completar por primera vez una lección concede el XP esperado, repetirla no concede XP adicional y abandonar otra lección no concede XP pendiente.
 - La prueba utiliza la ruta real de inicio/finalización y `recordFirstAttempt` de `LessonEngine`, sin inyectar manualmente el contador de aciertos; no modifica la lógica de recompensas, el currículo, IndexedDB, el backup JSON v3 ni dependencias.
-- Pendiente: CI de la rama/PR y revisión de resultados antes de integrar.
+- CI del head `a74107d98375cdcd02c520add7ee8425228137a2`, run [#45580851785](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45580851785): `test` y `Offline quality reports` success; sin reviews ni comentarios pendientes. PR lista para integrar.
 - Fuente: `tests/browser-e2e.test.cjs`, `tests/xp-rewards.test.cjs` y auditoría PR #822/#823; 25 nov 2026.

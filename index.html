@@ -20522,6 +20522,7 @@ Requisitos:
                             } else if (recommendation.action === 'reinforce') {
                                 for (const wordId of recommendation.wordIds) await SRSEngine.markForReview(wordId);
                                 await this.updateSrsView();
+                                App.switchView('srs');
                                 await SRSEngine.startSession();
                             } else if (recommendation.action === 'writing') {
                                 WritingPractice.open();

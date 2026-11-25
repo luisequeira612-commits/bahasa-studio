@@ -1,7 +1,7 @@
 window.AudioEngine = {
     synth: window.speechSynthesis || null,
     voices: [],
-    idVoice: null,
+    activeLanguageVoice: null,
     selectedVoice: null,
     voicePreference: 'auto',
     currentAudio: null,
@@ -99,7 +99,7 @@ window.AudioEngine = {
         const voices = this.voices.filter(voice => this.matchesActiveLanguage(voice));
         const languageName = String(language.name || language.code || 'idioma del curso').toLowerCase();
         if (voices.length) {
-            const active = this.selectedVoice || this.idVoice;
+            const active = this.selectedVoice || this.activeLanguageVoice;
             status.textContent = 'La app incluye grabaciones Piper del curso; no necesitas instalar una voz. Voz del dispositivo disponible como respaldo para ' +
                 languageName + ': ' + (active ? active.name : 'selección automática') + '.';
         } else {
@@ -110,7 +110,7 @@ window.AudioEngine = {
     refreshVoices() {
         if (!this.synth) {
             this.voices = [];
-            this.idVoice = null;
+            this.activeLanguageVoice = null;
             this.selectedVoice = null;
             this.renderVoiceOptions();
             this.updateVoiceStatus();
@@ -118,8 +118,8 @@ window.AudioEngine = {
         }
         this.voices = this.synth.getVoices() || [];
         const languageVoices = this.voices.filter(voice => this.matchesActiveLanguage(voice));
-        this.idVoice = languageVoices[0] || null;
-        this.selectedVoice = languageVoices.find(voice => this.voiceKey(voice) === this.voicePreference) || this.idVoice;
+        this.activeLanguageVoice = languageVoices[0] || null;
+        this.selectedVoice = languageVoices.find(voice => this.voiceKey(voice) === this.voicePreference) || this.activeLanguageVoice;
         this.renderVoiceOptions();
         this.updateVoiceStatus();
     },
@@ -127,11 +127,11 @@ window.AudioEngine = {
         const preference = String(value || 'auto');
         this.voicePreference = preference;
         this.selectedVoice = preference === 'auto'
-            ? this.idVoice
+            ? this.activeLanguageVoice
             : this.voices.find(voice =>
                 this.matchesActiveLanguage(voice) &&
                 this.voiceKey(voice) === preference
-            ) || this.idVoice;
+            ) || this.activeLanguageVoice;
         this.renderVoiceOptions();
         this.updateVoiceStatus();
         if (persist && typeof DB !== 'undefined') {
@@ -155,7 +155,7 @@ window.AudioEngine = {
             return false;
         }
         this.refreshVoices();
-        const voice = this.selectedVoice || this.idVoice;
+        const voice = this.selectedVoice || this.activeLanguageVoice;
         if (!voice || !this.matchesActiveLanguage(voice)) {
             const status = document.getElementById('audioVoiceStatus');
             if (status) status.textContent = 'No se encontró una grabación para esta frase ni una voz instalada para ' + languageName + ' como respaldo.';

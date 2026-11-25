@@ -34,13 +34,11 @@
 .level-progress-level { flex:0 0 auto; color:#1F2937; font-weight:800; }
 @media (max-width:380px) { .app-topbar { padding-left:14px; padding-right:14px; gap:6px; } .app-topbar .logo { flex:0 1 auto; min-width:0; gap:4px; font-size:.9rem; } .app-topbar .logo span { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; } .topbar-metrics { flex:1 1 auto; min-width:0; gap:4px !important; } .topbar-chip { min-width:0; gap:3px; font-size:.72rem; } .topbar-chip .ui-icon { width:16px; height:16px; flex:0 0 16px; } .topbar-streak,.topbar-xp { flex:0 1 auto; } .level-progress-trigger { min-width:78px; padding-inline:6px; gap:4px; } }
 .learning-level-selector,.learning-tools-row { display:none !important; }
-#adaptiveRecommendationLearn[hidden] { display:none !important; }
-#adaptiveRecommendationLearn { margin:12px 12px 14px; padding:10px 12px; min-height:64px; box-sizing:border-box; border-radius:16px; box-shadow:0 4px 14px rgba(0,0,0,.12); }
-#adaptiveRecommendationLearn .adaptive-review-card-row { display:flex; align-items:center; justify-content:space-between; gap:12px; min-height:42px; }
-#adaptiveRecommendationLearn .adaptive-review-card-copy { flex:1 1 auto; min-width:0; }
-#adaptiveRecommendationLearn .adaptive-review-card-title { margin:0; color:var(--text-main); font-size:.9rem; font-weight:800; line-height:1.2; }
-#adaptiveRecommendationLearn .adaptive-review-card-focus { margin:3px 0 0; color:var(--text-muted); font-size:.76rem; line-height:1.2; }
-#adaptiveRecommendationLearn .adaptive-review-card-row .btn { flex:0 0 auto; width:auto; min-height:36px; padding:7px 13px; font-size:.82rem; white-space:nowrap; }
+#adaptiveRecommendationLearn { margin:0 12px 16px; padding:12px; box-shadow:0 4px 14px rgba(0,0,0,.12); }
+#adaptiveRecommendationLearn .guardi-empty-illustration,#adaptiveRecommendationLearn .guardi-empty-message { display:none; }
+#adaptiveRecommendationLearn h3 { margin:0 0 4px; font-size:1rem; }
+#adaptiveRecommendationLearn p { margin:0 0 8px; font-size:.84rem; line-height:1.35; }
+#adaptiveRecommendationLearn .btn { min-height:40px; padding:8px 12px; font-size:.9rem; }
  .unit-path-section-banner { top:58px !important; max-height:72px; min-height:64px; padding:9px 10px 8px 12px; background:#004E9A !important; border:0; border-bottom:3px solid #00386D; border-radius:0 0 14px 14px; color:#ffffff; grid-template-columns:minmax(0,1fr) auto auto; align-items:center; gap:4px 8px; }
 .unit-path-section-banner h3,.unit-path-section-banner p,.unit-section-count { color:#ffffff !important; } .unit-path-section-banner p { white-space:nowrap; }
 .unit-section-progress { grid-column:1 / -1; background:rgba(255,255,255,.34); height:5px; } .unit-section-progress span { background:#ffffff; }
@@ -178,10 +176,7 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
         </div></div>
         </details>
         <p id="unitPathNotice" class="unit-path-notice" role="status" aria-live="polite" hidden></p>
-        <section id="adaptiveRecommendationLearn" class="card" data-adaptive-recommendation aria-live="polite" aria-label="Repaso pendiente" hidden>
-            <p class="text-muted">Preparando tu siguiente paso…</p>
-        </section>
-        <section id="adaptiveLearningRecommendationLearn" class="card" data-adaptive-recommendation aria-live="polite" aria-label="Tu siguiente paso recomendado" hidden>
+        <section id="adaptiveRecommendationLearn" class="card" data-adaptive-recommendation aria-live="polite" aria-label="Tu siguiente paso recomendado">
             <p class="text-muted">Preparando tu siguiente paso…</p>
         </section>
         <div id="courseContainer"></div>
@@ -18032,17 +18027,25 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                 const signature = JSON.stringify([
                     item.attempts || 0, item.correct || 0, item.incorrect || 0,
                     item.lastReviewed ?? null, item.interval || 0, item.repetition || 0,
-                    item.efactor ?? 2.5, item.nextReview ?? null
+                    item.efactor ?? 2.5, item.nextReview ?? null,
+                    item.savedForReview === true, item.markedAt ?? null
                 ]);
                 if (!unique.has(signature)) unique.set(signature, item);
             }
             const histories = [...unique.values()];
             const latest = histories.reduce((best, item) =>
                 (item.lastReviewed || 0) > (best.lastReviewed || 0) ? item : best, histories[0]);
+            const latestStatus = histories.reduce((best, item) => {
+                const bestAt = Number.isSafeInteger(best.markedAt) && best.markedAt >= 0
+                    ? best.markedAt : (best.lastReviewed || 0);
+                const itemAt = Number.isSafeInteger(item.markedAt) && item.markedAt >= 0
+                    ? item.markedAt : (item.lastReviewed || 0);
+                return itemAt > bestAt ? item : best;
+            }, histories[0]);
             return {
                 ...latest,
                 wordId,
-                savedForReview: records.some(item => item.savedForReview === true),
+                savedForReview: latestStatus.savedForReview === true,
                 attempts: histories.reduce((sum, item) => sum + (item.attempts || 0), 0),
                 correct: histories.reduce((sum, item) => sum + (item.correct || 0), 0),
                 incorrect: histories.reduce((sum, item) => sum + (item.incorrect || 0), 0)
@@ -18089,9 +18092,10 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                     wordId: wordId, interval: 0, repetition: 0, efactor: 2.5,
                     nextReview: Date.now(), attempts: 0, correct: 0, incorrect: 0, lastReviewed: null
                 };
-                item.savedForReview = false;
                 const prev = item.lastReviewed;
                 const now = Date.now();
+                item.savedForReview = false;
+                item.markedAt = now;
                 item.attempts = (item.attempts || 0) + 1;
                 item.correct = (item.correct || 0) + (quality >= 3 ? 1 : 0);
 
@@ -20358,7 +20362,8 @@ Requisitos:
                 document.getElementById('statSavedForReview').innerText = allSrs.filter(item => item.savedForReview).length;
 
                 const rankedWordHistory = [...srsByWord.entries()]
-                    .filter(([, item]) => (item.incorrect > 0 || item.savedForReview) && item.repetition < 4)
+                    .filter(([, item]) => (item.incorrect > 0 || item.savedForReview) &&
+                        (item.savedForReview || item.repetition === 0))
                     .sort((a, b) => {
                         const savedPriority = Number(b[1].savedForReview) - Number(a[1].savedForReview);
                         if (savedPriority) return savedPriority;
@@ -20389,7 +20394,6 @@ Requisitos:
                     .filter(([, item]) => !item.savedForReview && item.incorrect === 1)
                     .slice(0, 5).map(toAdaptiveWord).filter(Boolean);
                 let nextLesson = null;
-                let nextAssessment = null;
                 let skillLesson = null;
                 const weakestSkill = typeof AdaptiveLearning !== 'undefined'
                     ? AdaptiveLearning.weakestSkill(this.studyActivity && this.studyActivity.skillStats)
@@ -20403,13 +20407,8 @@ Requisitos:
                     for (const unit of level.units) {
                         if (this.completedUnits.includes(unit.id)) continue;
                         // Do not recommend a lesson from a unit the learner cannot open yet.
-                        const unitProgress = getUnitProgressState(level, unit);
                         if (!isUnitUnlocked(level, unit, this.completedUnits, this.completedLessons)) continue;
                         if (level.id === 'A1' && (!nextA1Unit || unit.id !== nextA1Unit.id)) continue;
-                        if (unitProgress.allLessonsComplete && unitProgress.requiresAssessment && !unitProgress.approved) {
-                            if (!nextAssessment) nextAssessment = { unitId: unit.id, unitTitle: unit.title };
-                            continue;
-                        }
                         const unfinishedLessons = buildUnitLessons(unit).filter(entry =>
                             !this.completedLessons.includes(unitLessonProgressKey(unit.id, entry.index)));
                         if (!unfinishedLessons.length) continue;
@@ -20436,7 +20435,6 @@ Requisitos:
                     weakWords,
                     isolatedWords,
                     nextLesson,
-                    nextAssessment,
                     skillLesson,
                     language: LanguageManager.getActiveLanguage(),
                     supportedLanguages: LanguageManager.list().map(({ code }) => code),
@@ -20451,89 +20449,41 @@ Requisitos:
                 const hosts = document.querySelectorAll('[data-adaptive-recommendation]');
                 if (!hosts.length || typeof AdaptiveLearning === 'undefined') return;
                 const recommendation = AdaptiveLearning.recommend(input);
-                const reviewCount = AdaptiveLearning.normalizeSrsCount(input.dueCount);
-                const skillStats = AdaptiveLearning.skillStatsForLanguage(
-                    input.skillStatsByLanguage, input.language, input.supportedLanguages
-                );
-                const weakestSkill = AdaptiveLearning.weakestSkill(skillStats);
                 hosts.forEach(host => {
                     host.replaceChildren();
-                    const isLearnReviewCard = host.id === 'adaptiveRecommendationLearn';
-                    const isLearnRecommendationCard = host.id === 'adaptiveLearningRecommendationLearn';
-                    if (isLearnReviewCard) {
-                        if (reviewCount === 0) {
-                            host.hidden = true;
-                            return;
-                        }
-                        host.hidden = false;
-                    } else if (isLearnRecommendationCard) {
-                        if (reviewCount > 0 || recommendation.action === 'none') {
-                            host.hidden = true;
-                            return;
-                        }
-                        host.hidden = false;
-                    } else {
-                        host.hidden = false;
-                        if (host.id === 'adaptiveRecommendation' && input.dueCount === 0) {
-                            const mascot = document.createElement('img');
-                            mascot.src = './assets/guardi/guardi-normal.svg';
-                            mascot.width = 100;
-                            mascot.height = 100;
-                            mascot.alt = '';
-                            mascot.className = 'guardi-empty-illustration';
-                            const message = document.createElement('p');
-                            message.className = 'guardi-empty-message';
-                            message.textContent = 'Todo al día. Guardi está orgulloso.';
-                            host.append(mascot, message);
-                        }
+                    if (input.dueCount === 0) {
+                        const mascot = document.createElement('img');
+                        mascot.src = './assets/guardi/guardi-normal.svg';
+                        mascot.width = 100;
+                        mascot.height = 100;
+                        mascot.alt = '';
+                        mascot.className = 'guardi-empty-illustration';
+                        const message = document.createElement('p');
+                        message.className = 'guardi-empty-message';
+                        message.textContent = 'Todo al día. Guardi está orgulloso.';
+                        host.append(mascot, message);
                     }
-                    let reviewRow = null;
                     const heading = document.createElement('h3');
                     heading.textContent = recommendation.title;
                     const description = document.createElement('p');
                     description.id = host.id + 'Description';
-                    if (isLearnReviewCard) {
-                        reviewRow = document.createElement('div');
-                        reviewRow.className = 'adaptive-review-card-row';
-                        const copy = document.createElement('div');
-                        copy.className = 'adaptive-review-card-copy';
-                        const primary = document.createElement('p');
-                        primary.className = 'adaptive-review-card-title';
-                        const strong = document.createElement('strong');
-                        strong.textContent = reviewCount + (reviewCount === 1
-                            ? ' palabra lista para repasar'
-                            : ' palabras listas para repasar');
-                        primary.append(strong);
-                        description.className = 'adaptive-review-card-focus';
-                        description.textContent = weakestSkill
-                            ? 'Punto débil: ' + weakestSkill.label + ' (' + weakestSkill.accuracy + '%)'
-                            : 'Punto débil: aún sin datos suficientes';
-                        copy.append(primary, description);
-                        reviewRow.append(copy);
-                    } else {
-                        description.textContent = recommendation.description;
-                        description.style.color = 'var(--text-muted)';
-                    }
+                    description.textContent = recommendation.description;
+                    description.style.color = 'var(--text-muted)';
                     const button = document.createElement('button');
                     button.type = 'button';
                     button.setAttribute('aria-describedby', description.id);
                     button.className = 'btn';
-                    button.textContent = isLearnReviewCard ? 'Repasar' : recommendation.label;
-                    const action = isLearnReviewCard ? 'review' : recommendation.action;
-                    button.disabled = action === 'none';
+                    button.textContent = recommendation.label;
+                    button.disabled = recommendation.action === 'none';
                     button.addEventListener('click', async () => {
                         button.disabled = true;
                         try {
-                            if (action === 'review') {
-                                App.switchView('srs');
+                            if (recommendation.action === 'review') {
                                 await SRSEngine.startSession();
                             } else if (recommendation.action === 'reinforce') {
                                 for (const wordId of recommendation.wordIds) await SRSEngine.markForReview(wordId);
                                 await this.updateSrsView();
-                                App.switchView('srs');
                                 await SRSEngine.startSession();
-                            } else if (recommendation.action === 'assessment') {
-                                LessonEngine.startUnitAssessment(recommendation.unitId);
                             } else if (recommendation.action === 'writing') {
                                 WritingPractice.open();
                             } else if (recommendation.action === 'lesson') {
@@ -20546,12 +20496,7 @@ Requisitos:
                             button.disabled = false;
                         }
                     });
-                    if (isLearnReviewCard) {
-                        reviewRow.append(button);
-                        host.append(reviewRow);
-                    } else {
-                        host.append(heading, description, button);
-                    }
+                    host.append(heading, description, button);
                 });
             },
             renderDict() {
@@ -20989,9 +20934,6 @@ Requisitos:
                 saveButton.textContent = '＋ Guardar';
                 bubble.hidden = false;
                 bubble.classList.remove('above');
-                position(button);
-            }
-            function position(button) {
                 const rect = button.getBoundingClientRect();
                 const width = bubble.getBoundingClientRect().width;
                 const height = bubble.getBoundingClientRect().height;
@@ -21003,7 +20945,6 @@ Requisitos:
                 const belowTop = rect.bottom + 9;
                 const aboveTop = rect.top - height - 9;
                 let top;
-                bubble.classList.remove('above');
                 if (belowTop + height <= viewportHeight - margin) {
                     top = belowTop;
                 } else if (aboveTop >= margin) {
@@ -21045,39 +20986,18 @@ Requisitos:
             }, true);
             document.addEventListener('click', event => {
                 const word = event.target.closest && event.target.closest('.tap-translation-word');
-                if (word) {
-                    event.preventDefault();
-                    // Enter on a native button also emits a click; the keydown handler has already opened it.
-                    if (event.detail === 0 && activeButton === word && !bubble.hidden) return;
-                    open(word);
-                    return;
-                }
+                if (word) { event.preventDefault(); open(word); return; }
                 if (event.target === bubble) return;
                 if (!bubble.hidden && !bubble.contains(event.target)) close();
             });
-            window.addEventListener('keydown', event => {
-                const word = event.target.closest && event.target.closest('.tap-translation-word');
-                if (word && (event.key === 'Enter' || event.key === ' ')) {
-                    event.preventDefault();
-                    open(word);
-                    return;
-                }
+            document.addEventListener('keydown', event => {
                 if (event.key === 'Escape' && !bubble.hidden) {
                     event.preventDefault();
                     close(true);
                 }
-            }, true);
+            });
             window.addEventListener('resize', close);
-            window.addEventListener('scroll', () => {
-                if (bubble.hidden) return;
-                // Keyboard activation can scroll the focused word into view after Enter.
-                // Keep the popup open and re-anchor it while its trigger retains focus.
-                if (activeButton && document.activeElement === activeButton) {
-                    position(activeButton);
-                    return;
-                }
-                close();
-            }, true);
+            window.addEventListener('scroll', close, true);
         }
         if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initTapTranslationBubble, { once: true });
         else initTapTranslationBubble();

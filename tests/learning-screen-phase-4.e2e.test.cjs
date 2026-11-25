@@ -219,7 +219,7 @@ test('phase four path geometry is collision-free at 360px across levels and zigz
         const expectedGap = gapIndex === layout.currentIndex - 1 ? 74 :
           gapIndex === layout.currentIndex ? 56 : 18;
         assert.ok(Math.abs(gap - expectedGap) <= 1,
-          layout.levelId + ' node edge gap should include only the current-title and explicit recommendation space: ' + gap);
+          layout.levelId + ' node edge gap should include only the current-title clearance: ' + gap);
       }
       assert.equal(layout.recommendationInsideStage, false,
         layout.levelId + ' recommendation must stay outside the unit path stage');

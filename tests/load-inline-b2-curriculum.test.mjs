@@ -1480,3 +1480,24 @@ test('B2 U46-U50 complete the documented ellipsis sequence with five authored le
     for (const phrase of phrases) assert.ok(indexSource.includes(phrase), id + ' must use documented examples: ' + phrase);
   }
 });
+
+
+test('B2 vocabulary uses the canonical Spanish gloss field and all entries provide it', async () => {
+  const { b2 } = await loadCurricula();
+  const entries = b2.units.flatMap((unit) => unit.vocab || []);
+  assert.ok(entries.length > 0);
+  for (const word of entries) {
+    assert.equal(typeof word.esp, 'string', word.id + ' must use esp');
+    assert.ok(word.esp.trim(), word.id + ' must have a Spanish gloss');
+    assert.equal(Object.hasOwn(word, 'es'), false, word.id + ' must not use the noncanonical es alias');
+  }
+});
+
+test('B2 U7 lesson 3 order exercise uses the runtime words/correctOrder contract', async () => {
+  const { b2 } = await loadCurricula();
+  const unit = b2.units.find((item) => item.id === 'b2_u7');
+  const exercise = unit.lessons[2].exercises.find((item) => item.vocabId === 'b2u7_penemuan' && item.type === 'order');
+  assert.ok(exercise);
+  assert.deepEqual(exercise.words, ['para ahli itu', 'diterbitkan', 'Penemuan', 'dalam jurnal ilmiah']);
+  assert.deepEqual(exercise.correctOrder, ['Penemuan', 'para ahli itu', 'diterbitkan', 'dalam jurnal ilmiah']);
+});

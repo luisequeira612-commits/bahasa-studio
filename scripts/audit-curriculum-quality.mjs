@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Structural and editorial consistency checks for the authored A1/A2 curriculum.
+ * Structural and editorial consistency checks for the authored A1–B2 curriculum.
  *
  * This tool is deliberately independent of KBBI and network services. It checks
  * relationships and data integrity; it does NOT certify Indonesian grammar,
@@ -14,6 +14,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import vm from 'node:vm';
 import { loadInlineB1Curriculum } from './load-inline-b1-curriculum.mjs';
+import { loadInlineB2Curriculum } from './load-inline-b2-curriculum.mjs';
 
 function loadCurriculum(source, globalName, filename) {
   const sandbox = { window: {} };
@@ -820,6 +821,7 @@ async function main() {
   }
   const indexSource = await readFile(resolve('index.html'), 'utf8');
   curricula.push(loadInlineB1Curriculum(indexSource, curricula[0], curricula[1]));
+  curricula.push(loadInlineB2Curriculum(indexSource, curricula[0], curricula[1]));
   const reports = auditCurricula(curricula);
   const report = {
     schema_version: 1,

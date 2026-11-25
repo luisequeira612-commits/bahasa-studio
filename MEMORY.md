@@ -939,3 +939,20 @@ Fuente: PR #792, GitHub Actions #45512800901 y #45512797930, `docs/B2_U20_U60_RO
 - PR #794–#797 integradas; #797 añade cobertura de controles de traducción a 320 px. En `main` (`cbae2cb6880c7e07488b614ff050740bf520decc`), regresión #45518553869 y calidad offline 10/10 success; Pages #45518553195 build/deploy success.
 - La cobertura automatizada de fase 6 está completada para los casos añadidos; sigue pendiente la prueba física en Tecno Pova 4 (720×1640). No se afirma que Chromium sustituya esa prueba.
 Fuente: PR #794–#797 y GitHub Actions #45518553869/#45518553195; 24 nov 2026.
+
+
+## 2026-11-24 — Auditoría estructural ampliada a B2
+- La auditoría estructural de calidad cargaba A1, A2 y B1, pero omitía B2 aunque el repositorio ya dispone de un extractor aislado para sus 60 unidades y del inventario de lecciones A1–B2. Esto dejaba sin cobertura común de referencias, estructura de ejercicios y consistencia de datos al borrador B2, todavía oculto/no publicado.
+- Se amplía el informe estructural local para cargar B2 después de B1, de modo que las referencias acumulativas se resuelvan en orden A1 → A2 → B1 → B2. Se añade una prueba de integración que verifica los cuatro niveles y sus 32/40/50/60 unidades.
+- La ampliación es de validación, no publica B2 ni cambia sus bloqueos. No modifica contenido curricular, runtime, IndexedDB v1, backup JSON v3, dependencias ni disponibilidad de idiomas. La auditoría sigue siendo estructural y no certifica lingüísticamente el indonesio.
+Fuente: `scripts/audit-curriculum-quality.mjs`, `scripts/load-inline-b2-curriculum.mjs`, `scripts/audit-authored-lesson-inventory.mjs`, pruebas de auditoría; 24 nov 2026.
+
+
+## 2026-11-25 — PR #802: auditoría estructural completa de A1–B2
+
+- La primera ejecución del auditor ampliado encontró 10 errores estructurales en el borrador B2: un ejercicio de orden en U7 L3 usaba `options/answer` en vez del contrato runtime `words/correctOrder`, y nueve entradas de vocabulario de U16/U17/U18/U21 usaban `es` en lugar del campo canónico `esp`. Se corrigieron los campos conservando los textos españoles y la secuencia de tokens existentes; se añadieron pruebas específicas para ambos contratos.
+- El informe `curriculum-quality-report.json` confirma 4 niveles, 182 unidades, 1.136 entradas de vocabulario, 1.095 IDs únicos, **0 errores**, 164 avisos y 82 informativos. Los avisos no se interpretan como certificación ni se convierten automáticamente en bloqueos; B2 sigue oculto/no publicado. Los resultados son estructurales, no certificación lingüística.
+- La revisión final del PR, incluida la actualización de este registro, pasó todos los checks en GitHub Actions #45530139607 (suite principal y navegador real) y los informes offline. Sin cambios a IndexedDB v1, backup JSON v3, dependencias ni disponibilidad de idiomas.
+- PR #802 queda lista para integrar tras esta verificación; el estado de fusión se registra en el siguiente hito.
+
+Fuente: PR #802, commit head `39e9de7cc16b8fb26ac754f5368777ffa4940680`, GitHub Actions #45530139607 y artefacto `curriculum-quality-report.json`; 25 nov 2026.

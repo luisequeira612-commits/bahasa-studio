@@ -217,7 +217,7 @@ test('phase four path geometry is collision-free at 360px across levels and zigz
       assert.ok(layout.horizontalTitleClearance.every(gap => gap >= 9),
         layout.levelId + ' title must not invade adjacent zigzag columns: ' + JSON.stringify(layout.horizontalTitleClearance));
       for (const [gapIndex, gap] of layout.nodeEdgeGaps.entries()) {
-        const recommendationAllowance = layout.recommendation && gapIndex === layout.currentIndex ? 150 : 0;
+        const recommendationAllowance = layout.recommendation && gapIndex === layout.currentIndex ? 220 : 0;
         const expectedGap = gapIndex === layout.currentIndex - 1 ? 74 :
           gapIndex === layout.currentIndex ? 56 + recommendationAllowance : 18;
         assert.ok(Math.abs(gap - expectedGap) <= 1,

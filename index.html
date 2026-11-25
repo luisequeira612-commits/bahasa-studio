@@ -18262,7 +18262,7 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                     } catch (activityError) {
                         console.error('No se pudo guardar la actividad de repaso:', activityError);
                     }
-                    App.addXp(5);
+                    App.addXp(2);
                     if (normalizedGrade >= 3) this.sessionStats.correct++;
                     else this.sessionStats.incorrect++;
                     this.currentIndex++;
@@ -18754,7 +18754,7 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                 const checklistMarkup = checklist.map(item => '<li>' + App.escapeHtml(item) + '</li>').join('');
                 const selfAssessmentNote = this.assessmentMode
                     ? 'Tu valoración es una autoevaluación orientativa; no sustituye una revisión lingüística.'
-                    : 'En el curso, marcar que lo conseguiste registra 10 XP y un intento de repaso espaciado. Si necesitas practicar, la actividad se programa para repetirla. Esta elección registra tu autoevaluación: no corrige automáticamente la gramática ni demuestra que cada frase sea la única forma correcta.';
+                    : 'En el curso, marcar que lo conseguiste registra 3 XP y un intento de repaso espaciado. Si necesitas practicar, la actividad se programa para repetirla. Esta elección registra tu autoevaluación: no corrige automáticamente la gramática ni demuestra que cada frase sea la única forma correcta.';
                 area.classList.add('lesson-feedback-sheet', 'neutral');
                 area.innerHTML = `
                     <div class="feedback-box">
@@ -18778,7 +18778,7 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                 this.vibrateFeedback();
                 if (!this.assessmentMode && !isCorrect && !ex._r) this.retry.push({ ...ex, _r: true });
                 if (ex.vocabId && !this.assessmentMode) SRSEngine.recordAttempt(ex.vocabId, isCorrect ? 3 : 1).catch(err => console.error('No se pudo registrar el intento SRS:', err));
-                if (isCorrect && !this.assessmentMode) App.addXp(10);
+                if (isCorrect && !this.assessmentMode) App.addXp(3);
                 const actionArea = document.getElementById('actionArea');
                 actionArea.classList.add('lesson-feedback-sheet', isCorrect ? 'correct' : 'wrong');
                 actionArea.innerHTML = `
@@ -18815,7 +18815,7 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                     </div>
                     <button class="btn" type="button" onclick="LessonEngine.nextStep(${isCorrect})">Continuar</button>
                 `;
-                if (isCorrect && !this.assessmentMode) App.addXp(10);
+                if (isCorrect && !this.assessmentMode) App.addXp(3);
             },
             nextStep() {
                 if (this.stepIndex + 1 >= this.queue.length && this.retry.length) { this.queue.push(...this.retry); this.retry = []; }
@@ -19785,7 +19785,7 @@ Requisitos:
                             localStorage.removeItem('bahasaStudioUnitSkipId');
                         }
                     } catch (error) {}
-                    this.addXp(50);
+                    this.addXp(20);
                     const selectedLevel = CourseData.levels.find(level => level.id === this.selectedLearningLevel);
                     if (selectedLevel && selectedLevel.id !== 'B2' && !selectedLevel.units.some(unit =>
                         isUnitUnlocked(selectedLevel, unit) && !getUnitProgressState(selectedLevel, unit).completed

@@ -226,10 +226,10 @@ test('rapid repeated grading records a vocabulary card only once', async () => {
     assert.equal(reviewed.attempts, 2, 'the stored attempt counter should increase only once');
     await page.waitForFunction(async () => {
       const activity = await DB.get('settings', 'studyActivity');
-      return activity && activity.todayXp === 5 && activity.todayReviews === 1;
+      return activity && activity.todayXp === 2 && activity.todayReviews === 1;
     });
-    assert.equal(await page.evaluate(() => App.xp), xpBefore + 5,
-      'a successfully reviewed card should contribute five daily-goal XP');
+    assert.equal(await page.evaluate(() => App.xp), xpBefore + 2,
+      'a successfully reviewed card should contribute two daily-goal XP');
   } finally {
     await context.close();
     await browser.close();

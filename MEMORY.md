@@ -1,3 +1,13 @@
+## 2026-11-25 — Reequilibrio de recompensas XP (PR en preparación)
+
+- Decisión aprobada por el usuario: 3 XP por respuesta correcta de una lección, incluida la autoevaluación positiva de escritura guiada; 2 XP por tarjeta SRS calificada; 20 XP por completar una unidad por primera vez; 0 XP por respuesta de evaluación final.
+- La escritura guiada no valida automáticamente la gramática: el texto de interfaz conserva esa aclaración y ahora comunica 3 XP por marcar que se cumplieron los criterios.
+- En `index.html` se ajustan las dos rutas de respuesta correcta de lección, la calificación SRS y el bono de primera finalización. Se mantienen los guards de evaluación, doble envío y bono único.
+- Se añade `tests/xp-rewards.test.cjs` para proteger las cantidades, los guards de evaluación, el reintento de errores y la recompensa única de unidad. El workflow `.github/workflows/regression.yml` ejecuta este archivo de forma explícita.
+- Sin cambios intencionales a IndexedDB v1, backup JSON v3, progreso, currículo, idiomas ni dependencias. CI todavía debe validar la rama antes de integrar.
+
+Fuente: decisión explícita del usuario y auditoría de `index.html`; 25 nov 2026.
+
 ## 2026-11-25 — Recomendador adaptativo excluye unidades bloqueadas (PR #815 fusionada)
 
 - La revisión funcional de fase 7 encontró que `updateStudyDashboard()` reunía candidatas de A2 aunque la progresión secuencial todavía las mantuviera bloqueadas. `AdaptiveLearning.selectSkillLesson()` podía escoger una de ellas; `LessonEngine.startUnitById()` la rechazaba sin aviso y el botón de recomendación podía quedarse deshabilitado.
@@ -1048,3 +1058,24 @@ Fuente: `scripts/audit-curriculum-quality.mjs`, `scripts/load-inline-b2-curricul
 - PR #802 queda lista para integrar tras esta verificación; el estado de fusión se registra en el siguiente hito.
 
 Fuente: PR #802, commit head `39e9de7cc16b8fb26ac754f5368777ffa4940680`, GitHub Actions #45530139607 y artefacto `curriculum-quality-report.json`; 25 nov 2026.
+
+
+## 2026-11-25 — PR #817: corregir expectativa E2E heredada de XP SRS
+- La ejecución #45559888287 confirmó que las pruebas nuevas del sistema XP pasan (5/5), la regresión principal pasa (85/85 en su paso) y la auditoría offline pasa; falló únicamente el tercer caso de `tests/vocabulary-review.e2e.test.cjs`, que todavía esperaba 5 XP por tarjeta revisada.
+- El runtime ya aplica la decisión aprobada de 2 XP por tarjeta SRS. Se actualizaron las dos expectativas relacionadas con la actividad diaria (`todayXp` y XP total) de 5 a 2, sin cambiar producción ni la decisión 3/2/20.
+- Commit de corrección: `305d0c040799d68bf1846ad617bfaa28ebf2544e`. Esperar nueva CI completa antes de fusionar PR #817.
+Fuente: GitHub Actions #45559888287 y corrección de `tests/vocabulary-review.e2e.test.cjs`; 25 nov 2026.
+
+
+## 2026-11-25 — PR #817: segunda expectativa heredada de XP corregida
+- La ejecución [#45560959055](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45560959055) confirmó que el test E2E SRS ya pasa tras corregir 5→2 XP, pero falló una aserción heredada en `tests/progressive-assessment.test.cjs:59`, que todavía esperaba 10 XP por respuesta normal.
+- Se actualizó esa expectativa a 3 XP. No se cambió producción: la evaluación sigue otorgando 0 XP y sin intentos SRS.
+- Commit de la corrección: `938014a8f6a198295354d16bbb1ef8b762e93990`. Esperar CI nueva completa antes de fusionar.
+Fuente: GitHub Actions #45560959055 y test progresivo; 25 nov 2026.
+
+
+## 2026-11-25 — PR #817: alinear E2E de escritura guiada con XP aprobado
+- La ejecución [#45562143525](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45562143525) terminó en failure: 32/33 pruebas E2E Chromium pasaron y falló únicamente la escritura guiada por una espera que todavía exigía un aumento de 10 XP después de la autoevaluación positiva.
+- La regla vigente aprobada concede 3 XP por esa autoevaluación; el runtime ya aplica el nuevo valor. Se actualiza únicamente la expectativa E2E de +10 a +3 en `tests/browser-e2e.test.cjs`, sin modificar producción, la evaluación automática ni el comportamiento SRS.
+- La auditoría offline de esa ejecución terminó en success. PR #817 permanece abierta; se exige una nueva CI completa sobre el head actualizado antes de fusionar.
+Fuente: GitHub Actions #45562143525, job test, prueba E2E guiada A1; 25 nov 2026.

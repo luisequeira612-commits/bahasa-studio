@@ -167,3 +167,10 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Inspección del código completo de `initTapTranslationBubble()`: el listener delegado seguía en `document` capture. Se mueve a `window` capture para ejecutarlo antes de los listeners de captura del documento que podrían detener la propagación. Se conservan apertura, `aria-expanded`, Escape y restauración de foco; no se relajan aserciones.
 - Commit: [9ca95d2](https://github.com/luisequeira612-commits/bahasa-studio/commit/9ca95d20e608927c3166214910356573c7e42200). Pendiente CI nuevo, especialmente pruebas 112 y 117, Fase 5B y E2E final. PR #832 continúa abierta y sin fusionar.
 - Fuente: logs del job test #139377986951 (run #45663123141), código de `index.html` y commit 9ca95d2; 25 nov 2026.
+
+
+## 2026-11-25 — PR #833: detecta cierre posterior a la apertura de la burbuja
+- La repetición del job de calidad #45673026022 falló en el test 112 (300/301 pruebas pasaron). La traza ya muestra la secuencia: `Enter` llega a `window-keydown-after-app` con `defaultPrevented=true`, burbuja visible y `aria-expanded=true`; después de esperar 150 ms, la burbuja vuelve a `hidden=true` y `aria-expanded=false`. No hubo errores JS. Esto prueba que el manejador abre y algo posterior la cierra; la causa todavía no está identificada.
+- Se amplió únicamente la instrumentación E2E en `tests/learning-screen-phase-5b.e2e.test.cjs` para registrar mutaciones de `hidden`/`aria-expanded`, `scroll`, `resize`, `pointerdown` y `click` con marcas de tiempo. No se tocó producción ni se relajaron aserciones.
+- Nuevo commit diagnóstico: `356425b81a5386e654acdf6f02661bcad2b47635`. Pendiente CI para identificar qué evento/handler provoca el cierre. PR #833 permanece abierta y no fusionada.
+- Fuente: log del job test #139415663217 (run #45673026022), prueba 112 y commit `356425b`; 25 nov 2026.

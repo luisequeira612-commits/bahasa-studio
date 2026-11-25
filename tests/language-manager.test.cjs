@@ -62,9 +62,13 @@ test('restored language can be applied without a redundant persistence write', a
     const writes = [];
     const changes = [];
     await api.init({ read: async () => 'id', write: async code => writes.push(code), onChange: code => changes.push(code) });
+    await api.setActiveLanguage('id');
+    assert.deepEqual(writes, ['id'], 'normal language selection must remain persistent by default');
+    writes.length = 0;
+    changes.length = 0;
     await api.setActiveLanguage('id', { persist: false });
     assert.deepEqual(writes, [], 'the backup transaction already persisted the active language');
-    assert.deepEqual(changes, ['id', 'id']);
+    assert.deepEqual(changes, ['id']);
     assert.equal(api.getActiveLanguage(), 'id');
 });
 

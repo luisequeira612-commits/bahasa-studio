@@ -1,3 +1,9 @@
+## 2026-11-25 — Fase 7: neutralidad interna del motor de voz
+
+- Se renombra el estado interno `idVoice` a `activeLanguageVoice` en `audio-engine.js`: la voz seleccionada ya depende del idioma activo, no exclusivamente del indonesio.
+- Se añade regresión que comprueba la propiedad neutral y su selección para `pt-BR` en el motor aislado de pruebas.
+- Sin cambios en la selección de idiomas disponibles, grabaciones, IndexedDB v1, backup JSON v3 ni dependencias.
+
 ## 2026-11-25 — Fase 7: auditoría legacy de audio offline
 
 - Se prepara PR para eliminar el catálogo duplicado de idiomas en `offline-audio-manager.js`. La gestión de idiomas ahora se deriva de `LanguageManager.isSupported()`/`getLanguage()`; el comportamiento legacy de `id` se conserva como fallback cuando el gestor no existe o recibe un código no soportado.

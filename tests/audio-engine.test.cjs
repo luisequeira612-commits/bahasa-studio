@@ -176,3 +176,12 @@ test('no usa como respaldo una voz de un idioma distinto al curso activo', () =>
     assert.equal(setup.spoken.length, 0);
     assert.match(setup.statuses.audioVoiceStatus.textContent, /Portugués de Brasil/i);
 });
+
+
+test('expone la voz seleccionada con un nombre neutral al idioma activo', () => {
+    const voice = { name: 'Portuguese voice', lang: 'pt-BR' };
+    const setup = createEngine({ language: { code: 'pt-BR', locale: 'pt-BR', name: 'Portugués', audioPath: './audio/pt-BR/' }, voices: [voice] });
+    setup.engine.refreshVoices();
+    assert.equal(setup.engine.activeLanguageVoice, voice);
+    assert.equal(setup.engine.idVoice, undefined);
+});

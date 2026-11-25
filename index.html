@@ -18028,7 +18028,8 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                     item.attempts || 0, item.correct || 0, item.incorrect || 0,
                     item.lastReviewed ?? null, item.interval || 0, item.repetition || 0,
                     item.efactor ?? 2.5, item.nextReview ?? null,
-                    item.savedForReview === true, item.markedAt ?? null
+                    item.savedForReview === true, item.markedAt ?? null,
+                    item.lastQuality ?? null
                 ]);
                 if (!unique.has(signature)) unique.set(signature, item);
             }
@@ -18046,6 +18047,7 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                 ...latest,
                 wordId,
                 savedForReview: latestStatus.savedForReview === true,
+                lastQuality: latestStatus.lastQuality ?? latest.lastQuality,
                 attempts: histories.reduce((sum, item) => sum + (item.attempts || 0), 0),
                 correct: histories.reduce((sum, item) => sum + (item.correct || 0), 0),
                 incorrect: histories.reduce((sum, item) => sum + (item.incorrect || 0), 0)
@@ -18096,7 +18098,6 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                 const now = Date.now();
                 item.savedForReview = false;
                 item.markedAt = now;
-                item.lastQuality = quality;
                 item.attempts = (item.attempts || 0) + 1;
                 item.correct = (item.correct || 0) + (quality >= 3 ? 1 : 0);
 
@@ -20364,8 +20365,7 @@ Requisitos:
 
                 const rankedWordHistory = [...srsByWord.entries()]
                     .filter(([, item]) => (item.incorrect > 0 || item.savedForReview) &&
-                        (item.savedForReview || (Number.isSafeInteger(item.lastQuality)
-                            ? item.lastQuality < 3 : item.repetition === 0)))
+                        (item.savedForReview || item.repetition === 0))
                     .sort((a, b) => {
                         const savedPriority = Number(b[1].savedForReview) - Number(a[1].savedForReview);
                         if (savedPriority) return savedPriority;

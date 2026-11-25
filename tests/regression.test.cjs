@@ -2120,3 +2120,16 @@ test('A1 U17-U20 runtime uses five authored lessons without generated padding',(
  const a1=course.levels.find(l=>l.id==='A1'),s=html.indexOf('function buildUnitAssessmentItems'),e=html.indexOf('function unitLessonProgressKey',s),engine=vm.runInNewContext(html.slice(s,e)+'\n({buildUnitLessons})',{CourseData:course,Map,Set,Math});
  for(const u of a1.units.slice(16,20)){const lessons=engine.buildUnitLessons(u);assert.equal(u.lessons.length,5);assert.equal(lessons.length,5);assert.deepEqual(Array.from(lessons,l=>l.title),Array.from(u.lessons,l=>l.title));assert.ok(lessons.every(l=>l.exercises.every(x=>x.generated!==true)));assert.deepEqual(Array.from(lessons,l=>l.exercises.length),Array.from(u.lessons,l=>l.exercises.length));}
 });
+
+test('merged SRS manual-save state follows the latest explicit mark or grade', () => {
+  const start = htmlSource.indexOf('function mergeSrsRecords(records, wordId) {');
+  const end = htmlSource.indexOf('\\n\\n        const SRSEngine', start);
+  assert.ok(start >= 0 && end > start, 'SRS merge helper must exist');
+  const merge = vm.runInNewContext(htmlSource.slice(start, end) + '\\nmergeSrsRecords');
+  const merged = merge([
+    { attempts: 5, correct: 2, incorrect: 3, lastReviewed: 500, markedAt: 1000, savedForReview: true },
+    { attempts: 5, correct: 2, incorrect: 3, lastReviewed: 500, markedAt: 2000, savedForReview: false }
+  ], 'v45');
+  assert.equal(merged.savedForReview, false,
+    'an older manual-save marker must not override a later successful grade');
+});

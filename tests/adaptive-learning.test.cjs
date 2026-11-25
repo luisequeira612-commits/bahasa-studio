@@ -371,7 +371,7 @@ test('adaptive recommendation is visible on Aprender and refreshes on initial lo
   assert.match(html, /document\.querySelectorAll\('\[data-adaptive-recommendation\]'\)/);
   assert.match(html, /this\.renderCourseRoute\(\);\s*this\.updateSrsView\(\);/);
   assert.match(html, /viewId === 'srs' \|\| viewId === 'profile' \|\| viewId === 'route'/);
-  assert.ok(html.includes('#adaptiveRecommendationLearn { margin:12px 12px 14px; padding:10px 12px; min-height:64px;'));
+  assert.ok(html.includes('#adaptiveRecommendationLearn { margin:12px 12px 8px; padding:10px 12px; min-height:64px;'));
   assert.ok(html.indexOf('id="adaptiveRecommendationLearn"') < html.indexOf('id="courseContainer"'),
     'the recommendation card should be placed before the unit list');
   assert.doesNotMatch(html, /adaptive-recommendation-path-card|recommendationReserve/);

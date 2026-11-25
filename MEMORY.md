@@ -1058,3 +1058,10 @@ Fuente: `scripts/audit-curriculum-quality.mjs`, `scripts/load-inline-b2-curricul
 - PR #802 queda lista para integrar tras esta verificación; el estado de fusión se registra en el siguiente hito.
 
 Fuente: PR #802, commit head `39e9de7cc16b8fb26ac754f5368777ffa4940680`, GitHub Actions #45530139607 y artefacto `curriculum-quality-report.json`; 25 nov 2026.
+
+
+## 2026-11-25 — PR #817: corregir expectativa E2E heredada de XP SRS
+- La ejecución #45559888287 confirmó que las pruebas nuevas del sistema XP pasan (5/5), la regresión principal pasa (85/85 en su paso) y la auditoría offline pasa; falló únicamente el tercer caso de `tests/vocabulary-review.e2e.test.cjs`, que todavía esperaba 5 XP por tarjeta revisada.
+- El runtime ya aplica la decisión aprobada de 2 XP por tarjeta SRS. Se actualizaron las dos expectativas relacionadas con la actividad diaria (`todayXp` y XP total) de 5 a 2, sin cambiar producción ni la decisión 3/2/20.
+- Commit de corrección: `305d0c040799d68bf1846ad617bfaa28ebf2544e`. Esperar nueva CI completa antes de fusionar PR #817.
+Fuente: GitHub Actions #45559888287 y corrección de `tests/vocabulary-review.e2e.test.cjs`; 25 nov 2026.

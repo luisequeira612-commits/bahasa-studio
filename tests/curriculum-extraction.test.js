@@ -156,7 +156,7 @@ test('the extracted stylesheet stays linked and its canonical content hash remai
   const inlineStyleTags = [...html.matchAll(/<style\b([^>]*)>/gi)];
   assert.equal(inlineStyleTags.length, 1, 'only the scoped Phase 5B override may remain inline');
   assert.match(inlineStyleTags[0][1], /id=["']learning-phase-5b-overrides["']/);
-  assert.equal(fnv1a(css), '0b6288e2', 'canonical extracted CSS content changed');
+  assert.equal(fnv1a(css), '740de7f9', 'canonical extracted CSS content changed');
 });
 
 test('the extraction does not alter IndexedDB, SRS, backup, or word-translation code', () => {

@@ -1,3 +1,10 @@
+## 2026-11-25 — Corrección del refuerzo adaptativo repetitivo
+
+- Diagnóstico: «Practicar estas palabras» marcaba palabras para repaso, pero iniciaba la cola SRS general en vez de limitarse a los IDs recomendados. Además, una respuesta «Bien» dentro de las 12 horas aumentaba los aciertos pero salía antes de actualizar repetición/fecha/próximo repaso; el historial acumulado seguía provocando que el recomendador volviera a ofrecer esas palabras.
+- Corrección: la sesión de refuerzo recibe los IDs recomendados y filtra la cola a esas palabras; una respuesta correcta el mismo día cuenta como recuerdo satisfactorio con intervalo conservador de al menos un día; el recomendador deja de insistir con errores históricos cuando ya existe una repetición correcta (los errores se conservan en estadísticas). Las palabras marcadas manualmente siguen siendo elegibles hasta calificarlas.
+- Alcance: index.html, pruebas tests/adaptive-learning.test.cjs y este registro. Sin cambios al esquema IndexedDB v1, backup JSON v3, currículo ni dependencias. CI pendiente.
+- Fuente: inspección de SRSEngine.recordAttempt(), SRSEngine.startSession(), App.updateSrsView() y AdaptiveLearning.recommend(); 25 nov 2026.
+
 ## 2026-11-25 — Fase 7: recomendar la evaluación final pendiente en Aprender
 
 - Diagnóstico: si todas las lecciones de la unidad A1 actual estaban completas pero faltaba aprobar su evaluación final, el cálculo no encontraba una lección pendiente; A2 seguía bloqueado por esa evaluación. El recomendador devolvía `action: 'none'` y ocultaba la tarjeta, aunque existía una acción necesaria para continuar.

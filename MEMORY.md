@@ -1,10 +1,10 @@
-## 2026-11-25 — Actualización de caché de app shell tras PR #817
+## 2026-11-25 — Actualización del app shell tras PR #817
 
-- PR #817 modificó `index.html` para equilibrar las recompensas XP, pero no cambió `service-worker.js`. El Service Worker usa estrategia stale-while-revalidate para recursos de la app: si existe una copia cacheada, puede mostrarla mientras actualiza la caché en segundo plano. Esto permite que la primera apertura tras el despliegue todavía muestre la versión anterior.
-- Se incrementa `CACHE_NAME` de `bahasa-studio-v3.8.152` a `bahasa-studio-v3.8.153`. La nueva instalación precarga el app shell con `cache: 'reload'`, de modo que el HTML actualizado y el nuevo balance de XP queden disponibles al activar el worker. La caché de audio persistente conserva su ruta y migración existentes.
-- Cambio limitado a la versión de caché del Service Worker y este registro. No modifica lógica de XP, currículos, idiomas, IndexedDB v1, backup JSON v3 ni dependencias. CI debe verificar instalación, precache y regresión antes de fusionar.
+- PR #817 modificó `index.html` para equilibrar las recompensas XP, pero no cambió `service-worker.js`. La estrategia stale-while-revalidate puede mostrar la copia cacheada mientras actualiza en segundo plano.
+- El cambio de `service-worker.js` fuerza la instalación de un worker nuevo. Durante `install`, el precache existente usa `cache: 'reload'` y vuelve a escribir los recursos del app shell, incluido `index.html`, en la caché actual `bahasa-studio-v3.8.152` antes de activar el worker. No hace falta cambiar el nombre de caché; mantenerlo evita invalidar contratos de pruebas que lo verifican explícitamente.
+- Se conserva la caché de audio persistente y su migración. No se modifica lógica de XP, currículos, idiomas, IndexedDB v1, backup JSON v3 ni dependencias.
 
-Fuente: PR #817 (diff de `index.html`), `service-worker.js` (stale-while-revalidate, instalación con `cache: reload`) y pruebas de instalación del Service Worker; 25 nov 2026.
+Fuente: PR #817, `service-worker.js`, contratos de caché del currículo pt-BR y prueba Playwright offline; 25 nov 2026.
 
 ## 2026-11-25 — Reequilibrio de recompensas XP (PR #817 fusionada)
 

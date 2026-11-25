@@ -533,9 +533,11 @@ test('adaptive lesson candidates exclude units that are still locked by course p
   assert.ok(start >= 0 && end > start, 'adaptive candidate-building block must exist');
   const candidateBlock = html.slice(start, end);
   const unlockGuard = candidateBlock.indexOf('if (!isUnitUnlocked(level, unit, this.completedUnits, this.completedLessons)) continue;');
+  const unfinishedLessons = candidateBlock.indexOf('const unfinishedLessons =');
   const candidatePush = candidateBlock.indexOf('skillLessons.push({');
   const nextLessonAssignment = candidateBlock.indexOf('if (!nextLesson)');
   assert.ok(unlockGuard >= 0, 'unit eligibility must be checked before building recommendations');
-  assert.ok(nextLessonAssignment < 0 || unlockGuard < nextLessonAssignment, 'locked units must not become next-lesson recommendations');
-  assert.ok(candidatePush < 0 || unlockGuard < candidatePush, 'locked units must not enter skill-lesson candidates');
+  assert.ok(unfinishedLessons >= 0 && nextLessonAssignment >= 0 && candidatePush >= 0, 'both recommendation paths must remain covered');
+  assert.ok(unlockGuard < unfinishedLessons && unlockGuard < nextLessonAssignment && unlockGuard < candidatePush,
+    'locked units must be excluded before either next-lesson or skill-lesson candidates are built');
 });

@@ -372,6 +372,7 @@ test('adaptive recommendation is visible on Aprender and refreshes on initial lo
   assert.match(html, /this\.renderCourseRoute\(\);\s*this\.updateSrsView\(\);/);
   assert.match(html, /viewId === 'srs' \|\| viewId === 'profile' \|\| viewId === 'route'/);
   assert.match(html, /\.adaptive-recommendation-sticky\s*\{\s*position:sticky;\s*top:62px;/);
+  assert.match(html, /#adaptiveRecommendationLearn \.guardi-empty-illustration,#adaptiveRecommendationLearn \.guardi-empty-message \{ display:none; \}/);
 });
 
 test('weakest skill ranking compares exact accuracy before applying display rounding or tie-breakers', () => {

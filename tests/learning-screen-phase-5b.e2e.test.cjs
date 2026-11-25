@@ -572,8 +572,21 @@ test('translation bubble exposes expanded state and supports keyboard open and E
       'The synthetic word button must retain focus before keyboard activation');
     await page.evaluate(() => {
       window.__keyboardBubbleEvents = [];
+      // Observe the same event immediately after the app's window-capture handler.
+      window.addEventListener('keydown', event => {
+        if (event.key !== 'Enter' && event.key !== ' ') return;
+        const trigger = document.getElementById('keyboardTranslationTrigger');
+        window.__keyboardBubbleEvents.push({
+          type: 'window-keydown-after-app', key: event.key,
+          target: event.target?.id || event.target?.tagName || null,
+          defaultPrevented: event.defaultPrevented,
+          bubbleHidden: document.getElementById('tapTranslationBubble')?.hidden,
+          triggerExpanded: trigger?.getAttribute('aria-expanded')
+        });
+      }, true);
       document.addEventListener('keydown', event => window.__keyboardBubbleEvents.push({
-        type: 'keydown', key: event.key, target: event.target?.id || event.target?.tagName || null
+        type: 'document-keydown', key: event.key, target: event.target?.id || event.target?.tagName || null,
+        defaultPrevented: event.defaultPrevented
       }), true);
       document.addEventListener('click', event => window.__keyboardBubbleEvents.push({
         type: 'click', detail: event.detail, target: event.target?.id || event.target?.tagName || null

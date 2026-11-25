@@ -122,6 +122,18 @@
             }, focus);
         }
 
+        const assessment = data.nextAssessment;
+        if (assessment && typeof assessment.unitId === 'string' && assessment.unitId) {
+            return contextualize({
+                type: 'complete-unit-assessment',
+                title: 'Completa la prueba final de la unidad',
+                description: [assessment.unitTitle, 'Ya terminaste sus lecciones. Supera la evaluación para desbloquear la siguiente unidad.'].filter(Boolean).join(' · '),
+                action: 'assessment',
+                label: 'Hacer prueba final',
+                unitId: assessment.unitId
+            }, focus);
+        }
+
         if (weakWords.length) {
             return contextualize({
                 type: 'reinforce-weak',

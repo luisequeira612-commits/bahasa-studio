@@ -1011,3 +1011,43 @@ test('Aprender review card starts the existing SRS session when due reviews exis
     await new Promise(resolve => server.close(resolve));
   }
 });
+
+test('Aprender recommends and opens the final assessment when all lessons in the current A1 unit are complete', async () => {
+  const { server, url } = await startServer();
+  const browser = await chromium.launch({ headless: true });
+  const context = await browser.newContext({ viewport: { width: 360, height: 740 }, serviceWorkers: 'block', reducedMotion: 'reduce' });
+  const page = await context.newPage();
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
+    await page.waitForSelector('.learning-unit-node.node-current');
+    const seeded = await page.evaluate(async () => {
+      const a1 = CourseData.levels.find(level => level.id === 'A1');
+      const unit = a1 && a1.units[0];
+      if (!unit || !buildUnitAssessmentItems(unit).length) throw new Error('A1 first unit must have a final assessment');
+      App.completedUnits = [];
+      App.completedLessons = buildUnitLessons(unit).map(lesson => unitLessonProgressKey(unit.id, lesson.index));
+      await DB.set('settings', 'completedUnits', App.completedUnits);
+      await DB.set('settings', 'completedLessons', App.completedLessons);
+      await App.updateSrsView();
+      return { unitId: unit.id, completedLessons: App.completedLessons.length };
+    });
+
+    const card = page.locator('#adaptiveLearningRecommendationLearn');
+    await page.waitForFunction(() => {
+      const host = document.getElementById('adaptiveLearningRecommendationLearn');
+      return Boolean(host && !host.hidden && host.querySelector('button:not(:disabled)'));
+    });
+    assert.match(await card.locator('h3').innerText(), /prueba final de la unidad/i);
+    assert.equal(await card.locator('button').innerText(), 'Hacer prueba final');
+    await card.locator('button').click();
+    await page.waitForFunction(() => document.getElementById('view-lesson').classList.contains('active') && LessonEngine.assessmentMode);
+    assert.equal(await page.evaluate(() => LessonEngine.currentUnit.id), seeded.unitId);
+    assert.ok(seeded.completedLessons > 0);
+  } finally {
+    await context.close();
+    await browser.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});

@@ -484,6 +484,7 @@ test('learner skill profile uses the same ten-attempt confidence threshold as ad
 test('adaptive recommendations select only the active language skill profile', () => {
   const result = AdaptiveLearning.recommend({
     language: 'pt-BR',
+    supportedLanguages: ['id', 'pt-BR', 'en'],
     skillStatsByLanguage: {
       id: { translation: { attempts: 10, correct: 2 } },
       'pt-BR': { listening: { attempts: 10, correct: 3 } }
@@ -495,8 +496,31 @@ test('adaptive recommendations select only the active language skill profile', (
   assert.deepEqual(JSON.parse(JSON.stringify(AdaptiveLearning.skillStatsForLanguage({
     id: { recognition: { attempts: 10, correct: 9 } },
     en: { writing: { attempts: 10, correct: 4 } }
-  }, 'en'))), { writing: { attempts: 10, correct: 4 } });
+  }, 'en', ['id', 'en']))), { writing: { attempts: 10, correct: 4 } });
   assert.deepEqual(JSON.parse(JSON.stringify(AdaptiveLearning.skillStatsForLanguage({
     id: { recognition: { attempts: 10, correct: 9 } }
-  }, 'xx'))), {});
+  }, 'xx', ['id', 'en']))), {});
+});
+
+
+test('adaptive skill profile accepts new codes from the supplied central catalog only', () => {
+  const profiles = {
+    id: { recognition: { attempts: 10, correct: 8 } },
+    xx: { listening: { attempts: 10, correct: 3 } },
+    yy: { writing: { attempts: 10, correct: 2 } }
+  };
+  assert.deepEqual(JSON.parse(JSON.stringify(
+    AdaptiveLearning.skillStatsForLanguage(profiles, 'xx', ['id', 'xx'])
+  )), { listening: { attempts: 10, correct: 3 } });
+  assert.deepEqual(JSON.parse(JSON.stringify(
+    AdaptiveLearning.skillStatsForLanguage(profiles, 'yy', ['id', 'xx'])
+  )), {});
+  assert.deepEqual(JSON.parse(JSON.stringify(
+    AdaptiveLearning.skillStatsForLanguage(profiles, 'xx')
+  )), {});
+});
+
+test('adaptive dashboard passes the LanguageManager catalog to the pure recommendation module', () => {
+  const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+  assert.ok(html.includes('supportedLanguages: LanguageManager.list().map(({ code }) => code)'));
 });

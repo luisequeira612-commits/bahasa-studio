@@ -26,9 +26,12 @@
         conversation: 'conversación'
     };
 
-    function skillStatsForLanguage(profiles, language) {
+    function skillStatsForLanguage(profiles, language, supportedLanguages) {
+        const supportedCodes = Array.isArray(supportedLanguages)
+            ? supportedLanguages.filter(code => typeof code === 'string')
+            : [];
         if (!profiles || typeof profiles !== 'object' || Array.isArray(profiles) ||
-            typeof language !== 'string' || !/^(?:pt-BR|en|it|fr|de|nl|ru|ja|ko|id)$/.test(language)) return {};
+            typeof language !== 'string' || !supportedCodes.includes(language)) return {};
         const stats = profiles[language];
         return stats && typeof stats === 'object' && !Array.isArray(stats) ? stats : {};
     }
@@ -92,7 +95,7 @@
     function recommend(input) {
         const data = input && typeof input === 'object' ? input : {};
         const languageStats = data.skillStatsByLanguage
-            ? skillStatsForLanguage(data.skillStatsByLanguage, data.language)
+            ? skillStatsForLanguage(data.skillStatsByLanguage, data.language, data.supportedLanguages)
             : data.skillStats;
         const focus = weakestSkill(languageStats);
         const dueCount = count(data.dueCount);

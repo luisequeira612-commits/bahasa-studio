@@ -191,3 +191,12 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Se amplió únicamente la instrumentación E2E en `tests/learning-screen-phase-5b.e2e.test.cjs` para registrar mutaciones de `hidden`/`aria-expanded`, `scroll`, `resize`, `pointerdown` y `click` con marcas de tiempo. No se tocó producción ni se relajaron aserciones.
 - Nuevo commit diagnóstico: `356425b81a5386e654acdf6f02661bcad2b47635`. Pendiente CI para identificar qué evento/handler provoca el cierre. PR #833 permanece abierta y no fusionada.
 - Fuente: log del job test #139415663217 (run #45673026022), prueba 112 y commit `356425b`; 25 nov 2026.
+
+ 
+## 2026-11-25 — Corrección del refuerzo de vocabulario tras una respuesta correcta
+
+- Diagnóstico: el recomendador de palabras débiles seguía seleccionando entradas por errores acumulados aunque la repetición SRS más reciente ya había sido correcta. Además, `mergeSrsRecords()` combinaba el indicador manual con `records.some(savedForReview)`, lo que permitía que una marca antigua de un registro duplicado prevaleciera sobre una calificación posterior.
+- Corrección: los candidatos adaptativos persistentes requieren errores y repetición actual en cero, salvo los marcados manualmente para repasar. La marca manual combinada ahora sigue el evento de estado más reciente (`markedAt`, con fallback a `lastReviewed`); cada calificación registra el momento en que limpia esa marca.
+- Se conserva el total histórico de errores y la programación SM-2. No se modifica IndexedDB v1, el formato de backup JSON v3, el currículo ni las dependencias.
+- Pruebas de regresión: una marca manual antigua no prevalece sobre una calificación posterior; las recomendaciones excluyen palabras cuya última repetición fue correcta.
+- Fuente: inspección de `mergeSrsRecords()`, `SRSEngine.recordAttempt()` y el cálculo `rankedWordHistory` en `index.html`; 25 nov 2026. Pendiente CI y validación funcional en el dispositivo.

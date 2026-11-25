@@ -858,3 +858,47 @@ test('learning screen remains usable without horizontal overflow at 320px', asyn
     await new Promise(resolve => server.close(resolve));
   }
 });
+
+test('Aprender recommendation action starts the lesson selected by the adaptive engine', async () => {
+  const { server, url } = await startServer();
+  const browser = await chromium.launch({ headless: true });
+  const context = await browser.newContext({ viewport: { width: 360, height: 740 }, serviceWorkers: 'block', reducedMotion: 'reduce' });
+  const page = await context.newPage();
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
+    await page.waitForFunction(() => {
+      const host = document.getElementById('adaptiveRecommendationLearn');
+      return Boolean(host && host.querySelector('button'));
+    });
+    await page.evaluate(() => {
+      window.__startedRecommendedLesson = null;
+      LessonEngine.startUnitById = (unitId, lessonIndex) => {
+        window.__startedRecommendedLesson = { unitId, lessonIndex };
+      };
+      App.renderAdaptiveRecommendation({
+        dueCount: 0,
+        weakWords: [],
+        nextLesson: { unitId: 'a1_u1', lessonIndex: 0, unitTitle: 'Unidad 1', title: 'Lección 1' },
+        todayXp: 30,
+        dailyGoal: 30
+      });
+    });
+
+    const action = page.locator('#adaptiveRecommendationLearn button');
+    assert.equal(await action.innerText(), 'Continuar aprendiendo');
+    await action.click();
+    await page.waitForFunction(() => window.__startedRecommendedLesson &&
+      window.__startedRecommendedLesson.unitId === 'a1_u1' &&
+      window.__startedRecommendedLesson.lessonIndex === 0);
+    assert.deepEqual(await page.evaluate(() => window.__startedRecommendedLesson), {
+      unitId: 'a1_u1',
+      lessonIndex: 0
+    });
+  } finally {
+    await context.close();
+    await browser.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});

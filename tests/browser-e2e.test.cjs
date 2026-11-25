@@ -1358,7 +1358,7 @@ test('Indonesian voices discovered asynchronously refresh the selector', async (
 });
 
 
-test('guided A1 writing shows task-specific review criteria and records progress only after self-assessment', async () => {
+test('guided A1 writing records self-assessment without awarding XP before lesson completion', async () => {
   const { server, url } = await startServer();
   const context = await browser.newContext({ serviceWorkers: 'block' });
   const page = await context.newPage();
@@ -1408,7 +1408,8 @@ test('guided A1 writing shows task-specific review criteria and records progress
       'writing must not award XP before the learner explicitly self-assesses');
 
     await page.getByRole('button', { name: 'Sí, cumplí los criterios' }).click();
-    await page.waitForFunction(previous => App.xp >= previous + 3, before);
+    assert.equal(await page.evaluate(() => App.xp), before,
+      'guided writing must not award lesson XP before the lesson is completed for the first time');
     await page.waitForFunction(async () => {
       const record = await DB.get('srs', 'v44');
       return record && record.attempts === 1;

@@ -56,5 +56,5 @@ test('lesson audio speed selector is visible and synchronized with settings', ()
 
 test('unit assessment mode does not award XP or write SRS attempts', () => {
   assert.match(html, /if \(ex\.vocabId && !this\.assessmentMode\)/);
-  assert.match(html, /if \(isCorrect && !this\.assessmentMode\) App\.addXp\(3\)/);
+  assert.doesNotMatch(html, /if \(isCorrect && !this\.assessmentMode\) App\.addXp\(3\)/);
 });

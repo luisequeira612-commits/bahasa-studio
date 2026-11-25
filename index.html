@@ -18763,7 +18763,7 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                 const checklistMarkup = checklist.map(item => '<li>' + App.escapeHtml(item) + '</li>').join('');
                 const selfAssessmentNote = this.assessmentMode
                     ? 'Tu valoración es una autoevaluación orientativa; no sustituye una revisión lingüística.'
-                    : 'En el curso, marcar que lo conseguiste registra 3 XP y un intento de repaso espaciado. Si necesitas practicar, la actividad se programa para repetirla. Esta elección registra tu autoevaluación: no corrige automáticamente la gramática ni demuestra que cada frase sea la única forma correcta.';
+                    : 'En el curso, marcar que lo conseguiste cuenta como una respuesta correcta para la recompensa de la lección (1 XP, hasta 10 XP al completarla por primera vez). Si necesitas practicar, la actividad se programa para repetirla. Esta elección registra tu autoevaluación: no corrige automáticamente la gramática ni demuestra que cada frase sea la única forma correcta.';
                 area.classList.add('lesson-feedback-sheet', 'neutral');
                 area.innerHTML = `
                     <div class="feedback-box">
@@ -18787,7 +18787,7 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                 this.vibrateFeedback();
                 if (!this.assessmentMode && !isCorrect && !ex._r) this.retry.push({ ...ex, _r: true });
                 if (ex.vocabId && !this.assessmentMode) SRSEngine.recordAttempt(ex.vocabId, isCorrect ? 3 : 1).catch(err => console.error('No se pudo registrar el intento SRS:', err));
-                if (isCorrect && !this.assessmentMode) App.addXp(3);
+                // Lesson XP is granted once, after the first successful completion.
                 const actionArea = document.getElementById('actionArea');
                 actionArea.classList.add('lesson-feedback-sheet', isCorrect ? 'correct' : 'wrong');
                 actionArea.innerHTML = `
@@ -18824,7 +18824,7 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                     </div>
                     <button class="btn" type="button" onclick="LessonEngine.nextStep(${isCorrect})">Continuar</button>
                 `;
-                if (isCorrect && !this.assessmentMode) App.addXp(3);
+                // Lesson XP is granted once, after the first successful completion.
             },
             nextStep() {
                 if (this.stepIndex + 1 >= this.queue.length && this.retry.length) { this.queue.push(...this.retry); this.retry = []; }
@@ -18888,6 +18888,8 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                 if (!App.completedLessons.includes(lessonKey)) {
                     App.completedLessons.push(lessonKey);
                     await DB.set('settings', 'completedLessons', App.completedLessons);
+                    // Reward only a first completion; count first-attempt correct answers and cap each lesson at 10 XP.
+                    App.addXp(Math.min(this.sessionCorrect, 10));
                     App.recordStudyActivity('lesson', 0).catch(err => console.error('No se pudo guardar la actividad diaria:', err));
                 }
 

@@ -48,8 +48,9 @@ test('lesson completion summarizes session XP, first-attempt precision and curre
     assert.match(css, /\.lesson-results-grid/);
 });
 
-test('lesson flow preserves the existing XP and progress recording entry points', () => {
-    assert.match(html, /if \(isCorrect && !this\.assessmentMode\) App\.addXp\(3\)/);
+test('lesson flow preserves first-completion XP and progress recording entry points', () => {
+    assert.doesNotMatch(html, /if \(isCorrect && !this\.assessmentMode\) App\.addXp\(3\)/);
+    assert.match(html, /App\.addXp\(Math\.min\(this\.sessionCorrect, 10\)\)/);
     assert.match(html, /SRSEngine\.recordAttempt\(ex\.vocabId/);
     assert.match(html, /DB\.set\('settings', 'completedLessons', App\.completedLessons\)/);
     assert.match(html, /App\.recordStudyActivity\('lesson', 0\)/);

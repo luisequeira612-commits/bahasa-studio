@@ -50,7 +50,10 @@ test('conversation dictation starts from its button and keeps cancellation and p
     );
     assert.match(conversation, /target\.closest\('\[data-conversation-speech\]'\)/);
     assert.match(conversation, /ConversationEngine\.captureFreeResponse\(speechButton\)/);
-    assert.match(conversation, /recognition\.lang\s*=\s*'id-ID'/);
+    assert.match(conversation, /recognition\.lang\s*=\s*locale/);
+    assert.match(conversation, /manager\.getActiveLanguage\(\)/);
+    assert.match(conversation, /manager\.getLanguage\(activeCode\)/);
+    assert.match(conversation, /responde en '\s*\+ String\(languageName\)/);
     assert.match(conversation, /recognition\.continuous\s*=\s*false/);
     assert.match(conversation, /recognition\.abort\(\)/);
     assert.match(conversation, /El micrófono solo se activa al pulsar\. El navegador puede procesar el audio; la app no guarda grabaciones\./);

@@ -524,3 +524,18 @@ test('adaptive dashboard passes the LanguageManager catalog to the pure recommen
   const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
   assert.ok(html.includes('supportedLanguages: LanguageManager.list().map(({ code }) => code)'));
 });
+
+
+test('adaptive lesson candidates exclude units that are still locked by course progression', () => {
+  const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+  const start = html.indexOf('let nextLesson = null;');
+  const end = html.indexOf('if (weakestSkill && typeof AdaptiveLearning.selectSkillLesson', start);
+  assert.ok(start >= 0 && end > start, 'adaptive candidate-building block must exist');
+  const candidateBlock = html.slice(start, end);
+  const unlockGuard = candidateBlock.indexOf('if (!isUnitUnlocked(level, unit, this.completedUnits, this.completedLessons)) continue;');
+  const candidatePush = candidateBlock.indexOf('skillLessons.push({');
+  const nextLessonAssignment = candidateBlock.indexOf('if (!nextLesson)');
+  assert.ok(unlockGuard >= 0, 'unit eligibility must be checked before building recommendations');
+  assert.ok(nextLessonAssignment < 0 || unlockGuard < nextLessonAssignment, 'locked units must not become next-lesson recommendations');
+  assert.ok(candidatePush < 0 || unlockGuard < candidatePush, 'locked units must not enter skill-lesson candidates');
+});

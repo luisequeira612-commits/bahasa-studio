@@ -362,7 +362,7 @@ test('legacy word recommendations without error counters remain compatible', () 
 
 test('adaptive dashboard separates repeated word errors from isolated mistakes using SRS history', () => {
   const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
-  assert.match(html, /item\.savedForReview \|\| item\.incorrect >= 2/);
+  assert.match(html, /item\.savedForReview \|\| item\.incorrect >= 2 &&/);
   assert.match(html, /item\.incorrect === 1/);
   assert.match(html, /isolatedWords,/);
   assert.match(html, /incorrect: history\.incorrect/);

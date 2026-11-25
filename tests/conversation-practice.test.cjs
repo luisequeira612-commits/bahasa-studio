@@ -185,11 +185,38 @@ test('free response cannot reveal an example before the learner attempts an answ
 
 test('free-response speech capture is optional and never persists audio, XP, SRS attempts, or response text', () => {
   assert.match(source, /window\.SpeechRecognition \|\| window\.webkitSpeechRecognition/);
-  assert.match(source, /recognition\.lang = 'id-ID'/);
+  assert.match(source, /recognition\.lang = locale/);
+  assert.match(source, /manager\.getActiveLanguage\(\)/);
+  assert.match(source, /manager\.getLanguage\(activeCode\)/);
   assert.match(source, /la app no guarda grabaciones/);
   assert.doesNotMatch(source, /App\.addXp|SRSEngine\.recordAttempt|DB\.set|MediaRecorder/);
 });
 
+
+
+test('free-response speech capture uses the active course locale and display name at runtime', () => {
+  let recognition;
+  class FakeRecognition {
+    constructor() { recognition = this; }
+    start() {}
+    abort() {}
+  }
+  sandbox.window.SpeechRecognition = FakeRecognition;
+  sandbox.window.LanguageManager = {
+    getActiveLanguage: () => 'pt-BR',
+    getLanguage: code => code === 'pt-BR'
+      ? { code, locale: 'pt-BR', name: 'Portugués de Brasil' }
+      : null
+  };
+  elements.conversationSpeechStatus = { textContent: '' };
+  elements.conversationFreeResponse = { value: '' };
+  elements.conversationSpeechCancel = { disabled: true };
+  const button = { disabled: false };
+  sandbox.window.ConversationEngine.captureFreeResponse(button);
+  assert.equal(recognition.lang, 'pt-BR');
+  assert.match(elements.conversationSpeechStatus.textContent, /portugués de brasil/i);
+  assert.equal(button.disabled, true);
+});
 
 test('a completed conversation records one aggregate session without scoring free responses', () => {
   const engine = sandbox.window.ConversationEngine;

@@ -17,9 +17,10 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Verificación post-merge #45578296681 (regresión + calidad offline) y Pages #45578296958: success. Prueba física en Tecno Pova 4 (720×1640) pendiente.
 - Fuente: PR #822, `index.html`, `study-activity.js`, pruebas XP/actividad y Actions; 25 nov 2026.
 
-## 2026-11-25 — Prueba E2E de XP por primera finalización (en preparación)
+## 2026-11-25 — Prueba E2E de XP por primera finalización (PR #824 integrada)
 
-- Rama `test/lesson-xp-first-completion-e2e`: se añade una prueba Chromium con IndexedDB real para verificar que completar por primera vez una lección concede el XP esperado, repetirla no concede XP adicional y abandonar otra lección no concede XP pendiente.
-- La prueba utiliza la ruta real de inicio/finalización y `recordFirstAttempt` de `LessonEngine`, sin inyectar manualmente el contador de aciertos; no modifica la lógica de recompensas, el currículo, IndexedDB, el backup JSON v3 ni dependencias.
-- CI del head `a74107d98375cdcd02c520add7ee8425228137a2`, run [#45580851785](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45580851785): `test` y `Offline quality reports` success; sin reviews ni comentarios pendientes. PR lista para integrar.
-- Fuente: `tests/browser-e2e.test.cjs`, `tests/xp-rewards.test.cjs` y auditoría PR #822/#823; 25 nov 2026.
+- PR #824 integrada en `main` mediante squash: `2f8cb27457f36cdd06566ff89803b677d8317a04`.
+- La prueba Chromium con IndexedDB real usa el inicio/finalización de `LessonEngine` y `recordFirstAttempt`; verifica que la primera finalización concede el XP correspondiente, repetir la lección no concede XP adicional y abandonar otra lección no concede XP pendiente.
+- CI de la cabeza final de la PR, `6c57ca81b8b3e1cb05c9110c1ccbfca545d60d59`, run [#45581329768](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45581329768): `test` y `Offline quality reports` success. Sin reviews ni comentarios pendientes.
+- Verificación post-merge de regresión y Pages pendiente en el momento de esta actualización. La prueba física en Tecno Pova 4 (720×1640) sigue pendiente.
+- Fuente: PR #824, `tests/browser-e2e.test.cjs`, `tests/xp-rewards.test.cjs` y GitHub Actions; 25 nov 2026.

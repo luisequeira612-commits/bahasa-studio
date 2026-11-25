@@ -624,6 +624,37 @@ test('Aprender keeps the compact SRS card separate from the actionable lesson re
 test('successful SRS grades are recorded and do not remain adaptive weak words', () => {
   const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
   assert.match(html, /item\.lastQuality = quality/);
-  assert.match(html, /item\.savedForReview \|\| item\.incorrect >= 2[\\s\\S]*item\.lastQuality < 3/);
   assert.match(html, /lastQuality: history\.lastQuality/);
+
+  const filterMatch = html.match(
+    /\.filter\(\(\[, item\]\) => ([\\s\\S]*?)\)\\s*\.slice\(0, 5\)\\.map/
+  );
+  assert.ok(filterMatch, 'the weak-word filter must remain present in the dashboard');
+  const isWeakWord = new Function('item', `return (${filterMatch[1]});`);
+
+  assert.equal(
+    isWeakWord({ savedForReview: false, incorrect: 2, lastQuality: 3 }),
+    false,
+    'a word marked Bien must leave weak recommendations'
+  );
+  assert.equal(
+    isWeakWord({ savedForReview: false, incorrect: 2, lastQuality: 5 }),
+    false,
+    'a word marked Fácil must leave weak recommendations'
+  );
+  assert.equal(
+    isWeakWord({ savedForReview: false, incorrect: 2, lastQuality: 1 }),
+    true,
+    'a persistent error with a low latest grade remains weak'
+  );
+  assert.equal(
+    isWeakWord({ savedForReview: false, incorrect: 1, lastQuality: 1 }),
+    false,
+    'a single error is not a persistent weak word'
+  );
+  assert.equal(
+    isWeakWord({ savedForReview: true, incorrect: 0, lastQuality: 5 }),
+    true,
+    'manual review saves retain priority even after a successful grade'
+  );
 });

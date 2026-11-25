@@ -1,3 +1,10 @@
+## 2026-11-25 — Persistencia E2E de la aprobación de evaluación final
+
+- La E2E existente de progresión ya comprobaba evaluación insuficiente → unidad siguiente bloqueada → evaluación aprobada → unidad siguiente desbloqueada.
+- Se refuerza la misma prueba para leer `completedUnits` directamente desde IndexedDB después de aprobar y, tras recargar la aplicación, confirmar que la unidad aprobada sigue guardada y que la siguiente continúa desbloqueada.
+- Cambio exclusivo de pruebas en `tests/browser-e2e.test.cjs`; sin cambios de runtime, currículo, esquema IndexedDB v1, backup JSON v3 ni dependencias.
+- Fuente: prueba E2E de progresión existente y ampliación de sus aserciones; 25 nov 2026.
+
 ## 2026-11-25 — Normalización transversal de respuestas escritas
 
 - El evaluador de respuestas escritas elimina diacríticos antes de comparar cualquier respuesta, también en indonesio; conserva la normalización de mayúsculas, puntuación y espacios. «Saya dari Perú» y «saya dari peru» se aceptan para «Saya dari Peru.».

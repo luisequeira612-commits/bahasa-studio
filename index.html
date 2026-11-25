@@ -20507,6 +20507,7 @@ Requisitos:
                         button.disabled = true;
                         try {
                             if (recommendation.action === 'review') {
+                                App.switchView('srs');
                                 await SRSEngine.startSession();
                             } else if (recommendation.action === 'reinforce') {
                                 for (const wordId of recommendation.wordIds) await SRSEngine.markForReview(wordId);

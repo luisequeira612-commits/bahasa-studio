@@ -20454,7 +20454,7 @@ Requisitos:
                     const isLearnReviewCard = host.id === 'adaptiveRecommendationLearn';
                     const isLearnRecommendationCard = host.id === 'adaptiveLearningRecommendationLearn';
                     if (isLearnReviewCard) {
-                        if (reviewCount === 0 || recommendation.action !== 'review') {
+                        if (reviewCount === 0) {
                             host.hidden = true;
                             return;
                         }
@@ -20512,11 +20512,12 @@ Requisitos:
                     button.setAttribute('aria-describedby', description.id);
                     button.className = 'btn';
                     button.textContent = isLearnReviewCard ? 'Repasar' : recommendation.label;
-                    button.disabled = recommendation.action === 'none';
+                    const action = isLearnReviewCard ? 'review' : recommendation.action;
+                    button.disabled = action === 'none';
                     button.addEventListener('click', async () => {
                         button.disabled = true;
                         try {
-                            if (recommendation.action === 'review') {
+                            if (action === 'review') {
                                 App.switchView('srs');
                                 await SRSEngine.startSession();
                             } else if (recommendation.action === 'reinforce') {
@@ -21052,7 +21053,7 @@ Requisitos:
                     event.preventDefault();
                     close(true);
                 }
-            });
+            }, true);
             window.addEventListener('resize', close);
             window.addEventListener('scroll', close, true);
         }

@@ -42,10 +42,10 @@
         return selected;
     }
 
-    async function setActiveLanguage(code) {
+    async function setActiveLanguage(code, { persist = true } = {}) {
         if (!supported(code)) throw new Error('Código de idioma no soportado.');
         if (!LANGUAGES[code].available) throw new Error('Este curso todavía no está disponible.');
-        if (adapter && typeof adapter.write === 'function') await adapter.write(code);
+        if (persist && adapter && typeof adapter.write === 'function') await adapter.write(code);
         return apply(code);
     }
 

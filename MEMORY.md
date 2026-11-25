@@ -1,8 +1,17 @@
+## 2026-11-25 — Restauración de backup sin escritura redundante del idioma activo
+
+- La transacción `DB.replaceBackupData` ya guarda `activeLanguage` junto con los datos del backup. El flujo de importación llamaba después a `LanguageManager.setActiveLanguage`, que volvía a escribir el mismo ajuste en una segunda transacción; si esa escritura redundante fallaba, la restauración ya estaba confirmada pero la interfaz mostraba error y no sincronizaba el estado en memoria.
+- `LanguageManager.setActiveLanguage` ahora admite `{ persist: false }` para aplicar el estado en memoria después de una restauración cuya persistencia ya quedó confirmada en la transacción principal. La selección normal de idioma mantiene la escritura persistente por defecto.
+- Se añade cobertura unitaria y un contrato de importación para impedir la segunda escritura. No cambia IndexedDB v1, backup JSON v3, datos curriculares, dependencias ni disponibilidad de idiomas.
+- La corrección evita una ruta de fallo parcial sin alterar la transacción atómica ni el formato de copia.
+
+Fuente: `language-manager.js`, `index.html`, `tests/language-manager.test.cjs`, `tests/backup-validation.test.cjs`; 25 nov 2026.
+
 ## 2026-11-25 — Cobertura E2E de restauración sin pérdida entre idiomas
 
 - Se amplía la prueba de restauración en Chromium real: antes de importar un backup v3 de indonesio se guardan registros SRS con el mismo ID lógico bajo namespaces pt-BR y en, además de XP específico de pt-BR.
 - Tras importar, la prueba exige que se reemplace el SRS indonesio antiguo y que permanezcan intactos los registros y ajustes de los otros idiomas. Esto valida la frontera entre restauración del curso activo y datos futuros/aislados, sin declarar disponible ni activar esos cursos.
-- Solo cambia cobertura E2E y esta memoria; no cambia runtime, currículos, IndexedDB v1, backup JSON v3, dependencias ni disponibilidad de idiomas. Pendiente: CI antes de integrar.
+- Solo cambia cobertura E2E y esta memoria; no cambia runtime, currículos, IndexedDB v1, backup JSON v3, dependencias ni disponibilidad de idiomas. PR #803 fusionada en `main`; regresión post-merge #45531735793 y GitHub Pages #45531734505 terminaron en success.
 
 Fuente: `tests/browser-e2e.test.cjs`, `progress-namespace.js` y `index.html` (DB/backup); 25 nov 2026.
 

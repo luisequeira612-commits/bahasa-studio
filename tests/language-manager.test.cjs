@@ -57,6 +57,21 @@ test('initialization restores the study language while keeping the Spanish appli
     assert.deepEqual(writes, []);
 });
 
+test('restored language can be applied without a redundant persistence write', async () => {
+    const { api } = createManager();
+    const writes = [];
+    const changes = [];
+    await api.init({ read: async () => 'id', write: async code => writes.push(code), onChange: code => changes.push(code) });
+    await api.setActiveLanguage('id');
+    assert.deepEqual(writes, ['id'], 'normal language selection must remain persistent by default');
+    writes.length = 0;
+    changes.length = 0;
+    await api.setActiveLanguage('id', { persist: false });
+    assert.deepEqual(writes, [], 'the backup transaction already persisted the active language');
+    assert.deepEqual(changes, ['id']);
+    assert.equal(api.getActiveLanguage(), 'id');
+});
+
 test('unknown stored values fall back safely to Indonesian', async () => {
     const { api, document } = createManager({ guardi_active_language: '../unknown' });
     assert.equal(await api.init({ read: async () => null, write: async () => {}, onChange: () => {} }), 'id');

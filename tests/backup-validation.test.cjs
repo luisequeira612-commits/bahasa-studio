@@ -86,4 +86,6 @@ test('backup replacement remains a single IndexedDB v1 transaction', () => {
     assert.match(html, /ProgressNamespace\.filterRecords\(store, records, this\.activeLanguage\)/);
     assert.match(html, /LanguageManager\.init\(/);
     assert.match(html, /tx\.oncomplete/);
+    assert.match(html, /await LanguageManager\.setActiveLanguage\(backup\.language, \{ persist: false \}\)/,
+        'after the backup transaction commits, synchronize in-memory language state without a second IndexedDB write');
 });

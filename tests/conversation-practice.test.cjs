@@ -193,6 +193,31 @@ test('free-response speech capture is optional and never persists audio, XP, SRS
 });
 
 
+
+test('free-response speech capture uses the active course locale and display name at runtime', () => {
+  let recognition;
+  class FakeRecognition {
+    constructor() { recognition = this; }
+    start() {}
+    abort() {}
+  }
+  sandbox.window.SpeechRecognition = FakeRecognition;
+  sandbox.window.LanguageManager = {
+    getActiveLanguage: () => 'pt-BR',
+    getLanguage: code => code === 'pt-BR'
+      ? { code, locale: 'pt-BR', name: 'Portugués de Brasil' }
+      : null
+  };
+  elements.conversationSpeechStatus = { textContent: '' };
+  elements.conversationFreeResponse = { value: '' };
+  elements.conversationSpeechCancel = { disabled: true };
+  const button = { disabled: false };
+  sandbox.window.ConversationEngine.captureFreeResponse(button);
+  assert.equal(recognition.lang, 'pt-BR');
+  assert.match(elements.conversationSpeechStatus.textContent, /portugués de brasil/i);
+  assert.equal(button.disabled, true);
+});
+
 test('a completed conversation records one aggregate session without scoring free responses', () => {
   const engine = sandbox.window.ConversationEngine;
   recordedSessions.length = 0;

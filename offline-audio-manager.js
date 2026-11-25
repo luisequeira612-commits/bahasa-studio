@@ -2,7 +2,6 @@
     'use strict';
 
     const CACHE_NAME = 'guardi-audio-v2';
-    const AUDIO_LANGUAGES = new Set(['pt-BR', 'en', 'it', 'fr', 'de', 'nl', 'ru', 'ja', 'ko', 'id']);
     let activeLanguage = 'id';
     const LEVELS = ['A1', 'A2', 'B1', 'B2'];
     const elements = {};
@@ -72,8 +71,11 @@
     }
 
     function languageConfig(language) {
-        const code = AUDIO_LANGUAGES.has(language) ? language : 'id';
         const manager = window.LanguageManager;
+        const requested = typeof language === 'string' ? language : '';
+        const code = manager && typeof manager.isSupported === 'function' && manager.isSupported(requested)
+            ? requested
+            : 'id';
         const config = manager && typeof manager.getLanguage === 'function' ? manager.getLanguage(code) : null;
         const expectedPath = './audio/' + code + '/';
         const path = config && config.audioPath === expectedPath ? config.audioPath : expectedPath;
@@ -81,7 +83,7 @@
     }
 
     function cacheNameForLanguage(language) {
-        const code = AUDIO_LANGUAGES.has(language) ? language : 'id';
+        const code = languageConfig(language).code;
         return code === 'id' ? CACHE_NAME : CACHE_NAME + '-' + code;
     }
 
@@ -158,7 +160,7 @@
         if (!('caches' in window)) throw new Error('Este navegador no permite guardar audio sin conexión.');
         const manager = window.LanguageManager;
         const requested = manager && typeof manager.getActiveLanguage === 'function' ? manager.getActiveLanguage() : 'id';
-        activeLanguage = AUDIO_LANGUAGES.has(requested) ? requested : 'id';
+        activeLanguage = languageConfig(requested).code;
         cache = await caches.open(cacheNameForLanguage(activeLanguage));
         cachedIds = await verifiedCachedIds(cache, manifestEntries, audioHashes);
         return cachedIds;
@@ -176,7 +178,7 @@
     async function loadInventory() {
         const manager = window.LanguageManager;
         const requested = manager && typeof manager.getActiveLanguage === 'function' ? manager.getActiveLanguage() : 'id';
-        activeLanguage = AUDIO_LANGUAGES.has(requested) ? requested : 'id';
+        activeLanguage = languageConfig(requested).code;
         const urls = inventoryUrlsForLanguage(activeLanguage);
         const [manifestResponse, metadataResponse] = await Promise.all([
             fetch(urls.manifest, { cache: 'no-cache' }),

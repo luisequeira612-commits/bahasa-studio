@@ -1,7 +1,7 @@
 ## 2026-11-25 — Service Worker obtiene el catálogo de idiomas del LanguageManager
 
 - La clasificación y separación de cachés de audio del Service Worker ya deriva los códigos admitidos de `LanguageManager.list()` mediante `importScripts('./language-manager.js')`, eliminando la lista duplicada que podía quedar desincronizada del catálogo central.
-- Las pruebas de caché y rangos cargan el LanguageManager real en el entorno aislado; se añade una comprobación de que el Service Worker refleja los diez códigos catalogados y sigue reconociendo `pt-BR` como ruta técnica sin habilitar el curso.
+- Las pruebas de instalación, caché y rangos cargan el LanguageManager real en el entorno aislado; se añade una comprobación de que el Service Worker refleja los diez códigos catalogados y sigue reconociendo `pt-BR` como ruta técnica sin habilitar el curso.
 - No cambia `available`, la selección de cursos, los archivos de audio, la política de privacidad, IndexedDB v1 ni backup JSON v3. Los códigos `available:false` siguen sin ser seleccionables en la interfaz.
 
 Fuente: `service-worker.js`, `language-manager.js` y pruebas `tests/service-worker-audio-cache.test.cjs` / `tests/service-worker-audio-range.test.cjs`; 25 nov 2026.

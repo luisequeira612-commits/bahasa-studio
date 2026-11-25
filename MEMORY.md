@@ -1,3 +1,11 @@
+## 2026-11-25 — Fase 7: catálogo de progreso derivado de LanguageManager
+
+- `progress-namespace.js` ya deriva los códigos admitidos de `LanguageManager.list()`, eliminando la segunda lista técnica que podía desincronizar la separación de progreso por idioma.
+- `index.html` carga `language-manager.js` antes de `progress-namespace.js`; las pruebas usan el gestor real y además simulan un nuevo código catalogado para comprobar que no requiere editar una lista paralela.
+- Se conserva el namespace legacy de indonesio, las claves `codigo::id` de otros idiomas y la lista independiente de ajustes de progreso. No cambia IndexedDB v1, backup JSON v3, disponibilidad de cursos, datos curriculares ni dependencias.
+
+Fuente: `progress-namespace.js`, orden de scripts en `index.html` y `tests/progress-namespace.test.cjs`; 25 nov 2026.
+
 ## 2026-11-25 — Service Worker obtiene el catálogo de idiomas del LanguageManager
 
 - La clasificación y separación de cachés de audio del Service Worker ya deriva los códigos admitidos de `LanguageManager.list()` mediante `importScripts('./language-manager.js')`, eliminando la lista duplicada que podía quedar desincronizada del catálogo central.

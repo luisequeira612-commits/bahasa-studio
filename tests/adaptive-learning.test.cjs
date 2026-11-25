@@ -619,3 +619,9 @@ test('Aprender keeps the compact SRS card separate from the actionable lesson re
   assert.match(html, /host\.id === 'adaptiveRecommendation' && input\.dueCount === 0/);
   assert.match(html, /App\.switchView\('srs'\);\s*await SRSEngine\.startSession\(\);/);
 });
+
+test('adaptive weak-word candidates exclude previously difficult words after a successful SRS repetition', () => {
+  const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+  assert.match(html, /\(item\.savedForReview \|\| item\.repetition === 0\)/);
+  assert.match(html, /item\.markedAt = now/);
+});

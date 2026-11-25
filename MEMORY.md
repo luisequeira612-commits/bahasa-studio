@@ -1,3 +1,11 @@
+## 2026-11-25 — Actualización de caché de app shell tras PR #817
+
+- PR #817 modificó `index.html` para equilibrar las recompensas XP, pero no cambió `service-worker.js`. El Service Worker usa estrategia stale-while-revalidate para recursos de la app: si existe una copia cacheada, puede mostrarla mientras actualiza la caché en segundo plano. Esto permite que la primera apertura tras el despliegue todavía muestre la versión anterior.
+- Se incrementa `CACHE_NAME` de `bahasa-studio-v3.8.152` a `bahasa-studio-v3.8.153`. La nueva instalación precarga el app shell con `cache: 'reload'`, de modo que el HTML actualizado y el nuevo balance de XP queden disponibles al activar el worker. La caché de audio persistente conserva su ruta y migración existentes.
+- Cambio limitado a la versión de caché del Service Worker y este registro. No modifica lógica de XP, currículos, idiomas, IndexedDB v1, backup JSON v3 ni dependencias. CI debe verificar instalación, precache y regresión antes de fusionar.
+
+Fuente: PR #817 (diff de `index.html`), `service-worker.js` (stale-while-revalidate, instalación con `cache: reload`) y pruebas de instalación del Service Worker; 25 nov 2026.
+
 ## 2026-11-25 — Reequilibrio de recompensas XP (PR #817 fusionada)
 
 - Decisión aprobada por el usuario: 3 XP por respuesta correcta de una lección, incluida la autoevaluación positiva de escritura guiada; 2 XP por tarjeta SRS calificada; 20 XP por completar una unidad por primera vez; 0 XP por respuesta de evaluación final.

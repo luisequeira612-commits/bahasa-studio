@@ -1065,3 +1065,10 @@ Fuente: PR #802, commit head `39e9de7cc16b8fb26ac754f5368777ffa4940680`, GitHub 
 - El runtime ya aplica la decisión aprobada de 2 XP por tarjeta SRS. Se actualizaron las dos expectativas relacionadas con la actividad diaria (`todayXp` y XP total) de 5 a 2, sin cambiar producción ni la decisión 3/2/20.
 - Commit de corrección: `305d0c040799d68bf1846ad617bfaa28ebf2544e`. Esperar nueva CI completa antes de fusionar PR #817.
 Fuente: GitHub Actions #45559888287 y corrección de `tests/vocabulary-review.e2e.test.cjs`; 25 nov 2026.
+
+
+## 2026-11-25 — PR #817: segunda expectativa heredada de XP corregida
+- La ejecución [#45560959055](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45560959055) confirmó que el test E2E SRS ya pasa tras corregir 5→2 XP, pero falló una aserción heredada en `tests/progressive-assessment.test.cjs:59`, que todavía esperaba 10 XP por respuesta normal.
+- Se actualizó esa expectativa a 3 XP. No se cambió producción: la evaluación sigue otorgando 0 XP y sin intentos SRS.
+- Commit de la corrección: `938014a8f6a198295354d16bbb1ef8b762e93990`. Esperar CI nueva completa antes de fusionar.
+Fuente: GitHub Actions #45560959055 y test progresivo; 25 nov 2026.

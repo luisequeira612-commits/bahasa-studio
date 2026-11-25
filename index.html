@@ -21031,7 +21031,13 @@ Requisitos:
             }, true);
             document.addEventListener('click', event => {
                 const word = event.target.closest && event.target.closest('.tap-translation-word');
-                if (word) { event.preventDefault(); open(word); return; }
+                if (word) {
+                    event.preventDefault();
+                    // Enter on a native button also emits a click; the keydown handler has already opened it.
+                    if (event.detail === 0 && activeButton === word && !bubble.hidden) return;
+                    open(word);
+                    return;
+                }
                 if (event.target === bubble) return;
                 if (!bubble.hidden && !bubble.contains(event.target)) close();
             });

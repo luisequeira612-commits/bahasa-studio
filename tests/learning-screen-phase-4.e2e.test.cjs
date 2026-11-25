@@ -181,8 +181,7 @@ test('phase four path geometry is collision-free at 360px across levels and zigz
           });
           const next = nodes[currentIndex + 1];
           const nextRect = next ? rect(next) : null;
-          const recommendation = stage.querySelector('#adaptiveRecommendationLearn');
-          const recommendationRect = recommendation ? rect(recommendation) : null;
+          const recommendationInsideStage = Boolean(stage.querySelector('#adaptiveRecommendationLearn'));
           const nodeEdgeGaps = nodes.slice(1).map((node, i) => rect(node).top - rect(nodes[i]).bottom);
           scenarios.push({
             levelId, index, currentIndex, currentId:current.dataset.unitId,
@@ -192,7 +191,7 @@ test('phase four path geometry is collision-free at 360px across levels and zigz
             overflowing:[...document.querySelectorAll('body *')].map(el => { const r=el.getBoundingClientRect(); return {tag:el.tagName,id:el.id,cls:typeof el.className==='string'?el.className:'',left:Math.round(r.left),right:Math.round(r.right),width:Math.round(r.width)}; }).filter(item => item.width > 0 && (item.right > 360 || item.left < 0)).sort((a,b) => b.right-a.right).slice(0,12),
             bubble: bubbleRect, title:titleRect, node:currentRect,
             ringGap, horizontalBubbleClearance, horizontalTitleClearance, nodeEdgeGaps,
-            recommendation:recommendationRect, nextNode:nextRect,
+            recommendationInsideStage, nextNode:nextRect,
             titleNextGap:nextRect ? nextRect.top - titleRect.bottom : null,
             firstNodeGap:rect(nodes[0]).top - rect(banner).bottom,
             bannerGap:index === 0 ? bubbleRect.top - rect(banner).bottom : null,
@@ -217,20 +216,13 @@ test('phase four path geometry is collision-free at 360px across levels and zigz
       assert.ok(layout.horizontalTitleClearance.every(gap => gap >= 9),
         layout.levelId + ' title must not invade adjacent zigzag columns: ' + JSON.stringify(layout.horizontalTitleClearance));
       for (const [gapIndex, gap] of layout.nodeEdgeGaps.entries()) {
-        const recommendationAllowance = layout.recommendation && gapIndex === layout.currentIndex ? 220 : 0;
         const expectedGap = gapIndex === layout.currentIndex - 1 ? 74 :
-          gapIndex === layout.currentIndex ? 56 + recommendationAllowance : 18;
+          gapIndex === layout.currentIndex ? 56 : 18;
         assert.ok(Math.abs(gap - expectedGap) <= 1,
-          layout.levelId + ' node edge gap should include only the current-title and explicit recommendation space: ' + gap);
+          layout.levelId + ' node edge gap should include only the current-title clearance: ' + gap);
       }
-      if (layout.recommendation) {
-        assert.ok(layout.recommendation.top >= layout.node.bottom,
-          layout.levelId + ' recommendation must begin below the current unit node');
-        if (layout.nextNode) assert.ok(layout.recommendation.bottom <= layout.nextNode.top,
-          layout.levelId + ' recommendation must not overlap the next unit node');
-        assert.ok(layout.recommendation.left >= 0 && layout.recommendation.right <= 360,
-          layout.levelId + ' recommendation must fit the mobile viewport');
-      }
+      assert.equal(layout.recommendationInsideStage, false,
+        layout.levelId + ' recommendation must stay outside the unit path stage');
       if (layout.titleNextGap !== null) assert.ok(layout.titleNextGap >= 15,
         layout.levelId + ' next node must leave space below the one-line title');
       const expectedFirstNodeGap = layout.currentIndex === 0 ? 80 : 24;
@@ -440,14 +432,22 @@ test('compact language picker is accessible, catalog-driven and fits the 360px l
     assert.ok(header.languageRight <= header.viewport, 'language chip must remain visible: ' + JSON.stringify(header));
     assert.ok(header.languageWidth >= 48 && header.languageHeight >= 48, 'language chip must have a comfortable touch target');
 
-    const route = await page.locator('.unit-path-section-banner').first().evaluate(el => ({
-      top: el.getBoundingClientRect().top,
-      bottom: el.getBoundingClientRect().bottom,
-      node: document.querySelector('.learning-unit-node.node-current').getBoundingClientRect().toJSON(),
-      scrollY: window.scrollY
-    }));
-    assert.ok(route.scrollY <= 16, 'initial alignment must not push the route out of the first viewport: ' + JSON.stringify(route));
-    assert.ok(route.top >= 58 && route.top <= 60, 'unit path banner must start directly below the topbar: ' + JSON.stringify(route));
+    const route = await page.locator('.unit-path-section-banner').first().evaluate(el => {
+      const recommendation = document.getElementById('adaptiveRecommendationLearn').getBoundingClientRect();
+      return {
+        top: el.getBoundingClientRect().top,
+        bottom: el.getBoundingClientRect().bottom,
+        recommendation: { top:recommendation.top + window.scrollY, bottom:recommendation.bottom + window.scrollY },
+        node: document.querySelector('.learning-unit-node.node-current').getBoundingClientRect().toJSON(),
+        scrollY: window.scrollY
+      };
+    });
+    assert.ok(route.recommendation.top >= 58 && route.recommendation.bottom <= 800,
+      'standalone recommendation must occupy the page above the unit path: ' + JSON.stringify(route));
+    assert.ok(route.recommendation.bottom <= route.node.top,
+      'recommendation must appear before the first unit node without overlap: ' + JSON.stringify(route));
+    assert.ok(route.top > 60 && route.top < 800,
+      'unit path banner must follow the recommendation and remain in the first viewport: ' + JSON.stringify(route));
     assert.ok(route.node.top < 800 && route.node.bottom > 0, 'current unit must appear in the first mobile viewport');
 
     await page.locator('#studyLanguageTrigger').click();

@@ -565,10 +565,20 @@ test('translation bubble exposes expanded state and supports keyboard open and E
     });
 
     const trigger = page.locator('#keyboardTranslationTrigger');
+    assert.equal(await page.evaluate(() => document.activeElement?.id), 'keyboardTranslationTrigger',
+      'The synthetic word button must retain focus before keyboard activation');
     await trigger.press('Enter');
     const bubble = page.locator('#tapTranslationBubble');
     await page.waitForFunction(() => document.getElementById('tapTranslationBubble')?.hidden === false);
-    assert.equal(await trigger.getAttribute('aria-expanded'), 'true');
+    const keyboardState = await page.evaluate(() => ({
+      activeElementId: document.activeElement?.id || null,
+      triggerExpanded: document.getElementById('keyboardTranslationTrigger')?.getAttribute('aria-expanded'),
+      bubbleHidden: document.getElementById('tapTranslationBubble')?.hidden,
+      expandedWords: Array.from(document.querySelectorAll('.tap-translation-word[aria-expanded="true"]'))
+        .map(element => ({ id: element.id || null, text: element.textContent }))
+    }));
+    assert.equal(await trigger.getAttribute('aria-expanded'), 'true',
+      'Enter should expand the focused word button; state: ' + JSON.stringify(keyboardState));
     assert.equal(await trigger.getAttribute('aria-controls'), 'tapTranslationBubble');
     assert.equal(await bubble.getAttribute('aria-label'), 'Traducción y repaso');
     assert.equal(await page.locator('#tapTranslationText').getAttribute('aria-live'), 'polite');

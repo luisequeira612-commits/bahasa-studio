@@ -20385,6 +20385,8 @@ Requisitos:
                     if (!['A1', 'A2'].includes(level.id)) continue;
                     for (const unit of level.units) {
                         if (this.completedUnits.includes(unit.id)) continue;
+                        // Do not recommend a lesson from a unit the learner cannot open yet.
+                        if (!isUnitUnlocked(level, unit, this.completedUnits, this.completedLessons)) continue;
                         if (level.id === 'A1' && (!nextA1Unit || unit.id !== nextA1Unit.id)) continue;
                         const unfinishedLessons = buildUnitLessons(unit).filter(entry =>
                             !this.completedLessons.includes(unitLessonProgressKey(unit.id, entry.index)));

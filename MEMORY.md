@@ -1,3 +1,12 @@
+## 2026-11-25 — Regresión de pantalla compacta a 320px (PR en curso)
+
+- Se añade una prueba Chromium a `tests/learning-screen-phase-5b.e2e.test.cjs` con viewport de 320×640: ausencia de overflow horizontal, separación entre marca y selector de nivel, cuatro destinos de navegación con objetivos mínimos de 44×44px y panel de niveles dentro del viewport con cierre táctil accesible.
+- La prueba también verifica que cerrar el panel devuelve el foco al selector original. Es una comprobación automatizada adicional en un ancho más estrecho que los 360px ya cubiertos; no sustituye la prueba física pendiente en el Tecno Pova 4.
+- Solo cambia cobertura E2E y esta memoria; no modifica producción, currículos, IndexedDB v1, backup JSON v3, dependencias ni disponibilidad de idiomas.
+- Pendiente: ejecutar suite 5B y regresión completa en CI. Si la nueva prueba descubre un fallo de layout real, corregirlo en un cambio separado y volver a validar.
+
+Fuente: `tests/learning-screen-phase-5b.e2e.test.cjs`; 25 nov 2026.
+
 ## 2026-11-24 — Cobertura de restauración del foco al cerrar paneles accesibles (PR en curso)
 
 - Tras completar la regresión post-merge de PR #793 (101/101), calidad offline 10/10 y Pages success, se añade cobertura E2E para cerrar mediante el botón visible (no solo Escape) los paneles de nivel, herramientas, detalle de unidad y significado de palabra.

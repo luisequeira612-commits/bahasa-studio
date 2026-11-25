@@ -7,6 +7,7 @@ const { createHash, webcrypto } = require('node:crypto');
 const hash = value => createHash('sha256').update(value).digest('hex');
 
 const source = fs.readFileSync(path.join(__dirname, '..', 'service-worker.js'), 'utf8');
+const languageManagerSource = fs.readFileSync(path.join(__dirname, '..', 'language-manager.js'), 'utf8');
 const CURRENT_CACHE_NAME = source.match(/const CACHE_NAME = '([^']+)'/)[1];
 const ORIGIN = 'https://example.test';
 const CLIP_ID = '0123456789ab';
@@ -61,6 +62,10 @@ function createWorker({ audioEntries = [], failPut = false, fetchImpl } = {}) {
             headers: { 'Content-Type': 'audio/mpeg' }
         })),
         Response, Request, Headers, Promise, URL, Map, crypto: webcrypto
+    };
+    sandbox.importScripts = script => {
+        assert.equal(script, './language-manager.js');
+        vm.runInNewContext(languageManagerSource, sandbox);
     };
     vm.runInNewContext(source, sandbox);
     return { handlers, cacheStore, audioCache };

@@ -658,11 +658,20 @@
             this.activeFreeRecognitionButton = button;
             const cancelButton = document.getElementById('conversationSpeechCancel');
             if (cancelButton) cancelButton.disabled = false;
-            recognition.lang = 'id-ID';
+            const manager = window.LanguageManager;
+            const activeCode = manager && typeof manager.getActiveLanguage === 'function'
+                ? manager.getActiveLanguage()
+                : 'id';
+            const language = manager && typeof manager.getLanguage === 'function'
+                ? manager.getLanguage(activeCode)
+                : null;
+            const locale = language && language.locale || 'id-ID';
+            const languageName = language && language.name || 'el idioma del curso';
+            recognition.lang = locale;
             recognition.continuous = false;
             recognition.interimResults = false;
             button.disabled = true;
-            status.textContent = 'Escuchando… responde en indonesio.';
+            status.textContent = 'Escuchando… responde en ' + String(languageName).toLowerCase() + '.';
             const isCurrentDraft = function () {
                 return ConversationEngine.activeFreeRecognition === recognition &&
                     ConversationEngine.freeResponseMode &&

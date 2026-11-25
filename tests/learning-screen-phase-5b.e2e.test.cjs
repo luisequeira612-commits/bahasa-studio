@@ -726,6 +726,41 @@ test('learning screen remains usable without horizontal overflow at 320px', asyn
     await page.locator('#learningLevelSheet .learning-sheet-close').click();
     await page.waitForFunction(() => document.getElementById('learningLevelSheetOverlay').hidden);
     assert.equal(await page.evaluate(() => document.activeElement?.id), 'learningLevelTrigger');
+
+    const toolsTrigger = page.locator('.unit-tools-trigger').first();
+    await toolsTrigger.click();
+    await page.waitForSelector('#learningToolsSheetOverlay:not([hidden])');
+    const toolsLayout = await page.evaluate(() => {
+      const sheet = document.getElementById('learningToolsSheet').getBoundingClientRect();
+      const close = document.querySelector('#learningToolsSheet .learning-sheet-close').getBoundingClientRect();
+      const rows = Array.from(document.querySelectorAll('#learningToolsSheet .learning-tool-sheet-row')).map(row => {
+        const rect = row.getBoundingClientRect();
+        return { width: rect.width, height: rect.height, left: rect.left, right: rect.right };
+      });
+      return {
+        documentWidth: document.documentElement.scrollWidth,
+        sheet: { left: sheet.left, right: sheet.right, top: sheet.top, bottom: sheet.bottom },
+        close: { left: close.left, right: close.right, width: close.width, height: close.height },
+        rows
+      };
+    });
+    assert.ok(toolsLayout.sheet.left >= 0 && toolsLayout.sheet.right <= 320,
+      'tools sheet must fit inside a 320px viewport: ' + JSON.stringify(toolsLayout));
+    assert.ok(toolsLayout.close.width >= 44 && toolsLayout.close.height >= 44,
+      'tools-sheet close target must remain at least 44×44px: ' + JSON.stringify(toolsLayout.close));
+    assert.equal(toolsLayout.rows.length, 3, 'all three learning tools should remain available at 320px');
+    for (const [index, row] of toolsLayout.rows.entries()) {
+      assert.ok(row.width >= 44 && row.height >= 44,
+        'tools-sheet row ' + index + ' must remain at least 44×44px: ' + JSON.stringify(row));
+      assert.ok(row.left >= 0 && row.right <= 320,
+        'tools-sheet row ' + index + ' must stay inside the viewport');
+    }
+    assert.ok(toolsLayout.documentWidth <= 320,
+      'opening the tools sheet must not introduce horizontal overflow: ' + JSON.stringify(toolsLayout));
+    await page.locator('#learningToolsSheet .learning-sheet-close').click();
+    await page.waitForFunction(() => document.getElementById('learningToolsSheetOverlay').hidden);
+    assert.equal(await page.evaluate(() => document.activeElement?.classList.contains('unit-tools-trigger')), true,
+      'closing the tools sheet at 320px must restore focus to its originating trigger');
   } finally {
     await context.close();
     await browser.close();

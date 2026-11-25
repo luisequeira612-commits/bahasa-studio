@@ -1,3 +1,12 @@
+## 2026-11-25 — PR de corrección: botón de tarjeta de repaso abre la vista SRS
+
+- Tras el despliegue de PR #829, el usuario informó que al tocar «Repasar» no ocurría nada visible.
+- Causa identificada en el handler de `App.renderAdaptiveRecommendation`: se llamaba a `SRSEngine.startSession()` desde Aprender, pero el método solo muestra `#srsPracticeArea` dentro de `#view-srs`; no activa por sí mismo esa vista. La sesión podía iniciarse mientras su contenedor seguía oculto.
+- Corrección mínima: antes de iniciar la sesión para la acción `review`, llamar a `App.switchView('srs')`. No se altera el motor SRS, la cola, el almacenamiento ni el progreso.
+- Se amplía la prueba E2E de Fase 5B para verificar tanto la llamada a `startSession` como la activación real de `#view-srs` tras pulsar el botón.
+- Archivos previstos: `index.html`, `tests/learning-screen-phase-5b.e2e.test.cjs` y `MEMORY.md`. Rama: `fix/learn-review-card-navigation-20261125`. CI pendiente; no fusionar ni declarar publicado hasta completar las pruebas.
+- Fuente: reporte del usuario y revisión del handler de recomendación y `SRSEngine.startSession`; 25 nov 2026.
+
 ## 2026-11-25 — Tarjeta compacta de repaso en Aprender (en preparación)
 
 - La tarjeta de Aprender queda reservada exclusivamente para repasos SRS vencidos: se oculta por completo cuando el contador real es cero. No se altera la selección, los intervalos ni el inicio de sesión de repaso. La medición Chromium detectó que el ancho global `width:100%` del botón comprimía el texto y estiraba la tarjeta; el botón ahora usa ancho automático y el margen inferior queda en 14 px para dejar el espacio solicitado antes del banner.

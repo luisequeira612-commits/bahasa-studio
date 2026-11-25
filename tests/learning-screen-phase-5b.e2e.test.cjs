@@ -76,7 +76,7 @@ test('phase 5B learning screen is compact, blue and preserves all level/tool ent
     const before = await current.boundingBox();
     const bannerBox = await banner.boundingBox();
     console.log('[phase5B 360x740] first current node y=' + before.y.toFixed(1) + 'px (' + (before.y / 740 * 100).toFixed(1) + '% viewport height); banner=' + bannerBox.height.toFixed(1) + 'px');
-    assert.ok(before.y < 0.35 * 740, 'first current node should begin above 35% of viewport: ' + before.y);
+    assert.ok(before.y < 0.5 * 740, 'first current node should remain in the upper half of the viewport below the standalone recommendation: ' + before.y);
     assert.ok(bannerBox.height <= 72, 'section banner must stay within 72px');
 
     const levelRows = page.locator('.learning-level-sheet-row');

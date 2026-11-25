@@ -52,7 +52,7 @@ test('phase 5B learning screen is compact, blue and preserves all level/tool ent
     const current = page.locator('.learning-unit-node.node-current').first();
     await page.waitForFunction(() => {
       const host = document.getElementById('adaptiveRecommendationLearn');
-      return Boolean(host && host.querySelector('h3') && host.querySelector('button'));
+      return Boolean(host && host.hidden);
     });
     const recommendation = page.locator('#adaptiveRecommendationLearn');
     const recommendationPlacement = await recommendation.evaluate(el => {
@@ -61,18 +61,19 @@ test('phase 5B learning screen is compact, blue and preserves all level/tool ent
       const cardBox = el.getBoundingClientRect();
       const courseBox = course.getBoundingClientRect();
       return {
+        hiddenWithoutDueReviews: el.hidden,
         outsideUnitPath: !el.closest('.unit-path-stage'),
         beforeUnitList: Boolean(route && course && el.parentElement === route &&
           (el.compareDocumentPosition(course) & Node.DOCUMENT_POSITION_FOLLOWING)),
-        aboveUnitList: cardBox.bottom <= courseBox.top,
-        hasActionDescription: Boolean(el.querySelector('button[aria-describedby]') &&
-          document.getElementById(el.querySelector('button[aria-describedby]').getAttribute('aria-describedby')))
+        noReservedSpace: cardBox.height === 0 && cardBox.bottom === cardBox.top,
+        aboveUnitList: cardBox.bottom <= courseBox.top
       };
     });
-    assert.equal(recommendationPlacement.outsideUnitPath, true, 'recommendation should be independent from the unit path');
-    assert.equal(recommendationPlacement.beforeUnitList, true, 'recommendation should appear before the unit list');
-    assert.equal(recommendationPlacement.aboveUnitList, true, 'recommendation should be visually above the unit list');
-    assert.equal(recommendationPlacement.hasActionDescription, true, 'recommendation action should reference its accessible description');
+    assert.equal(recommendationPlacement.hiddenWithoutDueReviews, true, 'Learn review card should be hidden when there are no due reviews');
+    assert.equal(recommendationPlacement.outsideUnitPath, true, 'recommendation host should remain independent from the unit path');
+    assert.equal(recommendationPlacement.beforeUnitList, true, 'recommendation host should remain before the unit list');
+    assert.equal(recommendationPlacement.noReservedSpace, true, 'hidden recommendation must not reserve vertical space');
+    assert.equal(recommendationPlacement.aboveUnitList, true, 'hidden recommendation must not overlap the unit list');
     const before = await current.boundingBox();
     const bannerBox = await banner.boundingBox();
     console.log('[phase5B 360x740] first current node y=' + before.y.toFixed(1) + 'px (' + (before.y / 740 * 100).toFixed(1) + '% viewport height); banner=' + bannerBox.height.toFixed(1) + 'px');
@@ -860,7 +861,7 @@ test('learning screen remains usable without horizontal overflow at 320px', asyn
   }
 });
 
-test('Aprender recommendation action starts the lesson selected by the adaptive engine', async () => {
+test('Aprender review card starts the existing SRS session when due reviews exist', async () => {
   const { server, url } = await startServer();
   const browser = await chromium.launch({ headless: true });
   const context = await browser.newContext({ viewport: { width: 360, height: 740 }, serviceWorkers: 'block', reducedMotion: 'reduce' });
@@ -869,34 +870,29 @@ test('Aprender recommendation action starts the lesson selected by the adaptive 
   try {
     await page.goto(url, { waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
-    await page.waitForFunction(() => {
-      const host = document.getElementById('adaptiveRecommendationLearn');
-      return Boolean(host && host.querySelector('button'));
-    });
+    await page.locator('.nav-btn[data-nav-group="learn"]').click();
     await page.evaluate(() => {
-      window.__startedRecommendedLesson = null;
-      LessonEngine.startUnitById = (unitId, lessonIndex) => {
-        window.__startedRecommendedLesson = { unitId, lessonIndex };
+      window.__startedReviewSession = false;
+      SRSEngine.startSession = async () => {
+        window.__startedReviewSession = true;
       };
       App.renderAdaptiveRecommendation({
-        dueCount: 0,
+        dueCount: 18,
         weakWords: [],
-        nextLesson: { unitId: 'a1_u1', lessonIndex: 0, unitTitle: 'Unidad 1', title: 'Lección 1' },
-        todayXp: 30,
-        dailyGoal: 30
+        isolatedWords: [],
+        language: 'id',
+        supportedLanguages: ['id'],
+        skillStatsByLanguage: {
+          id: { listening: { attempts: 10, correct: 8 } }
+        }
       });
     });
 
     const action = page.locator('#adaptiveRecommendationLearn button');
-    assert.equal(await action.innerText(), 'Continuar aprendiendo');
+    assert.equal(await action.innerText(), 'Repasar');
     await action.click();
-    await page.waitForFunction(() => window.__startedRecommendedLesson &&
-      window.__startedRecommendedLesson.unitId === 'a1_u1' &&
-      window.__startedRecommendedLesson.lessonIndex === 0);
-    assert.deepEqual(await page.evaluate(() => window.__startedRecommendedLesson), {
-      unitId: 'a1_u1',
-      lessonIndex: 0
-    });
+    await page.waitForFunction(() => window.__startedReviewSession === true);
+    assert.equal(await page.evaluate(() => window.__startedReviewSession), true);
   } finally {
     await context.close();
     await browser.close();

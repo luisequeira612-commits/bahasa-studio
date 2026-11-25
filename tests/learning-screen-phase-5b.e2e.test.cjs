@@ -551,6 +551,7 @@ test('translation bubble exposes expanded state and supports keyboard open and E
   try {
     await page.goto(url, { waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
+    await page.waitForFunction(() => document.getElementById('tapTranslationBubble')?.dataset.initialized === 'true');
     await page.evaluate(() => {
       const trigger = document.createElement('button');
       trigger.type = 'button';

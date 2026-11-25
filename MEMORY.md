@@ -3,7 +3,7 @@
 - La repetición del job [#45665119892](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45665119892) volvió a fallar en Fase 5B, prueba de teclado de la burbuja: el foco permaneció en `keyboardTranslationTrigger`, el evento `keydown Enter` llegó a document, no hubo errores JS, pero la burbuja siguió oculta y `aria-expanded=false`.
 - Se preparó una instrumentación exclusivamente de prueba que registra el estado del evento en `window` capture inmediatamente después del listener de la app, además del estado en `document`. Busca distinguir si el listener de aplicación no se ejecuta o si se ejecuta y el estado se revierte después.
 - No se modificó código de producción, lógica de traducción, accesibilidad, persistencia ni dependencias. No se relajaron aserciones.
-- Pendiente: ejecutar CI instrumentado y decidir el siguiente paso según el evento observado.
+- CI instrumentado [#45671735347](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45671735347) terminó completamente en success (Fase 4, calidad local, Fase 5B, E2E real y evaluación). La prueba 112 pasó, pero el test solo incluía los eventos capturados dentro del mensaje de error y no imprimía la traza cuando pasaba; por eso el job no dejó evidencia de `window-keydown-after-app` en ejecución exitosa. Se añadió un log explícito del estado y la secuencia de eventos en todos los resultados, sin cambiar aserciones ni comportamiento. Próximo paso: repetir CI y leer la traza de éxito antes de cualquier cambio de producción o fusión.
 
 Fuente: logs de GitHub Actions #45665119892 y cambio de prueba en rama `debug/translation-bubble-window-event-20261125`; 25 nov 2026.
 

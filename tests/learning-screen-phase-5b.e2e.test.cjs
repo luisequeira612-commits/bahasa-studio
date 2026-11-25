@@ -306,6 +306,75 @@ test('tap translation controls meet touch target sizes at 360px', async () => {
 });
 
 
+test('tap translation controls meet touch target sizes at 320px', async () => {
+  const { server, url } = await startServer();
+  const browser = await chromium.launch({ headless: true });
+  const context = await browser.newContext({ viewport: { width: 320, height: 640 }, serviceWorkers: 'block', reducedMotion: 'reduce' });
+  const page = await context.newPage();
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
+    const sizes = await page.evaluate(() => {
+      const previousUnit = LessonEngine.currentUnit;
+      LessonEngine.currentUnit = {
+        vocab: [
+          { id: 'compact-touch-saya', idn: 'Saya', esp: 'Yo' },
+          { id: 'compact-touch-makan', idn: 'makan', esp: 'comer' }
+        ]
+      };
+      const host = document.createElement('div');
+      host.style.cssText = 'position:fixed;left:10px;top:10px;width:300px;visibility:hidden;';
+      host.innerHTML = window.renderTapTranslationSentence('Saya makan', 'idn');
+      document.body.append(host);
+      LessonEngine.currentUnit = previousUnit;
+
+      const box = element => {
+        const rect = element.getBoundingClientRect();
+        return { left: rect.left, right: rect.right, width: rect.width, height: rect.height };
+      };
+      const speaker = host.querySelector('.tap-translation-speaker');
+      const words = Array.from(host.querySelectorAll('.tap-translation-word'));
+      const phrase = host.querySelector('.tap-translation-phrase');
+      return {
+        viewportWidth: window.innerWidth,
+        host: box(host),
+        speaker: speaker ? box(speaker) : null,
+        words: words.map(box),
+        phrase: phrase ? box(phrase) : null,
+        hostScrollWidth: host.scrollWidth,
+        hostClientWidth: host.clientWidth,
+        documentWidth: document.documentElement.scrollWidth
+      };
+    });
+
+    assert.equal(sizes.viewportWidth, 320);
+    assert.ok(sizes.host.left >= 0 && sizes.host.right <= 320,
+      'translation container must stay inside a 320px viewport: ' + JSON.stringify(sizes));
+    assert.ok(sizes.speaker, 'Indonesian sentence should include its audio button at 320px');
+    assert.ok(sizes.speaker.width >= 48 && sizes.speaker.height >= 48,
+      'sentence audio target must remain at least 48×48px at 320px: ' + JSON.stringify(sizes.speaker));
+    assert.equal(sizes.words.length, 2, 'both known words should expose translation controls at 320px');
+    for (const [index, word] of sizes.words.entries()) {
+      assert.ok(word.width >= 44 && word.height >= 44,
+        'word translation target ' + index + ' must remain at least 44×44px at 320px: ' + JSON.stringify(word));
+      assert.ok(word.left >= 0 && word.right <= 320,
+        'word translation target ' + index + ' must stay inside the viewport');
+    }
+    assert.ok(sizes.phrase && sizes.phrase.width <= sizes.host.width,
+      'translation phrase must fit the 300px content area: ' + JSON.stringify(sizes));
+    assert.ok(sizes.hostScrollWidth <= sizes.hostClientWidth,
+      'translation sentence must not overflow its 300px container: ' + JSON.stringify(sizes));
+    assert.ok(sizes.documentWidth <= 320,
+      'translation controls must not introduce document-level horizontal overflow: ' + JSON.stringify(sizes));
+  } finally {
+    await context.close();
+    await browser.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});
+
+
 test('primary bottom navigation exposes four accessible touch targets at 360px', async () => {
   const { server, url } = await startServer();
   const browser = await chromium.launch({ headless: true });

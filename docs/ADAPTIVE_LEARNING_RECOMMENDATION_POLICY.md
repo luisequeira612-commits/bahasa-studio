@@ -77,9 +77,9 @@ Los contadores se guardan dentro de la clave existente `settings.studyActivity` 
 
 El perfil conserva solo intentos, aciertos, errores y sesiones agregadas. No guarda el texto de los borradores, transcripciones, audio ni respuestas libres. Los primeros intentos no equivalen a dominio de una habilidad: la cifra de acierto es descriptiva, mezcla lecciones y evaluaciones y no sirve para declarar un nivel MCER.
 
-**Uso actual en el panel adaptativo:** `AdaptiveLearning.weakestSkill` puede añadir una observación contextual cuando una habilidad tiene al menos diez intentos puntuados. Esa observación no cambia `recommendation.type`, `recommendation.action` ni el orden de prioridad de actividades: solo muestra la menor precisión registrada como dato orientativo. Las categorías no son todavía plenamente comparables entre sí porque agrupan tipos de ejercicios distintos; la interfaz no debe presentarlas como un diagnóstico ni como una debilidad estable.
+**Uso actual en el panel adaptativo (actualizado 2026-11-25):** `AdaptiveLearning.weakestSkill` identifica una habilidad con menor precisión solo cuando acumula al menos diez intentos puntuados válidos. Si hay evidencia suficiente, el recomendador puede proponer una acción dirigida: conversación para `conversation`, cuaderno para `writing`, o una primera lección incompleta y accesible que cubra esa habilidad para las demás categorías. La selección no abre unidades bloqueadas ni sustituye el orden de prioridad de repasos vencidos, palabras con errores persistentes o errores aislados.
 
-Antes de usar el perfil para elegir actividades o ajustar dificultad por habilidad habrá que definir mínimos de evidencia, separar tipos de actividad comparables y evitar conclusiones con muestras pequeñas.
+El umbral de diez intentos es una regla inicial de producto, no una calibración estadística. Las categorías todavía agrupan actividades de dificultad y exposición diferentes; la precisión es descriptiva, no un diagnóstico, una debilidad estable ni una medida de dominio MCER. El perfil del panel puede mostrar datos iniciales desde cinco intentos, pero la selección adaptativa mantiene el umbral más conservador de diez. No se ajusta automáticamente la dificultad.
 
 
 ## Escritura progresiva A1–A2 — 2026-11-01

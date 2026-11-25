@@ -623,5 +623,6 @@ test('Aprender keeps the compact SRS card separate from the actionable lesson re
 test('adaptive weak-word candidates exclude previously difficult words after a successful SRS repetition', () => {
   const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
   assert.match(html, /item\.lastQuality < 3 : item\.repetition === 0/);
-  assert.match(html, /item\.markedAt = now/);\n  assert.match(html, /item\.lastQuality = quality/);
+  assert.match(html, /item\.markedAt = now/);
+  assert.match(html, /item\.lastQuality = quality/);
 });

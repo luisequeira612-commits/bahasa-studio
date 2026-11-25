@@ -20470,13 +20470,14 @@ Requisitos:
                             host.append(mascot, message);
                         }
                     }
+                    let reviewRow = null;
                     const heading = document.createElement('h3');
                     heading.textContent = recommendation.title;
                     const description = document.createElement('p');
                     description.id = host.id + 'Description';
                     if (isLearnReviewCard) {
-                        const row = document.createElement('div');
-                        row.className = 'adaptive-review-card-row';
+                        reviewRow = document.createElement('div');
+                        reviewRow.className = 'adaptive-review-card-row';
                         const copy = document.createElement('div');
                         copy.className = 'adaptive-review-card-copy';
                         const primary = document.createElement('p');
@@ -20491,7 +20492,7 @@ Requisitos:
                             ? 'Punto débil: ' + weakestSkill.label + ' (' + weakestSkill.accuracy + '%)'
                             : 'Punto débil: aún sin datos suficientes';
                         copy.append(primary, description);
-                        row.append(copy);
+                        reviewRow.append(copy);
                     } else {
                         description.textContent = recommendation.description;
                         description.style.color = 'var(--text-muted)';
@@ -20524,8 +20525,8 @@ Requisitos:
                         }
                     });
                     if (isLearnReviewCard) {
-                        row.append(button);
-                        host.append(row);
+                        reviewRow.append(button);
+                        host.append(reviewRow);
                     } else {
                         host.append(heading, description, button);
                     }

@@ -119,6 +119,7 @@ test('PWA manifest keeps standalone routing, explicit scope and the maskable ico
 
 test('service worker installs its declared cache, removes only older app caches and claims clients', async () => {
   const source = await read('service-worker.js');
+  const languageManagerSource = await read('language-manager.js');
   const cacheNameMatch = source.match(/CACHE_NAME\s*=\s*'([^']+)'/);
   assert.ok(cacheNameMatch, 'service worker must declare its cache name');
   const cacheName = cacheNameMatch[1];

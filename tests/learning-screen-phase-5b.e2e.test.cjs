@@ -873,6 +873,12 @@ test('Aprender review card starts the existing SRS session when due reviews exis
     await page.locator('.nav-btn[data-nav-group="learn"]').click();
     await page.evaluate(() => {
       window.__startedReviewSession = false;
+      window.__openedReviewView = false;
+      const originalSwitchView = App.switchView.bind(App);
+      App.switchView = (viewId, button) => {
+        if (viewId === 'srs') window.__openedReviewView = true;
+        return originalSwitchView(viewId, button);
+      };
       SRSEngine.startSession = async () => {
         window.__startedReviewSession = true;
       };
@@ -891,8 +897,12 @@ test('Aprender review card starts the existing SRS session when due reviews exis
     const action = page.locator('#adaptiveRecommendationLearn button');
     assert.equal(await action.innerText(), 'Repasar');
     await action.click();
-    await page.waitForFunction(() => window.__startedReviewSession === true);
-    assert.equal(await page.evaluate(() => window.__startedReviewSession), true);
+    await page.waitForFunction(() => window.__startedReviewSession === true && window.__openedReviewView === true);
+    assert.deepEqual(await page.evaluate(() => ({
+      started: window.__startedReviewSession,
+      openedReview: window.__openedReviewView,
+      activeView: document.querySelector('.app-view.active')?.id
+    })), { started: true, openedReview: true, activeView: 'view-srs' });
   } finally {
     await context.close();
     await browser.close();

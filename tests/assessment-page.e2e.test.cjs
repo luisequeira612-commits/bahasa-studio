@@ -63,6 +63,8 @@ test('assessment page renders questions, scores closed answers and flags open re
     assert.ok(await writingSection.locator('[data-model-example]').isVisible());
     await page.getByRole('button', { name: 'Calcular resultado provisional' }).click();
     await page.getByRole('heading', { name: 'Resultado provisional' }).waitFor();
+    assert.equal(await page.evaluate(() => document.activeElement && document.activeElement.id), 'assessment-result-title',
+      'submitting the assessment must move keyboard focus to the newly displayed result');
     assert.match(await page.locator('#results').innerText(), /requieren revisión humana/);
     assert.match(await page.locator('#results').innerText(), /2 de 66 puntos/, 'open writing responses must not receive automatic credit');
     assert.equal(await page.locator('[data-review-id="a1-write-03"]').count(), 1);
@@ -101,5 +103,36 @@ test('assessment page remains available offline after service-worker installatio
     await context.setOffline(false);
     await context.close();
     server.close();
+  }
+});
+
+
+test('assessment page keeps keyboard focus on active content and fits a 320px viewport', async () => {
+  const { server, url } = await startServer();
+  const context = await browser.newContext({ viewport: { width: 320, height: 640 } });
+  const page = await context.newPage();
+  try {
+    await page.goto(url);
+    const initialWidth = await page.evaluate(() => ({ viewport: window.innerWidth, content: document.documentElement.scrollWidth }));
+    assert.ok(initialWidth.content <= initialWidth.viewport, 'the initial assessment page must not overflow horizontally');
+
+    await page.getByRole('button', { name: 'Comenzar evaluación' }).click();
+    assert.equal(await page.evaluate(() => document.activeElement && document.activeElement.id), 'question-title-a1-negation-01',
+      'starting the assessment must focus the first question');
+    const questionWidth = await page.evaluate(() => ({ viewport: window.innerWidth, content: document.documentElement.scrollWidth }));
+    assert.ok(questionWidth.content <= questionWidth.viewport, 'the question form must not overflow horizontally at 320px');
+
+    await page.getByRole('button', { name: 'Calcular resultado provisional' }).click();
+    assert.equal(await page.evaluate(() => document.activeElement && document.activeElement.id), 'assessment-result-title',
+      'submitting must focus the result heading after the form is hidden');
+    const resultWidth = await page.evaluate(() => ({ viewport: window.innerWidth, content: document.documentElement.scrollWidth }));
+    assert.ok(resultWidth.content <= resultWidth.viewport, 'the result screen must not overflow horizontally at 320px');
+
+    await page.getByRole('button', { name: 'Volver a intentar' }).click();
+    assert.equal(await page.evaluate(() => document.activeElement && document.activeElement.id), 'question-title-a1-negation-01',
+      'restarting must return focus to the first question');
+  } finally {
+    await page.close();
+    await new Promise(resolve => server.close(resolve));
   }
 });

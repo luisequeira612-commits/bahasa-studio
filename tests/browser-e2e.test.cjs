@@ -1195,9 +1195,21 @@ test('A1 lesson progress is sequential and the final exam gates the next unit at
     await page.waitForFunction(() => document.getElementById('exerciseArea').innerText.includes('Prueba superada'));
     assert.match(await page.locator('#exerciseArea').innerText(), /Prueba superada/);
     assert.equal(await page.evaluate(() => App.completedUnits.includes('a1_u1')), true);
+    const persistedApproval = await page.evaluate(async () => DB.get('settings', 'completedUnits'));
+    assert.deepEqual(persistedApproval, ['a1_u1'],
+      'passing the final assessment must persist unit approval in IndexedDB');
+
     await page.getByRole('button', { name: 'Continuar al camino' }).click();
     await page.waitForFunction(() => document.querySelector('.learning-unit-node[data-unit-id="a1_u2"]')?.dataset.pathState === 'current');
     assert.equal(await secondNode.getAttribute('data-path-state'), 'current');
+
+    await page.reload({ waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => App.completedUnits.includes('a1_u1') &&
+      document.querySelector('.learning-unit-node[data-unit-id="a1_u2"]')?.dataset.pathState === 'current');
+    assert.equal(await secondNode.getAttribute('data-path-state'), 'current',
+      'the next unit must remain unlocked after reloading the app');
+    assert.deepEqual(await page.evaluate(async () => DB.get('settings', 'completedUnits')), ['a1_u1'],
+      'the approved unit must remain persisted after reload');
   } finally {
     await context.close();
     await new Promise(resolve => server.close(resolve));

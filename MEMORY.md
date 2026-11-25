@@ -9,3 +9,13 @@
 Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y Actions #45566397167/#45569698398; 25 nov 2026.
 
 ## 2026-11-25 — Actualización del app shell tras PR #817
+
+## 2026-11-25 — Recompensa XP de lección limitada y no repetible (PR en preparación)
+
+- Auditoría de 365 lecciones explícitas A1/A2: 1,318 ejercicios A1 y 1,080 A2. Con la regla anterior de 3 XP por acierto, una lección podía otorgar 66 XP en A1 y 36 XP en A2, antes del bono de unidad.
+- Decisión de implementación: la lección concede 1 XP por respuesta correcta en el primer intento, con tope de 10 XP, pero solo al completar la lección por primera vez. La recompensa se calcula usando `sessionCorrect`, que incrementa una sola vez por ejercicio gracias a `_firstAttempted`; los reintentos no suman.
+- El marcador existente `completedLessons` evita volver a conceder XP al repetir una lección. Si se abandona antes de terminar, no se entrega la recompensa de esa sesión.
+- Se conservan 2 XP por tarjeta SRS, 20 XP por primera finalización de unidad y 0 XP por respuesta de evaluación final.
+- No se cambia el esquema IndexedDB, el backup JSON v3, las dependencias ni el currículo. El XP de lección se persiste mediante la función existente `App.addXp` solo después de guardar el marcador de primera finalización.
+- Fuente: auditoría del inventario de lecciones y flujo `LessonEngine.startUnit` / `recordFirstAttempt` / `finishUnit`; decisión técnica aplicada en la rama `fix/lesson-xp-first-completion-cap`; 25 nov 2026. Pendiente de CI y revisión funcional.
+

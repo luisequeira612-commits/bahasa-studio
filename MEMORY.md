@@ -1,3 +1,12 @@
+## 2026-11-25 — Refuerzo SRS dirigido y resolución temporal de marcas manuales
+
+- La acción adaptativa «Practicar estas palabras» limita la sesión SRS a los IDs recomendados; la tarjeta general «Repasar» conserva su cola normal.
+- Una respuesta exitosa dentro de las 12 horas ya no deja intacta la fecha de revisión: asegura repetición e intervalo mínimos de un día y actualiza `lastReviewed`/`nextReview`, conservando el último grado y los contadores históricos.
+- La fusión de snapshots SRS resuelve `savedForReview` según el evento explícito más reciente (`markedAt`, con fallback a `lastReviewed`), para que una marca antigua no prevalezca sobre una calificación posterior.
+- Se añaden pruebas de regresión para la sesión dirigida, el avance del próximo repaso y el estado manual más reciente.
+- Sin cambios al esquema IndexedDB v1, backup JSON v3, currículo ni dependencias. Pendiente CI y validación funcional en el dispositivo.
+- Fuente: revisión de PR #835/#836 contra `main` después de #838 y logs de Actions; 25 nov 2026.
+
 ## 2026-11-25 — Corrección adicional del recomendador: conservar la última calidad al agregar duplicados
 
 - La corrección anterior almacenaba `lastQuality` en cada registro SRS, pero la vista adaptativa agrega varios IDs de vocabulario con el mismo término en `srsByWord` y solo sumaba contadores. No copiaba la última calidad al agregado; por eso `history.lastQuality` seguía siendo `undefined` y las palabras con errores históricos volvían a pasar el filtro.

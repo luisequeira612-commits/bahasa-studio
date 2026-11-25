@@ -696,3 +696,18 @@ test('successful SRS grades are recorded and do not remain adaptive weak words',
     'manual review saves retain priority even after a successful grade'
   );
 });
+
+
+test('reinforcement recommendations start a session limited to their selected words', () => {
+  const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+  assert.match(html, /async startSession\(wordIds = null\)/);
+  assert.match(html, /const sessionDue = selectedIds\s*\?/);
+  assert.match(html, /await SRSEngine\.startSession\(recommendation\.wordIds\)/);
+});
+
+test('a successful same-day SRS reinforcement advances the next review date', () => {
+  const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+  assert.match(html, /item\.repetition = Math\.max\(1, item\.repetition \|\| 0\)/);
+  assert.match(html, /item\.interval = Math\.max\(1, item\.interval \|\| 0\)/);
+  assert.match(html, /item\.lastReviewed = now;\s*item\.nextReview = now \+ \(item\.interval \* 86400000\)/);
+});

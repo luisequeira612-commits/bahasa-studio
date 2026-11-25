@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { auditCurriculum, auditCurricula } from '../scripts/audit-curriculum-quality.mjs';
+import { loadAuthoredLessonLevels } from '../scripts/audit-authored-lesson-inventory.mjs';
 
 test('accepts a structurally consistent curriculum without external dictionary access', () => {
   const report = auditCurriculum({
@@ -854,4 +855,14 @@ test('deduplicates cross-level term notes when the same vocabulary ID is reused 
   assert.equal(crossLevelNotes.length, 1);
   assert.equal(crossLevelNotes[0].path, 'B1.units[0].vocab[0]');
   assert.equal(b1.error_count, 0);
+});
+
+
+test('repository structural audit loads A1 through B2, including the hidden B2 draft', async () => {
+  const levels = await loadAuthoredLessonLevels();
+  assert.deepEqual(levels.map((level) => level.id), ['A1', 'A2', 'B1', 'B2']);
+  assert.deepEqual(levels.map((level) => level.units.length), [32, 40, 50, 60]);
+  const reports = auditCurricula(levels);
+  assert.deepEqual(reports.map((report) => report.level), ['A1', 'A2', 'B1', 'B2']);
+  assert.equal(reports[3].unit_count, 60);
 });

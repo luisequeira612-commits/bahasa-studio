@@ -1,3 +1,11 @@
+## 2026-11-25 — Panel de herramientas accesible a 320px (PR en curso)
+
+- Se amplía la prueba Chromium de viewport 320×640 para abrir el panel de herramientas de la unidad: comprueba que el panel y el botón de cierre queden dentro del ancho disponible, que las tres acciones sigan presentes con objetivos táctiles mínimos de 44×44px, que no aparezca overflow horizontal y que el cierre restaure el foco al disparador original.
+- Es una extensión de cobertura automatizada para el ancho compacto; no cambia producción, currículos, IndexedDB v1, backup JSON v3, dependencias ni disponibilidad de idiomas.
+- La comprobación física específica en el Tecno Pova 4 sigue pendiente y no se sustituye por Chromium.
+
+Fuente: `tests/learning-screen-phase-5b.e2e.test.cjs`; 25 nov 2026.
+
 ## 2026-11-25 — Regresión de pantalla compacta a 320px (PR en curso)
 
 - Se añade una prueba Chromium a `tests/learning-screen-phase-5b.e2e.test.cjs` con viewport de 320×640: ausencia de overflow horizontal, separación entre marca y selector de nivel, cuatro destinos de navegación con objetivos mínimos de 44×44px y panel de niveles dentro del viewport con cierre táctil accesible.

@@ -547,6 +547,8 @@ test('translation bubble exposes expanded state and supports keyboard open and E
   const browser = await chromium.launch({ headless: true });
   const context = await browser.newContext({ viewport: { width: 360, height: 740 }, serviceWorkers: 'block', reducedMotion: 'reduce' });
   const page = await context.newPage();
+  const pageErrors = [];
+  page.on('pageerror', error => pageErrors.push(error.message));
 
   try {
     await page.goto(url, { waitUntil: 'domcontentloaded' });
@@ -568,16 +570,30 @@ test('translation bubble exposes expanded state and supports keyboard open and E
     const trigger = page.locator('#keyboardTranslationTrigger');
     assert.equal(await page.evaluate(() => document.activeElement?.id), 'keyboardTranslationTrigger',
       'The synthetic word button must retain focus before keyboard activation');
+    await page.evaluate(() => {
+      window.__keyboardBubbleEvents = [];
+      document.addEventListener('keydown', event => window.__keyboardBubbleEvents.push({
+        type: 'keydown', key: event.key, target: event.target?.id || event.target?.tagName || null
+      }), true);
+      document.addEventListener('click', event => window.__keyboardBubbleEvents.push({
+        type: 'click', detail: event.detail, target: event.target?.id || event.target?.tagName || null
+      }), true);
+    });
     await trigger.press('Enter');
+    await page.waitForTimeout(150);
     const bubble = page.locator('#tapTranslationBubble');
-    await page.waitForFunction(() => document.getElementById('tapTranslationBubble')?.hidden === false);
     const keyboardState = await page.evaluate(() => ({
       activeElementId: document.activeElement?.id || null,
       triggerExpanded: document.getElementById('keyboardTranslationTrigger')?.getAttribute('aria-expanded'),
       bubbleHidden: document.getElementById('tapTranslationBubble')?.hidden,
+      initialized: document.getElementById('tapTranslationBubble')?.dataset.initialized,
+      events: window.__keyboardBubbleEvents || [],
       expandedWords: Array.from(document.querySelectorAll('.tap-translation-word[aria-expanded="true"]'))
         .map(element => ({ id: element.id || null, text: element.textContent }))
     }));
+    keyboardState.pageErrors = pageErrors;
+    assert.equal(keyboardState.bubbleHidden, false,
+      'Enter should open the translation bubble; state: ' + JSON.stringify(keyboardState));
     assert.equal(await trigger.getAttribute('aria-expanded'), 'true',
       'Enter should expand the focused word button; state: ' + JSON.stringify(keyboardState));
     assert.equal(await trigger.getAttribute('aria-controls'), 'tapTranslationBubble');

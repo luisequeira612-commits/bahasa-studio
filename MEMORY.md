@@ -1,3 +1,12 @@
+## 2026-11-25 — Diagnóstico adicional de teclado para burbuja de traducción
+
+- La repetición del job [#45665119892](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45665119892) volvió a fallar en Fase 5B, prueba de teclado de la burbuja: el foco permaneció en `keyboardTranslationTrigger`, el evento `keydown Enter` llegó a document, no hubo errores JS, pero la burbuja siguió oculta y `aria-expanded=false`.
+- Se preparó una instrumentación exclusivamente de prueba que registra el estado del evento en `window` capture inmediatamente después del listener de la app, además del estado en `document`. Busca distinguir si el listener de aplicación no se ejecuta o si se ejecuta y el estado se revierte después.
+- No se modificó código de producción, lógica de traducción, accesibilidad, persistencia ni dependencias. No se relajaron aserciones.
+- Pendiente: ejecutar CI instrumentado y decidir el siguiente paso según el evento observado.
+
+Fuente: logs de GitHub Actions #45665119892 y cambio de prueba en rama `debug/translation-bubble-window-event-20261125`; 25 nov 2026.
+
 ## 2026-11-25 — PR #832 fusionada y CI completo aprobado
 
 - PR [#832](https://github.com/luisequeira612-commits/bahasa-studio/pull/832) fusionada mediante squash en `main`, commit `31077c2e7effb9914f25e4c345699c4555ffd224`.

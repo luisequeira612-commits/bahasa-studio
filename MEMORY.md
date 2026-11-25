@@ -951,8 +951,8 @@ Fuente: `scripts/audit-curriculum-quality.mjs`, `scripts/load-inline-b2-curricul
 ## 2026-11-25 — PR #802: auditoría estructural completa de A1–B2
 
 - La primera ejecución del auditor ampliado encontró 10 errores estructurales en el borrador B2: un ejercicio de orden en U7 L3 usaba `options/answer` en vez del contrato runtime `words/correctOrder`, y nueve entradas de vocabulario de U16/U17/U18/U21 usaban `es` en lugar del campo canónico `esp`. Se corrigieron los campos conservando los textos españoles y la secuencia de tokens existentes; se añadieron pruebas específicas para ambos contratos.
-- La ejecución CI #45529688745 terminó en success en todos los jobs, incluida la suite principal, navegador real, accesibilidad móvil 5B y auditoría curricular.
-- El artefacto `curriculum-quality-report.json` confirma 4 niveles, 182 unidades, 1.136 entradas de vocabulario, 1.095 IDs únicos, **0 errores**, 164 avisos y 82 informativos. Los avisos no se interpretan como certificación ni se convierten automáticamente en bloqueos; B2 sigue oculto/no publicado. Los resultados son estructurales, no certificación lingüística.
-- PR #802 sigue abierta hasta completar esta actualización de memoria y su revisión final. Sin cambios a IndexedDB v1, backup JSON v3, dependencias ni disponibilidad de idiomas.
+- El informe `curriculum-quality-report.json` confirma 4 niveles, 182 unidades, 1.136 entradas de vocabulario, 1.095 IDs únicos, **0 errores**, 164 avisos y 82 informativos. Los avisos no se interpretan como certificación ni se convierten automáticamente en bloqueos; B2 sigue oculto/no publicado. Los resultados son estructurales, no certificación lingüística.
+- La revisión final del PR, incluida la actualización de este registro, pasó todos los checks en GitHub Actions #45530139607 (suite principal y navegador real) y los informes offline. Sin cambios a IndexedDB v1, backup JSON v3, dependencias ni disponibilidad de idiomas.
+- PR #802 queda lista para integrar tras esta verificación; el estado de fusión se registra en el siguiente hito.
 
-Fuente: PR #802, commit head `4d14aeef922adf2200d3b88ba683c9b096344983`, GitHub Actions #45529688745 y artefacto `curriculum-quality-report.json`; 25 nov 2026.
+Fuente: PR #802, commit head `39e9de7cc16b8fb26ac754f5368777ffa4940680`, GitHub Actions #45530139607 y artefacto `curriculum-quality-report.json`; 25 nov 2026.

@@ -377,7 +377,7 @@ test('adaptive recommendation is visible on Aprender and refreshes on initial lo
   assert.doesNotMatch(html, /adaptive-recommendation-path-card|recommendationReserve/);
   assert.doesNotMatch(html, /stage\.appendChild\(recommendationHost\)/);
   assert.ok(html.includes('.unit-path-section-banner { top:58px !important;'));
-  assert.ok(html.includes('#adaptiveRecommendationLearn .guardi-empty-illustration,#adaptiveRecommendationLearn .guardi-empty-message { display:none; }'));
+  assert.ok(html.includes('#adaptiveRecommendationLearn[hidden] { display:none !important; }'));
 });
 
 test('weakest skill ranking compares exact accuracy before applying display rounding or tie-breakers', () => {

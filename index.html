@@ -20704,7 +20704,7 @@ Requisitos:
                         const backup = this.validateBackup(JSON.parse(evt.target.result));
                         if (!confirm('¿Deseas restaurar esta copia de seguridad? Se reemplazará el progreso actual.')) return;
                         await DB.replaceBackupData(backup);
-                        await LanguageManager.setActiveLanguage(backup.language);
+                        await LanguageManager.setActiveLanguage(backup.language, { persist: false });
                         this.xp = backup.xp;
                         this.completedUnits = backup.completedUnits;
                         this.completedLessons = backup.completedLessons || [];

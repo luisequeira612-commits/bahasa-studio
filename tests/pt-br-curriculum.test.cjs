@@ -194,6 +194,10 @@ test('pilot exercises remain text-only and do not request or reference Portugues
 test('service worker precaches the Portuguese manifest and A1 pilot blocks',()=>{
  const source=fs.readFileSync(path.join(repo,'service-worker.js'),'utf8');
  const sandbox={self:{location:{origin:'https://example.test'},addEventListener(){}},URL,Set,Map,Promise};
+ sandbox.importScripts=script=>{
+  assert.equal(script,'./language-manager.js');
+  vm.runInNewContext(managerSource,sandbox);
+ };
  vm.runInNewContext(source,sandbox);
  const assets=vm.runInNewContext('ASSETS',sandbox);
  assert.ok(assets.includes('./languages/pt-BR/curriculum/a1/index.js'));

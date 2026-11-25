@@ -76,6 +76,7 @@ test('classic curriculum scripts load synchronously before the main app script',
 
 test('service worker precaches both data files and invalidates the previous cache', async () => {
   const source = fs.readFileSync(require.resolve('../service-worker.js'), 'utf8');
+  const languageManagerSource = fs.readFileSync(require.resolve('../language-manager.js'), 'utf8');
   assert.match(source, /CACHE_NAME\s*=\s*'bahasa-studio-v\d+\.\d+\.\d+'/);
   assert.match(source, /'\.\/curriculum-a1\.js'/);
   assert.match(source, /'\.\/curriculum-a2\.js'/);
@@ -105,6 +106,10 @@ test('service worker precaches both data files and invalidates the previous cach
     self: { location: { origin: 'https://example.test' }, clients: { claim() {} },
       skipWaiting() {}, addEventListener(name, fn) { listeners[name] = fn; } },
     caches: cachesApi,
+    importScripts(script) {
+      assert.equal(script, './language-manager.js');
+      vm.runInNewContext(languageManagerSource, sandbox, { filename: script });
+    },
     Request: class Request { constructor(url) { this.url = new URL(url, 'https://example.test').href; } },
     URL,
     fetch: async () => { throw new Error('offline'); },

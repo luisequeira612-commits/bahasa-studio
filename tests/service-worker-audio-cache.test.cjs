@@ -7,6 +7,7 @@ const { createHash, webcrypto } = require('node:crypto');
 const hash = value => createHash('sha256').update(value).digest('hex');
 
 const source = fs.readFileSync(path.join(__dirname, '..', 'service-worker.js'), 'utf8');
+const languageManagerSource = fs.readFileSync(path.join(__dirname, '..', 'language-manager.js'), 'utf8');
 const CURRENT_CACHE_NAME = source.match(/const CACHE_NAME = '([^']+)'/)[1];
 const ORIGIN = 'https://example.test';
 
@@ -69,10 +70,15 @@ function createWorker(initialCaches = new Map(), fetchImpl = async () => new Res
         clients: { claim: async () => { claimCalls++; } }
     };
     const sandbox = { self, caches, fetch: fetchImpl, Response, Request, Promise, URL, crypto: webcrypto };
+    sandbox.importScripts = script => {
+        assert.equal(script, './language-manager.js');
+        vm.runInNewContext(languageManagerSource, sandbox);
+    };
     vm.runInNewContext(source, sandbox);
     return {
         handlers,
         cacheStore,
+        supportedAudioLanguages: sandbox.LanguageManager.list().map(language => language.code),
         get claimCalls() { return claimCalls; }
     };
 }
@@ -80,6 +86,13 @@ function createWorker(initialCaches = new Map(), fetchImpl = async () => new Res
 function audioUrl(id, language = 'id') {
     return `${ORIGIN}/bahasa-studio/audio/${language}/${id}.mp3`;
 }
+
+test('el Service Worker deriva los idiomas de audio del catálogo central', () => {
+    const worker = createWorker();
+    assert.deepEqual(Array.from(worker.supportedAudioLanguages), ['pt-BR', 'en', 'it', 'fr', 'de', 'nl', 'ru', 'ja', 'ko', 'id']);
+    assert.ok(worker.supportedAudioLanguages.includes('pt-BR'));
+    assert.ok(!worker.supportedAudioLanguages.includes('xx'));
+});
 
 test('migra MP3 completos de todas las cachés antiguas antes de borrarlas', async () => {
     const firstId = '0123456789ab';

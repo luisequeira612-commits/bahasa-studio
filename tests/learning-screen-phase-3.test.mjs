@@ -158,6 +158,11 @@ test('service worker installs its declared cache, removes only older app caches 
     Response,
     fetch() {}
   };
+  context.languageManagerSource = await read('language-manager.js');
+  context.importScripts = script => {
+    assert.equal(script, './language-manager.js');
+    vm.runInNewContext(context.languageManagerSource, context);
+  };
   vm.runInNewContext(source, context, { timeout: 5000 });
   let installPromise;
   handlers.install({ waitUntil(promise) { installPromise = promise; } });

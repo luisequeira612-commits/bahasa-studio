@@ -5,6 +5,15 @@ const vm = require('node:vm');
 const path = require('node:path');
 
 const source = fs.readFileSync(path.join(__dirname, '..', 'service-worker.js'), 'utf8');
+const languageManagerSource = fs.readFileSync(path.join(__dirname, '..', 'language-manager.js'), 'utf8');
+
+function prepareWorkerSandbox(sandbox) {
+    sandbox.importScripts = script => {
+        assert.equal(script, './language-manager.js');
+        vm.runInNewContext(languageManagerSource, sandbox);
+    };
+    return sandbox;
+}
 
 function loadInstallHandler(failedUrls) {
     const handlers = {};
@@ -30,7 +39,7 @@ function loadInstallHandler(failedUrls) {
         },
         Promise
     };
-    vm.runInNewContext(source, sandbox);
+    vm.runInNewContext(source, prepareWorkerSandbox(sandbox));
     return {
         sandbox,
         assets: vm.runInNewContext('ASSETS', sandbox),
@@ -95,7 +104,7 @@ test('la reproducción online sin inventario no cachea audio y no se bloquea si 
         Promise,
         URL
     };
-    vm.runInNewContext(source, sandbox);
+    vm.runInNewContext(source, prepareWorkerSandbox(sandbox));
 
     const request = new Request('https://example.test/audio/id/test.mp3');
     const event = {
@@ -143,7 +152,7 @@ test('una respuesta 206 no se guarda como archivo completo', async () => {
         Promise,
         URL
     };
-    vm.runInNewContext(source, sandbox);
+    vm.runInNewContext(source, prepareWorkerSandbox(sandbox));
 
     const request = new Request('https://example.test/audio/id/test.mp3');
     const event = {

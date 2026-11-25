@@ -1,3 +1,13 @@
+## 2026-11-25 — Reequilibrio de recompensas XP (PR en preparación)
+
+- Decisión aprobada por el usuario: 3 XP por respuesta correcta de una lección, incluida la autoevaluación positiva de escritura guiada; 2 XP por tarjeta SRS calificada; 20 XP por completar una unidad por primera vez; 0 XP por respuesta de evaluación final.
+- La escritura guiada no valida automáticamente la gramática: el texto de interfaz conserva esa aclaración y ahora comunica 3 XP por marcar que se cumplieron los criterios.
+- En `index.html` se ajustan las dos rutas de respuesta correcta de lección, la calificación SRS y el bono de primera finalización. Se mantienen los guards de evaluación, doble envío y bono único.
+- Se añade `tests/xp-rewards.test.cjs` para proteger las cantidades, los guards de evaluación, el reintento de errores y la recompensa única de unidad.
+- Sin cambios intencionales a IndexedDB v1, backup JSON v3, progreso, currículo, idiomas ni dependencias. CI todavía debe validar la rama antes de integrar.
+
+Fuente: decisión explícita del usuario y auditoría de `index.html`; 25 nov 2026.
+
 ## 2026-11-25 — Recomendador adaptativo excluye unidades bloqueadas (PR #815 fusionada)
 
 - La revisión funcional de fase 7 encontró que `updateStudyDashboard()` reunía candidatas de A2 aunque la progresión secuencial todavía las mantuviera bloqueadas. `AdaptiveLearning.selectSkillLesson()` podía escoger una de ellas; `LessonEngine.startUnitById()` la rechazaba sin aviso y el botón de recomendación podía quedarse deshabilitado.

@@ -9,6 +9,23 @@
         return Number.isSafeInteger(value) && value >= 0 ? value : 0;
     }
 
+
+    function updateLatestSrsQuality(aggregate, record) {
+        if (!aggregate || typeof aggregate !== 'object' || !record || typeof record !== 'object') return aggregate;
+        const reviewedAt = Number.isSafeInteger(record.lastReviewed) && record.lastReviewed >= 0
+            ? record.lastReviewed
+            : null;
+        if (reviewedAt === null) return aggregate;
+        const currentReviewedAt = Number.isSafeInteger(aggregate.lastQualityReviewedAt) &&
+            aggregate.lastQualityReviewedAt >= 0 ? aggregate.lastQualityReviewedAt : null;
+        if (currentReviewedAt === null || reviewedAt >= currentReviewedAt) {
+            aggregate.lastQuality = Number.isSafeInteger(record.lastQuality) &&
+                record.lastQuality >= 0 && record.lastQuality <= 5 ? record.lastQuality : null;
+            aggregate.lastQualityReviewedAt = reviewedAt;
+        }
+        return aggregate;
+    }
+
     function earliestValidTimestamp(current, candidate) {
         const validCurrent = Number.isSafeInteger(current) && current >= 0 ? current : null;
         const validCandidate = Number.isSafeInteger(candidate) && candidate >= 0 ? candidate : null;
@@ -99,15 +116,19 @@
             : data.skillStats;
         const focus = weakestSkill(languageStats);
         const dueCount = count(data.dueCount);
+        const hasUnsuccessfulLatestGrade = word =>
+            !Number.isSafeInteger(word.lastQuality) || word.lastQuality < 3;
         const weakWords = Array.isArray(data.weakWords)
             ? data.weakWords.filter(word => word && typeof word.id === 'string' && word.id &&
                 typeof word.term === 'string' && word.term &&
-                (word.savedForReview === true || !Object.prototype.hasOwnProperty.call(word, 'incorrect') ||
-                    (Number.isSafeInteger(word.incorrect) && word.incorrect >= 2))).slice(0, 5)
+                (word.savedForReview === true || hasUnsuccessfulLatestGrade(word) &&
+                    (!Object.prototype.hasOwnProperty.call(word, 'incorrect') ||
+                        (Number.isSafeInteger(word.incorrect) && word.incorrect >= 2)))).slice(0, 5)
             : [];
         const isolatedWords = Array.isArray(data.isolatedWords)
             ? data.isolatedWords.filter(word => word && typeof word.id === 'string' && word.id &&
-                typeof word.term === 'string' && word.term).slice(0, 5)
+                typeof word.term === 'string' && word.term && word.savedForReview !== true &&
+                hasUnsuccessfulLatestGrade(word)).slice(0, 5)
             : [];
 
         if (dueCount > 0) {
@@ -228,5 +249,5 @@
         }, focus);
     }
 
-    root.AdaptiveLearning = Object.freeze({ recommend, weakestSkill, selectSkillLesson, normalizeSrsCount, earliestValidTimestamp, skillStatsForLanguage });
+    root.AdaptiveLearning = Object.freeze({ recommend, weakestSkill, selectSkillLesson, normalizeSrsCount, earliestValidTimestamp, updateLatestSrsQuality, skillStatsForLanguage });
 })(typeof window !== 'undefined' ? window : globalThis);

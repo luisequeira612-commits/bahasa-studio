@@ -11,6 +11,41 @@ const sandbox = { window: {} };
 vm.runInNewContext(source, sandbox);
 const AdaptiveLearning = sandbox.window.AdaptiveLearning;
 
+
+test('latest SRS quality follows the most recently reviewed duplicate record', () => {
+  const aggregate = { lastQuality: null, lastQualityReviewedAt: null };
+  AdaptiveLearning.updateLatestSrsQuality(aggregate, { lastReviewed: 200, lastQuality: 3 });
+  AdaptiveLearning.updateLatestSrsQuality(aggregate, { lastReviewed: 100, lastQuality: 1 });
+  assert.equal(aggregate.lastQuality, 3, 'an older duplicate record must not overwrite the latest successful grade');
+  assert.equal(aggregate.lastQualityReviewedAt, 200);
+
+  AdaptiveLearning.updateLatestSrsQuality(aggregate, { lastReviewed: 300, lastQuality: 2 });
+  assert.equal(aggregate.lastQuality, 2, 'a newer unsuccessful grade must become the current grade');
+  assert.equal(aggregate.lastQualityReviewedAt, 300);
+});
+
+test('successful grades suppress weak and isolated recommendations unless manually saved', () => {
+  const result = AdaptiveLearning.recommend({
+    dueCount: 0,
+    weakWords: [
+      { id: 'w1', term: 'dari', incorrect: 3, lastQuality: 3 },
+      { id: 'w2', term: 'rumah', incorrect: 2, lastQuality: 5 }
+    ],
+    isolatedWords: [
+      { id: 'w3', term: 'makan', incorrect: 1, lastQuality: 3 }
+    ]
+  });
+  assert.equal(result.type, 'maintenance');
+  assert.equal(result.action, 'none');
+
+  const manuallySaved = AdaptiveLearning.recommend({
+    dueCount: 0,
+    weakWords: [{ id: 'w1', term: 'dari', incorrect: 3, savedForReview: true, lastQuality: 5 }]
+  });
+  assert.equal(manuallySaved.type, 'reinforce-weak');
+  assert.equal(manuallySaved.wordIds[0], 'w1');
+});
+
 test('due reviews take priority over every other recommendation', () => {
   const result = AdaptiveLearning.recommend({
     dueCount: 4,
@@ -364,6 +399,7 @@ test('adaptive dashboard separates repeated word errors from isolated mistakes u
   const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
   assert.match(html, /item\.savedForReview \|\| item\.incorrect >= 2 &&/);
   assert.match(html, /item\.incorrect === 1/);
+  assert.match(html, /item\.incorrect === 1 &&\s*\(!Number\.isSafeInteger\(item\.lastQuality\) \|\| item\.lastQuality < 3\)/);
   assert.match(html, /isolatedWords,/);
   assert.match(html, /incorrect: history\.incorrect/);
   assert.match(html, /repetition: history\.repetition/);
@@ -625,6 +661,8 @@ test('successful SRS grades are recorded and do not remain adaptive weak words',
   const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
   assert.match(html, /item\.lastQuality = quality/);
   assert.match(html, /lastQuality: history\.lastQuality/);
+  assert.match(html, /AdaptiveLearning\.updateLatestSrsQuality\(aggregate, item\.val\)/);
+  assert.match(html, /lastQualityReviewedAt: null/);
 
   const filterMatch = html.match(
     /\.filter\(\(\[, item\]\) => (item\.savedForReview \|\| item\.incorrect >= 2 &&\s*\(!Number\.isSafeInteger\(item\.lastQuality\) \|\| item\.lastQuality < 3\))\)/

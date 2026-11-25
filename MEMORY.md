@@ -1,3 +1,11 @@
+## 2026-11-25 — Corrección adicional del recomendador: conservar la última calidad al agregar duplicados
+
+- La corrección anterior almacenaba `lastQuality` en cada registro SRS, pero la vista adaptativa agrega varios IDs de vocabulario con el mismo término en `srsByWord` y solo sumaba contadores. No copiaba la última calidad al agregado; por eso `history.lastQuality` seguía siendo `undefined` y las palabras con errores históricos volvían a pasar el filtro.
+- Se añade `AdaptiveLearning.updateLatestSrsQuality()` para conservar en el agregado la calidad del registro con `lastReviewed` más reciente. La marca temporal auxiliar solo vive en memoria y no cambia IndexedDB ni backup v3.
+- El recomendador también descarta calificaciones exitosas en `weakWords` y `isolatedWords`, tanto en la selección de la vista como en el módulo `adaptive-learning.js`. Las palabras guardadas manualmente siguen teniendo prioridad.
+- Se agregan pruebas de precedencia temporal, exclusión de calidad 3/5, y excepción de guardado manual.
+- Fuente: inspección del flujo real `DB.getAll('srs') → srsByWord → rankedWordHistory → weakWords → AdaptiveLearning.recommend()`; 25 nov 2026.
+
 ## 2026-11-25 — Corrección de recomendación SRS tras calificar «Bien»
 
 - Diagnóstico: el registro `recordAttempt()` limpiaba `savedForReview`, pero no conservaba la última calificación; además, el filtro adaptativo seguía considerando débil una palabra solo por `incorrect >= 2`. Por eso una palabra con errores históricos podía reaparecer inmediatamente después de calificarla «Bien».

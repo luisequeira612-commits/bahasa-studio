@@ -1,3 +1,11 @@
+## 2026-11-25 — Reconocimiento de voz en conversación ligado al idioma activo
+
+- La captura opcional de respuesta libre en `conversation-engine.js` ya no fija `id-ID` ni muestra «indonesio» de forma literal: consulta `LanguageManager` para tomar locale y nombre del curso activo, manteniendo `id-ID` como fallback legacy.
+- Se amplía la prueba de frontera de privacidad para exigir locale dinámico; el micrófono sigue iniciándose solo por acción explícita, con reconocimiento de una sola toma y sin grabación/subida gestionada por la app.
+- No se habilitan idiomas, no se cambia el contenido del curso, IndexedDB v1, backup JSON v3 ni dependencias. La validación lingüística no forma parte de este cambio.
+
+Fuente: `conversation-engine.js` y `tests/speech-recognition-privacy-boundary.test.cjs`; 25 nov 2026.
+
 ## 2026-11-25 — Fase 7: auditoría legacy de audio offline
 
 - Se prepara PR para eliminar el catálogo duplicado de idiomas en `offline-audio-manager.js`. La gestión de idiomas ahora se deriva de `LanguageManager.isSupported()`/`getLanguage()`; el comportamiento legacy de `id` se conserva como fallback cuando el gestor no existe o recibe un código no soportado.

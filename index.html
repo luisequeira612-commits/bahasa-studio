@@ -21036,6 +21036,12 @@ Requisitos:
                 if (!bubble.hidden && !bubble.contains(event.target)) close();
             });
             document.addEventListener('keydown', event => {
+                const word = event.target.closest && event.target.closest('.tap-translation-word');
+                if (word && (event.key === 'Enter' || event.key === ' ')) {
+                    event.preventDefault();
+                    open(word);
+                    return;
+                }
                 if (event.key === 'Escape' && !bubble.hidden) {
                     event.preventDefault();
                     close(true);

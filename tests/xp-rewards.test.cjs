@@ -70,3 +70,27 @@ test('incorrect answers can be retried without increasing the first-attempt XP c
   assert.match(feedback, /!isCorrect && !ex\._r\) \{/);
   assert.match(tracking, /if \(!exercise \|\| exercise\._firstAttempted\) return;/);
 });
+
+test('earned XP stays synchronized between lifetime total and the daily goal UI', () => {
+  const addXp = methodSource('addXp(amount) {', 'recordStudyActivity(kind, amount = 0) {');
+  const recordActivity = methodSource('recordStudyActivity(kind, amount = 0) {', 'recordSkillActivity(skill, isCorrect) {');
+  const dashboard = methodSource('updateStudyDashboard() {', 'updateUI() {');
+  const updateUI = methodSource('updateUI() {', 'selectLearningLevel(levelId) {');
+
+  assert.match(addXp, /this\\.xp \\+= amount/);
+  assert.match(addXp, /DB\\.set\\('settings', 'userXp', this\\.xp\\)/);
+  assert.match(addXp, /this\\.recordStudyActivity\\('points', amount\\)/);
+  assert.match(addXp, /this\\.updateUI\\(\\)/);
+  assert.match(recordActivity, /StudyActivity\\.record\\(this\\.studyActivity, kind, amount, new Date\\(\\)\\)/);
+  assert.match(recordActivity, /this\\.updateStudyDashboard\\(\\)/);
+  assert.match(updateUI, /totalExpBadge/);
+  assert.match(updateUI, /this\\.updateStudyDashboard\\(\\)/);
+  assert.match(dashboard, /const goal = this\\.studyActivity\\.dailyGoal/);
+  assert.match(dashboard, /const earned = this\\.studyActivity\\.todayXp/);
+  assert.match(dashboard, /studyDailyXpText/);
+  assert.match(dashboard, /studyDailyXpFill/);
+  assert.match(dashboard, /setAttribute\\('aria-valuenow'/);
+  assert.match(dashboard, /studyDailyGoalStatus/);
+  assert.match(html, /id="totalExpBadge"/);
+  assert.match(html, /id="studyDailyXpText"/);
+});

@@ -522,5 +522,5 @@ test('adaptive skill profile accepts new codes from the supplied central catalog
 
 test('adaptive dashboard passes the LanguageManager catalog to the pure recommendation module', () => {
   const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
-  assert.match(html, /supportedLanguages: LanguageManager\\.list\\(\\)\\.map\\(\\(\\{ code \\}\\) => code\\)/);
+  assert.ok(html.includes('supportedLanguages: LanguageManager.list().map(({ code }) => code)'));
 });

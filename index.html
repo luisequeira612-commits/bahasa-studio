@@ -20414,6 +20414,7 @@ Requisitos:
                     nextLesson,
                     skillLesson,
                     language: LanguageManager.getActiveLanguage(),
+                    supportedLanguages: LanguageManager.list().map(({ code }) => code),
                     skillStatsByLanguage: {
                         [LanguageManager.getActiveLanguage()]: this.studyActivity && this.studyActivity.skillStats
                     },

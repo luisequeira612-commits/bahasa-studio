@@ -36,6 +36,24 @@ test('Spanish answers accept omitted accents',()=>{
  const api=load();
  assert.equal(api.compare('arbol',{type:'translate_id_es',answer:'árbol'}).status,'correct');
 });
+test('Indonesian written answers ignore diacritics, case, punctuation and repeated spaces',()=>{
+ const api=load();
+ const exercise={type:'listen',answer:'Saya dari Peru.'};
+ assert.equal(api.normalize('  SAYA   dari Perú?! ;:  ','id'),'saya dari peru');
+ assert.equal(api.compare('Saya dari Perú',exercise).status,'correct');
+ assert.equal(api.compare('saya dari peru',exercise).status,'correct');
+ assert.equal(api.compare('  SAYA   DARI   PERU!!!  ',exercise).status,'correct');
+});
+
+test('incorrect written answers report a single real word difference when determinable',()=>{
+ const api=load();
+ const result=api.compare('Saya dari Chile.',{type:'listen',answer:'Saya dari Peru.'});
+ assert.equal(result.status,'incorrect');
+ assert.deepEqual(JSON.parse(JSON.stringify(result.difference)),{input:'Chile',expected:'Peru'});
+ const multiple=api.compare('Saya tinggal en Chile',{type:'listen',answer:'Saya dari Peru.'});
+ assert.equal(multiple.difference,undefined);
+});
+
 test('approved accepted answers work but pending-review alternatives do not',()=>{
  const api=load();
  const ex={type:'translate_es_id',answer:'Terima kasih',acceptedAnswers:[
@@ -185,4 +203,13 @@ test('real A1/A2 written-response exercises accept their canonical answer throug
   }
  }
  assert.equal(cases.length, 900, 'baseline: active A1/A2 written-response exercises after A1 U1-U32 and A2 spaced-retrieval lessons');
+});
+
+test('wrong text-answer feedback never reuses unrelated curriculum explanations',()=>{
+ const start=html.indexOf('checkTranslate() {');
+ const end=html.indexOf('checkWriting() {',start);
+ const handler=html.slice(start,end);
+ assert.match(handler,/result\.status === 'correct'\s*\?\s*ex\.explanation/);
+ assert.match(handler,/result\.difference/);
+ assert.match(handler,/this\.showFeedback\(result\.status === 'correct', explanation\)/);
 });

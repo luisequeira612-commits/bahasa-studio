@@ -1,3 +1,11 @@
+## 2026-11-25 — Normalización transversal de respuestas escritas
+
+- El evaluador de respuestas escritas elimina diacríticos antes de comparar cualquier respuesta, también en indonesio; conserva la normalización de mayúsculas, puntuación y espacios. «Saya dari Perú» y «saya dari peru» se aceptan para «Saya dari Peru.».
+- En respuestas incorrectas, el feedback deja de repetir explicaciones curriculares que no describen el error. Solo muestra una diferencia de palabra cuando puede identificar exactamente una sustitución; en los demás casos conserva «Incorrecto» y la respuesta esperada.
+- Se aplica a las rutas de texto que usan `WrittenResponse.compare()` (escucha/dictado, traducción y completar). La redacción libre `write` continúa como autoevaluación, no como coincidencia exacta.
+- Pruebas de regresión para tildes, mayúsculas, signos, espacios dobles y diferencias de una palabra. Sin cambios a IndexedDB v1, backup JSON v3, currículo ni dependencias.
+- Fuente: reproducción reportada por el usuario en A1 U3 L5 y revisión de `WrittenResponse.normalize/compare` y `LessonEngine.checkTranslate`; 25 nov 2026.
+
 ## 2026-11-25 — Refuerzo SRS dirigido y resolución temporal de marcas manuales
 
 - La acción adaptativa «Practicar estas palabras» limita la sesión SRS a los IDs recomendados; la tarjeta general «Repasar» conserva su cola normal.

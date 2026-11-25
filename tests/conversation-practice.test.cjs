@@ -185,7 +185,9 @@ test('free response cannot reveal an example before the learner attempts an answ
 
 test('free-response speech capture is optional and never persists audio, XP, SRS attempts, or response text', () => {
   assert.match(source, /window\.SpeechRecognition \|\| window\.webkitSpeechRecognition/);
-  assert.match(source, /recognition\.lang = 'id-ID'/);
+  assert.match(source, /recognition\.lang = locale/);
+  assert.match(source, /manager\.getActiveLanguage\(\)/);
+  assert.match(source, /manager\.getLanguage\(activeCode\)/);
   assert.match(source, /la app no guarda grabaciones/);
   assert.doesNotMatch(source, /App\.addXp|SRSEngine\.recordAttempt|DB\.set|MediaRecorder/);
 });

@@ -6,10 +6,30 @@ const path = require('node:path');
 const vm = require('node:vm');
 const { test } = require('node:test');
 
+const languageManagerSource = fs.readFileSync(path.join(__dirname, '..', 'language-manager.js'), 'utf8');
 const source = fs.readFileSync(path.join(__dirname, '..', 'progress-namespace.js'), 'utf8');
 const sandbox = { window: {}, Object, Set, String, Error, Array };
+vm.runInNewContext(languageManagerSource, sandbox);
 vm.runInNewContext(source, sandbox);
 const Namespace = sandbox.window.ProgressNamespace;
+
+test('progress namespace derives its supported codes from the central language catalog', () => {
+    const catalogCodes = sandbox.window.LanguageManager.list().map(({ code }) => code);
+    assert.equal(Namespace.supportedLanguages.join(','), catalogCodes.join(','));
+    assert.equal(Object.isFrozen(Namespace.supportedLanguages), true);
+});
+
+test('a newly catalogued code is accepted without editing a second language list', () => {
+    const customSandbox = {
+        window: { LanguageManager: { list: () => [{ code: 'id' }, { code: 'xx' }] } },
+        Object, Set, String, Error, Array
+    };
+    vm.runInNewContext(source, customSandbox);
+    const customNamespace = customSandbox.window.ProgressNamespace;
+    assert.equal(customNamespace.storageKey('progress', 'unit_1', 'xx'), 'xx::unit_1');
+    assert.equal(customNamespace.belongsToLanguage('progress', 'xx::unit_1', 'xx'), true);
+    assert.throws(() => customNamespace.storageKey('progress', 'unit_1', 'yy'), /no soportado/);
+});
 
 test('SRS and progress keys are namespaced without changing legacy Indonesian keys', () => {
     assert.equal(Namespace.storageKey('srs', 'vocab_1', 'id'), 'vocab_1');

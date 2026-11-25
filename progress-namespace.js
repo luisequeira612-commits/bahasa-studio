@@ -1,7 +1,8 @@
 (function (root) {
     'use strict';
 
-    const SUPPORTED = Object.freeze(['pt-BR', 'en', 'it', 'fr', 'de', 'nl', 'ru', 'ja', 'ko', 'id']);
+    // index.html loads LanguageManager before this module; keep one source of truth.
+    const SUPPORTED = Object.freeze(root.LanguageManager.list().map(({ code }) => code));
     const PROGRESS_SETTINGS = Object.freeze(['userXp', 'completedUnits', 'completedLessons', 'studyActivity', 'customUnits', 'syllabusPos']);
 
     function assertLanguage(language) {

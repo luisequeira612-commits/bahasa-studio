@@ -1,3 +1,12 @@
+## 2026-11-24 — Recomendador adaptativo excluye unidades bloqueadas
+
+- La revisión funcional de fase 7 encontró que `updateStudyDashboard()` reunía candidatas de A2 aunque la progresión secuencial todavía las mantuviera bloqueadas. `AdaptiveLearning.selectSkillLesson()` podía escoger una de ellas; `LessonEngine.startUnitById()` la rechazaba sin aviso y el botón de recomendación podía quedarse deshabilitado.
+- Se filtran las unidades mediante `isUnitUnlocked(level, unit, this.completedUnits, this.completedLessons)` antes de construir tanto `nextLesson` como `skillLessons`. Así las recomendaciones solo apuntan a destinos que el flujo de aprendizaje permite abrir.
+- Se añade una regresión de contrato para exigir que la comprobación de desbloqueo preceda a ambas candidaturas. Sin cambios al currículo, prioridades adaptativas, umbral de diez intentos, IndexedDB v1, backup JSON v3, disponibilidad de idiomas ni dependencias.
+- PR en preparación desde `main` `8dc0162403d50a3856ff72985f1737cdd9730079`; CI pendiente. No se declara corregido/desplegado hasta completar CI, revisión del diff y verificación post-merge.
+
+Fuente: `index.html`, `adaptive-learning.js`, `tests/adaptive-learning.test.cjs`; inspección funcional de la ruta de recomendación e inicio de lección; 24 nov 2026.
+
 ## 2026-11-25 — Fase 7: catálogo adaptativo centralizado y validado (PR #813 fusionada)
 
 - PR [#813](https://github.com/luisequeira612-commits/bahasa-studio/pull/813) fusionada por squash en `main`; commit `1ed0785f50b86de1bbcd2da43b1697e425003d48`.

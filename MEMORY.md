@@ -19,3 +19,5 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - No se cambia el esquema IndexedDB, el backup JSON v3, las dependencias ni el currículo. El XP de lección se persiste mediante la función existente `App.addXp` solo después de guardar el marcador de primera finalización.
 - Fuente: auditoría del inventario de lecciones y flujo `LessonEngine.startUnit` / `recordFirstAttempt` / `finishUnit`; decisión técnica aplicada en la rama `fix/lesson-xp-first-completion-cap`; 25 nov 2026. Pendiente de CI y revisión funcional.
 
+
+- CI inicial #45573252599 detectó una aserción heredada en `tests/ui-redesign-phase-2.test.cjs` que todavía exigía 3 XP inmediatos por acierto; se alineó con la recompensa por primera finalización (1 XP por acierto correcto, máximo 10). Reejecución pendiente.

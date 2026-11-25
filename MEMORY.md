@@ -1,3 +1,11 @@
+## 2026-11-25 — Mensaje de error de dictado ligado al idioma activo
+
+- La ruta `language-not-supported` de la dictación en conversación ya no menciona indonesio de forma fija: utiliza el nombre del idioma activo obtenido de `LanguageManager`, igual que el locale de reconocimiento.
+- La regresión simula `pt-BR` y comprueba que el mensaje de error mencione «portugués de Brasil», manteniendo la orientación en español.
+- No cambia el comportamiento de privacidad, disponibilidad de cursos, contenido, IndexedDB v1, backup JSON v3 ni dependencias.
+
+Fuente: `conversation-engine.js` y `tests/conversation-practice.test.cjs`; 25 nov 2026.
+
 ## 2026-11-25 — Reconocimiento de voz en conversación ligado al idioma activo
 
 - La captura opcional de respuesta libre en `conversation-engine.js` ya no fija `id-ID` ni muestra «indonesio» de forma literal: consulta `LanguageManager` para tomar locale y nombre del curso activo, manteniendo `id-ID` como fallback legacy.

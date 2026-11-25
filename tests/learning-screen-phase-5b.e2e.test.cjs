@@ -50,6 +50,28 @@ test('phase 5B learning screen is compact, blue and preserves all level/tool ent
 
     const banner = page.locator('.unit-path-section-banner').first();
     const current = page.locator('.learning-unit-node.node-current').first();
+    await page.waitForFunction(() => {
+      const host = document.getElementById('adaptiveRecommendationLearn');
+      return Boolean(host && host.querySelector('h3') && host.querySelector('button'));
+    });
+    const recommendation = page.locator('#adaptiveRecommendationLearn');
+    const recommendationPlacement = await recommendation.evaluate(el => {
+      const stage = el.closest('.unit-path-stage');
+      const node = stage && stage.querySelector('.learning-unit-node.node-current');
+      const nodeBox = node && node.getBoundingClientRect();
+      const cardBox = el.getBoundingClientRect();
+      return {
+        inCurrentStage: Boolean(stage && node),
+        followsCurrentNode: Boolean(node && (node.compareDocumentPosition(el) & Node.DOCUMENT_POSITION_FOLLOWING)),
+        belowCurrentNode: Boolean(nodeBox && cardBox.top >= nodeBox.bottom),
+        hasActionDescription: Boolean(el.querySelector('button[aria-describedby]') &&
+          document.getElementById(el.querySelector('button[aria-describedby]').getAttribute('aria-describedby')))
+      };
+    });
+    assert.equal(recommendationPlacement.inCurrentStage, true, 'recommendation should be mounted in the current unit stage');
+    assert.equal(recommendationPlacement.followsCurrentNode, true, 'recommendation should follow the current unit node');
+    assert.equal(recommendationPlacement.belowCurrentNode, true, 'recommendation should not overlap the current unit node');
+    assert.equal(recommendationPlacement.hasActionDescription, true, 'recommendation action should reference its accessible description');
     const before = await current.boundingBox();
     const bannerBox = await banner.boundingBox();
     console.log('[phase5B 360x740] first current node y=' + before.y.toFixed(1) + 'px (' + (before.y / 740 * 100).toFixed(1) + '% viewport height); banner=' + bannerBox.height.toFixed(1) + 'px');

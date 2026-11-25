@@ -627,7 +627,7 @@ test('successful SRS grades are recorded and do not remain adaptive weak words',
   assert.match(html, /lastQuality: history\.lastQuality/);
 
   const filterMatch = html.match(
-    /\.filter\(\(\[, item\]\) => ([\\s\\S]*?)\)\\s*\.slice\(0, 5\)\\.map/
+    /\.filter\(\(\[, item\]\) => ([\s\S]*?)\)\s*\.slice\(0, 5\)\.map/
   );
   assert.ok(filterMatch, 'the weak-word filter must remain present in the dashboard');
   const isWeakWord = new Function('item', `return (${filterMatch[1]});`);

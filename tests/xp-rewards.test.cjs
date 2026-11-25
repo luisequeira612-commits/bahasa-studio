@@ -37,7 +37,7 @@ test('unit assessments do not award per-answer lesson XP', () => {
 });
 
 test('each graded SRS card awards 2 XP and keeps the double-submit guard', () => {
-  const review = methodSource('async submitGrade(grade) {', 'async nextCard() {');
+  const review = methodSource('async submitGrade(grade) {', '        };\n\n        /* 5. MOTOR DE LECCIONES INTERACTIVAS */');
   assert.match(review, /if \(this\.isGrading \|\| !\[1, 3, 5\]\.includes\(normalizedGrade\)\) return;/);
   assert.match(review, /App\.addXp\(2\);/);
   assert.doesNotMatch(review, /App\.addXp\(5\)/);

@@ -181,6 +181,8 @@ test('phase four path geometry is collision-free at 360px across levels and zigz
           });
           const next = nodes[currentIndex + 1];
           const nextRect = next ? rect(next) : null;
+          const recommendation = stage.querySelector('#adaptiveRecommendationLearn');
+          const recommendationRect = recommendation ? rect(recommendation) : null;
           const nodeEdgeGaps = nodes.slice(1).map((node, i) => rect(node).top - rect(nodes[i]).bottom);
           scenarios.push({
             levelId, index, currentIndex, currentId:current.dataset.unitId,
@@ -190,6 +192,7 @@ test('phase four path geometry is collision-free at 360px across levels and zigz
             overflowing:[...document.querySelectorAll('body *')].map(el => { const r=el.getBoundingClientRect(); return {tag:el.tagName,id:el.id,cls:typeof el.className==='string'?el.className:'',left:Math.round(r.left),right:Math.round(r.right),width:Math.round(r.width)}; }).filter(item => item.width > 0 && (item.right > 360 || item.left < 0)).sort((a,b) => b.right-a.right).slice(0,12),
             bubble: bubbleRect, title:titleRect, node:currentRect,
             ringGap, horizontalBubbleClearance, horizontalTitleClearance, nodeEdgeGaps,
+            recommendation:recommendationRect, nextNode:nextRect,
             titleNextGap:nextRect ? nextRect.top - titleRect.bottom : null,
             firstNodeGap:rect(nodes[0]).top - rect(banner).bottom,
             bannerGap:index === 0 ? bubbleRect.top - rect(banner).bottom : null,
@@ -214,9 +217,19 @@ test('phase four path geometry is collision-free at 360px across levels and zigz
       assert.ok(layout.horizontalTitleClearance.every(gap => gap >= 9),
         layout.levelId + ' title must not invade adjacent zigzag columns: ' + JSON.stringify(layout.horizontalTitleClearance));
       for (const [gapIndex, gap] of layout.nodeEdgeGaps.entries()) {
-        const expectedGap = gapIndex === layout.currentIndex - 1 ? 74 : gapIndex === layout.currentIndex ? 56 : 18;
+        const recommendationAllowance = layout.recommendation && gapIndex === layout.currentIndex ? 220 : 0;
+        const expectedGap = gapIndex === layout.currentIndex - 1 ? 74 :
+          gapIndex === layout.currentIndex ? 56 + recommendationAllowance : 18;
         assert.ok(Math.abs(gap - expectedGap) <= 1,
-          layout.levelId + ' node edge gap should be 18px, with only the current-title allowance: ' + gap);
+          layout.levelId + ' node edge gap should include only the current-title and explicit recommendation space: ' + gap);
+      }
+      if (layout.recommendation) {
+        assert.ok(layout.recommendation.top >= layout.node.bottom,
+          layout.levelId + ' recommendation must begin below the current unit node');
+        if (layout.nextNode) assert.ok(layout.recommendation.bottom <= layout.nextNode.top,
+          layout.levelId + ' recommendation must not overlap the next unit node');
+        assert.ok(layout.recommendation.left >= 0 && layout.recommendation.right <= 360,
+          layout.levelId + ' recommendation must fit the mobile viewport');
       }
       if (layout.titleNextGap !== null) assert.ok(layout.titleNextGap >= 15,
         layout.levelId + ' next node must leave space below the one-line title');

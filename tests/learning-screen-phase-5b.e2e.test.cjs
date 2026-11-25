@@ -50,6 +50,28 @@ test('phase 5B learning screen is compact, blue and preserves all level/tool ent
 
     const banner = page.locator('.unit-path-section-banner').first();
     const current = page.locator('.learning-unit-node.node-current').first();
+    await page.waitForFunction(() => {
+      const host = document.getElementById('adaptiveRecommendationLearn');
+      return Boolean(host && host.querySelector('h3') && host.querySelector('button'));
+    });
+    const recommendation = page.locator('#adaptiveRecommendationLearn');
+    const recommendationPlacement = await recommendation.evaluate(el => {
+      const stage = el.closest('.unit-path-stage');
+      const node = stage && stage.querySelector('.learning-unit-node.node-current');
+      const nodeBox = node && node.getBoundingClientRect();
+      const cardBox = el.getBoundingClientRect();
+      return {
+        inCurrentStage: Boolean(stage && node),
+        followsCurrentNode: Boolean(node && (node.compareDocumentPosition(el) & Node.DOCUMENT_POSITION_FOLLOWING)),
+        belowCurrentNode: Boolean(nodeBox && cardBox.top >= nodeBox.bottom),
+        hasActionDescription: Boolean(el.querySelector('button[aria-describedby]') &&
+          document.getElementById(el.querySelector('button[aria-describedby]').getAttribute('aria-describedby')))
+      };
+    });
+    assert.equal(recommendationPlacement.inCurrentStage, true, 'recommendation should be mounted in the current unit stage');
+    assert.equal(recommendationPlacement.followsCurrentNode, true, 'recommendation should follow the current unit node');
+    assert.equal(recommendationPlacement.belowCurrentNode, true, 'recommendation should not overlap the current unit node');
+    assert.equal(recommendationPlacement.hasActionDescription, true, 'recommendation action should reference its accessible description');
     const before = await current.boundingBox();
     const bannerBox = await banner.boundingBox();
     console.log('[phase5B 360x740] first current node y=' + before.y.toFixed(1) + 'px (' + (before.y / 740 * 100).toFixed(1) + '% viewport height); banner=' + bannerBox.height.toFixed(1) + 'px');
@@ -830,6 +852,50 @@ test('learning screen remains usable without horizontal overflow at 320px', asyn
     await page.waitForFunction(() => document.getElementById('learningToolsSheetOverlay').hidden);
     assert.equal(await page.evaluate(() => document.activeElement?.classList.contains('unit-tools-trigger')), true,
       'closing the tools sheet at 320px must restore focus to its originating trigger');
+  } finally {
+    await context.close();
+    await browser.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});
+
+test('Aprender recommendation action starts the lesson selected by the adaptive engine', async () => {
+  const { server, url } = await startServer();
+  const browser = await chromium.launch({ headless: true });
+  const context = await browser.newContext({ viewport: { width: 360, height: 740 }, serviceWorkers: 'block', reducedMotion: 'reduce' });
+  const page = await context.newPage();
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
+    await page.waitForFunction(() => {
+      const host = document.getElementById('adaptiveRecommendationLearn');
+      return Boolean(host && host.querySelector('button'));
+    });
+    await page.evaluate(() => {
+      window.__startedRecommendedLesson = null;
+      LessonEngine.startUnitById = (unitId, lessonIndex) => {
+        window.__startedRecommendedLesson = { unitId, lessonIndex };
+      };
+      App.renderAdaptiveRecommendation({
+        dueCount: 0,
+        weakWords: [],
+        nextLesson: { unitId: 'a1_u1', lessonIndex: 0, unitTitle: 'Unidad 1', title: 'Lección 1' },
+        todayXp: 30,
+        dailyGoal: 30
+      });
+    });
+
+    const action = page.locator('#adaptiveRecommendationLearn button');
+    assert.equal(await action.innerText(), 'Continuar aprendiendo');
+    await action.click();
+    await page.waitForFunction(() => window.__startedRecommendedLesson &&
+      window.__startedRecommendedLesson.unitId === 'a1_u1' &&
+      window.__startedRecommendedLesson.lessonIndex === 0);
+    assert.deepEqual(await page.evaluate(() => window.__startedRecommendedLesson), {
+      unitId: 'a1_u1',
+      lessonIndex: 0
+    });
   } finally {
     await context.close();
     await browser.close();

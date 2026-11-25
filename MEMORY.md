@@ -915,3 +915,9 @@ Fuente: PR #791, GitHub Actions #45510910393, #45511368640 y #45511366352; 24 no
 - Se corrige el estado documental que quedó obsoleto en la entrada anterior sobre PR #790: la regresión post-merge #790 y Pages quedaron verificadas en runs #45510755559 y #45510754096; PR #791 y #792 también tienen CI post-merge y Pages en success.
 - Sin cambios de producción, currículos, IndexedDB v1, backup JSON v3, dependencias ni disponibilidad de idiomas en PR #792.
 Fuente: PR #792, GitHub Actions #45512800901 y #45512797930, `docs/B2_U20_U60_ROADMAP.md`, `docs/PHASE_6_POSTMERGE_VERIFICATION.md`; 24 nov 2026.
+
+
+## 2026-11-24 — Fase 6: validación de accesibilidad/móvil actualizada
+- PR #794–#797 integradas; #797 añade cobertura de controles de traducción a 320 px. En `main` (`cbae2cb6880c7e07488b614ff050740bf520decc`), regresión #45518553869 y calidad offline 10/10 success; Pages #45518553195 build/deploy success.
+- La cobertura automatizada de fase 6 está completada para los casos añadidos; sigue pendiente la prueba física en Tecno Pova 4 (720×1640). No se afirma que Chromium sustituya esa prueba.
+Fuente: PR #794–#797 y GitHub Actions #45518553869/#45518553195; 24 nov 2026.

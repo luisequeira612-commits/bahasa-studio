@@ -181,6 +181,9 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
         <section id="adaptiveRecommendationLearn" class="card" data-adaptive-recommendation aria-live="polite" aria-label="Repaso pendiente" hidden>
             <p class="text-muted">Preparando tu siguiente paso…</p>
         </section>
+        <section id="adaptiveLearningRecommendationLearn" class="card" data-adaptive-recommendation aria-live="polite" aria-label="Tu siguiente paso recomendado" hidden>
+            <p class="text-muted">Preparando tu siguiente paso…</p>
+        </section>
         <div id="courseContainer"></div>
         <button id="jumpToCurrentUnitBtn" class="jump-current-unit-button" type="button" onclick="App.scrollToCurrentUnit(true)" hidden>↑ Ir a mi unidad</button>
         <div id="studyLanguageSheetOverlay" class="learning-action-sheet-overlay" hidden onclick="App.handleLearningSheetBackdrop(event)">
@@ -20449,15 +20452,22 @@ Requisitos:
                 hosts.forEach(host => {
                     host.replaceChildren();
                     const isLearnReviewCard = host.id === 'adaptiveRecommendationLearn';
+                    const isLearnRecommendationCard = host.id === 'adaptiveLearningRecommendationLearn';
                     if (isLearnReviewCard) {
                         if (reviewCount === 0 || recommendation.action !== 'review') {
                             host.hidden = true;
                             return;
                         }
                         host.hidden = false;
+                    } else if (isLearnRecommendationCard) {
+                        if (reviewCount > 0 || recommendation.action === 'none') {
+                            host.hidden = true;
+                            return;
+                        }
+                        host.hidden = false;
                     } else {
                         host.hidden = false;
-                        if (input.dueCount === 0) {
+                        if (host.id === 'adaptiveRecommendation' && input.dueCount === 0) {
                             const mascot = document.createElement('img');
                             mascot.src = './assets/guardi/guardi-normal.svg';
                             mascot.width = 100;

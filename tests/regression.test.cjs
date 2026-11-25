@@ -2127,9 +2127,11 @@ test('merged SRS manual-save state follows the latest explicit mark or grade', (
   assert.ok(start >= 0 && end > start, 'SRS merge helper must exist');
   const merge = vm.runInNewContext(htmlSource.slice(start, end) + '\nmergeSrsRecords');
   const merged = merge([
-    { attempts: 5, correct: 2, incorrect: 3, lastReviewed: 500, markedAt: 1000, savedForReview: true },
-    { attempts: 5, correct: 2, incorrect: 3, lastReviewed: 500, markedAt: 2000, savedForReview: false }
+    { attempts: 5, correct: 2, incorrect: 3, lastReviewed: 500, markedAt: 1000, savedForReview: true, lastQuality: 1 },
+    { attempts: 6, correct: 3, incorrect: 3, lastReviewed: 500, markedAt: 2000, savedForReview: false, lastQuality: 3 }
   ], 'v45');
   assert.equal(merged.savedForReview, false,
     'an older manual-save marker must not override a later successful grade');
+  assert.equal(merged.lastQuality, 3,
+    'the merged record must expose the latest grade even when SM-2 scheduling takes its fast path');
 });

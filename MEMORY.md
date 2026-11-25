@@ -1,3 +1,12 @@
+## 2026-11-25 — PR #819 fusionada y recomendador visible en Aprender (PR #820 en preparación)
+
+- PR [#819](https://github.com/luisequeira612-commits/bahasa-studio/pull/819) se fusionó mediante squash en `main`, commit `40de6fbde1c6c564241db157f5681ffacfb33236`. CI final [#45566397167](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45566397167): `test` y `Offline quality reports` terminaron en success; sin reviews ni hilos pendientes.
+- El diagnóstico de Fase 7 confirmó que la tarjeta adaptativa solo se montaba en la vista SRS (Repasar) y Perfil. En Aprender (`view-route`) no existía host ni se llamaba a `updateSrsView()` al abrir la vista, por lo que el usuario no podía ver la recomendación allí.
+- PR #820 añade un host de recomendación en Aprender, mantiene el host SRS y renderiza ambas vistas desde la misma decisión adaptativa. Se actualiza el cálculo al iniciar la app y al entrar en Aprender, y se mantiene la tarjeta visible durante el desplazamiento mediante sticky bajo la barra superior. Pruebas añadidas para presencia en Aprender, actualización y asociación accesible del botón con su descripción.
+- No se altera la lógica de selección de recomendaciones, XP, currículo, progreso, IndexedDB v1, backup JSON v3, idiomas ni dependencias. La prueba física en Tecno Pova 4 (720×1640) seguirá siendo necesaria después del despliegue.
+
+Fuente: PR #815, `index.html`, `adaptive-learning.js`, `tests/adaptive-learning.test.cjs` y CI #45566397167; 25 nov 2026.
+
 ## 2026-11-25 — Actualización del app shell tras PR #817
 
 - PR #817 modificó `index.html` para equilibrar las recompensas XP, pero no cambió `service-worker.js`. La estrategia stale-while-revalidate puede mostrar la copia cacheada mientras actualiza en segundo plano.

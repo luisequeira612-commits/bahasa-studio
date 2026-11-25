@@ -89,6 +89,17 @@ test('real Chromium preserves progress on reload and safely imports valid/invali
         attempts: 1, correct: 1, incorrect: 0, interval: 1, repetition: 1,
         efactor: 2.5, nextReview: Date.now() + 86400000, lastReviewed: Date.now()
       });
+      // A backup for the active Indonesian course must not erase other
+      // languages' namespaced SRS or course-specific settings.
+      await DB.set('srs', 'pt-BR::v27', {
+        attempts: 5, correct: 4, incorrect: 1, interval: 3, repetition: 1,
+        efactor: 2.3, nextReview: Date.now() + 172800000, lastReviewed: Date.now()
+      });
+      await DB.set('srs', 'en::v27', {
+        attempts: 8, correct: 6, incorrect: 2, interval: 5, repetition: 2,
+        efactor: 2.1, nextReview: Date.now() + 259200000, lastReviewed: Date.now()
+      });
+      await DB.set('settings', 'pt-BR::userXp', 321);
     });
 
     await page.reload({ waitUntil: 'domcontentloaded' });
@@ -138,6 +149,12 @@ test('real Chromium preserves progress on reload and safely imports valid/invali
       'restoring a backup must preserve the manual saved-for-review marker');
     assert.equal(await page.evaluate(() => DB.get('srs', 'v49')), null,
       'successful restore should replace old SRS records rather than leave stale entries');
+    assert.equal((await page.evaluate(() => DB.get('srs', 'pt-BR::v27'))).attempts, 5,
+      'restoring Indonesian data must preserve Portuguese namespaced SRS records');
+    assert.equal((await page.evaluate(() => DB.get('srs', 'en::v27'))).attempts, 8,
+      'restoring Indonesian data must preserve English namespaced SRS records');
+    assert.equal(await page.evaluate(() => DB.get('settings', 'pt-BR::userXp')), 321,
+      'restoring Indonesian data must preserve other languages course-specific settings');
 
     const beforeAbort = await page.evaluate(async () => ({
       xp: await DB.get('settings', 'userXp'),

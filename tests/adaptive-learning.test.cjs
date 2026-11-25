@@ -371,13 +371,13 @@ test('adaptive recommendation is visible on Aprender and refreshes on initial lo
   assert.match(html, /document\.querySelectorAll\('\[data-adaptive-recommendation\]'\)/);
   assert.match(html, /this\.renderCourseRoute\(\);\s*this\.updateSrsView\(\);/);
   assert.match(html, /viewId === 'srs' \|\| viewId === 'profile' \|\| viewId === 'route'/);
-  assert.ok(html.includes('#adaptiveRecommendationLearn { margin:0 12px 16px; padding:12px;'));
+  assert.ok(html.includes('#adaptiveRecommendationLearn { margin:12px 12px 14px; padding:10px 12px; min-height:64px;'));
   assert.ok(html.indexOf('id="adaptiveRecommendationLearn"') < html.indexOf('id="courseContainer"'),
     'the recommendation card should be placed before the unit list');
   assert.doesNotMatch(html, /adaptive-recommendation-path-card|recommendationReserve/);
   assert.doesNotMatch(html, /stage\.appendChild\(recommendationHost\)/);
   assert.ok(html.includes('.unit-path-section-banner { top:58px !important;'));
-  assert.ok(html.includes('#adaptiveRecommendationLearn .guardi-empty-illustration,#adaptiveRecommendationLearn .guardi-empty-message { display:none; }'));
+  assert.ok(html.includes('#adaptiveRecommendationLearn[hidden] { display:none !important; }'));
 });
 
 test('weakest skill ranking compares exact accuracy before applying display rounding or tie-breakers', () => {
@@ -566,4 +566,21 @@ test('the adaptive dashboard hides the all-clear mascot whenever a recommendatio
   assert.match(css, /\.card:has\(> \.btn:not\(:disabled\)\) > \.guardi-empty-illustration/);
   assert.match(css, /\.card:has\(> \.btn:not\(:disabled\)\) > \.guardi-empty-message/);
   assert.match(css, /display:\s*none/);
+});
+
+
+test('Learn shows a compact SRS-only row with live counts and hides it when no reviews are due', () => {
+  const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+  assert.match(html, /id="adaptiveRecommendationLearn"[^>]*aria-label="Repaso pendiente" hidden/);
+  assert.match(html, /#adaptiveRecommendationLearn\[hidden\] \{ display:none !important; \}/);
+  assert.match(html, /adaptive-review-card-row \{ display:flex; align-items:center; justify-content:space-between;/);
+  assert.match(html, /adaptive-review-card-title/);
+  assert.match(html, /adaptive-review-card-focus/);
+  assert.match(html, /min-height:64px/);
+  assert.match(html, /const reviewCount = AdaptiveLearning\.normalizeSrsCount\(input\.dueCount\)/);
+  assert.match(html, /const weakestSkill = AdaptiveLearning\.weakestSkill\(skillStats\)/);
+  assert.match(html, /Punto débil: /);
+  assert.match(html, /button\.textContent = isLearnReviewCard \? 'Repasar'/);
+  assert.match(html, /if \(reviewCount === 0 \|\| recommendation\.action !== 'review'\) \{\s*host\.hidden = true;/);
+  assert.match(html, /reviewCount \+ \(reviewCount === 1/);
 });

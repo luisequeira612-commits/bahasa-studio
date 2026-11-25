@@ -1,10 +1,16 @@
-## 2026-11-25 — PR #828: estado vacío coherente en recomendador
+## 2026-11-25 — Tarjeta compacta de repaso en Aprender (en preparación)
 
-- PR [#828](https://github.com/luisequeira612-commits/bahasa-studio/pull/828) corrige una contradicción visual: cuando `dueCount === 0`, la tarjeta añadía «Todo al día. Guardi está orgulloso.» aunque ofreciera una acción concreta (practicar una habilidad, repasar errores o continuar una lección).
-- `styles.css` oculta ilustración y mensaje de estado vacío cuando la tarjeta contiene un botón habilitado; conserva el estado vacío cuando la recomendación no ofrece acción (`action: none`).
-- `tests/adaptive-learning.test.cjs` añade una regresión del contrato CSS.
-- Alcance limitado a presentación y pruebas. No modifica IndexedDB, backup JSON v3, XP, currículo, persistencia ni dependencias.
-- Estado al registrar: PR abierta, CI pendiente. Fuente: diff y PR #828; 25 nov 2026.
+- La tarjeta de Aprender queda reservada exclusivamente para repasos SRS vencidos: se oculta por completo cuando el contador real es cero. No se altera la selección, los intervalos ni el inicio de sesión de repaso. La medición Chromium detectó que el ancho global `width:100%` del botón comprimía el texto y estiraba la tarjeta; el botón ahora usa ancho automático y el margen inferior queda en 14 px para dejar el espacio solicitado antes del banner.
+- La fila muestra el número real de palabras pendientes y, cuando hay al menos diez intentos válidos, la habilidad de menor precisión y su porcentaje; elimina del panel de Aprender la explicación extensa y el número de intentos duplicado.
+- `index.html` concentra el host, el render y sus reglas CSS específicas; `tests/adaptive-learning.test.cjs` cubre el contrato visual; `tests/learning-screen-phase-4.e2e.test.cjs` verifica altura, espacios, fila y desaparición; `tests/learning-screen-phase-5b.e2e.test.cjs` ya no espera una recomendación de lección en esa tarjeta sin repasos y comprueba que «Repasar» inicia la sesión SRS existente. Sin cambios en `adaptive-learning.js`, `styles.css`, IndexedDB v1, backup JSON v3, XP ni dependencias.
+- PR [#829](https://github.com/luisequeira612-commits/bahasa-studio/pull/829), rama `fix/compact-learn-review-card-20261125`; Las pruebas E2E anteriores asumían que la tarjeta aparecía sin repasos y que recomendaba continuar una lección; se actualizaron para el nuevo contrato SRS-only. También se ajustaron la posición del banner sin tarjeta y la activación de Aprender antes de medir la fila. La prueba de altura/espacios reveló que el botón heredaba `width:100%` y que el escenario medía tras un scroll de navegación; se corrigieron ambos puntos y se fijó el margen inferior en 14 px, tras medir 8 px en el intento anterior. La E2E de fase 4 ya confirma 76 px de alto, 12 px bajo la barra superior, fila horizontal y separación de 14 px prevista antes del banner. La suite unitaria aún contenía una aserción antigua sobre la ilustración; se cambió para comprobar que el host queda oculto con `[hidden]`. CI de la nueva cabeza pendiente; falta verificar el despliegue; la prueba física en Tecno Pova 4 (720×1640) corresponde al usuario después de Pages.
+- Fuente: solicitud explícita del dueño y diff de la rama; 25 nov 2026.
+
+## 2026-11-25 — PR #828 fusionada: estado vacío coherente del recomendador
+
+- PR [#828](https://github.com/luisequeira612-commits/bahasa-studio/pull/828) fusionada mediante squash en `main`, commit `bd01e1266475344329016f8207fa5ef0764f707d`. CI de la cabeza `fb91735cc59dde691e009a86e0faa6ddcc49ad42`, run [#45588782262](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45588782262): `test` y `Offline quality reports` success.
+- `styles.css` oculta ilustración y mensaje de estado vacío cuando la tarjeta contiene una acción habilitada; `tests/adaptive-learning.test.cjs` cubre el contrato CSS. No cambia IndexedDB, backup JSON v3, XP, currículo, persistencia ni dependencias.
+- Fuente: PR #828, GitHub Actions #45588782262 y commit de fusión; 25 nov 2026.
 
 ## 2026-11-25 — PR #819 y #820 fusionadas; recomendador visible en Aprender
 

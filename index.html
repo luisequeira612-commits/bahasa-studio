@@ -34,11 +34,13 @@
 .level-progress-level { flex:0 0 auto; color:#1F2937; font-weight:800; }
 @media (max-width:380px) { .app-topbar { padding-left:14px; padding-right:14px; gap:6px; } .app-topbar .logo { flex:0 1 auto; min-width:0; gap:4px; font-size:.9rem; } .app-topbar .logo span { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; } .topbar-metrics { flex:1 1 auto; min-width:0; gap:4px !important; } .topbar-chip { min-width:0; gap:3px; font-size:.72rem; } .topbar-chip .ui-icon { width:16px; height:16px; flex:0 0 16px; } .topbar-streak,.topbar-xp { flex:0 1 auto; } .level-progress-trigger { min-width:78px; padding-inline:6px; gap:4px; } }
 .learning-level-selector,.learning-tools-row { display:none !important; }
-#adaptiveRecommendationLearn { margin:0 12px 16px; padding:12px; box-shadow:0 4px 14px rgba(0,0,0,.12); }
-#adaptiveRecommendationLearn .guardi-empty-illustration,#adaptiveRecommendationLearn .guardi-empty-message { display:none; }
-#adaptiveRecommendationLearn h3 { margin:0 0 4px; font-size:1rem; }
-#adaptiveRecommendationLearn p { margin:0 0 8px; font-size:.84rem; line-height:1.35; }
-#adaptiveRecommendationLearn .btn { min-height:40px; padding:8px 12px; font-size:.9rem; }
+#adaptiveRecommendationLearn[hidden] { display:none !important; }
+#adaptiveRecommendationLearn { margin:12px 12px 14px; padding:10px 12px; min-height:64px; box-sizing:border-box; border-radius:16px; box-shadow:0 4px 14px rgba(0,0,0,.12); }
+#adaptiveRecommendationLearn .adaptive-review-card-row { display:flex; align-items:center; justify-content:space-between; gap:12px; min-height:42px; }
+#adaptiveRecommendationLearn .adaptive-review-card-copy { flex:1 1 auto; min-width:0; }
+#adaptiveRecommendationLearn .adaptive-review-card-title { margin:0; color:var(--text-main); font-size:.9rem; font-weight:800; line-height:1.2; }
+#adaptiveRecommendationLearn .adaptive-review-card-focus { margin:3px 0 0; color:var(--text-muted); font-size:.76rem; line-height:1.2; }
+#adaptiveRecommendationLearn .adaptive-review-card-row .btn { flex:0 0 auto; width:auto; min-height:36px; padding:7px 13px; font-size:.82rem; white-space:nowrap; }
  .unit-path-section-banner { top:58px !important; max-height:72px; min-height:64px; padding:9px 10px 8px 12px; background:#004E9A !important; border:0; border-bottom:3px solid #00386D; border-radius:0 0 14px 14px; color:#ffffff; grid-template-columns:minmax(0,1fr) auto auto; align-items:center; gap:4px 8px; }
 .unit-path-section-banner h3,.unit-path-section-banner p,.unit-section-count { color:#ffffff !important; } .unit-path-section-banner p { white-space:nowrap; }
 .unit-section-progress { grid-column:1 / -1; background:rgba(255,255,255,.34); height:5px; } .unit-section-progress span { background:#ffffff; }
@@ -176,7 +178,7 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
         </div></div>
         </details>
         <p id="unitPathNotice" class="unit-path-notice" role="status" aria-live="polite" hidden></p>
-        <section id="adaptiveRecommendationLearn" class="card" data-adaptive-recommendation aria-live="polite" aria-label="Tu siguiente paso recomendado">
+        <section id="adaptiveRecommendationLearn" class="card" data-adaptive-recommendation aria-live="polite" aria-label="Repaso pendiente" hidden>
             <p class="text-muted">Preparando tu siguiente paso…</p>
         </section>
         <div id="courseContainer"></div>
@@ -20439,31 +20441,67 @@ Requisitos:
                 const hosts = document.querySelectorAll('[data-adaptive-recommendation]');
                 if (!hosts.length || typeof AdaptiveLearning === 'undefined') return;
                 const recommendation = AdaptiveLearning.recommend(input);
+                const reviewCount = AdaptiveLearning.normalizeSrsCount(input.dueCount);
+                const skillStats = AdaptiveLearning.skillStatsForLanguage(
+                    input.skillStatsByLanguage, input.language, input.supportedLanguages
+                );
+                const weakestSkill = AdaptiveLearning.weakestSkill(skillStats);
                 hosts.forEach(host => {
                     host.replaceChildren();
-                    if (input.dueCount === 0) {
-                        const mascot = document.createElement('img');
-                        mascot.src = './assets/guardi/guardi-normal.svg';
-                        mascot.width = 100;
-                        mascot.height = 100;
-                        mascot.alt = '';
-                        mascot.className = 'guardi-empty-illustration';
-                        const message = document.createElement('p');
-                        message.className = 'guardi-empty-message';
-                        message.textContent = 'Todo al día. Guardi está orgulloso.';
-                        host.append(mascot, message);
+                    const isLearnReviewCard = host.id === 'adaptiveRecommendationLearn';
+                    if (isLearnReviewCard) {
+                        if (reviewCount === 0 || recommendation.action !== 'review') {
+                            host.hidden = true;
+                            return;
+                        }
+                        host.hidden = false;
+                    } else {
+                        host.hidden = false;
+                        if (input.dueCount === 0) {
+                            const mascot = document.createElement('img');
+                            mascot.src = './assets/guardi/guardi-normal.svg';
+                            mascot.width = 100;
+                            mascot.height = 100;
+                            mascot.alt = '';
+                            mascot.className = 'guardi-empty-illustration';
+                            const message = document.createElement('p');
+                            message.className = 'guardi-empty-message';
+                            message.textContent = 'Todo al día. Guardi está orgulloso.';
+                            host.append(mascot, message);
+                        }
                     }
+                    let reviewRow = null;
                     const heading = document.createElement('h3');
                     heading.textContent = recommendation.title;
                     const description = document.createElement('p');
                     description.id = host.id + 'Description';
-                    description.textContent = recommendation.description;
-                    description.style.color = 'var(--text-muted)';
+                    if (isLearnReviewCard) {
+                        reviewRow = document.createElement('div');
+                        reviewRow.className = 'adaptive-review-card-row';
+                        const copy = document.createElement('div');
+                        copy.className = 'adaptive-review-card-copy';
+                        const primary = document.createElement('p');
+                        primary.className = 'adaptive-review-card-title';
+                        const strong = document.createElement('strong');
+                        strong.textContent = reviewCount + (reviewCount === 1
+                            ? ' palabra lista para repasar'
+                            : ' palabras listas para repasar');
+                        primary.append(strong);
+                        description.className = 'adaptive-review-card-focus';
+                        description.textContent = weakestSkill
+                            ? 'Punto débil: ' + weakestSkill.label + ' (' + weakestSkill.accuracy + '%)'
+                            : 'Punto débil: aún sin datos suficientes';
+                        copy.append(primary, description);
+                        reviewRow.append(copy);
+                    } else {
+                        description.textContent = recommendation.description;
+                        description.style.color = 'var(--text-muted)';
+                    }
                     const button = document.createElement('button');
                     button.type = 'button';
                     button.setAttribute('aria-describedby', description.id);
                     button.className = 'btn';
-                    button.textContent = recommendation.label;
+                    button.textContent = isLearnReviewCard ? 'Repasar' : recommendation.label;
                     button.disabled = recommendation.action === 'none';
                     button.addEventListener('click', async () => {
                         button.disabled = true;
@@ -20486,7 +20524,12 @@ Requisitos:
                             button.disabled = false;
                         }
                     });
-                    host.append(heading, description, button);
+                    if (isLearnReviewCard) {
+                        reviewRow.append(button);
+                        host.append(reviewRow);
+                    } else {
+                        host.append(heading, description, button);
+                    }
                 });
             },
             renderDict() {

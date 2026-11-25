@@ -651,6 +651,11 @@ test('translation bubble exposes expanded state and supports keyboard open and E
     assert.equal(await trigger.getAttribute('aria-expanded'), 'true',
       'Enter should expand the focused word button; state: ' + JSON.stringify(keyboardState));
     assert.equal(await trigger.getAttribute('aria-controls'), 'tapTranslationBubble');
+    await page.evaluate(() => window.dispatchEvent(new Event('scroll')));
+    assert.equal(await bubble.isVisible(), true,
+      'Scrolling while the keyboard trigger retains focus should keep the bubble open');
+    assert.equal(await trigger.getAttribute('aria-expanded'), 'true',
+      'A scroll with keyboard focus should preserve the expanded state');
     assert.equal(await bubble.getAttribute('aria-label'), 'Traducción y repaso');
     assert.equal(await page.locator('#tapTranslationText').getAttribute('aria-live'), 'polite');
 

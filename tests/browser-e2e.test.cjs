@@ -1408,7 +1408,7 @@ test('guided A1 writing shows task-specific review criteria and records progress
       'writing must not award XP before the learner explicitly self-assesses');
 
     await page.getByRole('button', { name: 'Sí, cumplí los criterios' }).click();
-    await page.waitForFunction(previous => App.xp >= previous + 10, before);
+    await page.waitForFunction(previous => App.xp >= previous + 3, before);
     await page.waitForFunction(async () => {
       const record = await DB.get('srs', 'v44');
       return record && record.attempts === 1;

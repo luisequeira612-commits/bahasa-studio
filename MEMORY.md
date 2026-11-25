@@ -207,3 +207,10 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - La ejecución de PR #836 confirmó que `tests/regression.test.cjs` terminó correctamente, pero el job se detuvo en la suite E2E de Fase 4 antes de llegar al paso `tests/adaptive-learning.test.cjs`. Por tanto, la prueba específica del recomendador no había quedado validada en esa ejecución.
 - Se reordenó el workflow `.github/workflows/regression.yml` para ejecutar la suite adaptativa inmediatamente antes de Fase 4. Así, los próximos resultados del SRS quedan visibles aunque un fallo E2E posterior detenga el job; no cambia el código de producción ni relaja pruebas.
 - Fuente: GitHub Actions run #45689931010, job #139472361814; PR #836, 25 nov 2026.
+
+
+## 2026-11-25 — Corrección de sintaxis en prueba adaptativa
+
+- La ejecución #45692053382 permitió llegar a `tests/adaptive-learning.test.cjs`, pero la suite no pudo cargar: una edición anterior había insertado los caracteres literales `\\n` entre dos aserciones y Node devolvió `SyntaxError` en la línea 626. No era un fallo de la lógica SRS.
+- Se sustituyó el texto escapado por un salto de línea real en `tests/adaptive-learning.test.cjs` (commit `8246c14180ea4db4bbb797921ae696b7e4f17c5a`). La nueva ejecución debe confirmar la suite adaptativa antes de continuar con E2E.
+- Fuente: GitHub Actions run #45692053382, job #139479766040; log de Node 22, 25 nov 2026.

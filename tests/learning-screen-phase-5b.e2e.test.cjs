@@ -73,7 +73,22 @@ test('phase 5B learning screen is compact, blue and preserves all level/tool ent
     assert.equal(recommendationPlacement.outsideUnitPath, true, 'recommendation host should remain independent from the unit path');
     assert.equal(recommendationPlacement.beforeUnitList, true, 'recommendation host should remain before the unit list');
     assert.equal(recommendationPlacement.noReservedSpace, true, 'hidden recommendation must not reserve vertical space');
-    assert.equal(recommendationPlacement.aboveUnitList, true, 'hidden recommendation must not overlap the unit list');
+    assert.equal(recommendationPlacement.aboveUnitList, true, 'hidden review card must not overlap the unit list');
+
+    const adaptiveRecommendation = page.locator('#adaptiveLearningRecommendationLearn');
+    await page.waitForFunction(() => {
+      const host = document.getElementById('adaptiveLearningRecommendationLearn');
+      return Boolean(host && !host.hidden && host.querySelector('button:not(:disabled)'));
+    });
+    assert.match(await adaptiveRecommendation.locator('h3').innerText(), /Continúa con la siguiente lección/);
+    assert.equal(await adaptiveRecommendation.locator('button').innerText(), 'Continuar aprendiendo');
+    await adaptiveRecommendation.locator('button').click();
+    await page.waitForFunction(() => document.getElementById('view-lesson').classList.contains('active'));
+    assert.ok(await page.evaluate(() => Boolean(LessonEngine.currentLesson)), 'the recommended next lesson should actually open');
+    await page.evaluate(() => App.switchView('route'));
+    await page.waitForFunction(() => document.getElementById('view-route').classList.contains('active'));
+    await page.waitForSelector('.learning-unit-node.node-current');
+
     const before = await current.boundingBox();
     const bannerBox = await banner.boundingBox();
     console.log('[phase5B 360x740] first current node y=' + before.y.toFixed(1) + 'px (' + (before.y / 740 * 100).toFixed(1) + '% viewport height); banner=' + bannerBox.height.toFixed(1) + 'px');

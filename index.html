@@ -34,12 +34,12 @@
 .level-progress-level { flex:0 0 auto; color:#1F2937; font-weight:800; }
 @media (max-width:380px) { .app-topbar { padding-left:14px; padding-right:14px; gap:6px; } .app-topbar .logo { flex:0 1 auto; min-width:0; gap:4px; font-size:.9rem; } .app-topbar .logo span { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; } .topbar-metrics { flex:1 1 auto; min-width:0; gap:4px !important; } .topbar-chip { min-width:0; gap:3px; font-size:.72rem; } .topbar-chip .ui-icon { width:16px; height:16px; flex:0 0 16px; } .topbar-streak,.topbar-xp { flex:0 1 auto; } .level-progress-trigger { min-width:78px; padding-inline:6px; gap:4px; } }
 .learning-level-selector,.learning-tools-row { display:none !important; }
-.adaptive-recommendation-sticky { position:sticky; top:62px; z-index:36; margin:0 0 14px; padding:12px; box-shadow:0 6px 18px rgba(0,0,0,.12); }
+.adaptive-recommendation-path-card { position:absolute; left:12px; right:12px; z-index:4; box-sizing:border-box; margin:0; padding:10px; box-shadow:0 4px 14px rgba(0,0,0,.12); }
 #adaptiveRecommendationLearn .guardi-empty-illustration,#adaptiveRecommendationLearn .guardi-empty-message { display:none; }
 #adaptiveRecommendationLearn h3 { margin:0 0 4px; font-size:1rem; }
 #adaptiveRecommendationLearn p { margin:0 0 8px; font-size:.84rem; line-height:1.35; }
 #adaptiveRecommendationLearn .btn { min-height:40px; padding:8px 12px; font-size:.9rem; }
- .unit-path-section-banner { top:205px !important; max-height:72px; min-height:64px; padding:9px 10px 8px 12px; background:#004E9A !important; border:0; border-bottom:3px solid #00386D; border-radius:0 0 14px 14px; color:#ffffff; grid-template-columns:minmax(0,1fr) auto auto; align-items:center; gap:4px 8px; }
+ .unit-path-section-banner { top:58px !important; max-height:72px; min-height:64px; padding:9px 10px 8px 12px; background:#004E9A !important; border:0; border-bottom:3px solid #00386D; border-radius:0 0 14px 14px; color:#ffffff; grid-template-columns:minmax(0,1fr) auto auto; align-items:center; gap:4px 8px; }
 .unit-path-section-banner h3,.unit-path-section-banner p,.unit-section-count { color:#ffffff !important; } .unit-path-section-banner p { white-space:nowrap; }
 .unit-section-progress { grid-column:1 / -1; background:rgba(255,255,255,.34); height:5px; } .unit-section-progress span { background:#ffffff; }
 .unit-tools-trigger { width:44px; height:44px; min-width:44px; min-height:44px; border:1px solid rgba(255,255,255,.55); border-radius:12px; background:#004E9A; color:#ffffff; display:grid; place-items:center; touch-action:manipulation; } .unit-tools-trigger .ui-icon { width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; } .unit-tools-trigger:focus-visible { outline:3px solid #ffffff; outline-offset:2px; }
@@ -20112,6 +20112,11 @@ Requisitos:
                     button.classList.toggle('level-in-development', level && level.id === 'B2');
                 });
                 if (!container) return;
+                const recommendationHost = document.getElementById('adaptiveRecommendationLearn');
+                const routeView = document.getElementById('view-route');
+                if (recommendationHost && routeView && container.contains(recommendationHost)) {
+                    routeView.insertBefore(recommendationHost, document.getElementById('aiGeneratorDrawer'));
+                }
                 container.replaceChildren();
                 const level = CourseData.levels.find(entry => entry.id === this.selectedLearningLevel);
                 const visibleUnits = level ? (level.id === 'B2' ? level.units.slice(0, 1) : level.units) : [];
@@ -20257,6 +20262,15 @@ Requisitos:
                             currentTitle.style.lineHeight = '15px';
                             currentTitle.textContent = String(unit.title || '').replace(/^Unidad\s+\d+\s*:\s*/i, '').trim();
                             stage.appendChild(currentTitle);
+                            const recommendationHost = document.getElementById('adaptiveRecommendationLearn');
+                            if (recommendationHost) {
+                                recommendationHost.classList.add('adaptive-recommendation-path-card');
+                                recommendationHost.style.top = (nodeTop + 82) + 'px';
+                                stage.appendChild(recommendationHost);
+                                const recommendationReserve = 150;
+                                stageBottom = Math.max(stageBottom, nodeTop + 82 + recommendationReserve);
+                                nextNodeTop += recommendationReserve;
+                            }
                         }
                         nextNodeTop += nodeStep + (isCurrent && index < units.length - 1 ? currentTitleExtra : 0);
                     });

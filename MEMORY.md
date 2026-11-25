@@ -16,3 +16,10 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Auditoría posterior: `App.addXp` persiste el total `userXp`, registra exactamente el mismo importe en `StudyActivity.todayXp` y refresca Perfil + objetivo diario; `updateStudyDashboard` actualiza texto, barra y estado accesible. Se añade una prueba de regresión para evitar divergencias entre XP total y diario.
 - Verificación post-merge #45578296681 (regresión + calidad offline) y Pages #45578296958: success. Prueba física en Tecno Pova 4 (720×1640) pendiente.
 - Fuente: PR #822, `index.html`, `study-activity.js`, pruebas XP/actividad y Actions; 25 nov 2026.
+
+## 2026-11-25 — Prueba E2E de XP por primera finalización (en preparación)
+
+- Rama `test/lesson-xp-first-completion-e2e`: se añade una prueba Chromium con IndexedDB real para verificar que completar por primera vez una lección concede el XP esperado, repetirla no concede XP adicional y abandonar otra lección no concede XP pendiente.
+- La prueba utiliza la ruta real de inicio/finalización y `recordFirstAttempt` de `LessonEngine`, sin inyectar manualmente el contador de aciertos; no modifica la lógica de recompensas, el currículo, IndexedDB, el backup JSON v3 ni dependencias.
+- CI del head `a74107d98375cdcd02c520add7ee8425228137a2`, run [#45580851785](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45580851785): `test` y `Offline quality reports` success; sin reviews ni comentarios pendientes. PR lista para integrar.
+- Fuente: `tests/browser-e2e.test.cjs`, `tests/xp-rewards.test.cjs` y auditoría PR #822/#823; 25 nov 2026.

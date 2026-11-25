@@ -371,11 +371,13 @@ test('adaptive recommendation is visible on Aprender and refreshes on initial lo
   assert.match(html, /document\.querySelectorAll\('\[data-adaptive-recommendation\]'\)/);
   assert.match(html, /this\.renderCourseRoute\(\);\s*this\.updateSrsView\(\);/);
   assert.match(html, /viewId === 'srs' \|\| viewId === 'profile' \|\| viewId === 'route'/);
-  assert.match(html, /\.adaptive-recommendation-path-card\\s*\\{\\s*position:absolute;/);
-  assert.match(html, /recommendationHost\.style\.top = \(nodeTop \+ 82\) \+ 'px'/);
-  assert.match(html, /nextNodeTop \+= recommendationReserve/);
-  assert.match(html, /\.unit-path-section-banner \{ top:58px !important;/);
-  assert.match(html, /#adaptiveRecommendationLearn \.guardi-empty-illustration,#adaptiveRecommendationLearn \.guardi-empty-message \{ display:none; \}/);
+  assert.ok(html.includes('.adaptive-recommendation-path-card { position:absolute;'));
+  assert.ok(html.includes("recommendationHost.style.top = (nodeTop + 82) + 'px'"));
+  assert.ok(html.includes('stage.appendChild(recommendationHost)'));
+  assert.ok(html.includes('const recommendationReserve = 150'));
+  assert.ok(html.includes("routeView.insertBefore(recommendationHost, document.getElementById('aiGeneratorDrawer'))"));
+  assert.ok(html.includes('.unit-path-section-banner { top:58px !important;'));
+  assert.ok(html.includes('#adaptiveRecommendationLearn .guardi-empty-illustration,#adaptiveRecommendationLearn .guardi-empty-message { display:none; }'));
 });
 
 test('weakest skill ranking compares exact accuracy before applying display rounding or tie-breakers', () => {

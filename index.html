@@ -20389,6 +20389,7 @@ Requisitos:
                     .filter(([, item]) => !item.savedForReview && item.incorrect === 1)
                     .slice(0, 5).map(toAdaptiveWord).filter(Boolean);
                 let nextLesson = null;
+                let nextAssessment = null;
                 let skillLesson = null;
                 const weakestSkill = typeof AdaptiveLearning !== 'undefined'
                     ? AdaptiveLearning.weakestSkill(this.studyActivity && this.studyActivity.skillStats)
@@ -20402,8 +20403,13 @@ Requisitos:
                     for (const unit of level.units) {
                         if (this.completedUnits.includes(unit.id)) continue;
                         // Do not recommend a lesson from a unit the learner cannot open yet.
+                        const unitProgress = getUnitProgressState(level, unit);
                         if (!isUnitUnlocked(level, unit, this.completedUnits, this.completedLessons)) continue;
                         if (level.id === 'A1' && (!nextA1Unit || unit.id !== nextA1Unit.id)) continue;
+                        if (unitProgress.allLessonsComplete && unitProgress.requiresAssessment && !unitProgress.approved) {
+                            if (!nextAssessment) nextAssessment = { unitId: unit.id, unitTitle: unit.title };
+                            continue;
+                        }
                         const unfinishedLessons = buildUnitLessons(unit).filter(entry =>
                             !this.completedLessons.includes(unitLessonProgressKey(unit.id, entry.index)));
                         if (!unfinishedLessons.length) continue;
@@ -20430,6 +20436,7 @@ Requisitos:
                     weakWords,
                     isolatedWords,
                     nextLesson,
+                    nextAssessment,
                     skillLesson,
                     language: LanguageManager.getActiveLanguage(),
                     supportedLanguages: LanguageManager.list().map(({ code }) => code),
@@ -20525,6 +20532,8 @@ Requisitos:
                                 await this.updateSrsView();
                                 App.switchView('srs');
                                 await SRSEngine.startSession();
+                            } else if (recommendation.action === 'assessment') {
+                                LessonEngine.startUnitAssessment(recommendation.unitId);
                             } else if (recommendation.action === 'writing') {
                                 WritingPractice.open();
                             } else if (recommendation.action === 'lesson') {

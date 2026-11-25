@@ -1,3 +1,10 @@
+## 2026-11-25 — Fase 7: recomendar la evaluación final pendiente en Aprender
+
+- Diagnóstico: si todas las lecciones de la unidad A1 actual estaban completas pero faltaba aprobar su evaluación final, el cálculo no encontraba una lección pendiente; A2 seguía bloqueado por esa evaluación. El recomendador devolvía `action: 'none'` y ocultaba la tarjeta, aunque existía una acción necesaria para continuar.
+- Corrección: detecta esa evaluación pendiente y la recomienda como siguiente paso; el botón abre la evaluación existente mediante `LessonEngine.startUnitAssessment()`. Los repasos vencidos conservan prioridad.
+- Se añaden pruebas unitarias de prioridad y una E2E que completa las lecciones de una unidad A1, verifica la tarjeta y abre la evaluación. Sin cambios a XP, currículo, IndexedDB v1, backup JSON v3 ni dependencias.
+- Fuente: inspección de `App.updateSrsView()`, `getUnitProgressState()`, `isUnitUnlocked()` y `AdaptiveLearning.recommend()`; 25 nov 2026.
+
 ## 2026-11-25 — Causa y corrección de cierre intermitente de la burbuja de traducción
 
 - La traza ampliada de CI [#45674332231](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45674332231) identificó la secuencia exacta: Enter abre la burbuja y establece `aria-expanded=true`; inmediatamente después se dispara `window-scroll`, que la cierra y revierte el atributo. No hubo clic/pointerdown ni errores JS.

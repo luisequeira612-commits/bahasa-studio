@@ -24,6 +24,28 @@ test('due reviews take priority over every other recommendation', () => {
   assert.match(result.description, /4 palabras/);
 });
 
+test('a pending unit assessment is recommended after its lessons and before ordinary practice', () => {
+  const result = AdaptiveLearning.recommend({
+    dueCount: 0,
+    nextAssessment: { unitId: 'a1_u4', unitTitle: 'Unidad 4' },
+    nextLesson: { unitId: 'a2_u1', lessonIndex: 0 },
+    weakWords: [{ id: 'w1', term: 'rumah' }]
+  });
+  assert.equal(result.type, 'complete-unit-assessment');
+  assert.equal(result.action, 'assessment');
+  assert.equal(result.unitId, 'a1_u4');
+  assert.equal(result.label, 'Hacer prueba final');
+  assert.match(result.description, /desbloquear la siguiente unidad/);
+});
+
+test('due reviews retain priority over a pending unit assessment', () => {
+  const result = AdaptiveLearning.recommend({
+    dueCount: 2,
+    nextAssessment: { unitId: 'a1_u4', unitTitle: 'Unidad 4' }
+  });
+  assert.equal(result.action, 'review');
+});
+
 test('words with recorded errors are recommended without claiming they are recent', () => {
   const weakWords = Array.from({ length: 7 }, (_, index) => ({ id: 'w' + index, term: 'palabra' + index }));
   const result = AdaptiveLearning.recommend({ dueCount: 0, weakWords });

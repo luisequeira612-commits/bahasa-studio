@@ -1,3 +1,14 @@
+## 2026-11-25 — PR #832 fusionada y CI completo aprobado
+
+- PR [#832](https://github.com/luisequeira612-commits/bahasa-studio/pull/832) fusionada mediante squash en `main`, commit `31077c2e7effb9914f25e4c345699c4555ffd224`.
+- CI final del head `2451bf3f217a5b4cb1433a6347143dc04fb30a28`, run [#45663972636](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45663972636), terminó completamente en success: Fase 4, calidad local, Fase 5B, E2E real en navegador, evaluaciones y empaquetado de preview. La repetición confirmó que la prueba 112 de teclado pasó; no se relajaron aserciones.
+- Revisión final: sin reviews ni hilos pendientes; GitHub confirmó PR cerrada y fusionada.
+- Se conserva la tarjeta SRS compacta separada de la recomendación adaptativa de aprendizaje; la acción SRS activa la vista antes de iniciar sesión. El listener de teclado de la burbuja escucha en captura de `window` y preserva apertura, `aria-expanded`, Escape y restauración del foco.
+- Sin cambios al algoritmo adaptativo, XP, currículo, IndexedDB v1, backup JSON v3 ni dependencias.
+- Pendiente: verificar regresión y despliegue GitHub Pages post-merge; después, prueba manual en Tecno Pova 4 (720×1640) de recomendación, Repasar, Enter y Escape.
+
+Fuente: PR #832, commit squash `31077c2`, GitHub Actions #45663972636; 25 nov 2026.
+
 ## 2026-11-25 — Ajuste de visibilidad de tarjetas ocultas (PR #832)
 
 - La segunda ejecución de CI reveló que el atributo HTML `hidden` no garantizaba ocultar el host SRS: la medición mostró que el host conservaba 236 px y empujaba la recomendación adaptativa.

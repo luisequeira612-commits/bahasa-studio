@@ -1,10 +1,10 @@
-## 2026-11-25 — Reequilibrio de recompensas XP (PR en preparación)
+## 2026-11-25 — Reequilibrio de recompensas XP (PR #817 fusionada)
 
 - Decisión aprobada por el usuario: 3 XP por respuesta correcta de una lección, incluida la autoevaluación positiva de escritura guiada; 2 XP por tarjeta SRS calificada; 20 XP por completar una unidad por primera vez; 0 XP por respuesta de evaluación final.
 - La escritura guiada no valida automáticamente la gramática: el texto de interfaz conserva esa aclaración y ahora comunica 3 XP por marcar que se cumplieron los criterios.
 - En `index.html` se ajustan las dos rutas de respuesta correcta de lección, la calificación SRS y el bono de primera finalización. Se mantienen los guards de evaluación, doble envío y bono único.
 - Se añade `tests/xp-rewards.test.cjs` para proteger las cantidades, los guards de evaluación, el reintento de errores y la recompensa única de unidad. El workflow `.github/workflows/regression.yml` ejecuta este archivo de forma explícita.
-- Sin cambios intencionales a IndexedDB v1, backup JSON v3, progreso, currículo, idiomas ni dependencias. CI todavía debe validar la rama antes de integrar.
+- PR #817 se fusionó mediante squash en `main`, commit `e0bf7f8917ce02e29f0c40ce45b38f95de164f6a`. CI del head final `ad404ce06f48c9f58478be8e3e303158b9050951`, run [#45562623815](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45562623815): suite `test` y `Offline quality reports` terminaron en success. La consulta del conector no devolvió workflows asociados al commit squash; por ello no se afirma una regresión post-merge ni un despliegue Pages nuevos. Sin cambios intencionales a IndexedDB v1, backup JSON v3, progreso, currículo, idiomas ni dependencias.
 
 Fuente: decisión explícita del usuario y auditoría de `index.html`; 25 nov 2026.
 

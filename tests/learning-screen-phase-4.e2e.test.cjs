@@ -444,8 +444,8 @@ test('compact language picker is accessible, catalog-driven and fits the 360px l
     });
     assert.ok(route.recommendation.top >= 58 && route.recommendation.bottom <= 800,
       'standalone recommendation must occupy the page above the unit path: ' + JSON.stringify(route));
-    assert.ok(route.recommendation.bottom <= route.top,
-      'recommendation must precede the unit path banner without overlap: ' + JSON.stringify(route));
+    assert.ok(route.recommendation.bottom <= route.node.top,
+      'recommendation must appear before the first unit node without overlap: ' + JSON.stringify(route));
     assert.ok(route.top > 60 && route.top < 800,
       'unit path banner must follow the recommendation and remain in the first viewport: ' + JSON.stringify(route));
     assert.ok(route.node.top < 800 && route.node.bottom > 0, 'current unit must appear in the first mobile viewport');

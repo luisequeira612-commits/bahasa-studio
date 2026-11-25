@@ -2268,3 +2268,62 @@ test('real JSON v3 import keeps untrusted custom lesson content inert across rou
     await new Promise(resolve => server.close(resolve));
   }
 });
+
+
+test('lesson XP is awarded once on first completion, not on replay or abandonment', async () => {
+  const { server, url } = await startServer();
+  const context = await browser.newContext({ serviceWorkers: 'block' });
+  const page = await context.newPage();
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof LessonEngine !== 'undefined' &&
+      typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
+
+    const beginLesson = async lessonIndex => {
+      await page.evaluate(index => LessonEngine.startUnitById('a1_u1', index), lessonIndex);
+      await page.locator('#view-lesson.active').waitFor();
+      await page.getByRole('button', { name: 'Comenzar lección' }).click();
+    };
+    const completeWithCorrectAnswers = async count => {
+      await page.evaluate(async correctCount => {
+        LessonEngine.sessionCorrect = correctCount;
+        await LessonEngine.finishUnit();
+      }, count);
+      await page.locator('.lesson-results-card').waitFor();
+    };
+    const storedXp = () => page.evaluate(() => DB.get('settings', 'userXp'));
+
+    await beginLesson(0);
+    await completeWithCorrectAnswers(4);
+    assert.equal(await storedXp(), 4,
+      'the first completion should award one XP per first-attempt correct answer');
+
+    const completedLessons = await page.evaluate(() => DB.get('settings', 'completedLessons'));
+    assert.ok(completedLessons.some(key => key.includes('a1_u1') && key.endsWith('0')),
+      'the first completion should persist its lesson marker');
+
+    await page.evaluate(() => { window.confirm = () => true; });
+    await page.getByRole('button', { name: 'Salir de la lección' }).click();
+    await page.waitForFunction(() => document.getElementById('view-route').classList.contains('active'));
+
+    await beginLesson(0);
+    await completeWithCorrectAnswers(9);
+    assert.equal(await storedXp(), 4,
+      'replaying an already completed lesson must not award XP again');
+
+    await page.getByRole('button', { name: 'Salir de la lección' }).click();
+    await page.waitForFunction(() => document.getElementById('view-route').classList.contains('active'));
+
+    await beginLesson(1);
+    assert.equal(await storedXp(), 4,
+      'starting another lesson must not award XP before completion');
+    await page.getByRole('button', { name: 'Salir de la lección' }).click();
+    await page.waitForFunction(() => document.getElementById('view-route').classList.contains('active'));
+    assert.equal(await storedXp(), 4,
+      'abandoning an unfinished lesson must not award pending XP');
+  } finally {
+    await context.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});

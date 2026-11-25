@@ -89,7 +89,7 @@ function audioUrl(id, language = 'id') {
 
 test('el Service Worker deriva los idiomas de audio del catálogo central', () => {
     const worker = createWorker();
-    assert.deepEqual(worker.supportedAudioLanguages, ['pt-BR', 'en', 'it', 'fr', 'de', 'nl', 'ru', 'ja', 'ko', 'id']);
+    assert.deepEqual(Array.from(worker.supportedAudioLanguages), ['pt-BR', 'en', 'it', 'fr', 'de', 'nl', 'ru', 'ja', 'ko', 'id']);
     assert.ok(worker.supportedAudioLanguages.includes('pt-BR'));
     assert.ok(!worker.supportedAudioLanguages.includes('xx'));
 });

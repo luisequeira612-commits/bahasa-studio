@@ -1,3 +1,10 @@
+## 2026-11-25 — Controles de traducción a 320px (PR en curso)
+
+- Se añade una prueba Chromium con viewport 320×640 y contenedor de 300px para verificar el botón de audio (48×48px), los controles por palabra (44×44px), el ajuste de la frase y la ausencia de desbordamiento horizontal.
+- Amplía la cobertura existente a 360px sin modificar producción, currículos, IndexedDB v1, backup JSON v3, dependencias ni disponibilidad de idiomas. La prueba física en el Tecno Pova 4 sigue pendiente.
+
+Fuente: `tests/learning-screen-phase-5b.e2e.test.cjs`; 25 nov 2026.
+
 ## 2026-11-25 — Panel de herramientas accesible a 320px (PR en curso)
 
 - Se amplía la prueba Chromium de viewport 320×640 para abrir el panel de herramientas de la unidad: comprueba que el panel y el botón de cierre queden dentro del ancho disponible, que las tres acciones sigan presentes con objetivos táctiles mínimos de 44×44px, que no aparezca overflow horizontal y que el cierre restaure el foco al disparador original.

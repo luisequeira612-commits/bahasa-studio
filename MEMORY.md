@@ -1,3 +1,13 @@
+## 2026-11-25 — Causa y corrección de cierre intermitente de la burbuja de traducción
+
+- La traza ampliada de CI [#45674332231](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45674332231) identificó la secuencia exacta: Enter abre la burbuja y establece `aria-expanded=true`; inmediatamente después se dispara `window-scroll`, que la cierra y revierte el atributo. No hubo clic/pointerdown ni errores JS.
+- Causa en `index.html`: el listener global `window.addEventListener('scroll', close, true)` cerraba la burbuja ante cualquier desplazamiento, incluido el desplazamiento automático del navegador al activar con teclado el botón enfocado.
+- Corrección acotada: separar el cálculo de posición en `position(button)`; cuando ocurre scroll y el disparador sigue enfocado, mantener la burbuja abierta y recalcular su anclaje. Si el foco ya salió del disparador, se conserva el cierre por desplazamiento. Se mantienen Escape, cierre por clic externo, foco y estado ARIA.
+- Se añadió una aserción E2E que despacha scroll mientras el disparador conserva foco y exige que la burbuja siga visible y expandida. La prueba original sigue exigiendo apertura por Enter y cierre por Escape; no se relajaron criterios.
+- Archivos modificados: `index.html`, `tests/learning-screen-phase-5b.e2e.test.cjs`, `MEMORY.md`. Sin cambios de persistencia, IndexedDB v1, backup JSON v3, currículo ni dependencias. Pendiente CI completo antes de considerar listo o fusionar el PR.
+
+Fuente: traza de GitHub Actions #45674332231 y código del listener en `index.html`; 25 nov 2026.
+
 ## 2026-11-25 — Diagnóstico adicional de teclado para burbuja de traducción
 
 - La repetición del job [#45665119892](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45665119892) volvió a fallar en Fase 5B, prueba de teclado de la burbuja: el foco permaneció en `keyboardTranslationTrigger`, el evento `keydown Enter` llegó a document, no hubo errores JS, pero la burbuja siguió oculta y `aria-expanded=false`.

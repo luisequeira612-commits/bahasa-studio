@@ -331,7 +331,7 @@ test('isolated mistakes are offered as a light review, not labelled as persisten
 test('persistent errors take priority over isolated mistakes and due reviews remain highest priority', () => {
   const result = AdaptiveLearning.recommend({
     dueCount: 0,
-    weakWords: [{ id: 'w2', term: 'berjalan', incorrect: 3, attempts: 5, repetition: 1 }],
+    weakWords: [{ id: 'w2', term: 'berjalan', incorrect: 3, attempts: 5, repetition: 0 }],
     isolatedWords: [{ id: 'w1', term: 'makan' }]
   });
   assert.equal(result.type, 'reinforce-weak');
@@ -618,4 +618,19 @@ test('Aprender keeps the compact SRS card separate from the actionable lesson re
   assert.match(html, /reviewCount > 0 \|\| recommendation\.action === 'none'/);
   assert.match(html, /host\.id === 'adaptiveRecommendation' && input\.dueCount === 0/);
   assert.match(html, /App\.switchView\('srs'\);\s*await SRSEngine\.startSession\(\);/);
+});
+
+test('a successfully reinforced word is no longer repeatedly recommended as weak', () => {
+  const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+  assert.match(html, /item\.incorrect >= 2 && item\.repetition === 0/);
+  assert.match(html, /item\.incorrect === 1 && item\.repetition === 0/);
+  assert.match(html, /item\.repetition = Math\.max\(1, item\.repetition \|\| 0\)/);
+  assert.match(html, /item\.lastReviewed = now;\s*item\.nextReview = now \+ \(item\.interval \* 86400000\)/);
+});
+
+test('reinforcement recommendations start a session limited to their selected words', () => {
+  const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+  assert.match(html, /async startSession\(wordIds = null\)/);
+  assert.match(html, /const sessionDue = selectedIds\s*\?/);
+  assert.match(html, /await SRSEngine\.startSession\(recommendation\.wordIds\)/);
 });

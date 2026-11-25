@@ -939,3 +939,10 @@ Fuente: PR #792, GitHub Actions #45512800901 y #45512797930, `docs/B2_U20_U60_RO
 - PR #794–#797 integradas; #797 añade cobertura de controles de traducción a 320 px. En `main` (`cbae2cb6880c7e07488b614ff050740bf520decc`), regresión #45518553869 y calidad offline 10/10 success; Pages #45518553195 build/deploy success.
 - La cobertura automatizada de fase 6 está completada para los casos añadidos; sigue pendiente la prueba física en Tecno Pova 4 (720×1640). No se afirma que Chromium sustituya esa prueba.
 Fuente: PR #794–#797 y GitHub Actions #45518553869/#45518553195; 24 nov 2026.
+
+
+## 2026-11-24 — Auditoría estructural ampliada a B2
+- La auditoría estructural de calidad cargaba A1, A2 y B1, pero omitía B2 aunque el repositorio ya dispone de un extractor aislado para sus 60 unidades y del inventario de lecciones A1–B2. Esto dejaba sin cobertura común de referencias, estructura de ejercicios y consistencia de datos al borrador B2, todavía oculto/no publicado.
+- Se amplía el informe estructural local para cargar B2 después de B1, de modo que las referencias acumulativas se resuelvan en orden A1 → A2 → B1 → B2. Se añade una prueba de integración que verifica los cuatro niveles y sus 32/40/50/60 unidades.
+- La ampliación es de validación, no publica B2 ni cambia sus bloqueos. No modifica contenido curricular, runtime, IndexedDB v1, backup JSON v3, dependencias ni disponibilidad de idiomas. La auditoría sigue siendo estructural y no certifica lingüísticamente el indonesio.
+Fuente: `scripts/audit-curriculum-quality.mjs`, `scripts/load-inline-b2-curriculum.mjs`, `scripts/audit-authored-lesson-inventory.mjs`, pruebas de auditoría; 24 nov 2026.

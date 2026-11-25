@@ -1,3 +1,13 @@
+## 2026-11-25 — Cierre de fase 6 y corrección de selección adaptativa multilingüe (PR en curso)
+
+- PR #798 fusionada como `ca917a5ba2070ae5f106e587694d1956c7bf2362`; la regresión post-merge #45519558317 completó 102/102 pasos y calidad offline 10/10. GitHub Pages #45519558162 completó build y deploy en success.
+- La cobertura automatizada de accesibilidad/móvil queda completada para los casos incorporados. Sigue pendiente la comprobación física en Tecno Pova 4 (720×1640); Chromium no la sustituye.
+- La revisión funcional detectó que `StudyActivity.skillForExercise` reconoce `translate_es_target`, pero `AdaptiveLearning.selectSkillLesson` solo reconocía el alias legacy `translate_es_id`. Esto impedía que la recomendación adaptativa encontrara lecciones de traducción neutral para cursos nuevos.
+- Esta PR incorpora ambos tipos al mismo perfil de traducción y añade una regresión específica. Conserva el alias legacy, las prioridades adaptativas, el perfil por idioma y el selector de lecciones accesibles. No habilita pt-BR, no modifica currículos, IndexedDB v1, backup JSON v3 ni dependencias.
+- Fase actual: 7 — revisión funcional del aprendizaje, primer ajuste de coherencia entre el seguimiento de habilidades y las recomendaciones. Los resultados lingüísticos siguen sin certificarse.
+
+Fuente: `adaptive-learning.js`, `study-activity.js`, `tests/adaptive-learning.test.cjs` y GitHub Actions #45519558317/#45519558162; 25 nov 2026.
+
 ## 2026-11-25 — Controles de traducción a 320px (PR en curso)
 
 - Se añade una prueba Chromium con viewport 320×640 y contenedor de 300px para verificar el botón de audio (48×48px), los controles por palabra (44×44px), el ajuste de la frase y la ausencia de desbordamiento horizontal.

@@ -241,6 +241,28 @@ test('the best matching unfinished lesson is selected by relevant exercise cover
   assert.equal(JSON.stringify(lessons), before, 'selection must not mutate curriculum data');
 });
 
+test('neutral Spanish-to-target translation exercises are included in adaptive skill selection', () => {
+  const selected = AdaptiveLearning.selectSkillLesson('translation', [
+    {
+      unitId: 'pt_a1_u1',
+      lessonIndex: 0,
+      title: 'Traducción neutral',
+      exercises: [{ type: 'translate_es_target' }, { type: 'mc' }]
+    },
+    {
+      unitId: 'a1_u2',
+      lessonIndex: 0,
+      title: 'Traducción legacy',
+      exercises: [{ type: 'translate_es_id' }]
+    }
+  ]);
+  assert.deepEqual(JSON.parse(JSON.stringify(selected)), {
+    unitId: 'pt_a1_u1',
+    lessonIndex: 0,
+    title: 'Traducción neutral'
+  });
+});
+
 test('skill lesson selection keeps the earliest lesson on equal coverage and ignores invalid candidates', () => {
   const selected = AdaptiveLearning.selectSkillLesson('listening', [
     null,

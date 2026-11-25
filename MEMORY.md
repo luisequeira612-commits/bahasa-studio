@@ -1072,3 +1072,10 @@ Fuente: GitHub Actions #45559888287 y corrección de `tests/vocabulary-review.e2
 - Se actualizó esa expectativa a 3 XP. No se cambió producción: la evaluación sigue otorgando 0 XP y sin intentos SRS.
 - Commit de la corrección: `938014a8f6a198295354d16bbb1ef8b762e93990`. Esperar CI nueva completa antes de fusionar.
 Fuente: GitHub Actions #45560959055 y test progresivo; 25 nov 2026.
+
+
+## 2026-11-25 — PR #817: alinear E2E de escritura guiada con XP aprobado
+- La ejecución [#45562143525](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45562143525) terminó en failure: 32/33 pruebas E2E Chromium pasaron y falló únicamente la escritura guiada por una espera que todavía exigía un aumento de 10 XP después de la autoevaluación positiva.
+- La regla vigente aprobada concede 3 XP por esa autoevaluación; el runtime ya aplica el nuevo valor. Se actualiza únicamente la expectativa E2E de +10 a +3 en `tests/browser-e2e.test.cjs`, sin modificar producción, la evaluación automática ni el comportamiento SRS.
+- La auditoría offline de esa ejecución terminó en success. PR #817 permanece abierta; se exige una nueva CI completa sobre el head actualizado antes de fusionar.
+Fuente: GitHub Actions #45562143525, job test, prueba E2E guiada A1; 25 nov 2026.

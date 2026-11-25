@@ -20115,6 +20115,8 @@ Requisitos:
                 const recommendationHost = document.getElementById('adaptiveRecommendationLearn');
                 const routeView = document.getElementById('view-route');
                 if (recommendationHost && routeView && container.contains(recommendationHost)) {
+                    recommendationHost.classList.remove('adaptive-recommendation-path-card');
+                    recommendationHost.style.removeProperty('top');
                     routeView.insertBefore(recommendationHost, document.getElementById('aiGeneratorDrawer'));
                 }
                 container.replaceChildren();

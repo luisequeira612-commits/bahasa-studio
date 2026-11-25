@@ -26,6 +26,8 @@ jobs:
         run: npm run curriculum:lesson-inventory
       - name: Run regression tests
         run: node --test tests/regression.test.cjs
+      - name: Run XP reward tests
+        run: node --test tests/xp-rewards.test.cjs
       - name: Run unbiased exercise shuffle tests
         run: node --test tests/exercise-shuffle.test.cjs
       - name: Run Gemini request error handling tests

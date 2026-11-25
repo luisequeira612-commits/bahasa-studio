@@ -10,18 +10,9 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 
 ## 2026-11-25 — Actualización del app shell tras PR #817
 
-## 2026-11-25 — Recompensa XP de lección limitada y no repetible (PR en preparación)
+## 2026-11-25 — XP de lección limitado y resumen diario sincronizado
 
-- Auditoría de 365 lecciones explícitas A1/A2: 1,318 ejercicios A1 y 1,080 A2. Con la regla anterior de 3 XP por acierto, una lección podía otorgar 66 XP en A1 y 36 XP en A2, antes del bono de unidad.
-- Decisión de implementación: la lección concede 1 XP por respuesta correcta en el primer intento, con tope de 10 XP, pero solo al completar la lección por primera vez. La recompensa se calcula usando `sessionCorrect`, que incrementa una sola vez por ejercicio gracias a `_firstAttempted`; los reintentos no suman.
-- El marcador existente `completedLessons` evita volver a conceder XP al repetir una lección. Si se abandona antes de terminar, no se entrega la recompensa de esa sesión.
-- Se conservan 2 XP por tarjeta SRS, 20 XP por primera finalización de unidad y 0 XP por respuesta de evaluación final.
-- No se cambia el esquema IndexedDB, el backup JSON v3, las dependencias ni el currículo. El XP de lección se persiste mediante la función existente `App.addXp` solo después de guardar el marcador de primera finalización.
-- Fuente: auditoría del inventario de lecciones y flujo `LessonEngine.startUnit` / `recordFirstAttempt` / `finishUnit`; decisión técnica aplicada en la rama `fix/lesson-xp-first-completion-cap`; 25 nov 2026. Pendiente de CI y revisión funcional.
-
-
-- CI inicial #45573252599 detectó una aserción heredada en `tests/ui-redesign-phase-2.test.cjs` que todavía exigía 3 XP inmediatos por acierto; se alineó con la recompensa por primera finalización (1 XP por acierto correcto, máximo 10). Reejecución pendiente.
-
-- CI #45574658344 confirmó que las pruebas de XP, flujo de lecciones y calidad offline pasan; falló `tests/progressive-assessment.test.cjs` porque aún exigía la llamada inmediata `App.addXp(3)`, retirada intencionalmente al trasladar la recompensa al primer cierre de lección. Se actualizó la aserción heredada para verificar que esa llamada inmediata ya no exista. Reejecución pendiente; no fusionar hasta completar toda la batería.
-
-- CI #45575498982 superó las pruebas progresivas y 32/33 pruebas E2E, pero la prueba de escritura guiada A1 esperaba los antiguos +3 XP inmediatamente tras autoevaluarse. Se actualizó para verificar que no se conceda XP antes de completar la lección por primera vez; mantiene la comprobación de que la autoevaluación registra el intento SRS. Reejecución pendiente.
+- PR #822 integrada en `main` mediante squash: `50cc4c95b633fdde11d2d32bed09de25b0f653c4`. Cada lección concede 1 XP por acierto de primer intento, máximo 10, solo en la primera finalización; se conservan 2 XP por tarjeta SRS, 20 XP por primera finalización de unidad y 0 XP por evaluación final.
+- Auditoría posterior: `App.addXp` persiste el total `userXp`, registra exactamente el mismo importe en `StudyActivity.todayXp` y refresca Perfil + objetivo diario; `updateStudyDashboard` actualiza texto, barra y estado accesible. Se añade una prueba de regresión para evitar divergencias entre XP total y diario.
+- Verificación post-merge #45578296681 (regresión + calidad offline) y Pages #45578296958: success. Prueba física en Tecno Pova 4 (720×1640) pendiente.
+- Fuente: PR #822, `index.html`, `study-activity.js`, pruebas XP/actividad y Actions; 25 nov 2026.

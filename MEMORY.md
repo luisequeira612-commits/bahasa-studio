@@ -1,3 +1,11 @@
+## 2026-11-25 — Cobertura E2E de restauración sin pérdida entre idiomas
+
+- Se amplía la prueba de restauración en Chromium real: antes de importar un backup v3 de indonesio se guardan registros SRS con el mismo ID lógico bajo namespaces pt-BR y en, además de XP específico de pt-BR.
+- Tras importar, la prueba exige que se reemplace el SRS indonesio antiguo y que permanezcan intactos los registros y ajustes de los otros idiomas. Esto valida la frontera entre restauración del curso activo y datos futuros/aislados, sin declarar disponible ni activar esos cursos.
+- Solo cambia cobertura E2E y esta memoria; no cambia runtime, currículos, IndexedDB v1, backup JSON v3, dependencias ni disponibilidad de idiomas. Pendiente: CI antes de integrar.
+
+Fuente: `tests/browser-e2e.test.cjs`, `progress-namespace.js` y `index.html` (DB/backup); 25 nov 2026.
+
 ## 2026-11-25 — Política adaptativa alineada con el comportamiento real
 
 - La auditoría de fase 7 encontró una contradicción documental: la política decía que la precisión de habilidades solo añadía contexto y no afectaba la acción recomendada, pero el runtime ya usa la habilidad con menor precisión (mínimo 10 intentos puntuados) para dirigir a conversación, cuaderno de escritura o una primera lección incompleta y accesible.

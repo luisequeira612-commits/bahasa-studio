@@ -1,6 +1,7 @@
 importScripts('./language-manager.js');
 
 const CACHE_NAME = 'bahasa-studio-v3.8.152';
+// Force a worker update after the XP UI release; install refreshes this cache with cache: 'reload'.
 const AUDIO_CACHE_NAME = 'guardi-audio-v2';
 const AUDIO_LANGUAGES = new Set(LanguageManager.list().map(({ code }) => code));
 

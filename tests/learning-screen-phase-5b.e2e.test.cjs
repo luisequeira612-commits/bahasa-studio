@@ -552,18 +552,19 @@ test('translation bubble exposes expanded state and supports keyboard open and E
     await page.goto(url, { waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
     await page.evaluate(() => {
-      const host = document.querySelector('#actionArea') || document.body;
       const trigger = document.createElement('button');
       trigger.type = 'button';
+      trigger.id = 'keyboardTranslationTrigger';
       trigger.className = 'tap-translation-word';
       trigger.dataset.translation = 'casa';
       trigger.dataset.vocabId = 'keyboard-a11y-test';
       trigger.textContent = 'rumah';
-      host.appendChild(trigger);
+      trigger.style.cssText = 'position:fixed;left:12px;top:100px;z-index:9999;';
+      document.body.insertBefore(trigger, document.getElementById('tapTranslationBubble'));
       trigger.focus();
     });
 
-    const trigger = page.locator('.tap-translation-word').last();
+    const trigger = page.locator('#keyboardTranslationTrigger');
     await trigger.press('Enter');
     const bubble = page.locator('#tapTranslationBubble');
     await page.waitForFunction(() => document.getElementById('tapTranslationBubble')?.hidden === false);

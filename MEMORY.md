@@ -1,3 +1,11 @@
+## 2026-11-25 — PR #828: estado vacío coherente en recomendador
+
+- PR [#828](https://github.com/luisequeira612-commits/bahasa-studio/pull/828) corrige una contradicción visual: cuando `dueCount === 0`, la tarjeta añadía «Todo al día. Guardi está orgulloso.» aunque ofreciera una acción concreta (practicar una habilidad, repasar errores o continuar una lección).
+- `styles.css` oculta ilustración y mensaje de estado vacío cuando la tarjeta contiene un botón habilitado; conserva el estado vacío cuando la recomendación no ofrece acción (`action: none`).
+- `tests/adaptive-learning.test.cjs` añade una regresión del contrato CSS.
+- Alcance limitado a presentación y pruebas. No modifica IndexedDB, backup JSON v3, XP, currículo, persistencia ni dependencias.
+- Estado al registrar: PR abierta, CI pendiente. Fuente: diff y PR #828; 25 nov 2026.
+
 ## 2026-11-25 — PR #819 y #820 fusionadas; recomendador visible en Aprender
 
 - PR [#819](https://github.com/luisequeira612-commits/bahasa-studio/pull/819) se fusionó mediante squash en `main`, commit `40de6fbde1c6c564241db157f5681ffacfb33236`. CI final [#45566397167](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45566397167): `test` y `Offline quality reports` success; sin reviews ni hilos. La regresión post-merge [#45567448995](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45567448995) y Pages [#45567448255](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45567448255) también terminaron en success.

@@ -1,10 +1,16 @@
-## 2026-11-25 — PR #828: estado vacío coherente en recomendador
+## 2026-11-25 — Tarjeta compacta de repaso en Aprender (en preparación)
 
-- PR [#828](https://github.com/luisequeira612-commits/bahasa-studio/pull/828) corrige una contradicción visual: cuando `dueCount === 0`, la tarjeta añadía «Todo al día. Guardi está orgulloso.» aunque ofreciera una acción concreta (practicar una habilidad, repasar errores o continuar una lección).
-- `styles.css` oculta ilustración y mensaje de estado vacío cuando la tarjeta contiene un botón habilitado; conserva el estado vacío cuando la recomendación no ofrece acción (`action: none`).
-- `tests/adaptive-learning.test.cjs` añade una regresión del contrato CSS.
-- Alcance limitado a presentación y pruebas. No modifica IndexedDB, backup JSON v3, XP, currículo, persistencia ni dependencias.
-- Estado al registrar: PR abierta, CI pendiente. Fuente: diff y PR #828; 25 nov 2026.
+- La tarjeta de Aprender queda reservada exclusivamente para repasos SRS vencidos: se oculta por completo cuando el contador real es cero. No se altera la selección, los intervalos ni el inicio de sesión de repaso.
+- La fila muestra el número real de palabras pendientes y, cuando hay al menos diez intentos válidos, la habilidad de menor precisión y su porcentaje; elimina del panel de Aprender la explicación extensa y el número de intentos duplicado.
+- `index.html` concentra el host, el render y sus reglas CSS específicas; `tests/adaptive-learning.test.cjs` cubre el contrato visual y la condición de ocultación. Sin cambios en `adaptive-learning.js`, `styles.css`, IndexedDB v1, backup JSON v3, XP ni dependencias.
+- Rama `fix/compact-learn-review-card-20261125`; CI pendiente. Falta revisar la prueba automatizada y verificar el despliegue; la prueba física en Tecno Pova 4 (720×1640) corresponde al usuario después de Pages.
+- Fuente: solicitud explícita del dueño y diff de la rama; 25 nov 2026.
+
+## 2026-11-25 — PR #828 fusionada: estado vacío coherente del recomendador
+
+- PR [#828](https://github.com/luisequeira612-commits/bahasa-studio/pull/828) fusionada mediante squash en `main`, commit `bd01e1266475344329016f8207fa5ef0764f707d`. CI de la cabeza `fb91735cc59dde691e009a86e0faa6ddcc49ad42`, run [#45588782262](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45588782262): `test` y `Offline quality reports` success.
+- `styles.css` oculta ilustración y mensaje de estado vacío cuando la tarjeta contiene una acción habilitada; `tests/adaptive-learning.test.cjs` cubre el contrato CSS. No cambia IndexedDB, backup JSON v3, XP, currículo, persistencia ni dependencias.
+- Fuente: PR #828, GitHub Actions #45588782262 y commit de fusión; 25 nov 2026.
 
 ## 2026-11-25 — PR #819 y #820 fusionadas; recomendador visible en Aprender
 

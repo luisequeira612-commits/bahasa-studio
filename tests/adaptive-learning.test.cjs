@@ -593,4 +593,5 @@ test('Aprender keeps the compact SRS card separate from the actionable lesson re
   assert.match(html, /const isLearnRecommendationCard = host\.id === 'adaptiveLearningRecommendationLearn'/);
   assert.match(html, /reviewCount > 0 \|\| recommendation\.action === 'none'/);
   assert.match(html, /host\.id === 'adaptiveRecommendation' && input\.dueCount === 0/);
+  assert.match(html, /App\.switchView\('srs'\);\s*await SRSEngine\.startSession\(\);/);
 });

@@ -1,11 +1,13 @@
-## 2026-11-25 — Fase 7: perfil adaptativo usa el catálogo central (PR #813 en curso)
+## 2026-11-25 — Fase 7: catálogo adaptativo centralizado y validado (PR #813 fusionada)
 
-- La auditoría encontró que `adaptive-learning.js` mantenía una expresión regular duplicada con los diez códigos admitidos. Ahora recibe la lista de códigos de forma explícita y conserva su carácter de lógica pura; `index.html` pasa `LanguageManager.list().map(({ code }) => code)`.
-- Se añadieron pruebas para aceptar un código incluido en el catálogo simulado, rechazar códigos fuera del catálogo y verificar el cableado desde el panel adaptativo. La prioridad y el umbral de diez intentos no cambian.
-- PR [#813](https://github.com/luisequeira612-commits/bahasa-studio/pull/813), rama `refactor/adaptive-learning-language-catalog`, head inicial `3ce7dbd69947d6d92679970fc5cc8d9567e760d7`. CI pendiente; no fusionar hasta que regresión y calidad offline pasen.
-- Sin cambios a IndexedDB v1, backup JSON v3, persistencia, disponibilidad de cursos, currículos ni dependencias. `pt-BR` sigue `available:false`.
+- PR [#813](https://github.com/luisequeira612-commits/bahasa-studio/pull/813) fusionada por squash en `main`; commit `1ed0785f50b86de1bbcd2da43b1697e425003d48`.
+- `adaptive-learning.js` recibe explícitamente los códigos permitidos y mantiene la lógica pura; `index.html` inyecta `LanguageManager.list().map(({ code }) => code)`. Se elimina la expresión regular duplicada de diez idiomas.
+- CI del head de PR: regresión 102/102 y calidad offline 10/10, ambos success. Verificación post-merge de `main`, run [#45543862267](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45543862267): test 101/101 pasos ejecutados sin fallos (un paso de empaquetado se omite en push) y calidad offline 10/10. GitHub Pages [#45543861839](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45543861839): build, informe y deploy success.
+- La prioridad de recomendaciones y el umbral de diez intentos no cambian. Sin cambios a IndexedDB v1, backup JSON v3, persistencia, disponibilidad de cursos, currículos ni dependencias; `pt-BR` sigue `available:false`.
+- La revisión posterior de módulos no encontró otra lista duplicada que justifique refactor: las referencias restantes a `id` preservan namespaces, datos históricos, fallback de voz o contenido específicamente indonesio. No se modifica por limpieza cosmética.
+- Pendiente fuera de CI: prueba física en Tecno Pova 4 (720×1640); Chromium no la sustituye.
 
-Fuente: `adaptive-learning.js`, `index.html`, `tests/adaptive-learning.test.cjs` y PR #813; 25 nov 2026.
+Fuente: PR #813, commit `1ed0785`, Actions #45543533062, #45543862267 y #45543861839; revisión de módulos de audio, progreso, historial y currículo; 25 nov 2026.
 
 ## 2026-11-25 — Fase 7: catálogo de progreso derivado de LanguageManager
 

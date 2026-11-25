@@ -946,3 +946,13 @@ Fuente: PR #794–#797 y GitHub Actions #45518553869/#45518553195; 24 nov 2026.
 - Se amplía el informe estructural local para cargar B2 después de B1, de modo que las referencias acumulativas se resuelvan en orden A1 → A2 → B1 → B2. Se añade una prueba de integración que verifica los cuatro niveles y sus 32/40/50/60 unidades.
 - La ampliación es de validación, no publica B2 ni cambia sus bloqueos. No modifica contenido curricular, runtime, IndexedDB v1, backup JSON v3, dependencias ni disponibilidad de idiomas. La auditoría sigue siendo estructural y no certifica lingüísticamente el indonesio.
 Fuente: `scripts/audit-curriculum-quality.mjs`, `scripts/load-inline-b2-curriculum.mjs`, `scripts/audit-authored-lesson-inventory.mjs`, pruebas de auditoría; 24 nov 2026.
+
+
+## 2026-11-25 — PR #802: auditoría estructural completa de A1–B2
+
+- La primera ejecución del auditor ampliado encontró 10 errores estructurales en el borrador B2: un ejercicio de orden en U7 L3 usaba `options/answer` en vez del contrato runtime `words/correctOrder`, y nueve entradas de vocabulario de U16/U17/U18/U21 usaban `es` en lugar del campo canónico `esp`. Se corrigieron los campos conservando los textos españoles y la secuencia de tokens existentes; se añadieron pruebas específicas para ambos contratos.
+- La ejecución CI #45529688745 terminó en success en todos los jobs, incluida la suite principal, navegador real, accesibilidad móvil 5B y auditoría curricular.
+- El artefacto `curriculum-quality-report.json` confirma 4 niveles, 182 unidades, 1.136 entradas de vocabulario, 1.095 IDs únicos, **0 errores**, 164 avisos y 82 informativos. Los avisos no se interpretan como certificación ni se convierten automáticamente en bloqueos; B2 sigue oculto/no publicado. Los resultados son estructurales, no certificación lingüística.
+- PR #802 sigue abierta hasta completar esta actualización de memoria y su revisión final. Sin cambios a IndexedDB v1, backup JSON v3, dependencias ni disponibilidad de idiomas.
+
+Fuente: PR #802, commit head `4d14aeef922adf2200d3b88ba683c9b096344983`, GitHub Actions #45529688745 y artefacto `curriculum-quality-report.json`; 25 nov 2026.

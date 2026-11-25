@@ -559,3 +559,11 @@ test('adaptive lesson candidates exclude units that are still locked by course p
   assert.ok(unlockGuard < unfinishedLessons && unlockGuard < nextLessonAssignment && unlockGuard < candidatePush,
     'locked units must be excluded before either next-lesson or skill-lesson candidates are built');
 });
+
+
+test('the adaptive dashboard hides the all-clear mascot whenever a recommendation is actionable', () => {
+  const css = fs.readFileSync(path.join(__dirname, '..', 'styles.css'), 'utf8');
+  assert.match(css, /\.card:has\(> \.btn:not\(:disabled\)\) > \.guardi-empty-illustration/);
+  assert.match(css, /\.card:has\(> \.btn:not\(:disabled\)\) > \.guardi-empty-message/);
+  assert.match(css, /display:\s*none/);
+});

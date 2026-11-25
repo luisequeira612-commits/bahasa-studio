@@ -18096,6 +18096,7 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                 const now = Date.now();
                 item.savedForReview = false;
                 item.markedAt = now;
+                item.lastQuality = quality;
                 item.attempts = (item.attempts || 0) + 1;
                 item.correct = (item.correct || 0) + (quality >= 3 ? 1 : 0);
 
@@ -20363,7 +20364,8 @@ Requisitos:
 
                 const rankedWordHistory = [...srsByWord.entries()]
                     .filter(([, item]) => (item.incorrect > 0 || item.savedForReview) &&
-                        (item.savedForReview || item.repetition === 0))
+                        (item.savedForReview || (Number.isSafeInteger(item.lastQuality)
+                            ? item.lastQuality < 3 : item.repetition === 0)))
                     .sort((a, b) => {
                         const savedPriority = Number(b[1].savedForReview) - Number(a[1].savedForReview);
                         if (savedPriority) return savedPriority;

@@ -1,3 +1,11 @@
+## 2026-11-25 — PR en preparación: restaurar recomendación de aprendizaje en Aprender
+
+- Diagnóstico: PR #829 convirtió `adaptiveRecommendationLearn` en una tarjeta exclusivamente SRS y la oculta cuando `dueCount === 0`. El motor `AdaptiveLearning.recommend()` sí calcula `nextLesson`, `skillLesson`, errores y acciones; pero Aprender dejó de mostrar esas recomendaciones sin repasos vencidos.
+- Corrección propuesta en rama `fix/restore-learn-adaptive-recommendation-20261125`: conservar intacta la fila compacta SRS y añadir `adaptiveLearningRecommendationLearn` como host independiente. Se muestra cuando no hay repaso SRS prioritario y existe una acción de aprendizaje; se oculta cuando hay repasos vencidos o no hay acción. La tarjeta nueva usa el mismo motor y los handlers ya existentes.
+- Pruebas añadidas: E2E verifica que, sin repasos vencidos, aparece «Continúa con la siguiente lección» y su botón abre realmente la lección; prueba unitaria protege la separación entre tarjeta SRS y recomendación de aprendizaje.
+- Archivos modificados: `index.html`, `tests/learning-screen-phase-5b.e2e.test.cjs`, `tests/adaptive-learning.test.cjs`. CI pendiente; no fusionar hasta verificar todos los checks. Sin cambios en algoritmo, XP, currículo, IndexedDB v1, backup JSON v3, dependencias ni persistencia.
+- Fuente: inspección de `index.html` (blob SHA `4065685c26de3b3d45b749f9bd7d812ab8d4764e`), PR #829 y pruebas; 25 nov 2026.
+
 ## 2026-11-25 — PR de corrección: botón de tarjeta de repaso abre la vista SRS
 
 - Tras el despliegue de PR #829, el usuario informó que al tocar «Repasar» no ocurría nada visible.

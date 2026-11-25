@@ -619,10 +619,23 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
             const LIMIT = 300;
             function normalize(value, language = 'id') {
                 let text = String(value ?? '').normalize('NFKC').toLowerCase();
+                text = text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').normalize('NFC');
                 text = text.replace(/[‘’‛ʼ＇\x60]/g, "'").replace(/[“”„‟«»"]/g, ' ');
                 text = text.replace(/[.,!?¿¡;:…()[\]{}]/g, ' ').replace(/\s+/g, ' ').trim();
-                if (language === 'es') text = text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').normalize('NFC');
                 return text.replace(/'/g, '');
+            }
+            function singleWordDifference(input, expected) {
+                const words = value => String(value ?? '').replace(/[.,!?¿¡;:…()[\]{}]/g, ' ').trim().split(/\s+/).filter(Boolean);
+                const inputWords = words(input);
+                const expectedWords = words(expected);
+                if (!inputWords.length || inputWords.length !== expectedWords.length) return null;
+                let mismatch = -1;
+                for (let index = 0; index < inputWords.length; index++) {
+                    if (normalize(inputWords[index]) === normalize(expectedWords[index])) continue;
+                    if (mismatch !== -1) return null;
+                    mismatch = index;
+                }
+                return mismatch === -1 ? null : { input: inputWords[mismatch], expected: expectedWords[mismatch] };
             }
             function oneCharacterApart(a, b) {
                 if (a === b || Math.abs(a.length - b.length) > 1 || Math.min(a.length, b.length) < 5) return false;
@@ -649,7 +662,7 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                 return variants;
             }
             function compare(input, exercise) {
-                const language=exercise.answerLanguage||(exercise.type==='translate_id_es'?'es':'id');
+                const language=exercise.answerLanguage||exercise.answerLocale||(exercise.type==='translate_id_es'?'es':'id');
                 const normalizedInput=normalize(input,language);
                 const alternatives=Array.isArray(exercise.acceptedAnswers)?exercise.acceptedAnswers
                     .filter(item=>typeof item==='string'||(item&&typeof item.text==='string'&&(!item.status||item.status==='approved')))
@@ -669,7 +682,8 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                     }
                     if(changed>=0)return{status:'typo',normalizedInput,expected:candidate,correction:candidate};
                 }
-                return{status:'incorrect',normalizedInput,expected:exercise.answer||''};
+                const difference=singleWordDifference(input,exercise.answer);
+                return{status:'incorrect',normalizedInput,expected:exercise.answer||'',...(difference?{difference}:{})};
             }
             function read(){
                 try{const value=JSON.parse(window.localStorage.getItem(STORAGE_KEY)||'[]');return Array.isArray(value)?value:[];}
@@ -18769,8 +18783,16 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                     normalizedText: result.normalizedInput
                 };
                 WrittenResponse.recordResult(result, logEntry);
-                if (result.status === 'typo') this.showFeedback(true, ex.explanation, 'Casi: se escribe ' + result.correction);
-                else this.showFeedback(result.status === 'correct', ex.explanation);
+                if (result.status === 'typo') {
+                    this.showFeedback(true, ex.explanation, 'Casi: se escribe ' + result.correction);
+                } else {
+                    const explanation = result.status === 'correct'
+                        ? ex.explanation
+                        : result.difference
+                            ? 'Diferencia: escribiste «' + result.difference.input + '» en lugar de «' + result.difference.expected + '».'
+                            : '';
+                    this.showFeedback(result.status === 'correct', explanation);
+                }
             },
             checkWriting() {
                 const ex = this.queue[this.stepIndex];

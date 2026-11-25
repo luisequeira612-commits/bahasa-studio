@@ -448,8 +448,8 @@ test('compact language picker is accessible, catalog-driven and fits the 360px l
       'Learn must not reserve space when there are no pending SRS reviews: ' + JSON.stringify(route));
     assert.ok(route.recommendation.bottom <= route.node.top,
       'hidden recommendation must not overlap the first unit node: ' + JSON.stringify(route));
-    assert.ok(route.top > 60 && route.top < 800,
-      'unit path banner must follow the recommendation and remain in the first viewport: ' + JSON.stringify(route));
+    assert.ok(route.top >= 58 && route.top < 800,
+      'unit path banner must remain directly below the top bar when no review card is needed: ' + JSON.stringify(route));
     assert.ok(route.node.top < 800 && route.node.bottom > 0, 'current unit must appear in the first mobile viewport');
 
     await page.locator('#studyLanguageTrigger').click();
@@ -514,6 +514,7 @@ test('Learn pending review card fits one compact row and disappears when the que
   try {
     await page.goto(url, { waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
+    await page.locator('.nav-btn[data-nav-group="learn"]').click();
     await page.evaluate(() => App.renderAdaptiveRecommendation({
       dueCount: 18,
       weakWords: [],

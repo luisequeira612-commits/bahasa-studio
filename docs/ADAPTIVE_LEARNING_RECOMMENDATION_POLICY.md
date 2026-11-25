@@ -7,8 +7,8 @@ Alcance: recomendación de la siguiente actividad; no es una evaluación del niv
 
 La recomendación usa únicamente datos que ya existen en el dispositivo:
 - elementos de repaso vencidos o guardados explícitamente para repasar en el motor SRS;
-- palabras con al menos dos errores registrados, palabras guardadas manualmente para repaso y registros antiguos sin contador de errores;
-- errores aislados (un error) para sugerir un repaso ligero, sin etiquetar la palabra como dificultad persistente;
+- palabras con al menos dos errores registrados, palabras guardadas manualmente para repaso y registros antiguos sin contador de errores; una calificación más reciente de 3 o más las retira de las sugerencias automáticas, salvo que se hayan guardado manualmente;
+- errores aislados (un error) para sugerir un repaso ligero, sin etiquetar la palabra como dificultad persistente; también se retiran tras una calificación más reciente de 3 o más, salvo guardado manual;
 - perfil local de habilidades con intentos puntuados;
 - primera lección incompleta de cada unidad accesible y su cobertura de tipos de ejercicio;
 - XP del día y objetivo diario.

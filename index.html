@@ -20319,7 +20319,7 @@ Requisitos:
                     const word = vocabById.get(item.key);
                     const key = String(word && word.text || '').trim().toLocaleLowerCase();
                     if (!key) continue;
-                    if (!srsByWord.has(key)) srsByWord.set(key, { attempts: 0, correct: 0, incorrect: 0, repetition: 0, savedForReview: false, seenStates: new Set() });
+                    if (!srsByWord.has(key)) srsByWord.set(key, { attempts: 0, correct: 0, incorrect: 0, repetition: 0, savedForReview: false, lastQuality: null, lastQualityReviewedAt: null, seenStates: new Set() });
                     const aggregate = srsByWord.get(key);
                     aggregate.savedForReview = aggregate.savedForReview || item.val.savedForReview === true;
                     const signature = JSON.stringify([
@@ -20338,6 +20338,7 @@ Requisitos:
                         AdaptiveLearning.normalizeSrsCount(item.val.repetition));
                     aggregate.lastReviewed = AdaptiveLearning.earliestValidTimestamp(
                         aggregate.lastReviewed, item.val.lastReviewed);
+                    AdaptiveLearning.updateLatestSrsQuality(aggregate, item.val);
                 }
                 const allSrs = [...srsByWord.values()];
                 const attempts = allSrs.reduce((sum, item) => sum + item.attempts, 0);
@@ -20389,7 +20390,8 @@ Requisitos:
                         (!Number.isSafeInteger(item.lastQuality) || item.lastQuality < 3))
                     .slice(0, 5).map(toAdaptiveWord).filter(Boolean);
                 const isolatedWords = rankedWordHistory
-                    .filter(([, item]) => !item.savedForReview && item.incorrect === 1)
+                    .filter(([, item]) => !item.savedForReview && item.incorrect === 1 &&
+                        (!Number.isSafeInteger(item.lastQuality) || item.lastQuality < 3))
                     .slice(0, 5).map(toAdaptiveWord).filter(Boolean);
                 let nextLesson = null;
                 let nextAssessment = null;

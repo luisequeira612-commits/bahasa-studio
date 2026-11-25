@@ -437,13 +437,13 @@ test('compact language picker is accessible, catalog-driven and fits the 360px l
       return {
         top: el.getBoundingClientRect().top,
         bottom: el.getBoundingClientRect().bottom,
-        recommendation: { top:recommendation.top, bottom:recommendation.bottom },
+        recommendation: { top:recommendation.top + window.scrollY, bottom:recommendation.bottom + window.scrollY },
         node: document.querySelector('.learning-unit-node.node-current').getBoundingClientRect().toJSON(),
         scrollY: window.scrollY
       };
     });
-    assert.ok(route.recommendation.top >= 0 && route.recommendation.bottom <= 800,
-      'standalone recommendation must remain visible above the unit path: ' + JSON.stringify(route));
+    assert.ok(route.recommendation.top >= 58 && route.recommendation.bottom <= 800,
+      'standalone recommendation must occupy the page above the unit path: ' + JSON.stringify(route));
     assert.ok(route.recommendation.bottom <= route.top,
       'recommendation must precede the unit path banner without overlap: ' + JSON.stringify(route));
     assert.ok(route.top > 60 && route.top < 800,

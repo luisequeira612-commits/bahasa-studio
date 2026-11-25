@@ -8687,7 +8687,7 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                                     exercises: [
                                         { vocabId: 'a2u15_pertemuan', type: 'mc', prompt: '¿Cuál palabra nombra un encuentro o reunión?', options: ['Pertemuan', 'Penemuan', 'Pengiriman'], answer: 0, explanation: 'Pertemuan nombra un encuentro o reunión.' },
                                         { vocabId: 'b2u7_penemuan', type: 'translate_es_id', prompt: 'Traduce al indonesio: «El descubrimiento de los expertos fue publicado en una revista científica».', answer: 'Penemuan para ahli itu diterbitkan dalam jurnal ilmiah.', explanation: 'Penemuan nombra el descubrimiento y conserva el contexto informativo aprobado.' },
-                                        { vocabId: 'b2u7_penemuan', type: 'order', prompt: 'Ordena para formar una oración completa.', options: ['para ahli itu', 'diterbitkan', 'Penemuan', 'dalam jurnal ilmiah'], answer: ['Penemuan', 'para ahli itu', 'diterbitkan', 'dalam jurnal ilmiah'], explanation: 'La oración completa presenta penemuan como el descubrimiento que fue publicado.' }
+                                        { vocabId: 'b2u7_penemuan', type: 'order', prompt: 'Ordena para formar una oración completa.', words: ['para ahli itu', 'diterbitkan', 'Penemuan', 'dalam jurnal ilmiah'], correctOrder: ['Penemuan', 'para ahli itu', 'diterbitkan', 'dalam jurnal ilmiah'], explanation: 'La oración completa presenta penemuan como el descubrimiento que fue publicado.' }
                                     ]
                                 },
                                 {
@@ -9293,8 +9293,8 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                             description: 'Distingue los marcadores que restringen una acción o un constituyente de los que destacan un elemento sin excluir los demás.',
                             goal: 'Interpretar el alcance de hanya, cuma y saja, reconocer sus posiciones y distinguir la exclusividad de la selección enfática con terutama.',
                             vocab: [
-                                { id: 'b2u16_cuma', idn: 'cuma', es: 'solo; solamente (registro coloquial)', ex: 'Mereka cuma minum teh.', exEsp: 'Ellos solo bebieron té.', source: 'Kroeger (2014), §4.2.2, ejemplo 36a; Sneddon et al. (2010), §2.217.', category: 'adverb', tags: ['focus', 'limiter', 'register'] },
-                                { id: 'b2u16_terutama', idn: 'terutama', es: 'principalmente; sobre todo; especialmente', ex: 'Kenaikan pendapatan itu terutama berasal dari pajak.', exEsp: 'El aumento de los ingresos proviene principalmente de los impuestos.', source: 'Sneddon et al. (2010), §2.218.', category: 'adverb', tags: ['focus', 'selective', 'discourse'] }
+                                { id: 'b2u16_cuma', idn: 'cuma', esp: 'solo; solamente (registro coloquial)', ex: 'Mereka cuma minum teh.', exEsp: 'Ellos solo bebieron té.', source: 'Kroeger (2014), §4.2.2, ejemplo 36a; Sneddon et al. (2010), §2.217.', category: 'adverb', tags: ['focus', 'limiter', 'register'] },
+                                { id: 'b2u16_terutama', idn: 'terutama', esp: 'principalmente; sobre todo; especialmente', ex: 'Kenaikan pendapatan itu terutama berasal dari pajak.', exEsp: 'El aumento de los ingresos proviene principalmente de los impuestos.', source: 'Sneddon et al. (2010), §2.218.', category: 'adverb', tags: ['focus', 'selective', 'discourse'] }
                             ],
                             lessons: [
                                 {
@@ -9368,8 +9368,8 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                             description: 'Integra declaraciones y preguntas dentro de otra oración sin convertirlas en citas directas ni alterar innecesariamente su estructura.',
                             goal: 'Distinguir el contenido declarado introducido por bahwa de las preguntas indirectas introducidas por apakah o por una palabra interrogativa; conservar el punto de vista y la estructura de la cláusula.',
                             vocab: [
-                                { id: 'b2u17_bahwa', idn: 'bahwa', es: 'que; introduce el contenido de una declaración, pensamiento o conocimiento', ex: 'Dia menjawab bahwa dia tidak percaya.', exEsp: 'Él respondió que no lo creía.', source: 'Sneddon et al. (2010), §3.111.', category: 'conjunction', tags: ['reported-speech', 'complement-clause'] },
-                                { id: 'b2u17_apakah', idn: 'apakah', es: 'si; introduce una pregunta indirecta de sí o no', ex: 'Saya tidak tahu apakah bis ini berhenti di Pasar Senen.', exEsp: 'No sé si este autobús para en Pasar Senen.', source: 'Sneddon et al. (2010), §4.30.', category: 'interrogative', tags: ['indirect-question', 'embedded-clause'] }
+                                { id: 'b2u17_bahwa', idn: 'bahwa', esp: 'que; introduce el contenido de una declaración, pensamiento o conocimiento', ex: 'Dia menjawab bahwa dia tidak percaya.', exEsp: 'Él respondió que no lo creía.', source: 'Sneddon et al. (2010), §3.111.', category: 'conjunction', tags: ['reported-speech', 'complement-clause'] },
+                                { id: 'b2u17_apakah', idn: 'apakah', esp: 'si; introduce una pregunta indirecta de sí o no', ex: 'Saya tidak tahu apakah bis ini berhenti di Pasar Senen.', exEsp: 'No sé si este autobús para en Pasar Senen.', source: 'Sneddon et al. (2010), §4.30.', category: 'interrogative', tags: ['indirect-question', 'embedded-clause'] }
                             ],
                             lessons: [
                                 {
@@ -9443,10 +9443,10 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                             description: 'Construye complementos de intención con supaya/agar, sujeto compartido u omitido, alternancias activas y pasivas y negación dentro de la cláusula.',
                             goal: 'Distinguir el objeto del verbo principal del actor de la acción complementaria; usar supaya/agar y untuk según la estructura, y reconocer cómo cambia el punto de vista en las pasivas.',
                             vocab: [
-                                { id: 'b2u18_menyuruh', idn: 'menyuruh', es: 'ordenar; decirle a alguien que haga algo', ex: 'Suwono menyuruh anaknya pergi ke sekolah.', exEsp: 'Suwono ordenó a su hijo que fuera a la escuela.', source: 'Sneddon et al. (2010), §3.123.', category: 'verb', tags: ['directive', 'intent-complement'] },
-                                { id: 'b2u18_memerintahkan', idn: 'memerintahkan', es: 'ordenar; dar una instrucción formal', ex: 'Kepala kantor memerintahkan Soeparno agar mencari berkas itu.', exEsp: 'El jefe de la oficina ordenó a Soeparno que buscara el expediente.', source: 'Sneddon et al. (2010), §3.122.', category: 'verb', tags: ['formal-directive', 'intent-complement'] },
-                                { id: 'b2u18_mendesak', idn: 'mendesak', es: 'instar; presionar para que alguien actúe', ex: 'Perdana Menteri didesak oleh rakyat agar mengambil langkah tegas.', exEsp: 'El primer ministro fue instado por el pueblo a tomar medidas firmes.', source: 'Sneddon et al. (2010), §3.122.', category: 'verb', tags: ['pressure', 'passive-directive'] },
-                                { id: 'b2u18_minta', idn: 'minta', es: 'pedir; solicitar que alguien haga o no haga algo', ex: 'Saya minta supaya saudara tidak pergi.', exEsp: 'Pido que usted no se vaya.', source: 'Sneddon et al. (2010), §3.128.', category: 'verb', tags: ['request', 'negative-complement'] }
+                                { id: 'b2u18_menyuruh', idn: 'menyuruh', esp: 'ordenar; decirle a alguien que haga algo', ex: 'Suwono menyuruh anaknya pergi ke sekolah.', exEsp: 'Suwono ordenó a su hijo que fuera a la escuela.', source: 'Sneddon et al. (2010), §3.123.', category: 'verb', tags: ['directive', 'intent-complement'] },
+                                { id: 'b2u18_memerintahkan', idn: 'memerintahkan', esp: 'ordenar; dar una instrucción formal', ex: 'Kepala kantor memerintahkan Soeparno agar mencari berkas itu.', exEsp: 'El jefe de la oficina ordenó a Soeparno que buscara el expediente.', source: 'Sneddon et al. (2010), §3.122.', category: 'verb', tags: ['formal-directive', 'intent-complement'] },
+                                { id: 'b2u18_mendesak', idn: 'mendesak', esp: 'instar; presionar para que alguien actúe', ex: 'Perdana Menteri didesak oleh rakyat agar mengambil langkah tegas.', exEsp: 'El primer ministro fue instado por el pueblo a tomar medidas firmes.', source: 'Sneddon et al. (2010), §3.122.', category: 'verb', tags: ['pressure', 'passive-directive'] },
+                                { id: 'b2u18_minta', idn: 'minta', esp: 'pedir; solicitar que alguien haga o no haga algo', ex: 'Saya minta supaya saudara tidak pergi.', exEsp: 'Pido que usted no se vaya.', source: 'Sneddon et al. (2010), §3.128.', category: 'verb', tags: ['request', 'negative-complement'] }
                             ],
                             lessons: [
                                 {
@@ -9663,7 +9663,7 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                                 description: 'Distingue la negación de una proposición o identidad de la negación verbal con tidak, y usa melainkan/tetapi para presentar la corrección.',
                                 goal: 'Interpretar la alternativa rechazada, el alcance de bukan/bukannya y la función correctiva de melainkan/tetapi sin confundirlo con la negación básica de A1.',
                                 vocab: [
-                                    { id: 'b2u21_melainkan', idn: 'melainkan', es: 'sino; sino más bien; introduce la alternativa que corrige lo negado', ex: 'Bukan dia bodoh, melainkan dia malas.', exEsp: 'No es que sea tonto, sino que es perezoso.', source: 'Sneddon et al. (2010), §4.84.', category: 'conjunction', tags: ['contrastive-correction', 'formal-register'] }
+                                    { id: 'b2u21_melainkan', idn: 'melainkan', esp: 'sino; sino más bien; introduce la alternativa que corrige lo negado', ex: 'Bukan dia bodoh, melainkan dia malas.', exEsp: 'No es que sea tonto, sino que es perezoso.', source: 'Sneddon et al. (2010), §4.84.', category: 'conjunction', tags: ['contrastive-correction', 'formal-register'] }
                                 ],
                                 lessons: [
                                     {

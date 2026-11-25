@@ -442,7 +442,7 @@ test('compact language picker is accessible, catalog-driven and fits the 360px l
         top: el.getBoundingClientRect().top,
         bottom: el.getBoundingClientRect().bottom,
         recommendationVisible: !recommendationElement.hidden && getComputedStyle(recommendationElement).display !== 'none',
-        recommendation: { top:recommendation.top + window.scrollY, bottom:recommendation.bottom + window.scrollY },
+        recommendation: { height:recommendation.height, top:recommendation.top + window.scrollY, bottom:recommendation.bottom + window.scrollY },
         learningRecommendationVisible: !learningElement.hidden && getComputedStyle(learningElement).display !== 'none',
         learningRecommendation: { top:learningRecommendation.top + window.scrollY, bottom:learningRecommendation.bottom + window.scrollY },
         node: node.toJSON(),
@@ -454,8 +454,8 @@ test('compact language picker is accessible, catalog-driven and fits the 360px l
       'Learn must not reserve space for the compact SRS card when there are no pending reviews: ' + JSON.stringify(route));
     assert.equal(route.learningRecommendationVisible, true,
       'Learn should show the independent adaptive learning recommendation: ' + JSON.stringify(route));
-    assert.ok(route.recommendation.bottom <= route.learningRecommendation.top,
-      'hidden SRS card must not overlap the adaptive learning recommendation: ' + JSON.stringify(route));
+    assert.equal(route.recommendation.height, 0,
+      'hidden SRS card must have zero height and reserve no space: ' + JSON.stringify(route));
     assert.ok(route.learningRecommendation.bottom <= route.nodeDocumentTop,
       'adaptive learning recommendation must not overlap the first unit node: ' + JSON.stringify(route));
     assert.ok(route.top >= 58 && route.top < 800,

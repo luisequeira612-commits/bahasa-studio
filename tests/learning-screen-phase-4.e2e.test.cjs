@@ -435,19 +435,29 @@ test('compact language picker is accessible, catalog-driven and fits the 360px l
     const route = await page.locator('.unit-path-section-banner').first().evaluate(el => {
       const recommendationElement = document.getElementById('adaptiveRecommendationLearn');
       const recommendation = recommendationElement.getBoundingClientRect();
+      const learningElement = document.getElementById('adaptiveLearningRecommendationLearn');
+      const learningRecommendation = learningElement.getBoundingClientRect();
+      const node = document.querySelector('.learning-unit-node.node-current').getBoundingClientRect();
       return {
         top: el.getBoundingClientRect().top,
         bottom: el.getBoundingClientRect().bottom,
         recommendationVisible: !recommendationElement.hidden && getComputedStyle(recommendationElement).display !== 'none',
         recommendation: { top:recommendation.top + window.scrollY, bottom:recommendation.bottom + window.scrollY },
-        node: document.querySelector('.learning-unit-node.node-current').getBoundingClientRect().toJSON(),
+        learningRecommendationVisible: !learningElement.hidden && getComputedStyle(learningElement).display !== 'none',
+        learningRecommendation: { top:learningRecommendation.top + window.scrollY, bottom:learningRecommendation.bottom + window.scrollY },
+        node: node.toJSON(),
+        nodeDocumentTop: node.top + window.scrollY,
         scrollY: window.scrollY
       };
     });
     assert.equal(route.recommendationVisible, false,
-      'Learn must not reserve space when there are no pending SRS reviews: ' + JSON.stringify(route));
-    assert.ok(route.recommendation.bottom <= route.node.top,
-      'hidden recommendation must not overlap the first unit node: ' + JSON.stringify(route));
+      'Learn must not reserve space for the compact SRS card when there are no pending reviews: ' + JSON.stringify(route));
+    assert.equal(route.learningRecommendationVisible, true,
+      'Learn should show the independent adaptive learning recommendation: ' + JSON.stringify(route));
+    assert.ok(route.recommendation.bottom <= route.learningRecommendation.top,
+      'hidden SRS card must not overlap the adaptive learning recommendation: ' + JSON.stringify(route));
+    assert.ok(route.learningRecommendation.bottom <= route.nodeDocumentTop,
+      'adaptive learning recommendation must not overlap the first unit node: ' + JSON.stringify(route));
     assert.ok(route.top >= 58 && route.top < 800,
       'unit path banner must remain directly below the top bar when no review card is needed: ' + JSON.stringify(route));
     assert.ok(route.node.top < 800 && route.node.bottom > 0, 'current unit must appear in the first mobile viewport');

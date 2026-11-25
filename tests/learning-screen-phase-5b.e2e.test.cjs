@@ -605,6 +605,7 @@ test('translation bubble exposes expanded state and supports keyboard open and E
         .map(element => ({ id: element.id || null, text: element.textContent }))
     }));
     keyboardState.pageErrors = pageErrors;
+    console.log('[translation-bubble-keyboard-diagnostic]', JSON.stringify(keyboardState));
     assert.equal(keyboardState.bubbleHidden, false,
       'Enter should open the translation bubble; state: ' + JSON.stringify(keyboardState));
     assert.equal(await trigger.getAttribute('aria-expanded'), 'true',

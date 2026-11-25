@@ -1,6 +1,6 @@
 importScripts('./language-manager.js');
 
-const CACHE_NAME = 'bahasa-studio-v3.8.153';
+const CACHE_NAME = 'bahasa-studio-v3.8.152';
 const AUDIO_CACHE_NAME = 'guardi-audio-v2';
 const AUDIO_LANGUAGES = new Set(LanguageManager.list().map(({ code }) => code));
 

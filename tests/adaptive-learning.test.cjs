@@ -355,11 +355,23 @@ test('adaptive vocabulary ranking balances error rate, repetition and review age
   assert.match(html, /savedPriority/);
 });
 
-test('adaptive recommendation action is programmatically associated with its explanation', () => {
+test('adaptive recommendation action is programmatically associated with its explanation in each view', () => {
   const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
-  assert.match(html, /description\.id = 'adaptiveRecommendationDescription'/);
+  assert.match(html, /description\.id = host\.id \+ 'Description'/);
   assert.match(html, /button\.setAttribute\('aria-describedby', description\.id\)/);
   assert.match(html, /host\.append\(heading, description, button\)/);
+});
+
+test('adaptive recommendation is visible on Aprender and refreshes on initial load and tab entry', () => {
+  const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+  const routeStart = html.indexOf('<main id="view-route"');
+  const routeEnd = html.indexOf('</main>', routeStart);
+  const routeMarkup = html.slice(routeStart, routeEnd);
+  assert.match(routeMarkup, /id="adaptiveRecommendationLearn"[^>]*data-adaptive-recommendation/);
+  assert.match(html, /document\.querySelectorAll\('\[data-adaptive-recommendation\]'\)/);
+  assert.match(html, /this\.renderCourseRoute\(\);\s*this\.updateSrsView\(\);/);
+  assert.match(html, /viewId === 'srs' \|\| viewId === 'profile' \|\| viewId === 'route'/);
+  assert.match(html, /\.adaptive-recommendation-sticky\s*\{\s*position:sticky;\s*top:62px;/);
 });
 
 test('weakest skill ranking compares exact accuracy before applying display rounding or tie-breakers', () => {

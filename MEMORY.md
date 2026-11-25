@@ -2,8 +2,8 @@
 
 - Tras completar la regresión post-merge de PR #793 (101/101), calidad offline 10/10 y Pages success, se añade cobertura E2E para cerrar mediante el botón visible (no solo Escape) los paneles de nivel, herramientas, detalle de unidad y significado de palabra.
 - El test abre el selector de nivel con Space y herramientas/unidad con Enter, y comprueba que el foco vuelva al control/texto que originó cada panel. Es cobertura automatizada Chromium; no sustituye la comprobación física pendiente en el Tecno Pova 4.
-- Solo se modifica `tests/learning-screen-phase-5b.e2e.test.cjs` y esta memoria. No se toca producción, currículos, IndexedDB v1, backup JSON v3, dependencias ni disponibilidad de idiomas.
-- Pendiente: ejecutar CI completa sobre el nuevo head; no fusionar hasta que regresión y calidad offline terminen en success.
+- Se registran las pruebas de fase 5B en `.github/workflows/regression.yml`; la suite completa de accesibilidad y móvil ahora se ejecuta en CI junto a la nueva prueba de cierre. Cambios limitados a pruebas, workflow y esta memoria. No se toca producción, currículos, IndexedDB v1, backup JSON v3, dependencias ni disponibilidad de idiomas.
+- Pendiente: ejecutar CI completa sobre el nuevo head, incluida la suite 5B que antes no estaba conectada al workflow; no fusionar hasta que regresión y calidad offline terminen en success.
 Fuente: `tests/learning-screen-phase-5b.e2e.test.cjs`, PR de cobertura de foco; 24 nov 2026.
 
 ## 2026-11-24 — Adaptación neutral de la interfaz SRS (PR en curso)

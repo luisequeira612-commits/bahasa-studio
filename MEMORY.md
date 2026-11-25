@@ -200,3 +200,10 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Se conserva el total histórico de errores y la programación SM-2. No se modifica IndexedDB v1, el formato de backup JSON v3, el currículo ni las dependencias.
 - Pruebas de regresión: una marca manual antigua no prevalece sobre una calificación posterior; las recomendaciones excluyen palabras cuya última repetición fue correcta.
 - Fuente: inspección de `mergeSrsRecords()`, `SRSEngine.recordAttempt()` y el cálculo `rankedWordHistory` en `index.html`; 25 nov 2026. Pendiente CI y validación funcional en el dispositivo.
+
+
+## 2026-11-25 — Aislamiento de pruebas adaptativas en CI
+
+- La ejecución de PR #836 confirmó que `tests/regression.test.cjs` terminó correctamente, pero el job se detuvo en la suite E2E de Fase 4 antes de llegar al paso `tests/adaptive-learning.test.cjs`. Por tanto, la prueba específica del recomendador no había quedado validada en esa ejecución.
+- Se reordenó el workflow `.github/workflows/regression.yml` para ejecutar la suite adaptativa inmediatamente antes de Fase 4. Así, los próximos resultados del SRS quedan visibles aunque un fallo E2E posterior detenga el job; no cambia el código de producción ni relaja pruebas.
+- Fuente: GitHub Actions run #45689931010, job #139472361814; PR #836, 25 nov 2026.

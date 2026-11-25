@@ -1,3 +1,11 @@
+## 2026-11-25 — Política adaptativa alineada con el comportamiento real
+
+- La auditoría de fase 7 encontró una contradicción documental: la política decía que la precisión de habilidades solo añadía contexto y no afectaba la acción recomendada, pero el runtime ya usa la habilidad con menor precisión (mínimo 10 intentos puntuados) para dirigir a conversación, cuaderno de escritura o una primera lección incompleta y accesible.
+- Se aclara también que el panel puede mostrar datos iniciales desde cinco intentos, mientras que la selección adaptativa exige diez. El umbral es una regla inicial, no una calibración; las métricas no certifican dominio ni ajustan automáticamente dificultad.
+- Cambio documental únicamente: no modifica runtime, currículos, disponibilidad de idiomas, IndexedDB v1, backup JSON v3 ni dependencias.
+
+Fuente: `docs/ADAPTIVE_LEARNING_RECOMMENDATION_POLICY.md`, `adaptive-learning.js`, `tests/adaptive-learning.test.cjs` y `tests/skill-profile-evidence.test.cjs`; 25 nov 2026.
+
 ## 2026-11-25 — PR #799 fusionada; verificación post-merge completa
 
 - PR [#799](https://github.com/luisequeira612-commits/bahasa-studio/pull/799) fusionada por squash en `main`; GitHub confirmó `merged: true`. Commit integrado: `24facb210289894669f6349f569db4e85b4a8d24`.

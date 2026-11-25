@@ -1,3 +1,22 @@
+## 2026-11-25 — Causa y corrección de cierre intermitente de la burbuja de traducción
+
+- La traza ampliada de CI [#45674332231](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45674332231) identificó la secuencia exacta: Enter abre la burbuja y establece `aria-expanded=true`; inmediatamente después se dispara `window-scroll`, que la cierra y revierte el atributo. No hubo clic/pointerdown ni errores JS.
+- Causa en `index.html`: el listener global `window.addEventListener('scroll', close, true)` cerraba la burbuja ante cualquier desplazamiento, incluido el desplazamiento automático del navegador al activar con teclado el botón enfocado.
+- Corrección acotada: separar el cálculo de posición en `position(button)`; cuando ocurre scroll y el disparador sigue enfocado, mantener la burbuja abierta y recalcular su anclaje. Si el foco ya salió del disparador, se conserva el cierre por desplazamiento. Se mantienen Escape, cierre por clic externo, foco y estado ARIA.
+- Se añadió una aserción E2E que despacha scroll mientras el disparador conserva foco y exige que la burbuja siga visible y expandida. La prueba original sigue exigiendo apertura por Enter y cierre por Escape; no se relajaron criterios.
+- Archivos modificados: `index.html`, `tests/learning-screen-phase-5b.e2e.test.cjs`, `MEMORY.md`. Sin cambios de persistencia, IndexedDB v1, backup JSON v3, currículo ni dependencias. Pendiente CI completo antes de considerar listo o fusionar el PR.
+
+Fuente: traza de GitHub Actions #45674332231 y código del listener en `index.html`; 25 nov 2026.
+
+## 2026-11-25 — Diagnóstico adicional de teclado para burbuja de traducción
+
+- La repetición del job [#45665119892](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45665119892) volvió a fallar en Fase 5B, prueba de teclado de la burbuja: el foco permaneció en `keyboardTranslationTrigger`, el evento `keydown Enter` llegó a document, no hubo errores JS, pero la burbuja siguió oculta y `aria-expanded=false`.
+- Se preparó una instrumentación exclusivamente de prueba que registra el estado del evento en `window` capture inmediatamente después del listener de la app, además del estado en `document`. Busca distinguir si el listener de aplicación no se ejecuta o si se ejecuta y el estado se revierte después.
+- No se modificó código de producción, lógica de traducción, accesibilidad, persistencia ni dependencias. No se relajaron aserciones.
+- CI instrumentado [#45671735347](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45671735347) terminó completamente en success (Fase 4, calidad local, Fase 5B, E2E real y evaluación). La prueba 112 pasó, pero el test solo incluía los eventos capturados dentro del mensaje de error y no imprimía la traza cuando pasaba; por eso el job no dejó evidencia de `window-keydown-after-app` en ejecución exitosa. Se añadió un log explícito del estado y la secuencia de eventos en todos los resultados, sin cambiar aserciones ni comportamiento. Próximo paso: repetir CI y leer la traza de éxito antes de cualquier cambio de producción o fusión.
+
+Fuente: logs de GitHub Actions #45665119892 y cambio de prueba en rama `debug/translation-bubble-window-event-20261125`; 25 nov 2026.
+
 ## 2026-11-25 — PR #832 fusionada y CI completo aprobado
 
 - PR [#832](https://github.com/luisequeira612-commits/bahasa-studio/pull/832) fusionada mediante squash en `main`, commit `31077c2e7effb9914f25e4c345699c4555ffd224`.
@@ -158,3 +177,10 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Inspección del código completo de `initTapTranslationBubble()`: el listener delegado seguía en `document` capture. Se mueve a `window` capture para ejecutarlo antes de los listeners de captura del documento que podrían detener la propagación. Se conservan apertura, `aria-expanded`, Escape y restauración de foco; no se relajan aserciones.
 - Commit: [9ca95d2](https://github.com/luisequeira612-commits/bahasa-studio/commit/9ca95d20e608927c3166214910356573c7e42200). Pendiente CI nuevo, especialmente pruebas 112 y 117, Fase 5B y E2E final. PR #832 continúa abierta y sin fusionar.
 - Fuente: logs del job test #139377986951 (run #45663123141), código de `index.html` y commit 9ca95d2; 25 nov 2026.
+
+
+## 2026-11-25 — PR #833: detecta cierre posterior a la apertura de la burbuja
+- La repetición del job de calidad #45673026022 falló en el test 112 (300/301 pruebas pasaron). La traza ya muestra la secuencia: `Enter` llega a `window-keydown-after-app` con `defaultPrevented=true`, burbuja visible y `aria-expanded=true`; después de esperar 150 ms, la burbuja vuelve a `hidden=true` y `aria-expanded=false`. No hubo errores JS. Esto prueba que el manejador abre y algo posterior la cierra; la causa todavía no está identificada.
+- Se amplió únicamente la instrumentación E2E en `tests/learning-screen-phase-5b.e2e.test.cjs` para registrar mutaciones de `hidden`/`aria-expanded`, `scroll`, `resize`, `pointerdown` y `click` con marcas de tiempo. No se tocó producción ni se relajaron aserciones.
+- Nuevo commit diagnóstico: `356425b81a5386e654acdf6f02661bcad2b47635`. Pendiente CI para identificar qué evento/handler provoca el cierre. PR #833 permanece abierta y no fusionada.
+- Fuente: log del job test #139415663217 (run #45673026022), prueba 112 y commit `356425b`; 25 nov 2026.

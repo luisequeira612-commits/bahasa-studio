@@ -20980,6 +20980,9 @@ Requisitos:
                 saveButton.textContent = '＋ Guardar';
                 bubble.hidden = false;
                 bubble.classList.remove('above');
+                position(button);
+            }
+            function position(button) {
                 const rect = button.getBoundingClientRect();
                 const width = bubble.getBoundingClientRect().width;
                 const height = bubble.getBoundingClientRect().height;
@@ -20991,6 +20994,7 @@ Requisitos:
                 const belowTop = rect.bottom + 9;
                 const aboveTop = rect.top - height - 9;
                 let top;
+                bubble.classList.remove('above');
                 if (belowTop + height <= viewportHeight - margin) {
                     top = belowTop;
                 } else if (aboveTop >= margin) {
@@ -21055,7 +21059,16 @@ Requisitos:
                 }
             }, true);
             window.addEventListener('resize', close);
-            window.addEventListener('scroll', close, true);
+            window.addEventListener('scroll', () => {
+                if (bubble.hidden) return;
+                // Keyboard activation can scroll the focused word into view after Enter.
+                // Keep the popup open and re-anchor it while its trigger retains focus.
+                if (activeButton && document.activeElement === activeButton) {
+                    position(activeButton);
+                    return;
+                }
+                close();
+            }, true);
         }
         if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initTapTranslationBubble, { once: true });
         else initTapTranslationBubble();

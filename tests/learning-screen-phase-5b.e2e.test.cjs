@@ -572,12 +572,65 @@ test('translation bubble exposes expanded state and supports keyboard open and E
       'The synthetic word button must retain focus before keyboard activation');
     await page.evaluate(() => {
       window.__keyboardBubbleEvents = [];
-      document.addEventListener('keydown', event => window.__keyboardBubbleEvents.push({
-        type: 'keydown', key: event.key, target: event.target?.id || event.target?.tagName || null
-      }), true);
-      document.addEventListener('click', event => window.__keyboardBubbleEvents.push({
-        type: 'click', detail: event.detail, target: event.target?.id || event.target?.tagName || null
-      }), true);
+      const snapshot = type => {
+        const trigger = document.getElementById('keyboardTranslationTrigger');
+        const bubble = document.getElementById('tapTranslationBubble');
+        window.__keyboardBubbleEvents.push({
+          type, time: Number(performance.now().toFixed(1)),
+          activeElement: document.activeElement?.id || document.activeElement?.tagName || null,
+          bubbleHidden: bubble?.hidden,
+          triggerExpanded: trigger?.getAttribute('aria-expanded')
+        });
+      };
+      // Capture transient state changes as well as events that could dismiss the bubble.
+      const bubble = document.getElementById('tapTranslationBubble');
+      const trigger = document.getElementById('keyboardTranslationTrigger');
+      new MutationObserver(records => {
+        for (const record of records) {
+          window.__keyboardBubbleEvents.push({
+            type: 'mutation', time: Number(performance.now().toFixed(1)),
+            target: record.target.id,
+            attribute: record.attributeName,
+            oldValue: record.oldValue,
+            newValue: record.target.getAttribute(record.attributeName),
+            bubbleHidden: bubble.hidden,
+            triggerExpanded: trigger.getAttribute('aria-expanded')
+          });
+        }
+      }).observe(bubble, { attributes: true, attributeOldValue: true, attributeFilter: ['hidden', 'class'] });
+      new MutationObserver(records => {
+        for (const record of records) window.__keyboardBubbleEvents.push({
+          type: 'trigger-mutation', time: Number(performance.now().toFixed(1)),
+          attribute: record.attributeName, oldValue: record.oldValue,
+          newValue: trigger.getAttribute(record.attributeName),
+          bubbleHidden: bubble.hidden
+        });
+      }).observe(trigger, { attributes: true, attributeOldValue: true, attributeFilter: ['aria-expanded'] });
+      window.addEventListener('keydown', event => {
+        if (event.key !== 'Enter' && event.key !== ' ') return;
+        snapshot('window-keydown-after-app');
+        window.__keyboardBubbleEvents.at(-1).key = event.key;
+        window.__keyboardBubbleEvents.at(-1).defaultPrevented = event.defaultPrevented;
+      }, true);
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          snapshot('document-keydown');
+          window.__keyboardBubbleEvents.at(-1).key = event.key;
+          window.__keyboardBubbleEvents.at(-1).defaultPrevented = event.defaultPrevented;
+        }
+      }, true);
+      document.addEventListener('click', event => {
+        snapshot('click');
+        Object.assign(window.__keyboardBubbleEvents.at(-1), {
+          detail: event.detail, target: event.target?.id || event.target?.tagName || null
+        });
+      }, true);
+      document.addEventListener('pointerdown', event => {
+        snapshot('pointerdown');
+        window.__keyboardBubbleEvents.at(-1).target = event.target?.id || event.target?.tagName || null;
+      }, true);
+      window.addEventListener('scroll', () => snapshot('window-scroll'), true);
+      window.addEventListener('resize', () => snapshot('window-resize'), true);
     });
     await trigger.press('Enter');
     await page.waitForTimeout(150);
@@ -592,11 +645,17 @@ test('translation bubble exposes expanded state and supports keyboard open and E
         .map(element => ({ id: element.id || null, text: element.textContent }))
     }));
     keyboardState.pageErrors = pageErrors;
+    console.log('[translation-bubble-keyboard-diagnostic]', JSON.stringify(keyboardState));
     assert.equal(keyboardState.bubbleHidden, false,
       'Enter should open the translation bubble; state: ' + JSON.stringify(keyboardState));
     assert.equal(await trigger.getAttribute('aria-expanded'), 'true',
       'Enter should expand the focused word button; state: ' + JSON.stringify(keyboardState));
     assert.equal(await trigger.getAttribute('aria-controls'), 'tapTranslationBubble');
+    await page.evaluate(() => window.dispatchEvent(new Event('scroll')));
+    assert.equal(await bubble.isVisible(), true,
+      'Scrolling while the keyboard trigger retains focus should keep the bubble open');
+    assert.equal(await trigger.getAttribute('aria-expanded'), 'true',
+      'A scroll with keyboard focus should preserve the expanded state');
     assert.equal(await bubble.getAttribute('aria-label'), 'Traducción y repaso');
     assert.equal(await page.locator('#tapTranslationText').getAttribute('aria-live'), 'polite');
 

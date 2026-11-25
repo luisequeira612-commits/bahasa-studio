@@ -659,3 +659,76 @@ test('closing accessible sheets by their close controls restores the originating
     await new Promise(resolve => server.close(resolve));
   }
 });
+
+
+test('learning screen remains usable without horizontal overflow at 320px', async () => {
+  const { server, url } = await startServer();
+  const browser = await chromium.launch({ headless: true });
+  const context = await browser.newContext({ viewport: { width: 320, height: 640 }, serviceWorkers: 'block', reducedMotion: 'reduce' });
+  const page = await context.newPage();
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
+    await page.waitForSelector('.learning-unit-node.node-current');
+
+    const initialLayout = await page.evaluate(() => {
+      const box = selector => {
+        const rect = document.querySelector(selector).getBoundingClientRect();
+        return { left: rect.left, right: rect.right, width: rect.width, height: rect.height };
+      };
+      return {
+        viewport: window.innerWidth,
+        documentWidth: document.documentElement.scrollWidth,
+        logo: box('.app-topbar .logo'),
+        levelTrigger: box('#learningLevelTrigger'),
+        navigation: Array.from(document.querySelectorAll('nav.nav-bottom .nav-btn')).map(button => {
+          const rect = button.getBoundingClientRect();
+          return { left: rect.left, right: rect.right, width: rect.width, height: rect.height };
+        })
+      };
+    });
+
+    assert.equal(initialLayout.viewport, 320);
+    assert.ok(initialLayout.documentWidth <= initialLayout.viewport,
+      'learning screen must not overflow horizontally at 320px: ' + JSON.stringify(initialLayout));
+    assert.ok(initialLayout.logo.right <= initialLayout.levelTrigger.left,
+      'brand and level selector must not overlap at 320px: ' + JSON.stringify(initialLayout));
+    assert.ok(initialLayout.levelTrigger.height >= 44);
+    assert.ok(initialLayout.levelTrigger.right <= 320);
+    assert.equal(initialLayout.navigation.length, 4);
+    for (const [index, target] of initialLayout.navigation.entries()) {
+      assert.ok(target.width >= 44 && target.height >= 44,
+        'bottom navigation target ' + index + ' must remain at least 44×44px: ' + JSON.stringify(target));
+      assert.ok(target.left >= 0 && target.right <= 320,
+        'bottom navigation target ' + index + ' must stay inside the viewport');
+    }
+
+    await page.locator('#learningLevelTrigger').click();
+    await page.waitForSelector('#learningLevelSheetOverlay:not([hidden])');
+    const sheetLayout = await page.evaluate(() => {
+      const sheet = document.getElementById('learningLevelSheet').getBoundingClientRect();
+      const close = document.querySelector('#learningLevelSheet .learning-sheet-close').getBoundingClientRect();
+      const overlay = document.getElementById('learningLevelSheetOverlay').getBoundingClientRect();
+      return {
+        documentWidth: document.documentElement.scrollWidth,
+        sheet: { left: sheet.left, right: sheet.right, width: sheet.width },
+        close: { left: close.left, right: close.right, width: close.width, height: close.height },
+        overlay: { left: overlay.left, right: overlay.right }
+      };
+    });
+    assert.ok(sheetLayout.sheet.left >= 0 && sheetLayout.sheet.right <= 320,
+      'level sheet must fit inside a 320px viewport: ' + JSON.stringify(sheetLayout));
+    assert.ok(sheetLayout.close.width >= 44 && sheetLayout.close.height >= 44,
+      'level-sheet close target must remain at least 44×44px: ' + JSON.stringify(sheetLayout.close));
+    assert.ok(sheetLayout.documentWidth <= 320,
+      'opening the level sheet must not introduce horizontal overflow: ' + JSON.stringify(sheetLayout));
+    await page.locator('#learningLevelSheet .learning-sheet-close').click();
+    await page.waitForFunction(() => document.getElementById('learningLevelSheetOverlay').hidden);
+    assert.equal(await page.evaluate(() => document.activeElement?.id), 'learningLevelTrigger');
+  } finally {
+    await context.close();
+    await browser.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});

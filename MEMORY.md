@@ -1,3 +1,12 @@
+## 2026-11-25 — Fase 7: perfil adaptativo usa el catálogo central (PR #813 en curso)
+
+- La auditoría encontró que `adaptive-learning.js` mantenía una expresión regular duplicada con los diez códigos admitidos. Ahora recibe la lista de códigos de forma explícita y conserva su carácter de lógica pura; `index.html` pasa `LanguageManager.list().map(({ code }) => code)`.
+- Se añadieron pruebas para aceptar un código incluido en el catálogo simulado, rechazar códigos fuera del catálogo y verificar el cableado desde el panel adaptativo. La prioridad y el umbral de diez intentos no cambian.
+- PR [#813](https://github.com/luisequeira612-commits/bahasa-studio/pull/813), rama `refactor/adaptive-learning-language-catalog`, head inicial `3ce7dbd69947d6d92679970fc5cc8d9567e760d7`. CI pendiente; no fusionar hasta que regresión y calidad offline pasen.
+- Sin cambios a IndexedDB v1, backup JSON v3, persistencia, disponibilidad de cursos, currículos ni dependencias. `pt-BR` sigue `available:false`.
+
+Fuente: `adaptive-learning.js`, `index.html`, `tests/adaptive-learning.test.cjs` y PR #813; 25 nov 2026.
+
 ## 2026-11-25 — Fase 7: catálogo de progreso derivado de LanguageManager
 
 - `progress-namespace.js` ya deriva los códigos admitidos de `LanguageManager.list()`, eliminando la segunda lista técnica que podía desincronizar la separación de progreso por idioma.

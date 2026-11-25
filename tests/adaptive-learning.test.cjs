@@ -362,7 +362,7 @@ test('legacy word recommendations without error counters remain compatible', () 
 
 test('adaptive dashboard separates repeated word errors from isolated mistakes using SRS history', () => {
   const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
-  assert.match(html, /item\.savedForReview \|\| item\.incorrect >= 2/);
+  assert.match(html, /item\.savedForReview \|\| item\.incorrect >= 2 &&/);
   assert.match(html, /item\.incorrect === 1/);
   assert.match(html, /isolatedWords,/);
   assert.match(html, /incorrect: history\.incorrect/);
@@ -618,4 +618,43 @@ test('Aprender keeps the compact SRS card separate from the actionable lesson re
   assert.match(html, /reviewCount > 0 \|\| recommendation\.action === 'none'/);
   assert.match(html, /host\.id === 'adaptiveRecommendation' && input\.dueCount === 0/);
   assert.match(html, /App\.switchView\('srs'\);\s*await SRSEngine\.startSession\(\);/);
+});
+
+
+test('successful SRS grades are recorded and do not remain adaptive weak words', () => {
+  const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+  assert.match(html, /item\.lastQuality = quality/);
+  assert.match(html, /lastQuality: history\.lastQuality/);
+
+  const filterMatch = html.match(
+    /\.filter\(\(\[, item\]\) => (item\.savedForReview \|\| item\.incorrect >= 2 &&\s*\(!Number\.isSafeInteger\(item\.lastQuality\) \|\| item\.lastQuality < 3\))\)/
+  );
+  assert.ok(filterMatch, 'the weak-word filter must exclude successful grades while preserving manual saves');
+  const isWeakWord = new Function('item', `return (${filterMatch[1]});`);
+
+  assert.equal(
+    isWeakWord({ savedForReview: false, incorrect: 2, lastQuality: 3 }),
+    false,
+    'a word marked Bien must leave weak recommendations'
+  );
+  assert.equal(
+    isWeakWord({ savedForReview: false, incorrect: 2, lastQuality: 5 }),
+    false,
+    'a word marked Fácil must leave weak recommendations'
+  );
+  assert.equal(
+    isWeakWord({ savedForReview: false, incorrect: 2, lastQuality: 1 }),
+    true,
+    'a persistent error with a low latest grade remains weak'
+  );
+  assert.equal(
+    isWeakWord({ savedForReview: false, incorrect: 1, lastQuality: 1 }),
+    false,
+    'a single error is not a persistent weak word'
+  );
+  assert.equal(
+    isWeakWord({ savedForReview: true, incorrect: 0, lastQuality: 5 }),
+    true,
+    'manual review saves retain priority even after a successful grade'
+  );
 });

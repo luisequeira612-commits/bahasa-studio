@@ -818,9 +818,16 @@ test('voice dictation explains network and unsupported-language errors in Spanis
   elements.conversationSpeechStatus = status;
   elements.conversationFreeResponse = input;
   elements.conversationFreeResponseCount = counter;
+  const previousLanguageManager = sandbox.window.LanguageManager;
+  sandbox.window.LanguageManager = {
+    getActiveLanguage: () => 'pt-BR',
+    getLanguage: code => code === 'pt-BR'
+      ? { code, locale: 'pt-BR', name: 'Portugués de Brasil' }
+      : null
+  };
   const expected = [
     ['network', /Falló la conexión.*Comprueba tu conexión o escribe la respuesta/],
-    ['language-not-supported', /no admite el reconocimiento en indonesio.*Puedes escribir tu respuesta/]
+    ['language-not-supported', /no admite el reconocimiento en portugués de brasil.*Puedes escribir tu respuesta/i]
   ];
 
   for (const [error, message] of expected) {
@@ -840,4 +847,5 @@ test('voice dictation explains network and unsupported-language errors in Spanis
     assert.equal(button.disabled, false, 'the dictation button should recover after an error');
     assert.equal(engine.activeFreeRecognition, null);
   }
+  sandbox.window.LanguageManager = previousLanguageManager;
 });

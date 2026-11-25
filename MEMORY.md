@@ -1,3 +1,10 @@
+## 2026-11-25 — Fase 7: auditoría legacy de audio offline
+
+- Se prepara PR para eliminar el catálogo duplicado de idiomas en `offline-audio-manager.js`. La gestión de idiomas ahora se deriva de `LanguageManager.isSupported()`/`getLanguage()`; el comportamiento legacy de `id` se conserva como fallback cuando el gestor no existe o recibe un código no soportado.
+- No cambia IndexedDB v1, backup JSON v3, currículo, disponibilidad de `pt-BR`, audio existente ni dependencias.
+- Se añade regresión para comprobar que un idioma soportado usa su ruta de audio y que un código no registrado no puede seleccionar accidentalmente otra biblioteca.
+- Validación lingüística: sin certificación; este cambio es estructural/runtime y no evalúa naturalidad del contenido.
+
 ## 2026-11-25 — Accesibilidad de evaluación piloto A1 (PR en curso)
 
 - La pantalla independiente de evaluación mantenía el foco en el botón de envío después de ocultar el formulario y mostrar los resultados. Se añade foco programático al primer enunciado al comenzar/reiniciar y al título del resultado al calcular o volver a aplicar puntuaciones revisadas.

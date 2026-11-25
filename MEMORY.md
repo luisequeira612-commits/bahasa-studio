@@ -1,3 +1,12 @@
+## 2026-11-25 — Corrección de recomendación SRS tras calificar «Bien»
+
+- Diagnóstico: el registro `recordAttempt()` limpiaba `savedForReview`, pero no conservaba la última calificación; además, el filtro adaptativo seguía considerando débil una palabra solo por `incorrect >= 2`. Por eso una palabra con errores históricos podía reaparecer inmediatamente después de calificarla «Bien».
+- Corrección mínima: guardar `lastQuality` en cada intento; al construir `weakWords`, excluir registros con una última calidad segura de 3 o más. Se mantiene la prioridad de las palabras guardadas manualmente y de las que tienen errores persistentes cuando su última calidad fue inferior a 3.
+- El estado `lastQuality` también participa en la deduplicación de snapshots SRS y se propaga al objeto adaptativo, sin cambios de esquema IndexedDB, backup JSON v3 ni dependencias.
+- Se añade una prueba estructural específica para impedir que esta regresión vuelva a aparecer.
+
+Fuente: reproducción manual del flujo «Repasar → Bien» y revisión de `recordAttempt()`, `mergeSrsRecords()` y `App.updateSrsView()`; 25 nov 2026.
+
 ## 2026-11-25 — Fase 7: recomendar la evaluación final pendiente en Aprender
 
 - Diagnóstico: si todas las lecciones de la unidad A1 actual estaban completas pero faltaba aprobar su evaluación final, el cálculo no encontraba una lección pendiente; A2 seguía bloqueado por esa evaluación. El recomendador devolvía `action: 'none'` y ocultaba la tarjeta, aunque existía una acción necesaria para continuar.

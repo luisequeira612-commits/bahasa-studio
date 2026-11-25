@@ -18032,7 +18032,7 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                 const signature = JSON.stringify([
                     item.attempts || 0, item.correct || 0, item.incorrect || 0,
                     item.lastReviewed ?? null, item.interval || 0, item.repetition || 0,
-                    item.efactor ?? 2.5, item.nextReview ?? null
+                    item.efactor ?? 2.5, item.nextReview ?? null, item.lastQuality ?? null
                 ]);
                 if (!unique.has(signature)) unique.set(signature, item);
             }
@@ -18090,6 +18090,7 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                     nextReview: Date.now(), attempts: 0, correct: 0, incorrect: 0, lastReviewed: null
                 };
                 item.savedForReview = false;
+                item.lastQuality = quality;
                 const prev = item.lastReviewed;
                 const now = Date.now();
                 item.attempts = (item.attempts || 0) + 1;
@@ -20324,7 +20325,7 @@ Requisitos:
                     const signature = JSON.stringify([
                         item.val.attempts || 0, item.val.correct || 0, item.val.incorrect || 0,
                         item.val.lastReviewed ?? null, item.val.interval || 0, item.val.repetition || 0,
-                        item.val.efactor ?? 2.5, item.val.nextReview ?? null
+                        item.val.efactor ?? 2.5, item.val.nextReview ?? null, item.val.lastQuality ?? null
                     ]);
                     if (!aggregate.seenStates) aggregate.seenStates = new Set();
                     if (aggregate.seenStates.has(signature)) continue;
@@ -20379,11 +20380,13 @@ Requisitos:
                         incorrect: history.incorrect,
                         attempts: history.attempts,
                         repetition: history.repetition,
-                        savedForReview: history.savedForReview
+                        savedForReview: history.savedForReview,
+                        lastQuality: history.lastQuality
                     } : null;
                 };
                 const weakWords = rankedWordHistory
-                    .filter(([, item]) => item.savedForReview || item.incorrect >= 2)
+                    .filter(([, item]) => item.savedForReview || item.incorrect >= 2 &&
+                        (!Number.isSafeInteger(item.lastQuality) || item.lastQuality < 3))
                     .slice(0, 5).map(toAdaptiveWord).filter(Boolean);
                 const isolatedWords = rankedWordHistory
                     .filter(([, item]) => !item.savedForReview && item.incorrect === 1)

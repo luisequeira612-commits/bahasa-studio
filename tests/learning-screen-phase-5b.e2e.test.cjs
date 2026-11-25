@@ -572,25 +572,65 @@ test('translation bubble exposes expanded state and supports keyboard open and E
       'The synthetic word button must retain focus before keyboard activation');
     await page.evaluate(() => {
       window.__keyboardBubbleEvents = [];
-      // Observe the same event immediately after the app's window-capture handler.
-      window.addEventListener('keydown', event => {
-        if (event.key !== 'Enter' && event.key !== ' ') return;
+      const snapshot = type => {
         const trigger = document.getElementById('keyboardTranslationTrigger');
+        const bubble = document.getElementById('tapTranslationBubble');
         window.__keyboardBubbleEvents.push({
-          type: 'window-keydown-after-app', key: event.key,
-          target: event.target?.id || event.target?.tagName || null,
-          defaultPrevented: event.defaultPrevented,
-          bubbleHidden: document.getElementById('tapTranslationBubble')?.hidden,
+          type, time: Number(performance.now().toFixed(1)),
+          activeElement: document.activeElement?.id || document.activeElement?.tagName || null,
+          bubbleHidden: bubble?.hidden,
           triggerExpanded: trigger?.getAttribute('aria-expanded')
         });
+      };
+      // Capture transient state changes as well as events that could dismiss the bubble.
+      const bubble = document.getElementById('tapTranslationBubble');
+      const trigger = document.getElementById('keyboardTranslationTrigger');
+      new MutationObserver(records => {
+        for (const record of records) {
+          window.__keyboardBubbleEvents.push({
+            type: 'mutation', time: Number(performance.now().toFixed(1)),
+            target: record.target.id,
+            attribute: record.attributeName,
+            oldValue: record.oldValue,
+            newValue: record.target.getAttribute(record.attributeName),
+            bubbleHidden: bubble.hidden,
+            triggerExpanded: trigger.getAttribute('aria-expanded')
+          });
+        }
+      }).observe(bubble, { attributes: true, attributeOldValue: true, attributeFilter: ['hidden', 'class'] });
+      new MutationObserver(records => {
+        for (const record of records) window.__keyboardBubbleEvents.push({
+          type: 'trigger-mutation', time: Number(performance.now().toFixed(1)),
+          attribute: record.attributeName, oldValue: record.oldValue,
+          newValue: trigger.getAttribute(record.attributeName),
+          bubbleHidden: bubble.hidden
+        });
+      }).observe(trigger, { attributes: true, attributeOldValue: true, attributeFilter: ['aria-expanded'] });
+      window.addEventListener('keydown', event => {
+        if (event.key !== 'Enter' && event.key !== ' ') return;
+        snapshot('window-keydown-after-app');
+        window.__keyboardBubbleEvents.at(-1).key = event.key;
+        window.__keyboardBubbleEvents.at(-1).defaultPrevented = event.defaultPrevented;
       }, true);
-      document.addEventListener('keydown', event => window.__keyboardBubbleEvents.push({
-        type: 'document-keydown', key: event.key, target: event.target?.id || event.target?.tagName || null,
-        defaultPrevented: event.defaultPrevented
-      }), true);
-      document.addEventListener('click', event => window.__keyboardBubbleEvents.push({
-        type: 'click', detail: event.detail, target: event.target?.id || event.target?.tagName || null
-      }), true);
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          snapshot('document-keydown');
+          window.__keyboardBubbleEvents.at(-1).key = event.key;
+          window.__keyboardBubbleEvents.at(-1).defaultPrevented = event.defaultPrevented;
+        }
+      }, true);
+      document.addEventListener('click', event => {
+        snapshot('click');
+        Object.assign(window.__keyboardBubbleEvents.at(-1), {
+          detail: event.detail, target: event.target?.id || event.target?.tagName || null
+        });
+      }, true);
+      document.addEventListener('pointerdown', event => {
+        snapshot('pointerdown');
+        window.__keyboardBubbleEvents.at(-1).target = event.target?.id || event.target?.tagName || null;
+      }, true);
+      window.addEventListener('scroll', () => snapshot('window-scroll'), true);
+      window.addEventListener('resize', () => snapshot('window-resize'), true);
     });
     await trigger.press('Enter');
     await page.waitForTimeout(150);

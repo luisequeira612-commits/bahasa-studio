@@ -7,7 +7,16 @@ const sha256 = value => createHash('sha256').update(value).digest('hex');
 
 const source = fs.readFileSync(require.resolve('../offline-audio-manager.js'), 'utf8');
 const sandbox = {
-    window: { crypto: webcrypto },
+    window: {
+        crypto: webcrypto,
+        LanguageManager: {
+            isSupported: code => ['id', 'pt-BR'].includes(code),
+            getLanguage: code => ({
+                id: { code: 'id', audioPath: './audio/id/' },
+                'pt-BR': { code: 'pt-BR', audioPath: './audio/pt-BR/' }
+            })[code] || null
+        }
+    },
     document: { readyState: 'loading', addEventListener() {}, baseURI: 'https://example.test/bahasa-studio/' },
     URL,
     console,
@@ -86,6 +95,12 @@ test('extracts cached clip IDs only from matching audio paths', () => {
         new Request('https://example.test/bahasa-studio/audio/pt-BR/aaaaaaaaaaaa.mp3'),
         new Request('https://example.test/bahasa-studio/audio/id/bbbbbbbbbbbb.mp3')
     ], 'pt-BR')), ['aaaaaaaaaaaa']);
+});
+
+test('resolves audio language membership from LanguageManager instead of a duplicated catalog', () => {
+    assert.equal(manager.audioUrl('aaaaaaaaaaaa', 'pt-BR'), 'https://example.test/bahasa-studio/audio/pt-BR/aaaaaaaaaaaa.mp3');
+    assert.equal(manager.audioUrl('aaaaaaaaaaaa', 'en'), 'https://example.test/bahasa-studio/audio/id/aaaaaaaaaaaa.mp3');
+    assert.equal(manager.cacheNameForLanguage('en'), 'guardi-audio-v2');
 });
 
 test('resolves language-specific audio routes, inventory and cache names safely', () => {

@@ -2123,9 +2123,9 @@ test('A1 U17-U20 runtime uses five authored lessons without generated padding',(
 
 test('merged SRS manual-save state follows the latest explicit mark or grade', () => {
   const start = htmlSource.indexOf('function mergeSrsRecords(records, wordId) {');
-  const end = htmlSource.indexOf('\\n\\n        const SRSEngine', start);
+  const end = htmlSource.indexOf('\n\n        const SRSEngine', start);
   assert.ok(start >= 0 && end > start, 'SRS merge helper must exist');
-  const merge = vm.runInNewContext(htmlSource.slice(start, end) + '\\nmergeSrsRecords');
+  const merge = vm.runInNewContext(htmlSource.slice(start, end) + '\nmergeSrsRecords');
   const merged = merge([
     { attempts: 5, correct: 2, incorrect: 3, lastReviewed: 500, markedAt: 1000, savedForReview: true },
     { attempts: 5, correct: 2, incorrect: 3, lastReviewed: 500, markedAt: 2000, savedForReview: false }

@@ -433,19 +433,21 @@ test('compact language picker is accessible, catalog-driven and fits the 360px l
     assert.ok(header.languageWidth >= 48 && header.languageHeight >= 48, 'language chip must have a comfortable touch target');
 
     const route = await page.locator('.unit-path-section-banner').first().evaluate(el => {
-      const recommendation = document.getElementById('adaptiveRecommendationLearn').getBoundingClientRect();
+      const recommendationElement = document.getElementById('adaptiveRecommendationLearn');
+      const recommendation = recommendationElement.getBoundingClientRect();
       return {
         top: el.getBoundingClientRect().top,
         bottom: el.getBoundingClientRect().bottom,
+        recommendationVisible: !recommendationElement.hidden && getComputedStyle(recommendationElement).display !== 'none',
         recommendation: { top:recommendation.top + window.scrollY, bottom:recommendation.bottom + window.scrollY },
         node: document.querySelector('.learning-unit-node.node-current').getBoundingClientRect().toJSON(),
         scrollY: window.scrollY
       };
     });
-    assert.ok(route.recommendation.top >= 58 && route.recommendation.bottom <= 800,
-      'standalone recommendation must occupy the page above the unit path: ' + JSON.stringify(route));
+    assert.equal(route.recommendationVisible, false,
+      'Learn must not reserve space when there are no pending SRS reviews: ' + JSON.stringify(route));
     assert.ok(route.recommendation.bottom <= route.node.top,
-      'recommendation must appear before the first unit node without overlap: ' + JSON.stringify(route));
+      'hidden recommendation must not overlap the first unit node: ' + JSON.stringify(route));
     assert.ok(route.top > 60 && route.top < 800,
       'unit path banner must follow the recommendation and remain in the first viewport: ' + JSON.stringify(route));
     assert.ok(route.node.top < 800 && route.node.bottom > 0, 'current unit must appear in the first mobile viewport');
@@ -491,6 +493,78 @@ test('compact language picker is accessible, catalog-driven and fits the 360px l
     assert.equal(await page.evaluate(() => LanguageManager.getActiveLanguage()), 'id',
       'active Indonesian selection must persist after reload');
     assert.equal(await page.locator('#studyLanguageFlag').innerText(), '🇮🇩');
+  } finally {
+    await context.close();
+    await browser.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});
+
+
+test('Learn pending review card fits one compact row and disappears when the queue is empty', async () => {
+  const { server, url } = await startServer();
+  const browser = await chromium.launch({ headless: true });
+  const context = await browser.newContext({
+    viewport: { width: 360, height: 800 },
+    serviceWorkers: 'block',
+    reducedMotion: 'reduce'
+  });
+  const page = await context.newPage();
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
+    await page.evaluate(() => App.renderAdaptiveRecommendation({
+      dueCount: 18,
+      weakWords: [],
+      isolatedWords: [],
+      language: 'id',
+      supportedLanguages: ['id'],
+      skillStatsByLanguage: {
+        id: {
+          listening: { attempts: 10, correct: 8 },
+          recognition: { attempts: 10, correct: 9 }
+        }
+      }
+    }));
+
+    const card = page.locator('#adaptiveRecommendationLearn');
+    assert.equal(await card.isVisible(), true);
+    assert.equal(await card.locator('.adaptive-review-card-title').innerText(), '18 palabras listas para repasar');
+    assert.equal(await card.locator('.adaptive-review-card-focus').innerText(), 'Punto débil: escucha (80%)');
+    assert.equal(await card.locator('button').innerText(), 'Repasar');
+
+    const layout = await page.evaluate(() => {
+      const card = document.getElementById('adaptiveRecommendationLearn');
+      const topbar = document.querySelector('.app-topbar');
+      const banner = document.querySelector('.unit-path-section-banner');
+      const cardRect = card.getBoundingClientRect();
+      const topbarRect = topbar.getBoundingClientRect();
+      const bannerRect = banner.getBoundingClientRect();
+      return {
+        height: cardRect.height,
+        topGap: cardRect.top - topbarRect.bottom,
+        bannerGap: bannerRect.top - cardRect.bottom,
+        rowDisplay: getComputedStyle(card.querySelector('.adaptive-review-card-row')).display,
+        rowDirection: getComputedStyle(card.querySelector('.adaptive-review-card-row')).flexDirection
+      };
+    });
+    assert.ok(layout.height >= 64 && layout.height <= 80, 'card height must stay between 64 and 80px: ' + JSON.stringify(layout));
+    assert.ok(layout.topGap >= 12 && layout.topGap <= 16, 'card must leave 12–16px below the top bar: ' + JSON.stringify(layout));
+    assert.ok(layout.bannerGap >= 12 && layout.bannerGap <= 16, 'card must leave 12–16px before the section banner: ' + JSON.stringify(layout));
+    assert.equal(layout.rowDisplay, 'flex');
+    assert.equal(layout.rowDirection, 'row');
+
+    await page.evaluate(() => App.renderAdaptiveRecommendation({
+      dueCount: 0,
+      weakWords: [],
+      isolatedWords: [],
+      language: 'id',
+      supportedLanguages: ['id'],
+      skillStatsByLanguage: {}
+    }));
+    assert.equal(await card.isVisible(), false, 'card must disappear when no SRS reviews are due');
+    assert.equal(await card.evaluate(el => el.getBoundingClientRect().height), 0, 'hidden card must not leave a blank gap');
   } finally {
     await context.close();
     await browser.close();

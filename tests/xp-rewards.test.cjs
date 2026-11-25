@@ -24,7 +24,7 @@ test('correct lesson answers award 3 XP, including guided writing self-assessmen
   assert.doesNotMatch(writing, /App\.addXp\(10\)/);
   assert.doesNotMatch(feedback, /App\.addXp\(10\)/);
   assert.match(html, /marcar que lo conseguiste registra 3 XP y un intento de repaso espaciado/);
-  assert.match(html, /no es una revisión lingüística/);
+  assert.match(html, /no sustituye una revisión lingüística/);
 });
 
 test('unit assessments do not award per-answer lesson XP', () => {

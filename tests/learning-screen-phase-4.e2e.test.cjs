@@ -432,14 +432,22 @@ test('compact language picker is accessible, catalog-driven and fits the 360px l
     assert.ok(header.languageRight <= header.viewport, 'language chip must remain visible: ' + JSON.stringify(header));
     assert.ok(header.languageWidth >= 48 && header.languageHeight >= 48, 'language chip must have a comfortable touch target');
 
-    const route = await page.locator('.unit-path-section-banner').first().evaluate(el => ({
-      top: el.getBoundingClientRect().top,
-      bottom: el.getBoundingClientRect().bottom,
-      node: document.querySelector('.learning-unit-node.node-current').getBoundingClientRect().toJSON(),
-      scrollY: window.scrollY
-    }));
-    assert.ok(route.scrollY <= 16, 'initial alignment must not push the route out of the first viewport: ' + JSON.stringify(route));
-    assert.ok(route.top >= 58 && route.top <= 60, 'unit path banner must start directly below the topbar: ' + JSON.stringify(route));
+    const route = await page.locator('.unit-path-section-banner').first().evaluate(el => {
+      const recommendation = document.getElementById('adaptiveRecommendationLearn').getBoundingClientRect();
+      return {
+        top: el.getBoundingClientRect().top,
+        bottom: el.getBoundingClientRect().bottom,
+        recommendation: { top:recommendation.top, bottom:recommendation.bottom },
+        node: document.querySelector('.learning-unit-node.node-current').getBoundingClientRect().toJSON(),
+        scrollY: window.scrollY
+      };
+    });
+    assert.ok(route.recommendation.top >= 0 && route.recommendation.bottom <= 800,
+      'standalone recommendation must remain visible above the unit path: ' + JSON.stringify(route));
+    assert.ok(route.recommendation.bottom <= route.top,
+      'recommendation must precede the unit path banner without overlap: ' + JSON.stringify(route));
+    assert.ok(route.top > 60 && route.top < 800,
+      'unit path banner must follow the recommendation and remain in the first viewport: ' + JSON.stringify(route));
     assert.ok(route.node.top < 800 && route.node.bottom > 0, 'current unit must appear in the first mobile viewport');
 
     await page.locator('#studyLanguageTrigger').click();

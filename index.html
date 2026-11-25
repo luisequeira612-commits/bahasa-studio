@@ -18097,6 +18097,12 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
 
                 if (quality >= 3 && prev !== null && prev !== undefined &&
                     now - prev >= 0 && now - prev < 12 * 60 * 60 * 1000) {
+                    // A correct same-day reinforcement still counts as a successful recall.
+                    // Keep the interval conservative, but do not leave the word due/weak forever.
+                    item.repetition = Math.max(1, item.repetition || 0);
+                    item.interval = Math.max(1, item.interval || 0);
+                    item.lastReviewed = now;
+                    item.nextReview = now + (item.interval * 86400000);
                     await this.saveAttemptForDuplicateWords(wordId, item);
                     return;
                 }
@@ -18182,15 +18188,19 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                 }));
             },
 
-            async startSession() {
+            async startSession(wordIds = null) {
                 const rawDue = await this.getDueItems();
+                const selectedIds = Array.isArray(wordIds) ? new Set(wordIds) : null;
+                const sessionDue = selectedIds
+                    ? rawDue.filter(item => selectedIds.has(item.key) || selectedIds.has(LEGACY_SRS_ID_ALIASES[item.key]))
+                    : rawDue;
                 const language = LanguageManager.getActiveLanguage();
                 const vocabById = new Map(getLearningLevels().flatMap(level =>
                     level.units.flatMap(unit => unit.vocab || [])
                 ).map(v => [v.id, adaptSrsVocabulary(v, language)]));
                 const selectedSize = Number(document.getElementById('srsSessionSize')?.value || this.maxSessionItems);
                 const sessionLimit = selectedSize === 0 ? rawDue.length : Math.max(1, Math.min(50, selectedSize));
-                this.activeQueue = rawDue.map(item => ({ vocab: vocabById.get(item.key), srs: item.val }))
+                this.activeQueue = sessionDue.map(item => ({ vocab: vocabById.get(item.key), srs: item.val }))
                     .filter(item => item.vocab).slice(0, sessionLimit);
 
                 if (this.activeQueue.length === 0) {
@@ -20383,10 +20393,10 @@ Requisitos:
                     } : null;
                 };
                 const weakWords = rankedWordHistory
-                    .filter(([, item]) => item.savedForReview || item.incorrect >= 2)
+                    .filter(([, item]) => item.savedForReview || (item.incorrect >= 2 && item.repetition === 0))
                     .slice(0, 5).map(toAdaptiveWord).filter(Boolean);
                 const isolatedWords = rankedWordHistory
-                    .filter(([, item]) => !item.savedForReview && item.incorrect === 1)
+                    .filter(([, item]) => !item.savedForReview && item.incorrect === 1 && item.repetition === 0)
                     .slice(0, 5).map(toAdaptiveWord).filter(Boolean);
                 let nextLesson = null;
                 let nextAssessment = null;
@@ -20531,7 +20541,7 @@ Requisitos:
                                 for (const wordId of recommendation.wordIds) await SRSEngine.markForReview(wordId);
                                 await this.updateSrsView();
                                 App.switchView('srs');
-                                await SRSEngine.startSession();
+                                await SRSEngine.startSession(recommendation.wordIds);
                             } else if (recommendation.action === 'assessment') {
                                 LessonEngine.startUnitAssessment(recommendation.unitId);
                             } else if (recommendation.action === 'writing') {

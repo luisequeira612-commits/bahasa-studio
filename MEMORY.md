@@ -1,3 +1,11 @@
+## 2026-11-24 — Cobertura de restauración del foco al cerrar paneles accesibles (PR en curso)
+
+- Tras completar la regresión post-merge de PR #793 (101/101), calidad offline 10/10 y Pages success, se añade cobertura E2E para cerrar mediante el botón visible (no solo Escape) los paneles de nivel, herramientas, detalle de unidad y significado de palabra.
+- El test abre el selector de nivel con Space y herramientas/unidad con Enter, y comprueba que el foco vuelva al control/texto que originó cada panel. Es cobertura automatizada Chromium; no sustituye la comprobación física pendiente en el Tecno Pova 4.
+- Se registran las pruebas de fase 5B en `.github/workflows/regression.yml`; la suite completa de accesibilidad y móvil ahora se ejecuta en CI junto a la nueva prueba de cierre. Cambios limitados a pruebas, workflow y esta memoria. No se toca producción, currículos, IndexedDB v1, backup JSON v3, dependencias ni disponibilidad de idiomas.
+- Pendiente: ejecutar CI completa sobre el nuevo head, incluida la suite 5B que antes no estaba conectada al workflow; no fusionar hasta que regresión y calidad offline terminen en success.
+Fuente: `tests/learning-screen-phase-5b.e2e.test.cjs`, PR de cobertura de foco; 24 nov 2026.
+
 ## 2026-11-24 — Adaptación neutral de la interfaz SRS (PR en curso)
 - Se adapta el recorrido de repaso para consumir la vista común de CurriculumLoader.adaptVocabulary: texto objetivo, traducción, ejemplo y traducción del ejemplo. La deduplicación de cola, la detección de duplicados y las métricas del perfil dejan de depender de idn; las tarjetas muestran el nombre del idioma activo y conservan la dirección español ↔ idioma objetivo.
 - curriculum-loader.js mantiene compatibilidad de lectura: acepta target/translation/example/exampleTranslation y conserva los campos legacy idn/esp/ex/exEsp para el currículo indonesio y los datos ya publicados.

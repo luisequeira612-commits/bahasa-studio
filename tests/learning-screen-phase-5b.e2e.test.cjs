@@ -590,3 +590,72 @@ test('Tutor and dictionary controls expose accessible names and announce new cha
   }
 });
 
+
+test('closing accessible sheets by their close controls restores the originating keyboard focus', async () => {
+  const { server, url } = await startServer();
+  const browser = await chromium.launch({ headless: true });
+  const context = await browser.newContext({ viewport: { width: 360, height: 740 }, serviceWorkers: 'block', reducedMotion: 'reduce' });
+  const page = await context.newPage();
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
+
+    const levelTrigger = page.locator('#learningLevelTrigger');
+    await levelTrigger.focus();
+    await levelTrigger.press('Space');
+    await page.waitForFunction(() => !document.getElementById('learningLevelSheetOverlay').hidden);
+    const levelClose = page.locator('#learningLevelSheet .learning-sheet-close');
+    await levelClose.click();
+    await page.waitForFunction(() => document.getElementById('learningLevelSheetOverlay').hidden);
+    assert.equal(await page.evaluate(() => document.activeElement?.id), 'learningLevelTrigger',
+      'closing the level sheet should return focus to its trigger');
+
+    const toolsTrigger = page.locator('.unit-tools-trigger').first();
+    await toolsTrigger.focus();
+    await toolsTrigger.press('Enter');
+    await page.waitForFunction(() => !document.getElementById('learningToolsSheetOverlay').hidden);
+    await page.locator('#learningToolsSheet .learning-sheet-close').click();
+    await page.waitForFunction(() => document.getElementById('learningToolsSheetOverlay').hidden);
+    assert.equal(await page.evaluate(() => document.activeElement?.classList.contains('unit-tools-trigger')), true,
+      'closing the tools sheet should return focus to its originating trigger');
+
+    const unitTrigger = page.locator('#courseContainer .learning-unit-node[data-path-state="current"]').first();
+    const unitId = await unitTrigger.getAttribute('data-unit-id');
+    await unitTrigger.focus();
+    await unitTrigger.press('Enter');
+    await page.waitForFunction(() => !document.getElementById('unitSheetOverlay').hidden);
+    await page.locator('#unitSheetOverlay .unit-sheet-close').click();
+    await page.waitForFunction(() => document.getElementById('unitSheetOverlay').hidden);
+    assert.equal(await page.evaluate(() => document.activeElement?.dataset.unitId), unitId,
+      'closing the unit sheet should return focus to the selected unit');
+
+    await page.evaluate(() => {
+      const vocabulary = getUniqueLearningVocabulary().find(word =>
+        word && word.id && word.idn && word.esp && !String(word.idn).trim().includes(' ')
+      );
+      if (!vocabulary) return;
+      const card = document.createElement('div');
+      card.className = 'flashcard';
+      card.style.cssText = 'position:fixed;left:12px;top:160px;width:300px;min-height:60px;z-index:9999;';
+      const trigger = document.createElement('p');
+      trigger.id = 'closeMeaningTrigger';
+      trigger.textContent = vocabulary.idn;
+      card.appendChild(trigger);
+      document.body.appendChild(card);
+      window.refreshWordTranslationIndex();
+    });
+    const meaningTrigger = page.locator('#closeMeaningTrigger');
+    assert.equal(await meaningTrigger.count(), 1, 'the local vocabulary should provide a meaning-popup fixture');
+    await meaningTrigger.click({ position: { x: 12, y: 10 } });
+    await page.waitForFunction(() => !document.getElementById('wordMeaningPopup').hidden);
+    await page.locator('#wordMeaningClose').click();
+    await page.waitForFunction(() => document.getElementById('wordMeaningPopup').hidden);
+    assert.equal(await page.evaluate(() => document.activeElement?.id), 'closeMeaningTrigger',
+      'closing the meaning popup should return focus to the originating text');
+  } finally {
+    await context.close();
+    await browser.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});

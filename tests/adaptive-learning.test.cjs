@@ -375,6 +375,8 @@ test('adaptive recommendation is visible on Aprender and refreshes on initial lo
   assert.ok(html.includes("recommendationHost.style.top = (nodeTop + 82) + 'px'"));
   assert.ok(html.includes('stage.appendChild(recommendationHost)'));
   assert.ok(html.includes('const recommendationReserve = 150'));
+  assert.ok(html.includes("recommendationHost.classList.remove('adaptive-recommendation-path-card')"));
+  assert.ok(html.includes("recommendationHost.style.removeProperty('top')"));
   assert.ok(html.includes("routeView.insertBefore(recommendationHost, document.getElementById('aiGeneratorDrawer'))"));
   assert.ok(html.includes('.unit-path-section-banner { top:58px !important;'));
   assert.ok(html.includes('#adaptiveRecommendationLearn .guardi-empty-illustration,#adaptiveRecommendationLearn .guardi-empty-message { display:none; }'));

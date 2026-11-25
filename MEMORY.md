@@ -1,11 +1,11 @@
-## 2026-11-24 — Recomendador adaptativo excluye unidades bloqueadas
+## 2026-11-25 — Recomendador adaptativo excluye unidades bloqueadas (PR #815 fusionada)
 
 - La revisión funcional de fase 7 encontró que `updateStudyDashboard()` reunía candidatas de A2 aunque la progresión secuencial todavía las mantuviera bloqueadas. `AdaptiveLearning.selectSkillLesson()` podía escoger una de ellas; `LessonEngine.startUnitById()` la rechazaba sin aviso y el botón de recomendación podía quedarse deshabilitado.
-- Se filtran las unidades mediante `isUnitUnlocked(level, unit, this.completedUnits, this.completedLessons)` antes de construir tanto `nextLesson` como `skillLessons`. Así las recomendaciones solo apuntan a destinos que el flujo de aprendizaje permite abrir.
-- Se añade una regresión de contrato para exigir que la comprobación de desbloqueo preceda a ambas candidaturas. Sin cambios al currículo, prioridades adaptativas, umbral de diez intentos, IndexedDB v1, backup JSON v3, disponibilidad de idiomas ni dependencias.
-- PR en preparación desde `main` `8dc0162403d50a3856ff72985f1737cdd9730079`; CI pendiente. No se declara corregido/desplegado hasta completar CI, revisión del diff y verificación post-merge.
+- PR [#815](https://github.com/luisequeira612-commits/bahasa-studio/pull/815) fusionada por squash en `main`, commit `05f24479437260dab2329d9c0fb8adaf5337cee4`. Se filtran las unidades mediante `isUnitUnlocked(level, unit, this.completedUnits, this.completedLessons)` antes de construir `nextLesson` y `skillLessons`; las recomendaciones solo apuntan a destinos que el flujo permite abrir.
+- CI del head final: regresión 102/102 y calidad offline 10/10, ambos success. Verificación post-merge: run [#45548261127](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45548261127), test 101/102 pasos ejecutados sin fallos (un paso omitido por el flujo) y calidad offline 10/10. GitHub Pages [#45548259463](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45548259463): build, informe y deploy success.
+- Diff limitado a `index.html`, `tests/adaptive-learning.test.cjs` y `MEMORY.md`; 28 adiciones y 0 eliminaciones. Sin cambios al currículo, prioridades adaptativas, umbral de diez intentos, IndexedDB v1, backup JSON v3, disponibilidad de idiomas ni dependencias. Prueba física en Tecno Pova 4 (720×1640) pendiente.
 
-Fuente: `index.html`, `adaptive-learning.js`, `tests/adaptive-learning.test.cjs`; inspección funcional de la ruta de recomendación e inicio de lección; 24 nov 2026.
+Fuente: PR #815, CI del head, regresión post-merge #45548261127 y GitHub Pages #45548259463; 25 nov 2026.
 
 ## 2026-11-25 — Fase 7: catálogo adaptativo centralizado y validado (PR #813 fusionada)
 

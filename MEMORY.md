@@ -21,3 +21,5 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 
 
 - CI inicial #45573252599 detectó una aserción heredada en `tests/ui-redesign-phase-2.test.cjs` que todavía exigía 3 XP inmediatos por acierto; se alineó con la recompensa por primera finalización (1 XP por acierto correcto, máximo 10). Reejecución pendiente.
+
+- CI #45574658344 confirmó que las pruebas de XP, flujo de lecciones y calidad offline pasan; falló `tests/progressive-assessment.test.cjs` porque aún exigía la llamada inmediata `App.addXp(3)`, retirada intencionalmente al trasladar la recompensa al primer cierre de lección. Se actualizó la aserción heredada para verificar que esa llamada inmediata ya no exista. Reejecución pendiente; no fusionar hasta completar toda la batería.

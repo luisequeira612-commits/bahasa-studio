@@ -1608,7 +1608,7 @@ window.BAHASA_CURRICULUM_A1 = {
                             vocab: [
                                 { id: 'v15', idn: 'Satu', esp: 'Uno', ex: 'Satu buku.', exEsp: 'Un libro.' },
                                 { id: 'v16', idn: 'Dua', esp: 'Dos', ex: 'Dua teman.', exEsp: 'Dos amigos.' },
-                                { id: 'v17', idn: 'Tiga', esp: 'Tres', ex: 'Tiga buku.', exEsp: 'Tres libros.' },
+                                { id: 'v17', idn: 'Tiga', esp: 'Tres', ex: 'Tiga', exEsp: 'Tres.' },
                                 { id: 'v18', idn: 'Berapa', esp: 'Cuánto / cuántos', ex: 'Berapa umur kamu?', exEsp: '¿Cuántos años tienes?' },
                                 { id: 'v19', idn: 'Tahun', esp: 'Año', ex: 'Saya berumur lima tahun.', exEsp: 'Tengo cinco años.' },
                                 { id: 'v40', idn: 'Empat', esp: 'Cuatro', ex: 'Empat buku.', exEsp: 'Cuatro libros.' },
@@ -1682,9 +1682,9 @@ window.BAHASA_CURRICULUM_A1 = {
                                           {
                                                     "vocabId": "v17",
                                                     "type": "translate_es_id",
-                                                    "prompt": "Traduce: tres libros",
-                                                    "answer": "Tiga buku",
-                                                    "explanation": "Tiga buku significa «Tres libros»."
+                                                    "prompt": "Traduce: tres",
+                                                    "answer": "Tiga",
+                                                    "explanation": "Tiga significa tres."
                                           },
                                           {
                                                     "vocabId": "v19",

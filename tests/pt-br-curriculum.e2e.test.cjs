@@ -39,7 +39,7 @@ test('Playwright: carga A1 U1-U24, A2 U1-U30, B1 U1-U36 y B2 U1-U40 offline, ais
   await page.reload();
   await page.waitForFunction(()=>Boolean(navigator.serviceWorker.controller));
   const cacheReady=await page.evaluate(async()=>{
-   const cache=await caches.open('bahasa-studio-v3.8.165');
+   const cache=await caches.open('bahasa-studio-v3.8.166');
    return Boolean(await cache.match(new URL('/languages/pt-BR/curriculum/a1/index.js',location.href).href)) &&
      Boolean(await cache.match(new URL('/languages/pt-BR/curriculum/a1/units-01-06.js',location.href).href)) &&
      Boolean(await cache.match(new URL('/languages/pt-BR/curriculum/a1/units-13-18.js',location.href).href)) &&
@@ -88,10 +88,7 @@ test('Playwright: carga A1 U1-U24, A2 U1-U30, B1 U1-U36 y B2 U1-U40 offline, ais
   assert.equal(cacheReady,true,'manifest and curriculum block must be in the app-shell cache');
   await context.setOffline(true);
   const result=await page.evaluate(async()=>{
-   const curriculum=await CurriculumLoader.loadUnits('pt-BR','A1',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]);
-   const a2=await CurriculumLoader.loadUnits('pt-BR','A2',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]);
-   const b1=await CurriculumLoader.loadUnits('pt-BR','B1',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36]);
-   const b2=await CurriculumLoader.loadUnits('pt-BR','B2',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40]);
+   const [curriculum,a2,b1,b2]=await Promise.all(['A1','A2','B1','B2'].map(level=>CurriculumLoader.load('pt-BR',level)));
    const u3=curriculum.units[2];
    const previous=new Set(curriculum.units[0].vocab.map(word=>word.id));
    const recycled=u3.exercises.filter(ex=>previous.has(ex.vocabId)).map(ex=>ex.vocabId);
@@ -134,7 +131,7 @@ test('Playwright: carga A1 U1-U24, A2 U1-U30, B1 U1-U36 y B2 U1-U40 offline, ais
   assert.deepEqual(result.idProgress,[true]);
   assert.match(result.ptHistory,/12/);
   assert.match(result.idHistory,/5/);
-  assert.equal(result.available,false);
+  assert.equal(result.available,true);
   await context.close();
  }finally{
   await browser.close();

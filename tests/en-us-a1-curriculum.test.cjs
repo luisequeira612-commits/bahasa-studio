@@ -12,13 +12,15 @@ const blockSource=fs.readFileSync(path.join(repo,'languages/en/curriculum/a1/uni
 const blockSource2=fs.readFileSync(path.join(repo,'languages/en/curriculum/a1/units-07-12.js'),'utf8');
 const blockSource3=fs.readFileSync(path.join(repo,'languages/en/curriculum/a1/units-13-18.js'),'utf8');
 const blockSource4=fs.readFileSync(path.join(repo,'languages/en/curriculum/a1/units-19-24.js'),'utf8');
+const blockSource5=fs.readFileSync(path.join(repo,'languages/en/curriculum/a1/units-25-30.js'),'utf8');
 function createEnglishPilot(){
  const sources={
   './languages/en/curriculum/a1/index.js':manifestSource,
   './languages/en/curriculum/a1/units-01-06.js':blockSource,
   './languages/en/curriculum/a1/units-07-12.js':blockSource2,
   './languages/en/curriculum/a1/units-13-18.js':blockSource3,
-  './languages/en/curriculum/a1/units-19-24.js':blockSource4
+  './languages/en/curriculum/a1/units-19-24.js':blockSource4,
+  './languages/en/curriculum/a1/units-25-30.js':blockSource5
  };
  const window={localStorage:{getItem(){return 'id';},setItem(){}},document:{createElement(){return {};},head:{appendChild(script){
   const source=sources[script.src];
@@ -39,22 +41,23 @@ test('English en-US is registered but remains unavailable until release approval
  assert.equal(loader.resolve('en','A1'),null);
  await assert.rejects(window.LanguageManager.setActiveLanguage('en'),/todavía no está disponible/);
 });
-test('English A1 manifest exposes the authored U1-U24 blocks',async()=>{
+test('English A1 manifest exposes the authored U1-U30 blocks',async()=>{
  const {loader}=createEnglishPilot();
- const curriculum=await loader.loadUnits('en','A1',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]);
+ const curriculum=await loader.loadUnits('en','A1',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]);
  assert.equal(curriculum.language,'en');
  assert.equal(curriculum.totalUnits,32);
- assert.deepEqual(Array.from(curriculum.units,u=>u.unitNumber),[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]);
+ assert.deepEqual(Array.from(curriculum.units,u=>u.unitNumber),[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]);
 });
 test('each English A1 unit has five explicit lessons, 22 new words and 20 supported exercises',async()=>{
  const {loader}=createEnglishPilot();
- const {units}=await loader.loadUnits('en','A1',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]);
+ const {units}=await loader.loadUnits('en','A1',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]);
  for(const unit of units){
   assert.equal(unit.lessons.length,5,unit.id);
-  assert.equal(unit.vocab.length,22,unit.id);
+  const expectedNewWords=unit.unitNumber===30?0:22;
+  assert.equal(unit.vocab.length,expectedNewWords,unit.id);
   assert.equal(unit.exercises.length,10,unit.id);
   assert.equal(unit.lessons.reduce((n,lesson)=>n+lesson.exercises.length,0),10,unit.id);
-  assert.equal(new Set(unit.vocab.map(word=>word.id)).size,22,unit.id);
+  assert.equal(new Set(unit.vocab.map(word=>word.id)).size,expectedNewWords,unit.id);
   for(const word of unit.vocab){
    assert.equal(word.verification.status,'not_checked');
    assert.deepEqual(Array.from(word.verification.sources),[]);
@@ -72,14 +75,14 @@ test('each English A1 unit has five explicit lessons, 22 new words and 20 suppor
 });
 test('English A1 curriculum uses the established vocabulary shape without changing storage contracts',async()=>{
  const {loader}=createEnglishPilot();
- const {units}=await loader.loadUnits('en','A1',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]);
+ const {units}=await loader.loadUnits('en','A1',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]);
  for(const word of units.flatMap(unit=>unit.vocab)){
   assert.deepEqual(Object.keys(word).sort(),['ex','exEsp','esp','id','target','verification'].sort());
  }
 });
-test('English A1 vocabulary introduces no duplicate targets across U1-U24',async()=>{
+test('English A1 vocabulary introduces no duplicate targets across U1-U30',async()=>{
  const {loader}=createEnglishPilot();
- const {units}=await loader.loadUnits('en','A1',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]);
+ const {units}=await loader.loadUnits('en','A1',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]);
  const seen=new Set();
  for(const word of units.flatMap(unit=>unit.vocab)){
   const key=word.target.toLocaleLowerCase();

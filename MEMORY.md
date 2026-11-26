@@ -297,8 +297,8 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 
 - Hash canónico A1 actualizado tras alinear el prompt de U8 L1 con su ejercicio de unidad: `6f029e43`.
 
-## 2026-11-26 — Corrección editorial de objetivos A1 U9/U10
+## 2026-11-26 — Corrección editorial de objetivos A1 U9–U11
 
-- La auditoría detectó nueve objetivos con construcciones incompletas en español: «Aprende a números», «Aprende a del 19 al 100», «Aprende a decenas», «Aprende a dinero», «Aprende a miles», «Aprende a comprar» y «Aprende a preguntar». Se reformularon para describir con claridad el contenido de cada lección.
-- Se añadió una regresión que fija los nueve objetivos corregidos y evita que reaparezcan esas construcciones. No se cambian vocabulario indonesio, ejercicios, secuencia, runtime, IndexedDB v1, backup JSON v3 ni dependencias.
+- La auditoría detectó nueve objetivos con construcciones incompletas en español: «Aprende a números», «Aprende a del 19 al 100», «Aprende a decenas», «Aprende a dinero», «Aprende a miles», «Aprende a comprar» y «Aprende a preguntar». Se reformularon para describir con claridad el contenido de cada lección. La búsqueda ampliada detectó además dos objetivos de U11 («partes del día» y «minutos y momentos») con el mismo defecto; se corrigieron en esta misma PR. Los objetivos «decir la hora» y «ubicar actividades en el tiempo» se conservaron porque sí están bien construidos.
+- Se añadió una regresión que fija los once objetivos corregidos y evita que reaparezcan esas construcciones. No se cambian vocabulario indonesio, ejercicios, secuencia, runtime, IndexedDB v1, backup JSON v3 ni dependencias.
 - Fuente: auditoría directa de A1 U9/U10 en `curriculum-a1.js` y prueba en `tests/a1-curriculum-progression.test.cjs`; 26 nov 2026.

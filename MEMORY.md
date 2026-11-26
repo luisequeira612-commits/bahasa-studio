@@ -1,3 +1,12 @@
+## 2026-11-26 — Inicio de PT-BR B2, bloque U1–U3
+
+- Se reconstruye y documenta en `docs/PT_BR_B2_ROADMAP.md` un temario de 40 unidades porque no se recuperó el temario anterior en Notion ni en el repositorio. La reconstrucción queda identificada como propuesta, no como recuperación literal.
+- Rama `feat/pt-br-b2-u01-u03`: añade manifiesto parcial B2 (40 unidades, solo U1–U3 publicadas para carga interna), 3 unidades, 15 lecciones explícitas y 30 entradas de vocabulario; todas permanecen `not_checked`. Ejes: modalización/postura, síntesis/atribución de fuentes y concesión/refutación.
+- Se registra B2 en la ruta técnica de PT-BR, pero `available:false` se conserva; no se habilita el idioma ni se publica el curso en el selector. Service Worker incorpora el bloque y actualiza caché a v3.8.153.
+- Se añaden pruebas de estructura, referencias A2, duplicados normalizados contra A1–B1 y carga offline de B2 U1–U3. No hay cambios a IndexedDB v1, backup JSON v3, dependencias ni audio.
+- Referencia de diseño para U1: Figueredo (2015), estudio de marcadores discursivos evaluativos del portugués brasileño, DOI https://doi.org/10.1590/1981-5794-1504-3. Esta referencia no verifica individualmente las entradas ni los ejemplos; todo el vocabulario sigue `not_checked`. No se afirma certificación nativa ni MCER.
+- Fuente: archivos del bloque B2, `docs/PT_BR_B2_ROADMAP.md`, pruebas y PR de esta rama; 26 nov 2026.
+
 ## 2026-11-26 — Arquitectura multiidioma F0–F4
 
 - F0–F4 completadas: F1 PR #854 (JSDoc/checkJs base), F2 PR #855 (validadores de catálogo/manifiestos), F3 PR #856 (checkJs de ProgressNamespace) y F4 guía `docs/MULTILINGUAL_LANGUAGE_ONBOARDING.md`.

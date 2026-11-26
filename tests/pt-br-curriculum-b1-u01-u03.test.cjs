@@ -23,14 +23,14 @@ function createPilot(){
  vm.runInNewContext(sources['./languages/pt-BR/curriculum/b1/index.js'],sandbox);
  return {window,loader:window.CurriculumLoader};
 }
-test('pt-BR B1 U1-U3 load as content while the incomplete course is selectable',async()=>{
+test('PT-BR B1 U1-U3 load as content while the course is selectable',async()=>{
  const {window,loader}=createPilot();
  assert.equal(window.LanguageManager.isSupported('pt-BR'),true);
  assert.equal(window.LanguageManager.isAvailable('pt-BR'),true);
  assert.ok(loader.resolve('pt-BR', 'B1'));
  const {units,totalUnits}=await loader.loadUnits('pt-BR','B1',[1,2,3]);
  assert.equal(totalUnits,36);assert.deepEqual(Array.from(units,u=>u.unitNumber),[1,2,3]);
- await assert.rejects(loader.load('pt-BR','B1'),/no está disponible/);
+ await assert.rejects(loader.load('pt-BR','B1'),/No se pudo cargar el currículo/);
  for(const unit of units){
   assert.equal(unit.vocab.length,10,unit.id);assert.equal(unit.lessons.length,5,unit.id);assert.equal(unit.exercises.length,10,unit.id);
   assert.equal(new Set(unit.vocab.map(word=>word.id)).size,10,unit.id);

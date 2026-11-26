@@ -96,7 +96,7 @@ test('all 40 PT-BR B2 units have complete structure, lesson coverage and valid e
   const key=normalize(priorWord.target);
   if(!previousTargets.has(key))previousTargets.set(key,level+'.'+priorUnit.id);
  }
- const globalIds=new Set(),globalTargets=new Map(),globalExamples=new Map();
+ const globalIds=new Set(),globalTargets=new Map(),globalExamples=new Map(),priorLevelDuplicates=[];
  let lessonCount=0,vocabCount=0,exerciseCount=0;
 
  for(const unit of units){
@@ -124,7 +124,7 @@ test('all 40 PT-BR B2 units have complete structure, lesson coverage and valid e
    assert.ok(!globalIds.has(word.id),wordPath+' globally unique ID');
    globalIds.add(word.id);vocabCount++;
    const targetKey=normalize(word.target),exampleKey=normalize(word.ex);
-   assert.ok(!previousTargets.has(targetKey),wordPath+' repeats prior-level term '+previousTargets.get(targetKey));
+   if(previousTargets.has(targetKey))priorLevelDuplicates.push(wordPath+' repeats prior-level term '+previousTargets.get(targetKey));
    assert.ok(!globalTargets.has(targetKey),wordPath+' duplicate target with '+globalTargets.get(targetKey));
    assert.ok(!globalExamples.has(exampleKey),wordPath+' duplicate example with '+globalExamples.get(exampleKey));
    globalTargets.set(targetKey,wordPath);globalExamples.set(exampleKey,wordPath);
@@ -172,4 +172,5 @@ test('all 40 PT-BR B2 units have complete structure, lesson coverage and valid e
  assert.equal(globalIds.size,400);
  assert.equal(globalTargets.size,400);
  assert.equal(globalExamples.size,400);
+ assert.deepEqual(priorLevelDuplicates,[],'B2 must not repeat A1/A2/B1 terms: '+priorLevelDuplicates.join('; '));
 });

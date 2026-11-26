@@ -18999,7 +18999,7 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
             const maximum = Number.isInteger(level.totalUnits) ? level.totalUnits : 60;
             return Number.isInteger(unit.unitNumber)
                 ? unit.unitNumber >= 1 && unit.unitNumber <= maximum
-                : /^b2_u(?:[1-9]|[1-5]\d|60)$/.test(unit.id);
+                : /^(?:ptbr_)?b2_u(?:[1-9]|[1-5]\d|60)$/.test(unit.id);
         }
         function getLearningLevels() {
             return getLevels().filter(level =>

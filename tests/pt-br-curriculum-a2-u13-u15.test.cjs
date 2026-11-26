@@ -78,5 +78,5 @@ test('service worker precaches A2 U13-U15 using cache v3.8.153',()=>{
  const source=fs.readFileSync(path.join(repo,'service-worker.js'),'utf8');
  assert.match(source,/units-13-15\.js/);
  assert.match(source,/curriculum\/a2\/index\.js/);
- assert.match(source,/bahasa-studio-v3\.8\.152/);
+ assert.match(source,/bahasa-studio-v3\.8\.153/);
 });

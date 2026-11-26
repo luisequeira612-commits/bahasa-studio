@@ -50,13 +50,13 @@ test('B2 manifest declares 40 units and publishes only the authored U1-U40 block
  assert.deepEqual(Array.from(manifest.blocks.map(block=>Array.from(block.units))),[[1,2,3],[4,5,6],[7,8,9],[10,11,12],[13,14,15],[16,17,18],[19,20,21],[22,23,24],[25,26,27],[28,29,30],[31,32,33],[34,35,36],[37,38,39,40]]);
  assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
 });
-test('B2 U34-U36 review references resolve to existing A2 vocabulary IDs',async()=>{
+test('B2 U37-U40 review references resolve to existing A2 vocabulary IDs',async()=>{
  const {loader}=createPilot(),{units}=await loader.loadUnits('pt-BR','B2',[34,35,36]);
  const {units:a2}=await loader.loadUnits('pt-BR','A2',Array.from({length:30},(_,i)=>i+1));
  const ids=new Set(a2.flatMap(unit=>unit.vocab.map(word=>word.id)));
  for(const unit of units)for(const lesson of unit.lessons)for(const id of lesson.reviewVocabIds)assert.ok(ids.has(id),id);
 });
-test('B2 U34-U36 add no exact normalized vocabulary duplicates against A1, A2, B1 or prior B2',()=>{
+test('B2 U37-U40 add no exact normalized vocabulary duplicates against A1, A2, B1 or prior B2',()=>{
  const prior=[];
  const a1Files=['units-01-06.js','units-07-12.js','units-13-18.js','units-19-21.js','units-22-24.js'];
  const b1Files=['units-01-03.js','units-04-06.js','units-07-09.js','units-10-12.js','units-13-15.js','units-16-18.js','units-19-21.js','units-22-24.js','units-25-27.js','units-28-30.js','units-31-33.js','units-34-36.js'];

@@ -244,3 +244,5 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Seguimiento CI 26 nov: la primera ejecución mostró que también debía actualizarse el ejemplo de la ficha de vocabulario «Tiga» y que la prueba histórica de regresión esperaba «Tiga tahun». Se ajustaron ambos ejemplos y sus aserciones, conservando la cantidad y los tipos de ejercicios escritos; la corrección queda pendiente de CI verde.
 
 - Ajuste adicional tras CI: los ejemplos de traducción se mantienen en el texto de audio ya disponible («Tiga»), porque añadir una frase nueva exigiría ampliar el índice/archivos de audio. Se sincronizó el tracker A1 U1–U23 con el ejemplo de vocabulario corregido. Sin generar ni añadir audios.
+
+- Revisión de CI 26 nov: se detectó una segunda copia de la traducción «Tiga buku» en la lección y se normalizó también a «Tiga», que ya tiene audio indexado. Se mantienen los tipos de ejercicios escritos y el tracker actualizado.

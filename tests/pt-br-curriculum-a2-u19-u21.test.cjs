@@ -26,7 +26,7 @@ test('pt-BR A2 U19-U21 load offline with ten vocabulary entries, five lessons an
  const {units,totalUnits}=await loader.loadUnits('pt-BR','A2',[19,20,21]);
  assert.equal(totalUnits,30);
  assert.deepEqual(Array.from(units,u=>u.unitNumber),[19,20,21]);
- assert.equal(loader.resolve('pt-BR','A2'),null);
+ assert.ok(loader.resolve('pt-BR', 'A2'));
  const ids=new Set();
  for(const unit of units){
   assert.equal(unit.vocab.length,10,unit.id);

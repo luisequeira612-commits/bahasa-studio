@@ -49,7 +49,7 @@ const u31=makeReview(31,'Conversaciones cotidianas','Integra rutinas, preferenci
 ['Lección 3: Conversaciones en la ciudad','Pregunta por calles y da indicaciones.','WH + do/does para preguntas; imperativos para instrucciones.',[8,9,10,22],'Turn left at the street.'],
 ['Lección 4: Compras y alimentos','Pregunta precios y habla de alimentos.','How much para precio e incontables; some/any según el tipo de oración.',[10,11,23,13],'How much is the bread?'],
 ['Lección 5: En el restaurante','Lee el menú, pide y comenta la comida.','I’d like… para pedir; be + adjetivo para describir la comida.',[12,13,14,24],'The soup is delicious.']
-],['I want to listen to music.','She is talking now.','He is wearing a shirt.','The bread is on the table.','The menu is on the table.'],[
+],['I want music.','She is talking now.','The shirt is red.','The street is near the house.','Turn left at the street.'],[
 '¿Qué significa «wake up»?','¿Qué significa «always»?','¿Qué significa «Monday»?','¿Qué significa «swim»?','¿Qué significa «music»?'
 ]);
 const u32=makeReview(32,'Evaluación final A1','Comprueba de forma integrada la comprensión de estructuras y vocabulario del nivel A1. Incluye lectura breve, selección de respuestas y construcción guiada de frases.','Repasa be, artículos, demostrativos, posesivos, presente simple y continuo, do/does, can, want to, cantidades, ubicación y peticiones funcionales.','Evaluación limitada a los tipos existentes','El motor actual solo admite mc y order en este contrato. Esta unidad evalúa selección y construcción guiada; no registra audio ni califica respuestas orales o textos libres. La práctica de escucha y expresión oral/escrita abierta queda como actividad externa no puntuable.',[
@@ -58,7 +58,7 @@ const u32=makeReview(32,'Evaluación final A1','Comprueba de forma integrada la 
 ['Lección 3: Acciones y habilidades','Reconoce acciones actuales y capacidades.','Presente continuo = be + -ing; can + verbo base.',[0,3,6,7],'She is talking now.'],
 ['Lección 4: Situaciones prácticas','Resuelve situaciones de compras, ciudad y restaurante.','Usa preguntas de precio, imperativos y expresiones corteses.',[8,9,25,11],'Turn right at the street.'],
 ['Lección 5: Construcción de mensajes','Construye frases breves con vocabulario conocido.','Integra estructuras A1 sin introducir vocabulario nuevo.',[5,11,14,19],'I want bread.']
-],['This is my red shirt.','She is talking now.','Turn right at the street.','I want bread.','The house is near the street.'],[
+],['I want bread.','She is talking now.','He is wearing a shirt.','The street is near the house.','Turn right at the street.'],[
 'Lee: «My mother is at home. The house is near the street.» ¿Dónde está la madre?',
 '¿Qué significa «red»?','¿Qué significa «talk»?','¿Qué significa «street»?','¿Qué significa «menu»?'
 ]);

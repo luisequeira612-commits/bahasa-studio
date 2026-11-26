@@ -4,7 +4,7 @@
 
 - Tras fusionar PR #887, la verificación en navegador del sitio Pages confirmó PT-BR y B2 disponibles, pero reveló que la ruta todavía limitaba el renderizado a U1 y mostraba un aviso obsoleto de unidades no implementadas.
 - Causa raíz: `renderCourseRoute()` conservaba un `slice(0, 1)` heredado y un placeholder de desarrollo, aunque el manifiesto ya publicaba U1–U40. No era un problema de los 13 bloques ni del Service Worker.
-- Se prepara una corrección mínima para renderizar la lista completa mediante `getVisibleLearningUnits(level)` y retirar el placeholder. Se amplía `tests/curriculum-release-gates.test.cjs` para impedir que vuelva el límite de una unidad.
+- Se corrige el renderizado para usar `getVisibleLearningUnits(level)` sin truncar la ruta a U1. El aviso de desarrollo se conserva únicamente para niveles B2 parciales (menos unidades cargadas que `totalUnits`); en PT-BR U1–U40 no debe aparecer. Se amplían `tests/curriculum-release-gates.test.cjs` y `tests/regression.test.cjs` para impedir el límite de una unidad y validar el placeholder condicional.
 - La progresión secuencial se conserva: las unidades posteriores siguen bloqueadas hasta completar los prerrequisitos. Sin cambios a IndexedDB v1, backup JSON v3, dependencias, audio ni red. Mantener `not_checked` y no afirmar certificación nativa/MCER.
 - Estado: PR de corrección en preparación; requiere CI, despliegue Pages y nueva verificación de navegador antes de declarar visible el curso completo.
 

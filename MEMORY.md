@@ -391,3 +391,13 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Segundo CI del head `1331cd6b...`: las referencias A2 y U5 L3 ya pasaron; quedó un último fallo de contrato en U6 L2 porque la explicación todavía mencionaba la formulación anterior `por meio do qual`. Se alineó literalmente con el objetivo `por intermédio do qual` en el commit `0f19082f0f0fedfc4043c1e7c024443dec2871f6`. El nuevo head debe volver a pasar el CI completo.
 
 - Tercer CI del head `75350e83...`: las referencias A2, U5 L3 y U6 L2 pasaron; quedó un último desajuste entre el objetivo de U6 L5 (`para a qual`) y la entrada, que aún decía `para quem`. Se alineó la entrada y el ejemplo con `para a qual` en el commit `034451867ed615eca483b8cf8134eb7a69cf20a1`. Volver a ejecutar el CI completo sobre el nuevo head.
+
+
+## 2026-11-26 — Cierre PT-BR B2 U4–U6 (PR #860)
+
+- PR #860 fusionada por squash en `main`, commit `bd9bf1dc25766fb920eadc98b73449f9dd49158f`. El head definitivo `69ae5ce94a71e6743cfc790004cce766e9b0b048` pasó regresión #45860996744 (103 pasos del job, incluidos tests locales y E2E Chromium; 10/10 calidad offline) y typecheck #45860996535 success.
+- Post-merge: regresión #45861444954 success (102 pasos completados, sin fallos; Offline quality reports 10/10); TypeScript #45861444947 success; GitHub Pages #45861442767 completó build, deploy y report-build-status en success.
+- U4 nominalización/densidad informativa, U5 voz pasiva/enfoque informativo y U6 relativas complejas: 15 lecciones y 30 entradas. El manifiesto B2 de PT-BR declara 40 unidades y publica internamente U1–U6; Service Worker cache v3.8.154.
+- Todas las entradas B2 nuevas permanecen `not_checked`. PT-BR continúa `available:false`; el curso no está habilitado en el selector y no se afirma certificación nativa ni MCER. El roadmap de 40 unidades sigue siendo reconstrucción explícita, no recuperación literal del temario anterior.
+- No se modificaron IndexedDB v1, backup JSON v3, dependencias ni audio. Próximo bloque planificado: U7–U9.
+- Fuente: PR #860, merge commit y GitHub Actions #45860996744/#45860996535/#45861444947/#45861444954/#45861442767; 26 nov 2026.

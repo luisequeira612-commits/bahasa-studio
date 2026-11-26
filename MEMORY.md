@@ -240,3 +240,5 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Se añadió una regresión en tests/a1-curriculum-progression.test.cjs para impedir que la L1 vuelva a mostrar esos términos de edad antes de su introducción y para comprobar la coherencia de los objetivos.
 - Alcance: solo currículo A1 U4, prueba específica y MEMORY.md. Sin cambios de runtime, IndexedDB v1, backup JSON v3, dependencias ni otras unidades. Esta corrección mejora la secuencia didáctica; no constituye certificación lingüística del indonesio.
 - Fuente: revisión directa de curriculum-a1.js (A1 U4, lecciones 1–4) y test de progresión A1; 25 nov 2026.
+
+- Seguimiento CI 26 nov: la primera ejecución mostró que también debía actualizarse el ejemplo de la ficha de vocabulario «Tiga» y que la prueba histórica de regresión esperaba «Tiga tahun». Se ajustaron ambos ejemplos y sus aserciones, conservando la cantidad y los tipos de ejercicios escritos; la corrección queda pendiente de CI verde.

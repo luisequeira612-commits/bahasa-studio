@@ -40,9 +40,9 @@ test('A2 beta policy documentation matches the enabled release gate', () => {
 });
 
 
-test('B1 unlocks after A2; B2 U1 follows B1 and U2–U5 unlock sequentially while later units stay in development', () => {
+test('B1 unlocks after A2; the complete published B2 course follows B1 and unlocks sequentially', () => {
   const learningLevels = html.slice(html.indexOf('function getLearningLevels()'), html.indexOf('function getUniqueLearningVocabulary()'));
-  assert.match(learningLevels, /level\.id !== 'B2'/);
+  assert.match(learningLevels, /level\.id !== 'B2' \|\| level\.units\.some\(unit => isPublishedB2Unit\(unit, level\)\)/);
   assert.doesNotMatch(learningLevels, /B1/);
 
   const assessmentEntry = html.slice(html.indexOf('startUnitAssessment(unitId)'), html.indexOf('startUnitById(id, requestedLessonIndex)'));
@@ -59,7 +59,7 @@ test('B1 unlocks after A2; B2 U1 follows B1 and U2–U5 unlock sequentially whil
   assert.match(html, /const previousLevel = levels\[levelIndex - 1\]/);
   assert.match(html, /if \(level\.id === 'B2'\) \{/);
   assert.match(html, /if \(unitIndex === 0\) return Boolean\(previousUnit[\s\S]*?return unitIndex > 0 && getUnitProgressState\(level, level\.units\[unitIndex - 1\]/);
-  assert.match(html, /level\.id === 'B2' \? level\.units\.slice\(0, 5\) : level\.units/);
+  assert.match(html, /level\.id === 'B2' \? \{ \.\.\.level, units: level\.units\.filter\(unit => isPublishedB2Unit\(unit, level\)\) \} : level/);
   assert.match(html, /function isPublishedB2Unit\(unit, level\)/);
   assert.match(html, /Number\.isInteger\(unit\.unitNumber\)/);
   assert.match(html, /unit\.unitNumber <= maximum/);

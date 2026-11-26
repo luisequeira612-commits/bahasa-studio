@@ -59,7 +59,7 @@ test('B1 unlocks after A2; the complete published B2 course follows B1 and unloc
   assert.match(html, /const previousLevel = levels\[levelIndex - 1\]/);
   assert.match(html, /if \(level\.id === 'B2'\) \{/);
   assert.match(html, /if \(unitIndex === 0\) return Boolean\(previousUnit[\s\S]*?return unitIndex > 0 && getUnitProgressState\(level, level\.units\[unitIndex - 1\]/);
-  assert.match(html, /level\.id === 'B2' \? \{ \.\.\.level, units: level\.units\.filter\(unit => isPublishedB2Unit\(unit, level\)\) \} : level/);
+  assert.match(html, /level\.id === 'B2'\s*\?\s*\{\s*\.\.\.level,\s*units:\s*level\.units\.filter\(unit => isPublishedB2Unit\(unit, level\)\)\s*\}\s*:\s*level/);
   assert.match(html, /function isPublishedB2Unit\(unit, level\)/);
   assert.match(html, /Number\.isInteger\(unit\.unitNumber\)/);
   assert.match(html, /unit\.unitNumber <= maximum/);

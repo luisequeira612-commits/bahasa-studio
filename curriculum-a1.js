@@ -1681,10 +1681,11 @@ window.BAHASA_CURRICULUM_A1 = {
                                           },
                                           {
                                                     "vocabId": "v17",
-                                                    "type": "translate_es_id",
-                                                    "prompt": "Traduce: tres años",
-                                                    "answer": "Tiga tahun",
-                                                    "explanation": "Tiga tahun significa tres años."
+                                                    "type": "order",
+                                                    "prompt": "Ordena: tres libros.",
+                                                    "words": ["buku", "Tiga"],
+                                                    "correctOrder": ["Tiga", "buku"],
+                                                    "explanation": "Tiga buku significa «Tres libros»."
                                           },
                                           {
                                                     "vocabId": "v19",
@@ -1709,8 +1710,8 @@ window.BAHASA_CURRICULUM_A1 = {
                                                     "type": "write",
                                                     "prompt": "Escribe una frase con un número o una edad que hayas aprendido.",
                                                     "hint": "Escribe una oración completa y revisa el orden de las palabras.",
-                                                    "modelAnswer": "Saya berumur lima tahun.",
-                                                    "explanation": "Este ejemplo significa «Tengo cinco años». Usa un número que conozcas de la unidad."
+                                                    "modelAnswer": "Tiga buku.",
+                                                    "explanation": "Tiga buku significa «Tres libros». Usa un número que conozcas de la unidad."
                                           }
                                 ,
                                 {"vocabId":"v105","type":"mc","prompt":"¿Cómo se dice seis?","options":["Enam","Tujuh","Delapan"],"answer":0,"explanation":"Enam significa seis."},
@@ -1775,19 +1776,20 @@ window.BAHASA_CURRICULUM_A1 = {
                                             "explanation": "Dua significa dos."
                                         },
                                         {
-                                            "vocabId": "v17",
-                                            "type": "translate_es_id",
-                                            "prompt": "Traduce: tres años",
-                                            "answer": "Tiga tahun",
-                                            "explanation": "Tiga tahun significa tres años."
-                                        },
+                                                    "vocabId": "v17",
+                                                    "type": "order",
+                                                    "prompt": "Ordena: tres libros.",
+                                                    "words": ["buku", "Tiga"],
+                                                    "correctOrder": ["Tiga", "buku"],
+                                                    "explanation": "Tiga buku significa «Tres libros»."
+                                          },
                                         {
                                             "vocabId": "v15",
                                             "type": "write",
                                             "prompt": "Escribe una frase con un número o una edad que hayas aprendido.",
                                             "hint": "Escribe una oración completa y revisa el orden de las palabras.",
-                                            "modelAnswer": "Saya berumur lima tahun.",
-                                            "explanation": "Este ejemplo significa «Tengo cinco años». Usa un número que conozcas de la unidad."
+                                            "modelAnswer": "Tiga buku.",
+                                            "explanation": "Tiga buku significa «Tres libros». Usa un número que conozcas de la unidad."
                                         },
                                         {
                                             "vocabId": "v17",
@@ -1874,7 +1876,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                 },
                                 {
                                     "title": "Lección 3: Contar cuatro y cinco; hablar de edad",
-                                    "objective": "Amplía el conteo con cuatro, cinco y seis y los aplica a personas y objetos.",
+                                    "objective": "Amplía el conteo con cuatro y cinco, aprende diez y la palabra edad, y practica cantidades sencillas.",
                                     "grammar": "Empat y lima continúan el conteo; sepuluh expresa diez y umur significa edad. Practica los números en frases cortas con teman y buku.",
                                     "vocabIds": [
                                         "v40",
@@ -1981,7 +1983,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                 },
                                 {
                                     "title": "Lección 4: Contar seis, siete y ocho",
-                                    "objective": "Reconoce siete, ocho y diez y pregunta o responde la edad de una persona.",
+                                    "objective": "Reconoce seis, siete y ocho y recupera los números anteriores para preguntar o responder la edad de una persona.",
                                     "grammar": "Enam, tujuh y delapan amplían el conteo. Practica cada número en frases cortas con buku, hari y orang.",
                                     "vocabIds": [
                                         "v105",

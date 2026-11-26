@@ -17,7 +17,9 @@ La auditoría PR #872 encontró que los 800 registros iniciales eran de opción 
 - U1–U24 integradas en `main`: 240 actividades de banco de unidad usan `order`, reconstruyendo el ejemplo PT-BR asociado; 240 actividades de lección conservan `mc`.
 - PR [#876](https://github.com/luisequeira612-commits/bahasa-studio/pull/876) (U10–U12), [#877](https://github.com/luisequeira612-commits/bahasa-studio/pull/877) (U13–U15), [#878](https://github.com/luisequeira612-commits/bahasa-studio/pull/878) (U16–U18), [#879](https://github.com/luisequeira612-commits/bahasa-studio/pull/879) (U19–U21) y [#880](https://github.com/luisequeira612-commits/bahasa-studio/pull/880) (U22–U24) fusionadas por squash. CI final de #880: regresión 103/103, calidad offline 10/10 y TypeScript correcto; sin revisiones pendientes.
 - Rama actual `feat/pt-br-b2-exercise-variety-u25-u27`: U25–U27 convierten las 30 actividades de banco a `order`; las 30 actividades de lección permanecen `mc`. El contrato integral se amplía hasta U27 y valida inventario exacto de tokens, secuencia y mezcla.
-- Siguiente bloque: U28–U30; continuar por bloques de tres hasta U40. Después revisar ejercicios de producción escrita/reformulación sin inventar audio.
+- U1–U27 están integradas en main con bancos de unidad `order` y ejercicios de lección `mc`.
+- Bloque actual: U28–U30 convierte las 30 actividades de banco de unidad a `order` y conserva las 30 actividades de lección como `mc`.
+- Siguiente bloque: U31–U33; continuar por bloques de tres hasta U40. Después revisar ejercicios de producción escrita/reformulación sin inventar audio.
 - El tipo `order` ya está soportado por el motor de aprendizaje y se usa en A1. No se añaden dependencias, audio ni red.
 - PT-BR continúa deshabilitado y B2 no se habilita. Esta fase no certifica naturalidad nativa ni nivel MCER.
 
@@ -98,6 +100,13 @@ La auditoría PR #872 encontró que los 800 registros iniciales eran de opción 
 - U16: verbos pronominales y matices aspectuales.
 - U17: perífrasis verbales y modalidad.
 - U18: colocaciones verbo-nominales.
+
+## Bloque de diversidad: U28–U30
+
+- U28: ciencia e incertidumbre.
+- U29: tecnología, privacidad y ética.
+- U30: medioambiente y sostenibilidad.
+- Las actividades del banco de unidad pasan a `order`; las actividades de lección permanecen `mc`.
 
 ## Bloques implementados: U19–U21
 

@@ -5883,7 +5883,7 @@ window.BAHASA_CURRICULUM_A1 = {
                             lessons: [
                                 {
                                     "title": "Lección 1: Partes del día",
-                                    "objective": "Aprende a partes del día y aplica las formas nuevas en frases sencillas, recuperando lo estudiado anteriormente.",
+                                    "objective": "Aprende vocabulario para nombrar las partes del día y úsalo en frases sencillas, recuperando lo estudiado anteriormente.",
                                     "grammar": "Pagi es la mañana, siang el mediodía o primeras horas de la tarde, sore el final de la tarde y malam la noche. Para situar una actividad puedes usar pada + momento + hari.",
                                     "vocabIds": [
                                         "v146",
@@ -6053,7 +6053,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                 },
                                 {
                                     "title": "Lección 3: Minutos y momentos",
-                                    "objective": "Aprende a minutos y momentos y aplica las formas nuevas en frases sencillas, recuperando lo estudiado anteriormente.",
+                                    "objective": "Aprende a expresar minutos y momentos del día con frases sencillas, recuperando lo estudiado anteriormente.",
                                     "grammar": "Menit significa minuto y lewat indica los minutos que pasan de la hora. Setengah delapan significa las siete y media, media hora antes de las ocho.",
                                     "vocabIds": [
                                         "v154",

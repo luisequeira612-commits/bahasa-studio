@@ -186,3 +186,10 @@ U1–U40 integradas contienen 200 lecciones y 400 entradas nuevas. Cada unidad i
 - Se abrió PR #887 (`feat/pt-br-b2-release-gate`) para activar el selector PT-BR y publicar las 40 unidades B2 completas; el manifiesto declara 40 unidades en 13 bloques y el Service Worker v3.8.166 precarga los 13 archivos.
 - El cambio conserva la progresión secuencial y no altera IndexedDB v1, backup JSON v3, dependencias, audio ni red. Las entradas continúan `not_checked`; la auditoría estructural no equivale a certificación lingüística ni MCER.
 - Validación de PR en curso: TypeScript y calidad offline aprobados; regresión Chromium/E2E aún ejecutándose. No declarar publicado hasta fusionar y verificar GitHub Pages y carga offline desde el sitio desplegado.
+
+
+## Publicación verificada — 26 nov 2026
+- PR #887 fusionada en `main` (merge commit `531d08d6910614845f459079690ba2ef3b8e61bf`). PT-BR está habilitado en el selector y el inicio carga los currículos registrados A1/A2/B1/B2; el filtro reconoce los IDs `ptbr_b2_u…` y mantiene la progresión secuencial.
+- GitHub Pages compiló y desplegó correctamente ese commit; el workflow reportó `success` y la URL del entorno es https://luisequeira612-commits.github.io/bahasa-studio/.
+- Regresión post-merge: `success`; TypeScript: `success`; build/deploy Pages: `success`. La suite de PR verificó las 40 unidades B2 y el inventario offline de 13 bloques; Service Worker v3.8.166.
+- Se mantienen IndexedDB v1 y backup JSON v3 sin cambios; sin nuevas dependencias, audio o requisitos de red. `verification.status: not_checked`; no se afirma certificación nativa ni MCER oficial.

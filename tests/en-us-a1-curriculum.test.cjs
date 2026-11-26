@@ -75,7 +75,7 @@ test('English A1 curriculum uses the established vocabulary shape without changi
   assert.deepEqual(Object.keys(word).sort(),['ex','exEsp','esp','id','target','verification'].sort());
  }
 });
-test('English A1 vocabulary introduces no duplicate targets across U1-U12',async()=>{
+test('English A1 vocabulary introduces no duplicate targets across U1-U18',async()=>{
  const {loader}=createEnglishPilot();
  const {units}=await loader.loadUnits('en','A1',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]);
  const seen=new Set();

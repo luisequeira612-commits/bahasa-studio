@@ -48,7 +48,7 @@ test('English A1 manifest exposes the authored U1-U30 blocks',async()=>{
  assert.equal(curriculum.totalUnits,32);
  assert.deepEqual(Array.from(curriculum.units,u=>u.unitNumber),[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]);
 });
-test('each English A1 unit has five explicit lessons, 22 new words and 20 supported exercises',async()=>{
+test('each English A1 unit has five lessons and 20 exercises; review units add no new words',async()=>{
  const {loader}=createEnglishPilot();
  const {units}=await loader.loadUnits('en','A1',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]);
  for(const unit of units){

@@ -1,6 +1,6 @@
 # Portugués brasileño B2 — temario de 40 unidades
 
-**Estado:** temario reconstruido el 26 de noviembre de 2026 porque no se recuperó el documento anterior. Es una propuesta de trabajo editable, no una equivalencia certificada con un examen oficial. Los bloques U1–U3, U4–U6, U7–U9, U10–U12 y U13–U15 están implementados; U16–U18 están en preparación y U19–U40 siguen planificados.
+**Estado:** temario reconstruido el 26 de noviembre de 2026 porque no se recuperó el documento anterior. Es una propuesta de trabajo editable, no una equivalencia certificada con un examen oficial. Los bloques U1–U3, U4–U6, U7–U9, U10–U12, U13–U15 y U16–U18 están implementados; U19–U21 están en preparación y U22–U40 siguen planificados.
 
 ## Criterios
 
@@ -80,7 +80,7 @@
 - U17: perífrasis verbales y modalidad.
 - U18: colocaciones verbo-nominales.
 
-U1–U15 contienen 75 lecciones y 150 entradas nuevas; U16–U18 están en preparación con el mismo formato de cinco lecciones y diez entradas por unidad. Las entradas permanecen `not_checked`; las pruebas verifican estructura, carga offline, referencias de repaso y duplicados normalizados, pero no certifican naturalidad ni nivel MCER.
+U1–U18 contienen 90 lecciones y 180 entradas nuevas; U19–U21 están en preparación con el mismo formato de cinco lecciones y diez entradas por unidad. Las entradas permanecen `not_checked`; las pruebas verifican estructura, carga offline, referencias de repaso y duplicados normalizados, pero no certifican naturalidad ni nivel MCER.
 
 ### Referencias de diseño consultadas
 

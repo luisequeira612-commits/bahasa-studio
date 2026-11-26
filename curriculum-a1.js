@@ -3741,7 +3741,7 @@ window.BAHASA_CURRICULUM_A1 = {
                         {
                                                                                                     "vocabId": "v36",
                                                                                                     "type": "mc",
-                                                                                                    "prompt": "Completa: ___ saya belajar (Hoy estudio)",
+                                                                                                    "prompt": "Completa: ___ (Hoy)",
                                                                                                     "options": [
                                                                                                         "Hari ini",
                                                                                                         "Hari Senin",

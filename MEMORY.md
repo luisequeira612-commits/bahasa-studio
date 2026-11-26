@@ -725,3 +725,11 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Inventario curricular: 40 unidades, 200 lecciones, 400 entradas léxicas, 800 ejercicios (400 `order` de unidad + 400 `mc` de lección). La progresión permanece secuencial: B2 U1 exige completar B1; no se alteró el progreso del usuario.
 - Sin cambios a IndexedDB v1 ni backup JSON v3; sin nuevas dependencias, audio, backend ni servicios de red. Vocabulario permanece `not_checked`; no afirmar validación nativa ni certificación MCER.
 - Según la hoja de ruta vigente, el siguiente idioma previsto es inglés desde A1/cero para hispanohablantes; no se inicia en esta actualización.
+
+
+## 2026-11-26 — Inglés americano A1 aprobado; primer bloque en PR
+- El dueño aprobó el temario A1 de en-US (32 unidades) y autorizó iniciar Fase 1. Se implementa en bloques de 4–8 unidades; PR de inglés no se fusiona hasta aprobación explícita posterior. Mantener en.available=false y “Próximamente” hasta aprobación de publicación del nivel.
+- PR en preparación: U1–U6 (alfabeto/deletreo; saludos y presentaciones; información personal; números/contacto; a/an; singular/plural). 5 lecciones explícitas y 22 entradas por unidad; vocabulario not_checked. El esquema conserva exactamente id,target,esp,ex,exEsp,verification; no se agregan POS/audio ni se modifica IndexedDB v1 o backup JSON v3.
+- Contrato de referencia: ejercicios mc y order, con 10 ejercicios de unidad + 2 por lección; los ejercicios no se presentan como validación lingüística. No se modifica PT-BR ni otros cursos.
+- Fuentes y límites de licencia: docs/EN_US_A1_SOURCES.md; CEFR-J/NGSL aún requieren trazabilidad por lema antes de afirmar cotejo. Ejemplos originales. Inglés americano (en-US); notas británicas solo cuando contrasten un punto útil.
+- Conflicto resuelto para esta tarea: las reglas generales antiguas de fusión automática quedan subordinadas a la instrucción específica vigente de no fusionar PRs de inglés sin aprobación expresa.

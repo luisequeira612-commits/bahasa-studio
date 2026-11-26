@@ -3639,7 +3639,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                 {
                                     "vocabId": "v36",
                                     "type": "mc",
-                                    "prompt": "Completa: ___ saya belajar (Hoy estudio)",
+                                    "prompt": "Elige la expresión que significa «hoy»",
                                     "options": [
                                         "Hari ini",
                                         "Hari Senin",

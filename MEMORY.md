@@ -2,7 +2,7 @@
 
 - Se añadió una prueba Chromium en `tests/learning-screen-phase-5b.e2e.test.cjs` para recorrer la integración real del recomendador: una palabra con errores históricos (`incorrect: 3`) y última calidad `Bien` (`lastQuality: 3`) no debe aparecer en «Practicar estas palabras»; al cambiar la última calidad a 2, la palabra vuelve a ser elegible para refuerzo.
 - La prueba usa el ID canónico `v12` (Dari), mantiene la fecha de repaso futura para aislar la recomendación de repasos vencidos y comprueba el contenido visible de la tarjeta de Aprender. No modifica runtime, currículo, IndexedDB v1, backup JSON v3 ni dependencias.
-- CI de la PR pendiente; no declarar validación funcional completa hasta que pase la prueba en Chromium y el resto de la suite.
+- Validación posterior a la fusión: la prueba Chromium y la suite completa pasaron en GitHub Actions #45760764747 (commit `4b021e9`); regresión y controles de navegador completados correctamente. GitHub Pages también se reconstruyó y desplegó con éxito en #45760764156. La prueba confirma el comportamiento en navegador automatizado; queda pendiente únicamente la comprobación manual en el dispositivo.
 - Fuente: pendiente manual registrada en Notion y revisión de `adaptive-learning.js`, `tests/adaptive-learning.test.cjs` y `tests/learning-screen-phase-5b.e2e.test.cjs`; 25 nov 2026.
  
 ## 2026-11-26 — Corrección editorial del objetivo de A1 U12 L4

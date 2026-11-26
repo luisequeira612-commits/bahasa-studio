@@ -1,6 +1,14 @@
 # Portugués brasileño B2 — temario de 40 unidades
 
-**Estado:** temario reconstruido el 26 de noviembre de 2026 porque no se recuperó el documento anterior. Es una propuesta de trabajo editable, no una equivalencia certificada con un examen oficial. U1–U40 están integradas en `main` tras PR #871. El contenido está completo; queda la revisión editorial/lingüística final. La disponibilidad de PT-BR y B2 se mantiene desactivada.
+**Estado:** U1–U40 están integradas en `main` tras PR #871. El 26 de noviembre de 2026 se inició una auditoría estructural específica del currículo PT-BR B2: el informe genérico previo cubría el B2 indonesio, no estas unidades. La revisión editorial/lingüística sigue pendiente; este temario es una propuesta editable, no una equivalencia certificada con un examen oficial. PT-BR y B2 permanecen desactivados.
+
+## Auditoría integral específica PT-BR B2 — en curso
+
+- La revisión directa de los 13 bloques confirma 40 unidades, 200 lecciones y 400 entradas; IDs únicos y sin duplicados exactos de términos o ejemplos tras normalización.
+- Las 202 referencias de repaso encontradas apuntan a 48 IDs A2 existentes; no se detectaron referencias rotas.
+- Se añade el contrato `tests/pt-br-curriculum-b2-full-audit.test.cjs` a `quality:tests`. Comprueba las 40 unidades completas, cinco lecciones por unidad, diez términos, cobertura de vocabulario, explicaciones de términos, ejemplos, 800 ejercicios (400 de unidad y 400 asociados a lecciones), opciones/respuestas, repaso A2 y disponibilidad desactivada. El primer barrido detectó explicaciones incompletas en U12, U19, U20, U25 y U28, además de cobertura de vocabulario duplicada/incompleta en U24, U25, U33 y U40; se corrigieron todas. El barrido estático posterior devuelve cero fallos de explicación y cobertura. La revisión conceptual corrigió U29 (criptografía homomórfica: cálculo sobre datos cifrados, no solo protección en tránsito; objetivo en español «una exfiltración») y la glosa de U37 `humor autodepreciativo` («humor autodespreciativo»). El contrato también compara términos B2 con A1/A2/B1 y acumula todas las coincidencias. La comparación acumulada encontró cinco repeticiones entre niveles: `sustentável` (A2 U12), `transparência` (B1 U11), `ressalva` y `consenso` (B1 U2), e `impasse` (B1 U4). Se sustituyeron por `exequível`, `mensurabilidade`, `condicionante`, `entendimento mútuo` y `entrave`, con ejemplos y explicaciones ajustados. CI de la versión corregida pendiente.
+- Aclaración: el informe automático genérico anterior (`curriculum-quality-report.json`) analiza el B2 indonesio embebido en `index.html`, no el currículo PT-BR B2 modular; no se usa como evidencia de calidad del portugués.
+- Estos controles son estructurales; no certifican naturalidad, gramática nativa, registro ni nivel MCER. Todas las entradas permanecen `not_checked`; no habilitar el curso.
 
 ## Criterios
 

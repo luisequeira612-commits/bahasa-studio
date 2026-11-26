@@ -10,7 +10,7 @@ vocab(37,2,'sarcasmo','sarcasmo','O sarcasmo costuma intensificar a crítica por
 vocab(37,3,'deboche','burla','O deboche transforma a fala em uma provocação que pode constranger o interlocutor.','La burla convierte el comentario en una provocación que puede incomodar al interlocutor.'),
 vocab(37,4,'duplo sentido','doble sentido','A expressão de duplo sentido permite duas interpretações, uma delas sugerida pelo contexto.','La expresión de doble sentido permite dos interpretaciones, una de ellas sugerida por el contexto.'),
 vocab(37,5,'tom jocoso','tono jocoso','O tom jocoso suaviza a crítica em uma conversa informal, mas nem sempre é bem recebido.','El tono jocoso suaviza la crítica en una conversación informal, pero no siempre se recibe bien.'),
-vocab(37,6,'humor autodepreciativo','humor autocrítico','O humor autodepreciativo apresenta as próprias limitações de maneira cômica.','El humor autocrítico presenta las propias limitaciones de manera cómica.'),
+vocab(37,6,'humor autodepreciativo','humor autodespreciativo','O humor autodepreciativo apresenta as próprias limitações de maneira cômica.','El humor autocrítico presenta las propias limitaciones de manera cómica.'),
 vocab(37,7,'sátira','sátira','A sátira questiona comportamentos públicos por meio do exagero e da comicidade.','La sátira cuestiona comportamientos públicos mediante la exageración y la comicidad.'),
 vocab(37,8,'piada interna','broma interna','A piada interna só funciona plenamente para quem compartilha a experiência mencionada.','La broma interna funciona plenamente solo para quienes comparten la experiencia mencionada.'),
 vocab(37,9,'quebra de expectativa','ruptura de expectativa','A quebra de expectativa cria humor quando o desfecho contraria a previsão do público.','La ruptura de expectativa crea humor cuando el desenlace contradice lo que anticipaba el público.'),
@@ -78,7 +78,7 @@ const unit40=makeUnit(40,'Proyecto final de autonomía B2','Demuestra autonomía
 ['Revisión del contenido','Revisar argumentos y cohesión.','A revisão substantiva comprueba la lógica y las pruebas; a coesão referencial mantiene claro a qué persona, idea o hecho remite cada expresión.',[3,4],review],
 ['Claridad y límites','Mejorar concisión y formular salvedades.','A concisão elimina redundancias sin perder matices; a condição de validade explicita condições e limites que impedem generalizar uma conclusão.',[5,6],review],
 ['Autonomía y reescritura','Convertir la autoevaluación en un plan de revisión.','A autoavaliação identifica necesidades prioritarias; a reescrita orientada aplica cambios concretos y permite comparar versiones con criterios definidos.',[7,8],review],
-['Entrega y reflexión final','Preparar una versión final y justificar decisiones.','A reescrita orientada aplica los ajustes elegidos; a versão final integra las revisiones y conserva coherencia entre propósito, contenido y formato, y la reflexión explica qué decisiones mejoraron la comunicación.',[9,8],review]
+['Entrega y reflexión final','Preparar una versión final y justificar decisiones.','O registro linguístico mantiene la elección de vocabulario y tratamiento coherente con el público y el género; a versão final integra las revisiones y conserva coherencia entre propósito, contenido y formato, y la reflexión explica qué decisiones mejoraron la comunicación.',[2,9],review]
 ]);
 root.GUARDI_CURRICULUM_BLOCKS=root.GUARDI_CURRICULUM_BLOCKS||{};
 root.GUARDI_CURRICULUM_BLOCKS['pt-BR']=root.GUARDI_CURRICULUM_BLOCKS['pt-BR']||{};

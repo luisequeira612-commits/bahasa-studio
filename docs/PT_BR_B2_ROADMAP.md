@@ -6,7 +6,7 @@
 
 - La revisión directa de los 13 bloques confirma 40 unidades, 200 lecciones y 400 entradas; IDs únicos y sin duplicados exactos de términos o ejemplos tras normalización.
 - Las 202 referencias de repaso encontradas apuntan a 48 IDs A2 existentes; no se detectaron referencias rotas.
-- Se añade el contrato `tests/pt-br-curriculum-b2-full-audit.test.cjs` a `quality:tests`. Comprueba las 40 unidades completas, cinco lecciones por unidad, diez términos, cobertura de vocabulario, explicaciones de términos, ejemplos, 800 ejercicios (400 de unidad y 400 asociados a lecciones), opciones/respuestas, repaso A2 y disponibilidad desactivada. Resultado CI pendiente.
+- Se añade el contrato `tests/pt-br-curriculum-b2-full-audit.test.cjs` a `quality:tests`. Comprueba las 40 unidades completas, cinco lecciones por unidad, diez términos, cobertura de vocabulario, explicaciones de términos, ejemplos, 800 ejercicios (400 de unidad y 400 asociados a lecciones), opciones/respuestas, repaso A2 y disponibilidad desactivada. Primera ejecución encontró que U12, lección 2, no explicaba «em grau semelhante»; se corrigió sin reducir controles. También se corrigió el total de ejercicios esperado de 1.200 a 800. CI de la versión corregida pendiente.
 - Aclaración: el informe automático genérico anterior (`curriculum-quality-report.json`) analiza el B2 indonesio embebido en `index.html`, no el currículo PT-BR B2 modular; no se usa como evidencia de calidad del portugués.
 - Estos controles son estructurales; no certifican naturalidad, gramática nativa, registro ni nivel MCER. Todas las entradas permanecen `not_checked`; no habilitar el curso.
 

@@ -78,8 +78,8 @@ test('B1 U4-U6 add no exact normalized vocabulary duplicates against A1, A2 or B
  assert.equal(prior.length,540);assert.equal(previous.length,30);assert.equal(added.length,30);assert.equal(new Set(normalized).size,30);
  assert.deepEqual(normalized.filter(word=>allPrior.has(word)),[]);
 });
-test('service worker uses the current B1 app-shell cache v3.8.159',()=>{
+test('service worker uses the current B1 app-shell cache v3.8.160',()=>{
  const source=fs.readFileSync(path.join(repo,'service-worker.js'),'utf8');
  assert.ok(source.includes("./languages/pt-BR/curriculum/b1/units-07-09.js"));
- assert.match(source,/bahasa-studio-v3\.8\.159/);
+ assert.match(source,/bahasa-studio-v3\.8\.160/);
 });

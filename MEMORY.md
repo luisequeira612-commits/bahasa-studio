@@ -383,3 +383,5 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Todas las entradas nuevas siguen `not_checked`. La estructura y coherencia interna de las explicaciones no certifican naturalidad, uso nativo ni nivel MCER. No se modifican IndexedDB v1, backup JSON v3, dependencias ni audio.
 - Estado al registrar: cambios de contenido, manifiesto, precarga, pruebas y documentación en curso; pendiente ejecutar CI completo y revisar resultados antes de fusionar.
 - Fuente: rama `feat/pt-br-b2-u04-u06`, roadmap B2 y contratos curriculares; 26 nov 2026.
+
+- Revisión editorial interna previa al cierre: en U6 L1 se ajustó la entrada `cujo parecer` a `cujo conteúdo` para que la expresión objetivo coincida literalmente con el ejemplo; la explicación gramatical se alineó con el cambio. Corrección en commit `9dd8487558f496450416fbb423e1ff0d73032e1a`. La validación CI debe ejecutarse sobre este head actualizado.

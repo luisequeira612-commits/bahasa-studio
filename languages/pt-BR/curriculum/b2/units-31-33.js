@@ -66,7 +66,7 @@ const unit33=makeUnit(33,'Cultura, identidad y representación','Interpreta disp
 ['Patrimonio y transmisión','Explicar la preservación de prácticas culturales.','A salvaguarda de saberes protege saberes, celebraciones y prácticas transmitidas; memória oral reúne relatos compartidos que pueden revisarse con nuevas evidencias.',[0,4],review],
 ['Poder y apropiación','Analizar una disputa sobre apropiación cultural.','Apropriação cultural requiere observar contexto, poder y beneficios; representatividade cultural pregunta qué voces aparecen y cuáles quedan ausentes.',[1,2],review],
 ['Selección y visibilidad','Evaluar el papel de una curaduría independiente.','Curadoria independente selecciona y presenta obras sin depender de una institución dominante; circulação transnacional transforma la circulación y el acceso a esas obras.',[3,5],review],
-['Cruces culturales','Describir el hibridismo en contextos transnacionales.','Circulação transnacional permite que obras y prácticas atraviesen fronteras; hibridismo cultural combina referencias y mantiene visibles sus trayectorias.',[5,6],review],
+['Cruces culturales','Describir el hibridismo y la pluralidad de expresiones.','Hibridismo cultural combina referencias y mantiene visibles sus trayectorias; pluralidade linguística reconoce la coexistencia de lenguas y variedades en una comunidad.',[6,9],review],
 ['Identidad y memoria','Cuestionar estereotipos y silencios históricos.','Estereótipo identitário fija una imagen simplificada; apagamento histórico silencia contribuciones; pluralidade linguística reconoce distintas formas de expresión y pertenencia.',[7,8],review]
 ]);
 root.GUARDI_CURRICULUM_BLOCKS=root.GUARDI_CURRICULUM_BLOCKS||{};

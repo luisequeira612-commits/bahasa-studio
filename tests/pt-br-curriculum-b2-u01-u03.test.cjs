@@ -54,7 +54,7 @@ test('pt-BR B2 U1-U3 load as a partial internal block while the course remains u
 });
 test('B2 manifest declares 40 units and publishes only the authored U1-U18 blocks',()=>{
  const {window}=createPilot(),manifest=window.GUARDI_CURRICULUM_MANIFESTS['pt-BR'].B2;
- assert.equal(manifest.totalUnits,40);assert.deepEqual(Array.from(manifest.publishedUnits),Array.from({length:33},(_,i)=>i+1));
+ assert.equal(manifest.totalUnits,40);assert.deepEqual(Array.from(manifest.publishedUnits),Array.from({length:36},(_,i)=>i+1));
  assert.deepEqual(Array.from(manifest.blocks[0].units),[1,2,3]);
  assert.deepEqual(Array.from(manifest.blocks[1].units),[4,5,6]);
  assert.deepEqual(Array.from(manifest.blocks[2].units),[7,8,9]);
@@ -92,7 +92,7 @@ test('service worker precaches B2 U1-U15 and advances the app-shell cache',()=>{
  assert.ok(source.includes("./languages/pt-BR/curriculum/b2/units-10-12.js"));
  assert.ok(source.includes("./languages/pt-BR/curriculum/b2/units-13-15.js"));
  assert.ok(source.includes("./languages/pt-BR/curriculum/b2/units-16-18.js"));
- assert.match(source,/bahasa-studio-v3\.8\.163/);
+ assert.match(source,/bahasa-studio-v3\.8\.164/);
 });
 
 test('pt-BR B2 U4-U6 load offline as an internal block with five lessons and ten contextual entries per unit',async()=>{

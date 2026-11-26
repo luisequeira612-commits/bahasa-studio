@@ -479,5 +479,6 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Service Worker precarga U16–U18 y avanza caché app-shell a v3.8.158. Se actualizan pruebas de caché A1/A2/B1/B2 y E2E Chromium offline hasta U18.
 - Pruebas verifican estructura, explicaciones por lección, referencias A2, duplicados normalizados contra A1–B1 y B2 U1–U15, disponibilidad false y carga offline.
 - Sin cambios a IndexedDB v1, backup JSON v3, dependencias ni audio. No afirmar naturalidad certificada ni equivalencia MCER.
-- Estado: contenido, manifiesto, precarga, pruebas B2 previas, expectativas de caché A1/A2/B1, E2E offline, roadmap y MEMORY completados en `feat/pt-br-b2-u16-u18`; head de preparación `45d0d1aa603f83a6d524a7e43d360fcef1ea6691`. Pendiente CI completo, PR y validación post-merge.
+- La primera ejecución CI #45869861647 encontró un fallo E2E: el nuevo archivo registraba unidades en `GUARDI_CURRICULA` en vez de publicar el bloque `GUARDI_CURRICULUM_BLOCKS['pt-BR'].B2['16-18']`. Corregido en `74ccde7f48836c0aedc6df9320e458d763fdc756`; TypeScript había pasado y calidad offline 10/10. Esperar nueva ejecución CI sobre el head corregido.
+- Estado: contenido, manifiesto, precarga, pruebas B2 previas, expectativas de caché A1/A2/B1, E2E offline, roadmap y MEMORY en `feat/pt-br-b2-u16-u18`; pendiente CI completo, PR y validación post-merge.
 - Fuente: rama `feat/pt-br-b2-u16-u18`, roadmap B2 y pruebas; 26 nov 2026.

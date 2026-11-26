@@ -439,3 +439,15 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Las entradas nuevas siguen not_checked. PT-BR permanece available:false; B2 no se habilita en el selector. El roadmap es reconstruido, no una certificación MCER ni validación nativa. Sin cambios a IndexedDB v1, backup JSON v3, dependencias ni audio.
 - Próximo bloque planificado: U10–U12.
 - Fuente: PR #861, merge commit y Actions #45863482087/#45863482277/#45863934940/#45863935096/#45863933756; 26 nov 2026.
+
+
+## 2026-11-26 — PT-BR B2 U10–U12 en preparación
+
+- Se inicia el cuarto bloque del currículo B2: U10 cohesión/progresión temática; U11 reformulación/precisión discursiva; U12 comparación matizada.
+- Añade 15 lecciones y 30 entradas (10 por unidad, dos objetivos léxicos por lección), con ejemplos PT-BR y explicaciones en español. Entradas nuevas permanecen `not_checked`.
+- Manifiesto B2 mantiene 40 unidades y publica internamente U1–U12 en cuatro bloques; PT-BR sigue `available:false`.
+- Service Worker precarga U10–U12 y avanza caché app-shell a v3.8.156. Se actualizan pruebas de caché PT-BR A2/B1 y contratos B2 previos.
+- Contratos nuevos cubren U10–U12, referencias A2, explicación literal por lección, duplicados normalizados contra A1–B1 y B2 U1–U9, disponibilidad false y carga offline Chromium hasta U12.
+- Sin cambios a IndexedDB v1, backup JSON v3, dependencias ni audio. No afirmar naturalidad certificada ni equivalencia MCER.
+- Estado: contenido, manifiesto, precarga, tests y roadmap en la rama `feat/pt-br-b2-u10-u12`; falta CI completo, PR y validación post-merge.
+- Fuente: rama `feat/pt-br-b2-u10-u12`, roadmap B2 y pruebas; 26 nov 2026.

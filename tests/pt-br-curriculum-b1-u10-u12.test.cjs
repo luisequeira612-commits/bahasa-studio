@@ -74,5 +74,5 @@ test('B1 U10-U12 add no exact normalized vocabulary duplicates against A1, A2 or
 test('service worker precaches B1 U1-U12 with cache v3.8.163',()=>{
  const source=fs.readFileSync(path.join(repo,'service-worker.js'),'utf8');
  assert.ok(source.includes("./languages/pt-BR/curriculum/b1/units-10-12.js"));
- assert.match(source,/bahasa-studio-v3\.8\.164/);
+ assert.match(source,/bahasa-studio-v3\.8\.165/);
 });

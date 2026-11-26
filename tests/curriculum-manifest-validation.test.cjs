@@ -75,3 +75,64 @@ test('manifest validation rejects missing titles and empty manifests', () => {
     assert.ok(result.errors.includes('publishedUnits_required'));
     assert.ok(result.errors.includes('blocks_required'));
 });
+
+
+test('loadUnits accepts published units above 40 when they are within manifest totalUnits', async () => {
+    const root = {};
+    root.LanguageManager = {
+        getLanguage: () => ({ curriculum: { A1: './languages/xx/curriculum/a1/index.js' } }),
+        isSupported: code => code === 'xx'
+    };
+    root.GUARDI_CURRICULUM_MANIFESTS = {
+        xx: {
+            A1: {
+                title: 'A1 — Curso de prueba',
+                totalUnits: 45,
+                publishedUnits: [41, 45],
+                blocks: [{ id: '41-45', path: './languages/xx/curriculum/a1/units-41-45.js', units: [41, 45] }]
+            }
+        }
+    };
+    root.document = {
+        createElement: () => ({}),
+        head: {
+            appendChild: script => {
+                root.GUARDI_CURRICULUM_BLOCKS = {
+                    xx: { A1: { '41-45': { units: [{ unitNumber: 41 }, { unitNumber: 45 }] } } }
+                };
+                script.onload();
+            }
+        }
+    };
+    const sandbox = { window: root, Object, Map, Set, Promise, Error, String, Number, Array };
+    vm.runInNewContext(loaderSource, sandbox);
+
+    const curriculum = await root.CurriculumLoader.loadUnits('xx', 'A1', [41, 45]);
+    assert.deepEqual(Array.from(curriculum.units, unit => unit.unitNumber), [41, 45]);
+    assert.equal(curriculum.totalUnits, 45);
+});
+
+test('loadUnits still rejects unit numbers above the manifest total', async () => {
+    const root = {};
+    root.LanguageManager = {
+        getLanguage: () => ({ curriculum: { A1: './languages/xx/curriculum/a1/index.js' } }),
+        isSupported: code => code === 'xx'
+    };
+    root.GUARDI_CURRICULUM_MANIFESTS = {
+        xx: {
+            A1: {
+                title: 'A1 — Curso de prueba',
+                totalUnits: 45,
+                publishedUnits: [45],
+                blocks: [{ id: '45', path: './languages/xx/curriculum/a1/units-45.js', units: [45] }]
+            }
+        }
+    };
+    const sandbox = { window: root, Object, Map, Set, Promise, Error, String, Number, Array };
+    vm.runInNewContext(loaderSource, sandbox);
+
+    await assert.rejects(
+        root.CurriculumLoader.loadUnits('xx', 'A1', [46]),
+        /La selección de unidades no es válida/
+    );
+});

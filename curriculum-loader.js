@@ -162,11 +162,14 @@
         const descriptor = resolveContent(language, level);
         if (!descriptor) throw new Error('El contenido curricular solicitado no está registrado.');
         if (!Array.isArray(unitNumbers) || !unitNumbers.length ||
-            unitNumbers.some(number => !Number.isInteger(number) || number < 1 || number > 40) ||
+            unitNumbers.some(number => !Number.isInteger(number) || number < 1) ||
             new Set(unitNumbers).size !== unitNumbers.length) {
             throw new Error('La selección de unidades no es válida.');
         }
         const manifest = await loadManifest(descriptor);
+        if (unitNumbers.some(number => number > manifest.totalUnits)) {
+            throw new Error('La selección de unidades no es válida.');
+        }
         const published = new Set(manifest.publishedUnits);
         if (unitNumbers.some(number => !published.has(number))) {
             throw new Error('Una o más unidades todavía no están publicadas.');

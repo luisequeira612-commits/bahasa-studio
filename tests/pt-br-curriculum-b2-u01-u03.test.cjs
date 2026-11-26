@@ -12,6 +12,7 @@ const sources={
  './languages/pt-BR/curriculum/b2/index.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/b2/index.js'),'utf8'),
  './languages/pt-BR/curriculum/b2/units-01-03.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/b2/units-01-03.js'),'utf8'),
  './languages/pt-BR/curriculum/b2/units-04-06.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/b2/units-04-06.js'),'utf8'),
+ './languages/pt-BR/curriculum/b2/units-07-09.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/b2/units-07-09.js'),'utf8'),
  './languages/pt-BR/curriculum/a2/index.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a2/index.js'),'utf8')
 };
 for(const file of a2Files)sources['./languages/pt-BR/curriculum/a2/'+file]=fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a2',file),'utf8');
@@ -45,11 +46,12 @@ test('pt-BR B2 U1-U3 load as a partial internal block while the course remains u
   }
  }
 });
-test('B2 manifest declares 40 units and publishes only the authored U1-U6 blocks',()=>{
+test('B2 manifest declares 40 units and publishes only the authored U1-U9 blocks',()=>{
  const {window}=createPilot(),manifest=window.GUARDI_CURRICULUM_MANIFESTS['pt-BR'].B2;
- assert.equal(manifest.totalUnits,40);assert.deepEqual(Array.from(manifest.publishedUnits),[1,2,3,4,5,6]);
+ assert.equal(manifest.totalUnits,40);assert.deepEqual(Array.from(manifest.publishedUnits),[1,2,3,4,5,6,7,8,9]);
  assert.deepEqual(Array.from(manifest.blocks[0].units),[1,2,3]);
  assert.deepEqual(Array.from(manifest.blocks[1].units),[4,5,6]);
+ assert.deepEqual(Array.from(manifest.blocks[2].units),[7,8,9]);
  assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
 });
 test('B2 review references resolve to existing A2 vocabulary IDs',async()=>{
@@ -72,12 +74,13 @@ test('B2 U1-U6 add no exact normalized vocabulary duplicates against A1, A2 or B
  assert.equal(added.length,60);assert.equal(new Set(normalized).size,60);
  assert.deepEqual(normalized.filter(word=>previous.has(word)),[]);
 });
-test('service worker precaches B2 U1-U6 and advances the app-shell cache',()=>{
+test('service worker precaches B2 U1-U9 and advances the app-shell cache',()=>{
  const source=fs.readFileSync(path.join(repo,'service-worker.js'),'utf8');
  assert.ok(source.includes("./languages/pt-BR/curriculum/b2/index.js"));
  assert.ok(source.includes("./languages/pt-BR/curriculum/b2/units-01-03.js"));
  assert.ok(source.includes("./languages/pt-BR/curriculum/b2/units-04-06.js"));
- assert.match(source,/bahasa-studio-v3\.8\.154/);
+ assert.ok(source.includes("./languages/pt-BR/curriculum/b2/units-07-09.js"));
+ assert.match(source,/bahasa-studio-v3\.8\.155/);
 });
 
 test('pt-BR B2 U4-U6 load offline as an internal block with five lessons and ten contextual entries per unit',async()=>{

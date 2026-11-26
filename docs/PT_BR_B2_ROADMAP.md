@@ -1,6 +1,6 @@
 # Portugués brasileño B2 — temario de 40 unidades
 
-**Estado:** temario reconstruido el 26 de noviembre de 2026 porque no se recuperó el documento anterior. Es una propuesta de trabajo editable, no una equivalencia certificada con un examen oficial. Los bloques U1–U3 y U4–U6 están implementados en ramas de trabajo sucesivas; U7–U40 siguen planificados.
+**Estado:** temario reconstruido el 26 de noviembre de 2026 porque no se recuperó el documento anterior. Es una propuesta de trabajo editable, no una equivalencia certificada con un examen oficial. Los bloques U1–U3, U4–U6 y U7–U9 están implementados en ramas de trabajo sucesivas; U10–U40 siguen planificados.
 
 ## Criterios
 
@@ -9,7 +9,7 @@
 - Evitar repetir como contenido nuevo los ejes ya trabajados en B1 (relatos básicos, argumentación inicial, hipótesis, medios, ciudad, ciencia, economía, cultura y negociación).
 - Cada unidad incorpora vocabulario en contexto, explicaciones en español, ejemplos PT-BR y ejercicios vinculados a frases completas.
 - El estado de las entradas nuevas permanece `not_checked` mientras no exista verificación documental individual suficiente. Las pruebas estructurales no certifican naturalidad ni nivel MCER.
-- B2 permanece no disponible en el selector hasta completar el curso y sus pruebas. La manifestación parcial de U1–U3 solo permite validación interna.
+- B2 permanece no disponible en el selector hasta completar el curso y sus pruebas. La manifestación parcial de U1–U9 solo permite validación interna.
 
 ## Secuencia propuesta
 
@@ -56,7 +56,7 @@
 | 39 | Proyecto argumentativo multimodal | Integrar lectura crítica, síntesis y defensa de una tesis |
 | 40 | Proyecto final de autonomía B2 | Producir y revisar textos de varios géneros y registros |
 
-## Bloques implementados: U1–U6
+## Bloques implementados: U1–U9
 
 - U1: modalización y postura del hablante.
 - U2: síntesis y atribución de fuentes.
@@ -64,8 +64,11 @@
 - U4: nominalización y densidad informativa.
 - U5: voz pasiva y enfoque informativo.
 - U6: oraciones relativas complejas.
+- U7: subjuntivo en valoración, duda y emoción.
+- U8: condicionales irreales y escenarios alternativos.
+- U9: discurso indirecto y perspectiva.
 
-U1–U6 contienen 30 lecciones y 60 entradas nuevas. Las entradas permanecen `not_checked`; las pruebas verifican estructura, carga offline, referencias de repaso y duplicados normalizados, pero no certifican naturalidad ni nivel MCER.
+U1–U9 contienen 45 lecciones y 90 entradas nuevas. Las entradas permanecen `not_checked`; las pruebas verifican estructura, carga offline, referencias de repaso y duplicados normalizados, pero no certifican naturalidad ni nivel MCER.
 
 ### Referencias de diseño consultadas
 

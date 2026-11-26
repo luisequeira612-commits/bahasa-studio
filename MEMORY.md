@@ -1,7 +1,7 @@
 ## 2026-11-26 — Cierre PR #871 — bloque final PT-BR B2 U37–U40
 
 - PR [#871](https://github.com/luisequeira612-commits/bahasa-studio/pull/871) fusionada por squash en `main`; head validado `00c61d0983bb379b7d85613fee6ac826e48cdd76`; merge commit `0b50e7649c9a098f54a0917b785002db19ac2134`.
-- Añade U37–U40 (20 lecciones y 40 entradas), manifiesto B2 U1–U40, caché app-shell v3.8.165, precarga offline, E2E hasta U40 y contrato específico en `quality:tests`.
+- Añade U37–U40 (20 lecciones y 40 entradas), manifiesto B2 U1–U40, caché app-shell v3.8.165, precarga offline, E2E hasta U40 y contrato específico en `quality:tests`. El currículo B2 completo suma 40 unidades, 200 lecciones y 400 entradas léxicas; queda pendiente la revisión editorial/lingüística final y todas las entradas nuevas permanecen `not_checked`.
 - Primera regresión detectó diez contratos A2 y B2 U1–U3 con expectativas de caché v3.8.164 y una aserción de U40 sin mención explícita de «reescrita orientada». Se corrigieron los contratos a v3.8.165 y la explicación de la lección, sin relajar pruebas.
 - CI del head final: regresión #45887647838 success (103/103 pasos, incluidos Chromium E2E, accesibilidad móvil, progresión y pruebas de evaluación); calidad offline #45887647838 10/10 success; TypeScript #45887647895 success. Sin reviews ni hilos pendientes al fusionar.
 - Verificado en `main`: manifiesto PT-BR B2 publica U1–U40/40; Service Worker precarga `units-37-40.js` y usa caché v3.8.165. El workflow post-merge para el commit squash no devolvió ejecuciones; por tanto no declarar Pages/despliegue post-merge verificado.

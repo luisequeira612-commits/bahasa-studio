@@ -1,3 +1,12 @@
+## 2026-11-26 — Seguimiento CI PT-BR B2 U1–U3
+
+- La primera regresión detectó expectativas de caché antiguas en contratos PT-BR previos; se actualizaron las aserciones del Service Worker a v3.8.153 sin cambiar comportamiento de esos currículos.
+- El contrato B2 detectó dos explicaciones que no nombraban explícitamente todos los términos de su lección: U1 L3 (`não necessariamente`) y U3 L1 (`por mais que`). Ambas explicaciones se completaron.
+- En CI #45857506604, tras corregir U1 L3 y expectativas de caché, el conjunto local llegó a 324/325; el único fallo restante fue U3 L1. Corrección final: commit `314947375e1648623ad9ddb049afee1d85f9194a`.
+- Typecheck del head final #45857889129: success. Regresión #45857889143 seguía ejecutándose en la instalación de Chromium al último chequeo; no declarar PR validada ni fusionar hasta que el job completo termine en verde.
+- PT-BR sigue `available:false`; B2 solo carga internamente U1–U3. Todas las entradas continúan `not_checked`. Sin cambios a IndexedDB v1 ni backup JSON v3.
+- Fuente: GitHub Actions #45857506604/#45857889129/#45857889143 y PR #859; 26 nov 2026.
+
 ## 2026-11-26 — Inicio de PT-BR B2, bloque U1–U3
 
 - Se reconstruye y documenta en `docs/PT_BR_B2_ROADMAP.md` un temario de 40 unidades porque no se recuperó el temario anterior en Notion ni en el repositorio. La reconstrucción queda identificada como propuesta, no como recuperación literal.

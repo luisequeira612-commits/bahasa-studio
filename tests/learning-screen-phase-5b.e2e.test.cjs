@@ -37,7 +37,7 @@ test('phase 5B learning screen is compact, blue and preserves all level/tool ent
 
   try {
     await page.goto(url, { waitUntil: 'domcontentloaded' });
-    await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
+    await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db && typeof AdaptiveLearning !== 'undefined');
     await page.waitForSelector('.learning-unit-node.node-current');
 
     assert.equal(await page.locator('#learningLevelSelector').count(), 0, 'legacy level selector should be removed from the compact Phase 5B DOM');

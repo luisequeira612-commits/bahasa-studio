@@ -153,8 +153,10 @@ test('B2 keeps its development gate while implemented U1 unlocks sequentially af
   assert.notEqual(learningLevels, -1);
   const learningSource = indexSource.slice(learningLevels, learningLevels + 650);
   assert.ok(learningSource.includes("level.id !== 'B2'"), 'non-B2 learning levels remain available');
-  assert.ok(learningSource.includes("/^b2_u(?:[1-9]|[1-5]\\d|60)$/.test(unit.id)"),
-    'only implemented B2 U1–U60 may enter learning and review collections');
+  assert.ok(learningSource.includes('function isPublishedB2Unit(unit, level)'),
+    'the learning filter must use the shared B2 publication helper');
+  assert.ok(learningSource.includes("/^(?:ptbr_)?b2_u(?:[1-9]|[1-5]\\d|60)$/.test(unit.id)"),
+    'only published Indonesian and PT-BR B2 unit identifiers may enter learning and review collections');
   assert.ok(learningSource.includes("level.id !== 'A2' || A2_RELEASE_ENABLED"),
     'the existing A2 release condition remains intact');
 

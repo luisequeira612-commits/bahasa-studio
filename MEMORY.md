@@ -520,13 +520,14 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Fuente: PR #867, merge commit y Actions #45875348243/#45875348223; 26 nov 2026.
 
 
-## 2026-11-26 — PT-BR B2 U28–U30 en preparación
+## 2026-11-26 — Cierre PT-BR B2 U28–U30 (PR #868)
 
+- PR [#868](https://github.com/luisequeira612-commits/bahasa-studio/pull/868) fusionada por squash en `main`; merge commit `1743b0b0f7e76b2c56d910977bb46ce971cecf5d`; head validado `acb388f95406bf14e65cdeb63f038d015f777592`.
 - U28 ciencia e incertidumbre (diseño experimental, estimación inicial, robustez, replicación independiente); U29 tecnología, privacidad y ética (exfiltración de datos, finalidad declarada, sesgo algorítmico, cifrado homomórfico y retención limitada); U30 medioambiente y sostenibilidad (electrificación industrial, inventario de emisiones, capacidad adaptativa, reutilización de materiales y justicia climática).
-- 15 lecciones y 30 entradas nuevas (10 por unidad, dos objetivos por lección), ejemplos PT-BR, explicaciones en español y ejercicios contextualizados. Entradas nuevas `not_checked`.
-- Manifiesto interno de la rama publica U1–U30 de 40; Service Worker precarga U28–U30, caché app-shell v3.8.162; E2E offline se extiende hasta U30.
-- Contratos verifican estructura, dos objetivos por lección, referencias A2, ausencia de duplicados normalizados contra A1–B1 y B2 U1–U27, disponibilidad false y precarga offline.
-- PT-BR sigue `available:false`; B2 deshabilitado. Sin cambios a IndexedDB v1, backup JSON v3, dependencias ni audio. No afirmar certificación nativa ni equivalencia MCER.
-- Estado: rama `feat/pt-br-b2-u28-u30`; pendiente CI y PR.
-- Revisión editorial: se sustituyeron términos ya presentes en A1–B1 o B2 U1–U27 por vocabulario más específico (diseño experimental, replicación independiente, exfiltración de datos, cifrado homomórfico, electrificación industrial e inventario de emisiones); el test comprueba ausencia de duplicados normalizados.
-- Fuente: roadmap B2, U28–U30 y pruebas; 26 nov 2026.
+- El bloque añade 15 lecciones y 30 entradas nuevas (10 por unidad, dos objetivos por lección), ejemplos PT-BR, explicaciones en español y ejercicios contextualizados. Las entradas permanecen `not_checked`.
+- CI del head: regresión #45877472303 success (103 pasos completados, incluidos tests locales, Chromium E2E, evaluación de página y accesibilidad móvil); Offline quality reports 10/10 success; TypeScript #45877472314 success. Sin reviews ni hilos de revisión pendientes.
+- Manifiesto interno B2 publica U1–U30 de 40; Service Worker precarga U28–U30 y usa caché app-shell v3.8.162. B2 acumula 150 lecciones y 300 entradas nuevas.
+- El primer CI #45877103860 falló solo por dos expectativas obsoletas en pruebas A1 U19–U21 y U22–U24 (esperaban 30 unidades publicadas frente a U1–U24); se corrigieron a 24 sin cambiar el manifiesto ni relajar los contratos. La regresión completa del head corregido pasó.
+- PT-BR sigue `available:false`; B2 permanece deshabilitado en el selector. No se afirma certificación nativa ni equivalencia MCER. Sin cambios a IndexedDB v1, backup JSON v3, dependencias ni audio.
+- Confirmado en `main`: manifiesto B2 publica U1–U30. Workflows post-merge/Pages todavía no aparecen asociados al merge commit al momento del registro; no declarar despliegue post-merge verificado hasta comprobarlos.
+- Fuente: PR #868, merge commit, archivos de currículo/pruebas y Actions #45877103860/#45877472303/#45877472314; 26 nov 2026.

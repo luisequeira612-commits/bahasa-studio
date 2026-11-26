@@ -132,7 +132,7 @@ U1–U36 integradas contienen 180 lecciones y 360 entradas nuevas. U37–U40 en 
 - U39: proyecto argumentativo multimodal (tesis central, delimitación temática, curaduría de fuentes, evidencia verificable, contraargumento, línea argumentativa, recursos visuales, leyendas, narrativa de datos y llamada a la acción).
 - U40: proyecto final de autonomía B2 (adecuación al género, perfil del interlocutor, registro, revisión sustantiva, cohesión referencial, concisión, salvedades, autoevaluación, reescritura y versión final).
 - Rama `feat/pt-br-b2-u37-u40`: 20 lecciones y 40 entradas nuevas; cinco lecciones y diez entradas por unidad; ejemplos PT-BR, explicaciones en español, ejercicios contextualizados y estado `not_checked`.
-- Manifiesto interno ampliado a U1–U40 de 40; Service Worker precarga U37–U40 y avanza la caché app-shell a v3.8.165. Contratos específicos y E2E offline ampliados hasta U40. Pendiente CI completo; no fusionar hasta checks verdes y ausencia de revisiones/hilos.
+- Manifiesto interno ampliado a U1–U40 de 40; Service Worker precarga U37–U40 y avanza la caché app-shell a v3.8.165. Contratos específicos y E2E offline ampliados hasta U40. PR [#871](https://github.com/luisequeira612-commits/bahasa-studio/pull/871) abierta; CI completo pendiente, sin revisiones ni hilos al crearla. No fusionar hasta checks verdes.
 - PT-BR permanece `available:false`; B2 no se habilita. No se afirma revisión nativa ni certificación MCER; sin cambios a IndexedDB v1, backup JSON v3, dependencias ni audio.
 
 ### Referencias de diseño consultadas

@@ -232,3 +232,11 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Se amplió únicamente la instrumentación E2E en `tests/learning-screen-phase-5b.e2e.test.cjs` para registrar mutaciones de `hidden`/`aria-expanded`, `scroll`, `resize`, `pointerdown` y `click` con marcas de tiempo. No se tocó producción ni se relajaron aserciones.
 - Nuevo commit diagnóstico: `356425b81a5386e654acdf6f02661bcad2b47635`. Pendiente CI para identificar qué evento/handler provoca el cierre. PR #833 permanece abierta y no fusionada.
 - Fuente: log del job test #139415663217 (run #45673026022), prueba 112 y commit `356425b`; 25 nov 2026.
+
+
+## 2026-11-25 — Corrección pedagógica acotada de A1 U4
+- Auditoría contextual de U4 detectó que la lección 1, dedicada a los números 1–3, mostraba «Tiga tahun» y el modelo «Saya berumur lima tahun» antes de introducir tahun, umur y lima. Se sustituyó ese ejemplo prematuro por «Tiga buku», usando vocabulario ya conocido y los números de la lección.
+- Se alinearon los objetivos de las lecciones 3 y 4 con sus vocabularios reales: L3 presenta cuatro, cinco, diez y edad; L4 introduce seis, siete y ocho.
+- Se añadió una regresión en tests/a1-curriculum-progression.test.cjs para impedir que la L1 vuelva a mostrar esos términos de edad antes de su introducción y para comprobar la coherencia de los objetivos.
+- Alcance: solo currículo A1 U4, prueba específica y MEMORY.md. Sin cambios de runtime, IndexedDB v1, backup JSON v3, dependencias ni otras unidades. Esta corrección mejora la secuencia didáctica; no constituye certificación lingüística del indonesio.
+- Fuente: revisión directa de curriculum-a1.js (A1 U4, lecciones 1–4) y test de progresión A1; 25 nov 2026.

@@ -32,7 +32,7 @@ test('pt-BR A2 U4-U6 load as offline content while the language is selectable',a
  const {units,totalUnits}=await loader.loadUnits('pt-BR','A2',[4,5,6]);
  assert.equal(totalUnits,30);
  assert.deepEqual(Array.from(units,u=>u.unitNumber),[4,5,6]);
- assert.equal(loader.resolve('pt-BR','A2'),null);
+ assert.ok(loader.resolve('pt-BR', 'A2'));
  for(const unit of units){
   assert.equal(unit.vocab.length,10,unit.id);
   assert.equal(unit.lessons.length,5,unit.id);

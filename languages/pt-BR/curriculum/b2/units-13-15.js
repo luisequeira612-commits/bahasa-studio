@@ -6,7 +6,7 @@ const exercise=(words,index)=>{
  return {vocabId:word.id,type:'mc',prompt:'En «'+word.ex+'», ¿qué expresa «'+word.target+'»?',options:choices.slice(3-answer).concat(choices.slice(0,3-answer)),answer,explanation:'Interpreta la relación entre las acciones y el resultado dentro del contexto completo.'};
 };
 const orderExercise=(word,index)=>{
- const correctOrder=word.ex.replace(/[.,!?;:]/g,'').trim().split(/\\s+/).filter(Boolean);
+ const correctOrder=word.ex.replace(/[.,!?;:]/g,'').trim().split(/\s+/).filter(Boolean);
  const offset=(index%(correctOrder.length-1))+1;
  let words=correctOrder.slice(offset).concat(correctOrder.slice(0,offset));
  if(words.join(' ')===correctOrder.join(' '))words=correctOrder.slice().reverse();

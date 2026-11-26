@@ -1,3 +1,11 @@
+## 2026-11-26 — Corrección de secuencia didáctica A1 U11 L2
+
+- La revisión de U11 detectó que L2 adelantaba `Tepat` en tres lugares: la explicación gramatical, la fuente de ejercicios de la unidad y la copia del ejercicio en la lección. La introducción formal está en L3 (`v156`).
+- Se ajustaron la fuente y la copia del ejercicio de `v151` a «Jam tujuh.» (prompt, pista, modelo y explicación), y se retiró `tepat` de la explicación gramatical de L2. El uso de `Tepat` permanece en L3.
+- Se añadió una regresión que comprueba que U11 L2 no exponga `Tepat/tepat` antes de L3 y que la estructura original de ejercicios se conserve.
+- Alcance limitado a currículo, prueba y este registro; sin cambios de runtime, IndexedDB v1, backup JSON v3, dependencias ni audio.
+- Fuente: revisión directa de `curriculum-a1.js` y CI PR #845 run #45741890292; 26 nov 2026. El primer CI reveló que la prueba debía comprobar también la gramática y que la fuente y la copia del ejercicio debían permanecer sincronizadas.
+
 ## 2026-11-25 — Persistencia E2E de la aprobación de evaluación final
 
 - La E2E existente de progresión ya comprobaba evaluación insuficiente → unidad siguiente bloqueada → evaluación aprobada → unidad siguiente desbloqueada.

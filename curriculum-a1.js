@@ -5840,7 +5840,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                 { vocabId: 'v156', type: 'order', prompt: 'Ordena: Las siete en punto', words: ['tepat', 'tujuh', 'Jam'], correctOrder: ['Jam', 'tujuh', 'tepat'], explanation: 'Jam tujuh tepat significa las siete en punto.' },
                                 { vocabId: 'v157', type: 'translate_es_id', prompt: 'Traduce: las siete y cinco', answer: 'Jam tujuh lewat lima menit', explanation: 'Lewat indica los minutos que pasan de la hora.' },
                                 { vocabId: 'v146', type: 'listen', prompt: 'Escribe la expresión “esta mañana”', answer: 'Pagi ini', explanation: 'Pagi ini significa esta mañana.' },
-                                { vocabId: 'v151', type: 'write', prompt: 'Escribe una frase para decir que son las siete en punto.', hint: 'Usa jam, tujuh y tepat.', modelAnswer: 'Jam tujuh tepat.', explanation: 'La frase significa las siete en punto.' },
+                                { vocabId: 'v151', type: 'write', prompt: 'Escribe una frase para decir que son las siete.', hint: 'Usa jam y tujuh.', modelAnswer: 'Jam tujuh.', explanation: 'Jam tujuh significa las siete.' },
                                 { vocabId: 'v155', type: 'write', prompt: 'Escribe una frase sencilla con nanti.', hint: 'Puedes hablar de estudiar más tarde.', modelAnswer: 'Saya belajar nanti.', explanation: 'Nanti significa más tarde; otras frases correctas también valen.' }
                             ,
                                             {
@@ -5943,7 +5943,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                 {
                                     "title": "Lección 2: Decir la hora",
                                     "objective": "Aprende a decir la hora y aplica las formas nuevas en frases sencillas, recuperando lo estudiado anteriormente.",
-                                    "grammar": "Jam y pukul sirven para expresar la hora. Pukul tujuh indica las siete; jam tujuh tepat expresa las siete en punto.",
+                                    "grammar": "Jam y pukul sirven para expresar la hora. Pukul tujuh y jam tujuh indican las siete.",
                                     "vocabIds": [
                                         "v150",
                                         "v151",
@@ -5998,10 +5998,10 @@ window.BAHASA_CURRICULUM_A1 = {
                                         {
                                             "vocabId": "v151",
                                             "type": "write",
-                                            "prompt": "Escribe una frase para decir que son las siete en punto.",
-                                            "hint": "Usa jam, tujuh y tepat.",
-                                            "modelAnswer": "Jam tujuh tepat.",
-                                            "explanation": "La frase significa las siete en punto."
+                                            "prompt": "Escribe una frase para decir que son las siete.",
+                                            "hint": "Usa jam y tujuh.",
+                                            "modelAnswer": "Jam tujuh.",
+                                            "explanation": "Jam tujuh significa las siete."
                                         },
                                         {
                                             "vocabId": "v146",

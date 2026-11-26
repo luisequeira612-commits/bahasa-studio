@@ -180,6 +180,19 @@ test('A1 U5-U8 contain five authored lessons with sequenced introductions and sp
   }
 });
 
+test('A1 U11 lesson 2 does not expose Tepat before its introduction in lesson 3', () => {
+  const unit = a1.units[10];
+  assert.equal(unit.id, 'a1_u11');
+  const lesson2 = unit.lessons[1];
+  const lesson3 = unit.lessons[2];
+  assert.ok((lesson3.vocabIds || []).includes('v156'));
+  const lesson2Text = JSON.stringify(lesson2);
+  assert.equal(lesson2Text.includes('Tepat'), false,
+    'U11 L2 must not expose Tepat before its introduction in L3');
+  assert.equal(lesson2Text.includes('tepat'), false,
+    'U11 L2 must not expose the future vocabulary Tepat in lowercase either');
+});
+
 test('A1 progression guard is registered exactly once in the regression workflow', () => {
   const workflow = fs.readFileSync(path.join(__dirname, '..', '.github', 'workflows', 'regression.yml'), 'utf8');
   const registrations = workflow.match(/node --test tests\/a1-curriculum-progression\.test\.cjs/g) || [];

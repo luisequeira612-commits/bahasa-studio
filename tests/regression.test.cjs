@@ -232,8 +232,8 @@ test('A1 examples and explanations stay consistent with the taught material', ()
   assert.match(ageWriting.explanation, /Tiga buku|Tres libros/);
   assert.doesNotMatch(unit6.grammar, /Saya suka/);
   assert.ok(unit6.vocab.some(word => word.idn === 'Air'));
-  assert.equal(day.ex, 'Hari ini saya belajar.');
-  assert.equal(day.exEsp, 'Hoy estudio.');
+  assert.equal(day.ex, 'Hari');
+  assert.equal(day.exEsp, 'Día.');
 
   const unit5 = a1.units.find(unit => unit.id === 'a1_u5');
   assert.doesNotMatch(unit5.grammar, /Saya punya/);
@@ -1652,7 +1652,7 @@ test('A1 daily routines, location and numbers include listening comprehension ch
     ['a1_u7', 'Saya di rumah', 'Estoy en casa'],
     ['a1_u7', 'Di mana sekolah?', '¿Dónde está la escuela?'],
     ['a1_u8', 'Saya belajar setiap hari', 'Estudio todos los días'],
-    ['a1_u8', 'Hari ini saya belajar', 'Hoy estudio'],
+    ['a1_u8', 'Hari ini', 'Hoy'],
     ['a1_u9', 'Tiga belas', '13'],
     ['a1_u9', 'Sembilan belas', '19'],
     ['a1_u9', 'Dua puluh', '20'],
@@ -1828,7 +1828,7 @@ test('A1 daily routines, location and numbers include listening comprehension ch
     ['a1_u7', 'Saya di rumah', 'Estoy en casa'],
     ['a1_u7', 'Di mana sekolah?', '¿Dónde está la escuela?'],
     ['a1_u8', 'Saya belajar setiap hari', 'Estudio todos los días'],
-    ['a1_u8', 'Hari ini saya belajar', 'Hoy estudio'],
+    ['a1_u8', 'Hari ini', 'Hoy'],
     ['a1_u9', 'Tiga belas', '13'],
     ['a1_u9', 'Sembilan belas', '19'],
     ['a1_u9', 'Dua puluh', '20'],

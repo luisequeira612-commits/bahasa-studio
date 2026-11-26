@@ -248,3 +248,35 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Revisión de CI 26 nov: se detectó una segunda copia de la traducción «Tiga buku» en la lección y se normalizó también a «Tiga», que ya tiene audio indexado. Se mantienen los tipos de ejercicios escritos y el tracker actualizado.
 
 - La ejecución #45729586124 pasó regresión, audio manifest y pruebas locales; falló la prueba de integridad porque A1 usa un hash canónico fijado. Se actualizó la huella esperada de A1 de 08fc090e a ecbf3fb1 (valor real del currículo revisado), sin alterar estructura ni conteos; queda pendiente nueva ejecución completa.
+
+ 
+## 2026-11-26 — Corrección acotada de secuencia en A1 U8
+- Auditoría contextual confirmó que U8 L1 usaba «Hari ini saya belajar» en el ejemplo de Hari/Hari ini y en un ejercicio de escucha antes de introducir Belajar en L2. Se cambia el ejemplo a «Hari» / «Hari ini» y el audio de L1 a «Hari ini», con opciones/explicación acordes.
+- El ejemplo de Tidur y el modelo de escritura de repaso usaban «malam», vocabulario de U11; se cambian a «Tidur» y «Saya tidur.».
+- Se añade regresión específica para impedir el uso de Belajar en L1 y Malam en el modelo de U8. Se sincronizan las tres filas de U8 en el tracker A1 U1–U23.
+- Alcance: currículo A1 U8, pruebas, tracker y MEMORY.md. Sin cambios de runtime, IndexedDB v1, backup JSON v3, dependencias ni nuevos audios. Revisión pedagógica contextual, no certificación lingüística.
+- Fuente: artefacto curriculum-quality-report del run #45730229191 (paths A1.units[7].vocab[0], vocab[1], vocab[4], lessons[0].exercises[2], lessons[4].exercises[4]); inspección directa de U8 y audio/index.json; 26 nov 2026.
+
+- Seguimiento de U8: las pruebas de audio/regresión se alinean con el texto «Hari ini» (ya indexado), sin agregar nuevas frases al manifiesto. Se valida además que la primera lección no contenga Belajar y que el modelo de Tidur no use Malam.
+
+- CI de PR #843 detectó que al reutilizar «Hari ini» (ya presente en el manifiesto base) cambia la contabilidad de cobertura interactiva: 29 textos estáticos cubiertos y 67 clips faltantes, en vez de 28/68. Se actualizan las expectativas del test de cobertura; no se generan clips nuevos.
+
+- Corrección final del test de audio: además del texto descriptivo, la aserción numérica debía pasar de 28 a 29 textos cubiertos; se corrigió el valor esperado. La distribución de clips faltantes permanece en 15/67.
+
+- Hash canónico A1 recalculado directamente desde el objeto curricular actualizado: `0ddebdf3` (FNV-1a de `JSON.stringify(BAHASA_CURRICULUM_A1)`). Se actualiza la aserción de integridad para la nueva revisión de U8.
+
+- Se alineó también el valor numérico de la aserción de clips interactivos añadidos: 67 (antes seguía fijado en 68 aunque el desglose ya sumaba 67).
+
+
+- Seguimiento A1 U8 (26 nov 2026): se detectó además que el modelo de rutina «Saya makan pagi» adelantaba `pagi`, introducido en U11. Se simplificaron las dos copias del ejercicio a «Saya makan» y se añadió una prueba específica para impedir que U8 vuelva a usar `pagi`. No se modificó el inventario ni el tipo de ejercicios, audio, runtime, IndexedDB v1, backup JSON v3 o dependencias. Fuente: inspección de las dos copias en currículo de U8 y prueba de regresión.
+
+
+- Ajuste posterior al primer CI de A1 U8 (26 nov 2026): la guardia detectó que el enunciado «Completa: ___ saya belajar» aún adelantaba `belajar` en L1, aunque el audio del mismo ejercicio solo decía «Hari ini». Se cambió el enunciado por «Elige la expresión que significa «hoy»», conservando opciones, respuesta, tipo y objetivo. El fallo era de contenido de la prueba, no de runtime. CI anterior #45731821903 falló únicamente en esta aserción de secuencia; el informe de calidad offline pasó.
+
+- CI #45731821903 encontró una aparición residual de `belajar` en el enunciado de completar de U8 L1 («Completa: ___ saya belajar»). Se cambió por «Completa: ___ (Hoy)» en las copias de unidad y lección para no adelantar el verbo antes de L2.
+
+- Hash canónico A1 recalculado tras retirar el último prompt con `belajar` de U8 L1: `21df8122` (FNV-1a sobre JSON.stringify del objeto A1).
+
+- Ajuste de coherencia con el ejercicio de unidad U8: el prompt de L1 se iguala a «Elige la expresión que significa «hoy»», el mismo ejercicio de la unidad, evitando la aparición de Belajar y preservando la identidad/multiplicidad de los ejercicios originales.
+
+- Hash canónico A1 actualizado tras alinear el prompt de U8 L1 con su ejercicio de unidad: `6f029e43`.

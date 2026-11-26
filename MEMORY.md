@@ -1,3 +1,22 @@
+## 2026-11-26 — Seguimiento CI PR #870 (U34–U36)
+
+- PR [#870](https://github.com/luisequeira612-commits/bahasa-studio/pull/870) abierta para U34–U36. TypeScript #45883897314 terminó success y Offline quality reports #45883897341 success; la regresión #45883897341 falló en tres contratos A2 históricos (U7–U9, U10–U12 y U13–U15), que aún buscaban el nombre de caché v3.8.163 mientras el Service Worker ya declara v3.8.164.
+- El resto de la suite local, inventario, lint y E2E no llegó a ejecutarse por el fallo en quality:tests; no atribuir el fallo al contenido B2. Se actualizan únicamente las tres expectativas de caché a v3.8.164, sin cambiar runtime ni comportamiento.
+- Revalidar el head resultante con regresión completa, Chromium E2E, accesibilidad móvil y TypeScript; mantener PR abierta hasta que todo esté verde y no haya reviews/hilos pendientes.
+- PT-BR sigue `available:false`; B2 deshabilitado; vocabulario nuevo `not_checked`. Sin cambios a IndexedDB v1, backup JSON v3, dependencias ni audio.
+- Fuente: PR #870, Actions #45883897314/#45883897341 y logs del job #140129721100; 26 nov 2026.
+
+## 2026-11-26 — PT-BR B2 U34–U36 en preparación
+
+- Rama `feat/pt-br-b2-u34-u36`, creada desde `main` después de integrar PR #869 y verificar sus workflows post-merge (regresión #45880701517, TypeScript #45880701513 y Pages #45880701567, todos success).
+- Añadido `languages/pt-BR/curriculum/b2/units-34-36.js`: U34 salud y políticas públicas; U35 educación y aprendizaje permanente; U36 consumo, finanzas y decisiones. Son 15 lecciones y 30 entradas nuevas, diez por unidad y dos objetivos léxicos por lección; ejemplos PT-BR, explicaciones en español, ejercicios contextualizados y estado `not_checked`.
+- Manifiesto interno B2 extendido a U1–U36 de 40; Service Worker precarga U34–U36 y actualiza app-shell a v3.8.164. Se amplió la prueba E2E offline de Chromium a B2 U1–U36.
+- Añadido contrato `tests/pt-br-curriculum-b2-u34-u36.test.cjs` para disponibilidad false, carga parcial, estructura, explicación de términos, referencias A2, duplicados normalizados contra A1/A2/B1/B2 U1–U33 y precarga offline. Incluido en `quality:tests`; se actualizaron los contratos activos de caché A2/B1 y manifiesto B2.
+- `docs/PT_BR_B2_ROADMAP.md` actualizado: U1–U36 = 180 lecciones y 360 entradas.
+- Pendiente: revisar coherencia final del bloque, abrir PR, ejecutar CI completo (calidad offline, TypeScript, regresión, accesibilidad móvil y Chromium E2E). No fusionar hasta checks verdes y ausencia de revisiones/hilos pendientes.
+- PT-BR permanece `available:false`; B2 no se habilita en el selector. No se toca IndexedDB v1, backup JSON v3, dependencias ni audio. No se afirma revisión nativa ni certificación MCER.
+- Fuente: rama, archivos del bloque, manifiesto, Service Worker, pruebas y roadmap; 26 nov 2026.
+
 ## 2026-11-26 — Seguimiento CI PT-BR B2 U1–U3
 
 - La primera regresión detectó expectativas de caché antiguas en contratos PT-BR previos; se actualizaron las aserciones del Service Worker a v3.8.153 sin cambiar comportamiento de esos currículos.

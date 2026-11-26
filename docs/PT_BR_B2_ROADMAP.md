@@ -104,7 +104,7 @@
 - U29: tecnología, privacidad y ética.
 - U30: medioambiente y sostenibilidad.
 
-U1–U33 contienen 165 lecciones y 330 entradas nuevas. Cada unidad incluye cinco lecciones y diez entradas. Las entradas nuevas permanecen `not_checked`; las pruebas verifican estructura, carga offline, referencias de repaso y duplicados normalizados, pero no certifican naturalidad ni nivel MCER.
+U1–U36 contienen 180 lecciones y 360 entradas nuevas. Cada unidad incluye cinco lecciones y diez entradas. Las entradas nuevas permanecen `not_checked`; las pruebas verifican estructura, carga offline, referencias de repaso y duplicados normalizados, pero no certifican naturalidad ni nivel MCER.
 
 ## Bloque implementado: U31–U33
 
@@ -114,6 +114,15 @@ U1–U33 contienen 165 lecciones y 330 entradas nuevas. Cada unidad incluye cinc
 - Implementación en rama `feat/pt-br-b2-u31-u33`: 15 lecciones y 30 entradas nuevas, cinco lecciones y diez entradas por unidad; dos objetivos léxicos por lección; ejemplos PT-BR, explicaciones en español y ejercicios contextualizados. Entradas `not_checked`.
 - El manifiesto de trabajo extiende la publicación interna hasta U1–U33; caché app-shell v3.8.163 y precarga offline. PT-BR continúa `available:false`; no se habilita el curso.
 - Validación pendiente: contratos de estructura, referencias de repaso A2, duplicados normalizados, regresión y E2E offline. No se afirma certificación nativa ni equivalencia MCER.
+
+## Bloque en preparación: U34–U36
+
+- U34: salud y políticas públicas (atención primaria, cribado poblacional, vigilancia de brotes, determinantes sociales, decisiones compartidas, rutas de atención y asignación de recursos).
+- U35: educación y aprendizaje permanente (formación continua, alfabetización informacional, evaluación por competencias, diseño universal para el aprendizaje, brechas, trayectorias y transferencia).
+- U36: consumo, finanzas y decisiones (endeudamiento familiar, costo total del crédito, presupuesto doméstico, fondo de emergencia, diversificación, liquidez, poder adquisitivo y capacidad de pago).
+- Rama `feat/pt-br-b2-u34-u36`: 15 lecciones y 30 entradas nuevas; cinco lecciones y diez entradas por unidad; dos objetivos léxicos por lección; ejemplos PT-BR, explicaciones en español y ejercicios contextualizados. Entradas `not_checked`.
+- Manifiesto interno ampliado a U1–U36 de 40; Service Worker precarga U34–U36 y usa caché app-shell v3.8.164. Contratos específicos y E2E offline ampliados hasta U36.
+- PR [#870](https://github.com/luisequeira612-commits/bahasa-studio/pull/870) abierta. Primer CI: TypeScript y calidad offline success; regresión falló por tres expectativas antiguas de caché v3.8.163 en contratos A2 U7–U15. Se actualizaron esas aserciones a v3.8.164 sin modificar runtime; pendiente repetir CI completo y revisar E2E Chromium/accesibilidad antes de fusionar. PT-BR continúa `available:false`; no se habilita el curso. No se afirma certificación nativa ni equivalencia MCER; sin cambios a IndexedDB v1, backup JSON v3, dependencias ni audio.
 
 ### Referencias de diseño consultadas
 

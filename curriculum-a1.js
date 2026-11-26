@@ -3552,11 +3552,11 @@ window.BAHASA_CURRICULUM_A1 = {
                             desc: 'Hablar de actividades cotidianas y expresar cuándo ocurren.',
                             grammar: 'Los adverbios de tiempo suelen colocarse al inicio o al final de la oración. “Setiap hari” significa “todos los días”.',
                             vocab: [
-                                { id: 'v35', idn: 'Hari', esp: 'Día', ex: 'Hari ini saya belajar.', exEsp: 'Hoy estudio.' },
-                                { id: 'v36', idn: 'Hari ini', esp: 'Hoy / este día', ex: 'Hari ini saya belajar.', exEsp: 'Hoy estudio.' },
+                                { id: 'v35', idn: 'Hari', esp: 'Día', ex: 'Hari', exEsp: 'Día.' },
+                                { id: 'v36', idn: 'Hari ini', esp: 'Hoy / este día', ex: 'Hari ini', exEsp: 'Hoy.' },
                                 { id: 'v37', idn: 'Belajar', esp: 'Estudiar / aprender', ex: 'Saya belajar bahasa Indonesia.', exEsp: 'Estudio indonesio.' },
                                 { id: 'v38', idn: 'Bekerja', esp: 'Trabajar', ex: 'Ayah saya bekerja.', exEsp: 'Mi padre trabaja.' },
-                                { id: 'v50', idn: 'Tidur', esp: 'Dormir', ex: 'Saya tidur di malam hari.', exEsp: 'Duermo por la noche.' },
+                                { id: 'v50', idn: 'Tidur', esp: 'Dormir', ex: 'Tidur', exEsp: 'Dormir.' },
                                 { id: 'v44', idn: 'Setiap hari', esp: 'Todos los días', ex: 'Saya belajar setiap hari.', exEsp: 'Estudio todos los días.' },
                                 {"id":"v122","idn":"Besok","esp":"Mañana","ex":"Besok saya bekerja.","exEsp":"Mañana trabajo."},
 
@@ -3631,10 +3631,10 @@ window.BAHASA_CURRICULUM_A1 = {
                                     "vocabId": "v35",
                                     "type": "mc",
                                     "prompt": "Escucha la frase y elige su significado",
-                                    "audioText": "Hari ini saya belajar",
-                                    "options": ["Hoy estudio", "Mañana trabajo", "Todos los días duermo"],
+                                    "audioText": "Hari ini",
+                                    "options": ["Hoy", "Mañana", "Ayer"],
                                     "answer": 0,
-                                    "explanation": "Hari ini saya belajar significa «Hoy estudio»."
+                                    "explanation": "Hari ini significa «Hoy»."
                                 },
                                 {
                                     "vocabId": "v36",
@@ -3697,7 +3697,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                 { vocabId: 'v35', type: 'write', prompt: "Escribe una frase breve sobre tu rutina diaria.", hint: "Usa un día o una acción cotidiana que hayas aprendido.", modelAnswer: "Saya makan pagi.", explanation: "Saya makan pagi significa «Desayuno»; makan es comer y pagi es mañana." },
                                 {"vocabId":"v36","type":"mc","prompt":"¿Qué significa hari ini?","options":["Hoy","Mañana","Ayer"],"answer":0,"explanation":"Hari ini significa hoy."},
                                 {"vocabId":"v122","type":"translate_es_id","prompt":"Traduce: mañana","answer":"Besok","explanation":"Besok significa mañana."},
-                                {"vocabId":"v44","type":"write","prompt":"Escribe dos frases sobre tu rutina.","hint":"Intenta construir una frase nueva con el vocabulario de la unidad.","modelAnswer":"Hari ini saya belajar. Saya minum air setiap hari.","explanation":"Usa hari ini, besok o setiap hari."},
+                                {"vocabId":"v44","type":"write","prompt":"Escribe dos frases sobre tu rutina.","hint":"Intenta construir una frase nueva con el vocabulario de la unidad.","modelAnswer":"Hari ini. Saya minum air setiap hari.","explanation":"Usa hari ini, besok o setiap hari."},
                                 { vocabId: 'v44', type: 'write', prompt: 'Tarea integradora: preséntate, pide una bebida, pregunta el precio y describe tu rutina.', hint: 'Combina presentación, cortesía, una pregunta y una expresión temporal.', modelAnswer: 'Nama saya Ana. Saya dari Nikaragua. Saya mau teh, tolong. Berapa harganya? Saya belajar setiap hari.', explanation: 'La respuesta modelo combina varios objetivos A1; puedes usar tus propios datos y otras frases correctas.' }
                             ]
                         ,
@@ -3733,10 +3733,10 @@ window.BAHASA_CURRICULUM_A1 = {
                                                                                                     "vocabId": "v35",
                                                                                                     "type": "mc",
                                                                                                     "prompt": "Escucha la frase y elige su significado",
-                                                                                                    "audioText": "Hari ini saya belajar",
-                                                                                                    "options": ["Hoy estudio", "Mañana trabajo", "Todos los días duermo"],
+                                                                                                    "audioText": "Hari ini",
+                                                                                                    "options": ["Hoy", "Mañana", "Ayer"],
                                                                                                     "answer": 0,
-                                                                                                    "explanation": "Hari ini saya belajar significa «Hoy estudio»."
+                                                                                                    "explanation": "Hari ini significa «Hoy»."
                                                                                                 },
                         {
                                                                                                     "vocabId": "v36",
@@ -3856,7 +3856,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                                                                                     "explanation": "Tidur significa dormir."
                                                                                                 },
                         {"vocabId":"v122","type":"translate_es_id","prompt":"Traduce: mañana","answer":"Besok","explanation":"Besok significa mañana."},
-                        {"vocabId":"v44","type":"write","prompt":"Escribe dos frases sobre tu rutina.","hint":"Intenta construir una frase nueva con el vocabulario de la unidad.","modelAnswer":"Hari ini saya belajar. Saya minum air setiap hari.","explanation":"Usa hari ini, besok o setiap hari."},
+                        {"vocabId":"v44","type":"write","prompt":"Escribe dos frases sobre tu rutina.","hint":"Intenta construir una frase nueva con el vocabulario de la unidad.","modelAnswer":"Hari ini. Saya minum air setiap hari.","explanation":"Usa hari ini, besok o setiap hari."},
                         { vocabId: 'v44', type: 'write', prompt: 'Tarea integradora: preséntate, pide una bebida, pregunta el precio y describe tu rutina.', hint: 'Combina presentación, cortesía, una pregunta y una expresión temporal.', modelAnswer: 'Nama saya Ana. Saya dari Nikaragua. Saya mau teh, tolong. Berapa harganya? Saya belajar setiap hari.', explanation: 'La respuesta modelo combina varios objetivos A1; puedes usar tus propios datos y otras frases correctas.' },
                         {
                                                                                                     "vocabId": "v44",
@@ -3938,7 +3938,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                                     "type": "write",
                                                     "prompt": "Escribe una frase con «Tidur».",
                                                     "hint": "Usa la palabra en una frase breve y completa.",
-                                                    "modelAnswer": "Saya tidur di malam hari.",
+                                                    "modelAnswer": "Saya tidur.",
                                                     "explanation": "Duermo por la noche."
                                                 },
                                 {

@@ -9,7 +9,7 @@
 - Evitar repetir como contenido nuevo los ejes ya trabajados en B1 (relatos básicos, argumentación inicial, hipótesis, medios, ciudad, ciencia, economía, cultura y negociación).
 - Cada unidad incorpora vocabulario en contexto, explicaciones en español, ejemplos PT-BR y ejercicios vinculados a frases completas.
 - El estado de las entradas nuevas permanece `not_checked` mientras no exista verificación documental individual suficiente. Las pruebas estructurales no certifican naturalidad ni nivel MCER.
-- B2 permanece no disponible en el selector hasta completar el curso y sus pruebas. La manifestación parcial de U1–U18 solo permite validación interna.
+- B2 permanece no disponible en el selector hasta completar el curso y sus pruebas. La manifestación parcial de U1–U21 solo permite validación interna.
 
 ## Secuencia propuesta
 
@@ -80,13 +80,19 @@
 - U17: perífrasis verbales y modalidad.
 - U18: colocaciones verbo-nominales.
 
-## Bloque en preparación: U19–U21
+## Bloques implementados: U19–U21
 
 - U19: derivación y familias léxicas.
 - U20: expresiones idiomáticas y uso contextual.
 - U21: debate público y negociación avanzada.
 
-U1–U18 contienen 90 lecciones y 180 entradas nuevas; U19–U21 están en preparación con el mismo formato de cinco lecciones y diez entradas por unidad. Las entradas permanecen `not_checked`; las pruebas verifican estructura, carga offline, referencias de repaso y duplicados normalizados, pero no certifican naturalidad ni nivel MCER.
+## Bloque en preparación: U22–U24
+
+- U22: registro académico y profesional.
+- U23: correspondencia formal y reclamaciones.
+- U24: presentaciones y entrevistas extensas.
+
+U1–U21 contienen 105 lecciones y 210 entradas nuevas. U22–U24 están en preparación con el mismo formato de cinco lecciones y diez entradas por unidad. Las entradas permanecen `not_checked`; las pruebas verifican estructura, carga offline, referencias de repaso y duplicados normalizados, pero no certifican naturalidad ni nivel MCER.
 
 ### Referencias de diseño consultadas
 

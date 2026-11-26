@@ -125,7 +125,7 @@ U1–U36 integradas contienen 180 lecciones y 360 entradas nuevas. U37–U40 en 
 - PR [#870](https://github.com/luisequeira612-commits/bahasa-studio/pull/870) fusionada por squash en `main`; merge commit `a60232f0f614113b44e27aa8e676cca2b7f23a27`. CI del head final: regresión #45884552214 success (103 pasos, Chromium E2E, accesibilidad móvil y pruebas de evaluación incluidos), calidad offline 10/10 y TypeScript #45884552466 success. Sin reviews ni hilos pendientes.
 - Manifiesto interno extendido a U1–U36/40; Service Worker precarga U34–U36, caché app-shell v3.8.164. PT-BR continúa `available:false`; B2 no se habilita. No se afirma certificación nativa ni equivalencia MCER; sin cambios a IndexedDB v1, backup JSON v3, dependencias ni audio.
 
-## Bloque en preparación: U37–U40
+## Bloque completado: U37–U40
 
 - U37: ironía, humor y subentendidos (ironía, sarcasmo, burla, doble sentido, tono jocoso, humor autocrítico, sátira, broma interna, ruptura de expectativa e insinuación).
 - U38: ambigüedad, presuposición e implicatura (ambigüedad léxica y sintáctica, presuposición, implicatura, inferencia pragmática, deixis, referente discursivo, alcance de la negación, sobreentendido y desambiguación).

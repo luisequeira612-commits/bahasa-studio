@@ -50,7 +50,7 @@ test('A2 U16-U18 review references resolve only to previously published A2 vocab
  const {loader}=createPilot(),{units}=await loader.loadUnits('pt-BR','A2',Array.from({length:24},(_,i)=>i+1));
  for(let index=15;index<18;index++){const earlier=new Set(units.slice(0,index).flatMap(u=>u.vocab.map(w=>w.id)));for(const lesson of units[index].lessons)for(const id of lesson.reviewVocabIds)assert.ok(earlier.has(id),id);}
 });
-test('service worker precaches A2 U16-U18 using cache v3.8.159',()=>{
+test('service worker precaches A2 U16-U18 using cache v3.8.160',()=>{
  const source=fs.readFileSync(path.join(repo,'service-worker.js'),'utf8');
- assert.match(source,/units-16-18\.js/);assert.match(source,/curriculum\/a2\/index\.js/);assert.match(source,/bahasa-studio-v3\.8\.159/);
+ assert.match(source,/units-16-18\.js/);assert.match(source,/curriculum\/a2\/index\.js/);assert.match(source,/bahasa-studio-v3\.8\.160/);
 });

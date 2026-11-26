@@ -1,3 +1,13 @@
+## 2026-11-26 — PR #877 U13–U15 fusionada; U16–U18 en curso
+
+- PR [#877](https://github.com/luisequeira612-commits/bahasa-studio/pull/877) fusionada por squash en `main`; head `2fb638ae3f171cf1918d48320a50f08eece6f5e2`, merge commit `e60b791c66e6619d9adec339eb2e4b37833ea80f`.
+- CI final: regresión #45895227735 success (103/103 pasos, incluidos accesibilidad móvil, Chromium E2E y evaluación); calidad offline 10/10; TypeScript 8/8. Sin reviews ni hilos pendientes.
+- U1–U15 integradas: 150 ejercicios `order` en bancos de unidad y 150 `mc` en lecciones. El currículo original U1–U40 permanece intacto.
+- Rama `feat/pt-br-b2-exercise-variety-u16-u18` abierta desde el merge #877: convierte los 30 ejercicios de banco de U16–U18 a `order`; mantiene 30 ejercicios de lección como `mc`; auditoría integral ampliada hasta U18.
+- Próximo bloque U19–U21. Continuar por bloques hasta U40 y luego revisar producción escrita/reformulación. PT-BR y B2 permanecen deshabilitados; vocabulario `not_checked`; no certificar naturalidad nativa ni nivel MCER.
+- Sin cambios a IndexedDB v1, backup JSON v3, dependencias, audio ni red.
+- Fuente: PR #877, Actions #45895227735/#45895227775 y rama U16–U18; 26 nov 2026.
+
 ## 2026-11-26 — Diversidad de ejercicios B2 U10–U12 fusionada; U13–U15 en curso
 
 - PR [#876](https://github.com/luisequeira612-commits/bahasa-studio/pull/876) fusionada por squash en `main`; head `b9d67ac7e53e34dad4a02bb6e769e8a6a863aba5`, merge commit `c22c75914dad4bb7dd25b7b8ab8712525289e03a`.

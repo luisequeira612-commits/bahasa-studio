@@ -503,5 +503,5 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Manifiesto B2 amplía publicación interna a U1–U24 de 40. Service Worker precarga U22–U24 y usa caché app-shell v3.8.160; pruebas de B2 anteriores, A2/B1 y E2E offline se actualizan.
 - Prueba E2E amplía carga offline hasta B2 U24, manteniendo PT-BR no disponible y aislado de progreso indonesio. Prueba de bloque comprueba 30 entradas únicas sin duplicados normalizados frente a A1–B1 y B2 U1–U21, cinco lecciones y dos objetivos por lección.
 - PT-BR sigue `available:false`; B2 deshabilitado. Sin cambios a IndexedDB v1, backup JSON v3, dependencias ni audio. No afirmar certificación nativa ni equivalencia MCER.
-- Estado: rama `feat/pt-br-b2-u22-u24`; contenido, manifiesto, precarga, E2E y contratos de pruebas actualizados; pendiente CI, PR y validación post-merge.
+- Estado: rama `feat/pt-br-b2-u22-u24`; PR #866 abierta; contenido, manifiesto, precarga, E2E y contratos de pruebas actualizados; CI completo pendiente. El archivo U22–U24 quedó sincronizado con el contenido de la rama en main porque se había creado allí sin registro en el manifiesto; el bloque sigue sin ser cargado por la app hasta integrar manifiesto y precarga del PR. No declarar validación post-merge.
 - Fuente: `docs/PT_BR_B2_ROADMAP.md`, U22–U24 y pruebas; 26 nov 2026.

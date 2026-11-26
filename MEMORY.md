@@ -276,3 +276,5 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - CI #45731821903 encontró una aparición residual de `belajar` en el enunciado de completar de U8 L1 («Completa: ___ saya belajar»). Se cambió por «Completa: ___ (Hoy)» en las copias de unidad y lección para no adelantar el verbo antes de L2.
 
 - Hash canónico A1 recalculado tras retirar el último prompt con `belajar` de U8 L1: `21df8122` (FNV-1a sobre JSON.stringify del objeto A1).
+
+- Ajuste de coherencia con el ejercicio de unidad U8: el prompt de L1 se iguala a «Elige la expresión que significa «hoy»», el mismo ejercicio de la unidad, evitando la aparición de Belajar y preservando la identidad/multiplicidad de los ejercicios originales.

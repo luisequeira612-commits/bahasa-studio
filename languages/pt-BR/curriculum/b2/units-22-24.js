@@ -5,11 +5,18 @@ const exercise=(words,index)=>{
  const word=words[index],choices=[word.esp,words[(index+3)%10].esp,words[(index+6)%10].esp],answer=index%3;
  return {vocabId:word.id,type:'mc',prompt:'En «'+word.ex+'», ¿qué expresa «'+word.target+'»?',options:choices.slice(3-answer).concat(choices.slice(0,3-answer)),answer,explanation:'Interpreta el sentido de la expresión dentro de la situación y del registro.'};
 };
+const orderExercise=(word,index)=>{
+ const correctOrder=word.ex.replace(/[.,!?;:]/g,'').trim().split(/\s+/).filter(Boolean);
+ const offset=(index%(correctOrder.length-1))+1;
+ let words=correctOrder.slice(offset).concat(correctOrder.slice(0,offset));
+ if(words.join(' ')===correctOrder.join(' '))words=correctOrder.slice().reverse();
+ return {vocabId:word.id,type:'order',prompt:'Reconstruye el ejemplo que ilustra «'+word.target+'».',words,correctOrder,explanation:'Ordena las palabras para reconstruir el ejemplo en portugués brasileño.'};
+};
 const makeUnit=(number,title,desc,grammar,trapTitle,trapDetail,words,specs)=>({
  unitNumber:number,id:'ptbr_b2_u'+number,title:'Unidad '+number+': '+title,desc,grammar,
  trap:{title:trapTitle,detail:trapDetail},vocab:words,
  lessons:specs.map(spec=>({title:spec[0],objective:spec[1],grammar:spec[2],vocabIds:spec[3].map(i=>words[i].id),reviewVocabIds:spec[4],exercises:[exercise(words,spec[3][0]),exercise(words,spec[3][1])]})),
- exercises:words.map((_,i)=>exercise(words,i))
+ exercises:words.map((word,i)=>orderExercise(word,i))
 });
 const u22=[
 vocab(22,1,'adequação','adecuación','A adequação do tom depende do público e da finalidade.','La adecuación del tono depende del público y de la finalidad.'),

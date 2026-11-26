@@ -24,7 +24,7 @@ const refs=[
 {id:'en_a1_u10_v01',target:'mother',esp:'madre'},
 {id:'en_a1_u12_v01',target:'house',esp:'casa'},
 {id:'en_a1_u13_v20',target:'early',esp:'temprano'},
-{id:'en_a1_u1_v17',target:'listen',esp:'escuchar'},
+{id:'en_a1_u1_v18',target:'listen',esp:'escuchar'},
 {id:'en_a1_u25_v02',target:'left',esp:'izquierda'},
 {id:'en_a1_u28_v01',target:'much',esp:'mucho / mucha'},
 {id:'en_a1_u29_v08',target:'soup',esp:'sopa'},

@@ -415,3 +415,5 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Fuente: rama \`feat/pt-br-b2-u07-u09\`, \`docs/PT_BR_B2_ROADMAP.md\`, archivos de currículo y pruebas; 26 nov 2026.
 
 - Ajuste de contrato antes de cerrar CI: la prueba histórica \`pt-br-curriculum-b2-u01-u03.test.cjs\` todavía esperaba el manifiesto U1–U6. Se actualizó para aceptar U1–U9 y comprobar el tercer bloque. Commit de corrección: \`a72ccfef149233682a3c4ddf1566eff0f72b8218\`; el CI debe repetirse sobre este head.
+
+- Primer CI del head previo: falló el contrato local en 23 aserciones de caché de pruebas PT-BR A2/B1/B2/A1, que aún esperaban v3.8.154 tras el cambio intencional del Service Worker a v3.8.155. No fueron fallos del currículo ni de Chromium. Se actualizaron las expectativas de esas pruebas y el contrato B2 previo para reconocer el bloque U7–U9. Revalidar el head final.

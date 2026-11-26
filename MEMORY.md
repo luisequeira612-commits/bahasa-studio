@@ -1,8 +1,8 @@
 ## 2026-11-26 — PR #871 abierta para bloque final PT-BR B2 U37–U40
 
-- PR [#871](https://github.com/luisequeira612-commits/bahasa-studio/pull/871) abierta desde `feat/pt-br-b2-u37-u40`, base `main` en merge commit de #870 `a60232f0f614113b44e27aa8e676cca2b7f23a27`; head `bee81cb942dd3402f6236155600e2d132d00cd2b`.
+- PR [#871](https://github.com/luisequeira612-commits/bahasa-studio/pull/871) abierta desde `feat/pt-br-b2-u37-u40`, base `main` en merge commit de #870 `a60232f0f614113b44e27aa8e676cca2b7f23a27`; head validado en el último sondeo `d6acb3fd1b9eb06512138a7ffa84fe3517ffebc7`.
 - Añade U37–U40 (20 lecciones y 40 entradas), manifiesto B2 U1–U40, caché app-shell v3.8.165, precarga offline, E2E hasta U40 y contrato específico en `quality:tests`.
-- CI de PR #871 pendiente de aparecer/ejecutarse; reviews y review threads vacíos al abrir. No fusionar hasta CI completo verde.
+- Primera regresión #45886966097 detectó diez contratos A2 y B2 U1–U3 con expectativa de caché v3.8.164 y una aserción de U40 sin mención explícita de «reescrita orientada». Se corrigieron los contratos a v3.8.165 y la explicación de la lección, sin relajar pruebas. En el head `d6acb3fd1b9eb06512138a7ffa84fe3517ffebc7`, TypeScript #45887444456 success y calidad offline #45887444466 10/10 success; regresión #45887444466 en ejecución, sin fallos al último sondeo. Reviews y review threads vacíos. No fusionar hasta regresión, Chromium E2E y accesibilidad móvil verdes.
 - PT-BR continúa `available:false`; B2 deshabilitado; vocabulario `not_checked`; no afirmar certificación nativa ni equivalencia MCER. Sin cambios a IndexedDB v1, backup JSON v3, dependencias ni audio.
 - Fuente: PR #871, rama y archivos curriculares/contratos; 26 nov 2026.
 

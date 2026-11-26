@@ -256,3 +256,5 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Se añade regresión específica para impedir el uso de Belajar en L1 y Malam en el modelo de U8. Se sincronizan las tres filas de U8 en el tracker A1 U1–U23.
 - Alcance: currículo A1 U8, pruebas, tracker y MEMORY.md. Sin cambios de runtime, IndexedDB v1, backup JSON v3, dependencias ni nuevos audios. Revisión pedagógica contextual, no certificación lingüística.
 - Fuente: artefacto curriculum-quality-report del run #45730229191 (paths A1.units[7].vocab[0], vocab[1], vocab[4], lessons[0].exercises[2], lessons[4].exercises[4]); inspección directa de U8 y audio/index.json; 26 nov 2026.
+
+- Seguimiento de U8: las pruebas de audio/regresión se alinean con el texto «Hari ini» (ya indexado), sin agregar nuevas frases al manifiesto. Se valida además que la primera lección no contenga Belajar y que el modelo de Tidur no use Malam.

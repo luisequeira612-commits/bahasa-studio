@@ -1,3 +1,10 @@
+## 2026-11-26 — Diversidad de ejercicios B2: extensión piloto U4–U6
+
+- PR #873 ya integró U1–U3: 30 ejercicios `order` en banco de unidad y 30 `mc` en lecciones.
+- Esta rama extiende el patrón a U4–U6: otras 30 actividades de unidad pasan a `order`; las 30 actividades de lección conservan `mc`. U1–U6 sumarán 60 tareas de orden y 60 MC, una modalidad distinta por cada entrada léxica.
+- El contrato integral exige el reparto `order` en bancos de unidad y `mc` en lecciones para U1–U6, y valida tokens y secuencia. CI pendiente.
+- Fuente: PR #873 fusionada y rama `feat/pt-br-b2-exercise-variety-u04-u06`; 26 nov 2026.
+
 ## 2026-11-26 — Diversidad de ejercicios B2: piloto U1–U3
 
 - La auditoría integral PR #872 identificó un bloqueo pedagógico: 800 registros de opción múltiple, con 400 preguntas distintas reutilizadas entre lección y banco de unidad.

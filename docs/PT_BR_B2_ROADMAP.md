@@ -1,6 +1,6 @@
 # Portugués brasileño B2 — temario de 40 unidades
 
-**Estado:** temario reconstruido el 26 de noviembre de 2026 porque no se recuperó el documento anterior. Es una propuesta de trabajo editable, no una equivalencia certificada con un examen oficial. Todos los bloques U1–U30 están implementados; U31–U40 siguen planificados.
+**Estado:** temario reconstruido el 26 de noviembre de 2026 porque no se recuperó el documento anterior. Es una propuesta de trabajo editable, no una equivalencia certificada con un examen oficial. Los bloques U1–U30 están implementados; U31–U33 están en preparación; U34–U40 siguen planificados.
 
 ## Criterios
 
@@ -9,7 +9,7 @@
 - Evitar repetir como contenido nuevo los ejes ya trabajados en B1 (relatos básicos, argumentación inicial, hipótesis, medios, ciudad, ciencia, economía, cultura y negociación).
 - Cada unidad incorpora vocabulario en contexto, explicaciones en español, ejemplos PT-BR y ejercicios vinculados a frases completas.
 - El estado de las entradas nuevas permanece `not_checked` mientras no exista verificación documental individual suficiente. Las pruebas estructurales no certifican naturalidad ni nivel MCER.
-- B2 permanece no disponible en el selector hasta completar el curso y sus pruebas. La manifestación parcial de U1–U30 solo permite validación interna.
+- B2 permanece no disponible en el selector hasta completar el curso y sus pruebas. La manifestación parcial de U1–U33 solo permite validación interna.
 
 ## Secuencia propuesta
 
@@ -105,6 +105,15 @@
 - U30: medioambiente y sostenibilidad.
 
 U1–U30 contienen 150 lecciones y 300 entradas nuevas. U28–U30 están implementadas con cinco lecciones y diez entradas por unidad. Las entradas nuevas permanecen `not_checked`; las pruebas verifican estructura, carga offline, referencias de repaso y duplicados normalizados, pero no certifican naturalidad ni nivel MCER.
+
+## Bloque en preparación: U31–U33
+
+- U31: sociedad, desigualdad e inclusión (desigualdad estructural, movilidad social, disparidad regional, acción afirmativa, vulnerabilidad interseccional y cohesión social).
+- U32: trabajo y transformación profesional (recualificación, trabajo por plataformas, vínculo laboral, negociación colectiva, protección previdenciaria y automatización).
+- U33: cultura, identidad y representación (patrimonio inmaterial, apropiación cultural, curaduría, memoria colectiva, hibridismo, borrado histórico y pluralidad lingüística).
+- Implementación en rama `feat/pt-br-b2-u31-u33`: 15 lecciones y 30 entradas nuevas, cinco lecciones y diez entradas por unidad; dos objetivos léxicos por lección; ejemplos PT-BR, explicaciones en español y ejercicios contextualizados. Entradas `not_checked`.
+- El manifiesto de trabajo extiende la publicación interna hasta U1–U33; caché app-shell v3.8.163 y precarga offline. PT-BR continúa `available:false`; no se habilita el curso.
+- Validación pendiente: contratos de estructura, referencias de repaso A2, duplicados normalizados, regresión y E2E offline. No se afirma certificación nativa ni equivalencia MCER.
 
 ### Referencias de diseño consultadas
 

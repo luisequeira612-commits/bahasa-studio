@@ -278,3 +278,5 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Hash canónico A1 recalculado tras retirar el último prompt con `belajar` de U8 L1: `21df8122` (FNV-1a sobre JSON.stringify del objeto A1).
 
 - Ajuste de coherencia con el ejercicio de unidad U8: el prompt de L1 se iguala a «Elige la expresión que significa «hoy»», el mismo ejercicio de la unidad, evitando la aparición de Belajar y preservando la identidad/multiplicidad de los ejercicios originales.
+
+- Hash canónico A1 actualizado tras alinear el prompt de U8 L1 con su ejercicio de unidad: `6f029e43`.

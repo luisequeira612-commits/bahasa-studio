@@ -1,3 +1,10 @@
+## 2026-11-26 — Diversidad PT-BR B2 U34–U36
+
+- U34–U36 convierten sus 30 actividades de banco de unidad a `order`; las 30 actividades de lección permanecen `mc`.
+- Se amplía el contrato integral para exigir el reparto `order`/`mc` hasta U36.
+- PR #883 (U31–U33) tiene regresión fallida en `Run local quality tests`; no declarar fusión hasta resolver/verificar ese fallo. Type checks pasaron.
+- Próximo bloque: U37–U39. Mantener PT-BR/B2 deshabilitados, `not_checked`, sin cambios a IndexedDB v1, backup JSON v3, dependencias, audio ni red.
+
 ## 2026-11-26 — Diversidad PT-BR B2 U31–U33
 
 - U31–U33 convierten sus 30 actividades de banco de unidad a `order`; las 30 actividades de lección permanecen `mc`.

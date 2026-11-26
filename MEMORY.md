@@ -467,5 +467,17 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - PR [#863](https://github.com/luisequeira612-commits/bahasa-studio/pull/863) fusionada por squash en `main`, merge commit `e4f7df79e7cb08fa9bbea201b33e1295391cbf72`. Head `5846d0de526aa2feb502255386f7357a04788118` pasó regresión #45867608981 (103/103 pasos; Offline quality reports 10/10) y TypeScript #45867609244 success. Sin comentarios ni revisiones pendientes.
 - U13 causa/consecuencia/finalidad en registro formal; U14 participios y construcciones resultativas; U15 gerundio y relaciones entre acciones. El bloque añade 15 lecciones y 30 entradas; manifiesto interno B2 publica U1–U15 de 40 y Service Worker usa caché v3.8.157.
 - Entradas nuevas permanecen `not_checked`; PT-BR continúa `available:false` y B2 no se habilita en selector. No se modifican IndexedDB v1, backup JSON v3, dependencias ni audio.
-- Validación de Pages posterior a la fusión aún no confirmada en Actions; el CI de la cabeza de la PR sí está verde.
+- El CI del head de la PR está verde (regresión #45867608981: 103/103 pasos, Offline quality 10/10; TypeScript #45867609244). La ejecución específica de Pages posterior al merge no se ha confirmado por separado.
 - Fuente: PR #863, merge commit y Actions #45867608981/#45867609244; 26 nov 2026.
+
+
+## 2026-11-26 — PT-BR B2 U16–U18 en preparación
+
+- Se inicia el sexto bloque B2: U16 verbos pronominales y matices aspectuales; U17 perífrasis verbales y modalidad; U18 colocaciones verbo-nominales.
+- Añade 15 lecciones y 30 entradas (10 por unidad, dos objetivos por lección), con ejemplos PT-BR y explicaciones en español. Entradas nuevas `not_checked`.
+- Manifiesto B2 mantiene 40 unidades y publica internamente U1–U18; PT-BR sigue `available:false`.
+- Service Worker precarga U16–U18 y avanza caché app-shell a v3.8.158. Se actualizan pruebas de caché A1/A2/B1/B2 y E2E Chromium offline hasta U18.
+- Pruebas verifican estructura, explicaciones por lección, referencias A2, duplicados normalizados contra A1–B1 y B2 U1–U15, disponibilidad false y carga offline.
+- Sin cambios a IndexedDB v1, backup JSON v3, dependencias ni audio. No afirmar naturalidad certificada ni equivalencia MCER.
+- Estado: contenido y contratos en `feat/pt-br-b2-u16-u18`; pendiente terminar actualización de pruebas heredadas, CI completo, PR y validación post-merge.
+- Fuente: rama `feat/pt-br-b2-u16-u18`, roadmap B2 y pruebas; 26 nov 2026.

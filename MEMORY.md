@@ -690,3 +690,10 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Primeras ejecuciones detectaron expectativas antiguas de caché/manifiesto y duplicados léxicos; se actualizaron los contratos y se sustituyeron términos repetidos. La segunda ejecución tuvo un timeout transitorio en una prueba E2E existente de la tarjeta de repaso y una explicación incompleta de U32; se corrigió la explicación. La ejecución final pasó completa.
 - PT-BR sigue `available:false`; B2 permanece deshabilitado. No se afirma certificación nativa ni equivalencia MCER. Sin cambios a IndexedDB v1, backup JSON v3, dependencias ni audio.
 - Fuente: PR #869, merge commit, currículo, pruebas y Actions #45880201978/#45880202009; 26 nov 2026.
+
+## PT-BR B2 release gate — 26 nov 2026
+- PR #886 fusionado: los bancos de unidad U1–U40 usan `order` y los ejercicios de lección usan `mc`; la regresión fue repetida y pasó antes de la fusión.
+- Preparación de activación en `feat/pt-br-b2-release-gate`: `LanguageManager` marca PT-BR disponible; el arranque carga los niveles registrados A1/A2/B1/B2; el filtro de B2 acepta IDs `ptbr_b2_u…`; caché offline v3.8.166 con los 13 bloques B2 ya incluidos en el inventario del Service Worker.
+- Estado al crear esta rama: pendiente CI de habilitación, merge y verificación de GitHub Pages. No declarar B2 publicado hasta verificar Pages.
+- Restricciones conservadas: IndexedDB v1 y backup JSON v3 intactos; sin dependencias, red ni audio nuevos; `verification.status: not_checked`, sin certificación nativa ni afirmación MCER oficial.
+- Fuente: PR #886 y rama `feat/pt-br-b2-release-gate`, 26 nov 2026.

@@ -92,7 +92,7 @@ unit(15,'Presente simple III: negativas','Niega hábitos y rutinas usando don’
 ['stay','quedarse','He doesn’t stay at home.','Él no se queda en casa.'],
 ['drink','beber / tomar','She doesn’t drink tea.','Ella no toma té.'],
 ['eat','comer','We don’t eat meat.','No comemos carne.'],
-['read a book','leer un libro','I don’t read a book every day.','No leo un libro todos los días.'],
+['take a nap','tomar una siesta','I don’t take a nap every day.','No tomo una siesta todos los días.'],
 ['go out','salir','They don’t go out on weekdays.','No salen los días laborables.'],
 ['at night','por la noche','He doesn’t work at night.','Él no trabaja por la noche.'],
 ['habit','hábito','This habit is healthy.','Este hábito es saludable.']
@@ -123,7 +123,7 @@ unit(16,'Presente simple IV: preguntas','Formula preguntas sobre hábitos, horar
 ['free','libre / disponible','Are they free tomorrow?','¿Están libres mañana?'],
 ['today','hoy','Do you work today?','¿Trabajas hoy?'],
 ['tomorrow','mañana','Does he study tomorrow?','¿Estudia él mañana?'],
-['yesterday','ayer','Were you busy yesterday?','¿Estuviste ocupado ayer?'],
+['this afternoon','esta tarde','Do you work this afternoon?','¿Trabajas esta tarde?'],
 ['date','fecha','What is the date today?','¿Cuál es la fecha de hoy?'],
 ['calendar','calendario','The calendar is on the wall.','El calendario está en la pared.']
 ],[

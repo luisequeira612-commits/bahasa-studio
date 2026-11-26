@@ -248,3 +248,13 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Revisión de CI 26 nov: se detectó una segunda copia de la traducción «Tiga buku» en la lección y se normalizó también a «Tiga», que ya tiene audio indexado. Se mantienen los tipos de ejercicios escritos y el tracker actualizado.
 
 - La ejecución #45729586124 pasó regresión, audio manifest y pruebas locales; falló la prueba de integridad porque A1 usa un hash canónico fijado. Se actualizó la huella esperada de A1 de 08fc090e a ecbf3fb1 (valor real del currículo revisado), sin alterar estructura ni conteos; queda pendiente nueva ejecución completa.
+
+
+## 2026-11-26 — Secuencia didáctica de A1 U8: tiempo y rutina
+
+- La revisión contextual detectó que U8 L1 incluía «Hari ini saya belajar» antes de introducir `belajar` en L2. El ejercicio de escucha se trasladó a L2 sin eliminarlo ni cambiar su tipo.
+- Se reemplazó en L1 el ejercicio de completar que también adelantaba `belajar` por una comprobación de «Hari ini» sin vocabulario futuro.
+- Los ejemplos de `Tidur` y las tareas de rutina usaban `malam` y `pagi`, vocabulario introducido más adelante en U11. Se simplificaron a «Saya tidur» y «Saya makan», manteniendo objetivos y referencias ya disponibles.
+- Se añadió una regresión específica para impedir que U8 use `belajar` en L1 o `pagi`/`malam` antes de su introducción.
+- Alcance previsto: `curriculum-a1.js`, `tests/a1-curriculum-progression.test.cjs` y `MEMORY.md`. Sin cambios de runtime, IndexedDB v1, backup JSON v3, dependencias ni audios.
+- Fuente: inspección contextual de A1 U8 y orden de introducción en `curriculum-a1.js`; 26 nov 2026. No equivale a certificación lingüística.

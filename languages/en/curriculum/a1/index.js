@@ -4,9 +4,10 @@ root.GUARDI_CURRICULUM_MANIFESTS=root.GUARDI_CURRICULUM_MANIFESTS||{};
 root.GUARDI_CURRICULUM_MANIFESTS.en=root.GUARDI_CURRICULUM_MANIFESTS.en||{};
 root.GUARDI_CURRICULUM_MANIFESTS.en.A1=Object.freeze({
  id:'A1',language:'en',title:'A1 — Principiante',totalUnits:32,
- publishedUnits:Object.freeze([1,2,3,4,5,6]),
+ publishedUnits:Object.freeze([1,2,3,4,5,6,7,8,9,10,11,12]),
  blocks:Object.freeze([
-  {id:'01-06',path:'./languages/en/curriculum/a1/units-01-06.js',units:Object.freeze([1,2,3,4,5,6])}
+  {id:'01-06',path:'./languages/en/curriculum/a1/units-01-06.js',units:Object.freeze([1,2,3,4,5,6])},
+  {id:'07-12',path:'./languages/en/curriculum/a1/units-07-12.js',units:Object.freeze([7,8,9,10,11,12])}
  ])
 });
 })(typeof window!=='undefined'?window:globalThis);

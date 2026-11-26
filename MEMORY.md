@@ -413,3 +413,5 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - PT-BR continúa \`available:false\`; el curso B2 no se habilita en el selector. No se modifican IndexedDB v1, backup JSON v3, dependencias ni audio. El temario continúa siendo una reconstrucción provisional, no certificación MCER ni revisión nativa.
 - Estado: código y pruebas añadidos; falta completar CI, revisar resultados y fusionar solo cuando todo esté verde.
 - Fuente: rama \`feat/pt-br-b2-u07-u09\`, \`docs/PT_BR_B2_ROADMAP.md\`, archivos de currículo y pruebas; 26 nov 2026.
+
+- Ajuste de contrato antes de cerrar CI: la prueba histórica \`pt-br-curriculum-b2-u01-u03.test.cjs\` todavía esperaba el manifiesto U1–U6. Se actualizó para aceptar U1–U9 y comprobar el tercer bloque. Commit de corrección: \`a72ccfef149233682a3c4ddf1566eff0f72b8218\`; el CI debe repetirse sobre este head.

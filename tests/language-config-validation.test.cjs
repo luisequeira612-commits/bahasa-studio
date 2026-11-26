@@ -60,7 +60,8 @@ test('language validation rejects invalid voice status, CEFR key, unsafe path an
     assert.ok(result.errors.includes('voiceStatus_invalid'));
     assert.ok(result.errors.includes('curriculum_level_invalid:C1'));
     assert.ok(result.errors.includes('curriculum_path_invalid:C1'));
-    assert.ok(result.errors.includes('available_without_curriculum'));
+    const selectableWithoutCourse = manager.validateLanguageConfig({ ...futureLanguage, available: true, curriculum: {} });
+    assert.ok(selectableWithoutCourse.errors.includes('available_without_curriculum'));
 });
 
 test('language validation rejects missing required metadata and malformed catalog input', () => {

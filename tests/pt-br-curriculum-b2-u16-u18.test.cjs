@@ -46,8 +46,8 @@ test('pt-BR B2 U16-U18 load as a partial internal block while the course remains
 });
 test('B2 manifest declares 40 units and publishes only the authored U1-U18 blocks',()=>{
  const {window}=createPilot(),manifest=window.GUARDI_CURRICULUM_MANIFESTS['pt-BR'].B2;
- assert.equal(manifest.totalUnits,40);assert.deepEqual(Array.from(manifest.publishedUnits),Array.from({length:18},(_,i)=>i+1));
- assert.deepEqual(Array.from(manifest.blocks.map(block=>Array.from(block.units))),[[1,2,3],[4,5,6],[7,8,9],[10,11,12],[13,14,15],[16,17,18]]);
+ assert.equal(manifest.totalUnits,40);assert.deepEqual(Array.from(manifest.publishedUnits),Array.from({length:21},(_,i)=>i+1));
+ assert.deepEqual(Array.from(manifest.blocks.map(block=>Array.from(block.units))),[[1,2,3],[4,5,6],[7,8,9],[10,11,12],[13,14,15],[16,17,18],[19,20,21]]);
  assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
 });
 test('B2 U16-U18 review references resolve to existing A2 vocabulary IDs',async()=>{
@@ -75,5 +75,5 @@ test('service worker precaches B2 U1-U18 and advances the app-shell cache',()=>{
  const source=fs.readFileSync(path.join(repo,'service-worker.js'),'utf8');
  assert.ok(source.includes("./languages/pt-BR/curriculum/b2/index.js"));
  for(const file of b2Files)assert.ok(source.includes('./languages/pt-BR/curriculum/b2/'+file));
- assert.match(source,/bahasa-studio-v3\.8\.158/);
+ assert.match(source,/bahasa-studio-v3\.8\.159/);
 });

@@ -483,3 +483,14 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - PR [#864](https://github.com/luisequeira612-commits/bahasa-studio/pull/864) fusionada por squash en `main`, merge commit `fc0c849544c9d922f6973cc10197f32f496e3e17`. Head `0572fff76766cfb48551075ad44e020783a70373` pasó regresión #45870221660 (103/103 pasos; Offline quality reports 10/10) y TypeScript #45870221604 success. Sin comentarios ni revisiones pendientes.
 - Validación post-merge de Pages aún no confirmada por separado. PR cerrada como merged; manifiesto y Service Worker confirmados en `main`.
 - Fuente: PR #864, merge commit y Actions #45870221660/#45870221604; 26 nov 2026.
+
+
+## 2026-11-26 — PT-BR B2 U19–U21 en preparación
+
+- Próximo bloque: U19 derivación y familias léxicas; U20 expresiones idiomáticas y uso contextual; U21 debate público y negociación avanzada.
+- Diseño inicial: 15 lecciones y 30 entradas (10 por unidad, dos objetivos por lección), ejemplos PT-BR, explicaciones en español y `not_checked` para vocabulario nuevo.
+- Manifiesto interno se amplía a U1–U21 de 40; PT-BR sigue `available:false`. Service Worker avanza caché app-shell a v3.8.159 y precarga U19–U21.
+- Pruebas nuevas cubren estructura, revisión A2, ausencia de duplicados normalizados frente a A1–B1 y B2 U1–U18, carga offline y disponibilidad false. Se actualizan contratos de manifiesto B2 anteriores.
+- Sin cambios a IndexedDB v1, backup JSON v3, dependencias ni audio. No afirmar certificación nativa ni equivalencia MCER.
+- Estado: rama `feat/pt-br-b2-u19-u21`, bloque y manifiesto registrados; pendiente completar expectativas de caché heredadas, CI, PR y validación post-merge.
+- Fuente: `docs/PT_BR_B2_ROADMAP.md`, archivo U19–U21 y pruebas; 26 nov 2026.

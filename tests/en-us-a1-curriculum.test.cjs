@@ -42,7 +42,7 @@ test('English A1 manifest exposes the authored U1-U12 blocks',async()=>{
  assert.equal(curriculum.totalUnits,32);
  assert.deepEqual(Array.from(curriculum.units,u=>u.unitNumber),[1,2,3,4,5,6,7,8,9,10,11,12]);
 });
-test('each English A1 units have five explicit lessons, 22 new words and 20 supported exercises',async()=>{
+test('each English A1 unit has five explicit lessons, 22 new words and 20 supported exercises',async()=>{
  const {loader}=createEnglishPilot();
  const {units}=await loader.loadUnits('en','A1',[1,2,3,4,5,6,7,8,9,10,11,12]);
  for(const unit of units){
@@ -60,7 +60,7 @@ test('each English A1 units have five explicit lessons, 22 new words and 20 supp
   for(const lesson of unit.lessons){
    assert.ok(lesson.title&&lesson.objective&&lesson.grammar);
    assert.equal(lesson.exercises.length,2);
-   for(const id of [...lesson.vocabIds,...lesson.reviewVocabIds]) assert.ok(ids.has(id)||id.startsWith('en_a1_u'),unit.id+' invalid reference '+id);
+   for(const id of [...lesson.vocabIds,...lesson.reviewVocabIds]) assert.ok(ids.has(id),unit.id+' invalid reference '+id);
    for(const exercise of lesson.exercises) assert.ok(['mc','order'].includes(exercise.type));
   }
   for(const exercise of unit.exercises) assert.ok(['mc','order'].includes(exercise.type));
@@ -68,7 +68,7 @@ test('each English A1 units have five explicit lessons, 22 new words and 20 supp
 });
 test('English A1 curriculum uses the established vocabulary shape without changing storage contracts',async()=>{
  const {loader}=createEnglishPilot();
- const {units}=await loader.loadUnits('en','A1',[1,2,3,4,5,6]);
+ const {units}=await loader.loadUnits('en','A1',[1,2,3,4,5,6,7,8,9,10,11,12]);
  for(const word of units.flatMap(unit=>unit.vocab)){
   assert.deepEqual(Object.keys(word).sort(),['ex','exEsp','esp','id','target','verification'].sort());
  }

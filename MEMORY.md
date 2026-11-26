@@ -703,3 +703,11 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - PR #887 (`feat/pt-br-b2-release-gate`) prepara la activación de PT-BR y las 40 unidades B2; manifest de 40 unidades/13 bloques y Service Worker v3.8.166 con precarga de B2.
 - TypeScript y calidad offline aprobados en el head más reciente; regresión Chromium/E2E continúa en ejecución. No fusionar hasta que toda la regresión esté verde.
 - Tras el merge, verificar Pages, selector PT-BR, progresión B2 U1–U40 y carga offline real antes de declarar publicación. Mantener entradas `not_checked`, IndexedDB v1 y backup JSON v3 sin cambios; no afirmar certificación nativa ni MCER.
+
+
+## Publicación PT-BR B2 verificada — 26 nov 2026
+- PR #887 fusionada en `main`, merge commit `531d08d6910614845f459079690ba2ef3b8e61bf`. PT-BR queda disponible; la app carga A1/A2/B1/B2, y el filtro admite `ptbr_b2_u…` con las 40 unidades.
+- GitHub Pages build/deploy: `success` para el commit integrado; entorno publicado: https://luisequeira612-commits.github.io/bahasa-studio/.
+- Regresión post-merge y TypeScript: `success`. Las pruebas de currículo comprobaron B2 U1–U40 y la precarga de los 13 bloques en Service Worker v3.8.166.
+- IndexedDB v1 y backup JSON v3 intactos; sin dependencias, audio ni red nuevos. Vocabulario sigue `verification.status: not_checked`; no afirmar certificación nativa ni MCER oficial.
+- Fuentes: PR #887; workflows Actions #45904923241 (Pages) y #45904923714 (regresión), 26 nov 2026.

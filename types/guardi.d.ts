@@ -107,5 +107,3 @@ interface Window {
     GUARDI_CURRICULUM_MANIFESTS?: Record<string, Partial<Record<GuardiCefrLevel, GuardiCurriculumManifest>>>;
     GUARDI_CURRICULUM_BLOCKS?: Record<string, Partial<Record<GuardiCefrLevel, Record<string, GuardiCurriculumBlock>>>>;
 }
-
-export {};

@@ -226,9 +226,9 @@ test('A1 examples and explanations stay consistent with the taught material', ()
   const unit8 = a1.units.find(unit => unit.id === 'a1_u8');
   const day = unit8.vocab.find(word => word.id === 'v35');
 
-  assert.equal(three.ex, 'Tiga buku.');
-  assert.equal(three.exEsp, 'Tres libros.');
-  assert.ok(unit4.exercises.some(exercise => exercise.prompt === 'Traduce: tres libros' && exercise.answer === 'Tiga buku'));
+  assert.equal(three.ex, 'Tiga');
+  assert.equal(three.exEsp, 'Tres.');
+  assert.ok(unit4.exercises.some(exercise => exercise.prompt === 'Traduce: tres' && exercise.answer === 'Tiga'));
   assert.match(ageWriting.explanation, /Tiga buku|Tres libros/);
   assert.doesNotMatch(unit6.grammar, /Saya suka/);
   assert.ok(unit6.vocab.some(word => word.idn === 'Air'));

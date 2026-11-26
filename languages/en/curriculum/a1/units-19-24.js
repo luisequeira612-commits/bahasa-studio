@@ -50,7 +50,7 @@ unit(20,'Deseos y planes','Expresa deseos y planes sencillos con want to + verbo
 ['hope','esperar / tener esperanza','I hope to see the beach.','Espero ver la playa.'],
 ['decide','decidir','She decides to go camping.','Ella decide ir de campamento.'],
 ['learn','aprender','He wants to learn English.','Él quiere aprender inglés.'],
-['visit','visitar','We want to visit a museum.','Queremos visitar un museo.'],
+['explore','explorar','We want to explore a museum.','Queremos explorar un museo.'],
 ['buy','comprar','I need to buy a ticket.','Necesito comprar un boleto.'],
 ['save','ahorrar / guardar','They save money for a trip.','Ahorran dinero para un viaje.'],
 ['spend','gastar / pasar tiempo','We spend a day at the beach.','Pasamos un día en la playa.'],
@@ -172,7 +172,7 @@ unit(24,'Lugares de la ciudad','Reconoce lugares y elementos urbanos comunes par
 ['crosswalk','paso peatonal','Use the crosswalk.','Usa el paso peatonal.'],
 ['sidewalk','acera / banqueta','Walk on the sidewalk.','Camina por la acera.'],
 ['bridge','puente','The bridge is near the station.','El puente está cerca de la estación.'],
-['square','plaza','The square is in the center.','La plaza está en el centro.'],
+['town square','plaza central','The town square is in the center.','La plaza central está en el centro.'],
 ['bank','banco','The bank is next to the hotel.','El banco está junto al hotel.'],
 ['post office','oficina de correos','The post office is across from the bank.','La oficina de correos está enfrente del banco.'],
 ['police station','estación de policía','The police station is on this street.','La estación de policía está en esta calle.'],
@@ -184,7 +184,7 @@ unit(24,'Lugares de la ciudad','Reconoce lugares y elementos urbanos comunes par
 ['hotel','hotel','The hotel is near the airport.','El hotel está cerca del aeropuerto.'],
 ['airport','aeropuerto','The airport is far from the city.','El aeropuerto está lejos de la ciudad.'],
 ['train station','estación de tren','The train station is in the center.','La estación de tren está en el centro.'],
-['church','iglesia','The church is near the square.','La iglesia está cerca de la plaza.'],
+['church','iglesia','The church is near the town square.','La iglesia está cerca de la plaza.'],
 ['gas station','gasolinera','The gas station is on the road.','La gasolinera está en la carretera.']
 ],[
 ['Lección 1: Calles y vías','Reconoce calles, avenidas, carreteras y esquinas.','Street, avenue y road nombran vías; corner indica el punto donde se encuentran.',[0,1,2,3],'The store is on the corner.'],

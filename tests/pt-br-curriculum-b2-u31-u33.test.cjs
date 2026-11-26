@@ -26,7 +26,7 @@ test('pt-BR B2 U31-U33 load as a partial internal block while the course is sele
  const {window,loader}=createPilot();
  assert.equal(window.LanguageManager.isSupported('pt-BR'),true);
  assert.equal(window.LanguageManager.isAvailable('pt-BR'),true);
- assert.equal(loader.resolve('pt-BR','B2'),null);
+ assert.ok(loader.resolve('pt-BR', 'B2'));
  const {units,totalUnits}=await loader.loadUnits('pt-BR','B2',[31,32,33]);
  assert.equal(totalUnits,40);assert.deepEqual(Array.from(units,u=>u.unitNumber),[31,32,33]);
  for(const unit of units){

@@ -1,3 +1,11 @@
+## 2026-11-26 — Diversidad de ejercicios B2: piloto U1–U3
+
+- La auditoría integral PR #872 identificó un bloqueo pedagógico: 800 registros de opción múltiple, con 400 preguntas distintas reutilizadas entre lección y banco de unidad.
+- Piloto en rama `feat/pt-br-b2-exercise-variety-u01-u03`: las 30 actividades del banco de unidad de U1–U3 pasan a tipo `order`, reconstruyendo el ejemplo PT-BR de cada entrada; las 30 actividades de lección permanecen como `mc`. Cada término practica significado en la lección y orden/frase en el banco de unidad.
+- Se usa el tipo `order` ya presente en el motor de aprendizaje; sin nuevas dependencias, audio, red, IndexedDB ni cambios de backup. La auditoría completa ahora valida ambos formatos y comprueba que las fichas de orden usan exactamente los tokens del ejemplo, en secuencia correcta y mezclada.
+- CI pendiente. Si el piloto pasa, extender el patrón por bloques y evaluar después actividades de producción escrita y reformulación. No habilitar B2 hasta terminar diversidad y auditoría.
+- Fuente: PR #872 fusionada, tests/written-response.test.cjs, A1 curriculum order helper y nueva rama piloto; 26 nov 2026.
+
 ## 2026-11-26 — Auditoría integral específica PT-BR B2
 
 - Hallazgo de alcance: el artefacto `curriculum-quality-report.json` de Actions #45887647838 informa sobre el currículo indonesio B2 embebido en `index.html`, no sobre el currículo PT-BR B2 modular. No usar sus cifras ni sus 44 warnings como evaluación del curso portugués.

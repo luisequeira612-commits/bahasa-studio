@@ -1,0 +1,22 @@
+name: JavaScript type checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  typecheck:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install pinned TypeScript
+        run: npm install --no-save --package-lock=false typescript@5.9.3
+      - name: Check language manager and curriculum loader
+        run: npm run typecheck

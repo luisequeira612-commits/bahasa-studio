@@ -1,12 +1,16 @@
+// @ts-check
 (function (root) {
     'use strict';
 
+    /** @type {readonly GuardiCefrLevel[]} */
     const LEVELS = Object.freeze(['A1', 'A2', 'B1', 'B2']);
+    /** @type {Readonly<Record<string, Partial<Record<GuardiCefrLevel, string>>>>} */
     const LEGACY_EXPORTS = Object.freeze({
         id: Object.freeze({ A1: 'BAHASA_CURRICULUM_A1', A2: 'BAHASA_CURRICULUM_A2' })
     });
     const loaded = new Map();
 
+    /** @param {string} language @param {string} level @returns {GuardiCurriculumDescriptor | null} */
     function resolve(language, level) {
         const manager = root.LanguageManager;
         const config = manager && manager.getLanguage(language);
@@ -17,6 +21,7 @@
         return Object.freeze({ language, level: normalizedLevel, path, exportName: LEGACY_EXPORTS[language] && LEGACY_EXPORTS[language][normalizedLevel] || null });
     }
 
+    /** @param {string} language @param {string} level @returns {GuardiContentDescriptor | null} */
     function resolveContent(language, level) {
         const manager = root.LanguageManager;
         const config = manager && manager.getLanguage(language);
@@ -27,10 +32,11 @@
         return Object.freeze({ language, level: normalizedLevel, path });
     }
 
+    /** @param {GuardiCurriculumDescriptor | null} descriptor @returns {GuardiCurriculum | null} */
     function readExisting(descriptor) {
         if (!descriptor) return null;
         if (descriptor.exportName) {
-            const legacy = root[descriptor.exportName];
+            const legacy = /** @type {Record<string, unknown>} */ (root)[descriptor.exportName];
             if (legacy && typeof legacy === 'object') return legacy;
         }
         const registry = root.GUARDI_CURRICULA;
@@ -38,6 +44,7 @@
         return value && typeof value === 'object' ? value : null;
     }
 
+    /** @param {string} path @returns {Promise<void>} */
     function loadScript(path) {
         if (loaded.has(path)) return loaded.get(path);
         if (!root.document || typeof root.document.createElement !== 'function') {
@@ -57,11 +64,13 @@
         });
     }
 
+    /** @param {string} language @param {GuardiCefrLevel} level @returns {GuardiCurriculumManifest | null} */
     function readManifest(language, level) {
         const registry = root.GUARDI_CURRICULUM_MANIFESTS;
         return registry && registry[language] && registry[language][level] || null;
     }
 
+    /** @param {GuardiContentDescriptor} descriptor @returns {Promise<GuardiCurriculumManifest>} */
     async function loadManifest(descriptor) {
         let manifest = readManifest(descriptor.language, descriptor.level);
         if (manifest) return manifest;
@@ -74,6 +83,7 @@
         return manifest;
     }
 
+    /** @param {string} language @param {string} level @param {number[]} unitNumbers @returns {Promise<GuardiCurriculum>} */
     async function loadUnits(language, level, unitNumbers) {
         const descriptor = resolveContent(language, level);
         if (!descriptor) throw new Error('El contenido curricular solicitado no está registrado.');
@@ -121,6 +131,7 @@
         });
     }
 
+    /** @param {string} language @param {string} level @returns {Promise<GuardiCurriculum>} */
     async function load(language, level) {
         const descriptor = resolve(language, level);
         if (!descriptor) throw new Error('El currículo solicitado no está disponible.');
@@ -156,6 +167,7 @@
 
     // Read-only common view for legacy and language-neutral vocabulary records.
     // Indonesian's historical "idn" field is isolated here; new courses use "target".
+    /** @param {Record<string, unknown> | null} word @param {string} language @returns {GuardiAdaptedVocabulary | null} */
     function adaptVocabulary(word, language) {
         const manager = root.LanguageManager;
         if (!manager || typeof manager.isSupported !== 'function' || !manager.isSupported(language)) return null;
@@ -183,6 +195,7 @@
     }
 
     // Build immutable, language-neutral matching pairs from either legacy or new vocabulary fields.
+    /** @param {unknown} words @param {string} language @returns {readonly GuardiMatchingPair[]} */
     function adaptMatchingPairs(words, language) {
         if (!Array.isArray(words)) return Object.freeze([]);
         const pairs = [];
@@ -206,6 +219,7 @@
 
     // Read-only-shape adapter for exercise language metadata. It preserves authored
     // exercise fields and never changes answer indexes or acceptance rules.
+    /** @param {Record<string, unknown> | null} exercise @param {string} language @returns {Readonly<Record<string, unknown>> | null} */
     function adaptExercise(exercise, language) {
         const manager = root.LanguageManager;
         if (!manager || typeof manager.isSupported !== 'function' || !manager.isSupported(language)) return null;

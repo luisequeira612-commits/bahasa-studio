@@ -1,3 +1,8 @@
+## 2026-11-26 — Fase 1 multiidioma: JSDoc y checkJs
+- Implementación en curso en `feat/multilingual-jsdoc-checkjs-phase-1`, autorizada para fusionar solo con CI verde; alcance limitado a tipos de `LanguageManager`/`CurriculumLoader`, configuración de comprobación y documentación.
+- Se preservan los diez idiomas, la disponibilidad actual (solo id), adaptadores legacy, IndexedDB v1, backup JSON v3 y comportamiento visible; no se añade contenido curricular ni se corrigen bugs funcionales ajenos.
+- Roadmap: F0 auditoría completada; F1 tipos base + CI; F2 contratos de configuración/manifiestos y fixture hipotético; F3 ampliar checkJs gradualmente a módulos relacionados solo si aporta valor; F4 checklist de incorporación de idioma y revisión final. Cada fase se registra aquí y en Notion.
+
 ## 2026-11-25 — Prueba E2E de calidad SRS más reciente en Aprender
 
 - Se añadió una prueba Chromium en `tests/learning-screen-phase-5b.e2e.test.cjs` para recorrer la integración real del recomendador: una palabra con errores históricos (`incorrect: 3`) y última calidad `Bien` (`lastQuality: 3`) no debe aparecer en «Practicar estas palabras»; al cambiar la última calidad a 2, la palabra vuelve a ser elegible para refuerzo.

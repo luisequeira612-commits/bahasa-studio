@@ -1,3 +1,14 @@
+## 2026-11-26 — PT-BR B2 U34–U36 en preparación
+
+- Rama `feat/pt-br-b2-u34-u36`, creada desde `main` después de integrar PR #869 y verificar sus workflows post-merge (regresión #45880701517, TypeScript #45880701513 y Pages #45880701567, todos success).
+- Añadido `languages/pt-BR/curriculum/b2/units-34-36.js`: U34 salud y políticas públicas; U35 educación y aprendizaje permanente; U36 consumo, finanzas y decisiones. Son 15 lecciones y 30 entradas nuevas, diez por unidad y dos objetivos léxicos por lección; ejemplos PT-BR, explicaciones en español, ejercicios contextualizados y estado `not_checked`.
+- Manifiesto interno B2 extendido a U1–U36 de 40; Service Worker precarga U34–U36 y actualiza app-shell a v3.8.164. Se amplió la prueba E2E offline de Chromium a B2 U1–U36.
+- Añadido contrato `tests/pt-br-curriculum-b2-u34-u36.test.cjs` para disponibilidad false, carga parcial, estructura, explicación de términos, referencias A2, duplicados normalizados contra A1/A2/B1/B2 U1–U33 y precarga offline. Incluido en `quality:tests`; se actualizaron los contratos activos de caché A2/B1 y manifiesto B2.
+- `docs/PT_BR_B2_ROADMAP.md` actualizado: U1–U36 = 180 lecciones y 360 entradas.
+- Pendiente: revisar coherencia final del bloque, abrir PR, ejecutar CI completo (calidad offline, TypeScript, regresión, accesibilidad móvil y Chromium E2E). No fusionar hasta checks verdes y ausencia de revisiones/hilos pendientes.
+- PT-BR permanece `available:false`; B2 no se habilita en el selector. No se toca IndexedDB v1, backup JSON v3, dependencias ni audio. No se afirma revisión nativa ni certificación MCER.
+- Fuente: rama, archivos del bloque, manifiesto, Service Worker, pruebas y roadmap; 26 nov 2026.
+
 ## 2026-11-26 — Seguimiento CI PT-BR B2 U1–U3
 
 - La primera regresión detectó expectativas de caché antiguas en contratos PT-BR previos; se actualizaron las aserciones del Service Worker a v3.8.153 sin cambiar comportamiento de esos currículos.

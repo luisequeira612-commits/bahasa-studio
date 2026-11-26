@@ -12,6 +12,7 @@ const sources={
  './languages/pt-BR/curriculum/b2/index.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/b2/index.js'),'utf8'),
  './languages/pt-BR/curriculum/b2/units-01-03.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/b2/units-01-03.js'),'utf8'),
  './languages/pt-BR/curriculum/b2/units-04-06.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/b2/units-04-06.js'),'utf8'),
+ './languages/pt-BR/curriculum/b2/units-07-09.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/b2/units-07-09.js'),'utf8'),
  './languages/pt-BR/curriculum/a2/index.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a2/index.js'),'utf8')
 };
 for(const file of a2Files)sources['./languages/pt-BR/curriculum/a2/'+file]=fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a2',file),'utf8');
@@ -73,11 +74,12 @@ test('B2 U1-U6 add no exact normalized vocabulary duplicates against A1, A2 or B
  assert.equal(added.length,60);assert.equal(new Set(normalized).size,60);
  assert.deepEqual(normalized.filter(word=>previous.has(word)),[]);
 });
-test('service worker precaches B2 U1-U6 and advances the app-shell cache',()=>{
+test('service worker precaches B2 U1-U9 and advances the app-shell cache',()=>{
  const source=fs.readFileSync(path.join(repo,'service-worker.js'),'utf8');
  assert.ok(source.includes("./languages/pt-BR/curriculum/b2/index.js"));
  assert.ok(source.includes("./languages/pt-BR/curriculum/b2/units-01-03.js"));
  assert.ok(source.includes("./languages/pt-BR/curriculum/b2/units-04-06.js"));
+ assert.ok(source.includes("./languages/pt-BR/curriculum/b2/units-07-09.js"));
  assert.match(source,/bahasa-studio-v3\.8\.155/);
 });
 

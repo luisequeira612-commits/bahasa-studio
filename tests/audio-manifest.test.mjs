@@ -143,7 +143,7 @@ test('optional interactive audio export covers every static playback surface', a
     assert.equal(countSource('conversation-turn'), 27, 'all unique conversation turns must be collected');
     assert.equal(countSource('conversation-example'), 27, 'all unique speakable conversation examples must be collected');
     assert.equal(staticEntries.length, 96, 'static playback sources must deduplicate to 96 distinct texts');
-    assert.equal(staticEntries.filter((entry) => baseIds.has(entry.id)).length, 28, '29 static texts are already covered by the existing library');
+    assert.equal(staticEntries.filter((entry) => baseIds.has(entry.id)).length, 29, '29 static texts are already covered by the existing library');
     assert.deepEqual(missingBySource, {
       'exercise-audioText': 15,
       'assessment-listen': 2,

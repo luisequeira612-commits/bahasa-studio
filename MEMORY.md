@@ -507,12 +507,14 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Runs post-merge/Pages no devuelven resultados para el merge commit; despliegue no declarado verificado.
 - Fuente: PR #866, merge commit y Actions #45873979960/#45873976470; 26 nov 2026.
 
-## 2026-11-26 — PT-BR B2 U25–U27 en preparación
+## 2026-11-26 — PT-BR B2 U25–U27 fusionadas
 
-- Nuevo bloque: U25 narrativa compleja y perspectiva (focalización, narrador no fiable, retrospectiva, anticipación y subtramas); U26 crónica y reportaje (apuração, verificación cruzada, testimonios, contexto y enfoque editorial); U27 datos, tendencias y cautela estadística (series históricas, margen de error, correlación/causalidad, proyecciones y subregistro).
+- U25 narrativa compleja y perspectiva (focalización, narrador no fiable, retrospectiva, anticipación y subtramas); U26 crónica y reportaje (apuração, verificación cruzada, testimonios, contexto y enfoque editorial); U27 datos, tendencias y cautela estadística (series históricas, margen de error, correlación/causalidad, proyecciones y subregistro).
 - Añade 15 lecciones y 30 entradas nuevas (10 por unidad, dos objetivos por lección), ejemplos PT-BR, explicaciones en español y ejercicios vinculados a vocabulario. Entradas nuevas en estado `not_checked`.
-- Manifiesto interno B2 publica U1–U27 de 40 unidades en nueve bloques. Service Worker precarga U25–U27 y usa caché app-shell v3.8.161. E2E offline se amplía hasta U27.
-- Contratos verifican estructura, explicación literal de los dos objetivos por lección, referencias A2 existentes, 30 entradas sin duplicados normalizados frente a A1–B1 y B2 U1–U24, disponibilidad false y precarga offline.
-- PT-BR continúa `available:false`; B2 sigue deshabilitado en selector. No afirmar certificación nativa ni equivalencia MCER. Sin cambios a IndexedDB v1, backup JSON v3, dependencias ni audio.
-- Rama `feat/pt-br-b2-u25-u27`; implementación y actualización de contratos en curso. Pendiente abrir PR y completar CI antes de fusionar.
-- Fuente: roadmap B2, U25–U27, manifiesto, Service Worker y pruebas; 26 nov 2026.
+- PR [#867](https://github.com/luisequeira612-commits/bahasa-studio/pull/867) fusionada por squash en `main`, merge commit `aaf432d26eef37fd98cb639ca814840789306347`; head `1eeab08d5fbad636fad2add045cca0d873998dc0`.
+- CI del head: regresión #45875348243 success (103/103 pasos; E2E Chromium offline hasta B2 U27 y accesibilidad móvil incluidos), Offline quality reports 10/10; TypeScript #45875348223 success (8/8).
+- Confirmado en `main`: manifiesto interno B2 publica U1–U27 de 40 unidades en nueve bloques. Service Worker precarga U25–U27, caché app-shell v3.8.161. E2E offline ampliado hasta U27.
+- Contratos verifican estructura, explicación de ambos objetivos por lección, referencias A2, 30 entradas sin duplicados normalizados frente a A1–B1 y B2 U1–U24, disponibilidad false y precarga offline.
+- PT-BR continúa `available:false`; B2 sigue deshabilitado en selector. Sin cambios a IndexedDB v1, backup JSON v3, dependencias ni audio. No afirmar certificación nativa ni equivalencia MCER.
+- Runs post-merge/Pages no devuelven resultados para el merge commit; despliegue no declarado verificado.
+- Fuente: PR #867, merge commit y Actions #45875348243/#45875348223; 26 nov 2026.

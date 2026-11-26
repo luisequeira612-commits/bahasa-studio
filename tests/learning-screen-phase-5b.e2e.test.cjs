@@ -1012,6 +1012,58 @@ test('Aprender review card starts the existing SRS session when due reviews exis
   }
 });
 
+test('Aprender stops recommending a word after its latest SRS grade is Bien despite older errors', async () => {
+  const { server, url } = await startServer();
+  const browser = await chromium.launch({ headless: true });
+  const context = await browser.newContext({ viewport: { width: 360, height: 740 }, serviceWorkers: 'block', reducedMotion: 'reduce' });
+  const page = await context.newPage();
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
+    await page.locator('.nav-btn[data-nav-group="learn"]').click();
+
+    await page.evaluate(async () => {
+      const now = Date.now();
+      await DB.set('srs', 'v12', {
+        attempts: 5, correct: 2, incorrect: 3, interval: 1, repetition: 1,
+        efactor: 2.5, nextReview: now + 86400000, lastReviewed: now, lastQuality: 3
+      });
+      await App.updateSrsView();
+    });
+
+    const card = page.locator('#adaptiveLearningRecommendationLearn');
+    await page.waitForFunction(() => {
+      const host = document.getElementById('adaptiveLearningRecommendationLearn');
+      return Boolean(host && !host.hidden && host.querySelector('button:not(:disabled)'));
+    });
+    const successfulGradeText = await card.innerText();
+    assert.match(successfulGradeText, /Continúa con la siguiente lección/);
+    assert.doesNotMatch(successfulGradeText, /Dari|Practicar estas palabras/i,
+      'a latest grade of Bien (3) must suppress the old error-based recommendation');
+
+    await page.evaluate(async () => {
+      const record = await DB.get('srs', 'v12');
+      record.lastQuality = 2;
+      record.lastReviewed = Date.now() + 1;
+      await DB.set('srs', 'v12', record);
+      await App.updateSrsView();
+    });
+    await page.waitForFunction(() => {
+      const host = document.getElementById('adaptiveLearningRecommendationLearn');
+      return Boolean(host && !host.hidden && /Practicar estas palabras/.test(host.innerText));
+    });
+    const unsuccessfulGradeText = await card.innerText();
+    assert.match(unsuccessfulGradeText, /dari/i,
+      'a latest grade below Bien must keep the word eligible for reinforcement');
+    assert.match(unsuccessfulGradeText, /Practicar estas palabras/);
+  } finally {
+    await context.close();
+    await browser.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});
+
 test('Aprender recommends and opens the final assessment when all lessons in the current A1 unit are complete', async () => {
   const { server, url } = await startServer();
   const browser = await chromium.launch({ headless: true });

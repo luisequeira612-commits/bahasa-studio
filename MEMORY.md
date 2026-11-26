@@ -269,3 +269,6 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 
 
 - Seguimiento A1 U8 (26 nov 2026): se detectó además que el modelo de rutina «Saya makan pagi» adelantaba `pagi`, introducido en U11. Se simplificaron las dos copias del ejercicio a «Saya makan» y se añadió una prueba específica para impedir que U8 vuelva a usar `pagi`. No se modificó el inventario ni el tipo de ejercicios, audio, runtime, IndexedDB v1, backup JSON v3 o dependencias. Fuente: inspección de las dos copias en currículo de U8 y prueba de regresión.
+
+
+- Ajuste posterior al primer CI de A1 U8 (26 nov 2026): la guardia detectó que el enunciado «Completa: ___ saya belajar» aún adelantaba `belajar` en L1, aunque el audio del mismo ejercicio solo decía «Hari ini». Se cambió el enunciado por «Elige la expresión que significa «hoy»», conservando opciones, respuesta, tipo y objetivo. El fallo era de contenido de la prueba, no de runtime. CI anterior #45731821903 falló únicamente en esta aserción de secuencia; el informe de calidad offline pasó.

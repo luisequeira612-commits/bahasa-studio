@@ -1,6 +1,6 @@
 # Portugués brasileño B2 — temario de 40 unidades
 
-**Estado:** temario reconstruido el 26 de noviembre de 2026 porque no se recuperó el documento anterior. Es una propuesta de trabajo editable, no una equivalencia certificada con un examen oficial. Los bloques U1–U30 están implementados; U31–U33 están en preparación; U34–U40 siguen planificados.
+**Estado:** temario reconstruido el 26 de noviembre de 2026 porque no se recuperó el documento anterior. Es una propuesta de trabajo editable, no una equivalencia certificada con un examen oficial. Los bloques U1–U33 están implementados; U34–U40 siguen planificados.
 
 ## Criterios
 
@@ -104,9 +104,9 @@
 - U29: tecnología, privacidad y ética.
 - U30: medioambiente y sostenibilidad.
 
-U1–U30 contienen 150 lecciones y 300 entradas nuevas. U28–U30 están implementadas con cinco lecciones y diez entradas por unidad. Las entradas nuevas permanecen `not_checked`; las pruebas verifican estructura, carga offline, referencias de repaso y duplicados normalizados, pero no certifican naturalidad ni nivel MCER.
+U1–U33 contienen 165 lecciones y 330 entradas nuevas. Cada unidad incluye cinco lecciones y diez entradas. Las entradas nuevas permanecen `not_checked`; las pruebas verifican estructura, carga offline, referencias de repaso y duplicados normalizados, pero no certifican naturalidad ni nivel MCER.
 
-## Bloque en preparación: U31–U33
+## Bloque implementado: U31–U33
 
 - U31: sociedad, desigualdad e inclusión (desigualdad estructural, movilidad social, disparidad regional, acción afirmativa, vulnerabilidad interseccional y cohesión social).
 - U32: trabajo y transformación profesional (recualificación, trabajo por plataformas, vínculo laboral, negociación colectiva, protección previdenciaria y automatización).

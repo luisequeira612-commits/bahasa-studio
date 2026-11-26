@@ -78,7 +78,7 @@ test('service worker precaches B2 U1-U6 and advances the app-shell cache',()=>{
  assert.ok(source.includes("./languages/pt-BR/curriculum/b2/index.js"));
  assert.ok(source.includes("./languages/pt-BR/curriculum/b2/units-01-03.js"));
  assert.ok(source.includes("./languages/pt-BR/curriculum/b2/units-04-06.js"));
- assert.match(source,/bahasa-studio-v3\.8\.154/);
+ assert.match(source,/bahasa-studio-v3\.8\.155/);
 });
 
 test('pt-BR B2 U4-U6 load offline as an internal block with five lessons and ten contextual entries per unit',async()=>{

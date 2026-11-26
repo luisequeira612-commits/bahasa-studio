@@ -3556,7 +3556,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                 { id: 'v36', idn: 'Hari ini', esp: 'Hoy / este día', ex: 'Hari ini saya belajar.', exEsp: 'Hoy estudio.' },
                                 { id: 'v37', idn: 'Belajar', esp: 'Estudiar / aprender', ex: 'Saya belajar bahasa Indonesia.', exEsp: 'Estudio indonesio.' },
                                 { id: 'v38', idn: 'Bekerja', esp: 'Trabajar', ex: 'Ayah saya bekerja.', exEsp: 'Mi padre trabaja.' },
-                                { id: 'v50', idn: 'Tidur', esp: 'Dormir', ex: 'Saya tidur di malam hari.', exEsp: 'Duermo por la noche.' },
+                                { id: 'v50', idn: 'Tidur', esp: 'Dormir', ex: 'Saya tidur.', exEsp: 'Duermo.' },
                                 { id: 'v44', idn: 'Setiap hari', esp: 'Todos los días', ex: 'Saya belajar setiap hari.', exEsp: 'Estudio todos los días.' },
                                 {"id":"v122","idn":"Besok","esp":"Mañana","ex":"Besok saya bekerja.","exEsp":"Mañana trabajo."},
 
@@ -3694,7 +3694,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                     ],
                                     "explanation": "Saya belajar setiap hari expresa una rutina."
                                 },
-                                { vocabId: 'v35', type: 'write', prompt: "Escribe una frase breve sobre tu rutina diaria.", hint: "Usa un día o una acción cotidiana que hayas aprendido.", modelAnswer: "Saya makan pagi.", explanation: "Saya makan pagi significa «Desayuno»; makan es comer y pagi es mañana." },
+                                { vocabId: 'v35', type: 'write', prompt: "Escribe una frase breve sobre tu rutina diaria.", hint: "Usa un día o una acción cotidiana que hayas aprendido.", modelAnswer: "Saya makan.", explanation: "Saya makan significa «Como»; makan significa comer." },
                                 {"vocabId":"v36","type":"mc","prompt":"¿Qué significa hari ini?","options":["Hoy","Mañana","Ayer"],"answer":0,"explanation":"Hari ini significa hoy."},
                                 {"vocabId":"v122","type":"translate_es_id","prompt":"Traduce: mañana","answer":"Besok","explanation":"Besok significa mañana."},
                                 {"vocabId":"v44","type":"write","prompt":"Escribe dos frases sobre tu rutina.","hint":"Intenta construir una frase nueva con el vocabulario de la unidad.","modelAnswer":"Hari ini saya belajar. Saya minum air setiap hari.","explanation":"Usa hari ini, besok o setiap hari."},
@@ -3730,26 +3730,12 @@ window.BAHASA_CURRICULUM_A1 = {
                                                                                                     "explanation": "Hari ini significa hoy."
                                                                                                 },
                         {
-                                                                                                    "vocabId": "v35",
-                                                                                                    "type": "mc",
-                                                                                                    "prompt": "Escucha la frase y elige su significado",
-                                                                                                    "audioText": "Hari ini saya belajar",
-                                                                                                    "options": ["Hoy estudio", "Mañana trabajo", "Todos los días duermo"],
-                                                                                                    "answer": 0,
-                                                                                                    "explanation": "Hari ini saya belajar significa «Hoy estudio»."
-                                                                                                },
-                        {
                                                                                                     "vocabId": "v36",
                                                                                                     "type": "mc",
-                                                                                                    "prompt": "Completa: ___ saya belajar (Hoy estudio)",
-                                                                                                    "options": [
-                                                                                                        "Hari ini",
-                                                                                                        "Hari Senin",
-                                                                                                        "Hari Minggu",
-                                                                                                        "Hari libur"
-                                                                                                    ],
+                                                                                                    "prompt": "¿Qué expresión significa «hoy»?",
+                                                                                                    "options": ["Hari ini", "Hari", "Saya"],
                                                                                                     "answer": 0,
-                                                                                                    "explanation": "Hari ini se usa para hablar de hoy."
+                                                                                                    "explanation": "Hari ini significa «hoy»."
                                                                                                 }
                     ]
                         },
@@ -3760,6 +3746,15 @@ window.BAHASA_CURRICULUM_A1 = {
                             vocabIds: ["v37"],
                             reviewVocabIds: ["v35","v36"],
                             exercises: [
+                        {
+                                                                                                    "vocabId": "v35",
+                                                                                                    "type": "mc",
+                                                                                                    "prompt": "Escucha la frase y elige su significado",
+                                                                                                    "audioText": "Hari ini saya belajar",
+                                                                                                    "options": ["Hoy estudio", "Mañana trabajo", "Todos los días duermo"],
+                                                                                                    "answer": 0,
+                                                                                                    "explanation": "Hari ini saya belajar significa «Hoy estudio»."
+                                                                                                },
                         {
                                                                                                     "vocabId": "v37",
                                                                                                     "type": "mc",
@@ -3814,7 +3809,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                                                                                     "answer": "Bekerja",
                                                                                                     "explanation": "Bekerja significa trabajar."
                                                                                                 },
-                        { vocabId: 'v35', type: 'write', prompt: "Escribe una frase breve sobre tu rutina diaria.", hint: "Usa un día o una acción cotidiana que hayas aprendido.", modelAnswer: "Saya makan pagi.", explanation: "Saya makan pagi significa «Desayuno»; makan es comer y pagi es mañana." },
+                        { vocabId: 'v35', type: 'write', prompt: "Escribe una frase breve sobre tu rutina diaria.", hint: "Usa un día o una acción cotidiana que hayas aprendido.", modelAnswer: "Saya makan.", explanation: "Saya makan significa «Como»; makan significa comer." },
                         {"vocabId":"v36","type":"mc","prompt":"Recupera «Hari ini»: ¿qué significa?","options":["Hoy / este día","Día","Estudiar / aprender"],"answer":0,"explanation":"Hari ini significa Hoy / este día. Esta pregunta recupera una palabra de una lección anterior."},
                         {"vocabId":"v37","type":"mc","prompt":"Recupera «Belajar»: ¿qué significa?","options":["Estudiar / aprender","Día","Hoy / este día"],"answer":0,"explanation":"Belajar significa Estudiar / aprender. Esta pregunta recupera una palabra de una lección anterior."}
                     ]
@@ -3938,8 +3933,8 @@ window.BAHASA_CURRICULUM_A1 = {
                                                     "type": "write",
                                                     "prompt": "Escribe una frase con «Tidur».",
                                                     "hint": "Usa la palabra en una frase breve y completa.",
-                                                    "modelAnswer": "Saya tidur di malam hari.",
-                                                    "explanation": "Duermo por la noche."
+                                                    "modelAnswer": "Saya tidur.",
+                                                    "explanation": "Duermo."
                                                 },
                                 {
                                                     "vocabId": "v44",

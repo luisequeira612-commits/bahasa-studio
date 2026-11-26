@@ -471,14 +471,15 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Fuente: PR #863, merge commit y Actions #45867608981/#45867609244; 26 nov 2026.
 
 
-## 2026-11-26 — PT-BR B2 U16–U18 en preparación
+## 2026-11-26 — PT-BR B2 U16–U18 fusionadas
 
-- Se inicia el sexto bloque B2: U16 verbos pronominales y matices aspectuales; U17 perífrasis verbales y modalidad; U18 colocaciones verbo-nominales.
+- Sexto bloque B2: U16 verbos pronominales y matices aspectuales; U17 perífrasis verbales y modalidad; U18 colocaciones verbo-nominales.
 - Añade 15 lecciones y 30 entradas (10 por unidad, dos objetivos por lección), con ejemplos PT-BR y explicaciones en español. Entradas nuevas `not_checked`.
 - Manifiesto B2 mantiene 40 unidades y publica internamente U1–U18; PT-BR sigue `available:false`.
-- Service Worker precarga U16–U18 y avanza caché app-shell a v3.8.158. Se actualizan pruebas de caché A1/A2/B1/B2 y E2E Chromium offline hasta U18.
+- Service Worker precarga U16–U18 y usa caché app-shell v3.8.158. Se actualizan pruebas de caché A1/A2/B1/B2 y E2E Chromium offline hasta U18.
 - Pruebas verifican estructura, explicaciones por lección, referencias A2, duplicados normalizados contra A1–B1 y B2 U1–U15, disponibilidad false y carga offline.
 - Sin cambios a IndexedDB v1, backup JSON v3, dependencias ni audio. No afirmar naturalidad certificada ni equivalencia MCER.
-- La primera ejecución CI #45869861647 encontró un fallo E2E: el nuevo archivo registraba unidades en `GUARDI_CURRICULA` en vez de publicar el bloque `GUARDI_CURRICULUM_BLOCKS['pt-BR'].B2['16-18']`. Corregido en `74ccde7f48836c0aedc6df9320e458d763fdc756`; TypeScript había pasado y calidad offline 10/10. Esperar nueva ejecución CI sobre el head corregido.
-- Estado: contenido, manifiesto, precarga, pruebas B2 previas, expectativas de caché A1/A2/B1, E2E offline, roadmap y MEMORY en `feat/pt-br-b2-u16-u18`; pendiente CI completo, PR y validación post-merge.
-- Fuente: rama `feat/pt-br-b2-u16-u18`, roadmap B2 y pruebas; 26 nov 2026.
+- Primera ejecución CI #45869861647 encontró un fallo E2E de registro del bloque; corregido en `74ccde7f48836c0aedc6df9320e458d763fdc756`.
+- PR [#864](https://github.com/luisequeira612-commits/bahasa-studio/pull/864) fusionada por squash en `main`, merge commit `fc0c849544c9d922f6973cc10197f32f496e3e17`. Head `0572fff76766cfb48551075ad44e020783a70373` pasó regresión #45870221660 (103/103 pasos; Offline quality reports 10/10) y TypeScript #45870221604 success. Sin comentarios ni revisiones pendientes.
+- Validación post-merge de Pages aún no confirmada por separado. PR cerrada como merged; manifiesto y Service Worker confirmados en `main`.
+- Fuente: PR #864, merge commit y Actions #45870221660/#45870221604; 26 nov 2026.

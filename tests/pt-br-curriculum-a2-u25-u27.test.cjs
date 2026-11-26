@@ -20,10 +20,10 @@ function createPilot(){
 test('pt-BR A2 U25-U27 load offline with ten vocabulary entries, five lessons and ten MC exercises per unit',async()=>{
  const {window,loader}=createPilot();
  assert.equal(window.LanguageManager.isSupported('pt-BR'),true);
- assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
+ assert.equal(window.LanguageManager.isAvailable('pt-BR'),true);
  const {units,totalUnits}=await loader.loadUnits('pt-BR','A2',[25,26,27]);
  assert.equal(totalUnits,30);assert.deepEqual(Array.from(units,u=>u.unitNumber),[25,26,27]);
- assert.equal(loader.resolve('pt-BR','A2'),null);
+ assert.ok(loader.resolve('pt-BR', 'A2'));
  for(const unit of units){
   assert.equal(unit.vocab.length,10,unit.id);assert.equal(unit.lessons.length,5,unit.id);assert.equal(unit.exercises.length,10,unit.id);
   const localIds=new Set(unit.vocab.map(word=>word.id));assert.equal(localIds.size,10,unit.id);
@@ -44,7 +44,7 @@ test('A2 manifest publishes U1-U30 as a partial level of thirty units',()=>{
  const {window}=createPilot(),manifest=window.GUARDI_CURRICULUM_MANIFESTS['pt-BR'].A2;
  assert.equal(manifest.totalUnits,30);assert.deepEqual(Array.from(manifest.publishedUnits),Array.from({length:30},(_,i)=>i+1));
  assert.ok(manifest.blocks.some(block=>block.id==='25-27'&&block.units.join(',')==='25,26,27'));
- assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
+ assert.equal(window.LanguageManager.isAvailable('pt-BR'),true);
 });
 test('U25-U27 review references resolve only to previously published A2 vocabulary',async()=>{
  const {loader}=createPilot(),{units}=await loader.loadUnits('pt-BR','A2',Array.from({length:27},(_,i)=>i+1));
@@ -68,7 +68,7 @@ test('U25-U27 introduce no exact normalized vocabulary duplicates against A1 and
  const previous=targets.slice(0,-30).map(normalize),added=targets.slice(-30).map(normalize);
  assert.equal(added.length,30);assert.equal(new Set(added).size,30);assert.deepEqual(added.filter(word=>previous.includes(word)),[]);
 });
-test('service worker precaches A2 U25-U27 with cache v3.8.165',()=>{
+test('service worker precaches A2 U25-U27 with cache v3.8.166',()=>{
  const source=fs.readFileSync(path.join(repo,'service-worker.js'),'utf8');
- assert.match(source,/units-25-27\.js/);assert.match(source,/curriculum\/a2\/index\.js/);assert.match(source,/bahasa-studio-v3\.8.165/);
+ assert.match(source,/units-25-27\.js/);assert.match(source,/curriculum\/a2\/index\.js/);assert.match(source,/bahasa-studio-v3\.8.166/);
 });

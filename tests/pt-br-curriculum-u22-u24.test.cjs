@@ -30,7 +30,7 @@ function createPilot(){
 }
 test('pt-BR A1 U22-U24 load as a non-selectable offline pilot with complete lesson contracts',async()=>{
  const {window,loader}=createPilot();
- assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
+ assert.equal(window.LanguageManager.isAvailable('pt-BR'),true);
  const {units,totalUnits}=await loader.loadUnits('pt-BR','A1',[22,23,24]);
  assert.equal(totalUnits,24);
  assert.deepEqual(Array.from(units,u=>u.unitNumber),[22,23,24]);
@@ -52,17 +52,17 @@ test('pt-BR A1 U22-U24 load as a non-selectable offline pilot with complete less
    assert.ok(unit.vocab.some(word=>word.id===exercise.vocabId),unit.id+' exercise references missing vocabulary');
   }
  }
- assert.equal(loader.resolve('pt-BR','A1'),null);
+ assert.ok(loader.resolve('pt-BR', 'A1'));
 });
 test('pt-BR A1 manifest publishes exactly U1-U24 while keeping A1 incomplete',()=>{
  const {window}=createPilot();
  const manifest=window.GUARDI_CURRICULUM_MANIFESTS['pt-BR'].A1;
  assert.equal(manifest.totalUnits,24);
  assert.deepEqual(Array.from(manifest.publishedUnits),Array.from({length:24},(_,index)=>index+1));
- assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
+ assert.equal(window.LanguageManager.isAvailable('pt-BR'),true);
 });
 test('service worker precaches the U22-U24 curriculum block',()=>{
  const source=fs.readFileSync(path.join(repo,'service-worker.js'),'utf8');
  assert.match(source,/units-22-24\.js/);
- assert.match(source,/bahasa-studio-v3\.8\.165/);
+ assert.match(source,/bahasa-studio-v3\.8\.166/);
 });

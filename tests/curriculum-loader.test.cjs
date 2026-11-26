@@ -27,7 +27,9 @@ test('resolves only explicitly registered legacy Indonesian curriculum files', (
     assert.deepEqual(JSON.parse(JSON.stringify(loader.resolve('id', 'A1'))), {
         language: 'id', level: 'A1', path: './curriculum-a1.js', exportName: 'BAHASA_CURRICULUM_A1'
     });
-    assert.equal(loader.resolve('pt-BR', 'A1'), null);
+    assert.deepEqual(JSON.parse(JSON.stringify(loader.resolve('pt-BR', 'B2'))), {
+        language: 'pt-BR', level: 'B2', path: './languages/pt-BR/curriculum/b2/index.js', exportName: null
+    });
     assert.equal(loader.resolve('../id', 'A1'), null);
     assert.equal(loader.resolve('id', 'C1'), null);
 });
@@ -41,7 +43,7 @@ test('returns already loaded Indonesian curriculum without network or script inj
 
 test('rejects unavailable language curricula instead of falling back to Indonesian silently', async () => {
     const loader = createLoader();
-    await assert.rejects(loader.load('pt-BR', 'A1'), error => String(error).includes('no está disponible'));
+    await assert.rejects(loader.load('en', 'A1'), error => String(error).includes('no está disponible'));
 });
 
 
@@ -135,7 +137,7 @@ test('does not infer Indonesian legacy fields for another language or mutate sou
 test('App.init resolves the active A1/A2 curricula through CurriculumLoader before audio and screens initialize', () => {
     const indexSource = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
     const initPosition = indexSource.indexOf('await LanguageManager.init({');
-    const loaderPosition = indexSource.indexOf("['A1', 'A2'].map(level => CurriculumLoader.load(activeLanguage, level))", initPosition);
+    const loaderPosition = indexSource.indexOf('activeLevelIds.map(level => CurriculumLoader.load(activeLanguage, level))', initPosition);
     const courseAssignmentPosition = indexSource.indexOf('CourseData.levels = CourseData.levels.map', loaderPosition);
     const audioPosition = indexSource.indexOf('AudioEngine.init();', initPosition);
 
@@ -143,8 +145,10 @@ test('App.init resolves the active A1/A2 curricula through CurriculumLoader befo
     assert.ok(loaderPosition > initPosition, 'App loads each active level through CurriculumLoader');
     assert.ok(courseAssignmentPosition > loaderPosition, 'loaded curricula replace only matching CourseData levels');
     assert.ok(audioPosition > courseAssignmentPosition, 'audio and subsequent app initialization run after course resolution');
+    assert.match(indexSource.slice(initPosition, audioPosition), /Object\.keys\(activeLanguageConfig\.curriculum\)/);
+    assert.match(indexSource.slice(initPosition, audioPosition), /activeLevelIds\.map\(level => CurriculumLoader\.load\(activeLanguage, level\)\)/);
     assert.match(indexSource.slice(loaderPosition, audioPosition), /curriculaByLevel\.get\(level\.id\) \|\| level/);
-    assert.match(indexSource.slice(loaderPosition, audioPosition), /some\(level => !curriculaByLevel\.has\(level\)\)/);
+    assert.match(indexSource.slice(loaderPosition, audioPosition), /activeLevelIds\.some\(level => !curriculaByLevel\.has\(level\)\)/);
 });
 
 

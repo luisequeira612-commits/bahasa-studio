@@ -24,14 +24,14 @@ function createPilot(){
  vm.runInNewContext(sources['./languages/pt-BR/curriculum/a2/index.js'],sandbox);
  return {window,loader:window.CurriculumLoader};
 }
-test('pt-BR A2 U1-U3 load through the offline content loader but remain unavailable',async()=>{
+test('pt-BR A2 U1-U3 load through the offline content loader but are selectable',async()=>{
  const {window,loader}=createPilot();
  assert.equal(window.LanguageManager.isSupported('pt-BR'),true);
- assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
+ assert.equal(window.LanguageManager.isAvailable('pt-BR'),true);
  const {units,totalUnits}=await loader.loadUnits('pt-BR','A2',[1,2,3]);
  assert.equal(totalUnits,30);
  assert.deepEqual(Array.from(units,u=>u.unitNumber),[1,2,3]);
- assert.equal(loader.resolve('pt-BR','A2'),null);
+ assert.ok(loader.resolve('pt-BR', 'A2'));
  for(const unit of units){
   assert.equal(unit.vocab.length,10,unit.id);
   assert.equal(unit.lessons.length,5,unit.id);
@@ -57,7 +57,7 @@ test('A2 manifest publishes the U1-U30 as a partial level of thirty units',()=>{
  const manifest=window.GUARDI_CURRICULUM_MANIFESTS['pt-BR'].A2;
  assert.equal(manifest.totalUnits,30);
  assert.deepEqual(Array.from(manifest.publishedUnits),[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]);
- assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
+ assert.equal(window.LanguageManager.isAvailable('pt-BR'),true);
 });
 test('A2 review references point to earlier A1/A2 vocabulary IDs',()=>{
  const {window,loader}=createPilot();
@@ -77,5 +77,5 @@ test('service worker precaches the A2 manifest and U1-U3 block',()=>{
  const source=fs.readFileSync(path.join(repo,'service-worker.js'),'utf8');
  assert.match(source,/units-01-03\.js/);
  assert.match(source,/curriculum\/a2\/index\.js/);
- assert.match(source,/bahasa-studio-v3\.8.165/);
+ assert.match(source,/bahasa-studio-v3\.8.166/);
 });

@@ -22,11 +22,11 @@ function createPilot(){
 test('pt-BR A2 U19-U21 load offline with ten vocabulary entries, five lessons and ten MC exercises per unit',async()=>{
  const {window,loader}=createPilot();
  assert.equal(window.LanguageManager.isSupported('pt-BR'),true);
- assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
+ assert.equal(window.LanguageManager.isAvailable('pt-BR'),true);
  const {units,totalUnits}=await loader.loadUnits('pt-BR','A2',[19,20,21]);
  assert.equal(totalUnits,30);
  assert.deepEqual(Array.from(units,u=>u.unitNumber),[19,20,21]);
- assert.equal(loader.resolve('pt-BR','A2'),null);
+ assert.ok(loader.resolve('pt-BR', 'A2'));
  const ids=new Set();
  for(const unit of units){
   assert.equal(unit.vocab.length,10,unit.id);
@@ -59,7 +59,7 @@ test('A2 manifest publishes U1-U30 as a partial level of thirty units',()=>{
  assert.equal(manifest.totalUnits,30);
  assert.deepEqual(Array.from(manifest.publishedUnits),Array.from({length:30},(_,i)=>i+1));
  assert.ok(manifest.blocks.some(block=>block.id==='19-21'&&block.units.join(',')==='19,20,21'));
- assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
+ assert.equal(window.LanguageManager.isAvailable('pt-BR'),true);
 });
 test('U19-U21 review references resolve to earlier A2 vocabulary IDs',async()=>{
  const {loader}=createPilot(),{units}=await loader.loadUnits('pt-BR','A2',Array.from({length:24},(_,i)=>i+1));
@@ -87,9 +87,9 @@ test('U19-U21 introduce no exact normalized vocabulary duplicates against A1 and
  assert.equal(new Set(added).size,30);
  assert.deepEqual(added.filter(word=>previous.includes(word)),[]);
 });
-test('service worker precaches A2 U19-U21 with cache v3.8.165',()=>{
+test('service worker precaches A2 U19-U21 with cache v3.8.166',()=>{
  const source=fs.readFileSync(path.join(repo,'service-worker.js'),'utf8');
  assert.match(source,/units-19-21\.js/);
  assert.match(source,/curriculum\/a2\/index\.js/);
- assert.match(source,/bahasa-studio-v3\.8.165/);
+ assert.match(source,/bahasa-studio-v3\.8.166/);
 });

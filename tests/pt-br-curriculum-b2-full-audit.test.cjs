@@ -87,8 +87,8 @@ test('pt-BR B2 manifest declares exactly U1-U40 across the 13 authored blocks',(
 test('all 40 PT-BR B2 units have complete structure, lesson coverage and valid exercises',async()=>{
  const {window,loader}=createPilot();
  assert.equal(window.LanguageManager.isSupported('pt-BR'),true);
- assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
- assert.equal(loader.resolve('pt-BR','B2'),null);
+ assert.equal(window.LanguageManager.isAvailable('pt-BR'),true);
+ assert.ok(loader.resolve('pt-BR', 'B2'));
  const numbers=Array.from({length:40},(_,i)=>i+1);
  const [{units,totalUnits},{units:a2Units},{units:a1Units},{units:b1Units}]=await Promise.all([
   loader.loadUnits('pt-BR','B2',numbers),

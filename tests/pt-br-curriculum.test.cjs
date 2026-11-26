@@ -31,15 +31,15 @@ function createPilot(){
  return {window,loader:window.CurriculumLoader};
 }
 
-test('pt-BR A1 pilot loads U1-U18 without making the incomplete course selectable',async()=>{
+test('PT-BR A1 pilot remains loadable after the complete curriculum is enabled',async()=>{
  const {window,loader}=createPilot();
- assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
- assert.equal(loader.resolve('pt-BR','A1'),null);
+ assert.equal(window.LanguageManager.isAvailable('pt-BR'),true);
+ assert.ok(loader.resolve('pt-BR', 'A1'));
  const curriculum=await loader.loadUnits('pt-BR','A1',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]);
  assert.equal(curriculum.language,'pt-BR');
  assert.equal(curriculum.totalUnits,24);
  assert.deepEqual(Array.from(curriculum.units,u=>u.unitNumber),[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]);
- await assert.rejects(loader.load('pt-BR','A1'),/no está disponible/);
+ await assert.rejects(loader.load('pt-BR','A1'),/No se pudo cargar el currículo/);
 });
 
 test('each pilot unit has five explicit lessons and valid vocabulary references',async()=>{
@@ -174,9 +174,9 @@ test('U16-U18 cover body, feelings and basic health with ten terms and five less
  }
 });
 
-test('pt-BR A1 pilot still remains unavailable after publishing U1-U18',()=>{
+test('PT-BR remains selectable after publishing the complete B2 curriculum',()=>{
  const {window}=createPilot();
- assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
+ assert.equal(window.LanguageManager.isAvailable('pt-BR'),true);
 });
 
 test('pilot exercises remain text-only and do not request or reference Portuguese audio',async()=>{

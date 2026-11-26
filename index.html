@@ -18995,12 +18995,18 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
             const completed = Array.isArray(completedUnits) ? completedUnits : [];
             return Boolean(b1 && b1.units.length > 0 && b1.units.every(unit => completed.includes(unit.id)));
         }
+        function isPublishedB2Unit(unit, level) {
+            const maximum = Number.isInteger(level.totalUnits) ? level.totalUnits : 60;
+            return Number.isInteger(unit.unitNumber)
+                ? unit.unitNumber >= 1 && unit.unitNumber <= maximum
+                : /^(?:ptbr_)?b2_u(?:[1-9]|[1-5]\d|60)$/.test(unit.id);
+        }
         function getLearningLevels() {
             return getLevels().filter(level =>
-                (level.id !== 'B2' || level.units.some(unit => /^b2_u(?:[1-9]|[1-5]\d|60)$/.test(unit.id))) &&
+                (level.id !== 'B2' || level.units.some(unit => isPublishedB2Unit(unit, level))) &&
                 (level.id !== 'A2' || A2_RELEASE_ENABLED)
             ).map(level => level.id === 'B2'
-                ? { ...level, units: level.units.filter(unit => /^b2_u(?:[1-9]|[1-5]\d|60)$/.test(unit.id)) }
+                ? { ...level, units: level.units.filter(unit => isPublishedB2Unit(unit, level)) }
                 : level);
         }
         function adaptSrsVocabulary(word, language = LanguageManager.getActiveLanguage()) {
@@ -19291,12 +19297,19 @@ Requisitos:
                 // Resolve the active course through the language-aware loader before
                 // any screen or study engine consumes CourseData.
                 const activeLanguage = LanguageManager.getActiveLanguage();
+                const activeLanguageConfig = LanguageManager.getLanguage(activeLanguage);
+                const activeLevelIds = activeLanguageConfig ? Object.keys(activeLanguageConfig.curriculum) : [];
+                if (!Array.isArray(CourseData.levels) ||
+                    !activeLevelIds.includes('A1') || !activeLevelIds.includes('A2') ||
+                    activeLevelIds.some(level => !CourseData.levels.some(entry => entry.id === level))) {
+                    throw new Error('No se pudieron preparar los niveles del curso activo.');
+                }
                 const activeCurricula = await Promise.all(
-                    ['A1', 'A2'].map(level => CurriculumLoader.load(activeLanguage, level))
+                    activeLevelIds.map(level => CurriculumLoader.load(activeLanguage, level))
                 );
                 const curriculaByLevel = new Map(activeCurricula.map(curriculum => [curriculum.id, curriculum]));
-                if (!Array.isArray(CourseData.levels) || ['A1', 'A2'].some(level => !curriculaByLevel.has(level))) {
-                    throw new Error('No se pudieron preparar los niveles del curso activo.');
+                if (activeLevelIds.some(level => !curriculaByLevel.has(level))) {
+                    throw new Error('Falta un nivel del curso activo.');
                 }
                 CourseData.levels = CourseData.levels.map(level => curriculaByLevel.get(level.id) || level);
                 STUDY_LANGUAGE_LABEL = LanguageManager.getLanguage(activeLanguage).name;

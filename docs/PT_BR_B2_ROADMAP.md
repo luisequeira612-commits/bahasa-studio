@@ -172,3 +172,17 @@ U1–U40 integradas contienen 200 lecciones y 400 entradas nuevas. Cada unidad i
 - Zamproneo, S. (2014), *Multifuncionalidade e intersubjetividade em construções concessivas: uma análise em ocorrências do português contemporâneo do Brasil*, tesis doctoral, UNESP. https://agendapos.fclar.unesp.br/agenda-pos/linguistica_lingua_portuguesa/3348.pdf. Analiza construcciones concesivas en corpus oral y escrito del portugués brasileño, incluidos *ainda que* y *se bem que*. Sirve como apoyo para el diseño discursivo de U3, no como validación individual de cada ejemplo.
 
 **Límite de validación:** no se afirma que estas unidades estén certificadas por hablantes nativos ni que garanticen un nivel oficial B2. Las entradas se mantienen `not_checked`.
+
+
+## Activación PT-BR B2 — 26 nov 2026
+
+- El currículo B2 completo está integrado en `main`: U1–U40, 40 unidades publicadas, 200 lecciones, 400 entradas léxicas y 800 ejercicios; los bancos de unidad usan `order` y los bancos de lección `mc`.
+- Rama de habilitación: `feat/pt-br-b2-release-gate`. La propuesta activa `pt-BR` en `LanguageManager`, carga los niveles registrados A1/A2/B1/B2 durante el inicio, reconoce identificadores `ptbr_b2_u…` y eleva la caché offline a `bahasa-studio-v3.8.166`.
+- El Service Worker ya contiene los 13 bloques B2 en su precache. La publicación aún queda pendiente de CI, fusión y despliegue verificado en GitHub Pages.
+- No se modifica IndexedDB v1, backup JSON v3, dependencias ni audio. La validación lingüística sigue siendo interna; las entradas permanecen `not_checked`, sin afirmar certificación nativa ni equivalencia oficial MCER.
+
+
+## 2026-11-26 — Habilitación final en PR #887
+- Se abrió PR #887 (`feat/pt-br-b2-release-gate`) para activar el selector PT-BR y publicar las 40 unidades B2 completas; el manifiesto declara 40 unidades en 13 bloques y el Service Worker v3.8.166 precarga los 13 archivos.
+- El cambio conserva la progresión secuencial y no altera IndexedDB v1, backup JSON v3, dependencias, audio ni red. Las entradas continúan `not_checked`; la auditoría estructural no equivale a certificación lingüística ni MCER.
+- Validación de PR en curso: TypeScript y calidad offline aprobados; regresión Chromium/E2E aún ejecutándose. No declarar publicado hasta fusionar y verificar GitHub Pages y carga offline desde el sitio desplegado.

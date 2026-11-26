@@ -68,9 +68,8 @@ const unit18=makeUnit(18,'Colocaciones verbo-nominales','Utiliza combinaciones f
 ['Lección 4: Emitir evaluaciones y presentar recursos','Describe un dictamen técnico y una impugnación presentada dentro del plazo.','Emitir um parecer significa producir una evaluación formal; apresentar recurso indica solicitar la revisión de una decisión.',[6,7],['ptbr_a2_u22_v07','ptbr_a2_u22_v08']],
 ['Lección 5: Adoptar medidas y ejercer influencia','Explica medidas correctivas y la influencia de un factor sobre el comportamiento.','Adotar providências expresa poner en marcha medidas; exercer influência indica afectar decisiones o comportamientos.',[8,9],['ptbr_a2_u22_v09','ptbr_a2_u22_v10']]
 ]);
-root.GUARDI_CURRICULA=root.GUARDI_CURRICULA||{};
-root.GUARDI_CURRICULA['pt-BR']=root.GUARDI_CURRICULA['pt-BR']||{};
-root.GUARDI_CURRICULA['pt-BR'].B2=root.GUARDI_CURRICULA['pt-BR'].B2||{};
-root.GUARDI_CURRICULA['pt-BR'].B2.units=root.GUARDI_CURRICULA['pt-BR'].B2.units||[];
-root.GUARDI_CURRICULA['pt-BR'].B2.units.push(unit16,unit17,unit18);
+root.GUARDI_CURRICULUM_BLOCKS=root.GUARDI_CURRICULUM_BLOCKS||{};
+root.GUARDI_CURRICULUM_BLOCKS['pt-BR']=root.GUARDI_CURRICULUM_BLOCKS['pt-BR']||{};
+root.GUARDI_CURRICULUM_BLOCKS['pt-BR'].B2=root.GUARDI_CURRICULUM_BLOCKS['pt-BR'].B2||{};
+root.GUARDI_CURRICULUM_BLOCKS['pt-BR'].B2['16-18']={units:[unit16,unit17,unit18]};
 })(typeof window!=='undefined'?window:globalThis);

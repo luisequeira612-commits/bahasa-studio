@@ -4082,7 +4082,7 @@ window.BAHASA_CURRICULUM_A1 = {
                             lessons: [
                                 {
                                     "title": "Lección 1: Números del 11 al 14",
-                                    "objective": "Aprende a números del 11 al 14 y aplica las formas nuevas en frases sencillas, recuperando lo estudiado anteriormente.",
+                                    "objective": "Aprende los números del 11 al 14 y úsalos en frases sencillas, recuperando lo estudiado anteriormente.",
                                     "grammar": "Las formas del 11 al 19 se forman con el número seguido de belas: sebelas, dua belas, tiga belas y empat belas. En cantidades sencillas, el número va antes del sustantivo: sebelas teman.",
                                     "vocabIds": [
                                         "v124",
@@ -4154,7 +4154,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                 },
                                 {
                                     "title": "Lección 2: Números del 15 al 18",
-                                    "objective": "Aprende a números del 15 al 18 y aplica las formas nuevas en frases sencillas, recuperando lo estudiado anteriormente.",
+                                    "objective": "Aprende los números del 15 al 18 y úsalos en frases sencillas, recuperando lo estudiado anteriormente.",
                                     "grammar": "Continúa la serie del 15 al 18 con lima belas, enam belas, tujuh belas y delapan belas. Conserva el orden número + sustantivo al contar objetos o personas.",
                                     "vocabIds": [
                                         "v128",
@@ -4257,7 +4257,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                 },
                                 {
                                     "title": "Lección 3: Del 19 al 100",
-                                    "objective": "Aprende a del 19 al 100 y aplica las formas nuevas en frases sencillas, recuperando lo estudiado anteriormente.",
+                                    "objective": "Aprende a expresar los números del 19 al 100 y aplícalos en frases sencillas, recuperando lo estudiado anteriormente.",
                                     "grammar": "Sembilan belas es 19. Para las decenas se usa puluh: dua puluh es 20 y tiga puluh es 30; seratus es 100.",
                                     "vocabIds": [
                                         "v132",
@@ -4424,7 +4424,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                 },
                                 {
                                     "title": "Lección 4: Decenas y números compuestos",
-                                    "objective": "Aprende a decenas y números compuestos y aplica las formas nuevas en frases sencillas, recuperando lo estudiado anteriormente.",
+                                    "objective": "Aprende a formar decenas y números compuestos y úsalos en frases sencillas, recuperando lo estudiado anteriormente.",
                                     "grammar": "Para formar números entre 21 y 99, combina la decena y la unidad en ese orden: dua puluh lima, tiga puluh dua y empat puluh tujuh.",
                                     "vocabIds": [
                                         "v158",
@@ -4652,7 +4652,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                 },
                                 {
                                     "title": "Lección 5: Leer cantidades en contexto",
-                                    "objective": "Aprende a leer cantidades en contexto y aplica las formas nuevas en frases sencillas, recuperando lo estudiado anteriormente.",
+                                    "objective": "Aprende a leer y expresar cantidades en contexto, recuperando lo estudiado anteriormente.",
                                     "grammar": "Lee números compuestos completos y colócalos antes del sustantivo: lima puluh delapan buku y sembilan puluh sembilan buku.",
                                     "vocabIds": [
                                         "v275",
@@ -5213,7 +5213,7 @@ window.BAHASA_CURRICULUM_A1 = {
                             lessons: [
                                 {
                                     "title": "Lección 1: Dinero y moneda",
-                                    "objective": "Aprende a dinero y moneda y aplica las formas nuevas en frases sencillas, recuperando lo estudiado anteriormente.",
+                                    "objective": "Aprende a hablar de dinero y de la moneda indonesia, y aplica el vocabulario en frases sencillas.",
                                     "grammar": "Uang significa dinero, harga significa precio y rupiah es la moneda de Indonesia. Usa estas palabras al identificar el dinero y el precio de un producto.",
                                     "vocabIds": [
                                         "v136",
@@ -5258,7 +5258,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                 },
                                 {
                                     "title": "Lección 2: Miles y comparación de precios",
-                                    "objective": "Aprende a miles y comparación de precios y aplica las formas nuevas en frases sencillas, recuperando lo estudiado anteriormente.",
+                                    "objective": "Aprende a expresar cantidades de miles y a comparar precios en frases sencillas.",
                                     "grammar": "Ribu indica miles y se combina después del número: lima ribu rupiah. Murah y mahal permiten describir un precio como barato o caro.",
                                     "vocabIds": [
                                         "v139",
@@ -5350,7 +5350,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                 },
                                 {
                                     "title": "Lección 3: Comprar y pagar",
-                                    "objective": "Aprende a comprar y pagar y aplica las formas nuevas en frases sencillas, recuperando lo estudiado anteriormente.",
+                                    "objective": "Aprende a comprar productos y a realizar pagos con expresiones sencillas.",
                                     "grammar": "Beli expresa comprar y bayar expresa pagar. Kembalian es el dinero que devuelve el vendedor; interpreta estas palabras dentro de un intercambio breve.",
                                     "vocabIds": [
                                         "v142",
@@ -5480,7 +5480,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                 },
                                 {
                                     "title": "Lección 4: Preguntar y responder precios",
-                                    "objective": "Aprende a preguntar y responder precios y aplica las formas nuevas en frases sencillas, recuperando lo estudiado anteriormente.",
+                                    "objective": "Aprende a preguntar y responder sobre precios con expresiones sencillas.",
                                     "grammar": "Berapa harganya? sirve para preguntar cuánto cuesta. Tunai indica pago en efectivo; combina pregunta, precio y forma de pago en un diálogo.",
                                     "vocabIds": [
                                         "v145",

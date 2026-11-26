@@ -63,6 +63,9 @@ test('B1 unlocks after A2; the complete published B2 course follows B1 and unloc
   assert.match(html, /function isPublishedB2Unit\(unit, level\)/);
   assert.match(html, /Number\.isInteger\(unit\.unitNumber\)/);
   assert.match(html, /unit\.unitNumber <= maximum/);
-  assert.match(html, /unit-path-coming-soon/);
+  assert.match(html, /const visibleUnits = level \? this\.getVisibleLearningUnits\(level\) : \[\];/);
+  assert.match(html, /return level\.id === 'B2' \? level\.units\.slice\(0, 60\) : level\.units;/);
+  assert.doesNotMatch(html, /level\.id === 'B2' \? level\.units\.slice\(0, 1\)/);
+  assert.match(html, /if \(level\.id === 'B2' && visibleUnits\.length < \(Number\.isInteger\(level\.totalUnits\) \? level\.totalUnits : 60\)\) \{/);
   assert.ok(html.includes("['A1', 'B1'].includes(level.id)"));
 });

@@ -1,5 +1,14 @@
 # Portugués brasileño B2 — temario de 40 unidades
 
+## Corrección post-despliegue — renderizado de las 40 unidades PT-BR B2 — 26 nov 2026
+
+- Tras fusionar PR #887, la verificación en navegador del sitio Pages confirmó PT-BR y B2 disponibles, pero reveló que la ruta todavía limitaba el renderizado a U1 y mostraba un aviso obsoleto de unidades no implementadas.
+- Causa raíz: `renderCourseRoute()` conservaba un `slice(0, 1)` heredado y un placeholder de desarrollo, aunque el manifiesto ya publicaba U1–U40. No era un problema de los 13 bloques ni del Service Worker.
+- Se corrige el renderizado para usar `getVisibleLearningUnits(level)` sin truncar la ruta a U1. El aviso de desarrollo se conserva únicamente para niveles B2 parciales (menos unidades cargadas que `totalUnits`); en PT-BR U1–U40 no debe aparecer. Se amplían `tests/curriculum-release-gates.test.cjs` y `tests/regression.test.cjs` para impedir el límite de una unidad y validar el placeholder condicional. Además, `tests/learning-screen-phase-5b.e2e.test.cjs` espera explícitamente a `AdaptiveLearning` antes de comprobar la tarjeta SRS, eliminando una carrera de carga detectada en CI.
+- La progresión secuencial se conserva: las unidades posteriores siguen bloqueadas hasta completar los prerrequisitos. Sin cambios a IndexedDB v1, backup JSON v3, dependencias, audio ni red. Mantener `not_checked` y no afirmar certificación nativa/MCER.
+- Estado: PR de corrección en preparación; requiere CI, despliegue Pages y nueva verificación de navegador antes de declarar visible el curso completo.
+
+
 **Estado:** U1–U40 están integradas en `main` tras PR #871. El 26 de noviembre de 2026 se inició una auditoría estructural específica del currículo PT-BR B2: el informe genérico previo cubría el B2 indonesio, no estas unidades. La revisión editorial/lingüística sigue pendiente; este temario es una propuesta editable, no una equivalencia certificada con un examen oficial. PT-BR y B2 permanecen desactivados.
 
 ## Auditoría integral específica PT-BR B2 — en curso

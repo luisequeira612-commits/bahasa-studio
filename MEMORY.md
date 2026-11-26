@@ -711,3 +711,9 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Regresión post-merge y TypeScript: `success`. Las pruebas de currículo comprobaron B2 U1–U40 y la precarga de los 13 bloques en Service Worker v3.8.166.
 - IndexedDB v1 y backup JSON v3 intactos; sin dependencias, audio ni red nuevos. Vocabulario sigue `verification.status: not_checked`; no afirmar certificación nativa ni MCER oficial.
 - Fuentes: PR #887; workflows Actions #45904923241 (Pages) y #45904923714 (regresión), 26 nov 2026.
+
+## 2026-11-26 — Corrección post-despliegue del recorrido PT-BR B2
+- La verificación de Pages tras PR #887 encontró que el selector ofrecía Portugués y B2, pero la ruta mostraba solo U1 y un aviso obsoleto de que las demás unidades no estaban implementadas.
+- Causa raíz: `renderCourseRoute()` conservaba `level.units.slice(0, 1)` y un placeholder heredado, pese a que el manifiesto y los 13 bloques contenían U1–U40.
+- Rama `fix/pt-br-b2-render-all-40-units` elimina el límite de una unidad usando `getVisibleLearningUnits(level)`. El aviso de desarrollo permanece solo cuando el nivel está parcialmente publicado (`visibleUnits.length < totalUnits`), por lo que PT-BR 40/40 no lo muestra. Los contratos de release gate y regresión se actualizan. Una prueba E2E preexistente de la tarjeta SRS falló intermitentemente porque esperaba el botón antes de cargar `AdaptiveLearning`; se amplió su condición de espera sin reducir aserciones. Pendiente CI y despliegue/verificación posterior.
+- Mantener progresión secuencial; no alterar IndexedDB v1, backup JSON v3, dependencias, audio ni red. Vocabulario `not_checked`; no certificar naturalidad nativa ni nivel MCER.

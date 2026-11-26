@@ -20196,7 +20196,7 @@ Requisitos:
                 if (!container) return;
                 container.replaceChildren();
                 const level = CourseData.levels.find(entry => entry.id === this.selectedLearningLevel);
-                const visibleUnits = level ? (level.id === 'B2' ? level.units.slice(0, 1) : level.units) : [];
+                const visibleUnits = level ? this.getVisibleLearningUnits(level) : [];
                 const levelProgressRing = document.getElementById('levelProgressRing');
                 const levelProgressPercent = document.getElementById('levelProgressPercent');
                 const levelProgressLevel = document.getElementById('levelProgressLevel');
@@ -20347,13 +20347,6 @@ Requisitos:
                     container.appendChild(section);
                 }
                 if (this.recentlyCompletedUnitId) this.recentlyCompletedUnitId = null;
-
-                if (level.id === 'B2') {
-                    const placeholder = document.createElement('div');
-                    placeholder.className = 'unit-path-coming-soon';
-                    placeholder.innerHTML = '<span class="unit-path-coming-soon-circle" aria-hidden="true">···</span><strong>Próximamente</strong><p>Las demás unidades B2 todavía no están implementadas.</p>';
-                    container.appendChild(placeholder);
-                }
 
                 if (level.id === 'A1' && CustomLessons.units.length) {
                     const customSection = document.createElement('section');

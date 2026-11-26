@@ -6,6 +6,11 @@ type GuardiLanguageCode = 'pt-BR' | 'en' | 'it' | 'fr' | 'de' | 'nl' | 'ru' | 'j
 type GuardiCefrLevel = 'A1' | 'A2' | 'B1' | 'B2';
 type GuardiVoiceStatus = 'configured' | 'candidate' | 'unverified';
 
+interface GuardiValidationResult {
+    readonly valid: boolean;
+    readonly errors: readonly string[];
+}
+
 interface GuardiLanguageConfig {
     readonly code: GuardiLanguageCode;
     readonly locale: string;
@@ -36,6 +41,8 @@ interface GuardiLanguageManagerApi {
     isSupported(code: string): boolean;
     isAvailable(code: string): boolean;
     list(): readonly GuardiLanguageConfig[];
+    validateLanguageConfig(value: unknown): GuardiValidationResult;
+    validateLanguageCatalog(entries: unknown): GuardiValidationResult;
 }
 
 interface GuardiCurriculumDescriptor {
@@ -58,6 +65,8 @@ interface GuardiCurriculumBlockDescriptor {
 }
 
 interface GuardiCurriculumManifest {
+    readonly id?: string;
+    readonly language?: string;
     readonly title: string;
     readonly totalUnits: number;
     readonly publishedUnits: readonly number[];

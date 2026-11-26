@@ -69,6 +69,71 @@
         });
     }
 
+    /**
+     * Validate the structural contract shared by manifest-based curricula.
+     * Published units may be a subset while a course is being authored.
+     * @param {unknown} value
+     * @returns {GuardiValidationResult}
+     */
+    function validateManifest(value) {
+        const errors = [];
+        if (!value || typeof value !== 'object' || Array.isArray(value)) {
+            return Object.freeze({ valid: false, errors: Object.freeze(['manifest_not_object']) });
+        }
+        const manifest = /** @type {Record<string, unknown>} */ (value);
+        if (typeof manifest.title !== 'string' || !manifest.title.trim()) errors.push('title_required');
+        if (typeof manifest.totalUnits !== 'number' || !Number.isInteger(manifest.totalUnits) || manifest.totalUnits < 1) errors.push('totalUnits_invalid');
+        if (!Array.isArray(manifest.publishedUnits) || manifest.publishedUnits.length === 0) {
+            errors.push('publishedUnits_required');
+        }
+        if (!Array.isArray(manifest.blocks) || manifest.blocks.length === 0) {
+            errors.push('blocks_required');
+        }
+        if (errors.length) return Object.freeze({ valid: false, errors: Object.freeze(errors) });
+
+        const totalUnits = /** @type {number} */ (manifest.totalUnits);
+        const publishedUnits = /** @type {unknown[]} */ (manifest.publishedUnits);
+        const blocks = /** @type {unknown[]} */ (manifest.blocks);
+        const published = new Set();
+        for (const unit of publishedUnits) {
+            if (typeof unit !== 'number' || !Number.isInteger(unit) || unit < 1 || unit > totalUnits) errors.push('publishedUnit_invalid:' + unit);
+            if (published.has(unit)) errors.push('publishedUnit_duplicate:' + unit);
+            published.add(unit);
+        }
+        const blockIds = new Set();
+        const covered = new Set();
+        for (const blockValue of blocks) {
+            if (!blockValue || typeof blockValue !== 'object' || Array.isArray(blockValue)) {
+                errors.push('block_invalid');
+                continue;
+            }
+            const block = /** @type {Record<string, unknown>} */ (blockValue);
+            if (typeof block.id !== 'string' || !block.id.trim()) errors.push('block_id_required');
+            else {
+                if (blockIds.has(block.id)) errors.push('block_id_duplicate:' + block.id);
+                blockIds.add(block.id);
+            }
+            if (typeof block.path !== 'string' || !block.path.startsWith('./languages/') || block.path.includes('..')) {
+                errors.push('block_path_invalid:' + String(block.id || 'unknown'));
+            }
+            if (!Array.isArray(block.units) || block.units.length === 0) {
+                errors.push('block_units_required:' + String(block.id || 'unknown'));
+                continue;
+            }
+            const local = new Set();
+            const blockUnits = /** @type {unknown[]} */ (block.units);
+            for (const unit of blockUnits) {
+                if (typeof unit !== 'number' || !Number.isInteger(unit) || unit < 1 || unit > totalUnits) errors.push('block_unit_invalid:' + unit);
+                if (local.has(unit)) errors.push('block_unit_duplicate:' + unit);
+                if (covered.has(unit)) errors.push('block_unit_overlap:' + unit);
+                local.add(unit);
+                covered.add(unit);
+            }
+        }
+        for (const unit of published) if (!covered.has(unit)) errors.push('publishedUnit_uncovered:' + unit);
+        return Object.freeze({ valid: errors.length === 0, errors: Object.freeze(errors) });
+    }
+
     /** @param {string} language @param {GuardiCefrLevel} level @returns {GuardiCurriculumManifest | null} */
     function readManifest(language, level) {
         const registry = root.GUARDI_CURRICULUM_MANIFESTS;
@@ -78,10 +143,14 @@
     /** @param {GuardiContentDescriptor} descriptor @returns {Promise<GuardiCurriculumManifest>} */
     async function loadManifest(descriptor) {
         let manifest = readManifest(descriptor.language, descriptor.level);
-        if (manifest) return manifest;
+        if (manifest) {
+            const validation = validateManifest(manifest);
+            if (!validation.valid) throw new Error('El manifiesto curricular no es válido: ' + validation.errors.join(', '));
+            return manifest;
+        }
         await loadScript(descriptor.path);
         manifest = readManifest(descriptor.language, descriptor.level);
-        if (!manifest || !Array.isArray(manifest.publishedUnits) || !Array.isArray(manifest.blocks)) {
+        if (!manifest || !validateManifest(manifest).valid) {
             loaded.delete(descriptor.path);
             throw new Error('El archivo no publicó el currículo esperado: manifiesto no válido.');
         }
@@ -248,5 +317,5 @@
         return Object.freeze(adapted);
     }
 
-    root.CurriculumLoader = Object.freeze({ levels: LEVELS, resolve, load, loadUnits, adaptVocabulary, adaptExercise, adaptMatchingPairs });
+    root.CurriculumLoader = Object.freeze({ levels: LEVELS, resolve, load, loadUnits, validateManifest, adaptVocabulary, adaptExercise, adaptMatchingPairs });
 })(typeof window !== 'undefined' ? window : globalThis);

@@ -44,7 +44,7 @@ test('pt-BR B2 U34-U36 load as a partial internal block while the course remains
   }
  }
 });
-test('B2 manifest declares 40 units and publishes only the authored U1-U33 blocks',()=>{
+test('B2 manifest declares 40 units and publishes only the authored U1-U40 blocks',()=>{
  const {window}=createPilot(),manifest=window.GUARDI_CURRICULUM_MANIFESTS['pt-BR'].B2;
  assert.equal(manifest.totalUnits,40);assert.deepEqual(Array.from(manifest.publishedUnits),Array.from({length:40},(_,i)=>i+1));
  assert.deepEqual(Array.from(manifest.blocks.map(block=>Array.from(block.units))),[[1,2,3],[4,5,6],[7,8,9],[10,11,12],[13,14,15],[16,17,18],[19,20,21],[22,23,24],[25,26,27],[28,29,30],[31,32,33],[34,35,36],[37,38,39,40]]);
@@ -71,7 +71,7 @@ test('B2 U34-U36 add no exact normalized vocabulary duplicates against A1, A2, B
  assert.equal(added.length,30);assert.equal(new Set(normalized).size,30);
  assert.deepEqual(normalized.filter(word=>previous.has(word)),[]);
 });
-test('service worker precaches B2 U1-U36 and advances the app-shell cache',()=>{
+test('service worker precaches B2 U1-U40 and advances the app-shell cache',()=>{
  const source=fs.readFileSync(path.join(repo,'service-worker.js'),'utf8');
  assert.ok(source.includes("./languages/pt-BR/curriculum/b2/index.js"));
  for(const file of b2Files)assert.ok(source.includes('./languages/pt-BR/curriculum/b2/'+file));

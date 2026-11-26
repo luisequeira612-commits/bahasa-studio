@@ -1,3 +1,10 @@
+## 2026-11-26 — Fase 2 multiidioma: validación de catálogo y manifiestos
+- En curso en `feat/multilingual-config-validation-phase-2`, basada en merge F1 `9c55ef80`.
+- Añade validadores estructurales puros al LanguageManager y CurriculumLoader, con errores identificables y sin registrar ni habilitar idiomas nuevos.
+- La validación admite idiomas futuros con niveles parciales; no exige A1–B2 completos para idiomas aún en preparación. Comprueba códigos duplicados, metadatos obligatorios, estados de voz, rutas seguras y manifiestos con unidades publicadas únicas, bloques no solapados y cobertura.
+- Pruebas nuevas usan un idioma hipotético `xx` sin incorporarlo al catálogo y validan manifiestos reales pt-BR A1/A2/B1. No añaden contenido de lecciones.
+- Se mantiene intacto el límite funcional 1–40 de `loadUnits`; resolverlo es una tarea separada, no se mezcla en esta fase.
+
 ## 2026-11-26 — Fase 1 multiidioma: JSDoc y checkJs
 - Implementación en curso en `feat/multilingual-jsdoc-checkjs-phase-1`, autorizada para fusionar solo con CI verde; alcance limitado a tipos de `LanguageManager`/`CurriculumLoader`, configuración de comprobación y documentación.
 - Se preservan los diez idiomas, la disponibilidad actual (solo id), adaptadores legacy, IndexedDB v1, backup JSON v3 y comportamiento visible; no se añade contenido curricular ni se corrigen bugs funcionales ajenos.

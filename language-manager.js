@@ -16,6 +16,63 @@
         ko: Object.freeze({ code: 'ko', locale: 'ko-KR', name: 'Coreano', flag: '🇰🇷', piperVoice: 'ko_KR-kss-medium', voiceStatus: 'unverified', audioPath: './audio/ko/', curriculum: Object.freeze({}), available: false }),
         id: Object.freeze({ code: 'id', locale: 'id-ID', name: 'Indonesio', flag: '🇮🇩', piperVoice: 'id_ID-news_tts-medium', voiceStatus: 'configured', audioPath: './audio/id/', curriculum: Object.freeze({ A1: './curriculum-a1.js', A2: './curriculum-a2.js' }), testPhrase: 'terima kasih', available: true })
     });
+    /**
+     * Validate one language registry entry without requiring every CEFR level to exist.
+     * Partial catalog entries are intentional while a course is still being prepared.
+     * @param {unknown} value
+     * @returns {GuardiValidationResult}
+     */
+    function validateLanguageConfig(value) {
+        const errors = [];
+        if (!value || typeof value !== 'object' || Array.isArray(value)) {
+            return Object.freeze({ valid: false, errors: Object.freeze(['config_not_object']) });
+        }
+        const config = /** @type {Record<string, unknown>} */ (value);
+        const requiredStrings = ['code', 'locale', 'name', 'flag', 'piperVoice', 'audioPath'];
+        for (const field of requiredStrings) {
+            if (typeof config[field] !== 'string' || !config[field].trim()) errors.push(field + '_required');
+        }
+        if (typeof config.code === 'string' && !/^[a-z]{2,3}(?:-[A-Z]{2})?$/.test(config.code)) errors.push('code_invalid');
+        if (!['configured', 'candidate', 'unverified'].includes(String(config.voiceStatus))) errors.push('voiceStatus_invalid');
+        if (typeof config.available !== 'boolean') errors.push('available_required');
+        if (typeof config.audioPath === 'string' && !config.audioPath.startsWith('./audio/')) errors.push('audioPath_invalid');
+        if (!config.curriculum || typeof config.curriculum !== 'object' || Array.isArray(config.curriculum)) {
+            errors.push('curriculum_required');
+        } else {
+            const curriculum = /** @type {Record<string, unknown>} */ (config.curriculum);
+            for (const [level, path] of Object.entries(curriculum)) {
+                if (!['A1', 'A2', 'B1', 'B2'].includes(level)) errors.push('curriculum_level_invalid:' + level);
+                if (typeof path !== 'string' || !path.startsWith('./') || path.includes('..')) errors.push('curriculum_path_invalid:' + level);
+            }
+            if (config.available === true && Object.keys(curriculum).length === 0) errors.push('available_without_curriculum');
+        }
+        if (config.testPhrase !== undefined && (typeof config.testPhrase !== 'string' || !config.testPhrase.trim())) {
+            errors.push('testPhrase_invalid');
+        }
+        return Object.freeze({ valid: errors.length === 0, errors: Object.freeze(errors) });
+    }
+
+    /**
+     * Validate catalog uniqueness and each entry's current structural contract.
+     * @param {unknown} entries
+     * @returns {GuardiValidationResult}
+     */
+    function validateLanguageCatalog(entries) {
+        if (!Array.isArray(entries)) return Object.freeze({ valid: false, errors: Object.freeze(['catalog_not_array']) });
+        const errors = [];
+        const seen = new Set();
+        for (const entry of entries) {
+            const result = validateLanguageConfig(entry);
+            errors.push(...result.errors);
+            if (entry && typeof entry === 'object' && typeof entry.code === 'string') {
+                if (seen.has(entry.code)) errors.push('code_duplicate:' + entry.code);
+                seen.add(entry.code);
+            }
+        }
+        if (entries.length === 0) errors.push('catalog_empty');
+        return Object.freeze({ valid: errors.length === 0, errors: Object.freeze(errors) });
+    }
+
     /** @param {unknown} code @returns {code is GuardiLanguageCode} */
     const supported = code => typeof code === 'string' && Object.prototype.hasOwnProperty.call(LANGUAGES, code);
     /** @type {GuardiLanguageCode} */
@@ -73,6 +130,7 @@
 
     root.LanguageManager = Object.freeze({
         STORAGE_KEY, LANGUAGES, init, setActiveLanguage, getActiveLanguage,
-        getLanguage, getLocale, isSupported, isAvailable, list
+        getLanguage, getLocale, isSupported, isAvailable, list,
+        validateLanguageConfig, validateLanguageCatalog
     });
 })(typeof window !== 'undefined' ? window : globalThis);

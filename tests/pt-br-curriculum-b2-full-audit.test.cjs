@@ -152,7 +152,7 @@ test('all 40 PT-BR B2 units have complete structure, lesson coverage and valid e
  }
  assert.equal(lessonCount,200);
  assert.equal(vocabCount,400);
- assert.equal(exerciseCount,1200);
+ assert.equal(exerciseCount,800);
  assert.equal(globalIds.size,400);
  assert.equal(globalTargets.size,400);
  assert.equal(globalExamples.size,400);

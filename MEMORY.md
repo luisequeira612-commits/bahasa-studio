@@ -248,3 +248,11 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Revisión de CI 26 nov: se detectó una segunda copia de la traducción «Tiga buku» en la lección y se normalizó también a «Tiga», que ya tiene audio indexado. Se mantienen los tipos de ejercicios escritos y el tracker actualizado.
 
 - La ejecución #45729586124 pasó regresión, audio manifest y pruebas locales; falló la prueba de integridad porque A1 usa un hash canónico fijado. Se actualizó la huella esperada de A1 de 08fc090e a ecbf3fb1 (valor real del currículo revisado), sin alterar estructura ni conteos; queda pendiente nueva ejecución completa.
+
+ 
+## 2026-11-26 — Corrección acotada de secuencia en A1 U8
+- Auditoría contextual confirmó que U8 L1 usaba «Hari ini saya belajar» en el ejemplo de Hari/Hari ini y en un ejercicio de escucha antes de introducir Belajar en L2. Se cambia el ejemplo a «Hari» / «Hari ini» y el audio de L1 a «Hari ini», con opciones/explicación acordes.
+- El ejemplo de Tidur y el modelo de escritura de repaso usaban «malam», vocabulario de U11; se cambian a «Tidur» y «Saya tidur.».
+- Se añade regresión específica para impedir el uso de Belajar en L1 y Malam en el modelo de U8. Se sincronizan las tres filas de U8 en el tracker A1 U1–U23.
+- Alcance: currículo A1 U8, pruebas, tracker y MEMORY.md. Sin cambios de runtime, IndexedDB v1, backup JSON v3, dependencias ni nuevos audios. Revisión pedagógica contextual, no certificación lingüística.
+- Fuente: artefacto curriculum-quality-report del run #45730229191 (paths A1.units[7].vocab[0], vocab[1], vocab[4], lessons[0].exercises[2], lessons[4].exercises[4]); inspección directa de U8 y audio/index.json; 26 nov 2026.

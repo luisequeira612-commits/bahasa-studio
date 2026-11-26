@@ -429,7 +429,7 @@ test('B1 U10-U12 follow the approved nominalization and ke-an sequence without d
   assert.match(archive, /Objetos originales preservados/);
 });
 
-test('B1 follows A2 sequential progression while B2 remains development-gated', () => {
+test('B1 follows A2 sequential progression while partial B2 levels keep the development notice', () => {
   assert.match(html, /level\.id !== 'B2'/);
   assert.doesNotMatch(html, /!\['B1', 'B2'\]\.includes\(level\.id\)/);
   assert.doesNotMatch(html, /if \(\['B1', 'B2'\]\.includes\(level\.id\)/);
@@ -437,7 +437,8 @@ test('B1 follows A2 sequential progression while B2 remains development-gated', 
   assert.match(html, /const previousLevel = levels\[levelIndex - 1\]/);
   assert.doesNotMatch(html, /const isAdvanced = lvl\.id === 'B2'/);
   assert.doesNotMatch(html, /if \(!isB1Complete\(this\.completedUnits\)\) return;/);
-  assert.match(html, /level\.id === 'B2' \? level\.units\.slice\(0, 1\) : level\.units/);
+  assert.match(html, /const visibleUnits = level \? this\.getVisibleLearningUnits\(level\) : \[\]/);
+  assert.match(html, /if \(level\.id === 'B2' && visibleUnits\.length < \(Number\.isInteger\(level\.totalUnits\) \? level\.totalUnits : 60\)\) \{/);
   assert.match(html, /unit-path-coming-soon/);
 
   const start = html.indexOf('const CourseData =');

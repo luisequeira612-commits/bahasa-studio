@@ -430,7 +430,7 @@ test('A1 U8 does not use later vocabulary in the first lesson or its word exampl
   const unit = a1.units.find(candidate => candidate.id === 'a1_u8');
   assert.ok(unit, 'A1 U8 must exist');
   const firstLessonText = JSON.stringify(unit.lessons[0]);
-  assert.doesNotMatch(firstLessonText, /\\bbelajar\\b/i,
+  assert.doesNotMatch(firstLessonText, /\bbelajar\b/i,
     'Belajar is introduced in lesson 2, not lesson 1');
   assert.match(firstLessonText, /Hari ini/);
   const firstLessonAudio = unit.lessons[0].exercises.find(exercise => exercise.audioText === 'Hari ini');
@@ -441,6 +441,6 @@ test('A1 U8 does not use later vocabulary in the first lesson or its word exampl
   assert.equal(unit.vocab.find(word => word.id === 'v50').ex, 'Tidur');
   const tidurWriting = unit.lessons[4].exercises.find(exercise => exercise.vocabId === 'v50' && exercise.type === 'write');
   assert.ok(tidurWriting, 'U8 review should include a writing prompt for Tidur');
-  assert.doesNotMatch(tidurWriting.modelAnswer, /\\bmalam\\b/i,
+  assert.doesNotMatch(tidurWriting.modelAnswer, /\bmalam\b/i,
     'Malam is introduced in a later unit and must not appear in the U8 model answer');
 });

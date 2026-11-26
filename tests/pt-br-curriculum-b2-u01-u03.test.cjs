@@ -58,7 +58,7 @@ test('B2 review references resolve to existing A2 vocabulary IDs',async()=>{
  const ids=new Set(a2.flatMap(unit=>unit.vocab.map(word=>word.id)));
  for(const unit of units)for(const lesson of unit.lessons)for(const id of lesson.reviewVocabIds)assert.ok(ids.has(id),id);
 });
-test('B2 U1-U3 add no exact normalized vocabulary duplicates against A1, A2 or B1',()=>{
+test('B2 U1-U6 add no exact normalized vocabulary duplicates against A1, A2 or B1',()=>{
  const prior=[];
  const a1Files=['units-01-06.js','units-07-12.js','units-13-18.js','units-19-21.js','units-22-24.js'];
  const b1Files=['units-01-03.js','units-04-06.js','units-07-09.js','units-10-12.js','units-13-15.js','units-16-18.js','units-19-21.js','units-22-24.js','units-25-27.js','units-28-30.js','units-31-33.js','units-34-36.js'];
@@ -72,7 +72,7 @@ test('B2 U1-U3 add no exact normalized vocabulary duplicates against A1, A2 or B
  assert.equal(added.length,60);assert.equal(new Set(normalized).size,60);
  assert.deepEqual(normalized.filter(word=>previous.has(word)),[]);
 });
-test('service worker precaches B2 U1-U3 and advances the app-shell cache',()=>{
+test('service worker precaches B2 U1-U6 and advances the app-shell cache',()=>{
  const source=fs.readFileSync(path.join(repo,'service-worker.js'),'utf8');
  assert.ok(source.includes("./languages/pt-BR/curriculum/b2/index.js"));
  assert.ok(source.includes("./languages/pt-BR/curriculum/b2/units-01-03.js"));

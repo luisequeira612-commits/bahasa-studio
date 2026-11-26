@@ -1,3 +1,10 @@
+## 2026-11-25 — Prueba E2E de calidad SRS más reciente en Aprender
+
+- Se añadió una prueba Chromium en `tests/learning-screen-phase-5b.e2e.test.cjs` para recorrer la integración real del recomendador: una palabra con errores históricos (`incorrect: 3`) y última calidad `Bien` (`lastQuality: 3`) no debe aparecer en «Practicar estas palabras»; al cambiar la última calidad a 2, la palabra vuelve a ser elegible para refuerzo.
+- La prueba usa el ID canónico `v12` (Dari), mantiene la fecha de repaso futura para aislar la recomendación de repasos vencidos y comprueba el contenido visible de la tarjeta de Aprender. No modifica runtime, currículo, IndexedDB v1, backup JSON v3 ni dependencias.
+- CI de la PR pendiente; no declarar validación funcional completa hasta que pase la prueba en Chromium y el resto de la suite.
+- Fuente: pendiente manual registrada en Notion y revisión de `adaptive-learning.js`, `tests/adaptive-learning.test.cjs` y `tests/learning-screen-phase-5b.e2e.test.cjs`; 25 nov 2026.
+ 
 ## 2026-11-26 — Corrección editorial del objetivo de A1 U12 L4
 
 - La auditoría detectó una frase gramaticalmente incompleta en el objetivo de «Tareas del hogar»: «Aprende a tareas del hogar».

@@ -1,3 +1,12 @@
+## 2026-11-26 — Auditoría integral específica PT-BR B2
+
+- Hallazgo de alcance: el artefacto `curriculum-quality-report.json` de Actions #45887647838 informa sobre el currículo indonesio B2 embebido en `index.html`, no sobre el currículo PT-BR B2 modular. No usar sus cifras ni sus 44 warnings como evaluación del curso portugués.
+- Revisión directa de los 13 bloques PT-BR B2: 40 unidades, 200 lecciones y 400 entradas; 400 IDs únicos; no se detectaron términos ni ejemplos PT-BR duplicados por normalización. Se encontraron 202 referencias de repaso a 48 IDs A2 distintos y ninguna referencia rota.
+- Se añade `tests/pt-br-curriculum-b2-full-audit.test.cjs`, que carga U1–U40 a través de `CurriculumLoader` y valida manifiesto, estructura, cobertura exacta de vocabulario por lección, explicación explícita de términos, ejemplos, estados `not_checked`, ejercicios MC y respuestas, referencias A2, duplicados y disponibilidad desactivada. Se incorpora a `quality:tests`.
+- Rama `audit/pt-br-b2-full-curriculum`; CI y revisión de cualquier hallazgo pendiente. Estas comprobaciones son estructurales y no certifican naturalidad, gramática nativa, adecuación MCER ni traducción.
+- Restricciones: PT-BR continúa `available:false`; B2 no se habilita. No tocar IndexedDB v1, backup JSON v3, dependencias ni audio.
+- Fuente: Actions #45887647838 artefacto `curriculum-quality-report`, manifiesto, 13 bloques PT-BR B2, 10 bloques A2 y nuevo contrato; 26 nov 2026.
+
 ## 2026-11-26 — Cierre PR #871 — bloque final PT-BR B2 U37–U40
 
 - PR [#871](https://github.com/luisequeira612-commits/bahasa-studio/pull/871) fusionada por squash en `main`; head validado `00c61d0983bb379b7d85613fee6ac826e48cdd76`; merge commit `0b50e7649c9a098f54a0917b785002db19ac2134`.

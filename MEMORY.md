@@ -97,3 +97,8 @@ test('English A1 vocabulary introduces no duplicate targets across U1-U12',async
 - U25–U29 tienen 22 entradas nuevas cada una; U30 tiene 0 y recicla IDs anteriores. Cada unidad mantiene 5 lecciones y 20 ejercicios. Manifiesto y prueba estructural amplían inventario hasta U1–U30.
 - Esta PR depende de #894 → #893 → #892 → #891. Integrar manualmente en orden, retargetear a main y repetir CI; no fusionar sin aprobación expresa.
 - Mantener inglés unavailable/«Próximamente», vocabulario not_checked, sin POS/audio ni cambios a IndexedDB v1, backup JSON v3 u otros idiomas.
+
+## 2026-11-26 — Corrección de CI en bloque U25–U30
+- La primera regresión de PR #895 (#45912981997) falló por un error sintáctico en la construcción de ejercicios de repaso U30: faltaba cerrar una cadena en la lista de opciones.
+- Corregido en esta rama con la cadena de commit 319f750331b663f3bbb802317da27fe371f4ca9d; se corrigió también el título del test para dejar claro que U30–U32 son repasos sin palabras nuevas.
+- CI del nuevo head pendiente de repetición; no declarar el bloque listo hasta regresión y typecheck verdes.

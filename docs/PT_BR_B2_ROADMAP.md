@@ -10,14 +10,14 @@
 - Aclaración: el informe automático genérico anterior (`curriculum-quality-report.json`) analiza el B2 indonesio embebido en `index.html`, no el currículo PT-BR B2 modular; no se usa como evidencia de calidad del portugués.
 - Estos controles son estructurales; no certifican naturalidad, gramática nativa, registro ni nivel MCER. Todas las entradas permanecen `not_checked`; no habilitar el curso.
 
-## Siguiente fase: diversidad de ejercicios — extensión U1–U15
+## Siguiente fase: diversidad de ejercicios — extensión U1–U18
 
 La auditoría PR #872 encontró que los 800 registros iniciales eran de opción múltiple y repetían las mismas 400 preguntas entre lección y banco de unidad. La mejora separa las modalidades de práctica sin reconstruir el currículo ni alterar sus 40 unidades.
 
-- U1–U12 integradas en `main`: 120 actividades de banco de unidad usan `order`, reconstruyendo el ejemplo PT-BR asociado; 120 actividades de lección conservan `mc`.
-- PR [#876](https://github.com/luisequeira612-commits/bahasa-studio/pull/876) fusionada por squash; merge commit `c22c75914dad4bb7dd25b7b8ab8712525289e03a`. CI final tras repetir un timeout transitorio: regresión 103/103, calidad offline y TypeScript correctos; sin revisiones pendientes.
-- Rama actual `feat/pt-br-b2-exercise-variety-u13-u15`: U13–U15 convierten las 30 actividades de banco a `order`; las 30 actividades de lección permanecen `mc`. El contrato integral se amplía hasta U15 y valida inventario exacto de tokens, secuencia y mezcla.
-- Siguiente bloque: U16–U18; continuar por bloques de tres hasta U40. Después revisar ejercicios de producción escrita/reformulación sin inventar audio.
+- U1–U15 integradas en `main`: 150 actividades de banco de unidad usan `order`, reconstruyendo el ejemplo PT-BR asociado; 150 actividades de lección conservan `mc`.
+- PR [#876](https://github.com/luisequeira612-commits/bahasa-studio/pull/876) (U10–U12) y PR [#877](https://github.com/luisequeira612-commits/bahasa-studio/pull/877) (U13–U15) fusionadas por squash. CI final de #877: regresión 103/103, calidad offline 10/10 y TypeScript 8/8; sin revisiones pendientes.
+- Rama actual `feat/pt-br-b2-exercise-variety-u16-u18`: U16–U18 convierten las 30 actividades de banco a `order`; las 30 actividades de lección permanecen `mc`. El contrato integral se amplía hasta U18 y valida inventario exacto de tokens, secuencia y mezcla.
+- Siguiente bloque: U19–U21; continuar por bloques de tres hasta U40. Después revisar ejercicios de producción escrita/reformulación sin inventar audio.
 - El tipo `order` ya está soportado por el motor de aprendizaje y se usa en A1. No se añaden dependencias, audio ni red.
 - PT-BR continúa deshabilitado y B2 no se habilita. Esta fase no certifica naturalidad nativa ni nivel MCER.
 

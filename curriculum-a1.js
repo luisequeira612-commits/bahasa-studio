@@ -7045,7 +7045,7 @@ window.BAHASA_CURRICULUM_A1 = {
                                 },
                                 {
                                     "title": "Lección 4: Tareas del hogar",
-                                    "objective": "Aprende a tareas del hogar y aplica las formas nuevas en frases sencillas, recuperando lo estudiado anteriormente.",
+                                    "objective": "Aprende vocabulario para hablar de las tareas del hogar y practica frases sencillas, recuperando lo estudiado anteriormente.",
                                     "grammar": "Memasak significa cocinar y mencuci lavar; baju es ropa. Para expresar la acción y su objeto, coloca el verbo antes del sustantivo: mencuci baju.",
                                     "vocabIds": [
                                         "v253",

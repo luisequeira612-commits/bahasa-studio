@@ -10,12 +10,17 @@
     });
     const loaded = new Map();
 
+    /** @param {string} level @returns {level is GuardiCefrLevel} */
+    function isLevel(level) {
+        return LEVELS.includes(/** @type {GuardiCefrLevel} */ (level));
+    }
+
     /** @param {string} language @param {string} level @returns {GuardiCurriculumDescriptor | null} */
     function resolve(language, level) {
         const manager = root.LanguageManager;
         const config = manager && manager.getLanguage(language);
         const normalizedLevel = typeof level === 'string' ? level.toUpperCase() : '';
-        if (!config || !manager.isAvailable(language) || !LEVELS.includes(normalizedLevel)) return null;
+        if (!config || !manager.isAvailable(language) || !isLevel(normalizedLevel)) return null;
         const path = config.curriculum && config.curriculum[normalizedLevel];
         if (!path) return null;
         return Object.freeze({ language, level: normalizedLevel, path, exportName: LEGACY_EXPORTS[language] && LEGACY_EXPORTS[language][normalizedLevel] || null });
@@ -26,7 +31,7 @@
         const manager = root.LanguageManager;
         const config = manager && manager.getLanguage(language);
         const normalizedLevel = typeof level === 'string' ? level.toUpperCase() : '';
-        if (!config || (typeof manager.isSupported === 'function' && !manager.isSupported(language)) || !LEVELS.includes(normalizedLevel)) return null;
+        if (!config || (typeof manager.isSupported === 'function' && !manager.isSupported(language)) || !isLevel(normalizedLevel)) return null;
         const path = config.curriculum && config.curriculum[normalizedLevel];
         if (typeof path !== 'string' || !path.startsWith('./languages/')) return null;
         return Object.freeze({ language, level: normalizedLevel, path });
@@ -37,7 +42,7 @@
         if (!descriptor) return null;
         if (descriptor.exportName) {
             const legacy = /** @type {Record<string, unknown>} */ (root)[descriptor.exportName];
-            if (legacy && typeof legacy === 'object') return legacy;
+            if (legacy && typeof legacy === 'object') return /** @type {GuardiCurriculum} */ (legacy);
         }
         const registry = root.GUARDI_CURRICULA;
         const value = registry && registry[descriptor.language] && registry[descriptor.language][descriptor.level];
@@ -83,7 +88,7 @@
         return manifest;
     }
 
-    /** @param {string} language @param {string} level @param {number[]} unitNumbers @returns {Promise<GuardiCurriculum>} */
+    /** @param {string} language @param {string} level @param {readonly number[]} unitNumbers @returns {Promise<GuardiCurriculum>} */
     async function loadUnits(language, level, unitNumbers) {
         const descriptor = resolveContent(language, level);
         if (!descriptor) throw new Error('El contenido curricular solicitado no está registrado.');

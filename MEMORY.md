@@ -1,3 +1,11 @@
+## 2026-11-26 — PR #871 abierta para bloque final PT-BR B2 U37–U40
+
+- PR [#871](https://github.com/luisequeira612-commits/bahasa-studio/pull/871) abierta desde `feat/pt-br-b2-u37-u40`, base `main` en merge commit de #870 `a60232f0f614113b44e27aa8e676cca2b7f23a27`; head `bee81cb942dd3402f6236155600e2d132d00cd2b`.
+- Añade U37–U40 (20 lecciones y 40 entradas), manifiesto B2 U1–U40, caché app-shell v3.8.165, precarga offline, E2E hasta U40 y contrato específico en `quality:tests`.
+- CI de PR #871 pendiente de aparecer/ejecutarse; reviews y review threads vacíos al abrir. No fusionar hasta CI completo verde.
+- PT-BR continúa `available:false`; B2 deshabilitado; vocabulario `not_checked`; no afirmar certificación nativa ni equivalencia MCER. Sin cambios a IndexedDB v1, backup JSON v3, dependencias ni audio.
+- Fuente: PR #871, rama y archivos curriculares/contratos; 26 nov 2026.
+
 ## 2026-11-26 — Cierre PR #870 y continuación final B2 U37–U40
 
 - PR [#870](https://github.com/luisequeira612-commits/bahasa-studio/pull/870) fusionada por squash en `main`; merge commit `a60232f0f614113b44e27aa8e676cca2b7f23a27`. Incluye U34–U36: 15 lecciones, 30 entradas, manifiesto interno U1–U36, precarga offline y caché app-shell v3.8.164.

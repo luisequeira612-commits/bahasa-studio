@@ -78,7 +78,7 @@ const unit40=makeUnit(40,'Proyecto final de autonomía B2','Demuestra autonomía
 ['Revisión del contenido','Revisar argumentos y cohesión.','A revisão substantiva comprueba la lógica y las pruebas; a coesão referencial mantiene claro a qué persona, idea o hecho remite cada expresión.',[3,4],review],
 ['Claridad y límites','Mejorar concisión y formular salvedades.','A concisão elimina redundancias sin perder matices; a condição de validade explicita condições e limites que impedem generalizar uma conclusão.',[5,6],review],
 ['Autonomía y reescritura','Convertir la autoevaluación en un plan de revisión.','A autoavaliação identifica necesidades prioritarias; a reescrita orientada aplica cambios concretos y permite comparar versiones con criterios definidos.',[7,8],review],
-['Entrega y reflexión final','Preparar una versión final y justificar decisiones.','A reescrita orientada aplica los ajustes elegidos; a versão final integra las revisiones y conserva coherencia entre propósito, contenido y formato, y la reflexión explica qué decisiones mejoraron la comunicación.',[9,8],review]
+['Entrega y reflexión final','Preparar una versión final y justificar decisiones.','O registro linguístico mantiene la elección de vocabulario y tratamiento coherente con el público y el género; a versão final integra las revisiones y conserva coherencia entre propósito, contenido y formato, y la reflexión explica qué decisiones mejoraron la comunicación.',[2,9],review]
 ]);
 root.GUARDI_CURRICULUM_BLOCKS=root.GUARDI_CURRICULUM_BLOCKS||{};
 root.GUARDI_CURRICULUM_BLOCKS['pt-BR']=root.GUARDI_CURRICULUM_BLOCKS['pt-BR']||{};

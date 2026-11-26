@@ -1,6 +1,6 @@
 # Portugués brasileño B2 — temario de 40 unidades
 
-**Estado:** temario reconstruido el 26 de noviembre de 2026 porque no se recuperó el documento anterior. Es una propuesta de trabajo editable, no una equivalencia certificada con un examen oficial. Los bloques U1–U3, U4–U6, U7–U9, U10–U12, U13–U15, U16–U18 y U19–U21 están implementados; U22–U24 están en preparación y U25–U40 siguen planificados.
+**Estado:** temario reconstruido el 26 de noviembre de 2026 porque no se recuperó el documento anterior. Es una propuesta de trabajo editable, no una equivalencia certificada con un examen oficial. Los bloques U1–U3, U4–U6, U7–U9, U10–U12, U13–U15, U16–U18, U19–U21 y U22–U24 están implementados; U25–U27 están en preparación y U28–U40 siguen planificados.
 
 ## Criterios
 
@@ -9,7 +9,7 @@
 - Evitar repetir como contenido nuevo los ejes ya trabajados en B1 (relatos básicos, argumentación inicial, hipótesis, medios, ciudad, ciencia, economía, cultura y negociación).
 - Cada unidad incorpora vocabulario en contexto, explicaciones en español, ejemplos PT-BR y ejercicios vinculados a frases completas.
 - El estado de las entradas nuevas permanece `not_checked` mientras no exista verificación documental individual suficiente. Las pruebas estructurales no certifican naturalidad ni nivel MCER.
-- B2 permanece no disponible en el selector hasta completar el curso y sus pruebas. La manifestación parcial de U1–U21 solo permite validación interna.
+- B2 permanece no disponible en el selector hasta completar el curso y sus pruebas. La manifestación parcial de U1–U24 solo permite validación interna.
 
 ## Secuencia propuesta
 
@@ -86,13 +86,19 @@
 - U20: expresiones idiomáticas y uso contextual.
 - U21: debate público y negociación avanzada.
 
-## Bloque en preparación: U22–U24
+## Bloques implementados: U22–U24
 
 - U22: registro académico y profesional.
 - U23: correspondencia formal y reclamaciones.
 - U24: presentaciones y entrevistas extensas.
 
-U1–U21 contienen 105 lecciones y 210 entradas nuevas. U22–U24 están en preparación con el mismo formato de cinco lecciones y diez entradas por unidad. Las entradas permanecen `not_checked`; las pruebas verifican estructura, carga offline, referencias de repaso y duplicados normalizados, pero no certifican naturalidad ni nivel MCER.
+## Bloque en preparación: U25–U27
+
+- U25: narrativa compleja y perspectiva.
+- U26: crónica y reportaje.
+- U27: datos, tendencias y cautela estadística.
+
+U1–U24 contienen 120 lecciones y 240 entradas nuevas. U25–U27 están en preparación con el mismo formato de cinco lecciones y diez entradas por unidad. Las entradas nuevas permanecen `not_checked`; las pruebas verifican estructura, carga offline, referencias de repaso y duplicados normalizados, pero no certifican naturalidad ni nivel MCER.
 
 ### Referencias de diseño consultadas
 

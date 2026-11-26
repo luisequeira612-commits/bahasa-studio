@@ -3,7 +3,8 @@
 - La auditoría detectó una frase gramaticalmente incompleta en el objetivo de «Tareas del hogar»: «Aprende a tareas del hogar».
 - Se reformuló como «Aprende vocabulario para hablar de las tareas del hogar y practica frases sencillas, recuperando lo estudiado anteriormente».
 - Se añadió una regresión que comprueba el objetivo de U12 L4. Sin cambios en vocabulario, ejercicios, secuencia, runtime, IndexedDB v1, backup JSON v3 ni dependencias.
-- Fuente: revisión directa de `curriculum-a1.js` y `tests/a1-curriculum-progression.test.cjs`; 26 nov 2026.
+- La prueba de integridad detectó el cambio canónico de A1; se actualizó su hash fijado de `e45ef2e6` a `52124a59`, manteniendo la aserción estricta y los recuentos estructurales.
+- Fuente: revisión directa de `curriculum-a1.js`, `tests/a1-curriculum-progression.test.cjs`, `tests/curriculum-extraction.test.js` y CI PR #846 run #45748453471; 26 nov 2026.
 
 ## 2026-11-26 — Corrección de secuencia didáctica A1 U11 L2
 

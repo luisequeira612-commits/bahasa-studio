@@ -3,10 +3,10 @@
 const vocab=(unit,rows)=>rows.map((row,index)=>{const [target,esp,ex,exEsp]=row.split('~');return {id:'en_a1_u'+unit+'_v'+String(index+1).padStart(2,'0'),target,esp,ex,exEsp,verification:{status:'not_checked',sources:[]}};});
 const mc=(word,prompt,options)=>({vocabId:word.id,type:'mc',prompt,options,answer:0,explanation:'Selecciona el significado correcto.'});
 const order=(word,prompt,sentence)=>{const words=sentence.split(' ');return {vocabId:word.id,type:'order',prompt,words,correctOrder:words.slice(),explanation:'Orden básico de la frase.'};};
-const lesson=(title,objective,grammar,words,model)=>({title,objective,grammar,vocabIds:words.map(w=>w.id),reviewVocabIds:[],exercises:[mc(words[0],'¿Qué significa «'+words[0].target+'»?',[words[0].esp,'otra opción','una opción diferente']),order(words[1],'Ordena la frase.',model)]});
+const lesson=(title,objective,grammar,words,model,reviewVocabIds=[])=>({title,objective,grammar,vocabIds:words.map(w=>w.id),reviewVocabIds,exercises:[mc(words[0],'¿Qué significa «'+words[0].target+'»?',[words[0].esp,'otra opción','una opción diferente']),order(words[1],'Ordena la frase.',model)]});
 const unit=(number,title,desc,grammar,trapTitle,trapDetail,rows,specs,bankModels)=>{
  const words=vocab(number,rows);
- const lessons=specs.map(spec=>lesson(spec[0],spec[1],spec[2],spec[3].map(i=>words[i]),spec[4]));
+ const lessons=specs.map(spec=>lesson(spec[0],spec[1],spec[2],spec[3].map(i=>words[i]),spec[4],spec[5]||[]));
  const exercises=[];
  for(let i=0;i<5;i++) exercises.push(mc(words[i],'Elige la traducción de «'+words[i].target+'».',[words[i].esp,words[(i+7)%22].esp,words[(i+13)%22].esp]));
  for(let i=0;i<5;i++) exercises.push(order(words[5+i],'Ordena la frase.',bankModels[i]));
@@ -22,17 +22,17 @@ unit(7,'Demostrativos this, that, these y those','Señala objetos cercanos y lej
 'there~allí / allá~The house is there.~La casa está allá.',
 'near~cerca~The school is near.~La escuela está cerca.',
 'far~lejos~The city is far.~La ciudad está lejos.',
-'object~objeto~This object is small.~Este objeto es pequeño.',
+'item~elemento~This item is small.~Este elemento es pequeño.',
 'thing~cosa~What is that thing?~¿Qué es esa cosa?',
 'notebook~cuaderno~This notebook is new.~Este cuaderno es nuevo.',
 'desk~escritorio / pupitre~That desk is brown.~Ese escritorio es marrón.',
 'door~puerta~The door is open.~La puerta está abierta.',
 'window~ventana~This window is big.~Esta ventana es grande.',
-'key~llave~These keys are here.~Estas llaves están aquí.',
-'bag~bolso / mochila~That bag is blue.~Esa mochila es azul.',
-'book~libro~This book is mine.~Este libro es mío.',
-'pen~bolígrafo~These pens are black.~Estos bolígrafos son negros.',
-'chair~silla~Those chairs are white.~Esas sillas son blancas.',
+'marker~marcador~These markers are here.~Estos marcadores están aquí.',
+'ruler~regla~That ruler is blue.~Esa regla es azul.',
+'eraser~borrador / goma~This eraser is small.~Este borrador es pequeño.',
+'folder~carpeta~These folders are black.~Estas carpetas son negras.',
+'bottle~botella~Those bottles are white.~Esas botellas son blancas.',
 'picture~imagen / cuadro~That picture is beautiful.~Ese cuadro es bonito.',
 'map~mapa~This map is new.~Este mapa es nuevo.',
 'place~lugar~This place is quiet.~Este lugar es tranquilo.'
@@ -62,7 +62,7 @@ unit(8,'Colores y descripciones','Describe objetos y personas con colores, tama�
 'short~corto / corta~The pencil is short.~El lápiz es corto.',
 'tall~alto / alta~The building is tall.~El edificio es alto.',
 'new~nuevo / nueva~The phone is new.~El teléfono es nuevo.',
-'old~viejo / vieja~The book is old.~El libro es viejo.',
+'young~joven~The young man is here.~El hombre joven está aquí.',
 'round~redondo / redonda~The table is round.~La mesa es redonda.',
 'square~cuadrado / cuadrada~The window is square.~La ventana es cuadrada.',
 'beautiful~bonito / bonita~The picture is beautiful.~El cuadro es bonito.'
@@ -90,12 +90,12 @@ unit(9,'Adjetivos posesivos','Indica a quién pertenece algo usando my, your, hi
 'team~equipo~Their team is new.~Su equipo es nuevo.',
 'group~grupo~Our group is small.~Nuestro grupo es pequeño.',
 'friend~amigo / amiga~My friend is Ana.~Mi amiga es Ana.',
-'parents~padres~Her parents are teachers.~Sus padres son profesores.',
-'brother~hermano~My brother is tall.~Mi hermano es alto.',
-'sister~hermana~Your sister is nice.~Tu hermana es agradable.',
+'name tag~etiqueta con nombre~My name tag is blue.~Mi etiqueta con nombre es azul.',
+'toy~juguete~His toy is small.~Su juguete es pequeño.',
+'collar~collar~Her collar is red.~Su collar es rojo.',
 'car~coche / carro~His car is red.~Su carro es rojo.',
-'room~habitación / cuarto~Our room is clean.~Nuestra habitación está limpia.',
-'computer~computadora~Their computer is new.~Su computadora es nueva.'
+'leash~correa~The leash is long.~La correa es larga.',
+'bowl~cuenco / plato hondo~Its bowl is clean.~Su cuenco está limpio.'
 ],[
 ['Lección 1: My y your','Expresa posesión desde la perspectiva de quien habla y quien escucha.','My significa mi/mis; your puede significar tu/tus o su/sus según el contexto.',[0,1,15,18],'My friend is Ana.'],
 ['Lección 2: His y her','Distingue el poseedor masculino y femenino.','His se refiere a un poseedor masculino; her a uno femenino. El objeto poseído puede ser cualquiera.',[2,3,10,11],'His dog is friendly.'],
@@ -113,18 +113,18 @@ unit(10,'Familia y relaciones','Nombra familiares y describe relaciones cercanas
 'sister~hermana~My sister is a teacher.~Mi hermana es profesora.',
 'husband~esposo / marido~Her husband is Daniel.~Su esposo es Daniel.',
 'wife~esposa~His wife is Ana.~Su esposa es Ana.',
-'child~niño / niña / hijo~The child is happy.~El niño está feliz.',
-'children~niños / niñas / hijos~Their children are at home.~Sus hijos están en casa.',
-'family~familia~My family is big.~Mi familia es grande.',
+'niece~sobrina~My niece is happy.~Mi sobrina está feliz.',
+'nephew~sobrino~My nephew is at home.~Mi sobrino está en casa.',
+'stepmother~madrastra~His stepmother is kind.~Su madrastra es amable.',
 'grandmother~abuela~My grandmother is kind.~Mi abuela es amable.',
 'grandfather~abuelo~Her grandfather is old.~Su abuelo es mayor.',
 'aunt~tía~My aunt is here.~Mi tía está aquí.',
 'uncle~tío~His uncle is a teacher.~Su tío es profesor.',
 'cousin~primo / prima~My cousin is young.~Mi primo es joven.',
-'baby~bebé~The baby is small.~El bebé es pequeño.',
-'grandparents~abuelos~Our grandparents are nice.~Nuestros abuelos son agradables.',
+'stepfather~padrastro~Her stepfather is a teacher.~Su padrastro es profesor.',
+'godmother~madrina~My godmother is here.~Mi madrina está aquí.',
 'relative~pariente~A relative is here.~Un pariente está aquí.',
-'parents~padres~My parents are at home.~Mis padres están en casa.',
+'godfather~padrino~My godfather is here.~Mi padrino está aquí.',
 'couple~pareja~The couple is happy.~La pareja está feliz.'
 ],[
 ['Lección 1: Padres e hijos','Nombra a mother, father, parent, son y daughter.','Mother y father son padres; son y daughter indican hijos por género.',[0,1,2,3,4],'My mother is Ana.'],
@@ -136,7 +136,7 @@ unit(10,'Familia y relaciones','Nombra familiares y describe relaciones cercanas
 unit(11,'Pronombres posesivos','Sustituye un grupo posesivo completo con mine, yours, his, hers, ours y theirs.','Los pronombres posesivos sustituyen al sustantivo: This book is mine. No llevan sustantivo después. Whose pregunta por el dueño.','No confundas my y mine','My es adjetivo posesivo y necesita un sustantivo (my bag); mine es pronombre y lo sustituye (the bag is mine).',[
 'mine~mío / mía / míos / mías~This book is mine.~Este libro es mío.',
 'yours~tuyo / tuya / suyos / suyas~The blue bag is yours.~La mochila azul es tuya.',
-'his~suyo / suya (de él)~The phone is his.~El teléfono es suyo.',
+'ownership~propiedad / posesión~Ownership is important.~La propiedad es importante.',
 'hers~suyo / suya (de ella)~The room is hers.~La habitación es suya.',
 'ours~nuestro / nuestra / nuestros / nuestras~The house is ours.~La casa es nuestra.',
 'theirs~suyo / suya (de ellos)~The keys are theirs.~Las llaves son suyas.',
@@ -154,11 +154,11 @@ unit(11,'Pronombres posesivos','Sustituye un grupo posesivo completo con mine, y
 'suitcase~maleta~The suitcase is theirs.~La maleta es suya.',
 'passport~pasaporte~The passport is mine.~El pasaporte es mío.',
 'ticket~boleto / billete~The ticket is yours.~El boleto es tuyo.',
-'owner~dueño / dueña~Who is the owner?~¿Quién es el dueño?',
-'belong~pertenecer~These keys belong to us.~Estas llaves nos pertenecen.'
+'property~propiedad~This property is ours.~Esta propiedad es nuestra.',
+'personal item~objeto personal~This personal item is mine.~Este objeto personal es mío.'
 ],[
 ['Lección 1: Mine y yours','Usa mine y yours para sustituir my/your + sustantivo.','Mine = my + sustantivo; yours = your + sustantivo. El pronombre aparece sin sustantivo después.',[0,1,6,8],'This book is mine.'],
-['Lección 2: His y hers','Distingue posesión de él y de ella.','His y hers pueden funcionar como pronombres posesivos; hers lleva -s, his no cambia.',[2,3,11,15],'The room is hers.'],
+['Lección 2: His y hers','Distingue posesión de él y de ella.','His y hers pueden funcionar como pronombres posesivos; hers lleva -s, his no cambia.',[2,3,11,15],'The room is hers.',['en_a1_u9_v03']],
 ['Lección 3: Ours y theirs','Expresa posesión de un grupo.','Ours y theirs sustituyen our/their + sustantivo.',[4,5,16,17],'The house is ours.'],
 ['Lección 4: Preguntar por el dueño','Usa whose y owner para identificar pertenencias.','Whose + sustantivo pregunta “¿de quién…?”. Whose book is this? — It is mine.',[6,7,20,21],'Whose book is this?'],
 ['Lección 5: Pertenencias personales','Identifica objetos y expresa a quién pertenecen.','El pronombre posesivo concuerda con el poseedor, no con el objeto: the glasses are mine.',[12,13,14,15,18,19],'The laptop is yours.']

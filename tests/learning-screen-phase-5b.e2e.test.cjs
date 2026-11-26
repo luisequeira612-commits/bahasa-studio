@@ -1064,6 +1064,71 @@ test('Aprender stops recommending a word after its latest SRS grade is Bien desp
   }
 });
 
+test('Aprender reinforcement starts a session containing only the recommended words', async () => {
+  const { server, url } = await startServer();
+  const browser = await chromium.launch({ headless: true });
+  const context = await browser.newContext({ viewport: { width: 360, height: 740 }, serviceWorkers: 'block', reducedMotion: 'reduce' });
+  const page = await context.newPage();
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
+    await page.locator('.nav-btn[data-nav-group="learn"]').click();
+
+    const seeded = await page.evaluate(async () => {
+      const a1 = CourseData.levels.find(level => level.id === 'A1');
+      const words = a1.units.flatMap(unit => unit.vocab || []);
+      const selected = words.slice(0, 2);
+      const selectedIds = new Set(selected.map(word => word.id));
+      const unrelated = words.find(word => word && !selectedIds.has(word.id));
+      if (selected.length !== 2 || !unrelated) throw new Error('A1 must supply three distinct SRS words');
+      const now = Date.now();
+      for (const word of selected) {
+        await DB.set('srs', word.id, {
+          attempts: 4, correct: 1, incorrect: 3, interval: 1, repetition: 1,
+          efactor: 2.5, nextReview: now + 86400000, lastReviewed: now - 86400000, lastQuality: 2
+        });
+      }
+      await App.updateSrsView();
+      return { selectedIds: selected.map(word => word.id), unrelatedId: unrelated.id };
+    });
+
+    const card = page.locator('#adaptiveLearningRecommendationLearn');
+    await page.waitForFunction(() => {
+      const host = document.getElementById('adaptiveLearningRecommendationLearn');
+      return Boolean(host && !host.hidden && /Practicar estas palabras/.test(host.innerText));
+    });
+    assert.match(await card.innerText(), /Practicar estas palabras/);
+
+    // Add an unrelated due card after the recommendation is rendered. The click
+    // must still start only the selected reinforcement set, not every due item.
+    await page.evaluate(async unrelatedId => {
+      await DB.set('srs', unrelatedId, {
+        attempts: 2, correct: 1, incorrect: 1, interval: 1, repetition: 1,
+        efactor: 2.5, nextReview: Date.now() - 1000,
+        lastReviewed: Date.now() - 86400000, lastQuality: 2, savedForReview: false
+      });
+    }, seeded.unrelatedId);
+
+    await card.locator('button').click();
+    await page.waitForFunction(() => SRSEngine.activeQueue && SRSEngine.activeQueue.length > 0);
+    const session = await page.evaluate(() => ({
+      ids: SRSEngine.activeQueue.map(item => item.vocab.id),
+      progress: document.getElementById('srsProgressText')?.innerText || '',
+      activeView: document.querySelector('.app-view.active')?.id
+    }));
+    assert.deepEqual([...session.ids].sort(), [...seeded.selectedIds].sort(),
+      'reinforcement must exclude unrelated due reviews from its selected session');
+    assert.equal(session.ids.length, 2);
+    assert.equal(session.activeView, 'view-srs');
+    assert.match(session.progress, /Tarjeta 1 de 2/);
+  } finally {
+    await context.close();
+    await browser.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});
+
 test('Aprender recommends and opens the final assessment when all lessons in the current A1 unit are complete', async () => {
   const { server, url } = await startServer();
   const browser = await chromium.launch({ headless: true });

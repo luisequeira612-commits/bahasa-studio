@@ -4,7 +4,8 @@
   "version": "1.0.0",
   "description": "Regression and browser end-to-end tests for Bahasa Studio",
   "devDependencies": {
-    "playwright": "1.55.0"
+    "playwright": "1.55.0",
+    "typescript": "5.9.3"
   },
   "scripts": {
     "test:assessment": "node tests/assessment-bank-structure.test.js",
@@ -22,6 +23,7 @@
     "quality:deepseek-b1-u13-u26": "node scripts/build-b1-u13-u26-review-packet.mjs",
     "quality:deepseek-b1-u27-u50": "node scripts/build-b1-u27-u50-review-packet.mjs",
     "curriculum:lesson-inventory": "node scripts/audit-authored-lesson-inventory.mjs",
-    "curriculum:lesson-inventory:strict": "node scripts/audit-authored-lesson-inventory.mjs --strict"
+    "curriculum:lesson-inventory:strict": "node scripts/audit-authored-lesson-inventory.mjs --strict",
+    "typecheck": "tsc --project tsconfig.json"
   }
 }

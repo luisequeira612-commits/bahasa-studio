@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "noEmit": true,
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM"],
+    "module": "none",
+    "strict": false,
+    "skipLibCheck": true
+  },
+  "files": [
+    "types/guardi.d.ts",
+    "language-manager.js",
+    "curriculum-loader.js"
+  ]
+}

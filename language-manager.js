@@ -1,7 +1,9 @@
+// @ts-check
 (function (root) {
     'use strict';
 
     const STORAGE_KEY = 'guardi_active_language';
+    /** @type {Readonly<Record<GuardiLanguageCode, GuardiLanguageConfig>>} */
     const LANGUAGES = Object.freeze({
         'pt-BR': Object.freeze({ code: 'pt-BR', locale: 'pt-BR', name: 'Portugués', flag: '🇧🇷', piperVoice: 'pt_BR-faber-medium', voiceStatus: 'candidate', audioPath: './audio/pt-BR/', curriculum: Object.freeze({ A1: './languages/pt-BR/curriculum/a1/index.js', A2: './languages/pt-BR/curriculum/a2/index.js', B1: './languages/pt-BR/curriculum/b1/index.js' }), available: false }),
         en: Object.freeze({ code: 'en', locale: 'en-US', name: 'Inglés', flag: '🇺🇸', piperVoice: 'en_US-lessac-medium', voiceStatus: 'candidate', audioPath: './audio/en/', curriculum: Object.freeze({}), available: false }),
@@ -14,10 +16,14 @@
         ko: Object.freeze({ code: 'ko', locale: 'ko-KR', name: 'Coreano', flag: '🇰🇷', piperVoice: 'ko_KR-kss-medium', voiceStatus: 'unverified', audioPath: './audio/ko/', curriculum: Object.freeze({}), available: false }),
         id: Object.freeze({ code: 'id', locale: 'id-ID', name: 'Indonesio', flag: '🇮🇩', piperVoice: 'id_ID-news_tts-medium', voiceStatus: 'configured', audioPath: './audio/id/', curriculum: Object.freeze({ A1: './curriculum-a1.js', A2: './curriculum-a2.js' }), testPhrase: 'terima kasih', available: true })
     });
+    /** @param {unknown} code @returns {code is GuardiLanguageCode} */
     const supported = code => typeof code === 'string' && Object.prototype.hasOwnProperty.call(LANGUAGES, code);
+    /** @type {GuardiLanguageCode} */
     let activeLanguage = 'id';
+    /** @type {GuardiLanguageManagerOptions | null} */
     let adapter = null;
 
+    /** @param {GuardiLanguageCode} code @returns {GuardiLanguageCode} */
     function apply(code) {
         activeLanguage = code;
         // The application chrome and explanations remain Spanish. Course renderers
@@ -27,12 +33,14 @@
         return code;
     }
 
+    /** @param {GuardiLanguageManagerOptions | null | undefined} options @returns {Promise<GuardiLanguageCode>} */
     async function init(options) {
         adapter = options && typeof options === 'object' ? options : null;
         let persisted = null;
         let local = null;
         try { if (adapter && typeof adapter.read === 'function') persisted = await adapter.read(); } catch (_) {}
         try { if (root.localStorage) local = root.localStorage.getItem(STORAGE_KEY); } catch (_) {}
+        /** @param {unknown} code @returns {code is GuardiLanguageCode} */
         const available = code => supported(code) && LANGUAGES[code].available;
         const selected = available(persisted) ? persisted : available(local) ? local : 'id';
         apply(selected);
@@ -42,6 +50,7 @@
         return selected;
     }
 
+    /** @param {string} code @param {{ persist?: boolean }} [options] @returns {Promise<GuardiLanguageCode>} */
     async function setActiveLanguage(code, { persist = true } = {}) {
         if (!supported(code)) throw new Error('Código de idioma no soportado.');
         if (!LANGUAGES[code].available) throw new Error('Este curso todavía no está disponible.');
@@ -49,11 +58,17 @@
         return apply(code);
     }
 
+    /** @returns {GuardiLanguageCode} */
     function getActiveLanguage() { return activeLanguage; }
+    /** @param {string} code @returns {string | null} */
     function getLocale(code) { return supported(code) ? LANGUAGES[code].locale : null; }
+    /** @param {string} code @returns {GuardiLanguageConfig | null} */
     function getLanguage(code) { return supported(code) ? LANGUAGES[code] : null; }
+    /** @param {string} code @returns {boolean} */
     function isSupported(code) { return supported(code); }
+    /** @param {string} code @returns {boolean} */
     function isAvailable(code) { return supported(code) && LANGUAGES[code].available; }
+    /** @returns {readonly GuardiLanguageConfig[]} */
     function list() { return Object.values(LANGUAGES); }
 
     root.LanguageManager = Object.freeze({

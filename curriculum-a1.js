@@ -1777,9 +1777,9 @@ window.BAHASA_CURRICULUM_A1 = {
                                         {
                                                     "vocabId": "v17",
                                                     "type": "translate_es_id",
-                                                    "prompt": "Traduce: tres libros",
-                                                    "answer": "Tiga buku",
-                                                    "explanation": "Tiga buku significa «Tres libros»."
+                                                    "prompt": "Traduce: tres",
+                                                    "answer": "Tiga",
+                                                    "explanation": "Tiga significa tres."
                                           },
                                         {
                                             "vocabId": "v15",

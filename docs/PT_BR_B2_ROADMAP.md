@@ -1,6 +1,14 @@
 # Portugués brasileño B2 — temario de 40 unidades
 
-**Estado:** temario reconstruido el 26 de noviembre de 2026 porque no se recuperó el documento anterior. Es una propuesta de trabajo editable, no una equivalencia certificada con un examen oficial. U1–U40 están integradas en `main` tras PR #871. El contenido está completo; queda la revisión editorial/lingüística final. La disponibilidad de PT-BR y B2 se mantiene desactivada.
+**Estado:** U1–U40 están integradas en `main` tras PR #871. El 26 de noviembre de 2026 se inició una auditoría estructural específica del currículo PT-BR B2: el informe genérico previo cubría el B2 indonesio, no estas unidades. La revisión editorial/lingüística sigue pendiente; este temario es una propuesta editable, no una equivalencia certificada con un examen oficial. PT-BR y B2 permanecen desactivados.
+
+## Auditoría integral específica PT-BR B2 — en curso
+
+- La revisión directa de los 13 bloques confirma 40 unidades, 200 lecciones y 400 entradas; IDs únicos y sin duplicados exactos de términos o ejemplos tras normalización.
+- Las 202 referencias de repaso encontradas apuntan a 48 IDs A2 existentes; no se detectaron referencias rotas.
+- Se añade el contrato `tests/pt-br-curriculum-b2-full-audit.test.cjs` a `quality:tests`. Comprueba las 40 unidades completas, cinco lecciones por unidad, diez términos, cobertura de vocabulario, explicaciones de términos, ejemplos, 1.200 ejercicios, opciones/respuestas, repaso A2 y disponibilidad desactivada. Resultado CI pendiente.
+- Aclaración: el informe automático genérico anterior (`curriculum-quality-report.json`) analiza el B2 indonesio embebido en `index.html`, no el currículo PT-BR B2 modular; no se usa como evidencia de calidad del portugués.
+- Estos controles son estructurales; no certifican naturalidad, gramática nativa, registro ni nivel MCER. Todas las entradas permanecen `not_checked`; no habilitar el curso.
 
 ## Criterios
 

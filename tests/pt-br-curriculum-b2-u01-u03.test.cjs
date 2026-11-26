@@ -46,7 +46,15 @@ test('pt-BR B2 U1-U3 load as a partial internal block while the course remains u
    for(const id of lesson.vocabIds){const word=unit.vocab.find(item=>item.id===id);assert.ok(word,id);assert.ok(grammar.includes(word.target.toLocaleLowerCase('pt-BR')),unit.id+' '+lesson.title+' must explain '+word.target);}
    assert.equal(lesson.exercises.length,2,unit.id);
   }
-  for(const ex of [...unit.exercises,...unit.lessons.flatMap(lesson=>lesson.exercises)]){
+  for(const ex of unit.exercises){
+   assert.equal(ex.type,'order',unit.id);const word=unit.vocab.find(item=>item.id===ex.vocabId);assert.ok(word,ex.vocabId);
+   const expected=word.ex.replace(/[.,!?;:]/g,'').trim().split(/\s+/).filter(Boolean);
+   assert.deepEqual(Array.from(ex.correctOrder),expected,ex.vocabId+' correct sentence order');
+   assert.deepEqual([...ex.words].sort(),[...ex.correctOrder].sort(),ex.vocabId+' order tokens');
+   assert.notDeepEqual(ex.words,ex.correctOrder,ex.vocabId+' must shuffle the sentence');
+   assert.ok(ex.prompt.includes(word.target),ex.vocabId+' prompt identifies target');
+  }
+  for(const ex of unit.lessons.flatMap(lesson=>lesson.exercises)){
    assert.equal(ex.type,'mc',unit.id);const word=unit.vocab.find(item=>item.id===ex.vocabId);assert.ok(word,ex.vocabId);
    assert.equal(ex.options.length,3,ex.vocabId);assert.equal(ex.options[ex.answer],word.esp,ex.vocabId);
   }

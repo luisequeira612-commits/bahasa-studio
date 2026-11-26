@@ -53,18 +53,26 @@ function normalize(value){
   .trim().replace(/\s+/g,' ');
 }
 function assertExercise(exercise,unit,wordById,pathLabel){
- assert.equal(exercise.type,'mc',pathLabel+' type');
  assert.ok(typeof exercise.prompt==='string'&&exercise.prompt.trim(),pathLabel+' prompt');
  assert.ok(typeof exercise.explanation==='string'&&exercise.explanation.trim(),pathLabel+' explanation');
  const word=wordById.get(exercise.vocabId);
  assert.ok(word,pathLabel+' vocabulary reference '+exercise.vocabId);
  assert.ok(exercise.prompt.includes(word.target),pathLabel+' prompt must identify target '+word.target);
- assert.ok(Array.isArray(exercise.options),pathLabel+' options array');
- assert.equal(exercise.options.length,3,pathLabel+' option count');
- assert.ok(exercise.options.every(option=>typeof option==='string'&&option.trim()),pathLabel+' non-empty options');
- assert.equal(new Set(exercise.options.map(normalize)).size,3,pathLabel+' distinct options');
- assert.ok(Number.isInteger(exercise.answer)&&exercise.answer>=0&&exercise.answer<3,pathLabel+' answer index');
- assert.equal(exercise.options[exercise.answer],word.esp,pathLabel+' keyed answer');
+ if(exercise.type==='mc'){
+  assert.ok(Array.isArray(exercise.options),pathLabel+' options array');
+  assert.equal(exercise.options.length,3,pathLabel+' option count');
+  assert.ok(exercise.options.every(option=>typeof option==='string'&&option.trim()),pathLabel+' non-empty options');
+  assert.equal(new Set(exercise.options.map(normalize)).size,3,pathLabel+' distinct options');
+  assert.ok(Number.isInteger(exercise.answer)&&exercise.answer>=0&&exercise.answer<3,pathLabel+' answer index');
+  assert.equal(exercise.options[exercise.answer],word.esp,pathLabel+' keyed answer');
+ }else if(exercise.type==='order'){
+  const expected=word.ex.replace(/[.,!?;:]/g,'').trim().split(/\s+/).filter(Boolean);
+  assert.deepEqual(Array.from(exercise.correctOrder),expected,pathLabel+' correct sentence order');
+  assert.deepEqual(Array.from(exercise.words).sort(),expected.slice().sort(),pathLabel+' order token inventory');
+  assert.notDeepEqual(Array.from(exercise.words),expected,pathLabel+' order tokens must be shuffled');
+ }else{
+  assert.fail(pathLabel+' unsupported exercise type '+exercise.type);
+ }
 }
 
 test('pt-BR B2 manifest declares exactly U1-U40 across the 13 authored blocks',()=>{

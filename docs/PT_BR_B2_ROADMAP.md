@@ -10,6 +10,16 @@
 - Aclaración: el informe automático genérico anterior (`curriculum-quality-report.json`) analiza el B2 indonesio embebido en `index.html`, no el currículo PT-BR B2 modular; no se usa como evidencia de calidad del portugués.
 - Estos controles son estructurales; no certifican naturalidad, gramática nativa, registro ni nivel MCER. Todas las entradas permanecen `not_checked`; no habilitar el curso.
 
+## Siguiente fase: diversidad de ejercicios — piloto U1–U3
+
+La auditoría PR #872 encontró que los 800 registros actuales son de opción múltiple y repiten las mismas 400 preguntas entre lección y banco de unidad. Esta repetición no es suficiente para un B2.
+
+- Piloto en curso: U1–U3 convierten las 30 actividades del banco de unidad a `order`, reconstruyendo cada ejemplo PT-BR; las 30 actividades de lección conservan `mc`.
+- El tipo `order` ya está soportado por el motor de aprendizaje y se usa en el currículo A1. No se añaden dependencias, audio ni red.
+- El contrato integral se adapta para validar MC y orden, incluyendo tokens exactos, secuencia correcta y mezcla de palabras.
+- CI pendiente. Si pasa, extender por bloques a U1–U40; después estudiar producción escrita/reformulación sin inventar audio.
+- PT-BR continúa deshabilitado. Esta fase no certifica naturalidad nativa ni nivel MCER.
+
 ## Criterios
 
 - 40 unidades, cinco lecciones explícitas por unidad.

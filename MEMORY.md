@@ -1,3 +1,11 @@
+## 2026-11-26 — Seguimiento CI PR #870 (U34–U36)
+
+- PR [#870](https://github.com/luisequeira612-commits/bahasa-studio/pull/870) abierta para U34–U36. TypeScript #45883897314 terminó success y Offline quality reports #45883897341 success; la regresión #45883897341 falló en tres contratos A2 históricos (U7–U9, U10–U12 y U13–U15), que aún buscaban el nombre de caché v3.8.163 mientras el Service Worker ya declara v3.8.164.
+- El resto de la suite local, inventario, lint y E2E no llegó a ejecutarse por el fallo en quality:tests; no atribuir el fallo al contenido B2. Se actualizan únicamente las tres expectativas de caché a v3.8.164, sin cambiar runtime ni comportamiento.
+- Revalidar el head resultante con regresión completa, Chromium E2E, accesibilidad móvil y TypeScript; mantener PR abierta hasta que todo esté verde y no haya reviews/hilos pendientes.
+- PT-BR sigue `available:false`; B2 deshabilitado; vocabulario nuevo `not_checked`. Sin cambios a IndexedDB v1, backup JSON v3, dependencias ni audio.
+- Fuente: PR #870, Actions #45883897314/#45883897341 y logs del job #140129721100; 26 nov 2026.
+
 ## 2026-11-26 — PT-BR B2 U34–U36 en preparación
 
 - Rama `feat/pt-br-b2-u34-u36`, creada desde `main` después de integrar PR #869 y verificar sus workflows post-merge (regresión #45880701517, TypeScript #45880701513 y Pages #45880701567, todos success).

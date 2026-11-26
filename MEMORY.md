@@ -109,3 +109,9 @@ test('English A1 vocabulary introduces no duplicate targets across U1-U12',async
 - Manifiesto y pruebas estructurales amplían inventario hasta U1–U32; solo U30–U32 tienen 0 vocabulario nuevo. A1 completo en contenido curricular, pendiente de CI, trazabilidad de fuentes y resolución de POS/audio.
 - U32 usa únicamente mc/order; no simula ni afirma escucha real, evaluación oral ni respuesta escrita libre porque el motor actual no ofrece esas interacciones.
 - Esta PR depende de #895 → #894 → #893 → #892 → #891. Integrar manualmente en orden y retargetear a main; no fusionar sin aprobación expresa. Inglés permanece unavailable/«Próximamente».
+
+ 
+## 2026-11-26 — CI y dependencia final A1
+- PR #895 U25–U30: la regresión inicial #45912981997 falló por una comilla faltante en el generador de lecciones de repaso; corregido. CI actual verde: regresión #45913346661 y typecheck #45913346757.
+- PR #897 sustituye a #896, que se cerró sin fusionar porque quedó divergente de la base. #897 parte de la rama #895 actualizada y su CI está en curso: regresión #45913708994 y typecheck #45913709014.
+- No fusionar PRs; la cadena activa es #891 → #892 → #893 → #894 → #895 → #897. Todas las PR activas requieren aprobación expresa.

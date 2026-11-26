@@ -23,7 +23,7 @@ function startServer(){
  return new Promise(resolve=>server.listen(0,'127.0.0.1',()=>resolve(server)));
 }
 
-test('Playwright: carga A1 U1-U24, A2 U1-U30, B1 U1-U36 y B2 U1-U27 offline, aislando el progreso pt-BR del indonesio', {timeout:120000}, async()=>{
+test('Playwright: carga A1 U1-U24, A2 U1-U30, B1 U1-U36 y B2 U1-U30 offline, aislando el progreso pt-BR del indonesio', {timeout:120000}, async()=>{
  const server=await startServer();
  const address=server.address();
  const browser=await chromium.launch({headless:true});
@@ -39,7 +39,7 @@ test('Playwright: carga A1 U1-U24, A2 U1-U30, B1 U1-U36 y B2 U1-U27 offline, ais
   await page.reload();
   await page.waitForFunction(()=>Boolean(navigator.serviceWorker.controller));
   const cacheReady=await page.evaluate(async()=>{
-   const cache=await caches.open('bahasa-studio-v3.8.161');
+   const cache=await caches.open('bahasa-studio-v3.8.162');
    return Boolean(await cache.match(new URL('/languages/pt-BR/curriculum/a1/index.js',location.href).href)) &&
      Boolean(await cache.match(new URL('/languages/pt-BR/curriculum/a1/units-01-06.js',location.href).href)) &&
      Boolean(await cache.match(new URL('/languages/pt-BR/curriculum/a1/units-13-18.js',location.href).href)) &&
@@ -55,6 +55,7 @@ test('Playwright: carga A1 U1-U24, A2 U1-U30, B1 U1-U36 y B2 U1-U27 offline, ais
      Boolean(await cache.match(new URL('/languages/pt-BR/curriculum/a2/units-19-21.js',location.href).href)) &&
      Boolean(await cache.match(new URL('/languages/pt-BR/curriculum/a2/units-22-24.js',location.href).href)) &&
      Boolean(await cache.match(new URL('/languages/pt-BR/curriculum/a2/units-25-27.js',location.href).href)) &&
+     Boolean(await cache.match(new URL('/languages/pt-BR/curriculum/b2/units-28-30.js',location.href).href)) &&
      Boolean(await cache.match(new URL('/languages/pt-BR/curriculum/a2/units-28-30.js',location.href).href)) &&
      Boolean(await cache.match(new URL('/languages/pt-BR/curriculum/b1/index.js',location.href).href)) &&
      Boolean(await cache.match(new URL('/languages/pt-BR/curriculum/b1/units-01-03.js',location.href).href)) &&

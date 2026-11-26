@@ -20,7 +20,8 @@ La auditoría PR #872 encontró que los 800 registros iniciales eran de opción 
 - U1–U30 ya convierten sus bancos de unidad a `order`; U31–U33 también están preparados en la fase actual.
 - PR #883 cubre U31–U33; su regresión tuvo un fallo en `Run local quality tests`, mientras type checks y el resto de pasos principales terminaron correctamente. No se fusiona ese PR hasta resolver/verificar el fallo.
 - Rama `feat/pt-br-b2-exercise-variety-u34-u36`: U34–U36 convierten sus 30 actividades de banco a `order`; las 30 actividades de lección permanecen `mc`.
-- Próximo bloque: U37–U39; después U40. Luego revisar producción escrita/reformulación y preparar la habilitación/publicación de PT-BR B2 solo tras pasar los gates finales.
+- U37–U40 completan la diversidad de bancos de unidad: las 40 unidades usan `order` en sus bancos y `mc` en las 200 actividades de lección.
+- Tras la diversidad, queda la fase de verificación final: resolver cualquier fallo CI, ejecutar el contrato B2 completo, revisar gates de disponibilidad, habilitar PT-BR B2 y verificar Pages/Service Worker antes de declarar publicado.
 - El tipo `order` ya está soportado por el motor de aprendizaje y se usa en A1. No se añaden dependencias, audio ni red.
 - PT-BR continúa deshabilitado y B2 no se habilita. Esta fase no certifica naturalidad nativa ni nivel MCER.
 
@@ -161,7 +162,7 @@ U1–U40 integradas contienen 200 lecciones y 400 entradas nuevas. Cada unidad i
 - U38: ambigüedad, presuposición e implicatura (ambigüedad léxica y sintáctica, presuposición, implicatura, inferencia pragmática, deixis, referente discursivo, alcance de la negación, sobreentendido y desambiguación).
 - U39: proyecto argumentativo multimodal (tesis central, delimitación temática, curaduría de fuentes, evidencia verificable, contraargumento, línea argumentativa, recursos visuales, leyendas, narrativa de datos y llamada a la acción).
 - U40: proyecto final de autonomía B2 (adecuación al género, perfil del interlocutor, registro, revisión sustantiva, cohesión referencial, concisión, salvedades, autoevaluación, reescritura y versión final).
-- PR [#871](https://github.com/luisequeira612-commits/bahasa-studio/pull/871) integró en `main` las 20 lecciones y 40 entradas finales; cinco lecciones y diez entradas por unidad; ejemplos PT-BR, explicaciones en español, ejercicios contextualizados y estado `not_checked`.
+- PR [#871](https://github.com/luisequeira612-commits/bahasa-studio/pull/871) integró en `main` las 20 lecciones y 40 entradas finales; cinco lecciones y diez entradas por unidad; ejemplos PT-BR, explicaciones en español, ejercicios contextualizados y estado `not_checked`. En la fase actual, estas unidades pasan sus bancos de unidad a `order`.
 - Manifiesto interno ampliado a U1–U40 de 40; Service Worker precarga U37–U40 y usa caché app-shell v3.8.165. Contratos específicos y E2E offline ampliados hasta U40. PR [#871](https://github.com/luisequeira612-commits/bahasa-studio/pull/871) fusionada por squash en `main`, merge commit `0b50e7649c9a098f54a0917b785002db19ac2134`. CI del head final: regresión 103/103 (Chromium E2E, accesibilidad móvil y evaluación incluidos), calidad offline 10/10 y TypeScript success; sin reviews ni hilos pendientes. Verificado en `main`: manifiesto U1–U40 y precarga U37–U40. No se encontraron workflows post-merge asociados al commit squash, por lo que no se declara despliegue post-merge verificado.
 - PT-BR permanece `available:false`; B2 no se habilita. No se afirma revisión nativa ni certificación MCER; sin cambios a IndexedDB v1, backup JSON v3, dependencias ni audio.
 

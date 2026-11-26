@@ -264,3 +264,5 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Corrección final del test de audio: además del texto descriptivo, la aserción numérica debía pasar de 28 a 29 textos cubiertos; se corrigió el valor esperado. La distribución de clips faltantes permanece en 15/67.
 
 - Hash canónico A1 recalculado directamente desde el objeto curricular actualizado: `0ddebdf3` (FNV-1a de `JSON.stringify(BAHASA_CURRICULUM_A1)`). Se actualiza la aserción de integridad para la nueva revisión de U8.
+
+- Se alineó también el valor numérico de la aserción de clips interactivos añadidos: 67 (antes seguía fijado en 68 aunque el desglose ya sumaba 67).

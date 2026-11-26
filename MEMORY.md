@@ -334,3 +334,9 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - El panel de una unidad completada ahora muestra botones para abrir directamente cualquiera de sus lecciones ya completadas; deja de forzar «Repasar lección 1». La selección conserva el progreso y reutiliza la ruta existente de `LessonEngine.startUnitById`, sin cambios de esquema ni dependencias.
 - Se corrigió la cadena HTML de la acción de inicio para conservar el escape de comillas del manejador inline en unidades incompletas; la validación de sintaxis del HTML/JS debe confirmarse con las pruebas de navegador.
 - Se añadió E2E Chromium para A1 Unidad 3: comprueba que aparecen sus cinco lecciones, abre directamente la quinta y verifica que el progreso completado permanece intacto. Fuente: `index.html` y `tests/learning-screen-phase-5b.e2e.test.cjs`; 26 nov 2026.
+
+
+## 2026-11-26 — Alineación de la política adaptativa con la prioridad de evaluaciones
+- La revisión cruzada de `adaptive-learning.js`, `tests/adaptive-learning.test.cjs` y `docs/ADAPTIVE_LEARNING_RECOMMENDATION_POLICY.md` encontró que el documento omitía las evaluaciones finales pendientes de unidad. El código ya las prioriza después de los repasos vencidos y antes de los refuerzos de palabras; se actualizó la política para reflejar el comportamiento real y describir por separado la conversación dirigida y la conversación general.
+- Cambio documental únicamente: no se alteran el recomendador, el motor SM-2, el currículo, IndexedDB ni el backup JSON v3. La prioridad existente está cubierta por pruebas unitarias; esta actualización elimina la discrepancia entre implementación y documentación.
+- Fuente: inspección directa de `adaptive-learning.js`, `tests/adaptive-learning.test.cjs` y política adaptativa; 26 nov 2026.

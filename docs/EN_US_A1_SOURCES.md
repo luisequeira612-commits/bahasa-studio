@@ -44,6 +44,7 @@ Estado: bloque U1–U6 en preparación; no publicado. Fecha: 26 de noviembre de 
 
  
 ## Bloque U25–U30 — 26 nov 2026
+- Auditoría estática acumulada U1–U30: 638 entradas nuevas únicas; U30 aporta cero términos nuevos al ser repaso.
 - U25–U29: indicaciones y ubicación; dinero/compras; contables e incontables con some/any; cantidades; restaurante. Cada unidad de contenido incorpora 22 entradas nuevas.
 - U30 es un repaso integrador de artículos, demostrativos, posesivos, familia y casa: 0 entradas nuevas, 5 lecciones y 20 ejercicios que reutilizan IDs previos.
 - Vocabulario nuevo sigue not_checked; ejemplos originales. Trazabilidad lema por lema con CEFR-J/NGSL pendiente.

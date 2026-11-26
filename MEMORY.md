@@ -1,3 +1,11 @@
+## 2026-11-26 — Corrección de secuencia didáctica A1 U11 L2
+
+- La auditoría contextual aisló un aviso concreto en U11: la lección 2 tenía un ejercicio de escritura con `vocabId: v151` cuyo modelo «Jam tujuh tepat» y su pista exponían `Tepat` antes de su introducción formal en la lección 3 (`v156`). El ejercicio además se presentaba como producción de «las siete en punto».
+- Se corrigió el ejercicio para trabajar únicamente vocabulario ya disponible en L2: prompt «Escribe una frase para decir que son las siete», pista «Usa jam y tujuh», modelo «Jam tujuh.» y explicación correspondiente.
+- Se añadió una regresión que inspecciona U11 L2 y bloquea cualquier aparición de `Tepat/tepat` antes de L3.
+- Alcance limitado a currículo y prueba; sin cambios de runtime, IndexedDB v1, backup JSON v3, dependencias ni audio.
+- Fuente: `curriculum-quality-report` del run #45732887040 y revisión directa de `curriculum-a1.js`; 26 nov 2026.
+
 ## 2026-11-25 — Persistencia E2E de la aprobación de evaluación final
 
 - La E2E existente de progresión ya comprobaba evaluación insuficiente → unidad siguiente bloqueada → evaluación aprobada → unidad siguiente desbloqueada.

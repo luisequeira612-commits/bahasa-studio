@@ -246,3 +246,5 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Ajuste adicional tras CI: los ejemplos de traducción se mantienen en el texto de audio ya disponible («Tiga»), porque añadir una frase nueva exigiría ampliar el índice/archivos de audio. Se sincronizó el tracker A1 U1–U23 con el ejemplo de vocabulario corregido. Sin generar ni añadir audios.
 
 - Revisión de CI 26 nov: se detectó una segunda copia de la traducción «Tiga buku» en la lección y se normalizó también a «Tiga», que ya tiene audio indexado. Se mantienen los tipos de ejercicios escritos y el tracker actualizado.
+
+- La ejecución #45729586124 pasó regresión, audio manifest y pruebas locales; falló la prueba de integridad porque A1 usa un hash canónico fijado. Se actualizó la huella esperada de A1 de 08fc090e a ec bf3fb1 (valor real del currículo revisado), sin alterar estructura ni conteos; queda pendiente nueva ejecución completa.

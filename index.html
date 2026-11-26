@@ -20022,7 +20022,7 @@ Requisitos:
                     : '';
                 const primaryAction = progress.completed
                     ? ''
-                    : '<button class="btn unit-sheet-primary" type="button" onclick="App.startUnitFromSheet(\\'' + App.escapeHtml(unit.id) + '\\')">' + actionLabel + '</button>';
+                    : '<button class="btn unit-sheet-primary" type="button" onclick="App.startUnitFromSheet(\'' + App.escapeHtml(unit.id) + '\')">' + actionLabel + '</button>';
                 const content = document.getElementById('unitSheetContent');
                 content.innerHTML = '<p class="eyebrow">' + App.escapeHtml(level.title) + '</p>' +
                     '<h2 id="unitSheetTitle">' + App.escapeHtml(unit.title) + '</h2>' +

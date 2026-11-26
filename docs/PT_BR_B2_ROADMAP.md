@@ -1,6 +1,6 @@
 # Portugués brasileño B2 — temario de 40 unidades
 
-**Estado:** temario reconstruido el 26 de noviembre de 2026 porque no se recuperó el documento anterior. Es una propuesta de trabajo editable, no una equivalencia certificada con un examen oficial. Los bloques U1–U3, U4–U6, U7–U9, U10–U12 y U13–U15 están implementados en ramas de trabajo sucesivas; U16–U40 siguen planificados.
+**Estado:** temario reconstruido el 26 de noviembre de 2026 porque no se recuperó el documento anterior. Es una propuesta de trabajo editable, no una equivalencia certificada con un examen oficial. Los bloques U1–U3, U4–U6, U7–U9, U10–U12 y U13–U15 están implementados; U16–U18 están en preparación y U19–U40 siguen planificados.
 
 ## Criterios
 
@@ -9,7 +9,7 @@
 - Evitar repetir como contenido nuevo los ejes ya trabajados en B1 (relatos básicos, argumentación inicial, hipótesis, medios, ciudad, ciencia, economía, cultura y negociación).
 - Cada unidad incorpora vocabulario en contexto, explicaciones en español, ejemplos PT-BR y ejercicios vinculados a frases completas.
 - El estado de las entradas nuevas permanece `not_checked` mientras no exista verificación documental individual suficiente. Las pruebas estructurales no certifican naturalidad ni nivel MCER.
-- B2 permanece no disponible en el selector hasta completar el curso y sus pruebas. La manifestación parcial de U1–U15 solo permite validación interna.
+- B2 permanece no disponible en el selector hasta completar el curso y sus pruebas. La manifestación parcial de U1–U18 solo permite validación interna.
 
 ## Secuencia propuesta
 
@@ -74,7 +74,13 @@
 - U14: participios y construcciones resultativas.
 - U15: gerundio y relaciones entre acciones.
 
-U1–U15 contienen 75 lecciones y 150 entradas nuevas. Las entradas permanecen `not_checked`; las pruebas verifican estructura, carga offline, referencias de repaso y duplicados normalizados, pero no certifican naturalidad ni nivel MCER.
+## Bloque en preparación: U16–U18
+
+- U16: verbos pronominales y matices aspectuales.
+- U17: perífrasis verbales y modalidad.
+- U18: colocaciones verbo-nominales.
+
+U1–U15 contienen 75 lecciones y 150 entradas nuevas; U16–U18 están en preparación con el mismo formato de cinco lecciones y diez entradas por unidad. Las entradas permanecen `not_checked`; las pruebas verifican estructura, carga offline, referencias de repaso y duplicados normalizados, pero no certifican naturalidad ni nivel MCER.
 
 ### Referencias de diseño consultadas
 

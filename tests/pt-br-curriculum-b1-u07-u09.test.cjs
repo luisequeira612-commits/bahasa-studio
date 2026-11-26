@@ -27,7 +27,7 @@ test('pt-BR B1 U7-U9 load as content while the incomplete course is selectable',
  const {window,loader}=createPilot();
  assert.equal(window.LanguageManager.isSupported('pt-BR'),true);
  assert.equal(window.LanguageManager.isAvailable('pt-BR'),true);
- assert.equal(loader.resolve('pt-BR','B1'),null);
+ assert.ok(loader.resolve('pt-BR', 'B1'));
  const {units,totalUnits}=await loader.loadUnits('pt-BR','B1',[7,8,9]);
  assert.equal(totalUnits,36);assert.deepEqual(Array.from(units,u=>u.unitNumber),[7,8,9]);
  for(const unit of units){

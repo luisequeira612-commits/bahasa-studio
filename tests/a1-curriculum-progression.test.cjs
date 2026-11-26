@@ -180,6 +180,13 @@ test('A1 U5-U8 contain five authored lessons with sequenced introductions and sp
   }
 });
 
+test('A1 U12 lesson 4 has a complete objective about household tasks', () => {
+  const lesson = a1.units[11].lessons[3];
+  assert.equal(lesson.title, 'Lección 4: Tareas del hogar');
+  assert.match(lesson.objective, /vocabulario para hablar de las tareas del hogar/);
+  assert.doesNotMatch(lesson.objective, /aprender a tareas/);
+});
+
 test('A1 U11 lesson 2 does not expose Tepat before its introduction in lesson 3', () => {
   const unit = a1.units[10];
   assert.equal(unit.id, 'a1_u11');

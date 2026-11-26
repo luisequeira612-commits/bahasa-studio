@@ -159,7 +159,7 @@ test('optional interactive audio export covers every static playback surface', a
       sourceCounts: Object.fromEntries(kinds.map((kind) => [kind, countSource(kind)])),
       missingBySource
     }));
-    assert.equal(interactive.length - base.length, 68, 'interactive sources should add the 67 currently missing unique texts');
+    assert.equal(interactive.length - base.length, 67, 'interactive sources should add the 67 currently missing unique texts');
     assert.equal(new Set(interactive.map((entry) => entry.id)).size, interactive.length);
     assert.ok(interactive.every((entry) => entry.id === hashText(entry.text)));
   } finally {

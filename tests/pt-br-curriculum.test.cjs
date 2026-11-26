@@ -39,7 +39,7 @@ test('PT-BR A1 pilot remains loadable after the complete curriculum is enabled',
  assert.equal(curriculum.language,'pt-BR');
  assert.equal(curriculum.totalUnits,24);
  assert.deepEqual(Array.from(curriculum.units,u=>u.unitNumber),[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]);
- await assert.rejects(loader.load('pt-BR','A1'),/no está disponible/);
+ await assert.rejects(loader.load('pt-BR','A1'),/No se pudo cargar el currículo/);
 });
 
 test('each pilot unit has five explicit lessons and valid vocabulary references',async()=>{

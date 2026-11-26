@@ -5,11 +5,18 @@ const exercise=(words,index)=>{
  const word=words[index],choices=[word.esp,words[(index+3)%10].esp,words[(index+6)%10].esp],answer=index%3;
  return {vocabId:word.id,type:'mc',prompt:'En «'+word.ex+'», ¿qué expresa «'+word.target+'»?',options:choices.slice(3-answer).concat(choices.slice(0,3-answer)),answer,explanation:'Interpreta el sentido de la expresión dentro de la situación y del registro.'};
 };
+const orderExercise=(word,index)=>{
+ const correctOrder=word.ex.replace(/[.,!?;:]/g,'').trim().split(/\s+/).filter(Boolean);
+ const offset=(index%(correctOrder.length-1))+1;
+ let words=correctOrder.slice(offset).concat(correctOrder.slice(0,offset));
+ if(words.join(' ')===correctOrder.join(' '))words=correctOrder.slice().reverse();
+ return {vocabId:word.id,type:'order',prompt:'Reconstrua o exemplo que ilustra «'+word.target+'».',words,correctOrder,explanation:'Ordena as palavras para reconstruir o exemplo em português brasileiro.'};
+};
 const makeUnit=(number,title,desc,grammar,trapTitle,trapDetail,words,specs)=>({
  unitNumber:number,id:'ptbr_b2_u'+number,title:'Unidad '+number+': '+title,desc,grammar,
  trap:{title:trapTitle,detail:trapDetail},vocab:words,
  lessons:specs.map(spec=>({title:spec[0],objective:spec[1],grammar:spec[2],vocabIds:spec[3].map(i=>words[i].id),reviewVocabIds:spec[4],exercises:[exercise(words,spec[3][0]),exercise(words,spec[3][1])]})),
- exercises:words.map((_,i)=>exercise(words,i))
+ exercises:words.map((word,i)=>orderExercise(word,i))
 });
 const review=['ptbr_a2_u22_v09','ptbr_a2_u22_v10'];
 const u31=[

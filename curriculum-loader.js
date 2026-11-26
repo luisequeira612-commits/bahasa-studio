@@ -82,7 +82,7 @@
         }
         const manifest = /** @type {Record<string, unknown>} */ (value);
         if (typeof manifest.title !== 'string' || !manifest.title.trim()) errors.push('title_required');
-        if (!Number.isInteger(manifest.totalUnits) || manifest.totalUnits < 1) errors.push('totalUnits_invalid');
+        if (typeof manifest.totalUnits !== 'number' || !Number.isInteger(manifest.totalUnits) || manifest.totalUnits < 1) errors.push('totalUnits_invalid');
         if (!Array.isArray(manifest.publishedUnits) || manifest.publishedUnits.length === 0) {
             errors.push('publishedUnits_required');
         }

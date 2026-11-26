@@ -97,3 +97,9 @@ test('English A1 vocabulary introduces no duplicate targets across U1-U12',async
 - U25–U29 tienen 22 entradas nuevas cada una; U30 tiene 0 y recicla IDs anteriores. Cada unidad mantiene 5 lecciones y 20 ejercicios. Manifiesto y prueba estructural amplían inventario hasta U1–U30.
 - Esta PR depende de #894 → #893 → #892 → #891. Integrar manualmente en orden, retargetear a main y repetir CI; no fusionar sin aprobación expresa.
 - Mantener inglés unavailable/«Próximamente», vocabulario not_checked, sin POS/audio ni cambios a IndexedDB v1, backup JSON v3 u otros idiomas.
+
+## 2026-11-26 — Inglés A1 U31–U32 en PR final
+- Rama feat/en-us-a1-u31-u32 y PR prevista U31–U32: U31 conversaciones cotidianas; U32 evaluación final integrada. Ambas tienen 0 palabras nuevas, 5 lecciones y 20 ejercicios de repaso.
+- Manifiesto y pruebas estructurales amplían inventario hasta U1–U32; solo U30–U32 tienen 0 vocabulario nuevo. El A1 queda completo en contenido curricular, pendiente de CI, revisión de fuentes y resolución de POS/audio.
+- U32 usa únicamente mc/order; no simula ni afirma escucha real, evaluación oral ni respuesta escrita libre porque el motor actual no ofrece esas interacciones.
+- Esta PR depende de #895 → #894 → #893 → #892 → #891. Integrar manualmente en orden y retargetear a main; no fusionar sin aprobación expresa. Inglés permanece unavailable/«Próximamente».

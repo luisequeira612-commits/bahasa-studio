@@ -20016,8 +20016,7 @@ Requisitos:
                 const lessonChoices = progress.completed
                     ? '<div class="unit-sheet-review-choices"><p>Elige una lección para repasar</p><div class="unit-sheet-review-grid">' +
                         progress.lessons.map(lesson =>
-                            '<button class="btn btn-outline unit-sheet-review-option" type="button" data-lesson-index="' + lesson.index + '" onclick="App.startUnitLessonFromSheet(\\'' +
-                            App.escapeHtml(unit.id) + '\\',' + lesson.index + ')"><span>Lección ' + (lesson.index + 1) +
+                            '<button class="btn btn-outline unit-sheet-review-option" type="button" data-lesson-index="' + lesson.index + '"><span>Lección ' + (lesson.index + 1) +
                             '</span><small>' + App.escapeHtml(lesson.title) + '</small></button>'
                         ).join('') + '</div></div>'
                     : '';
@@ -20033,6 +20032,9 @@ Requisitos:
                     primaryAction + lessonChoices +
                     '<button class="btn btn-outline unit-sheet-grammar-toggle" type="button" onclick="App.toggleUnitGrammar()">Ver gramática</button>' +
                     '<div id="unitSheetGrammar" class="unit-sheet-grammar" hidden>' + App.escapeHtml(unit.grammar || 'No hay notas gramaticales para esta unidad.') + '</div>';
+                content.querySelectorAll('.unit-sheet-review-option').forEach(button => {
+                    button.addEventListener('click', () => this.startUnitLessonFromSheet(unit.id, Number(button.dataset.lessonIndex)));
+                });
                 const sheet = document.getElementById('unitBottomSheet');
                 sheet.style.backgroundColor = '#ffffff';
                 sheet.style.color = '#1f2937';

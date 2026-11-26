@@ -1,3 +1,12 @@
+## 2026-11-26 — Diversidad de ejercicios B2 U10–U12 fusionada; U13–U15 en curso
+
+- PR [#876](https://github.com/luisequeira612-commits/bahasa-studio/pull/876) fusionada por squash en `main`; head `b9d67ac7e53e34dad4a02bb6e769e8a6a863aba5`, merge commit `c22c75914dad4bb7dd25b7b8ab8712525289e03a`.
+- CI repetido tras un timeout transitorio en una prueba E2E móvil no relacionada con el contenido: regresión final success, 103/103 pasos; Offline quality reports success; TypeScript success. Sin reviews ni hilos pendientes al fusionar.
+- U1–U12 ahora usan `order` en los bancos de unidad y `mc` en ejercicios de lección: 120 tareas por modalidad. Se conserva el currículo existente U1–U40; esta fase diversifica práctica, no vuelve a crear unidades.
+- Rama `feat/pt-br-b2-exercise-variety-u13-u15` iniciada desde el merge de #876. U13–U15 preparadas para convertir sus 30 ejercicios de banco a `order`; los 30 ejercicios de lección permanecen `mc`. Contrato integral se extiende hasta U15.
+- Próximo bloque: U16–U18. Mantener PT-BR y B2 deshabilitados hasta completar diversidad y revisión editorial. No certificar hablante nativo ni equivalencia MCER; entradas siguen `not_checked`. Sin cambios a IndexedDB v1, backup JSON v3, dependencias, audio ni red.
+- Fuente: PR #876, Actions #45893519879 y rama U13–U15; 26 nov 2026.
+
 ## 2026-11-26 — Diversidad de ejercicios B2: extensión U10–U12
 
 - PR #873 (U1–U3), #874 (U4–U6) y #875 (U7–U9) están fusionadas en main. U1–U9 ya separan bancos: `order` en las unidades y `mc` en lecciones.

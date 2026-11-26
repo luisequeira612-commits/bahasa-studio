@@ -518,3 +518,15 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - PT-BR continúa `available:false`; B2 sigue deshabilitado en selector. Sin cambios a IndexedDB v1, backup JSON v3, dependencias ni audio. No afirmar certificación nativa ni equivalencia MCER.
 - Runs post-merge/Pages no devuelven resultados para el merge commit; despliegue no declarado verificado.
 - Fuente: PR #867, merge commit y Actions #45875348243/#45875348223; 26 nov 2026.
+
+
+## 2026-11-26 — PT-BR B2 U28–U30 en preparación
+
+- U28 ciencia e incertidumbre (diseño experimental, estimación inicial, robustez, replicación independiente); U29 tecnología, privacidad y ética (exfiltración de datos, finalidad declarada, sesgo algorítmico, cifrado homomórfico y retención limitada); U30 medioambiente y sostenibilidad (electrificación industrial, inventario de emisiones, capacidad adaptativa, reutilización de materiales y justicia climática).
+- 15 lecciones y 30 entradas nuevas (10 por unidad, dos objetivos por lección), ejemplos PT-BR, explicaciones en español y ejercicios contextualizados. Entradas nuevas `not_checked`.
+- Manifiesto interno de la rama publica U1–U30 de 40; Service Worker precarga U28–U30, caché app-shell v3.8.162; E2E offline se extiende hasta U30.
+- Contratos verifican estructura, dos objetivos por lección, referencias A2, ausencia de duplicados normalizados contra A1–B1 y B2 U1–U27, disponibilidad false y precarga offline.
+- PT-BR sigue `available:false`; B2 deshabilitado. Sin cambios a IndexedDB v1, backup JSON v3, dependencias ni audio. No afirmar certificación nativa ni equivalencia MCER.
+- Estado: rama `feat/pt-br-b2-u28-u30`; pendiente CI y PR.
+- Revisión editorial: se sustituyeron términos ya presentes en A1–B1 o B2 U1–U27 por vocabulario más específico (diseño experimental, replicación independiente, exfiltración de datos, cifrado homomórfico, electrificación industrial e inventario de emisiones); el test comprueba ausencia de duplicados normalizados.
+- Fuente: roadmap B2, U28–U30 y pruebas; 26 nov 2026.

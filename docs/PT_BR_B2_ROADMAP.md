@@ -17,7 +17,10 @@ La auditoría PR #872 encontró que los 800 registros iniciales eran de opción 
 - U1–U24 integradas en `main`: 240 actividades de banco de unidad usan `order`, reconstruyendo el ejemplo PT-BR asociado; 240 actividades de lección conservan `mc`.
 - PR [#876](https://github.com/luisequeira612-commits/bahasa-studio/pull/876) (U10–U12), [#877](https://github.com/luisequeira612-commits/bahasa-studio/pull/877) (U13–U15), [#878](https://github.com/luisequeira612-commits/bahasa-studio/pull/878) (U16–U18), [#879](https://github.com/luisequeira612-commits/bahasa-studio/pull/879) (U19–U21) y [#880](https://github.com/luisequeira612-commits/bahasa-studio/pull/880) (U22–U24) fusionadas por squash. CI final de #880: regresión 103/103, calidad offline 10/10 y TypeScript correcto; sin revisiones pendientes.
 - Rama actual `feat/pt-br-b2-exercise-variety-u25-u27`: U25–U27 convierten las 30 actividades de banco a `order`; las 30 actividades de lección permanecen `mc`. El contrato integral se amplía hasta U27 y valida inventario exacto de tokens, secuencia y mezcla.
-- Siguiente bloque: U28–U30; continuar por bloques de tres hasta U40. Después revisar ejercicios de producción escrita/reformulación sin inventar audio.
+- U1–U30 ya convierten sus bancos de unidad a `order`; U31–U33 también están preparados en la fase actual.
+- PR #883 cubre U31–U33; su regresión tuvo un fallo en `Run local quality tests`, mientras type checks y el resto de pasos principales terminaron correctamente. No se fusiona ese PR hasta resolver/verificar el fallo.
+- Rama `feat/pt-br-b2-exercise-variety-u34-u36`: U34–U36 convierten sus 30 actividades de banco a `order`; las 30 actividades de lección permanecen `mc`.
+- Próximo bloque: U37–U39; después U40. Luego revisar producción escrita/reformulación y preparar la habilitación/publicación de PT-BR B2 solo tras pasar los gates finales.
 - El tipo `order` ya está soportado por el motor de aprendizaje y se usa en A1. No se añaden dependencias, audio ni red.
 - PT-BR continúa deshabilitado y B2 no se habilita. Esta fase no certifica naturalidad nativa ni nivel MCER.
 
@@ -99,6 +102,13 @@ La auditoría PR #872 encontró que los 800 registros iniciales eran de opción 
 - U17: perífrasis verbales y modalidad.
 - U18: colocaciones verbo-nominales.
 
+## Bloque de diversidad: U31–U33
+
+- U31: desigualdad, inclusión y cohesión social.
+- U32: trabajo, derechos y transformación laboral.
+- U33: política pública, participación y gobernanza.
+- Las actividades del banco de unidad pasan a `order`; las actividades de lección permanecen `mc`.
+
 ## Bloques implementados: U19–U21
 
 - U19: derivación y familias léxicas.
@@ -134,13 +144,14 @@ U1–U40 integradas contienen 200 lecciones y 400 entradas nuevas. Cada unidad i
 - El manifiesto de trabajo extiende la publicación interna hasta U1–U33; caché app-shell v3.8.163 y precarga offline. PT-BR continúa `available:false`; no se habilita el curso.
 - Validación pendiente: contratos de estructura, referencias de repaso A2, duplicados normalizados, regresión y E2E offline. No se afirma certificación nativa ni equivalencia MCER.
 
-## Bloque implementado: U34–U36
+## Bloque de currículo: U34–U36
 
 - U34: salud y políticas públicas (atención primaria, cribado poblacional, vigilancia de brotes, determinantes sociales, decisiones compartidas, rutas de atención y asignación de recursos).
 - U35: educación y aprendizaje permanente (formación continua, alfabetización informacional, evaluación por competencias, diseño universal para el aprendizaje, brechas, trayectorias y transferencia).
 - U36: consumo, finanzas y decisiones (endeudamiento familiar, costo total del crédito, presupuesto doméstico, fondo de emergencia, diversificación, liquidez, poder adquisitivo y capacidad de pago).
-- Rama `feat/pt-br-b2-u34-u36`: 15 lecciones y 30 entradas nuevas; cinco lecciones y diez entradas por unidad; dos objetivos léxicos por lección; ejemplos PT-BR, explicaciones en español y ejercicios contextualizados. Entradas `not_checked`.
-- Manifiesto interno ampliado a U1–U36 de 40; Service Worker precarga U34–U36 y usa caché app-shell v3.8.164. Contratos específicos y E2E offline ampliados hasta U36.
+- Currículo U34–U36: 15 lecciones y 30 entradas nuevas; cinco lecciones y diez entradas por unidad; dos objetivos léxicos por lección; ejemplos PT-BR, explicaciones en español y ejercicios contextualizados. Entradas `not_checked`.
+- En la fase de diversidad, los bancos de unidad de U34–U36 pasan a `order`; las actividades de lección siguen `mc`.
+- Próximo bloque de diversidad: U37–U39.
 - PR [#870](https://github.com/luisequeira612-commits/bahasa-studio/pull/870) fusionada por squash en `main`; merge commit `a60232f0f614113b44e27aa8e676cca2b7f23a27`. CI del head final: regresión #45884552214 success (103 pasos, Chromium E2E, accesibilidad móvil y pruebas de evaluación incluidos), calidad offline 10/10 y TypeScript #45884552466 success. Sin reviews ni hilos pendientes.
 - Manifiesto interno extendido a U1–U36/40; Service Worker precarga U34–U36, caché app-shell v3.8.164. PT-BR continúa `available:false`; B2 no se habilita. No se afirma certificación nativa ni equivalencia MCER; sin cambios a IndexedDB v1, backup JSON v3, dependencias ni audio.
 

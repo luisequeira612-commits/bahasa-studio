@@ -1,3 +1,15 @@
+## 2026-11-26 — Diversidad PT-BR B2 U34–U36
+
+- U34–U36 convierten sus 30 actividades de banco de unidad a `order`; las 30 actividades de lección permanecen `mc`.
+- Se amplía el contrato integral para exigir el reparto `order`/`mc` hasta U36.
+- PR #883 (U31–U33) tiene regresión fallida en `Run local quality tests`; no declarar fusión hasta resolver/verificar ese fallo. Type checks pasaron.
+- Próximo bloque: U37–U39. Mantener PT-BR/B2 deshabilitados, `not_checked`, sin cambios a IndexedDB v1, backup JSON v3, dependencias, audio ni red.
+
+## 2026-11-26 — Diversidad PT-BR B2 U31–U33
+
+- U31–U33 convierten sus 30 actividades de banco de unidad a `order`; las 30 actividades de lección permanecen `mc`.
+- Próximo bloque: U34–U36. Mantener PT-BR/B2 deshabilitados, `not_checked`, sin cambios a IndexedDB v1, backup JSON v3, dependencias, audio ni red.
+
 ## 2026-11-26 — PR #880 U22–U24 fusionada; U25–U27 en curso
 
 - PR [#880](https://github.com/luisequeira612-commits/bahasa-studio/pull/880) fusionada por squash en `main`; head `bdab0247483c0364fe13b726dbd5324ad8b59968`, merge commit `00101600a7790b312a1ea36599bd758942127dc8`.

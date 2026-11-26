@@ -29,8 +29,8 @@ const refs=[
 {id:'en_a1_u12_v01',target:'house',esp:'casa'},
 {id:'en_a1_u12_v03',target:'bedroom',esp:'dormitorio'},
 {id:'en_a1_u12_v13',target:'sofa',esp:'sofá'},
-{id:'en_a1_u6_v01',target:'box',esp:'caja'},
-{id:'en_a1_u6_v02',target:'class',esp:'clase'},
+{id:'en_a1_u6_v05',target:'box',esp:'caja'},
+{id:'en_a1_u6_v06',target:'class',esp:'clase'},
 {id:'en_a1_u5_v01',target:'article',esp:'artículo'},
 {id:'en_a1_u5_v02',target:'a',esp:'un / una'}
 ];

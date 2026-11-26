@@ -371,3 +371,23 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - La revisión cruzada de `adaptive-learning.js`, `tests/adaptive-learning.test.cjs` y `docs/ADAPTIVE_LEARNING_RECOMMENDATION_POLICY.md` encontró que el documento omitía las evaluaciones finales pendientes de unidad. El código ya las prioriza después de los repasos vencidos y antes de los refuerzos de palabras; se actualizó la política para reflejar el comportamiento real y describir por separado la conversación dirigida y la conversación general.
 - Cambio documental únicamente: no se alteran el recomendador, el motor SM-2, el currículo, IndexedDB ni el backup JSON v3. La prioridad existente está cubierta por pruebas unitarias; esta actualización elimina la discrepancia entre implementación y documentación.
 - Fuente: inspección directa de `adaptive-learning.js`, `tests/adaptive-learning.test.cjs` y política adaptativa; 26 nov 2026.
+
+
+## 2026-11-26 — PT-BR B2, bloque U4–U6 en preparación
+
+- Se inicia el segundo bloque del currículo B2 en la rama `feat/pt-br-b2-u04-u06`, continuando el roadmap reconstruido de 40 unidades.
+- U4: nominalización y densidad informativa; U5: voz pasiva y enfoque informativo; U6: oraciones relativas complejas. El bloque añade 15 lecciones y 30 entradas nuevas (10 por unidad), con dos objetivos léxicos por lección, ejemplos PT-BR y explicaciones en español.
+- El manifiesto interno B2 amplía las unidades publicadas de [1,2,3] a [1,2,3,4,5,6], manteniendo `totalUnits:40` y `pt-BR available:false`. B2 no se habilita en el selector.
+- El Service Worker precarga U4–U6 y cambia la caché app-shell a `bahasa-studio-v3.8.154`; se actualizaron las aserciones de caché de pruebas PT-BR afectadas.
+- Se amplían los contratos de currículo y la E2E Chromium para comprobar U1–U6 en modo offline, cinco lecciones por unidad, 10 entradas, dos vocablos por lección, referencias A2, ausencia de duplicados normalizados A1–B1 y estado `not_checked`.
+- Todas las entradas nuevas siguen `not_checked`. La estructura y coherencia interna de las explicaciones no certifican naturalidad, uso nativo ni nivel MCER. No se modifican IndexedDB v1, backup JSON v3, dependencias ni audio.
+- Estado al registrar: cambios de contenido, manifiesto, precarga, pruebas y documentación en curso; pendiente ejecutar CI completo y revisar resultados antes de fusionar.
+- Fuente: rama `feat/pt-br-b2-u04-u06`, roadmap B2 y contratos curriculares; 26 nov 2026.
+
+- Revisión editorial interna previa al cierre: en U6 L1 se ajustó la entrada `cujo parecer` a `cujo conteúdo` para que la expresión objetivo coincida literalmente con el ejemplo; la explicación gramatical se alineó con el cambio. Corrección en commit `9dd8487558f496450416fbb423e1ff0d73032e1a`. La validación CI debe ejecutarse sobre este head actualizado.
+
+- Corrección tras el primer CI del bloque: la prueba detectó tres referencias A2 fuera del rango de IDs existente (U24 v11–v13) y una explicación U5 L3 que no nombraba explícitamente `é regulamentado`. Se sustituyeron por IDs A2 existentes y se completó la explicación. El contrato estructural había pasado para la carga offline; la regresión local falló únicamente en esos dos controles. Revalidar el head actualizado antes de integrar.
+
+- Segundo CI del head `1331cd6b...`: las referencias A2 y U5 L3 ya pasaron; quedó un último fallo de contrato en U6 L2 porque la explicación todavía mencionaba la formulación anterior `por meio do qual`. Se alineó literalmente con el objetivo `por intermédio do qual` en el commit `0f19082f0f0fedfc4043c1e7c024443dec2871f6`. El nuevo head debe volver a pasar el CI completo.
+
+- Tercer CI del head `75350e83...`: las referencias A2, U5 L3 y U6 L2 pasaron; quedó un último desajuste entre el objetivo de U6 L5 (`para a qual`) y la entrada, que aún decía `para quem`. Se alineó la entrada y el ejemplo con `para a qual` en el commit `034451867ed615eca483b8cf8134eb7a69cf20a1`. Volver a ejecutar el CI completo sobre el nuevo head.

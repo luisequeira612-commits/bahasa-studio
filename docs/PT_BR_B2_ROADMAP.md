@@ -1,6 +1,6 @@
 # Portugués brasileño B2 — temario de 40 unidades
 
-**Estado:** temario reconstruido el 26 de noviembre de 2026 porque no se recuperó el documento anterior. Es una propuesta de trabajo editable, no una equivalencia certificada con un examen oficial. El bloque U1–U3 ya está implementado en la rama de trabajo; U4–U40 siguen planificados.
+**Estado:** temario reconstruido el 26 de noviembre de 2026 porque no se recuperó el documento anterior. Es una propuesta de trabajo editable, no una equivalencia certificada con un examen oficial. Los bloques U1–U3 y U4–U6 están implementados en ramas de trabajo sucesivas; U7–U40 siguen planificados.
 
 ## Criterios
 
@@ -56,11 +56,16 @@
 | 39 | Proyecto argumentativo multimodal | Integrar lectura crítica, síntesis y defensa de una tesis |
 | 40 | Proyecto final de autonomía B2 | Producir y revisar textos de varios géneros y registros |
 
-## Bloque implementado: U1–U3
+## Bloques implementados: U1–U6
 
 - U1: modalización y postura del hablante.
 - U2: síntesis y atribución de fuentes.
 - U3: concesión y refutación matizada.
+- U4: nominalización y densidad informativa.
+- U5: voz pasiva y enfoque informativo.
+- U6: oraciones relativas complejas.
+
+U1–U6 contienen 30 lecciones y 60 entradas nuevas. Las entradas permanecen `not_checked`; las pruebas verifican estructura, carga offline, referencias de repaso y duplicados normalizados, pero no certifican naturalidad ni nivel MCER.
 
 ### Referencias de diseño consultadas
 

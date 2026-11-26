@@ -424,3 +424,24 @@ test('A1 U4 does not expose age vocabulary before its introduction and keeps les
   assert.match(unit.lessons[2].objective, /cuatro y cinco.*diez.*edad/i);
   assert.match(unit.lessons[3].objective, /seis, siete y ocho/i);
 });
+
+
+test('A1 U8 keeps new routine vocabulary after its introduction lesson', () => {
+  const unit = a1.units[7];
+  assert.ok(unit, 'A1 U8 must exist');
+  const lesson1 = unit.lessons[0];
+  const lesson2 = unit.lessons[1];
+  assert.ok(!JSON.stringify(lesson1).toLowerCase().includes('belajar'),
+    'U8 lesson 1 must not use belajar before its introduction in lesson 2');
+  assert.ok(JSON.stringify(lesson2).includes('Hari ini saya belajar'),
+    'the listening sentence with belajar must be available in lesson 2');
+  const authoredExamples = JSON.stringify({
+    vocab: unit.vocab,
+    exercises: unit.exercises,
+    lessons: unit.lessons
+  }).toLowerCase();
+  assert.ok(!authoredExamples.includes('pagi'),
+    'U8 must not use pagi before its introduction in U11');
+  assert.ok(!authoredExamples.includes('malam'),
+    'U8 must not use malam before its introduction in U11');
+});

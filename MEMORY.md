@@ -429,3 +429,13 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Todas las entradas permanecen `not_checked`; no se afirma certificación nativa ni equivalencia MCER. No se modifican IndexedDB v1, backup JSON v3, dependencias ni audio.
 - Estado: bloque implementado y validado inicialmente; pendiente abrir PR, ejecutar CI sobre el head definitivo y fusionar solo si sigue verde.
 - Fuente: rama `feat/pt-br-b2-u07-u09`, GitHub Actions #45863016339/#45863017397 y roadmap B2; 26 nov 2026.
+
+
+## 2026-11-26 — Cierre PT-BR B2 U7–U9 (PR #861)
+
+- PR #861 fusionada por squash en main, commit 5be44b294b38ce4968a788a2594a388bc1444c78. Head definitivo 8119b06953adb4442464632c8d0c401f2c506bd1 pasó regresión #45863482087 (103/103 pasos, E2E Chromium y calidad offline 10/10) y TypeScript #45863482277 success.
+- Post-merge: Pages #45863933756 completó build, report-build-status y deploy en success; TypeScript #45863935096 success. La primera regresión #45863934940 falló por timeout intermitente en una prueba existente de tarjeta SRS de Aprender (selector #adaptiveRecommendationLearn button); el rerun del job fallido terminó success (102 pasos completados, sin fallos), así que se clasifica como flaky y no como regresión del currículo.
+- U7 subjuntivo en valoración/duda/emoción; U8 condicionales irreales/escenarios alternativos; U9 discurso indirecto/atribución/perspectiva. Se añaden 15 lecciones y 30 entradas. El manifiesto PT-BR B2 declara 40 unidades y publica internamente U1–U9; Service Worker cache v3.8.155.
+- Las entradas nuevas siguen not_checked. PT-BR permanece available:false; B2 no se habilita en el selector. El roadmap es reconstruido, no una certificación MCER ni validación nativa. Sin cambios a IndexedDB v1, backup JSON v3, dependencias ni audio.
+- Próximo bloque planificado: U10–U12.
+- Fuente: PR #861, merge commit y Actions #45863482087/#45863482277/#45863934940/#45863935096/#45863933756; 26 nov 2026.

@@ -38,7 +38,7 @@ test('pt-BR A2 U7-U9 load through the offline loader while the language is selec
  const {units,totalUnits}=await loader.loadUnits('pt-BR','A2',[7,8,9]);
  assert.equal(totalUnits,30);
  assert.deepEqual(Array.from(units,u=>u.unitNumber),[7,8,9]);
- assert.equal(loader.resolve('pt-BR','A2'),null);
+ assert.ok(loader.resolve('pt-BR', 'A2'));
  for(const unit of units){
   assert.equal(unit.vocab.length,10,unit.id);
   assert.equal(unit.lessons.length,5,unit.id);

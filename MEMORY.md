@@ -495,3 +495,13 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Confirmado en `main`: manifiesto U1–U21 y Service Worker v3.8.159 con precarga del bloque. Runs post-merge/Pages no devuelven resultados para el merge commit, por lo que el despliegue no se declara verificado.
 - PT-BR sigue `available:false`; B2 continúa deshabilitado en selector. Sin cambios a IndexedDB v1, backup JSON v3, dependencias ni audio. No afirmar certificación nativa ni equivalencia MCER.
 - Fuente: PR #865, merge commit y Actions #45871604649/#45871604665; 26 nov 2026.
+
+## 2026-11-26 — PT-BR B2 U22–U24 en preparación
+
+- Próximo bloque según `docs/PT_BR_B2_ROADMAP.md`: U22 registro académico y profesional; U23 correspondencia formal y reclamaciones; U24 presentaciones y entrevistas extensas.
+- Diseño: 15 lecciones y 30 entradas (10 por unidad, dos objetivos por lección), ejemplos PT-BR, explicaciones en español y vocabulario nuevo `not_checked`.
+- Manifiesto B2 amplía publicación interna a U1–U24 de 40. Service Worker precarga U22–U24 y usa caché app-shell v3.8.160; pruebas de B2 anteriores, A2/B1 y E2E offline se actualizan.
+- Prueba E2E amplía carga offline hasta B2 U24, manteniendo PT-BR no disponible y aislado de progreso indonesio. Prueba de bloque comprueba 30 entradas únicas sin duplicados normalizados frente a A1–B1 y B2 U1–U21, cinco lecciones y dos objetivos por lección.
+- PT-BR sigue `available:false`; B2 deshabilitado. Sin cambios a IndexedDB v1, backup JSON v3, dependencias ni audio. No afirmar certificación nativa ni equivalencia MCER.
+- Estado: rama `feat/pt-br-b2-u22-u24`; contenido, manifiesto, precarga, E2E y contratos de pruebas actualizados; pendiente CI, PR y validación post-merge.
+- Fuente: `docs/PT_BR_B2_ROADMAP.md`, U22–U24 y pruebas; 26 nov 2026.

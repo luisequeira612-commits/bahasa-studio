@@ -71,7 +71,7 @@ test('B2 U31-U33 add no exact normalized vocabulary duplicates against A1, A2, B
  assert.equal(added.length,30);assert.equal(new Set(normalized).size,30);
  assert.deepEqual(normalized.filter(word=>previous.has(word)),[]);
 });
-test('service worker precaches B2 U1-U33 and advances the app-shell cache',()=>{
+test('service worker precaches B2 U1-U36 and advances the app-shell cache',()=>{
  const source=fs.readFileSync(path.join(repo,'service-worker.js'),'utf8');
  assert.ok(source.includes("./languages/pt-BR/curriculum/b2/index.js"));
  for(const file of b2Files)assert.ok(source.includes('./languages/pt-BR/curriculum/b2/'+file));

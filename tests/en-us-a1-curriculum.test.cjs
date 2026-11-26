@@ -48,11 +48,11 @@ test('English A1 manifest exposes the authored U1-U32 blocks',async()=>{
  const curriculum=await loader.loadUnits('en','A1',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32]);
  assert.equal(curriculum.language,'en');
  assert.equal(curriculum.totalUnits,32);
- assert.deepEqual(Array.from(curriculum.units,u=>u.unitNumber),[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]);
+ assert.deepEqual(Array.from(curriculum.units,u=>u.unitNumber),[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32]);
 });
 test('each English A1 unit has five lessons and 20 exercises; review units add no new words',async()=>{
  const {loader}=createEnglishPilot();
- const {units}=await loader.loadUnits('en','A1',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]);
+ const {units}=await loader.loadUnits('en','A1',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32]);
  for(const unit of units){
   assert.equal(unit.lessons.length,5,unit.id);
   const expectedNewWords=unit.unitNumber>=30?0:22;
@@ -72,19 +72,22 @@ test('each English A1 unit has five lessons and 20 exercises; review units add n
    for(const id of [...lesson.vocabIds,...lesson.reviewVocabIds]) assert.ok(ids.has(id),unit.id+' invalid reference '+id);
    for(const exercise of lesson.exercises) assert.ok(['mc','order'].includes(exercise.type));
   }
-  for(const exercise of unit.exercises) assert.ok(['mc','order'].includes(exercise.type));
+  for(const exercise of unit.exercises){
+   assert.ok(['mc','order'].includes(exercise.type));
+   assert.ok(ids.has(exercise.vocabId),unit.id+' invalid unit-bank vocabulary reference '+exercise.vocabId);
+  }
  }
 });
 test('English A1 curriculum uses the established vocabulary shape without changing storage contracts',async()=>{
  const {loader}=createEnglishPilot();
- const {units}=await loader.loadUnits('en','A1',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]);
+ const {units}=await loader.loadUnits('en','A1',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32]);
  for(const word of units.flatMap(unit=>unit.vocab)){
   assert.deepEqual(Object.keys(word).sort(),['ex','exEsp','esp','id','target','verification'].sort());
  }
 });
-test('English A1 vocabulary introduces no duplicate targets across U1-U30',async()=>{
+test('English A1 vocabulary introduces no duplicate targets across U1-U32',async()=>{
  const {loader}=createEnglishPilot();
- const {units}=await loader.loadUnits('en','A1',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]);
+ const {units}=await loader.loadUnits('en','A1',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32]);
  const seen=new Set();
  for(const word of units.flatMap(unit=>unit.vocab)){
   const key=word.target.toLocaleLowerCase();

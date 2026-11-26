@@ -41,3 +41,9 @@ Estado: bloque U1–U6 en preparación; no publicado. Fecha: 26 de noviembre de 
 - U19–U24: gustos y pasatiempos; want/need/plan/hope/decide + to-infinitive; preguntas WH de seguimiento; presente continuo; ropa y clima; lugares de la ciudad.
 - 132 entradas nuevas previstas (22 por unidad), con ejemplos originales y estado not_checked. No se agregan campos POS/audio al contrato runtime.
 - La trazabilidad lema por lema con CEFR-J/NGSL sigue pendiente; no afirmar cotejo individual hasta documentar fuente por entrada.
+
+ 
+## Bloque U25–U30 — 26 nov 2026
+- U25–U29: indicaciones y ubicación; dinero/compras; contables e incontables con some/any; cantidades; restaurante. Cada unidad de contenido incorpora 22 entradas nuevas.
+- U30 es un repaso integrador de artículos, demostrativos, posesivos, familia y casa: 0 entradas nuevas, 5 lecciones y 20 ejercicios que reutilizan IDs previos.
+- Vocabulario nuevo sigue not_checked; ejemplos originales. Trazabilidad lema por lema con CEFR-J/NGSL pendiente.

@@ -25,13 +25,13 @@ function createEnglishPilot(){
  vm.runInNewContext(loaderSource,sandbox);
  return {window,loader:window.CurriculumLoader};
 }
-test('English en-US is registered but remains unavailable until release approval',()=>{
+test('English en-US is registered but remains unavailable until release approval',async()=>{
  const {window,loader}=createEnglishPilot();
  assert.equal(window.LanguageManager.getLocale('en'),'en-US');
  assert.equal(window.LanguageManager.isSupported('en'),true);
  assert.equal(window.LanguageManager.isAvailable('en'),false);
  assert.equal(loader.resolve('en','A1'),null);
- assert.throws(()=>window.LanguageManager.setActiveLanguage('en'),/todavía no está disponible/);
+ await assert.rejects(window.LanguageManager.setActiveLanguage('en'),/todavía no está disponible/);
 });
 test('English A1 manifest exposes only the approved authored U1-U6 block',async()=>{
  const {loader}=createEnglishPilot();

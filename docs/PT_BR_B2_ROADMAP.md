@@ -180,3 +180,9 @@ U1–U40 integradas contienen 200 lecciones y 400 entradas nuevas. Cada unidad i
 - Rama de habilitación: `feat/pt-br-b2-release-gate`. La propuesta activa `pt-BR` en `LanguageManager`, carga los niveles registrados A1/A2/B1/B2 durante el inicio, reconoce identificadores `ptbr_b2_u…` y eleva la caché offline a `bahasa-studio-v3.8.166`.
 - El Service Worker ya contiene los 13 bloques B2 en su precache. La publicación aún queda pendiente de CI, fusión y despliegue verificado en GitHub Pages.
 - No se modifica IndexedDB v1, backup JSON v3, dependencias ni audio. La validación lingüística sigue siendo interna; las entradas permanecen `not_checked`, sin afirmar certificación nativa ni equivalencia oficial MCER.
+
+
+## 2026-11-26 — Habilitación final en PR #887
+- Se abrió PR #887 (`feat/pt-br-b2-release-gate`) para activar el selector PT-BR y publicar las 40 unidades B2 completas; el manifiesto declara 40 unidades en 13 bloques y el Service Worker v3.8.166 precarga los 13 archivos.
+- El cambio conserva la progresión secuencial y no altera IndexedDB v1, backup JSON v3, dependencias, audio ni red. Las entradas continúan `not_checked`; la auditoría estructural no equivale a certificación lingüística ni MCER.
+- Validación de PR en curso: TypeScript y calidad offline aprobados; regresión Chromium/E2E aún ejecutándose. No declarar publicado hasta fusionar y verificar GitHub Pages y carga offline desde el sitio desplegado.

@@ -115,7 +115,7 @@ test('all 40 PT-BR B2 units have complete structure, lesson coverage and valid e
   assert.equal(unit.vocab.length,10,unitPath+' vocabulary count');
   assert.equal(unit.lessons.length,5,unitPath+' lesson count');
   assert.equal(unit.exercises.length,10,unitPath+' unit exercise count');
-  if(unit.unitNumber<=27){
+  if(unit.unitNumber<=36){
    assert.ok(unit.exercises.every(exercise=>exercise.type==='order'),unitPath+' unit bank uses sentence-order tasks');
    assert.ok(unit.lessons.flatMap(lesson=>lesson.exercises).every(exercise=>exercise.type==='mc'),unitPath+' lesson bank retains contextual MC practice');
   }

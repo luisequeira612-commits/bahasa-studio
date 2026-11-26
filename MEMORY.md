@@ -454,3 +454,15 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Todas las entradas nuevas siguen `not_checked`; PT-BR permanece `available:false` y B2 deshabilitado en el selector. No hay cambios a IndexedDB v1, backup JSON v3, dependencias ni audio.
 - Post-merge: regresión #45866235167 success (102 pasos completados, sin fallos; Offline quality reports 10/10); TypeScript #45866235250 success. El primer Pages #45866234742 fue cancelado al coincidir con un nuevo push documental; la ejecución posterior #45866347570 completó build, report-build-status y deploy en success. El commit documental `68d7d5a4f6c1049af791ed5e26775fb744519663` también pasó regresión #45866348674 (102 pasos completados, sin fallos; Offline quality 10/10), TypeScript #45866348659 y Pages #45866347570 success.
 - Fuente: PR #862, merge commit y Actions #45865795579/#45865795716; 26 nov 2026.
+
+
+## 2026-11-26 — PT-BR B2 U13–U15 en preparación
+
+- Se inicia el quinto bloque B2: U13 causa/consecuencia/finalidad en registro formal; U14 participios y construcciones resultativas; U15 gerundio y relaciones entre acciones.
+- Añade 15 lecciones y 30 entradas (10 por unidad, dos objetivos por lección), con ejemplos PT-BR y explicaciones en español. Entradas nuevas `not_checked`.
+- Manifiesto B2 mantiene 40 unidades y publica internamente U1–U15 en cinco bloques; PT-BR sigue `available:false`.
+- Service Worker precarga U13–U15 y avanza caché app-shell a v3.8.157. Se actualizan aserciones de caché PT-BR A2/B1 y contratos B2 anteriores; E2E Chromium extiende cobertura offline hasta U15.
+- Contratos nuevos cubren referencias A2, explicaciones literales por lección, duplicados normalizados contra A1–B1 y B2 U1–U12, disponibilidad false y carga offline.
+- Sin cambios a IndexedDB v1, backup JSON v3, dependencias ni audio. No afirmar certificación nativa ni equivalencia MCER.
+- Estado: contenido, manifiesto, precarga, pruebas, roadmap y MEMORY en la rama `feat/pt-br-b2-u13-u15`; pendiente CI completo, PR y validación post-merge.
+- Fuente: rama `feat/pt-br-b2-u13-u15`, roadmap B2 y pruebas; 26 nov 2026.

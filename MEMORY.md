@@ -533,11 +533,12 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Fuente: PR #868, merge commit, archivos de currículo/pruebas y Actions #45877103860/#45877472303/#45877472314; 26 nov 2026.
 
 
-## 2026-11-26 — PT-BR B2 U31–U33 en preparación
+## 2026-11-26 — Cierre PT-BR B2 U31–U33 (PR #869)
 
-- Rama `feat/pt-br-b2-u31-u33`, basada en `main` tras el cierre de PR #868. Bloque añadido: U31 sociedad, desigualdad e inclusión; U32 trabajo y transformación profesional; U33 cultura, identidad y representación.
-- 15 lecciones y 30 entradas nuevas (10 por unidad, dos objetivos léxicos por lección), ejemplos PT-BR, explicaciones en español, ejercicios ligados a frases y verificación `not_checked`.
-- Manifiesto interno B2 extendido a U1–U33 de 40; Service Worker precarga U31–U33 y usa app-shell cache v3.8.163. La E2E offline incluye carga de B2 U1–U33; test de bloque específico agregado a `quality:tests`.
-- Contratos nuevos comprueban disponibilidad false, carga parcial, cinco lecciones/diez vocablos por unidad, dos objetivos por lección, opciones de ejercicios, referencias de repaso A2 y duplicados normalizados. La prueba E2E y el CI aún deben ejecutarse antes de abrir/considerar la PR.
-- PT-BR sigue `available:false`; B2 no se habilita. No se toca IndexedDB v1, backup JSON v3, dependencias ni audio. No se afirma revisión nativa ni certificación MCER.
-- Fuente: rama `feat/pt-br-b2-u31-u33`, currículo, manifiesto, Service Worker, tests y roadmap; 26 nov 2026.
+- PR [#869](https://github.com/luisequeira612-commits/bahasa-studio/pull/869) fusionada por squash en `main`; head validado `ab77d2f90144b9f7f84142fc6029b7478fbed6f2`; merge commit `1df771e2686f491df20ad0be86bca1f01a31cf44`.
+- U31 sociedad, desigualdad e inclusión; U32 trabajo y transformación profesional; U33 cultura, identidad y representación. Añade 15 lecciones y 30 entradas nuevas (10 por unidad, dos objetivos léxicos por lección), ejemplos PT-BR, explicaciones en español y ejercicios contextualizados. Entradas `not_checked`.
+- CI del head final: regresión #45880201978 success (103/103 pasos, incluida la suite local, accesibilidad móvil, Chromium E2E y evaluación); Offline quality reports 10/10 success; TypeScript #45880202009 success. Sin reviews ni hilos pendientes al fusionar.
+- Manifiesto interno B2 publica U1–U33 de 40; total acumulado 165 lecciones y 330 entradas. Service Worker precarga U31–U33, app-shell cache v3.8.163. `docs/PT_BR_B2_ROADMAP.md` actualizado tras la fusión.
+- Primeras ejecuciones detectaron expectativas antiguas de caché/manifiesto y duplicados léxicos; se actualizaron los contratos y se sustituyeron términos repetidos. La segunda ejecución tuvo un timeout transitorio en una prueba E2E existente de la tarjeta de repaso y una explicación incompleta de U32; se corrigió la explicación. La ejecución final pasó completa.
+- PT-BR sigue `available:false`; B2 permanece deshabilitado. No se afirma certificación nativa ni equivalencia MCER. Sin cambios a IndexedDB v1, backup JSON v3, dependencias ni audio.
+- Fuente: PR #869, merge commit, currículo, pruebas y Actions #45880201978/#45880202009; 26 nov 2026.

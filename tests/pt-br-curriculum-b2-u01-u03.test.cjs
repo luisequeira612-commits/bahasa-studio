@@ -29,10 +29,10 @@ function createPilot(){
  vm.runInNewContext(sources['./languages/pt-BR/curriculum/b2/index.js'],sandbox);
  return {window,loader:window.CurriculumLoader};
 }
-test('pt-BR B2 U1-U3 load as a partial internal block while the course remains unavailable',async()=>{
+test('pt-BR B2 U1-U3 load as a partial internal block while the course is selectable',async()=>{
  const {window,loader}=createPilot();
  assert.equal(window.LanguageManager.isSupported('pt-BR'),true);
- assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
+ assert.equal(window.LanguageManager.isAvailable('pt-BR'),true);
  assert.equal(loader.resolve('pt-BR','B2'),null);
  const {units,totalUnits}=await loader.loadUnits('pt-BR','B2',[1,2,3]);
  assert.equal(totalUnits,40);assert.deepEqual(Array.from(units,u=>u.unitNumber),[1,2,3]);
@@ -69,7 +69,7 @@ test('B2 manifest declares 40 units and publishes only the authored U1-U40 block
  assert.deepEqual(Array.from(manifest.blocks[3].units),[10,11,12]);
  assert.deepEqual(Array.from(manifest.blocks[4].units),[13,14,15]);
  assert.deepEqual(Array.from(manifest.blocks[5].units),[16,17,18]);
- assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
+ assert.equal(window.LanguageManager.isAvailable('pt-BR'),true);
 });
 test('B2 review references resolve to existing A2 vocabulary IDs',async()=>{
  const {loader}=createPilot(),{units}=await loader.loadUnits('pt-BR','B2',[1,2,3,4,5,6]);
@@ -100,14 +100,14 @@ test('service worker precaches B2 U1-U15 and advances the app-shell cache',()=>{
  assert.ok(source.includes("./languages/pt-BR/curriculum/b2/units-10-12.js"));
  assert.ok(source.includes("./languages/pt-BR/curriculum/b2/units-13-15.js"));
  assert.ok(source.includes("./languages/pt-BR/curriculum/b2/units-16-18.js"));
- assert.match(source,/bahasa-studio-v3\.8\.165/);
+ assert.match(source,/bahasa-studio-v3\.8\.166/);
 });
 
 test('pt-BR B2 U4-U6 load offline as an internal block with five lessons and ten contextual entries per unit',async()=>{
  const {window,loader}=createPilot();
  const {units,totalUnits}=await loader.loadUnits('pt-BR','B2',[4,5,6]);
  assert.equal(totalUnits,40);assert.deepEqual(Array.from(units,u=>u.unitNumber),[4,5,6]);
- assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
+ assert.equal(window.LanguageManager.isAvailable('pt-BR'),true);
  for(const unit of units){
   assert.equal(unit.vocab.length,10,unit.id);assert.equal(unit.lessons.length,5,unit.id);assert.equal(unit.exercises.length,10,unit.id);
   for(const word of unit.vocab){assert.equal(word.verification.status,'not_checked',word.id);assert.ok(word.ex&&word.exEsp,word.id);}

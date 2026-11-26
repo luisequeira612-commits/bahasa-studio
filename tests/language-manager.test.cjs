@@ -31,12 +31,13 @@ test('registers the ten approved languages with explicit locale, voice candidate
     }
 });
 
-test('Indonesian remains the only selectable course until another curriculum is implemented', async () => {
+test('Indonesian and the complete Brazilian Portuguese curriculum are selectable', async () => {
     const { api } = createManager();
     assert.equal(await api.init(), 'id');
     assert.equal(api.isAvailable('id'), true);
-    assert.equal(api.isAvailable('pt-BR'), false);
-    await assert.rejects(api.setActiveLanguage('pt-BR'), /curso todavía no está disponible/);
+    assert.equal(api.isAvailable('pt-BR'), true);
+    await api.setActiveLanguage('pt-BR');
+    assert.equal(api.getActiveLanguage(), 'pt-BR');
     await assert.rejects(api.setActiveLanguage('xx'), /Código de idioma no soportado/);
 });
 
@@ -79,8 +80,8 @@ test('unknown stored values fall back safely to Indonesian', async () => {
 });
 
 
-test('a supported but not yet implemented course cannot become active through stale local storage', async () => {
-    const { api, document, values } = createManager({ guardi_active_language: 'pt-BR' });
+test('an unavailable future course cannot become active through stale local storage', async () => {
+    const { api, document, values } = createManager({ guardi_active_language: 'en' });
     assert.equal(await api.init({ read: async () => null, write: async () => {}, onChange: () => {} }), 'id');
     assert.equal(document.documentElement.lang, 'es');
     assert.equal(values.get('guardi_active_language'), 'id');

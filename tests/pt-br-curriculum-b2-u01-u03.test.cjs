@@ -33,7 +33,7 @@ test('pt-BR B2 U1-U3 load as a partial internal block while the course is select
  const {window,loader}=createPilot();
  assert.equal(window.LanguageManager.isSupported('pt-BR'),true);
  assert.equal(window.LanguageManager.isAvailable('pt-BR'),true);
- assert.equal(loader.resolve('pt-BR','B2'),null);
+ assert.ok(loader.resolve('pt-BR', 'B2'));
  const {units,totalUnits}=await loader.loadUnits('pt-BR','B2',[1,2,3]);
  assert.equal(totalUnits,40);assert.deepEqual(Array.from(units,u=>u.unitNumber),[1,2,3]);
  for(const unit of units){

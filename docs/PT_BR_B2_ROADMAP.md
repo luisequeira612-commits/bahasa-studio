@@ -65,6 +65,6 @@
 ### Referencias de diseño consultadas
 
 - Figueredo, G. (2015), «Uma descrição sistêmico-funcional dos marcadores discursivos avaliativos em português brasileiro: a gramática das partículas modais», *ALFA: Revista de Linguística*, 59(2). DOI: https://doi.org/10.1590/1981-5794-1504-3. El estudio describe marcadores evaluativos y partículas modales del portugués brasileño a partir de corpus; sirve como fundamento para el eje de U1, no como verificación individual de cada expresión.
-- Estudios sobre construcciones concesivas y marcadores discursivos en portugués brasileño consultados como apoyo para el diseño de U3. La selección léxica y los ejemplos de esta unidad siguen pendientes de revisión individual.
+- Zamproneo, S. (2014), *Multifuncionalidade e intersubjetividade em construções concessivas: uma análise em ocorrências do português contemporâneo do Brasil*, tesis doctoral, UNESP. https://agendapos.fclar.unesp.br/agenda-pos/linguistica_lingua_portuguesa/3348.pdf. Analiza construcciones concesivas en corpus oral y escrito del portugués brasileño, incluidos *ainda que* y *se bem que*. Sirve como apoyo para el diseño discursivo de U3, no como validación individual de cada ejemplo.
 
 **Límite de validación:** no se afirma que estas unidades estén certificadas por hablantes nativos ni que garanticen un nivel oficial B2. Las entradas se mantienen `not_checked`.

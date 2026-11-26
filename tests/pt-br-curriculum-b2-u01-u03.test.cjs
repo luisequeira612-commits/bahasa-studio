@@ -16,6 +16,8 @@ const sources={
  './languages/pt-BR/curriculum/b2/units-10-12.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/b2/units-10-12.js'),'utf8'),
  './languages/pt-BR/curriculum/b2/units-13-15.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/b2/units-13-15.js'),'utf8'),
  './languages/pt-BR/curriculum/b2/units-16-18.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/b2/units-16-18.js'),'utf8'),
+ './languages/pt-BR/curriculum/b2/units-19-21.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/b2/units-19-21.js'),'utf8'),
+ './languages/pt-BR/curriculum/b2/units-22-24.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/b2/units-22-24.js'),'utf8'),
  './languages/pt-BR/curriculum/a2/index.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a2/index.js'),'utf8')
 };
 for(const file of a2Files)sources['./languages/pt-BR/curriculum/a2/'+file]=fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a2',file),'utf8');
@@ -51,7 +53,7 @@ test('pt-BR B2 U1-U3 load as a partial internal block while the course remains u
 });
 test('B2 manifest declares 40 units and publishes only the authored U1-U18 blocks',()=>{
  const {window}=createPilot(),manifest=window.GUARDI_CURRICULUM_MANIFESTS['pt-BR'].B2;
- assert.equal(manifest.totalUnits,40);assert.deepEqual(Array.from(manifest.publishedUnits),Array.from({length:21},(_,i)=>i+1));
+ assert.equal(manifest.totalUnits,40);assert.deepEqual(Array.from(manifest.publishedUnits),Array.from({length:24},(_,i)=>i+1));
  assert.deepEqual(Array.from(manifest.blocks[0].units),[1,2,3]);
  assert.deepEqual(Array.from(manifest.blocks[1].units),[4,5,6]);
  assert.deepEqual(Array.from(manifest.blocks[2].units),[7,8,9]);

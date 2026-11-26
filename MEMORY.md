@@ -115,3 +115,8 @@ test('English A1 vocabulary introduces no duplicate targets across U1-U12',async
 - PR #895 U25–U30: la regresión inicial #45912981997 falló por una comilla faltante en el generador de lecciones de repaso; corregido. CI actual verde: regresión #45913346661 y typecheck #45913346757.
 - PR #897 sustituye a #896, que se cerró sin fusionar porque quedó divergente de la base. #897 parte de la rama #895 actualizada y su CI está en curso: regresión #45913708994 y typecheck #45913709014.
 - No fusionar PRs; la cadena activa es #891 → #892 → #893 → #894 → #895 → #897. Todas las PR activas requieren aprobación expresa.
+
+## 2026-11-26 — Auditoría de referencias de repaso
+- Se corrigieron IDs de vocabulario reciclado en U30 (box/class: U6 v05/v06) y U31–U32 (listen: U1 v18).
+- Auditoría estática de los 46 IDs de reviewVocabIds: todos resuelven al target esperado. Inventario léxico sigue en 638 entradas únicas y cero duplicados.
+- CI de PR #895 y PR #897 debe repetirse en los heads actualizados; no declarar listo hasta regresión y typecheck verdes.

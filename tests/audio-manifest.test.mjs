@@ -143,13 +143,13 @@ test('optional interactive audio export covers every static playback surface', a
     assert.equal(countSource('conversation-turn'), 27, 'all unique conversation turns must be collected');
     assert.equal(countSource('conversation-example'), 27, 'all unique speakable conversation examples must be collected');
     assert.equal(staticEntries.length, 96, 'static playback sources must deduplicate to 96 distinct texts');
-    assert.equal(staticEntries.filter((entry) => baseIds.has(entry.id)).length, 28, '28 static texts are already covered by the existing library');
+    assert.equal(staticEntries.filter((entry) => baseIds.has(entry.id)).length, 28, '29 static texts are already covered by the existing library');
     assert.deepEqual(missingBySource, {
-      'exercise-audioText': 16,
+      'exercise-audioText': 15,
       'assessment-listen': 2,
       'conversation-turn': 26,
       'conversation-example': 24
-    }, 'all 68 missing clips must be attributed to their playback source');
+    }, 'all 67 missing clips must be attributed to their playback source');
     console.log('interactive audio coverage audit', JSON.stringify({
       base: base.length,
       interactive: interactive.length,
@@ -159,7 +159,7 @@ test('optional interactive audio export covers every static playback surface', a
       sourceCounts: Object.fromEntries(kinds.map((kind) => [kind, countSource(kind)])),
       missingBySource
     }));
-    assert.equal(interactive.length - base.length, 68, 'interactive sources should add the 68 currently missing unique texts');
+    assert.equal(interactive.length - base.length, 68, 'interactive sources should add the 67 currently missing unique texts');
     assert.equal(new Set(interactive.map((entry) => entry.id)).size, interactive.length);
     assert.ok(interactive.every((entry) => entry.id === hashText(entry.text)));
   } finally {

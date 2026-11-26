@@ -7,6 +7,7 @@ Alcance: recomendación de la siguiente actividad; no es una evaluación del niv
 
 La recomendación usa únicamente datos que ya existen en el dispositivo:
 - elementos de repaso vencidos o guardados explícitamente para repasar en el motor SRS;
+- evaluaciones finales pendientes de unidades cuyas lecciones ya se completaron;
 - palabras con al menos dos errores registrados, palabras guardadas manualmente para repaso y registros antiguos sin contador de errores; una calificación más reciente de 3 o más las retira de las sugerencias automáticas, salvo que se hayan guardado manualmente;
 - errores aislados (un error) para sugerir un repaso ligero, sin etiquetar la palabra como dificultad persistente; también se retiran tras una calificación más reciente de 3 o más, salvo guardado manual;
 - perfil local de habilidades con intentos puntuados;
@@ -18,14 +19,15 @@ No se crea un esquema de persistencia nuevo, no se envían datos a servicios ext
 ## Orden de prioridad implementado
 
 1. **Repaso vencido:** si hay tarjetas listas para repasar, ofrecer la sesión SRS existente.
-2. **Palabras con errores persistentes:** si no hay repaso vencido, ofrecer hasta cinco palabras con al menos dos errores válidos o guardadas manualmente. Los registros antiguos que no contienen el campo de errores se conservan por compatibilidad.
-3. **Error aislado:** si no hay palabras persistentes, ofrecer hasta cinco palabras falladas una vez como repaso ligero. No se etiquetan como debilidad estable.
-4. **Habilidad con menor precisión:** con al menos diez intentos puntuados válidos, identificar la habilidad con menor proporción de aciertos. Si existe una primera lección incompleta y accesible con ejercicios de esa habilidad, recomendarla. Si escritura es la habilidad con menor precisión, ofrecer el cuaderno de escritura.
-5. **Siguiente lección:** si no hay una acción de refuerzo anterior, continuar con la primera lección incompleta disponible.
-6. **Conversación:** si no hay una lección disponible y el objetivo diario sigue abierto, sugerir una conversación práctica.
-7. **Mantenimiento:** si no hay una tarea urgente, indicar que no hay actividad pendiente.
+2. **Evaluación final pendiente:** si las lecciones de una unidad ya están completadas y su evaluación final sigue pendiente, ofrecer esa prueba antes de las actividades de refuerzo.
+3. **Palabras con errores persistentes:** si no hay repaso vencido ni evaluación pendiente, ofrecer hasta cinco palabras con al menos dos errores válidos o guardadas manualmente. Los registros antiguos que no contienen el campo de errores se conservan por compatibilidad.
+4. **Error aislado:** si no hay palabras persistentes, ofrecer hasta cinco palabras falladas una vez como repaso ligero. No se etiquetan como debilidad estable.
+5. **Habilidad con menor precisión:** con al menos diez intentos puntuados válidos, identificar la habilidad con menor proporción de aciertos. La conversación se propone mediante un escenario guiado; para las demás habilidades se busca una primera lección incompleta y accesible que cubra esa habilidad, salvo escritura, que dirige al cuaderno.
+6. **Siguiente lección:** si no hay una acción de refuerzo anterior, continuar con la primera lección incompleta disponible.
+7. **Conversación de práctica general:** si no hay una lección disponible y el objetivo diario sigue abierto, sugerir una conversación práctica.
+8. **Mantenimiento:** si no hay una tarea urgente, indicar que no hay actividad pendiente.
 
-Los repasos vencidos y las palabras con errores conservan prioridad sobre el refuerzo por habilidad. El selector de lecciones solo recibe primeras lecciones incompletas de unidades que la aplicación ya considera accesibles; no modifica las reglas de desbloqueo ni permite iniciar lecciones bloqueadas.
+Los repasos vencidos conservan la prioridad máxima. La evaluación final pendiente precede a los refuerzos de palabras y habilidades para respetar la progresión de unidades. Las palabras con errores conservan prioridad sobre el refuerzo por habilidad. El selector de lecciones solo recibe primeras lecciones incompletas de unidades que la aplicación ya considera accesibles; no modifica las reglas de desbloqueo ni permite iniciar lecciones bloqueadas.
 
 ## Perfil de habilidades y límites
 

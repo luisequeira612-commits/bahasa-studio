@@ -28,7 +28,7 @@ test('pt-BR B2 U37-U40 load as a partial internal block while the course remains
  assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
  assert.equal(loader.resolve('pt-BR','B2'),null);
  const {units,totalUnits}=await loader.loadUnits('pt-BR','B2',[37,38,39,40]);
- assert.equal(totalUnits,40);assert.deepEqual(Array.from(units,u=>u.unitNumber),[34,35,36]);
+ assert.equal(totalUnits,40);assert.deepEqual(Array.from(units,u=>u.unitNumber),[37,38,39,40]);
  for(const unit of units){
   assert.equal(unit.vocab.length,10,unit.id);assert.equal(unit.lessons.length,5,unit.id);assert.equal(unit.exercises.length,10,unit.id);
   assert.equal(new Set(unit.vocab.map(word=>word.id)).size,10,unit.id);
@@ -51,7 +51,7 @@ test('B2 manifest declares 40 units and publishes only the authored U1-U40 block
  assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
 });
 test('B2 U37-U40 review references resolve to existing A2 vocabulary IDs',async()=>{
- const {loader}=createPilot(),{units}=await loader.loadUnits('pt-BR','B2',[34,35,36]);
+ const {loader}=createPilot(),{units}=await loader.loadUnits('pt-BR','B2',[37,38,39,40]);
  const {units:a2}=await loader.loadUnits('pt-BR','A2',Array.from({length:30},(_,i)=>i+1));
  const ids=new Set(a2.flatMap(unit=>unit.vocab.map(word=>word.id)));
  for(const unit of units)for(const lesson of unit.lessons)for(const id of lesson.reviewVocabIds)assert.ok(ids.has(id),id);
@@ -68,7 +68,7 @@ test('B2 U37-U40 add no exact normalized vocabulary duplicates against A1, A2, B
  const added=[...source.matchAll(/vocab\(\d+,\d+,'([^']+)'/g)].map(match=>match[1]);
  const normalize=value=>value.toLocaleLowerCase('pt-BR').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/\s+/g,' ').trim();
  const previous=new Set(prior.map(normalize)),normalized=added.map(normalize);
- assert.equal(added.length,40);assert.equal(new Set(normalized).size,30);
+ assert.equal(added.length,40);assert.equal(new Set(normalized).size,40);
  assert.deepEqual(normalized.filter(word=>previous.has(word)),[]);
 });
 test('service worker precaches B2 U1-U40 and advances the app-shell cache',()=>{

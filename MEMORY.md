@@ -485,12 +485,13 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Fuente: PR #864, merge commit y Actions #45870221660/#45870221604; 26 nov 2026.
 
 
-## 2026-11-26 — PT-BR B2 U19–U21 en preparación
+## 2026-11-26 — PT-BR B2 U19–U21 fusionadas
 
-- Próximo bloque: U19 derivación y familias léxicas; U20 expresiones idiomáticas y uso contextual; U21 debate público y negociación avanzada.
-- Diseño inicial: 15 lecciones y 30 entradas (10 por unidad, dos objetivos por lección), ejemplos PT-BR, explicaciones en español y `not_checked` para vocabulario nuevo.
-- Manifiesto interno se amplía a U1–U21 de 40; PT-BR sigue `available:false`. Service Worker avanza caché app-shell a v3.8.159 y precarga U19–U21.
-- Pruebas nuevas cubren estructura, revisión A2, ausencia de duplicados normalizados frente a A1–B1 y B2 U1–U18, carga offline y disponibilidad false. Se actualizan contratos de manifiesto B2 anteriores.
-- Sin cambios a IndexedDB v1, backup JSON v3, dependencias ni audio. No afirmar certificación nativa ni equivalencia MCER.
-- Estado: rama `feat/pt-br-b2-u19-u21`, bloque y manifiesto registrados; pendiente completar expectativas de caché heredadas, CI, PR y validación post-merge.
-- Fuente: `docs/PT_BR_B2_ROADMAP.md`, archivo U19–U21 y pruebas; 26 nov 2026.
+- U19 derivación y familias léxicas; U20 expresiones idiomáticas y uso contextual; U21 debate público y negociación avanzada.
+- Añade 15 lecciones y 30 entradas (10 por unidad, dos objetivos por lección), ejemplos PT-BR, explicaciones en español y ejercicios de opción múltiple. Vocabulario nuevo en estado `not_checked`.
+- Manifiesto B2 mantiene 40 unidades y publica internamente U1–U21. Service Worker precarga U19–U21 y usa caché app-shell v3.8.159.
+- PR [#865](https://github.com/luisequeira612-commits/bahasa-studio/pull/865) fusionada por squash en `main`, merge commit `a22321c555941a2113c43961e06618d64e7b515d`; head `07fbb2387bf17476f74b4a5c4081dba1970b4820`.
+- CI del head: regresión #45871604649 success (103/103 pasos; E2E Chromium y accesibilidad móvil incluidos), Offline quality reports 10/10; TypeScript #45871604665 success (8/8). Sin comentarios ni revisiones pendientes.
+- Confirmado en `main`: manifiesto U1–U21 y Service Worker v3.8.159 con precarga del bloque. Runs post-merge/Pages no devuelven resultados para el merge commit, por lo que el despliegue no se declara verificado.
+- PT-BR sigue `available:false`; B2 continúa deshabilitado en selector. Sin cambios a IndexedDB v1, backup JSON v3, dependencias ni audio. No afirmar certificación nativa ni equivalencia MCER.
+- Fuente: PR #865, merge commit y Actions #45871604649/#45871604665; 26 nov 2026.

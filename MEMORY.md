@@ -417,3 +417,15 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Ajuste de contrato antes de cerrar CI: la prueba histórica \`pt-br-curriculum-b2-u01-u03.test.cjs\` todavía esperaba el manifiesto U1–U6. Se actualizó para aceptar U1–U9 y comprobar el tercer bloque. Commit de corrección: \`a72ccfef149233682a3c4ddf1566eff0f72b8218\`; el CI debe repetirse sobre este head.
 
 - Primer CI del head previo: falló el contrato local en 23 aserciones de caché de pruebas PT-BR A2/B1/B2/A1, que aún esperaban v3.8.154 tras el cambio intencional del Service Worker a v3.8.155. No fueron fallos del currículo ni de Chromium. Se actualizaron las expectativas de esas pruebas y el contrato B2 previo para reconocer el bloque U7–U9. Revalidar el head final.
+
+
+## 2026-11-26 — PT-BR B2 U7–U9: revisión CI inicial
+
+- El bloque U7–U9 contiene 15 lecciones y 30 entradas: U7 subjuntivo en valoración/duda/emoción; U8 condicionales irreales y escenarios alternativos; U9 discurso indirecto, atribución y perspectiva.
+- Manifiesto B2 interno: 40 unidades totales, U1–U9 publicadas en tres bloques; PT-BR sigue `available:false`.
+- Service Worker actualizado a caché v3.8.155 con precarga del bloque U7–U9. Se actualizaron las aserciones de caché de pruebas PT-BR A2/B1 y los contratos B2 anteriores.
+- El head `a33499d4e3ff836b89a34653f04f15d92e832f88` pasó regresión #45863016339 (test 103/103, offline quality 10/10) y TypeScript #45863017397 success.
+- Las pruebas cubren referencias A2 existentes, explicaciones literales por lección, duplicados normalizados frente a A1–B1 y B2 U1–U6, estado `not_checked`, disponibilidad false y carga offline Chromium hasta U9.
+- Todas las entradas permanecen `not_checked`; no se afirma certificación nativa ni equivalencia MCER. No se modifican IndexedDB v1, backup JSON v3, dependencias ni audio.
+- Estado: bloque implementado y validado inicialmente; pendiente abrir PR, ejecutar CI sobre el head definitivo y fusionar solo si sigue verde.
+- Fuente: rama `feat/pt-br-b2-u07-u09`, GitHub Actions #45863016339/#45863017397 y roadmap B2; 26 nov 2026.

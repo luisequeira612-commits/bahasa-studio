@@ -28,7 +28,7 @@ test('a partial future curriculum manifest is valid before all units are publish
 });
 
 test('the three existing Brazilian Portuguese manifests satisfy the shared contract', () => {
-    for (const level of ['a1', 'a2', 'b1']) {
+    for (const level of ['a1', 'a2', 'b1', 'b2']) {
         const file = path.join(__dirname, '..', 'languages', 'pt-BR', 'curriculum', level, 'index.js');
         const context = { window: {} };
         vm.runInNewContext(fs.readFileSync(file, 'utf8'), context);

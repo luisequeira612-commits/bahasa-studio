@@ -469,3 +469,16 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Entradas nuevas permanecen `not_checked`; PT-BR continúa `available:false` y B2 no se habilita en selector. No se modifican IndexedDB v1, backup JSON v3, dependencias ni audio.
 - Post-merge: regresión #45868028303 success (102 pasos completados, sin fallos; Offline quality reports 10/10); TypeScript #45868028265 success; GitHub Pages #45868027684 completó build, report-build-status y deploy en success.
 - Fuente: PR #863, merge commit y Actions #45867608981/#45867609244; 26 nov 2026.
+
+
+## 2026-11-26 — PT-BR B2 U16–U18 en preparación
+
+- Se inicia el sexto bloque B2: U16 verbos pronominales y matices aspectuales; U17 perífrasis verbales y modalidad; U18 colocaciones verbo-nominales.
+- Añade 15 lecciones y 30 entradas (10 por unidad, dos objetivos por lección), con ejemplos PT-BR y explicaciones en español. Entradas nuevas `not_checked`.
+- Manifiesto B2 mantiene 40 unidades y publica internamente U1–U18; PT-BR sigue `available:false`.
+- Service Worker precarga U16–U18 y avanza caché app-shell a v3.8.158. Se actualizan pruebas de caché A1/A2/B1/B2 y E2E Chromium offline hasta U18.
+- Pruebas verifican estructura, explicaciones por lección, referencias A2, duplicados normalizados contra A1–B1 y B2 U1–U15, disponibilidad false y carga offline.
+- Sin cambios a IndexedDB v1, backup JSON v3, dependencias ni audio. No afirmar naturalidad certificada ni equivalencia MCER.
+- La primera ejecución CI #45869861647 encontró un fallo E2E: el nuevo archivo registraba unidades en `GUARDI_CURRICULA` en vez de publicar el bloque `GUARDI_CURRICULUM_BLOCKS['pt-BR'].B2['16-18']`. Corregido en `74ccde7f48836c0aedc6df9320e458d763fdc756`; TypeScript había pasado y calidad offline 10/10. Esperar nueva ejecución CI sobre el head corregido.
+- Estado: contenido, manifiesto, precarga, pruebas B2 previas, expectativas de caché A1/A2/B1, E2E offline, roadmap y MEMORY en `feat/pt-br-b2-u16-u18`; pendiente CI completo, PR y validación post-merge.
+- Fuente: rama `feat/pt-br-b2-u16-u18`, roadmap B2 y pruebas; 26 nov 2026.

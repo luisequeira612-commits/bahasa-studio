@@ -8,7 +8,7 @@ const repo=path.join(__dirname,'..');
 const managerSource=fs.readFileSync(path.join(repo,'language-manager.js'),'utf8');
 const loaderSource=fs.readFileSync(path.join(repo,'curriculum-loader.js'),'utf8');
 const a2Files=['units-01-03.js','units-04-06.js','units-07-09.js','units-10-12.js','units-13-15.js','units-16-18.js','units-19-21.js','units-22-24.js','units-25-27.js','units-28-30.js'];
-const b2Files=['units-01-03.js','units-04-06.js','units-07-09.js','units-10-12.js','units-13-15.js'];
+const b2Files=['units-01-03.js','units-04-06.js','units-07-09.js','units-10-12.js','units-13-15.js','units-16-18.js'];
 const sources={
  './languages/pt-BR/curriculum/b2/index.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/b2/index.js'),'utf8'),
  './languages/pt-BR/curriculum/a2/index.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a2/index.js'),'utf8')
@@ -46,8 +46,8 @@ test('pt-BR B2 U13-U15 load as a partial internal block while the course remains
 });
 test('B2 manifest declares 40 units and publishes only the authored U1-U15 blocks',()=>{
  const {window}=createPilot(),manifest=window.GUARDI_CURRICULUM_MANIFESTS['pt-BR'].B2;
- assert.equal(manifest.totalUnits,40);assert.deepEqual(Array.from(manifest.publishedUnits),Array.from({length:15},(_,i)=>i+1));
- assert.deepEqual(Array.from(manifest.blocks.map(block=>Array.from(block.units))),[[1,2,3],[4,5,6],[7,8,9],[10,11,12],[13,14,15]]);
+ assert.equal(manifest.totalUnits,40);assert.deepEqual(Array.from(manifest.publishedUnits),Array.from({length:18},(_,i)=>i+1));
+ assert.deepEqual(Array.from(manifest.blocks.map(block=>Array.from(block.units))),[[1,2,3],[4,5,6],[7,8,9],[10,11,12],[13,14,15],[16,17,18]]);
  assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
 });
 test('B2 U13-U15 review references resolve to existing A2 vocabulary IDs',async()=>{
@@ -63,7 +63,7 @@ test('B2 U13-U15 add no exact normalized vocabulary duplicates against A1, A2, B
  for(const file of a1Files){const source=fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a1',file),'utf8');for(const match of source.matchAll(/v\('(?:[^']+)'\s*,\s*'([^']+)'/g))prior.push(match[1]);}
  for(const file of a2Files){const source=fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a2',file),'utf8');for(const match of source.matchAll(/vocab\(\s*\d+\s*,\s*\d+\s*,\s*'([^']+)'/g))prior.push(match[1]);}
  for(const file of b1Files){const source=fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/b1',file),'utf8');for(const match of source.matchAll(/vocab\(\s*\d+\s*,\s*\d+\s*,\s*'([^']+)'/g))prior.push(match[1]);}
- for(const file of b2Files.slice(0,4)){const source=fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/b2',file),'utf8');for(const match of source.matchAll(/vocab\(\d+,\d+,'([^']+)'/g))prior.push(match[1]);}
+ for(const file of b2Files.slice(0,5)){const source=fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/b2',file),'utf8');for(const match of source.matchAll(/vocab\(\d+,\d+,'([^']+)'/g))prior.push(match[1]);}
  const source=fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/b2/units-13-15.js'),'utf8');
  const added=[...source.matchAll(/vocab\(\d+,\d+,'([^']+)'/g)].map(match=>match[1]);
  const normalize=value=>value.toLocaleLowerCase('pt-BR').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/\s+/g,' ').trim();
@@ -75,5 +75,5 @@ test('service worker precaches B2 U1-U15 and advances the app-shell cache',()=>{
  const source=fs.readFileSync(path.join(repo,'service-worker.js'),'utf8');
  assert.ok(source.includes("./languages/pt-BR/curriculum/b2/index.js"));
  for(const file of b2Files)assert.ok(source.includes('./languages/pt-BR/curriculum/b2/'+file));
- assert.match(source,/bahasa-studio-v3\.8\.157/);
+ assert.match(source,/bahasa-studio-v3\.8\.158/);
 });

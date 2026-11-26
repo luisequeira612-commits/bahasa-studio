@@ -228,7 +228,7 @@ test('A1 examples and explanations stay consistent with the taught material', ()
 
   assert.equal(three.ex, 'Tiga tahun.');
   assert.equal(three.exEsp, 'Tres años.');
-  assert.ok(unit4.exercises.some(exercise => exercise.prompt === 'Traduce: tres años' && exercise.answer === 'Tiga tahun'));
+  assert.ok(unit4.exercises.some(exercise => exercise.prompt === 'Traduce: tres libros' && exercise.answer === 'Tiga buku'));
   assert.match(ageWriting.explanation, /Tengo cinco años/);
   assert.doesNotMatch(unit6.grammar, /Saya suka/);
   assert.ok(unit6.vocab.some(word => word.idn === 'Air'));

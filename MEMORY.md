@@ -697,3 +697,9 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Estado al crear esta rama: pendiente CI de habilitación, merge y verificación de GitHub Pages. No declarar B2 publicado hasta verificar Pages.
 - Restricciones conservadas: IndexedDB v1 y backup JSON v3 intactos; sin dependencias, red ni audio nuevos; `verification.status: not_checked`, sin certificación nativa ni afirmación MCER oficial.
 - Fuente: PR #886 y rama `feat/pt-br-b2-release-gate`, 26 nov 2026.
+
+
+## 2026-11-26 — PT-BR B2: activación final en PR #887
+- PR #887 (`feat/pt-br-b2-release-gate`) prepara la activación de PT-BR y las 40 unidades B2; manifest de 40 unidades/13 bloques y Service Worker v3.8.166 con precarga de B2.
+- TypeScript y calidad offline aprobados en el head más reciente; regresión Chromium/E2E continúa en ejecución. No fusionar hasta que toda la regresión esté verde.
+- Tras el merge, verificar Pages, selector PT-BR, progresión B2 U1–U40 y carga offline real antes de declarar publicación. Mantener entradas `not_checked`, IndexedDB v1 y backup JSON v3 sin cambios; no afirmar certificación nativa ni MCER.

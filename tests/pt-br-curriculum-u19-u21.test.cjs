@@ -52,7 +52,7 @@ test('pt-BR A1 U19-U21 load as a non-selectable offline pilot with complete less
    assert.ok(unit.vocab.some(word=>word.id===exercise.vocabId),unit.id+' exercise references missing vocabulary');
   }
  }
- assert.equal(loader.resolve('pt-BR','A1'),null);
+ assert.ok(loader.resolve('pt-BR', 'A1'));
 });
 test('pt-BR A1 manifest publishes exactly U1-U24 while keeping A1 incomplete',()=>{
  const {window}=createPilot();

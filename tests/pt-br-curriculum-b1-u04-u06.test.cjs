@@ -23,10 +23,10 @@ function createPilot(){
  vm.runInNewContext(sources['./languages/pt-BR/curriculum/b1/index.js'],sandbox);
  return {window,loader:window.CurriculumLoader};
 }
-test('pt-BR B1 U4-U6 load as content while the incomplete course remains unavailable',async()=>{
+test('pt-BR B1 U4-U6 load as content while the incomplete course is selectable',async()=>{
  const {window,loader}=createPilot();
  assert.equal(window.LanguageManager.isSupported('pt-BR'),true);
- assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
+ assert.equal(window.LanguageManager.isAvailable('pt-BR'),true);
  assert.equal(loader.resolve('pt-BR','B1'),null);
  const {units,totalUnits}=await loader.loadUnits('pt-BR','B1',[4,5,6]);
  assert.equal(totalUnits,36);assert.deepEqual(Array.from(units,u=>u.unitNumber),[4,5,6]);
@@ -48,10 +48,10 @@ test('pt-BR B1 U4-U6 load as content while the incomplete course remains unavail
   }
  }
 });
-test('B1 manifest publishes exactly U1-U36 of 36 and remains unavailable in the language selector',()=>{
+test('B1 manifest publishes exactly U1-U36 of 36 and is selectable in the language selector',()=>{
  const {window}=createPilot(),manifest=window.GUARDI_CURRICULUM_MANIFESTS['pt-BR'].B1;
  assert.equal(manifest.totalUnits,36);assert.deepEqual(Array.from(manifest.publishedUnits),Array.from({length:36},(_,index)=>index+1));
- assert.deepEqual(Array.from(manifest.blocks[1].units),[4,5,6]);assert.deepEqual(Array.from(manifest.blocks[2].units),[7,8,9]);assert.deepEqual(Array.from(manifest.blocks[3].units),[10,11,12]);assert.deepEqual(Array.from(manifest.blocks[4].units),[13,14,15]);assert.deepEqual(Array.from(manifest.blocks[5].units),[16,17,18]);assert.deepEqual(Array.from(manifest.blocks[3].units),[10,11,12]);assert.deepEqual(Array.from(manifest.blocks[6].units),[19,20,21]);assert.deepEqual(Array.from(manifest.blocks[7].units),[22,23,24]);assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
+ assert.deepEqual(Array.from(manifest.blocks[1].units),[4,5,6]);assert.deepEqual(Array.from(manifest.blocks[2].units),[7,8,9]);assert.deepEqual(Array.from(manifest.blocks[3].units),[10,11,12]);assert.deepEqual(Array.from(manifest.blocks[4].units),[13,14,15]);assert.deepEqual(Array.from(manifest.blocks[5].units),[16,17,18]);assert.deepEqual(Array.from(manifest.blocks[3].units),[10,11,12]);assert.deepEqual(Array.from(manifest.blocks[6].units),[19,20,21]);assert.deepEqual(Array.from(manifest.blocks[7].units),[22,23,24]);assert.equal(window.LanguageManager.isAvailable('pt-BR'),true);
 });
 test('B1 U4-U6 review references resolve to existing A2 vocabulary IDs',async()=>{
  const {loader}=createPilot(),{units}=await loader.loadUnits('pt-BR','B1',[4,5,6]);
@@ -78,8 +78,8 @@ test('B1 U4-U6 add no exact normalized vocabulary duplicates against A1, A2 or B
  assert.equal(prior.length,540);assert.equal(previous.length,30);assert.equal(added.length,30);assert.equal(new Set(normalized).size,30);
  assert.deepEqual(normalized.filter(word=>allPrior.has(word)),[]);
 });
-test('service worker uses the current B1 app-shell cache v3.8.165',()=>{
+test('service worker uses the current B1 app-shell cache v3.8.166',()=>{
  const source=fs.readFileSync(path.join(repo,'service-worker.js'),'utf8');
  assert.ok(source.includes("./languages/pt-BR/curriculum/b1/units-07-09.js"));
- assert.match(source,/bahasa-studio-v3\.8\.165/);
+ assert.match(source,/bahasa-studio-v3\.8\.166/);
 });

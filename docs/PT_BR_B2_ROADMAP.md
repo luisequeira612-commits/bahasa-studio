@@ -10,14 +10,14 @@
 - Aclaración: el informe automático genérico anterior (`curriculum-quality-report.json`) analiza el B2 indonesio embebido en `index.html`, no el currículo PT-BR B2 modular; no se usa como evidencia de calidad del portugués.
 - Estos controles son estructurales; no certifican naturalidad, gramática nativa, registro ni nivel MCER. Todas las entradas permanecen `not_checked`; no habilitar el curso.
 
-## Siguiente fase: diversidad de ejercicios — extensión U1–U9
+## Siguiente fase: diversidad de ejercicios — extensión U1–U12
 
 La auditoría PR #872 encontró que los 800 registros actuales son de opción múltiple y repiten las mismas 400 preguntas entre lección y banco de unidad. Esta repetición no es suficiente para un B2.
 
-- Piloto en curso: U1–U9 convierten las 90 actividades del banco de unidad a `order`, reconstruyendo cada ejemplo PT-BR; las 90 actividades de lección conservan `mc`.
+- Piloto en curso: U1–U12 convierten las 120 actividades del banco de unidad a `order`, reconstruyendo cada ejemplo PT-BR; las 120 actividades de lección conservan `mc`.
 - El tipo `order` ya está soportado por el motor de aprendizaje y se usa en el currículo A1. No se añaden dependencias, audio ni red.
 - El contrato integral se adapta para validar MC y orden, incluyendo tokens exactos, secuencia correcta y mezcla de palabras.
-- U1–U6 ya están integradas en main mediante PR #873 y #874. U7–U9 están en la rama `feat/pt-br-b2-exercise-variety-u07-u09`; CI pendiente. Si pasa, extender por bloques a U10–U40; después estudiar producción escrita/reformulación sin inventar audio.
+- U1–U9 ya están integradas en main mediante PR #873, #874 y #875. U10–U12 están en la rama `feat/pt-br-b2-exercise-variety-u10-u12`; CI pendiente. Si pasa, extender por bloques a U13–U40; después estudiar producción escrita/reformulación sin inventar audio.
 - PT-BR continúa deshabilitado. Esta fase no certifica naturalidad nativa ni nivel MCER.
 
 ## Criterios

@@ -1,3 +1,22 @@
+## 2026-11-26 — PR #871 abierta para bloque final PT-BR B2 U37–U40
+
+- PR [#871](https://github.com/luisequeira612-commits/bahasa-studio/pull/871) abierta desde `feat/pt-br-b2-u37-u40`, base `main` en merge commit de #870 `a60232f0f614113b44e27aa8e676cca2b7f23a27`; head validado en el último sondeo `d6acb3fd1b9eb06512138a7ffa84fe3517ffebc7`.
+- Añade U37–U40 (20 lecciones y 40 entradas), manifiesto B2 U1–U40, caché app-shell v3.8.165, precarga offline, E2E hasta U40 y contrato específico en `quality:tests`.
+- Primera regresión #45886966097 detectó diez contratos A2 y B2 U1–U3 con expectativa de caché v3.8.164 y una aserción de U40 sin mención explícita de «reescrita orientada». Se corrigieron los contratos a v3.8.165 y la explicación de la lección, sin relajar pruebas. En el head `d6acb3fd1b9eb06512138a7ffa84fe3517ffebc7`, TypeScript #45887444456 success y calidad offline #45887444466 10/10 success; regresión #45887444466 en ejecución, sin fallos al último sondeo. Reviews y review threads vacíos. No fusionar hasta regresión, Chromium E2E y accesibilidad móvil verdes.
+- PT-BR continúa `available:false`; B2 deshabilitado; vocabulario `not_checked`; no afirmar certificación nativa ni equivalencia MCER. Sin cambios a IndexedDB v1, backup JSON v3, dependencias ni audio.
+- Fuente: PR #871, rama y archivos curriculares/contratos; 26 nov 2026.
+
+## 2026-11-26 — Cierre PR #870 y continuación final B2 U37–U40
+
+- PR [#870](https://github.com/luisequeira612-commits/bahasa-studio/pull/870) fusionada por squash en `main`; merge commit `a60232f0f614113b44e27aa8e676cca2b7f23a27`. Incluye U34–U36: 15 lecciones, 30 entradas, manifiesto interno U1–U36, precarga offline y caché app-shell v3.8.164.
+- CI del head final `8dc2198a57ce394613d327313ef3cce1b0329ac7`: regresión #45884552214 success (103 pasos, incluida Chromium E2E, accesibilidad móvil y pruebas de evaluación); calidad offline 10/10; TypeScript #45884552466 success. Sin reviews ni hilos pendientes. Las expectativas A2 antiguas de caché v3.8.163 se alinearon a v3.8.164; no se cambió runtime.
+- Nueva rama `feat/pt-br-b2-u37-u40`, creada desde main tras el merge. Añadido `languages/pt-BR/curriculum/b2/units-37-40.js`: U37 ironía, humor y subentendidos; U38 ambigüedad, presuposición e implicatura; U39 proyecto argumentativo multimodal; U40 proyecto final de autonomía B2. 20 lecciones y 40 entradas, diez por unidad, dos objetivos por lección; explicaciones en español, ejemplos PT-BR, ejercicios contextualizados y vocabulario `not_checked`.
+- Manifiesto interno ampliado a U1–U40; Service Worker precarga U37–U40 y usa caché app-shell v3.8.165. E2E offline extendida hasta U40; nuevo contrato `tests/pt-br-curriculum-b2-u37-u40.test.cjs` registrado en `quality:tests`; contratos anteriores B2 y aserciones históricas de caché actualizados.
+- Estado actual de la rama U37–U40: pendiente ejecutar CI completo y revisar resultados antes de abrir/fusionar PR. PT-BR continúa `available:false`; B2 no se habilita. Entradas `not_checked`; no se afirma certificación nativa ni equivalencia MCER.
+- Restricciones preservadas: sin cambios a IndexedDB v1, backup JSON v3, dependencias ni audio.
+- Roadmap `docs/PT_BR_B2_ROADMAP.md` actualizado con cierre #870 y el bloque final U37–U40.
+- Fuente: PR #870, Actions #45884552214/#45884552466, merge commit y rama `feat/pt-br-b2-u37-u40`; 26 nov 2026.
+
 ## 2026-11-26 — Seguimiento CI PR #870 (U34–U36)
 
 - PR [#870](https://github.com/luisequeira612-commits/bahasa-studio/pull/870) abierta para U34–U36. TypeScript #45883897314 terminó success y Offline quality reports #45883897341 success; la regresión #45883897341 falló en tres contratos A2 históricos (U7–U9, U10–U12 y U13–U15), que aún buscaban el nombre de caché v3.8.163 mientras el Service Worker ya declara v3.8.164.

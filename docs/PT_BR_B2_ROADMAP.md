@@ -1,6 +1,6 @@
 # Portugués brasileño B2 — temario de 40 unidades
 
-**Estado:** temario reconstruido el 26 de noviembre de 2026 porque no se recuperó el documento anterior. Es una propuesta de trabajo editable, no una equivalencia certificada con un examen oficial. Los bloques U1–U33 están implementados; U34–U40 siguen planificados.
+**Estado:** temario reconstruido el 26 de noviembre de 2026 porque no se recuperó el documento anterior. Es una propuesta de trabajo editable, no una equivalencia certificada con un examen oficial. U1–U36 están integradas en `main`; U37–U40 están en preparación en la rama `feat/pt-br-b2-u37-u40`. La disponibilidad de PT-BR y B2 se mantiene desactivada.
 
 ## Criterios
 
@@ -9,7 +9,7 @@
 - Evitar repetir como contenido nuevo los ejes ya trabajados en B1 (relatos básicos, argumentación inicial, hipótesis, medios, ciudad, ciencia, economía, cultura y negociación).
 - Cada unidad incorpora vocabulario en contexto, explicaciones en español, ejemplos PT-BR y ejercicios vinculados a frases completas.
 - El estado de las entradas nuevas permanece `not_checked` mientras no exista verificación documental individual suficiente. Las pruebas estructurales no certifican naturalidad ni nivel MCER.
-- B2 permanece no disponible en el selector hasta completar el curso y sus pruebas. La manifestación parcial de U1–U33 solo permite validación interna.
+- B2 permanece no disponible en el selector hasta completar el curso y sus pruebas. La manifestación parcial de U1–U40 solo permite validación interna; el curso no se habilita hasta completar la revisión y las pruebas.
 
 ## Secuencia propuesta
 
@@ -104,7 +104,7 @@
 - U29: tecnología, privacidad y ética.
 - U30: medioambiente y sostenibilidad.
 
-U1–U36 contienen 180 lecciones y 360 entradas nuevas. Cada unidad incluye cinco lecciones y diez entradas. Las entradas nuevas permanecen `not_checked`; las pruebas verifican estructura, carga offline, referencias de repaso y duplicados normalizados, pero no certifican naturalidad ni nivel MCER.
+U1–U36 integradas contienen 180 lecciones y 360 entradas nuevas. U37–U40 en preparación añaden otras 20 lecciones y 40 entradas previstas. Cada unidad incluye cinco lecciones y diez entradas. Las entradas nuevas permanecen `not_checked`; las pruebas verifican estructura, carga offline, referencias de repaso y duplicados normalizados, pero no certifican naturalidad ni nivel MCER.
 
 ## Bloque implementado: U31–U33
 
@@ -115,14 +115,25 @@ U1–U36 contienen 180 lecciones y 360 entradas nuevas. Cada unidad incluye cinc
 - El manifiesto de trabajo extiende la publicación interna hasta U1–U33; caché app-shell v3.8.163 y precarga offline. PT-BR continúa `available:false`; no se habilita el curso.
 - Validación pendiente: contratos de estructura, referencias de repaso A2, duplicados normalizados, regresión y E2E offline. No se afirma certificación nativa ni equivalencia MCER.
 
-## Bloque en preparación: U34–U36
+## Bloque implementado: U34–U36
 
 - U34: salud y políticas públicas (atención primaria, cribado poblacional, vigilancia de brotes, determinantes sociales, decisiones compartidas, rutas de atención y asignación de recursos).
 - U35: educación y aprendizaje permanente (formación continua, alfabetización informacional, evaluación por competencias, diseño universal para el aprendizaje, brechas, trayectorias y transferencia).
 - U36: consumo, finanzas y decisiones (endeudamiento familiar, costo total del crédito, presupuesto doméstico, fondo de emergencia, diversificación, liquidez, poder adquisitivo y capacidad de pago).
 - Rama `feat/pt-br-b2-u34-u36`: 15 lecciones y 30 entradas nuevas; cinco lecciones y diez entradas por unidad; dos objetivos léxicos por lección; ejemplos PT-BR, explicaciones en español y ejercicios contextualizados. Entradas `not_checked`.
 - Manifiesto interno ampliado a U1–U36 de 40; Service Worker precarga U34–U36 y usa caché app-shell v3.8.164. Contratos específicos y E2E offline ampliados hasta U36.
-- PR [#870](https://github.com/luisequeira612-commits/bahasa-studio/pull/870) abierta. Primer CI: TypeScript y calidad offline success; regresión falló por tres expectativas antiguas de caché v3.8.163 en contratos A2 U7–U15. Se actualizaron esas aserciones a v3.8.164 sin modificar runtime; pendiente repetir CI completo y revisar E2E Chromium/accesibilidad antes de fusionar. PT-BR continúa `available:false`; no se habilita el curso. No se afirma certificación nativa ni equivalencia MCER; sin cambios a IndexedDB v1, backup JSON v3, dependencias ni audio.
+- PR [#870](https://github.com/luisequeira612-commits/bahasa-studio/pull/870) fusionada por squash en `main`; merge commit `a60232f0f614113b44e27aa8e676cca2b7f23a27`. CI del head final: regresión #45884552214 success (103 pasos, Chromium E2E, accesibilidad móvil y pruebas de evaluación incluidos), calidad offline 10/10 y TypeScript #45884552466 success. Sin reviews ni hilos pendientes.
+- Manifiesto interno extendido a U1–U36/40; Service Worker precarga U34–U36, caché app-shell v3.8.164. PT-BR continúa `available:false`; B2 no se habilita. No se afirma certificación nativa ni equivalencia MCER; sin cambios a IndexedDB v1, backup JSON v3, dependencias ni audio.
+
+## Bloque en preparación: U37–U40
+
+- U37: ironía, humor y subentendidos (ironía, sarcasmo, burla, doble sentido, tono jocoso, humor autocrítico, sátira, broma interna, ruptura de expectativa e insinuación).
+- U38: ambigüedad, presuposición e implicatura (ambigüedad léxica y sintáctica, presuposición, implicatura, inferencia pragmática, deixis, referente discursivo, alcance de la negación, sobreentendido y desambiguación).
+- U39: proyecto argumentativo multimodal (tesis central, delimitación temática, curaduría de fuentes, evidencia verificable, contraargumento, línea argumentativa, recursos visuales, leyendas, narrativa de datos y llamada a la acción).
+- U40: proyecto final de autonomía B2 (adecuación al género, perfil del interlocutor, registro, revisión sustantiva, cohesión referencial, concisión, salvedades, autoevaluación, reescritura y versión final).
+- Rama `feat/pt-br-b2-u37-u40`: 20 lecciones y 40 entradas nuevas; cinco lecciones y diez entradas por unidad; ejemplos PT-BR, explicaciones en español, ejercicios contextualizados y estado `not_checked`.
+- Manifiesto interno ampliado a U1–U40 de 40; Service Worker precarga U37–U40 y avanza la caché app-shell a v3.8.165. Contratos específicos y E2E offline ampliados hasta U40. PR [#871](https://github.com/luisequeira612-commits/bahasa-studio/pull/871) abierta. Primera regresión detectó diez expectativas de caché A2/B2 obsoletas y una explicación léxica incompleta en U40; ambas clases de fallos se corrigieron sin relajar contratos. En el último head comprobado, TypeScript y calidad offline pasan; regresión/Chromium E2E/accesibilidad móvil aún en ejecución. Sin reviews ni hilos pendientes; no fusionar hasta CI completo verde.
+- PT-BR permanece `available:false`; B2 no se habilita. No se afirma revisión nativa ni certificación MCER; sin cambios a IndexedDB v1, backup JSON v3, dependencias ni audio.
 
 ### Referencias de diseño consultadas
 

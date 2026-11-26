@@ -66,7 +66,7 @@ const unit24=makeUnit(24,'Presentaciones y entrevistas extensas','Sostiene expos
 ['Estructurar una exposición','Organizar una presentación con apertura y desarrollo.','Palestra nombra la presentación oral; transição conecta partes y orienta a quienes escuchan. Anuncia el recorrido para que el público siga la estructura.',[0,6],review],
 ['Gestionar preguntas','Comprender y responder cuestionamientos.','Questionamento puede pedir aclaración o poner una afirmación en duda. Esclarecer significa eliminar una duda concreta; reformula la pregunta si es ambigua antes de responder.',[1,3],review],
 ['Desarrollar argumentos','Profundizar con ejemplos y precisiones.','Aprofundar amplía el análisis; síntese recupera las ideas principales. Añade ejemplos relevantes sin desviarte del punto central.',[2,4],review],
-['Matizar y sintetizar','Introducir límites y resumir conclusiones.','Ponderação introduce un matiz en la valoración; síntese recupera las ideas principales. Presenta las limitaciones antes del resumen final.',[5,4],review],
+['Matizar y evaluar','Introducir límites y considerar los criterios de evaluación.','Ponderação introduce un matiz en la valoración; comissão avaliadora identifica al grupo que escucha y evalúa la presentación. Presenta las limitaciones antes de la evaluación final.',[5,9],review],
 ['Responder con flexibilidad','Mantener claridad ante preguntas inesperadas.','Improviso puede ser necesario, pero conviene preservar la estructura de la respuesta. Desenvoltura describe soltura al hablar; comissão avaliadora identifica al grupo que escucha y evalúa.',[7,8],review]
 ]);
 root.GUARDI_CURRICULUM_BLOCKS=root.GUARDI_CURRICULUM_BLOCKS||{};

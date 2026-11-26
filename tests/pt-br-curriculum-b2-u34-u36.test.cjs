@@ -39,8 +39,9 @@ test('pt-BR B2 U34-U36 load as a partial internal block while the course remains
    for(const id of lesson.vocabIds){const word=unit.vocab.find(item=>item.id===id);assert.ok(word,id);assert.ok(grammar.includes(word.target.toLocaleLowerCase('pt-BR')),unit.id+' '+lesson.title+' must explain '+word.target);}
   }
   for(const ex of [...unit.exercises,...unit.lessons.flatMap(lesson=>lesson.exercises)]){
-   assert.equal(ex.type,'mc',unit.id);const word=unit.vocab.find(item=>item.id===ex.vocabId);assert.ok(word,ex.vocabId);
-   assert.equal(ex.options.length,3,ex.vocabId);assert.equal(ex.options[ex.answer],word.esp,ex.vocabId);
+   if(unit.exercises.includes(ex)){assert.equal(ex.type,'order',unit.id);assert.ok(Array.isArray(ex.words)&&Array.isArray(ex.correctOrder),unit.id);}
+   else{assert.equal(ex.type,'mc',unit.id);assert.equal(ex.options.length,3,ex.vocabId);assert.equal(ex.options[ex.answer],unit.vocab.find(item=>item.id===ex.vocabId).esp,ex.vocabId);}
+   const word=unit.vocab.find(item=>item.id===ex.vocabId);assert.ok(word,ex.vocabId);
   }
  }
 });

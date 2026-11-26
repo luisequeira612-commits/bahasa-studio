@@ -4,7 +4,7 @@ root.GUARDI_CURRICULUM_MANIFESTS=root.GUARDI_CURRICULUM_MANIFESTS||{};
 root.GUARDI_CURRICULUM_MANIFESTS['pt-BR']=root.GUARDI_CURRICULUM_MANIFESTS['pt-BR']||{};
 root.GUARDI_CURRICULUM_MANIFESTS['pt-BR'].B2=Object.freeze({
  id:'B2',language:'pt-BR',title:'B2 — Avanzado',totalUnits:40,
- publishedUnits:Object.freeze([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]),
+ publishedUnits:Object.freeze([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27]),
  blocks:Object.freeze([
   {id:'01-03',path:'./languages/pt-BR/curriculum/b2/units-01-03.js',units:Object.freeze([1,2,3])},
   {id:'04-06',path:'./languages/pt-BR/curriculum/b2/units-04-06.js',units:Object.freeze([4,5,6])},
@@ -13,7 +13,8 @@ root.GUARDI_CURRICULUM_MANIFESTS['pt-BR'].B2=Object.freeze({
   {id:'13-15',path:'./languages/pt-BR/curriculum/b2/units-13-15.js',units:Object.freeze([13,14,15])},
   {id:'16-18',path:'./languages/pt-BR/curriculum/b2/units-16-18.js',units:Object.freeze([16,17,18])},
   {id:'19-21',path:'./languages/pt-BR/curriculum/b2/units-19-21.js',units:Object.freeze([19,20,21])},
-  {id:'22-24',path:'./languages/pt-BR/curriculum/b2/units-22-24.js',units:Object.freeze([22,23,24])}
+  {id:'22-24',path:'./languages/pt-BR/curriculum/b2/units-22-24.js',units:Object.freeze([22,23,24])},
+  {id:'25-27',path:'./languages/pt-BR/curriculum/b2/units-25-27.js',units:Object.freeze([25,26,27])}
  ])
 });
 })(typeof window!=='undefined'?window:globalThis);

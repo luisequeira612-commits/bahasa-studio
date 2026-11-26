@@ -553,6 +553,9 @@ test('SRS recordAttempt updates real attempt state for correct and incorrect ans
   assert.equal(saved[0].item.repetition, 1);
   assert.equal(saved[0].item.interval, 1);
   assert.equal(saved[0].item.lastReviewed, 1000000);
+  assert.equal(saved[0].item.lastQuality, 5, 'the latest successful grade must be persisted for the adaptive recommendation filter');
+  assert.equal(saved[0].item.savedForReview, false, 'a graded word must clear its manual-save flag');
+  assert.equal(saved[0].item.markedAt, 1000000, 'the grade event must update its ordering timestamp');
 
   const incorrectSaved = [];
   const incorrectEngine = {
@@ -570,6 +573,9 @@ test('SRS recordAttempt updates real attempt state for correct and incorrect ans
   assert.equal(incorrectSaved[0].item.incorrect, 2);
   assert.equal(incorrectSaved[0].item.repetition, 0);
   assert.equal(incorrectSaved[0].item.interval, 1);
+  assert.equal(incorrectSaved[0].item.lastQuality, 1, 'the latest unsuccessful grade must also be persisted');
+  assert.equal(incorrectSaved[0].item.savedForReview, false);
+  assert.equal(incorrectSaved[0].item.markedAt, 1000000);
 });
 
 test('vocabulary mastery percentage is calculated from unique words and spaced-repetition success', () => {

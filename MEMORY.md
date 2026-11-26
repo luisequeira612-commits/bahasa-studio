@@ -319,3 +319,11 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 
 - Corrección CI 26 nov 2026: el primer intento de la nueva E2E falló en su preparación de datos porque asumía que todas las entradas tenían `text`; el vocabulario contiene formas sin ese campo. El selector de la tercera palabra se cambió a IDs canónicos distintos, sin depender del texto.
 - Validación final CI: run [45752936698](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45752936698) terminó en success. Job `test`: 103/103 pasos; `Offline quality reports`: 10/10. Pasaron la E2E de alcance de sesión de refuerzo, E2E de navegador real, pruebas de evaluación y accesibilidad móvil. PR #849 lista para integrar; 26 nov 2026.
+
+
+## 2026-11-26 — Persistencia de la última calificación SRS
+
+- Se refuerza la prueba funcional de `SRSEngine.recordAttempt()` para comprobar que las calificaciones correctas e incorrectas persisten `lastQuality`, limpian `savedForReview` y actualizan `markedAt`; son los campos que consume el recomendador para decidir si una palabra sigue necesitando refuerzo.
+- La regresión post-merge de PR #849 terminó en success: run [#45754296815](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45754296815), `test` 103/103 y calidad offline 10/10. Pages [#45754296021](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45754296021) completó build y deploy en success. PR #849 está integrada en `main`.
+- Este refuerzo es exclusivamente de pruebas y documentación; no cambia runtime, currículo, IndexedDB v1, backup JSON v3 ni dependencias.
+- Fuente: `tests/regression.test.cjs`, PR #849 y GitHub Actions #45754296815/#45754296021; 26 nov 2026.

@@ -1,6 +1,6 @@
 # Portugués brasileño B2 — temario de 40 unidades
 
-**Estado:** temario reconstruido el 26 de noviembre de 2026 porque no se recuperó el documento anterior. Es una propuesta de trabajo editable, no una equivalencia certificada con un examen oficial. Los bloques U1–U3, U4–U6, U7–U9, U10–U12, U13–U15, U16–U18, U19–U21, U22–U24 y U25–U27 están implementados; U28–U30 están en preparación y U31–U40 siguen planificados.
+**Estado:** temario reconstruido el 26 de noviembre de 2026 porque no se recuperó el documento anterior. Es una propuesta de trabajo editable, no una equivalencia certificada con un examen oficial. Los bloques U1–U3, U4–U6, U7–U9, U10–U12, U13–U15, U16–U18, U19–U21, U22–U24 y U25–U27 y U28–U30 están implementados; U31–U40 siguen planificados.
 
 ## Criterios
 
@@ -9,7 +9,7 @@
 - Evitar repetir como contenido nuevo los ejes ya trabajados en B1 (relatos básicos, argumentación inicial, hipótesis, medios, ciudad, ciencia, economía, cultura y negociación).
 - Cada unidad incorpora vocabulario en contexto, explicaciones en español, ejemplos PT-BR y ejercicios vinculados a frases completas.
 - El estado de las entradas nuevas permanece `not_checked` mientras no exista verificación documental individual suficiente. Las pruebas estructurales no certifican naturalidad ni nivel MCER.
-- B2 permanece no disponible en el selector hasta completar el curso y sus pruebas. La manifestación parcial de U1–U27 solo permite validación interna.
+- B2 permanece no disponible en el selector hasta completar el curso y sus pruebas. La manifestación parcial de U1–U30 solo permite validación interna.
 
 ## Secuencia propuesta
 
@@ -98,13 +98,13 @@
 - U26: crónica y reportaje.
 - U27: datos, tendencias y cautela estadística.
 
-## Bloque en preparación: U28–U30
+## Bloque implementado: U28–U30
 
 - U28: ciencia e incertidumbre.
 - U29: tecnología, privacidad y ética.
 - U30: medioambiente y sostenibilidad.
 
-U1–U27 contienen 135 lecciones y 270 entradas nuevas. U28–U30 están en preparación con el mismo formato de cinco lecciones y diez entradas por unidad. Las entradas nuevas permanecen `not_checked`; las pruebas verifican estructura, carga offline, referencias de repaso y duplicados normalizados, pero no certifican naturalidad ni nivel MCER.
+U1–U30 contienen 150 lecciones y 300 entradas nuevas. U28–U30 están implementadas con cinco lecciones y diez entradas por unidad. Las entradas nuevas permanecen `not_checked`; las pruebas verifican estructura, carga offline, referencias de repaso y duplicados normalizados, pero no certifican naturalidad ni nivel MCER.
 
 ### Referencias de diseño consultadas
 

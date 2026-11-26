@@ -449,5 +449,8 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Service Worker precarga U10–U12 y avanza caché app-shell a v3.8.156. Se actualizan pruebas de caché PT-BR A2/B1 y contratos B2 previos.
 - Contratos nuevos cubren U10–U12, referencias A2, explicación literal por lección, duplicados normalizados contra A1–B1 y B2 U1–U9, disponibilidad false y carga offline Chromium hasta U12.
 - Sin cambios a IndexedDB v1, backup JSON v3, dependencias ni audio. No afirmar naturalidad certificada ni equivalencia MCER.
-- Estado: contenido, manifiesto, precarga, tests y roadmap en la rama `feat/pt-br-b2-u10-u12`; falta CI completo, PR y validación post-merge.
-- Fuente: rama `feat/pt-br-b2-u10-u12`, roadmap B2 y pruebas; 26 nov 2026.
+- PR [#862](https://github.com/luisequeira612-commits/bahasa-studio/pull/862) fusionada por squash en `main`, merge commit `82d7ad9f98a572a30ff85499192b58bb6b63a23d`. CI del head `0a9b545e`: regresión #45865795579 success (103/103 pasos, E2E Chromium y calidad offline 10/10); TypeScript #45865795716 success. Sin comentarios ni revisiones pendientes.
+- U10 cohesión/progresión temática; U11 reformulación/precisión discursiva; U12 comparación matizada. El bloque añade 15 lecciones y 30 entradas; manifiesto interno B2 publica U1–U12 de 40 y Service Worker usa caché v3.8.156.
+- Todas las entradas nuevas siguen `not_checked`; PT-BR permanece `available:false` y B2 deshabilitado en el selector. No hay cambios a IndexedDB v1, backup JSON v3, dependencias ni audio.
+- Validación post-merge de Pages, regresión push y TypeScript aún pendiente de confirmación en Actions; no declarar despliegue completo hasta verificarla.
+- Fuente: PR #862, merge commit y Actions #45865795579/#45865795716; 26 nov 2026.

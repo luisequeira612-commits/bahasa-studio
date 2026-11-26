@@ -1168,3 +1168,53 @@ test('Aprender recommends and opens the final assessment when all lessons in the
     await new Promise(resolve => server.close(resolve));
   }
 });
+
+
+test('completed unit sheet lets the learner open any completed lesson directly', async () => {
+  const { server, url } = await startServer();
+  const browser = await chromium.launch({ headless: true });
+  const context = await browser.newContext({ viewport: { width: 360, height: 740 }, serviceWorkers: 'block', reducedMotion: 'reduce' });
+  const page = await context.newPage();
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
+    await page.locator('.nav-btn[data-nav-group="learn"]').click();
+
+    const seeded = await page.evaluate(async () => {
+      const level = CourseData.levels.find(entry => entry.id === 'A1');
+      const unit = level && level.units[2];
+      if (!unit) throw new Error('A1 Unit 3 must exist');
+      const lessons = buildUnitLessons(unit);
+      if (lessons.length !== 5) throw new Error('A1 Unit 3 must expose five lessons, found ' + lessons.length);
+      App.completedUnits = level.units.slice(0, 3).map(entry => entry.id);
+      App.completedLessons = lessons.map(lesson => unitLessonProgressKey(unit.id, lesson.index));
+      await DB.set('settings', 'completedUnits', App.completedUnits);
+      await DB.set('settings', 'completedLessons', App.completedLessons);
+      App.openUnitSheet(unit.id);
+      return { unitId: unit.id, lessonCount: lessons.length };
+    });
+
+    const choices = page.locator('#unitSheetContent .unit-sheet-review-option');
+    await page.waitForFunction(() => !document.getElementById('unitSheetOverlay').hidden);
+    assert.equal(await choices.count(), seeded.lessonCount);
+    assert.match(await page.locator('.unit-sheet-review-choices > p').innerText(), /Elige una lección para repasar/);
+    assert.equal(await page.locator('#unitSheetContent .unit-sheet-primary').count(), 0);
+
+    await choices.nth(4).click();
+    await page.waitForFunction(() => document.getElementById('view-lesson').classList.contains('active'));
+    const opened = await page.evaluate(() => ({
+      unitId: LessonEngine.currentUnit.id,
+      lessonIndex: LessonEngine.currentLesson.index,
+      lessonTitle: LessonEngine.currentLesson.title,
+      completedCount: App.completedLessons.length
+    }));
+    assert.equal(opened.unitId, seeded.unitId);
+    assert.equal(opened.lessonIndex, 4, 'the fifth lesson should open directly');
+    assert.equal(opened.completedCount, seeded.lessonCount, 'opening a review must not clear completed lessons');
+  } finally {
+    await context.close();
+    await browser.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});

@@ -22,10 +22,10 @@ function createPilot(){
  vm.runInNewContext(sources['./languages/pt-BR/curriculum/b2/index.js'],sandbox);
  return {window,loader:window.CurriculumLoader};
 }
-test('pt-BR B2 U34-U36 load as a partial internal block while the course remains unavailable',async()=>{
+test('pt-BR B2 U34-U36 load as a partial internal block while the course is selectable',async()=>{
  const {window,loader}=createPilot();
  assert.equal(window.LanguageManager.isSupported('pt-BR'),true);
- assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
+ assert.equal(window.LanguageManager.isAvailable('pt-BR'),true);
  assert.equal(loader.resolve('pt-BR','B2'),null);
  const {units,totalUnits}=await loader.loadUnits('pt-BR','B2',[34,35,36]);
  assert.equal(totalUnits,40);assert.deepEqual(Array.from(units,u=>u.unitNumber),[34,35,36]);
@@ -49,7 +49,7 @@ test('B2 manifest declares 40 units and publishes only the authored U1-U40 block
  const {window}=createPilot(),manifest=window.GUARDI_CURRICULUM_MANIFESTS['pt-BR'].B2;
  assert.equal(manifest.totalUnits,40);assert.deepEqual(Array.from(manifest.publishedUnits),Array.from({length:40},(_,i)=>i+1));
  assert.deepEqual(Array.from(manifest.blocks.map(block=>Array.from(block.units))),[[1,2,3],[4,5,6],[7,8,9],[10,11,12],[13,14,15],[16,17,18],[19,20,21],[22,23,24],[25,26,27],[28,29,30],[31,32,33],[34,35,36],[37,38,39,40]]);
- assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
+ assert.equal(window.LanguageManager.isAvailable('pt-BR'),true);
 });
 test('B2 U34-U36 review references resolve to existing A2 vocabulary IDs',async()=>{
  const {loader}=createPilot(),{units}=await loader.loadUnits('pt-BR','B2',[34,35,36]);
@@ -76,5 +76,5 @@ test('service worker precaches B2 U1-U40 and advances the app-shell cache',()=>{
  const source=fs.readFileSync(path.join(repo,'service-worker.js'),'utf8');
  assert.ok(source.includes("./languages/pt-BR/curriculum/b2/index.js"));
  for(const file of b2Files)assert.ok(source.includes('./languages/pt-BR/curriculum/b2/'+file));
- assert.match(source,/bahasa-studio-v3\.8\.165/);
+ assert.match(source,/bahasa-studio-v3\.8\.166/);
 });

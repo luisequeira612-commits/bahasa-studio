@@ -296,3 +296,9 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Ajuste de coherencia con el ejercicio de unidad U8: el prompt de L1 se iguala a «Elige la expresión que significa «hoy»», el mismo ejercicio de la unidad, evitando la aparición de Belajar y preservando la identidad/multiplicidad de los ejercicios originales.
 
 - Hash canónico A1 actualizado tras alinear el prompt de U8 L1 con su ejercicio de unidad: `6f029e43`.
+
+## 2026-11-26 — Corrección editorial de objetivos A1 U9/U10
+
+- La auditoría detectó nueve objetivos con construcciones incompletas en español: «Aprende a números», «Aprende a del 19 al 100», «Aprende a decenas», «Aprende a dinero», «Aprende a miles», «Aprende a comprar» y «Aprende a preguntar». Se reformularon para describir con claridad el contenido de cada lección.
+- Se añadió una regresión que fija los nueve objetivos corregidos y evita que reaparezcan esas construcciones. No se cambian vocabulario indonesio, ejercicios, secuencia, runtime, IndexedDB v1, backup JSON v3 ni dependencias.
+- Fuente: auditoría directa de A1 U9/U10 en `curriculum-a1.js` y prueba en `tests/a1-curriculum-progression.test.cjs`; 26 nov 2026.

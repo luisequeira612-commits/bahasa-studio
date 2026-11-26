@@ -1,3 +1,11 @@
+## 2026-11-26 — Diversidad PT-BR B2 U28–U30 en curso
+
+- Rama \`feat/pt-br-b2-exercise-variety-u28-u30\` parte de \`main\` sin cambios previos y convierte las 30 actividades de banco de unidad de U28–U30 a \`order\`, reconstruyendo cada ejemplo PT-BR; las 30 actividades de lección permanecen \`mc\`.
+- El contrato integral \`tests/pt-br-curriculum-b2-full-audit.test.cjs\` exige ahora este reparto hasta U30 y valida inventario exacto de tokens, secuencia y mezcla.
+- U1–U30 quedan cubiertas por la fase de diversidad cuando este bloque se integre: 300 tareas \`order\` en bancos de unidad y 300 \`mc\` en lecciones.
+- Próximo bloque: U31–U33. Mantener PT-BR/B2 deshabilitados y entradas \`not_checked\`; no certificar naturalidad nativa ni nivel MCER.
+- Sin cambios a IndexedDB v1, backup JSON v3, dependencias, audio ni red.
+
 ## 2026-11-26 — PR #880 U22–U24 fusionada; U25–U27 en curso
 
 - PR [#880](https://github.com/luisequeira612-commits/bahasa-studio/pull/880) fusionada por squash en `main`; head `bdab0247483c0364fe13b726dbd5324ad8b59968`, merge commit `00101600a7790b312a1ea36599bd758942127dc8`.

@@ -15,6 +15,7 @@ const sources={
  './languages/pt-BR/curriculum/b2/units-07-09.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/b2/units-07-09.js'),'utf8'),
  './languages/pt-BR/curriculum/b2/units-10-12.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/b2/units-10-12.js'),'utf8'),
  './languages/pt-BR/curriculum/b2/units-13-15.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/b2/units-13-15.js'),'utf8'),
+ './languages/pt-BR/curriculum/b2/units-16-18.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/b2/units-16-18.js'),'utf8'),
  './languages/pt-BR/curriculum/a2/index.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a2/index.js'),'utf8')
 };
 for(const file of a2Files)sources['./languages/pt-BR/curriculum/a2/'+file]=fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a2',file),'utf8');
@@ -50,12 +51,13 @@ test('pt-BR B2 U1-U3 load as a partial internal block while the course remains u
 });
 test('B2 manifest declares 40 units and publishes only the authored U1-U9 blocks',()=>{
  const {window}=createPilot(),manifest=window.GUARDI_CURRICULUM_MANIFESTS['pt-BR'].B2;
- assert.equal(manifest.totalUnits,40);assert.deepEqual(Array.from(manifest.publishedUnits),[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]);
+ assert.equal(manifest.totalUnits,40);assert.deepEqual(Array.from(manifest.publishedUnits),Array.from({length:18},(_,i)=>i+1));
  assert.deepEqual(Array.from(manifest.blocks[0].units),[1,2,3]);
  assert.deepEqual(Array.from(manifest.blocks[1].units),[4,5,6]);
  assert.deepEqual(Array.from(manifest.blocks[2].units),[7,8,9]);
  assert.deepEqual(Array.from(manifest.blocks[3].units),[10,11,12]);
  assert.deepEqual(Array.from(manifest.blocks[4].units),[13,14,15]);
+ assert.deepEqual(Array.from(manifest.blocks[5].units),[16,17,18]);
  assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
 });
 test('B2 review references resolve to existing A2 vocabulary IDs',async()=>{
@@ -86,7 +88,8 @@ test('service worker precaches B2 U1-U15 and advances the app-shell cache',()=>{
  assert.ok(source.includes("./languages/pt-BR/curriculum/b2/units-07-09.js"));
  assert.ok(source.includes("./languages/pt-BR/curriculum/b2/units-10-12.js"));
  assert.ok(source.includes("./languages/pt-BR/curriculum/b2/units-13-15.js"));
- assert.match(source,/bahasa-studio-v3\.8\.157/);
+ assert.ok(source.includes("./languages/pt-BR/curriculum/b2/units-16-18.js"));
+ assert.match(source,/bahasa-studio-v3\.8\.158/);
 });
 
 test('pt-BR B2 U4-U6 load offline as an internal block with five lessons and ten contextual entries per unit',async()=>{

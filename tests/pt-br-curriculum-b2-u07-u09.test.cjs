@@ -44,9 +44,9 @@ test('pt-BR B2 U7-U9 load as a partial internal block while the course remains u
   }
  }
 });
-test('B2 manifest declares 40 units and publishes only the authored U1-U9 blocks',()=>{
+test('B2 manifest declares 40 units and publishes only the authored U1-U18 blocks',()=>{
  const {window}=createPilot(),manifest=window.GUARDI_CURRICULUM_MANIFESTS['pt-BR'].B2;
- assert.equal(manifest.totalUnits,40);assert.deepEqual(Array.from(manifest.publishedUnits),[1,2,3,4,5,6,7,8,9,10,11,12]);
+ assert.equal(manifest.totalUnits,40);assert.deepEqual(Array.from(manifest.publishedUnits),Array.from({length:18},(_,i)=>i+1));
  assert.deepEqual(Array.from(manifest.blocks.map(block=>Array.from(block.units))),[[1,2,3],[4,5,6],[7,8,9],[10,11,12],[13,14,15],[16,17,18]]);
  assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
 });

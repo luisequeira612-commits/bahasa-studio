@@ -262,3 +262,5 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - CI de PR #843 detectó que al reutilizar «Hari ini» (ya presente en el manifiesto base) cambia la contabilidad de cobertura interactiva: 29 textos estáticos cubiertos y 67 clips faltantes, en vez de 28/68. Se actualizan las expectativas del test de cobertura; no se generan clips nuevos.
 
 - Corrección final del test de audio: además del texto descriptivo, la aserción numérica debía pasar de 28 a 29 textos cubiertos; se corrigió el valor esperado. La distribución de clips faltantes permanece en 15/67.
+
+- Hash canónico A1 recalculado directamente desde el objeto curricular actualizado: `0ddebdf3` (FNV-1a de `JSON.stringify(BAHASA_CURRICULUM_A1)`). Se actualiza la aserción de integridad para la nueva revisión de U8.

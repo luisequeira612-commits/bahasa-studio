@@ -1,6 +1,6 @@
 # Portugués brasileño B2 — temario de 40 unidades
 
-**Estado:** temario reconstruido el 26 de noviembre de 2026 porque no se recuperó el documento anterior. Es una propuesta de trabajo editable, no una equivalencia certificada con un examen oficial. U1–U36 están integradas en `main`; U37–U40 están en preparación en la rama `feat/pt-br-b2-u37-u40`. La disponibilidad de PT-BR y B2 se mantiene desactivada.
+**Estado:** temario reconstruido el 26 de noviembre de 2026 porque no se recuperó el documento anterior. Es una propuesta de trabajo editable, no una equivalencia certificada con un examen oficial. U1–U40 están integradas en `main` tras PR #871. El contenido está completo; queda la revisión editorial/lingüística final. La disponibilidad de PT-BR y B2 se mantiene desactivada.
 
 ## Criterios
 
@@ -104,7 +104,7 @@
 - U29: tecnología, privacidad y ética.
 - U30: medioambiente y sostenibilidad.
 
-U1–U36 integradas contienen 180 lecciones y 360 entradas nuevas. U37–U40 en preparación añaden otras 20 lecciones y 40 entradas previstas. Cada unidad incluye cinco lecciones y diez entradas. Las entradas nuevas permanecen `not_checked`; las pruebas verifican estructura, carga offline, referencias de repaso y duplicados normalizados, pero no certifican naturalidad ni nivel MCER.
+U1–U40 integradas contienen 200 lecciones y 400 entradas nuevas. Cada unidad incluye cinco lecciones y diez entradas. Las entradas nuevas permanecen `not_checked`; las pruebas verifican estructura, carga offline, referencias de repaso y duplicados normalizados, pero no certifican naturalidad ni nivel MCER.
 
 ## Bloque implementado: U31–U33
 
@@ -131,7 +131,7 @@ U1–U36 integradas contienen 180 lecciones y 360 entradas nuevas. U37–U40 en 
 - U38: ambigüedad, presuposición e implicatura (ambigüedad léxica y sintáctica, presuposición, implicatura, inferencia pragmática, deixis, referente discursivo, alcance de la negación, sobreentendido y desambiguación).
 - U39: proyecto argumentativo multimodal (tesis central, delimitación temática, curaduría de fuentes, evidencia verificable, contraargumento, línea argumentativa, recursos visuales, leyendas, narrativa de datos y llamada a la acción).
 - U40: proyecto final de autonomía B2 (adecuación al género, perfil del interlocutor, registro, revisión sustantiva, cohesión referencial, concisión, salvedades, autoevaluación, reescritura y versión final).
-- Rama `feat/pt-br-b2-u37-u40`: 20 lecciones y 40 entradas nuevas; cinco lecciones y diez entradas por unidad; ejemplos PT-BR, explicaciones en español, ejercicios contextualizados y estado `not_checked`.
+- PR [#871](https://github.com/luisequeira612-commits/bahasa-studio/pull/871) integró en `main` las 20 lecciones y 40 entradas finales; cinco lecciones y diez entradas por unidad; ejemplos PT-BR, explicaciones en español, ejercicios contextualizados y estado `not_checked`.
 - Manifiesto interno ampliado a U1–U40 de 40; Service Worker precarga U37–U40 y usa caché app-shell v3.8.165. Contratos específicos y E2E offline ampliados hasta U40. PR [#871](https://github.com/luisequeira612-commits/bahasa-studio/pull/871) fusionada por squash en `main`, merge commit `0b50e7649c9a098f54a0917b785002db19ac2134`. CI del head final: regresión 103/103 (Chromium E2E, accesibilidad móvil y evaluación incluidos), calidad offline 10/10 y TypeScript success; sin reviews ni hilos pendientes. Verificado en `main`: manifiesto U1–U40 y precarga U37–U40. No se encontraron workflows post-merge asociados al commit squash, por lo que no se declara despliegue post-merge verificado.
 - PT-BR permanece `available:false`; B2 no se habilita. No se afirma revisión nativa ni certificación MCER; sin cambios a IndexedDB v1, backup JSON v3, dependencias ni audio.
 

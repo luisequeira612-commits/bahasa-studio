@@ -38,14 +38,14 @@ const reviewUnit=()=>{
  const specs=[
  ['Lección 1: Demostrativos','Integra demostrativos singulares y plurales en contexto.','Distingue this/that de these/those según número y distancia.',[0,1,2,3],'These are my books.'],
  ['Lección 2: Artículos y descripciones','Combina artículos, colores y adjetivos básicos.','Usa a/an según el sonido inicial; el adjetivo precede al sustantivo.',[4,5,18,19],'This is a red box.'],
- ['Lección 3: Posesión','Integra adjetivos y pronombres posesivos.','My/her/our preceden al sustantivo; mine lo sustituye.',[6,7,8,9,12],'This house is ours.'],
+ ['Lección 3: Posesión','Integra adjetivos y pronombres posesivos.','My/her/our preceden al sustantivo; mine lo sustituye.',[6,7,8,9,12],'This is our house.'],
  ['Lección 4: Familia y relaciones','Describe familiares con adjetivos posesivos.','Combina posesivo + familiar: my mother, his brother.',[6,7,10,11],'My mother is here.'],
  ['Lección 5: La casa y lo que hay','Describe habitaciones y muebles con there is/are.','There is + singular; there are + plural. Reutiliza demostrativos y posesivos.',[13,14,15,16,17],'There is a sofa in the bedroom.']
  ];
  const lessons=specs.map(s=>{const selected=s[3].map(i=>refs[i]);return {title:s[0],objective:s[1],grammar:s[2],vocabIds:[],reviewVocabIds:selected.map(w=>w.id),exercises:[mc(selected[0],'¿Qué significa «'+selected[0].target+'»?',[selected[0].esp,'otra opción','una opción diferente]),order(selected[1],'Ordena la frase.',s[4])]};});
  const exercises=[];
  for(let i=0;i<5;i++)exercises.push(mc(refs[i],'Repasa el significado de «'+refs[i].target+'».',[refs[i].esp,refs[(i+5)%refs.length].esp,refs[(i+10)%refs.length].esp]));
- const models=['This is a red box.','My brother is here.','Our house is big.','The sofa is in the bedroom.','These are my books.'];
+ const models=['This house is big.','My mother is here.','His brother is here.','Her mother is here.','Our house is big.'];
  for(let i=0;i<5;i++)exercises.push(order(refs[5+i],'Ordena la frase.',models[i]));
  return {unitNumber:30,id:'en_a1_u30',title:'Unidad 30: Repaso A1 I',desc:'Repasa artículos, demostrativos, posesivos, familia y descripciones de la casa sin introducir vocabulario nuevo.',grammar:'Integra be, a/an, this/that/these/those, adjetivos y pronombres posesivos, y there is/are.',trap:{title:'Revisar concordancia y orden',detail:'Comprueba artículo + adjetivo + sustantivo, concordancia singular/plural y la diferencia entre adjetivos posesivos y pronombres posesivos.'},vocab:[],lessons,exercises};
 };
@@ -143,8 +143,8 @@ unit(27,'Contables e incontables I: some y any','Distingue alimentos contables e
 unit(28,'Cantidades: much, many y expresiones','Pregunta y responde sobre cantidades con much, many y expresiones frecuentes.','Much se usa con incontables; many con contables plurales. A lot of funciona con ambos. A few acompaña contables; a little, incontables.','Much frente a many','How many apples? pero how much water? Elige según el tipo de sustantivo, no según la traducción española.',[
 ['much','mucho / mucha','How much milk do we need?','¿Cuánta leche necesitamos?'],
 ['many','muchos / muchas','How many apples are there?','¿Cuántas manzanas hay?'],
-['some','algo de / algunos','We have some eggs.','Tenemos algunos huevos.'],
-['any','algo de / ningún','Do you have any bread?','¿Tienes pan?'],
+['piece','trozo / pieza','I want a piece of cheese.','Quiero un trozo de queso.'],
+['slice','rebanada / rodaja','Would you like a slice of bread?','¿Te gustaría una rebanada de pan?'],
 ['a lot of','mucho / muchos','There is a lot of food.','Hay mucha comida.'],
 ['a few','unos pocos / unas pocas','I have a few questions.','Tengo unas pocas preguntas.'],
 ['a little','un poco de','Add a little sugar.','Añade un poco de azúcar.'],

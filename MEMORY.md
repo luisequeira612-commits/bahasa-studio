@@ -316,3 +316,5 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - La prueba inserta además una tercera palabra con repaso vencido después de renderizar la recomendación, para comprobar que la sesión de refuerzo no absorbe repasos ajenos a la selección recomendada.
 - Cambio solo en pruebas y memoria. No modifica runtime, currículo, IndexedDB v1, backup JSON v3 ni dependencias. CI pendiente; no declarar validado hasta que Chromium y el resto de la suite pasen.
 - Fuente: `tests/learning-screen-phase-5b.e2e.test.cjs`, inspección de `SRSEngine.startSession()`/`markForReview()` en `index.html` y pendiente de consolidación SRS en Notion; 26 nov 2026.
+
+- Corrección CI 26 nov 2026: el primer intento de la nueva E2E falló en su preparación de datos porque asumía que todas las entradas tenían `text`; el vocabulario contiene formas sin ese campo. El selector de la tercera palabra se cambió a IDs canónicos distintos, sin depender del texto. Reejecución CI pendiente.

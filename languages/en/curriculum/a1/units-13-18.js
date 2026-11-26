@@ -85,7 +85,7 @@ unit(15,'Presente simple III: negativas','Niega hábitos y rutinas usando don’
 ['every week','cada semana','They visit us every week.','Nos visitan cada semana.'],
 ['exercise','hacer ejercicio','I don’t exercise on Sunday.','No hago ejercicio el domingo.'],
 ['sleep','dormir','He doesn’t sleep late.','Él no duerme hasta tarde.'],
-['watch','ver / mirar','We don’t watch TV at night.','No vemos televisión por la noche.'],
+['visit','visitar','We don’t visit the museum every week.','No visitamos el museo todas las semanas.'],
 ['play','jugar / tocar','She doesn’t play tennis.','Ella no juega tenis.'],
 ['travel','viajar','They don’t travel in winter.','No viajan en invierno.'],
 ['drive','conducir','I don’t drive to work.','No conduzco al trabajo.'],

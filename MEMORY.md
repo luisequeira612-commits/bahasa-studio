@@ -401,3 +401,15 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Todas las entradas B2 nuevas permanecen `not_checked`. PT-BR continúa `available:false`; el curso no está habilitado en el selector y no se afirma certificación nativa ni MCER. El roadmap de 40 unidades sigue siendo reconstrucción explícita, no recuperación literal del temario anterior.
 - No se modificaron IndexedDB v1, backup JSON v3, dependencias ni audio. Próximo bloque planificado: U7–U9.
 - Fuente: PR #860, merge commit y GitHub Actions #45860996744/#45860996535/#45861444947/#45861444954/#45861442767; 26 nov 2026.
+
+
+## 2026-11-26 — PT-BR B2, bloque U7–U9 en desarrollo
+
+- Se abrió la rama \`feat/pt-br-b2-u07-u09\` desde el \`main\` posterior al cierre de PR #860.
+- U7 desarrolla el subjuntivo en construcciones de valoración, duda y emoción; U8 trabaja condicionales irreales y escenarios alternativos; U9 desarrolla discurso indirecto, atribución y perspectiva.
+- El bloque incorpora 15 lecciones y 30 entradas (10 por unidad, dos objetivos léxicos por lección), con ejemplos PT-BR, explicaciones en español y ejercicios de opción múltiple. Todas las entradas nuevas permanecen \`not_checked\`.
+- El manifiesto interno B2 se amplía a U1–U9 de 40; el Service Worker precarga el bloque nuevo y actualiza la caché app-shell a v3.8.155.
+- Las pruebas añadidas cubren estructura de U7–U9, términos explicados literalmente, referencias A2, duplicados normalizados contra A1–B1 y B2 anterior, estado de disponibilidad y carga offline Chromium hasta U9.
+- PT-BR continúa \`available:false\`; el curso B2 no se habilita en el selector. No se modifican IndexedDB v1, backup JSON v3, dependencias ni audio. El temario continúa siendo una reconstrucción provisional, no certificación MCER ni revisión nativa.
+- Estado: código y pruebas añadidos; falta completar CI, revisar resultados y fusionar solo cuando todo esté verde.
+- Fuente: rama \`feat/pt-br-b2-u07-u09\`, \`docs/PT_BR_B2_ROADMAP.md\`, archivos de currículo y pruebas; 26 nov 2026.

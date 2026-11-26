@@ -1079,8 +1079,8 @@ test('Aprender reinforcement starts a session containing only the recommended wo
       const a1 = CourseData.levels.find(level => level.id === 'A1');
       const words = a1.units.flatMap(unit => unit.vocab || []);
       const selected = words.slice(0, 2);
-      const unrelated = words.find(word => !selected.some(item => item.id === word.id) &&
-        !selected.some(item => item.text.trim().toLowerCase() === word.text.trim().toLowerCase()));
+      const selectedIds = new Set(selected.map(word => word.id));
+      const unrelated = words.find(word => word && !selectedIds.has(word.id));
       if (selected.length !== 2 || !unrelated) throw new Error('A1 must supply three distinct SRS words');
       const now = Date.now();
       for (const word of selected) {

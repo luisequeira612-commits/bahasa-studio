@@ -433,6 +433,9 @@ test('A1 U8 does not use later vocabulary in the first lesson or its word exampl
   assert.doesNotMatch(firstLessonText, /\\bbelajar\\b/i,
     'Belajar is introduced in lesson 2, not lesson 1');
   assert.match(firstLessonText, /Hari ini/);
+  const firstLessonAudio = unit.lessons[0].exercises.find(exercise => exercise.audioText === 'Hari ini');
+  assert.ok(firstLessonAudio, 'U8 lesson 1 should use the already introduced Hari ini phrase');
+  assert.equal(firstLessonAudio.options[firstLessonAudio.answer], 'Hoy');
   assert.equal(unit.vocab.find(word => word.id === 'v35').ex, 'Hari');
   assert.equal(unit.vocab.find(word => word.id === 'v36').ex, 'Hari ini');
   assert.equal(unit.vocab.find(word => word.id === 'v50').ex, 'Tidur');

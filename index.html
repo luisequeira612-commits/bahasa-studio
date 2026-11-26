@@ -20348,6 +20348,13 @@ Requisitos:
                 }
                 if (this.recentlyCompletedUnitId) this.recentlyCompletedUnitId = null;
 
+                if (level.id === 'B2' && visibleUnits.length < (Number.isInteger(level.totalUnits) ? level.totalUnits : 60)) {
+                    const placeholder = document.createElement('div');
+                    placeholder.className = 'unit-path-coming-soon';
+                    placeholder.innerHTML = '<span class="unit-path-coming-soon-circle" aria-hidden="true">···</span><strong>Próximamente</strong><p>Las demás unidades B2 todavía no están implementadas.</p>';
+                    container.appendChild(placeholder);
+                }
+
                 if (level.id === 'A1' && CustomLessons.units.length) {
                     const customSection = document.createElement('section');
                     customSection.className = 'unit-path-section custom-lessons-path';

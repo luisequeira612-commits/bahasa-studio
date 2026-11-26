@@ -66,7 +66,7 @@ function assertExercise(exercise,unit,wordById,pathLabel){
   assert.ok(Number.isInteger(exercise.answer)&&exercise.answer>=0&&exercise.answer<3,pathLabel+' answer index');
   assert.equal(exercise.options[exercise.answer],word.esp,pathLabel+' keyed answer');
  }else if(exercise.type==='order'){
-  const expected=word.ex.replace(/[.,!?;:]/g,'').trim().split(/\\s+/).filter(Boolean);
+  const expected=word.ex.replace(/[.,!?;:]/g,'').trim().split(/\s+/).filter(Boolean);
   assert.deepEqual(Array.from(exercise.correctOrder),expected,pathLabel+' correct sentence order');
   assert.deepEqual(Array.from(exercise.words).sort(),expected.slice().sort(),pathLabel+' order token inventory');
   assert.notDeepEqual(Array.from(exercise.words),expected,pathLabel+' order tokens must be shuffled');

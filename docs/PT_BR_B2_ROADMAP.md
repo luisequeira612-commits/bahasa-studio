@@ -1,6 +1,6 @@
 # Portugués brasileño B2 — temario de 40 unidades
 
-**Estado:** temario reconstruido el 26 de noviembre de 2026 porque no se recuperó el documento anterior. Es una propuesta de trabajo editable, no una equivalencia certificada con un examen oficial. Los bloques U1–U3, U4–U6, U7–U9, U10–U12, U13–U15 y U16–U18 están implementados; U19–U21 están en preparación y U22–U40 siguen planificados.
+**Estado:** temario reconstruido el 26 de noviembre de 2026 porque no se recuperó el documento anterior. Es una propuesta de trabajo editable, no una equivalencia certificada con un examen oficial. Los bloques U1–U3, U4–U6, U7–U9, U10–U12, U13–U15, U16–U18 y U19–U21 están implementados; U22–U24 están en preparación y U25–U40 siguen planificados.
 
 ## Criterios
 

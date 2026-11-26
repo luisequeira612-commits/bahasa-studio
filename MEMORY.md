@@ -260,3 +260,5 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Seguimiento de U8: las pruebas de audio/regresión se alinean con el texto «Hari ini» (ya indexado), sin agregar nuevas frases al manifiesto. Se valida además que la primera lección no contenga Belajar y que el modelo de Tidur no use Malam.
 
 - CI de PR #843 detectó que al reutilizar «Hari ini» (ya presente en el manifiesto base) cambia la contabilidad de cobertura interactiva: 29 textos estáticos cubiertos y 67 clips faltantes, en vez de 28/68. Se actualizan las expectativas del test de cobertura; no se generan clips nuevos.
+
+- Corrección final del test de audio: además del texto descriptivo, la aserción numérica debía pasar de 28 a 29 textos cubiertos; se corrigió el valor esperado. La distribución de clips faltantes permanece en 15/67.

@@ -4,6 +4,13 @@
 - Las PR #854–#856 y sus validaciones post-merge quedaron verdes; solo `id` está disponible. No se habilitan idiomas incompletos; secuencia vigente: pt-BR → en → it → fr → de → nl → ru → ja → ko → id.
 - Contratos y límites preservados: IndexedDB v1, backup JSON v3, legacy indonesio, offline y cero backend. Pendiente separado: `loadUnits` sigue limitado a unidades 1–40; ampliar ese rango requiere PR específica y pruebas. Fuente: CI y revisión de main, 26 nov 2026.
 
+## 2026-11-26 — Corrección del rango de unidades en CurriculumLoader
+
+- Se elimina el tope rígido de 40 en `loadUnits`: ahora el rango superior se valida contra `manifest.totalUnits`, manteniendo el mínimo 1, enteros, selección no vacía, unicidad y publicación de cada unidad.
+- Se añaden regresiones para cargar unidades 41 y 45 de un manifiesto de 45 unidades y rechazar la unidad 46.
+- No se modifica el esquema del manifiesto, la disponibilidad de idiomas, IndexedDB v1, backup JSON v3 ni el currículo publicado. La corrección solo permite que el cargador respete el total declarado y validado por el manifiesto.
+- Fuente: `curriculum-loader.js` y `tests/curriculum-manifest-validation.test.cjs`; 26 nov 2026.
+
 ## 2026-11-25 — Prueba E2E de calidad SRS más reciente en Aprender
 
 - Se añadió una prueba Chromium en `tests/learning-screen-phase-5b.e2e.test.cjs` para recorrer la integración real del recomendador: una palabra con errores históricos (`incorrect: 3`) y última calidad `Bien` (`lastQuality: 3`) no debe aparecer en «Practicar estas palabras»; al cambiar la última calidad a 2, la palabra vuelve a ser elegible para refuerzo.

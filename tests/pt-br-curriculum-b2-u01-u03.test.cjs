@@ -49,7 +49,7 @@ test('pt-BR B2 U1-U3 load as a partial internal block while the course remains u
   for(const ex of unit.exercises){
    assert.equal(ex.type,'order',unit.id);const word=unit.vocab.find(item=>item.id===ex.vocabId);assert.ok(word,ex.vocabId);
    const expected=word.ex.replace(/[.,!?;:]/g,'').trim().split(/\s+/).filter(Boolean);
-   assert.deepEqual(ex.correctOrder,expected,ex.vocabId+' correct sentence order');
+   assert.deepEqual(Array.from(ex.correctOrder),expected,ex.vocabId+' correct sentence order');
    assert.deepEqual([...ex.words].sort(),[...ex.correctOrder].sort(),ex.vocabId+' order tokens');
    assert.notDeepEqual(ex.words,ex.correctOrder,ex.vocabId+' must shuffle the sentence');
    assert.ok(ex.prompt.includes(word.target),ex.vocabId+' prompt identifies target');

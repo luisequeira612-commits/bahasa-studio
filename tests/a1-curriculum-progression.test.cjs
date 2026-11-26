@@ -444,3 +444,15 @@ test('A1 U8 does not use later vocabulary in the first lesson or its word exampl
   assert.doesNotMatch(tidurWriting.modelAnswer, /\bmalam\b/i,
     'Malam is introduced in a later unit and must not appear in the U8 model answer');
 });
+
+
+test('A1 U8 does not use pagi before its introduction in U11', () => {
+  const unit = a1.units[7];
+  assert.ok(unit, 'A1 U8 must exist');
+  assert.ok(!JSON.stringify({
+    vocab: unit.vocab,
+    exercises: unit.exercises,
+    lessons: unit.lessons
+  }).toLowerCase().includes('pagi'),
+  'A1 U8 examples and exercises must not use pagi before U11');
+});

@@ -1,21 +1,8 @@
-## 2026-11-26 — Fase 3 multiidioma: checkJs de ProgressNamespace
-- Iniciada en `feat/multilingual-checkjs-progress-namespace-phase-3`, basada en main tras F2 (`dbebc20e`).
-- Alcance deliberadamente pequeño: añadir JSDoc y checkJs a `progress-namespace.js`, módulo directamente dependiente del catálogo central para aislar claves de progreso/SRS por idioma.
-- Se amplía el tipo compartido de la API ProgressNamespace; no se cambian claves, prefijos, filtros, IndexedDB v1, backup JSON v3 ni comportamiento.
-- Se reutiliza la prueba existente `tests/progress-namespace.test.cjs`; no se añade una lista de idiomas paralela.
-- No se amplía checkJs a audio, storage o módulos grandes: el coste/beneficio no está justificado en esta fase.
+## 2026-11-26 — Arquitectura multiidioma F0–F4
 
-## 2026-11-26 — Fase 2 multiidioma: validación de catálogo y manifiestos
-- En curso en `feat/multilingual-config-validation-phase-2`, basada en merge F1 `9c55ef80`.
-- Añade validadores estructurales puros al LanguageManager y CurriculumLoader, con errores identificables y sin registrar ni habilitar idiomas nuevos.
-- La validación admite idiomas futuros con niveles parciales; no exige A1–B2 completos para idiomas aún en preparación. Comprueba códigos duplicados, metadatos obligatorios, estados de voz, rutas seguras y manifiestos con unidades publicadas únicas, bloques no solapados y cobertura.
-- Pruebas nuevas usan un idioma hipotético `xx` sin incorporarlo al catálogo y validan manifiestos reales pt-BR A1/A2/B1. No añaden contenido de lecciones.
-- Se mantiene intacto el límite funcional 1–40 de `loadUnits`; resolverlo es una tarea separada, no se mezcla en esta fase.
-
-## 2026-11-26 — Fase 1 multiidioma: JSDoc y checkJs
-- Implementación en curso en `feat/multilingual-jsdoc-checkjs-phase-1`, autorizada para fusionar solo con CI verde; alcance limitado a tipos de `LanguageManager`/`CurriculumLoader`, configuración de comprobación y documentación.
-- Se preservan los diez idiomas, la disponibilidad actual (solo id), adaptadores legacy, IndexedDB v1, backup JSON v3 y comportamiento visible; no se añade contenido curricular ni se corrigen bugs funcionales ajenos.
-- Roadmap: F0 auditoría completada; F1 tipos base + CI; F2 contratos de configuración/manifiestos y fixture hipotético; F3 ampliar checkJs gradualmente a módulos relacionados solo si aporta valor; F4 checklist de incorporación de idioma y revisión final. Cada fase se registra aquí y en Notion.
+- F0–F4 completadas: F1 PR #854 (JSDoc/checkJs base), F2 PR #855 (validadores de catálogo/manifiestos), F3 PR #856 (checkJs de ProgressNamespace) y F4 guía `docs/MULTILINGUAL_LANGUAGE_ONBOARDING.md`.
+- Las PR #854–#856 y sus validaciones post-merge quedaron verdes; solo `id` está disponible. No se habilitan idiomas incompletos; secuencia vigente: pt-BR → en → it → fr → de → nl → ru → ja → ko → id.
+- Contratos y límites preservados: IndexedDB v1, backup JSON v3, legacy indonesio, offline y cero backend. Pendiente separado: `loadUnits` sigue limitado a unidades 1–40; ampliar ese rango requiere PR específica y pruebas. Fuente: CI y revisión de main, 26 nov 2026.
 
 ## 2026-11-25 — Prueba E2E de calidad SRS más reciente en Aprender
 

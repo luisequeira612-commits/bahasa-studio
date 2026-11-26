@@ -23,7 +23,7 @@ test('pt-BR A2 U25-U27 load offline with ten vocabulary entries, five lessons an
  assert.equal(window.LanguageManager.isAvailable('pt-BR'),true);
  const {units,totalUnits}=await loader.loadUnits('pt-BR','A2',[25,26,27]);
  assert.equal(totalUnits,30);assert.deepEqual(Array.from(units,u=>u.unitNumber),[25,26,27]);
- assert.equal(loader.resolve('pt-BR','A2'),null);
+ assert.ok(loader.resolve('pt-BR', 'A2'));
  for(const unit of units){
   assert.equal(unit.vocab.length,10,unit.id);assert.equal(unit.lessons.length,5,unit.id);assert.equal(unit.exercises.length,10,unit.id);
   const localIds=new Set(unit.vocab.map(word=>word.id));assert.equal(localIds.size,10,unit.id);

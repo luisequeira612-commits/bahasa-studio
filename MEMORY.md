@@ -738,3 +738,9 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Rama feat/en-us-a1-u07-u12 y PR #892 preparan U7–U12 sobre la rama #891: demostrativos; colores/descripciones; adjetivos posesivos; familia; pronombres posesivos; casa y there is/are.
 - Se amplía el manifiesto A1 a U1–U12; U1–U6 siguen incluidos desde la PR base. 22 entradas nuevas por unidad, 5 lecciones y 20 ejercicios por unidad. Vocabulario not_checked; prueba exige referencias internas y no duplicar targets nuevos.
 - PR #892 es dependiente de #891 y no debe fusionarse hasta que #891 se apruebe y se integre, se actualice su base a main y el CI de la nueva base vuelva a pasar. No fusionar sin aprobación expresa.
+
+## 2026-11-26 — Inglés A1 U13–U18 en PR apilada
+- Rama feat/en-us-a1-u13-u18 y PR prevista U13–U18: presente simple afirmativo I/you/we/they; tercera persona; negativas; preguntas; hora/calendario/comidas; habilidades y permiso con can.
+- 6 unidades, 5 lecciones, 22 términos nuevos y 20 ejercicios por unidad. Manifiesto y pruebas amplían inventario hasta U1–U18; el curso en sigue unavailable/«Próximamente».
+- Esta PR depende de #892, que a su vez depende de #891. No retargetear ni fusionar hasta integrar manualmente las PR anteriores, actualizar la base y repetir CI. Sin fusión automática.
+- Vocabulario not_checked; sin POS/audio ni cambios a IndexedDB v1, backup JSON v3 u otros idiomas. Auditoría global de duplicados pendiente antes de cerrar el bloque.

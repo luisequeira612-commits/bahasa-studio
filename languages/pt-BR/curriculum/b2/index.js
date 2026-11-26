@@ -16,7 +16,8 @@ root.GUARDI_CURRICULUM_MANIFESTS['pt-BR'].B2=Object.freeze({
   {id:'22-24',path:'./languages/pt-BR/curriculum/b2/units-22-24.js',units:Object.freeze([22,23,24])},
   {id:'25-27',path:'./languages/pt-BR/curriculum/b2/units-25-27.js',units:Object.freeze([25,26,27])},
   {id:'28-30',path:'./languages/pt-BR/curriculum/b2/units-28-30.js',units:Object.freeze([28,29,30])},
-  {id:'31-33',path:'./languages/pt-BR/curriculum/b2/units-31-33.js',units:Object.freeze([31,32,33])}
+  {id:'31-33',path:'./languages/pt-BR/curriculum/b2/units-31-33.js',units:Object.freeze([31,32,33])},
+  {id:'34-36',path:'./languages/pt-BR/curriculum/b2/units-34-36.js',units:Object.freeze([34,35,36])}
  ])
 });
 })(typeof window!=='undefined'?window:globalThis);

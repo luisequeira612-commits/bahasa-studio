@@ -91,19 +91,23 @@
         }
         if (errors.length) return Object.freeze({ valid: false, errors: Object.freeze(errors) });
 
+        const totalUnits = /** @type {number} */ (manifest.totalUnits);
+        const publishedUnits = /** @type {unknown[]} */ (manifest.publishedUnits);
+        const blocks = /** @type {unknown[]} */ (manifest.blocks);
         const published = new Set();
-        for (const unit of manifest.publishedUnits) {
-            if (!Number.isInteger(unit) || unit < 1 || unit > manifest.totalUnits) errors.push('publishedUnit_invalid:' + unit);
+        for (const unit of publishedUnits) {
+            if (typeof unit !== 'number' || !Number.isInteger(unit) || unit < 1 || unit > totalUnits) errors.push('publishedUnit_invalid:' + unit);
             if (published.has(unit)) errors.push('publishedUnit_duplicate:' + unit);
             published.add(unit);
         }
         const blockIds = new Set();
         const covered = new Set();
-        for (const block of manifest.blocks) {
-            if (!block || typeof block !== 'object' || Array.isArray(block)) {
+        for (const blockValue of blocks) {
+            if (!blockValue || typeof blockValue !== 'object' || Array.isArray(blockValue)) {
                 errors.push('block_invalid');
                 continue;
             }
+            const block = /** @type {Record<string, unknown>} */ (blockValue);
             if (typeof block.id !== 'string' || !block.id.trim()) errors.push('block_id_required');
             else {
                 if (blockIds.has(block.id)) errors.push('block_id_duplicate:' + block.id);
@@ -117,8 +121,9 @@
                 continue;
             }
             const local = new Set();
-            for (const unit of block.units) {
-                if (!Number.isInteger(unit) || unit < 1 || unit > manifest.totalUnits) errors.push('block_unit_invalid:' + unit);
+            const blockUnits = /** @type {unknown[]} */ (block.units);
+            for (const unit of blockUnits) {
+                if (typeof unit !== 'number' || !Number.isInteger(unit) || unit < 1 || unit > totalUnits) errors.push('block_unit_invalid:' + unit);
                 if (local.has(unit)) errors.push('block_unit_duplicate:' + unit);
                 if (covered.has(unit)) errors.push('block_unit_overlap:' + unit);
                 local.add(unit);

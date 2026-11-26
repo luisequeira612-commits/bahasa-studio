@@ -494,6 +494,6 @@ test('A1 U9-U11 lesson objectives use complete Spanish instructions', () => {
 
   for (const [unitIndex, lessonIndex, objective] of expected) {
     assert.equal(a1.units[unitIndex].lessons[lessonIndex].objective, objective);
-    assert.doesNotMatch(a1.units[unitIndex].lessons[lessonIndex].objective, /Aprende a (?:números|del|decenas|dinero|miles|comprar|preguntar|partes|minutos)/i);
+    assert.doesNotMatch(a1.units[unitIndex].lessons[lessonIndex].objective, /Aprende a (?:números|del|decenas|dinero|miles|partes|minutos)/i);
   }
 });

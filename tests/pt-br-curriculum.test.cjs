@@ -34,7 +34,7 @@ function createPilot(){
 test('PT-BR A1 pilot remains loadable after the complete curriculum is enabled',async()=>{
  const {window,loader}=createPilot();
  assert.equal(window.LanguageManager.isAvailable('pt-BR'),true);
- assert.equal(loader.resolve('pt-BR','A1'),null);
+ assert.ok(loader.resolve('pt-BR', 'A1'));
  const curriculum=await loader.loadUnits('pt-BR','A1',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]);
  assert.equal(curriculum.language,'pt-BR');
  assert.equal(curriculum.totalUnits,24);

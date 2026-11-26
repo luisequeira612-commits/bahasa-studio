@@ -274,3 +274,5 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Ajuste posterior al primer CI de A1 U8 (26 nov 2026): la guardia detectó que el enunciado «Completa: ___ saya belajar» aún adelantaba `belajar` en L1, aunque el audio del mismo ejercicio solo decía «Hari ini». Se cambió el enunciado por «Elige la expresión que significa «hoy»», conservando opciones, respuesta, tipo y objetivo. El fallo era de contenido de la prueba, no de runtime. CI anterior #45731821903 falló únicamente en esta aserción de secuencia; el informe de calidad offline pasó.
 
 - CI #45731821903 encontró una aparición residual de `belajar` en el enunciado de completar de U8 L1 («Completa: ___ saya belajar»). Se cambió por «Completa: ___ (Hoy)» en las copias de unidad y lección para no adelantar el verbo antes de L2.
+
+- Hash canónico A1 recalculado tras retirar el último prompt con `belajar` de U8 L1: `21df8122` (FNV-1a sobre JSON.stringify del objeto A1).

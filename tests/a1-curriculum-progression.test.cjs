@@ -477,7 +477,7 @@ test('A1 U8 does not use pagi before its introduction in U11', () => {
   'A1 U8 examples and exercises must not use pagi before U11');
 });
 
-test('A1 U9 and U10 lesson objectives use complete Spanish instructions', () => {
+test('A1 U9-U11 lesson objectives use complete Spanish instructions', () => {
   const expected = [
     [8, 0, 'Aprende los números del 11 al 14 y úsalos en frases sencillas, recuperando lo estudiado anteriormente.'],
     [8, 1, 'Aprende los números del 15 al 18 y úsalos en frases sencillas, recuperando lo estudiado anteriormente.'],
@@ -487,11 +487,13 @@ test('A1 U9 and U10 lesson objectives use complete Spanish instructions', () => 
     [9, 0, 'Aprende a hablar de dinero y de la moneda indonesia, y aplica el vocabulario en frases sencillas.'],
     [9, 1, 'Aprende a expresar cantidades de miles y a comparar precios en frases sencillas.'],
     [9, 2, 'Aprende a comprar productos y a realizar pagos con expresiones sencillas.'],
-    [9, 3, 'Aprende a preguntar y responder sobre precios con expresiones sencillas.']
+    [9, 3, 'Aprende a preguntar y responder sobre precios con expresiones sencillas.'],
+    [10, 0, 'Aprende vocabulario para nombrar las partes del día y úsalo en frases sencillas, recuperando lo estudiado anteriormente.'],
+    [10, 2, 'Aprende a expresar minutos y momentos del día con frases sencillas, recuperando lo estudiado anteriormente.']
   ];
 
   for (const [unitIndex, lessonIndex, objective] of expected) {
     assert.equal(a1.units[unitIndex].lessons[lessonIndex].objective, objective);
-    assert.doesNotMatch(a1.units[unitIndex].lessons[lessonIndex].objective, /Aprende a (?:números|del|decenas|dinero|miles|comprar|preguntar)/i);
+    assert.doesNotMatch(a1.units[unitIndex].lessons[lessonIndex].objective, /Aprende a (?:números|del|decenas|dinero|miles|comprar|preguntar|partes|minutos)/i);
   }
 });

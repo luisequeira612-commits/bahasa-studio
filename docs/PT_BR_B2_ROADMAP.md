@@ -74,11 +74,17 @@
 - U14: participios y construcciones resultativas.
 - U15: gerundio y relaciones entre acciones.
 
-## Bloque en preparación: U16–U18
+## Bloque implementado: U16–U18
 
 - U16: verbos pronominales y matices aspectuales.
 - U17: perífrasis verbales y modalidad.
 - U18: colocaciones verbo-nominales.
+
+## Bloque en preparación: U19–U21
+
+- U19: derivación y familias léxicas.
+- U20: expresiones idiomáticas y uso contextual.
+- U21: debate público y negociación avanzada.
 
 U1–U18 contienen 90 lecciones y 180 entradas nuevas; U19–U21 están en preparación con el mismo formato de cinco lecciones y diez entradas por unidad. Las entradas permanecen `not_checked`; las pruebas verifican estructura, carga offline, referencias de repaso y duplicados normalizados, pero no certifican naturalidad ni nivel MCER.
 

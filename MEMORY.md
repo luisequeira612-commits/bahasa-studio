@@ -235,7 +235,7 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 
 
 ## 2026-11-25 — Corrección pedagógica acotada de A1 U4
-- Auditoría contextual de U4 detectó que la lección 1, dedicada a los números 1–3, mostraba «Tiga tahun» y el modelo «Saya berumur lima tahun» antes de introducir tahun, umur y lima. Se sustituyó ese ejemplo prematuro por «Tiga buku», usando vocabulario ya conocido y los números de la lección.
+- Auditoría contextual de U4 detectó que la lección 1, dedicada a los números 1–3, mostraba «Tiga tahun» y el modelo «Saya berumur lima tahun» antes de introducir tahun, umur y lima. Se sustituyó ese ejemplo prematuro por «Tiga buku», usando vocabulario ya conocido y los números de la lección. Se conservó el tipo de ejercicio de traducción para no alterar el inventario de ejercicios escritos ni sus métricas.
 - Se alinearon los objetivos de las lecciones 3 y 4 con sus vocabularios reales: L3 presenta cuatro, cinco, diez y edad; L4 introduce seis, siete y ocho.
 - Se añadió una regresión en tests/a1-curriculum-progression.test.cjs para impedir que la L1 vuelva a mostrar esos términos de edad antes de su introducción y para comprobar la coherencia de los objetivos.
 - Alcance: solo currículo A1 U4, prueba específica y MEMORY.md. Sin cambios de runtime, IndexedDB v1, backup JSON v3, dependencias ni otras unidades. Esta corrección mejora la secuencia didáctica; no constituye certificación lingüística del indonesio.

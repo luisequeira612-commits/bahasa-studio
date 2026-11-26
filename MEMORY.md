@@ -1,3 +1,10 @@
+## 2026-11-26 — Diversidad PT-BR B2 U37–U40
+
+- U37–U40 convierten sus 40 actividades de banco de unidad a `order`; las 40 actividades de lección permanecen `mc`.
+- Con este bloque queda completa la diversidad de ejercicios de banco para U1–U40: 400 `order` + 400 `mc` de lección.
+- Próxima fase: resolver cualquier fallo CI, pasar el contrato integral B2, revisar gates finales, habilitar PT-BR B2 y verificar publicación en Pages/Service Worker.
+- Mantener `not_checked` y sin cambios a IndexedDB v1, backup JSON v3, dependencias, audio ni red hasta la verificación final.
+
 ## 2026-11-26 — Diversidad PT-BR B2 U34–U36
 
 - U34–U36 convierten sus 30 actividades de banco de unidad a `order`; las 30 actividades de lección permanecen `mc`.

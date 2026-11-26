@@ -60,6 +60,9 @@ test('B1 unlocks after A2; B2 U1 follows B1 and U2–U5 unlock sequentially whil
   assert.match(html, /if \(level\.id === 'B2'\) \{/);
   assert.match(html, /if \(unitIndex === 0\) return Boolean\(previousUnit[\s\S]*?return unitIndex > 0 && getUnitProgressState\(level, level\.units\[unitIndex - 1\]/);
   assert.match(html, /level\.id === 'B2' \? level\.units\.slice\(0, 5\) : level\.units/);
+  assert.match(html, /function isPublishedB2Unit\(unit, level\)/);
+  assert.match(html, /Number\.isInteger\(unit\.unitNumber\)/);
+  assert.match(html, /unit\.unitNumber <= maximum/);
   assert.match(html, /unit-path-coming-soon/);
   assert.ok(html.includes("['A1', 'B1'].includes(level.id)"));
 });

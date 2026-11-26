@@ -25,10 +25,10 @@ function createPilot(){
  vm.runInNewContext(sources['./languages/pt-BR/curriculum/a2/index.js'],sandbox);
  return {window,loader:window.CurriculumLoader};
 }
-test('pt-BR A2 U16-U18 load through the offline loader while the language remains unavailable',async()=>{
+test('pt-BR A2 U16-U18 load through the offline loader while the language is selectable',async()=>{
  const {window,loader}=createPilot();
  assert.equal(window.LanguageManager.isSupported('pt-BR'),true);
- assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
+ assert.equal(window.LanguageManager.isAvailable('pt-BR'),true);
  const {units,totalUnits}=await loader.loadUnits('pt-BR','A2',[16,17,18]);
  assert.equal(totalUnits,30);assert.deepEqual(Array.from(units,u=>u.unitNumber),[16,17,18]);
  assert.equal(loader.resolve('pt-BR','A2'),null);
@@ -44,13 +44,13 @@ test('pt-BR A2 U16-U18 load through the offline loader while the language remain
 test('A2 manifest publishes U1-U30 as a partial level of thirty units',()=>{
  const {window}=createPilot(),manifest=window.GUARDI_CURRICULUM_MANIFESTS['pt-BR'].A2;
  assert.equal(manifest.totalUnits,30);assert.deepEqual(Array.from(manifest.publishedUnits),Array.from({length:30},(_,i)=>i+1));
- assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
+ assert.equal(window.LanguageManager.isAvailable('pt-BR'),true);
 });
 test('A2 U16-U18 review references resolve only to previously published A2 vocabulary',async()=>{
  const {loader}=createPilot(),{units}=await loader.loadUnits('pt-BR','A2',Array.from({length:24},(_,i)=>i+1));
  for(let index=15;index<18;index++){const earlier=new Set(units.slice(0,index).flatMap(u=>u.vocab.map(w=>w.id)));for(const lesson of units[index].lessons)for(const id of lesson.reviewVocabIds)assert.ok(earlier.has(id),id);}
 });
-test('service worker precaches A2 U16-U18 using cache v3.8.165',()=>{
+test('service worker precaches A2 U16-U18 using cache v3.8.166',()=>{
  const source=fs.readFileSync(path.join(repo,'service-worker.js'),'utf8');
  assert.match(source,/units-16-18\.js/);assert.match(source,/curriculum\/a2\/index\.js/);assert.match(source,/bahasa-studio-v3\.8.165/);
 });

@@ -6,6 +6,8 @@ const vm=require('node:vm');
 const {test}=require('node:test');
 
 const repo=path.join(__dirname,'..');
+const a1Files=['units-01-06.js','units-07-12.js','units-13-18.js','units-19-21.js','units-22-24.js'];
+const b1Files=['units-01-03.js','units-04-06.js','units-07-09.js','units-10-12.js','units-13-15.js','units-16-18.js','units-19-21.js','units-22-24.js','units-25-27.js','units-28-30.js','units-31-33.js','units-34-36.js'];
 const a2Files=[
  'units-01-03.js','units-04-06.js','units-07-09.js','units-10-12.js','units-13-15.js',
  'units-16-18.js','units-19-21.js','units-22-24.js','units-25-27.js','units-28-30.js'
@@ -16,10 +18,14 @@ const b2Files=[
  'units-31-33.js','units-34-36.js','units-37-40.js'
 ];
 const sources={
+ './languages/pt-BR/curriculum/a1/index.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a1/index.js'),'utf8'),
  './languages/pt-BR/curriculum/a2/index.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a2/index.js'),'utf8'),
+ './languages/pt-BR/curriculum/b1/index.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/b1/index.js'),'utf8'),
  './languages/pt-BR/curriculum/b2/index.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/b2/index.js'),'utf8')
 };
+for(const file of a1Files)sources['./languages/pt-BR/curriculum/a1/'+file]=fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a1',file),'utf8');
 for(const file of a2Files)sources['./languages/pt-BR/curriculum/a2/'+file]=fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a2',file),'utf8');
+for(const file of b1Files)sources['./languages/pt-BR/curriculum/b1/'+file]=fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/b1',file),'utf8');
 for(const file of b2Files)sources['./languages/pt-BR/curriculum/b2/'+file]=fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/b2',file),'utf8');
 
 function createPilot(){
@@ -35,8 +41,10 @@ function createPilot(){
  const sandbox={window,Object,Map,Set,Promise,Error,String,Array,Number};
  vm.runInNewContext(fs.readFileSync(path.join(repo,'language-manager.js'),'utf8'),sandbox);
  vm.runInNewContext(fs.readFileSync(path.join(repo,'curriculum-loader.js'),'utf8'),sandbox);
- vm.runInNewContext(sources['./languages/pt-BR/curriculum/b2/index.js'],sandbox);
+ vm.runInNewContext(sources['./languages/pt-BR/curriculum/a1/index.js'],sandbox);
  vm.runInNewContext(sources['./languages/pt-BR/curriculum/a2/index.js'],sandbox);
+ vm.runInNewContext(sources['./languages/pt-BR/curriculum/b1/index.js'],sandbox);
+ vm.runInNewContext(sources['./languages/pt-BR/curriculum/b2/index.js'],sandbox);
  return {window,loader:window.CurriculumLoader};
 }
 function normalize(value){
@@ -74,13 +82,20 @@ test('all 40 PT-BR B2 units have complete structure, lesson coverage and valid e
  assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
  assert.equal(loader.resolve('pt-BR','B2'),null);
  const numbers=Array.from({length:40},(_,i)=>i+1);
- const [{units,totalUnits},{units:a2Units}]=await Promise.all([
+ const [{units,totalUnits},{units:a2Units},{units:a1Units},{units:b1Units}]=await Promise.all([
   loader.loadUnits('pt-BR','B2',numbers),
-  loader.loadUnits('pt-BR','A2',Array.from({length:30},(_,i)=>i+1))
+  loader.loadUnits('pt-BR','A2',Array.from({length:30},(_,i)=>i+1)),
+  loader.loadUnits('pt-BR','A1',Array.from({length:24},(_,i)=>i+1)),
+  loader.loadUnits('pt-BR','B1',Array.from({length:36},(_,i)=>i+1))
  ]);
  assert.equal(totalUnits,40);
  assert.deepEqual(Array.from(units,unit=>unit.unitNumber),numbers);
  const a2Ids=new Set(a2Units.flatMap(unit=>unit.vocab.map(word=>word.id)));
+ const previousTargets=new Map();
+ for(const [level,priorUnits] of [['A1',a1Units],['A2',a2Units],['B1',b1Units]])for(const priorUnit of priorUnits)for(const priorWord of priorUnit.vocab){
+  const key=normalize(priorWord.target);
+  if(!previousTargets.has(key))previousTargets.set(key,level+'.'+priorUnit.id);
+ }
  const globalIds=new Set(),globalTargets=new Map(),globalExamples=new Map();
  let lessonCount=0,vocabCount=0,exerciseCount=0;
 
@@ -109,6 +124,7 @@ test('all 40 PT-BR B2 units have complete structure, lesson coverage and valid e
    assert.ok(!globalIds.has(word.id),wordPath+' globally unique ID');
    globalIds.add(word.id);vocabCount++;
    const targetKey=normalize(word.target),exampleKey=normalize(word.ex);
+   assert.ok(!previousTargets.has(targetKey),wordPath+' repeats prior-level term '+previousTargets.get(targetKey));
    assert.ok(!globalTargets.has(targetKey),wordPath+' duplicate target with '+globalTargets.get(targetKey));
    assert.ok(!globalExamples.has(exampleKey),wordPath+' duplicate example with '+globalExamples.get(exampleKey));
    globalTargets.set(targetKey,wordPath);globalExamples.set(exampleKey,wordPath);

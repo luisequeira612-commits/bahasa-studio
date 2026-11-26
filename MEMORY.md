@@ -91,3 +91,9 @@ test('English A1 vocabulary introduces no duplicate targets across U1-U12',async
 - 6 unidades, 5 lecciones, 22 términos nuevos y 20 ejercicios por unidad. Manifiesto y pruebas amplían inventario a U1–U24; mantener en unavailable/«Próximamente».
 - Esta PR depende de #893 → #892 → #891. Retargetear a main y repetir CI solo después de integrar manualmente las anteriores; no fusionar sin aprobación expresa.
 - Vocabulario not_checked; sin POS/audio ni cambios a IndexedDB v1, backup JSON v3 u otros idiomas. Auditoría estática de los cuatro bloques: 528 entradas en U1–U24 y 0 targets duplicados.
+
+## 2026-11-26 — Inglés A1 U25–U30 en PR apilada
+- Rama feat/en-us-a1-u25-u30 y PR prevista U25–U30: indicaciones; dinero/compras; some/any y contables/incontables; cantidades; restaurante; U30 repaso integrador sin vocabulario nuevo.
+- U25–U29 tienen 22 entradas nuevas cada una; U30 tiene 0 y recicla IDs anteriores. Cada unidad mantiene 5 lecciones y 20 ejercicios. Manifiesto y prueba estructural amplían inventario hasta U1–U30.
+- Esta PR depende de #894 → #893 → #892 → #891. Integrar manualmente en orden, retargetear a main y repetir CI; no fusionar sin aprobación expresa.
+- Mantener inglés unavailable/«Próximamente», vocabulario not_checked, sin POS/audio ni cambios a IndexedDB v1, backup JSON v3 u otros idiomas.

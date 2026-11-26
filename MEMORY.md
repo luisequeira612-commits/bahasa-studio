@@ -703,3 +703,10 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - PR #887 (`feat/pt-br-b2-release-gate`) prepara la activación de PT-BR y las 40 unidades B2; manifest de 40 unidades/13 bloques y Service Worker v3.8.166 con precarga de B2.
 - TypeScript y calidad offline aprobados en el head más reciente; regresión Chromium/E2E continúa en ejecución. No fusionar hasta que toda la regresión esté verde.
 - Tras el merge, verificar Pages, selector PT-BR, progresión B2 U1–U40 y carga offline real antes de declarar publicación. Mantener entradas `not_checked`, IndexedDB v1 y backup JSON v3 sin cambios; no afirmar certificación nativa ni MCER.
+
+
+## 2026-11-26 — Corrección post-despliegue del recorrido PT-BR B2
+- La verificación de Pages tras PR #887 encontró que el selector ofrecía Portugués y B2, pero la ruta mostraba solo U1 y un aviso obsoleto de que las demás unidades no estaban implementadas.
+- Causa raíz: `renderCourseRoute()` conservaba `level.units.slice(0, 1)` y un placeholder heredado, pese a que el manifiesto y los 13 bloques contenían U1–U40.
+- Rama `fix/pt-br-b2-render-all-40-units` elimina el límite de una unidad usando `getVisibleLearningUnits(level)` y actualiza el contrato de release gate para evitar regresiones. Pendiente CI y despliegue/verificación posterior.
+- Mantener progresión secuencial; no alterar IndexedDB v1, backup JSON v3, dependencias, audio ni red. Vocabulario `not_checked`; no certificar naturalidad nativa ni nivel MCER.

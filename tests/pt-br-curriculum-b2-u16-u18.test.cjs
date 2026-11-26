@@ -8,7 +8,7 @@ const repo=path.join(__dirname,'..');
 const managerSource=fs.readFileSync(path.join(repo,'language-manager.js'),'utf8');
 const loaderSource=fs.readFileSync(path.join(repo,'curriculum-loader.js'),'utf8');
 const a2Files=['units-01-03.js','units-04-06.js','units-07-09.js','units-10-12.js','units-13-15.js','units-16-18.js','units-19-21.js','units-22-24.js','units-25-27.js','units-28-30.js'];
-const b2Files=['units-01-03.js','units-04-06.js','units-07-09.js','units-10-12.js','units-13-15.js','units-16-18.js','units-19-21.js','units-22-24.js'];
+const b2Files=['units-01-03.js','units-04-06.js','units-07-09.js','units-10-12.js','units-13-15.js','units-16-18.js','units-19-21.js','units-22-24.js','units-25-27.js'];
 const sources={
  './languages/pt-BR/curriculum/b2/index.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/b2/index.js'),'utf8'),
  './languages/pt-BR/curriculum/a2/index.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a2/index.js'),'utf8')
@@ -46,8 +46,8 @@ test('pt-BR B2 U16-U18 load as a partial internal block while the course remains
 });
 test('B2 manifest declares 40 units and publishes only the authored U1-U18 blocks',()=>{
  const {window}=createPilot(),manifest=window.GUARDI_CURRICULUM_MANIFESTS['pt-BR'].B2;
- assert.equal(manifest.totalUnits,40);assert.deepEqual(Array.from(manifest.publishedUnits),Array.from({length:24},(_,i)=>i+1));
- assert.deepEqual(Array.from(manifest.blocks.map(block=>Array.from(block.units))),[[1,2,3],[4,5,6],[7,8,9],[10,11,12],[13,14,15],[16,17,18],[19,20,21],[22,23,24]]);
+ assert.equal(manifest.totalUnits,40);assert.deepEqual(Array.from(manifest.publishedUnits),Array.from({length:27},(_,i)=>i+1));
+ assert.deepEqual(Array.from(manifest.blocks.map(block=>Array.from(block.units))),[[1,2,3],[4,5,6],[7,8,9],[10,11,12],[13,14,15],[16,17,18],[19,20,21],[22,23,24],[25,26,27]]);
  assert.equal(window.LanguageManager.isAvailable('pt-BR'),false);
 });
 test('B2 U16-U18 review references resolve to existing A2 vocabulary IDs',async()=>{
@@ -75,5 +75,5 @@ test('service worker precaches B2 U1-U18 and advances the app-shell cache',()=>{
  const source=fs.readFileSync(path.join(repo,'service-worker.js'),'utf8');
  assert.ok(source.includes("./languages/pt-BR/curriculum/b2/index.js"));
  for(const file of b2Files)assert.ok(source.includes('./languages/pt-BR/curriculum/b2/'+file));
- assert.match(source,/bahasa-studio-v3\.8\.160/);
+ assert.match(source,/bahasa-studio-v3\.8\.161/);
 });

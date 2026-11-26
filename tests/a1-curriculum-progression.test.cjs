@@ -424,3 +424,20 @@ test('A1 U4 does not expose age vocabulary before its introduction and keeps les
   assert.match(unit.lessons[2].objective, /cuatro y cinco.*diez.*edad/i);
   assert.match(unit.lessons[3].objective, /seis, siete y ocho/i);
 });
+
+
+test('A1 U8 does not use later vocabulary in the first lesson or its word examples', () => {
+  const unit = a1.units.find(candidate => candidate.id === 'a1_u8');
+  assert.ok(unit, 'A1 U8 must exist');
+  const firstLessonText = JSON.stringify(unit.lessons[0]);
+  assert.doesNotMatch(firstLessonText, /\\bbelajar\\b/i,
+    'Belajar is introduced in lesson 2, not lesson 1');
+  assert.match(firstLessonText, /Hari ini/);
+  assert.equal(unit.vocab.find(word => word.id === 'v35').ex, 'Hari');
+  assert.equal(unit.vocab.find(word => word.id === 'v36').ex, 'Hari ini');
+  assert.equal(unit.vocab.find(word => word.id === 'v50').ex, 'Tidur');
+  const tidurWriting = unit.lessons[4].exercises.find(exercise => exercise.vocabId === 'v50' && exercise.type === 'write');
+  assert.ok(tidurWriting, 'U8 review should include a writing prompt for Tidur');
+  assert.doesNotMatch(tidurWriting.modelAnswer, /\\bmalam\\b/i,
+    'Malam is introduced in a later unit and must not appear in the U8 model answer');
+});

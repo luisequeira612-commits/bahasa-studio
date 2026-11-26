@@ -531,3 +531,13 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - PT-BR sigue `available:false`; B2 permanece deshabilitado en el selector. No se afirma certificación nativa ni equivalencia MCER. Sin cambios a IndexedDB v1, backup JSON v3, dependencias ni audio.
 - Confirmado en `main`: manifiesto B2 publica U1–U30. Post-merge del commit documental `7454be94b2ec5354f63bc82b257b1dc63b0537a8`: regresión #45877991707 success (103/103 pasos y Offline quality reports 10/10); TypeScript #45877991619 success; GitHub Pages #45877990150 completó build, report-build-status y deploy en success.
 - Fuente: PR #868, merge commit, archivos de currículo/pruebas y Actions #45877103860/#45877472303/#45877472314; 26 nov 2026.
+
+
+## 2026-11-26 — PT-BR B2 U31–U33 en preparación
+
+- Rama `feat/pt-br-b2-u31-u33`, basada en `main` tras el cierre de PR #868. Bloque añadido: U31 sociedad, desigualdad e inclusión; U32 trabajo y transformación profesional; U33 cultura, identidad y representación.
+- 15 lecciones y 30 entradas nuevas (10 por unidad, dos objetivos léxicos por lección), ejemplos PT-BR, explicaciones en español, ejercicios ligados a frases y verificación `not_checked`.
+- Manifiesto interno B2 extendido a U1–U33 de 40; Service Worker precarga U31–U33 y usa app-shell cache v3.8.163. La E2E offline incluye carga de B2 U1–U33; test de bloque específico agregado a `quality:tests`.
+- Contratos nuevos comprueban disponibilidad false, carga parcial, cinco lecciones/diez vocablos por unidad, dos objetivos por lección, opciones de ejercicios, referencias de repaso A2 y duplicados normalizados. La prueba E2E y el CI aún deben ejecutarse antes de abrir/considerar la PR.
+- PT-BR sigue `available:false`; B2 no se habilita. No se toca IndexedDB v1, backup JSON v3, dependencias ni audio. No se afirma revisión nativa ni certificación MCER.
+- Fuente: rama `feat/pt-br-b2-u31-u33`, currículo, manifiesto, Service Worker, tests y roadmap; 26 nov 2026.

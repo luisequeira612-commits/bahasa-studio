@@ -411,3 +411,16 @@ test('A1 U25-U28 contain five authored lessons with cumulative practice and spac
   }
 });
 
+
+
+test('A1 U4 does not expose age vocabulary before its introduction and keeps lesson objectives aligned', () => {
+  const unit = a1.units.find(candidate => candidate.id === 'a1_u4');
+  assert.ok(unit, 'A1 U4 must exist');
+  const firstLessonText = JSON.stringify(unit.lessons[0]);
+  assert.doesNotMatch(firstLessonText, /\b(?:tahun|umur|berumur|lima)\b/i,
+    'U4 lesson 1 must not model age vocabulary before those terms are introduced');
+  assert.match(firstLessonText, /Tiga buku/,
+    'U4 lesson 1 should use a model sentence built from the numbers and familiar vocabulary');
+  assert.match(unit.lessons[2].objective, /cuatro y cinco.*diez.*edad/i);
+  assert.match(unit.lessons[3].objective, /seis, siete y ocho/i);
+});

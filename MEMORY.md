@@ -1,3 +1,11 @@
+## 2026-11-26 — Diversidad de ejercicios B2: extensión U10–U12
+
+- PR #873 (U1–U3), #874 (U4–U6) y #875 (U7–U9) están fusionadas en main. U1–U9 ya separan bancos: `order` en las unidades y `mc` en lecciones.
+- Esta rama convierte las 30 actividades de unidad de U10–U12 a `order`, reconstruyendo cada ejemplo PT-BR; las 30 actividades de lección permanecen `mc`. U1–U12 sumarán 120 tareas de cada modalidad.
+- La auditoría integral ahora exige el reparto para U1–U12 y verifica inventario exacto de tokens, secuencia y mezcla. CI pendiente.
+- Sin nuevas dependencias, audio, red, IndexedDB ni cambios al backup JSON v3. PT-BR y B2 siguen deshabilitados.
+- Fuente: PR #873, #874, #875 y rama `feat/pt-br-b2-exercise-variety-u10-u12`; 26 nov 2026.
+
 ## 2026-11-26 — Diversidad de ejercicios B2: extensión U7–U9
 
 - PR #873 (U1–U3) y PR #874 (U4–U6) están fusionadas en main. U1–U6 ya separan bancos: `order` en las unidades y `mc` en lecciones.

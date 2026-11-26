@@ -385,3 +385,5 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Fuente: rama `feat/pt-br-b2-u04-u06`, roadmap B2 y contratos curriculares; 26 nov 2026.
 
 - Revisión editorial interna previa al cierre: en U6 L1 se ajustó la entrada `cujo parecer` a `cujo conteúdo` para que la expresión objetivo coincida literalmente con el ejemplo; la explicación gramatical se alineó con el cambio. Corrección en commit `9dd8487558f496450416fbb423e1ff0d73032e1a`. La validación CI debe ejecutarse sobre este head actualizado.
+
+- Corrección tras el primer CI del bloque: la prueba detectó tres referencias A2 fuera del rango de IDs existente (U24 v11–v13) y una explicación U5 L3 que no nombraba explícitamente `é regulamentado`. Se sustituyeron por IDs A2 existentes y se completó la explicación. El contrato estructural había pasado para la carga offline; la regresión local falló únicamente en esos dos controles. Revalidar el head actualizado antes de integrar.

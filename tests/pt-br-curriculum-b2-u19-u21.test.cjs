@@ -63,7 +63,7 @@ test('B2 U19-U21 add no exact normalized vocabulary duplicates against A1, A2, B
  for(const file of a1Files){const source=fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a1',file),'utf8');for(const match of source.matchAll(/v\('(?:[^']+)'\s*,\s*'([^']+)'/g))prior.push(match[1]);}
  for(const file of a2Files){const source=fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a2',file),'utf8');for(const match of source.matchAll(/vocab\(\s*\d+\s*,\s*\d+\s*,\s*'([^']+)'/g))prior.push(match[1]);}
  for(const file of b1Files){const source=fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/b1',file),'utf8');for(const match of source.matchAll(/vocab\(\s*\d+\s*,\s*\d+\s*,\s*'([^']+)'/g))prior.push(match[1]);}
- for(const file of b2Files.slice(0,5)){const source=fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/b2',file),'utf8');for(const match of source.matchAll(/vocab\(\d+,\d+,'([^']+)'/g))prior.push(match[1]);}
+ for(const file of b2Files.slice(0,6)){const source=fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/b2',file),'utf8');for(const match of source.matchAll(/vocab\(\d+,\d+,'([^']+)'/g))prior.push(match[1]);}
  const source=fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/b2/units-19-21.js'),'utf8');
  const added=[...source.matchAll(/vocab\(\d+,\d+,'([^']+)'/g)].map(match=>match[1]);
  const normalize=value=>value.toLocaleLowerCase('pt-BR').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/\s+/g,' ').trim();

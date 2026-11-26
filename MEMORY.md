@@ -1,3 +1,10 @@
+## 2026-11-26 — Fase 3 multiidioma: checkJs de ProgressNamespace
+- Iniciada en `feat/multilingual-checkjs-progress-namespace-phase-3`, basada en main tras F2 (`dbebc20e`).
+- Alcance deliberadamente pequeño: añadir JSDoc y checkJs a `progress-namespace.js`, módulo directamente dependiente del catálogo central para aislar claves de progreso/SRS por idioma.
+- Se amplía el tipo compartido de la API ProgressNamespace; no se cambian claves, prefijos, filtros, IndexedDB v1, backup JSON v3 ni comportamiento.
+- Se reutiliza la prueba existente `tests/progress-namespace.test.cjs`; no se añade una lista de idiomas paralela.
+- No se amplía checkJs a audio, storage o módulos grandes: el coste/beneficio no está justificado en esta fase.
+
 ## 2026-11-26 — Fase 2 multiidioma: validación de catálogo y manifiestos
 - En curso en `feat/multilingual-config-validation-phase-2`, basada en merge F1 `9c55ef80`.
 - Añade validadores estructurales puros al LanguageManager y CurriculumLoader, con errores identificables y sin registrar ni habilitar idiomas nuevos.

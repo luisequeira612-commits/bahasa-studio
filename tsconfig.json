@@ -15,6 +15,7 @@
   "files": [
     "types/guardi.d.ts",
     "language-manager.js",
-    "curriculum-loader.js"
+    "curriculum-loader.js",
+    "progress-namespace.js"
   ]
 }

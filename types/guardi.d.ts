@@ -116,3 +116,16 @@ interface Window {
     GUARDI_CURRICULUM_MANIFESTS?: Record<string, Partial<Record<GuardiCefrLevel, GuardiCurriculumManifest>>>;
     GUARDI_CURRICULUM_BLOCKS?: Record<string, Partial<Record<GuardiCefrLevel, Record<string, GuardiCurriculumBlock>>>>;
 }
+
+interface GuardiProgressNamespaceApi {
+    readonly supportedLanguages: readonly GuardiLanguageCode[];
+    readonly progressSettings: readonly string[];
+    storageKey(store: string, key: unknown, language?: string): string;
+    belongsToLanguage(store: string, key: unknown, language?: string): boolean;
+    logicalKey(store: string, key: unknown, language?: string): string;
+    filterRecords(store: string, records: unknown, language?: string): unknown[];
+}
+
+interface Window {
+    ProgressNamespace: GuardiProgressNamespaceApi;
+}

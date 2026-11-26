@@ -99,6 +99,13 @@ La auditoría PR #872 encontró que los 800 registros iniciales eran de opción 
 - U17: perífrasis verbales y modalidad.
 - U18: colocaciones verbo-nominales.
 
+## Bloque de diversidad: U31–U33
+
+- U31: desigualdad, inclusión y cohesión social.
+- U32: trabajo, derechos y transformación laboral.
+- U33: política pública, participación y gobernanza.
+- Las actividades del banco de unidad pasan a `order`; las actividades de lección permanecen `mc`.
+
 ## Bloques implementados: U19–U21
 
 - U19: derivación y familias léxicas.

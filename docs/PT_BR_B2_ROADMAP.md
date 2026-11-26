@@ -10,14 +10,14 @@
 - Aclaración: el informe automático genérico anterior (`curriculum-quality-report.json`) analiza el B2 indonesio embebido en `index.html`, no el currículo PT-BR B2 modular; no se usa como evidencia de calidad del portugués.
 - Estos controles son estructurales; no certifican naturalidad, gramática nativa, registro ni nivel MCER. Todas las entradas permanecen `not_checked`; no habilitar el curso.
 
-## Siguiente fase: diversidad de ejercicios — extensión U1–U24
+## Siguiente fase: diversidad de ejercicios — extensión U1–U27
 
 La auditoría PR #872 encontró que los 800 registros iniciales eran de opción múltiple y repetían las mismas 400 preguntas entre lección y banco de unidad. La mejora separa las modalidades de práctica sin reconstruir el currículo ni alterar sus 40 unidades.
 
-- U1–U21 integradas en `main`: 210 actividades de banco de unidad usan `order`, reconstruyendo el ejemplo PT-BR asociado; 210 actividades de lección conservan `mc`.
-- PR [#876](https://github.com/luisequeira612-commits/bahasa-studio/pull/876) (U10–U12), [#877](https://github.com/luisequeira612-commits/bahasa-studio/pull/877) (U13–U15), [#878](https://github.com/luisequeira612-commits/bahasa-studio/pull/878) (U16–U18) y [#879](https://github.com/luisequeira612-commits/bahasa-studio/pull/879) (U19–U21) fusionadas por squash. CI final de #879: regresión 103/103, calidad offline 10/10 y TypeScript 8/8; sin revisiones pendientes.
-- Rama actual `feat/pt-br-b2-exercise-variety-u22-u24`: U22–U24 convierten las 30 actividades de banco a `order`; las 30 actividades de lección permanecen `mc`. El contrato integral se amplía hasta U24 y valida inventario exacto de tokens, secuencia y mezcla.
-- Siguiente bloque: U25–U27; continuar por bloques de tres hasta U40. Después revisar ejercicios de producción escrita/reformulación sin inventar audio.
+- U1–U24 integradas en `main`: 240 actividades de banco de unidad usan `order`, reconstruyendo el ejemplo PT-BR asociado; 240 actividades de lección conservan `mc`.
+- PR [#876](https://github.com/luisequeira612-commits/bahasa-studio/pull/876) (U10–U12), [#877](https://github.com/luisequeira612-commits/bahasa-studio/pull/877) (U13–U15), [#878](https://github.com/luisequeira612-commits/bahasa-studio/pull/878) (U16–U18), [#879](https://github.com/luisequeira612-commits/bahasa-studio/pull/879) (U19–U21) y [#880](https://github.com/luisequeira612-commits/bahasa-studio/pull/880) (U22–U24) fusionadas por squash. CI final de #880: regresión 103/103, calidad offline 10/10 y TypeScript correcto; sin revisiones pendientes.
+- Rama actual `feat/pt-br-b2-exercise-variety-u25-u27`: U25–U27 convierten las 30 actividades de banco a `order`; las 30 actividades de lección permanecen `mc`. El contrato integral se amplía hasta U27 y valida inventario exacto de tokens, secuencia y mezcla.
+- Siguiente bloque: U28–U30; continuar por bloques de tres hasta U40. Después revisar ejercicios de producción escrita/reformulación sin inventar audio.
 - El tipo `order` ya está soportado por el motor de aprendizaje y se usa en A1. No se añaden dependencias, audio ni red.
 - PT-BR continúa deshabilitado y B2 no se habilita. Esta fase no certifica naturalidad nativa ni nivel MCER.
 

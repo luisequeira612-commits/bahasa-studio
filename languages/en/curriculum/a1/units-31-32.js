@@ -51,11 +51,13 @@ const u32=makeReview(32,'Evaluación final A1','Comprueba de forma integrada la 
 ['Lección 2: Gramática integrada','Distingue demostrativos, posesivos y presente simple.','Comprueba concordancia, artículos y orden básico de palabras.',[15,16,17,18],'This is my red shirt.'],
 ['Lección 3: Acciones y habilidades','Reconoce acciones actuales y capacidades.','Presente continuo = be + -ing; can + verbo base.',[0,3,6,7],'She is talking now.'],
 ['Lección 4: Situaciones prácticas','Resuelve situaciones de compras, ciudad y restaurante.','Usa preguntas de precio, imperativos y expresiones corteses.',[8,9,10,11],'Turn right at the street.'],
-['Lección 5: Construcción de mensajes','Construye frases breves con vocabulario conocido.','Integra estructuras A1 sin introducir vocabulario nuevo.',[12,13,14,19],'I want to buy some bread.']
-],['This is my red shirt.','She is talking now.','Turn right at the street.','I want to buy some bread.','The house is near the street.'],[
+['Lección 5: Construcción de mensajes','Construye frases breves con vocabulario conocido.','Integra estructuras A1 sin introducir vocabulario nuevo.',[5,11,14,19],'I want bread.']
+],['This is my red shirt.','She is talking now.','Turn right at the street.','I want bread.','The house is near the street.'],[
 'Lee: «My mother is at home. The house is near the street.» ¿Dónde está la madre?',
 '¿Qué significa «red»?','¿Qué significa «talk»?','¿Qué significa «street»?','¿Qué significa «menu»?'
 ]);
+u32.exercises[0].options=['En casa','En la escuela','En la tienda'];
+u32.exercises[0].explanation='El texto dice que la madre está en casa.';
 root.GUARDI_CURRICULUM_BLOCKS=root.GUARDI_CURRICULUM_BLOCKS||{};
 root.GUARDI_CURRICULUM_BLOCKS.en=root.GUARDI_CURRICULUM_BLOCKS.en||{};
 root.GUARDI_CURRICULUM_BLOCKS.en.A1=root.GUARDI_CURRICULUM_BLOCKS.en.A1||{};

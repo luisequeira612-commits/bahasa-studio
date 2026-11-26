@@ -102,3 +102,8 @@ test('English A1 vocabulary introduces no duplicate targets across U1-U12',async
 - La primera regresión de PR #895 (#45912981997) falló por un error sintáctico en la construcción de ejercicios de repaso U30: faltaba cerrar una cadena en la lista de opciones.
 - Corregido en esta rama con la cadena de commit 319f750331b663f3bbb802317da27fe371f4ca9d; se corrigió también el título del test para dejar claro que U30–U32 son repasos sin palabras nuevas.
 - CI del nuevo head pendiente de repetición; no declarar el bloque listo hasta regresión y typecheck verdes.
+
+## 2026-11-26 — Auditoría de referencias de repaso
+- Se corrigieron IDs de vocabulario reciclado en U30 (box/class: U6 v05/v06) y U31–U32 (listen: U1 v18).
+- Auditoría estática de los 46 IDs de reviewVocabIds: todos resuelven al target esperado. Inventario léxico sigue en 638 entradas únicas y cero duplicados.
+- CI de PR #895 y PR #897 debe repetirse en los heads actualizados; no declarar listo hasta regresión y typecheck verdes.

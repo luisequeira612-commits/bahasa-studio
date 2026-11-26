@@ -46,7 +46,7 @@
 .unit-section-progress { grid-column:1 / -1; background:rgba(255,255,255,.34); height:5px; } .unit-section-progress span { background:#ffffff; }
 .unit-tools-trigger { width:44px; height:44px; min-width:44px; min-height:44px; border:1px solid rgba(255,255,255,.55); border-radius:12px; background:#004E9A; color:#ffffff; display:grid; place-items:center; touch-action:manipulation; } .unit-tools-trigger .ui-icon { width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; } .unit-tools-trigger:focus-visible { outline:3px solid #ffffff; outline-offset:2px; }
 .learning-unit-node.node-completed { background:#004E9A !important; border-bottom:5px solid #00386D !important; color:#ffffff !important; } .learning-unit-node.node-current { background:#0067C6 !important; outline-color:#0067C6 !important; border-bottom-color:#004A91 !important; color:#ffffff !important; } .current-unit-start-bubble { background:#0067C6 !important; border-bottom-color:#004A91 !important; color:#ffffff !important; } .node-progress-value { stroke:#0067C6 !important; }
-#unitBottomSheet .progress-fill,#view-lesson .progress-fill { background:#0067C6 !important; } #view-lesson .progress-bar { background:#E5E7EB !important; } .unit-sheet-lesson-track { background:#8A94A3 !important; } .unit-sheet-lesson-track .progress-fill { background:#0067C6 !important; }
+#unitBottomSheet .progress-fill,#view-lesson .progress-fill { background:#0067C6 !important; } #view-lesson .progress-bar { background:#E5E7EB !important; } .unit-sheet-lesson-track { background:#8A94A3 !important; } .unit-sheet-lesson-track .progress-fill { background:#0067C6 !important; } .unit-sheet-review-choices { margin:14px 0 4px; } .unit-sheet-review-choices > p { margin:0 0 8px; color:#374151; font-weight:700; font-size:14px; } .unit-sheet-review-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; } .unit-sheet-review-option { min-width:0; min-height:52px; padding:8px 10px; display:flex; flex-direction:column; align-items:flex-start; justify-content:center; gap:2px; text-align:left; white-space:normal; } .unit-sheet-review-option span { font-weight:700; } .unit-sheet-review-option small { display:block; width:100%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:12px; color:#4b5563; }
 #view-route .btn:not(.btn-outline) { background:#0067C6; border-bottom-color:#004A91; } #view-route .btn-outline { background:#ffffff; color:#004A91; border-color:#8A94A3; } #view-route .badge { color:#004A91; background:#E6F1FB; border-color:#8A94A3; }
 .nav-bottom .nav-btn svg { background:transparent !important; box-shadow:none !important; }
 .nav-bottom .nav-btn.active svg { background:transparent !important; color:#004A91 !important; fill:none !important; stroke:#004A91 !important; }
@@ -20012,16 +20012,29 @@ Requisitos:
                 const lessonIndex = nextLesson ? nextLesson.index : 0;
                 const actionLabel = progress.allLessonsComplete && progress.requiresAssessment && !progress.completed
                     ? 'Hacer evaluación final'
-                    : progress.completed ? 'Repasar lección 1' : 'Empezar lección ' + (lessonIndex + 1);
+                    : 'Empezar lección ' + (lessonIndex + 1);
+                const lessonChoices = progress.completed
+                    ? '<div class="unit-sheet-review-choices"><p>Elige una lección para repasar</p><div class="unit-sheet-review-grid">' +
+                        progress.lessons.map(lesson =>
+                            '<button class="btn btn-outline unit-sheet-review-option" type="button" data-lesson-index="' + lesson.index + '"><span>Lección ' + (lesson.index + 1) +
+                            '</span><small>' + App.escapeHtml(lesson.title) + '</small></button>'
+                        ).join('') + '</div></div>'
+                    : '';
+                const primaryAction = progress.completed
+                    ? ''
+                    : '<button class="btn unit-sheet-primary" type="button" onclick="App.startUnitFromSheet(\'' + App.escapeHtml(unit.id) + '\')">' + actionLabel + '</button>';
                 const content = document.getElementById('unitSheetContent');
                 content.innerHTML = '<p class="eyebrow">' + App.escapeHtml(level.title) + '</p>' +
                     '<h2 id="unitSheetTitle">' + App.escapeHtml(unit.title) + '</h2>' +
                     '<p class="unit-sheet-description">' + App.escapeHtml(unit.desc || '') + '</p>' +
                     '<div class="unit-sheet-progress"><span>Lecciones</span><strong>' + progress.completedLessonCount + '/' + progress.lessons.length + '</strong></div>' +
                     '<div class="progress-bar unit-sheet-lesson-track" role="progressbar" aria-label="Progreso de lecciones" aria-valuemin="0" aria-valuemax="' + progress.lessons.length + '" aria-valuenow="' + progress.completedLessonCount + '" style="height:8px;min-height:8px;border-radius:999px;overflow:hidden;background:#8b8b8b"><div class="progress-fill" style="height:100%;min-height:8px;border-radius:999px;background:#0067C6;width:' + (progress.lessons.length ? progress.completedLessonCount / progress.lessons.length * 100 : 0) + '%"></div></div>' +
-                    '<button class="btn unit-sheet-primary" type="button" onclick="App.startUnitFromSheet(\'' + App.escapeHtml(unit.id) + '\')">' + actionLabel + '</button>' +
+                    primaryAction + lessonChoices +
                     '<button class="btn btn-outline unit-sheet-grammar-toggle" type="button" onclick="App.toggleUnitGrammar()">Ver gramática</button>' +
                     '<div id="unitSheetGrammar" class="unit-sheet-grammar" hidden>' + App.escapeHtml(unit.grammar || 'No hay notas gramaticales para esta unidad.') + '</div>';
+                content.querySelectorAll('.unit-sheet-review-option').forEach(button => {
+                    button.addEventListener('click', () => this.startUnitLessonFromSheet(unit.id, Number(button.dataset.lessonIndex)));
+                });
                 const sheet = document.getElementById('unitBottomSheet');
                 sheet.style.backgroundColor = '#ffffff';
                 sheet.style.color = '#1f2937';
@@ -20052,6 +20065,15 @@ Requisitos:
                     );
                     LessonEngine.startUnitById(unitId, nextLesson ? nextLesson.index : 0);
                 }
+            },
+            startUnitLessonFromSheet(unitId, lessonIndex) {
+                const found = this.findCourseUnit(unitId);
+                if (!found || !isUnitUnlocked(found.level, found.unit)) return;
+                const progress = getUnitProgressState(found.level, found.unit);
+                if (!progress.completed || !Number.isInteger(lessonIndex) ||
+                    lessonIndex < 0 || lessonIndex >= progress.lessons.length) return;
+                this.closeUnitSheet();
+                LessonEngine.startUnitById(unitId, lessonIndex);
             },
             toggleUnitGrammar() {
                 const grammar = document.getElementById('unitSheetGrammar');

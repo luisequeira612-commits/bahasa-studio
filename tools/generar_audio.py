@@ -139,7 +139,7 @@ def main() -> None:
         "Conservar estas fichas al redistribuir los clips generados."
     ])
     (ROOT / "audio" / "VOICE_ATTRIBUTION.md").write_text(
-        "\n".join(attribution_lines) + "\\n", encoding="utf-8"
+        "\n".join(attribution_lines) + "\n", encoding="utf-8"
     )
     (ROOT / "audio" / ".generated-manifest.json").unlink(missing_ok=True)
     total = sum(p.stat().st_size for p in (ROOT / "audio").rglob("*.mp3"))

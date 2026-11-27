@@ -77,3 +77,23 @@ test('B1 vocabulary examples retain natural American English and aligned Spanish
     assert.equal(word.exEsp, translation, 'Spanish example must match U' + unitNumber + ' ' + target);
   }
 });
+
+test('B1 U1-U4 lesson multiple-choice distractors use real unit vocabulary', async () => {
+  const { units } = await loader().loadUnits('en', 'B1', [1, 2, 3, 4]);
+  assert.equal(units.length, 4);
+  for (const unit of units) {
+    assert.equal(unit.lessons.length, 5);
+    for (const lesson of unit.lessons) {
+      const exercise = lesson.exercises.find((item) => item.type === 'mc');
+      assert.ok(exercise);
+      assert.equal(exercise.options.length, 3);
+      assert.equal(new Set(exercise.options).size, 3);
+      const target = unit.vocab.find((word) => word.id === exercise.vocabId);
+      assert.ok(target);
+      assert.equal(exercise.options[exercise.answer], target.esp);
+      assert.ok(exercise.options.every((option) => unit.vocab.some((word) => word.esp === option)));
+      assert.ok(!exercise.options.includes('otra opción'));
+      assert.ok(!exercise.options.includes('una opción diferente'));
+    }
+  }
+});

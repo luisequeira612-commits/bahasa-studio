@@ -289,6 +289,6 @@ test('English B2 U49–U50 and U59–U60 keep review lessons aligned with their 
     const target = u59.vocab.find((word) => word.id === orderExercise.vocabId);
     assert.ok(target);
     assert.deepEqual(Array.from(orderExercise.correctOrder), target.ex
-      .replace(/[.,!?;:]/g, '').trim().split(/\\s+/));
+      .replace(/[.,!?;:]/g, '').trim().split(/\s+/));
   }
 });

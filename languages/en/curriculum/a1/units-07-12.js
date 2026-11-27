@@ -3,7 +3,7 @@
 const vocab=(unit,rows)=>rows.map((row,index)=>{const [target,esp,ex,exEsp]=row.split('~');return {id:'en_a1_u'+unit+'_v'+String(index+1).padStart(2,'0'),target,esp,ex,exEsp,verification:{status:'not_checked',sources:[]}};});
 const mc=(word,prompt,options)=>({vocabId:word.id,type:'mc',prompt,options,answer:0,explanation:'Selecciona el significado correcto.'});
 const order=(word,prompt,sentence)=>{const words=sentence.split(' ');return {vocabId:word.id,type:'order',prompt,words,correctOrder:words.slice(),explanation:'Orden básico de la frase.'};};
-const lesson=(title,objective,grammar,words,model,reviewVocabIds=[])=>({title,objective,grammar,vocabIds:words.map(w=>w.id),reviewVocabIds,exercises:[mc(words[0],'¿Qué significa «'+words[0].target+'»?',[words[0].esp,'otra opción','una opción diferente']),order(words[1],'Ordena la frase.',model)]});
+const lesson=(title,objective,grammar,words,model,reviewVocabIds=[])=>({title,objective,grammar,vocabIds:words.map(w=>w.id),reviewVocabIds,exercises:[mc(words[0],'¿Qué significa «'+words[0].target+'»?',[words[0].esp,words[2].esp,words[3].esp]),order(words[1],'Ordena la frase.',model)]});
 const unit=(number,title,desc,grammar,trapTitle,trapDetail,rows,specs,bankModels)=>{
  const words=vocab(number,rows);
  const lessons=specs.map(spec=>lesson(spec[0],spec[1],spec[2],spec[3].map(i=>words[i]),spec[4],spec[5]||[]));

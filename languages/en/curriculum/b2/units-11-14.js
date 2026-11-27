@@ -21,12 +21,12 @@ const data=[
 ["must have","debe de haber","They must have missed the last announcement.","Deben de haberse perdido el último anuncio."],
 ["can't have","no puede haber","She can't have forgotten the appointment; I reminded her twice.","No puede haber olvidado la cita; se la recordé dos veces."],
 ["may well","bien puede que","The proposal may well attract further interest.","Bien puede que la propuesta atraiga más interés."],
-["might possibly","quizá podría","The change might possibly affect older devices.","Quizá el cambio podría afectar a dispositivos antiguos."],
-["be bound to","tener muchas probabilidades de","A decision is bound to cause some disagreement.","Es casi seguro que una decisión causará cierto desacuerdo."],
+["might conceivably","podría llegar a","The change might conceivably affect older devices.","El cambio podría llegar a afectar a dispositivos antiguos."],
+["be bound to","ser casi seguro que / estar destinado a","A decision is bound to cause some disagreement.","Es casi seguro que una decisión causará cierto desacuerdo."],
 ["be unlikely to","ser poco probable que","The figures are unlikely to improve this quarter.","Es poco probable que las cifras mejoren este trimestre."],
 ["be highly likely to","ser muy probable que","The committee is highly likely to approve the plan.","Es muy probable que el comité apruebe el plan."],
 ["apparently","al parecer","Apparently, the office has changed its opening hours.","Al parecer, la oficina ha cambiado su horario."],
-["presumably","presumiblemente","Presumably, the missing files were backed up elsewhere.","Presumiblemente, los archivos perdidos tenían una copia en otro lugar."],
+["presumably","presumiblemente / probablemente","Presumably, the missing files were backed up elsewhere.","Probablemente, se había hecho una copia de seguridad de los archivos faltantes en otro lugar."],
 ["evidently","evidentemente","The team has evidently misunderstood the instructions.","Evidentemente, el equipo ha entendido mal las instrucciones."],
 ["there is little doubt that","hay pocas dudas de que","There is little doubt that costs will rise.","Hay pocas dudas de que los costos aumentarán."],
 ["it seems reasonable to assume","parece razonable suponer","It seems reasonable to assume that demand will remain stable.","Parece razonable suponer que la demanda se mantendrá estable."],
@@ -37,7 +37,7 @@ const data=[
 ["to be at odds with","estar en contradicción con","That explanation is at odds with the timeline.","Esa explicación contradice la cronología."]
 ],lessons:[
 ["Certeza y deducción presente","Expresa conclusiones firmes basadas en indicios actuales.","Must be y can't be expresan deducciones opuestas; no equivalen a obligación y prohibición en estos contextos.",[0,1,2,3],"That can't be the correct address; the building number is different."],
-["Posibilidad y alternativas","Compara distintos grados de posibilidad sin presentar una hipótesis como hecho.","May, might y could expresan posibilidad; el grado exacto depende del contexto y la entonación.",[4,5,6,7],"They must have missed the last announcement."],
+["Posibilidad y alternativas","Compara distintos grados de posibilidad sin presentar una hipótesis como hecho.","May, might y could expresan posibilidad; el grado exacto depende del contexto y la entonación.",[4,5,6,7],"This could be the source of the problem."],
 ["Probabilidad y expectativas","Evalúa si un resultado parece probable o poco probable.","Be bound to y be highly likely to son más fuertes que might; be unlikely to indica baja probabilidad.",[8,9,10,11],"A decision is bound to cause some disagreement."],
 ["Fuentes e inferencias prudentes","Atribuye una inferencia y deja claro que no es conocimiento directo.","Apparently, presumably y evidently señalan la base o el carácter inferido de la información.",[12,13,14,15],"Presumably, the missing files were backed up elsewhere."],
 ["Evaluación de evidencia","Contrasta una hipótesis con pruebas y descarta explicaciones.","Point to, suggest, rule out, consistent with y at odds with sirven para evaluar evidencias.",[16,17,18,19,20,21],"We cannot rule out a technical fault."]
@@ -67,7 +67,7 @@ const data=[
 ["there was no need to","no había necesidad de","There was no need to cancel the entire event.","No había necesidad de cancelar todo el evento."]
 ],lessons:[
 ["Crítica y arrepentimiento","Evalúa decisiones pasadas y expresa qué habría sido mejor hacer.","Should have/ought to have para crítica; shouldn't have para acción equivocada.",[0,1,2,3],"They ought to have informed us about the change."],
-["Ausencia de necesidad","Distingue una acción innecesaria realizada de una acción que no fue necesaria.","Needn't have + participio implica que se hizo; didn't need to no afirma por sí solo si se hizo.",[4,5,6,7],"He might have misunderstood the deadline."],
+["Ausencia de necesidad y posibilidad pasada","Distingue una acción que no era necesaria de una posibilidad o imposibilidad retrospectiva.","Didn't need to + infinitivo expresa ausencia de necesidad; might/could have + participio expresa posibilidad pasada y couldn't have, imposibilidad.",[4,5,6,7],"We didn't need to book because the restaurant was empty."],
 ["Deducciones sobre el pasado","Expresa conclusiones con distintos grados de certeza sobre hechos pasados.","Must/can't have + participio para deducción; might/could have para posibilidad.",[8,9,10,11],"I would have helped if I had known."],
 ["Resultados hipotéticos y expectativas","Explica resultados alternativos y expectativas incumplidas.","Would have suele aparecer en condicionales; was supposed to have expresa expectativa previa.",[12,13,14,15],"I wish I had asked for clarification."],
 ["Responsabilidad y retrospectiva","Explica consecuencias, responsabilidades y oportunidades perdidas.","Regret doing, take responsibility for y in hindsight ayudan a evaluar decisiones.",[16,17,18,19,20,21],"We missed an opportunity to negotiate a better price."]

@@ -114,7 +114,7 @@ const data=[
 ["to take something for granted","dar algo por sentado","Don't take their support for granted.","No des por sentado su apoyo."],
 ["to make believe","hacer creer / fingir","The children made believe they were explorers.","Los niños fingieron que eran exploradores."],
 ["to pretend to","fingir","He pretended to understand the instructions.","Fingió entender las instrucciones."],
-["to be under the impression","tener la impresión","I was under the impression that the meeting had been cancelled.","Tenía la impresión de que la reunión se había cancelado."],
+["to be under the impression","tener la impresión","I was under the impression that the meeting had been canceled.","Tenía la impresión de que la reunión se había cancelado."],
 ["to give the impression","dar la impresión","The response gives the impression that no action is planned.","La respuesta da la impresión de que no se planea ninguna acción."],
 ["for argument's sake","para efectos de la discusión","For argument's sake, let's assume the budget is fixed.","Para efectos de la discusión, supongamos que el presupuesto es fijo."],
 ["in an ideal world","en un mundo ideal","In an ideal world, everyone would have equal access.","En un mundo ideal, todos tendrían el mismo acceso."]

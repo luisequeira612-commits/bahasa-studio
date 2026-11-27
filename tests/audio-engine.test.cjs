@@ -161,7 +161,7 @@ test('el botón de prueba no reproduce una frase indonesia para un idioma sin fr
 });
 
 test('usa la ruta y el locale de la configuración del idioma activo', () => {
-    const language = { code: 'pt-BR', locale: 'pt-BR', name: 'Portugués de Brasil', audioPath: './audio/pt-BR/' };
+    const language = { code: 'pt-BR', locale: 'pt-BR', name: 'Portugués', audioPath: './audio/pt-BR/' };
     const voice = { name: 'Portuguese voice', lang: 'pt-BR' };
     const setup = createEngine({ language, voices: [{ name: 'Indonesian voice', lang: 'id-ID' }, voice] });
     setup.engine.speak('bom dia');
@@ -210,6 +210,6 @@ test('localiza el mensaje de consulta y la etiqueta accesible al idioma activo',
     const language = { code: 'pt-BR', locale: 'pt-BR', name: 'Portugués de Brasil', audioPath: './audio/pt-BR/' };
     const setup = createEngine({ language });
     setup.engine.localizeCourseLabels();
-    assert.equal(setup.hint.textContent, '💡 Toca una palabra en portugués de brasil para consultar su significado sin salir de la lección.');
-    assert.equal(setup.languageTrigger.attributes['aria-label'], 'Cambiar idioma de estudio. Portugués de Brasil actual');
+    assert.equal(setup.hint.textContent, '💡 Toca una palabra en portugués para consultar su significado sin salir de la lección.');
+    assert.equal(setup.languageTrigger.attributes['aria-label'], 'Cambiar idioma de estudio. Portugués actual');
 });

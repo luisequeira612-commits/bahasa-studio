@@ -49,7 +49,7 @@ const data=[
 ["were it not for the fact that","si no fuera por el hecho de que","Were it not for the fact that costs have risen, we would expand.","Si no fuera por el hecho de que los costos han aumentado, nos expandiríamos."],
 ["on condition that","con la condición de que","We will proceed on condition that the terms are clear.","Procederemos con la condición de que los términos estén claros."],
 ["provided that","siempre que","You may use the room provided that you leave it tidy.","Puedes usar la sala siempre que la dejes ordenada."],
-["as long as","siempre que","The plan should work as long as everyone cooperates.","El plan debería funcionar siempre que todos colaboren."],
+["as long as","siempre que","You may use the room provided that you leave it tidy.","El plan debería funcionar siempre que todos colaboren."],
 ["in the event that","en caso de que","In the event that the system fails, use the manual process.","En caso de que falle el sistema, utiliza el proceso manual."],
 ["failing that","si eso falla","We could take the train; failing that, we can rent a car.","Podríamos tomar el tren; si eso falla, podemos rentar un auto."],
 ["if not","si no","Please confirm by noon; if not, we will postpone the launch.","Confirma antes del mediodía; si no, pospondremos el lanzamiento."],

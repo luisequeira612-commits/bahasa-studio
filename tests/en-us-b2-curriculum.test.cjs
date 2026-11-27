@@ -206,3 +206,25 @@ test('editorially corrected B2 vocabulary examples stay aligned with their targe
     assert.equal(word.exEsp, translation, 'Spanish example must match U' + unitNumber + ' ' + target);
   }
 });
+
+test('English B2 U1 sentence-building bank matches each target vocabulary ID', () => {
+  const unit = loadB2().find((item) => item.unitNumber === 1);
+  assert.ok(unit);
+  const orderExercises = Array.from(unit.exercises || []).filter((exercise) => exercise.type === 'order');
+  assert.equal(orderExercises.length, 5);
+  const expected = [
+    ['ongoing', 'The project is ongoing, so we cannot report final results yet.'],
+    ['so far', 'So far, the results have been encouraging.'],
+    ['lately', "I've been feeling unusually tired lately."],
+    ['since then', 'The team has worked remotely since then.'],
+    ['to undergo', 'The hospital has undergone a major upgrade.'],
+  ];
+  for (let index = 0; index < expected.length; index += 1) {
+    const [target, sentence] = expected[index];
+    const vocabulary = unit.vocab.find((word) => word.target === target);
+    assert.ok(vocabulary, 'U1 target must exist: ' + target);
+    assert.equal(orderExercises[index].vocabId, vocabulary.id);
+    assert.deepEqual(Array.from(orderExercises[index].correctOrder), sentence
+      .replace(/[.,!?;:]/g, '').trim().split(/\s+/));
+  }
+});

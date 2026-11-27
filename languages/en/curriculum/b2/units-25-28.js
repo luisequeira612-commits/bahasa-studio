@@ -25,10 +25,10 @@ const defs=[
 ["what surprised everyone was","lo que sorprendió a todos fue","What surprised everyone was how quickly she adapted.","Lo que sorprendió a todos fue lo rápido que se adaptó."],
 ["the main point is that","el punto principal es que","The main point is that we need reliable information.","El punto principal es que necesitamos información fiable."]],
 lessons:[
-["It-clefts: foco y contraste","Destaca el elemento que explica o identifica una situación.","It + be + foco + that/who; usa who para personas y that para cosas o situaciones.",[0,1,2,3],"It is the lack of funding that limits the project."],
-["Foco temporal y causal","Resalta cuándo o por qué ocurrió algo.","It was not until + time/clause + that; it is precisely because + clause + that.",[4,5,6,7],"It is precisely because costs have risen that we need a review."],
-["What-clefts","Presenta una acción, necesidad o evaluación como foco informativo.","What + clause + be + focus; what funciona como aquello que se identifica.",[8,9,10,11],"It was John who suggested the alternative."],
-["Clefts para evaluación","Organiza opiniones y preocupaciones con énfasis controlado.","What concerns/surprises me is...; evita usar una cleft si el énfasis no aporta contraste.",[12,13,14,15],"What makes it difficult is the limited time available."],
+["It-clefts y what-clefts básicos","Destaca el elemento que explica, identifica o evalúa una situación.","It + be + foco + that/who identifica un elemento; What + clause + be presenta como foco una acción, situación o evaluación.",[0,1,2,3],"It is the lack of funding that limits the project."],
+["Foco temporal, causal y de necesidad","Resalta cuándo o por qué ocurre algo y presenta una necesidad como información central.","It was not until + time/clause + that; it is precisely because + clause + that; What we need is... y All I want is... presentan necesidades o deseos como foco.",[4,5,6,7],"What we need is a clear decision."],
+["What-clefts y estructuras de identificación","Presenta una explicación, persona o hecho como foco informativo.","What + clause + be + focus; It was + foco + who/that identifica a una persona o elemento; the reason why introduce una explicación.",[8,9,10,11],"What happened was that the file had been deleted."],
+["Evaluación y foco temporal","Organiza opiniones y destaca cuándo una condición permite reconocer algo.","What makes it difficult is... y The thing I appreciate is... presentan evaluaciones; It is only when... y It was in... that... destacan condiciones o momentos.",[12,13,14,15],"What makes it difficult is the limited time available."],
 ["Énfasis integrado","Combina foco, contraste y síntesis en argumentos.","Contrasta it-cleft con what-cleft; el foco debe coincidir con la información que quieres corregir o destacar.",[16,17,18,19,20,21],"It is not the cost but the risk that worries me."]]},
 {n:26,title:"Inversion after negative adverbials",desc:"Emplea inversión auxiliar-sujeto después de expresiones negativas o restrictivas para dar énfasis y controlar el registro.",grammar:"Negative/restrictive adverbial + auxiliary + subject + main verb; past simple uses did; present simple uses do/does.",trap:"Rarely do we see such results. No sooner had we arrived than it started. No uses inversión cuando el adverbial no está al inicio.",rows:[
 ["rarely do we see","rara vez vemos","Rarely do we see such a rapid improvement.","Rara vez vemos una mejora tan rápida."],
@@ -50,7 +50,7 @@ lessons:[
 ["barely had","apenas había","Barely had the announcement ended when questions began.","Apenas había terminado el anuncio cuando comenzaron las preguntas."],
 ["scarcely had","apenas había","Scarcely had we sat down when the fire alarm rang.","Apenas nos habíamos sentado cuando sonó la alarma."],
 ["on no account should","por ningún motivo debería","On no account should the files be deleted.","Por ningún motivo deberían eliminarse los archivos."],
-["little did we expect","ni mucho menos esperábamos","Little did we expect the project to attract so much attention.","Ni por asomo esperábamos que el proyecto atrajera tanta atención."],
+["little did we expect","ni por asomo esperábamos","Little did we expect the project to attract so much attention.","Ni por asomo esperábamos que el proyecto atrajera tanta atención."],
 ["only by working together can","solo trabajando juntos podemos","Only by working together can we solve the problem.","Solo trabajando juntos podemos resolver el problema."],
 ["not until the end was","no fue hasta el final cuando","Not until the end was the real reason revealed.","No fue hasta el final cuando se reveló la verdadera razón."]],
 lessons:[

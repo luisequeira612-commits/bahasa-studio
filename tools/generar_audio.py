@@ -7,6 +7,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "tools" / "audio-voices.json"
 MANIFEST = ROOT / "audio" / "manifest.json"
+PIPER_VERSION = "1.8.0"
 
 def normalize(text: str) -> str:
     return " ".join(str(text).strip().split()).lower()
@@ -77,6 +78,16 @@ def main() -> None:
     cache = Path(os.environ.get("RUNNER_TEMP", tempfile.gettempdir())) / "guardi-piper-models"
     cache.mkdir(parents=True, exist_ok=True)
     active_codes = sorted({item["language"] for item in texts})
+    previous_manifest = {}
+    if MANIFEST.exists():
+        try:
+            parsed = json.loads(MANIFEST.read_text(encoding="utf-8"))
+            if isinstance(parsed, dict):
+                previous_manifest = parsed
+        except (json.JSONDecodeError, OSError):
+            previous_manifest = {}
+    previous_revisions = previous_manifest.get("voice_revisions", {})
+    can_reuse_version = previous_manifest.get("piper_version") == PIPER_VERSION
     models = {}
     for code in active_codes:
         cfg = config[code]
@@ -100,7 +111,8 @@ def main() -> None:
             digest = text_hash(item["text"])
             relative = f"audio/{code}/{digest}.mp3"
             destination = ROOT / relative
-            if destination.exists() and not args.force:
+            can_reuse_voice = previous_revisions.get(code) == cfg["revision"]
+            if destination.exists() and not args.force and can_reuse_version and can_reuse_voice:
                 reused += 1
             else:
                 raw = tmpdir / f"{code}-{digest}.wav"
@@ -114,8 +126,14 @@ def main() -> None:
             })
 
     entries.sort(key=lambda x: (x["language"], x["id"]))
-    manifest = {"version": 2, "engine": "piper",
-                "languages": config, "entries": entries}
+    manifest = {
+        "version": 2,
+        "engine": "piper",
+        "piper_version": PIPER_VERSION,
+        "voice_revisions": {code: config[code]["revision"] for code in active_codes},
+        "languages": config,
+        "entries": entries
+    }
     MANIFEST.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
                         encoding="utf-8")
     attribution_lines = [

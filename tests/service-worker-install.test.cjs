@@ -78,6 +78,9 @@ test('precarga el índice y los metadatos de la biblioteca de audio', () => {
     const worker = loadInstallHandler(new Set());
     assert.ok(worker.assets.includes('./audio/index.json'));
     assert.ok(worker.assets.includes('./audio/metadata.json'));
+    assert.ok(worker.assets.includes('./audio/manifest-multilingual.json'));
+    assert.ok(worker.assets.includes('./audio/pt-BR/manifest.json'));
+    assert.ok(worker.assets.includes('./audio/pt-BR/metadata.json'));
 });
 
 test('la reproducción online sin inventario no cachea audio y no se bloquea si falla el cache', async () => {

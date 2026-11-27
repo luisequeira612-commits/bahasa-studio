@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Generate Guardi's pre-generated multilingual Piper audio library."""
 from __future__ import annotations
-import argparse, hashlib, json, os, subprocess, tempfile
+import argparse, hashlib, json, os, shutil, subprocess, tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -28,20 +28,24 @@ def export_texts() -> list[dict]:
     ], cwd=ROOT, check=True)
     return json.loads(output.read_text(encoding="utf-8"))
 
-def download_piper_model(model_id: str, model_path: str, cache_dir: Path) -> Path:
-    base = f"https://huggingface.co/rhasspy/piper-voices/resolve/main/{model_path}"
+def download_piper_model(model_id: str, model_path: str, revision: str, cache_dir: Path) -> tuple[Path, Path]:
+    base = f"https://huggingface.co/rhasspy/piper-voices/resolve/{revision}/{model_path}"
     voice_dir = cache_dir / model_path
     voice_dir.mkdir(parents=True, exist_ok=True)
     stem = model_id
     onnx = voice_dir / f"{stem}.onnx"
     meta = voice_dir / f"{stem}.onnx.json"
+    card = voice_dir / "MODEL_CARD"
     if not onnx.exists():
         subprocess.run(["curl", "--fail", "--location", "--retry", "3",
                         f"{base}/{stem}.onnx", "-o", str(onnx)], check=True)
     if not meta.exists():
         subprocess.run(["curl", "--fail", "--location", "--retry", "3",
                         f"{base}/{stem}.onnx.json", "-o", str(meta)], check=True)
-    return onnx
+    if not card.exists():
+        subprocess.run(["curl", "--fail", "--location", "--retry", "3",
+                        f"{base}/MODEL_CARD", "-o", str(card)], check=True)
+    return onnx, card
 
 def render(model: Path, text: str, raw_wav: Path) -> None:
     subprocess.run(["piper", "--model", str(model), "--output_file", str(raw_wav)],
@@ -78,7 +82,13 @@ def main() -> None:
         cfg = config[code]
         if cfg["engine"] != "piper":
             raise RuntimeError(f"Motor no permitido para producción: {code}")
-        models[code] = download_piper_model(cfg["model"], cfg["model_path"], cache)
+        model, card = download_piper_model(
+            cfg["model"], cfg["model_path"], cfg["revision"], cache
+        )
+        models[code] = model
+        published_card = ROOT / "audio" / "voices" / code / "MODEL_CARD"
+        published_card.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(card, published_card)
 
     generated = reused = 0
     entries = []
@@ -106,8 +116,31 @@ def main() -> None:
     entries.sort(key=lambda x: (x["language"], x["id"]))
     manifest = {"version": 2, "engine": "piper",
                 "languages": config, "entries": entries}
-    MANIFEST.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
+    MANIFEST.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\\n",
                         encoding="utf-8")
+    attribution_lines = [
+        "# Atribución de voces Piper",
+        "",
+        "Los modelos ONNX se descargan solo en el runner de generación y no se distribuyen en este repositorio.",
+        "Las fichas oficiales de cada voz usada se conservan en `audio/voices/<idioma>/MODEL_CARD`.",
+        "",
+        "Repositorio: https://huggingface.co/rhasspy/piper-voices",
+        "Revisión fijada: " + ", ".join(sorted({config[code]["revision"] for code in active_codes})),
+        "",
+        "## Voces usadas",
+        ""
+    ]
+    for code in sorted(active_codes):
+        cfg = config[code]
+        attribution_lines.append("- **" + cfg["name"] + "** (`" + code + "`): `" + cfg["model"] + "` — [MODEL_CARD](./voices/" + code + "/MODEL_CARD)")
+    attribution_lines.extend([
+        "",
+        "La MODEL_CARD de cada voz es la fuente de verdad para dataset, licencia, cadena de entrenamiento y atribución.",
+        "Conservar estas fichas al redistribuir los clips generados."
+    ])
+    (ROOT / "audio" / "VOICE_ATTRIBUTION.md").write_text(
+        "\\n".join(attribution_lines) + "\\n", encoding="utf-8"
+    )
     (ROOT / "audio" / ".generated-manifest.json").unlink(missing_ok=True)
     total = sum(p.stat().st_size for p in (ROOT / "audio").rglob("*.mp3"))
     print(f"Piper: {generated} nuevos, {reused} reutilizados, {len(entries)} textos.")

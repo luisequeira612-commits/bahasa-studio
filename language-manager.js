@@ -5,7 +5,7 @@
     const STORAGE_KEY = 'guardi_active_language';
     /** @type {Readonly<Record<GuardiLanguageCode, GuardiLanguageConfig>>} */
     const LANGUAGES = Object.freeze({
-        'pt-BR': Object.freeze({ code: 'pt-BR', locale: 'pt-BR', name: 'Portugués', flag: '🇧🇷', piperVoice: 'pt_BR-faber-medium', voiceStatus: 'candidate', audioPath: './audio/pt-BR/', curriculum: Object.freeze({ A1: './languages/pt-BR/curriculum/a1/index.js', A2: './languages/pt-BR/curriculum/a2/index.js', B1: './languages/pt-BR/curriculum/b1/index.js', B2: './languages/pt-BR/curriculum/b2/index.js' }), available: true }),
+        'pt-BR': Object.freeze({ code: 'pt-BR', locale: 'pt-BR', name: 'Portugués', flag: '🇧🇷', piperVoice: 'pt_BR-faber-medium', voiceStatus: 'candidate', audioPath: './audio/pt-BR/', testPhrase: 'olá', curriculum: Object.freeze({ A1: './languages/pt-BR/curriculum/a1/index.js', A2: './languages/pt-BR/curriculum/a2/index.js', B1: './languages/pt-BR/curriculum/b1/index.js', B2: './languages/pt-BR/curriculum/b2/index.js' }), available: true }),
         en: Object.freeze({ code: 'en', locale: 'en-US', name: 'Inglés', flag: '🇺🇸', piperVoice: 'en_US-lessac-medium', voiceStatus: 'candidate', audioPath: './audio/en/', curriculum: Object.freeze({}), available: false }),
         it: Object.freeze({ code: 'it', locale: 'it-IT', name: 'Italiano', flag: '🇮🇹', piperVoice: 'it_IT-riccardo-x_low', voiceStatus: 'unverified', audioPath: './audio/it/', curriculum: Object.freeze({}), available: false }),
         fr: Object.freeze({ code: 'fr', locale: 'fr-FR', name: 'Francés', flag: '🇫🇷', piperVoice: 'fr_FR-upmc-medium', voiceStatus: 'candidate', audioPath: './audio/fr/', curriculum: Object.freeze({}), available: false }),

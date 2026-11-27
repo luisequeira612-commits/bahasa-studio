@@ -126,3 +126,4 @@
 - El manifiesto y el contrato de currículo se amplían hasta U16. Las pruebas comparan todos los targets B1 contra A1/A2 y comprueban referencias de lecciones y bancos.
 - Vocabulario nuevo `not_checked`; la comparación automatizada exacta no certifica nivel MCER, naturalidad nativa ni cotejo individual CEFR-J. Inglés sigue `available:false`; sin cambios a IndexedDB v1, backup JSON v3, dependencias ni otros idiomas.
 - La primera CI detectó una coincidencia exacta de `be set to` con U11; U13 usa ahora `be penciled in for`, con ejemplo, traducción y ejercicios alineados. Auditoría estática: 330 targets únicos en U1–U16; la nueva regresión debe confirmar también la ausencia de solapamientos A1/A2.
+- La comparación local contra A1/A2 detectó `at short notice` y `check the details`; se cambiaron a `on short notice` (forma estadounidense) y `verify the figures`, con ejemplos y glosas actualizados. La CI integral debe confirmar cero coincidencias.

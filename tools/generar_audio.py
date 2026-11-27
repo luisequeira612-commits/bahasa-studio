@@ -191,6 +191,11 @@ def main() -> None:
             json.dumps(language_entries, ensure_ascii=False, indent=2) + "\n",
             encoding="utf-8"
         )
+        if code == "id":
+            (ROOT / "audio" / "index.json").write_text(
+                json.dumps([entry["id"] for entry in language_entries], indent=2) + "\n",
+                encoding="utf-8"
+            )
         metadata = {}
         if metadata_path.exists():
             try:

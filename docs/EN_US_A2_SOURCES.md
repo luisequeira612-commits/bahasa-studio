@@ -114,3 +114,13 @@ Estado: primer bloque U1–U6 en desarrollo; el nivel no está publicado. Fecha:
 - U30: repaso integrado III sin vocabulario nuevo; reutiliza vocabulario de U27–U29 y unidades previas.
 - Cuatro unidades, 20 lecciones y 80 ejercicios; 66 entradas nuevas en U27–U29 (22 por unidad) y 0 en U30. Total A2 U1–U30: 594 entradas nuevas; U10/U20/U30 son repasos.
 - Ejemplos originales. Entradas nuevas `not_checked`; cotejo individual CEFR-J y validación nativa pendientes. Se mantiene el esquema runtime y los tipos `mc`/`order`; inglés `available:false`, IndexedDB v1 y backup JSON v3 intactos.
+
+
+## Bloque U31–U34 — 26 de noviembre de 2026
+
+- U31: transporte, horarios, tarifas, rutas, conexiones y equipaje.
+- U32: preguntas indirectas y resolución de problemas de viaje.
+- U33: molestias, lesiones leves y atención básica con have got, should y need to.
+- U34: tareas domésticas y phrasal verbs frecuentes.
+- Cuatro unidades, 20 lecciones, 80 ejercicios y 88 entradas nuevas. Total A2 U1–U34: 682 entradas; U10/U20/U30 siguen como repasos sin vocabulario.
+- Ejemplos originales. Entradas `not_checked`; cotejo individual CEFR-J y validación nativa pendientes. Se conserva el esquema runtime, `mc`/`order`, `available:false`, IndexedDB v1 y backup JSON v3.

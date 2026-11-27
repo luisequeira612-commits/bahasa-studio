@@ -1,3 +1,10 @@
+## 2026-11-27 — Restaurar etiqueta descriptiva de voz en metadata
+- CI #45966796710 falló en la aserción de regresión `bundled Indonesian recordings work without an installed device voice`: el generador había reemplazado `model_attribution` por una frase genérica al apuntar la licencia a MODEL_CARD.
+- Se conserva la referencia de licencia a MODEL_CARD, pero `model_attribution` ahora toma una etiqueta descriptiva por voz desde `tools/audio-voices.json` (ID mantiene `Piper Indonesian news_tts voice`; PT-BR y las otras ocho voces también tienen etiqueta). Tests verifican el campo.
+- Commits `ecdbd00`, `7f1f9c0`, `c508d5c`; la próxima ejecución reutiliza los 5,002 MP3 y solo actualiza metadata/manifiestos.
+
+Fuente: Actions #45966796710, `tests/regression.test.cjs`, `tools/audio-voices.json` y `tools/generar_audio.py`; 27 nov 2026.
+
 ## 2026-11-27 — Índice ID sincronizado; segunda generación idempotente
 - Run #45966682151 terminó con éxito: `0 nuevos, 5,002 reutilizados`; confirma que el hash + Piper version + revisión de voz evitan regenerar audio sin cambios.
 - Commit `b8a594ea` actualizó `audio/index.json`: ahora contiene exactamente 2,392 IDs y coincide con `audio/manifest.json`. PT-BR conserva 2,610 entradas. Los metadatos ID y PT-BR mantienen 2,392/2,610 hashes SHA-256.

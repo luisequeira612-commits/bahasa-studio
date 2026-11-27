@@ -4,7 +4,7 @@ const rows=[
 ["what matters most is","lo que más importa es","What matters most is how the evidence is interpreted.","Lo que más importa es cómo se interpreta la evidencia."],
 ["it is the timing that","es el momento lo que","It is the timing that makes the decision difficult.","Es el momento lo que hace difícil la decisión."],
 ["the main reason why","la razón principal por la que","The main reason why sales fell was the price increase.","La razón principal por la que cayeron las ventas fue el aumento de precio."],
-["not until","no fue hasta que","Only after the review did the team understand the risk.","No fue hasta la etapa final que notamos el error."],
+["not until","no fue hasta que","Not until the final stage did we notice the error.","No fue hasta la etapa final que notamos el error."],
 ["only after","solo después de","Only after the review did the team understand the risk.","Solo después de la revisión entendió el equipo el riesgo."],
 ["little did","poco imaginaba","Little did we know that the figures were incomplete.","Poco imaginábamos que las cifras estaban incompletas."],
 ["for the first time","por primera vez","For the first time, the results have exceeded expectations.","Por primera vez, los resultados han superado las expectativas."],
@@ -27,9 +27,9 @@ const rows=[
 const vocab=rows.map((r,i)=>({id:"en_b2_u9_v"+String(i+1).padStart(2,"0"),target:r[0],esp:r[1],ex:r[2],exEsp:r[3],verification:{status:"not_checked",sources:[]}}));
 const lessonData=[
 ["Énfasis con estructuras cleft","Destaca la información nueva o contrastiva sin alterar el significado básico.","It-cleft: It is/was + foco + that/who. What-cleft: What + clause + be + foco.",[0,1,2,3],"It is the timing that makes the decision difficult."],
-["Inversión tras expresiones negativas","Da énfasis formal a límites temporales y hechos inesperados.","Not until, only after y little did pueden exigir inversión auxiliar-sujeto en la cláusula principal.",[4,5,6,7],"Not until the final stage did we notice the error."],
+["Inversión tras expresiones negativas","Da énfasis formal a límites temporales y hechos inesperados.","Not until, only after y little did pueden exigir inversión auxiliar-sujeto en la cláusula principal.",[4,5,6,7],"Only after the review did the team understand the risk."],
 ["Frecuencia y continuidad enfáticas","Refuerza que una situación se repite o continúa hasta el presente.","Time and again, ever since y to this day aportan duración o repetición; el tiempo verbal depende del marco temporal.",[8,9,10,11],"To this day, nobody has explained the discrepancy."],
-["Secuencia e inmediatez","Organiza acciones muy próximas en relatos y explicaciones.","Hardly had...when y no sooner had...than usan inversión y past perfect para secuencias inmediatas.",[12,13,14,15],"Hardly had we started when the power went out."],
+["Secuencia e inmediatez","Organiza acciones muy próximas en relatos y explicaciones.","Hardly had...when y no sooner had...than usan inversión y past perfect para secuencias inmediatas.",[12,13,14,15],"As soon as the figures had been checked, we shared them."],
 ["Contraste y evaluación","Matiza una conclusión y destaca qué no ocurrió o qué empeoró.","At no point y far from crean énfasis negativo; much as introduce concesión.",[16,17,18,19,20,21],"Far from solving the issue, the update made it worse."]
 ];
 const mc=(w,opts)=>{const correct=opts[0];const match=String(w.id).match(/v(\d+)$/);const offset=match?Number(match[1])%opts.length:1;const options=opts.slice(offset).concat(opts.slice(0,offset));return {vocabId:w.id,type:"mc",prompt:"¿Qué significa «"+w.target+"»?",options,answer:options.indexOf(correct),explanation:"Selecciona la equivalencia adecuada en este contexto."};};

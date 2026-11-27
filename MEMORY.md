@@ -775,3 +775,11 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Manifiesto y test de currículo ampliados a U1–U26. Auditoría estática: 88 targets únicos sin coincidencias exactas con los 440 targets A2 U1–U22. CI y comparación completa contra A1, así como referencias de ejercicios, pendientes al registrar esta nota.
 - Vocabulario not_checked; cotejo individual CEFR-J pendiente. Sin cambios a IndexedDB v1, backup JSON v3, dependencias, POS/audio, PT-BR ni otros idiomas. No publicar ni fusionar sin aprobación expresa.
 - Fuente: rama feat/en-us-a2-u23-u26, currículo, prueba y documentación; 26 nov 2026.
+
+
+## 2026-11-26 — Inglés en-US A2 U23–U26
+- Rama `feat/en-us-a2-u23-u26`, apilada sobre PR #904 (head base 5202279a70ab6306d9a1657ce706b6444950f513). Bloque U23–U26: 4 unidades, 20 lecciones, 80 ejercicios y 88 entradas nuevas.
+- U23 peticiones y ofrecimientos corteses; U24 primer condicional y prevención; U25 recipientes y medidas; U26 cuantificadores y proporciones. U10/U20 siguen siendo repasos sin vocabulario.
+- Inventario A2 previsto tras el bloque: 528 entradas. Se corrigieron solapamientos exactos con A1/A2 y se revisó que las frases de orden correspondan al vocabulario asignado.
+- CI de este bloque aún pendiente. Entradas `not_checked`; cotejo individual CEFR-J pendiente. Inglés permanece `available:false`; sin cambios a IndexedDB v1, backup JSON v3, dependencias, POS/audio, PT-BR ni otros idiomas. No fusionar ni publicar sin aprobación expresa.
+- Fuente: rama `feat/en-us-a2-u23-u26`, currículo, tests y docs; 26 nov 2026.

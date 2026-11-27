@@ -48,6 +48,15 @@ test('American English B2 has 60 sequential units with five lessons and 20 activ
     }, 0);
     assert.equal((unit.exercises || []).length + lessonActivities, 20,
       unit.id + ' must have 20 total activities');
+    const allActivities = [
+      ...(unit.exercises || []),
+      ...(unit.lessons || []).flatMap((lesson) => lesson.exercises || []),
+    ];
+    const answerPositions = new Set(allActivities
+      .filter((exercise) => exercise.type === 'mc')
+      .map((exercise) => exercise.answer));
+    assert.ok(answerPositions.size > 1,
+      unit.id + ' must vary correct multiple-choice answer positions');
   }
 });
 

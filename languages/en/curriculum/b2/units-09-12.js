@@ -26,7 +26,7 @@ const rows=[
 ];
 const vocab=rows.map((r,i)=>({id:"en_b2_u9_v"+String(i+1).padStart(2,"0"),target:r[0],esp:r[1],ex:r[2],exEsp:r[3],verification:{status:"not_checked",sources:[]}}));
 const lessonData=[
-["Énfasis con estructuras cleft","Destaca la información nueva o contrastiva sin alterar el significado básico.","It-cleft: It is/was + foco + that/who. What-cleft: What + clause + be + foco.",[0,1,2,3],"It is the timing that makes the decision difficult."],
+["Énfasis con estructuras cleft","Destaca la información nueva o contrastiva sin alterar el significado básico.","It-cleft: It is/was + foco + that/who. What-cleft: What + clause + be + foco. Not until + clause exige inversión en la cláusula principal.",[0,1,2,3],"It is the timing that makes the decision difficult."],
 ["Inversión tras expresiones negativas","Da énfasis formal a límites temporales y hechos inesperados.","Not until, only after y little did pueden exigir inversión auxiliar-sujeto en la cláusula principal.",[4,5,6,7],"Little did we know that the figures were incomplete."],
 ["Frecuencia y continuidad enfáticas","Refuerza que una situación se repite o continúa hasta el presente.","Time and again, ever since y to this day aportan duración o repetición; el tiempo verbal depende del marco temporal.",[8,9,10,11],"To this day, nobody has explained the discrepancy."],
 ["Secuencia e inmediatez","Organiza acciones muy próximas en relatos y explicaciones.","All along y for much of the time expresan conocimiento previo o duración; as soon as y the moment marcan secuencia inmediata.",[12,13,14,15],"For much of the time, the team had been working remotely."],

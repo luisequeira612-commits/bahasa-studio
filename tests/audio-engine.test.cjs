@@ -214,6 +214,11 @@ test('localiza el mensaje de consulta y la etiqueta accesible al idioma activo',
     setup.engine.localizeCourseLabels();
     assert.equal(setup.hint.textContent, '💡 Toca una palabra en portugués para consultar su significado sin salir de la lección.');
     assert.equal(setup.languageTrigger.attributes['aria-label'], 'Cambiar idioma de estudio. Portugués actual');
+    language.name = 'Indonesio';
+    language.locale = 'id-ID';
+    setup.engine.localizeCourseLabels();
+    assert.equal(setup.hint.textContent, '💡 Toca una palabra en indonesio para consultar su significado sin salir de la lección.');
+    assert.equal(setup.languageTrigger.attributes['aria-label'], 'Cambiar idioma de estudio. Indonesio actual');
 });
 
 test('las seis palabras iniciales de PT-BR usan la ruta y el locale portugueses', () => {

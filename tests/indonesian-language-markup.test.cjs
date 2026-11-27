@@ -121,3 +121,12 @@ test('el tutor API usa el idioma activo y el modo local no muestra reglas indone
     assert.match(html, /El modo local todavía no tiene explicaciones específicas para/);
     assert.match(html, /La generación de lecciones personalizadas aún no está adaptada al curso de/);
 });
+
+test('el encabezado, SRS y generador no presuponen indonesio cuando cambia el curso', () => {
+    assert.doesNotMatch(html, /Cambiar idioma de estudio\. Indonesio actual|studyLanguageCurrentName">Indonesio|Indonesio → español/);
+    assert.match(html, /Cambiar idioma de estudio\. ' \+ active\.name \+ ' actual/);
+    assert.match(html, /current\.direction = reverse \? 'es-' \+ activeCode : activeCode \+ '-es'/);
+    assert.match(html, /if \(!reverse\) AudioEngine\.speak\(current\.vocab\.text\)/);
+    assert.match(html, /if \(LanguageManager\.getActiveLanguage\(\) !== 'id'\)/);
+    assert.match(html, /El generador de lecciones aún no está adaptado al curso activo/);
+});

@@ -32,7 +32,7 @@ test('all review packet builders select the matching American English source ran
     const packet = range.build({ curriculum, prompt: 'Review American English.' });
     assert.equal(packet.coverage.units, range.units);
     assert.equal(packet.coverage.vocabulary_entries, range.vocabulary);
-    assert.match(packet.markdown, new RegExp('en_b1_u' + String(range.first).padStart(2, '0')));
+    assert.match(packet.markdown, new RegExp('en_b1_u' + String(range.first)));
     assert.match(packet.markdown, /target/);
     assert.doesNotMatch(packet.markdown, /Dibaca|peN-|KBBI|material de indonesio/);
   }

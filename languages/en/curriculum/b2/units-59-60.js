@@ -1,13 +1,13 @@
 (function(root){
 'use strict';
 const rows=[
-["to synthesize different viewpoints","sintetizar diferentes puntos de vista","You should be able to defend your position with evidence.","El ponente sintetizó diferentes puntos de vista antes de hacer una recomendación."],
+["to synthesize different viewpoints","sintetizar diferentes puntos de vista","The presenter synthesized different viewpoints before making a recommendation.","El ponente sintetizó diferentes puntos de vista antes de hacer una recomendación."],
 ["to defend a position","defender una postura","You should be able to defend your position with evidence.","Deberías poder defender tu postura con pruebas."],
 ["to respond to a challenge","responder a un desafío","The speaker responded to the challenge calmly.","El ponente respondió al desafío con calma."],
 ["to negotiate a compromise","negociar un acuerdo intermedio","The teams negotiated a compromise that both could accept.","Los equipos negociaron un acuerdo intermedio que ambos podían aceptar."],
 ["to summarize a complex issue","resumir un asunto complejo","She summarized the issue in a few clear sentences.","Ella resumió el asunto en unas pocas frases claras."],
 ["to adapt one's message","adaptar el propio mensaje","Effective communicators adapt their message to the audience.","Los comunicadores eficaces adaptan su mensaje al público."],
-["to anticipate objections","anticipar objeciones","Effective communicators adapt their message to the audience.","Una propuesta sólida anticipa las objeciones probables."],
+["to anticipate objections","anticipar objeciones","A strong proposal anticipates likely objections.","Una propuesta sólida anticipa las objeciones probables."],
 ["to acknowledge uncertainty","reconocer la incertidumbre","The report acknowledges uncertainty in the estimates.","El informe reconoce la incertidumbre de las estimaciones."],
 ["to draw on multiple sources","basarse en varias fuentes","The analysis draws on multiple sources of evidence.","El análisis se basa en varias fuentes de evidencia."],
 ["to reach an informed decision","tomar una decisión fundamentada","The committee needs time to reach an informed decision.","El comité necesita tiempo para tomar una decisión fundamentada."],
@@ -15,21 +15,21 @@ const rows=[
 ["to justify a course of action","justificar una línea de acción","The director justified the course of action with clear evidence.","El director justificó la línea de acción con pruebas claras."],
 ["to clarify a misunderstanding","aclarar un malentendido","They clarified the misunderstanding before it escalated.","Aclararon el malentendido antes de que empeorara."],
 ["to manage competing priorities","gestionar prioridades contrapuestas","The role requires the ability to manage competing priorities.","El puesto requiere la capacidad de gestionar prioridades contrapuestas."],
-["to maintain a constructive dialogue","mantener un diálogo constructivo","The role requires the ability to manage competing priorities.","Ambas partes acordaron mantener un diálogo constructivo."],
+["to maintain a constructive dialogue","mantener un diálogo constructivo","Both sides agreed to maintain a constructive dialogue.","Ambas partes acordaron mantener un diálogo constructivo."],
 ["to evaluate the implications","evaluar las implicaciones","We must evaluate the implications before implementing the change.","Debemos evaluar las implicaciones antes de implementar el cambio."],
 ["to present a balanced case","presentar un argumento equilibrado","The report presents a balanced case for reform.","El informe presenta un argumento equilibrado a favor de la reforma."],
 ["to revise a recommendation","revisar una recomendación","The panel revised its recommendation after the consultation.","El comité revisó su recomendación después de la consulta."],
 ["to reach a shared understanding","llegar a un entendimiento común","The meeting helped the groups reach a shared understanding.","La reunión ayudó a los grupos a llegar a un entendimiento común."],
 ["to communicate with precision","comunicarse con precisión","Professionals need to communicate with precision under pressure.","Los profesionales necesitan comunicarse con precisión bajo presión."],
 ["to reflect on the outcome","reflexionar sobre el resultado","The team will reflect on the outcome and identify lessons.","El equipo reflexionará sobre el resultado e identificará aprendizajes."],
-["to take an evidence-based approach","adoptar un enfoque basado en pruebas","The panel revised its recommendation after the consultation.","La organización adopta un enfoque basado en pruebas para sus políticas."]
+["to take an evidence-based approach","adoptar un enfoque basado en pruebas","The organization takes an evidence-based approach to policy.","La organización adopta un enfoque basado en pruebas para sus políticas."]
 ];
 const lessonDefs=[
-["Síntesis y perspectivas","Integra posturas distintas, defiende una posición y negocia sin perder matices.","Synthesize different viewpoints, defend a position, respond to a challenge y negotiate a compromise permiten construir una síntesis y sostenerla ante otras perspectivas.",[0,1,2,3],"The presenter synthesized different viewpoints before making a recommendation."],
-["Adaptación y anticipación","Resume asuntos complejos y adapta el mensaje al público y a la incertidumbre.","Summarize a complex issue, adapt one's message, anticipate objections y acknowledge uncertainty permiten responder a audiencias y situaciones distintas.",[4,5,6,7],"A strong proposal anticipates likely objections."],
+["Síntesis y perspectivas","Integra posturas distintas, defiende una posición y negocia sin perder matices.","Synthesize different viewpoints, defend a position, respond to a challenge y negotiate a compromise permiten construir una síntesis y sostenerla ante otras perspectivas.",[0,1,2,3],"You should be able to defend your position with evidence."],
+["Adaptación y anticipación","Resume asuntos complejos y adapta el mensaje al público y a la incertidumbre.","Summarize a complex issue, adapt one's message, anticipate objections y acknowledge uncertainty permiten responder a audiencias y situaciones distintas.",[4,5,6,7],"Effective communicators adapt their message to the audience."],
 ["Decisiones y recomendaciones","Justifica decisiones y comunica recomendaciones fundamentadas.","Informed decision, communicate a recommendation y justify a course of action separan decisión, comunicación y fundamento.",[8,9,10,11],"The committee needs time to reach an informed decision."],
-["Colaboración y gestión","Resuelve malentendidos y gestiona prioridades sin romper el diálogo.","Clarify a misunderstanding, manage competing priorities y maintain constructive dialogue apoyan colaboración profesional.",[12,13,14,15],"Both sides agreed to maintain a constructive dialogue."],
-["Comunicación integrada y reflexión","Combina evaluación, precisión, acuerdos compartidos y aprendizaje posterior.","Present a balanced case, revise a recommendation, reach a shared understanding, communicate with precision, reflect on the outcome y take an evidence-based approach completan un ciclo comunicativo.",[16,17,18,19,20,21],"The organization takes an evidence-based approach to policy."]
+["Colaboración y gestión","Resuelve malentendidos y gestiona prioridades sin romper el diálogo.","Clarify a misunderstanding, manage competing priorities y maintain constructive dialogue apoyan colaboración profesional.",[12,13,14,15],"The role requires the ability to manage competing priorities."],
+["Comunicación integrada y reflexión","Combina evaluación, precisión, acuerdos compartidos y aprendizaje posterior.","Present a balanced case, revise a recommendation, reach a shared understanding, communicate with precision, reflect on the outcome y take an evidence-based approach completan un ciclo comunicativo.",[16,17,18,19,20,21],"The panel revised its recommendation after the consultation."]
 ];
 const vocab=rows.map((r,i)=>({id:"en_b2_u59_v"+String(i+1).padStart(2,"0"),target:r[0],esp:r[1],ex:r[2],exEsp:r[3],verification:{status:"not_checked",sources:[]}}));
 const mc=(w,opts)=>{const correct=opts[0];const match=String(w.id).match(/v(\d+)$/);const offset=match?Number(match[1])%opts.length:1;const options=opts.slice(offset).concat(opts.slice(0,offset));return {vocabId:w.id,type:"mc",prompt:"¿Qué significa «"+w.target+"»?",options,answer:options.indexOf(correct),explanation:"Elige la interpretación que corresponde al objetivo comunicativo."};};

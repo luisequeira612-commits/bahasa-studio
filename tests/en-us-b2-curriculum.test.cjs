@@ -88,7 +88,7 @@ test('B2 vocabulary is unique, complete, and absent from all six review units', 
       unit.id + ' must teach each new vocabulary target in exactly one lesson');
     assert.deepEqual(
       [...lessonVocabularyIds].sort(),
-      unit.vocab.map((word) => word.id).sort(),
+      Array.from(unit.vocab, (word) => word.id).sort(),
       unit.id + ' lesson vocabulary coverage must match its unit vocabulary',
     );
   }

@@ -1,3 +1,9 @@
+## 2026-11-27 — Alineación de caché en pruebas A2
+- La regresión #45964822252 pasó Service Worker install y export de manifiestos, pero falló un test A2 U28-U30 que aún esperaba `v3.8.166`. Se comprobó que ocho tests A2 adicionales conservaban la versión antigua y se actualizaron a `v3.8.167`; A1/B1/B2 y E2E ya estaban alineados.
+- Los nuevos tests deben volver a ejecutarse; el fallo no es del código de caché, sino de expectativas históricas de tests.
+
+Fuente: Actions #45964822252 y tests `pt-br-curriculum-a2-u07-u09` a `a2-u28-u30`; 27 nov 2026.
+
 ## 2026-11-27 — Corrección de síntesis por lotes: usar Python API de Piper
 - El primer run batch #45964798118 falló porque Piper 1.8 no creó los WAV cuando se invocó `--json-input`; la CLI actual de Piper 1.x ya no ofrece compatibilidad fiable con ese modo (issue upstream #28). `ffmpeg` detectó el primer WAV ausente y detuvo el proceso, sin publicar clips.
 - Se reemplazó el modo JSONL por la API oficial Python: `PiperVoice.load(model)` una vez por idioma y `voice.synthesize_wav(text, wav_file)` para cada salida. Esto mantiene el modelo cargado en memoria y evita el arranque CLI por frase.

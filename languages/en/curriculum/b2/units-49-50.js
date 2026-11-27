@@ -25,10 +25,10 @@ const rows=[
 ["a misleading impression","una impresión engañosa","The headline creates a misleading impression of the findings.","El titular crea una impresión engañosa de los hallazgos."]
 ];
 const lessonDefs=[
-["Distinciones semánticas","Evita tratar palabras relacionadas como equivalentes exactos.","Distinguish between, synonymous with e interchangeably ayudan a explicar diferencias de significado.",[0,1,2,3],"It is important to distinguish between correlation and causation."],
-["Patrones y susceptibilidad","Expresa tendencias, vulnerabilidad y condiciones inherentes.","Prone to y susceptible to describen tendencias; inherent in indica una característica propia.",[4,5,6,7],"The system is prone to errors under heavy load."],
-["Evidencia y compatibilidad","Relaciona observaciones con explicaciones sin exagerar la certeza.","Indicative of, attributable to y consistent with no significan que una causa esté demostrada.",[8,9,10,11],"The pattern is consistent with previous findings."],
-["Grado y evaluación","Compara resultados con expectativas y establece diferencias claras.","Amount to, fall short of y exceed expectations expresan cantidad y evaluación.",[12,13,14,15],"The new service exceeded expectations."],
+["Distinciones semánticas","Evita tratar palabras relacionadas como equivalentes exactos.","Differentiate between, be synonymous with y use something interchangeably ayudan a explicar diferencias de significado.",[0,1,2,3],"It is important to differentiate between correlation and causation."],
+["Condiciones y relaciones","Expresa susceptibilidad, condiciones y relaciones inherentes.","Be susceptible to, be subject to, be inherent in y be attributable to describen condiciones y relaciones; no son intercambiables.",[4,5,6,7],"Older devices are more susceptible to failure."],
+["Evidencia y equivalencia","Relaciona observaciones con explicaciones sin exagerar la certeza.","Indicative of, match, incompatible with y equivalent to expresan relaciones distintas; ninguna demuestra por sí sola una causa.",[8,9,10,11],"The statement is incompatible with the available evidence."],
+["Grado y evaluación","Compara resultados con expectativas y establece diferencias claras.","Amount to, fail to meet y surpass expectations expresan cantidad y evaluación; make a distinction separa categorías o casos.",[12,13,14,15],"The new service surpassed expectations."],
 ["Precisión y ambigüedad","Ajusta el nivel de detalle y evita interpretaciones engañosas.","To be precise delimita; roughly speaking resume; subtle difference y misleading impression advierten sobre matices.",[16,17,18,19,20,21],"The headline creates a misleading impression of the findings."]
 ];
 const vocab=rows.map((r,i)=>({id:"en_b2_u49_v"+String(i+1).padStart(2,"0"),target:r[0],esp:r[1],ex:r[2],exEsp:r[3],verification:{status:"not_checked",sources:[]}}));

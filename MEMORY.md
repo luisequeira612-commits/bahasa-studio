@@ -1,3 +1,10 @@
+## 2026-11-27 — Estado visible y prueba de voz PT-BR
+- `AudioEngine.updateVoiceStatus()` ahora reconoce una biblioteca Piper real cuando el manifiesto cargado contiene entradas del idioma activo, incluso si `voiceStatus` del registro todavía es `candidate`; al terminar `loadAudioManifest()` se actualiza el estado visible.
+- Se añadió `testPhrase: 'olá'` al curso PT-BR para que el botón de prueba pueda reproducir una frase portuguesa. Tests nuevos comprueban el estado de Piper y que `testVoice()` use el clip del manifiesto.
+- Cambios en commits `de6ea73`, `82dfb47` y `3fb0b40`; CI pendiente. La exportación PT-BR sigue en investigación; no declarar lista la prueba en la app hasta confirmar los clips y el manifiesto publicados.
+
+Fuente: `audio-engine.js`, `language-manager.js`, `tests/audio-engine.test.cjs`; 27 nov 2026.
+
 ## 2026-11-27 — Diagnóstico estricto del currículo PT-BR en exportación de audio
 - La generación real del run #45962301907 creó 127 MP3 nuevos, reutilizó 2.265 y exportó 2.392 textos, todos `id`; el registro indicó `pt-BR: 0`. El tamaño final de esa ejecución fue 15,99 MiB de MP3 y 27,49 MiB para `audio/`; validación de límites success. El commit automático falló por push no-fast-forward porque el workflow antiguo partió de un SHA anterior al avance de la rama.
 - La prueba `all-language export` del run #45962348707 falló específicamente porque no encontró entradas `pt-BR`. Se endureció `loadLocalizedLevels()` para no silenciar índices/manifiestos/bloques ausentes y se añadieron mensajes de diagnóstico de registro y unidades por nivel. Esto hará visible la causa exacta en el siguiente CI/generador.

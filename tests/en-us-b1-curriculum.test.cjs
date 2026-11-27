@@ -22,3 +22,29 @@ test('B1 U40 is Review IV with zero new vocabulary and five review lessons',asyn
 
 test('B1 U50 is Review V with zero new vocabulary',async()=>{const {units}=await loader().loadUnits('en','B1',Array.from({length:52},(_,i)=>i+1));const u=units.find(x=>x.unitNumber===50);assert.equal(u.vocab.length,0);assert.equal(u.lessons.length,5);for(const lesson of u.lessons){assert.equal(lesson.vocabIds.length,0);assert.ok(lesson.reviewVocabIds.length>=4);assert.equal(lesson.exercises.length,2);}});
 test('B1 U52 is the final check with zero new vocabulary',async()=>{const {units,totalUnits}=await loader().loadUnits('en','B1',Array.from({length:52},(_,i)=>i+1));const u=units.find(x=>x.unitNumber===52);assert.equal(totalUnits,52);assert.equal(u.vocab.length,0);assert.equal(u.lessons.length,5);for(const lesson of u.lessons){assert.equal(lesson.vocabIds.length,0);assert.ok(lesson.reviewVocabIds.length>=4);assert.equal(lesson.exercises.length,2);}});
+
+test('B1 U1-U4 vocabulary examples match their English and Spanish meanings', async () => {
+  const { units } = await loader().loadUnits('en', 'B1', Array.from({ length: 52 }, (_, i) => i + 1));
+  const expected = [
+    [1, 'lifelong', 'He has had a lifelong interest in music.', 'Él ha tenido un interés por la música durante toda su vida.'],
+    [1, 'personal growth', 'Travel has contributed to my personal growth.', 'Viajar ha contribuido a mi crecimiento personal.'],
+    [2, 'guided tour', 'Have you ever taken a guided tour?', '¿Alguna vez has hecho una visita guiada?'],
+    [2, 'connecting flight', 'She has missed her connecting flight twice.', 'Ella ha perdido su vuelo de conexión dos veces.'],
+    [2, 'delayed baggage', 'They have reported their delayed baggage.', 'Han reportado su equipaje retrasado.'],
+    [3, 'concentrate', "I've been trying to concentrate all morning.", 'He estado intentando concentrarme toda la mañana.'],
+    [3, 'productivity', 'Our productivity has been increasing gradually.', 'Nuestra productividad ha ido aumentando gradualmente.'],
+    [3, 'take regular breaks', 'We have been taking regular breaks this week.', 'Hemos estado haciendo pausas regulares esta semana.'],
+    [3, 'catch up on', "I've been catching up on my emails.", 'He estado poniéndome al día con mis correos.'],
+    [4, 'investigation', 'The investigation had begun before dawn.', 'La investigación había comenzado antes del amanecer.'],
+    [4, 'by then', 'By then, the rain had stopped.', 'Para entonces, la lluvia ya había parado.'],
+    [4, 'turn up', 'The missing document had turned up in a drawer.', 'El documento perdido había aparecido en un cajón.'],
+    [4, 'timeline', 'They had reviewed the timeline before the interview.', 'Habían revisado la cronología antes de la entrevista.'],
+  ];
+  for (const [unitNumber, target, example, translation] of expected) {
+    const unit = units.find((item) => item.unitNumber === unitNumber);
+    const word = unit?.vocab?.find((item) => item.target === target);
+    assert.ok(word, 'expected B1 vocabulary target must exist: U' + unitNumber + ' ' + target);
+    assert.equal(word.ex, example, 'English example must match U' + unitNumber + ' ' + target);
+    assert.equal(word.exEsp, translation, 'Spanish example must match U' + unitNumber + ' ' + target);
+  }
+});

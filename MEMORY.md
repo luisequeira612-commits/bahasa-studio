@@ -1,3 +1,9 @@
+## 2026-11-27 — Cobertura de exportación PT-BR A1–B2 como gate
+- Se amplió el test `--all-languages` para exigir textos PT-BR en cada nivel A1, A2, B1 y B2, y la presencia de la palabra inicial `olá`. Así se evita que una futura ejecución declare éxito exportando solo una parte del curso.
+- Prueba añadida en commit `d6ce54b7493b0d96d8cee65a70eede4f9fbfb16f`; pendiente CI.
+
+Fuente: `tests/audio-manifest.test.mjs`, `language-manager.js` y manifiestos PT-BR; 27 nov 2026.
+
 ## 2026-11-27 — Causa raíz: bloques curriculares localizados indexados por ID
 - El diagnóstico del run #45962624924 confirmó que el registro sí detectaba `pt-BR[A1,A2,B1,B2]` y abría sus índices; el fallo era la lectura de bloques. `GUARDI_CURRICULUM_BLOCKS[idioma][nivel]` es un mapa por `block.id` (p. ej. `01-06`), pero el exportador buscaba `.units` directamente en el mapa. Corregido a `...[levelId]?.[block.id]`.
 - Este era el motivo real de `pt-BR: 0`; no era un problema de voz, de modelo ni de espacio. El cambio está en commit `19e3b46b026dac4b70d3fcabe785aa7f00a55cc9` y debe hacer que A1/A2/B1/B2 portugués se exporten con sus bloques completos.

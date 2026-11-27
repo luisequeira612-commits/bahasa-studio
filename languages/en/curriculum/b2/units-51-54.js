@@ -83,11 +83,11 @@ lessons:[
 ["to put an agreement in writing","poner un acuerdo por escrito","We should put the agreement in writing.","Deberíamos poner el acuerdo por escrito."],
 ["to honor the terms","cumplir las condiciones","Both parties must honor the terms of the contract.","Ambas partes deben cumplir las condiciones del contrato."]],
 lessons:[
-["Compromiso y concesiones","Busca acuerdos que reconozcan intereses de ambas partes.","Reach a compromise, make a concession y meet halfway expresan grados de flexibilidad.",[0,1,2,3],"Both sides were willing to reach a compromise."],
+["Compromiso y concesiones","Busca acuerdos que reconozcan intereses de ambas partes.","Reach a compromise, make a concession, put forward a counteroffer y negotiate terms describen cómo se construye una propuesta.",[0,1,2,3],"Both sides were willing to reach a compromise."],
 ["Ofertas y condiciones","Formula propuestas condicionales y expresa disposición.","Willing to, prepared to y subject to agreement delimitan qué se ofrece y bajo qué condiciones.",[4,5,6,7],"We are willing to extend the trial period."],
 ["Límites y principios","Mantén requisitos esenciales y distingue acuerdo provisional de final.","Hold firm on y agree in principle no significan que todos los términos estén cerrados.",[8,9,10,11],"The parties agreed in principle but need to review the details."],
-["Propuestas y alternativas","Presenta ofertas, considera opciones y reconoce cuándo pueden retirarse.","Make a proposal, take into consideration y withdraw an offer describen fases distintas.",[12,13,14,15],"We will take your offer into consideration."],
-["Formalizar acuerdos","Aclara expectativas y documenta compromisos verificables.","Come to an arrangement, subject to approval y put in writing evitan ambigüedades.",[16,17,18,19,20,21],"We should put the agreement in writing."]]},
+["Propuestas y alternativas","Presenta ofertas, considera opciones y reconoce cuándo pueden retirarse.","Non-negotiable, leave room for, make a proposal y take an offer into consideration delimitan opciones y condiciones.",[12,13,14,15],"We will take your offer into consideration."],
+["Formalizar acuerdos","Aclara expectativas y documenta compromisos verificables.","Withdraw an offer, come to an arrangement, be subject to approval, clarify expectations, put an agreement in writing y honor the terms formalizan compromisos.",[16,17,18,19,20,21],"We should put the agreement in writing."]]},
 {n:54,title:"Meetings and presentations",desc:"Gestiona reuniones y presentaciones, organiza ideas, responde preguntas y desarrolla argumentos con claridad.",grammar:"Signposting, agenda management, handling questions, turn-taking and presentation transitions.",trap:"I'll move on to... signals a transition; to sum up introduces a summary. Do not confuse taking questions with answering every question immediately.",rows:[
 ["to chair a meeting","presidir una reunión","Maria will chair the meeting this afternoon.","María presidirá la reunión esta tarde."],
 ["to circulate an agenda","distribuir una agenda","Please circulate the agenda before the meeting.","Distribuye la agenda antes de la reunión."],
@@ -112,11 +112,11 @@ lessons:[
 ["to follow the thread","seguir el hilo","A clear outline helps the audience follow the thread.","Un esquema claro ayuda al público a seguir el hilo."],
 ["to make the most of","aprovechar al máximo","Let's make the most of the time available.","Aprovechemos al máximo el tiempo disponible."]],
 lessons:[
-["Organizar reuniones","Gestiona agenda, roles y registro de acuerdos.","Chair a meeting, circulate an agenda, table a proposal y take the minutes describen funciones concretas.",[0,1,2,3],"Please circulate the agenda before the meeting."],
-["Transiciones en presentaciones","Guía a la audiencia entre secciones y procesos.","Move on to, draw attention to y walk through organizan la información.",[4,5,6,7],"I'll move on to the next section of the presentation."],
+["Organizar reuniones","Gestiona agenda, roles y registro de acuerdos.","Chair a meeting, circulate an agenda, put a proposal on the agenda y take the minutes describen funciones concretas.",[0,1,2,3],"Please circulate the agenda before the meeting."],
+["Transiciones en presentaciones","Guía a la audiencia entre secciones y procesos.","Transition to, draw attention to y walk someone through organizan la información.",[4,5,6,7],"I'll transition to the next section of the presentation."],
 ["Preguntas y desarrollo","Responde preguntas y amplía explicaciones con claridad.","Address a question, take questions y elaborate on ayudan a gestionar interacción.",[8,9,10,11],"Could you elaborate on the final recommendation?"],
 ["Decisiones y agenda","Plantea puntos, aclara asuntos y controla el tiempo.","Reach/defer a decision, raise a point y keep to the schedule organizan la reunión.",[12,13,14,15],"We need to reach a decision before the deadline."],
-["Cierre y síntesis","Resume ideas y concluye sin perder el hilo argumental.","Wrap up y sum up marcan cierre; follow the thread y make the most of orientan la participación.",[16,17,18,19,20,21],"To sum up, the project is feasible with some adjustments."]]}
+["Cierre y síntesis","Resume ideas y concluye sin perder el hilo argumental.","Bring the presentation to a close y sum up marcan el cierre; follow the thread y make the most of orientan la participación.",[16,17,18,19,20,21],"To sum up, the project is feasible with some adjustments."]]}
 ];
 function build(d){
  const vocab=d.rows.map((r,i)=>({id:"en_b2_u"+d.n+"_v"+String(i+1).padStart(2,"0"),target:r[0],esp:r[1],ex:r[2],exEsp:r[3],verification:{status:"not_checked",sources:[]}}));

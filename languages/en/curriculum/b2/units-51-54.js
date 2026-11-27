@@ -108,7 +108,7 @@ lessons:[
 ["to keep to the schedule","ceñirse al horario","We need to keep to the schedule today.","Hoy tenemos que ceñirnos al horario."],
 ["to run over time","pasarse del tiempo previsto","The presentation ran over time by ten minutes.","La presentación se pasó diez minutos del tiempo previsto."],
 ["to bring the presentation to a close","dar por concluida la presentación","To bring the presentation to a close, I'd like to highlight three key points.","Para dar por concluida la presentación, me gustaría destacar tres puntos clave."],
-["to sum up","resumir","To sum up, the project is feasible with some adjustments.","En resumen, el proyecto es viable con algunos ajustes."],
+["to sum up","en resumen / para resumir","To sum up, the project is feasible with some adjustments.","En resumen, el proyecto es viable con algunos ajustes."],
 ["to follow the thread","seguir el hilo","A clear outline helps the audience follow the thread.","Un esquema claro ayuda al público a seguir el hilo."],
 ["to make the most of","aprovechar al máximo","Let's make the most of the time available.","Aprovechemos al máximo el tiempo disponible."]],
 lessons:[

@@ -187,3 +187,19 @@ test('B1 U37-U38 Spanish translations preserve causative and wish meanings', asy
     assert.equal(word.exEsp, translation);
   }
 });
+
+test('B1 U6, U35 and U46 use American English vocabulary', async () => {
+  const { units } = await loader().loadUnits('en', 'B1', Array.from({ length: 52 }, (_, i) => i + 1));
+  const expected = [
+    [6, 'back then', 'Back then, we did not have cell phones.', 'En aquel entonces, no teníamos celulares.'],
+    [35, 'be sold in', 'These parts are sold in specialty stores.', 'Estas piezas se venden en tiendas especializadas.'],
+    [46, 'each staff member', 'Each staff member received a copy of the policy.', 'Cada miembro del personal recibió una copia de la política.'],
+  ];
+  for (const [unitNumber, target, example, translation] of expected) {
+    const unit = units.find((item) => item.unitNumber === unitNumber);
+    const word = unit?.vocab?.find((item) => item.target === target);
+    assert.ok(word, 'expected B1 vocabulary target must exist: U' + unitNumber + ' ' + target);
+    assert.equal(word.ex, example);
+    assert.equal(word.exEsp, translation);
+  }
+});

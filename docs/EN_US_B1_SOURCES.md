@@ -88,3 +88,13 @@
 - Segundo pase CI: persistía una única coincidencia exacta con A1/A2 (`in the meantime`); se sustituyó por `in the interim`. Repetir regresión completa sobre el head actualizado.
 
 - El pase de deduplicación contra A1/A2 ya es verde (88 targets únicos sin solapamiento exacto). La siguiente regresión encontró solo una expectativa errónea en el test: `loadUnits` devuelve `totalUnits: 52` (tamaño completo del nivel), no 4 (unidades authored). Se corrigió la aserción; repetir CI.
+
+
+## Bloque U5–U8 — 27 de noviembre de 2026
+- U5: narrative tenses y recursos narrativos (historias, flashbacks, perspectiva, suspense y desenlace).
+- U6: used to / would para hábitos y estados de la infancia.
+- U7: be used to / get used to para adaptación, costumbres y nuevas rutinas.
+- U8: past perfect vs past simple para estudios, trabajo y secuencia temporal.
+- 4 unidades, 20 lecciones, 80 ejercicios y 88 entradas nuevas; acumulado B1 U1–U8: 8 unidades, 40 lecciones, 160 ejercicios y 176 entradas.
+- Se amplían manifiesto y tests para comprobar estructura, referencias y deduplicación exacta de todo B1 U1–U8 contra A1/A2. CI pendiente en este momento.
+- Entradas nuevas `not_checked`; no se afirma cotejo individual CEFR-J, validación nativa ni certificación MCER. Sin cambios de esquema, dependencias, almacenamiento ni disponibilidad.

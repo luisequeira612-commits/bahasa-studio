@@ -772,6 +772,6 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Rama feat/en-us-a2-u23-u26, apilada sobre PR #904.
 - U23: peticiones/ofrecimientos corteses; U24: primer condicional; U25: recipientes y medidas con contables/incontables; U26: cuantificadores y proporciones.
 - Bloque de 4 unidades, 20 lecciones, 88 entradas previstas y 80 ejercicios. Total proyectado A2 U1–U26: 528 entradas nuevas; U10 y U20 siguen como repasos sin vocabulario.
-- Manifiesto y test de currículo ampliados a U1–U26. CI, deduplicación y referencias de ejercicios pendientes al registrar esta nota.
+- Manifiesto y test de currículo ampliados a U1–U26. Auditoría estática: 88 targets únicos sin coincidencias exactas con los 440 targets A2 U1–U22. CI y comparación completa contra A1, así como referencias de ejercicios, pendientes al registrar esta nota.
 - Vocabulario not_checked; cotejo individual CEFR-J pendiente. Sin cambios a IndexedDB v1, backup JSON v3, dependencias, POS/audio, PT-BR ni otros idiomas. No publicar ni fusionar sin aprobación expresa.
 - Fuente: rama feat/en-us-a2-u23-u26, currículo, prueba y documentación; 26 nov 2026.

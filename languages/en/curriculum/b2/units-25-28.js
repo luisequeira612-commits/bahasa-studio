@@ -39,7 +39,7 @@ lessons:[
 ["under no circumstances should","bajo ninguna circunstancia debería","Under no circumstances should personal data be shared.","Bajo ninguna circunstancia deberían compartirse datos personales."],
 ["at no point did","en ningún momento","At no point did the witness change her account.","En ningún momento la testigo cambió su versión."],
 ["not until later did","no fue hasta más tarde que","Not until later did we understand the impact.","No fue hasta más tarde que entendimos el impacto."],
-["only after did","solo después fue que","Only after the review did the errors become clear.","Solo después de la revisión quedaron claros los errores."],
+["only after did","solo después de que...","Only after the review did the errors become clear.","Solo después de la revisión quedaron claros los errores."],
 ["little did I know","ni me imaginaba que","Little did I know that the decision would change everything.","Poco sabía yo que la decisión lo cambiaría todo."],
 ["not only does","no solo","Not only does the plan save time, but it also reduces costs.","El plan no solo ahorra tiempo, sino que también reduce los costos."],
 ["only when can","solo cuando se puede","Only when the data is complete can we draw a conclusion.","Solo cuando los datos estén completos podremos sacar una conclusión."],

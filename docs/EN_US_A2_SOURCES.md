@@ -140,3 +140,5 @@ Estado: primer bloque U1–U6 en desarrollo; el nivel no está publicado. Fecha:
 - Cuatro unidades, 20 lecciones, 80 ejercicios y 88 entradas nuevas. Total A2 U1–U38: 770 entradas; U10/U20/U30 son repasos sin vocabulario.
 - Auditoría estática: 770 targets únicos en A2; CI verifica además ausencia de coincidencias con A1 y referencias de ejercicios.
 - Ejemplos originales; entradas `not_checked`, cotejo individual CEFR-J y validación nativa pendientes. Se conserva el esquema runtime, `mc`/`order`, `available:false`, IndexedDB v1 y backup JSON v3.
+
+- Corrección tras CI U35–U38: cuatro términos (`once`, `twice`, `competition`, `today`) coincidían con A1; se sustituyeron por `on one occasion`, `on two occasions`, `contest` y `so far today`, ajustando ejemplos y frases modelo.

@@ -28,11 +28,11 @@ def export_texts() -> list[dict]:
     ], cwd=ROOT, check=True)
     return json.loads(output.read_text(encoding="utf-8"))
 
-def download_piper_model(model_path: str, cache_dir: Path) -> Path:
+def download_piper_model(model_id: str, model_path: str, cache_dir: Path) -> Path:
     base = f"https://huggingface.co/rhasspy/piper-voices/resolve/main/{model_path}"
     voice_dir = cache_dir / model_path
     voice_dir.mkdir(parents=True, exist_ok=True)
-    stem = Path(model_path).name
+    stem = model_id
     onnx = voice_dir / f"{stem}.onnx"
     meta = voice_dir / f"{stem}.onnx.json"
     if not onnx.exists():
@@ -78,7 +78,7 @@ def main() -> None:
         cfg = config[code]
         if cfg["engine"] != "piper":
             raise RuntimeError(f"Motor no permitido para producción: {code}")
-        models[code] = download_piper_model(cfg["model_path"], cache)
+        models[code] = download_piper_model(cfg["model"], cfg["model_path"], cache)
 
     generated = reused = 0
     entries = []

@@ -137,3 +137,19 @@ test('B1 U21-U32 examples use precise wording and avoid awkward phrasing', async
     assert.equal(word.exEsp, translation, 'Spanish example must match U' + unitNumber + ' ' + target);
   }
 });
+
+test('B1 U46-U47 vocabulary glosses and examples use precise Spanish', async () => {
+  const { units } = await loader().loadUnits('en', 'B1', Array.from({ length: 52 }, (_, i) => i + 1));
+  const expected = [
+    [46, 'an item of equipment', 'una pieza de equipo', 'Each item of equipment must be checked before use.', 'Cada pieza de equipo debe revisarse antes de usarse.'],
+    [47, 'hopeless without support', 'sin posibilidades de éxito sin apoyo', 'The project would be hopeless without support from local residents.', 'El proyecto no tendría posibilidades de éxito sin el apoyo de los residentes locales.'],
+  ];
+  for (const [unitNumber, target, gloss, example, translation] of expected) {
+    const unit = units.find((item) => item.unitNumber === unitNumber);
+    const word = unit?.vocab?.find((item) => item.target === target);
+    assert.ok(word, 'expected B1 vocabulary target must exist: U' + unitNumber + ' ' + target);
+    assert.equal(word.esp, gloss);
+    assert.equal(word.ex, example);
+    assert.equal(word.exEsp, translation);
+  }
+});

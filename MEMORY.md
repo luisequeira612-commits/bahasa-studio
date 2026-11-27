@@ -1,3 +1,10 @@
+## 2026-11-27 — Ejecución rápida aislada de la generación Piper
+- El workflow antiguo #45962876912 llevaba más de 15 min en la síntesis secuencial con Piper 1.3 y sin progreso visible. No hay acción de cancelación disponible desde el conector GitHub.
+- Para no bloquear el lote correcto, el workflow nuevo usa grupo de concurrencia `guardi-piper-audio-v2`, por lo que puede ejecutarse en paralelo al antiguo. El push ahora maneja conflictos de rebase: en caso de conflicto, rebase aborta, el runner vuelve a basar su commit en la rama remota y vuelve a preparar únicamente `audio/`, priorizando el lote generado con el código actual.
+- Commit `3971fbf699d6db58d9037e7a5f5de240bdd60f28`; ejecución nueva pendiente. El workflow viejo, si termina después de publicar el lote correcto, debe fallar al rebasear archivos binarios/manifest coincidentes y no sobrescribir la biblioteca nueva.
+
+Fuente: Actions #45962876912/#45963841587 y `.github/workflows/audio.yml`; 27 nov 2026.
+
 ## 2026-11-27 — Actualización completa de expectativas de caché PT-BR
 - La regresión del head `0b3fdbb` seguía fallando en tests de B1/B2 que también fijaban el cache name `v3.8.166` (p. ej. B1 U28-U30 y B2 U1-U3/U31-U33). Se actualizaron todos los archivos PT-BR que contenían esa expectativa; los últimos commits de tests incluyen B1 U1-U33 y B2 U1-U40.
 - El fallo E2E de ese head también ocurrió antes de que existieran los inventarios PT-BR generados (`audio/pt-BR/manifest.json` y `metadata.json`); debe volver a ejecutarse tras la publicación del audio correcto.

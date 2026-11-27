@@ -96,7 +96,7 @@ const data=[
 ["in accordance with","de conformidad con","The process must be carried out in accordance with the policy.","El proceso debe llevarse a cabo de conformidad con la política."],
 ["to comply with","cumplir con","Payment is due within 30 days unless otherwise stated.","Todos los proveedores deben cumplir con las normas de seguridad."]
 ],lessons:[
-["Obligación y requisito externo","Expresa normas y obligaciones impuestas por una autoridad o situación.","Must suele expresar obligación fuerte del hablante o norma; have to y be required to presentan necesidad externa.",[0,1,2,3],"The company is obliged to report the incident."],
+["Obligación y requisito externo","Expresa normas y obligaciones impuestas por una autoridad o situación.","Must suele expresar obligación fuerte del hablante o norma; have to y be required to presentan necesidad externa.",[0,1,2,3],"Applicants are required to provide two references."],
 ["Prohibición y ausencia de obligación","Separa claramente lo prohibido de lo opcional.","Mustn't expresa prohibición; don't have to y needn't expresan ausencia de obligación.",[4,5,6,7],"You mustn't disclose confidential information."],
 ["Expectativa, permiso y derecho","Describe lo que se espera, permite o reconoce como derecho.","Be supposed to y be expected to son expectativas; be allowed/permitted/entitled to expresan permiso o derecho.",[8,9,10,11],"Staff are expected to arrive on time."],
 ["Recomendación y necesidad","Matiza recomendaciones y requisitos imprescindibles.","It is advisable/essential/necessary to permite graduar la fuerza de una recomendación.",[12,13,14,15],"You are entitled to a full refund."],
@@ -104,7 +104,7 @@ const data=[
 ],bank:["You mustn't disclose confidential information.","You don't have to print the document.","You needn't wait for me.","Customers are under no obligation to renew.","Staff are expected to arrive on time."]},
 {n:14,title:"Probabilidad, certeza y expectativa",desc:"Gradúa afirmaciones, interpreta probabilidades y comunica expectativas sin confundir evidencia, predicción y certeza.",grammar:"Adjetivos y adverbios de probabilidad; likely, unlikely, bound, certain, probable; probability phrases y patrones con infinitivo o that-clause.",trap:["Likely y probably no siguen el mismo patrón","It is likely that prices will rise / Prices are likely to rise. Probably suele modificar la cláusula: Prices will probably rise."],rows:[
 ["likely to","probable que","Prices are likely to rise next quarter.","Es probable que la nueva política reduzca los costos."],
-["unlikely to","poco probable que","Prices are likely to rise next quarter.","Es poco probable que el equipo termine hoy."],
+["unlikely to","poco probable que","The team is unlikely to finish today.","Es poco probable que el equipo termine hoy."],
 ["highly likely","muy probable","A delay is highly likely given the weather.","Es muy probable que haya un retraso dadas las condiciones meteorológicas."],
 ["almost certain to","casi seguro que","The changes are almost certain to affect smaller firms.","Es casi seguro que los cambios afectarán a las empresas pequeñas."],
 ["bound to","seguro que / destinado a","Someone is bound to notice the difference.","Alguien seguramente notará la diferencia."],
@@ -115,7 +115,7 @@ const data=[
 ["more than likely","muy probablemente","She will more than likely accept the invitation.","Lo más probable es que acepte la invitación."],
 ["by all accounts","según todos los indicios","By all accounts, the event was a success.","Según todos los indicios, el evento fue un éxito."],
 ["to be expected to","esperarse que","The figures are expected to improve next year.","Se espera que las cifras mejoren el próximo año."],
-["to be forecast to","preverse que","Se prevé que las ventas aumenten un cinco por ciento.","Se prevé que las ventas aumenten un cinco por ciento."],
+["to be forecast to","preverse que","The population is projected to grow steadily.","Se prevé que las ventas aumenten un cinco por ciento."],
 ["to be projected to","proyectarse que","The population is projected to grow steadily.","Se proyecta que la población crezca de forma constante."],
 ["to stand a good chance of","tener buenas posibilidades de","The proposal stands a good chance of being approved.","La propuesta tiene buenas posibilidades de ser aprobada."],
 ["it is unlikely that","ser poco probable que","It is unlikely that the road will reopen today.","Es poco probable que la carretera vuelva a abrir hoy."],

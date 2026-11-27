@@ -1,0 +1,20 @@
+{
+  "id": {
+    "locale": "id-ID",
+    "name": "Indonesio",
+    "engine": "piper",
+    "model": "id_ID-news_tts-medium",
+    "repository": "rhasspy/piper-voices",
+    "model_path": "id/id_ID/news_tts/medium",
+    "audio_path": "./audio/id/"
+  },
+  "pt-BR": {
+    "locale": "pt-BR",
+    "name": "Portugués",
+    "engine": "piper",
+    "model": "pt_BR-faber-medium",
+    "repository": "rhasspy/piper-voices",
+    "model_path": "pt/pt_BR/faber/medium",
+    "audio_path": "./audio/pt-BR/"
+  }
+}

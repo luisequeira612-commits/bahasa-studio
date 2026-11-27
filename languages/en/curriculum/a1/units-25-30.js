@@ -16,7 +16,7 @@ const refs=[
 {id:'en_a1_u7_v01',target:'this',esp:'este / esta / esto'},
 {id:'en_a1_u7_v02',target:'that',esp:'ese / esa / aquel / aquella'},
 {id:'en_a1_u7_v03',target:'these',esp:'estos / estas'},
-{id:'en_a1_u7_v04',target:'those',esp:'esos / esas'},
+{id:'en_a1_u7_v04',target:'those',esp:'esos / esas / aquellos / aquellas'},
 {id:'en_a1_u8_v02',target:'red',esp:'rojo / roja'},
 {id:'en_a1_u8_v13',target:'big',esp:'grande'},
 {id:'en_a1_u9_v01',target:'my',esp:'mi / mis'},

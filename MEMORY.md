@@ -1,3 +1,10 @@
+## 2026-11-27 — Actualización completa de expectativas de caché PT-BR
+- La regresión del head `0b3fdbb` seguía fallando en tests de B1/B2 que también fijaban el cache name `v3.8.166` (p. ej. B1 U28-U30 y B2 U1-U3/U31-U33). Se actualizaron todos los archivos PT-BR que contenían esa expectativa; los últimos commits de tests incluyen B1 U1-U33 y B2 U1-U40.
+- El fallo E2E de ese head también ocurrió antes de que existieran los inventarios PT-BR generados (`audio/pt-BR/manifest.json` y `metadata.json`); debe volver a ejecutarse tras la publicación del audio correcto.
+- CI nuevo del head `82bd3eb` está queued/in_progress; no declarar verde hasta que termine.
+
+Fuente: Actions #45964213536, tests `pt-br-curriculum-*` y commits de actualización de cache; 27 nov 2026.
+
 ## 2026-11-27 — Alineación de pruebas con nueva caché del Service Worker
 - CI #45963926469 falló en cuatro pruebas de currículo y el E2E offline porque esperaban literalmente `bahasa-studio-v3.8.166`; el Service Worker se había incrementado correctamente a `v3.8.167` para precargar los nuevos inventarios. No era una regresión de caché.
 - Se actualizaron las cinco expectativas de pruebas a `v3.8.167` (cuatro pruebas de currículo y `pt-br-curriculum.e2e.test.cjs`). CI del head actual pendiente.

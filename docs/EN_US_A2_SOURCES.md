@@ -59,3 +59,14 @@ Estado: primer bloque U1–U6 en desarrollo; el nivel no está publicado. Fecha:
 - Los 88 targets son únicos dentro del bloque y no coinciden exactamente con los 638 targets A1 ni con los 198 targets A2 U1–U10.
 - Total A2 U1–U14: 286 entradas nuevas; U10 continúa como repaso sin vocabulario.
 - Vocabulario not_checked; cotejo individual CEFR-J pendiente. Sin POS/audio ni cambios al runtime.
+
+
+## Bloque U15–U18 — 27 de noviembre de 2026
+
+- U15: contraste entre be going to, will y presente continuo para planes, decisiones y cambios de viaje.
+- U16: comparativos para precios, calidad, comodidad y características de productos/ciudades.
+- U17: superlativos para destacar atracciones, paisajes, gastronomía y servicios.
+- U18: igualdad, diferencias y suficiencia con as...as, not as...as, too y enough.
+- 4 unidades, 20 lecciones, 88 entradas nuevas y 80 ejercicios.
+- Total A2 U1–U18: 374 entradas nuevas; U10 continúa como repaso sin vocabulario.
+- Las entradas siguen not_checked; cotejo individual CEFR-J pendiente. Sin POS/audio ni cambios al runtime.

@@ -234,8 +234,9 @@ test('all ten Piper voices are pinned and their model cards are preserved for at
   assert.match(generator, /resolve\/\{revision\}/);
   assert.match(generator, /PIPER_VERSION = "1\.8\.0"/);
   assert.match(generator, /voice_revisions/);
-  assert.match(generator, /"--json-input"/);
-  assert.match(generator, /"output_file": str\(job\["raw"\]\)/);
+  assert.match(generator, /PiperVoice\.load/);
+  assert.match(generator, /voice\.synthesize_wav/);
+  assert.match(generator, /wave\.open/);
   assert.match(generator, /manifest-multilingual\.json/);
   assert.match(generator, /inventory_path = ROOT \/ "audio" \/ "manifest\.json"/);
   assert.match(generator, /metadata_path = ROOT \/ "audio" \/ "metadata\.json"/);

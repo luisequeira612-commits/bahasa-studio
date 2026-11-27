@@ -104,3 +104,12 @@ Estado: primer bloque U1–U6 en desarrollo; el nivel no está publicado. Fecha:
 - Cuatro unidades, 20 lecciones y 80 ejercicios; 88 entradas nuevas (22 por unidad). Total A2 U1–U26: 528 entradas nuevas; U10 y U20 siguen como repasos sin vocabulario.
 - Revisión de duplicados exactos contra A1 y A2 anterior; ejemplos originales. Entradas nuevas `not_checked`; cotejo individual CEFR-J y validación nativa pendientes.
 - Se conserva el esquema runtime, los tipos `mc`/`order`, inglés `available:false`, IndexedDB v1, backup JSON v3 y el resto de idiomas sin cambios.
+
+
+## Bloque U27–U30 — 27 de noviembre de 2026
+
+- U27: precios, descuentos, compras y reclamaciones; U28: imperativos y verbos de preparación/cocción; U29: peticiones, restricciones alimentarias y solución de problemas en restaurantes; U30: repaso integrado III sin vocabulario nuevo.
+- U27–U29 añaden 66 entradas nuevas; U30 añade 0. El bloque contiene 20 lecciones y 80 ejercicios.
+- Auditoría estática: 66 targets únicos, sin duplicados internos ni coincidencias exactas con los 528 targets A2 U1–U26. El test de CI valida además A1 completo, 594 targets totales, estructura y referencias de U30.
+- Total A2 U1–U30: 594 entradas léxicas nuevas; U10, U20 y U30 son repasos sin vocabulario. Manifiesto ampliado a U30.
+- Entradas not_checked; cotejo individual CEFR-J pendiente. Sin POS/audio, dependencias ni cambios de almacenamiento. Inglés continúa available:false y «Próximamente».

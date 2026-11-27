@@ -65,7 +65,7 @@ test('B2 vocabulary is unique, complete, and absent from all six review units', 
   assert.equal(new Set(vocabulary.map((word) => word.target.trim().toLocaleLowerCase())).size, 1188,
     'B2 target expressions must be unique');
   for (const word of vocabulary) {
-    for (const field of ['id', 'target', 'esp', 'example', 'exampleTranslation']) {
+    for (const field of ['id', 'target', 'esp', 'ex', 'exEsp']) {
       assert.equal(typeof word[field], 'string', 'vocabulary ' + word.id + ' needs ' + field);
       assert.ok(word[field].trim(), 'vocabulary ' + word.id + ' needs non-empty ' + field);
     }

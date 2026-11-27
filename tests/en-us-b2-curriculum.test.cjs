@@ -253,3 +253,42 @@ test('English B2 U40 review sentence bank keeps each example paired with its sou
       .replace(/[.,!?;:]/g, '').trim().split(/\s+/));
   }
 });
+
+
+test('English B2 U49–U50 and U59–U60 keep review lessons aligned with their vocabulary', () => {
+  const units = loadB2();
+  const getUnit = (number) => {
+    const unit = units.find((item) => item.unitNumber === number);
+    assert.ok(unit, 'B2 unit must exist: U' + number);
+    return unit;
+  };
+
+  const u49 = getUnit(49);
+  assert.match(u49.trap.detail, /Vulnerable to y susceptible to/);
+  assert.doesNotMatch(u49.trap.detail, /Prone to/);
+  assert.match(u49.lessons[0].grammar, /be vulnerable to/);
+  assert.match(u49.lessons[4].grammar, /Avoid ambiguity/);
+  assert.match(u49.lessons[4].grammar, /more precisely/);
+
+  for (const number of [50, 60]) {
+    const unit = getUnit(number);
+    assert.equal(unit.lessons.length, 5);
+    for (const lesson of unit.lessons) {
+      const orderExercise = Array.from(lesson.exercises || []).find((exercise) => exercise.type === 'order');
+      assert.ok(orderExercise, 'review lesson must contain an order exercise: U' + number + ' ' + lesson.title);
+      assert.equal(orderExercise.vocabId, lesson.reviewVocabIds[1]);
+    }
+  }
+
+  const u59 = getUnit(59);
+  assert.equal(u59.lessons.length, 5);
+  for (const lesson of u59.lessons) {
+    const orderExercise = Array.from(lesson.exercises || []).find((exercise) => exercise.type === 'order');
+    assert.ok(orderExercise, 'integrated lesson must contain an order exercise: ' + lesson.title);
+    assert.equal(orderExercise.vocabId, lesson.vocabIds[1]);
+    const target = u59.vocab.find((word) => word.id === orderExercise.vocabId);
+    assert.ok(target);
+    assert.deepEqual(Array.from(orderExercise.correctOrder), target.ex
+      .replace(/[.,!?;:]/g, '').trim().split(/\\s+/));
+  }
+});

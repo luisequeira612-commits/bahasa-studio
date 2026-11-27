@@ -1,3 +1,10 @@
+## 2026-11-27 — Síntesis Piper por lotes
+- El generador dejó de iniciar un proceso Piper por cada frase. Ahora agrupa los textos por idioma y usa `piper --json-input` con `output_file` por registro, cargando cada modelo una sola vez por lote. Esto reduce drásticamente el tiempo de generación de miles de clips.
+- Se añadió una comprobación estática del uso de JSON input y rutas de salida por clip. Cambios en commits `f1f9225`, `6f5ed33` y `77f9eae`; CI pendiente.
+- La generación actual antigua #45962876912 sigue corriendo con el generador anterior (un proceso por texto); el siguiente run con Piper 1.8 usará el modo por lotes.
+
+Fuente: Piper CLI JSON Input docs, `tools/generar_audio.py`, `tests/audio-manifest.test.mjs` y Actions #45962876912; 27 nov 2026.
+
 ## 2026-11-27 — Compatibilidad con voces Piper retrainadas
 - La MODEL_CARD de `pt_BR-faber-medium` exige Piper 1.5 o superior. Se cambió el workflow de `piper-tts==1.3.0` a `piper-tts==1.8.0` (PyPI actual, compatible con Python 3.12), que conserva el CLI `piper --model ... --output_file ...`.
 - Para no reutilizar clips generados con un motor/voz anterior, el manifiesto ahora registra `piper_version` y `voice_revisions`. El generador solo reutiliza un MP3 si coinciden la versión de Piper y la revisión de voz; al cambiar modelo o versión regenera ese idioma. La revisión de voz se incorpora también a la ruta de caché temporal.

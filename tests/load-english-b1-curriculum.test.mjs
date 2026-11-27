@@ -37,3 +37,20 @@ test('all review packet builders select the matching American English source ran
     assert.doesNotMatch(packet.markdown, /Dibaca|peN-|KBBI|material de indonesio/);
   }
 });
+
+test('all Spanish translation-selection prompts use statement punctuation', async () => {
+  const curriculum = await loadEnglishB1Curriculum(resolve(process.cwd()));
+  const invalid = [];
+  for (const unit of curriculum.units) {
+    const exercises = [
+      ...(unit.exercises ?? []),
+      ...(unit.lessons ?? []).flatMap((lesson) => lesson.exercises ?? []),
+    ];
+    for (const exercise of exercises) {
+      if (/^Elige la traducción de «[^»]+»\\?$/.test(exercise.prompt ?? '')) {
+        invalid.push({ unit: unit.unitNumber, vocabId: exercise.vocabId, prompt: exercise.prompt });
+      }
+    }
+  }
+  assert.deepEqual(invalid, []);
+});

@@ -1,3 +1,9 @@
+## 2026-11-27 — Inventarios offline futuros autodescubiertos
+- `service-worker.js` ya no codifica a mano solo PT-BR: deriva `manifest.json` y `metadata.json` por idioma desde las rutas curriculares no vacías de `LanguageManager`, excluyendo el inventario indonesio histórico que permanece en la raíz de `audio/`.
+- Al registrar un nuevo curso en el catálogo, el Service Worker incluirá automáticamente su inventario offline. La precarga incluye además `audio/manifest-multilingual.json` para `AudioEngine`.
+
+Fuente: `service-worker.js`, `language-manager.js`, `tests/service-worker-install.test.cjs`; 27 nov 2026.
+
 ## 2026-11-27 — Compatibilidad con inventarios offline por idioma
 - Revisión de `offline-audio-manager.js` y `service-worker.js` detectó que el gestor offline exige arrays por idioma (`audio/manifest.json` + `audio/metadata.json` para ID; `audio/pt-BR/manifest.json` + `audio/pt-BR/metadata.json` para PT-BR) y metadatos `audio_hashes` SHA-256. No se puede sustituir el `audio/manifest.json` histórico por un objeto central.
 - El generador ahora conserva esos inventarios por idioma, calcula SHA-256 reales de cada MP3 y publica un manifiesto separado `audio/manifest-multilingual.json` para `AudioEngine`. El reproductor lee el manifiesto central; el offline manager mantiene sus rutas y formato existentes.

@@ -22,3 +22,17 @@ test('B1 U40 is Review IV with zero new vocabulary and five review lessons',asyn
 
 test('B1 U50 is Review V with zero new vocabulary',async()=>{const {units}=await loader().loadUnits('en','B1',Array.from({length:52},(_,i)=>i+1));const u=units.find(x=>x.unitNumber===50);assert.equal(u.vocab.length,0);assert.equal(u.lessons.length,5);for(const lesson of u.lessons){assert.equal(lesson.vocabIds.length,0);assert.ok(lesson.reviewVocabIds.length>=4);assert.equal(lesson.exercises.length,2);}});
 test('B1 U52 is the final check with zero new vocabulary',async()=>{const {units,totalUnits}=await loader().loadUnits('en','B1',Array.from({length:52},(_,i)=>i+1));const u=units.find(x=>x.unitNumber===52);assert.equal(totalUnits,52);assert.equal(u.vocab.length,0);assert.equal(u.lessons.length,5);for(const lesson of u.lessons){assert.equal(lesson.vocabIds.length,0);assert.ok(lesson.reviewVocabIds.length>=4);assert.equal(lesson.exercises.length,2);}});
+
+test('all B1 Spanish translation-selection prompts use statement punctuation',async()=>{
+ const {units}=await loader().loadUnits('en','B1',Array.from({length:52},(_,i)=>i+1));
+ const invalid=[];
+ for(const unit of units){
+  const exercises=[...(unit.exercises??[]),...(unit.lessons??[]).flatMap(lesson=>lesson.exercises??[])];
+  for(const exercise of exercises){
+   if(/^Elige la traducción de «[^»]+»\?$/.test(exercise.prompt??'')){
+    invalid.push({unit:unit.unitNumber,vocabId:exercise.vocabId,prompt:exercise.prompt});
+   }
+  }
+ }
+ assert.deepEqual(invalid,[]);
+});

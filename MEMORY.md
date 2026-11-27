@@ -921,3 +921,13 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - CI PR #917: test de inventario/deduplicación pasó con 242 términos únicos y sin solapamientos A1/A2. Falló únicamente la comprobación de U10 por `deepStrictEqual` de array entre contextos VM (prototipos distintos); reemplazada por `assert.equal(lesson.vocabIds.length,0)`. Head de test fix `81037fb426cc9d51a03f48d08edab74896236118`; nueva regresión pendiente. Fuente: run 45927510333, 27 nov 2026.
 - CI inicial de PR #921 detectó tres coincidencias exactas A1/A2: `be responsible for`, `would you mind` e `I was wondering if`. Sustituidas por `be entrusted with`, `would you be so kind as to` e `I would appreciate it if`, con traducciones, ejemplos y ejercicios alineados. Nueva CI pendiente.
 - CI de PR #923 detectó tres coincidencias A2 no capturadas por el primer escaneo (`turn down`, `sort out`, `run into`). Se sustituyeron por `pass up`, `straighten out` y `come up against`, con ejemplos/traducciones/ejercicios alineados; nueva CI pendiente.
+
+
+## 2026-11-27 — Auditoría editorial de inglés B1 U1–U52
+
+- La secuencia `feat/en-us-b1-u21-u24` quedó completa U1–U52 tras integrar el tramo final con PR #936 (merge commit `d392adeb9b9496331d10acb28153bdb16ca009e7`). Inventario acumulado: 52 unidades, 260 lecciones, 1.040 ejercicios combinados y 1.012 entradas de vocabulario; repasos U10/U20/U30/U40/U50/U52.
+- CI de PR #936: regresión #45949566479 success y TypeScript #45949566477 success. Integración solo en la rama de secuencia; no en `main`.
+- Auditoría de las fuentes integradas encontró 64 consignas en U37–U52 que terminaban con signo de interrogación pese a ser imperativos («Elige la traducción de…»). Corregidas a punto final (14 U37–U40, 20 U41–U44, 20 U45–U48, 10 U49–U52), con test de cobertura para los ejercicios directos y de lección en U1–U52.
+- Se generaron paquetes de revisión inglesa U1–U12, U13–U26 y U27–U52. El último confirma 26 unidades, 484 entradas, 130 lecciones y 520 ejercicios. No se ha ejecutado una revisión externa independiente.
+- Hallazgo de infraestructura: los informes genéricos `curriculum-quality-report`, `unified-quality-report`, `editorial-review-queue` y lint/vocab del workflow inspeccionado siguen leyendo el currículo histórico indonesio; no deben usarse para evaluar inglés. La auditoría interna inglesa sí comprueba inventario y referencias, pero no certifica naturalidad nativa ni nivel MCER.
+- Inglés permanece `available:false`; no fusionar a `main` ni publicar sin aprobación expresa. Sin cambios a IndexedDB v1, backup JSON v3, dependencias ni otros idiomas.

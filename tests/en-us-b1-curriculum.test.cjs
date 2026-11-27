@@ -54,6 +54,7 @@ test('B1 vocabulary examples retain natural American English and aligned Spanish
   const expected = [
     [6, 'ride a bicycle', 'montar en bicicleta', 'I used to ride a bicycle along the river.', 'Solía montar en bicicleta junto al río.'],
     [8, 'retake an exam', 'repetir un examen', 'He had to retake the exam because he missed the original date.', 'Tuvo que repetir el examen porque no pudo presentarse en la fecha original.'],
+    [8, 'work experience program', 'programa de experiencia laboral', 'She completed a work experience program during her final semester.', 'Completó un programa de experiencia laboral durante su último semestre.'],
     [11, 'anticipated demand', 'demanda prevista', 'Anticipated demand is expected to rise during the summer.', 'Se espera que la demanda prevista aumente durante el verano.'],
     [11, 'availability window', 'periodo de disponibilidad', "The technician's availability window tomorrow is only two hours.", 'La franja de disponibilidad del técnico mañana será de solo dos horas.'],
     [11, 'target date', 'fecha prevista', 'The target date may change if the supplier is delayed.', 'La fecha prevista podría cambiar si el proveedor se retrasa.'],

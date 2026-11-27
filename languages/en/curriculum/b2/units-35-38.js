@@ -77,7 +77,7 @@ lessons:[
 ["anyway","en fin / de todos modos","Anyway, we should decide what to do next.","En fin, deberíamos decidir qué hacer después."],
 ["by the way","por cierto","By the way, have you received the revised draft?","Por cierto, ¿has recibido el borrador revisado?"],
 ["to cut in","interrumpir","Sorry to cut in, but we are running out of time.","Perdón por interrumpir, pero se nos está acabando el tiempo."],
-["to hold that thought","guardar esa idea","Hold that thought; I want to check one detail first.","Guarda esa idea; primero quiero comprobar un detalle."],
+["to hold that thought","no perder de vista una idea","Hold that thought; I want to check one detail first.","No pierdas esa idea; primero quiero comprobar un detalle."],
 ["to take your point","entender / aceptar tu argumento","I take your point about the budget constraints.","Entiendo tu argumento sobre las limitaciones presupuestarias."],
 ["to bring the discussion to a close","dar por concluido el debate","Let's bring the discussion to a close by agreeing on the next steps.","Demos por concluido el debate acordando los próximos pasos."],
 ["to proceed to","proceder a / pasar a","We can now proceed to the final question.","Ahora podemos pasar a la pregunta final."],

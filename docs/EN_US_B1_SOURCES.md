@@ -135,3 +135,4 @@
 - Acumulado U1–U20: 20 unidades, 100 lecciones, 400 ejercicios y 396 entradas nuevas; U10 y U20 son repasos sin vocabulario.
 - Auditoría estática de B1: 396/396 targets únicos. Comparación de los targets U17–U19 contra los inventarios A1/A2: sin coincidencias exactas. Entradas nuevas `not_checked`; no se presenta como certificación CEFR ni validación nativa.
 - Manifiesto y tests amplían la carga a U20. Inglés continúa `available:false`; sin cambios a IndexedDB v1, backup JSON v3, dependencias ni otros idiomas.
+- Primera CI de U17–U20 detectó dos coincidencias exactas con A1/A2 en U18 (`once`, `ahead of time`); sustituidas por `once the paperwork is complete` y `well ahead of schedule`, con ejemplos y traducciones alineados. Nueva CI pendiente.

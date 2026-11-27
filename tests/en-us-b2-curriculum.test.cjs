@@ -331,3 +331,36 @@ test('English B2 U15–U18 lesson targets are covered once and match their sente
     }
   }
 });
+
+
+test('English B2 U19–U20 cover their targets and keep review examples aligned', () => {
+  const units = loadB2();
+  const u19 = units.find((item) => item.unitNumber === 19);
+  const u20 = units.find((item) => item.unitNumber === 20);
+  assert.ok(u19);
+  assert.ok(u20);
+
+  const lessonIds = u19.lessons.flatMap((lesson) => Array.from(lesson.vocabIds || []));
+  assert.equal(lessonIds.length, 22);
+  assert.equal(new Set(lessonIds).size, 22);
+  for (const lesson of u19.lessons) {
+    const exercise = Array.from(lesson.exercises || []).find((item) => item.type === 'order');
+    assert.ok(exercise);
+    assert.equal(exercise.vocabId, lesson.vocabIds[1]);
+    const word = u19.vocab.find((item) => item.id === exercise.vocabId);
+    assert.ok(word);
+    assert.deepEqual(Array.from(exercise.correctOrder), word.ex
+      .replace(/[.,!?;:]/g, '').trim().split(/\s+/));
+  }
+
+  const allVocabulary = units.flatMap((unit) => Array.from(unit.vocab || []));
+  for (const lesson of u20.lessons) {
+    const exercise = Array.from(lesson.exercises || []).find((item) => item.type === 'order');
+    assert.ok(exercise);
+    assert.equal(exercise.vocabId, lesson.reviewVocabIds[1]);
+    const word = allVocabulary.find((item) => item.id === exercise.vocabId);
+    assert.ok(word);
+    assert.deepEqual(Array.from(exercise.correctOrder), word.ex
+      .replace(/[.,!?;:]/g, '').trim().split(/\s+/));
+  }
+});

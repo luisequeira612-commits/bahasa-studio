@@ -48,3 +48,10 @@ Estado: bloque U1–U6 en preparación; no publicado. Fecha: 26 de noviembre de 
 - U25–U29: indicaciones y ubicación; dinero/compras; contables e incontables con some/any; cantidades; restaurante. Cada unidad de contenido incorpora 22 entradas nuevas.
 - U30 es un repaso integrador de artículos, demostrativos, posesivos, familia y casa: 0 entradas nuevas, 5 lecciones y 20 ejercicios que reutilizan IDs previos.
 - Vocabulario nuevo sigue not_checked; ejemplos originales. Trazabilidad lema por lema con CEFR-J/NGSL pendiente.
+
+ 
+## Cierre curricular A1 — U31–U32 — 26 nov 2026
+- U31 integra conversaciones cotidianas con vocabulario de rutinas, gustos, habilidades, ciudad, compras y restaurante. U32 es la evaluación final integrada.
+- Ambas unidades aportan 0 vocabulario nuevo; reciclan IDs existentes. Mantienen 5 lecciones y 20 ejercicios con los tipos actuales mc/order.
+- Límite del motor actual: no hay ejercicio de audio, captura de voz ni respuesta abierta. U32 evalúa selección y construcción guiada; las prácticas abiertas de escucha/habla/escritura no se consideran evaluadas ni puntuadas dentro de la app.
+- El vocabulario del curso sigue not_checked hasta completar trazabilidad por lema y revisión editorial; no presentar la estructura como certificación MCER.

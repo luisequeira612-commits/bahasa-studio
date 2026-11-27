@@ -58,7 +58,7 @@ lessons:[
 ["Viabilidad y opciones","Evalúa si una propuesta puede ejecutarse y qué costos implica.","Assess feasibility, course of action y cost implications separan análisis y decisión.",[4,5,6,7],"The report sets out a proposed course of action."],
 ["Objetivos y resultados","Relaciona acciones con metas observables y recomendaciones.","Measurable outcome, implement a recommendation y potential drawback permiten comparar opciones.",[8,9,10,11],"Management agreed to implement the first recommendation."],
 ["Planificación y justificación","Expone opciones, razones, prioridades y seguimiento.","Set out options, provide a rationale y monitor progress hacen explícita la lógica del plan.",[12,13,14,15],"The document sets out three options for consideration."],
-["Propuesta completa","Integra presupuesto, calendario, revisión y siguientes pasos.","Implementation timeline, cost-effective y subject to review delimitan ejecución y evaluación.",[16,17,18,19,20,21],"The presentation ran over time by ten minutes."]]},
+["Propuesta completa","Integra presupuesto, calendario, revisión y siguientes pasos.","Implementation timeline, cost-effective y subject to review delimitan ejecución y evaluación.",[16,17,18,19,20,21],"The policy will be subject to review after six months."]]},
 {n:53,title:"Professional negotiation",desc:"Negocia condiciones, concesiones, límites y acuerdos con firmeza, flexibilidad y lenguaje diplomático.",grammar:"Conditional offers, concessions, counteroffers, tentative agreement and formalizing terms.",trap:"We could consider X if you can offer Y is a conditional proposal. I agree in principle does not mean every detail is settled.",rows:[
 ["to reach a compromise","llegar a un acuerdo intermedio","Both sides were willing to reach a compromise.","Ambas partes estaban dispuestas a llegar a un acuerdo intermedio."],
 ["to make a concession","hacer una concesión","The supplier made a concession on delivery costs.","El proveedor hizo una concesión en los costos de entrega."],
@@ -116,7 +116,7 @@ lessons:[
 ["Transiciones en presentaciones","Guía a la audiencia entre secciones y procesos.","Transition to, draw attention to y walk someone through organizan la información.",[4,5,6,7],"I'd like to draw your attention to the final chart."],
 ["Preguntas y desarrollo","Responde preguntas y amplía explicaciones con claridad.","Address a question, take questions y elaborate on ayudan a gestionar interacción.",[8,9,10,11],"Could you elaborate on the final recommendation?"],
 ["Decisiones y agenda","Plantea puntos, aclara asuntos y controla el tiempo.","Reach/defer a decision, raise a point y keep to the schedule organizan la reunión.",[12,13,14,15],"The chair decided to defer the decision until Friday."],
-["Cierre y síntesis","Resume ideas y concluye sin perder el hilo argumental.","Bring the presentation to a close y sum up marcan el cierre; follow the thread y make the most of orientan la participación.",[16,17,18,19,20,21],"The recommended option is likely to be cost-effective."]]}
+["Cierre y síntesis","Resume ideas y concluye sin perder el hilo argumental.","Bring the presentation to a close y sum up marcan el cierre; follow the thread y make the most of orientan la participación.",[16,17,18,19,20,21],"We need to keep to the schedule today."]]}
 ];
 function build(d){
  const vocab=d.rows.map((r,i)=>({id:"en_b2_u"+d.n+"_v"+String(i+1).padStart(2,"0"),target:r[0],esp:r[1],ex:r[2],exEsp:r[3],verification:{status:"not_checked",sources:[]}}));

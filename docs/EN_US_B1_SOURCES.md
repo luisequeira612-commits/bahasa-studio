@@ -1,6 +1,6 @@
 # Inglés americano B1 — fuentes, plan y trazabilidad
 
-**Estado:** temario completo aprobado por el usuario el 27 de noviembre de 2026. Implementación en bloques pequeños; U1–U24 están authored en seis bloques apilados. El nivel permanece sin publicar.
+**Estado:** temario completo aprobado por el usuario el 27 de noviembre de 2026. Implementación en bloques pequeños; U1–U28 están authored en siete bloques apilados. El nivel permanece sin publicar.
 
 ## Estructura aprobada
 - 52 unidades, 5 lecciones explícitas por unidad y 20 ejercicios por unidad: 260 lecciones y 1.040 ejercicios al completar el nivel.
@@ -145,3 +145,11 @@
 - Vocabulario nuevo `not_checked`; los controles automáticos verifican estructura y coincidencias exactas, no certifican nivel CEFR ni naturalidad nativa. Inglés continúa `available:false` hasta completar B1 y sus gates.
 - Sin cambios a IndexedDB v1, backup JSON v3, dependencias, audio, red ni otros idiomas.
 - Primera CI de U21–U24 detectó coincidencias A1/A2 en U21/U22; se cambiaron a `be entrusted with`, `would you be so kind as to` e `I would appreciate it if`, con ejemplos y traducciones actualizados. Nueva CI pendiente.
+
+
+## Bloque U25–U28 — inglés americano B1
+- U25: consejos, recomendaciones y críticas; U26: capacidad, esfuerzo y logros; U27: patrones de gerundio e infinitivo; U28: patrones con objeto.
+- Añade 4 unidades de contenido, 20 lecciones, 80 ejercicios y 88 entradas nuevas (22 por unidad).
+- Acumulado U1–U28: 28 unidades, 140 lecciones, 560 ejercicios y 572 entradas nuevas. U10 y U20 siguen siendo repasos sin vocabulario nuevo.
+- Deduplicación estática B1: 572/572 targets únicos. U25–U28 comparadas contra A1/A2 sin coincidencias exactas tras cambiar `make progress` por `show steady improvement`. Vocabulario `not_checked`; no es certificación CEFR ni revisión nativa.
+- Inglés continúa `available:false` hasta completar B1 y sus gates. Sin cambios a IndexedDB v1, backup JSON v3, dependencias, audio, red ni otros idiomas.

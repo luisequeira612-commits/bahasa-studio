@@ -148,3 +148,5 @@ Estado: primer bloque U1–U6 en desarrollo; el nivel no está publicado. Fecha:
 - U40: evaluación final integrada A2 sin vocabulario nuevo; recupera contenidos de viaje, salud, hogar, experiencias y relaciones.
 - Dos unidades, 10 lecciones y 40 ejercicios; 22 entradas nuevas en U39 y 0 en U40. Total A2 U1–U40: 792 entradas; U10/U20/U30/U40 son repasos o evaluaciones sin vocabulario nuevo.
 - Ejemplos originales; entradas nuevas `not_checked`, cotejo individual CEFR-J y validación nativa pendientes. Se conserva el esquema runtime, `mc`/`order`, `available:false`, IndexedDB v1 y backup JSON v3.
+
+- Corrección editorial final U39 tras auditoría: se sustituyeron cuatro targets repetidos (`give up`, `look forward to`, `keep in touch`, `put off`) por `stick with`, `be excited about`, `stay connected` y `push back`; ejemplos y ejercicios se alinearon. Inventario A2 estático: 792 targets únicos sin duplicados internos.

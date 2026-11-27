@@ -264,6 +264,19 @@ jobs:
           path: artifacts/en-curriculum-quality-report.json
           if-no-files-found: ignore
           retention-days: 14
+      - name: Generate English editorial review queue
+        if: ${{ !cancelled() }}
+        run: npm run quality:en-queue
+      - name: Upload English editorial review queue
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: en-editorial-review-queue
+          path: |
+            artifacts/en-editorial-review-queue.csv
+            artifacts/en-editorial-review-summary.json
+          if-no-files-found: ignore
+          retention-days: 30
       - name: Generate source-backed DeepSeek review packet
         if: ${{ !cancelled() }}
         run: npm run quality:deepseek-packet

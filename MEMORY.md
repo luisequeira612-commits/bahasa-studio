@@ -1,3 +1,9 @@
+## 2026-11-27 — Última regex A2 aún fijada en v3.8.166
+- El run #45965136673 pasó Service Worker install y audio-manifest export; el test local falló solo en A2 U28-U30. Su título ya mostraba `v3.8.167`, pero la regex interna conservaba parcialmente `v3\\.8.166` (el segundo punto no estaba escapado), por lo que la sustitución anterior no la detectó.
+- Se corrigió la regex en `tests/pt-br-curriculum-a2-u28-u30.test.cjs`, commit `0c038c9`; debe repetirse CI.
+
+Fuente: Actions #45965136673 y `tests/pt-br-curriculum-a2-u28-u30.test.cjs`; 27 nov 2026.
+
 ## 2026-11-27 — Alineación de caché en pruebas A2
 - La regresión #45964822252 pasó Service Worker install y export de manifiestos, pero falló un test A2 U28-U30 que aún esperaba `v3.8.166`. Se comprobó que ocho tests A2 adicionales conservaban la versión antigua y se actualizaron a `v3.8.167`; A1/B1/B2 y E2E ya estaban alineados.
 - Los nuevos tests deben volver a ejecutarse; el fallo no es del código de caché, sino de expectativas históricas de tests.

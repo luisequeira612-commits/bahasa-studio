@@ -148,12 +148,12 @@ for(const d of data)rootBlocks["01-04"].units.push(makeUnit(d));
 'use strict';
 const rows=[
 ["previously","anteriormente","The site had previously been used as a warehouse.","Anteriormente, el lugar se había utilizado como almacén."],
-["by the time","para cuando","By the time the guests arrived, we had finished dinner.","Para cuando llegaron los invitados, ya habíamos terminado de cenar."],
+["before the guests arrived","antes de que llegaran los invitados","We had finished dinner before the guests arrived.","Habíamos terminado de cenar antes de que llegaran los invitados."],
 ["up until then","hasta ese momento","Up until then, nobody had questioned the figures.","Hasta ese momento, nadie había cuestionado las cifras."],
 ["to have already left","ya haberse ido","She had already left when I called.","Ella ya se había ido cuando llamé."],
 ["to have been waiting","haber estado esperando","They had been waiting for over an hour before the doors opened.","Habían estado esperando más de una hora antes de que abrieran las puertas."],
 ["to have been working on","llevar trabajando en","He had been working on the proposal for weeks before he submitted it.","Llevaba semanas trabajando en la propuesta antes de entregarla."],
-["to account for","explicar","That detail accounted for the unusual result.","Ese detalle explicaba el resultado inusual."],
+["to explain","explicar","That detail explained the unusual result.","Ese detalle explicaba el resultado inusual."],
 ["to stem from","tener su origen en","The disagreement stemmed from a misunderstanding.","El desacuerdo tuvo su origen en un malentendido."],
 ["to be unaware of","no estar al tanto de","We were unaware of the changes that had been made.","No estábamos al tanto de los cambios que se habían realizado."],
 ["to assume","suponer","I had assumed the meeting was still going ahead.","Había supuesto que la reunión seguía en pie."],

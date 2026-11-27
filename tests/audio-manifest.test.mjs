@@ -234,6 +234,8 @@ test('all ten Piper voices are pinned and their model cards are preserved for at
   assert.match(generator, /resolve\/\{revision\}/);
   assert.match(generator, /PIPER_VERSION = "1\.8\.0"/);
   assert.match(generator, /voice_revisions/);
+  assert.match(generator, /"--json-input"/);
+  assert.match(generator, /"output_file": str\(job\["raw"\]\)/);
   const workflow = await readFile(path.join(root, '.github/workflows/audio.yml'), 'utf8');
   assert.match(workflow, /piper-tts==1\.8\.0/);
 });

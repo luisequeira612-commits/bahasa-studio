@@ -323,7 +323,7 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
     <main id="view-dict" class="app-view">
         <button class="btn btn-outline btn-sm" type="button" onclick="App.switchView('ai')">← Tutor</button>
         <h2>Diccionario General</h2>
-        <input type="text" id="dictSearch" class="input-field" placeholder="Buscar indonesio o español..." aria-label="Buscar en el diccionario indonesio y español" oninput="App.filterDict()" style="margin: 12px 0;">
+        <input type="text" id="dictSearch" class="input-field" placeholder="Buscar en el idioma del curso o en español..." aria-label="Buscar en el idioma del curso y en español" oninput="App.filterDict()" style="margin: 12px 0;">
         <div id="dictContainer"></div>
     </main>
 
@@ -350,13 +350,13 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
         </div>
 
         <div class="card">
-            <h3>Audio en indonesio</h3>
-            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px;">La app incluye grabaciones MMS-TTS de Meta AI (CC BY-NC 4.0). No necesitas instalar una voz indonesia; una voz del dispositivo solo se usa como respaldo si falta una grabación.</p>
-            <label for="audioVoiceSelect" style="display:block; font-size:0.9rem; margin:10px 0 6px;">Voz de respaldo del dispositivo (opcional)</label>
-            <select id="audioVoiceSelect" class="input-field" onchange="AudioEngine.setVoice(this.value)" aria-label="Voz indonesia">
+            <h3>Audio del curso</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px;">El audio usa las grabaciones disponibles para el curso o una voz compatible del dispositivo.</p>
+            <label for="audioVoiceSelect" style="display:block; font-size:0.9rem; margin:10px 0 6px;">Voz del dispositivo (opcional)</label>
+            <select id="audioVoiceSelect" class="input-field" onchange="AudioEngine.setVoice(this.value)" aria-label="Voz del idioma activo">
                 <option value="auto">Automática (recomendada)</option>
             </select>
-            <p id="audioVoiceStatus" role="status" aria-live="polite" style="font-size:0.85rem;color:var(--text-muted);margin-top:8px;">La app incluye grabaciones Piper; no necesitas instalar una voz indonesia.</p>
+            <p id="audioVoiceStatus" role="status" aria-live="polite" style="font-size:0.85rem;color:var(--text-muted);margin-top:8px;">El audio se adapta al idioma del curso.</p>
             <label for="audioPlaybackRate" style="display:block; font-size:0.9rem; margin:10px 0 6px;">Velocidad de reproducción</label>
             <select id="audioPlaybackRate" class="input-field" onchange="AudioEngine.setRate(this.value)" aria-label="Velocidad de reproducción de audio">
                 <option value="0.5">Muy lento (0,5×)</option>
@@ -18517,6 +18517,7 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                 document.getElementById('lessonProgressFill').style.width = '0%';
                 const language = LanguageManager.getActiveLanguage();
                 const locale = LanguageManager.getLocale(language) || 'und';
+                const languageName = (LanguageManager.getLanguage(language) || {}).name || 'idioma del curso';
                 const wordCard = v => {
                     const word = CurriculumLoader.adaptVocabulary(v, language);
                     if (!word || !word.text) return '';
@@ -18534,7 +18535,7 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                     <p style="font-size:0.8rem;color:var(--text-muted);margin:8px 0;">Palabras nuevas</p>
                     ${lesson.newVocab.map(wordCard).join('')}
                     ${lesson.reviewVocab.length ? `<p style="font-size:0.8rem;color:var(--text-muted);margin:14px 0 8px;">Repaso de lecciones anteriores</p>${lesson.reviewVocab.map(wordCard).join('')}` : ''}
-                    <p style="font-size:0.8rem;color:var(--text-muted);margin:8px 0;">💡 Toca una palabra en indonesio para consultar su significado sin salir de la lección.</p>
+                    <p style="font-size:0.8rem;color:var(--text-muted);margin:8px 0;">💡 Toca una palabra en ${App.escapeHtml(languageName.toLowerCase())} para consultar su significado sin salir de la lección.</p>
                     <p style="font-size:0.8rem;color:var(--text-muted);margin:8px 0;">Escucha cada palabra y repítela en voz alta antes de comenzar.</p>
                     </div><div id="actionArea"><button class="btn" onclick="LessonEngine.renderStep()">Comenzar lección</button></div>`;
             },
@@ -19166,6 +19167,11 @@ Requisitos:
             },
             async generate() {
                 const topic = this.clean(document.getElementById('aiTopic').value, true);
+                if (LanguageManager.getActiveLanguage() !== 'id') {
+                    const languageName = (LanguageManager.getLanguage(LanguageManager.getActiveLanguage()) || {}).name || 'este idioma';
+                    document.getElementById('aiPreview').innerText = 'La generación de lecciones personalizadas aún no está adaptada al curso de ' + languageName + '.';
+                    return;
+                }
                 if (!topic) return alert('Escribe un tema para la lección.');
                 if (!App.apiKey) return alert('Primero guarda tu clave de Gemini en la pestaña de IA.');
                 if (!navigator.onLine) return alert('Necesitas internet para generar una lección.');
@@ -19271,7 +19277,7 @@ Requisitos:
         };
 
         /* 6. CONTROLADOR PRINCIPAL Y TUTOR SECUNDARIO */
-        let STUDY_LANGUAGE_LABEL = 'Indonesio';
+        let STUDY_LANGUAGE_LABEL = (LanguageManager.getLanguage(LanguageManager.getActiveLanguage()) || {}).name || 'Idioma del curso';
 
         const App = {
             xp: 0,
@@ -20636,16 +20642,21 @@ Requisitos:
             },
             renderDict() {
                 const container = document.getElementById('dictContainer');
+                const language = LanguageManager.getActiveLanguage();
+                const locale = LanguageManager.getLocale(language) || 'und';
                 let html = '';
-                getUniqueLearningVocabulary().forEach(v => {
+                getUniqueLearningVocabulary().forEach(word => {
+                    if (!word || !word.text || !word.translation) return;
+                    const example = word.example || '';
+                    const exampleTranslation = word.exampleTranslation || '';
                     html += `
                         <div class="card" style="margin-bottom:8px; padding:12px;">
                             <div style="display:flex; justify-content:space-between; align-items:center;">
-                                <strong lang="id">${App.escapeHtml(v.idn)}</strong>
-                                <button class="btn btn-outline btn-sm" data-word="${App.escapeHtml(v.idn)}" onclick="AudioEngine.speak(this.dataset.word)"><svg class="ui-icon lesson-speaker-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4h4l5 4V6l-5 4H4Z"/><path d="M16 9.5a4 4 0 0 1 0 5M18.5 7a7 7 0 0 1 0 10"/></svg></button>
+                                <strong lang="${App.escapeHtml(locale)}">${App.escapeHtml(word.text)}</strong>
+                                <button class="btn btn-outline btn-sm" data-word="${App.escapeHtml(word.text)}" onclick="AudioEngine.speak(this.dataset.word)" aria-label="Escuchar ${App.escapeHtml(word.text)}"><svg class="ui-icon lesson-speaker-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4h4l5 4V6l-5 4H4Z"/><path d="M16 9.5a4 4 0 0 1 0 5M18.5 7a7 7 0 0 1 0 10"/></svg></button>
                             </div>
-                            <p style="color:var(--accent); font-size:0.9rem;">${App.escapeHtml(v.esp)}</p>
-                            <p style="font-size:0.8rem; color:var(--text-muted); margin-top:4px;">Ejemplo: <span lang="id">${App.escapeHtml(v.ex)}</span> (${App.escapeHtml(v.exEsp)})</p>
+                            <p style="color:var(--accent); font-size:0.9rem;">${App.escapeHtml(word.translation)}</p>
+                            ${example || exampleTranslation ? `<p style="font-size:0.8rem; color:var(--text-muted); margin-top:4px;">Ejemplo: ${example ? '<span lang="' + App.escapeHtml(locale) + '">' + App.escapeHtml(example) + '</span>' : ''}${example && exampleTranslation ? ' ' : ''}${exampleTranslation ? '(' + App.escapeHtml(exampleTranslation) + ')' : ''}</p>` : ''}
                         </div>
                     `;
                 });
@@ -20698,7 +20709,10 @@ Requisitos:
                 if (!this.apiKey || !navigator.onLine) {
                     let responseText = "Modo Tutor Local: ";
                     const lower = text.toLowerCase();
-                    if (lower.includes('tidak') || lower.includes('bukan')) {
+                    const activeLanguage = LanguageManager.getActiveLanguage();
+                    if (activeLanguage !== 'id') {
+                        responseText += "El modo local todavía no tiene explicaciones específicas para " + STUDY_LANGUAGE_LABEL + ". Consulta el Diccionario o configura la API para respuestas sobre este curso.";
+                    } else if (lower.includes('tidak') || lower.includes('bukan')) {
                         responseText += "Usa 'tidak' para verbos/adjetivos (tidak makan) y 'bukan' para sustantivos (bukan air).";
                     } else if (lower.includes('pagi')) {
                         responseText += "'Selamat pagi' significa buenos días por la mañana.";
@@ -20719,7 +20733,7 @@ Requisitos:
                     const data = await GeminiRequest.postJson(
                         'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent',
                         this.apiKey,
-                        { contents: [{ parts: [{ text: `Tutor conciso de indonesio en español: ${text}` }] }] },
+                        { contents: [{ parts: [{ text: `Tutor conciso de ${STUDY_LANGUAGE_LABEL} en español para hispanohablantes: ${text}` }] }] },
                         { timeoutMs: 20000 }
                     );
                     if (data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts && data.candidates[0].content.parts[0] && data.candidates[0].content.parts[0].text) {
@@ -21020,7 +21034,7 @@ Requisitos:
                 }
             }
             output += escapeHtml(text.slice(cursor));
-            const speaker = language !== 'es' && activeLanguage === 'id'
+            const speaker = language !== 'es'
                 ? '<button type="button" class="tap-translation-speaker" aria-label="Escuchar frase" data-audio="' + escapeHtml(text) +
                     '" onclick="AudioEngine.speak(this.dataset.audio)"><svg class="ui-icon lesson-speaker-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4h4l5 4V6l-5 4H4Z"/><path d="M16 9.5a4 4 0 0 1 0 5M18.5 7a7 7 0 0 1 0 10"/></svg></button>' : '';
             return '<div class="tap-translation-sentence">' + speaker + '<span class="tap-translation-phrase" lang="' + escapeHtml(sourceLocale) + '">' + output + '</span></div>';

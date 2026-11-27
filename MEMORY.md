@@ -789,6 +789,6 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Rama feat/en-us-a2-u27-u30-sync, apilada sobre el head actualizado y CI-verde de PR #905 (b8c89be0bd45ca7d66813855e16dc79e22cd28eb).
 - U27: precios, compras y reclamaciones; U28: instrucciones de cocina e imperativos; U29: peticiones y problemas en restaurantes; U30: repaso integrado III sin vocabulario nuevo.
 - Bloque de 4 unidades, 20 lecciones, 66 entradas nuevas y 80 ejercicios; U30 contiene 0 entradas nuevas. Total A2 U1–U30: 594 entradas nuevas; U10/U20/U30 son repasos.
-- Manifiesto y test ampliados hasta U30. Auditoría estática contra A2 U1–U26 vigente: 66 targets únicos, sin solapamiento exacto con los 528 targets previos. CI y comparación completa contra A1 pendientes al registrar esta nota.
+- Manifiesto y test ampliados hasta U30. Auditoría estática contra A2 U1–U26 vigente: 66 targets únicos, sin solapamiento exacto con los 528 targets previos. CI del head 00f188b42987eb8e1954a4996da23974def30e03: regresión #45920885151 success (103/103 pasos), Offline quality reports success y JavaScript type checks #45920885119 success. El test confirmó 594 targets únicos sin solapamiento exacto con A1 y referencias de U30 resueltas. PR #908 abierta y mergeable=true; no fusionada.
 - Vocabulario not_checked; cotejo individual CEFR-J pendiente. Sin cambios a IndexedDB v1, backup JSON v3, dependencias, POS/audio, PT-BR ni otros idiomas. No fusionar ni publicar sin aprobación expresa.
 - Fuente: rama feat/en-us-a2-u27-u30-sync, currículo, tests y docs; 27 nov 2026.

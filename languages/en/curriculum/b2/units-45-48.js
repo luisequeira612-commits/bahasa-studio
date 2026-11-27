@@ -17,11 +17,11 @@ const defs=[
 ["to challenge","cuestionar","The journalist challenged the official explanation.","El periodista cuestionó la explicación oficial."],
 ["to criticize","criticar","The report criticizes the lack of oversight.","El informe critica la falta de supervisión."],
 ["to expose","poner al descubierto","The investigation exposed serious weaknesses.","La investigación puso al descubierto debilidades graves."],
-["to uncover","descubrir / sacar a la luz","The survey uncovered a change in public opinion.","La encuesta descubrió un cambio en la opinión pública."],
+["to uncover","descubrir / sacar a la luz","The survey uncovered a change in public opinion.","La encuesta reveló un cambio en la opinión pública."],
 ["ambitious","ambicioso","The organization has an ambitious growth plan.","La organización tiene un plan de crecimiento ambicioso."],
 ["overambitious","excesivamente ambicioso","The original schedule was overambitious.","El calendario original era excesivamente ambicioso."],
 ["frugal","austero / ahorrativo","A frugal approach helped the family save money.","Un enfoque austero ayudó a la familia a ahorrar dinero."],
-["miserly","tacaño","The miserly budget left no room for essential repairs.","El presupuesto tacaño no dejó margen para reparaciones esenciales."],
+["miserly","tacaño","The owner was miserly with the repair budget.","El propietario fue tacaño con el presupuesto para reparaciones."],
 ["to be laid off","ser despedido por recorte","Several employees were laid off during the restructuring.","Varios empleados fueron despedidos durante la reestructuración."],
 ["to be fired","ser despedido","He was fired after repeated policy violations.","Lo despidieron tras incumplir repetidamente las normas."]],
 lessons:[

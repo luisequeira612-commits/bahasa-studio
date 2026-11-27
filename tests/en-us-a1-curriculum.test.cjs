@@ -95,3 +95,24 @@ test('English A1 vocabulary introduces no duplicate targets across U1-U32',async
   seen.add(key);
  }
 });
+
+test('English A1 lesson distractors use real, distinct vocabulary across all units',async()=>{
+ const {loader}=createEnglishPilot();
+ const {units}=await loader.loadUnits('en','A1',Array.from({length:32},(_,i)=>i+1));
+ const words=units.flatMap(unit=>unit.vocab);
+ const byId=new Map(words.map(word=>[word.id,word]));
+ const glosses=new Set(words.map(word=>word.esp));
+ for(const unit of units){
+  for(const lesson of unit.lessons){
+   const exercise=lesson.exercises.find(item=>item.type==='mc');
+   assert.ok(exercise,unit.id+' missing lesson multiple-choice exercise');
+   const target=byId.get(exercise.vocabId);
+   assert.ok(target,unit.id+' missing target vocabulary '+exercise.vocabId);
+   assert.equal(exercise.options.length,3,unit.id+' should have three choices');
+   assert.equal(new Set(exercise.options).size,3,unit.id+' has duplicate answer choices');
+   assert.equal(exercise.options[exercise.answer],target.esp,unit.id+' correct option must match the target gloss');
+   assert.ok(exercise.options.every(option=>glosses.has(option)),unit.id+' contains a distractor outside the authored A1 vocabulary');
+   assert.ok(!exercise.options.includes('otra opción')&&!exercise.options.includes('una opción diferente'),unit.id+' contains a placeholder distractor');
+  }
+ }
+});

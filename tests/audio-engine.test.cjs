@@ -245,3 +245,25 @@ test('PT-BR nunca usa una voz indonesia aunque sea la única instalada', () => {
     assert.equal(setup.spoken[0].lang, 'pt-BR');
     assert.equal(setup.spoken[0].voice, null);
 });
+
+test('prefiere la ruta del manifiesto Piper para el idioma activo', () => {
+    const language = { code: 'pt-BR', locale: 'pt-BR', name: 'Portugués', audioPath: './audio/pt-BR/' };
+    const setup = createEngine({ language });
+    const key = 'pt-BR:' + setup.engine.hashText('bom dia');
+    setup.engine.audioManifestLoaded = true;
+    setup.engine.audioManifest.set(key, { file: './audio/pt-BR/manifest-clip.mp3' });
+    setup.engine.speak('bom dia');
+    assert.equal(setup.createdAudio.length, 1);
+    assert.equal(setup.createdAudio[0].src, './audio/pt-BR/manifest-clip.mp3');
+    assert.equal(setup.spoken.length, 0);
+});
+
+test('si el manifiesto está cargado y no existe el texto, usa TTS del locale sin probar una ruta huérfana', () => {
+    const language = { code: 'pt-BR', locale: 'pt-BR', name: 'Portugués', audioPath: './audio/pt-BR/' };
+    const setup = createEngine({ language });
+    setup.engine.audioManifestLoaded = true;
+    setup.engine.speak('texto sin grabación');
+    assert.equal(setup.createdAudio.length, 0);
+    assert.equal(setup.spoken.length, 1);
+    assert.equal(setup.spoken[0].lang, 'pt-BR');
+});

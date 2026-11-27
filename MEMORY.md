@@ -1,3 +1,10 @@
+## 2026-11-27 — Corrección de fallback de audio durante carga del manifiesto
+- CI del head `dd3c1a1` detectó que `speak()` iniciaba el MP3 y, simultáneamente, lanzaba TTS del dispositivo mientras el manifiesto aún cargaba. Se corrigió para retornar cuando `playRecorded()` inicia correctamente; una vez cargado el manifiesto, las frases ausentes pasan al fallback del dispositivo sin intentar una ruta inexistente.
+- Type checks #45961834777 success; regresión #45961834730 falló en el paso `Run audio engine fallback tests`, por este comportamiento. Calidad offline success. La nueva corrección está en commit `2a08884466690fd48c9e0b82fbd67c93f4585944`; CI nuevo pendiente.
+- La configuración de voces ahora contiene los diez idiomas registrados en Guardi. La generación real todavía no se ha ejecutado; tamaño de biblioteca, validez de cada modelo y cobertura de contenido quedan pendientes de comprobar.
+
+Fuente: GitHub Actions #45961834730/#45961834777 y `audio-engine.js`; 27 nov 2026.
+
 ## 2026-11-27 — Ajuste de regresión de audio Piper
 - La regresión anterior falló únicamente en una aserción histórica que exigía literalmente la ruta MP3 antigua. `AudioEngine` ahora consulta primero `audio/manifest.json` por idioma + hash y conserva la ruta local como respaldo; la prueba se actualizó para verificar ese comportamiento.
 - Type checks del head anterior: success. La regresión fallida no implicó un error del generador ni del currículo.

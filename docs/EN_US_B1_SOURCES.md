@@ -98,3 +98,6 @@
 - 4 unidades, 20 lecciones, 80 ejercicios y 88 entradas nuevas; acumulado B1 U1–U8: 8 unidades, 40 lecciones, 160 ejercicios y 176 entradas.
 - Se amplían manifiesto y tests para comprobar estructura, referencias y deduplicación exacta de todo B1 U1–U8 contra A1/A2. CI pendiente en este momento.
 - Entradas nuevas `not_checked`; no se afirma cotejo individual CEFR-J, validación nativa ni certificación MCER. Sin cambios de esquema, dependencias, almacenamiento ni disponibilidad.
+
+- Revisión editorial adicional antes de abrir el siguiente bloque: se corrigieron dos frases de banco para que practiquen exactamente `coming-of-age` (U1) y `school uniform` (U6). Auditoría estática del acumulado U1–U8: 176 targets únicos y sin duplicados exactos internos; CI verificará solapamiento con A1/A2 y referencias.
+- PR #915 (U1–U4) pasó CI en el head `6f9a08e9f24f36421fe907b0b99169f6f769bce2`: regresión 103/103, TypeScript y calidad offline success. Sigue abierta y sin fusionar.

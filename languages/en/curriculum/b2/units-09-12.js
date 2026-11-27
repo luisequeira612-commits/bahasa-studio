@@ -42,7 +42,7 @@ const block={units:[unit]};
 root.GUARDI_CURRICULUM_BLOCKS=root.GUARDI_CURRICULUM_BLOCKS||{};root.GUARDI_CURRICULUM_BLOCKS.en=root.GUARDI_CURRICULUM_BLOCKS.en||{};root.GUARDI_CURRICULUM_BLOCKS.en.B2=root.GUARDI_CURRICULUM_BLOCKS.en.B2||{};
 root.GUARDI_CURRICULUM_BLOCKS.en.B2["09-12"]=block;
 const reviewVocab=[
-["en_b2_u1_v01","have a track record","tener una trayectoria demostrable","The team has a track record of delivering projects on time."],
+["en_b2_u1_v01","have a track record","tener una trayectoria demostrada","The team has a track record of delivering projects on time."],
 ["en_b2_u2_v05","to have been waiting","haber estado esperando","They had been waiting for over an hour before the doors opened."],
 ["en_b2_u3_v04","to come to light","salir a la luz","New evidence came to light during the inquiry."],
 ["en_b2_u4_v01","by then","para entonces","By then, the team will have completed the first stage."],

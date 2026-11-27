@@ -104,6 +104,19 @@ test('all lesson and exercise vocabulary references resolve across the complete 
   }
   const unresolved = references.filter((reference) => !allIds.has(reference.id));
   assert.deepEqual(unresolved, [], 'every vocabulary reference must resolve, including review-unit references');
+
+  const vocabularyById = new Map(units.flatMap((unit) =>
+    Array.from(unit.vocab || []).map((word) => [word.id, word])));
+  for (const unit of units) {
+    const exercises = [
+      ...(unit.exercises || []),
+      ...(unit.lessons || []).flatMap((lesson) => lesson.exercises || []),
+    ];
+    for (const exercise of exercises.filter((item) => item.type === 'mc')) {
+      assert.equal(exercise.options[exercise.answer], vocabularyById.get(exercise.vocabId)?.esp,
+        unit.id + ' multiple-choice answer must match its vocabulary gloss');
+    }
+  }
 });
 
 test('B2 uses only existing exercise types with valid answer structures', () => {

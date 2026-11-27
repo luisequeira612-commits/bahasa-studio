@@ -114,5 +114,15 @@ test('English A1 lesson distractors use real, distinct vocabulary across all uni
    for(const option of exercise.options) assert.ok(glosses.has(option),unit.id+' contains a distractor outside the authored A1 vocabulary: '+option+' for '+exercise.prompt);
    assert.ok(!exercise.options.includes('otra opción')&&!exercise.options.includes('una opción diferente'),unit.id+' contains a placeholder distractor');
   }
+  for(const unit of units){
+   for(const [index,exercise] of unit.exercises.entries()){
+    if(exercise.type!=='mc'||(unit.unitNumber===32&&index===0)) continue;
+    const target=byId.get(exercise.vocabId);
+    assert.ok(target,unit.id+' missing unit-bank target '+exercise.vocabId);
+    assert.equal(exercise.options[exercise.answer],target.esp,unit.id+' unit-bank answer must match its target');
+    assert.equal(new Set(exercise.options).size,3,unit.id+' unit-bank has duplicate choices');
+    for(const option of exercise.options) assert.ok(glosses.has(option),unit.id+' unit-bank distractor is outside authored A1 vocabulary: '+option);
+   }
+  }
  }
 });

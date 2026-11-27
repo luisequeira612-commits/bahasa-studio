@@ -1,3 +1,10 @@
+## 2026-11-27 — Presupuesto conservador de almacenamiento de audio
+- Se redujo el límite total del workflow de 1 GiB a 500 MiB para la carpeta `audio/`, manteniendo el bloqueo de archivos individuales de 100 MiB. El objetivo operativo es dejar margen para futuras ampliaciones de los diez idiomas, no consumir todo el límite recomendado.
+- Inventario previo del árbol Git (head `6b4d106`): 2.268 MP3 = 14.867.472 bytes (~14,18 MiB) y 2.268 OPUS = 10.950.730 bytes (~10,44 MiB); JSON de audio = 959.849 bytes (~0,92 MiB). Total aproximado de `audio/`: 26 MiB. Esto es tamaño actual del árbol, no resultado de generación Piper.
+- El workflow de generación Piper #45962200126 está ejecutándose en `Install Piper and ffmpeg`; todavía no hay resultado de biblioteca generada.
+
+Fuente: árbol Git #6b4d106, `.github/workflows/audio.yml` y Actions #45962200126; 27 nov 2026.
+
 ## 2026-11-27 — Exportación de audio guiada por el registro multiidioma
 - `scripts/export-audio-manifest.mjs --all-languages` ahora lee `LanguageManager.list()` y recorre las rutas curriculares declaradas para cada idioma, en vez de tener PT-BR codificado como caso especial. Los idiomas con `curriculum` vacío se omiten hasta que tengan contenido real; indonesio conserva su exportador actual y los demás cursos se descubren al registrar sus rutas.
 - Se añadió prueba para el modo `--all-languages`: comprueba que se exporten ID y PT-BR, que cada texto tenga idioma/locale/origen y que los hashes sean únicos por idioma.

@@ -7,7 +7,7 @@ const definitions=[
 ["it is generally assumed","se suele suponer","It is generally assumed that the figures are accurate.","Se suele suponer que las cifras son exactas."],
 ["it remains to be seen","está por verse","It remains to be seen whether the changes will be effective.","Está por verse si los cambios serán eficaces."],
 ["to be widely regarded as","ser considerado ampliamente como","The novel is widely regarded as a modern classic.","La novela es ampliamente considerada un clásico moderno."],
-["to be projected to","proyectarse que","The new system is projected to reduce waiting times.","Se proyecta que el nuevo sistema reduzca los tiempos de espera."],
+["to be forecast to","pronosticarse que","The new system is forecast to reduce waiting times.","Se pronostica que el nuevo sistema reducirá los tiempos de espera."],
 ["to be thought to","se cree que","The painting is thought to date from the 18th century.","Se cree que la pintura data del siglo XVIII."],
 ["to be alleged to","ser presuntamente","The company is alleged to have concealed the losses.","Se alega que la empresa ocultó las pérdidas."],
 ["to be known to","saberse que","The drug is known to cause mild side effects.","Se sabe que el medicamento causa efectos secundarios leves."],

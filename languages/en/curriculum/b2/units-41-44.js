@@ -1,0 +1,132 @@
+(function(root){
+'use strict';
+const defs=[
+{n:41,title:"Collocations avanzadas",desc:"Produce combinaciones frecuentes y naturales de verbos, sustantivos, adjetivos y adverbios en contextos académicos y profesionales.",grammar:"Verb-noun, adjective-noun and adverb-adjective collocations; lexical choice is conventional rather than fully predictable.",trap:"Make a decision, reach an agreement, pose a threat, highly unlikely. Avoid translating collocations word for word from Spanish.",rows:[
+["to pose a threat","representar una amenaza","The lack of maintenance poses a serious threat to safety.","La falta de mantenimiento representa una amenaza grave para la seguridad."],
+["to reach a consensus","llegar a un consenso","The committee failed to reach a consensus.","El comité no logró llegar a un consenso."],
+["to draw a distinction","establecer una distinción","The author draws a distinction between access and ownership.","El autor establece una distinción entre acceso y propiedad."],
+["to meet a requirement","cumplir un requisito","All applicants must meet the basic requirements.","Todos los solicitantes deben cumplir los requisitos básicos."],
+["to raise an issue","plantear un asunto","The report raises an important issue about data privacy.","El informe plantea un asunto importante sobre la privacidad de los datos."],
+["to take responsibility","asumir la responsabilidad","Managers must take responsibility for their decisions.","Los gerentes deben asumir la responsabilidad de sus decisiones."],
+["to exercise caution","actuar con cautela","Users should exercise caution when sharing personal details.","Los usuarios deben actuar con cautela al compartir datos personales."],
+["to strike a balance","encontrar un equilibrio","We need to strike a balance between cost and quality.","Necesitamos encontrar un equilibrio entre costo y calidad."],
+["to gain insight","obtener información valiosa","The interviews helped us gain insight into user needs.","Las entrevistas nos ayudaron a obtener información valiosa sobre las necesidades de los usuarios."],
+["to give rise to","dar lugar a","The new rules may give rise to unexpected problems.","Las nuevas reglas pueden dar lugar a problemas inesperados."],
+["a compelling argument","un argumento convincente","She presented a compelling argument for reform.","Ella presentó un argumento convincente a favor de la reforma."],
+["a pressing concern","una preocupación urgente","Housing affordability remains a pressing concern.","La asequibilidad de la vivienda sigue siendo una preocupación urgente."],
+["a viable alternative","una alternativa viable","We need to identify a viable alternative.","Necesitamos identificar una alternativa viable."],
+["a substantial amount","una cantidad considerable","A substantial amount of funding is still required.","Todavía se requiere una cantidad considerable de financiación."],
+["a widespread belief","una creencia generalizada","There is a widespread belief that the system is unfair.","Existe la creencia generalizada de que el sistema es injusto."],
+["deeply rooted","profundamente arraigado","The problem is deeply rooted in historical inequalities.","El problema está profundamente arraigado en desigualdades históricas."],
+["highly sensitive","sumamente delicado","The issue is highly sensitive and requires careful handling.","El asunto es sumamente delicado y requiere un manejo cuidadoso."],
+["bitterly disappointed","sumamente decepcionado","Residents were bitterly disappointed by the announcement.","Los residentes quedaron sumamente decepcionados por el anuncio."],
+["closely linked","estrechamente relacionado","Economic growth is closely linked to investment.","El crecimiento económico está estrechamente relacionado con la inversión."],
+["fully committed","plenamente comprometido","The organization remains fully committed to transparency.","La organización sigue plenamente comprometida con la transparencia."],
+["widely acknowledged","ampliamente reconocido","It is widely acknowledged that prevention saves resources.","Está ampliamente reconocido que la prevención ahorra recursos."],
+["to bear in mind","tener presente","Bear in mind that the figures are preliminary.","Ten presente que las cifras son preliminares."]],
+lessons:[
+["Verbo + sustantivo","Usa combinaciones convencionales para expresar acciones y relaciones con precisión.","Pose a threat, reach a consensus y draw a distinction son colocaciones fijas o preferidas.",[0,1,2,3],"The committee failed to reach a consensus."],
+["Acción y responsabilidad","Expresa gestión, cautela y equilibrio en contextos profesionales.","Raise an issue, take responsibility y exercise caution combinan verbos comunes con sustantivos específicos.",[4,5,6,7],"Users should exercise caution when sharing personal details."],
+["Adjetivo + sustantivo","Selecciona adjetivos que forman combinaciones naturales.","Compelling argument, pressing concern y viable alternative tienen colocaciones convencionales.",[8,9,10,11],"She presented a compelling argument for reform."],
+["Adverbio + adjetivo","Gradúa intensidad y relación con adverbios habituales.","Deeply rooted, highly sensitive y closely linked son combinaciones frecuentes.",[12,13,14,15],"The problem is deeply rooted in historical inequalities."],
+["Colocaciones en contexto","Integra combinaciones y expresiones para comunicar matices.","Widely acknowledged y bear in mind ayudan a presentar información y advertencias.",[16,17,18,19,20,21],"Bear in mind that the figures are preliminary."]]},
+{n:42,title:"Phrasal verbs por significado y registro",desc:"Interpreta y utiliza phrasal verbs frecuentes, incluidos usos figurados y diferencias de registro.",grammar:"Verb + particle/adverb; separable and inseparable patterns; transitive/intransitive use and object placement.",trap:"Look into a problem (inseparable); bring the issue up / bring it up (separable; pronoun goes between verb and particle). Learn the pattern with the meaning.",rows:[
+["to bring about","provocar","The reforms brought about significant changes.","Las reformas provocaron cambios importantes."],
+["to carry out","llevar a cabo","The team carried out a detailed assessment.","El equipo llevó a cabo una evaluación detallada."],
+["to come across","encontrarse con","I came across an interesting article on the subject.","Me encontré con un artículo interesante sobre el tema."],
+["to come up with","idear / proponer","We need to come up with a practical solution.","Necesitamos idear una solución práctica."],
+["to follow up on","dar seguimiento a","I'll follow up on your request tomorrow.","Daré seguimiento a tu solicitud mañana."],
+["to look into","investigar","The department will look into the complaint.","El departamento investigará la queja."],
+["to point out","señalar","She pointed out a mistake in the report.","Ella señaló un error en el informe."],
+["to put forward","proponer","Several alternatives were put forward.","Se propusieron varias alternativas."],
+["to rule out","descartar","We cannot rule out a technical failure.","No podemos descartar un fallo técnico."],
+["to set aside","reservar / dejar de lado","The committee set aside funds for training.","El comité reservó fondos para la formación."],
+["to take on","asumir","He took on additional responsibilities.","Él asumió responsabilidades adicionales."],
+["to turn down","rechazar","She turned down the offer.","Ella rechazó la oferta."],
+["to bring something up","mencionar algo","He brought the issue up during the meeting.","Él mencionó el asunto durante la reunión."],
+["to call something off","cancelar algo","They called the event off because of the storm.","Cancelaron el evento debido a la tormenta."],
+["to cut back on","reducir","The company plans to cut back on travel expenses.","La empresa planea reducir los gastos de viaje."],
+["to get around to","encontrar tiempo para","I finally got around to updating the document.","Por fin encontré tiempo para actualizar el documento."],
+["to hold off","esperar / aplazar","We should hold off until the results are confirmed.","Deberíamos esperar hasta que se confirmen los resultados."],
+["to keep up with","mantenerse al día con","It is difficult to keep up with rapid changes.","Es difícil mantenerse al día con los cambios rápidos."],
+["to lay out","exponer / presentar","The proposal lays out a clear set of priorities.","La propuesta expone un conjunto claro de prioridades."],
+["to make up for","compensar","The extra support helped make up for lost time.","El apoyo adicional ayudó a compensar el tiempo perdido."],
+["to phase out","eliminar gradualmente","The outdated system will be phased out next year.","El sistema obsoleto se eliminará gradualmente el próximo año."],
+["to work out","resolver / salir bien","We need to work out how to divide the tasks.","Necesitamos resolver cómo dividir las tareas."]],
+lessons:[
+["Phrasal verbs de cambio y acción","Reconoce phrasal verbs usados para producir, ejecutar y encontrar soluciones.","Bring about, carry out, come across y come up with tienen significados que no se deducen palabra por palabra.",[0,1,2,3],"The reforms brought about significant changes."],
+["Investigación y comunicación","Usa phrasal verbs para investigar, señalar y presentar opciones.","Follow up on y look into son inseparables; point out y put forward admiten objetos según su patrón.",[4,5,6,7],"The department will look into the complaint."],
+["Decisiones y responsabilidades","Expresa descartar, reservar, asumir y rechazar.","Rule out, set aside, take on y turn down describen decisiones; observa el objeto y la partícula.",[8,9,10,11],"She turned down the offer."],
+["Phrasal verbs separables","Coloca correctamente objetos y pronombres en phrasal verbs separables.","Bring the issue up / bring it up; call the event off / call it off. El pronombre va entre verbo y partícula.",[12,13,14,15],"He brought the issue up during the meeting."],
+["Uso figurado y registro","Integra phrasal verbs en contextos laborales y cotidianos.","Hold off, keep up with, make up for y phase out aparecen en contextos frecuentes; distingue separables e inseparables.",[16,17,18,19,20,21],"The outdated system will be phased out next year."]]},
+{n:43,title:"Dependent prepositions y patrones complejos",desc:"Selecciona preposiciones exigidas por verbos, adjetivos y sustantivos para evitar errores frecuentes de transferencia del español.",grammar:"Verb + preposition, adjective + preposition and noun + preposition patterns; preposition choice is lexical and should be learned as a unit.",trap:"Responsible for, capable of, insist on, access to. Do not translate the Spanish preposition mechanically.",rows:[
+["to account for","explicar / representar","Several factors account for the increase in demand.","Varios factores explican el aumento de la demanda."],
+["to adapt to","adaptarse a","The organization must adapt to changing conditions.","La organización debe adaptarse a las condiciones cambiantes."],
+["to approve of","aprobar","Not everyone approves of the proposed changes.","No todos aprueban los cambios propuestos."],
+["to benefit from","beneficiarse de","Small businesses may benefit from the new scheme.","Las pequeñas empresas pueden beneficiarse del nuevo programa."],
+["to comply with","cumplir con","All suppliers must comply with safety regulations.","Todos los proveedores deben cumplir las normas de seguridad."],
+["to contribute to","contribuir a","Regular feedback contributes to better performance.","La retroalimentación regular contribuye a un mejor rendimiento."],
+["to depend on","depender de","The final cost depends on the materials used.","El costo final depende de los materiales utilizados."],
+["to insist on","insistir en","The client insisted on receiving a written estimate.","El cliente insistió en recibir un presupuesto por escrito."],
+["to object to","oponerse a","Several residents objected to the construction plan.","Varios residentes se opusieron al plan de construcción."],
+["to result in","dar lugar a","Poor communication can result in costly mistakes.","Una comunicación deficiente puede dar lugar a errores costosos."],
+["to be accustomed to","estar acostumbrado a","She is accustomed to working under pressure.","Ella está acostumbrada a trabajar bajo presión."],
+["to be capable of","ser capaz de","The device is capable of processing large files.","El dispositivo es capaz de procesar archivos grandes."],
+["to be concerned about","estar preocupado por","Parents are concerned about online safety.","Los padres están preocupados por la seguridad en línea."],
+["to be eligible for","reunir los requisitos para","Applicants may be eligible for financial support.","Los solicitantes pueden reunir los requisitos para recibir apoyo financiero."],
+["to be familiar with","estar familiarizado con","Are you familiar with the updated procedure?","¿Estás familiarizado con el procedimiento actualizado?"],
+["to be responsible for","ser responsable de","The supplier is responsible for replacing faulty parts.","El proveedor es responsable de reemplazar las piezas defectuosas."],
+["access to","acceso a","All staff should have access to the training materials.","Todo el personal debería tener acceso a los materiales de formación."],
+["an increase in","un aumento de","There has been an increase in online applications.","Ha habido un aumento de las solicitudes en línea."],
+["a reason for","una razón para","There is no clear reason for the delay.","No hay una razón clara para el retraso."],
+["a solution to","una solución a","We need a long-term solution to the problem.","Necesitamos una solución a largo plazo para el problema."],
+["in response to","en respuesta a","The policy was revised in response to public feedback.","La política se revisó en respuesta a los comentarios del público."],
+["with regard to","con respecto a","With regard to your question, further details will follow.","Con respecto a tu pregunta, se enviarán más detalles."]],
+lessons:[
+["Verbo + preposición","Aprende patrones verbales con su preposición fija.","Account for, adapt to, approve of y benefit from requieren preposiciones específicas.",[0,1,2,3],"The organization must adapt to changing conditions."],
+["Cumplimiento y resultado","Expresa cumplimiento, contribución, dependencia y oposición.","Comply with, contribute to, depend on e insist on mantienen la preposición antes del objeto o gerundio.",[4,5,6,7],"The client insisted on receiving a written estimate."],
+["Adjetivo + preposición","Usa adjetivos con sus complementos preposicionales habituales.","Accustomed to + -ing; capable of + -ing/noun; eligible for + noun.",[8,9,10,11],"She is accustomed to working under pressure."],
+["Preocupación y responsabilidad","Distingue familiaridad, preocupación y responsabilidad.","Concerned about, familiar with y responsible for no se traducen con una única preposición española.",[12,13,14,15],"The supplier is responsible for replacing faulty parts."],
+["Sustantivo + preposición","Completa grupos nominales con preposiciones precisas.","Access to, increase in, reason for y solution to deben aprenderse como combinaciones.",[16,17,18,19,20,21],"We need a long-term solution to the problem."]]},
+{n:44,title:"Word formation avanzada",desc:"Construye y reconoce familias léxicas mediante nominalización, prefijos y sufijos para ampliar precisión y flexibilidad.",grammar:"Derivation, nominalization, negative and evaluative prefixes, suffixes for nouns/adjectives/adverbs and spelling changes.",trap:"Reliable → reliability; analyze → analysis; responsible → irresponsible. Check spelling and part of speech rather than adding a suffix mechanically.",rows:[
+["reliability","fiabilidad","System reliability is essential for public services.","La fiabilidad del sistema es esencial para los servicios públicos."],
+["accountability","rendición de cuentas","Public accountability should be strengthened.","La rendición de cuentas pública debería reforzarse."],
+["accessibility","accesibilidad","The redesign improves accessibility for all users.","El rediseño mejora la accesibilidad para todos los usuarios."],
+["implementation","implementación","Successful implementation requires careful planning.","Una implementación exitosa requiere una planificación cuidadosa."],
+["sustainability","sostenibilidad","Long-term sustainability remains a major concern.","La sostenibilidad a largo plazo sigue siendo una preocupación importante."],
+["inequality","desigualdad","The policy aims to reduce income inequality.","La política pretende reducir la desigualdad de ingresos."],
+["misinterpretation","interpretación errónea","A misinterpretation of the data led to the wrong conclusion.","Una interpretación errónea de los datos condujo a una conclusión equivocada."],
+["underestimation","subestimación","The underestimation of costs caused problems later.","La subestimación de los costos causó problemas después."],
+["overproduction","sobreproducción","Overproduction can lead to unnecessary waste.","La sobreproducción puede generar residuos innecesarios."],
+["disagreement","desacuerdo","There was considerable disagreement about the proposal.","Hubo un desacuerdo considerable sobre la propuesta."],
+["to broaden","ampliar","The course aims to broaden students' perspectives.","El curso pretende ampliar las perspectivas de los estudiantes."],
+["to strengthen","fortalecer","The changes should strengthen public confidence.","Los cambios deberían fortalecer la confianza pública."],
+["to clarify","aclarar","Could you clarify the final requirement?","¿Podrías aclarar el requisito final?"],
+["to justify","justificar","The available evidence does not justify that conclusion.","Las pruebas disponibles no justifican esa conclusión."],
+["to simplify","simplificar","The new form is designed to simplify the process.","El nuevo formulario está diseñado para simplificar el proceso."],
+["unavoidable","inevitable","Some delays are unavoidable during the transition.","Algunos retrasos son inevitables durante la transición."],
+["counterproductive","contraproducente","Excessive monitoring can be counterproductive.","Una supervisión excesiva puede ser contraproducente."],
+["inconsistent","incoherente / inconsistente","The two accounts are inconsistent with each other.","Los dos relatos son incoherentes entre sí."],
+["disproportionate","desproporcionado","The response was disproportionate to the problem.","La respuesta fue desproporcionada en relación con el problema."],
+["underlying","subyacente","We need to address the underlying causes.","Necesitamos abordar las causas subyacentes."],
+["comparatively","comparativamente","The new method is comparatively inexpensive.","El nuevo método es comparativamente económico."],
+["inevitably","inevitablemente","A major change will inevitably involve some disruption.","Un cambio importante inevitablemente implicará cierta interrupción."]],
+lessons:[
+["Nominalización","Transforma verbos y adjetivos en sustantivos abstractos.","Reliable → reliability; implement → implementation; sustain → sustainability.",[0,1,2,3],"Successful implementation requires careful planning."],
+["Prefijos negativos y evaluativos","Cambia el significado mediante prefijos frecuentes.","In-, mis-, under-, over- y dis- modifican la base; revisa si el resultado es una palabra establecida.",[4,5,6,7],"A misinterpretation of the data led to the wrong conclusion."],
+["Formación verbal","Crea verbos a partir de adjetivos y sustantivos.","Broaden, strengthen, clarify, justify y simplify expresan procesos de cambio o evaluación.",[8,9,10,11],"The changes should strengthen public confidence."],
+["Adjetivos derivados","Forma adjetivos para evaluar consecuencias y relaciones.","Unavoidable, counterproductive, inconsistent y disproportionate tienen matices específicos.",[12,13,14,15],"Excessive monitoring can be counterproductive."],
+["Adverbios y familias léxicas","Reconoce la función y el significado de derivados en contexto.","Comparatively e inevitably modifican una oración; underlying funciona como adjetivo y no como adverbio.",[16,17,18,19,20,21],"A major change will inevitably involve some disruption."]]}
+];
+function build(d){
+ const vocab=d.rows.map((r,i)=>({id:"en_b2_u"+d.n+"_v"+String(i+1).padStart(2,"0"),target:r[0],esp:r[1],ex:r[2],exEsp:r[3],verification:{status:"not_checked",sources:[]}}));
+ const mc=(w,opts)=>({vocabId:w.id,type:"mc",prompt:"¿Qué significa «"+w.target+"»?",options:opts,answer:0,explanation:"Elige la equivalencia adecuada y observa la combinación o familia léxica."});
+ const order=(w,s)=>{const words=s.split(" ");return {vocabId:w.id,type:"order",prompt:"Ordena la frase.",words,correctOrder:words.slice(),explanation:"Reconstruye la oración y reconoce el patrón léxico."};};
+ const lessons=d.lessons.map(l=>({title:l[0],objective:l[1],grammar:l[2],vocabIds:l[3].map(i=>vocab[i].id),reviewVocabIds:[],exercises:[mc(vocab[l[3][0]],[vocab[l[3][0]].esp,vocab[(l[3][0]+7)%22].esp,vocab[(l[3][0]+14)%22].esp]),order(vocab[l[3][1]],l[4])]}));
+ const exercises=[];for(let i=0;i<5;i++)exercises.push(mc(vocab[i],[vocab[i].esp,vocab[(i+8)%22].esp,vocab[(i+15)%22].esp]));
+ for(let i=0;i<5;i++)exercises.push(order(vocab[i+5],d.lessons[i][4]));
+ return {unitNumber:d.n,id:"en_b2_u"+d.n,title:"Unidad "+d.n+": "+d.title,desc:d.desc,grammar:d.grammar,trap:{title:"Forma, significado y colocación",detail:d.trap},vocab,lessons,exercises};
+}
+root.GUARDI_CURRICULUM_BLOCKS=root.GUARDI_CURRICULUM_BLOCKS||{};root.GUARDI_CURRICULUM_BLOCKS.en=root.GUARDI_CURRICULUM_BLOCKS.en||{};root.GUARDI_CURRICULUM_BLOCKS.en.B2=root.GUARDI_CURRICULUM_BLOCKS.en.B2||{};
+root.GUARDI_CURRICULUM_BLOCKS.en.B2["41-44"]={units:defs.map(build)};
+})(typeof window!=="undefined"?window:globalThis);

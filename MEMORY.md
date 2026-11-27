@@ -757,3 +757,12 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Total A2 U1–U18: 374 entradas nuevas; U10 es repaso sin vocabulario. Entradas nuevas `not_checked`; cotejo CEFR-J individual pendiente.
 - Inglés continúa `available:false`; sin cambios a IndexedDB v1, backup JSON v3, dependencias, PT-BR ni otros idiomas.
 - Fuente: rama `feat/en-us-a2-u15-u18`, currículum, pruebas y docs; 27 nov 2026.
+
+
+## 2026-11-26 — Inglés en-US A2 U19–U22
+- Rama feat/en-us-a2-u19-u22, apilada sobre el head CI-verde de PR #903.
+- U19: modificadores de grado e intensidad; U20: repaso integrado sin vocabulario; U21: reglas, permisos y obligaciones; U22: consejos y bienestar.
+- Bloque de 4 unidades y 20 lecciones; 66 entradas nuevas en U19/U21/U22, U20 con 0; 80 ejercicios. Inventario A2 U1–U22: 440 entradas nuevas; U10 y U20 son repasos.
+- Manifiesto y prueba de currículo amplían la cobertura a U1–U22, 440 targets únicos, cinco lecciones y 20 ejercicios por unidad, referencias de repaso resueltas y disponibilidad inglesa false. CI del bloque aún pendiente al registrar esta nota.
+- Todas las entradas nuevas not_checked; cotejo individual CEFR-J pendiente. Sin cambios a IndexedDB v1, backup JSON v3, dependencias, POS/audio, PT-BR ni otros idiomas. No publicar ni fusionar sin aprobación expresa.
+- Fuente: rama feat/en-us-a2-u19-u22, archivos de currículo, prueba y documentación; 26 nov 2026.

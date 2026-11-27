@@ -125,7 +125,7 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
         <div class="topbar-metrics" aria-label="Tu actividad y progreso">
             <span class="topbar-chip topbar-streak" title="Racha actual"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22c-4.1 0-7-2.8-7-6.7 0-2.8 1.4-5 3.5-6.9.1 2.4.9 3.8 2.2 4.6-.2-4 1.2-7.1 4.3-10.2.2 3.3 1.4 5.1 3.1 6.8 1.4 1.5 2.4 3.2 2.4 5.7 0 3.8-2.8 6.7-6.5 6.7Z"/><path d="M12.2 18.7c-1.5 0-2.5-1-2.5-2.4 0-1.1.7-2.1 1.8-3.1.2 1.1.7 1.7 1.4 2.1.7.5 1.1 1 1.1 1.8 0 .9-.8 1.6-1.8 1.6Z"/></svg><strong id="studyStreakText">0 días</strong></span>
             <span class="topbar-chip topbar-xp" title="XP de hoy frente a tu meta"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m13.2 2.5-8 11h5.6l-.5 8 8.5-12h-5.7l.1-7Z"/></svg><strong id="studyDailyXpText">Meta: 0/30 XP</strong></span>
-            <button class="topbar-language-trigger" id="studyLanguageTrigger" type="button" title="Cambiar idioma de estudio" aria-label="Cambiar idioma de estudio. Indonesio actual" aria-haspopup="dialog" aria-controls="studyLanguageSheetOverlay" onclick="App.openStudyLanguageSheet()"><span id="studyLanguageFlag" aria-hidden="true">🇮🇩</span></button>
+            <button class="topbar-language-trigger" id="studyLanguageTrigger" type="button" title="Cambiar idioma de estudio" aria-label="Cambiar idioma de estudio" aria-haspopup="dialog" aria-controls="studyLanguageSheetOverlay" onclick="App.openStudyLanguageSheet()"><span id="studyLanguageFlag" aria-hidden="true">🇮🇩</span></button>
             <button class="level-progress-wrap level-progress-trigger" id="learningLevelTrigger" type="button" title="Cambiar nivel" aria-label="Cambiar nivel. A1 seleccionado, 0 de 32 unidades completadas" aria-haspopup="dialog" aria-controls="learningLevelSheetOverlay" onclick="App.openLearningLevelSheet()">
                 <span class="level-progress-ring" id="levelProgressRing" role="img" aria-hidden="true"><span class="level-progress-ring-inner" id="levelProgressPercent">0%</span></span>
                 <span class="level-progress-level" id="levelProgressLevel">A1</span>
@@ -193,7 +193,7 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                 <h2 id="studyLanguageSheetTitle">Cambiar idioma</h2>
                 <section class="language-current-card" aria-labelledby="studyLanguageCurrentHeading">
                     <p class="language-sheet-eyebrow" id="studyLanguageCurrentHeading">Tu idioma actual</p>
-                    <div class="language-current-main"><span id="studyLanguageCurrentFlag" aria-hidden="true">🇮🇩</span><div><strong id="studyLanguageCurrentName">Indonesio</strong><small id="studyLanguageCurrentProgress">A1 · 0% completado</small></div></div>
+                    <div class="language-current-main"><span id="studyLanguageCurrentFlag" aria-hidden="true">🇮🇩</span><div><strong id="studyLanguageCurrentName">Idioma actual</strong><small id="studyLanguageCurrentProgress">A1 · 0% completado</small></div></div>
                     <div class="language-current-progress" aria-hidden="true"><span id="studyLanguageCurrentProgressBar"></span></div>
                 </section>
                 <section id="studyLanguageAvailableSection" class="language-picker-section" hidden aria-labelledby="studyLanguageAvailableHeading">
@@ -264,7 +264,7 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
         <div id="srsPracticeArea" style="display:none;">
             <div class="flashcard">
                 <div style="display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:8px;">
-                    <p id="srsDirectionText" style="font-size:0.8rem; color:var(--text-muted); margin:0;">Indonesio → español</p>
+                    <p id="srsDirectionText" style="font-size:0.8rem; color:var(--text-muted); margin:0;">Idioma del curso → español</p>
                     <p id="srsProgressText" aria-live="polite" style="font-size:0.8rem; color:var(--text-muted); margin:0;">Tarjeta 1 de 1</p>
                 </div>
                 <h2 id="srsPromptText" style="font-size:1.8rem;">...</h2>
@@ -18247,7 +18247,8 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                 const reverse = (this.currentIndex + this.sessionNumber) % 2 === 1;
                 const language = LanguageManager.getLanguage(LanguageManager.getActiveLanguage());
                 const targetName = language && language.name ? language.name : 'idioma objetivo';
-                current.direction = reverse ? 'es-id' : 'id-es';
+                const activeCode = LanguageManager.getActiveLanguage();
+                current.direction = reverse ? 'es-' + activeCode : activeCode + '-es';
                 document.getElementById('srsDirectionText').innerText = reverse
                     ? 'Español → ' + targetName.toLocaleLowerCase()
                     : targetName + ' → español';
@@ -18256,7 +18257,7 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                 document.getElementById('srsContextText').style.display = 'block';
                 document.getElementById('srsAnswerArea').style.display = 'none';
                 document.getElementById('srsRevealBtn').style.display = 'inline-flex';
-                if (!reverse && LanguageManager.getActiveLanguage() === 'id') AudioEngine.speak(current.vocab.text);
+                if (!reverse) AudioEngine.speak(current.vocab.text);
             },
 
             exitSession() {
@@ -19072,6 +19073,7 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                 p.style.display = p.style.display === 'none' ? 'block' : 'none';
             },
             async fetchUnit(topic) {
+                if (LanguageManager.getActiveLanguage() !== 'id') throw new Error('El generador de lecciones aún no está adaptado al curso activo.');
                 const data = await GeminiRequest.postJson(this.url, App.apiKey, {
                     contents: [{ parts: [{ text: await this.buildPrompt(topic) }] }],
                     generationConfig: { responseMimeType: 'application/json', responseSchema: this.schema, temperature: 0.7 }
@@ -19083,6 +19085,13 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
             showNext() {
                 const el = document.getElementById('nextTopicLine');
                 if (!el) return;
+                const selector = document.getElementById('syllabusSelector');
+                if (LanguageManager.getActiveLanguage() !== 'id') {
+                    el.textContent = 'El generador de lecciones aún no está adaptado al curso activo.';
+                    if (selector) selector.disabled = true;
+                    return;
+                }
+                if (selector) selector.disabled = false;
                 const t = SYLLABUS[CustomLessons.pos];
                 el.innerHTML = t ? `<strong>Siguiente tema:</strong> ${t.split('|')[0]}` : 'Temario completado 🎉 Elige un tema propio para seguir.';
                 const selector = document.getElementById('syllabusSelector');
@@ -19096,6 +19105,11 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                 }
             },
             async skipTopic() {
+                if (LanguageManager.getActiveLanguage() !== 'id') {
+                    const status = document.getElementById('batchStatus');
+                    if (status) status.innerText = 'El generador de lecciones aún no está adaptado al curso activo.';
+                    return;
+                }
                 if (CustomLessons.pos >= SYLLABUS.length) {
                     document.getElementById('batchStatus').innerText = 'El temario ya está completo.';
                     return;
@@ -19106,6 +19120,11 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                 document.getElementById('batchStatus').innerText = 'Tema saltado. La posición se guardó en este dispositivo.';
             },
             async chooseTopic() {
+                if (LanguageManager.getActiveLanguage() !== 'id') {
+                    const status = document.getElementById('batchStatus');
+                    if (status) status.innerText = 'El generador de lecciones aún no está adaptado al curso activo.';
+                    return;
+                }
                 const selector = document.getElementById('syllabusSelector');
                 const selected = Number(selector && selector.value);
                 if (!Number.isInteger(selected) || selected < 0 || selected >= SYLLABUS.length) return;
@@ -19115,9 +19134,13 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                 document.getElementById('batchStatus').innerText = 'Tema inicial actualizado y guardado.';
             },
             async next(n) {
+                const st = document.getElementById('batchStatus');
+                if (LanguageManager.getActiveLanguage() !== 'id') {
+                    if (st) st.innerText = 'El generador de lecciones aún no está adaptado al curso activo.';
+                    return;
+                }
                 if (!App.apiKey) return alert('Primero guarda tu clave de Gemini en la pestaña Tutor.');
                 if (!navigator.onLine) return alert('Necesitas internet para generar lecciones.');
-                const st = document.getElementById('batchStatus');
                 for (let i = 0; i < n; i++) {
                     const t = SYLLABUS[CustomLessons.pos];
                     if (!t) { st.innerText = 'Temario completado.'; return; }

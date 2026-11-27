@@ -1,3 +1,11 @@
+## 2026-11-27 — Compatibilidad con inventarios offline por idioma
+- Revisión de `offline-audio-manager.js` y `service-worker.js` detectó que el gestor offline exige arrays por idioma (`audio/manifest.json` + `audio/metadata.json` para ID; `audio/pt-BR/manifest.json` + `audio/pt-BR/metadata.json` para PT-BR) y metadatos `audio_hashes` SHA-256. No se puede sustituir el `audio/manifest.json` histórico por un objeto central.
+- El generador ahora conserva esos inventarios por idioma, calcula SHA-256 reales de cada MP3 y publica un manifiesto separado `audio/manifest-multilingual.json` para `AudioEngine`. El reproductor lee el manifiesto central; el offline manager mantiene sus rutas y formato existentes.
+- `service-worker.js` precachea el manifiesto central y los inventarios PT-BR; cache shell sube a `bahasa-studio-v3.8.167`. Los tests protegen estas rutas y la huella SHA-256.
+- Cambios principales: generator `e30ebc2`, audio engine `cf7423a`, service worker `432be1a`, tests `028409c`/`4a522e0`/`fea772c`; CI pendiente.
+
+Fuente: `offline-audio-manager.js`, `service-worker.js`, `audio-engine.js`, `tools/generar_audio.py` y tests; 27 nov 2026.
+
 ## 2026-11-27 — Síntesis Piper por lotes
 - El generador dejó de iniciar un proceso Piper por cada frase. Ahora agrupa los textos por idioma y usa `piper --json-input` con `output_file` por registro, cargando cada modelo una sola vez por lote. Esto reduce drásticamente el tiempo de generación de miles de clips.
 - Se añadió una comprobación estática del uso de JSON input y rutas de salida por clip. Cambios en commits `f1f9225`, `6f5ed33` y `77f9eae`; CI pendiente.

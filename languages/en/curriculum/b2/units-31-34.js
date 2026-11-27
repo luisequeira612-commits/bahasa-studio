@@ -46,7 +46,7 @@ lessons:[
 ["relatively","relativamente","The procedure is relatively straightforward.","El procedimiento es relativamente sencillo."],
 ["approximately","aproximadamente","Approximately half of the respondents supported the proposal.","Aproximadamente la mitad de los encuestados apoyó la propuesta."],
 ["in all probability","con toda probabilidad","In all probability, the figures will be revised.","Con toda probabilidad, se revisarán las cifras."],
-["not automatically","no automáticamente","A higher salary does not automatically lead to greater satisfaction.","Un salario más alto no conduce automáticamente a una mayor satisfacción."],
+["not automatically","no de forma automática","A higher salary does not automatically lead to greater satisfaction.","Un salario más alto no conduce automáticamente a una mayor satisfacción."],
 ["to align with","coincidir con / estar alineado con","The findings align with earlier research.","Los hallazgos coinciden con investigaciones anteriores."],
 ["preliminary findings","resultados preliminares","Preliminary findings point to a possible link.","Los resultados preliminares apuntan a una posible relación."],
 ["a plausible explanation","una explicación plausible","One plausible explanation is a change in consumer habits.","Una explicación plausible es un cambio en los hábitos de consumo."],

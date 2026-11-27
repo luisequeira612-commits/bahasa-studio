@@ -3,6 +3,7 @@
 - Rama actual `feat/en-us-b1-u17-u20`, apilada sobre esa secuencia. Añade U17 condiciones/acuerdos, U18 cláusulas temporales futuras, U19 planes que cambiaron y U20 Review II sin vocabulario nuevo.
 - Bloque: 3 unidades de contenido, 66 entradas, 15 lecciones + 1 repaso de 5 lecciones; 80 ejercicios. Acumulado B1 U1–U20: 396 entradas nuevas únicas, 100 lecciones, 400 ejercicios; U10 y U20 son repasos.
 - Auditoría estática de B1: 396/396 targets únicos. Comparación A1/A2 para U17–U19 sin coincidencias exactas tras deduplicar. Vocabulario `not_checked`. CI de PR U17–U20 pendiente; inglés sigue `available:false` hasta completar el curso y sus gates.
+- CI inicial de PR #920 detectó dos coincidencias A1/A2 en U18 (`once`, `ahead of time`); se sustituyeron por `once the paperwork is complete` y `well ahead of schedule`, con ejemplos/glosas/ejercicios actualizados. Ejecutar CI integral de nuevo.
 - Sin cambios a IndexedDB v1, backup JSON v3, dependencias, audio, red o cursos existentes.
 - Fuente: rama `feat/en-us-b1-u17-u20`, manifiesto, currículo y tests; 26 nov 2026.
 

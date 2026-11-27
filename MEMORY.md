@@ -814,3 +814,5 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Auditoría estática: 770 targets únicos en A2. Manifiesto y test se amplían a U38 y comprueban también solapamiento con A1.
 - CI pendiente. Entradas `not_checked`; cotejo individual CEFR-J pendiente. Sin cambios a IndexedDB v1, backup JSON v3, dependencias, POS/audio, PT-BR ni otros idiomas. No fusionar ni publicar sin aprobación expresa.
 - Fuente: rama `feat/en-us-a2-u35-u38-v2`, currículo, tests y docs; 27 nov 2026.
+
+- 27 nov 2026: CI de PR #912 detectó cuatro coincidencias exactas con A1 en U36–U37 (`once`, `twice`, `competition`, `today`). Se sustituyeron por `on one occasion`, `on two occasions`, `contest` y `so far today`, con ejemplos/frases modelo alineados. Se repetirá la comparación automatizada; no se redujo la cobertura del test.

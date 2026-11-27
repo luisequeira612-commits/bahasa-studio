@@ -81,7 +81,7 @@ lessons:[
 ["a reason for","una razón para","There is no clear reason for the delay.","No hay una razón clara para el retraso."],
 ["a solution to","una solución a","We need a long-term solution to the problem.","Necesitamos una solución a largo plazo para el problema."],
 ["in response to","en respuesta a","The policy was revised in response to public feedback.","La política se revisó en respuesta a los comentarios del público."],
-["with regard to","con respecto a","With regard to your question, further details will follow.","Con respecto a tu pregunta, se enviarán más detalles."]],
+["in relation to","en relación con","In relation to your question, further details will follow.","En relación con tu pregunta, se enviarán más detalles."]],
 lessons:[
 ["Verbo + preposición","Aprende patrones verbales con su preposición fija.","Account for, adapt to, approve of y benefit from requieren preposiciones específicas.",[0,1,2,3],"The organization must adapt to changing conditions."],
 ["Cumplimiento y resultado","Expresa cumplimiento, contribución, dependencia y oposición.","Comply with, contribute to, depend on e insist on mantienen la preposición antes del objeto o gerundio.",[4,5,6,7],"The client insisted on receiving a written estimate."],

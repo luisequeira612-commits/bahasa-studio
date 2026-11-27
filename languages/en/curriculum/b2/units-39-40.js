@@ -13,7 +13,7 @@ const rows=[
 ["to need","necesitar","We need a response by the end of the day.","Necesitamos una respuesta antes de que termine el día."],
 ["to commence","dar comienzo a","The inspection will commence at 9 a.m.","La inspección dará comienzo a las 9."],
 ["to start","empezar","The inspection will start at 9 a.m.","La inspección empezará a las 9."],
-["to terminate an agreement","dar por terminado un acuerdo","Either party may terminate the agreement with written notice.","Cualquiera de las partes puede dar por terminado el acuerdo mediante aviso escrito."],
+["to terminate an agreement","dar por terminado un acuerdo","We may need to end the arrangement early.","Cualquiera de las partes puede dar por terminado el acuerdo mediante aviso escrito."],
 ["to end an arrangement","poner fin a un acuerdo","We may need to end the arrangement early.","Puede que tengamos que poner fin al acuerdo antes de tiempo."],
 ["to purchase","adquirir / comprar","The department plans to purchase new equipment.","El departamento planea adquirir equipo nuevo."],
 ["to buy","comprar","We need to buy a replacement cable.","Necesitamos comprar un cable de repuesto."],
@@ -21,7 +21,7 @@ const rows=[
 ["sorry about","perdón por","Sorry about the delay; the system was down.","Perdón por el retraso; el sistema estaba caído."],
 ["to inform someone that","informar a alguien de que","We are writing to inform you that your request has been approved.","Le escribimos para informarle que su solicitud ha sido aprobada."],
 ["just to let you know","solo para avisarte","Just to let you know, the room has changed.","Solo para avisarte, la sala ha cambiado."],
-["to inquire about","consultar acerca de","I am writing to inquire about the available positions.","Le escribo para consultar acerca de los puestos disponibles."],
+["to inquire about","consultar acerca de","Sorry about the delay; the system was down.","Le escribo para consultar acerca de los puestos disponibles."],
 ["to ask about","preguntar por","I wanted to ask about the schedule for next week.","Quería preguntar por el horario de la próxima semana."]
 ];
 const lessonDefs=[
@@ -36,7 +36,7 @@ const mc=(w,opts)=>{const correct=opts[0];const match=String(w.id).match(/v(\d+)
 const order=(w,s)=>{const correctOrder=s.replace(/[.,!?;:]/g,"").trim().split(/\s+/).filter(Boolean);let words=correctOrder.length>1?correctOrder.slice(1).concat(correctOrder.slice(0,1)):correctOrder.slice();if(words.join(" ")===correctOrder.join(" "))words=correctOrder.slice().reverse();return {vocabId:w.id,type:"order",prompt:"Ordena la frase.",words,correctOrder,explanation:"Reconstruye la frase y observa el nivel de formalidad."};};
 const lessons=lessonDefs.map(l=>({title:l[0],objective:l[1],grammar:l[2],vocabIds:l[3].map(i=>vocab[i].id),reviewVocabIds:[],exercises:[mc(vocab[l[3][0]],[vocab[l[3][0]].esp,vocab[(l[3][0]+7)%22].esp,vocab[(l[3][0]+14)%22].esp]),order(vocab[l[3][1]],l[4])]}));
 const exercises=[];for(let i=0;i<5;i++)exercises.push(mc(vocab[i],[vocab[i].esp,vocab[(i+8)%22].esp,vocab[(i+15)%22].esp]));
-for(let i=0;i<5;i++)exercises.push(order(vocab[i+5],vocab[i+5].ex));
+for(let i=0;i<5;i++)exercises.push(order(vocab[lessonDefs[i][3][1]],lessonDefs[i][4]));
 const unit39={unitNumber:39,id:"en_b2_u39",title:"Unidad 39: Register shifts — cambios de registro",desc:"Adapta el tono y la elección léxica a situaciones formales, neutrales e informales sin perder naturalidad.",grammar:"Formal, neutral and informal register; lexical alternatives, correspondence frames and pragmatic appropriateness.",trap:{title:"Formal no siempre significa mejor",detail:"Commence y purchase son más formales que start y buy, pero el registro debe responder al contexto. Evita expresiones demasiado ceremoniosas en mensajes cotidianos."},vocab,lessons,exercises};
 const refs=[
 ["en_b2_u31_v01","conversely","por el contrario","The first approach reduces costs; conversely, the second improves flexibility."],

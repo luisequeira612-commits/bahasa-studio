@@ -4,7 +4,7 @@ const defs=[
 {n:25,title:"Cleft sentences: it-clefts y what-clefts",desc:"Usa estructuras hendidas para destacar personas, causas, momentos y acciones sin alterar la información esencial.",grammar:"It is/was + focused element + that/who-clause; What-clause + be + focused information; all-clause clefts.",trap:"It was the timing that caused the problem. What matters is the timing. En it-clefts, that puede omitirse en algunos contextos informales, pero no confundas el foco con el sujeto de la subordinada.",rows:[
 ["it was the timing that","fue el momento lo que","It was the timing that caused the problem.","Fue el momento lo que causó el problema."],
 ["it is the lack of funding that","es la falta de fondos lo que","It is the lack of funding that limits the project.","Es la falta de fondos lo que limita el proyecto."],
-["what matters most is","lo que más importa es","What matters most is how we respond.","Lo que más importa es cómo respondemos."],
+["what is crucial is","lo crucial es","What is crucial is how we respond.","Lo crucial es cómo respondemos."],
 ["what I find surprising is","lo que me sorprende es","What I find surprising is the lack of evidence.","Lo que me sorprende es la falta de pruebas."],
 ["it was not until","no fue hasta que","It was not until Monday that we received a reply.","No fue hasta el lunes cuando recibimos una respuesta."],
 ["it is precisely because","es precisamente porque","It is precisely because costs have risen that we need a review.","Es precisamente porque los costos han subido que necesitamos una revisión."],
@@ -35,7 +35,7 @@ lessons:[
 ["seldom have I encountered","pocas veces me he encontrado con","Seldom have I encountered such a complex case.","Pocas veces me he encontrado con un caso tan complejo."],
 ["never before had","nunca antes había","Never before had the team faced this level of pressure.","Nunca antes el equipo había enfrentado este nivel de presión."],
 ["hardly had we","apenas habíamos","Hardly had we started when the power went out.","Apenas habíamos empezado cuando se fue la luz."],
-["no sooner had","no bien había","No sooner had she arrived than the meeting began.","No bien había llegado cuando comenzó la reunión."],
+["not until the meeting ended did","no fue hasta que terminó la reunión cuando","Not until the meeting ended did we understand the impact.","No fue hasta que terminó la reunión cuando entendimos el impacto."],
 ["under no circumstances should","bajo ninguna circunstancia debería","Under no circumstances should personal data be shared.","Bajo ninguna circunstancia deberían compartirse datos personales."],
 ["at no point did","en ningún momento","At no point did the witness change her account.","En ningún momento la testigo cambió su versión."],
 ["not until later did","no fue hasta más tarde que","Not until later did we understand the impact.","No fue hasta más tarde que entendimos el impacto."],

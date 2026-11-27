@@ -1,12 +1,12 @@
 #!/usr/bin/env node
-/** Build a source-backed, read-only American English B1 U27-U50 editorial review packet. */
+/** Build a source-backed, read-only American English B1 U27-U52 editorial review packet. */
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadEnglishB1Curriculum } from './load-english-b1-curriculum.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const RANGE = [27, 50];
+const RANGE = [27, 52];
 const NOTE_PATHS = ['docs/EN_US_B1_SOURCES.md'];
 const FENCE = String.fromCharCode(96).repeat(3);
 
@@ -30,7 +30,7 @@ export function buildB1ReviewPacket({ curriculum, notes = [], prompt = '' }) {
       .reduce((total, lesson) => total + (lesson.exercises?.length ?? 0), 0), 0),
   };
   const sections = [
-    '# Auditoría editorial independiente — Inglés americano (en-US) B1 U27–U50',
+    '# Auditoría editorial independiente — Inglés americano (en-US) B1 U27–U52',
     '> Paquete de solo lectura generado directamente desde el currículo activo. No modifica datos ni trackers.',
     '',
     '## Instrucciones de revisión',
@@ -38,7 +38,7 @@ export function buildB1ReviewPacket({ curriculum, notes = [], prompt = '' }) {
     '',
     '## Cobertura',
     '- Nivel: B1.',
-    '- Unidades: U27–U50 (24 esperadas).',
+    '- Unidades: U27–U52 (24 esperadas).',
     '- Entradas de vocabulario: ' + counts.vocabulary_entries + '.',
     '- Ejercicios directos: ' + counts.direct_exercises + '.',
     '- Lecciones: ' + counts.lesson_count + '.',
@@ -69,15 +69,15 @@ export function buildB1ReviewPacket({ curriculum, notes = [], prompt = '' }) {
 
 async function main() {
   const outputArg = process.argv.indexOf('--output');
-  const output = resolve(ROOT, outputArg >= 0 ? process.argv[outputArg + 1] : 'artifacts/deepseek-b1-u27-u50-review-packet.md');
+  const output = resolve(ROOT, outputArg >= 0 ? process.argv[outputArg + 1] : 'artifacts/deepseek-b1-u27-u52-review-packet.md');
   const [curriculum, prompt, ...notes] = await Promise.all([
     loadEnglishB1Curriculum(ROOT),
     readFile(resolve(ROOT, 'docs/DEEPSEEK_B1_U27_U50_AUDIT_PROMPT.md'), 'utf8'),
     ...NOTE_PATHS.map(async (path) => ({ path, content: await readFile(resolve(ROOT, path), 'utf8') })),
   ]);
   const packet = buildB1ReviewPacket({ curriculum, notes, prompt });
-  if (packet.coverage.units !== 24) throw new Error('Expected 24 English B1 units, found ' + packet.coverage.units);
-  if (packet.coverage.vocabulary_entries !== 462) throw new Error('Unexpected English B1 vocabulary count: ' + packet.coverage.vocabulary_entries);
+  if (packet.coverage.units !== 26) throw new Error('Expected 26 English B1 units, found ' + packet.coverage.units);
+  if (packet.coverage.vocabulary_entries !== 484) throw new Error('Unexpected English B1 vocabulary count: ' + packet.coverage.vocabulary_entries);
   await mkdir(dirname(output), { recursive: true });
   await writeFile(output, packet.markdown, 'utf8');
   console.log(JSON.stringify({ output, coverage: packet.coverage, bytes: Buffer.byteLength(packet.markdown) }));

@@ -1,6 +1,6 @@
 # Inglés americano B1 — fuentes, plan y trazabilidad
 
-**Estado:** temario completo aprobado por el usuario el 27 de noviembre de 2026. Implementación iniciada en bloques pequeños; solo U1–U4 están en este primer bloque. El nivel permanece sin publicar.
+**Estado:** temario completo aprobado por el usuario el 27 de noviembre de 2026. Implementación en bloques pequeños; U1–U16 están authored en cuatro bloques apilados. El nivel permanece sin publicar.
 
 ## Estructura aprobada
 - 52 unidades, 5 lecciones explícitas por unidad y 20 ejercicios por unidad: 260 lecciones y 1.040 ejercicios al completar el nivel.
@@ -118,3 +118,10 @@
 - Auditoría de coincidencias con A2 en U9/U11/U12: se sustituyeron `meanwhile`, `in the meantime`, `all of a sudden`, `eventually`, `reschedule`, `postpone`, `be due to`, `layover`, `delivery window`, `training session`, `appointment slot` y `departure gate` por `in parallel`, `during that interval`, `out of nowhere`, `at long last`, `set a new date`, `defer`, `be expected to`, `connection time`, `delivery period`, `skills workshop`, `appointment window` y `boarding area`. Se actualizaron también los modelos de ordenación afectados. Nueva CI pendiente.
 
 - La primera ejecución de regresión no encontró solapamientos A1/A2 (la prueba de 242 términos pasó); falló solo una aserción `deepStrictEqual` entre arrays de distinto contexto VM al comprobar `vocabIds: []` en U10. Sustituida por comprobación de longitud cero; reejecución pendiente.
+
+
+## Bloque U13–U16 — inglés americano B1
+- U13: eventos inminentes y planes previstos; U14: predicciones y grados de certeza; U15: primer condicional y consecuencias; U16: segundo condicional e hipótesis.
+- Añade 4 unidades, 20 lecciones, 80 ejercicios y 88 entradas nuevas (22 por unidad). El acumulado U1–U16 es 16 unidades, 80 lecciones, 320 ejercicios y 330 entradas nuevas; U10 sigue siendo repaso sin vocabulario nuevo.
+- El manifiesto y el contrato de currículo se amplían hasta U16. Las pruebas comparan todos los targets B1 contra A1/A2 y comprueban referencias de lecciones y bancos.
+- Vocabulario nuevo `not_checked`; la comparación automatizada exacta no certifica nivel MCER, naturalidad nativa ni cotejo individual CEFR-J. Inglés sigue `available:false`; sin cambios a IndexedDB v1, backup JSON v3, dependencias ni otros idiomas.

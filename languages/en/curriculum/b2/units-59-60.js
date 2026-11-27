@@ -17,7 +17,7 @@ const rows=[
 ["to manage competing priorities","gestionar prioridades contrapuestas","The role requires the ability to manage competing priorities.","El puesto requiere la capacidad de gestionar prioridades contrapuestas."],
 ["to maintain a constructive dialogue","mantener un diálogo constructivo","Both sides agreed to maintain a constructive dialogue.","Ambas partes acordaron mantener un diálogo constructivo."],
 ["to evaluate the implications","evaluar las implicaciones","We must evaluate the implications before implementing the change.","Debemos evaluar las implicaciones antes de implementar el cambio."],
-["to present a balanced case","presentar un argumento equilibrado","The report presents a balanced case for reform.","El informe presenta argumentos equilibrados a favor de la reforma."],
+["to present a balanced case","presentar un argumento equilibrado","The report presents a balanced case for reform.","El informe presenta un argumento equilibrado a favor de la reforma."],
 ["to revise a recommendation","revisar una recomendación","The panel revised its recommendation after the consultation.","El comité revisó su recomendación después de la consulta."],
 ["to reach a shared understanding","llegar a un entendimiento común","The meeting helped the groups reach a shared understanding.","La reunión ayudó a los grupos a llegar a un entendimiento común."],
 ["to communicate with precision","comunicarse con precisión","Professionals need to communicate with precision under pressure.","Los profesionales necesitan comunicarse con precisión bajo presión."],

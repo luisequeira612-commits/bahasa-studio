@@ -73,7 +73,7 @@ lessons:[
 ["to be used to","estar acostumbrado a","She is used to working under pressure.","Ella está acostumbrada a trabajar bajo presión."],
 ["to be capable of","ser capaz de","The device is capable of processing large files.","El dispositivo es capaz de procesar archivos grandes."],
 ["to be concerned about","estar preocupado por","Parents are concerned about online safety.","Los padres están preocupados por la seguridad en línea."],
-["to be eligible for","reunir los requisitos para","Applicants may be eligible for financial support.","Los solicitantes pueden reunir los requisitos para recibir apoyo financiero."],
+["to be eligible for","reunir los requisitos para","Applicants may be eligible for financial support.","Los solicitantes pueden cumplir los requisitos para recibir apoyo financiero."],
 ["to be familiar with","estar familiarizado con","Are you familiar with the updated procedure?","¿Estás familiarizado con el procedimiento actualizado?"],
 ["to be responsible for","ser responsable de","The supplier is responsible for replacing faulty parts.","El proveedor es responsable de reemplazar las piezas defectuosas."],
 ["access to","acceso a","All staff should have access to the training materials.","Todo el personal debería tener acceso a los materiales de formación."],

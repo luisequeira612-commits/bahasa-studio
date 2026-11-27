@@ -142,3 +142,12 @@ Estado: primer bloque U1–U6 en desarrollo; el nivel no está publicado. Fecha:
 - Ejemplos originales; entradas `not_checked`, cotejo individual CEFR-J y validación nativa pendientes. Se conserva el esquema runtime, `mc`/`order`, `available:false`, IndexedDB v1 y backup JSON v3.
 
 - Corrección tras CI U35–U38: cuatro términos (`once`, `twice`, `competition`, `today`) coincidían con A1; se sustituyeron por `on one occasion`, `on two occasions`, `contest` y `so far today`, ajustando ejemplos y frases modelo.
+
+
+## Bloque final U39–U40 — 27 de noviembre de 2026
+
+- U39: phrasal verbs sociales y patrones de gerundio/infinitivo (`be excited about`, `enjoy`, `cannot stand`, `decide to`, `hope to`).
+- U40: evaluación final integrada A2 sin vocabulario nuevo; recupera contenidos de viaje, salud, hogar, experiencias y relaciones.
+- Dos unidades, 10 lecciones y 40 ejercicios; 22 entradas nuevas en U39 y 0 en U40. Total A2 U1–U40: 792 entradas; U10/U20/U30/U40 son repasos o evaluaciones sin vocabulario nuevo.
+- Auditoría estática final: 792 targets únicos en A2, sin duplicados exactos internos; CI compara además el inventario con A1 y comprueba referencias.
+- Ejemplos originales; entradas nuevas `not_checked`, cotejo individual CEFR-J y validación nativa pendientes. Se conserva el esquema runtime, `mc`/`order`, `available:false`, IndexedDB v1 y backup JSON v3.

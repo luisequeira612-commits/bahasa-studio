@@ -736,3 +736,4 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - No añadir POS/audio ni dependencias. No cambiar IndexedDB v1, backup JSON v3, PT-BR ni otros idiomas. Mantener en.available=false hasta aprobación separada de publicación A1 y A2.
 
 - La prueba tests/en-us-a2-curriculum.test.cjs quedó añadida al script quality:tests de package.json para que forme parte de la suite automatizada del repositorio.
+- El archivo ZIP oficial CEFR-J v1.6 no pudo procesarse en esta revisión; se consultó la página oficial de descarga, pero no se afirma cotejo individual de los 132 lemas hasta tener la hoja A2 disponible.

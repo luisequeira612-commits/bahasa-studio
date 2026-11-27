@@ -1,3 +1,12 @@
+## 2026-11-27 — Primera biblioteca de audio generada y verificada
+- Run Piper #45964968625 terminó correctamente y publicó commit `84fd9add`. Generó 5,002 MP3: 2,392 indonesios + 2,610 PT-BR; el log indicó 0 reutilizados en la primera migración a Piper 1.8.0. Tamaño MP3: 39.01 MiB; tamaño total de `audio/`: 53.41 MiB. El workflow pasó el límite de 500 MiB total y 100 MiB por archivo.
+- Inventarios verificados: `audio/manifest.json` (ID, 2,392), `audio/pt-BR/manifest.json` (2,610), metadatos SHA-256 completos (0 faltantes en ambos), manifiesto central `audio/manifest-multilingual.json` (1.84 MiB), MODEL_CARD de ambos modelos y `VOICE_ATTRIBUTION.md`.
+- Git tree mostró 5,005 MP3: 5,002 activos en manifiestos + 3 archivos ID legados que siguen listados en el `audio/index.json` antiguo. Se conservan por compatibilidad; no se borran sin revisar otros consumidores.
+- `audio/index.json` tenía 2,268 IDs y está desactualizado. El generador se modificó para sincronizarlo con los 2,392 IDs del inventario ID (`tools/generar_audio.py`, commit `25ae02c`); test estático actualizado (`217b488`, luego `753a541`). Falta que la siguiente ejecución de audio publique ese índice actualizado.
+- El audio antiguo generado por Piper 1.3 (`f099b7a`) fue supersedido por el lote correcto Piper 1.8 (`84fd9add`) mediante el push con resolución de conflictos.
+
+Fuente: Actions #45964968625, commits `f099b7a`/`84fd9add`/`25ae02c`/`217b488`/`753a541`, Git tree, manifests y metadatos; 27 nov 2026.
+
 ## 2026-11-27 — Rerun por timeout intermitente no E2E SRS
 - Depois de corrigir as expectativas de cache A2, o run #45965883973 passou Service Worker install e audio-manifest export, mas falhou no test local em `tests/learning-screen-phase-5b.e2e.test.cjs:1000`: timeout de 30s aguardando `#adaptiveRecommendationLearn button` no teste SRS de Aprender. Não envolve áudio nem o Service Worker.
 - Se reintentó únicamente el job fallido `140394330243` mediante GitHub Actions; resultado del rerun pendiente. No se cambió código ajeno al audio.

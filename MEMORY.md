@@ -1,3 +1,32 @@
+## 2026-11-26 — Inglés en-US B1 U49–U52 authored; temario completo
+- Rama `feat/en-us-b1-u49-u52`, apilada sobre U1–U48. U49 comunicación profesional; U50 Review V; U51 argumentar/negociar/resolver problemas; U52 B1 Final Check.
+- Bloque: 2 unidades de contenido, 44 entradas nuevas, 10 lecciones de contenido; U50 y U52 son repasos/evaluaciones con cero vocabulario. Total bloque: 4 unidades, 20 lecciones y 80 ejercicios. Acumulado U1–U52: 1.012 entradas, 260 lecciones y 1.040 ejercicios; repasos U10/U20/U30/U40/U50/U52.
+- El temario de inglés B1 está authored hasta U52. Auditoría estática del bloque y CI pendiente; vocabulario `not_checked`; inglés sigue `available:false` hasta integración y gates finales.
+- Sin cambios a IndexedDB v1, backup JSON v3, dependencias, audio, red ni otros idiomas. Fuente: `EN_US_B1_SOURCES.md`, manifiesto, currículo y tests; 26 nov 2026.
+
+## 2026-11-26 — Inglés en-US B1 U45–U48 en preparación
+- Rama `feat/en-us-b1-u45-u48`, apilada sobre U1–U44. U45 formación de adverbios/adjetivos; U46 artículos/determinantes y cuantificadores; U47 word formation; U48 collocations y dependent prepositions.
+- Bloque: 4 unidades de contenido, 88 entradas nuevas, 20 lecciones y 80 ejercicios. Acumulado U1–U48: 968 entradas únicas, 240 lecciones y 960 ejercicios; repasos U10/U20/U30/U40.
+- Auditoría estática previa: 88/88 targets únicos y cero coincidencias exactas con A1/A2 o U1–U44. CI pendiente; entradas `not_checked`; inglés sigue `available:false`.
+- Sin cambios a IndexedDB v1, backup JSON v3, dependencias, audio, red ni otros idiomas. Fuente: `EN_US_B1_SOURCES.md`, manifiesto, currículo y tests; 26 nov 2026.
+
+## 2026-11-26 — Inglés en-US B1 U41–U44 en preparación
+- Rama `feat/en-us-b1-u41-u44`, apilada sobre U1–U40. U41 discourse markers; U42 causa y propósito; U43 preguntas indirectas y question tags; U44 so/such/too/enough e intensificadores.
+- Bloque: 4 unidades de contenido, 88 entradas nuevas, 20 lecciones y 80 ejercicios. Acumulado U1–U44: 880 entradas únicas, 220 lecciones y 880 ejercicios; repasos U10/U20/U30/U40.
+- Auditoría estática previa: 88/88 targets únicos y cero coincidencias exactas con A1/A2 o U1–U40. CI pendiente; entradas `not_checked`; inglés sigue `available:false`.
+- Sin cambios a IndexedDB v1, backup JSON v3, dependencias, audio, red ni otros idiomas. Fuente: `EN_US_B1_SOURCES.md`, manifiesto, currículo y tests; 26 nov 2026.
+
+## 2026-11-26 — Inglés en-US B1 U37–U40 integrado en rama de trabajo
+- Rama `feat/en-us-b1-u37-u40`, apilada sobre U1–U36. U37 causative have/get something done; U38 wish/if only; U39 concesión y contraste; U40 Review IV sin vocabulario nuevo.
+- Bloque: 3 unidades de contenido, 66 entradas nuevas, 15 lecciones; repaso U40 con 5 lecciones y cero entradas. Total bloque: 4 unidades, 20 lecciones y 80 ejercicios. Acumulado U1–U40: 792 entradas únicas, 200 lecciones y 800 ejercicios; repasos U10/U20/U30/U40.
+- El manifiesto registra U1–U40; inglés permanece `available:false`. Auditoría estática previa: 66/66 targets únicos; cero coincidencias exactas con A1/A2 o U1–U36. `have something repaired` se cambió a `get an appliance repaired` por duplicación exacta en U28. CI pendiente; entradas `not_checked`. Sin cambios a IndexedDB v1, backup JSON v3, dependencias, audio, red ni otros idiomas. Fuente: `EN_US_B1_SOURCES.md`, manifiesto, currículo y tests; 26 nov 2026.
+
+## 2026-11-26 — Inglés en-US B1 U33–U36 en preparación
+- Rama `feat/en-us-b1-u33-u36`, apilada sobre U1–U32. Añade U33 reported statements; U34 reported questions/commands; U35 passive voice en presente/pasado/futuro; U36 pasiva con modales y get-passive.
+- Bloque: 4 unidades de contenido, 22 entradas por unidad, 20 lecciones y 80 ejercicios. Acumulado B1 U1–U36: 726 entradas únicas, 180 lecciones y 720 ejercicios; U10/U20/U30 son repasos.
+- Auditoría estática B1: 726/726 targets únicos. Escaneo A1/A2 detectó `ask if` en A2; sustituido por `inquire whether` y rechecado. `at the time` duplicaba U6 y se cambió a `during that period`. CI pendiente; vocabulario `not_checked`; inglés sigue `available:false`.
+- Sin cambios a IndexedDB v1, backup JSON v3, dependencias, audio, red ni otros idiomas. Fuente: rama, manifiesto, currículo y tests; 26 nov 2026.
+
 ## 2026-11-26 — Inglés en-US B1 U29–U32 en preparación
 - Rama `feat/en-us-b1-u29-u32`, apilada sobre U1–U28. Añade U29 phrasal verbs; U30 Review III sin vocabulario nuevo; U31 cláusulas relativas definitorias/no definitorias; U32 whose/where/when y omisión del relativo.
 - Bloque: 3 unidades de contenido, 66 entradas, 15 lecciones, y un repaso de 5 lecciones; 80 ejercicios en total. Acumulado U1–U32: 638 entradas únicas, 160 lecciones y 640 ejercicios; repasos U10, U20 y U30.

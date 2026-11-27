@@ -22,7 +22,7 @@ const rows=[
 ["despite the fact that","a pesar de que","Despite the fact that demand fell, revenue remained stable.","A pesar de que la demanda cayó, los ingresos se mantuvieron estables."],
 ["to make provision for","prever / contemplar","The schedule makes provision for unexpected delays.","El calendario contempla retrasos imprevistos."],
 ["to make allowances for","hacer concesiones por / tener en cuenta","We should make allowances for different levels of experience.","Deberíamos tener en cuenta los distintos niveles de experiencia."],
-["under any circumstances","bajo cualquier circunstancia","The data must remain confidential under any circumstances.","Los datos deben permanecer confidenciales bajo cualquier circunstancia."]
+["under any circumstances","bajo ninguna circunstancia","The data must not be shared under any circumstances.","Los datos no deben compartirse bajo ninguna circunstancia."]
 ];
 const vocab=rows.map((r,i)=>({id:"en_b2_u19_v"+String(i+1).padStart(2,"0"),target:r[0],esp:r[1],ex:r[2],exEsp:r[3],verification:{status:"not_checked",sources:[]}}));
 const lessonData=[

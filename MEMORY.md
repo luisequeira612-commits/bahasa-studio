@@ -796,3 +796,11 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - 27 nov 2026: La primera regresión de PR #907 detectó que el contrato de inventario A2 seguía cargando U1–U26 aunque el manifiesto ya anunciaba U1–U30 (528 encontrados frente a 594 esperados). Se corrigió el rango del test para cargar 30 unidades; no se relajó ninguna aserción. Reejecución CI pendiente.
 
 - 27 nov 2026: La segunda regresión de PR #907 detectó dos solapamientos léxicos exactos entre A1 y A2 (try on, slice). Se sustituyeron por check the fit y dice, y se ajustaron sus ejemplos/ejercicio; la siguiente ejecución debe confirmar el inventario de 594 targets sin solapamientos.
+
+
+## 2026-11-27 — Inglés en-US A2 U31–U34
+- Rama `feat/en-us-a2-u31-u34-v3`, apilada sobre la corrección de inventario de PR #907. U31 transporte y conexiones; U32 preguntas indirectas y problemas de viaje; U33 molestias/lesiones y atención básica; U34 phrasal verbs domésticos.
+- Bloque de 4 unidades, 20 lecciones, 80 ejercicios y 88 entradas nuevas. Inventario A2 U1–U34: 682 entradas; U10/U20/U30 son repasos sin vocabulario.
+- Auditoría estática: 682 targets únicos en A2, sin duplicados exactos entre los ocho bloques. Manifiesto y test se amplían a U34 y comprueban también solapamiento con A1.
+- CI pendiente. Entradas `not_checked`; cotejo individual CEFR-J pendiente. Sin cambios a IndexedDB v1, backup JSON v3, dependencias, POS/audio, PT-BR ni otros idiomas. No fusionar ni publicar sin aprobación expresa.
+- Fuente: rama `feat/en-us-a2-u31-u34-v3`, currículo, tests y docs; 27 nov 2026.

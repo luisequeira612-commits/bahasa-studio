@@ -48,3 +48,31 @@ test('B1 U1-U4 vocabulary examples match their English and Spanish meanings', as
     assert.equal(word.exEsp, translation, 'Spanish example must match U' + unitNumber + ' ' + target);
   }
 });
+
+test('B1 vocabulary examples retain natural American English and aligned Spanish', async () => {
+  const { units } = await loader().loadUnits('en', 'B1', Array.from({ length: 52 }, (_, i) => i + 1));
+  const expected = [
+    [6, 'ride a bicycle', 'montar en bicicleta', 'I used to ride a bicycle along the river.', 'Solía montar en bicicleta junto al río.'],
+    [8, 'retake an exam', 'repetir un examen', 'He had to retake the exam because he missed the original date.', 'Tuvo que repetir el examen porque no pudo presentarse en la fecha original.'],
+    [11, 'anticipated demand', 'demanda prevista', 'Anticipated demand is expected to rise during the summer.', 'Se espera que la demanda prevista aumente durante el verano.'],
+    [11, 'availability window', 'periodo de disponibilidad', "The technician's availability window tomorrow is only two hours.", 'La franja de disponibilidad del técnico mañana será de solo dos horas.'],
+    [11, 'target date', 'fecha prevista', 'The target date may change if the supplier is delayed.', 'La fecha prevista podría cambiar si el proveedor se retrasa.'],
+    [12, 'conference call', 'llamada grupal de trabajo', 'At noon, I will be joining a conference call with the regional team.', 'Al mediodía, estaré en una llamada grupal con el equipo regional.'],
+    [12, 'connection time', 'tiempo de conexión', 'Our connection time in Dallas will be two hours.', 'Nuestro tiempo de conexión en Dallas será de dos horas.'],
+    [12, 'boarding area', 'zona de embarque', 'Passengers will be waiting in the boarding area shortly.', 'Los pasajeros estarán esperando pronto en la zona de embarque.'],
+    [12, 'on assignment', 'en una asignación de trabajo', 'The reporter will be working on assignment in Chicago next week.', 'El reportero estará cubriendo una asignación en Chicago la próxima semana.'],
+    [18, 'the next time', 'la próxima vez que', 'The next time you visit, the gallery will be open.', 'La próxima vez que vengas, la galería estará abierta.'],
+    [42, 'so that no one is left out', 'para que nadie quede excluido', 'The instructions were translated so that no one would be left out.', 'Las instrucciones se tradujeron para que nadie quedara excluido.'],
+    [43, 'Do you have any idea how much it costs?', '¿Tiene idea de cuánto cuesta?', 'Do you have any idea how much the replacement part costs?', '¿Tiene idea de cuánto cuesta la pieza de repuesto?'],
+    [47, 'a successful negotiation', 'una negociación exitosa', 'The negotiation between the two sides was successful.', 'La negociación entre las dos partes fue exitosa.'],
+    [49, 'follow up on an action item', 'dar seguimiento a un punto de acción', 'I will follow up on an action item after the meeting.', 'Daré seguimiento a un punto de acción después de la reunión.'],
+  ];
+  for (const [unitNumber, target, gloss, example, translation] of expected) {
+    const unit = units.find((item) => item.unitNumber === unitNumber);
+    const word = unit?.vocab?.find((item) => item.target === target);
+    assert.ok(word, 'expected B1 vocabulary target must exist: U' + unitNumber + ' ' + target);
+    assert.equal(word.esp, gloss, 'Spanish gloss must match U' + unitNumber + ' ' + target);
+    assert.equal(word.ex, example, 'English example must match U' + unitNumber + ' ' + target);
+    assert.equal(word.exEsp, translation, 'Spanish example must match U' + unitNumber + ' ' + target);
+  }
+});

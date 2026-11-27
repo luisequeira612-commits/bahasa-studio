@@ -101,7 +101,7 @@ test('English A1 vocabulary introduces no duplicate targets across U1-U12',async
 ## 2026-11-26 — Corrección de CI en bloque U25–U30
 - La primera regresión de PR #895 (#45912981997) falló por un error sintáctico en la construcción de ejercicios de repaso U30: faltaba cerrar una cadena en la lista de opciones.
 - Corregido en esta rama con la cadena de commit 319f750331b663f3bbb802317da27fe371f4ca9d; se corrigió también el título del test para dejar claro que U30–U32 son repasos sin palabras nuevas.
-- CI del nuevo head pendiente de repetición; no declarar el bloque listo hasta regresión y typecheck verdes.
+- CI de PR #895 y #898 quedó verde tras las correcciones y auditoría de IDs.
 
 ## 2026-11-26 — Auditoría de referencias de repaso
 - Se corrigieron IDs de vocabulario reciclado en U30 (box/class: U6 v05/v06) y U31–U32 (listen: U1 v18).
@@ -111,7 +111,7 @@ test('English A1 vocabulary introduces no duplicate targets across U1-U12',async
  
 ## 2026-11-26 — Inglés A1 U31–U32 en PR final
 - Rama feat/en-us-a1-u31-u32-final2 y PR prevista U31–U32: U31 conversaciones cotidianas; U32 evaluación final integrada. Ambas tienen 0 palabras nuevas, 5 lecciones y 20 ejercicios de repaso.
-- Manifiesto y pruebas estructurales amplían inventario hasta U1–U32; solo U30–U32 tienen 0 vocabulario nuevo. A1 completo en contenido curricular, pendiente de CI, trazabilidad de fuentes y resolución de POS/audio.
+- Manifiesto y pruebas estructurales amplían inventario hasta U1–U32; solo U30–U32 tienen 0 vocabulario nuevo. A1 completo en contenido curricular, CI verde en head 1cff90f8177073be82691f4720ed49b2c3f1caa7: regresión #45914035166, typecheck #45914035184 y Offline quality reports success; siguen pendientes trazabilidad de fuentes y decisiones POS/audio.
 - U32 usa únicamente mc/order; no simula ni afirma escucha real, evaluación oral ni respuesta escrita libre porque el motor actual no ofrece esas interacciones.
-- Esta PR depende de #895 → #894 → #893 → #892 → #891. Integrar manualmente en orden y retargetear a main; no fusionar sin aprobación expresa. Inglés permanece unavailable/«Próximamente».
+- PR #898 depende de #895 → #894 → #893 → #892 → #891. Integrar manualmente en orden y retargetear a main; no fusionar sin aprobación expresa. Inglés permanece unavailable/«Próximamente».
 - Auditoría de 46 IDs de repaso: todos coinciden con el target esperado; U30 box/class apuntan a U6 v05/v06 y listen a U1 v18.

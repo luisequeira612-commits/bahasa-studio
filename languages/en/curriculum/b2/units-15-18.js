@@ -12,7 +12,7 @@ const data=[
 ["would have been","habría sido / estado","If I were more patient, the discussion would have been easier.","Si fuera más paciente, la conversación habría sido más fácil."],
 ["could have avoided","podría haber evitado","If we were more careful, we could have avoided the mistake.","Si fuéramos más cuidadosos, podríamos haber evitado el error."],
 ["might still be","quizá todavía estaría","If he had taken the earlier train, he might still be here by now.","Si hubiera tomado el tren anterior, quizá todavía estaría aquí."],
-["otherwise","de lo contrario","If I had accepted the offer, I would be living abroad now; otherwise, I would still be working here.","Si hubiera aceptado la oferta, ahora viviría en el extranjero; de lo contrario, seguiría trabajando aquí."],
+["otherwise","de lo contrario","The offer included a relocation package; otherwise, I would still be working here.","La oferta incluía un paquete de reubicación; de lo contrario, seguiría trabajando aquí."],
 ["to be in a better position","estar en mejor situación","With more support, we would be in a better position now.","Con más apoyo, ahora estaríamos en mejor situación."],
 ["to have a different outcome","tener un resultado diferente","If the team had communicated, the project might have had a different outcome.","Si el equipo se hubiera comunicado, el proyecto podría haber tenido otro resultado."],
 ["to affect the outcome","afectar el resultado","A small change could have affected the outcome.","Un pequeño cambio podría haber afectado el resultado."],
@@ -38,7 +38,7 @@ const data=[
 {n:16,title:"Inversión en condicionales",desc:"Usa estructuras condicionales formales sin if para expresar hipótesis, contingencias y condiciones de manera concisa.",grammar:"Had + subject + past participle; Were + subject + to-infinitive; Should + subject + infinitive; were it not for y had it not been for.",trap:["La inversión sustituye if, no cambia la lógica condicional","Had I known = If I had known. No uses did después de Had en esta estructura."],rows:[
 ["Had I known","si lo hubiera sabido","Had I known the risks, I would have acted differently.","Si hubiera conocido los riesgos, habría actuado de otra manera."],
 ["Had it not been for","si no hubiera sido por","Had it not been for their support, we would have failed.","Si no hubiera sido por su apoyo, habríamos fracasado."],
-["Were I to","si yo fuera a","Were I to accept the offer, I would need to relocate.","Si aceptara la oferta, tendría que mudarme."],
+["Were I to","si yo aceptara","Were I to accept the offer, I would need to relocate.","Si aceptara la oferta, tendría que mudarme."],
 ["Were it not for","si no fuera por","Were it not for the backup system, the data would be lost.","Si no fuera por el sistema de respaldo, se perderían los datos."],
 ["Should you need","si necesita / si llegara a necesitar","Should you need further assistance, contact the help desk.","Si necesita más ayuda, contacte con soporte."],
 ["Should anything go wrong","si algo saliera mal","Should anything go wrong, we have a contingency plan.","Si algo saliera mal, tenemos un plan de contingencia."],
@@ -108,7 +108,7 @@ const data=[
 ["to sound as if","sonar como si","It sounds as if the situation is getting worse.","Suena como si la situación estuviera empeorando."],
 ["to look as though","parecer que","They look as though they need a break.","Parece que necesitan un descanso."],
 ["to act as if","actuar como si","Don't act as if you had no choice.","No actúes como si no tuvieras opción."],
-["to be high time","ser ya hora de","It is high time we took this seriously.","Ya es hora de que nos tomemos esto en serio."],
+["it's high time","ya va siendo hora de","It is high time we took this seriously.","Ya es hora de que nos tomemos esto en serio."],
 ["it is improbable that","ser improbable que","It is improbable that he would agree without further details.","Es improbable que aceptara sin más detalles."],
 ["to put oneself in someone's shoes","ponerse en el lugar de alguien","Try to put yourself in her shoes.","Intenta ponerte en su lugar."],
 ["to take something for granted","dar algo por sentado","Don't take their support for granted.","No des por sentado su apoyo."],
@@ -116,7 +116,7 @@ const data=[
 ["to pretend to","fingir","He pretended to understand the instructions.","Fingió entender las instrucciones."],
 ["to be under the impression","tener la impresión","I was under the impression that the meeting had been cancelled.","Tenía la impresión de que la reunión se había cancelado."],
 ["to give the impression","dar la impresión","The response gives the impression that no action is planned.","La respuesta da la impresión de que no se planea ninguna acción."],
-["for argument's sake","para efectos del argumento","For argument's sake, let's assume the budget is fixed.","Para efectos del argumento, supongamos que el presupuesto es fijo."],
+["for argument's sake","para efectos de la discusión","For argument's sake, let's assume the budget is fixed.","Para efectos de la discusión, supongamos que el presupuesto es fijo."],
 ["in an ideal world","en un mundo ideal","In an ideal world, everyone would have equal access.","En un mundo ideal, todos tendrían el mismo acceso."]
 ],lessons:[
 ["As if y as though","Compara situaciones reales con apariencias o comportamientos irreales.","As if/as though + past simple para distancia presente; past perfect para una situación anterior.",[0,1,2,3],"She looked as though she had seen a ghost."],

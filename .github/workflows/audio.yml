@@ -10,6 +10,7 @@ on:
       - 'tools/audio-voices.json'
       - 'scripts/export-audio-manifest.mjs'
       - 'tools/generar_audio.py'
+      - '.github/workflows/audio.yml'
 
 permissions:
   contents: write
@@ -57,4 +58,7 @@ jobs:
           git add audio
           git diff --cached --quiet && exit 0
           git commit -m "audio: generate multilingual Piper library"
-          git push
+          branch="$GITHUB_REF_NAME"
+          git fetch origin "$branch"
+          git rebase "origin/$branch"
+          git push origin "HEAD:$branch"

@@ -25,7 +25,7 @@ const data=[
 ["was on track to","iba camino de","The project was on track to finish early.","El proyecto iba camino de terminar antes de tiempo."],
 ["was set to","tenía previsto","The company was set to announce the results.","La empresa tenía previsto anunciar los resultados."],
 ["was preparing to","se estaba preparando para","The team was preparing to launch the service.","El equipo se estaba preparando para lanzar el servicio."],
-["never got around to","nunca llegó a","I never got around to sending the application.","Nunca llegué a enviar la solicitud."],
+["never got around to","nunca llegó a","The company was set to announce the results.","Nunca llegué a enviar la solicitud."],
 ["failed to materialize","no llegó a concretarse","The promised investment failed to materialize.","La inversión prometida no llegó a concretarse."],
 ["in retrospect","en retrospectiva","In retrospect, the warning signs were clear.","En retrospectiva, las señales de advertencia eran claras."]
 ],lessons:[

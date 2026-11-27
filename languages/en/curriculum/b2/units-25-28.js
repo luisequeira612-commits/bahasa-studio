@@ -50,7 +50,7 @@ lessons:[
 ["barely had","apenas había","Barely had the announcement ended when questions began.","Apenas había terminado el anuncio cuando comenzaron las preguntas."],
 ["scarcely had","apenas había","Scarcely had we sat down when the fire alarm rang.","Apenas nos habíamos sentado cuando sonó la alarma."],
 ["on no account should","por ningún motivo debería","On no account should the files be deleted.","Por ningún motivo deberían eliminarse los archivos."],
-["little attention was paid","se prestó poca atención","Little attention was paid to the long-term effects.","Se prestó poca atención a los efectos a largo plazo."],
+["little did we expect","ni mucho menos esperábamos","Little did we expect the project to attract so much attention.","Ni mucho menos esperábamos que el proyecto atrajera tanta atención."],
 ["only by working together can","solo trabajando juntos podemos","Only by working together can we solve the problem.","Solo trabajando juntos podemos resolver el problema."],
 ["not until the end was","no fue hasta el final cuando","Not until the end was the real reason revealed.","No fue hasta el final cuando se reveló la verdadera razón."]],
 lessons:[
@@ -70,7 +70,7 @@ lessons:[
 ["even more concerning","aún más preocupante","Even more concerning is the lack of independent oversight.","Aún más preocupante es la falta de supervisión independiente."],
 ["as far as I am concerned","por lo que a mí respecta","As far as I am concerned, the matter is settled.","Por lo que a mí respecta, el asunto está resuelto."],
 ["in terms of","en términos de","In terms of cost, the second option is better.","En términos de costo, la segunda opción es mejor."],
-["the main point","el punto principal","The main point, we should not lose sight of it.","El punto principal no deberíamos perderlo de vista."],
+["the main point","el punto principal","The main point is something we should not lose sight of.","El punto principal es algo que no debemos perder de vista."],
 ["for one thing","para empezar","For one thing, we have not checked the figures.","Para empezar, no hemos comprobado las cifras."],
 ["more importantly","más importante aún","More importantly, the change protects users.","Más importante aún, el cambio protege a los usuarios."],
 ["equally significant","igualmente importante","Equally significant is the effect on local businesses.","Igualmente importante es el efecto en los negocios locales."],

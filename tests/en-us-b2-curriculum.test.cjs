@@ -231,8 +231,10 @@ test('English B2 U1 sentence-building bank matches each target vocabulary ID', (
 
 
 test('English B2 U40 review sentence bank keeps each example paired with its source vocabulary', () => {
-  const unit = loadB2().find((item) => item.unitNumber === 40);
+  const units = loadB2();
+  const unit = units.find((item) => item.unitNumber === 40);
   assert.ok(unit);
+  const allVocabulary = units.flatMap((item) => Array.from(item.vocab || []));
   const orderExercises = Array.from(unit.exercises || []).filter((exercise) => exercise.type === 'order');
   const expected = [
     ['to put forward an argument', 'The researchers put forward an argument for stricter standards.'],
@@ -244,8 +246,7 @@ test('English B2 U40 review sentence bank keeps each example paired with its sou
   assert.equal(orderExercises.length, expected.length);
   for (let index = 0; index < expected.length; index += 1) {
     const [target, sentence] = expected[index];
-    const vocabulary = loadB2().flatMap((item) => Array.from(item.vocab || []))
-      .find((word) => word.target === target);
+    const vocabulary = allVocabulary.find((word) => word.target === target);
     assert.ok(vocabulary, 'review target must exist: ' + target);
     assert.equal(orderExercises[index].vocabId, vocabulary.id);
     assert.deepEqual(Array.from(orderExercises[index].correctOrder), sentence

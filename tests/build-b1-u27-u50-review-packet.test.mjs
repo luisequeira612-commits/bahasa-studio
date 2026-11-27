@@ -6,16 +6,16 @@ function unit(id, title) {
   return { id, title, vocab: [{ id: 'b1v027', target: 'milestone', esp: 'hito', ex: 'Graduation was a milestone.', exEsp: 'La graduación fue un hito.' }], exercises: [{ type: 'mc' }], lessons: [{ exercises: [{ type: 'write' }, { type: 'listen' }] }] };
 }
 
-test('selects only B1 U27-U50 and excludes other levels and out-of-range units', () => {
+test('selects only B1 U27-U52 and excludes other levels and out-of-range units', () => {
   const selected = selectB1ReviewUnits({ units: [
-    unit('en_b1_u26'), unit('en_b1_u27'), unit('en_b1_u50'), unit('en_b1_u51'), unit('a1_u27'), unit('b2_u27'),
+    unit('en_b1_u26'), unit('en_b1_u27'), unit('en_b1_u50'), unit('en_b1_u51'), unit('en_b1_u52'), unit('en_b1_u53'), unit('a1_u27'), unit('b2_u27'),
   ] });
-  assert.deepEqual(selected.map(({ number }) => number), [27, 50]);
+  assert.deepEqual(selected.map(({ number }) => number), [27, 50, 51, 52]);
 });
 
 test('packet includes exact unit source, context notes, and complete scope counts', () => {
   const result = buildB1ReviewPacket({
-    curriculum: { units: [unit('en_b1_u27', 'B1 focus'), unit('en_b1_u50', 'B1 closing unit')] },
+    curriculum: { units: [unit('en_b1_u27', 'B1 focus'), unit('en_b1_u52', 'B1 final assessment')] },
     notes: [{ path: 'docs/history.md', content: 'Historical note, not authority.' }],
     prompt: 'Review conservatively.',
   });
@@ -28,6 +28,6 @@ test('packet includes exact unit source, context notes, and complete scope count
   assert.match(result.markdown, /"target": "milestone"/);
   assert.match(result.markdown, /Review conservatively/);
   assert.match(result.markdown, /B1 U27/);
-  assert.match(result.markdown, /B1 U50/);
+  assert.match(result.markdown, /B1 U52/);
   assert.match(result.markdown, /Total de ejercicios combinados: 6/);
 });

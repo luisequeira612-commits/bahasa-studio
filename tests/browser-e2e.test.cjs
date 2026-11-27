@@ -1325,7 +1325,7 @@ test('voice selector remains optional when no Indonesian device voice exists', a
     assert.equal(await page.locator('#audioVoiceSelect').inputValue(), 'auto');
     assert.ok((await page.locator('#audioVoiceStatus').innerText()).includes('La app incluye grabaciones Piper para indonesio'));
     await page.evaluate(() => AudioEngine.speak('frase sin grabación disponible'));
-    await page.waitForFunction(() => document.getElementById('audioVoiceStatus').textContent.includes('No se encontró una grabación'));
+    await page.waitForFunction(() => document.getElementById('audioVoiceStatus').textContent.includes('El navegador intentará reproducir esta frase en indonesio'));
     assert.equal(await page.evaluate(() => AudioEngine.selectedVoice === null), true);
   } finally {
     await context.close();

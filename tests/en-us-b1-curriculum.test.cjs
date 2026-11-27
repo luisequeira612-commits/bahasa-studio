@@ -169,3 +169,21 @@ test('B1 U27-U28 Spanish examples preserve the English verb patterns', async () 
     assert.equal(word.exEsp, translation);
   }
 });
+
+test('B1 U37-U38 Spanish translations preserve causative and wish meanings', async () => {
+  const { units } = await loader().loadUnits('en', 'B1', Array.from({ length: 52 }, (_, i) => i + 1));
+  const expected = [
+    [37, 'get the roof inspected', 'hacer que inspeccionen el techo', 'The owner got the roof inspected after the storm.', 'El propietario hizo que inspeccionaran el techo después de la tormenta.'],
+    [37, 'get the heating fixed', 'hacer que reparen la calefacción', 'The landlord is getting the heating fixed today.', 'El arrendador está haciendo que reparen la calefacción hoy.'],
+    [38, 'If only I could afford a larger place', 'si tan solo pudiera permitirme una vivienda más grande', 'If only I could afford a larger place for my family.', 'Si tan solo pudiera permitirme una vivienda más grande para mi familia.'],
+    [38, "I wish I hadn't missed the deadline", 'ojalá no se me hubiera pasado el plazo', "I wish I hadn't missed the deadline for the application.", 'Ojalá no se me hubiera pasado el plazo de solicitud.'],
+  ];
+  for (const [unitNumber, target, gloss, example, translation] of expected) {
+    const unit = units.find((item) => item.unitNumber === unitNumber);
+    const word = unit?.vocab?.find((item) => item.target === target);
+    assert.ok(word, 'expected B1 vocabulary target must exist: U' + unitNumber + ' ' + target);
+    assert.equal(word.esp, gloss);
+    assert.equal(word.ex, example);
+    assert.equal(word.exEsp, translation);
+  }
+});

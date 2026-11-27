@@ -734,3 +734,15 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Inventario curricular: 40 unidades, 200 lecciones, 400 entradas léxicas, 800 ejercicios (400 `order` de unidad + 400 `mc` de lección). La progresión permanece secuencial: B2 U1 exige completar B1; no se alteró el progreso del usuario.
 - Sin cambios a IndexedDB v1 ni backup JSON v3; sin nuevas dependencias, audio, backend ni servicios de red. Vocabulario permanece `not_checked`; no afirmar validación nativa ni certificación MCER.
 - Según la hoja de ruta vigente, el siguiente idioma previsto es inglés desde A1/cero para hispanohablantes; no se inicia en esta actualización.
+
+
+## 2026-11-27 — Biblioteca de audio Piper multilingüe en progreso
+- La tarea activa amplía la corrección de audio PT-BR a una biblioteca pre-generada local para todos los idiomas de cursos disponibles, sin depender de la voz del dispositivo en el funcionamiento normal.
+- Configuración inicial en `tools/audio-voices.json`: indonesio `id_ID-news_tts-medium` y portugués brasileño `pt_BR-faber-medium`, ambos de `rhasspy/piper-voices`.
+- `tools/generar_audio.py` genera MP3 mono 24 kHz/32 kbps, reutiliza archivos por SHA-1 corto del texto y crea `audio/manifest.json` con idioma, texto, archivo y fuentes.
+- `.github/workflows/audio.yml` permite `workflow_dispatch` y regeneración automática cuando cambia el currículo/configuración de audio; descarga Piper en GitHub Actions y comprueba límites de tamaño (<1 GiB total y <100 MiB por archivo).
+- `scripts/export-audio-manifest.mjs` se amplió para exportar textos de cursos disponibles de forma multilingüe; PT-BR se recoge desde sus bloques A1–B2 y el currículo indonesio existente se conserva.
+- `audio-engine.js` ahora carga `audio/manifest.json` y resuelve el clip por idioma activo + hash; `speechSynthesis` queda únicamente como respaldo si falta el clip.
+- La biblioteca completa todavía no está generada ni verificada en GitHub Actions. No declarar audio PT-BR funcional hasta generar los archivos y pasar CI; después se probará en GitHub Pages antes de continuar con las lecciones de inglés B2.
+- No modificar IndexedDB v1, backup JSON v3 ni introducir backend/servicios de pago.
+- Fuente: PR #942 y cambios de la rama `fix/pt-br-audio-language-labels`, 27 nov 2026.

@@ -19,6 +19,8 @@ interface GuardiLanguageConfig {
     readonly piperVoice: string;
     readonly voiceStatus: GuardiVoiceStatus;
     readonly audioPath: string;
+    readonly audioAvailable?: boolean;
+    readonly allowSystemVoiceFallback?: boolean;
     readonly curriculum: Readonly<Partial<Record<GuardiCefrLevel, string>>>;
     readonly testPhrase?: string;
     readonly available: boolean;

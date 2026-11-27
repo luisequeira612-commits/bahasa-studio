@@ -1,9 +1,9 @@
-## 2026-11-27 — Audio y consulta contextual multiidioma PT-BR (corrección en curso)
+## 2026-11-27 — Audio y consulta contextual multiidioma PT-BR (PR #941, validación en curso)
 
 - Diagnóstico: no existen grabaciones en `audio/pt-BR/`; el motor debe usar `speechSynthesis` directamente para PT-BR, aceptar voces `pt-BR` y `pt-PT`, y no solicitar MP3 inexistentes. Indonesio conserva su biblioteca y ruta legacy.
 - La indicación de tocar palabras, el audio de frases, el buscador del diccionario y los controles de audio deben ser neutrales o usar el idioma activo. El índice de significado ya consume vocabulario mediante `CurriculumLoader.adaptVocabulary`; se añade E2E real para `olá` → `hola`.
 - No se traducen ni renombran los módulos de evaluación, conversación y escritura que contienen material exclusivamente indonesio: requerirían adaptación curricular real, no solo cambiar etiquetas.
-- Preservar IndexedDB v1, backup JSON v3, audio productivo indonesio y dependencias.
+- Preservar IndexedDB v1, backup JSON v3, audio productivo indonesio y dependencias. Rama `fix/pt-br-audio-tap-meaning`; PR [#941](https://github.com/luisequeira612-commits/bahasa-studio/pull/941), head inicial `1bf35a0`. Se tipan los flags opcionales de audio del catálogo.
 
 ## 2026-11-26 — Diversidad PT-BR B2 U37–U40
 

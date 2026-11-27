@@ -102,3 +102,17 @@ test('las indicaciones de lección, diccionario y audio no fijan indonesio', () 
     assert.match(html, /<h3>Audio del curso<\/h3>/);
     assert.doesNotMatch(html, /Audio en indonesio|voz indonesia/);
 });
+
+test('el diccionario general y el audio SRS usan el vocabulario del curso activo', () => {
+    const start = html.indexOf('            renderDict() {');
+    const end = html.indexOf('            filterDict()', start);
+    const renderer = html.slice(start, end);
+    assert.ok(start >= 0 && end > start, 'the general dictionary renderer is present');
+    assert.match(renderer, /CurriculumLoader\.adaptVocabulary\(v, language\)/);
+    assert.match(renderer, /word\.text/);
+    assert.match(renderer, /word\.translation/);
+    assert.match(renderer, /lang="\$\{App\.escapeHtml\(locale\)\}"/);
+    assert.doesNotMatch(renderer, /v\.idn|v\.esp|lang="id"/);
+    assert.doesNotMatch(html, /!reverse && LanguageManager\.getActiveLanguage\(\) === 'id'/);
+    assert.doesNotMatch(html, /LanguageManager\.getActiveLanguage\(\) === 'id'\) AudioEngine\.speak\(current\.vocab\.text\)/);
+});

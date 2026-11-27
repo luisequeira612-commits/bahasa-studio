@@ -18256,7 +18256,7 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                 document.getElementById('srsContextText').style.display = 'block';
                 document.getElementById('srsAnswerArea').style.display = 'none';
                 document.getElementById('srsRevealBtn').style.display = 'inline-flex';
-                if (!reverse && LanguageManager.getActiveLanguage() === 'id') AudioEngine.speak(current.vocab.text);
+                if (!reverse) AudioEngine.speak(current.vocab.text);
             },
 
             exitSession() {
@@ -18280,7 +18280,7 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                 const current = this.activeQueue[this.currentIndex];
                 if (current.direction === 'es-id') {
                     document.getElementById('srsAnswerText').innerText = current.vocab.text + (current.vocab.example ? ' (' + current.vocab.example + ')' : '');
-                    if (LanguageManager.getActiveLanguage() === 'id') AudioEngine.speak(current.vocab.text);
+                    AudioEngine.speak(current.vocab.text);
                 } else {
                     document.getElementById('srsAnswerText').innerText = current.vocab.translation + (current.vocab.exampleTranslation ? ' (' + current.vocab.exampleTranslation + ')' : '');
                 }
@@ -20637,16 +20637,20 @@ Requisitos:
             },
             renderDict() {
                 const container = document.getElementById('dictContainer');
+                const language = LanguageManager.getActiveLanguage();
+                const locale = LanguageManager.getLocale(language) || 'und';
                 let html = '';
                 getUniqueLearningVocabulary().forEach(v => {
+                    const word = CurriculumLoader.adaptVocabulary(v, language);
+                    if (!word || !word.text || !word.translation) return;
                     html += `
                         <div class="card" style="margin-bottom:8px; padding:12px;">
                             <div style="display:flex; justify-content:space-between; align-items:center;">
-                                <strong lang="id">${App.escapeHtml(v.idn)}</strong>
-                                <button class="btn btn-outline btn-sm" data-word="${App.escapeHtml(v.idn)}" onclick="AudioEngine.speak(this.dataset.word)"><svg class="ui-icon lesson-speaker-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4h4l5 4V6l-5 4H4Z"/><path d="M16 9.5a4 4 0 0 1 0 5M18.5 7a7 7 0 0 1 0 10"/></svg></button>
+                                <strong lang="${App.escapeHtml(locale)}">${App.escapeHtml(word.text)}</strong>
+                                <button class="btn btn-outline btn-sm" data-word="${App.escapeHtml(word.text)}" onclick="AudioEngine.speak(this.dataset.word)" aria-label="Escuchar ${App.escapeHtml(word.text)}"><svg class="ui-icon lesson-speaker-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4h4l5 4V6l-5 4H4Z"/><path d="M16 9.5a4 4 0 0 1 0 5M18.5 7a7 7 0 0 1 0 10"/></svg></button>
                             </div>
-                            <p style="color:var(--accent); font-size:0.9rem;">${App.escapeHtml(v.esp)}</p>
-                            <p style="font-size:0.8rem; color:var(--text-muted); margin-top:4px;">Ejemplo: <span lang="id">${App.escapeHtml(v.ex)}</span> (${App.escapeHtml(v.exEsp)})</p>
+                            <p style="color:var(--accent); font-size:0.9rem;">${App.escapeHtml(word.translation)}</p>
+                            ${word.example || word.exampleTranslation ? `<p style="font-size:0.8rem; color:var(--text-muted); margin-top:4px;">Ejemplo: ${word.example ? `<span lang="${App.escapeHtml(locale)}">${App.escapeHtml(word.example)}</span>` : ''}${word.example && word.exampleTranslation ? ' — ' : ''}${word.exampleTranslation ? App.escapeHtml(word.exampleTranslation) : ''}</p>` : ''}
                         </div>
                     `;
                 });

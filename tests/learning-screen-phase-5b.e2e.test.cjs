@@ -1261,6 +1261,9 @@ test('Portugués PT-BR: audio del curso y consulta contextual de palabras funcio
         })
       };
       const audioResult = AudioEngine.speak('bom dia');
+      App.renderDict();
+      const dictionaryWords = Array.from(document.querySelectorAll('#dictContainer strong[lang="pt-BR"]'))
+        .map(element => element.textContent);
 
       const card = document.createElement('div');
       card.className = 'flashcard';
@@ -1279,6 +1282,7 @@ test('Portugués PT-BR: audio del curso y consulta contextual de palabras funcio
         hasSpeaker: Boolean(speaker),
         audioResult,
         spoken: spoken[0] || null,
+        dictionaryWords,
         dictionaryPlaceholder: document.getElementById('dictSearch')?.placeholder
       };
     });
@@ -1292,6 +1296,8 @@ test('Portugués PT-BR: audio del curso y consulta contextual de palabras funcio
     assert.equal(fixture.spoken.lang, 'pt-BR');
     assert.equal(fixture.spoken.voiceLang, 'pt-BR');
     assert.equal(fixture.dictionaryPlaceholder, 'Buscar palabra o traducción...');
+    assert.ok(fixture.dictionaryWords.includes('olá'), 'the general dictionary should render Portuguese vocabulary');
+    assert.ok(fixture.dictionaryWords.length > 0, 'dictionary entries should carry the active pt-BR locale');
 
     await page.locator('#fixturePtMeaningTrigger').click({ position: { x: 18, y: 10 } });
     await page.waitForFunction(() => !document.getElementById('wordMeaningPopup').hidden);

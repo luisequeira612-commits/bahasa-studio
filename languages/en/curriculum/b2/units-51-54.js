@@ -116,7 +116,7 @@ lessons:[
 ["Transiciones en presentaciones","Guía a la audiencia entre secciones y procesos.","Transition to, draw attention to y walk someone through organizan la información.",[4,5,6,7],"I'd like to draw your attention to the final chart."],
 ["Preguntas y desarrollo","Responde preguntas y amplía explicaciones con claridad.","Address a question, take questions y elaborate on ayudan a gestionar interacción.",[8,9,10,11],"Could you elaborate on the final recommendation?"],
 ["Decisiones y agenda","Plantea puntos, aclara asuntos y controla el tiempo.","Reach/defer a decision, raise a point y keep to the schedule organizan la reunión.",[12,13,14,15],"The chair decided to defer the decision until Friday."],
-["Cierre y síntesis","Resume ideas y concluye sin perder el hilo argumental.","Bring the presentation to a close y sum up marcan el cierre; follow the thread y make the most of orientan la participación.",[16,17,18,19,20,21],"The presentation ran over time by ten minutes."]]}
+["Cierre y síntesis","Resume ideas y concluye sin perder el hilo argumental.","Bring the presentation to a close y sum up marcan el cierre; follow the thread y make the most of orientan la participación.",[16,17,18,19,20,21],"The recommended option is likely to be cost-effective."]]}
 ];
 function build(d){
  const vocab=d.rows.map((r,i)=>({id:"en_b2_u"+d.n+"_v"+String(i+1).padStart(2,"0"),target:r[0],esp:r[1],ex:r[2],exEsp:r[3],verification:{status:"not_checked",sources:[]}}));

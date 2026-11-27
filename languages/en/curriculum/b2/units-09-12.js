@@ -4,33 +4,33 @@ const rows=[
 ["what matters most is","lo que más importa es","What matters most is how the evidence is interpreted.","Lo que más importa es cómo se interpreta la evidencia."],
 ["it is the timing that","es el momento lo que","It is the timing that makes the decision difficult.","Es el momento lo que hace difícil la decisión."],
 ["the main reason why","la razón principal por la que","The main reason why sales fell was the price increase.","La razón principal por la que cayeron las ventas fue el aumento de precio."],
-["not until","no fue hasta que","Not until the final stage did we notice the error.","No fue hasta la etapa final que notamos el error."],
+["not until","no fue hasta que","Not until the final stage did we notice the error.","No fue hasta la etapa final cuando notamos el error."],
 ["only after","solo después de","Only after the review did the team understand the risk.","Solo después de la revisión entendió el equipo el riesgo."],
-["little did","poco imaginaba","Little did we know that the figures were incomplete.","Poco imaginábamos que las cifras estaban incompletas."],
+["little did we know","poco imaginábamos","Little did we know that the figures were incomplete.","Poco imaginábamos que las cifras estaban incompletas."],
 ["for the first time","por primera vez","For the first time, the results have exceeded expectations.","Por primera vez, los resultados han superado las expectativas."],
 ["ever since","desde entonces","Ever since the merger, the company has operated differently.","Desde la fusión, la empresa ha operado de manera diferente."],
 ["time and again","una y otra vez","We have explained the procedure time and again.","Hemos explicado el procedimiento una y otra vez."],
 ["to this day","hasta el día de hoy","To this day, nobody has explained the discrepancy.","Hasta el día de hoy, nadie ha explicado la discrepancia."],
 ["not once","ni una sola vez","Not once did he mention the missing documents.","Ni una sola vez mencionó los documentos que faltaban."],
-["no longer","ya no","The old system is no longer meeting our needs.","El sistema antiguo ya no satisface nuestras necesidades."],
-["all along","desde el principio","She had known the answer all along.","Ella había sabido la respuesta desde el principio."],
+["no longer","ya no","The old system is no longer meeting our needs.","El sistema antiguo ya no responde a nuestras necesidades."],
+["all along","desde el principio","She had known the answer all along.","Ella ya sabía la respuesta desde el principio."],
 ["for much of the time","durante gran parte del tiempo","For much of the time, the team had been working remotely.","Durante gran parte del tiempo, el equipo había estado trabajando a distancia."],
 ["as soon as","tan pronto como","As soon as the figures had been checked, we shared them.","Tan pronto como se revisaron las cifras, las compartimos."],
 ["the moment","en cuanto","The moment I saw the results, I knew something was wrong.","En cuanto vi los resultados, supe que algo iba mal."],
 ["hardly had","apenas había","Hardly had we begun when the power went out.","Apenas habíamos comenzado cuando se fue la electricidad."],
 ["no sooner had","apenas había / no bien","No sooner had the meeting begun than the alarm rang.","Apenas había comenzado la reunión cuando sonó la alarma."],
 ["at no point","en ningún momento","At no point had anyone warned us about the change.","En ningún momento nos habían advertido del cambio."],
-["through no fault of","sin que fuera culpa de","Through no fault of her own, she missed the deadline.","Sin que fuera culpa suya, no cumplió el plazo."],
+["through no fault of","sin que fuera culpa de","Through no fault of her own, she missed the deadline.","No fue culpa suya que no pudiera entregar a tiempo."],
 ["far from","lejos de","Far from solving the issue, the update made it worse.","Lejos de resolver el problema, la actualización lo empeoró."],
 ["much as","por mucho que","Much as I respect the decision, I disagree with it.","Por mucho que respete la decisión, no estoy de acuerdo con ella."]
 ];
 const vocab=rows.map((r,i)=>({id:"en_b2_u9_v"+String(i+1).padStart(2,"0"),target:r[0],esp:r[1],ex:r[2],exEsp:r[3],verification:{status:"not_checked",sources:[]}}));
 const lessonData=[
-["Énfasis con estructuras cleft","Destaca la información nueva o contrastiva sin alterar el significado básico.","It-cleft: It is/was + foco + that/who. What-cleft: What + clause + be + foco. Not until + clause exige inversión en la cláusula principal.",[0,1,2,3],"It is the timing that makes the decision difficult."],
+["Énfasis con estructuras cleft","Destaca la información nueva o contrastiva sin alterar el significado básico.","It-cleft: It is/was + foco + that/who. What-cleft: What + clause + be + foco. Not until + clause exige inversión en la cláusula principal.",[0,1,2,3],"What matters most is how the evidence is interpreted."],
 ["Inversión tras expresiones negativas","Da énfasis formal a límites temporales y hechos inesperados.","Not until, only after y little did pueden exigir inversión auxiliar-sujeto en la cláusula principal.",[4,5,6,7],"Little did we know that the figures were incomplete."],
-["Frecuencia y continuidad enfáticas","Refuerza que una situación se repite o continúa hasta el presente.","Time and again, ever since y to this day aportan duración o repetición; el tiempo verbal depende del marco temporal.",[8,9,10,11],"To this day, nobody has explained the discrepancy."],
-["Secuencia e inmediatez","Organiza acciones muy próximas en relatos y explicaciones.","All along y for much of the time expresan conocimiento previo o duración; as soon as y the moment marcan secuencia inmediata.",[12,13,14,15],"For much of the time, the team had been working remotely."],
-["Contraste y evaluación","Matiza una conclusión y destaca qué no ocurrió o qué empeoró.","Hardly had...when y no sooner had...than expresan secuencia inmediata con inversión; at no point, far from y much as añaden énfasis negativo o concesión.",[16,17,18,19,20,21],"No sooner had the meeting begun than the alarm rang."]
+["Frecuencia, continuidad y marco temporal","Refuerza la repetición, la continuidad y la perspectiva temporal.","Time and again expresa repetición; ever since y to this day conectan una situación con el presente; for the first time marca un hito.",[8,9,10,11],"We have explained the procedure time and again."],
+["Secuencia e inmediatez","Organiza acciones próximas en relatos y explicaciones.","All along y for much of the time expresan conocimiento previo o duración; as soon as y the moment marcan secuencia inmediata.",[12,13,14,15],"As soon as the figures had been checked, we shared them."],
+["Contraste y evaluación","Matiza una conclusión y destaca qué no ocurrió o qué empeoró.","Hardly had...when y no sooner had...than expresan secuencia inmediata con inversión; at no point, far from y much as añaden énfasis negativo o concesión.",[16,17,18,19,20,21],"Far from solving the issue, the update made it worse."]
 ];
 const mc=(w,opts)=>{const correct=opts[0];const match=String(w.id).match(/v(\d+)$/);const offset=match?Number(match[1])%opts.length:1;const options=opts.slice(offset).concat(opts.slice(0,offset));return {vocabId:w.id,type:"mc",prompt:"¿Qué significa «"+w.target+"»?",options,answer:options.indexOf(correct),explanation:"Selecciona la equivalencia adecuada en este contexto."};};
 const order=(w,s)=>{const correctOrder=s.replace(/[.,!?;:]/g,"").trim().split(/\s+/).filter(Boolean);let words=correctOrder.length>1?correctOrder.slice(1).concat(correctOrder.slice(0,1)):correctOrder.slice();if(words.join(" ")===correctOrder.join(" "))words=correctOrder.slice().reverse();return {vocabId:w.id,type:"order",prompt:"Ordena la frase.",words,correctOrder,explanation:"Reconstruye la frase y observa el énfasis."};};

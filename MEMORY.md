@@ -1,3 +1,9 @@
+## 2026-11-26 — Inglés en-US B1 U25–U28 en preparación
+- Rama `feat/en-us-b1-u25-u28`, ahora rebased sobre la corrección de U21–U24 de PR #921. Añade U25 consejos/críticas; U26 capacidad/logros; U27 patrones gerundio/infinitivo; U28 patrones con objeto.
+- Bloque: 4 unidades, 20 lecciones, 80 ejercicios y 88 entradas nuevas. Acumulado B1 U1–U28: 572 entradas únicas, 140 lecciones y 560 ejercicios; U10 y U20 son repasos.
+- Auditoría estática B1: 572/572 targets únicos. U25–U28 comparadas contra A1/A2 sin coincidencias exactas tras cambiar `make progress` por `show steady improvement`. CI de PR #922 pendiente; vocabulario `not_checked`; inglés sigue `available:false`.
+- Sin cambios a IndexedDB v1, backup JSON v3, dependencias, audio, red ni otros idiomas. Fuente: rama, manifiesto, currículo y tests; 26 nov 2026.
+
 ## 2026-11-26 — Inglés en-US B1 U21–U24 en preparación
 - Rama `feat/en-us-b1-u21-u24`, apilada sobre la secuencia `feat/en-us-b1-u09-u12` (head `fcffb28f8d555d383c251b29ca056f99f4be6ceb` al crear la rama). Añade U21 obligación/responsabilidad/expectativas; U22 permisos/peticiones; U23 deducción presente; U24 modales pasados y arrepentimiento.
 - Bloque: 4 unidades de contenido, 22 entradas por unidad, 20 lecciones y 80 ejercicios. Acumulado B1 U1–U24: 484 entradas previstas, 120 lecciones y 480 ejercicios; U10 y U20 son repasos sin vocabulario nuevo.

@@ -51,7 +51,7 @@ const refs=[
 ];
 const reviewDefs=[
 ["Colocaciones y phrasal verbs","Recupera combinaciones naturales y verbos con partícula.","Advanced collocations and phrasal verbs with object placement.",[0,1],"The department will look into the complaint."],
-["Preposiciones y formación de palabras","Aplica patrones preposicionales y familias léxicas.","Dependent prepositions, nominalization and derivation.",[2,3],"All suppliers must adhere to safety regulations."],
+["Preposiciones y formación de palabras","Aplica patrones preposicionales y familias léxicas.","Dependent prepositions, nominalization and derivation.",[2,3],"System reliability is essential for public services."],
 ["Connotación e idioms","Distingue valoración y expresiones figuradas frecuentes.","Connotation, evaluative language and useful idioms.",[4,5],"Let's get the ball rolling with a short introduction."],
 ["Sinónimos y metáforas","Reconoce diferencias semánticas y metáforas convencionales.","Near-synonyms, collocations and figurative language.",[6,7],"The pilot program laid the groundwork for wider reform."],
 ["Precisión léxica integrada","Evalúa significado, registro y colocación antes de elegir una palabra.","Precision, ambiguity, redundancy and semantic qualification.",[7,8],"It is important to differentiate between correlation and causation."]

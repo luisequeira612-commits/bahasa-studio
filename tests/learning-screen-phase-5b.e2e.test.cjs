@@ -1283,7 +1283,8 @@ test('Portugués PT-BR: audio del curso y consulta contextual de palabras funcio
         audioResult,
         spoken: spoken[0] || null,
         dictionaryWords,
-        dictionaryPlaceholder: document.getElementById('dictSearch')?.placeholder
+        dictionaryPlaceholder: document.getElementById('dictSearch')?.placeholder,
+        offlineAudioHidden: document.getElementById('offlineAudioPreparation')?.hidden
       };
     });
 
@@ -1298,6 +1299,7 @@ test('Portugués PT-BR: audio del curso y consulta contextual de palabras funcio
     assert.equal(fixture.dictionaryPlaceholder, 'Buscar palabra o traducción...');
     assert.ok(fixture.dictionaryWords.includes('olá'), 'the general dictionary should render Portuguese vocabulary');
     assert.ok(fixture.dictionaryWords.length > 0, 'dictionary entries should carry the active pt-BR locale');
+    assert.equal(fixture.offlineAudioHidden, true, 'MP3 preparation is hidden when this course has no recordings');
 
     await page.locator('#fixturePtMeaningTrigger').click({ position: { x: 18, y: 10 } });
     await page.waitForFunction(() => !document.getElementById('wordMeaningPopup').hidden);

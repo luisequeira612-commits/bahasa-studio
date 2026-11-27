@@ -96,6 +96,8 @@ window.AudioEngine = {
         const status = document.getElementById('audioVoiceStatus');
         if (!status) return;
         const language = this.getLanguageConfig();
+        const offlinePreparation = typeof document !== 'undefined' ? document.getElementById('offlineAudioPreparation') : null;
+        if (offlinePreparation) offlinePreparation.hidden = language.audioAvailable === false;
         const voices = this.voices.filter(voice => this.matchesActiveLanguage(voice));
         const languageName = String(language.name || language.code || 'idioma del curso').toLowerCase();
         const hasRecordings = language.audioAvailable !== false;
@@ -161,6 +163,7 @@ window.AudioEngine = {
     speakWithDeviceVoice(text) {
         const language = this.getLanguageConfig();
         const languageName = String(language.name || language.code || 'idioma del curso').toLowerCase();
+        this.stopCurrentAudio();
         if (!this.synth) {
             const status = document.getElementById('audioVoiceStatus');
             if (status) status.textContent = 'Esta frase no tiene una grabación disponible y el navegador no ofrece una voz de respaldo para ' + languageName + '.';

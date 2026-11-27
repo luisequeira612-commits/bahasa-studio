@@ -100,6 +100,8 @@ test('las indicaciones de lección, diccionario y audio no fijan indonesio', () 
     assert.match(html, /placeholder="Buscar palabra o traducción/);
     assert.doesNotMatch(html, /Buscar indonesio o español|diccionario indonesio y español/);
     assert.match(html, /<h3>Audio del curso<\/h3>/);
+    assert.match(html, /Voz del dispositivo \(opcional\)/);
+    assert.match(html, /Probar audio del curso/);
     assert.doesNotMatch(html, /Audio en indonesio|voz indonesia/);
 });
 

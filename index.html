@@ -352,7 +352,7 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
         <div class="card">
             <h3>Audio del curso</h3>
             <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px;">La app reproduce grabaciones del curso cuando están disponibles. Si falta una, puede utilizar una voz del dispositivo configurada para el mismo idioma.</p>
-            <label for="audioVoiceSelect" style="display:block; font-size:0.9rem; margin:10px 0 6px;">Voz de respaldo del dispositivo (opcional)</label>
+            <label for="audioVoiceSelect" style="display:block; font-size:0.9rem; margin:10px 0 6px;">Voz del dispositivo (opcional)</label>
             <select id="audioVoiceSelect" class="input-field" onchange="AudioEngine.setVoice(this.value)" aria-label="Voz del idioma del curso">
                 <option value="auto">Automática (recomendada)</option>
             </select>
@@ -364,7 +364,7 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                 <option value="0.85" selected>Normal lento (0,85×)</option>
                 <option value="1">Normal (1×)</option>
             </select>
-            <button class="btn btn-outline" style="margin-top:10px;" onclick="AudioEngine.testVoice()">Probar audio incluido</button>
+            <button class="btn btn-outline" style="margin-top:10px;" onclick="AudioEngine.testVoice()">Probar audio del curso</button>
             <p id="voiceTestStatus" role="status" aria-live="polite" style="font-size:0.85rem;color:var(--text-muted);margin-top:8px;">Prueba la reproducción del idioma del curso.</p>
             <div id="offlineAudioPreparation" style="margin-top:16px;padding-top:14px;border-top:1px solid var(--border);">
                 <h4 style="margin:0 0 6px;">Preparar audio para usar sin conexión</h4>

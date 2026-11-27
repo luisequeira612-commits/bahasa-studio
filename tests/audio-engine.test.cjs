@@ -242,3 +242,17 @@ test('la prueba de audio PT-BR reproduce su frase configurada mediante speechSyn
     assert.equal(setup.spoken[0].text, 'bom dia');
     assert.match(setup.statuses.voiceTestStatus.textContent, /voz del dispositivo para portugués/i);
 });
+
+test('la síntesis del curso detiene una grabación anterior antes de hablar', () => {
+    const language = {
+        code: 'pt-BR', locale: 'pt-BR', name: 'Portugués',
+        audioPath: './audio/pt-BR/', audioAvailable: false,
+        allowSystemVoiceFallback: true
+    };
+    const voice = { name: 'Português (Brasil)', lang: 'pt-BR' };
+    const setup = createEngine({ language, voices: [voice] });
+    let pauseCalls = 0;
+    setup.engine.currentAudio = { pause: () => { pauseCalls += 1; } };
+    assert.equal(setup.engine.speak('bom dia'), true);
+    assert.equal(pauseCalls, 1);
+});

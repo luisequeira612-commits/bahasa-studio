@@ -5,6 +5,8 @@ window.AudioEngine = {
     selectedVoice: null,
     voicePreference: 'auto',
     currentAudio: null,
+    audioManifest: new Map(),
+    audioManifestLoaded: false,
     rate: 1,
     getLanguageConfig() {
         const manager = window.LanguageManager;
@@ -18,6 +20,23 @@ window.AudioEngine = {
     },
     voiceKey(voice) {
         return voice.voiceURI || (String(voice.lang || '') + ':' + String(voice.name || ''));
+    },
+    async loadAudioManifest() {
+        try {
+            const response = await fetch('./audio/manifest.json', { cache: 'no-cache' });
+            if (!response.ok) throw new Error('HTTP ' + response.status);
+            const manifest = await response.json();
+            this.audioManifest = new Map();
+            (manifest.entries || []).forEach(entry => {
+                if (entry && entry.language && entry.text && entry.file) {
+                    this.audioManifest.set(entry.language + ':' + this.hashText(entry.text), entry);
+                }
+            });
+            this.audioManifestLoaded = true;
+        } catch (error) {
+            this.audioManifestLoaded = false;
+            console.warn('No se pudo cargar la biblioteca de audio Piper:', error);
+        }
     },
     hashText(text) {
         const normalized = String(text ?? '').trim().replace(/\s+/g, ' ').toLowerCase();
@@ -169,6 +188,7 @@ window.AudioEngine = {
     init() {
         this.refreshVoices();
         this.observeCourseLabels();
+        this.loadAudioManifest();
         if (this.synth && this.synth.onvoiceschanged !== undefined) {
             this.synth.onvoiceschanged = () => this.refreshVoices();
         }
@@ -203,8 +223,12 @@ window.AudioEngine = {
         if (typeof Audio !== 'function') return false;
         const id = this.hashText(text);
         if (!id) return false;
+        const language = this.getLanguageConfig();
+        const manifestEntry = this.audioManifest.get(language.code + ':' + id);
+        const audioPath = manifestEntry ? manifestEntry.file : null;
+        if (!audioPath && this.audioManifestLoaded) return false;
         this.stopCurrentAudio();
-        const audio = new Audio(this.getLanguageConfig().audioPath + id + '.mp3');
+        const audio = new Audio(audioPath || (language.audioPath + id + '.mp3'));
         audio.preload = 'auto';
         audio.playbackRate = this.rate;
         this.currentAudio = audio;
@@ -242,7 +266,8 @@ window.AudioEngine = {
         const value = String(text ?? '').trim();
         if (!value) return false;
         this.updateVoiceStatus();
-        if (this.playRecorded(value)) return true;
+        if (this.audioManifestLoaded && this.playRecorded(value)) return true;
+        if (!this.audioManifestLoaded) this.playRecorded(value);
         return this.speakWithDeviceVoice(value);
     },
     testVoice() {

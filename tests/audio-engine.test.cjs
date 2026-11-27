@@ -207,7 +207,7 @@ test('acepta una voz pt-PT como respaldo para el curso pt-BR', () => {
 
 
 test('localiza el mensaje de consulta y la etiqueta accesible al idioma activo', () => {
-    const language = { code: 'pt-BR', locale: 'pt-BR', name: 'Portugués de Brasil', audioPath: './audio/pt-BR/' };
+    const language = { code: 'pt-BR', locale: 'pt-BR', name: 'Portugués', audioPath: './audio/pt-BR/' };
     const setup = createEngine({ language });
     setup.engine.localizeCourseLabels();
     assert.equal(setup.hint.textContent, '💡 Toca una palabra en portugués para consultar su significado sin salir de la lección.');

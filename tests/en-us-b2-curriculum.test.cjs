@@ -405,3 +405,39 @@ test('English B2 U1 sentence-building exercises use examples for their own vocab
       .replace(/[.,!?;:]/g, '').trim().split(/\s+/));
   }
 });
+
+
+test('English B2 U1–U8 lesson and unit sentence exercises match their vocabulary examples', () => {
+  const units = loadB2();
+  for (let number = 1; number <= 8; number += 1) {
+    const unit = units.find((item) => item.unitNumber === number);
+    assert.ok(unit, 'B2 unit must exist: U' + number);
+    for (const lesson of unit.lessons) {
+      const exercise = Array.from(lesson.exercises || []).find((item) => item.type === 'order');
+      assert.ok(exercise, 'lesson must contain a sentence exercise: U' + number);
+      assert.equal(exercise.vocabId, lesson.vocabIds[1]);
+      const word = unit.vocab.find((item) => item.id === exercise.vocabId);
+      assert.ok(word);
+      assert.deepEqual(Array.from(exercise.correctOrder), word.ex
+        .replace(/[.,!?;:]/g, '').trim().split(/\s+/));
+    }
+    const bank = Array.from(unit.exercises || []).filter((item) => item.type === 'order');
+    assert.equal(bank.length, 5);
+    for (const exercise of bank) {
+      const word = unit.vocab.find((item) => item.id === exercise.vocabId);
+      assert.ok(word);
+      assert.deepEqual(Array.from(exercise.correctOrder), word.ex
+        .replace(/[.,!?;:]/g, '').trim().split(/\s+/));
+    }
+  }
+});
+
+test('English B2 U8 uses the stative meaning of feel consistently', () => {
+  const unit = loadB2().find((item) => item.unitNumber === 8);
+  assert.ok(unit);
+  const feel = unit.vocab.find((word) => word.target === 'to feel');
+  assert.ok(feel);
+  assert.equal(feel.esp, 'sentirse');
+  assert.equal(feel.ex, 'I feel exhausted after the trip.');
+  assert.equal(feel.exEsp, 'Me siento agotado después del viaje.');
+});

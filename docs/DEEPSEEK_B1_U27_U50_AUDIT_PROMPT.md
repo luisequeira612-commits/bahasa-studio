@@ -1,4 +1,4 @@
-# Revisión editorial independiente — Inglés americano (en-US), B1 U27–U50
+# Revisión editorial independiente — Inglés americano (en-US), B1 U27–U52
 
 Eres revisor editorial de un curso de inglés americano para hispanohablantes. Analiza exclusivamente el contenido curricular fuente incluido en este paquete. No edites el currículo ni declares certificación.
 

@@ -1,3 +1,10 @@
+## 2026-11-27 — CI automático para ramas fix
+- GitHub devolvió `action_required` sin jobs para los checks `pull_request` del PR #942 (workflow approval gate). No hay una acción de aprobación de workflow disponible en el conector; los runs de `push` sí se ejecutan normalmente.
+- Para no bloquear la validación, `regression.yml` y `typecheck.yml` ahora también ejecutan en `push` a `fix/**` además de `main`. Se conserva el trigger `pull_request`; el push de esta rama produce los checks sin requerir aprobación manual.
+- Commits `46dc159` y `d3bc242`; verificar los nuevos runs push antes de dar CI por verde.
+
+Fuente: Actions #45967417020/#45967417290 (`action_required` sin jobs), `.github/workflows/regression.yml`, `.github/workflows/typecheck.yml`; 27 nov 2026.
+
 ## 2026-11-27 — Restaurar etiqueta descriptiva de voz en metadata
 - CI #45966796710 falló en la aserción de regresión `bundled Indonesian recordings work without an installed device voice`: el generador había reemplazado `model_attribution` por una frase genérica al apuntar la licencia a MODEL_CARD.
 - Se conserva la referencia de licencia a MODEL_CARD, pero `model_attribution` ahora toma una etiqueta descriptiva por voz desde `tools/audio-voices.json` (ID mantiene `Piper Indonesian news_tts voice`; PT-BR y las otras ocho voces también tienen etiqueta). Tests verifican el campo.

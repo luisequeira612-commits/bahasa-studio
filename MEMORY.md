@@ -783,3 +783,12 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Inventario A2 previsto tras el bloque: 528 entradas. Se corrigieron solapamientos exactos con A1/A2 y se revisó que las frases de orden correspondan al vocabulario asignado.
 - CI de este bloque aún pendiente. Entradas `not_checked`; cotejo individual CEFR-J pendiente. Inglés permanece `available:false`; sin cambios a IndexedDB v1, backup JSON v3, dependencias, POS/audio, PT-BR ni otros idiomas. No fusionar ni publicar sin aprobación expresa.
 - Fuente: rama `feat/en-us-a2-u23-u26`, currículo, tests y docs; 26 nov 2026.
+
+
+## 2026-11-27 — Inglés en-US A2 U27–U30
+- Rama feat/en-us-a2-u27-u30-sync, apilada sobre el head actualizado y CI-verde de PR #905 (b8c89be0bd45ca7d66813855e16dc79e22cd28eb).
+- U27: precios, compras y reclamaciones; U28: instrucciones de cocina e imperativos; U29: peticiones y problemas en restaurantes; U30: repaso integrado III sin vocabulario nuevo.
+- Bloque de 4 unidades, 20 lecciones, 66 entradas nuevas y 80 ejercicios; U30 contiene 0 entradas nuevas. Total A2 U1–U30: 594 entradas nuevas; U10/U20/U30 son repasos.
+- Manifiesto y test ampliados hasta U30. Auditoría estática contra A2 U1–U26 vigente: 66 targets únicos, sin solapamiento exacto con los 528 targets previos. CI y comparación completa contra A1 pendientes al registrar esta nota.
+- Vocabulario not_checked; cotejo individual CEFR-J pendiente. Sin cambios a IndexedDB v1, backup JSON v3, dependencias, POS/audio, PT-BR ni otros idiomas. No fusionar ni publicar sin aprobación expresa.
+- Fuente: rama feat/en-us-a2-u27-u30-sync, currículo, tests y docs; 27 nov 2026.

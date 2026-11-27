@@ -74,7 +74,7 @@ const data=[
 ],bank:["He might have misunderstood the deadline.","They couldn't have completed the audit in one day.","The email could conceivably have gone to the wrong address.","We could have avoided the delay with better planning.","I would have helped if I had known."]},
 {n:13,title:"Obligación, necesidad y ausencia de obligación",desc:"Distingue obligación externa, necesidad práctica, recomendación, permiso y ausencia de obligación en registros formales y cotidianos.",grammar:"Must, have to, need to, be required to, be obliged to, should, ought to, don't have to, needn't y mustn't.",trap:["Don't have to no significa mustn't","You don't have to attend (no es obligatorio). You mustn't attend (está prohibido). La diferencia cambia por completo el mensaje."],rows:[
 ["be required to","estar obligado a / ser requisito","Applicants are required to provide two references.","Se exige que los solicitantes proporcionen dos referencias."],
-["be obliged to","estar obligado a","Applicants are required to provide two references.","La empresa está obligada a informar del incidente."],
+["be obliged to","estar obligado a","The company is obliged to report the incident.","La empresa está obligada a informar del incidente."],
 ["have to","tener que","We have to submit the form by Friday.","Tenemos que entregar el formulario antes del viernes."],
 ["need to","necesitar","You need to update your contact details.","Necesitas actualizar tus datos de contacto."],
 ["must","deber","All visitors must sign in at reception.","Todos los visitantes deben registrarse en recepción."],
@@ -115,7 +115,7 @@ const data=[
 ["more than likely","muy probablemente","She will more than likely accept the invitation.","Lo más probable es que acepte la invitación."],
 ["by all accounts","según todos los indicios","By all accounts, the event was a success.","Según todos los indicios, el evento fue un éxito."],
 ["to be expected to","esperarse que","The figures are expected to improve next year.","Se espera que las cifras mejoren el próximo año."],
-["to be forecast to","preverse que","The population is projected to grow steadily.","Se prevé que las ventas aumenten un cinco por ciento."],
+["to be forecast to","preverse que","Sales are forecast to rise by five percent.","Se prevé que las ventas aumenten un cinco por ciento."],
 ["to be projected to","proyectarse que","The population is projected to grow steadily.","Se proyecta que la población crezca de forma constante."],
 ["to stand a good chance of","tener buenas posibilidades de","The proposal stands a good chance of being approved.","La propuesta tiene buenas posibilidades de ser aprobada."],
 ["it is unlikely that","ser poco probable que","It is unlikely that the road will reopen today.","Es poco probable que la carretera vuelva a abrir hoy."],

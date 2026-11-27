@@ -107,3 +107,11 @@ test('English A1 vocabulary introduces no duplicate targets across U1-U12',async
 - Se corrigieron IDs de vocabulario reciclado en U30 (box/class: U6 v05/v06) y U31–U32 (listen: U1 v18).
 - Auditoría estática de los 46 IDs de reviewVocabIds: todos resuelven al target esperado. Inventario léxico sigue en 638 entradas únicas y cero duplicados.
 - PR #895 en head 3a738748ed0c3a8bbaaae3ad3b689b08c518dd97: regresión #45913948547 y typecheck #45913948597 success; calidad offline success. Cero fallos CI en el head actual.
+
+ 
+## 2026-11-26 — Inglés A1 U31–U32 en PR final
+- Rama feat/en-us-a1-u31-u32-final3 y PR prevista U31–U32: U31 conversaciones cotidianas; U32 evaluación final integrada. Ambas tienen 0 palabras nuevas, 5 lecciones y 20 ejercicios de repaso.
+- Manifiesto y pruebas estructurales amplían inventario hasta U1–U32; solo U30–U32 tienen 0 vocabulario nuevo. A1 completo en contenido curricular, pendiente de CI, trazabilidad de fuentes y resolución de POS/audio.
+- U32 usa únicamente mc/order; no simula ni afirma escucha real, evaluación oral ni respuesta escrita libre porque el motor actual no ofrece esas interacciones.
+- Esta PR depende de #895 → #894 → #893 → #892 → #891. Integrar manualmente en orden y retargetear a main; no fusionar sin aprobación expresa. Inglés permanece unavailable/«Próximamente».
+- Auditoría estática de 46 IDs de repaso: todos coinciden con el target esperado; U30 box/class apuntan a U6 v05/v06 y listen a U1 v18.

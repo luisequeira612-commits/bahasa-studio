@@ -115,7 +115,7 @@ const data=[
 ["more than likely","muy probablemente","She will more than likely accept the invitation.","Lo más probable es que acepte la invitación."],
 ["by all accounts","según todos los indicios","By all accounts, the event was a success.","Según todos los indicios, el evento fue un éxito."],
 ["to be expected to","esperarse que","The figures are expected to improve next year.","Se espera que las cifras mejoren el próximo año."],
-["to be forecast to","preverse que","The population is projected to grow steadily.","Se prevé que las ventas aumenten un cinco por ciento."],
+["to be forecast to","preverse que","Se prevé que las ventas aumenten un cinco por ciento.","Se prevé que las ventas aumenten un cinco por ciento."],
 ["to be projected to","proyectarse que","The population is projected to grow steadily.","Se proyecta que la población crezca de forma constante."],
 ["to stand a good chance of","tener buenas posibilidades de","The proposal stands a good chance of being approved.","La propuesta tiene buenas posibilidades de ser aprobada."],
 ["it is unlikely that","ser poco probable que","It is unlikely that the road will reopen today.","Es poco probable que la carretera vuelva a abrir hoy."],

@@ -59,7 +59,7 @@ const data=[
 ["to wish one had","desear haber","I wish I had asked for clarification.","Ojalá hubiera pedido una aclaración."],
 ["to blame someone for","culpar a alguien por","They blamed the supplier for the delay.","Culparon al proveedor por el retraso."],
 ["to take responsibility for","asumir la responsabilidad de","The manager took responsibility for the mistake.","El gerente asumió la responsabilidad del error."],
-["to be accountable for","ser responsable de","The contractor is accountable for the quality of the work.","El contratista es responsable de la calidad del trabajo."],
+["to be accountable for","ser responsable de","El contratista es responsable de la calidad del trabajo.","El contratista es responsable de la calidad del trabajo."],
 ["to miss an opportunity","perder una oportunidad","We missed an opportunity to negotiate a better price.","Perdimos la oportunidad de negociar un mejor precio."],
 ["to make up for","compensar","The team worked late to make up for lost time.","El equipo trabajó hasta tarde para recuperar el tiempo perdido."],
 ["in hindsight","visto en retrospectiva","We missed an opportunity to negotiate a better price.","Visto en retrospectiva, deberíamos haber esperado."],

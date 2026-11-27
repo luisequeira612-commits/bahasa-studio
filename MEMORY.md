@@ -739,3 +739,4 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - El archivo ZIP oficial CEFR-J v1.6 no pudo procesarse en esta revisión; se consultó la página oficial de descarga, pero no se afirma cotejo individual de los 132 lemas hasta tener la hoja A2 disponible.
 
 - 27 nov 2026: PR #901 (U7–U10) añade 66 entradas nuevas en U7–U9 y un repaso U10 sin vocabulario; total A2 U1–U10: 198 entradas, 50 lecciones explícitas, 200 ejercicios. La prueba compara el total contra los 638 targets A1 y exige que el repaso U10 solo use IDs existentes.
+- En U10 se alinearon los IDs de los ejercicios de repaso con las frases de orden correspondientes; el banco de 10 ejercicios también reutiliza el par de IDs de cada lección para mantener coherencia entre prompt, respuesta y vocabulario.

@@ -12,7 +12,7 @@ const data=[
 ["would have been","habría sido / estado","If I were more patient, the discussion would have been easier.","Si fuera más paciente, la conversación habría sido más fácil."],
 ["could have avoided","podría haber evitado","If we were more careful, we could have avoided the mistake.","Si fuéramos más cuidadosos, podríamos haber evitado el error."],
 ["might still be","quizá todavía estaría","If he had taken the earlier train, he might still be here by now.","Si hubiera tomado el tren anterior, quizá todavía estaría aquí."],
-["otherwise","de lo contrario","I would have missed the call; otherwise, I would know the result.","Habría perdido la llamada; de lo contrario, sabría el resultado."],
+["otherwise","de lo contrario","If I had accepted the offer, I would be living abroad now; otherwise, I would still be working here.","Si hubiera aceptado la oferta, ahora viviría en el extranjero; de lo contrario, seguiría trabajando aquí."],
 ["to be in a better position","estar en mejor situación","With more support, we would be in a better position now.","Con más apoyo, ahora estaríamos en mejor situación."],
 ["to have a different outcome","tener un resultado diferente","If the team had communicated, the project might have had a different outcome.","Si el equipo se hubiera comunicado, el proyecto podría haber tenido otro resultado."],
 ["to affect the outcome","afectar el resultado","A small change could have affected the outcome.","Un pequeño cambio podría haber afectado el resultado."],
@@ -87,7 +87,7 @@ const data=[
 ["to have reservations about","tener reservas sobre","She has reservations about moving.","Tiene reservas sobre la mudanza."],
 ["to change one's mind","cambiar de opinión","I changed my mind after hearing the explanation.","Cambié de opinión después de escuchar la explicación."],
 ["if it were up to me","si dependiera de mí","If it were up to me, we'd postpone the launch.","Si dependiera de mí, pospondríamos el lanzamiento."],
-["given my preference","dada mi preferencia","Given my preference, I would work independently.","Dada mi preferencia, trabajaría de forma independiente."]
+["given my preference for","dada mi preferencia por","Given my preference for quiet environments, I would work independently.","Dada mi preferencia por los entornos tranquilos, trabajaría de forma independiente."]
 ],lessons:[
 ["Deseos sobre el presente","Expresa situaciones presentes que se desean diferentes.","Wish/if only + past simple para estados irreales presentes; were es formal en todas las personas.",[0,1,2,3],"I wish I knew what they were planning."],
 ["Arrepentimiento por el pasado","Expresa deseos sobre acciones pasadas que no se pueden cambiar.","Wish/if only + past perfect; distingue regret doing de wish I had done.",[4,5,6,7],"If only I had saved a copy."],
@@ -106,7 +106,7 @@ const data=[
 ["as if nothing had happened","como si no hubiera pasado nada","He carried on as if nothing had happened.","Siguió como si no hubiera pasado nada."],
 ["to behave as though","comportarse como si","She behaves as though she owned the place.","Se comporta como si fuera la dueña del lugar."],
 ["to sound as if","sonar como si","It sounds as if the situation is getting worse.","Suena como si la situación estuviera empeorando."],
-["to look as though","parecer como si","They look as though they need a break.","Parecen como si necesitaran un descanso."],
+["to look as though","parecer que","They look as though they need a break.","Parece que necesitan un descanso."],
 ["to act as if","actuar como si","Don't act as if you had no choice.","No actúes como si no tuvieras opción."],
 ["to be high time","ser ya hora de","It is high time we took this seriously.","Ya es hora de que nos tomemos esto en serio."],
 ["it is improbable that","ser improbable que","It is improbable that he would agree without further details.","Es improbable que aceptara sin más detalles."],

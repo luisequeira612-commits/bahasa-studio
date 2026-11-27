@@ -98,13 +98,13 @@ window.AudioEngine = {
         const language = this.getLanguageConfig();
         const voices = this.voices.filter(voice => this.matchesActiveLanguage(voice));
         const languageName = String(language.name || language.code || 'idioma del curso').toLowerCase();
-        if (voices.length) {
+        if (language.voiceStatus === 'configured') {
             const active = this.selectedVoice || this.activeLanguageVoice;
-            status.textContent = 'La app incluye grabaciones Piper del curso; no necesitas instalar una voz. Voz del dispositivo disponible como respaldo para ' +
-                languageName + ': ' + (active ? active.name : 'selección automática') + '.';
+            status.textContent = 'La app incluye grabaciones Piper para ' + languageName +
+                '. Voz del dispositivo disponible como respaldo' + (active ? ': ' + active.name : '.') + '.';
         } else {
-            status.textContent = 'La app incluye grabaciones Piper del curso y puede reproducirlas sin voces instaladas. Una voz del dispositivo para ' +
-                languageName + ' solo es necesaria como respaldo si falta una grabación.';
+            status.textContent = 'Si falta una grabación, el navegador intentará reproducir la frase en ' +
+                languageName + ' con una voz compatible del dispositivo.';
         }
     },
     refreshVoices() {
@@ -140,8 +140,34 @@ window.AudioEngine = {
         }
         return true;
     },
+    localizeCourseLabels() {
+        const language = this.getLanguageConfig();
+        const languageName = String(language.name || language.code || 'idioma del curso').toLowerCase();
+        const area = document.getElementById('exerciseArea');
+        if (area && typeof area.querySelectorAll === 'function') {
+            area.querySelectorAll('p').forEach(paragraph => {
+                if (/Toca una palabra en indonesio para consultar su significado sin salir de la lección\\./i.test(paragraph.textContent || '')) {
+                    paragraph.textContent = '💡 Toca una palabra en ' + languageName +
+                        ' para consultar su significado sin salir de la lección.';
+                }
+            });
+        }
+        const languageTrigger = document.getElementById('studyLanguageTrigger');
+        if (languageTrigger && typeof languageTrigger.setAttribute === 'function') {
+            languageTrigger.setAttribute('aria-label', 'Cambiar idioma de estudio. ' + language.name + ' actual');
+        }
+    },
+    observeCourseLabels() {
+        this.localizeCourseLabels();
+        const area = document.getElementById('exerciseArea');
+        if (area && typeof MutationObserver === 'function') {
+            this.lessonLabelObserver = new MutationObserver(() => this.localizeCourseLabels());
+            this.lessonLabelObserver.observe(area, { childList: true, subtree: true, characterData: true });
+        }
+    },
     init() {
         this.refreshVoices();
+        this.observeCourseLabels();
         if (this.synth && this.synth.onvoiceschanged !== undefined) {
             this.synth.onvoiceschanged = () => this.refreshVoices();
         }
@@ -156,17 +182,20 @@ window.AudioEngine = {
         }
         this.refreshVoices();
         const voice = this.selectedVoice || this.activeLanguageVoice;
-        if (!voice || !this.matchesActiveLanguage(voice)) {
-            const status = document.getElementById('audioVoiceStatus');
-            if (status) status.textContent = 'No se encontró una grabación para esta frase ni una voz instalada para ' + languageName + ' como respaldo.';
-            return false;
-        }
         this.synth.cancel();
         const utter = new SpeechSynthesisUtterance(text);
         utter.lang = language.locale || 'id-ID';
-        utter.voice = voice;
+        if (voice && this.matchesActiveLanguage(voice)) {
+            // A Portuguese (pt-PT) device voice is also a valid fallback for pt-BR.
+            utter.voice = voice;
+        }
         utter.rate = this.rate;
         this.synth.speak(utter);
+        if (!voice) {
+            const status = document.getElementById('audioVoiceStatus');
+            if (status) status.textContent = 'El navegador intentará reproducir esta frase en ' + languageName +
+                ' usando el idioma solicitado, aunque no haya una voz enumerada por el dispositivo.';
+        }
         return true;
     },
     playRecorded(text) {

@@ -103,3 +103,5 @@
 - PR #915 (U1–U4) pasó CI en el head `6f9a08e9f24f36421fe907b0b99169f6f769bce2`: regresión 103/103, TypeScript y calidad offline success. Sigue abierta y sin fusionar.
 
 - Auditoría CI inicial de U1–U8 detectó seis coincidencias exactas con A1/A2 en U6/U8: `playground`, `classmate`, `supervisor`, `assignment`, `scholarship`, `study group`. Sustituidas por `play area`, `school friend`, `team lead`, `coursework`, `tuition waiver`, `study session`; se reejecutará la regresión para confirmar que no quedan solapamientos.
+
+- Corrección tras la segunda ejecución de CI: dos sustituciones habían quedado aplicadas accidentalmente en U5 en vez de U6. Se restauraron `plot twist` y `storyline` en U5 y se aplicaron `play area` y `school friend` a U6. Nueva regresión pendiente.

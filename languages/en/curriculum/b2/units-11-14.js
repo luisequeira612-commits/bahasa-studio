@@ -96,7 +96,7 @@ const data=[
 ["in accordance with","de conformidad con","The process must be carried out in accordance with the policy.","El proceso debe llevarse a cabo de conformidad con la política."],
 ["to comply with","cumplir con","Payment is due within 30 days unless otherwise stated.","Todos los proveedores deben cumplir con las normas de seguridad."]
 ],lessons:[
-["Obligación y requisito externo","Expresa normas y obligaciones impuestas por una autoridad o situación.","Must suele expresar obligación fuerte del hablante o norma; have to y be required to presentan necesidad externa.",[0,1,2,3],"Applicants are required to provide two references."],
+["Obligación y requisito externo","Expresa normas y obligaciones impuestas por una autoridad o situación.","Must suele expresar obligación fuerte del hablante o norma; have to y be required to presentan necesidad externa.",[0,1,2,3],"The company is obliged to report the incident."],
 ["Prohibición y ausencia de obligación","Separa claramente lo prohibido de lo opcional.","Mustn't expresa prohibición; don't have to y needn't expresan ausencia de obligación.",[4,5,6,7],"You mustn't disclose confidential information."],
 ["Expectativa, permiso y derecho","Describe lo que se espera, permite o reconoce como derecho.","Be supposed to y be expected to son expectativas; be allowed/permitted/entitled to expresan permiso o derecho.",[8,9,10,11],"Staff are expected to arrive on time."],
 ["Recomendación y necesidad","Matiza recomendaciones y requisitos imprescindibles.","It is advisable/essential/necessary to permite graduar la fuerza de una recomendación.",[12,13,14,15],"You are entitled to a full refund."],

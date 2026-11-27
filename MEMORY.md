@@ -734,3 +734,5 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - El bloque tiene 132 targets únicos, sin duplicados exactos ni solapamientos exactos con los 638 targets A1 presentes en la rama base. El test automatizado repite esta comparación al ejecutar CI.
 - CEFR-J Wordlist v1.6 y Grammar Profile son referencias de nivelación; no se ha realizado todavía un cotejo individual de cada lema con el archivo A2. Todo vocabulario sigue not_checked y no se afirma certificación MCER ni validación nativa.
 - No añadir POS/audio ni dependencias. No cambiar IndexedDB v1, backup JSON v3, PT-BR ni otros idiomas. Mantener en.available=false hasta aprobación separada de publicación A1 y A2.
+
+- La prueba tests/en-us-a2-curriculum.test.cjs quedó añadida al script quality:tests de package.json para que forme parte de la suite automatizada del repositorio.

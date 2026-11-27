@@ -125,3 +125,4 @@
 - Añade 4 unidades, 20 lecciones, 80 ejercicios y 88 entradas nuevas (22 por unidad). El acumulado U1–U16 es 16 unidades, 80 lecciones, 320 ejercicios y 330 entradas nuevas; U10 sigue siendo repaso sin vocabulario nuevo.
 - El manifiesto y el contrato de currículo se amplían hasta U16. Las pruebas comparan todos los targets B1 contra A1/A2 y comprueban referencias de lecciones y bancos.
 - Vocabulario nuevo `not_checked`; la comparación automatizada exacta no certifica nivel MCER, naturalidad nativa ni cotejo individual CEFR-J. Inglés sigue `available:false`; sin cambios a IndexedDB v1, backup JSON v3, dependencias ni otros idiomas.
+- La primera CI detectó una coincidencia exacta de `be set to` con U11; U13 usa ahora `be penciled in for`, con ejemplo, traducción y ejercicios alineados. Auditoría estática: 330 targets únicos en U1–U16; la nueva regresión debe confirmar también la ausencia de solapamientos A1/A2.

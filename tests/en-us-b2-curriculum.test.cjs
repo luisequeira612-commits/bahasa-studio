@@ -110,6 +110,8 @@ test('B2 uses only existing exercise types with valid answer structures', () => 
       assert.ok(exercise.prompt && exercise.explanation, unit.id + ' exercises need prompt and explanation');
       if (exercise.type === 'mc') {
         assert.ok(Array.isArray(exercise.options) && exercise.options.length >= 3);
+        assert.equal(new Set(exercise.options.map((option) => option.trim().toLocaleLowerCase())).size,
+          exercise.options.length, unit.id + ' multiple-choice options must be distinct');
         assert.ok(Number.isInteger(exercise.answer) && exercise.answer >= 0 && exercise.answer < exercise.options.length);
       } else if (exercise.type === 'order') {
         assert.ok(Array.isArray(exercise.words) && exercise.words.length >= 2);

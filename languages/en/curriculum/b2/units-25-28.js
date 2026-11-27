@@ -40,7 +40,7 @@ lessons:[
 ["at no point did","en ningún momento","At no point did the witness change her account.","En ningún momento la testigo cambió su versión."],
 ["not until later did","no fue hasta más tarde que","Not until later did we understand the impact.","No fue hasta más tarde que entendimos el impacto."],
 ["only after + noun + inversion","solo después de... se...","Only after the review did the errors become clear.","Solo después de la revisión quedaron claros los errores."],
-["little did I know","ni me imaginaba que","Little did I know that the decision would change everything.","Poco sabía yo que la decisión lo cambiaría todo."],
+["little did I know","ni me imaginaba que","Little did I know that the decision would change everything.","Ni me imaginaba que la decisión lo cambiaría todo."],
 ["not only does","no solo","Not only does the plan save time, but it also reduces costs.","El plan no solo ahorra tiempo, sino que también reduce los costos."],
 ["only when + clause + inversion","solo cuando... se puede...","Only when the data is complete can we draw a conclusion.","Solo cuando los datos estén completos podremos sacar una conclusión."],
 ["in no way does","de ninguna manera","In no way does this guarantee success.","Esto de ninguna manera garantiza el éxito."],
@@ -50,7 +50,7 @@ lessons:[
 ["barely had","apenas había","Barely had the announcement ended when questions began.","Apenas había terminado el anuncio cuando comenzaron las preguntas."],
 ["scarcely had","apenas había","Scarcely had we sat down when the fire alarm rang.","Apenas nos habíamos sentado cuando sonó la alarma."],
 ["on no account should","por ningún motivo debería","On no account should the files be deleted.","Por ningún motivo deberían eliminarse los archivos."],
-["little did we expect","ni mucho menos esperábamos","Little did we expect the project to attract so much attention.","Ni mucho menos esperábamos que el proyecto atrajera tanta atención."],
+["little did we expect","ni mucho menos esperábamos","Little did we expect the project to attract so much attention.","Ni por asomo esperábamos que el proyecto atrajera tanta atención."],
 ["only by working together can","solo trabajando juntos podemos","Only by working together can we solve the problem.","Solo trabajando juntos podemos resolver el problema."],
 ["not until the end was","no fue hasta el final cuando","Not until the end was the real reason revealed.","No fue hasta el final cuando se reveló la verdadera razón."]],
 lessons:[

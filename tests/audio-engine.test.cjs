@@ -215,3 +215,17 @@ test('localiza el mensaje de consulta y la etiqueta accesible al idioma activo',
     assert.equal(setup.hint.textContent, '💡 Toca una palabra en portugués para consultar su significado sin salir de la lección.');
     assert.equal(setup.languageTrigger.attributes['aria-label'], 'Cambiar idioma de estudio. Portugués actual');
 });
+
+test('las seis palabras iniciales de PT-BR usan la ruta y el locale portugueses', () => {
+    const language = { code: 'pt-BR', locale: 'pt-BR', name: 'Portugués', audioPath: './audio/pt-BR/' };
+    for (const word of ['olá', 'oi', 'bom dia', 'boa tarde', 'boa noite', 'tchau']) {
+        const setup = createEngine({ language });
+        setup.engine.speak(word);
+        const expected = crypto.createHash('sha1').update(word, 'utf8').digest('hex').slice(0, 12);
+        assert.equal(setup.createdAudio[0].src, './audio/pt-BR/' + expected + '.mp3', word);
+        setup.createdAudio[0].fail();
+        assert.equal(setup.spoken.length, 1, word);
+        assert.equal(setup.spoken[0].text, word, word);
+        assert.equal(setup.spoken[0].lang, 'pt-BR', word);
+    }
+});

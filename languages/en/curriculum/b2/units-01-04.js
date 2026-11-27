@@ -79,7 +79,7 @@ const data=[
 ["Persistencia y variación","Explica problemas persistentes y cambios cuantificables.","Los verbos dinámicos pueden aparecer en simple o continuous con distinto enfoque.",[12,13,14,15],"Prices have fluctuated throughout the summer."],
 ["Síntesis de cambios complejos","Integra tendencias, actitudes y consecuencias.","Usa colocaciones precisas y expresiones de duración para evitar repeticiones.",[16,17,18,19,20,21],"The agreement has paved the way for further talks."]
 ],bank:["The same concerns have persisted for years.","Prices have fluctuated throughout the summer.","Demand has peaked earlier than expected.","Growth has started to level off.","The market has shown signs of recovery."]},
-{n:3,title:"Narración y anterioridad en el pasado",desc:"Organiza relatos complejos y aclara qué ocurrió primero, qué estaba en progreso y qué interrumpió una acción.",grammar:"Past perfect simple y continuous; past simple y continuous; when, while, by the time, no sooner...than y hardly...when.",trap:["Past perfect no significa simplemente pasado lejano","By the time we arrived, the meeting had started. El past perfect marca anterioridad respecto a otro punto pasado; no lo uses solo para hacer que una acción parezca más antigua."],rows:[
+{n:3,title:"Tiempos narrativos y cambios de perspectiva",desc:"Organiza relatos complejos y aclara qué ocurrió primero, qué estaba en progreso y qué interrumpió una acción.",grammar:"Past perfect simple y continuous; past simple y continuous; when, while, by the time, no sooner...than y hardly...when.",trap:["Past perfect no significa simplemente pasado lejano","By the time we arrived, the meeting had started. El past perfect marca anterioridad respecto a otro punto pasado; no lo uses solo para hacer que una acción parezca más antigua."],rows:[
 ["by the time","para cuando","By the time we reached the station, the train had left.","Para cuando llegamos a la estación, el tren ya se había ido."],
 ["to have been doing","haber estado haciendo","She had been working there for years before she moved.","Ella llevaba años trabajando allí antes de mudarse."],
 ["to take place","tener lugar","The incident took place shortly before midnight.","El incidente tuvo lugar poco antes de medianoche."],
@@ -109,7 +109,7 @@ const data=[
 ["Memoria y errores de juicio","Explica recuerdos, pruebas y detalles que no se detectaron.","Recall + -ing refiere a recordar una experiencia; past perfect marca anterioridad.",[12,13,14,15],"We had overlooked one important detail."],
 ["Narración integrada","Construye una secuencia coherente con conectores y cambios de ritmo.","No sooner...than y hardly...when requieren inversión en registros formales.",[16,17,18,19,20,21],"The event had barely started when the alarm went off."]
 ],bank:["The incident took place shortly before midnight.","They had set off before sunrise.","A phone call interrupted the presentation.","Several residents witnessed the incident.","Eventually, the missing files were recovered."]},
-{n:4,title:"Perspectiva y referencia al futuro",desc:"Habla de planes vistos desde el pasado, predicciones con duración y acciones que estarán completadas antes de un plazo futuro.",grammar:"Future perfect simple (will have + participle), future perfect continuous (will have been + -ing), future in the past (was/were going to; would) y was/were about to.",trap:["No confundas finalización y duración","By June, I will have completed the course (resultado). By June, I will have been studying for a year (duración). Para un plan pasado que no necesariamente se cumplió, usa was going to, no will."],rows:[
+{n:4,title:"Future perfect y future continuous",desc:"Habla de planes vistos desde el pasado, predicciones con duración y acciones que estarán completadas antes de un plazo futuro.",grammar:"Future perfect simple (will have + participle), future perfect continuous (will have been + -ing), future in the past (was/were going to; would) y was/were about to.",trap:["No confundas finalización y duración","By June, I will have completed the course (resultado). By June, I will have been studying for a year (duración). Para un plan pasado que no necesariamente se cumplió, usa was going to, no will."],rows:[
 ["by then","para entonces","By then, the team will have completed the first stage.","Para entonces, el equipo habrá completado la primera etapa."],
 ["by the end of","para finales de","By the end of the month, we will have reached a decision.","Para finales de mes, habremos tomado una decisión."],
 ["in the meantime","mientras tanto","In the meantime, we will continue testing the system.","Mientras tanto, seguiremos probando el sistema."],
@@ -143,4 +143,49 @@ const data=[
 const rootBlocks=root.GUARDI_CURRICULUM_BLOCKS&&root.GUARDI_CURRICULUM_BLOCKS.en&&root.GUARDI_CURRICULUM_BLOCKS.en.B2;
 if(!rootBlocks||!rootBlocks["01-04"]||!Array.isArray(rootBlocks["01-04"].units))throw new Error("B2 U1-04 base block missing");
 for(const d of data)rootBlocks["01-04"].units.push(makeUnit(d));
+})(typeof window!=="undefined"?window:globalThis);
+(function(root){
+'use strict';
+const rows=[
+["previously","anteriormente","The site had previously been used as a warehouse.","Anteriormente, el lugar se había utilizado como almacén."],
+["by the time","para cuando","By the time the guests arrived, we had finished dinner.","Para cuando llegaron los invitados, ya habíamos terminado de cenar."],
+["up until then","hasta ese momento","Up until then, nobody had questioned the figures.","Hasta ese momento, nadie había cuestionado las cifras."],
+["to have already left","ya haberse ido","She had already left when I called.","Ella ya se había ido cuando llamé."],
+["to have been waiting","haber estado esperando","They had been waiting for over an hour before the doors opened.","Habían estado esperando más de una hora antes de que abrieran las puertas."],
+["to have been working on","llevar trabajando en","He had been working on the proposal for weeks before he submitted it.","Llevaba semanas trabajando en la propuesta antes de entregarla."],
+["to account for","explicar","That detail accounted for the unusual result.","Ese detalle explicaba el resultado inusual."],
+["to stem from","tener su origen en","The disagreement stemmed from a misunderstanding.","El desacuerdo tuvo su origen en un malentendido."],
+["to be unaware of","no estar al tanto de","We were unaware of the changes that had been made.","No estábamos al tanto de los cambios que se habían realizado."],
+["to assume","suponer","I had assumed the meeting was still going ahead.","Había supuesto que la reunión seguía en pie."],
+["to postpone","posponer","They postponed the launch because testing had revealed a fault.","Pospusieron el lanzamiento porque las pruebas habían revelado un fallo."],
+["to reveal","revelar","The audit revealed that several payments had been missed.","La auditoría reveló que se habían pasado por alto varios pagos."],
+["to have been considering","haber estado considerando","The board had been considering the proposal for months.","La junta llevaba meses considerando la propuesta."],
+["to have intended","haber tenido la intención","I had intended to contact you earlier.","Había tenido la intención de contactarte antes."],
+["to have no idea","no tener ni idea","She had no idea that the deadline had changed.","Ella no tenía ni idea de que el plazo había cambiado."],
+["to have overlooked","haber pasado por alto","We had overlooked a key requirement.","Habíamos pasado por alto un requisito clave."],
+["to have dealt with","haber gestionado","The team had dealt with similar cases before.","El equipo ya había gestionado casos similares."],
+["to have been exposed to","haber estado expuesto a","The material had been exposed to extreme temperatures.","El material había estado expuesto a temperaturas extremas."],
+["to have grown accustomed to","haberse acostumbrado a","He had grown accustomed to working under pressure.","Se había acostumbrado a trabajar bajo presión."],
+["to have taken place","haber tenido lugar","The first meeting had taken place weeks earlier.","La primera reunión había tenido lugar semanas antes."],
+["in the run-up to","en el periodo previo a","In the run-up to the election, tensions had been rising.","En el periodo previo a las elecciones, las tensiones habían ido aumentando."],
+["prior to","antes de","Prior to the merger, both firms had operated independently.","Antes de la fusión, ambas empresas habían operado de forma independiente."]
+];
+const vocab=rows.map((r,i)=>({id:"en_b2_u2_v"+String(i+1).padStart(2,"0"),target:r[0],esp:r[1],ex:r[2],exEsp:r[3],verification:{status:"not_checked",sources:[]}}));
+const lessons=[
+["Antecedentes y punto de referencia","Sitúa una acción anterior a otro momento pasado y explica su relevancia.","Past perfect simple: had + past participle. By the time y up until then fijan el punto de referencia.",[0,1,2,3],"By the time the guests arrived, we had finished dinner."],
+["Duración antes de un hecho pasado","Enfatiza cuánto tiempo llevaba desarrollándose una actividad antes de otro evento.","Past perfect continuous: had been + -ing. Destaca duración, esfuerzo o repetición previa.",[4,5,6,7],"He had been working on the proposal for weeks before he submitted it."],
+["Causas y conocimiento previo","Explica causas, suposiciones y falta de información en retrospectiva.","Past perfect simple para estados y hechos previos; no lo uses si el orden ya queda claro y no aporta contraste.",[8,9,10,11],"We were unaware of the changes that had been made."],
+["Intenciones y situaciones prolongadas","Describe planes, consideraciones y condiciones que precedieron a un resultado.","Past perfect simple frente a continuous: intención/resultado frente a proceso en desarrollo.",[12,13,14,15],"The board had been considering the proposal for months."],
+["Síntesis retrospectiva","Integra antecedentes, duración y contexto en una explicación coherente.","Prior to, in the run-up to y before ayudan a organizar referencias temporales sin repetir then.",[16,17,18,19,20,21],"Prior to the merger, both firms had operated independently."]
+];
+const mc=(w,opts)=>({vocabId:w.id,type:"mc",prompt:"¿Qué significa «"+w.target+"»?",options:opts,answer:0,explanation:"Selecciona la equivalencia que corresponde al contexto."});
+const order=(w,s)=>{const words=s.split(" ");return {vocabId:w.id,type:"order",prompt:"Ordena la frase.",words,correctOrder:words.slice(),explanation:"Reconstruye la frase y observa cómo se expresa la anterioridad."};};
+const lessonObjects=lessons.map((l,i)=>({title:l[0],objective:l[1],grammar:l[2],vocabIds:l[3].map(n=>vocab[n].id),reviewVocabIds:[],exercises:[mc(vocab[l[3][0]],[vocab[l[3][0]].esp,vocab[(l[3][0]+7)%22].esp,vocab[(l[3][0]+14)%22].esp]),order(vocab[l[3][1]],l[4])]}));
+const bank=["The site had previously been used as a warehouse.","They had been waiting for over an hour before the doors opened.","The disagreement stemmed from a misunderstanding.","I had intended to contact you earlier.","Prior to the merger, both firms had operated independently."];
+const exercises=[];
+for(let i=0;i<5;i++)exercises.push(mc(vocab[i],[vocab[i].esp,vocab[(i+8)%22].esp,vocab[(i+15)%22].esp]));
+for(let i=0;i<5;i++)exercises.push(order(vocab[i+5],bank[i]));
+const unit={unitNumber:2,id:"en_b2_u2",title:"Unidad 2: Past perfect simple y continuous",desc:"Explica antecedentes, causas y actividades prolongadas que ocurrieron antes de otro punto del pasado.",grammar:"Past perfect simple y past perfect continuous; had + participio frente a had been + -ing; by the time, up until then, before y prior to.",trap:{title:"Hecho anterior frente a duración previa",detail:"The team had completed the review before the deadline (resultado). The team had been reviewing the files for hours before the deadline (duración). Elige según el foco, no solo por el orden cronológico."},vocab,lessons:lessonObjects,exercises};
+const block=root.GUARDI_CURRICULUM_BLOCKS.en.B2["01-04"];
+block.units[1]=unit;
 })(typeof window!=="undefined"?window:globalThis);

@@ -53,7 +53,7 @@ const data=[
 ["in the event that","en caso de que","In the event that the system fails, use the manual process.","En caso de que falle el sistema, utiliza el proceso manual."],
 ["failing that","si eso falla","We could take the train; failing that, we can rent a car.","Podríamos tomar el tren; si eso falla, podemos rentar un auto."],
 ["if not","si no","Please confirm by noon; if not, we will postpone the launch.","Confirma antes del mediodía; si no, pospondremos el lanzamiento."],
-["under no circumstances","bajo ninguna circunstancia","Under no circumstances should the password be shared.","Bajo ninguna circunstancia debe compartirse la contraseña."],
+["under no circumstances","bajo ninguna circunstancia","Please confirm by noon; if not, we will postpone the launch.","Bajo ninguna circunstancia debe compartirse la contraseña."],
 ["in any event","en cualquier caso","In any event, the final decision rests with the board.","En cualquier caso, la decisión final corresponde a la junta."],
 ["subject to approval","sujeto a aprobación","The proposal is subject to approval by the director.","La propuesta está sujeta a la aprobación del director."],
 ["unless stated otherwise","a menos que se indique lo contrario","The fee is non-refundable unless stated otherwise.","La tarifa no es reembolsable, a menos que se indique lo contrario."],

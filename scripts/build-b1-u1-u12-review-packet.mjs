@@ -5,18 +5,12 @@
  */
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
-import vm from 'node:vm';
 import { fileURLToPath } from 'node:url';
-import { loadInlineB1Curriculum } from './load-inline-b1-curriculum.mjs';
+import { loadEnglishB1Curriculum } from './load-english-b1-curriculum.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const RANGE = [1, 12];
-const NOTE_PATHS = [
-  'docs/B1_CURRICULUM_EXPANSION_PLAN.md',
-  'docs/B1_U4_U6_DISPLACED_CONTENT.md',
-  'docs/B1_U7_U9_DISPLACED_CONTENT.md',
-  'docs/B1_U10_U12_DISPLACED_CONTENT.md',
-];
+const NOTE_PATHS = ['docs/EN_US_B1_SOURCES.md'];
 
 export function selectB1ReviewUnits(curriculum) {
   return (curriculum?.units ?? []).flatMap((unit) => {
@@ -40,7 +34,7 @@ export function buildB1ReviewPacket({ curriculum, notes = [], prompt = '' }) {
       .reduce((total, lesson) => total + (lesson.exercises?.length ?? 0), 0), 0),
   };
   const sections = [
-    '# Auditoría editorial independiente B1 — U1 a U12',
+    '# Auditoría editorial independiente — Inglés americano (en-US) B1 U1–U12',
     '> Paquete de solo lectura generado directamente desde el currículo activo. No modifica datos ni trackers.',
     '',
     '## Instrucciones de revisión',
@@ -63,7 +57,7 @@ export function buildB1ReviewPacket({ curriculum, notes = [], prompt = '' }) {
     sections.push(
       '### B1 U' + String(entry.number).padStart(2, '0') + ' — ' + (entry.unit.title ?? entry.unit.id),
       '',
-      'Ruta: index.html → CourseData.levels[B1] → ' + entry.unit.id,
+      'Ruta: languages/en/curriculum/b1/index.js → GUARDI_CURRICULUM_MANIFESTS.en.B1 → ' + entry.unit.id,
       '',
       '~~~json',
       JSON.stringify(entry.unit, null, 2),
@@ -77,29 +71,17 @@ export function buildB1ReviewPacket({ curriculum, notes = [], prompt = '' }) {
   };
 }
 
-async function loadStandaloneCurriculum(path, globalName) {
-  const source = await readFile(resolve(ROOT, path), 'utf8');
-  const sandbox = { window: {} };
-  vm.runInNewContext(source, sandbox, { filename: path, timeout: 5000 });
-  const curriculum = sandbox.window[globalName];
-  if (!curriculum || !Array.isArray(curriculum.units)) throw new Error('Invalid curriculum: ' + path);
-  return JSON.parse(JSON.stringify(curriculum));
-}
-
 async function main() {
   const outputArg = process.argv.indexOf('--output');
   const output = resolve(ROOT, outputArg >= 0 ? process.argv[outputArg + 1] : 'artifacts/deepseek-b1-u1-u12-review-packet.md');
-  const [a1, a2, indexSource, prompt, ...notes] = await Promise.all([
-    loadStandaloneCurriculum('curriculum-a1.js', 'BAHASA_CURRICULUM_A1'),
-    loadStandaloneCurriculum('curriculum-a2.js', 'BAHASA_CURRICULUM_A2'),
-    readFile(resolve(ROOT, 'index.html'), 'utf8'),
+  const [curriculum, prompt, ...notes] = await Promise.all([
+    loadEnglishB1Curriculum(ROOT),
     readFile(resolve(ROOT, 'docs/DEEPSEEK_B1_U1_U12_AUDIT_PROMPT.md'), 'utf8'),
     ...NOTE_PATHS.map(async (path) => ({ path, content: await readFile(resolve(ROOT, path), 'utf8') })),
   ]);
-  const curriculum = loadInlineB1Curriculum(indexSource, a1, a2);
   const packet = buildB1ReviewPacket({ curriculum, notes, prompt });
-  if (packet.coverage.units !== 12) throw new Error('Expected 12 B1 units, found ' + packet.coverage.units);
-  if (packet.coverage.vocabulary_entries !== 45) throw new Error('Unexpected B1 U1-U12 vocabulary count: ' + packet.coverage.vocabulary_entries);
+  if (packet.coverage.units !== 12) throw new Error('Expected 12 English B1 units, found ' + packet.coverage.units);
+  if (packet.coverage.vocabulary_entries !== 242) throw new Error('Unexpected English B1 vocabulary count: ' + packet.coverage.vocabulary_entries);
   await mkdir(dirname(output), { recursive: true });
   await writeFile(output, packet.markdown, 'utf8');
   console.log(JSON.stringify({ output, coverage: packet.coverage, bytes: Buffer.byteLength(packet.markdown) }));

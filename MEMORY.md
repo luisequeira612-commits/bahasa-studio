@@ -1,3 +1,11 @@
+## 2026-11-27 — Exportación de audio guiada por el registro multiidioma
+- `scripts/export-audio-manifest.mjs --all-languages` ahora lee `LanguageManager.list()` y recorre las rutas curriculares declaradas para cada idioma, en vez de tener PT-BR codificado como caso especial. Los idiomas con `curriculum` vacío se omiten hasta que tengan contenido real; indonesio conserva su exportador actual y los demás cursos se descubren al registrar sus rutas.
+- Se añadió prueba para el modo `--all-languages`: comprueba que se exporten ID y PT-BR, que cada texto tenga idioma/locale/origen y que los hashes sean únicos por idioma.
+- El CI del head `0b3a448` ya mostró `Run audio engine fallback tests`, `Run Indonesian audio manifest export tests`, `Run offline audio preparation tests` y `Run audio generation engine tests` en success; regresión completa seguía en curso. El head actual incorpora el exportador genérico y su prueba; CI nuevo pendiente.
+- Los ocho idiomas sin rutas curriculares declaradas no producen clips todavía. Tener voz configurada no inventa un curso ni texto que sintetizar; el generador los incorporará cuando sus manifiestos/rutas se añadan al registro.
+
+Fuente: `language-manager.js`, `scripts/export-audio-manifest.mjs`, `tests/audio-manifest.test.mjs` y Actions #45962044631; 27 nov 2026.
+
 ## 2026-11-27 — Corrección de fallback de audio durante carga del manifiesto
 - CI del head `dd3c1a1` detectó que `speak()` iniciaba el MP3 y, simultáneamente, lanzaba TTS del dispositivo mientras el manifiesto aún cargaba. Se corrigió para retornar cuando `playRecorded()` inicia correctamente; una vez cargado el manifiesto, las frases ausentes pasan al fallback del dispositivo sin intentar una ruta inexistente.
 - Type checks #45961834777 success; regresión #45961834730 falló en el paso `Run audio engine fallback tests`, por este comportamiento. Calidad offline success. La nueva corrección está en commit `2a08884466690fd48c9e0b82fbd67c93f4585944`; CI nuevo pendiente.

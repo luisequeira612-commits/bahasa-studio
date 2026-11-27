@@ -6,7 +6,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "tools" / "audio-voices.json"
-MANIFEST = ROOT / "audio" / "manifest.json"
+MANIFEST = ROOT / "audio" / "manifest-multilingual.json"
 PIPER_VERSION = "1.8.0"
 
 def normalize(text: str) -> str:
@@ -71,6 +71,13 @@ def encode(raw: Path, destination: Path) -> None:
         "-ac", "1", "-ar", "24000", "-c:a", "libmp3lame", "-b:a", "32k",
         str(destination)
     ], check=True)
+
+def sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as stream:
+        for chunk in iter(lambda: stream.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
 
 def main() -> None:
     parser = argparse.ArgumentParser()
@@ -149,6 +156,13 @@ def main() -> None:
                 generated += 1
 
     entries.sort(key=lambda x: (x["language"], x["id"]))
+    for entry in entries:
+        levels = entry.get("levels") or [
+            source.get("level") for source in entry.get("sources", [])
+            if source.get("level") in {"A1", "A2", "B1", "B2"}
+        ]
+        entry["levels"] = [level for level in ("A1", "A2", "B1", "B2") if level in set(levels)]
+
     manifest = {
         "version": 2,
         "engine": "piper",
@@ -159,6 +173,53 @@ def main() -> None:
     }
     MANIFEST.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
                         encoding="utf-8")
+
+    for code in active_codes:
+        language_entries = [entry for entry in entries if entry["language"] == code]
+        if not language_entries:
+            continue
+        audio_hashes = {}
+        for entry in language_entries:
+            audio_file = ROOT / entry["file"].removeprefix("./")
+            if not audio_file.is_file():
+                raise RuntimeError(f"Falta el MP3 generado: {audio_file}")
+            audio_hashes[entry["id"]] = sha256_file(audio_file)
+
+        if code == "id":
+            inventory_path = ROOT / "audio" / "manifest.json"
+            metadata_path = ROOT / "audio" / "metadata.json"
+        else:
+            inventory_path = ROOT / "audio" / code / "manifest.json"
+            metadata_path = ROOT / "audio" / code / "metadata.json"
+        inventory_path.parent.mkdir(parents=True, exist_ok=True)
+        metadata_path.parent.mkdir(parents=True, exist_ok=True)
+        inventory_path.write_text(
+            json.dumps(language_entries, ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8"
+        )
+        metadata = {}
+        if metadata_path.exists():
+            try:
+                parsed_metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+                if isinstance(parsed_metadata, dict):
+                    metadata = parsed_metadata
+            except json.JSONDecodeError:
+                metadata = {}
+        metadata.update({
+            "engine": "piper",
+            "voice": "Piper / " + config[code]["model"],
+            "model": config[code]["model"],
+            "repository": config[code]["repository"],
+            "revision": config[code]["revision"],
+            "piper_version": PIPER_VERSION,
+            "model_card": "./audio/voices/" + code + "/MODEL_CARD",
+            "formats": ["mp3"],
+            "audio_hashes": audio_hashes
+        })
+        metadata_path.write_text(
+            json.dumps(metadata, ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8"
+        )
     attribution_lines = [
         "# Atribución de voces Piper",
         "",
